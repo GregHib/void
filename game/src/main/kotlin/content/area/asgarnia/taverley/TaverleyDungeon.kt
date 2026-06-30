@@ -5,7 +5,6 @@ import content.quest.quest
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +14,6 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
@@ -41,14 +39,9 @@ class TaverleyDungeon : Script {
     fun spawn(player: Player, tile: Tile): Boolean {
         val armour = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return false
         armour.remove(TimeUnit.MINUTES.toTicks(5))
-        val suit = NPCs.add("suit_of_armour", armour.tile)
+        NPCs.add("suit_of_armour", armour.tile, ticks = TimeUnit.MINUTES.toTicks(5))
         player.message("Suddenly the suit of armour comes to life!")
         //    suit.setAnimation("suit_of_armour_stand") TODO find animation
-        suit.queue("despawn", TimeUnit.MINUTES.toTicks(5)) {
-            World.queue("despawn_${suit.index}") {
-                NPCs.remove(suit)
-            }
-        }
         return true
     }
 

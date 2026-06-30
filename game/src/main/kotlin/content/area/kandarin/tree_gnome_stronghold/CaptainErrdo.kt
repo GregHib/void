@@ -42,7 +42,7 @@ class CaptainErrdo : Script {
             }
         }
 
-        npcOperate("Glider,captain_errdo,captain_bleemadge,captain_dalbur,captain_klemfoodle") { (target) ->
+        npcOperate("Glider", "captain_errdo,captain_bleemadge,captain_dalbur,captain_klemfoodle") { (target) ->
             if (!questCompleted("the_grand_tree")) {
                 takeMe(target)
                 return@npcOperate

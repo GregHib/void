@@ -24,7 +24,7 @@ class DagannothEggHatch : Script {
             // Small stand-up delay before attacking
             queue("dagannoth_hatch_attack", 1) {
                 transform("dagannoth_egg_opened")
-                NPCs.add("dagannoth_spawn", tile)
+                NPCs.add("dagannoth_spawn", tile, ticks = TimeUnit.MINUTES.toTicks(5))
                 interactPlayer(target, "Attack")
             }
             queue("dagannoth_respawn", TimeUnit.MINUTES.toTicks(5)) {

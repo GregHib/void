@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
 
@@ -108,9 +107,7 @@ class Eniola : Script {
             if (inventory.remove(it.component, 20)) {
                 openBank()
             } else {
-                queue("not_enough_runes") {
-                    npc<Sad>("I'm afraid you don't have the necessary runes with you at this time, so I can't allow you to access your account. Please bring twenty runes of one type and you can open your account.")
-                }
+                npc<Sad>("I'm afraid you don't have the necessary runes with you at this time, so I can't allow you to access your account. Please bring twenty runes of one type and you can open your account.")
             }
         }
     }

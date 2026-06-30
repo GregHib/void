@@ -16,23 +16,22 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.queue.queue
 
 class Dororan : Script {
 
     init {
         itemOnItem("chisel", "ring_from_jeffery") { _, _ ->
+            println("Item on item")
             if (quest("gunnars_ground") == "jeffery_ring") {
                 noInterest()
                 return@itemOnItem
             }
-            queue("engraving") {
-                item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
-                anim("engrave")
-                exp(Skill.Crafting, 125.0)
-                inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
-                set("gunnars_ground", "engraved_ring")
-            }
+            item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
+            println("Engraved")
+            anim("engrave")
+            exp(Skill.Crafting, 125.0)
+            inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
+            set("gunnars_ground", "engraved_ring")
         }
 
         npcOperate("Talk-to", "dororan_*") {

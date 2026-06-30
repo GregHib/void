@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 
 class Ectopool : Script {
@@ -33,13 +32,11 @@ class Ectopool : Script {
                 return@objTeleportTakeOff Teleport.CANCEL
             }
             anim("jump_up")
-            queue("jump_to") {
-                val teleports = get<ObjectTeleports>()
-                val definition = teleports.get(target.id, option).first()
-                val tile = teleports.teleportTile(this, definition)
-                tele(tile.addX(1))
-                exactMoveDelay(tile, startDelay = 49, delay = 68, direction = Direction.WEST)
-            }
+            val teleports = get<ObjectTeleports>()
+            val definition = teleports.get(target.id, option).first()
+            val tile = teleports.teleportTile(this, definition)
+            tele(tile.addX(1))
+            exactMoveDelay(tile, startDelay = 49, delay = 68, direction = Direction.WEST)
             return@objTeleportTakeOff Teleport.CANCEL
         }
     }

@@ -19,6 +19,7 @@ internal class GemBagTest : WorldTest() {
         player.inventory.add("uncut_diamond", 4)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(0, player.inventory.count("uncut_emerald"))
         assertEquals(4, player.inventory.count("uncut_diamond"))
@@ -33,6 +34,7 @@ internal class GemBagTest : WorldTest() {
         player.inventory.add("uncut_ruby", 5)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(0, player.inventory.count("uncut_ruby"))
         assertEquals(15, player["gem_bag_ruby", 0])
@@ -49,6 +51,7 @@ internal class GemBagTest : WorldTest() {
         player.inventory.add("uncut_diamond", 5)
 
         player.itemOnItem(1, 0)
+        tick(1)
 
         assertEquals(3, player.inventory.count("uncut_diamond"))
         assertEquals(10, player["gem_bag_diamond", 0])
@@ -65,6 +68,7 @@ internal class GemBagTest : WorldTest() {
         player.inventory.add("uncut_sapphire", 5)
 
         player.itemOnItem(1, 0)
+        tick(1)
 
         assertEquals(5, player.inventory.count("uncut_sapphire"))
         assertEquals(25, player["gem_bag_sapphire", 0])

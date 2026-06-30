@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
@@ -80,10 +79,7 @@ class Shamus : Script {
                 npc<Angry>("Hey! Yer big elephant! Don't go choppin' down me house, now!")
                 return@objectOperate
             }
-            shamus = NPCs.add("shamus", Tile(3139, 3211))
-            shamus.queue("shamus_despawn", TimeUnit.SECONDS.toTicks(60)) {
-                NPCs.remove(shamus)
-            }
+            shamus = NPCs.add("shamus", Tile(3139, 3211), ticks = TimeUnit.SECONDS.toTicks(60))
             talkWith(shamus)
             interactNpc(shamus, "Talk-to")
         }

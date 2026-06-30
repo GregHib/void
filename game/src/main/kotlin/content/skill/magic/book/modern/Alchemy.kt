@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.queue.queue
 
 class Alchemy : Script {
     init {
@@ -33,17 +32,14 @@ class Alchemy : Script {
             }
             val spell = id.substringAfter(":")
             if (item.def.cost >= get("alchemy_warning_limit", Settings["magic.alchemy.warningLimit", 25_000])) {
-                queue("alch_warning") {
-                    choice("The item you are about to alch has a high value.") {
-                        option("I wish to continue.") {
-                            alch(this, spell, item)
-                        }
-                        option("I do not want to alch this item.")
+                choice("The item you are about to alch has a high value.") {
+                    option("I wish to continue.") {
+                        alch(this, spell, item)
                     }
+                    option("I do not want to alch this item.")
                 }
                 return@onItem
             }
-
             alch(this, spell, item)
         }
     }

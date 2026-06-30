@@ -18,6 +18,7 @@ internal class CoalBagTest : WorldTest() {
         player.inventory.add("coal", 5)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(0, player.inventory.count("coal"))
         assertEquals(5, player["coal_bag_coal", 0])
@@ -31,6 +32,7 @@ internal class CoalBagTest : WorldTest() {
         player.inventory.add("coal", 5)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(0, player.inventory.count("coal"))
         assertEquals(15, player["coal_bag_coal", 0])
@@ -44,6 +46,7 @@ internal class CoalBagTest : WorldTest() {
         player.inventory.add("coal", 10)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(4, player.inventory.count("coal"))
         assertEquals(81, player["coal_bag_coal", 0])
@@ -57,6 +60,7 @@ internal class CoalBagTest : WorldTest() {
         player.inventory.add("coal", 5)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(5, player.inventory.count("coal"))
         assertEquals(81, player["coal_bag_coal", 0])

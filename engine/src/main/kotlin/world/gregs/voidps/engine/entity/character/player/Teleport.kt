@@ -32,14 +32,14 @@ interface Teleport {
         items.getOrPut(type) { mutableSetOf() }.add(block)
     }
 
-    fun objTeleportTakeOff(option: String = "*", obj: String = "*", block: Player.(obj: GameObject, option: String) -> Int) {
+    fun objTeleportTakeOff(option: String = "*", obj: String = "*", block: suspend Player.(obj: GameObject, option: String) -> Int) {
         Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
             objectTakeOff["$option:$id"] = block
         }
     }
 
-    fun objTeleportLand(option: String = "*", obj: String = "*", block: Player.(obj: GameObject, option: String) -> Unit) {
+    fun objTeleportLand(option: String = "*", obj: String = "*", block: suspend Player.(obj: GameObject, option: String) -> Unit) {
         Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
             objectLand["$option:$id"] = block
@@ -50,8 +50,8 @@ interface Teleport {
         private val takeOff = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val items = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val land = Object2ObjectOpenHashMap<String, Player.() -> Unit>(5)
-        private val objectTakeOff = Object2ObjectOpenHashMap<String, Player.(GameObject, String) -> Int>(50)
-        private val objectLand = Object2ObjectOpenHashMap<String, Player.(GameObject, String) -> Unit>(20)
+        private val objectTakeOff = Object2ObjectOpenHashMap<String, suspend Player.(GameObject, String) -> Int>(50)
+        private val objectLand = Object2ObjectOpenHashMap<String, suspend Player.(GameObject, String) -> Unit>(20)
 
         const val CONTINUE = 0
         const val CANCEL = -1
@@ -78,12 +78,12 @@ interface Teleport {
             land[type]?.invoke(player)
         }
 
-        fun takeOff(player: Player, target: GameObject, option: String): Int {
+        suspend fun takeOff(player: Player, target: GameObject, option: String): Int {
             val handler = objectTakeOff["$option:${target.id}"] ?: objectTakeOff["*:${target.id}"] ?: objectTakeOff["$option:*"] ?: objectTakeOff["*:*"] ?: return CONTINUE
             return handler.invoke(player, target, option)
         }
 
-        fun land(player: Player, target: GameObject, option: String) {
+        suspend fun land(player: Player, target: GameObject, option: String) {
             val handler = objectLand["$option:${target.id}"] ?: objectLand["*:${target.id}"] ?: objectLand["$option:*"] ?: objectLand["*:*"] ?: return
             handler.invoke(player, target, option)
         }

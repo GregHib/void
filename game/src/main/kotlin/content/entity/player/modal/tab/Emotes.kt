@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.blocked
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.random
@@ -40,40 +39,35 @@ class Emotes : Script {
         }
 
         interfaceOption(id = "emotes:*") {
-            if (queue.contains("emote")) {
-                return@interfaceOption
-            }
             val id = it.option.toSnakeCase()
             val componentId = InterfaceDefinitions.getComponent(it.id, it.component)!!
             if (componentId.index > 23 && !unlocked(id, it.option)) {
                 return@interfaceOption
             }
-            strongQueue("emote") {
-                when (id) {
-                    "skillcape" -> {
-                        val cape = equipped(EquipSlot.Cape)
-                        val skill: Skill? = cape.def.getOrNull<Int>("skillcape_skill")?.let { int -> Skill.all[int] }
-                        when {
-                            cape.id == "quest_point_cape" -> playSkillCapeEmote("quest_point")
-                            cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote()
-                            skill == Skill.Dungeoneering -> playDungeoneeringCapeEmote()
-                            skill != null -> playSkillCapeEmote(skill.name.lowercase())
-                        }
+            when (id) {
+                "skillcape" -> {
+                    val cape = equipped(EquipSlot.Cape)
+                    val skill: Skill? = cape.def.getOrNull<Int>("skillcape_skill")?.let { int -> Skill.all[int] }
+                    when {
+                        cape.id == "quest_point_cape" -> playSkillCapeEmote("quest_point")
+                        cape.id == "dungeoneering_master_cape" -> playDungeoneeringMasterCapeEmote()
+                        skill == Skill.Dungeoneering -> playDungeoneeringCapeEmote()
+                        skill != null -> playSkillCapeEmote(skill.name.lowercase())
                     }
-                    "seal_of_approval" -> playSealOfApprovalEmote()
-                    "give_thanks" -> playGiveThanksEmote()
-                    "angry" if equipped(EquipSlot.Hat).id == "a_powdered_wig" -> playEnhancedEmote(id)
-                    "yawn" if equipped(EquipSlot.Hat).id == "sleeping_cap" -> playEnhancedYawnEmote()
-                    "bow" if equipped(EquipSlot.Legs).id == "pantaloons" -> playEnhancedEmote(id)
-                    "dance" if equipped(EquipSlot.Legs).id == "flared_trousers" -> playEnhancedEmote(id)
-                    "flap" if equipped(EquipSlot.Feet).id == "chicken_feet" && equipped(EquipSlot.Legs).id == "chicken_legs" && equipped(EquipSlot.Chest).id == "chicken_wings" && equipped(EquipSlot.Hat).id == "chicken_head" -> playEnhancedEmote(id)
-                    else -> {
-                        if (id == "air_guitar") {
-                            jingle(id)
-                        }
-                        gfx("emote_$id")
-                        animDelay("emote_$id")
+                }
+                "seal_of_approval" -> playSealOfApprovalEmote()
+                "give_thanks" -> playGiveThanksEmote()
+                "angry" if equipped(EquipSlot.Hat).id == "a_powdered_wig" -> playEnhancedEmote(id)
+                "yawn" if equipped(EquipSlot.Hat).id == "sleeping_cap" -> playEnhancedYawnEmote()
+                "bow" if equipped(EquipSlot.Legs).id == "pantaloons" -> playEnhancedEmote(id)
+                "dance" if equipped(EquipSlot.Legs).id == "flared_trousers" -> playEnhancedEmote(id)
+                "flap" if equipped(EquipSlot.Feet).id == "chicken_feet" && equipped(EquipSlot.Legs).id == "chicken_legs" && equipped(EquipSlot.Chest).id == "chicken_wings" && equipped(EquipSlot.Hat).id == "chicken_head" -> playEnhancedEmote(id)
+                else -> {
+                    if (id == "air_guitar") {
+                        jingle(id)
                     }
+                    gfx("emote_$id")
+                    animDelay("emote_$id")
                 }
             }
         }

@@ -30,7 +30,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
@@ -61,19 +60,17 @@ class HuntForSurok(val teleports: ObjectTeleports) : Script {
                     val instance = smallInstance(Region(12374))
                     setInstanceLogout(Tile(3142, 5545))
                     gfx("curse_impact")
-                    queue("enter_bork_lair") {
-                        val cutscene = startCutscene("bork", instance, instanceOffset())
-                        cutscene.onEnd(destroyInstance = false) {
-                            tele(3142, 5545)
-                            clearCamera()
-                        }
-                        if (get("bork_kill_count", 0) == 0) {
-                            cutscene()
-                        } else {
-                            repeat()
-                        }
-                        cutscene.end(destroyInstance = false, invokeEnd = false)
+                    val cutscene = startCutscene("bork", instance, instanceOffset())
+                    cutscene.onEnd(destroyInstance = false) {
+                        tele(3142, 5545)
+                        clearCamera()
                     }
+                    if (get("bork_kill_count", 0) == 0) {
+                        cutscene()
+                    } else {
+                        repeat()
+                    }
+                    cutscene.end(destroyInstance = false, invokeEnd = false)
                 }
                 Teleport.CANCEL
             } else {

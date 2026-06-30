@@ -116,12 +116,10 @@ class ItemEmotes : Script {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
-            queue("snow_globe") {
-                message("You shake the snow globe.")
-                animDelay("emote_shake_snow_globe")
-                jingle("harmony_snow_globe")
-                open("snow_globe")
-            }
+            message("You shake the snow globe.")
+            animDelay("emote_shake_snow_globe")
+            jingle("harmony_snow_globe")
+            open("snow_globe")
         }
 
         for (option in listOf("Play", "Loop", "Walk", "Crazy")) {

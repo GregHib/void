@@ -104,6 +104,7 @@ internal class TeaTest : WorldTest() {
         player.inventory.add("empty_cup")
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertTrue(player.inventory.contains("cup_of_tea"))
         assertEquals(0, player.inventory.charges(player, 0))
@@ -116,6 +117,7 @@ internal class TeaTest : WorldTest() {
         player.inventory.add("cup_of_tea")
 
         player.itemOnItem(1, 0)
+        tick(1)
 
         assertTrue(player.inventory.contains("empty_cup"))
         assertEquals(2, player.inventory.charges(player, 0))
@@ -128,6 +130,7 @@ internal class TeaTest : WorldTest() {
         player.inventory.add("cup_of_tea")
 
         player.itemOnItem(1, 0)
+        tick(1)
 
         assertTrue(player.inventory.contains("cup_of_tea"))
         assertEquals(5, player.inventory.charges(player, 0))
