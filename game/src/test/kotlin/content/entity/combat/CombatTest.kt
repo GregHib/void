@@ -105,6 +105,20 @@ internal class CombatTest : WorldTest() {
     }
 
     @Test
+    fun `Npc killed by a non-familiar npc does not crash resolving an owner`() {
+        val attacker = createNPC("giant_rat", emptyTile.addX(1))
+        val npc = createNPC("giant_rat", emptyTile.addY(4))
+        // A plain npc killer has no owner_index (-1); resolving it must not throw.
+        npc.damageDealers[attacker] = 100
+        val tile = npc.tile
+        npc.levels.set(Skill.Constitution, 0)
+        tick(8)
+
+        // The killer isn't a player, so no loot is dropped (original behaviour) - and no crash.
+        assertNull(FloorItems.firstOrNull(npc["death_tile", tile], "bones"))
+    }
+
+    @Test
     fun `Kill rat with range`() {
         setRandom(object : FakeRandom() {
             override fun nextInt(from: Int, until: Int): Int = until / 2
