@@ -2,6 +2,7 @@ package content.skill.magic.book.lunar
 
 import WorldTest
 import containsMessage
+import messages
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.interactOn
 import world.gregs.voidps.engine.client.ui.open
@@ -56,19 +57,19 @@ class FertileSoilTest : WorldTest() {
 
     @Test
     fun `Can't fertilise other objects`() {
-        val player = createPlayer(Tile(3057, 3308))
+        val player = createPlayer(Tile(3062, 3310))
         player.levels.set(Skill.Magic, 83)
         player.open("lunar_spellbook")
         player.inventory.add("astral_rune", 3)
         player.inventory.add("nature_rune", 2)
         player.inventory.add("earth_rune", 15)
 
-        val obj = createObject("bank_booth", Tile(3058, 3308))
+        val obj = GameObjects.find(Tile(3061, 3311), "oak")
         player.interactOn(obj, "lunar_spellbook", "fertile_soil")
         tick(5)
 
         assertTrue(player.containsMessage("I don't want to fertilise that!"))
-        assertFalse(player.containsVarbit("patch_super_compost", "bank_booth"))
+        assertFalse(player.containsVarbit("patch_super_compost", "oak"))
         assertEquals(0.0, player.experience.get(Skill.Magic))
     }
 }
