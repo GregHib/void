@@ -129,7 +129,7 @@ variables = [
   "alfred_grimhands_barcrawl",
   "bar_crawl_started",
 ]
-item = [
+items = [
   "barcrawl_card"
 ]
 
