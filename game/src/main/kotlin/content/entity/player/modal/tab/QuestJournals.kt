@@ -1,15 +1,30 @@
 package content.entity.player.modal.tab
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.player.bank.bank
+import content.entity.player.command.find
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.boolArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.inv.beastOfBurden
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.engine.timer.Timer
 
-class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
+class QuestJournals(
+    val accounts: AccountDefinitions,
+    val questDefinitions: QuestDefinitions,
+) : Script {
 
     val logger = InlineLogger()
 
@@ -66,5 +81,46 @@ class QuestJournals(val questDefinitions: QuestDefinitions) : Script {
                 set("quest_journal_order", type)
             }
         }
+
+        adminCommand(
+            "reset_quest",
+            stringArg("quest", desc = "Name of the quest to reset", autofill = questDefinitions.ids.keys),
+            boolArg("remove-items", desc = "Removes all quest related items from the player", optional = true),
+            stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
+            desc = "Resets a quest for the player",
+            handler = ::resetQuest,
+        )
+    }
+
+    /**
+     * Resets a player's progress on a quest
+     * Note: Not foolproof
+     *   - Doesn't remove them from a quest area
+     *   - Dropped quest items can avoid the reset
+     *   - Doesn't reset rewards
+     *   - Allows player to reclaim rewards (such as XP)
+     */
+    fun resetQuest(player: Player, args: List<String>) {
+        val target = Players.find(player, args.getOrNull(2)) ?: return
+        val id = args[0]
+        val def = questDefinitions.getOrNull(id) ?: return
+        val vars: List<String> = def.getOrNull("variables") ?: emptyList()
+        for (variable in vars) {
+            target.clear(variable)
+        }
+        val removeItems = args.getOrNull(1)?.toBooleanStrictOrNull() ?: true
+        if (removeItems) {
+            val items: List<String> = def.getOrNull("items") ?: emptyList()
+            for (item in items) {
+                removeItems(target, item)
+            }
+        }
+    }
+
+    private fun removeItems(player: Player, item: String) {
+        player.inventory.removeToLimit(item, Int.MAX_VALUE)
+        player.bank.removeToLimit(item, Int.MAX_VALUE)
+        player.beastOfBurden.removeToLimit(item, Int.MAX_VALUE)
+        player.equipment.removeToLimit(item, Int.MAX_VALUE)
     }
 }

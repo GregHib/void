@@ -3,7 +3,6 @@ package content.entity.player.combat
 import content.entity.combat.hit.Hit
 import content.skill.melee.weapon.attackStyle
 import content.skill.melee.weapon.attackType
-import content.skill.slayer.isTask
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
@@ -47,9 +46,6 @@ class CombatExperience : Script {
                 } else {
                     grant(this, target, Skill.Ranged, damage / 2.5)
                 }
-            }
-            if (target is NPC && isTask(target)) {
-                grant(this, target, Skill.Slayer, target.def["slayer_xp", 0.0])
             }
             grant(this, target, Skill.Constitution, damage / 7.5)
         }
