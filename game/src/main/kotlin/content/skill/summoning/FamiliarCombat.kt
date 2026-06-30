@@ -47,14 +47,11 @@ fun Player.commandFamiliarAttack(target: Character, silent: Boolean = false) {
             if (!silent) message("You can only attack players in a player-vs-player area.")
             return
         }
-        is NPC -> {
-            // Familiars attack freely in multi-combat zones. In single-way combat they may only
-            // assist: attack the same NPC the owner is fighting, or one already fighting the owner.
-            val assisting = this.target == target || target.target == this
-            if (!assisting && (!inMultiCombat || !target.inMultiCombat)) {
-                if (!silent) message("You can only use your familiar in a multi-zone area.")
-                return
-            }
+        // Familiars can only fight in multi-combat zones; in single-way combat the player can
+        // still use the familiar (storage, foraging, specials) but it won't assist in the fight.
+        is NPC -> if (!inMultiCombat || !target.inMultiCombat) {
+            if (!silent) message("You can only use your familiar in a multi-zone area.")
+            return
         }
     }
     when (target) {
