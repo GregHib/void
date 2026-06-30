@@ -1,5 +1,6 @@
 [pickpocketting_template]
 requires = [
+    { members = { req = true } },
     { skill = { id = "constitution", min = 100 } },
     { skill = { id = "thieving", min = 1, max = 10 } },
 ]
