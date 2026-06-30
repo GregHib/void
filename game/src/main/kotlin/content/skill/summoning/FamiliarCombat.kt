@@ -9,8 +9,6 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.instruction.handle.interactNpc
-import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -56,10 +54,11 @@ fun Player.commandFamiliarAttack(target: Character, silent: Boolean = false) {
             return
         }
     }
-    when (target) {
-        is NPC -> familiar.interactNpc(target, "Attack")
-        is Player -> familiar.interactPlayer(target, "Attack")
-    }
+    // Drive the familiar with CombatMovement directly rather than the interact-then-combat path:
+    // the interact approach gives up (cantReach -> EmptyMode) the moment a player or npc fully
+    // blocks the route, whereas CombatMovement re-paths every tick and keeps pursuing, so the
+    // familiar resumes as soon as the obstruction clears.
+    familiar.mode = CombatMovement(familiar, target)
 }
 
 /**

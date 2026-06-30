@@ -177,6 +177,35 @@ internal class CombatMovementTest : WorldTest() {
     }
 
     @Test
+    fun `Familiar keeps pathing to its target when an obstruction blocks then clears`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        val target = createNPC("guard_falador", Tile(3046, 3352))
+        // A wall of blockers directly between the familiar and its target.
+        val blockers = listOf(
+            createNPC("guard_falador", Tile(3033, 3351)),
+            createNPC("guard_falador", Tile(3033, 3352)),
+            createNPC("guard_falador", Tile(3033, 3353)),
+        )
+
+        owner.commandFamiliarAttack(target)
+        tick(3)
+        // It's still trying to reach the target (CombatMovement persists) rather than giving up.
+        assertTrue(familiar.mode is CombatMovement)
+
+        // Clear the wall; the familiar must resume closing the distance, not stay frozen.
+        blockers.forEach { it.tele(Tile(3033, 3360)) }
+        val beforeX = familiar.tile.x
+        tick(4)
+
+        assertTrue(familiar.mode is CombatMovement)
+        assertTrue(familiar.tile.x > beforeX)
+    }
+
+    @Test
     fun `Familiar walks to a distant ordered target in single-way`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
