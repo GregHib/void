@@ -101,6 +101,8 @@ death_anim = "spirit_tz-kih_familiar_death"
 [spirit_tz-kih_familiar.magic]
 range = 7
 anim = "spirit_tz-kih_familiar_attack"
+gfx = "spirit_tz-kih_familiar_attack_gfx"
+projectile = "spirit_tz-kih_familiar_projectile"
 target_hit = { offense = "magic", max = 50 }
 
 [albino_rat_familiar]
@@ -475,6 +477,8 @@ death_anim = "karamthulhu_overlord_familiar_death"
 [karamthulhu_overlord_familiar.range]
 range = 7
 anim = "karamthulhu_overlord_familiar_attack"
+gfx = "karamthulhu_overlord_familiar_attack_gfx"
+projectile = "karamthulhu_overlord_familiar_projectile"
 target_hit = { offense = "range", max = 76 }
 
 [smoke_devil_familiar]
@@ -776,6 +780,8 @@ death_anim = "geyser_titan_familiar_death"
 [geyser_titan_familiar.range]
 range = 7
 anim = "geyser_titan_familiar_attack"
+gfx = "geyser_titan_familiar_attack_gfx"
+projectile = "geyser_titan_familiar_projectile"
 target_hit = { offense = "range", max = 190 }
 
 [abyssal_titan_familiar]
@@ -809,4 +815,6 @@ death_anim = "steel_titan_familiar_death"
 [steel_titan_familiar.range]
 range = 7
 anim = "steel_titan_familiar_attack"
+gfx = "steel_titan_familiar_attack_gfx"
+projectile = "steel_titan_familiar_projectile"
 target_hit = { offense = "range", max = 244 }

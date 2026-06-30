@@ -14,8 +14,32 @@ id = 1376
 id = 1330
 
 [hydra_familiar_projectile]
-id = 1488
+id = 1489
 
 [wolpertinger_familiar_projectile]
 id = 2733
+
+[steel_titan_familiar_attack_gfx]
+id = 1444
+
+[steel_titan_familiar_projectile]
+id = 1445
+
+[geyser_titan_familiar_attack_gfx]
+id = 1375
+
+[geyser_titan_familiar_projectile]
+id = 1374
+
+[karamthulhu_overlord_familiar_attack_gfx]
+id = 1474
+
+[karamthulhu_overlord_familiar_projectile]
+id = 1477
+
+[spirit_tz-kih_familiar_attack_gfx]
+id = 1422
+
+[spirit_tz-kih_familiar_projectile]
+id = 1423
 

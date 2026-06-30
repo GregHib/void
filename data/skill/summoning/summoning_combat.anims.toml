@@ -371,7 +371,7 @@ id = 5227
 id = 5230
 
 [karamthulhu_overlord_familiar_attack]
-id = 7963
+id = 7970
 
 [karamthulhu_overlord_familiar_defend]
 id = 7962
@@ -641,7 +641,7 @@ id = 7948
 id = 7947
 
 [steel_titan_familiar_attack]
-id = 8183
+id = 8190
 
 [steel_titan_familiar_defend]
 id = 8185
