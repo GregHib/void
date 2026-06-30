@@ -158,6 +158,25 @@ internal class CombatMovementTest : WorldTest() {
     }
 
     @Test
+    fun `Familiar assists owner against a single-way npc`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        owner.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        // No in_multi_combat flag: a single-way zone, which normally permits one attacker per
+        // target. The owner and its familiar count as one side, so the familiar may still join.
+        val target = createNPC("guard_falador", Tile(3032, 3351))
+
+        owner.npcOption(target, "Attack")
+        tick(8)
+
+        assertTrue(familiar.mode is CombatMovement)
+        assertEquals(target, (familiar.mode as CombatMovement).target)
+    }
+
+    @Test
     fun `Familiar approaches a commanded target beyond its aggro range`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
