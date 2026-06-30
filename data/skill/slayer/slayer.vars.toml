@@ -18,10 +18,6 @@ format = "int"
 persist = true
 format = "string"
 
-[slayer_task_streak]
-persist = true
-format = "int"
-
 [broader_fletching]
 persist = true
 format = "boolean"
