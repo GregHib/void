@@ -248,7 +248,7 @@ sealed class Condition(val priority: Int) {
 
         private fun parseMembers(list: List<Map<String, Any>>): BotMembers? {
             val map = list.single()
-            if (map.containsKey("members")) {
+            if (map.containsKey("req")) {
                 return BotMembers(map["req"] as Boolean)
             }
             return null
