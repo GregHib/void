@@ -1,0 +1,21 @@
+[dreadfowl_familiar_projectile]
+id = 1318
+
+[thorny_snail_familiar_projectile]
+id = 1380
+
+[thorny_snail_familiar_attack_gfx]
+id = 1379
+
+[smoke_devil_familiar_projectile]
+id = 1376
+
+[forge_regent_familiar_projectile]
+id = 1330
+
+[hydra_familiar_projectile]
+id = 1488
+
+[wolpertinger_familiar_projectile]
+id = 2733
+

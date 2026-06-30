@@ -72,6 +72,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         familiarNpc["owner_index"] = index
         familiarNpc.anim("${familiarNpc.id.removeSuffix("_familiar")}_spawn")
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
+        updateFamiliarPvpForm()
         updateFamiliarInterface()
         if (!restart) {
             timers.start("familiar_timer")
@@ -182,6 +183,7 @@ fun Player.callFollower() {
     if (follower.mode !is Follow) {
         follower.mode = Follow(follower, this)
     }
+    updateFamiliarPvpForm()
 }
 
 /**

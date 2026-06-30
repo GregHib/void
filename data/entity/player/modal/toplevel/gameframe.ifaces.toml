@@ -210,12 +210,11 @@ id = 12
 [.renew_familiar]
 id = 13
 
-# Can't yet confirm that these 2 are cast / attack.
-# Likely IDs 21 and 22 will be their left-click options as well
-#[.n14]
-#id = 14
-#
-#[.n15]
+[.attack]
+id = 14
+
+# id 15 is the (still unconfirmed) cast option; its left-click counterpart is likely 22.
+#[.cast]
 #id = 15
 
 [.leftclick_follower_details]
@@ -232,6 +231,9 @@ id = 19
 
 [.leftclick_renew_familiar]
 id = 20
+
+[.leftclick_attack]
+id = 21
 
 
 [.cast_fetch_casket]
