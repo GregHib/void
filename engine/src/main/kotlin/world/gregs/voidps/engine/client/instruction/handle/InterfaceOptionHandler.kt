@@ -1,9 +1,9 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.InterfaceHandler
+import world.gregs.voidps.engine.client.instruction.protectedAccess
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.client.ui.InterfaceApi
@@ -38,7 +38,7 @@ class InterfaceOptionHandler(
             item = item,
             itemSlot = itemSlot,
         )
-        Script.launch {
+        player.protectedAccess {
             InterfaceApi.option(player, event)
         }
         return true
