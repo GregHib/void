@@ -173,7 +173,9 @@ fun Player.interfaceUse(
     toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    InterfaceApi.itemOnItem(this, fromItem, toItem, fromSlot, toSlot)
+    runTest {
+        InterfaceApi.itemOnItem(this@interfaceUse, fromItem, toItem, fromSlot, toSlot)
+    }
 }
 
 fun Player.interfaceSwitch(
@@ -271,7 +273,9 @@ fun Player.itemOnItem(
     secondSlot: Int,
 ) {
     val inv = inventories.inventory("inventory")
-    InterfaceApi.itemOnItem(this, inv[firstSlot], inv[secondSlot], firstSlot, secondSlot)
+    runTest {
+        InterfaceApi.itemOnItem(this@itemOnItem, inv[firstSlot], inv[secondSlot], firstSlot, secondSlot)
+    }
 }
 
 fun Player.npcOption(npc: NPC, option: String) {
