@@ -31,6 +31,8 @@ class CombatMovement(
 
     var started = false
 
+    private var unreachableTicks = 0
+
     override fun start() {
         if (character is NPC) {
             character.steps.clear()
@@ -73,6 +75,20 @@ class CombatMovement(
                 skip = recalculate() && wasEmpty
             }
             super.tick()
+            if (character is NPC && character["owner_index", -1] != -1) {
+                // An owned familiar that can't make progress towards a target it isn't yet close
+                // to (no path exists, e.g. the target fled somewhere unreachable) gives up after a
+                // grace period and falls back to following its owner (EmptyMode -> Follow in
+                // NPCTask) rather than freezing. Moving, or already being all but in range (just
+                // waiting on a free attack tile in a crowd), resets the grace period.
+                if (character.visuals.moved || arrived(attackRange() + 1)) {
+                    unreachableTicks = 0
+                } else if (++unreachableTicks >= UNREACHABLE_LIMIT) {
+                    unreachableTicks = 0
+                    character.mode = EmptyMode
+                    return
+                }
+            }
             if (skip || attack()) {
                 return
             }
@@ -93,6 +109,7 @@ class CombatMovement(
         val attackRange = attackRange()
         val melee = attackRange == 1 && character["weapon", Item.EMPTY].def["weapon_type", ""] != "salamander"
         if (arrived(if (melee) -1 else attackRange)) {
+            unreachableTicks = 0
             combatReached?.invoke(character, target)
             return true
         }
@@ -125,6 +142,12 @@ class CombatMovement(
     }
 
     companion object : AutoCloseable {
+        /**
+         * Ticks an owned familiar may make no progress towards its target before giving up and
+         * returning to follow its owner.
+         */
+        private const val UNREACHABLE_LIMIT = 5
+
         /**
          * Emitted when within attack range of combat target.
          */

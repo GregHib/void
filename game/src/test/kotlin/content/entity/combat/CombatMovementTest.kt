@@ -177,6 +177,24 @@ internal class CombatMovementTest : WorldTest() {
     }
 
     @Test
+    fun `Familiar returns to following its owner when it cannot reach its target`() {
+        val owner = createPlayer(emptyTile.add(0, 10))
+        val familiar = createNPC("spirit_wolf_familiar", emptyTile)
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        val target = createNPC("guard_falador", emptyTile.add(10, 0))
+        familiar.mode = CombatMovement(familiar, target)
+        // Familiar is stuck (can't move), so it can never close the distance to the far target;
+        // after the grace period it should give up and fall back to following its owner.
+        familiar.start("movement_delay", 100)
+
+        tick(8)
+
+        assertTrue(familiar.mode is Follow, "mode=${familiar.mode}")
+    }
+
+    @Test
     fun `Familiar chases its target when it retreats out of range`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
