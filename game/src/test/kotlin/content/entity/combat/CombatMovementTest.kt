@@ -177,6 +177,24 @@ internal class CombatMovementTest : WorldTest() {
     }
 
     @Test
+    fun `Familiar walks to a distant ordered target in single-way`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        // 14 tiles east (beyond the ~10-tile approach range, so the interact phase must walk it
+        // before combat starts), unobstructed: the familiar must close the distance to attack.
+        val target = createNPC("guard_falador", Tile(3046, 3352))
+        val startX = familiar.tile.x
+
+        owner.commandFamiliarAttack(target)
+        tick(6)
+
+        assertTrue(familiar.tile.x > startX)
+    }
+
+    @Test
     fun `Player cannot attack a monster its familiar is fighting in single-way`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
