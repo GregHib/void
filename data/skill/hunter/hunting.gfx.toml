@@ -21,3 +21,9 @@ id = 946
 
 [kebbit]
 id = 951
+
+[catch_success]
+id = 951
+
+[catch_fail]
+id = 946

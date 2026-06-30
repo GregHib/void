@@ -1,59 +1,307 @@
 [traps]
-trap = "string"
+trap = "obj"       # the active (set) object
+fail = "obj"       # the failed/collapsed object (optional)
+setup_anim = "anim"
+take_down_anim = "anim"
 level = "int"
-fail = "obj"
-setup = "anim"
-take_down = "anim"
+level_default = 1
 items = "list<item>"
 
 [.snare]
 trap = "snare_trap"
-fail = "box_trap_fail"
-setup = "lay_trap"
-take_down = "take_trap"
+fail = "snare_trap_fail"
+setup_anim = "lay_trap"
+take_down_anim = "take_trap"
 items = ["bird_snare"]
 
 [.box_trap]
 level = 27
 trap = "box_trap"
 fail = "box_trap_fail"
-setup = "lay_trap"
-take_down = "lay_trap"
+setup_anim = "lay_trap"
+take_down_anim = "lay_trap"
 items = ["box_trap"]
-
-[.swamp_net]
-level = 29
-trap = "swamp_net_setup"
-fail = "swamp_net_fail"
-setup = "climb_down"
-take_down = "climb_down"
-items = ["rope", "small_fishing_net"]
-
-[.orange_net]
-level = 47
-trap = "orange_net_setup"
-setup = "climb_down"
-take_down = "climb_down"
-items = ["rope", "small_fishing_net"]
-
-[.red_net]
-level = 59
-trap = "red_net_setup"
-setup = "climb_down"
-take_down = "climb_down"
-items = ["rope", "small_fishing_net"]
-
-[.black_net]
-level = 59
-trap = "black_net_setup"
-setup = "climb_down"
-take_down = "climb_down"
-items = ["rope", "small_fishing_net"]
 
 [.boulder_trap]
 level = 23
 trap = "boulder_trap_setup"
 fail = "boulder_trap_fail"
-setup = "lay_trap"
-take_down = "lay_trap"
+setup_anim = "lay_trap"
+take_down_anim = "lay_trap"
 items = ["logs"]
+
+[.swamp_net]
+level = 29
+trap = "swamp_net_setup"
+fail = "swamp_net_fail"
+setup_anim = "climb_down"
+take_down_anim = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+[.orange_net]
+level = 47
+trap = "orange_net_setup"
+setup_anim = "climb_down"
+take_down_anim = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+[.red_net]
+level = 59
+trap = "red_net_setup"
+setup_anim = "climb_down"
+take_down_anim = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+[.black_net]
+level = 67
+trap = "black_net_setup"
+setup_anim = "climb_down"
+take_down_anim = "climb_down"
+items = ["rope", "small_fishing_net"]
+
+# ---------------------------------------------------------------------------
+# Creatures — keyed by the *caught* object id (the triggered/full-trap object)
+# ---------------------------------------------------------------------------
+[creatures]
+trap = "string"        # which trap type is used
+caught_obj = "obj"     # object id when creature is caught inside
+level = "int"          # minimum hunter level to lure
+xp = "int"             # xp * 0.1  (stored as tenths for int precision)
+catch_anim = "anim"    # animation played by creature as it enters trap
+fail_anim = "anim"     # animation played by creature on escape (optional)
+loot = "list<item>"    # items awarded on catch
+
+[.crimson_swift]
+trap = "snare"
+caught_obj = "snare_crimson_swift"
+level = 1
+xp = 340
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["red_feather", "raw_bird_meat", "bones"]
+
+[.golden_warbler]
+trap = "snare"
+caught_obj = "snare_golden_warbler"
+level = 5
+xp = 480
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["yellow_feather", "raw_bird_meat", "bones"]
+
+[.copper_longtail]
+trap = "snare"
+caught_obj = "snare_copper_longtail"
+level = 9
+xp = 610
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["orange_feather", "raw_bird_meat", "bones"]
+
+[.cerulean_twitch]
+trap = "snare"
+caught_obj = "snare_cerulean_twitch"
+level = 11
+xp = 647
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["blue_feather", "raw_bird_meat", "bones"]
+
+[.tropical_wagtail]
+trap = "snare"
+caught_obj = "snare_tropical_wagtail"
+level = 19
+xp = 952
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["stripy_feather", "raw_bird_meat", "bones"]
+
+[.wimpy_bird]
+trap = "snare"
+caught_obj = "snare_wimpy_bird"
+level = 39
+xp = 1670
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["wimpy_feather", "raw_bird_meat", "bones"]
+
+[.grey_chinchompa]
+trap = "box_trap"
+caught_obj = "box_trap_grey_chinchompa"
+level = 53
+xp = 1984
+catch_anim = "chinchompa_catch"
+loot = ["chinchompa"]
+
+[.red_chinchompa]
+trap = "box_trap"
+caught_obj = "box_trap_red_chinchompa"
+level = 63
+xp = 2650
+catch_anim = "chinchompa_catch"
+loot = ["red_chinchompa"]
+
+[.barb_tailed_kebbit]
+trap = "boulder_trap"
+caught_obj = "boulder_trap_barb_tailed_kebbit"
+level = 23
+xp = 1680
+catch_anim = "kebbit_catch"
+fail_anim = "kebbit_fail"
+loot = ["bones", "barb_tail_harpoon"]
+
+[.swamp_lizard]
+trap = "swamp_net"
+caught_obj = "swamp_net_swamp_lizard"
+level = 29
+xp = 1520
+catch_anim = "net_catch"
+loot = ["swamp_lizard"]
+
+[.orange_salamander]
+trap = "orange_net"
+caught_obj = "orange_net_orange_salamander"
+level = 47
+xp = 2240
+catch_anim = "net_catch"
+loot = ["orange_salamander"]
+
+[.red_salamander]
+trap = "red_net"
+caught_obj = "red_net_red_salamander"
+level = 59
+xp = 2720
+catch_anim = "net_catch"
+loot = ["red_salamander"]
+
+[.black_salamander]
+trap = "black_net"
+caught_obj = "black_net_black_salamander"
+level = 67
+xp = 3040
+catch_anim = "net_catch"
+loot = ["black_salamander"]
+
+[.pawya]
+trap = "box_trap"
+caught_obj = "box_trap_pawya"
+level = 66
+xp = 4000
+catch_anim = "chinchompa_catch"
+loot = ["bones", "raw_pawya_meat"]
+
+[.grenwall]
+trap = "box_trap"
+caught_obj = "box_trap_grenwall"
+level = 77
+xp = 11000
+catch_anim = "chinchompa_catch"
+loot = ["grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes"]
+
+# ---------------------------------------------------------------------------
+# Butterflies — caught in flight with butterfly net + jar
+# ---------------------------------------------------------------------------
+[butterflies]
+npc = "npc"
+level = "int"
+xp = "int"
+jar = "item"
+
+[.ruby_harvest]
+npc = "ruby_harvest"
+level = 15
+xp = 100
+jar = "ruby_harvest"
+
+[.sapphire_glacialis]
+npc = "sapphire_glacialis"
+level = 25
+xp = 250
+jar = "sapphire_glacialis"
+
+[.snowy_knight]
+npc = "snowy_knight"
+level = 35
+xp = 500
+jar = "snowy_knight"
+
+[.black_warlock]
+npc = "black_warlock"
+level = 45
+xp = 750
+jar = "black_warlock"
+
+# ---------------------------------------------------------------------------
+# Implings — caught bare-handed or with butterfly net + jar
+# ---------------------------------------------------------------------------
+[implings]
+npc = "npc"
+level = "int"
+xp = "int"
+jar = "item"
+
+[.baby_impling]
+npc = "baby_impling"
+level = 17
+xp = 200
+jar = "baby_impling_jar"
+
+[.young_impling]
+npc = "young_impling"
+level = 22
+xp = 480
+jar = "young_impling_jar"
+
+[.gourmet_impling]
+npc = "gourmet_impling"
+level = 28
+xp = 820
+jar = "gourmet_impling_jar"
+
+[.earth_impling]
+npc = "earth_impling"
+level = 36
+xp = 1260
+jar = "earth_impling_jar"
+
+[.essence_impling]
+npc = "essence_impling"
+level = 42
+xp = 1600
+jar = "essence_impling_jar"
+
+[.eclectic_impling]
+npc = "eclectic_impling"
+level = 50
+xp = 2050
+jar = "eclectic_impling_jar"
+
+[.nature_impling]
+npc = "nature_impling"
+level = 58
+xp = 2500
+jar = "nature_impling_jar"
+
+[.magpie_impling]
+npc = "magpie_impling"
+level = 65
+xp = 2890
+jar = "magpie_impling_jar"
+
+[.ninja_impling]
+npc = "ninja_impling"
+level = 74
+xp = 3390
+jar = "ninja_impling_jar"
+
+[.dragon_impling]
+npc = "dragon_impling"
+level = 83
+xp = 3900
+jar = "dragon_impling_jar"
+
+[.kingly_impling]
+npc = "kingly_impling"
+level = 91
+xp = 4340
+jar = "kingly_impling_jar"
