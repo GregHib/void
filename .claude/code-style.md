@@ -11,7 +11,7 @@
 - **Comments** — infrequent; only when code can't self-document.
 - Format with `gradle spotlessApply`
 - Use wildcards and comma-separated IDs over multiple handler registrations `npcApproach("Spy-on", "*_penguin,*_turkey") { ... }`.
-- Data lives in `*.tables.toml` structed around access.
+- Data lives in `*.tables.toml` structured around access.
   - Header declares column types.
   - Single value accessed as `Tables.int("spells.$spell.xp")`.
   - Rows accessed as `val row = Rows.get("cooking.${itemId}")`.
