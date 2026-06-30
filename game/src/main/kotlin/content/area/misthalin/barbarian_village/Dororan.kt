@@ -26,13 +26,11 @@ class Dororan : Script {
                 noInterest()
                 return@itemOnItem
             }
-            queue("engraving") {
-                item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
-                anim("engrave")
-                exp(Skill.Crafting, 125.0)
-                inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
-                set("gunnars_ground", "engraved_ring")
-            }
+            item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
+            anim("engrave")
+            exp(Skill.Crafting, 125.0)
+            inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
+            set("gunnars_ground", "engraved_ring")
         }
 
         npcOperate("Talk-to", "dororan_*") {
