@@ -26,7 +26,9 @@ data class NPCCharacterTargetStrategy(
         get() = character.size
 
     override fun destination(source: Character): Tile {
-        if (source is NPC) {
+        // Owned familiars have an EMPTY walk mode (they don't wander) but must still chase a moving
+        // combat target, so they're exempt from the stationary-npc short-circuit below.
+        if (source is NPC && source["owner_index", -1] == -1) {
             val def = if (source.contains("transform_id")) {
                 NPCDefinitions.get(source["transform_id", source.id])
             } else {

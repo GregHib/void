@@ -177,6 +177,25 @@ internal class CombatMovementTest : WorldTest() {
     }
 
     @Test
+    fun `Familiar chases its target when it retreats out of range`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        val target = createNPC("guard_falador", Tile(3034, 3352))
+        familiar.mode = CombatMovement(familiar, target)
+        tick(2)
+
+        // The target retreats well out of attack range.
+        target.tele(Tile(3044, 3352))
+        val beforeX = familiar.tile.x
+        tick(4)
+
+        assertTrue(familiar.mode is CombatMovement)
+        assertTrue(familiar.tile.x > beforeX)
+    }
+
+    @Test
     fun `Familiar keeps pathing to its target when an obstruction blocks then clears`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
