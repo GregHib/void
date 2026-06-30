@@ -118,7 +118,9 @@ class TeleportTest {
         }
 
         override fun invoke(args: List<String>) {
-            Teleport.land(Player(), GameObject(0), "option")
+            runTest {
+                Teleport.land(Player(), GameObject(0), "option")
+            }
         }
 
         override val apis = listOf(Teleport)

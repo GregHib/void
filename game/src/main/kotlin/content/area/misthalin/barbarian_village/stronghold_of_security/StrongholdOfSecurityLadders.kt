@@ -8,16 +8,13 @@ import content.entity.player.dialogue.type.warning
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.equals
 
 class StrongholdOfSecurityLadders(val teleports: ObjectTeleports) : Script {
 
     init {
         objTeleportLand("Climb-down", "stronghold_of_security_entrance") { _, _ ->
-            queue("stronghold_of_security_entrance") {
-                statement("You squeeze through the hole and find a ladder a few feet down leading into the Stronghold of Security.")
-            }
+            statement("You squeeze through the hole and find a ladder a few feet down leading into the Stronghold of Security.")
         }
 
         objTeleportTakeOff("Climb-up", "stronghold_war_ladder_up") { target, _ ->
