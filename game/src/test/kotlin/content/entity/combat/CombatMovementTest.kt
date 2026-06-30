@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import content.skill.melee.weapon.attackSpeed
 import world.gregs.voidps.engine.inv.equipment
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -159,6 +160,12 @@ internal class CombatMovementTest : WorldTest() {
         // even though its spawn tile is far away (a spawn-anchored NPC would drop out here).
         tick(2)
         assertTrue(familiar.mode is CombatMovement)
+    }
+
+    @Test
+    fun `Familiar attack speed is 8 ticks`() {
+        assertEquals(8, createNPC("spirit_wolf_familiar", Tile(3032, 3352)).attackSpeed)
+        assertEquals(8, createNPC("spirit_spider_familiar", Tile(3033, 3352)).attackSpeed)
     }
 
     @Test
