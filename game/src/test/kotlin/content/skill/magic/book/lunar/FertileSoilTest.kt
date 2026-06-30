@@ -2,7 +2,6 @@ package content.skill.magic.book.lunar
 
 import WorldTest
 import containsMessage
-import messages
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.interactOn
 import world.gregs.voidps.engine.client.ui.open

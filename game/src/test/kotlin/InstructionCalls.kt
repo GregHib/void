@@ -183,8 +183,8 @@ fun Player.interfaceUse(
                 fromInterfaceId = 149,
                 fromComponentId = 0,
                 toInterfaceId = 149,
-                toComponentId = 0
-            )
+                toComponentId = 0,
+            ),
         )
     }
 }
@@ -294,8 +294,8 @@ fun Player.itemOnItem(
                 fromInterfaceId = 149,
                 fromComponentId = 0,
                 toInterfaceId = 149,
-                toComponentId = 0
-            )
+                toComponentId = 0,
+            ),
         )
     }
 }
