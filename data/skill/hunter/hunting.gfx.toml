@@ -33,3 +33,9 @@ id = 915
 
 [release_black_warlock]
 id = 914
+
+[catch_success]
+id = 951
+
+[catch_fail]
+id = 946

@@ -45,3 +45,58 @@ id = 19206
 
 [boulder_trap_fail]
 id = 19219
+
+# Snare trap — triggered states (creature caught inside)
+[snare_trap_fail]
+id = 19174
+
+[snare_crimson_swift]
+id = 19180
+
+[snare_cerulean_twitch]
+id = 19182
+
+[snare_golden_warbler]
+id = 19184
+
+[snare_copper_longtail]
+id = 19186
+
+[snare_tropical_wagtail]
+id = 19178
+
+[snare_wimpy_bird]
+id = 28930
+
+# Box trap — triggered states
+[box_trap_grey_chinchompa]
+id = 28557
+
+[box_trap_red_chinchompa]
+id = 28558
+
+[box_trap_pawya]
+id = 28567
+
+[box_trap_grenwall]
+id = 28906
+
+# Boulder trap — triggered state
+[boulder_trap_barb_tailed_kebbit]
+id = 19207
+
+# Net trap — triggered states (net post is 19651, tree object varies per salamander)
+[net_post]
+id = 19651
+
+[swamp_net_swamp_lizard]
+id = 19678
+
+[orange_net_orange_salamander]
+id = 19650
+
+[red_net_red_salamander]
+id = 19662
+
+[black_net_black_salamander]
+id = 19670
