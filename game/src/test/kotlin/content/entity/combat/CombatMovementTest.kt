@@ -1,6 +1,7 @@
 package content.entity.combat
 
 import WorldTest
+import content.skill.summoning.assistFamiliar
 import content.skill.summoning.commandFamiliarAttack
 import content.skill.summoning.follower
 import npcOption
@@ -323,6 +324,54 @@ internal class CombatMovementTest : WorldTest() {
 
         owner.npcOption(target, "Attack")
         tick(8)
+
+        assertTrue(familiar.mode is CombatMovement)
+        assertEquals(target, (familiar.mode as CombatMovement).target)
+    }
+
+    @Test
+    fun `Familiar keeps its target when the owner switches targets`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        owner["in_multi_combat"] = true
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        val first = createNPC("guard_falador", Tile(3034, 3352))
+        first["in_multi_combat"] = true
+        val second = createNPC("guard_falador", Tile(3032, 3351))
+        second["in_multi_combat"] = true
+        familiar.mode = CombatMovement(familiar, first)
+
+        // The owner now attacks a different enemy; the familiar must stay on its original target.
+        owner.assistFamiliar(second)
+        tick()
+
+        assertTrue(familiar.mode is CombatMovement)
+        assertEquals(first, (familiar.mode as CombatMovement).target)
+    }
+
+    @Test
+    fun `Familiar re-acquires the owner's target after being freed mid-fight`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        owner["in_multi_combat"] = true
+        owner.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        val target = createNPC("guard_falador", Tile(3032, 3351))
+        target["in_multi_combat"] = true
+        val dummy = createNPC("guard_falador", Tile(3040, 3352))
+        dummy["in_multi_combat"] = true
+        // Busy elsewhere when the owner starts the fight, so the initial combatStart assist is missed.
+        familiar.mode = CombatMovement(familiar, dummy)
+        owner.npcOption(target, "Attack")
+        tick(2)
+
+        // Free the familiar; while the owner keeps attacking, it should re-acquire the owner's target.
+        familiar.mode = EmptyMode
+        tick(6)
 
         assertTrue(familiar.mode is CombatMovement)
         assertEquals(target, (familiar.mode as CombatMovement).target)

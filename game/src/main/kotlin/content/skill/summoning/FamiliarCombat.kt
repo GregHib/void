@@ -138,6 +138,11 @@ class FamiliarCombat : Script, CombatApi {
             }
         }
 
+        // Re-acquire: each time the owner lands an attack, an idle familiar joins the owner's
+        // current (most recently attacked) target. assistFamiliar's idle guard leaves an actively
+        // fighting familiar alone, so it only picks a new target once its own is dead/gone.
+        combatAttack { assistFamiliar(it.target) }
+
         variableSet("in_wilderness") { _, _, _ ->
             updateFamiliarPvpForm()
         }
