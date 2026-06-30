@@ -48,9 +48,6 @@ class CombatExperience : Script {
                     grant(this, target, Skill.Ranged, damage / 2.5)
                 }
             }
-            if (target is NPC && isTask(target)) {
-                grant(this, target, Skill.Slayer, target.def["slayer_xp", 0.0])
-            }
             grant(this, target, Skill.Constitution, damage / 7.5)
         }
     }
