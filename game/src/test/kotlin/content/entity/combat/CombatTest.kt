@@ -2,6 +2,7 @@ package content.entity.combat
 
 import FakeRandom
 import WorldTest
+import content.entity.combat.damageDealers
 import content.entity.player.effect.skull
 import equipItem
 import interfaceOption
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import playerOption
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -83,6 +85,23 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertNotNull(FloorItems.firstOrNull(tile, "bones"))
+    }
+
+    @Test
+    fun `Familiar kill drops loot for its owner`() {
+        val owner = createPlayer(emptyTile)
+        val familiar = createNPC("spirit_wolf_familiar", emptyTile.addX(1))
+        familiar["owner_index"] = owner.index
+        val npc = createNPC("giant_rat", emptyTile.addY(4))
+        // The familiar dealt the killing damage.
+        npc.damageDealers[familiar] = 100
+        val tile = npc.tile
+        npc.levels.set(Skill.Constitution, 0)
+        tick(8) // npc death + drop
+
+        val bones = FloorItems.firstOrNull(npc["death_tile", tile], "bones")
+        assertNotNull(bones)
+        assertEquals(owner.name, bones!!.owner)
     }
 
     @Test
