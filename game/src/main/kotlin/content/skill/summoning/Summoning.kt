@@ -62,9 +62,6 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         return
     }
 
-    // TODO summoning energy
-    // message("You don't have enough summoning energy to summon this familiar.")
-
     val familiarNpc = NPCs.add(familiar.stringId, tile)
     familiarNpc.mode = Follow(familiarNpc, this)
     queue("summon_familiar", 2) {
@@ -76,6 +73,7 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         updateFamiliarInterface()
         if (!restart) {
             timers.start("familiar_timer")
+            timers.start("summoning_drain")
         }
         if (get<DropTables>().get("forage_${familiarNpc.id.removeSuffix("_familiar")}") != null) {
             timers.start("forage")
@@ -107,6 +105,7 @@ fun Player.dismissFamiliar(removeNpc: Boolean = true) {
         set("familiar_details_seconds_remaining", 0)
     }
     timers.stop("familiar_timer")
+    timers.stop("summoning_drain")
     timers.stop("forage")
 }
 
@@ -200,6 +199,22 @@ fun Player.renewSummoningPoints() {
 }
 
 /**
+ * Runs a familiar special move costing [cost] special-move points. Special moves draw from the
+ * 0-60 special-move-points pool (regenerated each 30s by [SummoningTimers]) rather than from the
+ * player's summoning points. Warns and does nothing if the pool is too low; only spends if [action]
+ * runs, so callers should perform any other preconditions (ownership, situational checks) first.
+ */
+fun Player.useFamiliarSpecial(cost: Int, action: () -> Unit) {
+    val points = get("summoning_special_points_remaining", 0)
+    if (points < cost) {
+        message("Your familiar does not have enough special move points left.")
+        return
+    }
+    action()
+    set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))
+}
+
+/**
  * Resets the familiar back to its maximum remaining time based on the summoned familiar. Removes the pouch from the player's
  * inventory and rewards xp.
  */
@@ -237,6 +252,7 @@ class Summoning : Script {
             val familiarId = EnumDefinitions.get("summoning_familiar_ids").int(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
             val familiar = NPCDefinitions.get(familiarId)
+            val summonCost = option.item.def["summon_points", 0]
             if (!has(Skill.Summoning, familiarLevel)) {
                 message("You are not high enough level to use this pouch.")
                 return@itemOption
@@ -245,8 +261,14 @@ class Summoning : Script {
                 message("You already have a follower.")
                 return@itemOption
             }
+            if (levels.get(Skill.Summoning) < summonCost) {
+                message("You do not have enough summoning points to summon this familiar.")
+                return@itemOption
+            }
             summonFamiliar(familiar, false)
             inventory.remove(option.item.id)
+            levels.drain(Skill.Summoning, summonCost)
+            set("summoning_special_points_remaining", 60)
             exp(Skill.Summoning, summoningXp)
         }
 
@@ -356,6 +378,7 @@ class Summoning : Script {
             variables.send("familiar_details_seconds_remaining")
             variables.send("follower_details_chathead_animation")
             timers.restart("familiar_timer")
+            timers.restart("summoning_drain")
             summonFamiliar(familiarDef, true)
         }
 

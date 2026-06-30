@@ -1,6 +1,7 @@
 package content.skill.summoning.familiar
 
 import content.skill.summoning.follower
+import content.skill.summoning.useFamiliarSpecial
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
@@ -57,18 +58,16 @@ class UnicornStallion : Script {
                 message("This isn't your familiar.")
                 return@npcOperate
             }
-            if (levels.get(Skill.Summoning) < 2) {
-                message("You do not have enough summoning points to do this.")
-                return@npcOperate
-            }
             if (!this["poisoned", false]) {
                 message("You're not suffering from poison!")
                 return@npcOperate
             }
-            follower?.anim("unicorn_stallion_cure")
-            follower?.gfx("unicorn_stallion_cure")
-            clear("poisoned")
-            levels.drain(Skill.Summoning, 2)
+            val cost = follower?.def["summoning_special_cost", 8] ?: 8
+            useFamiliarSpecial(cost) {
+                follower?.anim("unicorn_stallion_cure")
+                follower?.gfx("unicorn_stallion_cure")
+                clear("poisoned")
+            }
         }
     }
 }

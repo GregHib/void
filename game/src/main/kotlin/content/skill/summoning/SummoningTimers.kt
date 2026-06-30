@@ -21,6 +21,11 @@ class SummoningTimers : Script {
         }
 
         timerTick("familiar_timer") {
+            // Special-move points regenerate +15 (capped at 60) every 30s, matching the live game.
+            val specialPoints = get("summoning_special_points_remaining", 0)
+            if (specialPoints < 60) {
+                set("summoning_special_points_remaining", (specialPoints + 15).coerceAtMost(60))
+            }
             follower?.let { familiar ->
                 val lines = Rows.getOrNull("familiar_overhead.${familiar.id}")?.stringListOrNull("lines")
                 if (!lines.isNullOrEmpty()) {
