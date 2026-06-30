@@ -1,14 +1,17 @@
 package content.entity.combat
 
 import WorldTest
+import content.skill.summoning.follower
 import npcOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.running
@@ -137,6 +140,78 @@ internal class CombatMovementTest : WorldTest() {
         tick(2)
         assertTrue(npc.tile != emptyTile)
         assertTrue(npc.mode is CombatMovement)
+    }
+
+    @Test
+    fun `Familiar follower leash anchors to owner not spawn tile`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
+        familiar["owner_index"] = owner.index
+        // A spawn far from the fight would de-aggro a normal NPC; the familiar anchors to its owner instead.
+        familiar["spawn_tile"] = Tile(3100, 3100)
+        val target = createNPC("guard_falador", Tile(3032, 3351))
+        familiar.mode = CombatMovement(familiar, target)
+        // Owner stays beside the fight, so the owner-anchored leash keeps the familiar engaged
+        // even though its spawn tile is far away (a spawn-anchored NPC would drop out here).
+        tick(2)
+        assertTrue(familiar.mode is CombatMovement)
+    }
+
+    @Test
+    fun `Familiar approaches a commanded target beyond its aggro range`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        // 12 tiles away: beyond the familiar's retreat_range(8) + attackRange(1) = 9 aggro range.
+        val target = createNPC("guard_falador", Tile(3044, 3352))
+        familiar.mode = CombatMovement(familiar, target)
+        val startX = familiar.tile.x
+        tick(3)
+        // The familiar isn't bound by the aggro leash, so it walks towards the target instead of
+        // freezing (a spawn/owner-leashed NPC would drop to EmptyMode here).
+        assertTrue(familiar.mode is CombatMovement)
+        assertTrue(familiar.tile.x > startX)
+    }
+
+    @Test
+    fun `Familiar auto-assists owner against multi-combat npc`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        owner.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        owner["in_multi_combat"] = true
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        familiar["spawn_tile"] = familiar.tile
+        owner.follower = familiar
+        val target = createNPC("guard_falador", Tile(3032, 3351))
+        target["in_multi_combat"] = true
+
+        owner.npcOption(target, "Attack")
+        tick(8)
+
+        assertTrue(familiar.mode is CombatMovement)
+        assertEquals(target, (familiar.mode as CombatMovement).target)
+    }
+
+    @Test
+    fun `Player cannot attack their own familiar`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        // PvP combat variant carries the "Attack" option, so ownership is the only blocker here.
+        val familiar = createNPC("spirit_wolf_familiar_combat", Tile(3033, 3352))
+        familiar["owner_index"] = owner.index
+        assertFalse(Target.attackable(owner, familiar, message = false))
+    }
+
+    @Test
+    fun `Idle familiar resumes following its owner after combat`() {
+        val owner = createPlayer(Tile(3032, 3352))
+        val familiar = createNPC("spirit_wolf_familiar", Tile(3034, 3352))
+        familiar["owner_index"] = owner.index
+        owner.follower = familiar
+        // Combat ending leaves the familiar idle; it should fall back to following, not stand still.
+        familiar.mode = EmptyMode
+        tick()
+        assertTrue(familiar.mode is Follow)
     }
 
     companion object {
