@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.queue.queue
 
 class WildernessLevers(val teleports: ObjectTeleports) : Script {
 
