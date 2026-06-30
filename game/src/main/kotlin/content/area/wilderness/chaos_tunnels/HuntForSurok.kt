@@ -30,7 +30,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region

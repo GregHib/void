@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.queue.queue
 
 class ChaosTunnels(val teleports: ObjectTeleports) : Script {
     init {

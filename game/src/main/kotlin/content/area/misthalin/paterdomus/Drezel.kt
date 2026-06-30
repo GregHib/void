@@ -24,7 +24,6 @@ import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.entity.World.queue
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -638,7 +637,7 @@ class Drezel : Script {
     }
 
     private fun Player.sendQuestReward() {
-        queue("quest_complete") {
+        longQueue("quest_complete") {
             jingle("quest_complete_1")
             exp(Skill.Prayer, 1406.0)
             addOrDrop("wolfbane")

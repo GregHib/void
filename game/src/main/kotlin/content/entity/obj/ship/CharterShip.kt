@@ -106,35 +106,33 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
                 return@interfaceOption
             }
             val readablePrice = price.toDigitGroupString()
-            queue("charter_ship") {
-                if (!inventory.contains("coins", price)) {
-                    choice("Sailing to ${component.toTitleCase()} costs $readablePrice coins.") {
-                        option("Choose again") {
-                            open("charter_ship_map")
-                        }
-                        option("No")
-                    }
-                    return@queue
-                }
-                statement("To sail to ${component.toTitleCase()} from here will cost you $readablePrice gold. Are you sure you want to pay that?")
-                choice {
-                    option("Ok") {
-                        if (inventory.remove("coins", price)) {
-                            jingle("sailing_theme_short")
-                            open("fade_out")
-                            delay(4)
-                            val teleport = teles.get("${component}_gangplank_enter", "Cross").first()
-                            tele(teleport.to)
-                            open("fade_in")
-                            delay(3)
-                            message("You pay the fare and sail to ${component.toTitleCase()}.", ChatType.Filter)
-                        }
-                    }
+            if (!inventory.contains("coins", price)) {
+                choice("Sailing to ${component.toTitleCase()} costs $readablePrice coins.") {
                     option("Choose again") {
                         open("charter_ship_map")
                     }
                     option("No")
                 }
+                return@interfaceOption
+            }
+            statement("To sail to ${component.toTitleCase()} from here will cost you $readablePrice gold. Are you sure you want to pay that?")
+            choice {
+                option("Ok") {
+                    if (inventory.remove("coins", price)) {
+                        jingle("sailing_theme_short")
+                        open("fade_out")
+                        delay(4)
+                        val teleport = teles.get("${component}_gangplank_enter", "Cross").first()
+                        tele(teleport.to)
+                        open("fade_in")
+                        delay(3)
+                        message("You pay the fare and sail to ${component.toTitleCase()}.", ChatType.Filter)
+                    }
+                }
+                option("Choose again") {
+                    open("charter_ship_map")
+                }
+                option("No")
             }
         }
     }
