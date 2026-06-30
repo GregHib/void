@@ -123,6 +123,15 @@ region = 39
 start_point = "Talk to one of the barbarian guards at the outer entrance of the Barbarian Outpost Agility Course."
 start_path = [[ 2544, 3569 ]]
 reward = "Access to the Barbarian Outpost agility course"
+variables = [
+  "bar_crawl_miniquest",
+  "barcrawl_signatures",
+  "alfred_grimhands_barcrawl",
+  "bar_crawl_started",
+]
+item = [
+  "barcrawl_card"
+]
 
 [between_a_rock]
 id = 19
@@ -213,6 +222,18 @@ req_items = "None."
 req_combat = "Must be able to defeat three low-level enemies."
 points = 1
 reward = "Reese's sword<br>Kayle's sling (requires no arrows)<br>Caitlin's staff (requires no air runes)<br>Access to the Lumbridge Catacombs dungeon"
+variables = [
+  "blood_pact",
+  "blood_pact_kayle",
+  "blood_pact_caitlin",
+  "blood_pact_reese",
+  "blood_pact_ilona_departed",
+]
+items = [
+  "reeses_sword",
+  "kayles_sling",
+  "caitlins_staff",
+]
 
 [blood_runs_deep]
 id = 163
@@ -393,6 +414,18 @@ req_combat = "None."
 points = 1
 reward = "500 coins<br>20 sardines<br>Access to the cook's range"
 xp = "300 Cooking XP"
+variables = [
+  "cooks_assistant",
+  "cooks_assistant_milk",
+  "cooks_assistant_egg",
+  "cooks_assistant_flour",
+  "cooks_assistant_talked_to_millie",
+]
+items = [
+  "super_large_egg",
+  "top_quality_milk",
+  "extra_fine_flour",
+]
 
 [creature_of_fenkenstrain]
 id = 26
@@ -586,6 +619,26 @@ req_combat = "You must defeat several cultists, and a powerful demon!"
 points = 3
 reward = "The holy sword, Silverlight<br>Avernic wand and book"
 xp = "3 combat XP lamps worth 100 XP each"
+variables = [
+  "demon_slayer",
+  "demon_slayer_aber",
+  "demon_slayer_camerinthum",
+  "demon_slayer_carlem",
+  "demon_slayer_gabindo",
+  "demon_slayer_purchai",
+  "demon_slayer_silverlight",
+  "demon_slayer_drain_dislodged",
+  "demon_slayer_summoned",
+  "demon_slayer_silverlight_case",
+  "demon_slayer_sir_prysin_sword",
+  "demon_slayer_bones",
+]
+items = [
+  "silverlight_key_wizard_traiborn",
+  "silverlight_key_captain_rovin",
+  "silverlight_key_sir_prysin",
+  "silverlight",
+]
 
 [desert_slayer_dungeon_miniquest]
 id = 285
@@ -714,6 +767,9 @@ req_combat = "None."
 points = 1
 reward = "180 coins<br>Access to Doric's anvils"
 xp = "1,300 Mining XP"
+variables = [
+  "dorics_quest"
+]
 
 [dragon_slayer]
 id = 4
@@ -764,6 +820,15 @@ req_combat = "None."
 points = 4
 reward = "15 noted guam<br>15 noted eye of newt"
 xp = "250 Herblore XP"
+variables = [
+  "druidic_ritual"
+]
+items = [
+  "enchanted_beef",
+  "enchanted_rat_meat",
+  "enchanted_bear_meat",
+  "enchanted_chicken",
+]
 
 [dwarf_cannon]
 id = 34
@@ -935,6 +1000,26 @@ req_skills = {
 }
 reward = "Access to the Abyss"
 xp = "1,000 Runecrafting XP"
+variables = [
+  "enter_the_abyss",
+  "abyss_obstacles",
+  "enter_abyss_knows_mages",
+  "enter_abyss_where_runes",
+  "enter_abyss_offer",
+  "enter_abyss_has_orb",
+  "enter_abyss_taken_orb",
+  "last_npc_teleport_to_rune_essence_mine",
+  "scrying_orb_sedridor",
+  "scrying_orb_aubury",
+  "scrying_orb_wizard_cromperty",
+  "scrying_orb_brimstail",
+  "scrying_orb_wizard_distentor",
+]
+items = [
+  "scrying_orb_full",
+  "scrying_orb",
+  "abyssal_book",
+]
 
 [ernest_the_chicken]
 id = 5
@@ -1300,6 +1385,16 @@ req_items = "Approximately 1,000 coins, thread, silk, spade, oak shieldbow, nett
 req_combat = "You will need to defeat a level 42 giant lobster."
 points = 2
 reward = "Free passage into Port Phasmatys<br>The ectophial"
+variables = [
+  "the_restless_ghost",
+  "restless_ghost_coffin",
+  "rocks_restless_ghost",
+]
+items = [
+  "ghostspeak_amulet",
+  "muddy_skull",
+  "ancient_bones_the_restless_ghost",
+]
 
 [the_giant_dwarf]
 id = 54
@@ -1491,6 +1586,28 @@ req_combat = "None."
 points = 5
 reward = "Swanky boots<br>Talk to Dororan for more Crafting tasks"
 xp = "300 Crafting XP<br>Antique lamp"
+variables = [
+  "gunnars_ground",
+  "kjell",
+  "dororan",
+  "gudrun",
+  "dororan_after_quest",
+  "gudrun_after_quest",
+  "dororan_after_cutscene",
+  "gudrun_after_cutscene",
+  "dororan_ruby_bracelet",
+  "dororan_dragonstone_necklace",
+  "dororan_onyx_amulet",
+]
+items = [
+  "ring_from_jeffery",
+  "dororans_engraved_ring",
+  "gunnars_ground",
+  "gunnars_ground_post_quest",
+  "love_poem",
+  "swanky_boots",
+  "swanky_boots_2",
+]
 
 [hand_in_the_sand]
 id = 57
@@ -1708,6 +1825,9 @@ req_combat = "Must be able to defeat multiple level 2 imps."
 points = 1
 reward = "An amulet of accuracy<br>Access to Mizgog's amulet shop"
 xp = "875 Magic XP"
+variables = [
+  "imp_catcher",
+]
 
 [in_aid_of_the_myreque]
 id = 64
@@ -1873,6 +1993,15 @@ req_combat = "You will need to defeat or evade level 54 enemies."
 points = 1
 reward = "Ability to smith blurite (members)"
 xp = "12,725 Smithing XP lamp"
+variables = [
+  "the_knights_sword"
+]
+items = [
+  "portrait",
+  "blurite_sword",
+  "blurite_ore",
+  "blurite_bar",
+]
 
 [lair_of_tarn_razorlor_miniquest]
 id = 296
@@ -1998,6 +2127,13 @@ req_items = "None."
 req_combat = "You will need to defeat a level 63 tree spirit."
 points = 3
 reward = "Access to Zanaris<br>Ability to wield dragon longswords and dragon daggers<br>Ability to craft cosmic runes<br>Access to Chaeldar the Slayer master (requires level 75 combat)"
+variables = [
+  "lost_city",
+]
+items = [
+  "dramen_branch",
+  "dramen_staff",
+]
 
 [lost_her_marbles_miniquest]
 id = 281
@@ -2334,6 +2470,16 @@ variables = [
   "ns_brown_correct",
   "ns_grey_correct"
 ]
+items = [
+  "druid_pouch",
+  "druid_pouch_2",
+  "silver_sickle_b",
+  "washing_bowl",
+  "mirror",
+  "journal_nature_spirit",
+  "druidic_spell",
+  "a_used_spell",
+]
 
 [nomads_requiem]
 id = 162
@@ -2502,6 +2648,26 @@ req_combat = "None."
 points = 1
 reward = "Ardougne Teleport spell<br>Access to West Ardougne<br>Gas mask"
 xp = "2,425 Mining XP"
+variables = [
+  "plague_city",
+  "plaguecity_hide_edmond_up_top",
+  "plaguecity_elena_at_home",
+  "plaguecity_dug_mud_pile",
+  "plaguecity_checked_grill",
+  "plaguecity_pipe",
+  "plaguecity_picture_asked",
+  "plaguecity_key_asked",
+]
+items = [
+  "warrant",
+  "hangover_cure",
+  "a_magic_scroll",
+  "gas_mask",
+  "a_small_key",
+  "a_scruffy_note",
+  "book_turnip_growing_for_beginners",
+  "picture_plague_city",
+]
 
 [priest_in_peril]
 id = 84
@@ -2532,6 +2698,20 @@ variables = [
   "priestperil_7_swapped",
   "priestperiltrappedmonk_hide"
 ]
+items = [
+  "pipkey_gold",
+  "pipkey_iron",
+  "piptinderbox_gold",
+  "pipcandle_gold",
+  "pippot_gold",
+  "piphammer_gold",
+  "pipfeather_gold",
+  "pipneedle_gold",
+  "wolfbane",
+  "bucket_murkywater",
+  "bucket_blessedwater",
+  "golden_tinderbox_2",
+]
 reward = "The blessed wolfbane dagger<br>5 kudos from Historian Minas at the Varrock Museum"
 
 [prince_ali_rescue]
@@ -2547,6 +2727,17 @@ req_items = "Soft clay, 3 balls of wool, yellow dye, redberries, ashes, bucket o
 req_combat = "You will need to get past aggressive level 26 jail guards."
 points = 3
 reward = "700 coins<br>Free passage through the Lumbridge - Al Kharid toll gate"
+variables = [
+  "prince_ali_rescue",
+  "prince_ali_rescue_leela",
+  "prince_ali_rescue_key_made",
+  "prince_ali_rescue_key_given",
+]
+items = [
+  "bronze_key_prince_ali_rescue",
+  "blue_partyhat_2",
+  "key_print",
+]
 
 [purple_cat_miniquest]
 id = 276
@@ -2999,6 +3190,14 @@ req_items = "None."
 req_combat = "None."
 points = 1
 reward = "An Air Talisman<br>The ability to mine rune essence"
+variables = [
+  "rune_mysteries"
+]
+items = [
+  "research_package_rune_mysteries",
+  "research_notes_rune_mysteries",
+  "talisman_rune_mysteries",
+]
 
 [scorpion_catcher]
 id = 93
@@ -3104,6 +3303,15 @@ start_path = [[ 3189, 3273 ]]
 req_combat = "None, but watch out for rams."
 xp = "150 Crafting XP"
 reward = "2000 coins"
+variables = [
+  "sheep_shearer_miniquest",
+  "sheep_shearer_black_balls_of_wool",
+  "the_thing_interacted",
+]
+items = [
+  "black_wool",
+  "ball_of_black_wool",
+]
 
 [shield_of_arrav]
 id = 15
@@ -3387,6 +3595,19 @@ req_combat = "None."
 points = 1
 reward = "Ability to collect Tears of Guthix once a week<br>Ability to make an ornate bowl for increased XP (requires 80 Mining and Crafting)<br>Juna teleport option on the games necklace"
 xp = "1,000 Crafting XP"
+variables = [
+  "tears_of_guthix",
+  "tears_of_guthix_time",
+  "tears_of_guthix_points",
+  "juna_stories",
+  "tears_of_guthix_cooldown",
+  "tears_reminder_cooldown",
+  "tears_reminder",
+]
+items = [
+  "magical_stone",
+  "stone_bowl",
+]
 
 [temple_at_senntisten]
 id = 157
@@ -3877,4 +4098,10 @@ variables = [
   "thzfe_brentle_skele",
   "thzfe_cut_scene",
   "thzfe_grish_warning_yes",
+]
+items = [
+  "zogre_ogre_trans_potion",
+  "necromancy_book",
+  "ogre_gate_key",
+  "ogre_coffin_key",
 ]
