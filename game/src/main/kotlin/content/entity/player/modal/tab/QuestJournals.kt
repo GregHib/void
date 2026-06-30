@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.timer.Timer
 
 class QuestJournals(
     val accounts: AccountDefinitions,
-    val questDefinitions: QuestDefinitions
+    val questDefinitions: QuestDefinitions,
 ) : Script {
 
     val logger = InlineLogger()
