@@ -61,19 +61,17 @@ class HuntForSurok(val teleports: ObjectTeleports) : Script {
                     val instance = smallInstance(Region(12374))
                     setInstanceLogout(Tile(3142, 5545))
                     gfx("curse_impact")
-                    queue("enter_bork_lair") {
-                        val cutscene = startCutscene("bork", instance, instanceOffset())
-                        cutscene.onEnd(destroyInstance = false) {
-                            tele(3142, 5545)
-                            clearCamera()
-                        }
-                        if (get("bork_kill_count", 0) == 0) {
-                            cutscene()
-                        } else {
-                            repeat()
-                        }
-                        cutscene.end(destroyInstance = false, invokeEnd = false)
+                    val cutscene = startCutscene("bork", instance, instanceOffset())
+                    cutscene.onEnd(destroyInstance = false) {
+                        tele(3142, 5545)
+                        clearCamera()
                     }
+                    if (get("bork_kill_count", 0) == 0) {
+                        cutscene()
+                    } else {
+                        repeat()
+                    }
+                    cutscene.end(destroyInstance = false, invokeEnd = false)
                 }
                 Teleport.CANCEL
             } else {

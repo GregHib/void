@@ -32,7 +32,7 @@ interface Teleport {
         items.getOrPut(type) { mutableSetOf() }.add(block)
     }
 
-    fun objTeleportTakeOff(option: String = "*", obj: String = "*", block: Player.(obj: GameObject, option: String) -> Int) {
+    fun objTeleportTakeOff(option: String = "*", obj: String = "*", block: suspend Player.(obj: GameObject, option: String) -> Int) {
         Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
             objectTakeOff["$option:$id"] = block
@@ -50,7 +50,7 @@ interface Teleport {
         private val takeOff = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val items = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val land = Object2ObjectOpenHashMap<String, Player.() -> Unit>(5)
-        private val objectTakeOff = Object2ObjectOpenHashMap<String, Player.(GameObject, String) -> Int>(50)
+        private val objectTakeOff = Object2ObjectOpenHashMap<String, suspend Player.(GameObject, String) -> Int>(50)
         private val objectLand = Object2ObjectOpenHashMap<String, Player.(GameObject, String) -> Unit>(20)
 
         const val CONTINUE = 0
@@ -78,7 +78,7 @@ interface Teleport {
             land[type]?.invoke(player)
         }
 
-        fun takeOff(player: Player, target: GameObject, option: String): Int {
+        suspend fun takeOff(player: Player, target: GameObject, option: String): Int {
             val handler = objectTakeOff["$option:${target.id}"] ?: objectTakeOff["*:${target.id}"] ?: objectTakeOff["$option:*"] ?: objectTakeOff["*:*"] ?: return CONTINUE
             return handler.invoke(player, target, option)
         }

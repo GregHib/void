@@ -104,7 +104,7 @@ class Interfaces(
                 it.remove()
                 sendClose(id)
                 InterfaceApi.close(player, id)
-                (player as? Player)?.queue?.clearWeak()
+                player.queue.clearWeak()
                 children.add(id)
             }
         }

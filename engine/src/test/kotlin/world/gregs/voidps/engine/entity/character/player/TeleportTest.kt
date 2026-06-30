@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
@@ -82,7 +83,9 @@ class TeleportTest {
         }
 
         override fun invoke(args: List<String>) {
-            assertEquals(0, Teleport.takeOff(Player(), GameObject(0), "option"))
+            runTest {
+                assertEquals(0, Teleport.takeOff(Player(), GameObject(0), "option"))
+            }
         }
 
         override val apis = listOf(Teleport)

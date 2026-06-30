@@ -88,9 +88,7 @@ class Saniboch : Script {
 
         objTeleportTakeOff("Enter", "brimhaven_dungeon_entrance") { _, _ ->
             if (!get("can_enter_brimhaven_dungeon", false)) {
-                queue("saniboch_door_access_check") {
-                    statement("You can't go in there without paying!")
-                }
+                statement("You can't go in there without paying!")
                 return@objTeleportTakeOff Teleport.CONTINUE
             }
 

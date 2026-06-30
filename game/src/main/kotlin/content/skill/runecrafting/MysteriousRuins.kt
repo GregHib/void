@@ -63,16 +63,14 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
 
         objTeleportTakeOff("Enter", "*_altar_portal") { target, option ->
             if (target.id == "chaos_altar_portal" && !hasClock("chaos_altar_skip")) {
-                queue("chaos_altar_check") {
-                    statement("Warning! This portal will teleport you into the Wilderness.")
-                    choice("Are you sure you wish to use this portal?") {
-                        option("Yes, I'm brave.") {
-                            start("chaos_altar_skip", 1)
-                            teleports.teleport(this, target, option, target.def(this))
-                        }
-                        option("Eeep! The Wilderness... No thank you.") {
-                            message("You decide not to use this portal.")
-                        }
+                statement("Warning! This portal will teleport you into the Wilderness.")
+                choice("Are you sure you wish to use this portal?") {
+                    option("Yes, I'm brave.") {
+                        start("chaos_altar_skip", 1)
+                        teleports.teleport(this, target, option, target.def(this))
+                    }
+                    option("Eeep! The Wilderness... No thank you.") {
+                        message("You decide not to use this portal.")
                     }
                 }
                 return@objTeleportTakeOff Teleport.CANCEL

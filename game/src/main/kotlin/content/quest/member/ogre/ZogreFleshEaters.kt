@@ -295,7 +295,6 @@ class ZogreFleshEaters : Script {
                     set("thzfe_sithik_transformed", 1)
                 }
             }
-
             Teleport.CONTINUE
         }
 

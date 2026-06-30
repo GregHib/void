@@ -33,13 +33,11 @@ class Ectopool : Script {
                 return@objTeleportTakeOff Teleport.CANCEL
             }
             anim("jump_up")
-            queue("jump_to") {
-                val teleports = get<ObjectTeleports>()
-                val definition = teleports.get(target.id, option).first()
-                val tile = teleports.teleportTile(this, definition)
-                tele(tile.addX(1))
-                exactMoveDelay(tile, startDelay = 49, delay = 68, direction = Direction.WEST)
-            }
+            val teleports = get<ObjectTeleports>()
+            val definition = teleports.get(target.id, option).first()
+            val tile = teleports.teleportTile(this, definition)
+            tele(tile.addX(1))
+            exactMoveDelay(tile, startDelay = 49, delay = 68, direction = Direction.WEST)
             return@objTeleportTakeOff Teleport.CANCEL
         }
     }

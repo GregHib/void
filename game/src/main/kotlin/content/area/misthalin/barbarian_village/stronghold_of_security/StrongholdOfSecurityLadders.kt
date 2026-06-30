@@ -39,15 +39,13 @@ class StrongholdOfSecurityLadders(val teleports: ObjectTeleports) : Script {
             if (get("warning_stronghold_of_security_ladders", 0) == 7) {
                 return@objTeleportTakeOff Teleport.CONTINUE
             }
-            queue("stronghold_warning") {
-                if (!warning("stronghold_of_security_ladders")) {
-                    player<Shifty>("No thanks, I don't want to die!")
-                } else {
-                    message("You climb down the ladder to the next level.")
-                    clear("stronghold_safe_space")
-                    val definition = teleports.get(option)[target.tile.id]!!
-                    teleports.teleportContinue(this, definition, target)
-                }
+            if (!warning("stronghold_of_security_ladders")) {
+                player<Shifty>("No thanks, I don't want to die!")
+            } else {
+                message("You climb down the ladder to the next level.")
+                clear("stronghold_safe_space")
+                val definition = teleports.get(option)[target.tile.id]!!
+                teleports.teleportContinue(this, definition, target)
             }
             Teleport.CANCEL
         }
