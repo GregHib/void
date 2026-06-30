@@ -1,11 +1,11 @@
 package content.skill.summoning.familiar
 
-import content.skill.summoning.follower
-import content.skill.summoning.useFamiliarSpecial
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.follower
+import content.skill.summoning.useFamiliarSpecial
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.name

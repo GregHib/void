@@ -1,4 +1,3 @@
-# Familiar combat definitions, ported from Darkan combatdefs/familiars.
 # Standard familiar attack speed is 8 ticks (4.8s); tune per-familiar as needed.
 # Special/scroll attacks out of scope.
 

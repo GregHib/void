@@ -101,7 +101,9 @@ fun Player.updateFamiliarPvpForm() {
     }
 }
 
-class FamiliarCombat : Script, CombatApi {
+class FamiliarCombat :
+    Script,
+    CombatApi {
 
     init {
         // Explicit command (cast-on-target): pick the attack option from the follower details

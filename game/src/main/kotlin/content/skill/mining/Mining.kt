@@ -1,10 +1,10 @@
 package content.skill.mining
 
 import content.activity.shooting_star.ShootingStarHandler
-import content.skill.summoning.familiarBoost
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
+import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

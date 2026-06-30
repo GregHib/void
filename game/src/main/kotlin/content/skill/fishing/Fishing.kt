@@ -1,7 +1,7 @@
 package content.skill.fishing
 
-import content.skill.summoning.familiarBoost
 import com.github.michaelbull.logging.InlineLogger
+import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script

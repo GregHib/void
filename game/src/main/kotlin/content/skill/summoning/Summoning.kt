@@ -11,6 +11,8 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -69,6 +71,8 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         familiarNpc["owner_index"] = index
         familiarNpc.anim("${familiarNpc.id.removeSuffix("_familiar")}_spawn")
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
+        // Tells the cast button on familiar_details how many points this familiar's special costs.
+        set("summoning_special_points_needed", followerScrollId()?.let { ItemDefinitions.get(it)["special_points", 0] } ?: 0)
         updateFamiliarPvpForm()
         updateFamiliarInterface()
         if (!restart) {
@@ -103,6 +107,7 @@ fun Player.dismissFamiliar(removeNpc: Boolean = true) {
         set("follower_details_chathead", 0)
         set("familiar_details_minutes_remaining", 0)
         set("familiar_details_seconds_remaining", 0)
+        set("summoning_special_points_needed", 0)
     }
     timers.stop("familiar_timer")
     timers.stop("summoning_drain")
@@ -212,6 +217,63 @@ fun Player.useFamiliarSpecial(cost: Int, action: () -> Unit) {
     }
     action()
     set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))
+}
+
+/**
+ * The item id of the scroll matching the player's current follower, or null if the player has no
+ * familiar or no scroll is mapped for it. Resolved follower npc -> pouch (`summoning_familiar_ids`)
+ * -> scroll (`summoning_scroll_ids_2`).
+ */
+fun Player.followerScrollId(): Int? {
+    val familiar = follower ?: return null
+    val pouchId = EnumDefinitions.get("summoning_familiar_ids").getKey(familiar.def.id)
+    if (pouchId == -1) {
+        return null
+    }
+    return EnumDefinitions.get("summoning_scroll_ids_2").intOrNull(pouchId)
+}
+
+/**
+ * Runs a scroll-driven familiar special move - the moves triggered from the cast button on the
+ * `familiar_details` interface.
+ * validates a 3-tick cooldown, sufficient special-move points, the familiar's scroll in the
+ * inventory, and that the familiar is within 15 tiles. [effect] performs the move and returns true
+ * on success; only then is one scroll removed, the points drained, the cooldown set, and the
+ * scroll's `use_experience` Summoning xp awarded. Returns false (consuming nothing) when [effect]
+ * soft-fails, e.g. an invalid target.
+ */
+fun Player.castFamiliarSpecial(effect: () -> Boolean) {
+    val familiar = follower ?: return
+    if (hasClock("familiar_special_delay")) {
+        return
+    }
+    val scrollId = followerScrollId()
+    if (scrollId == null) {
+        message("Your familiar doesn't have a special move.")
+        return
+    }
+    val scrollDef = ItemDefinitions.get(scrollId)
+    val cost = scrollDef["special_points", 0]
+    if (get("summoning_special_points_remaining", 0) < cost) {
+        message("Your familiar does not have enough special move points left.")
+        return
+    }
+    if (!inventory.contains(scrollDef.stringId)) {
+        message("You do not have enough scrolls left to do this special move.")
+        return
+    }
+    if (tile.distanceTo(familiar.tile) > 15) {
+        message("Your familiar is too far away to use that scroll. Call it closer or move nearer to it.")
+        return
+    }
+    if (!effect()) {
+        return
+    }
+    inventory.remove(scrollDef.stringId, 1)
+    val points = get("summoning_special_points_remaining", 0)
+    set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))
+    start("familiar_special_delay", 3)
+    exp(Skill.Summoning, scrollDef["use_experience", 0.0])
 }
 
 /**

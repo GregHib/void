@@ -1,9 +1,9 @@
 package content.skill.thieving
 
-import content.skill.summoning.familiarBoost
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.stun
 import content.skill.slayer.categories
+import content.skill.summoning.familiarBoost
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock

@@ -1,18 +1,20 @@
 package content.entity.combat
 
 import WorldTest
+import content.skill.melee.weapon.attackSpeed
 import content.skill.summoning.assistFamiliar
 import content.skill.summoning.commandFamiliarAttack
 import content.skill.summoning.follower
 import npcOption
-import world.gregs.voidps.engine.client.variable.start
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.Retreat
@@ -20,9 +22,7 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import content.skill.melee.weapon.attackSpeed
 import world.gregs.voidps.engine.inv.equipment
-import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom

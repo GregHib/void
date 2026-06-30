@@ -1,0 +1,137 @@
+# Familiar special-move graphics + projectiles (cast-button specials).
+# Suffix conventions: bare name = the familiar's own gfx, _proj = projectile, _hit = target gfx.
+
+# Combat specials
+[spirit_wolf_howl]
+id = 1334
+
+[spirit_wolf_howl_proj]
+id = 1333
+delay = 50          # wind-up before the tornado leaves the wolf
+time_offset = 56    # 46 base + 10 to offset Void's distance-1: flight = 56 + (dist-1)*10 = 46 + dist*10
+multiplier = 10     # magic-speed slope per tile, matching Projectile.magic
+curve = 5           # angle from Projectile.magic(this, npc, 1333, 40, 36, 50, 5)
+
+[electric_lash]
+id = 1410
+
+[electric_lash_proj]
+id = 1411
+
+[toad_bark]
+id = 1403
+
+[toad_bark_hit]
+id = 1404
+
+[slime_spray]
+id = 1385
+
+[slime_spray_proj]
+id = 1386
+
+[slime_spray_hit]
+id = 1387
+
+[arctic_blast]
+id = 1405
+
+[arctic_blast_proj]
+id = 1406
+
+[arctic_blast_hit]
+id = 1407
+
+[crushing_claw]
+id = 1351
+
+[crushing_claw_proj]
+id = 1352
+
+[dreadfowl_strike]
+id = 1523
+
+[dreadfowl_strike_proj]
+id = 1318
+
+[dissolve_proj]
+id = 1360
+
+[rending]
+id = 1370
+
+[rending_proj]
+id = 1371
+
+[evil_flames_proj]
+id = 1330
+
+[evil_flames_hit]
+id = 1329
+
+[abyssal_drain]
+id = 1422
+
+[abyssal_drain_proj]
+id = 1423
+
+[vampire_touch]
+id = 1323
+
+[petrifying_gaze]
+id = 1467
+
+[petrifying_gaze_proj]
+id = 1468
+
+[petrifying_gaze_hit]
+id = 1469
+
+[bull_rush]
+id = 1496
+
+[bull_rush_proj]
+id = 1497
+
+[poisonous_blast_proj]
+id = 1508
+
+[poisonous_blast_hit]
+id = 1511
+
+[boil]
+id = 1375
+
+[boil_proj]
+id = 1376
+
+[boil_hit]
+id = 1377
+
+# Boost / heal specials
+[stony_shell]
+id = 1326
+
+[testudo]
+id = 1414
+
+[volcanic_strength]
+id = 1465
+
+[magic_focus]
+id = 1464
+
+[unburden]
+id = 1382
+
+[tireless_run]
+id = 1521
+
+[healing_aura]
+id = 1356
+
+[thieving_fingers]
+id = 1336
+
+[insane_ferocity]
+id = 1397
