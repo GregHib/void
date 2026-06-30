@@ -41,14 +41,9 @@ class TaverleyDungeon : Script {
     fun spawn(player: Player, tile: Tile): Boolean {
         val armour = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return false
         armour.remove(TimeUnit.MINUTES.toTicks(5))
-        val suit = NPCs.add("suit_of_armour", armour.tile)
+        NPCs.add("suit_of_armour", armour.tile, ticks = TimeUnit.MINUTES.toTicks(5))
         player.message("Suddenly the suit of armour comes to life!")
         //    suit.setAnimation("suit_of_armour_stand") TODO find animation
-        suit.queue("despawn", TimeUnit.MINUTES.toTicks(5)) {
-            World.queue("despawn_${suit.index}") {
-                NPCs.remove(suit)
-            }
-        }
         return true
     }
 

@@ -80,10 +80,7 @@ class Shamus : Script {
                 npc<Angry>("Hey! Yer big elephant! Don't go choppin' down me house, now!")
                 return@objectOperate
             }
-            shamus = NPCs.add("shamus", Tile(3139, 3211))
-            shamus.queue("shamus_despawn", TimeUnit.SECONDS.toTicks(60)) {
-                NPCs.remove(shamus)
-            }
+            shamus = NPCs.add("shamus", Tile(3139, 3211), ticks = TimeUnit.SECONDS.toTicks(60))
             talkWith(shamus)
             interactNpc(shamus, "Talk-to")
         }

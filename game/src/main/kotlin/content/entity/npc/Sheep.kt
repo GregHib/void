@@ -102,8 +102,6 @@ class Sheep : Script {
         delay(1)
         areaSound("sheep_baa${if (colour == "black") "" else "2"}", target.tile)
         target.say("Baa!")
-        target.queue("regrow_wool", Settings["world.npcs.sheep.regrowTicks", 50]) {
-            target.clearTransform()
-        }
+        target.revert(Settings["world.npcs.sheep.regrowTicks", 50])
     }
 }
