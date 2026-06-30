@@ -4,15 +4,6 @@ import org.gradle.api.tasks.*
 import org.gradle.work.ChangeType
 import org.gradle.work.Incremental
 import org.gradle.work.InputChanges
-import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
-import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.jetbrains.kotlin.com.intellij.openapi.Disposable
-import org.jetbrains.kotlin.com.intellij.openapi.util.Disposer
-import org.jetbrains.kotlin.com.intellij.psi.PsiManager
-import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 import java.io.File
 
 /**
@@ -48,10 +39,7 @@ abstract class ScriptMetadataTask : DefaultTask() {
         } else {
             lines = if (scriptsFile.exists()) scriptsFile.readLines().toMutableList() else mutableListOf()
         }
-        val disposable = Disposer.newDisposable()
-        val environment = createKotlinEnvironment(disposable)
         var scripts = 0
-        val instance = PsiManager.getInstance(environment.project)
         for (change in inputChanges.getFileChanges(inputDirectory)) {
             val file = change.file
             if (change.changeType == ChangeType.REMOVED) {
@@ -61,34 +49,33 @@ abstract class ScriptMetadataTask : DefaultTask() {
             if (!file.isFile || !file.name.endsWith(".kt")) {
                 continue
             }
-            val localFile = environment.findLocalFile(file.path)
-            if (localFile == null) {
-                println("Local file not found: ${file.path}")
-                continue
-            }
-            val psiFile: KtFile = instance.findFile(localFile) as KtFile
-            val classes = psiFile
-                .collectDescendantsOfType<KtClass>()
-                .filter { clazz -> clazz.superTypeListEntries.any { type -> type.text == "Script" } }
-            val packageName = psiFile.packageFqName.asString()
+            val (packageName, classes) = parseScriptClasses(file)
             if (change.changeType == ChangeType.MODIFIED) {
-                for (name in classes.map { it.name }) {
+                for (name in classes) {
                     if (!lines.removeIf { it.endsWith("$packageName.$name") }) {
                         removeName(lines, name)
                     }
                 }
             }
             if (change.changeType == ChangeType.MODIFIED || change.changeType == ChangeType.ADDED) {
-                for (ktClass in classes) {
-                    val className = ktClass.name ?: "Anonymous"
-                    lines.add("$packageName.$className")
+                for (name in classes) {
+                    lines.add("$packageName.$name")
                     scripts++
                 }
             }
         }
         scriptsFile.writeText(lines.joinToString("\n"))
-        disposable.dispose()
         println("Metadata for $scripts scripts collected in ${System.currentTimeMillis() - start} ms")
+    }
+
+    private fun parseScriptClasses(file: File): Pair<String, List<String>> {
+        val text = file.readText()
+        val packageName = PACKAGE_REGEX.find(text)?.groupValues?.get(1) ?: ""
+        val classes = CLASS_REGEX.findAll(text)
+            .filter { it.groupValues[2].split(",").map(String::trim).contains("Script") }
+            .map { it.groupValues[1] }
+            .toList()
+        return packageName to classes
     }
 
     private fun removeName(scriptsList: MutableList<String>, name: String?) {
@@ -98,10 +85,13 @@ abstract class ScriptMetadataTask : DefaultTask() {
         scriptsList.removeIf { it.endsWith(".$name") }
     }
 
-    private fun createKotlinEnvironment(disposable: Disposable): KotlinCoreEnvironment = KotlinCoreEnvironment.createForProduction(
-        disposable,
-        CompilerConfiguration.EMPTY,
-        EnvironmentConfigFiles.JVM_CONFIG_FILES,
-    )
+    companion object {
+        private val PACKAGE_REGEX = Regex("""^\s*package\s+([\w.]+)""", RegexOption.MULTILINE)
+        // Matches class declarations including multi-line constructor params, then captures supertypes after ':'
+        private val CLASS_REGEX = Regex(
+            """(?:^|\n)\s*(?:(?:abstract|open|data|sealed|inner)\s+)*class\s+(\w+)\s*(?:\([^)]*\)\s*)?:\s*([^{]+)\{""",
+            RegexOption.DOT_MATCHES_ALL,
+        )
+    }
 
 }
