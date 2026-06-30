@@ -174,7 +174,18 @@ fun Player.interfaceUse(
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
     runTest {
-        InterfaceApi.itemOnItem(this@interfaceUse, fromItem, toItem, fromSlot, toSlot)
+        instructions.trySend(
+            InteractInterfaceItem(
+                fromItem = fromItem.def.id,
+                toItem = toItem.def.id,
+                fromSlot = fromSlot,
+                toSlot = toSlot,
+                fromInterfaceId = 149,
+                fromComponentId = 0,
+                toInterfaceId = 149,
+                toComponentId = 0
+            )
+        )
     }
 }
 
@@ -274,7 +285,18 @@ fun Player.itemOnItem(
 ) {
     val inv = inventories.inventory("inventory")
     runTest {
-        InterfaceApi.itemOnItem(this@itemOnItem, inv[firstSlot], inv[secondSlot], firstSlot, secondSlot)
+        instructions.send(
+            InteractInterfaceItem(
+                fromItem = inv[firstSlot].def.id,
+                toItem = inv[secondSlot].def.id,
+                fromSlot = firstSlot,
+                toSlot = secondSlot,
+                fromInterfaceId = 149,
+                fromComponentId = 0,
+                toInterfaceId = 149,
+                toComponentId = 0
+            )
+        )
     }
 }
 

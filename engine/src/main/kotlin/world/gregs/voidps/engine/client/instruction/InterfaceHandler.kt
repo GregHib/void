@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.suspend.Suspension
 
 class InterfaceHandler(
     private val inventoryDefinitions: InventoryDefinitions,
@@ -125,7 +126,9 @@ fun <C: Character> C.protectedAccess(block: suspend C.() -> Unit): Boolean {
     if (contains("delay") && (this is Player && hasMenuOpen())) {
         return false
     }
-    if (suspension != null) {
+    // Check suspension type to avoid breaking interfaces with selection options and custom suspension usage
+    // like quest start modal using StringEntry or grand exchange using Continue
+    if (suspension != null && suspension is Suspension.Delay) {
         return false
     }
     Script.launch {
