@@ -6,51 +6,55 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.engine.entity.obj.remove
-import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.timer.Timer
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 
 class Hunter : Script {
 
     private val traps: MutableMap<Int, String> = Int2ObjectOpenHashMap()
 
     init {
-        for (trap in Tables.get("traps").rows()) {
-            val items = trap.itemList("items")
-            val primary = items.firstOrNull() ?: continue
-            itemOption("Lay", primary) { layTrap(trap.rowId) }
+        itemOption("Lay", "bird_snare,box_trap,rabbit_snare") {
+            layTrap(it.item.id)
         }
 
-        for (trap in Tables.get("traps").rows()) {
-            val activeObj = Tables.obj("traps.${trap.rowId}.trap")
-            objectOperate("Dismantle", activeObj) { (target) -> dismantleTrap(trap.rowId, target) }
-
-            val failObj = Tables.objOrNull("traps.${trap.rowId}.fail") ?: continue
-            objectOperate("Investigate", failObj) { (target) -> dismantleTrap(trap.rowId, target) }
+        itemOption("Set-trap", "young_tree") {
+            layTrap(it.item.id)
         }
 
-        for (creature in Tables.get("creatures").rows()) {
-            val caughtObj = Tables.obj("creatures.${creature.rowId}.caught_obj")
-            objectOperate("Check", caughtObj) { (target) -> collectCatch(creature.rowId, target) }
+        objectOperate("Dismantle", "snare_trap,box_trap,rabbit_snare") { (target) ->
+            dismantleTrap(target.id, target)
         }
+
+        objectOperate("Investigate", "snare_trap,box_trap,rabbit_snare") { (target) ->
+            // TODO
+        }
+
+        // TODO bait + smoking traps
+
+        objectOperate("Check", "snare_*") { (target) ->
+            collectCatch(target.id.removePrefix("snare_"), target)
+        }
+
+        objectOperate("Check", "box_trap_*") { (target) ->
+            collectCatch(target.id.removePrefix("box_trap_"), target)
+        }
+
+//        objectOperate("Check", "rabbit_snare_*") { (target) ->
+//            collectCatch(target.id.removePrefix("rabbit_snare_"), target)
+//        }
+
+        // TODO ferret, chinchompa, rabbits
 
         huntObject("hunter_trap") { trapObj ->
             // TODO chance at attempt
@@ -83,7 +87,7 @@ class Hunter : Script {
     }
 
     private suspend fun Player.layTrap(trapId: String) {
-        val trap = Tables.get("traps").rows().first { it.rowId == trapId }
+        val trap = Tables.rowOrNull("traps.${trapId}") ?: return
         val items = trap.itemList("items")
         val level = levels.get(Skill.Hunter)
 
