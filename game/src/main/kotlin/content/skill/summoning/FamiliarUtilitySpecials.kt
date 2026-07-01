@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
@@ -46,11 +47,20 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Cheese Feast - the albino rat produces a cheese.
+        // Cheese Feast - the albino rat produces 4 cheese into its own inventory
         FamiliarSpecialMoves.instant("albino_rat_familiar") {
-            familiarSelfSpecial {
-                if (!inventory.add("cheese")) {
-                    FloorItems.add(tile, "cheese", disappearTicks = 300, owner = this)
+            ensureBeastOfBurdenInventory()
+            val free = beastOfBurdenCapacity - beastOfBurden.items.count { it.isNotEmpty() }
+            if (free < 4) {
+                message("Your familiar is too full to collect items.")
+                return@instant false
+            }
+            // Player plays the summoning special-cast animation; the rat shows the cheese gfx.
+            anim("summoning_special_cast")
+            familiarSelfSpecial(sourceGfx = "cheese_feast") {
+                beastOfBurden.add("cheese", 4)
+                if (interfaces.contains("beast_of_burden")) {
+                    syncBeastOfBurdenInterface()
                 }
             }
         }

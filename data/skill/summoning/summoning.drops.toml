@@ -156,6 +156,11 @@ drops = [{ id = "strange_fruit" }]
 roll = 12
 drops = [{ id = "evil_turnip_two_thirds" }]
 
+# --- Albino rat: cheese ---
+[forage_albino_rat]
+roll = 9
+drops = [{ id = "cheese", amount = 4 }]
+
 # --- Cockatrice family: each variant lays a cockatrice egg (1/12) ---
 [forage_spirit_cockatrice]
 roll = 12

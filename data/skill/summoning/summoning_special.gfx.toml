@@ -139,3 +139,7 @@ id = 1336
 
 [insane_ferocity]
 id = 1397
+
+# Forage specials
+[cheese_feast]
+id = 1384
