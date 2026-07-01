@@ -7,10 +7,10 @@ id = 1334
 
 [spirit_wolf_howl_proj]
 id = 1333
-delay = 50          # wind-up before the tornado leaves the wolf
-time_offset = 56    # 46 base + 10 to offset Void's distance-1: flight = 56 + (dist-1)*10 = 46 + dist*10
-multiplier = 10     # magic-speed slope per tile, matching Projectile.magic
-curve = 5           # angle from Projectile.magic(this, npc, 1333, 40, 36, 50, 5)
+delay = 50
+time_offset = 56
+multiplier = 1
+curve = 0
 
 [electric_lash]
 id = 1410

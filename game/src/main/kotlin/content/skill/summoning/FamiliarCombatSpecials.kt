@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 
 /**
@@ -25,8 +27,11 @@ class FamiliarCombatSpecials : Script {
             familiar.watch(target)
             familiar.anim("spirit_wolf_howl")
             familiar.gfx("spirit_wolf_howl")
-            familiar.shoot("spirit_wolf_howl_proj", target, height = 0, endHeight = 0)
-            target.mode = Retreat(target, familiar)
+            val flight = familiar.shoot("spirit_wolf_howl_proj", target, height = 0, endHeight = 0)
+            // Flee only once the tornado actually reaches the npc, not the instant it's cast.
+            target.queue("howl_retreat", CLIENT_TICKS.toTicks(flight)) {
+                mode = Retreat(this, familiar)
+            }
             true
         }
 
