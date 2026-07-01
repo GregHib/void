@@ -1,0 +1,19 @@
+[hunter_trap_1]
+format = "int"
+persist = true
+
+[hunter_trap_2]
+format = "int"
+persist = true
+
+[hunter_trap_3]
+format = "int"
+persist = true
+
+[hunter_trap_4]
+format = "int"
+persist = true
+
+[hunter_trap_5]
+format = "int"
+persist = true

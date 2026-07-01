@@ -156,7 +156,7 @@ caught_obj = "swamp_net_swamp_lizard"
 level = 29
 xp = 1520
 catch_anim = "net_catch"
-loot = ["swamp_lizard"]
+loot = ["green_salamander"]
 
 [.orange_salamander]
 trap = "orange_net"
@@ -226,7 +226,7 @@ xp = 500
 jar = "snowy_knight"
 
 [.black_warlock]
-npc = "black_warlock"
+npc = "black_warlock_feldip_hills"
 level = 45
 xp = 750
 jar = "black_warlock"
