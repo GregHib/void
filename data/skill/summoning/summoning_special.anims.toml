@@ -1,0 +1,78 @@
+# Familiar special-move animations (cast-button specials).
+# Combat specials
+[spirit_wolf_howl]
+id = 8293
+
+[electric_lash]
+id = 7795
+
+[slime_spray]
+id = 8148
+
+[arctic_blast]
+id = 4926
+
+[crushing_claw]
+id = 8118
+
+[dreadfowl_strike]
+id = 5387
+
+[dissolve]
+id = 8575
+
+[rending]
+id = 5229
+
+[evil_flames]
+id = 8251
+
+[abyssal_drain]
+id = 7672
+
+[vampire_touch]
+id = 8275
+
+[petrifying_gaze]
+id = 7762
+
+[bull_rush]
+id = 8026
+
+[poisonous_blast]
+id = 8211
+
+[boil]
+id = 7883
+
+# Boost / heal specials
+[stony_shell]
+id = 8109
+
+[testudo]
+id = 8288
+
+[magic_focus]
+id = 8267
+
+[abyssal_stealth]
+id = 7682
+
+[unburden]
+id = 7896
+
+[tireless_run]
+id = 1009
+
+[healing_aura]
+id = 8267
+
+[thieving_fingers]
+id = 8020
+
+[insane_ferocity]
+id = 7928
+
+# Player animation played while casting a special-move scroll (2009scape base visualizeSpecialMove).
+[summoning_special_cast]
+id = 7660

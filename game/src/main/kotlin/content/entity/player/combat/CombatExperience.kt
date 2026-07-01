@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -48,6 +49,30 @@ class CombatExperience : Script {
                 }
             }
             grant(this, target, Skill.Constitution, damage / 7.5)
+        }
+
+        // Combat familiars grant their owner combat xp for the damage they deal: the skill for
+        // the owner's chosen melee style (or the familiar's range/magic type), plus Constitution.
+        npcCombatAttack("*_familiar*") { (target, damage, type) ->
+            if (damage <= 0) {
+                return@npcCombatAttack
+            }
+            val owner = Players.indexed(this["owner_index", -1]) ?: return@npcCombatAttack
+            when {
+                type == "magic" || type == "blaze" -> grant(owner, target, Skill.Magic, damage / 5.0)
+                type == "range" -> grant(owner, target, Skill.Ranged, damage / 2.5)
+                Hit.meleeType(type) || type == "scorch" -> when (owner.attackStyle) {
+                    "aggressive" -> grant(owner, target, Skill.Strength, damage / 2.5)
+                    "controlled" -> {
+                        grant(owner, target, Skill.Attack, damage / 7.5)
+                        grant(owner, target, Skill.Strength, damage / 7.5)
+                        grant(owner, target, Skill.Defence, damage / 7.5)
+                    }
+                    "defensive" -> grant(owner, target, Skill.Defence, damage / 2.5)
+                    else -> grant(owner, target, Skill.Attack, damage / 2.5)
+                }
+            }
+            grant(owner, target, Skill.Constitution, damage / 7.5)
         }
     }
 

@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.*
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement.Companion.leashAnchor
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -131,7 +132,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         if (character is NPC) {
             // Retreat
             val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return
-            val spawn: Tile = character["spawn_tile"]!!
+            val spawn: Tile = character.leashAnchor() ?: return
             if (!CombatMovement.withinAggro(source, spawn, definition)) {
                 if (character.mode !is Retreat || (character.mode as Retreat).target != source) {
                     character.mode = Retreat(character, source, spawn, definition.retreatRange)

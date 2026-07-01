@@ -1,6 +1,7 @@
 package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -122,7 +123,7 @@ class Fishing : Script {
                 val chance = row.intRange("chance")
                 val experience = row.int("xp")
                 val level = player.levels.get(Skill.Fishing)
-                if (level >= requiredLevel && success(level, chance)) {
+                if (level >= requiredLevel && success(level + player.familiarBoost(Skill.Fishing), chance)) {
                     if (bait != "empty_box_fish" && !player.inventory.remove(bait)) {
                         break@fishing
                     }

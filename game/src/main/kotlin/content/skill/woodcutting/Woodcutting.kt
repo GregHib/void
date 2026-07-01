@@ -1,5 +1,6 @@
 package content.skill.woodcutting
 
+import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -83,7 +84,7 @@ class Woodcutting(val drops: DropTables) : Script {
             if (!GameObjects.contains(target)) {
                 break
             }
-            if (success(player.levels.get(Skill.Woodcutting), hatchet, log)) {
+            if (success(player.levels.get(Skill.Woodcutting) + player.familiarBoost(Skill.Woodcutting), hatchet, log)) {
                 val xp = log.int("xp") / 10.0
                 player.exp(Skill.Woodcutting, xp)
                 tryDropNest(player, ivy)

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.get
@@ -29,6 +30,8 @@ class CombatMovement(
 ) : Movement(character, strategy) {
 
     var started = false
+
+    private var unreachableTicks = 0
 
     override fun start() {
         if (character is NPC) {
@@ -51,7 +54,10 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
-        if (character is NPC) {
+        if (character is NPC && character["owner_index", -1] == -1) {
+            // Owned familiars aren't bound by the spawn/aggro leash: they chase whatever their
+            // owner directs them at (which can be further than their aggro range) and fall back to
+            // following the owner when the fight ends, so they never wander off permanently.
             val spawn: Tile = character["spawn_tile"] ?: return
             val definition = get<CombatDefinitions>().get(character.transformDef["combat_def", character.id])
             if (!withinAggro(this.target, spawn, definition)) {
@@ -69,6 +75,20 @@ class CombatMovement(
                 skip = recalculate() && wasEmpty
             }
             super.tick()
+            if (character is NPC && character["owner_index", -1] != -1) {
+                // An owned familiar that can't make progress towards a target it isn't yet close
+                // to (no path exists, e.g. the target fled somewhere unreachable) gives up after a
+                // grace period and falls back to following its owner (EmptyMode -> Follow in
+                // NPCTask) rather than freezing. Moving, or already being all but in range (just
+                // waiting on a free attack tile in a crowd), resets the grace period.
+                if (character.visuals.moved || arrived(attackRange() + 1)) {
+                    unreachableTicks = 0
+                } else if (++unreachableTicks >= UNREACHABLE_LIMIT) {
+                    unreachableTicks = 0
+                    character.mode = EmptyMode
+                    return
+                }
+            }
             if (skip || attack()) {
                 return
             }
@@ -89,6 +109,7 @@ class CombatMovement(
         val attackRange = attackRange()
         val melee = attackRange == 1 && character["weapon", Item.EMPTY].def["weapon_type", ""] != "salamander"
         if (arrived(if (melee) -1 else attackRange)) {
+            unreachableTicks = 0
             combatReached?.invoke(character, target)
             return true
         }
@@ -122,12 +143,31 @@ class CombatMovement(
 
     companion object : AutoCloseable {
         /**
+         * Ticks an owned familiar may make no progress towards its target before giving up and
+         * returning to follow its owner.
+         */
+        private const val UNREACHABLE_LIMIT = 5
+
+        /**
          * Emitted when within attack range of combat target.
          */
         var combatReached: (Character.(Character) -> Unit)? = null
 
         override fun close() {
             combatReached = null
+        }
+
+        /**
+         * The tile a combat leash (aggro/retreat range) is measured from. Owned followers
+         * (familiars, identified by the [owner_index] attribute) anchor to their owner's current
+         * tile so they don't de-aggro when the owner moves; all other NPCs anchor to [spawn_tile].
+         */
+        fun NPC.leashAnchor(): Tile? {
+            val ownerIndex = this["owner_index", -1]
+            if (ownerIndex != -1) {
+                Players.indexed(ownerIndex)?.let { return it.tile }
+            }
+            return this["spawn_tile"]
         }
 
         fun withinAggro(target: Character, spawn: Tile, definition: CombatDefinition): Boolean {

@@ -39,6 +39,10 @@ object Target {
             if (source is Player && !CombatApi.canAttack(source, target)) {
                 return false
             }
+            if (source is Player && target["owner_index", -1] == source.index) {
+                if (message) source.message("You can't attack your own familiar.")
+                return false
+            }
             if (source is Player && target.contains("owner")) {
                 val owner = target.get<String>("owner")
                 if (source.accountName != owner) {

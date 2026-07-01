@@ -1,6 +1,7 @@
 package content.skill.thieving
 
 import content.entity.combat.underAttack
+import content.skill.summoning.familiarBoost
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toIntRange
@@ -50,7 +51,7 @@ class Stalls(val drops: DropTables) : Script {
             val chance: String? = def.getOrNull("chance")
             if (chance != null) {
                 val range = chance.toIntRange(inclusive = true)
-                if (!Level.success(levels.get(Skill.Thieving), range)) {
+                if (!Level.success(levels.get(Skill.Thieving) + familiarBoost(Skill.Thieving), range)) {
                     message("You attempt to steal from the stall but you miss your chance...")
                     return@objectOperate
                 }
