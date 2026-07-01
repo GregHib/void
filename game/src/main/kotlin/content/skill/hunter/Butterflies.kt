@@ -18,6 +18,7 @@ class Butterflies : Script {
     init {
         // TODO butterfly jar bonuses
 //            message("You release the ruby harvest butterfly from the jar.")
+//        message("You break the jar as you try to open it. You throw the shattered remains away.", ChatType.Filter)
 
         npcOperate("Catch", "ruby_harvest,sapphire_glacialis,snowy_knight,black_warlock") { (target) ->
             val butterfly = Rows.getOrNull("butterflies.${target.id}") ?: return@npcOperate
@@ -27,10 +28,6 @@ class Butterflies : Script {
                 return@npcOperate
             }
             if (!net && has(Skill.Agility, level - 5, message = "to catch this butterfly")) { // TODO proper message
-                return@npcOperate
-            }
-            if (!net && weapon.isNotEmpty()) {
-                message("You can't catch butterflies bare handed with a weapon equipped") // TODO message
                 return@npcOperate
             }
             var jar = inventory.contains("butterfly_jar")
