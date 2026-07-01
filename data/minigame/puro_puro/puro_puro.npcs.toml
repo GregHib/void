@@ -34,6 +34,14 @@ wander_range = 30000
 id = 6053
 wander_range = 30000
 
+[pirate_impling]
+id = 7845
+wander_range = 30000
+
+[zombie_impling]
+id = 7902
+wander_range = 30000
+
 [dragon_impling]
 id = 6054
 wander_range = 30000
@@ -71,6 +79,15 @@ id = 6062
 
 [ninja_impling_puro_puro]
 id = 6063
+
+[pirate_impling_puro_puro]
+id = 7846
+
+[pirate_impling_trouble_brewing]
+id = 7867
+
+[zombie_impling_puro_puro]
+id = 7905
 
 [dragon_impling_puro_puro]
 id = 6064
