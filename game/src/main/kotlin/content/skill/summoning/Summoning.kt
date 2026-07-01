@@ -266,13 +266,16 @@ fun Player.castFamiliarSpecial(effect: () -> Boolean) {
         message("Your familiar is too far away to use that scroll. Call it closer or move nearer to it.")
         return
     }
+    // Set the cooldown before running the effect so a re-entrant dispatch in the same tick (see the
+    // approach handlers in FamiliarSpecialMovesDispatch) can't fire the special twice. Scroll/points
+    // are still only spent on a successful effect() below.
+    start("familiar_special_delay", 3)
     if (!effect()) {
         return
     }
     inventory.remove(scrollDef.stringId, 1)
     val points = get("summoning_special_points_remaining", 0)
     set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))
-    start("familiar_special_delay", 3)
     exp(Skill.Summoning, scrollDef["use_experience", 0.0])
 }
 

@@ -53,6 +53,10 @@ id = 1523
 
 [dreadfowl_strike_proj]
 id = 1318
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
 
 [dissolve_proj]
 id = 1360

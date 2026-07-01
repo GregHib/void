@@ -88,4 +88,19 @@ class FamiliarSpecialMoveTest : WorldTest() {
         assertEquals(4, player.inventory.count("howl_scroll"))
         assertEquals(57, player.get("summoning_special_points_remaining", 0))
     }
+
+    @Test
+    fun `Re-entrant cast in the same tick runs the effect only once`() {
+        val player = summonSpiritWolf()
+
+        // Simulates the interaction layer dispatching the special twice in one tick (the double
+        // projectile bug): the cooldown is set before the effect, so the second effect never runs.
+        var effects = 0
+        player.castFamiliarSpecial { effects++; true }
+        player.castFamiliarSpecial { effects++; true }
+
+        assertEquals(1, effects)
+        assertEquals(4, player.inventory.count("howl_scroll"))
+        assertEquals(57, player.get("summoning_special_points_remaining", 0))
+    }
 }

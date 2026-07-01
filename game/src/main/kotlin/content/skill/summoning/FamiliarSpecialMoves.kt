@@ -62,21 +62,21 @@ class FamiliarSpecialMovesDispatch : Script {
         }
 
         onNPCApproach("familiar_details:cast_*", "*") { (target) ->
-            approachRange(16)
+            approachRange(16, update = false)
             val id = follower?.id ?: return@onNPCApproach
             val block = FamiliarSpecialMoves.npcTarget[id] ?: return@onNPCApproach
             castFamiliarSpecial { block(target) }
         }
 
         onPlayerApproach("familiar_details:cast_*") { (target) ->
-            approachRange(16)
+            approachRange(16, update = false)
             val id = follower?.id ?: return@onPlayerApproach
             val block = FamiliarSpecialMoves.playerTarget[id] ?: return@onPlayerApproach
             castFamiliarSpecial { block(target) }
         }
 
         onObjectApproach("familiar_details:cast_*", "*") { (target) ->
-            approachRange(16)
+            approachRange(16, update = false)
             val id = follower?.id ?: return@onObjectApproach
             val block = FamiliarSpecialMoves.objectTarget[id] ?: return@onObjectApproach
             castFamiliarSpecial { block(target) }

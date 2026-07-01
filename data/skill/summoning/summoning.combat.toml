@@ -21,7 +21,6 @@ death_anim = "dreadfowl_familiar_death"
 [dreadfowl_familiar.melee]
 range = 1
 anim = "dreadfowl_familiar_attack"
-projectile = "dreadfowl_familiar_projectile"
 target_hit = { offense = "crush", max = 40 }
 
 [spirit_spider_familiar]

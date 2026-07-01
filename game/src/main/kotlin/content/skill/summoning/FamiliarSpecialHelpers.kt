@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 
 /**
@@ -69,10 +71,17 @@ fun Player.familiarSpecialHit(
     familiar.watch(target)
     anim?.let { familiar.anim(it) }
     sourceGfx?.let { familiar.gfx(it) }
-    projectile?.let { familiar.shoot(it, target) }
+    // shoot returns the projectile's flight time (client ticks); land the hit and impact gfx when
+    // it arrives rather than on hit()'s fixed magic delay, so damage lands with the projectile.
+    val flight = projectile?.let { familiar.shoot(it, target) }
     val damage = random.nextInt(maxHit + 1)
-    familiar.hit(target, offensiveType = type, damage = damage)
-    targetGfx?.let { target.gfx(it) }
+    if (flight != null) {
+        familiar.hit(target, offensiveType = type, damage = damage, delay = flight)
+        targetGfx?.let { gfx -> target.queue("familiar_special_gfx", CLIENT_TICKS.toTicks(flight)) { target.gfx(gfx) } }
+    } else {
+        familiar.hit(target, offensiveType = type, damage = damage)
+        targetGfx?.let { target.gfx(it) }
+    }
     if (engage) {
         commandFamiliarAttack(target, silent = true)
     }
