@@ -38,6 +38,13 @@ wander_range = 30000
 id = 6054
 wander_range = 30000
 
+[kingly_impling]
+id = 7903
+wander_range = 30000
+
+[kingly_impling_puro_puro]
+id = 7906
+
 [baby_impling_puro_puro]
 id = 6055
 

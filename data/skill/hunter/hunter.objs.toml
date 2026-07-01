@@ -47,8 +47,6 @@ id = 19206
 id = 19219
 
 # Snare trap — triggered states (creature caught inside)
-[snare_trap_fail]
-id = 19174
 
 [snare_crimson_swift]
 id = 19180
