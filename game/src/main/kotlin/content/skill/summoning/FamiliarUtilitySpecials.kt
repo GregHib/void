@@ -61,9 +61,7 @@ class FamiliarUtilitySpecials : Script {
                 message("Your familiar is too full to collect items.")
                 return@instant false
             }
-            // Player plays the summoning special-cast animation; the rat shows the cheese gfx.
-            anim("summoning_special_cast")
-            familiarSelfSpecial(sourceGfx = "cheese_feast") {
+            familiarSelfSpecial(anim = "cheese_feast", sourceGfx = "cheese_feast") {
                 beastOfBurden.add("cheese", 4)
                 if (interfaces.contains("beast_of_burden")) {
                     syncBeastOfBurdenInterface()

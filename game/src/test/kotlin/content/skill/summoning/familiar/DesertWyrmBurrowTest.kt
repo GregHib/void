@@ -7,8 +7,8 @@ import npcOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.type.Tile
 
 internal class DesertWyrmBurrowTest : WorldTest() {
@@ -74,8 +74,7 @@ internal class DesertWyrmBurrowTest : WorldTest() {
         assertTrue(floorItemsNear(player, "copper_ore").isEmpty())
     }
 
-    private fun floorItemsNear(player: world.gregs.voidps.engine.entity.character.player.Player, id: String) =
-        (-2..2).flatMap { dx ->
-            (-2..2).flatMap { dy -> FloorItems.at(player.tile.add(dx, dy)).filter { it.id == id } }
-        }
+    private fun floorItemsNear(player: world.gregs.voidps.engine.entity.character.player.Player, id: String) = (-2..2).flatMap { dx ->
+        (-2..2).flatMap { dy -> FloorItems.at(player.tile.add(dx, dy)).filter { it.id == id } }
+    }
 }

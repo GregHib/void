@@ -159,6 +159,10 @@ id = 1336
 [insane_ferocity]
 id = 1397
 
+# Player graphic played while casting a special-move scroll (2009scape base visualizeSpecialMove).
+[summoning_special_cast]
+id = 1316
+
 # Forage specials
 [cheese_feast]
 id = 1384

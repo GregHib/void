@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -209,6 +210,7 @@ suspend fun Player.renewSummoningPoints(obelisk: GameObject) {
         levels.set(Skill.Summoning, levels.getMax(Skill.Summoning))
         anim("summoning_renew")
         areaGfx("summoning_renew_player", tile)
+        sound("summoning_renew")
         message("You renew your summoning points at the obelisk.")
     }
 }
@@ -283,6 +285,9 @@ fun Player.castFamiliarSpecial(effect: () -> Boolean) {
     if (!effect()) {
         return
     }
+    anim("summoning_special_cast")
+    gfx("summoning_special_cast")
+    sound("summoning_special_cast")
     inventory.remove(scrollDef.stringId, 1)
     val points = get("summoning_special_points_remaining", 0)
     set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))

@@ -88,3 +88,7 @@ id = 7928
 # Player animation played while casting a special-move scroll (2009scape base visualizeSpecialMove).
 [summoning_special_cast]
 id = 7660
+
+# Albino rat's Cheese Feast animation (played on the rat).
+[cheese_feast]
+id = 14858
