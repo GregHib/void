@@ -198,7 +198,7 @@ fun Player.renewSummoningPoints() {
         message("You already have full summoning points.")
     } else {
         levels.set(Skill.Summoning, levels.getMax(Skill.Summoning))
-        anim("summoning_infuse")
+        anim("summoning_renew")
         message("You renew your summoning points at the obelisk.")
     }
 }

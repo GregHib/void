@@ -1,6 +1,9 @@
 [summoning_infuse]
 id = 8500
 
+[summoning_renew]
+id = 8502
+
 [expression_wolf_happy]
 id = 8372
 
