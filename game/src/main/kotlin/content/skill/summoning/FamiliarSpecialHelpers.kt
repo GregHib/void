@@ -1,7 +1,10 @@
 package content.skill.summoning
 
 import content.area.wilderness.inPvp
+import content.area.wilderness.inSingleCombat
 import content.entity.combat.Target
+import content.entity.combat.attacker
+import content.entity.combat.attackers
 import content.entity.combat.hit.hit
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.client.message
@@ -83,6 +86,13 @@ fun Player.familiarSpecialHit(
     } else {
         familiar.hit(target, offensiveType = type, damage = damage)
         targetGfx?.let { target.gfx(it) }
+    }
+    if (target.inSingleCombat) {
+        target.attackers.clear()
+        target.attacker = familiar
+    }
+    if (familiar !in target.attackers) {
+        target.attackers.add(familiar)
     }
     if (engage) {
         commandFamiliarAttack(target, silent = true)
