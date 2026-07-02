@@ -142,10 +142,10 @@ retreat_range = 8
 defend_anim = "giant_chinchompa_familiar_defend"
 death_anim = "giant_chinchompa_familiar_death"
 
-[giant_chinchompa_familiar.range]
-range = 7
+[giant_chinchompa_familiar.melee]
+range = 1
 anim = "giant_chinchompa_familiar_attack"
-target_hit = { offense = "range", max = 38 }
+target_hit = { offense = "crush", max = 38 }
 
 [vampire_bat_familiar]
 attack_speed = 8
