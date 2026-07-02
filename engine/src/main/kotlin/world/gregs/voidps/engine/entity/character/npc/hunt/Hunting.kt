@@ -83,7 +83,7 @@ class Hunting(
                     Hunt.hunt(npc, target, mode)
                 }
                 "object" -> {
-                    listObjects(npc, definition)
+                    listObjects(npc, range, definition)
                     if (count == 0) {
                         continue
                     }
@@ -117,7 +117,7 @@ class Hunting(
         for (zone in npc.tile.zone.toRectangle(ceil(range / 8.0).toInt()).toZonesReversed(npc.tile.level)) {
             for (items in FloorItems.at(zone)) {
                 for (floorItem in items) {
-                    if (definition.id != null && floorItem.id != definition.id) {
+                    if (!definition.ids.contains(floorItem.id)) {
                         continue
                     }
                     if (canSee(npc, floorItem.tile, 1, 1, definition)) {
