@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 import kotlin.math.ceil
 
@@ -112,17 +111,14 @@ class FamiliarBoostSpecials : Script {
             }
             val familiar = follower ?: return@instant false
             // The scorpion charges the owner's next ranged shot: it plays its wind-up animation +
-            // graphic, then once the graphic finishes fires a venom bolt at the owner, and the owner's
-            // charge graphic plays when the bolt reaches them.
+            // graphic, then once the graphic finishes fires a slow venom bolt at the owner. Explicit
+            // start/end heights keep the bolt travelling from the scorpion to the owner's body.
             familiar.watch(this)
             familiar.anim("venom_shot")
             familiar.gfx("venom_shot")
             val windUp = GraphicDefinitions.get("venom_shot")["ticks", 0]
             queue("venom_shot_charge", windUp) {
-                // Explicit start/end heights: the projectile shares cache id 1355 with the impact gfx,
-                // whose height=50 would otherwise leak in and launch the bolt high above the scorpion.
-                val flight = familiar.shoot("venom_shot_proj", this, flightTime = VENOM_SHOT_FLIGHT, height = 20, endHeight = 35)
-                queue("venom_shot_impact", CLIENT_TICKS.toTicks(flight)) { gfx("venom_shot_owner") }
+                familiar.shoot("venom_shot_proj", this, flightTime = VENOM_SHOT_FLIGHT, height = 20, endHeight = 35)
             }
             set("familiar_venom_shot_charged", true)
             true

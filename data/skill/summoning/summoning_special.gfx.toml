@@ -114,18 +114,10 @@ id = 1377
 
 [venom_shot]
 id = 1354
-# Charge wind-up duration: the venom bolt is fired at the owner once this graphic finishes.
 ticks = 3
 
 [venom_shot_proj]
 id = 1355
-# Shares cache id 1355 with venom_shot_owner, so per-def flight fields can't be set here (definitions
-# are keyed by numeric id and would collide) - the flight time is passed explicitly at the shoot call.
-
-[venom_shot_owner]
-id = 1355
-# Render the impact on the owner around chest height rather than at their feet.
-height = 80
 
 [fireball_assault_hit]
 id = 1329
