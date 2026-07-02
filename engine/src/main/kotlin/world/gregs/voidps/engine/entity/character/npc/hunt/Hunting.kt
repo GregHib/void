@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.npc.hunt
 
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -132,48 +133,46 @@ class Hunting(
         }
     }
 
+    private val visited = IntOpenHashSet()
+    private val queue: Queue<Tile> = ArrayDeque()
     /**
-     * Breadth first searches for the first [TARGET_CAP] possible [GameObject] targets
+     * Breadth first searches outwards from the [npc], up to [range] tiles away, for the
+     * first [TARGET_CAP] possible [GameObject] targets.
      */
-    private fun listObjects(npc: NPC, definition: HuntModeDefinition) {
+    private fun listObjects(npc: NPC, range: Int, definition: HuntModeDefinition) {
         count = 0
-        val queue: Queue<Tile> = LinkedList()
-        queue.add(npc.tile)
-        while (queue.isNotEmpty()) {
-            val parent = queue.poll()
-            var obj = findTargets(parent, queue, definition, npc, Direction.cardinal)
+        val start = npc.tile
+        visited.clear()
+        visited.add(start.id)
+        queue.clear()
+        queue.add(start)
+        while (queue.isNotEmpty() && count < TARGET_CAP) {
+            val tile = queue.poll()
+            val obj = findTarget(tile, definition, npc)
             if (obj != null) {
-                if (count < TARGET_CAP) {
-                    objectTargets[count++] = obj
-                }
+                objectTargets[count++] = obj
+            }
+            if (tile.distanceTo(start) >= range) {
                 continue
             }
-            obj = findTargets(parent, queue, definition, npc, Direction.ordinal) ?: continue
-            if (count < TARGET_CAP) {
-                objectTargets[count++] = obj
+            for (direction in Direction.all) {
+                val next = tile.add(direction)
+                if (visited.add(next.id)) {
+                    queue.add(next)
+                }
             }
         }
     }
 
-    private fun findTargets(
-        parent: Tile,
-        queue: Queue<Tile>,
-        definition: HuntModeDefinition,
-        npc: NPC,
-        directions: List<Direction>,
-    ): GameObject? {
-        for (direction in directions) {
-            val tile = parent.add(direction)
-            queue.add(tile)
-            val obj = GameObjects.findOrNull(tile, definition.layer) ?: continue
-            if (definition.id != null && obj.id != definition.id) {
-                continue
-            }
-            if (canSee(npc, obj.tile, obj.width, obj.height, definition)) {
-                return obj
-            }
+    private fun findTarget(tile: Tile, definition: HuntModeDefinition, npc: NPC): GameObject? {
+        val obj = GameObjects.getLayer(tile, definition.layer) ?: return null
+        if (!definition.ids.contains(obj.id)) {
+            return null
         }
-        return null
+        if (!canSee(npc, obj.tile, obj.width, obj.height, definition)) {
+            return null
+        }
+        return obj
     }
 
     fun <T : Character> findCharacter(
