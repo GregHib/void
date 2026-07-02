@@ -19,6 +19,9 @@ id = 5208
 [take_trap]
 id = 5207
 
+[lay_trap_small]
+id = 5212
+
 # Creature catch / fail animations
 [bird_catch]
 id = 5184
@@ -43,3 +46,12 @@ id = 5270
 
 [butterfly_catch]
 id = 6605
+
+[bigcat_fall_in_pit]
+id = 5234
+
+[agility_pyramid_gap_jump]
+id = 3067
+
+[lay_net_trap]
+id = 5215

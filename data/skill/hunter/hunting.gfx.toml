@@ -39,3 +39,7 @@ id = 951
 
 [catch_fail]
 id = 946
+
+[pitfall_collapse]
+id = 935
+

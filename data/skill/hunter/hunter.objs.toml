@@ -4,10 +4,10 @@ id = 19187
 [box_trap_fail]
 id = 19192
 
-[snare_trap]
+[bird_snare]
 id = 19175
 
-[snare_trap_fail]
+[bird_snare_fail]
 id = 19174
 
 [swamp_net]
@@ -45,6 +45,19 @@ id = 19206
 
 [boulder_trap_fail]
 id = 19219
+
+[rabbit_snare]
+id = 19333
+
+[rabbit_snare_fail]
+id = 19334
+
+[rabbit_snare_caught]
+id = 19335
+
+[rabbit_snare_inverse]
+id = 19336
+
 
 # Snare trap — triggered states (creature caught inside)
 
@@ -84,17 +97,71 @@ id = 28906
 id = 19207
 
 # Net trap — triggered states (net post is 19651, tree object varies per salamander)
-[net_post]
+[net]
 id = 19651
 
-[swamp_net_swamp_lizard]
-id = 19678
+[pitfall_0]
+id = 19253
 
-[orange_net_orange_salamander]
-id = 19650
+[pitfall_1]
+id = 19254
 
-[red_net_red_salamander]
-id = 19662
+[pitfall_2]
+id = 19255
 
-[black_net_black_salamander]
-id = 19670
+[pitfall_3]
+id = 19256
+
+[pitfall_4]
+id = 19257
+
+[pitfall_5]
+id = 19258
+
+[pitfall_6]
+id = 19259
+
+[pitfall_7]
+id = 19260
+
+[pitfall_8]
+id = 19261
+
+[pitfall_9]
+id = 19262
+
+[pitfall_10]
+id = 19263
+
+[pitfall_11]
+id = 19264
+
+[pitfall_12]
+id = 19265
+
+[pitfall_13]
+id = 19266
+
+[pitfall_14]
+id = 19267
+
+[pitfall_15]
+id = 19268
+
+[pitfall_16]
+id = 43614
+
+[pitfall]
+id = 19227
+
+[pitfall_spiked]
+id = 19228
+
+[pitfall_collapsed]
+id = 19229
+
+[pitfall_caught]
+id = 19231
+
+[pitfall_inverse]
+id = 19234
