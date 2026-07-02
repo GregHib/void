@@ -129,7 +129,11 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         if (character is NPC && character.attacking && character.underAttack) {
             return
         }
-        if (character is NPC) {
+        // A familiar attacking an npc should always draw retaliation - the spawn/aggro leash (which
+        // keeps an npc from being dragged off its spawn) must not stop it defending itself, or an npc
+        // hit by a familiar away from its spawn just walks off without ever fighting back.
+        val sourceIsFamiliar = source is NPC && source["owner_index", -1] != -1
+        if (character is NPC && !sourceIsFamiliar) {
             // Retreat
             val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return
             val spawn: Tile = character.leashAnchor() ?: return

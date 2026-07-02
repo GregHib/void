@@ -54,10 +54,12 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
-        if (character is NPC && character["owner_index", -1] == -1) {
+        if (character is NPC && character["owner_index", -1] == -1 && target["owner_index", -1] == -1) {
             // Owned familiars aren't bound by the spawn/aggro leash: they chase whatever their
             // owner directs them at (which can be further than their aggro range) and fall back to
-            // following the owner when the fight ends, so they never wander off permanently.
+            // following the owner when the fight ends, so they never wander off permanently. An npc
+            // fighting a familiar is likewise exempt, so it keeps defending itself instead of
+            // de-aggroing and walking back to its spawn while the familiar is still on it.
             val spawn: Tile = character["spawn_tile"] ?: return
             val definition = get<CombatDefinitions>().get(character.transformDef["combat_def", character.id])
             if (!withinAggro(this.target, spawn, definition)) {

@@ -50,12 +50,18 @@ object Target {
                     return false
                 }
             }
-            if (target.transform != "") {
-                if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
+            // The "Attack" option is a player-facing menu concern. A familiar's base (non-wilderness)
+            // form deliberately has no "Attack" option so its owner can't click it, but an NPC must
+            // still be able to retaliate against a familiar that attacks it, so skip the check there.
+            val retaliatingAgainstFamiliar = source is NPC && target["owner_index", -1] != -1
+            if (!retaliatingAgainstFamiliar) {
+                if (target.transform != "") {
+                    if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
+                        return false
+                    }
+                } else if (target.def.options[1] != "Attack") {
                     return false
                 }
-            } else if (target.def.options[1] != "Attack") {
-                return false
             }
             if (target.mode == PauseMode) {
                 return false
