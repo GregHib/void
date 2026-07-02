@@ -133,8 +133,7 @@ class FamiliarBoostSpecials : Script {
             return
         }
         source.clear("familiar_venom_shot_charged")
-        // Light poison - enough to actually tick under the poison decay model (weapon poison is 20+).
-        source.poison(attack.target, 6)
+        source.poison(attack.target, 60)
     }
 
     /** Boosts [skill] by [amount] above max with the familiar's [anim]/[sourceGfx] flourish. */

@@ -89,6 +89,12 @@ class FamiliarSpecialEffectTest : WorldTest() {
 
         assertTrue(target.poisoned)
         assertFalse(player.get("familiar_venom_shot_charged", false))
+
+        // The poison must actually deal damage over time, not just set the flag (a value <= ~10 is
+        // cured before it ever lands a hit).
+        val before = target.levels.get(Skill.Constitution)
+        tick(60)
+        assertTrue(target.levels.get(Skill.Constitution) < before, "poison ticked damage onto the target")
     }
 
     @Test
