@@ -92,3 +92,7 @@ id = 7660
 # Albino rat's Cheese Feast animation (played on the rat).
 [cheese_feast]
 id = 14858
+
+# Compost mound's Generate Compost animation (played on the familiar).
+[generate_compost]
+id = 7775

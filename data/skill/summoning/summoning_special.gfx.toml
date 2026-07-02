@@ -166,3 +166,13 @@ id = 1316
 # Forage specials
 [cheese_feast]
 id = 1384
+
+# Compost mound Generate Compost: familiar gfx, projectile to the bin, and the impact at the bin.
+[generate_compost]
+id = 1461
+
+[generate_compost_proj]
+id = 1462
+
+[generate_compost_bin]
+id = 1460

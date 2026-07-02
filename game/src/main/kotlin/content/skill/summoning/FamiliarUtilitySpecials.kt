@@ -2,6 +2,7 @@ package content.skill.summoning
 
 import content.entity.gfx.areaGfx
 import content.entity.player.bank.bank
+import content.entity.proj.shoot
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.collision.canFit
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 
 /**
@@ -87,6 +89,30 @@ class FamiliarUtilitySpecials : Script {
                     }
                 }
             }
+        }
+
+        // Generate Compost - cast on an empty compost bin to fill it with compost (10% supercompost).
+        FamiliarSpecialMoves.obj("compost_mound_familiar") { obj ->
+            if (!obj.id.startsWith("farming_compost_bin_")) {
+                message("This scroll can only be used on an empty compost bin.")
+                return@obj false
+            }
+            val variable = obj.id.removePrefix("farming_")
+            if (get(variable, "empty") != "empty") {
+                message("This scroll can only be used on an empty compost bin.")
+                return@obj false
+            }
+            val familiar = follower ?: return@obj false
+            familiar.face(obj.tile)
+            familiar.anim("generate_compost")
+            familiar.gfx("generate_compost")
+            val flight = familiar.shoot("generate_compost_proj", obj.tile)
+            queue("generate_compost", CLIENT_TICKS.toTicks(flight)) {
+                areaGfx("generate_compost_bin", obj.tile)
+                val superCompost = random.nextInt(10) == 0
+                this[variable] = if (superCompost) "supercompost_15" else "compost_15"
+            }
+            true
         }
 
         // Herbcall - drop a random grimy herb at the player's feet.
