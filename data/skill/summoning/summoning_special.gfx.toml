@@ -176,3 +176,7 @@ id = 1462
 
 [generate_compost_bin]
 id = 1460
+
+# Giant chinchompa Explode: the blast graphic played on the familiar.
+[chinchompa_explode]
+id = 1364

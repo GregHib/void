@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
  *  - Item interactions (cook/incubate/smelt): Bunyip, Spirit cobra, Pyre lord
  *  - Skill-system scenery: Beaver (Multichop), Hydra (Regrowth)
  *  - "Charge the next attack" buffs: Iron titan, Steel titan (Spirit scorpion + Honey badger are done)
- *  - AoE hits: Smoke devil, Giant chinchompa
+ *  - AoE hits: Smoke devil (Giant chinchompa's Explode is done)
  *  - Pest Control teleport (area not implemented in void): the four Void familiars' Call to Arms
  *  - Misc combat: Forge regent (disarm), Ravenous locust (Famine), Karamthulhu, Spirit dagannoth,
  *    Talon beast, Swamp titan, Lava titan, Praying mantis, Giant ent
@@ -43,7 +43,6 @@ class FamiliarSpecialStubs : Script {
         // Instant self / AoE / charge specials.
         FamiliarSpecialMoves.instant(
             "smoke_devil_familiar",
-            "giant_chinchompa_familiar",
             "iron_titan_familiar",
             "steel_titan_familiar",
             "void_ravager_familiar",

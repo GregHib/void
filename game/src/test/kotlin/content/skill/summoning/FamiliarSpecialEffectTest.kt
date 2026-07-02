@@ -110,6 +110,56 @@ class FamiliarSpecialEffectTest : WorldTest() {
     }
 
     @Test
+    fun `Explode hits a nearby foe and consumes the familiar`() {
+        // Force the random damage roll off zero so the hit is observable.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+        val player = summon("giant_chinchompa_familiar")
+        val target = createNPC("giant_rat", player.tile.addX(1))
+        val before = target.levels.get(Skill.Constitution)
+
+        val cast = player.runSpecial("giant_chinchompa_familiar")
+        tick(5) // let the blast land and the familiar dismiss
+
+        assertTrue(cast)
+        assertTrue(target.levels.get(Skill.Constitution) < before, "the blast damaged the nearby npc")
+        assertEquals(null, player.follower, "the familiar is consumed by the explosion")
+    }
+
+    @Test
+    fun `Explode auto-fires for free on the familiar's attack`() {
+        // Force the 1/10 auto-trigger (nextInt(10) == 0) while keeping the damage roll observable.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = if (until == 10) 0 else until - 1
+        })
+        val player = summon("giant_chinchompa_familiar")
+        // A scroll present only so we can prove the free auto-explode leaves it untouched.
+        player.inventory.transaction { add("explode_scroll", 2) }
+        val target = createNPC("giant_rat", player.tile.addX(1))
+        val before = target.levels.get(Skill.Constitution)
+
+        // The familiar swinging at something rolls the auto-explode.
+        player.follower!!.hit(target, offensiveType = "melee", damage = 1)
+        tick(6) // let the blast land and the familiar dismiss
+
+        assertTrue(target.levels.get(Skill.Constitution) < before, "the auto-explosion damaged the nearby npc")
+        assertEquals(2, player.inventory.count("explode_scroll"), "the free auto-explosion spends no scroll")
+        assertEquals(null, player.follower, "the familiar is consumed by the auto-explosion")
+    }
+
+    @Test
+    fun `Explode does nothing with no target nearby`() {
+        val player = summon("giant_chinchompa_familiar")
+
+        val cast = player.runSpecial("giant_chinchompa_familiar")
+        tick(5)
+
+        assertFalse(cast, "no cast, so no scroll or points are spent")
+        assertTrue(player.follower != null, "the familiar is not dismissed on a failed cast")
+    }
+
+    @Test
     fun `Fireball Assault hits a nearby foe`() {
         // Force the random damage roll off zero so the hit is observable.
         setRandom(object : FakeRandom() {

@@ -3,10 +3,16 @@ package content.skill.summoning
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Retreat
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
@@ -123,6 +129,14 @@ class FamiliarCombatSpecials : Script {
             familiarAoeSpecial(maxTargets = 6, maxHit = 20, radius = 6, anim = "sandstorm", sourceGfx = "sandstorm", projectile = "sandstorm_proj")
         }
 
+        // Explode - the giant chinchompa detonates, hitting everything around it, then is consumed by
+        // the blast. Fired from the cast button, or (like 2009scape) auto-triggered on ~1/10 of the
+        // familiar's own attacks - see [autoExplode].
+        FamiliarSpecialMoves.instant("giant_chinchompa_familiar") {
+            chinchompaExplode()
+        }
+        npcCombatAttack("giant_chinchompa_familiar", handler = ::autoExplode)
+
         // Minotaur family - Bull Rush: max hit scales with metal tier (stun TODO - needs a stun primitive).
         val bullRush = mapOf(
             "bronze_minotaur_familiar" to 4,
@@ -137,6 +151,43 @@ class FamiliarCombatSpecials : Script {
                 familiarSpecialHit(target, maxHit = maxHit, type = "range", anim = "bull_rush", sourceGfx = "bull_rush", projectile = "bull_rush_proj")
             }
         }
+    }
+
+    /**
+     * The Explode special: the giant chinchompa detonates around itself for up to nine hits, then is
+     * consumed by the blast a few ticks later (once the hits have landed). Returns false, charging
+     * nothing, when there is nothing nearby to hit.
+     */
+    private fun Player.chinchompaExplode(): Boolean {
+        val cast = familiarAoeSpecial(maxTargets = 9, maxHit = 12, radius = 6, anim = "chinchompa_explode", sourceGfx = "chinchompa_explode")
+        if (cast) {
+            follower?.say("Squeak!")
+            // Let the hits land (they self-delay ~3 ticks) before the familiar vanishes.
+            queue("chinchompa_explode", 4) { dismissFamiliar() }
+        }
+        return cast
+    }
+
+    /**
+     * ~1 in 10 of the giant chinchompa's attacks auto-fire Explode. Unlike the cast button this is
+     * free: it detonates directly, bypassing the scroll/points gate, so no scroll, points, or owner
+     * scroll-throw flourish are involved.
+     */
+    private fun autoExplode(familiar: NPC, attack: CombatAttack) {
+        if (random.nextInt(10) != 0) {
+            return
+        }
+        val owner = Players.indexed(familiar["owner_index", -1]) ?: return
+        if (owner.follower?.index != familiar.index) {
+            return
+        }
+        // The explosion's own hits re-enter this handler (they are familiar attacks too); the special
+        // cooldown clock blocks that recursion, just as it does for the cast-button path.
+        if (owner.hasClock("familiar_special_delay")) {
+            return
+        }
+        owner.start("familiar_special_delay", 3)
+        owner.chinchompaExplode()
     }
 
     /** Drains [skill] on [target] by [amount] but only when the hit actually landed ([cast] true). */
