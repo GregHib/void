@@ -42,9 +42,14 @@ class FamiliarSpecialStubs : Script {
 
         // Instant self / AoE / charge specials.
         FamiliarSpecialMoves.instant(
-            "smoke_devil_familiar", "giant_chinchompa_familiar",
-            "iron_titan_familiar", "steel_titan_familiar",
-            "void_ravager_familiar", "void_shifter_familiar", "void_spinner_familiar", "void_torcher_familiar",
+            "smoke_devil_familiar",
+            "giant_chinchompa_familiar",
+            "iron_titan_familiar",
+            "steel_titan_familiar",
+            "void_ravager_familiar",
+            "void_shifter_familiar",
+            "void_spinner_familiar",
+            "void_torcher_familiar",
         ) { stub() }
 
         // Scenery-target specials.

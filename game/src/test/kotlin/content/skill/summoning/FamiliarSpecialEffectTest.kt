@@ -34,8 +34,7 @@ class FamiliarSpecialEffectTest : WorldTest() {
         return player
     }
 
-    private fun Player.runSpecial(familiar: String): Boolean =
-        FamiliarSpecialMoves.instant.getValue(familiar).invoke(this)
+    private fun Player.runSpecial(familiar: String): Boolean = FamiliarSpecialMoves.instant.getValue(familiar).invoke(this)
 
     @Test
     fun `Summoning orb Cast option fires the special through the dispatcher`() {
