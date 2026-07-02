@@ -49,12 +49,16 @@ object FamiliarSpecialMoves {
 }
 
 /**
- * Single dispatcher routing every `familiar_details:cast_*` interaction to the move registered for
- * the current follower. Combat/scenery casts come through the approach hooks (the player picks a
- * world target after clicking the button); self/AoE casts come through the plain interface option.
+ * Single dispatcher routing every special-move cast to the move registered for the current follower.
+ * The move can be cast from two surfaces - the follower-details tab's cast button
+ * (`familiar_details:cast_*`) and the minimap summoning orb's "Cast <special>" right/left-click option
+ * (`summoning_orb:*cast`) - so both are wired. Combat/scenery casts come through the approach hooks
+ * (the player picks a world target after clicking the button); self/AoE casts come through the plain
+ * interface option.
  */
 class FamiliarSpecialMovesDispatch : Script {
     init {
+        // Follower-details tab cast button.
         interfaceOption("*", "familiar_details:cast_*") {
             val id = follower?.id ?: return@interfaceOption
             val block = FamiliarSpecialMoves.instant[id] ?: return@interfaceOption
@@ -76,6 +80,34 @@ class FamiliarSpecialMovesDispatch : Script {
         }
 
         onObjectApproach("familiar_details:cast_*", "*") { (target) ->
+            approachRange(16, update = false)
+            val id = follower?.id ?: return@onObjectApproach
+            val block = FamiliarSpecialMoves.objectTarget[id] ?: return@onObjectApproach
+            castFamiliarSpecial { block(target) }
+        }
+
+        // Minimap summoning orb "Cast <special>" option - one `cast_<special>` component per move.
+        interfaceOption("*", "summoning_orb:cast_*") {
+            val id = follower?.id ?: return@interfaceOption
+            val block = FamiliarSpecialMoves.instant[id] ?: return@interfaceOption
+            castFamiliarSpecial { block() }
+        }
+
+        onNPCApproach("summoning_orb:cast_*", "*") { (target) ->
+            approachRange(16, update = false)
+            val id = follower?.id ?: return@onNPCApproach
+            val block = FamiliarSpecialMoves.npcTarget[id] ?: return@onNPCApproach
+            castFamiliarSpecial { block(target) }
+        }
+
+        onPlayerApproach("summoning_orb:cast_*") { (target) ->
+            approachRange(16, update = false)
+            val id = follower?.id ?: return@onPlayerApproach
+            val block = FamiliarSpecialMoves.playerTarget[id] ?: return@onPlayerApproach
+            castFamiliarSpecial { block(target) }
+        }
+
+        onObjectApproach("summoning_orb:cast_*", "*") { (target) ->
             approachRange(16, update = false)
             val id = follower?.id ?: return@onObjectApproach
             val block = FamiliarSpecialMoves.objectTarget[id] ?: return@onObjectApproach

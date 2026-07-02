@@ -2,10 +2,12 @@ package content.skill.summoning
 
 import content.entity.combat.hit.directHit
 import content.entity.effect.toxin.curePoison
+import content.entity.effect.toxin.poison
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.random
@@ -93,6 +95,30 @@ class FamiliarBoostSpecials : Script {
                 set("familiar_insane_ferocity", true)
             }
         }
+
+        // Venom Shot - charge the next ranged attack to poison its target. The charge is set here and
+        // spent in [venomShot] on the owner's next damaging ranged hit.
+        FamiliarSpecialMoves.instant("spirit_scorpion_familiar") {
+            if (this["familiar_venom_shot_charged", false]) {
+                message("Your familiar's venom shot is already charged.")
+                return@instant false
+            }
+            familiarSelfSpecial(anim = "venom_shot", sourceGfx = "venom_shot", playerGfx = "venom_shot_owner") {
+                set("familiar_venom_shot_charged", true)
+            }
+        }
+
+        combatAttack(handler = ::venomShot)
+    }
+
+    /** Consumes the spirit scorpion's charged Venom Shot: poison the target of the next ranged hit. */
+    private fun venomShot(source: Player, attack: CombatAttack) {
+        if (attack.damage <= 0 || attack.type != "range" || !source["familiar_venom_shot_charged", false]) {
+            return
+        }
+        source.clear("familiar_venom_shot_charged")
+        // Light poison - enough to actually tick under the poison decay model (weapon poison is 20+).
+        source.poison(attack.target, 6)
     }
 
     /** Boosts [skill] by [amount] above max with the familiar's [anim]/[sourceGfx] flourish. */

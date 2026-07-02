@@ -7,8 +7,10 @@ import content.entity.proj.shoot
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
@@ -85,6 +87,59 @@ fun Player.familiarSpecialHit(
     if (engage) {
         commandFamiliarAttack(target, silent = true)
     }
+    return true
+}
+
+/**
+ * An area special with no picked target: the follower hits up to [maxTargets] attackable npcs within
+ * [radius] tiles of itself (Fireball Assault, Sandstorm). Each takes a single `random(0..maxHit)` hit
+ * of [type], timed to the projectile flight when a [projectile] is given, and the familiar engages the
+ * first of them. Returns false (charging nothing) when there is nothing valid nearby.
+ */
+fun Player.familiarAoeSpecial(
+    maxTargets: Int,
+    maxHit: Int,
+    radius: Int = 1,
+    type: String = "magic",
+    anim: String? = null,
+    sourceGfx: String? = null,
+    projectile: String? = null,
+    targetGfx: String? = null,
+): Boolean {
+    val familiar = follower ?: return false
+    val targets = mutableListOf<NPC>()
+    for (tile in familiar.tile.spiral(radius)) {
+        for (character in NPCs.at(tile)) {
+            if (character in targets || !familiarCanSpecial(character, silent = true)) {
+                continue
+            }
+            targets.add(character)
+            if (targets.size >= maxTargets) {
+                break
+            }
+        }
+        if (targets.size >= maxTargets) {
+            break
+        }
+    }
+    if (targets.isEmpty()) {
+        message("There is nothing nearby for your familiar to attack.")
+        return false
+    }
+    anim?.let { familiar.anim(it) }
+    sourceGfx?.let { familiar.gfx(it) }
+    for (target in targets) {
+        val flight = projectile?.let { familiar.shoot(it, target) }
+        val damage = random.nextInt(maxHit + 1)
+        if (flight != null) {
+            familiar.hit(target, offensiveType = type, damage = damage, delay = flight)
+            targetGfx?.let { gfx -> target.queue("familiar_special_gfx", CLIENT_TICKS.toTicks(flight)) { target.gfx(gfx) } }
+        } else {
+            familiar.hit(target, offensiveType = type, damage = damage)
+            targetGfx?.let { target.gfx(it) }
+        }
+    }
+    commandFamiliarAttack(targets.first(), silent = true)
     return true
 }
 

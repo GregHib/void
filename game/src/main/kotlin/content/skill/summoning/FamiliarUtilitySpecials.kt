@@ -1,14 +1,20 @@
 package content.skill.summoning
 
+import content.entity.gfx.areaGfx
 import content.entity.player.bank.bank
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.map.collision.canFit
+import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
 
 /**
@@ -61,6 +67,26 @@ class FamiliarUtilitySpecials : Script {
                 beastOfBurden.add("cheese", 4)
                 if (interfaces.contains("beast_of_burden")) {
                     syncBeastOfBurdenInterface()
+                }
+            }
+        }
+
+        // Egg Spawn - the spirit spider scatters red spider eggs onto free tiles around the player
+        FamiliarSpecialMoves.instant("spirit_spider_familiar") {
+            val steps: StepValidator = get()
+            val eggTiles = tile.spiral(1).asSequence()
+                .filter { it != tile && steps.canFit(it, collision, 1, blockMove) }
+                .toList()
+                .shuffled()
+                .take(random.nextInt(5) + 1)
+            familiarSelfSpecial(anim = "egg_spawn") {
+                for (eggTile in eggTiles) {
+                    areaGfx("egg_spawn", eggTile)
+                }
+                queue("egg_spawn", 1) {
+                    for (eggTile in eggTiles) {
+                        FloorItems.add(eggTile, "red_spiders_eggs", revealTicks = 120, disappearTicks = 30, owner = this)
+                    }
                 }
             }
         }

@@ -112,6 +112,24 @@ id = 1376
 [boil_hit]
 id = 1377
 
+[venom_shot]
+id = 1354
+
+[venom_shot_owner]
+id = 1355
+
+[fireball_assault_hit]
+id = 1329
+
+[sandstorm]
+id = 1350
+
+[sandstorm_proj]
+id = 1349
+
+[egg_spawn]
+id = 1342
+
 # Boost / heal specials
 [stony_shell]
 id = 1326

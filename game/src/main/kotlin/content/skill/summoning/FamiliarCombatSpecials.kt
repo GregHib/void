@@ -113,6 +113,16 @@ class FamiliarCombatSpecials : Script {
             }
         }
 
+        // Fireball Assault - the spirit Tz-Kih flings fire at up to two nearby foes.
+        FamiliarSpecialMoves.instant("spirit_tz-kih_familiar") {
+            familiarAoeSpecial(maxTargets = 2, maxHit = 7, radius = 3, anim = "fireball_assault", targetGfx = "fireball_assault_hit")
+        }
+
+        // Sandstorm - the spirit kalphite blasts every foe around it (up to six, big max hit).
+        FamiliarSpecialMoves.instant("spirit_kalphite_familiar") {
+            familiarAoeSpecial(maxTargets = 6, maxHit = 20, radius = 6, anim = "sandstorm", sourceGfx = "sandstorm", projectile = "sandstorm_proj")
+        }
+
         // Minotaur family - Bull Rush: max hit scales with metal tier (stun TODO - needs a stun primitive).
         val bullRush = mapOf(
             "bronze_minotaur_familiar" to 4,

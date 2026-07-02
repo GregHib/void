@@ -45,6 +45,18 @@ id = 8211
 [boil]
 id = 7883
 
+[venom_shot]
+id = 6261
+
+[fireball_assault]
+id = 8257
+
+[sandstorm]
+id = 8517
+
+[egg_spawn]
+id = 8164
+
 # Boost / heal specials
 [stony_shell]
 id = 8109
