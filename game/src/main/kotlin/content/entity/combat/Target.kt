@@ -54,9 +54,6 @@ object Target {
             if ((source.spell == "bind" || source.spell == "snare" || source.spell == "entangle") && target.id.endsWith("_impling")) {
                 return true
             }
-            // The "Attack" option is a player-facing menu concern. A familiar's base (non-wilderness)
-            // form deliberately has no "Attack" option so its owner can't click it, but an NPC must
-            // still be able to retaliate against a familiar that attacks it, so skip the check there.
             val retaliatingAgainstFamiliar = source is NPC && target["owner_index", -1] != -1
             if (!retaliatingAgainstFamiliar) {
                 if (target.transform != "") {
