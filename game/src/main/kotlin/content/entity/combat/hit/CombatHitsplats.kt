@@ -68,10 +68,8 @@ class CombatHitsplats : Script {
     fun Character.hit(source: Character, amount: Int, mark: HitSplat.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
         val after = (levels.get(Skill.Constitution) - amount).coerceAtLeast(0)
         val percentage = levels.getPercent(Skill.Constitution, after, 255.0).toInt()
-        // A familiar's hits are attributed to its owner (positive player index) rather than the
-        // familiar npc, so the owner counts as a participant and the client shows them the splat -
-        // including the blue 0/miss splat, which is otherwise hidden from non-participants.
         val sourceIndex = when {
+            this is NPC && this["owner_index", -1] != -1 -> this["owner_index", -1]
             source is NPC -> source["owner_index", -1].takeIf { it != -1 } ?: -source.index
             else -> source.index
         }

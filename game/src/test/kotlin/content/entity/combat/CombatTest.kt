@@ -3,6 +3,7 @@ package content.entity.combat
 import FakeRandom
 import WorldTest
 import content.entity.combat.damageDealers
+import content.entity.combat.hit.hit
 import content.entity.player.effect.skull
 import equipItem
 import interfaceOption
@@ -102,6 +103,23 @@ internal class CombatTest : WorldTest() {
         val bones = FloorItems.firstOrNull(npc["death_tile", tile], "bones")
         assertNotNull(bones)
         assertEquals(owner.name, bones!!.owner)
+    }
+
+    @Test
+    fun `A 0 hit on a familiar is attributed to its owner so the owner sees the blue splat`() {
+        val owner = createPlayer(emptyTile)
+        val familiar = createNPC("spirit_wolf_familiar", emptyTile.addX(1))
+        familiar["owner_index"] = owner.index
+        val attacker = createNPC("giant_rat", emptyTile.addY(4))
+
+        // An npc lands a 0 (blocked) hit on the familiar.
+        attacker.hit(familiar, offensiveType = "melee", damage = 0)
+        tick(1) // resolve the hit; read the splat this tick, before the next sync clears it
+
+        val splat = familiar.visuals.hits.splats.firstOrNull { it != null }
+        assertNotNull(splat)
+        // Owner index (positive) rather than the attacker npc, so the client shows the owner the splat.
+        assertEquals(owner.index, splat!!.source)
     }
 
     @Test
