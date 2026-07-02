@@ -4,14 +4,42 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.callFollower
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.map.spiral
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
+import java.util.concurrent.TimeUnit
 
 class DesertWyrm : Script {
     init {
+        // Burrow - the wyrm digs underground to the nearest ore rock and pops back up with the ore.
+        npcOperate("Burrow", "desert_wyrm_familiar") { (target) ->
+            val familiar = follower
+            if (familiar == null || target != familiar) {
+                return@npcOperate
+            }
+            val ore = bestBurrowOre()
+            if (ore == null) {
+                message("There are no rocks around here for the desert wyrm to mine from!")
+                return@npcOperate
+            }
+            familiar.anim("desert_wyrm_burrow")
+            familiar.gfx("desert_wyrm_burrow")
+            delay(8)
+            callFollower()
+            follower?.let { FloorItems.add(it.tile, ore, disappearTicks = TimeUnit.MINUTES.toTicks(3), owner = this) }
+        }
+
         npcOperate("Interact", "desert_wyrm_familiar") {
             if (equipped(EquipSlot.Weapon).id.endsWith("pickaxe")) {
                 npc<Neutral>("If you have that pick, why make me dig?")
@@ -52,5 +80,34 @@ class DesertWyrm : Script {
                 }
             }
         }
+    }
+
+    /**
+     * The best ore the wyrm can burrow for among the rocks within [radius] tiles, or null if there
+     * are none. Like the live game the wyrm only mines the low tiers below silver, and of those picks
+     * the highest tier available ([burrowOres], worst to best). A rock is any object with a
+     * `rocks.<id>.ores` table entry; depleted rocks have no entry and are skipped.
+     */
+    private fun Player.bestBurrowOre(radius: Int = 7): String? {
+        var best: String? = null
+        var bestRank = -1
+        for (tile in tile.spiral(radius)) {
+            for (obj in GameObjects.at(tile)) {
+                val ores = Tables.itemListOrNull("rocks.${obj.id}.ores") ?: continue
+                for (ore in ores) {
+                    val rank = burrowOres.indexOf(ore)
+                    if (rank > bestRank) {
+                        bestRank = rank
+                        best = ore
+                    }
+                }
+            }
+        }
+        return best
+    }
+
+    private companion object {
+        /** Ores the desert wyrm can burrow for - the tiers below silver, worst to best. */
+        val burrowOres = listOf("copper_ore", "tin_ore", "clay", "blurite_ore", "iron_ore")
     }
 }

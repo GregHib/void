@@ -18,3 +18,6 @@ id = 1314
 
 [summon_familiar_size_2]
 id = 1315
+# Desert wyrm "Burrow" npc option graphic.
+[desert_wyrm_burrow]
+id = 1412

@@ -124,6 +124,10 @@ id = 13684
 [desert_wyrm_spawn]
 id = 7794
 
+# Desert wyrm "Burrow" npc option - the wyrm digs underground to mine ore.
+[desert_wyrm_burrow]
+id = 7800
+
 [dreadfowl_spawn]
 id = 7807
 
