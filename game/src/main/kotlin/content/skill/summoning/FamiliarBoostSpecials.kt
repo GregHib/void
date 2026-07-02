@@ -90,15 +90,16 @@ class FamiliarBoostSpecials : Script {
             familiarSelfSpecial(anim = "thieving_fingers", sourceGfx = "thieving_fingers") {}
         }
 
-        // Insane Ferocity - charge the next attack. The next-attack consumption is not wired yet, so
-        // this currently sets the charge flag + plays the visuals only (TODO: buff the next swing).
+        // Insane Ferocity - the honey badger enrages the owner, boosting Attack and Strength (+5 and
+        // 15% each) at the cost of Ranged, Magic and Defence (-10% each). The stat changes decay
+        // naturally over time, and recasting simply refreshes them.
         FamiliarSpecialMoves.instant("honey_badger_familiar") {
-            if (this["familiar_insane_ferocity", false]) {
-                message("Your familiar is already enraged.")
-                return@instant false
-            }
-            familiarSelfSpecial(anim = "insane_ferocity", sourceGfx = "insane_ferocity") {
-                set("familiar_insane_ferocity", true)
+            familiarSelfSpecial(anim = "insane_ferocity", sourceGfx = "insane_ferocity", playerGfx = "insane_ferocity_owner") {
+                levels.boost(Skill.Attack, amount = 5, multiplier = 0.15)
+                levels.boost(Skill.Strength, amount = 5, multiplier = 0.15)
+                levels.drain(Skill.Ranged, multiplier = 0.1)
+                levels.drain(Skill.Magic, multiplier = 0.1)
+                levels.drain(Skill.Defence, multiplier = 0.1)
             }
         }
 

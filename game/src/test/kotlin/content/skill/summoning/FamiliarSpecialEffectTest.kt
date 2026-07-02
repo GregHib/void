@@ -160,6 +160,24 @@ class FamiliarSpecialEffectTest : WorldTest() {
     }
 
     @Test
+    fun `Insane Ferocity boosts Attack and Strength and drains Ranged, Magic and Defence`() {
+        val player = summon("honey_badger_familiar")
+        val skills = listOf(Skill.Attack, Skill.Strength, Skill.Ranged, Skill.Magic, Skill.Defence)
+        for (skill in skills) {
+            player.experience.set(skill, 14_000_000.0) // level 99, so boosts/drains have headroom
+            player.levels.set(skill, 50)
+        }
+
+        assertTrue(player.runSpecial("honey_badger_familiar"))
+
+        assertTrue(player.levels.get(Skill.Attack) > 50, "Attack is boosted")
+        assertTrue(player.levels.get(Skill.Strength) > 50, "Strength is boosted")
+        assertTrue(player.levels.get(Skill.Ranged) < 50, "Ranged is drained")
+        assertTrue(player.levels.get(Skill.Magic) < 50, "Magic is drained")
+        assertTrue(player.levels.get(Skill.Defence) < 50, "Defence is drained")
+    }
+
+    @Test
     fun `Fireball Assault hits a nearby foe`() {
         // Force the random damage roll off zero so the hit is observable.
         setRandom(object : FakeRandom() {

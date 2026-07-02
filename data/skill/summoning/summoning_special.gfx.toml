@@ -159,6 +159,10 @@ id = 1336
 [insane_ferocity]
 id = 1397
 
+# Insane Ferocity graphic played on the owner (the honey badger's enrage flourish).
+[insane_ferocity_owner]
+id = 1399
+
 # Player graphic played while casting a special-move scroll (2009scape base visualizeSpecialMove).
 [summoning_special_cast]
 id = 1316
