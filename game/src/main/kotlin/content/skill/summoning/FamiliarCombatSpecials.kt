@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Retreat
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -135,7 +135,7 @@ class FamiliarCombatSpecials : Script {
         FamiliarSpecialMoves.instant("giant_chinchompa_familiar") {
             chinchompaExplode()
         }
-        npcCombatAttack("giant_chinchompa_familiar", handler = ::autoExplode)
+        npcCombatDamage("giant_chinchompa_familiar", handler = ::autoExplode)
 
         // Minotaur family - Bull Rush: max hit scales with metal tier (stun TODO - needs a stun primitive).
         val bullRush = mapOf(
@@ -169,11 +169,11 @@ class FamiliarCombatSpecials : Script {
     }
 
     /**
-     * ~1 in 10 of the giant chinchompa's attacks auto-fire Explode. Unlike the cast button this is
-     * free: it detonates directly, bypassing the scroll/points gate, so no scroll, points, or owner
-     * scroll-throw flourish are involved.
+     * ~1 in 10 of the attacks landed on the giant chinchompa make it auto-fire Explode. Unlike the
+     * cast button this is free: it detonates directly, bypassing the scroll/points gate, so no scroll,
+     * points, or owner scroll-throw flourish are involved.
      */
-    private fun autoExplode(familiar: NPC, attack: CombatAttack) {
+    private fun autoExplode(familiar: NPC, damage: CombatDamage) {
         if (random.nextInt(10) != 0) {
             return
         }
@@ -181,8 +181,8 @@ class FamiliarCombatSpecials : Script {
         if (owner.follower?.index != familiar.index) {
             return
         }
-        // The explosion's own hits re-enter this handler (they are familiar attacks too); the special
-        // cooldown clock blocks that recursion, just as it does for the cast-button path.
+        // Several hits can land on the familiar in quick succession; the special cooldown clock keeps
+        // those from each firing their own detonation, as it does for the cast-button path.
         if (owner.hasClock("familiar_special_delay")) {
             return
         }

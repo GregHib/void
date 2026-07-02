@@ -128,7 +128,7 @@ class FamiliarSpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Explode auto-fires for free on the familiar's attack`() {
+    fun `Explode auto-fires for free when the familiar is attacked`() {
         // Force the 1/10 auto-trigger (nextInt(10) == 0) while keeping the damage roll observable.
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = if (until == 10) 0 else until - 1
@@ -136,14 +136,14 @@ class FamiliarSpecialEffectTest : WorldTest() {
         val player = summon("giant_chinchompa_familiar")
         // A scroll present only so we can prove the free auto-explode leaves it untouched.
         player.inventory.transaction { add("explode_scroll", 2) }
-        val target = createNPC("giant_rat", player.tile.addX(1))
-        val before = target.levels.get(Skill.Constitution)
+        val attacker = createNPC("giant_rat", player.tile.addX(1))
+        val before = attacker.levels.get(Skill.Constitution)
 
-        // The familiar swinging at something rolls the auto-explode.
-        player.follower!!.hit(target, offensiveType = "melee", damage = 1)
+        // Something hitting the familiar rolls the auto-explode.
+        attacker.hit(player.follower!!, offensiveType = "melee", damage = 1)
         tick(6) // let the blast land and the familiar dismiss
 
-        assertTrue(target.levels.get(Skill.Constitution) < before, "the auto-explosion damaged the nearby npc")
+        assertTrue(attacker.levels.get(Skill.Constitution) < before, "the auto-explosion damaged the attacker")
         assertEquals(2, player.inventory.count("explode_scroll"), "the free auto-explosion spends no scroll")
         assertEquals(null, player.follower, "the familiar is consumed by the auto-explosion")
     }
