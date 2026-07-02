@@ -3,6 +3,8 @@ id = 8500
 
 [summoning_renew]
 id = 8502
+walk = false
+run = false
 
 [expression_wolf_happy]
 id = 8372

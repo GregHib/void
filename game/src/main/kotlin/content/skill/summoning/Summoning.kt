@@ -1,5 +1,6 @@
 package content.skill.summoning
 
+import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.choice
 import content.skill.summoning.pet.callPet
 import content.skill.summoning.pet.dismissPet
@@ -28,6 +29,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -190,15 +192,23 @@ fun Player.callFollower() {
     updateFamiliarPvpForm()
 }
 
+/** Ticks the obelisk charge-up graphic plays for before the player performs the infuse animation. */
+private const val OBELISK_RENEW_GRAPHIC_TICKS = 2
+
 /**
- * Restores summoning points at an obelisk, mirroring prayer altar behaviour.
+ * Restores summoning points at an obelisk, mirroring prayer altar behaviour. The obelisk charges
+ * up first ([summoning_renew_obelisk] graphic), then once it finishes the player performs the
+ * infuse animation and graphic together.
  */
-fun Player.renewSummoningPoints() {
+suspend fun Player.renewSummoningPoints(obelisk: GameObject) {
     if (levels.getOffset(Skill.Summoning) >= 0) {
         message("You already have full summoning points.")
     } else {
+        areaGfx("summoning_renew_obelisk", obelisk.tile)
+        delay(OBELISK_RENEW_GRAPHIC_TICKS)
         levels.set(Skill.Summoning, levels.getMax(Skill.Summoning))
         anim("summoning_renew")
+        areaGfx("summoning_renew_player", tile)
         message("You renew your summoning points at the obelisk.")
     }
 }
@@ -308,8 +318,8 @@ fun Player.renewFamiliar() {
 class Summoning : Script {
 
     init {
-        objectOperate("Renew-points") {
-            renewSummoningPoints()
+        objectOperate("Renew-points") { (target) ->
+            renewSummoningPoints(target)
         }
 
         itemOption("Summon", "*_pouch") { option ->
