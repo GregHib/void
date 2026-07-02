@@ -119,3 +119,11 @@ check_not_combat = false
 check_not_combat_self = false
 check_not_busy = false
 find_keep_hunting = true
+
+[hunter_trap]
+type = "object"
+layer = 10
+id = "bird_snare"
+check_visual = "line_of_sight"
+check_not_busy = true
+find_keep_hunting = true
