@@ -4,6 +4,8 @@ import FakeRandom
 import WorldTest
 import content.entity.combat.damageDealers
 import content.entity.combat.hit.hit
+import content.entity.effect.stun
+import content.entity.effect.stunned
 import content.entity.player.effect.skull
 import equipItem
 import interfaceOption
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import playerOption
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -325,6 +328,32 @@ internal class CombatTest : WorldTest() {
         tick(1) // npc death + queue
         assertTrue(npc.dead)
         assertEquals(npc.tile, npc["death_tile"])
+    }
+
+    @Test
+    fun `Stunned npc cannot land attacks until the stun expires`() {
+        val player = createPlayer(emptyTile)
+        val npc = createNPC("rat", emptyTile.addY(1))
+        npc.mode = CombatMovement(npc, player)
+        npc.target = player
+
+        // Baseline: an un-stunned rat reliably damages the adjacent player.
+        val healthy = player.levels.get(Skill.Constitution)
+        tick(6)
+        assertTrue(player.levels.get(Skill.Constitution) < healthy, "an un-stunned rat lands hits")
+
+        // Stun the rat - it must not swing for the stun's duration.
+        player.stun(npc, 10)
+        assertTrue(npc.stunned)
+        val stunned = player.levels.get(Skill.Constitution)
+        tick(6)
+        // No hits land: health only holds or naturally regenerates, it never drops.
+        val duringStun = player.levels.get(Skill.Constitution)
+        assertTrue(duringStun >= stunned, "a stunned rat lands no hits")
+
+        // Attacks resume once the stun lapses.
+        tick(8)
+        assertTrue(player.levels.get(Skill.Constitution) < duringStun, "the rat attacks again after the stun")
     }
 
     companion object {

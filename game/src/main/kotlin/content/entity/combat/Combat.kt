@@ -1,6 +1,7 @@
 package content.entity.combat
 
 import content.area.wilderness.inSingleCombat
+import content.entity.effect.stunned
 import content.entity.player.combat.special.specialAttack
 import content.skill.magic.Magic
 import content.skill.melee.weapon.*
@@ -170,6 +171,13 @@ class Combat(val combatDefinitions: CombatDefinitions) :
                 return
             }
             if (character.hasClock("action_delay")) {
+                return
+            }
+            // A stunned character can't swing. CombatMovement keeps ticking (and re-entering here)
+            // while stunned, so without this a stunned npc/player would still land its attacks -
+            // only its movement is otherwise gated by the stun's "delay". Skipping leaves the stun
+            // to expire and the fight resumes on the next tick.
+            if (character.stunned) {
                 return
             }
             (character.mode as? CombatMovement)?.started = true
