@@ -196,7 +196,7 @@ internal class AbyssObstaclesTest : WorldTest() {
     @Test
     fun `Fail to distract eyes obstacle`() {
         setRandom(object : FakeRandom() {
-            override fun nextInt(until: Int) = until + 1
+            override fun nextInt(until: Int) = until - 1
         })
         val tile = Tile(3020, 4842)
         val player = createPlayer(tile)
