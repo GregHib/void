@@ -29,6 +29,15 @@ import java.util.concurrent.TimeUnit
 /** The only items the abyssal essence familiars carry; every other familiar refuses them. */
 private val BEAST_OF_BURDEN_ESSENCE = setOf("rune_essence", "pure_essence")
 
+/**
+ * Attribute set on a familiar while it's off performing a special (the beaver's Multichop), plus the
+ * message shown when the player tries to interact with it then. Only the beaver sets this, so the
+ * beaver-specific wording is safe. The log-fletch trick is deliberately *not* gated by it - the
+ * beaver's cutting is exactly the window in which it works as a knife.
+ */
+const val FAMILIAR_CHOPPING = "chopping_logs"
+const val FAMILIAR_BUSY_MESSAGE = "The beaver is busy cutting logs, you cannot interact with it now."
+
 val Player.beastOfBurdenCapacity: Int
     get() = follower?.def?.get("summoning_beast_of_burden_capacity", 0) ?: 0
 
@@ -144,12 +153,20 @@ class BeastOfBurden(private val dropTables: DropTables) : Script {
                 message("That's not your familiar.")
                 return@npcOperate
             }
+            if (target[FAMILIAR_CHOPPING, false]) {
+                message(FAMILIAR_BUSY_MESSAGE)
+                return@npcOperate
+            }
             openBeastOfBurden()
         }
 
         itemOnNPCOperate("*", "*_familiar") { (target, item) ->
             if (target != follower) {
                 message("That's not your familiar.")
+                return@itemOnNPCOperate
+            }
+            if (target[FAMILIAR_CHOPPING, false]) {
+                message(FAMILIAR_BUSY_MESSAGE)
                 return@itemOnNPCOperate
             }
             if (underAttack) {
@@ -161,6 +178,10 @@ class BeastOfBurden(private val dropTables: DropTables) : Script {
 
         npcOperate("Interact", "*_familiar") { (target) ->
             if (target != follower) {
+                return@npcOperate
+            }
+            // Silent: the beaver's own Interact handler shows the busy message during Multichop.
+            if (target[FAMILIAR_CHOPPING, false]) {
                 return@npcOperate
             }
             updateFamiliarInterface()

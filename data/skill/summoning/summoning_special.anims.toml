@@ -100,3 +100,7 @@ id = 7775
 # Giant chinchompa's Explode animation (played on the familiar).
 [chinchompa_explode]
 id = 7758
+
+# Beaver's Multichop animation (played on the familiar as it chops the tree).
+[beaver_multichop]
+id = 7722

@@ -4,12 +4,16 @@ import FakeRandom
 import WorldTest
 import content.entity.combat.hit.hit
 import content.entity.effect.toxin.poisoned
+import content.skill.fletching.fletchLog
 import interfaceOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.type.Tile
@@ -35,6 +39,77 @@ class FamiliarSpecialEffectTest : WorldTest() {
     }
 
     private fun Player.runSpecial(familiar: String): Boolean = FamiliarSpecialMoves.instant.getValue(familiar).invoke(this)
+
+    private fun Player.runObjectSpecial(familiar: String, obj: GameObject): Boolean = FamiliarSpecialMoves.objectTarget.getValue(familiar).invoke(this, obj)
+
+    @Test
+    fun `Multichop chops the targeted tree for a log, possibly a lower tier`() {
+        // Force the log roll to index 0 (the lowest tier) - proving a yew tree can hand over plain logs.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val player = summon("beaver_familiar")
+        val tree = createObject("yew", player.tile.addX(2))
+
+        val cast = player.runObjectSpecial("beaver_familiar", tree)
+        assertTrue(cast)
+        assertTrue(player.follower!!.get("chopping_logs", false), "the beaver is busy while chopping")
+
+        tick(6) // walk to the tree and start chopping
+        assertEquals(-1, player.follower!!.visuals.watch.index, "the beaver faces the tree, not the owner, while chopping")
+
+        tick(10) // finish the chop and its animation
+
+        assertEquals(1, player.beastOfBurden.count("logs"), "the beaver stashed a (lower-tier) log in its pack")
+        assertFalse(player.follower!!.get("chopping_logs", false), "the busy flag clears once it's done")
+    }
+
+    @Test
+    fun `Multichop does nothing when the target is not a tree`() {
+        val player = summon("beaver_familiar")
+        val notATree = createObject("bank_booth", player.tile.addX(1))
+
+        assertFalse(player.runObjectSpecial("beaver_familiar", notATree))
+        assertEquals(0, player.inventory.count("logs"), "no log handed over for a non-tree")
+    }
+
+    @Test
+    fun `Using a log on the beaver routes to fletching, not beast-of-burden storage`() {
+        // The fletch handler registers on the specific "<log>:beaver_familiar" operate key so it beats
+        // the beast-of-burden store handler's "*:beaver_familiar" (invoke picks item:npc before *:npc),
+        // otherwise a log gets refused with "your familiar won't carry yours" instead of fletching.
+        assertTrue(world.gregs.voidps.engine.entity.Operation.itemOnNpc.containsKey("logs:beaver_familiar"))
+    }
+
+    @Test
+    fun `Beaver fletches a log into a bow, no knife, while it is cutting`() {
+        val player = summon("beaver_familiar")
+        player.experience.set(Skill.Fletching, 14_000_000.0)
+        player.follower!!["chopping_logs"] = true
+        player.inventory.transaction { add("logs", 1) }
+        val unf = Rows.getOrNull("fletching_unf.shortbow_u")!!
+
+        player.fletchLog("shortbow_u", unf, "logs", 1, animate = {}, hasTool = { follower?.get("chopping_logs", false) == true })
+        tick(4) // let the fletch queue produce the bow
+
+        assertEquals(1, player.inventory.count("shortbow_u"), "the beaver acts as a knife while cutting")
+        assertEquals(0, player.inventory.count("logs"), "consumed the log")
+    }
+
+    @Test
+    fun `Beaver won't fletch when it isn't cutting and there is no knife`() {
+        val player = summon("beaver_familiar")
+        player.experience.set(Skill.Fletching, 14_000_000.0)
+        player.inventory.transaction { add("logs", 1) }
+        val unf = Rows.getOrNull("fletching_unf.shortbow_u")!!
+
+        // Not cutting and no knife -> the tool check fails and nothing is made.
+        player.fletchLog("shortbow_u", unf, "logs", 1, animate = {}, hasTool = { inventory.contains("knife") || follower?.get("chopping_logs", false) == true })
+        tick(4)
+
+        assertEquals(0, player.inventory.count("shortbow_u"), "no knife and not cutting - nothing made")
+        assertEquals(1, player.inventory.count("logs"), "the log is untouched")
+    }
 
     @Test
     fun `Summoning orb Cast option fires the special through the dispatcher`() {

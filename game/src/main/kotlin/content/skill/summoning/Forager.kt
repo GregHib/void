@@ -1,6 +1,7 @@
 package content.skill.summoning
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.inv.add
@@ -31,12 +32,20 @@ class Forager(private val dropTables: DropTables) : Script {
 
         npcOperate("Withdraw", "*_familiar") { (target) ->
             if (target == follower && forageTable(dropTables) != null) {
+                if (target[FAMILIAR_CHOPPING, false]) {
+                    message(FAMILIAR_BUSY_MESSAGE)
+                    return@npcOperate
+                }
                 openBeastOfBurden()
             }
         }
 
         npcOperate("Take", "*_familiar") { (target) ->
             if (target == follower && forageTable(dropTables) != null) {
+                if (target[FAMILIAR_CHOPPING, false]) {
+                    message(FAMILIAR_BUSY_MESSAGE)
+                    return@npcOperate
+                }
                 openBeastOfBurden()
             }
         }
@@ -48,12 +57,17 @@ class Forager(private val dropTables: DropTables) : Script {
         if (beastOfBurden.items.count { it.isNotEmpty() } >= beastOfBurdenCapacity) {
             return
         }
+        var produced = false
         for (drop in table.roll(player = this)) {
             val item = drop.toItem()
             if (item.isEmpty()) {
                 continue
             }
             beastOfBurden.add(item.id, item.amount)
+            produced = true
+        }
+        if (produced) {
+            message("Your familiar has produced an item.")
         }
         if (interfaces.contains("beast_of_burden")) {
             syncBeastOfBurdenInterface()

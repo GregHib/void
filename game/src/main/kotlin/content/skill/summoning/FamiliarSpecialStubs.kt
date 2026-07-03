@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
  * no scroll or special-move points are spent. Grouped by what each still needs:
  *
  *  - Item interactions (cook/incubate/smelt): Bunyip, Spirit cobra, Pyre lord
- *  - Skill-system scenery: Beaver (Multichop), Hydra (Regrowth)
+ *  - Skill-system scenery: Hydra (Regrowth) (Beaver's Multichop is done)
  *  - "Charge the next attack" buffs: Iron titan, Steel titan (Spirit scorpion + Honey badger are done)
  *  - AoE hits: Smoke devil (Giant chinchompa's Explode is done)
  *  - Pest Control teleport (area not implemented in void): the four Void familiars' Call to Arms
@@ -51,8 +51,8 @@ class FamiliarSpecialStubs : Script {
             "void_torcher_familiar",
         ) { stub() }
 
-        // Scenery-target specials.
-        FamiliarSpecialMoves.obj("beaver_familiar", "hydra_familiar") { _ -> stub() }
+        // Scenery-target specials. (Beaver's Multichop is done - see Beaver.kt.)
+        FamiliarSpecialMoves.obj("hydra_familiar") { _ -> stub() }
 
         // Item-target specials (use an item on the familiar).
         itemOnNPCApproach("*", "bunyip_familiar") { handleItemStub() }

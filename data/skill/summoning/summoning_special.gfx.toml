@@ -184,3 +184,7 @@ id = 1460
 # Giant chinchompa Explode: the blast graphic played on the familiar.
 [chinchompa_explode]
 id = 1364
+
+# Beaver Multichop: the graphic played on the familiar as it chops.
+[beaver_multichop]
+id = 1459
