@@ -7,6 +7,8 @@ import messages
 import npcOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -97,15 +99,30 @@ class ImplingTest : WorldTest() {
         assertEquals(0.0, player.experience.get(Skill.Hunter))
     }
 
-    @Test
-    fun `Loot impling`() {
+    @ParameterizedTest
+    @ValueSource(strings = [
+        "baby_impling_jar",
+        "young_impling_jar",
+        "gourmet_impling_jar",
+        "earth_impling_jar",
+        "essence_impling_jar",
+        "eclectic_impling_jar",
+        "nature_impling_jar",
+        "magpie_impling_jar",
+        "ninja_impling_jar",
+        "dragon_impling_jar",
+        "pirate_impling_jar",
+        "zombie_impling_jar",
+        "kingly_impling_jar",
+    ])
+    fun `Loot impling`(id: String) {
         val player = createPlayer()
-        player.inventory.add("baby_impling_jar")
+        player.inventory.add(id)
 
-        player.itemOption("Loot", "baby_impling_jar")
+        player.itemOption("Loot", id)
 
-        assertEquals(0, player.inventory.count("baby_impling_jar"))
+        assertEquals(0, player.inventory.count(id))
         assertEquals(1, player.inventory.count("impling_jar"))
-        assertEquals(3, player.inventory.count)
+        assertTrue(player.inventory.count > 1)
     }
 }
