@@ -54,46 +54,46 @@ wander_range = 30000
 id = 7903
 wander_range = 30000
 
-[kingly_impling_puro_puro]
+[kingly_puro_puro_impling]
 id = 7906
 
-[baby_impling_puro_puro]
+[baby_puro_puro_impling]
 id = 6055
 
-[young_impling_puro_puro]
+[young_puro_puro_impling]
 id = 6056
 
-[gourmet_impling_puro_puro]
+[gourmet_puro_puro_impling]
 id = 6057
 
-[earth_impling_puro_puro]
+[earth_puro_puro_impling]
 id = 6058
 
-[essence_impling_puro_puro]
+[essence_puro_puro_impling]
 id = 6059
 
-[eclectic_impling_puro_puro]
+[eclectic_puro_puro_impling]
 id = 6060
 
-[spirit_impling_puro_puro]
+[spirit_puro_puro_impling]
 id = 7904
 
-[nature_impling_puro_puro]
+[nature_puro_puro_impling]
 id = 6061
 
-[magpie_impling_puro_puro]
+[magpie_puro_puro_impling]
 id = 6062
 
-[ninja_impling_puro_puro]
+[ninja_puro_puro_impling]
 id = 6063
 
-[pirate_impling_puro_puro]
+[pirate_puro_puro_impling]
 id = 7846
 
-[zombie_impling_puro_puro]
+[zombie_puro_puro_impling]
 id = 7905
 
-[dragon_impling_puro_puro]
+[dragon_puro_puro_impling]
 id = 6064
 
 [elnock_inquisitor]

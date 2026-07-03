@@ -8,6 +8,7 @@ import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
 import content.entity.effect.transform
 import content.entity.player.equip.Equipment
+import content.skill.magic.spell.spell
 import content.skill.melee.weapon.combatStyle
 import content.skill.ranged.ammo
 import content.skill.slayer.categories
@@ -45,6 +46,9 @@ object Target {
                     source.message("Someone else is fighting that.")
                     return false
                 }
+            }
+            if ((source.spell == "bind" || source.spell == "snare" || source.spell == "entangle") && target.id.endsWith("_impling")) {
+                return true
             }
             if (target.transform != "") {
                 if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
@@ -175,6 +179,7 @@ object Target {
         is NPC if target.id == "harpie_bug_swarm" && source is Player && source.equipped(EquipSlot.Shield).id != "lit_bug_lantern" -> 0
         is NPC if target.def.contains("damage_cap") -> damage.coerceAtMost(target.def["damage_cap"])
         is NPC if target.def.contains("immune_death") -> damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
+        is NPC if target.id.endsWith("_impling") -> 0
         else -> damage
     }
 }
