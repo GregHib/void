@@ -52,6 +52,25 @@ class VoidShifterTest : WorldTest() {
     }
 
     @Test
+    fun `The 10 percent threshold is measured in life points (level 10 = 100 life points)`() {
+        // A default player is level 10 Constitution, which is 100 life points, so 10% is 10 life
+        // points - proving the threshold scales with the life-point value, not the raw skill level.
+        val player = createPlayer(Tile(2523, 3056))
+        player.levels.set(Skill.Summoning, 99)
+        player.summonFamiliar(NPCDefinitions.get("void_shifter_familiar"), restart = false)
+        tick(2)
+        assertEquals(100, player.levels.getMax(Skill.Constitution))
+
+        player.dropTo(15) // above the 10-life-point threshold
+        tick(2)
+        assertNotEquals(outpost, player.tile)
+
+        player.dropTo(5) // below it
+        tick(2)
+        assertEquals(outpost, player.tile)
+    }
+
+    @Test
     fun `A different familiar does not teleport the owner`() {
         val player = summon("spirit_wolf_familiar")
 
