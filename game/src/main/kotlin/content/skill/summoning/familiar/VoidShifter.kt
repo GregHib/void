@@ -4,11 +4,24 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.random
 
 class VoidShifter : Script {
     init {
+        // Emergency shift - once the owner's life points drop below 10% the shifter yanks them to the
+        // safety of the Void Knights' Outpost (the same courtyard its Call to Arms teleports to).
+        levelChanged(Skill.Constitution) { skill, _, to ->
+            if (follower?.id == "void_shifter_familiar" && to > 0 && to < levels.getMax(skill) / 10) {
+                tele(2659, 2658, 0)
+                message("Your void shifter teleports you to safety.")
+            }
+        }
+
         npcOperate("Interact", "void_shifter_familiar") {
             when (random.nextInt(4)) {
                 0 -> {
