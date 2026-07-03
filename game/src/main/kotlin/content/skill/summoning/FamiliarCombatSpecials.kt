@@ -1,5 +1,6 @@
 package content.skill.summoning
 
+import content.entity.effect.stun
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
@@ -16,6 +17,9 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
+
+/** How long (game ticks) a minotaur's Bull Rush stuns its target, keeping it from acting. */
+private const val BULL_RUSH_STUN_TICKS = 5
 
 /**
  * Combat familiar special moves - the cast-button specials that target an npc (or player). Each
@@ -137,7 +141,8 @@ class FamiliarCombatSpecials : Script {
         }
         npcCombatDamage("giant_chinchompa_familiar", handler = ::autoExplode)
 
-        // Minotaur family - Bull Rush: max hit scales with metal tier (stun TODO - needs a stun primitive).
+        // Minotaur family - Bull Rush: a ranged charge whose max hit scales with metal tier, stunning
+        // the target on a real cast so it can't act for a few ticks (as in the live game).
         val bullRush = mapOf(
             "bronze_minotaur_familiar" to 4,
             "iron_minotaur_familiar" to 6,
@@ -148,7 +153,11 @@ class FamiliarCombatSpecials : Script {
         )
         for ((familiar, maxHit) in bullRush) {
             FamiliarSpecialMoves.npc(familiar) { target ->
-                familiarSpecialHit(target, maxHit = maxHit, type = "range", anim = "bull_rush", sourceGfx = "bull_rush", projectile = "bull_rush_proj")
+                val cast = familiarSpecialHit(target, maxHit = maxHit, type = "range", anim = "bull_rush", sourceGfx = "bull_rush", projectile = "bull_rush_proj")
+                if (cast) {
+                    follower?.stun(target, BULL_RUSH_STUN_TICKS)
+                }
+                cast
             }
         }
     }

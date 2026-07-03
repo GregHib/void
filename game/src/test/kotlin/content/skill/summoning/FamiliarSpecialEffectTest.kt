@@ -3,6 +3,7 @@ package content.skill.summoning
 import FakeRandom
 import WorldTest
 import content.entity.combat.hit.hit
+import content.entity.effect.stunned
 import content.entity.effect.toxin.poisoned
 import content.skill.fletching.fletchLog
 import interfaceOption
@@ -290,5 +291,23 @@ class FamiliarSpecialEffectTest : WorldTest() {
 
         assertTrue(cast)
         assertTrue(target.levels.get(Skill.Constitution) < before)
+    }
+
+    @Test
+    fun `Bull Rush stuns and damages the target`() {
+        // Force the random damage roll off zero so the hit is observable.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+        val player = summon("rune_minotaur_familiar")
+        val target = createNPC("giant_rat", player.tile.addY(4))
+        val before = target.levels.get(Skill.Constitution)
+
+        val cast = FamiliarSpecialMoves.npcTarget.getValue("rune_minotaur_familiar").invoke(player, target)
+        assertTrue(cast)
+        assertTrue(target.stunned, "the charge stuns the target")
+
+        tick(5) // let the ranged hit land
+        assertTrue(target.levels.get(Skill.Constitution) < before, "bull rush damaged the target")
     }
 }
