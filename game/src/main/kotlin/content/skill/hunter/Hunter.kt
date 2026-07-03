@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.*
@@ -107,7 +106,7 @@ class Hunter : Script {
 
         objectOperate("Jump", "pitfall_*") { (target) ->
             val dir = if (target.rotation == 1 || target.rotation == 3) {
-                if (tile.x > target.tile.x)  Direction.WEST else Direction.EAST
+                if (tile.x > target.tile.x) Direction.WEST else Direction.EAST
             } else {
                 if (tile.y > target.tile.y) Direction.SOUTH else Direction.NORTH
             }
@@ -119,7 +118,6 @@ class Hunter : Script {
         objectOperate("Dismantle", "pitfall_*") { (target) ->
             dismantleTrap("pitfall", target)
         }
-
 
         objectOperate("Check", "rabbit_snare_caught") { (target) ->
             collectCatch("rabbit", target)
@@ -137,7 +135,7 @@ class Hunter : Script {
             val name = traps[tile.id] ?: return@npcMoved
             val trapObj = GameObjects.getLayer(tile, ObjectShape.CENTRE_PIECE_STRAIGHT) ?: return@npcMoved
             val owner = Players.find(name) ?: return@npcMoved
-            val creature = Rows.getOrNull("creatures.${id}") ?: return@npcMoved
+            val creature = Rows.getOrNull("creatures.$id") ?: return@npcMoved
             exactMove(trapObj.tile, direction = Direction.SOUTH)
             val npc = this
             // TODO allow delays in move
@@ -151,7 +149,7 @@ class Hunter : Script {
                     }
                     queue("caught", 2) {
                         // TODO 2/3% chance improvement if smoke/baited
-                        val success = true//Level.success(owner.levels.get(Skill.Hunter), 1..1)
+                        val success = true // Level.success(owner.levels.get(Skill.Hunter), 1..1)
                         if (success) { // TODO proper chances
                             trapObj.replace(Tables.obj("creatures.$id.caught_obj"))
                             owner.message("Something has been caught in your trap!")
@@ -180,7 +178,7 @@ class Hunter : Script {
 
     private suspend fun Player.layTrap(trapId: String, obj: GameObject?) {
         var obj = obj
-        val trap = Rows.getOrNull("traps.${trapId}") ?: return
+        val trap = Rows.getOrNull("traps.$trapId") ?: return
         val level = levels.get(Skill.Hunter)
         if (!has(Skill.Hunter, trap.int("level"), message = true)) {
             return
@@ -316,6 +314,5 @@ class Hunter : Script {
 
     private fun maxTraps(level: Int, max: Int) = (1 + level / 20).coerceAtMost(max)
 
-    private fun catchChance(hunterLevel: Int, lureLevel: Int) =
-        ((hunterLevel.toDouble() / lureLevel) * 50).toInt().coerceIn(10, 90)
+    private fun catchChance(hunterLevel: Int, lureLevel: Int) = ((hunterLevel.toDouble() / lureLevel) * 50).toInt().coerceIn(10, 90)
 }

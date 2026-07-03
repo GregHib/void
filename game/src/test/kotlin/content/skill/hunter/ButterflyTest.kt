@@ -107,5 +107,4 @@ class ButterflyTest : WorldTest() {
         assertEquals(0, player.inventory.count("ruby_harvest"))
         assertEquals(1, player.inventory.count("butterfly_jar"))
     }
-
 }

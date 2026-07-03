@@ -52,7 +52,7 @@ class Butterfly : Script {
             delay(2)
             var chance = butterfly.intRange("chance")
             if (weapon.id != "butterfly_net") { // Barehanded or magic net
-                chance = (chance.first + 20.. chance.last + 20)
+                chance = (chance.first + 20..chance.last + 20)
             }
             if (!Level.success(levels.get(Skill.Hunter), chance)) {
                 return@npcOperate

@@ -196,5 +196,4 @@ class Impling(val dropTables: DropTables) : Script {
         }
         return "${id}_drop_table"
     }
-
 }

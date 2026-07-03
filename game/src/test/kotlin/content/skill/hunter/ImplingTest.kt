@@ -108,5 +108,4 @@ class ImplingTest : WorldTest() {
         assertEquals(1, player.inventory.count("impling_jar"))
         assertEquals(3, player.inventory.count)
     }
-
 }
