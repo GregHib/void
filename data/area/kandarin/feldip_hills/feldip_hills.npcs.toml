@@ -38,6 +38,9 @@ examine = "It looks fluffy and cute; it's probably deadly."
 
 [black_warlock_feldip_hills]
 id = 5082
+wander_range = 4
+respawn_delay = 10
+collision = "sky"
 examine = "A black warlock. The air seems to distort wherever it passes."
 
 [barb_tailed_kebbit_feldip_hills]

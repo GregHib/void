@@ -1,0 +1,725 @@
+[impling_jar]
+roll = 100
+drops = [
+    { id = "impling_jar", chance = 90 },
+]
+
+[impling_low_tier]
+roll = 100
+drops = [
+    { id = "baby_impling_jar", chance = 20 },
+    { id = "young_impling_jar", chance = 20 },
+    { id = "gourmet_impling_jar", chance = 20 },
+    { id = "earth_impling_jar", chance = 20 },
+    { id = "essence_impling_jar", chance = 20 },
+    { id = "eclectic_impling_jar", chance = 20 },
+]
+
+[impling_mid_tier]
+roll = 100
+drops = [
+    { id = "gourmet_impling_jar", chance = 10 },
+    { id = "earth_impling_jar", chance = 10 },
+    { id = "essence_impling_jar", chance = 20 },
+    { id = "eclectic_impling_jar", chance = 30 }, # Modified
+    { id = "nature_impling_jar", chance = 20 },
+    { id = "spirit_impling_jar", chance = 5 }, # Made-up
+    { id = "magpie_impling_jar", chance = 2 },
+    { id = "ninja_impling_jar", chance = 2 },
+    { id = "pirate_impling_jar", chance = 2 }, # Made-up
+]
+
+[impling_high_tier]
+roll = 103
+drops = [
+    { id = "nature_impling_jar", chance = 10 },
+    { id = "magpie_impling_jar", chance = 50 },
+    { id = "ninja_impling_jar", chance = 30 },
+    { id = "dragon_impling_jar", chance = 10 },
+    { id = "zombie_impling_jar", chance = 2 }, # Made-up
+    { id = "kingly_impling_jar", chance = 1 }, # Made-up
+]
+
+[impling_high_tier_puro_puro]
+roll = 301
+drops = [
+    { id = "nature_impling_jar", chance = 150 },
+    { id = "magpie_impling_jar", chance = 112 }, # Modified
+    { id = "ninja_impling_jar", chance = 27 },
+    { id = "dragon_impling_jar", chance = 9 },
+    { id = "zombie_impling_jar", chance = 2 }, # Made-up
+    { id = "kingly_impling_jar", chance = 1 }, # Made-up
+]
+
+
+[baby_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "baby_impling_jar_secondary" },
+    { table = "baby_impling_jar_tertiary" },
+]
+
+[baby_impling_drop_table]
+type = "all"
+drops = [
+    { table = "baby_impling_jar_secondary" },
+    { table = "baby_impling_jar_tertiary" },
+]
+
+[baby_impling_jar_secondary]
+roll = 100
+drops = [
+    { id = "chisel", chance = 10 },
+    { id = "thread", chance = 10 },
+    { id = "needle", chance = 10 },
+    { id = "knife", chance = 10 },
+    { id = "cheese", chance = 10 },
+    { id = "hammer", chance = 10 },
+    { id = "ball_of_wool", chance = 10 },
+    { id = "anchovies", chance = 10 },
+    { id = "nothing", amount = 0, chance = 10 },
+    { id = "spice" },
+    { id = "flax" },
+    { id = "mud_pie" },
+    { id = "seaweed" },
+    { id = "air_talisman" },
+    { id = "silver_bar" },
+    { id = "sapphire" },
+    { id = "hard_leather" },
+    { id = "lobster" },
+    { id = "soft_clay" },
+]
+
+[baby_impling_jar_tertiary]
+roll = 100
+drops = [
+    { table = "easy_clue_scroll" },
+]
+
+[young_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "young_impling_jar_secondary" },
+    { table = "young_impling_jar_tertiary" },
+]
+
+[young_impling_drop_table]
+type = "all"
+drops = [
+    { table = "young_impling_jar_secondary" },
+    { table = "young_impling_jar_tertiary" },
+]
+
+[young_impling_jar_secondary]
+roll = 100
+drops = [
+    { id = "steel_nails", amount = 5, chance = 10 },
+    { id = "lockpick", chance = 10 },
+    { id = "pure_essence", chance = 10 },
+    { id = "tuna", chance = 10 },
+    { id = "chocolate_slice", chance = 10 },
+    { id = "steel_hatchet", chance = 10 },
+    { id = "meat_pizza", chance = 10 },
+    { id = "coal", chance = 10 },
+    { id = "bowstring", chance = 10 },
+    { id = "snape_grass" },
+    { id = "soft_clay" },
+    { id = "studded_chaps" },
+    { id = "steel_full_helm" },
+    { id = "oak_plank" },
+    { id = "defence_potion_3" },
+    { id = "mithril_bar" },
+    { id = "yew_longbow" },
+    { id = "garden_pie" },
+    { id = "jangerberries" },
+]
+
+[young_impling_jar_tertiary]
+roll = 50
+drops = [
+    { table = "easy_clue_scroll" },
+]
+
+[gourmet_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "gourmet_impling_jar_secondary" },
+    { table = "gourmet_impling_jar_tertiary" },
+]
+
+[gourmet_impling_drop_table]
+type = "all"
+drops = [
+    { table = "gourmet_impling_jar_secondary" },
+    { table = "gourmet_impling_jar_tertiary" },
+]
+
+[gourmet_impling_jar_secondary]
+roll = 500
+drops = [
+    { id = "grubby_key" },
+    { id = "tuna", chance = 100 },
+    { id = "bass", chance = 50 },
+    { id = "curry", chance = 50 },
+    { id = "meat_pie", chance = 50 },
+    { id = "chocolate_cake", chance = 50 },
+    { id = "frog_spawn", chance = 50 },
+    { id = "spice", chance = 50 },
+    { id = "curry_leaf", chance = 50 },
+    { id = "ugthanki_kebab", chance = 5 },
+    { id = "lobster_noted", amount = 4, chance = 5 },
+    { id = "shark_noted", amount = 3, chance = 5 },
+    { id = "fish_pie", chance = 5 },
+    { id = "chefs_delight", chance = 5 },
+    { id = "rainbow_fish_noted", amount = 5, chance = 5 },
+    { id = "garden_pie_noted", amount = 6, chance = 5 },
+    { id = "swordfish_noted", amount = 3, chance = 5 },
+    { id = "strawberries_5", chance = 5 },
+    { id = "cooked_karambwan_noted", amount = 2, chance = 5 },
+]
+
+[gourmet_impling_jar_tertiary]
+roll = 25
+drops = [
+    { table = "easy_clue_scroll" },
+]
+
+[earth_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "earth_impling_jar_secondary" },
+    { table = "earth_impling_jar_tertiary" },
+]
+
+[earth_impling_drop_table]
+type = "all"
+drops = [
+    { table = "earth_impling_jar_secondary" },
+    { table = "earth_impling_jar_tertiary" },
+]
+
+[earth_impling_jar_secondary]
+roll = 100
+drops = [
+    { id = "fire_talisman", chance = 10 },
+    { id = "earth_talisman", chance = 10 },
+    { id = "earth_tiara", chance = 10 },
+    { id = "earth_rune", amount = 32, chance = 10 },
+    { id = "mithril_ore", chance = 10 },
+    { id = "bucket_of_sand_noted", amount = 4, chance = 10 },
+    { id = "unicorn_horn", chance = 10 },
+    { id = "compost_noted", amount = 6, chance = 10 },
+    { id = "gold_ore", chance = 10 },
+    { id = "steel_bar" },
+    { id = "mithril_pickaxe" },
+    { id = "wildblood_seed", amount = 2 },
+    { id = "jangerberry_seed", amount = 2 },
+    { id = "supercompost_noted", amount = 2 },
+    { id = "mithril_ore_noted", amount = 3 },
+    { id = "harralander_seed", amount = 2 },
+    { id = "coal_noted", amount = 6 },
+    { id = "emerald_noted", amount = 2 },
+    { id = "ruby" },
+]
+
+[earth_impling_jar_tertiary]
+roll = 100
+drops = [
+    { table = "medium_clue_scroll" },
+]
+
+[essence_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "essence_impling_jar_secondary" },
+    { table = "essence_impling_jar_tertiary" },
+]
+
+[essence_impling_drop_table]
+type = "all"
+drops = [
+    { table = "essence_impling_jar_secondary" },
+    { table = "essence_impling_jar_tertiary" },
+]
+
+[essence_impling_jar_secondary]
+roll = 100
+drops = [
+    { id = "pure_essence_noted", amount = 20, chance = 10 },
+    { id = "water_rune", amount = 30, chance = 10 },
+    { id = "air_rune", amount = 30, chance = 10 },
+    { id = "fire_rune", amount = 50, chance = 10 },
+    { id = "mind_rune", amount = 25, chance = 10 },
+    { id = "body_rune", amount = 28, chance = 10 },
+    { id = "chaos_rune", amount = 4, chance = 10 },
+    { id = "cosmic_rune", amount = 4, chance = 10 },
+    { id = "mind_talisman", chance = 10 },
+    { id = "pure_essence_noted", amount = 35 },
+    { id = "lava_rune", amount = 4 },
+    { id = "mud_rune", amount = 4 },
+    { id = "smoke_rune", amount = 4 },
+    { id = "steam_rune", amount = 4 },
+    { id = "death_rune", amount = 13 },
+    { id = "law_rune", amount = 13 },
+    { id = "blood_rune", amount = 7 },
+    { id = "soul_rune", amount = 11 },
+    { id = "nature_rune", amount = 13 },
+]
+
+[essence_impling_jar_tertiary]
+roll = 50
+drops = [
+    { table = "medium_clue_scroll" },
+]
+
+[eclectic_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "eclectic_impling_jar_secondary" },
+    { table = "eclectic_impling_jar_tertiary" },
+]
+
+[eclectic_impling_drop_table]
+type = "all"
+drops = [
+    { table = "eclectic_impling_jar_secondary" },
+    { table = "eclectic_impling_jar_tertiary" },
+]
+
+[eclectic_impling_jar_secondary]
+roll = 100
+drops = [
+    { id = "mithril_pickaxe", chance = 10 },
+    { id = "curry_leaf", chance = 10 },
+    { id = "snape_grass", chance = 10 },
+    { id = "air_rune", min = 30, max = 58, chance = 10 },
+    { id = "oak_plank_noted", amount = 4, chance = 10 },
+    { id = "candle_lantern_empty", chance = 10 },
+    { id = "gold_ore", chance = 10 },
+    { id = "gold_bar_noted", amount = 5, chance = 10 },
+    { id = "unicorn_horn", chance = 10 },
+    { id = "adamant_kiteshield" },
+    { id = "blue_dragonhide_chaps" },
+    { id = "red_spiky_vambraces" },
+    { id = "rune_dagger" },
+    { id = "battlestaff" },
+    { id = "adamantite_ore_noted", amount = 10 },
+    { id = "slayers_respite_noted", amount = 2 },
+    { id = "wild_pie" },
+    { id = "watermelon_seed", amount = 3 },
+    { id = "diamond" },
+]
+
+[eclectic_impling_jar_tertiary]
+roll = 25
+drops = [
+    { table = "medium_clue_scroll" },
+]
+
+[spirit_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "spirit_impling_jar_secondary" },
+]
+
+[spirit_impling_charms]
+roll = 4
+drops = [
+    { id = "gold_charm", amount = 6 },
+    { id = "green_charm", amount = 2 },
+    { id = "crimson_charm", amount = 2 },
+    { id = "blue_charm" },
+]
+
+[spirit_impling_jar_secondary]
+roll = 256
+drops = [
+    { id = "pouch", amount = 25, chance = 4 },
+    { id = "air_talisman_noted", amount = 4 },
+    { id = "water_talisman" },
+    { id = "earth_talisman" },
+    { id = "fire_talisman" },
+    { id = "water_orb_noted", amount = 2 },
+    { id = "bronze_bar_noted", amount = 6 },
+    { id = "iron_bar", amount = 5 },
+    { id = "steel_bar_noted", amount = 2 },
+    { id = "mithril_bar" },
+    { id = "adamant_bar" },
+    { id = "rune_bar" },
+    { id = "bronze_claws_noted", min = 5, max = 9 },
+    { id = "iron_platebody_noted", amount = 5 },
+    { id = "steel_platebody_noted", amount = 2 },
+    { id = "gold_ring_noted", min = 6, max = 12 },
+    { id = "granite_500g_noted", amount = 5 },
+    { id = "bucket_of_sand_noted", amount = 10 },
+    { id = "fishbowl_noted", amount = 5 },
+    { id = "ruby_harvest_noted", amount = 2 },
+    { id = "green_salamander" },
+    { id = "chinchompa", amount = 4 },
+    { id = "polar_kebbit_fur" },
+    { id = "graahk_fur" },
+    { id = "kyatt_fur" },
+    { id = "larupia_fur" },
+    { id = "dagannoth_hide" },
+    { id = "yak_hide_noted", min = 5, max = 9 },
+    { id = "goat_horn_dust", amount = 2 },
+    { id = "proboscis" },
+    { id = "spider_carcass" },
+    { id = "swamp_toad_noted", amount = 5 },
+    { id = "thin_snail_noted", amount = 5 },
+    { id = "tortoise_shell" },
+    { id = "unicorn_horn" },
+    { id = "vampyre_dust" },
+    { id = "wolf_bones_noted", amount = 3 },
+    { id = "raw_beef", min = 9, max = 15 },
+    { id = "raw_bird_meat_noted", min = 5, max = 9 },
+    { id = "raw_chicken_noted", min = 9, max = 15 },
+    { id = "raw_rabbit_noted", min = 5, max = 9 },
+    { id = "raw_rat_meat_noted", amount = 25 },
+    { id = "raw_shark" },
+    { id = "banana_noted", min = 15, max = 25 },
+    { id = "pot_of_flour_noted", min = 11, max = 19 },
+    { id = "cockatrice_egg" },
+    { id = "guthatrice_egg" },
+    { id = "saratrice_egg" },
+    { id = "zamatrice_egg" },
+    { id = "pengatrice_egg" },
+    { id = "coraxatrice_egg" },
+    { id = "vulatrice_egg" },
+    { id = "evil_turnip_seed", amount = 4 },
+    { id = "evil_turnip" },
+    { id = "carved_evil_turnip" },
+    { id = "clean_guam", amount = 4 },
+    { id = "marigolds" },
+    { id = "potato_cactus" },
+    { id = "compost_noted", min = 11, max = 19 },
+    { id = "honeycomb", amount = 10 },
+    { id = "willow_logs_noted", min = 30, max = 70 },
+    { id = "willow_branch_noted", amount = 2 },
+    { id = "bagged_plant_1_noted", amount = 2 },
+    { id = "red_flowers" },
+    { id = "harpoon_noted", min = 9, max = 15 },
+    { id = "tinderbox_noted", min = 10, max = 30 },
+]
+
+[nature_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "nature_impling_jar_secondary" },
+    { table = "nature_impling_jar_tertiary" },
+]
+
+[nature_impling_drop_table]
+type = "all"
+drops = [
+    { table = "nature_impling_jar_secondary" },
+    { table = "nature_impling_jar_tertiary" },
+]
+
+[nature_impling_jar_secondary]
+roll = 100
+drops = [
+    { id = "limpwurt_seed", chance = 10 },
+    { id = "jangerberry_seed", chance = 10 },
+    { id = "belladonna_seed", chance = 10 },
+    { id = "harralander_seed", chance = 10 },
+    { id = "cactus_spine", chance = 10 },
+    { id = "magic_logs", chance = 10 },
+    { id = "clean_tarromin_noted", amount = 4, chance = 10 },
+    { id = "coconut", chance = 10 },
+    { id = "irit_seed", chance = 10 },
+    { id = "curry_tree_seed" },
+    { id = "orange_tree_seed" },
+    { id = "clean_snapdragon" },
+    { id = "kwuarm_seed" },
+    { id = "avantoe_seed", amount = 5 },
+    { id = "willow_seed" },
+    { id = "torstol_seed" },
+    { id = "ranarr_seed" },
+    { id = "clean_torstol_noted", amount = 2 },
+    { id = "dwarf_weed_seed" },
+]
+
+[nature_impling_jar_tertiary]
+roll = 100
+drops = [
+    { table = "hard_clue_scroll" },
+]
+
+[magpie_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "magpie_impling_jar_secondary" },
+    { table = "magpie_impling_jar_tertiary" },
+]
+
+[magpie_impling_drop_table]
+type = "all"
+drops = [
+    { table = "magpie_impling_jar_secondary" },
+    { table = "magpie_impling_jar_tertiary" },
+]
+
+[magpie_impling_jar_secondary]
+roll = 21
+drops = [
+    { id = "black_dragonhide_noted", amount = 6, chance = 2 },
+    { id = "rune_bar_noted", amount = 2 },
+    { id = "diamond_noted", amount = 4 },
+    { id = "diamond_amulet_noted", amount = 3 },
+    { id = "amulet_of_power_noted", amount = 3 },
+    { id = "ring_of_life_noted", amount = 4 },
+    { id = "ring_of_forging_noted", amount = 3 },
+    { id = "ring_of_recoil_noted", amount = 3 },
+    { id = "nature_tiara" },
+    { id = "splitbark_gauntlets" },
+    { id = "mystic_gloves_blue" },
+    { id = "mystic_boots_blue" },
+    { id = "rune_sq_shield" },
+    { id = "rune_warhammer" },
+    { id = "dragon_dagger" },
+    { id = "pineapple_seed" },
+    { id = "snapdragon_seed" },
+    { id = "loop_half_of_a_key" },
+    { id = "tooth_half_of_a_key" },
+    { id = "sinister_key" },
+]
+
+[magpie_impling_jar_tertiary]
+roll = 50
+drops = [
+    { table = "hard_clue_scroll" },
+]
+
+[ninja_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "ninja_impling_jar_secondary" },
+    { table = "ninja_impling_jar_tertiary" },
+]
+
+[ninja_impling_drop_table]
+type = "all"
+drops = [
+    { table = "ninja_impling_jar_secondary" },
+    { table = "ninja_impling_jar_tertiary" },
+]
+
+[ninja_impling_jar_secondary]
+roll = 19
+drops = [
+    { id = "snakeskin_boots" },
+    { id = "splitbark_helm" },
+    { id = "mystic_boots_blue" },
+    { id = "rune_chainbody" },
+    { id = "mystic_gloves_blue" },
+    { id = "opal_machete" },
+    { id = "rune_claws" },
+    { id = "rune_scimitar" },
+    { id = "dragon_dagger_p+" },
+    { id = "rune_arrow", amount = 70 },
+    { id = "rune_dart", amount = 70 },
+    { id = "rune_knife", amount = 40 },
+    { id = "rune_throwing_axe", amount = 50 },
+    { id = "onyx_bolts", amount = 2 },
+    { id = "onyx_bolt_tips", amount = 4 },
+    { id = "black_dragonhide_noted", amount = 10 },
+    { id = "prayer_potion_3_noted", amount = 4 },
+    { id = "weapon_poison+_noted", amount = 4 },
+    { id = "dagannoth_hide_noted", amount = 3 },
+]
+
+[ninja_impling_jar_tertiary]
+roll = 25
+drops = [
+    { table = "hard_clue_scroll" },
+]
+
+[pirate_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "pirate_impling_jar_secondary" },
+]
+
+[pirate_impling_drop_table]
+type = "all"
+drops = [
+    { table = "pirate_impling_jar_secondary" },
+]
+
+[pirate_impling_jar_secondary]
+roll = 101
+drops = [
+    { id = "pieces_of_eight", min = 5, max = 30 },
+    { id = "left_eyepatch", chance = 4 },
+    { id = "coins", min = 20000, max = 25000, chance = 6 },
+    { id = "coins", min = 10000, max = 15000, chance = 12 },
+    { id = "coins", min = 5000, max = 10000, chance = 18 },
+    { id = "the_stuff", chance = 18 },
+    { id = "shark_noted", amount = 10, chance = 12 },
+    { id = "raw_shark_noted", amount = 8, chance = 12 },
+    { id = "agility_arena_ticket", min = 10, max = 25, chance = 18 },
+]
+
+[pirate_impling_jar_trouble_brewing_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "pirate_impling_jar_trouble_brewing_secondary" },
+]
+
+[pirate_impling_jar_trouble_brewing_secondary]
+roll = 101
+drops = [
+    { id = "steel_hatchet", chance = 10 },
+    { id = "bucket", chance = 10 },
+    { id = "bucket_of_water", chance = 10 },
+    { id = "bowl", chance = 10 },
+    { id = "logs", chance = 10 },
+    { id = "scrapey_bark", chance = 10 },
+    { id = "bowl_of_red_water", chance = 10 },
+    { id = "bowl_of_blue_water", chance = 10 },
+    { id = "red_flowers_trouble_brewing", chance = 10 },
+    { id = "blue_flowers_trouble_brewing", chance = 10 },
+    { id = "sweetgrubs", chance = 10 },
+    { id = "bitternut", chance = 10 },
+    { id = "pieces_of_eight", min = 1, max = 6 },
+]
+
+[dragon_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "dragon_impling_jar_secondary" },
+]
+
+[dragon_impling_drop_table]
+type = "all"
+drops = [
+    { table = "dragon_impling_jar_secondary" },
+]
+
+[dragon_impling_jar_secondary]
+roll = 18
+drops = [
+    { id = "amulet_of_glory_noted", amount = 3 },
+    { id = "mystic_boots_blue" },
+    { id = "dragonstone_amulet_noted", amount = 2 },
+    { id = "dragon_arrow", min = 100, max = 250 },
+    { id = "dragon_bolts", min = 10, max = 40 },
+    { id = "dragon_longsword" },
+    { id = "dragon_dagger_noted", amount = 3 },
+    { id = "dragon_dart", min = 100, max = 250 },
+    { id = "dragon_dart_tip", min = 100, max = 350 },
+    { id = "dragon_arrowtips", min = 100, max = 350 },
+    { id = "dragon_bolt_tips", min = 10, max = 30 },
+    { id = "dragon_bolt_tips", amount = 36 },
+    { id = "babydragon_bones_noted", min = 100, max = 300 },
+    { id = "magic_seed" },
+    { id = "dragon_bones_noted", min = 50, max = 100 },
+    { id = "dragonstone_noted", amount = 3 },
+    { id = "snapdragon_seed", amount = 6 },
+    { id = "summer_pie_noted", amount = 15 },
+]
+
+[zombie_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "zombie_impling_jar_secondary" },
+    { table = "zombie_impling_jar_tertiary" },
+]
+
+[zombie_impling_drop_table]
+type = "all"
+drops = [
+    { table = "zombie_impling_jar_secondary" },
+    { table = "zombie_impling_jar_tertiary" },
+]
+
+[zombie_impling_jar_secondary]
+roll = 30
+drops = [
+    { id = "babydragon_bones_noted", min = 2, max = 6, chance = 15 },
+    { id = "big_bones_noted", min = 5, max = 15, chance = 10 },
+    { id = "curved_bone" },
+    { id = "long_bone" },
+    { id = "dragon_bones_noted", amount = 3 },
+    { id = "wyvern_bones_noted", amount = 3 },
+]
+
+[zombie_impling_jar_tertiary]
+roll = 3000
+drops = [
+    { id = "fayrg_bones_noted", amount = 3, chance = 33 },
+    { id = "raurg_bones_noted", amount = 2, chance = 33 },
+    { id = "ourg_bones_noted", chance = 33 },
+    { id = "monkey_skull" },
+]
+
+[kingly_impling_jar_drop_table]
+type = "all"
+drops = [
+    { table = "impling_jar" },
+    { table = "kingly_impling_jar_secondary" },
+    { table = "kingly_impling_jar_royal" },
+    { table = "kingly_impling_jar_tertiary" },
+]
+
+[kingly_impling_drop_table]
+type = "all"
+drops = [
+    { table = "kingly_impling_jar_secondary" },
+    { table = "kingly_impling_jar_royal" },
+    { table = "kingly_impling_jar_tertiary" },
+]
+
+[kingly_impling_jar_secondary]
+roll = 28
+drops = [
+    { id = "dragon_arrow", min = 50, max = 150, chance = 2 },
+    { id = "dragon_arrowtips", min = 50, max = 150, chance = 2 },
+    { id = "dragon_bolt_tips", min = 50, max = 70 },
+    { id = "dragon_dart", min = 175, max = 325 },
+    { id = "dragon_dart_tip", min = 100, max = 300 },
+    { id = "dragon_longsword_noted", amount = 2 },
+    { id = "uncut_diamond_noted", min = 15, max = 35 },
+    { id = "amulet_of_glory_noted", amount = 3 },
+    { id = "dragonstone_amulet_noted", amount = 3 },
+    { id = "crystal_key_noted", amount = 2 },
+    { id = "uncut_dragonstone_noted", amount = 5 },
+    { id = "dragonstone_noted", amount = 6, chance = 2 },
+    { id = "dragon_bolts", min = 40, max = 60, chance = 2 },
+    { id = "onyx_bolts", min = 40, max = 60, chance = 2 },
+    { id = "rune_bar_noted", amount = 10 },
+    { id = "onyx_bolt_tips", min = 30, max = 75 },
+]
+
+[kingly_impling_jar_tertiary]
+roll = 1008
+drops = [
+    { id = "dragon_spear", chance = 20 },
+    { id = "shield_left_half", chance = 10 },
+    { id = "dragon_2h_sword", chance = 5 },
+    { id = "uncut_onyx" },
+]
+
+[kingly_impling_jar_royal]
+roll = 28
+drops = [
+    { id = "royal_sceptre", chance = 2 },
+    { id = "royal_crown" },
+    { id = "royal_shirt" },
+    { id = "royal_leggings" },
+    { id = "royal_amulet" },
+]

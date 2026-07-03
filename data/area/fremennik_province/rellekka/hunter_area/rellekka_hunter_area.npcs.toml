@@ -1,9 +1,15 @@
 [snowy_knight]
 id = 5083
+wander_range = 4
+respawn_delay = 10
+collision = "sky"
 examine = "It's a snowy knight butterfly."
 
 [sapphire_glacialis]
 id = 5084
+wander_range = 4
+respawn_delay = 10
+collision = "sky"
 examine = "A sapphire glacialis. It doesn't look as pretentious as its name sounds."
 
 [sabre_toothed_kyatt]
