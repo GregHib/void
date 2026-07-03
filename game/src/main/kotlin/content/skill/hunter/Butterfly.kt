@@ -36,10 +36,10 @@ class Butterfly : Script {
             val butterfly = Rows.getOrNull("butterflies.${target.id}") ?: return@npcOperate
             val net = weapon.id == "butterfly_net" || weapon.id == "magic_butterfly_net"
             val level = if (net) butterfly.int("level") else butterfly.int("level_hands")
-            if (!has(Skill.Hunter, level, message = if (net) " to catch this butterfly" else " to catch this butterfly barehanded")) { // TODO proper message
+            if (!has(Skill.Hunter, level, message = if (net) " to catch this butterfly" else " to catch this butterfly barehanded")) {
                 return@npcOperate
             }
-            if (!net && has(Skill.Agility, level - 5, message = " to catch this butterfly")) { // TODO proper message
+            if (!net && has(Skill.Agility, level - 5, message = " to catch this butterfly barehanded")) {
                 return@npcOperate
             }
             var jar = inventory.contains("butterfly_jar")
