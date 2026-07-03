@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.zone.ProjectileAddition
 import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
 object ShootProjectile {
@@ -130,21 +131,30 @@ fun Character.shoot(
     width: Int = size,
     tileOffsetX: Int = 0,
     tileOffsetY: Int = 0,
-) = projectile(
-    id = id,
-    target = target,
-    flightTime = flightTime,
-    delay = delay,
-    startHeight = height,
-    endHeight = endHeight,
-    curve = curve,
-    offset = offset,
-    width = width,
-    sourceHeight = this.height,
-    targetHeight = target.height,
-    targetTile = target.tile,
-    sourceTile = tile.add(tileOffsetX, tileOffsetY),
-)
+): Int {
+    // The start offset (width * 64) leads the projectile that many tiles from the source's south-west
+    // tile *towards* the target. From the south-west corner that reaches the far edge only when the
+    // target is north/east; a target to the west/south overshoots by the source's width and the
+    // projectile appears to spawn on top of it. Anchoring on the footprint tile nearest the target
+    // makes the origin the target-facing edge in every direction (size-1 sources are unaffected - the
+    // nearest tile is their only tile). An explicit tile offset keeps its caller-chosen origin.
+    val explicitOrigin = tileOffsetX != 0 || tileOffsetY != 0
+    return projectile(
+        id = id,
+        target = target,
+        flightTime = flightTime,
+        delay = delay,
+        startHeight = height,
+        endHeight = endHeight,
+        curve = curve,
+        offset = offset,
+        width = if (explicitOrigin) width else 1,
+        sourceHeight = this.height,
+        targetHeight = target.height,
+        targetTile = target.tile,
+        sourceTile = if (explicitOrigin) tile.add(tileOffsetX, tileOffsetY) else Distance.nearest(tile, size, size, target.tile),
+    )
+}
 
 /**
  * Tile dragon breath originates from.
