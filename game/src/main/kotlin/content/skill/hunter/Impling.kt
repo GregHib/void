@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.Retreat
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -33,7 +34,7 @@ import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 import kotlin.random.nextInt
 
-class Implings(val dropTables: DropTables) : Script {
+class Impling(val dropTables: DropTables) : Script {
     init {
         worldSpawn {
             respawnImplings()
@@ -47,7 +48,7 @@ class Implings(val dropTables: DropTables) : Script {
             val row = Rows.getOrNull("implings.${target.id}") ?: return@npcOperate
             val net = weapon.id == "butterfly_net" || weapon.id == "magic_butterfly_net"
             val level = if (net) row.int("level") else row.int("level") + 10
-            if (!has(Skill.Hunter, level, message = if (net) "to catch this impling" else "to catch this impling barehanded")) {
+            if (!has(Skill.Hunter, level, message = if (net) " to catch this impling" else " to catch this impling barehanded")) {
                 return@npcOperate
             }
             val puroPuro = tile in Areas["puro_puro"]
@@ -69,7 +70,7 @@ class Implings(val dropTables: DropTables) : Script {
             delay(2)
             var chance = row.intRange("chance")
             if (weapon.id != "butterfly_net") { // Barehanded or magic net
-                chance = (chance.first + 20.. chance.last + 20)
+                chance = (chance.first + 20..chance.last + 20)
             }
             if (!Level.success(levels.get(Skill.Hunter), chance)) {
                 target.mode = Retreat(target, this)
@@ -77,7 +78,8 @@ class Implings(val dropTables: DropTables) : Script {
                 return@npcOperate
             }
             target.hide = true
-            target.softTimers.start("reveal_imp")
+            target.tele(target.get<Tile>("spawn_tile")!!)
+            target.softTimers.start("reveal_impling")
             if (target.id == "spirit_impling" && random.nextInt(3) != 0) {
                 // https://youtu.be/O5_IjnlYXrU?&t=129
                 val tables = dropTables.getValue("spirit_impling_charms")
@@ -107,7 +109,7 @@ class Implings(val dropTables: DropTables) : Script {
             }
         }
 
-        npcTimerStart("reveal_impling") { TimeUnit.MINUTES.toTicks(Settings["hunter.implings.revealMinutes", 2]) }
+        npcTimerStart("reveal_impling") { TimeUnit.MINUTES.toTicks(Settings["hunter.impling.revealMinutes", 2]) }
 
         npcTimerTick("reveal_impling") { Timer.CANCEL }
 
@@ -115,6 +117,28 @@ class Implings(val dropTables: DropTables) : Script {
             hide = false
         }
 
+        itemOption("Loot", "*_impling_jar") { (item) ->
+            val tables = dropTables.get(dropTable(this, item.id)) ?: return@itemOption
+            val drops = tables.roll(player = this)
+            if (inventory.spaces < 2) {
+                message("You'll need to clear some space in your pack before looting the jar.")
+                return@itemOption
+            }
+            if (!inventory.remove(item.id)) {
+                return@itemOption
+            }
+            var jar = false
+            for (drop in drops) {
+                val item = drop.toItem()
+                if (item.id == "impling_jar") {
+                    jar = true
+                }
+                addOrDrop(item.id, item.amount)
+            }
+            if (!jar) {
+                message("You break the jar as you try to open it. You throw the shattered remains away.", ChatType.Filter)
+            }
+        }
         // https://youtu.be/O5_IjnlYXrU?&t=165
         // The imp tried to steal one of your implings, but you stopped him!
         // You use your strength to push through the wheat in the most efficient fashion.
@@ -128,7 +152,11 @@ class Implings(val dropTables: DropTables) : Script {
         if (!World.members) {
             return
         }
-        World.queue("impling_spawning", TimeUnit.MINUTES.toTicks(Settings["hunter.implings.respawnCycleMinutes", 30])) {
+        val minutes = Settings["hunter.impling.respawnCycleMinutes", 30]
+        if (minutes < 0) {
+            return
+        }
+        World.queue("impling_spawning", TimeUnit.MINUTES.toTicks(minutes)) {
             for (npc in active) {
                 NPCs.remove(npc)
             }
@@ -162,12 +190,11 @@ class Implings(val dropTables: DropTables) : Script {
         active.add(npc)
     }
 
-    companion object {
-        fun dropTable(player: Player, id: String): String {
-            if (id.startsWith("pirate_impling") && player.tile in Areas["trouble_brewing"]) {
-                return "${id}_trouble_brewing_drop_table"
-            }
-            return "${id}_drop_table"
+    private fun dropTable(player: Player, id: String): String {
+        if (id.startsWith("pirate_impling") && player.tile in Areas["trouble_brewing"]) {
+            return "${id}_trouble_brewing_drop_table"
         }
+        return "${id}_drop_table"
     }
+
 }
