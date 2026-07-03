@@ -35,8 +35,6 @@ import kotlin.random.nextInt
 
 class Implings(val dropTables: DropTables) : Script {
     init {
-        // TODO impling binding
-
         worldSpawn {
             respawnImplings()
         }
