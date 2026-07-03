@@ -14,6 +14,7 @@ examine = "It looks fluffy and cute; it's probably deadly."
 id = 5085
 wander_range = 3
 respawn_delay = 10
+collision = "sky"
 examine = "It's a ruby harvest butterfly."
 
 [prickly_kebbit]

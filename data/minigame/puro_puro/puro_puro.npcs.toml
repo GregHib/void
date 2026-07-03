@@ -1,100 +1,142 @@
 [baby_impling]
 id = 1028
 wander_range = 30000
+collision = "sky"
 
 [young_impling]
 id = 1029
 wander_range = 30000
+collision = "sky"
 
 [gourmet_impling]
 id = 1030
 wander_range = 30000
+collision = "sky"
 
 [earth_impling]
 id = 1031
 wander_range = 30000
+collision = "sky"
 
 [essence_impling]
 id = 1032
 wander_range = 30000
+collision = "sky"
 
 [eclectic_impling]
 id = 1033
 wander_range = 30000
+collision = "sky"
 
 [spirit_impling]
 id = 7866
 wander_range = 30000
+collision = "sky"
 
 [nature_impling]
 id = 1034
 wander_range = 30000
+collision = "sky"
 
 [magpie_impling]
 id = 1035
 wander_range = 30000
+collision = "sky"
 
 [ninja_impling]
 id = 6053
 wander_range = 30000
+collision = "sky"
 
 [pirate_impling]
 id = 7845
 wander_range = 30000
+collision = "sky"
 
 [zombie_impling]
 id = 7902
 wander_range = 30000
+collision = "sky"
 
 [dragon_impling]
 id = 6054
 wander_range = 30000
+collision = "sky"
 
 [kingly_impling]
 id = 7903
 wander_range = 30000
+collision = "sky"
 
 [kingly_puro_puro_impling]
 id = 7906
+wander_range = 64
+collision = "sky"
 
 [baby_puro_puro_impling]
 id = 6055
+wander_range = 64
+collision = "sky"
 
 [young_puro_puro_impling]
 id = 6056
+wander_range = 64
+collision = "sky"
 
 [gourmet_puro_puro_impling]
 id = 6057
+wander_range = 64
+collision = "sky"
 
 [earth_puro_puro_impling]
 id = 6058
+wander_range = 64
+collision = "sky"
 
 [essence_puro_puro_impling]
 id = 6059
+wander_range = 64
+collision = "sky"
 
 [eclectic_puro_puro_impling]
 id = 6060
+wander_range = 64
+collision = "sky"
 
 [spirit_puro_puro_impling]
 id = 7904
+wander_range = 64
+collision = "sky"
 
 [nature_puro_puro_impling]
 id = 6061
+wander_range = 64
+collision = "sky"
 
 [magpie_puro_puro_impling]
 id = 6062
+wander_range = 64
+collision = "sky"
 
 [ninja_puro_puro_impling]
 id = 6063
+wander_range = 64
+collision = "sky"
 
 [pirate_puro_puro_impling]
 id = 7846
+wander_range = 64
+collision = "sky"
 
 [zombie_puro_puro_impling]
 id = 7905
+wander_range = 64
+collision = "sky"
 
 [dragon_puro_puro_impling]
 id = 6064
+wander_range = 64
+collision = "sky"
 
 [elnock_inquisitor]
 id = 6070
