@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.beastOfBurden
@@ -328,5 +329,26 @@ class FamiliarSpecialEffectTest : WorldTest() {
         tick(5)
         assertFalse(target.stunned, "the stun only lands about a third of the time")
         assertTrue(target.levels.get(Skill.Constitution) < before, "bull rush still damaged the target")
+    }
+
+    @Test
+    fun `Herbcall drops a clean herb at the familiar after a short search, then goes on cooldown`() {
+        // Pick the first herb in the pool (clean guam) deterministically.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val player = summon("macaw_familiar")
+        val familiar = player.follower!!
+
+        assertTrue(player.runSpecial("macaw_familiar"))
+        assertTrue(player.hasClock("herbcall_delay"), "Herbcall starts its one-minute cooldown")
+        assertTrue(FloorItems.at(familiar.tile).none { it.id == "grimy_guam" }, "the herb only drops once the search finishes")
+
+        tick(6)
+        assertTrue(FloorItems.at(familiar.tile).any { it.id == "grimy_guam" }, "the macaw drops the herb it searched out")
+
+        // Still on cooldown - a second cast is refused and produces nothing more.
+        assertFalse(player.runSpecial("macaw_familiar"))
+        assertEquals(1, FloorItems.at(familiar.tile).count { it.id == "grimy_guam" }, "no extra herb while on cooldown")
     }
 }

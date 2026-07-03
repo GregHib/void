@@ -175,6 +175,10 @@ id = 1316
 [cheese_feast]
 id = 1384
 
+# Macaw's Herbcall graphic (played on the familiar as it searches out a herb).
+[herbcall]
+id = 1321
+
 # Compost mound Generate Compost: familiar gfx, projectile to the bin, and the impact at the bin.
 [generate_compost]
 id = 1461

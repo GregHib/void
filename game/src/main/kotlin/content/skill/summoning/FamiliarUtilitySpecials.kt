@@ -6,6 +6,8 @@ import content.entity.proj.shoot
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -27,15 +29,24 @@ import world.gregs.voidps.type.random
  */
 class FamiliarUtilitySpecials : Script {
 
-    private val grimyHerbs = listOf(
+    // Herbcall's herb pool, mirroring 2009scape's MacawNPC.HERBS - a uniform pick from every herb
+    // type, low- and high-level alike (grimy, as the macaw digs them up).
+    private val herbcallHerbs = listOf(
         "grimy_guam",
         "grimy_marrentill",
         "grimy_tarromin",
         "grimy_harralander",
         "grimy_ranarr",
+        "grimy_toadflax",
+        "grimy_spirit_weed",
         "grimy_irit",
         "grimy_avantoe",
         "grimy_kwuarm",
+        "grimy_snapdragon",
+        "grimy_cadantine",
+        "grimy_lantadyme",
+        "grimy_dwarf_weed",
+        "grimy_torstol",
     )
     private val fruit = listOf("orange", "banana", "lemon", "lime", "papaya_fruit")
     private val rawFish = listOf("raw_trout", "raw_salmon", "raw_cod", "raw_pike")
@@ -135,9 +146,21 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Herbcall - drop a random grimy herb at the player's feet.
+        // Herbcall - the macaw searches out a herb and drops it at its feet a few ticks later.
         FamiliarSpecialMoves.instant("macaw_familiar") {
-            dropForage(grimyHerbs[random.nextInt(grimyHerbs.size)])
+            val familiar = follower ?: return@instant false
+            if (hasClock("herbcall_delay")) {
+                message("You must wait one minute until using the macaw's special again.")
+                return@instant false
+            }
+            familiar.anim("herbcall")
+            familiar.gfx("herbcall")
+            val herb = herbcallHerbs[random.nextInt(herbcallHerbs.size)]
+            queue("herbcall", 5) {
+                FloorItems.add(familiar.tile, herb, disappearTicks = 300, owner = this@instant)
+            }
+            start("herbcall_delay", 100)
+            true
         }
 
         // Fruitfall - drop a papaya plus a few random fruits.
