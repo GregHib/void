@@ -120,7 +120,7 @@ level = 1
 xp = 340
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["red_feather", "raw_bird_meat", "bones"]
+loot = ["bird_snare", "red_feather", "raw_bird_meat", "bones"]
 
 [.golden_warbler]
 trap = "bird_snare"
@@ -129,7 +129,7 @@ level = 5
 xp = 480
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["yellow_feather", "raw_bird_meat", "bones"]
+loot = ["bird_snare", "yellow_feather", "raw_bird_meat", "bones"]
 
 [.copper_longtail]
 trap = "bird_snare"
@@ -138,7 +138,7 @@ level = 9
 xp = 610
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["orange_feather", "raw_bird_meat", "bones"]
+loot = ["bird_snare", "orange_feather", "raw_bird_meat", "bones"]
 
 [.cerulean_twitch]
 trap = "bird_snare"
@@ -147,7 +147,7 @@ level = 11
 xp = 647
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["blue_feather", "raw_bird_meat", "bones"]
+loot = ["bird_snare", "blue_feather", "raw_bird_meat", "bones"]
 
 [.tropical_wagtail]
 trap = "bird_snare"
@@ -156,7 +156,7 @@ level = 19
 xp = 952
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["stripy_feather", "raw_bird_meat", "bones"]
+loot = ["bird_snare", "stripy_feather", "raw_bird_meat", "bones"]
 
 [.wimpy_bird]
 trap = "bird_snare"
@@ -165,7 +165,7 @@ level = 39
 xp = 1670
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["wimpy_feather", "raw_bird_meat", "bones"]
+loot = ["bird_snare", "wimpy_feather", "raw_bird_meat", "bones"]
 
 [.grey_chinchompa]
 trap = "box_trap"
@@ -173,7 +173,7 @@ caught_obj = "box_trap_grey_chinchompa"
 level = 53
 xp = 1984
 catch_anim = "chinchompa_catch"
-loot = ["chinchompa"]
+loot = ["box_trap", "chinchompa"]
 
 [.red_chinchompa]
 trap = "box_trap"
@@ -181,7 +181,7 @@ caught_obj = "box_trap_red_chinchompa"
 level = 63
 xp = 2650
 catch_anim = "chinchompa_catch"
-loot = ["red_chinchompa"]
+loot = ["box_trap", "red_chinchompa"]
 
 [.barb_tailed_kebbit]
 trap = "boulder_trap"
@@ -197,28 +197,28 @@ trap = "swamp_net"
 level = 29
 xp = 1520
 catch_anim = "net_catch"
-loot = ["green_salamander"]
+loot = ["small_fishing_net", "rope", "green_salamander"]
 
 [.orange_salamander]
 trap = "orange_net"
 level = 47
 xp = 2240
 catch_anim = "net_catch"
-loot = ["orange_salamander"]
+loot = ["small_fishing_net", "rope", "orange_salamander"]
 
 [.red_salamander]
 trap = "red_net"
 level = 59
 xp = 2720
 catch_anim = "net_catch"
-loot = ["red_salamander"]
+loot = ["small_fishing_net", "rope", "red_salamander"]
 
 [.black_salamander]
 trap = "black_net"
 level = 67
 xp = 3040
 catch_anim = "net_catch"
-loot = ["black_salamander"]
+loot = ["small_fishing_net", "rope", "black_salamander"]
 
 [.pawya]
 trap = "box_trap"

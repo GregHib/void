@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 
 class Hunter : Script {
@@ -87,13 +88,13 @@ class Hunter : Script {
         }
 
         objectOperate("Dismantle", "net") { (target) ->
-            val dir = direction(target).inverse()
+            val dir = direction(target.rotation).inverse()
             val trap = GameObjects.findOrNull(target.tile.add(dir)) { it.id.endsWith("_net_setup") } ?: return@objectOperate
             dismantleTrap(trap.id, trap)
         }
 
         objectOperate("Investigate", "net") { (target) ->
-            val dir = direction(target).inverse()
+            val dir = direction(target.rotation).inverse()
             val trap = GameObjects.findOrNull(target.tile.add(dir)) { it.id.endsWith("_net_setup") } ?: return@objectOperate
             // TODO
         }
@@ -128,32 +129,52 @@ class Hunter : Script {
 
         huntObject("hunter_trap") { trapObj ->
             println("Hunt $trapObj")
+            walkTo(trapObj.tile)
             // TODO chance at attempt
-            val owner = Players.find(traps[trapObj.tile.id] ?: "") ?: return@huntObject
-            val creature = Rows.getOrNull("creatures.${id}") ?: return@huntObject
-            val catchAnim = creature.animOrNull("catch_anim")
-            if (catchAnim != null) {
-                anim(catchAnim)
+        }
+
+        npcMoved("crimson_swift") {
+            val name = traps[tile.id] ?: return@npcMoved
+            val trapObj = GameObjects.getLayer(tile, ObjectShape.CENTRE_PIECE_STRAIGHT) ?: return@npcMoved
+            val owner = Players.find(name) ?: return@npcMoved
+            val creature = Rows.getOrNull("creatures.${id}") ?: return@npcMoved
+            exactMove(trapObj.tile, direction = Direction.SOUTH)
+            val npc = this
+            // TODO allow delays in move
+            queue("land") {
+                anim("bird_land")
+                npc.face(Direction.SOUTH)
+                queue("catch", 4) {
+                    val catchAnim = creature.animOrNull("catch_anim")
+                    if (catchAnim != null) {
+                        anim(catchAnim)
+                    }
+                    queue("caught", 2) {
+                        // TODO 2/3% chance improvement if smoke/baited
+                        val success = true//Level.success(owner.levels.get(Skill.Hunter), 1..1)
+                        if (success) { // TODO proper chances
+                            trapObj.replace(Tables.obj("creatures.$id.caught_obj"))
+                            owner.message("Something has been caught in your trap!")
+                            return@queue
+                        }
+                        npc.hide = true
+                        npc.levels.set(Skill.Constitution, 0)
+                        val failObj = Tables.objOrNull("traps.${creature.string("trap")}.fail")
+                        if (failObj != null) {
+                            trapObj.replace(failObj, ticks = 0) // TODO collapse time
+                        } else {
+                            // TODO drop floor item
+                            trapObj.remove()
+                            traps.remove(trapObj.tile.id)
+                        }
+                        val failAnim = creature.animOrNull("fail_anim")
+                        if (failAnim != null) {
+                            anim(failAnim)
+                        }
+                        owner.message("Your trap has collapsed.")
+                    }
+                }
             }
-            // TODO 2/3% chance improvement if smoke/baited
-            if (Level.success(owner.levels.get(Skill.Hunter), 1..1)) { // TODO proper chances
-                trapObj.replace(Tables.obj("creatures.$id.caught_obj"))
-                owner.message("Something has been caught in your trap!")
-                return@huntObject
-            }
-            val failObj = Tables.objOrNull("traps.${creature.string("trap")}.fail")
-            if (failObj != null) {
-                trapObj.replace(failObj, ticks = 0) // TODO collapse time
-            } else {
-                // TODO drop floor item
-                trapObj.remove()
-                traps.remove(trapObj.tile.id)
-            }
-            val failAnim = creature.animOrNull("fail_anim")
-            if (failAnim != null) {
-                anim(failAnim)
-            }
-            owner.message("Your trap has collapsed.")
         }
     }
 
@@ -205,7 +226,7 @@ class Hunter : Script {
             traps[obj.tile.id] = name
             obj.replace(trapId)
             if (trapId.endsWith("_net_setup")) {
-                val dir = direction(obj)
+                val dir = direction(obj.rotation)
                 GameObjects.add("net", obj.tile.add(dir), rotation = dir.ordinal / 2)
             }
         } else {
@@ -224,7 +245,7 @@ class Hunter : Script {
         val steps: StepValidator = get()
         for (dir in directions) {
             if (steps.canTravel(this, dir.delta.x, dir.delta.y)) {
-                walkTo(tile.add(dir))
+                walkTo(tile.add(dir), noCollision = true)
                 break
             }
         }
@@ -238,7 +259,7 @@ class Hunter : Script {
             message("This is not your trap.")
             return
         }
-        val trap = Rows.get("traps.${trapId.removeSuffix("_setup")}")
+        val trap = Rows.get("traps.${trapId.removeSuffix("_setup").removeSuffix("_fail")}")
         anim(trap.anim("take_down_anim"))
         sound("trap_dismantle", delay = 25)
         delay(2)
@@ -262,6 +283,7 @@ class Hunter : Script {
         for (item in trap.itemList("items")) {
             inventory.add(item)
         }
+        // TODO not enough inv space?
         for (item in creature.itemList("loot")) {
             inventory.add(item)
         }
@@ -276,14 +298,14 @@ class Hunter : Script {
             return
         }
         if (target.id.endsWith("_net_setup")) {
-            val dir = direction(target)
+            val dir = direction(target.rotation)
             val net = GameObjects.findOrNull(target.tile.add(dir), "net")
             net?.remove()
         }
         GameObjects.remove(target)
     }
 
-    private fun direction(target: GameObject): Direction = when (target.rotation) {
+    private fun direction(rotation: Int): Direction = when (rotation) {
         0 -> Direction.NORTH
         1 -> Direction.EAST
         2 -> Direction.SOUTH
