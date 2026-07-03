@@ -132,12 +132,6 @@ fun Character.shoot(
     tileOffsetX: Int = 0,
     tileOffsetY: Int = 0,
 ): Int {
-    // The start offset (width * 64) leads the projectile that many tiles from the source's south-west
-    // tile *towards* the target. From the south-west corner that reaches the far edge only when the
-    // target is north/east; a target to the west/south overshoots by the source's width and the
-    // projectile appears to spawn on top of it. Anchoring on the footprint tile nearest the target
-    // makes the origin the target-facing edge in every direction (size-1 sources are unaffected - the
-    // nearest tile is their only tile). An explicit tile offset keeps its caller-chosen origin.
     val explicitOrigin = tileOffsetX != 0 || tileOffsetY != 0
     return projectile(
         id = id,

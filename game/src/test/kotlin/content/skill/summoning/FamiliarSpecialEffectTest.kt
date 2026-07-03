@@ -294,10 +294,11 @@ class FamiliarSpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Bull Rush stuns and damages the target`() {
-        // Force the random damage roll off zero so the hit is observable.
+    fun `Bull Rush stuns and damages the target once the charge lands`() {
+        // Max the damage roll (until - 1) so the hit is observable, and win the 1-in-3 stun roll
+        // (nextInt(3) == 0) so the stun path fires.
         setRandom(object : FakeRandom() {
-            override fun nextInt(until: Int) = until - 1
+            override fun nextInt(until: Int) = if (until == 3) 0 else until - 1
         })
         val player = summon("rune_minotaur_familiar")
         val target = createNPC("giant_rat", player.tile.addY(4))
@@ -305,9 +306,27 @@ class FamiliarSpecialEffectTest : WorldTest() {
 
         val cast = FamiliarSpecialMoves.npcTarget.getValue("rune_minotaur_familiar").invoke(player, target)
         assertTrue(cast)
-        assertTrue(target.stunned, "the charge stuns the target")
+        assertFalse(target.stunned, "the stun waits for the projectile to reach the target")
 
-        tick(5) // let the ranged hit land
+        tick(5) // ~2s projectile flight, then the hit and stun land together
+        assertTrue(target.stunned, "the charge stuns the target on impact")
         assertTrue(target.levels.get(Skill.Constitution) < before, "bull rush damaged the target")
+    }
+
+    @Test
+    fun `Bull Rush does not always stun`() {
+        // Lose the 1-in-3 stun roll (nextInt(3) != 0) - the charge still hits but leaves no stun.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = if (until == 3) 1 else until - 1
+        })
+        val player = summon("rune_minotaur_familiar")
+        val target = createNPC("giant_rat", player.tile.addY(4))
+        val before = target.levels.get(Skill.Constitution)
+
+        assertTrue(FamiliarSpecialMoves.npcTarget.getValue("rune_minotaur_familiar").invoke(player, target))
+
+        tick(5)
+        assertFalse(target.stunned, "the stun only lands about a third of the time")
+        assertTrue(target.levels.get(Skill.Constitution) < before, "bull rush still damaged the target")
     }
 }

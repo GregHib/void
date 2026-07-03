@@ -58,6 +58,10 @@ fun Player.familiarCanSpecial(target: Character, silent: Boolean = false): Boole
  * fires a [projectile], deals a single hit of `random(0..maxHit)` of [type], then keeps fighting
  * the target (so the special doubles as an opening attack, as in the live game). Returns true on a
  * real cast; false (charging nothing) if the target is invalid.
+ *
+ * [onLand] runs once the hit reaches the target - queued to the projectile's flight time when there
+ * is a [projectile], or immediately otherwise - for on-impact effects (e.g. a stun) that must wait
+ * for the shot to arrive rather than firing the instant the special is cast.
  */
 fun Player.familiarSpecialHit(
     target: Character,
@@ -68,6 +72,7 @@ fun Player.familiarSpecialHit(
     projectile: String? = null,
     targetGfx: String? = null,
     engage: Boolean = true,
+    onLand: ((Character) -> Unit)? = null,
 ): Boolean {
     if (!familiarCanSpecial(target)) {
         return false
@@ -82,10 +87,16 @@ fun Player.familiarSpecialHit(
     val damage = random.nextInt(maxHit + 1)
     if (flight != null) {
         familiar.hit(target, offensiveType = type, damage = damage, delay = flight)
-        targetGfx?.let { gfx -> target.queue("familiar_special_gfx", CLIENT_TICKS.toTicks(flight)) { target.gfx(gfx) } }
+        val landDelay = CLIENT_TICKS.toTicks(flight)
+        targetGfx?.let { gfx -> target.queue("familiar_special_gfx", landDelay) { target.gfx(gfx) } }
+        // hit() lands its damage a tick after the projectile's flight; run onLand on that same tick
+        // (queued after the hit) so an on-impact stun - which sets the target's "delay" and would
+        // otherwise block the still-pending hit's queue - only fires once the damage has landed.
+        onLand?.let { land -> target.queue("familiar_special_land", landDelay + 1) { land(target) } }
     } else {
         familiar.hit(target, offensiveType = type, damage = damage)
         targetGfx?.let { target.gfx(it) }
+        onLand?.invoke(target)
     }
     if (target.inSingleCombat) {
         target.attackers.clear()

@@ -21,6 +21,9 @@ import world.gregs.voidps.type.random
 /** How long (game ticks) a minotaur's Bull Rush stuns its target, keeping it from acting. */
 private const val BULL_RUSH_STUN_TICKS = 5
 
+/** Bull Rush stuns on impact with a 1-in-[BULL_RUSH_STUN_CHANCE] chance (i.e. a third of the time). */
+private const val BULL_RUSH_STUN_CHANCE = 3
+
 /**
  * Combat familiar special moves - the cast-button specials that target an npc (or player). Each
  * registers into [FamiliarSpecialMoves]; the dispatcher runs it through [castFamiliarSpecial] so a
@@ -153,11 +156,13 @@ class FamiliarCombatSpecials : Script {
         )
         for ((familiar, maxHit) in bullRush) {
             FamiliarSpecialMoves.npc(familiar) { target ->
-                val cast = familiarSpecialHit(target, maxHit = maxHit, type = "range", anim = "bull_rush", sourceGfx = "bull_rush", projectile = "bull_rush_proj")
-                if (cast) {
-                    follower?.stun(target, BULL_RUSH_STUN_TICKS)
+                familiarSpecialHit(target, maxHit = maxHit, type = "range", anim = "bull_rush", sourceGfx = "bull_rush", projectile = "bull_rush_proj") { hit ->
+                    // The charge only stuns about a third of the time, and only once it lands - the
+                    // stun fires with the projectile's impact, not the instant the special is cast.
+                    if (random.nextInt(BULL_RUSH_STUN_CHANCE) == 0) {
+                        follower?.stun(hit, BULL_RUSH_STUN_TICKS)
+                    }
                 }
-                cast
             }
         }
     }

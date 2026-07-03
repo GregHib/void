@@ -96,6 +96,10 @@ id = 1496
 
 [bull_rush_proj]
 id = 1497
+# The minotaur charges its target from range with a 2s flight (flight units are 20ms, so 100 = 2s);
+# the hit and the on-impact stun land as the projectile arrives. Constant regardless of distance.
+time_offset = 100
+multiplier = 0
 
 [poisonous_blast_proj]
 id = 1508
