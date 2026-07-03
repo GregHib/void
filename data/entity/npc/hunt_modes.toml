@@ -122,7 +122,7 @@ find_keep_hunting = true
 
 [hunter_trap]
 type = "object"
-layer = 10
+layer = 2
 id = "bird_snare"
 check_visual = "line_of_sight"
 check_not_busy = true
