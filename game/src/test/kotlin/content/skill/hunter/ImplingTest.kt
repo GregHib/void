@@ -100,21 +100,23 @@ class ImplingTest : WorldTest() {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [
-        "baby_impling_jar",
-        "young_impling_jar",
-        "gourmet_impling_jar",
-        "earth_impling_jar",
-        "essence_impling_jar",
-        "eclectic_impling_jar",
-        "nature_impling_jar",
-        "magpie_impling_jar",
-        "ninja_impling_jar",
-        "dragon_impling_jar",
-        "pirate_impling_jar",
-        "zombie_impling_jar",
-        "kingly_impling_jar",
-    ])
+    @ValueSource(
+        strings = [
+            "baby_impling_jar",
+            "young_impling_jar",
+            "gourmet_impling_jar",
+            "earth_impling_jar",
+            "essence_impling_jar",
+            "eclectic_impling_jar",
+            "nature_impling_jar",
+            "magpie_impling_jar",
+            "ninja_impling_jar",
+            "dragon_impling_jar",
+            "pirate_impling_jar",
+            "zombie_impling_jar",
+            "kingly_impling_jar",
+        ],
+    )
     fun `Loot impling`(id: String) {
         val player = createPlayer()
         player.inventory.add(id)
