@@ -222,6 +222,7 @@ death_anim = "bronze_minotaur_familiar_death"
 [bronze_minotaur_familiar.melee]
 range = 1
 anim = "bronze_minotaur_familiar_attack"
+gfx = "minotaur_axe_swing"
 target_hit = { offense = "crush", max = 47 }
 
 [iron_minotaur_familiar]
@@ -233,6 +234,7 @@ death_anim = "iron_minotaur_familiar_death"
 [iron_minotaur_familiar.melee]
 range = 1
 anim = "iron_minotaur_familiar_attack"
+gfx = "minotaur_axe_swing"
 target_hit = { offense = "crush", max = 60 }
 
 [steel_minotaur_familiar]
@@ -244,6 +246,7 @@ death_anim = "steel_minotaur_familiar_death"
 [steel_minotaur_familiar.melee]
 range = 1
 anim = "steel_minotaur_familiar_attack"
+gfx = "minotaur_axe_swing"
 target_hit = { offense = "crush", max = 73 }
 
 [mithril_minotaur_familiar]
@@ -255,6 +258,7 @@ death_anim = "mithril_minotaur_familiar_death"
 [mithril_minotaur_familiar.melee]
 range = 1
 anim = "mithril_minotaur_familiar_attack"
+gfx = "minotaur_axe_swing"
 target_hit = { offense = "crush", max = 110 }
 
 [adamant_minotaur_familiar]
@@ -266,6 +270,7 @@ death_anim = "adamant_minotaur_familiar_death"
 [adamant_minotaur_familiar.melee]
 range = 1
 anim = "adamant_minotaur_familiar_attack"
+gfx = "minotaur_axe_swing"
 target_hit = { offense = "crush", max = 160 }
 
 [rune_minotaur_familiar]
@@ -277,6 +282,7 @@ death_anim = "rune_minotaur_familiar_death"
 [rune_minotaur_familiar.melee]
 range = 1
 anim = "rune_minotaur_familiar_attack"
+gfx = "minotaur_axe_swing"
 target_hit = { offense = "crush", max = 180 }
 
 [bull_ant_familiar]

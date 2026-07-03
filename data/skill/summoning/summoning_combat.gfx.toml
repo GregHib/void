@@ -43,3 +43,7 @@ id = 1422
 [spirit_tz-kih_familiar_projectile]
 id = 1423
 
+# Shared by every metal tier of minotaur familiar - the axe swing on a normal melee attack.
+[minotaur_axe_swing]
+id = 1498
+
