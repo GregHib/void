@@ -85,6 +85,9 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         if (get<DropTables>().get("forage_${familiarNpc.id.removeSuffix("_familiar")}") != null) {
             timers.start("forage")
         }
+        if (familiarNpc.id in FAMILIAR_HEAL_LIFEPOINTS) {
+            timers.start("familiar_heal")
+        }
     }
 }
 
@@ -115,6 +118,7 @@ fun Player.dismissFamiliar(removeNpc: Boolean = true) {
     timers.stop("familiar_timer")
     timers.stop("summoning_drain")
     timers.stop("forage")
+    timers.stop("familiar_heal")
 }
 
 /**
