@@ -43,3 +43,12 @@ id = 3067
 
 [lay_net_trap]
 id = 5215
+
+[impling_caught]
+id = 6615
+
+[caught_impling_barehanded]
+id = 12831
+
+[catch_impling_barehanded]
+id = 12832

@@ -22,6 +22,10 @@ wander_range = 30000
 id = 1033
 wander_range = 30000
 
+[spirit_impling]
+id = 7866
+wander_range = 30000
+
 [nature_impling]
 id = 1034
 wander_range = 30000
@@ -70,6 +74,9 @@ id = 6059
 
 [eclectic_impling_puro_puro]
 id = 6060
+
+[spirit_impling_puro_puro]
+id = 7904
 
 [nature_impling_puro_puro]
 id = 6061

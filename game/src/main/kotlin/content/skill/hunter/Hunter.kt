@@ -280,11 +280,13 @@ class Hunter : Script {
         anim(trap.anim("take_down_anim"))
         delay(2)
         removeTrap(target)
-        for (item in trap.itemList("items")) {
-            inventory.add(item)
+        val loot = creature.itemList("loot")
+        if (inventory.spaces < loot.size) {
+            val slots = inventory.spaces - loot.size
+            message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
+            return
         }
-        // TODO not enough inv space?
-        for (item in creature.itemList("loot")) {
+        for (item in loot) {
             inventory.add(item)
         }
         exp(Skill.Hunter, creature.int("xp") / 10.0)
