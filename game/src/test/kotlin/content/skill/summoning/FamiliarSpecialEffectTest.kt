@@ -253,6 +253,29 @@ class FamiliarSpecialEffectTest : WorldTest() {
     }
 
     @Test
+    fun `Call to Arms teleports the owner to the Void Knights' Outpost`() {
+        val player = summon("void_ravager_familiar")
+
+        val cast = player.runSpecial("void_ravager_familiar")
+        assertTrue(cast)
+        tick(4) // the teleport lands (and movement applies) four ticks after the cast
+
+        assertEquals(Tile(2659, 2658, 0), player.tile)
+    }
+
+    @Test
+    fun `Call to Arms is shared by all four Void familiars`() {
+        for (familiar in listOf("void_ravager_familiar", "void_shifter_familiar", "void_spinner_familiar", "void_torcher_familiar")) {
+            val player = summon(familiar)
+
+            assertTrue(player.runSpecial(familiar), "$familiar casts Call to Arms")
+            tick(4)
+
+            assertEquals(Tile(2659, 2658, 0), player.tile, "$familiar teleports to the outpost")
+        }
+    }
+
+    @Test
     fun `Fireball Assault hits a nearby foe`() {
         // Force the random damage roll off zero so the hit is observable.
         setRandom(object : FakeRandom() {

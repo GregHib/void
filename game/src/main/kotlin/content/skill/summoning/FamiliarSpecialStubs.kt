@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
  *  - Skill-system scenery: Hydra (Regrowth) (Beaver's Multichop is done)
  *  - "Charge the next attack" buffs: Iron titan, Steel titan (Spirit scorpion + Honey badger are done)
  *  - AoE hits: Smoke devil (Giant chinchompa's Explode is done)
- *  - Pest Control teleport (area not implemented in void): the four Void familiars' Call to Arms
  *  - Misc combat: Forge regent (disarm), Ravenous locust (Famine), Karamthulhu, Spirit dagannoth,
  *    Talon beast, Swamp titan, Lava titan, Praying mantis, Giant ent
  *
@@ -45,10 +44,6 @@ class FamiliarSpecialStubs : Script {
             "smoke_devil_familiar",
             "iron_titan_familiar",
             "steel_titan_familiar",
-            "void_ravager_familiar",
-            "void_shifter_familiar",
-            "void_spinner_familiar",
-            "void_torcher_familiar",
         ) { stub() }
 
         // Scenery-target specials. (Beaver's Multichop is done - see Beaver.kt.)

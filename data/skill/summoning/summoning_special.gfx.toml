@@ -188,3 +188,10 @@ id = 1364
 # Beaver Multichop: the graphic played on the familiar as it chops.
 [beaver_multichop]
 id = 1459
+
+# Call to Arms (Void familiars): teleport-out and teleport-in graphics on the owner.
+[call_to_arms]
+id = 1503
+
+[call_to_arms_land]
+id = 1502

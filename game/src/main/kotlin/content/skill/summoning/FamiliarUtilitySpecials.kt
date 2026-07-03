@@ -6,6 +6,7 @@ import content.entity.proj.shoot
 import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.get
@@ -52,6 +53,25 @@ class FamiliarUtilitySpecials : Script {
         // Ambush - teleport the familiar to the owner, ready to strike.
         FamiliarSpecialMoves.instant("spirit_kyatt_familiar") {
             callFollower()
+            true
+        }
+
+        // Call to Arms - the Void familiars teleport their owner to the Void Knights' Outpost.
+        FamiliarSpecialMoves.instant(
+            "void_ravager_familiar",
+            "void_shifter_familiar",
+            "void_spinner_familiar",
+            "void_torcher_familiar",
+        ) {
+            queue("call_to_arms", 1) {
+                anim("call_to_arms")
+                gfx("call_to_arms")
+            }
+            queue("call_to_arms_land", 3) {
+                tele(2659, 2658, 0)
+                anim("call_to_arms_land")
+                gfx("call_to_arms_land")
+            }
             true
         }
 

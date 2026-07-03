@@ -104,3 +104,10 @@ id = 7758
 # Beaver's Multichop animation (played on the familiar as it chops the tree).
 [beaver_multichop]
 id = 7722
+
+# Call to Arms (Void familiars): the owner's teleport-out and teleport-in animations.
+[call_to_arms]
+id = 8136
+
+[call_to_arms_land]
+id = 8137
