@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -114,6 +115,13 @@ class Impling(val dropTables: DropTables) : Script {
         npcTimerTick("reveal_impling") { Timer.CANCEL }
 
         npcTimerStop("reveal_impling") {
+            anim("impling_spawn")
+            if (tile in Areas["puro_puro"]) {
+                say("Tee hee!")
+                areaSound("impling_spawn", tile, radius = 3)
+            } else {
+                areaSound("impling_spawn", tile) // TODO check radius
+            }
             hide = false
         }
 

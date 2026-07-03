@@ -1,49 +1,3 @@
-[lay_trap]
-id = 5208
-
-[take_trap]
-id = 5207
-
-[lay_trap_small]
-id = 5212
-
-# Creature catch / fail animations
-[bird_land]
-id = 5171
-
-[bird_catch]
-id = 5172
-
-[bird_fail]
-id = 5173
-
-[chinchompa_catch]
-id = 5184
-
-[kebbit_catch]
-id = 5208
-
-[kebbit_fail]
-id = 5208
-
-[net_catch]
-id = 827
-
-[net_fail]
-id = 5270
-
-[butterfly_catch]
-id = 6605
-
-[bigcat_fall_in_pit]
-id = 5234
-
-[agility_pyramid_gap_jump]
-id = 3067
-
-[lay_net_trap]
-id = 5215
-
 [impling_caught]
 id = 6615
 
@@ -55,3 +9,6 @@ id = 12832
 
 [open_butterfly_jar]
 id = 5213
+
+[impling_spawn]
+id = 6618
