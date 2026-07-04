@@ -198,6 +198,15 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     }
 
     @Test
+    fun `The cast button explains how to trigger an item-target special, charging nothing`() {
+        val player = summon("pyrelord_familiar")
+        player.inventory.transaction { add("immense_heat_scroll", 1) }
+
+        assertFalse(player.runSpecial("pyrelord_familiar"), "the hint is not a cast")
+        assertEquals(1, player.inventory.count("immense_heat_scroll"), "no scroll is spent on the hint")
+    }
+
+    @Test
     fun `Immense Heat opens the jewellery mould interface from a gold bar`() {
         val player = summon("pyrelord_familiar")
         player.inventory.transaction {

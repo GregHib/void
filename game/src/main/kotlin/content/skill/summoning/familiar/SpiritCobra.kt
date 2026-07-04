@@ -4,6 +4,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.FamiliarSpecialMoves
 import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
@@ -28,6 +29,12 @@ private val INCUBATION_EGGS = mapOf(
 
 class SpiritCobra : Script {
     init {
+        // The cast button can't pick an inventory item, so it just points at the real trigger.
+        FamiliarSpecialMoves.instant("spirit_cobra_familiar") {
+            message("To cast Ophidian Incubation, use an egg on the spirit cobra.")
+            false
+        }
+
         // Ophidian Incubation - the spirit cobra transmutes an egg into the cockatrice-family egg of
         // the matching god bird. Item-target special through the scroll + points gate.
         for ((egg, product) in INCUBATION_EGGS) {

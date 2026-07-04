@@ -4,6 +4,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.FamiliarSpecialMoves
 import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
@@ -19,6 +20,12 @@ import world.gregs.voidps.type.random
 
 class Bunyip : Script {
     init {
+        // The cast button can't pick an inventory item, so it just points at the real trigger.
+        FamiliarSpecialMoves.instant("bunyip_familiar") {
+            message("To cast Swallow Whole, use a raw fish on the bunyip.")
+            false
+        }
+
         // Swallow Whole - the bunyip gulps down a raw fish the owner could cook, healing them for
         // the cooked fish's worth with no eat delay. Item-target special, so it runs through the
         // scroll + points gate and charges nothing when the fish is refused.

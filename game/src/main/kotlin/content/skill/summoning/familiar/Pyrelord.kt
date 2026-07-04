@@ -4,6 +4,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.FamiliarSpecialMoves
 import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
@@ -61,6 +62,12 @@ class Pyrelord : Script {
                     player<Happy>("I don't think he likes me...")
                 }
             }
+        }
+
+        // The cast button can't pick an inventory item, so it just points at the real trigger.
+        FamiliarSpecialMoves.instant("pyrelord_familiar") {
+            message("To cast Immense Heat, use a gold bar on the pyrelord.")
+            false
         }
 
         // Immense Heat - the pyrelord's flames stand in for a furnace, letting the owner craft
