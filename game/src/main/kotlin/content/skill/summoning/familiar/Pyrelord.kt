@@ -65,9 +65,9 @@ class Pyrelord : Script {
 
         // Immense Heat - the pyrelord's flames stand in for a furnace, letting the owner craft
         // gold jewellery on the spot. Item-target special through the scroll + points gate.
-        itemOnNPCApproach("gold_bar", "pyrelord_familiar") { (npc) ->
+        itemOnNPCOperate("gold_bar", "pyrelord_familiar") { (npc) ->
             if (npc != follower) {
-                return@itemOnNPCApproach
+                return@itemOnNPCOperate
             }
             castFamiliarSpecial {
                 anim("immense_heat")

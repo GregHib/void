@@ -20,7 +20,8 @@ import world.gregs.voidps.engine.entity.obj.GameObject
  *  - [objectTarget] : specials where the player then clicks scenery (chop a tree, fill a bin, ...)
  *
  * Item-target specials (use a fish/egg/bar on the familiar) are wired separately with
- * `itemOnNPCApproach` in their own scripts since they pick an inventory item, not a world target.
+ * `itemOnNPCOperate` in their own scripts since they pick an inventory item, not a world target
+ * (operate, not approach, so their exact item:npc key beats the beast-of-burden store's wildcard).
  *
  * Each block returns whether the move actually happened so [castFamiliarSpecial] only spends a
  * scroll + points on a real cast.

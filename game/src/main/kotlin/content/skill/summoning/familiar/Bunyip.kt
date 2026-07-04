@@ -22,9 +22,9 @@ class Bunyip : Script {
         // Swallow Whole - the bunyip gulps down a raw fish the owner could cook, healing them for
         // the cooked fish's worth with no eat delay. Item-target special, so it runs through the
         // scroll + points gate and charges nothing when the fish is refused.
-        itemOnNPCApproach("raw_*", "bunyip_familiar") { (npc, item) ->
+        itemOnNPCOperate("raw_*", "bunyip_familiar") { (npc, item) ->
             if (npc != follower) {
-                return@itemOnNPCApproach
+                return@itemOnNPCOperate
             }
             castFamiliarSpecial {
                 val row = Rows.getOrNull("cooking.${item.id}")

@@ -1,0 +1,283 @@
+package content.skill.summoning
+
+import WorldTest
+import content.entity.effect.toxin.poison
+import content.entity.effect.toxin.poisoned
+import content.entity.player.effect.energy.runEnergy
+import itemOnNpc
+import npcOption
+import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.type.Tile
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+
+/**
+ * Covers the boost, heal, item-target and object-target familiar specials, plus the passive
+ * familiar features added alongside them. Specials are invoked through the registered blocks or the
+ * item-on-npc interaction; the scroll/points gate itself is covered by [FamiliarSpecialMoveTest].
+ */
+class FamiliarUtilitySpecialEffectTest : WorldTest() {
+
+    private fun summon(familiar: String, tile: Tile = Tile(2523, 3056)): Player {
+        val player = createPlayer(tile)
+        player.levels.set(Skill.Summoning, 99)
+        player.summonFamiliar(NPCDefinitions.get(familiar), restart = false)
+        tick(2) // let the summon queue assign the follower
+        player.set("summoning_special_points_remaining", 60)
+        return player
+    }
+
+    private fun Player.runSpecial(familiar: String): Boolean = FamiliarSpecialMoves.instant.getValue(familiar).invoke(this)
+
+    @Test
+    fun `Testudo boosts Defence by 9`() {
+        val player = summon("war_tortoise_familiar")
+        val before = player.levels.get(Skill.Defence)
+
+        assertTrue(player.runSpecial("war_tortoise_familiar"))
+        assertEquals(before + 9, player.levels.get(Skill.Defence))
+    }
+
+    @Test
+    fun `Volcanic Strength boosts Strength by 9`() {
+        val player = summon("obsidian_golem_familiar")
+        val before = player.levels.get(Skill.Strength)
+
+        assertTrue(player.runSpecial("obsidian_golem_familiar"))
+        assertEquals(before + 9, player.levels.get(Skill.Strength))
+    }
+
+    @Test
+    fun `Magic Focus boosts Magic by 7`() {
+        val player = summon("wolpertinger_familiar")
+        val before = player.levels.get(Skill.Magic)
+
+        assertTrue(player.runSpecial("wolpertinger_familiar"))
+        assertEquals(before + 7, player.levels.get(Skill.Magic))
+    }
+
+    @Test
+    fun `Abyssal Stealth boosts Agility and Thieving by 4`() {
+        val player = summon("abyssal_lurker_familiar")
+        val agility = player.levels.get(Skill.Agility)
+        val thieving = player.levels.get(Skill.Thieving)
+
+        assertTrue(player.runSpecial("abyssal_lurker_familiar"))
+        assertEquals(agility + 4, player.levels.get(Skill.Agility))
+        assertEquals(thieving + 4, player.levels.get(Skill.Thieving))
+    }
+
+    @Test
+    fun `Tireless Run boosts Agility and restores run energy`() {
+        val player = summon("spirit_terrorbird_familiar")
+        player.runEnergy = 0
+        val agility = player.levels.get(Skill.Agility)
+
+        assertTrue(player.runSpecial("spirit_terrorbird_familiar"))
+        assertEquals(agility + 2, player.levels.get(Skill.Agility))
+        assertTrue(player.runEnergy > 0, "the terrorbird tops up run energy")
+    }
+
+    @Test
+    fun `Titan's Constitution raises Defence and heals 80 life points`() {
+        val player = summon("fire_titan_familiar")
+        player.experience.set(Skill.Defence, 14_000_000.0) // level 99 so the multiplier has headroom
+        player.experience.set(Skill.Constitution, 14_000_000.0)
+        player.levels.drain(Skill.Constitution, 500)
+        val defence = player.levels.get(Skill.Defence)
+        val lifePoints = player.levels.get(Skill.Constitution)
+
+        assertTrue(player.runSpecial("fire_titan_familiar"))
+        assertTrue(player.levels.get(Skill.Defence) > defence, "Defence rises by an eighth")
+        assertEquals(lifePoints + 80, player.levels.get(Skill.Constitution))
+    }
+
+    @Test
+    fun `Healing Aura restores 15 percent of maximum life points`() {
+        val player = summon("unicorn_stallion_familiar")
+        player.experience.set(Skill.Constitution, 14_000_000.0) // 990 life points
+        player.levels.drain(Skill.Constitution, 500)
+        val before = player.levels.get(Skill.Constitution)
+
+        assertTrue(player.runSpecial("unicorn_stallion_familiar"))
+        assertEquals(before + 149, player.levels.get(Skill.Constitution), "15% of 990, rounded up")
+    }
+
+    @Test
+    fun `Blood Drain cures poison, restores drained stats and bites for 25`() {
+        val player = summon("bloated_leech_familiar")
+        player.experience.set(Skill.Constitution, 14_000_000.0)
+        player.poison(player, 20)
+        player.levels.drain(Skill.Attack, 3)
+        val lifePoints = player.levels.get(Skill.Constitution)
+
+        assertTrue(player.runSpecial("bloated_leech_familiar"))
+        tick(1)
+
+        assertFalse(player.poisoned, "the leech sucks out the poison")
+        assertEquals(player.levels.getMax(Skill.Attack), player.levels.get(Skill.Attack), "drained Attack is restored")
+        assertEquals(lifePoints - 25, player.levels.get(Skill.Constitution), "the leech takes its 25-point bite")
+    }
+
+    @Test
+    fun `Thieving Fingers is a visual flourish that still counts as a cast`() {
+        val player = summon("magpie_familiar")
+        assertTrue(player.runSpecial("magpie_familiar"))
+    }
+
+    @Test
+    fun `Swallow Whole heals the cooked fish's worth with no eating delay`() {
+        val player = summon("bunyip_familiar")
+        player.experience.set(Skill.Constitution, 14_000_000.0)
+        player.levels.set(Skill.Cooking, 80)
+        player.levels.drain(Skill.Constitution, 500)
+        player.inventory.transaction {
+            add("swallow_whole_scroll", 1)
+            add("raw_shark", 1)
+        }
+        val before = player.levels.get(Skill.Constitution)
+
+        player.itemOnNpc(player.follower!!, 1)
+        tick(2)
+
+        assertEquals(0, player.inventory.count("raw_shark"), "the bunyip gulped the shark")
+        assertEquals(0, player.inventory.count("swallow_whole_scroll"), "one scroll spent")
+        assertEquals(before + 200, player.levels.get(Skill.Constitution), "healed the cooked shark's worth")
+        assertFalse(player.hasClock("food_delay"), "swallowing bypasses the eating delay")
+    }
+
+    @Test
+    fun `Swallow Whole refuses a fish above the owner's Cooking level`() {
+        val player = summon("bunyip_familiar")
+        player.levels.set(Skill.Cooking, 1)
+        player.inventory.transaction {
+            add("swallow_whole_scroll", 1)
+            add("raw_shark", 1)
+        }
+
+        player.itemOnNpc(player.follower!!, 1)
+        tick(2)
+
+        assertEquals(1, player.inventory.count("raw_shark"), "the shark is refused")
+        assertEquals(1, player.inventory.count("swallow_whole_scroll"), "and nothing is charged")
+    }
+
+    @Test
+    fun `Ophidian Incubation turns each god-bird egg into its cockatrice counterpart`() {
+        val eggs = mapOf(
+            "egg" to "cockatrice_egg",
+            "birds_egg_green" to "guthatrice_egg",
+            "birds_egg_blue" to "saratrice_egg",
+            "birds_egg_red" to "zamatrice_egg",
+            "penguin_egg" to "pengatrice_egg",
+            "raven_egg" to "coraxatrice_egg",
+            "vulture_egg" to "vulatrice_egg",
+        )
+        val player = summon("spirit_cobra_familiar")
+        player.inventory.transaction { add("ophidian_incubation_scroll", eggs.size) }
+
+        for ((egg, product) in eggs) {
+            player.set("summoning_special_points_remaining", 60)
+            player.inventory.transaction { add(egg, 1) }
+
+            player.itemOnNpc(player.follower!!, 1)
+            tick(3)
+
+            assertEquals(1, player.inventory.count(product), "$egg incubates into $product")
+            player.inventory.transaction { remove(product, 1) }
+        }
+    }
+
+    @Test
+    fun `Immense Heat opens the jewellery mould interface from a gold bar`() {
+        val player = summon("pyrelord_familiar")
+        player.inventory.transaction {
+            add("immense_heat_scroll", 1)
+            add("gold_bar", 1)
+        }
+
+        player.itemOnNpc(player.follower!!, 1)
+        tick(2)
+
+        assertTrue(player.interfaces.contains("make_mould_slayer"), "the mould interface opens without a furnace")
+        assertEquals(0, player.inventory.count("immense_heat_scroll"), "one scroll spent")
+    }
+
+    @Test
+    fun `Regrowth revives a felled tree from its stump`() {
+        val player = summon("hydra_familiar")
+        val tree = createObject("yew", player.tile.addX(2))
+        GameObjects.replace(tree, "yew_stump", ticks = 100)
+        val stump = GameObjects.find(tree.tile) { it.id == "yew_stump" }!!
+
+        assertTrue(FamiliarSpecialMoves.objectTarget.getValue("hydra_familiar").invoke(player, stump))
+
+        assertTrue(GameObjects.find(tree.tile) { it.id == "yew" } != null, "the yew is back")
+    }
+
+    @Test
+    fun `Regrowth refuses anything that is not a stump`() {
+        val player = summon("hydra_familiar")
+        val booth = createObject("bank_booth", player.tile.addX(1))
+
+        assertFalse(FamiliarSpecialMoves.objectTarget.getValue("hydra_familiar").invoke(player, booth))
+    }
+
+    @Test
+    fun `The bunyip passively heals its owner 20 life points every 15 seconds`() {
+        val player = summon("bunyip_familiar")
+        player.experience.set(Skill.Constitution, 14_000_000.0)
+        player.levels.drain(Skill.Constitution, 500)
+        val before = player.levels.get(Skill.Constitution)
+
+        tick(25) // 15 seconds
+
+        assertTrue(player.levels.get(Skill.Constitution) >= before + 20, "the bunyip's heal fired")
+    }
+
+    @Test
+    fun `The unicorn stallion's Cure option cures poison for 2 special points`() {
+        val player = summon("unicorn_stallion_familiar")
+        player.poison(player, 20)
+        assertTrue(player.poisoned)
+
+        player.npcOption(player.follower!!, "Cure")
+        tick(2)
+
+        assertFalse(player.poisoned, "the unicorn cured the poison")
+        assertEquals(58, player.get("summoning_special_points_remaining", 0), "the cure costs 2 points")
+    }
+
+    @Test
+    fun `The giant ent transmutes pure essence into a rune`() {
+        val player = summon("giant_ent_familiar")
+        player.inventory.transaction { add("pure_essence", 1) }
+
+        player.itemOnNpc(player.follower!!, 0)
+        tick(2)
+
+        assertEquals(0, player.inventory.count("pure_essence"))
+        assertTrue(player.inventory.count("earth_rune") + player.inventory.count("nature_rune") == 1, "the essence became a rune")
+    }
+
+    @Test
+    fun `The forge regent burns logs like the pyrelord, with a helper bonus`() {
+        val player = summon("forge_regent_familiar")
+        player.inventory.transaction { add("logs", 1) }
+
+        player.itemOnNpc(player.follower!!, 0)
+        tick(2)
+
+        assertEquals(0, player.inventory.count("logs"), "the regent burnt the log")
+        assertEquals(50.0, player.experience.get(Skill.Firemaking), "the log's 40 xp plus the 10 helper bonus")
+    }
+}

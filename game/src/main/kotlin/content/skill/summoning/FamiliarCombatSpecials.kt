@@ -320,8 +320,10 @@ class FamiliarCombatSpecials : Script {
         // the target on a real cast so it can't act for a few ticks (as in the live game).
         // Iron Within / Steel of Legends - charge the titan so its next attack (melee-only for the
         // iron titan) lands as a flurry of 3 / 4 hits on its target. The charge is set on cast and
-        // spent by the npcCombatAttack handler on the familiar's next swing.
-        for ((familiar, extraHits) in mapOf("iron_titan_familiar" to 2, "steel_titan_familiar" to 3)) {
+        // spent by the npcCombatAttack handler on the familiar's next swing; each extra hit rolls
+        // up to the titan's own max (2 extra up to 230 for iron, 3 up to 244 for steel).
+        for ((familiar, flurry) in mapOf("iron_titan_familiar" to (2 to 230), "steel_titan_familiar" to (3 to 244))) {
+            val (extraHits, flurryMax) = flurry
             val charge = "familiar_titan_charged"
             FamiliarSpecialMoves.instant(familiar) {
                 if (this[charge, false]) {
@@ -345,7 +347,7 @@ class FamiliarCombatSpecials : Script {
                 // Clear before the extra hits - each one re-fires this handler.
                 owner.clear(charge)
                 repeat(extraHits) { swing ->
-                    hit(attack.target, offensiveType = attack.type, delay = attack.delay + (swing + 1) * 30)
+                    hit(attack.target, offensiveType = attack.type, damage = random.nextInt(flurryMax + 1), delay = attack.delay + (swing + 1) * 30)
                 }
             }
         }

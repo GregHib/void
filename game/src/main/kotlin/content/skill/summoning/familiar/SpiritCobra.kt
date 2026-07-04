@@ -31,9 +31,9 @@ class SpiritCobra : Script {
         // Ophidian Incubation - the spirit cobra transmutes an egg into the cockatrice-family egg of
         // the matching god bird. Item-target special through the scroll + points gate.
         for ((egg, product) in INCUBATION_EGGS) {
-            itemOnNPCApproach(egg, "spirit_cobra_familiar") { (npc, item) ->
+            itemOnNPCOperate(egg, "spirit_cobra_familiar") { (npc, item) ->
                 if (npc != follower) {
-                    return@itemOnNPCApproach
+                    return@itemOnNPCOperate
                 }
                 castFamiliarSpecial {
                     if (!inventory.replace(item.id, product)) {
