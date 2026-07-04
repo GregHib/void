@@ -167,17 +167,19 @@ class Hunter : Script {
         // TODO ferret, chinchompa, rabbits
 
         npcSpawn("hunting_*_trap_npc") {
-//            transform("${id}_off")
-//            revert(15)
+            transform("${id}_off")
+            revert(15)
         }
 
         npcDespawn("hunting_*_trap_npc") {
             val trapId = Tables.stringOrNull("trap_npcs.${id}.trap") ?: return@npcDespawn
             val message = Tables.string("traps.${trapId}.collapse_message") // Can probably be looked up by type?
-            if (lifecycle == 0) {
-                val player = owner()
+            val player = owner()
+            if (lifecycle == 0) { // Collapse
                 player?.message(message)
-                player?.collapse(this)
+                player?.collapse(this, drop = true)
+            } else {
+                player?.collapse(this, drop = player["logged_out", false])
             }
         }
 
@@ -242,16 +244,18 @@ class Hunter : Script {
         return Players.findByAccount(account)
     }
 
-    private fun Player.collapse(npc: NPC) {
+    private fun Player.collapse(npc: NPC, drop: Boolean) {
         dec("trap_count")
         val tile = npc.tile // TODO tile won't be correct for object traps
         val obj = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return
         obj.remove()
-        val id = when (obj.id) {
-            "snare_crimson_swift", "snare_golden_warbler", "bird_snare_fail" -> "bird_snare"
-            else -> obj.id
+        if (drop) {
+            val id = when (obj.id) {
+                "snare_crimson_swift", "snare_golden_warbler", "bird_snare_fail" -> "bird_snare"
+                else -> obj.id
+            }
+            dropTrapItems(id, tile) // TODO does baited drop bait?
         }
-        dropTrapItems(id, tile) // TODO does baited drop bait?
     }
 
     private fun Player.dropTrapItems(id: String, tile: Tile) {
