@@ -332,23 +332,28 @@ class FamiliarSpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Herbcall drops a clean herb at the familiar after a short search, then goes on cooldown`() {
-        // Pick the first herb in the pool (clean guam) deterministically.
+    fun `Herbcall drops a grimy herb during the drop graphic, then recalls the macaw`() {
+        // Pick the first herb in the pool (grimy guam) deterministically.
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = 0
         })
         val player = summon("macaw_familiar")
         val familiar = player.follower!!
+        // The macaw hovers where it started while it searches; the herb drops on that tile.
+        val searchTile = familiar.tile
 
         assertTrue(player.runSpecial("macaw_familiar"))
         assertTrue(player.hasClock("herbcall_delay"), "Herbcall starts its one-minute cooldown")
-        assertTrue(FloorItems.at(familiar.tile).none { it.id == "grimy_guam" }, "the herb only drops once the search finishes")
 
-        tick(6)
-        assertTrue(FloorItems.at(familiar.tile).any { it.id == "grimy_guam" }, "the macaw drops the herb it searched out")
+        tick(5) // ~3s in the drop graphic plays, but the herb hasn't landed yet
+        assertTrue(FloorItems.at(searchTile).none { it.id == "grimy_guam" }, "the herb waits during the search")
+
+        tick(2) // a second later the herb lands and becomes visible
+        assertTrue(FloorItems.at(searchTile).any { it.id == "grimy_guam" }, "the herb appears where the macaw searched")
+        assertTrue(player.tile.distanceTo(familiar.tile) <= 1, "the macaw is called back down beside its owner")
 
         // Still on cooldown - a second cast is refused and produces nothing more.
         assertFalse(player.runSpecial("macaw_familiar"))
-        assertEquals(1, FloorItems.at(familiar.tile).count { it.id == "grimy_guam" }, "no extra herb while on cooldown")
+        assertEquals(1, FloorItems.at(searchTile).count { it.id == "grimy_guam" }, "no extra herb while on cooldown")
     }
 }

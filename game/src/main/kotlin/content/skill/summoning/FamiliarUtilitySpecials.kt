@@ -22,6 +22,15 @@ import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.type.random
 
+// A queued action fires initialDelay + 1 ticks after it is added (and a dropped floor item becomes
+// visible the tick after that), so these delays sit one under the intended tick counts. The macaw
+// searches for ~3 seconds (a 5-tick wait) before its drop graphic plays; the herb lands soon after.
+/** Delay before the Herbcall drop graphic plays - fires 5 ticks (~3 seconds) after the cast. */
+private const val HERBCALL_SEARCH_DELAY = 4
+
+/** Delay before the herb lands - fires 6 ticks after the cast, part-way through the drop graphic. */
+private const val HERBCALL_DROP_DELAY = 5
+
 /**
  * Utility familiar specials: send-the-familiar-to-fight, call/ambush, ground-drop foragers, and
  * banking. Combat-engage moves register as [FamiliarSpecialMoves.npc]; the rest are instant casts.
@@ -146,7 +155,9 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Herbcall - the macaw searches out a herb and drops it at its feet a few ticks later.
+        // Herbcall - the macaw flaps up and searches for a herb; when the fly-up animation finishes it
+        // drops a random grimy herb where it hovered and is called back down to its owner. As in
+        // 2009scape it has a one-minute cooldown of its own on top of the usual scroll/point cost.
         FamiliarSpecialMoves.instant("macaw_familiar") {
             val familiar = follower ?: return@instant false
             if (hasClock("herbcall_delay")) {
@@ -154,10 +165,16 @@ class FamiliarUtilitySpecials : Script {
                 return@instant false
             }
             familiar.anim("herbcall")
-            familiar.gfx("herbcall")
             val herb = herbcallHerbs[random.nextInt(herbcallHerbs.size)]
-            queue("herbcall", 5) {
+            // Three seconds into the search the drop graphic bursts where the macaw hovers (an area
+            // gfx so the follow-up recall teleport doesn't drag it away)...
+            queue("herbcall_search", HERBCALL_SEARCH_DELAY) {
+                areaGfx("herbcall", familiar.tile)
+            }
+            // ...and a second later the herb lands where it hovered and the macaw is called back down.
+            queue("herbcall_drop", HERBCALL_DROP_DELAY) {
                 FloorItems.add(familiar.tile, herb, disappearTicks = 300, owner = this@instant)
+                callFollower()
             }
             start("herbcall_delay", 100)
             true

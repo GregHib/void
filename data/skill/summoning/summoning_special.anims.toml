@@ -97,9 +97,11 @@ id = 14858
 [generate_compost]
 id = 7775
 
-# Macaw's Herbcall animation (played on the familiar as it searches out a herb).
+# Macaw's Herbcall animation - the macaw flaps up and hovers as it searches out a herb. `ticks` is
+# the animation's full length (263 client cycles / 30 ≈ 9 game ticks).
 [herbcall]
 id = 8013
+ticks = 9
 
 # Giant chinchompa's Explode animation (played on the familiar).
 [chinchompa_explode]
