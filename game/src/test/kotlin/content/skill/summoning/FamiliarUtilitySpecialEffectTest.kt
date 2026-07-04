@@ -339,6 +339,14 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
         tick(3)
         assertEquals(familiarTile.addX(-1), player.follower!!.tile, "the familiar steps west off its fire")
+
+        // The owner stepping up next to the familiar shouldn't send it shuffling behind them -
+        // adjacent already, it just faces them.
+        val step = player.tile.addX(-1)
+        player.walkTo(step)
+        tick(5)
+        assertEquals(step, player.tile, "the owner stepped up beside the familiar")
+        assertEquals(familiarTile.addX(-1), player.follower!!.tile, "the familiar faces its adjacent owner instead of tucking in behind")
     }
 
     @Test

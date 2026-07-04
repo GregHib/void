@@ -41,6 +41,13 @@ class Follow(
             return
         }
         character.walkTrigger()
+        // An npc already beside its target just faces it rather than pathing onto the follow tile
+        // (checked here as well as in recalculate - a freshly-set Follow calculates a full path on
+        // its first tick, which would otherwise bypass the recalculate guard).
+        if (character is NPC && target.tile.distanceTo(character) <= 1) {
+            character.steps.clearDestination()
+            return
+        }
         if (!smart) {
             character.steps.clearDestination()
         }
