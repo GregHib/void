@@ -325,3 +325,15 @@ id = 1449
 # Hydra Regrowth: the burst of life on the familiar.
 [regrowth]
 id = 1487
+
+# Bunyip Swallow Whole: the gulp graphic on the familiar.
+[swallow_whole]
+id = 1481
+
+# Spirit cobra Ophidian Incubation: the transmuting gaze on the familiar.
+[ophidian_incubation]
+id = 1388
+
+# Pyrelord Immense Heat: the flare on the owner as the gold melts.
+[immense_heat]
+id = 1463

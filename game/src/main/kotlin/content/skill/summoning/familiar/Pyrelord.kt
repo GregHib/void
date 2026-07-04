@@ -4,9 +4,12 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -57,6 +60,20 @@ class Pyrelord : Script {
                     npc<Neutral>("Yes: I'm afraid of being you.")
                     player<Happy>("I don't think he likes me...")
                 }
+            }
+        }
+
+        // Immense Heat - the pyrelord's flames stand in for a furnace, letting the owner craft
+        // gold jewellery on the spot. Item-target special through the scroll + points gate.
+        itemOnNPCApproach("gold_bar", "pyrelord_familiar") { (npc) ->
+            if (npc != follower) {
+                return@itemOnNPCApproach
+            }
+            castFamiliarSpecial {
+                anim("immense_heat")
+                gfx("immense_heat")
+                open("make_mould${if (World.members) "_slayer" else ""}")
+                true
             }
         }
 

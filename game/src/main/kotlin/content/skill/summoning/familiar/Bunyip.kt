@@ -4,12 +4,55 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.castFamiliarSpecial
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
 
 class Bunyip : Script {
     init {
+        // Swallow Whole - the bunyip gulps down a raw fish the owner could cook, healing them for
+        // the cooked fish's worth with no eat delay. Item-target special, so it runs through the
+        // scroll + points gate and charges nothing when the fish is refused.
+        itemOnNPCApproach("raw_*", "bunyip_familiar") { (npc, item) ->
+            if (npc != follower) {
+                return@itemOnNPCApproach
+            }
+            castFamiliarSpecial {
+                val row = Rows.getOrNull("cooking.${item.id}")
+                if (row == null) {
+                    message("Your bunyip only swallows raw fish.")
+                    return@castFamiliarSpecial false
+                }
+                val cookedId = row.item("cooked").ifEmpty { item.id.replace("raw", "cooked") }
+                val heals: IntRange? = ItemDefinitions.getOrNull(cookedId)?.getOrNull("heals")
+                if (heals == null) {
+                    message("Your bunyip only swallows raw fish.")
+                    return@castFamiliarSpecial false
+                }
+                if (!has(Skill.Cooking, row.int("level"), message = true)) {
+                    return@castFamiliarSpecial false
+                }
+                if (!inventory.remove(item.id)) {
+                    return@castFamiliarSpecial false
+                }
+                val bunyip = follower ?: return@castFamiliarSpecial false
+                bunyip.anim("swallow_whole")
+                bunyip.gfx("swallow_whole")
+                levels.restore(Skill.Constitution, heals.random())
+                message("Your bunyip swallows the ${item.def.name.lowercase()} whole, and you feel reinvigorated.", ChatType.Filter)
+                true
+            }
+        }
+
         npcOperate("Interact", "bunyip_familiar") {
             val fish = listOf(
                 "raw_crayfish", "raw_shrimps", "raw_anchovies", "raw_sardine", "raw_giant_carp",

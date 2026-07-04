@@ -4,13 +4,50 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.castFamiliarSpecial
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
+/** The eggs Ophidian Incubation can hatch into their spirit cockatrice-family counterparts. */
+private val INCUBATION_EGGS = mapOf(
+    "egg" to "cockatrice_egg",
+    "birds_egg_green" to "guthatrice_egg",
+    "birds_egg_blue" to "saratrice_egg",
+    "birds_egg_red" to "zamatrice_egg",
+    "penguin_egg" to "pengatrice_egg",
+    "raven_egg" to "coraxatrice_egg",
+    "vulture_egg" to "vulatrice_egg",
+)
+
 class SpiritCobra : Script {
     init {
+        // Ophidian Incubation - the spirit cobra transmutes an egg into the cockatrice-family egg of
+        // the matching god bird. Item-target special through the scroll + points gate.
+        for ((egg, product) in INCUBATION_EGGS) {
+            itemOnNPCApproach(egg, "spirit_cobra_familiar") { (npc, item) ->
+                if (npc != follower) {
+                    return@itemOnNPCApproach
+                }
+                castFamiliarSpecial {
+                    if (!inventory.replace(item.id, product)) {
+                        return@castFamiliarSpecial false
+                    }
+                    val cobra = follower ?: return@castFamiliarSpecial false
+                    cobra.anim("ophidian_incubation")
+                    cobra.gfx("ophidian_incubation")
+                    message("Your spirit cobra incubates the egg with its gaze.", ChatType.Filter)
+                    true
+                }
+            }
+        }
+
         npcOperate("Interact", "spirit_cobra_familiar") {
             if (equipped(EquipSlot.Ring).id in setOf("ring_of_charos", "ring_of_charos_a", "ring_of_charos_ai")) {
                 npc<Neutral>("You are under my power!")

@@ -160,3 +160,15 @@ id = 8183
 # Hydra's Regrowth animation (played on the familiar as it revives the tree).
 [regrowth]
 id = 7945
+
+# Bunyip's Swallow Whole animation (played on the familiar as it gulps the fish).
+[swallow_whole]
+id = 7747
+
+# Spirit cobra's Ophidian Incubation animation (played on the familiar).
+[ophidian_incubation]
+id = 8159
+
+# Pyrelord's Immense Heat animation (played on the owner as the pyrelord heats the gold).
+[immense_heat]
+id = 8081
