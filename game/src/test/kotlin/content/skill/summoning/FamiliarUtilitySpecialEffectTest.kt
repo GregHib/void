@@ -12,8 +12,10 @@ import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -333,7 +335,13 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         player.itemOnNpc(player.follower!!, 0)
         tick(2)
 
-        assertEquals(0, player.inventory.count("logs"), "the regent burnt the log")
+        // The logs land at the familiar's feet before it breathes fire over them.
+        assertEquals(0, player.inventory.count("logs"), "the log left the inventory")
+        assertTrue(FloorItems.at(familiarTile).any { it.id == "logs" }, "the logs lie at the familiar's feet")
+        assertTrue(GameObjects.getLayer(familiarTile, ObjectLayer.GROUND) == null, "not yet alight")
+
+        tick(3)
+        assertTrue(FloorItems.at(familiarTile).none { it.id == "logs" }, "the logs are consumed by the flames")
         assertEquals(50.0, player.experience.get(Skill.Firemaking), "the log's 40 xp plus the 10 helper bonus")
         assertTrue(GameObjects.find(familiarTile) { it.id.startsWith("fire_") } != null, "the fire burns beneath the familiar")
 
