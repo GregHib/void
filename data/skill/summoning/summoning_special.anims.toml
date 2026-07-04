@@ -172,3 +172,10 @@ id = 8159
 # Pyrelord's Immense Heat animation (played on the owner as the pyrelord heats the gold).
 [immense_heat]
 id = 8081
+
+# Barker toad Toad Bark: the firing animation, and the load animation as a cannonball goes in.
+[toad_bark]
+id = 7703
+
+[toad_bark_load]
+id = 7704

@@ -77,35 +77,38 @@ class Pyrelord : Script {
             }
         }
 
-        // The pyrelord acts as a portable fire source - it burns logs without a tinderbox.
-        itemOnNPCOperate("*logs*", "pyrelord_familiar") { (target, item) ->
-            if (target != follower) {
-                message("That's not your familiar.")
-                return@itemOnNPCOperate
+        // The pyrelord and forge regent act as portable fire sources - they burn logs without a
+        // tinderbox, granting the log's xp plus a small bonus for the demon's help.
+        for (familiar in listOf("pyrelord_familiar", "forge_regent_familiar")) {
+            itemOnNPCOperate("*logs*", familiar) { (target, item) ->
+                if (target != follower) {
+                    message("That's not your familiar.")
+                    return@itemOnNPCOperate
+                }
+                val row = Rows.getOrNull("firemaking.${item.id}")
+                if (row == null) {
+                    message("The ${target.def.name.lowercase()} only burns logs.")
+                    return@itemOnNPCOperate
+                }
+                val level = row.int("level")
+                if (!has(Skill.Firemaking, level, true)) {
+                    return@itemOnNPCOperate
+                }
+                if (GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
+                    message("You can't light a fire here.")
+                    return@itemOnNPCOperate
+                }
+                if (!inventory.remove(item.id)) {
+                    return@itemOnNPCOperate
+                }
+                anim("light_fire")
+                exp(Skill.Firemaking, row.int("xp") / 10.0 + 10)
+                val colour = row.string("colour")
+                val life = row.int("life")
+                GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
+                FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
+                message("The ${target.def.name.lowercase()} breathes fire and the logs begin to burn.", ChatType.Filter)
             }
-            val row = Rows.getOrNull("firemaking.${item.id}")
-            if (row == null) {
-                message("The pyrelord only burns logs.")
-                return@itemOnNPCOperate
-            }
-            val level = row.int("level")
-            if (!has(Skill.Firemaking, level, true)) {
-                return@itemOnNPCOperate
-            }
-            if (GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
-                message("You can't light a fire here.")
-                return@itemOnNPCOperate
-            }
-            if (!inventory.remove(item.id)) {
-                return@itemOnNPCOperate
-            }
-            anim("light_fire")
-            exp(Skill.Firemaking, row.int("xp") / 10.0)
-            val colour = row.string("colour")
-            val life = row.int("life")
-            GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
-            FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
-            message("The pyrelord breathes fire and the logs begin to burn.", ChatType.Filter)
         }
     }
 }

@@ -337,3 +337,14 @@ id = 1388
 # Pyrelord Immense Heat: the flare on the owner as the gold melts.
 [immense_heat]
 id = 1463
+
+# Barker toad Toad Bark: the load graphic and the fired cannonball.
+[toad_bark_load]
+id = 1400
+
+[toad_bark_proj]
+id = 1402
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0

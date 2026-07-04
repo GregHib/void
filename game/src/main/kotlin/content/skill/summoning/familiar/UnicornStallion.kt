@@ -1,5 +1,7 @@
 package content.skill.summoning.familiar
 
+import content.entity.effect.toxin.curePoison
+import content.entity.effect.toxin.poisoned
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
@@ -11,6 +13,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.random
+
+/** Special-move points the unicorn stallion's right-click Cure option drains. */
+private const val CURE_COST = 2
 
 class UnicornStallion : Script {
     init {
@@ -58,15 +63,14 @@ class UnicornStallion : Script {
                 message("This isn't your familiar.")
                 return@npcOperate
             }
-            if (!this["poisoned", false]) {
+            if (!poisoned) {
                 message("You're not suffering from poison!")
                 return@npcOperate
             }
-            val cost = follower?.def["summoning_special_cost", 8] ?: 8
-            useFamiliarSpecial(cost) {
+            useFamiliarSpecial(CURE_COST) {
                 follower?.anim("unicorn_stallion_cure")
                 follower?.gfx("unicorn_stallion_cure")
-                clear("poisoned")
+                curePoison()
             }
         }
     }

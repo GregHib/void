@@ -21,3 +21,7 @@ id = 1315
 # Desert wyrm "Burrow" npc option graphic.
 [desert_wyrm_burrow]
 id = 1412
+
+# Bunyip's passive heal graphic, played on the owner as the 15s heal restores life points.
+[bunyip_heal]
+id = 1507

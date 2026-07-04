@@ -13,6 +13,12 @@ import java.util.concurrent.TimeUnit
  */
 val FAMILIAR_HEAL_LIFEPOINTS: Map<String, Int> = mapOf(
     "void_spinner_familiar" to 100,
+    "bunyip_familiar" to 20,
+)
+
+/** Graphic played on the owner when the familiar's passive heal actually restores life points. */
+private val FAMILIAR_HEAL_GFX: Map<String, String> = mapOf(
+    "bunyip_familiar" to "bunyip_heal",
 )
 
 /**
@@ -29,7 +35,9 @@ class FamiliarHeal : Script {
 
         timerTick("familiar_heal") {
             val amount = FAMILIAR_HEAL_LIFEPOINTS[follower?.id] ?: return@timerTick Timer.CANCEL
-            levels.restore(Skill.Constitution, amount)
+            if (levels.restore(Skill.Constitution, amount) > 0) {
+                FAMILIAR_HEAL_GFX[follower?.id]?.let { gfx(it) }
+            }
             Timer.CONTINUE
         }
     }

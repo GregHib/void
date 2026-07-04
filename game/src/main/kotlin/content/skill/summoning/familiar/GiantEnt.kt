@@ -5,11 +5,28 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.type.random
 
 class GiantEnt : Script {
     init {
+        // The giant ent transmutes pure essence used on it into an earth or (more rarely) nature rune.
+        itemOnNPCOperate("pure_essence", "giant_ent_familiar") { (target) ->
+            if (target != follower) {
+                message("That's not your familiar.")
+                return@itemOnNPCOperate
+            }
+            val rune = if (random.nextInt(9) < 4) "earth_rune" else "nature_rune"
+            if (inventory.replace("pure_essence", rune)) {
+                message("Your giant ent transmutes the essence into a rune.", ChatType.Filter)
+            }
+        }
+
         npcOperate("Interact", "giant_ent_familiar") {
             val stage = this["ent_fam_dial", 0]
             if (stage == 0) {

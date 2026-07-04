@@ -4,12 +4,36 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
 
 class BarkerToad : Script {
     init {
+        // Loading a cannonball arms the toad's Toad Bark special (see FamiliarCombatSpecials) -
+        // the special refuses to fire until the toad is loaded, and the shot spends the cannonball.
+        itemOnNPCOperate("cannonball", "barker_toad_familiar") { (target) ->
+            if (target != follower) {
+                message("That's not your familiar.")
+                return@itemOnNPCOperate
+            }
+            if (target["cannonball_loaded", false]) {
+                message("Your toad is already loaded.")
+                return@itemOnNPCOperate
+            }
+            if (!inventory.remove("cannonball")) {
+                return@itemOnNPCOperate
+            }
+            target["cannonball_loaded"] = true
+            target.anim("toad_bark_load")
+            target.gfx("toad_bark_load")
+            message("You load the cannonball into the toad's gaping mouth.", ChatType.Filter)
+        }
+
         npcOperate("Interact", "barker_toad_familiar") {
             if (inventory.contains("swamp_toad")) {
                 npc<Neutral>("Bwaaarp graaaawk? (What's that croaking in your inventory?)")

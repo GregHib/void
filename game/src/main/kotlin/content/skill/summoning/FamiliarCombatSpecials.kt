@@ -79,8 +79,19 @@ class FamiliarCombatSpecials : Script {
         FamiliarSpecialMoves.npc("desert_wyrm_familiar") { target ->
             familiarSpecialHit(target, maxHit = 50, anim = "electric_lash", sourceGfx = "electric_lash", projectile = "electric_lash_proj")
         }
+        // Toad Bark - the barker toad spits out the cannonball it was loaded with (see BarkerToad.kt),
+        // its hardest-hitting shot. Refuses to fire (charging nothing) while unloaded.
         FamiliarSpecialMoves.npc("barker_toad_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 80, sourceGfx = "toad_bark", targetGfx = "toad_bark_hit")
+            val toad = follower ?: return@npc false
+            if (!toad["cannonball_loaded", false]) {
+                message("Your toad needs to be loaded with a cannonball first.")
+                return@npc false
+            }
+            val cast = familiarSpecialHit(target, maxHit = 300, type = "range", anim = "toad_bark", sourceGfx = "toad_bark", projectile = "toad_bark_proj", targetGfx = "toad_bark_hit")
+            if (cast) {
+                toad.clear("cannonball_loaded")
+            }
+            cast
         }
         FamiliarSpecialMoves.npc("thorny_snail_familiar") { target ->
             familiarSpecialHit(target, maxHit = 80, anim = "slime_spray", sourceGfx = "slime_spray", projectile = "slime_spray_proj", targetGfx = "slime_spray_hit")
