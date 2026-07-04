@@ -112,6 +112,7 @@ xp = "int"             # xp * 0.1  (stored as tenths for int precision)
 catch_anim = "anim"    # animation played by creature as it enters trap
 fail_anim = "anim"     # animation played by creature on escape (optional)
 loot = "list<item>"    # items awarded on catch
+chance = "range"
 
 [.crimson_swift]
 trap = "bird_snare"
@@ -121,6 +122,7 @@ xp = 340
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
 loot = ["bird_snare", "red_feather", "raw_bird_meat", "bones"]
+chance = [100, 420]
 
 [.golden_warbler]
 trap = "bird_snare"
@@ -130,6 +132,7 @@ xp = 480
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
 loot = ["bird_snare", "yellow_feather", "raw_bird_meat", "bones"]
+chance = [92, 400]
 
 [.copper_longtail]
 trap = "bird_snare"
@@ -139,6 +142,7 @@ xp = 610
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
 loot = ["bird_snare", "orange_feather", "raw_bird_meat", "bones"]
+chance = [85, 390]
 
 [.cerulean_twitch]
 trap = "bird_snare"
@@ -148,6 +152,7 @@ xp = 647
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
 loot = ["bird_snare", "blue_feather", "raw_bird_meat", "bones"]
+chance = [82, 380]
 
 [.tropical_wagtail]
 trap = "bird_snare"
@@ -157,6 +162,7 @@ xp = 952
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
 loot = ["bird_snare", "stripy_feather", "raw_bird_meat", "bones"]
+chance = [75, 370]
 
 [.wimpy_bird]
 trap = "bird_snare"
@@ -166,6 +172,7 @@ xp = 1670
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
 loot = ["bird_snare", "wimpy_feather", "raw_bird_meat", "bones"]
+chance = [65, 350]
 
 [.grey_chinchompa]
 trap = "box_trap"

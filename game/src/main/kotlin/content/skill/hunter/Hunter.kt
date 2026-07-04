@@ -4,10 +4,13 @@ import content.entity.player.inv.item.drop
 import content.quest.questCompleted
 import it.unimi.dsi.fastutil.ints.Int2BooleanOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import net.pearx.kasechange.toLowerSpaceCase
 import org.rsmod.game.pathfinder.StepValidator
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
@@ -17,9 +20,11 @@ import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
@@ -30,32 +35,29 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 class Hunter : Script {
 
     private val traps: MutableMap<Int, String> = Int2ObjectOpenHashMap()
     private val baited: MutableMap<Int, Boolean> = Int2BooleanOpenHashMap()
+    private val catching: MutableSet<Int> = IntOpenHashSet()
+
+    private fun removeTrap(id: Int) {
+        traps.remove(id)
+        baited.remove(id)
+        catching.remove(id)
+    }
 
     init {
         playerDespawn {
             val name = name
             val ids = traps.filter { it.value == name }
             for (id in ids.keys) {
-                traps.remove(id)
-                baited.remove(id) // TODO does baited drop bait?
-                val tile = Tile(id) // TODO tile won't be correct for object traps
-                val obj = GameObjects.getLayer(tile, 2)!!
-                obj.remove()
-                val items = Tables.itemList("traps.${obj.id}.items")
-                for (item in items) {
-                    if (item == "logs") {
-                        continue
-                    }
-                    drop(tile, item)
-                }
+                collapse(id)
             }
         }
 
@@ -97,13 +99,27 @@ class Hunter : Script {
         }
 
         itemOnObjectOperate("torch_lit", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
+            if (traps[target.tile.id] != name) {
+                message("This is not your trap!") // TODO proper message
+                return@itemOnObjectOperate
+            }
+            if (baited.contains(target.tile.id)) {
+                message("This trap is already smoked.") // TODO proper message
+                return@itemOnObjectOperate
+            }
             message("You use the smoke from the torch to remove your scent from the trap.", type = ChatType.Filter)
             anim("lay_trap_small")
             areaSound("hunting_smoke2", tile = target.tile, radius = 5)
+            baited[target.tile.id] = false
         }
+        // TODO bait + smoking traps
 
-        itemOnObjectOperate("cooked_meat", "bird_snare") {
-            message("There isn't really anywhere to put any bait on this trap.")
+        itemOnObjectOperate("*", "bird_snare") { (obj, item) ->
+            if (item.def.contains(Params.HEALS)) {
+                message("There isn't really anywhere to put any bait on this trap.")
+            } else {
+                noInterest()
+            }
         }
 
         objectOperate("Check", "snare_*") { (target) ->
@@ -113,7 +129,6 @@ class Hunter : Script {
         objectOperate("Check", "box_trap_*") { (target) ->
             collectCatch(target.id.removePrefix("box_trap_"), target)
         }
-        // TODO bait + smoking traps
 
         // Net
 
@@ -160,54 +175,118 @@ class Hunter : Script {
 
         // TODO ferret, chinchompa, rabbits
 
-        huntObject("hunter_trap") { trapObj ->
-            println("Hunt $trapObj")
-            walkTo(trapObj.tile)
-            // TODO chance at attempt
+        // TODO can birds fly over water?
+
+        huntObject("hunter_trap") { trap ->
+            // TODO unknown chance at attempt
+            if (random.nextInt(4) != 0) {
+                return@huntObject
+            }
+            val name = traps[trap.tile.id] ?: return@huntObject
+            val owner = Players.find(name) ?: return@huntObject
+            val creature = Rows.getOrNull("creatures.$id") ?: return@huntObject
+            if (creature.string("trap") != "bird_snare") {
+                return@huntObject
+            }
+            if (!owner.has(Skill.Hunter, creature.int("level"))) {
+                return@huntObject
+            }
+            if (!catching.add(trap.tile.id)) {
+                return@huntObject
+            }
+            walkOverDelay(trap.tile)
+            anim("bird_land")
+            face(Direction.SOUTH)
+            delay(1)
+            var chance = creature.intRange("chance")
+            val bait = baited[tile.id]
+            if (bait == true) {
+                chance = (chance.first + 7)..(chance.last + 7) // 3%
+            } else if (bait == false) { // smoked
+                chance = (chance.first + 5)..(chance.last + 5) // 2%
+            }
+            val success = Level.success(owner.levels.get(Skill.Hunter), chance)
+            val catchAnim = creature.animOrNull(if (success) "catch_anim" else "fail_anim")
+            if (catchAnim != null) {
+                anim(catchAnim)
+            }
+            delay(1)
+            val index = get("trap_tile_${trap.tile.id}", 0)
+            softTimers.stop("trap_collapse_$index")
+            softTimers.start("trap_collapse_$index")
+            if (success) {
+                levels.set(Skill.Constitution, 0)
+                trap.replace(Tables.obj("creatures.$id.caught_obj"))
+                owner.message("Something has been caught in your trap!")
+                areaSound("bird_caught", trap.tile)
+                return@huntObject
+            }
+            val failObj = Tables.objOrNull("traps.${creature.string("trap")}.fail")
+            if (failObj != null) {
+                trap.replace(failObj, ticks = 0) // TODO collapse time
+            } else {
+                owner.dropTrapItems(creature.string("trap"), trap.tile)
+                trap.remove()
+                removeTrap(trap.tile.id)
+            }
+            val failAnim = creature.animOrNull("fail_anim")
+            if (failAnim != null) {
+                anim(failAnim)
+            }
+            // TODO is there a message for this?
+//            owner.message(Tables.stringOrNull("traps.${creature.string("trap")}.collapse_message") ?: return@huntObject)
         }
 
-        npcMoved("crimson_swift") {
-            val name = traps[tile.id] ?: return@npcMoved
-            val trapObj = GameObjects.getLayer(tile, ObjectShape.CENTRE_PIECE_STRAIGHT) ?: return@npcMoved
-            val owner = Players.find(name) ?: return@npcMoved
-            val creature = Rows.getOrNull("creatures.$id") ?: return@npcMoved
-            exactMove(trapObj.tile, direction = Direction.SOUTH)
-            val npc = this
-            // TODO allow delays in move
-            queue("land") {
-                anim("bird_land")
-                npc.face(Direction.SOUTH)
-                queue("catch", 4) {
-                    val catchAnim = creature.animOrNull("catch_anim")
-                    if (catchAnim != null) {
-                        anim(catchAnim)
-                    }
-                    queue("caught", 2) {
-                        // TODO 2/3% chance improvement if smoke/baited
-                        val success = true // Level.success(owner.levels.get(Skill.Hunter), 1..1)
-                        if (success) { // TODO proper chances
-                            trapObj.replace(Tables.obj("creatures.$id.caught_obj"))
-                            owner.message("Something has been caught in your trap!")
-                            return@queue
-                        }
-                        npc.hide = true
-                        npc.levels.set(Skill.Constitution, 0)
-                        val failObj = Tables.objOrNull("traps.${creature.string("trap")}.fail")
-                        if (failObj != null) {
-                            trapObj.replace(failObj, ticks = 0) // TODO collapse time
-                        } else {
-                            // TODO drop floor item
-                            trapObj.remove()
-                            traps.remove(trapObj.tile.id)
-                        }
-                        val failAnim = creature.animOrNull("fail_anim")
-                        if (failAnim != null) {
-                            anim(failAnim)
-                        }
-                        owner.message("Your trap has collapsed.")
-                    }
-                }
+
+        timerStart("trap_collapse_0") { get("trap_ticks_0", 0) }
+        timerStart("trap_collapse_1") { get("trap_ticks_1", 0) }
+        timerStart("trap_collapse_2") { get("trap_ticks_2", 0) }
+        timerStart("trap_collapse_3") { get("trap_ticks_3", 0) }
+        timerStart("trap_collapse_4") { get("trap_ticks_4", 0) }
+
+        timerTick("trap_collapse_0") { collapseTrap(0); Timer.CANCEL }
+        timerTick("trap_collapse_1") { collapseTrap(1); Timer.CANCEL }
+        timerTick("trap_collapse_2") { collapseTrap(2); Timer.CANCEL }
+        timerTick("trap_collapse_3") { collapseTrap(3); Timer.CANCEL }
+        timerTick("trap_collapse_4") { collapseTrap(4); Timer.CANCEL }
+    }
+
+    private fun Player.collapseTimer(index: Int, tile: Tile, ticks: Int, message: String) {
+        set("trap_tile_${tile.id}", index)
+        set("trap_$index", tile.id)
+        set("trap_ticks_$index", ticks)
+        set("trap_message_$index", message)
+        softTimers.start("trap_collapse_$index")
+    }
+
+    private fun Player.collapseTrap(index: Int) {
+        val tile = remove<Int>("trap_$index") ?: return
+        clear("trap_tile_$tile")
+        clear("trap_ticks_$index")
+        collapse(tile)
+        message(remove("trap_message_$index") ?: return)
+    }
+
+
+    private fun Player.collapse(id: Int) {
+        removeTrap(id)
+        val tile = Tile(id) // TODO tile won't be correct for object traps
+        val obj = GameObjects.getLayer(tile, 2) ?: return
+        obj.remove()
+        val id = when (obj.id) {
+            "snare_crimson_swift", "snare_golden_warbler", "bird_snare_fail" -> "bird_snare"
+            else -> obj.id
+        }
+        dropTrapItems(id, tile) // TODO does baited drop bait?
+    }
+
+    private fun Player.dropTrapItems(id: String, tile: Tile) {
+        val items = Tables.itemList("traps.$id.items")
+        for (item in items) {
+            if (item == "logs") {
+                continue
             }
+            drop(tile, item)
         }
     }
 
@@ -218,27 +297,28 @@ class Hunter : Script {
         if (!has(Skill.Hunter, trap.int("level"), message = true)) {
             return
         }
-        if (Areas.get(tile.zone).any { it.tags.contains("bank") }) {
+        if (Areas.get(tile.zone).any { it.tags.contains("bank") } || GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
             message("You can't lay a trap here.", ChatType.Filter)
             return
         }
         val max = maxTraps(level, trap.int("max"))
-        if (traps.count { it.value == name } >= max) {
-            message("You cannot place more than $max ${"trap".plural(max)} at once.")
+        val trapCount = traps.count { it.value == name }
+        if (trapCount >= max) {
+            message("You may setup only $max ${"trap".plural(max)} at a time at your Hunter level.")
             return
         }
         val message = trap.stringOrNull("item_message")
         val requires = trap.itemList("requires")
         for (item in requires) {
             if (!carriesItem(item)) {
-                message(message ?: "You need ${item.toLowerSpaceCase()} to lay this trap.")
+                message(message ?: "You need${item.an()} ${item.toLowerSpaceCase()} to lay this trap.")
                 return
             }
         }
         val items = trap.itemList("items")
         for (item in items) {
-            if (!carriesItem(item)) {
-                message(message ?: "You need ${item.toLowerSpaceCase()} to lay this trap.")
+            if (!carriesItem(item) && floorItem != null && floorItem.id != item) {
+                message(message ?: "You need${item.an()} ${item.toLowerSpaceCase()} to lay this trap.")
                 return
             }
         }
@@ -246,6 +326,7 @@ class Hunter : Script {
         arriveDelay()
         message("You begin setting up ${if (max == 1) "the" else "a"} trap.", ChatType.Filter)
         anim(trap.anim("setup_anim"))
+        sound("set_noose")
         delay(3)
         for (item in items) {
             if (floorItem != null && item == floorItem.id) {
@@ -254,11 +335,10 @@ class Hunter : Script {
             }
             inventory.remove(item)
         }
-        val trapId = Tables.obj("traps.${trapId.removeSuffix("_setup")}.trap")
+        val trapId = trap.obj("trap")
         if (trapId == "pitfall_0" && obj != null) {
             traps[obj.tile.id] = name
             set(obj.id, "spiked")
-            // TODO collapse timer
         } else if (obj != null) {
             traps[obj.tile.id] = name
             obj.replace(trapId)
@@ -270,6 +350,7 @@ class Hunter : Script {
             traps[tile.id] = name
             obj = GameObjects.add(trapId, tile, ObjectShape.CENTRE_PIECE_STRAIGHT, 0, ticks = 50 * 60)
         }
+        collapseTimer(trapCount, obj.tile, 100, trap.string("collapse_message")) // TODO check times
         if (trap.bool("step_away")) {
             stepAway(obj)
         }
@@ -312,25 +393,27 @@ class Hunter : Script {
             return
         }
         val creature = Rows.get("creatures.$creatureId")
-        val trap = Rows.get("traps.${creature.string("trap")}")
-        anim(trap.anim("take_down_anim"))
-        delay(2)
-        removeTrap(target)
         val loot = creature.itemList("loot")
         if (inventory.spaces < loot.size) {
             val slots = inventory.spaces - loot.size
             message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
             return
         }
+        message("You dismantle the trap.", ChatType.Filter)
+        val trap = Rows.get("traps.${creature.string("trap")}")
+        anim(trap.anim("take_down_anim"))
+        sound("trap_dismantle", delay = 25)
+        delay(2)
+        removeTrap(target)
         for (item in loot) {
             inventory.add(item)
         }
         exp(Skill.Hunter, creature.int("xp") / 10.0)
-        message("You've caught a ${creatureId.toLowerSpaceCase()}!")
+        message("You've caught a ${creatureId.toLowerSpaceCase()}!", ChatType.Filter)
     }
 
     private fun Player.removeTrap(target: GameObject) {
-        traps.remove(target.tile.id)
+        removeTrap(target.tile.id)
         if (target.id.startsWith("pitfall")) {
             set(target.id, "empty")
             return

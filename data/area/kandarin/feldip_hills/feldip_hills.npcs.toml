@@ -118,6 +118,7 @@ id = 13174
 [crimson_swift]
 id = 5073
 hunt_mode = "hunter_trap"
+respawn_delay = 5
 examine = "This bird obviously doesn't believe in subtlety."
 
 [ogre_boat_feldip_hills_2]

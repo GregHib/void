@@ -21,3 +21,9 @@ id = 2635
 
 [lay_net_trap]
 id = 2644
+
+[bird_caught]
+id = 2625
+
+[set_noose]
+id = 2646
