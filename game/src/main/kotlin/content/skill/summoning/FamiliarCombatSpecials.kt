@@ -1,9 +1,11 @@
 package content.skill.summoning
 
+import content.entity.combat.target
 import content.entity.effect.stun
 import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.Character
@@ -75,12 +77,9 @@ class FamiliarCombatSpecials : Script {
         FamiliarSpecialMoves.npc("spirit_larupia_familiar") { target ->
             familiarSpecialHit(target, maxHit = 10, anim = "rending", sourceGfx = "rending", projectile = "rending_proj").alsoDrain(target, Skill.Strength, 1)
         }
+        // Evil Flames - the evil turnip breathes a magic fireball, lowering the target's Magic by 1.
         FamiliarSpecialMoves.npc("evil_turnip_familiar") { target ->
-            val cast = familiarSpecialHit(target, maxHit = 10, anim = "evil_flames", projectile = "evil_flames_proj", targetGfx = "evil_flames_hit").alsoDrain(target, Skill.Magic, 1)
-            if (cast) {
-                levels.restore(Skill.Constitution, 2)
-            }
-            cast
+            familiarSpecialHit(target, maxHit = 10, anim = "evil_flames", sourceGfx = "evil_flames", projectile = "evil_flames_proj", targetGfx = "evil_flames_hit").alsoDrain(target, Skill.Magic, 1)
         }
         FamiliarSpecialMoves.npc("abyssal_parasite_familiar") { target ->
             familiarSpecialHit(target, maxHit = 7, anim = "abyssal_drain", sourceGfx = "abyssal_drain", projectile = "abyssal_drain_proj").alsoDrain(target, Skill.Prayer, random.nextInt(3) + 1)
@@ -123,6 +122,20 @@ class FamiliarCombatSpecials : Script {
             FamiliarSpecialMoves.npc(familiar) { target ->
                 familiarSpecialHit(target, maxHit = 10, anim = "petrifying_gaze", sourceGfx = "petrifying_gaze", projectile = "petrifying_gaze_proj", targetGfx = "petrifying_gaze_hit")
                     .alsoDrain(target, skill, 3)
+            }
+            // The cockatrice's "Drain" right-click option casts Petrifying Gaze on the familiar's
+            // current combat target (falling back to the owner's), through the same cast gate -
+            // scroll, points, cooldown - as the summoning-orb button.
+            npcOperate("Drain", familiar) { (clicked) ->
+                if (clicked != follower) {
+                    return@npcOperate
+                }
+                val enemy = (follower?.target ?: target) as? NPC
+                if (enemy == null) {
+                    message("Your familiar has no target to drain.")
+                    return@npcOperate
+                }
+                castFamiliarSpecial { FamiliarSpecialMoves.npcTarget.getValue(familiar)(enemy) }
             }
         }
 

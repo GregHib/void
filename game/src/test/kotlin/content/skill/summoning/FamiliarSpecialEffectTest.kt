@@ -3,10 +3,12 @@ package content.skill.summoning
 import FakeRandom
 import WorldTest
 import content.entity.combat.hit.hit
+import content.entity.combat.target
 import content.entity.effect.stunned
 import content.entity.effect.toxin.poisoned
 import content.skill.fletching.fletchLog
 import interfaceOption
+import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
@@ -329,6 +331,53 @@ class FamiliarSpecialEffectTest : WorldTest() {
         tick(5)
         assertFalse(target.stunned, "the stun only lands about a third of the time")
         assertTrue(target.levels.get(Skill.Constitution) < before, "bull rush still damaged the target")
+    }
+
+    @Test
+    fun `Evil Flames lowers the target's Magic, damages it, and heals no one`() {
+        // Max the damage roll so the hit is observable.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+        val player = summon("evil_turnip_familiar")
+        val target = createNPC("giant_rat", player.tile.addY(4))
+        target.levels.set(Skill.Magic, 5)
+        // Hurt the owner so the removed self-heal would be visible if it fired.
+        player.levels.drain(Skill.Constitution, 5)
+        val ownerHp = player.levels.get(Skill.Constitution)
+        val targetHp = target.levels.get(Skill.Constitution)
+
+        assertTrue(FamiliarSpecialMoves.npcTarget.getValue("evil_turnip_familiar").invoke(player, target))
+        // Drain and (formerly) heal are synchronous with the cast - check before any regen ticks.
+        assertEquals(4, target.levels.get(Skill.Magic), "Evil Flames lowers the target's Magic by 1")
+        assertEquals(ownerHp, player.levels.get(Skill.Constitution), "Evil Flames heals no one")
+
+        tick(5) // let the fireball land
+        assertTrue(target.levels.get(Skill.Constitution) < targetHp, "Evil Flames damages the target")
+    }
+
+    @Test
+    fun `Cockatrice Drain option casts Petrifying Gaze on the familiar's target`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+        val player = summon("spirit_cockatrice_familiar")
+        val familiar = player.follower!!
+        player.inventory.transaction { add("petrifying_gaze_scroll", 2) }
+        val target = createNPC("giant_rat", player.tile.addY(4))
+        target.levels.set(Skill.Defence, 20)
+        familiar.target = target // the familiar is engaged with the rat
+        val defenceBefore = target.levels.get(Skill.Defence)
+        val hpBefore = target.levels.get(Skill.Constitution)
+
+        player.npcOption(familiar, "Drain")
+        tick(1) // the interaction resolves and the special casts
+        // The drain and scroll cost are synchronous with the cast.
+        assertEquals(defenceBefore - 3, target.levels.get(Skill.Defence), "Petrifying Gaze drains Defence by 3")
+        assertEquals(1, player.inventory.count("petrifying_gaze_scroll"), "the Drain option spends a scroll")
+
+        tick(5) // the fireball lands
+        assertTrue(target.levels.get(Skill.Constitution) < hpBefore, "Petrifying Gaze damages the target")
     }
 
     @Test

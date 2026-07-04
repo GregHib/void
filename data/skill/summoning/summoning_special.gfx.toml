@@ -67,6 +67,10 @@ id = 1370
 [rending_proj]
 id = 1371
 
+# Evil turnip Evil Flames: source gfx on the familiar as it breathes, the projectile, and the impact.
+[evil_flames]
+id = 1328
+
 [evil_flames_proj]
 id = 1330
 
