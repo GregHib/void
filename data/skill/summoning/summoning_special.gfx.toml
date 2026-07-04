@@ -321,3 +321,7 @@ id = 1450
 
 [steel_of_legends]
 id = 1449
+
+# Hydra Regrowth: the burst of life on the familiar.
+[regrowth]
+id = 1487

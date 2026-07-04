@@ -156,3 +156,7 @@ id = 8183
 
 [steel_of_legends]
 id = 8183
+
+# Hydra's Regrowth animation (played on the familiar as it revives the tree).
+[regrowth]
+id = 7945

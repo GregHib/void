@@ -4,11 +4,34 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.FamiliarSpecialMoves
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.random
 
 class Hydra : Script {
     init {
+        // Regrowth - the hydra regrows a felled tree from its stump. Object-target special through
+        // the scroll + points gate, so it only charges on a real regrow. Farming-patch trees are
+        // player-side variables rather than world stumps, so they're beyond the hydra's power.
+        FamiliarSpecialMoves.obj("hydra_familiar") { stump ->
+            if (!stump.id.endsWith("_stump") || stump.id.startsWith("farming_")) {
+                message("Your familiar can only regrow the stumps of felled trees.")
+                return@obj false
+            }
+            val hydra = follower ?: return@obj false
+            hydra.anim("regrowth")
+            hydra.gfx("regrowth")
+            // Fire the stump's pending regrow timer to bring the tree back at once; a stump with no
+            // timer is itself a replacement, so removing it restores the original tree.
+            if (!GameObjects.timers.execute(stump)) {
+                GameObjects.remove(stump)
+            }
+            true
+        }
+
         npcOperate("Interact", "hydra_familiar") {
             when (random.nextInt(4)) {
                 0 -> {
