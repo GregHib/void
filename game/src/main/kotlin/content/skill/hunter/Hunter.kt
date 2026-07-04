@@ -1,6 +1,8 @@
 package content.skill.hunter
 
+import content.entity.player.inv.item.drop
 import content.quest.questCompleted
+import it.unimi.dsi.fastutil.ints.Int2BooleanOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import net.pearx.kasechange.toLowerSpaceCase
 import org.rsmod.game.pathfinder.StepValidator
@@ -20,6 +22,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
@@ -28,14 +32,32 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class Hunter : Script {
 
     private val traps: MutableMap<Int, String> = Int2ObjectOpenHashMap()
+    private val baited: MutableMap<Int, Boolean> = Int2BooleanOpenHashMap()
 
     init {
-        // TODO remove pitfall traps on logout
-        // message("You release the salamander and it darts away.", ChatType.Filter)
+        playerDespawn {
+            val name = name
+            val ids = traps.filter { it.value == name }
+            for (id in ids.keys) {
+                traps.remove(id)
+                baited.remove(id) // TODO does baited drop bait?
+                val tile = Tile(id) // TODO tile won't be correct for object traps
+                val obj = GameObjects.getLayer(tile, 2)!!
+                obj.remove()
+                val items = Tables.itemList("traps.${obj.id}.items")
+                for (item in items) {
+                    if (item == "logs") {
+                        continue
+                    }
+                    drop(tile, item)
+                }
+            }
+        }
 
         // Free-standing traps
 
@@ -44,7 +66,15 @@ class Hunter : Script {
                 message("You need to learn how to set a box trap in the Eagle's Peak Quest.")
                 return@itemOption
             }
-            layTrap(it.item.id, null)
+            layTrap(it.item.id, null, null)
+        }
+
+        floorItemOperate("Lay") { (item) ->
+            if (item.id == "box_trap" && !questCompleted("eagles_peak")) {
+                message("You need to learn how to set a box trap in the Eagle's Peak Quest.")
+                return@floorItemOperate
+            }
+            layTrap(item.id, null, item)
         }
 
         objectOperate("Dismantle", "bird_snare,bird_snare_fail,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
@@ -52,9 +82,14 @@ class Hunter : Script {
         }
 
         objectOperate("Investigate", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
-            // TODO baited + wearing outfits
-            message("Your scent lingers around this trap.")
-            message("The scent on this trap has been masked.")
+            val bait = baited[target.tile.id]
+            if (bait == null) {
+                message("Your scent lingers around this trap.") // TODO outfits?
+            } else if (bait) {
+                // TODO
+            } else {
+                message("The scent on this trap has been masked.")
+            }
         }
 
         itemOnObjectOperate("unlit_torch", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") {
@@ -83,7 +118,7 @@ class Hunter : Script {
         // Net
 
         objectOperate("Set-trap", "*_net,boulder_trap") {
-            layTrap(it.target.id, it.target)
+            layTrap(it.target.id, it.target, null)
         }
 
         objectOperate("Dismantle", "net") { (target) ->
@@ -101,7 +136,7 @@ class Hunter : Script {
         // Pitfall
 
         objectOperate("Trap", "pitfall") {
-            layTrap("pitfall", it.target)
+            layTrap("pitfall", it.target, null)
         }
 
         objectOperate("Jump", "pitfall_*") { (target) ->
@@ -176,7 +211,7 @@ class Hunter : Script {
         }
     }
 
-    private suspend fun Player.layTrap(trapId: String, obj: GameObject?) {
+    private suspend fun Player.layTrap(trapId: String, obj: GameObject?, floorItem: FloorItem?) {
         var obj = obj
         val trap = Rows.getOrNull("traps.$trapId") ?: return
         val level = levels.get(Skill.Hunter)
@@ -209,10 +244,14 @@ class Hunter : Script {
         }
 
         arriveDelay()
+        message("You begin setting up ${if (max == 1) "the" else "a"} trap.", ChatType.Filter)
         anim(trap.anim("setup_anim"))
         delay(3)
-
         for (item in items) {
+            if (floorItem != null && item == floorItem.id) {
+                FloorItems.remove(floorItem)
+                continue
+            }
             inventory.remove(item)
         }
         val trapId = Tables.obj("traps.${trapId.removeSuffix("_setup")}.trap")
@@ -231,7 +270,6 @@ class Hunter : Script {
             traps[tile.id] = name
             obj = GameObjects.add(trapId, tile, ObjectShape.CENTRE_PIECE_STRAIGHT, 0, ticks = 50 * 60)
         }
-        message("You begin setting up ${if (max == 1) "the" else "a"} trap.", ChatType.Filter)
         if (trap.bool("step_away")) {
             stepAway(obj)
         }
@@ -314,5 +352,4 @@ class Hunter : Script {
 
     private fun maxTraps(level: Int, max: Int) = (1 + level / 20).coerceAtMost(max)
 
-    private fun catchChance(hunterLevel: Int, lureLevel: Int) = ((hunterLevel.toDouble() / lureLevel) * 50).toInt().coerceIn(10, 90)
 }
