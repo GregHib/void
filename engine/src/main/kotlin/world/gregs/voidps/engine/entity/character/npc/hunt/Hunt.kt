@@ -28,7 +28,7 @@ interface Hunt {
         }
     }
 
-    fun huntObject(mode: String, handler: NPC.(GameObject) -> Unit) {
+    fun huntObject(mode: String, handler: suspend NPC.(GameObject) -> Unit) {
         Script.checkLoading()
         objects[mode] = handler
     }
@@ -36,7 +36,7 @@ interface Hunt {
     companion object : AutoCloseable {
         private val floorItems = Object2ObjectOpenHashMap<String, (NPC, FloorItem) -> Unit>()
         private val players = Object2ObjectOpenHashMap<String, MutableList<(NPC, Player) -> Unit>>()
-        private val objects = Object2ObjectOpenHashMap<String, (NPC, GameObject) -> Unit>()
+        private val objects = Object2ObjectOpenHashMap<String, suspend (NPC, GameObject) -> Unit>()
         private val npcs = Object2ObjectOpenHashMap<String, (NPC, NPC) -> Unit>()
 
         fun hunt(npc: NPC, target: NPC, mode: String) {
@@ -44,7 +44,9 @@ interface Hunt {
         }
 
         fun hunt(npc: NPC, target: GameObject, mode: String) {
-            objects[mode]?.invoke(npc, target)
+            Script.launch {
+                objects[mode]?.invoke(npc, target)
+            }
         }
 
         fun hunt(npc: NPC, target: Player, mode: String) {
