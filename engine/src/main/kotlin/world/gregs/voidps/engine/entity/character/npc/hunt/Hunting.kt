@@ -223,6 +223,9 @@ class Hunting(
         definition: HuntModeDefinition,
         range: Int,
     ): Boolean {
+        if (target is NPC && npc.index == target.index) {
+            return false
+        }
         // Npc checks from south-west tile
         if (target.tile.distanceTo(npc.tile) > range) {
             return false

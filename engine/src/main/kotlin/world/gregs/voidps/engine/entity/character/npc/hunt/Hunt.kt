@@ -16,7 +16,7 @@ interface Hunt {
         floorItems[mode] = handler
     }
 
-    fun huntNPC(mode: String, handler: NPC.(NPC) -> Unit) {
+    fun huntNPC(mode: String, handler: suspend NPC.(NPC) -> Unit) {
         Script.checkLoading()
         npcs[mode] = handler
     }
@@ -37,10 +37,12 @@ interface Hunt {
         private val floorItems = Object2ObjectOpenHashMap<String, (NPC, FloorItem) -> Unit>()
         private val players = Object2ObjectOpenHashMap<String, MutableList<(NPC, Player) -> Unit>>()
         private val objects = Object2ObjectOpenHashMap<String, suspend (NPC, GameObject) -> Unit>()
-        private val npcs = Object2ObjectOpenHashMap<String, (NPC, NPC) -> Unit>()
+        private val npcs = Object2ObjectOpenHashMap<String, suspend (NPC, NPC) -> Unit>()
 
         fun hunt(npc: NPC, target: NPC, mode: String) {
-            npcs[mode]?.invoke(npc, target)
+            Script.launch {
+                npcs[mode]?.invoke(npc, target)
+            }
         }
 
         fun hunt(npc: NPC, target: GameObject, mode: String) {
