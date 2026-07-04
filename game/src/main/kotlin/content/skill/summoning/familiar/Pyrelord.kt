@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -64,24 +65,22 @@ class Pyrelord : Script {
             }
         }
 
-        // The cast button can't pick an inventory item, so it just points at the real trigger.
+        // A plain click on the cast button has no item to work on - point at the real triggers.
         FamiliarSpecialMoves.instant("pyrelord_familiar") {
-            message("To cast Immense Heat, use a gold bar on the pyrelord.")
+            message("To cast Immense Heat, use the Cast option or a gold bar on the pyrelord.")
             false
         }
 
         // Immense Heat - the pyrelord's flames stand in for a furnace, letting the owner craft
-        // gold jewellery on the spot. Item-target special through the scroll + points gate.
-        itemOnNPCOperate("gold_bar", "pyrelord_familiar") { (npc) ->
+        // gold jewellery on the spot. Cast on a gold bar, or use the bar on the familiar - both
+        // run through the scroll + points gate.
+        FamiliarSpecialMoves.item("pyrelord_familiar") { item -> immenseHeat(item.id) }
+
+        itemOnNPCOperate("gold_bar", "pyrelord_familiar") { (npc, item) ->
             if (npc != follower) {
                 return@itemOnNPCOperate
             }
-            castFamiliarSpecial {
-                anim("immense_heat")
-                gfx("immense_heat")
-                open("make_mould${if (World.members) "_slayer" else ""}")
-                true
-            }
+            castFamiliarSpecial { immenseHeat(item.id) }
         }
 
         // The pyrelord and forge regent act as portable fire sources - they burn logs without a
@@ -117,5 +116,17 @@ class Pyrelord : Script {
                 message("The ${target.def.name.lowercase()} breathes fire and the logs begin to burn.", ChatType.Filter)
             }
         }
+    }
+
+    /** The Immense Heat effect: melt a gold bar into the jewellery mould interface, no furnace needed. */
+    private fun Player.immenseHeat(itemId: String): Boolean {
+        if (itemId != "gold_bar") {
+            message("The pyrelord can only work its heat on gold bars.")
+            return false
+        }
+        anim("immense_heat")
+        gfx("immense_heat")
+        open("make_mould${if (World.members) "_slayer" else ""}")
+        return true
     }
 }

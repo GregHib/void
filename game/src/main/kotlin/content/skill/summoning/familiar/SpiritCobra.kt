@@ -9,6 +9,7 @@ import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.inv.inventory
@@ -29,29 +30,23 @@ private val INCUBATION_EGGS = mapOf(
 
 class SpiritCobra : Script {
     init {
-        // The cast button can't pick an inventory item, so it just points at the real trigger.
+        // A plain click on the cast button has no item to work on - point at the real triggers.
         FamiliarSpecialMoves.instant("spirit_cobra_familiar") {
-            message("To cast Ophidian Incubation, use an egg on the spirit cobra.")
+            message("To cast Ophidian Incubation, use the Cast option or an egg on the spirit cobra.")
             false
         }
 
         // Ophidian Incubation - the spirit cobra transmutes an egg into the cockatrice-family egg of
-        // the matching god bird. Item-target special through the scroll + points gate.
-        for ((egg, product) in INCUBATION_EGGS) {
+        // the matching god bird. Cast on an egg, or use the egg on the familiar - both run through
+        // the scroll + points gate.
+        FamiliarSpecialMoves.item("spirit_cobra_familiar") { item -> incubate(item.id) }
+
+        for (egg in INCUBATION_EGGS.keys) {
             itemOnNPCOperate(egg, "spirit_cobra_familiar") { (npc, item) ->
                 if (npc != follower) {
                     return@itemOnNPCOperate
                 }
-                castFamiliarSpecial {
-                    if (!inventory.replace(item.id, product)) {
-                        return@castFamiliarSpecial false
-                    }
-                    val cobra = follower ?: return@castFamiliarSpecial false
-                    cobra.anim("ophidian_incubation")
-                    cobra.gfx("ophidian_incubation")
-                    message("Your spirit cobra incubates the egg with its gaze.", ChatType.Filter)
-                    true
-                }
+                castFamiliarSpecial { incubate(item.id) }
             }
         }
 
@@ -104,5 +99,22 @@ class SpiritCobra : Script {
                 }
             }
         }
+    }
+
+    /** The Ophidian Incubation effect: transmute a god-bird egg into its cockatrice counterpart. */
+    private fun Player.incubate(itemId: String): Boolean {
+        val product = INCUBATION_EGGS[itemId]
+        if (product == null) {
+            message("Your spirit cobra can only incubate eggs.")
+            return false
+        }
+        if (!inventory.replace(itemId, product)) {
+            return false
+        }
+        val cobra = follower ?: return false
+        cobra.anim("ophidian_incubation")
+        cobra.gfx("ophidian_incubation")
+        message("Your spirit cobra incubates the egg with its gaze.", ChatType.Filter)
+        return true
     }
 }

@@ -34,7 +34,8 @@ private const val HERBCALL_DROP_DELAY = 5
 /**
  * Utility familiar specials: send-the-familiar-to-fight, call/ambush, ground-drop foragers, and
  * banking. Combat-engage moves register as [FamiliarSpecialMoves.npc]; the rest are instant casts.
- * Pack Yak's Winter Storage picks an inventory item, so it is wired with `itemOnNPCApproach`.
+ * Pack Yak's Winter Storage picks an inventory item, so it registers as [FamiliarSpecialMoves.item]
+ * (the cast button used on the item to bank).
  */
 class FamiliarUtilitySpecials : Script {
 
@@ -208,19 +209,26 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Winter Storage - bank the item the player uses on the pack yak.
-        itemOnNPCApproach("*", "pack_yak_familiar") { (npc, item) ->
-            if (npc != follower) {
-                return@itemOnNPCApproach
+        // Winter Storage - bank the inventory item the player uses the Cast option on. Using an
+        // item directly on the yak stores it in its pack (the beast-of-burden handler always wins
+        // that click), so the special lives on the cast button alone.
+        FamiliarSpecialMoves.instant("pack_yak_familiar") {
+            message("To cast Winter Storage, use the Cast option on the item you wish to bank.")
+            false
+        }
+        FamiliarSpecialMoves.item("pack_yak_familiar") { item ->
+            if (item.id == "winter_storage_scroll") {
+                message("The yak refuses to bank the scroll powering its special.")
+                return@item false
             }
-            castFamiliarSpecial {
-                if (!inventory.contains(item.id)) {
-                    return@castFamiliarSpecial false
-                }
-                inventory.remove(item.id, 1)
-                bank.add(item.id, 1)
-                true
+            if (!inventory.contains(item.id)) {
+                return@item false
             }
+            inventory.remove(item.id, 1)
+            bank.add(item.id, 1)
+            follower?.say("Baroo!")
+            message("Your pack yak sends the ${item.def.name.lowercase()} to your bank.")
+            true
         }
     }
 

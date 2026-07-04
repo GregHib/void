@@ -3,10 +3,12 @@ package content.skill.summoning
 import WorldTest
 import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
+import content.entity.player.bank.bank
 import content.entity.player.effect.energy.runEnergy
 import itemOnNpc
 import npcOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -195,6 +197,49 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
             assertEquals(1, player.inventory.count(product), "$egg incubates into $product")
             player.inventory.transaction { remove(product, 1) }
         }
+    }
+
+    @Test
+    fun `Winter Storage banks the item the Cast option is used on`() {
+        val player = summon("pack_yak_familiar")
+        player.inventory.transaction {
+            add("winter_storage_scroll", 1)
+            add("bronze_sword", 1)
+        }
+
+        InterfaceApi.onItem(player, "familiar_details:cast_winter_storage", player.inventory[1])
+        tick(1)
+
+        assertEquals(1, player.bank.count("bronze_sword"), "the yak banked the sword")
+        assertEquals(0, player.inventory.count("bronze_sword"))
+        assertEquals(0, player.inventory.count("winter_storage_scroll"), "one scroll spent")
+    }
+
+    @Test
+    fun `Winter Storage refuses to bank its own scroll`() {
+        val player = summon("pack_yak_familiar")
+        player.inventory.transaction { add("winter_storage_scroll", 1) }
+
+        InterfaceApi.onItem(player, "familiar_details:cast_winter_storage", player.inventory[0])
+        tick(1)
+
+        assertEquals(1, player.inventory.count("winter_storage_scroll"), "nothing banked, nothing spent")
+        assertEquals(0, player.bank.count("winter_storage_scroll"))
+    }
+
+    @Test
+    fun `Immense Heat can be cast on a gold bar in the inventory`() {
+        val player = summon("pyrelord_familiar")
+        player.inventory.transaction {
+            add("immense_heat_scroll", 1)
+            add("gold_bar", 1)
+        }
+
+        InterfaceApi.onItem(player, "familiar_details:cast_immense_heat", player.inventory[1])
+        tick(1)
+
+        assertTrue(player.interfaces.contains("make_mould_slayer"), "the mould interface opens")
+        assertEquals(0, player.inventory.count("immense_heat_scroll"), "one scroll spent")
     }
 
     @Test
