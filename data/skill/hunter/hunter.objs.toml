@@ -10,32 +10,77 @@ id = 19175
 [bird_snare_fail]
 id = 19174
 
-[swamp_net]
-id = 19679
+[swamp_net_catching]
+id = 19674
+
+[swamp_net_caught]
+id = 19675
+
+[swamp_net_failing]
+id = 19676
+
+[swamp_net_failed]
+id = 19677
 
 [swamp_net_setup]
 id = 19678
 
-[swamp_net_fail]
-id = 19677
-
-[orange_net]
-id = 19652
+[swamp_net]
+id = 19679
 
 [orange_net_setup]
 id = 19650
 
-[red_net]
-id = 19663
+[net]
+id = 19651
+
+[orange_net_caught]
+id = 19654
+
+[orange_net_catching]
+id = 19655
+
+[orange_net_failed]
+id = 19656
+
+[orange_net_failing]
+id = 19657
+
+[red_net_catching]
+id = 19658
+
+[red_net_caught]
+id = 19659
+
+[red_net_failing]
+id = 19660
+
+[red_net_failed]
+id = 19661
 
 [red_net_setup]
 id = 19662
 
-[black_net]
-id = 19671
+[red_net]
+id = 19663
+
+[black_net_catching]
+id = 19666
+
+[black_net_caught]
+id = 19667
+
+[black_net_failing]
+id = 19668
+
+[black_net_failed]
+id = 19669
 
 [black_net_setup]
 id = 19670
+
+[black_net]
+id = 19671
 
 [boulder_trap]
 id = 19205
@@ -95,10 +140,6 @@ id = 28906
 # Boulder trap — triggered state
 [boulder_trap_barb_tailed_kebbit]
 id = 19207
-
-# Net trap — triggered states (net post is 19651, tree object varies per salamander)
-[net]
-id = 19651
 
 [pitfall_0]
 id = 19253

@@ -54,29 +54,35 @@ class Hunter : Script {
         // Free-standing traps
 
         itemOption("Lay", "bird_snare,box_trap,rabbit_snare") {
-            if (it.item.id == "box_trap" && !questCompleted("eagles_peak")) {
-                message("You need to learn how to set a box trap in the Eagle's Peak Quest.")
-                return@itemOption
-            }
             layTrap(it.item.id, null, null)
         }
 
         floorItemOperate("Lay") { (item) ->
-            if (item.id == "box_trap" && !questCompleted("eagles_peak")) {
-                message("You need to learn how to set a box trap in the Eagle's Peak Quest.")
-                return@floorItemOperate
-            }
             layTrap(item.id, null, item)
         }
 
         objectOperate("Dismantle", "bird_snare,bird_snare_fail,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
-            dismantleTrap(target.id, target)
+            val type = when {
+                target.id.startsWith("bird_snare") -> "bird_snare"
+                target.id.startsWith("box_trap") -> "box_trap"
+                target.id.startsWith("rabbit_snare") -> "rabbit_snare"
+                target.id.startsWith("boulder_trap") -> "boulder_trap"
+                target.id.contains("_net") -> "${target.id.substringBefore("_net")}_net"
+                else -> return@objectOperate
+            }
+            var tile = target.tile
+            if (type.endsWith("_net")) {
+                tile = tile.add(direction(target.rotation))
+            }
+            dismantleTrap(type, target, tile)
         }
 
         objectOperate("Investigate", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
-            val npc = NPCs.find(target.tile, "hunting_ojibway_trap_npc")
+            val id = Tables.npc("traps.${target.id}.npc")
+            val npc = NPCs.find(target.tile, id)
             if (npc["baited", false]) {
                 // TODO
+                message("This trap has been set without any bait.")
             } else if (npc["smoked", false]) {
                 message("The scent on this trap has been masked.")
             } else {
@@ -89,7 +95,8 @@ class Hunter : Script {
         }
 
         itemOnObjectOperate("torch_lit", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
-            val npc = NPCs.find(target.tile, "hunting_ojibway_trap_npc")
+            val id = Tables.npc("traps.${target.id}.npc")
+            val npc = NPCs.find(target.tile, id)
             if (npc["owner", ""] != accountName) {
                 message("This is not your trap!") // TODO proper message
                 return@itemOnObjectOperate
@@ -113,6 +120,15 @@ class Hunter : Script {
             }
         }
 
+        itemOnObjectOperate("*", "net") { (obj, item) ->
+            if (item.def.contains(Params.HEALS)) {
+                // TODO what is/isn't allowed as bait
+                message("I don't think I'd catch much using that as bait.")
+            } else {
+                noInterest()
+            }
+        }
+
         objectOperate("Check", "snare_*") { (target) ->
             collectCatch(target.id.removePrefix("snare_"), target)
         }
@@ -121,21 +137,30 @@ class Hunter : Script {
             collectCatch(target.id.removePrefix("box_trap_"), target)
         }
 
+        objectOperate("Check", "*_net_caught") { (target) ->
+            collectCatch(target.id, target)
+        }
+
         // Net
 
-        objectOperate("Set-trap", "*_net,boulder_trap") {
-            layTrap(it.target.id, it.target, null)
+        objectOperate("Set-trap", "*_net,boulder_trap") { (target) ->
+            layTrap(target.id, target, null)
         }
 
         objectOperate("Dismantle", "net") { (target) ->
             val dir = direction(target.rotation).inverse()
-            val trap = GameObjects.findOrNull(target.tile.add(dir)) { it.id.endsWith("_net_setup") } ?: return@objectOperate
-            dismantleTrap(trap.id, trap)
+            val trap = GameObjects.getLayer(target.tile.add(dir), ObjectLayer.GROUND) ?: return@objectOperate
+            dismantleTrap(trap.id.removeSuffix("_setup").removeSuffix("_failed"), trap, target.tile)
+        }
+
+        objectOperate("Dismantle", "*_net_failed") { (target) ->
+            val dir = direction(target.rotation)
+            dismantleTrap(target.id.removeSuffix("_setup").removeSuffix("_failed"), target, target.tile.add(dir))
         }
 
         objectOperate("Investigate", "net") { (target) ->
             val dir = direction(target.rotation).inverse()
-            val trap = GameObjects.findOrNull(target.tile.add(dir)) { it.id.endsWith("_net_setup") } ?: return@objectOperate
+            val trap = GameObjects.getLayer(target.tile.add(dir), ObjectLayer.GROUND) ?: return@objectOperate
             // TODO
         }
 
@@ -157,7 +182,7 @@ class Hunter : Script {
         }
 
         objectOperate("Dismantle", "pitfall_*") { (target) ->
-            dismantleTrap("pitfall", target)
+            dismantleTrap("pitfall", target, target.tile)
         }
 
         objectOperate("Check", "rabbit_snare_caught") { (target) ->
@@ -188,9 +213,6 @@ class Hunter : Script {
                 return@huntNPC
             }
             val creature = Rows.getOrNull("creatures.${target.id}") ?: return@huntNPC
-            if (creature.string("trap") != "bird_snare") { // FIXME Temp
-                return@huntNPC
-            }
             val account: String = get("owner") ?: return@huntNPC
             val player = Players.findByAccount(account) ?: return@huntNPC
             if (!player.has(Skill.Hunter, creature.int("level"))) {
@@ -200,11 +222,6 @@ class Hunter : Script {
                 return@huntNPC
             }
             transform("${id}_off")
-            target.walkToDelay(tile)
-            target.walkOverDelay(tile)
-            target.face(Direction.SOUTH)
-            target.anim("bird_land")
-            target.delay(1)
             var chance = creature.intRange("chance")
             if (get("baited", false)) {
                 chance = (chance.first + 7)..(chance.last + 7) // 3%
@@ -212,30 +229,61 @@ class Hunter : Script {
                 chance = (chance.first + 5)..(chance.last + 5) // 2%
             }
             val success = Level.success(player.levels.get(Skill.Hunter), chance)
-            val catchAnim = creature.animOrNull(if (success) "catch_anim" else "fail_anim")
-            if (catchAnim != null) {
-                target.anim(catchAnim)
+            val trapId = creature.string("trap")
+            when (trapId) { // FIXME Temp
+                 "bird_snare" -> {
+                    target.walkToDelay(tile)
+                    target.walkOverDelay(tile)
+                    target.face(Direction.SOUTH)
+                    target.anim("bird_land")
+                    target.delay(1)
+                    val catchAnim = creature.animOrNull(if (success) "catch_anim" else "fail_anim")
+                    if (catchAnim != null) {
+                        target.anim(catchAnim)
+                    }
+                    target.delay(1)
+                    despawn(100) // TODO timings
+                     val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
+                     if (success) {
+                        target.levels.set(Skill.Constitution, 0)
+                        trap.replace(Tables.obj("creatures.${target.id}.caught_obj"))
+                        player.message("Something has been caught in your trap!")
+                        areaSound("bird_caught", tile)
+                        return@huntNPC
+                    }
+                    val failObj = Tables.objOrNull("traps.$trapId.fail")
+                    if (failObj != null) {
+                        trap.replace(failObj) // TODO collapse time
+                    }
+                    val failAnim = creature.animOrNull("fail_anim")
+                    if (failAnim != null) {
+                        target.anim(failAnim)
+                    }
+                    // TODO is there a message for this?
+            //            owner.message(Tables.stringOrNull("traps.${creature.string("trap")}.collapse_message") ?: return@huntNPC)
+                }
+                "swamp_net", "red_net", "orange_net", "black_net" -> {
+                    target.walkToDelay(tile)
+                    target.delay(2)
+                    // TODO need other tile
+                    val net = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
+                    val trap = GameObjects.getLayer(tile.add(direction(rotation = net.rotation).inverse()), ObjectLayer.GROUND) ?: return@huntNPC
+                    net.remove()
+                    if (success) {
+                        val caught = trap.replace("${trapId}_catching")
+                        delay(2)
+                        caught.replace("${trapId}_caught")
+                        return@huntNPC
+                    }
+
+                    // TODO need inverse
+                    val failed = trap.replace("${trapId}_failing")
+                    delay(2)
+                    failed.replace("${trapId}_failed")
+                    delay(1)
+                    // TODO collapse
+                }
             }
-            target.delay(1)
-            despawn(100) // TODO timings
-            val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
-            if (success) {
-                target.levels.set(Skill.Constitution, 0)
-                trap.replace(Tables.obj("creatures.${target.id}.caught_obj"))
-                player.message("Something has been caught in your trap!")
-                areaSound("bird_caught", tile)
-                return@huntNPC
-            }
-            val failObj = Tables.objOrNull("traps.${creature.string("trap")}.fail")
-            if (failObj != null) {
-                trap.replace(failObj) // TODO collapse time
-            }
-            val failAnim = creature.animOrNull("fail_anim")
-            if (failAnim != null) {
-                target.anim(failAnim)
-            }
-            // TODO is there a message for this?
-//            owner.message(Tables.stringOrNull("traps.${creature.string("trap")}.collapse_message") ?: return@huntNPC)
         }
     }
 
@@ -269,6 +317,10 @@ class Hunter : Script {
     }
 
     private suspend fun Player.layTrap(trapId: String, obj: GameObject?, floorItem: FloorItem?) {
+        if (trapId == "box_trap" && !questCompleted("eagles_peak")) {
+            message("You need to learn how to set a box trap in the Eagle's Peak Quest.")
+            return
+        }
         var obj = obj
         val trap = Rows.getOrNull("traps.$trapId") ?: return
         val level = levels.get(Skill.Hunter)
@@ -303,7 +355,7 @@ class Hunter : Script {
         arriveDelay()
         message("You begin setting up ${if (max == 1) "the" else "a"} trap.", ChatType.Filter)
         anim(trap.anim("setup_anim"))
-        sound("set_noose")
+        sound(trap.string("setup_sound"))
         delay(3)
         for (item in items) {
             if (floorItem != null && item == floorItem.id) {
@@ -313,7 +365,6 @@ class Hunter : Script {
             inventory.remove(item)
         }
         inc("trap_count")
-        NPCs.add("hunting_ojibway_trap_npc", tile, ticks = 100, owner = this) // TODO check times
         val trapId = trap.obj("trap")
         if (trapId == "pitfall_0" && obj != null) {
             set(obj.id, "spiked")
@@ -321,9 +372,11 @@ class Hunter : Script {
             obj.replace(trapId)
             if (trapId.endsWith("_net_setup")) {
                 val dir = direction(obj.rotation)
+                NPCs.add(trap.npc("npc"), obj.tile.add(dir), ticks = 100, owner = this) // TODO check times
                 GameObjects.add("net", obj.tile.add(dir), rotation = dir.ordinal / 2)
             }
         } else {
+            NPCs.add(trap.npc("npc"), tile, ticks = 100, owner = this) // TODO check times
             obj = GameObjects.add(trapId, tile, ObjectShape.CENTRE_PIECE_STRAIGHT, 0, ticks = 50 * 60)
         }
         if (trap.bool("step_away")) {
@@ -346,25 +399,33 @@ class Hunter : Script {
         }
     }
 
-    private suspend fun Player.dismantleTrap(trapId: String, target: GameObject) {
-        val npc = NPCs.findOrNull(target.tile, "hunting_ojibway_trap_npc") ?: return
+    private suspend fun Player.dismantleTrap(trapId: String, target: GameObject, tile: Tile) {
+        val id = Tables.npc("traps.${trapId}.npc")
+        val npc = NPCs.findOrNull(tile, id) ?: return
         if (npc["owner", ""] != accountName) {
             message("This is not your trap.")
             return
         }
-        val trap = Rows.get("traps.${trapId.removeSuffix("_setup").removeSuffix("_fail")}")
+        val trap = Rows.get("traps.${trapId}")
+        val items = trap.itemList("items")
+        if (inventory.spaces < items.size) {
+            val slots = inventory.spaces - items.size
+            message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
+            return
+        }
         anim(trap.anim("take_down_anim"))
         sound("trap_dismantle", delay = 25)
         delay(2)
-        removeTrap(target)
-        for (item in trap.itemList("items")) {
+        removeTrap(target, npc)
+        for (item in items) {
             inventory.add(item)
         }
         message("You dismantle the trap.", ChatType.Filter)
     }
 
     private suspend fun Player.collectCatch(creatureId: String, target: GameObject) {
-        val npc = NPCs.findOrNull(target.tile, "hunting_ojibway_trap_npc") ?: return
+        val id = Tables.npc("traps.${target.id.removeSuffix("_caught")}.npc")
+        val npc = NPCs.findOrNull(target.tile, id) ?: return
         if (npc["owner", ""] != accountName) {
             message("This is not your trap.")
             return
@@ -381,17 +442,16 @@ class Hunter : Script {
         anim(trap.anim("take_down_anim"))
         sound("trap_dismantle", delay = 25)
         delay(2)
-        removeTrap(target)
+        removeTrap(target, npc)
         for (item in loot) {
             inventory.add(item)
         }
         exp(Skill.Hunter, creature.int("xp") / 10.0)
-        message("You've caught a ${creatureId.toLowerSpaceCase()}!", ChatType.Filter)
+        message("You've caught a ${creatureId.toLowerSpaceCase()}.", ChatType.Filter)
     }
 
-    private fun Player.removeTrap(target: GameObject) {
+    private fun Player.removeTrap(target: GameObject, npc: NPC) {
         dec("trap_count")
-        val npc = NPCs.find(target.tile, "hunting_ojibway_trap_npc")
         NPCs.remove(npc)
         if (target.id.startsWith("pitfall")) {
             set(target.id, "empty")

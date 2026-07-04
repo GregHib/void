@@ -1,3 +1,4 @@
 [swamp_lizard]
 id = 5117
+solid = false
 examine = "Very slimy and generally disgusting."

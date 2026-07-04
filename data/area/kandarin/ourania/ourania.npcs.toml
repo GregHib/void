@@ -108,7 +108,7 @@ combat_def = "monk_of_zamorak"
 categories = ["human"]
 height = 40
 wander_range = 5
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 hunt_range = 2
 drop_table = "monk_of_zamorak"
 respawn_delay = 50
@@ -125,4 +125,5 @@ examine = "The essence of evil."
 
 [red_salamander]
 id = 5115
+solid = false
 examine = "Slightly slimy but certainly striking."

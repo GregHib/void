@@ -1,5 +1,6 @@
 [orange_salamander]
 id = 5114
+solid = false
 examine = "Slightly slimy but kind of cute."
 
 [golden_warbler]

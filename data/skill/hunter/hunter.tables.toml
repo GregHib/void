@@ -12,6 +12,7 @@ trap = "bird_snare"
 trap = "obj"       # the active (set) object
 fail = "obj"       # the failed/collapsed object (optional)
 setup_anim = "anim"
+setup_sound = "string"
 take_down_anim = "anim"
 level = "int"
 level_default = 1
@@ -24,15 +25,18 @@ step_away_default = true
 item_message = "string"
 collapse_ticks = "int"
 collapse_message = "string"
+npc = "npc"
 
 [.bird_snare]
 trap = "bird_snare"
 fail = "bird_snare_fail"
 setup_anim = "lay_trap"
+setup_sound = "set_noose"
 take_down_anim = "take_trap"
 items = ["bird_snare"]
 collapse_ticks = 100
 collapse_message = "The bird snare that you laid has fallen over."
+npc = "hunting_ojibway_trap_npc"
 
 [.rabbit_snare]
 trap = "rabbit_snare"
@@ -42,6 +46,7 @@ take_down_anim = "lay_trap_small"
 items = ["rabbit_snare"]
 collapse_ticks = 104
 collapse_message = "The snare that you placed has fallen over."
+npc = "hunting_snare_trap_npc"
 
 [.box_trap]
 level = 27
@@ -50,6 +55,7 @@ fail = "box_trap_fail"
 setup_anim = "lay_trap"
 take_down_anim = "lay_trap"
 items = ["box_trap"]
+npc = "hunting_box_trap_npc"
 
 [.boulder_trap]
 level = 23
@@ -61,43 +67,52 @@ requires = ["knife"]
 items = ["logs"]
 max = 1
 step_away = false
+npc = "hunting_deadfall_trap_npc"
 
 [.swamp_net]
 level = 29
 trap = "swamp_net_setup"
-fail = "swamp_net_fail"
+fail = "swamp_net_failing"
 setup_anim = "lay_net_trap"
-take_down_anim = "climb_down"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
 items = ["rope", "small_fishing_net"]
 collapse_ticks = 102
 collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
 
 [.orange_net]
 level = 47
 trap = "orange_net_setup"
 setup_anim = "lay_net_trap"
-take_down_anim = "climb_down"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
 items = ["rope", "small_fishing_net"]
 collapse_ticks = 102
 collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
 
 [.red_net]
 level = 59
 trap = "red_net_setup"
 setup_anim = "lay_net_trap"
-take_down_anim = "climb_down"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
 items = ["rope", "small_fishing_net"]
 collapse_ticks = 102
 collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
 
 [.black_net]
 level = 67
 trap = "black_net_setup"
 setup_anim = "lay_net_trap"
-take_down_anim = "climb_down"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
 items = ["rope", "small_fishing_net"]
 collapse_ticks = 102
 collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
 
 [.pitfall]
 level = 31
@@ -215,6 +230,7 @@ level = 29
 xp = 1520
 catch_anim = "net_catch"
 loot = ["small_fishing_net", "rope", "green_salamander"]
+chance = [52, 360]
 
 [.orange_salamander]
 trap = "orange_net"
@@ -222,6 +238,7 @@ level = 47
 xp = 2240
 catch_anim = "net_catch"
 loot = ["small_fishing_net", "rope", "orange_salamander"]
+chance = [16, 288]
 
 [.red_salamander]
 trap = "red_net"
@@ -229,6 +246,7 @@ level = 59
 xp = 2720
 catch_anim = "net_catch"
 loot = ["small_fishing_net", "rope", "red_salamander"]
+chance = [0, 240]
 
 [.black_salamander]
 trap = "black_net"
@@ -236,6 +254,7 @@ level = 67
 xp = 3040
 catch_anim = "net_catch"
 loot = ["small_fishing_net", "rope", "black_salamander"]
+chance = [0, 212]
 
 [.pawya]
 trap = "box_trap"
