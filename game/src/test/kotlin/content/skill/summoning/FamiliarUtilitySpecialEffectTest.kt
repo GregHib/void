@@ -325,7 +325,8 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
     @Test
     fun `The forge regent burns logs like the pyrelord, with a helper bonus`() {
-        val player = summon("forge_regent_familiar")
+        // An open plain, so the westward step off the fire is never blocked by map collision.
+        val player = summon("forge_regent_familiar", Tile(3200, 3200))
         player.inventory.transaction { add("logs", 1) }
         val familiarTile = player.follower!!.tile
 
@@ -335,5 +336,18 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         assertEquals(0, player.inventory.count("logs"), "the regent burnt the log")
         assertEquals(50.0, player.experience.get(Skill.Firemaking), "the log's 40 xp plus the 10 helper bonus")
         assertTrue(GameObjects.find(familiarTile) { it.id.startsWith("fire_") } != null, "the fire burns beneath the familiar")
+
+        tick(3)
+        assertEquals(familiarTile.addX(-1), player.follower!!.tile, "the familiar steps west off its fire")
+    }
+
+    @Test
+    fun `An adjacent familiar faces its idle owner instead of shuffling behind them`() {
+        val player = summon("bunyip_familiar")
+        val before = player.follower!!.tile
+
+        tick(10)
+
+        assertEquals(before, player.follower!!.tile, "the familiar stays put while its owner stands still")
     }
 }

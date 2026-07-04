@@ -7,11 +7,17 @@ import content.entity.player.dialogue.type.player
 import content.skill.summoning.FamiliarSpecialMoves
 import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.mode.move.canTravel
+import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -114,6 +120,30 @@ class Pyrelord : Script {
                 GameObjects.add("fire_$colour", target.tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
                 FloorItems.add(target.tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
                 message("The ${target.def.name.lowercase()} breathes fire and the logs begin to burn.", ChatType.Filter)
+                // The familiar steps off its new fire westward, as players do, then waits beside it
+                // facing its owner - resuming the follow straight away would walk it right back onto
+                // the fire, so it stands by (PauseMode, like the beaver's chop) until the owner moves.
+                val steps: StepValidator = get()
+                if (steps.canTravel(target, -1, 0)) {
+                    val owner = this
+                    target.queue("familiar_step_west") {
+                        val dest = target.tile.addX(-1)
+                        target.walkTo(dest)
+                        var ticks = 0
+                        while (target.tile != dest && ticks++ < 5) {
+                            delay()
+                        }
+                        target.mode = PauseMode
+                        target.watch(owner)
+                        val stand = owner.tile
+                        while (owner.tile == stand && owner.follower == target && target.mode is PauseMode) {
+                            delay()
+                        }
+                        if (owner.follower == target && target.mode is PauseMode) {
+                            target.mode = Follow(target, owner)
+                        }
+                    }
+                }
             }
         }
     }

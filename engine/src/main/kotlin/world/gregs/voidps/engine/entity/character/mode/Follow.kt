@@ -51,6 +51,11 @@ class Follow(
         if (character.steps.isEmpty()) {
             smart = false
         }
+        // An npc already beside its target just faces it rather than shuffling onto the follow
+        // tile; it only moves again once the target walks out of reach.
+        if (character is NPC && target.tile.distanceTo(character) <= 1) {
+            return false
+        }
         if (!equals(strategy.tile, character.steps.destination)) {
             character.steps.queueStep(strategy.tile)
             return true
