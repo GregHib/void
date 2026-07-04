@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.type.random
 import kotlin.math.ceil
 
 /** Flight time (client ticks; 30 = 1 game tick) of the spirit scorpion's slow venom bolt to its owner. */
@@ -55,11 +54,11 @@ class FamiliarBoostSpecials : Script {
             }
         }
 
-        // Elemental titans - Titan's Constitution: Defence +12.5% and heal 8.
+        // Elemental titans - Titan's Constitution: Defence +12.5% and heal 80.
         FamiliarSpecialMoves.instant("fire_titan_familiar", "moss_titan_familiar", "ice_titan_familiar") {
             familiarSelfSpecial {
                 levels.boost(Skill.Defence, multiplier = 0.125)
-                levels.restore(Skill.Constitution, 8)
+                levels.restore(Skill.Constitution, 80)
             }
         }
 
@@ -70,7 +69,7 @@ class FamiliarBoostSpecials : Script {
             }
         }
 
-        // Blood Drain - cure poison, restore drained stats by ~20%, then take 1-5 recoil damage.
+        // Blood Drain - cure poison, restore drained stats by ~20%, then take 25 recoil damage.
         FamiliarSpecialMoves.instant("bloated_leech_familiar") {
             familiarSelfSpecial {
                 curePoison()
@@ -80,7 +79,7 @@ class FamiliarBoostSpecials : Script {
                         levels.restore(skill, ceil(levels.getMax(skill) * 0.2).toInt())
                     }
                 }
-                directHit(random.nextInt(5) + 1, "damage")
+                directHit(25, "damage")
             }
         }
 

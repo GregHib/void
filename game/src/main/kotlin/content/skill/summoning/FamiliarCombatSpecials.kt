@@ -26,6 +26,12 @@ private const val BULL_RUSH_STUN_TICKS = 5
 /** Bull Rush stuns on impact with a 1-in-[BULL_RUSH_STUN_CHANCE] chance (i.e. a third of the time). */
 private const val BULL_RUSH_STUN_CHANCE = 3
 
+/** How long (game ticks) the arctic bear's Arctic Blast stuns a small target on impact. */
+private const val ARCTIC_BLAST_STUN_TICKS = 3
+
+/** Arctic Blast stuns on impact with a 1-in-[ARCTIC_BLAST_STUN_CHANCE] chance, size-1 targets only. */
+private const val ARCTIC_BLAST_STUN_CHANCE = 5
+
 /**
  * Combat familiar special moves - the cast-button specials that target an npc (or player). Each
  * registers into [FamiliarSpecialMoves]; the dispatcher runs it through [castFamiliarSpecial] so a
@@ -52,42 +58,51 @@ class FamiliarCombatSpecials : Script {
 
         // Straightforward "fire a projectile, deal up to maxHit" combat specials.
         FamiliarSpecialMoves.npc("desert_wyrm_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 5, anim = "electric_lash", sourceGfx = "electric_lash", projectile = "electric_lash_proj")
+            familiarSpecialHit(target, maxHit = 50, anim = "electric_lash", sourceGfx = "electric_lash", projectile = "electric_lash_proj")
         }
         FamiliarSpecialMoves.npc("barker_toad_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 8, sourceGfx = "toad_bark", targetGfx = "toad_bark_hit")
+            familiarSpecialHit(target, maxHit = 80, sourceGfx = "toad_bark", targetGfx = "toad_bark_hit")
         }
         FamiliarSpecialMoves.npc("thorny_snail_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 8, anim = "slime_spray", sourceGfx = "slime_spray", projectile = "slime_spray_proj", targetGfx = "slime_spray_hit")
+            familiarSpecialHit(target, maxHit = 80, anim = "slime_spray", sourceGfx = "slime_spray", projectile = "slime_spray_proj", targetGfx = "slime_spray_hit")
         }
+        // Arctic Blast also stuns small targets on impact, one time in five.
         FamiliarSpecialMoves.npc("arctic_bear_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 15, anim = "arctic_blast", sourceGfx = "arctic_blast", projectile = "arctic_blast_proj", targetGfx = "arctic_blast_hit")
+            familiarSpecialHit(target, maxHit = 130, anim = "arctic_blast", sourceGfx = "arctic_blast", projectile = "arctic_blast_proj", targetGfx = "arctic_blast_hit") { hit ->
+                if (hit.size <= 1 && random.nextInt(ARCTIC_BLAST_STUN_CHANCE) == 0) {
+                    follower?.stun(hit, ARCTIC_BLAST_STUN_TICKS)
+                }
+            }
         }
         FamiliarSpecialMoves.npc("granite_lobster_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 14, anim = "crushing_claw", sourceGfx = "crushing_claw", projectile = "crushing_claw_proj")
+            val cast = familiarSpecialHit(target, maxHit = 96, anim = "crushing_claw", sourceGfx = "crushing_claw", projectile = "crushing_claw_proj")
+            if (cast) {
+                target.levels.drain(Skill.Defence, multiplier = 0.05)
+            }
+            cast
         }
         FamiliarSpecialMoves.npc("dreadfowl_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 3, anim = "dreadfowl_strike", sourceGfx = "dreadfowl_strike", projectile = "dreadfowl_strike_proj")
+            familiarSpecialHit(target, maxHit = 30, anim = "dreadfowl_strike", sourceGfx = "dreadfowl_strike", projectile = "dreadfowl_strike_proj")
         }
 
         // Combat specials that also drain one of the target's stats.
         FamiliarSpecialMoves.npc("spirit_jelly_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 13, anim = "dissolve", projectile = "dissolve_proj").alsoDrain(target, Skill.Attack, 3)
+            familiarSpecialHit(target, maxHit = 120, anim = "dissolve", projectile = "dissolve_proj").alsoDrain(target, Skill.Attack, 3)
         }
         FamiliarSpecialMoves.npc("spirit_larupia_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 10, anim = "rending", sourceGfx = "rending", projectile = "rending_proj").alsoDrain(target, Skill.Strength, 1)
+            familiarSpecialHit(target, maxHit = 120, anim = "rending", sourceGfx = "rending", projectile = "rending_proj").alsoDrain(target, Skill.Strength, 1)
         }
         // Evil Flames - the evil turnip breathes a magic fireball, lowering the target's Magic by 1.
         FamiliarSpecialMoves.npc("evil_turnip_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 10, anim = "evil_flames", sourceGfx = "evil_flames", projectile = "evil_flames_proj", targetGfx = "evil_flames_hit").alsoDrain(target, Skill.Magic, 1)
+            familiarSpecialHit(target, maxHit = 100, anim = "evil_flames", sourceGfx = "evil_flames", projectile = "evil_flames_proj", targetGfx = "evil_flames_hit").alsoDrain(target, Skill.Magic, 1)
         }
         FamiliarSpecialMoves.npc("abyssal_parasite_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 7, anim = "abyssal_drain", sourceGfx = "abyssal_drain", projectile = "abyssal_drain_proj").alsoDrain(target, Skill.Prayer, random.nextInt(3) + 1)
+            familiarSpecialHit(target, maxHit = 95, anim = "abyssal_drain", sourceGfx = "abyssal_drain", projectile = "abyssal_drain_proj").alsoDrain(target, Skill.Prayer, random.nextInt(3) + 1)
         }
 
         // Poisonous Blast - small hit with a 50% chance to poison.
         FamiliarSpecialMoves.npc("stranger_plant_familiar") { target ->
-            val cast = familiarSpecialHit(target, maxHit = 2, anim = "poisonous_blast", projectile = "poisonous_blast_proj", targetGfx = "poisonous_blast_hit")
+            val cast = familiarSpecialHit(target, maxHit = 120, anim = "poisonous_blast", projectile = "poisonous_blast_proj", targetGfx = "poisonous_blast_hit")
             if (cast && random.nextInt(2) == 0) {
                 follower?.poison(target, 20)
             }
@@ -96,14 +111,14 @@ class FamiliarCombatSpecials : Script {
 
         // Boil - geyser titan ranged hit (approximates the live def-bonus formula with a flat max).
         FamiliarSpecialMoves.npc("geyser_titan_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 20, anim = "boil", sourceGfx = "boil", projectile = "boil_proj", targetGfx = "boil_hit")
+            familiarSpecialHit(target, maxHit = 240, anim = "boil", sourceGfx = "boil", projectile = "boil_proj", targetGfx = "boil_hit")
         }
 
-        // Vampyre Touch: 12 max, 40% chance to heal the owner 2.
+        // Vampyre Touch: 120 max, 40% chance to heal the owner 20.
         FamiliarSpecialMoves.npc("vampire_bat_familiar") { target ->
-            val cast = familiarSpecialHit(target, maxHit = 12, anim = "vampire_touch", sourceGfx = "vampire_touch")
+            val cast = familiarSpecialHit(target, maxHit = 120, anim = "vampire_touch", sourceGfx = "vampire_touch")
             if (cast && random.nextInt(100) < 40) {
-                levels.restore(Skill.Constitution, 2)
+                levels.restore(Skill.Constitution, 20)
             }
             cast
         }
@@ -120,7 +135,7 @@ class FamiliarCombatSpecials : Script {
         )
         for ((familiar, skill) in petrifyingGaze) {
             FamiliarSpecialMoves.npc(familiar) { target ->
-                familiarSpecialHit(target, maxHit = 10, anim = "petrifying_gaze", sourceGfx = "petrifying_gaze", projectile = "petrifying_gaze_proj", targetGfx = "petrifying_gaze_hit")
+                familiarSpecialHit(target, maxHit = 100, anim = "petrifying_gaze", sourceGfx = "petrifying_gaze", projectile = "petrifying_gaze_proj", targetGfx = "petrifying_gaze_hit")
                     .alsoDrain(target, skill, 3)
             }
             // The cockatrice's "Drain" right-click option casts Petrifying Gaze on the familiar's
@@ -141,12 +156,12 @@ class FamiliarCombatSpecials : Script {
 
         // Fireball Assault - the spirit Tz-Kih flings fire at up to two nearby foes.
         FamiliarSpecialMoves.instant("spirit_tz-kih_familiar") {
-            familiarAoeSpecial(maxTargets = 2, maxHit = 7, radius = 3, anim = "fireball_assault", targetGfx = "fireball_assault_hit")
+            familiarAoeSpecial(maxTargets = 2, maxHit = 70, radius = 3, anim = "fireball_assault", targetGfx = "fireball_assault_hit")
         }
 
         // Sandstorm - the spirit kalphite blasts every foe around it (up to six, big max hit).
         FamiliarSpecialMoves.instant("spirit_kalphite_familiar") {
-            familiarAoeSpecial(maxTargets = 6, maxHit = 20, radius = 6, anim = "sandstorm", sourceGfx = "sandstorm", projectile = "sandstorm_proj")
+            familiarAoeSpecial(maxTargets = 6, maxHit = 200, radius = 6, anim = "sandstorm", sourceGfx = "sandstorm", projectile = "sandstorm_proj")
         }
 
         // Explode - the giant chinchompa detonates, hitting everything around it, then is consumed by
@@ -160,12 +175,12 @@ class FamiliarCombatSpecials : Script {
         // Minotaur family - Bull Rush: a ranged charge whose max hit scales with metal tier, stunning
         // the target on a real cast so it can't act for a few ticks (as in the live game).
         val bullRush = mapOf(
-            "bronze_minotaur_familiar" to 4,
-            "iron_minotaur_familiar" to 6,
-            "steel_minotaur_familiar" to 9,
-            "mithril_minotaur_familiar" to 13,
-            "adamant_minotaur_familiar" to 16,
-            "rune_minotaur_familiar" to 20,
+            "bronze_minotaur_familiar" to 80,
+            "iron_minotaur_familiar" to 100,
+            "steel_minotaur_familiar" to 120,
+            "mithril_minotaur_familiar" to 160,
+            "adamant_minotaur_familiar" to 200,
+            "rune_minotaur_familiar" to 240,
         )
         for ((familiar, maxHit) in bullRush) {
             FamiliarSpecialMoves.npc(familiar) { target ->
@@ -186,7 +201,7 @@ class FamiliarCombatSpecials : Script {
      * nothing, when there is nothing nearby to hit.
      */
     private fun Player.chinchompaExplode(): Boolean {
-        val cast = familiarAoeSpecial(maxTargets = 9, maxHit = 12, radius = 6, anim = "chinchompa_explode", sourceGfx = "chinchompa_explode")
+        val cast = familiarAoeSpecial(maxTargets = 9, maxHit = 120, radius = 6, anim = "chinchompa_explode", sourceGfx = "chinchompa_explode")
         if (cast) {
             follower?.say("Squeak!")
             // Let the hits land (they self-delay ~3 ticks) before the familiar vanishes.

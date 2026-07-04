@@ -305,6 +305,8 @@ class FamiliarSpecialEffectTest : WorldTest() {
         })
         val player = summon("rune_minotaur_familiar")
         val target = createNPC("giant_rat", player.tile.addY(4))
+        // Enough life points to survive a max 240 charge - a dead npc can't be stunned.
+        target.levels.set(Skill.Constitution, 500)
         val before = target.levels.get(Skill.Constitution)
 
         val cast = FamiliarSpecialMoves.npcTarget.getValue("rune_minotaur_familiar").invoke(player, target)
@@ -324,6 +326,7 @@ class FamiliarSpecialEffectTest : WorldTest() {
         })
         val player = summon("rune_minotaur_familiar")
         val target = createNPC("giant_rat", player.tile.addY(4))
+        target.levels.set(Skill.Constitution, 500)
         val before = target.levels.get(Skill.Constitution)
 
         assertTrue(FamiliarSpecialMoves.npcTarget.getValue("rune_minotaur_familiar").invoke(player, target))
