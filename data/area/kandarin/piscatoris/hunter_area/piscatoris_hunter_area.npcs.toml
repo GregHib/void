@@ -35,6 +35,5 @@ examine = "Now you see it; now you don't."
 
 [copper_longtail]
 id = 5076
-hunt_mode = "hunter_trap"
 respawn_delay = 5
 examine = "Nothing much to get in a flap about."

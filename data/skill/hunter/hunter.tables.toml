@@ -1,3 +1,13 @@
+[trap_npcs]
+row = "npc"
+trap = "string"
+
+[.hunting_ojibway_trap_npc]
+trap = "bird_snare"
+
+[.hunting_ojibway_trap_npc_off]
+trap = "bird_snare"
+
 [traps]
 trap = "obj"       # the active (set) object
 fail = "obj"       # the failed/collapsed object (optional)

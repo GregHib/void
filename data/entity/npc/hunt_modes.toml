@@ -121,9 +121,7 @@ check_not_busy = false
 find_keep_hunting = true
 
 [hunter_trap]
-type = "object"
-layer = 2
-id = "bird_snare"
+type = "npc"
 check_visual = "line_of_sight"
 check_not_busy = true
 find_keep_hunting = true

@@ -82,3 +82,7 @@ values = ["empty", "spiked", "collapsed", "caught", "inverse"]
 id = 4189
 format = "list"
 values = ["empty", "spiked", "collapsed", "caught", "inverse"]
+
+[debug_traps]
+id = 3075
+format = "boolean"

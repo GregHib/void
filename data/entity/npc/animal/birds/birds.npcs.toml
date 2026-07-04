@@ -81,7 +81,6 @@ id = 7031
 categories = ["birds"]
 wander_range = 3
 collision = "sky"
-hunt_mode = "hunter_trap"
 respawn_delay = 5
 examine = "An ogre snack with wings."
 

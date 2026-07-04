@@ -1,6 +1,5 @@
 [tropical_wagtail]
 id = 5072
-hunt_mode = "hunter_trap"
 respawn_delay = 5
 examine = "It blends in very well with its surroundings."
 

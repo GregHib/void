@@ -43,7 +43,6 @@ id = 7457
 
 [cerulean_twitch]
 id = 5074
-hunt_mode = "hunter_trap"
 respawn_delay = 5
 examine = "Best served ice cold."
 
