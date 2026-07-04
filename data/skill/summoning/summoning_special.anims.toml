@@ -145,3 +145,14 @@ id = 7858
 # Ravenous locust's Famine attack animation.
 [famine]
 id = 7998
+
+# Smoke devil's Dust Cloud attack animation.
+[dust_cloud]
+id = 7820
+
+# Iron/steel titan's charge-up animation (shared swing, different graphics).
+[iron_within]
+id = 8183
+
+[steel_of_legends]
+id = 8183

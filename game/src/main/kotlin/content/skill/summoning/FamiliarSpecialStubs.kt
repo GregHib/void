@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
  *
  *  - Item interactions (cook/incubate/smelt): Bunyip, Spirit cobra, Pyre lord
  *  - Skill-system scenery: Hydra (Regrowth) (Beaver's Multichop is done)
- *  - "Charge the next attack" buffs: Iron titan, Steel titan (Spirit scorpion + Honey badger are done)
- *  - AoE hits: Smoke devil (Giant chinchompa's Explode is done)
  *
  * The Gorajo (bloodrager/deathslinger/...), meerkat and phoenix familiars have no 2009-era special
  * and so are intentionally left unregistered (the cast button does nothing for them).
@@ -22,13 +20,6 @@ class FamiliarSpecialStubs : Script {
     private val notImplemented = "Your familiar's special move isn't available yet."
 
     init {
-        // Instant self / AoE / charge specials.
-        FamiliarSpecialMoves.instant(
-            "smoke_devil_familiar",
-            "iron_titan_familiar",
-            "steel_titan_familiar",
-        ) { stub() }
-
         // Scenery-target specials. (Beaver's Multichop is done - see Beaver.kt.)
         FamiliarSpecialMoves.obj("hydra_familiar") { _ -> stub() }
 

@@ -282,6 +282,11 @@ class FamiliarCombatSpecials : Script {
             }
         }
 
+        // Dust Cloud - the smoke devil chokes everything around it in a burst of hot dust.
+        FamiliarSpecialMoves.instant("smoke_devil_familiar") {
+            familiarAoeSpecial(maxTargets = 7, maxHit = 80, radius = 1, anim = "dust_cloud", sourceGfx = "dust_cloud", projectile = "dust_cloud_proj", targetGfx = "dust_cloud_hit")
+        }
+
         // Fireball Assault - the spirit Tz-Kih flings fire at up to two nearby foes.
         FamiliarSpecialMoves.instant("spirit_tz-kih_familiar") {
             familiarAoeSpecial(maxTargets = 2, maxHit = 70, radius = 3, anim = "fireball_assault", targetGfx = "fireball_assault_hit")
@@ -302,6 +307,38 @@ class FamiliarCombatSpecials : Script {
 
         // Minotaur family - Bull Rush: a ranged charge whose max hit scales with metal tier, stunning
         // the target on a real cast so it can't act for a few ticks (as in the live game).
+        // Iron Within / Steel of Legends - charge the titan so its next attack (melee-only for the
+        // iron titan) lands as a flurry of 3 / 4 hits on its target. The charge is set on cast and
+        // spent by the npcCombatAttack handler on the familiar's next swing.
+        for ((familiar, extraHits) in mapOf("iron_titan_familiar" to 2, "steel_titan_familiar" to 3)) {
+            val charge = "familiar_titan_charged"
+            FamiliarSpecialMoves.instant(familiar) {
+                if (this[charge, false]) {
+                    message("Your familiar's special attack is already charged.")
+                    return@instant false
+                }
+                val titan = follower ?: return@instant false
+                titan.anim(if (familiar == "iron_titan_familiar") "iron_within" else "steel_of_legends")
+                titan.gfx(if (familiar == "iron_titan_familiar") "iron_within" else "steel_of_legends")
+                set(charge, true)
+                true
+            }
+            npcCombatAttack(familiar) { attack ->
+                if (familiar == "iron_titan_familiar" && attack.type != "melee") {
+                    return@npcCombatAttack
+                }
+                val owner = Players.indexed(this["owner_index", -1]) ?: return@npcCombatAttack
+                if (owner.follower?.index != index || !owner[charge, false]) {
+                    return@npcCombatAttack
+                }
+                // Clear before the extra hits - each one re-fires this handler.
+                owner.clear(charge)
+                repeat(extraHits) { swing ->
+                    hit(attack.target, offensiveType = attack.type, delay = attack.delay + (swing + 1) * 30)
+                }
+            }
+        }
+
         val bullRush = mapOf(
             "bronze_minotaur_familiar" to 80,
             "iron_minotaur_familiar" to 100,

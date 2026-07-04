@@ -300,3 +300,24 @@ id = 1394
 
 [inferno_hit]
 id = 1393
+
+# Smoke devil Dust Cloud: familiar gfx, the dust burst, and the choking impact.
+[dust_cloud]
+id = 1375
+
+[dust_cloud_proj]
+id = 1376
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[dust_cloud_hit]
+id = 1377
+
+# Iron Within / Steel of Legends: the charge-up glow on each titan.
+[iron_within]
+id = 1450
+
+[steel_of_legends]
+id = 1449
