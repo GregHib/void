@@ -47,3 +47,6 @@ id = 8267
 
 [dreadfowl_special]
 id = 5387
+# Fire-breathing familiars (pyrelord, forge regent) lighting logs beneath themselves.
+[familiar_light_fire]
+id = 8085

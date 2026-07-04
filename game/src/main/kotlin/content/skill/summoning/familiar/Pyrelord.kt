@@ -83,8 +83,8 @@ class Pyrelord : Script {
             castFamiliarSpecial { immenseHeat(item.id) }
         }
 
-        // The pyrelord and forge regent act as portable fire sources - they burn logs without a
-        // tinderbox, granting the log's xp plus a small bonus for the demon's help.
+        // The pyrelord and forge regent act as portable fire sources - the demon breathes fire over
+        // the logs, lighting them beneath itself, granting the log's xp plus a bonus for its help.
         for (familiar in listOf("pyrelord_familiar", "forge_regent_familiar")) {
             itemOnNPCOperate("*logs*", familiar) { (target, item) ->
                 if (target != follower) {
@@ -100,19 +100,19 @@ class Pyrelord : Script {
                 if (!has(Skill.Firemaking, level, true)) {
                     return@itemOnNPCOperate
                 }
-                if (GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
+                if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND) != null) {
                     message("You can't light a fire here.")
                     return@itemOnNPCOperate
                 }
                 if (!inventory.remove(item.id)) {
                     return@itemOnNPCOperate
                 }
-                anim("light_fire")
+                target.anim("familiar_light_fire")
                 exp(Skill.Firemaking, row.int("xp") / 10.0 + 10)
                 val colour = row.string("colour")
                 val life = row.int("life")
-                GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
-                FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
+                GameObjects.add("fire_$colour", target.tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
+                FloorItems.add(target.tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
                 message("The ${target.def.name.lowercase()} breathes fire and the logs begin to burn.", ChatType.Filter)
             }
         }

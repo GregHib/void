@@ -327,11 +327,13 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     fun `The forge regent burns logs like the pyrelord, with a helper bonus`() {
         val player = summon("forge_regent_familiar")
         player.inventory.transaction { add("logs", 1) }
+        val familiarTile = player.follower!!.tile
 
         player.itemOnNpc(player.follower!!, 0)
         tick(2)
 
         assertEquals(0, player.inventory.count("logs"), "the regent burnt the log")
         assertEquals(50.0, player.experience.get(Skill.Firemaking), "the log's 40 xp plus the 10 helper bonus")
+        assertTrue(GameObjects.find(familiarTile) { it.id.startsWith("fire_") } != null, "the fire burns beneath the familiar")
     }
 }
