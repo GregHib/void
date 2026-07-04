@@ -207,3 +207,96 @@ id = 1503
 
 [call_to_arms_land]
 id = 1502
+
+# Karamthulhu overlord Doomsphere: familiar gfx, water-orb projectile, and the impact splash.
+[doomsphere]
+id = 1478
+
+[doomsphere_proj]
+id = 1479
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[doomsphere_hit]
+id = 1480
+
+# Spirit dagannoth Spike Shot: the launched spike and its impact.
+[spike_shot_proj]
+id = 1426
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[spike_shot_hit]
+id = 1428
+
+# Swamp titan Swamp Plague: the bog projectile.
+[swamp_plague_proj]
+id = 1462
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+# Lava titan Ebon Thunder: familiar gfx, the dark bolt, and the impact.
+[ebon_thunder]
+id = 1492
+
+[ebon_thunder_proj]
+id = 1493
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[ebon_thunder_hit]
+id = 1494
+
+# Praying mantis Mantis Strike: familiar gfx, the bolt, and the binding impact.
+[mantis_strike]
+id = 1379
+
+[mantis_strike_proj]
+id = 1380
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[mantis_strike_hit]
+id = 1381
+
+# Giant ent Acorn Missile: the lobbed acorns and their impact.
+[acorn_missile_proj]
+id = 1362
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[acorn_missile_hit]
+id = 1363
+
+# Ravenous locust Famine: familiar gfx, the swarm projectile, and the impact.
+[famine]
+id = 1346
+
+[famine_proj]
+id = 1347
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[famine_hit]
+id = 1348
+
+# Forge regent Inferno: the flare on the familiar and the burst on the disarmed player.
+[inferno]
+id = 1394
+
+[inferno_hit]
+id = 1393

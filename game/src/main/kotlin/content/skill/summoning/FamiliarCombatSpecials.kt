@@ -1,8 +1,12 @@
 package content.skill.summoning
 
+import content.entity.combat.attackers
+import content.entity.combat.hit.hit
 import content.entity.combat.target
+import content.entity.effect.freeze
 import content.entity.effect.stun
 import content.entity.effect.toxin.poison
+import content.entity.player.combat.special.specialAttackEnergy
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -12,12 +16,21 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.move
+import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 
 /** How long (game ticks) a minotaur's Bull Rush stuns its target, keeping it from acting. */
@@ -31,6 +44,12 @@ private const val ARCTIC_BLAST_STUN_TICKS = 3
 
 /** Arctic Blast stuns on impact with a 1-in-[ARCTIC_BLAST_STUN_CHANCE] chance, size-1 targets only. */
 private const val ARCTIC_BLAST_STUN_CHANCE = 5
+
+/** How long (game ticks) the praying mantis' Mantis Strike binds a small target in place on impact. */
+private const val MANTIS_STRIKE_BIND_TICKS = 3
+
+/** How much special attack energy (out of 1000) the lava titan's Ebon Thunder drains from a player. */
+private const val EBON_THUNDER_ENERGY_DRAIN = 100
 
 /**
  * Combat familiar special moves - the cast-button specials that target an npc (or player). Each
@@ -75,11 +94,7 @@ class FamiliarCombatSpecials : Script {
             }
         }
         FamiliarSpecialMoves.npc("granite_lobster_familiar") { target ->
-            val cast = familiarSpecialHit(target, maxHit = 96, anim = "crushing_claw", sourceGfx = "crushing_claw", projectile = "crushing_claw_proj")
-            if (cast) {
-                target.levels.drain(Skill.Defence, multiplier = 0.05)
-            }
-            cast
+            familiarSpecialHit(target, maxHit = 96, anim = "crushing_claw", sourceGfx = "crushing_claw", projectile = "crushing_claw_proj").alsoDrain(target, Skill.Defence, multiplier = 0.05)
         }
         FamiliarSpecialMoves.npc("dreadfowl_familiar") { target ->
             familiarSpecialHit(target, maxHit = 30, anim = "dreadfowl_strike", sourceGfx = "dreadfowl_strike", projectile = "dreadfowl_strike_proj")
@@ -112,6 +127,119 @@ class FamiliarCombatSpecials : Script {
         // Boil - geyser titan ranged hit (approximates the live def-bonus formula with a flat max).
         FamiliarSpecialMoves.npc("geyser_titan_familiar") { target ->
             familiarSpecialHit(target, maxHit = 240, anim = "boil", sourceGfx = "boil", projectile = "boil_proj", targetGfx = "boil_hit")
+        }
+
+        // Doomsphere - the karamthulhu overlord's watery blast, also washing away 5% of the target's Magic.
+        FamiliarSpecialMoves.npc("karamthulhu_overlord_familiar") { target ->
+            familiarSpecialHit(target, maxHit = 78, anim = "doomsphere", sourceGfx = "doomsphere", projectile = "doomsphere_proj", targetGfx = "doomsphere_hit").alsoDrain(target, Skill.Magic, multiplier = 0.05)
+        }
+
+        // Spike Shot - the spirit dagannoth launches a spike, its hardest-hitting single shot.
+        FamiliarSpecialMoves.npc("spirit_dagannoth_familiar") { target ->
+            familiarSpecialHit(target, maxHit = 170, anim = "spike_shot", projectile = "spike_shot_proj", targetGfx = "spike_shot_hit")
+        }
+
+        // Swamp Plague - the swamp titan's bog blast also poisons the target.
+        FamiliarSpecialMoves.npc("swamp_titan_familiar") { target ->
+            val cast = familiarSpecialHit(target, maxHit = 110, anim = "swamp_plague", projectile = "swamp_plague_proj")
+            if (cast) {
+                follower?.poison(target, 80)
+            }
+            cast
+        }
+
+        // Ebon Thunder - the lava titan's bolt drains a player target's special attack energy on impact.
+        FamiliarSpecialMoves.npc("lava_titan_familiar") { target ->
+            familiarSpecialHit(target, maxHit = 140, anim = "ebon_thunder", sourceGfx = "ebon_thunder", projectile = "ebon_thunder_proj", targetGfx = "ebon_thunder_hit", onLand = ::drainSpecialEnergy)
+        }
+        FamiliarSpecialMoves.player("lava_titan_familiar") { target ->
+            familiarSpecialHit(target, maxHit = 140, anim = "ebon_thunder", sourceGfx = "ebon_thunder", projectile = "ebon_thunder_proj", targetGfx = "ebon_thunder_hit", onLand = ::drainSpecialEnergy)
+        }
+
+        // Mantis Strike - the praying mantis' bolt binds small targets in place once it lands.
+        FamiliarSpecialMoves.npc("praying_mantis_familiar") { target ->
+            familiarSpecialHit(target, maxHit = 100, anim = "mantis_strike", sourceGfx = "mantis_strike", projectile = "mantis_strike_proj", targetGfx = "mantis_strike_hit") { hit ->
+                if (hit.size <= 1) {
+                    follower?.freeze(hit, MANTIS_STRIKE_BIND_TICKS)
+                }
+            }
+        }
+
+        // Deadly Claw - the talon beast rakes its target three times in quick succession.
+        FamiliarSpecialMoves.npc("talon_beast_familiar") { target ->
+            if (!familiarCanSpecial(target)) {
+                return@npc false
+            }
+            val familiar = follower ?: return@npc false
+            familiar.watch(target)
+            repeat(3) { swipe ->
+                familiar.hit(target, offensiveType = "magic", damage = random.nextInt(101), delay = 64 + swipe * 30)
+            }
+            if (familiar !in target.attackers) {
+                target.attackers.add(familiar)
+            }
+            commandFamiliarAttack(target, silent = true)
+            true
+        }
+
+        // Acorn Missile - the giant ent lobs acorns that also pelt anything adjacent to the target.
+        FamiliarSpecialMoves.npc("giant_ent_familiar") { target ->
+            val cast = familiarSpecialHit(target, maxHit = 100, anim = "acorn_missile", projectile = "acorn_missile_proj", targetGfx = "acorn_missile_hit")
+            if (cast) {
+                val familiar = follower
+                if (familiar != null && target is NPC) {
+                    for (tile in target.tile.spiral(1)) {
+                        for (splashed in NPCs.at(tile)) {
+                            if (splashed == target || !familiarCanSpecial(splashed, silent = true)) {
+                                continue
+                            }
+                            familiar.hit(splashed, offensiveType = "magic", damage = random.nextInt(101))
+                        }
+                    }
+                }
+            }
+            cast
+        }
+
+        // Famine - the ravenous locust swarms the target; a player target has some food eaten rotten.
+        FamiliarSpecialMoves.npc("ravenous_locust_familiar") { target ->
+            familiarSpecialHit(target, maxHit = 50, anim = "famine", sourceGfx = "famine", projectile = "famine_proj", targetGfx = "famine_hit")
+        }
+        FamiliarSpecialMoves.player("ravenous_locust_familiar") { target ->
+            val cast = familiarSpecialHit(target, maxHit = 50, anim = "famine", sourceGfx = "famine", projectile = "famine_proj", targetGfx = "famine_hit")
+            if (cast && rotFood(target)) {
+                message("Your locust devours some of ${target.name}'s food.")
+                target.message("${name}'s locust devours some of your food!")
+            }
+            cast
+        }
+
+        // Inferno - the forge regent's flare knocks another player's weapon and shield out of their
+        // hands (into their inventory). Fails, charging nothing, if nothing could be unequipped.
+        FamiliarSpecialMoves.player("forge_regent_familiar") { target ->
+            if (!familiarCanSpecial(target)) {
+                return@player false
+            }
+            val familiar = follower ?: return@player false
+            var disarmed = false
+            for (slot in intArrayOf(EquipSlot.Weapon.index, EquipSlot.Shield.index)) {
+                if (target.equipment[slot].isEmpty()) {
+                    continue
+                }
+                target.equipment.move(slot, target.inventory)
+                if (target.equipment.transaction.error == TransactionError.None) {
+                    disarmed = true
+                }
+            }
+            if (!disarmed) {
+                message("Your familiar couldn't disarm ${target.name}.")
+                return@player false
+            }
+            familiar.watch(target)
+            familiar.gfx("inferno")
+            target.gfx("inferno_hit")
+            target.message("${name}'s familiar burns the equipment from your hands!")
+            true
         }
 
         // Vampyre Touch: 120 max, 40% chance to heal the owner 20.
@@ -232,11 +360,30 @@ class FamiliarCombatSpecials : Script {
         owner.chinchompaExplode()
     }
 
-    /** Drains [skill] on [target] by [amount] but only when the hit actually landed ([cast] true). */
-    private fun Boolean.alsoDrain(target: Character, skill: Skill, amount: Int): Boolean {
+    /** Drains [skill] on [target] by [amount] (and/or [multiplier]) but only on a real cast (`this` true). */
+    private fun Boolean.alsoDrain(target: Character, skill: Skill, amount: Int = 0, multiplier: Double = 0.0): Boolean {
         if (this) {
-            target.levels.drain(skill, amount)
+            target.levels.drain(skill, amount, multiplier)
         }
         return this
+    }
+
+    /** Ebon Thunder's on-impact effect: saps some of a player target's special attack energy. */
+    private fun drainSpecialEnergy(target: Character) {
+        if (target is Player) {
+            target.specialAttackEnergy = (target.specialAttackEnergy - EBON_THUNDER_ENERGY_DRAIN).coerceAtLeast(0)
+        }
+    }
+
+    /** Famine's food theft: turns the first edible item in [target]'s inventory rotten. */
+    private fun rotFood(target: Player): Boolean {
+        for (item in target.inventory.items) {
+            if (item.isEmpty() || !item.def.options.contains("Eat")) {
+                continue
+            }
+            target.inventory.replace(item.id, "rotten_food")
+            return true
+        }
+        return false
     }
 }

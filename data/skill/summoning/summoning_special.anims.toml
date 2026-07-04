@@ -117,3 +117,31 @@ id = 8136
 
 [call_to_arms_land]
 id = 8137
+
+# Karamthulhu overlord's Doomsphere attack animation.
+[doomsphere]
+id = 7974
+
+# Spirit dagannoth's Spike Shot attack animation.
+[spike_shot]
+id = 7787
+
+# Swamp titan's Swamp Plague attack animation.
+[swamp_plague]
+id = 8223
+
+# Lava titan's Ebon Thunder attack animation.
+[ebon_thunder]
+id = 7986
+
+# Praying mantis' Mantis Strike attack animation.
+[mantis_strike]
+id = 8071
+
+# Giant ent's Acorn Missile attack animation.
+[acorn_missile]
+id = 7858
+
+# Ravenous locust's Famine attack animation.
+[famine]
+id = 7998
