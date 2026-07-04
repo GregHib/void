@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -365,5 +367,17 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         tick(10)
 
         assertEquals(before, player.follower!!.tile, "the familiar stays put while its owner stands still")
+    }
+
+    @Test
+    fun `A familiar steps out to a free tile when its owner stands on it`() {
+        val player = summon("bunyip_familiar", Tile(3200, 3200))
+        val familiar = player.follower!!
+
+        player.tele(familiar.tile)
+        tick(3)
+
+        assertTrue(player.tile != player.follower!!.tile, "the familiar stepped out from under its owner")
+        assertTrue(player.tile.distanceTo(player.follower!!) <= 1, "onto an adjacent tile")
     }
 }
