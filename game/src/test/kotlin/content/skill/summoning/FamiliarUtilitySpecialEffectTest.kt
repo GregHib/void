@@ -171,7 +171,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         val player = summon("fruit_bat_familiar")
 
         assertTrue(player.runSpecial("fruit_bat_familiar"))
-        tick(3)
+        tick(7) // the bat flies up into the trees before swooping down to drop the fruit
 
         val landed = (-1..1).flatMap { dx -> (-1..1).flatMap { dy -> FloorItems.at(player.tile.add(dx, dy)) } }
         assertTrue(landed.count { it.id == "papaya_fruit" } == 1, "the first fruit down is always a papaya")

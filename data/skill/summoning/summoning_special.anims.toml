@@ -200,9 +200,12 @@ id = 7914
 [fish_rain]
 id = 8199
 
-# Fruit bat's Fruitfall animation (the bat shaking the trees).
+# Fruit bat's Fruitfall: the flight up into the trees, then the swooping drop (2009scape's pair).
+[fruitfall_ascend]
+id = 8320
+
 [fruitfall]
-id = 8277
+id = 8321
 
 # Abyssal titan's Essence Shipment animation.
 [essence_shipment]

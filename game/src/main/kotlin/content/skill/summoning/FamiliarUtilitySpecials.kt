@@ -33,6 +33,12 @@ private const val HERBCALL_SEARCH_DELAY = 4
 /** Delay before the herb lands - fires 6 ticks after the cast, part-way through the drop graphic. */
 private const val HERBCALL_DROP_DELAY = 5
 
+/** Delay before the fruit bat's drop animation - it flies up into the trees for ~4 ticks first. */
+private const val FRUITFALL_DROP_DELAY = 3
+
+/** Delay before the fruits land - a tick into the drop animation and its tile splashes. */
+private const val FRUITFALL_LAND_DELAY = 4
+
 /**
  * Utility familiar specials: send-the-familiar-to-fight, call/ambush, ground-drop foragers, and
  * banking. Combat-engage moves register as [FamiliarSpecialMoves.npc]; the rest are instant casts.
@@ -221,22 +227,26 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Fruitfall - the bat shakes loose up to six fruits, each landing with a splash on its own
-        // free tile around the owner, the first always a papaya. An unlucky cast (about 1 in 7)
-        // shakes down nothing at all but still counts.
+        // Fruitfall - the bat flies up into the trees, then swoops down shaking loose up to six
+        // fruits, each landing with a splash on its own free tile around the owner, the first
+        // always a papaya. An unlucky cast (about 1 in 7) shakes down nothing at all but counts.
         FamiliarSpecialMoves.instant("fruit_bat_familiar") {
             val bat = follower ?: return@instant false
-            bat.anim("fruitfall")
+            bat.anim("fruitfall_ascend")
+            bat.gfx("fruitfall_ascend")
             val validator: StepValidator = get()
             val fruitTiles = tile.spiral(1).asSequence()
                 .filter { it != tile && validator.canFit(it, collision, 1, blockMove) }
                 .toList()
                 .shuffled()
                 .take(random.nextInt(7))
-            for (fruitTile in fruitTiles) {
-                areaGfx("fruitfall_land", fruitTile)
+            queue("fruitfall_drop", FRUITFALL_DROP_DELAY) {
+                bat.anim("fruitfall")
+                for (fruitTile in fruitTiles) {
+                    areaGfx("fruitfall_land", fruitTile)
+                }
             }
-            queue("fruitfall", 1) {
+            queue("fruitfall_land", FRUITFALL_LAND_DELAY) {
                 for ((index, fruitTile) in fruitTiles.withIndex()) {
                     FloorItems.add(fruitTile, if (index == 0) "papaya_fruit" else fruit[random.nextInt(fruit.size)], disappearTicks = 120, owner = this)
                 }

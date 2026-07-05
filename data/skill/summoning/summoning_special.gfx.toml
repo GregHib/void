@@ -500,3 +500,7 @@ id = 1308
 # Fruitfall: the splash where each shaken-loose fruit lands.
 [fruitfall_land]
 id = 1331
+
+# Fruitfall: the leaves swirling around the bat as it flies up into the trees.
+[fruitfall_ascend]
+id = 1332
