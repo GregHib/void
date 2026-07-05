@@ -27,13 +27,13 @@ class FamiliarBoostSpecials : Script {
     init {
         // Single-skill flat boosts.
         FamiliarSpecialMoves.instant("granite_crab_familiar") { boost(Skill.Defence, 4, "stony_shell", "stony_shell") }
-        FamiliarSpecialMoves.instant("war_tortoise_familiar") { boost(Skill.Defence, 9, "testudo", "testudo") }
-        FamiliarSpecialMoves.instant("obsidian_golem_familiar") { boost(Skill.Strength, 9, sourceGfx = "volcanic_strength") }
+        FamiliarSpecialMoves.instant("war_tortoise_familiar") { boost(Skill.Defence, 8, "testudo", "testudo") }
+        FamiliarSpecialMoves.instant("obsidian_golem_familiar") { boost(Skill.Strength, 9, "volcanic_strength", "volcanic_strength") }
         FamiliarSpecialMoves.instant("wolpertinger_familiar") { boost(Skill.Magic, 7, "magic_focus", "magic_focus") }
 
         // Abyssal Stealth - two skills at once.
         FamiliarSpecialMoves.instant("abyssal_lurker_familiar") {
-            familiarSelfSpecial(anim = "abyssal_stealth") {
+            familiarSelfSpecial(anim = "abyssal_stealth", sourceGfx = "abyssal_stealth", playerGfx = "abyssal_stealth_owner") {
                 levels.boost(Skill.Agility, 4)
                 levels.boost(Skill.Thieving, 4)
             }
@@ -59,17 +59,28 @@ class FamiliarBoostSpecials : Script {
             }
         }
 
-        // Elemental titans - Titan's Constitution: Defence +12.5% and heal 80.
-        FamiliarSpecialMoves.instant("fire_titan_familiar", "moss_titan_familiar", "ice_titan_familiar") {
-            familiarSelfSpecial {
-                levels.boost(Skill.Defence, multiplier = 0.125)
-                levels.restore(Skill.Constitution, 80)
+        // Elemental titans - Titan's Constitution: Defence +12.5% and heal a tenth of max life
+        // points, each titan with its own colours. Refuses, charging nothing, at full health.
+        for (tier in listOf("fire", "ice", "moss")) {
+            FamiliarSpecialMoves.instant("${tier}_titan_familiar") {
+                if (levels.get(Skill.Constitution) >= levels.getMax(Skill.Constitution)) {
+                    message("You're already at full life points!")
+                    return@instant false
+                }
+                familiarSelfSpecial(anim = "titans_constitution_$tier", sourceGfx = "titans_constitution_$tier", playerGfx = "titans_constitution_${tier}_owner") {
+                    levels.boost(Skill.Defence, multiplier = 0.125)
+                    levels.restore(Skill.Constitution, multiplier = 0.1)
+                }
             }
         }
 
-        // Healing Aura - heal the owner by 15% of their max hitpoints.
+        // Healing Aura - heal the owner by 15% of their max life points. Refuses at full health.
         FamiliarSpecialMoves.instant("unicorn_stallion_familiar") {
-            familiarSelfSpecial(anim = "healing_aura", playerGfx = "healing_aura") {
+            if (levels.get(Skill.Constitution) >= levels.getMax(Skill.Constitution)) {
+                message("You're already at full life points!")
+                return@instant false
+            }
+            familiarSelfSpecial(anim = "healing_aura", sourceGfx = "healing_aura", playerGfx = "healing_aura_owner") {
                 levels.restore(Skill.Constitution, ceil(levels.getMax(Skill.Constitution) * 0.15).toInt())
             }
         }

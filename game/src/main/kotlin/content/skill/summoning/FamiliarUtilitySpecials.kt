@@ -1,5 +1,7 @@
 package content.skill.summoning
 
+import content.entity.combat.attackers
+import content.entity.combat.hit.hit
 import content.entity.gfx.areaGfx
 import content.entity.player.bank.bank
 import content.entity.proj.shoot
@@ -58,12 +60,12 @@ class FamiliarUtilitySpecials : Script {
         "grimy_dwarf_weed",
         "grimy_torstol",
     )
-    private val fruit = listOf("orange", "banana", "lemon", "lime", "papaya_fruit")
-    private val rawFish = listOf("raw_trout", "raw_salmon", "raw_cod", "raw_pike")
+    private val fruit = listOf("orange", "banana", "lemon", "lime", "pineapple")
+    private val rawFish = listOf("raw_shrimps", "raw_cod", "raw_bass", "raw_mackerel")
 
     init {
-        // Goad / Pester - the special simply sends the familiar at the target (with a Hunter feel).
-        FamiliarSpecialMoves.npc("spirit_graahk_familiar", "spirit_mosquito_familiar") { target ->
+        // Pester - the special simply sends the mosquito at the target.
+        FamiliarSpecialMoves.npc("spirit_mosquito_familiar") { target ->
             if (!familiarCanSpecial(target)) {
                 return@npc false
             }
@@ -71,9 +73,47 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Ambush - teleport the familiar to the owner, ready to strike.
-        FamiliarSpecialMoves.instant("spirit_kyatt_familiar") {
-            callFollower()
+        // Goad - the graahk gores its target with two heavy melee strikes, then keeps up the fight.
+        FamiliarSpecialMoves.npc("spirit_graahk_familiar") { target ->
+            if (!familiarCanSpecial(target)) {
+                return@npc false
+            }
+            val graahk = follower ?: return@npc false
+            graahk.watch(target)
+            graahk.anim("goad")
+            repeat(2) {
+                graahk.hit(target, offensiveType = "melee", damage = random.nextInt(121), delay = 0)
+            }
+            if (graahk !in target.attackers) {
+                target.attackers.add(graahk)
+            }
+            commandFamiliarAttack(target, silent = true)
+            true
+        }
+
+        // Ambush - the kyatt pounces from nowhere onto its target, landing one heavy strike.
+        FamiliarSpecialMoves.npc("spirit_kyatt_familiar") { target ->
+            if (!familiarCanSpecial(target)) {
+                return@npc false
+            }
+            val kyatt = follower ?: return@npc false
+            val validator: StepValidator = get()
+            val landing = target.tile.spiral(kyatt.size).asSequence().firstOrNull {
+                it != target.tile && validator.canFit(it, kyatt.collision, kyatt.size, kyatt.blockMove)
+            }
+            if (landing == null) {
+                message("Your kyatt can't find a place to land on that target right now.")
+                return@npc false
+            }
+            kyatt.tele(landing, clearMode = false)
+            kyatt.watch(target)
+            kyatt.anim("ambush")
+            kyatt.gfx("ambush")
+            kyatt.hit(target, offensiveType = "melee", damage = random.nextInt(225), delay = 0)
+            if (kyatt !in target.attackers) {
+                target.attackers.add(kyatt)
+            }
+            commandFamiliarAttack(target, silent = true)
             true
         }
 
@@ -181,30 +221,39 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Fruitfall - drop a papaya plus a few random fruits.
+        // Fruitfall - the bat shakes loose up to six fruits around the owner, the first always a
+        // papaya. An unlucky cast (about 1 in 7) shakes down nothing at all but still counts.
         FamiliarSpecialMoves.instant("fruit_bat_familiar") {
-            dropForage("papaya_fruit")
-            repeat(random.nextInt(4)) {
-                dropForage(fruit[random.nextInt(fruit.size)])
+            follower?.anim("fruitfall")
+            repeat(random.nextInt(7)) { i ->
+                dropForage(if (i == 0) "papaya_fruit" else fruit[random.nextInt(fruit.size)])
             }
             true
         }
 
-        // Fish Rain - drop one or two random raw fish.
+        // Fish Rain - the ibis calls down a single low-level fish beside itself.
         FamiliarSpecialMoves.instant("ibis_familiar") {
-            repeat(random.nextInt(2) + 1) {
-                dropForage(rawFish[random.nextInt(rawFish.size)])
+            val ibis = follower ?: return@instant false
+            ibis.anim("fish_rain")
+            ibis.gfx("fish_rain")
+            queue("fish_rain", 2) {
+                FloorItems.add(ibis.tile, rawFish[random.nextInt(rawFish.size)], disappearTicks = 300, owner = this)
             }
             true
         }
 
-        // Essence Shipment - bank all rune and pure essence carried.
+        // Essence Shipment - bank all rune and pure essence carried, the familiar's pack included.
         FamiliarSpecialMoves.instant("abyssal_titan_familiar") {
-            val moved = bankAll("rune_essence") + bankAll("pure_essence")
+            val titan = follower ?: return@instant false
+            ensureBeastOfBurdenInventory()
+            val moved = bankAll("rune_essence") + bankAll("pure_essence") +
+                bankAllCarried("rune_essence") + bankAllCarried("pure_essence")
             if (moved == 0) {
                 message("You have no essence for your familiar to bank.")
                 return@instant false
             }
+            titan.anim("essence_shipment")
+            titan.gfx("essence_shipment")
             message("Your familiar banks your essence.")
             true
         }
@@ -226,6 +275,7 @@ class FamiliarUtilitySpecials : Script {
             }
             inventory.remove(item.id, 1)
             bank.add(item.id, 1)
+            follower?.gfx("winter_storage")
             follower?.say("Baroo!")
             message("Your pack yak sends the ${item.def.name.lowercase()} to your bank.")
             true
@@ -243,6 +293,16 @@ class FamiliarUtilitySpecials : Script {
         val count = inventory.count(id)
         if (count > 0) {
             inventory.remove(id, count)
+            bank.add(id, count)
+        }
+        return count
+    }
+
+    /** Moves every [id] from the familiar's pack to the bank, returning how many were moved. */
+    private fun Player.bankAllCarried(id: String): Int {
+        val count = beastOfBurden.count(id)
+        if (count > 0) {
+            beastOfBurden.remove(id, count)
             bank.add(id, count)
         }
         return count

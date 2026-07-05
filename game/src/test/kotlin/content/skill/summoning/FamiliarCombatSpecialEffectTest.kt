@@ -2,7 +2,6 @@ package content.skill.summoning
 
 import FakeRandom
 import WorldTest
-import content.entity.combat.hit.hit
 import content.entity.effect.frozen
 import content.entity.effect.stunned
 import content.entity.effect.toxin.poisoned
@@ -11,6 +10,7 @@ import itemOnNpc
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.equipment
@@ -178,13 +178,16 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Inferno burns another player's weapon and shield out of their hands`() {
+    fun `Inferno hits and burns another player's weapon and shield out of their hands`() {
+        maxRolls()
         val player = summon("forge_regent_familiar")
         val target = createPlayer(player.tile.addY(3))
+        target.levels.set(Skill.Constitution, 2000)
         target.equipment.set(EquipSlot.Weapon.index, "bronze_sword")
         target.equipment.set(EquipSlot.Shield.index, "wooden_shield")
         player.set("in_pvp", true)
         target.set("in_pvp", true)
+        val before = target.levels.get(Skill.Constitution)
 
         assertTrue(player.runPlayerSpecial("forge_regent_familiar", target))
 
@@ -192,73 +195,92 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
         assertTrue(target.equipment[EquipSlot.Shield.index].isEmpty(), "the shield is knocked loose")
         assertEquals(1, target.inventory.count("bronze_sword"))
         assertEquals(1, target.inventory.count("wooden_shield"))
+
+        tick(6)
+        assertTrue(target.levels.get(Skill.Constitution) < before, "the fiery bolt also damages")
     }
 
     @Test
-    fun `Inferno fails, charging nothing, when there is nothing to disarm`() {
+    fun `Inferno still casts against a player with nothing to disarm`() {
+        maxRolls()
         val player = summon("forge_regent_familiar")
         val target = createPlayer(player.tile.addY(3))
+        target.levels.set(Skill.Constitution, 2000)
         player.set("in_pvp", true)
         target.set("in_pvp", true)
 
-        assertFalse(player.runPlayerSpecial("forge_regent_familiar", target))
+        assertTrue(player.runPlayerSpecial("forge_regent_familiar", target), "the bolt flies regardless")
     }
 
     @Test
-    fun `Dust Cloud chokes the foes around the smoke devil`() {
+    fun `Dust Cloud chokes the target and the foes around it`() {
         maxRolls()
         val player = summon("smoke_devil_familiar")
-        val familiar = player.follower!!
-        val target = tankyRat(player, familiar.tile.addX(1))
-        val other = tankyRat(player, familiar.tile.addY(1))
+        val target = tankyRat(player)
+        val other = tankyRat(player, target.tile.addX(1))
         val before = target.levels.get(Skill.Constitution)
         val otherBefore = other.levels.get(Skill.Constitution)
 
-        assertTrue(player.runSpecial("smoke_devil_familiar"))
+        assertTrue(player.runNpcSpecial("smoke_devil_familiar", target))
         tick(8)
 
-        assertTrue(target.levels.get(Skill.Constitution) < before, "the first rat chokes on the dust")
-        assertTrue(other.levels.get(Skill.Constitution) < otherBefore, "so does the second")
+        assertTrue(target.levels.get(Skill.Constitution) < before, "the picked target chokes on the dust")
+        assertTrue(other.levels.get(Skill.Constitution) < otherBefore, "so does its neighbour")
     }
 
     @Test
-    fun `Iron Within charges the titan and refuses a second charge`() {
-        val player = summon("iron_titan_familiar")
-
-        assertTrue(player.runSpecial("iron_titan_familiar"))
-        assertTrue(player.get("familiar_titan_charged", false))
-
-        assertFalse(player.runSpecial("iron_titan_familiar"), "already charged - no second cast")
-    }
-
-    @Test
-    fun `A charged iron titan's next melee swing lands a flurry then clears the charge`() {
+    fun `Iron Within batters the target with three magic bolts from afar`() {
         maxRolls()
         val player = summon("iron_titan_familiar")
         val target = tankyRat(player)
-        player.set("familiar_titan_charged", true)
         val before = target.levels.get(Skill.Constitution)
 
-        player.follower!!.hit(target, offensiveType = "melee", damage = 50)
+        assertTrue(player.runNpcSpecial("iron_titan_familiar", target))
         tick(8)
 
-        assertFalse(player.get("familiar_titan_charged", false), "the charge is spent by the swing")
-        assertTrue(before - target.levels.get(Skill.Constitution) > 50, "the flurry hit beyond the triggering swing")
+        // A single maxed magic bolt is 220 - beyond 440 proves all three landed.
+        assertTrue(before - target.levels.get(Skill.Constitution) >= 600, "three bolts of up to 220 landed")
     }
 
     @Test
-    fun `A charged steel titan's next attack of any style lands a flurry`() {
+    fun `Steel of Legends strikes the target four times from afar`() {
         maxRolls()
         val player = summon("steel_titan_familiar")
         val target = tankyRat(player)
-        player.set("familiar_titan_charged", true)
         val before = target.levels.get(Skill.Constitution)
 
-        player.follower!!.hit(target, offensiveType = "range", damage = 50)
+        assertTrue(player.runNpcSpecial("steel_titan_familiar", target))
         tick(8)
 
-        assertFalse(player.get("familiar_titan_charged", false))
-        assertTrue(before - target.levels.get(Skill.Constitution) > 50, "the flurry hit beyond the triggering swing")
+        assertTrue(before - target.levels.get(Skill.Constitution) >= 900, "four ranged strikes of up to 244 landed")
+    }
+
+    @Test
+    fun `Goad gores the target twice on the spot`() {
+        maxRolls()
+        val player = summon("spirit_graahk_familiar")
+        val target = tankyRat(player)
+        val before = target.levels.get(Skill.Constitution)
+
+        assertTrue(FamiliarSpecialMoves.npcTarget.getValue("spirit_graahk_familiar").invoke(player, target))
+        tick(4)
+
+        assertTrue(before - target.levels.get(Skill.Constitution) >= 240, "both 120-max gores landed")
+    }
+
+    @Test
+    fun `Ambush pounces the kyatt onto its target for one heavy strike`() {
+        maxRolls()
+        val player = summon("spirit_kyatt_familiar")
+        val target = tankyRat(player, player.tile.addY(6))
+        val before = target.levels.get(Skill.Constitution)
+
+        assertTrue(FamiliarSpecialMoves.npcTarget.getValue("spirit_kyatt_familiar").invoke(player, target))
+        // Measured from the target to the kyatt's bounds - its 2x2 body lands flush against the prey.
+        assertTrue(target.tile.distanceTo(player.follower!!) <= 1, "the kyatt lands beside its prey")
+
+        tick(4)
+        assertTrue(before - target.levels.get(Skill.Constitution) >= 200, "the maxed pounce hits close to 224")
     }
 
     @Test

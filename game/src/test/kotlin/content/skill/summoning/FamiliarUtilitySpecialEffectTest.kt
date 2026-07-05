@@ -1,5 +1,6 @@
 package content.skill.summoning
 
+import FakeRandom
 import WorldTest
 import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
@@ -20,10 +21,12 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -47,12 +50,12 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     private fun Player.runSpecial(familiar: String): Boolean = FamiliarSpecialMoves.instant.getValue(familiar).invoke(this)
 
     @Test
-    fun `Testudo boosts Defence by 9`() {
+    fun `Testudo boosts Defence by 8`() {
         val player = summon("war_tortoise_familiar")
         val before = player.levels.get(Skill.Defence)
 
         assertTrue(player.runSpecial("war_tortoise_familiar"))
-        assertEquals(before + 9, player.levels.get(Skill.Defence))
+        assertEquals(before + 8, player.levels.get(Skill.Defence))
     }
 
     @Test
@@ -104,7 +107,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Titan's Constitution raises Defence and heals 80 life points`() {
+    fun `Titan's Constitution raises Defence and heals a tenth of max life points`() {
         val player = summon("fire_titan_familiar")
         player.experience.set(Skill.Defence, 14_000_000.0) // level 99 so the multiplier has headroom
         player.experience.set(Skill.Constitution, 14_000_000.0)
@@ -114,7 +117,14 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
         assertTrue(player.runSpecial("fire_titan_familiar"))
         assertTrue(player.levels.get(Skill.Defence) > defence, "Defence rises by an eighth")
-        assertEquals(lifePoints + 80, player.levels.get(Skill.Constitution))
+        assertEquals(lifePoints + 99, player.levels.get(Skill.Constitution), "a tenth of the 990 maximum")
+    }
+
+    @Test
+    fun `Titan's Constitution refuses at full life points, charging nothing`() {
+        val player = summon("moss_titan_familiar")
+
+        assertFalse(player.runSpecial("moss_titan_familiar"))
     }
 
     @Test
@@ -126,6 +136,54 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
         assertTrue(player.runSpecial("unicorn_stallion_familiar"))
         assertEquals(before + 149, player.levels.get(Skill.Constitution), "15% of 990, rounded up")
+    }
+
+    @Test
+    fun `Healing Aura refuses at full life points, charging nothing`() {
+        val player = summon("unicorn_stallion_familiar")
+
+        assertFalse(player.runSpecial("unicorn_stallion_familiar"))
+    }
+
+    @Test
+    fun `Fish Rain calls down a fish beside the ibis`() {
+        val player = summon("ibis_familiar")
+        val ibisTile = player.follower!!.tile
+
+        assertTrue(player.runSpecial("ibis_familiar"))
+        tick(4)
+
+        assertTrue(FloorItems.at(ibisTile).any { it.id.startsWith("raw_") }, "a raw fish lands at the ibis' feet")
+    }
+
+    @Test
+    fun `Fruitfall shakes loose a papaya and more fruit around the owner`() {
+        // Max the count roll (nextInt(7) = 6) so the drop is observable.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+        val player = summon("fruit_bat_familiar")
+
+        assertTrue(player.runSpecial("fruit_bat_familiar"))
+        tick(2)
+
+        assertTrue(FloorItems.at(player.tile).any { it.id == "papaya_fruit" }, "the first fruit down is always a papaya")
+        assertTrue(FloorItems.at(player.tile).any { it.id == "pineapple" }, "with more fruit alongside")
+    }
+
+    @Test
+    fun `Essence Shipment banks essence from the inventory and the familiar's pack`() {
+        val player = summon("abyssal_titan_familiar")
+        player.ensureBeastOfBurdenInventory()
+        player.inventory.transaction { add("pure_essence", 5) }
+        player.beastOfBurden.transaction { add("rune_essence", 3) }
+
+        assertTrue(player.runSpecial("abyssal_titan_familiar"))
+
+        assertEquals(5, player.bank.count("pure_essence"), "the carried essence is banked")
+        assertEquals(3, player.bank.count("rune_essence"), "so is the familiar's load")
+        assertEquals(0, player.inventory.count("pure_essence"))
+        assertEquals(0, player.beastOfBurden.count("rune_essence"))
     }
 
     @Test

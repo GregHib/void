@@ -112,7 +112,7 @@ id = 1508
 id = 1511
 
 [boil]
-id = 1375
+id = 1373
 
 [boil_proj]
 id = 1376
@@ -369,4 +369,63 @@ id = 1420
 
 # Tireless Run: the sparkle played on the owner as the boost lands (the 1521 gfx is the terrorbird's).
 [tireless_run_owner]
+id = 1300
+
+# Dissolve: the jelly's own graphic and the melting impact.
+[dissolve]
+id = 1361
+
+[dissolve_hit]
+id = 1360
+
+# Rending: the impact graphic on the target.
+[rending_hit]
+id = 1372
+
+# Abyssal Stealth: the lurker's graphic and the owner's shroud.
+[abyssal_stealth]
+id = 1339
+
+[abyssal_stealth_owner]
+id = 1302
+
+# Volcanic Strength is defined above (1465) - played on the familiar.
+
+# Goad has no graphic; Ambush: the kyatt's pounce-landing graphic.
+[ambush]
+id = 1366
+
+# Fish Rain: the splash on the ibis.
+[fish_rain]
+id = 1337
+
+# Essence Shipment: the flourish on the abyssal titan.
+[essence_shipment]
+id = 1457
+
+# Winter Storage: the flourish on the pack yak as it banks an item.
+[winter_storage]
+id = 1358
+
+# Titan's Constitution: each titan's own graphic, plus the owner's tint.
+[titans_constitution_fire]
+id = 1514
+
+[titans_constitution_fire_owner]
+id = 1307
+
+[titans_constitution_ice]
+id = 1512
+
+[titans_constitution_ice_owner]
+id = 1306
+
+[titans_constitution_moss]
+id = 1513
+
+[titans_constitution_moss_owner]
+id = 1308
+
+# Healing Aura: the sparkle played on the owner (the 1356 gfx is the unicorn's).
+[healing_aura_owner]
 id = 1300

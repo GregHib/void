@@ -65,7 +65,7 @@ id = 8109
 id = 8288
 
 [magic_focus]
-id = 8267
+id = 8308
 
 [abyssal_stealth]
 id = 7682
@@ -152,10 +152,10 @@ id = 7820
 
 # Iron/steel titan's charge-up animation (shared swing, different graphics).
 [iron_within]
-id = 8183
+id = 7954
 
 [steel_of_legends]
-id = 8183
+id = 8190
 
 # Hydra's Regrowth animation (played on the familiar as it revives the tree).
 [regrowth]
@@ -183,3 +183,41 @@ id = 7704
 # Bloated leech's Blood Drain animation (played on the familiar as it draws blood).
 [blood_drain]
 id = 7715
+
+# Obsidian golem's Volcanic Strength animation (played on the familiar).
+[volcanic_strength]
+id = 8053
+
+# Spirit graahk's Goad goring animation.
+[goad]
+id = 7915
+
+# Spirit kyatt's Ambush pounce animation (played as it lands on the target).
+[ambush]
+id = 7914
+
+# Ibis' Fish Rain animation.
+[fish_rain]
+id = 8199
+
+# Fruit bat's Fruitfall animation (the bat shaking the trees).
+[fruitfall]
+id = 8277
+
+# Abyssal titan's Essence Shipment animation.
+[essence_shipment]
+id = 7698
+
+# Elemental titans' Titan's Constitution animations, one per titan.
+[titans_constitution_fire]
+id = 7835
+
+[titans_constitution_ice]
+id = 7837
+
+[titans_constitution_moss]
+id = 7837
+
+# Forge regent's Inferno flare animation.
+[inferno]
+id = 7871

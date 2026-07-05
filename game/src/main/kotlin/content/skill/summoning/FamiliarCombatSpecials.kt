@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -47,9 +48,6 @@ private const val ARCTIC_BLAST_STUN_CHANCE = 5
 
 /** How long (game ticks) the praying mantis' Mantis Strike binds a small target in place on impact. */
 private const val MANTIS_STRIKE_BIND_TICKS = 3
-
-/** How much special attack energy (out of 1000) the lava titan's Ebon Thunder drains from a player. */
-private const val EBON_THUNDER_ENERGY_DRAIN = 100
 
 /**
  * Combat familiar special moves - the cast-button specials that target an npc (or player). Each
@@ -111,19 +109,25 @@ class FamiliarCombatSpecials : Script {
             familiarSpecialHit(target, maxHit = 30, anim = "dreadfowl_strike", sourceGfx = "dreadfowl_strike", projectile = "dreadfowl_strike_proj")
         }
 
-        // Combat specials that also drain one of the target's stats.
+        // Combat specials that also drain one or more of the target's stats.
         FamiliarSpecialMoves.npc("spirit_jelly_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 120, anim = "dissolve", projectile = "dissolve_proj").alsoDrain(target, Skill.Attack, 3)
+            familiarSpecialHit(target, maxHit = 120, anim = "dissolve", sourceGfx = "dissolve", projectile = "dissolve_proj", targetGfx = "dissolve_hit").alsoDrain(target, Skill.Attack, multiplier = 0.1)
         }
         FamiliarSpecialMoves.npc("spirit_larupia_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 120, anim = "rending", sourceGfx = "rending", projectile = "rending_proj").alsoDrain(target, Skill.Strength, 1)
+            familiarSpecialHit(target, maxHit = 120, anim = "rending", sourceGfx = "rending", projectile = "rending_proj", targetGfx = "rending_hit").alsoDrain(target, Skill.Strength, multiplier = 0.1)
         }
         // Evil Flames - the evil turnip breathes a magic fireball, lowering the target's Magic by 1.
         FamiliarSpecialMoves.npc("evil_turnip_familiar") { target ->
             familiarSpecialHit(target, maxHit = 100, anim = "evil_flames", sourceGfx = "evil_flames", projectile = "evil_flames_proj", targetGfx = "evil_flames_hit").alsoDrain(target, Skill.Magic, 1)
         }
+        // Abyssal Drain - saps a tenth of the target's Magic and Prayer.
         FamiliarSpecialMoves.npc("abyssal_parasite_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 95, anim = "abyssal_drain", sourceGfx = "abyssal_drain", projectile = "abyssal_drain_proj").alsoDrain(target, Skill.Prayer, random.nextInt(3) + 1)
+            val cast = familiarSpecialHit(target, maxHit = 95, anim = "abyssal_drain", sourceGfx = "abyssal_drain", projectile = "abyssal_drain_proj")
+            if (cast) {
+                target.levels.drain(Skill.Magic, multiplier = 0.1)
+                target.levels.drain(Skill.Prayer, multiplier = 0.1)
+            }
+            cast
         }
 
         // Poisonous Blast - small hit with a 50% chance to poison.
@@ -135,9 +139,17 @@ class FamiliarCombatSpecials : Script {
             cast
         }
 
-        // Boil - geyser titan ranged hit (approximates the live def-bonus formula with a flat max).
+        // Boil - the geyser titan scalds the target for up to 240: melee up close, otherwise a
+        // steaming volley that is ranged or magic at even odds (approximating the live def-bonus
+        // formula with a flat max).
         FamiliarSpecialMoves.npc("geyser_titan_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 240, anim = "boil", sourceGfx = "boil", projectile = "boil_proj", targetGfx = "boil_hit")
+            val familiar = follower ?: return@npc false
+            val type = when {
+                familiar.tile.distanceTo(target) <= 1 -> "melee"
+                random.nextInt(2) == 0 -> "range"
+                else -> "magic"
+            }
+            familiarSpecialHit(target, maxHit = 240, type = type, anim = "boil", sourceGfx = "boil", projectile = "boil_proj", targetGfx = "boil_hit")
         }
 
         // Doomsphere - the karamthulhu overlord's watery blast, also washing away 5% of the target's Magic.
@@ -159,7 +171,8 @@ class FamiliarCombatSpecials : Script {
             cast
         }
 
-        // Ebon Thunder - the lava titan's bolt drains a player target's special attack energy on impact.
+        // Ebon Thunder - the lava titan's bolt drains a tenth of a player target's remaining special
+        // attack energy on impact.
         FamiliarSpecialMoves.npc("lava_titan_familiar") { target ->
             familiarSpecialHit(target, maxHit = 140, anim = "ebon_thunder", sourceGfx = "ebon_thunder", projectile = "ebon_thunder_proj", targetGfx = "ebon_thunder_hit", onLand = ::drainSpecialEnergy)
         }
@@ -176,15 +189,16 @@ class FamiliarCombatSpecials : Script {
             }
         }
 
-        // Deadly Claw - the talon beast rakes its target three times in quick succession.
+        // Deadly Claw - the talon beast rakes its target with three magic swipes in quick succession.
         FamiliarSpecialMoves.npc("talon_beast_familiar") { target ->
             if (!familiarCanSpecial(target)) {
                 return@npc false
             }
             val familiar = follower ?: return@npc false
             familiar.watch(target)
+            familiar.anim("talon_beast_familiar_attack")
             repeat(3) { swipe ->
-                familiar.hit(target, offensiveType = "magic", damage = random.nextInt(101), delay = 64 + swipe * 30)
+                familiar.hit(target, offensiveType = "magic", damage = random.nextInt(101), delay = swipe * 30)
             }
             if (familiar !in target.attackers) {
                 target.attackers.add(familiar)
@@ -193,64 +207,43 @@ class FamiliarCombatSpecials : Script {
             true
         }
 
-        // Acorn Missile - the giant ent lobs acorns that also pelt anything adjacent to the target.
+        // Acorn Missile - the giant ent lobs acorns that also pelt up to nine foes around the target.
         FamiliarSpecialMoves.npc("giant_ent_familiar") { target ->
             val cast = familiarSpecialHit(target, maxHit = 100, anim = "acorn_missile", projectile = "acorn_missile_proj", targetGfx = "acorn_missile_hit")
             if (cast) {
-                val familiar = follower
-                if (familiar != null && target is NPC) {
-                    for (tile in target.tile.spiral(1)) {
-                        for (splashed in NPCs.at(tile)) {
-                            if (splashed == target || !familiarCanSpecial(splashed, silent = true)) {
-                                continue
-                            }
-                            familiar.hit(splashed, offensiveType = "magic", damage = random.nextInt(101))
-                        }
+                familiarSplash(target, maxTargets = 9, maxHit = 100, radius = 1, projectile = "acorn_missile_proj", targetGfx = "acorn_missile_hit")
+            }
+            cast
+        }
+
+        // Famine - the locust swarm eats a player target's food; the swarm itself does no damage.
+        FamiliarSpecialMoves.npc("ravenous_locust_familiar") { target -> famine(target) }
+        FamiliarSpecialMoves.player("ravenous_locust_familiar") { target -> famine(target) }
+
+        // Inferno - a fiery bolt for up to 85 that, against another player, also burns their weapon
+        // and shield out of their hands (into their inventory, space allowing).
+        FamiliarSpecialMoves.npc("forge_regent_familiar") { target ->
+            familiarSpecialHit(target, maxHit = 85, anim = "inferno", sourceGfx = "evil_flames", projectile = "evil_flames_proj")
+        }
+        FamiliarSpecialMoves.player("forge_regent_familiar") { target ->
+            val cast = familiarSpecialHit(target, maxHit = 85, anim = "inferno", sourceGfx = "evil_flames", projectile = "evil_flames_proj")
+            if (cast) {
+                var disarmed = false
+                for (slot in intArrayOf(EquipSlot.Weapon.index, EquipSlot.Shield.index)) {
+                    if (target.equipment[slot].isEmpty()) {
+                        continue
+                    }
+                    target.equipment.move(slot, target.inventory)
+                    if (target.equipment.transaction.error == TransactionError.None) {
+                        disarmed = true
                     }
                 }
-            }
-            cast
-        }
-
-        // Famine - the ravenous locust swarms the target; a player target has some food eaten rotten.
-        FamiliarSpecialMoves.npc("ravenous_locust_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 50, anim = "famine", sourceGfx = "famine", projectile = "famine_proj", targetGfx = "famine_hit")
-        }
-        FamiliarSpecialMoves.player("ravenous_locust_familiar") { target ->
-            val cast = familiarSpecialHit(target, maxHit = 50, anim = "famine", sourceGfx = "famine", projectile = "famine_proj", targetGfx = "famine_hit")
-            if (cast && rotFood(target)) {
-                message("Your locust devours some of ${target.name}'s food.")
-                target.message("${name}'s locust devours some of your food!")
-            }
-            cast
-        }
-
-        // Inferno - the forge regent's flare knocks another player's weapon and shield out of their
-        // hands (into their inventory). Fails, charging nothing, if nothing could be unequipped.
-        FamiliarSpecialMoves.player("forge_regent_familiar") { target ->
-            if (!familiarCanSpecial(target)) {
-                return@player false
-            }
-            val familiar = follower ?: return@player false
-            var disarmed = false
-            for (slot in intArrayOf(EquipSlot.Weapon.index, EquipSlot.Shield.index)) {
-                if (target.equipment[slot].isEmpty()) {
-                    continue
-                }
-                target.equipment.move(slot, target.inventory)
-                if (target.equipment.transaction.error == TransactionError.None) {
-                    disarmed = true
+                if (disarmed) {
+                    target.gfx("inferno_hit")
+                    target.message("${name}'s familiar burns the equipment from your hands!")
                 }
             }
-            if (!disarmed) {
-                message("Your familiar couldn't disarm ${target.name}.")
-                return@player false
-            }
-            familiar.watch(target)
-            familiar.gfx("inferno")
-            target.gfx("inferno_hit")
-            target.message("${name}'s familiar burns the equipment from your hands!")
-            true
+            cast
         }
 
         // Vampyre Touch: 120 max, 40% chance to heal the owner 20.
@@ -293,9 +286,13 @@ class FamiliarCombatSpecials : Script {
             }
         }
 
-        // Dust Cloud - the smoke devil chokes everything around it in a burst of hot dust.
-        FamiliarSpecialMoves.instant("smoke_devil_familiar") {
-            familiarAoeSpecial(maxTargets = 7, maxHit = 80, radius = 1, anim = "dust_cloud", sourceGfx = "dust_cloud", projectile = "dust_cloud_proj", targetGfx = "dust_cloud_hit")
+        // Dust Cloud - the smoke devil chokes the picked target and up to six more foes around it.
+        FamiliarSpecialMoves.npc("smoke_devil_familiar") { target ->
+            val cast = familiarSpecialHit(target, maxHit = 80, anim = "dust_cloud", sourceGfx = "dust_cloud", projectile = "dust_cloud_proj", targetGfx = "dust_cloud_hit")
+            if (cast) {
+                familiarSplash(target, maxTargets = 6, maxHit = 80, radius = 7, projectile = "dust_cloud_proj", targetGfx = "dust_cloud_hit")
+            }
+            cast
         }
 
         // Fireball Assault - the spirit Tz-Kih flings fire at up to two nearby foes.
@@ -318,38 +315,27 @@ class FamiliarCombatSpecials : Script {
 
         // Minotaur family - Bull Rush: a ranged charge whose max hit scales with metal tier, stunning
         // the target on a real cast so it can't act for a few ticks (as in the live game).
-        // Iron Within / Steel of Legends - charge the titan so its next attack (melee-only for the
-        // iron titan) lands as a flurry of 3 / 4 hits on its target. The charge is set on cast and
-        // spent by the npcCombatAttack handler on the familiar's next swing; each extra hit rolls
-        // up to the titan's own max (2 extra up to 230 for iron, 3 up to 244 for steel).
-        for ((familiar, flurry) in mapOf("iron_titan_familiar" to (2 to 230), "steel_titan_familiar" to (3 to 244))) {
-            val (extraHits, flurryMax) = flurry
-            val charge = "familiar_titan_charged"
-            FamiliarSpecialMoves.instant(familiar) {
-                if (this[charge, false]) {
-                    message("Your familiar's special attack is already charged.")
-                    return@instant false
-                }
-                val titan = follower ?: return@instant false
-                titan.anim(if (familiar == "iron_titan_familiar") "iron_within" else "steel_of_legends")
-                titan.gfx(if (familiar == "iron_titan_familiar") "iron_within" else "steel_of_legends")
-                set(charge, true)
-                true
+        // Iron Within - the iron titan pounds its target three times on the spot: melee up close
+        // (max 230 each), magic bolts from afar (max 220 each).
+        FamiliarSpecialMoves.npc("iron_titan_familiar") { target ->
+            val cast = titanAssault(target, hits = 3, meleeMax = 230, farType = "magic", farMax = 220)
+            if (cast) {
+                follower?.anim("iron_within")
+                follower?.gfx("iron_within")
             }
-            npcCombatAttack(familiar) { attack ->
-                if (familiar == "iron_titan_familiar" && attack.type != "melee") {
-                    return@npcCombatAttack
-                }
-                val owner = Players.indexed(this["owner_index", -1]) ?: return@npcCombatAttack
-                if (owner.follower?.index != index || !owner[charge, false]) {
-                    return@npcCombatAttack
-                }
-                // Clear before the extra hits - each one re-fires this handler.
-                owner.clear(charge)
-                repeat(extraHits) { swing ->
-                    hit(attack.target, offensiveType = attack.type, damage = random.nextInt(flurryMax + 1), delay = attack.delay + (swing + 1) * 30)
-                }
+            cast
+        }
+
+        // Steel of Legends - the steel titan strikes four times: melee up close, ranged from afar,
+        // up to 244 each.
+        FamiliarSpecialMoves.npc("steel_titan_familiar") { target ->
+            val cast = titanAssault(target, hits = 4, meleeMax = 244, farType = "range", farMax = 244)
+            if (cast) {
+                follower?.anim("steel_of_legends")
+                follower?.gfx("steel_of_legends")
+                target.gfx("steel_of_legends")
             }
+            cast
         }
 
         val bullRush = mapOf(
@@ -418,22 +404,99 @@ class FamiliarCombatSpecials : Script {
         return this
     }
 
-    /** Ebon Thunder's on-impact effect: saps some of a player target's special attack energy. */
+    /** Ebon Thunder's on-impact effect: saps a tenth of a player target's remaining special energy. */
     private fun drainSpecialEnergy(target: Character) {
         if (target is Player) {
-            target.specialAttackEnergy = (target.specialAttackEnergy - EBON_THUNDER_ENERGY_DRAIN).coerceAtLeast(0)
+            target.specialAttackEnergy -= target.specialAttackEnergy / 10
         }
     }
 
-    /** Famine's food theft: turns the first edible item in [target]'s inventory rotten. */
+    /** Famine's food theft: turns a random edible item in [target]'s inventory rotten. */
     private fun rotFood(target: Player): Boolean {
-        for (item in target.inventory.items) {
-            if (item.isEmpty() || !item.def.options.contains("Eat")) {
-                continue
-            }
-            target.inventory.replace(item.id, "rotten_food")
-            return true
+        val slots = target.inventory.items.withIndex().filter { !it.value.isEmpty() && it.value.def.options.contains("Eat") }.map { it.index }
+        if (slots.isEmpty()) {
+            return false
         }
-        return false
+        val slot = slots[random.nextInt(slots.size)]
+        target.inventory.replace(slot, target.inventory[slot].id, "rotten_food")
+        return true
+    }
+
+    /**
+     * Famine: the locust swarm devours a player target's food (turning a random piece rotten). The
+     * swarm itself does no damage - the familiar just engages the target afterwards.
+     */
+    private fun Player.famine(target: Character): Boolean {
+        if (!familiarCanSpecial(target)) {
+            return false
+        }
+        val familiar = follower ?: return false
+        familiar.watch(target)
+        familiar.anim("famine")
+        familiar.gfx("famine")
+        val flight = familiar.shoot("famine_proj", target)
+        target.queue("famine_gfx", CLIENT_TICKS.toTicks(flight)) { target.gfx("famine_hit") }
+        if (target is Player && rotFood(target)) {
+            message("Your locust devours some of ${target.name}'s food.")
+            target.message("${name}'s locust devours some of your food!")
+        }
+        if (familiar !in target.attackers) {
+            target.attackers.add(familiar)
+        }
+        commandFamiliarAttack(target, silent = true)
+        return true
+    }
+
+    /**
+     * Hits up to [maxTargets] other attackable npcs within [radius] tiles of [target] with their own
+     * projectile and impact graphic (Dust Cloud, Acorn Missile).
+     */
+    private fun Player.familiarSplash(target: Character, maxTargets: Int, maxHit: Int, radius: Int, projectile: String? = null, targetGfx: String? = null) {
+        val familiar = follower ?: return
+        var count = 0
+        for (tile in target.tile.spiral(radius)) {
+            for (splashed in NPCs.at(tile)) {
+                if (splashed == target || !familiarCanSpecial(splashed, silent = true)) {
+                    continue
+                }
+                val flight = projectile?.let { familiar.shoot(it, splashed) }
+                val damage = random.nextInt(maxHit + 1)
+                if (flight != null) {
+                    familiar.hit(splashed, offensiveType = "magic", damage = damage, delay = flight)
+                    targetGfx?.let { gfx -> splashed.queue("familiar_special_gfx", CLIENT_TICKS.toTicks(flight)) { splashed.gfx(gfx) } }
+                } else {
+                    familiar.hit(splashed, offensiveType = "magic", damage = damage)
+                    targetGfx?.let { splashed.gfx(it) }
+                }
+                if (++count >= maxTargets) {
+                    return
+                }
+            }
+        }
+    }
+
+    /**
+     * Iron Within / Steel of Legends: the titan batters its target with a volley of [hits] on the
+     * spot - melee up close (max [meleeMax]) or [farType] from afar (max [farMax]) - then keeps
+     * fighting. Two hits land per swing, the melee volley a tick sooner than the ranged/magic one.
+     */
+    private fun Player.titanAssault(target: Character, hits: Int, meleeMax: Int, farType: String, farMax: Int): Boolean {
+        if (!familiarCanSpecial(target)) {
+            return false
+        }
+        val familiar = follower ?: return false
+        familiar.watch(target)
+        val melee = familiar.tile.distanceTo(target) <= 1
+        val type = if (melee) "melee" else farType
+        val maxHit = if (melee) meleeMax else farMax
+        val baseDelay = if (melee) 30 else 60
+        repeat(hits) { swing ->
+            familiar.hit(target, offensiveType = type, damage = random.nextInt(maxHit + 1), delay = baseDelay + (swing / 2) * 30)
+        }
+        if (familiar !in target.attackers) {
+            target.attackers.add(familiar)
+        }
+        commandFamiliarAttack(target, silent = true)
+        return true
     }
 }
