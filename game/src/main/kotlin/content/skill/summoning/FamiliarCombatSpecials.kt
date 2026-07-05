@@ -457,24 +457,15 @@ class FamiliarCombatSpecials : Script {
      */
     private fun Player.familiarSplash(target: Character, maxTargets: Int, maxHit: Int, radius: Int, projectile: String? = null, targetGfx: String? = null) {
         val familiar = follower ?: return
-        var count = 0
-        for (tile in target.tile.spiral(radius)) {
-            for (splashed in NPCs.at(tile)) {
-                if (splashed == target || !familiarCanSpecial(splashed, silent = true)) {
-                    continue
-                }
-                val flight = projectile?.let { familiar.shoot(it, splashed) }
-                val damage = random.nextInt(maxHit + 1)
-                if (flight != null) {
-                    familiar.hit(splashed, offensiveType = "magic", damage = damage, delay = flight)
-                    targetGfx?.let { gfx -> splashed.queue("familiar_special_gfx", CLIENT_TICKS.toTicks(flight)) { splashed.gfx(gfx) } }
-                } else {
-                    familiar.hit(splashed, offensiveType = "magic", damage = damage)
-                    targetGfx?.let { splashed.gfx(it) }
-                }
-                if (++count >= maxTargets) {
-                    return
-                }
+        for (splashed in nearbyAttackableNpcs(target.tile, radius).filter { it != target }.take(maxTargets)) {
+            val flight = projectile?.let { familiar.shoot(it, splashed) }
+            val damage = random.nextInt(maxHit + 1)
+            if (flight != null) {
+                familiar.hit(splashed, offensiveType = "magic", damage = damage, delay = flight)
+                targetGfx?.let { gfx -> splashed.queue("familiar_special_gfx", CLIENT_TICKS.toTicks(flight)) { splashed.gfx(gfx) } }
+            } else {
+                familiar.hit(splashed, offensiveType = "magic", damage = damage)
+                targetGfx?.let { splashed.gfx(it) }
             }
         }
     }

@@ -227,6 +227,22 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
     }
 
     @Test
+    fun `Dust Cloud finds a large npc standing beside the devil`() {
+        maxRolls()
+        val player = summon("smoke_devil_familiar")
+        val familiar = player.follower!!
+        // The giant rat is 2x2: anchored two tiles west, its body still touches the devil - the
+        // scan must match npc bounds, not just anchor tiles.
+        val target = tankyRat(player, familiar.tile.addX(-2))
+        val before = target.levels.get(Skill.Constitution)
+
+        assertTrue(player.runSpecial("smoke_devil_familiar"))
+        tick(8)
+
+        assertTrue(target.levels.get(Skill.Constitution) < before, "the big rat chokes on the dust")
+    }
+
+    @Test
     fun `Dust Cloud chokes the target and the foes around it`() {
         maxRolls()
         val player = summon("smoke_devil_familiar")

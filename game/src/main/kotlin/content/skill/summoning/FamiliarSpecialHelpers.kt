@@ -13,9 +13,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 /**
@@ -128,21 +130,7 @@ fun Player.familiarAoeSpecial(
     targetGfx: String? = null,
 ): Boolean {
     val familiar = follower ?: return false
-    val targets = mutableListOf<NPC>()
-    for (tile in familiar.tile.spiral(radius)) {
-        for (character in NPCs.at(tile)) {
-            if (character in targets || !familiarCanSpecial(character, silent = true)) {
-                continue
-            }
-            targets.add(character)
-            if (targets.size >= maxTargets) {
-                break
-            }
-        }
-        if (targets.size >= maxTargets) {
-            break
-        }
-    }
+    val targets = nearbyAttackableNpcs(familiar.tile, radius).take(maxTargets)
     if (targets.isEmpty()) {
         message("There is nothing nearby for your familiar to attack.")
         return false
@@ -162,6 +150,26 @@ fun Player.familiarAoeSpecial(
     }
     commandFamiliarAttack(targets.first(), silent = true)
     return true
+}
+
+/**
+ * All npcs the follower may attack whose bounds are within [radius] tiles of [center], nearest
+ * first. Scanned per zone (not per tile) so multi-tile npcs are found by their bodies, not just
+ * their anchor tile - a large monster standing beside the familiar still counts.
+ */
+fun Player.nearbyAttackableNpcs(center: Tile, radius: Int): List<NPC> {
+    val targets = mutableListOf<NPC>()
+    // Zones are 8x8; a large npc's anchor can sit up to its size outside the radius, so over-scan.
+    for (zone in center.zone.spiral((radius + 15) / 8)) {
+        for (character in NPCs.at(zone)) {
+            if (character in targets || center.distanceTo(character) > radius || !familiarCanSpecial(character, silent = true)) {
+                continue
+            }
+            targets.add(character)
+        }
+    }
+    targets.sortBy { center.distanceTo(it) }
+    return targets
 }
 
 /**
