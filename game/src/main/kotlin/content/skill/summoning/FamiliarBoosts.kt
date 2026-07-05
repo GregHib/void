@@ -52,3 +52,15 @@ fun Player.familiarBoost(skill: Skill): Int {
  * tuna, swordfish or sharks.
  */
 fun Player.familiarActsAsHarpoon(): Boolean = follower?.id == "ibis_familiar" || follower?.id == "granite_lobster_familiar"
+
+/**
+ * Style-gated passive defence: while summoned, the iron/steel titan make their owner 10%/15%
+ * harder to hit with melee, and the wolpertinger 5% harder to hit with magic. Applied as a
+ * multiplier to the owner's defensive rating for an incoming attack of [type].
+ */
+fun Player.familiarDefenceMultiplier(type: String, melee: Boolean): Double = when (follower?.id) {
+    "iron_titan_familiar" -> if (melee) 1.10 else 1.0
+    "steel_titan_familiar" -> if (melee) 1.15 else 1.0
+    "wolpertinger_familiar" -> if (type == "magic") 1.05 else 1.0
+    else -> 1.0
+}

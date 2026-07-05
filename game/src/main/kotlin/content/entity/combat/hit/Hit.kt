@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.Bonus
 import content.entity.combat.dead
 import content.entity.player.combat.special.specialAttack
+import content.skill.summoning.familiarDefenceMultiplier
 import content.entity.player.equip.Equipment
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.Weapon
@@ -99,6 +100,9 @@ object Hit {
         if (offense) {
             rating = Bonus.slayerModifier(source, target, type, rating, damage = false)
             rating = Weapon.specialRatingModifiers(source, type, weapon, special, rating)
+        } else if (target is Player) {
+            // Iron/steel titan and wolpertinger passives make their owner harder to hit.
+            rating = (rating * target.familiarDefenceMultiplier(type, meleeType(type))).toInt()
         }
         if (source["debug", false]) {
             val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"

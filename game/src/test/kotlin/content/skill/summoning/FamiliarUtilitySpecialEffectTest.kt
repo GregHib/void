@@ -2,6 +2,7 @@ package content.skill.summoning
 
 import FakeRandom
 import WorldTest
+import content.entity.combat.hit.Hit
 import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
 import dialogueOption
@@ -22,6 +23,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -317,6 +319,38 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         tick(51)
 
         assertEquals(0, player.beastOfBurden.count("raw_swordfish") + player.beastOfBurden.count("raw_shark"), "the lobster only spears fish alongside a fishing owner")
+    }
+
+    @Test
+    fun `The steel titan makes its owner harder to hit with melee but not magic`() {
+        val player = summon("steel_titan_familiar")
+        val attacker = createNPC("giant_rat", player.tile.addY(1))
+        val meleeWith = Hit.chance(attacker, player, "crush", Item.EMPTY)
+        val magicWith = Hit.chance(attacker, player, "magic", Item.EMPTY)
+
+        player.dismissFamiliar()
+        tick(2) // let the dismissal clear the follower
+        val meleeWithout = Hit.chance(attacker, player, "crush", Item.EMPTY)
+        val magicWithout = Hit.chance(attacker, player, "magic", Item.EMPTY)
+
+        assertTrue(meleeWith < meleeWithout, "melee attackers find the owner harder to hit")
+        assertEquals(magicWithout, magicWith, "magic accuracy is untouched")
+    }
+
+    @Test
+    fun `The wolpertinger makes its owner harder to hit with magic but not melee`() {
+        val player = summon("wolpertinger_familiar")
+        val attacker = createNPC("giant_rat", player.tile.addY(1))
+        val magicWith = Hit.chance(attacker, player, "magic", Item.EMPTY)
+        val meleeWith = Hit.chance(attacker, player, "crush", Item.EMPTY)
+
+        player.dismissFamiliar()
+        tick(2) // let the dismissal clear the follower
+        val magicWithout = Hit.chance(attacker, player, "magic", Item.EMPTY)
+        val meleeWithout = Hit.chance(attacker, player, "crush", Item.EMPTY)
+
+        assertTrue(magicWith < magicWithout, "magic attackers find the owner harder to hit")
+        assertEquals(meleeWithout, meleeWith, "melee accuracy is untouched")
     }
 
     @Test
