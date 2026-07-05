@@ -522,7 +522,6 @@ target_hit = { offense = "crush", max = 82 }
 [stranger_plant_familiar]
 attack_speed = 8
 retreat_range = 8
-defend_anim = "stranger_plant_familiar_defend"
 death_anim = "stranger_plant_familiar_death"
 
 [stranger_plant_familiar.melee]

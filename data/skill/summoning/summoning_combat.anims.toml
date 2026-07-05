@@ -407,13 +407,10 @@ id = 8154
 id = 8153
 
 [stranger_plant_familiar_attack]
-id = 8292
-
-[stranger_plant_familiar_defend]
-id = 8294
+id = 8208
 
 [stranger_plant_familiar_death]
-id = 8295
+id = 8209
 
 [barker_toad_familiar_attack]
 id = 7260
