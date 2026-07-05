@@ -386,10 +386,11 @@ id = 1463
 id = 1400
 
 # The cannonball launches low from the toad's mouth and rises slightly (darkan's 10 -> 16 arc,
-# curve 16) - character heights default to 40, hence the negative offsets. The client orients the
-# model along this trajectory; there is no projectile rotation in the protocol.
+# curve 16) - character heights default to 40, hence the negative offsets. The reference's 1402
+# graphic faces backwards in this revision's cache and projectiles can't be rotated server-side,
+# so the dwarf multicannon's round cannonball (53) flies instead.
 [toad_bark_proj]
-id = 1402
+id = 53
 delay = 30
 time_offset = 10
 multiplier = 10
