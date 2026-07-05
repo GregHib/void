@@ -32,11 +32,11 @@ object Traps {
         val id = Tables.npc("traps.$trap.npc")
         val npc = NPCs.find(tile, id)
         if (npc["owner", ""] != player.accountName) {
-            player.message("This is not your trap!") // TODO proper message
+            player.message("This isn't your trap.")
             return
         }
-        if (npc["smoked", false]) { // TODO what if baited?
-            player.message("This trap is already smoked.") // TODO proper message
+        if (npc["smoked", false]) {
+            player.message("You've already smoked this trap.")
             return
         }
         player.anim("lay_trap_small")

@@ -54,9 +54,7 @@ class BirdSnare : Script {
         objectOperate("Investigate", "bird_snare") { (target) ->
             val id = Tables.npc("traps.bird_snare.npc")
             val npc = NPCs.find(target.tile, id)
-            if (npc["baited", false]) {
-                // TODO
-            } else if (npc["smoked", false]) {
+            if (npc["smoked", false]) {
                 message("The scent on this trap has been masked.")
             } else {
                 message("Your scent lingers around this trap.") // TODO outfits?
@@ -129,11 +127,11 @@ class BirdSnare : Script {
         val id = Tables.npc("traps.${target.id}.npc")
         val npc = NPCs.find(target.tile, id)
         if (npc["owner", ""] != accountName) {
-            message("This is not your trap!") // TODO proper message
+            message("This isn't your trap.")
             return
         }
-        if (npc["smoked", false]) { // TODO what if baited?
-            message("This trap is already smoked.") // TODO proper message
+        if (npc["smoked", false]) {
+            message("You've already smoked this trap.") // TODO proper message
             return
         }
         anim("lay_trap_small")
@@ -191,7 +189,6 @@ class BirdSnare : Script {
         sound("trap_dismantle", delay = 25)
         delay(2)
         collapse(npc, target, drop = false)
-        // TODO is bait returned?
         inventory.add("bird_snare")
         message("You dismantle the trap.", ChatType.Filter)
         if (creature != null) {

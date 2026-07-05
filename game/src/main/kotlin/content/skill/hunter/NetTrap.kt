@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -79,16 +80,7 @@ class NetTrap : Script {
             when {
                 item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
                 item.id == "torch_lit" -> Traps.smoke(this, trap.id.removeSuffix("_setup"), trap.tile.add(target.direction()))
-                item.id.endsWith("_tar") -> if (item.id == Tables.item("traps.${trap.id.removeSuffix("_setup")}.bait")) {
-                    inventory.remove(item.id)
-                    anim("lay_trap_small")
-                    sound("drop_item", delay = 25)
-                    message("You place a blob of tar on the net as bait.")
-                    val npc = NPCs.find(trap.tile.add(target.direction()), "hunting_sapling_trap_npc")
-                    npc["bait"] = item.id
-                } else {
-                    message("This is the wrong sort of tar for these lizards.")
-                }
+                item.id.endsWith("_tar") -> bait(item, trap)
                 item.def.contains(Params.HEALS) -> message("I don't think I'd catch much using that as bait.")
                 else -> noInterest()
             }
@@ -149,6 +141,25 @@ class NetTrap : Script {
                 }
             }
         }
+    }
+
+    private fun Player.bait(item: Item, trap: GameObject) {
+        if (item.id != Tables.item("traps.${trap.id.removeSuffix("_setup")}.bait")) {
+            message("This is the wrong sort of tar for these lizards.")
+            return
+        }
+        val npc = NPCs.find(trap.tile.add(trap.direction()), "hunting_sapling_trap_npc")
+        if (npc.contains("bait")) {
+            message("You've already baited this trap.")
+            return
+        }
+        if (!inventory.remove(item.id)) {
+            return
+        }
+        anim("lay_trap_small")
+        sound("drop_item", delay = 25)
+        npc["bait"] = item.id
+        message("You place a blob of tar on the net as bait.")
     }
 
     private fun Player.investigate(npc: NPC) {
@@ -227,7 +238,6 @@ class NetTrap : Script {
         sound("trap_dismantle", delay = 25)
         delay(1)
         NPCs.remove(npc)
-        // TODO is bait returned?
         for (item in items) {
             inventory.add(item)
         }
