@@ -4,11 +4,60 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.FamiliarSpecialMoves
+import content.skill.summoning.familiarSpecialHit
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
+import kotlin.math.abs
+
+/** The offensive stats Rise from the Ashes sears away from its target. */
+private val RISE_DRAIN_SKILLS = arrayOf(Skill.Attack, Skill.Magic, Skill.Ranged)
+
+/** The seared stats return after ~6 seconds, unlike a normal decaying drain. */
+private const val RISE_DRAIN_TICKS = 10
+
+/** The blast hits up to the phoenix's own magic max. */
+private const val RISE_MAX_HIT = 160
 
 class Phoenix : Script {
     init {
+        // A plain click on the cast button has no target - point at both triggers.
+        FamiliarSpecialMoves.instant("phoenix_familiar") {
+            message("Cast Rise from the Ashes on a foe, or on ashes to rejuvenate the phoenix.")
+            false
+        }
+
+        // Rise from the Ashes - a searing blast that halves the target's Attack, Magic and Ranged
+        // for a few seconds. Neither reference implements this (darkan's is a TODO stub), so the
+        // mechanics adapt the wiki: magic damage plus a severe short-lived offensive drain.
+        FamiliarSpecialMoves.npc("phoenix_familiar") { target -> riseFromTheAshes(target) }
+        FamiliarSpecialMoves.player("phoenix_familiar") { target -> riseFromTheAshes(target) }
+
+        // Cast on ashes instead, the phoenix is reborn: the ashes burn away and its wounds with them.
+        FamiliarSpecialMoves.item("phoenix_familiar") { item ->
+            if (item.id != "ashes") {
+                message("The phoenix can only rise from ashes.")
+                return@item false
+            }
+            val phoenix = follower ?: return@item false
+            if (!inventory.remove("ashes")) {
+                return@item false
+            }
+            phoenix.anim("phoenix_spawn")
+            phoenix.levels.restore(Skill.Constitution, phoenix.levels.getMax(Skill.Constitution))
+            message("Your phoenix rises from the ashes, its wounds burning away.", ChatType.Filter)
+            true
+        }
+
         npcOperate("Interact", "phoenix_familiar") {
             when (random.nextInt(4)) {
                 0 -> {
@@ -43,5 +92,24 @@ class Phoenix : Script {
                 }
             }
         }
+    }
+
+    /**
+     * The searing blast: magic damage with the phoenix's own attack animation, then half the
+     * target's offensive stats burn away, returning once the flames die down.
+     */
+    private fun Player.riseFromTheAshes(target: Character): Boolean {
+        val cast = familiarSpecialHit(target, maxHit = RISE_MAX_HIT, anim = "phoenix_familiar_attack")
+        if (cast) {
+            val drained = RISE_DRAIN_SKILLS.associateWith { abs(target.levels.drain(it, multiplier = 0.5)) }
+            target.queue("rise_from_the_ashes_restore", RISE_DRAIN_TICKS) {
+                // Give back exactly what was seared - restore() caps at the base level, which would
+                // swallow the returned stats of anything fighting above it (boosts, set levels).
+                for ((skill, amount) in drained) {
+                    target.levels.set(skill, target.levels.get(skill) + amount)
+                }
+            }
+        }
+        return cast
     }
 }

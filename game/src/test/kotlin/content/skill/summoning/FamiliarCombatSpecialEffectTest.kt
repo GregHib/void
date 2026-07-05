@@ -8,6 +8,7 @@ import content.entity.effect.toxin.poisoned
 import content.entity.player.combat.special.specialAttackEnergy
 import itemOnNpc
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -402,6 +403,38 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
             tick()
             assertFalse(target.stunned, "a lost roll leaves the target free to act")
         }
+    }
+
+    @Test
+    fun `Rise from the Ashes sears half the target's offensive stats, returning after 6 seconds`() {
+        maxRolls()
+        val player = summon("phoenix_familiar")
+        val target = tankyRat(player)
+        target.levels.set(Skill.Magic, 20)
+        val before = target.levels.get(Skill.Constitution)
+
+        assertTrue(player.runNpcSpecial("phoenix_familiar", target))
+        assertEquals(10, target.levels.get(Skill.Magic), "half the target's Magic burns away")
+
+        tick(11) // ~6 seconds later the seared stats return
+        assertEquals(20, target.levels.get(Skill.Magic), "the flames die down and the stats return")
+        assertTrue(target.levels.get(Skill.Constitution) < before, "the blast also damaged the target")
+    }
+
+    @Test
+    fun `Cast on ashes the phoenix is reborn at full health`() {
+        val player = summon("phoenix_familiar")
+        val phoenix = player.follower!!
+        phoenix.levels.drain(Skill.Constitution, 500)
+        player.inventory.transaction { add("rise_from_the_ashes_scroll", 1) }
+        player.inventory.transaction { add("ashes", 1) }
+        val hurt = phoenix.levels.get(Skill.Constitution)
+
+        InterfaceApi.onItem(player, "familiar_details:cast_rise_from_the_ashes", player.inventory[1])
+
+        assertEquals(0, player.inventory.count("ashes"), "the ashes burn away")
+        assertTrue(phoenix.levels.get(Skill.Constitution) > hurt, "and the phoenix's wounds with them")
+        assertEquals(phoenix.levels.getMax(Skill.Constitution), phoenix.levels.get(Skill.Constitution), "fully reborn")
     }
 
     @Test
