@@ -1,5 +1,10 @@
 # Familiar special-move graphics + projectiles (cast-button specials).
 # Suffix conventions: bare name = the familiar's own gfx, _proj = projectile, _hit = target gfx.
+#
+# Projectile speed standard (units are client ticks, 30 per 0.6s game tick): delay = 30,
+# time_offset = 10, multiplier = 10 gives a flight of 1 game tick + 1/3 of a tick per tile -
+# the live game's "1 + floor(distance / 3)" hit delay. Deliberate exceptions (e.g. Bull Rush's
+# constant 2s charge) note why inline.
 
 # Combat specials
 [spirit_wolf_howl]
@@ -7,9 +12,9 @@ id = 1334
 
 [spirit_wolf_howl_proj]
 id = 1333
-delay = 50
-time_offset = 56
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [electric_lash]
@@ -17,6 +22,9 @@ id = 1410
 
 [electric_lash_proj]
 id = 1411
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [toad_bark]
 id = 1403
@@ -29,6 +37,9 @@ id = 1385
 
 [slime_spray_proj]
 id = 1386
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [slime_spray_hit]
 id = 1387
@@ -38,6 +49,9 @@ id = 1405
 
 [arctic_blast_proj]
 id = 1406
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [arctic_blast_hit]
 id = 1407
@@ -47,32 +61,45 @@ id = 1351
 
 [crushing_claw_proj]
 id = 1352
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [dreadfowl_strike]
 id = 1523
 
 [dreadfowl_strike_proj]
 id = 1318
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [dissolve_proj]
 id = 1360
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [rending]
 id = 1370
 
 [rending_proj]
 id = 1371
+delay = 30
+time_offset = 10
+multiplier = 10
 
 # Evil turnip Evil Flames: source gfx on the familiar as it breathes, the projectile, and the impact.
+
 [evil_flames]
 id = 1328
 
 [evil_flames_proj]
 id = 1330
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [evil_flames_hit]
 id = 1329
@@ -82,6 +109,9 @@ id = 1422
 
 [abyssal_drain_proj]
 id = 1423
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [vampire_touch]
 id = 1323
@@ -91,6 +121,9 @@ id = 1467
 
 [petrifying_gaze_proj]
 id = 1468
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [petrifying_gaze_hit]
 id = 1469
@@ -107,6 +140,9 @@ multiplier = 0
 
 [poisonous_blast_proj]
 id = 1508
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [poisonous_blast_hit]
 id = 1511
@@ -116,6 +152,9 @@ id = 1373
 
 [boil_proj]
 id = 1376
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [boil_hit]
 id = 1377
@@ -135,6 +174,9 @@ id = 1350
 
 [sandstorm_proj]
 id = 1349
+delay = 30
+time_offset = 10
+multiplier = 10
 
 [egg_spawn]
 id = 1342
@@ -214,9 +256,9 @@ id = 1478
 
 [doomsphere_proj]
 id = 1479
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [doomsphere_hit]
@@ -225,9 +267,9 @@ id = 1480
 # Spirit dagannoth Spike Shot: the launched spike and its impact.
 [spike_shot_proj]
 id = 1426
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [spike_shot_hit]
@@ -236,20 +278,21 @@ id = 1428
 # Swamp titan Swamp Plague: the bog projectile.
 [swamp_plague_proj]
 id = 1462
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 # Lava titan Ebon Thunder: familiar gfx, the dark bolt, and the impact.
+
 [ebon_thunder]
 id = 1492
 
 [ebon_thunder_proj]
 id = 1493
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [ebon_thunder_hit]
@@ -261,9 +304,9 @@ id = 1379
 
 [mantis_strike_proj]
 id = 1380
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [mantis_strike_hit]
@@ -272,9 +315,9 @@ id = 1381
 # Giant ent Acorn Missile: the lobbed acorns and their impact.
 [acorn_missile_proj]
 id = 1362
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [acorn_missile_hit]
@@ -286,9 +329,9 @@ id = 1346
 
 [famine_proj]
 id = 1347
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [famine_hit]
@@ -307,9 +350,9 @@ id = 1375
 
 [dust_cloud_proj]
 id = 1376
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [dust_cloud_hit]
@@ -347,14 +390,15 @@ id = 1400
 # model along this trajectory; there is no projectile rotation in the protocol.
 [toad_bark_proj]
 id = 1402
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 16
 height = -30
 end_height = -24
 
 # Thieving Fingers: the sparkle played on the owner as the boost lands.
+
 [thieving_fingers_owner]
 id = 1300
 
@@ -364,9 +408,9 @@ id = 1419
 
 [blood_drain_proj]
 id = 1417
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 [blood_drain_owner]
@@ -438,11 +482,12 @@ id = 1300
 # Bunyip's raw-fish transmute: the watery bolt from the bunyip to its owner.
 [bunyip_transmute_proj]
 id = 1435
-delay = 51
-time_offset = 46
-multiplier = 1
+delay = 30
+time_offset = 10
+multiplier = 10
 curve = 0
 
 # Spirit dagannoth's Ferocious double-strike graphic.
+
 [ferocious]
 id = 1427
