@@ -179,3 +179,7 @@ id = 7703
 
 [toad_bark_load]
 id = 7704
+
+# Bloated leech's Blood Drain animation (played on the familiar as it draws blood).
+[blood_drain]
+id = 7715

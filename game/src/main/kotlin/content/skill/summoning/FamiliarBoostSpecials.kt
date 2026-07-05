@@ -69,15 +69,14 @@ class FamiliarBoostSpecials : Script {
             }
         }
 
-        // Blood Drain - cure poison, restore drained stats by ~20%, then take 25 recoil damage.
+        // Blood Drain - the leech draws the poison from its owner's blood, restoring every drained
+        // stat by 2 + 20% of its level, then takes a 25 life-point bite in payment.
         FamiliarSpecialMoves.instant("bloated_leech_familiar") {
-            familiarSelfSpecial {
+            familiarSelfSpecial(anim = "blood_drain", sourceGfx = "blood_drain", playerGfx = "blood_drain_owner") {
+                follower?.shoot("blood_drain_proj", this, height = 15, endHeight = 16)
                 curePoison()
                 for (skill in Skill.values()) {
-                    val offset = levels.get(skill) - levels.getMax(skill)
-                    if (offset < 0) {
-                        levels.restore(skill, ceil(levels.getMax(skill) * 0.2).toInt())
-                    }
+                    levels.restore(skill, 2, 0.2)
                 }
                 directHit(25, "damage")
             }

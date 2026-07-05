@@ -352,3 +352,17 @@ curve = 0
 # Thieving Fingers: the sparkle played on the owner as the boost lands.
 [thieving_fingers_owner]
 id = 1300
+
+# Blood Drain: the leech's gfx, the blood drawn to the owner, and the burst on the owner.
+[blood_drain]
+id = 1419
+
+[blood_drain_proj]
+id = 1417
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+[blood_drain_owner]
+id = 1420
