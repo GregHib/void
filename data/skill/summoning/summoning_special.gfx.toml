@@ -366,3 +366,7 @@ curve = 0
 
 [blood_drain_owner]
 id = 1420
+
+# Tireless Run: the sparkle played on the owner as the boost lands (the 1521 gfx is the terrorbird's).
+[tireless_run_owner]
+id = 1300

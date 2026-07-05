@@ -4,6 +4,7 @@ import WorldTest
 import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
 import content.entity.player.bank.bank
+import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
 import interfaceOption
 import itemOnNpc
@@ -91,7 +92,15 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
         assertTrue(player.runSpecial("spirit_terrorbird_familiar"))
         assertEquals(agility + 2, player.levels.get(Skill.Agility))
-        assertTrue(player.runEnergy > 0, "the terrorbird tops up run energy")
+        assertEquals((agility + 2) * 50, player.runEnergy, "restores half the boosted Agility level")
+    }
+
+    @Test
+    fun `Tireless Run refuses when run energy is already full, charging nothing`() {
+        val player = summon("spirit_terrorbird_familiar")
+        player.runEnergy = MAX_RUN_ENERGY
+
+        assertFalse(player.runSpecial("spirit_terrorbird_familiar"))
     }
 
     @Test

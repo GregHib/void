@@ -46,11 +46,16 @@ class FamiliarBoostSpecials : Script {
             }
         }
 
-        // Tireless Run - Agility +2 and restore run energy.
+        // Tireless Run - Agility +2 and restore run energy by half the (boosted) Agility level.
+        // Refuses, charging nothing, when run energy is already full.
         FamiliarSpecialMoves.instant("spirit_terrorbird_familiar") {
-            familiarSelfSpecial(anim = "tireless_run", playerGfx = "tireless_run") {
+            if (runEnergy >= MAX_RUN_ENERGY) {
+                message("You're already full run energy.")
+                return@instant false
+            }
+            familiarSelfSpecial(anim = "tireless_run", sourceGfx = "tireless_run", playerGfx = "tireless_run_owner") {
                 levels.boost(Skill.Agility, 2)
-                restoreRunEnergy()
+                runEnergy = (runEnergy + levels.get(Skill.Agility) * 50).coerceAtMost(MAX_RUN_ENERGY)
             }
         }
 
