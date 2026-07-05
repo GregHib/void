@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -26,6 +27,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 /**
@@ -40,6 +42,90 @@ class Hunter : Script {
             for (npc in npcs) {
                 NPCs.remove(npc)
             }
+        }
+
+        // Free-standing traps
+
+        itemOption("Lay", "box_trap,rabbit_snare") {
+            layTrap(it.item.id, null, null)
+        }
+
+        floorItemOperate("Lay") { (item) ->
+            layTrap(item.id, null, item)
+        }
+
+        objectOperate("Dismantle", "box_trap,rabbit_snare,boulder_trap_setup") { (target) ->
+            val type = when {
+                target.id.startsWith("box_trap") -> "box_trap"
+                target.id.startsWith("rabbit_snare") -> "rabbit_snare"
+                target.id.startsWith("boulder_trap") -> "boulder_trap"
+                else -> return@objectOperate
+            }
+            var tile = target.tile
+            dismantleTrap(type, target, tile)
+        }
+
+        objectOperate("Investigate", "bird_snare,box_trap,rabbit_snare,boulder_trap_setup") { (target) ->
+            val id = Tables.npc("traps.${target.id}.npc")
+            val npc = NPCs.find(target.tile, id)
+            if (npc["baited", false]) {
+                // TODO
+                message("This trap has been set without any bait.")
+            } else if (npc["smoked", false]) {
+                message("The scent on this trap has been masked.")
+            } else {
+                message("Your scent lingers around this trap.") // TODO outfits?
+            }
+        }
+
+        itemOnObjectOperate("unlit_torch", "box_trap,rabbit_snare,boulder_trap_setup") {
+            message("I should light the torch before using it to smoke the trap.")
+        }
+
+        itemOnObjectOperate("torch_lit", "box_trap,rabbit_snare,boulder_trap_setup") { (target) ->
+            val id = Tables.npc("traps.${target.id}.npc")
+            val npc = NPCs.find(target.tile, id)
+            if (npc["owner", ""] != accountName) {
+                message("This isn't your trap.")
+                return@itemOnObjectOperate
+            }
+            if (npc["smoked", false]) {
+                message("You've already smoked this trap.")
+                return@itemOnObjectOperate
+            }
+            message("You use the smoke from the torch to remove your scent from the trap.", type = ChatType.Filter)
+            anim("lay_trap_small")
+            areaSound("hunting_smoke2", tile = target.tile, radius = 5)
+            npc["smoked"] = true
+        }
+
+        objectOperate("Check", "box_trap_*") { (target) ->
+            collectCatch(target.id.removePrefix("box_trap_"), target)
+        }
+
+        // Pitfall
+
+        objectOperate("Trap", "pitfall") {
+            layTrap("pitfall", it.target, null)
+        }
+
+        objectOperate("Jump", "pitfall_*") { (target) ->
+            val dir = if (target.rotation == 1 || target.rotation == 3) {
+                if (tile.x > target.tile.x) Direction.WEST else Direction.EAST
+            } else {
+                if (tile.y > target.tile.y) Direction.SOUTH else Direction.NORTH
+            }
+            anim("agility_pyramid_gap_jump")
+            exactMove(tile.add(dir).add(dir).add(dir), delay = 53, direction = dir)
+            areaSound("hunting_jump", target.tile)
+        }
+
+        objectOperate("Dismantle", "pitfall_*") { (target) ->
+            dismantleTrap("pitfall", target, target.tile)
+        }
+
+        objectOperate("Check", "rabbit_snare_caught") { (target) ->
+            collectCatch("rabbit", target)
         }
 
         // TODO ferret, chinchompa, rabbits
