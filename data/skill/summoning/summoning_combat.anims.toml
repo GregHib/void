@@ -449,13 +449,13 @@ id = 7995
 id = 7996
 
 [arctic_bear_familiar_attack]
-id = 5327
+id = 4925
 
 [arctic_bear_familiar_defend]
-id = 5328
+id = 4928
 
 [arctic_bear_familiar_death]
-id = 5329
+id = 4929
 
 [phoenix_familiar_attack]
 id = 11093
