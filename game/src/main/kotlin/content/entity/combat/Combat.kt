@@ -128,6 +128,9 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         if (character is NPC && character.attacking && character.underAttack) {
             return
         }
+        if (character is NPC && character.id == "horned_graahk") {
+            return
+        }
         if (character is NPC) {
             // Retreat
             val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return

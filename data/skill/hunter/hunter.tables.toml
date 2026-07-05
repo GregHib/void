@@ -132,7 +132,6 @@ setup_anim = "lay_trap_small"
 take_down_anim = "lay_trap_small"
 requires = ["knife"]
 items = ["logs"]
-max = 1
 item_message = "You need some logs and a knife to set a pitfall trap."
 collapse_ticks = 300
 collapse_message = "The pitfall trap that you constructed has collapsed."
