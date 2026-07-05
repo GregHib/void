@@ -1,6 +1,6 @@
 [hunting_ojibway_trap_npc] # bird snare
 id = 5070
-hunt_mode = "hunter_trap"
+hunt_mode = "bird_snare"
 hunt_range = 2
 
 [hunting_ojibway_trap_npc_off]

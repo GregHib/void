@@ -233,6 +233,9 @@ class Hunting(
         if (!canSee(npc, target.tile, target.size, target.size, definition)) {
             return false
         }
+        if (target is NPC && definition.ids.isNotEmpty() && !definition.ids.contains(target.id)) {
+            return false
+        }
         if (definition.checkNotTooStrong && targetTooStrong(npc, target)) {
             return false
         }

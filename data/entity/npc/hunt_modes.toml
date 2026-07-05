@@ -125,3 +125,10 @@ type = "npc"
 check_visual = "line_of_sight"
 check_not_busy = true
 find_keep_hunting = true
+
+[bird_snare]
+type = "npc"
+id = "crimson_swift,golden_warbler,copper_longtail,cerulean_twitch,tropical_wagtail,wimpy_bird"
+check_visual = "line_of_sight"
+check_not_busy = true
+find_keep_hunting = true

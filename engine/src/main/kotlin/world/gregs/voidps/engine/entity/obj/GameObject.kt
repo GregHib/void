@@ -7,8 +7,8 @@ import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAnimation
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
@@ -44,6 +44,13 @@ value class GameObject(internal val packed: Long) : Entity {
         get() = shape(packed)
     val rotation: Int
         get() = rotation(packed)
+
+    fun direction(): Direction = when (rotation) {
+        0 -> Direction.NORTH
+        1 -> Direction.EAST
+        2 -> Direction.SOUTH
+        else -> Direction.WEST
+    }
 
     fun anim(id: String) = ZoneBatchUpdates
         .add(tile.zone, ObjectAnimation(tile.id, AnimationDefinitions.get(id).id, shape, rotation))

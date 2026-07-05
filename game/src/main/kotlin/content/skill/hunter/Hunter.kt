@@ -53,7 +53,7 @@ class Hunter : Script {
 
         // Free-standing traps
 
-        itemOption("Lay", "bird_snare,box_trap,rabbit_snare") {
+        itemOption("Lay", "box_trap,rabbit_snare") {
             layTrap(it.item.id, null, null)
         }
 
@@ -61,9 +61,8 @@ class Hunter : Script {
             layTrap(item.id, null, item)
         }
 
-        objectOperate("Dismantle", "bird_snare,bird_snare_fail,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
+        objectOperate("Dismantle", "box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
             val type = when {
-                target.id.startsWith("bird_snare") -> "bird_snare"
                 target.id.startsWith("box_trap") -> "box_trap"
                 target.id.startsWith("rabbit_snare") -> "rabbit_snare"
                 target.id.startsWith("boulder_trap") -> "boulder_trap"
@@ -72,7 +71,7 @@ class Hunter : Script {
             }
             var tile = target.tile
             if (type.endsWith("_net")) {
-                tile = tile.add(direction(target.rotation))
+                tile = tile.add(target.direction())
             }
             dismantleTrap(type, target, tile)
         }
@@ -90,11 +89,11 @@ class Hunter : Script {
             }
         }
 
-        itemOnObjectOperate("unlit_torch", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") {
+        itemOnObjectOperate("unlit_torch", "box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") {
             message("I should light the torch before using it to smoke the trap.")
         }
 
-        itemOnObjectOperate("torch_lit", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
+        itemOnObjectOperate("torch_lit", "box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
             val id = Tables.npc("traps.${target.id}.npc")
             val npc = NPCs.find(target.tile, id)
             if (npc["owner", ""] != accountName) {
@@ -111,14 +110,6 @@ class Hunter : Script {
             npc["smoked"] = true
         }
         // TODO bait + smoking traps
-
-        itemOnObjectOperate("*", "bird_snare") { (obj, item) ->
-            if (item.def.contains(Params.HEALS)) {
-                message("There isn't really anywhere to put any bait on this trap.")
-            } else {
-                noInterest()
-            }
-        }
 
         itemOnObjectOperate("*", "net") { (obj, item) ->
             if (item.def.contains(Params.HEALS)) {
@@ -148,18 +139,18 @@ class Hunter : Script {
         }
 
         objectOperate("Dismantle", "net") { (target) ->
-            val dir = direction(target.rotation).inverse()
+            val dir = target.direction().inverse()
             val trap = GameObjects.getLayer(target.tile.add(dir), ObjectLayer.GROUND) ?: return@objectOperate
             dismantleTrap(trap.id.removeSuffix("_setup").removeSuffix("_failed"), trap, target.tile)
         }
 
         objectOperate("Dismantle", "*_net_failed") { (target) ->
-            val dir = direction(target.rotation)
+            val dir = target.direction()
             dismantleTrap(target.id.removeSuffix("_setup").removeSuffix("_failed"), target, target.tile.add(dir))
         }
 
         objectOperate("Investigate", "net") { (target) ->
-            val dir = direction(target.rotation).inverse()
+            val dir = target.direction().inverse()
             val trap = GameObjects.getLayer(target.tile.add(dir), ObjectLayer.GROUND) ?: return@objectOperate
             // TODO
         }
@@ -231,43 +222,12 @@ class Hunter : Script {
             val success = Level.success(player.levels.get(Skill.Hunter), chance)
             val trapId = creature.string("trap")
             when (trapId) { // FIXME Temp
-                 "bird_snare" -> {
-                    target.walkToDelay(tile)
-                    target.walkOverDelay(tile)
-                    target.face(Direction.SOUTH)
-                    target.anim("bird_land")
-                    target.delay(1)
-                    val catchAnim = creature.animOrNull(if (success) "catch_anim" else "fail_anim")
-                    if (catchAnim != null) {
-                        target.anim(catchAnim)
-                    }
-                    target.delay(1)
-                    despawn(100) // TODO timings
-                     val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
-                     if (success) {
-                        target.levels.set(Skill.Constitution, 0)
-                        trap.replace(Tables.obj("creatures.${target.id}.caught_obj"))
-                        player.message("Something has been caught in your trap!")
-                        areaSound("bird_caught", tile)
-                        return@huntNPC
-                    }
-                    val failObj = Tables.objOrNull("traps.$trapId.fail")
-                    if (failObj != null) {
-                        trap.replace(failObj) // TODO collapse time
-                    }
-                    val failAnim = creature.animOrNull("fail_anim")
-                    if (failAnim != null) {
-                        target.anim(failAnim)
-                    }
-                    // TODO is there a message for this?
-            //            owner.message(Tables.stringOrNull("traps.${creature.string("trap")}.collapse_message") ?: return@huntNPC)
-                }
                 "swamp_net", "red_net", "orange_net", "black_net" -> {
                     target.walkToDelay(tile)
                     target.delay(2)
                     // TODO need other tile
                     val net = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
-                    val trap = GameObjects.getLayer(tile.add(direction(rotation = net.rotation).inverse()), ObjectLayer.GROUND) ?: return@huntNPC
+                    val trap = GameObjects.getLayer(tile.add(net.direction().inverse()), ObjectLayer.GROUND) ?: return@huntNPC
                     net.remove()
                     if (success) {
                         val caught = trap.replace("${trapId}_catching")
@@ -371,7 +331,7 @@ class Hunter : Script {
         } else if (obj != null) {
             obj.replace(trapId)
             if (trapId.endsWith("_net_setup")) {
-                val dir = direction(obj.rotation)
+                val dir = obj.direction()
                 NPCs.add(trap.npc("npc"), obj.tile.add(dir), ticks = 100, owner = this) // TODO check times
                 GameObjects.add("net", obj.tile.add(dir), rotation = dir.ordinal / 2)
             }
@@ -381,21 +341,6 @@ class Hunter : Script {
         }
         if (trap.bool("step_away")) {
             stepAway(obj)
-        }
-    }
-
-    private val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
-
-    private fun Player.stepAway(obj: GameObject?) {
-        val steps: StepValidator = get()
-        for (dir in directions) {
-            if (steps.canTravel(this, dir.delta.x, dir.delta.y)) {
-                walkTo(tile.add(dir), noCollision = true)
-                break
-            }
-        }
-        if (obj != null) {
-            set("face_entity", obj)
         }
     }
 
@@ -458,18 +403,11 @@ class Hunter : Script {
             return
         }
         if (target.id.endsWith("_net_setup")) {
-            val dir = direction(target.rotation)
+            val dir = target.direction()
             val net = GameObjects.findOrNull(target.tile.add(dir), "net")
             net?.remove()
         }
         GameObjects.remove(target)
-    }
-
-    private fun direction(rotation: Int): Direction = when (rotation) {
-        0 -> Direction.NORTH
-        1 -> Direction.EAST
-        2 -> Direction.SOUTH
-        else -> Direction.WEST
     }
 
     private fun maxTraps(level: Int, max: Int) = (1 + level / 20).coerceAtMost(max)

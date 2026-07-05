@@ -66,6 +66,7 @@ enum class Direction(deltaX: Int, deltaY: Int) {
         val all = entries.toTypedArray().copyOfRange(0, size - 1)
         val clockwise = arrayOf(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
         val westClockwise = arrayOf(WEST, NORTH, EAST, SOUTH)
+        val stepAway = listOf(WEST, EAST, SOUTH, NORTH)
 
         private val array = arrayOf(SOUTH_WEST, SOUTH, SOUTH_EAST, WEST, NONE, EAST, NORTH_WEST, NORTH, NORTH_EAST)
 

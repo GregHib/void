@@ -33,7 +33,7 @@ class BirdSnareTest : WorldTest() {
         assertTrue(GameObjects.at(start).any { it.id == "bird_snare" })
         createNPC(bird, player.tile.addY(2))
 
-        tick(6)
+        tick(22)
 
         val trap = GameObjects.at(start).firstOrNull { it.id == "snare_${bird}" }
         assertNotNull(trap)
@@ -57,7 +57,7 @@ class BirdSnareTest : WorldTest() {
         assertTrue(GameObjects.at(start).any { it.id == "bird_snare" })
         createNPC("golden_warbler", player.tile.addY(2))
 
-        tick(6)
+        tick(22)
 
         val trap = GameObjects.at(start).firstOrNull { it.id == "snare_golden_warbler" }
         assertNull(trap)
@@ -78,7 +78,7 @@ class BirdSnareTest : WorldTest() {
         assertTrue(GameObjects.at(start).any { it.id == "bird_snare" })
         createNPC("golden_warbler", player.tile.addY(2))
 
-        tick(6)
+        tick(22)
 
         val trap = GameObjects.at(start).firstOrNull { it.id == "bird_snare_fail" }
         assertNotNull(trap)
