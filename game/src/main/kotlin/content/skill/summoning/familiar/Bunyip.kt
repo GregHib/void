@@ -54,7 +54,8 @@ class Bunyip : Script {
             val runes = random.nextInt((heals.last / 10).coerceAtLeast(1)) + 1
             inventory.add("water_rune", runes)
             anim("bunyip_transmute")
-            follower?.shoot("bunyip_transmute_proj", this)
+            // The tossed fish flies from the player to the bunyip's mouth.
+            follower?.let { bunyip -> shoot("bunyip_transmute_proj", bunyip) }
             message("Your bunyip transmutes the ${item.def.name.lowercase()} into some water runes.", ChatType.Filter)
         }
 
