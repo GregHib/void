@@ -163,7 +163,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Fruitfall shakes loose a papaya and more fruit around the owner`() {
+    fun `Fruitfall scatters a papaya and more fruit onto the tiles around the owner`() {
         // Max the count roll (nextInt(7) = 6) so the drop is observable.
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until - 1
@@ -171,10 +171,12 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         val player = summon("fruit_bat_familiar")
 
         assertTrue(player.runSpecial("fruit_bat_familiar"))
-        tick(2)
+        tick(3)
 
-        assertTrue(FloorItems.at(player.tile).any { it.id == "papaya_fruit" }, "the first fruit down is always a papaya")
-        assertTrue(FloorItems.at(player.tile).any { it.id == "pineapple" }, "with more fruit alongside")
+        val landed = (-1..1).flatMap { dx -> (-1..1).flatMap { dy -> FloorItems.at(player.tile.add(dx, dy)) } }
+        assertTrue(landed.count { it.id == "papaya_fruit" } == 1, "the first fruit down is always a papaya")
+        assertTrue(landed.any { it.id == "pineapple" }, "with more fruit alongside")
+        assertTrue(FloorItems.at(player.tile).none { it.id == "papaya_fruit" || it.id == "pineapple" }, "each fruit lands on its own free tile, not underfoot")
     }
 
     @Test

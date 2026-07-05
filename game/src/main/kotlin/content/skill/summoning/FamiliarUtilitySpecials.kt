@@ -221,12 +221,25 @@ class FamiliarUtilitySpecials : Script {
             true
         }
 
-        // Fruitfall - the bat shakes loose up to six fruits around the owner, the first always a
-        // papaya. An unlucky cast (about 1 in 7) shakes down nothing at all but still counts.
+        // Fruitfall - the bat shakes loose up to six fruits, each landing with a splash on its own
+        // free tile around the owner, the first always a papaya. An unlucky cast (about 1 in 7)
+        // shakes down nothing at all but still counts.
         FamiliarSpecialMoves.instant("fruit_bat_familiar") {
-            follower?.anim("fruitfall")
-            repeat(random.nextInt(7)) { i ->
-                dropForage(if (i == 0) "papaya_fruit" else fruit[random.nextInt(fruit.size)])
+            val bat = follower ?: return@instant false
+            bat.anim("fruitfall")
+            val validator: StepValidator = get()
+            val fruitTiles = tile.spiral(1).asSequence()
+                .filter { it != tile && validator.canFit(it, collision, 1, blockMove) }
+                .toList()
+                .shuffled()
+                .take(random.nextInt(7))
+            for (fruitTile in fruitTiles) {
+                areaGfx("fruitfall_land", fruitTile)
+            }
+            queue("fruitfall", 1) {
+                for ((index, fruitTile) in fruitTiles.withIndex()) {
+                    FloorItems.add(fruitTile, if (index == 0) "papaya_fruit" else fruit[random.nextInt(fruit.size)], disappearTicks = 120, owner = this)
+                }
             }
             true
         }

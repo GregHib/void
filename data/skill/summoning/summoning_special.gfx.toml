@@ -496,3 +496,7 @@ id = 1427
 # Testudo: the shell-shield tint played on the owner as the Defence boost lands.
 [testudo_owner]
 id = 1308
+
+# Fruitfall: the splash where each shaken-loose fruit lands.
+[fruitfall_land]
+id = 1331
