@@ -4,6 +4,8 @@ import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
+import world.gregs.voidps.engine.event.Wildcard
+import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.timedLoad
 
 class HuntModeDefinitions {
@@ -66,7 +68,13 @@ class HuntModeDefinitions {
                         findKeepHunting = findKeepHunting,
                         pauseIfNobodyNear = pauseIfNobodyNear,
                         rate = rate ?: if (type == "player") 1 else 3,
-                        id = id,
+                        ids = Wildcards.get(
+                            id, when (type) {
+                                "object" -> Wildcard.Object
+                                "npc" -> Wildcard.Npc
+                                else -> Wildcard.Item
+                            }
+                        ),
                         layer = layer,
                         maxMultiAttackers = maxMultiAttackers,
                         checkSameGod = checkSameGod,

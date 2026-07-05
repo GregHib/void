@@ -64,7 +64,7 @@ class NPCDeath(
                 if (combat.deathSound != null) {
                     (killer as? Player)?.sound(combat.deathSound!!.id)
                 }
-                delay(if (ticks <= 0) 4 else ticks)
+                delay(if (ticks == 0) 4 else ticks)
                 if (killer is Player) {
                     AuditLog.event(killer, "killed", npc, tile)
                     slay(killer, npc)

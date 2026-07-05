@@ -10,6 +10,8 @@ Note: Takes a minute to load everything on startup.
 ### Build
 `gradle tools:app:packageReleaseUberJarForCurrentOS`
 
+Artefacts will be produced in `build\compose\jars\`
+
 ## TODOs
 - [] Loading screen
 - [] Filter nested arrays

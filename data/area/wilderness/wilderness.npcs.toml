@@ -98,6 +98,8 @@ examine = "Overgrown vermin."
 
 [black_salamander]
 id = 5116
+solid = false
+respawn_delay = 5
 examine = "Slightly slimy and somewhat menacing."
 
 [pirate_wilderness_2]

@@ -1,0 +1,211 @@
+[box_trap]
+id = 19187
+
+[box_trap_fail]
+id = 19192
+
+[bird_snare]
+id = 19175
+
+[bird_snare_fail]
+id = 19174
+
+[swamp_net_catching]
+id = 19674
+
+[swamp_net_caught]
+id = 19675
+
+[swamp_net_failing]
+id = 19676
+
+[swamp_net_failed]
+id = 19677
+
+[swamp_net_setup]
+id = 19678
+
+[swamp_net]
+id = 19679
+
+[orange_net_setup]
+id = 19650
+
+[net]
+id = 19651
+
+[orange_net]
+id = 19652
+
+[orange_net_caught]
+id = 19654
+
+[orange_net_catching]
+id = 19655
+
+[orange_net_failed]
+id = 19656
+
+[orange_net_failing]
+id = 19657
+
+[red_net_catching]
+id = 19658
+
+[red_net_caught]
+id = 19659
+
+[red_net_failing]
+id = 19660
+
+[red_net_failed]
+id = 19661
+
+[red_net_setup]
+id = 19662
+
+[red_net]
+id = 19663
+
+[black_net_catching]
+id = 19666
+
+[black_net_caught]
+id = 19667
+
+[black_net_failing]
+id = 19668
+
+[black_net_failed]
+id = 19669
+
+[black_net_setup]
+id = 19670
+
+[black_net]
+id = 19671
+
+[boulder_trap]
+id = 19205
+
+[boulder_trap_setup]
+id = 19206
+
+[boulder_trap_fail]
+id = 19219
+
+[rabbit_snare]
+id = 19333
+
+[rabbit_snare_fail]
+id = 19334
+
+[rabbit_snare_caught]
+id = 19335
+
+[rabbit_snare_inverse]
+id = 19336
+
+
+# Snare trap — triggered states (creature caught inside)
+
+[snare_crimson_swift]
+id = 19180
+
+[snare_cerulean_twitch]
+id = 19182
+
+[snare_golden_warbler]
+id = 19184
+
+[snare_copper_longtail]
+id = 19186
+
+[snare_tropical_wagtail]
+id = 19178
+
+[snare_wimpy_bird]
+id = 28930
+
+# Box trap — triggered states
+[box_trap_grey_chinchompa]
+id = 28557
+
+[box_trap_red_chinchompa]
+id = 28558
+
+[box_trap_pawya]
+id = 28567
+
+[box_trap_grenwall]
+id = 28906
+
+# Boulder trap — triggered state
+[boulder_trap_barb_tailed_kebbit]
+id = 19207
+
+[pitfall_0]
+id = 19253
+
+[pitfall_1]
+id = 19254
+
+[pitfall_2]
+id = 19255
+
+[pitfall_3]
+id = 19256
+
+[pitfall_4]
+id = 19257
+
+[pitfall_5]
+id = 19258
+
+[pitfall_6]
+id = 19259
+
+[pitfall_7]
+id = 19260
+
+[pitfall_8]
+id = 19261
+
+[pitfall_9]
+id = 19262
+
+[pitfall_10]
+id = 19263
+
+[pitfall_11]
+id = 19264
+
+[pitfall_12]
+id = 19265
+
+[pitfall_13]
+id = 19266
+
+[pitfall_14]
+id = 19267
+
+[pitfall_15]
+id = 19268
+
+[pitfall_16]
+id = 43614
+
+[pitfall]
+id = 19227
+
+[pitfall_spiked]
+id = 19228
+
+[pitfall_collapsed]
+id = 19229
+
+[pitfall_caught]
+id = 19231
+
+[pitfall_inverse]
+id = 19234

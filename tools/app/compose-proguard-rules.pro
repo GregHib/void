@@ -16,9 +16,10 @@
 -dontwarn org.apache.tools.ant.**
 
 # Kotlin / Kotlinx internal/experimental annotations
--dontwarn kotlin.Experimental
+-dontwarn kotlin.**
 -dontwarn kotlinx.io.**
 -dontwarn kotlinx.coroutines.debug.*
+-dontnote
 
 -keep class kotlin.** { *; }
 -keep class kotlinx.coroutines.** { *; }
@@ -27,3 +28,13 @@
 
 # JAnsi terminal integration
 -dontwarn org.fusesource.jansi.**
+
+-keepattributes *Annotation*,Signature,InnerClasses,EnclosingMethod
+-keep class kotlin.Metadata { *; }
+-keep,allowoptimization interface world.gregs.voidps.cache.Definition
+-keepclassmembers class * implements world.gregs.voidps.cache.Definition {
+    <fields>;
+}
+-keepclassmembers class world.gregs.voidps.tools.search.screen.view.tab.**Wrapper {
+    <fields>;
+}

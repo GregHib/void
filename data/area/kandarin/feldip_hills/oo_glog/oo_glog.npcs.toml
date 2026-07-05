@@ -1,5 +1,6 @@
 [tropical_wagtail]
 id = 5072
+respawn_delay = 5
 examine = "It blends in very well with its surroundings."
 
 [platypus_brown]

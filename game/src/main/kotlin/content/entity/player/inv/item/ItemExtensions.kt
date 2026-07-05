@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Tile
 
 val Item.tradeable: Boolean
     get() = def["tradeable", true]
@@ -16,4 +17,8 @@ fun Player.addOrDrop(id: String, amount: Int = 1, inventory: Inventory = this.in
         return false
     }
     return true
+}
+
+fun Player.drop(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = 100, disappearTicks: Int = 200) {
+    FloorItems.add(tile, id, amount, revealTicks = revealTicks, disappearTicks = disappearTicks, owner = this)
 }

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -22,15 +21,13 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.entity.obj.stepAway
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.suspend.awaitDialogues
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class Firemaking : Script {
-
-    val directions = listOf(Direction.WEST, Direction.EAST, Direction.SOUTH, Direction.NORTH)
 
     fun burnable(id: String) = Tables.intOrNull("firemaking.$id.xp") != null
 
@@ -121,13 +118,6 @@ class Firemaking : Script {
         val life = row.int("life")
         val obj = GameObjects.add("fire_$colour", tile, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0, ticks = life)
         FloorItems.add(tile, "ashes", revealTicks = life, disappearTicks = 60, owner = "")
-        val interact = player.mode as? Interact ?: return
-        for (dir in directions) {
-            if (interact.canStep(dir.delta.x, dir.delta.y)) {
-                player.walkTo(tile.add(dir))
-                break
-            }
-        }
-        player["face_entity"] = obj
+        player.stepAway(obj, tile)
     }
 }

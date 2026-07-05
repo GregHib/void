@@ -1,7 +1,10 @@
 [orange_salamander]
 id = 5114
+solid = false
+respawn_delay = 5
 examine = "Slightly slimy but kind of cute."
 
 [golden_warbler]
 id = 5075
+respawn_delay = 5
 examine = "Actually, golden screecher might be a more appropriate name."
