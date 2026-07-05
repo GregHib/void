@@ -69,3 +69,9 @@ tasks.register<JavaExec>("renderPhotoBooth") {
     args = cliArgs
 }
 
+
+tasks.register<JavaExec>("fixGraphics") {
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("world.gregs.voidps.tools.cache.FixGraphics")
+    workingDir = rootDir
+}

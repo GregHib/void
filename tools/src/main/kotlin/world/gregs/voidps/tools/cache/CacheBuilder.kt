@@ -65,6 +65,7 @@ object CacheBuilder {
         FixStructs.fix(library)
         FixItems.fix(library)
         FixEnums.fix(library)
+        FixGraphics.fix(library)
         println("Rebuilding cache.")
         library.rebuild(target)
         addEmptyIndexFiles(target, library.last()?.id ?: 0)
