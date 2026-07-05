@@ -5,6 +5,7 @@ import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
 import content.entity.player.bank.bank
 import content.entity.player.effect.energy.runEnergy
+import interfaceOption
 import itemOnNpc
 import npcOption
 import org.junit.jupiter.api.Test
@@ -141,6 +142,20 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
         assertTrue(player.runSpecial("magpie_familiar"))
         assertEquals(before + 2, player.levels.get(Skill.Thieving))
+    }
+
+    @Test
+    fun `Thieving Fingers owner sparkle plays alongside the scroll-cast graphic`() {
+        val player = summon("magpie_familiar")
+        player.inventory.transaction { add("thieving_fingers_scroll", 1) }
+
+        // Through the real cast gate, which plays the shared scroll-cast graphic (1316) on top of
+        // the special's own owner sparkle (1300) - both must land in a graphic slot, not overwrite.
+        player.interfaceOption("summoning_orb", "cast_thieving_fingers", "Cast")
+
+        val playing = listOf(player.visuals.primaryGraphic.id, player.visuals.secondaryGraphic.id)
+        assertTrue(1300 in playing, "the owner sparkle plays")
+        assertTrue(1316 in playing, "alongside the scroll-cast graphic")
     }
 
     @Test
