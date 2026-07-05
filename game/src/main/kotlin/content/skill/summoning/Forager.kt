@@ -22,6 +22,15 @@ private val FORAGE_FISHING_XP: Map<String, Map<String, Double>> = mapOf(
 )
 
 /**
+ * Foragers that only roll while their owner is busy with a matching action - the ibis and granite
+ * lobster spear their fish alongside the owner, so they only produce while the owner is fishing.
+ */
+private val FORAGE_CONDITIONS: Map<String, Player.() -> Boolean> = mapOf(
+    "ibis_familiar" to { softTimers.contains("fishing") },
+    "granite_lobster_familiar" to { softTimers.contains("fishing") },
+)
+
+/**
  * Forager familiars (magpie, ...) periodically gather loot from their own `forage_<familiar>`
  * drop table into the familiar's inventory while summoned. The player retrieves it with the
  * familiar's Withdraw/Take option (reusing the beast-of-burden inventory + interface); they can't
@@ -37,7 +46,9 @@ class Forager(private val dropTables: DropTables) : Script {
             if (forageTable(dropTables) == null) {
                 return@timerTick Timer.CANCEL
             }
-            forage()
+            if (FORAGE_CONDITIONS[follower?.id]?.invoke(this) != false) {
+                forage()
+            }
             Timer.CONTINUE
         }
 

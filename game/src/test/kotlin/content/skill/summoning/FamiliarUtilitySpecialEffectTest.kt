@@ -293,6 +293,33 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     }
 
     @Test
+    fun `The granite lobster forages fish into its pack while its owner fishes`() {
+        // Win every roll so the 1-in-12 forage fires on the first 30s window.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val player = summon("granite_lobster_familiar")
+        player.softTimers.start("fishing")
+
+        tick(51) // the 30 second forage timer
+
+        assertTrue(player.beastOfBurden.count("raw_swordfish") + player.beastOfBurden.count("raw_shark") > 0, "a fish was foraged into the pack")
+        assertTrue(player.experience.get(Skill.Fishing) > 0.0, "with a tenth of the catch xp")
+    }
+
+    @Test
+    fun `The granite lobster forages nothing while its owner idles`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val player = summon("granite_lobster_familiar")
+
+        tick(51)
+
+        assertEquals(0, player.beastOfBurden.count("raw_swordfish") + player.beastOfBurden.count("raw_shark"), "the lobster only spears fish alongside a fishing owner")
+    }
+
+    @Test
     fun `The hunting cats teleport their owner home`() {
         val player = summon("spirit_graahk_familiar")
 
