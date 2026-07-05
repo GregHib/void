@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -70,13 +71,23 @@ class NetTrap : Script {
         }
 
         itemOnObjectOperate("*", "net,*_net_setup") { (target, item) ->
+            var trap = if (target.id == "net") {
+                GameObjects.getLayer(target.tile.add(target.direction().inverse()), ObjectLayer.GROUND)!!
+            } else {
+                target
+            }
             when {
                 item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
-                item.id == "torch_lit" -> if (target.id == "net") {
-                    val setup = GameObjects.getLayer(target.tile.add(target.direction().inverse()), ObjectLayer.GROUND)!!
-                    Traps.smoke(this, setup.id.removeSuffix("_setup"), target.tile)
+                item.id == "torch_lit" -> Traps.smoke(this, trap.id.removeSuffix("_setup"), trap.tile.add(target.direction()))
+                item.id.endsWith("_tar") -> if (item.id == Tables.item("traps.${trap.id.removeSuffix("_setup")}.bait")) {
+                    inventory.remove(item.id)
+                    anim("lay_trap_small")
+                    sound("drop_item", delay = 25)
+                    message("You place a blob of tar on the net as bait.")
+                    val npc = NPCs.find(trap.tile.add(target.direction()), "hunting_sapling_trap_npc")
+                    npc["bait"] = item.id
                 } else {
-                    Traps.smoke(this, target.id.removeSuffix("_setup"), target.tile.add(target.direction()))
+                    message("This is the wrong sort of tar for these lizards.")
                 }
                 item.def.contains(Params.HEALS) -> message("I don't think I'd catch much using that as bait.")
                 else -> noInterest()
@@ -141,12 +152,12 @@ class NetTrap : Script {
     }
 
     private fun Player.investigate(npc: NPC) {
-        if (npc["baited", false]) {
-            // TODO
+        val bait: String? = npc["bait"]
+        if (bait != null) {
+            message("This trap has been baited with ${bait.toLowerSpaceCase()}.")
         } else {
             message("This trap has been set without any bait.")
         }
-        // TODO outfits?
         if (npc["smoked", false]) {
             message("The scent on this trap has been masked.")
         } else {
@@ -201,7 +212,11 @@ class NetTrap : Script {
             return
         }
         val loot = creature?.itemList("loot") ?: emptyList()
-        val items = trap.itemList("items")
+        val items = trap.itemList("items").toMutableList()
+        val bait: String? = npc["bait"]
+        if (loot.isEmpty() && bait != null) {
+            items.add(bait)
+        }
         val size = items.size + loot.size
         if (inventory.spaces < size) {
             val slots = size - inventory.spaces

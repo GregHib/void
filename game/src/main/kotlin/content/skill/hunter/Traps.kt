@@ -14,14 +14,18 @@ object Traps {
     fun max(level: Int, max: Int) = (1 + level / 20).coerceAtMost(max)
 
     fun chance(npc: NPC, creature: RowDefinition): IntRange {
-        var chance = creature.intRange("chance")
-        // TODO do these combine?
-        if (npc["baited", false]) {
-            chance = (chance.first + 7)..(chance.last + 7) // 3%
-        } else if (npc["smoked", false]) {
-            chance = (chance.first + 5)..(chance.last + 5) // 2%
+        val chance = creature.intRange("chance")
+        var add = 0
+        if (npc.contains("bait")) {
+            add += 7 // 3%
         }
-        return chance
+        if (npc["smoked", false]) {
+            add += 5 // 2%
+        }
+        if (add == 0) {
+            return chance
+        }
+        return (chance.first + add)..(chance.last + add)
     }
 
     fun smoke(player: Player, trap: String, tile: Tile) {

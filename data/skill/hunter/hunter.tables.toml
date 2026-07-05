@@ -32,6 +32,7 @@ item_message = "string"
 collapse_ticks = "int"
 collapse_message = "string"
 npc = "npc"
+bait = "item"
 
 [.bird_snare]
 trap = "bird_snare"
@@ -78,6 +79,7 @@ npc = "hunting_deadfall_trap_npc"
 [.swamp_net]
 level = 29
 trap = "swamp_net_setup"
+bait = "guam_tar"
 fail = "swamp_net_failing"
 setup_anim = "lay_net_trap"
 setup_sound = "lay_net_trap"
@@ -90,6 +92,7 @@ npc = "hunting_sapling_trap_npc"
 [.orange_net]
 level = 47
 trap = "orange_net_setup"
+bait = "marrentill_tar"
 setup_anim = "lay_net_trap"
 setup_sound = "lay_net_trap"
 take_down_anim = "take_trap"
@@ -101,6 +104,7 @@ npc = "hunting_sapling_trap_npc"
 [.red_net]
 level = 59
 trap = "red_net_setup"
+bait = "tarromin_tar"
 setup_anim = "lay_net_trap"
 setup_sound = "lay_net_trap"
 take_down_anim = "take_trap"
@@ -112,6 +116,7 @@ npc = "hunting_sapling_trap_npc"
 [.black_net]
 level = 67
 trap = "black_net_setup"
+bait = "harralander_tar"
 setup_anim = "lay_net_trap"
 setup_sound = "lay_net_trap"
 take_down_anim = "take_trap"
