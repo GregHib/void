@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -406,35 +407,30 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Rise from the Ashes sears half the target's offensive stats, returning after 6 seconds`() {
+    fun `Rise from the Ashes reincarnates the phoenix atop the ashes, scorching foes beside them`() {
         maxRolls()
         val player = summon("phoenix_familiar")
-        val target = tankyRat(player)
-        target.levels.set(Skill.Magic, 20)
+        val phoenix = player.follower!!
+        phoenix.levels.drain(Skill.Constitution, 800) // wounded, so the rebirth flare has fury
+        val ashes = FloorItems.add(player.tile.addY(3), "ashes", disappearTicks = 300, owner = player)
+        val target = tankyRat(player, ashes.tile.addX(1))
         val before = target.levels.get(Skill.Constitution)
 
-        assertTrue(player.runNpcSpecial("phoenix_familiar", target))
-        assertEquals(10, target.levels.get(Skill.Magic), "half the target's Magic burns away")
+        assertTrue(FamiliarSpecialMoves.floorItemTarget.getValue("phoenix_familiar").invoke(player, ashes))
+        tick(8) // the drop-and-glow, the rebirth, then the flare's magic hits landing
 
-        tick(11) // ~6 seconds later the seared stats return
-        assertEquals(20, target.levels.get(Skill.Magic), "the flames die down and the stats return")
-        assertTrue(target.levels.get(Skill.Constitution) < before, "the blast also damaged the target")
+        assertEquals(ashes.tile, player.follower!!.tile, "the phoenix is reborn atop the ashes")
+        assertEquals(phoenix.levels.getMax(Skill.Constitution), phoenix.levels.get(Skill.Constitution), "at full life points")
+        assertTrue(FloorItems.at(ashes.tile).none { it.id == "ashes" }, "the ashes burn away")
+        assertTrue(target.levels.get(Skill.Constitution) < before, "the rebirth flare scorched the foe beside the ashes")
     }
 
     @Test
-    fun `Cast on ashes the phoenix is reborn at full health`() {
+    fun `Rise from the Ashes refuses anything that is not ashes`() {
         val player = summon("phoenix_familiar")
-        val phoenix = player.follower!!
-        phoenix.levels.drain(Skill.Constitution, 500)
-        player.inventory.transaction { add("rise_from_the_ashes_scroll", 1) }
-        player.inventory.transaction { add("ashes", 1) }
-        val hurt = phoenix.levels.get(Skill.Constitution)
+        val bones = FloorItems.add(player.tile.addY(2), "bones", disappearTicks = 300, owner = player)
 
-        InterfaceApi.onItem(player, "familiar_details:cast_rise_from_the_ashes", player.inventory[1])
-
-        assertEquals(0, player.inventory.count("ashes"), "the ashes burn away")
-        assertTrue(phoenix.levels.get(Skill.Constitution) > hurt, "and the phoenix's wounds with them")
-        assertEquals(phoenix.levels.getMax(Skill.Constitution), phoenix.levels.get(Skill.Constitution), "fully reborn")
+        assertFalse(FamiliarSpecialMoves.floorItemTarget.getValue("phoenix_familiar").invoke(player, bones))
     }
 
     @Test

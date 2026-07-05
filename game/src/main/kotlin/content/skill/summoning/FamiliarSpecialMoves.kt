@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 
 /**
@@ -15,11 +16,12 @@ import world.gregs.voidps.engine.entity.obj.GameObject
  * are keyed on the **follower's npc id** rather than the component - the follower unambiguously
  * identifies the familiar and therefore its special. The four maps mirror the engine's interaction
  * kinds; a familiar registers in exactly the one matching how its special is triggered:
- *  - [instant]      : self/AoE specials sent as a plain interface option
- *  - [npcTarget]    : combat specials where the player then clicks an npc
- *  - [playerTarget] : combat specials where the player then clicks another player
- *  - [objectTarget] : specials where the player then clicks scenery (chop a tree, fill a bin, ...)
- *  - [itemTarget]   : specials where the player uses the cast button on an inventory item
+ *  - [instant]         : self/AoE specials sent as a plain interface option
+ *  - [npcTarget]       : combat specials where the player then clicks an npc
+ *  - [playerTarget]    : combat specials where the player then clicks another player
+ *  - [objectTarget]    : specials where the player then clicks scenery (chop a tree, fill a bin, ...)
+ *  - [itemTarget]      : specials where the player uses the cast button on an inventory item
+ *  - [floorItemTarget] : specials where the player then clicks a ground item (phoenix's ashes)
  *
  * Item-target specials (a fish/egg/bar) can also be triggered by using the item on the familiar,
  * wired separately with `itemOnNPCOperate` in their own scripts (operate, not approach, so their
@@ -34,6 +36,7 @@ object FamiliarSpecialMoves {
     val playerTarget = HashMap<String, Player.(Player) -> Boolean>()
     val objectTarget = HashMap<String, Player.(GameObject) -> Boolean>()
     val itemTarget = HashMap<String, Player.(Item) -> Boolean>()
+    val floorItemTarget = HashMap<String, Player.(FloorItem) -> Boolean>()
 
     fun instant(vararg familiars: String, block: Player.() -> Boolean) {
         for (familiar in familiars) instant[familiar] = block
@@ -53,6 +56,10 @@ object FamiliarSpecialMoves {
 
     fun item(vararg familiars: String, block: Player.(Item) -> Boolean) {
         for (familiar in familiars) itemTarget[familiar] = block
+    }
+
+    fun floorItem(vararg familiars: String, block: Player.(FloorItem) -> Boolean) {
+        for (familiar in familiars) floorItemTarget[familiar] = block
     }
 }
 
@@ -101,6 +108,14 @@ class FamiliarSpecialMovesDispatch : Script {
             castFamiliarSpecial { block(item) }
         }
 
+        // Cast button used on a ground item (Rise from the Ashes' ashes).
+        onFloorItemApproach("familiar_details:cast_*") { (target) ->
+            approachRange(16, update = false)
+            val id = follower?.id ?: return@onFloorItemApproach
+            val block = FamiliarSpecialMoves.floorItemTarget[id] ?: return@onFloorItemApproach
+            castFamiliarSpecial { block(target) }
+        }
+
         // Minimap summoning orb "Cast <special>" option - one `cast_<special>` component per move.
         interfaceOption("*", "summoning_orb:cast_*") {
             val id = follower?.id ?: return@interfaceOption
@@ -133,6 +148,13 @@ class FamiliarSpecialMovesDispatch : Script {
             val id = follower?.id ?: return@onItem
             val block = FamiliarSpecialMoves.itemTarget[id] ?: return@onItem
             castFamiliarSpecial { block(item) }
+        }
+
+        onFloorItemApproach("summoning_orb:cast_*") { (target) ->
+            approachRange(16, update = false)
+            val id = follower?.id ?: return@onFloorItemApproach
+            val block = FamiliarSpecialMoves.floorItemTarget[id] ?: return@onFloorItemApproach
+            castFamiliarSpecial { block(target) }
         }
     }
 }

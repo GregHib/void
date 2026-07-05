@@ -5,56 +5,71 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.skill.summoning.FamiliarSpecialMoves
-import content.skill.summoning.familiarSpecialHit
 import content.skill.summoning.follower
+import content.skill.summoning.nearbyAttackableNpcs
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import kotlin.math.abs
+import content.entity.combat.hit.hit
 
-/** The offensive stats Rise from the Ashes sears away from its target. */
-private val RISE_DRAIN_SKILLS = arrayOf(Skill.Attack, Skill.Magic, Skill.Ranged)
+/** How long the phoenix drops in place and glows before reappearing atop the ashes. */
+private const val RISE_REBIRTH_DELAY = 3
 
-/** The seared stats return after ~6 seconds, unlike a normal decaying drain. */
-private const val RISE_DRAIN_TICKS = 10
+/** How many enemies around the ashes the rebirth flare can scorch. */
+private const val RISE_MAX_TARGETS = 5
 
-/** The blast hits up to the phoenix's own magic max. */
-private const val RISE_MAX_HIT = 160
+/** How long the reborn phoenix stands over the spent ashes before falling back in behind its owner. */
+private const val RISE_STAND_TICKS = 4
 
 class Phoenix : Script {
     init {
-        // A plain click on the cast button has no target - point at both triggers.
+        // A plain click on the cast button has no target - point at the trigger.
         FamiliarSpecialMoves.instant("phoenix_familiar") {
-            message("Cast Rise from the Ashes on a foe, or on ashes to rejuvenate the phoenix.")
+            message("Cast Rise from the Ashes on a pile of ashes on the ground.")
             false
         }
 
-        // Rise from the Ashes - a searing blast that halves the target's Attack, Magic and Ranged
-        // for a few seconds. Neither reference implements this (darkan's is a TODO stub), so the
-        // mechanics adapt the wiki: magic damage plus a severe short-lived offensive drain.
-        FamiliarSpecialMoves.npc("phoenix_familiar") { target -> riseFromTheAshes(target) }
-        FamiliarSpecialMoves.player("phoenix_familiar") { target -> riseFromTheAshes(target) }
-
-        // Cast on ashes instead, the phoenix is reborn: the ashes burn away and its wounds with them.
-        FamiliarSpecialMoves.item("phoenix_familiar") { item ->
-            if (item.id != "ashes") {
+        // Rise from the Ashes - cast on ashes lying on the ground: the phoenix drops in place and
+        // glows, then is reborn atop the ashes at full life points, scorching up to five foes
+        // beside them. The blast draws its strength from the phoenix's wounds - the closer to
+        // death it was, the harder the rebirth hits (unhurt, it is a pure rebirth). Neither
+        // reference implements this (darkan's is a TODO stub); mechanics per the live game.
+        FamiliarSpecialMoves.floorItem("phoenix_familiar") { ashes ->
+            if (ashes.id != "ashes") {
                 message("The phoenix can only rise from ashes.")
-                return@item false
+                return@floorItem false
             }
-            val phoenix = follower ?: return@item false
-            if (!inventory.remove("ashes")) {
-                return@item false
+            val phoenix = follower ?: return@floorItem false
+            // The rebirth's fury: a quarter of the life points the phoenix was missing.
+            val maxHit = (phoenix.levels.getMax(Skill.Constitution) - phoenix.levels.get(Skill.Constitution)) / 4
+            phoenix.anim("phoenix_familiar_death")
+            phoenix.gfx("summon_familiar_size_${phoenix.size}")
+            queue("rise_from_the_ashes", RISE_REBIRTH_DELAY) {
+                FloorItems.remove(ashes)
+                phoenix.tele(ashes.tile, clearMode = false)
+                // Stand over the spent ashes for a moment - the follow would otherwise drag the
+                // reborn phoenix straight back to its owner mid-flare.
+                phoenix.mode = PauseMode
+                phoenix.watch(this)
+                phoenix.anim("phoenix_spawn")
+                phoenix.levels.restore(Skill.Constitution, phoenix.levels.getMax(Skill.Constitution))
+                for (scorched in nearbyAttackableNpcs(ashes.tile, radius = 1).take(RISE_MAX_TARGETS)) {
+                    phoenix.hit(scorched, offensiveType = "magic", damage = random.nextInt(maxHit + 1))
+                }
+                message("Your phoenix rises from the ashes, its wounds burning away.", ChatType.Filter)
             }
-            phoenix.anim("phoenix_spawn")
-            phoenix.levels.restore(Skill.Constitution, phoenix.levels.getMax(Skill.Constitution))
-            message("Your phoenix rises from the ashes, its wounds burning away.", ChatType.Filter)
+            queue("rise_from_the_ashes_return", RISE_REBIRTH_DELAY + RISE_STAND_TICKS) {
+                if (follower == phoenix && phoenix.mode is PauseMode) {
+                    phoenix.mode = Follow(phoenix, this)
+                }
+            }
             true
         }
 
@@ -92,24 +107,5 @@ class Phoenix : Script {
                 }
             }
         }
-    }
-
-    /**
-     * The searing blast: magic damage with the phoenix's own attack animation, then half the
-     * target's offensive stats burn away, returning once the flames die down.
-     */
-    private fun Player.riseFromTheAshes(target: Character): Boolean {
-        val cast = familiarSpecialHit(target, maxHit = RISE_MAX_HIT, anim = "phoenix_familiar_attack")
-        if (cast) {
-            val drained = RISE_DRAIN_SKILLS.associateWith { abs(target.levels.drain(it, multiplier = 0.5)) }
-            target.queue("rise_from_the_ashes_restore", RISE_DRAIN_TICKS) {
-                // Give back exactly what was seared - restore() caps at the base level, which would
-                // swallow the returned stats of anything fighting above it (boosts, set levels).
-                for ((skill, amount) in drained) {
-                    target.levels.set(skill, target.levels.get(skill) + amount)
-                }
-            }
-        }
-        return cast
     }
 }
