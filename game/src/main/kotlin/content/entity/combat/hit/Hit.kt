@@ -4,12 +4,12 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.combat.Bonus
 import content.entity.combat.dead
 import content.entity.player.combat.special.specialAttack
-import content.skill.summoning.familiarDefenceMultiplier
 import content.entity.player.equip.Equipment
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.Weapon
 import content.skill.melee.weapon.weapon
 import content.skill.prayer.Prayer
+import content.skill.summoning.familiarDefenceMultiplier
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi

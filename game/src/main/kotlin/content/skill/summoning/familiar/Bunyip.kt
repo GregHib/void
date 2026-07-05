@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.proj.shoot
 import content.skill.summoning.FamiliarSpecialMoves
-import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message

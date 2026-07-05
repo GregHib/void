@@ -1,6 +1,5 @@
 package content.skill.summoning
 
-import content.area.wilderness.inPvp
 import content.area.wilderness.inSingleCombat
 import content.entity.combat.Target
 import content.entity.combat.attacker
@@ -44,8 +43,9 @@ fun Player.familiarCanSpecial(target: Character, silent: Boolean = false): Boole
         return false
     }
     when (target) {
-        is Player -> if (!inPvp || !target.inPvp) {
-            if (!silent) message("You can only attack players in a player-vs-player area.")
+        // The owner's own PvP rules (wilderness or PvP area, level range) decide who the familiar
+        // may be sent at.
+        is Player -> if (!Target.attackable(this, target, message = !silent)) {
             return false
         }
         is NPC -> if (!Target.attackable(familiar, target, message = !silent)) {

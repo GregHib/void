@@ -1,7 +1,6 @@
 package content.skill.summoning
 
 import content.area.wilderness.inMultiCombat
-import content.area.wilderness.inPvp
 import content.area.wilderness.inWilderness
 import content.entity.combat.Target
 import content.entity.combat.target
@@ -43,8 +42,9 @@ fun Player.commandFamiliarAttack(target: Character, silent: Boolean = false) {
         return
     }
     when (target) {
-        is Player -> if (!inPvp || !target.inPvp) {
-            if (!silent) message("You can only attack players in a player-vs-player area.")
+        // The owner's own PvP rules (wilderness or PvP area, level range) decide who the familiar
+        // may be sent at.
+        is Player -> if (!Target.attackable(this, target, message = !silent)) {
             return
         }
         // A familiar can't pile onto an NPC that's already under attack (e.g. one the owner is

@@ -10,9 +10,10 @@ import itemOnNpc
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.distanceTo
+import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
@@ -159,6 +160,23 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
         tick(8)
 
         assertTrue(splashed.levels.get(Skill.Constitution) < before, "the acorns splash the adjacent npc")
+    }
+
+    @Test
+    fun `Famine works on players in the wilderness, not just PvP areas`() {
+        val player = summon("ravenous_locust_familiar")
+        val target = createPlayer(player.tile.addY(3))
+        target.levels.set(Skill.Constitution, 2000)
+        target.inventory.transaction { add("shark", 1) }
+        // The wilderness flags players with in_wilderness, not in_pvp - the special must accept both.
+        player.set("in_wilderness", true)
+        target.set("in_wilderness", true)
+        // Within each other's wilderness combat-level bracket.
+        player.combatLevel = 100
+        target.combatLevel = 100
+
+        assertTrue(player.runPlayerSpecial("ravenous_locust_familiar", target), "the swarm flies in the wilderness too")
+        assertEquals(1, target.inventory.count("rotten_food"))
     }
 
     @Test

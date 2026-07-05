@@ -233,7 +233,7 @@ class FamiliarUtilitySpecials : Script {
         FamiliarSpecialMoves.instant("fruit_bat_familiar") {
             val bat = follower ?: return@instant false
             bat.anim("fruitfall_ascend")
-            bat.gfx("fruitfall_ascend")
+            this.gfx("fruitfall_ascend")
             val validator: StepValidator = get()
             val fruitTiles = tile.spiral(1).asSequence()
                 .filter { it != tile && validator.canFit(it, collision, 1, blockMove) }

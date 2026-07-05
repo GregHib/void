@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatDamage
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
@@ -28,7 +27,6 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.CLIENT_TICKS
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -240,7 +238,7 @@ class FamiliarCombatSpecials : Script {
                 }
                 if (disarmed) {
                     target.gfx("inferno_hit")
-                    target.message("${name}'s familiar burns the equipment from your hands!")
+                    target.message("$name's familiar burns the equipment from your hands!")
                 }
             }
             cast
@@ -442,7 +440,7 @@ class FamiliarCombatSpecials : Script {
         target.queue("famine_gfx", CLIENT_TICKS.toTicks(flight)) { target.gfx("famine_hit") }
         if (target is Player && rotFood(target)) {
             message("Your locust devours some of ${target.name}'s food.")
-            target.message("${name}'s locust devours some of your food!")
+            target.message("$name's locust devours some of your food!")
         }
         if (familiar !in target.attackers) {
             target.attackers.add(familiar)

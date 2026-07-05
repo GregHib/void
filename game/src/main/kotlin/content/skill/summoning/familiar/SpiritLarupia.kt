@@ -28,38 +28,38 @@ class SpiritLarupia : Script {
     }
 
     private suspend fun Player.chat() {
-            when (random.nextInt(4)) {
-                0 -> {
-                    player<Happy>("Kitty cat!")
-                    npc<Neutral>("What is your wish master?")
-                    player<Happy>("Have you ever thought about doing something other than hunting and serving me?")
-                    npc<Neutral>("You mean, like stand-up comedy, master?")
-                    player<Happy>("Umm...yes, like that.")
-                    npc<Neutral>("No, master.")
-                }
-                1 -> {
-                    player<Happy>("Hello friend!")
-                    npc<Neutral>("'Friend', master? I do not understand this word.")
-                    player<Happy>("Friends are people, or animals, who like one another. I think we are friends.")
-                    npc<Neutral>("Ah, I think I understand friends, master.")
-                    player<Happy>("Great!")
-                    npc<Neutral>("A friend is someone who looks tasty, but you don't eat.")
-                    player<Scared>("!")
-                }
-                2 -> {
-                    npc<Neutral>("What are we doing today, master?")
-                    player<Happy>("I don't know, what do you want to do?")
-                    npc<Neutral>("I desire only to hunt and to serve my master.")
-                    player<Happy>("Err...great! I guess I'll decide then.")
-                }
-                3 -> {
-                    npc<Neutral>("Master, do you ever worry that I might eat you?")
-                    player<Happy>("No, of course not! We're pals.")
-                    npc<Neutral>("That is good, master.")
-                    player<Happy>("Should I?")
-                    npc<Neutral>("Of course not, master.")
-                    player<Happy>("Oh. Good.")
-                }
+        when (random.nextInt(4)) {
+            0 -> {
+                player<Happy>("Kitty cat!")
+                npc<Neutral>("What is your wish master?")
+                player<Happy>("Have you ever thought about doing something other than hunting and serving me?")
+                npc<Neutral>("You mean, like stand-up comedy, master?")
+                player<Happy>("Umm...yes, like that.")
+                npc<Neutral>("No, master.")
             }
+            1 -> {
+                player<Happy>("Hello friend!")
+                npc<Neutral>("'Friend', master? I do not understand this word.")
+                player<Happy>("Friends are people, or animals, who like one another. I think we are friends.")
+                npc<Neutral>("Ah, I think I understand friends, master.")
+                player<Happy>("Great!")
+                npc<Neutral>("A friend is someone who looks tasty, but you don't eat.")
+                player<Scared>("!")
+            }
+            2 -> {
+                npc<Neutral>("What are we doing today, master?")
+                player<Happy>("I don't know, what do you want to do?")
+                npc<Neutral>("I desire only to hunt and to serve my master.")
+                player<Happy>("Err...great! I guess I'll decide then.")
+            }
+            3 -> {
+                npc<Neutral>("Master, do you ever worry that I might eat you?")
+                player<Happy>("No, of course not! We're pals.")
+                npc<Neutral>("That is good, master.")
+                player<Happy>("Should I?")
+                npc<Neutral>("Of course not, master.")
+                player<Happy>("Oh. Good.")
+            }
+        }
     }
 }
