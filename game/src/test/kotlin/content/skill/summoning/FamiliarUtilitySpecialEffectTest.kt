@@ -4,6 +4,7 @@ import FakeRandom
 import WorldTest
 import content.entity.combat.hit.Hit
 import content.entity.combat.target
+import content.entity.effect.transform
 import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
 import dialogueOption
@@ -15,6 +16,7 @@ import itemOnNpc
 import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.InterfaceApi
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -376,6 +378,19 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         tick(2)
 
         assertEquals(rat, player.follower!!.target, "the devil turns its fire on the owner's foe")
+    }
+
+    @Test
+    fun `A wilderness combat-form familiar still answers its Interact option`() {
+        val player = summon("spirit_graahk_familiar")
+        val familiar = player.follower!!
+        familiar.transform("spirit_graahk_familiar_combat")
+        tick(1)
+
+        player.npcOption(familiar, "Interact")
+        tick(1)
+
+        assertTrue(player.dialogue != null, "the graahk's chat/teleport choice still opens")
     }
 
     @Test

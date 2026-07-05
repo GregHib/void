@@ -15,9 +15,13 @@ data class ItemOnNPCInteract(
     val id: String,
     val player: Player,
 ) : Interact(player, target) {
-    override fun hasOperate() = Operation.itemOnNpc.containsKey("${item.id}:*") || Operation.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Operation.itemOnNpc.containsKey("*:${target.def(player).stringId}")
+    // A transformed npc (e.g. a familiar's wilderness "<id>_combat" form) falls back to its base
+    // id's handlers when the transform has none of its own for the item.
+    override fun hasOperate() = Operation.itemOnNpc.containsKey("${item.id}:*") || Operation.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Operation.itemOnNpc.containsKey("*:${target.def(player).stringId}") ||
+        Operation.itemOnNpc.containsKey("${item.id}:${target.id}") || Operation.itemOnNpc.containsKey("*:${target.id}")
 
-    override fun hasApproach() = Approachable.itemOnNpc.containsKey("${item.id}:*") || Approachable.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Approachable.itemOnNpc.containsKey("*:${target.def(player).stringId}")
+    override fun hasApproach() = Approachable.itemOnNpc.containsKey("${item.id}:*") || Approachable.itemOnNpc.containsKey("${item.id}:${target.def(player).stringId}") || Approachable.itemOnNpc.containsKey("*:${target.def(player).stringId}") ||
+        Approachable.itemOnNpc.containsKey("${item.id}:${target.id}") || Approachable.itemOnNpc.containsKey("*:${target.id}")
 
     override fun operate() {
         invoke(Operation.itemOnNpc)
@@ -29,7 +33,7 @@ data class ItemOnNPCInteract(
 
     private fun invoke(map: Map<String, List<suspend Player.(ItemOnNPCInteract) -> Unit>>) {
         Script.launch {
-            for (block in map["${item.id}:${target.def(player).stringId}"] ?: map["*:${target.def(player).stringId}"] ?: map["${item.id}:*"] ?: return@launch) { // Hack for spells
+            for (block in map["${item.id}:${target.def(player).stringId}"] ?: map["${item.id}:${target.id}"] ?: map["*:${target.def(player).stringId}"] ?: map["*:${target.id}"] ?: map["${item.id}:*"] ?: return@launch) { // Hack for spells
                 block(player, this@ItemOnNPCInteract)
             }
         }
