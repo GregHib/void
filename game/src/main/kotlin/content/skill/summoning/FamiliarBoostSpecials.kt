@@ -27,7 +27,7 @@ class FamiliarBoostSpecials : Script {
     init {
         // Single-skill flat boosts.
         FamiliarSpecialMoves.instant("granite_crab_familiar") { boost(Skill.Defence, 4, "stony_shell", "stony_shell") }
-        FamiliarSpecialMoves.instant("war_tortoise_familiar") { boost(Skill.Defence, 8, "testudo", "testudo") }
+        FamiliarSpecialMoves.instant("war_tortoise_familiar") { boost(Skill.Defence, 8, "testudo", "testudo", "testudo_owner") }
         FamiliarSpecialMoves.instant("obsidian_golem_familiar") { boost(Skill.Strength, 9, "volcanic_strength", "volcanic_strength") }
         FamiliarSpecialMoves.instant("wolpertinger_familiar") { boost(Skill.Magic, 7, "magic_focus", "magic_focus") }
 
@@ -153,8 +153,8 @@ class FamiliarBoostSpecials : Script {
         source.poison(attack.target, 60)
     }
 
-    /** Boosts [skill] by [amount] above max with the familiar's [anim]/[sourceGfx] flourish. */
-    private fun Player.boost(skill: Skill, amount: Int, anim: String? = null, sourceGfx: String? = null): Boolean = familiarSelfSpecial(anim = anim, sourceGfx = sourceGfx) { levels.boost(skill, amount) }
+    /** Boosts [skill] by [amount] above max with the familiar's [anim]/[sourceGfx] and owner [playerGfx] flourish. */
+    private fun Player.boost(skill: Skill, amount: Int, anim: String? = null, sourceGfx: String? = null, playerGfx: String? = null): Boolean = familiarSelfSpecial(anim = anim, sourceGfx = sourceGfx, playerGfx = playerGfx) { levels.boost(skill, amount) }
 
     private fun Player.restoreRunEnergy() {
         runEnergy = (runEnergy + levels.getMax(Skill.Agility) * 50).coerceAtMost(MAX_RUN_ENERGY)

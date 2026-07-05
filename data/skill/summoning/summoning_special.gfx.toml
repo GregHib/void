@@ -492,3 +492,7 @@ curve = 0
 
 [ferocious]
 id = 1427
+
+# Testudo: the shell-shield tint played on the owner as the Defence boost lands.
+[testudo_owner]
+id = 1308
