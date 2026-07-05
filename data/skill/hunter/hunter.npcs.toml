@@ -40,7 +40,7 @@ id = 5107
 
 [hunting_sapling_trap_npc]
 id = 5118
-hunt_mode = "hunter_trap"
+hunt_mode = "net_trap"
 hunt_range = 3
 
 [hunting_sapling_trap_npc_off] # net trap

@@ -5,19 +5,19 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
@@ -25,26 +25,28 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
 
 class BirdSnare : Script {
     init {
         itemOption("Lay", "bird_snare") {
-            layTrap(it.item.id, null)
+            layTrap(null)
         }
 
         floorItemOperate("Lay") { (item) ->
             if (item.id == "bird_snare") {
-                layTrap(item.id, item)
+                layTrap(item)
             }
         }
 
         objectOperate("Dismantle", "bird_snare,bird_snare_fail") { (target) ->
-            dismantleTrap("bird_snare", target)
+            dismantleTrap(target, null)
+        }
+
+        objectOperate("Check", "snare_*") { (target) ->
+            dismantleTrap(target, creature = Rows.get("creatures.${target.id.removePrefix("snare_")}"))
         }
 
         objectOperate("Investigate", "bird_snare") { (target) ->
@@ -52,7 +54,6 @@ class BirdSnare : Script {
             val npc = NPCs.find(target.tile, id)
             if (npc["baited", false]) {
                 // TODO
-                message("This trap has been set without any bait.")
             } else if (npc["smoked", false]) {
                 message("The scent on this trap has been masked.")
             } else {
@@ -83,12 +84,7 @@ class BirdSnare : Script {
                 return@huntNPC
             }
             transform("${id}_off")
-            var chance = creature.intRange("chance")
-            if (get("baited", false)) {
-                chance = (chance.first + 7)..(chance.last + 7) // 3%
-            } else if (get("smoked", false)) {
-                chance = (chance.first + 5)..(chance.last + 5) // 2%
-            }
+            var chance = Traps.chance(this, creature)
             val success = Level.success(player.levels.get(Skill.Hunter), chance)
             target.walkToDelay(tile)
             target.walkOverDelay(tile)
@@ -122,14 +118,14 @@ class BirdSnare : Script {
             message("This trap is already smoked.") // TODO proper message
             return
         }
-        message("You use the smoke from the torch to remove your scent from the trap.", type = ChatType.Filter)
         anim("lay_trap_small")
         areaSound("hunting_smoke2", tile = target.tile, radius = 5)
         npc["smoked"] = true
+        message("You use the smoke from the torch to remove your scent from the trap.", type = ChatType.Filter)
     }
 
-    private suspend fun Player.layTrap(trapId: String, floorItem: FloorItem?) {
-        val trap = Rows.getOrNull("traps.$trapId") ?: return
+    private suspend fun Player.layTrap(floorItem: FloorItem?) {
+        val trap = Rows.getOrNull("traps.bird_snare") ?: return
         val level = levels.get(Skill.Hunter)
         if (!has(Skill.Hunter, trap.int("level"), message = true)) {
             return
@@ -144,76 +140,51 @@ class BirdSnare : Script {
             message("You may setup only $max ${"trap".plural(max)} at a time at your Hunter level.")
             return
         }
-        val message = trap.stringOrNull("item_message")
-        val requires = trap.itemList("requires")
-        for (item in requires) {
-            if (!carriesItem(item)) {
-                message(message ?: "You need${item.an()} ${item.toLowerSpaceCase()} to lay this trap.")
-                return
-            }
-        }
-        val items = trap.itemList("items")
-        for (item in items) {
-            if (!carriesItem(item) && floorItem != null && floorItem.id != item) {
-                message(message ?: "You need${item.an()} ${item.toLowerSpaceCase()} to lay this trap.")
-                return
-            }
-        }
         arriveDelay()
         message("You begin setting up ${if (max == 1) "the" else "a"} trap.", ChatType.Filter)
         anim("lay_trap")
         sound("set_noose")
         delay(3)
-        for (item in items) {
-            if (floorItem != null && item == floorItem.id) {
-                FloorItems.remove(floorItem)
-                continue
-            }
-            inventory.remove(item)
+        if (floorItem != null) {
+            FloorItems.remove(floorItem)
+        } else {
+            inventory.remove("bird_snare")
         }
         inc("trap_count")
-        NPCs.add(trap.npc("npc"), tile, ticks = 100, owner = this)
-        val obj = GameObjects.add(trap.obj("trap"), tile)
+        NPCs.add("hunting_ojibway_trap_npc", tile, ticks = 100, owner = this)
+        val obj = GameObjects.add("bird_snare", tile)
         stepAway(obj)
     }
 
-    private suspend fun Player.dismantleTrap(trapId: String, target: GameObject) {
-        val id = Tables.npc("traps.${trapId}.npc")
-        val npc = NPCs.findOrNull(target.tile, id) ?: return
+    private suspend fun Player.dismantleTrap(target: GameObject, creature: RowDefinition?) {
+        val npc = NPCs.findOrNull(target.tile, "hunting_ojibway_trap_npc") ?: return
         if (npc["owner", ""] != accountName) {
             message("This is not your trap.")
             return
         }
-        val trap = Rows.get("traps.${trapId}")
-        val items = trap.itemList("items")
-        if (inventory.spaces < items.size) {
-            val slots = inventory.spaces - items.size
+        val loot = creature?.itemList("loot") ?: emptyList()
+        val size = 1 + loot.size
+        if (inventory.spaces < size) {
+            val slots = inventory.spaces - size
             message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
             return
         }
-        anim(trap.anim("take_down_anim"))
+        anim("take_trap")
         sound("trap_dismantle", delay = 25)
         delay(2)
-        removeTrap(target, npc)
-        for (item in items) {
-            inventory.add(item)
-        }
-        message("You dismantle the trap.", ChatType.Filter)
-    }
-
-    private fun Player.removeTrap(target: GameObject, npc: NPC) {
         dec("trap_count")
         NPCs.remove(npc)
-        if (target.id.startsWith("pitfall")) {
-            set(target.id, "empty")
-            return
-        }
-        if (target.id.endsWith("_net_setup")) {
-            val dir = target.direction()
-            val net = GameObjects.findOrNull(target.tile.add(dir), "net")
-            net?.remove()
-        }
         GameObjects.remove(target)
+        // TODO is bait returned?
+        inventory.add("bird_snare")
+        message("You dismantle the trap.", ChatType.Filter)
+        if (creature != null) {
+            for (item in loot) {
+                inventory.add(item)
+            }
+            exp(Skill.Hunter, creature.int("xp") / 10.0)
+            message("You've caught a ${creature.rowId.toLowerSpaceCase()}.", ChatType.Filter)
+        }
     }
 
 }

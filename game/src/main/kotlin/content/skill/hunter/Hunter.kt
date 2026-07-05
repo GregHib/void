@@ -120,10 +120,6 @@ class Hunter : Script {
             }
         }
 
-        objectOperate("Check", "snare_*") { (target) ->
-            collectCatch(target.id.removePrefix("snare_"), target)
-        }
-
         objectOperate("Check", "box_trap_*") { (target) ->
             collectCatch(target.id.removePrefix("box_trap_"), target)
         }
@@ -199,52 +195,6 @@ class Hunter : Script {
             }
         }
 
-        huntNPC("hunter_trap") { target ->
-            if (transform.endsWith("_off")) {
-                return@huntNPC
-            }
-            val creature = Rows.getOrNull("creatures.${target.id}") ?: return@huntNPC
-            val account: String = get("owner") ?: return@huntNPC
-            val player = Players.findByAccount(account) ?: return@huntNPC
-            if (!player.has(Skill.Hunter, creature.int("level"))) {
-                return@huntNPC
-            }
-            if (tile.distanceTo(target.tile) > 2) {
-                return@huntNPC
-            }
-            transform("${id}_off")
-            var chance = creature.intRange("chance")
-            if (get("baited", false)) {
-                chance = (chance.first + 7)..(chance.last + 7) // 3%
-            } else if (get("smoked", false)) {
-                chance = (chance.first + 5)..(chance.last + 5) // 2%
-            }
-            val success = Level.success(player.levels.get(Skill.Hunter), chance)
-            val trapId = creature.string("trap")
-            when (trapId) { // FIXME Temp
-                "swamp_net", "red_net", "orange_net", "black_net" -> {
-                    target.walkToDelay(tile)
-                    target.delay(2)
-                    // TODO need other tile
-                    val net = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
-                    val trap = GameObjects.getLayer(tile.add(net.direction().inverse()), ObjectLayer.GROUND) ?: return@huntNPC
-                    net.remove()
-                    if (success) {
-                        val caught = trap.replace("${trapId}_catching")
-                        delay(2)
-                        caught.replace("${trapId}_caught")
-                        return@huntNPC
-                    }
-
-                    // TODO need inverse
-                    val failed = trap.replace("${trapId}_failing")
-                    delay(2)
-                    failed.replace("${trapId}_failed")
-                    delay(1)
-                    // TODO collapse
-                }
-            }
-        }
     }
 
     private fun NPC.owner(): Player? {

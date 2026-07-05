@@ -132,3 +132,10 @@ id = "crimson_swift,golden_warbler,copper_longtail,cerulean_twitch,tropical_wagt
 check_visual = "line_of_sight"
 check_not_busy = true
 find_keep_hunting = true
+
+[net_trap]
+type = "npc"
+id = "swamp_lizard,orange_salamandar,red_salamander,black_salamander"
+check_visual = "line_of_sight"
+check_not_busy = true
+find_keep_hunting = true

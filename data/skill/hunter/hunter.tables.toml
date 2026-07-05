@@ -146,7 +146,7 @@ level = 1
 xp = 340
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["bird_snare", "red_feather", "raw_bird_meat", "bones"]
+loot = ["red_feather", "raw_bird_meat", "bones"]
 chance = [100, 420]
 
 [.golden_warbler]
@@ -156,7 +156,7 @@ level = 5
 xp = 480
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["bird_snare", "yellow_feather", "raw_bird_meat", "bones"]
+loot = ["yellow_feather", "raw_bird_meat", "bones"]
 chance = [92, 400]
 
 [.copper_longtail]
@@ -166,7 +166,7 @@ level = 9
 xp = 610
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["bird_snare", "orange_feather", "raw_bird_meat", "bones"]
+loot = ["orange_feather", "raw_bird_meat", "bones"]
 chance = [85, 390]
 
 [.cerulean_twitch]
@@ -176,7 +176,7 @@ level = 11
 xp = 647
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["bird_snare", "blue_feather", "raw_bird_meat", "bones"]
+loot = ["blue_feather", "raw_bird_meat", "bones"]
 chance = [82, 380]
 
 [.tropical_wagtail]
@@ -186,7 +186,7 @@ level = 19
 xp = 952
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["bird_snare", "stripy_feather", "raw_bird_meat", "bones"]
+loot = ["stripy_feather", "raw_bird_meat", "bones"]
 chance = [75, 370]
 
 [.wimpy_bird]
@@ -196,7 +196,7 @@ level = 39
 xp = 1670
 catch_anim = "bird_catch"
 fail_anim = "bird_fail"
-loot = ["bird_snare", "wimpy_feather", "raw_bird_meat", "bones"]
+loot = ["wimpy_feather", "raw_bird_meat", "bones"]
 chance = [65, 350]
 
 [.grey_chinchompa]
