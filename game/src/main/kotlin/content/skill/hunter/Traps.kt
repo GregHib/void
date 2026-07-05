@@ -25,7 +25,7 @@ object Traps {
     }
 
     fun smoke(player: Player, trap: String, tile: Tile) {
-        val id = Tables.npc("traps.${trap}.npc")
+        val id = Tables.npc("traps.$trap.npc")
         val npc = NPCs.find(tile, id)
         if (npc["owner", ""] != player.accountName) {
             player.message("This is not your trap!") // TODO proper message

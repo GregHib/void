@@ -117,7 +117,7 @@ class BirdSnare : Script {
                 player.message("The bird snare that you laid has fallen over.")
                 true
             } else {
-               player["logged_out", false]
+                player["logged_out", false]
             }
             if (drop) {
                 player.drop(trap.tile, "bird_snare")
@@ -211,5 +211,4 @@ class BirdSnare : Script {
             drop(target.tile, "bird_snare")
         }
     }
-
 }

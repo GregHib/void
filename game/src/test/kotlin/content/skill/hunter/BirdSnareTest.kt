@@ -12,7 +12,6 @@ import org.junit.jupiter.api.assertNull
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -37,7 +36,7 @@ class BirdSnareTest : WorldTest() {
 
         tick(22)
 
-        val trap = GameObjects.at(start).firstOrNull { it.id == "snare_${bird}" }
+        val trap = GameObjects.at(start).firstOrNull { it.id == "snare_$bird" }
         assertNotNull(trap)
 
         player.objectOption(trap, "Check")
@@ -109,5 +108,4 @@ class BirdSnareTest : WorldTest() {
         assertFalse(GameObjects.at(start).any { it.id == "bird_snare" })
         assertTrue(player.containsMessage("only 1 trap at a time"))
     }
-
 }

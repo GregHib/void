@@ -85,5 +85,4 @@ class NetTrapTest : WorldTest() {
         assertTrue(FloorItems.at(start).any { it.id == "small_fishing_net" })
         assertEquals(0.0, player.experience.get(Skill.Hunter))
     }
-
 }

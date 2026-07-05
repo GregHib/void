@@ -56,7 +56,7 @@ class NetTrap : Script {
                 "swamp_net_caught" -> "swamp_lizard"
                 else -> "${target.id.removeSuffix("_net_caught")}_salamander"
             }
-            dismantleTrap(target.id.removeSuffix("_caught"), target.tile.add(target.direction()), Rows.get("creatures.${id}"))
+            dismantleTrap(target.id.removeSuffix("_caught"), target.tile.add(target.direction()), Rows.get("creatures.$id"))
         }
 
         objectOperate("Investigate", "net") { (target) ->
@@ -194,7 +194,7 @@ class NetTrap : Script {
     }
 
     private suspend fun Player.dismantleTrap(trapId: String, tile: Tile, creature: RowDefinition?) {
-        val trap = Rows.get("traps.${trapId}")
+        val trap = Rows.get("traps.$trapId")
         val npc = NPCs.findOrNull(tile, "hunting_sapling_trap_npc") ?: return
         if (npc["owner", ""] != accountName) {
             message("This is not your trap.")
@@ -225,5 +225,4 @@ class NetTrap : Script {
             message("You've caught a ${creature.rowId.toLowerSpaceCase()}.", ChatType.Filter)
         }
     }
-
 }
