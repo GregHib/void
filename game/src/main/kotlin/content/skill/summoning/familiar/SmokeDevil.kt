@@ -1,16 +1,34 @@
 package content.skill.summoning.familiar
 
+import content.entity.combat.target
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Frustrated
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.commandFamiliarAttack
+import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.random
 
 class SmokeDevil : Script {
     init {
+        // "Flames" orders the devil to scorch the owner's current foe with its fiery breath.
+        npcOperate("Flames", "smoke_devil_familiar") { (clicked) ->
+            if (clicked != follower) {
+                return@npcOperate
+            }
+            val enemy = (follower?.target ?: target) as? NPC
+            if (enemy == null) {
+                message("Your familiar has no target to attack.")
+                return@npcOperate
+            }
+            commandFamiliarAttack(enemy)
+        }
+
         npcOperate("Interact", "smoke_devil_familiar") {
             when (random.nextInt(4)) {
                 0 -> {

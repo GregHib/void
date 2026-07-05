@@ -3,6 +3,7 @@ package content.skill.summoning
 import FakeRandom
 import WorldTest
 import content.entity.combat.hit.Hit
+import content.entity.combat.target
 import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
 import dialogueOption
@@ -351,6 +352,30 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
         assertTrue(magicWith < magicWithout, "magic attackers find the owner harder to hit")
         assertEquals(meleeWithout, meleeWith, "melee accuracy is untouched")
+    }
+
+    @Test
+    fun `Drown orders the overlord at its owner's target`() {
+        val player = summon("karamthulhu_overlord_familiar")
+        val rat = createNPC("rat", player.tile.addY(2))
+        player.target = rat
+
+        player.npcOption(player.follower!!, "Drown")
+        tick(2)
+
+        assertEquals(rat, player.follower!!.target, "the overlord turns its water spell on the owner's foe")
+    }
+
+    @Test
+    fun `Flames orders the smoke devil at its owner's target`() {
+        val player = summon("smoke_devil_familiar")
+        val rat = createNPC("rat", player.tile.addY(2))
+        player.target = rat
+
+        player.npcOption(player.follower!!, "Flames")
+        tick(2)
+
+        assertEquals(rat, player.follower!!.target, "the devil turns its fire on the owner's foe")
     }
 
     @Test
