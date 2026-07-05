@@ -135,7 +135,7 @@ find_keep_hunting = true
 
 [net_trap]
 type = "npc"
-id = "swamp_lizard,orange_salamandar,red_salamander,black_salamander"
+id = "swamp_lizard,orange_salamander,red_salamander,black_salamander"
 check_visual = "line_of_sight"
 check_not_busy = true
 find_keep_hunting = true

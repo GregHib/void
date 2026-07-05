@@ -126,4 +126,5 @@ examine = "The essence of evil."
 [red_salamander]
 id = 5115
 solid = false
+respawn_delay = 5
 examine = "Slightly slimy but certainly striking."

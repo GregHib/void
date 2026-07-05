@@ -1,4 +1,5 @@
 [swamp_lizard]
 id = 5117
 solid = false
+respawn_delay = 5
 examine = "Very slimy and generally disgusting."

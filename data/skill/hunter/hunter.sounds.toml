@@ -27,3 +27,9 @@ id = 2625
 
 [set_noose]
 id = 2646
+
+[salamander_hit]
+id = 739
+
+[twitch_net]
+id = 2652

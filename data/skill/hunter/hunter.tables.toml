@@ -8,6 +8,12 @@ trap = "bird_snare"
 [.hunting_ojibway_trap_npc_off]
 trap = "bird_snare"
 
+[.hunting_sapling_trap_npc]
+trap = "swamp_net"
+
+[.hunting_sapling_trap_npc_off]
+trap = "swamp_net"
+
 [traps]
 trap = "obj"       # the active (set) object
 fail = "obj"       # the failed/collapsed object (optional)
@@ -229,7 +235,7 @@ trap = "swamp_net"
 level = 29
 xp = 1520
 catch_anim = "net_catch"
-loot = ["small_fishing_net", "rope", "green_salamander"]
+loot = ["green_salamander"]
 chance = [52, 360]
 
 [.orange_salamander]
@@ -237,7 +243,7 @@ trap = "orange_net"
 level = 47
 xp = 2240
 catch_anim = "net_catch"
-loot = ["small_fishing_net", "rope", "orange_salamander"]
+loot = ["orange_salamander"]
 chance = [16, 288]
 
 [.red_salamander]
@@ -245,7 +251,7 @@ trap = "red_net"
 level = 59
 xp = 2720
 catch_anim = "net_catch"
-loot = ["small_fishing_net", "rope", "red_salamander"]
+loot = ["red_salamander"]
 chance = [0, 240]
 
 [.black_salamander]
@@ -253,7 +259,7 @@ trap = "black_net"
 level = 67
 xp = 3040
 catch_anim = "net_catch"
-loot = ["small_fishing_net", "rope", "black_salamander"]
+loot = ["black_salamander"]
 chance = [0, 212]
 
 [.pawya]

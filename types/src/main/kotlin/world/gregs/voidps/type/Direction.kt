@@ -51,6 +51,13 @@ enum class Direction(deltaX: Int, deltaY: Int) {
         NONE -> NONE
     }
 
+    fun rotation(): Int = when (this) {
+        NORTH -> 0
+        EAST -> 1
+        SOUTH -> 2
+        else -> 3
+    }
+
     /**
      * Lower-cased hyphenated label, e.g. [NORTH_EAST] -> "north-east", suitable for chat messages.
      */

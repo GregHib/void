@@ -12,11 +12,13 @@ import org.junit.jupiter.api.assertNull
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 class BirdSnareTest : WorldTest() {
@@ -43,6 +45,7 @@ class BirdSnareTest : WorldTest() {
         assertEquals(1, player.inventory.count("bird_snare"))
         assertEquals(1, player.inventory.count("raw_bird_meat"))
         assertEquals(1, player.inventory.count("bones"))
+        assertNotEquals(0.0, player.experience.get(Skill.Hunter))
         assertTrue(player.inventory.items.any { it.id.contains("feather") })
     }
 
@@ -86,6 +89,7 @@ class BirdSnareTest : WorldTest() {
         player.objectOption(trap, "Dismantle")
         tick(3)
         assertEquals(1, player.inventory.count("bird_snare"))
+        assertEquals(0.0, player.experience.get(Skill.Hunter))
     }
 
     @Test

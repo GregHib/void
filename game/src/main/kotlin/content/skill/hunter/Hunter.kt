@@ -4,8 +4,6 @@ import content.entity.effect.transform
 import content.entity.player.inv.item.drop
 import content.quest.questCompleted
 import net.pearx.kasechange.toLowerSpaceCase
-import org.rsmod.game.pathfinder.StepValidator
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
@@ -14,22 +12,18 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
-import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.*
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
@@ -61,22 +55,18 @@ class Hunter : Script {
             layTrap(item.id, null, item)
         }
 
-        objectOperate("Dismantle", "box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
+        objectOperate("Dismantle", "box_trap,rabbit_snare,boulder_trap_setup") { (target) ->
             val type = when {
                 target.id.startsWith("box_trap") -> "box_trap"
                 target.id.startsWith("rabbit_snare") -> "rabbit_snare"
                 target.id.startsWith("boulder_trap") -> "boulder_trap"
-                target.id.contains("_net") -> "${target.id.substringBefore("_net")}_net"
                 else -> return@objectOperate
             }
             var tile = target.tile
-            if (type.endsWith("_net")) {
-                tile = tile.add(target.direction())
-            }
             dismantleTrap(type, target, tile)
         }
 
-        objectOperate("Investigate", "bird_snare,box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
+        objectOperate("Investigate", "bird_snare,box_trap,rabbit_snare,boulder_trap_setup") { (target) ->
             val id = Tables.npc("traps.${target.id}.npc")
             val npc = NPCs.find(target.tile, id)
             if (npc["baited", false]) {
@@ -89,11 +79,11 @@ class Hunter : Script {
             }
         }
 
-        itemOnObjectOperate("unlit_torch", "box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") {
+        itemOnObjectOperate("unlit_torch", "box_trap,rabbit_snare,boulder_trap_setup") {
             message("I should light the torch before using it to smoke the trap.")
         }
 
-        itemOnObjectOperate("torch_lit", "box_trap,rabbit_snare,*_net_setup,boulder_trap_setup") { (target) ->
+        itemOnObjectOperate("torch_lit", "box_trap,rabbit_snare,boulder_trap_setup") { (target) ->
             val id = Tables.npc("traps.${target.id}.npc")
             val npc = NPCs.find(target.tile, id)
             if (npc["owner", ""] != accountName) {
@@ -111,44 +101,8 @@ class Hunter : Script {
         }
         // TODO bait + smoking traps
 
-        itemOnObjectOperate("*", "net") { (obj, item) ->
-            if (item.def.contains(Params.HEALS)) {
-                // TODO what is/isn't allowed as bait
-                message("I don't think I'd catch much using that as bait.")
-            } else {
-                noInterest()
-            }
-        }
-
         objectOperate("Check", "box_trap_*") { (target) ->
             collectCatch(target.id.removePrefix("box_trap_"), target)
-        }
-
-        objectOperate("Check", "*_net_caught") { (target) ->
-            collectCatch(target.id, target)
-        }
-
-        // Net
-
-        objectOperate("Set-trap", "*_net,boulder_trap") { (target) ->
-            layTrap(target.id, target, null)
-        }
-
-        objectOperate("Dismantle", "net") { (target) ->
-            val dir = target.direction().inverse()
-            val trap = GameObjects.getLayer(target.tile.add(dir), ObjectLayer.GROUND) ?: return@objectOperate
-            dismantleTrap(trap.id.removeSuffix("_setup").removeSuffix("_failed"), trap, target.tile)
-        }
-
-        objectOperate("Dismantle", "*_net_failed") { (target) ->
-            val dir = target.direction()
-            dismantleTrap(target.id.removeSuffix("_setup").removeSuffix("_failed"), target, target.tile.add(dir))
-        }
-
-        objectOperate("Investigate", "net") { (target) ->
-            val dir = target.direction().inverse()
-            val trap = GameObjects.getLayer(target.tile.add(dir), ObjectLayer.GROUND) ?: return@objectOperate
-            // TODO
         }
 
         // Pitfall
@@ -183,23 +137,12 @@ class Hunter : Script {
             revert(15)
         }
 
-        npcDespawn("hunting_*_trap_npc") {
-            val trapId = Tables.stringOrNull("trap_npcs.${id}.trap") ?: return@npcDespawn
-            val message = Tables.string("traps.${trapId}.collapse_message") // Can probably be looked up by type?
-            val player = owner()
-            if (lifecycle == 0) { // Collapse
-                player?.message(message)
-                player?.collapse(this, drop = true)
-            } else {
-                player?.collapse(this, drop = player["logged_out", false])
+        npcVariableSet("transform_id", "hunting_*_trap_npc") { _, _, to ->
+            if (to == null) {
+                despawn(100)
             }
         }
 
-    }
-
-    private fun NPC.owner(): Player? {
-        val account: String = this["owner"] ?: return null
-        return Players.findByAccount(account)
     }
 
     private fun Player.collapse(npc: NPC, drop: Boolean) {
@@ -241,7 +184,7 @@ class Hunter : Script {
             message("You can't lay a trap here.", ChatType.Filter)
             return
         }
-        val max = maxTraps(level, trap.int("max"))
+        val max = Traps.max(level, trap.int("max"))
         val trapCount = get("trap_count", 0)
         if (trapCount >= max) {
             message("You may setup only $max ${"trap".plural(max)} at a time at your Hunter level.")
@@ -280,11 +223,6 @@ class Hunter : Script {
             set(obj.id, "spiked")
         } else if (obj != null) {
             obj.replace(trapId)
-            if (trapId.endsWith("_net_setup")) {
-                val dir = obj.direction()
-                NPCs.add(trap.npc("npc"), obj.tile.add(dir), ticks = 100, owner = this) // TODO check times
-                GameObjects.add("net", obj.tile.add(dir), rotation = dir.ordinal / 2)
-            }
         } else {
             NPCs.add(trap.npc("npc"), tile, ticks = 100, owner = this) // TODO check times
             obj = GameObjects.add(trapId, tile, ObjectShape.CENTRE_PIECE_STRAIGHT, 0, ticks = 50 * 60)
@@ -304,7 +242,7 @@ class Hunter : Script {
         val trap = Rows.get("traps.${trapId}")
         val items = trap.itemList("items")
         if (inventory.spaces < items.size) {
-            val slots = inventory.spaces - items.size
+            val slots = items.size - inventory.spaces
             message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
             return
         }
@@ -328,7 +266,7 @@ class Hunter : Script {
         val creature = Rows.get("creatures.$creatureId")
         val loot = creature.itemList("loot")
         if (inventory.spaces < loot.size) {
-            val slots = inventory.spaces - loot.size
+            val slots = loot.size - inventory.spaces
             message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
             return
         }
@@ -352,14 +290,7 @@ class Hunter : Script {
             set(target.id, "empty")
             return
         }
-        if (target.id.endsWith("_net_setup")) {
-            val dir = target.direction()
-            val net = GameObjects.findOrNull(target.tile.add(dir), "net")
-            net?.remove()
-        }
         GameObjects.remove(target)
     }
-
-    private fun maxTraps(level: Int, max: Int) = (1 + level / 20).coerceAtMost(max)
 
 }

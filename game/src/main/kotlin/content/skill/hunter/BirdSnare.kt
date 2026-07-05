@@ -1,6 +1,7 @@
 package content.skill.hunter
 
 import content.entity.effect.transform
+import content.entity.player.inv.item.drop
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
@@ -11,6 +12,7 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -105,6 +107,22 @@ class BirdSnare : Script {
             player.message("Something has been caught in your trap!")
             areaSound("bird_caught", tile)
         }
+
+        npcDespawn("hunting_ojibway_trap_npc") {
+            val player = owner ?: return@npcDespawn
+            val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@npcDespawn
+            player.dec("trap_count")
+            GameObjects.remove(trap)
+            val drop = if (lifecycle == 0) {
+                player.message("The bird snare that you laid has fallen over.")
+                true
+            } else {
+               player["logged_out", false]
+            }
+            if (drop) {
+                player.drop(trap.tile, "bird_snare")
+            }
+        }
     }
 
     private fun Player.smoke(target: GameObject) {
@@ -165,16 +183,14 @@ class BirdSnare : Script {
         val loot = creature?.itemList("loot") ?: emptyList()
         val size = 1 + loot.size
         if (inventory.spaces < size) {
-            val slots = inventory.spaces - size
+            val slots = size - inventory.spaces
             message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
             return
         }
         anim("take_trap")
         sound("trap_dismantle", delay = 25)
         delay(2)
-        dec("trap_count")
-        NPCs.remove(npc)
-        GameObjects.remove(target)
+        collapse(npc, target, drop = false)
         // TODO is bait returned?
         inventory.add("bird_snare")
         message("You dismantle the trap.", ChatType.Filter)
@@ -183,7 +199,16 @@ class BirdSnare : Script {
                 inventory.add(item)
             }
             exp(Skill.Hunter, creature.int("xp") / 10.0)
-            message("You've caught a ${creature.rowId.toLowerSpaceCase()}.", ChatType.Filter)
+            message("You've caught a ${creature.rowId.toLowerSpaceCase()}!", ChatType.Filter)
+        }
+    }
+
+    private fun Player.collapse(npc: NPC, target: GameObject, drop: Boolean) {
+        dec("trap_count")
+        NPCs.remove(npc)
+        GameObjects.remove(target)
+        if (drop) {
+            drop(target.tile, "bird_snare")
         }
     }
 

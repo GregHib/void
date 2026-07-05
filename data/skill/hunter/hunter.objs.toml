@@ -34,6 +34,9 @@ id = 19650
 [net]
 id = 19651
 
+[orange_net]
+id = 19652
+
 [orange_net_caught]
 id = 19654
 
