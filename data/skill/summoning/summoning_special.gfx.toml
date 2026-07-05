@@ -429,3 +429,15 @@ id = 1308
 # Healing Aura: the sparkle played on the owner (the 1356 gfx is the unicorn's).
 [healing_aura_owner]
 id = 1300
+
+# Bunyip's raw-fish transmute: the watery bolt from the bunyip to its owner.
+[bunyip_transmute_proj]
+id = 1435
+delay = 51
+time_offset = 46
+multiplier = 1
+curve = 0
+
+# Spirit dagannoth's Ferocious double-strike graphic.
+[ferocious]
+id = 1427

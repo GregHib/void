@@ -1,6 +1,7 @@
 package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.skill.summoning.familiarActsAsHarpoon
 import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
@@ -77,7 +78,8 @@ class Fishing : Script {
             }
 
             val tackles = spot.itemList("${option.lowercase()}_tackle")
-            val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) }
+            // The ibis and granite lobster spear fish themselves, standing in for a harpoon.
+            val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) || (tackle == "harpoon" && player.familiarActsAsHarpoon()) }
             if (tackle == null) {
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
                 break@fishing

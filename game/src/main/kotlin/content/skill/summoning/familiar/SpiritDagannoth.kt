@@ -1,5 +1,6 @@
 package content.skill.summoning.familiar
 
+import content.entity.combat.hit.hit
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
@@ -7,8 +8,27 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.type.random
 
+/** One in [FEROCIOUS_CHANCE] of the spirit dagannoth's melee attacks strikes twice. */
+private const val FEROCIOUS_CHANCE = 5
+
+/** The extra ferocious strike rolls up to the dagannoth's own melee max. */
+private const val FEROCIOUS_MAX_HIT = 108
+
 class SpiritDagannoth : Script {
     init {
+        // Ferocious - about a fifth of the dagannoth's melee attacks lash out a second time.
+        npcCombatAttack("spirit_dagannoth_familiar") { attack ->
+            if (attack.type != "melee" || this["ferocious", false] || random.nextInt(FEROCIOUS_CHANCE) != 0) {
+                return@npcCombatAttack
+            }
+            // The extra hit re-fires this handler - the flag keeps it from chaining.
+            this["ferocious"] = true
+            anim("ferocious")
+            gfx("ferocious")
+            hit(attack.target, offensiveType = "melee", damage = random.nextInt(FEROCIOUS_MAX_HIT + 1), delay = attack.delay + 30)
+            clear("ferocious")
+        }
+
         npcOperate("Interact", "spirit_dagannoth_familiar") {
             when (random.nextInt(4)) {
                 0 -> {

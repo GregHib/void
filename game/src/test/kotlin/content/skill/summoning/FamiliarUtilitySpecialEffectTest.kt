@@ -4,6 +4,7 @@ import FakeRandom
 import WorldTest
 import content.entity.effect.toxin.poison
 import content.entity.effect.toxin.poisoned
+import dialogueOption
 import content.entity.player.bank.bank
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
@@ -237,7 +238,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         }
         val before = player.levels.get(Skill.Constitution)
 
-        player.itemOnNpc(player.follower!!, 1)
+        InterfaceApi.onItem(player, "familiar_details:cast_swallow_whole", player.inventory[1])
         tick(2)
 
         assertEquals(0, player.inventory.count("raw_shark"), "the bunyip gulped the shark")
@@ -255,11 +256,52 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
             add("raw_shark", 1)
         }
 
-        player.itemOnNpc(player.follower!!, 1)
+        InterfaceApi.onItem(player, "familiar_details:cast_swallow_whole", player.inventory[1])
         tick(2)
 
         assertEquals(1, player.inventory.count("raw_shark"), "the shark is refused")
         assertEquals(1, player.inventory.count("swallow_whole_scroll"), "and nothing is charged")
+    }
+
+    @Test
+    fun `Using a raw fish on the bunyip transmutes it into water runes`() {
+        val player = summon("bunyip_familiar")
+        player.inventory.transaction { add("raw_shark", 1) }
+
+        player.itemOnNpc(player.follower!!, 0)
+        tick(2)
+
+        assertEquals(0, player.inventory.count("raw_shark"), "the shark is transmuted")
+        assertTrue(player.inventory.count("water_rune") in 1..20, "into one to twenty water runes")
+    }
+
+    @Test
+    fun `The geyser titan boils a bowl of water and recharges amulets of glory`() {
+        val player = summon("geyser_titan_familiar")
+        player.inventory.transaction {
+            add("bowl", 1)
+            add("amulet_of_glory", 1)
+        }
+
+        player.itemOnNpc(player.follower!!, 0)
+        tick(2)
+        assertEquals(1, player.inventory.count("bowl_of_hot_water"), "the bowl fills with boiling water")
+
+        player.itemOnNpc(player.follower!!, 1)
+        tick(2)
+        assertEquals(1, player.inventory.count("amulet_of_glory_4"), "the amulet is fully recharged")
+    }
+
+    @Test
+    fun `The hunting cats teleport their owner home`() {
+        val player = summon("spirit_graahk_familiar")
+
+        player.npcOption(player.follower!!, "Interact")
+        tick(1)
+        player.dialogueOption("line2") // Teleport
+        tick(10) // the teleport take-off and landing
+
+        assertEquals(Tile(2786, 3002), player.tile, "the graahk carries its owner to Karamja")
     }
 
     @Test

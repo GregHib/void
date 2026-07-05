@@ -221,3 +221,11 @@ id = 7837
 # Forge regent's Inferno flare animation.
 [inferno]
 id = 7871
+
+# Bunyip's raw-fish transmute: the owner's casting motion as the fish becomes water runes.
+[bunyip_transmute]
+id = 2779
+
+# Spirit dagannoth's Ferocious double-strike animation.
+[ferocious]
+id = 7791

@@ -4,6 +4,7 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.proj.shoot
 import content.skill.summoning.FamiliarSpecialMoves
 import content.skill.summoning.castFamiliarSpecial
 import content.skill.summoning.follower
@@ -13,31 +14,48 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
 
 class Bunyip : Script {
     init {
-        // A plain click on the cast button has no item to work on - point at the real triggers.
+        // A plain click on the cast button has no item to work on - point at the real trigger.
         FamiliarSpecialMoves.instant("bunyip_familiar") {
-            message("To cast Swallow Whole, use the Cast option or a raw fish on the bunyip.")
+            message("To cast Swallow Whole, use the Cast option on a raw fish.")
             false
         }
 
         // Swallow Whole - the bunyip gulps down a raw fish the owner could cook, healing them for
-        // the cooked fish's worth with no eat delay. Cast on a raw fish, or use the fish on the
-        // familiar - both run through the scroll + points gate, charging nothing on a refusal.
+        // the cooked fish's worth with no eat delay. Cast on a raw fish through the scroll +
+        // points gate; using the fish directly on the bunyip transmutes it instead (below).
         FamiliarSpecialMoves.item("bunyip_familiar") { item -> swallowWhole(item) }
 
+        // Using a raw fish on the bunyip transmutes it into water runes - one up to a tenth of the
+        // cooked fish's healing - free of any scroll.
         itemOnNPCOperate("raw_*", "bunyip_familiar") { (npc, item) ->
             if (npc != follower) {
                 return@itemOnNPCOperate
             }
-            castFamiliarSpecial { swallowWhole(item) }
+            val row = Rows.getOrNull("cooking.${item.id}")
+            val cookedId = row?.item("cooked")?.ifEmpty { item.id.replace("raw", "cooked") }
+            val heals: IntRange? = cookedId?.let { ItemDefinitions.getOrNull(it)?.getOrNull("heals") }
+            if (heals == null) {
+                message("Your bunyip only transmutes raw fish.")
+                return@itemOnNPCOperate
+            }
+            if (!inventory.remove(item.id)) {
+                return@itemOnNPCOperate
+            }
+            val runes = random.nextInt((heals.last / 10).coerceAtLeast(1)) + 1
+            inventory.add("water_rune", runes)
+            anim("bunyip_transmute")
+            follower?.shoot("bunyip_transmute_proj", this)
+            message("Your bunyip transmutes the ${item.def.name.lowercase()} into some water runes.", ChatType.Filter)
         }
 
         npcOperate("Interact", "bunyip_familiar") {

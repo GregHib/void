@@ -2,16 +2,33 @@ package content.skill.summoning.familiar
 
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import content.skill.summoning.familiarTeleport
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 class SpiritKyatt : Script {
     init {
         npcOperate("Interact", "spirit_kyatt_familiar") {
+            choice {
+                option("Chat") {
+                    chat()
+                }
+                // The kyatt carries its owner home to the Piscatoris hunter area.
+                option("Teleport") {
+                    familiarTeleport(Tile(2326, 3636), "the kyatt")
+                }
+            }
+        }
+    }
+
+    private suspend fun Player.chat() {
             if (inventory.contains("ball_of_wool") || inventory.contains("ball_of_black_wool")) {
                 npc<Neutral>("Human, hand me that ball of wool.")
                 player<Happy>("Aww...do you want to play with it?")
@@ -21,7 +38,7 @@ class SpiritKyatt : Script {
                 player<Happy>("Well I'm not giving it to you, now! I'll never get it back.")
                 npc<Neutral>("Then you leave me no choice but to destroy YOU, human!")
                 player<Happy>("Bad kitty!")
-                return@npcOperate
+                return
             }
             when (random.nextInt(4)) {
                 0 -> {
@@ -62,6 +79,5 @@ class SpiritKyatt : Script {
                     npc<Neutral>("I will...purrrrr...ooh that's quite nice...destroy...purrrrrrr...you.")
                 }
             }
-        }
     }
 }

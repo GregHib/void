@@ -5,9 +5,9 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.skill.summoning.familiarTeleport
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 
@@ -24,7 +24,7 @@ class LavaTitan : Script {
                 option("Teleport to Lava Maze") {
                     choice("Are you sure you want to teleport here? It's very high wilderness.") {
                         option("Yes. I'm sure.") {
-                            tele(Tile(3030, 3838, 0))
+                            familiarTeleport(Tile(3030, 3838), "the lava titan")
                         }
                         option("Nevermind. That sounds dangerous.")
                     }
