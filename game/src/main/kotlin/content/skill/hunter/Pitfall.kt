@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Direction
 
 class Pitfall : Script {
@@ -58,6 +59,14 @@ class Pitfall : Script {
             dismantleTrap(target)
         }
 
+        for (i in 0..16) {
+            timerStart("collapse_pitfall_$i") { 100 }
+            timerTick("collapse_pitfall_$i") {
+                clear("pitfall_$i")
+                message("The pitfall trap that you constructed has collapsed.")
+                Timer.CANCEL
+            }
+        }
     }
 
     private suspend fun Player.layTrap(obj: GameObject) {
@@ -80,7 +89,6 @@ class Pitfall : Script {
             message("You need some logs and a knife to set a pitfall trap.")
             return
         }
-        // TODO collapse timer
         arriveDelay()
         anim("lay_trap_small")
         inventory.remove("logs")
@@ -88,6 +96,7 @@ class Pitfall : Script {
         sound("place_branches")
         inc("trap_count")
         set(obj.id, "spiked")
+        softTimers.start("collapse_${obj.id}")
     }
 
     private suspend fun Player.dismantleTrap(target: GameObject) {
@@ -97,6 +106,7 @@ class Pitfall : Script {
         sound("take_branches")
         dec("trap_count")
         set(target.id, "empty")
+        softTimers.clear("collapse_${target.id}")
     }
 
 }
