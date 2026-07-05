@@ -342,12 +342,17 @@ id = 1463
 [toad_bark_load]
 id = 1400
 
+# The cannonball launches low from the toad's mouth and rises slightly (darkan's 10 -> 16 arc,
+# curve 16) - character heights default to 40, hence the negative offsets. The client orients the
+# model along this trajectory; there is no projectile rotation in the protocol.
 [toad_bark_proj]
 id = 1402
 delay = 51
 time_offset = 46
 multiplier = 1
-curve = 0
+curve = 16
+height = -30
+end_height = -24
 
 # Thieving Fingers: the sparkle played on the owner as the boost lands.
 [thieving_fingers_owner]
