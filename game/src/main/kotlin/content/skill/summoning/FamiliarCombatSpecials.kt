@@ -286,7 +286,11 @@ class FamiliarCombatSpecials : Script {
             }
         }
 
-        // Dust Cloud - the smoke devil chokes the picked target and up to six more foes around it.
+        // Dust Cloud - a plain cast chokes everything around the smoke devil itself; cast on a
+        // specific foe it chokes them and up to six more around them instead.
+        FamiliarSpecialMoves.instant("smoke_devil_familiar") {
+            familiarAoeSpecial(maxTargets = 6, maxHit = 80, radius = 1, anim = "dust_cloud", sourceGfx = "dust_cloud", projectile = "dust_cloud_proj", targetGfx = "dust_cloud_hit")
+        }
         FamiliarSpecialMoves.npc("smoke_devil_familiar") { target ->
             val cast = familiarSpecialHit(target, maxHit = 80, anim = "dust_cloud", sourceGfx = "dust_cloud", projectile = "dust_cloud_proj", targetGfx = "dust_cloud_hit")
             if (cast) {
