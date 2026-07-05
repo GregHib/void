@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -20,8 +21,9 @@ class Pitfall : Script {
     init {
         npcOperate("Tease") {
             val target = it.target
-            if (!has(Skill.Hunter, 99)) { // TODO
-                message("You need a hunter level of at least 99 to catch a ${target.def.name.lowercase()}.")
+            val level = Tables.int("creatures.${target.id}.level")
+            if (!has(Skill.Hunter, level)) {
+                message("You need a hunter level of at least $level to catch a ${target.def.name.lowercase()}.")
                 return@npcOperate
             }
             if (!inventory.contains("teasing_stick")) {
@@ -60,15 +62,15 @@ class Pitfall : Script {
 
     private suspend fun Player.layTrap(obj: GameObject) {
         val trap = Rows.getOrNull("traps.pitfall") ?: return
-        val level = levels.get(Skill.Hunter)
-        if (!has(Skill.Hunter, trap.int("level"), message = false)) {
-            message("You need a hunter level of at least 99 to set a pitfall trap here.")
+        val level = trap.int("level") // TODO different pits have different levels
+        if (!has(Skill.Hunter, level, message = false)) {
+            message("You need a hunter level of at least $level to set a pitfall trap here.")
             return
         }
         if (get(obj.id, "empty") != "empty") {
             return
         }
-        val max = Traps.max(level, 5)
+        val max = Traps.max(levels.get(Skill.Hunter), 5)
         val trapCount = get("trap_count", 0)
         if (trapCount >= max) {
             message("You may setup only $max ${"trap".plural(max)} at a time at your Hunter level.")

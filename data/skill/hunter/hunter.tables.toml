@@ -290,3 +290,12 @@ xp = 1440
 catch_anim = "lay_trap_small"
 fail_anim = "lay_trap_small"
 loot = ["rabbit_foot", "raw_rabbit", "bones"]
+
+[.spined_larupia]
+level = 31
+
+[.horned_graahk]
+level = 41
+
+[.sabre_toothed_kyatt]
+level = 55
