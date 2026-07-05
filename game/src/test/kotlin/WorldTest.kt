@@ -307,7 +307,6 @@ abstract class WorldTest : KoinTest {
             properties["storage.autoSave.minutes"] = 0
             properties["storage.disabled"] = true
             properties["bots.count"] = 0
-            properties["hunter.impling.respawnCycleMinutes"] = -1
             properties.remove("world.id")
             properties.remove("world.name")
             properties
