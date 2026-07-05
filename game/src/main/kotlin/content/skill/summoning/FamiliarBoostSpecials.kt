@@ -83,10 +83,12 @@ class FamiliarBoostSpecials : Script {
             }
         }
 
-        // Thieving Fingers - the Thieving boost is a passive (see FamiliarBoosts); the special is
-        // just the visual flourish, but still costs a scroll + points like the live game.
+        // Thieving Fingers - boosts Thieving by 2, on top of the magpie's passive invisible +3
+        // (see FamiliarBoosts).
         FamiliarSpecialMoves.instant("magpie_familiar") {
-            familiarSelfSpecial(anim = "thieving_fingers", sourceGfx = "thieving_fingers") {}
+            familiarSelfSpecial(anim = "thieving_fingers", sourceGfx = "thieving_fingers", playerGfx = "thieving_fingers_owner") {
+                levels.boost(Skill.Thieving, 2)
+            }
         }
 
         // Insane Ferocity - the honey badger enrages the owner, boosting Attack and Strength (+5 and

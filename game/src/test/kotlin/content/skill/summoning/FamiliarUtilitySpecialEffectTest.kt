@@ -135,9 +135,12 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Thieving Fingers is a visual flourish that still counts as a cast`() {
+    fun `Thieving Fingers boosts Thieving by 2`() {
         val player = summon("magpie_familiar")
+        val before = player.levels.get(Skill.Thieving)
+
         assertTrue(player.runSpecial("magpie_familiar"))
+        assertEquals(before + 2, player.levels.get(Skill.Thieving))
     }
 
     @Test

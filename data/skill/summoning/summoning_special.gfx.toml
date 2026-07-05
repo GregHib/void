@@ -348,3 +348,7 @@ delay = 51
 time_offset = 46
 multiplier = 1
 curve = 0
+
+# Thieving Fingers: the sparkle played on the owner as the boost lands.
+[thieving_fingers_owner]
+id = 1300
