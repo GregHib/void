@@ -127,7 +127,7 @@ npc = "hunting_sapling_trap_npc"
 
 [.pitfall]
 level = 31
-trap = "pitfall_0"
+trap = "pitfall_sabre_toothed_kyatt_0"
 setup_anim = "lay_trap_small"
 take_down_anim = "lay_trap_small"
 requires = ["knife"]
@@ -135,6 +135,16 @@ items = ["logs"]
 item_message = "You need some logs and a knife to set a pitfall trap."
 collapse_ticks = 300
 collapse_message = "The pitfall trap that you constructed has collapsed."
+
+[.pitfall_spined_larupia]
+level = 31
+
+[.pitfall_horned_graahk]
+level = 41
+
+[.pitfall_sabre_toothed_kyatt]
+level = 51
+
 
 # ---------------------------------------------------------------------------
 # Creatures — keyed by the *caught* object id (the triggered/full-trap object)
@@ -293,9 +303,15 @@ loot = ["rabbit_foot", "raw_rabbit", "bones"]
 
 [.spined_larupia]
 level = 31
+xp = 1800
+loot = ["big_bones", "tatty_graahk_fur"]
 
 [.horned_graahk]
 level = 41
+xp = 2400
+loot = ["big_bones", "tatty_graahk_fur"]
 
 [.sabre_toothed_kyatt]
 level = 55
+xp = 3000
+loot = ["big_bones", "tatty_kyatt_fur"]

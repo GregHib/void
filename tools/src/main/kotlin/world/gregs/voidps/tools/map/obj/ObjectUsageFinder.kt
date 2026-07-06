@@ -31,10 +31,9 @@ object ObjectUsageFinder {
     }
 
     val set = setOf(
-        29317,
-        29319,
-        29318,
-        29320,
+        19260,
+        19261,
+        19264
     )
 
     private fun matches(obj: MapObject, def: ObjectDefinitionFull) = set.contains(obj.id)

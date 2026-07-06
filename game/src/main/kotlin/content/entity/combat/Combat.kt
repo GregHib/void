@@ -119,6 +119,9 @@ class Combat(val combatDefinitions: CombatDefinitions) :
     }
 
     fun retaliate(character: Character, source: Character) {
+        if (source is NPC && source.def.options.contains("Tease")) {
+            return
+        }
         if (character.dead || character.levels.get(Skill.Constitution) <= 0 || !retaliates(character)) {
             return
         }
@@ -126,9 +129,6 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             return
         }
         if (character is NPC && character.attacking && character.underAttack) {
-            return
-        }
-        if (character is NPC && character.id == "horned_graahk") {
             return
         }
         if (character is NPC) {
