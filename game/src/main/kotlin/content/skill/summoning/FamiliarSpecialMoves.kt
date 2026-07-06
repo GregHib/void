@@ -1,6 +1,8 @@
 package content.skill.summoning
 
+import content.entity.combat.target
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -75,9 +77,7 @@ class FamiliarSpecialMovesDispatch : Script {
     init {
         // Follower-details tab cast button.
         interfaceOption("*", "familiar_details:cast_*") {
-            val id = follower?.id ?: return@interfaceOption
-            val block = FamiliarSpecialMoves.instant[id] ?: return@interfaceOption
-            castFamiliarSpecial { block() }
+            castButton()
         }
 
         onNPCApproach("familiar_details:cast_*", "*") { (target) ->
@@ -118,9 +118,7 @@ class FamiliarSpecialMovesDispatch : Script {
 
         // Minimap summoning orb "Cast <special>" option - one `cast_<special>` component per move.
         interfaceOption("*", "summoning_orb:cast_*") {
-            val id = follower?.id ?: return@interfaceOption
-            val block = FamiliarSpecialMoves.instant[id] ?: return@interfaceOption
-            castFamiliarSpecial { block() }
+            castButton()
         }
 
         onNPCApproach("summoning_orb:cast_*", "*") { (target) ->
@@ -156,5 +154,26 @@ class FamiliarSpecialMovesDispatch : Script {
             val block = FamiliarSpecialMoves.floorItemTarget[id] ?: return@onFloorItemApproach
             castFamiliarSpecial { block(target) }
         }
+    }
+
+    /**
+     * A plain click on the cast button: instant specials fire directly; combat specials auto-fire
+     * at the familiar's current foe (or the owner's), as in the live game - clicking a target
+     * after the button still works through the approach hooks.
+     */
+    private fun Player.castButton() {
+        val id = follower?.id ?: return
+        val instant = FamiliarSpecialMoves.instant[id]
+        if (instant != null) {
+            castFamiliarSpecial { instant() }
+            return
+        }
+        val combat = FamiliarSpecialMoves.npcTarget[id] ?: return
+        val enemy = (follower?.target ?: target) as? NPC
+        if (enemy == null) {
+            message("Your familiar has no target to attack.")
+            return
+        }
+        castFamiliarSpecial { combat(enemy) }
     }
 }

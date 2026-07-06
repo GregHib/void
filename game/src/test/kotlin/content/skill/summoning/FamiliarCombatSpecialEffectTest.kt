@@ -1,7 +1,9 @@
 package content.skill.summoning
 
 import FakeRandom
+import interfaceOption
 import WorldTest
+import content.entity.combat.target
 import content.entity.effect.frozen
 import content.entity.effect.stunned
 import content.entity.effect.toxin.poisoned
@@ -294,6 +296,22 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
 
         // A single maxed magic bolt is 220 - beyond 440 proves all three landed.
         assertTrue(before - target.levels.get(Skill.Constitution) >= 600, "three bolts of up to 220 landed")
+    }
+
+    @Test
+    fun `A plain click on the cast button fires Iron Within at the familiar's foe`() {
+        maxRolls()
+        val player = summon("iron_titan_familiar")
+        player.inventory.transaction { add("iron_within_scroll", 1) }
+        val target = tankyRat(player)
+        player.follower!!.target = target // the titan is mid-fight
+        val before = target.levels.get(Skill.Constitution)
+
+        player.interfaceOption("summoning_orb", "cast_iron_within", "Cast")
+        tick(8)
+
+        assertEquals(0, player.inventory.count("iron_within_scroll"), "one scroll spent")
+        assertTrue(before - target.levels.get(Skill.Constitution) >= 600, "the volley fired at its current target")
     }
 
     @Test
