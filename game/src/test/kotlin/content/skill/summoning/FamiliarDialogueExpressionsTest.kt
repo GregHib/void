@@ -33,4 +33,13 @@ class FamiliarDialogueExpressionsTest : WorldTest() {
         assertNull(familiarChatheadAnimation("hans"))
         assertNull(familiarChatheadAnimation("phoenix_familiar"))
     }
+
+    @Test
+    fun `Familiars without an enum entry fall back instead of playing the enum default`() {
+        // The enums' defaults are the cat's animations (8373/8374); sending those to a
+        // mismatched head model crashes the client.
+        assertNull(familiarChatheadAnimation("arctic_bear_familiar"), "value 0 has no enum entry")
+        assertNull(familiarChatheadAnimation("unicorn_stallion_familiar"), "value 89 - 50 has no enum entry")
+        assertNull(familiarChatheadAnimation("albino_rat_familiar"), "value 0 has no enum entry")
+    }
 }
