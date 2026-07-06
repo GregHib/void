@@ -546,15 +546,21 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `The giant ent transmutes pure essence into a rune`() {
+    fun `The giant ent transmutes pure essence into a rune that joins its stack`() {
         val player = summon("giant_ent_familiar")
         player.inventory.transaction { add("pure_essence", 1) }
+        // Force the earth-or-nature roll to nature so the rune must merge into this stack.
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until - 1
+        })
+        player.inventory.transaction { add("nature_rune", 5) }
 
         player.itemOnNpc(player.follower!!, 0)
         tick(2)
 
         assertEquals(0, player.inventory.count("pure_essence"))
-        assertTrue(player.inventory.count("earth_rune") + player.inventory.count("nature_rune") == 1, "the essence became a rune")
+        assertEquals(6, player.inventory.count("nature_rune"), "the new rune stacks with the rest")
+        assertEquals(1, player.inventory.items.count { it.id == "nature_rune" }, "one stack, not scattered slots")
     }
 
     @Test

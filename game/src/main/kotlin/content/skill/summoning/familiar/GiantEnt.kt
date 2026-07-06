@@ -9,8 +9,9 @@ import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.random
 
 class GiantEnt : Script {
@@ -22,7 +23,9 @@ class GiantEnt : Script {
                 return@itemOnNPCOperate
             }
             val rune = if (random.nextInt(9) < 4) "earth_rune" else "nature_rune"
-            if (inventory.replace("pure_essence", rune)) {
+            // Remove-then-add rather than replace, so the rune joins an existing stack.
+            if (inventory.remove("pure_essence")) {
+                inventory.add(rune)
                 message("Your giant ent transmutes the essence into a rune.", ChatType.Filter)
             }
         }
