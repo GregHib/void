@@ -274,7 +274,9 @@ fun Player.castFamiliarSpecial(effect: () -> Boolean) {
         message("Your familiar does not have enough special move points left.")
         return
     }
-    if (!inventory.contains(scrollDef.stringId)) {
+    // A worn enchanted helm can supply the scroll when the inventory has run out.
+    val fromHelm = !inventory.contains(scrollDef.stringId) && enchantedHeadgearScroll() == scrollDef.stringId
+    if (!inventory.contains(scrollDef.stringId) && !fromHelm) {
         message("You do not have enough scrolls left to do this special move.")
         return
     }
@@ -292,7 +294,11 @@ fun Player.castFamiliarSpecial(effect: () -> Boolean) {
     anim("summoning_special_cast")
     gfx("summoning_special_cast")
     sound("summoning_special_cast")
-    inventory.remove(scrollDef.stringId, 1)
+    if (fromHelm) {
+        spendEnchantedHeadgearScroll()
+    } else {
+        inventory.remove(scrollDef.stringId, 1)
+    }
     val points = get("summoning_special_points_remaining", 0)
     set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))
     exp(Skill.Summoning, scrollDef["use_experience", 0.0])
