@@ -24,7 +24,7 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class Pikkupstix : Script {
     init {
-        // The post-Wolf-Whistle tutor dialogue (2009scape's transcript). The quest itself isn't
+        // The post-Wolf-Whistle tutor dialogue. The quest itself isn't
         // implemented yet, so the dialogue isn't gated on it - gate here when the quest lands.
         npcOperate("Talk-to", "pikkupstix") {
             npc<Happy>("Welcome to my humble abode. How can I help you?")

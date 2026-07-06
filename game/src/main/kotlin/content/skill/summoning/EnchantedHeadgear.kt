@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 /**
@@ -108,11 +109,31 @@ fun Player.enchantedHeadgearScroll(): String? {
 fun Player.spendEnchantedHeadgearScroll() {
     val count = get(SCROLL_COUNT, 0) - 1
     set(SCROLL_COUNT, count)
+    val headgear = BY_ID[equipped(EquipSlot.Hat).id] ?: return
     if (count <= 0) {
-        val helm = equipped(EquipSlot.Hat).id
-        BY_ID[helm]?.let { equipment.replace(EquipSlot.Hat.index, it.charged, it.enchanted) }
+        // Reset the charge to 1 so the item reverts as a clean single helm, not one carrying the
+        // old charge count.
+        syncHelmCharge(headgear, 1)
+        equipment.replace(EquipSlot.Hat.index, headgear.charged, headgear.enchanted)
         clear(SCROLL_ID)
         clear(SCROLL_COUNT)
+    } else {
+        syncHelmCharge(headgear, count)
+    }
+}
+
+/**
+ * Mirrors the stored scroll [count] onto the charged helm's item charge, worn or in the pack, so the
+ * client shows it on the item and on the follower-details cast button.
+ */
+private fun Player.syncHelmCharge(headgear: Headgear, count: Int) {
+    if (equipped(EquipSlot.Hat).id == headgear.charged) {
+        equipment.transaction { setCharge(EquipSlot.Hat.index, count) }
+        return
+    }
+    val slot = inventory.indexOf(headgear.charged)
+    if (slot != -1) {
+        inventory.transaction { setCharge(slot, count) }
     }
 }
 
@@ -121,8 +142,14 @@ class EnchantedHeadgear : Script {
         for (headgear in HEADGEAR) {
             // Fill an enchanted helm by using combat scrolls on it - all matching scrolls in the
             // pack, up to capacity, one scroll type at a time. The helm takes its charged form.
+            // Fill an empty enchanted helm or top up an already-charged one.
             itemOnItem("*_scroll", headgear.enchanted) { fromItem, toItem ->
                 store(if (fromItem.id == headgear.enchanted) toItem else fromItem, headgear)
+            }
+            if (headgear.charged != headgear.enchanted) {
+                itemOnItem("*_scroll", headgear.charged) { fromItem, toItem ->
+                    store(if (fromItem.id == headgear.charged) toItem else fromItem, headgear)
+                }
             }
             // Right-click the charged helm to check its contents or empty it back to the enchanted
             // form, returning the scrolls to the pack.
@@ -154,7 +181,12 @@ class EnchantedHeadgear : Script {
         }
         set(SCROLL_ID, scroll.id)
         set(SCROLL_COUNT, stored + amount)
-        inventory.replace(headgear.enchanted, headgear.charged)
+        // Turn the empty enchanted helm into its charged form; a helm that's already charged (a
+        // top-up, or a worn one) just has its charge count updated.
+        if (equipped(EquipSlot.Hat).id != headgear.charged && inventory.contains(headgear.enchanted)) {
+            inventory.replace(headgear.enchanted, headgear.charged)
+        }
+        syncHelmCharge(headgear, stored + amount)
         message("You store $amount ${scroll.def.name.lowercase()}${if (amount == 1) "" else "s"} in the helmet (${stored + amount}/${headgear.capacity}).", ChatType.Filter)
     }
 
@@ -175,7 +207,9 @@ class EnchantedHeadgear : Script {
             inventory.add(scroll, count)
             message("You empty the helmet, recovering $count ${ItemDefinitions.get(scroll).name.lowercase()}${if (count == 1) "" else "s"}.", ChatType.Filter)
         }
-        // The charged helm reverts to its empty enchanted form whether or not it held anything.
+        // Reset the charge to 1 so the helm reverts as a clean single item, then revert it to its
+        // empty enchanted form whether or not it held anything.
+        syncHelmCharge(headgear, 1)
         if (equipped(EquipSlot.Hat).id == headgear.charged) {
             equipment.replace(EquipSlot.Hat.index, headgear.charged, headgear.enchanted)
         } else {

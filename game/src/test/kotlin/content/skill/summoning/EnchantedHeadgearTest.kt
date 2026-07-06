@@ -37,7 +37,7 @@ class EnchantedHeadgearTest : WorldTest() {
         player.itemOnItem(1, 0) // scrolls onto the antlers
         tick(1)
 
-        assertEquals(1, player.inventory.count("antlers_charged"), "the antlers become charged")
+        assertTrue(player.inventory.indexOf("antlers_charged") != -1, "the antlers become charged")
         assertEquals(0, player.inventory.count("antlers"))
         assertEquals(0, player.inventory.count("iron_bull_rush_scroll"), "the scrolls are stored inside")
     }
@@ -90,8 +90,23 @@ class EnchantedHeadgearTest : WorldTest() {
 
         player.itemOnItem(1, player.inventory.indexOf("helm_of_neitiznot_enchanted"))
         tick(1)
-        assertEquals(1, player.inventory.count("helm_of_neitiznot_charged"), "scrolls charge it")
+        assertTrue(player.inventory.indexOf("helm_of_neitiznot_charged") != -1, "scrolls charge it")
         assertEquals(0, player.inventory.count("iron_bull_rush_scroll"))
+    }
+
+    @Test
+    fun `The stored count is mirrored onto the charged helm's item charge`() {
+        val player = summoner()
+        player.inventory.transaction {
+            add("antlers", 1)
+            add("iron_bull_rush_scroll", 12)
+        }
+
+        player.itemOnItem(1, 0)
+        tick(1)
+
+        val slot = player.inventory.indexOf("antlers_charged")
+        assertEquals(12, player.inventory[slot].amount, "the helm's charge shows the scroll count")
     }
 
     @Test
