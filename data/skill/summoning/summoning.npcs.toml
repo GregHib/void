@@ -285,6 +285,7 @@ range = 30
 mage = 30
 combat_def = "vampire_bat_familiar"
 interacts = false
+large_head = true
 
 [spirit_scorpion_familiar]
 summoning_time_minutes = 17
@@ -309,6 +310,7 @@ range = 72
 mage = 72
 combat_def = "arctic_bear_familiar"
 interacts = false
+large_head = true
 
 [spirit_spider_familiar]
 summoning_time_minutes = 15
