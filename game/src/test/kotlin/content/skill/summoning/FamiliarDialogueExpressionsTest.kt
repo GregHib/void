@@ -29,9 +29,16 @@ class FamiliarDialogueExpressionsTest : WorldTest() {
     }
 
     @Test
+    fun `Mapped pets resolve their chathead animation like familiars`() {
+        assertEquals(13322, familiarChatheadAnimation("pet_sneakerpeeper"))
+        assertEquals(13322, familiarChatheadAnimation("pet_sneakerpeeper_baby"))
+    }
+
+    @Test
     fun `Npcs without a chathead mapping fall back to expression animations`() {
         assertNull(familiarChatheadAnimation("hans"))
         assertNull(familiarChatheadAnimation("phoenix_familiar"))
+        assertNull(familiarChatheadAnimation("pet_cat"), "unmapped pets keep the expression fallback")
     }
 
     @Test

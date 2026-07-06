@@ -40,13 +40,14 @@ fun Interfaces.sendChat(
 /**
  * The chathead animation the familiar details interface (662) plays for [npcId], resolved the
  * same way its client script (cs2 751) does: the follower_details_chathead_animation varbit map
- * gives the familiar's value, which keys enum 1276, or enum 1275 with 50 subtracted when over 50.
- * Values without an enum entry (e.g. the map's zeroes) take the enum's default, a generic
- * head-bob, exactly as the client's datamap lookup does. Null only for npcs outside the map
- * entirely, which use the standard [Expression] animations.
+ * gives the familiar or pet's value, which keys enum 1276, or enum 1275 with 50 subtracted when
+ * over 50. Values without an enum entry (e.g. the map's zeroes) take the enum's default, a
+ * generic head-bob, exactly as the client's datamap lookup does. Null for npcs outside the map,
+ * which use the standard [Expression] animations. Gated to familiars and pets so a wild npc
+ * sharing a familiar's base name can't pick up its animation.
  */
 fun familiarChatheadAnimation(npcId: String): Int? {
-    if (!npcId.endsWith("_familiar")) {
+    if (!npcId.endsWith("_familiar") && !npcId.startsWith("pet_")) {
         return null
     }
     val values = (VariableDefinitions.get("follower_details_chathead_animation")?.values as? MapValues)?.values ?: return null

@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
@@ -194,15 +193,13 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
         row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    val rowAnim = row.animOrNull("chathead_anim") // TODO no pet dialogues are added, "pet_details_chathead_animations_normal" is only for pouch familiars
-    val fallbackAnim = when {
-        rowAnim != null -> rowAnim
-        else -> AnimationDefinitions.get(EnumDefinitions.int("pet_details_chathead_animations_normal", pet.def.id)).stringId
-    }
+    // Mapped pets (sneakerpeeper) resolve their chathead animation through
+    // familiarChatheadAnimation like familiars do; the expression is only a
+    // fallback for pets outside the varbit map.
     for (line in chosen.stringList("lines")) {
         val rendered = substitutePlayerName(line, name)
         when {
-            rendered.startsWith("npc:") -> npc(npcId = pet.id, expression = fallbackAnim, text = breakParenTranslation(rendered.removePrefix("npc:").trim()))
+            rendered.startsWith("npc:") -> npc(npcId = pet.id, expression = "neutral", text = breakParenTranslation(rendered.removePrefix("npc:").trim()))
             rendered.startsWith("player:") -> player<Happy>(rendered.removePrefix("player:").trim())
             rendered.startsWith("overhead:") -> pet.say(rendered.removePrefix("overhead:").trim())
             rendered.startsWith("[") && rendered.endsWith("]") -> statement(rendered.removePrefix("[").removeSuffix("]").trim())
