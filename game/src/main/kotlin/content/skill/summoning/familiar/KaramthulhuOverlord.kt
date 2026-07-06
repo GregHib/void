@@ -9,16 +9,18 @@ import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.skill.summoning.commandFamiliarAttack
+import content.skill.summoning.familiarSpecialHit
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.random
 
 class KaramthulhuOverlord : Script {
     init {
-        // "Drown" orders the overlord to blast the owner's current foe with its water spell.
+        // "Drown" makes the overlord instantly blast the owner's current foe with its magic-based
+        // water attack, at the cost of two summoning points.
         npcOperate("Drown", "karamthulhu_overlord_familiar") { (clicked) ->
             if (clicked != follower) {
                 return@npcOperate
@@ -28,7 +30,20 @@ class KaramthulhuOverlord : Script {
                 message("Your familiar has no target to attack.")
                 return@npcOperate
             }
-            commandFamiliarAttack(enemy)
+            if (levels.get(Skill.Summoning) < 2) {
+                message("You do not have enough summoning points to do that.")
+                return@npcOperate
+            }
+            val cast = familiarSpecialHit(
+                enemy,
+                maxHit = 76,
+                anim = "karamthulhu_overlord_familiar_attack",
+                sourceGfx = "karamthulhu_overlord_familiar_attack_gfx",
+                projectile = "karamthulhu_overlord_familiar_projectile",
+            )
+            if (cast) {
+                levels.drain(Skill.Summoning, 2)
+            }
         }
 
         npcOperate("Interact", "karamthulhu_overlord_familiar") {
