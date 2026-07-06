@@ -1,0 +1,35 @@
+[butterfly_net]
+id = 2623
+
+[impling_spawn]
+id = 3722
+
+[trap_dismantle]
+id = 2632
+
+[hunting_smoke2]
+id = 2654
+
+[pitfall_collapse]
+id = 2638 # radius 5
+
+[panther_death]
+id = 667 # radius 5
+
+[hunting_jump]
+id = 2635
+
+[lay_net_trap]
+id = 2644
+
+[bird_caught]
+id = 2625
+
+[set_noose]
+id = 2646
+
+[salamander_hit]
+id = 739
+
+[twitch_net]
+id = 2652

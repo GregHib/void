@@ -51,6 +51,7 @@ internal class SatchelTest : WorldTest() {
         player.inventory.add(item)
 
         player.itemOnItem(1, 0)
+        tick(1)
 
         assertNotEquals(0, player.inventory.charges(player, 0))
         assertFalse(player.inventory.contains(item))
@@ -64,6 +65,7 @@ internal class SatchelTest : WorldTest() {
         player.inventory.add(item)
 
         player.itemOnItem(1, 0)
+        tick(1)
 
         assertEquals(7, player.inventory.charges(player, 0))
         assertTrue(player.inventory.contains(item))

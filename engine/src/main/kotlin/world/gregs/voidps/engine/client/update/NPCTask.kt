@@ -59,6 +59,7 @@ class NPCTask(
                     // Revert
                     npc.visuals.transform.id = npc.def.id
                     npc.flagTransform()
+                    npc.clear("transform_id")
                 }
             }
         } else if (++npc.lifecycle == 0) {

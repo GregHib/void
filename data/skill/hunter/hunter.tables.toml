@@ -1,0 +1,293 @@
+[trap_npcs]
+row = "npc"
+trap = "string"
+
+[.hunting_ojibway_trap_npc]
+trap = "bird_snare"
+
+[.hunting_ojibway_trap_npc_off]
+trap = "bird_snare"
+
+[.hunting_sapling_trap_npc]
+trap = "swamp_net"
+
+[.hunting_sapling_trap_npc_off]
+trap = "swamp_net"
+
+[traps]
+trap = "obj"       # the active (set) object
+fail = "obj"       # the failed/collapsed object (optional)
+setup_anim = "anim"
+setup_sound = "string"
+take_down_anim = "anim"
+level = "int"
+level_default = 1
+requires = "list<item>"
+items = "list<item>"
+max = "int"
+max_default = 5
+step_away = "boolean"
+step_away_default = true
+item_message = "string"
+collapse_ticks = "int"
+collapse_message = "string"
+npc = "npc"
+bait = "item"
+
+[.bird_snare]
+trap = "bird_snare"
+fail = "bird_snare_fail"
+setup_anim = "lay_trap"
+setup_sound = "set_noose"
+take_down_anim = "take_trap"
+items = ["bird_snare"]
+collapse_ticks = 100
+collapse_message = "The bird snare that you laid has fallen over."
+npc = "hunting_ojibway_trap_npc"
+
+[.rabbit_snare]
+trap = "rabbit_snare"
+fail = "rabbit_snare_fail"
+setup_anim = "lay_trap_small"
+take_down_anim = "lay_trap_small"
+items = ["rabbit_snare"]
+collapse_ticks = 104
+collapse_message = "The snare that you placed has fallen over."
+npc = "hunting_snare_trap_npc"
+
+[.box_trap]
+level = 27
+trap = "box_trap"
+fail = "box_trap_fail"
+setup_anim = "lay_trap"
+take_down_anim = "lay_trap"
+items = ["box_trap"]
+npc = "hunting_box_trap_npc"
+
+[.boulder_trap]
+level = 23
+trap = "boulder_trap_setup"
+fail = "boulder_trap_fail"
+setup_anim = "lay_trap"
+take_down_anim = "lay_trap"
+requires = ["knife"]
+items = ["logs"]
+max = 1
+step_away = false
+npc = "hunting_deadfall_trap_npc"
+
+[.swamp_net]
+level = 29
+trap = "swamp_net_setup"
+bait = "guam_tar"
+fail = "swamp_net_failing"
+setup_anim = "lay_net_trap"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
+items = ["rope", "small_fishing_net"]
+collapse_ticks = 102
+collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
+
+[.orange_net]
+level = 47
+trap = "orange_net_setup"
+bait = "marrentill_tar"
+setup_anim = "lay_net_trap"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
+items = ["rope", "small_fishing_net"]
+collapse_ticks = 102
+collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
+
+[.red_net]
+level = 59
+trap = "red_net_setup"
+bait = "tarromin_tar"
+setup_anim = "lay_net_trap"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
+items = ["rope", "small_fishing_net"]
+collapse_ticks = 102
+collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
+
+[.black_net]
+level = 67
+trap = "black_net_setup"
+bait = "harralander_tar"
+setup_anim = "lay_net_trap"
+setup_sound = "lay_net_trap"
+take_down_anim = "take_trap"
+items = ["rope", "small_fishing_net"]
+collapse_ticks = 102
+collapse_message = "The net trap that you set has collapsed."
+npc = "hunting_sapling_trap_npc"
+
+[.pitfall]
+level = 31
+trap = "pitfall_0"
+setup_anim = "lay_trap_small"
+take_down_anim = "lay_trap_small"
+requires = ["knife"]
+items = ["logs"]
+max = 1
+item_message = "You need some logs and a knife to set a pitfall trap."
+collapse_ticks = 300
+collapse_message = "The pitfall trap that you constructed has collapsed."
+
+# ---------------------------------------------------------------------------
+# Creatures — keyed by the *caught* object id (the triggered/full-trap object)
+# ---------------------------------------------------------------------------
+[creatures]
+trap = "string"        # which trap type is used
+caught_obj = "obj"     # object id when creature is caught inside
+level = "int"          # minimum hunter level to lure
+xp = "int"             # xp * 0.1  (stored as tenths for int precision)
+catch_anim = "anim"    # animation played by creature as it enters trap
+fail_anim = "anim"     # animation played by creature on escape (optional)
+loot = "list<item>"    # items awarded on catch
+chance = "range"
+
+[.crimson_swift]
+trap = "bird_snare"
+caught_obj = "snare_crimson_swift"
+level = 1
+xp = 340
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["red_feather", "raw_bird_meat", "bones"]
+chance = [100, 420]
+
+[.golden_warbler]
+trap = "bird_snare"
+caught_obj = "snare_golden_warbler"
+level = 5
+xp = 480
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["yellow_feather", "raw_bird_meat", "bones"]
+chance = [92, 400]
+
+[.copper_longtail]
+trap = "bird_snare"
+caught_obj = "snare_copper_longtail"
+level = 9
+xp = 610
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["orange_feather", "raw_bird_meat", "bones"]
+chance = [85, 390]
+
+[.cerulean_twitch]
+trap = "bird_snare"
+caught_obj = "snare_cerulean_twitch"
+level = 11
+xp = 647
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["blue_feather", "raw_bird_meat", "bones"]
+chance = [82, 380]
+
+[.tropical_wagtail]
+trap = "bird_snare"
+caught_obj = "snare_tropical_wagtail"
+level = 19
+xp = 952
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["stripy_feather", "raw_bird_meat", "bones"]
+chance = [75, 370]
+
+[.wimpy_bird]
+trap = "bird_snare"
+caught_obj = "snare_wimpy_bird"
+level = 39
+xp = 1670
+catch_anim = "bird_catch"
+fail_anim = "bird_fail"
+loot = ["wimpy_feather", "raw_bird_meat", "bones"]
+chance = [65, 350]
+
+[.grey_chinchompa]
+trap = "box_trap"
+caught_obj = "box_trap_grey_chinchompa"
+level = 53
+xp = 1984
+catch_anim = "chinchompa_catch"
+loot = ["box_trap", "chinchompa"]
+
+[.red_chinchompa]
+trap = "box_trap"
+caught_obj = "box_trap_red_chinchompa"
+level = 63
+xp = 2650
+catch_anim = "chinchompa_catch"
+loot = ["box_trap", "red_chinchompa"]
+
+[.barb_tailed_kebbit]
+trap = "boulder_trap"
+caught_obj = "boulder_trap_barb_tailed_kebbit"
+level = 23
+xp = 1680
+catch_anim = "kebbit_catch"
+fail_anim = "kebbit_fail"
+loot = ["bones", "barb_tail_harpoon"]
+
+[.swamp_lizard]
+trap = "swamp_net"
+level = 29
+xp = 1520
+catch_anim = "net_catch"
+loot = ["green_salamander"]
+chance = [52, 360]
+
+[.orange_salamander]
+trap = "orange_net"
+level = 47
+xp = 2240
+catch_anim = "net_catch"
+loot = ["orange_salamander"]
+chance = [16, 288]
+
+[.red_salamander]
+trap = "red_net"
+level = 59
+xp = 2720
+catch_anim = "net_catch"
+loot = ["red_salamander"]
+chance = [0, 240]
+
+[.black_salamander]
+trap = "black_net"
+level = 67
+xp = 3040
+catch_anim = "net_catch"
+loot = ["black_salamander"]
+chance = [0, 212]
+
+[.pawya]
+trap = "box_trap"
+caught_obj = "box_trap_pawya"
+level = 66
+xp = 4000
+catch_anim = "chinchompa_catch"
+loot = ["bones", "raw_pawya_meat"]
+
+[.grenwall]
+trap = "box_trap"
+caught_obj = "box_trap_grenwall"
+level = 77
+xp = 11000
+catch_anim = "chinchompa_catch"
+loot = ["grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes"]
+
+[.rabbit]
+trap = "rabbit_snare"
+caught_obj = "rabbit_snare_caught"
+level = 27
+xp = 1440
+catch_anim = "lay_trap_small"
+fail_anim = "lay_trap_small"
+loot = ["rabbit_foot", "raw_rabbit", "bones"]

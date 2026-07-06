@@ -1,0 +1,264 @@
+[implings]
+npc = "npc"
+level = "int"
+xp = "int"
+xp_puro = "int"
+jar = "item"
+chance = "range"
+
+[.baby_impling]
+npc = "baby_impling"
+level = 17
+xp = 250
+xp_puro = 200
+jar = "baby_impling_jar"
+chance = [79, 402]
+
+[.young_impling]
+npc = "young_impling"
+level = 22
+xp = 650
+xp_puro = 480
+jar = "young_impling_jar"
+chance = [69, 351]
+
+[.gourmet_impling]
+npc = "gourmet_impling"
+level = 28
+xp = 1130
+xp_puro = 820
+jar = "gourmet_impling_jar"
+chance = [61, 325]
+
+[.earth_impling]
+npc = "earth_impling"
+level = 36
+xp = 1770
+xp_puro = 1260
+jar = "earth_impling_jar"
+chance = [51, 302]
+
+[.essence_impling]
+npc = "essence_impling"
+level = 42
+xp = 2250
+xp_puro = 1600
+jar = "essence_impling_jar"
+chance = [40, 275]
+
+[.eclectic_impling]
+npc = "eclectic_impling"
+level = 50
+xp = 2890
+xp_puro = 2050
+jar = "eclectic_impling_jar"
+chance = [30, 250]
+
+[.spirit_impling]
+npc = "spirit_impling"
+level = 54
+xp = 3210
+xp_puro = 2270
+jar = "spirit_impling_jar"
+chance = [24, 225] # Inferred from curve of others
+
+[.nature_impling]
+npc = "nature_impling"
+level = 58
+xp = 3530
+xp_puro = 2500
+jar = "nature_impling_jar"
+chance = [20, 200]
+
+[.magpie_impling]
+npc = "magpie_impling"
+level = 65
+xp = 4090
+xp_puro = 2890
+jar = "magpie_impling_jar"
+chance = [15, 177]
+
+[.ninja_impling]
+npc = "ninja_impling"
+level = 74
+xp = 4810
+xp_puro = 3390
+jar = "ninja_impling_jar"
+chance = [10, 151]
+
+[.pirate_impling]
+npc = "pirate_impling"
+level = 76
+xp = 4970
+xp_puro = 3500
+jar = "pirate_impling_jar"
+chance = [9, 145] # Inferred from curve of others
+
+[.dragon_impling]
+npc = "dragon_impling"
+level = 83
+xp = 5530
+xp_puro = 3900
+jar = "dragon_impling_jar"
+chance = [5, 125]
+
+[.zombie_impling]
+npc = "zombie_impling"
+level = 87
+xp = 5850
+xp_puro = 4120
+jar = "zombie_impling_jar"
+chance = [3, 107] # Inferred from curve of others
+
+[.kingly_impling]
+npc = "kingly_impling"
+level = 91
+xp = 6170
+xp_puro = 4340
+jar = "kingly_impling_jar"
+chance = [1, 90] # Inferred from curve of others
+
+[impling_always_spawns]
+tile = "tile"
+
+[.zanaris]
+tile = { x = 2481, y = 4442 }
+
+[impling_spawns]
+tile = "tile"
+low_tier = "boolean"
+
+[.mos_le_harmless]
+tile = { x = 3730, y = 3016 }
+
+[.pollnivneach]
+tile = { x = 3356, y = 3013 }
+
+[.bandit_camp]
+tile = { x = 3169, y = 3001 }
+
+[.river_elid]
+tile = { x = 3408, y = 3125 }
+
+[.al_kharid_mine]
+tile = { x = 3292, y = 3265 }
+
+[.lumbridge_cows]
+tile = { x = 3239, y = 3283 }
+
+[.draynor_jail]
+tile = { x = 3143, y = 3231 }
+
+[.draynor_manor]
+tile = { x = 3135, y = 3378 }
+
+[.ice_mountain]
+tile = { x = 3020, y = 3424 }
+
+[.rimmington]
+tile = { x = 2982, y = 3276 }
+
+[.black_knights_fortress]
+tile = { x = 3018, y = 3523 }
+
+[.canifis]
+tile = { x = 3454, y = 3486 }
+
+[.fenkenstrains_castle]
+tile = { x = 3548, y = 3528 }
+
+[.mort_myre_swamp]
+tile = { x = 3441, y = 3351 }
+
+[.heroes_guild]
+tile = { x = 2904, y = 3489 }
+
+[.white_wolf_mountain]
+tile = { x = 2814, y = 3512 }
+
+[.sinclair_mansion]
+tile = { x = 2740, y = 3535 }
+
+[.rellekka]
+tile = { x = 2654, y = 3609 }
+
+[.ice_hunter]
+tile = { x = 2727, y = 3763 }
+
+[.ranging_guild]
+tile = { x = 2646, y = 3421 }
+
+[.legends_guild]
+tile = { x = 2739, y = 3342 }
+
+[.tree_gnome_stronghold]
+tile = { x = 2459, y = 3418 }
+
+[.tree_gnome_swamp]
+tile = { x = 2394, y = 3512 }
+
+[.ardounge_zoo]
+tile = { x = 2592, y = 3252 }
+
+[.ourania]
+tile = { x = 2470, y = 3217 }
+
+[.karamja_volcano]
+tile = { x = 2843, y = 3161 }
+
+[.karamja]
+tile = { x = 2849, y = 3033 }
+
+[.kharazi_jungle]
+tile = { x = 2841, y = 2928 }
+
+[.yanille]
+tile = { x = 2526, y = 3101 }
+
+[.feldip_hills]
+tile = { x = 2584, y = 2972 }
+
+[.mobilising_armies]
+tile = { x = 2500, y = 2875 }
+
+[.elf_camp]
+tile = { x = 2203, y = 3236 }
+
+[.piscatoris]
+tile = { x = 2331, y = 3639 }
+
+[.al_kharid_palace]
+tile = { x = 3278, y = 3155 }
+low_tier = true
+
+[.draynor]
+tile = { x = 3093, y = 3238 }
+low_tier = true
+
+[.varrock]
+tile = { x = 3283, y = 3428 }
+low_tier = true
+
+[.falador]
+tile = { x = 2967, y = 3411 }
+low_tier = true
+
+[.catherby]
+tile = { x = 2784, y = 3463 }
+low_tier = true
+
+[.fishing_guild]
+tile = { x = 2567, y = 3384 }
+low_tier = true
+
+[.castle_wars]
+tile = { x = 2455, y = 3084 }
+low_tier = true
+
+[.isafdar]
+tile = { x = 2279, y = 3188 }
+low_tier = true
+
+[.falconer]
+tile = { x = 2354, y = 3608 }
+low_tier = true

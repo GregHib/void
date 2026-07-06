@@ -57,6 +57,11 @@ interface Storage {
     fun save(accounts: List<PlayerSave>)
 
     /**
+     * Saves an abuse report
+     */
+    fun saveReport(report: AbuseReport)
+
+    /**
      * Checks if an account exists
      */
     fun exists(accountName: String): Boolean

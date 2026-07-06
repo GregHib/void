@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.type.equals
 
 class ChaosTunnels(val teleports: ObjectTeleports) : Script {
     init {
@@ -24,14 +22,12 @@ class ChaosTunnels(val teleports: ObjectTeleports) : Script {
         }
     }
 
-    private fun Player.rift(target: GameObject, direction: String): Int = if (get("warning_chaos_tunnels_$direction", 0) == 7) {
+    private suspend fun Player.rift(target: GameObject, direction: String): Int = if (get("warning_chaos_tunnels_$direction", 0) == 7) {
         Teleport.CONTINUE
     } else {
-        queue("warning_chaos_tunnels_$direction") {
-            if (warning("chaos_tunnels_$direction")) {
-                val definition = teleports.get("Enter")[target.tile.id]!!
-                teleports.teleportContinue(this@rift, definition, target)
-            }
+        if (warning("chaos_tunnels_$direction")) {
+            val definition = teleports.get("Enter")[target.tile.id]!!
+            teleports.teleportContinue(this@rift, definition, target)
         }
         Teleport.CANCEL
     }

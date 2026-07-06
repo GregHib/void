@@ -13,22 +13,19 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.queue.queue
 
 class EnchantedGem : Script {
 
     init {
         itemOption("Activate", "enchanted_gem") {
-            queue("enchanted_gem_activate") {
-                val master = slayerMaster
-                npc<Happy>(master, "Hello there ${this@itemOption.name}, what can I help you with?")
-                choice {
-                    howAmIDoing()
-                    whoAreYou()
-                    whereAreYou()
-                    anyTips()
-                    option<Neutral>("That's all thanks.")
-                }
+            val master = slayerMaster
+            npc<Happy>(master, "Hello there ${this@itemOption.name}, what can I help you with?")
+            choice {
+                howAmIDoing()
+                whoAreYou()
+                whereAreYou()
+                anyTips()
+                option<Neutral>("That's all thanks.")
             }
         }
 

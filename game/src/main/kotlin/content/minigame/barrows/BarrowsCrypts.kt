@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -172,11 +171,8 @@ class BarrowsCrypts : Script {
                 random < 76 -> "bloodworm" // 32/128
                 else -> "skeleton_barrows" // 52/128
             }
-            val npc = NPCs.add(id, spawn)
+            val npc = NPCs.add(id, spawn, ticks = TimeUnit.MINUTES.toTicks(2))
             npc.interactPlayer(this, "Attack")
-            npc.queue("despawn", TimeUnit.MINUTES.toTicks(2)) {
-                NPCs.remove(npc)
-            }
         }
     }
 

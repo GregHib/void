@@ -2,6 +2,8 @@ package world.gregs.voidps.engine.client.instruction
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.InventoryDefinitions
@@ -9,6 +11,8 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.suspend.Suspension
 
 class InterfaceHandler(
     private val inventoryDefinitions: InventoryDefinitions,
@@ -116,6 +120,21 @@ class InterfaceHandler(
             return inventory
         }
     }
+}
+
+fun <C: Character> C.protectedAccess(block: suspend C.() -> Unit): Boolean {
+    if (contains("delay") && (this is Player && hasMenuOpen())) {
+        return false
+    }
+    // Check suspension type to avoid breaking interfaces with selection options and custom suspension usage
+    // like quest start modal using StringEntry or grand exchange using Continue
+    if (suspension != null && suspension is Suspension.Delay) {
+        return false
+    }
+    Script.launch {
+        block.invoke(this@protectedAccess)
+    }
+    return true
 }
 
 data class InterfaceData(

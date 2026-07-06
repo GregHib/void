@@ -50,6 +50,7 @@ class InstructionHandlers(
     var chatTypeChangeHandler: ChatTypeChange.(Player) -> Unit = empty()
     var clanChatKickHandler: ClanChatKick.(Player) -> Unit = empty()
     var clanChatRankHandler: ClanChatRank.(Player) -> Unit = empty()
+    var reportAbuseHandler: ReportAbuse.(Player) -> Unit = empty()
 
     private fun <I : Instruction> empty(): I.(Player) -> Unit {
         val logger = InlineLogger("InstructionHandler")
@@ -98,6 +99,7 @@ class InstructionHandlers(
             is ChatTypeChange -> chatTypeChangeHandler.invoke(instruction, player)
             is ClanChatKick -> clanChatKickHandler.invoke(instruction, player)
             is ClanChatRank -> clanChatRankHandler.invoke(instruction, player)
+            is ReportAbuse -> reportAbuseHandler.invoke(instruction, player)
             is SongEnd -> songEndHandler.invoke(instruction, player)
             else -> return false
         }
@@ -132,6 +134,7 @@ inline fun <reified I : Instruction> instruction(noinline handler: I.(Player) ->
         ChatTypeChange::class -> get<InstructionHandlers>().chatTypeChangeHandler = handler as ChatTypeChange.(Player) -> Unit
         ClanChatKick::class -> get<InstructionHandlers>().clanChatKickHandler = handler as ClanChatKick.(Player) -> Unit
         ClanChatRank::class -> get<InstructionHandlers>().clanChatRankHandler = handler as ClanChatRank.(Player) -> Unit
+        ReportAbuse::class -> get<InstructionHandlers>().reportAbuseHandler = handler as ReportAbuse.(Player) -> Unit
         else -> throw UnsupportedOperationException("Unknown Instruction type: ${I::class}")
     }
 }

@@ -8,7 +8,6 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.kotlin.embeddable)
 }
 
 gradlePlugin {

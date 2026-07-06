@@ -35,7 +35,7 @@ object DropTableConverter {
                 builder.name = name
             } else if (line.startsWith("{{DropsLineClue|")) {
                 process(builder, line.replace("Clue|type=", "|name=").replace("|rarity=", " clue scroll|quantity=1|rarity="))
-            } else if (line.startsWith("{{DropsLine|")) {
+            } else if (line.startsWith("{{DropsLine")) {
                 process(builder, line)
             } else if (line.contains("DropTableInfo")) {
                 val parts = line.trim('{', ' ', '}').split('|')

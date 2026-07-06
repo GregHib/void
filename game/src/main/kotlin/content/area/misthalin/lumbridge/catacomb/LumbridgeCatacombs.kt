@@ -40,11 +40,8 @@ class LumbridgeCatacombs : Script {
                 "unstarted" -> {
                     val xenia = NPCs.findBySpawnOrNull(Tile(3244, 3198), "xenia")
                     if (xenia != null) {
-                        queue("xenia_greet") {
-                            talkWith(xenia) {
-                                npc<Neutral>("Hey! I want to talk to you!")
-                            }
-                        }
+                        talkWith(xenia)
+                        npc<Neutral>("Hey! I want to talk to you!")
                     }
                     Teleport.CANCEL
                 }
@@ -52,23 +49,19 @@ class LumbridgeCatacombs : Script {
                 else -> {
                     setInstanceLogout(Tile(3246, 3198, 0))
                     if (quest("blood_pact") == "started") {
-                        longQueue("blood_pact_intro") {
-                            open("fade_out")
-                            delay(1)
-                            cutscene()
-                        }
+                        open("fade_out")
+                        delay(1)
+                        cutscene()
                     } else {
-                        longQueue("blood_pact_reenter") {
-                            open("fade_out")
-                            delay(1)
-                            smallInstance(Region(15446))
-                            val offset = instanceOffset()
-                            val destination = offset.tile(3877, 5528, 1)
-                            tele(destination)
-                            face(Direction.NORTH)
-                            respawnInstance(offset)
-                            open("fade_in")
-                        }
+                        open("fade_out")
+                        delay(1)
+                        smallInstance(Region(15446))
+                        val offset = instanceOffset()
+                        val destination = offset.tile(3877, 5528, 1)
+                        tele(destination)
+                        face(Direction.NORTH)
+                        respawnInstance(offset)
+                        open("fade_in")
                     }
                     Teleport.CANCEL
                 }

@@ -4,6 +4,7 @@ import content.entity.effect.freeze
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 
 class BindSpells : Script {
 
@@ -13,7 +14,7 @@ class BindSpells : Script {
 
     fun attack(source: Character, attack: world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack) {
         val (target, damage, _, _, spell) = attack
-        if (damage <= 0 || (spell != "bind" && spell != "snare" && spell != "entangle")) {
+        if ((damage <= 0 && (target !is NPC || !target.id.endsWith("_impling"))) || (spell != "bind" && spell != "snare" && spell != "entangle")) {
             return
         }
         source.freeze(target, Tables.int("spells.$spell.freeze_ticks"))

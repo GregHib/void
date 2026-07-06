@@ -1,0 +1,10 @@
+[muted_until]
+format = "int"
+persist = true
+
+[banned_until]
+format = "int"
+persist = true
+
+[black_marks]
+persist = true

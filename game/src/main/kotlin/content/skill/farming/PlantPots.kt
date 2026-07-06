@@ -15,7 +15,9 @@ class PlantPots : Script {
         itemOnObjectOperate("plant_pot_empty", "*_patch_weeds_*") {
             message("This patch needs weeding first.")
         }
+
         itemOnObjectOperate("plant_pot_empty", "*_patch_weeded", handler = ::plantPot)
+
         itemOnItem("watering_can_0", "*_seedling") { _, _ ->
             message("You need to fill the watering can first.")
         }

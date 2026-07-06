@@ -38,7 +38,6 @@ class ItemOnItemsTest : WorldTest() {
         player.inventory.add("chocolate_dust", 14)
 
         player.itemOnItem(12, 14)
-
         val amount = 5
         tick(1)
         player["skill_creation_amount"] = amount

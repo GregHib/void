@@ -4,7 +4,6 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.type.Tile
 
@@ -22,20 +21,19 @@ class GliderMap : Script {
             }
             set("gnome_glider_journey", "${current}_to_${it.component}")
             open("fade_out")
-            World.queue("gnome_glider_$index", 3) {
-                val target = when (it.component) {
-                    "ta_quir_priw" -> Tile(2465, 3500, 3)
-                    "sindarpos" -> Tile(2850, 3497)
-                    "lemanto_andra" -> Tile(3325, 3429)
-                    "kar_hewo" -> Tile(3285, 3212)
-                    "lemantolly_undri" -> Tile(2548, 2970)
-                    "gandius" -> Tile(2972, 2965)
-                    else -> return@queue
-                }
-                tele(target)
-                open("fade_in")
-                clear("gnome_glider_journey")
+            delay(3)
+            val target = when (it.component) {
+                "ta_quir_priw" -> Tile(2465, 3500, 3)
+                "sindarpos" -> Tile(2850, 3497)
+                "lemanto_andra" -> Tile(3325, 3429)
+                "kar_hewo" -> Tile(3285, 3212)
+                "lemantolly_undri" -> Tile(2548, 2970)
+                "gandius" -> Tile(2972, 2965)
+                else -> return@interfaceOption
             }
+            tele(target)
+            open("fade_in")
+            clear("gnome_glider_journey")
         }
 
         interfaceOpened("glider_map") {

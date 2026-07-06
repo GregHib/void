@@ -94,6 +94,7 @@ sealed class Condition(val priority: Int) {
             "owns" -> parseOwns(list)
             "variable" -> parseVariable(list)
             "clock" -> parseClock(list)
+            "members" -> parseMembers(list)
             "timer" -> parseTimer(list)
             "queue" -> parseQueue(list)
             "area" -> parseArea(list)
@@ -241,6 +242,14 @@ sealed class Condition(val priority: Int) {
                     )
                 }
                 return BotHasClock(id = map["id"] as String)
+            }
+            return null
+        }
+
+        private fun parseMembers(list: List<Map<String, Any>>): BotMembers? {
+            val map = list.single()
+            if (map.containsKey("req")) {
+                return BotMembers(map["req"] as Boolean)
             }
             return null
         }

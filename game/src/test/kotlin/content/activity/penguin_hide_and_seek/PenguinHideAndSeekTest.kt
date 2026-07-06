@@ -142,6 +142,7 @@ class PenguinHideAndSeekTest : WorldTest() {
         player.interfaces = interfaces
         player.dialogueContinue(4)
         player.itemOption("Read", "spy_notebook")
+        tick()
         assertTrue(player.containsMessage("You have recently spotted 2 penguins."))
         assertFalse(player.containsMessage("polar bear agent"))
         assertTrue(player.containsMessage("You have 3 Penguin Points to spend with Larry."))

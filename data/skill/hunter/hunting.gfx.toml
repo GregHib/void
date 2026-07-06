@@ -21,3 +21,24 @@ id = 946
 
 [kebbit]
 id = 951
+
+[release_ruby_harvest]
+id = 917
+
+[release_sapphire_glacialis]
+id = 916
+
+[release_snowy_knight]
+id = 915
+
+[release_black_warlock]
+id = 914
+
+[catch_success]
+id = 951
+
+[catch_fail]
+id = 946
+
+[pitfall_collapse]
+id = 935

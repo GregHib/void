@@ -258,6 +258,9 @@ id = 5
 [.close_quick_chat]
 id = 4
 
+[.chat_line0]
+id = "180-279"
+
 [dialogue_select2_models]
 id = 140
 type = "dialogue_box"

@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.composeHotReload)
 }
 
-version = "1.0.1"
+version = "1.1.0"
 
 kotlin {
     jvmToolchain(21)
@@ -80,7 +80,8 @@ compose {
 
             buildTypes.release.proguard {
                 isEnabled.set(true)
-                optimize.set(true)
+                optimize.set(false)
+                version.set("7.9.1")
                 configurationFiles.from(project.file("compose-proguard-rules.pro"))
             }
         }

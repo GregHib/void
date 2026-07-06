@@ -22,6 +22,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.inventory.add(staff)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(0, player.inventory.count(rune))
         assertEquals(10, player.inventory.charges(player, 1))
@@ -35,6 +36,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.inventory.charge(player, 1, 995)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(5, player.inventory.count(rune))
         assertEquals(1000, player.inventory.charges(player, 1))
@@ -48,6 +50,7 @@ abstract class DungeoneeringRewardStaffTest : WorldTest() {
         player.inventory.charge(player, 1, 1000)
 
         player.itemOnItem(0, 1)
+        tick(1)
 
         assertEquals(10, player.inventory.count(rune))
         assertEquals(1000, player.inventory.charges(player, 1))

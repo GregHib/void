@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.queue.longQueue
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
@@ -166,10 +165,7 @@ class LumbridgeChurch : Script {
         delay(1)
         sound("bigghost_appear")
         delay(1)
-        val ghost = NPCs.add("restless_ghost", ghostSpawn, Direction.SOUTH)
+        val ghost = NPCs.add("restless_ghost", ghostSpawn, Direction.SOUTH, ticks = TimeUnit.SECONDS.toTicks(60))
         ghost.animDelay("restless_ghost_awakens")
-        ghost.queue("despawn", TimeUnit.SECONDS.toTicks(60)) {
-            NPCs.remove(ghost)
-        }
     }
 }

@@ -93,7 +93,10 @@ open class Interact(
         calculate()
         character.walkTrigger()
         val interacted = processInteraction()
-        if (interacted && interactionFinished()) {
+        // A launched interaction that has finished is complete even if it couldn't re-interact
+        // this tick (e.g. the target object was replaced, changing collision so reached() now
+        // fails) - clear it instead of falling through to cantReach().
+        if ((interacted || launched) && interactionFinished()) {
             clear()
             return
         }

@@ -50,7 +50,7 @@ abstract class DungeoneeringBoxTest : WorldTest() {
         player.inventory.add(runes)
 
         player.itemOnItem(1, 0)
-        println(player.inventory.items)
+        tick(1)
 
         for (rune in runes) {
             assertFalse("Expected no $rune in inventory, ${player.inventory.count(rune.id)} found.") {

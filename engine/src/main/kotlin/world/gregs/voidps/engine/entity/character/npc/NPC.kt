@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
 import world.gregs.voidps.engine.entity.character.mode.move.Steps
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -47,6 +48,12 @@ data class NPC(
         }
     override val collisionFlag: Int
         get() = CollisionFlag.BLOCK_NPCS or if (transformDef["solid", false]) CollisionFlag.FLOOR else 0
+
+    val owner: Player?
+        get() {
+            val account: String = this["owner"] ?: return null
+            return Players.findByAccount(account)
+        }
 
     val transformId: String
         get() = this["transform_id", id]

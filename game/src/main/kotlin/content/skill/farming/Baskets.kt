@@ -87,12 +87,10 @@ class Baskets : Script {
 
             itemOption("Remove-one", "${fruit.plural}_#") { (item, slot) ->
                 val current = item.id.removePrefix("${fruit.plural}_").toInt()
-
                 inventory.transaction {
                     add(id)
                     replace(slot, item.id, if (current == 1) "basket" else "${fruit.plural}_${current - 1}")
                 }
-
                 when (inventory.transaction.error) {
                     is TransactionError.Full -> inventoryFull()
                     TransactionError.None -> message("You take ${fruit.description} out of the ${fruit.name} basket.")
