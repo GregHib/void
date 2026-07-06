@@ -3,12 +3,14 @@ package content.social.report
 import WorldTest
 import interfaceOption
 import io.mockk.mockkStatic
+import io.mockk.unmockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.rights
@@ -16,6 +18,7 @@ import world.gregs.voidps.network.client.instruction.ChatPublic
 import world.gregs.voidps.network.client.instruction.ReportAbuse
 import world.gregs.voidps.network.login.protocol.encode.interfaceVisibility
 import world.gregs.voidps.network.login.protocol.encode.message
+import world.gregs.voidps.network.login.protocol.encode.sendScript
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -37,6 +40,25 @@ internal class ReportAbuseTest : WorldTest() {
 
         verify {
             client.message("Thank-you, your abuse report has been received.", ChatType.Game.id)
+        }
+    }
+
+    @Test
+    fun `Submitting a report closes the interface and restores the chat box`() = runTest {
+        val (player, client) = createClient("snitch")
+        createPlayer(name = "scammer")
+        player.open("report_abuse")
+        assertTrue(player.hasOpen("report_abuse"))
+
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt")
+        try {
+            player.instructions.send(ReportAbuse("scammer", 15, 0, ""))
+            tick()
+
+            assertFalse(player.hasOpen("report_abuse"))
+            verify { client.sendScript(244, any()) } // close_report_abuse
+        } finally {
+            unmockkStatic("world.gregs.voidps.network.login.protocol.encode.ScriptEncoderKt")
         }
     }
 
