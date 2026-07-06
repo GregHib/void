@@ -34,7 +34,7 @@ class Pikkupstix : Script {
         // Enchant headgear to hold Summoning scrolls (see EnchantedHeadgear). Right-click Enchant, or
         // use the helm on him.
         npcOperate("Enchant", "pikkupstix") {
-            npc<Neutral>("Bring me a piece of headwear and I will enchant it to hold Summoning scrolls, free of charge. Just use it on me, or fill it with scrolls yourself.")
+            npc<Neutral>("Bring me a piece of headwear and I'll enchant it to hold Summoning scrolls, free of charge. Just use the helm on me.")
         }
         itemOnNPCOperate("*", "pikkupstix") { (_, item) ->
             enchantHeadgear(item)

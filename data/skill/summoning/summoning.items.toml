@@ -4467,3 +4467,82 @@ summon_points = 1
 
 [meerkats_pouch_noted]
 id = 19623
+
+# Enchanted (empty) middle-state headgear - Pikkupstix enchants the plain helm into these, then
+# scrolls are stored to turn them into the _charged forms. Untradeable until disenchanted.
+[rune_full_helm_enchanted]
+id = 12664
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[dragon_helm_enchanted]
+id = 12666
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[berserker_helm_enchanted]
+id = 12674
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[warrior_helm_enchanted]
+id = 12676
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[helm_of_neitiznot_enchanted]
+id = 12680
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[snakeskin_bandana_enchanted]
+id = 12660
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[archer_helm_enchanted]
+id = 12672
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[armadyl_helmet_enchanted]
+id = 12670
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[splitbark_helm_enchanted]
+id = 12662
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[farseer_helm_enchanted]
+id = 12678
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[lunar_helm_enchanted]
+id = 12668
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"

@@ -1,13 +1,14 @@
 package content.skill.summoning
 
 import WorldTest
+import containsMessage
 import itemOnItem
-import itemOnObject
+import itemOption
+import itemOnNpc
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -57,9 +58,8 @@ class EnchantedHeadgearTest : WorldTest() {
     }
 
     @Test
-    fun `A charged helm emptied on an obelisk returns its scrolls`() {
-        val player = summoner(Tile(2528, 3095)) // by the Taverley obelisk region
-        val obelisk = createObject("obelisk", player.tile.addX(1))
+    fun `Uncharge empties a charged helm back to its enchanted form`() {
+        val player = summoner()
         player.inventory.transaction {
             add("antlers", 1)
             add("iron_bull_rush_scroll", 15)
@@ -67,12 +67,46 @@ class EnchantedHeadgearTest : WorldTest() {
         player.itemOnItem(1, 0)
         tick(1)
 
-        player.itemOnObject(obelisk, 0)
+        player.itemOption("Uncharge", "antlers_charged")
         tick(1)
 
         assertEquals(15, player.inventory.count("iron_bull_rush_scroll"), "the scrolls come back")
-        assertEquals(1, player.inventory.count("antlers"), "the helm reverts to plain")
+        assertEquals(1, player.inventory.count("antlers"), "the antlers revert (their enchanted form is the plain helm)")
         assertEquals(0, player.inventory.count("antlers_charged"))
+    }
+
+    @Test
+    fun `Pikkupstix enchants a metal helm through its base, enchanted and charged states`() {
+        val player = summoner()
+        val pikkupstix = createNPC("pikkupstix", player.tile.addY(1))
+        player.inventory.transaction {
+            add("helm_of_neitiznot", 1)
+            add("iron_bull_rush_scroll", 10)
+        }
+
+        player.itemOnNpc(pikkupstix, 0)
+        tick(1)
+        assertEquals(1, player.inventory.count("helm_of_neitiznot_enchanted"), "the plain helm is enchanted")
+
+        player.itemOnItem(1, player.inventory.indexOf("helm_of_neitiznot_enchanted"))
+        tick(1)
+        assertEquals(1, player.inventory.count("helm_of_neitiznot_charged"), "scrolls charge it")
+        assertEquals(0, player.inventory.count("iron_bull_rush_scroll"))
+    }
+
+    @Test
+    fun `Commune reports the stored scrolls`() {
+        val player = summoner()
+        player.inventory.transaction {
+            add("antlers", 1)
+            add("iron_bull_rush_scroll", 7)
+        }
+        player.itemOnItem(1, 0)
+        tick(1)
+
+        player.itemOption("Commune", "antlers_charged")
+
+        assertTrue(player.containsMessage("7"), "it reports the count")
     }
 
     @Test
