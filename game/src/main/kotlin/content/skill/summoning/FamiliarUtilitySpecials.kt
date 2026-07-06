@@ -302,7 +302,6 @@ class FamiliarUtilitySpecials : Script {
         }
     }
 
-
     /** Moves every [id] from the inventory to the bank, returning how many were moved. */
     private fun Player.bankAll(id: String): Int {
         val count = inventory.count(id)

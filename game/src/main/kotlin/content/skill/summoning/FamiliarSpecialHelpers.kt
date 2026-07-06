@@ -183,4 +183,3 @@ fun Player.familiarSelfSpecial(anim: String? = null, sourceGfx: String? = null, 
     effect()
     return true
 }
-

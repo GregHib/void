@@ -3,8 +3,8 @@ package content.skill.summoning
 import WorldTest
 import containsMessage
 import itemOnItem
-import itemOption
 import itemOnNpc
+import itemOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
