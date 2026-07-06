@@ -32,7 +32,7 @@ class Stalls(val drops: DropTables) : Script {
                 return@objectOperate
             }
             if (equipped(EquipSlot.Weapon).id.endsWith("_greegree")) {
-                message("You wouldn’t like to blow your cover by getting caught stealing.")
+                message("You wouldn't like to blow your cover by getting caught stealing.")
                 return@objectOperate
             }
             val def = target.def(this)
