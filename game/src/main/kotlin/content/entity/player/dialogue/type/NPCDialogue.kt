@@ -1,6 +1,7 @@
 package content.entity.player.dialogue.type
 
 import content.entity.player.dialogue.Expression
+import content.entity.player.dialogue.familiarChatheadAnimation
 import content.entity.player.dialogue.sendChat
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
@@ -58,7 +59,14 @@ private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, np
     val npcDef = NPCDefinitions.get(npcId)
     val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
     sendNPCHead(this, id, head, npcDef.id)
-    interfaces.sendChat(id, head, if (npcDef.contains("dialogue")) "${npcDef["dialogue", ""]}_$expression" else expression, title ?: npcDef.name, lines)
+    val chathead = familiarChatheadAnimation(npcId)
+    when {
+        // Familiar chatheads play the same cache animation as the familiar details interface,
+        // regardless of expression - dialogue expressions only exist for humanoid heads.
+        chathead != null -> interfaces.sendChat(id, head, chathead, title ?: npcDef.name, lines)
+        npcDef.contains("dialogue") -> interfaces.sendChat(id, head, "${npcDef["dialogue", ""]}_$expression", title ?: npcDef.name, lines)
+        else -> interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)
+    }
     if (clickToContinue) {
         pauseButton()
         close(id)

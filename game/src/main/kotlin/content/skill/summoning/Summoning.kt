@@ -144,7 +144,8 @@ fun Player.updateFamiliarInterface() {
     interfaces.open("familiar_details")
     set("follower_details_name", EnumDefinitions.get("summoning_familiar_ids").getKey(follower.def.id))
     set("follower_details_chathead", follower.def.id)
-    set("follower_details_chathead_animation", follower.id)
+    // The varbit's map keys are the familiars' base names; an unmapped value transmits as -1.
+    set("follower_details_chathead_animation", follower.id.removeSuffix("_familiar"))
 }
 
 /**
