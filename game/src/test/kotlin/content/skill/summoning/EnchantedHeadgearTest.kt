@@ -22,6 +22,7 @@ class EnchantedHeadgearTest : WorldTest() {
 
     private fun summoner(tile: Tile = Tile(2523, 3056)): Player {
         val player = createPlayer(tile)
+        player.experience.set(Skill.Summoning, 14_000_000.0) // level requirements check the real level
         player.levels.set(Skill.Summoning, 99)
         return player
     }

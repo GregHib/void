@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
@@ -83,7 +83,7 @@ fun Player.enchantHeadgear(item: Item): Boolean {
             inventory.replace(headgear.enchanted, headgear.base)
             message("Pikkupstix removes the enchantment from your headwear.")
         }
-        else -> if (!has(Skill.Summoning, headgear.level, message = true)) {
+        else -> if (!hasMax(Skill.Summoning, headgear.level, message = true)) {
             message("You need a Summoning level of ${headgear.level} to enchant that helmet.")
         } else {
             inventory.replace(headgear.base, headgear.enchanted)

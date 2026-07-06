@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -344,7 +344,9 @@ class Summoning : Script {
             val summoningXp = option.item.def["summon_experience", 0.0]
             val familiar = NPCDefinitions.get(familiarId)
             val summonCost = option.item.def["summon_points", 0]
-            if (!has(Skill.Summoning, familiarLevel)) {
+            // hasMax: the requirement is the player's real level - the current level is the
+            // summoning points pool, which drains as points are spent.
+            if (!hasMax(Skill.Summoning, familiarLevel)) {
                 message("You are not high enough level to use this pouch.")
                 return@itemOption
             }

@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -67,7 +67,9 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     // gate on Slayer and sneakerpeeper on Dungeoneering — so the skill is
     // row-driven rather than hardcoded.
     val skill = row.skillOrNull("skill") ?: Skill.Summoning
-    if (!has(skill, level)) {
+    // hasMax: requirements check the player's real level, not the current one - for Summoning
+    // that's the points pool, which drains as points are spent.
+    if (!hasMax(skill, level)) {
         message("You need a ${skill.name} level of $level to raise this pet.")
         return false
     }
@@ -75,7 +77,7 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     // its primary Dungeoneering 80 check.
     val secondarySkill = row.skillOrNull("secondary_skill")
     val secondaryLevel = row.intOrNull("secondary_level") ?: 0
-    if (secondarySkill != null && secondaryLevel > 0 && !has(secondarySkill, secondaryLevel)) {
+    if (secondarySkill != null && secondaryLevel > 0 && !hasMax(secondarySkill, secondaryLevel)) {
         message("You also need a ${secondarySkill.name} level of $secondaryLevel to raise this pet.")
         return false
     }
@@ -279,7 +281,7 @@ private fun Player.canSummonPet(row: RowDefinition): Boolean {
     // Mirror summonPet: the gating skill is row-driven (Slayer for Soul Wars
     // pets, Dungeoneering for sneakerpeeper) and only defaults to Summoning.
     val skill = row.skillOrNull("skill") ?: Skill.Summoning
-    return has(skill, row.int("summoning_level"))
+    return hasMax(skill, row.int("summoning_level"))
 }
 
 private suspend fun Player.dropPet(row: RowDefinition, itemId: String) {
