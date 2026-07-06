@@ -335,12 +335,11 @@ class FamiliarCombatSpecials : Script {
         }
 
         // Steel of Legends - the steel titan strikes four times: melee up close, ranged from afar,
-        // up to 244 each.
+        // up to 244 each. The blade-storm graphic plays on the target alone.
         FamiliarSpecialMoves.npc("steel_titan_familiar") { target ->
             val cast = titanAssault(target, hits = 4, meleeMax = 244, farType = "range", farMax = 244)
             if (cast) {
                 follower?.anim("steel_of_legends")
-                follower?.gfx("steel_of_legends")
                 target.gfx("steel_of_legends")
             }
             cast

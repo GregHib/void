@@ -1,13 +1,13 @@
 package content.skill.summoning
 
 import FakeRandom
-import interfaceOption
 import WorldTest
 import content.entity.combat.target
 import content.entity.effect.frozen
 import content.entity.effect.stunned
 import content.entity.effect.toxin.poisoned
 import content.entity.player.combat.special.specialAttackEnergy
+import interfaceOption
 import itemOnNpc
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
