@@ -304,7 +304,7 @@ loot = ["rabbit_foot", "raw_rabbit", "bones"]
 [.spined_larupia]
 level = 31
 xp = 1800
-loot = ["big_bones", "tatty_graahk_fur"]
+loot = ["big_bones", "tatty_larupia_fur"]
 
 [.horned_graahk]
 level = 41

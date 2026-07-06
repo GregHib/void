@@ -5,6 +5,7 @@ import content.entity.combat.dead
 import content.entity.combat.target
 import content.entity.combat.underAttack
 import content.skill.melee.weapon.attackSpeed
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
@@ -12,6 +13,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,12 +47,14 @@ class Pitfall : Script {
             anim("tease")
             sound("scythe_slash")
             if (!target.dead && !target.underAttack) {
+                attacker = target
+                this.target = target
                 target.mode = CombatMovement(target, this)
                 target.target = this
+                target.attacker = this
                 val delay = target.attackSpeed / 2
                 target.start("action_delay", delay)
                 target.start("under_attack", delay + 8)
-                attacker = target
             }
         }
 
@@ -69,12 +73,12 @@ class Pitfall : Script {
             areaSound("hunting_jump", target.tile)
             exactMoveDelay(tile.add(dir).add(dir).add(dir), delay = 53, direction = dir)
             val attacker = attacker
-            if (attacker !is NPC || attacker.id != "horned_graahk") {
+            if (attacker !is NPC || attacker.id != "spined_larupia" && attacker.id != "horned_graahk" && attacker.id != "sabre_toothed_kyatt") {
                 return@objectOperate
             }
             val offset = when (dir) {
-                Direction.WEST -> target.tile.addX(-2)
-                Direction.EAST -> target.tile.addX(2)
+                Direction.WEST -> target.tile.addX(2)
+                Direction.EAST -> target.tile.addX(-2)
                 Direction.NORTH -> target.tile.addY(-2)
                 Direction.SOUTH -> target.tile.addY(2)
                 else -> return@objectOperate
@@ -84,7 +88,7 @@ class Pitfall : Script {
             } else {
                 delay(2)
             }
-            if (!inPosition(attacker, target, dir)) {
+            if (attacker.tile != offset) {
                 return@objectOperate
             }
             attacker.walkOverDelay(attacker.tile.add(dir).add(dir))
@@ -93,7 +97,13 @@ class Pitfall : Script {
             areaSound("pitfall_collapse", target.tile)
             set(target.id, "collapsed")
             delay(2)
-            set(target.id, if (dir == Direction.SOUTH || dir == Direction.EAST) "inverse" else "caught")
+            val flip = when {
+                attacker.id == "horned_graahk" -> dir == Direction.SOUTH || dir == Direction.EAST
+                attacker.id == "sabre_toothed_kyatt" -> dir == Direction.SOUTH || dir == Direction.WEST
+                else -> dir == Direction.NORTH || dir == Direction.EAST
+            }
+            set(target.id, if (flip) "inverse" else "caught")
+            CombatApi.stop(attacker, this)
         }
 
         objectOperate("Dismantle", "pitfall_*") { (target) ->
@@ -118,14 +128,6 @@ class Pitfall : Script {
         if (tile.x > target.tile.x) Direction.WEST else Direction.EAST
     } else {
         if (tile.y > target.tile.y) Direction.SOUTH else Direction.NORTH
-    }
-
-    private fun inPosition(attacker: NPC, target: GameObject, direction: Direction): Boolean = when (direction) {
-        Direction.WEST -> attacker.tile.x == target.tile.x + 2 && attacker.tile.y in target.tile.y..target.tile.y + 1
-        Direction.EAST -> attacker.tile.x == target.tile.x - 2 && attacker.tile.y in target.tile.y..target.tile.y + 1
-        Direction.NORTH -> attacker.tile.y == target.tile.y - 2 && attacker.tile.x in target.tile.x..target.tile.x + 1
-        Direction.SOUTH -> attacker.tile.y == target.tile.y + 2 && attacker.tile.x in target.tile.x..target.tile.x + 1
-        else -> false
     }
 
     private suspend fun Player.layTrap(obj: GameObject) {
@@ -174,9 +176,9 @@ class Pitfall : Script {
         sound("take_branches")
         dec("trap_count")
         set(target.id, "empty")
-        softTimers.clear("collapse_pitfall_${target.id.substringAfterLast("_")}")
+        softTimers.clear("collapse_pitfall_${creature.rowId}")
         if (loot) {
-            message("You've caught a horned graahk!", type = ChatType.Filter)
+            message("You've caught a ${creature.rowId.toLowerSpaceCase()}!", type = ChatType.Filter)
             for (item in items) {
                 // TODO lerp chance of replacing tatty with full fur
                 inventory.add(item)

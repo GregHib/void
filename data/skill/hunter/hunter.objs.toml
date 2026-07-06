@@ -204,8 +204,20 @@ id = 19228
 [pitfall_collapsed]
 id = 19229
 
-[pitfall_caught]
+[pitfall_caught_spined_larupia]
+id = 19232
+
+[pitfall_inverse_spined_larupia]
+id = 19235
+
+[pitfall_caught_horned_graahk]
 id = 19231
 
-[pitfall_inverse]
+[pitfall_inverse_horned_graahk]
 id = 19234
+
+[pitfall_caught_sabre_toothed_kyatt]
+id = 19233
+
+[pitfall_inverse_sabre_toothed_kyatt]
+id = 19236
