@@ -8,11 +8,10 @@ import content.entity.effect.toxin.poisoned
 import content.entity.player.combat.special.specialAttackEnergy
 import itemOnNpc
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.floor.FloorItems

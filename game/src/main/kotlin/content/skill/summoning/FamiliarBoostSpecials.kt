@@ -59,17 +59,13 @@ class FamiliarBoostSpecials : Script {
             }
         }
 
-        // Elemental titans - Titan's Constitution: Defence +12.5% and heal a tenth of max life
-        // points, each titan with its own colours. Refuses, charging nothing, at full health.
+        // Elemental titans - Titan's Constitution: Defence +12.5% and 80 life points, boosting
+        // past maximum (an over-heal, not a capped restore), each titan with its own colours.
         for (tier in listOf("fire", "ice", "moss")) {
             FamiliarSpecialMoves.instant("${tier}_titan_familiar") {
-                if (levels.get(Skill.Constitution) >= levels.getMax(Skill.Constitution)) {
-                    message("You're already at full life points!")
-                    return@instant false
-                }
                 familiarSelfSpecial(anim = "titans_constitution_$tier", sourceGfx = "titans_constitution_$tier", playerGfx = "titans_constitution_${tier}_owner") {
                     levels.boost(Skill.Defence, multiplier = 0.125)
-                    levels.restore(Skill.Constitution, multiplier = 0.1)
+                    levels.boost(Skill.Constitution, 80)
                 }
             }
         }

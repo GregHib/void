@@ -1,5 +1,6 @@
 package content.skill.summoning.familiar
 
+import content.entity.combat.hit.hit
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
@@ -17,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.random
-import content.entity.combat.hit.hit
 
 /** How long the phoenix drops in place and glows before reappearing atop the ashes. */
 private const val RISE_REBIRTH_DELAY = 3

@@ -113,7 +113,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Titan's Constitution raises Defence and heals a tenth of max life points`() {
+    fun `Titan's Constitution raises Defence and boosts 80 life points`() {
         val player = summon("fire_titan_familiar")
         player.experience.set(Skill.Defence, 14_000_000.0) // level 99 so the multiplier has headroom
         player.experience.set(Skill.Constitution, 14_000_000.0)
@@ -123,14 +123,16 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
 
         assertTrue(player.runSpecial("fire_titan_familiar"))
         assertTrue(player.levels.get(Skill.Defence) > defence, "Defence rises by an eighth")
-        assertEquals(lifePoints + 99, player.levels.get(Skill.Constitution), "a tenth of the 990 maximum")
+        assertEquals(lifePoints + 80, player.levels.get(Skill.Constitution))
     }
 
     @Test
-    fun `Titan's Constitution refuses at full life points, charging nothing`() {
+    fun `Titan's Constitution over-heals past maximum life points`() {
         val player = summon("moss_titan_familiar")
+        player.experience.set(Skill.Constitution, 14_000_000.0) // 990 life points, at full health
 
-        assertFalse(player.runSpecial("moss_titan_familiar"))
+        assertTrue(player.runSpecial("moss_titan_familiar"))
+        assertEquals(1070, player.levels.get(Skill.Constitution), "80 life points above the 990 maximum")
     }
 
     @Test
