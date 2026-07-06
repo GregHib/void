@@ -13,6 +13,7 @@ import content.entity.player.effect.energy.runEnergy
 import dialogueOption
 import interfaceOption
 import itemOnNpc
+import kotlinx.coroutines.test.runTest
 import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.InterfaceApi
@@ -247,7 +248,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         }
         val before = player.levels.get(Skill.Constitution)
 
-        InterfaceApi.onItem(player, "familiar_details:cast_swallow_whole", player.inventory[1])
+        runTest { InterfaceApi.onItem(player, "familiar_details:cast_swallow_whole", player.inventory[1]) }
         tick(2)
 
         assertEquals(0, player.inventory.count("raw_shark"), "the bunyip gulped the shark")
@@ -265,7 +266,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
             add("raw_shark", 1)
         }
 
-        InterfaceApi.onItem(player, "familiar_details:cast_swallow_whole", player.inventory[1])
+        runTest { InterfaceApi.onItem(player, "familiar_details:cast_swallow_whole", player.inventory[1]) }
         tick(2)
 
         assertEquals(1, player.inventory.count("raw_shark"), "the shark is refused")
@@ -443,7 +444,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
             add("bronze_sword", 1)
         }
 
-        InterfaceApi.onItem(player, "familiar_details:cast_winter_storage", player.inventory[1])
+        runTest { InterfaceApi.onItem(player, "familiar_details:cast_winter_storage", player.inventory[1]) }
         tick(1)
 
         assertEquals(1, player.bank.count("bronze_sword"), "the yak banked the sword")
@@ -456,7 +457,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         val player = summon("pack_yak_familiar")
         player.inventory.transaction { add("winter_storage_scroll", 1) }
 
-        InterfaceApi.onItem(player, "familiar_details:cast_winter_storage", player.inventory[0])
+        runTest { InterfaceApi.onItem(player, "familiar_details:cast_winter_storage", player.inventory[0]) }
         tick(1)
 
         assertEquals(1, player.inventory.count("winter_storage_scroll"), "nothing banked, nothing spent")
@@ -471,7 +472,7 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
             add("gold_bar", 1)
         }
 
-        InterfaceApi.onItem(player, "familiar_details:cast_immense_heat", player.inventory[1])
+        runTest { InterfaceApi.onItem(player, "familiar_details:cast_immense_heat", player.inventory[1]) }
         tick(1)
 
         assertTrue(player.interfaces.contains("make_mould_slayer"), "the mould interface opens")
