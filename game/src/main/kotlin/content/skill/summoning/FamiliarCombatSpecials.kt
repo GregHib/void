@@ -47,6 +47,9 @@ private const val ARCTIC_BLAST_STUN_CHANCE = 5
 /** How long (game ticks) the praying mantis' Mantis Strike binds a small target in place on impact. */
 private const val MANTIS_STRIKE_BIND_TICKS = 3
 
+/** How long (game ticks) the spirit dagannoth's Spike Shot stuns its target on impact. */
+private const val SPIKE_SHOT_STUN_TICKS = 5
+
 /**
  * Combat familiar special moves - the cast-button specials that target an npc (or player). Each
  * registers into [FamiliarSpecialMoves]; the dispatcher runs it through [castFamiliarSpecial] so a
@@ -155,9 +158,12 @@ class FamiliarCombatSpecials : Script {
             familiarSpecialHit(target, maxHit = 78, anim = "doomsphere", sourceGfx = "doomsphere", projectile = "doomsphere_proj", targetGfx = "doomsphere_hit").alsoDrain(target, Skill.Magic, multiplier = 0.05)
         }
 
-        // Spike Shot - the spirit dagannoth launches a spike, its hardest-hitting single shot.
+        // Spike Shot - the spirit dagannoth launches a spike, its hardest-hitting single shot,
+        // stunning the target as it lands.
         FamiliarSpecialMoves.npc("spirit_dagannoth_familiar") { target ->
-            familiarSpecialHit(target, maxHit = 170, anim = "spike_shot", projectile = "spike_shot_proj", targetGfx = "spike_shot_hit")
+            familiarSpecialHit(target, maxHit = 170, anim = "spike_shot", projectile = "spike_shot_proj", targetGfx = "spike_shot_hit") { hit ->
+                follower?.stun(hit, SPIKE_SHOT_STUN_TICKS)
+            }
         }
 
         // Swamp Plague - the swamp titan's bog blast also poisons the target.

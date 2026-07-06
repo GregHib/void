@@ -78,16 +78,21 @@ class FamiliarCombatSpecialEffectTest : WorldTest() {
     }
 
     @Test
-    fun `Spike Shot lands a heavy single hit`() {
+    fun `Spike Shot lands a heavy single hit and stuns on impact`() {
         maxRolls()
         val player = summon("spirit_dagannoth_familiar")
         val target = tankyRat(player)
         val before = target.levels.get(Skill.Constitution)
 
         assertTrue(player.runNpcSpecial("spirit_dagannoth_familiar", target))
-        tick(6)
 
+        var sawStun = false
+        repeat(8) {
+            tick()
+            sawStun = sawStun || target.stunned
+        }
         assertTrue(before - target.levels.get(Skill.Constitution) >= 170, "the maxed spike hits for 170")
+        assertTrue(sawStun, "the spike stuns the target as it lands")
     }
 
     @Test
