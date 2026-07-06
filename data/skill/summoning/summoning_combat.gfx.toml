@@ -10,6 +10,9 @@ id = 1379
 [smoke_devil_familiar_projectile]
 id = 1376
 
+[smoke_devil_familiar_flames_projectile]
+id = 1473
+
 [forge_regent_familiar_projectile]
 id = 1330
 

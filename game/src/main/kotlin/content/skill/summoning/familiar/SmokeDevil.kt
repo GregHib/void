@@ -7,16 +7,18 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.skill.summoning.commandFamiliarAttack
+import content.skill.summoning.familiarSpecialHit
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.random
 
 class SmokeDevil : Script {
     init {
-        // "Flames" orders the devil to scorch the owner's current foe with its fiery breath.
+        // "Flames" makes the devil instantly scorch the owner's current foe with its magic-based
+        // fire attack, at the cost of two summoning points.
         npcOperate("Flames", "smoke_devil_familiar") { (clicked) ->
             if (clicked != follower) {
                 return@npcOperate
@@ -26,7 +28,19 @@ class SmokeDevil : Script {
                 message("Your familiar has no target to attack.")
                 return@npcOperate
             }
-            commandFamiliarAttack(enemy)
+            if (levels.get(Skill.Summoning) < 2) {
+                message("You do not have enough summoning points to do that.")
+                return@npcOperate
+            }
+            val cast = familiarSpecialHit(
+                enemy,
+                maxHit = 150,
+                anim = "smoke_devil_familiar_attack",
+                projectile = "smoke_devil_familiar_flames_projectile",
+            )
+            if (cast) {
+                levels.drain(Skill.Summoning, 2)
+            }
         }
 
         npcOperate("Interact", "smoke_devil_familiar") {

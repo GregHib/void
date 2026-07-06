@@ -395,11 +395,27 @@ class FamiliarUtilitySpecialEffectTest : WorldTest() {
         val player = summon("smoke_devil_familiar")
         val rat = createNPC("rat", player.tile.addY(2))
         player.target = rat
+        val points = player.levels.get(Skill.Summoning)
 
         player.npcOption(player.follower!!, "Flames")
         tick(2)
 
         assertEquals(rat, player.follower!!.target, "the devil turns its fire on the owner's foe")
+        assertEquals(points - 2, player.levels.get(Skill.Summoning), "the instant fire spell costs two summoning points")
+    }
+
+    @Test
+    fun `Flames needs two summoning points`() {
+        val player = summon("smoke_devil_familiar")
+        val rat = createNPC("rat", player.tile.addY(2))
+        player.target = rat
+        player.levels.set(Skill.Summoning, 1)
+
+        player.npcOption(player.follower!!, "Flames")
+        tick(2)
+
+        assertEquals(1, player.levels.get(Skill.Summoning), "no points are spent on a refused cast")
+        assertTrue(player.containsMessage("enough summoning points"), "the owner is told why nothing happened")
     }
 
     @Test
