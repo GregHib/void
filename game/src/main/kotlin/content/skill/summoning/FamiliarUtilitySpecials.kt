@@ -47,8 +47,6 @@ private const val FRUITFALL_LAND_DELAY = 4
  */
 class FamiliarUtilitySpecials : Script {
 
-    // Herbcall's herb pool, mirroring 2009scape's MacawNPC.HERBS - a uniform pick from every herb
-    // type, low- and high-level alike (grimy, as the macaw digs them up).
     private val herbcallHerbs = listOf(
         "grimy_guam",
         "grimy_marrentill",
@@ -203,8 +201,7 @@ class FamiliarUtilitySpecials : Script {
         }
 
         // Herbcall - the macaw flaps up and searches for a herb; when the fly-up animation finishes it
-        // drops a random grimy herb where it hovered and is called back down to its owner. As in
-        // 2009scape it has a one-minute cooldown of its own on top of the usual scroll/point cost.
+        // drops a random grimy herb where it hovered and is called back down to its owner.
         FamiliarSpecialMoves.instant("macaw_familiar") {
             val familiar = follower ?: return@instant false
             if (hasClock("herbcall_delay")) {
@@ -305,11 +302,6 @@ class FamiliarUtilitySpecials : Script {
         }
     }
 
-    /** Drops [id] on the player's tile (it despawns after ~3 minutes), counting as a successful cast. */
-    private fun Player.dropForage(id: String): Boolean {
-        FloorItems.add(tile, id, disappearTicks = 300, owner = this)
-        return true
-    }
 
     /** Moves every [id] from the inventory to the bank, returning how many were moved. */
     private fun Player.bankAll(id: String): Int {

@@ -90,8 +90,6 @@ delay = 30
 time_offset = 10
 multiplier = 10
 
-# Evil turnip Evil Flames: source gfx on the familiar as it breathes, the projectile, and the impact.
-
 [evil_flames]
 id = 1328
 
@@ -209,11 +207,10 @@ id = 1336
 [insane_ferocity]
 id = 1397
 
-# Insane Ferocity graphic played on the owner (the honey badger's enrage flourish).
 [insane_ferocity_owner]
 id = 1399
 
-# Player graphic played while casting a special-move scroll (2009scape base visualizeSpecialMove).
+# Player graphic played while casting a special-move scroll.
 [summoning_special_cast]
 id = 1316
 
@@ -221,11 +218,9 @@ id = 1316
 [cheese_feast]
 id = 1384
 
-# Macaw's Herbcall graphic (played on the familiar as it searches out a herb).
 [herbcall]
 id = 1321
 
-# Compost mound Generate Compost: familiar gfx, projectile to the bin, and the impact at the bin.
 [generate_compost]
 id = 1461
 
@@ -235,22 +230,18 @@ id = 1462
 [generate_compost_bin]
 id = 1460
 
-# Giant chinchompa Explode: the blast graphic played on the familiar.
 [chinchompa_explode]
 id = 1364
 
-# Beaver Multichop: the graphic played on the familiar as it chops.
 [beaver_multichop]
 id = 1459
 
-# Call to Arms (Void familiars): teleport-out and teleport-in graphics on the owner.
 [call_to_arms]
 id = 1503
 
 [call_to_arms_land]
 id = 1502
 
-# Karamthulhu overlord Doomsphere: familiar gfx, water-orb projectile, and the impact splash.
 [doomsphere]
 id = 1478
 
@@ -264,7 +255,6 @@ curve = 0
 [doomsphere_hit]
 id = 1480
 
-# Spirit dagannoth Spike Shot: the launched spike and its impact.
 [spike_shot_proj]
 id = 1426
 delay = 30
@@ -275,15 +265,12 @@ curve = 0
 [spike_shot_hit]
 id = 1428
 
-# Swamp titan Swamp Plague: the bog projectile.
 [swamp_plague_proj]
 id = 1462
 delay = 30
 time_offset = 10
 multiplier = 10
 curve = 0
-
-# Lava titan Ebon Thunder: familiar gfx, the dark bolt, and the impact.
 
 [ebon_thunder]
 id = 1492
@@ -298,7 +285,6 @@ curve = 0
 [ebon_thunder_hit]
 id = 1494
 
-# Praying mantis Mantis Strike: familiar gfx, the bolt, and the binding impact.
 [mantis_strike]
 id = 1379
 
@@ -312,7 +298,6 @@ curve = 0
 [mantis_strike_hit]
 id = 1381
 
-# Giant ent Acorn Missile: the lobbed acorns and their impact.
 [acorn_missile_proj]
 id = 1362
 delay = 30
@@ -323,7 +308,6 @@ curve = 0
 [acorn_missile_hit]
 id = 1363
 
-# Ravenous locust Famine: familiar gfx, the swarm projectile, and the impact.
 [famine]
 id = 1346
 
@@ -337,14 +321,12 @@ curve = 0
 [famine_hit]
 id = 1348
 
-# Forge regent Inferno: the flare on the familiar and the burst on the disarmed player.
 [inferno]
 id = 1394
 
 [inferno_hit]
 id = 1393
 
-# Smoke devil Dust Cloud: familiar gfx, the dust burst, and the choking impact.
 [dust_cloud]
 id = 1375
 
@@ -358,37 +340,27 @@ curve = 0
 [dust_cloud_hit]
 id = 1377
 
-# Iron Within / Steel of Legends: the charge-up glow on each titan.
 [iron_within]
 id = 1450
 
 [steel_of_legends]
 id = 1449
 
-# Hydra Regrowth: the burst of life on the familiar.
 [regrowth]
 id = 1487
 
-# Bunyip Swallow Whole: the gulp graphic on the familiar.
 [swallow_whole]
 id = 1481
 
-# Spirit cobra Ophidian Incubation: the transmuting gaze on the familiar.
 [ophidian_incubation]
 id = 1388
 
-# Pyrelord Immense Heat: the flare on the owner as the gold melts.
 [immense_heat]
 id = 1463
 
-# Barker toad Toad Bark: the load graphic and the fired cannonball.
 [toad_bark_load]
 id = 1400
 
-# The cannonball launches low from the toad's mouth and rises slightly (darkan's 10 -> 16 arc,
-# curve 16) - character heights default to 40, hence the negative offsets. The 1402 model faces
-# backwards in this revision's cache; FixGraphics patches its definition with a 180 degree
-# rotation (there is no projectile rotation in the protocol - the model itself is turned).
 [toad_bark_proj]
 id = 1402
 delay = 30
@@ -398,12 +370,9 @@ curve = 16
 height = -30
 end_height = -24
 
-# Thieving Fingers: the sparkle played on the owner as the boost lands.
-
 [thieving_fingers_owner]
 id = 1300
 
-# Blood Drain: the leech's gfx, the blood drawn to the owner, and the burst on the owner.
 [blood_drain]
 id = 1419
 
@@ -417,47 +386,36 @@ curve = 0
 [blood_drain_owner]
 id = 1420
 
-# Tireless Run: the sparkle played on the owner as the boost lands (the 1521 gfx is the terrorbird's).
 [tireless_run_owner]
 id = 1300
 
-# Dissolve: the jelly's own graphic and the melting impact.
 [dissolve]
 id = 1361
 
 [dissolve_hit]
 id = 1360
 
-# Rending: the impact graphic on the target.
 [rending_hit]
 id = 1372
 
-# Abyssal Stealth: the lurker's graphic and the owner's shroud.
 [abyssal_stealth]
 id = 1339
 
 [abyssal_stealth_owner]
 id = 1302
 
-# Volcanic Strength is defined above (1465) - played on the familiar.
-
-# Goad has no graphic; Ambush: the kyatt's pounce-landing graphic.
 [ambush]
 id = 1366
 
-# Fish Rain: the splash on the ibis.
 [fish_rain]
 id = 1337
 
-# Essence Shipment: the flourish on the abyssal titan.
 [essence_shipment]
 id = 1457
 
-# Winter Storage: the flourish on the pack yak as it banks an item.
 [winter_storage]
 id = 1358
 
-# Titan's Constitution: each titan's own graphic, plus the owner's tint.
 [titans_constitution_fire]
 id = 1514
 
@@ -476,11 +434,9 @@ id = 1513
 [titans_constitution_moss_owner]
 id = 1308
 
-# Healing Aura: the sparkle played on the owner (the 1356 gfx is the unicorn's).
 [healing_aura_owner]
 id = 1300
 
-# Bunyip's raw-fish transmute: the watery bolt from the bunyip to its owner.
 [bunyip_transmute_proj]
 id = 1435
 delay = 30
@@ -488,19 +444,14 @@ time_offset = 10
 multiplier = 10
 curve = 0
 
-# Spirit dagannoth's Ferocious double-strike graphic.
-
 [ferocious]
 id = 1427
 
-# Testudo: the shell-shield tint played on the owner as the Defence boost lands.
 [testudo_owner]
 id = 1308
 
-# Fruitfall: the splash where each shaken-loose fruit lands.
 [fruitfall_land]
 id = 1331
 
-# Fruitfall: the leaves swirling around the bat as it flies up into the trees.
 [fruitfall_ascend]
 id = 1332

@@ -27,10 +27,11 @@ fun NPC.canFight(): Boolean {
 }
 
 /**
- * Directs the player's familiar to attack [target]. A familiar may only attack players in PvP
- * areas; against NPCs it fights solo (even in single-way) but, like any attacker, can't share a
- * target someone else is already fighting - including its own owner - so single-combat rules in
- * [Target.attackable] are pre-checked. [silent] suppresses the rejection messages (auto-assist).
+ * Directs the player's familiar to attack [target]. Player targets follow the owner's own PvP
+ * rules (wilderness or PvP area, combat-level bracket); against NPCs it fights solo (even in
+ * single-way) but, like any attacker, can't share a target someone else is already fighting -
+ * including its own owner - so single-combat rules in [Target.attackable] are pre-checked.
+ * [silent] suppresses the rejection messages (auto-assist).
  */
 fun Player.commandFamiliarAttack(target: Character, silent: Boolean = false) {
     val familiar = follower ?: return

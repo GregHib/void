@@ -85,15 +85,13 @@ id = 8020
 [insane_ferocity]
 id = 7928
 
-# Player animation played while casting a special-move scroll (2009scape base visualizeSpecialMove).
+# Player animation played while casting a special-move scroll.
 [summoning_special_cast]
 id = 7660
 
-# Albino rat's Cheese Feast animation (played on the rat).
 [cheese_feast]
 id = 14858
 
-# Compost mound's Generate Compost animation (played on the familiar).
 [generate_compost]
 id = 7775
 
@@ -103,115 +101,90 @@ id = 7775
 id = 8013
 ticks = 9
 
-# Giant chinchompa's Explode animation (played on the familiar).
 [chinchompa_explode]
 id = 7758
 
-# Beaver's Multichop animation (played on the familiar as it chops the tree).
 [beaver_multichop]
 id = 7722
 
-# Call to Arms (Void familiars): the owner's teleport-out and teleport-in animations.
 [call_to_arms]
 id = 8136
 
 [call_to_arms_land]
 id = 8137
 
-# Karamthulhu overlord's Doomsphere attack animation.
 [doomsphere]
 id = 7974
 
-# Spirit dagannoth's Spike Shot attack animation.
 [spike_shot]
 id = 7787
 
-# Swamp titan's Swamp Plague attack animation.
 [swamp_plague]
 id = 8223
 
-# Lava titan's Ebon Thunder attack animation.
 [ebon_thunder]
 id = 7986
 
-# Praying mantis' Mantis Strike attack animation.
 [mantis_strike]
 id = 8071
 
-# Giant ent's Acorn Missile attack animation.
 [acorn_missile]
 id = 7858
 
-# Ravenous locust's Famine attack animation.
 [famine]
 id = 7998
 
-# Smoke devil's Dust Cloud attack animation.
 [dust_cloud]
 id = 7820
 
-# Iron/steel titan's charge-up animation (shared swing, different graphics).
 [iron_within]
 id = 7954
 
 [steel_of_legends]
 id = 8190
 
-# Hydra's Regrowth animation (played on the familiar as it revives the tree).
 [regrowth]
 id = 7945
 
-# Bunyip's Swallow Whole animation (played on the familiar as it gulps the fish).
 [swallow_whole]
 id = 7747
 
-# Spirit cobra's Ophidian Incubation animation (played on the familiar).
 [ophidian_incubation]
 id = 8159
 
-# Pyrelord's Immense Heat animation (played on the owner as the pyrelord heats the gold).
 [immense_heat]
 id = 8081
 
-# Barker toad Toad Bark: the firing animation, and the load animation as a cannonball goes in.
 [toad_bark]
 id = 7703
 
 [toad_bark_load]
 id = 7704
 
-# Bloated leech's Blood Drain animation (played on the familiar as it draws blood).
 [blood_drain]
 id = 7715
 
-# Obsidian golem's Volcanic Strength animation (played on the familiar).
 [volcanic_strength]
 id = 8053
 
-# Spirit graahk's Goad goring animation.
 [goad]
 id = 7915
 
-# Spirit kyatt's Ambush pounce animation (played as it lands on the target).
 [ambush]
 id = 7914
 
-# Ibis' Fish Rain animation.
 [fish_rain]
 id = 8199
 
-# Fruit bat's Fruitfall: the flight up into the trees, then the swooping drop (2009scape's pair).
 [fruitfall_ascend]
 id = 8320
 
 [fruitfall]
 id = 8321
 
-# Abyssal titan's Essence Shipment animation.
 [essence_shipment]
 id = 7698
 
-# Elemental titans' Titan's Constitution animations, one per titan.
 [titans_constitution_fire]
 id = 7835
 
@@ -221,14 +194,11 @@ id = 7837
 [titans_constitution_moss]
 id = 7837
 
-# Forge regent's Inferno flare animation.
 [inferno]
 id = 7871
 
-# Bunyip's raw-fish transmute: the owner's casting motion as the fish becomes water runes.
 [bunyip_transmute]
 id = 2779
 
-# Spirit dagannoth's Ferocious double-strike animation.
 [ferocious]
 id = 7791

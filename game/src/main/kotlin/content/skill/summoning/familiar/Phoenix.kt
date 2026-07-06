@@ -36,11 +36,6 @@ class Phoenix : Script {
             false
         }
 
-        // Rise from the Ashes - cast on ashes lying on the ground: the phoenix drops in place and
-        // glows, then is reborn atop the ashes at full life points, scorching up to five foes
-        // beside them. The blast draws its strength from the phoenix's wounds - the closer to
-        // death it was, the harder the rebirth hits (unhurt, it is a pure rebirth). Neither
-        // reference implements this (darkan's is a TODO stub); mechanics per the live game.
         FamiliarSpecialMoves.floorItem("phoenix_familiar") { ashes ->
             if (ashes.id != "ashes") {
                 message("The phoenix can only rise from ashes.")

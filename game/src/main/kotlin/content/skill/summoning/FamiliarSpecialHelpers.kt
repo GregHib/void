@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.queue.queue
@@ -185,11 +184,3 @@ fun Player.familiarSelfSpecial(anim: String? = null, sourceGfx: String? = null, 
     return true
 }
 
-/**
- * Boosts [skill] by [amount] above the player's current max, not stacking past it - the common
- * shape of the stat-boost specials (Stony Shell, Testudo, Magic Focus, ...). Returns true.
- */
-fun Player.familiarBoostSkill(skill: Skill, amount: Int): Boolean {
-    levels.boost(skill, amount)
-    return true
-}

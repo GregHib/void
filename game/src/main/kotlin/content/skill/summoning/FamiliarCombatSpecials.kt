@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.move
@@ -313,9 +312,6 @@ class FamiliarCombatSpecials : Script {
             familiarAoeSpecial(maxTargets = 6, maxHit = 200, radius = 6, anim = "sandstorm", sourceGfx = "sandstorm", projectile = "sandstorm_proj")
         }
 
-        // Explode - the giant chinchompa detonates, hitting everything around it, then is consumed by
-        // the blast. Fired from the cast button, or (like 2009scape) auto-triggered on ~1/10 of the
-        // familiar's own attacks - see [autoExplode].
         FamiliarSpecialMoves.instant("giant_chinchompa_familiar") {
             chinchompaExplode()
         }
