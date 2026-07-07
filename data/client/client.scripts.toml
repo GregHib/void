@@ -64,6 +64,9 @@ id = 143
 [close_entry]
 id = 101
 
+[close_report_abuse]
+id = 244
+
 [int_entry]
 id = 108
 
