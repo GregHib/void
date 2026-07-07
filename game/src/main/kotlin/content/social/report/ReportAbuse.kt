@@ -4,6 +4,8 @@ import content.social.chat.ChatHistory
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -49,7 +51,12 @@ class ReportAbuse(val reports: Reports, val accounts: AccountDefinitions) : Scri
             }
         }
 
+        interfaceClosed("report_abuse") {
+            sendScript("close_report_abuse")
+        }
+
         instruction<ReportAbuse> { player ->
+            player.close("report_abuse")
             val rule = Rule.byId(type) ?: return@instruction
             val name = name.trim()
             if (name.isEmpty()) {
