@@ -1,0 +1,118 @@
+[maze_rewards]
+item = "item"
+divisor = "int"
+
+[.coins]
+item = "coins"
+divisor = 1
+
+[.feather]
+item = "feather"
+divisor = 2
+
+[.iron_arrow]
+item = "iron_arrow"
+divisor = 3
+
+[.chaos_rune]
+item = "chaos_rune"
+divisor = 9
+
+[.steel_arrow]
+item = "steel_arrow"
+divisor = 12
+
+[.death_rune]
+item = "death_rune"
+divisor = 18
+
+[.coal]
+item = "coal"
+divisor = 45
+
+[.nature_rune]
+item = "nature_rune"
+divisor = 162
+
+[.mithril_ore]
+item = "mithril_ore"
+divisor = 180
+
+[maze_chest_rewards]
+item = "item"
+amount = "int"
+text = "string"
+
+[.air_rune]
+item = "air_rune"
+amount = 15
+text = "You've found some air runes!"
+
+[.water_rune]
+item = "water_rune"
+amount = 10
+text = "You've found some water runes!"
+
+[.earth_rune]
+item = "earth_rune"
+amount = 10
+text = "You've found some earth runes!"
+
+[.fire_rune]
+item = "fire_rune"
+amount = 10
+text = "You've found some fire runes!"
+
+[.bronze_arrow]
+item = "bronze_arrow"
+amount = 20
+text = "You've found some bronze arrows!"
+
+[.bronze_bolts]
+item = "bronze_bolts"
+amount = 10
+text = "You've found some bronze bolts!"
+
+[.iron_arrow]
+item = "iron_arrow"
+amount = 15
+text = "You've found some iron arrows!"
+
+[.attack_potion]
+item = "attack_potion_2"
+amount = 1
+text = "You've found an attack potion!"
+
+[.strength_potion]
+item = "strength_potion_2"
+amount = 1
+text = "You've found a strength potion!"
+
+[.defence_potion]
+item = "defence_potion_2"
+amount = 1
+text = "You've found a defence potion!"
+
+[maze_start_points]
+tile = "tile"
+
+[.south_east]
+tile = { x = 2928, y = 4553 }
+
+[.south_middle]
+tile = { x = 2917, y = 4553 }
+
+[.south_west]
+tile = { x = 2908, y = 4555 }
+
+[.west_south]
+tile = { x = 2891, y = 4589 }
+
+[.west_north]
+tile = { x = 2891, y = 4595 }
+
+[.north_middle]
+tile = { x = 2926, y = 4597 }
+
+[.north_east]
+tile = { x = 2931, y = 4597 }

@@ -1,0 +1,41 @@
+[random_events]
+event = "string"
+weight = "int"
+
+[.maze]
+event = "maze"
+weight = 10
+
+[random_event_settings]
+value = "int"
+
+# 1-in-N chance of an event per experience drop
+[.roll_chance]
+value = 300
+
+[.min_cooldown_minutes]
+value = 45
+
+[.max_cooldown_minutes]
+value = 90
+
+[random_event_exiles]
+area = "string"
+
+[.lumbridge]
+area = "random_event_exile_lumbridge"
+
+[.varrock]
+area = "random_event_exile_varrock"
+
+[.falador]
+area = "random_event_exile_falador"
+
+[.edgeville]
+area = "random_event_exile_edgeville"
+
+[.draynor]
+area = "random_event_exile_draynor"
+
+[.al_kharid]
+area = "random_event_exile_al_kharid"

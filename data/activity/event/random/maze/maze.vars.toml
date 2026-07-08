@@ -1,0 +1,3 @@
+[maze_chests_opened]
+format = "int"
+persist = true

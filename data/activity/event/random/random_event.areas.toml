@@ -1,0 +1,23 @@
+[random_event_exile_lumbridge]
+x = [3221, 3223]
+y = [3217, 3219]
+
+[random_event_exile_varrock]
+x = [3211, 3213]
+y = [3422, 3424]
+
+[random_event_exile_falador]
+x = [2963, 2965]
+y = [3377, 3379]
+
+[random_event_exile_edgeville]
+x = [3092, 3094]
+y = [3493, 3495]
+
+[random_event_exile_draynor]
+x = [3092, 3094]
+y = [3243, 3245]
+
+[random_event_exile_al_kharid]
+x = [3292, 3294]
+y = [3183, 3185]

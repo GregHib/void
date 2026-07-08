@@ -1,3 +1,7 @@
+[mysterious_old_man]
+id = 410
+examine = "An old man with an aura of magic."
+
 [freaky_forester]
 id = 2458
 wander_range = 3
