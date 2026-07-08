@@ -8,7 +8,6 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -47,7 +46,6 @@ class Mime : Script {
         kidnap(SPAWN)
         npc<Neutral>("mysterious_old_man", "Here's a little challenge for you:<br>Copy the Mime's performance, then you'll be released.")
         walkOverDelay(WATCH)
-        statement("Watch the Mime.<br>See what emote he performs.")
 
         val mime = NPCs.firstOrNull(MIME_TILE) { it.id == "mime" } ?: NPCs.add("mime", MIME_TILE, ticks = -1, owner = this)
         runMime(mime)
@@ -58,7 +56,9 @@ class Mime : Script {
             val expected = EMOTES.random(random)
             set("mime_emote", expected)
 
-            // Spotlight the Mime and perform the emote facing the audience.
+            // Spotlight the Mime and perform the emote facing the audience; the prompt sits in the
+            // chatbox (no continue button) while the player watches.
+            statement("Watch the Mime.<br>See what emote he performs.", clickToContinue = false)
             lightMime(on = true)
             lightPlayer(on = false)
             mime.face(AUDIENCE)
@@ -75,12 +75,12 @@ class Mime : Script {
             val chosen = awaitEmote()
             anim("emote_$chosen") // the player performs the emote they picked
             if (chosen == expected) {
-                message("Correct!")
+                statement("Correct!", clickToContinue = false)
                 inc("mime_correct")
                 mime.face(AUDIENCE)
                 delay(CORRECT_TICKS)
             } else {
-                message("That wasn't quite right. Watch the Mime again.")
+                statement("That wasn't quite right. Watch the Mime again.", clickToContinue = false)
             }
         }
         finish()

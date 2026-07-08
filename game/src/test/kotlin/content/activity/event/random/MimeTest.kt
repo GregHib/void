@@ -25,8 +25,7 @@ class MimeTest : WorldTest() {
         tick(6) // mysterious old man + kidnap
         player.skipDialogues() // "Here's a little challenge..."
         tick(3) // walk to the watch spot
-        player.skipDialogues() // "Watch the Mime."
-        tickIf { !player.interfaces.contains(iface) } // mime performs + bows -> opens the interface
+        tickIf { !player.interfaces.contains(iface) } // "Watch the Mime." + performance -> opens the interface
         return player
     }
 
