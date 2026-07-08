@@ -149,7 +149,6 @@ class SurpriseExam : Script {
         )
         private val DOORS = DOOR_TEXT.keys.toList()
 
-        // Category sets: pick the option that completes the three shown (from 2009scape).
         private val SETS = listOf(
             listOf("gardening_trowel", "secateurs", "seed_dibber", "rake"),
             listOf("salmon", "shark", "trout", "shrimps"),
