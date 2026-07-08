@@ -1,0 +1,26 @@
+[evil_bob_npc]
+format = "int"
+
+[evil_bob_zone]
+format = "int"
+persist = true
+
+[evil_bob_complete]
+format = "boolean"
+persist = true
+
+[evil_bob_attentive]
+format = "boolean"
+persist = true
+
+[evil_bob_new_spot]
+format = "boolean"
+persist = true
+
+[evil_bob_seen_intro]
+format = "boolean"
+persist = true
+
+[evil_bob_servant_helped]
+format = "boolean"
+persist = true

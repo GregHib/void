@@ -1,0 +1,11 @@
+[evil_bob_cat]
+id = 2478
+examine = "It's a cat with an evil glint in its eye."
+
+[evil_bob]
+id = 2479
+examine = "An evil incarnation of Bob the cat."
+
+[evil_bob_servant]
+id = 2481
+examine = "A terrified human servant."

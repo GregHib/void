@@ -26,6 +26,10 @@ weight = 10
 event = "mime"
 weight = 10
 
+[.evil_bob]
+event = "evil_bob"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
