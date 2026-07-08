@@ -20,7 +20,7 @@ import kotlin.test.assertTrue
 
 class MimeTest : WorldTest() {
 
-    private val stage = Tile(2011, 4759)
+    private val stage = Tile(2008, 4762)
 
     private fun Player.performEmote(emote: String) {
         val player = this

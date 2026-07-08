@@ -93,7 +93,7 @@ class Mime : Script {
         private const val PERFORM_TIMER = "mime_perform"
         private const val PERFORM_INTERVAL = 5
         private const val MIME_REGION = 8010
-        private val STAGE = Tile(2011, 4759)
+        private val STAGE = Tile(2008, 4762)
         private val MIME_TILE = Tile(2011, 4762)
 
         private val EMOTES = listOf(
