@@ -34,11 +34,11 @@ class QuizMaster : Script {
     init {
         RandomEvents.register("quiz_master") { startEvent() }
 
-        interfaceOption("Select", "dialogue_macro_quiz_show:model_*") {
+        interfaceOption("Select", "dialogue_macro_quiz_show:button_*") {
             if (get<String>("random_event") != "quiz_master") {
                 return@interfaceOption
             }
-            answer(it.component.removePrefix("model_").toInt())
+            answer(it.component.removePrefix("button_").toInt())
         }
     }
 
@@ -74,11 +74,6 @@ class QuizMaster : Script {
         interfaces.sendModel("dialogue_macro_quiz_show", "model_2", models[1])
         interfaces.sendModel("dialogue_macro_quiz_show", "model_3", models[2])
         open("dialogue_macro_quiz_show")
-        // The cache marks these models non-clickable, so send the access mask that lets the client
-        // report a click on each one; without it the interface just sits there with no way to answer.
-        for (slot in 1..3) {
-            interfaceOptions.unlockAll("dialogue_macro_quiz_show", "model_$slot")
-        }
     }
 
     private suspend fun Player.answer(slot: Int) {
@@ -118,7 +113,7 @@ class QuizMaster : Script {
 
     companion object {
         private const val REQUIRED = 4
-        private val ROOM = Tile(1952, 4766, 1)
+        private val ROOM = Tile(1952, 4764, 1)
         private val QUIZ_MASTER = Tile(1952, 4768, 1)
 
         // Golden models (8828-8837) grouped so the first of each triple is the odd one out.

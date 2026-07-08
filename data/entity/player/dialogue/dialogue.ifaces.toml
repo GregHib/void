@@ -277,18 +277,28 @@ type = "dialogue_box"
 id = 191
 type = "dialogue_box"
 
-# The three golden models to compare; declaring a Select option makes them clickable so the
-# player can pick the odd one out (the cache marks them non-clickable by default).
+# The three golden models to compare, left to right (the cache runs a client script to spin them).
 [.model_1]
 id = 6
-options = { Select = 0 }
 
 [.model_2]
 id = 7
-options = { Select = 0 }
 
 [.model_3]
 id = 8
+
+# The invisible clickable buttons layered over the three models (cache-clickable via setting=1); a
+# Select action lets the server resolve the pick to the model at the same position.
+[.button_1]
+id = 3
+options = { Select = 0 }
+
+[.button_2]
+id = 4
+options = { Select = 0 }
+
+[.button_3]
+id = 5
 options = { Select = 0 }
 
 [chat1_double_model]

@@ -29,7 +29,7 @@ class QuizMasterTest : WorldTest() {
     }
 
     private fun Player.answerCorrectly() {
-        interfaceOption(quiz, "model_${get("quiz_answer", 0)}", "Select")
+        interfaceOption(quiz, "button_${get("quiz_answer", 0)}", "Select")
         tick()
     }
 
@@ -48,7 +48,7 @@ class QuizMasterTest : WorldTest() {
 
         val answer = player.get("quiz_answer", 0)
         val wrong = if (answer == 1) 2 else 1
-        player.interfaceOption(quiz, "model_$wrong", "Select")
+        player.interfaceOption(quiz, "button_$wrong", "Select")
         tick()
         assertEquals(0, player.get("quiz_correct", 0))
         player.skipDialogues() // "WRONG!" -> reopens the quiz
