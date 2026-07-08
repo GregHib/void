@@ -1,7 +1,7 @@
 package content.activity.event.random
 
 import WorldTest
-import interfaceOption
+import dialogueOption
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
@@ -39,10 +39,12 @@ class SurpriseExamTest : WorldTest() {
         return mordaut
     }
 
-    private fun Player.pickCorrect() {
-        interfaceOption(iface, "option_${get("surprise_exam_answer", 0)}", "Select")
+    private fun Player.pick(option: Int) {
+        dialogueOption("option_$option", iface)
         tick()
     }
+
+    private fun Player.pickCorrect() = pick(get("surprise_exam_answer", 0))
 
     @Test
     fun `Old man teleports the player into the classroom`() {
@@ -59,8 +61,7 @@ class SurpriseExamTest : WorldTest() {
 
         val answer = player.get("surprise_exam_answer", 0)
         val wrong = (1..4).first { it != answer }
-        player.interfaceOption(iface, "option_$wrong", "Select")
-        tick()
+        player.pick(wrong)
         assertEquals(0, player.get("surprise_exam_correct", 0))
         player.skipDialogues() // "isn't correct" -> reopens
         tick()

@@ -19,6 +19,8 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseInt
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -45,15 +47,15 @@ class SurpriseExam : Script {
                 npc<Neutral>("mr_mordau", "Well done! Please exit through the ${DOOR_TEXT[door]} door.")
             } else {
                 npc<Neutral>("mr_mordau", "Please answer these questions for me.")
-                openQuestion()
+                runExam()
             }
         }
 
-        interfaceOption("Select", "surprise_exam_pattern:option_*") {
-            if (get<String>("random_event") != "surprise_exam") {
-                return@interfaceOption
-            }
-            answer(it.component.removePrefix("option_").toInt()) // option_1..4
+        // The answer icons are chatbox components, so a click arrives as a dialogue continue; resume
+        // the waiting question with the option number.
+        continueDialogue("surprise_exam_pattern:option_*") {
+            val option = it.substringAfter(":option_").toIntOrNull() ?: return@continueDialogue
+            (suspension as? Suspension.IntEntry)?.resume(option)
         }
 
         objectOperate("Open", "exam_door_*") { (door) ->
@@ -84,8 +86,23 @@ class SurpriseExam : Script {
         message("Speak to Mr Mordaut to begin your exam.")
     }
 
-    /** Show three icons of one category plus four options (the matching item among decoys). */
-    private fun Player.openQuestion() {
+    private suspend fun Player.runExam() {
+        while (true) {
+            if (askQuestion() == get("surprise_exam_answer", 0)) {
+                if (inc("surprise_exam_correct") >= REQUIRED) {
+                    set("surprise_exam_door", DOORS.random(random))
+                    npc<Neutral>("mr_mordau", "Excellent work! You've passed. Please exit through the ${DOOR_TEXT[get<String>("surprise_exam_door")]} door.")
+                    return
+                }
+                npc<Neutral>("mr_mordau", "Excellent work! Now for another...")
+            } else {
+                npc<Neutral>("mr_mordau", "I'm afraid that isn't correct. Now for another...")
+            }
+        }
+    }
+
+    /** Show three icons of one category plus four options and suspend until the player picks one. */
+    private suspend fun Player.askQuestion(): Int {
         val set = SETS.random(random)
         val shuffled = set.shuffled(random)
         val correct = shuffled.random(random)
@@ -101,21 +118,9 @@ class SurpriseExam : Script {
             interfaces.sendItem("surprise_exam_pattern", "option_${slot + 1}", ItemDefinitions.get(item).id)
         }
         open("surprise_exam_pattern")
-    }
-
-    private suspend fun Player.answer(option: Int) {
+        val option = pauseInt()
         close("surprise_exam_pattern")
-        if (option == get("surprise_exam_answer", 0)) {
-            if (inc("surprise_exam_correct") >= REQUIRED) {
-                set("surprise_exam_door", DOORS.random(random))
-                npc<Neutral>("mr_mordau", "Excellent work! You've passed. Please exit through the ${DOOR_TEXT[get<String>("surprise_exam_door")]} door.")
-                return
-            }
-            npc<Neutral>("mr_mordau", "Excellent work! Now for another...")
-        } else {
-            npc<Neutral>("mr_mordau", "I'm afraid that isn't correct. Now for another...")
-        }
-        openQuestion()
+        return option
     }
 
     private fun Player.finish() {
