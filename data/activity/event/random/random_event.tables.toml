@@ -22,6 +22,10 @@ weight = 10
 event = "certer"
 weight = 10
 
+[.mime]
+event = "mime"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
