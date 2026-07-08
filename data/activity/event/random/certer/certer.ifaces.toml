@@ -1,0 +1,15 @@
+# The certer's "identify this item" interface: three description options and the item model.
+[certer_identify]
+id = 184
+
+[.option_1]
+id = 4
+
+[.option_2]
+id = 5
+
+[.option_3]
+id = 6
+
+[.item]
+id = 8

@@ -18,6 +18,10 @@ weight = 10
 event = "drill_demon"
 weight = 10
 
+[.certer]
+event = "certer"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
@@ -51,3 +55,70 @@ area = "random_event_exile_draynor"
 
 [.al_kharid]
 area = "random_event_exile_al_kharid"
+
+# Shared reward table for the Certer and Pillory events.
+[random_event_certer]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.coins]
+item = "coins"
+weight = 20
+min = 80
+max = 640
+
+[.kebab]
+item = "kebab"
+weight = 15
+min = 1
+max = 1
+
+[.spinach_roll]
+item = "spinach_roll"
+weight = 15
+min = 1
+max = 1
+
+[.uncut_sapphire]
+item = "uncut_sapphire"
+weight = 10
+min = 1
+max = 1
+
+[.uncut_emerald]
+item = "uncut_emerald"
+weight = 8
+min = 1
+max = 1
+
+[.cosmic_talisman]
+item = "cosmic_talisman"
+weight = 8
+min = 1
+max = 1
+
+[.uncut_ruby]
+item = "uncut_ruby"
+weight = 5
+min = 1
+max = 1
+
+[.uncut_diamond]
+item = "uncut_diamond"
+weight = 3
+min = 1
+max = 1
+
+[.tooth_half_of_a_key]
+item = "tooth_half_of_a_key"
+weight = 2
+min = 1
+max = 1
+
+[.loop_half_of_a_key]
+item = "loop_half_of_a_key"
+weight = 2
+min = 1
+max = 1
