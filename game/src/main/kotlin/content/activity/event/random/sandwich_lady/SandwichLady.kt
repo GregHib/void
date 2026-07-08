@@ -38,7 +38,7 @@ class SandwichLady : Script {
             val food = get<String>("sandwich_lady_food") ?: return@npcOperate
             if (inCombat) {
                 // No time for the tray mid-fight; she just hands over the right one.
-                serve(lady, food)
+                serve(food)
                 return@npcOperate
             }
             npc<Happy>("sandwich_lady", "You look hungry to me. I tell you what - have a ${description(food)} on me.")
@@ -51,12 +51,9 @@ class SandwichLady : Script {
             val lady = lady()
             close("sandwich_lady_select")
             if (it.component == food) {
-                serve(lady, food)
+                serve(food)
             } else {
-                lady?.say("Hey, I didn't say you could have that!")
-                lady?.let { l -> directHit(l, 3) }
-                message("The sandwich lady knocks you out and you wake up somewhere... different.")
-                RandomEvents.noteAndTeleport(this)
+                knockOut(lady)
             }
         }
     }
@@ -69,14 +66,27 @@ class SandwichLady : Script {
         lady.say("Sandwich delivery for $name!")
     }
 
+    private suspend fun Player.knockOut(lady: NPC?) {
+        message("The sandwich lady knocks you out and you wake up somewhere... different.")
+        lady?.say("Hey, I didn't say you could have that!")
+        lady?.anim("sandwich_lady_knockout") // swings the baguette
+        lady?.let { directHit(it, 3) }
+        anim("human_death")
+        open("fade_out")
+        delay(3)
+        RandomEvents.noteAndTeleport(this)
+        clearAnim()
+        open("fade_in")
+    }
+
     private fun Player.lady(): NPC? = NPCs.indexed(get("sandwich_lady_npc", -1))?.takeIf { it.id == "sandwich_lady" }
 
-    private fun Player.serve(lady: NPC?, food: String) {
+    private suspend fun Player.serve(food: String) {
         message("The sandwich lady gives you a ${description(food)}!")
         if (!inventory.add(food)) {
             FloorItems.add(tile, food, 1, disappearTicks = 300, owner = this)
         }
-        lady?.say("Hope that fills you up!")
+        npc<Happy>("sandwich_lady", "Hope that fills you up!")
         // Clearing the event state removes the following NPC on its next tick.
         RandomEvents.completeInPlace(this)
     }

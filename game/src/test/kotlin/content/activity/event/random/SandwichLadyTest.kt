@@ -59,6 +59,8 @@ class SandwichLadyTest : WorldTest() {
         assertTrue(player.interfaces.contains("sandwich_lady_select"))
         player.interfaceOption("sandwich_lady_select", "meat_pie", "Choose refreshment")
         tick()
+        player.skipDialogues() // "Hope that fills you up!"
+        tick()
 
         assertEquals(1, player.inventory.count("meat_pie"))
         assertEquals(spot, player.tile) // in-place: not teleported anywhere
@@ -74,7 +76,7 @@ class SandwichLadyTest : WorldTest() {
         openTray(player, lady)
 
         player.interfaceOption("sandwich_lady_select", "baguette", "Choose refreshment")
-        tick()
+        tick(5) // baguette swing, knockout animation, screen fade, then teleport
 
         assertEquals(0, player.inventory.count("baguette"))
         assertEquals(hpBefore - 3, player.levels.get(Skill.Constitution)) // she smacks you for 3
