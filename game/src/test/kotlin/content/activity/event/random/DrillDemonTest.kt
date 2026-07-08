@@ -25,6 +25,7 @@ class DrillDemonTest : WorldTest() {
         player["random_event"] = "drill_demon"
         player["random_event_origin"] = origin.id
         player["drill_demon_correct"] = 0
+        player["drill_demon_ready"] = true // the order has been given
         tick(2) // load the yard so the map mats resolve
         return player
     }
@@ -69,6 +70,17 @@ class DrillDemonTest : WorldTest() {
         tickIf { player.dialogue == null }
 
         assertEquals(1, player.get("drill_demon_correct", 0))
+    }
+
+    @Test
+    fun `Using a mat before the order is given gives no credit`() {
+        val player = enter("dd_early")
+        player.clear("drill_demon_ready") // order not given yet
+        player.layout(task = 1)
+        player.objectOption(mats()[0], "Use") // mat 1 would be correct once the order is given
+        tickIf { player.dialogue == null } // Damien scolds instead
+
+        assertEquals(0, player.get("drill_demon_correct", 0))
     }
 
     @Test

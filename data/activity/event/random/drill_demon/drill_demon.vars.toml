@@ -5,3 +5,7 @@ persist = true
 [drill_demon_correct]
 format = "int"
 persist = true
+
+# Set once the sergeant has given the first order; using a mat before then is a wasted attempt.
+[drill_demon_ready]
+format = "boolean"

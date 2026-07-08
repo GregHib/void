@@ -33,12 +33,21 @@ class DrillDemon : Script {
                 message("They aren't interested in talking to you.")
                 return@npcOperate
             }
+            if (!get("drill_demon_ready", false)) {
+                npc<Neutral>("sergeant_damien", "I haven't given you the order yet, worm!", largeHead = true)
+                return@npcOperate
+            }
             order(wrong = false)
         }
 
         objectOperate("Use", "drill_demon_mat_*") { (mat) ->
             if (get<String>("random_event") != "drill_demon") {
                 message("You can't do that right now.")
+                return@objectOperate
+            }
+            if (!get("drill_demon_ready", false)) {
+                // Jumping on a mat before the order is given is a wasted, uncredited attempt.
+                npc<Neutral>("sergeant_damien", "I haven't given you the order yet, worm!", largeHead = true)
                 return@objectOperate
             }
             val value = get("drill_demon_sign_${mat.id.removePrefix("drill_demon_mat_")}", 0)
@@ -64,10 +73,13 @@ class DrillDemon : Script {
 
     private suspend fun Player.startEvent() {
         set("drill_demon_correct", 0)
+        clear("drill_demon_ready")
         assignRound(reveal = false)
         mysteriousOldMan()
         kidnap(YARD)
-        npc<Neutral>("sergeant_damien", "Move yourself private! Follow my orders and you may, just may, leave here in a fit state for my corps!", largeHead = true)
+        message("Follow Sergeant Damien's orders!")
+        delay(ORDER_DELAY) // give the player a few seconds before barking the first order
+        set("drill_demon_ready", true)
         order(wrong = false)
     }
 
@@ -97,6 +109,7 @@ class DrillDemon : Script {
     private suspend fun Player.finish() {
         npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
         rewardCostumeOrCoins("camo_helmet", "camo_top", "camo_bottoms", coins = 500)
+        clear("drill_demon_ready")
         clear("drill_demon_task")
         clear("drill_demon_correct")
         RandomEvents.complete(this)
@@ -107,6 +120,7 @@ class DrillDemon : Script {
     companion object {
         private const val REQUIRED = 4
         private const val EXERCISE_TICKS = 4
+        private const val ORDER_DELAY = 8 // ~5 seconds before the first order
         private const val HALF_TICK = 15 // client ticks; a game tick is 30
         private val YARD = Tile(3163, 4820)
 
