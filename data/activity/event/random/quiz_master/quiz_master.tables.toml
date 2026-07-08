@@ -1,0 +1,51 @@
+[random_event_quiz]
+item = "item"
+amount = "int"
+
+[.lamp]
+item = "lamp"
+amount = 1
+
+[.cabbage]
+item = "cabbage"
+amount = 1
+
+[.diamond]
+item = "diamond"
+amount = 1
+
+[.bucket]
+item = "bucket"
+amount = 1
+
+[.flier]
+item = "flier"
+amount = 1
+
+[.old_boot]
+item = "old_boot"
+amount = 1
+
+[.body_rune]
+item = "body_rune"
+amount = 1
+
+[.onion]
+item = "onion"
+amount = 1
+
+[.mithril_scimitar]
+item = "mithril_scimitar"
+amount = 1
+
+[.casket]
+item = "casket"
+amount = 1
+
+[.steel_platebody]
+item = "steel_platebody"
+amount = 1
+
+[.nature_rune]
+item = "nature_rune"
+amount = 20

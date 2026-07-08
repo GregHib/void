@@ -30,6 +30,10 @@ weight = 10
 event = "evil_bob"
 weight = 10
 
+[.quiz_master]
+event = "quiz_master"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
