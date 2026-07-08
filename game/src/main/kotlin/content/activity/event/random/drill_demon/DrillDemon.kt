@@ -6,6 +6,7 @@ import content.activity.event.random.mysteriousOldMan
 import content.activity.event.random.rewardCostumeOrCoins
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -87,8 +88,10 @@ class DrillDemon : Script {
     }
 
     private suspend fun Player.order(wrong: Boolean) {
+        val task = EXERCISES.getValue(get("drill_demon_task", 1))
         val prefix = if (wrong) "Wrong exercise, worm! " else ""
-        npc<Neutral>("sergeant_damien", "$prefix${EXERCISES.getValue(get("drill_demon_task", 1)).order} private!", largeHead = true)
+        npc<Neutral>("sergeant_damien", "$prefix${task.order} private!", largeHead = true)
+        item(task.sign, "Go to <red>this mat</col> and ${task.action}!")
     }
 
     private suspend fun Player.finish() {
@@ -99,7 +102,7 @@ class DrillDemon : Script {
         RandomEvents.complete(this)
     }
 
-    private data class Exercise(val anim: String, val sound: String, val order: String)
+    private data class Exercise(val anim: String, val sound: String, val order: String, val sign: String, val action: String)
 
     companion object {
         private const val REQUIRED = 4
@@ -112,10 +115,10 @@ class DrillDemon : Script {
 
         // Sign varbit values, 1-based so a sign is never the cleared 0 default (0 = no sign shown).
         private val EXERCISES = mapOf(
-            1 to Exercise("drill_demon_jog", "drill_demon_jog", "Get yourself over there and jog on that mat"),
-            2 to Exercise("drill_demon_situp", "drill_demon_situp", "Get on that mat and give me sit ups"),
-            3 to Exercise("drill_demon_pushup", "drill_demon_pushup", "Drop and give me push ups on that mat"),
-            4 to Exercise("drill_demon_starjump", "drill_demon_starjump", "I want to see you on that mat doing star jumps"),
+            1 to Exercise("drill_demon_jog", "drill_demon_jog", "Get yourself over there and jog on that mat", "run", "jog on the spot"),
+            2 to Exercise("drill_demon_situp", "drill_demon_situp", "Get on that mat and give me sit ups", "sit_up", "do some sit-ups"),
+            3 to Exercise("drill_demon_pushup", "drill_demon_pushup", "Drop and give me push ups on that mat", "push_up", "do some push-ups"),
+            4 to Exercise("drill_demon_starjump", "drill_demon_starjump", "I want to see you on that mat doing star jumps", "star_jump", "do some star jumps"),
         )
     }
 }
