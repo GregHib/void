@@ -34,6 +34,10 @@ weight = 10
 event = "quiz_master"
 weight = 10
 
+[.pillory]
+event = "pillory"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
