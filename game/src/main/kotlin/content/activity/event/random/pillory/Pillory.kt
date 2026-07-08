@@ -114,12 +114,12 @@ class Pillory : Script {
 
         // The pillory cages (object 777) as placed in the 634 map: Varrock, Seers' Village, Yanille.
         private val LOCATIONS = listOf(
-            Tile(3228, 3408),
-            Tile(3230, 3408),
-            Tile(2681, 3488),
-            Tile(2683, 3488),
-            Tile(2685, 3488),
-            Tile(2608, 3104),
+            Tile(3228, 3407),
+            Tile(3230, 3407),
+            Tile(2681, 3489),
+            Tile(2683, 3489),
+            Tile(2685, 3489),
+            Tile(2608, 3105),
         )
     }
 }
