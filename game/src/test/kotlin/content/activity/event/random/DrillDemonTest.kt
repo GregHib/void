@@ -42,11 +42,10 @@ class DrillDemonTest : WorldTest() {
         while (player.dialogue != null) player.skipDialogues() // close the previous round's order
         if (player.get<String>("random_event") != "drill_demon") return
         val task = player.get("drill_demon_task", 0)
-        val before = player.get("drill_demon_correct", 0)
         val index = (1..4).first { player.get("drill_demon_sign_$it", 0) == task }
         player.objectOption(mats[index - 1], "Use")
-        // Wait until the exercise is scored (or the event completes on the final rep).
-        tickIf(50) { player.get("drill_demon_correct", 0) == before && player.get<String>("random_event") == "drill_demon" }
+        // Wait for the exercise + sign sweep to finish and Damien to respond (or the event to complete).
+        tickIf(60) { player.dialogue == null && player.get<String>("random_event") == "drill_demon" }
     }
 
     @Test
