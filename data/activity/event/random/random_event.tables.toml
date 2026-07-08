@@ -6,6 +6,10 @@ weight = "int"
 event = "maze"
 weight = 10
 
+[.freaky_forester]
+event = "freaky_forester"
+weight = 10
+
 [random_event_settings]
 value = "int"
 

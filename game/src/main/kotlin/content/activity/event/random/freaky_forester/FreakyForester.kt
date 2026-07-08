@@ -1,0 +1,119 @@
+package content.activity.event.random.freaky_forester
+
+import content.activity.event.random.RandomEvents
+import content.activity.event.random.kidnap
+import content.activity.event.random.rewardCostumeOrCoins
+import content.entity.combat.killer
+import content.entity.player.bank.ownsItem
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
+
+/**
+ * Freaky Forester random event: the player is whisked to the forester's clearing and told to kill
+ * a pheasant with a specific number of tails. Only the assigned pheasant yields the correct raw
+ * pheasant; handing it back rewards a lederhosen costume piece (or coins if the set is complete).
+ * https://runescape.wiki/w/Random_events?oldid=3667851#Freaky_Forester
+ */
+class FreakyForester : Script {
+
+    init {
+        RandomEvents.register("freaky_forester") { startEvent() }
+
+        npcOperate("Talk-to", "freaky_forester") {
+            if (get<String>("random_event") != "freaky_forester") {
+                message("The forester is too busy to talk to you.")
+                return@npcOperate
+            }
+            foresterDialogue()
+        }
+
+        // One pheasant per trip: don't let the player farm the clearing.
+        canAttack("pheasant_*") {
+            if (carriesRawPheasant()) {
+                message("You don't need to attack any more pheasants.")
+                false
+            } else {
+                true
+            }
+        }
+
+        npcDeath("pheasant_*") { death ->
+            val killer = killer as? Player ?: return@npcDeath
+            if (killer.get<String>("random_event") != "freaky_forester") {
+                return@npcDeath
+            }
+            death.dropItems = false
+            val correct = tailCount(id) == killer.get("freaky_forester_task", 0)
+            killer.giveRawPheasant(if (correct) "raw_pheasant" else "raw_pheasant_incorrect")
+        }
+    }
+
+    private suspend fun Player.startEvent() {
+        set("freaky_forester_task", random.nextInt(1, TAILS + 1))
+        kidnap(CLEARING)
+        giveTask()
+    }
+
+    private suspend fun Player.foresterDialogue() {
+        when {
+            inventory.contains("raw_pheasant") -> {
+                inventory.remove("raw_pheasant")
+                npc<Happy>("freaky_forester", "Thanks, $name, you may leave the area now.")
+                reward()
+                clear("freaky_forester_task")
+                RandomEvents.complete(this)
+            }
+            inventory.contains("raw_pheasant_incorrect") -> {
+                inventory.remove("raw_pheasant_incorrect")
+                npc<Neutral>("freaky_forester", "That's not the right one.")
+            }
+            else -> giveTask()
+        }
+    }
+
+    private suspend fun Player.giveTask() {
+        val tails = get("freaky_forester_task", 1)
+        npc<Neutral>(
+            "freaky_forester",
+            "Hey there $name. Can you kill the ${TAIL_WORDS[tails]} tailed pheasant please. " +
+                "Bring me the raw pheasant when you're done.",
+        )
+    }
+
+    private suspend fun Player.reward() {
+        val pieces = arrayOf("lederhosen_hat", "lederhosen_top", "lederhosen_shorts")
+        if (pieces.all { ownsItem(it) }) {
+            npc<Happy>("freaky_forester", "You get some money for your help, many thanks!")
+        } else {
+            npc<Happy>("freaky_forester", "You get a lederhosen item as a reward for your help, many thanks!")
+        }
+        rewardCostumeOrCoins(*pieces, coins = 500)
+    }
+
+    private fun Player.carriesRawPheasant() = inventory.contains("raw_pheasant") || inventory.contains("raw_pheasant_incorrect")
+
+    private fun Player.giveRawPheasant(item: String) {
+        if (!inventory.add(item)) {
+            FloorItems.add(tile, item, 1, disappearTicks = 300, owner = this)
+        }
+    }
+
+    private fun tailCount(pheasantId: String) = pheasantId.removePrefix("pheasant_").substringBefore("_").toIntOrNull() ?: 0
+
+    companion object {
+        private const val TAILS = 4
+        private val TAIL_WORDS = arrayOf("", "one", "two", "three", "four")
+        private val CLEARING = Tile(2601, 4777)
+    }
+}
