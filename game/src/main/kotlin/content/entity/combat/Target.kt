@@ -180,6 +180,7 @@ object Target {
         is NPC if target.def.contains("damage_cap") -> damage.coerceAtMost(target.def["damage_cap"])
         is NPC if target.def.contains("immune_death") -> damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
         is NPC if target.id.endsWith("_impling") -> 0
+        is NPC if (target.id == "spined_larupia" || target.id == "horned_graahk" || target.id == "sabre_toothed_kyatt") -> 0
         else -> damage
     }
 }

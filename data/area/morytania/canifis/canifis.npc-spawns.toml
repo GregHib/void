@@ -31,7 +31,6 @@ spawns = [
   { id = "zoja", x = 3505, y = 3491 },
   { id = "liliya", x = 3479, y = 3498, level = 1 },
   { id = "achtryn", x = 3511, y = 3509, members = true },
-  { id = "mazchna", x = 3512, y = 3509, members = true },
   # North of Mort Myre Swamp
   { id = "ghoul", x = 3423, y = 3461, members = true },
   { id = "ghoul", x = 3426, y = 3465, members = true },

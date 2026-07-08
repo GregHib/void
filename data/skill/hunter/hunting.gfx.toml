@@ -40,5 +40,14 @@ id = 951
 [catch_fail]
 id = 946
 
-[pitfall_collapse]
+[pitfall_collapse_0]
+id = 933
+
+[pitfall_collapse_1]
+id = 934
+
+[pitfall_collapse_2]
 id = 935
+
+[pitfall_collapse_3]
+id = 936

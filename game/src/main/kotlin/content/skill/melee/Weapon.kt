@@ -16,6 +16,7 @@ class Weapon : Script {
         }
 
         variableSet("autocast,spell") { _, _, _ -> updateWeapon(this, weapon) }
+
         variableSet("attack_style") { _, from, to ->
             if (to == "long_range") {
                 updateWeapon(this, weapon, 2)

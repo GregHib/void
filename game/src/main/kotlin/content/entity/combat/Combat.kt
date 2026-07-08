@@ -119,6 +119,9 @@ class Combat(val combatDefinitions: CombatDefinitions) :
     }
 
     fun retaliate(character: Character, source: Character) {
+        if (source is NPC && source.def.options.contains("Tease")) {
+            return
+        }
         if (character.dead || character.levels.get(Skill.Constitution) <= 0 || !retaliates(character)) {
             return
         }

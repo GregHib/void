@@ -58,3 +58,19 @@ id = 3067
 
 [lay_net_trap]
 id = 5215
+
+[tease]
+id = 5236
+
+[scythe_slash]
+id = 2524
+
+[big_cat_attack]
+id = 5229
+
+[big_cat_defend]
+id = 5227
+
+[big_cat_death]
+id = 5234
+ticks = 2

@@ -47,8 +47,11 @@ examine = "A black warlock. The air seems to distort wherever it passes."
 id = 5088
 examine = "It uses its tail to hunt and skewer fish."
 
-[spined_larupia_feldip_hills]
+[spined_larupia]
 id = 5104
+combat_def = "panther"
+respawn_delay = 50
+max_hit_slash = 50
 examine = "If you tried to ride that, you'd just impale yourself!"
 
 [hunting_expert_feldip_hills]
