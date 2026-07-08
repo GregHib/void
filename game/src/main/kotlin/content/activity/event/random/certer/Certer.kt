@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.random
 
 /**
@@ -55,13 +54,13 @@ class Certer : Script {
     }
 
     private fun Player.openPuzzle() {
-        val options = ITEMS.entries.shuffled(random).take(3)
+        val options = ITEMS.shuffled(random).take(3)
         val answer = options.random(random)
         set("certer_answer", options.indexOf(answer) + 1)
         open("certer_identify")
-        interfaces.sendText("certer_identify", "prompt", "Which of these is ${answer.value}?")
+        interfaces.sendText("certer_identify", "prompt", "Which of these is ${answer.description}?")
         for ((index, option) in options.withIndex()) {
-            interfaces.sendItem("certer_identify", "option_${index + 1}", Item(option.key))
+            interfaces.sendModel("certer_identify", "option_${index + 1}", option.model)
         }
     }
 
@@ -73,20 +72,22 @@ class Certer : Script {
         "No-one ignores me!",
     )
 
+    private data class Candidate(val description: String, val model: Int)
+
     companion object {
-        // item id -> the description the certer reads out.
-        private val ITEMS = mapOf(
-            "bowl" to "a bowl",
-            "raw_shrimps" to "a fish",
-            "raw_bass" to "a bass",
-            "bronze_sword" to "a sword",
-            "bronze_battleaxe" to "a battleaxe",
-            "bronze_med_helm" to "a helmet",
-            "bronze_kiteshield" to "a kiteshield",
-            "shears" to "a pair of shears",
-            "spade" to "a shovel",
-            "gold_ring" to "a ring",
-            "gold_necklace" to "a necklace",
+        // The description the certer reads out and the item model shown as an option.
+        private val ITEMS = listOf(
+            Candidate("a bowl", 2807),
+            Candidate("a fish", 2590),
+            Candidate("a bass", 2355),
+            Candidate("a sword", 2604),
+            Candidate("a battleaxe", 2778),
+            Candidate("a helmet", 2833),
+            Candidate("a kiteshield", 2339),
+            Candidate("a pair of shears", 2620),
+            Candidate("a shovel", 7304),
+            Candidate("a ring", 2784),
+            Candidate("a necklace", 2506),
         )
     }
 }
