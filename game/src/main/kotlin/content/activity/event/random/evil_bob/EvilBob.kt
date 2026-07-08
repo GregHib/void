@@ -37,7 +37,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 /**
- * Evil Bob random event: an evil incarnation of Bob the cat whisks the player to the "Scape2009"
+ * Evil Bob random event: an evil incarnation of Bob the cat whisks the player to the "ScapeRune"
  * island and demands to be fed. A terrified servant hints which of the four fishing spots holds the
  * fish Bob likes; the player nets it (it comes out already cooked), uncooks it at the cold fire, and
  * serves the raw fish to Bob. The right fish sends him to sleep and opens the exit portal; a wrong
@@ -122,7 +122,7 @@ class EvilBob : Script {
         assignZone()
         inventory.add("small_fishing_net")
         face(bob.tile)
-        message("Welcome to Scape2009.")
+        message("Welcome to ScapeRune.")
         evilBobDialogue()
     }
 
@@ -355,7 +355,6 @@ class EvilBob : Script {
             "raw_fish_like_thing_incorrect",
         )
 
-        // Zones and camera framings ported from 2009scape's EvilBobUtils / ServantCutscene[NSEW]
         // (region-13642 base 3392,4736 + local coords). Index order = zone id 1..4.
         private val ZONES = listOf(
             Zone(3421, 4789, 3427, 4792, Tile(3424, 4791), Tile(3422, 4773), 400, Tile(3422, 4786), 400), // north
