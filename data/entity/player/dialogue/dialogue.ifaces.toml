@@ -287,19 +287,16 @@ id = 7
 [.model_3]
 id = 8
 
-# The invisible clickable buttons layered over the three models (cache-clickable via setting=1); a
-# Select action lets the server resolve the pick to the model at the same position.
+# The invisible clickable buttons layered over the three models. They're dialogue-box components
+# (setting=1 in the cache), so a click arrives as a dialogue continue keyed by these names.
 [.button_1]
 id = 3
-options = { Select = 0 }
 
 [.button_2]
 id = 4
-options = { Select = 0 }
 
 [.button_3]
 id = 5
-options = { Select = 0 }
 
 [chat1_double_model]
 id = 173

@@ -2,7 +2,6 @@ package content.activity.event.random
 
 import WorldTest
 import dialogueOption
-import interfaceOption
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -23,15 +22,18 @@ class QuizMasterTest : WorldTest() {
         val player = createPlayer(origin, name)
         RandomEvents.start(player, "quiz_master")
         tick(8)
-        player.skipDialogues() // advance the three intro lines -> opens the quiz
+        player.skipDialogues() // advance the three intro lines -> opens the first question
         tick()
         return player
     }
 
-    private fun Player.answerCorrectly() {
-        interfaceOption(quiz, "button_${get("quiz_answer", 0)}", "Select")
+    /** Clicks the button at [slot] (a dialogue-continue) and lets the answer resolve. */
+    private fun Player.pick(slot: Int) {
+        dialogueOption("button_$slot", quiz)
         tick()
     }
+
+    private fun Player.pickAnswer() = pick(get("quiz_answer", 0))
 
     @Test
     fun `Event whisks the player to the studio and opens the quiz`() {
@@ -47,14 +49,12 @@ class QuizMasterTest : WorldTest() {
         val player = enter("quiz_answer")
 
         val answer = player.get("quiz_answer", 0)
-        val wrong = if (answer == 1) 2 else 1
-        player.interfaceOption(quiz, "button_$wrong", "Select")
-        tick()
+        player.pick(if (answer == 1) 2 else 1) // wrong button
         assertEquals(0, player.get("quiz_correct", 0))
         player.skipDialogues() // "WRONG!" -> reopens the quiz
         tick()
 
-        player.answerCorrectly()
+        player.pickAnswer()
         assertEquals(1, player.get("quiz_correct", 0))
     }
 
@@ -63,7 +63,7 @@ class QuizMasterTest : WorldTest() {
         val player = enter("quiz_coins")
 
         repeat(4) {
-            player.answerCorrectly()
+            player.pickAnswer()
             player.skipDialogues() // "RIGHT!" (or the winner line on the 4th) -> reopens quiz / opens the prize choice
             tick()
         }
@@ -81,7 +81,7 @@ class QuizMasterTest : WorldTest() {
         val player = enter("quiz_item")
 
         repeat(4) {
-            player.answerCorrectly()
+            player.pickAnswer()
             player.skipDialogues()
             tick()
         }

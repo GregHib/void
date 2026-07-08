@@ -19,6 +19,8 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.suspend.Suspension
+import world.gregs.voidps.engine.suspend.pauseInt
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -34,11 +36,12 @@ class QuizMaster : Script {
     init {
         RandomEvents.register("quiz_master") { startEvent() }
 
-        interfaceOption("Select", "dialogue_macro_quiz_show:button_*") {
-            if (get<String>("random_event") != "quiz_master") {
-                return@interfaceOption
-            }
-            answer(it.component.removePrefix("button_").toInt())
+        // The three answer buttons are dialogue-box components (setting=1 in the cache), so a click
+        // arrives as a dialogue continue rather than an interface option; resume the waiting question
+        // with the button's slot.
+        continueDialogue("dialogue_macro_quiz_show:button_*") {
+            val slot = it.substringAfter(":button_").toIntOrNull() ?: return@continueDialogue
+            (suspension as? Suspension.IntEntry)?.resume(slot)
         }
     }
 
@@ -48,7 +51,21 @@ class QuizMaster : Script {
         kidnap(ROOM)
         face(QUIZ_MASTER)
         intro()
-        openQuestion()
+        runQuiz()
+    }
+
+    private suspend fun Player.runQuiz() {
+        while (true) {
+            if (askQuestion() == get("quiz_answer", 0)) {
+                if (inc("quiz_correct") >= REQUIRED) {
+                    break
+                }
+                npc<Goofy>("quiz_master", "Wow, you're a smart one! You're absolutely RIGHT! Okay, next question!")
+            } else {
+                npc<Hysterics>("quiz_master", "WRONG! That's just WRONG! Okay, next question!")
+            }
+        }
+        win()
     }
 
     private suspend fun Player.quizHerald() {
@@ -65,7 +82,8 @@ class QuizMaster : Script {
         npc<Goofy>("quiz_master", "Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
     }
 
-    private fun Player.openQuestion() {
+    /** Shows a fresh "odd one out" and suspends until the player picks a button, returning its slot. */
+    private suspend fun Player.askQuestion(): Int {
         val set = SETS.random(random)
         val answer = set[0]
         val models = set.toList().shuffled(random)
@@ -74,20 +92,9 @@ class QuizMaster : Script {
         interfaces.sendModel("dialogue_macro_quiz_show", "model_2", models[1])
         interfaces.sendModel("dialogue_macro_quiz_show", "model_3", models[2])
         open("dialogue_macro_quiz_show")
-    }
-
-    private suspend fun Player.answer(slot: Int) {
+        val slot = pauseInt()
         close("dialogue_macro_quiz_show")
-        if (slot == get("quiz_answer", 0)) {
-            if (inc("quiz_correct") >= REQUIRED) {
-                win()
-                return
-            }
-            npc<Goofy>("quiz_master", "Wow, you're a smart one! You're absolutely RIGHT! Okay, next question!")
-        } else {
-            npc<Hysterics>("quiz_master", "WRONG! That's just WRONG! Okay, next question!")
-        }
-        openQuestion()
+        return slot
     }
 
     private suspend fun Player.win() {
