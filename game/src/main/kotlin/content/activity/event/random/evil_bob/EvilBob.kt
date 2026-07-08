@@ -261,7 +261,7 @@ class EvilBob : Script {
                 npc<Evil>("evil_bob", "Most humans do; that's why I wear this amulet of Man speak.")
             }
             option<Neutral>("What did you do to Bob?") {
-                npc<Evil>("evil_bob", "Bob? I am Bob! An incarnation of Bob here on Scape2009.")
+                npc<Evil>("evil_bob", "Bob? I am Bob! An incarnation of Bob here on ScapeRune.")
                 npc<Evil>("evil_bob", "You work just as well for me. Now get to work, human! Fish for me!")
             }
         }
