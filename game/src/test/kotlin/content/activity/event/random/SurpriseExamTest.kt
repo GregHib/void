@@ -1,7 +1,7 @@
 package content.activity.event.random
 
 import WorldTest
-import dialogueOption
+import interfaceOption
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
@@ -40,7 +40,7 @@ class SurpriseExamTest : WorldTest() {
     }
 
     private fun Player.pick(option: Int) {
-        dialogueOption("option_$option", iface)
+        interfaceOption(iface, "option_$option", "Select")
         tick()
     }
 
