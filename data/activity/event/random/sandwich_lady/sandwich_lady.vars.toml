@@ -1,2 +1,5 @@
 [sandwich_lady_food]
 format = "string"
+
+[sandwich_lady_npc]
+format = "int"

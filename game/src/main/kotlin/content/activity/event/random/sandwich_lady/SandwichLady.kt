@@ -2,6 +2,7 @@ package content.activity.event.random.sandwich_lady
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.startInPlaceEvent
+import content.entity.combat.hit.directHit
 import content.entity.combat.inCombat
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
@@ -9,6 +10,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -35,7 +38,7 @@ class SandwichLady : Script {
             val food = get<String>("sandwich_lady_food") ?: return@npcOperate
             if (inCombat) {
                 // No time for the tray mid-fight; she just hands over the right one.
-                serve(food)
+                serve(lady, food)
                 return@npcOperate
             }
             npc<Happy>("sandwich_lady", "You look hungry to me. I tell you what - have a ${description(food)} on me.")
@@ -45,10 +48,13 @@ class SandwichLady : Script {
 
         interfaceOption("Choose refreshment", "sandwich_lady_select:*") {
             val food = get<String>("sandwich_lady_food") ?: return@interfaceOption
+            val lady = lady()
             close("sandwich_lady_select")
             if (it.component == food) {
-                serve(food)
+                serve(lady, food)
             } else {
+                lady?.say("Hey, I didn't say you could have that!")
+                lady?.let { l -> directHit(l, 3) }
                 message("The sandwich lady knocks you out and you wake up somewhere... different.")
                 RandomEvents.noteAndTeleport(this)
             }
@@ -59,14 +65,18 @@ class SandwichLady : Script {
         val food = FOODS.random(random)
         set("sandwich_lady_food", food)
         val lady = startInPlaceEvent("sandwich_lady", nagLines(), nagInterval = 30) ?: return
+        set("sandwich_lady_npc", lady.index)
         lady.say("Sandwich delivery for $name!")
     }
 
-    private fun Player.serve(food: String) {
+    private fun Player.lady(): NPC? = NPCs.indexed(get("sandwich_lady_npc", -1))?.takeIf { it.id == "sandwich_lady" }
+
+    private fun Player.serve(lady: NPC?, food: String) {
         message("The sandwich lady gives you a ${description(food)}!")
         if (!inventory.add(food)) {
             FloorItems.add(tile, food, 1, disappearTicks = 300, owner = this)
         }
+        lady?.say("Hope that fills you up!")
         // Clearing the event state removes the following NPC on its next tick.
         RandomEvents.completeInPlace(this)
     }

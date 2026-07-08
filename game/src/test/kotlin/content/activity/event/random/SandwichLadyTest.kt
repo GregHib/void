@@ -8,6 +8,7 @@ import skipDialogues
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
@@ -27,6 +28,7 @@ class SandwichLadyTest : WorldTest() {
         player["sandwich_lady_food"] = food
         val lady = createNPC("sandwich_lady", spot.addX(1))
         lady["owner"] = player.accountName
+        player["sandwich_lady_npc"] = lady.index
         return player to lady
     }
 
@@ -65,15 +67,17 @@ class SandwichLadyTest : WorldTest() {
     }
 
     @Test
-    fun `Choosing the wrong food knocks the player out with the ignore penalty`() {
+    fun `Choosing the wrong food hits the player and applies the ignore penalty`() {
         val (player, lady) = setup("sl_wrong", "meat_pie")
         player.inventory.add("logs", 4)
+        val hpBefore = player.levels.get(Skill.Constitution)
         openTray(player, lady)
 
         player.interfaceOption("sandwich_lady_select", "baguette", "Choose refreshment")
         tick()
 
         assertEquals(0, player.inventory.count("baguette"))
+        assertEquals(hpBefore - 3, player.levels.get(Skill.Constitution)) // she smacks you for 3
         assertEquals(4, player.inventory.count("logs_noted"))
         assertNull(player.get<String>("random_event"))
         assertTrue(player.contains("random_event_cooldown"))
