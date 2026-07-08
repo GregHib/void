@@ -72,6 +72,14 @@ object RandomEvents {
     }
 
     /**
+     * Success for an in-place event (Sandwich Lady, Certer...); the player never left, so just
+     * clear the event state and arm the cooldown without teleporting them anywhere.
+     */
+    fun completeInPlace(player: Player) {
+        exit(player)
+    }
+
+    /**
      * Failure or abandonment; teleport the player to a random safe location with no reward.
      */
     fun fail(player: Player) {
