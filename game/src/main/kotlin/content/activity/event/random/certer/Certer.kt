@@ -16,9 +16,12 @@ import world.gregs.voidps.type.random
 
 /**
  * Certer random event: one of the certificate brothers appears beside the player and nags until
- * spoken to. He describes an item and shows three item models on interface 184; picking the model
- * that matches his description earns a roll of the gem/coin reward table, a wrong pick earns nothing.
+ * spoken to. He shows an item (interface 184) and three descriptions to choose from; picking the
+ * one that matches the item earns a roll of the gem/coin reward table, a wrong pick earns nothing.
  * Ignoring him applies the note-and-teleport penalty.
+ *
+ * The interface builds itself from varbits: its load script reads the three option descriptions
+ * (keys into enum 2224) and the item model (a key into enum 2225) - so we just set those.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Certer
  */
 class Certer : Script {
@@ -36,7 +39,7 @@ class Certer : Script {
         }
 
         interfaceOption("Select", "certer_identify:option_*") {
-            val correct = it.component == "option_${get("certer_answer", 0)}"
+            val correct = it.component.removePrefix("option_").toInt() == get("certer_answer", 0)
             close("certer_identify")
             if (correct) {
                 npc<Happy>("giles", "Thank you, I hope you like your present. I must be leaving now though.")
@@ -54,14 +57,21 @@ class Certer : Script {
     }
 
     private fun Player.openPuzzle() {
-        val answer = ITEMS.random(random)
-        val options = (FALSE_OPTIONS.shuffled(random).take(2) + answer.description).shuffled(random)
-        set("certer_answer", options.indexOf(answer.description) + 1)
+        val answer = (0 until ITEMS).random(random)
+        val options = ((0 until ITEMS).filter { it != answer }.shuffled(random).take(2) + answer).shuffled(random)
+        set("certer_answer", options.indexOf(answer) + 1)
+        set("certer_desc_1", options[0])
+        set("certer_desc_2", options[1])
+        set("certer_desc_3", options[2])
+        // Show the model matching the answer's description (enum 2225: model key = (desc + 2) % 9).
+        set("certer_model_enum", 0)
+        set("certer_model_key", (answer + 2) % ITEMS)
+        // Present the model upright at a sensible size.
+        set("certer_rotation_x", 5)
+        set("certer_rotation_y", 4)
+        set("certer_scale", 10)
+        set("certer_spin", 0)
         open("certer_identify")
-        interfaces.sendModel("certer_identify", "item", answer.model) // the item to identify
-        for ((index, option) in options.withIndex()) {
-            interfaces.sendText("certer_identify", "option_${index + 1}", option)
-        }
     }
 
     private fun Player.nagLines() = listOf(
@@ -72,31 +82,7 @@ class Certer : Script {
         "No-one ignores me!",
     )
 
-    private data class Candidate(val description: String, val model: Int)
-
     companion object {
-        // The item model shown in the box and the matching description shown as an option.
-        private val ITEMS = listOf(
-            Candidate("A bowl?", 2807),
-            Candidate("A fish?", 2590),
-            Candidate("A bass?", 2355),
-            Candidate("A sword?", 2604),
-            Candidate("A battleaxe?", 2778),
-            Candidate("A helmet?", 2833),
-            Candidate("A kiteshield?", 2339),
-            Candidate("A pair of shears?", 2620),
-            Candidate("A shovel?", 7304),
-            Candidate("A ring?", 2784),
-            Candidate("A necklace?", 2506),
-        )
-        private val FALSE_OPTIONS = listOf(
-            "An axe?",
-            "An arrow?",
-            "A pair of boots?",
-            "A pair of gloves?",
-            "A staff?",
-            "A bow?",
-            "A feather?",
-        )
+        private const val ITEMS = 9 // enum 2224 holds nine item descriptions (keys 0-8)
     }
 }

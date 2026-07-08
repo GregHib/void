@@ -1,16 +1,17 @@
-# Certer's "identify" interface (184): the item to identify shows as a model (comp 0) and the three
-# Select options (comps 4-6) hold the text descriptions - the player picks the matching description.
+# Certer's identify interface (184). Its load script builds the three option rows (children 0-2)
+# and the item model from varbits, so we set those and open it. The option rows are created
+# dynamically with a "Select" action, declared here so clicks on them validate.
 [certer_identify]
 id = 184
 
-[.item]
-id = 0
-
 [.option_1]
-id = 4
+id = 0
+options = { Select = 0 }
 
 [.option_2]
-id = 5
+id = 1
+options = { Select = 0 }
 
 [.option_3]
-id = 6
+id = 2
+options = { Select = 0 }
