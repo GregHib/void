@@ -54,13 +54,13 @@ class Certer : Script {
     }
 
     private fun Player.openPuzzle() {
-        val options = ITEMS.shuffled(random).take(3)
-        val answer = options.random(random)
-        set("certer_answer", options.indexOf(answer) + 1)
+        val answer = ITEMS.random(random)
+        val options = (FALSE_OPTIONS.shuffled(random).take(2) + answer.description).shuffled(random)
+        set("certer_answer", options.indexOf(answer.description) + 1)
         open("certer_identify")
-        interfaces.sendText("certer_identify", "prompt", "Which of these is ${answer.description}?")
+        interfaces.sendModel("certer_identify", "item", answer.model) // the item to identify
         for ((index, option) in options.withIndex()) {
-            interfaces.sendModel("certer_identify", "option_${index + 1}", option.model)
+            interfaces.sendText("certer_identify", "option_${index + 1}", option)
         }
     }
 
@@ -75,19 +75,28 @@ class Certer : Script {
     private data class Candidate(val description: String, val model: Int)
 
     companion object {
-        // The description the certer reads out and the item model shown as an option.
+        // The item model shown in the box and the matching description shown as an option.
         private val ITEMS = listOf(
-            Candidate("a bowl", 2807),
-            Candidate("a fish", 2590),
-            Candidate("a bass", 2355),
-            Candidate("a sword", 2604),
-            Candidate("a battleaxe", 2778),
-            Candidate("a helmet", 2833),
-            Candidate("a kiteshield", 2339),
-            Candidate("a pair of shears", 2620),
-            Candidate("a shovel", 7304),
-            Candidate("a ring", 2784),
-            Candidate("a necklace", 2506),
+            Candidate("A bowl?", 2807),
+            Candidate("A fish?", 2590),
+            Candidate("A bass?", 2355),
+            Candidate("A sword?", 2604),
+            Candidate("A battleaxe?", 2778),
+            Candidate("A helmet?", 2833),
+            Candidate("A kiteshield?", 2339),
+            Candidate("A pair of shears?", 2620),
+            Candidate("A shovel?", 7304),
+            Candidate("A ring?", 2784),
+            Candidate("A necklace?", 2506),
+        )
+        private val FALSE_OPTIONS = listOf(
+            "An axe?",
+            "An arrow?",
+            "A pair of boots?",
+            "A pair of gloves?",
+            "A staff?",
+            "A bow?",
+            "A feather?",
         )
     }
 }

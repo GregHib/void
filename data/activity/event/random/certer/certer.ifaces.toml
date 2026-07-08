@@ -1,10 +1,10 @@
-# Certer's "identify" interface (184): a text prompt describing an item and three item models to
-# pick from - the player selects the model that matches the description.
+# Certer's "identify" interface (184): the item to identify shows as a model (comp 0) and the three
+# Select options (comps 4-6) hold the text descriptions - the player picks the matching description.
 [certer_identify]
 id = 184
 
-[.prompt]
-id = 1
+[.item]
+id = 0
 
 [.option_1]
 id = 4
