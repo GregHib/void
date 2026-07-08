@@ -5,9 +5,12 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -76,6 +79,26 @@ object RandomEvents {
         val row = Tables.get("random_event_exiles").rows().random(random)
         player.tele(Areas[row.string("area")].random(player) ?: Tile(3222, 3218))
         player.message("You wake up feeling drowsy, unsure of where you are.")
+    }
+
+    /**
+     * Ignore penalty for in-place events: note every noteable inventory item so the
+     * player can't macro through a full inventory, then exile them as [fail].
+     */
+    fun noteAndTeleport(player: Player) {
+        player.inventory.transaction {
+            for (index in player.inventory.indices) {
+                val item = player.inventory[index]
+                if (item.isEmpty()) {
+                    continue
+                }
+                val noteId = item.def.noteId
+                if (noteId != -1) {
+                    replace(index, item.id, ItemDefinitions.get(noteId).stringId)
+                }
+            }
+        }
+        fail(player)
     }
 
     private fun exit(player: Player): Tile {

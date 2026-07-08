@@ -2,6 +2,7 @@ package content.activity.event.random.maze
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.mysteriousOldMan
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
@@ -130,8 +131,11 @@ class Maze : Script {
     }
 
     private suspend fun Player.startMaze() {
+        // Allocate the instance before the old-man intro so a resumed maze timer (on relog) sees a
+        // live instance during the intro delay instead of failing the event.
         smallInstance(Region(MAZE_REGION), levels = 1)
         setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        mysteriousOldMan()
         val start = Tables.get("maze_start_points").rows().random(random).tile("tile")
         kidnap(start.add(instanceOffset()))
         closeTabs()

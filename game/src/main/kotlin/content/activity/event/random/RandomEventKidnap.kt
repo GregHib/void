@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 
 /**
@@ -57,16 +56,17 @@ class RandomEventKidnap : Script {
     }
 }
 
-fun summonOldMan(player: Player, event: String? = null): Boolean {
-    val id = event ?: RandomEvents.pick() ?: return false
-    val npc = NPCs.addRandom("mysterious_old_man", player.tile.toCuboid(1), ticks = 25, owner = player)
-        ?: NPCs.add("mysterious_old_man", player.tile, ticks = 25, owner = player)
-    npc.watch(player)
-    npc.say("Ah, ${player.name}, you'll do nicely!")
-    player.strongQueue("random_event_kidnap", 2) {
-        RandomEvents.start(player, id)
-    }
-    return true
+/**
+ * The Mysterious Old Man appears beside the player to herald a teleport ("kidnap") event.
+ * Kidnap-style launchers call this before [kidnap]; in-place events skip it and spawn their own
+ * NPC via [startInPlaceEvent].
+ */
+suspend fun Player.mysteriousOldMan() {
+    val npc = NPCs.addRandom("mysterious_old_man", tile.toCuboid(1), ticks = 25, owner = this)
+        ?: NPCs.add("mysterious_old_man", tile, ticks = 25, owner = this)
+    npc.watch(this)
+    npc.say("Ah, $name, you'll do nicely!")
+    delay(2)
 }
 
 /**

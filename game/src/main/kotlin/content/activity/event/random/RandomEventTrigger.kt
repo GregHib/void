@@ -34,13 +34,13 @@ class RandomEventTrigger : Script {
             if (eligible(this) && random.nextInt(Tables.int("random_event_settings.roll_chance.value")) == 0) {
                 // Restart the cooldown immediately so a failed pick can't re-roll every drop
                 RandomEvents.cooldown(this)
-                summonOldMan(this)
+                RandomEvents.start(this)
             }
         }
 
         adminCommand("randomevent", stringArg("event", optional = true), desc = "Start a random event") { args ->
             val event = args.getOrNull(0) ?: RandomEvents.pick()
-            if (event == null || !summonOldMan(this, event)) {
+            if (event == null || !RandomEvents.start(this, event)) {
                 message("No random event found${if (args.isEmpty()) "" else " for '${args[0]}'"}.")
             }
         }

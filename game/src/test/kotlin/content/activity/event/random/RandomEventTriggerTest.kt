@@ -60,7 +60,7 @@ class RandomEventTriggerTest : WorldTest() {
         player.exp(Skill.Woodcutting, 100.0)
         tick()
 
-        assertFalse(player.queue.contains("random_event_kidnap"))
+        assertFalse(player.queue.contains("random_event_start"))
     }
 
     @Test
