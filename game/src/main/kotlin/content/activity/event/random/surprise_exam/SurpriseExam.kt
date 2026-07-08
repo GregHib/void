@@ -102,6 +102,11 @@ class SurpriseExam : Script {
             interfaces.sendItem("surprise_exam_pattern", "option_${slot + 1}", ItemDefinitions.get(item).id)
         }
         open("surprise_exam_pattern")
+        // Send the access mask so the client reports clicks on the answer icons; the cache marks the
+        // option enabled but doesn't send it, so without this the icons don't respond.
+        for (slot in 1..4) {
+            interfaceOptions.unlockAll("surprise_exam_pattern", "option_$slot")
+        }
     }
 
     private suspend fun Player.answer(option: Int) {
