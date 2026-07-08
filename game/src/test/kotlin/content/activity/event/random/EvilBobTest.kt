@@ -123,7 +123,7 @@ class EvilBobTest : WorldTest() {
         player.tele(portalTile.add(player.instanceOffset()))
         tick()
         player.objectOption(portal, "Enter")
-        tick(6)
+        tickIf { player.get<String>("random_event") != null } // wait out the raspberry send-off
         while (player.dialogue != null) player.skipDialogues()
         tick(2)
 

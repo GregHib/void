@@ -89,7 +89,8 @@ class EvilBob : Script {
                 return@objectOperate
             }
             walkOverDelay(portal.tile)
-            face(ISLAND.add(instanceOffset()))
+            bob()?.let { face(it.tile) }
+            delay(2)
             anim("emote_raspberry")
             say("Be seeing you!")
             delay(2)
