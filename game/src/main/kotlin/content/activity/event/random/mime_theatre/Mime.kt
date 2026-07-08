@@ -58,7 +58,7 @@ class Mime : Script {
 
             // Spotlight the Mime and perform the emote facing the audience; the prompt sits in the
             // chatbox (no continue button) while the player watches.
-            statement("Watch the Mime.<br>See what emote he performs.", clickToContinue = false)
+            centeredMessage("Watch the Mime.", "See what emote he performs.")
             lightMime(on = true)
             lightPlayer(on = false)
             mime.face(AUDIENCE)
@@ -75,7 +75,7 @@ class Mime : Script {
             val chosen = awaitEmote()
             anim("emote_$chosen") // the player performs the emote they picked
             if (chosen == expected) {
-                showCorrect()
+                centeredMessage("Correct!")
                 inc("mime_correct")
                 mime.face(AUDIENCE)
                 delay(CORRECT_TICKS)
@@ -93,13 +93,14 @@ class Mime : Script {
         return emote
     }
 
-    /** Show "Correct!" on the lower line of the message box (the box top-aligns its text). */
-    private fun Player.showCorrect() {
-        if (!open("dialogue_message_np2")) {
+    /** Show a no-prompt message with an empty first line so its (centred) text sits a line lower. */
+    private fun Player.centeredMessage(vararg lines: String) {
+        val padded = listOf("", *lines)
+        val id = "dialogue_message_np${padded.size}"
+        if (!open(id)) {
             return
         }
-        interfaces.sendText("dialogue_message_np2", "line1", "")
-        interfaces.sendText("dialogue_message_np2", "line2", "Correct!")
+        padded.forEachIndexed { index, line -> interfaces.sendText(id, "line${index + 1}", line) }
     }
 
     /** Spotlight over the Mime (2010, 4761). */
