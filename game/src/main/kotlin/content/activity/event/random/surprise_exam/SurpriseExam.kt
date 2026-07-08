@@ -7,6 +7,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -15,8 +16,6 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -126,9 +125,7 @@ class SurpriseExam : Script {
 
     private fun Player.finish() {
         message("You've passed the exam!")
-        if (!inventory.add("book_of_knowledge")) {
-            FloorItems.add(tile, "book_of_knowledge", 1, disappearTicks = 300, owner = this)
-        }
+        addOrDrop("book_of_knowledge")
         clear("surprise_exam_answer")
         clear("surprise_exam_correct")
         clear("surprise_exam_door")

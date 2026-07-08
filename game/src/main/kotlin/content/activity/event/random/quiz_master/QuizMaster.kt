@@ -8,6 +8,7 @@ import content.entity.player.dialogue.Hysterics
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -16,9 +17,6 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseInt
 import world.gregs.voidps.type.Tile
@@ -100,22 +98,16 @@ class QuizMaster : Script {
     private suspend fun Player.win() {
         npc<Hysterics>("quiz_master", "<col=08088A>CONGRATULATIONS!</col> You are a <col=8A0808>WINNER</col>! Please choose your <col=08088A>PRIZE</col>!")
         choice {
-            option("1000 Coins") { giveOrDrop("coins", 1000) }
+            option("1000 Coins") { addOrDrop("coins", 1000) }
             option("Random Item") {
                 val row = Tables.get("random_event_quiz").rows().random(random)
-                giveOrDrop(row.item("item"), row.int("amount"))
+                addOrDrop(row.item("item"), row.int("amount"))
             }
         }
         clear("quiz_answer")
         clear("quiz_correct")
         RandomEvents.complete(this)
         message("Welcome back.")
-    }
-
-    private fun Player.giveOrDrop(item: String, amount: Int) {
-        if (!inventory.add(item, amount)) {
-            FloorItems.add(tile, item, amount, disappearTicks = 300, owner = this)
-        }
     }
 
     companion object {

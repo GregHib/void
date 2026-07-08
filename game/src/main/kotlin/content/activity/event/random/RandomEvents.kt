@@ -25,13 +25,18 @@ import java.util.concurrent.TimeUnit
  * Each event registers a launcher in its script's init block and calls
  * [complete] when the player succeeds or [fail] when they fail or abandon it.
  */
-object RandomEvents {
+object RandomEvents : AutoCloseable {
 
     private val events = mutableMapOf<String, suspend Player.() -> Unit>()
 
     fun register(id: String, launcher: suspend Player.() -> Unit) {
         Script.checkLoading()
         events[id] = launcher
+    }
+
+    // Reset registrations between script (re)loads so a reload can't leave stale launchers behind.
+    override fun close() {
+        events.clear()
     }
 
     /**

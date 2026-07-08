@@ -1,11 +1,9 @@
 package content.activity.event.random
 
 import content.entity.player.bank.ownsItem
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
 
 /**
@@ -17,9 +15,9 @@ import world.gregs.voidps.type.random
 fun Player.rewardCostumeOrCoins(vararg pieces: String, coins: Int) {
     val missing = pieces.firstOrNull { !ownsItem(it) }
     if (missing != null) {
-        giveOrDrop(missing, 1)
+        addOrDrop(missing)
     } else {
-        giveOrDrop("coins", coins)
+        addOrDrop("coins", coins)
     }
 }
 
@@ -32,14 +30,8 @@ fun Player.rewardCerterLoot() {
     for (row in rows) {
         roll -= row.int("weight")
         if (roll < 0) {
-            giveOrDrop(row.item("item"), random.nextInt(row.int("min"), row.int("max") + 1))
+            addOrDrop(row.item("item"), random.nextInt(row.int("min"), row.int("max") + 1))
             return
         }
-    }
-}
-
-private fun Player.giveOrDrop(item: String, amount: Int) {
-    if (!inventory.add(item, amount)) {
-        FloorItems.add(tile, item, amount, disappearTicks = 300, owner = this)
     }
 }

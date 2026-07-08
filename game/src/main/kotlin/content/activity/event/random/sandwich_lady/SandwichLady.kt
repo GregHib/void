@@ -6,6 +6,7 @@ import content.entity.combat.hit.directHit
 import content.entity.combat.inCombat
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -14,9 +15,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.random
 
 /**
@@ -83,9 +81,7 @@ class SandwichLady : Script {
 
     private suspend fun Player.serve(food: String) {
         message("The sandwich lady gives you a ${description(food)}!")
-        if (!inventory.add(food)) {
-            FloorItems.add(tile, food, 1, disappearTicks = 300, owner = this)
-        }
+        addOrDrop(food)
         npc<Happy>("sandwich_lady", "Hope that fills you up!")
         // Clearing the event state removes the following NPC on its next tick.
         RandomEvents.completeInPlace(this)

@@ -6,6 +6,7 @@ import content.activity.event.random.mysteriousOldMan
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
+import content.entity.player.inv.item.addOrDrop
 import content.quest.closeTabs
 import content.quest.instance
 import content.quest.instanceOffset
@@ -23,10 +24,8 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -119,9 +118,7 @@ class Maze : Script {
             val row = Tables.get("maze_chest_rewards").rows().random(random)
             val reward = row.item("item")
             val amount = row.int("amount")
-            if (!inventory.add(reward, amount)) {
-                FloorItems.add(tile, reward, amount, disappearTicks = 300, owner = this)
-            }
+            addOrDrop(reward, amount)
             item(reward, row.string("text"))
         }
 
@@ -155,9 +152,7 @@ class Maze : Script {
             return
         }
         val item = row.item("item")
-        if (!player.inventory.add(item, amount)) {
-            FloorItems.add(player.tile, item, amount, disappearTicks = 300, owner = player)
-        }
+        player.addOrDrop(item, amount)
     }
 
     companion object {
