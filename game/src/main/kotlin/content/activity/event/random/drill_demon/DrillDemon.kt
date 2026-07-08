@@ -107,8 +107,8 @@ class DrillDemon : Script {
         private const val EXERCISE_TICKS = 4
         private val YARD = Tile(3163, 4820)
 
-        // The sign board sits at the back (north) tile of each mat.
-        private val SIGN_TILES = listOf(Tile(3160, 4819), Tile(3162, 4819), Tile(3164, 4819), Tile(3166, 4819))
+        // The sign board sits two tiles north of each mat (mat y + 2).
+        private val SIGN_TILES = listOf(Tile(3160, 4821), Tile(3162, 4821), Tile(3164, 4821), Tile(3166, 4821))
 
         // Sign varbit values, 1-based so a sign is never the cleared 0 default (0 = no sign shown).
         private val EXERCISES = mapOf(
