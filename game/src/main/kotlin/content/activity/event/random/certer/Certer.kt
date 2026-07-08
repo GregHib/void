@@ -5,20 +5,21 @@ import content.activity.event.random.rewardCerterLoot
 import content.activity.event.random.startInPlaceEvent
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.type.random
 
 /**
  * Certer random event: one of the certificate brothers appears beside the player and nags until
- * spoken to. He shows an item and asks the player to identify it from three descriptions; the right
- * answer earns a roll of the gem/coin reward table, a wrong one earns nothing. Ignoring him applies
- * the note-and-teleport penalty.
+ * spoken to. He describes an item and shows three item models on interface 184; picking the model
+ * that matches his description earns a roll of the gem/coin reward table, a wrong pick earns nothing.
+ * Ignoring him applies the note-and-teleport penalty.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Certer
  */
 class Certer : Script {
@@ -31,7 +32,20 @@ class Certer : Script {
                 message("They aren't interested in talking to you.")
                 return@npcOperate
             }
-            identify()
+            npc<Happy>("giles", "Ah, hello, $name. Could you please help me identify this?")
+            openPuzzle()
+        }
+
+        interfaceOption("Select", "certer_identify:option_*") {
+            val correct = it.component == "option_${get("certer_answer", 0)}"
+            close("certer_identify")
+            if (correct) {
+                npc<Happy>("giles", "Thank you, I hope you like your present. I must be leaving now though.")
+                rewardCerterLoot()
+            } else {
+                npc<Neutral>("giles", "Sorry, I don't think so.")
+            }
+            RandomEvents.completeInPlace(this)
         }
     }
 
@@ -40,20 +54,15 @@ class Certer : Script {
         giles.anim("emote_bow")
     }
 
-    private suspend fun Player.identify() {
-        val (item, description) = ITEMS.entries.random(random)
-        val options = (FALSE_OPTIONS.shuffled(random).take(2) + description).shuffled(random)
-        set("certer_answer", options.indexOf(description) + 1)
-        npc<Happy>("giles", "Ah, hello, $name. Could you please help me identify this?")
-        item(item, "Take a good look. What would you say this item is?")
-        val pick = choice(options, "What is it?")
-        if (pick == get("certer_answer", 0)) {
-            npc<Happy>("giles", "Thank you, I hope you like your present. I must be leaving now though.")
-            rewardCerterLoot()
-        } else {
-            npc<Neutral>("giles", "Sorry, I don't think so.")
+    private fun Player.openPuzzle() {
+        val options = ITEMS.entries.shuffled(random).take(3)
+        val answer = options.random(random)
+        set("certer_answer", options.indexOf(answer) + 1)
+        open("certer_identify")
+        interfaces.sendText("certer_identify", "prompt", "Which of these is ${answer.value}?")
+        for ((index, option) in options.withIndex()) {
+            interfaces.sendItem("certer_identify", "option_${index + 1}", Item(option.key))
         }
-        RandomEvents.completeInPlace(this)
     }
 
     private fun Player.nagLines() = listOf(
@@ -65,27 +74,19 @@ class Certer : Script {
     )
 
     companion object {
+        // item id -> the description the certer reads out.
         private val ITEMS = mapOf(
-            "bowl" to "A bowl.",
-            "raw_shrimps" to "A fish.",
-            "raw_bass" to "A bass.",
-            "bronze_sword" to "A sword.",
-            "bronze_battleaxe" to "A battleaxe.",
-            "bronze_med_helm" to "A helmet.",
-            "bronze_kiteshield" to "A kiteshield.",
-            "shears" to "A pair of shears.",
-            "spade" to "A shovel.",
-            "gold_ring" to "A ring.",
-            "gold_necklace" to "A necklace.",
-        )
-        private val FALSE_OPTIONS = listOf(
-            "An axe.",
-            "An arrow.",
-            "A pair of boots.",
-            "A pair of gloves.",
-            "A staff.",
-            "A bow.",
-            "A feather.",
+            "bowl" to "a bowl",
+            "raw_shrimps" to "a fish",
+            "raw_bass" to "a bass",
+            "bronze_sword" to "a sword",
+            "bronze_battleaxe" to "a battleaxe",
+            "bronze_med_helm" to "a helmet",
+            "bronze_kiteshield" to "a kiteshield",
+            "shears" to "a pair of shears",
+            "spade" to "a shovel",
+            "gold_ring" to "a ring",
+            "gold_necklace" to "a necklace",
         )
     }
 }
