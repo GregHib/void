@@ -75,7 +75,7 @@ class Mime : Script {
             val chosen = awaitEmote()
             anim("emote_$chosen") // the player performs the emote they picked
             if (chosen == expected) {
-                statement("Correct!", clickToContinue = false)
+                showCorrect()
                 inc("mime_correct")
                 mime.face(AUDIENCE)
                 delay(CORRECT_TICKS)
@@ -91,6 +91,15 @@ class Mime : Script {
         val emote = pauseString()
         close(INTERFACE)
         return emote
+    }
+
+    /** Show "Correct!" on the lower line of the message box (the box top-aligns its text). */
+    private fun Player.showCorrect() {
+        if (!open("dialogue_message_np2")) {
+            return
+        }
+        interfaces.sendText("dialogue_message_np2", "line1", "")
+        interfaces.sendText("dialogue_message_np2", "line2", "Correct!")
     }
 
     /** Spotlight over the Mime (2010, 4761). */
@@ -119,7 +128,7 @@ class Mime : Script {
         private const val INTERFACE = "dialogue_macro_mime_emotes"
         private const val PERFORM_TICKS = 4
         private const val BOW_TICKS = 3
-        private const val CORRECT_TICKS = 13 // ~8 seconds before the next performance
+        private const val CORRECT_TICKS = 8 // ~8 ticks
 
         private val SPAWN = Tile(2008, 4764)
         private val WATCH = Tile(2008, 4762)

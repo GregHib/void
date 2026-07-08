@@ -68,4 +68,3 @@ tasks.register<JavaExec>("renderPhotoBooth") {
     val cliArgs = (findProperty("args") as String?)?.split(" ")?.filter { it.isNotBlank() } ?: emptyList()
     args = cliArgs
 }
-
