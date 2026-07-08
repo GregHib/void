@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
 import world.gregs.voidps.type.Tile
@@ -110,8 +111,8 @@ class Mime : Script {
     private fun lightPlayer(on: Boolean) = spotlight(PLAYER_LIGHT, on)
 
     private fun spotlight(tile: Tile, on: Boolean) {
-        // TODO: object 3644 (Spotlight) has no baked animation - wire the on/off animation ids here
-        // once known (GameObjects.findOrNull(tile) { it.id == "mime_spotlight" }?.anim(...)).
+        GameObjects.at(tile).firstOrNull { it.id == "mime_spotlight" }
+            ?.anim(if (on) "mime_spotlight_on" else "mime_spotlight_off")
     }
 
     private suspend fun Player.finish() {
