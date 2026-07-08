@@ -1,17 +1,17 @@
-# Certer's identify interface (184). Its load script builds the three option rows (children 0-2)
-# and the item model from varbits, so we set those and open it. The option rows are created
-# dynamically with a "Select" action, declared here so clicks on them validate.
+# Certer's identify interface (184). Its load script builds the three option rows and the item
+# model from varbits, so we set those and open it. The clickable option rows are components 4-6
+# (A/B/C, top to bottom); their "Select" action is declared here so clicks validate.
 [certer_identify]
 id = 184
 
 [.option_1]
-id = 0
+id = 4
 options = { Select = 0 }
 
 [.option_2]
-id = 1
+id = 5
 options = { Select = 0 }
 
 [.option_3]
-id = 2
+id = 6
 options = { Select = 0 }
