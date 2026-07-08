@@ -74,6 +74,11 @@ class QuizMaster : Script {
         interfaces.sendModel("dialogue_macro_quiz_show", "model_2", models[1])
         interfaces.sendModel("dialogue_macro_quiz_show", "model_3", models[2])
         open("dialogue_macro_quiz_show")
+        // The cache marks these models non-clickable, so send the access mask that lets the client
+        // report a click on each one; without it the interface just sits there with no way to answer.
+        for (slot in 1..3) {
+            interfaceOptions.unlockAll("dialogue_macro_quiz_show", "model_$slot")
+        }
     }
 
     private suspend fun Player.answer(slot: Int) {
