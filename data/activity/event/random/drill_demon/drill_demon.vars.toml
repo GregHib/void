@@ -1,0 +1,7 @@
+[drill_demon_task]
+format = "int"
+persist = true
+
+[drill_demon_correct]
+format = "int"
+persist = true

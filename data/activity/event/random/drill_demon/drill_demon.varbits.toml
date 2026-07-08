@@ -1,0 +1,16 @@
+# Each mat's sign display: 0 jog, 1 sit-ups, 2 push-ups, 3 star jumps.
+[drill_demon_sign_1]
+id = 1335
+format = "int"
+
+[drill_demon_sign_2]
+id = 1336
+format = "int"
+
+[drill_demon_sign_3]
+id = 1337
+format = "int"
+
+[drill_demon_sign_4]
+id = 1338
+format = "int"

@@ -1,0 +1,111 @@
+package content.activity.event.random
+
+import WorldTest
+import objectOption
+import org.junit.jupiter.api.Test
+import skipDialogues
+import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Tile
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
+
+class DrillDemonTest : WorldTest() {
+
+    private val yard = Tile(3163, 4820)
+    private val matTiles = listOf(Tile(3160, 4819), Tile(3162, 4819), Tile(3164, 4819), Tile(3166, 4819))
+
+    private fun enter(name: String, origin: Tile = Tile(3221, 3218)): Player {
+        val player = createPlayer(yard, name)
+        player["random_event"] = "drill_demon"
+        player["random_event_origin"] = origin.id
+        player["drill_demon_correct"] = 0
+        tick(2) // load the yard so the map mats resolve
+        return player
+    }
+
+    private fun mats(): List<GameObject> = matTiles.mapIndexed { i, t -> GameObjects.find(t) { it.id == "drill_demon_mat_${i + 1}" } }
+
+    // Deterministic signs: mat i shows exercise (i-1); task points at one exercise.
+    private fun Player.layout(task: Int) {
+        for (m in 1..4) set("drill_demon_sign_$m", m - 1)
+        set("drill_demon_task", task)
+    }
+
+    /** Use whichever mat currently shows the assigned exercise, driving through the animation + order. */
+    private fun useCorrectMat(player: Player, mats: List<GameObject>) {
+        val task = player.get("drill_demon_task", 0)
+        val index = (1..4).first { player.get("drill_demon_sign_$it", 0) == task }
+        player.objectOption(mats[index - 1], "Use")
+        tickIf { player.dialogue == null } // walk to the mat, exercise, then Damien responds
+        player.skipDialogues()
+    }
+
+    @Test
+    fun `Event kidnaps the player to the yard and assigns exercises`() {
+        val player = createPlayer(Tile(3221, 3218), "dd_start")
+        RandomEvents.start(player, "drill_demon")
+        tick(10)
+
+        assertEquals("drill_demon", player.get<String>("random_event"))
+        assertTrue(player.tile.within(yard, 4), "Expected the player in the yard, was ${player.tile}")
+        assertTrue(player.get("drill_demon_task", 0) in 0..3)
+        // All four exercises are shown across the four mats.
+        assertEquals(setOf(0, 1, 2, 3), (1..4).map { player.get("drill_demon_sign_$it", 0) }.toSet())
+    }
+
+    @Test
+    fun `Using the mat with the ordered exercise counts as correct`() {
+        val player = enter("dd_correct")
+        player.layout(task = 2) // push-ups on mat 3
+        player.objectOption(mats()[2], "Use")
+        tick(8)
+
+        assertEquals(1, player.get("drill_demon_correct", 0))
+    }
+
+    @Test
+    fun `Using the wrong mat does not count`() {
+        val player = enter("dd_wrong")
+        player.layout(task = 2)
+        player.objectOption(mats()[0], "Use") // jog mat, not push-ups
+        tick(8)
+
+        assertEquals(0, player.get("drill_demon_correct", 0))
+    }
+
+    @Test
+    fun `Four correct exercises reward a camo piece and return the player`() {
+        val origin = Tile(3221, 3218)
+        val player = enter("dd_finish", origin)
+        player.layout(task = 0)
+        val mats = mats()
+
+        repeat(4) { useCorrectMat(player, mats) }
+        tick(2)
+
+        assertEquals(1, player.inventory.count("camo_helmet"))
+        assertNull(player.get<String>("random_event"))
+        assertEquals(origin, player.tile)
+    }
+
+    @Test
+    fun `Owning the full camo set rewards coins`() {
+        val player = enter("dd_coins")
+        player.inventory.add("camo_helmet")
+        player.inventory.add("camo_top")
+        player.inventory.add("camo_bottoms")
+        player.layout(task = 0)
+        val mats = mats()
+
+        repeat(4) { useCorrectMat(player, mats) }
+        tick(2)
+
+        assertEquals(500, player.inventory.count("coins"))
+    }
+}

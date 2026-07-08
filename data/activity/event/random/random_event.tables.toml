@@ -14,6 +14,10 @@ weight = 10
 event = "sandwich_lady"
 weight = 10
 
+[.drill_demon]
+event = "drill_demon"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
