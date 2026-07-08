@@ -7,6 +7,7 @@ import content.activity.event.random.rewardCostumeOrCoins
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
+import content.skill.magic.jewellery.teleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
@@ -117,7 +118,7 @@ class Mime : Script {
             ?.anim(if (on) "mime_spotlight_on" else "mime_spotlight_off")
     }
 
-    private suspend fun Player.finish() {
+    private fun Player.finish() {
         for (unlock in MIME_EMOTES) {
             set("unlocked_emote_$unlock", true)
         }
@@ -125,13 +126,10 @@ class Mime : Script {
         clear("mime_emote")
         clear("mime_correct")
 
-        // Teleport home with the modern teleport animation.
-        anim("teleport_modern")
-        gfx("teleport_modern")
-        delay(TELEPORT_TICKS)
-        clearAnim()
-        RandomEvents.complete(this)
-        gfx("teleport_land_modern")
+        // Clear the event state (so the teleport isn't blocked) then modern-teleport home.
+        val origin = Tile(this["random_event_origin", tile.id])
+        RandomEvents.completeInPlace(this)
+        teleport(origin, "modern")
     }
 
     companion object {
@@ -140,7 +138,6 @@ class Mime : Script {
         private const val PERFORM_TICKS = 4
         private const val BOW_TICKS = 3
         private const val SPOTLIGHT_TICKS = 3 // duration of the spotlight on/off animation
-        private const val TELEPORT_TICKS = 3 // modern teleport wind-up before leaving
         private const val CORRECT_TICKS = 8 // ~8 ticks
 
         private val SPAWN = Tile(2008, 4764)

@@ -64,7 +64,7 @@ class MimeTest : WorldTest() {
             player.pickCorrect()
             tickIf { !player.interfaces.contains(iface) && player.get<String>("random_event") == "mime" }
         }
-        tick(2)
+        tickIf { player.tile != origin } // wait out the modern teleport home
 
         assertEquals(1, player.inventory.count("mime_mask"))
         assertTrue(player["unlocked_emote_glass_wall", false])
