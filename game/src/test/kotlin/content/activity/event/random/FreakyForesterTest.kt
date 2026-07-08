@@ -6,11 +6,14 @@ import npcOption
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -36,27 +39,31 @@ class FreakyForesterTest : WorldTest() {
     }
 
     @Test
-    fun `Killing the assigned pheasant yields the correct raw pheasant`() {
+    fun `Killing the assigned pheasant drops the correct raw pheasant for the killer`() {
         val player = startInClearing("ff_correct_kill", task = 2)
         val pheasant = createNPC("pheasant_2_tails", Tile(2603, 4777))
+        val dropTile = pheasant.tile
 
         pheasant.damage(1000, source = player)
         tick(4)
 
-        assertTrue(player.inventory.contains("raw_pheasant"))
-        assertFalse(player.inventory.contains("raw_pheasant_incorrect"))
+        val drop = FloorItems.firstOrNull(dropTile, "raw_pheasant")
+        assertNotNull(drop)
+        assertEquals(player.name, drop.owner)
+        assertNull(FloorItems.firstOrNull(dropTile, "raw_pheasant_incorrect"))
     }
 
     @Test
-    fun `Killing the wrong pheasant yields an incorrect raw pheasant`() {
+    fun `Killing the wrong pheasant drops an incorrect raw pheasant`() {
         val player = startInClearing("ff_wrong_kill", task = 2)
         val pheasant = createNPC("pheasant_1_tail", Tile(2603, 4777))
+        val dropTile = pheasant.tile
 
         pheasant.damage(1000, source = player)
         tick(4)
 
-        assertTrue(player.inventory.contains("raw_pheasant_incorrect"))
-        assertFalse(player.inventory.contains("raw_pheasant"))
+        assertNotNull(FloorItems.firstOrNull(dropTile, "raw_pheasant_incorrect"))
+        assertNull(FloorItems.firstOrNull(dropTile, "raw_pheasant"))
     }
 
     @Test

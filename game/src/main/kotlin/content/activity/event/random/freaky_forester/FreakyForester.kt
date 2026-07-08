@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -54,8 +53,10 @@ class FreakyForester : Script {
                 return@npcDeath
             }
             death.dropItems = false
+            // The pheasant drops the raw bird for the killer to pick up and hand to the forester.
             val correct = tailCount(id) == killer.get("freaky_forester_task", 0)
-            killer.giveRawPheasant(if (correct) "raw_pheasant" else "raw_pheasant_incorrect")
+            val bird = if (correct) "raw_pheasant" else "raw_pheasant_incorrect"
+            FloorItems.add(tile, bird, revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = killer)
         }
     }
 
@@ -102,12 +103,6 @@ class FreakyForester : Script {
     }
 
     private fun Player.carriesRawPheasant() = inventory.contains("raw_pheasant") || inventory.contains("raw_pheasant_incorrect")
-
-    private fun Player.giveRawPheasant(item: String) {
-        if (!inventory.add(item)) {
-            FloorItems.add(tile, item, 1, disappearTicks = 300, owner = this)
-        }
-    }
 
     private fun tailCount(pheasantId: String) = pheasantId.removePrefix("pheasant_").substringBefore("_").toIntOrNull() ?: 0
 
