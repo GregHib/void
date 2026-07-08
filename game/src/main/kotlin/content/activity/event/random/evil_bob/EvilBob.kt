@@ -3,12 +3,11 @@ package content.activity.event.random.evil_bob
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Evil
-import content.entity.player.dialogue.EvilGrin
-import content.entity.player.dialogue.EvilLaugh
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Scared
+import content.entity.player.dialogue.Unamused
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
@@ -85,7 +84,7 @@ class EvilBob : Script {
 
         objectOperate("Enter", "evil_bob_exit_portal", arrive = false) { (portal) ->
             if (!get("evil_bob_complete", false)) {
-                npc<Evil>("evil_bob", "You're going nowhere, human!")
+                npc<Angry>("evil_bob", "You're going nowhere, human!")
                 return@objectOperate
             }
             walkOverDelay(portal.tile)
@@ -188,12 +187,12 @@ class EvilBob : Script {
         if (!inventory.remove("raw_fish_like_thing")) {
             return
         }
-        npc<EvilGrin>("evil_bob", "Mmm, mmm... that's delicious.")
+        npc<Unamused>("evil_bob", "Mmm, mmm... that's delicious.")
         if (get("evil_bob_attentive", false)) {
             set("evil_bob_attentive", false)
             assignZone()
             set("evil_bob_new_spot", true)
-            npc<Evil>("evil_bob", "Now get me another, you no-good human.")
+            npc<Angry>("evil_bob", "Now get me another, you no-good human.")
             statement("Evil Bob seems slightly less attentive of you.")
         } else {
             npc<Neutral>("evil_bob", "Now, let me take... a little... catnap.")
@@ -210,7 +209,7 @@ class EvilBob : Script {
         set("evil_bob_attentive", true)
         set("evil_bob_new_spot", true)
         npc<Angry>("evil_bob", "What was this? That was absolutely disgusting!")
-        npc<Evil>("evil_bob", "Don't you know what kind of fish I like? Talk to my other servants for some advice.")
+        npc<Angry>("evil_bob", "Don't you know what kind of fish I like? Talk to my other servants for some advice.")
         statement("Evil Bob seems more attentive of you.")
     }
 
@@ -221,7 +220,7 @@ class EvilBob : Script {
             inventory.contains("raw_fish_like_thing") -> serveCorrect()
             inventory.contains("raw_fish_like_thing_incorrect") -> serveWrong()
             inventory.contains("fish_like_thing") || inventory.contains("fish_like_thing_incorrect") ->
-                npc<Evil>("evil_bob", "What, are you giving me cooked fish? What am I going to do with that? Uncook it first!")
+                npc<Angry>("evil_bob", "What, are you giving me cooked fish? What am I going to do with that? Uncook it first!")
             !get("evil_bob_seen_intro", false) -> {
                 set("evil_bob_seen_intro", true)
                 introDialogue()
@@ -232,37 +231,37 @@ class EvilBob : Script {
 
     private suspend fun Player.introDialogue() {
         player<Angry>("Where am I?")
-        npc<Evil>("evil_bob", "On my island.")
+        npc<Neutral>("evil_bob", "On my island.")
         player<Angry>("Who brought me here?")
-        npc<EvilGrin>("evil_bob", "That would be telling.")
+        npc<Unamused>("evil_bob", "That would be telling.")
         player<Angry>("Take me to your leader!")
-        npc<Evil>("evil_bob", "I am your leader, you are but a slave.")
+        npc<Angry>("evil_bob", "I am your leader, you are but a slave.")
         player<Angry>("I am not a slave, I am a free man!")
-        npc<EvilLaugh>("evil_bob", "Ah-ha-ha-ha-ha-ha!")
-        npc<Evil>("evil_bob", "Now catch me some fish, I'm hungry. Talk to my other servants, and hurry it up!")
+        npc<Angry>("evil_bob", "Ah-ha-ha-ha-ha-ha!")
+        npc<Angry>("evil_bob", "Now catch me some fish, I'm hungry. Talk to my other servants, and hurry it up!")
     }
 
     private suspend fun Player.reasonsDialogue() {
         player<Angry>("Let me out of here!")
-        npc<Evil>("evil_bob", "I will never let you go, $name!")
+        npc<Angry>("evil_bob", "I will never let you go, $name!")
         choice {
             option<Neutral>("Why not?") {
-                npc<Evil>("evil_bob", "Because I say so! And because I can never have enough servants!")
-                npc<Evil>("evil_bob", "Now catch me some fish, I'm hungry.")
+                npc<Angry>("evil_bob", "Because I say so! And because I can never have enough servants!")
+                npc<Angry>("evil_bob", "Now catch me some fish, I'm hungry.")
             }
             option<Neutral>("What's it all about?") {
-                npc<Evil>("evil_bob", "You are a skilled worker. A human like you is worth a great deal as a slave.")
+                npc<Neutral>("evil_bob", "You are a skilled worker. A human like you is worth a great deal as a slave.")
                 player<Angry>("A slave?? I will have nothing to do with you.")
-                npc<EvilGrin>("evil_bob", "It's just a matter of time before you do everything I ask. Just ask my servants!")
+                npc<Unamused>("evil_bob", "It's just a matter of time before you do everything I ask. Just ask my servants!")
             }
             option<Neutral>("How is it possible that you're talking?") {
-                npc<Evil>("evil_bob", "How is it possible that you're not meowing?")
+                npc<Quiz>("evil_bob", "How is it possible that you're not meowing?")
                 player<Neutral>("Meowing?? Why would I be meowing?")
-                npc<Evil>("evil_bob", "Most humans do; that's why I wear this amulet of Man speak.")
+                npc<Neutral>("evil_bob", "Most humans do; that's why I wear this amulet of Man speak.")
             }
             option<Neutral>("What did you do to Bob?") {
-                npc<Evil>("evil_bob", "Bob? I am Bob! An incarnation of Bob here on ScapeRune.")
-                npc<Evil>("evil_bob", "You work just as well for me. Now get to work, human! Fish for me!")
+                npc<Neutral>("evil_bob", "Bob? I am Bob! An incarnation of Bob here on ScapeRune.")
+                npc<Angry>("evil_bob", "You work just as well for me. Now get to work, human! Fish for me!")
             }
         }
     }

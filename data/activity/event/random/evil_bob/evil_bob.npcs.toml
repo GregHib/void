@@ -4,6 +4,7 @@ examine = "It's a cat with an evil glint in its eye."
 
 [evil_bob]
 id = 2479
+dialogue = "cat"
 examine = "An evil incarnation of Bob the cat."
 
 [evil_bob_servant]
