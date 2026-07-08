@@ -38,11 +38,9 @@ class DrillDemon : Script {
                 return@objectOperate
             }
             val exercise = get("drill_demon_sign_${mat.id.removePrefix("drill_demon_mat_")}", 0)
-            face(mat.tile)
-            anim(EXERCISES[exercise].anim)
+            walkOverDelay(Tile(mat.tile.x, YARD.y)) // stand on the mat before exercising
+            anim(EXERCISES.getValue(exercise).anim)
             delay(EXERCISE_TICKS)
-            // 0 (jog) is a valid exercise, so read with a 0 default - the random_event guard above
-            // already rules out an unset value here.
             val correct = exercise == get("drill_demon_task", 0)
             if (correct) {
                 inc("drill_demon_correct")
@@ -67,16 +65,16 @@ class DrillDemon : Script {
 
     /** Shuffle the four exercises across the mats' signs and pick the one the player must perform. */
     private fun Player.assignRound() {
-        val exercises = EXERCISES.indices.shuffled(random)
-        for (mat in 1..EXERCISES.size) {
+        val exercises = EXERCISES.keys.shuffled(random)
+        for (mat in 1..exercises.size) {
             set("drill_demon_sign_$mat", exercises[mat - 1])
         }
-        set("drill_demon_task", EXERCISES.indices.random(random))
+        set("drill_demon_task", EXERCISES.keys.random(random))
     }
 
     private suspend fun Player.order(wrong: Boolean) {
         val prefix = if (wrong) "Wrong exercise, worm! " else ""
-        npc<Neutral>("sergeant_damien", "$prefix${EXERCISES[get("drill_demon_task", 0)].order} private!")
+        npc<Neutral>("sergeant_damien", "$prefix${EXERCISES.getValue(get("drill_demon_task", 1)).order} private!")
     }
 
     private suspend fun Player.finish() {
@@ -94,12 +92,12 @@ class DrillDemon : Script {
         private const val EXERCISE_TICKS = 4
         private val YARD = Tile(3163, 4820)
 
-        // Index order matches the sign varbit values: 0 jog, 1 sit-ups, 2 push-ups, 3 star jumps.
-        private val EXERCISES = listOf(
-            Exercise("drill_demon_jog", "Get yourself over there and jog on that mat"),
-            Exercise("drill_demon_situp", "Get on that mat and give me sit ups"),
-            Exercise("drill_demon_pushup", "Drop and give me push ups on that mat"),
-            Exercise("drill_demon_starjump", "I want to see you on that mat doing star jumps"),
+        // Sign varbit values, 1-based so a sign is never the cleared 0 default (0 = no sign shown).
+        private val EXERCISES = mapOf(
+            1 to Exercise("drill_demon_jog", "Get yourself over there and jog on that mat"),
+            2 to Exercise("drill_demon_situp", "Get on that mat and give me sit ups"),
+            3 to Exercise("drill_demon_pushup", "Drop and give me push ups on that mat"),
+            4 to Exercise("drill_demon_starjump", "I want to see you on that mat doing star jumps"),
         )
     }
 }

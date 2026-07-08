@@ -31,19 +31,22 @@ class DrillDemonTest : WorldTest() {
 
     private fun mats(): List<GameObject> = matTiles.mapIndexed { i, t -> GameObjects.find(t) { it.id == "drill_demon_mat_${i + 1}" } }
 
-    // Deterministic signs: mat i shows exercise (i-1); task points at one exercise.
+    // Deterministic signs: mat m shows exercise m (1-4); task points at one exercise.
     private fun Player.layout(task: Int) {
-        for (m in 1..4) set("drill_demon_sign_$m", m - 1)
+        for (m in 1..4) set("drill_demon_sign_$m", m)
         set("drill_demon_task", task)
     }
 
     /** Use whichever mat currently shows the assigned exercise, driving through the animation + order. */
     private fun useCorrectMat(player: Player, mats: List<GameObject>) {
+        while (player.dialogue != null) player.skipDialogues() // close the previous round's order
+        if (player.get<String>("random_event") != "drill_demon") return
         val task = player.get("drill_demon_task", 0)
+        val before = player.get("drill_demon_correct", 0)
         val index = (1..4).first { player.get("drill_demon_sign_$it", 0) == task }
         player.objectOption(mats[index - 1], "Use")
-        tickIf { player.dialogue == null } // walk to the mat, exercise, then Damien responds
-        player.skipDialogues()
+        // Wait until the exercise is scored (or the event completes on the final rep).
+        tickIf(50) { player.get("drill_demon_correct", 0) == before && player.get<String>("random_event") == "drill_demon" }
     }
 
     @Test
@@ -54,17 +57,17 @@ class DrillDemonTest : WorldTest() {
 
         assertEquals("drill_demon", player.get<String>("random_event"))
         assertTrue(player.tile.within(yard, 4), "Expected the player in the yard, was ${player.tile}")
-        assertTrue(player.get("drill_demon_task", 0) in 0..3)
+        assertTrue(player.get("drill_demon_task", 0) in 1..4)
         // All four exercises are shown across the four mats.
-        assertEquals(setOf(0, 1, 2, 3), (1..4).map { player.get("drill_demon_sign_$it", 0) }.toSet())
+        assertEquals(setOf(1, 2, 3, 4), (1..4).map { player.get("drill_demon_sign_$it", 0) }.toSet())
     }
 
     @Test
     fun `Using the mat with the ordered exercise counts as correct`() {
         val player = enter("dd_correct")
-        player.layout(task = 2) // push-ups on mat 3
-        player.objectOption(mats()[2], "Use")
-        tick(8)
+        player.layout(task = 2) // exercise 2 is on mat 2
+        player.objectOption(mats()[1], "Use")
+        tickIf { player.dialogue == null }
 
         assertEquals(1, player.get("drill_demon_correct", 0))
     }
@@ -73,8 +76,8 @@ class DrillDemonTest : WorldTest() {
     fun `Using the wrong mat does not count`() {
         val player = enter("dd_wrong")
         player.layout(task = 2)
-        player.objectOption(mats()[0], "Use") // jog mat, not push-ups
-        tick(8)
+        player.objectOption(mats()[0], "Use") // mat 1 shows exercise 1, not the ordered 2
+        tickIf { player.dialogue == null }
 
         assertEquals(0, player.get("drill_demon_correct", 0))
     }
@@ -83,10 +86,11 @@ class DrillDemonTest : WorldTest() {
     fun `Four correct exercises reward a camo piece and return the player`() {
         val origin = Tile(3221, 3218)
         val player = enter("dd_finish", origin)
-        player.layout(task = 0)
+        player.layout(task = 1)
         val mats = mats()
 
         repeat(4) { useCorrectMat(player, mats) }
+        while (player.dialogue != null) player.skipDialogues() // Damien's closing line, then reward
         tick(2)
 
         assertEquals(1, player.inventory.count("camo_helmet"))
@@ -100,10 +104,11 @@ class DrillDemonTest : WorldTest() {
         player.inventory.add("camo_helmet")
         player.inventory.add("camo_top")
         player.inventory.add("camo_bottoms")
-        player.layout(task = 0)
+        player.layout(task = 1)
         val mats = mats()
 
         repeat(4) { useCorrectMat(player, mats) }
+        while (player.dialogue != null) player.skipDialogues()
         tick(2)
 
         assertEquals(500, player.inventory.count("coins"))
