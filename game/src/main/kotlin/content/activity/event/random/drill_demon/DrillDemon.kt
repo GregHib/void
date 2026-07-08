@@ -66,7 +66,7 @@ class DrillDemon : Script {
         assignRound(reveal = false)
         mysteriousOldMan()
         kidnap(YARD)
-        npc<Neutral>("sergeant_damien", "Move yourself private! Follow my orders and you may, just may, leave here in a fit state for my corps!")
+        npc<Neutral>("sergeant_damien", "Move yourself private! Follow my orders and you may, just may, leave here in a fit state for my corps!", largeHead = true)
         order(wrong = false)
     }
 
@@ -88,11 +88,11 @@ class DrillDemon : Script {
 
     private suspend fun Player.order(wrong: Boolean) {
         val prefix = if (wrong) "Wrong exercise, worm! " else ""
-        npc<Neutral>("sergeant_damien", "$prefix${EXERCISES.getValue(get("drill_demon_task", 1)).order} private!")
+        npc<Neutral>("sergeant_damien", "$prefix${EXERCISES.getValue(get("drill_demon_task", 1)).order} private!", largeHead = true)
     }
 
     private suspend fun Player.finish() {
-        npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.")
+        npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
         rewardCostumeOrCoins("camo_helmet", "camo_top", "camo_bottoms", coins = 500)
         clear("drill_demon_task")
         clear("drill_demon_correct")
