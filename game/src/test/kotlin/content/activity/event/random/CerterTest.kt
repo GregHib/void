@@ -1,7 +1,7 @@
 package content.activity.event.random
 
 import WorldTest
-import interfaceOption
+import dialogueOption
 import npcOption
 import org.junit.jupiter.api.Test
 import skipDialogues
@@ -30,7 +30,7 @@ class CerterTest : WorldTest() {
     private fun openPuzzle(player: Player, giles: NPC) {
         player.npcOption(giles, "Talk-to")
         tick()
-        player.skipDialogues() // "Ah, hello... identify this?" -> opens the interface
+        player.skipDialogues() // greeting + item box -> stops on the choice menu
         tick()
     }
 
@@ -50,9 +50,8 @@ class CerterTest : WorldTest() {
         val (player, giles) = setup("certer_correct")
         openPuzzle(player, giles)
 
-        assertTrue(player.interfaces.contains("certer_identify"))
         val answer = player.get("certer_answer", 0)
-        player.interfaceOption("certer_identify", "option_$answer", "Select")
+        player.dialogueOption(answer)
         tick()
         player.skipDialogues() // "Thank you, I hope you like your present..."
         tick()
@@ -69,7 +68,7 @@ class CerterTest : WorldTest() {
 
         val answer = player.get("certer_answer", 0)
         val wrong = if (answer == 1) 2 else 1
-        player.interfaceOption("certer_identify", "option_$wrong", "Select")
+        player.dialogueOption(wrong)
         tick()
         player.skipDialogues() // "Sorry, I don't think so."
         tick()
