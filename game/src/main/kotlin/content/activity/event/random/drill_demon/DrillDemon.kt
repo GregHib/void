@@ -72,17 +72,16 @@ class DrillDemon : Script {
 
     /**
      * Shuffle the four exercises across the mats' signs and pick the one the player must perform.
-     * When [reveal] is set the signs change one at a time from sign 1 to sign 4, a tick apart, each
-     * with a puff of smoke.
+     * When [reveal] is set a puff of smoke sweeps across the signs from sign 1 to sign 4, each half a
+     * tick apart (the signs themselves all change this tick; only the puffs are staggered client-side).
      */
-    private suspend fun Player.assignRound(reveal: Boolean = true) {
+    private fun Player.assignRound(reveal: Boolean = true) {
         val exercises = EXERCISES.keys.shuffled(random)
         set("drill_demon_task", EXERCISES.keys.random(random))
         for (sign in 1..exercises.size) {
             set("drill_demon_sign_$sign", exercises[sign - 1])
             if (reveal) {
-                areaGfx("drill_demon_sign_change", SIGN_TILES[sign - 1])
-                delay(1)
+                areaGfx("drill_demon_sign_change", SIGN_TILES[sign - 1], delay = (sign - 1) * HALF_TICK)
             }
         }
     }
@@ -105,6 +104,7 @@ class DrillDemon : Script {
     companion object {
         private const val REQUIRED = 4
         private const val EXERCISE_TICKS = 4
+        private const val HALF_TICK = 15 // client ticks; a game tick is 30
         private val YARD = Tile(3163, 4820)
 
         // The sign board sits two tiles north of each mat (mat y + 2).
