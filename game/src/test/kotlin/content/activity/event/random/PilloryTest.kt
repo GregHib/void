@@ -48,7 +48,8 @@ class PilloryTest : WorldTest() {
         val player = enter("pil_start")
 
         assertEquals("pillory", player.get<String>("random_event"))
-        assertTrue(cages.contains(player.tile), "Expected a cage tile, was ${player.tile}")
+        // The player lands on (or, if the stocks block the tile, right beside) a pillory cage.
+        assertTrue(cages.any { player.tile.within(it, 1) }, "Expected by a cage, was ${player.tile}")
         assertEquals(3, player.get("pillory_target", 0))
     }
 

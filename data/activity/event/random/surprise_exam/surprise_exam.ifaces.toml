@@ -1,0 +1,30 @@
+# Mr Mordaut's "what comes next?" pattern quiz (interface 103). The three pattern icons sit on
+# children 6-8; the four answer icons on children 10-13 are the clickable options (setting=2 in the
+# cache => interface option), declared with a Select action so clicks resolve.
+[surprise_exam_pattern]
+id = 103
+
+[.pattern_1]
+id = 6
+
+[.pattern_2]
+id = 7
+
+[.pattern_3]
+id = 8
+
+[.option_1]
+id = 10
+options = { Select = 0 }
+
+[.option_2]
+id = 11
+options = { Select = 0 }
+
+[.option_3]
+id = 12
+options = { Select = 0 }
+
+[.option_4]
+id = 13
+options = { Select = 0 }

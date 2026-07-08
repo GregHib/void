@@ -38,6 +38,10 @@ weight = 10
 event = "pillory"
 weight = 10
 
+[.surprise_exam]
+event = "surprise_exam"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
