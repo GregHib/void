@@ -1,8 +1,6 @@
 package content.activity.event.random
 
 import WorldTest
-import content.quest.instance
-import content.quest.instanceOffset
 import interfaceOption
 import org.junit.jupiter.api.Test
 import skipDialogues
@@ -44,11 +42,9 @@ class MimeTest : WorldTest() {
         val player = enter("mime_start")
 
         assertEquals("mime", player.get<String>("random_event"))
-        assertNotNull(player.instance())
         assertTrue(player.interfaces.contains(iface))
         assertNotNull(player.get<String>("mime_emote"))
-        val off = player.instanceOffset()
-        assertNotNull(NPCs.firstOrNull(Tile(2011, 4762).add(off.x, off.y)) { it.id == "mime" })
+        assertNotNull(NPCs.firstOrNull(Tile(2011, 4762)) { it.id == "mime" })
     }
 
     @Test

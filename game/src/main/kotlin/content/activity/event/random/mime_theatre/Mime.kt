@@ -7,9 +7,6 @@ import content.activity.event.random.rewardCostumeOrCoins
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
-import content.quest.instanceOffset
-import content.quest.setInstanceLogout
-import content.quest.smallInstance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -19,8 +16,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -47,30 +42,26 @@ class Mime : Script {
     }
 
     private suspend fun Player.startEvent() {
-        smallInstance(Region(REGION), levels = 1)
-        setInstanceLogout(Tile(this["random_event_origin", tile.id]))
-        val offset = instanceOffset()
-
+        set("mime_correct", 0)
         mysteriousOldMan()
-        kidnap(SPAWN.add(offset))
+        kidnap(SPAWN)
         npc<Neutral>("mysterious_old_man", "Here's a little challenge for you:<br>Copy the Mime's performance, then you'll be released.")
-        walkOverDelay(WATCH.add(offset))
+        walkOverDelay(WATCH)
         statement("Watch the Mime.<br>See what emote he performs.")
 
-        val mime = NPCs.add("mime", MIME_TILE.add(offset), ticks = -1, owner = this)
-        set("mime_correct", 0)
-        runMime(mime, offset)
+        val mime = NPCs.firstOrNull(MIME_TILE) { it.id == "mime" } ?: NPCs.add("mime", MIME_TILE, ticks = -1, owner = this)
+        runMime(mime)
     }
 
-    private suspend fun Player.runMime(mime: NPC, offset: Delta) {
+    private suspend fun Player.runMime(mime: NPC) {
         while (get("mime_correct", 0) < REQUIRED) {
             val expected = EMOTES.random(random)
             set("mime_emote", expected)
 
             // Spotlight the Mime and perform the emote facing the audience.
-            lightMime(offset, on = true)
-            lightPlayer(offset, on = false)
-            mime.face(AUDIENCE.add(offset))
+            lightMime(on = true)
+            lightPlayer(on = false)
+            mime.face(AUDIENCE)
             mime.anim("emote_$expected")
             delay(PERFORM_TICKS)
 
@@ -78,15 +69,15 @@ class Mime : Script {
             mime.face(tile)
             mime.anim("emote_bow")
             delay(BOW_TICKS)
-            lightMime(offset, on = false)
-            lightPlayer(offset, on = true)
+            lightMime(on = false)
+            lightPlayer(on = true)
 
             val chosen = awaitEmote()
             anim("emote_$chosen") // the player performs the emote they picked
             if (chosen == expected) {
                 message("Correct!")
                 inc("mime_correct")
-                mime.face(AUDIENCE.add(offset))
+                mime.face(AUDIENCE)
                 delay(CORRECT_TICKS)
             } else {
                 message("That wasn't quite right. Watch the Mime again.")
@@ -103,10 +94,10 @@ class Mime : Script {
     }
 
     /** Spotlight over the Mime (2010, 4761). */
-    private fun Player.lightMime(offset: Delta, on: Boolean) = spotlight(MIME_LIGHT.add(offset), on)
+    private fun lightMime(on: Boolean) = spotlight(MIME_LIGHT, on)
 
     /** Spotlight over the player's spot (2007, 4761). */
-    private fun Player.lightPlayer(offset: Delta, on: Boolean) = spotlight(PLAYER_LIGHT.add(offset), on)
+    private fun lightPlayer(on: Boolean) = spotlight(PLAYER_LIGHT, on)
 
     private fun spotlight(tile: Tile, on: Boolean) {
         // TODO: object 3644 (Spotlight) has no baked animation - wire the on/off animation ids here
@@ -125,7 +116,6 @@ class Mime : Script {
 
     companion object {
         private const val REQUIRED = 3
-        private const val REGION = 8010
         private const val INTERFACE = "dialogue_macro_mime_emotes"
         private const val PERFORM_TICKS = 4
         private const val BOW_TICKS = 3
