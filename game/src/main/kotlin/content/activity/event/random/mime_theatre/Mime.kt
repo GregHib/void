@@ -124,7 +124,14 @@ class Mime : Script {
         rewardCostumeOrCoins("mime_mask", "mime_top", "mime_legs", "mime_gloves", "mime_boots", coins = 500)
         clear("mime_emote")
         clear("mime_correct")
+
+        // Teleport home with the modern teleport animation.
+        anim("teleport_modern")
+        gfx("teleport_modern")
+        delay(TELEPORT_TICKS)
+        clearAnim()
         RandomEvents.complete(this)
+        gfx("teleport_land_modern")
     }
 
     companion object {
@@ -133,6 +140,7 @@ class Mime : Script {
         private const val PERFORM_TICKS = 4
         private const val BOW_TICKS = 3
         private const val SPOTLIGHT_TICKS = 3 // duration of the spotlight on/off animation
+        private const val TELEPORT_TICKS = 3 // modern teleport wind-up before leaving
         private const val CORRECT_TICKS = 8 // ~8 ticks
 
         private val SPAWN = Tile(2008, 4764)
