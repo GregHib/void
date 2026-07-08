@@ -62,6 +62,7 @@ class Mime : Script {
             centeredMessage("Watch the Mime.", "See what emote he performs.")
             lightMime(on = true)
             lightPlayer(on = false)
+            delay(SPOTLIGHT_TICKS) // let the spotlight finish turning on before the Mime performs
             mime.face(AUDIENCE)
             mime.anim("emote_$expected")
             delay(PERFORM_TICKS)
@@ -72,6 +73,7 @@ class Mime : Script {
             delay(BOW_TICKS)
             lightMime(on = false)
             lightPlayer(on = true)
+            delay(SPOTLIGHT_TICKS) // let the spotlight finish turning on before the player performs
 
             val chosen = awaitEmote()
             anim("emote_$chosen") // the player performs the emote they picked
@@ -130,6 +132,7 @@ class Mime : Script {
         private const val INTERFACE = "dialogue_macro_mime_emotes"
         private const val PERFORM_TICKS = 4
         private const val BOW_TICKS = 3
+        private const val SPOTLIGHT_TICKS = 3 // duration of the spotlight on/off animation
         private const val CORRECT_TICKS = 8 // ~8 ticks
 
         private val SPAWN = Tile(2008, 4764)
