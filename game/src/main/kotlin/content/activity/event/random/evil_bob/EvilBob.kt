@@ -344,7 +344,7 @@ class EvilBob : Script {
         private const val ISLAND_REGION = 13642
         private const val REWARD_XP = 650.0
         private val ISLAND = Tile(3419, 4776)
-        private val BOB_TILE = Tile(3420, 4778)
+        private val BOB_TILE = Tile(3420, 4777)
         private val SERVANT_TILE = Tile(3423, 4777)
         private val POT = Tile(3423, 4780)
         private val PORTAL = Tile(3416, 4777)
