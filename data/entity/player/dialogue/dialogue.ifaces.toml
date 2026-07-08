@@ -273,6 +273,32 @@ type = "dialogue_box"
 id = 188
 type = "dialogue_box"
 
+# The eight emote buttons (cache option names Think/Cry/.../Glass Wall); named by the emote so the
+# handler can read the pick straight off the clicked component.
+[.think]
+id = 2
+
+[.cry]
+id = 3
+
+[.laugh]
+id = 4
+
+[.dance]
+id = 5
+
+[.climb_rope]
+id = 6
+
+[.lean]
+id = 7
+
+[.glass_box]
+id = 8
+
+[.glass_wall]
+id = 9
+
 [dialogue_macro_quiz_show]
 id = 191
 type = "dialogue_box"
