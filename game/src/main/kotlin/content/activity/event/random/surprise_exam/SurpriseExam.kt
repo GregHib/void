@@ -36,15 +36,15 @@ class SurpriseExam : Script {
 
         npcOperate("Talk-to", "mr_mordau") { (mordaut) ->
             if (get<String>("random_event") != "surprise_exam") {
-                npc<Neutral>("mr_mordau", "I'm rather busy, please don't interrupt my class.")
+                npc<Neutral>("mr_mordau", "I'm rather busy, please don't interrupt my class.", largeHead = true)
                 return@npcOperate
             }
             face(mordaut.tile)
             val door = get<String>("surprise_exam_door")
             if (door != null) {
-                npc<Neutral>("mr_mordau", "Well done! Please exit through the ${DOOR_TEXT[door]} door.")
+                npc<Neutral>("mr_mordau", "Well done! Please exit through the ${DOOR_TEXT[door]} door.", largeHead = true)
             } else {
-                npc<Neutral>("mr_mordau", "Please answer these questions for me.")
+                npc<Neutral>("mr_mordau", "Please answer these questions for me.", largeHead = true)
                 openQuestion()
             }
         }
@@ -114,12 +114,12 @@ class SurpriseExam : Script {
         if (option == get("surprise_exam_answer", 0)) {
             if (inc("surprise_exam_correct") >= REQUIRED) {
                 set("surprise_exam_door", DOORS.random(random))
-                npc<Neutral>("mr_mordau", "Excellent work! You've passed. Please exit through the ${DOOR_TEXT[get<String>("surprise_exam_door")]} door.")
+                npc<Neutral>("mr_mordau", "Excellent work! You've passed. Please exit through the ${DOOR_TEXT[get<String>("surprise_exam_door")]} door.", largeHead = true)
                 return
             }
-            npc<Neutral>("mr_mordau", "Excellent work! Now for another...")
+            npc<Neutral>("mr_mordau", "Excellent work! Now for another...", largeHead = true)
         } else {
-            npc<Neutral>("mr_mordau", "I'm afraid that isn't correct. Now for another...")
+            npc<Neutral>("mr_mordau", "I'm afraid that isn't correct. Now for another...", largeHead = true)
         }
         openQuestion()
     }
