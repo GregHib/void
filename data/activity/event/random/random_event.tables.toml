@@ -46,6 +46,10 @@ weight = 10
 event = "kiss_the_frog"
 weight = 10
 
+[.pinball]
+event = "pinball"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
