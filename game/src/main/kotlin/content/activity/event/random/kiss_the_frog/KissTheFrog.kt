@@ -111,8 +111,10 @@ class KissTheFrog : Script {
     }
 
     private suspend fun Player.kiss(frog: NPC) {
+        // Turn to face each other before leaning in.
         face(frog.tile)
         frog.face(tile)
+        delay(1)
         frog.anim("frog_kiss")
         anim("human_kiss_the_frog")
         delay(3)

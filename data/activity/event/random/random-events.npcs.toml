@@ -1,35 +1,43 @@
 [frog_frogland]
 id = 390
+dialogue = "old"
 wander_range = 3
 examine = "A frog."
 
 [frog_2_frogland]
 clone = "frog_frogland"
 id = 391
+dialogue = "old"
 
 [frog_3_frogland]
 clone = "frog_frogland"
 id = 392
+dialogue = "old"
 
 [frog_4_frogland]
 clone = "frog_frogland"
 id = 393
+dialogue = "old"
 
 [frog_5_frogland]
 clone = "frog_frogland"
 id = 394
+dialogue = "old"
 
 [frog_6_frogland]
 clone = "frog_frogland"
 id = 395
+dialogue = "old"
 
 [frog_7_frogland]
 clone = "frog_frogland"
 id = 396
+dialogue = "old"
 
 [frog_8_frogland]
 clone = "frog_frogland"
 id = 403
+dialogue = "old"
 
 [giant_surprise_exam]
 id = 487
@@ -41,6 +49,7 @@ examine = "If the mummy is at school, where are the kids?"
 
 [frog_herald]
 id = 2472
+dialogue = "old"
 examine = "Speaks on behalf of His and Her Royal Frogness."
 
 [quiz_master]
@@ -56,6 +65,7 @@ examine = "He wants to escape!"
 [frog_9_frogland]
 clone = "frog_frogland"
 id = 3300
+dialogue = "old"
 
 [mr_mordau]
 id = 6117
@@ -84,10 +94,12 @@ examine = "The sandwich lady."
 [frog_10_frogland]
 clone = "frog_frogland"
 id = 8636
+dialogue = "old"
 
 [frog_11_frogland]
 clone = "frog_frogland"
 id = 8637
+dialogue = "old"
 
 [balloon_animal_dog]
 id = 11232
