@@ -6,7 +6,6 @@ import content.activity.event.random.kidnap
 import content.activity.event.random.startInPlaceEvent
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
-import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Neutral
@@ -15,14 +14,18 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.inv.item.addOrDrop
+import content.quest.closeTabs
+import content.quest.openTabs
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -30,8 +33,11 @@ import world.gregs.voidps.type.random
  * Kiss the Frog (Frog Princess) random event: the Frog Herald hops up to the player and whisks them
  * to the Land of the Frogs. Among the identical frogs one wears a crown - the Frog Prince (for female
  * players) or Princess (for male players). Kissing the crowned frog restores it to human form and
- * earns a gift box; kissing (or talking to) the wrong frog turns the player into a frog until they
- * apologise to the crowned one.
+ * earns a gift box.
+ *
+ * Talking to the other frogs offends the royal; do it too often and the royal turns the player into a
+ * frog and banishes them to a small frog cave, where a second crowned royal will send them home (empty
+ * handed, dumped somewhere random in Gielinor) if spoken to.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Frog
  */
 class KissTheFrog : Script {
@@ -50,26 +56,32 @@ class KissTheFrog : Script {
                 endInPlaceEvent(herald)
                 kidnap(LAND)
                 spawnCrown()
+                restrictTabs()
                 explain()
             } else {
                 explain()
             }
         }
 
-        npcOperate("Talk-to", "frog_*_frogland") { (frog) ->
+        // `frog_*frogland` (no mandatory underscore) matches the bare `frog_frogland` baked into the
+        // region as well as the numbered `frog_N_frogland` variants; `frog_*_frogland` would miss the
+        // bare frogs, so talking to them gave "Nothing interesting happens".
+        npcOperate("Talk-to", "frog_*frogland") { (frog) ->
             if (get<String>("random_event") != "kiss_the_frog") {
                 return@npcOperate
             }
-            if (frog.index == get("ktf_crown", -1)) {
-                royalFrog(frog)
-            } else {
-                plainFrog(frog)
+            when (frog.index) {
+                get("ktf_crown", -1) -> royalFrog(frog)
+                get("ktf_escape", -1) -> escapeFrog(frog)
+                else -> plainFrog(frog)
             }
         }
     }
 
     private fun Player.startEvent() {
         clear("ktf_fail")
+        clear("ktf_offended")
+        clear("ktf_escape")
         startInPlaceEvent("frog_herald", nagLines())
     }
 
@@ -78,9 +90,19 @@ class KissTheFrog : Script {
 
     private fun Player.crownFrog() = if (male) "frog_princess" else "frog_prince"
 
+    /** Spawn the crowned royal (npc 3300) hidden among the plain frogs of the Land of the Frogs. */
     private fun Player.spawnCrown() {
-        val frog = NPCs.add("frog_10_frogland", CROWN_TILES.random(random), ticks = -1, owner = this)
+        val frog = NPCs.add(ROYAL, CROWN_TILES.random(random), ticks = -1, owner = this)
         set("ktf_crown", frog.index)
+    }
+
+    /**
+     * In the Land of the Frogs the player only keeps six tabs: Friends List, Ignore List, Clan Chat,
+     * Options, Music Player and Notes. [closeTabs] closes everything else (and Notes), so re-open Notes.
+     */
+    private fun Player.restrictTabs() {
+        closeTabs()
+        open("notes")
     }
 
     private suspend fun Player.explain() {
@@ -94,16 +116,9 @@ class KissTheFrog : Script {
         npc<Neutral>("frog_herald", "$subject is the frog with the crown. Make sure you speak to $him, not the other frogs, or $subject'll be offended.")
     }
 
+    /** The crowned royal in the Land of the Frogs: kiss to win. */
     private suspend fun Player.royalFrog(frog: NPC) {
         val id = frog.id
-        if (get("ktf_fail", false)) {
-            npc<Sad>(id, "Hmph. Have you come to apologise for ignoring me?")
-            player<Neutral>("I'm very sorry. Please change me back!")
-            npc<Neutral>(id, "All right. But in future be more polite.")
-            clearTransform()
-            finishEvent()
-            return
-        }
         npc<Sad>(id, "$name, you must help me! I have been turned into a frog by a well-meaning wizard with an unfortunate obsession with frogs.")
         npc<Neutral>(id, "The only thing that will restore my true form is a kiss.")
         player<Laugh>("Excuses, excuses! Okay, if that's what you want...")
@@ -111,6 +126,10 @@ class KissTheFrog : Script {
     }
 
     private suspend fun Player.kiss(frog: NPC) {
+        // If the player clicks off the "Thank you" dialogue (which cancels this handler), the walk fires
+        // this trigger and they still fade out, collect the reward and teleport home; reading it through
+        // does the same at the end.
+        walkTrigger = { queue("ktf_kiss") { completeKiss() } }
         // Turn to face each other before leaning in.
         face(frog.tile)
         frog.face(tile)
@@ -127,33 +146,98 @@ class KissTheFrog : Script {
         frog.anim("emote_blow_kiss")
         frog.gfx("emote_blow_kiss")
         delay(3)
+        completeKiss()
+    }
+
+    /** Fade to black, hand over the reward and teleport the player home. */
+    private suspend fun Player.completeKiss() {
+        if (get<String>("random_event") != "kiss_the_frog") {
+            return
+        }
+        walkTrigger = null
         open("fade_out")
         delay(2)
         addOrDrop("random_event_gift")
         message("You've been given a gift!")
-        NPCs.remove(frog)
         finishEvent()
+        open("fade_in")
+    }
+
+    /** The crowned royal in the frog cave: talking to it releases a hexed player (no reward). */
+    private suspend fun Player.escapeFrog(frog: NPC) {
+        // The cave is enclosed, so the player must not be able to strand themselves by walking off. If
+        // they click off the dialogue (which cancels this handler), the walk fires this trigger and they
+        // fade out and teleport home anyway; reading the dialogue through does the same at the end.
+        walkTrigger = { queue("ktf_escape_cave") { escapeCave() } }
+        npc<Sad>(frog.id, "Oh, another poor soul hexed into a frog for their bad manners.")
+        npc<Neutral>(frog.id, "Here, I'll send you on your way. Do be more polite next time.")
+        escapeCave()
+    }
+
+    /** Fade to black and dump the hexed player somewhere random (no reward). */
+    private suspend fun Player.escapeCave() {
+        if (get<String>("random_event") != "kiss_the_frog") {
+            return
+        }
+        walkTrigger = null
+        open("fade_out")
+        delay(2)
+        failEvent()
         open("fade_in")
     }
 
     private suspend fun Player.plainFrog(frog: NPC) {
         if (get("ktf_fail", false)) {
-            npc<Angry>(frog.id, "Don't talk to me! Speak to the frog ${royal()}!")
+            // Already a frog - the plain frogs have nothing to say to another frog.
+            npc<Neutral>(frog.id, "Ribbit.")
+            return
+        }
+        // Ignoring the royal to talk to plain frogs offends them; do it too often and the royal turns
+        // the player into a frog and banishes them to the frog cave.
+        val offences = inc("ktf_offended")
+        if (offences < OFFENCE_LIMIT) {
+            npc<Neutral>(frog.id, "Ribbit.")
+            message("The Frog ${royal()} looks offended that you spoke to another frog.")
             return
         }
         npc<Neutral>(frog.id, "Well, we'll see how you like being a frog!")
-        set("ktf_fail", true)
-        anim("morph_to_frog")
-        delay(1)
-        transform("frog_9_frogland")
+        banishToCave()
     }
 
+    /** Third offence: morph the player into a frog and teleport them to the frog cave to escape from. */
+    private suspend fun Player.banishToCave() {
+        set("ktf_fail", true)
+        message("You've been turned into a frog!")
+        anim("morph_to_frog")
+        delay(2)
+        transform(PLAYER_FROG)
+        delay(2)
+        tele(FAIL_CAVE)
+        val escape = NPCs.add(ROYAL, ESCAPE_TILE, ticks = -1, owner = this)
+        set("ktf_escape", escape.index)
+    }
+
+    /** Successful kiss: return the player home. */
     private fun Player.finishEvent() {
+        cleanup()
+        RandomEvents.complete(this)
+    }
+
+    /** Escaped the frog cave: dump the player somewhere random with no reward. */
+    private fun Player.failEvent() {
+        cleanup()
+        RandomEvents.fail(this)
+    }
+
+    private fun Player.cleanup() {
+        openTabs()
         clearTransform()
         NPCs.indexed(get("ktf_crown", -1))?.let { if (it.owner == this) NPCs.remove(it) }
+        NPCs.indexed(get("ktf_escape", -1))?.let { if (it.owner == this) NPCs.remove(it) }
         clear("ktf_fail")
+        clear("ktf_offended")
         clear("ktf_crown")
-        RandomEvents.complete(this)
+        clear("ktf_escape")
     }
 
     private fun Player.nagLines() = listOf(
@@ -164,16 +248,22 @@ class KissTheFrog : Script {
     )
 
     companion object {
-        private val LAND = Tile(2463, 4781)
+        // Number of times the player can talk to the wrong frogs before the royal turns them into one.
+        private const val OFFENCE_LIMIT = 3
 
-        // Spots among the plain frogs where the crowned royal frog can be hidden.
+        // The crowned royal frog (Frog Prince/Princess) and the plain frog the player is morphed into.
+        private const val ROYAL = "frog_9_frogland"
+        private const val PLAYER_FROG = "frog_frogland"
+
+        private val LAND = Tile(2445, 4770)
+
+        // The small cave the player is banished to on failure, and the escape royal's spot within it.
+        private val FAIL_CAVE = Tile(2464, 4782)
+        private val ESCAPE_TILE = Tile(2464, 4784)
+
+        // Spots among the plain frogs near the arrival tile [LAND] where the crowned royal is hidden.
         private val CROWN_TILES = listOf(
-            Tile(2456, 4787),
-            Tile(2458, 4774),
-            Tile(2463, 4774),
-            Tile(2464, 4782),
-            Tile(2470, 4774),
-            Tile(2454, 4783),
+            Tile(2442, 4774),
         )
     }
 }

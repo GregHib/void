@@ -5,6 +5,7 @@ import npcOption
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,7 +19,7 @@ import kotlin.test.assertTrue
 class KissTheFrogTest : WorldTest() {
 
     private val origin = Tile(3221, 3218)
-    private val land = Tile(2463, 4781)
+    private val land = Tile(2445, 4770)
 
     private fun start(name: String): Player {
         val player = createPlayer(origin, name)
@@ -64,7 +65,11 @@ class KissTheFrogTest : WorldTest() {
         assertTrue(player.tile.within(land, 20), "Expected the land, was ${player.tile}")
         val crown = NPCs.indexed(player.get("ktf_crown", -1))
         assertNotNull(crown)
-        assertEquals("frog_10_frogland", crown!!.id)
+        assertEquals("frog_9_frogland", crown!!.id)
+        // Only the six social tabs remain; combat gear and inventory are hidden.
+        assertTrue(!player.interfaces.contains("inventory"), "Inventory tab should be hidden")
+        assertTrue(player.interfaces.contains("music_player"), "Music Player tab should remain")
+        assertTrue(player.interfaces.contains("notes"), "Notes tab should remain")
     }
 
     @Test
@@ -72,6 +77,7 @@ class KissTheFrogTest : WorldTest() {
         val player = start("ktf_kiss")
         player.enterLand()
         val crown = NPCs.indexed(player.get("ktf_crown", -1))!!
+        player.tele(crown.tile.addX(1))
 
         player.npcOption(crown, "Talk-to")
         player.driveUntilDone()
@@ -81,17 +87,47 @@ class KissTheFrogTest : WorldTest() {
         assertEquals(origin, player.tile)
     }
 
+    private fun Player.talk(npc: NPC) {
+        npcOption(npc, "Talk-to")
+        tick()
+        while (dialogue != null) skipDialogues()
+        tick(2)
+    }
+
     @Test
-    fun `Talking to a plain frog turns the player into a frog`() {
+    fun `Offending the royal repeatedly turns the player into a frog`() {
         val player = start("ktf_wrong")
         player.enterLand()
-        val plain = createNPC("frog_9_frogland", player.tile.addX(1))
+        val plain = createNPC("frog_frogland", player.tile.addX(1))
 
-        player.npcOption(plain, "Talk-to")
-        tick()
-        while (player.dialogue != null) player.skipDialogues()
-        tick(2)
+        // The first offences only annoy the royal; the player stays human.
+        player.talk(plain)
+        assertTrue(!player.get("ktf_fail", false))
+        player.talk(plain)
+        assertTrue(!player.get("ktf_fail", false))
+        // The third offence transforms them.
+        player.talk(plain)
 
         assertTrue(player.get("ktf_fail", false))
+    }
+
+    @Test
+    fun `A transformed player who talks to the royal is dumped somewhere with no reward`() {
+        val player = start("ktf_dump")
+        player.enterLand()
+        val plain = createNPC("frog_frogland", player.tile.addX(1))
+        repeat(3) { player.talk(plain) }
+        assertTrue(player.get("ktf_fail", false))
+        // The third offence banishes the player to the cave and spawns the escape royal.
+        tickIf(20) { NPCs.indexed(player.get("ktf_escape", -1)) == null }
+        val escape = NPCs.indexed(player.get("ktf_escape", -1))!!
+        player.tele(escape.tile.addX(1))
+
+        player.npcOption(escape, "Talk-to")
+        player.driveUntilDone()
+
+        assertEquals(0, player.inventory.count("random_event_gift"))
+        assertNull(player.get<String>("random_event"))
+        assertTrue(!player.get("ktf_fail", false))
     }
 }

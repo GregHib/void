@@ -13,5 +13,5 @@ spawns = [
   { id = "frog_11_frogland", x = 2442, y = 4770 },
   { id = "frog_11_frogland", x = 2441, y = 4766 },
   { id = "frog_herald", x = 2446, y = 4770, direction = "WEST" },
-  { id = "frog_9_frogland", x = 2440, y = 4774 },
+  { id = "frog_2_frogland", x = 2440, y = 4774 },
 ]
