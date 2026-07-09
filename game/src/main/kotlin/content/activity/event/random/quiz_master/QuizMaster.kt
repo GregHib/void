@@ -48,6 +48,7 @@ class QuizMaster : Script {
         quizHerald()
         kidnap(ROOM)
         face(QUIZ_MASTER)
+        anim("quiz_show_sit") // the contestant takes their seat for the show
         intro()
         runQuiz()
     }
@@ -104,6 +105,7 @@ class QuizMaster : Script {
                 addOrDrop(row.item("item"), row.int("amount"))
             }
         }
+        clearAnim() // stand up out of the contestant's seat
         clear("quiz_answer")
         clear("quiz_correct")
         RandomEvents.complete(this)
