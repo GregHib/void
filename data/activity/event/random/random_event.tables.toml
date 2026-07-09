@@ -42,6 +42,10 @@ weight = 10
 event = "surprise_exam"
 weight = 10
 
+[.kiss_the_frog]
+event = "kiss_the_frog"
+weight = 10
+
 [random_event_settings]
 value = "int"
 

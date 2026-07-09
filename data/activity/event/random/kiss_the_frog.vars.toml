@@ -1,0 +1,6 @@
+[ktf_fail]
+format = "boolean"
+persist = true
+
+[ktf_crown]
+format = "int"
