@@ -54,6 +54,10 @@ weight = 10
 event = "prison_pete"
 weight = 10
 
+[.capn_arnav]
+event = "capn_arnav"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
