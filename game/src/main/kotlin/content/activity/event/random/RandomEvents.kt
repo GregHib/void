@@ -1,12 +1,19 @@
 package content.activity.event.random
 
+import content.bot.isBot
+import content.entity.combat.inCombat
 import content.quest.clearInstance
+import content.quest.instance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.ui.menu
+import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
@@ -56,6 +63,35 @@ object RandomEvents : AutoCloseable {
         }
         return null
     }
+
+    /**
+     * Arm the initial cooldown on first activity, then a 1-in-`roll_chance` shot at [event]
+     * (or a weighted [pick]) for players who are eligible and off cooldown.
+     */
+    fun roll(player: Player, event: String? = null): Boolean {
+        if (!player.contains("random_event_cooldown")) {
+            // First activity; events unlock once the initial cooldown expires
+            cooldown(player)
+            return false
+        }
+        if (!eligible(player) || random.nextInt(Tables.int("random_event_settings.roll_chance.value")) != 0) {
+            return false
+        }
+        // Restart the cooldown immediately so a failed pick can't re-roll every attempt
+        cooldown(player)
+        return start(player, event ?: pick())
+    }
+
+    private fun eligible(player: Player): Boolean = !player.isBot &&
+        !player.contains("random_event") &&
+        player.instance() == null &&
+        !player.inCombat &&
+        player.menu == null &&
+        player.dialogue == null &&
+        player.mode == EmptyMode &&
+        !player.contains("delay") &&
+        !player.hasClock("random_event_cooldown", epochSeconds()) &&
+        Areas.get(player.tile.zone).none { it.tags.contains("no_random_events") }
 
     fun start(player: Player, id: String? = pick()): Boolean {
         val launcher = events[id ?: return false] ?: return false
