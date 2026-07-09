@@ -1,0 +1,11 @@
+[prison_pete_keys]
+format = "int"
+persist = true
+
+[prison_pete_target]
+format = "string"
+persist = true
+
+[prison_pete_wrong]
+format = "boolean"
+persist = true

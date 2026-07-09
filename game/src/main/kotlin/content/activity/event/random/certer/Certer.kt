@@ -1,7 +1,7 @@
 package content.activity.event.random.certer
 
 import content.activity.event.random.RandomEvents
-import content.activity.event.random.rewardCerterLoot
+import content.activity.event.random.rewardEventLoot
 import content.activity.event.random.startInPlaceEvent
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -43,7 +43,7 @@ class Certer : Script {
             close("certer_identify")
             if (correct) {
                 npc<Happy>("giles", "Thank you, I hope you like your present. I must be leaving now though.")
-                rewardCerterLoot()
+                rewardEventLoot("random_event_certer")
             } else {
                 npc<Neutral>("giles", "Sorry, I don't think so.")
             }

@@ -50,6 +50,10 @@ weight = 10
 event = "pinball"
 weight = 10
 
+[.prison_pete]
+event = "prison_pete"
+weight = 10
+
 [random_event_settings]
 value = "int"
 

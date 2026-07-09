@@ -22,10 +22,11 @@ fun Player.rewardCostumeOrCoins(vararg pieces: String, coins: Int) {
 }
 
 /**
- * Award a single weighted roll of the shared `random_event_certer` gem/coin table (Certer, Pillory).
+ * Award a single weighted roll of a random event loot table, e.g. the shared `random_event_certer`
+ * gem/coin table (Certer, Pillory) or `random_event_prison_pete`.
  */
-fun Player.rewardCerterLoot() {
-    val rows = Tables.get("random_event_certer").rows()
+fun Player.rewardEventLoot(table: String) {
+    val rows = Tables.get(table).rows()
     var roll = random.nextInt(rows.sumOf { it.int("weight") })
     for (row in rows) {
         roll -= row.int("weight")

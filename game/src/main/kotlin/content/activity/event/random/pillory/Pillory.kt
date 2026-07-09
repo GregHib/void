@@ -2,7 +2,7 @@ package content.activity.event.random.pillory
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.activity.event.random.rewardCerterLoot
+import content.activity.event.random.rewardEventLoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -98,7 +98,7 @@ class Pillory : Script {
     private fun Player.escape() {
         close("pillory_lock")
         message("You've escaped!")
-        rewardCerterLoot()
+        rewardEventLoot("random_event_certer")
         clear("pillory_target")
         clear("pillory_correct")
         clear("pillory_answer")
