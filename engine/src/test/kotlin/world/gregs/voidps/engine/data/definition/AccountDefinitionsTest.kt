@@ -26,7 +26,7 @@ class AccountDefinitionsTest {
         val count = definitions.merge(mapOf("new_account" to definition), emptyMap()) { false }
 
         assertEquals(1, count)
-        assertSame(definition, definitions.get("new_account"))
+        assertSame(definition, definitions.get("Newbie"))
         assertEquals("Newbie", definitions.displayNames["new_account"])
     }
 
@@ -38,7 +38,7 @@ class AccountDefinitionsTest {
         val count = definitions.merge(mapOf("account" to definition("account", "New name", hash = "new_hash")), emptyMap()) { false }
 
         assertEquals(1, count)
-        val updated = definitions.get("account")
+        val updated = definitions.get("New name")
         assertSame(existing, updated)
         assertEquals("New name", updated?.displayName)
         assertEquals("new_hash", updated?.passwordHash)
@@ -64,7 +64,7 @@ class AccountDefinitionsTest {
         }
 
         assertEquals(0, count)
-        assertEquals("memory_hash", definitions.get("online_account")?.passwordHash)
+        assertEquals("memory_hash", definitions.get("Online")?.passwordHash)
     }
 
     @Test
@@ -73,7 +73,7 @@ class AccountDefinitionsTest {
 
         definitions.merge(emptyMap(), emptyMap()) { false }
 
-        assertEquals("hash", definitions.get("account")?.passwordHash)
+        assertEquals("hash", definitions.get("Name")?.passwordHash)
     }
 
     @Test
@@ -88,7 +88,7 @@ class AccountDefinitionsTest {
     @Test
     fun `Merge updates existing clan in place preserving members`() {
         val existing = clan("owner_account", "Owner")
-        val member: Player = Player(accountName = "member_account")
+        val member = Player(accountName = "member_account")
         existing.members.add(member)
         definitions.merge(emptyMap(), mapOf("owner_account" to existing)) { false }
 

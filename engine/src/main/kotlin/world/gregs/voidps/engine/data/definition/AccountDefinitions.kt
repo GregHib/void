@@ -89,12 +89,15 @@ class AccountDefinitions(
             if (skip(definition.accountName)) {
                 continue
             }
-            val existing = definitions[definition.displayName.lowercase()]
+            val displayName = displayNames[definition.accountName.lowercase()]?.lowercase() ?: definition.displayName.lowercase()
+            val existing = definitions[displayName]
             if (existing == null) {
-                definitions[definition.displayName.lowercase()] = definition
+                definitions[displayName] = definition
             } else if (existing == definition) {
                 continue
             } else {
+                definitions.remove(displayName)
+                definitions[definition.displayName.lowercase()] = existing
                 existing.displayName = definition.displayName
                 existing.previousName = definition.previousName
                 existing.passwordHash = definition.passwordHash
