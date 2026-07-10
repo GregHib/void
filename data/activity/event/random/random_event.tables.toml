@@ -62,6 +62,10 @@ weight = 10
 event = "beekeeper"
 weight = 10
 
+[.evil_twin]
+event = "evil_twin"
+weight = 10
+
 [random_event_settings]
 value = "int"
 

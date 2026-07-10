@@ -1,0 +1,7 @@
+[evil_twin_claw]
+id = 14976
+examine = "A giant mechanical claw."
+
+# Glowing mark on the floor showing where the claw will drop.
+[evil_twin_claw_marker]
+id = 14977
