@@ -2,7 +2,6 @@ package content.activity.event.random.sandwich_lady
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.startInPlaceEvent
-import content.entity.combat.hit.directHit
 import content.entity.combat.inCombat
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
@@ -20,7 +19,7 @@ import world.gregs.voidps.type.random
 /**
  * Sandwich Lady random event: she appears beside the player pushing a refreshment tray and nags
  * until spoken to. Talking opens her tray (interface 297); picking the food she offered hands it
- * over, picking any other knocks the player out (notes their items and teleports them away).
+ * over, picking any other knocks the player out and teleports them away with nothing.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Sandwich_Lady
  */
 class SandwichLady : Script {
@@ -68,11 +67,10 @@ class SandwichLady : Script {
         message("The sandwich lady knocks you out and you wake up somewhere... different.")
         lady?.say("Hey, I didn't say you could have that!")
         lady?.anim("sandwich_lady_knockout") // swings the baguette
-        lady?.let { directHit(it, 3) }
         anim("human_death")
         open("fade_out")
         delay(3)
-        RandomEvents.noteAndTeleport(this)
+        RandomEvents.fail(this)
         clearAnim()
         open("fade_in")
     }

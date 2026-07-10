@@ -69,18 +69,16 @@ class SandwichLadyTest : WorldTest() {
     }
 
     @Test
-    fun `Choosing the wrong food hits the player and applies the ignore penalty`() {
+    fun `Choosing the wrong food knocks the player out and exiles them empty-handed`() {
         val (player, lady) = setup("sl_wrong", "meat_pie")
         player.inventory.add("logs", 4)
-        val hpBefore = player.levels.get(Skill.Constitution)
         openTray(player, lady)
 
         player.interfaceOption("sandwich_lady_select", "baguette", "Choose refreshment")
         tick(5) // baguette swing, knockout animation, screen fade, then teleport
 
         assertEquals(0, player.inventory.count("baguette"))
-        assertEquals(hpBefore - 3, player.levels.get(Skill.Constitution)) // she smacks you for 3
-        assertEquals(4, player.inventory.count("logs_noted"))
+        assertEquals(4, player.inventory.count("logs")) // knockout doesn't note items
         assertNull(player.get<String>("random_event"))
         assertTrue(player.contains("random_event_cooldown"))
     }
