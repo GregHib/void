@@ -77,13 +77,36 @@ class KissTheFrog : Script {
                 else -> plainFrog(frog)
             }
         }
+
+        // The crown and escape royals have no lifetime timer, so remove them on logout; the
+        // relog resume in startEvent spawns fresh ones.
+        playerDespawn {
+            if (get<String>("random_event") == "kiss_the_frog") {
+                removeRoyals()
+            }
+        }
     }
 
     private fun Player.startEvent() {
-        clear("ktf_fail")
-        clear("ktf_offended")
-        clear("ktf_escape")
-        startInPlaceEvent("frog_herald", nagLines())
+        when {
+            get("ktf_fail", false) -> {
+                // Relogged inside the frog cave: restore the frog form and the escape royal.
+                transform(PLAYER_FROG)
+                tele(FAIL_CAVE)
+                restrictTabs()
+                val escape = NPCs.add(ROYAL, ESCAPE_TILE, ticks = -1, owner = this)
+                set("ktf_escape", escape.index)
+            }
+            tile.region == LAND.region -> {
+                // Relogged in the Land of the Frogs: hide a fresh crowned royal among the frogs.
+                spawnCrown()
+                restrictTabs()
+            }
+            else -> {
+                clear("ktf_offended")
+                startInPlaceEvent("frog_herald", nagLines())
+            }
+        }
     }
 
     /** The royal the player must rescue - a male player helps the Princess, a female player the Prince. */
@@ -234,10 +257,14 @@ class KissTheFrog : Script {
     private fun Player.cleanup() {
         openTabs()
         clearTransform()
-        NPCs.indexed(get("ktf_crown", -1))?.let { if (it.owner == this) NPCs.remove(it) }
-        NPCs.indexed(get("ktf_escape", -1))?.let { if (it.owner == this) NPCs.remove(it) }
+        removeRoyals()
         clear("ktf_fail")
         clear("ktf_offended")
+    }
+
+    private fun Player.removeRoyals() {
+        NPCs.indexed(get("ktf_crown", -1))?.let { if (it.owner == this) NPCs.remove(it) }
+        NPCs.indexed(get("ktf_escape", -1))?.let { if (it.owner == this) NPCs.remove(it) }
         clear("ktf_crown")
         clear("ktf_escape")
     }
