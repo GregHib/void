@@ -39,7 +39,7 @@ class PlayerAccountLoader(
 
     override fun exists(username: String): Boolean = storage.exists(username)
 
-    override fun password(username: String): String? = accountDefinitions.get(username)?.passwordHash
+    override fun password(username: String): String? = accountDefinitions.getByAccount(username)?.passwordHash
 
     /**
      * @return flow of instructions for the player to be controlled with
