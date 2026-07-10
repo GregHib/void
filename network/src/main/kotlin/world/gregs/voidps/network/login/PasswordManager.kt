@@ -13,6 +13,10 @@ class PasswordManager(private val account: AccountLoader) {
             return Response.LOGIN_SERVER_REJECTED_SESSION
         }
         val passwordHash = account.password(username)
+        if (passwordHash == null && account.used(username)) {
+            // Username already in use as a display name
+            return Response.INVALID_CREDENTIALS
+        }
         if (!account.exists(username)) {
             if (passwordHash != null) {
                 // Failed to find account file despite AccountDefinition exists in memory (aka existed on startup)
