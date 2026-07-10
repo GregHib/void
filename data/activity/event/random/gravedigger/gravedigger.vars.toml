@@ -1,0 +1,25 @@
+# What lies in each grave site: 0 = open and empty, 1-5 = that coffin (index + 1).
+# Everything persists so logging out mid-event resumes where the player left off.
+[gravedigger_started]
+format = "boolean"
+persist = true
+
+[gravedigger_site_0]
+format = "int"
+persist = true
+
+[gravedigger_site_1]
+format = "int"
+persist = true
+
+[gravedigger_site_2]
+format = "int"
+persist = true
+
+[gravedigger_site_3]
+format = "int"
+persist = true
+
+[gravedigger_site_4]
+format = "int"
+persist = true

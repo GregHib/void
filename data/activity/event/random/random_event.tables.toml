@@ -66,6 +66,10 @@ weight = 10
 event = "evil_twin"
 weight = 10
 
+[.gravedigger]
+event = "gravedigger"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
