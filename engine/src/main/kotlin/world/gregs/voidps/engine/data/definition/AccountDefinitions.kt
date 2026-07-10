@@ -47,18 +47,18 @@ class AccountDefinitions(
 
     fun clan(displayName: String) = clans[displayName.lowercase()]
 
-    fun getByAccount(account: String): AccountDefinition? {
-        return get(displayNames[account.lowercase()] ?: return null)
+    fun getByAccount(accountName: String): AccountDefinition? {
+        return get(displayNames[accountName.lowercase()] ?: return null)
     }
 
-    fun get(key: String) = definitions[key.lowercase()]
+    fun get(displayName: String) = definitions[displayName.lowercase()]
 
-    fun getValue(key: String) = definitions.getValue(key.lowercase())
+    fun getValue(displayName: String) = definitions.getValue(displayName.lowercase())
 
     fun load(storage: Storage = get()): AccountDefinitions {
         timedLoad("account") {
-            for ((name, definition) in storage.names()) {
-                definitions[name.lowercase()] = definition
+            for ((_, definition) in storage.names()) {
+                definitions[definition.displayName.lowercase()] = definition
             }
             for (def in definitions.values) {
                 displayNames[def.accountName.lowercase()] = def.displayName
@@ -85,16 +85,19 @@ class AccountDefinitions(
         skip: (accountName: String) -> Boolean,
     ): Int {
         var count = 0
-        for ((name, definition) in names) {
+        for ((_, definition) in names) {
             if (skip(definition.accountName)) {
                 continue
             }
-            val existing = definitions[name.lowercase()]
+            val displayName = displayNames[definition.accountName.lowercase()]?.lowercase() ?: definition.displayName.lowercase()
+            val existing = definitions[displayName]
             if (existing == null) {
-                definitions[name.lowercase()] = definition
+                definitions[displayName] = definition
             } else if (existing == definition) {
                 continue
             } else {
+                definitions.remove(displayName)
+                definitions[definition.displayName.lowercase()] = existing
                 existing.displayName = definition.displayName
                 existing.previousName = definition.previousName
                 existing.passwordHash = definition.passwordHash

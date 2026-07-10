@@ -71,14 +71,14 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             override fun load(accountName: String): PlayerSave? = playerSave
         }
         saveQueue = SaveQueue(storage, scope = TestScope())
-        definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
+        definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")), mutableMapOf("accountname" to "name"))
         accounts = mockk(relaxed = true)
         loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())
     }
 
     @Test
     fun `Get password`() {
-        assertEquals("hash", loader.password("name"))
+        assertEquals("hash", loader.password("accountName"))
         assertNull(loader.password("name2"))
     }
 

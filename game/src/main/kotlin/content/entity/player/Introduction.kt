@@ -25,6 +25,7 @@ class Introduction : Script {
             return
         }
         if (Settings["world.start.creation", true] && !player.isBot) {
+            player.sendVariable("movement")
             player["delay"] = -1
             World.queue("welcome_${player.name}", 1) {
                 player.open("character_creation")
