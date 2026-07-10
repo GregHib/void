@@ -36,7 +36,7 @@ class AccountDefinitionsReloaderTest {
 
         assertTrue(started)
         assertEquals(1, completed)
-        assertEquals("hash", definitions.get("account")?.passwordHash)
+        assertEquals("hash", definitions.get("Name")?.passwordHash)
     }
 
     @Test
@@ -46,11 +46,11 @@ class AccountDefinitionsReloaderTest {
 
         assertTrue(reloader.reload())
 
-        assertEquals("old_hash", definitions.get("account")?.passwordHash)
+        assertEquals("old_hash", definitions.get("Name")?.passwordHash)
         every { storage.names() } returns mapOf("account" to AccountDefinition("account", "Name", "", "new_hash"))
         every { storage.clans() } returns emptyMap()
         assertTrue(reloader.reload())
-        assertEquals("new_hash", definitions.get("account")?.passwordHash)
+        assertEquals("new_hash", definitions.get("Name")?.passwordHash)
     }
 
     @Test
@@ -66,7 +66,7 @@ class AccountDefinitionsReloaderTest {
         assertTrue(reloader.reload { count -> completed = count })
 
         assertEquals(0, completed)
-        assertEquals("memory_hash", definitions.get("account")?.passwordHash)
+        assertEquals("memory_hash", definitions.get("Name")?.passwordHash)
     }
 
     @Test
