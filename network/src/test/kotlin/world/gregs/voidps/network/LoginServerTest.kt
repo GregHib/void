@@ -48,6 +48,8 @@ internal class LoginServerTest {
         password = "\$2a\$10${"$"}iIdTrtrJ5ibgFcJToZW7ueGkymDed2Ws2FoE8JnrXPGiY2YNVa9y6"
         instructions = Channel(capacity = 1)
         accounts = object : AccountLoader {
+            override fun used(username: String) = false
+
             override fun exists(username: String) = true
 
             override fun password(username: String) = password
@@ -229,6 +231,8 @@ internal class LoginServerTest {
         val readChannel = ByteChannel(autoFlush = true)
         val writeChannel = ByteChannel(autoFlush = true)
         accounts = object : AccountLoader {
+
+            override fun used(username: String) = false
 
             override fun exists(username: String) = false
 
