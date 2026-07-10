@@ -85,9 +85,12 @@ class PrisonPete : Script {
     }
 
     private suspend fun Player.startEvent() {
-        set("prison_pete_keys", 0)
-        clear("prison_pete_target")
-        clear("prison_pete_wrong")
+        if (!contains("prison_pete_keys")) {
+            // prison_pete_keys is set for the whole event; a relog resumes with progress intact.
+            set("prison_pete_keys", 0)
+            clear("prison_pete_target")
+            clear("prison_pete_pending")
+        }
         catIntro()
         kidnap(PRISON)
         message("Welcome to ScapeRune.")
@@ -138,9 +141,8 @@ class PrisonPete : Script {
         sound("prison_pete_balloon_pop")
         balloon.gfx("prison_pete_balloon_pop")
         if (balloon.id == target) {
-            inc("prison_pete_keys")
-        } else {
-            set("prison_pete_wrong", true)
+            // The key only opens a lock once it's handed to Pete.
+            inc("prison_pete_pending")
         }
         delay(1)
         val spawn = balloon.tile
@@ -188,24 +190,22 @@ class PrisonPete : Script {
         face(pete)
         pete.face(this)
         npc<Neutral>("prison_pete", "Ooh, thanks! I'll see if it's the right one...")
-        when {
-            get("prison_pete_keys", 0) >= REQUIRED -> {
-                npc<Happy>("prison_pete", "You did it, you got all the keys right!")
-                npc<Happy>("prison_pete", "Thank you! You're my friend FOREVER!")
-                player<Neutral>("Let's get out of here before that cat notices.")
-            }
-            get("prison_pete_wrong", false) -> {
-                clear("prison_pete_wrong")
-                jingle("prison_pete_failure")
-                npc<Sad>("prison_pete", "Aww, that was the wrong key! Try the lever again to see which balloon you need.")
-            }
-            else -> {
-                pete.face(Direction.SOUTH_EAST)
-                pete.anim("pick_pocket")
-                delay(2)
-                pete.face(this)
-                npc<Happy>("prison_pete", "Hooray, you got the right one! Now pull the lever again and let's get the next lock unlocked.")
-            }
+        if (get("prison_pete_pending", 0) <= 0) {
+            jingle("prison_pete_failure")
+            npc<Sad>("prison_pete", "Aww, that was the wrong key! Try the lever again to see which balloon you need.")
+            return
+        }
+        dec("prison_pete_pending")
+        pete.face(Direction.SOUTH_EAST)
+        pete.anim("pick_pocket")
+        delay(2)
+        pete.face(this)
+        if (inc("prison_pete_keys") >= REQUIRED) {
+            npc<Happy>("prison_pete", "You did it, you got all the keys right!")
+            npc<Happy>("prison_pete", "Thank you! You're my friend FOREVER!")
+            player<Neutral>("Let's get out of here before that cat notices.")
+        } else {
+            npc<Happy>("prison_pete", "Hooray, you got the right one! Now pull the lever again and let's get the next lock unlocked.")
         }
     }
 
@@ -221,7 +221,7 @@ class PrisonPete : Script {
         }
         clear("prison_pete_keys")
         clear("prison_pete_target")
-        clear("prison_pete_wrong")
+        clear("prison_pete_pending")
         anim("teleport_modern")
         sound("teleport")
         gfx("teleport_modern")

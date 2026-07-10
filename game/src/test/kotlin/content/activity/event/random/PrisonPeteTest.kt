@@ -94,15 +94,15 @@ class PrisonPeteTest : WorldTest() {
     }
 
     @Test
-    fun `Popping the right balloon earns a counted key`() {
+    fun `Popping the right balloon earns a key for Pete`() {
         val player = enter("pp_correct")
         player.pullLever()
 
         player.popBalloon(correct = true)
 
-        assertEquals(1, player.get("prison_pete_keys", 0))
+        assertEquals(0, player.get("prison_pete_keys", 0)) // locks only open once Pete gets the key
+        assertEquals(1, player.get("prison_pete_pending", 0))
         assertTrue(player.inventory.contains("prison_key_prison_pete"))
-        assertFalse(player.get("prison_pete_wrong", false))
         assertNull(player.get<String>("prison_pete_target"))
     }
 
@@ -114,8 +114,8 @@ class PrisonPeteTest : WorldTest() {
         player.popBalloon(correct = false)
 
         assertEquals(0, player.get("prison_pete_keys", 0))
+        assertEquals(0, player.get("prison_pete_pending", 0))
         assertTrue(player.inventory.contains("prison_key_prison_pete"))
-        assertTrue(player.get("prison_pete_wrong", false))
     }
 
     @Test
@@ -127,7 +127,7 @@ class PrisonPeteTest : WorldTest() {
         player.handKeyToPete()
 
         assertFalse(player.inventory.contains("prison_key_prison_pete"))
-        assertFalse(player.get("prison_pete_wrong", false))
+        assertEquals(0, player.get("prison_pete_keys", 0))
         assertEquals("prison_pete", player.get<String>("random_event"))
     }
 

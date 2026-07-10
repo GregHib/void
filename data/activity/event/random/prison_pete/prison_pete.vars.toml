@@ -6,6 +6,6 @@ persist = true
 format = "string"
 persist = true
 
-[prison_pete_wrong]
-format = "boolean"
+[prison_pete_pending]
+format = "int"
 persist = true
