@@ -44,7 +44,10 @@ class Mime : Script {
     }
 
     private suspend fun Player.startEvent() {
-        set("mime_correct", 0)
+        if (!contains("mime_emote")) {
+            // mime_emote is only set mid-performance; keep the score when resuming after a relog.
+            set("mime_correct", 0)
+        }
         mysteriousOldMan()
         kidnap(SPAWN)
         npc<Neutral>("mysterious_old_man", "Here's a little challenge for you:<br>Copy the Mime's performance, then you'll be released.")

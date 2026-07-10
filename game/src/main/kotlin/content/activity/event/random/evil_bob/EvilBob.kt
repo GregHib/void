@@ -118,8 +118,12 @@ class EvilBob : Script {
         val servant = NPCs.add("evil_bob_servant", SERVANT_TILE.add(offset), ticks = -1, owner = this)
         servant.watch(this)
 
-        assignZone()
-        inventory.add("small_fishing_net")
+        if (get("evil_bob_zone", 0) == 0) {
+            assignZone()
+        }
+        if (!inventory.contains("small_fishing_net")) {
+            inventory.add("small_fishing_net")
+        }
         face(bob.tile)
         message("Welcome to ScapeRune.")
         evilBobDialogue()
@@ -310,6 +314,7 @@ class EvilBob : Script {
             }
         }
         inventory.remove("small_fishing_net")
+        clear("evil_bob_npc")
         clear("evil_bob_zone")
         clear("evil_bob_complete")
         clear("evil_bob_attentive")

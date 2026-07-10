@@ -73,7 +73,10 @@ class Pinball : Script {
     }
 
     private suspend fun Player.startEvent() {
-        set("pinball_score", 0)
+        if (!contains("pinball_score")) {
+            // pinball_score is set for the whole event; a relog resumes with the score intact.
+            set("pinball_score", 0)
+        }
         clear("pinball_target")
         mysteriousOldMan()
         val offset = copyArena()

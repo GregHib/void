@@ -77,8 +77,10 @@ class SurpriseExam : Script {
     }
 
     private suspend fun Player.startEvent() {
-        set("surprise_exam_correct", 0)
-        clear("surprise_exam_door")
+        if (!contains("surprise_exam_correct")) {
+            // surprise_exam_correct is set for the whole exam; a relog resumes with progress intact.
+            set("surprise_exam_correct", 0)
+        }
         mysteriousOldMan()
         kidnap(CLASSROOM)
         message("Speak to Mr Mordaut to begin your exam.")

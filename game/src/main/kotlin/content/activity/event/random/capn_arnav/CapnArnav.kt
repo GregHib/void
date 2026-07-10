@@ -81,9 +81,12 @@ class CapnArnav : Script {
     }
 
     private suspend fun Player.startEvent() {
-        set("arnav_tries", 0)
-        clear("arnav_solved")
-        clear("arnav_target")
+        if (!contains("arnav_target")) {
+            // arnav_target is only set once the lock is opened; a relog mid-event resumes
+            // with tries and the solved flag intact so the reward can't be re-earned.
+            set("arnav_tries", 0)
+            clear("arnav_solved")
+        }
         arnavHerald()
         kidnap(ISLAND)
     }

@@ -72,9 +72,14 @@ class DrillDemon : Script {
     }
 
     private suspend fun Player.startEvent() {
-        set("drill_demon_correct", 0)
         clear("drill_demon_ready")
-        assignRound(reveal = false)
+        if (contains("drill_demon_task")) {
+            // Resuming after a relog: keep the ordered task and progress, just restore the signs.
+            shuffleSigns(reveal = false)
+        } else {
+            set("drill_demon_correct", 0)
+            assignRound(reveal = false)
+        }
         mysteriousOldMan()
         kidnap(YARD)
         message("Follow Sergeant Damien's orders!")
@@ -89,8 +94,12 @@ class DrillDemon : Script {
      * tick apart (the signs themselves all change this tick; only the puffs are staggered client-side).
      */
     private fun Player.assignRound(reveal: Boolean = true) {
-        val exercises = EXERCISES.keys.shuffled(random)
         set("drill_demon_task", EXERCISES.keys.random(random))
+        shuffleSigns(reveal)
+    }
+
+    private fun Player.shuffleSigns(reveal: Boolean) {
+        val exercises = EXERCISES.keys.shuffled(random)
         for (sign in 1..exercises.size) {
             set("drill_demon_sign_$sign", exercises[sign - 1])
             if (reveal) {

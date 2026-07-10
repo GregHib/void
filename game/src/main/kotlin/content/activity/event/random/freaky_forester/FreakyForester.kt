@@ -61,7 +61,10 @@ class FreakyForester : Script {
     }
 
     private suspend fun Player.startEvent() {
-        set("freaky_forester_task", random.nextInt(1, TAILS + 1))
+        if (!contains("freaky_forester_task")) {
+            // Keep the assigned pheasant on a relog resume.
+            set("freaky_forester_task", random.nextInt(1, TAILS + 1))
+        }
         kidnap(CLEARING)
         giveTask()
     }
@@ -69,15 +72,17 @@ class FreakyForester : Script {
     private suspend fun Player.foresterDialogue() {
         when {
             inventory.contains("raw_pheasant") -> {
-                inventory.remove("raw_pheasant")
+                // Dialogue first: walking off cancels the handler, so only take the bird
+                // once the suspending lines are done and the reward is guaranteed.
                 npc<Happy>("freaky_forester", "Thanks, $name, you may leave the area now.")
                 reward()
+                inventory.remove("raw_pheasant")
                 clear("freaky_forester_task")
                 RandomEvents.complete(this)
             }
             inventory.contains("raw_pheasant_incorrect") -> {
-                inventory.remove("raw_pheasant_incorrect")
                 npc<Neutral>("freaky_forester", "That's not the right one.")
+                inventory.remove("raw_pheasant_incorrect")
             }
             else -> giveTask()
         }

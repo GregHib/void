@@ -1,4 +1,4 @@
-# Each mat's sign display: 0 jog, 1 sit-ups, 2 push-ups, 3 star jumps.
+# Each mat's sign display: 1 jog, 2 sit-ups, 3 push-ups, 4 star jumps (0 = no sign shown).
 [drill_demon_sign_1]
 id = 1335
 format = "int"

@@ -70,9 +70,15 @@ class SandwichLady : Script {
         anim("human_death")
         open("fade_out")
         delay(3)
+        clearEvent()
         RandomEvents.fail(this)
         clearAnim()
         open("fade_in")
+    }
+
+    private fun Player.clearEvent() {
+        clear("sandwich_lady_food")
+        clear("sandwich_lady_npc")
     }
 
     private fun Player.lady(): NPC? = NPCs.indexed(get("sandwich_lady_npc", -1))?.takeIf { it.id == "sandwich_lady" }
@@ -82,6 +88,7 @@ class SandwichLady : Script {
         addOrDrop(food)
         addOrDrop("random_event_gift")
         npc<Happy>("sandwich_lady", "Hope that fills you up!")
+        clearEvent()
         // Clearing the event state removes the following NPC on its next tick.
         RandomEvents.completeInPlace(this)
     }
