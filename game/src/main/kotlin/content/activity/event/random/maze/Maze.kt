@@ -74,9 +74,13 @@ class Maze : Script {
             openTabs()
             clearMinimap()
             clear("maze_ticks")
+            clear("maze_chests_opened")
         }
 
         objectOperate("Touch", "strange_shrine") { (target) ->
+            if (get<String>("random_event") != "maze") {
+                return@objectOperate
+            }
             softTimers.stop("maze")
             // The player finishes on the shrine's footprint, so the engine's face_entity
             // auto-face resolves to the wrong direction. Clear it and face the centre tile.
