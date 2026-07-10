@@ -33,8 +33,8 @@ import world.gregs.voidps.type.random
  * Beekeeper random event: the Bee keeper drags the player to his field of beehives and asks for help
  * building a new hive. The four hive components (interface 420, driven by varp 805's varbits) start
  * jumbled beside the frame; drag them into the frame in the right order and click Build. Six wrong
- * builds and the bees lose patience, chasing the player off empty-handed; success earns a random
- * event gift before the trip home.
+ * builds and the bees lose patience, chasing the player off to exile empty-handed; success earns a
+ * random event gift before the trip home.
  * https://runescape.wiki/w/Beekeeper
  */
 class Beekeeper : Script {
@@ -67,9 +67,9 @@ class Beekeeper : Script {
     }
 
     private suspend fun Player.startEvent() {
+        // beekeeper_intro persists so a relogged player isn't lectured twice; it's cleared on event end.
         shuffleParts()
         set("beekeeper_tries", TRIES)
-        clear("beekeeper_intro")
         herald()
         val offset = copyField()
         kidnap(FIELD.add(offset))
@@ -174,7 +174,7 @@ class Beekeeper : Script {
         say("Aaaaargh - BEES!")
         delay(2)
         clearState()
-        RandomEvents.complete(this)
+        RandomEvents.fail(this)
     }
 
     private fun Player.clearState() {

@@ -15,6 +15,7 @@ import world.gregs.voidps.network.client.instruction.MoveInventoryItem
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -125,7 +126,7 @@ class BeekeeperTest : WorldTest() {
     }
 
     @Test
-    fun `Six wrong builds send the player home empty-handed`() {
+    fun `Six wrong builds exile the player empty-handed`() {
         val player = enter("bees_fail")
         player.talkThroughIntro()
 
@@ -136,7 +137,7 @@ class BeekeeperTest : WorldTest() {
         tick(4)
 
         assertNull(player.get<String>("random_event"))
-        assertEquals(origin, player.tile)
+        assertNotEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
         assertFalse(player.inventory.contains("random_event_gift"))
     }
