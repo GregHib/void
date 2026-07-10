@@ -53,13 +53,14 @@ class RandomEventsTest : WorldTest() {
         player["random_event"] = "certer"
         player["random_event_origin"] = Tile(3221, 3218).id
         player.inventory.add("logs", 3)
+        player.inventory.add("logs_noted", 5)
 
         val npc = player.startInPlaceEvent("mysterious_old_man", listOf("You there!"), lifetime = 2)
         tick(6)
 
         assertNull(player.get<String>("random_event"))
         assertTrue(player.contains("random_event_cooldown"))
-        assertEquals(3, player.inventory.count("logs_noted"))
+        assertEquals(8, player.inventory.count("logs_noted")) // already-noted items stay noted
         assertNull(NPCs.indexed(npc.index), "Event NPC should be removed after the penalty")
     }
 

@@ -2,6 +2,7 @@ package content.activity.event.random
 
 import content.bot.isBot
 import content.entity.combat.inCombat
+import content.entity.player.bank.isNote
 import content.quest.clearInstance
 import content.quest.instance
 import world.gregs.voidps.engine.Script
@@ -146,7 +147,7 @@ object RandomEvents : AutoCloseable {
         player.inventory.transaction {
             for (index in player.inventory.indices) {
                 val item = player.inventory[index]
-                if (item.isEmpty()) {
+                if (item.isEmpty() || item.isNote) {
                     continue
                 }
                 val noteId = item.def.noteId
