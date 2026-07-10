@@ -78,7 +78,7 @@ class Mime : Script {
             delay(SPOTLIGHT_TICKS) // let the spotlight finish turning on before the player performs
 
             val chosen = awaitEmote()
-            anim("emote_$chosen") // the player performs the emote they picked
+            anim("emote_$chosen")
             if (chosen == expected) {
                 centeredMessage("Correct!")
                 inc("mime_correct")
@@ -140,7 +140,7 @@ class Mime : Script {
         private const val PERFORM_TICKS = 4
         private const val BOW_TICKS = 3
         private const val SPOTLIGHT_TICKS = 3 // duration of the spotlight on/off animation
-        private const val CORRECT_TICKS = 8 // ~8 ticks
+        private const val CORRECT_TICKS = 8
 
         private val SPAWN = Tile(2008, 4764)
         private val WATCH = Tile(2008, 4762)

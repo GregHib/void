@@ -42,7 +42,6 @@ class RandomEventKidnap : Script {
             "dungeoneering",
             "scroll",
             "tablet",
-            "lumbridge_home_teleport",
             "jewellery",
             "fairy",
             "fairy_ring",

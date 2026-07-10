@@ -162,7 +162,7 @@ object RandomEvents : AutoCloseable {
     /**
      * Delay the next event by `random_event_settings` min to max minutes.
      */
-    fun cooldown(player: Player) {
+    private fun cooldown(player: Player) {
         val min = Tables.int("random_event_settings.min_cooldown_minutes.value")
         val max = Tables.int("random_event_settings.max_cooldown_minutes.value")
         val minutes = random.nextInt(min, max + 1)

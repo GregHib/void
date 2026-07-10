@@ -62,14 +62,14 @@ class InPlaceRandomEvent : Script {
 /**
  * Spawn an in-place random event NPC beside the player. It follows the player, nags every
  * [nagInterval] ticks with a random line from [nagLines], and exiles the player via the ignore
- * penalty after [lifetime] ticks. Returns the spawned NPC, or null if no walkable tile was found.
+ * penalty after [lifetime] ticks. Returns the spawned NPC.
  */
 fun Player.startInPlaceEvent(
     id: String,
     nagLines: List<String>,
     lifetime: Int = 300,
     nagInterval: Int = 25,
-): NPC? {
+): NPC {
     val npc = NPCs.addRandom(id, tile.toCuboid(1), owner = this) ?: NPCs.add(id, tile, ticks = -1, owner = this)
     npc["random_event"] = get<String>("random_event") ?: id
     npc["random_event_life"] = lifetime

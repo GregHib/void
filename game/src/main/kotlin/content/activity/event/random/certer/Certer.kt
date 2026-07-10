@@ -52,7 +52,7 @@ class Certer : Script {
     }
 
     private fun Player.startEvent() {
-        val giles = startInPlaceEvent("giles", nagLines()) ?: return
+        val giles = startInPlaceEvent("giles", nagLines())
         giles.anim("emote_bow")
     }
 

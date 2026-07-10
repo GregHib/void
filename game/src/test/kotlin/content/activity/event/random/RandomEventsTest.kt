@@ -42,7 +42,6 @@ class RandomEventsTest : WorldTest() {
         val npc = player.startInPlaceEvent("mysterious_old_man", listOf("You there!"), lifetime = 100)
         tick()
 
-        assertNotNull(npc)
         assertEquals("certer", npc.get<String>("random_event"))
         assertTrue(npc.tile.within(player.tile, 2), "Event NPC should spawn beside the player")
         assertNotNull(NPCs.indexed(npc.index), "Event NPC should still be alive")
@@ -61,7 +60,7 @@ class RandomEventsTest : WorldTest() {
         assertNull(player.get<String>("random_event"))
         assertTrue(player.contains("random_event_cooldown"))
         assertEquals(3, player.inventory.count("logs_noted"))
-        assertNull(NPCs.indexed(npc!!.index), "Event NPC should be removed after the penalty")
+        assertNull(NPCs.indexed(npc.index), "Event NPC should be removed after the penalty")
     }
 
     @Test
@@ -69,7 +68,7 @@ class RandomEventsTest : WorldTest() {
         val player = createPlayer(Tile(3221, 3218), "re_inplace_end")
         player["random_event"] = "certer"
 
-        val npc = player.startInPlaceEvent("mysterious_old_man", listOf("You there!"))!!
+        val npc = player.startInPlaceEvent("mysterious_old_man", listOf("You there!"))
         tick()
         endInPlaceEvent(npc)
         tick()

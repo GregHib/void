@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.replace
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile

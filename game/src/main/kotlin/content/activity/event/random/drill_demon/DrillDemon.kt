@@ -47,7 +47,6 @@ class DrillDemon : Script {
                 return@objectOperate
             }
             if (!get("drill_demon_ready", false)) {
-                // Jumping on a mat before the order is given is a wasted, uncredited attempt.
                 npc<Neutral>("sergeant_damien", "I haven't given you the order yet, worm!", largeHead = true)
                 return@objectOperate
             }

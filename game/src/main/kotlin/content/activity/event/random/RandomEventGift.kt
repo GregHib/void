@@ -188,7 +188,6 @@ class RandomEventGift : Script {
     }
 
     companion object {
-        // The interface's category slots, matching the official layout.
         private const val COINS_SLOT = 0
         private const val RUNE_SLOT = 1
         private const val COAL_SLOT = 2
@@ -209,7 +208,6 @@ class RandomEventGift : Script {
         private const val EMOTE_SLOT = 26
         private const val COSTUME_SLOT = 27
 
-        // The random event emotes handed out by the emote choice.
         private val EMOTES = listOf("idea", "stomp", "flap", "slap_head")
     }
 }

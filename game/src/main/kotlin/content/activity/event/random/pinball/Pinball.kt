@@ -38,7 +38,7 @@ import world.gregs.voidps.type.random
  * Pinball random event: the Mysterious Old Man teleports the player into a private copy of the trolls'
  * pinball arena. One of five posts flashes with rings; tagging it scores a point and lights a new one,
  * while tagging an unlit post resets the score to zero. Score ten points, then leave through the cave
- * exit (the troll guards Flippa and Tilt block the way until then) for a handful of uncut gems.
+ * exit (the troll guards Flippa and Tilt block the way until then) for a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Pinball
  */
 class Pinball : Script {
@@ -220,7 +220,6 @@ class Pinball : Script {
         private val FLIPPA = Tile(1973, 5038)
         private val TILT = Tile(1970, 5038)
         private val GUARDS = listOf("flippa_pinball", "tilt_pinball")
-        private val REWARDS = listOf("uncut_diamond", "uncut_ruby", "uncut_emerald", "uncut_sapphire")
 
         private val POSTS = listOf(
             Post("pinball_post_1", Tile(1967, 5046)),

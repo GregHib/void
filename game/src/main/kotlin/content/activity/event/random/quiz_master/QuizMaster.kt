@@ -46,7 +46,7 @@ class QuizMaster : Script {
         quizHerald()
         kidnap(ROOM)
         face(QUIZ_MASTER)
-        anim("quiz_show_sit") // the contestant takes their seat for the show
+        anim("quiz_show_sit")
         intro()
         runQuiz()
     }

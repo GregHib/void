@@ -59,7 +59,7 @@ class SandwichLady : Script {
     private fun Player.startEvent() {
         val food = FOODS.random(random)
         set("sandwich_lady_food", food)
-        val lady = startInPlaceEvent("sandwich_lady", nagLines(), nagInterval = 30) ?: return
+        val lady = startInPlaceEvent("sandwich_lady", nagLines(), nagInterval = 30)
         set("sandwich_lady_npc", lady.index)
         lady.say("Sandwich delivery for $name!")
     }
