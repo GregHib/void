@@ -1,0 +1,7 @@
+# The rewards on offer inside a player's random event gift; rolled once when first opened and
+# kept until one is claimed.
+[random_event_gift]
+id = 307
+width = 4
+height = 7
+stack = "Always"

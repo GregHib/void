@@ -13,6 +13,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import content.entity.player.inv.item.addOrDrop
 import content.quest.instanceOffset
 import content.quest.setInstanceLogout
 import content.quest.smallInstance
@@ -25,8 +26,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -40,7 +39,7 @@ import world.gregs.voidps.type.random
  * island and demands to be fed. A terrified servant hints which of the four fishing spots holds the
  * fish Bob likes; the player nets it (it comes out already cooked), uncooks it at the cold fire, and
  * serves the raw fish to Bob. The right fish sends him to sleep and opens the exit portal; a wrong
- * one makes him more attentive so an extra correct fish is needed. Reward: 650 Fishing or Magic XP.
+ * one makes him more attentive so an extra correct fish is needed. Reward: a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Evil_Bob
  */
 class EvilBob : Script {
@@ -301,13 +300,7 @@ class EvilBob : Script {
     }
 
     private fun Player.reward() {
-        if (levels.getMax(Skill.Magic) > 50 && random.nextBoolean()) {
-            exp(Skill.Magic, REWARD_XP)
-            message("You feel somehow that you've become better at magic.")
-        } else {
-            exp(Skill.Fishing, REWARD_XP)
-            message("You feel somehow that you've become better at fishing.")
-        }
+        addOrDrop("random_event_gift")
     }
 
     private fun Player.clearState() {
@@ -341,7 +334,6 @@ class EvilBob : Script {
 
     companion object {
         private const val ISLAND_REGION = 13642
-        private const val REWARD_XP = 650.0
         private val ISLAND = Tile(3419, 4776)
         private val BOB_TILE = Tile(3420, 4777)
         private val SERVANT_TILE = Tile(3423, 4777)

@@ -1,0 +1,8 @@
+# The gift reward slot the player has selected (slot + 1; 0 = nothing selected yet).
+[gift_selected]
+format = "int"
+
+# Saved up from gifts; spent at the costume store (not yet implemented).
+[costume_points]
+format = "int"
+persist = true

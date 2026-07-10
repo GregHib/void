@@ -71,7 +71,7 @@ class SurpriseExamTest : WorldTest() {
     }
 
     @Test
-    fun `Passing assigns a door, and the right door frees the player with a book`() {
+    fun `Passing assigns a door, and the right door frees the player with a gift`() {
         val player = enter("se_finish")
         openExam(player)
 
@@ -88,7 +88,7 @@ class SurpriseExamTest : WorldTest() {
         player.objectOption(door, "Open")
         tick(2)
 
-        assertEquals(1, player.inventory.count("book_of_knowledge"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))

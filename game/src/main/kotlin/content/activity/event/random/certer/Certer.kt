@@ -1,11 +1,11 @@
 package content.activity.event.random.certer
 
 import content.activity.event.random.RandomEvents
-import content.activity.event.random.rewardEventLoot
 import content.activity.event.random.startInPlaceEvent
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -17,7 +17,7 @@ import world.gregs.voidps.type.random
 /**
  * Certer random event: one of the certificate brothers appears beside the player and nags until
  * spoken to. He shows an item (interface 184) and three descriptions to choose from; picking the
- * one that matches the item earns a roll of the gem/coin reward table, a wrong pick earns nothing.
+ * one that matches the item earns a random event gift, a wrong pick earns nothing.
  * Ignoring him applies the note-and-teleport penalty.
  *
  * The interface builds itself from varbits: its load script reads the three option descriptions
@@ -43,7 +43,7 @@ class Certer : Script {
             close("certer_identify")
             if (correct) {
                 npc<Happy>("giles", "Thank you, I hope you like your present. I must be leaving now though.")
-                rewardEventLoot("random_event_certer")
+                addOrDrop("random_event_gift")
             } else {
                 npc<Neutral>("giles", "Sorry, I don't think so.")
             }

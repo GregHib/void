@@ -57,7 +57,7 @@ class MimeTest : WorldTest() {
     }
 
     @Test
-    fun `Copying three emotes unlocks the emotes, rewards a costume and returns the player`() {
+    fun `Copying three emotes unlocks the emotes, rewards a gift and returns the player`() {
         val player = enter("mime_finish")
 
         repeat(3) {
@@ -66,7 +66,7 @@ class MimeTest : WorldTest() {
         }
         tickIf { player.tile != origin } // wait out the modern teleport home
 
-        assertEquals(1, player.inventory.count("mime_mask"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
         assertTrue(player["unlocked_emote_glass_wall", false])
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)

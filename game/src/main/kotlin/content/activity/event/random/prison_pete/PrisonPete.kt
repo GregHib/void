@@ -2,7 +2,6 @@ package content.activity.event.random.prison_pete
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.activity.event.random.rewardEventLoot
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -11,6 +10,7 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
@@ -33,7 +33,7 @@ import world.gregs.voidps.type.random
  * Prison Pete random event: Evil Bob's cat throws the player into the ScapeRune prison alongside
  * Pete. Pulling the big lever shows one of the four balloon animal shapes; popping a balloon of that
  * shape yields a key that opens one of the door's locks, while popping the wrong shape yields a key
- * that doesn't fit. Hand Pete three correct keys to unlock the door, escape and receive a reward.
+ * that doesn't fit. Hand Pete three correct keys to unlock the door, escape and receive a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Prison_Pete
  */
 class PrisonPete : Script {
@@ -214,7 +214,7 @@ class PrisonPete : Script {
         walkToDelay(gate.tile.addY(-1), forceWalk = true)
         message("You quickly escape the prison with Pete.")
         npc<Happy>("prison_pete", "Thanks a lot for your help! Here, have a present:")
-        rewardEventLoot("random_event_prison_pete")
+        addOrDrop("random_event_gift")
         player<Happy>("Thanks! See you around!")
         while (inventory.remove("prison_key_prison_pete")) {
             // strip any dud keys so none survive the trip home

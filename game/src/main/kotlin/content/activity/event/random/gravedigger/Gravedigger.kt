@@ -2,13 +2,13 @@ package content.activity.event.random.gravedigger
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.activity.event.random.rewardCostumeOrCoins
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.inv.item.addOrDrop
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.instance
@@ -41,8 +41,8 @@ import world.gregs.voidps.type.random
  * where he's buried five coffins in the wrong graves. Checking a coffin shows the belongings of
  * whoever's inside and each gravestone shows the profession of whoever ought to lie beneath it;
  * the player digs the coffins up and reburies each in its proper grave, banking spare items at
- * the mausoleum. Telling Leo it's done when all five match earns a piece of the zombie outfit
- * (or 500 coins) and the zombie emotes; he'll also take anyone home who'd rather give up.
+ * the mausoleum. Telling Leo it's done when all five match earns a random event gift
+ * and the zombie emotes; he'll also take anyone home who'd rather give up.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Gravedigger
  */
 class Gravedigger : Script {
@@ -240,7 +240,7 @@ class Gravedigger : Script {
     private suspend fun Player.success() {
         npc<Happy>("leo_gravedigger", "Wonderful! That's taken care of all of them.")
         npc<Happy>("leo_gravedigger", "Here, I'll take you back to where I found you, and give you your reward.")
-        rewardCostumeOrCoins("zombie_mask", "zombie_shirt", "zombie_trousers", "zombie_gloves", "zombie_boots", coins = 500)
+        addOrDrop("random_event_gift")
         set("unlocked_emote_zombie_walk", true)
         set("unlocked_emote_zombie_dance", true)
         exitGraveyard()

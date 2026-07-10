@@ -81,16 +81,6 @@ class LostAndFoundTest : WorldTest() {
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
-        assertTrue(player.inventory.isEmpty())
-    }
-
-    @Test
-    fun `Players taken from the essence mine receive essence`() {
-        val player = enter("laf_essence", tile = Tile(2911, 4832))
-
-        player.operate(player.oddTile())
-
-        assertEquals(Tile(2911, 4832), player.tile)
-        assertTrue(player.inventory.count("rune_essence") >= 8)
+        assertEquals(1, player.inventory.count("random_event_gift"))
     }
 }

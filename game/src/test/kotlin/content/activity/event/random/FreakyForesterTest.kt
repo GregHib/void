@@ -67,7 +67,7 @@ class FreakyForesterTest : WorldTest() {
     }
 
     @Test
-    fun `Handing in the correct pheasant rewards a costume piece and returns the player`() {
+    fun `Handing in the correct pheasant rewards a gift and returns the player`() {
         val origin = Tile(3221, 3218)
         val player = startInClearing("ff_handin", task = 3, origin = origin)
         player.inventory.add("raw_pheasant")
@@ -78,7 +78,7 @@ class FreakyForesterTest : WorldTest() {
         player.skipDialogues()
         tick(2)
 
-        assertEquals(1, player.inventory.count("lederhosen_hat"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
         assertFalse(player.inventory.contains("raw_pheasant"))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
@@ -97,23 +97,6 @@ class FreakyForesterTest : WorldTest() {
         assertFalse(player.inventory.contains("raw_pheasant_incorrect"))
         assertEquals("freaky_forester", player.get<String>("random_event"))
         assertEquals(clearing, player.tile)
-    }
-
-    @Test
-    fun `Owning the full lederhosen set rewards coins instead`() {
-        val player = startInClearing("ff_coins", task = 1)
-        player.inventory.add("lederhosen_hat")
-        player.inventory.add("lederhosen_top")
-        player.inventory.add("lederhosen_shorts")
-        player.inventory.add("raw_pheasant")
-        val forester = createNPC("freaky_forester", Tile(2601, 4776))
-
-        player.npcOption(forester, "Talk-to")
-        tick()
-        player.skipDialogues()
-        tick(2)
-
-        assertEquals(500, player.inventory.count("coins"))
     }
 
     @Test

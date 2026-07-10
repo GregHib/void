@@ -2,7 +2,6 @@ package content.activity.event.random.evil_twin
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.activity.event.random.rewardEventLoot
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
@@ -13,6 +12,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import content.entity.player.inv.item.addOrDrop
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.closeTabs
@@ -52,8 +52,8 @@ import world.gregs.voidps.type.random
  * Evil Twin random event: Molly appears beside the player, pleads for help and whisks them away to
  * her house, where her evil twin sister hides in a pen of lookalike civilians next door. The
  * player drives a giant mechanical claw from the control panel (interface 240) and has two tries
- * to grab the sister - she's the one dressed exactly like Molly. Success earns a roll of the uncut
- * gem table; running out of tries gets the player thrown out with nothing.
+ * to grab the sister - she's the one dressed exactly like Molly. Success earns a random event
+ * gift; running out of tries gets the player thrown out with nothing.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Evil_Twin
  */
 class EvilTwin : Script {
@@ -323,7 +323,7 @@ class EvilTwin : Script {
         player<Happy>("Well, I've managed to get her into the cage.")
         npc<Happy>(mollyId(), "Fantastic! For so many years I've had to put up with her and now she's locked up for good.")
         npc<Happy>(mollyId(), "Thank you for all your help. Take this as a reward.")
-        rewardEventLoot("random_event_evil_twin")
+        addOrDrop("random_event_gift")
         clearState()
         openTabs()
         clearMinimap()

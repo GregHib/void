@@ -3,11 +3,11 @@ package content.activity.event.random.drill_demon
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
-import content.activity.event.random.rewardCostumeOrCoins
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,7 +20,7 @@ import world.gregs.voidps.type.random
 /**
  * Drill Demon random event: Sergeant Damien whisks the player to his exercise yard and barks out an
  * exercise. Each of the four mats shows one exercise on its sign (a varbit); the player must use the
- * mat matching the order. Four correct exercises earns a piece of the camouflage outfit (or coins).
+ * mat matching the order. Four correct exercises earns a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Drill_Demon
  */
 class DrillDemon : Script {
@@ -108,7 +108,7 @@ class DrillDemon : Script {
 
     private suspend fun Player.finish() {
         npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
-        rewardCostumeOrCoins("camo_helmet", "camo_top", "camo_bottoms", coins = 500)
+        addOrDrop("random_event_gift")
         clear("drill_demon_ready")
         clear("drill_demon_task")
         clear("drill_demon_correct")

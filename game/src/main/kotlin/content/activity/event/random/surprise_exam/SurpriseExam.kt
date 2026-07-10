@@ -25,7 +25,7 @@ import world.gregs.voidps.type.random
  * Surprise Exam random event: the Mysterious Old Man teleports the player into Mr Mordaut's classroom.
  * Talking to Mordaut opens a "what comes next?" pattern quiz (interface 103) - pick the item that
  * belongs with the three shown. Three correct answers pass the exam; Mordaut then names one of four
- * coloured doors, and leaving through it returns the player with a Book of Knowledge (an XP lamp).
+ * coloured doors, and leaving through it returns the player with a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Surprise_Exam
  */
 class SurpriseExam : Script {
@@ -125,7 +125,7 @@ class SurpriseExam : Script {
 
     private fun Player.finish() {
         message("You've passed the exam!")
-        addOrDrop("book_of_knowledge")
+        addOrDrop("random_event_gift")
         clear("surprise_exam_answer")
         clear("surprise_exam_correct")
         clear("surprise_exam_door")

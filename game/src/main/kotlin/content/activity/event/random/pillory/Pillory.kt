@@ -2,7 +2,7 @@ package content.activity.event.random.pillory
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.activity.event.random.rewardEventLoot
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -18,7 +18,7 @@ import kotlin.math.min
  * Pillory random event: a guard arrests the player and locks them in a pillory. To escape they
  * unlock it (interface 189) by picking the swinging key whose shape matches the spinning lock, a set
  * number of times in a row. A wrong pick resets the streak and raises the target (up to six). Escaping
- * rewards a single roll of the shared gem/coin table.
+ * rewards a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Pillory
  */
 class Pillory : Script {
@@ -98,7 +98,7 @@ class Pillory : Script {
     private fun Player.escape() {
         close("pillory_lock")
         message("You've escaped!")
-        rewardEventLoot("random_event_certer")
+        addOrDrop("random_event_gift")
         clear("pillory_target")
         clear("pillory_correct")
         clear("pillory_answer")

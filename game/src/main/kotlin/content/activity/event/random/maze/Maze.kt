@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.timer.Timer
@@ -32,8 +31,7 @@ import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
 /**
- * Maze random event; reach the shrine at the centre before the time runs out.
- * The reward scales with the player's total level and the time remaining.
+ * Maze random event; reach the shrine at the centre before the time runs out for a random event gift.
  * https://runescape.wiki/w/Maze
  */
 class Maze : Script {
@@ -80,7 +78,6 @@ class Maze : Script {
         }
 
         objectOperate("Touch", "strange_shrine") { (target) ->
-            val ticks = get("maze_ticks", 0)
             softTimers.stop("maze")
             // The player finishes on the shrine's footprint, so the engine's face_entity
             // auto-face resolves to the wrong direction. Clear it and face the centre tile.
@@ -89,7 +86,7 @@ class Maze : Script {
             delay(2)
             anim("emote_cheer")
             delay(2)
-            reward(this, ticks)
+            addOrDrop("random_event_gift")
             RandomEvents.complete(this)
             jingle("maze_complete")
         }
@@ -142,17 +139,6 @@ class Maze : Script {
         open("maze_timer")
         softTimers.start("maze")
         message("You need to reach the maze centre, then you'll be returned to where you were.")
-    }
-
-    private fun reward(player: Player, ticks: Int) {
-        val row = Tables.get("maze_rewards").rows().random(random)
-        val totalLevel = Skill.all.sumOf { if (it == Skill.Constitution) player.levels.getMax(it) / 10 else player.levels.getMax(it) }
-        val amount = (totalLevel * (ticks / duration.toDouble()) * 3.33 / row.int("divisor")).toInt()
-        if (amount <= 0) {
-            return
-        }
-        val item = row.item("item")
-        player.addOrDrop(item, amount)
     }
 
     companion object {

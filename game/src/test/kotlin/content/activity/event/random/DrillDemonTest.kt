@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
@@ -104,24 +103,8 @@ class DrillDemonTest : WorldTest() {
         while (player.dialogue != null) player.skipDialogues() // Damien's closing line, then reward
         tick(2)
 
-        assertEquals(1, player.inventory.count("camo_helmet"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
-    }
-
-    @Test
-    fun `Owning the full camo set rewards coins`() {
-        val player = enter("dd_coins")
-        player.inventory.add("camo_helmet")
-        player.inventory.add("camo_top")
-        player.inventory.add("camo_bottoms")
-        player.layout(task = 1)
-        val mats = mats()
-
-        repeat(4) { useCorrectMat(player, mats) }
-        while (player.dialogue != null) player.skipDialogues()
-        tick(2)
-
-        assertEquals(500, player.inventory.count("coins"))
     }
 }

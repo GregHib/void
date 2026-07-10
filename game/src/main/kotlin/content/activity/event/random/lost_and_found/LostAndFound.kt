@@ -22,8 +22,7 @@ import world.gregs.voidps.type.random
  * Lost and Found random event: a magic spellbook teleport can fault, dropping the player onto the
  * Abyssal plane where four strange appendages surround them. Three appendages share the same shape;
  * operating the odd one out forwards the player back to where they came from, while a wrong pick
- * reshuffles the shapes and drains some Magic. Players snatched from the rune essence mine receive
- * a handful of essence as recompense.
+ * reshuffles the shapes and drains some Magic. Escaping earns a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Lost_and_Found
  */
 class LostAndFound : Script {
@@ -93,18 +92,11 @@ class LostAndFound : Script {
         statement("The Abyssal Services Department apologises for the inconvenience.", clickToContinue = false)
     }
 
-    /** Players taken from the rune essence mine are compensated with a handful of essence. */
     private fun Player.reward() {
-        val origin = Tile(this["random_event_origin", tile.id])
-        if (origin.region.id != ESSENCE_MINE_REGION) {
-            return
-        }
-        val essence = if (levels.getMax(Skill.Mining) > 30) "pure_essence" else "rune_essence"
-        addOrDrop(essence, random.nextInt(8, 37))
+        addOrDrop("random_event_gift")
     }
 
     companion object {
-        private const val ESSENCE_MINE_REGION = 11595
         private val PLANE = Tile(2332, 4770)
 
         // The four appendage tiles, in the same order as the lost_and_found_appendage_1-4 varbits.

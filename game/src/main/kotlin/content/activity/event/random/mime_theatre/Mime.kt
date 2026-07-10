@@ -3,10 +3,10 @@ package content.activity.event.random.mime_theatre
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
-import content.activity.event.random.rewardCostumeOrCoins
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
+import content.entity.player.inv.item.addOrDrop
 import content.skill.magic.jewellery.teleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
@@ -24,7 +24,7 @@ import world.gregs.voidps.type.random
  * Mime random event: the Mysterious Old Man drops the player into the theatre where the Mime performs
  * emotes under a spotlight. After each performance the Mime bows to the player, who copies it by
  * picking the matching emote on the mime interface (188). Three correct copies unlock the mime emotes
- * and award a piece of the mime costume, then the player is teleported home.
+ * and award a random event gift, then the player is teleported home.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Mime
  */
 class Mime : Script {
@@ -122,7 +122,7 @@ class Mime : Script {
         for (unlock in MIME_EMOTES) {
             set("unlocked_emote_$unlock", true)
         }
-        rewardCostumeOrCoins("mime_mask", "mime_top", "mime_legs", "mime_gloves", "mime_boots", coins = 500)
+        addOrDrop("random_event_gift")
         clear("mime_emote")
         clear("mime_correct")
 

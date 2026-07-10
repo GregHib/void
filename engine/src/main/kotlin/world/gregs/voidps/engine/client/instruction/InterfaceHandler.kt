@@ -74,6 +74,7 @@ class InterfaceHandler(
             itemSlot == -1 && inventoryId == "returned_lent_items" -> 0
             id == "price_checker" -> itemSlot / 2
             id == "shop" -> itemSlot / 6
+            id == "random_event_gift_select" -> itemSlot / 7
             id == "grand_exchange" -> componentDefinition.stringId.removePrefix("collect_slot_").toInt()
             else -> itemSlot
         }

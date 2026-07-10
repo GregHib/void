@@ -2,12 +2,11 @@ package content.activity.event.random.freaky_forester
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.activity.event.random.rewardCostumeOrCoins
 import content.entity.combat.killer
-import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,7 +20,7 @@ import world.gregs.voidps.type.random
 /**
  * Freaky Forester random event: the player is whisked to the forester's clearing and told to kill
  * a pheasant with a specific number of tails. Only the assigned pheasant yields the correct raw
- * pheasant; handing it back rewards a lederhosen costume piece (or coins if the set is complete).
+ * pheasant; handing it back rewards a random event gift.
  * https://runescape.wiki/w/Random_events?oldid=3667851#Freaky_Forester
  */
 class FreakyForester : Script {
@@ -93,13 +92,8 @@ class FreakyForester : Script {
     }
 
     private suspend fun Player.reward() {
-        val pieces = arrayOf("lederhosen_hat", "lederhosen_top", "lederhosen_shorts")
-        if (pieces.all { ownsItem(it) }) {
-            npc<Happy>("freaky_forester", "You get some money for your help, many thanks!")
-        } else {
-            npc<Happy>("freaky_forester", "You get a lederhosen item as a reward for your help, many thanks!")
-        }
-        rewardCostumeOrCoins(*pieces, coins = 500)
+        npc<Happy>("freaky_forester", "Please take this gift as a reward for your help, many thanks!")
+        addOrDrop("random_event_gift")
     }
 
     private fun Player.carriesRawPheasant() = inventory.contains("raw_pheasant") || inventory.contains("raw_pheasant_incorrect")

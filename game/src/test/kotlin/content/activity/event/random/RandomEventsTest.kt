@@ -65,25 +65,6 @@ class RandomEventsTest : WorldTest() {
     }
 
     @Test
-    fun `Costume reward gives the first missing piece then falls back to coins`() {
-        val player = createPlayer(Tile(3221, 3218), "re_costume")
-        val set = arrayOf("lederhosen_hat", "lederhosen_top", "lederhosen_shorts")
-
-        player.rewardCostumeOrCoins(*set, coins = 500)
-        assertEquals(1, player.inventory.count("lederhosen_hat"))
-
-        player.rewardCostumeOrCoins(*set, coins = 500)
-        assertEquals(1, player.inventory.count("lederhosen_top"))
-
-        player.rewardCostumeOrCoins(*set, coins = 500)
-        assertEquals(1, player.inventory.count("lederhosen_shorts"))
-
-        // Owns the full set now -> coins
-        player.rewardCostumeOrCoins(*set, coins = 500)
-        assertEquals(500, player.inventory.count("coins"))
-    }
-
-    @Test
     fun `endInPlaceEvent removes the event NPC`() {
         val player = createPlayer(Tile(3221, 3218), "re_inplace_end")
         player["random_event"] = "certer"

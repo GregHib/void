@@ -178,8 +178,7 @@ class Pinball : Script {
     }
 
     private fun Player.reward() {
-        val gem = REWARDS.random(random)
-        addOrDrop(gem, if (gem == "uncut_diamond") 2 else (3..5).random(random))
+        addOrDrop("random_event_gift")
     }
 
     /** Reset the previous flashing post and start a new random one flashing; the target is 1-based. */

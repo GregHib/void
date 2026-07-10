@@ -37,7 +37,7 @@ class MazeTest : WorldTest() {
         assertEquals(Tile(3221, 3218), player.tile)
         assertNull(player.get<String>("random_event"))
         assertTrue(player.contains("random_event_cooldown"))
-        assertTrue(player.inventory.count("coins") > 0)
+        assertEquals(1, player.inventory.count("random_event_gift"))
     }
 
     @Test

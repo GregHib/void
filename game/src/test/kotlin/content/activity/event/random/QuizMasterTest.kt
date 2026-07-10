@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -59,36 +58,19 @@ class QuizMasterTest : WorldTest() {
     }
 
     @Test
-    fun `Four correct answers let the player choose 1000 coins`() {
+    fun `Four correct answers win a random event gift`() {
         val player = enter("quiz_coins")
 
         repeat(4) {
             player.pickAnswer()
-            player.skipDialogues() // "RIGHT!" (or the winner line on the 4th) -> reopens quiz / opens the prize choice
+            player.skipDialogues() // "RIGHT!" (or the winner line on the 4th) -> the prize
             tick()
         }
-        player.dialogueOption(1) // 1000 Coins
         tick()
 
-        assertEquals(1000, player.inventory.count("coins"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
-    }
-
-    @Test
-    fun `The random item prize awards an item`() {
-        val player = enter("quiz_item")
-
-        repeat(4) {
-            player.pickAnswer()
-            player.skipDialogues()
-            tick()
-        }
-        player.dialogueOption(2) // Random Item
-        tick()
-
-        assertFalse(player.inventory.isEmpty())
-        assertNull(player.get<String>("random_event"))
     }
 }

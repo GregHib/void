@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -112,7 +111,7 @@ class EvilBobTest : WorldTest() {
     }
 
     @Test
-    fun `Serving the correct raw fish then leaving rewards 650 Fishing XP and returns the player`() {
+    fun `Serving the correct raw fish then leaving rewards a gift and returns the player`() {
         val player = enter("eb_finish")
         player.inventory.add("raw_fish_like_thing")
         player.serve()
@@ -127,7 +126,7 @@ class EvilBobTest : WorldTest() {
         while (player.dialogue != null) player.skipDialogues()
         tick(2)
 
-        assertEquals(650.0, player.experience.get(Skill.Fishing))
+        assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))

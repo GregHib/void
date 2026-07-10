@@ -82,6 +82,7 @@ class SandwichLady : Script {
     private suspend fun Player.serve(food: String) {
         message("The sandwich lady gives you a ${description(food)}!")
         addOrDrop(food)
+        addOrDrop("random_event_gift")
         npc<Happy>("sandwich_lady", "Hope that fills you up!")
         // Clearing the event state removes the following NPC on its next tick.
         RandomEvents.completeInPlace(this)
