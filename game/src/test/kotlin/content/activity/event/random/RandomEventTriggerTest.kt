@@ -5,6 +5,7 @@ import content.bot.Bot
 import content.quest.instance
 import io.mockk.mockk
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.type.Tile
@@ -61,6 +62,32 @@ class RandomEventTriggerTest : WorldTest() {
         tick()
 
         assertFalse(player.queue.contains("random_event_start"))
+    }
+
+    @Test
+    fun `Players who opt out don't receive random events`() {
+        Settings.load(mapOf("events.randomEvents.optOut" to "true"))
+        val player = createPlayer(Tile(3221, 3218), "re_opt_out")
+        player["random_event_cooldown"] = 1
+        player["random_events_disabled"] = true
+
+        player.exp(Skill.Woodcutting, 100.0)
+        tick(10)
+
+        assertNull(player.get<String>("random_event"))
+    }
+
+    @Test
+    fun `Opting out is ignored on worlds without the opt out setting`() {
+        Settings.load(mapOf("events.randomEvents.optOut" to "false"))
+        val player = createPlayer(Tile(3221, 3218), "re_opt_out_off")
+        player["random_event_cooldown"] = 1
+        player["random_events_disabled"] = true
+
+        player.exp(Skill.Woodcutting, 100.0)
+        tick(10)
+
+        assertEquals("maze", player.get<String>("random_event"))
     }
 
     @Test

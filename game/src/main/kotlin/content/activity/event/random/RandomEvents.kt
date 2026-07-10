@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
@@ -83,6 +84,7 @@ object RandomEvents : AutoCloseable {
     }
 
     private fun eligible(player: Player): Boolean = !player.isBot &&
+        !optedOut(player) &&
         !player.contains("random_event") &&
         player.instance() == null &&
         !player.inCombat &&
@@ -92,6 +94,12 @@ object RandomEvents : AutoCloseable {
         !player.contains("delay") &&
         !player.hasClock("random_event_cooldown", epochSeconds()) &&
         Areas.get(player.tile.zone).none { it.tags.contains("no_random_events") }
+
+    /**
+     * Whether the player has turned events off with `::randomevents`; only honoured on worlds
+     * with the `events.randomEvents.optOut` setting enabled.
+     */
+    fun optedOut(player: Player): Boolean = Settings["events.randomEvents.optOut", false] && player["random_events_disabled", false]
 
     fun start(player: Player, id: String? = pick()): Boolean {
         val launcher = events[id ?: return false] ?: return false

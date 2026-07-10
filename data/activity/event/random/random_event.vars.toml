@@ -9,3 +9,7 @@ persist = true
 [random_event_cooldown]
 format = "int"
 persist = true
+
+[random_events_disabled]
+format = "boolean"
+persist = true

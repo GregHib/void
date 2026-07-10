@@ -2,8 +2,10 @@ package content.activity.event.random
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 
 /**
  * Rolls for a random event on each experience drop, so only active players are targeted.
@@ -15,6 +17,18 @@ class RandomEventTrigger : Script {
     init {
         experience { _, _, _ ->
             RandomEvents.roll(this)
+        }
+
+        playerCommand("randomevents", desc = "Toggle random events on or off") {
+            if (!Settings["events.randomEvents.optOut", false]) {
+                message("Random events can't be turned off on this world.")
+                return@playerCommand
+            }
+            if (toggle("random_events_disabled")) {
+                message("Random events are now off.")
+            } else {
+                message("Random events are now on.")
+            }
         }
 
         adminCommand("randomevent", stringArg("event", optional = true), desc = "Start a random event") { args ->
