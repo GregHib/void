@@ -1,0 +1,33 @@
+[beehive_build]
+id = 420
+type = "main_screen"
+
+[.part_1]
+id = 12
+
+[.part_2]
+id = 13
+
+[.part_3]
+id = 14
+
+[.part_4]
+id = 15
+
+[.slot_1]
+id = 16
+
+[.slot_2]
+id = 17
+
+[.slot_3]
+id = 18
+
+[.slot_4]
+id = 19
+
+[.close]
+id = 38
+
+[.build]
+id = 39

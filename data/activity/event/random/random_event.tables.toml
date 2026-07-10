@@ -58,6 +58,10 @@ weight = 10
 event = "capn_arnav"
 weight = 10
 
+[.beekeeper]
+event = "beekeeper"
+weight = 10
+
 [random_event_settings]
 value = "int"
 
