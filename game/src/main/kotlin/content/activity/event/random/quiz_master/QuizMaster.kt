@@ -39,10 +39,22 @@ class QuizMaster : Script {
             val slot = it.substringAfter(":button_").toIntOrNull() ?: return@continueDialogue
             (suspension as? Suspension.IntEntry)?.resume(slot)
         }
+
+        // Any other interaction cancels the suspended question; talking to the Quiz Master
+        // resumes the show from the current score.
+        npcOperate("Talk-to", "quiz_master") {
+            if (get<String>("random_event") != "quiz_master") {
+                return@npcOperate
+            }
+            runQuiz()
+        }
     }
 
     private suspend fun Player.startEvent() {
-        set("quiz_correct", 0)
+        if (!contains("quiz_answer")) {
+            // quiz_answer is only set mid-show; keep the score when resuming after a relog.
+            set("quiz_correct", 0)
+        }
         quizHerald()
         kidnap(ROOM)
         face(QUIZ_MASTER)
@@ -113,7 +125,7 @@ class QuizMaster : Script {
         // 28 battleaxe, 29 salmon, 30 trout, 31 necklace, 32 shield, 33 helm, 34 ring,
         // 35 secateurs, 36 sword, 37 trowel.
         private val SETS = listOf(
-            intArrayOf(8828, 8829, 8829), // weapon vs two fish
+            intArrayOf(8828, 8829, 8830), // weapon vs two fish
             intArrayOf(8831, 8837, 8835), // jewellery vs two gardening tools
             intArrayOf(8830, 8832, 8833), // fish vs two pieces of armour
             intArrayOf(8835, 8834, 8831), // gardening tool vs two pieces of jewellery
