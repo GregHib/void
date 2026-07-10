@@ -83,6 +83,7 @@ class KissTheFrogTest : WorldTest() {
         player.driveUntilDone()
 
         assertEquals(1, player.inventory.count("random_event_gift"))
+        assertEquals(1, player.get("frog_costume_points", 0))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
     }

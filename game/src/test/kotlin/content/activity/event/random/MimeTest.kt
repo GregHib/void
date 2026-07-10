@@ -67,6 +67,7 @@ class MimeTest : WorldTest() {
         tickIf { player.tile != origin } // wait out the modern teleport home
 
         assertEquals(1, player.inventory.count("random_event_gift"))
+        assertEquals(1, player.get("mime_costume_points", 0))
         assertTrue(player["unlocked_emote_glass_wall", false])
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)

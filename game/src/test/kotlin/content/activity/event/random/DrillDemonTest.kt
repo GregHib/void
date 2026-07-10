@@ -104,6 +104,7 @@ class DrillDemonTest : WorldTest() {
         tick(2)
 
         assertEquals(1, player.inventory.count("random_event_gift"))
+        assertEquals(1, player.get("camo_costume_points", 0))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
     }

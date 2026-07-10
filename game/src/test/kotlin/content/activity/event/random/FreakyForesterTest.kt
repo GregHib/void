@@ -79,6 +79,7 @@ class FreakyForesterTest : WorldTest() {
         tick(2)
 
         assertEquals(1, player.inventory.count("random_event_gift"))
+        assertEquals(1, player.get("lederhosen_costume_points", 0))
         assertFalse(player.inventory.contains("raw_pheasant"))
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)

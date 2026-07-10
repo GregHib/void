@@ -3,6 +3,7 @@ package content.activity.event.random.mime_theatre
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.rewardCostumePoint
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
@@ -123,6 +124,7 @@ class Mime : Script {
             set("unlocked_emote_$unlock", true)
         }
         addOrDrop("random_event_gift")
+        rewardCostumePoint("mime")
         clear("mime_emote")
         clear("mime_correct")
 

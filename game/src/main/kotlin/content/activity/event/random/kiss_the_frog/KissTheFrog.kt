@@ -3,6 +3,7 @@ package content.activity.event.random.kiss_the_frog
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.endInPlaceEvent
 import content.activity.event.random.kidnap
+import content.activity.event.random.rewardCostumePoint
 import content.activity.event.random.startInPlaceEvent
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
@@ -158,6 +159,7 @@ class KissTheFrog : Script {
         open("fade_out")
         delay(2)
         addOrDrop("random_event_gift")
+        rewardCostumePoint("frog")
         message("You've been given a gift!")
         finishEvent()
         open("fade_in")

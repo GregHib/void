@@ -2,7 +2,28 @@
 [gift_selected]
 format = "int"
 
-# Saved up from gifts; spent at the costume store (not yet implemented).
+# Saved up from gifts; spent on any outfit at Iffie's costume store.
 [costume_points]
+format = "int"
+persist = true
+
+# Earned from each outfit's own random event; only spendable on that outfit.
+[mime_costume_points]
+format = "int"
+persist = true
+
+[frog_costume_points]
+format = "int"
+persist = true
+
+[zombie_costume_points]
+format = "int"
+persist = true
+
+[camo_costume_points]
+format = "int"
+persist = true
+
+[lederhosen_costume_points]
 format = "int"
 persist = true

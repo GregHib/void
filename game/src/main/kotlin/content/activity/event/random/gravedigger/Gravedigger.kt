@@ -2,6 +2,7 @@ package content.activity.event.random.gravedigger
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.rewardCostumePoint
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Sad
@@ -241,6 +242,7 @@ class Gravedigger : Script {
         npc<Happy>("leo_gravedigger", "Wonderful! That's taken care of all of them.")
         npc<Happy>("leo_gravedigger", "Here, I'll take you back to where I found you, and give you your reward.")
         addOrDrop("random_event_gift")
+        rewardCostumePoint("zombie")
         set("unlocked_emote_zombie_walk", true)
         set("unlocked_emote_zombie_dance", true)
         exitGraveyard()

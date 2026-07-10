@@ -3,6 +3,7 @@ package content.activity.event.random.drill_demon
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.rewardCostumePoint
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
@@ -109,6 +110,7 @@ class DrillDemon : Script {
     private suspend fun Player.finish() {
         npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
         addOrDrop("random_event_gift")
+        rewardCostumePoint("camo")
         clear("drill_demon_ready")
         clear("drill_demon_task")
         clear("drill_demon_correct")

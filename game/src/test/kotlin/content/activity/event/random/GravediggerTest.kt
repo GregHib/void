@@ -122,6 +122,7 @@ class GravediggerTest : WorldTest() {
         player.claimFinished()
 
         assertTrue(player.inventory.contains("random_event_gift"), "Expected a random event gift")
+        assertEquals(1, player.get("zombie_costume_points", 0))
         assertTrue(sites.indices.none { player.inventory.contains(coffinName(it)) }, "Expected Leo to keep his coffins")
         assertTrue(player.get("unlocked_emote_zombie_walk", false))
         assertTrue(player.get("unlocked_emote_zombie_dance", false))

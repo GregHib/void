@@ -2,6 +2,7 @@ package content.activity.event.random.freaky_forester
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.rewardCostumePoint
 import content.entity.combat.killer
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -94,6 +95,7 @@ class FreakyForester : Script {
     private suspend fun Player.reward() {
         npc<Happy>("freaky_forester", "Please take this gift as a reward for your help, many thanks!")
         addOrDrop("random_event_gift")
+        rewardCostumePoint("lederhosen")
     }
 
     private fun Player.carriesRawPheasant() = inventory.contains("raw_pheasant") || inventory.contains("raw_pheasant_incorrect")
