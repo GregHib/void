@@ -2,6 +2,7 @@ package content.activity.event.random
 
 import content.bot.isBot
 import content.entity.combat.inCombat
+import content.entity.effect.transform
 import content.entity.player.bank.isNote
 import content.quest.clearInstance
 import content.quest.instance
@@ -95,6 +96,7 @@ object RandomEvents : AutoCloseable {
         player.menu == null &&
         player.dialogue == null &&
         player.mode == EmptyMode &&
+        player.transform.isEmpty() &&
         !player.contains("delay") &&
         !player.hasClock("random_event_cooldown", epochSeconds()) &&
         Areas.get(player.tile.zone).none { it.tags.contains("no_random_events") }
