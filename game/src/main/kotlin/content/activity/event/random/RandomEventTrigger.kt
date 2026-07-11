@@ -6,6 +6,9 @@ import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.toTicks
+import java.util.concurrent.TimeUnit
 
 /**
  * Rolls for a random event on each experience drop, so only active players are targeted.
@@ -15,8 +18,15 @@ import world.gregs.voidps.engine.data.Settings
 class RandomEventTrigger : Script {
 
     init {
-        experience { _, _, _ ->
+        playerSpawn {
+            timers.startIfAbsent("random_event")
+        }
+
+        timerStart("random_event") { TimeUnit.MINUTES.toTicks(5) }
+
+        timerTick("random_event") {
             RandomEvents.roll(this)
+            Timer.CONTINUE
         }
 
         playerCommand("randomevents", desc = "Toggle random events on or off") {

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -32,7 +33,13 @@ class LostAndFound : Script {
 
         // Only a magic spellbook teleport can slip through; the destination becomes the return point.
         teleportLand("modern") {
-            RandomEvents.roll(this, "lost_and_found")
+            if (!Settings["events.randomEvents.active", true]) {
+                return@teleportLand
+            }
+            val chance = Settings["events.randomEvents.teleportChance", 300]
+            if (chance >= 0 && random.nextInt(chance) == 0) {
+                RandomEvents.roll(this, "lost_and_found")
+            }
         }
 
         objectOperate("Operate", "abyss_appendage_*") { (appendage) ->
