@@ -9,9 +9,12 @@ import objectOption
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.entity.Despawn
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -46,6 +49,19 @@ class EvilBobTest : WorldTest() {
 
     private fun Player.spot(tile: Tile): GameObject = GameObjects.find(tile.add(instanceOffset())) { it.id == "evil_bob_fishing_spot" }
     private fun Player.bob() = NPCs.indexed(get("evil_bob_npc", -1))!!
+    private fun Player.servant() = NPCs.firstOrNull(Tile(3423, 4777).add(instanceOffset())) { it.id == "evil_bob_servant" }!!
+
+    private fun Player.talkToServant() {
+        tele(servant().tile.addX(-1))
+        tick()
+        npcOption(servant(), "Talk-to")
+        tickIf { dialogue == null }
+        while (dialogue != null) {
+            skipDialogues()
+            tick()
+        }
+        tick(6) // wait out the camera pan
+    }
 
     private fun Player.serve() {
         tele(bob().tile.addX(1)) // stand beside Evil Bob so the talk lands immediately
@@ -133,6 +149,24 @@ class EvilBobTest : WorldTest() {
     }
 
     @Test
+    fun `The servant shows the fishing spot again after a relog`() {
+        val player = enter("eb_relog")
+        player.talkToServant() // first hint: helped flag set and the spot shown
+        assertTrue(player["evil_bob_servant_helped", false])
+        assertFalse(player["evil_bob_new_spot", false])
+
+        logout(player)
+        login(player)
+        tick(10)
+        while (player.dialogue != null) player.skipDialogues()
+        tick()
+
+        assertTrue(player["evil_bob_new_spot", false], "Relog should flag the spot for re-showing")
+        player.talkToServant()
+        assertFalse(player["evil_bob_new_spot", false], "Talking to the servant should re-show the spot")
+    }
+
+    @Test
     fun `A wrong fish makes Evil Bob attentive so an extra correct fish is needed`() {
         val player = enter("eb_attentive")
 
@@ -152,5 +186,15 @@ class EvilBobTest : WorldTest() {
         player.inventory.add("raw_fish_like_thing")
         player.serve()
         assertTrue(player["evil_bob_complete", false])
+    }
+
+    private fun login(player: Player) {
+        Players.add(player)
+        Spawn.player(player)
+    }
+
+    private fun logout(player: Player) {
+        Despawn.player(player)
+        Players.remove(player)
     }
 }

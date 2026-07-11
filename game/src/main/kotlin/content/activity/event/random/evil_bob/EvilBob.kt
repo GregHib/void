@@ -120,6 +120,10 @@ class EvilBob : Script {
 
         if (get("evil_bob_zone", 0) == 0) {
             assignZone()
+        } else {
+            // Relog resume: the camera hint died with the old instance, so have the
+            // servant point out the fishing spot again when spoken to.
+            set("evil_bob_new_spot", true)
         }
         if (!inventory.contains("small_fishing_net")) {
             inventory.add("small_fishing_net")
