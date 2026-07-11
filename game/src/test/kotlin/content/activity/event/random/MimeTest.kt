@@ -1,0 +1,75 @@
+package content.activity.event.random
+
+import WorldTest
+import interfaceOption
+import org.junit.jupiter.api.Test
+import skipDialogues
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Tile
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
+
+class MimeTest : WorldTest() {
+
+    private val origin = Tile(3221, 3218)
+    private val iface = "dialogue_macro_mime_emotes"
+
+    /** Runs the event through the intro up to the first emote selection (interface 188 open). */
+    private fun enter(name: String): Player {
+        val player = createPlayer(origin, name)
+        RandomEvents.start(player, "mime")
+        tick(6) // mysterious old man + kidnap
+        player.skipDialogues() // "Here's a little challenge..."
+        tick(3) // walk to the watch spot
+        tickIf { !player.interfaces.contains(iface) } // "Watch the Mime." + performance -> opens the interface
+        return player
+    }
+
+    private fun Player.pick(emote: String) {
+        interfaceOption(iface, emote, optionIndex = 0)
+        tick()
+    }
+
+    private fun Player.pickCorrect() = pick(get<String>("mime_emote")!!)
+
+    @Test
+    fun `Event drops the player into the theatre and opens the mime interface`() {
+        val player = enter("mime_start")
+
+        assertEquals("mime", player.get<String>("random_event"))
+        assertTrue(player.interfaces.contains(iface))
+        assertNotNull(player.get<String>("mime_emote"))
+        assertNotNull(NPCs.firstOrNull(Tile(2011, 4762)) { it.id == "mime" })
+    }
+
+    @Test
+    fun `A wrong emote earns no credit`() {
+        val player = enter("mime_wrong")
+        val expected = player.get<String>("mime_emote")!!
+
+        player.pick(if (expected == "think") "cry" else "think")
+
+        assertEquals(0, player.get("mime_correct", 0))
+    }
+
+    @Test
+    fun `Copying three emotes unlocks the emotes, rewards a gift and returns the player`() {
+        val player = enter("mime_finish")
+
+        repeat(3) {
+            player.pickCorrect()
+            tickIf { !player.interfaces.contains(iface) && player.get<String>("random_event") == "mime" }
+        }
+        tickIf { player.tile != origin } // wait out the modern teleport home
+
+        assertEquals(1, player.inventory.count("random_event_gift"))
+        assertEquals(1, player.get("mime_costume_points", 0))
+        assertTrue(player["unlocked_emote_glass_wall", false])
+        assertNull(player.get<String>("random_event"))
+        assertEquals(origin, player.tile)
+    }
+}

@@ -1,0 +1,7 @@
+[quiz_answer]
+format = "int"
+persist = true
+
+[quiz_correct]
+format = "int"
+persist = true

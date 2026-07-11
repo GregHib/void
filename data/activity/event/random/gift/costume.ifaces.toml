@@ -1,0 +1,14 @@
+# Iffie's "Cash in your points for costume items" interface (201). The costume rows are drawn
+# entirely by its load script (cs2 2121) - set icons from constants and the "Points:" values from
+# the costume_points varbits - as clickable children of the list (component 15) at offsets
+# 1, 11, 21, 31, 41 (Mime, Frog, Zombie, Camo, Lederhosen). Component 16 is the scrollbar.
+[costume_reward_select]
+id = 201
+type = "main_screen"
+
+[.close]
+id = 14
+
+[.rewards]
+id = 15
+options = { Claim = 0, Examine = 9 }

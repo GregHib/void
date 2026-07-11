@@ -1,0 +1,27 @@
+[giant_surprise_exam]
+id = 487
+examine = "I guess he wants to be more than just the muscle."
+
+[mummy_surprise_exam]
+id = 490
+examine = "If the mummy is at school, where are the kids?"
+
+[mr_mordau]
+id = 6117
+examine = "Professor of Unnatural History."
+
+[zombie_surprise_exam]
+id = 6131
+examine = "Brains!"
+
+[goblin_surprise_exam]
+id = 6132
+examine = "The studious one."
+
+[goblin_2_surprise_exam]
+id = 6133
+examine = "He looks bored."
+
+[dunce_surprise_exam]
+id = 6134
+examine = "This imp is clearly the class clown."

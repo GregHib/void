@@ -1,3 +1,7 @@
+[push_up]
+id = 10946
+examine = "A sign."
+
 [run]
 id = 10947
 examine = "A sign."

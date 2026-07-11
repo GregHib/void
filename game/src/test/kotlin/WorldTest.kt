@@ -306,6 +306,7 @@ abstract class WorldTest : KoinTest {
             properties["events.tearsOfGuthix.active"] = false
             properties["storage.autoSave.minutes"] = 0
             properties["storage.disabled"] = true
+            properties["events.randomEvents.active"] = false
             properties["bots.count"] = 0
             properties.remove("world.id")
             properties.remove("world.name")

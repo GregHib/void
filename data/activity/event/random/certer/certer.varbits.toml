@@ -1,0 +1,30 @@
+# Read by interface 184's load script (cs2 2136).
+# The three option descriptions (keys into enum 2224):
+[certer_desc_1]
+id = 5856
+
+[certer_desc_2]
+id = 5858
+
+[certer_desc_3]
+id = 5860
+
+# The item model: enum selector (2225-2228) + key into it.
+[certer_model_enum]
+id = 5857
+
+[certer_model_key]
+id = 5862
+
+# Model display: rotation, scale and spin.
+[certer_rotation_x]
+id = 5855
+
+[certer_rotation_y]
+id = 5859
+
+[certer_scale]
+id = 5861
+
+[certer_spin]
+id = 5863

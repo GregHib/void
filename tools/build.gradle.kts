@@ -68,10 +68,3 @@ tasks.register<JavaExec>("renderPhotoBooth") {
     val cliArgs = (findProperty("args") as String?)?.split(" ")?.filter { it.isNotBlank() } ?: emptyList()
     args = cliArgs
 }
-
-
-tasks.register<JavaExec>("fixGraphics") {
-    classpath = sourceSets["main"].runtimeClasspath
-    mainClass.set("world.gregs.voidps.tools.cache.FixGraphics")
-    workingDir = rootDir
-}

@@ -1,0 +1,47 @@
+# Pillory lock puzzle (interface 189). The spinning lock (child 4) and three swinging keys (children
+# 5-7) are model components we set each round; children 8-10 are the clickable key selectors
+# (setting=2 in the cache => interface option), and children 11-16 are the progress padlocks.
+[pillory_lock]
+id = 189
+
+[.lock]
+id = 4
+
+[.key_1]
+id = 5
+
+[.key_2]
+id = 6
+
+[.key_3]
+id = 7
+
+[.button_1]
+id = 8
+options = { Select = 0 }
+
+[.button_2]
+id = 9
+options = { Select = 0 }
+
+[.button_3]
+id = 10
+options = { Select = 0 }
+
+[.padlock_1]
+id = 11
+
+[.padlock_2]
+id = 12
+
+[.padlock_3]
+id = 13
+
+[.padlock_4]
+id = 14
+
+[.padlock_5]
+id = 15
+
+[.padlock_6]
+id = 16

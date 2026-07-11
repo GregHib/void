@@ -273,9 +273,56 @@ type = "dialogue_box"
 id = 188
 type = "dialogue_box"
 
+# The eight emote buttons (cache option names Think/Cry/.../Glass Wall); named by the emote so the
+# handler can read the pick straight off the clicked component.
+[.think]
+id = 2
+
+[.cry]
+id = 3
+
+[.laugh]
+id = 4
+
+[.dance]
+id = 5
+
+[.climb_rope]
+id = 6
+
+[.lean]
+id = 7
+
+[.glass_box]
+id = 8
+
+[.glass_wall]
+id = 9
+
 [dialogue_macro_quiz_show]
 id = 191
 type = "dialogue_box"
+
+# The three golden models to compare, left to right (the cache runs a client script to spin them).
+[.model_1]
+id = 6
+
+[.model_2]
+id = 7
+
+[.model_3]
+id = 8
+
+# The invisible clickable buttons layered over the three models. They're dialogue-box components
+# (setting=1 in the cache), so a click arrives as a dialogue continue keyed by these names.
+[.button_1]
+id = 3
+
+[.button_2]
+id = 4
+
+[.button_3]
+id = 5
 
 [chat1_double_model]
 id = 173

@@ -1,0 +1,4 @@
+[tutorial_island]
+x = [3040, 3160]
+y = [3040, 3136]
+tags = ["no_random_events"]

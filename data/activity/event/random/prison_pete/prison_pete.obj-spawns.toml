@@ -1,0 +1,4 @@
+spawns = [
+    { id = "prison_pete_gate_west", x = 2085, y = 4459, type = 0, rotation = 1 },
+    { id = "prison_pete_gate_east", x = 2086, y = 4459, type = 0, rotation = 1 },
+]

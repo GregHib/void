@@ -1,0 +1,28 @@
+# The Sandwich Lady's refreshment tray. The seven "Choose refreshment" buttons
+# (components 10-22) are named after the food each one hands out.
+[sandwich_lady_select]
+id = 297
+
+[.baguette]
+id = 10
+
+[.triangle_sandwich]
+id = 12
+
+[.square_sandwich]
+id = 14
+
+[.roll]
+id = 16
+
+[.meat_pie]
+id = 18
+
+[.doughnut]
+id = 20
+
+[.chocolate_bar]
+id = 22
+
+[.title]
+id = 48

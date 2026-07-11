@@ -56,7 +56,11 @@ class Teleports : Script {
             }
         }
 
-        teleportTakeOff("lumbridge_home_teleport") {
+        // Registered under the book's type ("modern") because takeOff is keyed by type, not spell.
+        teleportTakeOff("modern") {
+            if (it != "lumbridge_home_teleport") {
+                return@teleportTakeOff true
+            }
             val seconds = remaining("home_teleport_timeout", epochSeconds())
             if (seconds > 0) {
                 val remaining = TimeUnit.SECONDS.toMinutes(seconds.toLong())

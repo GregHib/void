@@ -1,0 +1,18 @@
+# What's inside a casket. https://runescape.wiki/w/Casket
+[casket]
+roll = 128
+drops = [
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 16 },
+    { id = "uncut_ruby", chance = 8 },
+    { id = "uncut_diamond", chance = 2 },
+    { id = "cosmic_talisman", chance = 8 },
+    { id = "loop_half_of_a_key" },
+    { id = "tooth_half_of_a_key" },
+    { id = "coins", amount = 20, chance = 10 },
+    { id = "coins", amount = 40, chance = 10 },
+    { id = "coins", amount = 80, chance = 10 },
+    { id = "coins", amount = 160, chance = 10 },
+    { id = "coins", amount = 320, chance = 10 },
+    { id = "coins", amount = 640, chance = 10 },
+]

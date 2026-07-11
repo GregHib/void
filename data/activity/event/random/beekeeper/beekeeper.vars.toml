@@ -1,0 +1,3 @@
+[beekeeper_intro]
+format = "boolean"
+persist = true
