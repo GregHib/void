@@ -71,12 +71,15 @@ object RandomEvents : AutoCloseable {
      * (or a weighted [pick]) for players who are eligible and off cooldown.
      */
     fun roll(player: Player, event: String? = null): Boolean {
+        if (!Settings["events.randomEvents.active", true]) {
+            return false
+        }
         if (!player.contains("random_event_cooldown")) {
             // First activity; events unlock once the initial cooldown expires
             cooldown(player)
             return false
         }
-        if (!eligible(player) || random.nextInt(Tables.int("random_event_settings.roll_chance.value")) != 0) {
+        if (!eligible(player) || random.nextInt(Settings["events.randomEvents.chance", 300]) != 0) {
             return false
         }
         // Restart the cooldown immediately so a failed pick can't re-roll every attempt
@@ -169,11 +172,11 @@ object RandomEvents : AutoCloseable {
     }
 
     /**
-     * Delay the next event by `random_event_settings` min to max minutes.
+     * Delay the next event by `events.randomEvents.cooldownMinutes` min to max minutes.
      */
     private fun cooldown(player: Player) {
-        val min = Tables.int("random_event_settings.min_cooldown_minutes.value")
-        val max = Tables.int("random_event_settings.max_cooldown_minutes.value")
+        val min = Settings["events.randomEvents.cooldownMinutesMin", 45]
+        val max = Settings["events.randomEvents.cooldownMinutesMax", 90]
         val minutes = random.nextInt(min, max + 1)
         player.start("random_event_cooldown", TimeUnit.MINUTES.toSeconds(minutes.toLong()).toInt(), epochSeconds())
     }

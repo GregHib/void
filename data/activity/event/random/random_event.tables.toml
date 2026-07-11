@@ -70,19 +70,6 @@ weight = 10
 event = "gravedigger"
 weight = 10
 
-[random_event_settings]
-value = "int"
-
-# 1-in-N chance of an event per experience drop
-[.roll_chance]
-value = 300
-
-[.min_cooldown_minutes]
-value = 45
-
-[.max_cooldown_minutes]
-value = 90
-
 [random_event_exiles]
 area = "string"
 
