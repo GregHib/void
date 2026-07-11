@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -74,10 +75,12 @@ class EvilBob : Script {
             netFishingSpot()
         }
 
-        itemOnObjectOperate("fish_like_thing", "evil_bob_uncooking_pot") {
+        itemOnObjectOperate("fish_like_thing", "evil_bob_uncooking_pot") { (range) ->
+            walkOverDelay(range.tile)
             uncook("fish_like_thing", "raw_fish_like_thing")
         }
-        itemOnObjectOperate("fish_like_thing_incorrect", "evil_bob_uncooking_pot") {
+        itemOnObjectOperate("fish_like_thing_incorrect", "evil_bob_uncooking_pot") { (range) ->
+            walkOverDelay(range.tile)
             uncook("fish_like_thing_incorrect", "raw_fish_like_thing_incorrect")
         }
 
@@ -87,7 +90,8 @@ class EvilBob : Script {
                 return@objectOperate
             }
             walkOverDelay(portal.tile)
-            bob()?.let { face(it.tile) }
+            delay(1)
+            face(Direction.EAST)
             delay(2)
             anim("emote_raspberry")
             say("Be seeing you!")
@@ -300,9 +304,9 @@ class EvilBob : Script {
     private suspend fun Player.showSpot() {
         val zone = ZONES[get("evil_bob_zone", 1).coerceIn(1, ZONES.size) - 1]
         val offset = instanceOffset()
-        moveCamera(zone.cameraMove.add(offset), zone.cameraMoveHeight)
-        turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight)
-        delay(5)
+        moveCamera(zone.cameraMove.add(offset), zone.cameraMoveHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
+        turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
+        delay(10)
         clearCamera()
         set("evil_bob_new_spot", false)
     }
@@ -356,12 +360,20 @@ class EvilBob : Script {
             "raw_fish_like_thing_incorrect",
         )
 
+        // Slow cinematic pan towards the fishing spot; 232 = instant snap.
+        private const val CAMERA_SPEED = 1
+        private const val CAMERA_ACCELERATION = 10
+
         // (region-13642 base 3392,4736 + local coords). Index order = zone id 1..4.
         private val ZONES = listOf(
-            Zone(3421, 4789, 3427, 4792, Tile(3424, 4791), Tile(3422, 4773), 400, Tile(3422, 4786), 400), // north
-            Zone(3437, 4774, 3440, 4780, Tile(3438, 4777), Tile(3417, 4777), 440, Tile(3434, 4777), 440), // east
-            Zone(3419, 4763, 3426, 4765, Tile(3422, 4764), Tile(3423, 4782), 365, Tile(3421, 4766), 365), // south
-            Zone(3405, 4773, 3408, 4779, Tile(3406, 4776), Tile(3426, 4777), 325, Tile(3408, 4776), 300), // west
+            // NORTH_CAMERA: sits just north of the island centre, panning north towards the spot.
+            Zone(3421, 4789, 3427, 4792, Tile(3424, 4791), Tile(3422, 4779), 400, Tile(3422, 4786), 400),
+            // EAST_CAMERA: sits east of the island centre, panning east towards the spot.
+            Zone(3437, 4774, 3440, 4780, Tile(3438, 4777), Tile(3426, 4777), 440, Tile(3434, 4777), 440),
+            // SOUTH_CAMERA: sits south of the island centre, panning south towards the spot.
+            Zone(3419, 4763, 3426, 4765, Tile(3422, 4764), Tile(3421, 4774), 365, Tile(3421, 4766), 365),
+            // WEST_CAMERA: sits west of the island centre, panning west towards the spot.
+            Zone(3405, 4773, 3408, 4779, Tile(3406, 4776), Tile(3416, 4776), 325, Tile(3408, 4776), 300),
         )
     }
 }
