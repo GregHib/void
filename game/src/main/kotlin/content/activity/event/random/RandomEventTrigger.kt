@@ -19,6 +19,12 @@ class RandomEventTrigger : Script {
 
     init {
         playerSpawn {
+            if (!Settings["events.randomEvents.active", true]) {
+                return@playerSpawn
+            }
+            if (RandomEvents.optedOut(this)) {
+                return@playerSpawn
+            }
             timers.startIfAbsent("random_event")
         }
 
@@ -29,7 +35,7 @@ class RandomEventTrigger : Script {
             Timer.CONTINUE
         }
 
-        playerCommand("randomevents", desc = "Toggle random events on or off") {
+        playerCommand("random_events", desc = "Toggle random events on or off") {
             if (!Settings["events.randomEvents.optOut", false]) {
                 message("Random events can't be turned off on this world.")
                 return@playerCommand
@@ -41,7 +47,7 @@ class RandomEventTrigger : Script {
             }
         }
 
-        adminCommand("randomevent", stringArg("event", optional = true), desc = "Start a random event") { args ->
+        adminCommand("random_event", stringArg("event", optional = true), desc = "Start a random event") { args ->
             val event = args.getOrNull(0) ?: RandomEvents.pick()
             if (event == null || !RandomEvents.start(this, event)) {
                 message("No random event found${if (args.isEmpty()) "" else " for '${args[0]}'"}.")
