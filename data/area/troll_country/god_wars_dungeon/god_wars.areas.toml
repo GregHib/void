@@ -1,7 +1,7 @@
 [godwars_dungeon_multi_area]
 x = [2816, 2943]
 y = [5248, 5375]
-tags = ["multi_combat"]
+tags = ["multi_combat", "no_random_events"]
 
 [godwars_dungeon]
 x = [2878, 2878, 2861, 2851, 2846, 2844, 2844, 2851, 2851, 2865, 2875, 2883, 2888, 2915, 2915, 2886, 2880]
