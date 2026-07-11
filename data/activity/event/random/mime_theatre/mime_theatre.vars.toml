@@ -1,0 +1,7 @@
+[mime_emote]
+format = "string"
+persist = true
+
+[mime_correct]
+format = "int"
+persist = true

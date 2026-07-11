@@ -1,0 +1,13 @@
+# The four exercise mats. Each mat's sign shows an exercise via its varbit
+# (drill_demon_sign_1..4); the player uses the mat matching the sergeant's order.
+[drill_demon_mat_1]
+id = 10076
+
+[drill_demon_mat_2]
+id = 10077
+
+[drill_demon_mat_3]
+id = 10078
+
+[drill_demon_mat_4]
+id = 10079

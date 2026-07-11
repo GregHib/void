@@ -11,10 +11,15 @@ tags = ["multi_combat"]
 [waterbirth_island_multi_area]
 x = [1792, 1983]
 y = [4352, 4415]
-tags = ["multi_combat"]
+tags = ["multi_combat", "no_random_events"]
 
 [waterbirth]
 x = [2496, 2559]
 y = [3712, 3775]
-tags = ["penguin_area"]
+tags = ["penguin_area", "no_random_events"]
 hint = "on a small crescent island."
+
+[waterbirth_island_dungeon]
+x = [2432, 2559]
+y = [10112, 10175]
+tags = ["no_random_events"]

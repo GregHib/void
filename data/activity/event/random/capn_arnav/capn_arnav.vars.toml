@@ -1,0 +1,11 @@
+[arnav_target]
+format = "string"
+persist = true
+
+[arnav_tries]
+format = "int"
+persist = true
+
+[arnav_solved]
+format = "boolean"
+persist = true

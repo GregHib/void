@@ -1,0 +1,6 @@
+[pinball_overlay]
+id = 263
+type = "overlay"
+
+[.score]
+id = 1

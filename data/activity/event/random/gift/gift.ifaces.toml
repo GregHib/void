@@ -1,0 +1,18 @@
+# The "Choose Your Reward!" interface (202) opened from a random event gift. The reward choices
+# live in the random_event_gift inventory drawn by the grid (component 15); clicking one selects
+# it and the confirm button (26) claims it.
+[random_event_gift_select]
+id = 202
+type = "main_screen"
+
+[.close]
+id = 14
+
+[.rewards]
+id = 15
+inventory = "random_event_gift"
+options = { Select = 0 }
+
+[.confirm]
+id = 26
+options = { Confirm = 0 }

@@ -1,0 +1,65 @@
+# Filled graves - the object id shows which profession's coffin lies inside
+# (0 lumberjack, 1 cook, 2 miner, 3 farmer, 4 potter).
+[gravedigger_grave_0]
+id = 12721
+examine = "A grave with a coffin in it."
+
+[gravedigger_grave_1]
+clone = "gravedigger_grave_0"
+id = 12722
+
+[gravedigger_grave_2]
+clone = "gravedigger_grave_0"
+id = 12723
+
+[gravedigger_grave_3]
+clone = "gravedigger_grave_0"
+id = 12724
+
+[gravedigger_grave_4]
+clone = "gravedigger_grave_0"
+id = 12725
+
+[gravedigger_open_grave_0]
+id = 12726
+examine = "An open, empty grave."
+
+[gravedigger_open_grave_1]
+clone = "gravedigger_open_grave_0"
+id = 12727
+
+[gravedigger_open_grave_2]
+clone = "gravedigger_open_grave_0"
+id = 12728
+
+[gravedigger_open_grave_3]
+clone = "gravedigger_open_grave_0"
+id = 12729
+
+[gravedigger_open_grave_4]
+clone = "gravedigger_open_grave_0"
+id = 12730
+
+[gravedigger_gravestone_0]
+id = 12716
+examine = "It shows who ought to be buried here."
+
+[gravedigger_gravestone_1]
+clone = "gravedigger_gravestone_0"
+id = 12717
+
+[gravedigger_gravestone_2]
+clone = "gravedigger_gravestone_0"
+id = 12718
+
+[gravedigger_gravestone_3]
+clone = "gravedigger_gravestone_0"
+id = 12719
+
+[gravedigger_gravestone_4]
+clone = "gravedigger_gravestone_0"
+id = 12720
+
+[gravedigger_mausoleum]
+id = 12731
+examine = "Like a bank, but spookier."

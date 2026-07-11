@@ -1,0 +1,19 @@
+# What's inside a mystery box - an equal shot at each oddment, with one slot rolling the
+# rare drop table. https://runescape.wiki/w/Mystery_box_(random_events)
+[mystery_box]
+roll = 13
+drops = [
+    { id = "cabbage" },
+    { id = "diamond" },
+    { id = "bucket" },
+    { id = "coins", amount = 500 },
+    { id = "flier" },
+    { id = "old_boot" },
+    { id = "body_rune" },
+    { id = "onion" },
+    { id = "mithril_scimitar" },
+    { id = "casket" },
+    { id = "steel_platebody" },
+    { id = "nature_rune", amount = 20 },
+    { table = "rare_drop_table" },
+]

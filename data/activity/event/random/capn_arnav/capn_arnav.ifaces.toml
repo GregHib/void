@@ -1,0 +1,27 @@
+[capn_arnav_lock]
+id = 185
+type = "main_screen"
+
+[.down_1]
+id = 2
+
+[.up_1]
+id = 3
+
+[.down_2]
+id = 9
+
+[.up_2]
+id = 10
+
+[.down_3]
+id = 16
+
+[.up_3]
+id = 17
+
+[.unlock]
+id = 28
+
+[.close]
+id = 30

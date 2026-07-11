@@ -1,0 +1,37 @@
+# Varp 805 drives the beehive-build interface: the client renders each source and frame slot's
+# hive part (1-4) from these varbits; 0 is an empty slot.
+[beekeeper_part_1]
+id = 5893
+format = "int"
+
+[beekeeper_part_2]
+id = 5894
+format = "int"
+
+[beekeeper_part_3]
+id = 5895
+format = "int"
+
+[beekeeper_part_4]
+id = 5896
+format = "int"
+
+[beekeeper_slot_1]
+id = 5897
+format = "int"
+
+[beekeeper_slot_2]
+id = 5898
+format = "int"
+
+[beekeeper_slot_3]
+id = 5899
+format = "int"
+
+[beekeeper_slot_4]
+id = 5900
+format = "int"
+
+[beekeeper_tries]
+id = 5901
+format = "int"

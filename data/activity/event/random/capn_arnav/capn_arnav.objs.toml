@@ -1,0 +1,9 @@
+[capn_arnav_chest]
+id = 42337
+examine = "Cap'n Arnav's treasure chest."
+
+[capn_arnav_chest_open]
+id = 42338
+
+[capn_arnav_exit_portal]
+id = 11369

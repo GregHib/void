@@ -2,4 +2,4 @@
 x = [3145, 3189]
 y = [3469, 3513]
 level = 0
-tags = ["grand_exchange"]
+tags = ["grand_exchange", "no_random_events"]

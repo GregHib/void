@@ -1,0 +1,11 @@
+[evil_bob_fishing_spot]
+id = 8986
+examine = "You could catch a fish-like thing here."
+
+[evil_bob_uncooking_pot]
+id = 8985
+examine = "A cold fire for uncooking fish."
+
+[evil_bob_exit_portal]
+id = 8987
+examine = "A portal leading away from this dreadful place."

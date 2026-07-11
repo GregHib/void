@@ -1,0 +1,19 @@
+# Appearance index shared by Molly and her twin: colour + model * 4 (0-19).
+# Hash, tries and caught persist so logging out mid-event resumes where the player left off.
+[evil_twin_hash]
+format = "int"
+persist = true
+
+[evil_twin_tries]
+format = "int"
+persist = true
+
+[evil_twin_claw_x]
+format = "int"
+
+[evil_twin_claw_y]
+format = "int"
+
+[evil_twin_caught]
+format = "boolean"
+persist = true

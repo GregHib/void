@@ -1,0 +1,23 @@
+[prison_pete]
+id = 3118
+examine = "He wants to escape!"
+
+[balloon_animal_dog]
+id = 11232
+wander_range = 3
+examine = "It looks like an animal."
+
+[balloon_animal_cat]
+id = 11233
+wander_range = 3
+examine = "It looks like an animal."
+
+[balloon_animal_sheep]
+id = 11234
+wander_range = 3
+examine = "It looks like an animal."
+
+[balloon_animal_goat]
+id = 11235
+wander_range = 3
+examine = "It looks like an animal."

@@ -1,0 +1,242 @@
+# Molly and her lookalikes. Appearance index n = colour + model * 4 (colour 0-3, model 0-4);
+# molly_n, twin_suspect_n and twin_suspect_carried_n share the same look for a given n.
+[molly_0]
+id = 3892
+examine = "She seems worried."
+
+[molly_1]
+clone = "molly_0"
+id = 3893
+
+[molly_2]
+clone = "molly_0"
+id = 3894
+
+[molly_3]
+clone = "molly_0"
+id = 3895
+
+[molly_4]
+clone = "molly_0"
+id = 3896
+
+[molly_5]
+clone = "molly_0"
+id = 3897
+
+[molly_6]
+clone = "molly_0"
+id = 3898
+
+[molly_7]
+clone = "molly_0"
+id = 3899
+
+[molly_8]
+clone = "molly_0"
+id = 3900
+
+[molly_9]
+clone = "molly_0"
+id = 3901
+
+[molly_10]
+clone = "molly_0"
+id = 3902
+
+[molly_11]
+clone = "molly_0"
+id = 3903
+
+[molly_12]
+clone = "molly_0"
+id = 3904
+
+[molly_13]
+clone = "molly_0"
+id = 3905
+
+[molly_14]
+clone = "molly_0"
+id = 3906
+
+[molly_15]
+clone = "molly_0"
+id = 3907
+
+[molly_16]
+clone = "molly_0"
+id = 3908
+
+[molly_17]
+clone = "molly_0"
+id = 3909
+
+[molly_18]
+clone = "molly_0"
+id = 3910
+
+[molly_19]
+clone = "molly_0"
+id = 3911
+
+[twin_suspect_0]
+id = 3852
+wander_range = 3
+examine = "Could this be Molly's evil twin?"
+
+[twin_suspect_1]
+clone = "twin_suspect_0"
+id = 3853
+
+[twin_suspect_2]
+clone = "twin_suspect_0"
+id = 3854
+
+[twin_suspect_3]
+clone = "twin_suspect_0"
+id = 3855
+
+[twin_suspect_4]
+clone = "twin_suspect_0"
+id = 3856
+
+[twin_suspect_5]
+clone = "twin_suspect_0"
+id = 3857
+
+[twin_suspect_6]
+clone = "twin_suspect_0"
+id = 3858
+
+[twin_suspect_7]
+clone = "twin_suspect_0"
+id = 3859
+
+[twin_suspect_8]
+clone = "twin_suspect_0"
+id = 3860
+
+[twin_suspect_9]
+clone = "twin_suspect_0"
+id = 3861
+
+[twin_suspect_10]
+clone = "twin_suspect_0"
+id = 3862
+
+[twin_suspect_11]
+clone = "twin_suspect_0"
+id = 3863
+
+[twin_suspect_12]
+clone = "twin_suspect_0"
+id = 3864
+
+[twin_suspect_13]
+clone = "twin_suspect_0"
+id = 3865
+
+[twin_suspect_14]
+clone = "twin_suspect_0"
+id = 3866
+
+[twin_suspect_15]
+clone = "twin_suspect_0"
+id = 3867
+
+[twin_suspect_16]
+clone = "twin_suspect_0"
+id = 3868
+
+[twin_suspect_17]
+clone = "twin_suspect_0"
+id = 3869
+
+[twin_suspect_18]
+clone = "twin_suspect_0"
+id = 3870
+
+[twin_suspect_19]
+clone = "twin_suspect_0"
+id = 3871
+
+# Dangling-from-the-claw variants shown while a suspect is carried to the jail.
+[twin_suspect_carried_0]
+id = 3872
+
+[twin_suspect_carried_1]
+clone = "twin_suspect_carried_0"
+id = 3873
+
+[twin_suspect_carried_2]
+clone = "twin_suspect_carried_0"
+id = 3874
+
+[twin_suspect_carried_3]
+clone = "twin_suspect_carried_0"
+id = 3875
+
+[twin_suspect_carried_4]
+clone = "twin_suspect_carried_0"
+id = 3876
+
+[twin_suspect_carried_5]
+clone = "twin_suspect_carried_0"
+id = 3877
+
+[twin_suspect_carried_6]
+clone = "twin_suspect_carried_0"
+id = 3878
+
+[twin_suspect_carried_7]
+clone = "twin_suspect_carried_0"
+id = 3879
+
+[twin_suspect_carried_8]
+clone = "twin_suspect_carried_0"
+id = 3880
+
+[twin_suspect_carried_9]
+clone = "twin_suspect_carried_0"
+id = 3881
+
+[twin_suspect_carried_10]
+clone = "twin_suspect_carried_0"
+id = 3882
+
+[twin_suspect_carried_11]
+clone = "twin_suspect_carried_0"
+id = 3883
+
+[twin_suspect_carried_12]
+clone = "twin_suspect_carried_0"
+id = 3884
+
+[twin_suspect_carried_13]
+clone = "twin_suspect_carried_0"
+id = 3885
+
+[twin_suspect_carried_14]
+clone = "twin_suspect_carried_0"
+id = 3886
+
+[twin_suspect_carried_15]
+clone = "twin_suspect_carried_0"
+id = 3887
+
+[twin_suspect_carried_16]
+clone = "twin_suspect_carried_0"
+id = 3888
+
+[twin_suspect_carried_17]
+clone = "twin_suspect_carried_0"
+id = 3889
+
+[twin_suspect_carried_18]
+clone = "twin_suspect_carried_0"
+id = 3890
+
+[twin_suspect_carried_19]
+clone = "twin_suspect_carried_0"
+id = 3891

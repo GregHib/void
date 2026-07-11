@@ -1,0 +1,10 @@
+[surprise_exam_answer]
+format = "int"
+
+[surprise_exam_correct]
+format = "int"
+persist = true
+
+[surprise_exam_door]
+format = "string"
+persist = true

@@ -1,8 +1,14 @@
 [kuradals_dungeon]
 x = [1600, 1663]
 y = [5248, 5311]
+tags = ["no_random_events"]
 
 [kuradals_teleport]
 x = [1736, 1739]
 y = [5311, 5313]
 level = 1
+
+[ancient_cavern]
+x = [1728, 1791]
+y = [5312, 5375]
+tags = ["no_random_events"]
