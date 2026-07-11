@@ -37,7 +37,7 @@ class MysteryBox : Script {
                 in 101..500 -> "Well, it could have been worse."
                 else -> "Excellent!"
             }
-            message("Inside the box you find${found}! $flavour")
+            message("Inside the box you find$found! $flavour")
         }
     }
 }
