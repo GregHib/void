@@ -1,6 +1,7 @@
 package content.skill.summoning.pet
 
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.familiarChatheadAnimation
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
@@ -198,10 +199,11 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
     // Mapped pets (sneakerpeeper) resolve their chathead animation through
     // familiarChatheadAnimation like familiars do; the expression is only a
     // fallback for pets outside the varbit map.
+    val expression = familiarChatheadAnimation(pet.id)?.toString() ?: "neutral"
     for (line in chosen.stringList("lines")) {
         val rendered = substitutePlayerName(line, name)
         when {
-            rendered.startsWith("npc:") -> npc(npcId = pet.id, expression = "neutral", text = breakParenTranslation(rendered.removePrefix("npc:").trim()))
+            rendered.startsWith("npc:") -> npc(npcId = pet.id, expression = expression, text = breakParenTranslation(rendered.removePrefix("npc:").trim()))
             rendered.startsWith("player:") -> player<Happy>(rendered.removePrefix("player:").trim())
             rendered.startsWith("overhead:") -> pet.say(rendered.removePrefix("overhead:").trim())
             rendered.startsWith("[") && rendered.endsWith("]") -> statement(rendered.removePrefix("[").removeSuffix("]").trim())

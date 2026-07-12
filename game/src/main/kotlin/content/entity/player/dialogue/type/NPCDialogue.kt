@@ -36,7 +36,9 @@ suspend fun Player.npc(expression: String, text: String, largeHead: Boolean? = n
             face(target)
         }
     }
-    npc(id, expression, text, largeHead, clickToContinue, title)
+    // Familiar and pet chatheads play the same cache animation as the familiar details interface,
+    // regardless of expression - dialogue expressions only exist for humanoid heads.
+    npc(id, familiarChatheadAnimation(id)?.toString() ?: expression, text, largeHead, clickToContinue, title)
 }
 
 suspend fun Player.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {
@@ -59,14 +61,7 @@ private suspend fun Player.npc(lines: List<String>, clickToContinue: Boolean, np
     val npcDef = NPCDefinitions.get(npcId)
     val head = getChatHeadComponentName(largeHead ?: npcDef["large_head", false])
     sendNPCHead(this, id, head, npcDef.id)
-    val chathead = familiarChatheadAnimation(npcId)
-    when {
-        // Familiar chatheads play the same cache animation as the familiar details interface,
-        // regardless of expression - dialogue expressions only exist for humanoid heads.
-        chathead != null -> interfaces.sendChat(id, head, chathead, title ?: npcDef.name, lines)
-        npcDef.contains("dialogue") -> interfaces.sendChat(id, head, "${npcDef["dialogue", ""]}_$expression", title ?: npcDef.name, lines)
-        else -> interfaces.sendChat(id, head, expression, title ?: npcDef.name, lines)
-    }
+    interfaces.sendChat(id, head, if (npcDef.contains("dialogue")) "${npcDef["dialogue", ""]}_$expression" else expression, title ?: npcDef.name, lines)
     if (clickToContinue) {
         pauseButton()
         close(id)

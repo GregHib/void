@@ -21,7 +21,8 @@ fun Interfaces.sendChat(
     title: String,
     lines: List<String>,
 ) {
-    val definition = AnimationDefinitions.getOrNull("expression_$expression${lines.size}") ?: AnimationDefinitions.get("expression_$expression")
+    // The raw fallback lets an expression be any named animation or numeric animation id.
+    val definition = AnimationDefinitions.getOrNull("expression_$expression${lines.size}") ?: AnimationDefinitions.getOrNull("expression_$expression") ?: AnimationDefinitions.get(expression)
     sendChat(id, component, definition.id, title, lines)
 }
 
