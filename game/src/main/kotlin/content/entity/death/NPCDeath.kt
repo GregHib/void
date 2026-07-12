@@ -61,7 +61,7 @@ class NPCDeath(
                 // player rather than the familiar npc.
                 var killer = killer
                 if (killer is NPC && killer.contains("owner_index")) {
-                    killer = Players.indexed(killer.getValue("owner_index"))
+                    killer = Players.indexed(killer["owner_index", -1])
                 }
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
                 npc["death_tile"] = tile
