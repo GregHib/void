@@ -116,7 +116,7 @@ class Pyrelord : Script {
                 // The logs land at the familiar's feet first, as with a tinderbox, then it breathes
                 // fire over them a moment later. Aborts, fireless, if they're gone by then.
                 val logs = FloorItems.add(target.tile, item.id, disappearTicks = 300, owner = this)
-                target.anim("familiar_light_fire")
+                target.anim("${target.id.removeSuffix("_familiar")}_light_fire")
                 pause(2)
                 if (!FloorItems.remove(logs)) {
                     return@itemOnNPCOperate

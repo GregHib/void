@@ -11,6 +11,10 @@ id = 8267
 
 [dreadfowl_special]
 id = 5387
-# Fire-breathing familiars (pyrelord, forge regent) lighting logs beneath themselves.
-[familiar_light_fire]
+# Fire-breathing familiars lighting logs beneath themselves - each demon has its own breath
+# animation (the forge regent's doubles as its Inferno special's breath).
+[pyrelord_light_fire]
 id = 8085
+
+[forge_regent_light_fire]
+id = 7871
