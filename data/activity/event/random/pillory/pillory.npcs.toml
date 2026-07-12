@@ -1,0 +1,4 @@
+[pillory_guard]
+id = 2791
+categories = ["human"]
+examine = "He locks miscreants in the pillory."

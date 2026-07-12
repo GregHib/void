@@ -257,7 +257,7 @@ class TileLevel(
         var ignore = false
         if (colours.size == 2 && vertexIndices1.size == 2 && (colours[0] == colours[1] || textures[0] != -1 && textures[0] == textures[1])) {
             ignore = true
-            for (i in 1..1) {
+            for (i in vertexIndices1.indices) {
                 val xOffset = xOffsets[vertexIndices1[i]]
                 val yOffset = yOffsets[vertexIndices1[i]]
                 if (xOffset != 0 && xOffset != tileUnits || yOffset != 0 && yOffset != tileUnits) {

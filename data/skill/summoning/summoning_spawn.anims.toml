@@ -1,0 +1,433 @@
+[abyssal_lurker_spawn]
+id = 7683
+
+[abyssal_parasite_spawn]
+id = 7669
+
+[abyssal_titan_spawn]
+id = 8188
+
+[adamant_minotaur_spawn]
+id = 8029
+
+[adept_bloodrager_spawn]
+id = 13684
+
+[adept_deathslinger_spawn]
+id = 13684
+
+[adept_hoardstalker_spawn]
+id = 13684
+
+[adept_skinweaver_spawn]
+id = 13676
+
+[adept_stormbringer_spawn]
+id = 13676
+
+[adept_worldbearer_spawn]
+id = 13684
+
+[arctic_bear_spawn]
+id = 8522
+
+[barker_toad_spawn]
+id = 7702
+
+[beaver_spawn]
+id = 7721
+
+[bloated_leech_spawn]
+id = 7711
+
+[brah_bloodrager_spawn]
+id = 13684
+
+[brah_deathslinger_spawn]
+id = 13684
+
+[brah_hoardstalker_spawn]
+id = 13684
+
+[brah_skinweaver_spawn]
+id = 13676
+
+[brah_stormbringer_spawn]
+id = 13676
+
+[brah_worldbearer_spawn]
+id = 13684
+
+[brave_bloodrager_spawn]
+id = 13684
+
+[brave_deathslinger_spawn]
+id = 13684
+
+[brave_hoardstalker_spawn]
+id = 13684
+
+[brave_skinweaver_spawn]
+id = 13676
+
+[brave_stormbringer_spawn]
+id = 13676
+
+[brave_worldbearer_spawn]
+id = 13684
+
+[bronze_minotaur_spawn]
+id = 8029
+
+[bull_ant_spawn]
+id = 7894
+
+[bunyip_spawn]
+id = 7736
+
+[clay_familiar_class_1_spawn]
+id = 10595
+
+[clay_familiar_class_2_spawn]
+id = 10595
+
+[clay_familiar_class_3_spawn]
+id = 10595
+
+[clay_familiar_class_4_spawn]
+id = 10595
+
+[clay_familiar_class_5_spawn]
+id = 10595
+
+[compost_mound_spawn]
+id = 7773
+
+[cub_bloodrager_spawn]
+id = 13684
+
+[cub_deathslinger_spawn]
+id = 13684
+
+[cub_hoardstalker_spawn]
+id = 13684
+
+[cub_skinweaver_spawn]
+id = 13676
+
+[cub_stormbringer_spawn]
+id = 13676
+
+[cub_worldbearer_spawn]
+id = 13684
+
+[desert_wyrm_spawn]
+id = 7794
+
+# Desert wyrm "Burrow" npc option - the wyrm digs underground to mine ore.
+[desert_wyrm_burrow]
+id = 7800
+
+[dreadfowl_spawn]
+id = 7807
+
+[evil_turnip_spawn]
+id = 8252
+
+[fire_titan_spawn]
+id = 7829
+
+[forge_regent_spawn]
+id = 7870
+
+[fruit_bat_spawn]
+id = 8279
+
+[geyser_titan_spawn]
+id = 7881
+
+[giant_chinchompa_spawn]
+id = 7754
+
+[giant_ent_spawn]
+id = 7850
+
+[granite_crab_spawn]
+id = 8108
+
+[granite_lobster_spawn]
+id = 8122
+
+[honey_badger_spawn]
+id = 7929
+
+[hydra_spawn]
+id = 7940
+
+[ibis_spawn]
+id = 8202
+
+[ice_titan_spawn]
+id = 8188
+
+[iron_minotaur_spawn]
+id = 8029
+
+[iron_titan_spawn]
+id = 8188
+
+[karamthulhu_overlord_spawn]
+id = 7969
+
+[keen_bloodrager_spawn]
+id = 13684
+
+[keen_deathslinger_spawn]
+id = 13684
+
+[keen_hoardstalker_spawn]
+id = 13684
+
+[keen_skinweaver_spawn]
+id = 13676
+
+[keen_stormbringer_spawn]
+id = 13676
+
+[keen_worldbearer_spawn]
+id = 13684
+
+[lava_titan_spawn]
+id = 7987
+
+[little_bloodrager_spawn]
+id = 13684
+
+[little_deathslinger_spawn]
+id = 13684
+
+[little_hoardstalker_spawn]
+id = 13684
+
+[little_skinweaver_spawn]
+id = 13676
+
+[little_stormbringer_spawn]
+id = 13676
+
+[little_worldbearer_spawn]
+id = 13684
+
+[macaw_spawn]
+id = 8005
+
+[magpie_spawn]
+id = 8005
+
+[meerkats_spawn]
+id = 14316
+
+[mithril_minotaur_spawn]
+id = 8029
+
+[moss_titan_spawn]
+id = 8188
+
+[naabe_bloodrager_spawn]
+id = 13684
+
+[naabe_deathslinger_spawn]
+id = 13684
+
+[naabe_hoardstalker_spawn]
+id = 13684
+
+[naabe_skinweaver_spawn]
+id = 13676
+
+[naabe_stormbringer_spawn]
+id = 13676
+
+[naabe_worldbearer_spawn]
+id = 13684
+
+[naive_deathslinger_spawn]
+id = 13684
+
+[naïve_bloodrager_spawn]
+id = 13684
+
+[naïve_hoardstalker_spawn]
+id = 13684
+
+[naïve_skinweaver_spawn]
+id = 13676
+
+[naïve_stormbringer_spawn]
+id = 13676
+
+[naïve_worldbearer_spawn]
+id = 13684
+
+[obsidian_golem_spawn]
+id = 8049
+
+[pack_yak_spawn]
+id = 8058
+
+[phoenix_spawn]
+id = 11095
+
+[praying_mantis_spawn]
+id = 8075
+
+[pyrelord_spawn]
+id = 8081
+
+[ravenous_locust_spawn]
+id = 7997
+
+[rune_minotaur_spawn]
+id = 8029
+
+[sachem_bloodrager_spawn]
+id = 13684
+
+[sachem_deathslinger_spawn]
+id = 13684
+
+[sachem_hoardstalker_spawn]
+id = 13684
+
+[sachem_skinweaver_spawn]
+id = 13676
+
+[sachem_stormbringer_spawn]
+id = 13676
+
+[sachem_worldbearer_spawn]
+id = 13684
+
+[smoke_devil_spawn]
+id = 7819
+
+[spirit_cobra_spawn]
+id = 8157
+
+[spirit_cockatrice_spawn]
+id = 7765
+
+[spirit_coraxatrice_spawn]
+id = 7765
+
+[spirit_dagannoth_spawn]
+id = 7783
+
+[spirit_graahk_spawn]
+id = 7909
+
+[spirit_guthatrice_spawn]
+id = 7765
+
+[spirit_jelly_spawn]
+id = 8513
+
+[spirit_kalphite_spawn]
+id = 8516
+
+[spirit_kyatt_spawn]
+id = 7909
+
+[spirit_larupia_spawn]
+id = 7909
+
+[spirit_mosquito_spawn]
+id = 8037
+
+[spirit_pengatrice_spawn]
+id = 7765
+
+[spirit_saratrice_spawn]
+id = 7765
+
+[spirit_scorpion_spawn]
+id = 8127
+
+[spirit_spider_spawn]
+id = 8163
+
+[spirit_terrorbird_spawn]
+id = 8231
+
+[spirit_tz-kih_spawn]
+id = 8260
+
+[spirit_vulatrice_spawn]
+id = 7765
+
+[spirit_wolf_spawn]
+id = 8298
+
+[spirit_zamatrice_spawn]
+id = 7765
+
+[steel_minotaur_spawn]
+id = 8029
+
+[steel_titan_spawn]
+id = 8188
+
+[stranger_plant_spawn]
+id = 8216
+
+[swamp_titan_spawn]
+id = 8225
+
+[talon_beast_spawn]
+id = 8045
+
+[thorny_snail_spawn]
+id = 8141
+
+[unicorn_stallion_spawn]
+id = 8266
+
+[vampire_bat_spawn]
+id = 8279
+
+[void_ravager_spawn]
+id = 8091
+
+[void_shifter_spawn]
+id = 8134
+
+[void_spinner_spawn]
+id = 8174
+
+[void_torcher_spawn]
+id = 8238
+
+[war_tortoise_spawn]
+id = 8282
+
+[wise_bloodrager_spawn]
+id = 13684
+
+[wise_deathslinger_spawn]
+id = 13684
+
+[wise_hoardstalker_spawn]
+id = 13684
+
+[wise_skinweaver_spawn]
+id = 13676
+
+[wise_stormbringer_spawn]
+id = 13676
+
+[wise_worldbearer_spawn]
+id = 13684
+
+[wolpertinger_spawn]
+id = 8309
+

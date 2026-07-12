@@ -1,0 +1,4 @@
+spawns = [
+# 6480
+  { id = "capn_arnav", x = 1625, y = 5163, direction = "EAST" },
+]

@@ -1,0 +1,29 @@
+# The gift reward slot the player has selected (slot + 1; 0 = nothing selected yet).
+[gift_selected]
+format = "int"
+
+# Saved up from gifts; spent on any outfit at Iffie's costume store.
+[costume_points]
+format = "int"
+persist = true
+
+# Earned from each outfit's own random event; only spendable on that outfit.
+[mime_costume_points]
+format = "int"
+persist = true
+
+[frog_costume_points]
+format = "int"
+persist = true
+
+[zombie_costume_points]
+format = "int"
+persist = true
+
+[camo_costume_points]
+format = "int"
+persist = true
+
+[lederhosen_costume_points]
+format = "int"
+persist = true

@@ -44,6 +44,7 @@ data class ItemOnItemDefinition(
     val sound: String = "",
     val message: String = "",
     val failure: String = "",
+    val requiresMessage: String = "",
     val question: String = "How many would you like to $type?",
     val maximum: Int = -1,
     val members: Boolean = false,

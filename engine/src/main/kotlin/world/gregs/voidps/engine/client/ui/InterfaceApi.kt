@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.Wildcards
 
 interface InterfaceApi {
 
-    fun onItem(id: String, item: String = "*", handler: Player.(item: Item, id: String) -> Unit) {
+    fun onItem(id: String, item: String = "*", handler: suspend Player.(item: Item, id: String) -> Unit) {
         Script.checkLoading()
         Wildcards.find(id, Wildcard.Component) { i ->
             Wildcards.find(item, Wildcard.Item) { itm ->
@@ -20,20 +20,20 @@ interface InterfaceApi {
         }
     }
 
-    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: Player.(fromItem: Item, toItem: Item, fromSlot: Int, toSlot: Int) -> Unit) {
+    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: suspend Player.(fromItem: Item, toItem: Item, fromSlot: Int, toSlot: Int) -> Unit) {
         Script.checkLoading()
-        val biHandler: Player.(Item, Item, Int, Int) -> Unit = { from, to, fromSlot, toSlot ->
+        val biHandler: suspend Player.(Item, Item, Int, Int) -> Unit = { from, to, fromSlot, toSlot ->
             handler(this, to, from, toSlot, fromSlot)
         }
         append(fromItem, toItem, bidirectional, biHandler, handler)
     }
 
-    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: Player.(fromItem: Item, toItem: Item) -> Unit) {
+    fun itemOnItem(fromItem: String = "*", toItem: String = "*", bidirectional: Boolean = true, handler: suspend Player.(fromItem: Item, toItem: Item) -> Unit) {
         Script.checkLoading()
-        val single: Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
+        val single: suspend Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
             handler(this, from, to)
         }
-        val biHandler: Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
+        val biHandler: suspend Player.(Item, Item, Int, Int) -> Unit = { from, to, _, _ ->
             handler(this, to, from)
         }
         append(fromItem, toItem, bidirectional, biHandler, single)
@@ -43,8 +43,8 @@ interface InterfaceApi {
         fromItem: String,
         toItem: String,
         bidirectional: Boolean,
-        biHandler: Player.(Item, Item, Int, Int) -> Unit,
-        handler: Player.(from: Item, to: Item, fromSlot: Int, toSlot: Int) -> Unit,
+        biHandler: suspend Player.(Item, Item, Int, Int) -> Unit,
+        handler: suspend Player.(from: Item, to: Item, fromSlot: Int, toSlot: Int) -> Unit,
     ) {
         Script.checkLoading()
         Wildcards.find(fromItem, Wildcard.Item) { from ->
@@ -128,8 +128,8 @@ interface InterfaceApi {
         private val closed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(75)
         private val refreshed = Object2ObjectOpenHashMap<String, MutableList<Player.(String) -> Unit>>(25)
         private val swapped = Object2ObjectOpenHashMap<String, MutableList<Player.(String, String, Int, Int) -> Unit>>(10)
-        private val onItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, String) -> Unit>>(2)
-        private val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<Player.(Item, Item, Int, Int) -> Unit>>(800)
+        private val onItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(Item, String) -> Unit>>(2)
+        private val itemOnItem = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(Item, Item, Int, Int) -> Unit>>(800)
         private val options = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(InterfaceOption) -> Unit>>(50)
         private val itemOption = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOption) -> Unit>>(600)
         private val shops = Object2ObjectOpenHashMap<String, (Player, String) -> Unit>(5)
@@ -198,13 +198,13 @@ interface InterfaceApi {
             }
         }
 
-        fun onItem(player: Player, id: String, item: Item) {
+        suspend fun onItem(player: Player, id: String, item: Item) {
             for (block in onItem["$id:${item.id}"] ?: onItem["*:${item.id}"] ?: onItem["$id:*"] ?: onItem["*:*"] ?: return) {
                 block(player, item, id)
             }
         }
 
-        fun itemOnItem(player: Player, from: Item, to: Item, fromSlot: Int, toSlot: Int) {
+        suspend fun itemOnItem(player: Player, from: Item, to: Item, fromSlot: Int, toSlot: Int) {
             for (block in itemOnItem["${from.id}:${to.id}"] ?: itemOnItem["*:${to.id}"] ?: itemOnItem["${from.id}:*"] ?: itemOnItem["*:*"] ?: return) {
                 block(player, from, to, fromSlot, toSlot)
             }

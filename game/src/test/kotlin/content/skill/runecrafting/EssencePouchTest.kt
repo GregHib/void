@@ -153,6 +153,7 @@ internal class EssencePouchTest : WorldTest() {
         player.inventory.add("pure_essence", 2)
 
         player.itemOnItem(1, 0)
+        tick(1)
 
         assertEquals(1, player.inventory.count("rune_essence"))
         assertEquals(2, player.inventory.count("pure_essence"))
@@ -170,6 +171,7 @@ internal class EssencePouchTest : WorldTest() {
         player.inventory.add("pure_essence", 2)
 
         player.itemOnItem(3, 0)
+        tick(1)
 
         assertEquals(2, player.inventory.count("rune_essence"))
         assertEquals(2, player.inventory.count("pure_essence"))
@@ -187,6 +189,7 @@ internal class EssencePouchTest : WorldTest() {
         player.inventory.add("pure_essence", 2)
 
         player.itemOnItem(3, 0)
+        tick(1)
 
         assertEquals(2, player.inventory.count("rune_essence"))
         assertEquals(2, player.inventory.count("pure_essence"))

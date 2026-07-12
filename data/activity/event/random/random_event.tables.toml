@@ -1,0 +1,93 @@
+[random_events]
+event = "string"
+weight = "int"
+
+[.maze]
+event = "maze"
+weight = 10
+
+[.freaky_forester]
+event = "freaky_forester"
+weight = 10
+
+[.sandwich_lady]
+event = "sandwich_lady"
+weight = 10
+
+[.drill_demon]
+event = "drill_demon"
+weight = 10
+
+[.certer]
+event = "certer"
+weight = 10
+
+[.mime]
+event = "mime"
+weight = 10
+
+[.evil_bob]
+event = "evil_bob"
+weight = 10
+
+[.quiz_master]
+event = "quiz_master"
+weight = 10
+
+[.pillory]
+event = "pillory"
+weight = 10
+
+[.surprise_exam]
+event = "surprise_exam"
+weight = 10
+
+[.kiss_the_frog]
+event = "kiss_the_frog"
+weight = 10
+
+[.pinball]
+event = "pinball"
+weight = 10
+
+[.prison_pete]
+event = "prison_pete"
+weight = 10
+
+[.capn_arnav]
+event = "capn_arnav"
+weight = 10
+
+[.beekeeper]
+event = "beekeeper"
+weight = 10
+
+[.evil_twin]
+event = "evil_twin"
+weight = 10
+
+[.gravedigger]
+event = "gravedigger"
+weight = 10
+
+[random_event_exiles]
+area = "string"
+
+[.lumbridge]
+area = "random_event_exile_lumbridge"
+
+[.varrock]
+area = "random_event_exile_varrock"
+
+[.falador]
+area = "random_event_exile_falador"
+
+[.edgeville]
+area = "random_event_exile_edgeville"
+
+[.draynor]
+area = "random_event_exile_draynor"
+
+[.al_kharid]
+area = "random_event_exile_al_kharid"
+

@@ -1,0 +1,13 @@
+[zogre_human_brentle_vahn]
+attack_speed = 6
+retreat_range = 16
+defend_anim = "zombie_update_defend_normal"
+defend_sound = "zombie_defend"
+death_anim = "zombie_update_death_normal"
+death_sound = "zombie_death"
+
+[zogre_human_brentle_vahn.melee]
+range = 1
+anim = "zombie_update_attack_normal"
+target_sound = "zombie_attack"
+target_hit = { offense = "crush", max = 40 }

@@ -1,0 +1,14 @@
+[evil_twin_claw_grab]
+id = 4000
+
+[evil_twin_lifted]
+id = 4001
+
+[evil_twin_claw_lower]
+id = 4003
+
+[evil_twin_operate]
+id = 4004
+
+[evil_twin_jailed]
+id = 859

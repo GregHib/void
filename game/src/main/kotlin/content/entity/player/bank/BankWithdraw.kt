@@ -65,7 +65,7 @@ class BankWithdraw : Script {
         }
         when (player.bank.transaction.error) {
             TransactionError.None -> {
-                if (moved < amount) {
+                if (moved < amount && !removed) {
                     player.inventoryFull("to withdraw that many")
                 }
                 if (removed) {

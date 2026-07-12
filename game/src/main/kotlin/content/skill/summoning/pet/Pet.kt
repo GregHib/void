@@ -1,6 +1,7 @@
 package content.skill.summoning.pet
 
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.familiarChatheadAnimation
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
@@ -12,7 +13,6 @@ import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -68,7 +68,9 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     // gate on Slayer and sneakerpeeper on Dungeoneering — so the skill is
     // row-driven rather than hardcoded.
     val skill = row.skillOrNull("skill") ?: Skill.Summoning
-    if (!has(skill, level)) {
+    // hasMax: requirements check the player's real level, not the current one - for Summoning
+    // that's the points pool, which drains as points are spent.
+    if (!hasMax(skill, level)) {
         message("You need a ${skill.name} level of $level to raise this pet.")
         return false
     }
@@ -76,7 +78,7 @@ fun Player.summonPet(row: RowDefinition, itemId: String, restart: Boolean = fals
     // its primary Dungeoneering 80 check.
     val secondarySkill = row.skillOrNull("secondary_skill")
     val secondaryLevel = row.intOrNull("secondary_level") ?: 0
-    if (secondarySkill != null && secondaryLevel > 0 && !has(secondarySkill, secondaryLevel)) {
+    if (secondarySkill != null && secondaryLevel > 0 && !hasMax(secondarySkill, secondaryLevel)) {
         message("You also need a ${secondarySkill.name} level of $secondaryLevel to raise this pet.")
         return false
     }
@@ -194,15 +196,14 @@ suspend fun Player.talkToPet(row: RowDefinition, pet: NPC) {
         row.ambientPhrases().randomOrNull()?.let { pet.say(it) }
         return
     }
-    val rowAnim = row.animOrNull("chathead_anim") // TODO no pet dialogues are added, "pet_details_chathead_animations_normal" is only for pouch familiars
-    val fallbackAnim = when {
-        rowAnim != null -> rowAnim
-        else -> AnimationDefinitions.get(EnumDefinitions.int("pet_details_chathead_animations_normal", pet.def.id)).stringId
-    }
+    // Mapped pets (sneakerpeeper) resolve their chathead animation through
+    // familiarChatheadAnimation like familiars do; the expression is only a
+    // fallback for pets outside the varbit map.
+    val expression = familiarChatheadAnimation(pet.id)?.toString() ?: "neutral"
     for (line in chosen.stringList("lines")) {
         val rendered = substitutePlayerName(line, name)
         when {
-            rendered.startsWith("npc:") -> npc(npcId = pet.id, expression = fallbackAnim, text = breakParenTranslation(rendered.removePrefix("npc:").trim()))
+            rendered.startsWith("npc:") -> npc(npcId = pet.id, expression = expression, text = breakParenTranslation(rendered.removePrefix("npc:").trim()))
             rendered.startsWith("player:") -> player<Happy>(rendered.removePrefix("player:").trim())
             rendered.startsWith("overhead:") -> pet.say(rendered.removePrefix("overhead:").trim())
             rendered.startsWith("[") && rendered.endsWith("]") -> statement(rendered.removePrefix("[").removeSuffix("]").trim())
@@ -282,7 +283,7 @@ private fun Player.canSummonPet(row: RowDefinition): Boolean {
     // Mirror summonPet: the gating skill is row-driven (Slayer for Soul Wars
     // pets, Dungeoneering for sneakerpeeper) and only defaults to Summoning.
     val skill = row.skillOrNull("skill") ?: Skill.Summoning
-    return has(skill, row.int("summoning_level"))
+    return hasMax(skill, row.int("summoning_level"))
 }
 
 private suspend fun Player.dropPet(row: RowDefinition, itemId: String) {

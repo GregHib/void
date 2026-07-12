@@ -33,6 +33,10 @@ examine = "A healthy young tree."
 id = 7400
 examine = "This is what is left of a maple tree."
 
+[tree_6_stump]
+id = 9661
+examine = "This tree has been cut down."
+
 [oak]
 id = 1281
 examine = "A beautiful old oak."

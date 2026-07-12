@@ -41,7 +41,7 @@ class Gunnjorn : Script {
                             } else {
                                 inventoryFull() // TODO correct message
                             }
-                        } else if (get("gnome_course_advanced_laps", 0) >= 250) {
+                        } else if (get("barbarian_course_advanced_laps", 0) >= 250) {
                             npc<Happy>("Sure, and congratulations, Player! That took dedication and great dexterity to complete that many laps.")
                             npc<Neutral>("As promised, I'll give you an item you may find useful - an Agile top. You'll find yourself lighter than usual while wearing it.")
                             npc<Neutral>("We barbarians are tough folks, as you know, so it'll even keep you safe if you get drawn into combat.")

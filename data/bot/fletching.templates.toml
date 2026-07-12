@@ -1,5 +1,6 @@
 [fletching_arrow_shafts_template]
 requires = [
+    { members = { req = true } },
     { bank = { id = "$logs", min = 27 } }
 ]
 setup = [
@@ -19,6 +20,7 @@ produces = [
 
 [fletching_shortbow_template]
 requires = [
+    { members = { req = true } },
     { bank = { id = "$logs", min = 27 } }
 ]
 setup = [
@@ -37,6 +39,7 @@ produces = [
 
 [fletching_longbow_template]
 requires = [
+    { members = { req = true } },
     { bank = { id = "$logs", min = 27 } }
 ]
 setup = [

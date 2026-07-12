@@ -1,0 +1,7 @@
+[pinball_score]
+format = "int"
+persist = true
+
+[pinball_target]
+format = "int"
+persist = true

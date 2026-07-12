@@ -205,7 +205,7 @@ class GrandExchange(
                     val marketPrice = history.marketPrice(offer.item)
                     val instantPrice = marketPrice + (marketPrice * percent).toInt()
                     if (offer.price >= instantPrice) {
-                        exchange(offer, pending.account, instantPrice, mutableListOf(OpenOffer(remaining = offer.amount, lastActive = 0)))
+                        exchange(offer, pending.account, offer.price, mutableListOf(OpenOffer(remaining = offer.amount, lastActive = 0)))
                         break
                     }
                 }
@@ -240,6 +240,7 @@ class GrandExchange(
         } else {
             player.removeVarbit("grand_exchange_ranges", "slot_$index")
         }
+        player.sendVariable("grand_exchange_ranges")
         val itemDef = ItemDefinitions.get(offer.item)
         player.client?.grandExchange(index, offer.state.int, itemDef.id, offer.price, offer.amount, offer.completed, offer.coins)
     }
@@ -253,9 +254,12 @@ class GrandExchange(
         val required = offer.amount - offer.completed
         val available = open.remaining
         var traded = if (required >= available) available else required
-        traded = traded.coerceAtMost(limits.limit(if (offer.sell) open.account else account, offer.item))
-        if (traded <= 0) {
-            return false
+        val limit = limits.limit(if (offer.sell) open.account else account, offer.item)
+        if (limit != -1) {
+            traded = traded.coerceAtMost(limit)
+            if (traded <= 0) {
+                return false
+            }
         }
         // Update existing offer
         claim(offer.id, account, offer.item, traded, traderPrice, offer.price, offer.sell)

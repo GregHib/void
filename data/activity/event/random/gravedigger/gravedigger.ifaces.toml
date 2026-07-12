@@ -1,0 +1,39 @@
+# Checking a coffin (141) shows the nine items found inside; reading a gravestone (143) shows
+# an icon of the profession of whoever ought to be buried beneath it.
+[gravedigger_coffin]
+id = 141
+type = "main_screen"
+
+[.item_1]
+id = 3
+
+[.item_2]
+id = 4
+
+[.item_3]
+id = 5
+
+[.item_4]
+id = 6
+
+[.item_5]
+id = 7
+
+[.item_6]
+id = 8
+
+[.item_7]
+id = 9
+
+[.item_8]
+id = 10
+
+[.item_9]
+id = 11
+
+[gravedigger_gravestone]
+id = 143
+type = "main_screen"
+
+[.icon]
+id = 2

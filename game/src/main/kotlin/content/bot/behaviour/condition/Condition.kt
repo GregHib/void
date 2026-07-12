@@ -94,6 +94,7 @@ sealed class Condition(val priority: Int) {
             "owns" -> parseOwns(list)
             "variable" -> parseVariable(list)
             "clock" -> parseClock(list)
+            "members" -> parseMembers(list)
             "timer" -> parseTimer(list)
             "queue" -> parseQueue(list)
             "area" -> parseArea(list)
@@ -245,6 +246,14 @@ sealed class Condition(val priority: Int) {
             return null
         }
 
+        private fun parseMembers(list: List<Map<String, Any>>): BotMembers? {
+            val map = list.single()
+            if (map.containsKey("req")) {
+                return BotMembers(map["req"] as Boolean)
+            }
+            return null
+        }
+
         private fun parseTimer(list: List<Map<String, Any>>): Condition? {
             val map = list.single()
             if (map.containsKey("id")) {
@@ -333,6 +342,7 @@ sealed class Condition(val priority: Int) {
                     skill = Skill.of((map["id"] as String).toPascalCase()) ?: error("Unknown skill: '${map["id"]}'"),
                     min = map["min"] as? Int,
                     max = map["max"] as? Int,
+                    current = map["current"] as? Boolean ?: false,
                 )
             }
             return null

@@ -30,7 +30,9 @@ class InterfaceApiTest {
         }
 
         override fun invoke(args: List<String>) {
-            InterfaceApi.onItem(Player(), "id", Item("item"))
+            runTest {
+                InterfaceApi.onItem(Player(), "id", Item("item"))
+            }
         }
 
         override val apis = listOf(InterfaceApi)
@@ -58,7 +60,9 @@ class InterfaceApiTest {
         }
 
         override fun invoke(args: List<String>) {
-            InterfaceApi.itemOnItem(Player(), Item("from"), Item("to"), 1, 2)
+            runTest {
+                InterfaceApi.itemOnItem(Player(), Item("from"), Item("to"), 1, 2)
+            }
         }
 
         override val apis = listOf(InterfaceApi)

@@ -12,6 +12,9 @@ examine = "It looks fluffy and cute; it's probably deadly."
 
 [ruby_harvest]
 id = 5085
+wander_range = 3
+respawn_delay = 10
+collision = "sky"
 examine = "It's a ruby harvest butterfly."
 
 [prickly_kebbit]
@@ -32,4 +35,5 @@ examine = "Now you see it; now you don't."
 
 [copper_longtail]
 id = 5076
+respawn_delay = 5
 examine = "Nothing much to get in a flap about."

@@ -1,0 +1,47 @@
+# Read by interface 201's load script (cs2 2121/2122) - the "Points:" shown beside each
+# costume row. All five mirror the player's costume_points balance.
+[costume_points_mime]
+id = 5903
+format = "int"
+
+[costume_points_frog]
+id = 5904
+format = "int"
+
+[costume_points_zombie]
+id = 5905
+format = "int"
+
+[costume_points_camo]
+id = 5906
+format = "int"
+
+[costume_points_lederhosen]
+id = 5907
+format = "int"
+
+# Also read by cs2 2123 - a claimed (fully owned) costume greys its row out. The frog mask has
+# its own flag separate from the rest of the royal outfit.
+[costume_claimed_mime]
+id = 2698
+format = "boolean"
+
+[costume_claimed_frog]
+id = 2699
+format = "boolean"
+
+[costume_claimed_zombie]
+id = 2700
+format = "boolean"
+
+[costume_claimed_camo]
+id = 2701
+format = "boolean"
+
+[costume_claimed_lederhosen]
+id = 2702
+format = "boolean"
+
+[costume_claimed_frog_mask]
+id = 2776
+format = "boolean"

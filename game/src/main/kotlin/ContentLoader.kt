@@ -1,5 +1,7 @@
 import com.github.michaelbull.logging.InlineLogger
+import content.activity.event.random.RandomEvents
 import content.skill.prayer.PrayerApi
+import content.skill.summoning.FamiliarSpecialMoves
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.get
@@ -44,6 +46,8 @@ class ContentLoader {
 
     private fun loadContentApis() {
         Script.interfaces.add(PrayerApi)
+        Script.interfaces.add(RandomEvents)
+        Script.interfaces.add(FamiliarSpecialMoves)
     }
 
     private fun loadScript(name: String): Any {

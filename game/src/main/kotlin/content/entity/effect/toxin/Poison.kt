@@ -83,24 +83,41 @@ class Poison : Script {
         npcTimerStop("poison", ::stop)
 
         interfaceOption("Use Cure", "health_orb:poison") {
-            for (type in listOf("antipoison", "super_antipoison", "antipoison+")) {
-                val index = inventory.items.indexOfFirst { it.id.startsWith(type) }
+            if (poisoned) {
+                for (type in listOf("antipoison", "super_antipoison", "antipoison+")) {
+                    if (drink(type)) {
+                        return@interfaceOption
+                    }
+                }
+                val index = inventory.indexOf("prayer_book")
                 if (index != -1) {
-                    val option = "Drink"
+                    val option = "Recite-prayer"
                     val item = inventory[index]
                     InterfaceApi.option(this, InterfaceOption(item, index, option, item.def.options.indexOf(option), "inventory:inventory"))
                     return@interfaceOption
                 }
+                message("You don't have anything to cure the poison.")
             }
-            val index = inventory.indexOf("prayer_book")
-            if (index != -1) {
-                val option = "Recite-prayer"
-                val item = inventory[index]
-                InterfaceApi.option(this, InterfaceOption(item, index, option, item.def.options.indexOf(option), "inventory:inventory"))
-                return@interfaceOption
+            if (diseased) {
+                for (type in listOf("relicyms_balm", "sanfew_serum")) {
+                    if (drink(type)) {
+                        return@interfaceOption
+                    }
+                }
+                message("You don't have anything to cure the disease.")
             }
-            message("You don't have anything to cure the poison.")
         }
+    }
+
+    private suspend fun Player.drink(type: String): Boolean {
+        val index = inventory.items.indexOfFirst { it.id.startsWith(type) }
+        if (index != -1) {
+            val option = "Drink"
+            val item = inventory[index]
+            InterfaceApi.option(this, InterfaceOption(item, index, option, item.def.options.indexOf(option), "inventory:inventory"))
+            return true
+        }
+        return false
     }
 
     fun start(character: Character, restart: Boolean): Int {

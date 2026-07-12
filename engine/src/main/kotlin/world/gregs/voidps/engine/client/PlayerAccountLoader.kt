@@ -37,9 +37,11 @@ class PlayerAccountLoader(
 
     var update: Boolean = false
 
+    override fun used(username: String) =  accountDefinitions.get(username) != null
+
     override fun exists(username: String): Boolean = storage.exists(username)
 
-    override fun password(username: String): String? = accountDefinitions.get(username)?.passwordHash
+    override fun password(username: String): String? = accountDefinitions.getByAccount(username)?.passwordHash
 
     /**
      * @return flow of instructions for the player to be controlled with
@@ -55,7 +57,12 @@ class PlayerAccountLoader(
                 client.disconnect(Response.GAME_UPDATE)
                 return null
             }
-            var player = storage.load(username)?.toPlayer()
+            val save = storage.load(username)
+            if (save != null && banned(save.variables)) {
+                client.disconnect(Response.ACCOUNT_DISABLED)
+                return null
+            }
+            var player = save?.toPlayer()
             if (player == null) {
                 if (!Settings["development.accountCreation", false]) {
                     client.disconnect(Response.INVALID_CREDENTIALS)
@@ -71,6 +78,11 @@ class PlayerAccountLoader(
             client.disconnect(Response.COULD_NOT_COMPLETE_LOGIN)
             return null
         }
+    }
+
+    private fun banned(variables: Map<String, Any>): Boolean {
+        val until = (variables["banned_until"] as? Number)?.toInt() ?: return false
+        return until > (System.currentTimeMillis() / 1000).toInt()
     }
 
     suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true) {

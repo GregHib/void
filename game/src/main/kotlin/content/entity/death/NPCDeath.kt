@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.Death
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.name
@@ -56,7 +57,12 @@ class NPCDeath(
             val npc = this
             val onDeath = Death.killed(npc)
             queue(name = "death", 1) {
-                val killer = killer
+                // Credit a familiar's kill to its owner so loot, slayer and the kill log go to the
+                // player rather than the familiar npc.
+                var killer = killer
+                if (killer is NPC && killer.contains("owner_index")) {
+                    killer = Players.indexed(killer["owner_index", -1])
+                }
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
                 npc["death_tile"] = tile
                 val combat = combatDefinitions.get(transformDef["combat_def", transformId])
@@ -64,7 +70,7 @@ class NPCDeath(
                 if (combat.deathSound != null) {
                     (killer as? Player)?.sound(combat.deathSound!!.id)
                 }
-                delay(if (ticks <= 0) 4 else ticks)
+                delay(if (ticks == 0) 4 else ticks)
                 if (killer is Player) {
                     AuditLog.event(killer, "killed", npc, tile)
                     slay(killer, npc)

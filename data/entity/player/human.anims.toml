@@ -22,6 +22,9 @@ id = 422
 [unarmed_kick]
 id = 423
 
+[human_dancing]
+id = 818
+
 [unarmed_block]
 id = 422
 

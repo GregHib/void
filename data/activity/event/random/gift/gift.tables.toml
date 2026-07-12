@@ -1,0 +1,427 @@
+# Category pools for a random event gift's reward slots - one weighted pick per category.
+# https://runescape.wiki/w/Random_event_gift
+[gift_runes]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.death_rune]
+item = "death_rune"
+weight = 8
+min = 23
+max = 23
+
+[.chaos_rune]
+item = "chaos_rune"
+weight = 10
+min = 17
+max = 26
+
+[.nature_rune]
+item = "nature_rune"
+weight = 8
+min = 17
+max = 20
+
+[.law_rune]
+item = "law_rune"
+weight = 8
+min = 20
+max = 20
+
+[.cosmic_rune]
+item = "cosmic_rune"
+weight = 8
+min = 20
+max = 23
+
+[.mind_rune]
+item = "mind_rune"
+weight = 10
+min = 17
+max = 23
+
+[.body_rune]
+item = "body_rune"
+weight = 10
+min = 26
+max = 26
+
+[.fire_rune]
+item = "fire_rune"
+weight = 12
+min = 17
+max = 26
+
+[.earth_rune]
+item = "earth_rune"
+weight = 12
+min = 20
+max = 40
+
+[.air_rune]
+item = "air_rune"
+weight = 12
+min = 26
+max = 26
+
+[.water_rune]
+item = "water_rune"
+weight = 12
+min = 20
+max = 26
+
+[gift_ores]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.clay]
+item = "clay"
+weight = 10
+min = 7
+max = 7
+
+[.soft_clay]
+item = "soft_clay"
+weight = 10
+min = 7
+max = 15
+
+[.copper_ore]
+item = "copper_ore"
+weight = 10
+min = 5
+max = 5
+
+[.iron_ore]
+item = "iron_ore"
+weight = 12
+min = 7
+max = 7
+
+[.gold_ore]
+item = "gold_ore"
+weight = 8
+min = 6
+max = 10
+
+[.mithril_ore]
+item = "mithril_ore"
+weight = 6
+min = 9
+max = 25
+
+[.adamantite_ore]
+item = "adamantite_ore"
+weight = 4
+min = 4
+max = 7
+
+[.runite_ore]
+item = "runite_ore"
+weight = 1
+min = 1
+max = 1
+
+[gift_bars]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.bronze_bar]
+item = "bronze_bar"
+weight = 12
+min = 1
+max = 3
+
+[.iron_bar]
+item = "iron_bar"
+weight = 12
+min = 2
+max = 6
+
+[.silver_bar]
+item = "silver_bar"
+weight = 10
+min = 2
+max = 9
+
+[.steel_bar]
+item = "steel_bar"
+weight = 10
+min = 2
+max = 10
+
+[.gold_bar]
+item = "gold_bar"
+weight = 8
+min = 5
+max = 10
+
+[.mithril_bar]
+item = "mithril_bar"
+weight = 6
+min = 5
+max = 10
+
+[.adamant_bar]
+item = "adamant_bar"
+weight = 4
+min = 2
+max = 5
+
+[gift_gems]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.uncut_sapphire]
+item = "uncut_sapphire"
+weight = 12
+min = 1
+max = 6
+
+[.uncut_emerald]
+item = "uncut_emerald"
+weight = 10
+min = 1
+max = 2
+
+[.uncut_ruby]
+item = "uncut_ruby"
+weight = 8
+min = 1
+max = 2
+
+[.uncut_diamond]
+item = "uncut_diamond"
+weight = 5
+min = 1
+max = 3
+
+[.sapphire]
+item = "sapphire"
+weight = 6
+min = 1
+max = 1
+
+[.emerald]
+item = "emerald"
+weight = 5
+min = 1
+max = 1
+
+[.ruby]
+item = "ruby"
+weight = 4
+min = 1
+max = 1
+
+[.diamond]
+item = "diamond"
+weight = 2
+min = 1
+max = 1
+
+[gift_herbs]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.grimy_tarromin]
+item = "grimy_tarromin"
+weight = 12
+min = 1
+max = 4
+
+[.grimy_harralander]
+item = "grimy_harralander"
+weight = 12
+min = 3
+max = 4
+
+[.grimy_ranarr]
+item = "grimy_ranarr"
+weight = 6
+min = 1
+max = 2
+
+[.grimy_toadflax]
+item = "grimy_toadflax"
+weight = 8
+min = 2
+max = 3
+
+[.grimy_irit]
+item = "grimy_irit"
+weight = 10
+min = 2
+max = 4
+
+[.grimy_avantoe]
+item = "grimy_avantoe"
+weight = 8
+min = 2
+max = 4
+
+[.grimy_kwuarm]
+item = "grimy_kwuarm"
+weight = 8
+min = 2
+max = 3
+
+[.grimy_snapdragon]
+item = "grimy_snapdragon"
+weight = 5
+min = 1
+max = 3
+
+[.grimy_cadantine]
+item = "grimy_cadantine"
+weight = 8
+min = 3
+max = 3
+
+[.grimy_lantadyme]
+item = "grimy_lantadyme"
+weight = 6
+min = 1
+max = 2
+
+[.grimy_dwarf_weed]
+item = "grimy_dwarf_weed"
+weight = 6
+min = 2
+max = 2
+
+[gift_seeds]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.barley_seed]
+item = "barley_seed"
+weight = 12
+min = 8
+max = 8
+
+[.sweetcorn_seed]
+item = "sweetcorn_seed"
+weight = 10
+min = 2
+max = 4
+
+[.yanillian_seed]
+item = "yanillian_seed"
+weight = 10
+min = 4
+max = 4
+
+[.jute_seed]
+item = "jute_seed"
+weight = 10
+min = 6
+max = 6
+
+[.potato_seed]
+item = "potato_seed"
+weight = 12
+min = 8
+max = 8
+
+[.marigold_seed]
+item = "marigold_seed"
+weight = 8
+min = 1
+max = 1
+
+[.snapdragon_seed]
+item = "snapdragon_seed"
+weight = 2
+min = 1
+max = 1
+
+[gift_charms]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.gold_charm]
+item = "gold_charm"
+weight = 4
+min = 2
+max = 2
+
+[.green_charm]
+item = "green_charm"
+weight = 3
+min = 2
+max = 2
+
+[.crimson_charm]
+item = "crimson_charm"
+weight = 2
+min = 2
+max = 2
+
+[.blue_charm]
+item = "blue_charm"
+weight = 1
+min = 1
+max = 1
+
+[gift_other]
+item = "item"
+weight = "int"
+min = "int"
+max = "int"
+
+[.flax]
+item = "flax"
+weight = 8
+min = 64
+max = 99
+
+[.steel_platebody]
+item = "steel_platebody"
+weight = 6
+min = 1
+max = 1
+
+[.book_of_knowledge]
+item = "book_of_knowledge"
+weight = 6
+min = 1
+max = 1
+
+[.tooth_half_of_a_key]
+item = "tooth_half_of_a_key"
+weight = 1
+min = 1
+max = 1
+
+[.loop_half_of_a_key]
+item = "loop_half_of_a_key"
+weight = 1
+min = 1
+max = 1
+
+[.cabbage]
+item = "cabbage"
+weight = 4
+min = 1
+max = 1
+
+[.bucket]
+item = "bucket"
+weight = 4
+min = 1
+max = 1

@@ -1,0 +1,11 @@
+[prison_pete_pull_lever]
+id = 798
+
+[prison_pete_lever_pull]
+id = 2899
+
+[prison_pete_stomp]
+id = 794
+
+[prison_pete_pick_up]
+id = 827

@@ -1,0 +1,44 @@
+[butterflies]
+npc = "npc"
+level = "int"
+xp = "int"
+level_hands = "int"
+xp_hands = "int"
+jar = "item"
+chance = "range"
+
+[.ruby_harvest]
+npc = "ruby_harvest"
+level = 15
+xp = 240
+level_hands = 80
+xp_hands = 3500
+jar = "ruby_harvest"
+chance = [60, 415] # Guessed from warlock curve against implings
+
+[.sapphire_glacialis]
+npc = "sapphire_glacialis"
+level = 25
+xp = 340
+level_hands = 85
+xp_hands = 4000
+jar = "sapphire_glacialis"
+chance = [45, 390] # Guessed from warlock curve against implings
+
+[.snowy_knight]
+npc = "snowy_knight"
+level = 35
+xp = 440
+level_hands = 90
+xp_hands = 5000
+jar = "snowy_knight"
+chance = [30, 320] # Guessed from warlock curve against implings
+
+[.black_warlock]
+npc = "black_warlock_feldip_hills"
+level = 45
+xp = 540
+level_hands = 95
+xp_hands = 6500
+jar = "black_warlock"
+chance = [20, 296]

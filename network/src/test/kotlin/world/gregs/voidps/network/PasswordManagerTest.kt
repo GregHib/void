@@ -59,6 +59,17 @@ class PasswordManagerTest {
     }
 
     @Test
+    fun `Can't create new player if username is in use`() {
+        val username = "test"
+        val password = "password"
+        accountLoader.used = true
+
+        val result = passwordManager.validate(username, password)
+
+        assertEquals(Response.INVALID_CREDENTIALS, result)
+    }
+
+    @Test
     fun `Existing player with no password is disabled`() {
         val username = "test"
         val password = "password"
@@ -103,6 +114,9 @@ class PasswordManagerTest {
     private class TestAccountLoader : AccountLoader {
         val accountMap = mutableMapOf<String, String>()
         var exists = true
+        var used = false
+
+        override fun used(username: String): Boolean = used
 
         override fun exists(username: String): Boolean = exists
 

@@ -1,0 +1,55 @@
+[hunting_ojibway_trap_npc] # bird snare
+id = 5070
+hunt_mode = "bird_snare"
+hunt_range = 2
+
+[hunting_ojibway_trap_npc_off]
+id = 5071
+
+[hunting_box_trap_npc]
+id = 5077
+hunt_mode = "hunter_trap"
+hunt_range = 2
+
+[hunting_box_trap_npc_off]
+id = 5078
+
+[hunting_deadfall_trap_npc]
+id = 5090
+hunt_mode = "hunter_trap"
+hunt_range = 3
+
+[hunting_deadfall_trap_npc_off]
+id = 5091
+
+[hunting_imptrap_npc]
+id = 5101
+hunt_mode = "hunter_trap"
+hunt_range = 2
+
+[hunting_imptrap_npc_off]
+id = 5102
+
+[hunting_snare_trap_npc]
+id = 5106
+hunt_mode = "hunter_trap"
+hunt_range = 2
+
+[hunting_snare_trap_npc_off] # rabbit snare
+id = 5107
+
+[hunting_sapling_trap_npc]
+id = 5118
+hunt_mode = "net_trap"
+hunt_range = 3
+
+[hunting_sapling_trap_npc_off] # net trap
+id = 5119
+
+[afr_hunting_deadfall_trap_npc] # As a first resort
+id = 7037
+hunt_mode = "hunter_trap"
+hunt_range = 3
+
+[afr_hunting_deadfall_trap_npc_off]
+id = 7038

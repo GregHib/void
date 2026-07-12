@@ -113,7 +113,9 @@ interface Character :
      */
     fun gfx(id: String, delay: Int? = null, height: Int? = null) {
         val definition = GraphicDefinitions.getOrNull(id) ?: return
-        val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_1_MASK else VisualMask.NPC_GRAPHIC_1_MASK
+        // Graphics fill the secondary slot first; a second graphic in the same tick spills into the
+        // primary slot so both render, rather than overwriting the first.
+        val mask = if (this is Player) VisualMask.PLAYER_GRAPHIC_2_MASK else VisualMask.NPC_GRAPHIC_2_MASK
         val graphic = if (visuals.flagged(mask)) visuals.primaryGraphic else visuals.secondaryGraphic
         graphic.id = definition.id
         graphic.delay = delay ?: definition["delay", 0]

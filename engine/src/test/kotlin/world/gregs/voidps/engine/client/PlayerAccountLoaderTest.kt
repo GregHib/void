@@ -63,19 +63,22 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             override fun savePriceHistory(history: Map<String, PriceHistory>) {
             }
 
+            override fun saveReport(report: AbuseReport) {
+            }
+
             override fun exists(accountName: String): Boolean = false
 
             override fun load(accountName: String): PlayerSave? = playerSave
         }
         saveQueue = SaveQueue(storage, scope = TestScope())
-        definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")))
+        definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")), mutableMapOf("accountname" to "name"))
         accounts = mockk(relaxed = true)
         loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())
     }
 
     @Test
     fun `Get password`() {
-        assertEquals("hash", loader.password("name"))
+        assertEquals("hash", loader.password("accountName"))
         assertNull(loader.password("name2"))
     }
 
@@ -83,6 +86,26 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     fun `Successful login`() = runTest {
         val client: Client = mockk(relaxed = true)
         playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
+        coEvery { queue.await() } just Runs
+
+        val instructions = loader.load(client, "name", "pass", 2)
+        assertNotNull(instructions)
+    }
+
+    @Test
+    fun `Can't login if banned`() = runTest {
+        val client: Client = mockk(relaxed = true)
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("banned_until" to Int.MAX_VALUE), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
+
+        val instructions = loader.load(client, "name", "pass", 2)
+        assertNull(instructions)
+        coVerify { client.disconnect(Response.ACCOUNT_DISABLED) }
+    }
+
+    @Test
+    fun `Can login once ban expires`() = runTest {
+        val client: Client = mockk(relaxed = true)
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("banned_until" to 1), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
         coEvery { queue.await() } just Runs
 
         val instructions = loader.load(client, "name", "pass", 2)

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectLayer
  * @param findKeepHunting keeps hunting even when npc has an interaction mode (used for target switching in combat e.g. corp, kbd)
  * @param pauseIfNobodyNear stop finding new target when no players are around
  * @param rate ticks between checking for new targets. Non-player targets have min 3 ticks.
- * @param id the id for object or floor item target
+ * @param ids the id for object or floor item target
  * @param layer the [ObjectLayer] for object targets
  * @param maxMultiAttackers maximum number of attackers the target can have (custom)
  * @param checkSameGod checks if the godwards god is the different (custom)
@@ -31,7 +31,7 @@ data class HuntModeDefinition(
     val findKeepHunting: Boolean = false,
     val pauseIfNobodyNear: Boolean = true,
     val rate: Int = if (type == "player") 1 else 3,
-    val id: String? = null,
+    val ids: Set<String> = emptySet(),
     val layer: Int = -1,
     val maxMultiAttackers: Int = 2,
     val checkSameGod: Boolean = false,

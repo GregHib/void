@@ -325,56 +325,56 @@ defaults = [
     { id = "bullseye_lantern_frame", amount = 1 },
 ]
 
-[inventory_337]
+[silvercast_holysymbol]
 id = 337
 defaults = [
     { id = "unstrung_symbol", amount = 1 },
 ]
 
-[inventory_338]
+[silvercast_unholysymbol]
 id = 338
 defaults = [
     { id = "unstrung_emblem", amount = 1 },
 ]
 
-[inventory_339]
+[silvercast_sickle]
 id = 339
 defaults = [
     { id = "silver_sickle", amount = 1 },
 ]
 
-[inventory_340]
+[silvercast_lightning]
 id = 340
 defaults = [
     { id = "conductor", amount = 1 },
 ]
 
-[inventory_341]
+[silvercast_tiara]
 id = 341
 defaults = [
     { id = "tiara", amount = 1 },
 ]
 
-[inventory_342]
+[silvercast_agrith]
 id = 342
 defaults = [
     { id = "demonic_sigil", amount = 1 },
 ]
 
-[inventory_382]
+[silvercast_commandrod]
 id = 382
 defaults = [
     { id = "silvthrill_rod", amount = 1 },
 ]
 
-[inventory_386]
+[wine_merchant_free]
 id = 386
 defaults = [
     { id = "jug_of_wine", amount = 10 },
     { id = "jug", amount = 10 },
 ]
 
-[inventory_429]
+[silvercast_xbows]
 id = 429
 defaults = [
     { id = "silver_bolts_unf", amount = 10 },

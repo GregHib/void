@@ -12,41 +12,34 @@ import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.queue.queue
 
 class WildernessLevers(val teleports: ObjectTeleports) : Script {
 
     init {
         objTeleportTakeOff("Pull", "lever_*") { target, option ->
             if (target.def(this).stringId == "lever_ardougne_edgeville" && get("wilderness_lever_warning", true)) {
-                queue("wilderness_lever_warning") {
-                    statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
-                    choice("Are you sure you wish to pull it?") {
-                        option("Yes I'm brave.") {
-                            pullLever(target)
-                        }
-                        option("Eeep! The Wilderness... No thank you.") {
-                            return@option
-                        }
-                        option("Yes please, don't show this message again.") {
-                            set("wilderness_lever_warning", false)
-                            pullLever(target)
-                        }
+                statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
+                choice("Are you sure you wish to pull it?") {
+                    option("Yes I'm brave.") {
+                        pullLever(target)
+                    }
+                    option("Eeep! The Wilderness... No thank you.")
+                    option("Yes please, don't show this message again.") {
+                        set("wilderness_lever_warning", false)
+                        pullLever(target)
                     }
                 }
                 return@objTeleportTakeOff Teleport.CANCEL
             }
             pullLever(this)
-            queue("pull_lever") {
-                val definition = teleports.get("Pull")[target.tile.id]!!
-                val tile = teleports.teleportTile(this, definition)
-                anim("teleport_modern")
-                sound("teleport")
-                gfx("teleport_modern")
-                delay(3)
-                tele(tile)
-                Teleport.land(this, target, option)
-            }
+            val definition = teleports.get("Pull")[target.tile.id]!!
+            val tile = teleports.teleportTile(this, definition)
+            anim("teleport_modern")
+            sound("teleport")
+            gfx("teleport_modern")
+            delay(3)
+            tele(tile)
+            Teleport.land(this, target, option)
             return@objTeleportTakeOff Teleport.CANCEL
         }
 

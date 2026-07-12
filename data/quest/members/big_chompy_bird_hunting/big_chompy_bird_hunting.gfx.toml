@@ -1,2 +1,8 @@
 [ogre_bellows]
 id = 241
+
+[chompy_toad_exploding]
+id = 240
+
+[ogre_arrow_travel]
+id = 242

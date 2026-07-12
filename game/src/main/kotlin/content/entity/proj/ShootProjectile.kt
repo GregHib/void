@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.zone.ProjectileAddition
 import world.gregs.voidps.type.Delta
+import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
 object ShootProjectile {
@@ -130,21 +131,24 @@ fun Character.shoot(
     width: Int = size,
     tileOffsetX: Int = 0,
     tileOffsetY: Int = 0,
-) = projectile(
-    id = id,
-    target = target,
-    flightTime = flightTime,
-    delay = delay,
-    startHeight = height,
-    endHeight = endHeight,
-    curve = curve,
-    offset = offset,
-    width = width,
-    sourceHeight = this.height,
-    targetHeight = target.height,
-    targetTile = target.tile,
-    sourceTile = tile.add(tileOffsetX, tileOffsetY),
-)
+): Int {
+    val explicitOrigin = tileOffsetX != 0 || tileOffsetY != 0
+    return projectile(
+        id = id,
+        target = target,
+        flightTime = flightTime,
+        delay = delay,
+        startHeight = height,
+        endHeight = endHeight,
+        curve = curve,
+        offset = offset,
+        width = if (explicitOrigin) width else 1,
+        sourceHeight = this.height,
+        targetHeight = target.height,
+        targetTile = target.tile,
+        sourceTile = if (explicitOrigin) tile.add(tileOffsetX, tileOffsetY) else Distance.nearest(tile, size, size, target.tile),
+    )
+}
 
 /**
  * Tile dragon breath originates from.

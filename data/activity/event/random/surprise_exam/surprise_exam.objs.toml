@@ -1,0 +1,12 @@
+# The four coloured exam doors in Mr Mordaut's classroom (region 7502). Ids match the 634 cache.
+[exam_door_red]
+id = 2188
+
+[exam_door_blue]
+id = 2189
+
+[exam_door_purple]
+id = 2192
+
+[exam_door_green]
+id = 2193

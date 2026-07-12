@@ -261,8 +261,12 @@ object Params {
     const val SKILL_CAPE_T = 5261
     const val QUEST_INFO = 5262
     const val VARIABLES = 5263
+    const val SUMMONING_BEAST_OF_BURDEN_ESSENCE = 5264
+    const val SUMMONING_SPECIAL_COST = 5265
 
     private fun custom(name: String) = when (name) {
+        "summoning_beast_of_burden_essence" -> SUMMONING_BEAST_OF_BURDEN_ESSENCE
+        "summoning_special_cost" -> SUMMONING_SPECIAL_COST
         "variables" -> VARIABLES
         "quest_info" -> QUEST_INFO
         "skill_cape_t" -> SKILL_CAPE_T

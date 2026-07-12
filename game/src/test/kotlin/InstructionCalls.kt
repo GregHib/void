@@ -173,7 +173,20 @@ fun Player.interfaceUse(
     toSlot: Int = -1,
 ) {
     Assertions.assertTrue(hasOpen(id)) { "Player $this doesn't have interface $id open" }
-    InterfaceApi.itemOnItem(this, fromItem, toItem, fromSlot, toSlot)
+    runTest {
+        instructions.trySend(
+            InteractInterfaceItem(
+                fromItem = fromItem.def.id,
+                toItem = toItem.def.id,
+                fromSlot = fromSlot,
+                toSlot = toSlot,
+                fromInterfaceId = 149,
+                fromComponentId = 0,
+                toInterfaceId = 149,
+                toComponentId = 0,
+            ),
+        )
+    }
 }
 
 fun Player.interfaceSwitch(
@@ -261,12 +274,30 @@ fun Player.itemOnNpc(npc: NPC, itemSlot: Int, inventory: String = "inventory") {
     interactItemOn(npc, inventory, inventory, item, itemSlot)
 }
 
+fun Player.itemOnFloorItem(floorItem: FloorItem, itemSlot: Int, inventory: String = "inventory") {
+    val item = inventories.inventory(inventory)[itemSlot]
+    interactItemOn(floorItem, inventory, inventory, item, itemSlot)
+}
+
 fun Player.itemOnItem(
     firstSlot: Int,
     secondSlot: Int,
 ) {
     val inv = inventories.inventory("inventory")
-    InterfaceApi.itemOnItem(this, inv[firstSlot], inv[secondSlot], firstSlot, secondSlot)
+    runTest {
+        instructions.send(
+            InteractInterfaceItem(
+                fromItem = inv[firstSlot].def.id,
+                toItem = inv[secondSlot].def.id,
+                fromSlot = firstSlot,
+                toSlot = secondSlot,
+                fromInterfaceId = 149,
+                fromComponentId = 0,
+                toInterfaceId = 149,
+                toComponentId = 0,
+            ),
+        )
+    }
 }
 
 fun Player.npcOption(npc: NPC, option: String) {

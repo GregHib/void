@@ -1,0 +1,95 @@
+[groats_farm_plough]
+id = 296
+examine = "It's like a land rudder."
+
+[groats_farm_scarecrow]
+id = 297
+examine = "Disturbingly man-like."
+
+[groats_farm_sack]
+id = 5574
+examine = "Full of animal feed."
+
+[groats_farm_wheelbarrow]
+id = 5580
+examine = "A wooden wheelbarrow."
+
+[groats_farm_box_cart]
+id = 15700
+examine = "A cart for carrying boxes."
+
+[groats_farm_trapdoor]
+id = 15752
+examine = "It probably leads to some sort of cellar."
+
+[groats_farm_water_wheel]
+id = 36867
+examine = "The river makes it spin."
+
+[groats_farm_water_wheel_2]
+id = 36868
+examine = "The river makes it spin."
+
+[groats_farm_water_wheel_3]
+id = 36869
+examine = "The river makes it spin."
+
+[groats_farm_water_wheel_4]
+id = 36871
+examine = "I'd better not get my hands trapped in that."
+
+[hay_bale_groats_farm]
+id = 36893
+examine = "I bet there's a needle in it somewhere."
+
+[hay_bales_groats_farm]
+id = 36895
+examine = "I bet there's a needle in it somewhere."
+
+[hay_bales_groats_farm_2]
+id = 36897
+examine = "I bet there's a needle in it somewhere."
+
+[sacks_groats_farm]
+id = 36929
+examine = "These may have something in them."
+
+[groats_farm_coop]
+id = 36951
+examine = "A lovely chicken coop."
+
+[groats_farm_coop_2]
+id = 36952
+examine = "A lovely chicken coop."
+
+[groats_farm_coop_3]
+id = 36953
+examine = "An home for chickens."
+
+[groats_farm_shelves]
+id = 45254
+examine = "Shelves full of kitchen utensils."
+
+[groats_farm_shelves_2]
+id = 45248
+examine = "Storage for all needs."
+
+[groats_farm_food_through]
+id = 45325
+examine = "Animals have no table manners."
+
+[water_barrel_groats_farm]
+id = 46015
+examine = "A barrel for collecting rainwater."
+
+[water_barrel_groats_farm_2]
+id = 46019
+examine = "A barrel for collecting rainwater."
+
+[groats_farm_weather_vane]
+id = 46020
+examine = "Shows which way the wind blows."
+
+[groats_farm_wheelbarrow_2]
+id = 46021
+examine = "A wooden wheelbarrow."

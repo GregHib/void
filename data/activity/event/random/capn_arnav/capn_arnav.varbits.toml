@@ -1,0 +1,13 @@
+# Client script 2112 repositions each cylinder's four models from these varbits:
+# 0 = coins centred, 1 = bowl, 2 = bar, 3 = ring.
+[arnav_lock_1]
+id = 693
+format = "int"
+
+[arnav_lock_2]
+id = 694
+format = "int"
+
+[arnav_lock_3]
+id = 695
+format = "int"

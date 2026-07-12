@@ -1,0 +1,10 @@
+[pillory_target]
+format = "int"
+persist = true
+
+[pillory_correct]
+format = "int"
+persist = true
+
+[pillory_answer]
+format = "int"

@@ -1,0 +1,28 @@
+# Evil Twin crane controls (240). The arrow buttons move the claw one tile per click and the
+# red button lowers it onto whoever is standing on the glowing mark. The buttons' option names
+# ("Up", "Grab"...) come from the interface definition in the cache; the camera looks south over
+# the pen, so screen-up is south.
+[evil_twin_crane]
+id = 240
+type = "inventory_tab"
+
+[.tries]
+id = 27
+
+[.grab]
+id = 28
+
+[.up]
+id = 29
+
+[.down]
+id = 30
+
+[.left]
+id = 31
+
+[.right]
+id = 32
+
+[.close]
+id = 33

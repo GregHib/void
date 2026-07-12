@@ -213,7 +213,7 @@ class ShootingStar : Script {
     }
 
     fun getLayerPercentage(totalCollected: Int, totalNeeded: Int): String {
-        val remaining = totalNeeded - totalCollected
+        val remaining = (totalNeeded - totalCollected).coerceAtLeast(0)
         val percentageRemaining = (remaining.toDouble() / totalNeeded.toDouble()) * 100
         return String.format("%.2f", percentageRemaining)
     }

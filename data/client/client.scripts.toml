@@ -39,12 +39,24 @@ id = 571
 
 [primary_options]
 id = 150
+params = [
+  "component_id",
+  "inventory_id",
+  "inv_width",
+  "inv_height",
+  "drag_type", # 1=swap, 2=shuffle
+  "inv_drag_iface",
+  "options",
+]
 
 [secondary_options]
 id = 695
 
 [update_bank_slots]
 id = 1465
+
+[bank_search_arm]
+id = 1472
 
 [quest_journal_refresh]
 id = 2169
@@ -60,6 +72,9 @@ id = 143
 
 [close_entry]
 id = 101
+
+[close_report_abuse]
+id = 244
 
 [int_entry]
 id = 108

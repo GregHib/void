@@ -19,6 +19,7 @@ class PlantPotsTest : WorldTest() {
         player.inventory.add("plant_pot_empty")
         player.inventory.add("gardening_trowel")
         player["farming_veg_patch_falador_se"] = "weeds_2"
+        println(GameObjects.at(Tile(3058, 3308)))
         val patch = GameObjects.find(Tile(3058, 3308), "farming_veg_patch_falador_se")
 
         player.itemOnObject(patch, 0)

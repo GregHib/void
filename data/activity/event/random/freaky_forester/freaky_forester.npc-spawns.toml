@@ -1,0 +1,10 @@
+spawns = [
+  { id = "pheasant_1_tail", x = 2596, y = 4772, direction = "SOUTH" },
+  { id = "pheasant_1_tail_2", x = 2605, y = 4773, direction = "SOUTH" },
+  { id = "pheasant_2_tails", x = 2598, y = 4780, direction = "SOUTH" },
+  { id = "pheasant_2_tails_2", x = 2607, y = 4779, direction = "SOUTH" },
+  { id = "pheasant_3_tails", x = 2595, y = 4777, direction = "SOUTH" },
+  { id = "pheasant_3_tails_2", x = 2609, y = 4776, direction = "SOUTH" },
+  { id = "pheasant_4_tails", x = 2601, y = 4783, direction = "SOUTH" },
+  { id = "pheasant_4_tails_2", x = 2604, y = 4769, direction = "SOUTH" },
+]

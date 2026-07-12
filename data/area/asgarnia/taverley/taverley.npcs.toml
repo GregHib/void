@@ -41,7 +41,7 @@ categories = ["human"]
 collision = "indoors"
 examine = "A wise druid."
 
-[ivy_ophista]
+[ivy_sophista]
 id = 8417
 examine = "An impressive, statuesque druidess. She must be of high status."
 
@@ -82,83 +82,89 @@ examine = "Ironically, makes a living from swords."
 
 [druid_grey_stick]
 id = 6972
+hitpoints = 300
+att = 28
+str = 28
+def = 32
+mage = 25
+respawn_delay = 25
 wander_range = 4
 examine = "Loves nature."
+combat_def = "druid_staff"
+drop_table = "druid"
 
 [druid_hair]
 id = 6973
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_grey_stick"
+combat_def = "druid_unarmed"
 
-[druid_ponytail]
+[druid_ponytail_sickle]
 id = 6974
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_grey_stick"
+combat_def = "druid_sickle"
 
 [druid_bald_stick]
 id = 6975
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_grey_stick"
 
 [druid_grey]
 id = 6976
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_hair"
 
 [druid_sickle]
 id = 6977
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_grey_stick"
 
 [druid_hood]
 id = 6978
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_hair"
 
 [druid_bald_stick_dark]
 id = 6979
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_grey_stick"
 
 [druid_bald]
 id = 6980
-wander_range = 4
-examine = "Loves nature."
+clone = "druid_hair"
 
 [druidess_white]
 id = 6981
+hitpoints = 300
+att = 28
+str = 28
+def = 32
+mage = 25
+respawn_delay = 25
 wander_range = 4
 examine = "A nature lover."
+combat_def = "druidess_unarmed"
+drop_table = "druid"
 
 [druidess_brunette_stick]
 id = 6982
-wander_range = 4
-examine = "A nature lover."
+clone = "druidess_white"
+combat_def = "druidess_staff"
 
 [druidess_grey]
 id = 6983
-wander_range = 4
-examine = "A nature lover."
+clone = "druidess_white"
 
 [druidess_stick]
 id = 6984
-wander_range = 4
-examine = "A nature lover."
+clone = "druidess_brunette_stick"
 
 [druidess_sickle]
 id = 6985
-wander_range = 4
-examine = "A nature lover."
+clone = "druidess_white"
+combat_def = "druidess_sickle"
 
 [druidess_mask]
 id = 6986
-wander_range = 4
-examine = "A nature lover."
+clone = "druidess_white"
 
 [druidess]
 id = 6987
-wander_range = 4
-examine = "A nature lover."
+clone = "druidess_white"
 
 [jatix]
 id = 587

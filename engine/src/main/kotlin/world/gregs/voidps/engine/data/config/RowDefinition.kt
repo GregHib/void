@@ -63,6 +63,10 @@ data class RowDefinition(
 
     fun gfxOrNull(column: String) = Tables.gfxOrNull("${stringId}.$column")
 
+    fun obj(column: String) = Tables.obj("${stringId}.$column")
+
+    fun objOrNull(column: String) = Tables.objOrNull("${stringId}.$column")
+
     fun item(column: String) = Tables.item("${stringId}.$column")
 
     fun itemOrNull(column: String) = Tables.itemOrNull("${stringId}.$column")

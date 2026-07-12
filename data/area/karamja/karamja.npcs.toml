@@ -72,6 +72,8 @@ examine = "A warrior from Shilo Village."
 
 [horned_graahk]
 id = 5105
+combat_def = "panther"
+respawn_delay = 50
 examine = "Get in a graahk's way and you're going to know about it...however briefly."
 
 [captain_shanks]

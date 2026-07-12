@@ -6,8 +6,8 @@ import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
-import content.entity.effect.transform
 import content.entity.player.equip.Equipment
+import content.skill.magic.spell.spell
 import content.skill.melee.weapon.combatStyle
 import content.skill.ranged.ammo
 import content.skill.slayer.categories
@@ -39,6 +39,10 @@ object Target {
             if (source is Player && !CombatApi.canAttack(source, target)) {
                 return false
             }
+            if (source is Player && target["owner_index", -1] == source.index) {
+                if (message) source.message("You can't attack your own familiar.")
+                return false
+            }
             if (source is Player && target.contains("owner")) {
                 val owner = target.get<String>("owner")
                 if (source.accountName != owner) {
@@ -46,11 +50,16 @@ object Target {
                     return false
                 }
             }
-            if (target.transform != "") {
-                if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
+            if ((source.spell == "bind" || source.spell == "snare" || source.spell == "entangle") && target.id.endsWith("_impling")) {
+                return true
+            }
+            if (source is Player) {
+                if (!target.def(source).options.contains("Attack")) {
                     return false
                 }
-            } else if (target.def.options[1] != "Attack") {
+            } else if (target["owner_index", -1] == -1 && !target.def.options.contains("Attack")) {
+                // A familiar's base form deliberately has no "Attack" option (its owner can't click
+                // it) yet npcs must still fight back against one - combat() re-validates every tick.
                 return false
             }
             if (target.mode == PauseMode) {
@@ -175,6 +184,8 @@ object Target {
         is NPC if target.id == "harpie_bug_swarm" && source is Player && source.equipped(EquipSlot.Shield).id != "lit_bug_lantern" -> 0
         is NPC if target.def.contains("damage_cap") -> damage.coerceAtMost(target.def["damage_cap"])
         is NPC if target.def.contains("immune_death") -> damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
+        is NPC if target.id.endsWith("_impling") -> 0
+        is NPC if (target.id == "spined_larupia" || target.id == "horned_graahk" || target.id == "sabre_toothed_kyatt") -> 0
         else -> damage
     }
 }

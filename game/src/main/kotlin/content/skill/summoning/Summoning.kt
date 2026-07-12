@@ -1,5 +1,6 @@
 package content.skill.summoning
 
+import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.choice
 import content.skill.summoning.pet.callPet
 import content.skill.summoning.pet.dismissPet
@@ -11,6 +12,8 @@ import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
@@ -20,10 +23,14 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -60,17 +67,26 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
         return
     }
 
-    // TODO summoning energy
-    // message("You don't have enough summoning energy to summon this familiar.")
-
     val familiarNpc = NPCs.add(familiar.stringId, tile)
     familiarNpc.mode = Follow(familiarNpc, this)
     queue("summon_familiar", 2) {
         follower = familiarNpc
+        familiarNpc["owner_index"] = index
+        familiarNpc.anim("${familiarNpc.id.removeSuffix("_familiar")}_spawn")
         familiarNpc.gfx("summon_familiar_size_${familiarNpc.size}")
+        // Tells the cast button on familiar_details how many points this familiar's special costs.
+        set("summoning_special_points_needed", followerScrollId()?.let { ItemDefinitions.get(it)["special_points", 0] } ?: 0)
+        updateFamiliarPvpForm()
         updateFamiliarInterface()
         if (!restart) {
             timers.start("familiar_timer")
+            timers.start("summoning_drain")
+        }
+        if (get<DropTables>().get("forage_${familiarNpc.id.removeSuffix("_familiar")}") != null) {
+            timers.start("forage")
+        }
+        if (familiarNpc.id in FAMILIAR_HEAL_LIFEPOINTS) {
+            timers.start("familiar_heal")
         }
     }
 }
@@ -79,10 +95,15 @@ fun Player.summonFamiliar(familiar: NPCDefinition, restart: Boolean) {
  * Dismisses the familiar following the player and resets the summoning orb and varbits back to their default
  * states. Also stops the familiar timer.
  */
-fun Player.dismissFamiliar() {
-    NPCs.remove(follower)
+fun Player.dismissFamiliar(removeNpc: Boolean = true) {
+    dropBeastOfBurdenItems()
+    removeFamiliarFarmingBoost()
+    if (removeNpc) {
+        NPCs.remove(follower)
+    }
     follower = null
     interfaces.close("familiar_details")
+    interfaces.close("beast_of_burden")
     sendScript("reset_summoning_orb")
 
     // Need to wait for the above sendScript to reach the client before resetting
@@ -92,8 +113,27 @@ fun Player.dismissFamiliar() {
         set("follower_details_chathead", 0)
         set("familiar_details_minutes_remaining", 0)
         set("familiar_details_seconds_remaining", 0)
+        set("summoning_special_points_needed", 0)
     }
     timers.stop("familiar_timer")
+    timers.stop("summoning_drain")
+    timers.stop("forage")
+    timers.stop("familiar_heal")
+}
+
+/**
+ * Removes a familiar's Farming boost (dreadfowl/compost mound special) when the familiar leaves,
+ * but only if it's still the active boost - a decayed or later (e.g. garden pie) boost is left be.
+ */
+fun Player.removeFamiliarFarmingBoost() {
+    val boostedTo = get("familiar_farming_boost", 0)
+    if (boostedTo <= 0) {
+        return
+    }
+    if (levels.get(Skill.Farming) == boostedTo && boostedTo > levels.getMax(Skill.Farming)) {
+        levels.set(Skill.Farming, levels.getMax(Skill.Farming))
+    }
+    clear("familiar_farming_boost")
 }
 
 /**
@@ -104,7 +144,8 @@ fun Player.updateFamiliarInterface() {
     interfaces.open("familiar_details")
     set("follower_details_name", EnumDefinitions.get("summoning_familiar_ids").getKey(follower.def.id))
     set("follower_details_chathead", follower.def.id)
-    set("follower_details_chathead_animation", follower.id)
+    // The varbit's map keys are the familiars' base names; an unmapped value transmits as -1.
+    set("follower_details_chathead_animation", follower.id.removeSuffix("_familiar"))
 }
 
 /**
@@ -149,20 +190,119 @@ fun Player.callFollower() {
     }
     follower.tele(target, clearMode = false)
     follower.watch(this)
+    follower.anim("${follower.id.removeSuffix("_familiar")}_spawn")
     follower.gfx("summon_familiar_size_${follower.size}")
+    if (follower.mode !is Follow) {
+        follower.mode = Follow(follower, this)
+    }
+    updateFamiliarPvpForm()
 }
 
+/** Ticks the obelisk charge-up graphic plays for before the player performs the infuse animation. */
+private const val OBELISK_RENEW_GRAPHIC_TICKS = 2
+
 /**
- * Restores summoning points at an obelisk, mirroring prayer altar behaviour.
+ * Restores summoning points at an obelisk, mirroring prayer altar behaviour. The obelisk charges
+ * up first ([summoning_renew_obelisk] graphic), then once it finishes the player performs the
+ * infuse animation and graphic together.
  */
-fun Player.renewSummoningPoints() {
+suspend fun Player.renewSummoningPoints(obelisk: GameObject) {
     if (levels.getOffset(Skill.Summoning) >= 0) {
         message("You already have full summoning points.")
     } else {
+        areaGfx("summoning_renew_obelisk", obelisk.tile)
+        delay(OBELISK_RENEW_GRAPHIC_TICKS)
         levels.set(Skill.Summoning, levels.getMax(Skill.Summoning))
-        anim("summoning_infuse")
+        anim("summoning_renew")
+        areaGfx("summoning_renew_player", tile)
+        sound("summoning_renew")
         message("You renew your summoning points at the obelisk.")
     }
+}
+
+/**
+ * Runs a familiar special move costing [cost] special-move points. Special moves draw from the
+ * 0-60 special-move-points pool (regenerated each 30s by [SummoningTimers]) rather than from the
+ * player's summoning points. Warns and does nothing if the pool is too low; only spends if [action]
+ * runs, so callers should perform any other preconditions (ownership, situational checks) first.
+ */
+fun Player.useFamiliarSpecial(cost: Int, action: () -> Unit) {
+    val points = get("summoning_special_points_remaining", 0)
+    if (points < cost) {
+        message("Your familiar does not have enough special move points left.")
+        return
+    }
+    action()
+    set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))
+}
+
+/**
+ * The item id of the scroll matching the player's current follower, or null if the player has no
+ * familiar or no scroll is mapped for it. Resolved follower npc -> pouch (`summoning_familiar_ids`)
+ * -> scroll (`summoning_scroll_ids_2`).
+ */
+fun Player.followerScrollId(): Int? {
+    val familiar = follower ?: return null
+    val pouchId = EnumDefinitions.get("summoning_familiar_ids").getKey(familiar.def.id)
+    if (pouchId == -1) {
+        return null
+    }
+    return EnumDefinitions.get("summoning_scroll_ids_2").intOrNull(pouchId)
+}
+
+/**
+ * Runs a scroll-driven familiar special move - the moves triggered from the cast button on the
+ * `familiar_details` interface.
+ * validates a 3-tick cooldown, sufficient special-move points, the familiar's scroll in the
+ * inventory, and that the familiar is within 15 tiles. [effect] performs the move and returns true
+ * on success; only then is one scroll removed, the points drained, the cooldown set, and the
+ * scroll's `use_experience` Summoning xp awarded. Returns false (consuming nothing) when [effect]
+ * soft-fails, e.g. an invalid target.
+ */
+fun Player.castFamiliarSpecial(effect: () -> Boolean) {
+    val familiar = follower ?: return
+    if (hasClock("familiar_special_delay")) {
+        return
+    }
+    val scrollId = followerScrollId()
+    if (scrollId == null) {
+        message("Your familiar doesn't have a special move.")
+        return
+    }
+    val scrollDef = ItemDefinitions.get(scrollId)
+    val cost = scrollDef["special_points", 0]
+    if (get("summoning_special_points_remaining", 0) < cost) {
+        message("Your familiar does not have enough special move points left.")
+        return
+    }
+    // A worn enchanted helm can supply the scroll when the inventory has run out.
+    val fromHelm = !inventory.contains(scrollDef.stringId) && enchantedHeadgearScroll() == scrollDef.stringId
+    if (!inventory.contains(scrollDef.stringId) && !fromHelm) {
+        message("You do not have enough scrolls left to do this special move.")
+        return
+    }
+    if (tile.distanceTo(familiar.tile) > 15) {
+        message("Your familiar is too far away to use that scroll. Call it closer or move nearer to it.")
+        return
+    }
+    // Set the cooldown before running the effect so a re-entrant dispatch in the same tick (see the
+    // approach handlers in FamiliarSpecialMovesDispatch) can't fire the special twice. Scroll/points
+    // are still only spent on a successful effect() below.
+    start("familiar_special_delay", 3)
+    if (!effect()) {
+        return
+    }
+    anim("summoning_special_cast")
+    gfx("summoning_special_cast")
+    sound("summoning_special_cast")
+    if (fromHelm) {
+        spendEnchantedHeadgearScroll()
+    } else {
+        inventory.remove(scrollDef.stringId, 1)
+    }
+    val points = get("summoning_special_points_remaining", 0)
+    set("summoning_special_points_remaining", (points - cost).coerceAtLeast(0))
+    exp(Skill.Summoning, scrollDef["use_experience", 0.0])
 }
 
 /**
@@ -194,8 +334,8 @@ fun Player.renewFamiliar() {
 class Summoning : Script {
 
     init {
-        objectOperate("Renew-points") {
-            renewSummoningPoints()
+        objectOperate("Renew-points") { (target) ->
+            renewSummoningPoints(target)
         }
 
         itemOption("Summon", "*_pouch") { option ->
@@ -203,7 +343,10 @@ class Summoning : Script {
             val familiarId = EnumDefinitions.get("summoning_familiar_ids").int(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
             val familiar = NPCDefinitions.get(familiarId)
-            if (!has(Skill.Summoning, familiarLevel)) {
+            val summonCost = option.item.def["summon_points", 0]
+            // hasMax: the requirement is the player's real level - the current level is the
+            // summoning points pool, which drains as points are spent.
+            if (!hasMax(Skill.Summoning, familiarLevel)) {
                 message("You are not high enough level to use this pouch.")
                 return@itemOption
             }
@@ -211,8 +354,14 @@ class Summoning : Script {
                 message("You already have a follower.")
                 return@itemOption
             }
+            if (levels.get(Skill.Summoning) < summonCost) {
+                message("You do not have enough summoning points to summon this familiar.")
+                return@itemOption
+            }
             summonFamiliar(familiar, false)
             inventory.remove(option.item.id)
+            levels.drain(Skill.Summoning, summonCost)
+            set("summoning_special_points_remaining", 60)
             exp(Skill.Summoning, summoningXp)
         }
 
@@ -322,11 +471,19 @@ class Summoning : Script {
             variables.send("familiar_details_seconds_remaining")
             variables.send("follower_details_chathead_animation")
             timers.restart("familiar_timer")
+            timers.restart("summoning_drain")
             summonFamiliar(familiarDef, true)
         }
 
-        interfaceOption("Take BoB", "familiar_details:take_bob_items") {
-            message("<dark_green>Not currently implemented.")
+        npcDeath("*_familiar") { death ->
+            death.respawn = false
+            death.dropItems = false
+            val owner = Players.indexed(this["owner_index", -1]) ?: return@npcDeath
+            if (owner.follower?.index == index) {
+                // Familiar slain in combat: drop its stored items and dismiss it.
+                // The death flow despawns the NPC, so don't remove it again here.
+                owner.dismissFamiliar(removeNpc = false)
+            }
         }
     }
 }

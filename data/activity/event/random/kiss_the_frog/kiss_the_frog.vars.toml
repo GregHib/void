@@ -1,0 +1,13 @@
+[ktf_fail]
+format = "boolean"
+persist = true
+
+[ktf_offended]
+format = "int"
+persist = true
+
+[ktf_crown]
+format = "int"
+
+[ktf_escape]
+format = "int"

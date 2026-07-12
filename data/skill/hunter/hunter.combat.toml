@@ -1,0 +1,13 @@
+[panther]
+attack_speed = 4
+retreat_range = 20
+defend_anim = "big_cat_defend"
+defend_sound = "dog_defend"
+death_anim = "big_cat_death"
+death_sound = "big_cat_death"
+
+[panther.melee]
+range = 1
+anim = "big_cat_attack"
+target_sound = "big_cat_attack"
+target_hit = { offense = "slash", max = 70 }

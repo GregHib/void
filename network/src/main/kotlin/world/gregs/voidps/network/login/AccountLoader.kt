@@ -8,6 +8,8 @@ import world.gregs.voidps.network.client.Instruction
  * Loads and checks existing accounts
  */
 interface AccountLoader {
+    fun used(username: String): Boolean
+
     fun exists(username: String): Boolean
 
     fun password(username: String): String?

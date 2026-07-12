@@ -10,6 +10,7 @@ categories = ["ducks", "birds"]
 respawn_delay = 25
 height = 10
 collision = "sea"
+combat_def = "duck_swim"
 examine = "Quackers."
 
 [crow]
@@ -51,9 +52,16 @@ clone = "crow"
 id = 4571
 
 [drake]
-clone = "duck_swim"
 id = 6114
+attack_bonus = -47
 wander_range = 8
+hitpoints = 30
+slayer_xp = 3.0
+categories = ["ducks", "birds"]
+respawn_delay = 25
+height = 10
+drop_table = "bones"
+combat_def = "duck_walk"
 examine = "It quacks like a duck."
 
 [ducklings]
@@ -64,9 +72,8 @@ collision = "sea"
 examine = "Aww, cute."
 
 [duck_grey_walk]
-clone = "duck_swim"
 id = 6113
-wander_range = 8
+clone = "drake"
 examine = "Waddle waddle waddle quack."
 
 [wimpy_bird]
@@ -74,6 +81,7 @@ id = 7031
 categories = ["birds"]
 wander_range = 3
 collision = "sky"
+respawn_delay = 5
 examine = "An ogre snack with wings."
 
 [wimpy_bird_2]

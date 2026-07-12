@@ -37,6 +37,7 @@ internal class PetExclusivityTest : WorldTest() {
         // stale slot lookups after NPC index reuse; mirror real summon
         // state so the guard treats this player as actually pet-following.
         player["pet_active_item"] = "pet_kitten"
+        player.experience.set(Skill.Summoning, 14_000_000.0) // level requirements check the real level
         player.levels.set(Skill.Summoning, 99)
         player.inventory.add("spirit_wolf_pouch")
 

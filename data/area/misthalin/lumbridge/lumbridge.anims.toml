@@ -23,9 +23,3 @@ id = 3675
 
 [ring_bell]
 id = 9880
-
-[farmer_attack]
-id = 433
-
-[farmer_defend]
-id = 434

@@ -35,6 +35,8 @@ open class Settings {
 
     operator fun get(name: String, default: Int): Int = getOrNull(name)?.toIntOrNull() ?: default
 
+    operator fun get(name: String, default: Long): Long = getOrNull(name)?.toLongOrNull() ?: default
+
     operator fun get(name: String, default: Double): Double = getOrNull(name)?.toDoubleOrNull() ?: default
 
     operator fun get(name: String, default: Boolean): Boolean = getOrNull(name)?.toBooleanStrictOrNull() ?: default

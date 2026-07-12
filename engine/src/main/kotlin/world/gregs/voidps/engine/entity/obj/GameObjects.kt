@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.obj
 
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import org.jetbrains.annotations.TestOnly
+import org.rsmod.game.pathfinder.StepValidator
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
@@ -9,12 +10,15 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.entity.character.mode.move.canTravel
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionAdd
 import world.gregs.voidps.engine.map.collision.GameObjectCollisionRemove
 import world.gregs.voidps.network.login.protocol.encode.send
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import java.io.File
@@ -422,4 +426,15 @@ fun GameObject.replace(id: String, tile: Tile = this.tile, shape: Int = this.sha
  */
 fun GameObject.remove(ticks: Int = -1, collision: Boolean = true) {
     GameObjects.remove(this, ticks, collision)
+}
+
+fun Player.stepAway(obj: GameObject, tile: Tile = this.tile) {
+    val steps: StepValidator = get()
+    for (dir in Direction.stepAway) {
+        if (steps.canTravel(this, dir.delta.x, dir.delta.y)) {
+            walkTo(tile.add(dir), noCollision = true)
+            break
+        }
+    }
+    set("face_entity", obj)
 }
