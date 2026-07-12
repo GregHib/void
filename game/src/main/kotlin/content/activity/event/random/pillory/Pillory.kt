@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import kotlin.math.min
@@ -95,14 +96,21 @@ class Pillory : Script {
         }
     }
 
-    private fun Player.escape() {
+    private suspend fun Player.escape() {
         close("pillory_lock")
         message("You've escaped!")
         addOrDrop("random_event_gift")
         clear("pillory_target")
         clear("pillory_correct")
         clear("pillory_answer")
+        anim("teleport_modern")
+        sound("teleport")
+        gfx("teleport_modern")
+        delay(3)
         RandomEvents.complete(this)
+        anim("teleport_land_modern")
+        gfx("teleport_land_modern")
+        sound("teleport_land")
     }
 
     companion object {

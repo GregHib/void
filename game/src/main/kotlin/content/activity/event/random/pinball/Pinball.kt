@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -162,7 +163,14 @@ class Pinball : Script {
         clearMinimap()
         clear("pinball_score")
         clear("pinball_target")
+        anim("teleport_modern")
+        sound("teleport")
+        gfx("teleport_modern")
+        delay(3)
         RandomEvents.complete(this) // clears the instance and teleports the player home
+        anim("teleport_land_modern")
+        gfx("teleport_land_modern")
+        sound("teleport_land")
     }
 
     private suspend fun Player.guardTalk(guard: String) {

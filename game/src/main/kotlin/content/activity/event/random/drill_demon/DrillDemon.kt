@@ -122,7 +122,14 @@ class DrillDemon : Script {
         clear("drill_demon_ready")
         clear("drill_demon_task")
         clear("drill_demon_correct")
+        anim("teleport_modern")
+        sound("teleport")
+        gfx("teleport_modern")
+        delay(3)
         RandomEvents.complete(this)
+        anim("teleport_land_modern")
+        gfx("teleport_land_modern")
+        sound("teleport_land")
     }
 
     private data class Exercise(val anim: String, val sound: String, val order: String, val sign: String, val action: String)

@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.network.login.protocol.encode.interfaceText
 import world.gregs.voidps.type.Tile
@@ -76,7 +77,14 @@ class CapnArnav : Script {
                 return@objectOperate
             }
             clearState()
+            anim("teleport_modern")
+            sound("teleport")
+            gfx("teleport_modern")
+            delay(3)
             RandomEvents.complete(this)
+            anim("teleport_land_modern")
+            gfx("teleport_land_modern")
+            sound("teleport_land")
         }
     }
 

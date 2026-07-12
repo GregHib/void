@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Region
@@ -90,7 +91,14 @@ class Maze : Script {
             anim("emote_cheer")
             delay(2)
             addOrDrop("random_event_gift")
+            anim("teleport_modern")
+            sound("teleport")
+            gfx("teleport_modern")
+            delay(3)
             RandomEvents.complete(this)
+            anim("teleport_land_modern")
+            gfx("teleport_land_modern")
+            sound("teleport_land")
             jingle("maze_complete")
         }
 

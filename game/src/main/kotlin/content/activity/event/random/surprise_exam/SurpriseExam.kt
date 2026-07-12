@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -125,13 +126,20 @@ class SurpriseExam : Script {
         openQuestion()
     }
 
-    private fun Player.finish() {
+    private suspend fun Player.finish() {
         message("You've passed the exam!")
         addOrDrop("random_event_gift")
         clear("surprise_exam_answer")
         clear("surprise_exam_correct")
         clear("surprise_exam_door")
+        anim("teleport_modern")
+        sound("teleport")
+        gfx("teleport_modern")
+        delay(3)
         RandomEvents.complete(this)
+        anim("teleport_land_modern")
+        gfx("teleport_land_modern")
+        sound("teleport_land")
         jingle("surprise_exam_passed")
     }
 

@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -248,7 +249,7 @@ class Gravedigger : Script {
         exitGraveyard()
     }
 
-    private fun Player.exitGraveyard() {
+    private suspend fun Player.exitGraveyard() {
         for (coffin in SITES.indices) {
             while (inventory.remove(coffinName(coffin))) {
                 // Leo keeps his coffins
@@ -260,7 +261,14 @@ class Gravedigger : Script {
         clear("gravedigger_started")
         openTabs()
         clearMinimap()
+        anim("teleport_modern")
+        sound("teleport")
+        gfx("teleport_modern")
+        delay(3)
         RandomEvents.complete(this)
+        anim("teleport_land_modern")
+        gfx("teleport_land_modern")
+        sound("teleport_land")
     }
 
     private fun coffinName(index: Int) = if (index == 0) "coffin" else "coffin_${index + 1}"

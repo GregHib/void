@@ -327,7 +327,14 @@ class EvilTwin : Script {
         clearState()
         openTabs()
         clearMinimap()
+        anim("teleport_modern")
+        sound("teleport")
+        gfx("teleport_modern")
+        delay(3)
         RandomEvents.complete(this)
+        anim("teleport_land_modern")
+        gfx("teleport_land_modern")
+        sound("teleport_land")
     }
 
     private suspend fun Player.houseDialogue() {

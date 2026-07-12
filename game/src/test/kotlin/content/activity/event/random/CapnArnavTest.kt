@@ -123,7 +123,7 @@ class CapnArnavTest : WorldTest() {
 
         val portal = GameObjects.getShape(Tile(1626, 5165), 10)!!
         player.objectOption(portal, "Enter")
-        tick(4)
+        tick(8) // walk to the portal + the modern teleport takeoff delay
 
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)

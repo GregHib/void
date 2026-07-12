@@ -101,7 +101,7 @@ class DrillDemonTest : WorldTest() {
 
         repeat(4) { useCorrectMat(player, mats) }
         while (player.dialogue != null) player.skipDialogues() // Damien's closing line, then reward
-        tick(2)
+        tick(5) // wait out the modern teleport takeoff
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertEquals(1, player.get("camo_costume_points", 0))

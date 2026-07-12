@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -78,7 +79,14 @@ class FreakyForester : Script {
                 reward()
                 inventory.remove("raw_pheasant")
                 clear("freaky_forester_task")
+                anim("teleport_modern")
+                sound("teleport")
+                gfx("teleport_modern")
+                delay(3)
                 RandomEvents.complete(this)
+                anim("teleport_land_modern")
+                gfx("teleport_land_modern")
+                sound("teleport_land")
             }
             inventory.contains("raw_pheasant_incorrect") -> {
                 npc<Neutral>("freaky_forester", "That's not the right one.")

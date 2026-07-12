@@ -76,7 +76,7 @@ class FreakyForesterTest : WorldTest() {
         player.npcOption(forester, "Talk-to")
         tick()
         player.skipDialogues()
-        tick(2)
+        tick(5) // wait out the modern teleport takeoff
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertEquals(1, player.get("lederhosen_costume_points", 0))

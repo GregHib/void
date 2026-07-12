@@ -66,7 +66,7 @@ class QuizMasterTest : WorldTest() {
             player.skipDialogues() // "RIGHT!" (or the winner line on the 4th) -> the prize
             tick()
         }
-        tick()
+        tick(5) // wait out the modern teleport takeoff
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))
