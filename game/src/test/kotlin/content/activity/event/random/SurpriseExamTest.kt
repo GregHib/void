@@ -18,6 +18,8 @@ import kotlin.test.assertTrue
 
 class SurpriseExamTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val origin = Tile(3221, 3218)
     private val classroom = Tile(1886, 5025)
     private val iface = "surprise_exam_pattern"

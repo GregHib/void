@@ -17,6 +17,8 @@ import kotlin.test.assertTrue
 
 class CapnArnavTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val origin = Tile(3221, 3218)
     private val island = Tile(1626, 5163)
     private val words = listOf("Coins", "Bowl", "Bar", "Ring")

@@ -18,6 +18,8 @@ import kotlin.test.assertTrue
 
 class PrisonPeteTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val origin = Tile(3221, 3218)
     private val prison = Tile(2086, 4462)
     private val balloons = listOf(

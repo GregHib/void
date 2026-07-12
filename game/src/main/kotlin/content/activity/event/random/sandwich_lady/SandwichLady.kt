@@ -9,6 +9,7 @@ import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -29,16 +30,16 @@ class SandwichLady : Script {
 
         npcOperate("Talk-to", "sandwich_lady") { (lady) ->
             if (lady.owner != this) {
-                npc<Happy>("sandwich_lady", "This is for ${lady.owner?.name ?: "someone else"}, not you!")
+                npc<Happy>("This is for ${lady.owner?.name ?: "someone else"}, not you!")
                 return@npcOperate
             }
             val food = get<String>("sandwich_lady_food") ?: return@npcOperate
             if (inCombat) {
                 // No time for the tray mid-fight; she just hands over the right one.
-                serve(food)
+                serve(food, lady)
                 return@npcOperate
             }
-            npc<Happy>("sandwich_lady", "You look hungry to me. I tell you what - have a ${description(food)} on me.")
+            npc<Happy>("You look hungry to me. I tell you what - have a ${description(food)} on me.")
             interfaces.sendText("sandwich_lady_select", "title", "Have a ${description(food)} for free!")
             open("sandwich_lady_select")
         }
@@ -48,7 +49,7 @@ class SandwichLady : Script {
             val lady = lady()
             close("sandwich_lady_select")
             if (it.component == food) {
-                serve(food)
+                serve(food, lady)
             } else {
                 knockOut(lady)
             }
@@ -83,11 +84,14 @@ class SandwichLady : Script {
 
     private fun Player.lady(): NPC? = NPCs.indexed(get("sandwich_lady_npc", -1))?.takeIf { it.id == "sandwich_lady" }
 
-    private suspend fun Player.serve(food: String) {
+    private suspend fun Player.serve(food: String, lady: NPC?) {
         message("The sandwich lady gives you a ${description(food)}!")
         addOrDrop(food)
         addOrDrop("random_event_gift")
-        npc<Happy>("sandwich_lady", "Hope that fills you up!")
+        if (lady != null) {
+            talkWith(lady)
+            npc<Happy>("Hope that fills you up!")
+        }
         clearEvent()
         // Clearing the event state removes the following NPC on its next tick.
         RandomEvents.completeInPlace(this)

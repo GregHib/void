@@ -50,6 +50,7 @@ class Mime : Script {
         }
         mysteriousOldMan()
         kidnap(SPAWN)
+        // The old man stays behind at the kidnap origin, so he narrates by id rather than talkWith.
         npc<Neutral>("mysterious_old_man", "Here's a little challenge for you:<br>Copy the Mime's performance, then you'll be released.")
         walkOverDelay(WATCH)
 

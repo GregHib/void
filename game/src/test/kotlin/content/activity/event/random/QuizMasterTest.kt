@@ -13,6 +13,8 @@ import kotlin.test.assertTrue
 
 class QuizMasterTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val origin = Tile(3221, 3218)
     private val quiz = "dialogue_macro_quiz_show"
 

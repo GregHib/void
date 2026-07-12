@@ -16,6 +16,8 @@ import kotlin.test.assertTrue
 
 class DrillDemonTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val yard = Tile(3163, 4820)
     private val matTiles = listOf(Tile(3160, 4819), Tile(3162, 4819), Tile(3164, 4819), Tile(3166, 4819))
 

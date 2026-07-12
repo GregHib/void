@@ -13,6 +13,7 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.jingle
@@ -153,7 +154,8 @@ class PrisonPete : Script {
         anim("prison_pete_pick_up")
         delay(1)
         inventory.add("prison_key_prison_pete")
-        npc<Neutral>("prison_pete", "Great, now you've got a key! Bring it to me so I can try it on the door.")
+        talkWith(NPCs.find(tile.regionLevel, "prison_pete"))
+        npc<Neutral>("Great, now you've got a key! Bring it to me so I can try it on the door.")
     }
 
     private suspend fun Player.peteTalk(pete: NPC) {
@@ -163,9 +165,9 @@ class PrisonPete : Script {
         }
         choice("What would you like to say?") {
             option<Quiz>("What is this place?") {
-                npc<Neutral>("prison_pete", "Don't you remember? This is ScapeRune's prison. Evil Bob caught you and brought you here.")
+                npc<Neutral>("Don't you remember? This is ScapeRune's prison. Evil Bob caught you and brought you here.")
                 player<Angry>("What gives him the right to lock me up? I demand to see a lawyer! I know my rights!")
-                npc<Sad>("prison_pete", "Evil Bob doesn't care about people's rights. He's cruel and utterly merciless. He's a cat.")
+                npc<Sad>("Evil Bob doesn't care about people's rights. He's cruel and utterly merciless. He's a cat.")
                 player<Quiz>("How do I get out of here? I can't be held captive by a cat!")
                 escapeInfo()
             }
@@ -176,11 +178,11 @@ class PrisonPete : Script {
     }
 
     private suspend fun Player.escapeInfo() {
-        npc<Neutral>("prison_pete", "Some of these balloon animals have keys in them, and if you pull the big lever it tells you which shape animal contains the correct key, but I can never find it.")
-        npc<Neutral>("prison_pete", "You need to pull the lever to find out which shape animal contains the key, then pop that sort of animal to get the key.")
-        npc<Neutral>("prison_pete", "Bring me any keys you get and I'll try them on the doors.")
+        npc<Neutral>("Some of these balloon animals have keys in them, and if you pull the big lever it tells you which shape animal contains the correct key, but I can never find it.")
+        npc<Neutral>("You need to pull the lever to find out which shape animal contains the key, then pop that sort of animal to get the key.")
+        npc<Neutral>("Bring me any keys you get and I'll try them on the doors.")
         player<Quiz>("What happens if I get it wrong?")
-        npc<Neutral>("prison_pete", "You haven't got a life sentence, so they'll let you out eventually. You should be able to escape much faster if you go pull that lever and pop the right balloon animals.")
+        npc<Neutral>("You haven't got a life sentence, so they'll let you out eventually. You should be able to escape much faster if you go pull that lever and pop the right balloon animals.")
     }
 
     private suspend fun Player.returnKey(pete: NPC) {
@@ -189,10 +191,10 @@ class PrisonPete : Script {
         }
         face(pete)
         pete.face(this)
-        npc<Neutral>("prison_pete", "Ooh, thanks! I'll see if it's the right one...")
+        npc<Neutral>("Ooh, thanks! I'll see if it's the right one...")
         if (get("prison_pete_pending", 0) <= 0) {
             jingle("prison_pete_failure")
-            npc<Sad>("prison_pete", "Aww, that was the wrong key! Try the lever again to see which balloon you need.")
+            npc<Sad>("Aww, that was the wrong key! Try the lever again to see which balloon you need.")
             return
         }
         dec("prison_pete_pending")
@@ -201,11 +203,11 @@ class PrisonPete : Script {
         delay(2)
         pete.face(this)
         if (inc("prison_pete_keys") >= REQUIRED) {
-            npc<Happy>("prison_pete", "You did it, you got all the keys right!")
-            npc<Happy>("prison_pete", "Thank you! You're my friend FOREVER!")
+            npc<Happy>("You did it, you got all the keys right!")
+            npc<Happy>("Thank you! You're my friend FOREVER!")
             player<Neutral>("Let's get out of here before that cat notices.")
         } else {
-            npc<Happy>("prison_pete", "Hooray, you got the right one! Now pull the lever again and let's get the next lock unlocked.")
+            npc<Happy>("Hooray, you got the right one! Now pull the lever again and let's get the next lock unlocked.")
         }
     }
 
@@ -213,7 +215,8 @@ class PrisonPete : Script {
         openGates()
         walkToDelay(gate.tile.addY(-1), forceWalk = true)
         message("You quickly escape the prison with Pete.")
-        npc<Happy>("prison_pete", "Thanks a lot for your help! Here, have a present:")
+        talkWith(NPCs.find(tile.regionLevel, "prison_pete"))
+        npc<Happy>("Thanks a lot for your help! Here, have a present:")
         addOrDrop("random_event_gift")
         player<Happy>("Thanks! See you around!")
         while (inventory.remove("prison_key_prison_pete")) {

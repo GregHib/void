@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
@@ -143,7 +144,7 @@ class EvilTwin : Script {
         molly.say(nagLines().random(random))
         delay(3)
         set("evil_twin_tries", TRIES)
-        setupHouse()
+        talkWith(setupHouse())
         houseDialogue()
     }
 
@@ -152,9 +153,9 @@ class EvilTwin : Script {
      * furniture (control panel, cage, crates) comes with the map; the claw and its floor marker
      * are spawned at [CLAW_HOME], and the five suspects - one per look sharing the twin's colour,
      * only one matching her exactly - are set wandering the pen. Once the twin has been caught
-     * only she remains, waiting in the jail.
+     * only she remains, waiting in the jail. Returns the instance's Molly.
      */
-    private suspend fun Player.setupHouse() {
+    private suspend fun Player.setupHouse(): NPC {
         smallInstance(Region(HOUSE_REGION), levels = 1)
         setInstanceLogout(Tile(this["random_event_origin", tile.id]))
         val offset = instanceOffset()
@@ -177,6 +178,7 @@ class EvilTwin : Script {
         } else {
             spawnSuspects(hash, PEN.offset(offset))
         }
+        return host
     }
 
     private fun Player.spawnSuspects(hash: Int, pen: Cuboid) {
@@ -307,8 +309,9 @@ class EvilTwin : Script {
             return
         }
         close("evil_twin_crane")
-        npc<Angry>(mollyId(), "Such incompetence! I should never have asked a baboon like you to do a complex task like this!")
-        npc<Angry>(mollyId(), "Get out of my sight!")
+        talkWith(NPCs.find(tile.regionLevel, mollyId()))
+        npc<Angry>("Such incompetence! I should never have asked a baboon like you to do a complex task like this!")
+        npc<Angry>("Get out of my sight!")
         clearState()
         openTabs()
         clearMinimap()
@@ -321,8 +324,8 @@ class EvilTwin : Script {
 
     private suspend fun Player.success() {
         player<Happy>("Well, I've managed to get her into the cage.")
-        npc<Happy>(mollyId(), "Fantastic! For so many years I've had to put up with her and now she's locked up for good.")
-        npc<Happy>(mollyId(), "Thank you for all your help. Take this as a reward.")
+        npc<Happy>("Fantastic! For so many years I've had to put up with her and now she's locked up for good.")
+        npc<Happy>("Thank you for all your help. Take this as a reward.")
         addOrDrop("random_event_gift")
         clearState()
         openTabs()
@@ -338,24 +341,24 @@ class EvilTwin : Script {
     }
 
     private suspend fun Player.houseDialogue() {
-        npc<Sad>(mollyId(), "Thank you for coming, $name. I'm sorry to drag you away like this, but I really need your help.")
-        npc<Sad>(mollyId(), "My evil twin sister has been committing crimes and everyone blames me! We look exactly alike - even our clothes are the same.")
-        npc<Neutral>(mollyId(), "I've managed to trap her next door, but she dragged several other women in with her.")
-        npc<Neutral>(mollyId(), "Through that door is a control panel that operates a giant mechanical claw. Use it to catch my sister!")
-        npc<Sad>(mollyId(), "Be careful though; the claw's magic is running low, so you only have two attempts.")
+        npc<Sad>("Thank you for coming, $name. I'm sorry to drag you away like this, but I really need your help.")
+        npc<Sad>("My evil twin sister has been committing crimes and everyone blames me! We look exactly alike - even our clothes are the same.")
+        npc<Neutral>("I've managed to trap her next door, but she dragged several other women in with her.")
+        npc<Neutral>("Through that door is a control panel that operates a giant mechanical claw. Use it to catch my sister!")
+        npc<Sad>("Be careful though; the claw's magic is running low, so you only have two attempts.")
         choice {
             option<Neutral>("Tell me about the controls.") {
-                npc<Neutral>(mollyId(), "The arrow buttons each move the claw one square; the glowing mark on the floor shows where it's aiming.")
-                npc<Neutral>(mollyId(), "When my sister stands on the mark, hit the red button to lower the claw and grab her.")
-                npc<Sad>(mollyId(), "Make sure it's really her and not an innocent bystander!")
+                npc<Neutral>("The arrow buttons each move the claw one square; the glowing mark on the floor shows where it's aiming.")
+                npc<Neutral>("When my sister stands on the mark, hit the red button to lower the claw and grab her.")
+                npc<Sad>("Make sure it's really her and not an innocent bystander!")
             }
             option<Happy>("I'll get right to it.")
         }
     }
 
     private suspend fun Player.reminderDialogue() {
-        npc<Neutral>(mollyId(), "My sister is still on the loose! Use the control panel next door to catch her.")
-        npc<Sad>(mollyId(), "Remember, she's the one that looks exactly like me.")
+        npc<Neutral>("My sister is still on the loose! Use the control panel next door to catch her.")
+        npc<Sad>("Remember, she's the one that looks exactly like me.")
     }
 
     private fun Player.mollyId() = "molly_${get("evil_twin_hash", 0)}"

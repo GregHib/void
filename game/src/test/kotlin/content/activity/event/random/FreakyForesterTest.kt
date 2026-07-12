@@ -19,6 +19,8 @@ import kotlin.test.assertTrue
 
 class FreakyForesterTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val clearing = Tile(2601, 4777)
 
     private fun startInClearing(name: String, task: Int, origin: Tile = Tile(3221, 3218)) = createPlayer(clearing, name).apply {

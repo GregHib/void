@@ -11,9 +11,11 @@ import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
@@ -36,15 +38,15 @@ class SurpriseExam : Script {
 
         npcOperate("Talk-to", "mr_mordau") { (mordaut) ->
             if (get<String>("random_event") != "surprise_exam") {
-                npc<Neutral>("mr_mordau", "I'm rather busy, please don't interrupt my class.", largeHead = true)
+                npc<Neutral>("I'm rather busy, please don't interrupt my class.", largeHead = true)
                 return@npcOperate
             }
             face(mordaut.tile)
             val door = get<String>("surprise_exam_door")
             if (door != null) {
-                npc<Neutral>("mr_mordau", "Well done! Please exit through the ${DOOR_TEXT[door]} door.", largeHead = true)
+                npc<Neutral>("Well done! Please exit through the ${DOOR_TEXT[door]} door.", largeHead = true)
             } else {
-                npc<Neutral>("mr_mordau", "Please answer these questions for me.", largeHead = true)
+                npc<Neutral>("Please answer these questions for me.", largeHead = true)
                 openQuestion()
             }
         }
@@ -113,15 +115,16 @@ class SurpriseExam : Script {
 
     private suspend fun Player.answer(option: Int) {
         close("surprise_exam_pattern")
+        talkWith(NPCs.find(tile.regionLevel, "mr_mordau"))
         if (option == get("surprise_exam_answer", 0)) {
             if (inc("surprise_exam_correct") >= REQUIRED) {
                 set("surprise_exam_door", DOORS.random(random))
-                npc<Neutral>("mr_mordau", "Excellent work! You've passed. Please exit through the ${DOOR_TEXT[get<String>("surprise_exam_door")]} door.", largeHead = true)
+                npc<Neutral>("Excellent work! You've passed. Please exit through the ${DOOR_TEXT[get<String>("surprise_exam_door")]} door.", largeHead = true)
                 return
             }
-            npc<Neutral>("mr_mordau", "Excellent work! Now for another...", largeHead = true)
+            npc<Neutral>("Excellent work! Now for another...", largeHead = true)
         } else {
-            npc<Neutral>("mr_mordau", "I'm afraid that isn't correct. Now for another...", largeHead = true)
+            npc<Neutral>("I'm afraid that isn't correct. Now for another...", largeHead = true)
         }
         openQuestion()
     }

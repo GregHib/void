@@ -11,6 +11,8 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.sound
@@ -35,7 +37,7 @@ class DrillDemon : Script {
                 return@npcOperate
             }
             if (!get("drill_demon_ready", false)) {
-                npc<Neutral>("sergeant_damien", "I haven't given you the order yet, worm!", largeHead = true)
+                npc<Neutral>("I haven't given you the order yet, worm!", largeHead = true)
                 return@npcOperate
             }
             order(wrong = false)
@@ -46,8 +48,9 @@ class DrillDemon : Script {
                 message("You can't do that right now.")
                 return@objectOperate
             }
+            talkWith(NPCs.find(tile.regionLevel, "sergeant_damien"))
             if (!get("drill_demon_ready", false)) {
-                npc<Neutral>("sergeant_damien", "I haven't given you the order yet, worm!", largeHead = true)
+                npc<Neutral>("I haven't given you the order yet, worm!", largeHead = true)
                 return@objectOperate
             }
             val value = get("drill_demon_sign_${mat.id.removePrefix("drill_demon_mat_")}", 0)
@@ -82,6 +85,7 @@ class DrillDemon : Script {
         }
         mysteriousOldMan()
         kidnap(YARD)
+        talkWith(NPCs.find(tile.regionLevel, "sergeant_damien"))
         message("Follow Sergeant Damien's orders!")
         delay(ORDER_DELAY) // give the player a few seconds before barking the first order
         set("drill_demon_ready", true)
@@ -111,12 +115,12 @@ class DrillDemon : Script {
     private suspend fun Player.order(wrong: Boolean) {
         val task = EXERCISES.getValue(get("drill_demon_task", 1))
         val prefix = if (wrong) "Wrong exercise, worm! " else ""
-        npc<Neutral>("sergeant_damien", "$prefix${task.order} private!", largeHead = true)
+        npc<Neutral>("$prefix${task.order} private!", largeHead = true)
         item(task.sign, "Go to <red>this mat</col> and ${task.action}!")
     }
 
     private suspend fun Player.finish() {
-        npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
+        npc<Neutral>("Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
         addOrDrop("random_event_gift")
         rewardCostumePoint("camo")
         clear("drill_demon_ready")

@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -87,7 +88,9 @@ class EvilBob : Script {
 
         objectOperate("Enter", "evil_bob_exit_portal", arrive = false) { (portal) ->
             if (!get("evil_bob_complete", false)) {
-                npc<Angry>("evil_bob", "You're going nowhere, human!")
+                val bob = bob() ?: return@objectOperate
+                talkWith(bob)
+                npc<Angry>("You're going nowhere, human!")
                 return@objectOperate
             }
             walkOverDelay(portal.tile)
@@ -142,6 +145,7 @@ class EvilBob : Script {
         }
         face(bob.tile)
         message("Welcome to ScapeRune.")
+        talkWith(bob)
         evilBobDialogue()
     }
 
@@ -159,6 +163,8 @@ class EvilBob : Script {
 
     private fun Player.bob(): NPC? = NPCs.indexed(get("evil_bob_npc", -1))?.takeIf { it.id == "evil_bob" }
 
+    private fun Player.servant(): NPC? = NPCs.findOrNull(tile.regionLevel) { it.id == "evil_bob_servant" && it.owner == this }
+
     private fun Player.currentZone(): Int {
         val local = tile.minus(instanceOffset())
         return ZONES.indexOfFirst { it.contains(local) } + 1 // 0 when in no zone
@@ -170,12 +176,18 @@ class EvilBob : Script {
                 statement("Evil Bob's had his fill; there's no need to fish any more.")
             get("evil_bob_new_spot", false) ->
                 statement("You don't know if this is a good place to go fishing. Perhaps you should ask someone, like one of the human servants.")
-            !inventory.contains("small_fishing_net") ->
-                npc<Sad>("evil_bob_servant", "You'll need a fishing net. There are plenty scattered around the beach.")
+            !inventory.contains("small_fishing_net") -> {
+                val servant = servant() ?: return
+                talkWith(servant)
+                npc<Sad>("You'll need a fishing net. There are plenty scattered around the beach.")
+            }
             inventory.isFull() ->
                 message("You don't have enough space in your inventory.")
-            holdsFish() ->
-                npc<Sad>("evil_bob_servant", "You've already got a fish. Come over here to uncook it, then serve it to Evil Bob.")
+            holdsFish() -> {
+                val servant = servant() ?: return
+                talkWith(servant)
+                npc<Sad>("You've already got a fish. Come over here to uncook it, then serve it to Evil Bob.")
+            }
             else -> {
                 anim("fish_small_fishing_net")
                 message("You cast out your net...")
@@ -206,15 +218,15 @@ class EvilBob : Script {
         if (!inventory.remove("raw_fish_like_thing")) {
             return
         }
-        npc<Unamused>("evil_bob", "Mmm, mmm... that's delicious.")
+        npc<Unamused>("Mmm, mmm... that's delicious.")
         if (get("evil_bob_attentive", false)) {
             set("evil_bob_attentive", false)
             assignZone()
             set("evil_bob_new_spot", true)
-            npc<Angry>("evil_bob", "Now get me another, you no-good human.")
+            npc<Angry>("Now get me another, you no-good human.")
             statement("Evil Bob seems slightly less attentive of you.")
         } else {
-            npc<Neutral>("evil_bob", "Now, let me take... a little... catnap.")
+            npc<Neutral>("Now, let me take... a little... catnap.")
             set("evil_bob_complete", true)
             bob()?.say("ZZZzzz")
             statement("Evil Bob has fallen asleep. Slip away through the portal while you can!")
@@ -227,8 +239,8 @@ class EvilBob : Script {
         }
         set("evil_bob_attentive", true)
         set("evil_bob_new_spot", true)
-        npc<Angry>("evil_bob", "What was this? That was absolutely disgusting!")
-        npc<Angry>("evil_bob", "Don't you know what kind of fish I like? Talk to my other servants for some advice.")
+        npc<Angry>("What was this? That was absolutely disgusting!")
+        npc<Angry>("Don't you know what kind of fish I like? Talk to my other servants for some advice.")
         statement("Evil Bob seems more attentive of you.")
     }
 
@@ -239,7 +251,7 @@ class EvilBob : Script {
             inventory.contains("raw_fish_like_thing") -> serveCorrect()
             inventory.contains("raw_fish_like_thing_incorrect") -> serveWrong()
             inventory.contains("fish_like_thing") || inventory.contains("fish_like_thing_incorrect") ->
-                npc<Angry>("evil_bob", "What, are you giving me cooked fish? What am I going to do with that? Uncook it first!")
+                npc<Angry>("What, are you giving me cooked fish? What am I going to do with that? Uncook it first!")
             !get("evil_bob_seen_intro", false) -> {
                 set("evil_bob_seen_intro", true)
                 introDialogue()
@@ -250,37 +262,37 @@ class EvilBob : Script {
 
     private suspend fun Player.introDialogue() {
         player<Angry>("Where am I?")
-        npc<Neutral>("evil_bob", "On my island.")
+        npc<Neutral>("On my island.")
         player<Angry>("Who brought me here?")
-        npc<Unamused>("evil_bob", "That would be telling.")
+        npc<Unamused>("That would be telling.")
         player<Angry>("Take me to your leader!")
-        npc<Angry>("evil_bob", "I am your leader, you are but a slave.")
+        npc<Angry>("I am your leader, you are but a slave.")
         player<Angry>("I am not a slave, I am a free man!")
-        npc<Angry>("evil_bob", "Ah-ha-ha-ha-ha-ha!")
-        npc<Angry>("evil_bob", "Now catch me some fish, I'm hungry. Talk to my other servants, and hurry it up!")
+        npc<Angry>("Ah-ha-ha-ha-ha-ha!")
+        npc<Angry>("Now catch me some fish, I'm hungry. Talk to my other servants, and hurry it up!")
     }
 
     private suspend fun Player.reasonsDialogue() {
         player<Angry>("Let me out of here!")
-        npc<Angry>("evil_bob", "I will never let you go, $name!")
+        npc<Angry>("I will never let you go, $name!")
         choice {
             option<Neutral>("Why not?") {
-                npc<Angry>("evil_bob", "Because I say so! And because I can never have enough servants!")
-                npc<Angry>("evil_bob", "Now catch me some fish, I'm hungry.")
+                npc<Angry>("Because I say so! And because I can never have enough servants!")
+                npc<Angry>("Now catch me some fish, I'm hungry.")
             }
             option<Neutral>("What's it all about?") {
-                npc<Neutral>("evil_bob", "You are a skilled worker. A human like you is worth a great deal as a slave.")
+                npc<Neutral>("You are a skilled worker. A human like you is worth a great deal as a slave.")
                 player<Angry>("A slave?? I will have nothing to do with you.")
-                npc<Unamused>("evil_bob", "It's just a matter of time before you do everything I ask. Just ask my servants!")
+                npc<Unamused>("It's just a matter of time before you do everything I ask. Just ask my servants!")
             }
             option<Neutral>("How is it possible that you're talking?") {
-                npc<Quiz>("evil_bob", "How is it possible that you're not meowing?")
+                npc<Quiz>("How is it possible that you're not meowing?")
                 player<Neutral>("Meowing?? Why would I be meowing?")
-                npc<Neutral>("evil_bob", "Most humans do; that's why I wear this amulet of Man speak.")
+                npc<Neutral>("Most humans do; that's why I wear this amulet of Man speak.")
             }
             option<Neutral>("What did you do to Bob?") {
-                npc<Neutral>("evil_bob", "Bob? I am Bob! An incarnation of Bob here on ScapeRune.")
-                npc<Angry>("evil_bob", "You work just as well for me. Now get to work, human! Fish for me!")
+                npc<Neutral>("Bob? I am Bob! An incarnation of Bob here on ScapeRune.")
+                npc<Angry>("You work just as well for me. Now get to work, human! Fish for me!")
             }
         }
     }
@@ -289,22 +301,22 @@ class EvilBob : Script {
         when {
             get("evil_bob_complete", false) -> {
                 player<Neutral>("Evil Bob has fallen asleep, come quickly!")
-                npc<Sad>("evil_bob_servant", "You go, $name. I don't belong there... this is the only place I can ever go.")
+                npc<Sad>("You go, $name. I don't belong there... this is the only place I can ever go.")
             }
             !get("evil_bob_servant_helped", false) -> {
                 player<Angry>("I need help, I've been kidnapped by an evil cat!")
-                npc<Scared>("evil_bob_servant", "Meow! Errr... I c-c-c-can't help you... He'll kill us all!")
+                npc<Scared>("Meow! Errr... I c-c-c-can't help you... He'll kill us all!")
                 player<Angry>("He's just a little cat! There must be something I can do!")
-                npc<Sad>("evil_bob_servant", "F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
+                npc<Sad>("F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
                 set("evil_bob_servant_helped", true)
                 showSpot()
             }
             get("evil_bob_new_spot", false) -> {
-                npc<Sad>("evil_bob_servant", "Look... over t-t-there! That fishing spot c-c-contains the f-f-f-fish he likes.")
+                npc<Sad>("Look... over t-t-there! That fishing spot c-c-contains the f-f-f-fish he likes.")
                 showSpot()
             }
             else ->
-                npc<Sad>("evil_bob_servant", "F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
+                npc<Sad>("F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
         }
     }
 
