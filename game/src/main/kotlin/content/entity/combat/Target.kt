@@ -6,7 +6,6 @@ import content.area.wilderness.inSingleCombat
 import content.area.wilderness.inWilderness
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
-import content.entity.effect.transform
 import content.entity.player.equip.Equipment
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.combatStyle
@@ -54,15 +53,14 @@ object Target {
             if ((source.spell == "bind" || source.spell == "snare" || source.spell == "entangle") && target.id.endsWith("_impling")) {
                 return true
             }
-            val retaliatingAgainstFamiliar = source is NPC && target["owner_index", -1] != -1
-            if (!retaliatingAgainstFamiliar) {
-                if (target.transform != "") {
-                    if (!NPCDefinitions.get(target.transform).options.contains("Attack")) {
-                        return false
-                    }
-                } else if (target.def.options[1] != "Attack") {
+            if (source is Player) {
+                if (!target.def(source).options.contains("Attack")) {
                     return false
                 }
+            } else if (target["owner_index", -1] == -1 && !target.def.options.contains("Attack")) {
+                // A familiar's base form deliberately has no "Attack" option (its owner can't click
+                // it) yet npcs must still fight back against one - combat() re-validates every tick.
+                return false
             }
             if (target.mode == PauseMode) {
                 return false
