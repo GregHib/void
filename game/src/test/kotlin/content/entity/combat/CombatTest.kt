@@ -2,6 +2,10 @@ package content.entity.combat
 
 import FakeRandom
 import WorldTest
+import content.entity.combat.damageDealers
+import content.entity.combat.hit.hit
+import content.entity.effect.stun
+import content.entity.effect.stunned
 import content.entity.player.effect.skull
 import equipItem
 import interfaceOption
@@ -12,7 +16,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertNotNull
 import playerOption
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.player.appearance
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
@@ -83,6 +89,54 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertNotNull(FloorItems.firstOrNull(tile, "bones"))
+    }
+
+    @Test
+    fun `Familiar kill drops loot for its owner`() {
+        val owner = createPlayer(emptyTile)
+        val familiar = createNPC("spirit_wolf_familiar", emptyTile.addX(1))
+        familiar["owner_index"] = owner.index
+        val npc = createNPC("giant_rat", emptyTile.addY(4))
+        // The familiar dealt the killing damage.
+        npc.damageDealers[familiar] = 100
+        val tile = npc.tile
+        npc.levels.set(Skill.Constitution, 0)
+        tick(8) // npc death + drop
+
+        val bones = FloorItems.firstOrNull(npc["death_tile", tile], "bones")
+        assertNotNull(bones)
+        assertEquals(owner.name, bones!!.owner)
+    }
+
+    @Test
+    fun `A 0 hit on a familiar is attributed to its owner so the owner sees the blue splat`() {
+        val owner = createPlayer(emptyTile)
+        val familiar = createNPC("spirit_wolf_familiar", emptyTile.addX(1))
+        familiar["owner_index"] = owner.index
+        val attacker = createNPC("giant_rat", emptyTile.addY(4))
+
+        // An npc lands a 0 (blocked) hit on the familiar.
+        attacker.hit(familiar, offensiveType = "melee", damage = 0)
+        tick(1) // resolve the hit; read the splat this tick, before the next sync clears it
+
+        val splat = familiar.visuals.hits.splats.firstOrNull { it != null }
+        assertNotNull(splat)
+        // Owner index (positive) rather than the attacker npc, so the client shows the owner the splat.
+        assertEquals(owner.index, splat!!.source)
+    }
+
+    @Test
+    fun `Npc killed by a non-familiar npc does not crash resolving an owner`() {
+        val attacker = createNPC("giant_rat", emptyTile.addX(1))
+        val npc = createNPC("giant_rat", emptyTile.addY(4))
+        // A plain npc killer has no owner_index (-1); resolving it must not throw.
+        npc.damageDealers[attacker] = 100
+        val tile = npc.tile
+        npc.levels.set(Skill.Constitution, 0)
+        tick(8)
+
+        // The killer isn't a player, so no loot is dropped (original behaviour) - and no crash.
+        assertNull(FloorItems.firstOrNull(npc["death_tile", tile], "bones"))
     }
 
     @Test
@@ -274,6 +328,32 @@ internal class CombatTest : WorldTest() {
         tick(1) // npc death + queue
         assertTrue(npc.dead)
         assertEquals(npc.tile, npc["death_tile"])
+    }
+
+    @Test
+    fun `Stunned npc cannot land attacks until the stun expires`() {
+        val player = createPlayer(emptyTile)
+        val npc = createNPC("rat", emptyTile.addY(1))
+        npc.mode = CombatMovement(npc, player)
+        npc.target = player
+
+        // Baseline: an un-stunned rat reliably damages the adjacent player.
+        val healthy = player.levels.get(Skill.Constitution)
+        tick(6)
+        assertTrue(player.levels.get(Skill.Constitution) < healthy, "an un-stunned rat lands hits")
+
+        // Stun the rat - it must not swing for the stun's duration.
+        player.stun(npc, 10)
+        assertTrue(npc.stunned)
+        val stunned = player.levels.get(Skill.Constitution)
+        tick(6)
+        // No hits land: health only holds or naturally regenerates, it never drops.
+        val duringStun = player.levels.get(Skill.Constitution)
+        assertTrue(duringStun >= stunned, "a stunned rat lands no hits")
+
+        // Attacks resume once the stun lapses.
+        tick(8)
+        assertTrue(player.levels.get(Skill.Constitution) < duringStun, "the rat attacks again after the stun")
     }
 
     companion object {

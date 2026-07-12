@@ -33,7 +33,19 @@ data class NPC(
 
     var hide = false
     override val blockMove: Int
-        get() = if (transformDef["solid", true]) CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS else 0
+        get() {
+            if (!transformDef["solid", true]) {
+                return 0
+            }
+            // Owned followers (familiars/pets) phase through players - including their owner - so a
+            // player standing between them and their target can't block them. They still collide
+            // with other npcs (BLOCK_NPCS) and route around them.
+            return if (this["owner_index", -1] != -1) {
+                CollisionFlag.BLOCK_NPCS
+            } else {
+                CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
+            }
+        }
     override val collisionFlag: Int
         get() = CollisionFlag.BLOCK_NPCS or if (transformDef["solid", false]) CollisionFlag.FLOOR else 0
 

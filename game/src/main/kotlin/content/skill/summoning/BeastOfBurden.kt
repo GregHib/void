@@ -13,6 +13,8 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
+import world.gregs.voidps.engine.entity.item.drop.DropTable
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.clear
@@ -27,6 +29,15 @@ import java.util.concurrent.TimeUnit
 /** The only items the abyssal essence familiars carry; every other familiar refuses them. */
 private val BEAST_OF_BURDEN_ESSENCE = setOf("rune_essence", "pure_essence")
 
+/**
+ * Attribute set on a familiar while it's off performing a special (the beaver's Multichop), plus the
+ * message shown when the player tries to interact with it then. Only the beaver sets this, so the
+ * beaver-specific wording is safe. The log-fletch trick is deliberately *not* gated by it - the
+ * beaver's cutting is exactly the window in which it works as a knife.
+ */
+const val FAMILIAR_CHOPPING = "chopping_logs"
+const val FAMILIAR_BUSY_MESSAGE = "The beaver is busy cutting logs, you cannot interact with it now."
+
 val Player.beastOfBurdenCapacity: Int
     get() = follower?.def?.get("summoning_beast_of_burden_capacity", 0) ?: 0
 
@@ -35,6 +46,16 @@ val Player.beastOfBurdenEssenceOnly: Boolean
     get() = follower?.def?.get("summoning_beast_of_burden_essence", 0) == 1
 
 fun Player.hasBeastOfBurden(): Boolean = follower?.def?.get("summoning_beast_of_burden", 0) == 1
+
+/**
+ * A forager familiar's loot table is named `forage_<familiar>` (e.g. `forage_magpie`); returns
+ * null if the current follower isn't a forager. Detected by table existence so no npc-def param
+ * is needed.
+ */
+fun Player.forageTable(dropTables: DropTables): DropTable? {
+    val id = follower?.id ?: return null
+    return dropTables.get("forage_${id.removeSuffix("_familiar")}")
+}
 
 fun Player.ensureBeastOfBurdenInventory() {
     val capacity = beastOfBurdenCapacity
@@ -124,7 +145,7 @@ fun Player.dropBeastOfBurdenItems() {
     message("Your familiar has dropped all the items it was holding.")
 }
 
-class BeastOfBurden : Script {
+class BeastOfBurden(private val dropTables: DropTables) : Script {
 
     init {
         npcOperate("Store", "*_familiar") { (target) ->
@@ -132,12 +153,20 @@ class BeastOfBurden : Script {
                 message("That's not your familiar.")
                 return@npcOperate
             }
+            if (target[FAMILIAR_CHOPPING, false]) {
+                message(FAMILIAR_BUSY_MESSAGE)
+                return@npcOperate
+            }
             openBeastOfBurden()
         }
 
-        itemOnNPCOperate("*", "*_familiar") { (target, item) ->
+        itemOnNPCOperate("*", "*_familiar*") { (target, item) ->
             if (target != follower) {
                 message("That's not your familiar.")
+                return@itemOnNPCOperate
+            }
+            if (target[FAMILIAR_CHOPPING, false]) {
+                message(FAMILIAR_BUSY_MESSAGE)
                 return@itemOnNPCOperate
             }
             if (underAttack) {
@@ -149,6 +178,10 @@ class BeastOfBurden : Script {
 
         npcOperate("Interact", "*_familiar") { (target) ->
             if (target != follower) {
+                return@npcOperate
+            }
+            // Silent: the beaver's own Interact handler shows the busy message during Multichop.
+            if (target[FAMILIAR_CHOPPING, false]) {
                 return@npcOperate
             }
             updateFamiliarInterface()
@@ -243,6 +276,10 @@ class BeastOfBurden : Script {
         }
         if (!player.hasBeastOfBurden()) {
             player.message("Your follower can't carry any items.")
+            return
+        }
+        if (player.forageTable(dropTables) != null) {
+            player.message("Your familiar forages for its own items and won't carry yours.")
             return
         }
         val capacity = player.beastOfBurdenCapacity

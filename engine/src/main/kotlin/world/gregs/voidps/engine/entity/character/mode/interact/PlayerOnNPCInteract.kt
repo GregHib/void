@@ -12,9 +12,11 @@ data class PlayerOnNPCInteract(
     override val option: String,
     val player: Player,
 ) : InteractOption(player, target) {
-    override fun hasOperate() = Operation.playerNpc.containsKey("$option:${target.def(player).stringId}") || Operation.playerNpc.containsKey("$option:*")
+    // A transformed npc (e.g. a familiar's wilderness "<id>_combat" form) falls back to its base
+    // id's handlers when the transform has none of its own for the option.
+    override fun hasOperate() = Operation.playerNpc.containsKey("$option:${target.def(player).stringId}") || Operation.playerNpc.containsKey("$option:${target.id}") || Operation.playerNpc.containsKey("$option:*")
 
-    override fun hasApproach() = Approachable.playerNpc.containsKey("$option:${target.def(player).stringId}") || Approachable.playerNpc.containsKey("$option:*")
+    override fun hasApproach() = Approachable.playerNpc.containsKey("$option:${target.def(player).stringId}") || Approachable.playerNpc.containsKey("$option:${target.id}") || Approachable.playerNpc.containsKey("$option:*")
 
     override fun operate() {
         invoke(Operation.playerNpc)
@@ -26,7 +28,7 @@ data class PlayerOnNPCInteract(
 
     private fun invoke(map: Map<String, List<suspend Player.(PlayerOnNPCInteract) -> Unit>>) {
         Script.launch {
-            for (block in map["$option:${target.def(player).stringId}"] ?: map["$option:*"] ?: return@launch) {
+            for (block in map["$option:${target.def(player).stringId}"] ?: map["$option:${target.id}"] ?: map["$option:*"] ?: return@launch) {
                 block(player, this@PlayerOnNPCInteract)
             }
         }

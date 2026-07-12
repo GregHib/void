@@ -371,11 +371,11 @@ id = 1187
 [summoning_scroll_ids_1]
 id = 1188
 
-# Used if varp 4282 > 50
+# Chathead animation from varbit 4282 minus 50, used by cs2 751 when the varbit is over 50
 [pet_details_chathead_animations_sad]
 id = 1275
 
-# Used if varp 4282 <= 50
+# Chathead animation from varbit 4282, used by cs2 751 when the varbit is 50 or under
 [pet_details_chathead_animations_normal]
 id = 1276
 

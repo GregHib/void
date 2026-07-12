@@ -1,8 +1,7 @@
 spawns = [
 # 11573
   { id = "sanfew", x = 2897, y = 3426, level = 1, members = true },
-  { id = "pikkupstix_spawn", x = 2925, y = 3443 },
-  { id = "pikkupstix_spawn_2", x = 2925, y = 3443 },
+  { id = "pikkupstix", x = 2925, y = 3443 },
   { id = "thaerisk_cemphier", x = 2916, y = 3449, level = 1, members = true },
   { id = "ivy_sophista", x = 2917, y = 3449, members = true },
   { id = "dalmatian", x = 2927, y = 3431, members = true },

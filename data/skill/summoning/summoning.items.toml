@@ -1174,6 +1174,8 @@ id = 12205
 
 [antlers_charged]
 id = 12206
+charges = 0
+charges_max = 40
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -1197,6 +1199,8 @@ id = 12208
 
 [lizard_skull_charged]
 id = 12209
+charges = 0
+charges_max = 65
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -1220,6 +1224,8 @@ id = 12211
 
 [feather_headdress_charged_blue]
 id = 12212
+charges = 0
+charges_max = 150
 tradeable = false
 bank_stacks = false
 weight = 2.0
@@ -1242,6 +1248,8 @@ id = 12214
 
 [feather_headdress_charged_yellow]
 id = 12215
+charges = 0
+charges_max = 150
 tradeable = false
 bank_stacks = false
 weight = 2.0
@@ -1264,6 +1272,8 @@ id = 12217
 
 [feather_headdress_charged_red]
 id = 12218
+charges = 0
+charges_max = 150
 tradeable = false
 bank_stacks = false
 weight = 2.0
@@ -1286,6 +1296,8 @@ id = 12220
 
 [feather_headdress_charged_stripy]
 id = 12221
+charges = 0
+charges_max = 150
 tradeable = false
 bank_stacks = false
 weight = 2.0
@@ -1308,6 +1320,8 @@ id = 12223
 
 [feather_headdress_charged_orange]
 id = 12224
+charges = 0
+charges_max = 150
 tradeable = false
 bank_stacks = false
 weight = 2.0
@@ -2996,6 +3010,8 @@ kept = "Reclaim"
 
 [snakeskin_bandana_charged]
 id = 12661
+charges = 0
+charges_max = 50
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3019,6 +3035,8 @@ kept = "Reclaim"
 
 [splitbark_helm_charged]
 id = 12663
+charges = 0
+charges_max = 50
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3042,6 +3060,8 @@ kept = "Reclaim"
 
 [rune_full_helm_charged]
 id = 12665
+charges = 0
+charges_max = 60
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3065,6 +3085,8 @@ kept = "Reclaim"
 
 [dragon_helm_charged]
 id = 12667
+charges = 0
+charges_max = 110
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3087,6 +3109,8 @@ kept = "Reclaim"
 
 [lunar_helm_charged]
 id = 12669
+charges = 0
+charges_max = 110
 tradeable = false
 bank_stacks = false
 weight = 0.907
@@ -3110,6 +3134,8 @@ kept = "Reclaim"
 
 [armadyl_helmet_charged]
 id = 12671
+charges = 0
+charges_max = 120
 limit = 1
 tradeable = false
 bank_stacks = false
@@ -3134,6 +3160,8 @@ kept = "Reclaim"
 
 [archer_helm_charged]
 id = 12673
+charges = 0
+charges_max = 70
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3157,6 +3185,8 @@ kept = "Reclaim"
 
 [berserker_helm_charged]
 id = 12675
+charges = 0
+charges_max = 70
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3180,6 +3210,8 @@ kept = "Reclaim"
 
 [warrior_helm_charged]
 id = 12677
+charges = 0
+charges_max = 70
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3203,6 +3235,8 @@ kept = "Reclaim"
 
 [farseer_helm_charged]
 id = 12679
+charges = 0
+charges_max = 70
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -3226,6 +3260,8 @@ kept = "Reclaim"
 
 [helm_of_neitiznot_charged]
 id = 12681
+charges = 0
+charges_max = 90
 limit = 100
 tradeable = false
 bank_stacks = false
@@ -4467,3 +4503,82 @@ summon_points = 1
 
 [meerkats_pouch_noted]
 id = 19623
+
+# Enchanted (empty) middle-state headgear - Pikkupstix enchants the plain helm into these, then
+# scrolls are stored to turn them into the _charged forms. Untradeable until disenchanted.
+[rune_full_helm_enchanted]
+id = 12664
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[dragon_helm_enchanted]
+id = 12666
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[berserker_helm_enchanted]
+id = 12674
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[warrior_helm_enchanted]
+id = 12676
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[helm_of_neitiznot_enchanted]
+id = 12680
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[snakeskin_bandana_enchanted]
+id = 12660
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[archer_helm_enchanted]
+id = 12672
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[armadyl_helmet_enchanted]
+id = 12670
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[splitbark_helm_enchanted]
+id = 12662
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[farseer_helm_enchanted]
+id = 12678
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"
+
+[lunar_helm_enchanted]
+id = 12668
+tradeable = false
+bank_stacks = false
+slot = "Hat"
+kept = "Reclaim"

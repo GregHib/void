@@ -22,7 +22,7 @@ class TownCrier : Script {
 
     private val currentOverheads = listOf(
         "The Grand Exchange is now open! Buy and sell items with other players!",
-        "New content is being actively developed — stay tuned for updates!",
+        "New content is being actively developed - stay tuned for updates!",
     )
 
     private val historicalOverheads = listOf(

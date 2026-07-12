@@ -4,6 +4,7 @@ import content.activity.shooting_star.ShootingStarHandler
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
+import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -98,7 +99,7 @@ class Mining : Script {
                 }
                 if (ore.bool("gems")) {
                     val glory = equipped(EquipSlot.Amulet).id.startsWith("amulet_of_glory_")
-                    if (success(levels.get(Skill.Mining), if (glory) 3..3 else 1..1)) {
+                    if (success(levels.get(Skill.Mining) + familiarBoost(Skill.Mining), if (glory) 3..3 else 1..1)) {
                         addOre(this, gems.random(), target)
                         continue
                     }
@@ -112,7 +113,7 @@ class Mining : Script {
                         continue
                     }
                     val chance = ore.intRange("chance")
-                    if (success(levels.get(Skill.Mining), chance)) {
+                    if (success(levels.get(Skill.Mining) + familiarBoost(Skill.Mining), chance)) {
                         val xp = ore.int("xp") / 10.0
                         ShootingStarHandler.extraOreHandler(this, item, xp)
                         val added = addOre(this, item, target)

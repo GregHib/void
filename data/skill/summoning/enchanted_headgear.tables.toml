@@ -1,0 +1,122 @@
+# Helms that can be enchanted to hold combat Summoning scrolls: the plain, tradeable base form
+# (row id), the empty enchanted form Pikkupstix converts it into, the charged form it takes while
+# holding scrolls, the Summoning level to enchant it and the scroll capacity. For the hunter helms
+# (antlers/lizard skull/feather headdresses) the plain form is already the enchanted one - so
+# enchanted == the row id and there's no separate Pikkupstix step, matching darkan.
+
+[enchanted_headgear]
+row_id = "item"
+enchanted = "item"
+charged = "item"
+level = "int"
+capacity = "int"
+
+# Hunter helms - plain form is already scroll-capable.
+[.antlers]
+enchanted = "antlers"
+charged = "antlers_charged"
+level = 10
+capacity = 40
+
+[.lizard_skull]
+enchanted = "lizard_skull"
+charged = "lizard_skull_charged"
+level = 30
+capacity = 65
+
+[.feather_headdress_blue]
+enchanted = "feather_headdress_blue"
+charged = "feather_headdress_charged_blue"
+level = 50
+capacity = 150
+
+[.feather_headdress_yellow]
+enchanted = "feather_headdress_yellow"
+charged = "feather_headdress_charged_yellow"
+level = 50
+capacity = 150
+
+[.feather_headdress_red]
+enchanted = "feather_headdress_red"
+charged = "feather_headdress_charged_red"
+level = 50
+capacity = 150
+
+[.feather_headdress_stripy]
+enchanted = "feather_headdress_stripy"
+charged = "feather_headdress_charged_stripy"
+level = 50
+capacity = 150
+
+[.feather_headdress_orange]
+enchanted = "feather_headdress_orange"
+charged = "feather_headdress_charged_orange"
+level = 50
+capacity = 150
+
+# Metal/god helms - Pikkupstix enchants the plain helm first (base -> enchanted).
+[.snakeskin_bandana]
+enchanted = "snakeskin_bandana_enchanted"
+charged = "snakeskin_bandana_charged"
+level = 20
+capacity = 50
+
+[.archer_helm]
+enchanted = "archer_helm_enchanted"
+charged = "archer_helm_charged"
+level = 30
+capacity = 70
+
+[.berserker_helm]
+enchanted = "berserker_helm_enchanted"
+charged = "berserker_helm_charged"
+level = 30
+capacity = 70
+
+[.warrior_helm]
+enchanted = "warrior_helm_enchanted"
+charged = "warrior_helm_charged"
+level = 30
+capacity = 70
+
+[.farseer_helm]
+enchanted = "farseer_helm_enchanted"
+charged = "farseer_helm_charged"
+level = 30
+capacity = 70
+
+[.rune_full_helm]
+enchanted = "rune_full_helm_enchanted"
+charged = "rune_full_helm_charged"
+level = 30
+capacity = 60
+
+[.splitbark_helm]
+enchanted = "splitbark_helm_enchanted"
+charged = "splitbark_helm_charged"
+level = 30
+capacity = 50
+
+[.helm_of_neitiznot]
+enchanted = "helm_of_neitiznot_enchanted"
+charged = "helm_of_neitiznot_charged"
+level = 45
+capacity = 90
+
+[.dragon_med_helm]
+enchanted = "dragon_helm_enchanted"
+charged = "dragon_helm_charged"
+level = 50
+capacity = 110
+
+[.lunar_helm]
+enchanted = "lunar_helm_enchanted"
+charged = "lunar_helm_charged"
+level = 55
+capacity = 110
+
+[.armadyl_helmet]
+enchanted = "armadyl_helmet_enchanted"
+charged = "armadyl_helmet_charged"
+level = 60
+capacity = 120

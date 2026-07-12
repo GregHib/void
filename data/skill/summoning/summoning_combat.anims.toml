@@ -1,0 +1,648 @@
+[spirit_wolf_familiar_attack]
+id = 8292
+
+[spirit_wolf_familiar_defend]
+id = 6557
+
+[spirit_wolf_familiar_death]
+id = 8295
+
+[dreadfowl_familiar_attack]
+id = 7810
+
+[dreadfowl_familiar_defend]
+id = 5388
+
+[dreadfowl_familiar_death]
+id = 5389
+
+[spirit_spider_familiar_attack]
+id = 5327
+
+[spirit_spider_familiar_defend]
+id = 5328
+
+[spirit_spider_familiar_death]
+id = 5329
+
+[thorny_snail_familiar_attack]
+id = 8143
+
+[thorny_snail_familiar_defend]
+id = 8145
+
+[thorny_snail_familiar_death]
+id = 8143
+
+[granite_crab_familiar_attack]
+id = 8104
+
+[granite_crab_familiar_defend]
+id = 8105
+
+[granite_crab_familiar_death]
+id = 8106
+
+[spirit_mosquito_familiar_attack]
+id = 8032
+
+[spirit_mosquito_familiar_defend]
+id = 8034
+
+[spirit_mosquito_familiar_death]
+id = 8033
+
+[desert_wyrm_familiar_attack]
+id = 7795
+
+[desert_wyrm_familiar_defend]
+id = 7796
+
+[desert_wyrm_familiar_death]
+id = 7797
+
+[spirit_scorpion_familiar_attack]
+id = 6254
+
+[spirit_scorpion_familiar_defend]
+id = 6255
+
+[spirit_scorpion_familiar_death]
+id = 6256
+
+[spirit_tz-kih_familiar_attack]
+id = 8257
+
+[spirit_tz-kih_familiar_defend]
+id = 8256
+
+[spirit_tz-kih_familiar_death]
+id = 8258
+
+[albino_rat_familiar_defend]
+id = 14861
+
+[spirit_kalphite_familiar_attack]
+id = 8519
+
+[spirit_kalphite_familiar_defend]
+id = 8518
+
+[spirit_kalphite_familiar_death]
+id = 8517
+
+[compost_mound_familiar_attack]
+id = 7769
+
+[compost_mound_familiar_defend]
+id = 7771
+
+[compost_mound_familiar_death]
+id = 7770
+
+[giant_chinchompa_familiar_attack]
+id = 7755
+
+[giant_chinchompa_familiar_defend]
+id = 7753
+
+[giant_chinchompa_familiar_death]
+id = 7758
+
+[vampire_bat_familiar_attack]
+id = 4915
+
+[vampire_bat_familiar_defend]
+id = 4916
+
+[vampire_bat_familiar_death]
+id = 4917
+
+[honey_badger_familiar_attack]
+id = 7928
+
+[honey_badger_familiar_defend]
+id = 7927
+
+[honey_badger_familiar_death]
+id = 7925
+
+[void_ravager_familiar_attack]
+id = 8086
+
+[void_ravager_familiar_defend]
+id = 8088
+
+[void_ravager_familiar_death]
+id = 8087
+
+[void_spinner_familiar_attack]
+id = 8172
+
+[void_spinner_familiar_defend]
+id = 8173
+
+[void_spinner_familiar_death]
+id = 8176
+
+[void_torcher_familiar_attack]
+id = 8235
+
+[void_torcher_familiar_defend]
+id = 8237
+
+[void_torcher_familiar_death]
+id = 8236
+
+[void_shifter_familiar_attack]
+id = 8131
+
+[void_shifter_familiar_defend]
+id = 8132
+
+[void_shifter_familiar_death]
+id = 8133
+
+[bronze_minotaur_familiar_attack]
+id = 8024
+
+[bronze_minotaur_familiar_defend]
+id = 8023
+
+[bronze_minotaur_familiar_death]
+id = 8025
+
+[iron_minotaur_familiar_attack]
+id = 8024
+
+[iron_minotaur_familiar_defend]
+id = 8023
+
+[iron_minotaur_familiar_death]
+id = 8025
+
+[steel_minotaur_familiar_attack]
+id = 8024
+
+[steel_minotaur_familiar_defend]
+id = 8023
+
+[steel_minotaur_familiar_death]
+id = 8025
+
+[mithril_minotaur_familiar_attack]
+id = 8024
+
+[mithril_minotaur_familiar_defend]
+id = 8023
+
+[mithril_minotaur_familiar_death]
+id = 8025
+
+[adamant_minotaur_familiar_attack]
+id = 8024
+
+[adamant_minotaur_familiar_defend]
+id = 8023
+
+[adamant_minotaur_familiar_death]
+id = 8025
+
+[rune_minotaur_familiar_attack]
+id = 8024
+
+[rune_minotaur_familiar_defend]
+id = 8023
+
+[rune_minotaur_familiar_death]
+id = 8025
+
+[bull_ant_familiar_attack]
+id = 7896
+
+[bull_ant_familiar_defend]
+id = 7900
+
+[bull_ant_familiar_death]
+id = 7897
+
+[evil_turnip_familiar_attack]
+id = 8248
+
+[evil_turnip_familiar_defend]
+id = 8249
+
+[evil_turnip_familiar_death]
+id = 8250
+
+[spirit_cockatrice_familiar_attack]
+id = 7762
+
+[spirit_cockatrice_familiar_defend]
+id = 7761
+
+[spirit_cockatrice_familiar_death]
+id = 7763
+
+[spirit_guthatrice_familiar_attack]
+id = 7762
+
+[spirit_guthatrice_familiar_defend]
+id = 7761
+
+[spirit_guthatrice_familiar_death]
+id = 7763
+
+[spirit_saratrice_familiar_attack]
+id = 7762
+
+[spirit_saratrice_familiar_defend]
+id = 7761
+
+[spirit_saratrice_familiar_death]
+id = 7763
+
+[spirit_zamatrice_familiar_attack]
+id = 7762
+
+[spirit_zamatrice_familiar_defend]
+id = 7761
+
+[spirit_zamatrice_familiar_death]
+id = 7763
+
+[spirit_pengatrice_familiar_attack]
+id = 7762
+
+[spirit_pengatrice_familiar_defend]
+id = 7761
+
+[spirit_pengatrice_familiar_death]
+id = 7763
+
+[spirit_coraxatrice_familiar_attack]
+id = 7762
+
+[spirit_coraxatrice_familiar_defend]
+id = 7761
+
+[spirit_coraxatrice_familiar_death]
+id = 7763
+
+[spirit_vulatrice_familiar_attack]
+id = 7762
+
+[spirit_vulatrice_familiar_defend]
+id = 7761
+
+[spirit_vulatrice_familiar_death]
+id = 7763
+
+[pyrelord_familiar_attack]
+id = 8080
+
+[pyrelord_familiar_defend]
+id = 8079
+
+[pyrelord_familiar_death]
+id = 8078
+
+[bloated_leech_familiar_attack]
+id = 7657
+
+[bloated_leech_familiar_defend]
+id = 7655
+
+[bloated_leech_familiar_death]
+id = 7656
+
+[spirit_terrorbird_familiar_attack]
+id = 1010
+
+[spirit_terrorbird_familiar_defend]
+id = 1011
+
+[spirit_terrorbird_familiar_death]
+id = 1012
+
+[abyssal_parasite_familiar_attack]
+id = 8910
+
+[abyssal_parasite_familiar_defend]
+id = 7670
+
+[abyssal_parasite_familiar_death]
+id = 7671
+
+[spirit_jelly_familiar_attack]
+id = 8569
+
+[spirit_jelly_familiar_defend]
+id = 8571
+
+[spirit_jelly_familiar_death]
+id = 8570
+
+[spirit_kyatt_familiar_attack]
+id = 5229
+
+[spirit_kyatt_familiar_defend]
+id = 5227
+
+[spirit_kyatt_familiar_death]
+id = 5230
+
+[spirit_larupia_familiar_attack]
+id = 7018
+
+[spirit_larupia_familiar_defend]
+id = 7017
+
+[spirit_larupia_familiar_death]
+id = 7016
+
+[spirit_graahk_familiar_attack]
+id = 5229
+
+[spirit_graahk_familiar_defend]
+id = 5227
+
+[spirit_graahk_familiar_death]
+id = 5230
+
+[karamthulhu_overlord_familiar_attack]
+id = 7970
+
+[karamthulhu_overlord_familiar_defend]
+id = 7962
+
+[karamthulhu_overlord_familiar_death]
+id = 7964
+
+[smoke_devil_familiar_attack]
+id = 7816
+
+[smoke_devil_familiar_defend]
+id = 7817
+
+[smoke_devil_familiar_death]
+id = 7818
+
+[abyssal_lurker_familiar_attack]
+id = 2019
+
+[abyssal_lurker_familiar_defend]
+id = 2020
+
+[abyssal_lurker_familiar_death]
+id = 2021
+
+[spirit_cobra_familiar_attack]
+id = 8152
+
+[spirit_cobra_familiar_defend]
+id = 8154
+
+[spirit_cobra_familiar_death]
+id = 8153
+
+[stranger_plant_familiar_attack]
+id = 8208
+
+[stranger_plant_familiar_death]
+id = 8209
+
+[barker_toad_familiar_attack]
+id = 7260
+
+[barker_toad_familiar_defend]
+id = 7257
+
+[barker_toad_familiar_death]
+id = 7256
+
+[war_tortoise_familiar_attack]
+id = 8286
+
+[war_tortoise_familiar_defend]
+id = 8287
+
+[war_tortoise_familiar_death]
+id = 8285
+
+[bunyip_familiar_attack]
+id = 7741
+
+[bunyip_familiar_defend]
+id = 7739
+
+[bunyip_familiar_death]
+id = 7740
+
+[ravenous_locust_familiar_attack]
+id = 7994
+
+[ravenous_locust_familiar_defend]
+id = 7995
+
+[ravenous_locust_familiar_death]
+id = 7996
+
+[arctic_bear_familiar_attack]
+id = 4925
+
+[arctic_bear_familiar_defend]
+id = 4928
+
+[arctic_bear_familiar_death]
+id = 4929
+
+[phoenix_familiar_attack]
+id = 11093
+
+[phoenix_familiar_defend]
+id = 11107
+
+[phoenix_familiar_death]
+id = 11108
+
+[obsidian_golem_familiar_attack]
+id = 8050
+
+[obsidian_golem_familiar_defend]
+id = 8051
+
+[obsidian_golem_familiar_death]
+id = 8052
+
+[granite_lobster_familiar_attack]
+id = 8112
+
+[granite_lobster_familiar_defend]
+id = 8114
+
+[granite_lobster_familiar_death]
+id = 8113
+
+[praying_mantis_familiar_attack]
+id = 8069
+
+[praying_mantis_familiar_defend]
+id = 8066
+
+[praying_mantis_familiar_death]
+id = 8065
+
+[forge_regent_familiar_attack]
+id = 7866
+
+[forge_regent_familiar_defend]
+id = 7865
+
+[forge_regent_familiar_death]
+id = 7864
+
+[talon_beast_familiar_attack]
+id = 5989
+
+[talon_beast_familiar_defend]
+id = 5988
+
+[talon_beast_familiar_death]
+id = 5990
+
+[giant_ent_familiar_attack]
+id = 7853
+
+[giant_ent_familiar_defend]
+id = 7852
+
+[giant_ent_familiar_death]
+id = 7854
+
+[hydra_familiar_attack]
+id = 7935
+
+[hydra_familiar_defend]
+id = 7936
+
+[hydra_familiar_death]
+id = 7937
+
+[spirit_dagannoth_familiar_attack]
+id = 7786
+
+[spirit_dagannoth_familiar_defend]
+id = 7785
+
+[spirit_dagannoth_familiar_death]
+id = 7780
+
+[unicorn_stallion_familiar_attack]
+id = 6376
+
+[unicorn_stallion_familiar_defend]
+id = 6375
+
+[unicorn_stallion_familiar_death]
+id = 6377
+
+[wolpertinger_familiar_attack]
+id = 8303
+
+[wolpertinger_familiar_defend]
+id = 8304
+
+[wolpertinger_familiar_death]
+id = 8305
+
+[pack_yak_familiar_attack]
+id = 5782
+
+[pack_yak_familiar_defend]
+id = 5783
+
+[pack_yak_familiar_death]
+id = 852
+
+[fire_titan_familiar_attack]
+id = 7834
+
+[fire_titan_familiar_defend]
+id = 7832
+
+[fire_titan_familiar_death]
+id = 7833
+
+[moss_titan_familiar_attack]
+id = 7844
+
+[moss_titan_familiar_defend]
+id = 7842
+
+[moss_titan_familiar_death]
+id = 7843
+
+[ice_titan_familiar_attack]
+id = 8183
+
+[ice_titan_familiar_defend]
+id = 8185
+
+[ice_titan_familiar_death]
+id = 8184
+
+[lava_titan_familiar_attack]
+id = 7980
+
+[lava_titan_familiar_defend]
+id = 7981
+
+[lava_titan_familiar_death]
+id = 7692
+
+[swamp_titan_familiar_attack]
+id = 8222
+
+[swamp_titan_familiar_defend]
+id = 8224
+
+[swamp_titan_familiar_death]
+id = 8226
+
+[geyser_titan_familiar_attack]
+id = 7883
+
+[geyser_titan_familiar_defend]
+id = 7878
+
+[geyser_titan_familiar_death]
+id = 7880
+
+[abyssal_titan_familiar_attack]
+id = 7693
+
+[abyssal_titan_familiar_defend]
+id = 7691
+
+[abyssal_titan_familiar_death]
+id = 7979
+
+[iron_titan_familiar_attack]
+id = 7946
+
+[iron_titan_familiar_defend]
+id = 7948
+
+[iron_titan_familiar_death]
+id = 7947
+
+[steel_titan_familiar_attack]
+id = 8190
+
+[steel_titan_familiar_defend]
+id = 8185
+
+[steel_titan_familiar_death]
+id = 8184
+

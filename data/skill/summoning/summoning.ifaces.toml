@@ -67,6 +67,9 @@ id = 75
 [.cast_dreadfowl_strike]
 id = 77
 
+[.cast_special_move]
+id = 79
+
 [.cast_rise_from_the_ashes]
 id = 78
 
