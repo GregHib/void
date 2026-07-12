@@ -107,6 +107,10 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         for (attacker in character.attackers) {
             if (attacker.target == character) {
                 attacker.stop("under_attack")
+                // Clear the stale target too - a familiar (whose combat mode ends without a
+                // combatStop) would otherwise re-engage it, e.g. via a titan's called special,
+                // even after the npc dies and respawns.
+                attacker.target = null
             }
         }
     }
