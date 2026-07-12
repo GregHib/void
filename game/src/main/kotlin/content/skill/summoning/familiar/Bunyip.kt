@@ -36,7 +36,7 @@ class Bunyip : Script {
 
         // Using a raw fish on the bunyip transmutes it into water runes - one up to a tenth of the
         // cooked fish's healing - free of any scroll.
-        itemOnNPCOperate("raw_*", "bunyip_familiar") { (npc, item) ->
+        itemOnNPCOperate("raw_*", "bunyip_familiar*") { (npc, item) ->
             if (npc != follower) {
                 return@itemOnNPCOperate
             }

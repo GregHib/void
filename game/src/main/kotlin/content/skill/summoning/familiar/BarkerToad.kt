@@ -16,7 +16,7 @@ class BarkerToad : Script {
     init {
         // Loading a cannonball arms the toad's Toad Bark special (see FamiliarCombatSpecials) -
         // the special refuses to fire until the toad is loaded, and the shot spends the cannonball.
-        itemOnNPCOperate("cannonball", "barker_toad_familiar") { (target) ->
+        itemOnNPCOperate("cannonball", "barker_toad_familiar*") { (target) ->
             if (target != follower) {
                 message("That's not your familiar.")
                 return@itemOnNPCOperate

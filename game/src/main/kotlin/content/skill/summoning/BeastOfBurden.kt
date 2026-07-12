@@ -160,7 +160,7 @@ class BeastOfBurden(private val dropTables: DropTables) : Script {
             openBeastOfBurden()
         }
 
-        itemOnNPCOperate("*", "*_familiar") { (target, item) ->
+        itemOnNPCOperate("*", "*_familiar*") { (target, item) ->
             if (target != follower) {
                 message("That's not your familiar.")
                 return@itemOnNPCOperate

@@ -17,7 +17,7 @@ import world.gregs.voidps.type.random
 class GiantEnt : Script {
     init {
         // The giant ent transmutes pure essence used on it into an earth or (more rarely) nature rune.
-        itemOnNPCOperate("pure_essence", "giant_ent_familiar") { (target) ->
+        itemOnNPCOperate("pure_essence", "giant_ent_familiar*") { (target) ->
             if (target != follower) {
                 message("That's not your familiar.")
                 return@itemOnNPCOperate

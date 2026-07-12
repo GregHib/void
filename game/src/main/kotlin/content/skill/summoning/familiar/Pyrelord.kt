@@ -82,7 +82,7 @@ class Pyrelord : Script {
         // run through the scroll + points gate.
         FamiliarSpecialMoves.item("pyrelord_familiar") { item -> immenseHeat(item.id) }
 
-        itemOnNPCOperate("gold_bar", "pyrelord_familiar") { (npc, item) ->
+        itemOnNPCOperate("gold_bar", "pyrelord_familiar*") { (npc, item) ->
             if (npc != follower) {
                 return@itemOnNPCOperate
             }
@@ -92,7 +92,7 @@ class Pyrelord : Script {
         // The pyrelord and forge regent act as portable fire sources - the demon breathes fire over
         // the logs, lighting them beneath itself, granting the log's xp plus a bonus for its help.
         for (familiar in listOf("pyrelord_familiar", "forge_regent_familiar")) {
-            itemOnNPCOperate("*logs*", familiar) { (target, item) ->
+            itemOnNPCOperate("*logs*", "$familiar*") { (target, item) ->
                 if (target != follower) {
                     message("That's not your familiar.")
                     return@itemOnNPCOperate

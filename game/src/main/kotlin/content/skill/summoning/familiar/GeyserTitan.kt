@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.replace
 class GeyserTitan : Script {
     init {
         // A bowl held up to the geyser fills with steaming water.
-        itemOnNPCOperate("bowl", "geyser_titan_familiar") { (npc) ->
+        itemOnNPCOperate("bowl", "geyser_titan_familiar*") { (npc) ->
             if (npc != follower) {
                 message("That's not your familiar.")
                 return@itemOnNPCOperate
@@ -26,7 +26,7 @@ class GeyserTitan : Script {
 
         // The titan's waters recharge amulets of glory, as the Fountain of Heroes does.
         for (glory in listOf("amulet_of_glory", "amulet_of_glory_1", "amulet_of_glory_2", "amulet_of_glory_3")) {
-            itemOnNPCOperate(glory, "geyser_titan_familiar") { (npc, item) ->
+            itemOnNPCOperate(glory, "geyser_titan_familiar*") { (npc, item) ->
                 if (npc != follower) {
                     message("That's not your familiar.")
                     return@itemOnNPCOperate

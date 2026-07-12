@@ -101,7 +101,7 @@ class Beaver : Script {
         // Registered as an operate on the specific "<log>:beaver_familiar" key so it takes precedence
         // over the beast-of-burden store handler's "*:beaver_familiar" (which would otherwise refuse
         // the log with "won't carry yours").
-        itemOnNPCOperate("*logs*", "beaver_familiar") { (npc, item) ->
+        itemOnNPCOperate("*logs*", "beaver_familiar*") { (npc, item) ->
             if (npc != follower) {
                 return@itemOnNPCOperate
             }

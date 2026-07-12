@@ -42,7 +42,7 @@ class SpiritCobra : Script {
         FamiliarSpecialMoves.item("spirit_cobra_familiar") { item -> incubate(item.id) }
 
         for (egg in INCUBATION_EGGS.keys) {
-            itemOnNPCOperate(egg, "spirit_cobra_familiar") { (npc, item) ->
+            itemOnNPCOperate(egg, "spirit_cobra_familiar*") { (npc, item) ->
                 if (npc != follower) {
                     return@itemOnNPCOperate
                 }
