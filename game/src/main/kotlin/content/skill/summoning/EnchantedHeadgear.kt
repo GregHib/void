@@ -2,9 +2,11 @@ package content.skill.summoning
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -20,38 +22,21 @@ import world.gregs.voidps.engine.inv.transact.operation.SetCharge.setCharge
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 /**
- * A helm that can be enchanted to hold combat Summoning scrolls: its plain, tradeable form ([base]),
- * the empty [enchanted] form Pikkupstix converts it into, the [charged] form it takes while holding
- * scrolls, the Summoning [level] to enchant it and the scroll [capacity]. For the hunter helms
- * (antlers/lizard skull/feather headdress) the plain form is already the enchanted one - so
- * [base] == [enchanted] and there's no separate Pikkupstix step, matching darkan.
+ * A helm that can be enchanted to hold combat Summoning scrolls - a row of the `enchanted_headgear`
+ * table (see `enchanted_headgear.tables.toml`): its plain, tradeable [base] form (the row id), the
+ * empty [enchanted] form Pikkupstix converts it into, the [charged] form it takes while holding
+ * scrolls, the Summoning [level] to enchant it and the scroll [capacity].
  */
-private data class Headgear(val base: String, val enchanted: String, val charged: String, val level: Int, val capacity: Int)
+private val RowDefinition.base: String get() = rowId
+private val RowDefinition.enchanted: String get() = item("enchanted")
+private val RowDefinition.charged: String get() = item("charged")
+private val RowDefinition.level: Int get() = int("level")
+private val RowDefinition.capacity: Int get() = int("capacity")
 
-private val HEADGEAR = listOf(
-    // Hunter helms - plain form is already scroll-capable.
-    Headgear("antlers", "antlers", "antlers_charged", 10, 40),
-    Headgear("lizard_skull", "lizard_skull", "lizard_skull_charged", 30, 65),
-    Headgear("feather_headdress_blue", "feather_headdress_blue", "feather_headdress_charged_blue", 50, 150),
-    Headgear("feather_headdress_yellow", "feather_headdress_yellow", "feather_headdress_charged_yellow", 50, 150),
-    Headgear("feather_headdress_red", "feather_headdress_red", "feather_headdress_charged_red", 50, 150),
-    Headgear("feather_headdress_stripy", "feather_headdress_stripy", "feather_headdress_charged_stripy", 50, 150),
-    Headgear("feather_headdress_orange", "feather_headdress_orange", "feather_headdress_charged_orange", 50, 150),
-    // Metal/god helms - Pikkupstix enchants the plain helm first (base -> enchanted).
-    Headgear("snakeskin_bandana", "snakeskin_bandana_enchanted", "snakeskin_bandana_charged", 20, 50),
-    Headgear("archer_helm", "archer_helm_enchanted", "archer_helm_charged", 30, 70),
-    Headgear("berserker_helm", "berserker_helm_enchanted", "berserker_helm_charged", 30, 70),
-    Headgear("warrior_helm", "warrior_helm_enchanted", "warrior_helm_charged", 30, 70),
-    Headgear("farseer_helm", "farseer_helm_enchanted", "farseer_helm_charged", 30, 70),
-    Headgear("rune_full_helm", "rune_full_helm_enchanted", "rune_full_helm_charged", 30, 60),
-    Headgear("splitbark_helm", "splitbark_helm_enchanted", "splitbark_helm_charged", 30, 50),
-    Headgear("helm_of_neitiznot", "helm_of_neitiznot_enchanted", "helm_of_neitiznot_charged", 45, 90),
-    Headgear("dragon_med_helm", "dragon_helm_enchanted", "dragon_helm_charged", 50, 110),
-    Headgear("lunar_helm", "lunar_helm_enchanted", "lunar_helm_charged", 55, 110),
-    Headgear("armadyl_helmet", "armadyl_helmet_enchanted", "armadyl_helmet_charged", 60, 120),
-)
-
-private val BY_ID = HEADGEAR.flatMap { listOf(it.base to it, it.enchanted to it, it.charged to it) }.toMap()
+/** The headgear row [itemId] belongs to - matched against its base, enchanted or charged form. */
+private fun headgear(itemId: String): RowDefinition? = Tables.get("enchanted_headgear").rows().firstOrNull {
+    itemId == it.base || itemId == it.enchanted || itemId == it.charged
+}
 
 /** The scroll a charged enchanted helm currently holds (item id), and how many. Only one helm at a time. */
 private const val SCROLL_ID = "enchanted_headgear_scroll"
@@ -74,7 +59,7 @@ private fun isCombatScroll(scroll: Item): Boolean {
  * so; a charged helm must be emptied first. Returns true if [item] was a recognised piece of headgear.
  */
 fun Player.enchantHeadgear(item: Item): Boolean {
-    val headgear = BY_ID[item.id] ?: return false
+    val headgear = headgear(item.id) ?: return false
     when (item.id) {
         headgear.charged -> message("You need to remove the scrolls before I can work on that helmet.")
         headgear.enchanted -> if (headgear.enchanted == headgear.base) {
@@ -99,7 +84,7 @@ fun Player.enchantHeadgear(item: Item): Boolean {
  */
 fun Player.enchantedHeadgearScroll(): String? {
     val helm = equipped(EquipSlot.Hat).id
-    if (BY_ID[helm]?.charged != helm || get(SCROLL_COUNT, 0) <= 0) {
+    if (headgear(helm)?.charged != helm || get(SCROLL_COUNT, 0) <= 0) {
         return null
     }
     return get(SCROLL_ID, "").takeIf { it.isNotEmpty() }
@@ -109,7 +94,7 @@ fun Player.enchantedHeadgearScroll(): String? {
 fun Player.spendEnchantedHeadgearScroll() {
     val count = get(SCROLL_COUNT, 0) - 1
     set(SCROLL_COUNT, count)
-    val headgear = BY_ID[equipped(EquipSlot.Hat).id] ?: return
+    val headgear = headgear(equipped(EquipSlot.Hat).id) ?: return
     if (count <= 0) {
         // Reset the charge to 1 so the item reverts as a clean single helm, not one carrying the
         // old charge count.
@@ -126,7 +111,7 @@ fun Player.spendEnchantedHeadgearScroll() {
  * Mirrors the stored scroll [count] onto the charged helm's item charge, worn or in the pack, so the
  * client shows it on the item and on the follower-details cast button.
  */
-private fun Player.syncHelmCharge(headgear: Headgear, count: Int) {
+private fun Player.syncHelmCharge(headgear: RowDefinition, count: Int) {
     if (equipped(EquipSlot.Hat).id == headgear.charged) {
         equipment.transaction { setCharge(EquipSlot.Hat.index, count) }
         return
@@ -139,7 +124,7 @@ private fun Player.syncHelmCharge(headgear: Headgear, count: Int) {
 
 class EnchantedHeadgear : Script {
     init {
-        for (headgear in HEADGEAR) {
+        for (headgear in Tables.get("enchanted_headgear").rows()) {
             // Fill an enchanted helm by using combat scrolls on it - all matching scrolls in the
             // pack, up to capacity, one scroll type at a time. The helm takes its charged form.
             // Fill an empty enchanted helm or top up an already-charged one.
@@ -160,7 +145,7 @@ class EnchantedHeadgear : Script {
         }
     }
 
-    private fun Player.store(scroll: Item, headgear: Headgear) {
+    private fun Player.store(scroll: Item, headgear: RowDefinition) {
         if (!isCombatScroll(scroll)) {
             message("Only combat scrolls can be stored in headgear.")
             return
@@ -200,7 +185,7 @@ class EnchantedHeadgear : Script {
         message("The helmet holds $count ${ItemDefinitions.get(scroll).name.lowercase()}${if (count == 1) "" else "s"}.")
     }
 
-    private fun Player.uncharge(headgear: Headgear) {
+    private fun Player.uncharge(headgear: RowDefinition) {
         val scroll = get(SCROLL_ID, "")
         val count = get(SCROLL_COUNT, 0)
         if (scroll.isNotEmpty() && count > 0) {
