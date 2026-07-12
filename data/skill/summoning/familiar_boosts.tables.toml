@@ -1,0 +1,84 @@
+# Passive, invisible skill-level boosts a summoned familiar grants (see FamiliarBoosts.kt): the
+# boosted skills, a flat amount, plus a percentage of the player's base level (stranger plant and
+# geyser titan). Keyed by familiar npc id; familiars without a row grant nothing.
+
+[familiar_boosts]
+row_id = "npc"
+skills = "list<string>"
+flat = "int"
+multiplier_percent = "int"
+multiplier_percent_default = 0
+
+[.beaver_familiar]
+skills = ["Woodcutting"]
+flat = 2
+
+[.granite_crab_familiar]
+skills = ["Fishing"]
+flat = 1
+
+[.ibis_familiar]
+skills = ["Fishing"]
+flat = 3
+
+[.granite_lobster_familiar]
+skills = ["Fishing"]
+flat = 4
+
+[.arctic_bear_familiar]
+skills = ["Hunter"]
+flat = 7
+
+[.wolpertinger_familiar]
+skills = ["Hunter"]
+flat = 5
+
+[.spirit_graahk_familiar]
+skills = ["Hunter"]
+flat = 5
+
+[.spirit_kyatt_familiar]
+skills = ["Hunter"]
+flat = 5
+
+[.spirit_larupia_familiar]
+skills = ["Hunter"]
+flat = 5
+
+[.desert_wyrm_familiar]
+skills = ["Mining"]
+flat = 1
+
+[.void_ravager_familiar]
+skills = ["Mining"]
+flat = 1
+
+[.obsidian_golem_familiar]
+skills = ["Mining"]
+flat = 7
+
+[.lava_titan_familiar]
+skills = ["Mining", "Firemaking"]
+flat = 10
+
+[.pyrelord_familiar]
+skills = ["Firemaking"]
+flat = 3
+
+[.forge_regent_familiar]
+skills = ["Firemaking"]
+flat = 4
+
+[.magpie_familiar]
+skills = ["Thieving"]
+flat = 3
+
+[.stranger_plant_familiar]
+skills = ["Farming"]
+flat = 1
+multiplier_percent = 4
+
+[.geyser_titan_familiar]
+skills = ["Ranged"]
+flat = 1
+multiplier_percent = 3
