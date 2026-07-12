@@ -32,7 +32,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
  * Each block returns whether the move actually happened so [castFamiliarSpecial] only spends a
  * scroll + points on a real cast.
  */
-object FamiliarSpecialMoves {
+object FamiliarSpecialMoves : AutoCloseable {
     val instant = HashMap<String, Player.() -> Boolean>()
     val npcTarget = HashMap<String, Player.(NPC) -> Boolean>()
     val playerTarget = HashMap<String, Player.(Player) -> Boolean>()
@@ -62,6 +62,15 @@ object FamiliarSpecialMoves {
 
     fun floorItem(vararg familiars: String, block: Player.(FloorItem) -> Boolean) {
         for (familiar in familiars) floorItemTarget[familiar] = block
+    }
+
+    override fun close() {
+        instant.clear()
+        npcTarget.clear()
+        playerTarget.clear()
+        objectTarget.clear()
+        itemTarget.clear()
+        floorItemTarget.clear()
     }
 }
 
