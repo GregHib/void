@@ -3,6 +3,7 @@ package content.activity.event.random
 import WorldTest
 import content.quest.instance
 import content.quest.instanceOffset
+import dialogueOption
 import itemOnObject
 import npcOption
 import objectOption
@@ -60,7 +61,7 @@ class EvilBobTest : WorldTest() {
             skipDialogues()
             tick()
         }
-        tick(6) // wait out the camera pan
+        tick(11) // wait out the camera pan (showSpot hands control back after 10 ticks)
     }
 
     private fun Player.serve() {
@@ -158,7 +159,16 @@ class EvilBobTest : WorldTest() {
         logout(player)
         login(player)
         tick(10)
-        while (player.dialogue != null) player.skipDialogues()
+        // Bob's welcome-back is the reasons conversation, which includes a choice skipDialogues
+        // can't continue past - answer it and keep skipping.
+        while (player.dialogue != null) {
+            if (player.dialogue!!.startsWith("dialogue_multi")) {
+                player.dialogueOption(1)
+            } else {
+                player.skipDialogues()
+            }
+            tick()
+        }
         tick()
 
         assertTrue(player["evil_bob_new_spot", false], "Relog should flag the spot for re-showing")
