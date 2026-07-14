@@ -333,10 +333,19 @@ fun Players.find(player: Player, name: String?): Player? {
     if (name == null) {
         return player
     }
-    val target = firstOrNull { it.name.equals(name, true) } ?: firstOrNull { it.name.replace(" ", "_").startsWith(name, true) }
+    val target = search(name)
     if (target == null) {
         player.message("Unable to find player '$name' online.", ChatType.Console)
         return null
     }
     return target
 }
+
+/**
+ * Finds an online player by display name as typed in the console, where underscores stand in for
+ * the spaces the console's input filter can't type. A full-name match always beats a prefix match
+ * so a longer-named player can't shadow the intended target of e.g. a moderation command.
+ */
+fun Players.search(name: String): Player? = firstOrNull { it.name.equals(name, true) }
+    ?: firstOrNull { it.name.replace(' ', '_').equals(name, true) }
+    ?: firstOrNull { it.name.replace(' ', '_').startsWith(name, true) }
