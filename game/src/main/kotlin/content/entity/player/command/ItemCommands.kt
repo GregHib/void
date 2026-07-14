@@ -72,11 +72,9 @@ class ItemCommands(
         val name = args[0]
         val itemName = alternativeNames.getOrDefault(args.getOrNull(1), args[1])
         val amount = (args.getOrNull(2) ?: "1").toSILong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
-        val target = Players.find(name)
-        if (target == null) {
-            player.message("Couldn't find online player '$name'", ChatType.Console)
-            return
-        }
+        // Same lookup as the other player-targeting commands - underscores stand in for the
+        // spaces the console's input filter can't type.
+        val target = Players.find(player, name) ?: return
         spawn(player, target, ItemDefinitions.get(itemName), amount)
     }
 
