@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendInterfaceSettings
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -149,7 +148,6 @@ class Beekeeper : Script {
             statement("You need to move all 4 of the spinning components to the frame in the centre of the display.", clickToContinue = false)
             return
         }
-        talkWith(NPCs.find(tile.regionLevel) { it.id == "bee_keeper" && it.owner == this })
         if ((1..4).all { get("beekeeper_slot_$it", 0) == it }) {
             succeed()
         } else {
@@ -159,7 +157,7 @@ class Beekeeper : Script {
 
     private suspend fun Player.succeed() {
         close("beehive_build")
-        npc<Happy>("That's perfect! I'll get some bees moved in immediately. Now, I'm sure I must have something to offer you for all your help...")
+        npc<Happy>("bee_keeper", "That's perfect! I'll get some bees moved in immediately. Now, I'm sure I must have something to offer you for all your help...")
         addOrDrop("random_event_gift")
         message("You've been given a gift!")
         clearState()
@@ -176,11 +174,11 @@ class Beekeeper : Script {
     private suspend fun Player.fail() {
         val tries = dec("beekeeper_tries")
         if (tries > 0) {
-            npc<Sad>("No, that doesn't look right. You have to put the components in the right order, otherwise it'll be no good as a beehive. I'll let you have $tries more ${if (tries == 1) "try" else "tries"}.")
+            npc<Sad>("bee_keeper", "No, that doesn't look right. You have to put the components in the right order, otherwise it'll be no good as a beehive. I'll let you have $tries more ${if (tries == 1) "try" else "tries"}.")
             return
         }
         close("beehive_build")
-        npc<Sad>("Uh-oh, the bees are fed up with waiting for you to build them a home!")
+        npc<Sad>("bee_keeper", "Uh-oh, the bees are fed up with waiting for you to build them a home!")
         say("Aaaaargh - BEES!")
         delay(2)
         clearState()

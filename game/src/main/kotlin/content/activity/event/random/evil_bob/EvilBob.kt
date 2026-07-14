@@ -88,9 +88,7 @@ class EvilBob : Script {
 
         objectOperate("Enter", "evil_bob_exit_portal", arrive = false) { (portal) ->
             if (!get("evil_bob_complete", false)) {
-                val bob = bob() ?: return@objectOperate
-                talkWith(bob)
-                npc<Angry>("You're going nowhere, human!")
+                npc<Angry>("evil_bob", "You're going nowhere, human!")
                 return@objectOperate
             }
             walkOverDelay(portal.tile)
@@ -163,8 +161,6 @@ class EvilBob : Script {
 
     private fun Player.bob(): NPC? = NPCs.indexed(get("evil_bob_npc", -1))?.takeIf { it.id == "evil_bob" }
 
-    private fun Player.servant(): NPC? = NPCs.findOrNull(tile.regionLevel) { it.id == "evil_bob_servant" && it.owner == this }
-
     private fun Player.currentZone(): Int {
         val local = tile.minus(instanceOffset())
         return ZONES.indexOfFirst { it.contains(local) } + 1 // 0 when in no zone
@@ -176,18 +172,12 @@ class EvilBob : Script {
                 statement("Evil Bob's had his fill; there's no need to fish any more.")
             get("evil_bob_new_spot", false) ->
                 statement("You don't know if this is a good place to go fishing. Perhaps you should ask someone, like one of the human servants.")
-            !inventory.contains("small_fishing_net") -> {
-                val servant = servant() ?: return
-                talkWith(servant)
-                npc<Sad>("You'll need a fishing net. There are plenty scattered around the beach.")
-            }
+            !inventory.contains("small_fishing_net") ->
+                npc<Sad>("evil_bob_servant", "You'll need a fishing net. There are plenty scattered around the beach.")
             inventory.isFull() ->
                 message("You don't have enough space in your inventory.")
-            holdsFish() -> {
-                val servant = servant() ?: return
-                talkWith(servant)
-                npc<Sad>("You've already got a fish. Come over here to uncook it, then serve it to Evil Bob.")
-            }
+            holdsFish() ->
+                npc<Sad>("evil_bob_servant", "You've already got a fish. Come over here to uncook it, then serve it to Evil Bob.")
             else -> {
                 anim("fish_small_fishing_net")
                 message("You cast out your net...")

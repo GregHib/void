@@ -14,7 +14,6 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -74,8 +73,7 @@ class CapnArnav : Script {
                 return@objectOperate
             }
             if (!get("arnav_solved", false)) {
-                talkWith(NPCs.find(tile.regionLevel, "capn_arnav"))
-                npc<Angry>("Ye're not goin' anywhere till ye've opened me chest, matey!")
+                npc<Angry>("capn_arnav", "Ye're not goin' anywhere till ye've opened me chest, matey!")
                 return@objectOperate
             }
             clearState()
@@ -171,7 +169,6 @@ class CapnArnav : Script {
     private suspend fun Player.unlock() {
         val target = get<String>("arnav_target") ?: return
         close("capn_arnav_lock")
-        talkWith(NPCs.find(tile.regionLevel, "capn_arnav"))
         if ((1..3).all { WORDS[column(it)] == target }) {
             solve()
         } else {
@@ -185,7 +182,7 @@ class CapnArnav : Script {
         if (chest != null && chest.id == "capn_arnav_chest") {
             GameObjects.replace(chest, "capn_arnav_chest_open", ticks = CHEST_OPEN_TICKS)
         }
-        npc<Happy>("Ah, well done matey, that's the right combination. Here, have a little somethin' for helpin' me out.")
+        npc<Happy>("capn_arnav", "Ah, well done matey, that's the right combination. Here, have a little somethin' for helpin' me out.")
         addOrDrop("random_event_gift")
         message("You've been given a gift!")
     }
@@ -194,18 +191,18 @@ class CapnArnav : Script {
         val tries = inc("arnav_tries")
         when {
             tries >= MAX_TRIES -> {
-                npc<Angry>("Arrr! I'd better find someone else.")
+                npc<Angry>("capn_arnav", "Arrr! I'd better find someone else.")
                 message("Cap'n Arnav hits you over the head with his bottle.")
                 clearState()
                 RandomEvents.fail(this)
             }
             tries == 1 -> {
-                npc<Angry>("Arrr! That be nowhere near close! Did ye not listen the first time around?")
-                npc<Neutral>("Right, right. What you need to do is click on the arrows to roll the cylinders round to the different items.")
-                npc<Neutral>("When the items in the middle row all match the words written under the column then you'll have solved the lock.")
-                npc<Quiz>("Is that a little clearer?")
+                npc<Angry>("capn_arnav", "Arrr! That be nowhere near close! Did ye not listen the first time around?")
+                npc<Neutral>("capn_arnav", "Right, right. What you need to do is click on the arrows to roll the cylinders round to the different items.")
+                npc<Neutral>("capn_arnav", "When the items in the middle row all match the words written under the column then you'll have solved the lock.")
+                npc<Quiz>("capn_arnav", "Is that a little clearer?")
             }
-            else -> npc<Angry>("Arrr! That be nowhere near close!")
+            else -> npc<Angry>("capn_arnav", "Arrr! That be nowhere near close!")
         }
     }
 

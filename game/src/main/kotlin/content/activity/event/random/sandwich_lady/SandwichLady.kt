@@ -9,7 +9,6 @@ import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -36,7 +35,7 @@ class SandwichLady : Script {
             val food = get<String>("sandwich_lady_food") ?: return@npcOperate
             if (inCombat) {
                 // No time for the tray mid-fight; she just hands over the right one.
-                serve(food, lady)
+                serve(food)
                 return@npcOperate
             }
             npc<Happy>("You look hungry to me. I tell you what - have a ${description(food)} on me.")
@@ -46,12 +45,11 @@ class SandwichLady : Script {
 
         interfaceOption("Choose refreshment", "sandwich_lady_select:*") {
             val food = get<String>("sandwich_lady_food") ?: return@interfaceOption
-            val lady = lady()
             close("sandwich_lady_select")
             if (it.component == food) {
-                serve(food, lady)
+                serve(food)
             } else {
-                knockOut(lady)
+                knockOut(lady())
             }
         }
     }
@@ -84,14 +82,11 @@ class SandwichLady : Script {
 
     private fun Player.lady(): NPC? = NPCs.indexed(get("sandwich_lady_npc", -1))?.takeIf { it.id == "sandwich_lady" }
 
-    private suspend fun Player.serve(food: String, lady: NPC?) {
+    private suspend fun Player.serve(food: String) {
         message("The sandwich lady gives you a ${description(food)}!")
         addOrDrop(food)
         addOrDrop("random_event_gift")
-        if (lady != null) {
-            talkWith(lady)
-            npc<Happy>("Hope that fills you up!")
-        }
+        npc<Happy>("sandwich_lady", "Hope that fills you up!")
         clearEvent()
         // Clearing the event state removes the following NPC on its next tick.
         RandomEvents.completeInPlace(this)

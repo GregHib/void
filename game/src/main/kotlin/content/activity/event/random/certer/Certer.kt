@@ -9,9 +9,7 @@ import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.type.random
@@ -43,17 +41,11 @@ class Certer : Script {
         interfaceOption("Select", "certer_identify:option_*") {
             val correct = it.component.removePrefix("option_").toInt() == get("certer_answer", 0)
             close("certer_identify")
-            val giles = NPCs.findOrNull(tile.regionLevel) { npc -> npc.id == "giles" && npc.owner == this }
-            if (giles != null) {
-                talkWith(giles)
-                if (correct) {
-                    npc<Happy>("Thank you, I hope you like your present. I must be leaving now though.")
-                } else {
-                    npc<Neutral>("Sorry, I don't think so.")
-                }
-            }
             if (correct) {
+                npc<Happy>("giles", "Thank you, I hope you like your present. I must be leaving now though.")
                 addOrDrop("random_event_gift")
+            } else {
+                npc<Neutral>("giles", "Sorry, I don't think so.")
             }
             RandomEvents.completeInPlace(this)
         }
