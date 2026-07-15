@@ -20,7 +20,6 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
@@ -59,13 +58,17 @@ class ExplorerJack : Script {
                     whatIsTaskSystem()
                 }
                 option<Happy>("Can I claim any rewards from you?") {
-                    npc<Happy>("You certainly can!")
-                    choice("Where would you like the items sent?") {
-                        option("Inventory.") {
-                            claim("inventory")
-                        }
-                        option("Bank.") {
-                            claim("bank")
+                    if (get("task_progress_overall", 0) <= get("task_progress_rewarded", 0) && owedRewardItems().isEmpty()) {
+                        npc<Neutral>("Sorry, you're not owed any achievement rewards at the moment. Look at your Achievement System for things to do to earn more.")
+                    } else {
+                        npc<Happy>("You certainly can!")
+                        choice("Where would you like the items sent?") {
+                            option("Inventory.") {
+                                claim("inventory")
+                            }
+                            option("Bank.") {
+                                claim("bank")
+                            }
                         }
                     }
                 }
@@ -110,42 +113,58 @@ class ExplorerJack : Script {
         npc<Idle>("I'll just fill your $inventoryId with what you need, then.")
         val inventory = inventories.inventory(inventoryId)
         val progress = get("task_progress_overall", 0)
-        val rewards = progress - get("task_progress_rewarded", 0)
+        val rewarded = get("task_progress_rewarded", 0)
         var coins = 0
-        for (i in 0 until rewards) {
+        for (task in rewarded until progress) {
             coins += when {
-                progress + i < 10 -> 10
-                progress + i < 25 -> 40
-                progress + i < 50 -> 160
-                progress + i < 75 -> 640
+                task < 10 -> 10
+                task < 25 -> 40
+                task < 50 -> 160
+                task < 75 -> 640
                 else -> 2560
             }
         }
-        val values = (VariableDefinitions.get("task_reward_items")!!.values as BitwiseValues).values
-        inventory.transaction {
-            add("coins", coins)
-            if (contains("task_reward_items")) {
-                for (value in values) {
-                    if (containsVarbit("task_reward_items", value)) {
-                        add(value as String)
-                    }
-                }
+        // Grant each reward separately and only mark what actually fits as claimed -
+        // marked before suspending on dialogue, so talking to Jack again instead of
+        // clicking continue can't claim anything a second time.
+        var held = false
+        if (coins > 0) {
+            inventory.transaction {
+                add("coins", coins)
             }
-        }
-        when (inventory.transaction.error) {
-            is TransactionError.Full -> inventoryFull()
-            TransactionError.None -> {
-                message("You receive $coins coins.")
-                npc<Happy>("There you go.")
-                set("task_progress_rewarded", get("task_progress_overall", 0))
-                clear("task_reward_items")
+            if (inventory.transaction.error == TransactionError.None) {
+                set("task_progress_rewarded", progress)
                 if (coins > 100) {
                     set("must_be_funny_in_a_rich_mans_world_task", true)
                 }
-            }
-            else -> {
+                message("You receive $coins coins.")
+            } else {
+                held = true
             }
         }
+        for (value in owedRewardItems()) {
+            inventory.transaction {
+                add(value as String)
+            }
+            if (inventory.transaction.error == TransactionError.None) {
+                removeVarbit("task_reward_items", value)
+            } else {
+                held = true
+            }
+        }
+        if (held) {
+            npc<Happy>("There you go. You didn't have enough space for everything you're owed, so I've held on to the rest.")
+        } else {
+            npc<Happy>("There you go.")
+        }
+    }
+
+    fun Player.owedRewardItems(): List<Any> {
+        if (!contains("task_reward_items")) {
+            return emptyList()
+        }
+        val values = (VariableDefinitions.get("task_reward_items")!!.values as BitwiseValues).values
+        return values.filter { containsVarbit("task_reward_items", it) }
     }
 
     fun completedAllBeginner(player: Player): Boolean {
