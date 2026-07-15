@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -297,15 +298,18 @@ class EvilBob : Script {
                 player<Angry>("I need help, I've been kidnapped by an evil cat!")
                 npc<Scared>("Meow! Errr... I c-c-c-can't help you... He'll kill us all!")
                 player<Angry>("He's just a little cat! There must be something I can do!")
-                npc<Sad>("F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
+                // No continue prompt: the pan starts on the same tick this line shows,
+                // locking the player so they can't wander off mid-cutscene.
+                npc<Sad>("F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.", clickToContinue = false)
                 set("evil_bob_servant_helped", true)
                 showSpot()
             }
             get("evil_bob_new_spot", false) -> {
-                npc<Sad>("Look... over t-t-there! That fishing spot c-c-contains the f-f-f-fish he likes.")
+                npc<Sad>("Look... over t-t-there! That fishing spot c-c-contains the f-f-f-fish he likes.", clickToContinue = false)
                 showSpot()
             }
             else ->
+                // Already shown the spot; just a reminder, no repeat cutscene.
                 npc<Sad>("F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
         }
     }
@@ -318,6 +322,7 @@ class EvilBob : Script {
         turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
         delay(10)
         clearCamera()
+        closeDialogue()
         set("evil_bob_new_spot", false)
     }
 

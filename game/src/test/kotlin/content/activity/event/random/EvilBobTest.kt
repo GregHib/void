@@ -3,9 +3,11 @@ package content.activity.event.random
 import WorldTest
 import content.quest.instance
 import content.quest.instanceOffset
+import dialogueContinue
 import dialogueOption
 import itemOnItem
 import itemOnObject
+import kotlinx.coroutines.runBlocking
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
@@ -17,10 +19,12 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -58,8 +62,11 @@ class EvilBobTest : WorldTest() {
         tick()
         npcOption(servant(), "Talk-to")
         tickIf { dialogue == null }
-        while (dialogue != null) {
-            skipDialogues()
+        // Advance the interruptible lead-in lines one at a time. The final hint line is
+        // non-continuable and starts the camera pan on the same tick (setting "delay"),
+        // so once the pan is running just tick it out - showSpot then closes the dialogue.
+        while (dialogue != null && !contains("delay")) {
+            dialogueContinue()
             tick()
         }
         tick(11) // wait out the camera pan (showSpot hands control back after 10 ticks)
@@ -85,9 +92,7 @@ class EvilBobTest : WorldTest() {
         player.tele(player.servant().tile.addX(-1))
         tick()
         player.npcOption(player.servant(), "Talk-to")
-        tickIf { player.dialogue == null }
-        player.skipDialogues() // "Look... over t-t-there!" then the camera pans
-        tick()
+        tickIf { player.dialogue == null } // hint line shows and the camera pan starts
 
         player.itemOnItem(0, 1) // try to light a fire mid-cutscene
         tick(12)
@@ -95,6 +100,72 @@ class EvilBobTest : WorldTest() {
         // The pan must run to completion (clearing the camera and the hint flag);
         // killing its delay would leave the camera frozen in place.
         assertFalse(player["evil_bob_new_spot", false], "Cutscene should finish and hand control back")
+    }
+
+    @Test
+    fun `Using the net on the fishing spot during the cutscene doesn't freeze the camera`() {
+        val player = enter("eb_net_cutscene")
+        player["evil_bob_servant_helped"] = true
+        player["evil_bob_new_spot"] = true
+        player.tele(player.servant().tile.addX(-1))
+        tick()
+        val spot = GameObjects.add("evil_bob_fishing_spot", player.tile.addX(-1))
+        player.npcOption(player.servant(), "Talk-to")
+        tickIf { player.dialogue == null } // hint line shows and the camera pan starts
+
+        // Use the fishing net item on the spot mid-pan (item-on-object interaction).
+        runBlocking {
+            player.instructions.send(
+                InteractInterfaceObject(
+                    objectId = spot.intId,
+                    x = spot.tile.x,
+                    y = spot.tile.y,
+                    interfaceId = 149,
+                    componentId = 0,
+                    itemId = Item("small_fishing_net").def.id,
+                    itemSlot = player.inventory.indexOf("small_fishing_net"),
+                ),
+            )
+        }
+        tick(12)
+
+        assertFalse(player["evil_bob_new_spot", false], "Cutscene should finish and hand control back")
+    }
+
+    @Test
+    fun `Clicking Net on the spot during the cutscene can't walk the player off`() {
+        val player = enter("eb_net_walk", zone = 2)
+        player["evil_bob_servant_helped"] = true
+        player["evil_bob_new_spot"] = true
+        player.tele(player.servant().tile.addX(-1))
+        tick()
+        val start = player.tile
+        player.npcOption(player.servant(), "Talk-to")
+        tickIf { player.dialogue == null } // hint line shows and the camera pan starts
+
+        // The far fishing spot's Net option, clicked mid-cutscene, must not move the player.
+        player.objectOption(player.spot(eastSpot), "Net")
+        tick(6)
+        assertEquals(start, player.tile, "Player should stay put while the pan is running")
+
+        tick(6) // let the pan finish
+        assertFalse(player["evil_bob_new_spot", false])
+    }
+
+    @Test
+    fun `Talking to the servant after the spot is shown doesn't repeat the cutscene`() {
+        val player = enter("eb_no_repeat")
+        player["evil_bob_servant_helped"] = true
+        player.clear("evil_bob_new_spot") // spot already shown once
+
+        player.tele(player.servant().tile.addX(-1))
+        tick()
+        player.npcOption(player.servant(), "Talk-to")
+        tickIf { player.dialogue == null }
+        tick(2)
+
+        assertFalse(player.contains("delay"), "No camera pan should replay")
+        assertTrue(player.dialogue != null, "Just a reminder line, freely dismissable")
     }
 
     @Test
