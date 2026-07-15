@@ -4,6 +4,7 @@ import WorldTest
 import content.quest.instance
 import content.quest.instanceOffset
 import dialogueOption
+import itemOnItem
 import itemOnObject
 import npcOption
 import objectOption
@@ -73,6 +74,27 @@ class EvilBobTest : WorldTest() {
             skipDialogues()
             tick()
         }
+    }
+
+    @Test
+    fun `Using an item during the fishing spot cutscene doesn't break the camera`() {
+        val player = enter("eb_cam_interrupt")
+        player["evil_bob_servant_helped"] = true
+        player["evil_bob_new_spot"] = true
+        player.inventory.add("logs", "tinderbox")
+        player.tele(player.servant().tile.addX(-1))
+        tick()
+        player.npcOption(player.servant(), "Talk-to")
+        tickIf { player.dialogue == null }
+        player.skipDialogues() // "Look... over t-t-there!" then the camera pans
+        tick()
+
+        player.itemOnItem(0, 1) // try to light a fire mid-cutscene
+        tick(12)
+
+        // The pan must run to completion (clearing the camera and the hint flag);
+        // killing its delay would leave the camera frozen in place.
+        assertFalse(player["evil_bob_new_spot", false], "Cutscene should finish and hand control back")
     }
 
     @Test
