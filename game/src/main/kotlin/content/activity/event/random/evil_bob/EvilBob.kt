@@ -78,6 +78,10 @@ class EvilBob : Script {
             netFishingSpot()
         }
 
+        itemOption("Eat", "fish_like_thing*") {
+            message("It looks vile and smells even worse. You're not eating that!")
+        }
+
         itemOnObjectOperate("fish_like_thing", "evil_bob_uncooking_pot") { (range) ->
             walkOverDelay(range.tile)
             uncook("fish_like_thing", "raw_fish_like_thing")

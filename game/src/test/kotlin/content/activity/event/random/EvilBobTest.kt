@@ -2,9 +2,11 @@ package content.activity.event.random
 
 import WorldTest
 import content.quest.instance
+import containsMessage
 import content.quest.instanceOffset
 import dialogueContinue
 import dialogueOption
+import itemOption
 import itemOnItem
 import itemOnObject
 import kotlinx.coroutines.runBlocking
@@ -166,6 +168,18 @@ class EvilBobTest : WorldTest() {
 
         assertFalse(player.contains("delay"), "No camera pan should replay")
         assertTrue(player.dialogue != null, "Just a reminder line, freely dismissable")
+    }
+
+    @Test
+    fun `Eating a fish-like thing just gets a disgusted refusal`() {
+        val player = enter("eb_eat")
+        player.inventory.add("fish_like_thing")
+
+        player.itemOption("Eat", "fish_like_thing")
+        tick()
+
+        assertTrue(player.containsMessage("It looks vile and smells even worse. You're not eating that!"))
+        assertEquals(1, player.inventory.count("fish_like_thing")) // not consumed
     }
 
     @Test
