@@ -63,13 +63,13 @@ class SandwichLady : Script {
     }
 
     private suspend fun Player.knockOut(lady: NPC?) {
+        clearEvent()
         message("The sandwich lady knocks you out and you wake up somewhere... different.")
         lady?.say("Hey, I didn't say you could have that!")
         lady?.anim("sandwich_lady_knockout") // swings the baguette
         anim("human_death")
         open("fade_out")
         delay(3)
-        clearEvent()
         RandomEvents.fail(this)
         clearAnim()
         open("fade_in")
@@ -83,13 +83,14 @@ class SandwichLady : Script {
     private fun Player.lady(): NPC? = NPCs.indexed(get("sandwich_lady_npc", -1))?.takeIf { it.id == "sandwich_lady" }
 
     private suspend fun Player.serve(food: String) {
+        // Clear all event state before suspending on dialogue, so talking to her again
+        // mid-dialogue can't re-serve. Clearing also removes the following NPC on its next tick.
+        clearEvent()
+        RandomEvents.completeInPlace(this)
         message("The sandwich lady gives you a ${description(food)}!")
         addOrDrop(food)
         addOrDrop("random_event_gift")
         npc<Happy>("sandwich_lady", "Hope that fills you up!")
-        clearEvent()
-        // Clearing the event state removes the following NPC on its next tick.
-        RandomEvents.completeInPlace(this)
     }
 
     private fun Player.nagLines() = listOf(
