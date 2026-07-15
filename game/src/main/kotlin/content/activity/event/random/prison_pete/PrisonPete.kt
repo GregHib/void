@@ -212,19 +212,21 @@ class PrisonPete : Script {
     }
 
     private suspend fun Player.escape(gate: GameObject) {
-        openGates()
-        walkToDelay(gate.tile.addY(-1), forceWalk = true)
-        message("You quickly escape the prison with Pete.")
-        talkWith(NPCs.find(tile.regionLevel, "prison_pete"))
-        npc<Happy>("Thanks a lot for your help! Here, have a present:")
-        addOrDrop("random_event_gift")
-        player<Happy>("Thanks! See you around!")
+        // Clear the key state and hand over the present before any suspension, so
+        // opening the gate again mid-dialogue can't run the escape a second time.
         while (inventory.remove("prison_key_prison_pete")) {
             // strip any dud keys so none survive the trip home
         }
         clear("prison_pete_keys")
         clear("prison_pete_target")
         clear("prison_pete_pending")
+        addOrDrop("random_event_gift")
+        openGates()
+        walkToDelay(gate.tile.addY(-1), forceWalk = true)
+        message("You quickly escape the prison with Pete.")
+        talkWith(NPCs.find(tile.regionLevel, "prison_pete"))
+        npc<Happy>("Thanks a lot for your help! Here, have a present:")
+        player<Happy>("Thanks! See you around!")
         anim("teleport_modern")
         sound("teleport")
         gfx("teleport_modern")
