@@ -108,7 +108,7 @@ internal suspend fun Player.assignTaskDialogue(master: String) {
         npc<Neutral>("Although, it's not an assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
         npc<Neutral>("If you do get a new one, you will reset your task streak of $slayerStreak. Is that okay?")
     } else {
-        npc<Quiz>("Although, it's a tougher assignment that I'd normally give... I guess I could give you a new assignment, id you'd like.")
+        npc<Quiz>("Although, it's a tougher assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
     }
     choice {
         option<Neutral>("Yes, please.") {
