@@ -284,7 +284,9 @@ class MageOfZamorak : Script {
                 tile = Areas["abyss_multi_area"].random(player)
             }
             player.tele(tile!!)
-            player.levels.drain(Skill.Prayer, player.levels.get(Skill.Prayer))
+            if (!player.hasAbyssalPrayerProtection) {
+                player.levels.drain(Skill.Prayer, player.levels.get(Skill.Prayer))
+            }
             player.clearAnim()
         }
     }

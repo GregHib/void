@@ -1,0 +1,191 @@
+# Forage tables for forager familiars. Rolled once into the familiar's inventory every ~30s
+# while summoned; the player withdraws the loot from the familiar.
+#
+# Each `forage_<familiar>` table is rolled per tick: a 1/<roll> chance to produce a drop. For
+# multi-item foragers the hit defers to a `_items` sub-table that picks one item uniformly
+# (matching the reference's "1/outOf chance, then drop one"). A familiar is treated as a forager
+# purely by the existence of its `forage_<id>` table - no npc-def param is needed.
+
+# --- Magpie: gems and rings (1/9) ---
+[forage_magpie]
+roll = 9
+drops = [{ table = "forage_magpie_items", chance = 1 }]
+
+[forage_magpie_items]
+roll = 12
+drops = [
+    { id = "uncut_diamond" },
+    { id = "uncut_ruby" },
+    { id = "uncut_emerald" },
+    { id = "uncut_sapphire" },
+    { id = "uncut_opal" },
+    { id = "uncut_jade" },
+    { id = "uncut_red_topaz" },
+    { id = "gold_ring" },
+    { id = "sapphire_ring" },
+    { id = "emerald_ring" },
+    { id = "ruby_ring" },
+    { id = "diamond_ring" }
+]
+
+# --- Beaver: logs and planks (1/6) ---
+[forage_beaver]
+roll = 6
+drops = [{ table = "forage_beaver_items", chance = 1 }]
+
+[forage_beaver_items]
+roll = 7
+drops = [
+    { id = "logs" },
+    { id = "oak_logs" },
+    { id = "willow_logs" },
+    { id = "maple_logs" },
+    { id = "yew_logs" },
+    { id = "oak_plank" },
+    { id = "plank" }
+]
+
+# --- Compost mound: compost and seeds (1/6) ---
+[forage_compost_mound]
+roll = 6
+drops = [{ table = "forage_compost_mound_items", chance = 1 }]
+
+[forage_compost_mound_items]
+roll = 8
+drops = [
+    { id = "compost" },
+    { id = "supercompost" },
+    { id = "guam_seed" },
+    { id = "sweetcorn_seed" },
+    { id = "nasturtium_seed" },
+    { id = "wergali_seed" },
+    { id = "limpwurt_seed" },
+    { id = "redberry_seed" }
+]
+
+# --- Fruit bat: fruit and seeds (1/12) ---
+[forage_fruit_bat]
+roll = 12
+drops = [{ table = "forage_fruit_bat_items", chance = 1 }]
+
+[forage_fruit_bat_items]
+roll = 7
+drops = [
+    { id = "strawberry" },
+    { id = "watermelon" },
+    { id = "pineapple" },
+    { id = "papaya_fruit" },
+    { id = "coconut" },
+    { id = "strawberry_seed" },
+    { id = "watermelon_seed" }
+]
+
+# --- Granite crab: fish and seafood (1/5) ---
+[forage_granite_crab]
+roll = 5
+drops = [{ table = "forage_granite_crab_items", chance = 1 }]
+
+[forage_granite_crab_items]
+roll = 4
+drops = [
+    { id = "raw_cod" },
+    { id = "raw_pike" },
+    { id = "seaweed" },
+    { id = "oyster" }
+]
+
+# --- Granite lobster: swordfish and shark (1/12) ---
+[forage_granite_lobster]
+roll = 12
+drops = [{ table = "forage_granite_lobster_items", chance = 1 }]
+
+[forage_granite_lobster_items]
+roll = 2
+drops = [
+    { id = "raw_swordfish" },
+    { id = "raw_shark" }
+]
+
+# --- Ibis: tuna and swordfish (1/12) ---
+[forage_ibis]
+roll = 12
+drops = [{ table = "forage_ibis_items", chance = 1 }]
+
+[forage_ibis_items]
+roll = 2
+drops = [
+    { id = "raw_tuna" },
+    { id = "raw_swordfish" }
+]
+
+# --- Void ravager: ores, coal and clay (1/6) ---
+[forage_void_ravager]
+roll = 6
+drops = [{ table = "forage_void_ravager_items", chance = 1 }]
+
+[forage_void_ravager_items]
+roll = 6
+drops = [
+    { id = "clay" },
+    { id = "iron_ore" },
+    { id = "silver_ore" },
+    { id = "gold_ore" },
+    { id = "mithril_ore" },
+    { id = "coal" }
+]
+
+# --- Macaw: grimy herbs (1/20) ---
+[forage_macaw]
+roll = 20
+drops = [{ table = "herb_drop_table", chance = 1 }]
+
+# --- Single-drop foragers ---
+[forage_spirit_spider]
+roll = 6
+drops = [{ id = "red_spiders_eggs" }]
+
+[forage_giant_ent]
+roll = 7
+drops = [{ id = "oak_logs" }]
+
+[forage_stranger_plant]
+roll = 12
+drops = [{ id = "strange_fruit" }]
+
+[forage_evil_turnip]
+roll = 12
+drops = [{ id = "evil_turnip_two_thirds" }]
+
+# --- Albino rat: cheese ---
+[forage_albino_rat]
+roll = 9
+drops = [{ id = "cheese", amount = 4 }]
+
+# --- Cockatrice family: each variant lays a cockatrice egg (1/12) ---
+[forage_spirit_cockatrice]
+roll = 12
+drops = [{ id = "cockatrice_egg" }]
+
+[forage_spirit_guthatrice]
+roll = 12
+drops = [{ id = "cockatrice_egg" }]
+
+[forage_spirit_saratrice]
+roll = 12
+drops = [{ id = "cockatrice_egg" }]
+
+[forage_spirit_zamatrice]
+roll = 12
+drops = [{ id = "cockatrice_egg" }]
+
+[forage_spirit_pengatrice]
+roll = 12
+drops = [{ id = "cockatrice_egg" }]
+
+[forage_spirit_coraxatrice]
+roll = 12
+drops = [{ id = "cockatrice_egg" }]
+
+[forage_spirit_vulatrice]
+roll = 12
+drops = [{ id = "cockatrice_egg" }]

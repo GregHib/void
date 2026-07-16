@@ -1,6 +1,7 @@
 package content.entity.combat
 
 import content.area.wilderness.inSingleCombat
+import content.entity.effect.stunned
 import content.entity.player.combat.special.specialAttack
 import content.skill.magic.Magic
 import content.skill.melee.weapon.*
@@ -17,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Retreat
 import world.gregs.voidps.engine.entity.character.mode.combat.*
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement.Companion.leashAnchor
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -105,6 +107,10 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         for (attacker in character.attackers) {
             if (attacker.target == character) {
                 attacker.stop("under_attack")
+                // Clear the stale target too - a familiar (whose combat mode ends without a
+                // combatStop) would otherwise re-engage it, e.g. via a titan's called special,
+                // even after the npc dies and respawns.
+                attacker.target = null
             }
         }
     }
@@ -131,10 +137,14 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         if (character is NPC && character.attacking && character.underAttack) {
             return
         }
-        if (character is NPC) {
+        // A familiar attacking an npc should always draw retaliation - the spawn/aggro leash (which
+        // keeps an npc from being dragged off its spawn) must not stop it defending itself, or an npc
+        // hit by a familiar away from its spawn just walks off without ever fighting back.
+        val sourceIsFamiliar = source is NPC && source["owner_index", -1] != -1
+        if (character is NPC && !sourceIsFamiliar) {
             // Retreat
             val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return
-            val spawn: Tile = character["spawn_tile"]!!
+            val spawn: Tile = character.leashAnchor() ?: return
             if (!CombatMovement.withinAggro(source, spawn, definition)) {
                 if (character.mode !is Retreat || (character.mode as Retreat).target != source) {
                     character.mode = Retreat(character, source, spawn, definition.retreatRange)
@@ -168,6 +178,13 @@ class Combat(val combatDefinitions: CombatDefinitions) :
                 return
             }
             if (character.hasClock("action_delay")) {
+                return
+            }
+            // A stunned character can't swing. CombatMovement keeps ticking (and re-entering here)
+            // while stunned, so without this a stunned npc/player would still land its attacks -
+            // only its movement is otherwise gated by the stun's "delay". Skipping leaves the stun
+            // to expire and the fight resumes on the next tick.
+            if (character.stunned) {
                 return
             }
             (character.mode as? CombatMovement)?.started = true

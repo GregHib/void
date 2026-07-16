@@ -1,5 +1,27 @@
+[summoning_renew_obelisk]
+id = 1516
+
+[summoning_renew_player]
+id = 1517
+
+[unicorn_stallion_cure]
+id = 1356
+
+[dreadfowl_special]
+id = 1317
+
+[dreadfowl_special_player]
+id = 1307
+
 [summon_familiar_size_1]
 id = 1314
 
 [summon_familiar_size_2]
 id = 1315
+# Desert wyrm "Burrow" npc option graphic.
+[desert_wyrm_burrow]
+id = 1412
+
+# Bunyip's passive heal graphic, played on the owner as the 15s heal restores life points.
+[bunyip_heal]
+id = 1507

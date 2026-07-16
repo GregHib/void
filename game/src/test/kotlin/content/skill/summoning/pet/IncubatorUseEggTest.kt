@@ -21,6 +21,7 @@ internal class IncubatorUseEggTest : WorldTest() {
     fun `using penguin egg on incubator places it`() {
         val incubator = createObject("incubator_taverley", taverleyIncubatorTile)
         val player = createPlayer(Tile(taverleyIncubatorTile.x + 1, taverleyIncubatorTile.y, 0))
+        player.experience.set(Skill.Summoning, 14_000_000.0) // level requirements check the real level
         player.levels.set(Skill.Summoning, 99)
         player.inventory.add("penguin_egg")
 

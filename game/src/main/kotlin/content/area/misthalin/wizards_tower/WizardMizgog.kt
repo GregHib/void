@@ -64,7 +64,7 @@ class WizardMizgog : Script {
                                         player<Happy>("Well this is a surprising turn of events!")
                                         npc<Quiz>("What?")
                                         player<Happy>("Well I just so happen to have all of those beads on me!")
-                                        npc<Angry>("Are you saying that you stole my beads all this time and I’ve been blaming these imps!?")
+                                        npc<Angry>("Are you saying that you stole my beads all this time and I've been blaming these imps!?")
                                         player<Neutral>("No, not at all! I just found them throughout my travels and presumed somebody would need them at some point.")
                                         npc<Angry>("Bah! Fine.")
                                         cutscene(target)

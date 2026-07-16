@@ -1,6 +1,7 @@
 package content.entity.player.dialogue.type
 
 import content.entity.player.dialogue.Expression
+import content.entity.player.dialogue.familiarChatheadAnimation
 import content.entity.player.dialogue.sendChat
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.engine.client.ui.close
@@ -35,7 +36,9 @@ suspend fun Player.npc(expression: String, text: String, largeHead: Boolean? = n
             face(target)
         }
     }
-    npc(id, expression, text, largeHead, clickToContinue, title)
+    // Familiar and pet chatheads play the same cache animation as the familiar details interface,
+    // regardless of expression - dialogue expressions only exist for humanoid heads.
+    npc(id, familiarChatheadAnimation(id)?.toString() ?: expression, text, largeHead, clickToContinue, title)
 }
 
 suspend fun Player.npc(npcId: String, expression: String, text: String, largeHead: Boolean? = null, clickToContinue: Boolean = true, title: String? = null) {

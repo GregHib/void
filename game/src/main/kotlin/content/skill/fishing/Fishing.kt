@@ -1,6 +1,8 @@
 package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
+import content.skill.summoning.familiarActsAsHarpoon
+import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -76,7 +78,8 @@ class Fishing : Script {
             }
 
             val tackles = spot.itemList("${option.lowercase()}_tackle")
-            val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) }
+            // The ibis and granite lobster spear fish themselves, standing in for a harpoon.
+            val tackle = tackles.firstOrNull { tackle -> player.carriesItem(tackle) || (tackle == "harpoon" && player.familiarActsAsHarpoon()) }
             if (tackle == null) {
                 player.message("You need a ${tackles.first().toTitleCase()} to catch these fish.")
                 break@fishing
@@ -122,7 +125,7 @@ class Fishing : Script {
                 val chance = row.intRange("chance")
                 val experience = row.int("xp")
                 val level = player.levels.get(Skill.Fishing)
-                if (level >= requiredLevel && success(level, chance)) {
+                if (level >= requiredLevel && success(level + player.familiarBoost(Skill.Fishing), chance)) {
                     if (bait != "empty_box_fish" && !player.inventory.remove(bait)) {
                         break@fishing
                     }

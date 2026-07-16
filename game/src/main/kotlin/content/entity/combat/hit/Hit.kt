@@ -9,6 +9,7 @@ import content.skill.magic.spell.spell
 import content.skill.melee.weapon.Weapon
 import content.skill.melee.weapon.weapon
 import content.skill.prayer.Prayer
+import content.skill.summoning.familiarDefenceMultiplier
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
@@ -99,6 +100,9 @@ object Hit {
         if (offense) {
             rating = Bonus.slayerModifier(source, target, type, rating, damage = false)
             rating = Weapon.specialRatingModifiers(source, type, weapon, special, rating)
+        } else if (target is Player) {
+            // Iron/steel titan and wolpertinger passives make their owner harder to hit.
+            rating = (rating * target.familiarDefenceMultiplier(type, meleeType(type))).toInt()
         }
         if (source["debug", false]) {
             val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"

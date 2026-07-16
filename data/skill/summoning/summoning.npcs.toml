@@ -1,447 +1,2022 @@
 [spirit_terrorbird_familiar]
+summoning_time_minutes = 36
 id = 6794
+hitpoints = 2330
+att = 47
+str = 35
+def = 37
+range = 47
+mage = 47
+combat_def = "spirit_terrorbird_familiar"
+interacts = false
 
 [granite_crab_familiar]
+summoning_time_minutes = 18
 id = 6796
+hitpoints = 160
+att = 15
+str = 0
+def = 15
+range = 0
+mage = 0
+combat_def = "granite_crab_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [praying_mantis_familiar]
+summoning_time_minutes = 69
 id = 6798
+hitpoints = 4280
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "praying_mantis_familiar"
+interacts = false
 
 [giant_ent_familiar]
+summoning_time_minutes = 49
 id = 6800
+hitpoints = 4670
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "giant_ent_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_cobra_familiar]
+summoning_time_minutes = 56
 id = 6802
+hitpoints = 3140
+att = 57
+str = 35
+def = 57
+range = 57
+mage = 57
+combat_def = "spirit_cobra_familiar"
+interacts = false
 
 [spirit_dagannoth_familiar]
+summoning_time_minutes = 57
 id = 6804
+hitpoints = 5280
+att = 75
+str = 35
+def = 67
+range = 75
+mage = 75
+combat_def = "spirit_dagannoth_familiar"
+interacts = false
 
 [thorny_snail_familiar]
+summoning_time_minutes = 16
 id = 6806
+hitpoints = 280
+att = 1
+str = 1
+def = 15
+range = 15
+mage = 1
+combat_def = "thorny_snail_familiar"
+interacts = false
 
 [beaver_familiar]
+summoning_time_minutes = 27
 id = 6808
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [karamthulhu_overlord_familiar]
+summoning_time_minutes = 44
 id = 6809
+hitpoints = 2760
+att = 53
+str = 35
+def = 47
+range = 53
+mage = 53
+combat_def = "karamthulhu_overlord_familiar"
+interacts = false
 
 [hydra_familiar]
+summoning_time_minutes = 49
 id = 6811
+hitpoints = 4900
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "hydra_familiar"
+interacts = false
 
 [spirit_jelly_familiar]
+summoning_time_minutes = 43
 id = 6992
+hitpoints = 2550
+att = 50
+str = 35
+def = 44
+range = 50
+mage = 50
+combat_def = "spirit_jelly_familiar"
+interacts = false
 
 [bunyip_familiar]
+summoning_time_minutes = 44
 id = 6813
+hitpoints = 400
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "bunyip_familiar"
+interacts = false
 
 [war_tortoise_familiar]
+summoning_time_minutes = 43
 id = 6815
+hitpoints = 3480
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "war_tortoise_familiar"
+interacts = false
 
 [fruit_bat_familiar]
+summoning_time_minutes = 45
 id = 6817
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [abyssal_parasite_familiar]
+summoning_time_minutes = 30
 id = 6818
-dialogue = "leech"
+hitpoints = 2340
+att = 49
+str = 35
+def = 44
+range = 49
+mage = 49
+combat_def = "abyssal_parasite_familiar"
 interacts = false
 summoning_beast_of_burden = 1
 summoning_beast_of_burden_capacity = 7
 summoning_beast_of_burden_essence = 1
 
 [abyssal_lurker_familiar]
+summoning_time_minutes = 41
 id = 6820
-dialogue = "bird"
+hitpoints = 3080
+att = 56
+str = 35
+def = 50
+range = 56
+mage = 56
+combat_def = "abyssal_lurker_familiar"
 interacts = false
 summoning_beast_of_burden = 1
 summoning_beast_of_burden_capacity = 12
 summoning_beast_of_burden_essence = 1
 
 [unicorn_stallion_familiar]
+summoning_time_minutes = 54
+summoning_special_cost = 20
 id = 6822
+hitpoints = 1000
+att = 80
+str = 35
+def = 69
+range = 80
+mage = 80
+combat_def = "unicorn_stallion_familiar"
+interacts = false
 
 [magpie_familiar]
+summoning_time_minutes = 34
 id = 6824
+interacts = false
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
 
 [dreadfowl_familiar]
+summoning_time_minutes = 4
 id = 6825
+hitpoints = 160
+att = 15
+str = 15
+def = 10
+range = 10
+mage = 15
+combat_def = "dreadfowl_familiar"
+interacts = false
 
 [stranger_plant_familiar]
+summoning_time_minutes = 49
 id = 6827
+hitpoints = 3220
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "stranger_plant_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_wolf_familiar]
+summoning_time_minutes = 6
 id = 6829
-dialogue = "wolf"
+hitpoints = 150
+att = 10
+str = 10
+def = 10
+range = 10
+mage = 10
+combat_def = "spirit_wolf_familiar"
 interacts = false
 
 [desert_wyrm_familiar]
+summoning_time_minutes = 19
 id = 6831
+hitpoints = 470
+att = 20
+str = 20
+def = 20
+range = 20
+mage = 20
+combat_def = "desert_wyrm_familiar"
+interacts = false
 
 [evil_turnip_familiar]
+summoning_time_minutes = 30
 id = 6833
+hitpoints = 1670
+att = 38
+str = 30
+def = 34
+range = 28
+mage = 34
+combat_def = "evil_turnip_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [vampire_bat_familiar]
+summoning_time_minutes = 33
 id = 6835
+hitpoints = 1050
+att = 30
+str = 30
+def = 30
+range = 30
+mage = 30
+combat_def = "vampire_bat_familiar"
+interacts = false
 
 [spirit_scorpion_familiar]
+summoning_time_minutes = 17
 id = 6837
+hitpoints = 670
+att = 20
+str = 20
+def = 20
+range = 20
+mage = 20
+combat_def = "spirit_scorpion_familiar"
+interacts = false
 
 [arctic_bear_familiar]
+summoning_time_minutes = 28
 id = 6839
+hitpoints = 3810
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "arctic_bear_familiar"
+interacts = false
 
 [spirit_spider_familiar]
+summoning_time_minutes = 15
 id = 6841
+hitpoints = 180
+att = 15
+str = 0
+def = 15
+range = 0
+mage = 0
+combat_def = "spirit_spider_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [bloated_leech_familiar]
+summoning_time_minutes = 34
 id = 6843
+hitpoints = 2110
+att = 45
+str = 35
+def = 40
+range = 45
+mage = 45
+combat_def = "bloated_leech_familiar"
+interacts = false
 
 [spirit_kalphite_familiar]
+summoning_time_minutes = 22
 id = 6994
+hitpoints = 770
+att = 25
+str = 25
+def = 25
+range = 25
+mage = 25
+combat_def = "spirit_kalphite_familiar"
+interacts = false
 
 [honey_badger_familiar]
+summoning_time_minutes = 25
 id = 6845
+hitpoints = 1100
+att = 29
+str = 30
+def = 26
+range = 29
+mage = 29
+combat_def = "honey_badger_familiar"
+interacts = false
 
 [albino_rat_familiar]
+summoning_time_minutes = 22
 id = 6847
+hitpoints = 680
+att = 22
+str = 22
+def = 22
+range = 22
+mage = 22
+combat_def = "albino_rat_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [granite_lobster_familiar]
+summoning_time_minutes = 47
 id = 6849
+hitpoints = 4180
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "granite_lobster_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [macaw_familiar]
+summoning_time_minutes = 31
 id = 6851
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [bronze_minotaur_familiar]
+summoning_time_minutes = 30
 id = 6853
+hitpoints = 1330
+att = 33
+str = 30
+def = 28
+range = 33
+mage = 33
+combat_def = "bronze_minotaur_familiar"
+interacts = false
 
 [iron_minotaur_familiar]
+summoning_time_minutes = 37
 id = 6855
+hitpoints = 1930
+att = 42
+str = 35
+def = 37
+range = 42
+mage = 42
+combat_def = "iron_minotaur_familiar"
+interacts = false
 
 [steel_minotaur_familiar]
+summoning_time_minutes = 46
 id = 6857
+hitpoints = 2600
+att = 51
+str = 35
+def = 44
+range = 51
+mage = 51
+combat_def = "steel_minotaur_familiar"
+interacts = false
 
 [mithril_minotaur_familiar]
+summoning_time_minutes = 55
 id = 6859
+hitpoints = 3400
+att = 60
+str = 35
+def = 53
+range = 60
+mage = 60
+combat_def = "mithril_minotaur_familiar"
+interacts = false
 
 [adamant_minotaur_familiar]
+summoning_time_minutes = 66
 id = 6861
+hitpoints = 4410
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "adamant_minotaur_familiar"
+interacts = false
 
 [rune_minotaur_familiar]
+summoning_time_minutes = 151
 id = 6863
+hitpoints = 5700
+att = 80
+str = 35
+def = 69
+range = 80
+mage = 80
+combat_def = "rune_minotaur_familiar"
+interacts = false
 
 [smoke_devil_familiar]
+summoning_time_minutes = 48
 id = 6865
+hitpoints = 3000
+att = 55
+str = 35
+def = 49
+range = 55
+mage = 55
+combat_def = "smoke_devil_familiar"
+interacts = false
 
 [bull_ant_familiar]
+summoning_time_minutes = 30
 id = 6867
+hitpoints = 1540
+att = 36
+str = 30
+def = 32
+range = 36
+mage = 36
+combat_def = "bull_ant_familiar"
+interacts = false
 
 [wolpertinger_familiar]
+summoning_time_minutes = 62
 id = 6869
+hitpoints = 6510
+att = 85
+str = 35
+def = 72
+range = 85
+mage = 85
+combat_def = "wolpertinger_familiar"
+interacts = false
 
 [compost_mound_familiar]
+summoning_time_minutes = 24
 id = 6871
+hitpoints = 930
+att = 25
+str = 25
+def = 25
+range = 25
+mage = 25
+combat_def = "compost_mound_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [pack_yak_familiar]
+summoning_time_minutes = 58
 id = 6873
+hitpoints = 7100
+att = 87
+str = 87
+def = 77
+range = 87
+mage = 87
+combat_def = "pack_yak_familiar"
+interacts = false
 
 [spirit_cockatrice_familiar]
+summoning_time_minutes = 36
 id = 6875
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_cockatrice_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_guthatrice_familiar]
+summoning_time_minutes = 36
 id = 6877
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_guthatrice_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_saratrice_familiar]
+summoning_time_minutes = 36
 id = 6879
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_saratrice_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_zamatrice_familiar]
+summoning_time_minutes = 36
 id = 6881
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_zamatrice_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_pengatrice_familiar]
+summoning_time_minutes = 36
 id = 6883
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_pengatrice_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_coraxatrice_familiar]
+summoning_time_minutes = 36
 id = 6885
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_coraxatrice_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [spirit_vulatrice_familiar]
+summoning_time_minutes = 36
 id = 6887
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_vulatrice_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [barker_toad_familiar]
+summoning_time_minutes = 8
 id = 6889
+hitpoints = 3400
+att = 60
+str = 35
+def = 53
+range = 60
+mage = 60
+combat_def = "barker_toad_familiar"
+interacts = false
 
 [ibis_familiar]
+summoning_time_minutes = 38
 id = 6991
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [swamp_titan_familiar]
+summoning_time_minutes = 56
 id = 7329
+hitpoints = 5660
+att = 77
+str = 35
+def = 67
+range = 77
+mage = 77
+combat_def = "swamp_titan_familiar"
+interacts = false
 
 [spirit_mosquito_familiar]
+summoning_time_minutes = 12
 id = 7331
+hitpoints = 430
+att = 5
+str = 1
+def = 45
+range = 1
+mage = 1
+combat_def = "spirit_mosquito_familiar"
+interacts = false
 
 [void_spinner_familiar]
+summoning_time_minutes = 27
 id = 7333
+hitpoints = 590
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_spinner_familiar"
+interacts = false
 
 [forge_regent_familiar]
+summoning_time_minutes = 45
 id = 7335
+hitpoints = 4410
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "forge_regent_familiar"
+interacts = false
 
 [spirit_larupia_familiar]
+summoning_time_minutes = 49
 id = 7337
+hitpoints = 2680
+att = 52
+str = 35
+def = 46
+range = 52
+mage = 52
+combat_def = "spirit_larupia_familiar"
+interacts = false
 
 [geyser_titan_familiar]
+summoning_time_minutes = 69
 id = 7339
+hitpoints = 6100
+att = 85
+str = 35
+def = 72
+range = 85
+mage = 85
+combat_def = "geyser_titan_familiar"
+interacts = false
 
 [lava_titan_familiar]
+summoning_time_minutes = 61
 id = 7341
+hitpoints = 5280
+att = 75
+str = 35
+def = 67
+range = 75
+mage = 75
+combat_def = "lava_titan_familiar"
+interacts = false
 
 [steel_titan_familiar]
+summoning_time_minutes = 64
 id = 7343
+hitpoints = 7540
+att = 130
+str = 130
+def = 130
+range = 130
+mage = 130
+combat_def = "steel_titan_familiar"
+interacts = false
 
 [obsidian_golem_familiar]
+summoning_time_minutes = 55
 id = 7345
+hitpoints = 4060
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "obsidian_golem_familiar"
+interacts = false
 
 [talon_beast_familiar]
+summoning_time_minutes = 49
 id = 7347
+hitpoints = 4540
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "talon_beast_familiar"
+interacts = false
 
 [abyssal_titan_familiar]
+summoning_time_minutes = 93
 id = 7349
+hitpoints = 6670
+att = 100
+str = 100
+def = 100
+range = 100
+mage = 100
+combat_def = "abyssal_titan_familiar"
+interacts = false
 summoning_beast_of_burden = 1
 summoning_beast_of_burden_capacity = 20
 summoning_beast_of_burden_essence = 1
 
 [void_torcher_familiar]
+summoning_time_minutes = 94
 id = 7351
+hitpoints = 1210
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_torcher_familiar"
+interacts = false
 
 [giant_chinchompa_familiar]
+summoning_time_minutes = 31
 id = 7353
+hitpoints = 970
+att = 25
+str = 25
+def = 25
+range = 25
+mage = 25
+combat_def = "giant_chinchompa_familiar"
+interacts = false
 
 [fire_titan_familiar]
+summoning_time_minutes = 62
 id = 7355
+hitpoints = 4760
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "fire_titan_familiar"
+interacts = false
 
 [moss_titan_familiar]
+summoning_time_minutes = 58
 id = 7357
+hitpoints = 4760
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "moss_titan_familiar"
+interacts = false
 
 [ice_titan_familiar]
+summoning_time_minutes = 64
 id = 7359
+hitpoints = 4760
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "ice_titan_familiar"
+interacts = false
 
 [spirit_tz-kih_familiar]
+summoning_time_minutes = 18
 id = 7361
+hitpoints = 630
+att = 20
+str = 20
+def = 20
+range = 20
+mage = 20
+combat_def = "spirit_tz-kih_familiar"
+interacts = false
 
 [spirit_graahk_familiar]
+summoning_time_minutes = 57
 id = 7363
+hitpoints = 2680
+att = 52
+str = 35
+def = 46
+range = 52
+mage = 52
+combat_def = "spirit_graahk_familiar"
+interacts = false
 
 [spirit_kyatt_familiar]
+summoning_time_minutes = 49
 id = 7365
+hitpoints = 2680
+att = 52
+str = 35
+def = 46
+range = 52
+mage = 52
+combat_def = "spirit_kyatt_familiar"
+interacts = false
 
 [void_shifter_familiar]
+summoning_time_minutes = 94
 id = 7367
+hitpoints = 1210
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_shifter_familiar"
+interacts = false
 
 [pyrelord_familiar]
+summoning_time_minutes = 32
 id = 7377
+hitpoints = 1930
+att = 60
+str = 40
+def = 30
+range = 1
+mage = 1
+combat_def = "pyrelord_familiar"
+interacts = false
 
 [void_ravager_familiar]
+summoning_time_minutes = 27
 id = 7370
+hitpoints = 1210
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_ravager_familiar"
+summoning_beast_of_burden = 1
+summoning_beast_of_burden_capacity = 30
+interacts = false
 
 [ravenous_locust_familiar]
+summoning_time_minutes = 24
 id = 7372
+hitpoints = 3700
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "ravenous_locust_familiar"
+interacts = false
 
 [iron_titan_familiar]
+summoning_time_minutes = 60
 id = 7375
+hitpoints = 6940
+att = 120
+str = 120
+def = 120
+range = 120
+mage = 120
+combat_def = "iron_titan_familiar"
+interacts = false
 
 [clay_familiar_class_1_familiar]
 id = 8240
+interacts = false
 
 [clay_familiar_class_2_familiar]
 id = 8242
+interacts = false
 
 [clay_familiar_class_3_familiar]
 id = 8244
+interacts = false
 
 [clay_familiar_class_4_familiar]
 id = 8246
+interacts = false
 
 [clay_familiar_class_5_familiar]
 id = 8248
+interacts = false
 
 [phoenix_familiar]
 id = 8575
+hitpoints = 1530
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "phoenix_familiar"
+interacts = false
 
 [cub_bloodrager_familiar]
 id = 11106
+interacts = false
 
 [little_bloodrager_familiar]
 id = 11108
+interacts = false
 
 [naïve_bloodrager_familiar]
 id = 11110
+interacts = false
 
 [keen_bloodrager_familiar]
 id = 11112
+interacts = false
 
 [brave_bloodrager_familiar]
 id = 11114
+interacts = false
 
 [brah_bloodrager_familiar]
 id = 11116
+interacts = false
 
 [naabe_bloodrager_familiar]
 id = 11118
+interacts = false
 
 [wise_bloodrager_familiar]
 id = 11120
+interacts = false
 
 [adept_bloodrager_familiar]
 id = 11122
+interacts = false
 
 [sachem_bloodrager_familiar]
 id = 11124
+interacts = false
 
 [cub_stormbringer_familiar]
 id = 11126
+interacts = false
 
 [little_stormbringer_familiar]
 id = 11128
+interacts = false
 
 [naïve_stormbringer_familiar]
 id = 11130
+interacts = false
 
 [keen_stormbringer_familiar]
 id = 11132
+interacts = false
 
 [brave_stormbringer_familiar]
 id = 11134
+interacts = false
 
 [brah_stormbringer_familiar]
 id = 11136
+interacts = false
 
 [naabe_stormbringer_familiar]
 id = 11138
+interacts = false
 
 [wise_stormbringer_familiar]
 id = 11140
+interacts = false
 
 [adept_stormbringer_familiar]
 id = 11142
+interacts = false
 
 [sachem_stormbringer_familiar]
 id = 11144
+interacts = false
 
 [cub_hoardstalker_familiar]
 id = 11146
+interacts = false
 
 [little_hoardstalker_familiar]
 id = 11148
+interacts = false
 
 [naïve_hoardstalker_familiar]
 id = 11150
+interacts = false
 
 [keen_hoardstalker_familiar]
 id = 11152
+interacts = false
 
 [brave_hoardstalker_familiar]
 id = 11154
+interacts = false
 
 [brah_hoardstalker_familiar]
 id = 11156
+interacts = false
 
 [naabe_hoardstalker_familiar]
 id = 11158
+interacts = false
 
 [wise_hoardstalker_familiar]
 id = 11160
+interacts = false
 
 [adept_hoardstalker_familiar]
 id = 11162
+interacts = false
 
 [sachem_hoardstalker_familiar]
 id = 11164
+interacts = false
 
 [cub_skinweaver_familiar]
 id = 11166
+interacts = false
 
 [little_skinweaver_familiar]
 id = 11168
+interacts = false
 
 [naïve_skinweaver_familiar]
 id = 11170
+interacts = false
 
 [keen_skinweaver_familiar]
 id = 11172
+interacts = false
 
 [brave_skinweaver_familiar]
 id = 11174
+interacts = false
 
 [brah_skinweaver_familiar]
 id = 11176
+interacts = false
 
 [naabe_skinweaver_familiar]
 id = 11178
+interacts = false
 
 [wise_skinweaver_familiar]
 id = 11180
+interacts = false
 
 [adept_skinweaver_familiar]
 id = 11182
+interacts = false
 
 [sachem_skinweaver_familiar]
 id = 11184
+interacts = false
 
 [cub_worldbearer_familiar]
 id = 11186
+interacts = false
 
 [little_worldbearer_familiar]
 id = 11188
+interacts = false
 
 [naïve_worldbearer_familiar]
 id = 11190
+interacts = false
 
 [keen_worldbearer_familiar]
 id = 11192
+interacts = false
 
 [brave_worldbearer_familiar]
 id = 11194
+interacts = false
 
 [brah_worldbearer_familiar]
 id = 11196
+interacts = false
 
 [naabe_worldbearer_familiar]
 id = 11198
+interacts = false
 
 [wise_worldbearer_familiar]
 id = 11200
+interacts = false
 
 [adept_worldbearer_familiar]
 id = 11202
+interacts = false
 
 [sachem_worldbearer_familiar]
 id = 11204
+interacts = false
 
 [cub_deathslinger_familiar]
 id = 11206
+interacts = false
 
 [little_deathslinger_familiar]
 id = 11208
+interacts = false
 
 [naive_deathslinger_familiar]
 id = 11210
+interacts = false
 
 [keen_deathslinger_familiar]
 id = 11212
+interacts = false
 
 [brave_deathslinger_familiar]
 id = 11214
+interacts = false
 
 [brah_deathslinger_familiar]
 id = 11216
+interacts = false
 
 [naabe_deathslinger_familiar]
 id = 11218
+interacts = false
 
 [wise_deathslinger_familiar]
 id = 11220
+interacts = false
 
 [adept_deathslinger_familiar]
 id = 11222
+interacts = false
 
 [sachem_deathslinger_familiar]
 id = 11224
+interacts = false
 
 [meerkats_familiar]
+summoning_time_minutes = 40
 id = 11640
-familiar_time = 40
+interacts = false
+
+
+# --- PvP combat variants (id+1, the 'Attack'-option form shown in PvP areas) ---
+
+[spirit_wolf_familiar_combat]
+id = 6830
+interacts = false
+hitpoints = 150
+att = 10
+str = 10
+def = 10
+range = 10
+mage = 10
+combat_def = "spirit_wolf_familiar"
+
+[dreadfowl_familiar_combat]
+id = 6826
+interacts = false
+hitpoints = 160
+att = 15
+str = 15
+def = 10
+range = 10
+mage = 15
+combat_def = "dreadfowl_familiar"
+
+[spirit_spider_familiar_combat]
+id = 6842
+interacts = false
+hitpoints = 180
+att = 15
+str = 0
+def = 15
+range = 0
+mage = 0
+combat_def = "spirit_spider_familiar"
+
+[thorny_snail_familiar_combat]
+id = 6807
+interacts = false
+hitpoints = 280
+att = 1
+str = 1
+def = 15
+range = 15
+mage = 1
+combat_def = "thorny_snail_familiar"
+
+[granite_crab_familiar_combat]
+id = 6797
+interacts = false
+hitpoints = 160
+att = 15
+str = 0
+def = 15
+range = 0
+mage = 0
+combat_def = "granite_crab_familiar"
+
+[spirit_mosquito_familiar_combat]
+id = 7332
+interacts = false
+hitpoints = 430
+att = 5
+str = 1
+def = 45
+range = 1
+mage = 1
+combat_def = "spirit_mosquito_familiar"
+
+[desert_wyrm_familiar_combat]
+id = 6832
+interacts = false
+hitpoints = 470
+att = 20
+str = 20
+def = 20
+range = 20
+mage = 20
+combat_def = "desert_wyrm_familiar"
+
+[spirit_scorpion_familiar_combat]
+id = 6838
+interacts = false
+hitpoints = 670
+att = 20
+str = 20
+def = 20
+range = 20
+mage = 20
+combat_def = "spirit_scorpion_familiar"
+
+[spirit_tz-kih_familiar_combat]
+id = 7362
+interacts = false
+hitpoints = 630
+att = 20
+str = 20
+def = 20
+range = 20
+mage = 20
+combat_def = "spirit_tz-kih_familiar"
+
+[albino_rat_familiar_combat]
+id = 6848
+interacts = false
+hitpoints = 680
+att = 22
+str = 22
+def = 22
+range = 22
+mage = 22
+combat_def = "albino_rat_familiar"
+
+[spirit_kalphite_familiar_combat]
+id = 6995
+interacts = false
+hitpoints = 770
+att = 25
+str = 25
+def = 25
+range = 25
+mage = 25
+combat_def = "spirit_kalphite_familiar"
+
+[compost_mound_familiar_combat]
+id = 6872
+interacts = false
+hitpoints = 930
+att = 25
+str = 25
+def = 25
+range = 25
+mage = 25
+combat_def = "compost_mound_familiar"
+
+[giant_chinchompa_familiar_combat]
+id = 7354
+interacts = false
+hitpoints = 970
+att = 25
+str = 25
+def = 25
+range = 25
+mage = 25
+combat_def = "giant_chinchompa_familiar"
+
+[vampire_bat_familiar_combat]
+id = 6836
+interacts = false
+hitpoints = 1050
+att = 30
+str = 30
+def = 30
+range = 30
+mage = 30
+combat_def = "vampire_bat_familiar"
+
+[honey_badger_familiar_combat]
+id = 6846
+interacts = false
+hitpoints = 1100
+att = 29
+str = 30
+def = 26
+range = 29
+mage = 29
+combat_def = "honey_badger_familiar"
+
+[void_ravager_familiar_combat]
+id = 7371
+interacts = false
+hitpoints = 1210
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_ravager_familiar"
+
+[void_spinner_familiar_combat]
+id = 7334
+interacts = false
+hitpoints = 590
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_spinner_familiar"
+
+[void_torcher_familiar_combat]
+id = 7352
+interacts = false
+hitpoints = 1210
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_torcher_familiar"
+
+[void_shifter_familiar_combat]
+id = 7368
+interacts = false
+hitpoints = 1210
+att = 31
+str = 30
+def = 28
+range = 31
+mage = 31
+combat_def = "void_shifter_familiar"
+
+[bronze_minotaur_familiar_combat]
+id = 6854
+interacts = false
+hitpoints = 1330
+att = 33
+str = 30
+def = 28
+range = 33
+mage = 33
+combat_def = "bronze_minotaur_familiar"
+
+[iron_minotaur_familiar_combat]
+id = 6856
+interacts = false
+hitpoints = 1930
+att = 42
+str = 35
+def = 37
+range = 42
+mage = 42
+combat_def = "iron_minotaur_familiar"
+
+[steel_minotaur_familiar_combat]
+id = 6858
+interacts = false
+hitpoints = 2600
+att = 51
+str = 35
+def = 44
+range = 51
+mage = 51
+combat_def = "steel_minotaur_familiar"
+
+[mithril_minotaur_familiar_combat]
+id = 6860
+interacts = false
+hitpoints = 3400
+att = 60
+str = 35
+def = 53
+range = 60
+mage = 60
+combat_def = "mithril_minotaur_familiar"
+
+[adamant_minotaur_familiar_combat]
+id = 6862
+interacts = false
+hitpoints = 4410
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "adamant_minotaur_familiar"
+
+[rune_minotaur_familiar_combat]
+id = 6864
+interacts = false
+hitpoints = 5700
+att = 80
+str = 35
+def = 69
+range = 80
+mage = 80
+combat_def = "rune_minotaur_familiar"
+
+[bull_ant_familiar_combat]
+id = 6868
+interacts = false
+hitpoints = 1540
+att = 36
+str = 30
+def = 32
+range = 36
+mage = 36
+combat_def = "bull_ant_familiar"
+
+[evil_turnip_familiar_combat]
+id = 6834
+interacts = false
+hitpoints = 1670
+att = 38
+str = 30
+def = 34
+range = 28
+mage = 34
+combat_def = "evil_turnip_familiar"
+
+[spirit_cockatrice_familiar_combat]
+id = 6876
+interacts = false
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_cockatrice_familiar"
+
+[spirit_guthatrice_familiar_combat]
+id = 6878
+interacts = false
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_guthatrice_familiar"
+
+[spirit_saratrice_familiar_combat]
+id = 6880
+interacts = false
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_saratrice_familiar"
+
+[spirit_zamatrice_familiar_combat]
+id = 6882
+interacts = false
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_zamatrice_familiar"
+
+[spirit_pengatrice_familiar_combat]
+id = 6884
+interacts = false
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_pengatrice_familiar"
+
+[spirit_coraxatrice_familiar_combat]
+id = 6886
+interacts = false
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_coraxatrice_familiar"
+
+[spirit_vulatrice_familiar_combat]
+id = 6888
+interacts = false
+hitpoints = 1730
+att = 39
+str = 35
+def = 35
+range = 39
+mage = 39
+combat_def = "spirit_vulatrice_familiar"
+
+[pyrelord_familiar_combat]
+id = 7378
+interacts = false
+hitpoints = 1930
+att = 60
+str = 40
+def = 30
+range = 1
+mage = 1
+combat_def = "pyrelord_familiar"
+
+[bloated_leech_familiar_combat]
+id = 6844
+interacts = false
+hitpoints = 2110
+att = 45
+str = 35
+def = 40
+range = 45
+mage = 45
+combat_def = "bloated_leech_familiar"
+
+[spirit_terrorbird_familiar_combat]
+id = 6795
+interacts = false
+hitpoints = 2330
+att = 47
+str = 35
+def = 37
+range = 47
+mage = 47
+combat_def = "spirit_terrorbird_familiar"
+
+[abyssal_parasite_familiar_combat]
+id = 6819
+interacts = false
+hitpoints = 2340
+att = 49
+str = 35
+def = 44
+range = 49
+mage = 49
+combat_def = "abyssal_parasite_familiar"
+
+[spirit_jelly_familiar_combat]
+id = 6993
+interacts = false
+hitpoints = 2550
+att = 50
+str = 35
+def = 44
+range = 50
+mage = 50
+combat_def = "spirit_jelly_familiar"
+
+[spirit_kyatt_familiar_combat]
+id = 7366
+interacts = false
+hitpoints = 2680
+att = 52
+str = 35
+def = 46
+range = 52
+mage = 52
+combat_def = "spirit_kyatt_familiar"
+
+[spirit_larupia_familiar_combat]
+id = 7338
+interacts = false
+hitpoints = 2680
+att = 52
+str = 35
+def = 46
+range = 52
+mage = 52
+combat_def = "spirit_larupia_familiar"
+
+[spirit_graahk_familiar_combat]
+id = 7364
+interacts = false
+hitpoints = 2680
+att = 52
+str = 35
+def = 46
+range = 52
+mage = 52
+combat_def = "spirit_graahk_familiar"
+
+[karamthulhu_overlord_familiar_combat]
+id = 6810
+interacts = false
+hitpoints = 2760
+att = 53
+str = 35
+def = 47
+range = 53
+mage = 53
+combat_def = "karamthulhu_overlord_familiar"
+
+[smoke_devil_familiar_combat]
+id = 6866
+interacts = false
+hitpoints = 3000
+att = 55
+str = 35
+def = 49
+range = 55
+mage = 55
+combat_def = "smoke_devil_familiar"
+
+[abyssal_lurker_familiar_combat]
+id = 6821
+interacts = false
+hitpoints = 3080
+att = 56
+str = 35
+def = 50
+range = 56
+mage = 56
+combat_def = "abyssal_lurker_familiar"
+
+[spirit_cobra_familiar_combat]
+id = 6803
+interacts = false
+hitpoints = 3140
+att = 57
+str = 35
+def = 57
+range = 57
+mage = 57
+combat_def = "spirit_cobra_familiar"
+
+[stranger_plant_familiar_combat]
+id = 6828
+interacts = false
+hitpoints = 3220
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "stranger_plant_familiar"
+
+[barker_toad_familiar_combat]
+id = 6890
+interacts = false
+hitpoints = 3400
+att = 60
+str = 35
+def = 53
+range = 60
+mage = 60
+combat_def = "barker_toad_familiar"
+
+[war_tortoise_familiar_combat]
+id = 6816
+interacts = false
+hitpoints = 3480
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "war_tortoise_familiar"
+
+[bunyip_familiar_combat]
+id = 6814
+interacts = false
+hitpoints = 400
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "bunyip_familiar"
+
+[ravenous_locust_familiar_combat]
+id = 7373
+interacts = false
+hitpoints = 3700
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "ravenous_locust_familiar"
+
+[arctic_bear_familiar_combat]
+id = 6840
+interacts = false
+hitpoints = 3810
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "arctic_bear_familiar"
+
+[phoenix_familiar_combat]
+id = 8576
+interacts = false
+hitpoints = 1530
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "phoenix_familiar"
+
+[obsidian_golem_familiar_combat]
+id = 7346
+interacts = false
+hitpoints = 4060
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "obsidian_golem_familiar"
+
+[granite_lobster_familiar_combat]
+id = 6850
+interacts = false
+hitpoints = 4180
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "granite_lobster_familiar"
+
+[praying_mantis_familiar_combat]
+id = 6799
+interacts = false
+hitpoints = 4280
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "praying_mantis_familiar"
+
+[forge_regent_familiar_combat]
+id = 7336
+interacts = false
+hitpoints = 4410
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "forge_regent_familiar"
+
+[talon_beast_familiar_combat]
+id = 7348
+interacts = false
+hitpoints = 4540
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "talon_beast_familiar"
+
+[giant_ent_familiar_combat]
+id = 6801
+interacts = false
+hitpoints = 4670
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "giant_ent_familiar"
+
+[hydra_familiar_combat]
+id = 6812
+interacts = false
+hitpoints = 4900
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "hydra_familiar"
+
+[spirit_dagannoth_familiar_combat]
+id = 6805
+interacts = false
+hitpoints = 5280
+att = 75
+str = 35
+def = 67
+range = 75
+mage = 75
+combat_def = "spirit_dagannoth_familiar"
+
+[unicorn_stallion_familiar_combat]
+id = 6823
+interacts = false
+hitpoints = 1000
+att = 80
+str = 35
+def = 69
+range = 80
+mage = 80
+combat_def = "unicorn_stallion_familiar"
+
+[wolpertinger_familiar_combat]
+id = 6870
+interacts = false
+hitpoints = 6510
+att = 85
+str = 35
+def = 72
+range = 85
+mage = 85
+combat_def = "wolpertinger_familiar"
+
+[pack_yak_familiar_combat]
+id = 6874
+interacts = false
+hitpoints = 7100
+att = 87
+str = 87
+def = 77
+range = 87
+mage = 87
+combat_def = "pack_yak_familiar"
+
+[fire_titan_familiar_combat]
+id = 7356
+interacts = false
+hitpoints = 4760
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "fire_titan_familiar"
+
+[moss_titan_familiar_combat]
+id = 7358
+interacts = false
+hitpoints = 4760
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "moss_titan_familiar"
+
+[ice_titan_familiar_combat]
+id = 7360
+interacts = false
+hitpoints = 4760
+att = 72
+str = 35
+def = 64
+range = 72
+mage = 72
+combat_def = "ice_titan_familiar"
+
+[lava_titan_familiar_combat]
+id = 7342
+interacts = false
+hitpoints = 5280
+att = 75
+str = 35
+def = 67
+range = 75
+mage = 75
+combat_def = "lava_titan_familiar"
+
+[swamp_titan_familiar_combat]
+id = 7330
+interacts = false
+hitpoints = 5660
+att = 77
+str = 35
+def = 67
+range = 77
+mage = 77
+combat_def = "swamp_titan_familiar"
+
+[geyser_titan_familiar_combat]
+id = 7340
+interacts = false
+hitpoints = 6100
+att = 85
+str = 35
+def = 72
+range = 85
+mage = 85
+combat_def = "geyser_titan_familiar"
+
+[abyssal_titan_familiar_combat]
+id = 7350
+interacts = false
+hitpoints = 6670
+att = 100
+str = 100
+def = 100
+range = 100
+mage = 100
+combat_def = "abyssal_titan_familiar"
+
+[iron_titan_familiar_combat]
+id = 7376
+interacts = false
+hitpoints = 6940
+att = 120
+str = 120
+def = 120
+range = 120
+mage = 120
+combat_def = "iron_titan_familiar"
+
+[steel_titan_familiar_combat]
+id = 7344
+interacts = false
+hitpoints = 7540
+att = 130
+str = 130
+def = 130
+range = 130
+mage = 130
+combat_def = "steel_titan_familiar"

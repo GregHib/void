@@ -2,9 +2,11 @@ package content.skill.summoning
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 class SummoningTimers : Script {
@@ -19,6 +21,17 @@ class SummoningTimers : Script {
         }
 
         timerTick("familiar_timer") {
+            // Special-move points regenerate +15 (capped at 60) every 30s, matching the live game.
+            val specialPoints = get("summoning_special_points_remaining", 0)
+            if (specialPoints < 60) {
+                set("summoning_special_points_remaining", (specialPoints + 15).coerceAtMost(60))
+            }
+            follower?.let { familiar ->
+                val lines = Rows.getOrNull("familiar_overhead.${familiar.id}")?.stringListOrNull("lines")
+                if (!lines.isNullOrEmpty()) {
+                    familiar.say(lines[random.nextInt(lines.size)])
+                }
+            }
             var seconds = get("familiar_details_seconds_remaining", 0)
             if (seconds == 0) {
                 dec("familiar_details_minutes_remaining")
