@@ -31,15 +31,15 @@ data class Aggregate(
         volume += amount
         count++
 
-        val midpoint = (high + low) / 2
+        val midpoint = (high.toLong() + low) / 2
 
         if (price >= midpoint) {
             // Update running average for high prices
-            averageHigh = ((averageHigh * volumeHigh) + (price * amount)) / (volumeHigh + amount)
+            averageHigh = ((averageHigh * volumeHigh) + (price.toDouble() * amount)) / (volumeHigh + amount)
             volumeHigh += amount
         } else {
             // Update running average for low prices
-            averageLow = ((averageLow * volumeLow) + (price * amount)) / (volumeLow + amount)
+            averageLow = ((averageLow * volumeLow) + (price.toDouble() * amount)) / (volumeLow + amount)
             volumeLow += amount
         }
     }

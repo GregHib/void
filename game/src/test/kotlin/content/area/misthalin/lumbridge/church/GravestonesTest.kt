@@ -49,6 +49,24 @@ class GravestonesTest : WorldTest() {
     }
 
     @Test
+    fun `Dropped items last the gravestone duration in ticks not minutes`() {
+        val tile = Tile(3235, 3220)
+        val player = createPlayer(tile)
+        player.inventory.add("coins", 10)
+        tick()
+
+        player.damage(101)
+        tick(9)
+
+        // 5 minute memorial plaque: reveal near 300s of ticks (500), not 5 ticks (3 seconds).
+        // The floor timer has already counted down a couple of ticks by now.
+        val coins = FloorItems.firstOrNull(tile, "coins")
+        assertNotNull(coins)
+        assertTrue(coins.revealTicks >= 490, "reveal should be ~500 ticks (5 min), was ${coins.revealTicks}")
+        assertTrue(coins.disappearTicks >= 550, "disappear should be ~560 ticks, was ${coins.disappearTicks}")
+    }
+
+    @Test
     fun `A gravestone breaks after 3 minutes`() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)

@@ -30,6 +30,13 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
             val itemId: String = get("grand_exchange_item") ?: return@interfaceOption
             val amount: Int = get("grand_exchange_quantity") ?: return@interfaceOption
             val price: Int = get("grand_exchange_price") ?: return@interfaceOption
+            if (amount < 1 || price < 0) {
+                return@interfaceOption
+            }
+            if (price.toLong() * amount > Int.MAX_VALUE) {
+                message("The total value of your offer cannot exceed 2147m coins.")
+                return@interfaceOption
+            }
             when (get("grand_exchange_page", "offers")) {
                 "buy" -> {
                     val total = price * amount
