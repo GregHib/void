@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -200,6 +201,9 @@ class PrisonPete : Script {
             return
         }
         dec("prison_pete_pending")
+        // The dialogue set Pete tracking the player (Face mode); stop watching or
+        // the turn towards the door is overridden.
+        pete.mode = EmptyMode
         pete.face(Direction.SOUTH_EAST)
         pete.anim("pick_pocket")
         delay(2)
