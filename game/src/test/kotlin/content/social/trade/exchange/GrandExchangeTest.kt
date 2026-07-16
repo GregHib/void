@@ -684,6 +684,24 @@ class GrandExchangeTest : WorldTest() {
         assertTrue(buyer.containsMessage("You don't have enough coins."))
     }
 
+    @Test
+    fun `Can't buy when total price overflows`() {
+        Settings.load(mapOf("grandExchange.priceLimit" to "false"))
+        val buyer = createPlayer(Tile(3164, 3487), "buyer")
+        buyer.inventory.add("coins", 10_000)
+
+        buy(buyer, "rune_longsword")
+        buyer.interfaceOption("grand_exchange", "add_x", "Edit Quantity")
+        (buyer.suspension as? Suspension.IntEntry)?.resume(3)
+        buyer.interfaceOption("grand_exchange", "offer_x", "Edit Price")
+        (buyer.suspension as? Suspension.IntEntry)?.resume(1_431_655_766)
+        confirm(buyer)
+        tick()
+        assertTrue(buyer.offers[0].isEmpty())
+        assertEquals(10_000, buyer.inventory.count("coins"))
+        assertTrue(buyer.containsMessage("The total value of your offer cannot exceed 2147m coins."))
+    }
+
     private fun buy(player: Player, item: String) {
         player.npcOption(clerk, "Exchange")
         tick()
