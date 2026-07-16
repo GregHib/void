@@ -1,6 +1,5 @@
 package content.social.report
 
-import content.entity.player.command.find
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.modCommand
@@ -58,7 +57,11 @@ class Mute(val accounts: AccountDefinitions) : Script {
 
     init {
         modCommand("mute", stringArg("player-name", autofill = accounts.displayNames.keys), intArg("hours", optional = true), desc = "Temporarily mute a player so they can't chat") { args ->
-            val target = Players.find(this, args[0]) ?: return@modCommand
+            val target = Players.find(args[0])
+            if (target == null) {
+                message("Unable to find player '${args[0]}'.")
+                return@modCommand
+            }
             val hours = args.getOrNull(1)?.toIntOrNull() ?: 48
             target.mute(hours)
             message("${target.name} has been muted for $hours hours.")
@@ -66,7 +69,11 @@ class Mute(val accounts: AccountDefinitions) : Script {
         }
 
         modCommand("perm_mute", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Permanently mute a player so they can't chat") { args ->
-            val target = Players.find(this, args[0]) ?: return@modCommand
+            val target = Players.find(args[0])
+            if (target == null) {
+                message("Unable to find player '${args[0]}'.")
+                return@modCommand
+            }
             if (target.blackMarks < BLACK_MARK_LIMIT) {
                 message("${target.name} has ${target.blackMarks} black marks; $BLACK_MARK_LIMIT are required for a permanent mute.")
                 return@modCommand
@@ -77,7 +84,11 @@ class Mute(val accounts: AccountDefinitions) : Script {
         }
 
         modCommand("unmute", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Remove a player's mute") { args ->
-            val target = Players.find(this, args[0]) ?: return@modCommand
+            val target = Players.find(args[0])
+            if (target == null) {
+                message("Unable to find player '${args[0]}'.")
+                return@modCommand
+            }
             target.unmute()
             message("${target.name} has been unmuted.")
             AuditLog.event(this, "unmuted", target)

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 
@@ -38,7 +39,11 @@ class Rights(val accounts: AccountDefinitions) : Script {
             player.message("No rights found with the name: '${right.toSentenceCase()}'.")
             return
         }
-        val target = Players.find(player, args[0]) ?: return
+        val target = Players.find(args[0])
+        if (target == null) {
+            player.message("Unable to find player '${args[0]}' online.", ChatType.Console)
+            return
+        }
         target.rights = rights
         player.message("${player.name} rights set to $rights.")
         target.message("${player.name} granted you $rights rights. Please re-log to activate.")
