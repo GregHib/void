@@ -7,7 +7,6 @@ import content.entity.combat.killer
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -86,7 +85,7 @@ class FreakyForester : Script {
                 sound("teleport")
                 gfx("teleport_modern")
                 delay(3)
-                RandomEvents.complete(this)
+                RandomEvents.complete(this, "random_event_gift")
                 anim("teleport_land_modern")
                 gfx("teleport_land_modern")
                 sound("teleport_land")
@@ -109,7 +108,6 @@ class FreakyForester : Script {
 
     private suspend fun Player.reward() {
         npc<Happy>("Please take this gift as a reward for your help, many thanks!")
-        addOrDrop("random_event_gift")
         rewardCostumePoint("lederhosen")
     }
 

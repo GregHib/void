@@ -9,7 +9,6 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -81,7 +80,7 @@ class CapnArnav : Script {
             sound("teleport")
             gfx("teleport_modern")
             delay(3)
-            RandomEvents.complete(this)
+            RandomEvents.complete(this, "random_event_gift")
             anim("teleport_land_modern")
             gfx("teleport_land_modern")
             sound("teleport_land")
@@ -183,7 +182,6 @@ class CapnArnav : Script {
             GameObjects.replace(chest, "capn_arnav_chest_open", ticks = CHEST_OPEN_TICKS)
         }
         npc<Happy>("capn_arnav", "Ah, well done matey, that's the right combination. Here, have a little somethin' for helpin' me out.")
-        addOrDrop("random_event_gift")
         message("You've been given a gift!")
     }
 

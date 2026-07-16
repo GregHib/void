@@ -2,7 +2,6 @@ package content.activity.event.random.lost_and_found
 
 import content.activity.event.random.RandomEvents
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.quest.closeTabs
 import content.quest.openTabs
 import world.gregs.voidps.engine.Script
@@ -90,17 +89,12 @@ class LostAndFound : Script {
     private suspend fun Player.escape() {
         open("fade_out")
         delay(2)
-        reward()
         clear("laf_odd")
         openTabs()
         clearMinimap()
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         open("fade_in")
         statement("The Abyssal Services Department apologises for the inconvenience.", clickToContinue = false)
-    }
-
-    private fun Player.reward() {
-        addOrDrop("random_event_gift")
     }
 
     companion object {

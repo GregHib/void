@@ -72,7 +72,7 @@ class CapnArnavTest : WorldTest() {
     }
 
     @Test
-    fun `The right combination opens the chest for a gift`() {
+    fun `The right combination opens the chest`() {
         val player = enter("arnav_solve")
         player.openLock()
 
@@ -80,7 +80,8 @@ class CapnArnavTest : WorldTest() {
         player.unlock()
 
         assertTrue(player.get("arnav_solved", false))
-        assertEquals(1, player.inventory.count("random_event_gift"))
+        // The gift is only handed over once the player teleports home through the portal.
+        assertEquals(0, player.inventory.count("random_event_gift"))
     }
 
     @Test
@@ -129,6 +130,7 @@ class CapnArnavTest : WorldTest() {
 
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
+        assertEquals(1, player.inventory.count("random_event_gift"))
         assertTrue(player.contains("random_event_cooldown"))
     }
 }

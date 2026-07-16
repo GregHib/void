@@ -10,7 +10,6 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
@@ -26,6 +25,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -212,26 +212,36 @@ class PrisonPete : Script {
     }
 
     private suspend fun Player.escape(gate: GameObject) {
-        // Clear the key state and hand over the present before any suspension, so
-        // opening the gate again mid-dialogue can't run the escape a second time.
+        // Clear the key state before any suspension, so opening the gate again
+        // mid-dialogue can't run the escape a second time.
         while (inventory.remove("prison_key_prison_pete")) {
             // strip any dud keys so none survive the trip home
         }
         clear("prison_pete_keys")
         clear("prison_pete_target")
         clear("prison_pete_pending")
-        addOrDrop("random_event_gift")
         openGates()
         walkToDelay(gate.tile.addY(-1), forceWalk = true)
+        // Clicking off the goodbyes kills this handler, so the walk trigger still
+        // sends the player home with their present.
+        walkTrigger = { queue("prison_pete_leave") { leavePrison() } }
         message("You quickly escape the prison with Pete.")
         talkWith(NPCs.find(tile.regionLevel, "prison_pete"))
         npc<Happy>("Thanks a lot for your help! Here, have a present:")
         player<Happy>("Thanks! See you around!")
+        leavePrison()
+    }
+
+    private suspend fun Player.leavePrison() {
+        if (get<String>("random_event") != "prison_pete") {
+            return
+        }
+        walkTrigger = null
         anim("teleport_modern")
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")

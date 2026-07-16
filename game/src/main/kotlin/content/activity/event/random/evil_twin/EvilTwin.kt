@@ -12,7 +12,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.closeTabs
@@ -326,7 +325,6 @@ class EvilTwin : Script {
         player<Happy>("Well, I've managed to get her into the cage.")
         npc<Happy>("Fantastic! For so many years I've had to put up with her and now she's locked up for good.")
         npc<Happy>("Thank you for all your help. Take this as a reward.")
-        addOrDrop("random_event_gift")
         clearState()
         openTabs()
         clearMinimap()
@@ -334,7 +332,7 @@ class EvilTwin : Script {
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")

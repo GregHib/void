@@ -14,7 +14,6 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import content.quest.closeTabs
 import content.quest.openTabs
 import world.gregs.voidps.engine.Script
@@ -180,7 +179,6 @@ class KissTheFrog : Script {
         walkTrigger = null
         open("fade_out")
         delay(2)
-        addOrDrop("random_event_gift")
         rewardCostumePoint("frog")
         message("You've been given a gift!")
         finishEvent()
@@ -244,7 +242,7 @@ class KissTheFrog : Script {
     /** Successful kiss: return the player home. */
     private fun Player.finishEvent() {
         cleanup()
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
     }
 
     /** Escaped the frog cave: dump the player somewhere random with no reward. */

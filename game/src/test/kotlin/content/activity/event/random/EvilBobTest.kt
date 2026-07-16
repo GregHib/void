@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
@@ -303,6 +304,32 @@ class EvilBobTest : WorldTest() {
         for (net in netTiles) {
             assertNull(FloorItems.firstOrNull(net.add(offset), "small_fishing_net_evil_bobs_island"))
         }
+    }
+
+    @Test
+    fun `A full inventory drops the reward at the player's feet back home, not on the island`() {
+        val player = enter("eb_full_inv")
+        player.inventory.add("raw_fish_like_thing")
+        player.serve()
+        assertTrue(player["evil_bob_complete", false])
+        // Ditch the net so clearState can't free a slot up; the gift has nowhere to go.
+        player.inventory.remove("small_fishing_net_evil_bobs_island")
+        while (!player.inventory.isFull()) {
+            player.inventory.add("logs")
+        }
+
+        val offset = player.instanceOffset()
+        val portal = GameObjects.find(portalTile.add(offset)) { it.id == "evil_bob_exit_portal" }
+        player.tele(portalTile.add(offset))
+        tick()
+        player.objectOption(portal, "Enter")
+        tickIf { player.get<String>("random_event") != null }
+        while (player.dialogue != null) player.skipDialogues()
+        tick(2)
+
+        assertEquals(origin, player.tile)
+        assertFalse(player.inventory.contains("random_event_gift"))
+        assertNotNull(FloorItems.firstOrNull(origin, "random_event_gift"), "Gift should land at the player's feet back home")
     }
 
     @Test

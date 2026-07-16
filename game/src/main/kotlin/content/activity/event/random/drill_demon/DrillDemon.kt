@@ -8,7 +8,6 @@ import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -117,7 +116,6 @@ class DrillDemon : Script {
 
     private suspend fun Player.finish() {
         npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
-        addOrDrop("random_event_gift")
         rewardCostumePoint("camo")
         clear("drill_demon_ready")
         clear("drill_demon_task")
@@ -126,7 +124,7 @@ class DrillDemon : Script {
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")

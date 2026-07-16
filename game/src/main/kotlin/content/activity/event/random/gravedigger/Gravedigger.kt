@@ -9,7 +9,6 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.instance
@@ -245,14 +244,13 @@ class Gravedigger : Script {
     private suspend fun Player.success() {
         npc<Happy>("Wonderful! That's taken care of all of them.")
         npc<Happy>("Here, I'll take you back to where I found you, and give you your reward.")
-        addOrDrop("random_event_gift")
         rewardCostumePoint("zombie")
         set("unlocked_emote_zombie_walk", true)
         set("unlocked_emote_zombie_dance", true)
-        exitGraveyard()
+        exitGraveyard("random_event_gift")
     }
 
-    private suspend fun Player.exitGraveyard() {
+    private suspend fun Player.exitGraveyard(vararg rewards: String) {
         for (coffin in SITES.indices) {
             while (inventory.remove(coffinName(coffin))) {
                 // Leo keeps his coffins
@@ -268,7 +266,7 @@ class Gravedigger : Script {
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, *rewards)
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")

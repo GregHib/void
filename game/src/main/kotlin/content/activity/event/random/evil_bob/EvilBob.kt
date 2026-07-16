@@ -13,7 +13,6 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.quest.instanceOffset
 import content.quest.setInstanceLogout
 import content.quest.smallInstance
@@ -103,13 +102,12 @@ class EvilBob : Script {
             anim("emote_raspberry")
             say("Be seeing you!")
             delay(2)
-            reward()
             clearState()
             anim("teleport_modern")
             sound("teleport")
             gfx("teleport_modern")
             delay(3)
-            RandomEvents.complete(this)
+            RandomEvents.complete(this, "random_event_gift")
             anim("teleport_land_modern")
             gfx("teleport_land_modern")
             sound("teleport_land")
@@ -330,10 +328,6 @@ class EvilBob : Script {
         clearCamera()
         closeDialogue()
         set("evil_bob_new_spot", false)
-    }
-
-    private fun Player.reward() {
-        addOrDrop("random_event_gift")
     }
 
     private fun Player.clearState() {

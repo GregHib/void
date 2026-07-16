@@ -9,7 +9,6 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.quest.smallInstance
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
@@ -158,14 +157,13 @@ class Beekeeper : Script {
     private suspend fun Player.succeed() {
         close("beehive_build")
         npc<Happy>("bee_keeper", "That's perfect! I'll get some bees moved in immediately. Now, I'm sure I must have something to offer you for all your help...")
-        addOrDrop("random_event_gift")
         message("You've been given a gift!")
         clearState()
         anim("teleport_modern")
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")

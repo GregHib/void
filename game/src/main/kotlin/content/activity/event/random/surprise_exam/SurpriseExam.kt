@@ -7,7 +7,6 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -131,7 +130,6 @@ class SurpriseExam : Script {
 
     private suspend fun Player.finish() {
         message("You've passed the exam!")
-        addOrDrop("random_event_gift")
         clear("surprise_exam_answer")
         clear("surprise_exam_correct")
         clear("surprise_exam_door")
@@ -139,7 +137,7 @@ class SurpriseExam : Script {
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")

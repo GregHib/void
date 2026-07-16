@@ -9,7 +9,6 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.quest.closeTabs
 import content.quest.instanceOffset
 import content.quest.openTabs
@@ -160,7 +159,6 @@ class Pinball : Script {
             guardTalk()
             return
         }
-        reward()
         close("pinball_overlay")
         openTabs()
         clearMinimap()
@@ -170,7 +168,7 @@ class Pinball : Script {
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this) // clears the instance and teleports the player home
+        RandomEvents.complete(this, "random_event_gift") // clears the instance and teleports the player home
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")
@@ -189,10 +187,6 @@ class Pinball : Script {
             player<Quiz>("So I have to poke the pillars that are flashing?")
             npc<Neutral>("Yer. You do dat ten times, you get prize.")
         }
-    }
-
-    private fun Player.reward() {
-        addOrDrop("random_event_gift")
     }
 
     /** Reset the previous flashing post and start a new random one flashing; the target is 1-based. */

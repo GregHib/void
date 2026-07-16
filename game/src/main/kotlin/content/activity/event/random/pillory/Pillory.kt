@@ -2,7 +2,6 @@ package content.activity.event.random.pillory
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -99,7 +98,6 @@ class Pillory : Script {
     private suspend fun Player.escape() {
         close("pillory_lock")
         message("You've escaped!")
-        addOrDrop("random_event_gift")
         clear("pillory_target")
         clear("pillory_correct")
         clear("pillory_answer")
@@ -107,7 +105,7 @@ class Pillory : Script {
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")

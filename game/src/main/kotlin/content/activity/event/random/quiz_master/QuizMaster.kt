@@ -7,7 +7,6 @@ import content.entity.player.dialogue.Goofy
 import content.entity.player.dialogue.Hysterics
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -111,7 +110,6 @@ class QuizMaster : Script {
 
     private suspend fun Player.win() {
         npc<Hysterics>("<col=08088A>CONGRATULATIONS!</col> You are a <col=8A0808>WINNER</col>! Please take your <col=08088A>PRIZE</col>!")
-        addOrDrop("random_event_gift")
         clearAnim() // stand up out of the contestant's seat
         clear("quiz_answer")
         clear("quiz_correct")
@@ -119,7 +117,7 @@ class QuizMaster : Script {
         sound("teleport")
         gfx("teleport_modern")
         delay(3)
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
         anim("teleport_land_modern")
         gfx("teleport_land_modern")
         sound("teleport_land")
