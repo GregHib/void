@@ -6,6 +6,7 @@ import content.quest.instance
 import content.quest.instanceOffset
 import dialogueContinue
 import dialogueOption
+import floorItemOption
 import itemOnItem
 import itemOnObject
 import itemOption
@@ -22,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -38,11 +40,20 @@ class EvilBobTest : WorldTest() {
 
     private val origin = Tile(3221, 3218)
 
-    // east zone (id 2) and west zone (id 4) stand/spot tiles (template coords).
-    private val eastSpot = Tile(3438, 4777)
-    private val westSpot = Tile(3406, 4776)
-    private val potTile = Tile(3423, 4780)
-    private val portalTile = Tile(3416, 4777)
+    // east zone (id 2) and west zone (id 4) static spot tiles copied in with the region (template coords).
+    private val eastSpot = Tile(3439, 4777)
+    private val westSpot = Tile(3406, 4775)
+    private val potTile = Tile(3420, 4778)
+    private val portalTile = Tile(3419, 4777)
+    private val netTiles = listOf(
+        Tile(3412, 4785),
+        Tile(3417, 4787),
+        Tile(3430, 4784),
+        Tile(3434, 4782),
+        Tile(3429, 4769),
+        Tile(3426, 4766),
+        Tile(3413, 4768),
+    )
 
     /** Runs the event, clears the intro dialogue, and pins the answer zone for determinism. */
     private fun enter(name: String, zone: Int = 2): Player {
@@ -124,8 +135,8 @@ class EvilBobTest : WorldTest() {
                     y = spot.tile.y,
                     interfaceId = 149,
                     componentId = 0,
-                    itemId = Item("small_fishing_net").def.id,
-                    itemSlot = player.inventory.indexOf("small_fishing_net"),
+                    itemId = Item("small_fishing_net_evil_bobs_island").def.id,
+                    itemSlot = player.inventory.indexOf("small_fishing_net_evil_bobs_island"),
                 ),
             )
         }
@@ -189,14 +200,47 @@ class EvilBobTest : WorldTest() {
         assertEquals("evil_bob", player.get<String>("random_event"))
         assertNotNull(player.instance())
         assertTrue(player.get("evil_bob_zone", 0) in 1..4)
-        assertTrue(player.inventory.contains("small_fishing_net"))
+        assertTrue(player.inventory.contains("small_fishing_net_evil_bobs_island"))
         assertEquals("evil_bob", player.bob().id)
+    }
+
+    @Test
+    fun `The instance uses the map's static objects without duplicates and spawns beach nets`() {
+        val player = enter("eb_statics")
+        val offset = player.instanceOffset()
+
+        // The static portal from the region copy, with no manual duplicate beside it.
+        assertNotNull(GameObjects.findOrNull(portalTile.add(offset), "evil_bob_exit_portal"))
+        assertNull(GameObjects.findOrNull(Tile(3416, 4777).add(offset), "evil_bob_exit_portal"))
+        // Both static uncooking pots, and no extra third one.
+        assertNotNull(GameObjects.findOrNull(potTile.add(offset), "evil_bob_uncooking_pot"))
+        assertNotNull(GameObjects.findOrNull(Tile(3422, 4774).add(offset), "evil_bob_uncooking_pot"))
+        assertNull(GameObjects.findOrNull(Tile(3423, 4780).add(offset), "evil_bob_uncooking_pot"))
+        // A net on every beach.
+        for (net in netTiles) {
+            assertNotNull(FloorItems.firstOrNull(net.add(offset), "small_fishing_net_evil_bobs_island"), "Expected a net at $net")
+        }
+    }
+
+    @Test
+    fun `A net can be picked up from the beach`() {
+        val player = enter("eb_net_pickup")
+        val netTile = netTiles.first().add(player.instanceOffset())
+        val net = FloorItems.firstOrNull(netTile, "small_fishing_net_evil_bobs_island")!!
+        player.tele(netTile.addX(1))
+        tick()
+
+        player.floorItemOption(net, "Take")
+        tickIf { player.inventory.count("small_fishing_net_evil_bobs_island") < 2 }
+
+        assertEquals(2, player.inventory.count("small_fishing_net_evil_bobs_island"))
+        assertNull(FloorItems.firstOrNull(netTile, "small_fishing_net_evil_bobs_island"))
     }
 
     @Test
     fun `Netting the assigned zone yields the fish Evil Bob likes`() {
         val player = enter("eb_net_right", zone = 2)
-        player.tele(eastSpot.add(player.instanceOffset()))
+        player.tele(eastSpot.addX(-1).add(player.instanceOffset())) // beside the solid static spot
         tick()
 
         player.objectOption(player.spot(eastSpot), "Net")
@@ -209,7 +253,7 @@ class EvilBobTest : WorldTest() {
     @Test
     fun `Netting a different zone yields the wrong fish`() {
         val player = enter("eb_net_wrong", zone = 2) // east is correct...
-        player.tele(westSpot.add(player.instanceOffset())) // ...but we fish the west
+        player.tele(westSpot.addX(1).add(player.instanceOffset())) // ...but we fish the west
         tick()
 
         player.objectOption(player.spot(westSpot), "Net")
@@ -222,7 +266,7 @@ class EvilBobTest : WorldTest() {
     fun `Uncooking a cooked fish at the pot produces the raw fish`() {
         val player = enter("eb_uncook")
         val offset = player.instanceOffset()
-        player.tele(potTile.addX(1).add(offset)) // stand beside the cold fire
+        player.tele(potTile.addX(-1).add(offset)) // stand beside the cold fire (it spans 2x2 to the north-east)
         tick()
         player.inventory.add("fish_like_thing")
         val pot = GameObjects.find(potTile.add(offset)) { it.id == "evil_bob_uncooking_pot" }
@@ -242,8 +286,9 @@ class EvilBobTest : WorldTest() {
 
         assertTrue(player["evil_bob_complete", false])
 
-        val portal = GameObjects.find(portalTile.add(player.instanceOffset())) { it.id == "evil_bob_exit_portal" }
-        player.tele(portalTile.add(player.instanceOffset()))
+        val offset = player.instanceOffset()
+        val portal = GameObjects.find(portalTile.add(offset)) { it.id == "evil_bob_exit_portal" }
+        player.tele(portalTile.add(offset))
         tick()
         player.objectOption(portal, "Enter")
         tickIf { player.get<String>("random_event") != null } // wait out the raspberry send-off
@@ -254,6 +299,10 @@ class EvilBobTest : WorldTest() {
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
+        // Tearing down the instance sweeps the beach nets with it.
+        for (net in netTiles) {
+            assertNull(FloorItems.firstOrNull(net.add(offset), "small_fishing_net_evil_bobs_island"))
+        }
     }
 
     @Test

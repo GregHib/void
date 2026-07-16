@@ -29,7 +29,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -120,12 +120,12 @@ class EvilBob : Script {
     private suspend fun Player.startEvent() {
         smallInstance(Region(ISLAND_REGION), levels = 1)
         setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        // The region copy brings the island's static objects (fishing spots, uncooking
+        // pots, exit portal, deposit box) with it; only the nets need spawning.
         val offset = instanceOffset()
-        for (zone in ZONES) {
-            GameObjects.add("evil_bob_fishing_spot", zone.spot.add(offset), collision = false)
+        for (net in NET_TILES) {
+            FloorItems.add(net.add(offset), "small_fishing_net_evil_bobs_island", revealTicks = FloorItems.NEVER, disappearTicks = FloorItems.NEVER, owner = this)
         }
-        GameObjects.add("evil_bob_uncooking_pot", POT.add(offset), collision = false)
-        GameObjects.add("evil_bob_exit_portal", PORTAL.add(offset), collision = false)
 
         evilBobCatIntro()
         kidnap(ISLAND.add(offset))
@@ -143,8 +143,8 @@ class EvilBob : Script {
             // servant point out the fishing spot again when spoken to.
             set("evil_bob_new_spot", true)
         }
-        if (!inventory.contains("small_fishing_net")) {
-            inventory.add("small_fishing_net")
+        if (!hasNet()) {
+            inventory.add("small_fishing_net_evil_bobs_island")
         }
         face(bob.tile)
         message("Welcome to ScapeRune.")
@@ -177,7 +177,7 @@ class EvilBob : Script {
                 statement("Evil Bob's had his fill; there's no need to fish any more.")
             get("evil_bob_new_spot", false) ->
                 statement("You don't know if this is a good place to go fishing. Perhaps you should ask someone, like one of the human servants.")
-            !inventory.contains("small_fishing_net") ->
+            !hasNet() ->
                 npc<Sad>("evil_bob_servant", "You'll need a fishing net. There are plenty scattered around the beach.")
             inventory.isFull() ->
                 message("You don't have enough space in your inventory.")
@@ -194,6 +194,8 @@ class EvilBob : Script {
             }
         }
     }
+
+    private fun Player.hasNet() = inventory.contains("small_fishing_net") || inventory.contains("small_fishing_net_evil_bobs_island")
 
     private fun Player.holdsFish() = inventory.contains("fish_like_thing") ||
         inventory.contains("fish_like_thing_incorrect") ||
@@ -340,7 +342,8 @@ class EvilBob : Script {
                 // strip every fish-like thing so none survive the trip home
             }
         }
-        inventory.remove("small_fishing_net")
+        // Only confiscate the island's net; one the player brought themselves stays theirs.
+        inventory.remove("small_fishing_net_evil_bobs_island")
         clear("evil_bob_npc")
         clear("evil_bob_zone")
         clear("evil_bob_complete")
@@ -355,7 +358,6 @@ class EvilBob : Script {
         val minY: Int,
         val maxX: Int,
         val maxY: Int,
-        val spot: Tile,
         val cameraMove: Tile,
         val cameraMoveHeight: Int,
         val cameraTurn: Tile,
@@ -369,8 +371,17 @@ class EvilBob : Script {
         private val ISLAND = Tile(3419, 4776)
         private val BOB_TILE = Tile(3420, 4777)
         private val SERVANT_TILE = Tile(3423, 4777)
-        private val POT = Tile(3423, 4780)
-        private val PORTAL = Tile(3416, 4777)
+
+        // Nets scattered around the beaches for the player to pick up.
+        private val NET_TILES = listOf(
+            Tile(3412, 4785),
+            Tile(3417, 4787),
+            Tile(3430, 4784),
+            Tile(3434, 4782),
+            Tile(3429, 4769),
+            Tile(3426, 4766),
+            Tile(3413, 4768),
+        )
 
         private val FISH_ITEMS = listOf(
             "fish_like_thing",
@@ -384,15 +395,16 @@ class EvilBob : Script {
         private const val CAMERA_ACCELERATION = 10
 
         // (region-13642 base 3392,4736 + local coords). Index order = zone id 1..4.
+        // Each zone covers that side's static fishing spots from the region copy.
         private val ZONES = listOf(
-            // NORTH_CAMERA: sits just north of the island centre, panning north towards the spot.
-            Zone(3421, 4789, 3427, 4792, Tile(3424, 4791), Tile(3422, 4779), 400, Tile(3422, 4786), 400),
-            // EAST_CAMERA: sits east of the island centre, panning east towards the spot.
-            Zone(3437, 4774, 3440, 4780, Tile(3438, 4777), Tile(3426, 4777), 440, Tile(3434, 4777), 440),
-            // SOUTH_CAMERA: sits south of the island centre, panning south towards the spot.
-            Zone(3419, 4763, 3426, 4765, Tile(3422, 4764), Tile(3421, 4774), 365, Tile(3421, 4766), 365),
-            // WEST_CAMERA: sits west of the island centre, panning west towards the spot.
-            Zone(3405, 4773, 3408, 4779, Tile(3406, 4776), Tile(3416, 4776), 325, Tile(3408, 4776), 300),
+            // NORTH_CAMERA: sits just north of the island centre, panning north towards the spots.
+            Zone(3421, 4789, 3427, 4792, Tile(3422, 4779), 400, Tile(3422, 4786), 400),
+            // EAST_CAMERA: sits east of the island centre, panning east towards the spots.
+            Zone(3437, 4774, 3440, 4780, Tile(3426, 4777), 440, Tile(3434, 4777), 440),
+            // SOUTH_CAMERA: sits south of the island centre, panning south towards the spots.
+            Zone(3419, 4763, 3426, 4765, Tile(3421, 4774), 365, Tile(3421, 4766), 365),
+            // WEST_CAMERA: sits west of the island centre, panning west towards the spots.
+            Zone(3405, 4773, 3408, 4779, Tile(3416, 4776), 325, Tile(3408, 4776), 300),
         )
     }
 }
