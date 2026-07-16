@@ -333,7 +333,7 @@ fun Players.find(player: Player, name: String?): Player? {
     if (name == null) {
         return player
     }
-    val target = firstOrNull { it.name.equals(name, true) } ?: firstOrNull { it.name.replace(" ", "_").startsWith(name, true) }
+    val target = find(name) ?: firstOrNull { it.name.startsWith(name.replace('_', ' '), true) }
     if (target == null) {
         player.message("Unable to find player '$name' online.", ChatType.Console)
         return null

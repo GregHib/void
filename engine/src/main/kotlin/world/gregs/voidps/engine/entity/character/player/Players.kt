@@ -15,7 +15,10 @@ object Players : Iterable<Player>, CharacterSearch<Player> {
     val size: Int
         get() = players.size
 
-    fun find(name: String): Player? = firstOrNull { it.name == name }
+    fun find(name: String): Player? {
+        val displayName = name.replace('_', ' ')
+        return firstOrNull { it.name.equals(displayName, ignoreCase = true) }
+    }
 
     fun findByAccount(name: String): Player? = firstOrNull { it.accountName == name }
 
