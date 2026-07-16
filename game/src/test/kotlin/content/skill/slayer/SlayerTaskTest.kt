@@ -196,4 +196,23 @@ class SlayerTaskTest : WorldTest() {
         assertEquals(150, player.slayerStreak)
         assertEquals(15, player.slayerPoints)
     }
+
+    @Test
+    fun `Chaeldar assigns a task without crashing on its jungle strykewyrm entry`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int): Int = 0
+            override fun nextBits(bitCount: Int): Int = bitCount
+        })
+        val player = createPlayer(Tile(3231, 3298))
+        player.levels.set(Skill.Slayer, 99)
+
+        // Chaeldar lists jungle_strykewyrm, which had no slayer_tasks entry and threw
+        // "Row not found" while rolling, so the master gave no task at all.
+        val (type, amount) = assignTask(player, "chaeldar")
+
+        assertTrue(type.isNotEmpty())
+        assertTrue(amount > 0)
+        assertEquals("chaeldar", player.slayerMaster)
+        assertEquals(type, player.slayerTask)
+    }
 }

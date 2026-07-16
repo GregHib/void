@@ -219,6 +219,9 @@ npc = "jelly"
 [.jungle_horrors]
 npc = "jungle_horror"
 
+[.jungle_strykewyrm]
+npc = "jungle_strykewyrm"
+
 [.kalphites]
 npc = "kalphite_worker"
 combat_level = 15

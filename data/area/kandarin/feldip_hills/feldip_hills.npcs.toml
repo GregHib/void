@@ -109,6 +109,7 @@ immune_poison = true
 [jungle_strykewyrm]
 id = 9467
 combat_def = "jungle_strykewyrm"
+slayer_level = 73
 examine = "Who said worms were small and harmless?"
 
 [swamp_toad_feldip_hills]
