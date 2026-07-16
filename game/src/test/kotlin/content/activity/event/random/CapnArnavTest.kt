@@ -6,12 +6,15 @@ import objectOption
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -72,7 +75,7 @@ class CapnArnavTest : WorldTest() {
     }
 
     @Test
-    fun `The right combination opens the chest`() {
+    fun `The right combination opens the chest for a gift`() {
         val player = enter("arnav_solve")
         player.openLock()
 
@@ -80,8 +83,29 @@ class CapnArnavTest : WorldTest() {
         player.unlock()
 
         assertTrue(player.get("arnav_solved", false))
-        // The gift is only handed over once the player teleports home through the portal.
-        assertEquals(0, player.inventory.count("random_event_gift"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
+    }
+
+    @Test
+    fun `A full inventory defers the gift to the trip home instead of dropping it on the island`() {
+        val player = enter("arnav_full_inv")
+        while (!player.inventory.isFull()) {
+            player.inventory.add("logs")
+        }
+        player.openLock()
+        player.solveColumns()
+        player.unlock()
+
+        assertTrue(player.get("arnav_solved", false))
+        assertTrue(player.get("arnav_gift_owed", false))
+        assertFalse(player.inventory.contains("random_event_gift"))
+
+        val portal = GameObjects.getShape(Tile(1626, 5165), 10)!!
+        player.objectOption(portal, "Enter")
+        tick(8)
+
+        assertEquals(origin, player.tile)
+        assertNotNull(FloorItems.firstOrNull(origin, "random_event_gift"), "Gift should land at the player's feet back home")
     }
 
     @Test

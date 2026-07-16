@@ -3,6 +3,7 @@ package content.activity.event.random.kiss_the_frog
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.endInPlaceEvent
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.rewardCostumePoint
 import content.activity.event.random.startInPlaceEvent
 import content.entity.effect.clearTransform
@@ -148,10 +149,10 @@ class KissTheFrog : Script {
     }
 
     private suspend fun Player.kiss(frog: NPC) {
-        // If the player clicks off the "Thank you" dialogue (which cancels this handler), the walk fires
-        // this trigger and they still fade out, collect the reward and teleport home; reading it through
+        // If the player clicks off the "Thank you" dialogue (which cancels this handler), the exit
+        // trigger still fades out, collects the reward and teleports home; reading it through
         // does the same at the end.
-        walkTrigger = { queue("ktf_kiss") { completeKiss() } }
+        onExitInterrupt { completeKiss() }
         // Turn to face each other before leaning in.
         face(frog.tile)
         frog.face(tile)
@@ -176,7 +177,9 @@ class KissTheFrog : Script {
         if (get<String>("random_event") != "kiss_the_frog") {
             return
         }
-        walkTrigger = null
+        // Re-arm rather than clear: an interrupt during the fade would otherwise
+        // orphan the trip home. The event check above stops a repeat run.
+        onExitInterrupt { completeKiss() }
         open("fade_out")
         delay(2)
         rewardCostumePoint("frog")
@@ -243,6 +246,7 @@ class KissTheFrog : Script {
     private fun Player.finishEvent() {
         cleanup()
         RandomEvents.complete(this, "random_event_gift")
+        walkTrigger = null
     }
 
     /** Escaped the frog cave: dump the player somewhere random with no reward. */

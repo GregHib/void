@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 
 /**
@@ -78,4 +80,44 @@ suspend fun Player.kidnap(destination: Tile) {
     delay(3)
     clearAnim()
     tele(destination)
+}
+
+/**
+ * Arm the walk trigger with the event's exit [block]. Clicking off an outro starts a new
+ * interaction, which kills the suspended handler; the trigger then re-queues the exit so
+ * the player is still sent home with their reward. Firing disarms the trigger, and the
+ * "random_event" check stops a stale queue entry from running after a normal exit.
+ */
+fun Player.onExitInterrupt(block: suspend Player.() -> Unit) {
+    val event: String = get("random_event") ?: return
+    walkTrigger = {
+        queue("random_event_exit") {
+            if (get<String>("random_event") == event) {
+                block()
+            }
+        }
+    }
+}
+
+/**
+ * The teleport-home outro shared by kidnap events; [RandomEvents.complete] grants
+ * [rewards] once the player is back. The trigger is re-armed with just the tail so an
+ * interrupt during take-off can't repeat the caller's one-time effects, then cleared
+ * once the trip home is inevitable.
+ */
+suspend fun Player.returnHome(vararg rewards: String) {
+    anim("teleport_modern")
+    sound("teleport")
+    gfx("teleport_modern")
+    onExitInterrupt { finishReturn(*rewards) }
+    delay(3)
+    finishReturn(*rewards)
+}
+
+private suspend fun Player.finishReturn(vararg rewards: String) {
+    walkTrigger = null
+    RandomEvents.complete(this, *rewards)
+    anim("teleport_land_modern")
+    gfx("teleport_land_modern")
+    sound("teleport_land")
 }

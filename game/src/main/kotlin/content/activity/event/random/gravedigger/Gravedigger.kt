@@ -2,6 +2,8 @@ package content.activity.event.random.gravedigger
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -29,7 +31,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -242,8 +243,13 @@ class Gravedigger : Script {
     }
 
     private suspend fun Player.success() {
+        onExitInterrupt { successExit() }
         npc<Happy>("Wonderful! That's taken care of all of them.")
         npc<Happy>("Here, I'll take you back to where I found you, and give you your reward.")
+        successExit()
+    }
+
+    private suspend fun Player.successExit() {
         rewardCostumePoint("zombie")
         set("unlocked_emote_zombie_walk", true)
         set("unlocked_emote_zombie_dance", true)
@@ -251,6 +257,7 @@ class Gravedigger : Script {
     }
 
     private suspend fun Player.exitGraveyard(vararg rewards: String) {
+        onExitInterrupt { exitGraveyard(*rewards) }
         for (coffin in SITES.indices) {
             while (inventory.remove(coffinName(coffin))) {
                 // Leo keeps his coffins
@@ -262,14 +269,7 @@ class Gravedigger : Script {
         clear("gravedigger_started")
         openTabs()
         clearMinimap()
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, *rewards)
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome(*rewards)
     }
 
     private fun coffinName(index: Int) = if (index == 0) "coffin" else "coffin_${index + 1}"

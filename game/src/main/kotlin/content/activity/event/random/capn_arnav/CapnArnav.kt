@@ -2,6 +2,8 @@ package content.activity.event.random.capn_arnav
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -18,8 +20,9 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.encode.interfaceText
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -75,15 +78,8 @@ class CapnArnav : Script {
                 npc<Angry>("capn_arnav", "Ye're not goin' anywhere till ye've opened me chest, matey!")
                 return@objectOperate
             }
-            clearState()
-            anim("teleport_modern")
-            sound("teleport")
-            gfx("teleport_modern")
-            delay(3)
-            RandomEvents.complete(this, "random_event_gift")
-            anim("teleport_land_modern")
-            gfx("teleport_land_modern")
-            sound("teleport_land")
+            onExitInterrupt { leaveIsland() }
+            leaveIsland()
         }
     }
 
@@ -182,7 +178,24 @@ class CapnArnav : Script {
             GameObjects.replace(chest, "capn_arnav_chest_open", ticks = CHEST_OPEN_TICKS)
         }
         npc<Happy>("capn_arnav", "Ah, well done matey, that's the right combination. Here, have a little somethin' for helpin' me out.")
-        message("You've been given a gift!")
+        if (inventory.add("random_event_gift")) {
+            message("You've been given a gift!")
+        } else {
+            // No room: hand it over on the trip home rather than dropping it on the
+            // island, where the exit teleport would strand it.
+            set("arnav_gift_owed", true)
+            message("Cap'n Arnav will give you your gift when you leave.")
+        }
+    }
+
+    private suspend fun Player.leaveIsland() {
+        val owed = get("arnav_gift_owed", false)
+        clearState()
+        if (owed) {
+            returnHome("random_event_gift")
+        } else {
+            returnHome()
+        }
     }
 
     private suspend fun Player.wrongCombination() {
@@ -208,6 +221,7 @@ class CapnArnav : Script {
         clear("arnav_target")
         clear("arnav_tries")
         clear("arnav_solved")
+        clear("arnav_gift_owed")
         for (column in 1..3) {
             clear("arnav_lock_$column")
         }

@@ -3,6 +3,8 @@ package content.activity.event.random.maze
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
@@ -23,7 +25,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Region
@@ -83,6 +84,7 @@ class Maze : Script {
                 return@objectOperate
             }
             softTimers.stop("maze")
+            onExitInterrupt { leaveMaze() }
             // The player finishes on the shrine's footprint, so the engine's face_entity
             // auto-face resolves to the wrong direction. Clear it and face the centre tile.
             clear("face_entity")
@@ -90,15 +92,7 @@ class Maze : Script {
             delay(2)
             anim("emote_cheer")
             delay(2)
-            anim("teleport_modern")
-            sound("teleport")
-            gfx("teleport_modern")
-            delay(3)
-            RandomEvents.complete(this, "random_event_gift")
-            anim("teleport_land_modern")
-            gfx("teleport_land_modern")
-            sound("teleport_land")
-            jingle("maze_complete")
+            leaveMaze()
         }
 
         objectOperate("Open", "maze_wall") {
@@ -132,6 +126,11 @@ class Maze : Script {
         objectOperate("Search", "maze_chest_opened") {
             message("You find nothing of interest.")
         }
+    }
+
+    private suspend fun Player.leaveMaze() {
+        returnHome("random_event_gift")
+        jingle("maze_complete")
     }
 
     private suspend fun Player.startMaze() {

@@ -2,6 +2,8 @@ package content.activity.event.random.pillory
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -9,7 +11,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 import kotlin.math.min
@@ -98,17 +99,15 @@ class Pillory : Script {
     private suspend fun Player.escape() {
         close("pillory_lock")
         message("You've escaped!")
+        onExitInterrupt { leaveCage() }
+        leaveCage()
+    }
+
+    private suspend fun Player.leaveCage() {
         clear("pillory_target")
         clear("pillory_correct")
         clear("pillory_answer")
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, "random_event_gift")
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome("random_event_gift")
     }
 
     companion object {

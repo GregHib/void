@@ -2,6 +2,8 @@ package content.activity.event.random.evil_twin
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
@@ -322,20 +324,18 @@ class EvilTwin : Script {
     }
 
     private suspend fun Player.success() {
+        onExitInterrupt { leaveTown() }
         player<Happy>("Well, I've managed to get her into the cage.")
         npc<Happy>("Fantastic! For so many years I've had to put up with her and now she's locked up for good.")
         npc<Happy>("Thank you for all your help. Take this as a reward.")
+        leaveTown()
+    }
+
+    private suspend fun Player.leaveTown() {
         clearState()
         openTabs()
         clearMinimap()
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, "random_event_gift")
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome("random_event_gift")
     }
 
     private suspend fun Player.houseDialogue() {

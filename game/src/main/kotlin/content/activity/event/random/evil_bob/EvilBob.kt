@@ -2,6 +2,8 @@ package content.activity.event.random.evil_bob
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -27,7 +29,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -95,6 +96,7 @@ class EvilBob : Script {
                 npc<Angry>("evil_bob", "You're going nowhere, human!")
                 return@objectOperate
             }
+            onExitInterrupt { leaveIsland() }
             walkOverDelay(portal.tile)
             delay(1)
             face(Direction.EAST)
@@ -102,16 +104,7 @@ class EvilBob : Script {
             anim("emote_raspberry")
             say("Be seeing you!")
             delay(2)
-            clearState()
-            anim("teleport_modern")
-            sound("teleport")
-            gfx("teleport_modern")
-            delay(3)
-            RandomEvents.complete(this, "random_event_gift")
-            anim("teleport_land_modern")
-            gfx("teleport_land_modern")
-            sound("teleport_land")
-            message("Welcome back.")
+            leaveIsland()
         }
     }
 
@@ -328,6 +321,12 @@ class EvilBob : Script {
         clearCamera()
         closeDialogue()
         set("evil_bob_new_spot", false)
+    }
+
+    private suspend fun Player.leaveIsland() {
+        clearState()
+        returnHome("random_event_gift")
+        message("Welcome back.")
     }
 
     private fun Player.clearState() {

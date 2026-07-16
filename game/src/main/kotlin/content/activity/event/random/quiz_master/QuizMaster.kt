@@ -2,6 +2,8 @@ package content.activity.event.random.quiz_master
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Goofy
 import content.entity.player.dialogue.Hysterics
@@ -15,7 +17,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseInt
 import world.gregs.voidps.type.Tile
@@ -109,18 +110,16 @@ class QuizMaster : Script {
     }
 
     private suspend fun Player.win() {
+        onExitInterrupt { leaveShow() }
         npc<Hysterics>("<col=08088A>CONGRATULATIONS!</col> You are a <col=8A0808>WINNER</col>! Please take your <col=08088A>PRIZE</col>!")
+        leaveShow()
+    }
+
+    private suspend fun Player.leaveShow() {
         clearAnim() // stand up out of the contestant's seat
         clear("quiz_answer")
         clear("quiz_correct")
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, "random_event_gift")
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome("random_event_gift")
         message("Welcome back.")
     }
 

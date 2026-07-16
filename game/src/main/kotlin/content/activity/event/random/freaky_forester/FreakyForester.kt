@@ -2,6 +2,8 @@ package content.activity.event.random.freaky_forester
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.combat.killer
 import content.entity.player.dialogue.Happy
@@ -13,7 +15,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -75,20 +76,12 @@ class FreakyForester : Script {
     private suspend fun Player.foresterDialogue() {
         when {
             inventory.contains("raw_pheasant") -> {
-                // Dialogue first: walking off cancels the handler, so only take the bird
-                // once the suspending lines are done and the reward is guaranteed.
+                // Clicking off the thanks kills the handler; the exit trigger still takes
+                // the bird and sends the player home with their reward.
+                onExitInterrupt { leaveForest() }
                 npc<Happy>("Thanks, $name, you may leave the area now.")
-                reward()
-                inventory.remove("raw_pheasant")
-                clear("freaky_forester_task")
-                anim("teleport_modern")
-                sound("teleport")
-                gfx("teleport_modern")
-                delay(3)
-                RandomEvents.complete(this, "random_event_gift")
-                anim("teleport_land_modern")
-                gfx("teleport_land_modern")
-                sound("teleport_land")
+                npc<Happy>("Please take this gift as a reward for your help, many thanks!")
+                leaveForest()
             }
             inventory.contains("raw_pheasant_incorrect") -> {
                 npc<Neutral>("That's not the right one.")
@@ -106,9 +99,11 @@ class FreakyForester : Script {
         )
     }
 
-    private suspend fun Player.reward() {
-        npc<Happy>("Please take this gift as a reward for your help, many thanks!")
+    private suspend fun Player.leaveForest() {
         rewardCostumePoint("lederhosen")
+        inventory.remove("raw_pheasant")
+        clear("freaky_forester_task")
+        returnHome("random_event_gift")
     }
 
     private fun Player.carriesRawPheasant() = inventory.contains("raw_pheasant") || inventory.contains("raw_pheasant_incorrect")

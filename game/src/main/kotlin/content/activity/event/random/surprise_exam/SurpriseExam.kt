@@ -3,6 +3,8 @@ package content.activity.event.random.surprise_exam
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.skillLamp
@@ -17,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -129,18 +130,16 @@ class SurpriseExam : Script {
     }
 
     private suspend fun Player.finish() {
+        onExitInterrupt { leaveClassroom() }
         message("You've passed the exam!")
+        leaveClassroom()
+    }
+
+    private suspend fun Player.leaveClassroom() {
         clear("surprise_exam_answer")
         clear("surprise_exam_correct")
         clear("surprise_exam_door")
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, "random_event_gift")
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome("random_event_gift")
         jingle("surprise_exam_passed")
     }
 

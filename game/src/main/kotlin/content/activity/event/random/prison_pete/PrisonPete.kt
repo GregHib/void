@@ -2,6 +2,8 @@ package content.activity.event.random.prison_pete
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -220,11 +222,11 @@ class PrisonPete : Script {
         clear("prison_pete_keys")
         clear("prison_pete_target")
         clear("prison_pete_pending")
+        // Clicking off the goodbyes kills this handler; the exit trigger still
+        // sends the player home with their present.
+        onExitInterrupt { leavePrison() }
         openGates()
         walkToDelay(gate.tile.addY(-1), forceWalk = true)
-        // Clicking off the goodbyes kills this handler, so the walk trigger still
-        // sends the player home with their present.
-        walkTrigger = { queue("prison_pete_leave") { leavePrison() } }
         message("You quickly escape the prison with Pete.")
         talkWith(NPCs.find(tile.regionLevel, "prison_pete"))
         npc<Happy>("Thanks a lot for your help! Here, have a present:")
@@ -233,18 +235,7 @@ class PrisonPete : Script {
     }
 
     private suspend fun Player.leavePrison() {
-        if (get<String>("random_event") != "prison_pete") {
-            return
-        }
-        walkTrigger = null
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, "random_event_gift")
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome("random_event_gift")
         message("Welcome back.")
     }
 

@@ -2,6 +2,8 @@ package content.activity.event.random.beekeeper
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -19,7 +21,6 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Delta
@@ -156,17 +157,15 @@ class Beekeeper : Script {
 
     private suspend fun Player.succeed() {
         close("beehive_build")
+        onExitInterrupt { leaveApiary() }
         npc<Happy>("bee_keeper", "That's perfect! I'll get some bees moved in immediately. Now, I'm sure I must have something to offer you for all your help...")
         message("You've been given a gift!")
+        leaveApiary()
+    }
+
+    private suspend fun Player.leaveApiary() {
         clearState()
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, "random_event_gift")
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome("random_event_gift")
     }
 
     private suspend fun Player.fail() {

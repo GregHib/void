@@ -1,6 +1,7 @@
 package content.activity.event.random.lost_and_found
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.onExitInterrupt
 import content.entity.player.dialogue.type.statement
 import content.quest.closeTabs
 import content.quest.openTabs
@@ -87,8 +88,14 @@ class LostAndFound : Script {
     }
 
     private suspend fun Player.escape() {
+        onExitInterrupt { leaveAbyss() }
         open("fade_out")
         delay(2)
+        leaveAbyss()
+    }
+
+    private suspend fun Player.leaveAbyss() {
+        walkTrigger = null
         clear("laf_odd")
         openTabs()
         clearMinimap()

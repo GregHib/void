@@ -3,6 +3,8 @@ package content.activity.event.random.pinball
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -23,7 +25,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -159,19 +160,17 @@ class Pinball : Script {
             guardTalk()
             return
         }
+        onExitInterrupt { leaveArena() }
+        leaveArena()
+    }
+
+    private suspend fun Player.leaveArena() {
         close("pinball_overlay")
         openTabs()
         clearMinimap()
         clear("pinball_score")
         clear("pinball_target")
-        anim("teleport_modern")
-        sound("teleport")
-        gfx("teleport_modern")
-        delay(3)
-        RandomEvents.complete(this, "random_event_gift") // clears the instance and teleports the player home
-        anim("teleport_land_modern")
-        gfx("teleport_land_modern")
-        sound("teleport_land")
+        returnHome("random_event_gift") // clears the instance and teleports the player home
     }
 
     private suspend fun Player.guardTalk() {
