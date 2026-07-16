@@ -1,6 +1,5 @@
 package content.social.report
 
-import content.entity.player.command.search
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.modCommand
@@ -36,7 +35,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
         modCommand("ban", stringArg("player-name", autofill = accounts.displayNames.keys), intArg("hours", optional = true), desc = "Temporarily ban a player from logging in") { args ->
             val hours = args.getOrNull(1)?.toIntOrNull() ?: 48
             val until = epochSeconds() + TimeUnit.HOURS.toSeconds(hours.toLong()).toInt()
-            val target = Players.search(args[0])
+            val target = Players.find(args[0])
             if (target != null) {
                 target.ban(hours)
                 AuditLog.event(this, "banned", target, hours)
@@ -51,7 +50,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
         }
 
         modCommand("perm_ban", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Permanently ban a player from logging in") { args ->
-            val target = Players.search(args[0])
+            val target = Players.find(args[0])
             if (target != null) {
                 if (target.blackMarks < BLACK_MARK_LIMIT) {
                     message("${args[0]} has ${target.blackMarks} black marks; $BLACK_MARK_LIMIT are required for a permanent ban.")
@@ -78,7 +77,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
         }
 
         modCommand("unban", stringArg("player-name", autofill = accounts.displayNames.keys), desc = "Remove a player's ban") { args ->
-            val target = Players.search(args[0])
+            val target = Players.find(args[0])
             if (target != null) {
                 target.unban()
             } else if (!setOfflineVariable(args[0], "banned_until", null)) {
@@ -91,12 +90,10 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
     }
 
     /**
-     * The account name behind an offline player's display name as typed in the console -
-     * underscores stand in for spaces - falling back to treating the input as an account name.
+     * The account name behind an offline player's display name, with underscores standing in for
+     * spaces, falling back to treating the input as an account name.
      */
-    private fun offlineAccount(displayName: String): String = accounts.get(displayName.replace('_', ' '))?.accountName
-        ?: accounts.get(displayName)?.accountName
-        ?: displayName
+    private fun offlineAccount(displayName: String): String = accounts.get(displayName.replace('_', ' '))?.accountName ?: displayName
 
     /**
      * Bans an offline player's saved account and adds a black mark
