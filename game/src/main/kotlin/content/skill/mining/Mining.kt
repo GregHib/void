@@ -129,6 +129,7 @@ class Mining : Script {
                 stop("action_delay")
             }
             softTimers.stop("mining")
+            clearAnim()
         }
 
         objectApproach("Prospect") { (target) ->
