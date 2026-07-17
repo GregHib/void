@@ -96,7 +96,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
     /**
      * Check if we're within 4 (default) zones of the last loaded zone.
      */
-    fun inViewOfZone(player: Player, zone: Zone, radius: Int): Boolean = Distance.within(player.tile.zone.x, player.tile.zone.y, zone.x, zone.y, radius)
+    fun inViewOfZone(player: Player, zone: Zone, radius: Int): Boolean = Distance.within(player.tile.zone.x, player.tile.zone.y, player.tile.zone.level, zone.x, zone.y, zone.level, radius)
 
     fun inViewOfRegion(player: Player, region: Region): Boolean {
         val viewport = player.viewport!!
