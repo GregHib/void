@@ -47,7 +47,7 @@ class Cook : Script {
     }
 
     suspend fun Player.started() {
-        npc<Sad>("how are you getting on with finding the ingredients?")
+        npc<Sad>("How are you getting on with finding the ingredients?")
         if (carriesItem("top_quality_milk")) {
             item("top_quality_milk", "You give the top-quality milk to the cook.")
             inventory.remove("top_quality_milk")
@@ -79,7 +79,7 @@ class Cook : Script {
             npc<Neutral>("Not bad, but not good enough. There's a milk maid that looks after the cows to the north-east. She might have some advice.")
         }
         if ((get("cooks_assistant_egg", 0) == 1) && (get("cooks_assistant_flour", 0) == 1) && get("cooks_assistant_milk", 0) == 1) {
-            npc<Happy>("You've brought me everything I need I am saved! Thank you!")
+            npc<Happy>("You've brought me everything I need! I am saved! Thank you!")
             player<Happy>("So, do I get to go to the Duke's party?")
             npc<Sad>("I'm afraid not. Only the big cheeses get to dine with the Duke.")
             player<Neutral>("Well, maybe one day, I'll be important enough to sit at the Duke's table.")
