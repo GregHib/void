@@ -3,6 +3,7 @@ package content.activity.event.random.kiss_the_frog
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.endInPlaceEvent
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.rewardCostumePoint
 import content.activity.event.random.startInPlaceEvent
 import content.entity.effect.clearTransform
@@ -14,7 +15,6 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import content.quest.closeTabs
 import content.quest.openTabs
 import world.gregs.voidps.engine.Script
@@ -53,7 +53,7 @@ class KissTheFrog : Script {
             }
             if (herald.owner == this) {
                 // The herald that appeared beside the player: whisk them to the Land of the Frogs.
-                npc<Neutral>("frog_herald", "Hey, $name, the Frog ${royal()} needs your help!")
+                npc<Neutral>("Hey, $name, the Frog ${royal()} needs your help!")
                 endInPlaceEvent(herald)
                 kidnap(LAND)
                 spawnCrown()
@@ -73,8 +73,8 @@ class KissTheFrog : Script {
             }
             when (frog.index) {
                 get("ktf_crown", -1) -> royalFrog(frog)
-                get("ktf_escape", -1) -> escapeFrog(frog)
-                else -> plainFrog(frog)
+                get("ktf_escape", -1) -> escapeFrog()
+                else -> plainFrog()
             }
         }
 
@@ -133,27 +133,26 @@ class KissTheFrog : Script {
         val royal = royal()
         val subject = if (male) "She" else "He"
         val him = if (male) "Her" else "Him"
-        npc<Neutral>("frog_herald", "Welcome to the Land of the Frogs.")
+        npc<Neutral>("Welcome to the Land of the Frogs.")
         player<Quiz>("What am I doing here?")
-        npc<Neutral>("frog_herald", "The Frog $royal sent for you.")
+        npc<Neutral>("The Frog $royal sent for you.")
         player<Quiz>("Who is the Frog $royal?")
-        npc<Neutral>("frog_herald", "$subject is the frog with the crown. Make sure you speak to $him, not the other frogs, or $subject'll be offended.")
+        npc<Neutral>("$subject is the frog with the crown. Make sure you speak to $him, not the other frogs, or $subject'll be offended.")
     }
 
     /** The crowned royal in the Land of the Frogs: kiss to win. */
     private suspend fun Player.royalFrog(frog: NPC) {
-        val id = frog.id
-        npc<Sad>(id, "$name, you must help me! I have been turned into a frog by a well-meaning wizard with an unfortunate obsession with frogs.")
-        npc<Neutral>(id, "The only thing that will restore my true form is a kiss.")
+        npc<Sad>("$name, you must help me! I have been turned into a frog by a well-meaning wizard with an unfortunate obsession with frogs.")
+        npc<Neutral>("The only thing that will restore my true form is a kiss.")
         player<Laugh>("Excuses, excuses! Okay, if that's what you want...")
         kiss(frog)
     }
 
     private suspend fun Player.kiss(frog: NPC) {
-        // If the player clicks off the "Thank you" dialogue (which cancels this handler), the walk fires
-        // this trigger and they still fade out, collect the reward and teleport home; reading it through
+        // If the player clicks off the "Thank you" dialogue (which cancels this handler), the exit
+        // trigger still fades out, collects the reward and teleports home; reading it through
         // does the same at the end.
-        walkTrigger = { queue("ktf_kiss") { completeKiss() } }
+        onExitInterrupt { completeKiss() }
         // Turn to face each other before leaning in.
         face(frog.tile)
         frog.face(tile)
@@ -166,7 +165,7 @@ class KissTheFrog : Script {
         delay(2)
         frog.transform(crownFrog()) // the frog stands up as the human royal
         delay(2)
-        npc<Happy>(crownFrog(), "Thank you so much, $name. I must return to my fairy tale kingdom now, but I will leave you a reward for your kindness.")
+        npc<Happy>("Thank you so much, $name. I must return to my fairy tale kingdom now, but I will leave you a reward for your kindness.")
         frog.anim("emote_blow_kiss")
         frog.gfx("emote_blow_kiss")
         delay(3)
@@ -178,10 +177,11 @@ class KissTheFrog : Script {
         if (get<String>("random_event") != "kiss_the_frog") {
             return
         }
-        walkTrigger = null
+        // Re-arm rather than clear: an interrupt during the fade would otherwise
+        // orphan the trip home. The event check above stops a repeat run.
+        onExitInterrupt { completeKiss() }
         open("fade_out")
         delay(2)
-        addOrDrop("random_event_gift")
         rewardCostumePoint("frog")
         message("You've been given a gift!")
         finishEvent()
@@ -189,13 +189,13 @@ class KissTheFrog : Script {
     }
 
     /** The crowned royal in the frog cave: talking to it releases a hexed player (no reward). */
-    private suspend fun Player.escapeFrog(frog: NPC) {
+    private suspend fun Player.escapeFrog() {
         // The cave is enclosed, so the player must not be able to strand themselves by walking off. If
         // they click off the dialogue (which cancels this handler), the walk fires this trigger and they
         // fade out and teleport home anyway; reading the dialogue through does the same at the end.
         walkTrigger = { queue("ktf_escape_cave") { escapeCave() } }
-        npc<Sad>(frog.id, "Oh, another poor soul hexed into a frog for their bad manners.")
-        npc<Neutral>(frog.id, "Here, I'll send you on your way. Do be more polite next time.")
+        npc<Sad>("Oh, another poor soul hexed into a frog for their bad manners.")
+        npc<Neutral>("Here, I'll send you on your way. Do be more polite next time.")
         escapeCave()
     }
 
@@ -211,21 +211,21 @@ class KissTheFrog : Script {
         open("fade_in")
     }
 
-    private suspend fun Player.plainFrog(frog: NPC) {
+    private suspend fun Player.plainFrog() {
         if (get("ktf_fail", false)) {
             // Already a frog - the plain frogs have nothing to say to another frog.
-            npc<Neutral>(frog.id, "Ribbit.")
+            npc<Neutral>("Ribbit.")
             return
         }
         // Ignoring the royal to talk to plain frogs offends them; do it too often and the royal turns
         // the player into a frog and banishes them to the frog cave.
         val offences = inc("ktf_offended")
         if (offences < OFFENCE_LIMIT) {
-            npc<Neutral>(frog.id, "Ribbit.")
+            npc<Neutral>("Ribbit.")
             message("The Frog ${royal()} looks offended that you spoke to another frog.")
             return
         }
-        npc<Neutral>(frog.id, "Well, we'll see how you like being a frog!")
+        npc<Neutral>("Well, we'll see how you like being a frog!")
         banishToCave()
     }
 
@@ -245,7 +245,8 @@ class KissTheFrog : Script {
     /** Successful kiss: return the player home. */
     private fun Player.finishEvent() {
         cleanup()
-        RandomEvents.complete(this)
+        RandomEvents.complete(this, "random_event_gift")
+        walkTrigger = null
     }
 
     /** Escaped the frog cave: dump the player somewhere random with no reward. */

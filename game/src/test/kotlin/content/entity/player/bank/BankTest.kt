@@ -44,6 +44,36 @@ internal class BankTest : WorldTest() {
     }
 
     @Test
+    fun `Deposit box on Evil Bob's island opens the deposit interface`() {
+        val player = createPlayer(emptyTile)
+        val box = createObject("bank_deposit_box_scaperune", emptyTile.addY(1))
+        player.inventory.add("bronze_sword", 2)
+
+        player.objectOption(box, "Deposit")
+        tick()
+
+        assertTrue(player.interfaces.contains("bank_deposit_box"))
+        player.interfaceOption("bank_deposit_box", "inventory", "Deposit-All", item = Item("bronze_sword"), slot = 0)
+
+        assertFalse(player.inventory.contains("bronze_sword"))
+        assertEquals(Item("bronze_sword", 2), player.bank[0])
+    }
+
+    @Test
+    fun `Depositing a destroy-on-deposit item destroys it instead of banking it`() {
+        val player = createPlayer(emptyTile)
+        val box = createObject("bank_deposit_box_scaperune", emptyTile.addY(1))
+        player.inventory.add("fish_like_thing")
+
+        player.objectOption(box, "Deposit")
+        tick()
+        player.interfaceOption("bank_deposit_box", "inventory", "Deposit-All", item = Item("fish_like_thing"), slot = 0)
+
+        assertFalse(player.inventory.contains("fish_like_thing"))
+        assertFalse(player.bank.contains("fish_like_thing"))
+    }
+
+    @Test
     fun `Deposit noted items`() {
         val player = createPlayer(emptyTile)
         val bank = createObject(bankBooth, emptyTile.addY(1))

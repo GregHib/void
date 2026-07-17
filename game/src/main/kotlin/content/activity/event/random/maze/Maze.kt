@@ -3,6 +3,8 @@ package content.activity.event.random.maze
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
@@ -82,6 +84,7 @@ class Maze : Script {
                 return@objectOperate
             }
             softTimers.stop("maze")
+            onExitInterrupt { leaveMaze() }
             // The player finishes on the shrine's footprint, so the engine's face_entity
             // auto-face resolves to the wrong direction. Clear it and face the centre tile.
             clear("face_entity")
@@ -89,9 +92,7 @@ class Maze : Script {
             delay(2)
             anim("emote_cheer")
             delay(2)
-            addOrDrop("random_event_gift")
-            RandomEvents.complete(this)
-            jingle("maze_complete")
+            leaveMaze()
         }
 
         objectOperate("Open", "maze_wall") {
@@ -125,6 +126,11 @@ class Maze : Script {
         objectOperate("Search", "maze_chest_opened") {
             message("You find nothing of interest.")
         }
+    }
+
+    private suspend fun Player.leaveMaze() {
+        returnHome("random_event_gift")
+        jingle("maze_complete")
     }
 
     private suspend fun Player.startMaze() {

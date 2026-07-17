@@ -41,6 +41,22 @@ class MazeTest : WorldTest() {
     }
 
     @Test
+    fun `Touching the shrine again mid-teleport can't dupe the gift`() {
+        val player = createPlayer(Tile(3221, 3218), "maze_dupe")
+        RandomEvents.start(player, "maze")
+        tick(10)
+
+        val shrine = createObject("strange_shrine", player.tile.addY(1))
+        player.objectOption(shrine, "Touch")
+        tick(5) // cheer done, mid teleport-out delay
+        player.objectOption(shrine, "Touch")
+        tick(15)
+
+        assertNull(player.get<String>("random_event"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
+    }
+
+    @Test
     fun `Running out of time exiles the player without reward`() {
         val player = createPlayer(Tile(3221, 3218), "maze_timeout")
         RandomEvents.start(player, "maze")

@@ -3,13 +3,14 @@ package content.activity.event.random.pinball
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.quest.closeTabs
 import content.quest.instanceOffset
 import content.quest.openTabs
@@ -20,6 +21,7 @@ import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -67,7 +69,7 @@ class Pinball : Script {
                     message("He's busy right now.")
                     return@npcOperate
                 }
-                guardTalk(guard)
+                guardTalk()
             }
         }
     }
@@ -115,9 +117,10 @@ class Pinball : Script {
         val oldMan = NPCs.add("mysterious_old_man", OLD_MAN.add(offset), ticks = -1, owner = this)
         oldMan.face(this)
         face(oldMan)
-        npc<Neutral>("mysterious_old_man", "The rules of the game are quite simple. You have to score 10 points by tagging the flashing pillars.")
-        npc<Neutral>("mysterious_old_man", "Don't tag the ones that do not have rings around the base, as that will reset your points, and don't try and get past those trolls until you are done!")
-        npc<Neutral>("mysterious_old_man", "See you later!")
+        talkWith(oldMan)
+        npc<Neutral>("The rules of the game are quite simple. You have to score 10 points by tagging the flashing pillars.")
+        npc<Neutral>("Don't tag the ones that do not have rings around the base, as that will reset your points, and don't try and get past those trolls until you are done!")
+        npc<Neutral>("See you later!")
         oldMan.anim("emote_wave")
         delay(4)
         oldMan.gfx("imp_puff")
@@ -153,35 +156,36 @@ class Pinball : Script {
 
     private suspend fun Player.exitArena() {
         if (get("pinball_score", 0) < REQUIRED) {
-            guardTalk(GUARDS.first())
+            talkWith(NPCs.find(tile.regionLevel) { it.id in GUARDS && it.owner == this })
+            guardTalk()
             return
         }
-        reward()
+        onExitInterrupt { leaveArena() }
+        leaveArena()
+    }
+
+    private suspend fun Player.leaveArena() {
         close("pinball_overlay")
         openTabs()
         clearMinimap()
         clear("pinball_score")
         clear("pinball_target")
-        RandomEvents.complete(this) // clears the instance and teleports the player home
+        returnHome("random_event_gift") // clears the instance and teleports the player home
     }
 
-    private suspend fun Player.guardTalk(guard: String) {
+    private suspend fun Player.guardTalk() {
         if (get("pinball_score", 0) >= REQUIRED) {
             player<Quiz>("So...I'm free to go now, right?")
-            npc<Neutral>(guard, "Yer, get going. We get break now.")
+            npc<Neutral>("Yer, get going. We get break now.")
             player<Neutral>("Ok. Err...have a nice break.")
         } else {
             player<Confused>("Err...what am I supposed to do here again?")
-            npc<Neutral>(guard, "You gotta poke dem pillars.")
+            npc<Neutral>("You gotta poke dem pillars.")
             player<Confused>("What? All of them?")
-            npc<Neutral>(guard, "No, no. If you poke dem ones dat don't have a dem flashin' rings, den dats bad.")
+            npc<Neutral>("No, no. If you poke dem ones dat don't have a dem flashin' rings, den dats bad.")
             player<Quiz>("So I have to poke the pillars that are flashing?")
-            npc<Neutral>(guard, "Yer. You do dat ten times, you get prize.")
+            npc<Neutral>("Yer. You do dat ten times, you get prize.")
         }
-    }
-
-    private fun Player.reward() {
-        addOrDrop("random_event_gift")
     }
 
     /** Reset the previous flashing post and start a new random one flashing; the target is 1-based. */

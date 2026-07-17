@@ -4,6 +4,7 @@ import content.bot.isBot
 import content.entity.combat.inCombat
 import content.entity.effect.transform
 import content.entity.player.bank.isNote
+import content.entity.player.inv.item.addOrDrop
 import content.quest.clearInstance
 import content.quest.instance
 import world.gregs.voidps.engine.Script
@@ -121,9 +122,14 @@ object RandomEvents : AutoCloseable {
 
     /**
      * Success; return the player to where they were taken from.
+     * [rewards] are granted after the teleport so a full inventory drops them at the
+     * player's feet back home rather than on the event area's floor, where they'd be lost.
      */
-    fun complete(player: Player) {
+    fun complete(player: Player, vararg rewards: String) {
         player.tele(exit(player))
+        for (reward in rewards) {
+            player.addOrDrop(reward)
+        }
     }
 
     /**
