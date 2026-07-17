@@ -105,7 +105,10 @@ class Mining : Script {
                     }
                 }
                 for (item in ores) {
-                    if (item == "pure_essence" && !World.members) {
+                    if (item == "rune_essence" && has(Skill.Mining, 30)) {
+                        continue
+                    }
+                    if (item == "pure_essence" && !World.members ) {
                         continue
                     }
                     val ore = Rows.getOrNull("ores.$item") ?: continue
