@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.queue
 
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
@@ -34,6 +35,7 @@ class ActionQueue<C : Character>(
     fun tick() {
         if (queue.contains(ActionPriority.Strong)) {
             (character as? Player)?.closeMenu()
+            (character as? Player)?.closeDialogue()
             weakQueue.clear()
         }
         process(queue)
@@ -45,7 +47,7 @@ class ActionQueue<C : Character>(
         while (action != null) {
             // Cache end to exit before the last action can add any children
             val end = action.next == null
-            if (action.process() && canProcess()) {
+            if (action.process() && (action.priority == ActionPriority.Strong || canProcess())) {
                 val next = action.next
                 queue.remove(action)
                 scope.launch(action)

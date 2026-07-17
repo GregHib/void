@@ -1,6 +1,7 @@
 package content.entity.player.dialogue.type
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.close
@@ -66,6 +67,7 @@ class LevelUp : Script {
             jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
             addVarbit("skill_stat_flash", skill.name.lowercase())
             val level = if (skill == Constitution) to / 10 else to
+            message("Congratulations! You've just advanced${skill.name.an()} ${skill.name} level! You have now reached level $level!")
             weakQueue("level_up") {
                 levelUp(
                     this,
