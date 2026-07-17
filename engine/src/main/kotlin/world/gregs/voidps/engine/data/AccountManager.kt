@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.update.player.PlayerUpdateTask
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.data.definition.*
@@ -15,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
+import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.level.PlayerLevels
 import world.gregs.voidps.engine.event.AuditLog
@@ -60,6 +62,7 @@ class AccountManager(
         player.body.link(player.equipment, overrides)
         player.body.updateAll()
         player.appearance.displayName = player.name
+        player.flagAppearance()
         if (player.contains("new_player")) {
             accountDefinitions.add(player)
         }
@@ -83,9 +86,10 @@ class AccountManager(
             logout(player, false)
         }
         loadCallback.invoke(player)
+        Spawn.player(player)
+        PlayerUpdateTask().run(player)
         player.open(player.interfaces.gameFrame)
         player.variables.sendAll()
-        Spawn.player(player)
         val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
         val original = player.tile.minus(offset)
         for (def in Areas.get(original.zone)) {
