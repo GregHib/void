@@ -13,6 +13,8 @@ import kotlin.test.assertTrue
 
 class QuizMasterTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val origin = Tile(3221, 3218)
     private val quiz = "dialogue_macro_quiz_show"
 
@@ -66,7 +68,7 @@ class QuizMasterTest : WorldTest() {
             player.skipDialogues() // "RIGHT!" (or the winner line on the 4th) -> the prize
             tick()
         }
-        tick()
+        tick(5) // wait out the modern teleport takeoff
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))

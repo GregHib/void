@@ -83,7 +83,7 @@ class PilloryTest : WorldTest() {
         openPuzzle(player)
 
         repeat(3) { player.pickAnswer() }
-        tick(2)
+        tick(5) // wait out the modern teleport takeoff
 
         assertFalse(player.inventory.isEmpty())
         assertNull(player.get<String>("random_event"))

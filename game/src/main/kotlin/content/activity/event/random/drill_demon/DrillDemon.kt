@@ -3,12 +3,13 @@ package content.activity.event.random.drill_demon
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -35,7 +36,7 @@ class DrillDemon : Script {
                 return@npcOperate
             }
             if (!get("drill_demon_ready", false)) {
-                npc<Neutral>("sergeant_damien", "I haven't given you the order yet, worm!", largeHead = true)
+                npc<Neutral>("I haven't given you the order yet, worm!", largeHead = true)
                 return@npcOperate
             }
             order(wrong = false)
@@ -116,13 +117,17 @@ class DrillDemon : Script {
     }
 
     private suspend fun Player.finish() {
+        onExitInterrupt { leaveCamp() }
         npc<Neutral>("sergeant_damien", "Well I'll be, you actually did it $name. Now take this and get yourself out of my sight.", largeHead = true)
-        addOrDrop("random_event_gift")
+        leaveCamp()
+    }
+
+    private suspend fun Player.leaveCamp() {
         rewardCostumePoint("camo")
         clear("drill_demon_ready")
         clear("drill_demon_task")
         clear("drill_demon_correct")
-        RandomEvents.complete(this)
+        returnHome("random_event_gift")
     }
 
     private data class Exercise(val anim: String, val sound: String, val order: String, val sign: String, val action: String)

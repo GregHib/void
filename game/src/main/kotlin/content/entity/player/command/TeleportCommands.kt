@@ -79,8 +79,8 @@ class TeleportCommands(
         adminCommands("tele", coords, place, region)
         commandAlias("tele", "tp")
 
-        adminCommand("tele_to", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { args ->
-            val target = Players.firstOrNull { it.name.equals(args[0], true) }
+        adminCommand("tele_to", stringArg("player-name", desc = "Player name (with underscores for spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { args ->
+            val target = Players.find(args[0])
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand
@@ -88,8 +88,8 @@ class TeleportCommands(
             tele(target.tile)
         }
 
-        adminCommand("tele_to_me", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport another player to you") { args ->
-            val target = Players.firstOrNull { it.name.equals(args[0], true) }
+        adminCommand("tele_to_me", stringArg("player-name", desc = "Player name (with underscores for spaces)", autofill = accounts.displayNames.keys), desc = "Teleport another player to you") { args ->
+            val target = Players.find(args[0])
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand

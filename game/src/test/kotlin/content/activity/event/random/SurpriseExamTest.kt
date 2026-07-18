@@ -18,6 +18,8 @@ import kotlin.test.assertTrue
 
 class SurpriseExamTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val origin = Tile(3221, 3218)
     private val classroom = Tile(1886, 5025)
     private val iface = "surprise_exam_pattern"
@@ -86,7 +88,7 @@ class SurpriseExamTest : WorldTest() {
         player["surprise_exam_door"] = "exam_door_blue"
         val door = GameObjects.add("exam_door_blue", player.tile)
         player.objectOption(door, "Open")
-        tick(2)
+        tick(6) // walk to the door + the modern teleport takeoff
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))

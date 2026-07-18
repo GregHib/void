@@ -1,6 +1,7 @@
 package content.activity.event.random
 
 import WorldTest
+import dialogueContinue
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
@@ -17,6 +18,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class PrisonPeteTest : WorldTest() {
+
+    override var loadNpcs: Boolean = true
 
     private val origin = Tile(3221, 3218)
     private val prison = Tile(2086, 4462)
@@ -161,6 +164,30 @@ class PrisonPeteTest : WorldTest() {
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
+    }
+
+    @Test
+    fun `Opening the gate again mid-dialogue can't dupe the present`() {
+        val player = enter("pp_dupe")
+
+        repeat(3) {
+            player.pullLever()
+            player.popBalloon(correct = true)
+            player.handKeyToPete()
+        }
+        player.objectOption(gate(), "Open")
+        tick(10) // walk out; "Thanks a lot for your help!" awaits a continue
+        player.dialogueContinue() // "Thanks! See you around!" awaits a continue
+
+        // Ignore the continue and try the gate again
+        player.objectOption(gate(), "Open")
+        tick(10)
+        if (player.dialogue != null) {
+            player.skipDialogues()
+        }
+        tick(10)
+
+        assertEquals(1, player.inventory.count("random_event_gift"))
     }
 
     private fun gate() = GameObjects.getShape(Tile(2085, 4459), 0)!!

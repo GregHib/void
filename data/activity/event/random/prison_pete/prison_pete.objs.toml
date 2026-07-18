@@ -6,3 +6,7 @@ id = 2134
 
 [prison_pete_gate_east]
 id = 2138
+
+[bank_deposit_box_prisonpete]
+id = 32924
+examine = "Lets you put items into your bank."

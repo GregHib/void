@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
 
 class BankDeposit : Script {
@@ -119,9 +120,20 @@ class BankDeposit : Script {
                 return
             }
 
-            if (item.def["unbankable", 0] == 1) {
-                player.message("This item cannot be banked.")
-                return
+            when (item.def["unbankable", 0]) {
+                1 -> {
+                    player.message("This item cannot be banked.")
+                    return
+                }
+                2 -> {
+                    // Event items (e.g. Evil Bob's fish-like things) can't leave the event;
+                    // depositing them destroys them rather than storing them in the bank.
+                    val toDestroy = minOf(amount, inventory.count(item.id).toInt())
+                    if (toDestroy > 0) {
+                        inventory.transaction { remove(item.id, toDestroy) }
+                    }
+                    return
+                }
             }
 
             val notNoted = if (item.isNote) item.noted else item

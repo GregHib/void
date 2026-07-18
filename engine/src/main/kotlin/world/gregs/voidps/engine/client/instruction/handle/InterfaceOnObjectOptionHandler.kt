@@ -18,6 +18,9 @@ class InterfaceOnObjectOptionHandler(
 ) : InstructionHandler<InteractInterfaceObject>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceObject): Boolean {
+        if (player.contains("delay")) {
+            return false
+        }
         val (objectId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction
         val tile = Tile(x, y, player.tile.level)
         val obj = GameObjects.findOrNull(tile, objectId)

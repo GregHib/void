@@ -19,6 +19,8 @@ import kotlin.test.assertTrue
 
 class FreakyForesterTest : WorldTest() {
 
+    override var loadNpcs: Boolean = true
+
     private val clearing = Tile(2601, 4777)
 
     private fun startInClearing(name: String, task: Int, origin: Tile = Tile(3221, 3218)) = createPlayer(clearing, name).apply {
@@ -76,7 +78,7 @@ class FreakyForesterTest : WorldTest() {
         player.npcOption(forester, "Talk-to")
         tick()
         player.skipDialogues()
-        tick(2)
+        tick(5) // wait out the modern teleport takeoff
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertEquals(1, player.get("lederhosen_costume_points", 0))
