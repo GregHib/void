@@ -7,7 +7,6 @@ import content.skill.magic.Magic
 import content.skill.melee.weapon.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
@@ -165,11 +164,8 @@ class Combat(val combatDefinitions: CombatDefinitions) :
                 character.mode = CombatMovement(character, target)
                 character.target = target
             }
-            val movement = character.mode as CombatMovement
-            if (character is Player && character.dialogue != null) {
-                return
-            }
-            if (character.target == null || !Target.attackable(character, target)) {
+        val movement = character.mode as CombatMovement
+        if (character.target == null || !Target.attackable(character, target)) {
                 character.mode = EmptyMode
                 return
             }

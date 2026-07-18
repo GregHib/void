@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.mode.combat
 
-import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
@@ -43,9 +42,6 @@ class CombatMovement(
     }
 
     override fun tick() {
-        if (character is Player && character.dialogue != null) {
-            return
-        }
         if (target.tile.level != character.tile.level) {
             character.mode = EmptyMode
             return
