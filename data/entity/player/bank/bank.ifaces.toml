@@ -259,7 +259,7 @@ type = "overlay_tab"
 [.inventory]
 id = 0
 inventory = "inventory"
-options = { Deposit-1 = 0, Deposit-5 = 1, Deposit-10 = 2, Deposit-* = 3, Deposit-X = 4, Deposit-All = 5, Examine = 9 }
+options = { Deposit-1 = 0, Deposit-5 = 1, Deposit-10 = 2, Deposit-* = 3, Deposit-X = 4, Deposit-All = 5, Examine = 9, Drag-Source = 17, Drag = 20 }
 
 [bank_help]
 id = 767
