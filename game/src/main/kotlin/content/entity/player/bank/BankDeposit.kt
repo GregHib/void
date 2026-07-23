@@ -16,14 +16,14 @@ import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
+import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shift
 
 class BankDeposit : Script {
 
     init {
-        interfaceOption(id = "bank_side:inventory") { (item, _, option) ->
+        interfaceOption(id = "bank_side:inventory") { (item, slot, option) ->
             val amount = when (option) {
                 "Deposit-1" -> 1
                 "Deposit-5" -> 5
@@ -35,10 +35,10 @@ class BankDeposit : Script {
                 }
                 else -> return@interfaceOption
             }
-            deposit(this, inventory, item, amount)
+            deposit(this, inventory, item, amount, slot)
         }
 
-        interfaceOption(id = "bank_deposit_box:inventory") { (item, _, option) ->
+        interfaceOption(id = "bank_deposit_box:inventory") { (item, slot, option) ->
             val amount = when (option) {
                 "Deposit-1" -> 1
                 "Deposit-5" -> 5
@@ -49,7 +49,7 @@ class BankDeposit : Script {
                 }
                 else -> return@interfaceOption
             }
-            deposit(this, inventory, item, amount)
+            deposit(this, inventory, item, amount, slot)
         }
 
         interfaceOption("Deposit carried items", "bank:carried") {
@@ -107,7 +107,7 @@ class BankDeposit : Script {
         for (index in inventory.indices) {
             val item = inventory[index]
             if (item.isNotEmpty()) {
-                deposit(player, inventory, item, item.amount)
+                deposit(player, inventory, item, item.amount, index)
             }
         }
     }
@@ -115,7 +115,7 @@ class BankDeposit : Script {
     companion object {
         private val logger = InlineLogger()
 
-        private fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int, check: Boolean = true) {
+        private fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int, slot: Int = -1, check: Boolean = true) {
             if ((check && player.menu != "bank" && player.menu != "bank_deposit_box") || amount < 1) {
                 return
             }
@@ -147,15 +147,24 @@ class BankDeposit : Script {
             var shifted = false
             inventory.transaction {
                 val existing = bank.indexOf(notNoted.id)
-                val moved = moveToLimit(item.id, amount, bank, notNoted.id)
-                if (moved == 0) {
+                val available = inventory.count(item.id).toInt()
+                val added = link(bank).addToLimit(notNoted.id, minOf(amount, available))
+                if (added == 0) {
                     error = TransactionError.Full()
-                } else if (moved > 0 && tab > 0 && existing == -1) {
-                    // Shift item into tab
-                    val index = bank.freeIndex() - 1
-                    val to = tabIndex(player, tab + 1)
-                    link(bank).shift(index, to)
-                    shifted = true
+                } else {
+                    // Remove from the slot clicked before taking from other slots
+                    if (slot in inventory.indices && inventory[slot].id == item.id) {
+                        remove(slot, item.id, added)
+                    } else {
+                        remove(item.id, added)
+                    }
+                    if (tab > 0 && existing == -1) {
+                        // Shift item into tab
+                        val index = bank.freeIndex() - 1
+                        val to = tabIndex(player, tab + 1)
+                        link(bank).shift(index, to)
+                        shifted = true
+                    }
                 }
             }
             when (inventory.transaction.error) {
