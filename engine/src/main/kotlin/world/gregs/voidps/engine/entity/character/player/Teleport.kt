@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
 import world.gregs.voidps.engine.event.*
 import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.ActionPriority
@@ -116,6 +117,11 @@ interface Teleport {
                 player.exp(Skill.Magic, xp)
                 if (sound) {
                     player.sound("teleport_${type}")
+                    if (type == "tablet") {
+                        player.client?.playSoundEffect(965)
+                    } else if (type != "jewellery") {
+                        player.client?.playSoundEffect(200)
+                    }
                 }
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")
