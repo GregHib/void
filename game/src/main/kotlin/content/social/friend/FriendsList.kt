@@ -111,6 +111,9 @@ class FriendsList(
 
         interfaceOption(id = "filter_buttons:private") {
             val option = it.option
+            if (option != "On" && option != "Friends" && option != "Off") {
+                return@interfaceOption
+            }
             if (privateStatus != "on" && option != "Off") {
                 val next = option.lowercase()
                 notifyBefriends(this, online = true) { p, current ->
