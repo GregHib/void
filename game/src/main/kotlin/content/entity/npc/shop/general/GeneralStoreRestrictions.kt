@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.inv.restrict.ItemRestrictionRule
 object GeneralStoreRestrictions : ItemRestrictionRule {
     override fun restricted(id: String): Boolean {
         if (id == "coins") {
-            return false
+            return true
         }
         val def = ItemDefinitions.getOrNull(id) ?: return false
         return !def["tradeable", true] || def.lendTemplateId != -1 || def.dummyItem != 0
