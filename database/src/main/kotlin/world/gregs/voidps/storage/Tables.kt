@@ -152,6 +152,8 @@ internal object PlayerHistoryTable : Table("player_exchange_history") {
 }
 
 internal object ClaimsTable : Table("grand_exchange_claims") {
+    // Logically references OffersTable.id, but without a foreign key constraint: claims and offers
+    // are saved by independent paths, so enforcement would block the per-player offer delete/reinsert.
     val offerId = integer("offer_id").uniqueIndex()
     val amount = integer("amount")
     val coins = integer("coins")
