@@ -50,24 +50,16 @@ class ChatFilters : Script {
             publicStatus(publicStatus, tradeStatus)
         }
 
-        for (option in listOf("On", "Friends", "Off")) {
-            interfaceOption(option, "filter_buttons:clan") {
-                set("clan_status", option.lowercase())
+        interfaceOption(id = "filter_buttons:*") {
+            if (it.option == "View") {
+                return@interfaceOption
             }
-            interfaceOption(option, "filter_buttons:trade") {
-                tradeStatus = option.lowercase()
+            when (it.component) {
+                "game", "clan" -> set("${it.component}_status", it.option.lowercase())
+                "public" -> publicStatus = it.option.lowercase()
+                // "private" is handled by FriendsList's filter_buttons:private handler
+                "trade" -> tradeStatus = it.option.lowercase()
             }
-        }
-        for (option in listOf("On", "Friends", "Off", "Hide")) {
-            interfaceOption(option, "filter_buttons:public") {
-                publicStatus = option.lowercase()
-            }
-        }
-        interfaceOption("All", "filter_buttons:game") {
-            set("game_status", "all")
-        }
-        interfaceOption("Filter", "filter_buttons:game") {
-            set("game_status", "filter")
         }
     }
 }
