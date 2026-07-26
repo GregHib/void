@@ -28,19 +28,46 @@ var Player.tradeStatus: String
 
 class ChatFilters : Script {
 
+    val statuses = mapOf(
+        "game_status" to listOf("all", "filter"),
+        "public_status" to listOf("on", "friends", "off", "hide"),
+        "private_status" to listOf("on", "friends", "off"),
+        "trade_status" to listOf("on", "friends", "off"),
+        "clan_status" to listOf("on", "friends", "off"),
+        "assist_status" to listOf("on", "friends", "off"),
+    )
+
     init {
         playerSpawn {
+            // Left-clicking a filter button used to store its "View" option as a status,
+            // leaving an invalid value that hides the filter's messages every session
+            for ((key, values) in statuses) {
+                if (get(key, values.first()) !in values) {
+                    clear(key)
+                }
+            }
             privateStatus(privateStatus)
             publicStatus(publicStatus, tradeStatus)
         }
 
-        interfaceOption("View", id = "filter_buttons:*") {
-            when (it.component) {
-                "game", "clan" -> set("${it.component}_status", it.option.lowercase())
-                "public" -> publicStatus = it.option.lowercase()
-                "private" -> privateStatus = it.option.lowercase()
-                "trade" -> tradeStatus = it.option.lowercase()
+        for (option in listOf("On", "Friends", "Off")) {
+            interfaceOption(option, "filter_buttons:clan") {
+                set("clan_status", option.lowercase())
             }
+            interfaceOption(option, "filter_buttons:trade") {
+                tradeStatus = option.lowercase()
+            }
+        }
+        for (option in listOf("On", "Friends", "Off", "Hide")) {
+            interfaceOption(option, "filter_buttons:public") {
+                publicStatus = option.lowercase()
+            }
+        }
+        interfaceOption("All", "filter_buttons:game") {
+            set("game_status", "all")
+        }
+        interfaceOption("Filter", "filter_buttons:game") {
+            set("game_status", "filter")
         }
     }
 }
