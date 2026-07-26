@@ -1,6 +1,7 @@
 package content.area.karamja.tzhaar_city
 
 import com.github.michaelbull.logging.InlineLogger
+import content.entity.combat.Combat
 import content.entity.combat.hit.damage
 import content.entity.combat.killer
 import content.entity.player.dialogue.Angry
@@ -17,7 +18,6 @@ import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
@@ -133,7 +133,12 @@ class TzhaarFightCave(
             }
         }
 
-        npcCombatDamage("tz_kek,tz_kek_spawn_point") { (source) ->
+        npcCombatAttack("tz_kih,tz_kih_spawn_point") { (target, damage) ->
+            target.levels.drain(Skill.Prayer, damage.coerceAtLeast(0) / 10 + 1)
+        }
+
+        // Recoil is a "damage" type hit so it isn't reduced by protection prayers
+        npcCombatDamage("tz_kek,tz_kek_spawn_point,tz_kek_spawn", "melee") { (source) ->
             source.damage(10)
         }
 
@@ -310,7 +315,9 @@ class TzhaarFightCave(
     private fun spawn(id: String, tile: Tile, target: Player) {
         val npc = NPCs.add(id, tile)
         npc["in_multi_combat"] = true
-        npc.interactPlayer(target, "Attack")
+        // Engage combat directly; the Interact mode used by interactPlayer gives up (cantReach)
+        // when blocked by an obstacle, leaving the npc to wander off instead of pursuing.
+        Combat.combat(npc, target)
         if (id == "tztok_jad") {
             npc["healed"] = true
         }

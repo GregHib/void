@@ -3,6 +3,7 @@ package content.area.karamja.tzhaar_city
 import FakeRandom
 import WorldTest
 import content.entity.combat.hit.directHit
+import content.entity.combat.hit.hit
 import intEntry
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
@@ -11,6 +12,7 @@ import org.koin.test.get
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -95,6 +97,50 @@ class TzhaarFightCaveTest : WorldTest() {
         if (killed) {
             tick(7)
         }
+    }
+
+    @Test
+    fun `Tz-Kih attacks drain prayer points`() {
+        val player = createPlayer(name = "JalYt-6")
+        player.levels.set(Skill.Prayer, 50)
+        val npc = createNPC("tz_kih") { it.huntMode = "" }
+
+        npc.hit(player, offensiveType = "stab", damage = 40)
+        tick()
+        assertEquals(45, player.levels.get(Skill.Prayer))
+
+        npc.hit(player, offensiveType = "stab", damage = 0)
+        tick()
+        assertEquals(44, player.levels.get(Skill.Prayer))
+    }
+
+    @Test
+    fun `Tz-Kek recoils melee attacks but not ranged`() {
+        val player = createPlayer(name = "JalYt-7")
+        val npc = createNPC("tz_kek")
+
+        npc.directHit(player, 50, "melee")
+        tick(2)
+        assertEquals(90, player.levels.get(Skill.Constitution))
+
+        npc.directHit(player, 50, "range")
+        tick(2)
+        assertEquals(90, player.levels.get(Skill.Constitution))
+    }
+
+    @Test
+    fun `Fight cave npcs spawn in combat and never give up pursuit`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = 0
+        })
+        val player = createPlayer(Tile(2438, 5168), "JalYt-8")
+        player["god_mode"] = true
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
+        player.interactObject(entrance, "Enter")
+        tick(5)
+        val npcs = NPCs.at(player.tile.regionLevel).toList()
+        assertTrue(npcs.isNotEmpty())
+        assertTrue(npcs.all { it.mode is CombatMovement })
     }
 
     @Test

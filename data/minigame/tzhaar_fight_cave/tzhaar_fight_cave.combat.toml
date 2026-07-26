@@ -11,7 +11,6 @@ range = 1
 anim = "tz_kih_attack"
 target_sound = "tz_kih_attack"
 target_hit = { offense = "stab", max = 40 }
-impact_drain = { skill = "prayer", amount = 1 }
 
 [tz_kek]
 attack_speed = 4
