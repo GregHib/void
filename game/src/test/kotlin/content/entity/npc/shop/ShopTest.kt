@@ -118,4 +118,19 @@ internal class ShopTest : WorldTest() {
         assertEquals(1, sample.count("bronze_hatchet"))
         assertEquals(11, shop.count("bronze_hatchet"))
     }
+
+    @Test
+    fun `Can't sell coins to a general store`() {
+        val player = createPlayer(emptyTile)
+        val npc = createNPC("shopkeeper_lumbridge", emptyTile.addY(1))
+        player.inventory.add("coins", 100)
+
+        player.npcOption(npc, "Trade")
+        tick()
+        val shop = player.shopInventory(false)
+        player.interfaceOption("shop_side", "inventory", "Sell 1", item = Item("coins"), slot = 0)
+
+        assertEquals(100, player.inventory.count("coins"))
+        assertEquals(0, shop.count("coins"))
+    }
 }
