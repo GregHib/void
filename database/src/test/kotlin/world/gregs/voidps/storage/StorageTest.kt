@@ -3,6 +3,7 @@ package world.gregs.voidps.storage
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.data.exchange.OfferState
@@ -239,6 +240,21 @@ abstract class StorageTest {
     @Test
     fun `No accounts gives empty clans`() {
         assertTrue(storage.clans().isEmpty())
+    }
+
+    @Test
+    fun `Re-saving offers with an outstanding claim doesn't fail`() {
+        // The seed account holds offer id 1; persist it first.
+        storage.save(listOf(save))
+
+        // A claim can reference an existing offer while that offer's owner is offline.
+        storage.saveClaims(mapOf(1 to Claim(4, 123)))
+
+        // Re-saving the account deletes and reinserts the player's offers. This previously threw a
+        // foreign-key violation because the outstanding claim still referenced offer id 1.
+        storage.save(listOf(save))
+
+        assertEquals(Claim(4, 123), storage.claims()[1])
     }
 
     companion object {
