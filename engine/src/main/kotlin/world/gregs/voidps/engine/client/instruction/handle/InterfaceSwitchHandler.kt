@@ -17,6 +17,11 @@ class InterfaceSwitchHandler(
             val temp = fromItemId
             fromItemId = toItemId
             toItemId = temp
+        } else if (fromInterfaceId == 763 && toInterfaceId == 763) {
+            // The client reorders the side inventory before sending, so each item id arrives paired with the slot it was dropped into
+            val temp = fromItemId
+            fromItemId = toItemId
+            toItemId = temp
         }
         val (fromId, fromComponent) = handler.getInterfaceItem(player, fromInterfaceId, fromComponentId, fromItemId, fromSlot) ?: return false
         val (toId, toComponent) = handler.getInterfaceItem(player, toInterfaceId, toComponentId, toItemId, toSlot) ?: return false

@@ -56,3 +56,4 @@ gradle-app.setting
 .gradletasknamecache
 /gradle/
 *.lock
+/game.properties

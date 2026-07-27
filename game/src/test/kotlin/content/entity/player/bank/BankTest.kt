@@ -6,6 +6,7 @@ import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
 import io.mockk.verify
+import kotlinx.coroutines.test.runTest
 import objectOption
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -15,6 +16,8 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.Client
+import world.gregs.voidps.network.client.instruction.MoveInventoryItem
+import world.gregs.voidps.network.login.protocol.encode.sendInterfaceItemUpdate
 import world.gregs.voidps.network.login.protocol.encode.sendScript
 import world.gregs.voidps.network.login.protocol.encode.sendVarc
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -41,6 +44,98 @@ internal class BankTest : WorldTest() {
         assertFalse(player.inventory.contains("bronze_sword"))
         assertEquals(Item("coins", 10), player.bank[0])
         assertEquals(Item("bronze_sword", 4), player.bank[1])
+    }
+
+    @Test
+    fun `Reorder inventory items while bank is open`() {
+        val player = createPlayer(emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(4))
+        player.inventory.add("coins", 1000)
+        player.inventory.add("bronze_sword", 2)
+
+        player.objectOption(bank, "Use-quickly")
+        tick(5)
+        assertTrue(player.interfaces.contains("bank_side"))
+        // The client reorders before sending, so each item id is paired with the slot it was dropped into
+        runTest {
+            player.instructions.send(MoveInventoryItem(763, 0, 1277, 0, 763, 0, 995, 1))
+        }
+        tick()
+
+        assertEquals(Item("bronze_sword", 1), player.inventory[0])
+        assertEquals(Item("coins", 1000), player.inventory[1])
+        assertTrue(player.interfaces.contains("bank"))
+
+        // Dragging onto an empty slot leaves the origin slot empty (-1) in the packet
+        runTest {
+            player.instructions.send(MoveInventoryItem(763, 0, -1, 1, 763, 0, 995, 5))
+        }
+        tick()
+
+        assertEquals(Item.EMPTY, player.inventory[1])
+        assertEquals(Item("coins", 1000), player.inventory[5])
+    }
+
+    @Test
+    fun `Reordering inventory while banked resends both slots to the client`() {
+        val player = createPlayer(emptyTile, "bank_reorder")
+        val client: Client = mockk(relaxed = true)
+        player.client = client
+        (player.variables as PlayerVariables).client = client
+        val bank = createObject(bankBooth, emptyTile.addY(1))
+        player.inventory.add("coins", 1000)
+        player.inventory.add("bronze_sword", 2)
+
+        player.objectOption(bank, "Use-quickly")
+        tick(5)
+
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
+        try {
+            runTest {
+                player.instructions.send(MoveInventoryItem(763, 0, 1277, 0, 763, 0, 995, 1))
+            }
+            tick()
+
+            assertEquals(Item("bronze_sword", 1), player.inventory[0])
+            assertEquals(Item("coins", 1000), player.inventory[1])
+            verify {
+                client.sendInterfaceItemUpdate(
+                    key = 93,
+                    updates = match { updates -> updates.any { it.first == 0 } && updates.any { it.first == 1 } },
+                    secondary = false,
+                )
+            }
+        } finally {
+            unmockkStatic("world.gregs.voidps.network.login.protocol.encode.InterfaceEncodersKt")
+        }
+
+        player.interfaceOption("bank_side", "inventory", "Deposit-All", item = Item("coins"), slot = 1)
+        assertEquals(Item("coins", 1000), player.bank[0])
+    }
+
+    @Test
+    fun `Deposit removes the item from the slot clicked, not the first match`() {
+        val player = createPlayer(emptyTile)
+        val bank = createObject(bankBooth, emptyTile.addY(1))
+        player.inventory.add("bronze_sword", 3)
+        player.inventory.add("coins", 100)
+
+        player.objectOption(bank, "Use-quickly")
+        tick(5)
+        player.interfaceOption("bank_side", "inventory", "Deposit-1", item = Item("bronze_sword"), slot = 2)
+
+        assertEquals(Item("bronze_sword", 1), player.inventory[0])
+        assertEquals(Item("bronze_sword", 1), player.inventory[1])
+        assertEquals(Item.EMPTY, player.inventory[2])
+        assertEquals(Item("coins", 100), player.inventory[3])
+        assertEquals(Item("bronze_sword", 1), player.bank[0])
+
+        // Depositing more than the clicked slot holds takes the rest from the earliest slots
+        player.interfaceOption("bank_side", "inventory", "Deposit-5", item = Item("bronze_sword"), slot = 1)
+
+        assertEquals(Item.EMPTY, player.inventory[0])
+        assertEquals(Item.EMPTY, player.inventory[1])
+        assertEquals(Item("bronze_sword", 3), player.bank[0])
     }
 
     @Test
