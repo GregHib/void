@@ -1,0 +1,23 @@
+[mage_arena]
+format = "list"
+persist = true
+default = "unstarted"
+values = ["unstarted", "started", "completed", "staff_received"]
+
+[kolodion_form]
+format = "list"
+persist = true
+default = "human"
+values = ["human", "ogre", "troll", "dark_beast", "demon"]
+
+[saradomin_strike_casts]
+format = "int"
+persist = true
+
+[claws_of_guthix_casts]
+format = "int"
+persist = true
+
+[flames_of_zamorak_casts]
+format = "int"
+persist = true

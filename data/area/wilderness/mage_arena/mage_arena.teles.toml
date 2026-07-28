@@ -1,0 +1,9 @@
+[lever_mage_bank]
+option = "Pull"
+tile = { x = 3090, y = 3956 }
+to = { x = 2539, y = 4712 }
+
+[lever_mage_bank_exit]
+option = "Pull"
+tile = { x = 2539, y = 4712 }
+to = { x = 3090, y = 3956 }

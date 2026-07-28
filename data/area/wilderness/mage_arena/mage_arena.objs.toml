@@ -1,0 +1,37 @@
+[lever_mage_bank]
+id = 5959
+land_message = "... and teleport into the mage's cave."
+examine = "I wonder what this does."
+
+[lever_mage_bank_exit]
+id = 5960
+land_message = "... and teleport out into the Wilderness."
+examine = "I wonder what this does."
+
+[mage_arena_lever_in]
+id = 9706
+examine = "This must let me in to the arena somehow."
+
+[mage_arena_lever_out]
+id = 9707
+examine = "This must let me out of the arena somehow."
+
+[statue_of_saradomin]
+id = 2873
+examine = "A statue in tribute to Saradomin."
+
+[statue_of_zamorak]
+id = 2874
+examine = "A statue in tribute to Zamorak."
+
+[statue_of_guthix]
+id = 2875
+examine = "A statue in tribute to Guthix."
+
+[sparkling_pool_mage_bank]
+id = 2878
+examine = "Sparkling water bubbles magically."
+
+[sparkling_pool_chamber]
+id = 2879
+examine = "Sparkling water bubbles magically."

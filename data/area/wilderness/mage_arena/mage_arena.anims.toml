@@ -1,0 +1,56 @@
+[kolodion_human_defend]
+id = 404
+
+[kolodion_human_death]
+id = 2888
+
+[kolodion_ogre_attack]
+id = 8577
+
+[kolodion_ogre_defend]
+id = 8578
+
+[kolodion_ogre_death]
+id = 8576
+
+[kolodion_troll_attack]
+id = 13790
+
+[kolodion_troll_defend]
+id = 13787
+
+[kolodion_troll_death]
+id = 13785
+
+[kolodion_dark_beast_attack]
+id = 2731
+
+[kolodion_dark_beast_defend]
+id = 2732
+
+[kolodion_dark_beast_death]
+id = 2733
+
+[kolodion_demon_attack]
+id = 64
+
+[kolodion_demon_defend]
+id = 65
+
+[kolodion_demon_death]
+id = 67
+
+[battle_mage_defend]
+id = 404
+
+[battle_mage_guthix_attack]
+id = 211
+
+[battle_mage_guthix_defend]
+id = 193
+
+[battle_mage_guthix_death]
+id = 196
+
+[sparkling_pool_jump]
+id = 7269
