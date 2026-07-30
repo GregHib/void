@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
 
 class GameFrame : Script {
@@ -52,6 +53,18 @@ class GameFrame : Script {
                 return@instruction
             }
             player.interfaces.setDisplayMode(displayMode)
+        }
+
+        playerSpawn {
+            softTimers.start("gameframe_login_refresh")
+        }
+
+        timerStart("gameframe_login_refresh") { 2 }
+
+        timerTick("gameframe_login_refresh") {
+            // Reload chat_background to reveal display name
+            interfaces.refresh()
+            Timer.CANCEL
         }
 
         interfaceOpened("toplevel*") {
