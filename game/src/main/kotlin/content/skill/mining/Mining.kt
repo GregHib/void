@@ -105,6 +105,9 @@ class Mining : Script {
                     }
                 }
                 for (item in ores) {
+                    if (item == "rune_essence" && has(Skill.Mining, 30) && World.members) {
+                        continue
+                    }
                     if (item == "pure_essence" && !World.members) {
                         continue
                     }
