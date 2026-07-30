@@ -86,10 +86,6 @@ class AccountManager(
         player.open(player.interfaces.gameFrame)
         player.variables.sendAll()
         Spawn.player(player)
-        // Reload game-frame to reveal display name
-        player.strongQueue("login", 2) {
-            player.open(player.interfaces.gameFrame)
-        }
         val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
         val original = player.tile.minus(offset)
         for (def in Areas.get(original.zone)) {
