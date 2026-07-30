@@ -62,7 +62,6 @@ class AccountManager(
         player.body.link(player.equipment, overrides)
         player.body.updateAll()
         player.appearance.displayName = player.name
-        player.flagAppearance()
         if (player.contains("new_player")) {
             accountDefinitions.add(player)
         }
