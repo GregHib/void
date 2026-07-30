@@ -19,10 +19,10 @@ examine = "He runs the mage arena."
 [kolodion_human]
 id = 907
 hitpoints = 30
+mage = 60
 attack_speed = 7
 style = "magic"
 max_hit_melee = 200
-hunt_mode = "cowardly"
 categories = ["no"]
 immune_poison = true
 examine = "'''In the Mage Arena cave:''' Runs the Mage Arena.<br/>'''In battle:''' He's a shape-shifter."
@@ -30,10 +30,41 @@ examine = "'''In the Mage Arena cave:''' Runs the Mage Arena.<br/>'''In battle:'
 [kolodion_ogre]
 id = 908
 hitpoints = 650
+att = 85
+str = 98
+def = 105
+mage = 80
 attack_speed = 7
 style = "magic"
 max_hit_melee = 200
-hunt_mode = "cowardly"
+categories = ["no"]
+immune_poison = true
+examine = "He's a shape-shifter."
+
+[kolodion_troll]
+id = 11301
+hitpoints = 650
+att = 85
+str = 98
+def = 105
+mage = 80
+attack_speed = 7
+style = "magic"
+max_hit_melee = 200
+categories = ["no"]
+immune_poison = true
+examine = "He's a shape-shifter."
+
+[kolodion_dark_beast]
+id = 11302
+hitpoints = 780
+att = 85
+str = 98
+def = 105
+mage = 80
+attack_speed = 7
+style = "magic"
+max_hit_melee = 200
 categories = ["no"]
 immune_poison = true
 examine = "He's a shape-shifter."
@@ -45,10 +76,9 @@ att = 85
 str = 98
 def = 105
 mage = 80
+attack_speed = 4
 style = "magic"
 max_hit_melee = 200
-hunt_mode = "cowardly"
-slayer_xp = 107.0
-categories = ["black_demons"]
+categories = ["no"]
+immune_poison = true
 examine = "He's a shape-shifter."
-

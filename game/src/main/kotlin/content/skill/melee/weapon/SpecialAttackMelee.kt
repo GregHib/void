@@ -2,6 +2,7 @@ package content.skill.melee.weapon
 
 import content.area.wilderness.inMultiCombat
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -15,6 +16,9 @@ fun multiTargets(source: Character, target: Character, hits: Int): List<Characte
         val characters = group.at(tile)
         for (character in characters) {
             if (character == target || character == source || !character.inMultiCombat) {
+                continue
+            }
+            if (character is NPC && character.contains("owner") && character.owner != source) {
                 continue
             }
             targets.add(character)

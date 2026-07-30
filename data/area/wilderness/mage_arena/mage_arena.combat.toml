@@ -1,0 +1,149 @@
+[kolodion_human]
+attack_speed = 7
+retreat_range = 12
+defend_anim = "kolodion_human_defend"
+death_anim = "kolodion_human_death"
+
+[kolodion_human.saradomin_strike]
+chance = 1
+range = 8
+anim = "cast_god_spell"
+target_hit = { offense = "magic", max = 200 }
+impact_gfx = "saradomin_strike_impact"
+impact_sound = "saradomin_strike_impact"
+miss_gfx = "spell_splash"
+miss_sound = "saradomin_strike_splash"
+
+[kolodion_human.claws_of_guthix]
+chance = 1
+range = 8
+anim = "cast_god_spell"
+target_hit = { offense = "magic", max = 200 }
+impact_gfx = "claws_of_guthix_impact"
+impact_sound = "claws_of_guthix_impact"
+miss_gfx = "spell_splash"
+miss_sound = "claws_of_guthix_splash"
+
+[kolodion_human.flames_of_zamorak]
+chance = 1
+range = 8
+anim = "cast_god_spell"
+target_hit = { offense = "magic", max = 200 }
+impact_gfx = "flames_of_zamorak_impact"
+impact_sound = "flames_of_zamorak_impact"
+miss_gfx = "spell_splash"
+miss_sound = "flames_of_zamorak_splash"
+
+[kolodion_ogre]
+clone = "kolodion_human"
+defend_anim = "kolodion_ogre_defend"
+death_anim = "kolodion_ogre_death"
+
+[kolodion_ogre.saradomin_strike]
+clone = "kolodion_human.saradomin_strike"
+anim = "kolodion_ogre_attack"
+
+[kolodion_ogre.claws_of_guthix]
+clone = "kolodion_human.claws_of_guthix"
+anim = "kolodion_ogre_attack"
+
+[kolodion_ogre.flames_of_zamorak]
+clone = "kolodion_human.flames_of_zamorak"
+anim = "kolodion_ogre_attack"
+
+[kolodion_troll]
+clone = "kolodion_human"
+defend_anim = "kolodion_troll_defend"
+death_anim = "kolodion_troll_death"
+
+[kolodion_troll.saradomin_strike]
+clone = "kolodion_human.saradomin_strike"
+anim = "kolodion_troll_attack"
+
+[kolodion_troll.claws_of_guthix]
+clone = "kolodion_human.claws_of_guthix"
+anim = "kolodion_troll_attack"
+
+[kolodion_troll.flames_of_zamorak]
+clone = "kolodion_human.flames_of_zamorak"
+anim = "kolodion_troll_attack"
+
+[kolodion_dark_beast]
+clone = "kolodion_human"
+defend_anim = "kolodion_dark_beast_defend"
+death_anim = "kolodion_dark_beast_death"
+
+[kolodion_dark_beast.saradomin_strike]
+clone = "kolodion_human.saradomin_strike"
+anim = "kolodion_dark_beast_attack"
+
+[kolodion_dark_beast.claws_of_guthix]
+clone = "kolodion_human.claws_of_guthix"
+anim = "kolodion_dark_beast_attack"
+
+[kolodion_dark_beast.flames_of_zamorak]
+clone = "kolodion_human.flames_of_zamorak"
+anim = "kolodion_dark_beast_attack"
+
+[kolodion_demon]
+clone = "kolodion_human"
+attack_speed = 4
+defend_anim = "kolodion_demon_defend"
+death_anim = "kolodion_demon_death"
+
+[kolodion_demon.saradomin_strike]
+clone = "kolodion_human.saradomin_strike"
+anim = "kolodion_demon_attack"
+
+[kolodion_demon.claws_of_guthix]
+clone = "kolodion_human.claws_of_guthix"
+anim = "kolodion_demon_attack"
+
+[kolodion_demon.flames_of_zamorak]
+clone = "kolodion_human.flames_of_zamorak"
+anim = "kolodion_demon_attack"
+
+[battle_mage_saradomin]
+attack_speed = 4
+retreat_range = 8
+defend_anim = "battle_mage_defend"
+death_anim = "human_death"
+
+[battle_mage_saradomin.saradomin_strike]
+range = 7
+say = "Feel the wrath of Saradomin."
+anim = "cast_god_spell"
+target_hit = { offense = "magic", max = 200 }
+impact_gfx = "saradomin_strike_impact"
+impact_sound = "saradomin_strike_impact"
+miss_gfx = "spell_splash"
+miss_sound = "saradomin_strike_splash"
+
+# The Guthix battle mage is a gnome so uses gnome animations
+[battle_mage_guthix]
+clone = "battle_mage_saradomin"
+defend_anim = "battle_mage_guthix_defend"
+death_anim = "battle_mage_guthix_death"
+
+[battle_mage_guthix.claws_of_guthix]
+range = 7
+say = "Feel the wrath of Guthix."
+anim = "battle_mage_guthix_attack"
+target_hit = { offense = "magic", max = 200 }
+impact_gfx = "claws_of_guthix_impact"
+impact_sound = "claws_of_guthix_impact"
+miss_gfx = "spell_splash"
+miss_sound = "claws_of_guthix_splash"
+
+[battle_mage_zamorak]
+clone = "battle_mage_saradomin"
+
+[battle_mage_zamorak.flames_of_zamorak]
+range = 7
+say = "Feel the wrath of Zamorak."
+anim = "cast_god_spell"
+target_hit = { offense = "magic", max = 200 }
+impact_gfx = "flames_of_zamorak_impact"
+impact_sound = "flames_of_zamorak_impact"
+miss_gfx = "spell_splash"
+miss_sound = "flames_of_zamorak_splash"
