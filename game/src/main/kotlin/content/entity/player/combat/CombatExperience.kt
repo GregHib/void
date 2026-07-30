@@ -77,6 +77,10 @@ class CombatExperience : Script {
     }
 
     fun grant(player: Player, target: Character, skill: Skill, experience: Double) {
+        // Some npcs, like random event pheasants, give no combat experience when killed.
+        if (target is NPC && !target.transformDef["combat_exp", true]) {
+            return
+        }
         player.exp(skill, experience * calcBonus(target))
     }
 

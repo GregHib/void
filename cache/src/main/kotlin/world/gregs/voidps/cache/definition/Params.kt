@@ -28,6 +28,7 @@ object Params {
     const val COLLECT_FOR_NEXT_LAYER = 5024
     const val COLLISION = 5025
     const val COMBAT_DEF = 5026
+    const val COMBAT_EXP = 5266
     const val COMBO = 5027
     const val COMPOSTABLE = 5028
     const val CURRENCY = 5029
@@ -365,6 +366,7 @@ object Params {
         "collect_for_next_layer" -> COLLECT_FOR_NEXT_LAYER
         "collision" -> COLLISION
         "combat_def" -> COMBAT_DEF
+        "combat_exp" -> COMBAT_EXP
         "combo" -> COMBO
         "compostable" -> COMPOSTABLE
         "currency" -> CURRENCY
