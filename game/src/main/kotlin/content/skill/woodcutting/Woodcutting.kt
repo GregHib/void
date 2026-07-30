@@ -98,6 +98,7 @@ class Woodcutting(val drops: DropTables) : Script {
             player.stop("action_delay")
         }
         player.softTimers.stop("woodcutting")
+        player.clearAnim()
     }
 
     fun tryDropNest(player: Player, ivy: Boolean) {

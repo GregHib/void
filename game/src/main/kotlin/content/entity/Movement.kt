@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
-import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
@@ -53,7 +53,7 @@ class Movement : Script {
             if (player.contains("delay")) {
                 return@instruction
             }
-            if (player.mode is PlayerOnObjectInteract) {
+            if (player.mode is Interact) {
                 player.clearAnim()
             }
             player.closeInterfaces()
