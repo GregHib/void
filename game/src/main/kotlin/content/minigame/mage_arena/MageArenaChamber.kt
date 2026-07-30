@@ -46,9 +46,12 @@ class MageArenaChamber : Script {
         }
 
         objectOperate("Step-into", "sparkling_pool_mage_bank") { (target) ->
-            if (get("mage_arena", "unstarted") !in setOf("completed", "staff_received")) {
+            if (get("mage_arena", "unstarted") != "completed" && get("mage_arena", "unstarted") != "staff_received") {
+                walkToDelay(Tile(2542, 4718))
                 message("You step into the pool.")
+                walkOverDelay(Tile(2542, 4719))
                 message("Your boots get wet.")
+                tele(Tile(2542, 4718))
                 return@objectOperate
             }
             jumpIn(start = Tile(2542, 4718), pool = Tile(2542, 4720), destination = Tile(2509, 4689))
