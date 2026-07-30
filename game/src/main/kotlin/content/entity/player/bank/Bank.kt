@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.beastOfBurden
 import world.gregs.voidps.engine.inv.carriesItem
 
 object Bank {
@@ -55,9 +56,9 @@ object Bank {
 val Player.bank: Inventory
     get() = inventories.inventory("bank")
 
-fun Player.ownsItem(id: String) = carriesItem(id) || bank.contains(id)
+fun Player.ownsItem(id: String) = carriesItem(id) || bank.contains(id) || beastOfBurden.contains(id)
 
-fun Player.ownsItem(id: String, amount: Int) = carriesItem(id, amount) || bank.contains(id, amount)
+fun Player.ownsItem(id: String, amount: Int) = carriesItem(id, amount) || bank.contains(id, amount) || beastOfBurden.contains(id)
 
 val Item.isNote: Boolean
     get() = def.notedTemplateId != -1
