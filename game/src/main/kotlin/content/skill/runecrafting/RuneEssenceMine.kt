@@ -5,12 +5,13 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 
 class RuneEssenceMine : Script {
 
     init {
         objectOperate("Enter", "rune_essence_exit_portal") { (target) ->
-            message("You step through the portal...")
+            message("You step through the portal...", ChatType.Filter)
             gfx("curse_impact", delay = 30)
             target.tile.shoot("curse", tile)
             delay(3)

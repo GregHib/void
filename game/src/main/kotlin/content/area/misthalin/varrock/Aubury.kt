@@ -42,7 +42,8 @@ class Aubury : Script {
             }
         }
 
-        npcOperate("Teleport", "aubury") { (target) ->
+        npcApproach("Teleport", "aubury") { (target) ->
+            approachRange(2)
             EssenceMine.teleport(target, this)
         }
     }

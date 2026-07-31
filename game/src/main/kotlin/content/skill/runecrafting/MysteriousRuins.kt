@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -76,7 +77,7 @@ class MysteriousRuins(val teleports: ObjectTeleports) : Script {
             }
             clearAnim()
             sound("teleport")
-            message("You step through the portal...")
+            message("You step through the portal...", ChatType.Filter)
             return@objTeleportTakeOff Teleport.CONTINUE
         }
 
