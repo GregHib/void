@@ -57,14 +57,6 @@ class WizardMizgog : Script {
                 questDialogue(target)
             }
         }
-
-        adminCommand("test") {
-            val table = GameObjects.findOrNull(Tile(3102, 3163, 2), "imp_catcher_table_before")
-            if (table != null) {
-                GameObjects.replace(table, "imp_catcher_table", Tile(3102, 3163, 2), rotation = 1, ticks = 6)
-            }
-            set("imp_catcher", "given_beads")
-        }
     }
 
     private suspend fun Player.questDialogue(target: NPC) {
