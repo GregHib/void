@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.queue.queue
 
 class SkillCommands(
     val accounts: AccountDefinitions,
-    val questDefinitions: QuestDefinitions
+    val questDefinitions: QuestDefinitions,
 ) : Script {
 
     init {
@@ -87,11 +87,13 @@ class SkillCommands(
     suspend fun reset(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(0)) ?: return
         if (questDefinitions.ids.keys.contains(target.name)) {
-            player.statement("""
+            player.statement(
+                """
                 Did you mean to use the reset_quest command?
                 '${target.name}' is the name of a quest.
                 Are you sure you want to reset this players levels and experience?
-            """)
+            """,
+            )
             player.choice {
                 option("Yes reset ${target.name}'s levels.") {
                     reset(target)
