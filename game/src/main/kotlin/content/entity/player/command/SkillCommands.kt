@@ -1,5 +1,7 @@
 package content.entity.player.command
 
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.isCurses
 import net.pearx.kasechange.toSentenceCase
@@ -8,15 +10,20 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.command.*
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.queue.queue
 
-class SkillCommands(val accounts: AccountDefinitions) : Script {
+class SkillCommands(
+    val accounts: AccountDefinitions,
+    val questDefinitions: QuestDefinitions
+) : Script {
 
     init {
         val skills = Skill.entries.map { it.name }.toSet()
@@ -77,8 +84,26 @@ class SkillCommands(val accounts: AccountDefinitions) : Script {
         player.message("God mode ${if (player["god_mode", false]) "enabled" else "disabled"} instant kill: ${player["insta_kill", false]}.")
     }
 
-    fun reset(player: Player, args: List<String>) {
+    suspend fun reset(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(0)) ?: return
+        if (questDefinitions.ids.keys.contains(target.name)) {
+            player.statement("""
+                Did you mean to use the reset_quest command?
+                '${target.name}' is the name of a quest.
+                Are you sure you want to reset this players levels and experience?
+            """)
+            player.choice {
+                option("Yes reset ${target.name}'s levels.") {
+                    reset(target)
+                }
+                option("No, don't do anything.")
+            }
+            return
+        }
+        reset(target)
+    }
+
+    private fun reset(target: Player) {
         for ((index, skill) in Skill.all.withIndex()) {
             target.experience.set(skill, Experience.defaultExperience[index] / 10.0)
             target.levels.set(skill, Levels.defaultLevels[index])
