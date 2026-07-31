@@ -939,7 +939,19 @@ object Params {
     const val LINKED_SHADOW_NPC = 2098
     const val CATEGORY = 2195
 
-    fun id(name: String) = idOrNull(name) ?: error("No parameter id found for name '$name'")
+    var exceptions = true
+
+    fun id(name: String): Int {
+        val id = idOrNull(name)
+        if (id == null) {
+            if (exceptions) {
+                error("No parameter id found for key '$name'; make sure it's defined in Params.kt")
+            } else {
+                println("No parameter id found for key '$name'; make sure it's defined in Params.kt")
+            }
+        }
+        return id ?: -1
+    }
 
     fun idOrNull(name: String) = when (name) {
         "stab_attack" -> STAB_ATTACK
