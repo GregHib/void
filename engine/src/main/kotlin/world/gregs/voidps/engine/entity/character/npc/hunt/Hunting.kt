@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.HuntModeDefinition
 import world.gregs.voidps.engine.data.definition.HuntModeDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -12,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
+import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfSight
 import world.gregs.voidps.engine.entity.character.mode.move.hasLineOfWalk
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -66,7 +68,7 @@ class Hunting(
             }
             val definition = huntModes.get(mode)
             npc.huntCounter = definition.rate
-            if (definition.checkNotCombatSelf && npc.mode is CombatMovement) {
+            if (definition.checkNotCombatSelf && (npc.mode is CombatMovement || npc.mode is Interact)) {
                 continue
             }
             if (!definition.findKeepHunting && npc.mode !is EmptyMode && npc.mode !is Wander && npc.mode !is Patrol) {
@@ -76,10 +78,12 @@ class Hunting(
             when (definition.type) {
                 "player" -> {
                     val target = findCharacter(npc, Players, range, definition, playerTargets) ?: continue
+                    target.start("hunted", 2)
                     Hunt.hunt(npc, target, mode)
                 }
                 "npc" -> {
                     val target = findCharacter(npc, NPCs, range, definition, npcTargets) ?: continue
+                    target.start("hunted", 2)
                     Hunt.hunt(npc, target, mode)
                 }
                 "object" -> {
@@ -224,6 +228,9 @@ class Hunting(
         range: Int,
     ): Boolean {
         if (target is NPC && npc.index == target.index) {
+            return false
+        }
+        if (definition.checkNotCombat && target.hasClock("hunted")) {
             return false
         }
         // Npc checks from south-west tile
