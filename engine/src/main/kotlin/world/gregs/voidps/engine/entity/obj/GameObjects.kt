@@ -237,6 +237,13 @@ object GameObjects : ZoneBatchUpdates.Sender {
         ?: get(tile, ObjectLayer.GROUND, id)
         ?: get(tile, ObjectLayer.GROUND_DECORATION, id)
 
+    fun findLayer(tile: Tile, layer: Int, id: String) = findLayerOrNull(tile, layer, id) ?: error("Object '$id' not found at $tile layer $layer")
+
+    /**
+     * Get object by string [id] and [ObjectLayer]
+     */
+    fun findLayerOrNull(tile: Tile, layer: Int, id: String) = get(tile, layer, id)
+
     private fun get(tile: Tile, layer: Int, id: String): GameObject? {
         val obj = getLayer(tile, layer) ?: return null
         if (obj.id == id) {
