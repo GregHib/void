@@ -1,5 +1,6 @@
 package content.area.asgarnia.falador.farm
 
+import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -14,10 +15,12 @@ import world.gregs.voidps.engine.inv.remove
 
 class Sarah : Script {
     init {
-        npcOperate("Talk-to", "sarah") {
+        npcOperate("Talk-to", "sarah") { (target) ->
             npc<Neutral>("Hello. How can I help you?")
             choice {
-                option<Quiz>("What are you selling?")
+                option<Quiz>("What are you selling?") {
+                    openShop(target.def["shop"])
+                }
                 option<Quiz>("Can you give me any Farming advice?") {
                     npc<Neutral>("Yes - ask a gardener.")
                 }
