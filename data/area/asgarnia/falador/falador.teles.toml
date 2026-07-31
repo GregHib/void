@@ -41,10 +41,6 @@ tile = { x = 2907, y = 3334, level = 1 }
 delta = { level = 1 }
 
 # 11828 falador
-[trapdoor_105_opened]
-option = "Climb-down"
-tile = { x = 2968, y = 3201 }
-delta = { x = 198, y = 1314 }
 
 [11740]
 option = "Climb-up"

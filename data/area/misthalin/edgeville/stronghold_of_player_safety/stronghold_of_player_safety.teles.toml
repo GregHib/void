@@ -1,3 +1,9 @@
+# 12614 stronghold_of_player_safety
+[player_safety_stairs_3rd_floor_down_north]
+option = "Climb-down"
+tile = { x = 3171, y = 4272, level = 3 }
+to = { x = 3174, y = 4273, level = 2 }
+
 # 12354 stronghold_of_player_safety
 [29358]
 option = "Climb-down"
