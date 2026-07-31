@@ -129,7 +129,6 @@ object Params {
     const val PATCH = 5126
     const val POINTS = 5127
     const val POISON_DAMAGE = 5128
-    const val PRAYER_XP = 5129
     const val PRICE = 5130
     const val PROJECTILES = 5131
     const val RAISE = 5132
@@ -467,7 +466,6 @@ object Params {
         "patch" -> PATCH
         "points" -> POINTS
         "poison_damage" -> POISON_DAMAGE
-        "prayer_xp" -> PRAYER_XP
         "price" -> PRICE
         "projectiles" -> PROJECTILES
         "raise" -> RAISE
