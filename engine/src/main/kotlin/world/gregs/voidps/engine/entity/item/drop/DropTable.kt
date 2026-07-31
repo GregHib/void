@@ -45,6 +45,8 @@ data class DropTable(
 
     fun collect(list: MutableList<ItemDrop>, player: Player?, roll: Int, multiplier: Double = 1.0): Boolean {
         var count = 0
+        // Assumes drop rate multipliers should preserve items with the lowest chances when table is full
+        val drops = if (multiplier == 1.0) drops else drops.sortedBy { it.chance }
         for (drop in drops) {
             if (drop.chance == 0) {
                 continue

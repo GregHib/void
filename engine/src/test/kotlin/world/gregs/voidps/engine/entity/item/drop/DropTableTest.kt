@@ -55,6 +55,22 @@ internal class DropTableTest {
     }
 
     @Test
+    fun `Roll with multiplier sorts ascending to reduce chances of most common items first`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+        })
+        val item1 = drop("1", 1)
+        val item2 = drop("2", 2)
+        val item3 = drop("2", 6)
+        val root = DropTable(TableType.First, 10, listOf(item3, item2, item1), 1)
+
+        val list = mutableListOf<ItemDrop>()
+        root.roll(list = list, multiplier = 2.0)
+
+        assertTrue(list.contains(item1))
+    }
+
+    @Test
     fun `Roll every item in all type table`() {
         val item1 = drop("1", 1)
         val item2 = drop("2", 2)
