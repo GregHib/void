@@ -1,7 +1,6 @@
 package content.entity.player.dialogue.type
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
@@ -27,6 +26,7 @@ suspend fun Player.levelUp(skill: Skill, text: String) {
 fun levelUp(player: Player, skill: Skill, text: String): Boolean {
     val lines = text.trimIndent().lines()
     player["level_up_icon"] = skill.name
+    player.sendVariable("level_up_icon")
     if (!player.open(LEVEL_UP_INTERFACE_ID)) {
         return false
     }
