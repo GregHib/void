@@ -105,7 +105,6 @@ object Params {
     const val LENGTH = 5101
     const val LEVEL = 5102
     const val LIMIT = 5103
-    const val LOCATIONS = 5104
     const val LOWER = 5105
     const val MAGE = 5106
     const val MATERIAL = 5108
@@ -129,7 +128,6 @@ object Params {
     const val PATCH = 5126
     const val POINTS = 5127
     const val POISON_DAMAGE = 5128
-    const val PRAYER_XP = 5129
     const val PRICE = 5130
     const val PROJECTILES = 5131
     const val RAISE = 5132
@@ -443,7 +441,6 @@ object Params {
         "length" -> LENGTH
         "level" -> LEVEL
         "limit" -> LIMIT
-        "locations" -> LOCATIONS
         "lower" -> LOWER
         "mage" -> MAGE
         "material" -> MATERIAL
@@ -467,7 +464,6 @@ object Params {
         "patch" -> PATCH
         "points" -> POINTS
         "poison_damage" -> POISON_DAMAGE
-        "prayer_xp" -> PRAYER_XP
         "price" -> PRICE
         "projectiles" -> PROJECTILES
         "raise" -> RAISE
@@ -943,7 +939,19 @@ object Params {
     const val LINKED_SHADOW_NPC = 2098
     const val CATEGORY = 2195
 
-    fun id(name: String) = idOrNull(name) ?: error("No parameter id found for name '$name'")
+    var exceptions = true
+
+    fun id(name: String): Int {
+        val id = idOrNull(name)
+        if (id == null) {
+            if (exceptions) {
+                error("No parameter id found for key '$name'; make sure it's defined in Params.kt")
+            } else {
+                println("No parameter id found for key '$name'; make sure it's defined in Params.kt")
+            }
+        }
+        return id ?: -1
+    }
 
     fun idOrNull(name: String) = when (name) {
         "stab_attack" -> STAB_ATTACK

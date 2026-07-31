@@ -1,6 +1,6 @@
 [signpost_directions]
 id = 135
-type = "wide_screen"
+type = "main_screen"
 
 [.north]
 id = 3

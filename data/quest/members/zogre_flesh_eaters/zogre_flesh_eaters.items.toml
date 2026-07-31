@@ -80,7 +80,6 @@ id = 4812
 price = 834
 limit = 10000
 weight = 0.8
-prayer_xp = 22.5
 examine = "A pile of Zombie Ogre bones."
 
 [zogre_bones_noted]
@@ -194,7 +193,6 @@ id = 4830
 price = 5094
 limit = 10000
 weight = 0.8
-prayer_xp = 84.0
 examine = "Ancient ogre bones from the ogre burial tomb."
 
 [fayrg_bones_noted]
@@ -205,7 +203,6 @@ id = 4832
 price = 5750
 limit = 10000
 weight = 0.8
-prayer_xp = 96.0
 examine = "Ancient ogre bones from the ogre burial tomb."
 
 [raurg_bones_noted]
@@ -216,7 +213,6 @@ id = 4834
 price = 15200
 limit = 10000
 weight = 0.8
-prayer_xp = 140.0
 examine = "Ancient ogre bones from the ogre burial tomb."
 
 [ourg_bones_noted]

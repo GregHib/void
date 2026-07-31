@@ -165,3 +165,7 @@ option = "Climb-down"
 tile = { x = 2948, y = 3213, level = 1 }
 delta = { level = -1 }
 
+[trapdoor_hettys_basement_opened]
+option = "Climb-down"
+tile = { x = 2968, y = 3201 }
+to = { x = 3165, y = 4515 }

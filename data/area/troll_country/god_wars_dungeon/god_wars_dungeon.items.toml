@@ -366,7 +366,6 @@ id = 14793
 price = 9269
 limit = 10000
 weight = 0.8
-prayer_xp = 140.0
 examine = "The bones of a mighty ourg."
 
 [ourg_bones_general_graardor_noted]

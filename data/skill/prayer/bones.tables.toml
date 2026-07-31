@@ -1,0 +1,86 @@
+[bones]
+xp = "int"
+
+[.skeletal_monkey_bones]
+xp = 30
+
+[.bones]
+xp = 45
+
+[.burnt_bones]
+xp = 45
+
+[.bat_bones]
+xp = 50
+
+[.wolf_bones]
+xp = 45
+
+[.monkey_bones]
+xp = 50
+
+[.small_zombie_monkey_bones]
+xp = 50
+
+[.large_zombie_monkey_bones]
+xp = 50
+
+[.big_bones]
+xp = 150
+
+[.jogre_bones]
+xp = 150
+
+[.curved_bone]
+xp = 151
+
+[.long_bone]
+xp = 151
+
+[.small_ninja_monkey_bones]
+xp = 160
+
+[.medium_ninja_monkey_bones]
+xp = 180
+
+[.gorilla_bones]
+xp = 180
+
+[.bearded_gorilla_bones]
+xp = 200
+
+[.shaikahan_bones]
+xp = 250
+
+[.zogre_bones]
+xp = 225
+
+[.babydragon_bones]
+xp = 300
+
+[.wyvern_bones]
+xp = 500
+
+[.dragon_bones]
+xp = 720
+
+[.fayrg_bones]
+xp = 840
+
+[.raurg_bones]
+xp = 960
+
+[.dagannoth_bones]
+xp = 1250
+
+[.ourg_bones]
+xp = 1400
+
+[.ourg_bones_general_graardor]
+xp = 1400
+
+[.frost_dragon_bones_dungeoneering]
+xp = 1800
+
+[.frost_dragon_bones]
+xp = 1800

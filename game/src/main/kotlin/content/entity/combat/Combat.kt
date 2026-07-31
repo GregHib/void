@@ -219,6 +219,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
                 }
             }
             target.start("under_attack", 8)
+            target.start("hunted", 8) // FIXME Temp #1119
             if (character is NPC) {
                 CombatApi.swing(character, target, character.fightStyle)
             } else if (character is Player) {

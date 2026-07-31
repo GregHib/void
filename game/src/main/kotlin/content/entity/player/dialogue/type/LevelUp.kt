@@ -1,7 +1,6 @@
 package content.entity.player.dialogue.type
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
@@ -12,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.player.skill.Skills
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.engine.queue.engineQueue
 import world.gregs.voidps.engine.suspend.pauseButton
 
 private const val LEVEL_UP_INTERFACE_ID = "dialogue_level_up"
@@ -27,6 +26,7 @@ suspend fun Player.levelUp(skill: Skill, text: String) {
 fun levelUp(player: Player, skill: Skill, text: String): Boolean {
     val lines = text.trimIndent().lines()
     player["level_up_icon"] = skill.name
+    player.sendVariable("level_up_icon")
     if (!player.open(LEVEL_UP_INTERFACE_ID)) {
         return false
     }
@@ -66,7 +66,7 @@ class LevelUp : Script {
             jingle("level_up_${skill.name.lowercase()}${if (unlock) "_unlock" else ""}", 0.5)
             addVarbit("skill_stat_flash", skill.name.lowercase())
             val level = if (skill == Constitution) to / 10 else to
-            weakQueue("level_up") {
+            engineQueue("level_up") {
                 levelUp(
                     this,
                     skill,

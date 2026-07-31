@@ -238,7 +238,6 @@ spawns = [
     { id = "black_knight_1", x = 3057, y = 3842, members = true },
     { id = "black_knight_1", x = 3058, y = 3854, members = true },
     { id = "pirate_wilderness", x = 3039, y = 3958 },
-    { id = "mage_of_zamorak_wilderness", x = 3106, y = 3558, members = true },
     { id = "mysterious_ghost_wilderness", x = 3022, y = 3946, members = true },
     { id = "mysterious_ghost_wilderness_2", x = 2950, y = 3820, members = true },
     { id = "mysterious_ghost_wilderness_3", x = 3218, y = 3677, members = true },

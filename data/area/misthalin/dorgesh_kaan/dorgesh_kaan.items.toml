@@ -271,7 +271,6 @@ kept = "Reclaim"
 id = 10976
 tradeable = false
 weight = 1.0
-prayer_xp = 15.0
 examine = "A Construction bone."
 kept = "Reclaim"
 
@@ -279,7 +278,6 @@ kept = "Reclaim"
 id = 10977
 tradeable = false
 weight = 1.0
-prayer_xp = 15.0
 examine = "A curved Construction bone."
 kept = "Reclaim"
 

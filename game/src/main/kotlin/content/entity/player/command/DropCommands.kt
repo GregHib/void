@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -74,13 +75,14 @@ class DropCommands(val tables: DropTables) : Script {
         GlobalScope.launch {
             val inventory = Inventory.debug(capacity = 100, id = "")
             val map = mutableMapOf<ItemDrop, Int>()
+            val multiplier = Settings["world.itemDropRate", 1.0]
             coroutineScope {
                 val time = measureTimeMillis {
                     (0 until count).chunked(1_000_000).map { numbers ->
                         async {
                             val list = mutableListOf<ItemDrop>()
                             for (i in numbers) {
-                                table.roll(list = list, player = player)
+                                table.roll(list = list, player = player, multiplier = multiplier)
                             }
                             list
                         }

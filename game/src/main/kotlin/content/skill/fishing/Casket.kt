@@ -3,9 +3,9 @@ package content.skill.fishing
 import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.drop.DropTables
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.remove
  * uncut gem, with a slim shot at a key half.
  * https://runescape.wiki/w/Casket
  */
-class Casket : Script {
+class Casket(val drops: DropTables) : Script {
 
     init {
         itemOption("Open", "casket") { (item, slot) ->
@@ -22,7 +22,8 @@ class Casket : Script {
                 return@itemOption
             }
             sound("casket_open")
-            val drop = get<DropTables>().getValue("casket").roll(player = this).firstOrNull()?.toItem()
+            val table = drops.getValue("casket")
+            val drop = table.roll(player = this, multiplier = Settings["world.itemDropRate", 1.0]).firstOrNull()?.toItem()
             if (drop == null || drop.isEmpty()) {
                 return@itemOption
             }

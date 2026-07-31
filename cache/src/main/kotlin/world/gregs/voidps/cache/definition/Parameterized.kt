@@ -25,7 +25,8 @@ interface Parameterized {
         if (key == null) {
             return false
         }
-        return params?.containsKey(Params.id(key)) ?: false
+        val key = Params.idOrNull(key) ?: false
+        return params?.containsKey(key) ?: false
     }
 
     fun <T : Any> getOrNull(key: Int) = params?.get(key) as? T

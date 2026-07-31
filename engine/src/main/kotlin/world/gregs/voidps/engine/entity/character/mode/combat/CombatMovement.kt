@@ -91,6 +91,12 @@ class CombatMovement(
                     return
                 }
             }
+            // Disengage from targets that are already in combat
+            val attacker = target.get<Character>("attacker")
+            if (character is NPC && attacker != null && attacker != character && !target.contains("in_multi_combat")) {
+                character.mode = EmptyMode
+                return
+            }
             if (skip || attack()) {
                 return
             }

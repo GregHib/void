@@ -66,21 +66,21 @@ internal class EnterTheAbyssTest : WorldTest() {
                 else -> from
             }
         })
-        tick(4)
+        tick(5)
         assertTrue(player["scrying_orb_aubury", false])
 
         player.tele(2681, 3324)
         tick()
         wizard = findNpc(player, "wizard_cromperty")
         player.npcOption(wizard, 2) // Teleport
-        tick(4)
+        tick(5)
         assertTrue(player["scrying_orb_wizard_cromperty", false])
 
         player.tele(2409, 9815)
         tick()
         wizard = findNpc(player, "brimstail")
         player.npcOption(wizard, 2) // Teleport
-        tick(4)
+        tick(5)
         assertTrue(player["scrying_orb_brimstail", false])
         assertTrue(player.inventory.contains("scrying_orb_full"))
 
