@@ -1,29 +1,26 @@
 package content.area.misthalin
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
-import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.type.Tile
+import world.gregs.voidps.engine.data.definition.Tables
 
 class Signposts : Script {
 
     init {
-        @Suppress("UNCHECKED_CAST")
         objectOperate("Read", "direction_signpost_*") { (target) ->
-            val locations = target.def.params?.get(Params.LOCATIONS) as? ObjectArrayList<Object2ObjectOpenHashMap<String, String>> ?: return@objectOperate
-
-            val location =
-                locations.firstOrNull {
-                    Tile(it.getOrDefault("x", "0").toInt(), it.getOrDefault("y", "0").toInt()) == target.tile
-                } ?: return@objectOperate
-
+            val row = Tables.get("signposts").rows().firstOrNull { it.tile("tile") == target.tile } ?: return@objectOperate
             open("signpost_directions")
-            interfaces.sendText("signpost_directions", "north", location.getOrDefault("north_text", ""))
-            interfaces.sendText("signpost_directions", "east", location.getOrDefault("east_text", ""))
-            interfaces.sendText("signpost_directions", "south", location.getOrDefault("south_text", ""))
-            interfaces.sendText("signpost_directions", "west", location.getOrDefault("west_text", ""))
+            sendScript("camera_unlock", 0, 1)
+            interfaces.sendText("signpost_directions", "north", row.string("north_text"))
+            interfaces.sendText("signpost_directions", "east", row.string("east_text"))
+            interfaces.sendText("signpost_directions", "south", row.string("south_text"))
+            interfaces.sendText("signpost_directions", "west", row.string("west_text"))
+        }
+
+        interfaceClosed("signpost_directions") {
+            clearCamera()
         }
     }
 }

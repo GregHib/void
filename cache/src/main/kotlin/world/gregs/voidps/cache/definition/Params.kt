@@ -105,7 +105,6 @@ object Params {
     const val LENGTH = 5101
     const val LEVEL = 5102
     const val LIMIT = 5103
-    const val LOCATIONS = 5104
     const val LOWER = 5105
     const val MAGE = 5106
     const val MATERIAL = 5108
@@ -442,7 +441,6 @@ object Params {
         "length" -> LENGTH
         "level" -> LEVEL
         "limit" -> LIMIT
-        "locations" -> LOCATIONS
         "lower" -> LOWER
         "mage" -> MAGE
         "material" -> MATERIAL
