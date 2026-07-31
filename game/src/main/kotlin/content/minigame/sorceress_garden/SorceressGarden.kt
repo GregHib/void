@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.player
 import content.skill.magic.jewellery.teleport
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -107,8 +108,9 @@ class SorceressGarden(val dropTables: DropTables) : Script {
         val table = dropTables.get("${type}_herbs_drop_table")
         if (table != null) {
             val drops = mutableListOf<ItemDrop>()
-            table.roll(list = drops)
-            table.roll(list = drops)
+            val multiplier = Settings["world.itemDropRate", 1.0]
+            table.roll(list = drops, multiplier = multiplier)
+            table.roll(list = drops, multiplier = multiplier)
             inventory.transaction {
                 for (drop in drops) {
                     add(drop.id, 1)

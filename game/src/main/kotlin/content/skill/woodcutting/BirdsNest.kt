@@ -2,6 +2,7 @@ package content.skill.woodcutting
 
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
@@ -26,7 +27,7 @@ class BirdsNest(val drops: DropTables) : Script {
 
             val table = drops.get(tableId) ?: return@itemOption
             val items = mutableListOf<ItemDrop>()
-            table.roll(list = items)
+            table.roll(list = items, multiplier = Settings["world.itemDropRate", 1.0])
 
             val drop = items.firstOrNull() ?: return@itemOption
             val itemId = drop.id

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -84,17 +85,18 @@ class BarrowsChest(val drops: DropTables) : Script {
     }
 
     private fun reward(player: Player): List<Item> {
+        val multiplier = Settings["world.itemDropRate", 1.0]
         // This is based off of the osrs algorithm which differs from rs2, but the original alg isn't known
         val armour = drops.getValue("barrows_chest_armour")
         val kills = player["barrows_kills", 0].coerceAtMost(6)
         val items = mutableListOf<ItemDrop>()
         repeat(kills) {
-            armour.roll(maximumRoll = 450 - (58 * kills), list = items, player = player)
+            armour.roll(maximumRoll = 450 - (58 * kills), list = items, player = player, multiplier = multiplier)
         }
         val runes = drops.getValue("barrows_chest_runes")
         val levels = player["barrows_kill_levels", 0]
         if (levels > 0) {
-            runes.roll(maximumRoll = levels.coerceAtMost(1012), list = items, player = player)
+            runes.roll(maximumRoll = levels.coerceAtMost(1012), list = items, player = player, multiplier = multiplier)
         }
         return items.map { it.toItem() }
     }
