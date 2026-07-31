@@ -17,7 +17,6 @@ import content.quest.questComplete
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
@@ -46,6 +45,14 @@ class WizardMizgog : Script {
     )
 
     init {
+        worldSpawn {
+            // This map incorrectly has the non-varp table id.
+            val table = GameObjects.findOrNull(Tile(3102, 3163, 2), "imp_catcher_table_before")
+            if (table != null) {
+                GameObjects.replace(table, "imp_catcher_table", Tile(3102, 3163, 2), rotation = 1)
+            }
+        }
+
         npcOperate("Talk-to", "wizard_mizgog") { (target) ->
             questDialogue(target)
         }
@@ -123,9 +130,9 @@ class WizardMizgog : Script {
                     }
                     option<Quiz>("Do you have any more amulets of accuracy?") {
                         openShop("mizgogs_amulets_of_accuracy")
-    //                            npc<Neutral>("I have a few spare. I'd like one of each coloured bead again in return, though! Black, white, yellow and red.")
-    //                            player<Quiz>("I don't have them all on me at the moment. I'll come back when I have them!")
-    //                            npc<Neutral>("Very well. See you soon!")
+                        //                            npc<Neutral>("I have a few spare. I'd like one of each coloured bead again in return, though! Black, white, yellow and red.")
+                        //                            player<Quiz>("I don't have them all on me at the moment. I'll come back when I have them!")
+                        //                            npc<Neutral>("Very well. See you soon!")
                     }
                 }
             }
@@ -150,10 +157,6 @@ class WizardMizgog : Script {
         }
         set("imp_catcher", "given_beads")
         delay(1)
-        val table = GameObjects.findOrNull(Tile(3102, 3163, 2), "imp_catcher_table_before")
-        if (table != null) {
-            GameObjects.replace(table, "imp_catcher_table", Tile(3102, 3163, 2), rotation = 1, ticks = 8)
-        }
         areaGfx("imp_catcher_cast", Tile(3102, 3163, 2), height = 100)
         sound("mizgog_beads")
         delay(7)
