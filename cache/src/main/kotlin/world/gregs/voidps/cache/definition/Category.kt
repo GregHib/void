@@ -78,4 +78,44 @@ object Category {
         else -> error("Category $id not found")
     }
 
+    fun id(name: String) = when (name) {
+        "throwable" -> THROWABLE
+        "arrow" -> ARROW
+        "bolt" -> BOLT
+        "construction" -> CONSTRUCTION
+        "furniture" -> FURNITURE
+        "uncooked_food" -> UNCOOKED_FOOD
+        "construction_storable_clothes" -> CONSTRUCTION_STORABLE_CLOTHES
+        "crafting" -> CRAFTING
+        "summoning_pouches" -> SUMMONING_POUCHES
+        "construction_plant" -> CONSTRUCTION_PLANT
+        "fletching" -> FLETCHING
+        "edible" -> EDIBLE
+        "herblore" -> HERBLORE
+        "hunter_required_item" -> HUNTER_REQUIRED_ITEM
+        "hunter_reward" -> HUNTER_REWARD
+        "jewellery" -> JEWELLERY
+        "magic_armour" -> MAGIC_ARMOUR
+        "magic_weapon" -> MAGIC_WEAPON
+        "melee_armour_low" -> MELEE_ARMOUR_LOW
+        "melee_armour_mid" -> MELEE_ARMOUR_MID
+        "melee_armour_high" -> MELEE_ARMOUR_HIGH
+        "melee_weapon_low" -> MELEE_WEAPON_LOW
+        "melee_weapon_mid" -> MELEE_WEAPON_MID
+        "melee_weapon_high" -> MELEE_WEAPON_HIGH
+        "mining_smelting" -> MINING_SMELTING
+        "potion" -> POTION
+        "prayer_armour" -> PRAYER_ARMOUR
+        "prayer_consumable" -> PRAYER_CONSUMABLE
+        "range_armour" -> RANGE_ARMOUR
+        "range_weapon" -> RANGE_WEAPON
+        "runecrafting" -> RUNECRAFTING
+        "teleport" -> TELEPORT
+        "seed" -> SEED
+        "summoning_scroll" -> SUMMONING_SCROLL
+        "item_on_item" -> ITEM_ON_ITEM
+        "log" -> LOG
+        else -> error("Category $name not found")
+    }
+
 }
