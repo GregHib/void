@@ -6,12 +6,17 @@ examine = "One of the Black Knights."
 id = 200
 examine = "Wears a stylish suit of armour."
 
+[velrak_the_explorer]
+id = 798
+examine = "He looks cold and hungry."
+
 [jailer_black_knights_base]
 id = 201
 hitpoints = 470
 att = 40
 str = 40
 def = 40
+drop_table = "jailer_black_knights_base"
 combat_def = "man"
 max_hit_crush = 50
 respawn_delay = 50
