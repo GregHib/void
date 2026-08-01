@@ -45,6 +45,10 @@ class SkillCommands(
         adminCommands("level", self, other)
         commandSuggestion("level", "set_level")
         adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Set all skills to level 1", handler = ::reset)
+
+        playerCommand("level_dialogues", desc = "Toggle level up pop-up dialogues.") {
+            message("Level up pop-ups are now ${if (toggle("skip_level_up_dialogues")) "enabled" else "disabled"}.")
+        }
     }
 
     fun set(player: Player, args: List<String>) {
