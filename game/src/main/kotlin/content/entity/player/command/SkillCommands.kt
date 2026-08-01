@@ -59,21 +59,25 @@ class SkillCommands(
         }
         val skill = Skill.valueOf(string)
         val level = args[1].toInt()
+        player["skip_level_up"] = true
         target.experience.set(skill, Level.experience(skill, level))
         target.levels.set(skill, level)
         target.queue("flash_reset", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.lowercase())
+            player["skip_level_up"] = false
         }
     }
 
     fun master(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(0)) ?: return
+        player["skip_level_up"] = true
         for (skill in Skill.all) {
             target.experience.set(skill, 14000000.0)
             target.levels.restore(skill, 1000)
         }
         target.queue("clear_flash", 1) {
             player.clear("skill_stat_flash")
+            player["skip_level_up"] = false
         }
     }
 

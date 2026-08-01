@@ -28,6 +28,9 @@ class CombatLevel : Script {
         val level = calculateCombatLevel(player.levels, summoning = World.members)
         player.combatLevel = level
         player.summoningCombatLevel = calculateCombatLevel(player.levels, summoning = true)
+        if (player["skip_level_up", false]) {
+            return
+        }
         if (level > previous) {
             when (level) {
                 90, 100, 110, 120, 130 -> {
