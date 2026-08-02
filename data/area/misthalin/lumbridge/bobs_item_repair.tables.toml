@@ -1,0 +1,392 @@
+[repairable_items]
+repaired = "item"
+
+[.ahrims_hood_100]
+repaired = "ahrims_hood"
+
+[.ahrims_hood_75]
+repaired = "ahrims_hood"
+
+[.ahrims_hood_50]
+repaired = "ahrims_hood"
+
+[.ahrims_hood_25]
+repaired = "ahrims_hood"
+
+[.ahrims_hood_broken]
+repaired = "ahrims_hood"
+
+[.ahrims_staff_100]
+repaired = "ahrims_staff"
+
+[.ahrims_staff_75]
+repaired = "ahrims_staff"
+
+[.ahrims_staff_50]
+repaired = "ahrims_staff"
+
+[.ahrims_staff_25]
+repaired = "ahrims_staff"
+
+[.ahrims_staff_broken]
+repaired = "ahrims_staff"
+
+[.ahrims_robe_top_100]
+repaired = "ahrims_robe_top"
+
+[.ahrims_robe_top_75]
+repaired = "ahrims_robe_top"
+
+[.ahrims_robe_top_50]
+repaired = "ahrims_robe_top"
+
+[.ahrims_robe_top_25]
+repaired = "ahrims_robe_top"
+
+[.ahrims_robe_top_broken]
+repaired = "ahrims_robe_top"
+
+[.ahrims_robe_skirt_100]
+repaired = "ahrims_robe_skirt"
+
+[.ahrims_robe_skirt_75]
+repaired = "ahrims_robe_skirt"
+
+[.ahrims_robe_skirt_50]
+repaired = "ahrims_robe_skirt"
+
+[.ahrims_robe_skirt_25]
+repaired = "ahrims_robe_skirt"
+
+[.ahrims_robe_skirt_broken]
+repaired = "ahrims_robe_skirt"
+
+[.dharoks_helm_100]
+repaired = "dharoks_helm"
+
+[.dharoks_helm_75]
+repaired = "dharoks_helm"
+
+[.dharoks_helm_50]
+repaired = "dharoks_helm"
+
+[.dharoks_helm_25]
+repaired = "dharoks_helm"
+
+[.dharoks_helm_broken]
+repaired = "dharoks_helm"
+
+[.dharoks_greataxe_100]
+repaired = "dharoks_greataxe"
+
+[.dharoks_greataxe_75]
+repaired = "dharoks_greataxe"
+
+[.dharoks_greataxe_50]
+repaired = "dharoks_greataxe"
+
+[.dharoks_greataxe_25]
+repaired = "dharoks_greataxe"
+
+[.dharoks_greataxe_broken]
+repaired = "dharoks_greataxe"
+
+[.dharoks_platebody_100]
+repaired = "dharoks_platebody"
+
+[.dharoks_platebody_75]
+repaired = "dharoks_platebody"
+
+[.dharoks_platebody_50]
+repaired = "dharoks_platebody"
+
+[.dharoks_platebody_25]
+repaired = "dharoks_platebody"
+
+[.dharoks_platebody_broken]
+repaired = "dharoks_platebody"
+
+[.dharoks_platelegs_100]
+repaired = "dharoks_platelegs"
+
+[.dharoks_platelegs_75]
+repaired = "dharoks_platelegs"
+
+[.dharoks_platelegs_50]
+repaired = "dharoks_platelegs"
+
+[.dharoks_platelegs_25]
+repaired = "dharoks_platelegs"
+
+[.dharoks_platelegs_broken]
+repaired = "dharoks_platelegs"
+
+[.guthans_helm_100]
+repaired = "guthans_helm"
+
+[.guthans_helm_75]
+repaired = "guthans_helm"
+
+[.guthans_helm_50]
+repaired = "guthans_helm"
+
+[.guthans_helm_25]
+repaired = "guthans_helm"
+
+[.guthans_helm_broken]
+repaired = "guthans_helm"
+
+[.guthans_warspear_100]
+repaired = "guthans_warspear"
+
+[.guthans_warspear_75]
+repaired = "guthans_warspear"
+
+[.guthans_warspear_50]
+repaired = "guthans_warspear"
+
+[.guthans_warspear_25]
+repaired = "guthans_warspear"
+
+[.guthans_warspear_broken]
+repaired = "guthans_warspear"
+
+[.guthans_platebody_100]
+repaired = "guthans_platebody"
+
+[.guthans_platebody_75]
+repaired = "guthans_platebody"
+
+[.guthans_platebody_50]
+repaired = "guthans_platebody"
+
+[.guthans_platebody_25]
+repaired = "guthans_platebody"
+
+[.guthans_platebody_broken]
+repaired = "guthans_platebody"
+
+[.guthans_chainskirt_100]
+repaired = "guthans_chainskirt"
+
+[.guthans_chainskirt_75]
+repaired = "guthans_chainskirt"
+
+[.guthans_chainskirt_50]
+repaired = "guthans_chainskirt"
+
+[.guthans_chainskirt_25]
+repaired = "guthans_chainskirt"
+
+[.guthans_chainskirt_broken]
+repaired = "guthans_chainskirt"
+
+[.karils_coif_100]
+repaired = "karils_coif"
+
+[.karils_coif_75]
+repaired = "karils_coif"
+
+[.karils_coif_50]
+repaired = "karils_coif"
+
+[.karils_coif_25]
+repaired = "karils_coif"
+
+[.karils_coif_broken]
+repaired = "karils_coif"
+
+[.karils_crossbow_100]
+repaired = "karils_crossbow"
+
+[.karils_crossbow_75]
+repaired = "karils_crossbow"
+
+[.karils_crossbow_50]
+repaired = "karils_crossbow"
+
+[.karils_crossbow_25]
+repaired = "karils_crossbow"
+
+[.karils_crossbow_broken]
+repaired = "karils_crossbow"
+
+[.karils_top_100]
+repaired = "karils_top"
+
+[.karils_top_75]
+repaired = "karils_top"
+
+[.karils_top_50]
+repaired = "karils_top"
+
+[.karils_top_25]
+repaired = "karils_top"
+
+[.karils_top_broken]
+repaired = "karils_top"
+
+[.karils_skirt_100]
+repaired = "karils_skirt"
+
+[.karils_skirt_75]
+repaired = "karils_skirt"
+
+[.karils_skirt_50]
+repaired = "karils_skirt"
+
+[.karils_skirt_25]
+repaired = "karils_skirt"
+
+[.karils_skirt_broken]
+repaired = "karils_skirt"
+
+[.torags_helm_100]
+repaired = "torags_helm"
+
+[.torags_helm_75]
+repaired = "torags_helm"
+
+[.torags_helm_50]
+repaired = "torags_helm"
+
+[.torags_helm_25]
+repaired = "torags_helm"
+
+[.torags_helm_broken]
+repaired = "torags_helm"
+
+[.torags_hammers_100]
+repaired = "torags_hammers"
+
+[.torags_hammers_75]
+repaired = "torags_hammers"
+
+[.torags_hammers_50]
+repaired = "torags_hammers"
+
+[.torags_hammers_25]
+repaired = "torags_hammers"
+
+[.torags_hammers_broken]
+repaired = "torags_hammers"
+
+[.torags_platebody_100]
+repaired = "torags_platebody"
+
+[.torags_platebody_75]
+repaired = "torags_platebody"
+
+[.torags_platebody_50]
+repaired = "torags_platebody"
+
+[.torags_platebody_25]
+repaired = "torags_platebody"
+
+[.torags_platebody_broken]
+repaired = "torags_platebody"
+
+[.torags_platelegs_100]
+repaired = "torags_platelegs"
+
+[.torags_platelegs_75]
+repaired = "torags_platelegs"
+
+[.torags_platelegs_50]
+repaired = "torags_platelegs"
+
+[.torags_platelegs_25]
+repaired = "torags_platelegs"
+
+[.torags_platelegs_broken]
+repaired = "torags_platelegs"
+
+[.veracs_helm_100]
+repaired = "veracs_helm"
+
+[.veracs_helm_75]
+repaired = "veracs_helm"
+
+[.veracs_helm_50]
+repaired = "veracs_helm"
+
+[.veracs_helm_25]
+repaired = "veracs_helm"
+
+[.veracs_helm_broken]
+repaired = "veracs_helm"
+
+[.veracs_flail_100]
+repaired = "veracs_flail"
+
+[.veracs_flail_75]
+repaired = "veracs_flail"
+
+[.veracs_flail_50]
+repaired = "veracs_flail"
+
+[.veracs_flail_25]
+repaired = "veracs_flail"
+
+[.veracs_flail_broken]
+repaired = "veracs_flail"
+
+[.veracs_brassard_100]
+repaired = "veracs_brassard"
+
+[.veracs_brassard_75]
+repaired = "veracs_brassard"
+
+[.veracs_brassard_50]
+repaired = "veracs_brassard"
+
+[.veracs_brassard_25]
+repaired = "veracs_brassard"
+
+[.veracs_brassard_broken]
+repaired = "veracs_brassard"
+
+[.veracs_plateskirt_100]
+repaired = "veracs_plateskirt"
+
+[.veracs_plateskirt_75]
+repaired = "veracs_plateskirt"
+
+[.veracs_plateskirt_50]
+repaired = "veracs_plateskirt"
+
+[.veracs_plateskirt_25]
+repaired = "veracs_plateskirt"
+
+[.veracs_plateskirt_broken]
+repaired = "veracs_plateskirt"
+
+[.torva_full_helm_broken]
+repaired = "torva_full_helm"
+
+[.torva_platebody_broken]
+repaired = "torva_platebody"
+
+[.torva_platelegs_broken]
+repaired = "torva_platelegs"
+
+[.pernix_cowl_broken]
+repaired = "pernix_cowl"
+
+[.pernix_body_broken]
+repaired = "pernix_body"
+
+[.pernix_chaps_broken]
+repaired = "pernix_chaps"
+
+[.virtus_mask_broken]
+repaired = "virtus_mask"
+
+[.virtus_robe_top_broken]
+repaired = "virtus_robe_top"
+
+[.virtus_robe_legs_broken]
+repaired = "virtus_robe_legs"
+
+[.zaryte_bow_broken]
+repaired = "zaryte_bow"

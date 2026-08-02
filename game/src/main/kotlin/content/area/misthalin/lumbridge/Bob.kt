@@ -7,14 +7,17 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation.interpolate
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 
 class Bob : Script {
 
@@ -34,8 +37,9 @@ class Bob : Script {
             }
         }
 
-        itemOnNPCOperate("*", "bob") { (_, item) ->
-            if (!repairable(item.id)) {
+        itemOnNPCOperate("*", "bob") { (_, item, slot) ->
+            val repaired = Tables.itemOrNull("repairable_items.${item.id}.repaired")
+            if (repaired == null) {
                 npc<Quiz>("Sorry friend, but I can't do anything with that.")
                 return@itemOnNPCOperate
             }
@@ -45,25 +49,19 @@ class Bob : Script {
                 option("Yes I'm sure!") {
                     val repaired = inventory.transaction {
                         remove("coins", cost)
-                        replace(item.id, repaired(item.id))
+                        clear(slot)
+                        add(repaired)
                     }
                     if (repaired) {
                         npc<Happy>("There you go. It's a pleasure doing business with you!")
+                    } else {
+                        player<Sad>("Oh dear, I don't seem to have enough money.")
                     }
                 }
                 option("On second thoughts, no thanks.")
             }
         }
     }
-
-    fun repairable(item: String) = item.endsWith("_100") || item.endsWith("_75") || item.endsWith("_50") || item.endsWith("_25") || item.endsWith("_broken")
-
-    fun repaired(item: String) = item
-        .replace("_100", "_new")
-        .replace("_75", "_new")
-        .replace("_50", "_new")
-        .replace("_25", "_new")
-        .replace("_broken", "_new")
 
     fun repairCost(player: Player, item: Item): Int {
         val cost = item.def.cost
