@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -118,15 +119,7 @@ class Pinball : Script {
         oldMan.face(this)
         face(oldMan)
         talkWith(oldMan)
-        npc<Neutral>("The rules of the game are quite simple. You have to score 10 points by tagging the flashing pillars.")
-        npc<Neutral>("Don't tag the ones that do not have rings around the base, as that will reset your points, and don't try and get past those trolls until you are done!")
-        npc<Neutral>("See you later!")
-        oldMan.anim("emote_wave")
-        delay(4)
-        oldMan.gfx("imp_puff")
-        delay(1)
-        NPCs.remove(oldMan)
-        statement("Tag the post with the $FLASHING_RINGS.", clickToContinue = false)
+        explainPinball(this, oldMan)
     }
 
     private suspend fun Player.tagPost(post: GameObject) {
@@ -214,6 +207,18 @@ class Pinball : Script {
     private data class Post(val id: String, val tile: Tile)
 
     companion object {
+        suspend fun explainPinball(player: Player, oldMan: NPC) {
+            player.npc<Neutral>("The rules of the game are quite simple. You have to score 10 points by tagging the flashing pillars.")
+            player.npc<Neutral>("Don't tag the ones that do not have rings around the base, as that will reset your points, and don't try and get past those trolls until you are done!")
+            player.npc<Neutral>("See you later!")
+            oldMan.anim("emote_wave")
+            player.delay(4)
+            oldMan.gfx("imp_puff")
+            player.delay(1)
+            NPCs.remove(oldMan)
+            player.statement("Tag the post with the $FLASHING_RINGS.", clickToContinue = false)
+        }
+
         private const val REQUIRED = 10
         private const val FLASHING_RINGS = "<col=0000ff>flashing rings</col>"
         private val REGION = Region(30, 78)
