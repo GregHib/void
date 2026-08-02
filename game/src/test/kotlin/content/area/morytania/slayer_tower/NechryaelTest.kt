@@ -4,7 +4,10 @@ import FakeRandom
 import WorldTest
 import npcOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.setRandom
@@ -45,11 +48,13 @@ class NechryaelTest : WorldTest() {
 
         val nechryael = NPCs.add("nechryael", emptyTile.addY(1))
         tick()
-
         player.npcOption(nechryael, "Attack")
+
+        val spawn = NPCs.add("death_spawn", emptyTile.addY(1))
+        spawn.interactPlayer(player, "Attack")
 
         tick(2)
 
-        assertEquals(1, player["death_spawns", 0])
+        assertTrue(spawn.mode is CombatMovement)
     }
 }
