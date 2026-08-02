@@ -47,7 +47,7 @@ class RandomEventTrigger : Script {
             }
         }
 
-        adminCommand("random_event", stringArg("event", optional = true), desc = "Start a random event") { args ->
+        adminCommand("random_event", stringArg("event", optional = true, autofill = RandomEvents.keys), desc = "Start a random event") { args ->
             val event = args.getOrNull(0) ?: RandomEvents.pick()
             if (event == null || !RandomEvents.start(this, event)) {
                 message("No random event found${if (args.isEmpty()) "" else " for '${args[0]}'"}.")
