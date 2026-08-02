@@ -77,6 +77,7 @@ examine = "A wizard."
 
 [frenita]
 id = 593
+shop = "frenitas_cookery_shop"
 examine = "A recipe for success- in Cooking."
 
 [pet_shop_owner_yanille]
