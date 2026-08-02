@@ -1,7 +1,6 @@
 [gnormadium_avlafrim]
 id = 1800
 large_head = true
-wander_range = 3
 examine = "Enthusiastic gnome construction engineer."
 
 [slagilith_normal]

@@ -40,7 +40,6 @@ examine = "Keeping an eye out for suspicious activity."
 [bartender_rusty_anchor_inn]
 id = 734
 categories = ["human"]
-wander_range = 4
 collision = "indoors"
 examine = "I could get a beer from him."
 

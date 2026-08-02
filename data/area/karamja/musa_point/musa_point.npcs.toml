@@ -2,7 +2,6 @@
 id = 11674
 categories = ["human"]
 shop = "karamja_general_store"
-wander_range = 2
 collision = "indoors"
 examine = "Clearly takes pride in his appearance."
 
@@ -10,7 +9,6 @@ examine = "Clearly takes pride in his appearance."
 id = 11677
 categories = ["human"]
 shop = "karamja_general_store"
-wander_range = 2
 collision = "indoors"
 examine = "Needs a haircut."
 
@@ -18,7 +16,6 @@ examine = "Needs a haircut."
 id = 568
 shop = "karamja_wines_spirits_and_beers"
 categories = ["human"]
-wander_range = 3
 collision = "indoors"
 examine = "Appears slightly drunk."
 

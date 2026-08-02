@@ -30,13 +30,11 @@ examine = "He works evil magic."
 [william]
 id = 1778
 shop = "williams_wilderness_cape_shop"
-wander_range = 15
 examine = "A very brave merchant."
 
 [ian]
 id = 1779
 shop = "ians_wilderness_cape_shop"
-wander_range = 15
 examine = "A very brave merchant."
 
 [larry]
@@ -91,7 +89,6 @@ examine = "Overgrown vermin."
 hitpoints = 100
 slayer_xp = 10.0
 combat_def = "giant_rat"
-wander_range = 10
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."

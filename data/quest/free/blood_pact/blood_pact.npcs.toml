@@ -6,7 +6,6 @@
 [xenia]
 id = 9633
 hitpoints = 20
-wander_range = 3
 categories = ["human"]
 examine = "An old adventurer."
 
@@ -30,7 +29,6 @@ id = 9624
 att = 4
 str = 4
 hitpoints = 20
-wander_range = 20
 categories = ["human"]
 combat_def = "reese_attackable"
 hunt_mode = "cowardly"

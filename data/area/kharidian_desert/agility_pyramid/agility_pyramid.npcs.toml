@@ -1,6 +1,5 @@
 [simon_templeton]
 id = 3123
-wander_range = 3
 examine = "He looks like he's seen the inside of a few tombs."
 
 [vulture_flying]

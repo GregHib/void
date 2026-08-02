@@ -7,7 +7,6 @@ def = 105
 attack_speed = 4
 combat_def = "nechryael"
 respawn_delay = 30
-wander_range = 4
 slayer_xp = 105.0
 slayer_level = 80
 drop_table = "nechryael"

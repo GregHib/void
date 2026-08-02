@@ -7,7 +7,6 @@ def = 21
 attack_bonus = 8
 combat_def = "pirate"
 respawn_delay = 25
-wander_range = 4
 hunt_mode = "cowardly"
 categories = ["human", "pirate"]
 examine = "Yar! Shiver me timbers!"

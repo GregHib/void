@@ -27,7 +27,6 @@ def = 90
 mage = 115
 combat_def = "aberrant_spectre"
 hunt_mode = "aggressive"
-wander_range = 4
 respawn_delay = 30
 slayer_xp = 110.0
 slayer_level = 60

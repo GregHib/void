@@ -214,7 +214,6 @@ att = 72
 str = 60
 def = 60
 combat_def = "skeleton_sword_shield"
-wander_range = 8
 hunt_mode = "cowardly"
 drop_table = "skeleton_armed"
 height = 30
