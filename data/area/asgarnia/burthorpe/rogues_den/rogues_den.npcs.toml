@@ -1,6 +1,6 @@
 [martin_thwait]
 id = 2270
-wander_radius = 3
+wander_range = 3
 shop = "martin_thwaits_lost_and_found"
 examine = "A loveable rogue."
 
@@ -10,5 +10,5 @@ examine = "A rich banker man... Some say too rich."
 
 [brian_o_richard]
 id = 2266
-wander_radius = 4
+wander_range = 4
 examine = "Head of the maze."
