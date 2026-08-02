@@ -28,3 +28,83 @@ drops = [
     { id = "limpwurt_root", chance = 3 },
     { id = "antipoison_3" },
 ]
+
+[crystal_chest_drop_table]
+type = "all"
+drops = [
+    { id = "uncut_dragonstone" },
+    { table = "crystal_chest_secondary" },
+]
+
+[crystal_chest_secondary]
+roll = 128
+drops = [
+    { table = "crystal_chest_1", chance = 34 },
+    { table = "crystal_chest_2", chance = 12 },
+    { table = "crystal_chest_3", chance = 12 },
+    { id = "rune_bar", amount = 3, chance = 12 },
+    { table = "crystal_chest_5", chance = 10 },
+    { id = "iron_ore_noted", amount = 150, chance = 10 },
+    { id = "coal_noted", amount = 100, chance = 10 },
+    { table = "crystal_chest_8", chance = 8 },
+    { id = "adamant_sq_shield", chance = 2 },
+    { table = "crystal_chest_10", chance = 1 },
+]
+
+[crystal_chest_1]
+type = "all"
+drops = [
+    { id = "spinach_roll" },
+    { id = "coins", amount = 2000 },
+]
+
+[crystal_chest_2]
+type = "all"
+drops = [
+    { id = "air_rune", amount = 50 },
+    { id = "water_rune", amount = 50 },
+    { id = "earth_rune", amount = 50 },
+    { id = "fire_rune", amount = 50 },
+    { id = "body_rune", amount = 50 },
+    { id = "mind_rune", amount = 50 },
+    { id = "chaos_rune", amount = 10 },
+    { id = "death_rune", amount = 10 },
+    { id = "cosmic_rune", amount = 10 },
+    { id = "nature_rune", amount = 10 },
+    { id = "law_rune", amount = 10 },
+]
+
+[crystal_chest_3]
+type = "all"
+drops = [
+    { id = "ruby", amount = 2 },
+    { id = "diamond", amount = 2 },
+]
+
+[crystal_chest_5]
+type = "all"
+drops = [
+    { id = "coins", amount = 750 },
+    { table = "crystal_key" },
+]
+
+[crystal_key]
+roll = 10
+drops = [
+    { id = "loop_half_of_a_key", chance = 5 },
+    { id = "tooth_half_of_a_key", chance = 5 },
+]
+
+[crystal_chest_8]
+type = "all"
+drops = [
+    { id = "raw_swordfish", amount = 5 },
+    { id = "coins", amount = 1000 },
+]
+
+[crystal_chest_10]
+roll = 2
+drops = [
+    { id = "rune_platelegs" },
+    { id = "rune_plateskirt" },
+]

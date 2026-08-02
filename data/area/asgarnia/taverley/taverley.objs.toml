@@ -1,0 +1,7 @@
+[crystal_chest]
+id = 172
+examine = "I wonder what's inside."
+
+[crystal_chest_open]
+id = 173
+examine = "Perhaps I should search it."
