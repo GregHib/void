@@ -54,8 +54,6 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
             player.objectOption(door, "Open")
             tick(5)
 
-            println(player.messages)
-            println(player.tile)
             assertNull(player.dialogue)
             assertNotEquals(tile, player.tile)
         }
