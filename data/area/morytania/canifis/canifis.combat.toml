@@ -1,6 +1,5 @@
 [ghoul]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "unarmed_block"
 defend_sound = "ghoul_defend"
 death_anim = "human_death"
@@ -15,12 +14,10 @@ target_hit = { offense = "crush", max = 50 }
 [canifis_citizen]
 clone = "human"
 attack_speed = 4
-retreat_range = 8
 defend_anim = "werewolf_transform"
 
 [werewolf]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "werewolf_defend"
 defend_sound = "wolves_defend"
 death_anim = "werewolf_death"

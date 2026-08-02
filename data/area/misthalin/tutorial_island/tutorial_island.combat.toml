@@ -1,6 +1,5 @@
 [giant_rat_tutorial_island]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "giant_rat_defend"
 death_anim = "giant_rat_death"
 
@@ -11,7 +10,6 @@ target_hit = { offense = "stab", max = 0 }
 
 [chicken_tutorial_island]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "chicken_defend"
 death_anim = "chicken_death"
 

@@ -1,6 +1,5 @@
 [panther]
 attack_speed = 4
-retreat_range = 20
 defend_anim = "big_cat_defend"
 defend_sound = "dog_defend"
 death_anim = "big_cat_death"

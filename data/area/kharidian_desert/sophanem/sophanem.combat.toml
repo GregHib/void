@@ -1,6 +1,5 @@
 [locust]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "locust_defend"
 death_anim = "locust_death"
 death_sound = "locust_death"

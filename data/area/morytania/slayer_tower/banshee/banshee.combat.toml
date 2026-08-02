@@ -1,6 +1,5 @@
 [banshee]
 attack_speed = 4
-retreat_range = 15
 defend_anim = "banshee_defend"
 defend_sound = "banshee_defend"
 death_anim = "banshee_death"

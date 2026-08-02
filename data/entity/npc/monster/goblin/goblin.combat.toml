@@ -1,6 +1,5 @@
 [goblin]
 attack_speed = 6
-retreat_range = 8
 defend_anim = "goblin_defend"
 defend_sound = "goblin_defend"
 death_anim = "goblin_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "crush", max = 10 }
 
 [stronghold_of_security_goblin]
 clone = "goblin"
-retreat_range = 15
 
 [stronghold_of_security_goblin.melee]
 clone = "goblin.melee"
@@ -22,7 +20,6 @@ target_hit = { offense = "stab", max = 10 }
 
 [stronghold_of_security_goblin_spear]
 clone = "goblin"
-retreat_range = 15
 
 [stronghold_of_security_goblin_spear.melee]
 clone = "goblin.melee"

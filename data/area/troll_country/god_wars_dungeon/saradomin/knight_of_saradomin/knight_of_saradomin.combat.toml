@@ -1,6 +1,5 @@
 [knight_of_saradomin]
 attack_speed = 6
-retreat_range = 8
 defend_sound = "man_defend"
 death_sound = "man_death"
 

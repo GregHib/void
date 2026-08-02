@@ -1,6 +1,5 @@
 [pyrefiend]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "pyrefiend_defend"
 defend_sound = "pyrefiend_defend"
 death_anim = "pyrefiend_death"

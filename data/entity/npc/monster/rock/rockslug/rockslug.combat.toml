@@ -1,6 +1,5 @@
 [rockslug]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "rockslug_defend"
 defend_sound = "rockslug_defend"
 death_anim = "rockslug_death"

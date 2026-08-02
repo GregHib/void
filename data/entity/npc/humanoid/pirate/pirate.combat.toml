@@ -1,6 +1,5 @@
 [pirate]
 clone = "man"
-retreat_range = 6
 attack_speed = 5
 
 [pirate.melee]

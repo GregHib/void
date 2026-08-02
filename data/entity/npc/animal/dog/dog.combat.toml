@@ -1,6 +1,5 @@
 [jackal]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "jackal_defend"
 defend_sound = "dog_defend"
 death_anim = "jackal_death"

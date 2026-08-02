@@ -1,6 +1,5 @@
 [monstrous_cave_crawler]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "monstrous_cave_crawler_defend"
 defend_sound = "cave_crawler_defend"
 death_anim = "monstrous_cave_crawler_death"
@@ -32,7 +31,6 @@ target_hit = { offense = "crush", max = 110 }
 
 [basilisk_boss]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "basilisk_defend"
 defend_sound = "basilisk_defend"
 death_anim = "basilisk_death"

@@ -1,6 +1,5 @@
 [crocodile_kharidian_desert]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "crocodile_defend"
 defend_sound = "crocodile_defend"
 death_anim = "crocodile_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "slash", max = 60 }
 
 [goat_kharidian_desert]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "goat_defend"
 death_anim = "goat_death"
 

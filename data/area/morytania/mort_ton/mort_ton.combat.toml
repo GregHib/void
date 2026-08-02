@@ -1,6 +1,5 @@
 [afflicted]
 attack_speed = 5
-retreat_range = 8
 defend_anim = "unarmed_defend"
 defend_sound = "zombie_defend"
 death_anim = "human_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [shade]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "shade_defend"
 defend_sound = "shade_defend"
 death_anim = "shade_death"

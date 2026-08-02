@@ -1,6 +1,5 @@
 [chaos_elemental]
 attack_speed = 4
-retreat_range = 11
 defend_sound = "chaos_elemental_defend"
 death_anim = "chaos_elemental_death"
 death_sound = "chaos_elemental_death"

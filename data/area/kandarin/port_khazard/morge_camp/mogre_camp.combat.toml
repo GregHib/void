@@ -1,6 +1,5 @@
 [mudskipper]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "mudskipper_defend"
 defend_sound = "mudskipper_defend"
 death_anim = "mudskipper_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [crab_underwater]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "underwater_crab_defend"
 defend_sound = "underwater_rock_crab_defend"
 death_anim = "underwater_crab_death"

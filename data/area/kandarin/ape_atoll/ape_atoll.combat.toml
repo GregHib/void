@@ -25,7 +25,6 @@ impact_poison = 10
 
 [bird_ape_atol]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "bird_defend"
 death_anim = "bird_death"
 
@@ -36,7 +35,6 @@ target_hit = { offense = "stab", max = 20 }
 
 [ninja_monkey]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "ninja_monkey_defend_double_scimitar"
 defend_sound = "monkey_defend"
 death_anim = "ninja_monkey_death"

@@ -1,6 +1,5 @@
 [jelly]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "jelly_defend"
 defend_sound = "jelly_defend"
 death_anim = "jelly_death"

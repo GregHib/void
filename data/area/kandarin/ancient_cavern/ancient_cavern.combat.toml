@@ -1,6 +1,5 @@
 [brutal_green_dragon]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "colour_dragon_defend"
 defend_sound = "dragon_defend"
 death_anim = "colour_dragon_death"
@@ -33,7 +32,6 @@ target_sound = "dragon_attack"
 
 [skeleton_barbarian_axe]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "barbarian_unarmed_defend"
 defend_sound = "barbarian_grunt_defend"
 death_anim = "human_death"
@@ -47,7 +45,6 @@ target_hit = { offense = "crush", max = 150 }
 
 [lost_barbarian]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "unarmed_defend"
 defend_sound = "barbarian_grunt_defend"
 death_anim = "human_death"
@@ -61,7 +58,6 @@ target_hit = { offense = "crush", max = 150 }
 
 [skeleton_barbarian]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "unarmed_defend"
 defend_sound = "skeleton_defend"
 death_anim = "human_death"
@@ -75,7 +71,6 @@ target_hit = { offense = "crush", max = 150 }
 
 [barbarian_spirit]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "barbarian_spirit_defend"
 defend_sound = "ghoul_defend"
 death_anim = "barbarian_spirit_death"
@@ -89,7 +84,6 @@ target_hit = { offense = "crush", max = 180 }
 
 [mithril_dragon]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "metal_dragon_defend"
 defend_sound = "dragon_defend"
 death_anim = "metal_dragon_death"
