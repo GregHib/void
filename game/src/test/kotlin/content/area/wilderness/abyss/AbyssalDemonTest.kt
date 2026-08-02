@@ -3,11 +3,11 @@ package content.area.wilderness.abyss
 import FakeRandom
 import WorldTest
 import npcOption
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.setRandom
-import kotlin.test.assertNotEquals
 
 class AbyssalDemonTest : WorldTest() {
 
