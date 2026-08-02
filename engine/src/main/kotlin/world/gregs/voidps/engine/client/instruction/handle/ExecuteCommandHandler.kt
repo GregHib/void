@@ -5,6 +5,8 @@ import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.command.Commands
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerRights
+import world.gregs.voidps.engine.entity.character.player.hasRights
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.network.client.instruction.ExecuteCommand
 
@@ -18,7 +20,7 @@ class ExecuteCommandHandler : InstructionHandler<ExecuteCommand>() {
         val parts = instruction.command.split(" ")
         val prefix = parts[0]
         val content = instruction.command.removePrefix(prefix).trim()
-        if (instruction.automatic) {
+        if (instruction.automatic && player.hasRights(PlayerRights.Admin)) {
             val params = content.split(",")
             val level = params[0].toInt()
             val x = params[1].toInt() shl 6 or params[3].toInt()
