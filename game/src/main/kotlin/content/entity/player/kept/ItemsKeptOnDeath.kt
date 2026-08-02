@@ -39,7 +39,7 @@ object ItemsKeptOnDeath {
                 queue.pop()
                 continue
             }
-            when (val type = item.def["kept", ItemKept.Never]) {
+            when (val type = item.def["kept", ItemKept.Wilderness]) {
                 ItemKept.Never, ItemKept.Vanish -> {
                     queue.pop()
                     continue
