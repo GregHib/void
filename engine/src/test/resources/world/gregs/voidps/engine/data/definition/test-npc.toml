@@ -1,5 +1,5 @@
 [hans]
 id = 0
-wander_range = 4
+hitpoints = 40
 categories = ["human"]
 examine = "Servant of the Duke of Lumbridge."
