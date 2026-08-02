@@ -32,7 +32,7 @@ class RetreatTest : WorldTest() {
             val spawn = Tile(3035, 3355)
             val npc = createNPC("guard_falador", spawn)
             val player = createPlayer(tile = spawn.add(from))
-            npc.mode = Retreat(npc, player, spawn, retreatRange = 4)
+            npc.mode = Retreat(npc, player, spawn, maxRange = 4)
             tick()
             assertEquals(spawn.add(to), npc.tile)
         }
@@ -43,7 +43,7 @@ class RetreatTest : WorldTest() {
         val spawn = Tile(3036, 3355)
         val npc = createNPC("guard_falador", spawn)
         val player = createPlayer(tile = Tile(3021, 3358))
-        npc.mode = Retreat(npc, player, spawn, retreatRange = 4)
+        npc.mode = Retreat(npc, player, spawn, maxRange = 4)
         tick()
         player.walkTo(Tile(3020, 3358))
         tick(2)
@@ -64,7 +64,7 @@ class RetreatTest : WorldTest() {
             val spawn = Tile(3035, 3355)
             val npc = createNPC("guard_falador", spawn)
             val player = createPlayer(tile = spawn.add(direction.inverse()))
-            npc.mode = Retreat(npc, player, spawn, retreatRange = 4)
+            npc.mode = Retreat(npc, player, spawn, maxRange = 4)
             tick(6)
             assertEquals(spawn.add(direction.delta.x * 4, direction.delta.y * 4), npc.tile)
         }
