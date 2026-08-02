@@ -1,7 +1,7 @@
 [attack_potion_finished]
 skill = "herblore"
 level = 3
-xp = 1.0
+xp = 25.0
 ticks = 2
 remove = ["guam_potion_unf", "eye_of_newt"]
 add = ["attack_potion_3"]
