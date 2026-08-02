@@ -13,6 +13,7 @@ slayer_xp = 105.0
 slayer_level = 80
 drop_table = "nechryael"
 categories = ["nechryael"]
+disengage = false
 examine = "An evil death demon."
 
 [death_spawn]
@@ -26,4 +27,5 @@ hunt_mode = "cowardly"
 style = "slash"
 slayer_level = 80
 drop_table = "death_spawn"
+disengage = false
 examine = "An evil death spawn."

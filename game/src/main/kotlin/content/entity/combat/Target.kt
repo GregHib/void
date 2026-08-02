@@ -98,7 +98,7 @@ object Target {
                 }
             }
         }
-        if (isDeathSpawn(target) || isDeathSpawn(source) || isDeathSpawn(target.attacker) || isDeathSpawn(source.attacker)) {
+        if ((isNechryael(target.attacker) && target.attacker == this) || isDeathSpawn(source) || isDeathSpawn(target.attacker) || isDeathSpawn(source.attacker)) {
             return true
         }
         // If the target I'm trying to attack is already in combat and I am not the attacker
@@ -122,6 +122,8 @@ object Target {
     }
 
     fun isDeathSpawn(target: Character?) = target is NPC && target.id == "death_spawn"
+
+    fun isNechryael(target: Character?) = target is NPC && target.id == "nechryael"
 
     fun isDemon(target: Character) = target is NPC && target.categories.contains("demons")
 

@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode.combat
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.config.CombatDefinition
@@ -93,7 +94,7 @@ class CombatMovement(
             }
             // Disengage from targets that are already in combat
             val attacker = target.get<Character>("attacker")
-            if (character is NPC && attacker != null && attacker != character && !target.contains("in_multi_combat")) {
+            if (character is NPC && character.def[Params.DISENGAGE, true] && attacker != null && attacker != character && !target.contains("in_multi_combat")) {
                 character.mode = EmptyMode
                 return
             }
