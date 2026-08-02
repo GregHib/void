@@ -54,7 +54,7 @@ class CombatLevel : Script {
                     // 112 - https://youtu.be/3GG4KkmPUrU?t=70
                     // 125 - https://youtu.be/lFY_jQn3pfE?t=54
                     // 128 - https://youtu.be/tBB914-pLEw?t=28
-                    player.message("Congratulations! You've just reached Combat level ${level}!")
+                    player.message("Congratulations! You've just reached Combat level $level!")
                 }
             }
         }

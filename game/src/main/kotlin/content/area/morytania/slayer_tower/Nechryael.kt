@@ -45,6 +45,5 @@ class Nechryael : Script {
             val killer = killer as? Player ?: return@npcDeath
             killer.dec("death_spawns")
         }
-
     }
 }
