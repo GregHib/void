@@ -114,7 +114,7 @@ suspend fun Player.returnHome(vararg rewards: String) {
     finishReturn(*rewards)
 }
 
-private suspend fun Player.finishReturn(vararg rewards: String) {
+private fun Player.finishReturn(vararg rewards: String) {
     walkTrigger = null
     RandomEvents.complete(this, *rewards)
     anim("teleport_land_modern")

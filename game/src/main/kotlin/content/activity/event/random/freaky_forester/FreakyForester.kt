@@ -8,6 +8,7 @@ import content.activity.event.random.rewardCostumePoint
 import content.entity.combat.killer
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -18,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -57,9 +59,20 @@ class FreakyForester : Script {
             }
             death.dropItems = false
             // The pheasant drops the raw bird for the killer to pick up and hand to the forester.
-            val correct = tailCount(id) == killer.get("freaky_forester_task", 0)
+            val correct = tailCount(id) == killer["freaky_forester_task", 0]
             val bird = if (correct) "raw_pheasant" else "raw_pheasant_incorrect"
             FloorItems.add(tile, bird, revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = killer)
+        }
+
+        objectOperate("Enter", "exit_portal_freaky_forester") {
+            choice("Are you sure you wish to leave?") {
+                // TODO proper message
+                option("Yes I'm sure.") {
+                    clearState()
+                    returnHome()
+                }
+                option("No, I'll stick around.")
+            }
         }
     }
 
@@ -101,9 +114,14 @@ class FreakyForester : Script {
 
     private suspend fun Player.leaveForest() {
         rewardCostumePoint("lederhosen")
-        inventory.remove("raw_pheasant")
-        clear("freaky_forester_task")
+        clearState()
         returnHome("random_event_gift")
+    }
+
+    private fun Player.clearState() {
+        inventory.removeToLimit("raw_pheasant", 28)
+        inventory.removeToLimit("raw_pheasant_incorrect", 28)
+        clear("freaky_forester_task")
     }
 
     private fun Player.carriesRawPheasant() = inventory.contains("raw_pheasant") || inventory.contains("raw_pheasant_incorrect")

@@ -1,0 +1,4 @@
+[crystal_key]
+remove = ["tooth_half_of_a_key", "loop_half_of_a_key"]
+add = ["crystal_key"]
+message = "You join the two halves of the key together."

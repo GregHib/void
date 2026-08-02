@@ -26,6 +26,7 @@ slayer_xp = 34.0
 hunt_mode = "aggressive"
 respawn_delay = 90
 categories = ["wolves"]
+drop_table = "wolf_bones"
 examine = "A vicious mountain wolf."
 
 [white_wolf_level_38]
@@ -41,6 +42,7 @@ slayer_xp = 44.0
 hunt_mode = "aggressive"
 respawn_delay = 90
 categories = ["wolves"]
+drop_table = "wolf_bones"
 examine = "A vicious mountain wolf."
 
 [big_wolf]

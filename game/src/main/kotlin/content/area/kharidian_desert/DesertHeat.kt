@@ -72,7 +72,7 @@ class DesertHeat : Script {
                 message("You fail to cut the cactus correctly and it gives no water this time.")
                 return@objectOperate
             }
-            if (!inventory.replace("waterskin_0", "waterkin_1") && !inventory.replace("waterskin_1", "waterkin_2") && !inventory.replace("waterskin_2", "waterkin_3") && !inventory.replace("waterskin_3", "waterkin_4")) {
+            if (!inventory.replace("waterskin_0", "waterskin_1") && !inventory.replace("waterskin_1", "waterskin_2") && !inventory.replace("waterskin_2", "waterskin_3") && !inventory.replace("waterskin_3", "waterskin_4")) {
                 message("You fail to cut the cactus correctly and it gives no water this time.")
                 return@objectOperate
             }

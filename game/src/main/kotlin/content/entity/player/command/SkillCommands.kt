@@ -45,6 +45,10 @@ class SkillCommands(
         adminCommands("level", self, other)
         commandSuggestion("level", "set_level")
         adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Set all skills to level 1", handler = ::reset)
+
+        playerCommand("level_dialogues", desc = "Toggle level up pop-up dialogues.") {
+            message("Level up pop-ups are now ${if (toggle("skip_level_up_dialogues")) "enabled" else "disabled"}.")
+        }
     }
 
     fun set(player: Player, args: List<String>) {
@@ -55,21 +59,25 @@ class SkillCommands(
         }
         val skill = Skill.valueOf(string)
         val level = args[1].toInt()
+        player["skip_level_up"] = true
         target.experience.set(skill, Level.experience(skill, level))
         target.levels.set(skill, level)
         target.queue("flash_reset", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.lowercase())
+            player["skip_level_up"] = false
         }
     }
 
     fun master(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(0)) ?: return
+        player["skip_level_up"] = true
         for (skill in Skill.all) {
             target.experience.set(skill, 14000000.0)
             target.levels.restore(skill, 1000)
         }
         target.queue("clear_flash", 1) {
             player.clear("skill_stat_flash")
+            player["skip_level_up"] = false
         }
     }
 

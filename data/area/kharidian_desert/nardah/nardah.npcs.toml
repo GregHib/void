@@ -1,5 +1,6 @@
 [rokuh]
 id = 13181
+shop = "roks_chocs_box"
 
 [ghaslor_the_elder]
 id = 3029
@@ -35,10 +36,12 @@ examine = "A herbalist... sells herbs."
 
 [seddu]
 id = 3038
+shop = "seddus_adventurers_store"
 examine = "An armour merchant."
 
 [kazemde]
 id = 3039
+shop = "nardah_general_store"
 examine = "A seller of many things."
 
 [awusah_the_mayor]
@@ -106,6 +109,7 @@ examine = "They'll eat anything!"
 
 [artimeus]
 id = 5109
+shop = "nardah_hunter_shop"
 examine = "He looks like he knows what he's doing."
 
 [ali_the_wise]

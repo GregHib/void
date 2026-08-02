@@ -27,9 +27,7 @@ enum class ItemKept {
     /**
      * Disappears regardless of if kept on death
      */
-    Vanish,
-
-    ;
+    Vanish;
 
     companion object {
         private val map = mapOf(
@@ -40,6 +38,6 @@ enum class ItemKept {
             "Vanish" to Vanish,
         )
 
-        fun by(name: String): ItemKept = map[name] ?: Never
+        fun by(name: String): ItemKept = map[name] ?: Wilderness
     }
 }

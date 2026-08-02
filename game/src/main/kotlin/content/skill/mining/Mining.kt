@@ -120,7 +120,7 @@ class Mining : Script {
                         val xp = ore.int("xp") / 10.0
                         ShootingStarHandler.extraOreHandler(this, item, xp)
                         val added = addOre(this, item, target)
-                        if (added > 0) {
+                        if (added > 0 || item == "stardust") {
                             exp(Skill.Mining, xp * added)
                         }
                         if (added < 1 || deplete(target, ore)) {

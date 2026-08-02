@@ -11,6 +11,7 @@ import content.skill.melee.weapon.weapon
 import content.skill.prayer.Prayer
 import content.skill.summoning.familiarDefenceMultiplier
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatAttack
@@ -164,6 +165,9 @@ fun Character.hit(
 ): Int {
     val actualDamage = Damage.modify(this, target, offensiveType, damage, weapon, spell, special)
         .coerceAtMost(target.levels.get(Skill.Constitution))
+    if (target is Player) {
+        target.closeInterfaces()
+    }
     if (this is Player) {
         CombatApi.attack(this, CombatAttack(target, actualDamage, offensiveType, weapon, spell, special, delay))
     } else if (this is NPC) {
@@ -194,6 +198,7 @@ fun Character.directHit(source: Character, damage: Int, type: String = "damage",
         return
     }
     if (this is Player) {
+        closeInterfaces()
         CombatApi.damage(this, CombatDamage(source, type, damage, weapon, spell, special))
     } else if (this is NPC) {
         CombatApi.damage(this, CombatDamage(source, type, damage, weapon, spell, special))

@@ -40,6 +40,9 @@ object RandomEvents : AutoCloseable {
 
     private val events = mutableMapOf<String, suspend Player.() -> Unit>()
 
+    val keys: Set<String>
+        get() = events.keys
+
     fun register(id: String, launcher: suspend Player.() -> Unit) {
         Script.checkLoading()
         events[id] = launcher
