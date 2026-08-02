@@ -30,9 +30,9 @@ class StrongholdOfSecurityRewards : Script {
                 return@objectOperate
             }
             sound("stronghold_creaks")
+            set("unlocked_emote_flap", true)
             statement("The box hinges creak and appear to be forming audible words....")
             jingle("stronghold_of_security_gift_of_peace")
-            set("unlocked_emote_flap", true)
             item("coins_9", "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Flap emote!")
         }
 
@@ -46,9 +46,9 @@ class StrongholdOfSecurityRewards : Script {
                 return@objectOperate
             }
             sound("stronghold_creaks")
+            set("unlocked_emote_slap_head", true)
             statement("The grain shifts in the sack, sighing audible words....")
             jingle("stronghold_of_security_grain_of_plenty")
-            set("unlocked_emote_slap_head", true)
             item("coins_9", "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Slap Head emote!")
         }
 
@@ -61,13 +61,13 @@ class StrongholdOfSecurityRewards : Script {
                 statement("Make some room in your inventory, then come back to us...")
                 return@objectOperate
             }
+            set("unlocked_emote_idea", true)
             sound("stronghold_creaks")
             statement("The box hinges creak and appear to be forming audible words....")
             levels.restore(Skill.Constitution, 99)
             levels.restore(Skill.Prayer, 990)
             message("You feel refreshed and renewed.")
             jingle("stronghold_of_security_box_of_health")
-            set("unlocked_emote_idea", true)
             item("coins_10", "...congratulations adventurer, you have been deemed worthy of this reward. You have also unlocked the Idea emote!")
         }
 
