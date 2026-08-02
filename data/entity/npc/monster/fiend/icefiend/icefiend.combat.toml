@@ -1,6 +1,5 @@
 [icefiend]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "icefiend_defend"
 defend_sound = "icefiend_defend"
 death_anim = "icefiend_death"

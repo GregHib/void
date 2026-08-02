@@ -1,6 +1,5 @@
 [ugthanki]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "ugthanki_defend"
 death_anim = "ugthanki_death"
 

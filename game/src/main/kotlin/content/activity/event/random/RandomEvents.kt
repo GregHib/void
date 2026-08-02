@@ -97,6 +97,8 @@ object RandomEvents : AutoCloseable {
         !player.contains("random_event") &&
         player.instance() == null &&
         !player.inCombat &&
+        !player.contains("delay") &&
+        player.suspension == null &&
         player.menu == null &&
         player.dialogue == null &&
         player.mode == EmptyMode &&

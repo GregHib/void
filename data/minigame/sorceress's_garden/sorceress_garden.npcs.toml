@@ -112,7 +112,6 @@ clone = "winter_elemental"
 
 [del_monty]
 id = 5563
-wander_range = 4
 dialogue = "cat"
 examine = "Loves living in an orchard."
 

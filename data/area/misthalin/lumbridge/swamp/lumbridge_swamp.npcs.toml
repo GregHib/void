@@ -4,7 +4,6 @@ att = 2
 str = 3
 def = 2
 combat_def = "giant_rat"
-wander_range = 10
 hitpoints = 50
 slayer_xp = 5.0
 respawn_delay = 30
@@ -26,22 +25,18 @@ id = 5890
 
 [archer_lumbridge]
 id = 649
-wander_range = 4
 examine = "She looks quite experienced."
 
 [warrior_lumbridge]
 id = 650
-wander_range = 4
 examine = "He looks big and dumb."
 
 [monk_lumbridge]
 id = 651
-wander_range = 4
 examine = "He looks holy."
 
 [wizard_lumbridge]
 id = 652
-wander_range = 4
 examine = "He looks kind of puny..."
 
 [sergeant_mossfists_2]
@@ -55,5 +50,4 @@ id = 9631
 
 [candle_seller]
 id = 1834
-wander_range = 2
 examine = "Has an odd smell about him."

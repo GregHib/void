@@ -1,6 +1,5 @@
 [kolodion_human]
 attack_speed = 7
-retreat_range = 12
 defend_anim = "kolodion_human_defend"
 death_anim = "kolodion_human_death"
 
@@ -105,7 +104,6 @@ anim = "kolodion_demon_attack"
 
 [battle_mage_saradomin]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "battle_mage_defend"
 death_anim = "human_death"
 

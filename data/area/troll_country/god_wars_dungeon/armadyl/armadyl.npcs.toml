@@ -13,7 +13,6 @@ respawn_delay = 150
 slayer_xp = 357.0
 categories = ["aviansies", "boss"]
 immune_poison = true
-wander_range = 6
 examine = "Graceful avatar of Armadyl."
 
 [flight_kilisa]
@@ -28,7 +27,6 @@ combat_def = "flight_kilisa"
 hunt_mode = "aggressive"
 slayer_xp = 132.5
 categories = ["aviansies"]
-wander_range = 6
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."
 
@@ -46,7 +44,6 @@ combat_def = "wingman_skree"
 hunt_mode = "aggressive"
 slayer_xp = 124.0
 categories = ["aviansies"]
-wander_range = 6
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."
 
@@ -63,6 +60,5 @@ combat_def = "flockleader_geerin"
 hunt_mode = "aggressive"
 slayer_xp = 132.5
 categories = ["aviansies"]
-wander_range = 6
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."

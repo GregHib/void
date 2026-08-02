@@ -1,6 +1,5 @@
 [draynor_jail_guard]
 attack_speed = 5
-retreat_range = 8
 defend_anim = "mace_defend"
 death_anim = "human_death"
 
@@ -11,7 +10,6 @@ target_hit = { offense = "crush", max = 30 }
 
 [draynor_market_guard]
 attack_speed = 5
-retreat_range = 8
 defend_anim = "sword_defend"
 defend_sound = "human_defend"
 death_anim = "human_death"

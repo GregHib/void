@@ -1,6 +1,5 @@
 [suqah]
 attack_speed = 6
-retreat_range = 8
 defend_anim = "suqah_defend"
 death_anim = "suqah_death"
 

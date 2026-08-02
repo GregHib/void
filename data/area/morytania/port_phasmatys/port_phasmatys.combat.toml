@@ -1,6 +1,5 @@
 [tortured_soul]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "human_defend"
 defend_sound = "ghost_defend"
 death_anim = "human_death"

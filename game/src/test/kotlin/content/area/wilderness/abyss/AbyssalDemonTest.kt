@@ -34,7 +34,7 @@ class AbyssalDemonTest : WorldTest() {
     fun `Abyssal demon teleports around in combat`() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = if (until == 6) 6 else 0
-            override fun nextInt(from: Int, until: Int) = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
         })
         val player = createPlayer(emptyTile)
         player.levels.set(Skill.Constitution, 50)

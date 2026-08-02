@@ -3,7 +3,6 @@
 
 [spirit_wolf_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_wolf_familiar_defend"
 death_anim = "spirit_wolf_familiar_death"
 
@@ -14,7 +13,6 @@ target_hit = { offense = "slash", max = 40 }
 
 [dreadfowl_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "dreadfowl_familiar_defend"
 death_anim = "dreadfowl_familiar_death"
 
@@ -25,7 +23,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [spirit_spider_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_spider_familiar_defend"
 death_anim = "spirit_spider_familiar_death"
 
@@ -36,7 +33,6 @@ target_hit = { offense = "crush", max = 30 }
 
 [thorny_snail_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "thorny_snail_familiar_defend"
 death_anim = "thorny_snail_familiar_death"
 
@@ -49,7 +45,6 @@ target_hit = { offense = "range", max = 40 }
 
 [granite_crab_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "granite_crab_familiar_defend"
 death_anim = "granite_crab_familiar_death"
 
@@ -60,7 +55,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [spirit_mosquito_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_mosquito_familiar_defend"
 death_anim = "spirit_mosquito_familiar_death"
 
@@ -71,7 +65,6 @@ target_hit = { offense = "crush", max = 42 }
 
 [desert_wyrm_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "desert_wyrm_familiar_defend"
 death_anim = "desert_wyrm_familiar_death"
 
@@ -82,7 +75,6 @@ target_hit = { offense = "crush", max = 42 }
 
 [spirit_scorpion_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_scorpion_familiar_defend"
 death_anim = "spirit_scorpion_familiar_death"
 
@@ -92,7 +84,6 @@ anim = "spirit_scorpion_familiar_attack"
 target_hit = { offense = "crush", max = 65 }
 
 [spirit_tz-kih_familiar]
-retreat_range = 8
 defend_anim = "spirit_tz-kih_familiar_defend"
 death_anim = "spirit_tz-kih_familiar_death"
 
@@ -105,7 +96,6 @@ target_hit = { offense = "magic", max = 50 }
 
 [albino_rat_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "albino_rat_familiar_defend"
 death_anim = "albino_rat_familiar_death"
 
@@ -116,7 +106,6 @@ target_hit = { offense = "crush", max = 50 }
 
 [spirit_kalphite_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_kalphite_familiar_defend"
 death_anim = "spirit_kalphite_familiar_death"
 
@@ -127,7 +116,6 @@ target_hit = { offense = "crush", max = 50 }
 
 [compost_mound_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "compost_mound_familiar_defend"
 death_anim = "compost_mound_familiar_death"
 
@@ -138,7 +126,6 @@ target_hit = { offense = "crush", max = 37 }
 
 [giant_chinchompa_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "giant_chinchompa_familiar_defend"
 death_anim = "giant_chinchompa_familiar_death"
 
@@ -149,7 +136,6 @@ target_hit = { offense = "crush", max = 38 }
 
 [vampire_bat_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "vampire_bat_familiar_defend"
 death_anim = "vampire_bat_familiar_death"
 
@@ -160,7 +146,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [honey_badger_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "honey_badger_familiar_defend"
 death_anim = "honey_badger_familiar_death"
 
@@ -171,7 +156,6 @@ target_hit = { offense = "crush", max = 41 }
 
 [void_ravager_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "void_ravager_familiar_defend"
 death_anim = "void_ravager_familiar_death"
 
@@ -182,7 +166,6 @@ target_hit = { offense = "crush", max = 44 }
 
 [void_spinner_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "void_spinner_familiar_defend"
 death_anim = "void_spinner_familiar_death"
 
@@ -193,7 +176,6 @@ target_hit = { offense = "crush", max = 44 }
 
 [void_torcher_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "void_torcher_familiar_defend"
 death_anim = "void_torcher_familiar_death"
 
@@ -204,7 +186,6 @@ target_hit = { offense = "crush", max = 44 }
 
 [void_shifter_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "void_shifter_familiar_defend"
 death_anim = "void_shifter_familiar_death"
 
@@ -215,7 +196,6 @@ target_hit = { offense = "crush", max = 44 }
 
 [bronze_minotaur_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "bronze_minotaur_familiar_defend"
 death_anim = "bronze_minotaur_familiar_death"
 
@@ -227,7 +207,6 @@ target_hit = { offense = "crush", max = 47 }
 
 [iron_minotaur_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "iron_minotaur_familiar_defend"
 death_anim = "iron_minotaur_familiar_death"
 
@@ -239,7 +218,6 @@ target_hit = { offense = "crush", max = 60 }
 
 [steel_minotaur_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "steel_minotaur_familiar_defend"
 death_anim = "steel_minotaur_familiar_death"
 
@@ -251,7 +229,6 @@ target_hit = { offense = "crush", max = 73 }
 
 [mithril_minotaur_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "mithril_minotaur_familiar_defend"
 death_anim = "mithril_minotaur_familiar_death"
 
@@ -263,7 +240,6 @@ target_hit = { offense = "crush", max = 110 }
 
 [adamant_minotaur_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "adamant_minotaur_familiar_defend"
 death_anim = "adamant_minotaur_familiar_death"
 
@@ -275,7 +251,6 @@ target_hit = { offense = "crush", max = 160 }
 
 [rune_minotaur_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "rune_minotaur_familiar_defend"
 death_anim = "rune_minotaur_familiar_death"
 
@@ -287,7 +262,6 @@ target_hit = { offense = "crush", max = 180 }
 
 [bull_ant_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "bull_ant_familiar_defend"
 death_anim = "bull_ant_familiar_death"
 
@@ -298,7 +272,6 @@ target_hit = { offense = "crush", max = 52 }
 
 [evil_turnip_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "evil_turnip_familiar_defend"
 death_anim = "evil_turnip_familiar_death"
 
@@ -309,7 +282,6 @@ target_hit = { offense = "crush", max = 58 }
 
 [spirit_cockatrice_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_cockatrice_familiar_defend"
 death_anim = "spirit_cockatrice_familiar_death"
 
@@ -320,7 +292,6 @@ target_hit = { offense = "crush", max = 56 }
 
 [spirit_guthatrice_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_guthatrice_familiar_defend"
 death_anim = "spirit_guthatrice_familiar_death"
 
@@ -331,7 +302,6 @@ target_hit = { offense = "crush", max = 56 }
 
 [spirit_saratrice_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_saratrice_familiar_defend"
 death_anim = "spirit_saratrice_familiar_death"
 
@@ -342,7 +312,6 @@ target_hit = { offense = "crush", max = 56 }
 
 [spirit_zamatrice_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_zamatrice_familiar_defend"
 death_anim = "spirit_zamatrice_familiar_death"
 
@@ -353,7 +322,6 @@ target_hit = { offense = "crush", max = 56 }
 
 [spirit_pengatrice_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_pengatrice_familiar_defend"
 death_anim = "spirit_pengatrice_familiar_death"
 
@@ -364,7 +332,6 @@ target_hit = { offense = "crush", max = 56 }
 
 [spirit_coraxatrice_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_coraxatrice_familiar_defend"
 death_anim = "spirit_coraxatrice_familiar_death"
 
@@ -375,7 +342,6 @@ target_hit = { offense = "crush", max = 56 }
 
 [spirit_vulatrice_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_vulatrice_familiar_defend"
 death_anim = "spirit_vulatrice_familiar_death"
 
@@ -386,7 +352,6 @@ target_hit = { offense = "crush", max = 56 }
 
 [pyrelord_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "pyrelord_familiar_defend"
 death_anim = "pyrelord_familiar_death"
 
@@ -397,7 +362,6 @@ target_hit = { offense = "crush", max = 60 }
 
 [bloated_leech_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "bloated_leech_familiar_defend"
 death_anim = "bloated_leech_familiar_death"
 
@@ -408,7 +372,6 @@ target_hit = { offense = "crush", max = 65 }
 
 [spirit_terrorbird_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_terrorbird_familiar_defend"
 death_anim = "spirit_terrorbird_familiar_death"
 
@@ -419,7 +382,6 @@ target_hit = { offense = "crush", max = 68 }
 
 [abyssal_parasite_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "abyssal_parasite_familiar_defend"
 death_anim = "abyssal_parasite_familiar_death"
 
@@ -430,7 +392,6 @@ target_hit = { offense = "crush", max = 70 }
 
 [spirit_jelly_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_jelly_familiar_defend"
 death_anim = "spirit_jelly_familiar_death"
 
@@ -441,7 +402,6 @@ target_hit = { offense = "crush", max = 72 }
 
 [spirit_kyatt_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_kyatt_familiar_defend"
 death_anim = "spirit_kyatt_familiar_death"
 
@@ -452,7 +412,6 @@ target_hit = { offense = "crush", max = 75 }
 
 [spirit_larupia_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_larupia_familiar_defend"
 death_anim = "spirit_larupia_familiar_death"
 
@@ -463,7 +422,6 @@ target_hit = { offense = "crush", max = 75 }
 
 [spirit_graahk_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_graahk_familiar_defend"
 death_anim = "spirit_graahk_familiar_death"
 
@@ -474,7 +432,6 @@ target_hit = { offense = "crush", max = 75 }
 
 [karamthulhu_overlord_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "karamthulhu_overlord_familiar_defend"
 death_anim = "karamthulhu_overlord_familiar_death"
 
@@ -487,7 +444,6 @@ target_hit = { offense = "range", max = 76 }
 
 [smoke_devil_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "smoke_devil_familiar_defend"
 death_anim = "smoke_devil_familiar_death"
 
@@ -499,7 +455,6 @@ target_hit = { offense = "magic", max = 150 }
 
 [abyssal_lurker_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "abyssal_lurker_familiar_defend"
 death_anim = "abyssal_lurker_familiar_death"
 
@@ -510,7 +465,6 @@ target_hit = { offense = "crush", max = 80 }
 
 [spirit_cobra_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_cobra_familiar_defend"
 death_anim = "spirit_cobra_familiar_death"
 
@@ -521,7 +475,6 @@ target_hit = { offense = "crush", max = 82 }
 
 [stranger_plant_familiar]
 attack_speed = 8
-retreat_range = 8
 death_anim = "stranger_plant_familiar_death"
 
 [stranger_plant_familiar.melee]
@@ -531,7 +484,6 @@ target_hit = { offense = "crush", max = 103 }
 
 [barker_toad_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "barker_toad_familiar_defend"
 death_anim = "barker_toad_familiar_death"
 
@@ -542,7 +494,6 @@ target_hit = { offense = "crush", max = 86 }
 
 [war_tortoise_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "war_tortoise_familiar_defend"
 death_anim = "war_tortoise_familiar_death"
 
@@ -553,7 +504,6 @@ target_hit = { offense = "crush", max = 87 }
 
 [bunyip_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "bunyip_familiar_defend"
 death_anim = "bunyip_familiar_death"
 
@@ -564,7 +514,6 @@ target_hit = { offense = "crush", max = 89 }
 
 [ravenous_locust_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "ravenous_locust_familiar_defend"
 death_anim = "ravenous_locust_familiar_death"
 
@@ -575,7 +524,6 @@ target_hit = { offense = "crush", max = 90 }
 
 [arctic_bear_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "arctic_bear_familiar_defend"
 death_anim = "arctic_bear_familiar_death"
 
@@ -586,7 +534,6 @@ target_hit = { offense = "crush", max = 92 }
 
 [phoenix_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "phoenix_familiar_defend"
 death_anim = "phoenix_familiar_death"
 
@@ -597,7 +544,6 @@ target_hit = { offense = "magic", max = 160 }
 
 [obsidian_golem_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "obsidian_golem_familiar_defend"
 death_anim = "obsidian_golem_familiar_death"
 
@@ -608,7 +554,6 @@ target_hit = { offense = "crush", max = 120 }
 
 [granite_lobster_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "granite_lobster_familiar_defend"
 death_anim = "granite_lobster_familiar_death"
 
@@ -619,7 +564,6 @@ target_hit = { offense = "crush", max = 96 }
 
 [praying_mantis_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "praying_mantis_familiar_defend"
 death_anim = "praying_mantis_familiar_death"
 
@@ -630,7 +574,6 @@ target_hit = { offense = "crush", max = 120 }
 
 [forge_regent_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "forge_regent_familiar_defend"
 death_anim = "forge_regent_familiar_death"
 
@@ -642,7 +585,6 @@ target_hit = { offense = "crush", max = 100 }
 
 [talon_beast_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "talon_beast_familiar_defend"
 death_anim = "talon_beast_familiar_death"
 
@@ -653,7 +595,6 @@ target_hit = { offense = "crush", max = 100 }
 
 [giant_ent_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "giant_ent_familiar_defend"
 death_anim = "giant_ent_familiar_death"
 
@@ -664,7 +605,6 @@ target_hit = { offense = "crush", max = 102 }
 
 [hydra_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "hydra_familiar_defend"
 death_anim = "hydra_familiar_death"
 
@@ -676,7 +616,6 @@ target_hit = { offense = "range", max = 103 }
 
 [spirit_dagannoth_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "spirit_dagannoth_familiar_defend"
 death_anim = "spirit_dagannoth_familiar_death"
 
@@ -687,7 +626,6 @@ target_hit = { offense = "crush", max = 108 }
 
 [unicorn_stallion_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "unicorn_stallion_familiar_defend"
 death_anim = "unicorn_stallion_familiar_death"
 
@@ -698,7 +636,6 @@ target_hit = { offense = "crush", max = 115 }
 
 [wolpertinger_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "wolpertinger_familiar_defend"
 death_anim = "wolpertinger_familiar_death"
 
@@ -710,7 +647,6 @@ target_hit = { offense = "magic", max = 224 }
 
 [pack_yak_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "pack_yak_familiar_defend"
 death_anim = "pack_yak_familiar_death"
 
@@ -721,7 +657,6 @@ target_hit = { offense = "crush", max = 125 }
 
 [fire_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "fire_titan_familiar_defend"
 death_anim = "fire_titan_familiar_death"
 
@@ -732,7 +667,6 @@ target_hit = { offense = "crush", max = 152 }
 
 [moss_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "moss_titan_familiar_defend"
 death_anim = "moss_titan_familiar_death"
 
@@ -743,7 +677,6 @@ target_hit = { offense = "crush", max = 150 }
 
 [ice_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "ice_titan_familiar_defend"
 death_anim = "ice_titan_familiar_death"
 
@@ -754,7 +687,6 @@ target_hit = { offense = "crush", max = 152 }
 
 [lava_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "lava_titan_familiar_defend"
 death_anim = "lava_titan_familiar_death"
 
@@ -765,7 +697,6 @@ target_hit = { offense = "crush", max = 140 }
 
 [swamp_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "swamp_titan_familiar_defend"
 death_anim = "swamp_titan_familiar_death"
 
@@ -776,7 +707,6 @@ target_hit = { offense = "crush", max = 160 }
 
 [geyser_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "geyser_titan_familiar_defend"
 death_anim = "geyser_titan_familiar_death"
 
@@ -789,7 +719,6 @@ target_hit = { offense = "range", max = 190 }
 
 [abyssal_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "abyssal_titan_familiar_defend"
 death_anim = "abyssal_titan_familiar_death"
 
@@ -800,7 +729,6 @@ target_hit = { offense = "crush", max = 229 }
 
 [iron_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "iron_titan_familiar_defend"
 death_anim = "iron_titan_familiar_death"
 
@@ -811,7 +739,6 @@ target_hit = { offense = "crush", max = 244 }
 
 [steel_titan_familiar]
 attack_speed = 8
-retreat_range = 8
 defend_anim = "steel_titan_familiar_defend"
 death_anim = "steel_titan_familiar_death"
 

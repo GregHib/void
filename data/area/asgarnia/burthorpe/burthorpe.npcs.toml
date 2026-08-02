@@ -10,32 +10,26 @@ examine = "A dog-like cat with a wonky tail."
 
 [unferth]
 id = 2654
-wander_range = 3
 examine = "Nice but dim."
 
 [neite]
 id = 2652
-wander_range = 3
 examine = "A graceful feline."
 
 [bernald]
 id = 2580
-wander_range = 5
 examine = "he guardian of Burthorpe's lost horticultural heritage."
 
 [bob_cat]
 id = 1091
-wander_range = 30000
 examine = "The Jagex cat."
 
 [hild]
 id = 1090
-wander_range = 5
 examine = "A pretty young woman with an air of mystery around her."
 
 [ceolburg]
 id = 1089
-wander_range = 5
 hitpoints = 100
 att = 3
 str = 2
@@ -47,7 +41,6 @@ examine = "A citizen of Burthorpe."
 
 [penda]
 id = 1087
-wander_range = 5
 hitpoints = 100
 att = 3
 str = 3
@@ -59,7 +52,6 @@ examine = "A citizen of Burthorpe."
 
 [ocga]
 id = 1085
-wander_range = 5
 hitpoints = 100
 att = 3
 str = 3
@@ -77,14 +69,12 @@ str = 3
 def = 3
 combat_def = "man"
 respawn_delay = 25
-wander_range = 5
 collision = "outdoors"
 drop_table = "citizen"
 examine = "A citizen of Burthorpe."
 
 [hygd]
 id = 1088
-wander_range = 5
 collision = "outdoors"
 hitpoints = 100
 att = 3
@@ -97,12 +87,10 @@ examine = "A citizen of Burthorpe."
 
 [dunstan]
 id = 1082
-wander_range = 3
 examine = "Smithy for Burthorpe."
 
 [servant_burthorpe]
 id = 1081
-wander_range = 5
 hitpoints = 100
 att = 3
 str = 3
@@ -113,19 +101,16 @@ examine = "A servant for Prince Anlaf."
 
 [eohric]
 id = 1080
-wander_range = 5
 examine = "Head servant for Prince Anlaf."
 
 [tostig]
 id = 1079
-wander_range = 5
 shop = "toad_and_chicken"
 collision = "indoors"
 examine = "Barman of the Toad and Chicken."
 
 [guard_burthorpe]
 id = 1076
-wander_range = 5
 hitpoints = 220
 att = 19
 str = 18
@@ -142,7 +127,6 @@ clone = "guard_burthorpe"
 
 [eadburg]
 id = 1072
-wander_range = 5
 hitpoints = 100
 att = 3
 str = 2
@@ -154,7 +138,6 @@ examine = "The Burthorpe Castle cook."
 
 [denulth]
 id = 1060
-wander_range = 3
 examine = "Commander of the Imperial Guard."
 
 [archer_burthorpe_clean]
@@ -170,17 +153,14 @@ id = 1075
 hitpoints = 500
 def = 40
 range = 40
-wander_range = 3
 examine = "A Burthorpe Castle Archer."
 
 [imperial_soldier]
 id = 1063
-wander_range = 15
 examine = "A soldier of the Imperial Guard."
 
 [imperial_soldier_2]
 id = 1064
-wander_range = 15
 examine = "A soldier of the Imperial Guard."
 
 [imperial_soldier_attackable]
@@ -218,20 +198,17 @@ examine = "A sergeant of the Imperial Guard."
 
 [wistan]
 id = 1083
-wander_range = 5
 shop = "burthorpe_supplies"
 collision = "indoors"
 examine = "Shopkeeper for Burthorpe."
 
 [achietties]
 id = 796
-wander_range = 3
 collision = "outdoors"
 examine = "Distinctly heroic."
 
 [white_knight_burthorpe]
 id = 1092
-wander_range = 5
 hitpoints = 520
 att = 27
 str = 29
@@ -249,7 +226,6 @@ examine = "A retired hero."
 [turael]
 id = 8461
 categories = ["human"]
-wander_range = 3
 collision = "indoors"
 examine = "He looks dangerous!"
 

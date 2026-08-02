@@ -1,6 +1,5 @@
 [fox]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "fox_defend"
 death_anim = "fox_death"
 
@@ -11,7 +10,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [bunny]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "bunny_defend"
 death_anim = "bunny_death"
 

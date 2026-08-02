@@ -1,6 +1,5 @@
 [snake]
 attack_speed = 4
-retreat_range = 11
 defend_anim = "snake_defend"
 defend_sound = "snake_defend"
 death_anim = "snake_death"

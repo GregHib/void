@@ -181,8 +181,6 @@ object Params {
     const val UPGRADE_TIME = 5181
     const val USE_EXPERIENCE = 5182
     const val WALK = 5183
-    const val WANDER_RADIUS = 5184
-    const val WANDER_RANGE = 5185
     const val WEAPON_TYPE = 5186
     const val WEIGHT = 5187
     const val WIDTH = 5188
@@ -519,8 +517,6 @@ object Params {
         "upgrade_time" -> UPGRADE_TIME
         "use_experience" -> USE_EXPERIENCE
         "walk" -> WALK
-        "wander_radius" -> WANDER_RADIUS
-        "wander_range" -> WANDER_RANGE
         "weapon_type" -> WEAPON_TYPE
         "weight" -> WEIGHT
         "width" -> WIDTH

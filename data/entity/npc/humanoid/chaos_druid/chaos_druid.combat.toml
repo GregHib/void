@@ -1,6 +1,5 @@
 [chaos_druid]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "chaos_druid_defend"
 defend_sound = "chaos_druid_defend"
 death_anim = "chaos_druid_death"

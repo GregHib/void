@@ -2,5 +2,4 @@
 id = 2809
 categories = ["camel"]
 large_head = true
-wander_range = 4
 examine = "A camel who has the soul of a poet."

@@ -1,6 +1,5 @@
 [corporeal_beast]
 attack_speed = 4
-retreat_range = 16
 defend_anim = "corporeal_beast_defend"
 defend_sound = "corporeal_beast_defend"
 death_anim = "corporeal_beast_death"

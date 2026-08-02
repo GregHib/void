@@ -1,6 +1,5 @@
 [zogre_human_brentle_vahn]
 attack_speed = 6
-retreat_range = 16
 defend_anim = "zombie_update_defend_normal"
 defend_sound = "zombie_defend"
 death_anim = "zombie_update_death_normal"

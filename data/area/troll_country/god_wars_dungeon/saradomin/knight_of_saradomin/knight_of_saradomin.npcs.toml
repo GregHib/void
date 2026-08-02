@@ -10,7 +10,6 @@ combat_def = "knight_of_saradomin"
 hunt_mode = "anti_zamorak_aggressive"
 respawn_delay = 50
 categories = ["human"]
-wander_range = 6
 god = "saradomin"
 examine = "A valiant knight."
 
@@ -26,6 +25,5 @@ max_hit_crush = 110
 hunt_mode = "anti_zamorak_aggressive"
 respawn_delay = 50
 categories = ["human"]
-wander_range = 6
 god = "saradomin"
 examine = "A valiant knight."

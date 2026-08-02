@@ -9,7 +9,6 @@ combat_def = "banshee"
 slayer_xp = 22.0
 slayer_level = 15
 respawn_delay = 15
-wander_range = 13
 drop_table = "banshee"
 hunt_mode = "cowardly"
 categories = ["banshees", "undead"]

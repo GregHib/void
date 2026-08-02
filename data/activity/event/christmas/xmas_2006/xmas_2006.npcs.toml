@@ -1,6 +1,5 @@
 [shanty_claws]
 id = 828
-wander_radius = 4
 large_head = true
 examine = "A sea shanty-singing werewolf wearing a Santa Claus robe."
 
@@ -51,17 +50,14 @@ id = 5016
 
 [gublinch_1]
 id = 5017
-wander_radius = 4
 examine = "A sweaty gublinch."
 
 [gublinch_2]
 id = 5018
-wander_radius = 4
 examine = "A chilled, smelly gublinch."
 
 [gublinch_3]
 id = 5019
-wander_radius = 4
 examine = "A freezing cold gublinch."
 
 [gub_musa_multi_child_1]
@@ -75,15 +71,12 @@ id = 5022
 
 [gub_musa_child_1]
 id = 5023
-wander_radius = 2
 examine = "A happy child, now that he has been freed."
 
 [gub_musa_child_2]
 id = 5024
-wander_radius = 2
 examine = "A happy child, now that he has been freed."
 
 [gub_musa_child_3]
 id = 5025
-wander_radius = 2
 examine = "A happy child, now that he has been freed."

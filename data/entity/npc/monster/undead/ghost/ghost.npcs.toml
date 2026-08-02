@@ -7,7 +7,6 @@ def = 18
 combat_def = "ghost"
 slayer_xp = 25.0
 respawn_delay = 40
-wander_range = 10
 hunt_mode = "cowardly"
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
@@ -72,7 +71,6 @@ hunt_mode = "cowardly"
 hunt_range = 1
 respawn_delay = 40
 slayer_xp = 80.0
-wander_range = 9
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 

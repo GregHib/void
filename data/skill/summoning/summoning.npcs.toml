@@ -978,7 +978,7 @@ interacts = false
 id = 11108
 interacts = false
 
-[naïve_bloodrager_familiar]
+[naive_bloodrager_familiar]
 id = 11110
 interacts = false
 
@@ -1018,7 +1018,7 @@ interacts = false
 id = 11128
 interacts = false
 
-[naïve_stormbringer_familiar]
+[naive_stormbringer_familiar]
 id = 11130
 interacts = false
 
@@ -1058,7 +1058,7 @@ interacts = false
 id = 11148
 interacts = false
 
-[naïve_hoardstalker_familiar]
+[naive_hoardstalker_familiar]
 id = 11150
 interacts = false
 
@@ -1098,7 +1098,7 @@ interacts = false
 id = 11168
 interacts = false
 
-[naïve_skinweaver_familiar]
+[naive_skinweaver_familiar]
 id = 11170
 interacts = false
 
@@ -1138,7 +1138,7 @@ interacts = false
 id = 11188
 interacts = false
 
-[naïve_worldbearer_familiar]
+[naive_worldbearer_familiar]
 id = 11190
 interacts = false
 

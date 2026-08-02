@@ -1,6 +1,5 @@
 [ogre]
 attack_speed = 6
-retreat_range = 8
 defend_anim = "ogre_defend"
 defend_sound = "giant_defend"
 death_anim = "ogre_death"

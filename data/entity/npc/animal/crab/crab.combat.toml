@@ -1,6 +1,5 @@
 [rock_crab]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "rock_crab_defend"
 defend_sound = "rock_crab_defend"
 death_anim = "rock_crab_death"

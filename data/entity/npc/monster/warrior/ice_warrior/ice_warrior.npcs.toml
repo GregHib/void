@@ -5,7 +5,6 @@ att = 47
 str = 47
 def = 47
 combat_def = "ice_warrior"
-wander_range = 4
 hunt_mode = "cowardly"
 respawn_delay = 30
 categories = ["ice_warriors"]

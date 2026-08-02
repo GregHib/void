@@ -145,9 +145,9 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             // Retreat
             val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return
             val spawn: Tile = character.leashAnchor() ?: return
-            if (!CombatMovement.withinAggro(source, spawn, definition)) {
+            if (!CombatMovement.withinAggro(character, source, spawn, definition)) {
                 if (character.mode !is Retreat || (character.mode as Retreat).target != source) {
-                    character.mode = Retreat(character, source, spawn, definition.retreatRange)
+                    character.mode = Retreat(character, source, spawn)
                 }
                 return
             }

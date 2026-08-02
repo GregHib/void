@@ -1,14 +1,12 @@
 [doric]
 id = 284
 categories = ["dwarf"]
-wander_range = 2
 examine = "A dwarf smith. Quite handy with a hammer."
 
 [thurgo]
 id = 604
 dialogue = "old"
 categories = ["dwarf"]
-wander_range = 4
 examine = "Dwarvish."
 
 [thorgel]
@@ -33,7 +31,6 @@ attack_bonus = 5
 combat_def = "dwarf"
 respawn_delay = 25
 slayer_xp = 16.0
-wander_range = 10
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "Loves mining."
@@ -48,7 +45,6 @@ attack_bonus = 11
 combat_def = "dwarf_hammer"
 respawn_delay = 25
 slayer_xp = 26.0
-wander_range = 10
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "Loves mining, mountains and mining mountains."
@@ -63,7 +59,6 @@ attack_bonus = 5
 combat_def = "dwarf_mining_guild"
 respawn_delay = 25
 slayer_xp = 16.0
-wander_range = 10
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "Loves mining."
@@ -116,7 +111,6 @@ attack_bonus = 5
 combat_def = "dwarf_mining_guild"
 respawn_delay = 50
 slayer_xp = 10.0
-wander_range = 10
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "A dwarven worker."
@@ -129,7 +123,6 @@ att = 38
 str = 42
 def = 28
 combat_def = "chaos_dwarf"
-wander_range = 9
 hunt_mode = "cowardly"
 respawn_delay = 90
 slayer_xp = 61.0

@@ -1,7 +1,6 @@
 [man]
 id = 1
 hitpoints = 70
-wander_range = 4
 respawn_delay = 25
 combat_def = "man"
 drop_table = "human"
@@ -19,7 +18,6 @@ id = 3
 [woman]
 id = 4
 hitpoints = 70
-wander_range = 4
 respawn_delay = 25
 combat_def = "woman"
 drop_table = "human"
@@ -41,7 +39,6 @@ examine = "Head of the Magic Guild."
 
 [jeffery]
 id = 637
-wander_range = 4
 categories = ["human"]
 collision = "indoors"
 examine = "The man with the armour."
@@ -49,21 +46,18 @@ examine = "The man with the armour."
 [bartender_foresters_arms]
 id = 737
 categories = ["human"]
-wander_range = 5
 collision = "indoors"
 examine = "I could get a beer from him."
 
 [bartender_flying_horse_inn]
 id = 738
 categories = ["human"]
-wander_range = 3
 collision = "indoors"
 examine = "I could get a beer from him."
 
 [bartender_dragon_inn]
 id = 739
 categories = ["human"]
-wander_range = 5
 collision = "indoors"
 examine = "I could get a beer from him."
 
@@ -78,12 +72,10 @@ examine = "The hat is a dead give away."
 [tool_leprechaun]
 id = 3021
 categories = ["human"]
-wander_range = 2
 examine = "Looks after your farming tools."
 
 [jeffery3]
 id = 3323
-wander_range = 4
 categories = ["human"]
 examine = "The man with the armour."
 
@@ -99,6 +91,5 @@ examine = "A young master craftsman."
 
 [jeffery_normal]
 id = 6298
-wander_range = 4
 categories = ["human"]
 examine = "The man with the armour."

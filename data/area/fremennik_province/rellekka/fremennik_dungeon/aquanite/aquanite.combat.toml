@@ -1,6 +1,5 @@
 [aquanite]
 attack_speed = 5
-retreat_range = 8
 death_anim = "aquanite_death"
 defend_anim = "aquanite_defend"
 # Unknown sounds

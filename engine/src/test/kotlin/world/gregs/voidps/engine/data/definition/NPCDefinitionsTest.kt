@@ -16,7 +16,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         stringId = id,
         params = mapOf(
             Params.CATEGORIES to setOf("human"),
-            Params.WANDER_RANGE to 4,
+            Params.HITPOINTS to 40,
             Params.EXAMINE to "Servant of the Duke of Lumbridge.",
         ),
     )

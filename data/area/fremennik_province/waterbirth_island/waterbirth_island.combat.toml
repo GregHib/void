@@ -1,6 +1,5 @@
 [dagannoth_supreme]
 attack_speed = 4
-retreat_range = 20
 defend_anim = "dagannoth_king_defend"
 defend_sound = "dagannoth_defend"
 death_anim = "dagannoth_king_death"
@@ -36,7 +35,6 @@ target_hit = { offense = "slash", max = 260 }
 
 [spinolyp]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "spinolyp_defend"
 death_anim = "spinolyp_death"
 

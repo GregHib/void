@@ -1,6 +1,5 @@
 [harpie_bug_swarm]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "harpie_bug_swarm_defend"
 defend_sound = "harpie_bug_swarm_defend"
 death_anim = "harpie_bug_swarm_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "crush", max = 60 }
 
 [shaikahan]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "shaikahan_defend"
 defend_sound = "shaikahan_defend"
 death_anim = "shaikahan_death"
@@ -28,7 +26,6 @@ target_hit = { offense = "slash", max = 90 }
 
 [giant_ant]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "giant_ant_defend"
 defend_sound = "giant_ant_defend"
 death_anim = "giant_ant_death"

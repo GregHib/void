@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -33,12 +34,12 @@ class Wander(
             super.tick()
             return
         }
-        val radius: Int = npc.def["wander_range", 5]
-        if (radius <= 0) {
+        val range: Int = Tables.intOrNull("npc_ranges.${npc.id}.wander_range") ?: 5
+        if (range <= 0) {
             npc.mode = EmptyMode
             return
         }
-        val tile = spawn.toCuboid(radius).random()
+        val tile = spawn.toCuboid(range).random()
         character.steps.queueStep(tile)
         super.tick()
     }

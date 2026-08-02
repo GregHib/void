@@ -1,6 +1,5 @@
 [dwarf]
 attack_speed = 5
-retreat_range = 16
 defend_anim = "dwarf_defend"
 defend_sound = "dwarf_defend"
 death_anim = "dwarf_death"
@@ -30,7 +29,6 @@ clone = "dwarf.melee"
 [chaos_dwarf]
 clone = "dwarf"
 attack_speed = 4
-retreat_range = 8
 defend_sound = "chaos_dwarf_defend"
 death_sound = "chaos_dwarf_death"
 
