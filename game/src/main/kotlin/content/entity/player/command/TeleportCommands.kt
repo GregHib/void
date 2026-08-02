@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
@@ -29,7 +28,7 @@ class TeleportCommands(
     private val places = mapOf(
         "draynor" to Tile(3086, 3248),
         "varrock" to Tile(3212, 3429),
-        "varrock" to Tile(3212, 3429),
+        "yanille" to Tile(2605, 3097),
         "lumbridge" to Tile(3222, 3219),
         "burthorpe" to Tile(2899, 3546),
         "falador" to Tile(2966, 3379),
