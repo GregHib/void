@@ -6,7 +6,6 @@ str = 97
 def = 105
 attack_speed = 4
 combat_def = "nechryael"
-hunt_mode = "cowardly"
 respawn_delay = 30
 wander_range = 4
 slayer_xp = 105.0
