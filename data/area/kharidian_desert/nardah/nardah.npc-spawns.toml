@@ -10,7 +10,7 @@ spawns = [
   { id = "meskhenet", x = 3427, y = 2900 },
   { id = "zahra", x = 3448, y = 2898 },
   { id = "zahur", x = 3442, y = 2886 },
-  { id = "seddu", x = 3407, y = 2926 },
+  { id = "seddu", x = 3406, y = 2922 },
   { id = "kazemde", x = 3414, y = 2906 },
   { id = "awusah_the_mayor", x = 3442, y = 2912, members = true },
   { id = "tarik_nardah", x = 3438, y = 2917 },
