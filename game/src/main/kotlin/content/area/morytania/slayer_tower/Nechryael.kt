@@ -1,5 +1,6 @@
 package content.area.morytania.slayer_tower
 
+import content.entity.combat.killer
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -39,5 +40,11 @@ class Nechryael : Script {
                 target.inc("death_spawns")
             }
         }
+
+        npcDeath("death_spawn") {
+            val killer = killer as? Player ?: return@npcDeath
+            killer.dec("death_spawns")
+        }
+
     }
 }
