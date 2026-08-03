@@ -1,0 +1,97 @@
+
+
+# 9 fish on complexity 1, 7 fish on complexity 6
+
+# 2 people 13-14 fish complex 6
+[dungeoneering_starting_fish]
+type = "first"
+drops = [
+    { id = "heim_crab" },
+    { id = "red_eye" },
+    { id = "dusk_eel" },
+    { id = "giant_flatfish" },
+    { id = "short_finned_eel" }, #
+
+    { id = "cave_moray" }, # tier 10
+]
+
+[dungeoneering_starting_complexity]
+type = "first"
+drops = [
+    { id = "rusty_coins", min = 490, max = 510 }, # always on complexity 492-508
+    { id = "rune_essence" }, # 24-51
+]
+
+#heim, red, dusk, flat, short
+# 1, 0, 2, 2, 2
+# 1, 2, 2, 2, 0
+# 1, 1, 3, 1, 1
+# 1, 0, 1, 4, 1
+# 3, 0, 0, 1, 3
+# 1, 1, 2, 3, 0
+# 1, 0, 2, 1, 3
+# 0, 3, 2, 2, 0
+# 1, 1, 0, 4, 1
+# 3, 0, 1, 3, 0
+# 0, 1, 4, 0, 2
+# 1, 3, 1, 0, 2
+# 2, 4, 0, 1, 0
+# 2, 2, 1, 1, 1
+# 1, 1, 2, 2, 1
+# 2, 2, 2, 0, 1
+# 2, 2, 2, 1, 0
+
+# axe, baxe, dshield, boots, rapier
+# dshield, plate, wham, shield
+# spear, shield, pickaxe
+# baxe, legs, 17 earth, 10 body, 13 water, 28 esse
+# guard, chain, spear, dshield, hatchet
+# 18 earth, 6 body, 19 water, wham, boots, 21 esse
+# kite, 13 mind, maul, 22 air, 22 esse, wand
+# 28 esse, baxe, 24 air, gloves, dshield, 11 chaos,
+# dshield,baxe, boots, lant, guard
+# 17 mind, long, chain, 28 esse, 12 water, anti-d
+# boots, dshield, dagger, long
+
+# Members
+
+#heim, red, dusk, flat, short
+# 5, 2, 0, 0, 0
+# 7
+
+# tanglegum shortbow, notive arrows, notive pickaxe, shoes
+# 29 air, 27 mind, 46 esse, salve top
+# shield, staff, 10 mind rune, 15 air rune, 22 esse
+# shield, dagger, knives, shields
+
+
+# 2 players - 5 items?
+[dungeoneering_level_20_bow]
+type = "all"
+drops = [
+    { id = "blood_spindle_shortbow" },
+    { id = "marmaros_arrows" }, # 38 arrows
+]
+
+# min 3 armour, max 2 pickaxe/hatchet?
+# Argonite (60) @ floor 1, 89 dung, 97 def
+# tangle gum
+# 3-5 pieces (maybe 5 if incl arrows? def had 5 with axe +hatchet)
+# runes definitely part of armour (had 2 arm pieces and only runes)
+# 4 incl ammo w bow
+[dungeoneering_starting_armour]
+type = "first"
+drops = [
+    { id = "argonite_platelegs" },
+    { id = "anti_dragon_shield_dungeoneering" },
+    { id = "novite_hatchet" }, # If complexity
+    { id = "novite_pickaxe" }, # If complexity - maramros
+]
+# 50 earth, 32 air, 30 chaos
+# 13 air, 14 mind
+# 17 earth, 17 water, 5 mind
+# 29 fire, 18 air, 20 mind
+# 48 water, 29 nature, 37 earth # snare
+# air + mind rune in pair?
+
+# 18 mind, 17 air, 20 esse
