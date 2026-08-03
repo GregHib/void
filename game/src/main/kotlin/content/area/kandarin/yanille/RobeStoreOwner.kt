@@ -1,6 +1,7 @@
-package content.area.kandarin.catherby
+package content.area.kandarin.yanille
 
 import content.entity.npc.shop.openShop
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.skillcapeShop
 import content.entity.player.dialogue.type.choice
@@ -10,25 +11,25 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
-class Hickton : Script {
+class RobeStoreOwner : Script {
 
     init {
-        npcOperate("Trade", "hickton") {
-            openHicktonShop(this)
+        npcOperate("Trade", "robe_store_owner_yanille") {
+            openRobeShop(this)
         }
 
-        npcOperate("Talk-to", "hickton") {
-            npc<Neutral>("Welcome to Hickton's Archery Store. Do you want to see my wares?")
+        npcOperate("Talk-to", "robe_store_owner_yanille") {
+            npc<Neutral>("Welcome to the Magic Guild Store. Do you want to see my wares?")
 
             choice {
                 option("Can you tell me about your cape?") {
                     player<Neutral>("Can you tell me about your cape?")
-                    npc<Neutral>("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
+                    npc<Happy>("Certainly! Skillcapes are a symbol of achievement. Only people who have mastered a skill and reached level 99 can get their hands on them and gain the benefits they carry.")
                     npc<Neutral>("Is there anything else I can help you with?")
 
                     choice {
                         option("I'd like to view your store, please.") {
-                            openHicktonShop(this)
+                            openRobeShop(this)
                         }
                         option("No thank you.") {
                             player<Neutral>("No thank you.")
@@ -37,17 +38,17 @@ class Hickton : Script {
                 }
 
                 option("Yes, please.") {
-                    openHicktonShop(this)
+                    openRobeShop(this)
                 }
 
-                option("No, I prefer to bash things close up.") {
-                    player<Neutral>("No, I prefer to bash things close up.")
+                option("No thank you.") {
+                    player<Neutral>("No thank you.")
                 }
             }
         }
     }
 
-    fun openHicktonShop(player: Player) {
-        player.openShop(player.skillcapeShop(Skill.Fletching, "hicktons_archery_emporium"))
+    fun openRobeShop(player: Player) {
+        player.openShop(player.skillcapeShop(Skill.Magic, "magic_guild_store_mystic_robes"))
     }
 }
