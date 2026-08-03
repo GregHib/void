@@ -8,6 +8,7 @@ import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Shock
 import content.entity.player.dialogue.Teary
+import content.entity.player.dialogue.buySkillcape
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -16,12 +17,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class Thok : Script {
     init {
@@ -61,22 +57,7 @@ class Thok : Script {
                 choice {
                     option("No, that's too much.")
                     option<Pleased>("Okay, that seems reasonable.") {
-                        inventory.transaction {
-                            val trimmed = Skill.entries.any { it != Skill.Dungeoneering && levels.getMax(it) >= Level.MAX_LEVEL }
-                            add("dungeoneering_cape${if (trimmed) "_t" else ""}")
-                            add("dungeoneering_hood")
-                            remove("coins", 99000)
-                        }
-                        when (inventory.transaction.error) {
-                            TransactionError.None -> npc<Happy>("Here go, great warrior. Thok will sing songs of your battles.")
-                            is TransactionError.Deficient -> {
-                                // TODO proper message
-                            }
-                            is TransactionError.Full, is TransactionError.Invalid -> {
-                                // TODO proper message
-                                npc<Sad>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
-                            }
-                        }
+                        buySkillcape(Skill.Dungeoneering, success = "Here go, great warrior. Thok will sing songs of your battles.")
                     }
                 }
             }

@@ -6,21 +6,16 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.buySkillcape
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import content.skill.summoning.enchantHeadgear
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class Pikkupstix : Script {
     init {
@@ -105,20 +100,7 @@ class Pikkupstix : Script {
                 npc<Idle>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item. You can find me here if you change your mind.")
             }
             option<Happy>("Okay, here's 99,000 coins.") {
-                inventory.transaction {
-                    val trimmed = Skill.entries.any { it != Skill.Summoning && levels.getMax(it) >= Level.MAX_LEVEL }
-                    add("summoning_cape${if (trimmed) "_t" else ""}")
-                    add("summoning_hood")
-                    remove("coins", 99000)
-                }
-                when (inventory.transaction.error) {
-                    TransactionError.None -> npc<Happy>("Good luck to you, $name.")
-                    is TransactionError.Deficient -> {
-                        player<Sad>("But, unfortunately, I was mistaken.")
-                        npc<Idle>("Well, come back and see me when you do.")
-                    }
-                    else -> npc<Sad>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
-                }
+                buySkillcape(Skill.Summoning, success = "Good luck to you, $name.")
             }
         }
     }

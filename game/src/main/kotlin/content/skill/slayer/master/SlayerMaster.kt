@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
@@ -93,6 +94,11 @@ internal suspend fun Player.slayerMasterChat(master: String) {
         }
         if (master == "turael" && questCompleted("animal_magnetism")) {
             option<Neutral>("I'm here about blessed axes again.")
+        }
+        if (master == "kuradal") {
+            option<Quiz>("What is that cape you're wearing?") {
+                skillcapeMasterDialogue(Skill.Slayer, "an incredible student")
+            }
         }
         option<Neutral>("Er...nothing... ")
     }

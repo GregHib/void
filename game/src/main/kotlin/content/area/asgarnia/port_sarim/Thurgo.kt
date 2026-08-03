@@ -7,6 +7,9 @@ import content.quest.quest
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.contains
@@ -204,6 +207,10 @@ class Thurgo : Script {
     suspend fun Player.thatCape() {
         player<Quiz>("What is that cape you're wearing?")
         npc<Happy>("It's a Skillcape of Smithing. It shows that I'm a master blacksmith, but that's only to be expected - after all, my ancestors were the greatest blacksmiths in dwarven history.")
-        npc<Happy>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
+        if (hasMax(Skill.Smithing, Level.MAX_LEVEL)) {
+            skillcapeOffer(Skill.Smithing, "a master blacksmith")
+        } else {
+            npc<Happy>("If you ever achieve level 99 Smithing you'll be able to wear a cape like this, and receive more experience when smelting gold ore.")
+        }
     }
 }

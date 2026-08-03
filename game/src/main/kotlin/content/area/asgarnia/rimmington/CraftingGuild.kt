@@ -1,6 +1,5 @@
 package content.area.asgarnia.rimmington
 
-import com.github.michaelbull.logging.InlineLogger
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
@@ -8,18 +7,11 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class CraftingGuild : Script {
-
-    val logger = InlineLogger()
 
     init {
         objectOperate("Open", "guild_door_2_closed") { (target) ->
@@ -49,21 +41,7 @@ class CraftingGuild : Script {
                         npc<Idle>("Not at all; there are many other adventurers who would love the opportunity to purchase such a prestigious item! You can find me here if you change your mind.")
                     }
                     option<Idle>("That's fine.") {
-                        inventory.transaction {
-                            val trimmed = Skill.entries.any { it != Skill.Crafting && levels.getMax(it) >= Level.MAX_LEVEL }
-                            remove("coins", 99000)
-                            add("crafting_cape${if (trimmed) "_t" else ""}")
-                            add("crafting_hood")
-                        }
-                        when (inventory.transaction.error) {
-                            is TransactionError.Deficient -> {
-                                player<Sad>("But, unfortunately, I don't have enough money with me.")
-                                npc<Idle>("Well, come back and see me when you do.")
-                            }
-                            is TransactionError.Full -> npc<Quiz>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
-                            TransactionError.None -> npc<Happy>("Excellent! Wear that cape with pride my friend.")
-                            else -> logger.debug { "Error buying crafting skillcape." }
-                        }
+                        buySkillcape(Skill.Crafting, deficient = "But, unfortunately, I don't have enough money with me.")
                     }
                 }
             } else {

@@ -1,18 +1,13 @@
 package content.area.misthalin.edgeville.monastery
 
-import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class BrotherJared : Script {
     init {
@@ -25,8 +20,6 @@ class BrotherJared : Script {
             }
         }
     }
-
-    private val logger = InlineLogger()
 
     private fun ChoiceOption.bold() {
         option<Quiz>("What can you do to help a bold adventurer like myself?") {
@@ -75,21 +68,7 @@ class BrotherJared : Script {
                         noThanks()
                     }
                     option<Happy>("I am always happy to contribute towards the monastery's upkeep.") {
-                        inventory.transaction {
-                            val trimmed = Skill.entries.any { it != Skill.Prayer && levels.getMax(it) >= Level.MAX_LEVEL }
-                            remove("coins", 99_000)
-                            add("prayer_cape${if (trimmed) "_t" else ""}")
-                            add("prayer_hood")
-                        }
-                        when (inventory.transaction.error) {
-                            is TransactionError.Deficient -> {
-                                player<Sad>("But, unfortunately, I don't have enough money with me.")
-                                npc<Idle>("Well, come back and see me when you do.")
-                            }
-                            is TransactionError.Full -> npc<Quiz>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
-                            TransactionError.None -> npc<Happy>("Excellent! Wear that cape with pride my friend.")
-                            else -> logger.debug { "Error buying prayer skillcape: ${inventory.transaction.error}." }
-                        }
+                        buySkillcape(Skill.Prayer, deficient = "But, unfortunately, I don't have enough money with me.")
                     }
                 }
             }

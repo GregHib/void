@@ -1,28 +1,20 @@
 package content.area.misthalin.draynor_village
 
-import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.Shifty
+import content.entity.player.dialogue.buySkillcape
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class Martin : Script {
-
-    val logger = InlineLogger()
 
     init {
         npcOperate("Talk-to", "martin_the_master_gardener") { (target) ->
@@ -40,21 +32,7 @@ class Martin : Script {
                             npc<Neutral>("No skin off my teeth, but if you change your mind, the price will still be the same.")
                         }
                         option<Neutral>("Sure, not many people own one.") {
-                            inventory.transaction {
-                                val trimmed = Skill.entries.any { it != Skill.Farming && levels.getMax(it) >= Level.MAX_LEVEL }
-                                remove("coins", 99000)
-                                add("farming_cape${if (trimmed) "_t" else ""}")
-                                add("farming_hood")
-                            }
-                            when (inventory.transaction.error) {
-                                is TransactionError.Deficient -> {
-                                    player<Sad>("But, unfortunately, I don't have enough money with me.")
-                                    npc<Idle>("Well, come back and see me when you do.")
-                                }
-                                is TransactionError.Full -> npc<Quiz>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
-                                TransactionError.None -> npc<Happy>("That's true; us Master Farmers are a unique breed.")
-                                else -> logger.debug { "Error buying farming skillcape." }
-                            }
+                            buySkillcape(Skill.Farming, success = "That's true; us Master Farmers are a unique breed.", deficient = "But, unfortunately, I don't have enough money with me.")
                         }
                     }
                 }
