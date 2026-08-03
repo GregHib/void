@@ -27,9 +27,6 @@ internal class AjjatTest : WorldTest() {
         player.dialogueOption(2)
         player.dialogueContinue(2)
 
-        println("DEBUG inv: " + player.inventory.items.filter { it.id.isNotEmpty() })
-        println("DEBUG max: " + Skill.entries.associateWith { player.levels.getMax(it) })
-
         assertEquals(1, player.inventory.count("attack_cape"))
         assertEquals(1, player.inventory.count("attack_hood"))
         assertEquals(0, player.inventory.count("coins"))
