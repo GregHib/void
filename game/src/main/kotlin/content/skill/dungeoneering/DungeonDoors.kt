@@ -185,9 +185,9 @@ class DungeonDoors : Script {
             return
         }
         if (direction.isHorizontal()) {
-            tele(tile.copy(x = target.tile.x + direction.delta.x * 2))
+            tele(Tile(x = target.tile.x + direction.delta.x * 2, y = tile.y.coerceIn(target.tile.y, target.tile.y + 1)))
         } else {
-            tele(tile.copy(y = target.tile.y + direction.delta.y * 2))
+            tele(Tile(x = tile.x.coerceIn(target.tile.x, target.tile.x + 1), y = target.tile.y + direction.delta.y * 2))
         }
     }
 
