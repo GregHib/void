@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
@@ -56,10 +57,11 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             val startRoom = dungeon.start()
             startRoom.open(this, dungeon)
             dungeon.players.add(index)
+            val center = instance.tile.add(startRoom.tile.x * 16 + 8, startRoom.tile.y * 16 + 8)
+            NPCs.add("smuggler_dungeoneering", center)
             spawnTableItems(instance.tile, complexity, dungeon, skills)
-            var tile = startRoom.tile
             delay(1) // Delay to avoid ghosting # 1000
-            tele(instance.tile.add(tile.x * 16 + 8, tile.y * 16 + 8))
+            tele(center.addY(-2))
         }
 
         adminCommand("dungeon") {
