@@ -119,58 +119,74 @@ examine = "A wooden gate."
 
 [gate_22_opened]
 id = 1560
+gate = false
+material = "iron"
 examine = "A wrought iron gate."
 
 [gate_22_closed]
 id = 1557
 gate = false
+material = "iron"
 examine = "A wrought iron gate."
 
 [gate_23_opened]
 id = 1561
+gate = false
+material = "iron"
 examine = "A wrought iron gate."
 
 [gate_23_closed]
 id = 1558
 gate = false
-examine = "A wrought iron gate."
-
-[gate_25]
-id = 1560
-examine = "A wrought iron gate."
-
-[gate_26]
-id = 1561
+material = "iron"
 examine = "A wrought iron gate."
 
 [gate_27_opened]
-id = 1562
+id = 1560
+gate = false
+material = "iron"
+examine = "A wrought iron gate."
 
 [gate_27_closed]
 id = 1589
+gate = false
+material = "iron"
 examine = "A wrought-iron gate."
 
 [gate_29_opened]
-id = 1562
+id = 1560
+gate = false
+material = "iron"
+examine = "A wrought iron gate."
 
 [gate_29_closed]
 id = 1596
 gate = false
+material = "iron"
 examine = "A wrought-iron gate."
 
 [gate_28_opened]
-id = 1563
+id = 1561
+gate = false
+material = "iron"
+examine = "A wrought iron gate."
 
 [gate_28_closed]
 id = 1590
+gate = false
+material = "iron"
 examine = "A wrought-iron gate."
 
 [gate_30_opened]
-id = 1563
+id = 1561
+gate = false
+material = "iron"
+examine = "A wrought iron gate."
 
 [gate_30_closed]
 id = 1597
 gate = false
+material = "iron"
 examine = "A wrought-iron gate."
 
 [gate_34_opened]
