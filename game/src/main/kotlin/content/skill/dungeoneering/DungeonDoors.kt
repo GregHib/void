@@ -11,12 +11,14 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class DungeonDoors : Script {
     init {
@@ -110,6 +112,7 @@ class DungeonDoors : Script {
             anim("pruning_mid_high")
             delay(2)
             target.remove()
+            clearAnim()
         }
 
         objectOperate("Dismiss", "ramokee_exile_*") { (target) ->
@@ -141,7 +144,7 @@ class DungeonDoors : Script {
     private suspend fun handleDoor(player: Player, interact: PlayerOnObjectInteract) {
         val target = interact.target
         val dir = direction(target) ?: return
-        val under = GameObjects.at(target.tile.add(dir.inverse())).firstOrNull()
+        val under = GameObjects.getLayer(target.tile.add(dir.inverse()), ObjectLayer.GROUND)
         if (under == null) {
             player.approachRange(1)
             player.openDoor(target)
