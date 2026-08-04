@@ -1,0 +1,61 @@
+[dungeoneering_tiers]
+names = "list<string>"
+
+[.melee]
+names = [
+    "novite",
+    "bathus",
+    "marmaros",
+    "kratonite",
+    "fractite",
+    "zephyrium",
+    "argonite",
+    "katagon",
+    "gorgonite",
+    "promethium",
+    "primal",
+]
+
+[.magic]
+names = [
+    "salve_",
+    "wildecress_",
+    "blightleaf_",
+    "roseblood_",
+    "bryll_",
+    "duskweed_",
+    "soulbell_",
+    "ecto",
+    "runic_",
+    "spiritbloom_",
+    "celestial_",
+]
+
+[.ranged]
+names = [
+    "protoleather",
+    "subleather",
+    "paraleather",
+    "archleather",
+    "dromoleather",
+    "spinoleather",
+    "gallileather",
+    "stegoleather",
+    "megaleather",
+    "tyrannoleather",
+    "saggittarian",
+]
+
+[.woodcutting]
+names = [
+    "tangle_gum",
+    "seeping_elm",
+    "blood_spindle",
+    "utuku",
+    "spinebeam",
+    "bovistrangler",
+    "thigat",
+    "corpsethorn",
+    "entgallow",
+    "grave_creeper",
+]

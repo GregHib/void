@@ -38,20 +38,8 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         for (sx in 0..1) {
             for (sy in 0..1) {
                 // Calculate the target zone offset (tx, ty) based on CW rotation
-                val tx = when (rotation) {
-                    0 -> sx
-                    1 -> 1 - sy
-                    2 -> 1 - sx
-                    3 -> sy
-                    else -> sx
-                }
-                val ty = when (rotation) {
-                    0 -> sy
-                    1 -> sx
-                    2 -> 1 - sy
-                    3 -> 1 - sx
-                    else -> sy
-                }
+                val tx = Dungeoneering.rotateX(sx, sy, rotation, 1)
+                val ty = Dungeoneering.rotateY(sx, sy, rotation, 1)
                 val clientRotation = (4 - rotation) % 4
                 zones.copy(zone.add(sx, sy), target.add(tx, ty), clientRotation)
             }
