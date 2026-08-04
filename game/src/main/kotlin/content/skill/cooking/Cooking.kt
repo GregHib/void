@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -119,6 +120,7 @@ class Cooking : Script {
         if (!inventory.replace(item.id, itemId)) {
             return true
         }
+        sound("cook")
         val xp = row.int("xp") / 10.0
         exp(Skill.Cooking, if (cooked) xp else 0.0)
         val message = row.string(if (cooked) "cooked_message" else "burnt_message")
