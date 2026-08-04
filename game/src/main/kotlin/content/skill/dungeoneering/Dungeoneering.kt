@@ -1,6 +1,7 @@
 package content.skill.dungeoneering
 
 import content.quest.smallInstance
+import content.skill.magic.spell.SpellRunes
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
@@ -112,6 +113,14 @@ class Dungeoneering(val dropTables: DropTables) : Script {
         }
     }
 
+    private fun giveItems(instance: Tile, complexity: Int, dungeon: DungeonMap, skills: Map<Skill, Int>) {
+        // Bound weapons - equip first weapon bound https://web.archive.org/web/20150406211914/http://www.xp-waste.com/weapon-wielded-at-the-start-of-a-floor-t2478.html
+        // Equip type of ring of kinship
+        if (complexity == 1) {
+            // Add armour and spells of all styles to inventory
+        }
+    }
+
     private val fish = arrayOf("heim_crab", "red_eye", "dusk_eel", "giant_flatfish", "short_finned_eel", "web_snipper", "bouldabass", "salve_eel", "blue_crab", "cave_moray")
 
     private fun spawnTableItems(instance: Tile, complexity: Int, dungeon: DungeonMap, skills: Map<Skill, Int>) {
@@ -217,37 +226,19 @@ class Dungeoneering(val dropTables: DropTables) : Script {
 
     private fun addSpell(items: MutableList<ItemDrop>, skills: Map<Skill, Int>) {
         val spells = mutableSetOf<String>()
-        val magicLevel = skills.getValue(Skill.Magic)
-        spells.add("wind_strike")
-        if (magicLevel >= 5) {
-            spells.add("water_strike")
+        val magicLevel = skills.getValue(Skill.Magic).coerceAtMost(if (World.members) 99 else 49)
+        val book = "modern_spellbook"
+        for (spell in Tables.stringList("dungeoneering_spells.list.components")) {
+            val level = SpellRunes.magicLevel(book, spell) ?: break
+            if (level > magicLevel) {
+                break
+            }
+            spells.add(spell)
         }
-        if (magicLevel >= 9) {
-            spells.add("earth_strike")
+        val spell = spells.random(random)
+        for (item in SpellRunes.requiredItems(book, spell) ?: return) {
+            items.add(ItemDrop("${item.key}_dungeoneering", item.value..item.value * 10))
         }
-        if (magicLevel >= 11) {
-            spells.add("weaken")
-        }
-        if (magicLevel >= 13) {
-            spells.add("fire_strike")
-        }
-        if (magicLevel >= 17) {
-            spells.add("wind_bolt")
-        }
-        if (magicLevel >= 20) {
-            spells.add("bind")
-        }
-        if (magicLevel >= 23) {
-            spells.add("water_bolt")
-        }
-        if (magicLevel >= 29) {
-            spells.add("earth_bolt")
-        }
-        if (magicLevel >= 35) {
-            spells.add("fire_bolt")
-        }
-        val table = dropTables.getValue("dungeoneering_${spells.random(random)}")
-        table.roll(list = items)
     }
 
     companion object {
