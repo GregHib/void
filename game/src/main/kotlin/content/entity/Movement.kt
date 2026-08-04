@@ -11,9 +11,11 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Distance.nearestTo
@@ -51,35 +53,15 @@ class Movement : Script {
 
         instruction<Walk> { player ->
             if (player.contains("delay")) {
+                // Buffer clicks made during a brief action lock (e.g. arriveDelay after
+                // opening a door) so they run the tick the delay expires instead of being lost
+                player.queue.clearWeak()
+                player.weakQueue("pending_walk") {
+                    walk(player, x, y, minimap)
+                }
                 return@instruction
             }
-            if (player.mode is Interact) {
-                player.clearAnim()
-            }
-            player.closeInterfaces()
-            player.clearWatch()
-            player.queue.clearWeak()
-            player.suspension = null
-            if (minimap && !player["a_world_in_microcosm_task", false]) {
-                player["a_world_in_microcosm_task"] = true
-            }
-
-            val target = player.tile.copy(x, y)
-            val border = borders[target.zone]
-            if (border != null && (target in border || player.tile in border)) {
-                val tile = border.nearestTo(player.tile)
-                val endSide = Border.getOppositeSide(border, tile)
-                player.walkTo(endSide, noCollision = true, forceWalk = true)
-            } else {
-                if (player.tile == target && player.mode != EmptyMode && player.mode != PauseMode) {
-                    player.mode = EmptyMode
-                }
-                player.walkTo(target, forceWalk = player.equipped(EquipSlot.Weapon).id == "stone_bowl" || player.equipped(EquipSlot.Hat).id.contains("bedsheet"))
-            }
-            if (player.suspension == null) {
-                player.walkTrigger?.invoke()
-                player.walkTrigger = null
-            }
+            walk(player, x, y, minimap)
         }
 
         playerDespawn {
@@ -96,6 +78,36 @@ class Movement : Script {
             if (Settings["world.npcs.collision", false]) {
                 remove(this)
             }
+        }
+    }
+
+    fun walk(player: Player, x: Int, y: Int, minimap: Boolean) {
+        if (player.mode is Interact) {
+            player.clearAnim()
+        }
+        player.closeInterfaces()
+        player.clearWatch()
+        player.queue.clearWeak()
+        player.suspension = null
+        if (minimap && !player["a_world_in_microcosm_task", false]) {
+            player["a_world_in_microcosm_task"] = true
+        }
+
+        val target = player.tile.copy(x, y)
+        val border = borders[target.zone]
+        if (border != null && (target in border || player.tile in border)) {
+            val tile = border.nearestTo(player.tile)
+            val endSide = Border.getOppositeSide(border, tile)
+            player.walkTo(endSide, noCollision = true, forceWalk = true)
+        } else {
+            if (player.tile == target && player.mode != EmptyMode && player.mode != PauseMode) {
+                player.mode = EmptyMode
+            }
+            player.walkTo(target, forceWalk = player.equipped(EquipSlot.Weapon).id == "stone_bowl" || player.equipped(EquipSlot.Hat).id.contains("bedsheet"))
+        }
+        if (player.suspension == null) {
+            player.walkTrigger?.invoke()
+            player.walkTrigger = null
         }
     }
 

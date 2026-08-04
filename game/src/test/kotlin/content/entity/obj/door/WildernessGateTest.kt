@@ -36,4 +36,18 @@ class WildernessGateTest : WorldTest() {
         assertNotNull(GameObjects.findOrNull(Tile(2947, 3904), "gate_30_closed"))
         assertFalse(player.containsMessage("won't budge"))
     }
+
+    @Test
+    fun `Walk click made while gate is opening is not lost`() {
+        val player = createPlayer(Tile(2948, 3906))
+        val gate = GameObjects.find(Tile(2948, 3904), "gate_29_closed")
+
+        player.objectOption(gate, "Open")
+        tick(2)
+        player.walk(Tile(2948, 3902))
+        tick(5)
+
+        assertNotNull(GameObjects.findOrNull(Tile(2948, 3903), "gate_29_opened"))
+        assertEquals(Tile(2948, 3902), player.tile)
+    }
 }
