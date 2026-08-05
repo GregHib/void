@@ -118,6 +118,9 @@ internal suspend fun Player.assignTaskDialogue(master: String) {
     }
     choice {
         option<Neutral>("Yes, please.") {
+            if (slayerMaster != "turael") {
+                slayerStreak = 0
+            }
             roll(master)
         }
         option<Neutral>("No, thanks.")
