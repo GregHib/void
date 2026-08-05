@@ -70,6 +70,14 @@ class Interfaces(
 
     fun contains(id: String): Boolean = interfaces[getType(id)] == id
 
+    fun refresh(id: String) {
+        if (!hasOpenOrRootParent(id)) {
+            return
+        }
+        sendOpen(id)
+        notifyRefresh(id)
+    }
+
     fun refresh() {
         for (id in interfaces.values) {
             sendOpen(id)

@@ -63,7 +63,7 @@ class GameFrame : Script {
 
         timerTick("gameframe_login_refresh") {
             // Reload chat_background to reveal display name
-            interfaces.refresh()
+            interfaces.refresh("chat_background")
             Timer.CANCEL
         }
 
