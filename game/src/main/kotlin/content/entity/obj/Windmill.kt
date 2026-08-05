@@ -39,11 +39,11 @@ class Windmill : Script {
         }
 
         itemOnObjectOperate("grain", "hopper*") { (target) ->
-            if (target.id == "hopper") {
-                if (quest("cooks_assistant") != "started") {
-                    fillGrain()
-                    return@itemOnObjectOperate
-                }
+            if (get("hopper_bin", 0) == 1) {
+                message("There is already grain in the hopper.")
+                return@itemOnObjectOperate
+            }
+            if (target.id == "hopper" && quest("cooks_assistant") == "started") {
                 if (get("cooks_assistant_talked_to_millie", 0) == 0) {
                     player<Neutral>("Hmm. I should probably ask that lady downstairs how I can make extra fine flour.")
                     return@itemOnObjectOperate
@@ -57,11 +57,7 @@ class Windmill : Script {
                     return@itemOnObjectOperate
                 }
             }
-            if (get("hopper_bin", 0) == 1) {
-                message("There is already grain in the hopper.")
-            } else {
-                fillGrain()
-            }
+            fillGrain()
         }
 
         objectOperate("Take-flour", "flour_bin*") { (target) ->
