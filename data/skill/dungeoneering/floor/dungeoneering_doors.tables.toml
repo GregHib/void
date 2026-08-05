@@ -14,9 +14,11 @@ open = "unbarred_door_frozen"
 
 [.mining]
 id = "pile_of_rocks_frozen"
+in_front = true
 
 [.firemaking]
 id = "flammable_debris_frozen"
+in_front = true
 
 [.magic]
 id = "magical_barrier_frozen"
@@ -28,7 +30,8 @@ in_front = true
 
 [.woodcutting]
 id = "wooden_barricade_frozen"
-open = "cleared_barricade_frozen"
+open = "cleared_barricade_door_frozen"
+in_front = true
 
 [.smithing]
 id = "broken_key_door_frozen"
