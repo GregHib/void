@@ -9,8 +9,13 @@ class ObjectTeleporting(val teleports: ObjectTeleports) : Script {
     init {
         for (option in teleports.options()) {
             objectOperate(option) { (target, option) ->
+                val def = target.def(this)
+                val id = def.stringId.ifEmpty { def.id.toString() }
+                if (!teleports.contains(id, target.tile, option)) {
+                    return@objectOperate
+                }
                 delay()
-                teleports.teleport(this, target, option)
+                teleports.teleport(this, target, option, def)
             }
         }
 
