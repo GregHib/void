@@ -1,0 +1,142 @@
+[dungeoneering_melee_armour]
+type = "first"
+drops = [
+    { id = "novite_full_helm" },
+    { id = "novite_platebody" },
+    { id = "novite_chainbody" },
+    { id = "novite_platelegs" },
+    { id = "novite_plateskirt" },
+    { id = "novite_gauntlets" },
+    { id = "novite_boots" },
+    { id = "novite_kiteshield" },
+]
+
+[dungeoneering_magic_armour]
+type = "first"
+drops = [
+    { id = "salve_hood" },
+    { id = "salve_robe_top" },
+    { id = "salve_robe_bottom" },
+    { id = "salve_gloves" },
+    { id = "salve_shoes" },
+]
+
+[dungeoneering_ranged_armour]
+type = "first"
+drops = [
+    { id = "protoleather_coif" },
+    { id = "protoleather_body" },
+    { id = "protoleather_chaps" },
+    { id = "protoleather_vambraces" },
+    { id = "protoleather_boots" },
+]
+
+[dungeoneering_weapons]
+type = "first"
+drops = [
+    { id = "novite_battleaxe" },
+    { id = "novite_dagger" },
+    { id = "novite_longsword" },
+    { id = "novite_maul" },
+    { id = "novite_rapier" },
+    { id = "novite_spear" },
+    { id = "novite_warhammer" },
+    { id = "novite_2h_sword" },
+    { table = "dungeoneering_bow" },
+    { id = "rune_essence_dungeoneering", min = 10, max = 40 },
+    { id = "tangle_gum_staff" },
+]
+
+[dungeoneering_wind_strike]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "mind_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_water_strike]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "mind_rune_dungeoneering", min = 10, max = 30 },
+    { id = "water_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_earth_strike]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "mind_rune_dungeoneering", min = 10, max = 30 },
+    { id = "earth_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_fire_strike]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "mind_rune_dungeoneering", min = 10, max = 30 },
+    { id = "fire_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_weaken]
+type = "all"
+drops = [
+    { id = "earth_rune_dungeoneering", min = 10, max = 30 },
+    { id = "body_rune_dungeoneering", min = 10, max = 30 },
+    { id = "water_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_bind]
+type = "all"
+drops = [
+    { id = "earth_rune_dungeoneering", min = 10, max = 30 },
+    { id = "nature_rune_dungeoneering", min = 10, max = 30 },
+    { id = "water_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_wind_bolt]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "chaos_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_water_bolt]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "chaos_rune_dungeoneering", min = 10, max = 30 },
+    { id = "water_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_earth_bolt]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "chaos_rune_dungeoneering", min = 10, max = 30 },
+    { id = "earth_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_fire_bolt]
+type = "all"
+drops = [
+    { id = "air_rune_dungeoneering", min = 10, max = 30 },
+    { id = "chaos_rune_dungeoneering", min = 10, max = 30 },
+    { id = "fire_rune_dungeoneering", min = 10, max = 30 },
+]
+
+[dungeoneering_bow]
+type = "all"
+drops = [
+    { id = "tangle_gum_shortbow" },
+    { id = "novite_arrows", min = 30, max = 50 },
+]
+
+[dungeoneering_starting_armour]
+type = "first"
+drops = [
+    { id = "argonite_platelegs" },
+    { id = "anti_dragon_shield_dungeoneering" },
+    { id = "novite_hatchet" },
+    { id = "novite_pickaxe" },
+]

@@ -1,0 +1,97 @@
+[dungeoneering_tiers]
+names = "list<string>"
+
+[.melee]
+names = [
+    "novite",
+    "bathus",
+    "marmaros",
+    "kratonite",
+    "fractite",
+    "zephyrium",
+    "argonite",
+    "katagon",
+    "gorgonite",
+    "promethium",
+    "primal",
+]
+
+[.magic]
+names = [
+    "salve_",
+    "wildecress_",
+    "blightleaf_",
+    "roseblood_",
+    "bryll_",
+    "duskweed_",
+    "soulbell_",
+    "ecto",
+    "runic_",
+    "spiritbloom_",
+    "celestial_",
+]
+
+[.ranged]
+names = [
+    "protoleather",
+    "subleather",
+    "paraleather",
+    "archleather",
+    "dromoleather",
+    "spinoleather",
+    "gallileather",
+    "stegoleather",
+    "megaleather",
+    "tyrannoleather",
+    "saggittarian",
+]
+
+[.woodcutting]
+names = [
+    "tangle_gum",
+    "seeping_elm",
+    "blood_spindle",
+    "utuku",
+    "spinebeam",
+    "bovistrangler",
+    "thigat",
+    "corpsethorn",
+    "entgallow",
+    "grave_creeper",
+]
+
+[dungeoneering_spells]
+components = "list<string>"
+
+[.list]
+components = [
+    "wind_strike",
+    "confuse",
+    "water_strike",
+    "earth_strike",
+    "weaken",
+    "fire_strike",
+    "wind_bolt",
+    "curse",
+    "bind",
+    "water_bolt",
+    "earth_bolt",
+    "fire_bolt",
+    "wind_blast",
+    "water_blast",
+    "snare",
+    "earth_blast",
+    "fire_blast",
+    "wind_wave",
+    "water_wave",
+    "vulnerability",
+    "earth_wave",
+    "enfeeble",
+    "fire_wave",
+    "entangle",
+    "stun",
+    "wind_surge",
+    "water_surge",
+    "earth_surge",
+    "fire_surge",
+]
