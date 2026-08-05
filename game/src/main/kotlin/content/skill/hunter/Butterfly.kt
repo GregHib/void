@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 class Butterfly : Script {
     init {
-        itemOption("Release", "ruby_harvest,sapphire_glacialis,snowy_knight,black_warlock") { (item) ->
+        itemOption("Release", "ruby_harvest,sapphire_glacialis,snowy_knight,black_warlock_feldip_hills") { (item) ->
             anim("open_butterfly_jar")
             gfx("release_${item.id}")
             bonus(item.id)
@@ -32,7 +32,7 @@ class Butterfly : Script {
             message("You release the ${item.id.toLowerSpaceCase()} butterfly from the jar.")
         }
 
-        npcOperate("Catch", "ruby_harvest,sapphire_glacialis,snowy_knight,black_warlock") { (target) ->
+        npcOperate("Catch", "ruby_harvest,sapphire_glacialis,snowy_knight,black_warlock_feldip_hills") { (target) ->
             val butterfly = Rows.getOrNull("butterflies.${target.id}") ?: return@npcOperate
             val net = weapon.id == "butterfly_net" || weapon.id == "magic_butterfly_net"
             val level = if (net) butterfly.int("level") else butterfly.int("level_hands")
