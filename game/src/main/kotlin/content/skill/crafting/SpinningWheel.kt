@@ -56,9 +56,7 @@ class SpinningWheel : Script {
                 maximum = 28,
                 text = "How many would you like to make?",
             )
-
-            delay()
-            var item = fibres[index]
+            var item = availableFibres[index]
             if (item.id == "tree_roots") {
                 val root = treeRoots.firstOrNull { inventory.contains(it.id) }
                 if (root == null) {
