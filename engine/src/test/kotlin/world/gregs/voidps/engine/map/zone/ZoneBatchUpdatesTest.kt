@@ -46,6 +46,7 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
         player["logged_in"] = false
         player.viewport = Viewport()
         player.viewport!!.size = 0
+        player.viewport!!.loaded = true
     }
 
     @Test
