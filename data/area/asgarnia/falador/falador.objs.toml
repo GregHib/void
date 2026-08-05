@@ -25,3 +25,7 @@ examine = "Ideal for cooking on."
 [spinning_wheel_falador]
 id = 2644
 examine = "Used for spinning thread."
+
+[waterpump_falador]
+id = 11661
+examine = "A handy source of water."
