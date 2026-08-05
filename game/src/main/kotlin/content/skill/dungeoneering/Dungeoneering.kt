@@ -159,7 +159,7 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             Delta(x = 11, y = 11),
             Delta(x = 9, y = 10),
             Delta(x = 10, y = 10),
-            Delta(x = 11, y = 10)
+            Delta(x = 11, y = 10),
         )
         println("Table items:")
         for (drop in items) {
