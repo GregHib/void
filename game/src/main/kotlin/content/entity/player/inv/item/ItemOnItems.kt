@@ -208,8 +208,11 @@ class ItemOnItems(val itemOnItemDefs: ItemOnItemDefinitions) : Script {
                 setCharge(index, charges)
             }
             if (failed) {
-                println(error)
-                return "You don't have enough inventory space to ${def.type} this."
+                return when (error) {
+                    is TransactionError.Deficient -> "You don't have enough items ${def.type} this."
+                    is TransactionError.Full -> "You don't have enough inventory space to ${def.type} this."
+                    else -> "Unknown error creating item."
+                }
             }
         }
         return ""

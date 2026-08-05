@@ -2427,3 +2427,57 @@ remove = ["antipoison+_4", "vial"]
 add = ["antipoison+_2", "antipoison+_2"]
 ticks = 1
 message = "You split the potion between the two vials."
+
+[antifire_combine_1]
+remove = ["antifire_1", "antifire_1"]
+add = ["antifire_2", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antifire_combine_2]
+remove = ["antifire_2", "antifire_1"]
+add = ["antifire_3", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antifire_combine_3]
+remove = ["antifire_3", "antifire_1"]
+add = ["antifire_4", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antifire_combine_4]
+remove = ["antifire_2", "antifire_2"]
+add = ["antifire_4", "vial"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antifire_combine_5]
+remove = ["antifire_3", "antifire_2"]
+add = ["antifire_4", "antifire_1"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antifire_combine_6]
+remove = ["antifire_3", "antifire_3"]
+add = ["antifire_4", "antifire_2"]
+ticks = 1
+message = "You pour from one container into the other."
+
+[antifire_split_1]
+remove = ["antifire_2", "vial"]
+add = ["antifire_1", "antifire_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[antifire_split_2]
+remove = ["antifire_3", "vial"]
+add = ["antifire_2", "antifire_1"]
+ticks = 1
+message = "You split the potion between the two vials."
+
+[antifire_split_3]
+remove = ["antifire_4", "vial"]
+add = ["antifire_2", "antifire_2"]
+ticks = 1
+message = "You split the potion between the two vials."

@@ -63,6 +63,7 @@ examine = "He looks short and grumpy."
 
 [tegid]
 id = 1213
+interacts = false
 examine = "He's washing his clothes in the lake."
 
 [gaius]
