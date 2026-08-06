@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.MoveItemLimit.moveToLimit
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import kotlin.math.min
 
 class ShopSell(val inventoryDefinitions: InventoryDefinitions) : Script {
@@ -93,42 +94,52 @@ class ShopSell(val inventoryDefinitions: InventoryDefinitions) : Script {
                 Items.sold(player, actual)
             }
         }
-        val remaining = amount - returned
-        if (remaining <= 0) {
-            return
-        }
-        val shop = player.shopInventory(false)
-        var moved = 0
-        val price = item.sellPrice()
-        player.inventory.transaction {
-            moved = moveToLimit(item.id, remaining, shop, notNoted.id)
-            if (moved == 0) {
-                this.error = TransactionError.Full(remaining)
-                return@transaction
+        sell(player, item, amount, 0.4, notNoted, returned, player.shopInventory(false))
+    }
+
+    companion object {
+        fun sell(player: Player, item: Item, amount: Int, multiplier: Double, notNoted: Item = item, returned: Int = 0, shop: Inventory? = null) {
+            val remaining = amount - returned
+            if (remaining <= 0) {
+                return
             }
-            if (price > 0) {
-                add(player.shopCurrency(), price * moved)
-            }
-        }
-        when (player.inventory.transaction.error) {
-            is TransactionError.Full -> {
-                if (returned > 0) {
-                    // Sold-out remainder after a sample return isn't an error
-                } else if (player.inventory.isFull() && !player.inventory.contains("coins")) {
-                    player.inventoryFull()
-                } else if (shop.isFull()) {
-                    player.message("The shop is currently full.")
+            var moved = 0
+            val price = (item.def.cost * multiplier).toInt()
+            player.inventory.transaction {
+                moved = if (shop == null) {
+                    removeToLimit(item.id, remaining)
                 } else {
-                    player.message("You can't sell this item to this shop.")
+                    moveToLimit(item.id, remaining, shop, notNoted.id)
+                }
+                if (moved == 0) {
+                    this.error = TransactionError.Full(remaining)
+                    return@transaction
+                }
+                if (price > 0) {
+                    val currency = player["shop_currency", "coins"]
+                    add(currency, price * moved)
                 }
             }
-            TransactionError.Invalid -> if (returned == 0) {
-                player.message("You can't sell this item to this shop.")
-            }
-            else -> {
-                val actual = Item(item.id, moved)
-                AuditLog.event(player, "sold", actual, shop.id, price)
-                Items.sold(player, actual)
+            when (player.inventory.transaction.error) {
+                is TransactionError.Full -> {
+                    if (returned > 0) {
+                        // Sold-out remainder after a sample return isn't an error
+                    } else if (player.inventory.isFull() && !player.inventory.contains("coins")) {
+                        player.inventoryFull()
+                    } else if (shop != null && shop.isFull()) {
+                        player.message("The shop is currently full.")
+                    } else {
+                        player.message("You can't sell this item to this shop.")
+                    }
+                }
+                TransactionError.Invalid -> if (returned == 0) {
+                    player.message("You can't sell this item to this shop.")
+                }
+                else -> {
+                    val actual = Item(item.id, moved)
+                    AuditLog.event(player, "sold", actual, shop?.id ?: "dungeoneering_smuggler", price)
+                    Items.sold(player, actual)
+                }
             }
         }
     }

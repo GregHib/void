@@ -1,5 +1,6 @@
 package content.area.wilderness.daemonheim
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Disheartened
@@ -17,6 +18,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 
@@ -28,7 +30,11 @@ class Smuggler : Script {
         }
 
         npcOperate("Trade", "smuggler_dungeoneering") {
-            npc<Neutral>("Sorry, but I don't have anything to sell.")
+            if (inDungeoneering && get("dungeon_party_complexity", 1) > 1) {
+                open("dungeon_shop")
+            } else {
+                npc<Neutral>("Sorry, but I don't have anything to sell.")
+            }
         }
 
         itemOnNPCOperate("*", "smuggler_dungeoneering") {

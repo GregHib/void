@@ -15,25 +15,26 @@ object ItemInfo {
 
     fun showInfo(player: Player, item: Item, price: Int = -1) {
         player.open("item_info")
-        if (item.isNotEmpty()) {
-            player["info_title_colour"] = Colours.ORANGE
-            player["info_colour"] = Colours.ORANGE
-            player["info_item"] = item.def.id
-            val def = item.def
-            if (def.options.contains("Wear") || def.options.contains("Wield")) {
-                player["info_left"] = attackStatsColumn(def)
-                player["info_middle"] = middleColumn
-                player["info_right"] = defenceStatsColumn(def)
-                setRequirements(player, def)
-            } else {
-                player["info_left"] = ""
-                player["info_middle"] = ""
-                player["info_right"] = ""
-                player["item_info_requirement_title"] = ""
-            }
-            player["item_info_price"] = price
-            player["item_info_examine"] = "'${def["examine", "It's a null."]}'"
+        if (!item.isNotEmpty()) {
+            return
         }
+        player["info_title_colour"] = Colours.ORANGE
+        player["info_colour"] = Colours.ORANGE
+        player["info_item"] = item.def.id
+        val def = item.def
+        if (def.options.contains("Wear") || def.options.contains("Wield")) {
+            player["info_left"] = attackStatsColumn(def)
+            player["info_middle"] = middleColumn
+            player["info_right"] = defenceStatsColumn(def)
+            setRequirements(player, def)
+        } else {
+            player["info_left"] = ""
+            player["info_middle"] = ""
+            player["info_right"] = ""
+            player["item_info_requirement_title"] = ""
+        }
+        player["item_info_price"] = price
+        player["item_info_examine"] = "'${def["examine", "It's a null."]}'"
     }
 
     private fun setRequirements(player: Player, def: ItemDefinition) {
