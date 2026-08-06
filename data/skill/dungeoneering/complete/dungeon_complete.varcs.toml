@@ -1,0 +1,53 @@
+[rand_party_current_floor_trans]
+id = 1319
+
+[rand_dungeon_size_trans]
+id = 1188
+
+[rand_display_stage]
+id = 1186
+
+[rand_rewards_fade]
+id = 1185
+
+[rand_party_bonus_exploration]
+id = 1195
+
+[rand_party_complexity_level_trans]
+id = 1320
+
+[rand_display_stage]
+id = 1186
+
+[rand_nurf_amount_trans]
+id = 1321
+
+[rand_pointsmod_varc]
+id = 1236
+
+[rand_basefloor_varc]
+id = 1237
+
+[rand_prestige_varc]
+id = 1238
+
+[rand_totalfloor_varc]
+id = 1239
+
+[rand_dungeon_difficulty_trans]
+id = 1191
+
+[rand_exists_1]
+id = 1198
+
+[rand_exists_2]
+id = 1199
+
+[rand_exists_3]
+id = 1200
+
+[rand_exists_4]
+id = 1201
+
+[rand_exists_5]
+id = 1202
