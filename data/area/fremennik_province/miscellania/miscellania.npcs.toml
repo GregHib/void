@@ -58,18 +58,22 @@ max_hit_melee = 10
 respawn_delay = 25
 drop_table = "bones"
 examine = "A warrior of Etceteria."
+combat_def = "guard"
 
 [skraeling_battleaxe]
 id = 1368
 clone = "skraeling"
+combat_def = "guard"
 
 [skraeling_brown_shirt]
 id = 1389
 clone = "skraeling"
+combat_def = "guard"
 
 [skraeling_green_shirt]
 id = 1391
 clone = "skraeling"
+combat_def = "guard"
 
 [fishmonger_etceteria]
 id = 1369
@@ -141,11 +145,14 @@ max_hit_melee = 10
 respawn_delay = 50
 drop_table = "bones"
 examine = "A subject of Miscellania."
+max_hit_crush = 10
 
 [alrik]
 id = 1381
 examine = "A subject of Miscellania."
 drop_table = "alrik"
+hitpoints = 10
+max_hit_crush = 10
 
 [thorhild]
 id = 1382
@@ -155,6 +162,7 @@ max_hit_melee = 10
 respawn_delay = 50
 drop_table = "bones"
 examine = "A subject of Miscellania."
+max_hit_crush = 10
 
 [halla]
 id = 1383
@@ -180,6 +188,7 @@ max_hit_melee = 10
 respawn_delay = 25
 drop_table = "bones"
 examine = "A subject of Miscellania."
+max_hit_crush = 10
 
 [thora]
 id = 1387
@@ -197,6 +206,7 @@ max_hit_melee = 10
 respawn_delay = 25
 examine = "A subject of Miscellania."
 drop_table = "bones"
+max_hit_crush = 10
 
 [broddi]
 id = 1390
@@ -209,6 +219,7 @@ max_hit_melee = 10
 respawn_delay = 25
 drop_table = "bones"
 examine = "A subject of Miscellania."
+max_hit_crush = 10
 
 [ragnvald]
 id = 1392
@@ -221,6 +232,7 @@ max_hit_melee = 10
 respawn_delay = 25
 drop_table = "bones"
 examine = "A subject of Miscellania."
+max_hit_crush = 10
 
 [fishmonger_miscellania]
 id = 1393
@@ -256,10 +268,14 @@ id = 1401
 categories = ["birds"]
 examine = "Yep. Definitely a chicken."
 drop_table = "chicken"
+combat_def = "chicken"
+hitpoints = 30
 
 [chicken_miscellania_2]
 id = 1402
 drop_table = "chicken"
+combat_def = "chicken"
+hitpoints = 30
 
 [rooster_miscellania]
 id = 1403
@@ -272,6 +288,7 @@ immune_poison = true
 respawn_delay = 25
 examine = "He rules the, er, roost."
 drop_table = "rooster"
+combat_def = "chicken"
 
 [rabbit_miscellania]
 id = 1404
@@ -387,6 +404,7 @@ categories = ["sea_snakes"]
 respawn_delay = 50
 drop_table = "sea_snake_hatchling"
 examine = "Snake, snake, oh, it's a young snake..."
+max_hit_crush = 80
 
 [sea_snake_hatchling]
 id = 3940
@@ -401,6 +419,7 @@ categories = ["sea_snakes"]
 respawn_delay = 50
 drop_table = "sea_snake_hatchling"
 examine = "A baby sea snake. Snaaaaaaake!"
+max_hit_crush = 60
 
 [guard_miscellania_2]
 id = 3941
@@ -417,6 +436,9 @@ examine = "Perhaps this gardener might look after your crops for you."
 [rabbit_miscellania_2]
 id = 5829
 drop_table = "rabbit"
+combat_def = "rabbit_miscellania"
+hitpoints = 50
+max_hit_crush = 10
 
 [king_vargas_2]
 id = 7403

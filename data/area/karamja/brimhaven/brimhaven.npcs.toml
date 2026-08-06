@@ -70,26 +70,61 @@ examine = "An amulet trader."
 id = 6346
 examine = "Avast ye scurvy land lubbers!"
 drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+attack_bonus = 8
+max_hit_slash = 30
 
 [pirate_brimhaven_2]
 id = 6347
 examine = "Avast ye scurvy land lubbers!"
 drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+attack_bonus = 8
+max_hit_slash = 30
 
 [pirate_brimhaven_3]
 id = 6348
 examine = "Avast ye scurvy land lubbers!"
 drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+attack_bonus = 8
+max_hit_slash = 30
 
 [pirate_brimhaven_4]
 id = 6349
 examine = "Avast ye scurvy land lubbers!"
 drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+attack_bonus = 8
+max_hit_slash = 30
 
 [pirate_brimhaven_5]
 id = 6350
 examine = "Avast ye scurvy land lubbers!"
 drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 200
+att = 21
+str = 21
+def = 21
+attack_bonus = 8
+max_hit_slash = 30
 
 [tool_leprechaun_brimhaven]
 id = 7558
@@ -115,6 +150,7 @@ attack_bonus = 5
 respawn_delay = 50
 examine = "Looks like he's been in the wars..."
 drop_table = "grip"
+max_hit_slash = 30
 
 [alfonse_the_waiter_brimhaven]
 id = 793
@@ -136,6 +172,7 @@ attack_bonus = 20
 respawn_delay = 50
 drop_table = "bones"
 examine = "A morally ambiguous guard."
+combat_def = "guard"
 
 [thief_brimhaven]
 id = 8
@@ -149,6 +186,8 @@ max_hit_melee = 20
 respawn_delay = 25
 examine = "Known for his light-fingered qualities."
 drop_table = "thief"
+combat_def = "man"
+max_hit_crush = 20
 
 [kangai_mau_brimhaven]
 id = 846

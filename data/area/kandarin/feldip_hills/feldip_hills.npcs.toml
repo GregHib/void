@@ -13,11 +13,20 @@ categories = ["ogres"]
 respawn_delay = 30
 examine = "A large dim looking humanoid."
 drop_table = "ogre"
+combat_def = "ogre"
+max_hit_crush = 70
 
 [ogre_feldip_hills_2]
 id = 3451
 clone = "ogre_feldip_hills"
 drop_table = "ogre"
+combat_def = "ogre"
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_bonus = 22
+max_hit_crush = 70
 
 [ogre_boat_feldip_hills]
 id = 3469
@@ -38,6 +47,7 @@ max_hit_melee = 10
 respawn_delay = 7
 examine = "It looks fluffy and cute; it's probably deadly."
 drop_table = "empty"
+max_hit_crush = 10
 
 [black_warlock_feldip_hills]
 id = 5082
@@ -72,12 +82,14 @@ id = 7079
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."
 drop_table = "ogress_warrior"
+combat_def = "guard"
 
 [ogress_warrior_2]
 id = 7080
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."
 drop_table = "ogress_warrior"
+combat_def = "guard"
 
 [ogress_feldip_hills]
 id = 7081

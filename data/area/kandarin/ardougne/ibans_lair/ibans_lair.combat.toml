@@ -1,0 +1,34 @@
+[soulless]
+attack_speed = 4
+
+[soulless.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+
+[othainian]
+attack_speed = 4
+
+[othainian.melee]
+range = 1
+target_hit = { offense = "slash", max = 90 }
+
+[doomion]
+attack_speed = 4
+
+[doomion.melee]
+range = 1
+target_hit = { offense = "slash", max = 90 }
+
+[holthion]
+attack_speed = 4
+
+[holthion.melee]
+range = 1
+target_hit = { offense = "slash", max = 90 }
+
+[disciple_of_iban]
+attack_speed = 4
+
+[disciple_of_iban.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }

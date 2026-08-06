@@ -21,10 +21,12 @@ id = 11695
 id = 11696
 examine = "A Black Knight with lots of combat experience."
 drop_table = "empty"
+combat_def = "black_knight"
 
 [black_knight_guardian_kinshra_workshop_2]
 id = 11697
 drop_table = "empty"
+combat_def = "black_knight"
 
 [black_knight_doorkeeper_2]
 id = 11690

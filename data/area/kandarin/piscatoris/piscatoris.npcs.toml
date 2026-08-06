@@ -44,6 +44,7 @@ categories = ["skeletons"]
 respawn_delay = 50
 examine = "Doesn't seem to want to go away."
 drop_table = "skeleton_mage"
+combat_def = "skeleton_mage"
 
 [brian_twitcher]
 id = 8579

@@ -12,6 +12,7 @@ style = "crush"
 categories = ["mole"]
 respawn_delay = 16
 examine = "Holy Mole-y!"
+max_hit_crush = 210
 
 [baby_mole]
 id = 3341

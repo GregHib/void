@@ -1,0 +1,20 @@
+[poltenip]
+attack_speed = 4
+
+[poltenip.melee]
+range = 1
+target_hit = { offense = "stab", max = 30 }
+
+[radat]
+attack_speed = 4
+
+[radat.melee]
+range = 1
+target_hit = { offense = "stab", max = 30 }
+
+[billy_goat]
+attack_speed = 4
+
+[billy_goat.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }

@@ -1,0 +1,13 @@
+[watchman]
+attack_speed = 4
+
+[watchman.melee]
+range = 1
+target_hit = { offense = "crush", max = 40 }
+
+[colonel_radick]
+attack_speed = 4
+
+[colonel_radick.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }

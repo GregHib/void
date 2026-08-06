@@ -69,6 +69,7 @@ categories = ["dagannoth"]
 respawn_delay = 30
 drop_table = "bones"
 examine = "A knee-high horror from the ocean depths..."
+max_hit_stab = 60
 
 [dagannoth_supreme]
 id = 2881

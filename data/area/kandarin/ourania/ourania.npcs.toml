@@ -113,6 +113,12 @@ id = 491
 categories = ["ghosts"]
 examine = "Spooky."
 drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [spirit_of_scorpius_ourania]
 id = 492

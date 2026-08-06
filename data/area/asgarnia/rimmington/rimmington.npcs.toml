@@ -75,40 +75,88 @@ drop_table = "zombie_rat"
 [skeleton_rimmington]
 id = 6091
 drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
 
 [skeleton_rimmington_2]
 id = 6092
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
 drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
 
 [skeleton_rimmington_3]
 id = 6093
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
 drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
 
 [ghost_rimmington]
 id = 6094
 drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_2]
 id = 6095
 drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_3]
 id = 6096
 drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_4]
 id = 6097
 categories = ["ghosts"]
 examine = "Eeek! A ghost!"
 drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_5]
 id = 6098
 drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [tool_leprechaun_rimmington]
 id = 7559

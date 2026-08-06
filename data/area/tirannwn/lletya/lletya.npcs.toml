@@ -36,11 +36,13 @@ categories = ["elves"]
 respawn_delay = 30
 examine = "I don't want to get on the wrong side of him."
 drop_table = "elf_warrior"
+combat_def = "guard"
 
 [elf_warrior_lletya_2]
 id = 2360
 clone = "elf_warrior_lletya"
 drop_table = "elf_warrior"
+combat_def = "guard"
 
 [elf_warrior_lletya_3]
 id = 2361
@@ -57,11 +59,13 @@ categories = ["elves"]
 respawn_delay = 30
 examine = "She looks pretty handy with that bow."
 drop_table = "elf_warrior"
+combat_def = "guard"
 
 [elf_warrior_lletya_4]
 id = 2362
 clone = "elf_warrior_lletya_3"
 drop_table = "elf_warrior"
+combat_def = "guard"
 
 [goreu]
 id = 2363
@@ -108,6 +112,8 @@ attack_bonus = -15
 respawn_delay = 45
 drop_table = "ram"
 examine = "White and fluffy."
+combat_def = "ram_freds_farm"
+max_hit_crush = 10
 
 [gwir]
 id = 8894

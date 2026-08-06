@@ -11,6 +11,8 @@ attack_bonus = 8
 respawn_delay = 25
 examine = "Don't let her arm-wrestle you for money."
 drop_table = "barbarian"
+max_hit_crush = 20
+combat_def = "barbarian"
 
 [stray_dog_defender_of_varrock]
 id = 5917
@@ -22,22 +24,27 @@ id = 5918
 [armoured_zombie_defender_of_varrock]
 id = 8159
 drop_table = "armoured_zombie"
+combat_def = "zombie_sword"
 
 [armoured_zombie_defender_of_varrock_2]
 id = 8160
 drop_table = "armoured_zombie"
+combat_def = "zombie_sword"
 
 [armoured_zombie_defender_of_varrock_3]
 id = 8161
 drop_table = "armoured_zombie"
+combat_def = "zombie_sword"
 
 [armoured_zombie_defender_of_varrock_4]
 id = 8162
 drop_table = "armoured_zombie"
+combat_def = "zombie_sword"
 
 [armoured_zombie_defender_of_varrock_5]
 id = 8163
 drop_table = "armoured_zombie"
+combat_def = "zombie_sword"
 
 [arrav_defender_of_varrock]
 id = 8169
@@ -46,6 +53,13 @@ examine = "He has seen better, happier days."
 [guard_defender_of_varrock]
 id = 8173
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [ellamaria_defender_of_varrock]
 id = 8175

@@ -43,3 +43,17 @@ death_sound = "monkey_death"
 [ninja_monkey.melee]
 anim = "ninja_monkey_attack_double_scimitar"
 target_hit = { offense = "slash", max = 140 }
+
+[padulah]
+attack_speed = 4
+
+[padulah.melee]
+range = 1
+target_hit = { offense = "slash", max = 200 }
+
+[monkey_archer]
+attack_speed = 4
+
+[monkey_archer.range]
+range = 6
+target_hit = { offense = "range", max = 200 }

@@ -1,0 +1,6 @@
+[giant_crab]
+attack_speed = 4
+
+[giant_crab.melee]
+range = 1
+target_hit = { offense = "crush", max = 90 }

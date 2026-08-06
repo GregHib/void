@@ -12,4 +12,5 @@ hunt_mode = "cowardly"
 respawn_delay = 30
 examine = "He looks totally insane!"
 drop_table = "melzar_the_mad"
+max_hit_crush = 50
 

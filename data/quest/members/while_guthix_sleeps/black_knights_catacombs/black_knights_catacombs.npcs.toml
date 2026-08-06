@@ -2,6 +2,7 @@
 id = 8312
 examine = "An elite dark warrior with lots of combat experience."
 drop_table = "elite_dark_warrior"
+combat_def = "guard"
 
 [elite_dark_ranger_black_knights_catacombs]
 id = 8316

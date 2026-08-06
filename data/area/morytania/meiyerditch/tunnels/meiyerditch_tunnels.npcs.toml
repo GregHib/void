@@ -28,6 +28,7 @@ id = 7641
 categories = ["crawling_hands"]
 examine = "A giant, zombified hand. I don't think I should offer to shake hands."
 drop_table = "zombie_hand"
+combat_def = "zombie"
 
 [mutated_bloodveld_meiyerditch_tunnels]
 id = 7642

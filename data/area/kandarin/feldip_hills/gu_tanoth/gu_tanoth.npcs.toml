@@ -35,6 +35,7 @@ categories = ["ogres"]
 respawn_delay = 300
 drop_table = "city_guard"
 examine = "Tough-looking."
+max_hit_crush = 90
 
 [toban_gu_tanoth]
 id = 855
@@ -55,6 +56,8 @@ categories = ["ogres"]
 respawn_delay = 30
 drop_table = "gorad"
 examine = "Big, dumb and ugly."
+max_hit_crush = 70
+combat_def = "gorad"
 
 [ogre_guard_gu_tanoth]
 id = 858
@@ -86,6 +89,7 @@ categories = ["ogres"]
 respawn_delay = 50
 drop_table = "city_guard"
 examine = "Tries to keep the peace."
+combat_def = "guard"
 
 [scared_skavid_gu_tanoth]
 id = 863
@@ -122,6 +126,7 @@ categories = ["ogres"]
 respawn_delay = 12
 drop_table = "city_guard"
 examine = "Big and ugly looking."
+combat_def = "guard"
 
 [ogre_trader_gu_tanoth]
 id = 873

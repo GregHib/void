@@ -1,0 +1,6 @@
+[crocodile]
+attack_speed = 4
+
+[crocodile.melee]
+range = 1
+target_hit = { offense = "slash", max = 60 }

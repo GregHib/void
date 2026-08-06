@@ -27,11 +27,16 @@ attack_bonus = -47
 respawn_delay = 25
 examine = "Aww, how cute."
 drop_table = "rabbit"
+combat_def = "rabbit_miscellania"
+max_hit_crush = 10
 
 [rabbit_isafdar_2]
 id = 1194
 clone = "rabbit_isafdar"
 drop_table = "rabbit"
+combat_def = "rabbit_miscellania"
+hitpoints = 50
+max_hit_crush = 10
 
 [grenwall]
 id = 7010

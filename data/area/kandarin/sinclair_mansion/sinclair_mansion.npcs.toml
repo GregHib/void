@@ -16,6 +16,7 @@ hunt_mode = "cowardly"
 respawn_delay = 100
 drop_table = "highwayman"
 examine = "He holds up passers by."
+combat_def = "highwayman"
 
 [highwayman_no_hood]
 id = 2677

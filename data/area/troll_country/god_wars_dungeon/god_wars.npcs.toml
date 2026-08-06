@@ -12,6 +12,7 @@ examine = "An ancient spirit of nature."
 id = 13456
 examine = "He looks angry and dangerous!"
 drop_table = "ancient_warrior"
+combat_def = "guard"
 
 [ancient_ranger]
 id = 13457

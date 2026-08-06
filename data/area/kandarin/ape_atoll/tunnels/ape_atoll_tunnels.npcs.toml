@@ -15,4 +15,10 @@ id = 1471
 categories = ["skeletons"]
 examine = "It looks just a bit... underfed."
 drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
 

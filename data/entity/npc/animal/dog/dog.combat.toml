@@ -19,3 +19,10 @@ death_anim = "medium_dog_death"
 [guard_dog.melee]
 clone = "jackal.melee"
 anim = "medium_dog_attack"
+
+[wild_dog]
+attack_speed = 4
+
+[wild_dog.melee]
+range = 1
+target_hit = { offense = "stab", max = 60 }

@@ -1,0 +1,6 @@
+[bedabin_nomad_fighter]
+attack_speed = 4
+
+[bedabin_nomad_fighter.melee]
+range = 1
+target_hit = { offense = "slash", max = 70 }

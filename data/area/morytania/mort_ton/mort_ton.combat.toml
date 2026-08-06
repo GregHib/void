@@ -23,3 +23,10 @@ range = 1
 anim = "shade_attack"
 target_sound = "shade_attack"
 target_hit = { offense = "crush", max = 40 }
+
+[loar_shadow]
+attack_speed = 4
+
+[loar_shadow.melee]
+range = 1
+target_hit = { offense = "crush", max = 40 }

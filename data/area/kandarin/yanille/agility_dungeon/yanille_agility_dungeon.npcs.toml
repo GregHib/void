@@ -13,6 +13,7 @@ slayer_xp = 40.0
 categories = ["chaos_druids"]
 respawn_delay = 50
 examine = "A crazy evil druid."
+combat_def = "guard"
 
 [salarin_the_twisted]
 id = 205
@@ -28,6 +29,7 @@ categories = ["chaos_druids"]
 respawn_delay = 50
 drop_table = "salarin_the_twisted"
 examine = "Twisted by name, twisted by nature."
+max_hit_crush = 70
 
 [sigbert_the_adventurer]
 id = 37

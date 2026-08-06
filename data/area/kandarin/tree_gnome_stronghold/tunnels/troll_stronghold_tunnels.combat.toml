@@ -1,0 +1,13 @@
+[twig]
+attack_speed = 6
+
+[twig.melee]
+range = 1
+target_hit = { offense = "crush", max = 130 }
+
+[berry]
+attack_speed = 6
+
+[berry.melee]
+range = 1
+target_hit = { offense = "crush", max = 130 }

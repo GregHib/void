@@ -11,3 +11,66 @@ anim = "rabbit_attack"
 target_sound = "rabbit_attack"
 target_hit = { offense = "crush", max = 10 }
 
+
+[einar]
+attack_speed = 4
+
+[einar.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[alrik]
+attack_speed = 4
+
+[alrik.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[thorhild]
+attack_speed = 4
+
+[thorhild.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[rannveig]
+attack_speed = 4
+
+[rannveig.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[valgerd]
+attack_speed = 4
+
+[valgerd.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[broddi]
+attack_speed = 4
+
+[broddi.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[ragnvald]
+attack_speed = 4
+
+[ragnvald.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[sea_snake_young]
+attack_speed = 4
+
+[sea_snake_young.melee]
+range = 1
+target_hit = { offense = "crush", max = 80 }
+
+[sea_snake_hatchling]
+attack_speed = 4
+
+[sea_snake_hatchling.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }

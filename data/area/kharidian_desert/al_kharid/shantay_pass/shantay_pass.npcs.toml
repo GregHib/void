@@ -43,6 +43,7 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "bones"
 examine = "He patrols the Shantay Pass."
+combat_def = "guard"
 
 [shantay_guard_still]
 id = 838

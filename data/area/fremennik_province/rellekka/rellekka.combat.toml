@@ -17,3 +17,59 @@ death_anim = "bunny_death"
 range = 1
 anim = "bunny_attack"
 target_hit = { offense = "crush", max = 0 }
+
+[black_unicorn]
+attack_speed = 4
+
+[black_unicorn.melee]
+range = 1
+target_hit = { offense = "stab", max = 30 }
+
+[freidir]
+attack_speed = 4
+
+[freidir.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+
+[borrokar]
+attack_speed = 4
+
+[borrokar.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+
+[lanzig]
+attack_speed = 4
+
+[lanzig.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+
+[lensa]
+attack_speed = 4
+
+[lensa.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+
+[jennella]
+attack_speed = 4
+
+[jennella.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+
+[unicorn_foal]
+attack_speed = 4
+
+[unicorn_foal.melee]
+range = 1
+target_hit = { offense = "stab", max = 20 }
+
+[black_unicorn_foal]
+attack_speed = 4
+
+[black_unicorn_foal.melee]
+range = 1
+target_hit = { offense = "stab", max = 30 }

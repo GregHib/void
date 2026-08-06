@@ -1,0 +1,20 @@
+[black_heather]
+attack_speed = 4
+
+[black_heather.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }
+
+[donny_the_lad]
+attack_speed = 4
+
+[donny_the_lad.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }
+
+[speedy_keith]
+attack_speed = 4
+
+[speedy_keith.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }

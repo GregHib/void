@@ -1,6 +1,13 @@
 [soul_wars_jelly]
 id = 8599
 drop_table = "jelly"
+combat_def = "jelly"
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
+max_hit_magic = 50
 
 [nomad_soul_wars]
 id = 8525
@@ -18,6 +25,12 @@ drop_table = "empty"
 [pyrefiend_soul_wars]
 id = 8598
 drop_table = "pyrefiend"
+combat_def = "pyrefiend"
+hitpoints = 450
+att = 52
+str = 30
+def = 22
+max_hit_magic = 40
 
 [zimberfizz]
 id = 8527

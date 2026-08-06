@@ -64,6 +64,7 @@ combat_def = "chicken_tutorial_island"
 categories = ["chickens", "birds"]
 drop_table = "chicken"
 examine = "Yep. Definitely a chicken."
+hitpoints = 30
 
 [fishing_spot_tutorial_island]
 id = 952

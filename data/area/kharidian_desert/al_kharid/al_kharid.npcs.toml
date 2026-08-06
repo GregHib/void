@@ -102,6 +102,7 @@ attack_bonus = 10
 respawn_delay = 25
 drop_table = "citizen"
 examine = "Part of Al Kharid's elite fighting force."
+combat_def = "guard"
 
 [man_al_kharid]
 id = 16

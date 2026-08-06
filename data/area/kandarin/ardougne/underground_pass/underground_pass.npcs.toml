@@ -17,26 +17,40 @@ categories = ["ogres"]
 respawn_delay = 30
 examine = "A large dim looking humanoid."
 drop_table = "ogre"
+combat_def = "ogre"
+max_hit_crush = 70
 
 [man_underground_pass]
 id = 351
 examine = "One of Ardougne's many citizens."
 drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_underground_pass]
 id = 352
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_underground_pass_2]
 id = 353
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_underground_pass_3]
 id = 354
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [child_underground_pass]
 id = 355
@@ -49,27 +63,45 @@ id = 356
 id = 360
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_underground_pass_5]
 id = 361
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_underground_pass_6]
 id = 362
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_underground_pass_7]
 id = 363
 examine = "One of Ardougne's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [goblin_underground_pass]
 id = 4499
 categories = ["goblins"]
 examine = "An ugly goblin... bleurgh!"
 drop_table = "goblin"
+combat_def = "goblin"
+hitpoints = 120
+att = 3
+def = 4
+attack_bonus = 12
+max_hit_stab = 10
 
 [khazard_trooper_underground_pass]
 id = 475
@@ -84,6 +116,7 @@ attack_bonus = 8
 respawn_delay = 100
 examine = "It's one of General Khazard's warriors."
 drop_table = "khazard_trooper"
+combat_def = "guard"
 
 [khazard_warlord_underground_pass]
 id = 477
@@ -95,6 +128,8 @@ style = "crush"
 max_hit_melee = 100
 examine = "He looks real nasty, smells bad too."
 drop_table = "khazard_warlord"
+max_hit_crush = 100
+combat_def = "khazard_warlord"
 
 [child_underground_pass_3]
 id = 6334
@@ -152,6 +187,13 @@ id = 8658
 categories = ["ogres"]
 examine = "A large dim looking humanoid."
 drop_table = "ogre"
+combat_def = "ogre"
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_bonus = 22
+max_hit_crush = 70
 
 [chadwell_underground_pass]
 id = 971
@@ -186,6 +228,7 @@ categories = ["spiders"]
 respawn_delay = 300
 examine = "A nasty spider, blessed by Zamorak."
 drop_table = "empty"
+combat_def = "giant_spider"
 
 [sir_jerro_underground_pass]
 id = 988
@@ -202,6 +245,8 @@ immune_cannon = true
 respawn_delay = 100
 drop_table = "sir_jerro"
 examine = "A mighty-looking warrior."
+max_hit_slash = 80
+combat_def = "sir_jerro"
 
 [sir_carl_underground_pass]
 id = 989
@@ -218,6 +263,8 @@ immune_cannon = true
 respawn_delay = 100
 drop_table = "sir_carl"
 examine = "A mighty-looking warrior."
+max_hit_slash = 80
+combat_def = "sir_carl"
 
 [sir_harry_underground_pass]
 id = 990
@@ -234,6 +281,8 @@ immune_cannon = true
 respawn_delay = 100
 drop_table = "sir_harry"
 examine = "A mighty-looking warrior."
+max_hit_slash = 80
+combat_def = "sir_harry"
 
 [niloof_underground_pass]
 id = 994
@@ -260,6 +309,8 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "A giant spider."
 drop_table = "empty"
+max_hit_stab = 90
+combat_def = "kalrag"
 
 [boulder_underground_pass]
 id = 986

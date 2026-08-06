@@ -9,3 +9,10 @@ range = 1
 anim = "locust_attack"
 target_sound = "locust_attack"
 target_hit = { offense = "crush", max = 30 }
+
+[plague_frog]
+attack_speed = 4
+
+[plague_frog.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }

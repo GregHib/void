@@ -1,0 +1,6 @@
+[vulture]
+attack_speed = 4
+
+[vulture.melee]
+range = 1
+target_hit = { offense = "crush", max = 50 }

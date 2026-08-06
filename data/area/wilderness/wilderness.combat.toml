@@ -1,0 +1,6 @@
+[rogue]
+attack_speed = 4
+
+[rogue.melee]
+range = 1
+target_hit = { offense = "stab", max = 20 }

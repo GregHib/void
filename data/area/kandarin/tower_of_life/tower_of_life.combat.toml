@@ -1,0 +1,13 @@
+[invrigar_the_necromancer]
+attack_speed = 4
+
+[invrigar_the_necromancer.melee]
+range = 1
+target_hit = { offense = "crush", max = 30 }
+
+[necromancer]
+attack_speed = 4
+
+[necromancer.melee]
+range = 1
+target_hit = { offense = "crush", max = 30 }

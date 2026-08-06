@@ -1,0 +1,6 @@
+[barbarian]
+attack_speed = 4
+
+[barbarian.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }

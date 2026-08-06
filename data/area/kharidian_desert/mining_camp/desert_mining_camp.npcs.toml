@@ -32,67 +32,141 @@ attack_bonus = 9
 respawn_delay = 50
 examine = "He looks a bit aggressive."
 drop_table = "mercenary"
+combat_def = "guard"
 
 [mercenary_desert_mining_camp_2]
 id = 4990
 clone = "mercenary_desert_mining_camp"
 drop_table = "mercenary"
+combat_def = "guard"
 
 [mercenary_desert_mining_camp_3]
 id = 4991
 clone = "mercenary_desert_mining_camp"
 drop_table = "mercenary"
+combat_def = "guard"
 
 [mercenary_desert_mining_camp_4]
 id = 4992
 clone = "mercenary_desert_mining_camp"
 drop_table = "mercenary"
+combat_def = "guard"
 
 [guard_desert_mining_camp]
 id = 4993
 examine = "He looks a bit aggressive."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_2]
 id = 4994
 examine = "He looks a bit aggressive."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_3]
 id = 4995
 examine = "He looks a bit aggressive."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_4]
 id = 4996
 examine = "He looks a bit aggressive."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_5]
 id = 4997
 examine = "He looks a bit aggressive."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_6]
 id = 4998
 examine = "He looks a bit aggressive."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_7]
 id = 4999
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_8]
 id = 5000
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_9]
 id = 5001
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_desert_mining_camp_10]
 id = 5002
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [male_slave_desert_mining_camp_3]
 id = 825
@@ -111,6 +185,7 @@ max_hit_melee = 20
 respawn_delay = 50
 examine = "He looks a bit aggressive."
 drop_table = "rowdy_slave"
+max_hit_crush = 20
 
 [mercenary_captain]
 id = 830
@@ -126,6 +201,7 @@ attack_bonus = 9
 respawn_delay = 50
 drop_table = "mercenary_captain"
 examine = "He looks a bit aggressive."
+max_hit_slash = 50
 
 [captain_siad_desert_mining_camp]
 id = 831

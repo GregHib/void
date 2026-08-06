@@ -7,6 +7,12 @@ id = 4929
 categories = ["rats"]
 examine = "Overgrown vermin."
 drop_table = "dungeon_rat"
+combat_def = "giant_rat"
+hitpoints = 120
+att = 10
+str = 10
+def = 10
+max_hit_stab = 20
 
 [goblin_guard_goblin_cave]
 id = 6496

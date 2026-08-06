@@ -10,6 +10,7 @@ respawn_delay = 50
 categories = ["frogs"]
 examine = "It didn't get that big eating flies."
 drop_table = "giant_frog"
+max_hit_crush = 90
 
 [big_frog]
 id = 1829
@@ -23,6 +24,7 @@ respawn_delay = 50
 categories = ["frogs"]
 examine = "It didn't get that big eating flies."
 drop_table = "big_frog"
+max_hit_crush = 30
 
 [cave_bug_larva]
 id = 1833

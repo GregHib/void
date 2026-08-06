@@ -15,16 +15,37 @@ id = 4674
 categories = ["black_dragons"]
 examine = "A fierce dragon with black scales!"
 drop_table = "black_dragon"
+combat_def = "black_dragon"
+hitpoints = 1900
+att = 200
+str = 200
+def = 200
+mage = 100
+max_hit_slash = 210
 
 [black_dragon_evil_chicken_lair_2]
 id = 4675
 categories = ["black_dragons"]
 examine = "A fierce dragon with black scales!"
 drop_table = "black_dragon"
+combat_def = "black_dragon"
+hitpoints = 1900
+att = 200
+str = 200
+def = 200
+mage = 100
+max_hit_slash = 210
 
 [black_dragon_evil_chicken_lair_3]
 id = 4676
 categories = ["black_dragons"]
 examine = "A fierce dragon with black scales!"
 drop_table = "black_dragon"
+combat_def = "black_dragon"
+hitpoints = 1900
+att = 200
+str = 200
+def = 200
+mage = 100
+max_hit_slash = 210
 

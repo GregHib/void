@@ -32,6 +32,9 @@ id = 11666
 id = 170
 examine = "One of Gielinor's many citizens, apparently trying to be an explorer."
 drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [fishing_spot_musa_point]
 id = 323

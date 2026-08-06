@@ -255,14 +255,35 @@ examine = "A senior citizen TzHaar-Hur."
 [tzhaar_hur_tzhaar_caves_2]
 id = 7767
 drop_table = "tzhaar_hur"
+combat_def = "tzhaar_hur"
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+max_hit_crush = 70
 
 [tzhaar_hur_tzhaar_caves_3]
 id = 7768
 drop_table = "tzhaar_hur"
+combat_def = "tzhaar_hur"
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+max_hit_crush = 70
 
 [tzhaar_hur_tzhaar_caves_4]
 id = 7769
 drop_table = "tzhaar_hur"
+combat_def = "tzhaar_hur"
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+max_hit_crush = 70
 
 [lava_monster_tzhaar_caves]
 id = 7772
@@ -290,7 +311,7 @@ att = 120
 str = 140
 def = 120
 mage = 40
-combat_def = "tzhar_ket"
+combat_def = "tzhaar_ket"
 max_hit_crush = 150
 slayer_xp = 140.0
 categories = ["tzhaar"]

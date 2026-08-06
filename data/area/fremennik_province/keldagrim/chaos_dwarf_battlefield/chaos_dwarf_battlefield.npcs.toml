@@ -18,50 +18,71 @@ categories = ["dwarves"]
 respawn_delay = 30
 examine = "A member of the Black Guard, a special division of the dwarven army."
 drop_table = "black_guard"
+combat_def = "dwarf"
 
 [black_guard_chaos_dwarf_battlefield_2]
 id = 8773
 clone = "black_guard_chaos_dwarf_battlefield"
 drop_table = "black_guard"
+combat_def = "dwarf"
 
 [black_guard_chaos_dwarf_battlefield_3]
 id = 8774
 clone = "black_guard_chaos_dwarf_battlefield"
 drop_table = "black_guard"
+combat_def = "dwarf"
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield]
 id = 8776
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
+combat_def = "dwarf"
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield_2]
 id = 8777
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
+combat_def = "dwarf"
 
 [chaos_dwarf_chaos_dwarf_battlefield]
 id = 8778
 drop_table = "chaos_dwarf"
+combat_def = "chaos_dwarf"
+hitpoints = 610
+att = 38
+str = 42
+def = 28
+attack_bonus = 13
+max_hit_crush = 60
 
 [chaos_dwarf_chaos_dwarf_battlefield_2]
 id = 8779
 categories = ["dwarves"]
 examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf"
+combat_def = "chaos_dwarf"
+hitpoints = 610
+att = 38
+str = 42
+def = 28
+attack_bonus = 13
+max_hit_crush = 60
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield]
 id = 8781
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
+combat_def = "guard"
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield_2]
 id = 8782
 categories = ["dwarves"]
 examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
+combat_def = "guard"
 
 [black_guard_berserker_chaos_dwarf_battlefield]
 id = 8783
@@ -79,11 +100,13 @@ categories = ["dwarves"]
 respawn_delay = 30
 examine = "An elite member of the Black Guard."
 drop_table = "black_guard_berserker"
+combat_def = "guard"
 
 [black_guard_berserker_chaos_dwarf_battlefield_2]
 id = 8784
 clone = "black_guard_berserker_chaos_dwarf_battlefield"
 drop_table = "black_guard_berserker"
+combat_def = "guard"
 
 [colonel_grenda_chaos_dwarf_battlefield]
 id = 8818

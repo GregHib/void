@@ -27,8 +27,14 @@ id = 314
 [ram_fisher_realm]
 id = 5168
 drop_table = "ram"
+combat_def = "ram_freds_farm"
+hitpoints = 80
+max_hit_crush = 10
 
 [ram_fisher_realm_2]
 id = 5169
 drop_table = "ram"
+combat_def = "ram_freds_farm"
+hitpoints = 80
+max_hit_crush = 10
 

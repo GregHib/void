@@ -24,6 +24,12 @@ id = 5392
 categories = ["skeletons"]
 examine = "Put some meat on those bones!"
 drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
 
 [treus_dayth]
 id = 1540

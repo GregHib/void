@@ -36,12 +36,26 @@ id = 4259
 categories = ["dwarves"]
 examine = "A dwarven guard."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_baxtorian_falls_2]
 id = 4260
 categories = ["dwarves"]
 examine = "A dwarven guard."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [mysterious_ghost_baxtorian_falls_2]
 id = 2399

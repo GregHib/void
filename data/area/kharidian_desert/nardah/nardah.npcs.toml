@@ -73,6 +73,7 @@ attack_bonus = 4
 respawn_delay = 50
 drop_table = "bones"
 examine = "The mayor's guard."
+max_hit_stab = 30
 
 [radat]
 id = 3043
@@ -86,6 +87,7 @@ attack_bonus = 4
 respawn_delay = 50
 drop_table = "bones"
 examine = "The mayor's guard."
+max_hit_stab = 30
 
 [shiratti_the_custodian]
 id = 3044
@@ -107,6 +109,8 @@ attack_bonus = 30
 respawn_delay = 50
 examine = "They'll eat anything!"
 drop_table = "billy_goat"
+max_hit_crush = 60
+combat_def = "billy_goat"
 
 [artimeus]
 id = 5109

@@ -8,3 +8,10 @@ range = 1
 anim = "jogre_attack"
 target_hit = { offense = "crush", max = 70 }
 
+
+[hero]
+attack_speed = 5
+
+[hero.melee]
+range = 1
+target_hit = { offense = "slash", max = 90 }

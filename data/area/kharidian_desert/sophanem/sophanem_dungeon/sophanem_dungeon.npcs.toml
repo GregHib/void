@@ -72,6 +72,7 @@ slayer_xp = 92.5
 categories = ["scabarites"]
 drop_table = "locust_rider"
 examine = "A mounted archer."
+combat_def = "locust_rider"
 
 [maisa_sophanem_dungeon]
 id = 5280

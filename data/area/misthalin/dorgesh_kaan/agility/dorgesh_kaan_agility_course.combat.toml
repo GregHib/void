@@ -1,0 +1,13 @@
+[giant_frog]
+attack_speed = 4
+
+[giant_frog.melee]
+range = 1
+target_hit = { offense = "crush", max = 90 }
+
+[big_frog]
+attack_speed = 4
+
+[big_frog.melee]
+range = 1
+target_hit = { offense = "crush", max = 30 }

@@ -283,18 +283,22 @@ respawn_delay = 30
 hunt_mode = "guarding"
 drop_table = "black_guard_high"
 examine = "A member of the Black Guard, a special division of the dwarven army."
+combat_def = "dwarf"
 
 [black_guard_keldagrim_market_2]
 id = 2131
 clone = "black_guard_keldagrim_market"
+combat_def = "dwarf"
 
 [black_guard_keldagrim_market_3]
 id = 2132
 clone = "black_guard_keldagrim_market"
+combat_def = "dwarf"
 
 [black_guard_keldagrim_5]
 id = 2133
 clone = "black_guard_keldagrim_market"
+combat_def = "dwarf"
 
 [black_guard_berserker_keldagrim]
 id = 2134
@@ -312,14 +316,17 @@ categories = ["dwarves"]
 respawn_delay = 30
 drop_table = "black_guard_high"
 examine = "An elite member of the Black Guard."
+combat_def = "dwarf"
 
 [black_guard_berserker_keldagrim_2]
 id = 2135
 clone = "black_guard_berserker_keldagrim"
+combat_def = "dwarf"
 
 [black_guard_berserker_keldagrim_3]
 id = 2136
 clone = "black_guard_berserker_keldagrim"
+combat_def = "dwarf"
 
 [dromunds_cat_keldagrim]
 id = 2140
@@ -627,6 +634,7 @@ id = 8813
 categories = ["dwarves"]
 examine = "An elite Black Guard soldier assigned to protect the trade floor."
 drop_table = "trade_floor_guard"
+combat_def = "guard"
 
 [colonel_grenda_keldagrim]
 id = 8817

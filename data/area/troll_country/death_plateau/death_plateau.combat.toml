@@ -1,0 +1,20 @@
+[stick]
+attack_speed = 6
+
+[stick.melee]
+range = 1
+target_hit = { offense = "crush", max = 270 }
+
+[pee_hat]
+attack_speed = 6
+
+[pee_hat.melee]
+range = 1
+target_hit = { offense = "crush", max = 230 }
+
+[kraka]
+attack_speed = 6
+
+[kraka.melee]
+range = 1
+target_hit = { offense = "crush", max = 230 }

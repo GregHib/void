@@ -1,0 +1,6 @@
+[ice_queen]
+attack_speed = 4
+
+[ice_queen.melee]
+range = 1
+target_hit = { offense = "crush", max = 100 }

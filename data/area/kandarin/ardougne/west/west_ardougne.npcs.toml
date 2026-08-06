@@ -35,16 +35,37 @@ examine = "A mourner, or plague healer."
 id = 369
 examine = "A mourner, or plague healer."
 drop_table = "mourner"
+combat_def = "guard"
+hitpoints = 190
+att = 8
+str = 8
+def = 8
+attack_bonus = 6
+max_hit_crush = 20
 
 [mourner_2]
 id = 370
 examine = "A mourner, or plague healer."
 drop_table = "mourner"
+combat_def = "guard"
+hitpoints = 190
+att = 8
+str = 8
+def = 8
+attack_bonus = 6
+max_hit_crush = 20
 
 [mourner_3]
 id = 371
 examine = "A mourner, or plague healer."
 drop_table = "mourner"
+combat_def = "guard"
+hitpoints = 190
+att = 8
+str = 8
+def = 8
+attack_bonus = 6
+max_hit_crush = 20
 
 [mourner_vial_4]
 id = 372
@@ -61,6 +82,8 @@ max_hit_melee = 20
 attack_bonus = 6
 examine = "A mourner, or plague healer."
 drop_table = "mourner"
+combat_def = "guard"
+max_hit_crush = 20
 
 [mourner_5]
 id = 348
@@ -72,6 +95,9 @@ style = "crush"
 max_hit_melee = 30
 examine = "A mourner, or plague healer."
 drop_table = "mourner"
+combat_def = "guard"
+attack_bonus = 6
+max_hit_crush = 20
 
 [mourner_staff]
 id = 357
@@ -93,6 +119,8 @@ style = "stab"
 max_hit_melee = 100
 examine = "A mourner, or plague healer."
 drop_table = "mourner"
+combat_def = "guard"
+max_hit_stab = 100
 
 [head_mourner]
 id = 2372

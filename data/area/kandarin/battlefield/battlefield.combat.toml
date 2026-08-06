@@ -1,0 +1,13 @@
+[khazard_commander]
+attack_speed = 4
+
+[khazard_commander.melee]
+range = 1
+target_hit = { offense = "stab", max = 50 }
+
+[tortoise]
+attack_speed = 4
+
+[tortoise.melee]
+range = 1
+target_hit = { offense = "crush", max = 110 }

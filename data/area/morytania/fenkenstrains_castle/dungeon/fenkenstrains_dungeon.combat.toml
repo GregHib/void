@@ -1,0 +1,6 @@
+[experiment]
+attack_speed = 4
+
+[experiment.melee]
+range = 1
+target_hit = { offense = "stab", max = 60 }

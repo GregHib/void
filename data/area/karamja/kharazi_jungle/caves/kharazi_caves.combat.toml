@@ -1,0 +1,34 @@
+[death_wing]
+attack_speed = 4
+
+[death_wing.melee]
+range = 1
+target_hit = { offense = "stab", max = 80 }
+
+[ungadulu]
+attack_speed = 4
+
+[ungadulu.melee]
+range = 1
+target_hit = { offense = "crush", max = 70 }
+
+[san_tojalon]
+attack_speed = 4
+
+[san_tojalon.melee]
+range = 1
+target_hit = { offense = "stab", max = 120 }
+
+[irvig_senay]
+attack_speed = 4
+
+[irvig_senay.melee]
+range = 1
+target_hit = { offense = "slash", max = 120 }
+
+[ranalph_devere]
+attack_speed = 4
+
+[ranalph_devere.melee]
+range = 1
+target_hit = { offense = "slash", max = 130 }

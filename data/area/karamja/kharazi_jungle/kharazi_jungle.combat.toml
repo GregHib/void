@@ -1,0 +1,13 @@
+[oomlie_bird]
+attack_speed = 4
+
+[oomlie_bird.melee]
+range = 1
+target_hit = { offense = "stab", max = 50 }
+
+[jungle_wolf]
+attack_speed = 4
+
+[jungle_wolf.melee]
+range = 1
+target_hit = { offense = "stab", max = 60 }

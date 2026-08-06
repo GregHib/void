@@ -19,6 +19,7 @@ immune_poison = true
 respawn_delay = 25
 drop_table = "rooster"
 examine = "He rules the, er, roost."
+combat_def = "chicken"
 
 [lalli_rellekka]
 id = 1270
@@ -155,6 +156,8 @@ max_hit_melee = 60
 respawn_delay = 30
 drop_table = "rellekka_citizen"
 examine = "One of Rellekka's many citizens."
+max_hit_crush = 60
+combat_def = "lensa"
 
 [jennella_rellekka]
 id = 1312
@@ -167,6 +170,8 @@ max_hit_melee = 60
 respawn_delay = 30
 drop_table = "rellekka_citizen"
 examine = "One of Rellekka's many citizens."
+max_hit_crush = 60
+combat_def = "jennella"
 
 [sassilik_rellekka]
 id = 1313
@@ -192,6 +197,7 @@ xp_bonus = 2.5
 respawn_delay = 30
 drop_table = "market_guard"
 examine = "Keeps the stalls secure."
+combat_def = "guard"
 
 [peter_rellekka]
 id = 13175
@@ -240,6 +246,8 @@ max_hit_melee = 20
 respawn_delay = 90
 examine = "Horned Horsey."
 drop_table = "unicorn_foal"
+max_hit_stab = 20
+combat_def = "unicorn_foal"
 
 [fenris_wolf_rellekka]
 id = 1330
@@ -337,6 +345,7 @@ max_hit_melee = 60
 respawn_delay = 30
 clone = "agnar_rellekka"
 drop_table = "rellekka_citizen"
+max_hit_crush = 60
 
 [borrokar]
 id = 1307
@@ -349,6 +358,7 @@ style = "crush"
 max_hit_melee = 60
 respawn_delay = 30
 drop_table = "rellekka_citizen"
+max_hit_crush = 60
 
 [lanzig]
 id = 1308
@@ -361,6 +371,7 @@ max_hit_melee = 60
 respawn_delay = 30
 drop_table = "rellekka_citizen"
 examine = "One of Rellekka's many citizens."
+max_hit_crush = 60
 
 [inga]
 id = 1314
@@ -380,6 +391,7 @@ xp_bonus = 2.5
 respawn_delay = 30
 drop_table = "market_guard"
 examine = "A hardened Fremennik warrior."
+combat_def = "guard"
 
 [black_unicorn_foal]
 id = 1329
@@ -392,6 +404,7 @@ max_hit_melee = 30
 respawn_delay = 20
 drop_table = "bones"
 examine = "Cute but evil."
+max_hit_stab = 30
 
 [black_unicorn]
 id = 133
@@ -404,6 +417,7 @@ max_hit_melee = 30
 respawn_delay = 90
 drop_table = "black_unicorn"
 examine = "A unicorn with a blackened heart."
+max_hit_stab = 30
 
 [svidi]
 id = 1809

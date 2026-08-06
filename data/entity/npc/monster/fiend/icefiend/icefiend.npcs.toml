@@ -24,6 +24,11 @@ combat_def = "icefiend"
 drop_table = "icefiend"
 categories = ["icefiends"]
 examine = "A robust ice demon."
+hitpoints = 150
+att = 10
+str = 10
+def = 12
+max_hit_magic = 20
 
 [icefiend_god_wars]
 id = 3406

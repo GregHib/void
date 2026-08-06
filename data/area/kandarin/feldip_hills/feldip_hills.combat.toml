@@ -33,3 +33,9 @@ target_hit = { offense = "magic", max = 0 }
 
 [jungle_strykewyrm.dig]
 range = 8
+[carnivorous_chinchompa]
+attack_speed = 4
+
+[carnivorous_chinchompa.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }

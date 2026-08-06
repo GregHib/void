@@ -103,10 +103,17 @@ id = 3186
 [snake_mos_le_harmless]
 id = 4343
 drop_table = "snake"
+combat_def = "snake"
+hitpoints = 60
+att = 4
+str = 5
+def = 3
+max_hit_stab = 10
 
 [monkey_mos_le_harmless]
 id = 4344
 drop_table = "monkey"
+combat_def = "monkey"
 
 [crab_mos_le_harmless]
 id = 4346

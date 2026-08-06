@@ -8,6 +8,8 @@ style = "stab"
 max_hit_melee = 50
 examine = "He looks a little on the cross side!"
 drop_table = "empty"
+max_hit_stab = 50
+combat_def = "angry_unicorn"
 
 [angry_giant_rat_tolnas_rift]
 id = 3662
@@ -20,6 +22,7 @@ max_hit_melee = 50
 categories = ["rats"]
 drop_table = "bones"
 examine = "He looks a little on the cross side!"
+combat_def = "giant_rat"
 
 [angry_goblin_tolnas_rift]
 id = 3663
@@ -32,6 +35,7 @@ max_hit_melee = 50
 categories = ["goblins"]
 examine = "He looks a little on the cross side!"
 drop_table = "empty"
+combat_def = "goblin"
 
 [angry_bear_tolnas_rift]
 id = 3664
@@ -43,6 +47,7 @@ style = "stab"
 max_hit_melee = 50
 examine = "He looks a little on the cross side!"
 drop_table = "empty"
+combat_def = "bear"
 
 [fear_reaper_tolnas_rift]
 id = 3665
@@ -55,6 +60,8 @@ max_hit_melee = 60
 hunt_mode = "cowardly"
 examine = "AHHHH!"
 drop_table = "empty"
+max_hit_slash = 60
+combat_def = "fear_reaper"
 
 [confusion_beast_tolnas_rift]
 id = 3666
@@ -68,6 +75,8 @@ hunt_mode = "cowardly"
 respawn_delay = 25
 examine = "What on Gielinor is that?!?"
 drop_table = "empty"
+max_hit_slash = 60
+combat_def = "confusion_beast"
 
 [hopeless_creature_tolnas_rift]
 id = 3667
@@ -81,10 +90,13 @@ hunt_mode = "cowardly"
 respawn_delay = 25
 examine = "A hopeless poor creature."
 drop_table = "empty"
+max_hit_slash = 70
+combat_def = "hopeless_creature"
 
 [angry_giant_rat_tolnas_rift_2]
 id = 4940
 clone = "angry_giant_rat_tolnas_rift"
+combat_def = "giant_rat"
 
 [tolna_south]
 id = 3658

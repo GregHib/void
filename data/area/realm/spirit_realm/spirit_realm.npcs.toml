@@ -3,6 +3,7 @@ id = 7994
 categories = ["ghosts"]
 examine = "A spectral warrior with no axe."
 drop_table = "ghostly_warrior"
+combat_def = "guard"
 
 [tormented_wraith_spirit_realm]
 id = 8125

@@ -1,0 +1,27 @@
+[angry_unicorn]
+attack_speed = 4
+
+[angry_unicorn.melee]
+range = 1
+target_hit = { offense = "stab", max = 50 }
+
+[fear_reaper]
+attack_speed = 4
+
+[fear_reaper.melee]
+range = 1
+target_hit = { offense = "slash", max = 60 }
+
+[confusion_beast]
+attack_speed = 4
+
+[confusion_beast.melee]
+range = 1
+target_hit = { offense = "slash", max = 60 }
+
+[hopeless_creature]
+attack_speed = 4
+
+[hopeless_creature.melee]
+range = 1
+target_hit = { offense = "slash", max = 70 }

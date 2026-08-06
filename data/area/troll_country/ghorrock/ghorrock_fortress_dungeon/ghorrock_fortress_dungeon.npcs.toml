@@ -6,4 +6,5 @@ drop_table = "ice_demon"
 [waterfiend_ghorrock_fortress_dungeon]
 id = 9054
 drop_table = "waterfiend"
+combat_def = "waterfiend"
 

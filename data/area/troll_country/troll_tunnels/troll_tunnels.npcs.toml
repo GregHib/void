@@ -14,6 +14,7 @@ categories = ["trolls"]
 respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
+combat_def = "ice_troll"
 
 [ice_troll_troll_tunnels_2]
 id = 1561
@@ -31,6 +32,7 @@ categories = ["trolls"]
 respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
+combat_def = "ice_troll"
 
 [ice_troll_troll_tunnels_3]
 id = 1562
@@ -48,6 +50,7 @@ categories = ["trolls"]
 respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
+combat_def = "ice_troll"
 
 [ice_troll_troll_tunnels_4]
 id = 1563
@@ -65,19 +68,23 @@ categories = ["trolls"]
 respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
+combat_def = "ice_troll"
 
 [ice_troll_troll_tunnels_5]
 id = 1564
 clone = "ice_troll_troll_tunnels_3"
 drop_table = "ice_troll"
+combat_def = "ice_troll"
 
 [ice_troll_troll_tunnels_6]
 id = 1565
 clone = "ice_troll_troll_tunnels_3"
 drop_table = "ice_troll"
+combat_def = "ice_troll"
 
 [ice_troll_troll_tunnels_7]
 id = 1566
 clone = "ice_troll_troll_tunnels_4"
 drop_table = "ice_troll"
+combat_def = "ice_troll"
 

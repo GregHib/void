@@ -5,6 +5,7 @@ examine = "He's going for that 'stripy' look."
 [gull_rock_island]
 id = 1400
 drop_table = "bones"
+combat_def = "seagull"
 
 [customs_officer]
 id = 7837

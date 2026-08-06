@@ -1,0 +1,34 @@
+[khazard_warlord]
+attack_speed = 4
+
+[khazard_warlord.melee]
+range = 1
+target_hit = { offense = "crush", max = 100 }
+
+[sir_jerro]
+attack_speed = 5
+
+[sir_jerro.melee]
+range = 1
+target_hit = { offense = "slash", max = 80 }
+
+[sir_carl]
+attack_speed = 5
+
+[sir_carl.melee]
+range = 1
+target_hit = { offense = "slash", max = 80 }
+
+[sir_harry]
+attack_speed = 5
+
+[sir_harry.melee]
+range = 1
+target_hit = { offense = "slash", max = 80 }
+
+[kalrag]
+attack_speed = 4
+
+[kalrag.melee]
+range = 1
+target_hit = { offense = "stab", max = 90 }

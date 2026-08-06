@@ -98,10 +98,12 @@ categories = ["spiders"]
 respawn_delay = 30
 drop_table = "jungle_spider"
 examine = "A barely visible deadly jungle spider."
+combat_def = "jungle_spider_ape_atoll"
 
 [jungle_spider_karamja_2]
 id = 6377
 clone = "jungle_spider_karamja"
+combat_def = "jungle_spider_ape_atoll"
 
 [tenacious_toucan]
 id = 6378
@@ -225,6 +227,7 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "A vicious warrior."
 drop_table = "tribesman"
+max_hit_stab = 40
 
 [tinsay_karamja_2]
 id = 1165

@@ -12,6 +12,8 @@ immune_cannon = true
 respawn_delay = 30
 examine = "One of the guardians of Iban."
 drop_table = "holthion"
+max_hit_slash = 90
+combat_def = "holthion"
 
 [disciple_of_iban_ibans_lair]
 id = 1002
@@ -24,6 +26,8 @@ max_hit_melee = 20
 respawn_delay = 250
 drop_table = "disciple_of_iban"
 examine = "A dark magic user."
+max_hit_crush = 20
+combat_def = "disciple_of_iban"
 
 [lord_iban_ibans_lair]
 id = 1003
@@ -48,6 +52,8 @@ respawn_delay = 35
 categories = ["undead"]
 drop_table = "bones"
 examine = "A servant to Iban."
+max_hit_crush = 20
+combat_def = "soulless"
 
 [half_soulless_ibans_lair]
 id = 991
@@ -74,6 +80,8 @@ hunt_mode = "cowardly"
 respawn_delay = 30
 drop_table = "othainian"
 examine = "One of the guardians of Iban."
+max_hit_slash = 90
+combat_def = "othainian"
 
 [doomion_ibans_lair]
 id = 999
@@ -88,3 +96,5 @@ hunt_mode = "cowardly"
 respawn_delay = 30
 drop_table = "disciple_of_iban"
 examine = "One of the guardians of Iban."
+max_hit_slash = 90
+combat_def = "doomion"

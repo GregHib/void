@@ -1,0 +1,6 @@
+[salarin_the_twisted]
+attack_speed = 4
+
+[salarin_the_twisted.melee]
+range = 1
+target_hit = { offense = "crush", max = 70 }

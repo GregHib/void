@@ -1,0 +1,6 @@
+[stag]
+attack_speed = 4
+
+[stag.melee]
+range = 1
+target_hit = { offense = "stab", max = 20 }

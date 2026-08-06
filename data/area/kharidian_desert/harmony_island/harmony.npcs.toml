@@ -46,101 +46,121 @@ categories = ["zombies"]
 respawn_delay = 50
 examine = "Aaaarg, me hearty!"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_2]
 id = 5631
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_3]
 id = 5633
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_4]
 id = 5634
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_5]
 id = 5635
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_6]
 id = 5637
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_7]
 id = 5638
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_8]
 id = 5639
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_9]
 id = 5640
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_10]
 id = 5641
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_11]
 id = 5642
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_12]
 id = 5644
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_13]
 id = 5646
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_14]
 id = 5647
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_15]
 id = 5650
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_16]
 id = 5656
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_17]
 id = 5658
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_18]
 id = 5659
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_19]
 id = 5661
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [zombie_pirate_harmony_20]
 id = 5665
 clone = "zombie_pirate_harmony"
 drop_table = "zombie_pirate"
+combat_def = "zombie_pirate"
 
 [monk_harmony_5]
 id = 5669

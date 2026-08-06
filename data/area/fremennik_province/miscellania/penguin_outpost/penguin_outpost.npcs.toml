@@ -18,18 +18,22 @@ categories = ["ice_warriors"]
 respawn_delay = 50
 drop_table = "icelord"
 examine = "Sturdy cold being."
+combat_def = "ice_warrior"
 
 [icelord_penguin_outpost_2]
 id = 5453
 clone = "icelord_penguin_outpost"
+combat_def = "ice_warrior"
 
 [icelord_penguin_outpost_3]
 id = 5454
 clone = "icelord_penguin_outpost"
+combat_def = "ice_warrior"
 
 [icelord_penguin_outpost_4]
 id = 5455
 clone = "icelord_penguin_outpost"
+combat_def = "ice_warrior"
 
 [kgp_interrogator_penguin_outpost]
 id = 7582

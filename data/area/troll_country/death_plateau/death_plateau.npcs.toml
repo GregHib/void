@@ -27,10 +27,17 @@ categories = ["trolls"]
 respawn_delay = 50
 drop_table = "rock_troll"
 examine = "A nasty looking troll."
+max_hit_crush = 230
 
 [pee_hat]
 id = 1097
 clone = "kraka"
+hitpoints = 1200
+att = 50
+str = 100
+def = 50
+attack_bonus = 40
+max_hit_crush = 230
 
 [stick]
 id = 1096
@@ -51,6 +58,7 @@ categories = ["trolls"]
 respawn_delay = 50
 drop_table = "rock_troll"
 examine = "A big, bad troll."
+max_hit_crush = 270
 
 [rock_troll]
 id = 1095

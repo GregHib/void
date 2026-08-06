@@ -1,0 +1,6 @@
+[monk]
+attack_speed = 4
+
+[monk.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }

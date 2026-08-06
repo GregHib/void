@@ -1,0 +1,13 @@
+[rowdy_slave]
+attack_speed = 4
+
+[rowdy_slave.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+
+[mercenary_captain]
+attack_speed = 4
+
+[mercenary_captain.melee]
+range = 1
+target_hit = { offense = "slash", max = 50 }

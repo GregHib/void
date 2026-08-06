@@ -33,6 +33,8 @@ max_hit_melee = 10
 respawn_delay = 25
 examine = "An Ardougne Monk."
 drop_table = "bones"
+max_hit_crush = 10
+combat_def = "monk"
 
 [ferret_monastery]
 id = 5139

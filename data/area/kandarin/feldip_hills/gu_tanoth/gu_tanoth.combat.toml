@@ -1,0 +1,13 @@
+[ogre_chieftain]
+attack_speed = 4
+
+[ogre_chieftain.melee]
+range = 1
+target_hit = { offense = "crush", max = 90 }
+
+[gorad]
+attack_speed = 4
+
+[gorad.melee]
+range = 1
+target_hit = { offense = "crush", max = 70 }

@@ -1,6 +1,7 @@
 [gull_battle_of_the_archipelago]
 id = 7860
 drop_table = "bones"
+combat_def = "seagull"
 
 [jack_battle_of_the_archipelago]
 id = 7861

@@ -1,0 +1,6 @@
+[head_thief]
+attack_speed = 5
+
+[head_thief.melee]
+range = 1
+target_hit = { offense = "slash", max = 30 }

@@ -2,6 +2,7 @@
 id = 7497
 examine = "A rocky horror."
 drop_table = "empty"
+combat_def = "guard"
 
 [golems_remains_uzer_mastaba]
 id = 7498

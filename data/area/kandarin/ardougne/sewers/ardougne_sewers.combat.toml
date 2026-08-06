@@ -1,0 +1,13 @@
+[alomone]
+attack_speed = 4
+
+[alomone.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+
+[clivet]
+attack_speed = 4
+
+[clivet.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }

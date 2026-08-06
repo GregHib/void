@@ -554,6 +554,9 @@ id = 8906
 [man_varrock_4]
 id = 12346
 drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [orlando_smith]
 id = 5965
@@ -579,10 +582,16 @@ examine = "A crafter at the pinnacle of his art."
 [man_varrock]
 id = 12345
 drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [man_varrock_2]
 id = 12347
 drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [tramp_varrock_2]
 id = 2792
@@ -640,11 +649,17 @@ drop_table = "guard"
 id = 5923
 examine = "One of Gielinor's many citizens."
 drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_varrock]
 id = 5924
 examine = "One of Gielinor's many citizens."
 drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [benny]
 id = 5925

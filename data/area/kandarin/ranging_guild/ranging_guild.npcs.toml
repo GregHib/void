@@ -2,6 +2,13 @@
 id = 678
 examine = "Keeps order in the ranging guild."
 drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [ranging_guild_doorman]
 id = 679

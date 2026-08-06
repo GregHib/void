@@ -1,0 +1,6 @@
+[melzar_the_mad]
+attack_speed = 4
+
+[melzar_the_mad.melee]
+range = 1
+target_hit = { offense = "crush", max = 50 }

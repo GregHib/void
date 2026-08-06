@@ -11,18 +11,22 @@ categories = ["goblins"]
 respawn_delay = 50
 drop_table = "cave_goblin_miner"
 examine = "This one is slacking off."
+combat_def = "cave_goblin"
 
 [cave_goblin_miner_2]
 id = 2070
 clone = "cave_goblin_miner"
+combat_def = "cave_goblin"
 
 [cave_goblin_miner_3]
 id = 2071
 clone = "cave_goblin_miner"
+combat_def = "cave_goblin"
 
 [cave_goblin_miner_4]
 id = 2072
 clone = "cave_goblin_miner"
+combat_def = "cave_goblin"
 
 [cave_goblin_guard]
 id = 2073
@@ -38,6 +42,7 @@ categories = ["goblins"]
 respawn_delay = 50
 drop_table = "cave_goblin_guard"
 examine = "He protects the miners."
+combat_def = "cave_goblin"
 
 [cave_goblin_guard_2]
 id = 2074
@@ -45,6 +50,7 @@ clone = "cave_goblin_guard"
 att = 22
 str = 16
 def = 22
+combat_def = "cave_goblin"
 
 [goblin_guard]
 id = 489
@@ -64,10 +70,12 @@ examine = "He doesn't look like he'd trust his own mother."
 [cave_goblin_miner_5]
 id = 2075
 clone = "cave_goblin_miner"
+combat_def = "cave_goblin"
 
 [cave_goblin_miner_6]
 id = 2076
 clone = "cave_goblin_miner"
+combat_def = "cave_goblin"
 
 [mistag]
 id = 2084
