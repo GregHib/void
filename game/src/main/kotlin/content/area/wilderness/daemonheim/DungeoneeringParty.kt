@@ -50,7 +50,18 @@ class DungeoneeringParty : Script {
             if (!inParty(this)) {
                 return@interfaceOption
             }
-            leave(this)
+            if (inDungeoneering) {
+                // https://youtu.be/tg1Kf4iAkN4?t=259
+                statement("Warning: If you leave the dungeon, you will not be able to return to it!")
+                choice("Leave the dungeon for good?") {
+                    option("Yes.") {
+                        leave(this)
+                    }
+                    option("No.")
+                }
+            } else {
+                leave(this)
+            }
         }
 
         playerDespawn {
@@ -101,9 +112,9 @@ class DungeoneeringParty : Script {
                 message("You must have completed at least one floor to reset your progress.")
                 return@interfaceOption
             }
-            statement("Are you sure you want to reset your dungeon progress? Your previous progress will be set to the number of floors you have completed and all floors will be marked as incomplete. This cannot be undone.")
+            statement("<maroon>Are you sure you want to reset your dungeon progress? Your previous progress will be set to the number of floors you have completed and all floors will be marked as incomplete. This cannot be undone.")
             choice {
-                option("Yes, reset my progress") {
+                option("Yes, reset my progress.") {
                     set("dungeoneering_previous_progress", get("dungeoneering_current_progress", 0))
                     set("dungeoneering_current_progress", 0)
                     message("Your dungeon progress have been reset.")

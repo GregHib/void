@@ -9,6 +9,23 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolati
 class DungeonComplete : Script {
     init {
         adminCommand("complete") {
+            // https://youtu.be/brr5Ou1SjVE?t=655
+//            item(3028, "The next floor is not available at your Dungeoneering level. Consider resetting your progress to gain the best ongoing rate of xp. Click the advisor button for more information.")
+
+//            choice("Leave the dungeon permanently?") {
+//                option("Yes") {}
+//                option("No") {}
+//            }
+//            choice("Are you sure you wish to proceed and take your party with you?") {
+//                option("Yes, continue.") {}
+//                option("No, wait.") {}
+//            }
+            // 2 minutes until dungeon ends.
+            // 1 minute until dungeon ends.
+            // 30 seconds until dungeon ends.
+            // 15 seconds until dungeon ends.
+            // Time until next dungeon: 30 (25, 20, 15, 10, 5, 4, 3, 2, 1)
+
             closeInterfaces()
             open("dungeon_complete")
 

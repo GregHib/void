@@ -27,6 +27,19 @@ class Dungeoneering(val dropTables: DropTables) : Script {
     init {
         adminCommand("start_dungeon", intArg("floor", optional = true), stringArg("size", autofill = setOf("small", "medium", "large"), optional = true), intArg("complexity", optional = true)) { args ->
 //            setRandom(Random(0L))
+
+            // https://youtu.be/tg1Kf4iAkN4?t=243
+//            statement("Please select the number of players you want the dungeon to be designed for. <col=531e13>You may not be able to complete a dungeon if too many people leave.")
+//            choice {
+//                option("1")
+//                option("2 (recommended)")
+//            }
+//            choice("What size of dungeon would you like?") {
+//                option("Small.")
+//                option("Medium.")
+//                option("Large.")
+//            }
+
             println("Generating dungeon...")
             val floor = args.getOrNull(0)?.toInt() ?: 1
             val size = DungeonSize.valueOf((args.getOrNull(1) ?: "small").toTitleCase())
@@ -60,7 +73,6 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             val center = instance.tile.add(startRoom.tile.x * 16 + 8, startRoom.tile.y * 16 + 8)
             NPCs.add("smuggler_dungeoneering", center)
             spawnTableItems(instance.tile, complexity, dungeon, skills)
-            delay(1) // Delay to avoid ghosting # 1000
             tele(center.addY(-2))
         }
 
