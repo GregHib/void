@@ -83,18 +83,22 @@ examine = "Must be related to Elvarg."
 [green_dragon_1]
 id = 4677
 clone = "green_dragon"
+drop_table = "green_dragon"
 
 [green_dragon_2]
 id = 4678
 clone = "green_dragon"
+drop_table = "green_dragon"
 
 [green_dragon_3]
 id = 4679
 clone = "green_dragon"
+drop_table = "green_dragon"
 
 [green_dragon_4]
 id = 4680
 clone = "green_dragon"
+drop_table = "green_dragon"
 
 [iron_dragon]
 id = 1591

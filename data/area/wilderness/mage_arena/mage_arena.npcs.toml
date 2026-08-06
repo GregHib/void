@@ -26,6 +26,7 @@ max_hit_melee = 200
 categories = ["no"]
 immune_poison = true
 examine = "'''In the Mage Arena cave:''' Runs the Mage Arena.<br/>'''In battle:''' He's a shape-shifter."
+drop_table = "bones"
 
 [kolodion_ogre]
 id = 908

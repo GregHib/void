@@ -7,6 +7,7 @@ combat_def = "skeleton_warlock"
 slayer_xp = 13.8
 categories = ["skeletons", "undead"]
 examine = "It rattles when it moves."
+drop_table = "bones"
 
 [skeleton_mace_shield]
 id = 92

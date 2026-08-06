@@ -143,10 +143,12 @@ examine = "Commander of the Imperial Guard."
 [archer_burthorpe_clean]
 id = 1073
 clone = "archer_burthorpe"
+drop_table = "archer_burthorpe"
 
 [archer_burthorpe_beard]
 id = 1074
 clone = "archer_burthorpe"
+drop_table = "archer_burthorpe"
 
 [archer_burthorpe]
 id = 1075

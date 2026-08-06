@@ -150,6 +150,7 @@ clone = "blood_blamish_snail"
 [ochre_blamish_snail_2]
 id = 1234
 clone = "ochre_blamish_snail"
+drop_table = "ochre_blamish_snail"
 
 [bruise_blamish_snail_2]
 id = 1235

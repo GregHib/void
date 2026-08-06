@@ -46,6 +46,7 @@ max_hit_melee = 60
 immune_poison = true
 respawn_delay = 15
 examine = "A tough-looking criminal."
+drop_table = "bandit_bandit_camp"
 
 [mysterious_ghost_bandit_camp]
 id = 2384
