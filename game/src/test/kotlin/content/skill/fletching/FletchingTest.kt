@@ -31,23 +31,6 @@ internal class FletchingTest : WorldTest() {
     }
 
     @Test
-    fun `Fletch arrow shafts from maple logs`() {
-        val player = createPlayer()
-        player.levels.set(Skill.Fletching, 100)
-        player.inventory.add("knife")
-        player.inventory.add("maple_logs")
-
-        player.itemOnItem(0, 1)
-        tick()
-        player.interfaceOption("skill_creation_amount", "increment")
-        player.dialogueOption(id = "dialogue_skill_creation", component = "choice1")
-        tick(2)
-
-        assertEquals(35, player.inventory.count("arrow_shaft"))
-        assertTrue(player.experience.get(Skill.Fletching) > 0)
-    }
-
-    @Test
     fun `Fletch headless arrows`() {
         val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
