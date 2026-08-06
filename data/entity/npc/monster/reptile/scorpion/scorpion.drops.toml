@@ -1,5 +1,14 @@
 [scorpion_drop_table]
 type = "all"
 drops = [
-    { table = "bones" },
+    { table = "scorpion_charms", members = true },
+]
+
+[scorpion_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 2500 },
+    { id = "green_charm", chance = 6500 },
+    { id = "crimson_charm", chance = 800 },
+    { id = "blue_charm", chance = 400 },
 ]
