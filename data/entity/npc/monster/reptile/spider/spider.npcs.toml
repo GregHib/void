@@ -57,6 +57,7 @@ slayer_xp = 50.0
 categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
+drop_table = "giant_spider"
 
 [deadly_red_spider]
 id = 63
@@ -84,6 +85,7 @@ slayer_xp = 35.0
 categories = ["spiders"]
 height = 10
 examine = "I think this spider has been magically modified."
+drop_table = "poison_spider"
 
 [spider_underground_pass]
 id = 1004

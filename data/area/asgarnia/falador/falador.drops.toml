@@ -215,3 +215,95 @@ drops = [
     { id = "crimson_charm", chance = 437 },
     { id = "blue_charm", chance = 163 },
 ]
+
+[white_knight_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "white_knight_secondary" },
+]
+
+[white_knight_secondary]
+roll = 1246
+drops = [
+    { id = "coins", min = 1, max = 200, chance = 64 },
+    { id = "iron_bar", min = 1, max = 2, chance = 64 },
+    { id = "water_rune", min = 20, max = 47, chance = 32 },
+    { id = "body_rune", min = 9, max = 24, chance = 32 },
+    { id = "mind_rune", amount = 5, chance = 32 },
+    { id = "chaos_rune", min = 2, max = 5, chance = 32 },
+    { id = "nature_rune", min = 4, max = 7, chance = 32 },
+    { id = "blood_rune", min = 2, max = 3, chance = 32 },
+    { id = "cosmic_rune", amount = 2, chance = 32 },
+    { id = "iron_longsword", chance = 32 },
+    { id = "steel_sword", chance = 32 },
+    { id = "mithril_arrow", amount = 5, chance = 32 },
+    { id = "adamant_arrow", amount = 2, chance = 32 },
+    { id = "steel_med_helm", chance = 32 },
+    { id = "rune_javelin", amount = 5, chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "potato_seed", amount = 4, chance = 32 },
+    { id = "tomato_seed", amount = 2, chance = 32 },
+    { id = "cabbage_seed", amount = 3, chance = 32 },
+    { id = "onion_seed", amount = 3, chance = 32 },
+    { id = "sweetcorn_seed", chance = 32 },
+    { id = "watermelon_seed", amount = 2, chance = 32 },
+    { id = "pot_of_flour", chance = 32 },
+    { id = "iron_ore", chance = 32 },
+    { id = "law_rune", min = 2, max = 3, chance = 6 },
+    { id = "uncut_sapphire", chance = 6 },
+    { id = "uncut_emerald", chance = 2 },
+    { id = "uncut_ruby", chance = 2 },
+    { id = "uncut_diamond", chance = 2 },
+    { id = "nature_talisman", chance = 2 },
+    { id = "loop_half_of_a_key", chance = 2 },
+    { id = "tooth_half_of_a_key", chance = 2 },
+]
+
+[jeff_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "jeff_secondary" },
+    { table = "easy_clue_scroll", roll = 170 },
+]
+
+[jeff_secondary]
+roll = 1024
+drops = [
+    { id = "bronze_arrow", amount = 7, chance = 32 },
+    { id = "bronze_bolts", min = 2, max = 12, chance = 32 },
+    { id = "chaos_rune", amount = 2, chance = 32 },
+    { id = "earth_rune", amount = 4, chance = 32 },
+    { id = "fire_rune", amount = 6, chance = 32 },
+    { id = "mind_rune", amount = 9, chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "coins", amount = 3, chance = 32 },
+    { id = "earth_talisman", chance = 32 },
+    { id = "bronze_med_helm", chance = 32 },
+    { id = "copper_ore", chance = 32 },
+    { id = "iron_dagger", chance = 32 },
+    { id = "sling", chance = 32 },
+    { id = "cabbage", chance = 32 },
+    { id = "fishing_bait", chance = 32 },
+]

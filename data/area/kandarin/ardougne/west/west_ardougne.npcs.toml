@@ -34,14 +34,17 @@ examine = "A mourner, or plague healer."
 [mourner_1]
 id = 369
 examine = "A mourner, or plague healer."
+drop_table = "mourner"
 
 [mourner_2]
 id = 370
 examine = "A mourner, or plague healer."
+drop_table = "mourner"
 
 [mourner_3]
 id = 371
 examine = "A mourner, or plague healer."
+drop_table = "mourner"
 
 [mourner_vial_4]
 id = 372
@@ -57,6 +60,7 @@ style = "crush"
 max_hit_melee = 20
 attack_bonus = 6
 examine = "A mourner, or plague healer."
+drop_table = "mourner"
 
 [mourner_5]
 id = 348
@@ -67,6 +71,7 @@ def = 12
 style = "crush"
 max_hit_melee = 30
 examine = "A mourner, or plague healer."
+drop_table = "mourner"
 
 [mourner_staff]
 id = 357
@@ -87,6 +92,7 @@ def = 80
 style = "stab"
 max_hit_melee = 100
 examine = "A mourner, or plague healer."
+drop_table = "mourner"
 
 [head_mourner]
 id = 2372

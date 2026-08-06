@@ -39,3 +39,227 @@ type = "all"
 drops = [
     { id = "shaikahan_bones" },
 ]
+
+[giant_wasp_drop_table]
+type = "all"
+drops = [
+    { table = "giant_wasp_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[giant_wasp_secondary]
+roll = 1024
+drops = [
+    { id = "wergali_seed", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_wergali", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "chaos_rune", amount = 2, chance = 32 },
+    { id = "water_rune", amount = 37, chance = 32 },
+    { id = "soul_rune", min = 1, max = 3, chance = 32 },
+    { id = "jangerberries", min = 1, max = 3, chance = 32 },
+    { id = "uncut_sapphire", chance = 6 },
+]
+
+[tribesman_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "tribesman_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[tribesman_secondary]
+roll = 1144
+drops = [
+    { id = "cleaning_cloth", chance = 64 },
+    { id = "trading_sticks", min = 15, max = 62, chance = 64 },
+    { id = "antipoison_3", chance = 32 },
+    { id = "iron_dagger_p", chance = 32 },
+    { id = "bronze_bolts_p", amount = 4, chance = 32 },
+    { id = "steel_arrow_p", amount = 5, chance = 32 },
+    { id = "mithril_javelin", amount = 10, chance = 32 },
+    { id = "bronze_spear", chance = 32 },
+    { id = "iron_spear", chance = 32 },
+    { id = "steel_spear", chance = 32 },
+    { id = "mithril_spear", chance = 32 },
+    { id = "steel_javelin", amount = 10, chance = 32 },
+    { id = "snape_grass", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "grimy_snake_weed", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "gold_ore", chance = 32 },
+    { id = "pot_of_flour", chance = 32 },
+    { id = "tin_ore", chance = 32 },
+    { id = "nature_rune", amount = 3, chance = 32 },
+    { id = "super_antipoison_2", chance = 6 },
+    { id = "super_antipoison_3", chance = 6 },
+    { id = "limpwurt_root", chance = 6 },
+    { id = "grimy_ranarr", chance = 2 },
+    { id = "tooth_half_of_a_key", chance = 2 },
+    { id = "loop_half_of_a_key", chance = 2 },
+]
+
+[frog_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "giant_frog_legs" },
+    { table = "frog_secondary" },
+]
+
+[frog_secondary]
+roll = 1024
+drops = [
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "frog_spawn", chance = 32 },
+    { id = "uncut_diamond", chance = 32 },
+    { id = "water_rune", amount = 6, chance = 32 },
+]
+
+[tenacious_toucan_drop_table]
+type = "all"
+drops = [
+    { id = "feather" },
+    { table = "tenacious_toucan_secondary" },
+    { table = "hard_clue_scroll", roll = 32 },
+]
+
+[tenacious_toucan_secondary]
+roll = 1024
+drops = [
+    { id = "potato_seed", min = 1, max = 4, chance = 32 },
+    { id = "onion_seed", min = 1, max = 3, chance = 32 },
+    { id = "sweetcorn_seed", chance = 32 },
+    { id = "strawberry_seed", chance = 32 },
+    { id = "orange", chance = 32 },
+    { id = "raw_karambwan", chance = 32 },
+    { id = "papaya_fruit", chance = 32 },
+    { id = "watermelon_slice", chance = 32 },
+    { id = "feather", amount = 10, chance = 32 },
+    { id = "yew_logs", chance = 32 },
+    { id = "vial_of_water", chance = 32 },
+    { id = "trading_sticks", min = 12, max = 18, chance = 32 },
+]
+
+[giant_ant_worker_drop_table]
+type = "all"
+drops = [
+    { table = "giant_ant_worker_secondary" },
+    { table = "medium_clue_scroll", roll = 32 },
+]
+
+[giant_ant_worker_secondary]
+roll = 1119
+drops = [
+    { id = "strawberry", amount = 2, chance = 64 },
+    { id = "potato_seed", chance = 32 },
+    { id = "onion_seed", chance = 32 },
+    { id = "tomato_seed", chance = 32 },
+    { id = "sweetcorn_seed", amount = 2, chance = 32 },
+    { id = "strawberry_seed", amount = 2, chance = 32 },
+    { id = "watermelon_seed", chance = 32 },
+    { id = "papaya_tree_seed", chance = 32 },
+    { id = "air_rune", min = 3, max = 48, chance = 32 },
+    { id = "water_rune", amount = 28, chance = 32 },
+    { id = "earth_rune", min = 1, max = 9, chance = 32 },
+    { id = "nature_rune", min = 1, max = 15, chance = 32 },
+    { id = "death_rune", min = 3, max = 10, chance = 32 },
+    { id = "blood_rune", min = 1, max = 4, chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "uncut_diamond", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "unicorn_horn_dust", chance = 32 },
+    { id = "coal", min = 2, max = 10, chance = 32 },
+    { id = "trading_sticks", chance = 32 },
+]
+
+[giant_ant_soldier_drop_table]
+type = "all"
+drops = [
+    { table = "giant_ant_soldier_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[giant_ant_soldier_secondary]
+roll = 1176
+drops = [
+    { id = "nature_rune", amount = 14, chance = 64 },
+    { id = "grimy_guam", chance = 64 },
+    { id = "grimy_marrentill", chance = 64 },
+    { id = "grimy_tarromin", chance = 64 },
+    { id = "grimy_wergali", chance = 64 },
+    { id = "steel_arrow_p", chance = 32 },
+    { id = "mithril_arrow", amount = 3, chance = 32 },
+    { id = "pearl_bolts", min = 10, max = 15, chance = 32 },
+    { id = "mithril_bolts", min = 1, max = 10, chance = 32 },
+    { id = "steel_bolts_p", min = 1, max = 20, chance = 32 },
+    { id = "mithril_chainbody", chance = 32 },
+    { id = "fire_rune", amount = 5, chance = 32 },
+    { id = "dust_rune", chance = 32 },
+    { id = "law_rune", chance = 32 },
+    { id = "soul_rune", chance = 32 },
+    { id = "blood_rune", chance = 32 },
+    { id = "earth_rune", amount = 10, chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "iron_ore", chance = 32 },
+    { id = "coal", chance = 32 },
+    { id = "trading_sticks", amount = 23, chance = 32 },
+    { id = "nature_talisman", chance = 32 },
+    { id = "left_arm", chance = 32 },
+    { id = "right_arm", chance = 32 },
+    { id = "left_leg", chance = 32 },
+    { id = "right_leg", chance = 32 },
+    { id = "foot", chance = 32 },
+    { id = "grimy_ranarr", chance = 6 },
+    { id = "grimy_kwuarm", chance = 6 },
+    { id = "rune_javelin", amount = 5, chance = 2 },
+    { id = "grimy_cadantine", chance = 2 },
+    { id = "grimy_lantadyme", chance = 2 },
+    { id = "grimy_dwarf_weed", chance = 2 },
+    { id = "starved_ancient_effigy", chance = 2 },
+]

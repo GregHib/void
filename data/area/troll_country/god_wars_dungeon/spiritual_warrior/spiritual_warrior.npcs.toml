@@ -12,6 +12,7 @@ slayer_level = 68
 categories = ["spiritual_creatures"]
 god = "zamorak"
 examine = "Warrior of Zamorak."
+drop_table = "spiritual_warrior"
 
 [spiritual_warrior_saradomin]
 id = 6255

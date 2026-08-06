@@ -8,6 +8,7 @@ immune_stun = true
 immune_drain = true
 retaliates = false
 examine = "This is ready for you to cast magic at it."
+drop_table = "empty"
 
 [melee_dummy]
 id = 7891
@@ -19,6 +20,7 @@ immune_stun = true
 immune_drain = true
 retaliates = false
 examine = "Ready for all you can swing at it."
+drop_table = "empty"
 
 [mikasi]
 id = 4707

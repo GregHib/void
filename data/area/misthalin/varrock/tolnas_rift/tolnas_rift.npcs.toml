@@ -7,6 +7,7 @@ def = 38
 style = "stab"
 max_hit_melee = 50
 examine = "He looks a little on the cross side!"
+drop_table = "empty"
 
 [angry_giant_rat_tolnas_rift]
 id = 3662
@@ -30,6 +31,7 @@ style = "stab"
 max_hit_melee = 50
 categories = ["goblins"]
 examine = "He looks a little on the cross side!"
+drop_table = "empty"
 
 [angry_bear_tolnas_rift]
 id = 3664
@@ -40,6 +42,7 @@ def = 38
 style = "stab"
 max_hit_melee = 50
 examine = "He looks a little on the cross side!"
+drop_table = "empty"
 
 [fear_reaper_tolnas_rift]
 id = 3665
@@ -51,6 +54,7 @@ style = "slash"
 max_hit_melee = 60
 hunt_mode = "cowardly"
 examine = "AHHHH!"
+drop_table = "empty"
 
 [confusion_beast_tolnas_rift]
 id = 3666
@@ -63,6 +67,7 @@ max_hit_melee = 60
 hunt_mode = "cowardly"
 respawn_delay = 25
 examine = "What on Gielinor is that?!?"
+drop_table = "empty"
 
 [hopeless_creature_tolnas_rift]
 id = 3667
@@ -75,6 +80,7 @@ max_hit_melee = 70
 hunt_mode = "cowardly"
 respawn_delay = 25
 examine = "A hopeless poor creature."
+drop_table = "empty"
 
 [angry_giant_rat_tolnas_rift_2]
 id = 4940

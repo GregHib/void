@@ -1,5 +1,6 @@
 [dungeon_rat_ardougne_sewers]
 id = 4928
+drop_table = "dungeon_rat"
 
 [claus_the_chef_ardougne_sewers]
 id = 886
@@ -38,6 +39,7 @@ style = "crush"
 max_hit_melee = 20
 respawn_delay = 50
 examine = "A member of the Hazeel cult."
+drop_table = "hazeel_cultist"
 
 [elena_southern_ardougne_sewer_normal]
 id = 3215
@@ -45,8 +47,10 @@ id = 3215
 [giant_rat_ardounge_sewer]
 id = 4922
 clone = "giant_rat_lumbridge_swamp"
+drop_table = "giant_rat"
 
 [giant_rat_ardounge_sewer_stubby]
 id = 4923
 clone = "giant_rat_lumbridge_swamp"
+drop_table = "giant_rat"
 

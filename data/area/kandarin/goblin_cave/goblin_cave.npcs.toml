@@ -6,6 +6,7 @@ examine = "A pile of boulders."
 id = 4929
 categories = ["rats"]
 examine = "Overgrown vermin."
+drop_table = "dungeon_rat"
 
 [goblin_guard_goblin_cave]
 id = 6496

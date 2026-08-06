@@ -31,6 +31,7 @@ examine = "A very brave merchant."
 id = 206
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
 
 [mysterious_ghost_edgeville]
 id = 2386
@@ -186,6 +187,7 @@ combat_def = "man"
 respawn_delay = 25
 combat_def = "man"
 examine = "A holy man."
+drop_table = "bones"
 
 [brother_bordiss]
 id = 7730

@@ -9,3 +9,17 @@ drops = [
 drops = [
     { id = "orb_of_protection" },
 ]
+
+[gnome_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "gnome_secondary" },
+]
+
+[gnome_secondary]
+roll = 1024
+drops = [
+    { id = "lemon", chance = 32 },
+    { id = "lime", chance = 32 },
+]

@@ -2,10 +2,12 @@
 id = 224
 categories = ["rats"]
 examine = "A dirty rat."
+drop_table = "dungeon_rat"
 
 [thief_clocktower_dungeon]
 id = 282
 examine = "A dastardly blanket thief."
+drop_table = "thief"
 
 [head_thief_clocktower_dungeon]
 id = 283
@@ -20,19 +22,23 @@ style = "slash"
 max_hit_melee = 30
 respawn_delay = 25
 examine = "The head of the treacherous blanket stealing gang."
+drop_table = "head_thief"
 
 [dungeon_rat_clocktower_dungeon_2]
 id = 4936
 categories = ["rats"]
 examine = "A dirty rat."
+drop_table = "dungeon_rat"
 
 [dungeon_rat_clocktower_dungeon_3]
 id = 4937
 categories = ["rats"]
 examine = "A dirty rat."
+drop_table = "dungeon_rat"
 
 [dungeon_rat_clocktower_dungeon_4]
 id = 88
 categories = ["rats"]
 examine = "Overgrown vermin."
+drop_table = "dungeon_rat"
 

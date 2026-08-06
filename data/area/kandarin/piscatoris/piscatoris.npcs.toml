@@ -43,6 +43,7 @@ slayer_xp = 80.0
 categories = ["skeletons"]
 respawn_delay = 50
 examine = "Doesn't seem to want to go away."
+drop_table = "skeleton_mage"
 
 [brian_twitcher]
 id = 8579

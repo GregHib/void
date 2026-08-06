@@ -106,6 +106,7 @@ max_hit_melee = 60
 attack_bonus = 30
 respawn_delay = 50
 examine = "They'll eat anything!"
+drop_table = "billy_goat"
 
 [artimeus]
 id = 5109

@@ -1,0 +1,28 @@
+[thief_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "thief_secondary" },
+]
+
+[thief_secondary]
+roll = 1024
+drops = [
+    { id = "bronze_arrow", chance = 64 },
+    { id = "cabbage", chance = 64 },
+    { id = "chaos_rune", chance = 64 },
+    { id = "copper_ore", chance = 64 },
+    { id = "earth_rune", chance = 64 },
+    { id = "earth_talisman", chance = 64 },
+    { id = "fire_rune", chance = 64 },
+    { id = "fishing_bait", chance = 64 },
+    { id = "iron_dagger", chance = 64 },
+    { id = "mind_rune", chance = 64 },
+    { id = "sling", chance = 64 },
+]
+
+[grip_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

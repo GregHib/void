@@ -70,11 +70,13 @@ examine = "One of the troll generals."
 id = 1116
 categories = ["trolls"]
 examine = "One of the troll generals."
+drop_table = "troll_general"
 
 [troll_general_troll_stronghold_tunnels_3]
 id = 1117
 categories = ["trolls"]
 examine = "One of the troll generals."
+drop_table = "troll_general"
 
 [twig_troll_stronghold_tunnels]
 id = 1128
@@ -141,6 +143,7 @@ slayer_xp = 90.0
 categories = ["trolls"]
 respawn_delay = 50
 examine = "Small for a troll, but mean and ugly."
+drop_table = "mountain_troll"
 
 [guard_troll_stronghold_tunnels]
 id = 1142

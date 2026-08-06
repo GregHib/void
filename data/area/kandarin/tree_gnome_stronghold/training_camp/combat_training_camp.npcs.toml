@@ -12,6 +12,7 @@ slayer_xp = 60.0
 categories = ["ogres"]
 respawn_delay = 50
 examine = "Big, ugly, and smelly."
+drop_table = "ogre"
 
 [guard_combat_training_camp]
 id = 344

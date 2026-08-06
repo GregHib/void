@@ -1,6 +1,7 @@
 [guard_ranging_guild]
 id = 678
 examine = "Keeps order in the ranging guild."
+drop_table = "guard"
 
 [ranging_guild_doorman]
 id = 679

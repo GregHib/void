@@ -24,16 +24,20 @@ examine = "He must be good at hunting; even his hair blends in with the surround
 [yeti]
 id = 7379
 examine = "Aww, aren't the little ones cute?"
+drop_table = "yeti"
 
 [yeti_2]
 id = 7380
+drop_table = "yeti"
 
 [gnoeals]
 id = 7381
 examine = "A strange, magical beast."
+drop_table = "gnoeals"
 
 [gnoeals_2]
 id = 7382
+drop_table = "gnoeals"
 
 [erjolf_base]
 id = 7405

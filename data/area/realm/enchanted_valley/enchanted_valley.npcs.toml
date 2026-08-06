@@ -19,6 +19,7 @@ style = "stab"
 max_hit_melee = 20
 respawn_delay = 90
 examine = "A noble creature!"
+drop_table = "bones"
 
 [wood_dryad_enchanted_valley]
 id = 4441
@@ -32,10 +33,12 @@ max_hit_melee = 10
 attack_bonus = -47
 respawn_delay = 50
 examine = "Aww, how cute."
+drop_table = "rabbit"
 
 [rabbit_enchanted_valley_2]
 id = 4448
 clone = "rabbit_enchanted_valley"
+drop_table = "rabbit"
 
 [butterfly_enchanted_valley]
 id = 4449

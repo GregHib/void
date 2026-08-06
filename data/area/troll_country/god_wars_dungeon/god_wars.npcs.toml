@@ -11,18 +11,22 @@ examine = "An ancient spirit of nature."
 [ancient_warrior]
 id = 13456
 examine = "He looks angry and dangerous!"
+drop_table = "ancient_warrior"
 
 [ancient_ranger]
 id = 13457
 examine = "A dangerous ranger."
+drop_table = "ancient_ranger"
 
 [blood_reaver]
 id = 13458
 examine = "A strange and twisted creature."
+drop_table = "blood_reaver"
 
 [ancient_mage_god_wars_dungeon]
 id = 13459
 examine = "A mage well practised in the art of ancient spellcasting."
+drop_table = "ancient_mage"
 
 [nanuq]
 id = 8076

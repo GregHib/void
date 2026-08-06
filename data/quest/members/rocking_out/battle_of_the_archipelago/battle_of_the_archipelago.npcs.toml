@@ -1,7 +1,9 @@
 [gull_battle_of_the_archipelago]
 id = 7860
+drop_table = "bones"
 
 [jack_battle_of_the_archipelago]
 id = 7861
 examine = "It's Rabid Jack!"
+drop_table = "bones"
 

@@ -6,26 +6,31 @@ examine = "The man in charge of the fishing guild."
 id = 4272
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
 
 [goblin_fishing_guild_2]
 id = 4273
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
 
 [goblin_fishing_guild_3]
 id = 4274
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
 
 [goblin_fishing_guild_4]
 id = 4275
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
 
 [goblin_fishing_guild_5]
 id = 4276
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
 
 [roachey]
 id = 592

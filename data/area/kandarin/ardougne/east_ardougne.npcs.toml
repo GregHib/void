@@ -17,6 +17,7 @@ combat_def = "jogre_ardougne"
 hunt_mode = "cowardly"
 respawn_delay = 30
 examine = "An aggressive humanoid."
+drop_table = "jogre"
 
 [cyclops_ardougne]
 id = 116
@@ -50,6 +51,7 @@ examine = "He looks like the type of guy who would mind monkeys."
 [warrior_woman]
 id = 15
 examine = "A woman, who is a warrior."
+drop_table = "warrior_woman"
 
 [milton_the_miller]
 id = 1739
@@ -68,6 +70,7 @@ attack_bonus = 20
 xp_bonus = 2.5
 respawn_delay = 50
 examine = "A holy warrior."
+drop_table = "paladin"
 
 [hero]
 id = 21
@@ -82,10 +85,12 @@ attack_bonus = 20
 xp_bonus = 2.5
 respawn_delay = 50
 examine = "Heroic!"
+drop_table = "hero"
 
 [paladin_2]
 id = 2256
 clone = "paladin"
+drop_table = "paladin"
 
 [knight_of_ardougne]
 id = 23
@@ -100,6 +105,7 @@ attack_bonus = 8
 respawn_delay = 25
 hunt_mode = "guarding"
 examine = "A member of Ardougne's militia."
+drop_table = "knight_of_ardougne"
 
 [richard_ardougne]
 id = 2306
@@ -116,10 +122,12 @@ examine = "Perhaps this gardener might look after your crops for you."
 [man_ardougne]
 id = 24
 examine = "One of Gielinor's many citizens."
+drop_table = "man"
 
 [woman_ardougne]
 id = 25
 examine = "One of Gielinor's many citizens."
+drop_table = "woman"
 
 [archer_ardougne]
 id = 27
@@ -182,6 +190,7 @@ attack_bonus = 4
 respawn_delay = 50
 attack_speed = 5
 examine = "Keeps the peace... kind of."
+drop_table = "guard"
 
 [edmond_ardougne]
 id = 3213

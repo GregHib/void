@@ -21,19 +21,23 @@ id = 7636
 id = 7640
 categories = ["crawling_hands"]
 examine = "A giant, skeletal hand. I don't think I should offer to shake hands."
+drop_table = "skeletal_hand"
 
 [zombie_hand_meiyerditch_tunnels]
 id = 7641
 categories = ["crawling_hands"]
 examine = "A giant, zombified hand. I don't think I should offer to shake hands."
+drop_table = "zombie_hand"
 
 [mutated_bloodveld_meiyerditch_tunnels]
 id = 7642
 categories = ["bloodveld"]
 examine = "A bloodveld with a very mixed heritage."
+drop_table = "mutated_bloodveld"
 
 [mutated_bloodveld_meiyerditch_tunnels_2]
 id = 7643
 categories = ["bloodveld"]
 examine = "A bloodveld with a very mixed heritage."
+drop_table = "mutated_bloodveld"
 

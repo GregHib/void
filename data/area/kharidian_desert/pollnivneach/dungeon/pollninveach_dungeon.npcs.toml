@@ -16,6 +16,7 @@ slayer_xp = 75.0
 categories = ["basilisks"]
 respawn_delay = 15
 examine = "The eyes of evil."
+drop_table = "basilisk"
 
 [catolax_pollninveach_dungeon]
 id = 7783

@@ -24,6 +24,7 @@ examine = "A witch."
 id = 5341
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
+drop_table = "skeleton"
 
 [ice_spider]
 id = 64
@@ -38,6 +39,7 @@ slayer_xp = 65.0
 categories = ["spiders"]
 respawn_delay = 30
 examine = "I think this spider has been magically modified."
+drop_table = "ice_spider"
 
 [fire_warrior_of_lesarkus]
 id = 277

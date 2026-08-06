@@ -1,0 +1,5 @@
+[dwarf_gang_member_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

@@ -4,14 +4,17 @@ examine = "He's going for that 'stripy' look."
 
 [gull_rock_island]
 id = 1400
+drop_table = "bones"
 
 [customs_officer]
 id = 7837
 examine = "Inspects people's packages."
+drop_table = "bones"
 
 [customs_officer_2]
 id = 7838
 examine = "Inspects people's packages."
+drop_table = "bones"
 
 [locker_officer]
 id = 7842

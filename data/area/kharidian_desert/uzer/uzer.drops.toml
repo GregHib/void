@@ -1,0 +1,35 @@
+[bandit_looter_drop_table]
+type = "all"
+drops = [
+    { table = "bandit_looter_secondary" },
+]
+
+[bandit_looter_secondary]
+roll = 1117
+drops = [
+    { id = "coins", min = 67, max = 882, chance = 64 },
+    { id = "water_rune", min = 3, max = 17, chance = 64 },
+    { id = "fire_rune", min = 4, max = 26, chance = 64 },
+    { id = "cosmic_rune", min = 1, max = 6, chance = 64 },
+    { id = "chaos_rune", min = 8, max = 10, chance = 64 },
+    { id = "grimy_guam", chance = 64 },
+    { id = "grimy_marrentill", chance = 64 },
+    { id = "hammer", chance = 64 },
+    { id = "knife", chance = 64 },
+    { id = "waterskin_4", chance = 64 },
+    { id = "desert_shirt", chance = 64 },
+    { id = "silk", amount = 10, chance = 64 },
+    { id = "nature_rune", min = 1, max = 5, chance = 32 },
+    { id = "law_rune", min = 1, max = 5, chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "saw", chance = 32 },
+    { id = "papyrus", amount = 4, chance = 32 },
+    { id = "steel_battleaxe", chance = 32 },
+    { id = "mithril_med_helm", chance = 32 },
+    { id = "granite_500g", chance = 32 },
+    { id = "grimy_ranarr", chance = 6 },
+    { id = "grimy_irit", chance = 6 },
+    { id = "grimy_avantoe", chance = 6 },
+    { id = "grimy_cadantine", chance = 6 },
+    { id = "grimy_lantadyme", chance = 6 },
+]

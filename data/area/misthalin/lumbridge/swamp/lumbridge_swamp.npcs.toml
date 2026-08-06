@@ -16,6 +16,7 @@ id = 9708
 
 [giant_spider_lumbridge]
 id = 12352
+drop_table = "giant_spider"
 
 [sergeant_mossfists]
 id = 5889

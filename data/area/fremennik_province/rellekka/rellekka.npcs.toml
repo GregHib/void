@@ -142,6 +142,7 @@ clone = "agnar_rellekka"
 [freygerd_rellekka]
 id = 1310
 clone = "agnar_rellekka"
+drop_table = "bones"
 
 [lensa_rellekka]
 id = 1311
@@ -238,11 +239,13 @@ style = "stab"
 max_hit_melee = 20
 respawn_delay = 90
 examine = "Horned Horsey."
+drop_table = "unicorn_foal"
 
 [fenris_wolf_rellekka]
 id = 1330
 categories = ["wolves"]
 examine = "Fearsome predator found only in the Fremennik Province, renowned for its fur."
+drop_table = "fenris_wolf"
 
 [fishing_spot_rellekka]
 id = 1331

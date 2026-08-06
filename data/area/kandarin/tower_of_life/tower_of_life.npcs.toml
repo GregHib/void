@@ -9,6 +9,7 @@ style = "magic"
 max_hit_magic = 30
 respawn_delay = 50
 examine = "An evil user of Magic powers."
+drop_table = "invrigar_the_necromancer"
 
 [necromancer]
 id = 194

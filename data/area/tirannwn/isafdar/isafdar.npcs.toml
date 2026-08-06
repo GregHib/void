@@ -26,10 +26,12 @@ max_hit_melee = 10
 attack_bonus = -47
 respawn_delay = 25
 examine = "Aww, how cute."
+drop_table = "rabbit"
 
 [rabbit_isafdar_2]
 id = 1194
 clone = "rabbit_isafdar"
+drop_table = "rabbit"
 
 [grenwall]
 id = 7010

@@ -35,11 +35,13 @@ id = 310
 id = 4259
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
 
 [guard_baxtorian_falls_2]
 id = 4260
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
 
 [mysterious_ghost_baxtorian_falls_2]
 id = 2399

@@ -93,4 +93,5 @@ id = 12964
 
 [luminescent_icefiend_dungeoneering]
 id = 9913
+drop_table = "luminescent_icefiend"
 

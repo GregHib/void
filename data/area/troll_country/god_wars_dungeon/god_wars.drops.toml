@@ -1,0 +1,135 @@
+[ancient_warrior_drop_table]
+type = "all"
+drops = [
+    { table = "ancient_warrior_secondary" },
+    { table = "hard_clue_scroll", roll = 170 },
+]
+
+[ancient_warrior_secondary]
+roll = 1024
+drops = [
+    { id = "coins", amount = 500, chance = 64 },
+    { id = "pure_essence", amount = 23, chance = 64 },
+    { id = "mind_rune", chance = 64 },
+    { id = "mithril_longsword", chance = 64 },
+    { id = "super_attack_1", chance = 32 },
+    { id = "adamant_bar", amount = 4, chance = 32 },
+    { id = "coal", min = 1, max = 2, chance = 32 },
+    { id = "nature_rune", chance = 32 },
+    { id = "adamant_chainbody", chance = 32 },
+    { id = "super_strength_1", chance = 32 },
+    { id = "prayer_potion_2", chance = 32 },
+    { id = "super_defence_1", chance = 32 },
+    { id = "lobster", chance = 32 },
+    { id = "uncut_ruby", chance = 6 },
+    { id = "potato_cactus", chance = 6 },
+]
+
+[ancient_ranger_drop_table]
+type = "all"
+drops = [
+    { table = "ancient_ranger_secondary" },
+    { table = "hard_clue_scroll", roll = 32 },
+]
+
+[ancient_ranger_secondary]
+roll = 1036
+drops = [
+    { id = "pure_essence", amount = 23, chance = 64 },
+    { id = "coal", amount = 3, chance = 64 },
+    { id = "mud_rune", chance = 64 },
+    { id = "grimy_guam", chance = 64 },
+    { id = "grimy_marrentill", chance = 64 },
+    { id = "grimy_tarromin", chance = 64 },
+    { id = "mithril_longsword", chance = 64 },
+    { id = "prayer_potion_2", chance = 64 },
+    { id = "coins", amount = 1337, chance = 64 },
+    { id = "rune_arrow", amount = 12, chance = 32 },
+    { id = "adamant_bar", amount = 2, chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "nature_rune", chance = 32 },
+    { id = "uncut_diamond", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "blue_dragon_scale", amount = 2, chance = 32 },
+    { id = "grimy_torstol", chance = 6 },
+    { id = "adamant_bolts", amount = 15, chance = 6 },
+    { id = "rune_longsword", chance = 6 },
+]
+
+[blood_reaver_drop_table]
+type = "all"
+drops = [
+    { table = "blood_reaver_secondary" },
+]
+
+[blood_reaver_secondary]
+roll = 1024
+drops = [
+    { id = "mind_rune", amount = 20, chance = 32 },
+    { id = "air_rune", amount = 250, chance = 32 },
+    { id = "cosmic_rune", amount = 15, chance = 32 },
+    { id = "astral_rune", amount = 15, chance = 32 },
+    { id = "blood_rune", amount = 15, chance = 32 },
+    { id = "mud_rune", amount = 15, chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "uncut_diamond", chance = 32 },
+    { id = "coins", chance = 32 },
+    { id = "pure_essence", amount = 23, chance = 32 },
+    { id = "super_defence_1", chance = 32 },
+    { id = "prayer_potion_2", chance = 32 },
+    { id = "potato_cactus", chance = 32 },
+    { id = "coal", amount = 6, chance = 32 },
+    { id = "adamant_bar", chance = 32 },
+    { id = "shield_left_half", chance = 2 },
+]
+
+[ancient_mage_drop_table]
+type = "all"
+drops = [
+    { table = "ancient_mage_secondary" },
+    { table = "hard_clue_scroll", roll = 32 },
+]
+
+[ancient_mage_secondary]
+roll = 1210
+drops = [
+    { id = "coins", amount = 500, chance = 64 },
+    { id = "coal", min = 1, max = 10, chance = 64 },
+    { id = "grimy_guam", chance = 64 },
+    { id = "grimy_marrentill", chance = 64 },
+    { id = "grimy_tarromin", chance = 64 },
+    { id = "grimy_harralander", chance = 64 },
+    { id = "grimy_ranarr", chance = 64 },
+    { id = "grimy_irit", chance = 64 },
+    { id = "death_rune", amount = 25, chance = 64 },
+    { id = "soul_rune", amount = 25, chance = 64 },
+    { id = "astral_rune", amount = 25, chance = 64 },
+    { id = "air_rune", amount = 150, chance = 64 },
+    { id = "mud_rune", amount = 15, chance = 64 },
+    { id = "super_restore_3", chance = 64 },
+    { id = "adamant_bar", min = 1, max = 4, chance = 32 },
+    { id = "grimy_torstol", chance = 32 },
+    { id = "pure_essence", amount = 46, chance = 32 },
+    { id = "chaos_rune", amount = 30, chance = 32 },
+    { id = "super_defence_3", chance = 32 },
+    { id = "shark", chance = 32 },
+    { id = "blood_rune", amount = 25, chance = 6 },
+    { id = "uncut_sapphire", chance = 6 },
+    { id = "uncut_emerald", chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "ancient_ceremonial_mask", chance = 6 },
+    { id = "ancient_ceremonial_top", chance = 6 },
+    { id = "ancient_ceremonial_legs", chance = 6 },
+    { id = "ancient_ceremonial_gloves", chance = 6 },
+    { id = "ancient_ceremonial_boots", chance = 6 },
+]

@@ -1,24 +1,29 @@
 [scarab_larva_scabaras_dungeon]
 id = 6772
 examine = "It's not quite small enough to stamp upon."
+drop_table = "empty"
 
 [scabaras_ranger]
 id = 6773
 categories = ["scabarites"]
 examine = "Bred to shoot you down."
+drop_table = "locust_rider"
 
 [scabaras_lancer]
 id = 6774
 categories = ["scabarites"]
 examine = "It might be angry...it's hard to tell."
+drop_table = "scabaras_lancer"
 
 [scabaras_mage_scabaras_dungeon]
 id = 6780
 categories = ["scabarites"]
 examine = "Part scarab, part man."
+drop_table = "locust_rider"
 
 [scabaras_mage_scabaras_dungeon_2]
 id = 6781
+drop_table = "locust_rider"
 
 [clay_golem_scabaras_dungeon]
 id = 6785

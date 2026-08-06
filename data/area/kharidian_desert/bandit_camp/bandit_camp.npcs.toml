@@ -53,6 +53,7 @@ id = 2384
 
 [bandit_bandit_camp_7]
 id = 195
+drop_table = "bandit"
 
 [eblis_bandit_camp_2]
 id = 1923

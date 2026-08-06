@@ -90,6 +90,7 @@ slayer_xp = 36.0
 categories = ["birds"]
 respawn_delay = 30
 examine = "These gnomes know how to get around!"
+drop_table = "mounted_terrorbird_gnome"
 
 [bolongo]
 id = 2343
@@ -156,9 +157,11 @@ ranged_strength = 2
 combat_def = "gnome"
 respawn_delay = 30
 examine = "It's a tree gnome trooper."
+drop_table = "gnome_troop"
 
 [gnome_troop_2]
 id = 480
+drop_table = "gnome_troop"
 
 [gnome_baller]
 id = 621

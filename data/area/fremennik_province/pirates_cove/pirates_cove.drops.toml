@@ -1,0 +1,24 @@
+[jake_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "jake_secondary" },
+]
+
+[jake_secondary]
+roll = 1024
+drops = [
+    { id = "eye_patch", chance = 32 },
+]
+
+[wilson_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[palmer_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

@@ -15,3 +15,9 @@ type = "all"
 drops = [
     { id = "riyl_remains" },
 ]
+
+[phrin_shadow_drop_table]
+type = "all"
+drops = [
+    { id = "phrin_remains" },
+]

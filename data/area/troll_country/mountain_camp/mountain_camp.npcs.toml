@@ -52,6 +52,7 @@ style = "crush"
 max_hit_melee = 30
 respawn_delay = 50
 examine = "One of the inhabitants of the camp."
+drop_table = "camp_dweller"
 
 [mountain_goat_mountain_camp]
 id = 1819

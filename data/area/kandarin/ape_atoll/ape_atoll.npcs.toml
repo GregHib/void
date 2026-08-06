@@ -24,6 +24,7 @@ height = 10
 respawn_delay = 2
 hunt_mode = "cowardly"
 examine = "It's an extremely small brown spider, probably very poisonous."
+drop_table = "spider"
 
 [pedestal_ape_atoll]
 id = 13176
@@ -221,10 +222,12 @@ slayer_xp = 130.0
 categories = ["monkeys"]
 respawn_delay = 50
 examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
+drop_table = "monkey_guard"
 
 [monkey_guard_ape_atoll_4]
 id = 1460
 clone = "monkey_guard_ape_atoll_3"
+drop_table = "monkey_guard"
 
 [elder_guard_ape_atoll]
 id = 1461
@@ -283,6 +286,7 @@ slayer_xp = 60.0
 categories = ["monkeys", "zombies"]
 respawn_delay = 50
 examine = "A recently deceased monkey. Its flesh seems to be worse for the wear."
+drop_table = "monkey_zombie"
 
 [scorpion_ape_atoll]
 id = 1477
@@ -297,6 +301,7 @@ respawn_delay = 50
 slayer_xp = 15.0
 categories = ["scorpions"]
 examine = "It's an extremely dangerous looking scorpion."
+drop_table = "scorpion"
 
 [jungle_spider_ape_atoll]
 id = 1478
@@ -311,9 +316,11 @@ xp_bonus = 2.5
 respawn_delay = 50
 categories = ["spiders"]
 examine = "A very dangerous looking spider, with its fangs unsheathed."
+drop_table = "jungle_spider"
 
 [snake_ape_atoll]
 id = 1479
+drop_table = "snake"
 
 [bird_black]
 id = 1475
@@ -327,6 +334,7 @@ slayer_xp = 10.0
 categories = ["birds"]
 respawn_delay = 5
 examine = "It's a brightly coloured bird of the jungle."
+drop_table = "bones"
 
 [bird_green]
 id = 1476
@@ -341,6 +349,7 @@ slayer_xp = 5.0
 respawn_delay = 5
 categories = ["birds"]
 examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
+drop_table = "bones"
 
 [daero]
 id = 1407

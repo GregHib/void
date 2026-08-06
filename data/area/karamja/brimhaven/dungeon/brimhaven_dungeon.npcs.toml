@@ -2,3 +2,4 @@
 id = 4671
 categories = ["red_dragons"]
 examine = "A big powerful dragon."
+drop_table = "red_dragon"

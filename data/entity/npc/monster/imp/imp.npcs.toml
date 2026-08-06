@@ -21,3 +21,4 @@ categories = ["imp"]
 god = "zamorak"
 hunt_mode = "zamorak_aggressive"
 examine = "Have you checked your pockets lately?"
+drop_table = "imp"

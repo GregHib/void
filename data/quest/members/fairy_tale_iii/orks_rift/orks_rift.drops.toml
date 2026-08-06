@@ -1,0 +1,124 @@
+[ivory_shredflesh_cursed_drop_table]
+type = "all"
+drops = [
+    { table = "ivory_shredflesh_cursed_secondary" },
+    { table = "medium_clue_scroll", roll = 16 },
+]
+
+[ivory_shredflesh_cursed_secondary]
+roll = 1719
+drops = [
+    { id = "dragon_dagger", chance = 64 },
+    { id = "rune_dagger", chance = 64 },
+    { id = "rune_longsword", chance = 64 },
+    { id = "ranarr_seed", chance = 64 },
+    { id = "snapdragon_seed", chance = 64 },
+    { id = "sweetcorn_seed", chance = 64 },
+    { id = "strawberry_seed", chance = 64 },
+    { id = "watermelon_seed", chance = 64 },
+    { id = "death_rune", chance = 64 },
+    { id = "mud_rune", chance = 64 },
+    { id = "cosmic_rune", chance = 64 },
+    { id = "cosmic_talisman", chance = 64 },
+    { id = "earth_talisman", chance = 64 },
+    { id = "sapphire", chance = 64 },
+    { id = "emerald", chance = 64 },
+    { id = "ruby", chance = 64 },
+    { id = "diamond", chance = 64 },
+    { id = "adamantite_ore", chance = 64 },
+    { id = "silver_ore", chance = 64 },
+    { id = "pure_essence", chance = 64 },
+    { id = "gold_charm", chance = 64, members = true },
+    { id = "blue_charm", chance = 64, members = true },
+    { id = "molten_glass", chance = 64 },
+    { id = "chocolate_bar", chance = 64 },
+    { id = "bones", chance = 64 },
+    { id = "irit_seed", chance = 6 },
+    { id = "green_charm", chance = 6, members = true },
+    { id = "crimson_charm", chance = 6, members = true },
+    { id = "dragon_longsword", chance = 2 },
+    { id = "dragonstone", chance = 2 },
+]
+
+[ivory_gromblod_cursed_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "ivory_gromblod_cursed_secondary" },
+    { table = "easy_clue_scroll", roll = 512 },
+    { table = "hard_clue_scroll", roll = 170 },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[ivory_gromblod_cursed_secondary]
+roll = 1024
+drops = [
+    { id = "dragon_dagger", chance = 64 },
+    { id = "dragon_longsword", chance = 64 },
+    { id = "snapdragon_seed", min = 3, max = 6, chance = 64 },
+    { id = "rune_dagger", chance = 32 },
+    { id = "rune_longsword", chance = 32 },
+    { id = "irit_seed", chance = 32 },
+    { id = "ranarr_seed", chance = 32 },
+    { id = "sweetcorn_seed", amount = 3, chance = 32 },
+    { id = "strawberry_seed", amount = 3, chance = 32 },
+    { id = "watermelon_seed", amount = 3, chance = 32 },
+    { id = "death_rune", amount = 4, chance = 32 },
+    { id = "mud_rune", amount = 6, chance = 32 },
+    { id = "cosmic_rune", amount = 6, chance = 32 },
+    { id = "cosmic_talisman", chance = 32 },
+    { id = "earth_talisman", chance = 32 },
+    { id = "sapphire", chance = 32 },
+    { id = "emerald", chance = 32 },
+    { id = "ruby", chance = 32 },
+    { id = "adamantite_ore", chance = 32 },
+    { id = "silver_ore", amount = 5, chance = 32 },
+    { id = "pure_essence", amount = 10, chance = 32 },
+    { id = "coins", amount = 2, chance = 32 },
+    { id = "molten_glass", amount = 2, chance = 32 },
+    { id = "chocolate_bar", amount = 12, chance = 32 },
+    { id = "diamond", chance = 6 },
+    { id = "dragonstone", chance = 6 },
+]
+
+[ivory_bre_egth_cursed_drop_table]
+type = "all"
+drops = [
+    { table = "ivory_bre_egth_cursed_secondary" },
+    { table = "medium_clue_scroll", roll = 16 },
+]
+
+[ivory_bre_egth_cursed_secondary]
+roll = 1727
+drops = [
+    { id = "dragon_dagger", chance = 64 },
+    { id = "rune_dagger", chance = 64 },
+    { id = "rune_longsword", chance = 64 },
+    { id = "irit_seed", chance = 64 },
+    { id = "ranarr_seed", chance = 64 },
+    { id = "snapdragon_seed", chance = 64 },
+    { id = "sweetcorn_seed", chance = 64 },
+    { id = "strawberry_seed", chance = 64 },
+    { id = "watermelon_seed", chance = 64 },
+    { id = "death_rune", chance = 64 },
+    { id = "mud_rune", chance = 64 },
+    { id = "cosmic_rune", chance = 64 },
+    { id = "cosmic_talisman", chance = 64 },
+    { id = "earth_talisman", chance = 64 },
+    { id = "sapphire", chance = 64 },
+    { id = "emerald", chance = 64 },
+    { id = "ruby", chance = 64 },
+    { id = "adamantite_ore", chance = 64 },
+    { id = "silver_ore", chance = 64 },
+    { id = "pure_essence", chance = 64 },
+    { id = "gold_charm", chance = 64, members = true },
+    { id = "green_charm", chance = 64, members = true },
+    { id = "molten_glass", chance = 64 },
+    { id = "chocolate_bar", chance = 64 },
+    { id = "bones", chance = 64 },
+    { id = "dragon_longsword", chance = 6 },
+    { id = "diamond", chance = 6 },
+    { id = "dragonstone", chance = 6 },
+    { id = "crimson_charm", chance = 6, members = true },
+    { id = "blue_charm", chance = 6, members = true },
+]

@@ -32,6 +32,7 @@ max_hit_melee = 180
 max_hit_range = 20
 hunt_mode = "cowardly"
 examine = "Are you good enough to fight?"
+drop_table = "empty"
 
 [the_untouchable_normal]
 id = 5904

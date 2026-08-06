@@ -1,6 +1,7 @@
 [golem_guard_uzer_mastaba]
 id = 7497
 examine = "A rocky horror."
+drop_table = "empty"
 
 [golems_remains_uzer_mastaba]
 id = 7498
@@ -9,4 +10,5 @@ id = 7498
 id = 7500
 categories = ["scabarites"]
 examine = "This dung beetle has mistaken you for its staple diet."
+drop_table = "small_scarab"
 

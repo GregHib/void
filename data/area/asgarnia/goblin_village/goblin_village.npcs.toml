@@ -10,6 +10,7 @@ max_hit_crush = 30
 max_hit_magic = 100
 hunt_mode = "cowardly"
 examine = "A Zamorakian human cleric."
+drop_table = "monk_of_zamorak"
 
 [general_bentnoze_goblin_village]
 id = 4493

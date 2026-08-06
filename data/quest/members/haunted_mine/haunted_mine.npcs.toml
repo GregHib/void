@@ -23,6 +23,7 @@ id = 1548
 id = 5392
 categories = ["skeletons"]
 examine = "Put some meat on those bones!"
+drop_table = "skeleton"
 
 [treus_dayth]
 id = 1540

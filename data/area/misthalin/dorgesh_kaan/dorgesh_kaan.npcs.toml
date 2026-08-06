@@ -221,11 +221,13 @@ examine = "He's the head of the Dorgeshuun Council."
 id = 5800
 categories = ["goblins"]
 examine = "He keeps order in the city."
+drop_table = "guard"
 
 [guard_dorgesh_kaan_2]
 id = 5801
 categories = ["goblins"]
 examine = "He keeps order in the city."
+drop_table = "guard"
 
 [zanik_dorgesh_kaan_2]
 id = 5802

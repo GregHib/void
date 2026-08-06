@@ -60,44 +60,55 @@ slayer_xp = 2.0
 categories = ["rats", "zombies"]
 respawn_delay = 30
 examine = "Overgrown undead vermin."
+drop_table = "zombie_rat"
 
 [zombie_rat_rimmington_2]
 id = 6089
 clone = "zombie_rat_rimmington"
+drop_table = "zombie_rat"
 
 [zombie_rat_rimmington_3]
 id = 6090
 clone = "zombie_rat_rimmington"
+drop_table = "zombie_rat"
 
 [skeleton_rimmington]
 id = 6091
+drop_table = "skeleton"
 
 [skeleton_rimmington_2]
 id = 6092
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
+drop_table = "skeleton"
 
 [skeleton_rimmington_3]
 id = 6093
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
+drop_table = "skeleton"
 
 [ghost_rimmington]
 id = 6094
+drop_table = "empty"
 
 [ghost_rimmington_2]
 id = 6095
+drop_table = "empty"
 
 [ghost_rimmington_3]
 id = 6096
+drop_table = "empty"
 
 [ghost_rimmington_4]
 id = 6097
 categories = ["ghosts"]
 examine = "Eeek! A ghost!"
+drop_table = "empty"
 
 [ghost_rimmington_5]
 id = 6098
+drop_table = "empty"
 
 [tool_leprechaun_rimmington]
 id = 7559

@@ -11,4 +11,5 @@ max_hit_melee = 50
 hunt_mode = "cowardly"
 respawn_delay = 30
 examine = "He looks totally insane!"
+drop_table = "melzar_the_mad"
 

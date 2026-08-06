@@ -53,6 +53,7 @@ examine = "A swarm of bugs."
 id = 3783
 categories = ["frogs"]
 examine = "Long legged licker."
+drop_table = "frog"
 
 [jungle_forester]
 id = 401
@@ -106,6 +107,7 @@ clone = "jungle_spider_karamja"
 id = 6378
 categories = ["birds"]
 examine = "I wouldn't want to be footing that bill."
+drop_table = "tenacious_toucan"
 
 [giant_ant_worker]
 id = 6379
@@ -116,6 +118,7 @@ str = 40
 def = 50
 combat_def = "giant_ant"
 examine = "I wonder how much he can lift."
+drop_table = "giant_ant_worker"
 
 [giant_ant_soldier]
 id = 6380
@@ -128,18 +131,22 @@ hunt_mode = "aggressive"
 combat_def = "giant_ant"
 max_hit_crush = 130
 examine = "Gi-ant-ant-ant-ant..."
+drop_table = "giant_ant_soldier"
 
 [giant_wasp]
 id = 6381
 examine = "That stinger has to hurt..."
+drop_table = "giant_wasp"
 
 [pernicious_parrot]
 id = 6382
 categories = ["birds"]
 examine = "Polynomial - a parrot that goes without breakfast, lunch or dinner."
+drop_table = "empty"
 
 [giant_wasp_2]
 id = 6383
+drop_table = "giant_wasp"
 
 [karamjan_jungle_eagle]
 id = 6387
@@ -217,6 +224,7 @@ attack_bonus = 8
 hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "A vicious warrior."
+drop_table = "tribesman"
 
 [tinsay_karamja_2]
 id = 1165

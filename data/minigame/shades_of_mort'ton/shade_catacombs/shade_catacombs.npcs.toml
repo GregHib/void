@@ -13,6 +13,7 @@ categories = ["shades"]
 immune_poison = true
 respawn_delay = 50
 examine = "A shadowy sort of entity, kind of creepy looking."
+drop_table = "phrin_shadow"
 
 [phrin_shade_shade]
 id = 1244
@@ -95,6 +96,7 @@ hunt_mode = "cowardly"
 slayer_xp = 94.0
 categories = ["shades"]
 examine = "The shadowy remains of a long-departed soul."
+drop_table = "empty"
 
 [fiyr_shadow_shade_catacombs]
 id = 1249

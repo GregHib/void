@@ -27,3 +27,4 @@ def = 22
 combat_def = "crab_underwater"
 respawn_delay = 5
 examine = "Nice claw!"
+drop_table = "crab"

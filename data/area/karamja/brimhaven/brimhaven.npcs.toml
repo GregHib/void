@@ -69,22 +69,27 @@ examine = "An amulet trader."
 [pirate_brimhaven]
 id = 6346
 examine = "Avast ye scurvy land lubbers!"
+drop_table = "pirate"
 
 [pirate_brimhaven_2]
 id = 6347
 examine = "Avast ye scurvy land lubbers!"
+drop_table = "pirate"
 
 [pirate_brimhaven_3]
 id = 6348
 examine = "Avast ye scurvy land lubbers!"
+drop_table = "pirate"
 
 [pirate_brimhaven_4]
 id = 6349
 examine = "Avast ye scurvy land lubbers!"
+drop_table = "pirate"
 
 [pirate_brimhaven_5]
 id = 6350
 examine = "Avast ye scurvy land lubbers!"
+drop_table = "pirate"
 
 [tool_leprechaun_brimhaven]
 id = 7558
@@ -109,6 +114,7 @@ max_hit_melee = 30
 attack_bonus = 5
 respawn_delay = 50
 examine = "Looks like he's been in the wars..."
+drop_table = "grip"
 
 [alfonse_the_waiter_brimhaven]
 id = 793
@@ -142,6 +148,7 @@ style = "crush"
 max_hit_melee = 20
 respawn_delay = 25
 examine = "Known for his light-fingered qualities."
+drop_table = "thief"
 
 [kangai_mau_brimhaven]
 id = 846

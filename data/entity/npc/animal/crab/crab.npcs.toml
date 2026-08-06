@@ -13,6 +13,7 @@ examine = "No one likes crabs..."
 [rock_crab_1]
 clone = "rock_crab"
 id = 1267
+drop_table = "rock_crab"
 
 [rock]
 id = 1266

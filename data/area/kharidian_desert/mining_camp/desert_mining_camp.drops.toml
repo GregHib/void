@@ -9,3 +9,14 @@ drops = [
     { id = "bones" },
     { id = "metal_key" },
 ]
+[mercenary_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[rowdy_slave_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

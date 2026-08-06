@@ -67,6 +67,7 @@ slayer_xp = 100.0
 categories = ["hill_giants"]
 respawn_delay = 30
 examine = "A one-eyed woman eater."
+drop_table = "cyclops"
 
 [cyclopse_hammer_steel]
 id = 6078
@@ -81,22 +82,27 @@ slayer_xp = 55.0
 categories = ["hill_giants"]
 respawn_delay = 30
 examine = "A one-eyed man eater."
+drop_table = "cyclops"
 
 [cyclopse_club_lepard]
 id = 4291
 clone = "cyclopse_hammer_steel"
+drop_table = "cyclops"
 
 [cyclopse_club]
 id = 6080
 clone = "cyclopse_hammer"
+drop_table = "cyclops"
 
 [cyclopse_club_mohawk]
 id = 6079
 clone = "cyclopse_hammer"
+drop_table = "cyclops"
 
 [cyclopse_knife]
 id = 4292
 clone = "cyclopse_hammer"
+drop_table = "cyclops"
 
 [harrallak_menarous_2]
 id = 8268

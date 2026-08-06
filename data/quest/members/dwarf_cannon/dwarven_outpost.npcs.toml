@@ -14,14 +14,17 @@ examine = "He's in control of the coal trucks."
 id = 4257
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
 
 [guard_dwarven_outpost_2]
 id = 4258
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
 
 [goblin_dwarven_outpost]
 id = 4261
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
 

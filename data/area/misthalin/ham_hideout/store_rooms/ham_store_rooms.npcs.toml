@@ -1,20 +1,25 @@
 [guard_ham_store_rooms]
 id = 4307
 examine = "A guard for the humans against monster group."
+drop_table = "guard"
 
 [guard_ham_store_rooms_2]
 id = 4308
 clone = "guard_ham_store_rooms"
+drop_table = "guard"
 
 [guard_ham_store_rooms_3]
 id = 4309
 clone = "guard_ham_store_rooms"
+drop_table = "guard"
 
 [guard_ham_store_rooms_4]
 id = 4310
 clone = "guard_ham_store_rooms"
+drop_table = "guard"
 
 [guard_ham_store_rooms_5]
 id = 4311
 clone = "guard_ham_store_rooms"
+drop_table = "guard"
 

@@ -12,14 +12,17 @@ slayer_xp = 25.0
 categories = ["skeletons"]
 respawn_delay = 50
 examine = "Could use a good meal."
+drop_table = "skeleton_fremennik"
 
 [skeleton_fremennik_2]
 id = 3698
 clone = "skeleton_fremennik"
+drop_table = "skeleton_fremennik"
 
 [skeleton_fremennik_3]
 id = 3699
 clone = "skeleton_fremennik"
+drop_table = "skeleton_fremennik"
 
 [skeleton_fremennik_4]
 id = 3700
@@ -35,14 +38,17 @@ slayer_xp = 35.0
 categories = ["skeletons"]
 respawn_delay = 50
 examine = "He seems a little underweight."
+drop_table = "skeleton_fremennik"
 
 [skeleton_fremennik_5]
 id = 3701
 clone = "skeleton_fremennik_4"
+drop_table = "skeleton_fremennik"
 
 [skeleton_fremennik_6]
 id = 3702
 clone = "skeleton_fremennik_4"
+drop_table = "skeleton_fremennik"
 
 [skeleton_fremennik_7]
 id = 3703
@@ -58,10 +64,12 @@ slayer_xp = 40.0
 categories = ["skeletons"]
 respawn_delay = 50
 examine = "He seems a little underweight."
+drop_table = "skeleton_fremennik"
 
 [skeleton_fremennik_8]
 id = 3704
 clone = "skeleton_fremennik_7"
+drop_table = "skeleton_fremennik"
 
 [brine_rat]
 id = 3707

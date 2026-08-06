@@ -322,6 +322,7 @@ combat_def = "man"
 max_hit_crush = 20
 respawn_delay = 25
 examine = "Known for his light-fingered qualities."
+drop_table = "thief"
 
 [art_critic_jacques]
 id = 5930
@@ -552,6 +553,7 @@ id = 8906
 
 [man_varrock_4]
 id = 12346
+drop_table = "man"
 
 [orlando_smith]
 id = 5965
@@ -576,9 +578,11 @@ examine = "A crafter at the pinnacle of his art."
 
 [man_varrock]
 id = 12345
+drop_table = "man"
 
 [man_varrock_2]
 id = 12347
+drop_table = "man"
 
 [tramp_varrock_2]
 id = 2792
@@ -630,14 +634,17 @@ attack_bonus = 4
 combat_def = "guard_varrock"
 respawn_delay = 50
 examine = "He tries to keep order around here. His bizarre uniform isn't helping."
+drop_table = "guard"
 
 [man_varrock_3]
 id = 5923
 examine = "One of Gielinor's many citizens."
+drop_table = "man"
 
 [woman_varrock]
 id = 5924
 examine = "One of Gielinor's many citizens."
+drop_table = "woman"
 
 [benny]
 id = 5925
@@ -646,14 +653,17 @@ examine = "Newspaper seller."
 [thief_black_arm_gang]
 id = 5926
 clone = "thief_phoenix_gang"
+drop_table = "thief"
 
 [thief_black_arm_gang_red]
 id = 5928
 clone = "thief_phoenix_gang"
+drop_table = "thief"
 
 [thief_black_arm_gang_blonde]
 id = 5929
 clone = "thief_phoenix_gang"
+drop_table = "thief"
 
 [apothecary]
 id = 638
@@ -696,6 +706,7 @@ examine = "Peaceful man!"
 [guard_varrock_2]
 id = 5920
 clone = "guard_varrock"
+drop_table = "guard"
 
 [trainee_guard]
 id = 5921

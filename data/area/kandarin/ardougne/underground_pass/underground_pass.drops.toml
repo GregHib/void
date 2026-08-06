@@ -46,3 +46,24 @@ drops = [
     { table = "medium_clue_scroll", roll = 128 },
 ]
 
+
+[khazard_trooper_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "khazard_trooper_secondary" },
+]
+
+[khazard_trooper_secondary]
+roll = 1024
+drops = [
+    { id = "bones", chance = 64 },
+    { id = "iron_arrow", chance = 6 },
+    { id = "starved_ancient_effigy", chance = 6 },
+]
+
+[khazard_warlord_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

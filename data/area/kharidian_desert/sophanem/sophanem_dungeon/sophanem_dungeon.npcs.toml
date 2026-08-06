@@ -35,6 +35,7 @@ slayer_xp = 51.2
 categories = ["scabarites"]
 respawn_delay = 50
 examine = "Part scarab, part human."
+drop_table = "scarab_mage"
 
 [locust_rider_sophanem_dungeon]
 id = 5251

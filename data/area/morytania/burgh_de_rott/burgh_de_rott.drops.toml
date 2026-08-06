@@ -1,0 +1,41 @@
+[vampyre_juvinate_drop_table]
+type = "all"
+drops = [
+    { table = "vampyre_juvinate_secondary" },
+    { table = "medium_clue_scroll", roll = 32 },
+]
+
+[vampyre_juvinate_secondary]
+roll = 1024
+drops = [
+    { id = "staff_of_air", chance = 32 },
+    { id = "staff_of_fire", chance = 32 },
+    { id = "black_spear", chance = 32 },
+    { id = "black_battleaxe", chance = 32 },
+    { id = "black_2h_sword", chance = 32 },
+    { id = "mithril_battleaxe", chance = 32 },
+    { id = "mithril_2h_sword", chance = 32 },
+    { id = "mithril_scimitar", chance = 32 },
+    { id = "mithril_longsword", chance = 32 },
+    { id = "mithril_warhammer", chance = 32 },
+    { id = "adamant_hatchet", chance = 32 },
+    { id = "adamant_sword", chance = 32 },
+    { id = "adamant_mace", chance = 32 },
+    { id = "adamant_scimitar", chance = 32 },
+    { id = "steel_plateskirt", chance = 32 },
+    { id = "black_full_helm", chance = 32 },
+    { id = "black_chainbody", chance = 32 },
+    { id = "black_platelegs", chance = 32 },
+    { id = "black_kiteshield", chance = 32 },
+    { id = "black_sq_shield", chance = 32 },
+    { id = "mithril_full_helm", chance = 32 },
+    { id = "mithril_chainbody", chance = 32 },
+    { id = "mithril_platelegs", chance = 32 },
+    { id = "mithril_sq_shield", chance = 32 },
+    { id = "adamant_med_helm", chance = 32 },
+    { id = "nature_rune", amount = 10, chance = 32 },
+    { id = "death_rune", amount = 10, chance = 32 },
+    { id = "willow_logs", amount = 5, chance = 32 },
+    { id = "yew_logs", amount = 5, chance = 32 },
+    { id = "ruby_ring", chance = 32 },
+]

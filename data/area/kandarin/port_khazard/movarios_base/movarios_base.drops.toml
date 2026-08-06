@@ -1,0 +1,42 @@
+[elite_khazard_guard_drop_table]
+type = "all"
+drops = [
+    { table = "elite_khazard_guard_secondary" },
+    { table = "medium_clue_scroll", roll = 32 },
+]
+
+[elite_khazard_guard_secondary]
+roll = 1024
+drops = [
+    { id = "steel_full_helm", chance = 32 },
+    { id = "steel_sword", chance = 32 },
+    { id = "steel_longsword", chance = 32 },
+    { id = "blood_rune", chance = 32 },
+    { id = "fire_rune", min = 4, max = 10, chance = 32 },
+    { id = "earth_rune", min = 4, max = 10, chance = 32 },
+    { id = "air_rune", min = 4, max = 10, chance = 32 },
+    { id = "water_rune", min = 4, max = 10, chance = 32 },
+    { id = "mithril_bar", chance = 32 },
+    { id = "iron_bar", chance = 32 },
+    { id = "steel_bar", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "uncut_diamond", chance = 32 },
+    { id = "coins", min = 31, max = 224, chance = 32 },
+    { id = "law_talisman", chance = 32 },
+    { id = "nature_talisman", chance = 32 },
+    { id = "waterskin_4", chance = 32 },
+    { id = "grimy_ranarr", chance = 6 },
+    { id = "dwarf_weed_seed", chance = 2 },
+]

@@ -116,3 +116,9 @@ drops = [
     { id = "crimson_charm", chance = 1650 },
     { id = "blue_charm", chance = 525 },
 ]
+
+[cave_lizard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

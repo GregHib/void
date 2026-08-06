@@ -14,4 +14,5 @@ examine = "A wizened little Gnome dressed in brightly coloured clothes."
 id = 1471
 categories = ["skeletons"]
 examine = "It looks just a bit... underfed."
+drop_table = "skeleton"
 

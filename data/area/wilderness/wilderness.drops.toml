@@ -34,3 +34,99 @@ drops = [
     { id = "coins", amount = 7500, chance = 16 },
     { table = "rare_drop_table", chance = 6 },
 ]
+
+[dark_wizard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "dark_wizard_secondary" },
+]
+
+[dark_wizard_secondary]
+roll = 1484
+drops = [
+    { id = "coins", chance = 64 },
+    { id = "staff", chance = 64 },
+    { id = "staff_of_air", chance = 64 },
+    { id = "black_wizard_hat", chance = 64 },
+    { id = "fire_talisman", chance = 64 },
+    { id = "mind_rune", amount = 10, chance = 64 },
+    { id = "coins", chance = 64 },
+    { id = "staff", chance = 64 },
+    { id = "staff_of_air", chance = 64 },
+    { id = "water_talisman", chance = 64 },
+    { id = "fire_talisman", chance = 64 },
+    { id = "black_wizard_hat", chance = 64 },
+    { id = "earth_rune", amount = 10, chance = 32 },
+    { id = "air_rune", amount = 10, chance = 32 },
+    { id = "water_rune", amount = 10, chance = 32 },
+    { id = "fire_rune", amount = 10, chance = 32 },
+    { id = "mind_rune", amount = 10, chance = 32 },
+    { id = "body_rune", amount = 10, chance = 32 },
+    { id = "chaos_rune", amount = 4, chance = 32 },
+    { id = "nature_rune", amount = 4, chance = 32 },
+    { id = "cosmic_rune", amount = 2, chance = 32 },
+    { id = "sling", chance = 32 },
+    { id = "earth_rune", amount = 10, chance = 32 },
+    { id = "air_rune", amount = 10, chance = 32 },
+    { id = "water_rune", amount = 10, chance = 32 },
+    { id = "fire_rune", amount = 10, chance = 32 },
+    { id = "body_rune", amount = 10, chance = 32 },
+    { id = "chaos_rune", amount = 4, chance = 32 },
+    { id = "nature_rune", amount = 4, chance = 32 },
+    { id = "cosmic_rune", amount = 2, chance = 32 },
+    { id = "sling", chance = 32 },
+    { id = "law_rune", amount = 3, chance = 6 },
+    { id = "mind_talisman", chance = 6 },
+    { id = "law_rune", amount = 3, chance = 6 },
+    { id = "mind_talisman", chance = 6 },
+]
+
+[rogue_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "rogue_secondary" },
+    { table = "easy_clue_scroll", roll = 32 },
+]
+
+[rogue_secondary]
+roll = 1221
+drops = [
+    { id = "coins", min = 25, max = 45, chance = 32 },
+    { id = "air_rune", amount = 8, chance = 32 },
+    { id = "lockpick", chance = 32 },
+    { id = "iron_dagger_p", chance = 32 },
+    { id = "jug_of_wine", chance = 32 },
+    { id = "gold_bar", chance = 32 },
+    { id = "adamant_dagger_p", chance = 32 },
+    { id = "bronze_arrow", amount = 7, chance = 32 },
+    { id = "bronze_bolts", min = 4, max = 12, chance = 32 },
+    { id = "chaos_rune", min = 1, max = 2, chance = 32 },
+    { id = "fire_rune", amount = 4, chance = 32 },
+    { id = "earth_rune", amount = 3, chance = 32 },
+    { id = "air_rune", amount = 8, chance = 32 },
+    { id = "mind_rune", amount = 6, chance = 32 },
+    { id = "bronze_med_helm", chance = 32 },
+    { id = "iron_dagger", chance = 32 },
+    { id = "iron_platebody", chance = 32 },
+    { id = "iron_dagger_p", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "coins", chance = 32 },
+    { id = "copper_ore", chance = 32 },
+    { id = "earth_talisman", chance = 32 },
+    { id = "fishing_bait", chance = 32 },
+    { id = "cabbage", chance = 32 },
+    { id = "jug_of_wine", chance = 32 },
+    { id = "lockpick", chance = 32 },
+]

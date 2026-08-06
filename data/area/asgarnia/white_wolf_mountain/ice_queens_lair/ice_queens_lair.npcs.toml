@@ -1,5 +1,6 @@
 [ice_warrior_ice_queens_lair]
 id = 145
+drop_table = "ice_warrior"
 
 [ice_queen]
 id = 795

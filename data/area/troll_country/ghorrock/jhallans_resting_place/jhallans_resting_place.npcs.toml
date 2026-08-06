@@ -1,6 +1,8 @@
 [jelly_jhallans_resting_place]
 id = 7459
+drop_table = "jelly"
 
 [jelly_jhallans_resting_place_2]
 id = 7460
+drop_table = "jelly"
 

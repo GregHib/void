@@ -36,6 +36,7 @@ id = 12336
 
 [rat_black_knights_fortress]
 id = 2682
+drop_table = "rat"
 
 [arthur_black_knights_fortress_basement]
 id = 3778

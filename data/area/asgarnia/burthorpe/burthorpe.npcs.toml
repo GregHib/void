@@ -98,6 +98,7 @@ def = 3
 combat_def = "man"
 respawn_delay = 25
 examine = "A servant for Prince Anlaf."
+drop_table = "bones"
 
 [eohric]
 id = 1080
@@ -219,6 +220,7 @@ combat_def = "white_knight"
 attack_bonus = 30
 respawn_delay = 50
 examine = "The knight seems to be watching something."
+drop_table = "white_knight"
 
 [helemos]
 id = 797

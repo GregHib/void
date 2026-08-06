@@ -2,6 +2,7 @@
 id = 3622
 categories = ["zombies"]
 examine = "I wonder if he'd let me borrow his hatchet?"
+drop_table = "zombie"
 
 [rook_temple_trekking]
 id = 9719

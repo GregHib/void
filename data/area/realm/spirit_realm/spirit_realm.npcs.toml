@@ -2,11 +2,13 @@
 id = 7994
 categories = ["ghosts"]
 examine = "A spectral warrior with no axe."
+drop_table = "ghostly_warrior"
 
 [tormented_wraith_spirit_realm]
 id = 8125
 categories = ["ghosts"]
 examine = "The wraith of a long-dead prisoner."
+drop_table = "tormented_wraith"
 
 [edward]
 id = 1782

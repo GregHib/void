@@ -11,6 +11,7 @@ hunt_mode = "cowardly"
 immune_cannon = true
 respawn_delay = 30
 examine = "One of the guardians of Iban."
+drop_table = "holthion"
 
 [disciple_of_iban_ibans_lair]
 id = 1002

@@ -35,6 +35,7 @@ id = 9450
 id = 9453
 categories = ["ghosts"]
 examine = "A lingering soul."
+drop_table = "spectral_worshipper"
 
 [knight_nomads_temple_2]
 id = 9448

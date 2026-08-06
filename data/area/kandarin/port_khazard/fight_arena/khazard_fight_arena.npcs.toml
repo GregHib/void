@@ -17,10 +17,12 @@ max_hit_melee = 30
 attack_bonus = 10
 respawn_delay = 50
 examine = "His armour indicates he's a Khazard Guard."
+drop_table = "khazard_guard"
 
 [khazard_4]
 id = 256
 clone = "khazard_3"
+drop_table = "khazard_guard"
 
 [angor]
 id = 259
@@ -111,6 +113,7 @@ examine = "He demands to have some booze."
 [khazard_20]
 id = 7528
 clone = "khazard_3"
+drop_table = "khazard_guard"
 
 [lazy_khazard]
 id = 7550

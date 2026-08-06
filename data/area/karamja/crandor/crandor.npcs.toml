@@ -17,3 +17,4 @@ slayer_xp = 80.0
 categories = ["green_dragons"]
 respawn_delay = 50
 examine = "Roar! A dragon!"
+drop_table = "empty"

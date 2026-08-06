@@ -9,6 +9,7 @@ slayer_xp = 4.0
 categories = ["birds"]
 respawn_delay = 30
 examine = "An inhabitant of icy regions."
+drop_table = "bones"
 
 [gull_miscellania]
 id = 1325
@@ -130,6 +131,7 @@ style = "crush"
 max_hit_melee = 10
 respawn_delay = 50
 examine = "A subject of Miscellania."
+drop_table = "bones"
 
 [einar]
 id = 1380
@@ -143,6 +145,7 @@ examine = "A subject of Miscellania."
 [alrik]
 id = 1381
 examine = "A subject of Miscellania."
+drop_table = "alrik"
 
 [thorhild]
 id = 1382
@@ -161,6 +164,7 @@ max_hit_melee = 10
 respawn_delay = 50
 shop = "miscellanian_clothes_shop"
 examine = "A subject of Miscellania."
+drop_table = "bones"
 
 [sailor_miscellania]
 id = 1385
@@ -180,6 +184,7 @@ examine = "A subject of Miscellania."
 [thora]
 id = 1387
 examine = "A subject of Miscellania."
+drop_table = "bones"
 
 [valgerd]
 id = 1388
@@ -191,6 +196,7 @@ style = "crush"
 max_hit_melee = 10
 respawn_delay = 25
 examine = "A subject of Miscellania."
+drop_table = "bones"
 
 [broddi]
 id = 1390
@@ -249,9 +255,11 @@ id = 1399
 id = 1401
 categories = ["birds"]
 examine = "Yep. Definitely a chicken."
+drop_table = "chicken"
 
 [chicken_miscellania_2]
 id = 1402
+drop_table = "chicken"
 
 [rooster_miscellania]
 id = 1403
@@ -263,6 +271,7 @@ categories = ["birds"]
 immune_poison = true
 respawn_delay = 25
 examine = "He rules the, er, roost."
+drop_table = "rooster"
 
 [rabbit_miscellania]
 id = 1404
@@ -407,6 +416,7 @@ examine = "Perhaps this gardener might look after your crops for you."
 
 [rabbit_miscellania_2]
 id = 5829
+drop_table = "rabbit"
 
 [king_vargas_2]
 id = 7403

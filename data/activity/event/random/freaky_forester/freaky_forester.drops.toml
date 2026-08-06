@@ -1,0 +1,5 @@
+[pheasant_drop_table]
+type = "all"
+drops = [
+    { id = "raw_pheasant" },
+]

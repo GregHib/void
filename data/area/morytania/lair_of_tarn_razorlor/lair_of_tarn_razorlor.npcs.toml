@@ -21,31 +21,37 @@ examine = "A giant skeleton."
 id = 5385
 categories = ["skeletons"]
 examine = "A magic skeleton!"
+drop_table = "skeleton"
 
 [skeleton_lair_of_tarn_razorlor_2]
 id = 5387
 categories = ["skeletons"]
 examine = "Look: another skeleton."
+drop_table = "skeleton"
 
 [skeleton_lair_of_tarn_razorlor_3]
 id = 5388
 categories = ["skeletons"]
 examine = "That skeleton's grinning at me."
+drop_table = "skeleton"
 
 [skeleton_lair_of_tarn_razorlor_4]
 id = 5389
 categories = ["skeletons"]
 examine = "He needs a tan."
+drop_table = "skeleton"
 
 [skeleton_lair_of_tarn_razorlor_5]
 id = 5390
 categories = ["skeletons"]
 examine = "How do you know if a skeleton's male or female?"
+drop_table = "skeleton"
 
 [skeleton_lair_of_tarn_razorlor_6]
 id = 5391
 categories = ["skeletons"]
 examine = "He obviously hasn't realised he's dead."
+drop_table = "skeleton"
 
 [terror_dog]
 id = 5417

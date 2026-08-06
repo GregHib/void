@@ -117,3 +117,9 @@ drops = [
     { id = "obsidian_charm", chance = 36000 },
     { id = "obsidian_charm", amount = 2, chance = 36000 },
 ]
+
+[fire_monster_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+]

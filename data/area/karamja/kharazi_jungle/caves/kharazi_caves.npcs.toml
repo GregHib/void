@@ -13,6 +13,7 @@ slayer_xp = 50.0
 categories = ["skeletons"]
 respawn_delay = 50
 examine = "A minion of Rashiliyia."
+drop_table = "undead_one"
 
 [undead_one_kharazi_caves_2]
 id = 503
@@ -30,14 +31,17 @@ slayer_xp = 73.0
 categories = ["skeletons"]
 respawn_delay = 50
 examine = "A minion of Rashiliyia."
+drop_table = "undead_one"
 
 [undead_one_kharazi_caves_3]
 id = 5353
 clone = "undead_one_kharazi_caves"
+drop_table = "undead_one"
 
 [undead_one_kharazi_caves_4]
 id = 5354
 clone = "undead_one_kharazi_caves_2"
+drop_table = "undead_one"
 
 [death_wing_kharazi_caves]
 id = 79
@@ -53,6 +57,7 @@ categories = ["bats"]
 categories = ["ghosts"]
 respawn_delay = 35
 examine = "A shadowy, barely visible flying entity from some evil place."
+drop_table = "empty"
 
 [ungadulu_kharazi_caves]
 id = 929
@@ -68,6 +73,7 @@ max_hit_melee = 70
 attack_bonus = 7
 ranged_strength = 7
 examine = "The Kharazi tribe's elusive shaman."
+drop_table = "empty"
 
 [ungadulu_possessed]
 id = 930
@@ -97,6 +103,7 @@ attack_bonus = 16
 respawn_delay = 26
 categories = ["skeletons"]
 examine = "The spirit of a long-dead warrior."
+drop_table = "san_tojalon"
 
 [irvig_senay_kharazi_caves]
 id = 937
@@ -111,6 +118,7 @@ xp_bonus = 2.5
 respawn_delay = 51
 categories = ["skeletons"]
 examine = "The spirit of a long-dead warrior."
+drop_table = "irvig_senay"
 
 [ranalph_devere]
 id = 938
@@ -127,6 +135,7 @@ xp_bonus = 0.5
 respawn_delay = 51
 categories = ["skeletons"]
 examine = "The spirit of a long-dead warrior."
+drop_table = "empty"
 
 [boulder_kharazi_caves]
 id = 939

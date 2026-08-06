@@ -1,14 +1,17 @@
 [ivory_shredflesh_cursed]
 id = 11352
 examine = "A cursed ivory version of General Shredflesh."
+drop_table = "ivory_shredflesh_cursed"
 
 [ivory_gromblod_cursed]
 id = 11353
 examine = "A cursed ivory version of General Gromblod."
+drop_table = "ivory_gromblod_cursed"
 
 [ivory_breegth_cursed]
 id = 11354
 examine = "A cursed ivory version of General Breegth."
+drop_table = "ivory_bre_egth_cursed"
 
 [farming_patch_orks_rift]
 id = 11383

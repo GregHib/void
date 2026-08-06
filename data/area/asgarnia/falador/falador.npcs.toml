@@ -144,14 +144,17 @@ examine = "He rules the, er, roost."
 
 [chicken_falador]
 id = 2313
+drop_table = "chicken"
 
 [chicken_falador_2]
 id = 2314
+drop_table = "chicken"
 
 [chicken_falador_3]
 id = 2315
 categories = ["birds"]
 examine = "Yep. Definitely a chicken."
+drop_table = "chicken"
 
 [elstan]
 id = 2323
@@ -212,6 +215,7 @@ examine = "One of Gielinor's many citizens, currently incapacitated by alcohol."
 [man_falador]
 id = 3223
 examine = "One of Gielinor's many citizens."
+drop_table = "man"
 
 [man_falador_2]
 id = 1086
@@ -219,6 +223,7 @@ id = 1086
 [woman_falador]
 id = 3226
 examine = "One of Gielinor's many citizens."
+drop_table = "woman"
 
 [guard_falador]
 id = 3228
@@ -292,6 +297,7 @@ hitpoints = 70
 combat_def = "man"
 respawn_delay = 25
 examine = "Untrustworthy."
+drop_table = "jeff"
 
 [guard_falador_7]
 id = 3241
@@ -648,3 +654,4 @@ attack_bonus = 30
 combat_def = "white_knight"
 respawn_delay = 50
 examine = "The knight seems to be watching something."
+drop_table = "white_knight"

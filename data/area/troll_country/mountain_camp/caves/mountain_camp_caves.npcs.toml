@@ -11,6 +11,7 @@ max_hit_melee = 90
 attack_bonus = 5
 hunt_mode = "cowardly"
 examine = "Is that a bear... or a man?"
+drop_table = "empty"
 
 [the_kendal_mountain_camp_caves_2]
 id = 1812

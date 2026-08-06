@@ -22,18 +22,22 @@ immune_poison = true
 immune_cannon = true
 respawn_delay = 25
 examine = "An evil, bloodsucking vampyre."
+drop_table = "vyrewatch"
 
 [vyrewatch_darkmeyer_2]
 id = 4807
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
 
 [vyrewatch_darkmeyer_3]
 id = 4819
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
 
 [vyrewatch_darkmeyer_4]
 id = 4832
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
 
 [vyrewatch_darkmeyer_5]
 id = 4834
@@ -53,14 +57,17 @@ immune_poison = true
 immune_cannon = true
 respawn_delay = 25
 examine = "A thirsty-looking, airborne bloodsucker!"
+drop_table = "vyrewatch"
 
 [vyrewatch_darkmeyer_6]
 id = 4835
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
 
 [vyrewatch_darkmeyer_7]
 id = 4836
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
 
 [safalaan_darkmeyer_2]
 id = 4713

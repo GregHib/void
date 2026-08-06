@@ -10,6 +10,7 @@ max_hit_melee = 20
 attack_bonus = 8
 respawn_delay = 25
 examine = "Don't let her arm-wrestle you for money."
+drop_table = "barbarian"
 
 [stray_dog_defender_of_varrock]
 id = 5917
@@ -20,18 +21,23 @@ id = 5918
 
 [armoured_zombie_defender_of_varrock]
 id = 8159
+drop_table = "armoured_zombie"
 
 [armoured_zombie_defender_of_varrock_2]
 id = 8160
+drop_table = "armoured_zombie"
 
 [armoured_zombie_defender_of_varrock_3]
 id = 8161
+drop_table = "armoured_zombie"
 
 [armoured_zombie_defender_of_varrock_4]
 id = 8162
+drop_table = "armoured_zombie"
 
 [armoured_zombie_defender_of_varrock_5]
 id = 8163
+drop_table = "armoured_zombie"
 
 [arrav_defender_of_varrock]
 id = 8169
@@ -39,6 +45,7 @@ examine = "He has seen better, happier days."
 
 [guard_defender_of_varrock]
 id = 8173
+drop_table = "guard"
 
 [ellamaria_defender_of_varrock]
 id = 8175
@@ -53,6 +60,7 @@ mage = 25
 combat_def = "monk_of_zamorak"
 hunt_mode = "cowardly"
 examine = "A Zamorakian human cleric."
+drop_table = "monk_of_zamorak"
 
 [sir_prysin_defender_of_varrock]
 id = 9360

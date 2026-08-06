@@ -1,0 +1,5 @@
+[vyrewatch_drop_table]
+type = "all"
+drops = [
+    { id = "vyre_corpse" },
+]

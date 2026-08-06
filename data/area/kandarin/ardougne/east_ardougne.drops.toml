@@ -104,3 +104,155 @@ drops = [
     { id = "gold_ore", chance = 10 },
     { table = "elite_clue_scroll" },
 ]
+[woman_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "woman_secondary" },
+    { table = "easy_clue_scroll", roll = 170 },
+]
+
+[woman_secondary]
+roll = 1024
+drops = [
+    { id = "coins", min = 1, max = 25, chance = 64 },
+    { id = "bronze_arrow", amount = 7, chance = 32 },
+    { id = "iron_dagger", chance = 32 },
+    { id = "bronze_bolts", min = 2, max = 12, chance = 32 },
+    { id = "bronze_med_helm", chance = 32 },
+    { id = "earth_rune", amount = 4, chance = 32 },
+    { id = "fire_rune", amount = 6, chance = 32 },
+    { id = "mind_rune", amount = 9, chance = 32 },
+    { id = "water_rune", amount = 7, chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "air_talisman", chance = 32 },
+    { id = "earth_talisman", chance = 32 },
+    { id = "cabbage", chance = 32 },
+    { id = "fishing_bait", chance = 32 },
+    { id = "copper_ore", chance = 32 },
+    { id = "tin_ore", chance = 32 },
+    { id = "staff_of_air", chance = 6 },
+    { id = "chaos_rune", amount = 2, chance = 6 },
+    { id = "grimy_avantoe", chance = 6 },
+    { id = "grimy_cadantine", chance = 6 },
+    { id = "grimy_ranarr", chance = 6 },
+    { id = "grimy_lantadyme", chance = 6 },
+    { id = "grimy_dwarf_weed", chance = 6 },
+    { id = "body_rune", amount = 7, chance = 2 },
+]
+
+[man_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "man_secondary" },
+    { table = "easy_clue_scroll", roll = 170 },
+]
+
+[man_secondary]
+roll = 1024
+drops = [
+    { id = "grimy_guam", chance = 64 },
+    { id = "sling", chance = 64 },
+    { id = "bronze_bolts", min = 2, max = 12, chance = 64 },
+    { id = "coins", min = 1, max = 40, chance = 64 },
+    { id = "earth_rune", amount = 4, chance = 32 },
+    { id = "fire_rune", amount = 6, chance = 32 },
+    { id = "mind_rune", amount = 9, chance = 32 },
+    { id = "water_rune", amount = 7, chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "bronze_arrow", amount = 7, chance = 32 },
+    { id = "iron_dagger", chance = 32 },
+    { id = "bronze_med_helm", chance = 32 },
+    { id = "air_talisman", chance = 32 },
+    { id = "earth_talisman", chance = 32 },
+    { id = "cabbage", chance = 32 },
+    { id = "fishing_bait", chance = 32 },
+    { id = "copper_ore", chance = 32 },
+    { id = "tin_ore", chance = 32 },
+    { id = "chaos_rune", amount = 2, chance = 6 },
+    { id = "grimy_avantoe", chance = 6 },
+    { id = "grimy_cadantine", chance = 6 },
+    { id = "grimy_dwarf_weed", chance = 6 },
+    { id = "staff_of_air", chance = 6 },
+    { id = "body_rune", amount = 7, chance = 2 },
+]
+
+[paladin_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "paladin_secondary" },
+    { table = "easy_clue_scroll", roll = 32 },
+]
+
+[paladin_secondary]
+roll = 1024
+drops = [
+    { id = "grimy_marrentill", chance = 64 },
+    { id = "grimy_guam", chance = 64 },
+    { id = "steel_sword", chance = 64 },
+    { id = "water_rune", amount = 30, chance = 64 },
+    { id = "iron_bar", chance = 64 },
+    { id = "coins", amount = 2, chance = 64 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "steel_longsword", chance = 32 },
+    { id = "steel_full_helm", chance = 32 },
+    { id = "mithril_bar", chance = 32 },
+    { id = "steel_bar", chance = 32 },
+    { id = "law_talisman", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 6 },
+    { id = "grimy_irit", chance = 6 },
+    { id = "grimy_ranarr", chance = 6 },
+    { id = "blood_rune", chance = 6 },
+    { id = "rune_javelin", amount = 5, chance = 6 },
+    { id = "nature_talisman", chance = 6 },
+    { id = "loop_half_of_a_key", chance = 6 },
+    { id = "tooth_half_of_a_key", chance = 6 },
+    { id = "court_summons", chance = 6 },
+    { id = "grimy_lantadyme", chance = 2 },
+    { id = "grimy_cadantine", chance = 2 },
+    { id = "grimy_kwuarm", chance = 2 },
+    { id = "grimy_avantoe", chance = 2 },
+    { id = "shield_left_half", chance = 2 },
+]
+
+[warrior_woman_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[hero_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[knight_of_ardougne_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "knight_of_ardougne_secondary" },
+    { table = "easy_clue_scroll", roll = 32 },
+]
+
+[knight_of_ardougne_secondary]
+roll = 1024
+drops = [
+    { id = "court_summons", chance = 32 },
+]

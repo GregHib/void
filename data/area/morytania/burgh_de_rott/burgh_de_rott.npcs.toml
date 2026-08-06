@@ -9,28 +9,35 @@ id = 3513
 
 [vampyre_juvinate_3]
 id = 3522
+drop_table = "vampyre_juvinate"
 
 [vampyre_juvinate_4]
 id = 3523
+drop_table = "vampyre_juvinate"
 
 [vampyre_juvinate_5]
 id = 3524
+drop_table = "vampyre_juvinate"
 
 [vampyre_juvinate_6]
 id = 3525
+drop_table = "vampyre_juvinate"
 
 [vampyre_juvenile]
 id = 3531
 categories = ["vampyres"]
 examine = "He looks really hungry!"
+drop_table = "empty"
 
 [vampyre_juvenile_2]
 id = 3532
 categories = ["vampyres"]
 examine = "She looks really hungry!"
+drop_table = "empty"
 
 [vampyre_juvenile_3]
 id = 3533
+drop_table = "empty"
 
 [elisabeta]
 id = 3540
@@ -113,27 +120,35 @@ id = 3575
 
 [vyrewatch]
 id = 7691
+drop_table = "vyrewatch"
 
 [vyrewatch_2]
 id = 7692
+drop_table = "vyrewatch"
 
 [vyrewatch_3]
 id = 7693
+drop_table = "vyrewatch"
 
 [vyrewatch_4]
 id = 7694
+drop_table = "vyrewatch"
 
 [vyrewatch_5]
 id = 7699
+drop_table = "vyrewatch"
 
 [vyrewatch_6]
 id = 7700
+drop_table = "vyrewatch"
 
 [vyrewatch_7]
 id = 7701
+drop_table = "vyrewatch"
 
 [vyrewatch_8]
 id = 7702
+drop_table = "vyrewatch"
 
 [ivan_strom]
 id = 7708

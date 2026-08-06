@@ -53,3 +53,9 @@ drops = [
     { id = "casket" },
     { table = "gem_drop_table" },
 ]
+
+[alrik_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

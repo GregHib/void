@@ -114,14 +114,17 @@ height = 30
 respawn_delay = 60
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
+drop_table = "skeleton"
 
 [skeleton_sword_shield_85]
 clone = "skeleton_axe_shield_85"
 id = 5368
+drop_table = "skeleton"
 
 [skeleton_sword_shield_45]
 clone = "skeleton_axe_shield_85"
 id = 93
+drop_table = "skeleton"
 
 [stronghold_skeleton_round_shield]
 id = 4384
@@ -155,6 +158,7 @@ examine = "Could do with gaining a few pounds."
 [skeleton_hammer_shield]
 clone = "stronghold_skeleton_helmet"
 id = 4386
+drop_table = "skeleton"
 
 [stronghold_skeleton_unarmed]
 clone = "stronghold_skeleton_helmet"

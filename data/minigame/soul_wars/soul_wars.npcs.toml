@@ -1,5 +1,6 @@
 [soul_wars_jelly]
 id = 8599
+drop_table = "jelly"
 
 [nomad_soul_wars]
 id = 8525
@@ -7,13 +8,16 @@ id = 8525
 [avatar_of_destruction_soul_wars]
 id = 8596
 examine = "The essence of ruination."
+drop_table = "empty"
 
 [avatar_of_creation_soul_wars]
 id = 8597
 examine = "A being of unsurpassed vitality."
+drop_table = "empty"
 
 [pyrefiend_soul_wars]
 id = 8598
+drop_table = "pyrefiend"
 
 [zimberfizz]
 id = 8527

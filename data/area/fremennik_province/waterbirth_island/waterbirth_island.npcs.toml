@@ -48,10 +48,12 @@ id = 9104
 id = 9092
 categories = ["dagannoth"]
 examine = "The Dagannoth Mother's guardians."
+drop_table = "dagannoth_guardian"
 
 [bardur]
 id = 2879
 examine = "A Fremennik warrior, hard at work."
+drop_table = "bones"
 
 [dagannoth_fledgeling]
 id = 2880

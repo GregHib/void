@@ -176,6 +176,7 @@ immune_poison = true
 immune_cannon = true
 respawn_delay = 25
 examine = "An evil, bloodsucking vampyre."
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_level_120]
 id = 4814
@@ -195,48 +196,60 @@ immune_poison = true
 immune_cannon = true
 respawn_delay = 25
 examine = "A thirsty-looking, airborne bloodsucker!"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_3]
 id = 4815
 clone = "vyrewatch_meiyerditch"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_4]
 id = 4825
 clone = "vyrewatch_meiyerditch"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_5]
 id = 4826
 clone = "vyrewatch_meiyerditch_level_120"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_6]
 id = 4827
 clone = "vyrewatch_meiyerditch"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_7]
 id = 4828
 clone = "vyrewatch_meiyerditch"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_8]
 id = 4829
 clone = "vyrewatch_meiyerditch"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_9]
 id = 4830
 clone = "vyrewatch_meiyerditch_level_120"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_10]
 id = 4831
 clone = "vyrewatch_meiyerditch"
+drop_table = "vyrewatch"
 
 [vyrewatch_meiyerditch_11]
 id = 4833
 clone = "vyrewatch_meiyerditch"
+drop_table = "vyrewatch"
 
 [flying_female_vampire]
 id = 7613
+drop_table = "empty"
 
 [vyrewatch_meiyerditch_12]
 id = 7622
+drop_table = "vyrewatch"
 
 [vampyre_juvenile_male]
 id = 4774
@@ -251,9 +264,11 @@ categories = ["vampyres"]
 immune_poison = true
 respawn_delay = 51
 examine = "A juvenile vampyre. It looks really hungry!"
+drop_table = "empty"
 
 [vampyre_juvenile_female]
 id = 4775
+drop_table = "empty"
 
 [papers_meiyerditch]
 id = 4765

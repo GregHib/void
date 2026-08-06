@@ -35,3 +35,35 @@ drops = [
     { id = "marrentill_tar", amount = 80 },
     { table = "rare_drop_table", chance = 15 },
 ]
+
+[scarab_mage_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "scarab_mage_secondary" },
+]
+
+[scarab_mage_secondary]
+roll = 1356
+drops = [
+    { id = "herb", chance = 64 },
+    { id = "marrentill_tar", chance = 64 },
+    { id = "sapphire", chance = 64 },
+    { id = "emerald", chance = 64 },
+    { id = "ruby", chance = 64 },
+    { id = "battlestaff", chance = 64 },
+    { id = "desert_goat_horn", chance = 64 },
+    { id = "adamant_arrow", chance = 64 },
+    { id = "rune_mace", chance = 64 },
+    { id = "rune_2h_sword", chance = 64 },
+    { id = "rune_sq_shield", chance = 64 },
+    { id = "rune_arrow", chance = 64 },
+    { id = "mithril_kiteshield", chance = 64 },
+    { id = "lobster", chance = 64 },
+    { id = "bass", chance = 64 },
+    { id = "lava_rune", chance = 64 },
+    { id = "cosmic_rune", chance = 64 },
+    { id = "blood_rune", chance = 64 },
+    { id = "nature_talisman", chance = 64 },
+    { id = "dragon_spear", chance = 64 },
+]

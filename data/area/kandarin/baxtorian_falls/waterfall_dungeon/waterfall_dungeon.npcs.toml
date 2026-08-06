@@ -10,6 +10,7 @@ slayer_xp = 55.0
 categories = ["spiders"]
 respawn_delay = 30
 examine = "Is it a spider or is it a shadow?"
+drop_table = "empty"
 
 [skeleton_mage_waterfall_dungeon]
 id = 94
@@ -24,3 +25,4 @@ slayer_xp = 17.0
 categories = ["skeletons"]
 respawn_delay = 25
 examine = "An undead worker of dark magic."
+drop_table = "skeleton_mage"

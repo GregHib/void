@@ -2,50 +2,62 @@
 id = 6761
 categories = ["zombies"]
 examine = "Cut-down and dried."
+drop_table = "dried_zombie"
 
 [dried_zombie_ullek_2]
 id = 6762
 categories = ["zombies"]
 examine = "Needs moisturising."
+drop_table = "dried_zombie"
 
 [dried_zombie_ullek_3]
 id = 6763
 categories = ["zombies"]
 examine = "I bet it's parched."
+drop_table = "dried_zombie"
 
 [skeleton_ullek]
 id = 6764
+drop_table = "skeleton"
 
 [skeleton_ullek_2]
 id = 6765
+drop_table = "skeleton"
 
 [skeleton_ullek_3]
 id = 6766
+drop_table = "skeleton"
 
 [skeleton_ullek_4]
 id = 6767
+drop_table = "skeleton"
 
 [skeleton_ullek_5]
 id = 6768
 categories = ["skeletons"]
 examine = "Heartless, in every sense of the word."
+drop_table = "skeleton"
 
 [scabaras_locust_ullek]
 id = 6776
 examine = "A giant, mountable locust."
+drop_table = "locust"
 
 [locust_lancer_ullek]
 id = 6777
 categories = ["scabarites"]
 examine = "Bouncy, but not fun."
+drop_table = "locust_lancer"
 
 [locust_ranger_ullek]
 id = 6778
 categories = ["scabarites"]
 examine = "He'll have someone's eye out with that."
+drop_table = "locust_ranger"
 
 [crocodile_ullek]
 id = 6779
+drop_table = "crocodile"
 
 [lead_archaeologist_abigail]
 id = 6786

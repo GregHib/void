@@ -6,14 +6,17 @@ examine = "He looks quite independent in an aggressive and business like way."
 id = 1795
 categories = ["dwarves"]
 examine = "A short stout menacing fellow."
+drop_table = "dwarf_gang_member"
 
 [dwarf_gang_member_2]
 id = 1796
 categories = ["dwarves"]
 examine = "A short stout menacing fellow."
+drop_table = "dwarf_gang_member"
 
 [dwarf_gang_member_3]
 id = 1797
+drop_table = "dwarf_gang_member"
 
 [cart_conductor]
 id = 2186

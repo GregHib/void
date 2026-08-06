@@ -102,9 +102,11 @@ id = 3186
 
 [snake_mos_le_harmless]
 id = 4343
+drop_table = "snake"
 
 [monkey_mos_le_harmless]
 id = 4344
+drop_table = "monkey"
 
 [crab_mos_le_harmless]
 id = 4346
@@ -117,6 +119,7 @@ def = 45
 combat_def = "giant_mosquito"
 respawn_delay = 50
 examine = "A flying blood sucker."
+drop_table = "giant_mosquito"
 
 [jungle_horror]
 id = 4352

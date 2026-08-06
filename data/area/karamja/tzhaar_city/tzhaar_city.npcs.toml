@@ -254,20 +254,25 @@ examine = "A senior citizen TzHaar-Hur."
 
 [tzhaar_hur_tzhaar_caves_2]
 id = 7767
+drop_table = "tzhaar_hur"
 
 [tzhaar_hur_tzhaar_caves_3]
 id = 7768
+drop_table = "tzhaar_hur"
 
 [tzhaar_hur_tzhaar_caves_4]
 id = 7769
+drop_table = "tzhaar_hur"
 
 [lava_monster_tzhaar_caves]
 id = 7772
 examine = "A monster made of magma."
+drop_table = "empty"
 
 [fire_monster_tzhaar_caves]
 id = 7773
 examine = "A monster like many others, but on fire."
+drop_table = "fire_monster"
 
 [tzhaar_mej_roh]
 id = 2623

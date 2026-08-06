@@ -626,6 +626,7 @@ examine = "A private dwarven guard."
 id = 8813
 categories = ["dwarves"]
 examine = "An elite Black Guard soldier assigned to protect the trade floor."
+drop_table = "trade_floor_guard"
 
 [colonel_grenda_keldagrim]
 id = 8817

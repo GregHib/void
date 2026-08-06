@@ -26,6 +26,7 @@ style = "crush"
 max_hit_melee = 30
 respawn_delay = 25
 examine = "A guard for the humans against monster group."
+drop_table = "h_a_m_guard"
 
 [ham_guard_ham_cave_3]
 id = 1712
@@ -38,6 +39,7 @@ style = "crush"
 max_hit_melee = 30
 respawn_delay = 25
 examine = "A guard for the humans against monster group."
+drop_table = "h_a_m_guard"
 
 [ham_deacon_ham_cave]
 id = 1713

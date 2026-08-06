@@ -1,0 +1,178 @@
+[black_guard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "black_guard_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[black_guard_secondary]
+roll = 1024
+drops = [
+    { id = "bronze_med_helm", chance = 64 },
+    { id = "coins", min = 4, max = 42, chance = 64 },
+    { id = "chaos_rune", amount = 2, chance = 32 },
+    { id = "nature_rune", amount = 2, chance = 32 },
+    { id = "bronze_battleaxe", chance = 32 },
+    { id = "bronze_bolts", amount = 6, chance = 32 },
+    { id = "bronze_warhammer", chance = 32 },
+    { id = "bronze_pickaxe", chance = 32 },
+    { id = "iron_battleaxe", chance = 32 },
+    { id = "black_warhammer", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "copper_ore", chance = 32 },
+    { id = "bronze_bar", chance = 32 },
+    { id = "iron_bar", chance = 32 },
+    { id = "hammer", chance = 32 },
+    { id = "coal", chance = 32 },
+    { id = "keg_of_beer", chance = 32 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "loop_half_of_a_key", chance = 6 },
+]
+
+[chaos_dwarf_hand_cannoneer_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "chaos_dwarf_hand_cannoneer_secondary" },
+]
+
+[chaos_dwarf_hand_cannoneer_secondary]
+roll = 1100
+drops = [
+    { id = "air_rune", amount = 24, chance = 64 },
+    { id = "chaos_rune", amount = 10, chance = 64 },
+    { id = "cosmic_rune", amount = 3, chance = 64 },
+    { id = "mind_rune", amount = 37, chance = 64 },
+    { id = "water_rune", amount = 10, chance = 64 },
+    { id = "coins", chance = 64 },
+    { id = "muddy_key", chance = 64 },
+    { id = "steel_full_helm", chance = 64 },
+    { id = "hand_cannon", chance = 32 },
+    { id = "hand_cannon_shot", chance = 32 },
+    { id = "mithril_longsword", chance = 32 },
+    { id = "mithril_sq_shield", chance = 32 },
+    { id = "rune_javelin", chance = 32 },
+    { id = "rune_spear", chance = 32 },
+    { id = "death_rune", amount = 3, chance = 32 },
+    { id = "law_rune", amount = 3, chance = 32 },
+    { id = "nature_rune", amount = 9, chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "tomato", chance = 32 },
+    { id = "cheese", chance = 32 },
+    { id = "mithril_bar", chance = 32 },
+    { id = "coal", chance = 32 },
+    { id = "nature_talisman", chance = 6 },
+    { id = "dragon_spear", chance = 2 },
+    { id = "dragon_pickaxe", chance = 2 },
+    { id = "shield_left_half", chance = 2 },
+    { id = "starved_ancient_effigy", chance = 2 },
+]
+
+[black_guard_crossbowdwarf_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "black_guard_crossbowdwarf_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[black_guard_crossbowdwarf_secondary]
+roll = 1024
+drops = [
+    { id = "coins", min = 25, max = 37, chance = 64 },
+    { id = "bronze_crossbow", chance = 32 },
+    { id = "iron_crossbow", chance = 32 },
+    { id = "steel_crossbow", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "cake", chance = 32 },
+    { id = "keg_of_beer", chance = 32 },
+    { id = "ring_mould", chance = 32 },
+    { id = "copper_ore", amount = 5, chance = 32 },
+    { id = "tin_ore", chance = 32 },
+]
+
+[black_guard_berserker_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "black_guard_berserker_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[black_guard_berserker_secondary]
+roll = 1024
+drops = [
+    { id = "coins", min = 35, max = 57, chance = 64 },
+    { id = "bronze_warhammer", chance = 32 },
+    { id = "iron_warhammer", chance = 32 },
+    { id = "steel_warhammer", chance = 32 },
+    { id = "black_warhammer", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "iron_ore", chance = 32 },
+    { id = "tin_ore", chance = 32 },
+    { id = "beer", chance = 32 },
+    { id = "keg_of_beer", chance = 32 },
+    { id = "ring_mould", chance = 32 },
+    { id = "bucket_of_water", chance = 32 },
+    { id = "rune_javelin", amount = 5, chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "tooth_half_of_a_key", chance = 6 },
+    { id = "loop_half_of_a_key", chance = 6 },
+    { id = "shield_left_half", chance = 2 },
+]
+
+[chaos_dwogre_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "chaos_dwogre_secondary" },
+]
+
+[chaos_dwogre_secondary]
+roll = 1045
+drops = [
+    { id = "chaos_rune", amount = 20, chance = 64 },
+    { id = "strawberry_seed", chance = 64 },
+    { id = "limpwurt_seed", chance = 64 },
+    { id = "belladonna_seed", chance = 64 },
+    { id = "watermelon_seed", chance = 64 },
+    { id = "toadflax_seed", chance = 64 },
+    { id = "jangerberry_seed", chance = 64 },
+    { id = "marrentill_seed", chance = 64 },
+    { id = "tarromin_seed", chance = 64 },
+    { id = "harralander_seed", chance = 64 },
+    { id = "muddy_key", chance = 64 },
+    { id = "mithril_bar", chance = 64 },
+    { id = "mithril_longsword", chance = 32 },
+    { id = "mithril_sq_shield", chance = 32 },
+    { id = "poison_ivy_seed", chance = 32 },
+    { id = "lantadyme_seed", chance = 32 },
+    { id = "rune_javelin", amount = 5, chance = 6 },
+    { id = "ranarr_seed", chance = 6 },
+    { id = "spirit_weed_seed", chance = 6 },
+    { id = "kwuarm_seed", chance = 6 },
+    { id = "avantoe_seed", chance = 6 },
+    { id = "snapdragon_seed", chance = 6 },
+    { id = "torstol_seed", chance = 6 },
+    { id = "uncut_sapphire", chance = 6 },
+    { id = "uncut_emerald", chance = 6 },
+    { id = "uncut_ruby", chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "nature_talisman", chance = 6 },
+    { id = "starved_ancient_effigy", chance = 6 },
+    { id = "dragon_pickaxe", chance = 2 },
+    { id = "dragon_spear", chance = 2 },
+    { id = "rune_spear", chance = 2 },
+    { id = "shield_left_half", chance = 2 },
+    { id = "loop_half_of_a_key", chance = 2 },
+    { id = "tooth_half_of_a_key", chance = 2 },
+]
