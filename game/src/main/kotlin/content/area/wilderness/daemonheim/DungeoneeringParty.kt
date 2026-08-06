@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -247,7 +248,13 @@ class DungeoneeringParty : Script {
             player.refreshDetails()
         }
 
+        private fun leaveDungeon(player: Player) {
+            player.close("rand_overlay")
+            player.clear("in_dungeoneering")
+        }
+
         fun leave(player: Player) {
+            leaveDungeon(player)
             player.message("You leave the party.")
             player.dungeonMembers -= player
             val leader = player.dungeonLeader

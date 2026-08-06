@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -74,6 +75,9 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             NPCs.add("smuggler_dungeoneering", center)
             spawnTableItems(instance.tile, complexity, dungeon, skills)
             tele(center.addY(-2))
+            set("dungeon_deaths", 0)
+            open("rand_overlay")
+            set("in_dungeoneering", true)
         }
 
         adminCommand("dungeon") {

@@ -31,7 +31,7 @@ class DungeonComplete : Script {
 
             // Base XP
             // Floor
-            set("rand_party_current_floor_trans", get("dungeon_party_floor", 1))
+            set("rand_party_current_floor_trans", get("dungeon_party_floor", 1)) // TODO maybe these vars are the same thing?
             set("rand_basefloor_varc", 30) // x10
             set("rand_totalfloor_varc", 2000) // x10 Average
 
@@ -65,31 +65,31 @@ class DungeonComplete : Script {
             set("rand_exists_1", true)
             set("dungeoneering_player_1", "player_1")
             for (i in 1 until 6) {
-                set("rand_award_1_${i}", if (i > 1) 0 else i)
+                set("rand_award_1_$i", if (i > 1) 0 else i)
             }
 
             set("rand_exists_2", true)
             set("dungeoneering_player_2", "player_2")
             for (i in 1 until 6) {
-                set("rand_award_2_${i}", if (i > 2) 0 else i)
+                set("rand_award_2_$i", if (i > 2) 0 else i)
             }
 
             set("rand_exists_3", true)
             set("dungeoneering_player_3", "player_3")
             for (i in 1 until 6) {
-                set("rand_award_3_${i}", if (i > 3) 0 else i)
+                set("rand_award_3_$i", if (i > 3) 0 else i)
             }
 
             set("rand_exists_4", true)
             set("dungeoneering_player_4", "player_4")
             for (i in 1 until 6) {
-                set("rand_award_4_${i}", if (i > 4) 0 else i)
+                set("rand_award_4_$i", if (i > 4) 0 else i)
             }
 
             set("rand_exists_5", true)
             set("dungeoneering_player_5", "player_5")
             for (i in 1 until 6) {
-                set("rand_award_5_${i}", if (i > 5) 0 else i)
+                set("rand_award_5_$i", if (i > 5) 0 else i)
             }
         }
     }
