@@ -41,6 +41,8 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
 
         instruction<FinishRegionLoad> { player ->
             player.viewport?.loaded = true
+            // The client clears all zones on map load; resend contents now it can receive updates again
+            ZoneBatchUpdates.refresh(player)
         }
 
         moved { from ->
@@ -80,14 +82,8 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
         if (!player.networked) {
             return
         }
-        val viewport = player.viewport!!
         if (needsRegionChange(player)) {
-            // default radius = 4
             updateRegion(player, false, crossedDynamicBoarder(player))
-        }
-        if (viewport.lastBatchZone.level != player.tile.level || !inViewOfZone(player, viewport.lastBatchZone, viewport.localRadius - 1)) {
-            // default radius = 2
-            ZoneBatchUpdates.send(player)
         }
     }
 
@@ -104,7 +100,8 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
         return Distance.within(player.tile.region.x, player.tile.region.y, region.x, region.y, radius)
     }
 
-    fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player) || dynamicZones.dynamicUpdate(player.tile.region)
+    fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player) ||
+        (dynamicZones.dynamicUpdate(player.tile.region) && player.viewport!!.dynamicVersion != dynamicZones.version)
 
     fun inDynamicView(player: Player): Boolean = dynamicZones.dynamic(player.tile.region)
 
@@ -124,7 +121,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
             viewport.loaded = false
         }
         viewport.lastLoadZone = player.tile.zone
-        ZoneBatchUpdates.send(player)
+        viewport.dynamicVersion = dynamicZones.version
     }
 
     fun update(player: Player, initial: Boolean, force: Boolean) {

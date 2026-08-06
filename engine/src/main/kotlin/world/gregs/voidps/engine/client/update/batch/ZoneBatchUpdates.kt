@@ -11,6 +11,7 @@ import world.gregs.voidps.network.login.protocol.encode.clearZone
 import world.gregs.voidps.network.login.protocol.encode.encodeBatch
 import world.gregs.voidps.network.login.protocol.encode.send
 import world.gregs.voidps.network.login.protocol.encode.sendBatch
+import world.gregs.voidps.network.login.protocol.encode.updateZone
 import world.gregs.voidps.network.login.protocol.encode.zone.ZoneUpdate
 import world.gregs.voidps.type.Zone
 
@@ -55,25 +56,41 @@ object ZoneBatchUpdates : Runnable {
      */
     override fun run() {
         for ((zone, updates) in batches) {
-            encoded[zone] = encodeBatch(updates.filter { !it.private })
+            val batched = updates.filter { !it.private }
+            if (batched.isNotEmpty()) {
+                encoded[zone] = encodeBatch(batched)
+            }
         }
     }
 
     /**
-     * Also send updates each batch zone change
+     * Send zone changes and batched updates relative to the last sent zone
      */
     fun send(player: Player) {
         val viewport = player.viewport!!
+        if (!viewport.loaded) { // Zone updates are lost while the client is loading a new map
+            return
+        }
         val from = viewport.lastBatchZone
         send(player, from)
         viewport.lastBatchZone = player.tile.zone
     }
 
     /**
-     * Send updates each zone change
+     * Resend the contents of all zones in view after a map reload clears the client's entities
      */
-    fun run(player: Player) {
-        send(player, player.steps.previous.zone)
+    fun refresh(player: Player) {
+        val viewport = player.viewport ?: return
+        for (zone in player.tile.zone.toRectangle(radius = viewport.localRadius).toZonesReversed(player.tile.level)) {
+            if (!inViewport(viewport, zone)) {
+                continue
+            }
+            player.clearZone(zone)
+            for (sender in senders) {
+                sender.send(player, zone)
+            }
+        }
+        viewport.lastBatchZone = player.tile.zone
     }
 
     /**
@@ -84,6 +101,9 @@ object ZoneBatchUpdates : Runnable {
         val to = player.tile.zone
         val previous = from.toRectangle(radius = viewport.localRadius).toZones(from.level).toSet()
         for (zone in to.toRectangle(radius = viewport.localRadius).toZonesReversed(player.tile.level)) {
+            if (!inViewport(viewport, zone)) {
+                continue
+            }
             val entered = !previous.contains(zone)
             if (entered) { // Clear and resend raw data for newly entered areas
                 player.clearZone(zone)
@@ -94,6 +114,9 @@ object ZoneBatchUpdates : Runnable {
             val updates = batches[zone.id]?.filter { it.private && it.visible(player.name) } ?: continue
             if (!entered) { // Send batched updates for current regions
                 player.sendBatch(zone)
+            }
+            if (updates.isNotEmpty()) { // Individual updates are relative to the client's active zone
+                player.updateZone(zone)
             }
             for (update in updates) { // Send private updates separately
                 player.client?.send(update)
@@ -106,6 +129,7 @@ object ZoneBatchUpdates : Runnable {
             pool.recycle(value)
         }
         batches.clear()
+        encoded.clear()
     }
 
     private fun Player.sendBatch(zone: Zone) {
@@ -122,6 +146,19 @@ object ZoneBatchUpdates : Runnable {
     private fun getZoneOffset(viewport: Viewport, zone: Zone): Zone {
         val base = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
         return zone.safeMinus(base)
+    }
+
+    /**
+     * Whether [zone] is inside the map area the client last loaded
+     */
+    private fun inViewport(viewport: Viewport, zone: Zone): Boolean {
+        val base = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
+        return zone.x - base.x in 0 until viewport.zoneArea && zone.y - base.y in 0 until viewport.zoneArea
+    }
+
+    private fun Player.updateZone(zone: Zone) {
+        val zoneOffset = getZoneOffset(viewport!!, zone)
+        client?.updateZone(zoneOffset.x, zoneOffset.y, zone.level)
     }
 
     private fun Player.clearZone(zone: Zone) {
