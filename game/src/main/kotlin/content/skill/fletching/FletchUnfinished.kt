@@ -3,6 +3,7 @@ package content.skill.fletching
 import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
@@ -37,7 +38,10 @@ fun Player.fletchLogDialog(
     hasTool: Player.() -> Boolean = { inventory.contains("knife") },
     onMissingTool: Player.() -> Unit = { message("You need a knife to do that.") },
 ) {
-    val displayItems = Tables.itemListOrNull("fletchables.$logId.products") ?: return
+    val displayItems = Tables.itemListOrNull("fletchables.$logId.products")?.toMutableList() ?: return
+    if (!Settings["fletching.moreArrowShafts", false] && logId != "logs") {
+        displayItems.remove("arrow_shaft")
+    }
     weakQueue("fletching_make_dialog") {
         val (selected, amount) = makeAmount(
             displayItems,
