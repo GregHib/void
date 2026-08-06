@@ -134,6 +134,7 @@ drops = [
     { id = "bones" },
     { table = "guard_burthorpe_secondary" },
     { table = "medium_clue_scroll", roll = 128 },
+    { table = "guard_charms", members = true },
 ]
 
 [guard_burthorpe_secondary]
@@ -204,4 +205,13 @@ roll = 20
 drops = [
     { id = "water_rune", min = 5, max = 10, chance = 19 },
     { id = "water_talisman" },
+]
+
+[guard_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 7000 },
+    { id = "green_charm", chance = 793 },
+    { id = "crimson_charm", chance = 437 },
+    { id = "blue_charm", chance = 163 },
 ]

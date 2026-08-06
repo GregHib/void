@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { id = "unicorn_horn" },
     { table = "unicorn_tertiary" },
+    { table = "unicorn_charms", members = true },
 ]
 
 [unicorn_tertiary]
@@ -28,4 +29,13 @@ drops = [
     { id = "green_charm", chance = 8695 },
     { id = "crimson_charm", chance = 543 },
     { id = "blue_charm", chance = 108 },
+]
+
+[unicorn_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 13000 },
+    { id = "green_charm", chance = 6000 },
+    { id = "crimson_charm", chance = 4000 },
+    { id = "blue_charm", chance = 500 },
 ]

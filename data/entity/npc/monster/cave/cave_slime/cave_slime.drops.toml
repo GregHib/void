@@ -4,6 +4,7 @@ drops = [
     { table = "cave_slime_primary" },
     { table = "cave_slime_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
+    { table = "cave_slime_charms", members = true },
 ]
 
 [cave_slime_primary]
@@ -32,3 +33,12 @@ drops = [
     { table = "gem_drop_table", chance = 4 },
 ]
 
+
+[cave_slime_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9000 },
+    { id = "green_charm", chance = 2000 },
+    { id = "crimson_charm", chance = 1000 },
+    { id = "blue_charm", chance = 500 },
+]

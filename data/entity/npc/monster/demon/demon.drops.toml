@@ -4,6 +4,7 @@ drops = [
     { id = "ashes" },
     { table = "lesser_demon_secondary" },
     { table = "lesser_demon_tertiary" },
+    { table = "lesser_demon_charms", members = true },
 ]
 
 [lesser_demon_secondary]
@@ -42,6 +43,7 @@ type = "all"
 drops = [
   { table = "greater_demon_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+    { table = "greater_demon_charms", members = true },
 ]
 
 [greater_demon_secondary]
@@ -110,4 +112,22 @@ drops = [
     { id = "green_charm", chance = 11161 },
     { id = "crimson_charm", chance = 44644 },
     { id = "blue_charm", chance = 1488 },
+]
+
+[lesser_demon_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 1808 },
+    { id = "green_charm", chance = 771 },
+    { id = "crimson_charm", chance = 2866 },
+    { id = "blue_charm", chance = 612 },
+]
+
+[greater_demon_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 6932 },
+    { id = "green_charm", chance = 3785 },
+    { id = "crimson_charm", chance = 26191 },
+    { id = "blue_charm", chance = 924 },
 ]

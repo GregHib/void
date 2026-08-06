@@ -1,4 +1,11 @@
 [cave_bug_drop_table]
+type = "all"
+drops = [
+    { table = "cave_bug_primary" },
+    { table = "cave_bug_charms", members = true },
+]
+
+[cave_bug_primary]
 roll = 128
 drops = [
     { id = "earth_rune", amount = 6, chance = 2 },
@@ -25,6 +32,7 @@ type = "all"
 drops = [
     { table = "cave_bug_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
+    { table = "cave_bug_charms", members = true },
 ]
 
 [cave_bug_secondary]
@@ -42,4 +50,13 @@ drops = [
     { id = "swamp_weed", min = 1, max = 4, chance = 31 },
     { id = "swamp_weed", min = 5, max = 8, chance = 10 },
     { table = "gem_drop_table", chance = 5 },
+]
+
+[cave_bug_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 6576 },
+    { id = "green_charm", chance = 36614 },
+    { id = "crimson_charm", chance = 3521 },
+    { id = "blue_charm", chance = 806 },
 ]

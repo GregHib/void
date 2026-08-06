@@ -3,6 +3,7 @@ type = "all"
 drops = [
   { id = "bones" },
   { table = "infernal_mage_secondary" },
+    { table = "infernal_mage_charms", members = true },
 ]
 
 [infernal_mage_secondary]
@@ -31,4 +32,13 @@ drops = [
   { id = "coins", amount = 4, chance = 63 },
   { id = "coins", amount = 29, chance = 21 },
   { id = "nothing", chance = 112 },
+]
+
+[infernal_mage_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 32864 },
+    { id = "green_charm", chance = 2767 },
+    { id = "crimson_charm", chance = 2518 },
+    { id = "blue_charm", chance = 606 },
 ]

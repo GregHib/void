@@ -4,6 +4,7 @@ drops = [
   { id = "big_bones" },
   { table = "hill_giant_secondary" },
   { table = "hill_giant_tertiary" },
+    { table = "hill_giant_charms", members = true },
 ]
 
 [hill_giant_secondary]
@@ -45,4 +46,13 @@ drops = [
   { id = "long_bone", chance = 12, members = true },
   { id = "giant_champions_scroll", members = true },
   { id = "curved_bone", members = true },
+]
+
+[hill_giant_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 14387 },
+    { id = "green_charm", chance = 907 },
+    { id = "crimson_charm", chance = 1195 },
+    { id = "blue_charm", chance = 164 },
 ]

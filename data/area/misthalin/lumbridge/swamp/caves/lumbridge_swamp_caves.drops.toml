@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { table = "cave_goblin_monster_secondary" },
     { table = "cave_goblin_monster_tertiary" },
+    { table = "cave_goblin_charms", members = true },
 ]
 
 [cave_goblin_monster_secondary]

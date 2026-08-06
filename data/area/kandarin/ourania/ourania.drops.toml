@@ -104,5 +104,15 @@ drops = [
 type = "all"
 drops = [
     { table = "bones" },
-    { table = "monk_of_zamorak_secondary" }
+    { table = "monk_of_zamorak_secondary" },
+    { table = "monk_of_zamorak_charms", members = true },
+]
+
+[monk_of_zamorak_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 525 },
+    { id = "green_charm", chance = 8702 },
+    { id = "crimson_charm", chance = 1650 },
+    { id = "blue_charm", chance = 525 },
 ]
