@@ -16,6 +16,7 @@ att = 40
 str = 40
 def = 30
 max_hit_crush = 50
+hunt_mode = "aggressive"
 
 [vampyre_juvinate_4]
 id = 3523
@@ -26,6 +27,7 @@ att = 40
 str = 40
 def = 30
 max_hit_crush = 50
+hunt_mode = "aggressive"
 
 [vampyre_juvinate_5]
 id = 3524
@@ -36,6 +38,7 @@ att = 40
 str = 40
 def = 30
 max_hit_crush = 50
+hunt_mode = "aggressive"
 
 [vampyre_juvinate_6]
 id = 3525
@@ -46,6 +49,7 @@ att = 40
 str = 40
 def = 30
 max_hit_crush = 50
+hunt_mode = "aggressive"
 
 [vampyre_juvenile]
 id = 3531
@@ -170,6 +174,7 @@ def = 85
 mage = 110
 range = 110
 max_hit_crush = 110
+hunt_mode = "aggressive"
 
 [vyrewatch_2]
 id = 7692
@@ -182,6 +187,7 @@ mage = 120
 range = 120
 max_hit_crush = 120
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [vyrewatch_3]
 id = 7693
@@ -194,6 +200,7 @@ mage = 120
 range = 120
 max_hit_crush = 130
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [vyrewatch_4]
 id = 7694
@@ -206,6 +213,7 @@ mage = 120
 range = 120
 max_hit_crush = 130
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [vyrewatch_5]
 id = 7699
@@ -218,6 +226,7 @@ mage = 110
 range = 110
 max_hit_crush = 110
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [vyrewatch_6]
 id = 7700
@@ -230,6 +239,7 @@ mage = 120
 range = 120
 max_hit_crush = 120
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [vyrewatch_7]
 id = 7701
@@ -242,6 +252,7 @@ mage = 120
 range = 120
 max_hit_crush = 130
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [vyrewatch_8]
 id = 7702
@@ -254,6 +265,7 @@ mage = 120
 range = 120
 max_hit_crush = 130
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [ivan_strom]
 id = 7708

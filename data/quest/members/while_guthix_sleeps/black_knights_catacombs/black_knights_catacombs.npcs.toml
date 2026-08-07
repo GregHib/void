@@ -8,6 +8,7 @@ att = 80
 str = 80
 def = 175
 max_hit_crush = 94
+hunt_mode = "aggressive"
 
 [elite_dark_ranger_black_knights_catacombs]
 id = 8316
@@ -20,6 +21,7 @@ def = 88
 range = 76
 max_hit_range = 90
 combat_def = "elite_dark_ranger"
+hunt_mode = "aggressive"
 
 [elite_dark_mage_black_knights_catacombs]
 id = 8320
@@ -32,6 +34,7 @@ def = 80
 mage = 80
 max_hit_magic = 190
 combat_def = "elite_dark_mage"
+hunt_mode = "aggressive"
 
 [elite_black_knight_black_knights_catacombs]
 id = 8328

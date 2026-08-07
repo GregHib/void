@@ -92,6 +92,7 @@ slash_defence = 16
 crush_defence = 7
 magic_defence = 12
 range_defence = 16
+hunt_mode = "aggressive"
 
 [poison_spider]
 id = 134
@@ -111,6 +112,7 @@ slash_defence = 17
 crush_defence = 10
 magic_defence = 14
 range_defence = 14
+hunt_mode = "aggressive"
 
 [spider_underground_pass]
 id = 1004

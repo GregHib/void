@@ -30,6 +30,7 @@ att = 48
 str = 60
 def = 39
 max_hit_crush = 70
+hunt_mode = "aggressive"
 
 [yeti_2]
 id = 7380
@@ -40,6 +41,7 @@ str = 60
 def = 39
 max_hit_crush = 70
 combat_def = "yeti"
+hunt_mode = "aggressive"
 
 [gnoeals]
 id = 7381
@@ -51,6 +53,7 @@ str = 1
 def = 101
 mage = 101
 max_hit_magic = 120
+hunt_mode = "aggressive"
 
 [gnoeals_2]
 id = 7382
@@ -62,6 +65,7 @@ def = 88
 mage = 88
 max_hit_magic = 120
 combat_def = "gnoeals"
+hunt_mode = "aggressive"
 
 [erjolf_base]
 id = 7405

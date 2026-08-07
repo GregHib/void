@@ -206,6 +206,7 @@ slash_defence = -40
 crush_defence = -40
 magic_defence = -40
 range_defence = -40
+hunt_mode = "aggressive"
 
 [master_farmer_varrock]
 id = 2235

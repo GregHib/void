@@ -135,6 +135,7 @@ examine = "He looks real nasty, smells bad too."
 drop_table = "khazard_warlord"
 max_hit_crush = 100
 combat_def = "khazard_warlord"
+hunt_mode = "aggressive"
 
 [child_underground_pass_3]
 id = 6334

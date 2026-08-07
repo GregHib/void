@@ -9,3 +9,4 @@ att = 130
 str = 130
 def = 130
 max_hit_slash = 140
+hunt_mode = "aggressive"

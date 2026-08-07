@@ -85,26 +85,32 @@ categories = ["zombies"]
 respawn_delay = 37
 drop_table = "pirate"
 examine = "He talks a good fight."
+hunt_mode = "aggressive"
 
 [zombie_swab_2]
 id = 2844
 clone = "zombie_swab"
+hunt_mode = "aggressive"
 
 [zombie_swab_3]
 id = 2845
 clone = "zombie_swab"
+hunt_mode = "aggressive"
 
 [zombie_swab_4]
 id = 2846
 clone = "zombie_swab"
+hunt_mode = "aggressive"
 
 [zombie_swab_5]
 id = 2847
 clone = "zombie_swab"
+hunt_mode = "aggressive"
 
 [zombie_swab_6]
 id = 2848
 clone = "zombie_swab"
+hunt_mode = "aggressive"
 
 [fever_spider]
 id = 2850

@@ -53,6 +53,7 @@ def = 111
 mage = 111
 max_hit_magic = 90
 combat_def = "mutated_bloodveld"
+hunt_mode = "aggressive"
 
 [mutated_bloodveld_meiyerditch_tunnels_2]
 id = 7643
@@ -66,4 +67,5 @@ def = 138
 mage = 138
 max_hit_magic = 90
 combat_def = "mutated_bloodveld"
+hunt_mode = "aggressive"
 

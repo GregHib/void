@@ -24,6 +24,7 @@ examine = "Guards prisoners for the black knights."
 stab_defence = 79
 slash_defence = 63
 crush_defence = 47
+hunt_mode = "aggressive"
 
 [black_knight_void_stares_back]
 id = 12317

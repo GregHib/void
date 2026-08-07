@@ -124,6 +124,7 @@ slash_defence = 22
 crush_defence = 20
 magic_defence = -1
 range_defence = 20
+hunt_mode = "aggressive"
 
 [irvig_senay_kharazi_caves]
 id = 937
@@ -146,6 +147,7 @@ slash_defence = 31
 crush_defence = 29
 magic_defence = -1
 range_defence = 29
+hunt_mode = "aggressive"
 
 [ranalph_devere]
 id = 938
@@ -168,6 +170,7 @@ stab_defence = 38
 slash_defence = 40
 crush_defence = 36
 range_defence = 38
+hunt_mode = "aggressive"
 
 [boulder_kharazi_caves]
 id = 939

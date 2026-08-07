@@ -67,6 +67,7 @@ combat_def = "ice_troll_female"
 stab_defence = 30
 slash_defence = 60
 crush_defence = 30
+hunt_mode = "aggressive"
 
 [ice_troll_grunt_fremennik_isle]
 id = 5528

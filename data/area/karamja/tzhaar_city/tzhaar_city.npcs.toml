@@ -318,6 +318,7 @@ slash_defence = 20
 crush_defence = 20
 magic_defence = 10
 range_defence = 50
+hunt_mode = "aggressive"
 
 [tzhaar_mej_roh]
 id = 2623

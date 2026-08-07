@@ -100,6 +100,7 @@ slash_defence = 60
 crush_defence = 35
 magic_defence = 200
 range_defence = 200
+hunt_mode = "aggressive"
 
 [troll_general_troll_stronghold_tunnels_3]
 id = 1117
@@ -118,6 +119,7 @@ slash_defence = 60
 crush_defence = 35
 magic_defence = 200
 range_defence = 200
+hunt_mode = "aggressive"
 
 [twig_troll_stronghold_tunnels]
 id = 1128

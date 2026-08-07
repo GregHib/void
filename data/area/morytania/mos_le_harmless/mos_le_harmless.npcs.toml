@@ -109,6 +109,7 @@ att = 4
 str = 5
 def = 3
 max_hit_stab = 10
+hunt_mode = "aggressive"
 
 [monkey_mos_le_harmless]
 id = 4344

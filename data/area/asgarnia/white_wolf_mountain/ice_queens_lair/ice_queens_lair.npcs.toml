@@ -12,6 +12,7 @@ slash_defence = 40
 crush_defence = 20
 magic_defence = 10
 range_defence = 30
+hunt_mode = "aggressive"
 
 [ice_queen]
 id = 795

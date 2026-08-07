@@ -50,6 +50,7 @@ attack_speed = 4
 [frog.melee]
 range = 1
 target_hit = { offense = "crush", max = 61 }
+impact_poison = 68
 
 [tenacious_toucan]
 attack_speed = 6

@@ -48,6 +48,7 @@ slash_defence = 11
 crush_defence = -2
 magic_defence = 1
 range_defence = 4
+hunt_mode = "aggressive"
 
 [skeleton_ullek_2]
 id = 6765
@@ -63,6 +64,7 @@ slash_defence = 11
 crush_defence = -2
 magic_defence = 1
 range_defence = 4
+hunt_mode = "aggressive"
 
 [skeleton_ullek_3]
 id = 6766
@@ -78,6 +80,7 @@ slash_defence = 11
 crush_defence = -2
 magic_defence = 1
 range_defence = 4
+hunt_mode = "aggressive"
 
 [skeleton_ullek_4]
 id = 6767
@@ -93,6 +96,7 @@ slash_defence = 11
 crush_defence = -2
 magic_defence = 1
 range_defence = 4
+hunt_mode = "aggressive"
 
 [skeleton_ullek_5]
 id = 6768
@@ -110,6 +114,7 @@ slash_defence = 11
 crush_defence = -2
 magic_defence = 1
 range_defence = 4
+hunt_mode = "aggressive"
 
 [scabaras_locust_ullek]
 id = 6776
@@ -120,6 +125,7 @@ str = 99
 def = 99
 combat_def = "scabaras_locust"
 hitpoints = 1060
+hunt_mode = "aggressive"
 
 [locust_lancer_ullek]
 id = 6777
@@ -134,6 +140,7 @@ max_hit_crush = 120
 combat_def = "locust_lancer"
 stab_defence = 20
 slash_defence = 20
+hunt_mode = "aggressive"
 
 [locust_ranger_ullek]
 id = 6778
@@ -149,6 +156,7 @@ max_hit_range = 210
 combat_def = "locust_ranger"
 slash_defence = 20
 range_defence = 6
+hunt_mode = "aggressive"
 
 [crocodile_ullek]
 id = 6779
@@ -159,6 +167,7 @@ str = 54
 def = 54
 max_hit_slash = 60
 combat_def = "crocodile"
+hunt_mode = "aggressive"
 
 [lead_archaeologist_abigail]
 id = 6786

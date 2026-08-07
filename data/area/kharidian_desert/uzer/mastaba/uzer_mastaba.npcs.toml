@@ -24,4 +24,5 @@ str = 1
 def = 82
 max_hit_crush = 15
 combat_def = "small_scarab"
+hunt_mode = "aggressive"
 

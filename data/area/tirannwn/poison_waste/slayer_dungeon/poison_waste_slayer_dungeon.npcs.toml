@@ -14,6 +14,7 @@ stab_defence = 50
 slash_defence = 50
 crush_defence = -50
 range_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_2]
 id = 6286
@@ -31,6 +32,7 @@ stab_defence = -50
 slash_defence = 50
 crush_defence = 50
 range_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_3]
 id = 6287
@@ -48,6 +50,7 @@ stab_defence = 50
 slash_defence = -50
 crush_defence = 50
 magic_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_4]
 id = 6288
@@ -65,6 +68,7 @@ stab_defence = 50
 slash_defence = -50
 crush_defence = 50
 range_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_5]
 id = 6289
@@ -82,6 +86,7 @@ stab_defence = -50
 slash_defence = 50
 crush_defence = 50
 magic_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_6]
 id = 6290
@@ -97,6 +102,7 @@ stab_defence = 50
 slash_defence = 50
 crush_defence = -50
 range_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_7]
 id = 6291
@@ -114,6 +120,7 @@ stab_defence = 50
 slash_defence = -50
 crush_defence = 50
 range_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_8]
 id = 6292
@@ -131,6 +138,7 @@ stab_defence = -50
 slash_defence = 50
 crush_defence = 50
 magic_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_9]
 id = 6293
@@ -146,6 +154,7 @@ stab_defence = -50
 slash_defence = 50
 crush_defence = 50
 magic_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_10]
 id = 6294
@@ -163,6 +172,7 @@ stab_defence = 50
 slash_defence = 50
 crush_defence = -50
 range_defence = 62
+hunt_mode = "aggressive"
 
 [warped_terrorbird_11]
 id = 6295
@@ -180,6 +190,7 @@ stab_defence = 50
 slash_defence = -50
 crush_defence = 50
 range_defence = 62
+hunt_mode = "aggressive"
 
 [warped_tortoise]
 id = 6296

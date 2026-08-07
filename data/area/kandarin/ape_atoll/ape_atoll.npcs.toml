@@ -202,6 +202,7 @@ respawn_delay = 50
 drop_table = "monkey_archer"
 examine = "A bow wielding ninja monkey. It looks particularly dangerous."
 combat_def = "monkey_archer"
+hunt_mode = "aggressive"
 
 [monkey_archer_ape_atoll_2]
 id = 1457
@@ -213,6 +214,7 @@ def = 80
 range = 110
 max_hit_range = 200
 combat_def = "monkey_archer"
+hunt_mode = "aggressive"
 
 [monkey_archer_ape_atoll_3]
 id = 1458
@@ -224,6 +226,7 @@ def = 80
 range = 110
 max_hit_range = 200
 combat_def = "monkey_archer"
+hunt_mode = "aggressive"
 
 [monkey_guard_ape_atoll_3]
 id = 1459
@@ -242,12 +245,14 @@ respawn_delay = 50
 examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
 drop_table = "monkey_guard"
 combat_def = "guard"
+hunt_mode = "aggressive"
 
 [monkey_guard_ape_atoll_4]
 id = 1460
 clone = "monkey_guard_ape_atoll_3"
 drop_table = "monkey_guard"
 combat_def = "guard"
+hunt_mode = "aggressive"
 
 [elder_guard_ape_atoll]
 id = 1461
@@ -340,6 +345,7 @@ respawn_delay = 50
 categories = ["spiders"]
 examine = "A very dangerous looking spider, with its fangs unsheathed."
 drop_table = "jungle_spider"
+hunt_mode = "aggressive"
 
 [snake_ape_atoll]
 id = 1479
@@ -350,6 +356,7 @@ att = 4
 str = 5
 def = 3
 max_hit_stab = 10
+hunt_mode = "aggressive"
 
 [bird_black]
 id = 1475

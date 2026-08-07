@@ -9,6 +9,7 @@ att = 10
 str = 10
 def = 10
 max_hit_stab = 20
+hunt_mode = "aggressive"
 
 [thief_clocktower_dungeon]
 id = 282
@@ -60,6 +61,7 @@ att = 10
 str = 10
 def = 10
 max_hit_stab = 20
+hunt_mode = "aggressive"
 
 [dungeon_rat_clocktower_dungeon_3]
 id = 4937
@@ -72,6 +74,7 @@ att = 10
 str = 10
 def = 10
 max_hit_stab = 20
+hunt_mode = "aggressive"
 
 [dungeon_rat_clocktower_dungeon_4]
 id = 88
@@ -84,4 +87,5 @@ att = 10
 str = 10
 def = 10
 max_hit_stab = 20
+hunt_mode = "aggressive"
 

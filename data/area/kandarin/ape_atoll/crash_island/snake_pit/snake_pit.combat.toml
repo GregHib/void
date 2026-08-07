@@ -4,3 +4,4 @@ attack_speed = 6
 [big_snake.melee]
 range = 1
 target_hit = { offense = "stab", max = 140 }
+impact_poison = 10

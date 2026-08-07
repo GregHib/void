@@ -10,6 +10,7 @@ examine = "He looks a little on the cross side!"
 drop_table = "empty"
 max_hit_stab = 50
 combat_def = "angry_unicorn"
+hunt_mode = "aggressive"
 
 [angry_giant_rat_tolnas_rift]
 id = 3662
@@ -23,6 +24,7 @@ categories = ["rats"]
 drop_table = "bones"
 examine = "He looks a little on the cross side!"
 combat_def = "giant_rat"
+hunt_mode = "aggressive"
 
 [angry_goblin_tolnas_rift]
 id = 3663
@@ -36,6 +38,7 @@ categories = ["goblins"]
 examine = "He looks a little on the cross side!"
 drop_table = "empty"
 combat_def = "goblin"
+hunt_mode = "aggressive"
 
 [angry_bear_tolnas_rift]
 id = 3664
@@ -48,6 +51,7 @@ max_hit_melee = 50
 examine = "He looks a little on the cross side!"
 drop_table = "empty"
 combat_def = "bear"
+hunt_mode = "aggressive"
 
 [fear_reaper_tolnas_rift]
 id = 3665
@@ -97,6 +101,7 @@ combat_def = "hopeless_creature"
 id = 4940
 clone = "angry_giant_rat_tolnas_rift"
 combat_def = "giant_rat"
+hunt_mode = "aggressive"
 
 [tolna_south]
 id = 3658

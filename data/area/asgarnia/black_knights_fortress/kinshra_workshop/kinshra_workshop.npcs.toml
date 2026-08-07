@@ -27,6 +27,7 @@ att = 356
 str = 356
 def = 1
 max_hit_crush = 370
+hunt_mode = "aggressive"
 
 [black_knight_guardian_kinshra_workshop_2]
 id = 11697
@@ -37,6 +38,7 @@ att = 356
 str = 356
 def = 1
 max_hit_crush = 370
+hunt_mode = "aggressive"
 
 [black_knight_doorkeeper_2]
 id = 11690

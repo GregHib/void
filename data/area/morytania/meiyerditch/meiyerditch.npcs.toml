@@ -339,6 +339,7 @@ mage = 110
 range = 110
 max_hit_crush = 110
 combat_def = "vyrewatch"
+hunt_mode = "aggressive"
 
 [vampyre_juvenile_male]
 id = 4774

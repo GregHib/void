@@ -83,6 +83,7 @@ max_hit_crush = 100
 stab_defence = 10
 slash_defence = 21
 crush_defence = 16
+hunt_mode = "aggressive"
 
 [ogress_warrior]
 id = 7079
@@ -95,6 +96,7 @@ att = 106
 str = 106
 def = 1
 max_hit_crush = 120
+hunt_mode = "aggressive"
 
 [ogress_warrior_2]
 id = 7080
@@ -107,6 +109,7 @@ att = 106
 str = 106
 def = 1
 max_hit_crush = 120
+hunt_mode = "aggressive"
 
 [ogress_feldip_hills]
 id = 7081
@@ -119,6 +122,7 @@ str = 66
 def = 33
 max_hit_crush = 80
 combat_def = "ogress"
+hunt_mode = "aggressive"
 
 [ogress_feldip_hills_2]
 id = 7082
@@ -131,6 +135,7 @@ str = 66
 def = 33
 max_hit_crush = 80
 combat_def = "ogress"
+hunt_mode = "aggressive"
 
 [rantz_feldip_hills_2]
 id = 8659

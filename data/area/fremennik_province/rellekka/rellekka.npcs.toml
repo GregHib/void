@@ -280,6 +280,7 @@ str = 55
 def = 44
 max_hit_crush = 69
 combat_def = "fenris_wolf"
+hunt_mode = "aggressive"
 
 [fishing_spot_rellekka]
 id = 1331

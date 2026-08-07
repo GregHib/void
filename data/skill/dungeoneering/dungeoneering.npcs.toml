@@ -107,4 +107,5 @@ slash_defence = 37
 crush_defence = 37
 magic_defence = 3
 range_defence = 6
+hunt_mode = "aggressive"
 

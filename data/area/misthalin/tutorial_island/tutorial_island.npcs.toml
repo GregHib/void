@@ -57,6 +57,7 @@ categories = ["giant_rats", "rats"]
 respawn_delay = 30
 drop_table = "giant_rat"
 examine = "Overgrown vermin."
+hunt_mode = "aggressive"
 
 [chicken_tutorial_island]
 id = 951

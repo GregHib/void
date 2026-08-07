@@ -75,8 +75,10 @@ style = "crush"
 combat_def = "mugger"
 drop_table = "mugger"
 examine = "He jumps out and attacks people."
+hunt_mode = "aggressive"
 
 [mugger_stronghold_of_player_safety_2]
 id = 7162
 clone = "mugger_stronghold_of_player_safety"
+hunt_mode = "aggressive"
 

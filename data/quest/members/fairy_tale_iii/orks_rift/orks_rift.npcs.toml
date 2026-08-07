@@ -7,6 +7,7 @@ att = 98
 str = 98
 def = 77
 max_hit_crush = 112
+hunt_mode = "aggressive"
 
 [ivory_gromblod_cursed]
 id = 11353
@@ -17,6 +18,7 @@ att = 92
 str = 92
 def = 92
 range = 92
+hunt_mode = "aggressive"
 
 [ivory_breegth_cursed]
 id = 11354
@@ -29,6 +31,7 @@ def = 113
 mage = 113
 max_hit_magic = 114
 combat_def = "ivory_bre_egth_cursed"
+hunt_mode = "aggressive"
 
 [farming_patch_orks_rift]
 id = 11383

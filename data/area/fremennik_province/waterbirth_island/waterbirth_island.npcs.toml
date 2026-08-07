@@ -57,6 +57,7 @@ range = 100
 max_hit_range = 114
 combat_def = "dagannoth_guardian"
 magic_defence = 120
+hunt_mode = "aggressive"
 
 [bardur]
 id = 2879

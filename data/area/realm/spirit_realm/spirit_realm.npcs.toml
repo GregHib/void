@@ -14,6 +14,7 @@ slash_defence = 57
 crush_defence = 46
 magic_defence = -10
 range_defence = 56
+hunt_mode = "aggressive"
 
 [tormented_wraith_spirit_realm]
 id = 8125

@@ -190,6 +190,7 @@ slash_defence = 62
 crush_defence = 32
 magic_defence = 12
 range_defence = 52
+hunt_mode = "aggressive"
 
 [pernicious_parrot]
 id = 6382
@@ -221,6 +222,7 @@ slash_defence = 62
 crush_defence = 32
 magic_defence = 12
 range_defence = 52
+hunt_mode = "aggressive"
 
 [karamjan_jungle_eagle]
 id = 6387

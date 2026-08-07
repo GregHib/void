@@ -27,6 +27,7 @@ slash_defence = 80
 crush_defence = 80
 magic_defence = 130
 range_defence = 80
+hunt_mode = "aggressive"
 
 [avatar_of_creation_soul_wars]
 id = 8597
@@ -43,6 +44,7 @@ slash_defence = 80
 crush_defence = 80
 magic_defence = 130
 range_defence = 80
+hunt_mode = "aggressive"
 
 [pyrefiend_soul_wars]
 id = 8598

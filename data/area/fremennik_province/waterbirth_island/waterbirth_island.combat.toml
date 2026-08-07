@@ -45,6 +45,7 @@ projectile = "water_strike"
 target_hit = { offense = "magic", defence = "range", max = 100 }
 impact_gfx = "water_strike_impact"
 impact_sound = "water_strike_impact"
+impact_poison = 20
 
 [dagannoth_fledgeling]
 attack_speed = 4

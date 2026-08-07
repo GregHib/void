@@ -15,6 +15,7 @@ slash_defence = -29
 crush_defence = -29
 magic_defence = -29
 range_defence = -29
+hunt_mode = "aggressive"
 
 [fremennik_shipmaster_al_kharid]
 id = 9708

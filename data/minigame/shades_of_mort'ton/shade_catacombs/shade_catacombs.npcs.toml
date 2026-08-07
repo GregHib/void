@@ -16,6 +16,7 @@ examine = "A shadowy sort of entity, kind of creepy looking."
 drop_table = "phrin_shadow"
 max_hit_crush = 60
 combat_def = "phrin_shadow"
+hunt_mode = "aggressive"
 
 [phrin_shade_shade]
 id = 1244
@@ -120,6 +121,7 @@ drop_table = "fiyr_shade"
 examine = "A shadowy sort of entity, kind of creepy looking."
 max_hit_crush = 110
 combat_def = "fiyr_shadow"
+hunt_mode = "aggressive"
 
 [asyn_shade]
 id = 1248

@@ -18,6 +18,7 @@ attack_speed = 4
 [confusion_beast.melee]
 range = 1
 target_hit = { offense = "slash", max = 60 }
+impact_poison = 2
 
 [hopeless_creature]
 attack_speed = 4

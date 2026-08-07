@@ -60,6 +60,7 @@ combat_def = "ice_troll_female"
 stab_defence = 30
 slash_defence = 60
 crush_defence = 30
+hunt_mode = "aggressive"
 
 [ice_troll_grunt_ice_troll_caves]
 id = 5476

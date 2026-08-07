@@ -18,3 +18,4 @@ attack_speed = 4
 [ancient_mage.magic]
 range = 6
 target_hit = { offense = "magic", max = 207 }
+impact_poison = 88

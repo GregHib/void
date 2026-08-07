@@ -33,6 +33,7 @@ max_hit_crush = 30
 stab_defence = 50
 slash_defence = 40
 range_defence = 40
+hunt_mode = "aggressive"
 
 [treus_dayth]
 id = 1540

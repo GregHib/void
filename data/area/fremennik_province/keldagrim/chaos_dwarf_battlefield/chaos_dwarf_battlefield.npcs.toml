@@ -94,6 +94,7 @@ slash_defence = 34
 crush_defence = 25
 magic_defence = 10
 range_defence = 35
+hunt_mode = "aggressive"
 
 [chaos_dwarf_chaos_dwarf_battlefield_2]
 id = 8779
@@ -112,6 +113,7 @@ slash_defence = 34
 crush_defence = 25
 magic_defence = 10
 range_defence = 35
+hunt_mode = "aggressive"
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield]
 id = 8781

@@ -74,3 +74,4 @@ attack_speed = 4
 [sea_snake_hatchling.melee]
 range = 1
 target_hit = { offense = "crush", max = 60 }
+impact_poison = 50

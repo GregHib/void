@@ -130,6 +130,7 @@ slash_defence = 10
 crush_defence = 5
 magic_defence = 5
 range_defence = 10
+hunt_mode = "aggressive"
 
 [animated_spade]
 id = 5414

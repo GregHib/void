@@ -38,6 +38,7 @@ slash_defence = 11
 crush_defence = -2
 magic_defence = 1
 range_defence = 4
+hunt_mode = "aggressive"
 
 [ice_spider]
 id = 64

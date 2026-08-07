@@ -7,6 +7,7 @@ hitpoints = 400
 att = 34
 str = 34
 def = 34
+hunt_mode = "aggressive"
 
 [bandit_looter_uzer_2]
 id = 7493
@@ -17,6 +18,7 @@ hitpoints = 400
 att = 34
 str = 34
 def = 34
+hunt_mode = "aggressive"
 
 [bandit_looter_uzer_3]
 id = 7494
@@ -27,6 +29,7 @@ hitpoints = 400
 att = 34
 str = 34
 def = 34
+hunt_mode = "aggressive"
 
 [bandit_looter_uzer_4]
 id = 7495
@@ -37,6 +40,7 @@ hitpoints = 400
 att = 34
 str = 34
 def = 34
+hunt_mode = "aggressive"
 
 [bandit_looter_uzer_5]
 id = 7496
@@ -47,4 +51,5 @@ hitpoints = 400
 att = 34
 str = 34
 def = 34
+hunt_mode = "aggressive"
 

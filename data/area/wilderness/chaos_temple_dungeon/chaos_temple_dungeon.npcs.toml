@@ -16,6 +16,7 @@ max_hit_range = 86
 stab_defence = 20
 slash_defence = 20
 range_defence = 10
+hunt_mode = "aggressive"
 
 [armoured_zombie_chaos_temple_dungeon_2]
 id = 8150
@@ -32,6 +33,7 @@ max_hit_range = 86
 stab_defence = 20
 slash_defence = 20
 range_defence = 10
+hunt_mode = "aggressive"
 
 [armoured_zombie_chaos_temple_dungeon_3]
 id = 8151
@@ -48,6 +50,7 @@ max_hit_range = 86
 stab_defence = 20
 slash_defence = 20
 range_defence = 10
+hunt_mode = "aggressive"
 
 [armoured_zombie_chaos_temple_dungeon_4]
 id = 8152
@@ -64,6 +67,7 @@ max_hit_range = 86
 stab_defence = 20
 slash_defence = 20
 range_defence = 10
+hunt_mode = "aggressive"
 
 [armoured_zombie_chaos_temple_dungeon_5]
 id = 8153
@@ -78,6 +82,7 @@ max_hit_range = 86
 stab_defence = 20
 slash_defence = 20
 range_defence = 10
+hunt_mode = "aggressive"
 
 [armoured_zombie_chaos_temple_dungeon_6]
 id = 8154
