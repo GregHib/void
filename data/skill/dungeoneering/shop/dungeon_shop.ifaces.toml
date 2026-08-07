@@ -1,0 +1,22 @@
+[dungeon_shop]
+id = 956
+type = "main_screen"
+
+[.click]
+id = 3
+
+[.close]
+id = 9
+
+[.stock]
+id = 24
+options = { Info = 0, Buy-1 = 1, Buy-5 = 2, Buy-10 = 3, Buy-50 = 4, Buy-250 = 5, Examine = 9 }
+
+[dungeon_shop_side]
+id = 957
+type = "overlay_tab"
+
+[.inventory]
+id = 0
+inventory = "inventory"
+options = { "Value" = 0, "Sell 1" = 1, "Sell 5" = 2, "Sell 10" = 3, "Sell 50" = 4, "Drop" = 5, Examine = 6 }

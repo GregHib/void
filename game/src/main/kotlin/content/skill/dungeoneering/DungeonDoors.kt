@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -45,7 +44,7 @@ class DungeonDoors : Script {
             }
             target.remove()
             anim("unlock_dung_door")
-            message("You unlock the door.", ChatType.Filter)
+            message("You unlock the door.")
         }
 
         objectOperate("Open", "orange_*_door_*,silver_*_door_*,yellow_*_door_*,green_*_door_*,blue_*_door_*,purple_*_door_*,crimson_*_door_*,gold_*_door_*", handler = ::handleDoor)
@@ -102,6 +101,8 @@ class DungeonDoors : Script {
 
         objectOperate("Burn", "flammable_debris_*") { (target) ->
             target.remove()
+            // https://youtu.be/C5G4sXKrVSI?t=141
+            message("You burn the pile of debris, clearing the path.")
         }
 
         objectOperate("Chop-down", "wooden_barricade_*") { (target) ->

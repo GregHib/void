@@ -1,0 +1,393 @@
+[dungeon_complete]
+id = 933
+type = "wide_screen"
+
+[.skip_button_2]
+id = 14
+
+[.skip_button_3]
+id = 15
+
+[.skip_button_1]
+id = 16
+
+[.stage_1]
+id = 17
+
+[.stage_2]
+id = 18
+
+[.stage_3]
+id = 19
+
+[.totalflashbutton_layer]
+id = 20
+
+[.totalflashbutton]
+id = 25
+
+[.stats_18]
+id = 26
+
+[.stats_10]
+id = 27
+
+[.stats_11]
+id = 28
+
+[.stats_12]
+id = 29
+
+[.stats_13]
+id = 30
+
+[.stats_14]
+id = 31
+
+[.stats_15]
+id = 32
+
+[.stats_16]
+id = 33
+
+[.stats_17]
+id = 34
+
+[.stats_1]
+id = 42
+
+[.stats_2]
+id = 43
+
+[.stats_3]
+id = 44
+
+[.stats_4]
+id = 45
+
+[.stats_5]
+id = 46
+
+[.stats_6]
+id = 47
+
+[.stats_7]
+id = 48
+
+[.stats_8]
+id = 49
+
+[.stats_9]
+id = 50
+
+[.stats_alpha_2]
+id = 51
+
+[.stats_alpha_3]
+id = 52
+
+[.bonus_rooms_text]
+id = 55
+
+[.difficulty_text]
+id = 56
+
+[.difficulty_setting]
+id = 57
+
+[.complexity_setting]
+id = 58
+
+[.difficulty_val]
+id = 59
+
+[.complexity_text]
+id = 62
+
+[.exploration_mode_text]
+id = 63
+
+[.small_dungeon_graphic]
+id = 68
+
+[.medium_dungeon_graphic]
+id = 69
+
+[.large_dungeon_graphic]
+id = 70
+
+[.small_dungeon_text]
+id = 71
+
+[.medium_dungeon_text]
+id = 72
+
+[.large_dungeon_text]
+id = 73
+
+[.difficulty_to_percentage_arrow]
+id = 78
+
+[.complexity_to_percentage_arrow]
+id = 79
+
+[.difficulty_to_percentage_arrow_1]
+id = 80
+
+[.complexity_to_percentage_arrow_1]
+id = 81
+
+[.large_dungeon_lock]
+id = 82
+
+[.xp_nerf_layer]
+id = 84
+
+[.total_modifier]
+id = 97
+
+[.com_98]
+id = 98
+
+[.com_99]
+id = 99
+
+[.modifer_bar_higher_bound]
+id = 115
+
+[.modifer_bar_higher_bound_1]
+id = 116
+
+[.modifer_bar_higher_bound_2]
+id = 117
+
+[.modifer_bar_higher_bound_3]
+id = 118
+
+[.modifer_bar_higher_bound_4]
+id = 119
+
+[.modifer_bar_higher_bound_5]
+id = 120
+
+[.modifer_bar_lower_bound]
+id = 121
+
+[.modifer_bar_lower_bound_1]
+id = 122
+
+[.modifer_bar_lower_bound_2]
+id = 123
+
+[.modifer_bar_lower_bound_3]
+id = 124
+
+[.modifer_bar_lower_bound_4]
+id = 125
+
+[.modifer_bar_lower_bound_5]
+id = 126
+
+[.container_45]
+id = 127
+
+[.container_46]
+id = 128
+
+[.container_47]
+id = 129
+
+[.container_48]
+id = 130
+
+[.container_49]
+id = 131
+
+[.container_50]
+id = 132
+
+[.container_51]
+id = 133
+
+[.container_52]
+id = 134
+
+[.container_53]
+id = 135
+
+[.stats_alpha_1]
+id = 185
+
+[.base_floor_layer]
+id = 187
+
+[.prestige_floor_layer]
+id = 188
+
+[.total_base_layer]
+id = 189
+
+[.container_63]
+id = 193
+
+[.container_65]
+id = 194
+
+[.container_66]
+id = 195
+
+[.container_68]
+id = 196
+
+[.container_69]
+id = 197
+
+[.container_71]
+id = 198
+
+[.container_67]
+id = 200
+
+[.container_70]
+id = 201
+
+[.container_64]
+id = 202
+
+[.stats_53]
+id = 203
+
+[.stats_54]
+id = 204
+
+[.stats_55]
+id = 205
+
+[.stats_56]
+id = 206
+
+[.stats_57]
+id = 207
+
+[.stats_58]
+id = 208
+
+[.stats_59]
+id = 209
+
+[.stats_60]
+id = 210
+
+[.stats_61]
+id = 211
+
+[.total_floor_base]
+id = 214
+
+[.total_base_xp_val]
+id = 215
+
+[.stats_44]
+id = 216
+
+[.stats_45]
+id = 217
+
+[.stats_46]
+id = 218
+
+[.stats_47]
+id = 219
+
+[.stats_48]
+id = 220
+
+[.stats_49]
+id = 221
+
+[.stats_50]
+id = 222
+
+[.stats_51]
+id = 223
+
+[.stats_52]
+id = 224
+
+[.prestige_floor]
+id = 227
+
+[.stats_37]
+id = 229
+
+[.stats_39]
+id = 230
+
+[.stats_40]
+id = 231
+
+[.stats_41]
+id = 232
+
+[.stats_42]
+id = 233
+
+[.stats_35]
+id = 234
+
+[.stats_36]
+id = 235
+
+[.stats_38]
+id = 236
+
+[.stats_43]
+id = 237
+
+[.floor_val]
+id = 240
+
+[.floor_xp_val]
+id = 241
+
+[.title_hide_1]
+id = 297
+
+[.title_hide_2]
+id = 298
+
+[.title_hide_3]
+id = 299
+
+[.terminator_line]
+id = 300
+
+[.readybutton_player5]
+id = 318
+
+[.readybutton_player4]
+id = 319
+
+[.readybutton_player3]
+id = 320
+
+[.readybutton_player2]
+id = 321
+
+[.readybutton_player1]
+id = 322
+
+[.readyborder_player1]
+id = 323
+
+[.readyborder_player2]
+id = 324
+
+[.readyborder_player3]
+id = 325
+
+[.readyborder_player4]
+id = 326
+
+[.readyborder_player5]
+id = 327
