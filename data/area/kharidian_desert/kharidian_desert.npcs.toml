@@ -68,11 +68,6 @@ categories = ["crocodiles"]
 respawn_delay = 40
 examine = "Never smile at a..."
 drop_table = "crocodile"
-stab_defence = 20
-slash_defence = 12
-crush_defence = 22
-magic_defence = 10
-range_defence = 20
 
 [wanderer_kharidian_desert]
 id = 2002
@@ -98,11 +93,6 @@ attack_bonus = 10
 respawn_delay = 50
 drop_table = "billy_goat"
 examine = "They'll eat anything!"
-stab_defence = 10
-slash_defence = 10
-crush_defence = -21
-magic_defence = -21
-range_defence = 10
 
 [goat_kharidian_desert_2]
 id = 4931
@@ -121,11 +111,6 @@ respawn_delay = 50
 drop_table = "billy_goat"
 examine = "They'll eat anything!"
 max_hit_crush = 60
-stab_defence = 10
-slash_defence = 10
-crush_defence = 10
-magic_defence = -21
-range_defence = 10
 
 [osman_kharidian_desert]
 id = 5283

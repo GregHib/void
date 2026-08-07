@@ -28,11 +28,6 @@ respawn_delay = 50
 drop_table = "rock_troll"
 examine = "A nasty looking troll."
 max_hit_crush = 230
-stab_defence = 25
-slash_defence = 25
-crush_defence = 40
-magic_defence = 200
-range_defence = 200
 
 [pee_hat]
 id = 1097
@@ -41,6 +36,7 @@ hitpoints = 1200
 att = 50
 str = 100
 def = 50
+attack_bonus = 40
 max_hit_crush = 230
 
 [stick]
@@ -63,11 +59,6 @@ respawn_delay = 50
 drop_table = "rock_troll"
 examine = "A big, bad troll."
 max_hit_crush = 270
-stab_defence = 30
-slash_defence = 30
-crush_defence = 50
-magic_defence = 200
-range_defence = 200
 
 [rock_troll]
 id = 1095
@@ -79,11 +70,6 @@ att = 94
 str = 94
 def = 94
 combat_def = "ice_troll"
-stab_defence = 35
-slash_defence = 60
-crush_defence = 35
-magic_defence = 200
-range_defence = 200
 
 [billy]
 id = 1093

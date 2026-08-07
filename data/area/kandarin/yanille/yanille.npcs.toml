@@ -33,11 +33,6 @@ respawn_delay = 50
 examine = "Watches stuff. But who watches him?"
 drop_table = "watchman"
 max_hit_crush = 40
-stab_defence = 24
-slash_defence = 14
-crush_defence = 19
-magic_defence = -4
-range_defence = 16
 
 [soldier_yanille]
 id = 35
@@ -53,11 +48,6 @@ respawn_delay = 50
 drop_table = "soldier_yanille"
 examine = "A soldier of the town of Yanille."
 combat_def = "guard"
-stab_defence = 24
-slash_defence = 14
-crush_defence = 19
-magic_defence = -4
-range_defence = 16
 
 [professor_imblewyn]
 id = 4586

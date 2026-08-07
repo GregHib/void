@@ -43,12 +43,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [skeleton_ullek_2]
 id = 6765
@@ -59,12 +54,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [skeleton_ullek_3]
 id = 6766
@@ -75,12 +65,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [skeleton_ullek_4]
 id = 6767
@@ -91,12 +76,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [skeleton_ullek_5]
 id = 6768
@@ -109,12 +89,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [scabaras_locust_ullek]
 id = 6776
@@ -125,7 +100,7 @@ str = 99
 def = 99
 combat_def = "scabaras_locust"
 hitpoints = 1060
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [locust_lancer_ullek]
 id = 6777
@@ -138,9 +113,7 @@ str = 106
 def = 69
 max_hit_crush = 120
 combat_def = "locust_lancer"
-stab_defence = 20
-slash_defence = 20
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [locust_ranger_ullek]
 id = 6778
@@ -154,9 +127,7 @@ def = 1
 range = 196
 max_hit_range = 210
 combat_def = "locust_ranger"
-slash_defence = 20
-range_defence = 6
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [crocodile_ullek]
 id = 6779
@@ -167,7 +138,7 @@ str = 54
 def = 54
 max_hit_slash = 60
 combat_def = "crocodile"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [lead_archaeologist_abigail]
 id = 6786

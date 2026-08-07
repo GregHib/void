@@ -14,11 +14,6 @@ categories = ["chaos_druids"]
 respawn_delay = 50
 examine = "A crazy evil druid."
 combat_def = "guard"
-stab_defence = 13
-slash_defence = 17
-crush_defence = 14
-magic_defence = -4
-range_defence = 14
 
 [salarin_the_twisted]
 id = 205

@@ -37,10 +37,7 @@ att = 46
 str = 46
 def = 250
 max_hit_crush = 60
-stab_defence = 90
-slash_defence = 90
-crush_defence = 90
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mummy_agility_pyramid_2]
 id = 6754
@@ -51,10 +48,7 @@ att = 46
 str = 46
 def = 250
 max_hit_crush = 60
-stab_defence = 90
-slash_defence = 90
-crush_defence = 90
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mummy_agility_pyramid_3]
 id = 6755
@@ -65,10 +59,7 @@ att = 46
 str = 46
 def = 250
 max_hit_crush = 60
-stab_defence = 90
-slash_defence = 90
-crush_defence = 90
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mummy_agility_pyramid_4]
 id = 6756
@@ -79,10 +70,7 @@ att = 46
 str = 46
 def = 250
 max_hit_crush = 60
-stab_defence = 90
-slash_defence = 90
-crush_defence = 90
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [agility_pyramid_block]
 id = 3124

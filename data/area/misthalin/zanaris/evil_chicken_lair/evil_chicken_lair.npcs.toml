@@ -22,12 +22,7 @@ str = 200
 def = 200
 mage = 100
 max_hit_slash = 210
-stab_defence = 50
-slash_defence = 70
-crush_defence = 70
-magic_defence = 60
-range_defence = 50
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [black_dragon_evil_chicken_lair_2]
 id = 4675
@@ -41,7 +36,7 @@ str = 200
 def = 200
 mage = 100
 max_hit_slash = 210
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [black_dragon_evil_chicken_lair_3]
 id = 4676
@@ -55,5 +50,5 @@ str = 200
 def = 200
 mage = 100
 max_hit_slash = 210
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 

@@ -10,11 +10,6 @@ respawn_delay = 25
 categories = ["chickens", "birds"]
 drop_table = "chicken"
 examine = "Yep. Definitely a chicken."
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [chicken_brown]
 id = 1017

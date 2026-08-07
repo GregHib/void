@@ -82,11 +82,6 @@ slayer_xp = 107.6
 categories = ["suqahs"]
 drop_table = "suqah"
 examine = "A strange creature unique to Lunar Isle."
-stab_defence = 50
-slash_defence = 70
-crush_defence = 70
-magic_defence = 90
-range_defence = 50
 
 [suqah_2]
 id = 4528

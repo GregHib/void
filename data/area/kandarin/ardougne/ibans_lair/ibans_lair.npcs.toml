@@ -14,7 +14,6 @@ examine = "One of the guardians of Iban."
 drop_table = "holthion"
 max_hit_slash = 90
 combat_def = "holthion"
-magic_defence = -10
 
 [disciple_of_iban_ibans_lair]
 id = 1002
@@ -83,7 +82,6 @@ drop_table = "othainian"
 examine = "One of the guardians of Iban."
 max_hit_slash = 90
 combat_def = "othainian"
-magic_defence = -10
 
 [doomion_ibans_lair]
 id = 999
@@ -100,4 +98,3 @@ drop_table = "disciple_of_iban"
 examine = "One of the guardians of Iban."
 max_hit_slash = 90
 combat_def = "doomion"
-magic_defence = -10

@@ -52,8 +52,6 @@ attack_bonus = 20
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "One of the Knights of the Round Table."
-stab_defence = 15
-crush_defence = 190
 
 [sir_gawain]
 id = 6172

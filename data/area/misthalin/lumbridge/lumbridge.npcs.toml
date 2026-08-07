@@ -169,11 +169,6 @@ id = 7878
 [lumbridge_man_7]
 clone = "lumbridge_man"
 id = 7879
-stab_defence = -58
-slash_defence = -58
-crush_defence = -58
-magic_defence = -58
-range_defence = -58
 
 [lumbridge_woman]
 id = 7880
@@ -219,11 +214,6 @@ attack_bonus = 5
 respawn_delay = 25
 drop_table = "farmer_members"
 examine = "He grows the crops in this area."
-stab_defence = -18
-slash_defence = -18
-crush_defence = -18
-magic_defence = -18
-range_defence = -18
 
 [farmer_lumbridge_2]
 id = 1759

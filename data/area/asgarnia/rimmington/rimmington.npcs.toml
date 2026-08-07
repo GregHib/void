@@ -81,12 +81,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [skeleton_rimmington_2]
 id = 6092
@@ -99,12 +94,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [skeleton_rimmington_3]
 id = 6093
@@ -117,12 +107,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [ghost_rimmington]
 id = 6094
@@ -133,11 +118,6 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
-stab_defence = 5
-slash_defence = 5
-crush_defence = 5
-magic_defence = -5
-range_defence = 5
 
 [ghost_rimmington_2]
 id = 6095
@@ -148,11 +128,6 @@ att = 13
 str = 13
 def = 18
 max_hit_crush = 20
-stab_defence = 5
-slash_defence = 5
-crush_defence = 5
-magic_defence = -5
-range_defence = 5
 
 [ghost_rimmington_3]
 id = 6096

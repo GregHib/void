@@ -17,9 +17,6 @@ respawn_delay = 50
 drop_table = "mountain_troll"
 examine = "Small for a troll but mean and ugly."
 combat_def = "ice_troll"
-crush_defence = 10
-magic_defence = 200
-range_defence = 200
 
 [mountain_troll_troll_stronghold_tunnels_2]
 id = 1107
@@ -77,11 +74,6 @@ drop_table = "rock_troll"
 examine = "One of the troll generals."
 combat_def = "ice_troll"
 max_hit_slash = 380
-stab_defence = 35
-slash_defence = 60
-crush_defence = 35
-magic_defence = 200
-range_defence = 200
 
 [troll_general_troll_stronghold_tunnels_2]
 id = 1116
@@ -95,12 +87,7 @@ str = 140
 def = 40
 attack_bonus = 60
 max_hit_slash = 380
-stab_defence = 35
-slash_defence = 60
-crush_defence = 35
-magic_defence = 200
-range_defence = 200
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [troll_general_troll_stronghold_tunnels_3]
 id = 1117
@@ -114,12 +101,7 @@ str = 140
 def = 40
 attack_bonus = 60
 max_hit_slash = 380
-stab_defence = 35
-slash_defence = 60
-crush_defence = 35
-magic_defence = 200
-range_defence = 200
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [twig_troll_stronghold_tunnels]
 id = 1128
@@ -139,9 +121,6 @@ drop_table = "mountain_troll"
 examine = "He's guarding the cells."
 max_hit_crush = 130
 combat_def = "twig"
-crush_defence = 10
-magic_defence = 200
-range_defence = 200
 
 [berry_troll_awake]
 id = 1127
@@ -163,9 +142,6 @@ drop_table = "mountain_troll"
 examine = "He's guarding the cells."
 max_hit_crush = 130
 combat_def = "berry"
-crush_defence = 10
-magic_defence = 200
-range_defence = 200
 
 [cook_troll_stronghold_tunnels]
 id = 1135
@@ -198,9 +174,6 @@ respawn_delay = 50
 examine = "Small for a troll, but mean and ugly."
 drop_table = "mountain_troll"
 combat_def = "ice_troll"
-crush_defence = 10
-magic_defence = 200
-range_defence = 200
 
 [guard_troll_stronghold_tunnels]
 id = 1142
@@ -255,11 +228,6 @@ hunt_mode = "cowardly"
 slayer_xp = 150.5
 categories = ["trolls"]
 examine = "A massive, scary-looking troll."
-stab_defence = 35
-slash_defence = 60
-crush_defence = 35
-magic_defence = 200
-range_defence = 200
 
 [my_arm_troll_stronghold_tunnels]
 id = 4950

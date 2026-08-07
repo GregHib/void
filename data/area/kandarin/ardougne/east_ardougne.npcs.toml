@@ -60,11 +60,6 @@ str = 22
 def = 22
 attack_bonus = 6
 max_hit_stab = 30
-stab_defence = 40
-slash_defence = 41
-crush_defence = 37
-magic_defence = -10
-range_defence = 38
 
 [milton_the_miller]
 id = 1739
@@ -85,11 +80,6 @@ respawn_delay = 50
 examine = "A holy warrior."
 drop_table = "paladin"
 combat_def = "guard"
-stab_defence = 87
-slash_defence = 84
-crush_defence = 76
-magic_defence = -10
-range_defence = 79
 
 [hero]
 id = 21
@@ -128,11 +118,6 @@ hunt_mode = "guarding"
 examine = "A member of Ardougne's militia."
 drop_table = "knight_of_ardougne"
 combat_def = "black_knight"
-stab_defence = 39
-slash_defence = 40
-crush_defence = 36
-magic_defence = -11
-range_defence = 36
 
 [richard_ardougne]
 id = 2306
@@ -173,11 +158,6 @@ str = 1
 def = 60
 range = 26
 max_hit_range = 40
-stab_defence = 18
-slash_defence = 23
-crush_defence = 27
-magic_defence = 10
-range_defence = 19
 
 [zookeeper]
 id = 28
@@ -238,11 +218,6 @@ examine = "Keeps the peace... kind of."
 drop_table = "guard"
 combat_def = "guard"
 max_hit_stab = 30
-stab_defence = 24
-slash_defence = 14
-crush_defence = 19
-magic_defence = 4
-range_defence = 16
 
 [edmond_ardougne]
 id = 3213

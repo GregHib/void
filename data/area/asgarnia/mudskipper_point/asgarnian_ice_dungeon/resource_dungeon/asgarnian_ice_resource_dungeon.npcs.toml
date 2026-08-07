@@ -14,12 +14,6 @@ slayer_xp = 235.5
 categories = ["dragons", "frost_dragons"]
 respawn_delay = 30
 examine = "A dragon covered in frost and ice."
-attack_bonus = 40
-stab_defence = 24
-slash_defence = 140
-crush_defence = 140
-magic_defence = 60
-range_defence = 24
 
 [frost_dragon_2]
 id = 11634

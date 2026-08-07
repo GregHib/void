@@ -15,8 +15,6 @@ examine = "Avast ye scurvy land lubbers!"
 drop_table = "pirate"
 combat_def = "pirate"
 max_hit_slash = 30
-stab_defence = 3
-slash_defence = 2
 
 [lokar_searunner_after]
 id = 4537

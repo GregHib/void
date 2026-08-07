@@ -10,11 +10,6 @@ drop_table = "goblin"
 combat_def = "goblin"
 hitpoints = 50
 max_hit_crush = 10
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [goblin_fishing_guild_2]
 id = 4273
@@ -24,11 +19,6 @@ drop_table = "goblin"
 combat_def = "goblin"
 hitpoints = 50
 max_hit_crush = 10
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [goblin_fishing_guild_3]
 id = 4274
@@ -38,11 +28,6 @@ drop_table = "goblin"
 combat_def = "goblin"
 hitpoints = 50
 max_hit_crush = 10
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [goblin_fishing_guild_4]
 id = 4275
@@ -52,11 +37,6 @@ drop_table = "goblin"
 combat_def = "goblin"
 hitpoints = 50
 max_hit_crush = 10
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [goblin_fishing_guild_5]
 id = 4276
@@ -66,11 +46,6 @@ drop_table = "goblin"
 combat_def = "goblin"
 hitpoints = 50
 max_hit_crush = 10
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [roachey]
 id = 592

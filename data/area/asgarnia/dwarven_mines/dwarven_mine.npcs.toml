@@ -13,9 +13,6 @@ att = 40
 str = 40
 def = 35
 max_hit_crush = 50
-stab_defence = 7
-slash_defence = 7
-range_defence = 7
 
 [dwarf_gang_member_2]
 id = 1796
@@ -28,9 +25,6 @@ att = 80
 str = 30
 def = 25
 max_hit_crush = 40
-stab_defence = 7
-slash_defence = 7
-range_defence = 7
 
 [dwarf_gang_member_3]
 id = 1797
@@ -41,9 +35,6 @@ att = 30
 str = 60
 def = 57
 max_hit_crush = 70
-stab_defence = 7
-slash_defence = 7
-range_defence = 7
 
 [cart_conductor]
 id = 2186

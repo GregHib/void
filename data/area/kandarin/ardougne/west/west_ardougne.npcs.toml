@@ -84,9 +84,6 @@ examine = "A mourner, or plague healer."
 drop_table = "mourner"
 combat_def = "guard"
 max_hit_crush = 20
-stab_defence = 6
-slash_defence = 6
-crush_defence = 9
 
 [mourner_5]
 id = 348
@@ -111,9 +108,6 @@ def = 10
 style = "crush"
 max_hit_melee = 20
 examine = "A mourner, or plague healer."
-stab_defence = 5
-slash_defence = 5
-crush_defence = 7
 
 [mourner]
 id = 2373

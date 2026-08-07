@@ -22,9 +22,6 @@ respawn_delay = 50
 drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 combat_def = "ice_troll"
-stab_defence = 30
-slash_defence = 60
-crush_defence = 30
 
 [ice_troll_troll_country_3]
 id = 1937
@@ -43,9 +40,6 @@ respawn_delay = 50
 drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 combat_def = "ice_troll"
-stab_defence = 30
-slash_defence = 60
-crush_defence = 30
 
 [ice_troll_troll_country_4]
 id = 1938
@@ -64,9 +58,6 @@ respawn_delay = 50
 drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 combat_def = "ice_troll"
-stab_defence = 30
-slash_defence = 60
-crush_defence = 30
 
 [ice_troll_troll_country_5]
 id = 1939
@@ -85,9 +76,6 @@ respawn_delay = 50
 drop_table = "ice_troll"
 examine = "Brrrrr...he must be cold!"
 combat_def = "ice_troll"
-stab_defence = 30
-slash_defence = 60
-crush_defence = 30
 
 [ice_troll_troll_country_6]
 id = 1940

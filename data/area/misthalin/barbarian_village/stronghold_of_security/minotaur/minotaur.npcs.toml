@@ -10,11 +10,6 @@ slayer_xp = 10.0
 drop_table = "minotaur"
 categories = ["minotaurs"]
 examine = "He doesn't look very pleased to see you."
-stab_defence = -21
-slash_defence = -21
-crush_defence = -21
-magic_defence = -21
-range_defence = -21
 
 [minotaur_strong]
 id = 4406
@@ -29,8 +24,3 @@ slayer_xp = 22.0
 drop_table = "minotaur"
 categories = ["minotaurs"]
 examine = "He doesn't look very pleased to see you."
-stab_defence = -10
-slash_defence = -10
-crush_defence = -10
-magic_defence = 21
-range_defence = -10

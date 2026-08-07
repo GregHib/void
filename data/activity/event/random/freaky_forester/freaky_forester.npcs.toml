@@ -33,49 +33,27 @@ id = 13246
 clone = "pheasant_1_tail"
 drop_table = "pheasant"
 combat_def = "chicken"
-stab_defence = 1
-slash_defence = 1
 
 [pheasant_3_tails]
 id = 13247
 clone = "pheasant_1_tail"
 drop_table = "pheasant"
 combat_def = "chicken"
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [pheasant_3_tails_2]
 id = 13248
 clone = "pheasant_1_tail"
 drop_table = "pheasant"
 combat_def = "chicken"
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [pheasant_4_tails]
 id = 13249
 clone = "pheasant_1_tail"
 drop_table = "pheasant"
 combat_def = "chicken"
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15
 
 [pheasant_4_tails_2]
 id = 13250
 clone = "pheasant_1_tail"
 drop_table = "pheasant"
 combat_def = "chicken"
-stab_defence = -15
-slash_defence = -15
-crush_defence = -15
-magic_defence = -15
-range_defence = -15

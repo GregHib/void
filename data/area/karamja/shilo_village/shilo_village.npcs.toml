@@ -125,11 +125,6 @@ hunt_mode = "cowardly"
 slayer_xp = 70.0
 categories = ["skeletons"]
 examine = "A giant skeleton of huge strength and devastating power."
-stab_defence = 5
-slash_defence = 5
-crush_defence = 5
-magic_defence = 5
-range_defence = 5
 
 [nazastarool_ghost]
 id = 509

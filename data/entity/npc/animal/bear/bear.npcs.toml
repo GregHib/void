@@ -80,10 +80,10 @@ respawn_delay = 50
 drop_table = "bear"
 categories = ["bears"]
 examine = "	Cute. But deadly."
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [bear_cub_black]
 id = 1327
 clone = "bear_cub"
 combat_def = "bear"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"

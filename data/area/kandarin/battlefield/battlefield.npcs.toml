@@ -12,20 +12,11 @@ respawn_delay = 100
 drop_table = "bones"
 examine = "It's one of General Khazard's warriors."
 combat_def = "guard"
-stab_defence = 33
-slash_defence = 34
-crush_defence = 29
-magic_defence = -7
-range_defence = -33
 
 [khazard_trooper_battlefield_2]
 id = 2246
 clone = "khazard_trooper_battlefield"
 combat_def = "guard"
-stab_defence = 25
-slash_defence = 25
-crush_defence = 22
-range_defence = -25
 
 [gnome_troop_battlefield]
 id = 2247
@@ -42,11 +33,6 @@ respawn_delay = 60
 examine = "Like a mini man!"
 drop_table = "gnome_troop"
 combat_def = "gnome_guard"
-stab_defence = 3
-slash_defence = 4
-crush_defence = 5
-magic_defence = 2
-range_defence = 4
 
 [gnome_troop_battlefield_2]
 id = 2248
@@ -65,11 +51,6 @@ drop_table = "gnome"
 combat_def = "gnome"
 hitpoints = 30
 max_hit_crush = 10
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [gnome_battlefield_2]
 id = 2250
@@ -77,11 +58,6 @@ drop_table = "gnome"
 combat_def = "gnome"
 hitpoints = 30
 max_hit_crush = 10
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [gnome_battlefield_3]
 id = 2251
@@ -90,11 +66,6 @@ drop_table = "gnome"
 combat_def = "gnome"
 hitpoints = 30
 max_hit_crush = 10
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [gnome_archer]
 id = 3814
@@ -109,11 +80,6 @@ max_hit_range = 20
 hunt_mode = "cowardly"
 drop_table = "bones"
 examine = "A Gnome Arrow-chucker"
-stab_defence = -30
-slash_defence = -30
-crush_defence = -30
-magic_defence = -30
-range_defence = -30
 
 [gnome_driver]
 id = 3815
@@ -137,11 +103,6 @@ style = "magic"
 max_hit_magic = 10
 hunt_mode = "cowardly"
 examine = "A battle mage of the gnomish variety."
-stab_defence = -30
-slash_defence = -30
-crush_defence = -30
-magic_defence = -30
-range_defence = -30
 
 [lieutenant_schepbur_battlefield]
 id = 3817
@@ -189,11 +150,6 @@ respawn_delay = 30
 drop_table = "bones"
 examine = "These gnomes know how to get around!"
 combat_def = "gnome"
-stab_defence = 16
-slash_defence = 16
-crush_defence = 18
-magic_defence = 15
-range_defence = 10
 
 [mounted_terrorbird_gnome_battlefield_2]
 id = 6110

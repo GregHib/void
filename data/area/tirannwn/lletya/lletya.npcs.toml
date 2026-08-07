@@ -43,11 +43,6 @@ id = 2360
 clone = "elf_warrior_lletya"
 drop_table = "elf_warrior"
 combat_def = "guard"
-stab_defence = 50
-slash_defence = 70
-crush_defence = 70
-magic_defence = 60
-range_defence = 50
 
 [elf_warrior_lletya_3]
 id = 2361
@@ -71,11 +66,6 @@ id = 2362
 clone = "elf_warrior_lletya_3"
 drop_table = "elf_warrior"
 combat_def = "guard"
-stab_defence = 50
-slash_defence = 50
-crush_defence = 50
-magic_defence = 60
-range_defence = 70
 
 [goreu]
 id = 2363
@@ -124,11 +114,6 @@ drop_table = "ram"
 examine = "White and fluffy."
 combat_def = "ram_freds_farm"
 max_hit_crush = 10
-stab_defence = -21
-slash_defence = -21
-crush_defence = -21
-magic_defence = -21
-range_defence = -21
 
 [gwir]
 id = 8894

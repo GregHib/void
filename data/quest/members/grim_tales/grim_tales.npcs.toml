@@ -10,11 +10,6 @@ max_hit_melee = 110
 xp_bonus = 2.5
 respawn_delay = 10
 examine = "A very odd looking creature."
-stab_defence = 45
-slash_defence = 70
-crush_defence = 60
-magic_defence = 60
-range_defence = 55
 
 [glod_normal]
 id = 5996
@@ -28,8 +23,3 @@ xp_bonus = 0.5
 hunt_mode = "cowardly"
 immune_poison = true
 examine = "A cloud giant."
-stab_defence = 105
-slash_defence = 110
-crush_defence = 130
-magic_defence = 125
-range_defence = 100

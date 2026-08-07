@@ -29,11 +29,6 @@ examine = "Aww, how cute."
 drop_table = "rabbit"
 combat_def = "rabbit_miscellania"
 max_hit_crush = 10
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [rabbit_isafdar_2]
 id = 1194

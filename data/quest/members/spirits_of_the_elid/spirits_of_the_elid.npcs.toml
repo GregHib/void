@@ -9,11 +9,6 @@ max_hit_melee = 40
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "An animated clay statue."
-stab_defence = 300
-slash_defence = 300
-crush_defence = 1
-magic_defence = 300
-range_defence = 300
 
 [grey_golem]
 id = 3028
@@ -26,11 +21,6 @@ max_hit_melee = 40
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "An animated clay statue."
-stab_defence = 300
-slash_defence = 1
-crush_defence = 300
-magic_defence = 300
-range_defence = 300
 
 [white_golem]
 id = 3027
@@ -43,8 +33,3 @@ max_hit_melee = 40
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "An animated clay statue."
-stab_defence = 1
-slash_defence = 300
-crush_defence = 300
-magic_defence = 300
-range_defence = 300

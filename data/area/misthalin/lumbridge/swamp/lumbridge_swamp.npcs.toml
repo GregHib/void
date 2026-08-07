@@ -10,12 +10,7 @@ respawn_delay = 30
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
-stab_defence = -29
-slash_defence = -29
-crush_defence = -29
-magic_defence = -29
-range_defence = -29
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [fremennik_shipmaster_al_kharid]
 id = 9708
@@ -26,11 +21,6 @@ drop_table = "giant_spider"
 combat_def = "giant_spider"
 hitpoints = 50
 max_hit_stab = 10
-stab_defence = -43
-slash_defence = -43
-crush_defence = -43
-magic_defence = -43
-range_defence = -43
 
 [sergeant_mossfists]
 id = 5889

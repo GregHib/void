@@ -12,8 +12,6 @@ immune_cannon = true
 respawn_delay = 15
 drop_table = "turoth"
 examine = "He's one big leg short!"
-slash_defence = 20
-crush_defence = 20
 
 [turoth_level_87]
 id = 1626

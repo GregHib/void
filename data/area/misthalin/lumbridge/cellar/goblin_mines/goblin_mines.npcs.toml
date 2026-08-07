@@ -43,12 +43,6 @@ respawn_delay = 50
 drop_table = "cave_goblin_guard"
 examine = "He protects the miners."
 combat_def = "cave_goblin"
-attack_bonus = 11
-stab_defence = 1
-slash_defence = 16
-crush_defence = 19
-magic_defence = -3
-range_defence = 12
 
 [cave_goblin_guard_2]
 id = 2074
@@ -57,8 +51,6 @@ att = 22
 str = 16
 def = 22
 combat_def = "cave_goblin"
-attack_bonus = 16
-slash_defence = 15
 
 [goblin_guard]
 id = 489
@@ -74,9 +66,6 @@ categories = ["goblins"]
 respawn_delay = 250
 drop_table = "goblin"
 examine = "He doesn't look like he'd trust his own mother."
-stab_defence = 4
-slash_defence = 6
-crush_defence = 6
 
 [cave_goblin_miner_5]
 id = 2075

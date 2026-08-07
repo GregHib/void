@@ -117,11 +117,6 @@ respawn_delay = 100
 examine = "It's one of General Khazard's warriors."
 drop_table = "khazard_trooper"
 combat_def = "guard"
-stab_defence = 33
-slash_defence = 34
-crush_defence = 29
-magic_defence = -7
-range_defence = 33
 
 [khazard_warlord_underground_pass]
 id = 477
@@ -135,7 +130,7 @@ examine = "He looks real nasty, smells bad too."
 drop_table = "khazard_warlord"
 max_hit_crush = 100
 combat_def = "khazard_warlord"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [child_underground_pass_3]
 id = 6334
@@ -235,11 +230,6 @@ respawn_delay = 300
 examine = "A nasty spider, blessed by Zamorak."
 drop_table = "empty"
 combat_def = "giant_spider"
-stab_defence = 15
-slash_defence = 16
-crush_defence = 7
-magic_defence = 12
-range_defence = 16
 
 [sir_jerro_underground_pass]
 id = 988
@@ -322,11 +312,6 @@ examine = "A giant spider."
 drop_table = "empty"
 max_hit_stab = 90
 combat_def = "kalrag"
-stab_defence = 20
-slash_defence = 17
-crush_defence = 12
-magic_defence = 13
-range_defence = 13
 
 [boulder_underground_pass]
 id = 986

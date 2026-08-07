@@ -23,11 +23,6 @@ respawn_delay = 60
 categories = ["skeletons", "undead"]
 slayer_xp = 17.0
 examine = "Could do with gaining a few pounds."
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
 
 [skeleton_flail]
 clone = "skeleton_mace_shield"
@@ -65,10 +60,6 @@ respawn_delay = 70
 slayer_xp = 29.0
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
-stab_defence = 5
-slash_defence = 5
-crush_defence = -5
-range_defence = 5
 
 [skeleton_shield_helmet]
 clone = "skeleton_unarmed"
@@ -85,11 +76,6 @@ id = 5332
 [skeleton_builder]
 clone = "skeleton_unarmed"
 id = 3291
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
 
 [skeleton_helmet]
 id = 5335
@@ -106,10 +92,6 @@ respawn_delay = 70
 slayer_xp = 24.0
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
-stab_defence = 5
-slash_defence = 5
-crush_defence = -5
-range_defence = 5
 
 [skeleton_unarmed_1]
 clone = "skeleton_helmet"
@@ -133,11 +115,6 @@ respawn_delay = 60
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
 drop_table = "skeleton"
-stab_defence = 79
-slash_defence = 31
-crush_defence = 20
-magic_defence = 5
-range_defence = 70
 
 [skeleton_sword_shield_85]
 clone = "skeleton_axe_shield_85"
@@ -148,11 +125,6 @@ drop_table = "skeleton"
 clone = "skeleton_axe_shield_85"
 id = 93
 drop_table = "skeleton"
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
 
 [stronghold_skeleton_round_shield]
 id = 4384
@@ -167,10 +139,6 @@ slayer_xp = 70.0
 hunt_mode = "cowardly"
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
-stab_defence = 35
-slash_defence = 35
-crush_defence = -5
-range_defence = 35
 
 [stronghold_skeleton_helmet]
 clone = "skeleton_axe_shield_85"
@@ -186,19 +154,11 @@ slayer_xp = 70.0
 hunt_mode = "cowardly"
 categories = ["skeletons", "undead"]
 examine = "Could do with gaining a few pounds."
-stab_defence = 35
-slash_defence = 35
-crush_defence = -5
-range_defence = 35
 
 [skeleton_hammer_shield]
 clone = "stronghold_skeleton_helmet"
 id = 4386
 drop_table = "skeleton"
-stab_defence = 79
-slash_defence = 31
-crush_defence = 20
-range_defence = 70
 
 [stronghold_skeleton_unarmed]
 clone = "stronghold_skeleton_helmet"
@@ -219,8 +179,3 @@ hunt_mode = "aggressive"
 drop_table = "skeleton_catacombs"
 categories = ["skeletons", "undead"]
 examine = "It rattles when it moves."
-stab_defence = -22
-slash_defence = -22
-crush_defence = -22
-magic_defence = -22
-range_defence = -22

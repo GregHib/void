@@ -26,10 +26,6 @@ respawn_delay = 30
 examine = "A member of the Black Guard, a special division of the dwarven army."
 drop_table = "black_guard"
 combat_def = "dwarf"
-stab_defence = 40
-slash_defence = 40
-crush_defence = 40
-range_defence = 40
 
 [black_guard_chaos_dwarf_battlefield_2]
 id = 8773
@@ -55,11 +51,6 @@ str = 1
 def = 91
 range = 96
 max_hit_range = 110
-stab_defence = 40
-slash_defence = 34
-crush_defence = 25
-magic_defence = 10
-range_defence = 35
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield_2]
 id = 8777
@@ -73,11 +64,6 @@ str = 1
 def = 91
 range = 96
 max_hit_range = 110
-stab_defence = 40
-slash_defence = 34
-crush_defence = 25
-magic_defence = 10
-range_defence = 35
 
 [chaos_dwarf_chaos_dwarf_battlefield]
 id = 8778
@@ -89,12 +75,7 @@ str = 42
 def = 28
 attack_bonus = 13
 max_hit_crush = 60
-stab_defence = 40
-slash_defence = 34
-crush_defence = 25
-magic_defence = 10
-range_defence = 35
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [chaos_dwarf_chaos_dwarf_battlefield_2]
 id = 8779
@@ -108,12 +89,7 @@ str = 42
 def = 28
 attack_bonus = 13
 max_hit_crush = 60
-stab_defence = 40
-slash_defence = 34
-crush_defence = 25
-magic_defence = 10
-range_defence = 35
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield]
 id = 8781
@@ -127,10 +103,6 @@ str = 1
 def = 84
 range = 86
 max_hit_range = 100
-stab_defence = 40
-slash_defence = 40
-crush_defence = 40
-range_defence = 40
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield_2]
 id = 8782
@@ -144,10 +116,6 @@ str = 1
 def = 84
 range = 86
 max_hit_range = 100
-stab_defence = 40
-slash_defence = 40
-crush_defence = 40
-range_defence = 40
 
 [black_guard_berserker_chaos_dwarf_battlefield]
 id = 8783
@@ -166,10 +134,6 @@ respawn_delay = 30
 examine = "An elite member of the Black Guard."
 drop_table = "black_guard_berserker"
 combat_def = "guard"
-stab_defence = 60
-slash_defence = 60
-crush_defence = 60
-range_defence = 60
 
 [black_guard_berserker_chaos_dwarf_battlefield_2]
 id = 8784

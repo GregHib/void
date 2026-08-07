@@ -41,7 +41,7 @@ att = 99
 str = 99
 def = 99
 combat_def = "spectral_worshipper"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [knight_nomads_temple_2]
 id = 9448

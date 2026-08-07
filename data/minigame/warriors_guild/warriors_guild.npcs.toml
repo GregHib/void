@@ -138,11 +138,6 @@ attack_bonus = 4
 immune_poison = true
 drop_table = "animated_bronze_armour"
 examine = "Animated bronze armour."
-stab_defence = 50
-slash_defence = 25
-crush_defence = 19
-magic_defence = 400
-range_defence = 400
 
 [animated_iron_armour]
 id = 4279
@@ -155,11 +150,6 @@ max_hit_melee = 30
 attack_bonus = 4
 drop_table = "animated_iron_armour"
 examine = "Animated iron armour."
-stab_defence = 50
-slash_defence = 25
-crush_defence = 19
-magic_defence = 400
-range_defence = 400
 
 [animated_steel_armour]
 id = 4280
@@ -173,11 +163,6 @@ attack_bonus = 4
 immune_poison = true
 drop_table = "animated_steel_armour"
 examine = "Animated steel armour."
-stab_defence = 50
-slash_defence = 25
-crush_defence = 19
-magic_defence = 400
-range_defence = 400
 
 [animated_black_armour]
 id = 4281
@@ -191,11 +176,6 @@ attack_bonus = 4
 immune_poison = true
 drop_table = "animated_black_armour"
 examine = "Animated black armour."
-stab_defence = 50
-slash_defence = 25
-crush_defence = 19
-magic_defence = 400
-range_defence = 400
 
 [animated_mithril_armour]
 id = 4282
@@ -209,11 +189,6 @@ attack_bonus = 4
 immune_poison = true
 drop_table = "animated_mithril_armour"
 examine = "Animated mithril armour."
-stab_defence = 50
-slash_defence = 25
-crush_defence = 19
-magic_defence = 400
-range_defence = 400
 
 [animated_adamant_armour]
 id = 4283
@@ -227,11 +202,6 @@ attack_bonus = 4
 immune_poison = true
 drop_table = "animated_adamant_armour"
 examine = "Animated adamant armour."
-stab_defence = 50
-slash_defence = 25
-crush_defence = 19
-magic_defence = 400
-range_defence = 400
 
 [animated_rune_armour]
 id = 4284
@@ -245,8 +215,3 @@ attack_bonus = 4
 immune_poison = true
 drop_table = "animated_rune_armour"
 examine = "Animated rune armour."
-stab_defence = 50
-slash_defence = 25
-crush_defence = 19
-magic_defence = 400
-range_defence = 400

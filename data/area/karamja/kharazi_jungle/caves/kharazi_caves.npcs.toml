@@ -34,11 +34,6 @@ respawn_delay = 50
 examine = "A minion of Rashiliyia."
 drop_table = "undead_one"
 combat_def = "zombie"
-stab_defence = 5
-slash_defence = 5
-crush_defence = 3
-magic_defence = 1
-range_defence = 4
 
 [undead_one_kharazi_caves_3]
 id = 5353
@@ -119,12 +114,7 @@ examine = "The spirit of a long-dead warrior."
 drop_table = "san_tojalon"
 max_hit_stab = 120
 combat_def = "san_tojalon"
-stab_defence = 18
-slash_defence = 22
-crush_defence = 20
-magic_defence = -1
-range_defence = 20
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [irvig_senay_kharazi_caves]
 id = 937
@@ -142,12 +132,7 @@ examine = "The spirit of a long-dead warrior."
 drop_table = "irvig_senay"
 max_hit_slash = 120
 combat_def = "irvig_senay"
-stab_defence = 27
-slash_defence = 31
-crush_defence = 29
-magic_defence = -1
-range_defence = 29
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [ranalph_devere]
 id = 938
@@ -166,11 +151,7 @@ categories = ["skeletons"]
 examine = "The spirit of a long-dead warrior."
 drop_table = "empty"
 max_hit_slash = 130
-stab_defence = 38
-slash_defence = 40
-crush_defence = 36
-range_defence = 38
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [boulder_kharazi_caves]
 id = 939

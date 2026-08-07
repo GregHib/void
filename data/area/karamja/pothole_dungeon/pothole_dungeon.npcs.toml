@@ -9,7 +9,7 @@ str = 43
 def = 43
 attack_bonus = 22
 max_hit_crush = 70
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [jogre_pothole_dungeon_2]
 id = 3450
@@ -22,5 +22,5 @@ str = 43
 def = 43
 attack_bonus = 22
 max_hit_crush = 70
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 

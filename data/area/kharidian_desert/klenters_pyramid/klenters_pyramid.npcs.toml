@@ -26,48 +26,35 @@ categories = ["zombies"]
 examine = "This mummy looks like it means business!"
 drop_table = "mummy"
 combat_def = "mummy"
-stab_defence = 90
-slash_defence = 90
-crush_defence = 90
-magic_defence = 15
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_2]
 id = 2016
 clone = "mummy_klenters_pyramid"
 drop_table = "mummy"
 combat_def = "mummy"
-slash_defence = 30
-magic_defence = 90
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_3]
 id = 2017
 clone = "mummy_klenters_pyramid"
 drop_table = "mummy"
 combat_def = "mummy"
-stab_defence = 30
-magic_defence = 95
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_4]
 id = 2018
 clone = "mummy_klenters_pyramid"
 drop_table = "mummy"
 combat_def = "mummy"
-crush_defence = 30
-magic_defence = 90
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_5]
 id = 2019
 clone = "mummy_klenters_pyramid"
 drop_table = "mummy"
 combat_def = "mummy"
-stab_defence = 50
-crush_defence = 50
-magic_defence = 90
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [high_priest_klenters_pyramid_2]
 id = 1986
@@ -88,9 +75,6 @@ style = "melee"
 style = "crush"
 max_hit_melee = 10
 examine = "Highly flammable!"
-stab_defence = 100
-slash_defence = 100
-crush_defence = 100
 
 [mummy_level_98]
 id = 1959

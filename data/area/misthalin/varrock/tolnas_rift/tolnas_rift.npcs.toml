@@ -10,7 +10,7 @@ examine = "He looks a little on the cross side!"
 drop_table = "empty"
 max_hit_stab = 50
 combat_def = "angry_unicorn"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [angry_giant_rat_tolnas_rift]
 id = 3662
@@ -24,7 +24,7 @@ categories = ["rats"]
 drop_table = "bones"
 examine = "He looks a little on the cross side!"
 combat_def = "giant_rat"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [angry_goblin_tolnas_rift]
 id = 3663
@@ -38,7 +38,7 @@ categories = ["goblins"]
 examine = "He looks a little on the cross side!"
 drop_table = "empty"
 combat_def = "goblin"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [angry_bear_tolnas_rift]
 id = 3664
@@ -51,7 +51,7 @@ max_hit_melee = 50
 examine = "He looks a little on the cross side!"
 drop_table = "empty"
 combat_def = "bear"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [fear_reaper_tolnas_rift]
 id = 3665
@@ -101,7 +101,7 @@ combat_def = "hopeless_creature"
 id = 4940
 clone = "angry_giant_rat_tolnas_rift"
 combat_def = "giant_rat"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [tolna_south]
 id = 3658
@@ -114,8 +114,6 @@ max_hit_melee = 50
 attack_speed = 5
 hunt_mode = "cowardly"
 examine = "Is that really Tolna?"
-magic_defence = 50
-range_defence = 50
 
 [tolna_east]
 id = 3659
@@ -131,8 +129,6 @@ max_hit_range = 50
 attack_speed = 5
 hunt_mode = "cowardly"
 examine = "Is that really Tolna?"
-magic_defence = 50
-range_defence = 50
 
 [tolna_north]
 id = 3660
@@ -145,6 +141,4 @@ max_hit_melee = 50
 attack_speed = 5
 hunt_mode = "cowardly"
 examine = "Is that really Tolna?"
-magic_defence = 50
-range_defence = 50
 

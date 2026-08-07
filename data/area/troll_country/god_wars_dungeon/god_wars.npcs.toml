@@ -18,12 +18,7 @@ att = 388
 str = 388
 def = 1
 max_hit_crush = 402
-stab_defence = 100
-slash_defence = 100
-crush_defence = 50
-magic_defence = 5
-range_defence = 400
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [ancient_ranger]
 id = 13457
@@ -35,7 +30,7 @@ str = 1
 def = 1
 range = 636
 max_hit_range = 650
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [blood_reaver]
 id = 13458
@@ -47,12 +42,7 @@ def = 199
 mage = 199
 max_hit_magic = 146
 hitpoints = 1470
-stab_defence = 20
-slash_defence = 30
-crush_defence = 20
-magic_defence = 400
-range_defence = 5
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [ancient_mage_god_wars_dungeon]
 id = 13459
@@ -65,7 +55,7 @@ def = 183
 mage = 183
 max_hit_magic = 207
 combat_def = "ancient_mage"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [nanuq]
 id = 8076

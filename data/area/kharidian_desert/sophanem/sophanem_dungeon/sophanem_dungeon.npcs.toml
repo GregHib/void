@@ -19,10 +19,6 @@ hunt_mode = "cowardly"
 slayer_xp = 51.2
 categories = ["scabarites"]
 examine = "Part scarab, part human."
-attack_bonus = 70
-slash_defence = 90
-crush_defence = 90
-magic_defence = 34
 
 [scarab_mage_sophanem_dungeon]
 id = 5250
@@ -40,11 +36,6 @@ categories = ["scabarites"]
 respawn_delay = 50
 examine = "Part scarab, part human."
 drop_table = "scarab_mage"
-attack_bonus = 70
-stab_defence = 40
-slash_defence = 90
-crush_defence = 90
-magic_defence = 34
 
 [locust_rider_sophanem_dungeon]
 id = 5251
@@ -60,9 +51,6 @@ categories = ["scabarites"]
 respawn_delay = 7
 drop_table = "locust_rider"
 examine = "A mounted lancer."
-stab_defence = 90
-slash_defence = 90
-crush_defence = 40
 
 [locust_rider_sophanem_dungeon_2]
 id = 5252
@@ -85,12 +73,6 @@ categories = ["scabarites"]
 drop_table = "locust_rider"
 examine = "A mounted archer."
 combat_def = "locust_rider"
-attack_bonus = 80
-stab_defence = 50
-slash_defence = 90
-crush_defence = 50
-magic_defence = 34
-range_defence = 66
 
 [maisa_sophanem_dungeon]
 id = 5280
@@ -109,11 +91,6 @@ hunt_mode = "cowardly"
 slayer_xp = 1.0
 categories = ["scabarites"]
 examine = "I think they're some kind of beetle."
-stab_defence = 90
-slash_defence = 90
-crush_defence = 5
-magic_defence = 90
-range_defence = 90
 
 [scarab_swarm_pyramid_plunder]
 id = 4500
@@ -130,8 +107,3 @@ hunt_mode = "cowardly"
 slayer_xp = 1.0
 categories = ["scabarites"]
 examine = "I think they're some kind of beetle..."
-stab_defence = 15
-slash_defence = 15
-crush_defence = 15
-magic_defence = 15
-range_defence = 15

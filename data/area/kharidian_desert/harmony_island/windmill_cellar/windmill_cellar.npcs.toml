@@ -10,7 +10,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_2]
 id = 5632
@@ -21,7 +21,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_3]
 id = 5636
@@ -32,7 +32,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_4]
 id = 5649
@@ -43,7 +43,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_5]
 id = 5651
@@ -54,7 +54,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_6]
 id = 5653
@@ -65,7 +65,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_7]
 id = 5655
@@ -76,7 +76,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_8]
 id = 5657
@@ -87,7 +87,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_9]
 id = 5660
@@ -98,7 +98,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_10]
 id = 5662
@@ -109,7 +109,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [zombie_pirate_windmill_cellar_11]
 id = 5664
@@ -120,7 +120,7 @@ att = 46
 str = 46
 def = 56
 max_hit_crush = 60
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [monk_windmill_cellar]
 id = 5673

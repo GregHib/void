@@ -109,7 +109,7 @@ att = 4
 str = 5
 def = 3
 max_hit_stab = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [monkey_mos_le_harmless]
 id = 4344
@@ -133,10 +133,6 @@ combat_def = "giant_mosquito"
 respawn_delay = 50
 examine = "A flying blood sucker."
 drop_table = "giant_mosquito"
-stab_defence = 2
-slash_defence = 2
-crush_defence = 5
-magic_defence = 2
 
 [jungle_horror]
 id = 4352

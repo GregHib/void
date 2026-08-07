@@ -12,10 +12,6 @@ respawn_delay = 50
 categories = ["human"]
 god = "saradomin"
 examine = "A valiant knight."
-stab_defence = 10
-slash_defence = 10
-crush_defence = 7
-range_defence = 13
 
 [knight_of_saradomin_female]
 id = 6259
@@ -32,7 +28,3 @@ categories = ["human"]
 god = "saradomin"
 examine = "A valiant knight."
 drop_table = "knight_of_saradomin"
-stab_defence = 12
-slash_defence = 14
-crush_defence = 13
-range_defence = 13

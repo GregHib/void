@@ -9,12 +9,7 @@ def = 189
 mage = 189
 max_hit_magic = 230
 combat_def = "ice_demon"
-stab_defence = 50
-slash_defence = 180
-crush_defence = 180
-magic_defence = 10
-range_defence = 50
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [waterfiend_ghorrock_fortress_dungeon]
 id = 9054
@@ -26,5 +21,5 @@ str = 1
 def = 113
 mage = 113
 max_hit_magic = 119
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 

@@ -30,11 +30,6 @@ categories = ["spiritual_creatures"]
 drop_table = "spiritual_warrior"
 god = "saradomin"
 examine = "Saradomin's chosen warrior."
-stab_defence = 12
-slash_defence = 14
-crush_defence = 13
-magic_defence = 5
-range_defence = 13
 
 [spiritual_warrior_bandos]
 id = 6277
@@ -52,11 +47,6 @@ drop_table = "spiritual_warrior"
 categories = ["spiritual_creatures"]
 god = "bandos"
 examine = "A true servant of Bandos."
-stab_defence = 12
-slash_defence = 14
-crush_defence = 13
-magic_defence = 5
-range_defence = 13
 
 [spiritual_warrior_armadyl]
 id = 6229
@@ -71,8 +61,3 @@ slayer_level = 68
 drop_table = "spiritual_warrior"
 categories = ["spiritual_creatures"]
 examine = "A servant of Armadyl."
-stab_defence = 23
-slash_defence = 25
-crush_defence = 13
-magic_defence = 35
-range_defence = 35

@@ -16,11 +16,6 @@ xp_bonus = 0.5
 combat_def = "skeletal_wyvern"
 drop_table = "skeletal_wyvern"
 examine = "A very dangerous pile of animated wyvern bones."
-stab_defence = 140
-slash_defence = 90
-crush_defence = 90
-magic_defence = 80
-range_defence = 140
 
 [skeletal_wyvern_horns]
 id = 3069

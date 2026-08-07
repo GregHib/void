@@ -7,12 +7,7 @@ att = 47
 str = 47
 def = 47
 max_hit_slash = 60
-stab_defence = 30
-slash_defence = 40
-crush_defence = 20
-magic_defence = 10
-range_defence = 30
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [ice_queen]
 id = 795

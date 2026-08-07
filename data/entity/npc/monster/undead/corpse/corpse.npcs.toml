@@ -6,11 +6,6 @@ respawn_delay = 60
 drop_table = "corpse_spider"
 categories = ["corpse_spider"]
 examine = "Could do with gaining a few pounds."
-stab_defence = -26
-slash_defence = -26
-crush_defence = -26
-magic_defence = -26
-range_defence = -26
 
 [crawling_corpse_torso]
 id = 7916

@@ -70,11 +70,6 @@ categories = ["birds"]
 respawn_delay = 35
 drop_table = "firebird"
 examine = "Probably not a chicken."
-stab_defence = -26
-slash_defence = -26
-crush_defence = -26
-magic_defence = -26
-range_defence = -26
 
 [mysterious_ghost_entrana_2]
 id = 2401

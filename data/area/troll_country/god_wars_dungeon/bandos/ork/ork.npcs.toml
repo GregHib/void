@@ -12,11 +12,6 @@ categories = ["ork"]
 drop_table = "ork"
 god = "bandos"
 examine = "Ugly, fierce and with a bad attitude."
-stab_defence = 12
-slash_defence = 14
-crush_defence = 13
-magic_defence = 5
-range_defence = 13
 
 [ork_axe_god_wars]
 id = 6272

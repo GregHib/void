@@ -33,8 +33,6 @@ drop_table = "dagannoth_lighthouse"
 categories = ["dagannoth"]
 respawn_delay = 30
 examine = "A horror from the ocean depths..."
-magic_defence = 50
-range_defence = 50
 
 [dagannoth_lighthouse_melee_92_1]
 clone = "dagannoth_lighthouse_melee_92"
@@ -58,16 +56,10 @@ drop_table = "dagannoth_waterbirth"
 categories = ["dagannoth"]
 respawn_delay = 30
 examine = "A horror from the ocean depths..."
-stab_defence = -10
-slash_defence = 10
-crush_defence = 90
-magic_defence = 200
-range_defence = 150
 
 [dagannoth_waterbirth_range_88_2]
 clone = "dagannoth_waterbirth_range_88"
 id = 2887
-stab_defence = 10
 
 [dagannoth_waterbirth_range_88_3]
 clone = "dagannoth_waterbirth_range_88"
@@ -95,11 +87,6 @@ drop_table = "dagannoth_waterbirth"
 categories = ["dagannoth"]
 respawn_delay = 30
 examine = "A horror from the ocean depths..."
-stab_defence = 50
-slash_defence = 50
-crush_defence = 50
-magic_defence = 50
-range_defence = 50
 
 [dagannoth_waterbirth_melee_90_1]
 clone = "dagannoth_waterbirth_melee_90"

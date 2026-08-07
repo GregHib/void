@@ -125,7 +125,6 @@ examine = "A practicer of dark arts."
 [dark_wizard_earth_2]
 clone = "dark_wizard_earth"
 id = 8874
-magic_defence = 3
 
 [iffie]
 id = 5914
@@ -201,12 +200,7 @@ combat_def = "giant_rat"
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
-stab_defence = -40
-slash_defence = -40
-crush_defence = -40
-magic_defence = -40
-range_defence = -40
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [master_farmer_varrock]
 id = 2235
@@ -729,11 +723,6 @@ examine = "Peaceful man!"
 id = 5920
 clone = "guard_varrock"
 drop_table = "guard"
-stab_defence = 24
-slash_defence = 30
-crush_defence = 25
-magic_defence = -9
-range_defence = 25
 
 [trainee_guard]
 id = 5921

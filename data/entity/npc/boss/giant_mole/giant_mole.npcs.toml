@@ -13,11 +13,6 @@ categories = ["mole"]
 respawn_delay = 16
 examine = "Holy Mole-y!"
 max_hit_crush = 210
-stab_defence = 60
-slash_defence = 80
-crush_defence = 100
-magic_defence = 80
-range_defence = 60
 
 [baby_mole]
 id = 3341

@@ -101,11 +101,5 @@ def = 8
 mage = 8
 max_hit_magic = 40
 combat_def = "luminescent_icefiend"
-attack_bonus = 4
-stab_defence = 6
-slash_defence = 37
-crush_defence = 37
-magic_defence = 3
-range_defence = 6
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 

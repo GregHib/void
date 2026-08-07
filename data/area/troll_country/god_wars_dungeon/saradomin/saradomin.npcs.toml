@@ -15,11 +15,6 @@ slayer_xp = 350.0
 categories = ["boss"]
 immune_poison = true
 examine = "Commander of Saradomin's forces."
-stab_defence = 100
-slash_defence = 100
-crush_defence = 100
-magic_defence = 100
-range_defence = 100
 
 [starlight]
 id = 6248
@@ -34,11 +29,6 @@ xp_bonus = 1.05
 hunt_mode = "aggressive"
 drop_table = "saradomin_bodyguard"
 examine = "Bane of darkness."
-stab_defence = 12
-slash_defence = 14
-crush_defence = 13
-magic_defence = 5
-range_defence = 13
 
 [growler]
 id = 6250
@@ -52,11 +42,6 @@ combat_def = "growler"
 hunt_mode = "aggressive"
 drop_table = "saradomin_bodyguard"
 examine = "Defender of the faithful."
-stab_defence = 12
-slash_defence = 14
-crush_defence = 14
-magic_defence = 18
-range_defence = 5
 
 [bree]
 id = 6252
@@ -71,8 +56,3 @@ combat_def = "bree"
 hunt_mode = "aggressive"
 drop_table = "saradomin_bodyguard"
 examine = "Champion of truth."
-stab_defence = 12
-slash_defence = 14
-crush_defence = 14
-magic_defence = 18
-range_defence = 5

@@ -33,28 +33,28 @@ respawn_delay = 50
 examine = "He looks a bit aggressive."
 drop_table = "mercenary"
 combat_def = "guard"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mercenary_desert_mining_camp_2]
 id = 4990
 clone = "mercenary_desert_mining_camp"
 drop_table = "mercenary"
 combat_def = "guard"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mercenary_desert_mining_camp_3]
 id = 4991
 clone = "mercenary_desert_mining_camp"
 drop_table = "mercenary"
 combat_def = "guard"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mercenary_desert_mining_camp_4]
 id = 4992
 clone = "mercenary_desert_mining_camp"
 drop_table = "mercenary"
 combat_def = "guard"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [guard_desert_mining_camp]
 id = 4993
@@ -103,11 +103,6 @@ str = 18
 def = 14
 attack_bonus = 4
 max_hit_stab = 30
-stab_defence = 17
-slash_defence = 15
-crush_defence = 19
-magic_defence = -3
-range_defence = 19
 
 [guard_desert_mining_camp_5]
 id = 4997
@@ -195,7 +190,7 @@ respawn_delay = 50
 examine = "He looks a bit aggressive."
 drop_table = "rowdy_slave"
 max_hit_crush = 20
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [mercenary_captain]
 id = 830

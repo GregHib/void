@@ -13,10 +13,6 @@ attack_bonus = 100
 xp_bonus = 7.5
 hunt_mode = "cowardly"
 examine = "The mother of all sea trolls!"
-stab_defence = 20
-slash_defence = 40
-crush_defence = 40
-magic_defence = 40
 
 [sea_troll_level_65]
 id = 3841

@@ -38,11 +38,6 @@ combat_def = "woman"
 respawn_delay = 25
 drop_table = "citizen"
 examine = "A citizen of Burthorpe."
-stab_defence = -12
-slash_defence = -12
-crush_defence = -12
-magic_defence = -12
-range_defence = -12
 
 [penda]
 id = 1087
@@ -77,11 +72,6 @@ respawn_delay = 25
 collision = "outdoors"
 drop_table = "citizen"
 examine = "A citizen of Burthorpe."
-stab_defence = -12
-slash_defence = -12
-crush_defence = -12
-magic_defence = -12
-range_defence = -12
 
 [hygd]
 id = 1088
@@ -94,11 +84,6 @@ combat_def = "woman"
 respawn_delay = 25
 drop_table = "citizen"
 examine = "A citizen of Burthorpe."
-stab_defence = -12
-slash_defence = -12
-crush_defence = -12
-magic_defence = -12
-range_defence = -12
 
 [dunstan]
 id = 1082
@@ -151,11 +136,6 @@ combat_def = "woman"
 respawn_delay = 25
 drop_table = "bones"
 examine = "The Burthorpe Castle cook."
-stab_defence = -12
-slash_defence = -12
-crush_defence = -12
-magic_defence = -12
-range_defence = -12
 
 [denulth]
 id = 1060
@@ -244,11 +224,6 @@ attack_bonus = 30
 respawn_delay = 50
 examine = "The knight seems to be watching something."
 drop_table = "white_knight"
-stab_defence = 83
-slash_defence = 76
-crush_defence = 70
-magic_defence = -11
-range_defence = 74
 
 [helemos]
 id = 797

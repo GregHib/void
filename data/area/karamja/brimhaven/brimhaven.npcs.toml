@@ -113,8 +113,6 @@ str = 21
 def = 21
 attack_bonus = 8
 max_hit_slash = 30
-stab_defence = 3
-slash_defence = 2
 
 [pirate_brimhaven_5]
 id = 6350
@@ -153,9 +151,6 @@ respawn_delay = 50
 examine = "Looks like he's been in the wars..."
 drop_table = "grip"
 max_hit_slash = 30
-stab_defence = 16
-slash_defence = 27
-crush_defence = 22
 
 [alfonse_the_waiter_brimhaven]
 id = 793

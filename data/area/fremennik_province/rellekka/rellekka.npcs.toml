@@ -20,11 +20,6 @@ respawn_delay = 25
 drop_table = "rooster"
 examine = "He rules the, er, roost."
 combat_def = "chicken"
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [lalli_rellekka]
 id = 1270
@@ -208,11 +203,6 @@ respawn_delay = 30
 drop_table = "market_guard"
 examine = "Keeps the stalls secure."
 combat_def = "guard"
-stab_defence = 50
-slash_defence = 50
-crush_defence = 50
-magic_defence = 50
-range_defence = 50
 
 [peter_rellekka]
 id = 13175
@@ -236,11 +226,6 @@ respawn_delay = 25
 combat_def = "bunny"
 drop_table = "bunny"
 examine = "Hoppity, hoppity."
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [bunny_rellekka_2]
 id = 1321
@@ -280,7 +265,7 @@ str = 55
 def = 44
 max_hit_crush = 69
 combat_def = "fenris_wolf"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [fishing_spot_rellekka]
 id = 1331
@@ -419,11 +404,6 @@ respawn_delay = 30
 drop_table = "market_guard"
 examine = "A hardened Fremennik warrior."
 combat_def = "guard"
-stab_defence = 50
-slash_defence = 50
-crush_defence = 50
-magic_defence = 50
-range_defence = 50
 
 [black_unicorn_foal]
 id = 1329

@@ -11,7 +11,3 @@ slayer_level = 78
 slayer_xp = 125.0
 drop_table = "aquanite"
 examine = "It has a light on its forehead. What a pretty light... So shiny!"
-stab_defence = 30
-slash_defence = 90
-crush_defence = 90
-magic_defence = 90

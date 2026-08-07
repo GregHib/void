@@ -12,11 +12,6 @@ drop_table = "werewolf"
 categories = ["werewolf", "werewolves"]
 god = "zamorak"
 examine = "Down, fang!"
-stab_defence = -21
-slash_defence = -21
-crush_defence = -21
-magic_defence = -21
-range_defence = -21
 
 [werewolf_god_wars_male]
 id = 6213

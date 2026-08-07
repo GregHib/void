@@ -8,7 +8,6 @@ att = 36
 str = 36
 def = 19
 max_hit_crush = 50
-crush_defence = 1
 
 [golems_remains_uzer_mastaba]
 id = 7498
@@ -24,5 +23,5 @@ str = 1
 def = 82
 max_hit_crush = 15
 combat_def = "small_scarab"
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 

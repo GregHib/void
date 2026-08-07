@@ -129,7 +129,3 @@ attack_bonus = 9
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "He looks a tad upset."
-slash_defence = 73
-crush_defence = 72
-magic_defence = -3
-range_defence = 72

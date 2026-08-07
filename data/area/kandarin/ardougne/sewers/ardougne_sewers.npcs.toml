@@ -7,7 +7,7 @@ att = 10
 str = 10
 def = 10
 max_hit_stab = 20
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [claus_the_chef_ardougne_sewers]
 id = 886
@@ -25,9 +25,6 @@ drop_table = "bones"
 examine = "Leader of the Hazeel Cult."
 max_hit_crush = 20
 combat_def = "alomone"
-stab_defence = 5
-slash_defence = 6
-crush_defence = 8
 
 [clivet_ardougne_sewers]
 id = 893
@@ -70,7 +67,7 @@ att = 2
 str = 3
 def = 2
 max_hit_stab = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [giant_rat_ardounge_sewer_stubby]
 id = 4923
@@ -82,5 +79,5 @@ att = 2
 str = 3
 def = 2
 max_hit_stab = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 

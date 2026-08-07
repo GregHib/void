@@ -294,12 +294,6 @@ att = 40
 str = 40
 def = 40
 combat_def = "fire_elemental"
-attack_bonus = 10
-stab_defence = 20
-slash_defence = 20
-crush_defence = 20
-magic_defence = 30
-range_defence = 50
 
 [fire_monster_tzhaar_caves]
 id = 7773
@@ -312,13 +306,7 @@ def = 55
 mage = 55
 max_hit_magic = 8
 combat_def = "fire_monster"
-attack_bonus = 10
-stab_defence = 20
-slash_defence = 20
-crush_defence = 20
-magic_defence = 10
-range_defence = 50
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [tzhaar_mej_roh]
 id = 2623

@@ -8,10 +8,6 @@ max_hit_melee = 10
 hunt_mode = "cowardly"
 drop_table = "mosquito"
 examine = "A flying bloodsucker."
-stab_defence = 2
-slash_defence = 2
-crush_defence = 5
-magic_defence = 2
 
 [mosquito_swarm_level_17]
 id = 2494
@@ -24,10 +20,6 @@ max_hit_melee = 10
 hunt_mode = "cowardly"
 drop_table = "mosquito"
 examine = "A swarm of three highly agile mosquitoes."
-stab_defence = 2
-slash_defence = 2
-crush_defence = 5
-magic_defence = 2
 
 [mosquito_swarm_level_20]
 id = 2495
@@ -40,10 +32,6 @@ max_hit_melee = 10
 hunt_mode = "cowardly"
 drop_table = "mosquito"
 examine = "A swarm of five highly agile mosquitoes."
-stab_defence = 2
-slash_defence = 2
-crush_defence = 5
-magic_defence = 2
 
 [broodoo_victim_green]
 id = 2499

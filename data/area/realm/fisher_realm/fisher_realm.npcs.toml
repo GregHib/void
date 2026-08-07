@@ -30,11 +30,6 @@ drop_table = "ram"
 combat_def = "ram_freds_farm"
 hitpoints = 80
 max_hit_crush = 10
-stab_defence = -21
-slash_defence = -21
-crush_defence = -21
-magic_defence = -21
-range_defence = -21
 
 [ram_fisher_realm_2]
 id = 5169
@@ -42,9 +37,4 @@ drop_table = "ram"
 combat_def = "ram_freds_farm"
 hitpoints = 80
 max_hit_crush = 10
-stab_defence = -21
-slash_defence = -21
-crush_defence = -21
-magic_defence = -21
-range_defence = -21
 

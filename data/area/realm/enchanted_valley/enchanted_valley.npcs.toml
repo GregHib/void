@@ -88,8 +88,3 @@ examine = "A very angry nymph."
 [tree_spirit_level_14_2]
 id = 4500
 clone = "tree_spirit_level_14"
-stab_defence = 90
-slash_defence = 90
-crush_defence = 5
-magic_defence = 90
-range_defence = 90

@@ -31,10 +31,7 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
-stab_defence = 20
-slash_defence = 20
-range_defence = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [armoured_zombie_defender_of_varrock_2]
 id = 8160
@@ -46,10 +43,7 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
-stab_defence = 20
-slash_defence = 20
-range_defence = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [armoured_zombie_defender_of_varrock_3]
 id = 8161
@@ -61,10 +55,7 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
-stab_defence = 20
-slash_defence = 20
-range_defence = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [armoured_zombie_defender_of_varrock_4]
 id = 8162
@@ -76,10 +67,7 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
-stab_defence = 20
-slash_defence = 20
-range_defence = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [armoured_zombie_defender_of_varrock_5]
 id = 8163
@@ -91,10 +79,7 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
-stab_defence = 20
-slash_defence = 20
-range_defence = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [arrav_defender_of_varrock]
 id = 8169

@@ -229,11 +229,6 @@ str = 18
 def = 14
 attack_bonus = 4
 max_hit_stab = 30
-stab_defence = 1
-slash_defence = 16
-crush_defence = 19
-magic_defence = -3
-range_defence = 12
 
 [guard_dorgesh_kaan_2]
 id = 5801
@@ -247,10 +242,6 @@ str = 18
 def = 14
 attack_bonus = 4
 max_hit_stab = 30
-slash_defence = 15
-crush_defence = 19
-magic_defence = -3
-range_defence = 12
 
 [zanik_dorgesh_kaan_2]
 id = 5802
@@ -404,8 +395,3 @@ slayer_xp = 52.0
 categories = ["molanisks"]
 drop_table = "molanisk"
 examine = "A strange mole-like being."
-stab_defence = 45
-slash_defence = 45
-crush_defence = 35
-magic_defence = 30
-range_defence = 55

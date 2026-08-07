@@ -9,12 +9,7 @@ att = 36
 str = 36
 def = 30
 max_hit_crush = 50
-stab_defence = 58
-slash_defence = 57
-crush_defence = 46
-magic_defence = -10
-range_defence = 56
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [tormented_wraith_spirit_realm]
 id = 8125

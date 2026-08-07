@@ -33,12 +33,7 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-stab_defence = 9
-slash_defence = 11
-crush_defence = -2
-magic_defence = 1
-range_defence = 4
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [ice_spider]
 id = 64
@@ -55,11 +50,6 @@ respawn_delay = 30
 examine = "I think this spider has been magically modified."
 drop_table = "ice_spider"
 combat_def = "giant_spider"
-stab_defence = 20
-slash_defence = 17
-crush_defence = 12
-magic_defence = 13
-range_defence = 13
 
 [fire_warrior_of_lesarkus]
 id = 277

@@ -21,5 +21,5 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 

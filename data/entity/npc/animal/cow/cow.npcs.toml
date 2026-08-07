@@ -10,11 +10,6 @@ height = 30
 drop_table = "cow"
 categories = ["cows"]
 examine = "Converts grass to beef."
-stab_defence = -21
-slash_defence = -21
-crush_defence = -21
-magic_defence = -21
-range_defence = -21
 
 [cow_brown]
 clone = "cow_default"
@@ -35,11 +30,6 @@ drop_table = "cow"
 categories = ["cows"]
 height = 15
 examine = "Young, but still beefy."
-stab_defence = -26
-slash_defence = -26
-crush_defence = -26
-magic_defence = -26
-range_defence = -26
 
 [cow_zanaris]
 clone = "cow_default"
@@ -49,44 +39,19 @@ id = 3309
 [cow_2]
 clone = "cow_default"
 id = 12362
-stab_defence = -58
-slash_defence = -58
-crush_defence = -58
-magic_defence = -58
-range_defence = -58
 
 [cow_brown_2]
 clone = "cow_default"
 id = 12363
-stab_defence = -58
-slash_defence = -58
-crush_defence = -58
-magic_defence = -58
-range_defence = -58
 
 [cow_calf_2]
 clone = "cow_calf"
 id = 12364
-stab_defence = -43
-slash_defence = -43
-crush_defence = -43
-magic_defence = -43
-range_defence = -43
 
 [cow_light_spots_2]
 clone = "cow_default"
 id = 12365
-stab_defence = -58
-slash_defence = -58
-crush_defence = -58
-magic_defence = -58
-range_defence = -58
 
 [cow_calf_3]
 clone = "cow_calf"
 id = 12366
-stab_defence = -43
-slash_defence = -43
-crush_defence = -43
-magic_defence = -43
-range_defence = -43

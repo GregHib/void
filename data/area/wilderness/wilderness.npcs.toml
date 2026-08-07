@@ -15,7 +15,6 @@ respawn_delay = 50
 examine = "A practicer of dark arts."
 drop_table = "dark_wizard"
 combat_def = "dark_wizard_water"
-magic_defence = 3
 
 [dark_wizard_wilderness_2]
 id = 174
@@ -31,7 +30,6 @@ respawn_delay = 50
 examine = "He works evil magic."
 drop_table = "dark_wizard"
 combat_def = "dark_wizard_water"
-magic_defence = 3
 
 [william]
 id = 1778
@@ -106,7 +104,7 @@ combat_def = "giant_rat"
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [black_salamander]
 id = 5116
@@ -172,8 +170,6 @@ str = 23
 def = 23
 attack_bonus = 8
 max_hit_slash = 40
-stab_defence = 3
-slash_defence = 2
 
 [pirate_wilderness_7]
 id = 6356
@@ -218,7 +214,7 @@ att = 6
 str = 5
 def = 2
 max_hit_stab = 10
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [battle_mage_zamorak]
 id = 912
@@ -324,6 +320,3 @@ examine = "Rogueish."
 drop_table = "rogue"
 max_hit_stab = 20
 combat_def = "rogue"
-stab_defence = 6
-slash_defence = 9
-crush_defence = 11

@@ -7,11 +7,6 @@ respawn_delay = 60
 drop_table = "imp"
 categories = ["imp"]
 examine = "A cheeky little imp."
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [imp_god_wars]
 id = 6211
@@ -27,8 +22,3 @@ god = "zamorak"
 hunt_mode = "zamorak_aggressive"
 examine = "Have you checked your pockets lately?"
 drop_table = "imp"
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42

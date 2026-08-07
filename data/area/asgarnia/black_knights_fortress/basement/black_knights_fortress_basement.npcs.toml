@@ -39,11 +39,6 @@ id = 2682
 drop_table = "rat"
 combat_def = "rat"
 hitpoints = 20
-stab_defence = -42
-slash_defence = -42
-crush_defence = -42
-magic_defence = -42
-range_defence = -42
 
 [arthur_black_knights_fortress_basement]
 id = 3778

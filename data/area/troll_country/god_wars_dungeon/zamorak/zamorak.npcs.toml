@@ -13,11 +13,6 @@ slayer_xp = 350.5
 categories = ["demons", "boss"]
 immune_poison = true
 examine = "A servant of the god Zamorak."
-stab_defence = 80
-slash_defence = 80
-crush_defence = 80
-magic_defence = 130
-range_defence = 80
 
 [tstanon_karlak]
 id = 6204
@@ -33,7 +28,6 @@ slayer_xp = 142.0
 categories = ["demons"]
 drop_table = "zamorak_bodyguard"
 examine = "Destroyer of 1000 planes!"
-magic_defence = -5
 
 [balfrug_kreeyath]
 id = 6208
@@ -48,7 +42,6 @@ slayer_xp = 161.0
 categories = ["demons"]
 drop_table = "zamorak_bodyguard"
 examine = "Despoiler of Ullek."
-magic_defence = 10
 
 [zakln_gritch]
 id = 6206
@@ -64,5 +57,3 @@ slayer_xp = 150.0
 categories = ["demons"]
 drop_table = "zamorak_bodyguard"
 examine = "Scourge of the Light."
-attack_bonus = 20
-magic_defence = -5

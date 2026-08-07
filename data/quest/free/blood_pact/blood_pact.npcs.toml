@@ -48,8 +48,6 @@ categories = ["human"]
 combat_def = "kayle_attackable"
 hunt_mode = "aggressive"
 hunt_range = 5
-magic_defence = 10
-range_defence = 10
 
 [kayle_defeated]
 id = 9629

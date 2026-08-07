@@ -13,7 +13,7 @@ att = 10
 str = 10
 def = 10
 max_hit_stab = 20
-hunt_mode = "aggressive"
+hunt_mode = "cowardly"
 
 [goblin_guard_goblin_cave]
 id = 6496
