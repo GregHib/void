@@ -14,6 +14,7 @@ defend_anim = "archer_defend"
 death_anim = "archer_death"
 
 [archer.range]
+projectile = "bronze_arrow"
 range = 7
 target_hit = { offense = "range", max = 40 }
 anim = "archer_attack"
