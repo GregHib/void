@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -50,7 +51,18 @@ class DungeoneeringParty : Script {
             if (!inParty(this)) {
                 return@interfaceOption
             }
-            leave(this)
+            if (inDungeoneering) {
+                // https://youtu.be/tg1Kf4iAkN4?t=259
+                statement("Warning: If you leave the dungeon, you will not be able to return to it!")
+                choice("Leave the dungeon for good?") {
+                    option("Yes.") {
+                        leave(this)
+                    }
+                    option("No.")
+                }
+            } else {
+                leave(this)
+            }
         }
 
         playerDespawn {
@@ -101,9 +113,9 @@ class DungeoneeringParty : Script {
                 message("You must have completed at least one floor to reset your progress.")
                 return@interfaceOption
             }
-            statement("Are you sure you want to reset your dungeon progress? Your previous progress will be set to the number of floors you have completed and all floors will be marked as incomplete. This cannot be undone.")
+            statement("<maroon>Are you sure you want to reset your dungeon progress? Your previous progress will be set to the number of floors you have completed and all floors will be marked as incomplete. This cannot be undone.")
             choice {
-                option("Yes, reset my progress") {
+                option("Yes, reset my progress.") {
                     set("dungeoneering_previous_progress", get("dungeoneering_current_progress", 0))
                     set("dungeoneering_current_progress", 0)
                     message("Your dungeon progress have been reset.")
@@ -216,11 +228,11 @@ class DungeoneeringParty : Script {
                 // TODO party full proper message
                 return
             }
-            if (leader["dungeon_party_complexity", 1] > player["dungeoneering_complexity", 1]) {
+            if (leader["rand_invite_complexity", 1] > player["dungeoneering_complexity", 1]) {
                 player.message("That parties options are too advanced.")
                 return
             }
-            if (leader["dungeon_party_floor", 1] > player["dungeoneering_current_progress", 1]) {
+            if (leader["rand_invite_floor", 1] > player["dungeoneering_current_progress", 1]) {
                 player.message("That parties options are too advanced.")
                 return
             }
@@ -236,7 +248,13 @@ class DungeoneeringParty : Script {
             player.refreshDetails()
         }
 
+        private fun leaveDungeon(player: Player) {
+            player.close("rand_overlay")
+            player.clear("in_dungeoneering")
+        }
+
         fun leave(player: Player) {
+            leaveDungeon(player)
             player.message("You leave the party.")
             player.dungeonMembers -= player
             val leader = player.dungeonLeader

@@ -1,0 +1,151 @@
+[rand_party_current_floor_trans]
+id = 1319
+
+[rand_dungeon_size_trans]
+id = 1188
+format = "list"
+values = ["none", "small", "medium", "large"]
+
+[rand_display_stage]
+id = 1186
+
+[rand_rewards_fade]
+id = 1185
+
+[rand_party_bonus_exploration]
+id = 1195
+
+[rand_party_complexity_level_trans]
+id = 1320
+
+[rand_display_stage]
+id = 1186
+
+[rand_nurf_amount_trans]
+id = 1321
+format = "boolean"
+
+[rand_pointsmod_varc]
+id = 1236
+
+[rand_basefloor_varc]
+id = 1237
+
+[rand_prestige_varc]
+id = 1238
+
+[rand_totalfloor_varc]
+id = 1239
+
+[rand_dungeon_difficulty_trans]
+id = 1191
+
+[rand_exists_1]
+id = 1198
+format = "boolean"
+
+[rand_exists_2]
+id = 1199
+format = "boolean"
+
+[rand_exists_3]
+id = 1200
+format = "boolean"
+
+[rand_exists_4]
+id = 1201
+format = "boolean"
+
+[rand_exists_5]
+id = 1202
+format = "boolean"
+
+[rand_award_1_1]
+id = 1203
+
+[rand_award_1_2]
+id = 1204
+
+[rand_award_1_3]
+id = 1205
+
+[rand_award_1_4]
+id = 1206
+
+[rand_award_1_5]
+id = 1207
+
+[rand_award_1_6]
+id = 1208
+
+[rand_award_2_1]
+id = 1209
+
+[rand_award_2_2]
+id = 1210
+
+[rand_award_2_3]
+id = 1211
+
+[rand_award_2_4]
+id = 1212
+
+[rand_award_2_5]
+id = 1213
+
+[rand_award_2_6]
+id = 1214
+
+[rand_award_3_1]
+id = 1215
+
+[rand_award_3_2]
+id = 1216
+
+[rand_award_3_3]
+id = 1217
+
+[rand_award_3_4]
+id = 1218
+
+[rand_award_3_5]
+id = 1219
+
+[rand_award_3_6]
+id = 1220
+
+[rand_award_4_1]
+id = 1221
+
+[rand_award_4_2]
+id = 1222
+
+[rand_award_4_3]
+id = 1223
+
+[rand_award_4_4]
+id = 1224
+
+[rand_award_4_5]
+id = 1225
+
+[rand_award_4_6]
+id = 1226
+
+[rand_award_5_1]
+id = 1227
+
+[rand_award_5_2]
+id = 1228
+
+[rand_award_5_3]
+id = 1229
+
+[rand_award_5_4]
+id = 1230
+
+[rand_award_5_5]
+id = 1231
+
+[rand_award_5_6]
+id = 1232

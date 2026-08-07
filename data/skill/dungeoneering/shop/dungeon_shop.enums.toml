@@ -1,0 +1,47 @@
+[rand_shop_sold_resources]
+id = 2987
+
+[rand_shop_sold_tools]
+id = 2988
+
+[rand_shop_sold_resources_c2]
+id = 2989
+
+[rand_shop_sold_tools_c2]
+id = 2990
+
+[rand_shop_sold_resources_c3]
+id = 2991
+
+[rand_shop_sold_tools_c3]
+id = 2992
+
+[rand_shop_sold_resources_c4]
+id = 2993
+
+[rand_shop_sold_tools_c4]
+id = 2994
+
+[rand_shop_sold_resources_f2p_c2]
+id = 2997
+
+[rand_shop_sold_tools_f2p_c2]
+id = 2998
+
+[rand_shop_sold_resources_f2p_c3]
+id = 2999
+
+[rand_shop_sold_tools_f2p_c3]
+id = 3000
+
+[rand_shop_sold_resources_f2p_c4]
+id = 3001
+
+[rand_shop_sold_tools_f2p_c4]
+id = 3002
+
+[rand_shop_sold_resources_f2p]
+id = 2995
+
+[rand_shop_sold_tools_f2p]
+id = 2996
