@@ -14,9 +14,9 @@ examine = "He looks angry and dangerous!"
 drop_table = "ancient_warrior"
 combat_def = "guard"
 hitpoints = 1500
-att = 99
-str = 99
-def = 99
+att = 388
+str = 388
+def = 1
 max_hit_crush = 402
 
 [ancient_ranger]
@@ -24,20 +24,20 @@ id = 13457
 examine = "A dangerous ranger."
 drop_table = "ancient_ranger"
 hitpoints = 1300
-att = 99
-str = 99
-def = 99
-range = 99
+att = 1
+str = 1
+def = 1
+range = 636
 max_hit_range = 650
 
 [blood_reaver]
 id = 13458
 examine = "A strange and twisted creature."
 drop_table = "blood_reaver"
-att = 99
-str = 99
-def = 99
-mage = 99
+att = 1
+str = 1
+def = 199
+mage = 199
 max_hit_magic = 146
 hitpoints = 1470
 
@@ -46,10 +46,10 @@ id = 13459
 examine = "A mage well practised in the art of ancient spellcasting."
 drop_table = "ancient_mage"
 hitpoints = 1200
-att = 99
-str = 99
-def = 99
-mage = 99
+att = 1
+str = 1
+def = 183
+mage = 183
 max_hit_magic = 207
 combat_def = "ancient_mage"
 

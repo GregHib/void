@@ -33,9 +33,9 @@ id = 6753
 drop_table = "mummy"
 combat_def = "mummy"
 hitpoints = 910
-att = 99
-str = 99
-def = 99
+att = 46
+str = 46
+def = 250
 max_hit_crush = 60
 
 [mummy_agility_pyramid_2]
@@ -43,9 +43,9 @@ id = 6754
 drop_table = "mummy"
 combat_def = "mummy"
 hitpoints = 910
-att = 99
-str = 99
-def = 99
+att = 46
+str = 46
+def = 250
 max_hit_crush = 60
 
 [mummy_agility_pyramid_3]
@@ -53,9 +53,9 @@ id = 6755
 drop_table = "mummy"
 combat_def = "mummy"
 hitpoints = 910
-att = 99
-str = 99
-def = 99
+att = 46
+str = 46
+def = 250
 max_hit_crush = 60
 
 [mummy_agility_pyramid_4]
@@ -63,9 +63,9 @@ id = 6756
 drop_table = "mummy"
 combat_def = "mummy"
 hitpoints = 910
-att = 99
-str = 99
-def = 99
+att = 46
+str = 46
+def = 250
 max_hit_crush = 60
 
 [agility_pyramid_block]

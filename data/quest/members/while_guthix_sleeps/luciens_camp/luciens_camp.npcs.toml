@@ -4,9 +4,9 @@ examine = "A Black Knight with lots of combat experience."
 drop_table = "elite_black_knight"
 combat_def = "black_knight"
 hitpoints = 1200
-att = 99
-str = 99
-def = 99
+att = 120
+str = 120
+def = 120
 max_hit_crush = 134
 
 [elite_black_knight_luciens_camp_2]
@@ -23,9 +23,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 99
-str = 99
-def = 99
+att = 60
+str = 60
+def = 250
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_2]
@@ -35,9 +35,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 62
-str = 62
-def = 62
+att = 60
+str = 60
+def = 69
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_3]
@@ -47,9 +47,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 91
-str = 91
-def = 91
+att = 60
+str = 60
+def = 173
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_4]
@@ -59,9 +59,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 62
-str = 62
-def = 62
+att = 60
+str = 60
+def = 69
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_5]
@@ -71,9 +71,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 91
-str = 91
-def = 91
+att = 60
+str = 60
+def = 173
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_6]
@@ -83,9 +83,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 99
-str = 99
-def = 99
+att = 60
+str = 60
+def = 250
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_7]
@@ -95,9 +95,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 99
-str = 99
-def = 99
+att = 60
+str = 60
+def = 250
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_8]
@@ -107,9 +107,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 62
-str = 62
-def = 62
+att = 60
+str = 60
+def = 69
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_9]
@@ -119,9 +119,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 62
-str = 62
-def = 62
+att = 60
+str = 60
+def = 69
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_10]
@@ -131,9 +131,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 91
-str = 91
-def = 91
+att = 60
+str = 60
+def = 173
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_11]
@@ -143,9 +143,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 99
-str = 99
-def = 99
+att = 60
+str = 60
+def = 250
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_12]
@@ -155,9 +155,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 62
-str = 62
-def = 62
+att = 60
+str = 60
+def = 69
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_13]
@@ -167,9 +167,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 62
-str = 62
-def = 62
+att = 60
+str = 60
+def = 69
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_14]
@@ -179,9 +179,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 91
-str = 91
-def = 91
+att = 60
+str = 60
+def = 173
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_15]
@@ -191,9 +191,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 99
-str = 99
-def = 99
+att = 60
+str = 60
+def = 250
 max_hit_crush = 74
 
 [undead_troll_luciens_camp_16]
@@ -203,9 +203,9 @@ examine = "Going by how trolls are named, this one's probably changed its name t
 drop_table = "undead_troll"
 combat_def = "ice_troll"
 hitpoints = 710
-att = 99
-str = 99
-def = 99
+att = 60
+str = 60
+def = 250
 max_hit_crush = 74
 
 [undead_mage_luciens_camp]

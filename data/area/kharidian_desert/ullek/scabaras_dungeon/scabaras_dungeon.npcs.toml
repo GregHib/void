@@ -14,10 +14,10 @@ categories = ["scabarites"]
 examine = "Bred to shoot you down."
 drop_table = "locust_rider"
 hitpoints = 900
-att = 89
-str = 89
-def = 89
-range = 89
+att = 1
+str = 1
+def = 96
+range = 116
 max_hit_range = 130
 
 [scabaras_lancer]
@@ -26,9 +26,9 @@ categories = ["scabarites"]
 examine = "It might be angry...it's hard to tell."
 drop_table = "scabaras_lancer"
 hitpoints = 900
-att = 99
-str = 99
-def = 99
+att = 116
+str = 116
+def = 56
 max_hit_crush = 130
 
 [scabaras_mage_scabaras_dungeon]
@@ -37,10 +37,10 @@ categories = ["scabarites"]
 examine = "Part scarab, part man."
 drop_table = "locust_rider"
 hitpoints = 700
-att = 89
-str = 89
-def = 89
-mage = 89
+att = 1
+str = 1
+def = 109
+mage = 109
 max_hit_magic = 104
 combat_def = "scabaras_mage"
 
@@ -48,10 +48,10 @@ combat_def = "scabaras_mage"
 id = 6781
 drop_table = "locust_rider"
 hitpoints = 700
-att = 78
-str = 78
-def = 78
-mage = 78
+att = 1
+str = 1
+def = 96
+mage = 96
 max_hit_magic = 104
 combat_def = "scabaras_mage"
 

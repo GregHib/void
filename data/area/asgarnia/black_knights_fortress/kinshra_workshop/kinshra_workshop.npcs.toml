@@ -23,9 +23,9 @@ examine = "A Black Knight with lots of combat experience."
 drop_table = "empty"
 combat_def = "black_knight"
 hitpoints = 750
-att = 99
-str = 99
-def = 99
+att = 356
+str = 356
+def = 1
 max_hit_crush = 370
 
 [black_knight_guardian_kinshra_workshop_2]
@@ -33,9 +33,9 @@ id = 11697
 drop_table = "empty"
 combat_def = "black_knight"
 hitpoints = 750
-att = 99
-str = 99
-def = 99
+att = 356
+str = 356
+def = 1
 max_hit_crush = 370
 
 [black_knight_doorkeeper_2]

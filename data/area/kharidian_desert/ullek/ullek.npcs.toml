@@ -5,9 +5,9 @@ examine = "Cut-down and dried."
 drop_table = "dried_zombie"
 combat_def = "zombie"
 hitpoints = 850
-att = 75
-str = 75
-def = 75
+att = 96
+str = 96
+def = 21
 max_hit_crush = 110
 
 [dried_zombie_ullek_2]
@@ -17,9 +17,9 @@ examine = "Needs moisturising."
 drop_table = "dried_zombie"
 combat_def = "zombie"
 hitpoints = 850
-att = 81
-str = 81
-def = 81
+att = 96
+str = 96
+def = 41
 max_hit_crush = 110
 
 [dried_zombie_ullek_3]
@@ -29,9 +29,9 @@ examine = "I bet it's parched."
 drop_table = "dried_zombie"
 combat_def = "zombie"
 hitpoints = 850
-att = 99
-str = 99
-def = 99
+att = 96
+str = 96
+def = 105
 max_hit_crush = 110
 
 [skeleton_ullek]
@@ -102,9 +102,9 @@ categories = ["scabarites"]
 examine = "Bouncy, but not fun."
 drop_table = "locust_lancer"
 hitpoints = 910
-att = 96
-str = 96
-def = 96
+att = 106
+str = 106
+def = 69
 max_hit_crush = 120
 combat_def = "locust_lancer"
 
@@ -114,10 +114,10 @@ categories = ["scabarites"]
 examine = "He'll have someone's eye out with that."
 drop_table = "locust_ranger"
 hitpoints = 1000
-att = 81
-str = 81
-def = 81
-range = 81
+att = 1
+str = 1
+def = 1
+range = 196
 max_hit_range = 210
 combat_def = "locust_ranger"
 

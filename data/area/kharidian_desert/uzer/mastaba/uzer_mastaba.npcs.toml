@@ -4,9 +4,9 @@ examine = "A rocky horror."
 drop_table = "empty"
 combat_def = "guard"
 hitpoints = 750
-att = 31
-str = 31
-def = 31
+att = 36
+str = 36
+def = 19
 max_hit_crush = 50
 
 [golems_remains_uzer_mastaba]
@@ -18,9 +18,9 @@ categories = ["scabarites"]
 examine = "This dung beetle has mistaken you for its staple diet."
 drop_table = "small_scarab"
 hitpoints = 400
-att = 34
-str = 34
-def = 34
+att = 1
+str = 1
+def = 82
 max_hit_crush = 15
 combat_def = "small_scarab"
 

@@ -17,9 +17,9 @@ id = 8596
 examine = "The essence of ruination."
 drop_table = "empty"
 hitpoints = 10
-att = 99
-str = 99
-def = 99
+att = 486
+str = 486
+def = 835
 max_hit_crush = 500
 combat_def = "avatar_of_destruction"
 
@@ -28,9 +28,9 @@ id = 8597
 examine = "A being of unsurpassed vitality."
 drop_table = "empty"
 hitpoints = 10
-att = 99
-str = 99
-def = 99
+att = 446
+str = 446
+def = 939
 max_hit_crush = 460
 combat_def = "avatar_of_creation"
 

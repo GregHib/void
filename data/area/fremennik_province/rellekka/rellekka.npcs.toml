@@ -260,9 +260,9 @@ categories = ["wolves"]
 examine = "Fearsome predator found only in the Fremennik Province, renowned for its fur."
 drop_table = "fenris_wolf"
 hitpoints = 690
-att = 52
-str = 52
-def = 52
+att = 55
+str = 55
+def = 44
 max_hit_crush = 69
 combat_def = "fenris_wolf"
 

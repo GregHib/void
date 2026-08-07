@@ -50,10 +50,10 @@ categories = ["dagannoth"]
 examine = "The Dagannoth Mother's guardians."
 drop_table = "dagannoth_guardian"
 hitpoints = 2100
-att = 99
-str = 99
-def = 99
-range = 99
+att = 1
+str = 1
+def = 187
+range = 100
 max_hit_range = 114
 combat_def = "dagannoth_guardian"
 

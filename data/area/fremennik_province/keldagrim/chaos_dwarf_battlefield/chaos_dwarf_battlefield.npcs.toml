@@ -3,10 +3,10 @@ id = 8771
 examine = "A magical cross between an ogre and a dwarf."
 drop_table = "chaos_dwogre"
 hitpoints = 1000
-att = 99
-str = 99
-def = 99
-mage = 99
+att = 1
+str = 1
+def = 125
+mage = 125
 max_hit_magic = 121
 combat_def = "chaos_dwogre"
 
@@ -46,10 +46,10 @@ examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
 combat_def = "dwarf"
 hitpoints = 1220
-att = 77
-str = 77
-def = 77
-range = 77
+att = 1
+str = 1
+def = 91
+range = 96
 max_hit_range = 110
 
 [chaos_dwarf_hand_cannoneer_chaos_dwarf_battlefield_2]
@@ -59,10 +59,10 @@ examine = "A dwarf gone bad."
 drop_table = "chaos_dwarf_hand_cannoneer"
 combat_def = "dwarf"
 hitpoints = 1220
-att = 77
-str = 77
-def = 77
-range = 77
+att = 1
+str = 1
+def = 91
+range = 96
 max_hit_range = 110
 
 [chaos_dwarf_chaos_dwarf_battlefield]
@@ -96,10 +96,10 @@ examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
 combat_def = "guard"
 hitpoints = 800
-att = 70
-str = 70
-def = 70
-range = 70
+att = 1
+str = 1
+def = 84
+range = 86
 max_hit_range = 100
 
 [black_guard_crossbowdwarf_chaos_dwarf_battlefield_2]
@@ -109,10 +109,10 @@ examine = "A member of the Black Guard with a crossbow."
 drop_table = "black_guard_crossbowdwarf"
 combat_def = "guard"
 hitpoints = 800
-att = 70
-str = 70
-def = 70
-range = 70
+att = 1
+str = 1
+def = 84
+range = 86
 max_hit_range = 100
 
 [black_guard_berserker_chaos_dwarf_battlefield]

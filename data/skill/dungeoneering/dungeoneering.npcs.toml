@@ -95,10 +95,10 @@ id = 12964
 id = 9913
 drop_table = "luminescent_icefiend"
 hitpoints = 40
-att = 7
-str = 7
-def = 7
-mage = 7
+att = 1
+str = 1
+def = 8
+mage = 8
 max_hit_magic = 40
 combat_def = "luminescent_icefiend"
 

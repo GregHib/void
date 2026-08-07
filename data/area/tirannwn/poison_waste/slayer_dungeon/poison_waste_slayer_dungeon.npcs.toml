@@ -5,10 +5,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_2]
@@ -18,10 +18,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_3]
@@ -31,10 +31,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_4]
@@ -44,10 +44,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_5]
@@ -57,10 +57,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_6]
@@ -68,10 +68,10 @@ id = 6290
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_7]
@@ -81,10 +81,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_8]
@@ -94,10 +94,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 47
-str = 47
-def = 47
-range = 47
+att = 1
+str = 1
+def = 1
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_9]
@@ -105,10 +105,10 @@ id = 6293
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 99
-str = 99
-def = 99
-range = 99
+att = 1
+str = 1
+def = 171
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_10]
@@ -118,10 +118,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 99
-str = 99
-def = 99
-range = 99
+att = 1
+str = 1
+def = 171
+range = 126
 max_hit_range = 140
 
 [warped_terrorbird_11]
@@ -131,10 +131,10 @@ examine = "You don't think you can harm this terrorbird."
 drop_table = "warped_terrorbird"
 combat_def = "terrorbird"
 hitpoints = 1549
-att = 99
-str = 99
-def = 99
-range = 99
+att = 1
+str = 1
+def = 171
+range = 126
 max_hit_range = 140
 
 [warped_tortoise]
@@ -143,9 +143,9 @@ categories = ["warped_creatures"]
 examine = "You don't think you can harm this creature."
 drop_table = "warped_tortoise"
 hitpoints = 870
-att = 82
-str = 82
-def = 82
+att = 106
+str = 106
+def = 21
 max_hit_crush = 120
 
 [guard_no_21]

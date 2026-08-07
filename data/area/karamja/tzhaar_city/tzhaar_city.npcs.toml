@@ -300,10 +300,10 @@ id = 7773
 examine = "A monster like many others, but on fire."
 drop_table = "fire_monster"
 hitpoints = 260
-att = 45
-str = 45
-def = 45
-mage = 45
+att = 1
+str = 1
+def = 55
+mage = 55
 max_hit_magic = 8
 combat_def = "fire_monster"
 

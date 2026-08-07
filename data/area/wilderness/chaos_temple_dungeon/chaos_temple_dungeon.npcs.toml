@@ -8,10 +8,10 @@ examine = "It hasn't quite got round to dying."
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
 hitpoints = 850
-att = 71
-str = 71
-def = 71
-range = 71
+att = 1
+str = 1
+def = 115
+range = 72
 max_hit_range = 86
 
 [armoured_zombie_chaos_temple_dungeon_2]
@@ -21,10 +21,10 @@ examine = "This is a rotten one."
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
 hitpoints = 850
-att = 71
-str = 71
-def = 71
-range = 71
+att = 1
+str = 1
+def = 115
+range = 72
 max_hit_range = 86
 
 [armoured_zombie_chaos_temple_dungeon_3]
@@ -34,10 +34,10 @@ examine = "This is a rotten one."
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
 hitpoints = 850
-att = 71
-str = 71
-def = 71
-range = 71
+att = 1
+str = 1
+def = 115
+range = 72
 max_hit_range = 86
 
 [armoured_zombie_chaos_temple_dungeon_4]
@@ -47,10 +47,10 @@ examine = "This is a rotten one."
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
 hitpoints = 850
-att = 71
-str = 71
-def = 71
-range = 71
+att = 1
+str = 1
+def = 115
+range = 72
 max_hit_range = 86
 
 [armoured_zombie_chaos_temple_dungeon_5]
@@ -58,10 +58,10 @@ id = 8153
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
 hitpoints = 850
-att = 71
-str = 71
-def = 71
-range = 71
+att = 1
+str = 1
+def = 115
+range = 72
 max_hit_range = 86
 
 [armoured_zombie_chaos_temple_dungeon_6]

@@ -79,7 +79,7 @@ drop_table = "ogress_champion"
 hitpoints = 880
 att = 86
 str = 86
-def = 86
+def = 84
 max_hit_crush = 100
 
 [ogress_warrior]
@@ -89,9 +89,9 @@ examine = "Irascible, belligerent and stupefyingly impolite."
 drop_table = "ogress_warrior"
 combat_def = "guard"
 hitpoints = 800
-att = 73
-str = 73
-def = 73
+att = 106
+str = 106
+def = 1
 max_hit_crush = 120
 
 [ogress_warrior_2]
@@ -101,9 +101,9 @@ examine = "Irascible, belligerent and stupefyingly impolite."
 drop_table = "ogress_warrior"
 combat_def = "guard"
 hitpoints = 800
-att = 73
-str = 73
-def = 73
+att = 106
+str = 106
+def = 1
 max_hit_crush = 120
 
 [ogress_feldip_hills]
@@ -112,9 +112,9 @@ categories = ["ogres"]
 examine = "A large and contentious lady ogre."
 drop_table = "ogress"
 hitpoints = 710
-att = 57
-str = 57
-def = 57
+att = 66
+str = 66
+def = 33
 max_hit_crush = 80
 combat_def = "ogress"
 
@@ -124,9 +124,9 @@ categories = ["ogres"]
 examine = "A large and contentious lady ogre."
 drop_table = "ogress"
 hitpoints = 710
-att = 57
-str = 57
-def = 57
+att = 66
+str = 66
+def = 33
 max_hit_crush = 80
 combat_def = "ogress"
 
