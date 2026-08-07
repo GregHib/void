@@ -9,6 +9,8 @@ max_hit_melee = 60
 respawn_delay = 8
 drop_table = "experiment"
 examine = "It has a key hanging from its collar."
+max_hit_stab = 60
+combat_def = "experiment"
 
 [experiment_spider]
 id = 1677
@@ -19,6 +21,8 @@ max_hit_melee = 10
 respawn_delay = 50
 drop_table = "experiment"
 examine = "One of Fenkenstrain's failed experiments."
+max_hit_crush = 10
+combat_def = "experiment"
 
 [experiment_sheep]
 id = 1678
@@ -29,4 +33,6 @@ max_hit_melee = 10
 respawn_delay = 50
 drop_table = "experiment"
 examine = "One of Fenkenstrain's failed experiments."
+max_hit_crush = 10
+combat_def = "experiment"
 

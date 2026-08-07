@@ -1,0 +1,9 @@
+[undead_cow]
+attack_speed = 4
+defend_anim = "undead_cow_defend"
+death_anim = "undead_cow_death"
+
+[undead_cow.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+anim = "undead_cow_attack"

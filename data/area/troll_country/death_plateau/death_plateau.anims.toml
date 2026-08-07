@@ -1,0 +1,24 @@
+[kraka_defend]
+id = 285
+[kraka_death]
+id = 287
+[kraka_attack]
+id = 284
+
+[pee_hat_defend]
+id = 285
+
+[pee_hat_death]
+id = 287
+
+[pee_hat_attack]
+id = 284
+
+[stick_defend]
+id = 285
+
+[stick_death]
+id = 287
+
+[stick_attack]
+id = 284

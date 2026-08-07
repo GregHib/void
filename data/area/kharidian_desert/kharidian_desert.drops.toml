@@ -12,3 +12,9 @@ drops = [
     { table = "herb_drop_table", roll = 20 },
     { table = "elite_clue_scroll" },
 ]
+
+[desert_snake_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

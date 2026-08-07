@@ -13,6 +13,8 @@ max_hit_magic = 60
 hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "A practicer of dark arts."
+drop_table = "dark_wizard"
+combat_def = "dark_wizard_water"
 
 [dark_wizard_wilderness_2]
 id = 174
@@ -26,6 +28,8 @@ max_hit_magic = 60
 hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "He works evil magic."
+drop_table = "dark_wizard"
+combat_def = "dark_wizard_water"
 
 [william]
 id = 1778
@@ -60,6 +64,14 @@ examine = "A very brave merchant."
 [pirate_wilderness]
 id = 184
 examine = "This one's had too much to drink!"
+drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 230
+att = 23
+str = 23
+def = 23
+attack_bonus = 8
+max_hit_slash = 40
 
 [mysterious_ghost_wilderness]
 id = 2382
@@ -92,6 +104,7 @@ combat_def = "giant_rat"
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
+hunt_mode = "cowardly"
 
 [black_salamander]
 id = 5116
@@ -102,25 +115,73 @@ examine = "Slightly slimy and somewhat menacing."
 [pirate_wilderness_2]
 id = 6351
 examine = "This one's had too much to drink!"
+drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 230
+att = 23
+str = 23
+def = 23
+attack_bonus = 8
+max_hit_slash = 40
 
 [pirate_wilderness_3]
 id = 6352
 examine = "This one's had too much to drink!"
+drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 230
+att = 23
+str = 23
+def = 23
+attack_bonus = 8
+max_hit_slash = 40
 
 [pirate_wilderness_4]
 id = 6353
 examine = "This one's had too much to drink!"
+drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 230
+att = 23
+str = 23
+def = 23
+attack_bonus = 8
+max_hit_slash = 40
 
 [pirate_wilderness_5]
 id = 6354
 examine = "This one's had too much to drink!"
+drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 230
+att = 23
+str = 23
+def = 23
+attack_bonus = 8
+max_hit_slash = 40
 
 [pirate_wilderness_6]
 id = 6355
+drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 230
+att = 23
+str = 23
+def = 23
+attack_bonus = 8
+max_hit_slash = 40
 
 [pirate_wilderness_7]
 id = 6356
 examine = "This one's had too much to drink!"
+drop_table = "pirate"
+combat_def = "pirate"
+hitpoints = 230
+att = 23
+str = 23
+def = 23
+attack_bonus = 8
+max_hit_slash = 40
 
 [goth_leprechaun_wilderness]
 id = 8000
@@ -146,6 +207,14 @@ id = 8123
 
 [giant_rat_wilderness_2]
 id = 87
+drop_table = "giant_rat"
+combat_def = "giant_rat"
+hitpoints = 100
+att = 6
+str = 5
+def = 2
+max_hit_stab = 10
+hunt_mode = "cowardly"
 
 [battle_mage_zamorak]
 id = 912
@@ -248,3 +317,6 @@ slayer_xp = 17.0
 categories = ["rogues"]
 respawn_delay = 50
 examine = "Rogueish."
+drop_table = "rogue"
+max_hit_stab = 20
+combat_def = "rogue"

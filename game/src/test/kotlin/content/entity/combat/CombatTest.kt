@@ -148,6 +148,7 @@ internal class CombatTest : WorldTest() {
         })
         val player = createPlayer(emptyTile)
         val npc = createNPC("giant_rat", emptyTile.addY(4))
+        npc.huntMode = ""
 
         player.levels.set(Skill.Ranged, 50)
         player.equipment.set(EquipSlot.Weapon.index, "magic_shortbow")

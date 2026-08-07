@@ -33,16 +33,19 @@ respawn_delay = 30
 categories = ["rats"]
 drop_table = "stronghold_rat"
 examine = "Overgrown vermin."
+hunt_mode = "cowardly"
 
 [stronghold_giant_rat_2]
 id = 4945
 categories = ["rats"]
 clone = "stronghold_giant_rat"
+hunt_mode = "cowardly"
 
 [stronghold_giant_rat_3]
 id = 4395
 categories = ["rats"]
 clone = "stronghold_giant_rat"
+hunt_mode = "cowardly"
 
 [giant_rat]
 id = 86
@@ -56,6 +59,7 @@ respawn_delay = 30
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
+hunt_mode = "cowardly"
 
 [giant_rat_dark]
 id = 8828
@@ -68,15 +72,18 @@ combat_def = "giant_rat"
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
+hunt_mode = "cowardly"
 
 [giant_rat_brimhaven]
 id = 4926
 categories = ["rats"]
 clone = "giant_rat_dark"
+hunt_mode = "cowardly"
 
 [giant_rat_dark_injured]
 clone = "giant_rat_dark"
 id = 8829
+hunt_mode = "cowardly"
 
 [rat_ratcatchers]
 id = 2974

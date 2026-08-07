@@ -23,3 +23,32 @@ drops = [
     { id = "coal", chance = 4 },
     { id = "steel_bar", chance = 5 },
 ]
+[bandit_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "bandit_secondary" },
+]
+
+[bandit_secondary]
+roll = 1024
+drops = [
+    { id = "chaos_rune", amount = 2, chance = 64 },
+    { id = "cosmic_rune", amount = 2, chance = 64 },
+    { id = "steel_hatchet", chance = 64 },
+    { id = "uncut_sapphire", chance = 64 },
+    { id = "uncut_emerald", chance = 64 },
+    { id = "coins", min = 12, max = 50, chance = 64 },
+    { id = "coal", chance = 64 },
+    { id = "death_rune", amount = 2, chance = 32 },
+    { id = "nature_rune", amount = 2, chance = 32 },
+    { id = "law_rune", amount = 2, chance = 32 },
+    { id = "iron_battleaxe", chance = 32 },
+    { id = "iron_scimitar", chance = 32 },
+    { id = "steel_sq_shield", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "steel_bar", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "court_summons", chance = 2 },
+]

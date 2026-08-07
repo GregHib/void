@@ -141,6 +141,7 @@ combat_def = "draynor_market_guard"
 hunt_mode = "guarding"
 respawn_delay = 50
 examine = "He guards the Draynor Market stalls from thieves."
+drop_table = "market_guard"
 
 [bank_guard_draynor]
 id = 2574
@@ -192,6 +193,7 @@ hitpoints = 300
 combat_def = "man"
 max_hit_crush = 60
 examine = "He seems to be trying to watch everyone at once."
+drop_table = "shady_stranger"
 
 [suspicious_outsider]
 id = 8436
@@ -199,6 +201,7 @@ hitpoints = 440
 combat_def = "man"
 max_hit_crush = 60
 examine = "Haven't seen his sort around here before; what's he doing here?"
+drop_table = "suspicious_outsider"
 
 [ruantun_draynor_sewers]
 id = 1916

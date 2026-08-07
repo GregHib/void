@@ -2,10 +2,26 @@
 id = 224
 categories = ["rats"]
 examine = "A dirty rat."
+drop_table = "dungeon_rat"
+combat_def = "giant_rat"
+hitpoints = 120
+att = 10
+str = 10
+def = 10
+max_hit_stab = 20
+hunt_mode = "cowardly"
 
 [thief_clocktower_dungeon]
 id = 282
 examine = "A dastardly blanket thief."
+drop_table = "thief"
+combat_def = "man"
+hitpoints = 170
+att = 14
+str = 10
+def = 9
+attack_bonus = 6
+max_hit_stab = 20
 
 [head_thief_clocktower_dungeon]
 id = 283
@@ -20,19 +36,46 @@ style = "slash"
 max_hit_melee = 30
 respawn_delay = 25
 examine = "The head of the treacherous blanket stealing gang."
+drop_table = "head_thief"
+max_hit_slash = 30
+combat_def = "head_thief"
 
 [dungeon_rat_clocktower_dungeon_2]
 id = 4936
 categories = ["rats"]
 examine = "A dirty rat."
+drop_table = "dungeon_rat"
+combat_def = "giant_rat"
+hitpoints = 120
+att = 10
+str = 10
+def = 10
+max_hit_stab = 20
+hunt_mode = "cowardly"
 
 [dungeon_rat_clocktower_dungeon_3]
 id = 4937
 categories = ["rats"]
 examine = "A dirty rat."
+drop_table = "dungeon_rat"
+combat_def = "giant_rat"
+hitpoints = 120
+att = 10
+str = 10
+def = 10
+max_hit_stab = 20
+hunt_mode = "cowardly"
 
 [dungeon_rat_clocktower_dungeon_4]
 id = 88
 categories = ["rats"]
 examine = "Overgrown vermin."
+drop_table = "dungeon_rat"
+combat_def = "giant_rat"
+hitpoints = 120
+att = 10
+str = 10
+def = 10
+max_hit_stab = 20
+hunt_mode = "cowardly"
 

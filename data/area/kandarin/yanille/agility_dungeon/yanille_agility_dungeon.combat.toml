@@ -1,0 +1,8 @@
+[salarin_the_twisted]
+attack_speed = 4
+death_anim = "salarin_the_twisted_death"
+
+[salarin_the_twisted.melee]
+range = 1
+target_hit = { offense = "crush", max = 70 }
+anim = "salarin_the_twisted_attack"

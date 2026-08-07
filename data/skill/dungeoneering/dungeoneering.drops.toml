@@ -1,0 +1,21 @@
+[luminescent_icefiend_drop_table]
+type = "all"
+drops = [
+    { table = "luminescent_icefiend_secondary" },
+]
+
+[luminescent_icefiend_secondary]
+roll = 1024
+drops = [
+    { id = "novite_dagger", chance = 32 },
+    { id = "bathus_dagger", chance = 32 },
+    { id = "marmaros_dagger", chance = 32 },
+    { id = "kratonite_dagger", chance = 32 },
+    { id = "fractite_dagger", chance = 32 },
+    { id = "zephyrium_dagger", chance = 32 },
+    { id = "argonite_dagger", chance = 32 },
+    { id = "katagon_dagger", chance = 32 },
+    { id = "gorgonite_dagger", chance = 32 },
+    { id = "promethium_dagger", chance = 32 },
+    { id = "primal_dagger", chance = 32 },
+]

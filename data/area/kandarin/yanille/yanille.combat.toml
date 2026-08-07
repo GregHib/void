@@ -1,0 +1,18 @@
+[watchman]
+attack_speed = 4
+death_anim = "watchman_death"
+
+[watchman.melee]
+range = 1
+target_hit = { offense = "crush", max = 40 }
+anim = "watchman_attack"
+
+[colonel_radick]
+attack_speed = 4
+defend_anim = "colonel_radick_defend"
+death_anim = "colonel_radick_death"
+
+[colonel_radick.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }
+anim = "colonel_radick_attack"

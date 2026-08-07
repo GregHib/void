@@ -1,0 +1,12 @@
+[big_snake]
+attack_speed = 6
+death_anim = "big_snake_death"
+defend_sound = "big_snake_defend"
+death_sound = "big_snake_death"
+
+[big_snake.melee]
+range = 1
+target_hit = { offense = "stab", max = 140 }
+impact_poison = 10
+anim = "big_snake_attack"
+sound = "big_snake_attack"

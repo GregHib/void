@@ -6,14 +6,35 @@ examine = "He looks quite independent in an aggressive and business like way."
 id = 1795
 categories = ["dwarves"]
 examine = "A short stout menacing fellow."
+drop_table = "dwarf_gang_member"
+combat_def = "dwarf"
+hitpoints = 400
+att = 40
+str = 40
+def = 35
+max_hit_crush = 50
 
 [dwarf_gang_member_2]
 id = 1796
 categories = ["dwarves"]
 examine = "A short stout menacing fellow."
+drop_table = "dwarf_gang_member"
+combat_def = "dwarf"
+hitpoints = 250
+att = 80
+str = 30
+def = 25
+max_hit_crush = 40
 
 [dwarf_gang_member_3]
 id = 1797
+drop_table = "dwarf_gang_member"
+combat_def = "dwarf"
+hitpoints = 250
+att = 30
+str = 60
+def = 57
+max_hit_crush = 70
 
 [cart_conductor]
 id = 2186

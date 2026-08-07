@@ -24,6 +24,7 @@ height = 10
 respawn_delay = 2
 hunt_mode = "cowardly"
 examine = "It's an extremely small brown spider, probably very poisonous."
+drop_table = "spider"
 
 [pedestal_ape_atoll]
 id = 13176
@@ -155,6 +156,7 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "medium_ninja_monkey"
 examine = "A scimitar wielding ninja monkey. He looks like he is guarding something."
+max_hit_slash = 200
 
 [uwogo]
 id = 1449
@@ -197,14 +199,32 @@ categories = ["monkeys"]
 respawn_delay = 50
 drop_table = "monkey_archer"
 examine = "A bow wielding ninja monkey. It looks particularly dangerous."
+combat_def = "monkey_archer"
+hunt_mode = "cowardly"
 
 [monkey_archer_ape_atoll_2]
 id = 1457
 clone = "monkey_archer_ape_atoll"
+hitpoints = 500
+att = 80
+str = 80
+def = 80
+range = 110
+max_hit_range = 200
+combat_def = "monkey_archer"
+hunt_mode = "cowardly"
 
 [monkey_archer_ape_atoll_3]
 id = 1458
 clone = "monkey_archer_ape_atoll"
+hitpoints = 500
+att = 80
+str = 80
+def = 80
+range = 110
+max_hit_range = 200
+combat_def = "monkey_archer"
+hunt_mode = "cowardly"
 
 [monkey_guard_ape_atoll_3]
 id = 1459
@@ -221,10 +241,16 @@ slayer_xp = 130.0
 categories = ["monkeys"]
 respawn_delay = 50
 examine = "A huge brutish gorilla armoured with dangerous looking vambraces."
+drop_table = "monkey_guard"
+combat_def = "guard"
+hunt_mode = "cowardly"
 
 [monkey_guard_ape_atoll_4]
 id = 1460
 clone = "monkey_guard_ape_atoll_3"
+drop_table = "monkey_guard"
+combat_def = "guard"
+hunt_mode = "cowardly"
 
 [elder_guard_ape_atoll]
 id = 1461
@@ -250,6 +276,7 @@ categories = ["monkeys", "zombies"]
 respawn_delay = 50
 drop_table = "monkey_zombie"
 examine = "A large and lumbering undead monkey."
+combat_def = "zombie"
 
 [monkey_zombie_large]
 id = 1466
@@ -267,6 +294,7 @@ categories = ["monkeys", "zombies"]
 respawn_delay = 12
 drop_table = "monkey_zombie"
 examine = "A large and lumbering undead monkey stands here, blocking the way."
+combat_def = "zombie"
 
 [monkey_zombie_small]
 id = 1467
@@ -283,6 +311,8 @@ slayer_xp = 60.0
 categories = ["monkeys", "zombies"]
 respawn_delay = 50
 examine = "A recently deceased monkey. Its flesh seems to be worse for the wear."
+drop_table = "monkey_zombie"
+combat_def = "zombie"
 
 [scorpion_ape_atoll]
 id = 1477
@@ -297,6 +327,7 @@ respawn_delay = 50
 slayer_xp = 15.0
 categories = ["scorpions"]
 examine = "It's an extremely dangerous looking scorpion."
+drop_table = "scorpion"
 
 [jungle_spider_ape_atoll]
 id = 1478
@@ -311,9 +342,19 @@ xp_bonus = 2.5
 respawn_delay = 50
 categories = ["spiders"]
 examine = "A very dangerous looking spider, with its fangs unsheathed."
+drop_table = "jungle_spider"
+hunt_mode = "cowardly"
 
 [snake_ape_atoll]
 id = 1479
+drop_table = "snake"
+combat_def = "snake"
+hitpoints = 60
+att = 4
+str = 5
+def = 3
+max_hit_stab = 10
+hunt_mode = "cowardly"
 
 [bird_black]
 id = 1475
@@ -327,6 +368,7 @@ slayer_xp = 10.0
 categories = ["birds"]
 respawn_delay = 5
 examine = "It's a brightly coloured bird of the jungle."
+drop_table = "bones"
 
 [bird_green]
 id = 1476
@@ -341,6 +383,7 @@ slayer_xp = 5.0
 respawn_delay = 5
 categories = ["birds"]
 examine = "It's a brightly coloured bird of the jungle. It flies very quickly."
+drop_table = "bones"
 
 [daero]
 id = 1407

@@ -11,6 +11,7 @@ height = 10
 collision = "sea"
 combat_def = "duck_swim"
 examine = "Quackers."
+drop_table = "duck"
 
 [crow]
 id = 1754
@@ -34,11 +35,13 @@ id = 2252
 clone = "duck_swim"
 id = 2693
 examine = "She quackers."
+drop_table = "duck"
 
 [duckling]
 clone = "duck_swim"
 id = 2694
 examine = "Mini quackers."
+drop_table = "bones"
 
 [crow_5]
 clone = "crow"

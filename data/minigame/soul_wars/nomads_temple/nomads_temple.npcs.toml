@@ -35,6 +35,13 @@ id = 9450
 id = 9453
 categories = ["ghosts"]
 examine = "A lingering soul."
+drop_table = "spectral_worshipper"
+hitpoints = 1500
+att = 99
+str = 99
+def = 99
+combat_def = "spectral_worshipper"
+hunt_mode = "cowardly"
 
 [knight_nomads_temple_2]
 id = 9448

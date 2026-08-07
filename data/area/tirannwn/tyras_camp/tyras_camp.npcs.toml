@@ -13,6 +13,7 @@ xp_bonus = 0.5
 respawn_delay = 50
 drop_table = "tyras_guard"
 examine = "One of King Tyras's men."
+combat_def = "guard"
 
 [tyras_guard_port_tyras]
 id = 4649
@@ -21,6 +22,7 @@ clone = "tyras_guard"
 [tyras_guard_2]
 id = 1204
 clone = "tyras_guard"
+combat_def = "guard"
 
 [tyras_guard_3]
 id = 1206

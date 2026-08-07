@@ -44,3 +44,9 @@ examine = "Looks like it's got Rabies!"
 [wild_dog_1]
 id = 1594
 clone = "wild_dog"
+hitpoints = 620
+att = 53
+str = 54
+def = 54
+max_hit_stab = 60
+combat_def = "wild_dog"

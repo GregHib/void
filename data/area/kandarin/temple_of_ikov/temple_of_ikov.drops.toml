@@ -10,3 +10,8 @@ roll = 16
 drops = [
     { id = "armadyl_pendant" },
 ]
+[ice_spider_drop_table]
+type = "all"
+drops = [
+    { id = "ice_arrows" },
+]

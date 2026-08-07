@@ -4,3 +4,8 @@ drops = [
     { id = "bones" },
     { id = "pipkey_gold", variable = "priest_in_peril", equals = "help_drezel" },
 ]
+[temple_guardian_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

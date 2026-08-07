@@ -1,0 +1,30 @@
+[alomone]
+attack_speed = 4
+death_anim = "alomone_death"
+defend_sound = "alomone_defend"
+death_sound = "alomone_death"
+
+[alomone.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+anim = "alomone_attack"
+sound = "alomone_attack"
+
+[clivet]
+attack_speed = 4
+defend_anim = "clivet_defend"
+death_anim = "clivet_death"
+
+[clivet.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+anim = "clivet_attack"
+
+[hazeel_cultist]
+attack_speed = 4
+death_anim = "hazeel_cultist_death"
+
+[hazeel_cultist.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+anim = "hazeel_cultist_attack"

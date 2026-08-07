@@ -80,6 +80,21 @@ examine = "I don't think insect repellent will work..."
 
 [goat]
 id = 4933
+drop_table = "goat"
+hitpoints = 210
+att = 20
+str = 20
+def = 20
+attack_bonus = 10
+max_hit_crush = 40
 
 [goat_2]
 id = 4934
+drop_table = "goat"
+hitpoints = 210
+att = 20
+str = 20
+def = 20
+attack_bonus = 10
+max_hit_crush = 40
+combat_def = "goat"

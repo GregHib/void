@@ -31,6 +31,8 @@ style = "crush"
 max_hit_melee = 40
 respawn_delay = 50
 examine = "Watches stuff. But who watches him?"
+drop_table = "watchman"
+max_hit_crush = 40
 
 [soldier_yanille]
 id = 35
@@ -45,6 +47,7 @@ attack_bonus = 8
 respawn_delay = 50
 drop_table = "soldier_yanille"
 examine = "A soldier of the town of Yanille."
+combat_def = "guard"
 
 [professor_imblewyn]
 id = 4586
@@ -122,6 +125,7 @@ attack_bonus = 8
 respawn_delay = 50
 drop_table = "soldier_yanille"
 examine = "Tries to keep the peace."
+combat_def = "guard"
 
 [colonel_radick]
 id = 878
@@ -135,4 +139,5 @@ attack_bonus = 9
 respawn_delay = 50
 drop_table = "soldier_yanille"
 examine = "A military man."
+max_hit_slash = 40
 

@@ -31,6 +31,14 @@ examine = "A very brave merchant."
 id = 206
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [mysterious_ghost_edgeville]
 id = 2386
@@ -90,6 +98,8 @@ attack_bonus = -15
 respawn_delay = 45
 drop_table = "ram"
 examine = "White and fluffy."
+combat_def = "ram_freds_farm"
+max_hit_crush = 10
 
 [outlaw_edgeville]
 id = 5842
@@ -186,6 +196,7 @@ combat_def = "man"
 respawn_delay = 25
 combat_def = "man"
 examine = "A holy man."
+drop_table = "bones"
 
 [brother_bordiss]
 id = 7730

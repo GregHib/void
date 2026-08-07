@@ -1,7 +1,8 @@
 [giant_spider_drop_table]
 type = "all"
 drops = [
-    { table = "giant_spider_secondary"}
+    { table = "giant_spider_secondary"},
+    { table = "giant_spider_charms", members = true },
 ]
 
 [giant_spider_secondary]
@@ -28,4 +29,57 @@ drops = [
     { id = "coins", amount = 5, chance = 28 },
     { id = "coins", amount = 15, chance = 3 },
     { id = "coins", amount = 20, chance = 2 },
+]
+[spider_drop_table]
+type = "all"
+drops = [
+    { table = "spider_charms", members = true },
+]
+
+[spider_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 2065 },
+    { id = "green_charm", chance = 3252 },
+    { id = "crimson_charm", chance = 1342 },
+    { id = "blue_charm", chance = 1446 },
+]
+
+[deadly_red_spider_drop_table]
+type = "all"
+drops = [
+    { table = "deadly_red_spider_charms", members = true },
+]
+
+[deadly_red_spider_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 25063 },
+    { id = "green_charm", chance = 932 },
+    { id = "crimson_charm", chance = 1605 },
+    { id = "blue_charm", chance = 149 },
+]
+
+[giant_spider_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 8549 },
+    { id = "green_charm", chance = 819 },
+    { id = "crimson_charm", chance = 2391 },
+    { id = "blue_charm", chance = 655 },
+]
+
+[poison_spider_drop_table]
+type = "all"
+drops = [
+    { table = "poison_spider_secondary" },
+]
+
+[poison_spider_secondary]
+roll = 1024
+drops = [
+    { id = "green_charm", chance = 64, members = true },
+    { id = "gold_charm", chance = 64, members = true },
+    { id = "crimson_charm", chance = 64, members = true },
+    { id = "blue_charm", chance = 6, members = true },
 ]

@@ -9,6 +9,7 @@ max_hit_melee = 30
 hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "Yuck! It's all slimy!"
+drop_table = "empty"
 
 [dust_devil]
 id = 1624
@@ -45,6 +46,7 @@ combat_def = "bloodworm"
 hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "I think I should keep my distance..."
+drop_table = "bloodworm"
 
 [giant_crypt_rat_chaos_tunnels]
 id = 2033
@@ -73,6 +75,7 @@ slayer_xp = 45.0
 categories = ["spiders"]
 respawn_delay = 50
 examine = "Incey wincey."
+drop_table = "empty"
 
 [giant_crypt_spider]
 id = 2035
@@ -87,6 +90,7 @@ slayer_xp = 80.0
 categories = ["spiders"]
 respawn_delay = 50
 examine = "Not very incey wincey."
+drop_table = "empty"
 
 [giant_crypt_rat_chaos_tunnels_2]
 id = 4920
@@ -109,6 +113,7 @@ respawn_delay = 30
 drop_table = "possessed_pickaxe"
 categories = ["phantoms"]
 examine = "How does it move of its own accord?"
+hunt_mode = "cowardly"
 
 [animated_spade]
 id = 5414

@@ -6,3 +6,17 @@ id = 2590
 
 [climb_out_of_tunnel]
 id = 2591
+[colonel_radick_defend]
+id = 425
+
+[colonel_radick_death]
+id = 836
+
+[colonel_radick_attack]
+id = 395
+
+[watchman_death]
+id = 836
+
+[watchman_attack]
+id = 422

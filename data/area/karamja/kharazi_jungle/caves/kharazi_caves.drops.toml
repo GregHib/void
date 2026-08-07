@@ -1,0 +1,15 @@
+[san_tojalon_drop_table]
+type = "all"
+drops = [
+    { id = "hunk_of_crystal" },
+    { id = "chunk_of_crystal" },
+    { id = "lump_of_crystal" },
+]
+
+[irvig_senay_drop_table]
+type = "all"
+drops = [
+    { id = "hunk_of_crystal" },
+    { id = "chunk_of_crystal" },
+    { id = "lump_of_crystal" },
+]

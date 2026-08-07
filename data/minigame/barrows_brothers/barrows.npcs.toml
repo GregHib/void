@@ -19,6 +19,7 @@ slayer_xp = 35.0
 categories = ["rats"]
 respawn_delay = 50
 examine = "A nasty little rodent."
+drop_table = "crypt_rat"
 
 [skeleton_barrows]
 id = 2036

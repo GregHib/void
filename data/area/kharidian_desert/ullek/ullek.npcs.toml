@@ -2,50 +2,143 @@
 id = 6761
 categories = ["zombies"]
 examine = "Cut-down and dried."
+drop_table = "dried_zombie"
+combat_def = "zombie"
+hitpoints = 850
+att = 96
+str = 96
+def = 21
+max_hit_crush = 110
 
 [dried_zombie_ullek_2]
 id = 6762
 categories = ["zombies"]
 examine = "Needs moisturising."
+drop_table = "dried_zombie"
+combat_def = "zombie"
+hitpoints = 850
+att = 96
+str = 96
+def = 41
+max_hit_crush = 110
 
 [dried_zombie_ullek_3]
 id = 6763
 categories = ["zombies"]
 examine = "I bet it's parched."
+drop_table = "dried_zombie"
+combat_def = "zombie"
+hitpoints = 850
+att = 96
+str = 96
+def = 105
+max_hit_crush = 110
 
 [skeleton_ullek]
 id = 6764
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [skeleton_ullek_2]
 id = 6765
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [skeleton_ullek_3]
 id = 6766
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [skeleton_ullek_4]
 id = 6767
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [skeleton_ullek_5]
 id = 6768
 categories = ["skeletons"]
 examine = "Heartless, in every sense of the word."
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [scabaras_locust_ullek]
 id = 6776
 examine = "A giant, mountable locust."
+drop_table = "locust"
+att = 99
+str = 99
+def = 99
+combat_def = "scabaras_locust"
+hitpoints = 1060
+hunt_mode = "cowardly"
 
 [locust_lancer_ullek]
 id = 6777
 categories = ["scabarites"]
 examine = "Bouncy, but not fun."
+drop_table = "locust_lancer"
+hitpoints = 910
+att = 106
+str = 106
+def = 69
+max_hit_crush = 120
+combat_def = "locust_lancer"
+hunt_mode = "cowardly"
 
 [locust_ranger_ullek]
 id = 6778
 categories = ["scabarites"]
 examine = "He'll have someone's eye out with that."
+drop_table = "locust_ranger"
+hitpoints = 1000
+att = 1
+str = 1
+def = 1
+range = 196
+max_hit_range = 210
+combat_def = "locust_ranger"
+hunt_mode = "cowardly"
 
 [crocodile_ullek]
 id = 6779
+drop_table = "crocodile"
+hitpoints = 620
+att = 53
+str = 54
+def = 54
+max_hit_slash = 60
+combat_def = "crocodile"
+hunt_mode = "cowardly"
 
 [lead_archaeologist_abigail]
 id = 6786

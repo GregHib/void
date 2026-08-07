@@ -12,6 +12,9 @@ slayer_xp = 20.0
 categories = ["pirates"]
 respawn_delay = 25
 examine = "Avast ye scurvy land lubbers!"
+drop_table = "pirate"
+combat_def = "pirate"
+max_hit_slash = 30
 
 [lokar_searunner_after]
 id = 4537
@@ -27,6 +30,9 @@ style = "crush"
 max_hit_melee = 40
 respawn_delay = 25
 examine = "A deadly pirate."
+drop_table = "jake"
+max_hit_crush = 40
+combat_def = "jake"
 
 [wilson_pirates_cove]
 id = 4548
@@ -38,6 +44,9 @@ style = "crush"
 max_hit_melee = 40
 respawn_delay = 25
 examine = "A pirate."
+drop_table = "wilson"
+max_hit_crush = 40
+combat_def = "wilson"
 
 [palmer_pirates_cove]
 id = 4552
@@ -49,6 +58,9 @@ style = "crush"
 max_hit_melee = 40
 respawn_delay = 25
 examine = "Nice shave."
+drop_table = "palmer"
+max_hit_crush = 40
+combat_def = "palmer"
 
 [sticky_sanders_pirates_cove]
 id = 4557

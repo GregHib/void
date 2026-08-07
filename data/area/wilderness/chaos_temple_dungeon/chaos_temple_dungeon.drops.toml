@@ -1,0 +1,51 @@
+[armoured_zombie_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "armoured_zombie_secondary" },
+]
+
+[armoured_zombie_secondary]
+roll = 1024
+drops = [
+    { id = "coins", min = 50, max = 2500, chance = 64 },
+    { id = "pure_essence", min = 3, max = 16, chance = 64 },
+    { id = "zombie_bone", chance = 64 },
+    { id = "mithril_arrow", amount = 4, chance = 32 },
+    { id = "steel_mace", chance = 32 },
+    { id = "adamant_kiteshield", chance = 32 },
+    { id = "cosmic_rune", amount = 6, chance = 32 },
+    { id = "chaos_rune", amount = 12, chance = 32 },
+    { id = "nature_rune", amount = 3, chance = 32 },
+    { id = "blood_rune", amount = 3, chance = 32 },
+    { id = "death_rune", amount = 3, chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "eye_of_newt", min = 1, max = 4, chance = 32 },
+    { id = "plank", amount = 9, chance = 32 },
+    { id = "oak_plank", amount = 5, chance = 32 },
+    { id = "fishing_bait", amount = 7, chance = 32 },
+    { id = "teak_plank", amount = 2, chance = 6 },
+    { id = "uncut_sapphire", chance = 6 },
+    { id = "uncut_emerald", chance = 6 },
+    { id = "uncut_ruby", chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "dragon_spear", chance = 2 },
+    { id = "shield_left_half", chance = 2 },
+    { id = "rune_spear", chance = 2 },
+    { id = "rune_javelin", chance = 2 },
+    { id = "rune_full_helm", chance = 2 },
+    { id = "loop_half_of_a_key", chance = 2 },
+    { id = "tooth_half_of_a_key", chance = 2 },
+    { id = "chaos_talisman", chance = 2 },
+    { id = "court_summons", chance = 2 },
+    { id = "starved_ancient_effigy", chance = 2 },
+]

@@ -1,0 +1,39 @@
+[crocodile]
+attack_speed = 4
+defend_anim = "crocodile_defend"
+death_anim = "crocodile_death"
+defend_sound = "crocodile_defend"
+death_sound = "crocodile_death"
+
+[crocodile.melee]
+range = 1
+target_hit = { offense = "slash", max = 60 }
+anim = "crocodile_attack"
+sound = "crocodile_attack"
+
+[scabaras_locust]
+attack_speed = 4
+death_anim = "scabaras_locust_death"
+
+[scabaras_locust.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+anim = "scabaras_locust_attack"
+
+[locust_lancer]
+attack_speed = 4
+death_anim = "locust_lancer_death"
+
+[locust_lancer.melee]
+range = 1
+target_hit = { offense = "crush", max = 120 }
+anim = "locust_lancer_attack"
+
+[locust_ranger]
+attack_speed = 4
+death_anim = "locust_ranger_death"
+
+[locust_ranger.range]
+range = 6
+target_hit = { offense = "range", max = 210 }
+anim = "locust_ranger_attack"

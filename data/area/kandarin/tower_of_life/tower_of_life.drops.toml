@@ -51,3 +51,16 @@ drops = [
     { id = "tea_flask", chance = 2 },
     { id = "rune_satchel", chance = 3 },
 ]
+[invrigar_the_necromancer_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "invrigar_the_necromancer_secondary" },
+]
+
+[invrigar_the_necromancer_secondary]
+roll = 1024
+drops = [
+    { id = "zamorak_robe_top", chance = 6 },
+    { id = "zamorak_robe_bottom", chance = 6 },
+]

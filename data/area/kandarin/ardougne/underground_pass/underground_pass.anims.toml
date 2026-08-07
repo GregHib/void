@@ -1,0 +1,39 @@
+[kalrag_defend]
+id = 5320
+[kalrag_death]
+id = 5321
+[kalrag_attack]
+id = 5319
+
+[khazard_warlord_death]
+id = 836
+
+[khazard_warlord_attack]
+id = 401
+
+[sir_carl_defend]
+id = 425
+
+[sir_carl_death]
+id = 836
+
+[sir_carl_attack]
+id = 400
+
+[sir_harry_defend]
+id = 425
+
+[sir_harry_death]
+id = 836
+
+[sir_harry_attack]
+id = 400
+
+[sir_jerro_defend]
+id = 425
+
+[sir_jerro_death]
+id = 836
+
+[sir_jerro_attack]
+id = 400

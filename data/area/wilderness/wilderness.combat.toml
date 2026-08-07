@@ -1,0 +1,8 @@
+[rogue]
+attack_speed = 4
+death_anim = "rogue_death"
+
+[rogue.melee]
+range = 1
+target_hit = { offense = "stab", max = 20 }
+anim = "rogue_attack"

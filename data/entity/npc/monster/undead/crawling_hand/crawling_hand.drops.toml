@@ -4,6 +4,7 @@ drops = [
     { table = "bones" },
     { table = "crawling_hand_secondary" },
     { table = "crawling_hand_tertiary" },
+    { table = "crawling_hand_charms", members = true },
 ]
 
 [crawling_hand_secondary]
@@ -26,4 +27,13 @@ drops = [
 roll = 500
 drops = [
     { id = "crawling_hand", chance = 1 },
+]
+
+[crawling_hand_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9450 },
+    { id = "green_charm", chance = 624 },
+    { id = "crimson_charm", chance = 660 },
+    { id = "blue_charm", chance = 128 },
 ]

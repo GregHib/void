@@ -1,0 +1,19 @@
+[avatar_of_destruction]
+attack_speed = 4
+defend_anim = "avatar_of_destruction_defend"
+death_anim = "avatar_of_destruction_death"
+
+[avatar_of_destruction.melee]
+range = 1
+target_hit = { offense = "crush", max = 500 }
+anim = "avatar_of_destruction_attack"
+
+[avatar_of_creation]
+attack_speed = 4
+defend_anim = "avatar_of_creation_defend"
+death_anim = "avatar_of_creation_death"
+
+[avatar_of_creation.melee]
+range = 1
+target_hit = { offense = "crush", max = 460 }
+anim = "avatar_of_creation_attack"

@@ -27,3 +27,4 @@ respawn_delay = 50
 categories = ["human"]
 god = "saradomin"
 examine = "A valiant knight."
+drop_table = "knight_of_saradomin"

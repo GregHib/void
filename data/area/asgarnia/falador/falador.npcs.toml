@@ -144,14 +144,23 @@ examine = "He rules the, er, roost."
 
 [chicken_falador]
 id = 2313
+drop_table = "chicken"
+combat_def = "chicken"
+hitpoints = 30
 
 [chicken_falador_2]
 id = 2314
+drop_table = "chicken"
+combat_def = "chicken"
+hitpoints = 30
 
 [chicken_falador_3]
 id = 2315
 categories = ["birds"]
 examine = "Yep. Definitely a chicken."
+drop_table = "chicken"
+combat_def = "chicken"
+hitpoints = 30
 
 [elstan]
 id = 2323
@@ -212,6 +221,10 @@ examine = "One of Gielinor's many citizens, currently incapacitated by alcohol."
 [man_falador]
 id = 3223
 examine = "One of Gielinor's many citizens."
+drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [man_falador_2]
 id = 1086
@@ -219,6 +232,10 @@ id = 1086
 [woman_falador]
 id = 3226
 examine = "One of Gielinor's many citizens."
+drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [guard_falador]
 id = 3228
@@ -292,6 +309,7 @@ hitpoints = 70
 combat_def = "man"
 respawn_delay = 25
 examine = "Untrustworthy."
+drop_table = "jeff"
 
 [guard_falador_7]
 id = 3241
@@ -310,10 +328,12 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "dark_wizard_high"
 examine = "A practicer of dark arts."
+combat_def = "dark_wizard_water"
 
 [dark_wizard_falador_2]
 id = 3243
 clone = "dark_wizard_falador"
+combat_def = "dark_wizard_water"
 
 [dark_wizard_falador_3]
 id = 3244
@@ -328,10 +348,12 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "dark_wizard_low"
 examine = "A practicer of dark arts."
+combat_def = "dark_wizard_water"
 
 [dark_wizard_falador_4]
 id = 3245
 clone = "dark_wizard_falador_3"
+combat_def = "dark_wizard_water"
 
 [squirrel]
 id = 3283
@@ -620,7 +642,7 @@ id = 3234
 hitpoints = 70
 att = 2
 def = 5
-combat_def = "gardener"
+combat_def = "man"
 respawn_delay = 50
 drop_table = "bones"
 examine = "An old gardener."
@@ -629,7 +651,7 @@ examine = "An old gardener."
 id = 1217
 hitpoints = 70
 def = 7
-combat_def = "gardener"
+combat_def = "man"
 respawn_delay = 50
 drop_table = "bones"
 examine = "An old gardener."
@@ -648,3 +670,4 @@ attack_bonus = 30
 combat_def = "white_knight"
 respawn_delay = 50
 examine = "The knight seems to be watching something."
+drop_table = "white_knight"

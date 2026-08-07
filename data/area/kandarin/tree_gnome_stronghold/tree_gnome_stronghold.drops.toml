@@ -105,3 +105,28 @@ drops = [
     { id = "teak_logs", amount = 2, chance = 2 },
     { id = "teak_logs", amount = 4 },
 ]
+[gnome_troop_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[mounted_terrorbird_gnome_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "mounted_terrorbird_gnome_secondary" },
+]
+
+[mounted_terrorbird_gnome_secondary]
+roll = 1024
+drops = [
+    { id = "equa_leaves", chance = 32 },
+    { id = "lemon", chance = 32 },
+    { id = "gianne_dough", chance = 32 },
+    { id = "lime", chance = 32 },
+    { id = "crunchy_tray", chance = 32 },
+    { id = "gnomebowl_mould", chance = 32 },
+    { id = "gnome_spice", chance = 32 },
+    { id = "terrorbird_wing", chance = 6 },
+]

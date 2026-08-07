@@ -6,18 +6,22 @@ slayer_xp = 10.0
 categories = ["goblins"]
 respawn_delay = 50
 examine = "A goblin with big bulging eyes."
+drop_table = "cave_goblin"
 
 [cave_goblin_lumbridge_swamp_caves_2]
 id = 1823
 clone = "cave_goblin_lumbridge_swamp_caves"
+drop_table = "cave_goblin"
 
 [cave_goblin_lumbridge_swamp_caves_3]
 id = 1824
 clone = "cave_goblin_lumbridge_swamp_caves"
+drop_table = "cave_goblin"
 
 [cave_goblin_lumbridge_swamp_caves_4]
 id = 1825
 clone = "cave_goblin_lumbridge_swamp_caves"
+drop_table = "cave_goblin"
 
 [hole_in_the_wall]
 id = 2058

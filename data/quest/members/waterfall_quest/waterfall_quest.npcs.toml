@@ -14,3 +14,4 @@ hunt_mode = "cowardly"
 slayer_xp = 120.0
 respawn_delay = 10
 examine = "Bigger than your average moss giant."
+combat_def = "moss_giant"

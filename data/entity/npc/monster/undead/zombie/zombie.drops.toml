@@ -26,6 +26,7 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "zombie_secondary", roll = 128 },
+    { table = "zombie_charms", members = true },
 ]
 
 [zombie_secondary]
@@ -63,6 +64,7 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "zombie_armed_secondary" },
+    { table = "zombie_charms", members = true },
 ]
 
 [zombie_armed_secondary]
@@ -97,6 +99,7 @@ type = "all"
 drops = [
     { table = "bones" },
     { id = "key_blue" },
+    { table = "zombie_charms", members = true },
 ]
 
 [zombie_tarns_lair_low_drop_table]
@@ -251,4 +254,13 @@ drops = [
     { id = "adamant_bar" },
     { id = "pot_of_cream" },
     { table = "gem_drop_table" },
+]
+
+[zombie_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 2875 },
+    { id = "green_charm", chance = 1285 },
+    { id = "crimson_charm", chance = 1040 },
+    { id = "blue_charm", chance = 1285 },
 ]

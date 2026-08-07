@@ -19,6 +19,7 @@ style = "slash"
 max_hit_melee = 50
 drop_table = "baby_tanglefoot"
 examine = "An animated shrub."
+max_hit_slash = 50
 
 [baby_tanglefoot_bush]
 id = 3320
@@ -30,4 +31,6 @@ style = "slash"
 max_hit_melee = 50
 drop_table = "baby_tanglefoot"
 examine = "An aggressive bush."
+max_hit_slash = 50
+combat_def = "baby_tanglefoot"
 

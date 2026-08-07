@@ -10,55 +10,68 @@ respawn_delay = 40
 hunt_mode = "cowardly"
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
+drop_table = "empty"
 
 [ghost]
 id = 103
 clone = "ghost_draynor_manor"
 combat_def = "ghost_tendril"
+drop_table = "empty"
 
 [ghost_2]
 id = 5342
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_3]
 id = 5343
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_4]
 id = 5344
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_5]
 id = 5345
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_6]
 id = 5346
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_7]
 id = 5347
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_8]
 id = 5348
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_draynor_manor_2]
 id = 5349
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_draynor_manor_3]
 id = 5350
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_draynor_manor_4]
 id = 5351
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [ghost_draynor_manor_5]
 id = 5352
 clone = "ghost_draynor_manor"
+drop_table = "empty"
 
 [stronghold_ghost_hair]
 id = 5369
@@ -73,22 +86,27 @@ respawn_delay = 40
 slayer_xp = 80.0
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
+drop_table = "empty"
 
 [stronghold_ghost]
 id = 4387
 clone = "stronghold_ghost_hair"
 combat_def = "stronghold_ghost_tendril"
+drop_table = "empty"
 
 [stronghold_ghost_cape]
 id = 4388
 clone = "stronghold_ghost_hair"
 hitpoints = 750
 slayer_xp = 75.0
+drop_table = "empty"
 
 [stronghold_ghost_hood]
 id = 5370
 clone = "stronghold_ghost_hair"
+drop_table = "empty"
 
 [stronghold_ghost_mask]
 id = 5371
 clone = "stronghold_ghost_hair"
+drop_table = "empty"

@@ -42,6 +42,7 @@ str = 5
 def = 3
 combat_def = "snake"
 examine = "A slithering serpent."
+drop_table = "desert_snake"
 
 [desert_phoenix_kharidian_desert]
 id = 1911
@@ -66,6 +67,7 @@ slayer_xp = 62.0
 categories = ["crocodiles"]
 respawn_delay = 40
 examine = "Never smile at a..."
+drop_table = "crocodile"
 
 [wanderer_kharidian_desert]
 id = 2002
@@ -108,6 +110,7 @@ attack_bonus = 30
 respawn_delay = 50
 drop_table = "billy_goat"
 examine = "They'll eat anything!"
+max_hit_crush = 60
 
 [osman_kharidian_desert]
 id = 5283
@@ -129,6 +132,7 @@ categories = ["wolves"]
 respawn_delay = 50
 drop_table = "wolf_bones"
 examine = "A vicious desert wolf."
+max_hit_slash = 30
 
 [desert_wolf_dark]
 id = 6050
@@ -137,6 +141,12 @@ clone = "desert_wolf"
 [desert_wolf_brown]
 id = 6051
 clone = "desert_wolf"
+hitpoints = 340
+att = 20
+str = 21
+def = 22
+max_hit_slash = 30
+combat_def = "desert_wolf"
 
 [eblis_kharidian_desert_2]
 id = 1925

@@ -1,0 +1,15 @@
+[jake_defend]
+id = 425
+[jake_death]
+id = 836
+[jake_attack]
+id = 422
+
+[wilson_defend]
+id = 425
+
+[wilson_death]
+id = 836
+
+[wilson_attack]
+id = 395

@@ -52,6 +52,8 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["frogs"]
 examine = "A very smelly frog."
+drop_table = "bones"
+max_hit_crush = 20
 
 [plague_cow]
 id = 1998

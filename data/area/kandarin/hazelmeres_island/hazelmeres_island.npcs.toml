@@ -11,6 +11,8 @@ slayer_xp = 50.0
 categories = ["spiders"]
 respawn_delay = 30
 examine = "A barely visible deadly jungle spider."
+drop_table = "jungle_spider"
+combat_def = "jungle_spider_ape_atoll"
 
 [larry_hazelmeres_island]
 id = 7576

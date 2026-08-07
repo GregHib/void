@@ -21,6 +21,7 @@ combat_def = "man"
 max_hit_crush = 50
 respawn_delay = 50
 examine = "Guards prisoners for the black knights."
+hunt_mode = "cowardly"
 
 [black_knight_void_stares_back]
 id = 12317

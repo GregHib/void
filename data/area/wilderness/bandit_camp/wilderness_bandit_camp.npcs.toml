@@ -23,6 +23,8 @@ slayer_xp = 17.0
 categories = ["dark_warriors"]
 respawn_delay = 50
 examine = "A warrior touched by chaos."
+drop_table = "dark_warrior"
+combat_def = "guard"
 
 [guard_bandit]
 id = 196
@@ -39,6 +41,8 @@ slayer_xp = 29.0
 categories = ["bandits"]
 respawn_delay = 100
 examine = "A wilderness outlaw."
+drop_table = "guard_bandit"
+combat_def = "guard"
 
 [black_heather]
 id = 202
@@ -54,6 +58,7 @@ categories = ["bandits"]
 respawn_delay = 50
 drop_table = "wilderness_bandit"
 examine = "Has a fearsome scowl. Moreso, after being told to smile once in a while."
+max_hit_slash = 40
 
 [donny_the_lad]
 id = 203
@@ -69,6 +74,7 @@ categories = ["bandits"]
 respawn_delay = 50
 drop_table = "wilderness_bandit"
 examine = "Has a fearsome posture, and a fearsome pair of weapons!"
+max_hit_slash = 40
 
 [speedy_keith]
 id = 204
@@ -84,6 +90,7 @@ categories = ["bandits"]
 respawn_delay = 50
 drop_table = "wilderness_bandit"
 examine = "Refuses to accept his hairstyle has gone out of fashion."
+max_hit_slash = 40
 
 [mysterious_ghost_wilderness_bandit_camp]
 id = 2383

@@ -1,0 +1,37 @@
+[disciple_of_iban_death]
+id = 836
+[disciple_of_iban_attack]
+id = 422
+
+[doomion_defend]
+id = 65
+
+[doomion_death]
+id = 67
+
+[doomion_attack]
+id = 64
+
+[holthion_defend]
+id = 65
+
+[holthion_death]
+id = 67
+
+[holthion_attack]
+id = 64
+
+[othainian_defend]
+id = 65
+
+[othainian_death]
+id = 67
+
+[othainian_attack]
+id = 64
+
+[soulless_death]
+id = 340
+
+[soulless_attack]
+id = 338

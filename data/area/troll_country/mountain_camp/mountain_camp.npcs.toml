@@ -29,18 +29,22 @@ max_hit_melee = 50
 respawn_delay = 50
 drop_table = "bones"
 examine = "One of the inhabitants of the camp."
+combat_def = "guard"
 
 [camp_dweller_mountain_camp_2]
 id = 1815
 clone = "camp_dweller_mountain_camp"
+combat_def = "guard"
 
 [camp_dweller_mountain_camp_3]
 id = 1816
 clone = "camp_dweller_mountain_camp"
+combat_def = "guard"
 
 [camp_dweller_mountain_camp_4]
 id = 1817
 clone = "camp_dweller_mountain_camp"
+combat_def = "guard"
 
 [camp_dweller_mountain_camp_5]
 id = 1818
@@ -52,6 +56,8 @@ style = "crush"
 max_hit_melee = 30
 respawn_delay = 50
 examine = "One of the inhabitants of the camp."
+drop_table = "camp_dweller"
+combat_def = "guard"
 
 [mountain_goat_mountain_camp]
 id = 1819

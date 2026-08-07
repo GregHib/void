@@ -2,3 +2,11 @@
 id = 4671
 categories = ["red_dragons"]
 examine = "A big powerful dragon."
+drop_table = "red_dragon"
+combat_def = "red_dragon"
+hitpoints = 1400
+att = 130
+str = 130
+def = 130
+max_hit_slash = 140
+hunt_mode = "cowardly"

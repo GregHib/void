@@ -11,6 +11,10 @@ def = 10
 max_hit_melee = 20
 categories = ["human"]
 examine = "A mourner, or plague healer."
+drop_table = "mourner"
+combat_def = "guard"
+attack_bonus = 6
+max_hit_crush = 20
 
 [alrena]
 id = 710

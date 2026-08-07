@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { table = "cave_goblin_guard_secondary" },
     { table = "cave_goblin_guard_tertiary" },
+    { table = "cave_goblin_charms", members = true },
 ]
 
 [cave_goblin_guard_secondary]
@@ -31,6 +32,7 @@ drops = [
     { id = "bones" },
     { table = "cave_goblin_miner_secondary" },
     { table = "cave_goblin_miner_tertiary" },
+    { table = "cave_goblin_charms", members = true },
 ]
 
 [cave_goblin_miner_secondary]
@@ -49,4 +51,13 @@ drops = [
 roll = 4
 drops = [
     { id = "cave_goblin_skull", variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+]
+
+[cave_goblin_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 6550 },
+    { id = "green_charm", chance = 2476 },
+    { id = "crimson_charm", chance = 2849 },
+    { id = "blue_charm", chance = 1198 },
 ]

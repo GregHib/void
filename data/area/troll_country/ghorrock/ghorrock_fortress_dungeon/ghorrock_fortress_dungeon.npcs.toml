@@ -1,7 +1,25 @@
 [ice_demon_ghorrock_fortress_dungeon]
 id = 9052
 examine = "A demon made of ice."
+drop_table = "ice_demon"
+hitpoints = 1500
+att = 1
+str = 1
+def = 189
+mage = 189
+max_hit_magic = 230
+combat_def = "ice_demon"
+hunt_mode = "cowardly"
 
 [waterfiend_ghorrock_fortress_dungeon]
 id = 9054
+drop_table = "waterfiend"
+combat_def = "waterfiend"
+hitpoints = 1260
+att = 1
+str = 1
+def = 113
+mage = 113
+max_hit_magic = 119
+hunt_mode = "cowardly"
 

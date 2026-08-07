@@ -21,18 +21,56 @@ examine = "If you see them circling: run."
 id = 3675
 drop_table = "vulture"
 examine = "If you see them circling, run."
+hitpoints = 100
+att = 40
+str = 40
+def = 10
+max_hit_crush = 50
+combat_def = "vulture"
 
 [mummy_agility_pyramid]
 id = 6753
+drop_table = "mummy"
+combat_def = "mummy"
+hitpoints = 910
+att = 46
+str = 46
+def = 250
+max_hit_crush = 60
+hunt_mode = "cowardly"
 
 [mummy_agility_pyramid_2]
 id = 6754
+drop_table = "mummy"
+combat_def = "mummy"
+hitpoints = 910
+att = 46
+str = 46
+def = 250
+max_hit_crush = 60
+hunt_mode = "cowardly"
 
 [mummy_agility_pyramid_3]
 id = 6755
+drop_table = "mummy"
+combat_def = "mummy"
+hitpoints = 910
+att = 46
+str = 46
+def = 250
+max_hit_crush = 60
+hunt_mode = "cowardly"
 
 [mummy_agility_pyramid_4]
 id = 6756
+drop_table = "mummy"
+combat_def = "mummy"
+hitpoints = 910
+att = 46
+str = 46
+def = 250
+max_hit_crush = 60
+hunt_mode = "cowardly"
 
 [agility_pyramid_block]
 id = 3124

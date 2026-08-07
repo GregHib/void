@@ -93,4 +93,13 @@ id = 12964
 
 [luminescent_icefiend_dungeoneering]
 id = 9913
+drop_table = "luminescent_icefiend"
+hitpoints = 40
+att = 1
+str = 1
+def = 8
+mage = 8
+max_hit_magic = 40
+combat_def = "luminescent_icefiend"
+hunt_mode = "cowardly"
 

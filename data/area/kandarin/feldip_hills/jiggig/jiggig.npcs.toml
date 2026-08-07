@@ -61,15 +61,18 @@ categories = ["ogres"]
 categories = ["skeletons"]
 respawn_delay = 50
 examine = "An undead skeletal ogre."
+drop_table = "skogre"
 
 [skogre_jiggig_2]
 id = 2056
 retaliates = false
 clone = "skogre_jiggig"
+drop_table = "skogre"
 
 [skogre_jiggig_3]
 id = 2057
 clone = "skogre_jiggig"
+drop_table = "skogre"
 
 [zogre_jiggig_3]
 id = 2051

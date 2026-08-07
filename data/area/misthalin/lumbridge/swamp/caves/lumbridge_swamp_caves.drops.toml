@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { table = "cave_goblin_monster_secondary" },
     { table = "cave_goblin_monster_tertiary" },
+    { table = "cave_goblin_charms", members = true },
 ]
 
 [cave_goblin_monster_secondary]
@@ -55,4 +56,32 @@ drops = [
     { id = "eye_of_newt", chance = 4 },
     { id = "bullseye_lantern_empty", chance = 20 },
     { id = "nothing", amount = 0, chance = 12 },
+]
+[cave_goblin_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "cave_goblin_secondary" },
+    { table = "easy_clue_scroll", roll = 32 },
+]
+
+[cave_goblin_secondary]
+roll = 1024
+drops = [
+    { id = "water_rune", amount = 6, chance = 64 },
+    { id = "coins", min = 13, max = 49, chance = 64 },
+    { id = "body_rune", amount = 7, chance = 32 },
+    { id = "earth_rune", amount = 4, chance = 32 },
+    { id = "air_talisman", chance = 32 },
+    { id = "bone_spear", chance = 32 },
+    { id = "bone_club", chance = 32 },
+    { id = "brass_necklace", chance = 32 },
+    { id = "bronze_spear", chance = 32 },
+    { id = "bronze_sq_shield", chance = 32 },
+    { id = "beer", chance = 32 },
+    { id = "goblin_book", chance = 32 },
+    { id = "goblin_mail", chance = 32 },
+    { id = "iron_chainbody", chance = 32 },
+    { id = "oil_lantern", chance = 32 },
+    { id = "tinderbox", chance = 32 },
 ]

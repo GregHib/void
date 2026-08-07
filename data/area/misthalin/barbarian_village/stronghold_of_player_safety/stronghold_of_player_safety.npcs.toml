@@ -55,6 +55,7 @@ respawn_delay = 60
 drop_table = "cockroach_soldier"
 combat_def = "cockroach_soldier"
 
+# Unlike other muggers these are not aggressive: https://www.youtube.com/watch?v=iWUsTvMLQtY
 [mugger_stronghold_of_player_safety]
 id = 7161
 hitpoints = 80

@@ -59,3 +59,9 @@ drops = [
     { id = "dragon_2h_sword", chance = 11 },
     { id = "dragon_pickaxe", chance = 7 },
 ]
+[goat_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "desert_goat_horn" },
+]

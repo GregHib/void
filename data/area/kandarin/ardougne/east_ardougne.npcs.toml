@@ -17,6 +17,7 @@ combat_def = "jogre_ardougne"
 hunt_mode = "cowardly"
 respawn_delay = 30
 examine = "An aggressive humanoid."
+drop_table = "jogre"
 
 [cyclops_ardougne]
 id = 116
@@ -32,6 +33,7 @@ categories = ["cyclopes"]
 respawn_delay = 30
 drop_table = "hill_giant"
 examine = "A one-eyed man eater."
+combat_def = "cyclops"
 
 [parrots_ardougne]
 id = 1215
@@ -50,6 +52,14 @@ examine = "He looks like the type of guy who would mind monkeys."
 [warrior_woman]
 id = 15
 examine = "A woman, who is a warrior."
+drop_table = "warrior_woman"
+combat_def = "guard"
+hitpoints = 200
+att = 22
+str = 22
+def = 22
+attack_bonus = 6
+max_hit_stab = 30
 
 [milton_the_miller]
 id = 1739
@@ -68,6 +78,8 @@ attack_bonus = 20
 xp_bonus = 2.5
 respawn_delay = 50
 examine = "A holy warrior."
+drop_table = "paladin"
+combat_def = "guard"
 
 [hero]
 id = 21
@@ -82,10 +94,14 @@ attack_bonus = 20
 xp_bonus = 2.5
 respawn_delay = 50
 examine = "Heroic!"
+drop_table = "hero"
+max_hit_slash = 90
 
 [paladin_2]
 id = 2256
 clone = "paladin"
+drop_table = "paladin"
+combat_def = "guard"
 
 [knight_of_ardougne]
 id = 23
@@ -100,6 +116,8 @@ attack_bonus = 8
 respawn_delay = 25
 hunt_mode = "guarding"
 examine = "A member of Ardougne's militia."
+drop_table = "knight_of_ardougne"
+combat_def = "black_knight"
 
 [richard_ardougne]
 id = 2306
@@ -116,15 +134,30 @@ examine = "Perhaps this gardener might look after your crops for you."
 [man_ardougne]
 id = 24
 examine = "One of Gielinor's many citizens."
+drop_table = "man"
+combat_def = "man"
+hitpoints = 70
+max_hit_crush = 10
 
 [woman_ardougne]
 id = 25
 examine = "One of Gielinor's many citizens."
+drop_table = "woman"
+combat_def = "woman"
+hitpoints = 70
+max_hit_crush = 10
 
 [archer_ardougne]
 id = 27
 drop_table = "bones"
 examine = "Good with arrows."
+combat_def = "archer"
+hitpoints = 370
+att = 1
+str = 1
+def = 60
+range = 26
+max_hit_range = 40
 
 [zookeeper]
 id = 28
@@ -182,6 +215,9 @@ attack_bonus = 4
 respawn_delay = 50
 attack_speed = 5
 examine = "Keeps the peace... kind of."
+drop_table = "guard"
+combat_def = "guard"
+max_hit_stab = 30
 
 [edmond_ardougne]
 id = 3213

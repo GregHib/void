@@ -2,6 +2,13 @@
 id = 3622
 categories = ["zombies"]
 examine = "I wonder if he'd let me borrow his hatchet?"
+drop_table = "zombie"
+combat_def = "zombie"
+hitpoints = 220
+att = 8
+str = 9
+def = 10
+max_hit_crush = 20
 
 [rook_temple_trekking]
 id = 9719

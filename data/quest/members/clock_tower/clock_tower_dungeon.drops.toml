@@ -1,0 +1,12 @@
+[dungeon_rat_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "raw_rat_meat" },
+]
+
+[head_thief_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

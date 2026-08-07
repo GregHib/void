@@ -3,7 +3,8 @@ type = "all"
 drops = [
     { table = "king_black_dragon_primary" },
     { table = "king_black_dragon_secondary" },
-    { table = "king_black_dragon_tertiary" }
+    { table = "king_black_dragon_tertiary" },
+    { table = "king_black_dragon_charms", members = true },
 ]
 
 [king_black_dragon_primary]
@@ -54,4 +55,13 @@ roll = 10
 drops = [
     { table = "elite_clue_scroll", chance = 4 },
     { table = "hard_clue_scroll" }
+]
+
+[king_black_dragon_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", amount = 4, chance = 5741 },
+    { id = "green_charm", amount = 4, chance = 4294 },
+    { id = "crimson_charm", amount = 4, chance = 62756 },
+    { id = "blue_charm", amount = 4, chance = 949 },
 ]

@@ -1,0 +1,9 @@
+[ice_demon]
+attack_speed = 4
+defend_anim = "demon_defend"
+death_anim = "demon_death"
+
+[ice_demon.magic]
+range = 6
+target_hit = { offense = "magic", max = 230 }
+anim = "demon_attack"

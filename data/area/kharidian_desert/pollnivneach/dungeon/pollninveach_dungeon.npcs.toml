@@ -16,6 +16,8 @@ slayer_xp = 75.0
 categories = ["basilisks"]
 respawn_delay = 15
 examine = "The eyes of evil."
+drop_table = "basilisk"
+combat_def = "basilisk"
 
 [catolax_pollninveach_dungeon]
 id = 7783
@@ -33,18 +35,32 @@ slayer_level = 60
 drop_table = "aberrant_spectre"
 categories = ["aberrant_spectre"]
 examine = "A very smelly ghost."
+hitpoints = 900
+max_hit_magic = 80
 
 [aberrant_spectre_pollninveach_2]
 id = 7802
 clone = "aberrant_spectre_pollninveach"
+hitpoints = 900
+def = 90
+mage = 105
+max_hit_magic = 80
 
 [aberrant_spectre_pollninveach_3]
 id = 7803
 clone = "aberrant_spectre_pollninveach"
+hitpoints = 900
+def = 90
+mage = 105
+max_hit_magic = 80
 
 [aberrant_spectre_pollninveach_4]
 id = 7804
 clone = "aberrant_spectre_pollninveach"
+hitpoints = 900
+def = 90
+mage = 105
+max_hit_magic = 80
 
 [catolax_pollninveach_dungeon_2]
 id = 7782

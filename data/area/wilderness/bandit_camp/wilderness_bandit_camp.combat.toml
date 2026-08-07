@@ -1,0 +1,26 @@
+[black_heather]
+attack_speed = 4
+death_anim = "black_heather_death"
+
+[black_heather.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }
+anim = "black_heather_attack"
+
+[donny_the_lad]
+attack_speed = 4
+death_anim = "donny_the_lad_death"
+
+[donny_the_lad.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }
+anim = "donny_the_lad_attack"
+
+[speedy_keith]
+attack_speed = 4
+death_anim = "speedy_keith_death"
+
+[speedy_keith.melee]
+range = 1
+target_hit = { offense = "slash", max = 40 }
+anim = "speedy_keith_attack"

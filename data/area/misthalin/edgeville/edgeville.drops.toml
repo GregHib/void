@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { id = "rats_paper" },
     { table = "outlaw_secondary" },
+    { table = "outlaw_charms", members = true },
 ]
 
 [outlaw_secondary]
@@ -38,6 +39,7 @@ drops = [
     { id = "bones" },
     { table = "edgeville_guard_secondary" },
     { table = "medium_clue_scroll", roll = 128 },
+    { table = "guard_charms", members = true },
 ]
 
 [edgeville_guard_secondary]
@@ -67,4 +69,13 @@ drops = [
     { id = "grain" },
     { id = "nothing", amount = 0, chance = 4 },
     { table = "allotment_seed_drop_table", chance = 18 },
+]
+
+[outlaw_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 36000 },
+    { id = "green_charm", chance = 3000 },
+    { id = "crimson_charm", chance = 3000 },
+    { id = "blue_charm", chance = 700 },
 ]

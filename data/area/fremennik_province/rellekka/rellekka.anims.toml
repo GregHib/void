@@ -15,3 +15,69 @@ id = 6569
 
 [fox_death]
 id = 6570
+
+[black_unicorn_defend]
+id = 6375
+
+[black_unicorn_death]
+id = 6377
+
+[black_unicorn_attack]
+id = 6376
+
+[black_unicorn_foal_death]
+id = 6377
+
+[black_unicorn_foal_attack]
+id = 6376
+
+[borrokar_defend]
+id = 425
+
+[borrokar_death]
+id = 836
+
+[borrokar_attack]
+id = 395
+
+[fenris_wolf_death]
+id = 6558
+
+[fenris_wolf_attack]
+id = 6559
+
+[freidir_defend]
+id = 425
+
+[freidir_death]
+id = 836
+
+[freidir_attack]
+id = 422
+
+[lanzig_defend]
+id = 425
+
+[lanzig_death]
+id = 836
+
+[lanzig_attack]
+id = 422
+
+[lensa_defend]
+id = 404
+
+[lensa_death]
+id = 9055
+
+[lensa_attack]
+id = 422
+
+[unicorn_foal_defend]
+id = 6375
+
+[unicorn_foal_death]
+id = 6377
+
+[unicorn_foal_attack]
+id = 6376

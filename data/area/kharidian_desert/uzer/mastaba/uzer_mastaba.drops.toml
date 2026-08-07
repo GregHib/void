@@ -1,0 +1,12 @@
+[small_scarab_drop_table]
+type = "all"
+drops = [
+    { table = "small_scarab_secondary" },
+    { table = "easy_clue_scroll", roll = 16 },
+]
+
+[small_scarab_secondary]
+roll = 1024
+drops = [
+    { id = "coins", chance = 64 },
+]

@@ -1,0 +1,99 @@
+[undead_troll_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "undead_troll_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[undead_troll_secondary]
+roll = 1865
+drops = [
+    { id = "adamant_hatchet", chance = 32 },
+    { id = "black_warhammer", chance = 32 },
+    { id = "mithril_platebody", chance = 32 },
+    { id = "mithril_bolts", amount = 3, chance = 32 },
+    { id = "mithril_arrow", amount = 3, chance = 32 },
+    { id = "steel_2h_sword", chance = 32 },
+    { id = "steel_battleaxe", chance = 32 },
+    { id = "runite_bolts", amount = 12, chance = 32 },
+    { id = "granite_shield", chance = 32 },
+    { id = "rune_longsword", chance = 32 },
+    { id = "blood_rune", amount = 2, chance = 32 },
+    { id = "death_rune", amount = 5, chance = 32 },
+    { id = "earth_rune", amount = 11, chance = 32 },
+    { id = "nature_rune", amount = 12, chance = 32 },
+    { id = "law_rune", amount = 4, chance = 32 },
+    { id = "guam_seed", chance = 32 },
+    { id = "marrentill_seed", chance = 32 },
+    { id = "tarromin_seed", chance = 32 },
+    { id = "harralander_seed", chance = 32 },
+    { id = "toadflax_seed", chance = 32 },
+    { id = "avantoe_seed", chance = 32 },
+    { id = "irit_seed", chance = 32 },
+    { id = "ranarr_seed", chance = 32 },
+    { id = "kwuarm_seed", chance = 32 },
+    { id = "snapdragon_seed", chance = 32 },
+    { id = "cadantine_seed", chance = 32 },
+    { id = "lantadyme_seed", chance = 32 },
+    { id = "dwarf_weed_seed", chance = 32 },
+    { id = "spirit_weed_seed", chance = 32 },
+    { id = "watermelon_seed", chance = 32 },
+    { id = "whiteberry_seed", chance = 32 },
+    { id = "wildblood_seed", chance = 32 },
+    { id = "torstol_seed", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "coins", min = 270, max = 500, chance = 32 },
+    { id = "pure_essence", amount = 10, chance = 32 },
+    { id = "coal", amount = 7, chance = 32 },
+    { id = "gold_bar", chance = 32 },
+    { id = "oak_plank", amount = 6, chance = 32 },
+    { id = "teak_plank", amount = 3, chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "loop_half_of_a_key", chance = 32 },
+    { id = "tooth_half_of_a_key", chance = 32 },
+    { id = "lobster", chance = 32 },
+    { id = "tuna", chance = 32 },
+]
+
+[elite_black_knight_drop_table]
+type = "all"
+drops = [
+    { table = "elite_black_knight_secondary" },
+    { table = "hard_clue_scroll", roll = 170 },
+]
+
+[elite_black_knight_secondary]
+roll = 1024
+drops = [
+    { id = "steel_battleaxe", chance = 32 },
+    { id = "black_platelegs", chance = 32 },
+    { id = "black_2h_sword", chance = 32 },
+    { id = "black_kiteshield", chance = 32 },
+    { id = "rune_mace", chance = 32 },
+    { id = "chilli_potato", chance = 32 },
+    { id = "potato_with_butter", chance = 32 },
+    { id = "super_restore_1", chance = 32 },
+    { id = "super_restore_2", chance = 32 },
+    { id = "lobster", min = 1, max = 3, chance = 32 },
+    { id = "prayer_mix_1", chance = 32 },
+    { id = "prayer_potion_1", chance = 32 },
+    { id = "gold_bar", min = 1, max = 4, chance = 32 },
+    { id = "mithril_bar", min = 1, max = 2, chance = 32 },
+    { id = "steel_bar", min = 1, max = 3, chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "death_rune", min = 1, max = 3, chance = 32 },
+    { id = "chaos_rune", min = 1, max = 3, chance = 32 },
+    { id = "blood_rune", min = 1, max = 4, chance = 32 },
+    { id = "coins", min = 406, max = 2372, chance = 32 },
+]

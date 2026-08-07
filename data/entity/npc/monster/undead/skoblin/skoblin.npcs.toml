@@ -7,3 +7,4 @@ respawn_delay = 60
 drop_table = "skoblin"
 categories = ["skoblin"]
 examine = "Could do with gaining a few pounds."
+hunt_mode = "cowardly"

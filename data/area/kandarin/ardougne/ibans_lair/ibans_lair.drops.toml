@@ -58,3 +58,8 @@ drops = [
     { id = "coins", amount = 30 },
     { id = "nothing", amount = 0, chance = 16 },
 ]
+[holthion_drop_table]
+type = "all"
+drops = [
+    { id = "amulet_of_holthion" },
+]

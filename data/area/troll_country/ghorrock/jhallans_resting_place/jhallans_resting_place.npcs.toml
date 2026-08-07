@@ -1,6 +1,22 @@
 [jelly_jhallans_resting_place]
 id = 7459
+drop_table = "jelly"
+combat_def = "jelly"
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
+max_hit_magic = 50
 
 [jelly_jhallans_resting_place_2]
 id = 7460
+drop_table = "jelly"
+combat_def = "jelly"
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
+max_hit_magic = 50
 

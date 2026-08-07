@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { table = "barbarian_low_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
+    { table = "barbarian_charms", members = true },
 ]
 
 [barbarian_low_secondary]
@@ -37,6 +38,7 @@ drops = [
     { id = "bones" },
     { table = "barbarian_high_secondary" },
     { table = "easy_clue_scroll", roll = 128 },
+    { table = "barbarian_charms", members = true },
 ]
 
 [barbarian_high_secondary]
@@ -156,3 +158,12 @@ drops = [
     { id = "red_egg", amount = 2 },
 ]
 
+
+[barbarian_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 4213 },
+    { id = "green_charm", chance = 1173 },
+    { id = "crimson_charm", chance = 267 },
+    { id = "blue_charm", chance = 267 },
+]

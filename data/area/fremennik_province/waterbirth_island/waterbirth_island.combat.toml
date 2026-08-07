@@ -45,3 +45,23 @@ projectile = "water_strike"
 target_hit = { offense = "magic", defence = "range", max = 100 }
 impact_gfx = "water_strike_impact"
 impact_sound = "water_strike_impact"
+impact_poison = 20
+
+[dagannoth_fledgeling]
+attack_speed = 4
+death_anim = "dagannoth_fledgeling_death"
+
+[dagannoth_fledgeling.melee]
+range = 1
+target_hit = { offense = "stab", max = 60 }
+anim = "dagannoth_fledgeling_attack"
+
+[dagannoth_guardian]
+attack_speed = 4
+defend_anim = "dagannoth_defend"
+death_anim = "dagannoth_death"
+
+[dagannoth_guardian.range]
+range = 6
+target_hit = { offense = "range", max = 114 }
+anim = "dagannoth_attack"

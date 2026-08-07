@@ -1,0 +1,34 @@
+[troll_general_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "troll_general_secondary" },
+]
+
+[troll_general_secondary]
+roll = 1024
+drops = [
+    { id = "nature_rune", amount = 16, chance = 64 },
+    { id = "law_rune", amount = 4, chance = 64 },
+    { id = "steel_platebody", chance = 32 },
+    { id = "steel_warhammer", chance = 32 },
+    { id = "black_warhammer", chance = 32 },
+    { id = "mithril_platebody", chance = 32 },
+    { id = "adamant_hatchet", chance = 32 },
+    { id = "adamant_sq_shield", chance = 32 },
+    { id = "rune_warhammer", chance = 32 },
+    { id = "earth_rune", amount = 25, chance = 32 },
+    { id = "nature_talisman", chance = 32 },
+    { id = "raw_tuna", amount = 4, chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "coal", amount = 6, chance = 32 },
+    { id = "coins", amount = 20, chance = 32 },
+    { id = "long_bone", chance = 32 },
+    { id = "curved_bone", chance = 32 },
+    { id = "tooth_half_of_a_key", chance = 32 },
+    { id = "court_summons", chance = 32 },
+    { id = "rune_javelin", chance = 6 },
+    { id = "granite_shield", chance = 6 },
+]

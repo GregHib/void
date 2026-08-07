@@ -1,0 +1,5 @@
+[camp_dweller_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

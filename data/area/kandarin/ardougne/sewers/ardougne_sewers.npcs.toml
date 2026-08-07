@@ -1,5 +1,13 @@
 [dungeon_rat_ardougne_sewers]
 id = 4928
+drop_table = "dungeon_rat"
+combat_def = "giant_rat"
+hitpoints = 120
+att = 10
+str = 10
+def = 10
+max_hit_stab = 20
+hunt_mode = "cowardly"
 
 [claus_the_chef_ardougne_sewers]
 id = 886
@@ -15,6 +23,8 @@ max_hit_melee = 20
 respawn_delay = 50
 drop_table = "bones"
 examine = "Leader of the Hazeel Cult."
+max_hit_crush = 20
+combat_def = "alomone"
 
 [clivet_ardougne_sewers]
 id = 893
@@ -27,6 +37,8 @@ max_hit_melee = 20
 respawn_delay = 50
 drop_table = "bones"
 examine = "A member of the Hazeel cult."
+max_hit_crush = 20
+combat_def = "clivet"
 
 [hazeel_cultist_ardougne_sewers]
 id = 894
@@ -38,6 +50,9 @@ style = "crush"
 max_hit_melee = 20
 respawn_delay = 50
 examine = "A member of the Hazeel cult."
+drop_table = "hazeel_cultist"
+max_hit_crush = 20
+combat_def = "hazeel_cultist"
 
 [elena_southern_ardougne_sewer_normal]
 id = 3215
@@ -45,8 +60,24 @@ id = 3215
 [giant_rat_ardounge_sewer]
 id = 4922
 clone = "giant_rat_lumbridge_swamp"
+drop_table = "giant_rat"
+combat_def = "giant_rat"
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+max_hit_stab = 10
+hunt_mode = "cowardly"
 
 [giant_rat_ardounge_sewer_stubby]
 id = 4923
 clone = "giant_rat_lumbridge_swamp"
+drop_table = "giant_rat"
+combat_def = "giant_rat"
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+max_hit_stab = 10
+hunt_mode = "cowardly"
 

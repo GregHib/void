@@ -1,0 +1,94 @@
+[warped_terrorbird_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "warped_terrorbird_secondary" },
+]
+
+[warped_terrorbird_secondary]
+roll = 1286
+drops = [
+    { id = "air_rune", min = 24, max = 60, chance = 64 },
+    { id = "earth_rune", min = 14, max = 31, chance = 64 },
+    { id = "death_rune", min = 4, max = 28, chance = 64 },
+    { id = "emerald_bolt_tips", min = 16, max = 24, chance = 64 },
+    { id = "ruby_bolt_tips", min = 16, max = 24, chance = 64 },
+    { id = "diamond_bolt_tips", min = 16, max = 24, chance = 64 },
+    { id = "adamant_bolts", min = 6, max = 15, chance = 64 },
+    { id = "runite_bolts", min = 3, max = 12, chance = 64 },
+    { id = "coins", min = 15, max = 325, chance = 64 },
+    { id = "feather", min = 23, max = 95, chance = 64 },
+    { id = "swamp_tar", min = 10, max = 52, chance = 64 },
+    { id = "adamantite_ore", chance = 64 },
+    { id = "wergali_seed", chance = 64 },
+    { id = "law_rune", min = 1, max = 10, chance = 32 },
+    { id = "soul_rune", min = 1, max = 10, chance = 32 },
+    { id = "mithril_platebody", chance = 32 },
+    { id = "mithril_warhammer", chance = 32 },
+    { id = "weapon_poison", chance = 32 },
+    { id = "chocolate_bomb", min = 1, max = 3, chance = 32 },
+    { id = "tangled_toads_legs", min = 1, max = 3, chance = 32 },
+    { id = "law_talisman", chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "sulphur", chance = 32 },
+    { id = "rune_kiteshield", chance = 6 },
+    { id = "rune_warhammer", chance = 6 },
+    { id = "nature_talisman", chance = 6 },
+    { id = "uncut_emerald", chance = 6 },
+    { id = "uncut_ruby", chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "tooth_half_of_a_key", chance = 6 },
+    { id = "loop_half_of_a_key", chance = 6 },
+    { id = "raw_shark", min = 1, max = 6, chance = 6 },
+    { id = "rune_javelin", amount = 5, chance = 2 },
+    { id = "dragon_spear", chance = 2 },
+    { id = "rune_pickaxe", chance = 2 },
+    { id = "shield_left_half", chance = 2 },
+]
+
+[warped_tortoise_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "warped_tortoise_secondary" },
+]
+
+[warped_tortoise_secondary]
+roll = 1074
+drops = [
+    { id = "adamant_hatchet", chance = 64 },
+    { id = "law_talisman", chance = 64 },
+    { id = "sulphur", chance = 64 },
+    { id = "coins", min = 33, max = 177, chance = 64 },
+    { id = "tangled_toads_legs", min = 1, max = 4, chance = 64 },
+    { id = "weapon_poison", chance = 64 },
+    { id = "mithril_platebody", chance = 32 },
+    { id = "mithril_warhammer", chance = 32 },
+    { id = "rune_pickaxe", chance = 32 },
+    { id = "adamantite_ore", chance = 32 },
+    { id = "mithril_ore", min = 3, max = 9, chance = 32 },
+    { id = "coal", min = 6, max = 16, chance = 32 },
+    { id = "air_rune", amount = 49, chance = 32 },
+    { id = "law_rune", min = 3, max = 6, chance = 32 },
+    { id = "nature_talisman", chance = 32 },
+    { id = "swamp_tar", min = 1, max = 32, chance = 32 },
+    { id = "tortoise_shell", min = 1, max = 3, chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "perfect_shell", min = 1, max = 3, chance = 32 },
+    { id = "long_bone", chance = 32 },
+    { id = "humerus_bone", chance = 32 },
+    { id = "cabbage", min = 2, max = 54, chance = 32 },
+    { id = "rune_warhammer", chance = 6 },
+    { id = "rune_javelin", amount = 5, chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "curved_bone", chance = 6 },
+    { id = "tooth_half_of_a_key", chance = 6 },
+    { id = "loop_half_of_a_key", chance = 6 },
+    { id = "starved_ancient_effigy", chance = 6 },
+    { id = "court_summons", chance = 6 },
+    { id = "rune_spear", chance = 2 },
+    { id = "dragon_spear", chance = 2 },
+    { id = "shield_left_half", chance = 2 },
+]

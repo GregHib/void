@@ -1,0 +1,144 @@
+[dried_zombie_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "dried_zombie_secondary" },
+    { table = "medium_clue_scroll", roll = 170 },
+]
+
+[dried_zombie_secondary]
+roll = 1656
+drops = [
+    { id = "coins", chance = 205 },
+    { id = "desert_robe", chance = 64 },
+    { id = "ruby_ring", chance = 64 },
+    { id = "steel_bar", amount = 3, chance = 64 },
+    { id = "super_strength_1", chance = 64 },
+    { id = "steel_arrow", min = 1, max = 23, chance = 32 },
+    { id = "adamant_arrow", min = 1, max = 14, chance = 32 },
+    { id = "mithril_bolts", min = 1, max = 14, chance = 32 },
+    { id = "bronze_scimitar", chance = 32 },
+    { id = "iron_scimitar", chance = 32 },
+    { id = "steel_scimitar", chance = 32 },
+    { id = "adamant_battleaxe", chance = 32 },
+    { id = "steel_dart", min = 1, max = 25, chance = 32 },
+    { id = "steel_spear", chance = 32 },
+    { id = "yew_shortbow", chance = 32 },
+    { id = "blood_rune", amount = 3, chance = 32 },
+    { id = "death_rune", min = 1, max = 10, chance = 32 },
+    { id = "fire_rune", amount = 75, chance = 32 },
+    { id = "lava_rune", amount = 25, chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "desert_shirt", chance = 32 },
+    { id = "desert_top_overcoat", chance = 32 },
+    { id = "goat_horn_dust", amount = 3, chance = 32 },
+    { id = "gold_bar", chance = 32 },
+    { id = "knife", chance = 32 },
+    { id = "loop_half_of_a_key", chance = 32 },
+    { id = "rope", amount = 3, chance = 32 },
+    { id = "silver_ore", chance = 32 },
+    { id = "silver_bar", amount = 3, chance = 32 },
+    { id = "combat_potion_1", chance = 6 },
+    { id = "mithril_bar", chance = 6 },
+    { id = "starved_ancient_effigy", chance = 2 },
+]
+
+[locust_lancer_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "locust_lancer_secondary" },
+    { table = "easy_clue_scroll", roll = 16 },
+]
+
+[locust_lancer_secondary]
+roll = 1566
+drops = [
+    { id = "bones", chance = 64 },
+    { id = "coins", chance = 64 },
+    { id = "desert_goat_horn", chance = 64 },
+    { id = "rune_2h_sword", chance = 64 },
+    { id = "cactus_seed", chance = 64 },
+    { id = "adamant_arrow", chance = 64 },
+    { id = "adamant_kiteshield", chance = 64 },
+    { id = "rune_arrow", chance = 64 },
+    { id = "rune_javelin", chance = 64 },
+    { id = "rune_sq_shield", chance = 64 },
+    { id = "rune_warhammer", chance = 64 },
+    { id = "rune_battleaxe", chance = 64 },
+    { id = "battlestaff", chance = 64 },
+    { id = "blood_rune", chance = 64 },
+    { id = "lava_rune", chance = 64 },
+    { id = "cosmic_rune", chance = 64 },
+    { id = "loop_half_of_a_key", chance = 64 },
+    { id = "meat_pizza", chance = 64 },
+    { id = "raw_swordfish", chance = 64 },
+    { id = "swordfish", chance = 64 },
+    { id = "emerald", chance = 64 },
+    { id = "sapphire", chance = 64 },
+    { id = "dragonstone", chance = 64 },
+    { id = "dragon_spear", chance = 6 },
+]
+
+[locust_ranger_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "locust_ranger_secondary" },
+    { table = "hard_clue_scroll", roll = 32 },
+]
+
+[locust_ranger_secondary]
+roll = 1356
+drops = [
+    { id = "mystic_gloves_dark", chance = 32 },
+    { id = "splitbark_helm", chance = 32 },
+    { id = "splitbark_body", chance = 32 },
+    { id = "splitbark_legs", chance = 32 },
+    { id = "splitbark_boots", chance = 32 },
+    { id = "splitbark_gauntlets", chance = 32 },
+    { id = "adamant_kiteshield", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "nature_rune", amount = 30, chance = 32 },
+    { id = "lava_rune", amount = 20, chance = 32 },
+    { id = "blood_rune", min = 1, max = 7, chance = 32 },
+    { id = "cosmic_rune", amount = 5, chance = 32 },
+    { id = "battlestaff", chance = 32 },
+    { id = "rune_warhammer", chance = 32 },
+    { id = "rune_battleaxe", chance = 32 },
+    { id = "rune_2h_sword", chance = 32 },
+    { id = "adamant_arrow", amount = 24, chance = 32 },
+    { id = "rune_arrow", amount = 9, chance = 32 },
+    { id = "raw_swordfish", chance = 32 },
+    { id = "swordfish", chance = 32 },
+    { id = "bass", chance = 32 },
+    { id = "meat_pizza", chance = 32 },
+    { id = "locust_meat", chance = 32 },
+    { id = "coins", min = 60, max = 500, chance = 32 },
+    { id = "uncut_sapphire", min = 1, max = 2, chance = 32 },
+    { id = "uncut_emerald", min = 1, max = 2, chance = 32 },
+    { id = "dragonstone", chance = 32 },
+    { id = "desert_goat_horn", amount = 3, chance = 32 },
+    { id = "shield_left_half", chance = 32 },
+    { id = "starved_ancient_effigy", chance = 32 },
+]

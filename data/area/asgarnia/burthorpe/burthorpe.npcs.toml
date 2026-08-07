@@ -98,6 +98,7 @@ def = 3
 combat_def = "man"
 respawn_delay = 25
 examine = "A servant for Prince Anlaf."
+drop_table = "bones"
 
 [eohric]
 id = 1080
@@ -143,10 +144,14 @@ examine = "Commander of the Imperial Guard."
 [archer_burthorpe_clean]
 id = 1073
 clone = "archer_burthorpe"
+drop_table = "archer_burthorpe"
+combat_def = "archer"
 
 [archer_burthorpe_beard]
 id = 1074
 clone = "archer_burthorpe"
+drop_table = "archer_burthorpe"
+combat_def = "archer"
 
 [archer_burthorpe]
 id = 1075
@@ -154,6 +159,7 @@ hitpoints = 500
 def = 40
 range = 40
 examine = "A Burthorpe Castle Archer."
+combat_def = "archer"
 
 [imperial_soldier]
 id = 1063
@@ -217,6 +223,7 @@ combat_def = "white_knight"
 attack_bonus = 30
 respawn_delay = 50
 examine = "The knight seems to be watching something."
+drop_table = "white_knight"
 
 [helemos]
 id = 797

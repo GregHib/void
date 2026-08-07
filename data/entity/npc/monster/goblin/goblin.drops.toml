@@ -2,7 +2,8 @@
 type = "all"
 drops = [
     { table = "bones" },
-    { table = "goblin_secondary" }
+    { table = "goblin_secondary" },
+    { table = "goblin_charms", members = true },
 ]
 
 [goblin_secondary]
@@ -35,6 +36,7 @@ drops = [
     { table = "bones" },
     { table = "stronghold_goblin_secondary" },
     { table = "stronghold_goblin_tertiary" },
+    { table = "goblin_charms", members = true },
 ]
 
 [stronghold_goblin_secondary]
@@ -70,4 +72,13 @@ roll = 5000
 drops = [
     { id = "clue_scroll_easy", lacks = "clue_scroll_easy*", chance = 39 },
     { id = "goblin_champions_scroll", members = true, lacks = "goblin_champions_scroll" },
+]
+
+[goblin_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9657 },
+    { id = "green_charm", chance = 378 },
+    { id = "crimson_charm", chance = 930 },
+    { id = "blue_charm", chance = 142 },
 ]
