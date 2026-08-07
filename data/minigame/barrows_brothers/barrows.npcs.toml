@@ -51,6 +51,11 @@ xp_bonus = 2.5
 hunt_mode = "cowardly"
 categories = ["bosses"]
 examine = "A vengeful spirit corrupted by dark magic."
+attack_bonus = 73
+stab_defence = 103
+slash_defence = 85
+crush_defence = 117
+magic_defence = 73
 
 [dharok_the_wretched]
 id = 2026
@@ -62,6 +67,12 @@ combat_def = "dharok_the_wretched"
 xp_bonus = 1.5
 categories = ["bosses"]
 examine = "A vengeful spirit corrupted by dark magic."
+attack_bonus = 103
+stab_defence = 252
+slash_defence = 250
+crush_defence = 244
+magic_defence = -11
+range_defence = 249
 
 [guthan_the_infested]
 id = 2027
@@ -74,6 +85,12 @@ xp_bonus = 1.5
 hunt_mode = "cowardly"
 categories = ["bosses"]
 examine = "A vengeful spirit corrupted by dark magic."
+attack_bonus = 75
+stab_defence = 259
+slash_defence = 257
+crush_defence = 241
+magic_defence = -11
+range_defence = 250
 
 [karil_the_tainted]
 id = 2028
@@ -85,6 +102,12 @@ combat_def = "karil_the_tainted"
 hunt_mode = "cowardly"
 categories = ["bosses"]
 examine = "A vengeful spirit corrupted by dark magic."
+attack_bonus = 134
+stab_defence = 79
+slash_defence = 71
+crush_defence = 90
+magic_defence = 106
+range_defence = 100
 
 [torag_the_corrupted]
 id = 2029
@@ -97,6 +120,11 @@ xp_bonus = 12.5
 hunt_mode = "cowardly"
 categories = ["bosses"]
 examine = "A vengeful spirit corrupted by dark magic."
+attack_bonus = 82
+stab_defence = 221
+slash_defence = 235
+crush_defence = 222
+range_defence = 221
 
 [verac_the_defiled]
 id = 2030
@@ -109,3 +137,8 @@ xp_bonus = 12.5
 hunt_mode = "cowardly"
 categories = ["bosses"]
 examine = "A vengeful spirit corrupted by dark magic."
+attack_bonus = 82
+stab_defence = 227
+slash_defence = 230
+crush_defence = 221
+range_defence = 225

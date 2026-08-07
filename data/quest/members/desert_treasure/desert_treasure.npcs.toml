@@ -34,6 +34,9 @@ max_hit_melee = 360
 xp_bonus = 1.5
 hunt_mode = "cowardly"
 examine = "Zamorak's warrior of fire."
+stab_defence = 100
+slash_defence = 100
+crush_defence = 100
 
 [flambeed_normal]
 id = 3494
@@ -47,6 +50,11 @@ attack_bonus = 100
 xp_bonus = 7.5
 hunt_mode = "cowardly"
 examine = "Will give you a beating as well as indigestion."
+stab_defence = 50
+slash_defence = 50
+crush_defence = 5
+magic_defence = 5
+range_defence = 50
 
 [kamil_normal]
 id = 1913
@@ -64,6 +72,9 @@ hunt_mode = "cowardly"
 slayer_xp = 146.0
 categories = ["ice_warriors"]
 examine = "Ice warrior."
+stab_defence = 35
+slash_defence = 60
+crush_defence = 35
 
 [stranger_desert_treasure]
 id = 1919

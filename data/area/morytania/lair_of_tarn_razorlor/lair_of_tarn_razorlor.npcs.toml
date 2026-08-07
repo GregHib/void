@@ -17,6 +17,9 @@ respawn_delay = 15
 drop_table = "giant_skeleton_tarns_lair"
 examine = "A giant skeleton."
 combat_def = "skeleton_unarmed"
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [skeleton_lair_of_tarn_razorlor]
 id = 5385
@@ -29,6 +32,9 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [skeleton_lair_of_tarn_razorlor_2]
 id = 5387
@@ -41,6 +47,9 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [skeleton_lair_of_tarn_razorlor_3]
 id = 5388
@@ -53,6 +62,9 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [skeleton_lair_of_tarn_razorlor_4]
 id = 5389
@@ -65,6 +77,9 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [skeleton_lair_of_tarn_razorlor_5]
 id = 5390
@@ -77,6 +92,9 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [skeleton_lair_of_tarn_razorlor_6]
 id = 5391
@@ -89,6 +107,9 @@ att = 17
 str = 17
 def = 17
 max_hit_crush = 30
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [terror_dog]
 id = 5417
@@ -134,3 +155,8 @@ style = "magic"
 max_hit_melee = 90
 hunt_mode = "cowardly"
 examine = "I preferred him when he was human."
+stab_defence = 50
+slash_defence = 50
+crush_defence = 50
+magic_defence = 50
+range_defence = 50

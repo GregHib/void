@@ -11,3 +11,7 @@ slayer_xp = 32.0
 categories = ["scorpions"]
 drop_table = "giant_lobster_ghosts_ahoy"
 examine = "An extremely vicious lobster."
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 5

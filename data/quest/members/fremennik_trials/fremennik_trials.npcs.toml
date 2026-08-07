@@ -8,6 +8,11 @@ style = "melee"
 max_hit_melee = 30
 hunt_mode = "cowardly"
 examine = "Your challenge awaits!"
+stab_defence = 20
+slash_defence = 20
+crush_defence = 20
+magic_defence = 20
+range_defence = 20
 
 [the_draugen]
 id = 1279
@@ -20,3 +25,8 @@ max_hit_melee = 70
 xp_bonus = 2.5
 hunt_mode = "cowardly"
 examine = "A fearful spirit of the drowned."
+stab_defence = 100
+slash_defence = 100
+crush_defence = 100
+magic_defence = 500
+range_defence = 500

@@ -28,6 +28,11 @@ drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 god = "saradomin"
 examine = "Saradomin's holy mage."
+stab_defence = 8
+slash_defence = 7
+crush_defence = 3
+magic_defence = 16
+range_defence = 2
 
 [spiritual_mage_bandos]
 id = 6278
@@ -43,6 +48,11 @@ drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 god = "bandos"
 examine = "One of Bandos's chosen."
+stab_defence = 12
+slash_defence = 14
+crush_defence = 13
+magic_defence = 35
+range_defence = 13
 
 [spiritual_mage_armadyl]
 id = 6231
@@ -57,3 +67,8 @@ slayer_level = 83
 drop_table = "spiritual_mage"
 categories = ["spiritual_creatures"]
 examine = "A mage who serves Armadyl above all else - even death."
+stab_defence = 9
+slash_defence = 12
+crush_defence = 5
+magic_defence = 45
+range_defence = 28

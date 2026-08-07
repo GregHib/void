@@ -10,6 +10,11 @@ respawn_delay = 5
 drop_table = "undead_cow"
 examine = "It's an undead cow."
 max_hit_crush = 10
+stab_defence = -21
+slash_defence = -21
+crush_defence = -21
+magic_defence = -21
+range_defence = -21
 
 [undead_chicken]
 id = 1692
@@ -23,6 +28,11 @@ respawn_delay = 25
 drop_table = "undead_chicken"
 examine = "Yep, definitely a chicken... an undead chicken."
 combat_def = "chicken"
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [old_man_alices_farm]
 id = 1696

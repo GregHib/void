@@ -99,6 +99,11 @@ str = 18
 def = 14
 attack_bonus = 4
 max_hit_stab = 30
+stab_defence = 17
+slash_defence = 15
+crush_defence = 19
+magic_defence = -3
+range_defence = 19
 
 [guard_desert_mining_camp_5]
 id = 4997

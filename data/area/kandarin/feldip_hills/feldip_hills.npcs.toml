@@ -25,7 +25,6 @@ hitpoints = 600
 att = 43
 str = 43
 def = 43
-attack_bonus = 22
 max_hit_crush = 70
 
 [ogre_boat_feldip_hills]
@@ -81,6 +80,9 @@ att = 86
 str = 86
 def = 84
 max_hit_crush = 100
+stab_defence = 10
+slash_defence = 21
+crush_defence = 16
 
 [ogress_warrior]
 id = 7079

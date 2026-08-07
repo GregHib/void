@@ -39,6 +39,11 @@ str = 18
 def = 14
 attack_bonus = 4
 max_hit_stab = 30
+stab_defence = 3
+slash_defence = 4
+crush_defence = 4
+magic_defence = 2
+range_defence = 3
 
 [mysterious_ghost_edgeville]
 id = 2386
@@ -58,6 +63,11 @@ drop_table = "edgeville_guard"
 respawn_delay = 50
 categories = ["human"]
 examine = "He tries to keep order around here."
+stab_defence = 18
+slash_defence = 25
+crush_defence = 19
+magic_defence = -4
+range_defence = 20
 
 [guard_edgeville_2]
 id = 297
@@ -100,6 +110,11 @@ drop_table = "ram"
 examine = "White and fluffy."
 combat_def = "ram_freds_farm"
 max_hit_crush = 10
+stab_defence = -21
+slash_defence = -21
+crush_defence = -21
+magic_defence = -21
+range_defence = -21
 
 [outlaw_edgeville]
 id = 5842

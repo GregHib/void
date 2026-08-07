@@ -31,6 +31,11 @@ drop_table = "spiritual_ranger"
 categories = ["spiritual_creatures"]
 god = "saradomin"
 examine = "A ranger spirit dedicated to Saradomin."
+stab_defence = 3
+slash_defence = 5
+crush_defence = 13
+magic_defence = 16
+range_defence = 23
 
 [spiritual_ranger_bandos]
 id = 6276
@@ -46,6 +51,11 @@ categories = ["spiritual_creatures"]
 drop_table = "spiritual_ranger"
 god = "bandos"
 examine = "The spirit of a ranger, serving Bandos beyond death."
+stab_defence = 12
+slash_defence = 14
+crush_defence = 13
+magic_defence = 5
+range_defence = 13
 
 [spiritual_ranger_armadyl]
 id = 6230
@@ -60,4 +70,9 @@ slayer_level = 63
 categories = ["spiritual_creatures"]
 drop_table = "spiritual_ranger"
 examine = "Armadyl's favourite servant."
+stab_defence = 17
+slash_defence = 16
+crush_defence = 8
+magic_defence = 35
+range_defence = 41
 

@@ -10,6 +10,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = 50
+slash_defence = 50
+crush_defence = -50
+range_defence = 62
 
 [warped_terrorbird_2]
 id = 6286
@@ -23,6 +27,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = -50
+slash_defence = 50
+crush_defence = 50
+range_defence = 62
 
 [warped_terrorbird_3]
 id = 6287
@@ -36,6 +44,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = 50
+slash_defence = -50
+crush_defence = 50
+magic_defence = 62
 
 [warped_terrorbird_4]
 id = 6288
@@ -49,6 +61,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = 50
+slash_defence = -50
+crush_defence = 50
+range_defence = 62
 
 [warped_terrorbird_5]
 id = 6289
@@ -62,6 +78,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = -50
+slash_defence = 50
+crush_defence = 50
+magic_defence = 62
 
 [warped_terrorbird_6]
 id = 6290
@@ -73,6 +93,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = 50
+slash_defence = 50
+crush_defence = -50
+range_defence = 62
 
 [warped_terrorbird_7]
 id = 6291
@@ -86,6 +110,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = 50
+slash_defence = -50
+crush_defence = 50
+range_defence = 62
 
 [warped_terrorbird_8]
 id = 6292
@@ -99,6 +127,10 @@ str = 1
 def = 1
 range = 126
 max_hit_range = 140
+stab_defence = -50
+slash_defence = 50
+crush_defence = 50
+magic_defence = 62
 
 [warped_terrorbird_9]
 id = 6293
@@ -110,6 +142,10 @@ str = 1
 def = 171
 range = 126
 max_hit_range = 140
+stab_defence = -50
+slash_defence = 50
+crush_defence = 50
+magic_defence = 62
 
 [warped_terrorbird_10]
 id = 6294
@@ -123,6 +159,10 @@ str = 1
 def = 171
 range = 126
 max_hit_range = 140
+stab_defence = 50
+slash_defence = 50
+crush_defence = -50
+range_defence = 62
 
 [warped_terrorbird_11]
 id = 6295
@@ -136,6 +176,10 @@ str = 1
 def = 171
 range = 126
 max_hit_range = 140
+stab_defence = 50
+slash_defence = -50
+crush_defence = 50
+range_defence = 62
 
 [warped_tortoise]
 id = 6296

@@ -117,6 +117,9 @@ id = 7528
 clone = "khazard_3"
 drop_table = "khazard_guard"
 combat_def = "guard"
+stab_defence = 44
+slash_defence = 38
+crush_defence = 30
 
 [lazy_khazard]
 id = 7550

@@ -11,6 +11,11 @@ categories = ["ice_warriors"]
 drop_table = "ice_warrior"
 slayer_xp = 59.0
 examine = "A cold-hearted elemental warrior."
+stab_defence = 30
+slash_defence = 40
+crush_defence = 20
+magic_defence = 10
+range_defence = 30
 
 [ice_warrior_2]
 id = 3073

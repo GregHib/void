@@ -13,6 +13,10 @@ drop_table = "nechryael"
 categories = ["nechryael"]
 disengage = false
 examine = "An evil death demon."
+stab_defence = 20
+slash_defence = 20
+crush_defence = 20
+range_defence = 20
 
 [death_spawn]
 id = 1614

@@ -10,6 +10,11 @@ hunt_mode = "aggressive"
 height = 15
 respawn_delay = 5
 examine = "A blood-drinking denizen of the Abyss."
+stab_defence = 50
+slash_defence = 50
+crush_defence = 100
+magic_defence = 50
+range_defence = 10
 
 [abyssal_guardian]
 id = 2264
@@ -24,6 +29,11 @@ hunt_mode = "aggressive"
 height = 30
 respawn_delay = 5
 examine = "It seems to have eyes in the back of its head..."
+stab_defence = 70
+slash_defence = 70
+crush_defence = 70
+magic_defence = 150
+range_defence = 70
 
 [abyssal_walker]
 id = 2265
@@ -38,6 +48,11 @@ height = 50
 respawn_delay = 5
 xp_bonus = -7.5
 examine = "Apparently walks the Abyss."
+stab_defence = 75
+slash_defence = 75
+crush_defence = 10
+magic_defence = 75
+range_defence = 75
 
 [dark_mage]
 id = 2262

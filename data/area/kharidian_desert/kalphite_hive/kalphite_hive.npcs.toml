@@ -15,12 +15,22 @@ aka = ["kq"]
 respawn_delay = 50
 drop_table = "kalphite_queen"
 examine = "I don't think insect repellent will work..."
+stab_defence = 50
+slash_defence = 50
+crush_defence = 10
+magic_defence = 100
+range_defence = 100
 
 [kalphite_queen_airborne]
 id = 1160
 clone = "kalphite_queen"
 combat_def = "kalphite_queen_airborne"
 xp_bonus = 12.5
+stab_defence = 100
+slash_defence = 100
+crush_defence = 100
+magic_defence = 10
+range_defence = 10
 
 [kalphite_worker]
 id = 1153
@@ -35,6 +45,11 @@ hunt_mode = "cowardly"
 drop_table = "kalphite_worker"
 categories = ["kalphites"]
 examine = "I don't think insect repellent will work..."
+stab_defence = 5
+slash_defence = 5
+crush_defence = 1
+magic_defence = 10
+range_defence = 10
 
 [kalphite_soldier]
 id = 1154
@@ -50,6 +65,11 @@ hunt_mode = "cowardly"
 drop_table = "kalphite_soldier"
 categories = ["kalphites"]
 examine = "I don't think insect repellent will work..."
+stab_defence = 25
+slash_defence = 25
+crush_defence = 5
+magic_defence = 50
+range_defence = 50
 
 [kalphite_guardian]
 id = 1155
@@ -64,6 +84,11 @@ hunt_mode = "cowardly"
 drop_table = "kalphite_guardian"
 categories = ["kalphites"]
 examine = "I don't think insect repellent will work..."
+stab_defence = 25
+slash_defence = 25
+crush_defence = 5
+magic_defence = 50
+range_defence = 50
 
 [kalphite_guardian_2]
 id = 1157
@@ -87,6 +112,11 @@ str = 20
 def = 20
 attack_bonus = 10
 max_hit_crush = 40
+stab_defence = 10
+slash_defence = 10
+crush_defence = -21
+magic_defence = -21
+range_defence = 10
 
 [goat_2]
 id = 4934
@@ -98,3 +128,8 @@ def = 20
 attack_bonus = 10
 max_hit_crush = 40
 combat_def = "goat"
+stab_defence = 10
+slash_defence = 10
+crush_defence = -21
+magic_defence = -21
+range_defence = 10

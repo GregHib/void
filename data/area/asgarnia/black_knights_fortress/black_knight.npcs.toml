@@ -21,6 +21,9 @@ combat_def = "man"
 max_hit_crush = 50
 respawn_delay = 50
 examine = "Guards prisoners for the black knights."
+stab_defence = 79
+slash_defence = 63
+crush_defence = 47
 
 [black_knight_void_stares_back]
 id = 12317

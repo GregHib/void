@@ -11,8 +11,14 @@ hunt_mode = "aggressive"
 categories = ["wallasalki"]
 respawn_delay = 25
 examine = "A fearsome magical water creature."
+stab_defence = 100
+slash_defence = 150
+crush_defence = 175
+magic_defence = 250
+range_defence = -10
 
 [wallasalki_1]
 clone = "wallasalki"
 id = 2884
 drop_table = "wallasalki"
+range_defence = 10

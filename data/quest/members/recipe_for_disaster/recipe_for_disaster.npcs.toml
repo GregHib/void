@@ -65,6 +65,9 @@ attack_bonus = 50
 xp_bonus = 1.0
 hunt_mode = "cowardly"
 examine = "Bad for your teeth...and the rest of your body too."
+stab_defence = 10
+slash_defence = 150
+crush_defence = 150
 
 [dessous_normal]
 id = 1914
@@ -81,6 +84,9 @@ hunt_mode = "cowardly"
 slayer_xp = 220.0
 categories = ["vampyres"]
 examine = "A vampyre warrior of Zamorak."
+stab_defence = 10
+slash_defence = 150
+crush_defence = 150
 
 [gelatinnoth_mother_white]
 id = 3497
@@ -96,6 +102,11 @@ max_hit_magic = 200
 xp_bonus = 7.5
 hunt_mode = "cowardly"
 examine = "Deadly AND fruity!"
+stab_defence = 150
+slash_defence = 150
+crush_defence = 150
+magic_defence = 50
+range_defence = 50
 
 [gelatinnoth_mother_orange]
 id = 3498
@@ -140,3 +151,9 @@ ranged_strength = 55
 hunt_mode = "cowardly"
 immune_poison = true
 examine = "Pure evil lightly whipped with a juicy cherry on top."
+attack_bonus = 134
+stab_defence = 150
+slash_defence = 150
+crush_defence = 150
+magic_defence = 150
+range_defence = 150

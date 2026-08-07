@@ -10,6 +10,11 @@ max_hit_stab = 1
 categories = ["spiders"]
 height = 10
 examine = "Incey wincey."
+stab_defence = -53
+slash_defence = -53
+crush_defence = -53
+magic_defence = -53
+range_defence = -53
 
 [giant_spider]
 id = 59
@@ -25,6 +30,11 @@ categories = ["giant_spiders", "spiders"]
 height = 10
 ##From wiki: 12 October 2010 The examine text of giant spiders outside of the Stronghold of Security have has their examines changed to say "magically modified" instead of "genetically modified".
 examine = "I think this spider has been magically modified."
+stab_defence = -10
+slash_defence = -10
+crush_defence = -10
+magic_defence = -10
+range_defence = -10
 
 [giant_spider_mid]
 id = 60
@@ -58,6 +68,11 @@ categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been genetically modified."
 drop_table = "giant_spider"
+stab_defence = 10
+slash_defence = 10
+crush_defence = 10
+magic_defence = 10
+range_defence = 10
 
 [deadly_red_spider]
 id = 63
@@ -72,6 +87,11 @@ slayer_xp = 35.0
 categories = ["giant_spiders", "spiders"]
 height = 10
 examine = "I think this spider has been magically modified."
+stab_defence = 15
+slash_defence = 16
+crush_defence = 7
+magic_defence = 12
+range_defence = 16
 
 [poison_spider]
 id = 134
@@ -86,6 +106,11 @@ categories = ["spiders"]
 height = 10
 examine = "I think this spider has been magically modified."
 drop_table = "poison_spider"
+stab_defence = 20
+slash_defence = 17
+crush_defence = 10
+magic_defence = 14
+range_defence = 14
 
 [spider_underground_pass]
 id = 1004
@@ -106,6 +131,11 @@ slayer_xp = 22.0
 height = 10
 categories = ["spiders"]
 examine = "Incey wincey... with a nasty bite."
+stab_defence = 53
+slash_defence = 53
+crush_defence = 53
+magic_defence = 53
+range_defence = 53
 
 [spider_haunted_woods]
 id = 1221

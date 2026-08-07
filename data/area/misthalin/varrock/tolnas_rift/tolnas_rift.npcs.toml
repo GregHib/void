@@ -109,6 +109,8 @@ max_hit_melee = 50
 attack_speed = 5
 hunt_mode = "cowardly"
 examine = "Is that really Tolna?"
+magic_defence = 50
+range_defence = 50
 
 [tolna_east]
 id = 3659
@@ -124,6 +126,8 @@ max_hit_range = 50
 attack_speed = 5
 hunt_mode = "cowardly"
 examine = "Is that really Tolna?"
+magic_defence = 50
+range_defence = 50
 
 [tolna_north]
 id = 3660
@@ -136,4 +140,6 @@ max_hit_melee = 50
 attack_speed = 5
 hunt_mode = "cowardly"
 examine = "Is that really Tolna?"
+magic_defence = 50
+range_defence = 50
 

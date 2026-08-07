@@ -112,6 +112,11 @@ examine = "They'll eat anything!"
 drop_table = "billy_goat"
 max_hit_crush = 60
 combat_def = "billy_goat"
+stab_defence = 10
+slash_defence = 10
+crush_defence = -21
+magic_defence = -21
+range_defence = 10
 
 [artimeus]
 id = 5109

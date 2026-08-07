@@ -147,12 +147,22 @@ id = 2313
 drop_table = "chicken"
 combat_def = "chicken"
 hitpoints = 30
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [chicken_falador_2]
 id = 2314
 drop_table = "chicken"
 combat_def = "chicken"
 hitpoints = 30
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [chicken_falador_3]
 id = 2315
@@ -161,6 +171,11 @@ examine = "Yep. Definitely a chicken."
 drop_table = "chicken"
 combat_def = "chicken"
 hitpoints = 30
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [elstan]
 id = 2323
@@ -204,6 +219,7 @@ combat_def = "air_wizard"
 respawn_delay = 50
 drop_table = "air_wizard"
 examine = "At least he looks solid enough to fight."
+magic_defence = 15
 
 [malignius_mortifer]
 id = 2713
@@ -253,22 +269,47 @@ examine = "He tries to keep order around here."
 id = 3229
 clone = "guard_falador"
 combat_def = "guard_xbow"
+stab_defence = 13
+slash_defence = 17
+crush_defence = 14
+magic_defence = -4
+range_defence = 15
 
 [guard_falador_3]
 id = 3230
 clone = "guard_falador"
+stab_defence = 5
+slash_defence = 5
+crush_defence = 5
+magic_defence = -4
+range_defence = 5
 
 [guard_falador_4]
 id = 3231
 clone = "guard_falador"
+stab_defence = 5
+slash_defence = 5
+crush_defence = 5
+magic_defence = -4
+range_defence = 5
 
 [guard_falador_5]
 id = 3232
 clone = "guard_falador"
+stab_defence = 5
+slash_defence = 5
+crush_defence = 5
+magic_defence = -4
+range_defence = 5
 
 [guard_falador_6]
 id = 3233
 clone = "guard_falador"
+stab_defence = 5
+slash_defence = 5
+crush_defence = 5
+magic_defence = -4
+range_defence = 5
 
 [apprentice_workman]
 id = 3235
@@ -329,6 +370,7 @@ respawn_delay = 50
 drop_table = "dark_wizard_high"
 examine = "A practicer of dark arts."
 combat_def = "dark_wizard_water"
+magic_defence = 5
 
 [dark_wizard_falador_2]
 id = 3243
@@ -349,6 +391,7 @@ respawn_delay = 50
 drop_table = "dark_wizard_low"
 examine = "A practicer of dark arts."
 combat_def = "dark_wizard_water"
+magic_defence = 5
 
 [dark_wizard_falador_4]
 id = 3245
@@ -478,6 +521,9 @@ hunt_mode = "cowardly"
 respawn_delay = 100
 drop_table = "highwayman"
 examine = "He holds up passers by."
+slash_defence = 3
+crush_defence = 2
+range_defence = 2
 
 [assistant_falador]
 id = 7726
@@ -671,3 +717,8 @@ combat_def = "white_knight"
 respawn_delay = 50
 examine = "The knight seems to be watching something."
 drop_table = "white_knight"
+stab_defence = 83
+slash_defence = 76
+crush_defence = 70
+magic_defence = -11
+range_defence = 74

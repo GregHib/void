@@ -52,6 +52,8 @@ combat_def = "poh_hobgoblin"
 drop_table = "hobgoblin"
 categories = ["hobgoblins"]
 examine = "He doesn't look very welcoming."
+stab_defence = 1
+slash_defence = 1
 
 [hobgoblin_god_wars]
 id = 6275

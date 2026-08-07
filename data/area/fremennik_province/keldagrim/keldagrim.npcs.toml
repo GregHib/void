@@ -284,6 +284,10 @@ hunt_mode = "guarding"
 drop_table = "black_guard_high"
 examine = "A member of the Black Guard, a special division of the dwarven army."
 combat_def = "dwarf"
+stab_defence = 40
+slash_defence = 40
+crush_defence = 40
+range_defence = 40
 
 [black_guard_keldagrim_market_2]
 id = 2131
@@ -317,6 +321,10 @@ respawn_delay = 30
 drop_table = "black_guard_high"
 examine = "An elite member of the Black Guard."
 combat_def = "dwarf"
+stab_defence = 60
+slash_defence = 60
+crush_defence = 60
+range_defence = 60
 
 [black_guard_berserker_keldagrim_2]
 id = 2135
@@ -640,6 +648,10 @@ att = 150
 str = 150
 def = 1
 max_hit_crush = 164
+stab_defence = 60
+slash_defence = 60
+crush_defence = 60
+range_defence = 60
 
 [colonel_grenda_keldagrim]
 id = 8817

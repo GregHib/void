@@ -13,6 +13,11 @@ att = 130
 str = 130
 def = 80
 examine = "A being of ore and minerals."
+stab_defence = 345
+slash_defence = 345
+crush_defence = 245
+magic_defence = 345
+range_defence = 345
 
 [living_rock_protector_remains]
 id = 8837
@@ -33,6 +38,11 @@ str = 150
 def = 80
 range = 100
 examine = "A being of ore and minerals."
+stab_defence = 345
+slash_defence = 345
+crush_defence = 245
+magic_defence = 345
+range_defence = 345
 
 [living_rock_striker_remains]
 id = 8838
@@ -48,6 +58,11 @@ combat_def = "living_rock_patriarch"
 categories = ["living_rock_creatures"]
 drop_table = "living_rock_patriarch"
 examine = "A being of ore and minerals."
+stab_defence = 475
+slash_defence = 475
+crush_defence = 340
+magic_defence = 475
+range_defence = 475
 
 [living_rock_patriarch_remains]
 id = 8839

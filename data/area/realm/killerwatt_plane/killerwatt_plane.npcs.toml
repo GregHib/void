@@ -11,6 +11,11 @@ slayer_xp = 51.0
 categories = ["killerwatts"]
 respawn_delay = 30
 examine = "A ball of electrical energy."
+stab_defence = 10
+slash_defence = 10
+crush_defence = 10
+magic_defence = 20
+range_defence = 20
 
 [killerwatt_attacking]
 id = 3201

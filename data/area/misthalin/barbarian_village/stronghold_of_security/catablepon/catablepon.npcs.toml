@@ -12,6 +12,11 @@ hunt_mode = "cowardly"
 drop_table = "catablepon"
 categories = ["catablepons"]
 examine = "Big... Cow-like... But cows don't have serpent tails!"
+stab_defence = 40
+slash_defence = 30
+crush_defence = 20
+magic_defence = 20
+range_defence = 40
 
 [catablepon_mid]
 id = 4398
@@ -22,6 +27,11 @@ str = 50
 def = 50
 mage = 45
 slayer_xp = 70.0
+stab_defence = 50
+slash_defence = 40
+crush_defence = 30
+magic_defence = 30
+range_defence = 50
 
 [catablepon_high]
 id = 4399
@@ -33,3 +43,8 @@ str = 60
 def = 60
 mage = 60
 slayer_xp = 50.0
+stab_defence = 50
+slash_defence = 40
+crush_defence = 30
+magic_defence = 30
+range_defence = 50

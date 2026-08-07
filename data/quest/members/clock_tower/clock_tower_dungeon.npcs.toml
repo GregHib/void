@@ -21,6 +21,11 @@ str = 10
 def = 9
 attack_bonus = 6
 max_hit_stab = 20
+stab_defence = 8
+slash_defence = 13
+crush_defence = 14
+magic_defence = 4
+range_defence = 9
 
 [head_thief_clocktower_dungeon]
 id = 283
@@ -38,6 +43,11 @@ examine = "The head of the treacherous blanket stealing gang."
 drop_table = "head_thief"
 max_hit_slash = 30
 combat_def = "head_thief"
+stab_defence = 8
+slash_defence = 14
+crush_defence = 15
+magic_defence = 4
+range_defence = 9
 
 [dungeon_rat_clocktower_dungeon_2]
 id = 4936

@@ -11,6 +11,10 @@ slayer_xp = 17.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "An extremely vicious scorpion."
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 5
 
 [poison_scorpion]
 id = 108
@@ -25,6 +29,10 @@ slayer_xp = 23.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "It has a very vicious looking tail."
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 5
 
 [pit_scorpion]
 id = 109
@@ -39,6 +47,8 @@ slayer_xp = 32.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "Tiny, annoying, stinging thing."
+slash_defence = 5
+crush_defence = 5
 
 [king_scorpion]
 id = 144
@@ -54,6 +64,10 @@ slayer_xp = 30.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "Wow! Scorpions shouldn't grow that big."
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 5
 
 [khazard_scorpion]
 id = 271
@@ -68,6 +82,10 @@ slayer_xp = 30.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "A large angry scorpion."
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 5
 
 [grave_scorpion]
 id = 493
@@ -83,6 +101,8 @@ slayer_xp = 7.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "A vicious, little, stinging thing."
+slash_defence = 3
+crush_defence = 3
 
 [scorpion_stronghold_of_security]
 id = 4402
@@ -98,6 +118,10 @@ slayer_xp = 55.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "An extremely vicious scorpion."
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 55
 
 [scorpion_stronghold_of_security_red]
 id = 4403
@@ -113,3 +137,8 @@ slayer_xp = 37.0
 drop_table = "scorpion"
 categories = ["scorpions"]
 examine = "An extremely vicious scorpion."
+stab_defence = 35
+slash_defence = 15
+crush_defence = 15
+magic_defence = 30
+range_defence = 35

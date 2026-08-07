@@ -142,6 +142,11 @@ hunt_mode = "guarding"
 respawn_delay = 50
 examine = "He guards the Draynor Market stalls from thieves."
 drop_table = "market_guard"
+stab_defence = 24
+slash_defence = 14
+crush_defence = 19
+magic_defence = 4
+range_defence = 16
 
 [bank_guard_draynor]
 id = 2574

@@ -84,6 +84,8 @@ max_hit_range = 40
 ranged_strength = 16
 hunt_mode = "aggressive"
 examine = "Defender of the north tower."
+magic_defence = 6
+range_defence = 12
 
 [tower_archer_east]
 id = 689
@@ -101,6 +103,8 @@ max_hit_range = 70
 ranged_strength = 22
 hunt_mode = "aggressive"
 examine = "Defender of the east tower."
+magic_defence = 24
+range_defence = 40
 
 [tower_archer_south]
 id = 690
@@ -118,6 +122,8 @@ max_hit_range = 100
 ranged_strength = 31
 hunt_mode = "aggressive"
 examine = "Defender of the south tower."
+magic_defence = 20
+range_defence = 45
 
 [tower_archer_west]
 id = 691
@@ -135,3 +141,5 @@ max_hit_range = 160
 ranged_strength = 49
 hunt_mode = "aggressive"
 examine = "Defender of the west tower."
+magic_defence = 34
+range_defence = 66

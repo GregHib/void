@@ -8,6 +8,7 @@ att = 36
 str = 36
 def = 19
 max_hit_crush = 50
+crush_defence = 1
 
 [golems_remains_uzer_mastaba]
 id = 7498

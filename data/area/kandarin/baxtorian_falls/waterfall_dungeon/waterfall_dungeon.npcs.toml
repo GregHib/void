@@ -11,6 +11,11 @@ categories = ["spiders"]
 respawn_delay = 30
 examine = "Is it a spider or is it a shadow?"
 drop_table = "empty"
+stab_defence = 20
+slash_defence = 15
+crush_defence = 10
+magic_defence = 15
+range_defence = 15
 
 [skeleton_mage_waterfall_dungeon]
 id = 94

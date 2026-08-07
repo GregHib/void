@@ -15,6 +15,11 @@ drop_table = "ram"
 respawn_delay = 45
 categories = ["rams"]
 examine = "White and shaggy."
+stab_defence = -58
+slash_defence = -58
+crush_defence = -58
+magic_defence = -58
+range_defence = -58
 
 [ram_freds_farm_2]
 id = 12370

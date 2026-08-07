@@ -387,6 +387,7 @@ combat_def = "granite_lobster_familiar"
 summoning_beast_of_burden = 1
 summoning_beast_of_burden_capacity = 30
 interacts = false
+crush_defence = 10
 
 [macaw_familiar]
 summoning_time_minutes = 31
@@ -816,6 +817,11 @@ range = 72
 mage = 72
 combat_def = "fire_titan_familiar"
 interacts = false
+stab_defence = 25
+slash_defence = 25
+crush_defence = 25
+magic_defence = -25
+range_defence = 50
 
 [moss_titan_familiar]
 summoning_time_minutes = 58
@@ -828,6 +834,11 @@ range = 72
 mage = 72
 combat_def = "moss_titan_familiar"
 interacts = false
+stab_defence = 50
+slash_defence = 50
+crush_defence = 50
+magic_defence = 25
+range_defence = -25
 
 [ice_titan_familiar]
 summoning_time_minutes = 64
@@ -1822,6 +1833,7 @@ def = 64
 range = 72
 mage = 72
 combat_def = "granite_lobster_familiar"
+crush_defence = 10
 
 [praying_mantis_familiar_combat]
 id = 6799
@@ -1932,6 +1944,11 @@ def = 64
 range = 72
 mage = 72
 combat_def = "fire_titan_familiar"
+stab_defence = 25
+slash_defence = 25
+crush_defence = 25
+magic_defence = -25
+range_defence = 50
 
 [moss_titan_familiar_combat]
 id = 7358
@@ -1943,6 +1960,11 @@ def = 64
 range = 72
 mage = 72
 combat_def = "moss_titan_familiar"
+stab_defence = 50
+slash_defence = 50
+crush_defence = 50
+magic_defence = 25
+range_defence = -25
 
 [ice_titan_familiar_combat]
 id = 7360
@@ -1954,6 +1976,11 @@ def = 64
 range = 72
 mage = 72
 combat_def = "ice_titan_familiar"
+stab_defence = -15
+slash_defence = -15
+crush_defence = -15
+magic_defence = 50
+range_defence = 25
 
 [lava_titan_familiar_combat]
 id = 7342

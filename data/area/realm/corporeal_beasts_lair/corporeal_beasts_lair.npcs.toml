@@ -13,6 +13,11 @@ combat_def = "corporeal_beast"
 respawn_delay = 50
 immune_poison = true
 examine = "A vision of supernatural horror."
+stab_defence = 25
+slash_defence = 200
+crush_defence = 100
+magic_defence = 150
+range_defence = 230
 
 [dark_energy_core]
 id = 8127
@@ -26,3 +31,8 @@ combat_def = "dark_energy_core"
 hunt_mode = "aggressive_retarget"
 drop_table = "ashes"
 examine = "A small being of dark energy."
+stab_defence = 10
+slash_defence = 10
+crush_defence = 10
+magic_defence = -5
+range_defence = 10

@@ -15,6 +15,11 @@ combat_def = "guard"
 attack_bonus = 4
 respawn_delay = 50
 examine = "Keeping an eye out for suspicious activity."
+stab_defence = 18
+slash_defence = 25
+crush_defence = 19
+magic_defence = -4
+range_defence = 20
 
 [port_sarim_guard_1]
 id = 2700
@@ -258,6 +263,11 @@ respawn_delay = 25
 combat_def = "seagull"
 drop_table = "seagull"
 examine = "A messy bird."
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [seagull_port_sarim_2]
 id = 6116
@@ -269,6 +279,11 @@ respawn_delay = 25
 combat_def = "seagull"
 drop_table = "seagull"
 examine = "Smells of rotten fish."
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [thaki_the_delivery_dwarf]
 id = 7115

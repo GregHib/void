@@ -11,6 +11,10 @@ slayer_level = 85
 drop_table = "abyssal_demon"
 categories = ["abyssal_demon", "demon"]
 examine = "A denizen of the Abyss!"
+stab_defence = 20
+slash_defence = 20
+crush_defence = 20
+range_defence = 20
 
 [abyssal_demon_1]
 id = 4230

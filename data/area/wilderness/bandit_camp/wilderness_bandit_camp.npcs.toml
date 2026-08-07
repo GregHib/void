@@ -25,6 +25,9 @@ respawn_delay = 50
 examine = "A warrior touched by chaos."
 drop_table = "dark_warrior"
 combat_def = "guard"
+stab_defence = 96
+slash_defence = 79
+crush_defence = 59
 
 [guard_bandit]
 id = 196
@@ -43,6 +46,11 @@ respawn_delay = 100
 examine = "A wilderness outlaw."
 drop_table = "guard_bandit"
 combat_def = "guard"
+stab_defence = 4
+slash_defence = 8
+crush_defence = 5
+magic_defence = 1
+range_defence = 4
 
 [black_heather]
 id = 202
@@ -59,6 +67,9 @@ respawn_delay = 50
 drop_table = "wilderness_bandit"
 examine = "Has a fearsome scowl. Moreso, after being told to smile once in a while."
 max_hit_slash = 40
+stab_defence = 9
+slash_defence = 8
+crush_defence = 10
 
 [donny_the_lad]
 id = 203
@@ -75,6 +86,9 @@ respawn_delay = 50
 drop_table = "wilderness_bandit"
 examine = "Has a fearsome posture, and a fearsome pair of weapons!"
 max_hit_slash = 40
+stab_defence = 9
+slash_defence = 8
+crush_defence = 10
 
 [speedy_keith]
 id = 204
@@ -91,6 +105,9 @@ respawn_delay = 50
 drop_table = "wilderness_bandit"
 examine = "Refuses to accept his hairstyle has gone out of fashion."
 max_hit_slash = 40
+stab_defence = 9
+slash_defence = 8
+crush_defence = 10
 
 [mysterious_ghost_wilderness_bandit_camp]
 id = 2383

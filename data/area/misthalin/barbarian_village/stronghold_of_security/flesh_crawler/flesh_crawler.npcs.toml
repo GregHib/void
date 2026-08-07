@@ -12,6 +12,11 @@ hunt_range = 3
 drop_table = "flesh_crawler"
 categories = ["flesh_crawlers"]
 examine = "I don't think insect repellent will work..."
+stab_defence = 15
+slash_defence = 15
+crush_defence = 15
+magic_defence = 15
+range_defence = 15
 
 [flesh_crawler_2]
 id = 4390

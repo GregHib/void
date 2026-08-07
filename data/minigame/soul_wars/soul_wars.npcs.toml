@@ -22,6 +22,11 @@ str = 486
 def = 835
 max_hit_crush = 500
 combat_def = "avatar_of_destruction"
+stab_defence = 80
+slash_defence = 80
+crush_defence = 80
+magic_defence = 130
+range_defence = 80
 
 [avatar_of_creation_soul_wars]
 id = 8597
@@ -33,6 +38,11 @@ str = 446
 def = 939
 max_hit_crush = 460
 combat_def = "avatar_of_creation"
+stab_defence = 80
+slash_defence = 80
+crush_defence = 80
+magic_defence = 130
+range_defence = 80
 
 [pyrefiend_soul_wars]
 id = 8598

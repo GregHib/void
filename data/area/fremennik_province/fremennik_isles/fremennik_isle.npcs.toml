@@ -23,6 +23,9 @@ respawn_delay = 50
 examine = "An ice troll youngling."
 drop_table = "ice_troll_runt"
 combat_def = "ice_troll"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_male_fremennik_isle]
 id = 5526
@@ -40,6 +43,9 @@ categories = ["trolls"]
 drop_table = "ice_troll_male"
 examine = "A male troll wielding a large club."
 combat_def = "ice_troll"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_female_fremennik_isle]
 id = 5527
@@ -58,6 +64,9 @@ categories = ["trolls"]
 drop_table = "ice_troll_female"
 examine = "An ice troll with a bag of rocks."
 combat_def = "ice_troll_female"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_grunt_fremennik_isle]
 id = 5528
@@ -76,3 +85,6 @@ respawn_delay = 50
 drop_table = "ice_troll_grunt"
 examine = "A large ice troll."
 combat_def = "ice_troll"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30

@@ -15,6 +15,9 @@ respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
 combat_def = "ice_troll"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_troll_tunnels_2]
 id = 1561
@@ -33,6 +36,9 @@ respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
 combat_def = "ice_troll"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_troll_tunnels_3]
 id = 1562
@@ -51,6 +57,9 @@ respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
 combat_def = "ice_troll"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_troll_tunnels_4]
 id = 1563
@@ -69,6 +78,9 @@ respawn_delay = 50
 examine = "Brrrrr...he must be cold!"
 drop_table = "ice_troll"
 combat_def = "ice_troll"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_troll_tunnels_5]
 id = 1564

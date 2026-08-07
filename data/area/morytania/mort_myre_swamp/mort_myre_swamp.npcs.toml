@@ -83,6 +83,11 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "myre_blamish_snail"
 examine = "A marsh coloured blamish snail, these types are said to spit acid."
+stab_defence = 5
+slash_defence = 5
+crush_defence = 30
+magic_defence = 5
+range_defence = 50
 
 [blood_blamish_snail]
 id = 1228
@@ -96,6 +101,11 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "blood_blamish_snail"
 examine = "A blood coloured blamish snail, these types are said to spit acid."
+stab_defence = 5
+slash_defence = 5
+crush_defence = 30
+magic_defence = 5
+range_defence = 50
 
 [ochre_blamish_snail]
 id = 1229
@@ -110,6 +120,11 @@ attack_bonus = 10
 hunt_mode = "cowardly"
 respawn_delay = 50
 examine = "A muddy coloured blamish snail, these types are said to spit acid."
+stab_defence = 5
+slash_defence = 5
+crush_defence = 30
+magic_defence = 5
+range_defence = 50
 
 [bruise_blamish_snail]
 id = 1230
@@ -125,6 +140,11 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "bruise_blamish_snail"
 examine = "A bruise blue coloured blamish snail, these types are said to spit acid."
+stab_defence = 5
+slash_defence = 5
+crush_defence = 30
+magic_defence = 5
+range_defence = 50
 
 [bark_blamish_snail]
 id = 1231
@@ -138,6 +158,11 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "bark_blamish_snail"
 examine = "A branch bark coloured blamish snail, these types are said to spit acid."
+stab_defence = 5
+slash_defence = 5
+crush_defence = 30
+magic_defence = 5
+range_defence = 50
 
 [myre_blamish_snail_2]
 id = 1232

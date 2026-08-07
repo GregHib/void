@@ -60,6 +60,11 @@ respawn_delay = 25
 drop_table = "bones"
 examine = "A warrior of Etceteria."
 combat_def = "guard"
+stab_defence = -12
+slash_defence = -12
+crush_defence = -12
+magic_defence = -12
+range_defence = -12
 
 [skraeling_battleaxe]
 id = 1368
@@ -234,6 +239,11 @@ respawn_delay = 25
 drop_table = "bones"
 examine = "A subject of Miscellania."
 max_hit_crush = 10
+stab_defence = -12
+slash_defence = -12
+crush_defence = -12
+magic_defence = -12
+range_defence = -12
 
 [ragnvald]
 id = 1392
@@ -247,6 +257,11 @@ respawn_delay = 25
 drop_table = "bones"
 examine = "A subject of Miscellania."
 max_hit_crush = 10
+stab_defence = -12
+slash_defence = -12
+crush_defence = -12
+magic_defence = -12
+range_defence = -12
 
 [fishmonger_miscellania]
 id = 1393
@@ -284,12 +299,22 @@ examine = "Yep. Definitely a chicken."
 drop_table = "chicken"
 combat_def = "chicken"
 hitpoints = 30
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [chicken_miscellania_2]
 id = 1402
 drop_table = "chicken"
 combat_def = "chicken"
 hitpoints = 30
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [rooster_miscellania]
 id = 1403
@@ -303,6 +328,11 @@ respawn_delay = 25
 examine = "He rules the, er, roost."
 drop_table = "rooster"
 combat_def = "chicken"
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [rabbit_miscellania]
 id = 1404
@@ -312,6 +342,11 @@ attack_bonus = -47
 respawn_delay = 25
 drop_table = "rabbit"
 examine = "A cute bunny rabbit."
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [rhazien]
 id = 2337
@@ -453,6 +488,11 @@ drop_table = "rabbit"
 combat_def = "rabbit_miscellania"
 hitpoints = 50
 max_hit_crush = 10
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [king_vargas_2]
 id = 7403

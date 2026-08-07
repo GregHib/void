@@ -15,6 +15,9 @@ examine = "Big, ugly, and smelly."
 drop_table = "ogre"
 combat_def = "ogre"
 max_hit_crush = 70
+stab_defence = 19
+slash_defence = 23
+crush_defence = 24
 
 [guard_combat_training_camp]
 id = 344

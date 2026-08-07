@@ -15,6 +15,9 @@ respawn_delay = 25
 drop_table = "ham_guard"
 examine = "A guard for the humans against monster group."
 combat_def = "guard"
+stab_defence = 5
+slash_defence = 5
+range_defence = 5
 
 [ham_guard_ham_cave_2]
 id = 1711
@@ -86,6 +89,9 @@ attack_range = 8
 max_hit_range = 40
 hunt_mode = "cowardly"
 examine = "He looks pretty skilled with that bow."
+stab_defence = 5
+slash_defence = 5
+range_defence = 5
 
 [ham_mage]
 id = 5860
@@ -97,3 +103,7 @@ style = "magic"
 max_hit_magic = 40
 hunt_mode = "cowardly"
 examine = "He bristles with arcane power."
+attack_bonus = 8
+stab_defence = 5
+slash_defence = 5
+range_defence = 5

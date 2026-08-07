@@ -15,6 +15,11 @@ respawn_delay = 60
 drop_table = "warped_bat"
 categories = ["warped_bat"]
 examine = "Could do with gaining a few pounds."
+stab_defence = -21
+slash_defence = -21
+crush_defence = -21
+magic_defence = -21
+range_defence = -21
 
 [warped_fly]
 id = 7915

@@ -13,6 +13,11 @@ hunt_mode = "cowardly"
 slayer_xp = 137.0
 categories = ["scabarites"]
 examine = "A huge scarab."
+stab_defence = 70
+slash_defence = 99
+crush_defence = 99
+magic_defence = 159
+range_defence = 149
 
 [giant_scarab]
 id = 6770

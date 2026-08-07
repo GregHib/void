@@ -10,6 +10,11 @@ respawn_delay = 300
 examine = "Some oversized vermin, blessed by Zamorak."
 drop_table = "blessed_giant_rat"
 combat_def = "giant_rat"
+stab_defence = -24
+slash_defence = -24
+crush_defence = -24
+magic_defence = -24
+range_defence = -24
 
 [blessed_giant_rat_underground_pass_dungeon_2]
 id = 978

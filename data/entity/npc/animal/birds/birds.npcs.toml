@@ -12,6 +12,11 @@ collision = "sea"
 combat_def = "duck_swim"
 examine = "Quackers."
 drop_table = "duck"
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [crow]
 id = 1754
@@ -62,6 +67,11 @@ height = 10
 drop_table = "bones"
 combat_def = "duck_walk"
 examine = "It quacks like a duck."
+stab_defence = -42
+slash_defence = -42
+crush_defence = -42
+magic_defence = -42
+range_defence = -42
 
 [ducklings]
 id = 6112

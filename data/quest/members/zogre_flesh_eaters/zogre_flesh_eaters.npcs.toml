@@ -14,6 +14,9 @@ slayer_xp = 100.0
 categories = ["zombies"]
 drop_table = "slash_bash"
 examine = "A powerful looking Zogre."
+stab_defence = 30
+slash_defence = 30
+crush_defence = 30
 
 [zogre_sithik_man]
 id = 2061

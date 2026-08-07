@@ -34,6 +34,7 @@ slayer_xp = 16.0
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "Loves mining."
+magic_defence = 5
 
 [dwarf_hammer]
 id = 120
@@ -48,6 +49,7 @@ slayer_xp = 26.0
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "Loves mining, mountains and mining mountains."
+magic_defence = 5
 
 [dwarf_mining_guild]
 id = 3219
@@ -62,10 +64,12 @@ slayer_xp = 16.0
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "Loves mining."
+magic_defence = 5
 
 [dwarf_mining_guild_hammer]
 id = 3220
 clone = "dwarf_mining_guild"
+magic_defence = 10
 
 [dwarf_mining_guild_earrings]
 id = 3221
@@ -76,30 +80,40 @@ examine = "Loves mining."
 id = 3268
 clone = "dwarf_mining_guild"
 examine = "A dwarven worker."
+range_defence = 10
 
 [dwarf_dwarven_mines_wrench]
 id = 3269
 clone = "dwarf_mining_guild"
+range_defence = 10
 
 [dwarf_dwarven_mines_wrench_apron_green]
 id = 3270
 clone = "dwarf_mining_guild"
+slash_defence = 10
+crush_defence = 10
+magic_defence = 10
+range_defence = 20
 
 [dwarf_dwarven_mines_pickaxe]
 id = 3271
 clone = "dwarf_mining_guild"
+range_defence = 10
 
 [dwarf_dwarven_mines_pickaxe_green]
 id = 3272
 clone = "dwarf"
+range_defence = 10
 
 [dwarf_dwarven_mines_wrench_green]
 id = 3273
 clone = "dwarf_mining_guild"
+range_defence = 10
 
 [dwarf_dwarven_mines_red]
 id = 3274
 clone = "dwarf_mining_guild"
+range_defence = 10
 
 [dwarf_dwarven_mines_old]
 id = 3275
@@ -114,6 +128,8 @@ slayer_xp = 10.0
 drop_table = "dwarf"
 categories = ["dwarves"]
 examine = "A dwarven worker."
+magic_defence = 5
+range_defence = 10
 
 [chaos_dwarf]
 id = 119
@@ -129,3 +145,8 @@ slayer_xp = 61.0
 drop_table = "chaos_dwarf"
 categories = ["chaos_dwarf", "dwarves"]
 examine = "A dwarf gone bad."
+stab_defence = 40
+slash_defence = 34
+crush_defence = 25
+magic_defence = 10
+range_defence = 35

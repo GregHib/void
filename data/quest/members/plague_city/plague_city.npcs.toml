@@ -15,6 +15,9 @@ drop_table = "mourner"
 combat_def = "guard"
 attack_bonus = 6
 max_hit_crush = 20
+stab_defence = 5
+slash_defence = 5
+crush_defence = 7
 
 [alrena]
 id = 710

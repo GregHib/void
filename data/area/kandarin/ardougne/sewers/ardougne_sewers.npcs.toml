@@ -24,6 +24,9 @@ drop_table = "bones"
 examine = "Leader of the Hazeel Cult."
 max_hit_crush = 20
 combat_def = "alomone"
+stab_defence = 5
+slash_defence = 6
+crush_defence = 8
 
 [clivet_ardougne_sewers]
 id = 893

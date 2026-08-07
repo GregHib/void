@@ -14,6 +14,11 @@ slayer_xp = 357.0
 categories = ["aviansies", "boss"]
 immune_poison = true
 examine = "Graceful avatar of Armadyl."
+stab_defence = 180
+slash_defence = 180
+crush_defence = 180
+magic_defence = 200
+range_defence = 200
 
 [flight_kilisa]
 id = 6227
@@ -62,3 +67,4 @@ slayer_xp = 132.5
 categories = ["aviansies"]
 drop_table = "armadyl_bodyguard"
 examine = "Graceful, bird-like creature."
+attack_bonus = 60

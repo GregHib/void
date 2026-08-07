@@ -26,6 +26,7 @@ respawn_delay = 15
 hunt_mode = "aggressive"
 height = 60
 examine = "Big, red, and incredibly evil."
+magic_defence = -10
 
 [greater_demon_2]
 id = 4698
@@ -55,6 +56,7 @@ hunt_mode = "aggressive"
 categories = ["demons", "lesser_demons"]
 respawn_delay = 30
 examine = "Lesser, but still pretty big."
+magic_defence = -10
 
 [lesser_demon_2]
 clone = "lesser_demon"
@@ -90,6 +92,7 @@ respawn_delay = 30
 hunt_mode = "aggressive"
 height = 60
 examine = "A big, scary, jet-black demon."
+magic_defence = -10
 
 [black_demon_1]
 id = 4702

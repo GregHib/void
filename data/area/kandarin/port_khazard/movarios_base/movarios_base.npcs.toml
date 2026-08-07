@@ -33,4 +33,7 @@ id = 8440
 clone = "elite_khazard_guard_movarios_base"
 drop_table = "elite_khazard_guard"
 combat_def = "guard"
+stab_defence = 44
+slash_defence = 38
+crush_defence = 30
 

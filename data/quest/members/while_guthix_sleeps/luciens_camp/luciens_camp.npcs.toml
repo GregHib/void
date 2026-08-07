@@ -39,6 +39,10 @@ att = 60
 str = 60
 def = 69
 max_hit_crush = 74
+stab_defence = 30
+slash_defence = 30
+magic_defence = 100
+range_defence = 100
 
 [undead_troll_luciens_camp_3]
 id = 8379
@@ -87,6 +91,10 @@ att = 60
 str = 60
 def = 250
 max_hit_crush = 74
+stab_defence = 30
+slash_defence = 30
+magic_defence = 100
+range_defence = 100
 
 [undead_troll_luciens_camp_7]
 id = 8383
@@ -111,6 +119,10 @@ att = 60
 str = 60
 def = 69
 max_hit_crush = 74
+stab_defence = 30
+slash_defence = 30
+magic_defence = 100
+range_defence = 100
 
 [undead_troll_luciens_camp_9]
 id = 8385
@@ -123,6 +135,10 @@ att = 60
 str = 60
 def = 69
 max_hit_crush = 74
+stab_defence = 30
+slash_defence = 30
+magic_defence = 100
+range_defence = 100
 
 [undead_troll_luciens_camp_10]
 id = 8386
@@ -171,6 +187,10 @@ att = 60
 str = 60
 def = 69
 max_hit_crush = 74
+stab_defence = 30
+slash_defence = 30
+magic_defence = 100
+range_defence = 100
 
 [undead_troll_luciens_camp_14]
 id = 8390
@@ -195,6 +215,10 @@ att = 60
 str = 60
 def = 250
 max_hit_crush = 74
+stab_defence = 30
+slash_defence = 30
+magic_defence = 100
+range_defence = 100
 
 [undead_troll_luciens_camp_16]
 id = 8392

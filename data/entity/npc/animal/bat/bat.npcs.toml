@@ -10,6 +10,10 @@ respawn_delay = 35
 drop_table = "bat"
 categories = ["bats"]
 examine = "An annoying flappy thing."
+stab_defence = 2
+slash_defence = 2
+crush_defence = 5
+magic_defence = 2
 
 [giant_bat]
 id = 78
@@ -24,6 +28,11 @@ respawn_delay = 35
 drop_table = "bat"
 categories = ["bats"]
 examine = "An annoying flappy thing."
+stab_defence = 10
+slash_defence = 10
+crush_defence = 12
+magic_defence = 10
+range_defence = 8
 
 [giant_bat_brine_cavern]
 clone = "giant_bat"

@@ -19,6 +19,10 @@ str = 1
 def = 96
 range = 116
 max_hit_range = 130
+slash_defence = 20
+crush_defence = 20
+magic_defence = 4
+range_defence = 26
 
 [scabaras_lancer]
 id = 6774
@@ -30,6 +34,8 @@ att = 116
 str = 116
 def = 56
 max_hit_crush = 130
+stab_defence = 30
+slash_defence = 30
 
 [scabaras_mage_scabaras_dungeon]
 id = 6780
@@ -43,6 +49,8 @@ def = 109
 mage = 109
 max_hit_magic = 104
 combat_def = "scabaras_mage"
+slash_defence = 90
+crush_defence = 90
 
 [scabaras_mage_scabaras_dungeon_2]
 id = 6781
@@ -54,6 +62,10 @@ def = 96
 mage = 96
 max_hit_magic = 104
 combat_def = "scabaras_mage"
+attack_bonus = 70
+slash_defence = 90
+crush_defence = 90
+magic_defence = 34
 
 [clay_golem_scabaras_dungeon]
 id = 6785

@@ -28,6 +28,9 @@ attack_bonus = 9
 respawn_delay = 50
 drop_table = "bones"
 examine = "Tough-looking."
+stab_defence = 9
+slash_defence = 8
+crush_defence = 10
 
 [cowardly_bandit_pollnivneach]
 id = 1886
@@ -54,6 +57,9 @@ attack_bonus = 4
 respawn_delay = 5
 drop_table = "bones"
 examine = "Menaphite thug."
+stab_defence = 9
+slash_defence = 8
+crush_defence = 10
 
 [aristarchus_pollnivneach]
 id = 3127

@@ -69,6 +69,9 @@ categories = ["trolls"]
 respawn_delay = 50
 examine = "An ice troll youngling."
 drop_table = "ice_troll_runt"
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_male_neitiznot]
 id = 5522
@@ -84,6 +87,9 @@ slayer_xp = 84.0
 categories = ["trolls"]
 drop_table = "ice_troll_male"
 examine = "A male troll wielding a large club."
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [ice_troll_female_neitiznot]
 id = 5523
@@ -99,6 +105,9 @@ slayer_xp = 84.0
 categories = ["trolls"]
 drop_table = "ice_troll_female"
 examine = "An ice troll with a bag of rocks."
+stab_defence = 30
+slash_defence = 60
+crush_defence = 30
 
 [yak]
 id = 5529

@@ -10,6 +10,9 @@ respawn_delay = 50
 drop_table = "thug"
 categories = ["thug"]
 examine = "Low on brains, high on aggression."
+stab_defence = 2
+slash_defence = 3
+crush_defence = 3
 
 [thug_1]
 id = 7107

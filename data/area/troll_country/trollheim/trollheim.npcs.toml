@@ -12,6 +12,8 @@ slayer_xp = 95.0
 categories = ["trolls"]
 drop_table = "thrower_troll_death_plateau"
 examine = "Small for a troll, but it's mean, ugly and throws rocks."
+magic_defence = 200
+range_defence = 200
 
 [thrower_troll_death_plateau_large]
 id = 1102
@@ -43,6 +45,8 @@ slayer_xp = 95.0
 categories = ["trolls"]
 drop_table = "thrower_troll"
 examine = "Small for a troll, but it's mean, ugly and throws rocks."
+magic_defence = 200
+range_defence = 200
 
 [thrower_troll_trollheim_large]
 id = 1131
@@ -101,6 +105,9 @@ categories = ["trolls"]
 respawn_delay = 50
 drop_table = "mountain_troll"
 examine = "He's watching the arena."
+crush_defence = 10
+magic_defence = 200
+range_defence = 200
 
 [troll_spectator_2]
 id = 1119

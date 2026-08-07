@@ -109,11 +109,21 @@ examine = "The walking dead."
 id = 75
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_armour_green_shorts_sword]
 id = 5314
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_armour_grey_shorts_sword]
 id = 5315
@@ -124,6 +134,11 @@ att = 8
 str = 9
 def = 10
 max_hit_crush = 20
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_red_outfit]
 id = 5311
@@ -141,26 +156,51 @@ clone = "zombie_yellow_shirt"
 id = 5316
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_grey_suit_sword]
 id = 5318
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_tan_trousers_axe_2]
 id = 5319
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_axe"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_tan_shorts_axe]
 id = 5320
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_axe"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_red_skirt_sword]
 id = 5321
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_blue_skirt_sword_2]
 id = 5322
@@ -171,11 +211,21 @@ att = 8
 str = 9
 def = 10
 max_hit_crush = 20
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_yellow_shirt_sword]
 id = 5323
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_red_sword]
 id = 5324
@@ -213,6 +263,11 @@ respawn_delay = 35
 slayer_xp = 30.0
 categories = ["zombies", "undead"]
 examine = "The walking dead."
+stab_defence = 10
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 10
 
 [zombie_entrana_armour]
 id = 5328
@@ -245,6 +300,11 @@ respawn_delay = 35
 drop_table = "zombie_melzars_maze"
 categories = ["zombies", "undead"]
 examine = "Dead man walking."
+stab_defence = 9
+slash_defence = 8
+crush_defence = 12
+magic_defence = 10
+range_defence = 11
 
 [zombie_melzars_maze_strong]
 id = 6100
@@ -321,6 +381,11 @@ respawn_delay = 35
 drop_table = "zombie"
 categories = ["zombies", "undead"]
 examine = "The walking dead."
+stab_defence = 19
+slash_defence = 18
+crush_defence = 22
+magic_defence = 20
+range_defence = 21
 
 [zombie_stronghold_of_security_male]
 id = 5380
@@ -344,6 +409,9 @@ hunt_mode = "cowardly"
 respawn_delay = 35
 categories = ["zombies", "undead"]
 examine = "Could his name be 'Lurch'?"
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_tan_boots]
 id = 5394
@@ -358,6 +426,9 @@ hunt_mode = "cowardly"
 respawn_delay = 35
 categories = ["zombies", "undead"]
 examine = "Mostly 'armless."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_grey_boots]
 id = 5395
@@ -373,6 +444,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Has anybody told him he's dead?"
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_red_boots_hat]
 id = 5396
@@ -388,6 +462,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Dave? Is that you?"
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_tan_boots_hair]
 id = 5397
@@ -403,6 +480,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Why don't zombies ever wash?"
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_green_boots_hair]
 id = 5398
@@ -418,6 +498,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "A shambling pile of rotten flesh."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_red_top]
 id = 5399
@@ -433,6 +516,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "He needs lessons on walking."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_brown_top]
 id = 5400
@@ -448,6 +534,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Fred, the undead."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_armour]
 id = 5401
@@ -463,6 +552,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "One of the undead."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_yellow_shirt]
 id = 5402
@@ -478,6 +570,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "A disgusting zombie."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_grey_shirt]
 id = 5403
@@ -493,6 +588,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Somebody tell him he's already dead!"
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_blue_shirt]
 id = 5404
@@ -508,6 +606,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "He sure looks grave."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_tan_trousers]
 id = 5405
@@ -523,6 +624,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Can't a body get any rest around here?"
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_grey_trousers]
 id = 5406
@@ -538,6 +642,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "At least he's not legless."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_green_trousers]
 id = 5407
@@ -553,6 +660,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "All skin and bones."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_brown_trousers]
 id = 5408
@@ -568,6 +678,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "All skin and bones."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_blue_trousers]
 id = 5409
@@ -583,6 +696,9 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "All skin and bones."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [zombie_tarns_lair_light_grey_trousers]
 id = 5410
@@ -598,3 +714,6 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Brains..."
+stab_defence = 20
+slash_defence = 20
+range_defence = 10

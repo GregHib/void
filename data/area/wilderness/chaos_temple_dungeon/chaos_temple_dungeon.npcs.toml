@@ -13,6 +13,9 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [armoured_zombie_chaos_temple_dungeon_2]
 id = 8150
@@ -26,6 +29,9 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [armoured_zombie_chaos_temple_dungeon_3]
 id = 8151
@@ -39,6 +45,9 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [armoured_zombie_chaos_temple_dungeon_4]
 id = 8152
@@ -52,6 +61,9 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [armoured_zombie_chaos_temple_dungeon_5]
 id = 8153
@@ -63,6 +75,9 @@ str = 1
 def = 115
 range = 72
 max_hit_range = 86
+stab_defence = 20
+slash_defence = 20
+range_defence = 10
 
 [armoured_zombie_chaos_temple_dungeon_6]
 id = 8154

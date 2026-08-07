@@ -56,6 +56,7 @@ def = 187
 range = 100
 max_hit_range = 114
 combat_def = "dagannoth_guardian"
+magic_defence = 120
 
 [bardur]
 id = 2879
@@ -66,6 +67,11 @@ att = 80
 str = 80
 def = 80
 combat_def = "man"
+stab_defence = 150
+slash_defence = 150
+crush_defence = 150
+magic_defence = 150
+range_defence = 150
 
 [dagannoth_fledgeling]
 id = 2880
@@ -99,6 +105,11 @@ slayer_xp = 255.0
 categories = ["dagannoth"]
 xp_bonus = 3.0
 examine = "The dagannoth king responsible for the death of the Bukalla."
+stab_defence = 10
+slash_defence = 10
+crush_defence = 10
+magic_defence = 255
+range_defence = 255
 
 [dagannoth_prime]
 id = 2882
@@ -115,6 +126,11 @@ slayer_xp = 331.4
 categories = ["dagannoth"]
 xp_bonus = 3.0
 examine = "A legendary dagannoth king, rumoured to fly on the North winds."
+stab_defence = 255
+slash_defence = 255
+crush_defence = 255
+magic_defence = 255
+range_defence = 10
 
 [dagannoth_rex]
 id = 2883
@@ -131,6 +147,11 @@ slayer_xp = 331.4
 categories = ["dagannoth"]
 xp_bonus = 3.0
 examine = "Firstborn of the legendary dagannoth kings."
+stab_defence = 255
+slash_defence = 255
+crush_defence = 255
+magic_defence = 10
+range_defence = 255
 
 [suspicious_water]
 id = 2891
@@ -148,6 +169,11 @@ hunt_range = 10
 respawn_delay = 10
 drop_table = "bones"
 examine = "A sneaky, spiny, subterranean sea-dwelling scamp."
+stab_defence = 100
+slash_defence = 100
+crush_defence = 100
+magic_defence = 50
+range_defence = 50
 
 [suspicious_water_2]
 id = 2893

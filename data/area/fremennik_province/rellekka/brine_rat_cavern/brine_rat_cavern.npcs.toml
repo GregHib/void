@@ -14,6 +14,11 @@ respawn_delay = 50
 examine = "Could use a good meal."
 drop_table = "skeleton_fremennik"
 combat_def = "skeleton_barbarian"
+stab_defence = 14
+slash_defence = 18
+crush_defence = 15
+magic_defence = -4
+range_defence = 15
 
 [skeleton_fremennik_2]
 id = 3698
@@ -43,6 +48,11 @@ respawn_delay = 50
 examine = "He seems a little underweight."
 drop_table = "skeleton_fremennik"
 combat_def = "skeleton_barbarian"
+stab_defence = 14
+slash_defence = 18
+crush_defence = 15
+magic_defence = -4
+range_defence = 15
 
 [skeleton_fremennik_5]
 id = 3701
@@ -72,6 +82,11 @@ respawn_delay = 50
 examine = "He seems a little underweight."
 drop_table = "skeleton_fremennik"
 combat_def = "skeleton_barbarian"
+stab_defence = 14
+slash_defence = 18
+crush_defence = 15
+magic_defence = -4
+range_defence = 15
 
 [skeleton_fremennik_8]
 id = 3704

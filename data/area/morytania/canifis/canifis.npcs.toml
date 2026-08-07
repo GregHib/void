@@ -54,6 +54,11 @@ examine = "A well organised shop keeper."
 id = 6028
 clone = "boris"
 examine = "He's staring at the moon."
+stab_defence = -21
+slash_defence = -21
+crush_defence = -21
+magic_defence = -21
+range_defence = -21
 
 [joseph]
 id = 6029
@@ -64,6 +69,11 @@ examine = "He keeps calling me comrade."
 id = 6030
 clone = "boris"
 examine = "There's a set of brows that mean business."
+stab_defence = -21
+slash_defence = -21
+crush_defence = -21
+magic_defence = -21
+range_defence = -21
 
 [eduard]
 id = 6031
@@ -74,6 +84,11 @@ examine = "This is one feral looking innkeeper."
 id = 6032
 clone = "boris"
 examine = "A tough looking villager."
+stab_defence = -21
+slash_defence = -21
+crush_defence = -21
+magic_defence = -21
+range_defence = -21
 
 [georgy]
 id = 6033

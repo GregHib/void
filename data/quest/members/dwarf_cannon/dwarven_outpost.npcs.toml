@@ -22,6 +22,11 @@ str = 18
 def = 14
 attack_bonus = 4
 max_hit_stab = 30
+stab_defence = 3
+slash_defence = 4
+crush_defence = 4
+magic_defence = 2
+range_defence = 3
 
 [guard_dwarven_outpost_2]
 id = 4258
@@ -35,6 +40,11 @@ str = 18
 def = 14
 attack_bonus = 4
 max_hit_stab = 30
+stab_defence = 3
+slash_defence = 4
+crush_defence = 4
+magic_defence = 2
+range_defence = 3
 
 [goblin_dwarven_outpost]
 id = 4261
@@ -44,4 +54,9 @@ drop_table = "goblin"
 combat_def = "goblin"
 hitpoints = 50
 max_hit_crush = 10
+stab_defence = -15
+slash_defence = -15
+crush_defence = -15
+magic_defence = -15
+range_defence = -15
 

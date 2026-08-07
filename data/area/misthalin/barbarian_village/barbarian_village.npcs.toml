@@ -143,11 +143,19 @@ examine = "Acelin, a guard in the Barbarian Village."
 id = 3257
 clone = "barbarian_hagen"
 examine = "Adelino, a barbarian warrior with a big axe."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [barbarian_adolpho]
 id = 3258
 clone = "barbarian_wotan"
 examine = "Adolpho, a barbarian warrior with a warhammer."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [barbarian_aitan]
 id = 3259

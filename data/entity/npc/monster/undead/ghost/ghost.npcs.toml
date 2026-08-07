@@ -11,6 +11,11 @@ hunt_mode = "cowardly"
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 drop_table = "empty"
+stab_defence = 5
+slash_defence = 5
+crush_defence = 5
+magic_defence = -5
+range_defence = 5
 
 [ghost]
 id = 103
@@ -87,6 +92,11 @@ slayer_xp = 80.0
 categories = ["ghosts", "undead"]
 examine = "Eeek! A ghost!"
 drop_table = "empty"
+stab_defence = 55
+slash_defence = 55
+crush_defence = 5
+magic_defence = 55
+range_defence = 55
 
 [stronghold_ghost]
 id = 4387
@@ -100,6 +110,10 @@ clone = "stronghold_ghost_hair"
 hitpoints = 750
 slayer_xp = 75.0
 drop_table = "empty"
+stab_defence = 45
+slash_defence = 45
+magic_defence = -5
+range_defence = 45
 
 [stronghold_ghost_hood]
 id = 5370

@@ -25,6 +25,8 @@ respawn_delay = 2
 hunt_mode = "cowardly"
 examine = "It's an extremely small brown spider, probably very poisonous."
 drop_table = "spider"
+slash_defence = 1
+magic_defence = 1
 
 [pedestal_ape_atoll]
 id = 13176

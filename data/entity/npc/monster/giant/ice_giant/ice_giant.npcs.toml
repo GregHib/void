@@ -12,6 +12,8 @@ respawn_delay = 30
 categories = ["ice_giants"]
 slayer_xp = 70.0
 examine = "He's got icicles in his beard."
+slash_defence = 3
+crush_defence = 2
 
 [ice_giant_beard]
 id = 3072

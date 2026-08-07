@@ -12,6 +12,11 @@ slayer_xp = 125.0
 categories = ["dragons", "bronze_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of bronze."
+stab_defence = 50
+slash_defence = 70
+crush_defence = 70
+magic_defence = 30
+range_defence = 90
 
 [black_dragon]
 id = 54
@@ -28,6 +33,11 @@ slayer_xp = 199.5
 categories = ["dragons", "black_dragons"]
 respawn_delay = 30
 examine = "A fierce dragon with black scales!"
+stab_defence = 50
+slash_defence = 70
+crush_defence = 70
+magic_defence = 60
+range_defence = 50
 
 [black_dragon_dark]
 id = 4673
@@ -48,6 +58,11 @@ slayer_xp = 107.6
 categories = ["dragons", "blue_dragons"]
 respawn_delay = 30
 examine = "A mother dragon."
+stab_defence = 50
+slash_defence = 70
+crush_defence = 70
+magic_defence = 60
+range_defence = 50
 
 [blue_dragon_ocean]
 id = 4681
@@ -79,6 +94,11 @@ slayer_xp = 75.0
 categories = ["dragons", "green_dragons"]
 respawn_delay = 30
 examine = "Must be related to Elvarg."
+stab_defence = 20
+slash_defence = 40
+crush_defence = 40
+magic_defence = 30
+range_defence = 20
 
 [green_dragon_1]
 id = 4677
@@ -114,6 +134,11 @@ slayer_xp = 173.2
 categories = ["dragons", "iron_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
+stab_defence = 50
+slash_defence = 70
+crush_defence = 70
+magic_defence = 30
+range_defence = 90
 
 [steel_dragon]
 id = 1592
@@ -129,6 +154,11 @@ slayer_xp = 220.5
 categories = ["dragons", "steel_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of steel."
+stab_defence = 50
+slash_defence = 70
+crush_defence = 70
+magic_defence = 30
+range_defence = 90
 
 [red_dragon]
 id = 53
@@ -144,6 +174,11 @@ drop_table = "red_dragon"
 categories = ["dragons", "red_dragons"]
 respawn_delay = 30
 examine = "Its scales seem to be made of iron."
+stab_defence = 50
+slash_defence = 70
+crush_defence = 70
+magic_defence = 60
+range_defence = 50
 
 [red_dragon_orange]
 id = 4669
@@ -172,6 +207,11 @@ drop_table = "baby_dragon"
 categories = ["dragons", "dragon_dragons"]
 respawn_delay = 30
 examine = "Young but still dangerous."
+stab_defence = 30
+slash_defence = 50
+crush_defence = 50
+magic_defence = 40
+range_defence = 30
 
 [baby_red_dragon_1]
 id = 4667
@@ -196,6 +236,11 @@ drop_table = "baby_dragon"
 categories = ["dragons", "black_dragons"]
 respawn_delay = 30
 examine = "Young but still dangerous."
+stab_defence = 30
+slash_defence = 50
+crush_defence = 50
+magic_defence = 40
+range_defence = 30
 
 [baby_blue_dragon]
 id = 52
@@ -211,6 +256,11 @@ drop_table = "baby_dragon"
 categories = ["dragons", "blue_dragons"]
 respawn_delay = 30
 examine = "Young but still dangerous."
+stab_defence = 30
+slash_defence = 50
+crush_defence = 50
+magic_defence = 40
+range_defence = 30
 
 [baby_blue_dragon_1]
 id = 4665

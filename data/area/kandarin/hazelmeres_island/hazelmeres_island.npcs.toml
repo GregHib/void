@@ -13,6 +13,11 @@ respawn_delay = 30
 examine = "A barely visible deadly jungle spider."
 drop_table = "jungle_spider"
 combat_def = "jungle_spider_ape_atoll"
+stab_defence = 20
+slash_defence = 20
+crush_defence = 10
+magic_defence = 17
+range_defence = 20
 
 [larry_hazelmeres_island]
 id = 7576

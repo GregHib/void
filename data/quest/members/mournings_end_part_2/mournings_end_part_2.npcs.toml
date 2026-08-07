@@ -4,6 +4,11 @@ categories = ["shadow_creatures"]
 examine = "A shadow."
 drop_table = "empty"
 hitpoints = 730
+stab_defence = 30
+slash_defence = 30
+crush_defence = 30
+magic_defence = 30
+range_defence = 30
 
 [arianwyn]
 id = 8952

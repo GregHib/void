@@ -51,11 +51,17 @@ respawn_delay = 50
 hunt_mode = "aggressive"
 categories = ["crabs"]
 examine = "No one likes crabs... especially really big ones!"
+stab_defence = 225
+slash_defence = 200
+crush_defence = 175
+magic_defence = -10
+range_defence = 250
 
 [giant_rock_crab_light]
 clone = "giant_rock_crab"
 id = 2885
 drop_table = "giant_rock_crab"
+magic_defence = 10
 
 [boulder]
 clone = "giant_rock_crab"

@@ -48,6 +48,11 @@ slayer_xp = 25.0
 categories = ["harpie_bug_swarms"]
 respawn_delay = 25
 examine = "A swarm of bugs."
+stab_defence = 10
+slash_defence = 5
+crush_defence = 10
+magic_defence = 5
+range_defence = 10
 
 [frog_karamja]
 id = 3783
@@ -60,6 +65,11 @@ str = 47
 def = 92
 max_hit_crush = 61
 combat_def = "frog"
+stab_defence = 12
+slash_defence = 22
+crush_defence = 12
+magic_defence = 12
+range_defence = 32
 
 [jungle_forester]
 id = 401
@@ -105,6 +115,11 @@ respawn_delay = 30
 drop_table = "jungle_spider"
 examine = "A barely visible deadly jungle spider."
 combat_def = "jungle_spider_ape_atoll"
+stab_defence = 60
+slash_defence = 40
+crush_defence = 10
+magic_defence = 17
+range_defence = 30
 
 [jungle_spider_karamja_2]
 id = 6377
@@ -121,6 +136,11 @@ att = 105
 str = 105
 def = 1
 max_hit_stab = 119
+stab_defence = 42
+slash_defence = 42
+crush_defence = 32
+magic_defence = 12
+range_defence = 12
 
 [giant_ant_worker]
 id = 6379
@@ -132,6 +152,11 @@ def = 50
 combat_def = "giant_ant"
 examine = "I wonder how much he can lift."
 drop_table = "giant_ant_worker"
+stab_defence = 75
+slash_defence = 62
+crush_defence = 32
+magic_defence = 12
+range_defence = 62
 
 [giant_ant_soldier]
 id = 6380
@@ -145,6 +170,11 @@ combat_def = "giant_ant"
 max_hit_crush = 130
 examine = "Gi-ant-ant-ant-ant..."
 drop_table = "giant_ant_soldier"
+stab_defence = 75
+slash_defence = 62
+crush_defence = 32
+magic_defence = 12
+range_defence = 62
 
 [giant_wasp]
 id = 6381
@@ -155,6 +185,11 @@ att = 36
 str = 36
 def = 132
 max_hit_crush = 50
+stab_defence = 75
+slash_defence = 62
+crush_defence = 32
+magic_defence = 12
+range_defence = 52
 
 [pernicious_parrot]
 id = 6382
@@ -166,6 +201,11 @@ att = 105
 str = 105
 def = 1
 max_hit_stab = 119
+stab_defence = 42
+slash_defence = 42
+crush_defence = 32
+magic_defence = 12
+range_defence = 12
 
 [giant_wasp_2]
 id = 6383
@@ -176,6 +216,11 @@ str = 36
 def = 132
 max_hit_crush = 50
 combat_def = "giant_wasp"
+stab_defence = 82
+slash_defence = 62
+crush_defence = 32
+magic_defence = 12
+range_defence = 52
 
 [karamjan_jungle_eagle]
 id = 6387
@@ -255,6 +300,9 @@ respawn_delay = 50
 examine = "A vicious warrior."
 drop_table = "tribesman"
 max_hit_stab = 40
+stab_defence = 4
+slash_defence = 6
+crush_defence = 6
 
 [tinsay_karamja_2]
 id = 1165

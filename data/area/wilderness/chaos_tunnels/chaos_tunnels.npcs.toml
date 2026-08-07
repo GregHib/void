@@ -35,6 +35,8 @@ categories = ["turoth"]
 immune_cannon = true
 drop_table = "turoth"
 examine = "He's one big leg short!"
+slash_defence = 20
+crush_defence = 20
 
 [bloodworm]
 id = 2031
@@ -76,6 +78,11 @@ categories = ["spiders"]
 respawn_delay = 50
 examine = "Incey wincey."
 drop_table = "empty"
+stab_defence = 20
+slash_defence = 20
+crush_defence = 10
+magic_defence = 17
+range_defence = 20
 
 [giant_crypt_spider]
 id = 2035
@@ -91,6 +98,11 @@ categories = ["spiders"]
 respawn_delay = 50
 examine = "Not very incey wincey."
 drop_table = "empty"
+stab_defence = 20
+slash_defence = 20
+crush_defence = 10
+magic_defence = 17
+range_defence = 20
 
 [giant_crypt_rat_chaos_tunnels_2]
 id = 4920
@@ -113,6 +125,11 @@ respawn_delay = 30
 drop_table = "possessed_pickaxe"
 categories = ["phantoms"]
 examine = "How does it move of its own accord?"
+stab_defence = 15
+slash_defence = 10
+crush_defence = 5
+magic_defence = 5
+range_defence = 10
 
 [animated_spade]
 id = 5414
@@ -164,6 +181,9 @@ categories = ["zombies"]
 drop_table = "mummy"
 respawn_delay = 30
 examine = "A tightly-wrapped monster."
+stab_defence = 90
+slash_defence = 90
+crush_defence = 90
 
 [mummy_2]
 id = 1962
@@ -225,6 +245,9 @@ respawn_delay = 60
 categories = ["skeletons", "undead"]
 slayer_xp = 80.0
 examine = "Achingly thin."
+stab_defence = 50
+slash_defence = 40
+range_defence = 40
 
 [bork_surok]
 id = 7133

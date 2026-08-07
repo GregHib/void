@@ -119,6 +119,11 @@ categories = ["fever_spiders"]
 respawn_delay = 5
 drop_table = "fever_spider"
 examine = "A bunch of legs, eyes and teeth."
+stab_defence = 20
+slash_defence = 15
+crush_defence = 10
+magic_defence = 15
+range_defence = 15
 
 [brewer]
 id = 2851

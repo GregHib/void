@@ -13,6 +13,10 @@ hunt_mode = "cowardly"
 drop_table = "lizard"
 categories = ["lizards"]
 examine = "Run away, it's massive!"
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 5
 
 [small_lizard_green]
 id = 2807
@@ -29,6 +33,8 @@ immune_death = true
 drop_table = "small_lizard"
 categories = ["lizards"]
 examine = "A small cold-blooded creature, partial to warmth."
+slash_defence = 5
+crush_defence = 5
 
 [small_lizard_orange]
 id = 2808
@@ -50,6 +56,10 @@ drop_table = "desert_lizard"
 hunt_mode = "cowardly"
 categories = ["lizards"]
 examine = "A cold-blooded creature, partial to warmth."
+stab_defence = 5
+slash_defence = 15
+crush_defence = 15
+range_defence = 5
 
 [desert_lizard_yellow]
 id = 2805

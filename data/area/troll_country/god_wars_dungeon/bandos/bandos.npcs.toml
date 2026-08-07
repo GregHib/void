@@ -16,6 +16,11 @@ slayer_xp = 338.0
 categories = ["boss"]
 immune_poison = true
 examine = "A huge war chief."
+stab_defence = 90
+slash_defence = 90
+crush_defence = 90
+magic_defence = 65
+range_defence = 90
 
 [sergeant_strongstack]
 id = 6261
@@ -64,3 +69,4 @@ slayer_xp = 128.0
 categories = ["goblins"]
 drop_table = "bandos_bodyguard"
 examine = "A battle-honed goblin."
+attack_bonus = 20

@@ -14,6 +14,11 @@ drop_table = "giant_lobster"
 examine = "An extremely vicious lobster."
 max_hit_stab = 40
 combat_def = "giant_lobster"
+stab_defence = 30
+slash_defence = 30
+crush_defence = 15
+magic_defence = 99
+range_defence = 70
 
 [sea_slug_witchaven_dungeon]
 id = 4894

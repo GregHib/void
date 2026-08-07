@@ -17,6 +17,11 @@ respawn_delay = 30
 drop_table = "elf_warrior"
 examine = "He looks pretty handy with that bow."
 combat_def = "guard"
+stab_defence = 50
+slash_defence = 50
+crush_defence = 50
+magic_defence = 60
+range_defence = 70
 
 [elf_warrior_2]
 id = 1184
@@ -34,6 +39,11 @@ respawn_delay = 30
 drop_table = "elf_warrior"
 examine = "I don't want to get on the wrong side of him."
 combat_def = "guard"
+stab_defence = 50
+slash_defence = 70
+crush_defence = 70
+magic_defence = 60
+range_defence = 50
 
 [fishing_spot_iorwerth_camp]
 id = 1189

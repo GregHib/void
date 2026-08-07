@@ -18,6 +18,11 @@ att = 388
 str = 388
 def = 1
 max_hit_crush = 402
+stab_defence = 100
+slash_defence = 100
+crush_defence = 50
+magic_defence = 5
+range_defence = 400
 
 [ancient_ranger]
 id = 13457
@@ -40,6 +45,11 @@ def = 199
 mage = 199
 max_hit_magic = 146
 hitpoints = 1470
+stab_defence = 20
+slash_defence = 30
+crush_defence = 20
+magic_defence = 400
+range_defence = 5
 
 [ancient_mage_god_wars_dungeon]
 id = 13459

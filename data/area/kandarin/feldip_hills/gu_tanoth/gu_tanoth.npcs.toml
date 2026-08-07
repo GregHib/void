@@ -36,6 +36,9 @@ respawn_delay = 300
 drop_table = "city_guard"
 examine = "Tough-looking."
 max_hit_crush = 90
+stab_defence = 10
+slash_defence = 21
+crush_defence = 16
 
 [toban_gu_tanoth]
 id = 855
@@ -58,6 +61,9 @@ drop_table = "gorad"
 examine = "Big, dumb and ugly."
 max_hit_crush = 70
 combat_def = "gorad"
+stab_defence = 15
+slash_defence = 27
+crush_defence = 21
 
 [ogre_guard_gu_tanoth]
 id = 858
@@ -90,6 +96,9 @@ respawn_delay = 50
 drop_table = "city_guard"
 examine = "Tries to keep the peace."
 combat_def = "guard"
+stab_defence = 13
+slash_defence = 24
+crush_defence = 19
 
 [scared_skavid_gu_tanoth]
 id = 863
@@ -127,6 +136,9 @@ respawn_delay = 12
 drop_table = "city_guard"
 examine = "Big and ugly looking."
 combat_def = "guard"
+stab_defence = 13
+slash_defence = 24
+crush_defence = 19
 
 [ogre_trader_gu_tanoth]
 id = 873

@@ -29,6 +29,11 @@ att = 10
 str = 10
 def = 12
 max_hit_magic = 20
+stab_defence = 10
+slash_defence = 100
+crush_defence = 100
+magic_defence = 10
+range_defence = 10
 
 [icefiend_god_wars]
 id = 3406

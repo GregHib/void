@@ -11,6 +11,11 @@ respawn_delay = 35
 examine = "A huge mouse. It looks hungry..."
 drop_table = "mouse"
 combat_def = "rat"
+stab_defence = 30
+slash_defence = 55
+crush_defence = 65
+magic_defence = 50
+range_defence = 60
 
 [mouse_mouse_hole_dark]
 id = 5995

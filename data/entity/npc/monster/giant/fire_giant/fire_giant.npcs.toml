@@ -11,6 +11,8 @@ slayer_xp = 111.0
 drop_table = "fire_giant"
 categories = ["fire_giants"]
 examine = "His beard seems to have a life of its own."
+slash_defence = 3
+crush_defence = 2
 
 [fire_giant_sword]
 id = 1583

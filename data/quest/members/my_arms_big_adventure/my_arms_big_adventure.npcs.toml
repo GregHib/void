@@ -9,6 +9,7 @@ max_hit_melee = 80
 slayer_xp = 50.0
 categories = ["birds"]
 examine = "A mountain-dwelling bird. Cute, but vicious."
+magic_defence = 150
 
 [giant_roc_normal]
 id = 4972
@@ -26,3 +27,4 @@ slayer_xp = 250.0
 categories = ["birds"]
 drop_table = "bones"
 examine = "A very, very large mountain-dwelling bird."
+magic_defence = 150

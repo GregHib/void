@@ -26,6 +26,10 @@ attack_bonus = 9
 respawn_delay = 50
 drop_table = "mangled_bones"
 examine = "He looks about, blankly."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [lost_barbarian]
 id = 6102
@@ -54,6 +58,10 @@ categories = ["skeletons"]
 respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "An ex-barbarian, willing to make you ex too."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [skeleton_warlord]
 id = 6105
@@ -69,6 +77,10 @@ categories = ["skeletons"]
 respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "He's heartless."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [skeleton_thug]
 id = 6107
@@ -84,6 +96,10 @@ categories = ["skeletons"]
 respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "Floats like an anvil, hits like a hammer."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [skeleton_hero]
 id = 6103
@@ -99,6 +115,10 @@ slayer_xp = 124.0
 categories = ["skeletons"]
 drop_table = "barbarian_spirit"
 examine = "An opponent from the grave. He seems unimpressed by your bone rummaging."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [angry_barbarian]
 id = 749
@@ -112,6 +132,10 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [enraged_barbarian_spirit]
 id = 750
@@ -125,6 +149,10 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [berserk_barbarian_spirit]
 id = 751
@@ -138,6 +166,10 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "barbarian_spirit"
 examine = "He looks a tad upset."
+slash_defence = 3
+crush_defence = 2
+magic_defence = -3
+range_defence = 2
 
 [gargoyle_ancient_cavern]
 id = 9087
@@ -159,3 +191,8 @@ categories = ["mithril_dragons"]
 respawn_delay = 30
 drop_table = "mithril_dragon"
 examine = "Experimenting with mithril gone bad!"
+stab_defence = 50
+slash_defence = 100
+crush_defence = 70
+magic_defence = 30
+range_defence = 90

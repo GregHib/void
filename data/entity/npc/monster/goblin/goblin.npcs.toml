@@ -12,6 +12,11 @@ categories = ["goblins"]
 height = 30
 large_head = true
 examine = "An ugly, orange creature."
+stab_defence = -28
+slash_defence = -28
+crush_defence = -28
+magic_defence = -28
+range_defence = -28
 
 [grubfoot_brown]
 id = 4496
@@ -49,6 +54,11 @@ drop_table = "goblin"
 categories = ["goblins"]
 height = 30
 examine = "An ugly green creature."
+stab_defence = -15
+slash_defence = -15
+crush_defence = -15
+magic_defence = -15
+range_defence = -15
 
 [goblin_mohawk_grey]
 clone = "goblin_mohawk_blue"
@@ -143,6 +153,11 @@ clone = "goblin_shield_battleaxe_green"
 [goblin_light_grey_bald]
 clone = "goblin_mohawk_blue"
 id = 12353
+stab_defence = -51
+slash_defence = -51
+crush_defence = -51
+magic_defence = -51
+range_defence = -51
 
 [goblin_turquoise_topless_mohawk]
 clone = "goblin_mohawk_blue"
@@ -151,6 +166,11 @@ id = 12354
 [goblin_light_brown_bald]
 clone = "goblin_mohawk_blue"
 id = 12355
+stab_defence = -51
+slash_defence = -51
+crush_defence = -51
+magic_defence = -51
+range_defence = -51
 
 [goblin_turquoise_grey_ponytail]
 clone = "goblin_mohawk_blue"
@@ -159,6 +179,11 @@ id = 12356
 [goblin_light_grey_helmet]
 clone = "goblin_mohawk_blue"
 id = 12357
+stab_defence = -51
+slash_defence = -51
+crush_defence = -51
+magic_defence = -51
+range_defence = -51
 
 [goblin_light_grey_hat]
 clone = "goblin_mohawk_blue"
@@ -175,6 +200,11 @@ id = 12360
 [goblin_light_grey_bald_spear]
 clone = "goblin_orange_hat_spear"
 id = 12361
+stab_defence = -15
+slash_defence = -15
+crush_defence = -15
+magic_defence = -15
+range_defence = -15
 
 [stronghold_of_security_goblin_armed]
 id = 4407
@@ -205,6 +235,11 @@ height = 30
 drop_table = "stronghold_goblin"
 categories = ["goblins"]
 examine = "An ugly green creature."
+stab_defence = 4
+slash_defence = 6
+crush_defence = 8
+magic_defence = 4
+range_defence = 4
 
 [stronghold_of_security_goblin_green_hat]
 id = 4409
@@ -251,6 +286,11 @@ height = 30
 drop_table = "stronghold_goblin"
 categories = ["goblins"]
 examine = "These goblins have grown strong."
+stab_defence = 14
+slash_defence = 16
+crush_defence = 18
+magic_defence = 14
+range_defence = 14
 
 [stronghold_of_security_goblin_green_helmet]
 id = 4412

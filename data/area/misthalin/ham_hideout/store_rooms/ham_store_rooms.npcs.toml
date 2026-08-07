@@ -19,7 +19,6 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
-attack_bonus = 4
 max_hit_stab = 30
 
 [guard_ham_store_rooms_3]
@@ -31,7 +30,6 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
-attack_bonus = 4
 max_hit_stab = 30
 
 [guard_ham_store_rooms_4]
@@ -43,7 +41,6 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
-attack_bonus = 4
 max_hit_stab = 30
 
 [guard_ham_store_rooms_5]
@@ -55,6 +52,5 @@ hitpoints = 220
 att = 19
 str = 18
 def = 14
-attack_bonus = 4
 max_hit_stab = 30
 

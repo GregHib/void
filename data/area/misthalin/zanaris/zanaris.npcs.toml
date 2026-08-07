@@ -82,6 +82,11 @@ categories = ["mutated_zygomites"]
 respawn_delay = 30
 drop_table = "zygomite_level_74"
 examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
+stab_defence = 10
+slash_defence = 10
+crush_defence = 10
+magic_defence = 20
+range_defence = 20
 
 [fungi_large]
 id = 3345
@@ -98,6 +103,11 @@ categories = ["mutated_zygomites"]
 respawn_delay = 30
 drop_table = "zygomite_level_86"
 examine = "A fun guy. No wait, that's awful. Plus it doesn't even make sense."
+stab_defence = 10
+slash_defence = 10
+crush_defence = 10
+magic_defence = 20
+range_defence = 20
 
 [fairy_9]
 id = 4422
@@ -170,6 +180,11 @@ categories = ["otherworldly_beings"]
 respawn_delay = 20
 drop_table = "otherworldly_being"
 examine = "Is he invisible or just a set of floating clothing?"
+stab_defence = 15
+slash_defence = 10
+crush_defence = 20
+magic_defence = -5
+range_defence = 15
 
 [fairy_queen_3]
 id = 653
