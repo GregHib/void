@@ -20,7 +20,10 @@ anim = "wilson_attack"
 
 [palmer]
 attack_speed = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
 
 [palmer.melee]
 range = 1
 target_hit = { offense = "crush", max = 40 }
+anim = "human_attack"

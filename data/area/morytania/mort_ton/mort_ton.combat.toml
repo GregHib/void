@@ -26,6 +26,7 @@ target_hit = { offense = "crush", max = 40 }
 
 [loar_shadow]
 attack_speed = 4
+death_anim = "shadow_death"
 
 [loar_shadow.melee]
 range = 1

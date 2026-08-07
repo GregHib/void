@@ -58,7 +58,10 @@ anim = "dagannoth_fledgeling_attack"
 
 [dagannoth_guardian]
 attack_speed = 4
+defend_anim = "dagannoth_defend"
+death_anim = "dagannoth_death"
 
 [dagannoth_guardian.range]
 range = 6
 target_hit = { offense = "range", max = 114 }
+anim = "dagannoth_attack"

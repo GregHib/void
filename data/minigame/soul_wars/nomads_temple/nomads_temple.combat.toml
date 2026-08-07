@@ -1,6 +1,9 @@
 [spectral_worshipper]
 attack_speed = 4
+defend_anim = "ghost_defend"
+death_anim = "ghost_death"
 
 [spectral_worshipper.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "ghost_attack"

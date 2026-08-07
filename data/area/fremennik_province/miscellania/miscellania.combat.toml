@@ -14,10 +14,13 @@ target_hit = { offense = "crush", max = 10 }
 
 [einar]
 attack_speed = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
 
 [einar.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "human_attack"
 
 [alrik]
 attack_speed = 4
@@ -31,10 +34,13 @@ anim = "alrik_attack"
 
 [thorhild]
 attack_speed = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
 
 [thorhild.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "human_attack"
 
 [rannveig]
 attack_speed = 4

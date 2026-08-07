@@ -4,3 +4,12 @@ id = 360
 id = 361
 [gorad_attack]
 id = 359
+
+[ogre_chieftain_attack]
+id = 11470
+
+[ogre_chieftain_defend]
+id = 11473
+
+[ogre_chieftain_death]
+id = 11476

@@ -1,9 +1,12 @@
 [ogre_chieftain]
 attack_speed = 4
+defend_anim = "ogre_chieftain_defend"
+death_anim = "ogre_chieftain_death"
 
 [ogre_chieftain.melee]
 range = 1
 target_hit = { offense = "crush", max = 90 }
+anim = "ogre_chieftain_attack"
 
 [gorad]
 attack_speed = 4
