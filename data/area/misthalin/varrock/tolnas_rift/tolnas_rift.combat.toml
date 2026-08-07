@@ -1,28 +1,50 @@
 [angry_unicorn]
 attack_speed = 4
+death_anim = "angry_unicorn_death"
+defend_sound = "angry_unicorn_defend"
+death_sound = "angry_unicorn_death"
 
 [angry_unicorn.melee]
 range = 1
 target_hit = { offense = "stab", max = 50 }
+anim = "angry_unicorn_attack"
+sound = "angry_unicorn_attack"
 
 [fear_reaper]
 attack_speed = 4
+defend_anim = "fear_reaper_defend"
+death_anim = "fear_reaper_death"
+defend_sound = "fear_reaper_defend"
+death_sound = "fear_reaper_death"
 
 [fear_reaper.melee]
 range = 1
 target_hit = { offense = "slash", max = 60 }
+anim = "fear_reaper_attack"
+sound = "fear_reaper_attack"
 
 [confusion_beast]
 attack_speed = 4
+defend_anim = "confusion_beast_defend"
+death_anim = "confusion_beast_death"
+defend_sound = "confusion_beast_defend"
+death_sound = "confusion_beast_death"
 
 [confusion_beast.melee]
 range = 1
 target_hit = { offense = "slash", max = 60 }
 impact_poison = 2
+anim = "confusion_beast_attack"
+sound = "confusion_beast_attack"
 
 [hopeless_creature]
 attack_speed = 4
+death_anim = "hopeless_creature_death"
+defend_sound = "hopeless_creature_defend"
+death_sound = "hopeless_creature_death"
 
 [hopeless_creature.melee]
 range = 1
 target_hit = { offense = "slash", max = 70 }
+anim = "hopeless_creature_attack"
+sound = "hopeless_creature_attack"

@@ -21,10 +21,13 @@ target_hit = { offense = "crush", max = 10 }
 
 [alrik]
 attack_speed = 4
+defend_anim = "alrik_defend"
+death_anim = "alrik_death"
 
 [alrik.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "alrik_attack"
 
 [thorhild]
 attack_speed = 4
@@ -35,43 +38,65 @@ target_hit = { offense = "crush", max = 10 }
 
 [rannveig]
 attack_speed = 4
+defend_anim = "rannveig_defend"
+death_anim = "rannveig_death"
 
 [rannveig.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "rannveig_attack"
 
 [valgerd]
 attack_speed = 4
+defend_anim = "valgerd_defend"
+death_anim = "valgerd_death"
 
 [valgerd.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "valgerd_attack"
 
 [broddi]
 attack_speed = 4
+defend_anim = "broddi_defend"
+death_anim = "broddi_death"
 
 [broddi.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "broddi_attack"
 
 [ragnvald]
 attack_speed = 4
+defend_anim = "ragnvald_defend"
+death_anim = "ragnvald_death"
 
 [ragnvald.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "ragnvald_attack"
 
 [sea_snake_young]
 attack_speed = 4
+death_anim = "sea_snake_young_death"
+defend_sound = "sea_snake_young_defend"
+death_sound = "sea_snake_young_death"
 
 [sea_snake_young.melee]
 range = 1
 target_hit = { offense = "crush", max = 80 }
+anim = "sea_snake_young_attack"
+sound = "sea_snake_young_attack"
 
 [sea_snake_hatchling]
 attack_speed = 4
+death_anim = "sea_snake_hatchling_death"
+defend_sound = "sea_snake_hatchling_defend"
+death_sound = "sea_snake_hatchling_death"
 
 [sea_snake_hatchling.melee]
 range = 1
 target_hit = { offense = "crush", max = 60 }
 impact_poison = 50
+anim = "sea_snake_hatchling_attack"
+sound = "sea_snake_hatchling_attack"

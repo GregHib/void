@@ -1,6 +1,12 @@
 [vulture]
 attack_speed = 4
+defend_anim = "vulture_defend"
+death_anim = "vulture_death"
+defend_sound = "vulture_defend"
+death_sound = "vulture_death"
 
 [vulture.melee]
 range = 1
 target_hit = { offense = "crush", max = 50 }
+anim = "vulture_attack"
+sound = "vulture_attack"

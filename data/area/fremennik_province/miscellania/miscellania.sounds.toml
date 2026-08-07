@@ -6,3 +6,21 @@ id = 701
 
 [rabbit_defend]
 id = 702
+
+[sea_snake_hatchling_defend]
+id = 3608
+
+[sea_snake_hatchling_death]
+id = 3610
+
+[sea_snake_hatchling_attack]
+id = 3609
+
+[sea_snake_young_defend]
+id = 3608
+
+[sea_snake_young_death]
+id = 3610
+
+[sea_snake_young_attack]
+id = 3609

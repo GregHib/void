@@ -1,0 +1,13 @@
+[mutated_bloodveld_death]
+id = 9131
+[mutated_bloodveld_attack]
+id = 9102
+
+[skeletal_hand_defend]
+id = 9127
+
+[skeletal_hand_death]
+id = 9126
+
+[skeletal_hand_attack]
+id = 9125

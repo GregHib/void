@@ -12,3 +12,8 @@ id = 1946
 
 [scarab_attack]
 id = 1948
+[plague_frog_death]
+id = 1022
+
+[plague_frog_attack]
+id = 1021

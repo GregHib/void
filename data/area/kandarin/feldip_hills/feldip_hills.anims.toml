@@ -15,3 +15,18 @@ id = 12795
 
 [strykewyrm_bury]
 id = 12796
+
+[carnivorous_chinchompa_death]
+id = 5183
+
+[ogress_death]
+id = 8640
+
+[ogress_attack]
+id = 8636
+
+[ogress_champion_death]
+id = 8640
+
+[ogress_champion_attack]
+id = 8636

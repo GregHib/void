@@ -1,6 +1,8 @@
 [sorebones]
 attack_speed = 4
+death_anim = "sorebones_death"
 
 [sorebones.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+anim = "sorebones_attack"

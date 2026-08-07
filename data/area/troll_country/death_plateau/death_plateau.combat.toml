@@ -1,20 +1,29 @@
 [stick]
 attack_speed = 6
+defend_anim = "stick_defend"
+death_anim = "stick_death"
 
 [stick.melee]
 range = 1
 target_hit = { offense = "crush", max = 270 }
+anim = "stick_attack"
 
 [pee_hat]
 attack_speed = 6
+defend_anim = "pee_hat_defend"
+death_anim = "pee_hat_death"
 
 [pee_hat.melee]
 range = 1
 target_hit = { offense = "crush", max = 230 }
+anim = "pee_hat_attack"
 
 [kraka]
 attack_speed = 6
+defend_anim = "kraka_defend"
+death_anim = "kraka_death"
 
 [kraka.melee]
 range = 1
 target_hit = { offense = "crush", max = 230 }
+anim = "kraka_attack"

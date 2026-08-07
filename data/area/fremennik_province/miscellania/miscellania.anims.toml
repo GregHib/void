@@ -6,3 +6,60 @@ id = 6091
 
 [rabbit_death]
 id = 6092
+
+[alrik_defend]
+id = 425
+
+[alrik_death]
+id = 836
+
+[alrik_attack]
+id = 422
+
+[broddi_defend]
+id = 425
+
+[broddi_death]
+id = 836
+
+[broddi_attack]
+id = 422
+
+[ragnvald_defend]
+id = 425
+
+[ragnvald_death]
+id = 836
+
+[ragnvald_attack]
+id = 810
+
+[rannveig_defend]
+id = 425
+
+[rannveig_death]
+id = 836
+
+[rannveig_attack]
+id = 422
+
+[sea_snake_hatchling_death]
+id = 3540
+
+[sea_snake_hatchling_attack]
+id = 3538
+
+[sea_snake_young_death]
+id = 3540
+
+[sea_snake_young_attack]
+id = 3538
+
+[valgerd_defend]
+id = 425
+
+[valgerd_death]
+id = 836
+
+[valgerd_attack]
+id = 422

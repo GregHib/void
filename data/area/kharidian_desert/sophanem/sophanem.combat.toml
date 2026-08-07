@@ -12,7 +12,9 @@ target_hit = { offense = "crush", max = 30 }
 
 [plague_frog]
 attack_speed = 4
+death_anim = "plague_frog_death"
 
 [plague_frog.melee]
 range = 1
 target_hit = { offense = "crush", max = 20 }
+anim = "plague_frog_attack"

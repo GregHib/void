@@ -1,0 +1,15 @@
+[gnoeals_defend]
+id = 8957
+[gnoeals_death]
+id = 8956
+[gnoeals_attack]
+id = 8955
+
+[yeti_defend]
+id = 8966
+
+[yeti_death]
+id = 8967
+
+[yeti_attack]
+id = 8965

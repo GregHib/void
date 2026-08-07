@@ -65,7 +65,9 @@ miss_sound = "spell_splash"
 
 [fire_monster]
 attack_speed = 4
+death_anim = "fire_monster_death"
 
 [fire_monster.magic]
 range = 6
 target_hit = { offense = "magic", max = 8 }
+anim = "fire_monster_attack"

@@ -21,3 +21,32 @@ id = 7239
 
 [giant_ant_death]
 id = 7238
+[frog_death]
+id = 7256
+
+[frog_attack]
+id = 7260
+
+[giant_wasp_death]
+id = 7244
+
+[giant_wasp_attack]
+id = 7242
+
+[pernicious_parrot_death]
+id = 6777
+
+[pernicious_parrot_attack]
+id = 6775
+
+[tenacious_toucan_death]
+id = 6779
+
+[tenacious_toucan_attack]
+id = 6775
+
+[tribesman_death]
+id = 836
+
+[tribesman_attack]
+id = 428

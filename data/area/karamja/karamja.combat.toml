@@ -39,36 +39,46 @@ target_hit = { offense = "crush", max = 60 }
 
 [tribesman]
 attack_speed = 4
+death_anim = "tribesman_death"
 
 [tribesman.melee]
 range = 1
 target_hit = { offense = "stab", max = 40 }
+anim = "tribesman_attack"
 
 [frog]
 attack_speed = 4
+death_anim = "frog_death"
 
 [frog.melee]
 range = 1
 target_hit = { offense = "crush", max = 61 }
 impact_poison = 68
+anim = "frog_attack"
 
 [tenacious_toucan]
 attack_speed = 6
+death_anim = "tenacious_toucan_death"
 
 [tenacious_toucan.melee]
 range = 1
 target_hit = { offense = "stab", max = 119 }
+anim = "tenacious_toucan_attack"
 
 [giant_wasp]
 attack_speed = 6
+death_anim = "giant_wasp_death"
 
 [giant_wasp.melee]
 range = 1
 target_hit = { offense = "crush", max = 50 }
+anim = "giant_wasp_attack"
 
 [pernicious_parrot]
 attack_speed = 6
+death_anim = "pernicious_parrot_death"
 
 [pernicious_parrot.melee]
 range = 1
 target_hit = { offense = "stab", max = 119 }
+anim = "pernicious_parrot_attack"

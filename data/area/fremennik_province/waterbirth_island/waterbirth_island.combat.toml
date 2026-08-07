@@ -49,10 +49,12 @@ impact_poison = 20
 
 [dagannoth_fledgeling]
 attack_speed = 4
+death_anim = "dagannoth_fledgeling_death"
 
 [dagannoth_fledgeling.melee]
 range = 1
 target_hit = { offense = "stab", max = 60 }
+anim = "dagannoth_fledgeling_attack"
 
 [dagannoth_guardian]
 attack_speed = 4

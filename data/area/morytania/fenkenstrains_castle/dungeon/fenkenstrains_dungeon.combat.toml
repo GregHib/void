@@ -1,6 +1,9 @@
 [experiment]
 attack_speed = 4
+defend_anim = "experiment_defend"
+death_anim = "experiment_death"
 
 [experiment.melee]
 range = 1
 target_hit = { offense = "stab", max = 60 }
+anim = "experiment_attack"

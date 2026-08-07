@@ -1,6 +1,8 @@
 [ice_queen]
 attack_speed = 4
+death_anim = "ice_queen_death"
 
 [ice_queen.melee]
 range = 1
 target_hit = { offense = "crush", max = 100 }
+anim = "ice_queen_attack"

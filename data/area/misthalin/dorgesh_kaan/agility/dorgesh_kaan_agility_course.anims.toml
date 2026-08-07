@@ -1,0 +1,13 @@
+[big_frog_death]
+id = 1795
+[big_frog_attack]
+id = 1793
+
+[giant_frog_defend]
+id = 1794
+
+[giant_frog_death]
+id = 1795
+
+[giant_frog_attack]
+id = 1793

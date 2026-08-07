@@ -35,6 +35,7 @@ target_hit = { offense = "magic", max = 0 }
 range = 8
 [carnivorous_chinchompa]
 attack_speed = 4
+death_anim = "carnivorous_chinchompa_death"
 
 [carnivorous_chinchompa.melee]
 range = 1
@@ -42,14 +43,18 @@ target_hit = { offense = "crush", max = 10 }
 
 [ogress_champion]
 attack_speed = 4
+death_anim = "ogress_champion_death"
 
 [ogress_champion.melee]
 range = 1
 target_hit = { offense = "crush", max = 100 }
+anim = "ogress_champion_attack"
 
 [ogress]
 attack_speed = 6
+death_anim = "ogress_death"
 
 [ogress.melee]
 range = 1
 target_hit = { offense = "crush", max = 80 }
+anim = "ogress_attack"

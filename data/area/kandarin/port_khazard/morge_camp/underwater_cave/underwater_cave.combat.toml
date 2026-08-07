@@ -1,6 +1,8 @@
 [crab]
 attack_speed = 4
+death_anim = "crab_death"
 
 [crab.melee]
 range = 1
 target_hit = { offense = "crush", max = 30 }
+anim = "crab_attack"

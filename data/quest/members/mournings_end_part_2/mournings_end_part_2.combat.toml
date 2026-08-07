@@ -1,7 +1,9 @@
 
 [shadow_mournings_end_part_2]
 attack_speed = 4
+death_anim = "shadow_mournings_end_part_2_death"
 
 [shadow_mournings_end_part_2.melee]
 range = 1
 target_hit = { offense = "crush", max = 80 }
+anim = "shadow_mournings_end_part_2_attack"

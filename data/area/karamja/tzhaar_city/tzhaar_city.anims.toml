@@ -45,3 +45,8 @@ id = 9345
 
 [tzhaar_stick_out_arm]
 id = 9349
+[fire_monster_death]
+id = 9344
+
+[fire_monster_attack]
+id = 9341

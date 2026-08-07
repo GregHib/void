@@ -29,7 +29,9 @@ clone = "goat_kharidian_desert.melee"
 
 [desert_wolf]
 attack_speed = 4
+death_anim = "desert_wolf_death"
 
 [desert_wolf.melee]
 range = 1
 target_hit = { offense = "slash", max = 30 }
+anim = "desert_wolf_attack"

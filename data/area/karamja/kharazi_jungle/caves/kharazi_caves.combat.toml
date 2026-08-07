@@ -1,9 +1,11 @@
 [death_wing]
 attack_speed = 4
+death_anim = "death_wing_death"
 
 [death_wing.melee]
 range = 1
 target_hit = { offense = "stab", max = 80 }
+anim = "death_wing_attack"
 
 [ungadulu]
 attack_speed = 4
@@ -28,7 +30,10 @@ target_hit = { offense = "slash", max = 120 }
 
 [ranalph_devere]
 attack_speed = 4
+defend_anim = "ranalph_devere_defend"
+death_anim = "ranalph_devere_death"
 
 [ranalph_devere.melee]
 range = 1
 target_hit = { offense = "slash", max = 130 }
+anim = "ranalph_devere_attack"

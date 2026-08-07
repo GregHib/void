@@ -10,7 +10,10 @@ target_hit = { offense = "slash", max = 60 }
 
 [archer]
 attack_speed = 4
+defend_anim = "archer_defend"
+death_anim = "archer_death"
 
 [archer.range]
 range = 7
 target_hit = { offense = "range", max = 40 }
+anim = "archer_attack"

@@ -1,13 +1,17 @@
 [oomlie_bird]
 attack_speed = 4
+death_anim = "oomlie_bird_death"
 
 [oomlie_bird.melee]
 range = 1
 target_hit = { offense = "stab", max = 50 }
+anim = "oomlie_bird_attack"
 
 [jungle_wolf]
 attack_speed = 4
+death_anim = "jungle_wolf_death"
 
 [jungle_wolf.melee]
 range = 1
 target_hit = { offense = "stab", max = 60 }
+anim = "jungle_wolf_attack"
