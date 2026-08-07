@@ -1,6 +1,9 @@
 [grip]
 attack_speed = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
 
 [grip.melee]
 range = 1
 target_hit = { offense = "slash", max = 30 }
+anim = "human_attack"

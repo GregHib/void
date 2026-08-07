@@ -76,10 +76,13 @@ sound = "lensa_attack"
 
 [jennella]
 attack_speed = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
 
 [jennella.melee]
 range = 1
 target_hit = { offense = "crush", max = 60 }
+anim = "human_attack"
 
 [unicorn_foal]
 attack_speed = 4
