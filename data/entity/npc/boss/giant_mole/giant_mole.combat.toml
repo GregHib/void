@@ -1,6 +1,12 @@
 [giant_mole]
 attack_speed = 4
+defend_anim = "giant_mole_defend"
+death_anim = "giant_mole_death"
+defend_sound = "giant_mole_defend"
+death_sound = "giant_mole_death"
 
 [giant_mole.melee]
 range = 1
 target_hit = { offense = "crush", max = 210 }
+anim = "giant_mole_attack"
+sound = "giant_mole_attack"

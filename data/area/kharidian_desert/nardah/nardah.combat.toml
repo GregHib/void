@@ -1,20 +1,29 @@
 [poltenip]
 attack_speed = 4
+defend_anim = "poltenip_defend"
+death_anim = "poltenip_death"
 
 [poltenip.melee]
 range = 1
 target_hit = { offense = "stab", max = 30 }
+anim = "poltenip_attack"
 
 [radat]
 attack_speed = 4
+defend_anim = "radat_defend"
+death_anim = "radat_death"
 
 [radat.melee]
 range = 1
 target_hit = { offense = "stab", max = 30 }
+anim = "radat_attack"
 
 [billy_goat]
 attack_speed = 4
+defend_anim = "billy_goat_defend"
+death_anim = "billy_goat_death"
 
 [billy_goat.melee]
 range = 1
 target_hit = { offense = "crush", max = 60 }
+anim = "billy_goat_attack"

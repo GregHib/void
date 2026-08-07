@@ -1,0 +1,10 @@
+[khazard_commander_death]
+id = 836
+[khazard_commander_attack]
+id = 428
+
+[tortoise_death]
+id = 3962
+
+[tortoise_attack]
+id = 3960

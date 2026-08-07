@@ -1,0 +1,22 @@
+[scabaras_lancer_death]
+id = 7614
+[scabaras_lancer_attack]
+id = 7612
+
+[scabaras_mage_death]
+id = 7616
+
+[scabaras_mage_attack]
+id = 7615
+
+[scabaras_ranger_death]
+id = 7609
+
+[scabaras_ranger_attack]
+id = 7607
+
+[scarab_larva_death]
+id = 7656
+
+[scarab_larva_attack]
+id = 7657

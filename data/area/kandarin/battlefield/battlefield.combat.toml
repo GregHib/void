@@ -1,13 +1,20 @@
 [khazard_commander]
 attack_speed = 4
+death_anim = "khazard_commander_death"
 
 [khazard_commander.melee]
 range = 1
 target_hit = { offense = "stab", max = 50 }
+anim = "khazard_commander_attack"
 
 [tortoise]
 attack_speed = 4
+death_anim = "tortoise_death"
+defend_sound = "tortoise_defend"
+death_sound = "tortoise_death"
 
 [tortoise.melee]
 range = 1
 target_hit = { offense = "crush", max = 110 }
+anim = "tortoise_attack"
+sound = "tortoise_attack"

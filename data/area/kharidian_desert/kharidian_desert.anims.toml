@@ -18,3 +18,9 @@ id = 4936
 
 [knife_chop]
 id = 911
+
+[desert_wolf_death]
+id = 6558
+
+[desert_wolf_attack]
+id = 6559

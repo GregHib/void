@@ -39,3 +39,9 @@ id = 2868
 
 [spinolyp_defend]
 id = 2869
+
+[dagannoth_fledgeling_death]
+id = 1581
+
+[dagannoth_fledgeling_attack]
+id = 1579

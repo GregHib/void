@@ -1,6 +1,8 @@
 [warped_tortoise]
 attack_speed = 6
+death_anim = "warped_tortoise_death"
 
 [warped_tortoise.melee]
 range = 1
 target_hit = { offense = "crush", max = 120 }
+anim = "warped_tortoise_attack"

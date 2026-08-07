@@ -7,7 +7,13 @@ target_hit = { offense = "crush", max = 90 }
 
 [gorad]
 attack_speed = 4
+defend_anim = "gorad_defend"
+death_anim = "gorad_death"
+defend_sound = "gorad_defend"
+death_sound = "gorad_death"
 
 [gorad.melee]
 range = 1
 target_hit = { offense = "crush", max = 70 }
+anim = "gorad_attack"
+sound = "gorad_attack"

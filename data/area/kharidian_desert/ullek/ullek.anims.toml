@@ -1,0 +1,16 @@
+[locust_lancer_death]
+id = 7581
+[locust_lancer_attack]
+id = 7584
+
+[locust_ranger_death]
+id = 7581
+
+[locust_ranger_attack]
+id = 5451
+
+[scabaras_locust_death]
+id = 7581
+
+[scabaras_locust_attack]
+id = 7586

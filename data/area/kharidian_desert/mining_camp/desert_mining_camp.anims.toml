@@ -1,0 +1,10 @@
+[mercenary_captain_death]
+id = 836
+[mercenary_captain_attack]
+id = 390
+
+[rowdy_slave_death]
+id = 836
+
+[rowdy_slave_attack]
+id = 422

@@ -6,3 +6,21 @@ id = 6776
 
 [bird_death]
 id = 6777
+
+[monkey_archer_defend]
+id = 1393
+
+[monkey_archer_death]
+id = 1384
+
+[monkey_archer_attack]
+id = 1394
+
+[padulah_defend]
+id = 1393
+
+[padulah_death]
+id = 1384
+
+[padulah_attack]
+id = 1383

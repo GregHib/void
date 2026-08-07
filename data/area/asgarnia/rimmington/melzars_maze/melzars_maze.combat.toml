@@ -1,6 +1,9 @@
 [melzar_the_mad]
 attack_speed = 4
+defend_anim = "melzar_the_mad_defend"
+death_anim = "melzar_the_mad_death"
 
 [melzar_the_mad.melee]
 range = 1
 target_hit = { offense = "crush", max = 50 }
+anim = "melzar_the_mad_attack"

@@ -1,6 +1,9 @@
 [elvarg]
 attack_speed = 4
+defend_anim = "elvarg_defend"
+death_anim = "elvarg_death"
 
 [elvarg.melee]
 range = 1
 target_hit = { offense = "slash", max = 80 }
+anim = "elvarg_attack"

@@ -11,7 +11,10 @@ target_hit = { offense = "crush", max = 70 }
 
 [hero]
 attack_speed = 5
+defend_anim = "hero_defend"
+death_anim = "hero_death"
 
 [hero.melee]
 range = 1
 target_hit = { offense = "slash", max = 90 }
+anim = "hero_attack"
