@@ -11,3 +11,10 @@ attack_speed = 4
 [clivet.melee]
 range = 1
 target_hit = { offense = "crush", max = 20 }
+
+[hazeel_cultist]
+attack_speed = 4
+
+[hazeel_cultist.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }

@@ -1,0 +1,27 @@
+[scarab_larva]
+attack_speed = 4
+
+[scarab_larva.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[scabaras_ranger]
+attack_speed = 4
+
+[scabaras_ranger.range]
+range = 6
+target_hit = { offense = "range", max = 130 }
+
+[scabaras_lancer]
+attack_speed = 4
+
+[scabaras_lancer.melee]
+range = 1
+target_hit = { offense = "crush", max = 130 }
+
+[scabaras_mage]
+attack_speed = 4
+
+[scabaras_mage.magic]
+range = 6
+target_hit = { offense = "magic", max = 104 }

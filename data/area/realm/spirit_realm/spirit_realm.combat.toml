@@ -1,0 +1,6 @@
+[tormented_wraith]
+attack_speed = 6
+
+[tormented_wraith.melee]
+range = 1
+target_hit = { offense = "crush", max = 220 }

@@ -49,11 +49,23 @@ id = 9092
 categories = ["dagannoth"]
 examine = "The Dagannoth Mother's guardians."
 drop_table = "dagannoth_guardian"
+hitpoints = 2100
+att = 99
+str = 99
+def = 99
+range = 99
+max_hit_range = 114
+combat_def = "dagannoth_guardian"
 
 [bardur]
 id = 2879
 examine = "A Fremennik warrior, hard at work."
 drop_table = "bones"
+hitpoints = 940
+att = 80
+str = 80
+def = 80
+combat_def = "man"
 
 [dagannoth_fledgeling]
 id = 2880

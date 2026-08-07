@@ -52,3 +52,10 @@ attack_speed = 4
 [dagannoth_fledgeling.melee]
 range = 1
 target_hit = { offense = "stab", max = 60 }
+
+[dagannoth_guardian]
+attack_speed = 4
+
+[dagannoth_guardian.range]
+range = 6
+target_hit = { offense = "range", max = 114 }

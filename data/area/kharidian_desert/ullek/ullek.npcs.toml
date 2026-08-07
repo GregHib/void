@@ -4,6 +4,11 @@ categories = ["zombies"]
 examine = "Cut-down and dried."
 drop_table = "dried_zombie"
 combat_def = "zombie"
+hitpoints = 850
+att = 75
+str = 75
+def = 75
+max_hit_crush = 110
 
 [dried_zombie_ullek_2]
 id = 6762
@@ -11,6 +16,11 @@ categories = ["zombies"]
 examine = "Needs moisturising."
 drop_table = "dried_zombie"
 combat_def = "zombie"
+hitpoints = 850
+att = 81
+str = 81
+def = 81
+max_hit_crush = 110
 
 [dried_zombie_ullek_3]
 id = 6763
@@ -18,6 +28,11 @@ categories = ["zombies"]
 examine = "I bet it's parched."
 drop_table = "dried_zombie"
 combat_def = "zombie"
+hitpoints = 850
+att = 99
+str = 99
+def = 99
+max_hit_crush = 110
 
 [skeleton_ullek]
 id = 6764
@@ -75,18 +90,36 @@ max_hit_crush = 30
 id = 6776
 examine = "A giant, mountable locust."
 drop_table = "locust"
+att = 99
+str = 99
+def = 99
+combat_def = "scabaras_locust"
+hitpoints = 1060
 
 [locust_lancer_ullek]
 id = 6777
 categories = ["scabarites"]
 examine = "Bouncy, but not fun."
 drop_table = "locust_lancer"
+hitpoints = 910
+att = 96
+str = 96
+def = 96
+max_hit_crush = 120
+combat_def = "locust_lancer"
 
 [locust_ranger_ullek]
 id = 6778
 categories = ["scabarites"]
 examine = "He'll have someone's eye out with that."
 drop_table = "locust_ranger"
+hitpoints = 1000
+att = 81
+str = 81
+def = 81
+range = 81
+max_hit_range = 210
+combat_def = "locust_ranger"
 
 [crocodile_ullek]
 id = 6779

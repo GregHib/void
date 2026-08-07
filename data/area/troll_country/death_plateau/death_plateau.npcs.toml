@@ -65,6 +65,11 @@ id = 1095
 categories = ["trolls"]
 drop_table = "rock_troll"
 examine = "The biggest and baddest troll."
+hitpoints = 1050
+att = 94
+str = 94
+def = 94
+combat_def = "ice_troll"
 
 [billy]
 id = 1093

@@ -1,0 +1,13 @@
+[avatar_of_destruction]
+attack_speed = 4
+
+[avatar_of_destruction.melee]
+range = 1
+target_hit = { offense = "crush", max = 500 }
+
+[avatar_of_creation]
+attack_speed = 4
+
+[avatar_of_creation.melee]
+range = 1
+target_hit = { offense = "crush", max = 460 }

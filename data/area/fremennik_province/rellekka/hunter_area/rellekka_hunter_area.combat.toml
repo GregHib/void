@@ -4,3 +4,10 @@ attack_speed = 4
 [yeti.melee]
 range = 1
 target_hit = { offense = "crush", max = 70 }
+
+[gnoeals]
+attack_speed = 6
+
+[gnoeals.magic]
+range = 6
+target_hit = { offense = "magic", max = 120 }

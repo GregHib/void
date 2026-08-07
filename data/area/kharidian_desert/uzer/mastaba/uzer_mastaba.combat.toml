@@ -1,0 +1,6 @@
+[small_scarab]
+attack_speed = 4
+
+[small_scarab.melee]
+range = 1
+target_hit = { offense = "crush", max = 15 }

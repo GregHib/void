@@ -10,6 +10,7 @@ categories = ["birds"]
 respawn_delay = 30
 examine = "An inhabitant of icy regions."
 drop_table = "bones"
+combat_def = "chicken"
 
 [gull_miscellania]
 id = 1325
@@ -136,6 +137,10 @@ max_hit_melee = 10
 respawn_delay = 50
 examine = "A subject of Miscellania."
 drop_table = "bones"
+att = 1
+str = 1
+def = 1
+combat_def = "man"
 
 [einar]
 id = 1380
@@ -173,6 +178,10 @@ respawn_delay = 50
 shop = "miscellanian_clothes_shop"
 examine = "A subject of Miscellania."
 drop_table = "bones"
+att = 1
+str = 1
+def = 1
+combat_def = "man"
 
 [sailor_miscellania]
 id = 1385
@@ -194,6 +203,11 @@ max_hit_crush = 10
 id = 1387
 examine = "A subject of Miscellania."
 drop_table = "bones"
+hitpoints = 70
+att = 1
+str = 1
+def = 1
+combat_def = "man"
 
 [valgerd]
 id = 1388

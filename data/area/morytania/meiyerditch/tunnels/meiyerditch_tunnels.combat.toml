@@ -1,0 +1,13 @@
+[skeletal_hand]
+attack_speed = 6
+
+[skeletal_hand.melee]
+range = 1
+target_hit = { offense = "crush", max = 130 }
+
+[mutated_bloodveld]
+attack_speed = 6
+
+[mutated_bloodveld.magic]
+range = 6
+target_hit = { offense = "magic", max = 90 }

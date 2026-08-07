@@ -5,56 +5,111 @@ id = 5606
 id = 5630
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_2]
 id = 5632
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_3]
 id = 5636
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_4]
 id = 5649
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_5]
 id = 5651
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_6]
 id = 5653
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_7]
 id = 5655
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_8]
 id = 5657
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_9]
 id = 5660
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_10]
 id = 5662
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [zombie_pirate_windmill_cellar_11]
 id = 5664
 drop_table = "zombie_pirate"
 combat_def = "zombie_pirate"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+max_hit_crush = 60
 
 [monk_windmill_cellar]
 id = 5673

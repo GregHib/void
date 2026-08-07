@@ -289,11 +289,23 @@ max_hit_crush = 70
 id = 7772
 examine = "A monster made of magma."
 drop_table = "empty"
+hitpoints = 470
+att = 40
+str = 40
+def = 40
+combat_def = "fire_elemental"
 
 [fire_monster_tzhaar_caves]
 id = 7773
 examine = "A monster like many others, but on fire."
 drop_table = "fire_monster"
+hitpoints = 260
+att = 45
+str = 45
+def = 45
+mage = 45
+max_hit_magic = 8
+combat_def = "fire_monster"
 
 [tzhaar_mej_roh]
 id = 2623

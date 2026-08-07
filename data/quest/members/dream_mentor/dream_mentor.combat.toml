@@ -1,0 +1,6 @@
+[the_inadequacy]
+attack_speed = 4
+
+[the_inadequacy.range]
+range = 6
+target_hit = { offense = "range", max = 200 }

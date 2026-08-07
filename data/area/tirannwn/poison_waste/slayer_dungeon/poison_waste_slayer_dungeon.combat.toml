@@ -1,0 +1,6 @@
+[warped_tortoise]
+attack_speed = 6
+
+[warped_tortoise.melee]
+range = 1
+target_hit = { offense = "crush", max = 120 }

@@ -60,6 +60,7 @@ attack_bonus = 4
 respawn_delay = 50
 drop_table = "bones"
 examine = "The mayor's guard."
+combat_def = "man"
 
 [poltenip]
 id = 3042

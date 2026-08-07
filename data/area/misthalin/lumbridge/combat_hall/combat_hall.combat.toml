@@ -1,0 +1,13 @@
+[magic_dummy]
+attack_speed = 4
+
+[magic_dummy.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[melee_dummy]
+attack_speed = 4
+
+[melee_dummy.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }

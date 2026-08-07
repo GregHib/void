@@ -2,16 +2,33 @@
 id = 11352
 examine = "A cursed ivory version of General Shredflesh."
 drop_table = "ivory_shredflesh_cursed"
+hitpoints = 1000
+att = 92
+str = 92
+def = 92
+max_hit_crush = 112
 
 [ivory_gromblod_cursed]
 id = 11353
 examine = "A cursed ivory version of General Gromblod."
 drop_table = "ivory_gromblod_cursed"
+hitpoints = 1000
+att = 92
+str = 92
+def = 92
+range = 92
 
 [ivory_breegth_cursed]
 id = 11354
 examine = "A cursed ivory version of General Breegth."
 drop_table = "ivory_bre_egth_cursed"
+hitpoints = 1000
+att = 92
+str = 92
+def = 92
+mage = 92
+max_hit_magic = 114
+combat_def = "ivory_bre_egth_cursed"
 
 [farming_patch_orks_rift]
 id = 11383

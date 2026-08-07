@@ -50,6 +50,8 @@ max_hit_melee = 20
 respawn_delay = 50
 examine = "A member of the Hazeel cult."
 drop_table = "hazeel_cultist"
+max_hit_crush = 20
+combat_def = "hazeel_cultist"
 
 [elena_southern_ardougne_sewer_normal]
 id = 3215

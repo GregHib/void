@@ -7,3 +7,10 @@ death_anim = "human_death"
 range = 1
 anim = "claws_chop"
 target_hit = { offense = "slash", max = 60 }
+
+[archer]
+attack_speed = 4
+
+[archer.range]
+range = 7
+target_hit = { offense = "range", max = 40 }

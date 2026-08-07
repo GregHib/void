@@ -4,12 +4,23 @@ categories = ["ghosts"]
 examine = "A spectral warrior with no axe."
 drop_table = "ghostly_warrior"
 combat_def = "guard"
+hitpoints = 440
+att = 34
+str = 34
+def = 34
+max_hit_crush = 50
 
 [tormented_wraith_spirit_realm]
 id = 8125
 categories = ["ghosts"]
 examine = "The wraith of a long-dead prisoner."
 drop_table = "tormented_wraith"
+hitpoints = 1500
+att = 99
+str = 99
+def = 99
+max_hit_crush = 220
+combat_def = "tormented_wraith"
 
 [edward]
 id = 1782

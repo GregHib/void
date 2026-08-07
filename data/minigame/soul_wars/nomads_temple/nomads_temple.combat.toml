@@ -1,0 +1,6 @@
+[spectral_worshipper]
+attack_speed = 4
+
+[spectral_worshipper.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }

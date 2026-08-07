@@ -39,3 +39,17 @@ attack_speed = 4
 [carnivorous_chinchompa.melee]
 range = 1
 target_hit = { offense = "crush", max = 10 }
+
+[ogress_champion]
+attack_speed = 4
+
+[ogress_champion.melee]
+range = 1
+target_hit = { offense = "crush", max = 100 }
+
+[ogress]
+attack_speed = 6
+
+[ogress.melee]
+range = 1
+target_hit = { offense = "crush", max = 80 }

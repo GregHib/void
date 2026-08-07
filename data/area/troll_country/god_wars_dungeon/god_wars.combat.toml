@@ -1,0 +1,20 @@
+[ancient_ranger]
+attack_speed = 4
+
+[ancient_ranger.range]
+range = 6
+target_hit = { offense = "range", max = 650 }
+
+[blood_reaver]
+attack_speed = 4
+
+[blood_reaver.magic]
+range = 6
+target_hit = { offense = "magic", max = 146 }
+
+[ancient_mage]
+attack_speed = 4
+
+[ancient_mage.magic]
+range = 6
+target_hit = { offense = "magic", max = 207 }

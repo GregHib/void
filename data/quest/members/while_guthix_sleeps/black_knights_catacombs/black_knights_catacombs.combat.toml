@@ -1,0 +1,13 @@
+[elite_dark_ranger]
+attack_speed = 4
+
+[elite_dark_ranger.range]
+range = 6
+target_hit = { offense = "range", max = 90 }
+
+[elite_dark_mage]
+attack_speed = 4
+
+[elite_dark_mage.magic]
+range = 6
+target_hit = { offense = "magic", max = 190 }

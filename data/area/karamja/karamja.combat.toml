@@ -43,3 +43,31 @@ attack_speed = 4
 [tribesman.melee]
 range = 1
 target_hit = { offense = "stab", max = 40 }
+
+[frog]
+attack_speed = 4
+
+[frog.melee]
+range = 1
+target_hit = { offense = "crush", max = 61 }
+
+[tenacious_toucan]
+attack_speed = 6
+
+[tenacious_toucan.melee]
+range = 1
+target_hit = { offense = "stab", max = 119 }
+
+[giant_wasp]
+attack_speed = 6
+
+[giant_wasp.melee]
+range = 1
+target_hit = { offense = "crush", max = 50 }
+
+[pernicious_parrot]
+attack_speed = 6
+
+[pernicious_parrot.melee]
+range = 1
+target_hit = { offense = "stab", max = 119 }

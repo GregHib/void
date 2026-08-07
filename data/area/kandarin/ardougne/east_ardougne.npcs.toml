@@ -151,6 +151,13 @@ max_hit_crush = 10
 id = 27
 drop_table = "bones"
 examine = "Good with arrows."
+combat_def = "archer"
+hitpoints = 370
+att = 30
+str = 30
+def = 30
+range = 30
+max_hit_range = 40
 
 [zookeeper]
 id = 28

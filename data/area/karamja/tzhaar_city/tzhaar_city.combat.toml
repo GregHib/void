@@ -62,3 +62,10 @@ target_hit = { offense = "magic", max = 130 }
 impact_gfx = "tzhaar_magic_hit"
 miss_gfx = "giant_splash"
 miss_sound = "spell_splash"
+
+[fire_monster]
+attack_speed = 4
+
+[fire_monster.magic]
+range = 6
+target_hit = { offense = "magic", max = 8 }

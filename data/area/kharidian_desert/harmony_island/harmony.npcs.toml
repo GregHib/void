@@ -27,10 +27,16 @@ categories = ["zombies"]
 respawn_delay = 25
 drop_table = "sorebones"
 examine = "Bedside manner is a little lacking, I think."
+combat_def = "sorebones"
 
 [sorebones_harmony_apron]
 id = 5628
 clone = "sorebones_harmony"
+hitpoints = 520
+att = 49
+str = 49
+def = 49
+combat_def = "sorebones"
 
 [zombie_pirate_harmony]
 id = 5629

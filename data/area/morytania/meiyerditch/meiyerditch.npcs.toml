@@ -322,6 +322,11 @@ combat_def = "vyrewatch"
 [flying_female_vampire]
 id = 7613
 drop_table = "empty"
+hitpoints = 1400
+att = 110
+str = 110
+def = 110
+combat_def = "vampyre"
 
 [vyrewatch_meiyerditch_12]
 id = 7622

@@ -144,6 +144,11 @@ clone = "agnar_rellekka"
 id = 1310
 clone = "agnar_rellekka"
 drop_table = "bones"
+hitpoints = 480
+att = 40
+str = 40
+def = 40
+combat_def = "man"
 
 [lensa_rellekka]
 id = 1311
@@ -254,6 +259,12 @@ id = 1330
 categories = ["wolves"]
 examine = "Fearsome predator found only in the Fremennik Province, renowned for its fur."
 drop_table = "fenris_wolf"
+hitpoints = 690
+att = 52
+str = 52
+def = 52
+max_hit_crush = 69
+combat_def = "fenris_wolf"
 
 [fishing_spot_rellekka]
 id = 1331

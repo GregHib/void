@@ -6,16 +6,27 @@ examine = "He's going for that 'stripy' look."
 id = 1400
 drop_table = "bones"
 combat_def = "seagull"
+hitpoints = 30
 
 [customs_officer]
 id = 7837
 examine = "Inspects people's packages."
 drop_table = "bones"
+hitpoints = 350
+att = 29
+str = 29
+def = 29
+combat_def = "man"
 
 [customs_officer_2]
 id = 7838
 examine = "Inspects people's packages."
 drop_table = "bones"
+hitpoints = 350
+att = 29
+str = 29
+def = 29
+combat_def = "man"
 
 [locker_officer]
 id = 7842

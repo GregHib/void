@@ -1,0 +1,7 @@
+
+[shadow_mournings_end_part_2]
+attack_speed = 4
+
+[shadow_mournings_end_part_2.melee]
+range = 1
+target_hit = { offense = "crush", max = 80 }

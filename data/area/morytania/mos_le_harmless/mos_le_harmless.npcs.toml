@@ -114,6 +114,11 @@ max_hit_stab = 10
 id = 4344
 drop_table = "monkey"
 combat_def = "monkey"
+hitpoints = 60
+att = 2
+str = 2
+def = 2
+max_hit_crush = 20
 
 [crab_mos_le_harmless]
 id = 4346

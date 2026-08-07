@@ -1,0 +1,6 @@
+[sorebones]
+attack_speed = 4
+
+[sorebones.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }

@@ -145,11 +145,13 @@ examine = "Commander of the Imperial Guard."
 id = 1073
 clone = "archer_burthorpe"
 drop_table = "archer_burthorpe"
+combat_def = "archer"
 
 [archer_burthorpe_beard]
 id = 1074
 clone = "archer_burthorpe"
 drop_table = "archer_burthorpe"
+combat_def = "archer"
 
 [archer_burthorpe]
 id = 1075
@@ -157,6 +159,7 @@ hitpoints = 500
 def = 40
 range = 40
 examine = "A Burthorpe Castle Archer."
+combat_def = "archer"
 
 [imperial_soldier]
 id = 1063

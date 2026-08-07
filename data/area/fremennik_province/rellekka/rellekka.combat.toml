@@ -73,3 +73,10 @@ attack_speed = 4
 [black_unicorn_foal.melee]
 range = 1
 target_hit = { offense = "stab", max = 30 }
+
+[fenris_wolf]
+attack_speed = 4
+
+[fenris_wolf.melee]
+range = 1
+target_hit = { offense = "crush", max = 69 }

@@ -635,6 +635,11 @@ categories = ["dwarves"]
 examine = "An elite Black Guard soldier assigned to protect the trade floor."
 drop_table = "trade_floor_guard"
 combat_def = "guard"
+hitpoints = 700
+att = 76
+str = 76
+def = 76
+max_hit_crush = 164
 
 [colonel_grenda_keldagrim]
 id = 8817

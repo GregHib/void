@@ -54,6 +54,12 @@ id = 3783
 categories = ["frogs"]
 examine = "Long legged licker."
 drop_table = "frog"
+hitpoints = 500
+att = 59
+str = 59
+def = 59
+max_hit_crush = 61
+combat_def = "frog"
 
 [jungle_forester]
 id = 401
@@ -110,6 +116,11 @@ id = 6378
 categories = ["birds"]
 examine = "I wouldn't want to be footing that bill."
 drop_table = "tenacious_toucan"
+hitpoints = 500
+att = 64
+str = 64
+def = 64
+max_hit_stab = 119
 
 [giant_ant_worker]
 id = 6379
@@ -139,16 +150,32 @@ drop_table = "giant_ant_soldier"
 id = 6381
 examine = "That stinger has to hurt..."
 drop_table = "giant_wasp"
+hitpoints = 370
+att = 63
+str = 63
+def = 63
+max_hit_crush = 50
 
 [pernicious_parrot]
 id = 6382
 categories = ["birds"]
 examine = "Polynomial - a parrot that goes without breakfast, lunch or dinner."
 drop_table = "empty"
+hitpoints = 500
+att = 59
+str = 59
+def = 59
+max_hit_stab = 119
 
 [giant_wasp_2]
 id = 6383
 drop_table = "giant_wasp"
+hitpoints = 370
+att = 63
+str = 63
+def = 63
+max_hit_crush = 50
+combat_def = "giant_wasp"
 
 [karamjan_jungle_eagle]
 id = 6387

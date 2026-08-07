@@ -22,6 +22,12 @@ id = 7640
 categories = ["crawling_hands"]
 examine = "A giant, skeletal hand. I don't think I should offer to shake hands."
 drop_table = "skeletal_hand"
+hitpoints = 1000
+att = 61
+str = 61
+def = 61
+max_hit_crush = 130
+combat_def = "skeletal_hand"
 
 [zombie_hand_meiyerditch_tunnels]
 id = 7641
@@ -29,16 +35,35 @@ categories = ["crawling_hands"]
 examine = "A giant, zombified hand. I don't think I should offer to shake hands."
 drop_table = "zombie_hand"
 combat_def = "zombie"
+hitpoints = 1000
+att = 72
+str = 72
+def = 72
+max_hit_crush = 150
 
 [mutated_bloodveld_meiyerditch_tunnels]
 id = 7642
 categories = ["bloodveld"]
 examine = "A bloodveld with a very mixed heritage."
 drop_table = "mutated_bloodveld"
+hitpoints = 1780
+att = 91
+str = 91
+def = 91
+mage = 91
+max_hit_magic = 90
+combat_def = "mutated_bloodveld"
 
 [mutated_bloodveld_meiyerditch_tunnels_2]
 id = 7643
 categories = ["bloodveld"]
 examine = "A bloodveld with a very mixed heritage."
 drop_table = "mutated_bloodveld"
+hitpoints = 1780
+att = 99
+str = 99
+def = 99
+mage = 99
+max_hit_magic = 90
+combat_def = "mutated_bloodveld"
 

@@ -7,6 +7,8 @@ att = 40
 str = 30
 def = 40
 max_hit_stab = 40
+max_hit_crush = 90
+combat_def = "giant_lobster"
 
 [giant_crab_dragontooth_shipwreck]
 id = 7829

@@ -4,3 +4,24 @@ attack_speed = 4
 [crocodile.melee]
 range = 1
 target_hit = { offense = "slash", max = 60 }
+
+[scabaras_locust]
+attack_speed = 4
+
+[scabaras_locust.melee]
+range = 1
+target_hit = { offense = "crush", max = 10 }
+
+[locust_lancer]
+attack_speed = 4
+
+[locust_lancer.melee]
+range = 1
+target_hit = { offense = "crush", max = 120 }
+
+[locust_ranger]
+attack_speed = 4
+
+[locust_ranger.range]
+range = 6
+target_hit = { offense = "range", max = 210 }

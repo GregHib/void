@@ -3,16 +3,35 @@ id = 8312
 examine = "An elite dark warrior with lots of combat experience."
 drop_table = "elite_dark_warrior"
 combat_def = "guard"
+hitpoints = 1050
+att = 99
+str = 99
+def = 99
+max_hit_crush = 94
 
 [elite_dark_ranger_black_knights_catacombs]
 id = 8316
 examine = "An elite dark ranger with lots of combat experience."
 drop_table = "elite_dark_ranger"
+hitpoints = 800
+att = 66
+str = 66
+def = 66
+range = 66
+max_hit_range = 90
+combat_def = "elite_dark_ranger"
 
 [elite_dark_mage_black_knights_catacombs]
 id = 8320
 examine = "An elite dark mage with lots of combat experience."
 drop_table = "elite_dark_mage"
+hitpoints = 800
+att = 66
+str = 66
+def = 66
+mage = 66
+max_hit_magic = 190
+combat_def = "elite_dark_mage"
 
 [elite_black_knight_black_knights_catacombs]
 id = 8328

@@ -1,0 +1,6 @@
+[chaos_dwogre]
+attack_speed = 6
+
+[chaos_dwogre.magic]
+range = 6
+target_hit = { offense = "magic", max = 121 }

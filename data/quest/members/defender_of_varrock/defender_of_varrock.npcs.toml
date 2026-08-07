@@ -25,26 +25,56 @@ id = 5918
 id = 8159
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
+hitpoints = 850
+att = 71
+str = 71
+def = 71
+range = 71
+max_hit_range = 86
 
 [armoured_zombie_defender_of_varrock_2]
 id = 8160
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
+hitpoints = 850
+att = 71
+str = 71
+def = 71
+range = 71
+max_hit_range = 86
 
 [armoured_zombie_defender_of_varrock_3]
 id = 8161
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
+hitpoints = 850
+att = 71
+str = 71
+def = 71
+range = 71
+max_hit_range = 86
 
 [armoured_zombie_defender_of_varrock_4]
 id = 8162
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
+hitpoints = 850
+att = 71
+str = 71
+def = 71
+range = 71
+max_hit_range = 86
 
 [armoured_zombie_defender_of_varrock_5]
 id = 8163
 drop_table = "armoured_zombie"
 combat_def = "zombie_sword"
+hitpoints = 850
+att = 71
+str = 71
+def = 71
+range = 71
+max_hit_range = 86
 
 [arrav_defender_of_varrock]
 id = 8169

@@ -45,10 +45,23 @@ combat_def = "yeti"
 id = 7381
 examine = "A strange, magical beast."
 drop_table = "gnoeals"
+hitpoints = 750
+att = 82
+str = 82
+def = 82
+mage = 82
+max_hit_magic = 120
 
 [gnoeals_2]
 id = 7382
 drop_table = "gnoeals"
+hitpoints = 750
+att = 72
+str = 72
+def = 72
+mage = 72
+max_hit_magic = 120
+combat_def = "gnoeals"
 
 [erjolf_base]
 id = 7405
