@@ -4,8 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.npc.shop.hasShopSample
 import content.entity.npc.shop.shopInventory
 import content.entity.npc.shop.stock.Price
+import content.skill.dungeoneering.DungeonShop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -18,10 +20,8 @@ import world.gregs.voidps.engine.inv.moveToLimit
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItemLimit.addToLimit
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import kotlin.math.min
 
 class ShopBuy : Script {
-    val logger = InlineLogger()
 
     init {
         interfaceOption(id = "item_info:button") {
@@ -34,6 +34,10 @@ class ShopBuy : Script {
             }
             val id: Int = get("info_item") ?: return@interfaceOption
             val item = ItemDefinitions.get(id).stringId
+            if (menu == "dungeon_shop") {
+                DungeonShop.buy(this, Item(item), amount)
+                return@interfaceOption
+            }
             val inventory = shopInventory()
             val index = inventory.indexOf(item)
             if (hasShopSample()) {
@@ -89,40 +93,59 @@ class ShopBuy : Script {
     fun buy(player: Player, shop: Inventory, index: Int, amount: Int) {
         val item = shop[index]
         val price = Price.getPrice(player, item.id, index, amount)
-        val currency: String = player["shop_currency", "coins"]
-        val budget = player.inventory.count(currency) / price
-        val available = shop[index].amount
-        if (available <= 0) {
-            player.message("The shop has run out of stock.")
-            return
-        } else if (budget < available && budget < amount) {
-            player.message("You don't have enough $currency.")
-        } else if (available < budget && available < amount) {
-            player.message("The shop has run out of stock.")
-        }
-        val actualAmount = min(budget, min(amount, available))
-        if (actualAmount == 0) {
-            return
-        }
-        var added = 0
-        player.inventory.transaction {
-            added = addToLimit(item.id, actualAmount)
-            if (added == 0) {
-                error = TransactionError.Full()
+        buy(player, item, amount, price, index, shop)
+    }
+
+    companion object {
+        private val logger = InlineLogger()
+
+        fun buy(
+            player: Player,
+            item: Item,
+            amount: Int,
+            price: Int,
+            index: Int = -1,
+            shop: Inventory? = null,
+            deficient: String? = null,
+        ) {
+            val currency = player["shop_currency", "coins"]
+            val budget = player.inventory.count(currency) / price
+            val available = shop?.get(index)?.amount ?: Int.MAX_VALUE
+            if (available <= 0) {
+                player.message("The shop has run out of stock.")
+                return
+            } else if (budget < available && budget < amount) {
+                player.message(deficient ?: "You don't have enough $currency.")
+            } else if (available < budget && available < amount) {
+                player.message("The shop has run out of stock.")
             }
-            link(shop).remove(item.id, added)
-            remove(currency, added * price)
-        }
-        when (player.inventory.transaction.error) {
-            TransactionError.None -> {
-                if (added < actualAmount) player.inventoryFull()
-                val actual = Item(item.id, added)
-                AuditLog.event(player, "bought", actual, shop.id, price)
-                Items.bought(player, actual)
+            val actualAmount = minOf(budget, amount, available)
+            if (actualAmount == 0) {
+                return
             }
-            is TransactionError.Full -> player.inventoryFull()
-            TransactionError.Invalid -> logger.warn { "Error buying from shop ${shop.id} $item ${shop.transaction.error}" }
-            else -> {}
+            var added = 0
+            player.inventory.transaction {
+                added = addToLimit(item.id, actualAmount)
+                if (added == 0) {
+                    error = TransactionError.Full()
+                }
+                if (shop != null) {
+                    link(shop).remove(item.id, added)
+                }
+                remove(currency, added * price)
+            }
+            val shopId = shop?.id ?: "dungeoneering_smuggler"
+            when (player.inventory.transaction.error) {
+                TransactionError.None -> {
+                    if (added < actualAmount) player.inventoryFull()
+                    val actual = Item(item.id, added)
+                    AuditLog.event(player, "bought", actual, shopId, price)
+                    Items.bought(player, actual)
+                }
+                is TransactionError.Full -> player.inventoryFull()
+                TransactionError.Invalid -> logger.warn { "Error buying from shop $shopId $item ${shop?.transaction?.error}" }
+                else -> {}
+            }
         }
     }
 }

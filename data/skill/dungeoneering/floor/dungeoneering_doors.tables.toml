@@ -31,7 +31,6 @@ in_front = true
 [.woodcutting]
 id = "wooden_barricade_frozen"
 open = "cleared_barricade_door_frozen"
-in_front = true
 
 [.smithing]
 id = "broken_key_door_frozen"
