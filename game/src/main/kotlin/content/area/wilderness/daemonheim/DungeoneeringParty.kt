@@ -228,11 +228,11 @@ class DungeoneeringParty : Script {
                 // TODO party full proper message
                 return
             }
-            if (leader["dungeon_party_complexity", 1] > player["dungeoneering_complexity", 1]) {
+            if (leader["rand_invite_complexity", 1] > player["dungeoneering_complexity", 1]) {
                 player.message("That parties options are too advanced.")
                 return
             }
-            if (leader["dungeon_party_floor", 1] > player["dungeoneering_current_progress", 1]) {
+            if (leader["rand_invite_floor", 1] > player["dungeoneering_current_progress", 1]) {
                 player.message("That parties options are too advanced.")
                 return
             }

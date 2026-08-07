@@ -129,8 +129,8 @@ id = 1171
 [dungeon_party_total_4]
 id = 1172
 
-[dungeon_party_floor]
+[rand_invite_floor]
 id = 1173
 
-[dungeon_party_complexity]
+[rand_invite_complexity]
 id = 1174

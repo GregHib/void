@@ -30,7 +30,7 @@ class Smuggler : Script {
         }
 
         npcOperate("Trade", "smuggler_dungeoneering") {
-            if (inDungeoneering && get("dungeon_party_complexity", 1) > 1) {
+            if (inDungeoneering && get("rand_invite_complexity", 1) > 1) {
                 open("dungeon_shop")
             } else {
                 npc<Neutral>("Sorry, but I don't have anything to sell.")

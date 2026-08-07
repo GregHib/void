@@ -31,7 +31,7 @@ class DungeonComplete : Script {
 
             // Base XP
             // Floor
-            set("rand_party_current_floor_trans", get("dungeon_party_floor", 1)) // TODO maybe these vars are the same thing?
+            set("rand_party_current_floor_trans", get("rand_invite_floor", 1)) // TODO maybe these vars are the same thing?
             set("rand_basefloor_varc", 30) // x10
             set("rand_totalfloor_varc", 2000) // x10 Average
 
@@ -50,7 +50,7 @@ class DungeonComplete : Script {
             set("rand_dungeon_difficulty_trans", 105) // 7:1
 
             // Complexity
-            set("rand_party_complexity_level_trans", get("dungeon_party_complexity", 1))
+            set("rand_party_complexity_level_trans", get("rand_invite_complexity", 1))
 
             // Deaths
             set("dungeon_deaths", 0.coerceAtMost(15))
