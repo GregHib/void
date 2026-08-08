@@ -62,6 +62,21 @@ interface Storage {
     fun saveReport(report: AbuseReport)
 
     /**
+     * Batch saves economy monitor flags; no-op unless the backend supports history
+     */
+    fun saveEconomyFlags(flags: List<EconomyFlag>) {}
+
+    /**
+     * Batch saves item census snapshots; no-op unless the backend supports history
+     */
+    fun saveCensusSnapshots(snapshots: List<CensusSnapshot>) {}
+
+    /**
+     * Deletes economy flags and census snapshots with timestamps before [before] milliseconds
+     */
+    fun pruneEconomy(before: Long) {}
+
+    /**
      * Checks if an account exists
      */
     fun exists(accountName: String): Boolean
