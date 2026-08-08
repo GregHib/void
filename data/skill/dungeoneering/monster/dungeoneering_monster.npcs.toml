@@ -3589,26 +3589,79 @@ id = 10478
 [rand_giant_skeleton_11]
 id = 10479
 
+# https://runescape.wiki/w/Giant_rat_(Dungeoneering)?oldid=5795286
+# Stats guessed based off normal giant rats
+
 [rand_giant_rat_1]
 id = 10480
+clone = "giant_rat_lumbridge_swamp"
+hitpoints = 30
+max_hit_stab = 17
+att = 2
+str = 3
+def = 2
+drop_table = "giant_rat_dungeoneering"
 
 [rand_giant_rat_2]
 id = 10481
+clone = "giant_rat_lumbridge_swamp"
+# Estimates based off other stats
+hitpoints = 100
+max_hit_stab = 20
+att = 4
+str = 5
+def = 4
+drop_table = "giant_rat_dungeoneering"
 
 [rand_giant_rat_3]
 id = 10482
+clone = "giant_rat_lumbridge_swamp"
+hitpoints = 150
+max_hit_stab = 26
+att = 11
+str = 12
+def = 11
+drop_table = "giant_rat_dungeoneering"
 
 [rand_giant_rat_4]
 id = 10483
+clone = "giant_rat_lumbridge_swamp"
+hitpoints = 260
+max_hit_stab = 39
+att = 22
+str = 23
+def = 22
+drop_table = "giant_rat_dungeoneering"
 
 [rand_giant_rat_5]
 id = 10484
+clone = "giant_rat_lumbridge_swamp"
+hitpoints = 510
+max_hit_stab = 65
+att = 34
+str = 36
+def = 34
+drop_table = "giant_rat_dungeoneering"
 
 [rand_giant_rat_6]
 id = 10485
+clone = "giant_rat_lumbridge_swamp"
+hitpoints = 780
+max_hit_stab = 95
+att = 45
+str = 47
+def = 45
+drop_table = "giant_rat_dungeoneering"
 
 [rand_giant_rat_7]
 id = 10486
+clone = "giant_rat_lumbridge_swamp"
+hitpoints = 950
+max_hit_stab = 119
+att = 50
+str = 54
+def = 50
+drop_table = "giant_rat_dungeoneering"
 
 [rand_frozen_low_level_dummy]
 id = 10487
