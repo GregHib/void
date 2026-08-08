@@ -77,3 +77,507 @@ death_sound = "human_death"
 range = 1
 anim = "spear_lunge"
 target_hit = { offense = "stab", max = 10 }
+
+[forgotten_ranger_1]
+death_anim = "human_death"
+death_sound = "human_death"
+defend_anim = "bow_defend"
+defend_sound = "human_defend"
+
+[forgotten_ranger_1.range]
+range = 8
+anim = "bow_accurate"
+projectile = "novite_arrows"
+target_hit = { offense = "range", max = 10 }
+
+[forgotten_ranger_2]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_2.range]
+clone = "forgotten_ranger_1.range"
+projectile = "bathus_arrows"
+
+[forgotten_ranger_3]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_3.range]
+clone = "forgotten_ranger_1.range"
+projectile = "marmaros_arrows"
+
+[forgotten_ranger_4]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_4.range]
+clone = "forgotten_ranger_1.range"
+projectile = "kratonite_arrows"
+
+[forgotten_ranger_5]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_5.range]
+clone = "forgotten_ranger_1.range"
+projectile = "fractite_arrows"
+
+[forgotten_ranger_6]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_6.range]
+clone = "forgotten_ranger_1.range"
+projectile = "zephyrium_arrows"
+
+[forgotten_ranger_7]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_7.range]
+clone = "forgotten_ranger_1.range"
+projectile = "argonite_arrows"
+
+[forgotten_ranger_8]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_8.range]
+clone = "forgotten_ranger_1.range"
+projectile = "katagon_arrows"
+
+[forgotten_ranger_9]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_9.range]
+clone = "forgotten_ranger_1.range"
+projectile = "gorgonite_arrows"
+
+[forgotten_ranger_10]
+clone = "forgotten_ranger_1"
+
+[forgotten_ranger_10.range]
+clone = "forgotten_ranger_1.range"
+projectile = "promethium_arrows"
+
+# https://runescape.wiki/w/Forgotten_mage?oldid=5796110
+
+[forgotten_mage_1]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_1.confuse]
+range = 5
+condition = "not_confused"
+anim = "confuse"
+gfx = "confuse_cast"
+target_sound = "confuse_cast"
+projectile = "confuse"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "confuse_impact"
+impact_sound = "confuse_impact"
+impact_drain = { skill = "attack", multiplier = 0.05 }
+
+[forgotten_mage_1.wind_strike]
+range = 5
+anim = "wind_spell"
+gfx = "wind_spell_cast"
+projectile = "wind_strike"
+target_hit = { offense = "magic", max = 10 }
+target_sound = "wind_strike_cast"
+impact_sound = "wind_strike_impact"
+
+[forgotten_mage_1.water_strike]
+range = 5
+anim = "water_spell"
+gfx = "water_spell_cast"
+projectile = "water_strike"
+target_hit = { offense = "magic", max = 10 }
+target_sound = "water_strike_cast"
+impact_sound = "water_strike_impact"
+
+[forgotten_mage_2]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_2.confuse]
+clone = "forgotten_mage_1.confuse"
+
+[forgotten_mage_2.water_strike]
+clone = "forgotten_mage_1.water_strike"
+
+[forgotten_mage_2.earth_strike]
+range = 5
+anim = "earth_spell"
+gfx = "earth_strike_cast"
+projectile = "earth_strike"
+target_hit = { offense = "magic", max = 10 }
+target_sound = "earth_strike_cast"
+impact_sound = "earth_strike_impact"
+
+[forgotten_mage_2.fire_strike]
+range = 5
+anim = "fire_spell"
+gfx = "fire_spell_cast"
+projectile = "fire_strike"
+target_hit = { offense = "magic", max = 10 }
+target_sound = "fire_strike_cast"
+impact_sound = "fire_strike_impact"
+
+[forgotten_mage_2.weaken]
+range = 5
+condition = "not_weakened"
+anim = "weaken"
+gfx = "weaken_cast"
+target_sound = "weaken_cast"
+projectile = "weaken"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "weaken_impact"
+impact_sound = "weaken_impact"
+impact_drain = { skill = "strength", multiplier = 0.05 }
+
+[forgotten_mage_3]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_3.fire_strike]
+clone = "forgotten_mage_2.fire_strike"
+
+[forgotten_mage_3.wind_bolt]
+clone = "forgotten_mage_1.wind_strike"
+projectile = "wind_bolt"
+target_sound = "wind_bolt_cast"
+impact_sound = "wind_bolt_impact"
+
+[forgotten_mage_3.water_bolt]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_bolt"
+target_sound = "water_bolt_cast"
+impact_sound = "water_bolt_impact"
+
+[forgotten_mage_3.confuse]
+clone = "forgotten_mage_1.confuse"
+
+[forgotten_mage_3.weaken]
+clone = "forgotten_mage_2.weaken"
+
+[forgotten_mage_3.curse]
+range = 5
+condition = "not_weakened"
+anim = "curse"
+gfx = "curse_cast"
+target_sound = "curse_cast"
+projectile = "curse"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "curse_impact"
+impact_sound = "curse_impact"
+impact_drain = { skill = "defence", multiplier = 0.05 }
+
+[forgotten_mage_3.bind]
+range = 5
+condition = "not_frozen"
+anim = "bind"
+gfx = "bind_cast"
+target_sound = "bind_cast"
+projectile = "bind"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "bind_impact"
+impact_sound = "bind_impact"
+impact_freeze = 8
+
+[forgotten_mage_4]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_4.water_bolt]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_bolt"
+target_sound = "water_bolt_cast"
+impact_sound = "water_bolt_impact"
+
+[forgotten_mage_4.earth_bolt]
+clone = "forgotten_mage_2.earth_strike"
+projectile = "earth_bolt"
+target_sound = "earth_bolt_cast"
+impact_sound = "earth_bolt_impact"
+
+[forgotten_mage_4.fire_bolt]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_bolt"
+target_sound = "fire_bolt_cast"
+impact_sound = "fire_bolt_impact"
+
+[forgotten_mage_4.confuse]
+clone = "forgotten_mage_1.confuse"
+
+[forgotten_mage_4.weaken]
+clone = "forgotten_mage_2.weaken"
+
+[forgotten_mage_4.bind]
+clone = "forgotten_mage_3.bind"
+
+[forgotten_mage_4.curse]
+clone = "forgotten_mage_3.curse"
+
+[forgotten_mage_5]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_5.wind_blast]
+clone = "forgotten_mage_1.wind_strike"
+projectile = "wind_blast"
+target_sound = "wind_blast_cast"
+impact_sound = "wind_blast_impact"
+
+[forgotten_mage_5.water_blast]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_blast"
+target_sound = "water_blast_cast"
+impact_sound = "water_blast_impact"
+
+[forgotten_mage_5.fire_bolt]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_bolt"
+target_sound = "fire_bolt_cast"
+impact_sound = "fire_bolt_impact"
+
+[forgotten_mage_5.confuse]
+clone = "forgotten_mage_1.confuse"
+
+[forgotten_mage_5.weaken]
+clone = "forgotten_mage_2.weaken"
+
+[forgotten_mage_5.bind]
+clone = "forgotten_mage_3.bind"
+
+[forgotten_mage_5.curse]
+clone = "forgotten_mage_3.curse"
+
+[forgotten_mage_6]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_6.earth_blast]
+clone = "forgotten_mage_2.earth_strike"
+projectile = "earth_blast"
+target_sound = "earth_blast_cast"
+impact_sound = "earth_blast_impact"
+
+[forgotten_mage_6.water_blast]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_blast"
+target_sound = "water_blast_cast"
+impact_sound = "water_blast_impact"
+
+[forgotten_mage_6.fire_blast]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_blast"
+target_sound = "fire_blast_cast"
+impact_sound = "fire_blast_impact"
+
+[forgotten_mage_6.confuse]
+clone = "forgotten_mage_1.confuse"
+
+[forgotten_mage_6.weaken]
+clone = "forgotten_mage_2.weaken"
+
+[forgotten_mage_6.snare]
+range = 5
+condition = "not_frozen"
+anim = "snare"
+gfx = "snare_cast"
+target_sound = "snare_cast"
+projectile = "snare"
+target_hit = { offense = "magic", max = 20 }
+impact_gfx = "snare_impact"
+impact_sound = "snare_impact"
+impact_freeze = 16
+
+[forgotten_mage_6.curse]
+clone = "forgotten_mage_3.curse"
+
+[forgotten_mage_7]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_7.wind_wave]
+clone = "forgotten_mage_1.wind_strike"
+projectile = "wind_wave"
+target_sound = "wind_wave_cast"
+impact_sound = "wind_wave_impact"
+
+[forgotten_mage_7.water_wave]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_wave"
+target_sound = "water_wave_cast"
+impact_sound = "water_wave_impact"
+
+[forgotten_mage_7.fire_blast]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_blast"
+target_sound = "fire_blast_cast"
+impact_sound = "fire_blast_impact"
+
+[forgotten_mage_7.confuse]
+clone = "forgotten_mage_1.confuse"
+
+[forgotten_mage_7.weaken]
+clone = "forgotten_mage_2.weaken"
+
+[forgotten_mage_7.snare]
+clone = "forgotten_mage_6.snare"
+
+[forgotten_mage_7.vulnerability]
+condition = "not_vulnerable"
+anim = "vulnerability"
+gfx = "vulnerability_cast"
+target_sound = "vulnerability_cast"
+projectile = "vulnerability"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "vulnerability_impact"
+impact_sound = "vulnerability_impact"
+impact_drain = { skill = "defence", multiplier = 0.1 }
+
+[forgotten_mage_8]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_8.earth_wave]
+clone = "forgotten_mage_2.earth_strike"
+projectile = "earth_wave"
+target_sound = "earth_wave_cast"
+impact_sound = "earth_wave_impact"
+
+[forgotten_mage_8.water_wave]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_wave"
+target_sound = "water_wave_cast"
+impact_sound = "water_wave_impact"
+
+[forgotten_mage_8.fire_wave]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_wave"
+target_sound = "fire_wave_cast"
+impact_sound = "fire_wave_impact"
+
+[forgotten_mage_8.confuse]
+clone = "forgotten_mage_1.confuse"
+
+[forgotten_mage_8.enfeeble]
+range = 5
+condition = "not_weakened"
+anim = "enfeeble"
+gfx = "enfeeble_cast"
+target_sound = "enfeeble_cast"
+projectile = "enfeeble"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "enfeeble_impact"
+impact_sound = "enfeeble_impact"
+impact_drain = { skill = "strength", multiplier = 0.1 }
+
+[forgotten_mage_8.entangle]
+range = 5
+condition = "not_frozen"
+anim = "entangle"
+gfx = "entangle_cast"
+target_sound = "entangle_cast"
+projectile = "entangle"
+target_hit = { offense = "magic", max = 50 }
+impact_gfx = "entangle_impact"
+impact_sound = "entangle_impact"
+impact_freeze = 24
+
+[forgotten_mage_8.vulnerability]
+clone = "forgotten_mage_7.vulnerability"
+
+[forgotten_mage_9]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_9.wind_surge]
+clone = "forgotten_mage_1.wind_strike"
+projectile = "wind_surge"
+target_sound = "wind_surge_cast"
+impact_sound = "wind_surge_impact"
+
+[forgotten_mage_9.water_surge]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_surge"
+target_sound = "water_surge_cast"
+impact_sound = "water_surge_impact"
+
+[forgotten_mage_9.fire_wave]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_wave"
+target_sound = "fire_wave_cast"
+impact_sound = "fire_wave_impact"
+
+[forgotten_mage_9.stun]
+range = 5
+condition = "not_confused"
+anim = "stun"
+gfx = "stun_cast"
+target_sound = "stun_cast"
+projectile = "stun"
+target_hit = { offense = "magic", max = 0 }
+impact_gfx = "stun_impact"
+impact_sound = "stun_impact"
+impact_drain = { skill = "attack", multiplier = 0.1 }
+
+[forgotten_mage_9.enfeeble]
+clone = "forgotten_mage_8.enfeeble"
+
+[forgotten_mage_9.entangle]
+clone = "forgotten_mage_8.entangle"
+
+[forgotten_mage_9.vulnerability]
+clone = "forgotten_mage_7.vulnerability"
+
+[forgotten_mage_10]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_10.earth_surge]
+clone = "forgotten_mage_2.earth_strike"
+projectile = "earth_surge"
+target_sound = "earth_surge_cast"
+impact_sound = "earth_surge_impact"
+
+[forgotten_mage_10.water_surge]
+clone = "forgotten_mage_1.water_strike"
+projectile = "water_surge"
+target_sound = "water_surge_cast"
+impact_sound = "water_surge_impact"
+
+[forgotten_mage_10.fire_surge]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_surge"
+target_sound = "fire_surge_cast"
+impact_sound = "fire_surge_impact"
+
+[forgotten_mage_10.stun]
+clone = "forgotten_mage_9.stun"
+
+[forgotten_mage_10.enfeeble]
+clone = "forgotten_mage_8.enfeeble"
+
+[forgotten_mage_10.entangle]
+clone = "forgotten_mage_8.entangle"
+
+[forgotten_mage_10.vulnerability]
+clone = "forgotten_mage_7.vulnerability"
+
+[forgotten_mage_11]
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[forgotten_mage_11.fire_surge]
+clone = "forgotten_mage_2.fire_strike"
+projectile = "fire_surge"
+target_sound = "fire_surge_cast"
+impact_sound = "fire_surge_impact"
+
+[forgotten_mage_11.stun]
+clone = "forgotten_mage_9.stun"
+
+[forgotten_mage_11.enfeeble]
+clone = "forgotten_mage_8.enfeeble"
+
+[forgotten_mage_11.entangle]
+clone = "forgotten_mage_8.entangle"
+
+[forgotten_mage_11.vulnerability]
+clone = "forgotten_mage_7.vulnerability"

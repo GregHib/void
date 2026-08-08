@@ -2101,137 +2101,404 @@ id = 10318
 [rand_human_ranged_lvl11_dummy]
 id = 10319
 
+# https://runescape.wiki/w/Forgotten_ranger?oldid=5796117
+# Defence stats interpolated by combat in 10..250, ranged stats 10..200
+
 [rand_human_ranged_lvl1_1]
 id = 10320
+hitpoints = 80
+max_hit_range = 22
+def = 14
+range = 13
+combat_def = "forgotten_ranger_1"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_2]
 id = 10321
+hitpoints = 80
+max_hit_range = 22
+def = 14
+range = 13
+combat_def = "forgotten_ranger_1"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_3]
 id = 10322
+hitpoints = 80
+max_hit_range = 22
+def = 14
+range = 13
+combat_def = "forgotten_ranger_1"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_4]
 id = 10323
+hitpoints = 80
+max_hit_range = 22
+def = 14
+range = 13
+combat_def = "forgotten_ranger_1"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_1]
 id = 10324
+hitpoints = 170
+max_hit_range = 32
+def = 31
+range = 27
+combat_def = "forgotten_ranger_2"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_2]
 id = 10325
+hitpoints = 170
+max_hit_range = 32
+def = 31
+range = 27
+combat_def = "forgotten_ranger_2"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_3]
 id = 10326
+hitpoints = 170
+max_hit_range = 32
+def = 31
+range = 27
+combat_def = "forgotten_ranger_2"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_4]
 id = 10327
+hitpoints = 170
+max_hit_range = 32
+def = 31
+range = 27
+combat_def = "forgotten_ranger_2"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_1]
 id = 10328
+hitpoints = 240
+max_hit_range = 47
+def = 51
+range = 42
+combat_def = "forgotten_ranger_3"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_2]
 id = 10329
+hitpoints = 240
+max_hit_range = 47
+def = 51
+range = 42
+combat_def = "forgotten_ranger_3"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_3]
 id = 10330
+hitpoints = 240
+max_hit_range = 47
+def = 51
+range = 42
+combat_def = "forgotten_ranger_3"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_4]
 id = 10331
+hitpoints = 240
+max_hit_range = 47
+def = 51
+range = 42
+combat_def = "forgotten_ranger_3"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_1]
 id = 10332
+hitpoints = 350
+max_hit_range = 63
+def = 75
+range = 61
+combat_def = "forgotten_ranger_4"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_2]
 id = 10333
+hitpoints = 350
+max_hit_range = 63
+def = 75
+range = 61
+combat_def = "forgotten_ranger_4"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_3]
 id = 10334
+hitpoints = 350
+max_hit_range = 63
+def = 75
+range = 61
+combat_def = "forgotten_ranger_4"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_4]
 id = 10335
+hitpoints = 350
+max_hit_range = 63
+def = 75
+range = 61
+combat_def = "forgotten_ranger_4"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_1]
 id = 10336
+hitpoints = 440
+max_hit_range = 78
+def = 97
+range = 79
+combat_def = "forgotten_ranger_5"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_2]
 id = 10337
+hitpoints = 440
+max_hit_range = 78
+def = 97
+range = 79
+combat_def = "forgotten_ranger_5"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_3]
 id = 10338
+hitpoints = 440
+max_hit_range = 78
+def = 97
+range = 79
+combat_def = "forgotten_ranger_5"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_4]
 id = 10339
+hitpoints = 440
+max_hit_range = 78
+def = 97
+range = 79
+combat_def = "forgotten_ranger_5"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_1]
 id = 10340
+hitpoints = 550
+max_hit_range = 92
+def = 116
+range = 94
+combat_def = "forgotten_ranger_6"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_2]
 id = 10341
+hitpoints = 550
+max_hit_range = 92
+def = 116
+range = 94
+combat_def = "forgotten_ranger_6"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_3]
 id = 10342
+hitpoints = 550
+max_hit_range = 92
+def = 116
+range = 94
+combat_def = "forgotten_ranger_6"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_4]
 id = 10343
+hitpoints = 550
+max_hit_range = 92
+def = 116
+range = 94
+combat_def = "forgotten_ranger_6"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_1]
 id = 10344
+hitpoints = 660
+max_hit_range = 106
+def = 138
+range = 111
+combat_def = "forgotten_ranger_7"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_2]
 id = 10345
+hitpoints = 660
+max_hit_range = 106
+def = 138
+range = 111
+combat_def = "forgotten_ranger_7"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_3]
 id = 10346
+hitpoints = 660
+max_hit_range = 106
+def = 138
+range = 111
+combat_def = "forgotten_ranger_7"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_4]
 id = 10347
+hitpoints = 660
+max_hit_range = 106
+def = 138
+range = 111
+combat_def = "forgotten_ranger_7"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_1]
 id = 10348
+hitpoints = 780
+max_hit_range = 125
+def = 162
+range = 130
+combat_def = "forgotten_ranger_8"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_2]
 id = 10349
+hitpoints = 780
+max_hit_range = 125
+def = 162
+range = 130
+combat_def = "forgotten_ranger_8"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_3]
 id = 10350
+hitpoints = 780
+max_hit_range = 125
+def = 162
+range = 130
+combat_def = "forgotten_ranger_8"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_4]
 id = 10351
+hitpoints = 780
+max_hit_range = 125
+def = 162
+range = 130
+combat_def = "forgotten_ranger_8"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_1]
 id = 10352
+hitpoints = 870
+max_hit_range = 147
+def = 182
+range = 146
+combat_def = "forgotten_ranger_9"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_2]
 id = 10353
+hitpoints = 870
+max_hit_range = 147
+def = 182
+range = 146
+combat_def = "forgotten_ranger_9"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_3]
 id = 10354
+hitpoints = 870
+max_hit_range = 147
+def = 182
+range = 146
+combat_def = "forgotten_ranger_9"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_4]
 id = 10355
+hitpoints = 870
+max_hit_range = 147
+def = 182
+range = 146
+combat_def = "forgotten_ranger_9"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_1]
 id = 10356
+hitpoints = 970
+max_hit_range = 175
+def = 208
+range = 167
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_2]
 id = 10357
+hitpoints = 970
+max_hit_range = 175
+def = 208
+range = 167
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_3]
 id = 10358
+hitpoints = 970
+max_hit_range = 175
+def = 208
+range = 167
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_4]
 id = 10359
+hitpoints = 970
+max_hit_range = 175
+def = 208
+range = 167
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_1]
 id = 10360
+hitpoints = 1180
+max_hit_range = 202
+def = 247
+range = 198
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_2]
 id = 10361
+hitpoints = 1180
+max_hit_range = 202
+def = 247
+range = 198
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_3]
 id = 10362
+hitpoints = 1180
+max_hit_range = 202
+def = 247
+range = 198
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_4]
 id = 10363
+hitpoints = 1180
+max_hit_range = 202
+def = 247
+range = 198
+combat_def = "forgotten_ranger_10"
+examine = "He seems to have gone mad."
 
 [rand_zombie_melee_1]
 id = 10364
@@ -3452,137 +3719,404 @@ id = 10558
 [rand_human_magic_lvl11_dummy]
 id = 10559
 
+# https://runescape.wiki/w/Forgotten_mage?oldid=5796110
+# Stats interpolated based off combat level, def = 10..200, magic = 10..250
+
 [rand_human_magic_lvl1_1]
 id = 10560
+hitpoints = 60
+max_hit_magic = 19
+def = 10
+mage = 10
+combat_def = "forgotten_mage_1"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl1_2]
 id = 10561
+hitpoints = 70
+max_hit_magic = 21
+def = 11
+mage = 12
+combat_def = "forgotten_mage_1"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl1_3]
 id = 10562
+hitpoints = 70
+max_hit_magic = 21
+def = 11
+mage = 12
+combat_def = "forgotten_mage_1"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl1_4]
 id = 10563
+hitpoints = 60
+max_hit_magic = 19
+def = 10
+mage = 10
+combat_def = "forgotten_mage_1"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_1]
 id = 10564
+hitpoints = 160
+max_hit_magic = 70
+def = 25
+mage = 29
+combat_def = "forgotten_mage_2"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_2]
 id = 10565
+hitpoints = 150
+max_hit_magic = 60
+def = 23
+mage = 27
+combat_def = "forgotten_mage_2"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_3]
 id = 10566
+hitpoints = 160
+max_hit_magic = 70
+def = 25
+mage = 29
+combat_def = "forgotten_mage_2"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_4]
 id = 10567
+hitpoints = 170
+max_hit_magic = 80
+def = 27
+mage = 31
+combat_def = "forgotten_mage_2"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_1]
 id = 10568
+hitpoints = 270
+max_hit_magic = 142
+def = 44
+mage = 53
+combat_def = "forgotten_mage_3"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_2]
 id = 10569
+hitpoints = 270
+max_hit_magic = 142
+def = 44
+mage = 53
+combat_def = "forgotten_mage_3"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_3]
 id = 10570
+hitpoints = 250
+max_hit_magic = 138
+def = 42
+mage = 51
+combat_def = "forgotten_mage_3"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_4]
 id = 10571
+hitpoints = 250
+max_hit_magic = 138
+def = 42
+mage = 51
+combat_def = "forgotten_mage_3"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_1]
 id = 10572
+hitpoints = 350
+max_hit_magic = 144
+def = 54
+mage = 66
+combat_def = "forgotten_mage_4"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_2]
 id = 10573
+hitpoints = 356
+max_hit_magic = 148
+def = 60
+mage = 73
+combat_def = "forgotten_mage_4"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_3]
 id = 10574
+hitpoints = 354
+max_hit_magic = 146
+def = 58
+mage = 71
+combat_def = "forgotten_mage_4"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_4]
 id = 10575
+hitpoints = 360
+max_hit_magic = 151
+def = 63
+mage = 77
+combat_def = "forgotten_mage_4"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_1]
 id = 10576
+hitpoints = 450
+max_hit_magic = 132
+def = 77
+mage = 95
+combat_def = "forgotten_mage_5"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_2]
 id = 10577
+hitpoints = 480
+max_hit_magic = 168
+def = 79
+mage = 97
+combat_def = "forgotten_mage_5"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_3]
 id = 10578
+hitpoints = 450
+max_hit_magic = 132
+def = 77
+mage = 95
+combat_def = "forgotten_mage_5"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_4]
 id = 10579
+hitpoints = 480
+max_hit_magic = 168
+def = 79
+mage = 97
+combat_def = "forgotten_mage_5"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_1]
 id = 10580
+hitpoints = 570
+max_hit_magic = 179
+def = 96
+mage = 119
+combat_def = "forgotten_mage_6"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_2]
 id = 10581
+hitpoints = 560
+max_hit_magic = 167
+def = 94
+mage = 116
+combat_def = "forgotten_mage_6"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_3]
 id = 10582
+hitpoints = 550
+max_hit_magic = 156
+def = 92
+mage = 114
+combat_def = "forgotten_mage_6"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_4]
 id = 10583
+hitpoints = 570
+max_hit_magic = 179
+def = 96
+mage = 119
+combat_def = "forgotten_mage_6"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_1]
 id = 10584
+hitpoints = 650
+max_hit_magic = 179
+def = 111
+mage = 138
+combat_def = "forgotten_mage_7"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_2]
 id = 10585
+hitpoints = 650
+max_hit_magic = 179
+def = 111
+mage = 138
+combat_def = "forgotten_mage_7"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_3]
 id = 10586
+hitpoints = 650
+max_hit_magic = 179
+def = 113
+mage = 140
+combat_def = "forgotten_mage_7"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_4]
 id = 10587
+hitpoints = 650
+max_hit_magic = 179
+def = 111
+mage = 138
+combat_def = "forgotten_mage_7"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_1]
 id = 10588
+hitpoints = 770
+max_hit_magic = 207
+def = 129
+mage = 160
+combat_def = "forgotten_mage_8"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_2]
 id = 10589
+hitpoints = 770
+max_hit_magic = 207
+def = 127
+mage = 158
+combat_def = "forgotten_mage_8"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_3]
 id = 10590
+hitpoints = 770
+max_hit_magic = 207
+def = 130
+mage = 162
+combat_def = "forgotten_mage_8"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_4]
 id = 10591
+hitpoints = 770
+max_hit_magic = 207
+def = 132
+mage = 164
+combat_def = "forgotten_mage_8"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_1]
 id = 10592
+hitpoints = 860
+max_hit_magic = 223
+def = 143
+mage = 178
+combat_def = "forgotten_mage_9"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_2]
 id = 10593
+hitpoints = 866
+max_hit_magic = 237
+def = 146
+mage = 182
+combat_def = "forgotten_mage_9"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_3]
 id = 10594
+hitpoints = 866
+max_hit_magic = 237
+def = 146
+mage = 182
+combat_def = "forgotten_mage_9"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_4]
 id = 10595
+hitpoints = 870
+max_hit_magic = 245
+def = 148
+mage = 184
+combat_def = "forgotten_mage_9"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_1]
 id = 10596
+hitpoints = 860
+max_hit_magic = 281
+def = 163
+mage = 204
+combat_def = "forgotten_mage_10"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_2]
 id = 10597
+hitpoints = 870
+max_hit_magic = 281
+def = 165
+mage = 206
+combat_def = "forgotten_mage_10"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_3]
 id = 10598
+hitpoints = 870
+max_hit_magic = 281
+def = 165
+mage = 206
+combat_def = "forgotten_mage_10"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_4]
 id = 10599
+hitpoints = 860
+max_hit_magic = 281
+def = 163
+mage = 204
+combat_def = "forgotten_mage_10"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_1]
 id = 10600
+hitpoints = 1160
+max_hit_magic = 284
+def = 196
+mage = 245
+combat_def = "forgotten_mage_11"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_2]
 id = 10601
+hitpoints = 1180
+max_hit_magic = 286
+def = 198
+mage = 247
+combat_def = "forgotten_mage_11"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_3]
 id = 10602
+hitpoints = 1200
+max_hit_magic = 289
+def = 200
+mage = 250
+combat_def = "forgotten_mage_11"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_4]
 id = 10603
+hitpoints = 1180
+max_hit_magic = 286
+def = 198
+mage = 247
+combat_def = "forgotten_mage_11"
+examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_green_dragon_1]
 id = 10604
