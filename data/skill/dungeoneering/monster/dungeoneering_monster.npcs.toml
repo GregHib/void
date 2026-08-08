@@ -1572,6 +1572,7 @@ att = 71
 str = 71
 def = 71
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_2]
@@ -1582,6 +1583,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_3]
@@ -1592,6 +1594,7 @@ att = 76
 str = 76
 def = 76
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_4]
@@ -1602,6 +1605,7 @@ att = 78
 str = 78
 def = 78
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_5]
@@ -1612,6 +1616,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_6]
@@ -1622,6 +1627,7 @@ att = 78
 str = 78
 def = 78
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_7]
@@ -1632,6 +1638,7 @@ att = 78
 str = 78
 def = 78
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_8]
@@ -1642,6 +1649,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_9]
@@ -1652,6 +1660,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_10]
@@ -1662,6 +1671,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_11]
@@ -1672,6 +1682,7 @@ att = 76
 str = 76
 def = 76
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_12]
@@ -1682,6 +1693,7 @@ att = 76
 str = 76
 def = 76
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_13]
@@ -1692,6 +1704,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_14]
@@ -1702,6 +1715,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_15]
@@ -1712,6 +1726,7 @@ att = 76
 str = 76
 def = 76
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_16]
@@ -1722,6 +1737,7 @@ att = 73
 str = 73
 def = 73
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_17]
@@ -1732,6 +1748,7 @@ att = 76
 str = 76
 def = 76
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_18]
@@ -1742,6 +1759,7 @@ att = 76
 str = 76
 def = 76
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_19]
@@ -1752,6 +1770,7 @@ att = 80
 str = 80
 def = 80
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_20]
@@ -1762,6 +1781,7 @@ att = 75
 str = 75
 def = 75
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_21]
@@ -1772,6 +1792,7 @@ att = 73
 str = 73
 def = 73
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_1]
@@ -1782,6 +1803,7 @@ att = 93
 str = 93
 def = 93
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_2]
@@ -1792,6 +1814,7 @@ att = 93
 str = 93
 def = 93
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_3]
@@ -1802,6 +1825,7 @@ att = 97
 str = 97
 def = 97
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_4]
@@ -1812,6 +1836,7 @@ att = 95
 str = 95
 def = 95
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_5]
@@ -1822,6 +1847,7 @@ att = 97
 str = 97
 def = 97
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_6]
@@ -1832,6 +1858,7 @@ att = 93
 str = 93
 def = 93
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_7]
@@ -1842,6 +1869,7 @@ att = 95
 str = 95
 def = 95
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_8]
@@ -1852,6 +1880,7 @@ att = 95
 str = 95
 def = 95
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_9]
@@ -1862,6 +1891,7 @@ att = 99
 str = 99
 def = 99
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_10]
@@ -1872,6 +1902,7 @@ att = 95
 str = 95
 def = 95
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_11]
@@ -1882,6 +1913,7 @@ att = 101
 str = 101
 def = 101
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_12]
@@ -1892,6 +1924,7 @@ att = 97
 str = 97
 def = 97
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_13]
@@ -1902,6 +1935,7 @@ att = 101
 str = 101
 def = 101
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_14]
@@ -1912,6 +1946,7 @@ att = 95
 str = 95
 def = 95
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_15]
@@ -1922,6 +1957,7 @@ att = 101
 str = 101
 def = 101
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_16]
@@ -1932,6 +1968,7 @@ att = 95
 str = 95
 def = 95
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_17]
@@ -1942,6 +1979,7 @@ att = 101
 str = 101
 def = 101
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_18]
@@ -1952,6 +1990,7 @@ att = 97
 str = 97
 def = 97
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_19]
@@ -1962,6 +2001,7 @@ att = 93
 str = 93
 def = 93
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_20]
@@ -1972,6 +2012,7 @@ att = 97
 str = 97
 def = 97
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_21]
@@ -1982,6 +2023,7 @@ att = 93
 str = 93
 def = 93
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_1]
@@ -1992,6 +2034,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_2]
@@ -2002,6 +2045,7 @@ att = 123
 str = 123
 def = 123
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_3]
@@ -2012,6 +2056,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_4]
@@ -2022,6 +2067,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_5]
@@ -2032,6 +2078,7 @@ att = 114
 str = 114
 def = 114
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_6]
@@ -2042,6 +2089,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_7]
@@ -2052,6 +2100,7 @@ att = 114
 str = 114
 def = 114
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_8]
@@ -2062,6 +2111,7 @@ att = 116
 str = 116
 def = 116
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_9]
@@ -2072,6 +2122,7 @@ att = 116
 str = 116
 def = 116
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_10]
@@ -2082,6 +2133,7 @@ att = 116
 str = 116
 def = 116
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_11]
@@ -2092,6 +2144,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_12]
@@ -2102,6 +2155,7 @@ att = 121
 str = 121
 def = 121
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_13]
@@ -2112,6 +2166,7 @@ att = 117
 str = 117
 def = 117
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_14]
@@ -2122,6 +2177,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_15]
@@ -2132,6 +2188,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_16]
@@ -2142,6 +2199,7 @@ att = 121
 str = 121
 def = 121
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_17]
@@ -2152,6 +2210,7 @@ att = 117
 str = 117
 def = 117
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_18]
@@ -2162,6 +2221,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_19]
@@ -2172,6 +2232,7 @@ att = 119
 str = 119
 def = 119
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_20]
@@ -2182,6 +2243,7 @@ att = 117
 str = 117
 def = 117
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_21]
@@ -2192,6 +2254,7 @@ att = 116
 str = 116
 def = 116
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_ranged_lvl1_dummy]
@@ -2237,6 +2300,7 @@ max_hit_range = 22
 def = 14
 range = 13
 combat_def = "forgotten_ranger_1"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_2]
@@ -2246,6 +2310,7 @@ max_hit_range = 22
 def = 14
 range = 13
 combat_def = "forgotten_ranger_1"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_3]
@@ -2255,6 +2320,7 @@ max_hit_range = 22
 def = 14
 range = 13
 combat_def = "forgotten_ranger_1"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_4]
@@ -2264,6 +2330,7 @@ max_hit_range = 22
 def = 14
 range = 13
 combat_def = "forgotten_ranger_1"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_1]
@@ -2273,6 +2340,7 @@ max_hit_range = 32
 def = 31
 range = 27
 combat_def = "forgotten_ranger_2"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_2]
@@ -2282,6 +2350,7 @@ max_hit_range = 32
 def = 31
 range = 27
 combat_def = "forgotten_ranger_2"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_3]
@@ -2291,6 +2360,7 @@ max_hit_range = 32
 def = 31
 range = 27
 combat_def = "forgotten_ranger_2"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_4]
@@ -2300,6 +2370,7 @@ max_hit_range = 32
 def = 31
 range = 27
 combat_def = "forgotten_ranger_2"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_1]
@@ -2309,6 +2380,7 @@ max_hit_range = 47
 def = 51
 range = 42
 combat_def = "forgotten_ranger_3"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_2]
@@ -2318,6 +2390,7 @@ max_hit_range = 47
 def = 51
 range = 42
 combat_def = "forgotten_ranger_3"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_3]
@@ -2327,6 +2400,7 @@ max_hit_range = 47
 def = 51
 range = 42
 combat_def = "forgotten_ranger_3"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_4]
@@ -2336,6 +2410,7 @@ max_hit_range = 47
 def = 51
 range = 42
 combat_def = "forgotten_ranger_3"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_1]
@@ -2345,6 +2420,7 @@ max_hit_range = 63
 def = 75
 range = 61
 combat_def = "forgotten_ranger_4"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_2]
@@ -2354,6 +2430,7 @@ max_hit_range = 63
 def = 75
 range = 61
 combat_def = "forgotten_ranger_4"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_3]
@@ -2363,6 +2440,7 @@ max_hit_range = 63
 def = 75
 range = 61
 combat_def = "forgotten_ranger_4"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_4]
@@ -2372,6 +2450,7 @@ max_hit_range = 63
 def = 75
 range = 61
 combat_def = "forgotten_ranger_4"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_1]
@@ -2381,6 +2460,7 @@ max_hit_range = 78
 def = 97
 range = 79
 combat_def = "forgotten_ranger_5"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_2]
@@ -2390,6 +2470,7 @@ max_hit_range = 78
 def = 97
 range = 79
 combat_def = "forgotten_ranger_5"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_3]
@@ -2399,6 +2480,7 @@ max_hit_range = 78
 def = 97
 range = 79
 combat_def = "forgotten_ranger_5"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_4]
@@ -2408,6 +2490,7 @@ max_hit_range = 78
 def = 97
 range = 79
 combat_def = "forgotten_ranger_5"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_1]
@@ -2417,6 +2500,7 @@ max_hit_range = 92
 def = 116
 range = 94
 combat_def = "forgotten_ranger_6"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_2]
@@ -2426,6 +2510,7 @@ max_hit_range = 92
 def = 116
 range = 94
 combat_def = "forgotten_ranger_6"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_3]
@@ -2435,6 +2520,7 @@ max_hit_range = 92
 def = 116
 range = 94
 combat_def = "forgotten_ranger_6"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_4]
@@ -2444,6 +2530,7 @@ max_hit_range = 92
 def = 116
 range = 94
 combat_def = "forgotten_ranger_6"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_1]
@@ -2453,6 +2540,7 @@ max_hit_range = 106
 def = 138
 range = 111
 combat_def = "forgotten_ranger_7"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_2]
@@ -2462,6 +2550,7 @@ max_hit_range = 106
 def = 138
 range = 111
 combat_def = "forgotten_ranger_7"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_3]
@@ -2471,6 +2560,7 @@ max_hit_range = 106
 def = 138
 range = 111
 combat_def = "forgotten_ranger_7"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_4]
@@ -2480,6 +2570,7 @@ max_hit_range = 106
 def = 138
 range = 111
 combat_def = "forgotten_ranger_7"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_1]
@@ -2489,6 +2580,7 @@ max_hit_range = 125
 def = 162
 range = 130
 combat_def = "forgotten_ranger_8"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_2]
@@ -2498,6 +2590,7 @@ max_hit_range = 125
 def = 162
 range = 130
 combat_def = "forgotten_ranger_8"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_3]
@@ -2507,6 +2600,7 @@ max_hit_range = 125
 def = 162
 range = 130
 combat_def = "forgotten_ranger_8"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_4]
@@ -2516,6 +2610,7 @@ max_hit_range = 125
 def = 162
 range = 130
 combat_def = "forgotten_ranger_8"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_1]
@@ -2525,6 +2620,7 @@ max_hit_range = 147
 def = 182
 range = 146
 combat_def = "forgotten_ranger_9"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_2]
@@ -2534,6 +2630,7 @@ max_hit_range = 147
 def = 182
 range = 146
 combat_def = "forgotten_ranger_9"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_3]
@@ -2543,6 +2640,7 @@ max_hit_range = 147
 def = 182
 range = 146
 combat_def = "forgotten_ranger_9"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_4]
@@ -2552,6 +2650,7 @@ max_hit_range = 147
 def = 182
 range = 146
 combat_def = "forgotten_ranger_9"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_1]
@@ -2561,6 +2660,7 @@ max_hit_range = 175
 def = 208
 range = 167
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_2]
@@ -2570,6 +2670,7 @@ max_hit_range = 175
 def = 208
 range = 167
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_3]
@@ -2579,6 +2680,7 @@ max_hit_range = 175
 def = 208
 range = 167
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_4]
@@ -2588,6 +2690,7 @@ max_hit_range = 175
 def = 208
 range = 167
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_1]
@@ -2597,6 +2700,7 @@ max_hit_range = 202
 def = 247
 range = 198
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_2]
@@ -2606,6 +2710,7 @@ max_hit_range = 202
 def = 247
 range = 198
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_3]
@@ -2615,6 +2720,7 @@ max_hit_range = 202
 def = 247
 range = 198
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_4]
@@ -2624,6 +2730,7 @@ max_hit_range = 202
 def = 247
 range = 198
 combat_def = "forgotten_ranger_10"
+hunt_mode = "cowardly"
 examine = "He seems to have gone mad."
 
 [rand_zombie_melee_1]
@@ -2737,6 +2844,7 @@ att = 11
 str = 11
 def = 11
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_2]
@@ -2747,6 +2855,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_3]
@@ -2757,6 +2866,7 @@ att = 11
 str = 11
 def = 11
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_4]
@@ -2767,6 +2877,7 @@ att = 11
 str = 11
 def = 11
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_5]
@@ -2777,6 +2888,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_6]
@@ -2787,6 +2899,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_7]
@@ -2797,6 +2910,7 @@ att = 13
 str = 13
 def = 13
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_8]
@@ -2807,6 +2921,7 @@ att = 11
 str = 11
 def = 11
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_9]
@@ -2817,6 +2932,7 @@ att = 13
 str = 13
 def = 13
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_10]
@@ -2827,6 +2943,7 @@ att = 11
 str = 11
 def = 11
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_11]
@@ -2837,6 +2954,7 @@ att = 11
 str = 11
 def = 11
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_12]
@@ -2847,6 +2965,7 @@ att = 17
 str = 17
 def = 17
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_13]
@@ -2857,6 +2976,7 @@ att = 13
 str = 13
 def = 13
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_14]
@@ -2867,6 +2987,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_15]
@@ -2877,6 +2998,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_16]
@@ -2887,6 +3009,7 @@ att = 13
 str = 13
 def = 13
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_17]
@@ -2897,6 +3020,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_18]
@@ -2907,6 +3031,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_19]
@@ -2917,6 +3042,7 @@ att = 11
 str = 11
 def = 11
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_20]
@@ -2927,6 +3053,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_21]
@@ -2937,6 +3064,7 @@ att = 10
 str = 10
 def = 10
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_1]
@@ -2947,6 +3075,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_2]
@@ -2957,6 +3086,7 @@ att = 37
 str = 37
 def = 37
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_3]
@@ -2967,6 +3097,7 @@ att = 30
 str = 30
 def = 30
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_4]
@@ -2977,6 +3108,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_5]
@@ -2987,6 +3119,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_6]
@@ -2997,6 +3130,7 @@ att = 30
 str = 30
 def = 30
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_7]
@@ -3007,6 +3141,7 @@ att = 32
 str = 32
 def = 32
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_8]
@@ -3017,6 +3152,7 @@ att = 30
 str = 30
 def = 30
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_9]
@@ -3027,6 +3163,7 @@ att = 30
 str = 30
 def = 30
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_10]
@@ -3037,6 +3174,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_11]
@@ -3047,6 +3185,7 @@ att = 32
 str = 32
 def = 32
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_12]
@@ -3057,6 +3196,7 @@ att = 30
 str = 30
 def = 30
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_13]
@@ -3067,6 +3207,7 @@ att = 37
 str = 37
 def = 37
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_14]
@@ -3077,6 +3218,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_15]
@@ -3087,6 +3229,7 @@ att = 32
 str = 32
 def = 32
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_16]
@@ -3097,6 +3240,7 @@ att = 32
 str = 32
 def = 32
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_17]
@@ -3107,6 +3251,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_18]
@@ -3117,6 +3262,7 @@ att = 37
 str = 37
 def = 37
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_19]
@@ -3127,6 +3273,7 @@ att = 32
 str = 32
 def = 32
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_20]
@@ -3137,6 +3284,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_21]
@@ -3147,6 +3295,7 @@ att = 34
 str = 34
 def = 34
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_1]
@@ -3157,6 +3306,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_2]
@@ -3167,6 +3317,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_3]
@@ -3177,6 +3328,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_4]
@@ -3187,6 +3339,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_5]
@@ -3197,6 +3350,7 @@ att = 52
 str = 52
 def = 52
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_6]
@@ -3207,6 +3361,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_7]
@@ -3217,6 +3372,7 @@ att = 56
 str = 56
 def = 56
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_8]
@@ -3227,6 +3383,7 @@ att = 52
 str = 52
 def = 52
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_9]
@@ -3237,6 +3394,7 @@ att = 58
 str = 58
 def = 58
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_10]
@@ -3247,6 +3405,7 @@ att = 56
 str = 56
 def = 56
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_11]
@@ -3257,6 +3416,7 @@ att = 56
 str = 56
 def = 56
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_12]
@@ -3267,6 +3427,7 @@ att = 52
 str = 52
 def = 52
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_13]
@@ -3277,6 +3438,7 @@ att = 56
 str = 56
 def = 56
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_14]
@@ -3287,6 +3449,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_15]
@@ -3297,6 +3460,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_16]
@@ -3307,6 +3471,7 @@ att = 52
 str = 52
 def = 52
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_17]
@@ -3317,6 +3482,7 @@ att = 56
 str = 56
 def = 56
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_18]
@@ -3327,6 +3493,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_19]
@@ -3337,6 +3504,7 @@ att = 52
 str = 52
 def = 52
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_20]
@@ -3347,6 +3515,7 @@ att = 54
 str = 54
 def = 54
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_21]
@@ -3357,6 +3526,7 @@ att = 56
 str = 56
 def = 56
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_ice_golem_1]
@@ -3508,6 +3678,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_2]
@@ -3518,6 +3689,7 @@ att = 201
 str = 201
 def = 201
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_3]
@@ -3528,6 +3700,7 @@ att = 203
 str = 203
 def = 203
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_4]
@@ -3538,6 +3711,7 @@ att = 201
 str = 201
 def = 201
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_5]
@@ -3548,6 +3722,7 @@ att = 203
 str = 203
 def = 203
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_6]
@@ -3558,6 +3733,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_7]
@@ -3568,6 +3744,7 @@ att = 201
 str = 201
 def = 201
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_8]
@@ -3578,6 +3755,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_9]
@@ -3588,6 +3766,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_10]
@@ -3598,6 +3777,7 @@ att = 209
 str = 209
 def = 209
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_11]
@@ -3608,6 +3788,7 @@ att = 201
 str = 201
 def = 201
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_12]
@@ -3618,6 +3799,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_13]
@@ -3628,6 +3810,7 @@ att = 209
 str = 209
 def = 209
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_14]
@@ -3638,6 +3821,7 @@ att = 201
 str = 201
 def = 201
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_15]
@@ -3648,6 +3832,7 @@ att = 203
 str = 203
 def = 203
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_16]
@@ -3658,6 +3843,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_17]
@@ -3668,6 +3854,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_18]
@@ -3678,6 +3865,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_19]
@@ -3688,6 +3876,7 @@ att = 205
 str = 205
 def = 205
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_20]
@@ -3698,6 +3887,7 @@ att = 207
 str = 207
 def = 207
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_21]
@@ -3708,6 +3898,7 @@ att = 207
 str = 207
 def = 207
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_1]
@@ -3718,6 +3909,7 @@ att = 248
 str = 248
 def = 248
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_2]
@@ -3728,6 +3920,7 @@ att = 246
 str = 246
 def = 246
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_3]
@@ -3738,6 +3931,7 @@ att = 242
 str = 242
 def = 242
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_4]
@@ -3748,6 +3942,7 @@ att = 248
 str = 248
 def = 248
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_5]
@@ -3758,6 +3953,7 @@ att = 248
 str = 248
 def = 248
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_6]
@@ -3768,6 +3964,7 @@ att = 246
 str = 246
 def = 246
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_7]
@@ -3778,6 +3975,7 @@ att = 244
 str = 244
 def = 244
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_8]
@@ -3788,6 +3986,7 @@ att = 244
 str = 244
 def = 244
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_9]
@@ -3798,6 +3997,7 @@ att = 244
 str = 244
 def = 244
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_10]
@@ -3808,6 +4008,7 @@ att = 246
 str = 246
 def = 246
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_11]
@@ -3818,6 +4019,7 @@ att = 250
 str = 250
 def = 250
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_12]
@@ -3828,6 +4030,7 @@ att = 244
 str = 244
 def = 244
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_13]
@@ -3838,6 +4041,7 @@ att = 248
 str = 248
 def = 248
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_14]
@@ -3848,6 +4052,7 @@ att = 250
 str = 250
 def = 250
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_15]
@@ -3858,6 +4063,7 @@ att = 244
 str = 244
 def = 244
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_16]
@@ -3868,6 +4074,7 @@ att = 246
 str = 246
 def = 246
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_17]
@@ -3878,6 +4085,7 @@ att = 250
 str = 250
 def = 250
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_18]
@@ -3888,6 +4096,7 @@ att = 244
 str = 244
 def = 244
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_19]
@@ -3898,6 +4107,7 @@ att = 242
 str = 242
 def = 242
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_20]
@@ -3908,6 +4118,7 @@ att = 244
 str = 244
 def = 244
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_21]
@@ -3918,6 +4129,7 @@ att = 246
 str = 246
 def = 246
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_magic_lvl1_dummy]
@@ -3963,6 +4175,7 @@ max_hit_magic = 19
 def = 10
 mage = 10
 combat_def = "forgotten_mage_1"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl1_2]
@@ -3972,6 +4185,7 @@ max_hit_magic = 21
 def = 11
 mage = 12
 combat_def = "forgotten_mage_1"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl1_3]
@@ -3981,6 +4195,7 @@ max_hit_magic = 21
 def = 11
 mage = 12
 combat_def = "forgotten_mage_1"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl1_4]
@@ -3990,6 +4205,7 @@ max_hit_magic = 19
 def = 10
 mage = 10
 combat_def = "forgotten_mage_1"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_1]
@@ -3999,6 +4215,7 @@ max_hit_magic = 70
 def = 25
 mage = 29
 combat_def = "forgotten_mage_2"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_2]
@@ -4008,6 +4225,7 @@ max_hit_magic = 60
 def = 23
 mage = 27
 combat_def = "forgotten_mage_2"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_3]
@@ -4017,6 +4235,7 @@ max_hit_magic = 70
 def = 25
 mage = 29
 combat_def = "forgotten_mage_2"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl2_4]
@@ -4026,6 +4245,7 @@ max_hit_magic = 80
 def = 27
 mage = 31
 combat_def = "forgotten_mage_2"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_1]
@@ -4035,6 +4255,7 @@ max_hit_magic = 142
 def = 44
 mage = 53
 combat_def = "forgotten_mage_3"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_2]
@@ -4044,6 +4265,7 @@ max_hit_magic = 142
 def = 44
 mage = 53
 combat_def = "forgotten_mage_3"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_3]
@@ -4053,6 +4275,7 @@ max_hit_magic = 138
 def = 42
 mage = 51
 combat_def = "forgotten_mage_3"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl3_4]
@@ -4062,6 +4285,7 @@ max_hit_magic = 138
 def = 42
 mage = 51
 combat_def = "forgotten_mage_3"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_1]
@@ -4071,6 +4295,7 @@ max_hit_magic = 144
 def = 54
 mage = 66
 combat_def = "forgotten_mage_4"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_2]
@@ -4080,6 +4305,7 @@ max_hit_magic = 148
 def = 60
 mage = 73
 combat_def = "forgotten_mage_4"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_3]
@@ -4089,6 +4315,7 @@ max_hit_magic = 146
 def = 58
 mage = 71
 combat_def = "forgotten_mage_4"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl4_4]
@@ -4098,6 +4325,7 @@ max_hit_magic = 151
 def = 63
 mage = 77
 combat_def = "forgotten_mage_4"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_1]
@@ -4107,6 +4335,7 @@ max_hit_magic = 132
 def = 77
 mage = 95
 combat_def = "forgotten_mage_5"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_2]
@@ -4116,6 +4345,7 @@ max_hit_magic = 168
 def = 79
 mage = 97
 combat_def = "forgotten_mage_5"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_3]
@@ -4125,6 +4355,7 @@ max_hit_magic = 132
 def = 77
 mage = 95
 combat_def = "forgotten_mage_5"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl5_4]
@@ -4134,6 +4365,7 @@ max_hit_magic = 168
 def = 79
 mage = 97
 combat_def = "forgotten_mage_5"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_1]
@@ -4143,6 +4375,7 @@ max_hit_magic = 179
 def = 96
 mage = 119
 combat_def = "forgotten_mage_6"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_2]
@@ -4152,6 +4385,7 @@ max_hit_magic = 167
 def = 94
 mage = 116
 combat_def = "forgotten_mage_6"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_3]
@@ -4161,6 +4395,7 @@ max_hit_magic = 156
 def = 92
 mage = 114
 combat_def = "forgotten_mage_6"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl6_4]
@@ -4170,6 +4405,7 @@ max_hit_magic = 179
 def = 96
 mage = 119
 combat_def = "forgotten_mage_6"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_1]
@@ -4179,6 +4415,7 @@ max_hit_magic = 179
 def = 111
 mage = 138
 combat_def = "forgotten_mage_7"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_2]
@@ -4188,6 +4425,7 @@ max_hit_magic = 179
 def = 111
 mage = 138
 combat_def = "forgotten_mage_7"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_3]
@@ -4197,6 +4435,7 @@ max_hit_magic = 179
 def = 113
 mage = 140
 combat_def = "forgotten_mage_7"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl7_4]
@@ -4206,6 +4445,7 @@ max_hit_magic = 179
 def = 111
 mage = 138
 combat_def = "forgotten_mage_7"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_1]
@@ -4215,6 +4455,7 @@ max_hit_magic = 207
 def = 129
 mage = 160
 combat_def = "forgotten_mage_8"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_2]
@@ -4224,6 +4465,7 @@ max_hit_magic = 207
 def = 127
 mage = 158
 combat_def = "forgotten_mage_8"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_3]
@@ -4233,6 +4475,7 @@ max_hit_magic = 207
 def = 130
 mage = 162
 combat_def = "forgotten_mage_8"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl8_4]
@@ -4242,6 +4485,7 @@ max_hit_magic = 207
 def = 132
 mage = 164
 combat_def = "forgotten_mage_8"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_1]
@@ -4251,6 +4495,7 @@ max_hit_magic = 223
 def = 143
 mage = 178
 combat_def = "forgotten_mage_9"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_2]
@@ -4260,6 +4505,7 @@ max_hit_magic = 237
 def = 146
 mage = 182
 combat_def = "forgotten_mage_9"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_3]
@@ -4269,6 +4515,7 @@ max_hit_magic = 237
 def = 146
 mage = 182
 combat_def = "forgotten_mage_9"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl9_4]
@@ -4278,6 +4525,7 @@ max_hit_magic = 245
 def = 148
 mage = 184
 combat_def = "forgotten_mage_9"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_1]
@@ -4287,6 +4535,7 @@ max_hit_magic = 281
 def = 163
 mage = 204
 combat_def = "forgotten_mage_10"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_2]
@@ -4296,6 +4545,7 @@ max_hit_magic = 281
 def = 165
 mage = 206
 combat_def = "forgotten_mage_10"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_3]
@@ -4305,6 +4555,7 @@ max_hit_magic = 281
 def = 165
 mage = 206
 combat_def = "forgotten_mage_10"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl10_4]
@@ -4314,6 +4565,7 @@ max_hit_magic = 281
 def = 163
 mage = 204
 combat_def = "forgotten_mage_10"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_1]
@@ -4323,6 +4575,7 @@ max_hit_magic = 284
 def = 196
 mage = 245
 combat_def = "forgotten_mage_11"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_2]
@@ -4332,6 +4585,7 @@ max_hit_magic = 286
 def = 198
 mage = 247
 combat_def = "forgotten_mage_11"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_3]
@@ -4341,6 +4595,7 @@ max_hit_magic = 289
 def = 200
 mage = 250
 combat_def = "forgotten_mage_11"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_4]
@@ -4350,6 +4605,7 @@ max_hit_magic = 286
 def = 198
 mage = 247
 combat_def = "forgotten_mage_11"
+hunt_mode = "cowardly"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_green_dragon_1]
@@ -5077,6 +5333,7 @@ att = 136
 str = 136
 def = 136
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_2]
@@ -5087,6 +5344,7 @@ att = 138
 str = 138
 def = 138
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_3]
@@ -5097,6 +5355,7 @@ att = 134
 str = 134
 def = 134
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_4]
@@ -5107,6 +5366,7 @@ att = 142
 str = 142
 def = 142
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_5]
@@ -5117,6 +5377,7 @@ att = 138
 str = 138
 def = 138
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_6]
@@ -5127,6 +5388,7 @@ att = 140
 str = 140
 def = 140
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_7]
@@ -5137,6 +5399,7 @@ att = 140
 str = 140
 def = 140
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_8]
@@ -5147,6 +5410,7 @@ att = 136
 str = 136
 def = 136
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_9]
@@ -5157,6 +5421,7 @@ att = 138
 str = 138
 def = 138
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_10]
@@ -5167,6 +5432,7 @@ att = 140
 str = 140
 def = 140
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_11]
@@ -5177,6 +5443,7 @@ att = 142
 str = 142
 def = 142
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_12]
@@ -5187,6 +5454,7 @@ att = 140
 str = 140
 def = 140
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_13]
@@ -5197,6 +5465,7 @@ att = 138
 str = 138
 def = 138
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_14]
@@ -5207,6 +5476,7 @@ att = 140
 str = 140
 def = 140
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_15]
@@ -5217,6 +5487,7 @@ att = 142
 str = 142
 def = 142
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_16]
@@ -5227,6 +5498,7 @@ att = 138
 str = 138
 def = 138
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_17]
@@ -5237,6 +5509,7 @@ att = 136
 str = 136
 def = 136
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_18]
@@ -5247,6 +5520,7 @@ att = 138
 str = 138
 def = 138
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_19]
@@ -5257,6 +5531,7 @@ att = 143
 str = 143
 def = 143
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_20]
@@ -5267,6 +5542,7 @@ att = 142
 str = 142
 def = 142
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_21]
@@ -5277,6 +5553,7 @@ att = 138
 str = 138
 def = 138
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_1]
@@ -5287,6 +5564,7 @@ att = 162
 str = 162
 def = 162
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_2]
@@ -5297,6 +5575,7 @@ att = 166
 str = 166
 def = 166
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_3]
@@ -5307,6 +5586,7 @@ att = 160
 str = 160
 def = 160
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_4]
@@ -5317,6 +5597,7 @@ att = 162
 str = 162
 def = 162
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_5]
@@ -5327,6 +5608,7 @@ att = 162
 str = 162
 def = 162
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_6]
@@ -5337,6 +5619,7 @@ att = 166
 str = 166
 def = 166
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_7]
@@ -5347,6 +5630,7 @@ att = 164
 str = 164
 def = 164
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_8]
@@ -5357,6 +5641,7 @@ att = 156
 str = 156
 def = 156
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_9]
@@ -5367,6 +5652,7 @@ att = 158
 str = 158
 def = 158
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_10]
@@ -5377,6 +5663,7 @@ att = 160
 str = 160
 def = 160
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_11]
@@ -5387,6 +5674,7 @@ att = 158
 str = 158
 def = 158
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_12]
@@ -5397,6 +5685,7 @@ att = 164
 str = 164
 def = 164
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_13]
@@ -5407,6 +5696,7 @@ att = 162
 str = 162
 def = 162
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_14]
@@ -5417,6 +5707,7 @@ att = 160
 str = 160
 def = 160
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_15]
@@ -5427,6 +5718,7 @@ att = 160
 str = 160
 def = 160
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_16]
@@ -5437,6 +5729,7 @@ att = 164
 str = 164
 def = 164
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_17]
@@ -5447,6 +5740,7 @@ att = 162
 str = 162
 def = 162
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_18]
@@ -5457,6 +5751,7 @@ att = 158
 str = 158
 def = 158
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_19]
@@ -5467,6 +5762,7 @@ att = 162
 str = 162
 def = 162
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_20]
@@ -5477,6 +5773,7 @@ att = 160
 str = 160
 def = 160
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_21]
@@ -5487,6 +5784,7 @@ att = 164
 str = 164
 def = 164
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_1]
@@ -5497,6 +5795,7 @@ att = 186
 str = 186
 def = 186
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_2]
@@ -5507,6 +5806,7 @@ att = 183
 str = 183
 def = 183
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_3]
@@ -5517,6 +5817,7 @@ att = 181
 str = 181
 def = 181
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_4]
@@ -5527,6 +5828,7 @@ att = 184
 str = 184
 def = 184
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_5]
@@ -5537,6 +5839,7 @@ att = 181
 str = 181
 def = 181
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_6]
@@ -5547,6 +5850,7 @@ att = 184
 str = 184
 def = 184
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_7]
@@ -5557,6 +5861,7 @@ att = 183
 str = 183
 def = 183
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_8]
@@ -5567,6 +5872,7 @@ att = 179
 str = 179
 def = 179
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_9]
@@ -5577,6 +5883,7 @@ att = 183
 str = 183
 def = 183
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_10]
@@ -5587,6 +5894,7 @@ att = 184
 str = 184
 def = 184
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_11]
@@ -5597,6 +5905,7 @@ att = 184
 str = 184
 def = 184
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_12]
@@ -5607,6 +5916,7 @@ att = 181
 str = 181
 def = 181
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_13]
@@ -5617,6 +5927,7 @@ att = 181
 str = 181
 def = 181
 combat_def = "forgotten_warrior_spear"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_14]
@@ -5627,6 +5938,7 @@ att = 184
 str = 184
 def = 184
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_15]
@@ -5637,6 +5949,7 @@ att = 183
 str = 183
 def = 183
 combat_def = "forgotten_warrior_hammer"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_16]
@@ -5647,6 +5960,7 @@ att = 181
 str = 181
 def = 181
 combat_def = "forgotten_warrior_axe"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_17]
@@ -5657,6 +5971,7 @@ att = 184
 str = 184
 def = 184
 combat_def = "forgotten_warrior_maul"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_18]
@@ -5667,6 +5982,7 @@ att = 181
 str = 181
 def = 181
 combat_def = "forgotten_warrior_dagger"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_19]
@@ -5677,6 +5993,7 @@ att = 181
 str = 181
 def = 181
 combat_def = "forgotten_warrior_rapier"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_20]
@@ -5687,6 +6004,7 @@ att = 183
 str = 183
 def = 183
 combat_def = "forgotten_warrior_2h"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_21]
@@ -5697,6 +6015,7 @@ att = 184
 str = 184
 def = 184
 combat_def = "forgotten_warrior_sword"
+hunt_mode = "cowardly"
 examine = "A warrior who has been long forgotten."
 
 [rand_bat_1]
