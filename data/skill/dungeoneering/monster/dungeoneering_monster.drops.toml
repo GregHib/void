@@ -25,3 +25,9 @@ drops = [
     { id = "novite_spear" },
     { id = "novite_warhammer" },
 ]
+
+[giant_rat_dungeoneering_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+]

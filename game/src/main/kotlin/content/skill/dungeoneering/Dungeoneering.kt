@@ -1,5 +1,8 @@
 package content.skill.dungeoneering
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.maxSkills
+import content.entity.player.dialogue.type.choice
 import content.quest.smallInstance
 import content.skill.magic.spell.SpellRunes
 import net.pearx.kasechange.toTitleCase
@@ -31,9 +34,13 @@ class Dungeoneering(val dropTables: DropTables) : Script {
 
             // https://youtu.be/tg1Kf4iAkN4?t=243
 //            statement("Please select the number of players you want the dungeon to be designed for. <col=531e13>You may not be able to complete a dungeon if too many people leave.")
+//            val partySize = dungeonMembers.size
 //            choice {
-//                option("1")
-//                option("2 (recommended)")
+//                for (i in 1 until 6) {
+//                    option("$i${if (i == partySize) " (recommended)" else ""}") {
+//
+//                    }
+//                }
 //            }
 //            choice("What size of dungeon would you like?") {
 //                option("Small.")
@@ -49,9 +56,9 @@ class Dungeoneering(val dropTables: DropTables) : Script {
                 size = size,
                 floor = floor,
                 complexity = complexity,
+                playerCount = 1,
             )
             set("show_daemonheim_map", true)
-            val skills = Skill.all.associateWith { levels.getMax(it) }
             message("")
             message("- Welcome to Daemonheim -")
             message("Floor <purple>$floor</col>    Complexity <purple>$complexity")
@@ -60,6 +67,7 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             message("<purple>Guide Mode OFF")
             message("")
             val start = System.currentTimeMillis()
+            val skills = maxSkills
             val dungeon = generator.generate(skills)
             println("Took ${System.currentTimeMillis() - start}ms")
 
@@ -73,7 +81,8 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             dungeon.players.add(index)
             val center = instance.tile.add(startRoom.tile.x * 16 + 8, startRoom.tile.y * 16 + 8)
             NPCs.add("smuggler_dungeoneering", center)
-            spawnTableItems(instance.tile, complexity, dungeon, skills)
+            val partySize = dungeon.players.size
+            spawnTableItems(instance.tile, complexity, dungeon, skills, partySize)
             tele(center.addY(-2))
             set("dungeon_deaths", 0)
             open("rand_overlay")
@@ -141,12 +150,12 @@ class Dungeoneering(val dropTables: DropTables) : Script {
 
     private val fish = arrayOf("heim_crab", "red_eye", "dusk_eel", "giant_flatfish", "short_finned_eel", "web_snipper", "bouldabass", "salve_eel", "blue_crab", "cave_moray")
 
-    private fun spawnTableItems(instance: Tile, complexity: Int, dungeon: DungeonMap, skills: Map<Skill, Int>) {
+    private fun spawnTableItems(instance: Tile, complexity: Int, dungeon: DungeonMap, skills: Map<Skill, Int>, partySize: Int) {
         val items = mutableListOf<ItemDrop>()
         val startRoom = dungeon.start()
         val tile = instance.add(startRoom.tile.x * 16, startRoom.tile.y * 16)
         val limit = (skills.getValue(Skill.Constitution) / 100).coerceAtMost(if (World.members) 10 else 5)
-        repeat(7 + (dungeon.players.size * 2)) {
+        repeat(7 + (partySize * 2)) {
             val index = random.nextInt(0, limit)
             val fish = fish[index]
             items.add(ItemDrop(fish))

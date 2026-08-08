@@ -5533,7 +5533,7 @@ hitpoints = 10
 max_hit_magic = 16
 max_hit_range = 16
 def = 10
-magic = 20
+mage = 20
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5543,7 +5543,7 @@ hitpoints = 20
 max_hit_magic = 16
 max_hit_range = 16
 def = 11
-magic = 22
+mage = 22
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5553,7 +5553,7 @@ hitpoints = 60
 max_hit_magic = 19
 max_hit_range = 19
 def = 14
-magic = 26
+mage = 26
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5563,7 +5563,7 @@ hitpoints = 130
 max_hit_magic = 24
 max_hit_range = 24
 def = 22
-magic = 38
+mage = 38
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5573,7 +5573,7 @@ hitpoints = 220
 max_hit_magic = 33
 max_hit_range = 33
 def = 32
-magic = 53
+mage = 53
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5583,7 +5583,7 @@ hitpoints = 310
 max_hit_magic = 41
 max_hit_range = 41
 def = 44
-magic = 70
+mage = 70
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5593,7 +5593,7 @@ hitpoints = 450
 max_hit_magic = 54
 max_hit_range = 54
 def = 61
-magic = 95
+mage = 95
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5603,7 +5603,7 @@ hitpoints = 610
 max_hit_magic = 72
 max_hit_range = 72
 def = 80
-magic = 123
+mage = 123
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5613,7 +5613,7 @@ hitpoints = 880
 max_hit_magic = 96
 max_hit_range = 96
 def = 104
-magic = 158
+mage = 158
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5623,7 +5623,7 @@ hitpoints = 1100
 max_hit_magic = 145
 max_hit_range = 145
 def = 137
-magic = 207
+mage = 207
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5633,7 +5633,7 @@ hitpoints = 1310
 max_hit_magic = 221
 max_hit_range = 221
 def = 167
-magic = 251
+mage = 251
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
@@ -5643,7 +5643,7 @@ hitpoints = 1550
 max_hit_magic = 313
 max_hit_range = 313
 def = 198
-magic = 297
+mage = 297
 combat_def = "mysterious_shade"
 hunt_mode = "cowardly"
 
