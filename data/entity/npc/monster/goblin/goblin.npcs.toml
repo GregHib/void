@@ -144,6 +144,10 @@ clone = "goblin_shield_battleaxe_green"
 clone = "goblin_mohawk_blue"
 id = 12353
 
+[goblin_turquoise_topless_bald]
+clone = "goblin_mohawk_blue"
+id = 2275
+
 [goblin_turquoise_topless_mohawk]
 clone = "goblin_mohawk_blue"
 id = 12354
