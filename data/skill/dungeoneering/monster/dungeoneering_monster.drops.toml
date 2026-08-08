@@ -1,0 +1,27 @@
+[forgotten_warrior_lvl1_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "warrior_novite_secondary" },
+]
+
+[warrior_novite_secondary]
+roll = 128
+drops = [
+    { id = "novite_gauntlets" },
+    { id = "novite_boots" },
+    { id = "novite_full_helm" },
+    { id = "novite_kiteshield" },
+    { id = "novite_chainbody" },
+    { id = "novite_platelegs" },
+    { id = "novite_plateskirt" },
+    { id = "novite_platebody" },
+    { id = "novite_2h_sword" },
+    { id = "novite_battleaxe" },
+    { id = "novite_dagger" },
+    { id = "novite_longsowrd" },
+    { id = "novite_maul" },
+    { id = "novite_rapier" },
+    { id = "novite_spear" },
+    { id = "novite_warhammer" },
+]
