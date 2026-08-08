@@ -581,3 +581,23 @@ clone = "forgotten_mage_8.entangle"
 
 [forgotten_mage_11.vulnerability]
 clone = "forgotten_mage_7.vulnerability"
+
+[mysterious_shade]
+defend_anim = "mysterious_shade_defend"
+# TODO unknown death anim
+
+[mysterious_shade.range]
+range = 8
+anim = "mysterious_shade_range"
+gfx = "mysterious_shade_range_cast"
+projectile = "mysterious_shade_range"
+impact_gfx = "mysterious_shade_range_impact"
+target_hit = { offense = "range", defence = "magic", max = 10 }
+
+[mysterious_shade.magic]
+range = 8
+anim = "mysterious_shade_magic"
+gfx = "mysterious_shade_magic_cast"
+projectile = "mysterious_shade_magic"
+impact_gfx = "mysterious_shade_magic_impact"
+target_hit = { offense = "magic", max = 10 }

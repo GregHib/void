@@ -5342,41 +5342,128 @@ id = 10829
 [rand_ghost_10]
 id = 10830
 
+# https://runescape.wiki/w/Mysterious_shade?oldid=6010017
+# Stats interpolated magic=20..300, def = 10..200
+
 [rand_mysterious_shade_0]
 id = 10831
+hitpoints = 10
+max_hit_magic = 16
+max_hit_range = 16
+def = 10
+magic = 20
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_1]
 id = 10832
+hitpoints = 20
+max_hit_magic = 16
+max_hit_range = 16
+def = 11
+magic = 22
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_2]
 id = 10833
+hitpoints = 60
+max_hit_magic = 19
+max_hit_range = 19
+def = 14
+magic = 26
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_3]
 id = 10834
+hitpoints = 130
+max_hit_magic = 24
+max_hit_range = 24
+def = 22
+magic = 38
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_4]
 id = 10835
+hitpoints = 220
+max_hit_magic = 33
+max_hit_range = 33
+def = 32
+magic = 53
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_5]
 id = 10836
+hitpoints = 310
+max_hit_magic = 41
+max_hit_range = 41
+def = 44
+magic = 70
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_6]
 id = 10837
+hitpoints = 450
+max_hit_magic = 54
+max_hit_range = 54
+def = 61
+magic = 95
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_7]
 id = 10838
+hitpoints = 610
+max_hit_magic = 72
+max_hit_range = 72
+def = 80
+magic = 123
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_8]
 id = 10839
+hitpoints = 880
+max_hit_magic = 96
+max_hit_range = 96
+def = 104
+magic = 158
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_9]
 id = 10840
+hitpoints = 1100
+max_hit_magic = 145
+max_hit_range = 145
+def = 137
+magic = 207
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_10]
 id = 10841
+hitpoints = 1310
+max_hit_magic = 221
+max_hit_range = 221
+def = 167
+magic = 251
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_mysterious_shade_11]
 id = 10842
+hitpoints = 1550
+max_hit_magic = 313
+max_hit_range = 313
+def = 198
+magic = 297
+combat_def = "mysterious_shade"
+hunt_mode = "cowardly"
 
 [rand_human_melee_lvl7_1]
 id = 10843
