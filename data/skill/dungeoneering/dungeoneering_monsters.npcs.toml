@@ -1,0 +1,10100 @@
+[rand_furn_nighteye_control_npc]
+id = 9724
+
+[rand_furn_nighteye_static_1]
+id = 9725
+
+[rand_furn_nighteye_static_2]
+id = 9726
+
+[rand_furn_nighteye_static_3]
+id = 9727
+
+[rand_furn_nighteye_static_4]
+id = 9728
+
+[rand_furn_nighteye_static_5]
+id = 9729
+
+[rand_furn_nighteye_static_6]
+id = 9730
+
+[rand_furn_nighteye_static_7]
+id = 9731
+
+[rand_furn_nighteye_static_8]
+id = 9732
+
+[rand_furn_nighteye_static_9]
+id = 9733
+
+[rand_furn_nighteye_static_10]
+id = 9734
+
+[rand_furn_nighteye_static_11]
+id = 9735
+
+[rand_furn_nighteye_static_12]
+id = 9736
+
+[rand_furn_nighteye_static_13]
+id = 9737
+
+[rand_furn_nighteye_static_14]
+id = 9738
+
+[rand_furn_nighteye_mobile_1]
+id = 9739
+
+[rand_furn_nighteye_mobile_2]
+id = 9740
+
+[rand_furn_nighteye_mobile_3]
+id = 9741
+
+[rand_furn_nighteye_mobile_4]
+id = 9742
+
+[rand_furn_nighteye_mobile_5]
+id = 9743
+
+[rand_furn_nighteye_mobile_6]
+id = 9744
+
+[rand_furn_nighteye_mobile_7]
+id = 9745
+
+[rand_furn_nighteye_mobile_8]
+id = 9746
+
+[rand_furn_nighteye_mobile_9]
+id = 9747
+
+[rand_furn_nighteye_mobile_10]
+id = 9748
+
+[rand_furn_nighteye_mobile_11]
+id = 9749
+
+[rand_furn_nighteye_mobile_12]
+id = 9750
+
+[rand_furn_nighteye_mobile_13]
+id = 9751
+
+[rand_furn_nighteye_mobile_14]
+id = 9752
+
+[rand_furn_toughguy_1]
+id = 9753
+
+[rand_furn_toughguy_2]
+id = 9754
+
+[rand_furn_toughguy_3]
+id = 9755
+
+[rand_furn_toughguy_4]
+id = 9756
+
+[rand_furn_toughguy_5]
+id = 9757
+
+[rand_furn_toughguy_6]
+id = 9758
+
+[rand_furn_toughguy_7]
+id = 9759
+
+[rand_furn_toughguy_8]
+id = 9760
+
+[rand_furn_toughguy_9]
+id = 9761
+
+[rand_furn_toughguy_10]
+id = 9762
+
+[rand_furn_toughguy_11]
+id = 9763
+
+[rand_furn_toughguy_12]
+id = 9764
+
+[rand_furn_toughguy_13]
+id = 9765
+
+[rand_furn_toughguy_14]
+id = 9766
+
+[rand_furn_rammernaught_1]
+id = 9767
+
+[rand_furn_rammernaught_2]
+id = 9768
+
+[rand_furn_rammernaught_3]
+id = 9769
+
+[rand_furn_rammernaught_4]
+id = 9770
+
+[rand_furn_rammernaught_5]
+id = 9771
+
+[rand_furn_rammernaught_6]
+id = 9772
+
+[rand_furn_rammernaught_7]
+id = 9773
+
+[rand_furn_rammernaught_8]
+id = 9774
+
+[rand_furn_rammernaught_9]
+id = 9775
+
+[rand_furn_rammernaught_10]
+id = 9776
+
+[rand_furn_rammernaught_11]
+id = 9777
+
+[rand_furn_rammernaught_12]
+id = 9778
+
+[rand_furn_rammernaught_13]
+id = 9779
+
+[rand_furn_rammernaught_14]
+id = 9780
+
+[rand_stomp_boss_dead]
+id = 9781
+
+[rand_stomp_boss_1]
+id = 9782
+
+[rand_stomp_boss_2]
+id = 9783
+
+[rand_stomp_boss_3]
+id = 9784
+
+[rand_stomp_boss_4]
+id = 9785
+
+[rand_stomp_boss_5]
+id = 9786
+
+[rand_stomp_boss_6]
+id = 9787
+
+[rand_stomp_boss_7]
+id = 9788
+
+[rand_stomp_boss_8]
+id = 9789
+
+[rand_stomp_boss_9]
+id = 9790
+
+[rand_stomp_boss_10]
+id = 9791
+
+[rand_stomp_boss_11]
+id = 9792
+
+[rand_stomp_boss_12]
+id = 9793
+
+[rand_stomp_boss_13]
+id = 9794
+
+[rand_stomp_boss_14]
+id = 9795
+
+[rand_stomp_boss_15]
+id = 9796
+
+[rand_stomp_boss_1_west]
+id = 9797
+
+[rand_stomp_boss_2_west]
+id = 9798
+
+[rand_stomp_boss_3_west]
+id = 9799
+
+[rand_stomp_boss_4_west]
+id = 9800
+
+[rand_stomp_boss_5_west]
+id = 9801
+
+[rand_stomp_boss_6_west]
+id = 9802
+
+[rand_stomp_boss_7_west]
+id = 9803
+
+[rand_stomp_boss_8_west]
+id = 9804
+
+[rand_stomp_boss_9_west]
+id = 9805
+
+[rand_stomp_boss_10_west]
+id = 9806
+
+[rand_stomp_boss_11_west]
+id = 9807
+
+[rand_stomp_boss_12_west]
+id = 9808
+
+[rand_stomp_boss_13_west]
+id = 9809
+
+[rand_stomp_boss_14_west]
+id = 9810
+
+[rand_stomp_boss_15_west]
+id = 9811
+
+[rand_stomp_boss_1_north]
+id = 9812
+
+[rand_stomp_boss_2_north]
+id = 9813
+
+[rand_stomp_boss_3_north]
+id = 9814
+
+[rand_stomp_boss_4_north]
+id = 9815
+
+[rand_stomp_boss_5_north]
+id = 9816
+
+[rand_stomp_boss_6_north]
+id = 9817
+
+[rand_stomp_boss_7_north]
+id = 9818
+
+[rand_stomp_boss_8_north]
+id = 9819
+
+[rand_stomp_boss_9_north]
+id = 9820
+
+[rand_stomp_boss_10_north]
+id = 9821
+
+[rand_stomp_boss_11_north]
+id = 9822
+
+[rand_stomp_boss_12_north]
+id = 9823
+
+[rand_stomp_boss_13_north]
+id = 9824
+
+[rand_stomp_boss_14_north]
+id = 9825
+
+[rand_stomp_boss_15_north]
+id = 9826
+
+[rand_stomp_boss_1_east]
+id = 9827
+
+[rand_stomp_boss_2_east]
+id = 9828
+
+[rand_stomp_boss_3_east]
+id = 9829
+
+[rand_stomp_boss_4_east]
+id = 9830
+
+[rand_stomp_boss_5_east]
+id = 9831
+
+[rand_stomp_boss_6_east]
+id = 9832
+
+[rand_stomp_boss_7_east]
+id = 9833
+
+[rand_stomp_boss_8_east]
+id = 9834
+
+[rand_stomp_boss_9_east]
+id = 9835
+
+[rand_stomp_boss_10_east]
+id = 9836
+
+[rand_stomp_boss_11_east]
+id = 9837
+
+[rand_stomp_boss_12_east]
+id = 9838
+
+[rand_stomp_boss_13_east]
+id = 9839
+
+[rand_stomp_boss_14_east]
+id = 9840
+
+[rand_stomp_boss_15_east]
+id = 9841
+
+[rand_furn_librarimancer_1]
+id = 9842
+
+[rand_furn_librarimancer_2]
+id = 9843
+
+[rand_furn_librarimancer_3]
+id = 9844
+
+[rand_furn_librarimancer_4]
+id = 9845
+
+[rand_furn_librarimancer_5]
+id = 9846
+
+[rand_furn_librarimancer_6]
+id = 9847
+
+[rand_furn_librarimancer_7]
+id = 9848
+
+[rand_furn_librarimancer_8]
+id = 9849
+
+[rand_furn_librarimancer_9]
+id = 9850
+
+[rand_furn_librarimancer_10]
+id = 9851
+
+[rand_furn_librarimancer_11]
+id = 9852
+
+[rand_furn_librarimancer_12]
+id = 9853
+
+[rand_furn_librarimancer_13]
+id = 9854
+
+[rand_furn_librarimancer_14]
+id = 9855
+
+[rand_furn_librarimancer_book_melee_1]
+id = 9856
+
+[rand_furn_librarimancer_book_range_1]
+id = 9857
+
+[rand_furn_librarimancer_book_magic_1]
+id = 9858
+
+[rand_furn_librarimancer_book_melee_2]
+id = 9859
+
+[rand_furn_librarimancer_book_range_2]
+id = 9860
+
+[rand_furn_librarimancer_book_magic_2]
+id = 9861
+
+[rand_furn_librarimancer_book_melee_3]
+id = 9862
+
+[rand_furn_librarimancer_book_range_3]
+id = 9863
+
+[rand_furn_librarimancer_book_magic_3]
+id = 9864
+
+[rand_furn_librarimancer_book_melee_4]
+id = 9865
+
+[rand_furn_librarimancer_book_range_4]
+id = 9866
+
+[rand_furn_librarimancer_book_magic_4]
+id = 9867
+
+[rand_furn_librarimancer_book_melee_5]
+id = 9868
+
+[rand_furn_librarimancer_book_range_5]
+id = 9869
+
+[rand_furn_librarimancer_book_magic_5]
+id = 9870
+
+[rand_furn_librarimancer_book_melee_6]
+id = 9871
+
+[rand_furn_librarimancer_book_range_6]
+id = 9872
+
+[rand_furn_librarimancer_book_magic_6]
+id = 9873
+
+[rand_furn_librarimancer_book_melee_7]
+id = 9874
+
+[rand_furn_librarimancer_book_range_7]
+id = 9875
+
+[rand_furn_librarimancer_book_magic_7]
+id = 9876
+
+[rand_furn_librarimancer_book_melee_8]
+id = 9877
+
+[rand_furn_librarimancer_book_range_8]
+id = 9878
+
+[rand_furn_librarimancer_book_magic_8]
+id = 9879
+
+[rand_furn_librarimancer_book_melee_9]
+id = 9880
+
+[rand_furn_librarimancer_book_range_9]
+id = 9881
+
+[rand_furn_librarimancer_book_magic_9]
+id = 9882
+
+[rand_furn_librarimancer_book_melee_10]
+id = 9883
+
+[rand_furn_librarimancer_book_range_10]
+id = 9884
+
+[rand_furn_librarimancer_book_magic_10]
+id = 9885
+
+[rand_furn_librarimancer_book_melee_11]
+id = 9886
+
+[rand_furn_librarimancer_book_range_11]
+id = 9887
+
+[rand_furn_librarimancer_book_magic_11]
+id = 9888
+
+[rand_furn_librarimancer_book_melee_12]
+id = 9889
+
+[rand_furn_librarimancer_book_range_12]
+id = 9890
+
+[rand_furn_librarimancer_book_magic_12]
+id = 9891
+
+[rand_furn_librarimancer_book_melee_13]
+id = 9892
+
+[rand_furn_librarimancer_book_range_13]
+id = 9893
+
+[rand_furn_librarimancer_book_magic_13]
+id = 9894
+
+[rand_furn_librarimancer_book_melee_14]
+id = 9895
+
+[rand_furn_librarimancer_book_range_14]
+id = 9896
+
+[rand_furn_librarimancer_book_magic_14]
+id = 9897
+
+[rand_furn_demon_1]
+id = 9898
+
+[rand_furn_demon_2]
+id = 9899
+
+[rand_furn_demon_3]
+id = 9900
+
+[rand_furn_demon_4]
+id = 9901
+
+[rand_furn_demon_5]
+id = 9902
+
+[rand_furn_demon_6]
+id = 9903
+
+[rand_furn_demon_7]
+id = 9904
+
+[rand_furn_demon_8]
+id = 9905
+
+[rand_furn_demon_9]
+id = 9906
+
+[rand_furn_demon_10]
+id = 9907
+
+[rand_furn_demon_11]
+id = 9908
+
+[rand_furn_demon_12]
+id = 9909
+
+[rand_furn_demon_13]
+id = 9910
+
+[rand_furn_demon_14]
+id = 9911
+
+[rand_froz_icefiend_boss_00]
+id = 9912
+
+[rand_froz_icefiend_boss_0]
+id = 9913
+
+[rand_froz_icefiend_boss_1]
+id = 9914
+
+[rand_froz_icefiend_boss_2]
+id = 9915
+
+[rand_froz_icefiend_boss_3]
+id = 9916
+
+[rand_froz_icefiend_boss_4]
+id = 9917
+
+[rand_froz_icefiend_boss_5]
+id = 9918
+
+[rand_froz_icefiend_boss_6]
+id = 9919
+
+[rand_froz_icefiend_boss_7]
+id = 9920
+
+[rand_froz_icefiend_boss_8]
+id = 9921
+
+[rand_froz_icefiend_boss_9]
+id = 9922
+
+[rand_froz_icefiend_boss_10]
+id = 9923
+
+[rand_froz_icefiend_boss_11]
+id = 9924
+
+[rand_froz_icefiend_boss_12]
+id = 9925
+
+[rand_froz_icefiend_boss_13]
+id = 9926
+
+[rand_froz_icefiend_boss_14]
+id = 9927
+
+[rand_froz_icefiend_boss_15]
+id = 9928
+
+[rand_cold_stare_boss_0]
+id = 9929
+
+[rand_cold_stare_boss_05]
+id = 9930
+
+[rand_cold_stare_boss_06]
+id = 9931
+
+[rand_cold_stare_boss_07]
+id = 9932
+
+[rand_cold_stare_boss_1]
+id = 9933
+
+[rand_cold_stare_boss_2]
+id = 9934
+
+[rand_cold_stare_boss_3]
+id = 9935
+
+[rand_cold_stare_boss_4]
+id = 9936
+
+[rand_cold_stare_boss_5]
+id = 9937
+
+[rand_cold_stare_boss_6]
+id = 9938
+
+[rand_cold_stare_boss_7]
+id = 9939
+
+[rand_cold_stare_boss_8]
+id = 9940
+
+[rand_cold_stare_boss_9]
+id = 9941
+
+[rand_cold_stare_boss_10]
+id = 9942
+
+[rand_cold_stare_boss_11]
+id = 9943
+
+[rand_cold_stare_boss_12]
+id = 9944
+
+[rand_cold_stare_boss_13]
+id = 9945
+
+[rand_cold_stare_boss_14]
+id = 9946
+
+[rand_cold_stare_boss_15]
+id = 9947
+
+[rand_survival_boss_0]
+id = 9948
+
+[rand_survival_boss_05]
+id = 9949
+
+[rand_survival_boss_1]
+id = 9950
+
+[rand_survival_boss_2]
+id = 9951
+
+[rand_survival_boss_3]
+id = 9952
+
+[rand_survival_boss_4]
+id = 9953
+
+[rand_survival_boss_5]
+id = 9954
+
+[rand_survival_boss_6]
+id = 9955
+
+[rand_survival_boss_7]
+id = 9956
+
+[rand_survival_boss_8]
+id = 9957
+
+[rand_survival_boss_9]
+id = 9958
+
+[rand_survival_boss_10]
+id = 9959
+
+[rand_survival_boss_11]
+id = 9960
+
+[rand_survival_boss_12]
+id = 9961
+
+[rand_survival_boss_13]
+id = 9962
+
+[rand_survival_boss_14]
+id = 9963
+
+[rand_survival_boss_15]
+id = 9964
+
+[rand_ancient_mage_0_melee]
+id = 9965
+
+[rand_ancient_mage_0_magic]
+id = 9966
+
+[rand_ancient_mage_0_ranged]
+id = 9967
+
+[rand_ancient_mage_05_melee]
+id = 9968
+
+[rand_ancient_mage_05_magic]
+id = 9969
+
+[rand_ancient_mage_05_ranged]
+id = 9970
+
+[rand_ancient_mage_1_melee]
+id = 9971
+
+[rand_ancient_mage_1_magic]
+id = 9972
+
+[rand_ancient_mage_1_ranged]
+id = 9973
+
+[rand_ancient_mage_2_melee]
+id = 9974
+
+[rand_ancient_mage_2_magic]
+id = 9975
+
+[rand_ancient_mage_2_ranged]
+id = 9976
+
+[rand_ancient_mage_3_melee]
+id = 9977
+
+[rand_ancient_mage_3_magic]
+id = 9978
+
+[rand_ancient_mage_3_ranged]
+id = 9979
+
+[rand_ancient_mage_4_melee]
+id = 9980
+
+[rand_ancient_mage_4_magic]
+id = 9981
+
+[rand_ancient_mage_4_ranged]
+id = 9982
+
+[rand_ancient_mage_5_melee]
+id = 9983
+
+[rand_ancient_mage_5_magic]
+id = 9984
+
+[rand_ancient_mage_5_ranged]
+id = 9985
+
+[rand_ancient_mage_6_melee]
+id = 9986
+
+[rand_ancient_mage_6_magic]
+id = 9987
+
+[rand_ancient_mage_6_ranged]
+id = 9988
+
+[rand_ancient_mage_7_melee]
+id = 9989
+
+[rand_ancient_mage_7_magic]
+id = 9990
+
+[rand_ancient_mage_7_ranged]
+id = 9991
+
+[rand_ancient_mage_8_melee]
+id = 9992
+
+[rand_ancient_mage_8_magic]
+id = 9993
+
+[rand_ancient_mage_8_ranged]
+id = 9994
+
+[rand_ancient_mage_9_melee]
+id = 9995
+
+[rand_ancient_mage_9_magic]
+id = 9996
+
+[rand_ancient_mage_9_ranged]
+id = 9997
+
+[rand_ancient_mage_10_melee]
+id = 9998
+
+[rand_ancient_mage_10_magic]
+id = 9999
+
+[rand_ancient_mage_10_ranged]
+id = 10000
+
+[rand_ancient_mage_11_melee]
+id = 10001
+
+[rand_ancient_mage_11_magic]
+id = 10002
+
+[rand_ancient_mage_11_ranged]
+id = 10003
+
+[rand_ancient_mage_12_melee]
+id = 10004
+
+[rand_ancient_mage_12_magic]
+id = 10005
+
+[rand_ancient_mage_12_ranged]
+id = 10006
+
+[rand_ancient_mage_13_melee]
+id = 10007
+
+[rand_ancient_mage_13_magic]
+id = 10008
+
+[rand_ancient_mage_13_ranged]
+id = 10009
+
+[rand_ancient_mage_14_melee]
+id = 10010
+
+[rand_ancient_mage_14_magic]
+id = 10011
+
+[rand_ancient_mage_14_ranged]
+id = 10012
+
+[rand_ancient_mage_15_melee]
+id = 10013
+
+[rand_ancient_mage_15_magic]
+id = 10014
+
+[rand_ancient_mage_15_ranged]
+id = 10015
+
+[rand_ancient_mage_16_melee]
+id = 10016
+
+[rand_ancient_mage_16_magic]
+id = 10017
+
+[rand_ancient_mage_16_ranged]
+id = 10018
+
+[rand_ancient_mage_17_melee]
+id = 10019
+
+[rand_ancient_mage_17_magic]
+id = 10020
+
+[rand_ancient_mage_17_ranged]
+id = 10021
+
+[rand_froz_demon_iceblock_male]
+id = 10022
+
+[rand_froz_demon_iceblock_female]
+id = 10023
+
+[rand_froz_demon_0]
+id = 10024
+
+[rand_froz_demon_1]
+id = 10025
+
+[rand_froz_demon_2]
+id = 10026
+
+[rand_froz_demon_3]
+id = 10027
+
+[rand_froz_demon_4]
+id = 10028
+
+[rand_froz_demon_5]
+id = 10029
+
+[rand_froz_demon_6]
+id = 10030
+
+[rand_froz_demon_7]
+id = 10031
+
+[rand_froz_demon_8]
+id = 10032
+
+[rand_froz_demon_9]
+id = 10033
+
+[rand_froz_demon_10]
+id = 10034
+
+[rand_froz_demon_11]
+id = 10035
+
+[rand_froz_demon_12]
+id = 10036
+
+[rand_froz_demon_13]
+id = 10037
+
+[rand_froz_demon_14]
+id = 10038
+
+[rand_froz_demon_15]
+id = 10039
+
+[rand_ice_lord_boss_0]
+id = 10040
+
+[rand_ice_lord_boss_01]
+id = 10041
+
+[rand_ice_lord_boss_02]
+id = 10042
+
+[rand_ice_lord_boss_1]
+id = 10043
+
+[rand_ice_lord_boss_2]
+id = 10044
+
+[rand_ice_lord_boss_3]
+id = 10045
+
+[rand_ice_lord_boss_4]
+id = 10046
+
+[rand_ice_lord_boss_5]
+id = 10047
+
+[rand_ice_lord_boss_6]
+id = 10048
+
+[rand_ice_lord_boss_7]
+id = 10049
+
+[rand_ice_lord_boss_8]
+id = 10050
+
+[rand_ice_lord_boss_9]
+id = 10051
+
+[rand_ice_lord_boss_10]
+id = 10052
+
+[rand_ice_lord_boss_11]
+id = 10053
+
+[rand_ice_lord_boss_12]
+id = 10054
+
+[rand_ice_lord_boss_13]
+id = 10055
+
+[rand_ice_lord_boss_14]
+id = 10056
+
+[rand_ice_lord_boss_15]
+id = 10057
+
+[rand_antiboss]
+id = 10058
+
+[rand_hobgoblin_shaman_1]
+id = 10059
+
+[rand_hobgoblin_shaman_2]
+id = 10060
+
+[rand_hobgoblin_shaman_3]
+id = 10061
+
+[rand_hobgoblin_shaman_4]
+id = 10062
+
+[rand_hobgoblin_shaman_5]
+id = 10063
+
+[rand_hobgoblin_shaman_6]
+id = 10064
+
+[rand_hobgoblin_shaman_7]
+id = 10065
+
+[rand_hobgoblin_shaman_8]
+id = 10066
+
+[rand_hobgoblin_shaman_9]
+id = 10067
+
+[rand_hobgoblin_shaman_10]
+id = 10068
+
+[rand_hobgoblin_shaman_11]
+id = 10069
+
+[rand_hobgoblin_shaman_12]
+id = 10070
+
+[rand_hobgoblin_shaman_13]
+id = 10071
+
+[rand_hobgoblin_shaman_14]
+id = 10072
+
+[rand_boulder_beast_1_armoured]
+id = 10073
+
+[rand_boulder_beast_1_broken]
+id = 10074
+
+[rand_boulder_beast_2_armoured]
+id = 10075
+
+[rand_boulder_beast_2_broken]
+id = 10076
+
+[rand_boulder_beast_3_armoured]
+id = 10077
+
+[rand_boulder_beast_3_broken]
+id = 10078
+
+[rand_boulder_beast_4_armoured]
+id = 10079
+
+[rand_boulder_beast_4_broken]
+id = 10080
+
+[rand_boulder_beast_5_armoured]
+id = 10081
+
+[rand_boulder_beast_5_broken]
+id = 10082
+
+[rand_boulder_beast_6_armoured]
+id = 10083
+
+[rand_boulder_beast_6_broken]
+id = 10084
+
+[rand_boulder_beast_7_armoured]
+id = 10085
+
+[rand_boulder_beast_7_broken]
+id = 10086
+
+[rand_boulder_beast_8_armoured]
+id = 10087
+
+[rand_boulder_beast_8_broken]
+id = 10088
+
+[rand_boulder_beast_9_armoured]
+id = 10089
+
+[rand_boulder_beast_9_broken]
+id = 10090
+
+[rand_boulder_beast_10_armoured]
+id = 10091
+
+[rand_boulder_beast_10_broken]
+id = 10092
+
+[rand_boulder_beast_11_armoured]
+id = 10093
+
+[rand_boulder_beast_11_broken]
+id = 10094
+
+[rand_boulder_beast_12_armoured]
+id = 10095
+
+[rand_boulder_beast_12_broken]
+id = 10096
+
+[rand_boulder_beast_13_armoured]
+id = 10097
+
+[rand_boulder_beast_13_broken]
+id = 10098
+
+[rand_boulder_beast_14_armoured]
+id = 10099
+
+[rand_boulder_beast_14_broken]
+id = 10100
+
+[rand_boulder_beast_15_armoured]
+id = 10101
+
+[rand_boulder_beast_15_broken]
+id = 10102
+
+[rand_boulder_beast_16_armoured]
+id = 10103
+
+[rand_boulder_beast_16_broken]
+id = 10104
+
+[rand_boulder_beast_17_armoured]
+id = 10105
+
+[rand_boulder_beast_17_broken]
+id = 10106
+
+[deadly_linza]
+id = 10107
+
+[sighero_owen_scripted_monastery]
+id = 10108
+
+[deadly_linza_cutscene_sword]
+id = 10109
+
+[sighero_owen_scripted_falador]
+id = 10110
+
+[rand_undead_archmage_1]
+id = 10111
+
+[rand_undead_archmage_2]
+id = 10112
+
+[rand_undead_archmage_3]
+id = 10113
+
+[rand_undead_archmage_4]
+id = 10114
+
+[rand_undead_archmage_5]
+id = 10115
+
+[rand_undead_archmage_6]
+id = 10116
+
+[rand_undead_archmage_7]
+id = 10117
+
+[rand_undead_archmage_8]
+id = 10118
+
+[rand_undead_archmage_9]
+id = 10119
+
+[rand_undead_archmage_10]
+id = 10120
+
+[rand_undead_archmage_11]
+id = 10121
+
+[rand_undead_archmage_12]
+id = 10122
+
+[rand_undead_archmage_13]
+id = 10123
+
+[rand_undead_archmage_14]
+id = 10124
+
+[rand_undead_archmage_15]
+id = 10125
+
+[rand_undead_archmage_16]
+id = 10126
+
+[rand_undead_archmage_17]
+id = 10127
+
+[rand_war_demon_1]
+id = 10128
+
+[rand_war_demon_2]
+id = 10129
+
+[rand_war_demon_3]
+id = 10130
+
+[rand_war_demon_4]
+id = 10131
+
+[rand_war_demon_5]
+id = 10132
+
+[rand_war_demon_6]
+id = 10133
+
+[rand_war_demon_7]
+id = 10134
+
+[rand_war_demon_8]
+id = 10135
+
+[rand_war_demon_9]
+id = 10136
+
+[rand_war_demon_10]
+id = 10137
+
+[rand_war_demon_11]
+id = 10138
+
+[rand_war_demon_12]
+id = 10139
+
+[rand_war_demon_13]
+id = 10140
+
+[rand_war_demon_14]
+id = 10141
+
+[rand_war_demon_portal_npc]
+id = 10142
+
+[rand_shadow_forger_1]
+id = 10143
+
+[rand_shadow_forger_2]
+id = 10144
+
+[rand_shadow_forger_3]
+id = 10145
+
+[rand_shadow_forger_4]
+id = 10146
+
+[rand_shadow_forger_5]
+id = 10147
+
+[rand_shadow_forger_6]
+id = 10148
+
+[rand_shadow_forger_7]
+id = 10149
+
+[rand_shadow_forger_8]
+id = 10150
+
+[rand_shadow_forger_9]
+id = 10151
+
+[rand_shadow_forger_10]
+id = 10152
+
+[rand_shadow_forger_11]
+id = 10153
+
+[rand_shadow_forger_12]
+id = 10154
+
+[rand_shadow_forger_13]
+id = 10155
+
+[rand_shadow_forger_14]
+id = 10156
+
+[rand_ice_spider_0]
+id = 10157
+
+[rand_ice_spider_1]
+id = 10158
+
+[rand_ice_spider_2]
+id = 10159
+
+[rand_ice_spider_3]
+id = 10160
+
+[rand_ice_spider_4]
+id = 10161
+
+[rand_ice_spider_5]
+id = 10162
+
+[rand_ice_spider_6]
+id = 10163
+
+[rand_ice_spider_7]
+id = 10164
+
+[rand_ice_spider_8]
+id = 10165
+
+[rand_ice_spider_9]
+id = 10166
+
+[rand_ice_spider_10]
+id = 10167
+
+[rand_animated_pickaxe_1]
+id = 10168
+
+[rand_animated_pickaxe_2]
+id = 10169
+
+[rand_animated_pickaxe_3]
+id = 10170
+
+[rand_animated_pickaxe_4]
+id = 10171
+
+[rand_animated_pickaxe_5]
+id = 10172
+
+[rand_animated_pickaxe_6]
+id = 10173
+
+[rand_animated_pickaxe_7]
+id = 10174
+
+[rand_animated_pickaxe_8]
+id = 10175
+
+[rand_animated_pickaxe_9]
+id = 10176
+
+[rand_animated_pickaxe_10]
+id = 10177
+
+[rand_earth_warrior_1]
+id = 10178
+
+[rand_earth_warrior_2]
+id = 10179
+
+[rand_earth_warrior_3]
+id = 10180
+
+[rand_earth_warrior_4]
+id = 10181
+
+[rand_earth_warrior_5]
+id = 10182
+
+[rand_earth_warrior_6]
+id = 10183
+
+[rand_earth_warrior_7]
+id = 10184
+
+[rand_earth_warrior_8]
+id = 10185
+
+[rand_earth_warrior_9]
+id = 10186
+
+[rand_earth_warrior_10]
+id = 10187
+
+[rand_hellhound_1]
+id = 10188
+
+[rand_hellhound_2]
+id = 10189
+
+[rand_hellhound_3]
+id = 10190
+
+[rand_hellhound_4]
+id = 10191
+
+[rand_hellhound_5]
+id = 10192
+
+[rand_hellhound_6]
+id = 10193
+
+[rand_hellhound_7]
+id = 10194
+
+[rand_hellhound_8]
+id = 10195
+
+[combatv2_necromancy_undead_instinct_death_occult]
+id = 10196
+
+[amberfell_banker]
+id = 10197
+
+[amberfell_butcher]
+id = 10198
+
+[amberfell_villager_chatting_f]
+id = 10199
+
+[amberfell_villager_chatting_m]
+id = 10200
+
+[amberfell_villager]
+id = 10201
+
+[amberfell_fisherman]
+id = 10202
+
+[amberfell_child_1]
+id = 10203
+
+[amberfell_child_2]
+id = 10204
+
+[wendle_farmer_sheep_multi]
+id = 10205
+
+[wendle_farmer_sheep_scared]
+id = 10206
+
+[rand_gorak_1]
+id = 10207
+
+[rand_gorak_2]
+id = 10208
+
+[rand_gorak_3]
+id = 10209
+
+[rand_gorak_4]
+id = 10210
+
+[rand_gorak_5]
+id = 10211
+
+[rand_ice_fiend_1]
+id = 10212
+
+[rand_ice_fiend_2]
+id = 10213
+
+[rand_ice_fiend_3]
+id = 10214
+
+[rand_ice_fiend_4]
+id = 10215
+
+[rand_ice_fiend_5]
+id = 10216
+
+[rand_ice_fiend_6]
+id = 10217
+
+[rand_ice_fiend_7]
+id = 10218
+
+[rand_black_dragon_1]
+id = 10219
+
+[rand_black_dragon_2]
+id = 10220
+
+[rand_black_dragon_3]
+id = 10221
+
+[rand_black_dragon_4]
+id = 10222
+
+[rand_black_dragon_5]
+id = 10223
+
+[rand_black_dragon_6]
+id = 10224
+
+[rand_ice_warrior_0]
+id = 10225
+
+[rand_ice_warrior_1]
+id = 10226
+
+[rand_ice_warrior_2]
+id = 10227
+
+[rand_ice_warrior_3]
+id = 10228
+
+[rand_ice_warrior_4]
+id = 10229
+
+[rand_ice_warrior_5]
+id = 10230
+
+[rand_ice_warrior_6]
+id = 10231
+
+[rand_ice_warrior_7]
+id = 10232
+
+[rand_ice_warrior_8]
+id = 10233
+
+[rand_ice_warrior_9]
+id = 10234
+
+[rand_ice_warrior_10]
+id = 10235
+
+[rand_hobgoblin_1]
+id = 10236
+
+[rand_hobgoblin_2]
+id = 10237
+
+[rand_hobgoblin_3]
+id = 10238
+
+[rand_hobgoblin_4]
+id = 10239
+
+[rand_hobgoblin_5]
+id = 10240
+
+[rand_hobgoblin_6]
+id = 10241
+
+[rand_hobgoblin_7]
+id = 10242
+
+[rand_hobgoblin_8]
+id = 10243
+
+[rand_hobgoblin_9]
+id = 10244
+
+[rand_hobgoblin_10]
+id = 10245
+
+[rand_human_melee_lvl4_1]
+id = 10246
+
+[rand_human_melee_lvl4_2]
+id = 10247
+
+[rand_human_melee_lvl4_3]
+id = 10248
+
+[rand_human_melee_lvl4_4]
+id = 10249
+
+[rand_human_melee_lvl4_5]
+id = 10250
+
+[rand_human_melee_lvl4_6]
+id = 10251
+
+[rand_human_melee_lvl4_7]
+id = 10252
+
+[rand_human_melee_lvl4_8]
+id = 10253
+
+[rand_human_melee_lvl4_9]
+id = 10254
+
+[rand_human_melee_lvl4_10]
+id = 10255
+
+[rand_human_melee_lvl4_11]
+id = 10256
+
+[rand_human_melee_lvl4_12]
+id = 10257
+
+[rand_human_melee_lvl4_13]
+id = 10258
+
+[rand_human_melee_lvl4_14]
+id = 10259
+
+[rand_human_melee_lvl4_15]
+id = 10260
+
+[rand_human_melee_lvl4_16]
+id = 10261
+
+[rand_human_melee_lvl4_17]
+id = 10262
+
+[rand_human_melee_lvl4_18]
+id = 10263
+
+[rand_human_melee_lvl4_19]
+id = 10264
+
+[rand_human_melee_lvl4_20]
+id = 10265
+
+[rand_human_melee_lvl4_21]
+id = 10266
+
+[rand_human_melee_lvl5_1]
+id = 10267
+
+[rand_human_melee_lvl5_2]
+id = 10268
+
+[rand_human_melee_lvl5_3]
+id = 10269
+
+[rand_human_melee_lvl5_4]
+id = 10270
+
+[rand_human_melee_lvl5_5]
+id = 10271
+
+[rand_human_melee_lvl5_6]
+id = 10272
+
+[rand_human_melee_lvl5_7]
+id = 10273
+
+[rand_human_melee_lvl5_8]
+id = 10274
+
+[rand_human_melee_lvl5_9]
+id = 10275
+
+[rand_human_melee_lvl5_10]
+id = 10276
+
+[rand_human_melee_lvl5_11]
+id = 10277
+
+[rand_human_melee_lvl5_12]
+id = 10278
+
+[rand_human_melee_lvl5_13]
+id = 10279
+
+[rand_human_melee_lvl5_14]
+id = 10280
+
+[rand_human_melee_lvl5_15]
+id = 10281
+
+[rand_human_melee_lvl5_16]
+id = 10282
+
+[rand_human_melee_lvl5_17]
+id = 10283
+
+[rand_human_melee_lvl5_18]
+id = 10284
+
+[rand_human_melee_lvl5_19]
+id = 10285
+
+[rand_human_melee_lvl5_20]
+id = 10286
+
+[rand_human_melee_lvl5_21]
+id = 10287
+
+[rand_human_melee_lvl6_1]
+id = 10288
+
+[rand_human_melee_lvl6_2]
+id = 10289
+
+[rand_human_melee_lvl6_3]
+id = 10290
+
+[rand_human_melee_lvl6_4]
+id = 10291
+
+[rand_human_melee_lvl6_5]
+id = 10292
+
+[rand_human_melee_lvl6_6]
+id = 10293
+
+[rand_human_melee_lvl6_7]
+id = 10294
+
+[rand_human_melee_lvl6_8]
+id = 10295
+
+[rand_human_melee_lvl6_9]
+id = 10296
+
+[rand_human_melee_lvl6_10]
+id = 10297
+
+[rand_human_melee_lvl6_11]
+id = 10298
+
+[rand_human_melee_lvl6_12]
+id = 10299
+
+[rand_human_melee_lvl6_13]
+id = 10300
+
+[rand_human_melee_lvl6_14]
+id = 10301
+
+[rand_human_melee_lvl6_15]
+id = 10302
+
+[rand_human_melee_lvl6_16]
+id = 10303
+
+[rand_human_melee_lvl6_17]
+id = 10304
+
+[rand_human_melee_lvl6_18]
+id = 10305
+
+[rand_human_melee_lvl6_19]
+id = 10306
+
+[rand_human_melee_lvl6_20]
+id = 10307
+
+[rand_human_melee_lvl6_21]
+id = 10308
+
+[rand_human_ranged_lvl1_dummy]
+id = 10309
+
+[rand_human_ranged_lvl2_dummy]
+id = 10310
+
+[rand_human_ranged_lvl3_dummy]
+id = 10311
+
+[rand_human_ranged_lvl4_dummy]
+id = 10312
+
+[rand_human_ranged_lvl5_dummy]
+id = 10313
+
+[rand_human_ranged_lvl6_dummy]
+id = 10314
+
+[rand_human_ranged_lvl7_dummy]
+id = 10315
+
+[rand_human_ranged_lvl8_dummy]
+id = 10316
+
+[rand_human_ranged_lvl9_dummy]
+id = 10317
+
+[rand_human_ranged_lvl10_dummy]
+id = 10318
+
+[rand_human_ranged_lvl11_dummy]
+id = 10319
+
+[rand_human_ranged_lvl1_1]
+id = 10320
+
+[rand_human_ranged_lvl1_2]
+id = 10321
+
+[rand_human_ranged_lvl1_3]
+id = 10322
+
+[rand_human_ranged_lvl1_4]
+id = 10323
+
+[rand_human_ranged_lvl2_1]
+id = 10324
+
+[rand_human_ranged_lvl2_2]
+id = 10325
+
+[rand_human_ranged_lvl2_3]
+id = 10326
+
+[rand_human_ranged_lvl2_4]
+id = 10327
+
+[rand_human_ranged_lvl3_1]
+id = 10328
+
+[rand_human_ranged_lvl3_2]
+id = 10329
+
+[rand_human_ranged_lvl3_3]
+id = 10330
+
+[rand_human_ranged_lvl3_4]
+id = 10331
+
+[rand_human_ranged_lvl4_1]
+id = 10332
+
+[rand_human_ranged_lvl4_2]
+id = 10333
+
+[rand_human_ranged_lvl4_3]
+id = 10334
+
+[rand_human_ranged_lvl4_4]
+id = 10335
+
+[rand_human_ranged_lvl5_1]
+id = 10336
+
+[rand_human_ranged_lvl5_2]
+id = 10337
+
+[rand_human_ranged_lvl5_3]
+id = 10338
+
+[rand_human_ranged_lvl5_4]
+id = 10339
+
+[rand_human_ranged_lvl6_1]
+id = 10340
+
+[rand_human_ranged_lvl6_2]
+id = 10341
+
+[rand_human_ranged_lvl6_3]
+id = 10342
+
+[rand_human_ranged_lvl6_4]
+id = 10343
+
+[rand_human_ranged_lvl7_1]
+id = 10344
+
+[rand_human_ranged_lvl7_2]
+id = 10345
+
+[rand_human_ranged_lvl7_3]
+id = 10346
+
+[rand_human_ranged_lvl7_4]
+id = 10347
+
+[rand_human_ranged_lvl8_1]
+id = 10348
+
+[rand_human_ranged_lvl8_2]
+id = 10349
+
+[rand_human_ranged_lvl8_3]
+id = 10350
+
+[rand_human_ranged_lvl8_4]
+id = 10351
+
+[rand_human_ranged_lvl9_1]
+id = 10352
+
+[rand_human_ranged_lvl9_2]
+id = 10353
+
+[rand_human_ranged_lvl9_3]
+id = 10354
+
+[rand_human_ranged_lvl9_4]
+id = 10355
+
+[rand_human_ranged_lvl10_1]
+id = 10356
+
+[rand_human_ranged_lvl10_2]
+id = 10357
+
+[rand_human_ranged_lvl10_3]
+id = 10358
+
+[rand_human_ranged_lvl10_4]
+id = 10359
+
+[rand_human_ranged_lvl11_1]
+id = 10360
+
+[rand_human_ranged_lvl11_2]
+id = 10361
+
+[rand_human_ranged_lvl11_3]
+id = 10362
+
+[rand_human_ranged_lvl11_4]
+id = 10363
+
+[rand_zombie_melee_1]
+id = 10364
+
+[rand_zombie_melee_2]
+id = 10365
+
+[rand_zombie_melee_3]
+id = 10366
+
+[rand_zombie_melee_4]
+id = 10367
+
+[rand_zombie_melee_5]
+id = 10368
+
+[rand_zombie_melee_6]
+id = 10369
+
+[rand_zombie_melee_7]
+id = 10370
+
+[rand_zombie_melee_8]
+id = 10371
+
+[rand_zombie_melee_9]
+id = 10372
+
+[rand_zombie_melee_10]
+id = 10373
+
+[rand_zombie_melee_11]
+id = 10374
+
+[rand_zombie_ranged_1]
+id = 10375
+
+[rand_zombie_ranged_2]
+id = 10376
+
+[rand_zombie_ranged_3]
+id = 10377
+
+[rand_zombie_ranged_4]
+id = 10378
+
+[rand_zombie_ranged_5]
+id = 10379
+
+[rand_zombie_ranged_6]
+id = 10380
+
+[rand_zombie_ranged_7]
+id = 10381
+
+[rand_zombie_ranged_8]
+id = 10382
+
+[rand_zombie_ranged_9]
+id = 10383
+
+[rand_zombie_ranged_10]
+id = 10384
+
+[rand_zombie_ranged_11]
+id = 10385
+
+[rand_human_melee_lvl1_dummy]
+id = 10386
+
+[rand_human_melee_lvl2_dummy]
+id = 10387
+
+[rand_human_melee_lvl3_dummy]
+id = 10388
+
+[rand_human_melee_lvl4_dummy]
+id = 10389
+
+[rand_human_melee_lvl5_dummy]
+id = 10390
+
+[rand_human_melee_lvl6_dummy]
+id = 10391
+
+[rand_human_melee_lvl7_dummy]
+id = 10392
+
+[rand_human_melee_lvl8_dummy]
+id = 10393
+
+[rand_human_melee_lvl9_dummy]
+id = 10394
+
+[rand_human_melee_lvl10_dummy]
+id = 10395
+
+[rand_human_melee_lvl11_dummy]
+id = 10396
+
+[rand_human_melee_lvl1_1]
+id = 10397
+
+[rand_human_melee_lvl1_2]
+id = 10398
+
+[rand_human_melee_lvl1_3]
+id = 10399
+
+[rand_human_melee_lvl1_4]
+id = 10400
+
+[rand_human_melee_lvl1_5]
+id = 10401
+
+[rand_human_melee_lvl1_6]
+id = 10402
+
+[rand_human_melee_lvl1_7]
+id = 10403
+
+[rand_human_melee_lvl1_8]
+id = 10404
+
+[rand_human_melee_lvl1_9]
+id = 10405
+
+[rand_human_melee_lvl1_10]
+id = 10406
+
+[rand_human_melee_lvl1_11]
+id = 10407
+
+[rand_human_melee_lvl1_12]
+id = 10408
+
+[rand_human_melee_lvl1_13]
+id = 10409
+
+[rand_human_melee_lvl1_14]
+id = 10410
+
+[rand_human_melee_lvl1_15]
+id = 10411
+
+[rand_human_melee_lvl1_16]
+id = 10412
+
+[rand_human_melee_lvl1_17]
+id = 10413
+
+[rand_human_melee_lvl1_18]
+id = 10414
+
+[rand_human_melee_lvl1_19]
+id = 10415
+
+[rand_human_melee_lvl1_20]
+id = 10416
+
+[rand_human_melee_lvl1_21]
+id = 10417
+
+[rand_human_melee_lvl2_1]
+id = 10418
+
+[rand_human_melee_lvl2_2]
+id = 10419
+
+[rand_human_melee_lvl2_3]
+id = 10420
+
+[rand_human_melee_lvl2_4]
+id = 10421
+
+[rand_human_melee_lvl2_5]
+id = 10422
+
+[rand_human_melee_lvl2_6]
+id = 10423
+
+[rand_human_melee_lvl2_7]
+id = 10424
+
+[rand_human_melee_lvl2_8]
+id = 10425
+
+[rand_human_melee_lvl2_9]
+id = 10426
+
+[rand_human_melee_lvl2_10]
+id = 10427
+
+[rand_human_melee_lvl2_11]
+id = 10428
+
+[rand_human_melee_lvl2_12]
+id = 10429
+
+[rand_human_melee_lvl2_13]
+id = 10430
+
+[rand_human_melee_lvl2_14]
+id = 10431
+
+[rand_human_melee_lvl2_15]
+id = 10432
+
+[rand_human_melee_lvl2_16]
+id = 10433
+
+[rand_human_melee_lvl2_17]
+id = 10434
+
+[rand_human_melee_lvl2_18]
+id = 10435
+
+[rand_human_melee_lvl2_19]
+id = 10436
+
+[rand_human_melee_lvl2_20]
+id = 10437
+
+[rand_human_melee_lvl2_21]
+id = 10438
+
+[rand_human_melee_lvl3_1]
+id = 10439
+
+[rand_human_melee_lvl3_2]
+id = 10440
+
+[rand_human_melee_lvl3_3]
+id = 10441
+
+[rand_human_melee_lvl3_4]
+id = 10442
+
+[rand_human_melee_lvl3_5]
+id = 10443
+
+[rand_human_melee_lvl3_6]
+id = 10444
+
+[rand_human_melee_lvl3_7]
+id = 10445
+
+[rand_human_melee_lvl3_8]
+id = 10446
+
+[rand_human_melee_lvl3_9]
+id = 10447
+
+[rand_human_melee_lvl3_10]
+id = 10448
+
+[rand_human_melee_lvl3_11]
+id = 10449
+
+[rand_human_melee_lvl3_12]
+id = 10450
+
+[rand_human_melee_lvl3_13]
+id = 10451
+
+[rand_human_melee_lvl3_14]
+id = 10452
+
+[rand_human_melee_lvl3_15]
+id = 10453
+
+[rand_human_melee_lvl3_16]
+id = 10454
+
+[rand_human_melee_lvl3_17]
+id = 10455
+
+[rand_human_melee_lvl3_18]
+id = 10456
+
+[rand_human_melee_lvl3_19]
+id = 10457
+
+[rand_human_melee_lvl3_20]
+id = 10458
+
+[rand_human_melee_lvl3_21]
+id = 10459
+
+[rand_ice_golem_1]
+id = 10460
+
+[rand_ice_golem_2]
+id = 10461
+
+[rand_ice_golem_3]
+id = 10462
+
+[rand_ice_golem_4]
+id = 10463
+
+[rand_ice_golem_5]
+id = 10464
+
+[rand_ice_golem_6]
+id = 10465
+
+[rand_ice_golem_7]
+id = 10466
+
+[rand_ice_golem_8]
+id = 10467
+
+[rand_ice_golem_9]
+id = 10468
+
+[rand_giant_skeleton_1]
+id = 10469
+
+[rand_giant_skeleton_2]
+id = 10470
+
+[rand_giant_skeleton_3]
+id = 10471
+
+[rand_giant_skeleton_4]
+id = 10472
+
+[rand_giant_skeleton_5]
+id = 10473
+
+[rand_giant_skeleton_6]
+id = 10474
+
+[rand_giant_skeleton_7]
+id = 10475
+
+[rand_giant_skeleton_8]
+id = 10476
+
+[rand_giant_skeleton_9]
+id = 10477
+
+[rand_giant_skeleton_10]
+id = 10478
+
+[rand_giant_skeleton_11]
+id = 10479
+
+[rand_giant_rat_1]
+id = 10480
+
+[rand_giant_rat_2]
+id = 10481
+
+[rand_giant_rat_3]
+id = 10482
+
+[rand_giant_rat_4]
+id = 10483
+
+[rand_giant_rat_5]
+id = 10484
+
+[rand_giant_rat_6]
+id = 10485
+
+[rand_giant_rat_7]
+id = 10486
+
+[rand_frozen_low_level_dummy]
+id = 10487
+
+[rand_abandoned_low_level_dummy]
+id = 10488
+
+[rand_furnished_low_level_dummy]
+id = 10489
+
+[rand_occult_low_level_dummy]
+id = 10490
+
+[rand_warped_low_level_dummy]
+id = 10491
+
+[rand_lesser_demon_1]
+id = 10492
+
+[rand_lesser_demon_2]
+id = 10493
+
+[rand_lesser_demon_3]
+id = 10494
+
+[rand_lesser_demon_4]
+id = 10495
+
+[rand_dungeon_spider_1]
+id = 10496
+
+[rand_dungeon_spider_2]
+id = 10497
+
+[rand_dungeon_spider_3]
+id = 10498
+
+[rand_dungeon_spider_4]
+id = 10499
+
+[rand_dungeon_spider_5]
+id = 10500
+
+[rand_dungeon_spider_6]
+id = 10501
+
+[rand_dungeon_spider_7]
+id = 10502
+
+[rand_dungeon_spider_8]
+id = 10503
+
+[rand_dungeon_spider_9]
+id = 10504
+
+[rand_dungeon_spider_10]
+id = 10505
+
+[deadly_linza_cutscene_harpoon_start]
+id = 10506
+
+[rand_human_melee_lvl10_1]
+id = 10507
+
+[rand_human_melee_lvl10_2]
+id = 10508
+
+[rand_human_melee_lvl10_3]
+id = 10509
+
+[rand_human_melee_lvl10_4]
+id = 10510
+
+[rand_human_melee_lvl10_5]
+id = 10511
+
+[rand_human_melee_lvl10_6]
+id = 10512
+
+[rand_human_melee_lvl10_7]
+id = 10513
+
+[rand_human_melee_lvl10_8]
+id = 10514
+
+[rand_human_melee_lvl10_9]
+id = 10515
+
+[rand_human_melee_lvl10_10]
+id = 10516
+
+[rand_human_melee_lvl10_11]
+id = 10517
+
+[rand_human_melee_lvl10_12]
+id = 10518
+
+[rand_human_melee_lvl10_13]
+id = 10519
+
+[rand_human_melee_lvl10_14]
+id = 10520
+
+[rand_human_melee_lvl10_15]
+id = 10521
+
+[rand_human_melee_lvl10_16]
+id = 10522
+
+[rand_human_melee_lvl10_17]
+id = 10523
+
+[rand_human_melee_lvl10_18]
+id = 10524
+
+[rand_human_melee_lvl10_19]
+id = 10525
+
+[rand_human_melee_lvl10_20]
+id = 10526
+
+[rand_human_melee_lvl10_21]
+id = 10527
+
+[rand_human_melee_lvl11_1]
+id = 10528
+
+[rand_human_melee_lvl11_2]
+id = 10529
+
+[rand_human_melee_lvl11_3]
+id = 10530
+
+[rand_human_melee_lvl11_4]
+id = 10531
+
+[rand_human_melee_lvl11_5]
+id = 10532
+
+[rand_human_melee_lvl11_6]
+id = 10533
+
+[rand_human_melee_lvl11_7]
+id = 10534
+
+[rand_human_melee_lvl11_8]
+id = 10535
+
+[rand_human_melee_lvl11_9]
+id = 10536
+
+[rand_human_melee_lvl11_10]
+id = 10537
+
+[rand_human_melee_lvl11_11]
+id = 10538
+
+[rand_human_melee_lvl11_12]
+id = 10539
+
+[rand_human_melee_lvl11_13]
+id = 10540
+
+[rand_human_melee_lvl11_14]
+id = 10541
+
+[rand_human_melee_lvl11_15]
+id = 10542
+
+[rand_human_melee_lvl11_16]
+id = 10543
+
+[rand_human_melee_lvl11_17]
+id = 10544
+
+[rand_human_melee_lvl11_18]
+id = 10545
+
+[rand_human_melee_lvl11_19]
+id = 10546
+
+[rand_human_melee_lvl11_20]
+id = 10547
+
+[rand_human_melee_lvl11_21]
+id = 10548
+
+[rand_human_magic_lvl1_dummy]
+id = 10549
+
+[rand_human_magic_lvl2_dummy]
+id = 10550
+
+[rand_human_magic_lvl3_dummy]
+id = 10551
+
+[rand_human_magic_lvl4_dummy]
+id = 10552
+
+[rand_human_magic_lvl5_dummy]
+id = 10553
+
+[rand_human_magic_lvl6_dummy]
+id = 10554
+
+[rand_human_magic_lvl7_dummy]
+id = 10555
+
+[rand_human_magic_lvl8_dummy]
+id = 10556
+
+[rand_human_magic_lvl9_dummy]
+id = 10557
+
+[rand_human_magic_lvl10_dummy]
+id = 10558
+
+[rand_human_magic_lvl11_dummy]
+id = 10559
+
+[rand_human_magic_lvl1_1]
+id = 10560
+
+[rand_human_magic_lvl1_2]
+id = 10561
+
+[rand_human_magic_lvl1_3]
+id = 10562
+
+[rand_human_magic_lvl1_4]
+id = 10563
+
+[rand_human_magic_lvl2_1]
+id = 10564
+
+[rand_human_magic_lvl2_2]
+id = 10565
+
+[rand_human_magic_lvl2_3]
+id = 10566
+
+[rand_human_magic_lvl2_4]
+id = 10567
+
+[rand_human_magic_lvl3_1]
+id = 10568
+
+[rand_human_magic_lvl3_2]
+id = 10569
+
+[rand_human_magic_lvl3_3]
+id = 10570
+
+[rand_human_magic_lvl3_4]
+id = 10571
+
+[rand_human_magic_lvl4_1]
+id = 10572
+
+[rand_human_magic_lvl4_2]
+id = 10573
+
+[rand_human_magic_lvl4_3]
+id = 10574
+
+[rand_human_magic_lvl4_4]
+id = 10575
+
+[rand_human_magic_lvl5_1]
+id = 10576
+
+[rand_human_magic_lvl5_2]
+id = 10577
+
+[rand_human_magic_lvl5_3]
+id = 10578
+
+[rand_human_magic_lvl5_4]
+id = 10579
+
+[rand_human_magic_lvl6_1]
+id = 10580
+
+[rand_human_magic_lvl6_2]
+id = 10581
+
+[rand_human_magic_lvl6_3]
+id = 10582
+
+[rand_human_magic_lvl6_4]
+id = 10583
+
+[rand_human_magic_lvl7_1]
+id = 10584
+
+[rand_human_magic_lvl7_2]
+id = 10585
+
+[rand_human_magic_lvl7_3]
+id = 10586
+
+[rand_human_magic_lvl7_4]
+id = 10587
+
+[rand_human_magic_lvl8_1]
+id = 10588
+
+[rand_human_magic_lvl8_2]
+id = 10589
+
+[rand_human_magic_lvl8_3]
+id = 10590
+
+[rand_human_magic_lvl8_4]
+id = 10591
+
+[rand_human_magic_lvl9_1]
+id = 10592
+
+[rand_human_magic_lvl9_2]
+id = 10593
+
+[rand_human_magic_lvl9_3]
+id = 10594
+
+[rand_human_magic_lvl9_4]
+id = 10595
+
+[rand_human_magic_lvl10_1]
+id = 10596
+
+[rand_human_magic_lvl10_2]
+id = 10597
+
+[rand_human_magic_lvl10_3]
+id = 10598
+
+[rand_human_magic_lvl10_4]
+id = 10599
+
+[rand_human_magic_lvl11_1]
+id = 10600
+
+[rand_human_magic_lvl11_2]
+id = 10601
+
+[rand_human_magic_lvl11_3]
+id = 10602
+
+[rand_human_magic_lvl11_4]
+id = 10603
+
+[rand_green_dragon_1]
+id = 10604
+
+[rand_green_dragon_2]
+id = 10605
+
+[rand_green_dragon_3]
+id = 10606
+
+[rand_green_dragon_4]
+id = 10607
+
+[rand_green_dragon_5]
+id = 10608
+
+[rand_green_dragon_6]
+id = 10609
+
+[rand_hydra_1]
+id = 10610
+
+[rand_hydra_2]
+id = 10611
+
+[rand_hydra_3]
+id = 10612
+
+[rand_hydra_4]
+id = 10613
+
+[rand_hydra_5]
+id = 10614
+
+[rand_hydra_6]
+id = 10615
+
+[rand_hydra_7]
+id = 10616
+
+[rand_hydra_8]
+id = 10617
+
+[rand_hydra_9]
+id = 10618
+
+[rand_skeleton_melee_lvl1_dummy]
+id = 10619
+
+[rand_skeleton_melee_lvl2_dummy]
+id = 10620
+
+[rand_skeleton_melee_lvl3_dummy]
+id = 10621
+
+[rand_skeleton_melee_lvl4_dummy]
+id = 10622
+
+[rand_skeleton_melee_lvl5_dummy]
+id = 10623
+
+[rand_skeleton_melee_lvl6_dummy]
+id = 10624
+
+[rand_skeleton_melee_lvl7_dummy]
+id = 10625
+
+[rand_skeleton_melee_lvl8_dummy]
+id = 10626
+
+[rand_skeleton_melee_lvl9_dummy]
+id = 10627
+
+[rand_skeleton_melee_lvl10_dummy]
+id = 10628
+
+[rand_skeleton_melee_lvl1_1]
+id = 10629
+
+[rand_skeleton_melee_lvl1_2]
+id = 10630
+
+[rand_skeleton_melee_lvl1_3]
+id = 10631
+
+[rand_skeleton_melee_lvl1_4]
+id = 10632
+
+[rand_skeleton_melee_lvl2_1]
+id = 10633
+
+[rand_skeleton_melee_lvl2_2]
+id = 10634
+
+[rand_skeleton_melee_lvl2_3]
+id = 10635
+
+[rand_skeleton_melee_lvl2_4]
+id = 10636
+
+[rand_skeleton_melee_lvl3_1]
+id = 10637
+
+[rand_skeleton_melee_lvl3_2]
+id = 10638
+
+[rand_skeleton_melee_lvl3_3]
+id = 10639
+
+[rand_skeleton_melee_lvl3_4]
+id = 10640
+
+[rand_skeleton_melee_lvl3_5]
+id = 10641
+
+[rand_skeleton_melee_lvl4_1]
+id = 10642
+
+[rand_skeleton_melee_lvl4_2]
+id = 10643
+
+[rand_skeleton_melee_lvl4_3]
+id = 10644
+
+[rand_skeleton_melee_lvl4_4]
+id = 10645
+
+[rand_skeleton_melee_lvl5_1]
+id = 10646
+
+[rand_skeleton_melee_lvl5_2]
+id = 10647
+
+[rand_skeleton_melee_lvl5_3]
+id = 10648
+
+[rand_skeleton_melee_lvl5_4]
+id = 10649
+
+[rand_skeleton_melee_lvl6_1]
+id = 10650
+
+[rand_skeleton_melee_lvl6_2]
+id = 10651
+
+[rand_skeleton_melee_lvl6_3]
+id = 10652
+
+[rand_skeleton_melee_lvl6_4]
+id = 10653
+
+[rand_skeleton_melee_lvl7_1]
+id = 10654
+
+[rand_skeleton_melee_lvl7_2]
+id = 10655
+
+[rand_skeleton_melee_lvl7_3]
+id = 10656
+
+[rand_skeleton_melee_lvl7_4]
+id = 10657
+
+[rand_skeleton_melee_lvl8_1]
+id = 10658
+
+[rand_skeleton_melee_lvl8_2]
+id = 10659
+
+[rand_skeleton_melee_lvl8_3]
+id = 10660
+
+[rand_skeleton_melee_lvl8_4]
+id = 10661
+
+[rand_skeleton_melee_lvl9_1]
+id = 10662
+
+[rand_skeleton_melee_lvl9_2]
+id = 10663
+
+[rand_skeleton_melee_lvl9_3]
+id = 10664
+
+[rand_skeleton_melee_lvl9_4]
+id = 10665
+
+[rand_skeleton_melee_lvl10_1]
+id = 10666
+
+[rand_skeleton_melee_lvl10_2]
+id = 10667
+
+[rand_skeleton_melee_lvl10_3]
+id = 10668
+
+[rand_skeleton_melee_lvl10_4]
+id = 10669
+
+[rand_skeleton_ranged_1]
+id = 10670
+
+[rand_skeleton_ranged_2]
+id = 10671
+
+[rand_skeleton_ranged_3]
+id = 10672
+
+[rand_skeleton_ranged_4]
+id = 10673
+
+[rand_skeleton_ranged_5]
+id = 10674
+
+[rand_skeleton_ranged_6]
+id = 10675
+
+[rand_skeleton_ranged_7]
+id = 10676
+
+[rand_skeleton_ranged_8]
+id = 10677
+
+[rand_skeleton_ranged_9]
+id = 10678
+
+[rand_skeleton_ranged_10]
+id = 10679
+
+[rand_skeleton_ranged_11]
+id = 10680
+
+[rand_skeleton_ranged_12]
+id = 10681
+
+[rand_skeleton_mage_1]
+id = 10682
+
+[rand_skeleton_mage_2]
+id = 10683
+
+[rand_skeleton_mage_3]
+id = 10684
+
+[rand_skeleton_mage_4]
+id = 10685
+
+[rand_skeleton_mage_5]
+id = 10686
+
+[rand_skeleton_mage_6]
+id = 10687
+
+[rand_skeleton_mage_7]
+id = 10688
+
+[rand_skeleton_mage_8]
+id = 10689
+
+[rand_skeleton_mage_9]
+id = 10690
+
+[rand_skeleton_mage_10]
+id = 10691
+
+[rand_skeleton_mage_11]
+id = 10692
+
+[rand_skeleton_mage_12]
+id = 10693
+
+[rand_crawling_hand]
+id = 10694
+
+[rand_cave_crawler]
+id = 10695
+
+[rand_cave_slime]
+id = 10696
+
+[rand_pyrefiend]
+id = 10697
+
+[rand_night_spider]
+id = 10698
+
+[rand_jelly]
+id = 10699
+
+[rand_spiritual_guardian]
+id = 10700
+
+[rand_seeker]
+id = 10701
+
+[rand_nechryael]
+id = 10702
+
+[rand_death_spawn]
+id = 10703
+
+[rand_edimmu]
+id = 10704
+
+[rand_stalker]
+id = 10705
+
+[rand_hill_giant_1]
+id = 10706
+
+[rand_hill_giant_2]
+id = 10707
+
+[rand_hill_giant_3]
+id = 10708
+
+[rand_hill_giant_4]
+id = 10709
+
+[rand_hill_giant_5]
+id = 10710
+
+[rand_hill_giant_6]
+id = 10711
+
+[rand_hill_giant_7]
+id = 10712
+
+[rand_hill_giant_8]
+id = 10713
+
+[rand_hill_giant_9]
+id = 10714
+
+[rand_hill_giant_10]
+id = 10715
+
+[rand_hill_giant_11]
+id = 10716
+
+[rand_hill_giant_12]
+id = 10717
+
+[rand_greater_demon_1]
+id = 10718
+
+[rand_greater_demon_2]
+id = 10719
+
+[rand_greater_demon_3]
+id = 10720
+
+[rand_greater_demon_4]
+id = 10721
+
+[rand_black_demon_1]
+id = 10722
+
+[rand_black_demon_2]
+id = 10723
+
+[rand_black_demon_3]
+id = 10724
+
+[rand_black_demon_4]
+id = 10725
+
+[rand_guard_dog_1]
+id = 10726
+
+[rand_guard_dog_2]
+id = 10727
+
+[rand_guard_dog_3]
+id = 10728
+
+[rand_guard_dog_4]
+id = 10729
+
+[rand_guard_dog_5]
+id = 10730
+
+[rand_guard_dog_6]
+id = 10731
+
+[rand_guard_dog_7]
+id = 10732
+
+[rand_guard_dog_8]
+id = 10733
+
+[rand_guard_dog_9]
+id = 10734
+
+[rand_guard_dog_10]
+id = 10735
+
+[rand_ankou_1]
+id = 10736
+
+[rand_ankou_2]
+id = 10737
+
+[rand_ankou_3]
+id = 10738
+
+[rand_ankou_4]
+id = 10739
+
+[rand_ankou_5]
+id = 10740
+
+[rand_ankou_6]
+id = 10741
+
+[rand_ankou_7]
+id = 10742
+
+[rand_ankou_8]
+id = 10743
+
+[rand_animated_book_1]
+id = 10744
+
+[rand_animated_book_2]
+id = 10745
+
+[rand_animated_book_3]
+id = 10746
+
+[rand_animated_book_4]
+id = 10747
+
+[rand_animated_book_5]
+id = 10748
+
+[rand_animated_book_6]
+id = 10749
+
+[rand_animated_book_7]
+id = 10750
+
+[rand_animated_book_8]
+id = 10751
+
+[rand_animated_book_9]
+id = 10752
+
+[rand_animated_book_10]
+id = 10753
+
+[rand_fire_giant_1]
+id = 10754
+
+[rand_fire_giant_2]
+id = 10755
+
+[rand_fire_giant_3]
+id = 10756
+
+[rand_fire_giant_4]
+id = 10757
+
+[rand_fire_giant_5]
+id = 10758
+
+[rand_fire_giant_6]
+id = 10759
+
+[rand_fire_giant_7]
+id = 10760
+
+[rand_fire_giant_8]
+id = 10761
+
+[rand_ice_giant_1]
+id = 10762
+
+[rand_ice_giant_2]
+id = 10763
+
+[rand_ice_giant_3]
+id = 10764
+
+[rand_ice_giant_4]
+id = 10765
+
+[rand_ice_giant_5]
+id = 10766
+
+[rand_ice_giant_6]
+id = 10767
+
+[rand_ice_giant_7]
+id = 10768
+
+[rand_ice_giant_8]
+id = 10769
+
+[rand_frost_dragon_1]
+id = 10770
+
+[rand_frost_dragon_2]
+id = 10771
+
+[rand_frost_dragon_3]
+id = 10772
+
+[rand_frost_dragon_4]
+id = 10773
+
+[rand_frost_dragon_5]
+id = 10774
+
+[rand_frost_dragon_6]
+id = 10775
+
+[rand_iron_dragon_1]
+id = 10776
+
+[rand_iron_dragon_2]
+id = 10777
+
+[rand_iron_dragon_3]
+id = 10778
+
+[rand_iron_dragon_4]
+id = 10779
+
+[rand_iron_dragon_5]
+id = 10780
+
+[rand_iron_dragon_6]
+id = 10781
+
+[rand_ice_troll_melee_1]
+id = 10782
+
+[rand_ice_troll_melee_2]
+id = 10783
+
+[rand_ice_troll_melee_3]
+id = 10784
+
+[rand_ice_troll_melee_4]
+id = 10785
+
+[rand_ice_troll_melee_5]
+id = 10786
+
+[rand_ice_troll_melee_6]
+id = 10787
+
+[rand_ice_troll_melee_7]
+id = 10788
+
+[rand_ice_troll_melee_8]
+id = 10789
+
+[rand_ice_troll_melee_9]
+id = 10790
+
+[rand_ice_troll_ranged_1]
+id = 10791
+
+[rand_ice_troll_ranged_2]
+id = 10792
+
+[rand_ice_troll_ranged_3]
+id = 10793
+
+[rand_ice_troll_ranged_4]
+id = 10794
+
+[rand_ice_troll_ranged_5]
+id = 10795
+
+[rand_ice_troll_ranged_6]
+id = 10796
+
+[rand_heavy_guard_1]
+id = 10797
+
+[rand_heavy_guard_1_with_key]
+id = 10798
+
+[rand_heavy_guard_2]
+id = 10799
+
+[rand_heavy_guard_2_with_key]
+id = 10800
+
+[rand_heavy_guard_3]
+id = 10801
+
+[rand_heavy_guard_3_with_key]
+id = 10802
+
+[rand_heavy_guard_4]
+id = 10803
+
+[rand_heavy_guard_4_with_key]
+id = 10804
+
+[rand_heavy_guard_5]
+id = 10805
+
+[rand_heavy_guard_5_with_key]
+id = 10806
+
+[rand_heavy_guard_6]
+id = 10807
+
+[rand_heavy_guard_6_with_key]
+id = 10808
+
+[rand_heavy_guard_7]
+id = 10809
+
+[rand_heavy_guard_7_with_key]
+id = 10810
+
+[rand_heavy_guard_8]
+id = 10811
+
+[rand_heavy_guard_8_with_key]
+id = 10812
+
+[rand_heavy_guard_9]
+id = 10813
+
+[rand_heavy_guard_9_with_key]
+id = 10814
+
+[rand_red_dragon_1]
+id = 10815
+
+[rand_red_dragon_2]
+id = 10816
+
+[rand_red_dragon_3]
+id = 10817
+
+[rand_red_dragon_4]
+id = 10818
+
+[rand_red_dragon_5]
+id = 10819
+
+[rand_red_dragon_6]
+id = 10820
+
+[rand_ghost_1]
+id = 10821
+
+[rand_ghost_2]
+id = 10822
+
+[rand_ghost_3]
+id = 10823
+
+[rand_ghost_4]
+id = 10824
+
+[rand_ghost_5]
+id = 10825
+
+[rand_ghost_6]
+id = 10826
+
+[rand_ghost_7]
+id = 10827
+
+[rand_ghost_8]
+id = 10828
+
+[rand_ghost_9]
+id = 10829
+
+[rand_ghost_10]
+id = 10830
+
+[rand_mysterious_shade_0]
+id = 10831
+
+[rand_mysterious_shade_1]
+id = 10832
+
+[rand_mysterious_shade_2]
+id = 10833
+
+[rand_mysterious_shade_3]
+id = 10834
+
+[rand_mysterious_shade_4]
+id = 10835
+
+[rand_mysterious_shade_5]
+id = 10836
+
+[rand_mysterious_shade_6]
+id = 10837
+
+[rand_mysterious_shade_7]
+id = 10838
+
+[rand_mysterious_shade_8]
+id = 10839
+
+[rand_mysterious_shade_9]
+id = 10840
+
+[rand_mysterious_shade_10]
+id = 10841
+
+[rand_mysterious_shade_11]
+id = 10842
+
+[rand_human_melee_lvl7_1]
+id = 10843
+
+[rand_human_melee_lvl7_2]
+id = 10844
+
+[rand_human_melee_lvl7_3]
+id = 10845
+
+[rand_human_melee_lvl7_4]
+id = 10846
+
+[rand_human_melee_lvl7_5]
+id = 10847
+
+[rand_human_melee_lvl7_6]
+id = 10848
+
+[rand_human_melee_lvl7_7]
+id = 10849
+
+[rand_human_melee_lvl7_8]
+id = 10850
+
+[rand_human_melee_lvl7_9]
+id = 10851
+
+[rand_human_melee_lvl7_10]
+id = 10852
+
+[rand_human_melee_lvl7_11]
+id = 10853
+
+[rand_human_melee_lvl7_12]
+id = 10854
+
+[rand_human_melee_lvl7_13]
+id = 10855
+
+[rand_human_melee_lvl7_14]
+id = 10856
+
+[rand_human_melee_lvl7_15]
+id = 10857
+
+[rand_human_melee_lvl7_16]
+id = 10858
+
+[rand_human_melee_lvl7_17]
+id = 10859
+
+[rand_human_melee_lvl7_18]
+id = 10860
+
+[rand_human_melee_lvl7_19]
+id = 10861
+
+[rand_human_melee_lvl7_20]
+id = 10862
+
+[rand_human_melee_lvl7_21]
+id = 10863
+
+[rand_human_melee_lvl8_1]
+id = 10864
+
+[rand_human_melee_lvl8_2]
+id = 10865
+
+[rand_human_melee_lvl8_3]
+id = 10866
+
+[rand_human_melee_lvl8_4]
+id = 10867
+
+[rand_human_melee_lvl8_5]
+id = 10868
+
+[rand_human_melee_lvl8_6]
+id = 10869
+
+[rand_human_melee_lvl8_7]
+id = 10870
+
+[rand_human_melee_lvl8_8]
+id = 10871
+
+[rand_human_melee_lvl8_9]
+id = 10872
+
+[rand_human_melee_lvl8_10]
+id = 10873
+
+[rand_human_melee_lvl8_11]
+id = 10874
+
+[rand_human_melee_lvl8_12]
+id = 10875
+
+[rand_human_melee_lvl8_13]
+id = 10876
+
+[rand_human_melee_lvl8_14]
+id = 10877
+
+[rand_human_melee_lvl8_15]
+id = 10878
+
+[rand_human_melee_lvl8_16]
+id = 10879
+
+[rand_human_melee_lvl8_17]
+id = 10880
+
+[rand_human_melee_lvl8_18]
+id = 10881
+
+[rand_human_melee_lvl8_19]
+id = 10882
+
+[rand_human_melee_lvl8_20]
+id = 10883
+
+[rand_human_melee_lvl8_21]
+id = 10884
+
+[rand_human_melee_lvl9_1]
+id = 10885
+
+[rand_human_melee_lvl9_2]
+id = 10886
+
+[rand_human_melee_lvl9_3]
+id = 10887
+
+[rand_human_melee_lvl9_4]
+id = 10888
+
+[rand_human_melee_lvl9_5]
+id = 10889
+
+[rand_human_melee_lvl9_6]
+id = 10890
+
+[rand_human_melee_lvl9_7]
+id = 10891
+
+[rand_human_melee_lvl9_8]
+id = 10892
+
+[rand_human_melee_lvl9_9]
+id = 10893
+
+[rand_human_melee_lvl9_10]
+id = 10894
+
+[rand_human_melee_lvl9_11]
+id = 10895
+
+[rand_human_melee_lvl9_12]
+id = 10896
+
+[rand_human_melee_lvl9_13]
+id = 10897
+
+[rand_human_melee_lvl9_14]
+id = 10898
+
+[rand_human_melee_lvl9_15]
+id = 10899
+
+[rand_human_melee_lvl9_16]
+id = 10900
+
+[rand_human_melee_lvl9_17]
+id = 10901
+
+[rand_human_melee_lvl9_18]
+id = 10902
+
+[rand_human_melee_lvl9_19]
+id = 10903
+
+[rand_human_melee_lvl9_20]
+id = 10904
+
+[rand_human_melee_lvl9_21]
+id = 10905
+
+[rand_bat_1]
+id = 10906
+
+[rand_bat_2]
+id = 10907
+
+[rand_bat_3]
+id = 10908
+
+[rand_bat_4]
+id = 10909
+
+[rand_bat_5]
+id = 10910
+
+[rand_bat_6]
+id = 10911
+
+[rand_bat_7]
+id = 10912
+
+[rand_bat_8]
+id = 10913
+
+[rand_bat_9]
+id = 10914
+
+[rand_heavy_guard_1_asleep_with_key]
+id = 10915
+
+[rand_heavy_guard_1_asleep]
+id = 10916
+
+[rand_heavy_guard_2_asleep_with_key]
+id = 10917
+
+[rand_heavy_guard_2_asleep]
+id = 10918
+
+[rand_heavy_guard_3_asleep_with_key]
+id = 10919
+
+[rand_heavy_guard_3_asleep]
+id = 10920
+
+[rand_heavy_guard_4_asleep_with_key]
+id = 10921
+
+[rand_heavy_guard_4_asleep]
+id = 10922
+
+[rand_heavy_guard_5_asleep_with_key]
+id = 10923
+
+[rand_heavy_guard_5_asleep]
+id = 10924
+
+[rand_heavy_guard_6_asleep_with_key]
+id = 10925
+
+[rand_heavy_guard_6_asleep]
+id = 10926
+
+[rand_heavy_guard_7_asleep_with_key]
+id = 10927
+
+[rand_heavy_guard_7_asleep]
+id = 10928
+
+[rand_heavy_guard_8_asleep_with_key]
+id = 10929
+
+[rand_heavy_guard_8_asleep]
+id = 10930
+
+[rand_heavy_guard_9_asleep_with_key]
+id = 10931
+
+[rand_heavy_guard_9_asleep]
+id = 10932
+
+[rand_atg_mini_eye_1]
+id = 10933
+
+[rand_atg_mini_eye_1_stunned]
+id = 10934
+
+[rand_atg_mini_eye_2]
+id = 10935
+
+[rand_atg_mini_eye_2_stunned]
+id = 10936
+
+[rand_atg_mini_eye_3]
+id = 10937
+
+[rand_atg_mini_eye_3_stunned]
+id = 10938
+
+[rand_atg_mini_eye_4]
+id = 10939
+
+[rand_atg_mini_eye_4_stunned]
+id = 10940
+
+[rand_atg_big_eye]
+id = 10941
+
+[rand_isap_statue_static_1_frozen]
+id = 10942
+
+[rand_isap_statue_static_2_frozen]
+id = 10943
+
+[rand_isap_statue_static_3_frozen]
+id = 10944
+
+[rand_isap_statue_static_4_frozen]
+id = 10945
+
+[rand_isap_statue_static_1_abandoned]
+id = 10946
+
+[rand_isap_statue_static_2_abandoned]
+id = 10947
+
+[rand_isap_statue_static_3_abandoned]
+id = 10948
+
+[rand_isap_statue_static_4_abandoned]
+id = 10949
+
+[rand_isap_statue_static_1_furnished]
+id = 10950
+
+[rand_isap_statue_static_2_furnished]
+id = 10951
+
+[rand_isap_statue_static_3_furnished]
+id = 10952
+
+[rand_isap_statue_static_4_furnished]
+id = 10953
+
+[rand_isap_statue_pushable_1_frozen]
+id = 10954
+
+[rand_isap_statue_pushable_2_frozen]
+id = 10955
+
+[rand_isap_statue_pushable_3_frozen]
+id = 10956
+
+[rand_isap_statue_pushable_4_frozen]
+id = 10957
+
+[rand_isap_statue_pushable_1_abandoned]
+id = 10958
+
+[rand_isap_statue_pushable_2_abandoned]
+id = 10959
+
+[rand_isap_statue_pushable_3_abandoned]
+id = 10960
+
+[rand_isap_statue_pushable_4_abandoned]
+id = 10961
+
+[rand_isap_statue_pushable_1_furnished]
+id = 10962
+
+[rand_isap_statue_pushable_2_furnished]
+id = 10963
+
+[rand_isap_statue_pushable_3_furnished]
+id = 10964
+
+[rand_isap_statue_pushable_4_furnished]
+id = 10965
+
+[rand_follow_the_leader_statue_frozen]
+id = 10966
+
+[rand_follow_the_leader_statue_abandoned]
+id = 10967
+
+[rand_follow_the_leader_statue_furnished]
+id = 10968
+
+[rand_follow_the_leader_statue_dormant_frozen]
+id = 10969
+
+[rand_follow_the_leader_statue_dormant_abandoned]
+id = 10970
+
+[rand_follow_the_leader_statue_dormant_furnished]
+id = 10971
+
+[rand_follow_the_leader_statue_broken_frozen]
+id = 10972
+
+[rand_follow_the_leader_statue_broken_abandoned]
+id = 10973
+
+[rand_follow_the_leader_statue_broken_furnished]
+id = 10974
+
+[rand_inactive_monolith_frozen]
+id = 10975
+
+[rand_inactive_monolith_abandoned]
+id = 10976
+
+[rand_inactive_monolith_furnished]
+id = 10977
+
+[rand_active_monolith_frozen]
+id = 10978
+
+[rand_active_monolith_abandoned]
+id = 10979
+
+[rand_active_monolith_furnished]
+id = 10980
+
+[rand_runt_weak_1]
+id = 10981
+
+[rand_runt_strong_1]
+id = 10982
+
+[rand_runt_weak_2]
+id = 10983
+
+[rand_runt_strong_2]
+id = 10984
+
+[rand_runt_weak_3]
+id = 10985
+
+[rand_runt_strong_3]
+id = 10986
+
+[rand_runt_weak_4]
+id = 10987
+
+[rand_runt_strong_4]
+id = 10988
+
+[rand_runt_weak_5]
+id = 10989
+
+[rand_runt_strong_5]
+id = 10990
+
+[rand_runt_weak_6]
+id = 10991
+
+[rand_runt_strong_6]
+id = 10992
+
+[rand_runt_weak_7]
+id = 10993
+
+[rand_runt_strong_7]
+id = 10994
+
+[rand_runt_weak_8]
+id = 10995
+
+[rand_runt_strong_8]
+id = 10996
+
+[rand_runt_weak_9]
+id = 10997
+
+[rand_runt_strong_9]
+id = 10998
+
+[rand_runt_weak_10]
+id = 10999
+
+[rand_runt_strong_10]
+id = 11000
+
+[rand_base_fremennik]
+id = 11001
+
+[rand_bc_golem_broken_arm]
+id = 11002
+
+[rand_bc_golem_broken_head]
+id = 11003
+
+[rand_bc_golem_broken_leg]
+id = 11004
+
+[rand_bc_golem_dormant]
+id = 11005
+
+[rand_bc_golem_active]
+id = 11006
+
+[rand_bait_the_plate_critter]
+id = 11007
+
+[rand_bait_the_plate_bait]
+id = 11008
+
+[rand_sphere_guardian]
+id = 11009
+
+[rand_critter_key_critter]
+id = 11010
+
+[rand_riddle_npc]
+id = 11011
+
+[rand_rock_paper_scissors_attacker_empty_frozen]
+id = 11012
+
+[rand_rock_paper_scissors_attacker_empty_abandoned]
+id = 11013
+
+[rand_rock_paper_scissors_attacker_empty_furnished]
+id = 11014
+
+[rand_rock_paper_scissors_defender_empty_frozen]
+id = 11015
+
+[rand_rock_paper_scissors_defender_empty_abandoned]
+id = 11016
+
+[rand_rock_paper_scissors_defender_empty_furnished]
+id = 11017
+
+[rand_rock_paper_scissors_attacker_melee_frozen]
+id = 11018
+
+[rand_rock_paper_scissors_attacker_melee_abandoned]
+id = 11019
+
+[rand_rock_paper_scissors_attacker_melee_furnished]
+id = 11020
+
+[rand_rock_paper_scissors_attacker_range_frozen]
+id = 11021
+
+[rand_rock_paper_scissors_attacker_range_abandoned]
+id = 11022
+
+[rand_rock_paper_scissors_attacker_range_furnished]
+id = 11023
+
+[rand_rock_paper_scissors_attacker_magic_frozen]
+id = 11024
+
+[rand_rock_paper_scissors_attacker_magic_abandoned]
+id = 11025
+
+[rand_rock_paper_scissors_attacker_magic_furnished]
+id = 11026
+
+[rand_rock_paper_scissors_defender_melee_frozen]
+id = 11027
+
+[rand_rock_paper_scissors_defender_melee_abandoned]
+id = 11028
+
+[rand_rock_paper_scissors_defender_melee_furnished]
+id = 11029
+
+[rand_rock_paper_scissors_defender_range_frozen]
+id = 11030
+
+[rand_rock_paper_scissors_defender_range_abandoned]
+id = 11031
+
+[rand_rock_paper_scissors_defender_range_furnished]
+id = 11032
+
+[rand_rock_paper_scissors_defender_magic_frozen]
+id = 11033
+
+[rand_rock_paper_scissors_defender_magic_abandoned]
+id = 11034
+
+[rand_rock_paper_scissors_defender_magic_furnished]
+id = 11035
+
+[rand_somethings_missing_statue_melee_empty_frozen]
+id = 11036
+
+[rand_somethings_missing_statue_melee_empty_abandoned]
+id = 11037
+
+[rand_somethings_missing_statue_melee_empty_furnished]
+id = 11038
+
+[rand_somethings_missing_statue_range_empty_frozen]
+id = 11039
+
+[rand_somethings_missing_statue_range_empty_abandoned]
+id = 11040
+
+[rand_somethings_missing_statue_range_empty_furnished]
+id = 11041
+
+[rand_somethings_missing_statue_magic_empty_frozen]
+id = 11042
+
+[rand_somethings_missing_statue_magic_empty_abandoned]
+id = 11043
+
+[rand_somethings_missing_statue_magic_empty_furnished]
+id = 11044
+
+[rand_somethings_missing_statue_range_armed_frozen]
+id = 11045
+
+[rand_somethings_missing_statue_range_armed_abandoned]
+id = 11046
+
+[rand_somethings_missing_statue_range_armed_furnished]
+id = 11047
+
+[rand_somethings_missing_statue_magic_armed_frozen]
+id = 11048
+
+[rand_somethings_missing_statue_magic_armed_abandoned]
+id = 11049
+
+[rand_somethings_missing_statue_magic_armed_furnished]
+id = 11050
+
+[rand_somethings_missing_statue_melee_armed_frozen]
+id = 11051
+
+[rand_somethings_missing_statue_melee_armed_abandoned]
+id = 11052
+
+[rand_somethings_missing_statue_melee_armed_furnished]
+id = 11053
+
+[rand_somethings_missing_statue_melee_bow_frozen]
+id = 11054
+
+[rand_somethings_missing_statue_melee_bow_abandoned]
+id = 11055
+
+[rand_somethings_missing_statue_melee_bow_furnished]
+id = 11056
+
+[rand_somethings_missing_statue_melee_staff_frozen]
+id = 11057
+
+[rand_somethings_missing_statue_melee_staff_abandoned]
+id = 11058
+
+[rand_somethings_missing_statue_melee_staff_furnished]
+id = 11059
+
+[rand_somethings_missing_statue_ranger_sword_frozen]
+id = 11060
+
+[rand_somethings_missing_statue_ranger_sword_abandoned]
+id = 11061
+
+[rand_somethings_missing_statue_ranger_sword_furnished]
+id = 11062
+
+[rand_somethings_missing_statue_ranger_staff_frozen]
+id = 11063
+
+[rand_somethings_missing_statue_ranger_staff_abandoned]
+id = 11064
+
+[rand_somethings_missing_statue_ranger_staff_furnished]
+id = 11065
+
+[rand_somethings_missing_statue_magic_sword_frozen]
+id = 11066
+
+[rand_somethings_missing_statue_magic_sword_abandoned]
+id = 11067
+
+[rand_somethings_missing_statue_magic_sword_furnished]
+id = 11068
+
+[rand_somethings_missing_statue_magic_bow_frozen]
+id = 11069
+
+[rand_somethings_missing_statue_magic_bow_abandoned]
+id = 11070
+
+[rand_somethings_missing_statue_magic_bow_furnished]
+id = 11071
+
+[rand_fill_barrel_barrel]
+id = 11072
+
+[rand_fill_barrel_barrel_main]
+id = 11073
+
+[rand_fill_barrel_barrel_main_complete]
+id = 11074
+
+[rand_fill_barrel_barrel_unfixed]
+id = 11075
+
+[rand_hunting_trap_1]
+id = 11076
+
+[rand_hunting_trap_2]
+id = 11077
+
+[rand_hunting_trap_3]
+id = 11078
+
+[rand_hunting_trap_4]
+id = 11079
+
+[rand_hunting_trap_5]
+id = 11080
+
+[rand_hunting_trap_6]
+id = 11081
+
+[rand_hunting_trap_7]
+id = 11082
+
+[rand_hunting_trap_8]
+id = 11083
+
+[rand_hunting_trap_9]
+id = 11084
+
+[rand_hunting_trap_10]
+id = 11085
+
+[rand_huntable_npc_1]
+id = 11086
+
+[rand_huntable_npc_2]
+id = 11087
+
+[rand_huntable_npc_3]
+id = 11088
+
+[rand_huntable_npc_4]
+id = 11089
+
+[rand_huntable_npc_5]
+id = 11090
+
+[rand_huntable_npc_6]
+id = 11091
+
+[rand_huntable_npc_7]
+id = 11092
+
+[rand_huntable_npc_8]
+id = 11093
+
+[rand_huntable_npc_9]
+id = 11094
+
+[rand_huntable_npc_10]
+id = 11095
+
+[rand_skinnable_npc_1]
+id = 11096
+
+[rand_skinnable_npc_2]
+id = 11097
+
+[rand_skinnable_npc_3]
+id = 11098
+
+[rand_skinnable_npc_4]
+id = 11099
+
+[rand_skinnable_npc_5]
+id = 11100
+
+[rand_skinnable_npc_6]
+id = 11101
+
+[rand_skinnable_npc_7]
+id = 11102
+
+[rand_skinnable_npc_8]
+id = 11103
+
+[rand_skinnable_npc_9]
+id = 11104
+
+[rand_skinnable_npc_10]
+id = 11105
+
+[rand_loremel_01]
+id = 11106
+
+[rand_loremel_01_combat]
+id = 11107
+
+[rand_loremel_02]
+id = 11108
+
+[rand_loremel_02_combat]
+id = 11109
+
+[rand_loremel_03]
+id = 11110
+
+[rand_loremel_03_combat]
+id = 11111
+
+[rand_loremel_04]
+id = 11112
+
+[rand_loremel_04_combat]
+id = 11113
+
+[rand_loremel_05]
+id = 11114
+
+[rand_loremel_05_combat]
+id = 11115
+
+[rand_loremel_06]
+id = 11116
+
+[rand_loremel_06_combat]
+id = 11117
+
+[rand_loremel_07]
+id = 11118
+
+[rand_loremel_07_combat]
+id = 11119
+
+[rand_loremel_08]
+id = 11120
+
+[rand_loremel_08_combat]
+id = 11121
+
+[rand_loremel_09]
+id = 11122
+
+[rand_loremel_09_combat]
+id = 11123
+
+[rand_loremel_10]
+id = 11124
+
+[rand_loremel_10_combat]
+id = 11125
+
+[rand_loremag_01]
+id = 11126
+
+[rand_loremag_01_combat]
+id = 11127
+
+[rand_loremag_02]
+id = 11128
+
+[rand_loremag_02_combat]
+id = 11129
+
+[rand_loremag_03]
+id = 11130
+
+[rand_loremag_03_combat]
+id = 11131
+
+[rand_loremag_04]
+id = 11132
+
+[rand_loremag_04_combat]
+id = 11133
+
+[rand_loremag_05]
+id = 11134
+
+[rand_loremag_05_combat]
+id = 11135
+
+[rand_loremag_06]
+id = 11136
+
+[rand_loremag_06_combat]
+id = 11137
+
+[rand_loremag_07]
+id = 11138
+
+[rand_loremag_07_combat]
+id = 11139
+
+[rand_loremag_08]
+id = 11140
+
+[rand_loremag_08_combat]
+id = 11141
+
+[rand_loremag_09]
+id = 11142
+
+[rand_loremag_09_combat]
+id = 11143
+
+[rand_loremag_10]
+id = 11144
+
+[rand_loremag_10_combat]
+id = 11145
+
+[rand_loreskill_01]
+id = 11146
+
+[rand_loreskill_01_combat]
+id = 11147
+
+[rand_loreskill_02]
+id = 11148
+
+[rand_loreskill_02_combat]
+id = 11149
+
+[rand_loreskill_03]
+id = 11150
+
+[rand_loreskill_03_combat]
+id = 11151
+
+[rand_loreskill_04]
+id = 11152
+
+[rand_loreskill_04_combat]
+id = 11153
+
+[rand_loreskill_05]
+id = 11154
+
+[rand_loreskill_05_combat]
+id = 11155
+
+[rand_loreskill_06]
+id = 11156
+
+[rand_loreskill_06_combat]
+id = 11157
+
+[rand_loreskill_07]
+id = 11158
+
+[rand_loreskill_07_combat]
+id = 11159
+
+[rand_loreskill_08]
+id = 11160
+
+[rand_loreskill_08_combat]
+id = 11161
+
+[rand_loreskill_09]
+id = 11162
+
+[rand_loreskill_09_combat]
+id = 11163
+
+[rand_loreskill_10]
+id = 11164
+
+[rand_loreskill_10_combat]
+id = 11165
+
+[rand_loreheal_01]
+id = 11166
+
+[rand_loreheal_01_combat]
+id = 11167
+
+[rand_loreheal_02]
+id = 11168
+
+[rand_loreheal_02_combat]
+id = 11169
+
+[rand_loreheal_03]
+id = 11170
+
+[rand_loreheal_03_combat]
+id = 11171
+
+[rand_loreheal_04]
+id = 11172
+
+[rand_loreheal_04_combat]
+id = 11173
+
+[rand_loreheal_05]
+id = 11174
+
+[rand_loreheal_05_combat]
+id = 11175
+
+[rand_loreheal_06]
+id = 11176
+
+[rand_loreheal_06_combat]
+id = 11177
+
+[rand_loreheal_07]
+id = 11178
+
+[rand_loreheal_07_combat]
+id = 11179
+
+[rand_loreheal_08]
+id = 11180
+
+[rand_loreheal_08_combat]
+id = 11181
+
+[rand_loreheal_09]
+id = 11182
+
+[rand_loreheal_09_combat]
+id = 11183
+
+[rand_loreheal_10]
+id = 11184
+
+[rand_loreheal_10_combat]
+id = 11185
+
+[rand_lorebob_01]
+id = 11186
+
+[rand_lorebob_01_combat]
+id = 11187
+
+[rand_lorebob_02]
+id = 11188
+
+[rand_lorebob_02_combat]
+id = 11189
+
+[rand_lorebob_03]
+id = 11190
+
+[rand_lorebob_03_combat]
+id = 11191
+
+[rand_lorebob_04]
+id = 11192
+
+[rand_lorebob_04_combat]
+id = 11193
+
+[rand_lorebob_05]
+id = 11194
+
+[rand_lorebob_05_combat]
+id = 11195
+
+[rand_lorebob_06]
+id = 11196
+
+[rand_lorebob_06_combat]
+id = 11197
+
+[rand_lorebob_07]
+id = 11198
+
+[rand_lorebob_07_combat]
+id = 11199
+
+[rand_lorebob_08]
+id = 11200
+
+[rand_lorebob_08_combat]
+id = 11201
+
+[rand_lorebob_09]
+id = 11202
+
+[rand_lorebob_09_combat]
+id = 11203
+
+[rand_lorebob_10]
+id = 11204
+
+[rand_lorebob_10_combat]
+id = 11205
+
+[rand_loreran_01]
+id = 11206
+
+[rand_loreran_01_combat]
+id = 11207
+
+[rand_loreran_02]
+id = 11208
+
+[rand_loreran_02_combat]
+id = 11209
+
+[rand_loreran_03]
+id = 11210
+
+[rand_loreran_03_combat]
+id = 11211
+
+[rand_loreran_04]
+id = 11212
+
+[rand_loreran_04_combat]
+id = 11213
+
+[rand_loreran_05]
+id = 11214
+
+[rand_loreran_05_combat]
+id = 11215
+
+[rand_loreran_06]
+id = 11216
+
+[rand_loreran_06_combat]
+id = 11217
+
+[rand_loreran_07]
+id = 11218
+
+[rand_loreran_07_combat]
+id = 11219
+
+[rand_loreran_08]
+id = 11220
+
+[rand_loreran_08_combat]
+id = 11221
+
+[rand_loreran_09]
+id = 11222
+
+[rand_loreran_09_combat]
+id = 11223
+
+[rand_loreran_10]
+id = 11224
+
+[rand_loreran_10_combat]
+id = 11225
+
+[rand_smuggler]
+id = 11226
+
+[rand_skillcape_player_melee]
+id = 11227
+
+[rand_skillcape_player_mage]
+id = 11228
+
+[rand_skillcape_player_ranger]
+id = 11229
+
+[deadly_linza_cutscene_harpoon_middle]
+id = 11230
+
+[deadly_linza_cutscene_harpoon_end]
+id = 11231
+
+[1st4h_goblin_unarmed_melee_1]
+id = 11232
+
+[goblin_unarmed_melee_2]
+id = 11233
+
+[1st4h_goblin_unarmed_melee_2]
+id = 11234
+
+[goblin_unarmed_melee_3]
+id = 11235
+
+[1st4h_goblin_unarmed_melee_3]
+id = 11236
+
+[goblin_unarmed_melee_4]
+id = 11237
+
+[1st4h_goblin_unarmed_melee_4]
+id = 11238
+
+[goblin_unarmed_melee_5]
+id = 11239
+
+[1st4h_goblin_unarmed_melee_5]
+id = 11240
+
+[goblin_unarmed_melee_6]
+id = 11241
+
+[deadly_linza_cutscene_scroll]
+id = 11242
+
+[rand_behemoth_stomp]
+id = 11243
+
+[deadly_linza_cutscene_noitem]
+id = 11244
+
+[rand_ghost_with_key_ghost]
+id = 11245
+
+[rand_ransacked_tomb_ghost]
+id = 11246
+
+[deadly_guns_multi]
+id = 11247
+
+[deadly_guns]
+id = 11248
+
+[deadly_crab]
+id = 11249
+
+[deadly_shark1]
+id = 11250
+
+[deadly_shark2]
+id = 11251
+
+[deadly_shark3]
+id = 11252
+
+[tol_npc_builder04_multi]
+id = 11253
+
+[tol_npc_builder04_iconed]
+id = 11254
+
+[loy_troll_melee_1]
+id = 11255
+
+[rand_fremenik_camp_chicken_light]
+id = 11256
+
+[rand_fremenik_camp_chicken_brown]
+id = 11257
+
+[slayc_minotaur]
+id = 11258
+
+[slayc_goblin_1]
+id = 11259
+
+[slayc_goblin_2]
+id = 11260
+
+[slayc_goblin_3]
+id = 11261
+
+[slayc_wolf_1]
+id = 11262
+
+[slayc_wolf_2]
+id = 11263
+
+[slayc_vampire]
+id = 11264
+
+[slayc_ghoul]
+id = 11265
+
+[slayc_snail]
+id = 11266
+
+[musa_point_fish_exchanger]
+id = 11267
+
+[thigui_robin_multi]
+id = 11268
+
+[thigui_stallguard]
+id = 11269
+
+[thigui_crafter]
+id = 11270
+
+[thigui_registryguard]
+id = 11271
+
+[thigui_registrar]
+id = 11272
+
+[thigui_guildmaster]
+id = 11273
+
+[thigui_gm1]
+id = 11274
+
+[thigui_gm2]
+id = 11275
+
+[thigui_gm3]
+id = 11276
+
+[thigui_gm4]
+id = 11277
+
+[loy_troll_melee_2]
+id = 11278
+
+[thigui_robin]
+id = 11279
+
+[thigui_robin1]
+id = 11280
+
+[thigui_picktrainer]
+id = 11281
+
+[thigui_picktarget_npc_1]
+id = 11282
+
+[thigui_picktarget_1]
+id = 11283
+
+[thigui_picktarget_npc_2]
+id = 11284
+
+[thigui_picktarget_2]
+id = 11285
+
+[thigui_picktarget_npc_3]
+id = 11286
+
+[thigui_picktarget_3]
+id = 11287
+
+[thigui_coshtarget_npc_1]
+id = 11288
+
+[thigui_coshtarget_1]
+id = 11289
+
+[thigui_coshtarget_npc_2]
+id = 11290
+
+[thigui_coshtarget_2]
+id = 11291
+
+[thigui_coshtarget_npc_3]
+id = 11292
+
+[thigui_coshtarget_3]
+id = 11293
+
+[thigui_locktrainer]
+id = 11294
+
+[thigui_safetrainer]
+id = 11295
+
+[thigui_coshtrainer_npc]
+id = 11296
+
+[thigui_coshtrainer]
+id = 11297
+
+[thigui_shopkeeper]
+id = 11298
+
+[thigui_banker]
+id = 11299
+
+[redeem_runefestbanner_npc]
+id = 11300
+
+[koltroll]
+id = 11301
+
+[koldarkbeast]
+id = 11302
+
+[poh_servant_dogsbody_1op]
+id = 11303
+
+[poh_servant_waiter_woman_1op]
+id = 11304
+
+[poh_servant_cook_woman_1op]
+id = 11305
+
+[poh_servant_maitre_d_man_1op]
+id = 11306
+
+[poh_servant_demon_1op]
+id = 11307
+
+[ft3_tf_pet_grotto_multi]
+id = 11308
+
+[ft3_tf_pet_grotto]
+id = 11309
+
+[ft3_tf_pet_grotto_pickup]
+id = 11310
+
+[ft3_gromblod_enchanted_valley_multi]
+id = 11311
+
+[ft3_gromblod_enchanted_valley_child]
+id = 11312
+
+[ft3_shredflesh_ogre_cavern_multi]
+id = 11313
+
+[ft3_shredflesh_general_chathead]
+id = 11314
+
+[ft3_shredflesh_general_swollen_chathead_no_tooth]
+id = 11315
+
+[loy_troll_melee_3]
+id = 11316
+
+[ft3_breegth_zanaris_multi]
+id = 11317
+
+[ft3_breegth_general_zanaris_child]
+id = 11318
+
+[ft3_exiled_ork_kchunk_multi]
+id = 11319
+
+[ft3_exiled_ork_plain_child]
+id = 11320
+
+[ft3_exiled_ork_pickpocket]
+id = 11321
+
+[ft3_fairies_with_extractors]
+id = 11322
+
+[ft3_boss_godfather_unattackable]
+id = 11323
+
+[ft3_boss_godfather_shield_3]
+id = 11324
+
+[ft3_boss_godfather_shield_2]
+id = 11325
+
+[ft3_boss_godfather_shield_1]
+id = 11326
+
+[ft3_boss_godfather_fight]
+id = 11327
+
+[ft3_boss_godfather_defeated]
+id = 11328
+
+[ft3_boss_gromblod]
+id = 11329
+
+[loy_troll_melee_4]
+id = 11330
+
+[ft3_boss_shredflesh]
+id = 11331
+
+[ft3_boss_breegth]
+id = 11332
+
+[ft3_tooth_shredflesh_ally_multi]
+id = 11333
+
+[ft3_tooth_shredflesh_ally]
+id = 11334
+
+[ft3_tooth_shredflesh_ally_wand]
+id = 11335
+
+[ft3_tooth_gromblod_ally_multi]
+id = 11336
+
+[ft3_tooth_gromblod_ally]
+id = 11337
+
+[ft3_tooth_gromblod_ally_wand]
+id = 11338
+
+[ft3_tooth_breegth_ally_multi]
+id = 11339
+
+[ft3_tooth_breegth_ally]
+id = 11340
+
+[ft3_tooth_breegth_ally_wand]
+id = 11341
+
+[ft3_boss_gromblod_cutscene]
+id = 11342
+
+[ft3_boss_gromblod_bad_tooth_cutscene]
+id = 11343
+
+[ft3_boss_shredflesh_cutscene]
+id = 11344
+
+[ft3_boss_breegth_cutscene]
+id = 11345
+
+[ft3_boss_godfather_cutscene]
+id = 11346
+
+[ft3_boss_godfather_shield_cutscene]
+id = 11347
+
+[ft3_boss_ork_cutscene_01]
+id = 11348
+
+[ft3_boss_ork_cutscene_02]
+id = 11349
+
+[ft3_boss_ork_cutscene_03]
+id = 11350
+
+[ft3_boss_ork_cutscene_04]
+id = 11351
+
+[ft3_tooth_shredflesh_enemy]
+id = 11352
+
+[ft3_tooth_gromblod_enemy]
+id = 11353
+
+[ft3_tooth_breegth_enemy]
+id = 11354
+
+[ft3_briefing_ork_zanaris1]
+id = 11355
+
+[ft3_briefing_ork_zanaris2]
+id = 11356
+
+[ft3_briefing_ork_zanaris3]
+id = 11357
+
+[ft3_briefing_ork_zanaris4]
+id = 11358
+
+[ft3_ork_fight_01]
+id = 11359
+
+[ft3_ork_fight_02]
+id = 11360
+
+[ft3_ork_fight_03]
+id = 11361
+
+[ft3_ork_fight_04]
+id = 11362
+
+[ft3_fairy_slim_louie]
+id = 11363
+
+[ft3_fairy_fat_rocco]
+id = 11364
+
+[ft3_terror_dog_large_cutscene]
+id = 11365
+
+[ft3_fairy_tooth_hunter_cutscene]
+id = 11366
+
+[ft3_fairy_stitcher_1]
+id = 11367
+
+[ft3_fairy_stitcher_2]
+id = 11368
+
+[ft3_fairy_doctor]
+id = 11369
+
+[ft3_tooth_farmer]
+id = 11370
+
+[ft3_tooth_shredflesh_enemy_cutscene]
+id = 11371
+
+[ft3_tooth_gromblod_enemy_cutscene]
+id = 11372
+
+[ft3_tooth_breegth_enemy_cutscene]
+id = 11373
+
+[ft3_tooth_fairy_multi_rift]
+id = 11374
+
+[ft3_tooth_fairy_multi_hq]
+id = 11375
+
+[ft3_tooth_fairy_child]
+id = 11376
+
+[ft3_fairy_very_wise]
+id = 11377
+
+[ft3_fairyqueen_multi]
+id = 11378
+
+[ft3_fairy_nuff_multi]
+id = 11379
+
+[ft3_fairy_queen_cutscene]
+id = 11380
+
+[ft3_fairy_queen_final]
+id = 11381
+
+[loy_troll_melee_5]
+id = 11382
+
+[ft3_patch_empty]
+id = 11383
+
+[ft3_patch_tooth]
+id = 11384
+
+[ft3_breegth_farming_patch_multi]
+id = 11385
+
+[ft3_shredflesh_farming_patch_multi]
+id = 11386
+
+[ft3_gromblod_farming_patch_multi]
+id = 11387
+
+[ft3_breegth_patch_small]
+id = 11388
+
+[ft3_breegth_patch_medium]
+id = 11389
+
+[ft3_breegth_patch_large]
+id = 11390
+
+[ft3_breegth_patch_small_broken]
+id = 11391
+
+[ft3_breegth_patch_medium_broken]
+id = 11392
+
+[ft3_breegth_patch_large_broken]
+id = 11393
+
+[ft3_shredflesh_patch_small]
+id = 11394
+
+[ft3_shredflesh_patch_medium]
+id = 11395
+
+[ft3_shredflesh_patch_large]
+id = 11396
+
+[ft3_shredflesh_patch_large_broken]
+id = 11397
+
+[ft3_shredflesh_patch_medium_broken]
+id = 11398
+
+[ft3_shredflesh_patch_small_broken]
+id = 11399
+
+[ft3_gromblod_patch_small]
+id = 11400
+
+[ft3_gromblod_patch_medium]
+id = 11401
+
+[ft3_gromblod_patch_large]
+id = 11402
+
+[ft3_gromblod_patch_large_broken]
+id = 11403
+
+[ft3_gromblod_patch_medium_broken]
+id = 11404
+
+[ft3_gromblod_patch_small_broken]
+id = 11405
+
+[loy_troll_melee_6]
+id = 11406
+
+[loy_troll_melee_7]
+id = 11407
+
+[ft3_gnarly_grow]
+id = 11408
+
+[ft3_gnarly_grown]
+id = 11409
+
+[loy_troll_melee_8]
+id = 11410
+
+[lore_ft3_pet_tooth_baby]
+id = 11411
+
+[lore_ft3_pet_tooth_baby_future_decay]
+id = 11412
+
+[lore_ft3_pet_tooth_adult_healthy]
+id = 11413
+
+[lore_ft3_pet_tooth_adult_decayed]
+id = 11414
+
+[fairy_multi3]
+id = 11415
+
+[fairy_multi4]
+id = 11416
+
+[fairy_multi5]
+id = 11417
+
+[fairy_multi6]
+id = 11418
+
+[fairy_multi7]
+id = 11419
+
+[fairy_multi8]
+id = 11420
+
+[fairy_multi9]
+id = 11421
+
+[fairy_multi10]
+id = 11422
+
+[ft2_fairy_godfather_army_1_child]
+id = 11423
+
+[ft2_fairy_godfather_army_2_child]
+id = 11424
+
+[poh_ft3_pet_tooth_adult_healthy]
+id = 11425
+
+[poh_ft3_pet_tooth_adult_decayed]
+id = 11426
+
+[fairy3]
+id = 11427
+
+[fairy4]
+id = 11428
+
+[fairy5]
+id = 11429
+
+[fairy6]
+id = 11430
+
+[fairy7]
+id = 11431
+
+[fairy8]
+id = 11432
+
+[fairy9]
+id = 11433
+
+[fairy10]
+id = 11434
+
+[ft3_fairy_very_wise_child]
+id = 11435
+
+[ft3_fairy_queen_child]
+id = 11436
+
+[elem_3_tile_blank_npc]
+id = 11437
+
+[elem_3_tile_low_cog_npc]
+id = 11438
+
+[elem_3_tile_mid_cog_npc]
+id = 11439
+
+[elem_3_tile_high_cog_npc]
+id = 11440
+
+[rand_heavy_guard_1_unblock]
+id = 11441
+
+[rand_heavy_guard_2_unblock]
+id = 11442
+
+[rand_heavy_guard_3_unblock]
+id = 11443
+
+[rand_heavy_guard_4_unblock]
+id = 11444
+
+[rand_heavy_guard_5_unblock]
+id = 11445
+
+[rand_heavy_guard_6_unblock]
+id = 11446
+
+[rand_heavy_guard_7_unblock]
+id = 11447
+
+[rand_heavy_guard_8_unblock]
+id = 11448
+
+[rand_heavy_guard_9_unblock]
+id = 11449
+
+[castlewars_ballista_saradomin]
+id = 11450
+
+[castlewars_ballista_zamorak]
+id = 11451
+
+[csi_mugger]
+id = 11452
+
+[csi_mugger_victim]
+id = 11453
+
+[csi_rivertrollguardian]
+id = 11454
+
+[csi_evil_twin_accused]
+id = 11455
+
+[csi_evil_twin_accuser]
+id = 11456
+
+[csi_arresting_officer]
+id = 11457
+
+[csi_dwarf_victim]
+id = 11458
+
+[csi_turpentine_poor]
+id = 11459
+
+[csi_turpentine_rich]
+id = 11460
+
+[csi_court_clerk]
+id = 11461
+
+[csi_judge_dummy]
+id = 11462
+
+[csi_jury_dummy]
+id = 11463
+
+[csi_court_defender]
+id = 11464
+
+[csi_court_prosecutor]
+id = 11465
+
+[csi_court_suspect_in_jail]
+id = 11466
+
+[csi_court_opposing_suspect_in_jail]
+id = 11467
+
+[csi_court_arresting_officer_near_jail]
+id = 11468
+
+[csi_court_extra_witness_near_jail]
+id = 11469
+
+[csi_court_wit_case_1]
+id = 11470
+
+[csi_court_wit_case_2]
+id = 11471
+
+[csi_court_wit_case_3]
+id = 11472
+
+[csi_court_wit_case_4]
+id = 11473
+
+[csi_court_wit_case_5]
+id = 11474
+
+[mm_dealga]
+id = 11475
+
+[lumbcat_xenia_uninjured_icon]
+id = 11476
+
+[vkq1_bridge_a]
+id = 11477
+
+[vkq1_bridge_b_start_multi]
+id = 11478
+
+[vkq1_bridge_b_end_multi]
+id = 11479
+
+[vkq1_bridge_b]
+id = 11480
+
+[vkq1_bridge_b_sword]
+id = 11481
+
+[vkq1_bridge_c_start_multi]
+id = 11482
+
+[vkq1_bridge_c_end_multi]
+id = 11483
+
+[vkq1_bridge_c]
+id = 11484
+
+[vkq1_bridge_c_sword]
+id = 11485
+
+[vkq1_bridge_d_start_multi]
+id = 11486
+
+[vkq1_bridge_d_end_multi]
+id = 11487
+
+[vkq1_bridge_d]
+id = 11488
+
+[vkq1_bridge_d_sword]
+id = 11489
+
+[vkq1_bridge_pest_splatter]
+id = 11490
+
+[vkq1_bridge_pest_spinner]
+id = 11491
+
+[vkq1_bridge_pest_torcher]
+id = 11492
+
+[vkq1_commodore_matthias_cutscene]
+id = 11493
+
+[vkq1_jessika_cutscene]
+id = 11494
+
+[vkq1_tyr_cutscene]
+id = 11495
+
+[vkq1_bernard_cutscene]
+id = 11496
+
+[vkq1_matthias_multi]
+id = 11497
+
+[vkq1_commodore_matthias]
+id = 11498
+
+[vkq1_jessika]
+id = 11499
+
+[vkq1_jessika_vkpost_multi]
+id = 11500
+
+[vkq1_jessika_arrested_vkpost_multi]
+id = 11501
+
+[vkq1_arrested_squire_multi]
+id = 11502
+
+[vkq1_korasi_sarim_multi]
+id = 11503
+
+[vkq1_ladytable_sarim_multi]
+id = 11504
+
+[vkq1_korasi_vkpost_multi]
+id = 11505
+
+[vkq1_korasi]
+id = 11506
+
+[vkq1_korasi_tkhq]
+id = 11507
+
+[vkq1_korasi_shocked]
+id = 11508
+
+[vkq1_tyr_multi]
+id = 11509
+
+[vkq1_tyr]
+id = 11510
+
+[vkq1_tyr_advanced]
+id = 11511
+
+[vkq1_sirtiffy]
+id = 11512
+
+[vkq1_tiffy_sarim_multi]
+id = 11513
+
+[vkq1_us_ami_multi]
+id = 11514
+
+[vkq1_us_diana_multi]
+id = 11515
+
+[vkq1_us_terry_multi]
+id = 11516
+
+[vkq1_us_terry_mum_multi]
+id = 11517
+
+[vkq1_us_mikhal_multi]
+id = 11518
+
+[vkq1_us_mikhal_gf_multi]
+id = 11519
+
+[vkq1_us_sam_multi]
+id = 11520
+
+[vkq1_us_bernard_multi]
+id = 11521
+
+[vkq1_us_ami]
+id = 11522
+
+[vkq1_us_ami_sister]
+id = 11523
+
+[vkq1_us_terry]
+id = 11524
+
+[vkq1_us_terry_mother]
+id = 11525
+
+[vkq1_us_mikhal]
+id = 11526
+
+[vkq1_us_mikhal_gf]
+id = 11527
+
+[vkq1_us_mikhal_gf_cry]
+id = 11528
+
+[vkq1_us_sam]
+id = 11529
+
+[vkq1_us_sam_friend]
+id = 11530
+
+[vkq1_pest_brawler_2]
+id = 11531
+
+[vkq1_pest_shifter_korasis]
+id = 11532
+
+[loy_troll_general_1]
+id = 11533
+
+[vkq1_pest_torcher_1a]
+id = 11534
+
+[vkq1_pest_torcher_korasis]
+id = 11535
+
+[vkq1_pest_defiler_1b]
+id = 11536
+
+[vkq1_pest_defiler_2b]
+id = 11537
+
+[vkq1_mysterious]
+id = 11538
+
+[vkq1_combat_commodore]
+id = 11539
+
+[loy_troll_general_2]
+id = 11540
+
+[vkq1_combat_diana]
+id = 11541
+
+[vkq1_combat_bernard]
+id = 11542
+
+[vkq1_combat_ami]
+id = 11543
+
+[vkq1_combat_sam]
+id = 11544
+
+[vkq1_combat_mikhal]
+id = 11545
+
+[vkq1_matrix_pest_torcher]
+id = 11546
+
+[milkshop_keeper]
+id = 11547
+
+[vkq1_ghost_commodore]
+id = 11548
+
+[vkq1_ghost_korasi]
+id = 11549
+
+[vkq1_ghost_diana]
+id = 11550
+
+[vkq1_ghost_bernard]
+id = 11551
+
+[vkq1_ghost_ami]
+id = 11552
+
+[vkq1_slide_1a]
+id = 11553
+
+[vkq1_slide_1b]
+id = 11554
+
+[vkq1_slide_1c]
+id = 11555
+
+[vkq1_slide_2a]
+id = 11556
+
+[vkq1_slide_2b]
+id = 11557
+
+[vkq1_slide_2c]
+id = 11558
+
+[vkq1_slide_3a]
+id = 11559
+
+[vkq1_slide_3b]
+id = 11560
+
+[vkq1_slide_3c]
+id = 11561
+
+[poh_pit_dog]
+id = 11562
+
+[poh_pit_ogre]
+id = 11563
+
+[poh_pit_rockcreature]
+id = 11564
+
+[poh_pit_scabarite]
+id = 11565
+
+[poh_pit_demon]
+id = 11566
+
+[poh_pit_irondragon]
+id = 11567
+
+[wom_cutscene_3]
+id = 11568
+
+[wom_cutscene_4]
+id = 11569
+
+[love_zenevivia_multi]
+id = 11570
+
+[love_zenevivia_draynor]
+id = 11571
+
+[love_wom_outsidehouse]
+id = 11572
+
+[love_wom_walkoutside1]
+id = 11573
+
+[love_wom_walkoutside2]
+id = 11574
+
+[love_wom_walktorimmington]
+id = 11575
+
+[love_treeguard]
+id = 11576
+
+[love_zenevivia_waiting]
+id = 11577
+
+[love_zenevivia_battle]
+id = 11578
+
+[love_zenevivia_battle_statue_protmagic]
+id = 11579
+
+[love_zenevivia_battle_statue_protrange]
+id = 11580
+
+[love_zenevivia_defeated]
+id = 11581
+
+[love_zenevivia_cutscene]
+id = 11582
+
+[love_wom_house]
+id = 11583
+
+[love_dungeon_dog_inactive]
+id = 11584
+
+[love_dungeon_dog]
+id = 11585
+
+[love_dungeon_ogre_inactive]
+id = 11586
+
+[love_dungeon_ogre]
+id = 11587
+
+[love_dungeon_rockcreature_inactive]
+id = 11588
+
+[love_dungeon_rockcreature]
+id = 11589
+
+[love_dungeon_scabarite_inactive]
+id = 11590
+
+[love_dungeon_scabarite]
+id = 11591
+
+[love_dungeon_demon_inactive]
+id = 11592
+
+[love_dungeon_demon]
+id = 11593
+
+[love_dungeon_dragon_inactive]
+id = 11594
+
+[love_dungeon_dragon]
+id = 11595
+
+[love_dummy]
+id = 11596
+
+[love_wom_rimmingtonportal]
+id = 11597
+
+[love_wom_rimmingtonhouse]
+id = 11598
+
+[love_zenevivia_cutscene_staff]
+id = 11599
+
+[love_wizardstower_invisible]
+id = 11600
+
+[love_wizardstower_sedridor]
+id = 11601
+
+[love_wizardstower_mizgog]
+id = 11602
+
+[love_wizardstower_grayzag]
+id = 11603
+
+[love_wizardstower_traiborn]
+id = 11604
+
+[love_wizardstower_imp]
+id = 11605
+
+[love_thingummywut]
+id = 11606
+
+[love_wom_young]
+id = 11607
+
+[love_wom_young_beer]
+id = 11608
+
+[love_wom_young_sidestep]
+id = 11609
+
+[love_wom_young_staff]
+id = 11610
+
+[love_wom_young_alching]
+id = 11611
+
+[love_wom_young_qpcape]
+id = 11612
+
+[love_zenevivia_young]
+id = 11613
+
+[love_zenevivia_young_beer]
+id = 11614
+
+[love_zenevivia_young_sidestep]
+id = 11615
+
+[love_zenevivia_young_staff]
+id = 11616
+
+[love_zenevivia_young_redskull]
+id = 11617
+
+[love_barman]
+id = 11618
+
+[love_barman_beer]
+id = 11619
+
+[raid_rebirth1_moonstone_shards_2]
+id = 11620
+
+[love_kalphiteworker]
+id = 11621
+
+[love_firegiant]
+id = 11622
+
+[love_meleefighter]
+id = 11623
+
+[love_ranger]
+id = 11624
+
+[love_mabel]
+id = 11625
+
+[love_mabel_haystack]
+id = 11626
+
+[love_mabel_multi]
+id = 11627
+
+[love_zenevivia_barn]
+id = 11628
+
+[love_zenevivia_barn_multi]
+id = 11629
+
+[love_haybale]
+id = 11630
+
+[love_mabel_walking]
+id = 11631
+
+[love_mabel_walking_multi]
+id = 11632
+
+[frost_dragon_2]
+id = 11633
+
+[frost_dragon_3]
+id = 11634
+
+[frost_dragon_4]
+id = 11635
+
+[frost_dragon_5]
+id = 11636
+
+[ii_rand_impling_precursor]
+id = 11637
+
+[trail_elite]
+id = 11638
+
+[trail_elite2]
+id = 11639
+
+[lore_meerkats]
+id = 11640
+
+[vkq2_ali]
+id = 11641
+
+[vkq2_ali_npc_sick]
+id = 11642
+
+[vkq2_ali_npc]
+id = 11643
+
+[vkq2_ali_customer_01]
+id = 11644
+
+[vkq2_ali_customer_01_npc]
+id = 11645
+
+[vkq2_ali_customer_02]
+id = 11646
+
+[vkq2_ali_customer_02_npc]
+id = 11647
+
+[vkq2_korasi]
+id = 11648
+
+[vkq2_korasi_orb]
+id = 11649
+
+[vkq2_jessika_orb]
+id = 11650
+
+[vkq2_korasi_outpost]
+id = 11651
+
+[vkq2_korasi_sarim]
+id = 11652
+
+[vkq2_korasi_cellar]
+id = 11653
+
+[vkq2_korasi_musa]
+id = 11654
+
+[vkq2_korasi_musa2]
+id = 11655
+
+[vkq2_korasi_rimmington]
+id = 11656
+
+[vkq2_korasi_falador]
+id = 11657
+
+[vkq2_korasi_antechamber]
+id = 11658
+
+[vkq2_korasi_fort]
+id = 11659
+
+[vkq2_jessika]
+id = 11660
+
+[vkq2_jessika_outpost_prison]
+id = 11661
+
+[vkq2_jessika_outpost_free]
+id = 11662
+
+[vkq2_jessika_sarim]
+id = 11663
+
+[vkq2_jessika_cellar]
+id = 11664
+
+[vkq2_jessika_musa]
+id = 11665
+
+[vkq2_jessika_musa2]
+id = 11666
+
+[vkq2_jessika_rimmington]
+id = 11667
+
+[vkq2_jessika_falador]
+id = 11668
+
+[vkq2_jessika_antechamber]
+id = 11669
+
+[vkq2_jessika_fort]
+id = 11670
+
+[vkq2_sokobeer_barrel]
+id = 11671
+
+[vkq2_sokobeer_empty_barrel]
+id = 11672
+
+[vkq2_sokobeer_done_barrel]
+id = 11673
+
+[vkq2_kofi]
+id = 11674
+
+[vkq2_kofi_ill]
+id = 11675
+
+[vkq2_bartender]
+id = 11676
+
+[vkq2_assistant]
+id = 11677
+
+[vkq2_assistant_npc]
+id = 11678
+
+[vkq2_assistant_sick]
+id = 11679
+
+[loy_troll_general_3]
+id = 11680
+
+[vkq2_tyr]
+id = 11681
+
+[vkq2_tyr_npc]
+id = 11682
+
+[vkq2_ante_korasi]
+id = 11683
+
+[vkq2_ante_jessika]
+id = 11684
+
+[vkq2_guard]
+id = 11685
+
+[vkq2_pushable_barrel]
+id = 11686
+
+[vkq2_unladenworker]
+id = 11687
+
+[vkq2_ladenworker]
+id = 11688
+
+[vkq2_pp_ladenworker]
+id = 11689
+
+[vkq2_doorkeeper_npc]
+id = 11690
+
+[vkq2_doorkeeper]
+id = 11691
+
+[vkq2_doorkeeper_fallen]
+id = 11692
+
+[vkq2_workshopworker]
+id = 11693
+
+[vkq2_workshopworker2]
+id = 11694
+
+[vkq2_workshopworker3]
+id = 11695
+
+[vkq2_kinshra_guardian]
+id = 11696
+
+[vkq2_kinshra_guardian_auto]
+id = 11697
+
+[vkq2_pest_chathead]
+id = 11698
+
+[vkq2_gerrant_sick]
+id = 11699
+
+[vkq2_captain_tobias_sick]
+id = 11700
+
+[makeover_mage_npc_male]
+id = 11701
+
+[makeover_mage_npc_female]
+id = 11702
+
+[quest_easter26_spy_2_multi]
+id = 11703
+
+[quest_easter26_spy_3_multi]
+id = 11704
+
+[quest_easter26_spy_1]
+id = 11705
+
+[rustyanchor_blahman]
+id = 11706
+
+[rustyanchor_barman]
+id = 11707
+
+[rand_oclt_zombie_3]
+id = 11708
+
+[rand_oclt_zombie_4]
+id = 11709
+
+[rand_oclt_zombie_5]
+id = 11710
+
+[rand_oclt_zombie_6]
+id = 11711
+
+[rand_oclt_zombie_7]
+id = 11712
+
+[rand_oclt_zombie_8]
+id = 11713
+
+[rand_oclt_zombie_9]
+id = 11714
+
+[rand_oclt_zombie_10]
+id = 11715
+
+[rand_oclt_zombie_11]
+id = 11716
+
+[rand_oclt_zombie_12]
+id = 11717
+
+[rand_oclt_zombie_13]
+id = 11718
+
+[rand_oclt_zombie_14]
+id = 11719
+
+[rand_oclt_zombie_15]
+id = 11720
+
+[rand_oclt_zombie_portal_npc]
+id = 11721
+
+[rand_oclt_necrolord_add_01]
+id = 11722
+
+[rand_oclt_necrolord_add_02]
+id = 11723
+
+[rand_oclt_necrolord_add_03]
+id = 11724
+
+[rand_oclt_necrolord_add_04]
+id = 11725
+
+[rand_oclt_necrolord_add_05]
+id = 11726
+
+[rand_oclt_necrolord_add_06]
+id = 11727
+
+[rand_oclt_necrolord_add_07]
+id = 11728
+
+[rand_oclt_necrolord_add_08]
+id = 11729
+
+[rand_oclt_necrolord_add_09]
+id = 11730
+
+[rand_oclt_necrolord_add_10]
+id = 11731
+
+[rand_oclt_necrolord_add_11]
+id = 11732
+
+[rand_oclt_necrolord_add_12]
+id = 11733
+
+[rand_oclt_necrolord_add_13]
+id = 11734
+
+[rand_oclt_necrolord_add_14]
+id = 11735
+
+[rand_oclt_necrolord_add_15]
+id = 11736
+
+[rand_oclt_necrolord_01]
+id = 11737
+
+[rand_oclt_necrolord_02]
+id = 11738
+
+[rand_oclt_necrolord_03]
+id = 11739
+
+[rand_oclt_necrolord_04]
+id = 11740
+
+[rand_oclt_necrolord_05]
+id = 11741
+
+[rand_oclt_necrolord_06]
+id = 11742
+
+[rand_oclt_necrolord_07]
+id = 11743
+
+[rand_oclt_necrolord_08]
+id = 11744
+
+[rand_oclt_necrolord_09]
+id = 11745
+
+[rand_oclt_necrolord_10]
+id = 11746
+
+[rand_oclt_necrolord_11]
+id = 11747
+
+[rand_oclt_necrolord_12]
+id = 11748
+
+[rand_oclt_necrolord_13]
+id = 11749
+
+[rand_oclt_necrolord_14]
+id = 11750
+
+[rand_oclt_necrolord_15]
+id = 11751
+
+[rand_oclt_runed_behemoth_me1ma0ra1_01]
+id = 11752
+
+[rand_oclt_runed_behemoth_me1ma0ra1_02]
+id = 11753
+
+[rand_oclt_runed_behemoth_me1ma0ra1_03]
+id = 11754
+
+[rand_oclt_runed_behemoth_me1ma0ra1_04]
+id = 11755
+
+[rand_oclt_runed_behemoth_me1ma0ra1_05]
+id = 11756
+
+[rand_oclt_runed_behemoth_me1ma0ra1_06]
+id = 11757
+
+[rand_oclt_runed_behemoth_me1ma0ra1_07]
+id = 11758
+
+[rand_oclt_runed_behemoth_me1ma0ra1_08]
+id = 11759
+
+[rand_oclt_runed_behemoth_me1ma0ra1_09]
+id = 11760
+
+[rand_oclt_runed_behemoth_me1ma0ra1_10]
+id = 11761
+
+[rand_oclt_runed_behemoth_me1ma0ra1_11]
+id = 11762
+
+[rand_oclt_runed_behemoth_me1ma0ra1_12]
+id = 11763
+
+[rand_oclt_runed_behemoth_me1ma0ra1_13]
+id = 11764
+
+[rand_oclt_runed_behemoth_me1ma0ra1_14]
+id = 11765
+
+[rand_oclt_runed_behemoth_me1ma0ra1_15]
+id = 11766
+
+[rand_oclt_runed_behemoth_me0ma0ra0_01]
+id = 11767
+
+[rand_oclt_runed_behemoth_me0ma0ra0_02]
+id = 11768
+
+[rand_oclt_runed_behemoth_me0ma0ra0_03]
+id = 11769
+
+[rand_oclt_runed_behemoth_me0ma0ra0_04]
+id = 11770
+
+[rand_oclt_runed_behemoth_me0ma0ra0_05]
+id = 11771
+
+[rand_oclt_runed_behemoth_me0ma0ra0_06]
+id = 11772
+
+[rand_oclt_runed_behemoth_me0ma0ra0_07]
+id = 11773
+
+[rand_oclt_runed_behemoth_me0ma0ra0_08]
+id = 11774
+
+[rand_oclt_runed_behemoth_me0ma0ra0_09]
+id = 11775
+
+[rand_oclt_runed_behemoth_me0ma0ra0_10]
+id = 11776
+
+[rand_oclt_runed_behemoth_me0ma0ra0_11]
+id = 11777
+
+[rand_oclt_runed_behemoth_me0ma0ra0_12]
+id = 11778
+
+[rand_oclt_runed_behemoth_me0ma0ra0_13]
+id = 11779
+
+[rand_oclt_runed_behemoth_me0ma0ra0_14]
+id = 11780
+
+[rand_oclt_runed_behemoth_me0ma0ra0_15]
+id = 11781
+
+[rand_oclt_runed_behemoth_me1ma1ra0_01]
+id = 11782
+
+[rand_oclt_runed_behemoth_me1ma1ra0_02]
+id = 11783
+
+[rand_oclt_runed_behemoth_me1ma1ra0_03]
+id = 11784
+
+[rand_oclt_runed_behemoth_me1ma1ra0_04]
+id = 11785
+
+[rand_oclt_runed_behemoth_me1ma1ra0_05]
+id = 11786
+
+[rand_oclt_runed_behemoth_me1ma1ra0_06]
+id = 11787
+
+[rand_oclt_runed_behemoth_me1ma1ra0_07]
+id = 11788
+
+[rand_oclt_runed_behemoth_me1ma1ra0_08]
+id = 11789
+
+[rand_oclt_runed_behemoth_me1ma1ra0_09]
+id = 11790
+
+[rand_oclt_runed_behemoth_me1ma1ra0_10]
+id = 11791
+
+[rand_oclt_runed_behemoth_me1ma1ra0_11]
+id = 11792
+
+[rand_oclt_runed_behemoth_me1ma1ra0_12]
+id = 11793
+
+[rand_oclt_runed_behemoth_me1ma1ra0_13]
+id = 11794
+
+[rand_oclt_runed_behemoth_me1ma1ra0_14]
+id = 11795
+
+[rand_oclt_runed_behemoth_me1ma1ra0_15]
+id = 11796
+
+[rand_oclt_runed_behemoth_me0ma1ra1_01]
+id = 11797
+
+[rand_oclt_runed_behemoth_me0ma1ra1_02]
+id = 11798
+
+[rand_oclt_runed_behemoth_me0ma1ra1_03]
+id = 11799
+
+[rand_oclt_runed_behemoth_me0ma1ra1_04]
+id = 11800
+
+[rand_oclt_runed_behemoth_me0ma1ra1_05]
+id = 11801
+
+[rand_oclt_runed_behemoth_me0ma1ra1_06]
+id = 11802
+
+[rand_oclt_runed_behemoth_me0ma1ra1_07]
+id = 11803
+
+[rand_oclt_runed_behemoth_me0ma1ra1_08]
+id = 11804
+
+[rand_oclt_runed_behemoth_me0ma1ra1_09]
+id = 11805
+
+[rand_oclt_runed_behemoth_me0ma1ra1_10]
+id = 11806
+
+[rand_oclt_runed_behemoth_me0ma1ra1_11]
+id = 11807
+
+[rand_oclt_runed_behemoth_me0ma1ra1_12]
+id = 11808
+
+[rand_oclt_runed_behemoth_me0ma1ra1_13]
+id = 11809
+
+[rand_oclt_runed_behemoth_me0ma1ra1_14]
+id = 11810
+
+[rand_oclt_runed_behemoth_me0ma1ra1_15]
+id = 11811
+
+[rand_oclt_runed_behemoth_me1ma1ra1_01]
+id = 11812
+
+[rand_oclt_runed_behemoth_me1ma1ra1_02]
+id = 11813
+
+[rand_oclt_runed_behemoth_me1ma1ra1_03]
+id = 11814
+
+[rand_oclt_runed_behemoth_me1ma1ra1_04]
+id = 11815
+
+[rand_oclt_runed_behemoth_me1ma1ra1_05]
+id = 11816
+
+[rand_oclt_runed_behemoth_me1ma1ra1_06]
+id = 11817
+
+[rand_oclt_runed_behemoth_me1ma1ra1_07]
+id = 11818
+
+[rand_oclt_runed_behemoth_me1ma1ra1_08]
+id = 11819
+
+[rand_oclt_runed_behemoth_me1ma1ra1_09]
+id = 11820
+
+[rand_oclt_runed_behemoth_me1ma1ra1_10]
+id = 11821
+
+[rand_oclt_runed_behemoth_me1ma1ra1_11]
+id = 11822
+
+[rand_oclt_runed_behemoth_me1ma1ra1_12]
+id = 11823
+
+[rand_oclt_runed_behemoth_me1ma1ra1_13]
+id = 11824
+
+[rand_oclt_runed_behemoth_me1ma1ra1_14]
+id = 11825
+
+[rand_oclt_runed_behemoth_me1ma1ra1_15]
+id = 11826
+
+[rand_oclt_runed_behemoth_me0ma0ra1_01]
+id = 11827
+
+[rand_oclt_runed_behemoth_me0ma0ra1_02]
+id = 11828
+
+[rand_oclt_runed_behemoth_me0ma0ra1_03]
+id = 11829
+
+[rand_oclt_runed_behemoth_me0ma0ra1_04]
+id = 11830
+
+[rand_oclt_runed_behemoth_me0ma0ra1_05]
+id = 11831
+
+[rand_oclt_runed_behemoth_me0ma0ra1_06]
+id = 11832
+
+[rand_oclt_runed_behemoth_me0ma0ra1_07]
+id = 11833
+
+[rand_oclt_runed_behemoth_me0ma0ra1_08]
+id = 11834
+
+[rand_oclt_runed_behemoth_me0ma0ra1_09]
+id = 11835
+
+[rand_oclt_runed_behemoth_me0ma0ra1_10]
+id = 11836
+
+[rand_oclt_runed_behemoth_me0ma0ra1_11]
+id = 11837
+
+[rand_oclt_runed_behemoth_me0ma0ra1_12]
+id = 11838
+
+[rand_oclt_runed_behemoth_me0ma0ra1_13]
+id = 11839
+
+[rand_oclt_runed_behemoth_me0ma0ra1_14]
+id = 11840
+
+[rand_oclt_runed_behemoth_me0ma0ra1_15]
+id = 11841
+
+[rand_oclt_runed_behemoth_me0ma1ra0_01]
+id = 11842
+
+[rand_oclt_runed_behemoth_me0ma1ra0_02]
+id = 11843
+
+[rand_oclt_runed_behemoth_me0ma1ra0_03]
+id = 11844
+
+[rand_oclt_runed_behemoth_me0ma1ra0_04]
+id = 11845
+
+[rand_oclt_runed_behemoth_me0ma1ra0_05]
+id = 11846
+
+[rand_oclt_runed_behemoth_me0ma1ra0_06]
+id = 11847
+
+[rand_oclt_runed_behemoth_me0ma1ra0_07]
+id = 11848
+
+[rand_oclt_runed_behemoth_me0ma1ra0_08]
+id = 11849
+
+[rand_oclt_runed_behemoth_me0ma1ra0_09]
+id = 11850
+
+[rand_oclt_runed_behemoth_me0ma1ra0_10]
+id = 11851
+
+[rand_oclt_runed_behemoth_me0ma1ra0_11]
+id = 11852
+
+[rand_oclt_runed_behemoth_me0ma1ra0_12]
+id = 11853
+
+[rand_oclt_runed_behemoth_me0ma1ra0_13]
+id = 11854
+
+[rand_oclt_runed_behemoth_me0ma1ra0_14]
+id = 11855
+
+[rand_oclt_runed_behemoth_me0ma1ra0_15]
+id = 11856
+
+[rand_oclt_runed_behemoth_me1ma0ra0_01]
+id = 11857
+
+[rand_oclt_runed_behemoth_me1ma0ra0_02]
+id = 11858
+
+[rand_oclt_runed_behemoth_me1ma0ra0_03]
+id = 11859
+
+[rand_oclt_runed_behemoth_me1ma0ra0_04]
+id = 11860
+
+[rand_oclt_runed_behemoth_me1ma0ra0_05]
+id = 11861
+
+[rand_oclt_runed_behemoth_me1ma0ra0_06]
+id = 11862
+
+[rand_oclt_runed_behemoth_me1ma0ra0_07]
+id = 11863
+
+[rand_oclt_runed_behemoth_me1ma0ra0_08]
+id = 11864
+
+[rand_oclt_runed_behemoth_me1ma0ra0_09]
+id = 11865
+
+[rand_oclt_runed_behemoth_me1ma0ra0_10]
+id = 11866
+
+[rand_oclt_runed_behemoth_me1ma0ra0_11]
+id = 11867
+
+[rand_oclt_runed_behemoth_me1ma0ra0_12]
+id = 11868
+
+[rand_oclt_runed_behemoth_me1ma0ra0_13]
+id = 11869
+
+[rand_oclt_runed_behemoth_me1ma0ra0_14]
+id = 11870
+
+[rand_oclt_runed_behemoth_me1ma0ra0_15]
+id = 11871
+
+[rand_oclt_demon_1]
+id = 11872
+
+[rand_oclt_demon_2]
+id = 11873
+
+[rand_oclt_demon_3]
+id = 11874
+
+[rand_oclt_demon_4]
+id = 11875
+
+[rand_oclt_demon_5]
+id = 11876
+
+[rand_oclt_demon_6]
+id = 11877
+
+[rand_oclt_demon_7]
+id = 11878
+
+[rand_oclt_demon_8]
+id = 11879
+
+[rand_oclt_demon_9]
+id = 11880
+
+[rand_oclt_demon_10]
+id = 11881
+
+[rand_oclt_demon_11]
+id = 11882
+
+[rand_oclt_demon_12]
+id = 11883
+
+[rand_oclt_demon_13]
+id = 11884
+
+[rand_oclt_demon_14]
+id = 11885
+
+[rand_oclt_demon_15]
+id = 11886
+
+[rand_oclt_demon_mage_1]
+id = 11887
+
+[rand_oclt_demon_mage_2]
+id = 11888
+
+[rand_oclt_demon_mage_3]
+id = 11889
+
+[rand_oclt_demon_mage_4]
+id = 11890
+
+[rand_oclt_demon_mage_5]
+id = 11891
+
+[rand_oclt_demon_mage_6]
+id = 11892
+
+[rand_oclt_demon_mage_7]
+id = 11893
+
+[rand_oclt_demon_mage_8]
+id = 11894
+
+[rand_oclt_eyesplosion_static_01]
+id = 11895
+
+[rand_oclt_eyesplosion_static_02]
+id = 11896
+
+[rand_oclt_eyesplosion_static_03]
+id = 11897
+
+[rand_oclt_eyesplosion_static_04]
+id = 11898
+
+[rand_oclt_eyesplosion_static_05]
+id = 11899
+
+[rand_oclt_eyesplosion_static_06]
+id = 11900
+
+[rand_oclt_eyesplosion_static_07]
+id = 11901
+
+[rand_oclt_eyesplosion_static_08]
+id = 11902
+
+[rand_oclt_eyesplosion_static_09]
+id = 11903
+
+[rand_oclt_eyesplosion_static_10]
+id = 11904
+
+[rand_oclt_eyesplosion_static_11]
+id = 11905
+
+[rand_oclt_eyesplosion_static_12]
+id = 11906
+
+[rand_oclt_eyesplosion_static_13]
+id = 11907
+
+[rand_oclt_eyesplosion_static_14]
+id = 11908
+
+[rand_oclt_eyesplosion_static_15]
+id = 11909
+
+[rand_oclt_eyesplosion_add_01]
+id = 11910
+
+[rand_oclt_eyesplosion_add_02]
+id = 11911
+
+[rand_oclt_eyesplosion_add_03]
+id = 11912
+
+[rand_oclt_eyesplosion_add_04]
+id = 11913
+
+[rand_oclt_eyesplosion_add_05]
+id = 11914
+
+[rand_oclt_eyesplosion_add_06]
+id = 11915
+
+[rand_oclt_eyesplosion_add_07]
+id = 11916
+
+[rand_oclt_eyesplosion_add_08]
+id = 11917
+
+[rand_oclt_eyesplosion_add_09]
+id = 11918
+
+[rand_oclt_eyesplosion_add_10]
+id = 11919
+
+[rand_oclt_eyesplosion_add_11]
+id = 11920
+
+[rand_oclt_eyesplosion_add_12]
+id = 11921
+
+[rand_oclt_eyesplosion_add_13]
+id = 11922
+
+[rand_oclt_eyesplosion_add_14]
+id = 11923
+
+[rand_oclt_eyesplosion_add_15]
+id = 11924
+
+[rand_oclt_eyesplosion_mobile_01]
+id = 11925
+
+[rand_oclt_eyesplosion_mobile_02]
+id = 11926
+
+[rand_oclt_eyesplosion_mobile_03]
+id = 11927
+
+[rand_oclt_eyesplosion_mobile_04]
+id = 11928
+
+[rand_oclt_eyesplosion_mobile_05]
+id = 11929
+
+[rand_oclt_eyesplosion_mobile_06]
+id = 11930
+
+[rand_oclt_eyesplosion_mobile_07]
+id = 11931
+
+[rand_oclt_eyesplosion_mobile_08]
+id = 11932
+
+[rand_oclt_eyesplosion_mobile_09]
+id = 11933
+
+[rand_oclt_eyesplosion_mobile_10]
+id = 11934
+
+[rand_oclt_eyesplosion_mobile_11]
+id = 11935
+
+[rand_oclt_eyesplosion_mobile_12]
+id = 11936
+
+[rand_oclt_eyesplosion_mobile_13]
+id = 11937
+
+[rand_oclt_eyesplosion_mobile_14]
+id = 11938
+
+[rand_oclt_eyesplosion_mobile_15]
+id = 11939
+
+[rand_trio_melee_melee_01]
+id = 11940
+
+[rand_trio_melee_range_01]
+id = 11941
+
+[rand_trio_melee_magic_01]
+id = 11942
+
+[rand_trio_melee_melee_02]
+id = 11943
+
+[rand_trio_melee_range_02]
+id = 11944
+
+[rand_trio_melee_magic_02]
+id = 11945
+
+[rand_trio_melee_melee_03]
+id = 11946
+
+[rand_trio_melee_range_03]
+id = 11947
+
+[rand_trio_melee_magic_03]
+id = 11948
+
+[rand_trio_melee_melee_04]
+id = 11949
+
+[rand_trio_melee_range_04]
+id = 11950
+
+[rand_trio_melee_magic_04]
+id = 11951
+
+[rand_trio_melee_melee_05]
+id = 11952
+
+[rand_trio_melee_range_05]
+id = 11953
+
+[rand_trio_melee_magic_05]
+id = 11954
+
+[rand_trio_melee_melee_06]
+id = 11955
+
+[rand_trio_melee_range_06]
+id = 11956
+
+[rand_trio_melee_magic_06]
+id = 11957
+
+[rand_trio_melee_melee_07]
+id = 11958
+
+[rand_trio_melee_range_07]
+id = 11959
+
+[rand_trio_melee_magic_07]
+id = 11960
+
+[rand_trio_melee_melee_08]
+id = 11961
+
+[rand_trio_melee_range_08]
+id = 11962
+
+[rand_trio_melee_magic_08]
+id = 11963
+
+[rand_trio_melee_melee_09]
+id = 11964
+
+[rand_trio_melee_range_09]
+id = 11965
+
+[rand_trio_melee_magic_09]
+id = 11966
+
+[rand_trio_melee_melee_10]
+id = 11967
+
+[rand_trio_melee_range_10]
+id = 11968
+
+[rand_trio_melee_magic_10]
+id = 11969
+
+[rand_trio_melee_melee_11]
+id = 11970
+
+[rand_trio_melee_range_11]
+id = 11971
+
+[rand_trio_melee_magic_11]
+id = 11972
+
+[rand_trio_melee_melee_12]
+id = 11973
+
+[rand_trio_melee_range_12]
+id = 11974
+
+[rand_trio_melee_magic_12]
+id = 11975
+
+[rand_trio_melee_melee_13]
+id = 11976
+
+[rand_trio_melee_range_13]
+id = 11977
+
+[rand_trio_melee_magic_13]
+id = 11978
+
+[rand_trio_melee_melee_14]
+id = 11979
+
+[rand_trio_melee_range_14]
+id = 11980
+
+[rand_trio_melee_magic_14]
+id = 11981
+
+[rand_trio_melee_melee_15]
+id = 11982
+
+[rand_trio_melee_range_15]
+id = 11983
+
+[rand_trio_melee_magic_15]
+id = 11984
+
+[rand_trio_dummy_01]
+id = 11985
+
+[rand_trio_dummy_02]
+id = 11986
+
+[rand_trio_dummy_03]
+id = 11987
+
+[rand_trio_dummy_04]
+id = 11988
+
+[rand_trio_dummy_05]
+id = 11989
+
+[rand_trio_dummy_06]
+id = 11990
+
+[rand_trio_dummy_07]
+id = 11991
+
+[rand_trio_dummy_08]
+id = 11992
+
+[rand_trio_dummy_09]
+id = 11993
+
+[rand_trio_dummy_10]
+id = 11994
+
+[rand_trio_dummy_11]
+id = 11995
+
+[rand_trio_dummy_12]
+id = 11996
+
+[rand_trio_dummy_13]
+id = 11997
+
+[rand_trio_dummy_14]
+id = 11998
+
+[rand_trio_magic_melee_01]
+id = 11999
+
+[rand_trio_magic_range_01]
+id = 12000
+
+[rand_trio_magic_magic_01]
+id = 12001
+
+[rand_trio_magic_melee_02]
+id = 12002
+
+[rand_trio_magic_range_02]
+id = 12003
+
+[rand_trio_magic_magic_02]
+id = 12004
+
+[rand_trio_magic_melee_03]
+id = 12005
+
+[rand_trio_magic_range_03]
+id = 12006
+
+[rand_trio_magic_magic_03]
+id = 12007
+
+[rand_trio_magic_melee_04]
+id = 12008
+
+[rand_trio_magic_range_04]
+id = 12009
+
+[rand_trio_magic_magic_04]
+id = 12010
+
+[rand_trio_magic_melee_05]
+id = 12011
+
+[rand_trio_magic_range_05]
+id = 12012
+
+[rand_trio_magic_magic_05]
+id = 12013
+
+[rand_trio_magic_melee_06]
+id = 12014
+
+[rand_trio_magic_range_06]
+id = 12015
+
+[rand_trio_magic_magic_06]
+id = 12016
+
+[rand_trio_magic_melee_07]
+id = 12017
+
+[rand_trio_magic_range_07]
+id = 12018
+
+[rand_trio_magic_magic_07]
+id = 12019
+
+[rand_trio_magic_melee_08]
+id = 12020
+
+[rand_trio_magic_range_08]
+id = 12021
+
+[rand_trio_magic_magic_08]
+id = 12022
+
+[rand_trio_magic_melee_09]
+id = 12023
+
+[rand_trio_magic_range_09]
+id = 12024
+
+[rand_trio_magic_magic_09]
+id = 12025
+
+[rand_trio_magic_melee_10]
+id = 12026
+
+[rand_trio_magic_range_10]
+id = 12027
+
+[rand_trio_magic_magic_10]
+id = 12028
+
+[rand_trio_magic_melee_11]
+id = 12029
+
+[rand_trio_magic_range_11]
+id = 12030
+
+[rand_trio_magic_magic_11]
+id = 12031
+
+[rand_trio_magic_melee_12]
+id = 12032
+
+[rand_trio_magic_range_12]
+id = 12033
+
+[rand_trio_magic_magic_12]
+id = 12034
+
+[rand_trio_magic_melee_13]
+id = 12035
+
+[rand_trio_magic_range_13]
+id = 12036
+
+[rand_trio_magic_magic_13]
+id = 12037
+
+[rand_trio_magic_melee_14]
+id = 12038
+
+[rand_trio_magic_range_14]
+id = 12039
+
+[rand_trio_magic_magic_14]
+id = 12040
+
+[rand_trio_magic_melee_15]
+id = 12041
+
+[rand_trio_magic_range_15]
+id = 12042
+
+[rand_trio_magic_magic_15]
+id = 12043
+
+[rand_trio_range_melee_01]
+id = 12044
+
+[rand_trio_range_range_01]
+id = 12045
+
+[rand_trio_range_magic_01]
+id = 12046
+
+[rand_trio_range_melee_02]
+id = 12047
+
+[rand_trio_range_range_02]
+id = 12048
+
+[rand_trio_range_magic_02]
+id = 12049
+
+[rand_trio_range_melee_03]
+id = 12050
+
+[rand_trio_range_range_03]
+id = 12051
+
+[rand_trio_range_magic_03]
+id = 12052
+
+[rand_trio_range_melee_04]
+id = 12053
+
+[rand_trio_range_range_04]
+id = 12054
+
+[rand_trio_range_magic_04]
+id = 12055
+
+[rand_trio_range_melee_05]
+id = 12056
+
+[rand_trio_range_range_05]
+id = 12057
+
+[rand_trio_range_magic_05]
+id = 12058
+
+[rand_trio_range_melee_06]
+id = 12059
+
+[rand_trio_range_range_06]
+id = 12060
+
+[rand_trio_range_magic_06]
+id = 12061
+
+[rand_trio_range_melee_07]
+id = 12062
+
+[rand_trio_range_range_07]
+id = 12063
+
+[rand_trio_range_magic_07]
+id = 12064
+
+[rand_trio_range_melee_08]
+id = 12065
+
+[rand_trio_range_range_08]
+id = 12066
+
+[rand_trio_range_magic_08]
+id = 12067
+
+[rand_trio_range_melee_09]
+id = 12068
+
+[rand_trio_range_range_09]
+id = 12069
+
+[rand_trio_range_magic_09]
+id = 12070
+
+[rand_trio_range_melee_10]
+id = 12071
+
+[rand_trio_range_range_10]
+id = 12072
+
+[rand_trio_range_magic_10]
+id = 12073
+
+[rand_trio_range_melee_11]
+id = 12074
+
+[rand_trio_range_range_11]
+id = 12075
+
+[rand_trio_range_magic_11]
+id = 12076
+
+[rand_trio_range_melee_12]
+id = 12077
+
+[rand_trio_range_range_12]
+id = 12078
+
+[rand_trio_range_magic_12]
+id = 12079
+
+[rand_trio_range_melee_13]
+id = 12080
+
+[rand_trio_range_range_13]
+id = 12081
+
+[rand_trio_range_magic_13]
+id = 12082
+
+[rand_trio_range_melee_14]
+id = 12083
+
+[rand_trio_range_range_14]
+id = 12084
+
+[rand_trio_range_magic_14]
+id = 12085
+
+[rand_trio_range_melee_15]
+id = 12086
+
+[rand_trio_range_range_15]
+id = 12087
+
+[rand_trio_range_magic_15]
+id = 12088
+
+[rand_fishing_keys_pondskater_1]
+id = 12089
+
+[rand_fishing_keys_pondskater_1_nokey]
+id = 12090
+
+[rand_fishing_keys_pondskater_2]
+id = 12091
+
+[rand_fishing_keys_pondskater_3]
+id = 12092
+
+[rand_fishing_keys_pondskater_4]
+id = 12093
+
+[rand_somethings_missing_statue_melee_empty_occult]
+id = 12094
+
+[rand_somethings_missing_statue_range_empty_occult]
+id = 12095
+
+[rand_somethings_missing_statue_magic_empty_occult]
+id = 12096
+
+[rand_somethings_missing_statue_range_armed_occult]
+id = 12097
+
+[rand_somethings_missing_statue_magic_armed_occult]
+id = 12098
+
+[rand_somethings_missing_statue_melee_armed_occult]
+id = 12099
+
+[rand_somethings_missing_statue_melee_bow_occult]
+id = 12100
+
+[rand_somethings_missing_statue_melee_staff_occult]
+id = 12101
+
+[rand_somethings_missing_statue_ranger_sword_occult]
+id = 12102
+
+[rand_somethings_missing_statue_ranger_staff_occult]
+id = 12103
+
+[rand_somethings_missing_statue_magic_sword_occult]
+id = 12104
+
+[rand_somethings_missing_statue_magic_bow_occult]
+id = 12105
+
+[rand_rock_paper_scissors_attacker_empty_occult]
+id = 12106
+
+[rand_rock_paper_scissors_defender_empty_occult]
+id = 12107
+
+[rand_rock_paper_scissors_attacker_melee_occult]
+id = 12108
+
+[rand_rock_paper_scissors_attacker_range_occult]
+id = 12109
+
+[rand_rock_paper_scissors_attacker_magic_occult]
+id = 12110
+
+[rand_rock_paper_scissors_defender_melee_occult]
+id = 12111
+
+[rand_rock_paper_scissors_defender_range_occult]
+id = 12112
+
+[rand_rock_paper_scissors_defender_magic_occult]
+id = 12113
+
+[rand_follow_the_leader_statue_occult]
+id = 12114
+
+[rand_follow_the_leader_statue_dormant_occult]
+id = 12115
+
+[rand_follow_the_leader_statue_broken_occult]
+id = 12116
+
+[rand_isap_statue_static_1_occult]
+id = 12117
+
+[rand_isap_statue_static_2_occult]
+id = 12118
+
+[rand_isap_statue_static_3_occult]
+id = 12119
+
+[rand_isap_statue_static_4_occult]
+id = 12120
+
+[rand_isap_statue_pushable_1_occult]
+id = 12121
+
+[rand_isap_statue_pushable_2_occult]
+id = 12122
+
+[rand_isap_statue_pushable_3_occult]
+id = 12123
+
+[rand_isap_statue_pushable_4_occult]
+id = 12124
+
+[rand_sliding_block_puzzle_tile_01_frozen]
+id = 12125
+
+[rand_sliding_block_puzzle_tile_02_frozen]
+id = 12126
+
+[rand_sliding_block_puzzle_tile_03_frozen]
+id = 12127
+
+[rand_sliding_block_puzzle_tile_04_frozen]
+id = 12128
+
+[rand_sliding_block_puzzle_tile_05_frozen]
+id = 12129
+
+[rand_sliding_block_puzzle_tile_06_frozen]
+id = 12130
+
+[rand_sliding_block_puzzle_tile_07_frozen]
+id = 12131
+
+[rand_sliding_block_puzzle_tile_08_frozen]
+id = 12132
+
+[rand_sliding_block_puzzle_tile_01_abandoned]
+id = 12133
+
+[rand_sliding_block_puzzle_tile_02_abandoned]
+id = 12134
+
+[rand_sliding_block_puzzle_tile_03_abandoned]
+id = 12135
+
+[rand_sliding_block_puzzle_tile_04_abandoned]
+id = 12136
+
+[rand_sliding_block_puzzle_tile_05_abandoned]
+id = 12137
+
+[rand_sliding_block_puzzle_tile_06_abandoned]
+id = 12138
+
+[rand_sliding_block_puzzle_tile_07_abandoned]
+id = 12139
+
+[rand_sliding_block_puzzle_tile_08_abandoned]
+id = 12140
+
+[rand_sliding_block_puzzle_tile_01_furnished]
+id = 12141
+
+[rand_sliding_block_puzzle_tile_02_furnished]
+id = 12142
+
+[rand_sliding_block_puzzle_tile_03_furnished]
+id = 12143
+
+[rand_sliding_block_puzzle_tile_04_furnished]
+id = 12144
+
+[rand_sliding_block_puzzle_tile_05_furnished]
+id = 12145
+
+[rand_sliding_block_puzzle_tile_06_furnished]
+id = 12146
+
+[rand_sliding_block_puzzle_tile_07_furnished]
+id = 12147
+
+[rand_sliding_block_puzzle_tile_08_furnished]
+id = 12148
+
+[rand_sliding_block_puzzle_tile_01_occult]
+id = 12149
+
+[rand_sliding_block_puzzle_tile_02_occult]
+id = 12150
+
+[rand_sliding_block_puzzle_tile_03_occult]
+id = 12151
+
+[rand_sliding_block_puzzle_tile_04_occult]
+id = 12152
+
+[rand_sliding_block_puzzle_tile_05_occult]
+id = 12153
+
+[rand_sliding_block_puzzle_tile_06_occult]
+id = 12154
+
+[rand_sliding_block_puzzle_tile_07_occult]
+id = 12155
+
+[rand_sliding_block_puzzle_tile_08_occult]
+id = 12156
+
+[rand_pressure_pads_critter_red]
+id = 12157
+
+[rand_pressure_pads_critter_blue]
+id = 12158
+
+[rand_pressure_pads_critter_yellow]
+id = 12159
+
+[rand_pressure_pads_critter_green]
+id = 12160
+
+[rand_pressure_pads_critter_orange]
+id = 12161
+
+[conq_scout_dark_enemy]
+id = 12162
+
+[conq_footman_dark_enemy]
+id = 12163
+
+[conq_halberdier_dark_enemy]
+id = 12164
+
+[rand_pressure_pen_critter_red]
+id = 12165
+
+[quest_wendle_sanguine_anya_postquest]
+id = 12166
+
+[rand_pressure_pen_critter_blue]
+id = 12167
+
+[quest_wendle_secrets_anya_follower]
+id = 12168
+
+[rand_pressure_pen_critter_green]
+id = 12169
+
+[quest_wendle_secrets_anya_cutscene]
+id = 12170
+
+[rand_pressure_pen_critter_yellow]
+id = 12171
+
+[quest_wendle_secrets_anya]
+id = 12172
+
+[rand_pressure_pen_critter_orange]
+id = 12173
+
+[quest_wendle_secrets_inanna]
+id = 12174
+
+[rand_inactive_monolith_occult]
+id = 12175
+
+[rand_active_monolith_occult]
+id = 12176
+
+[rand_oclt_lib_duty_invis]
+id = 12177
+
+[conq_archer_dark_friendly]
+id = 12178
+
+[conq_mage_dark_friendly]
+id = 12179
+
+[conq_knight_dark_friendly]
+id = 12180
+
+[conq_champion_dark_enemy]
+id = 12181
+
+[conq_archer_dark_enemy]
+id = 12182
+
+[conq_mage_dark_enemy]
+id = 12183
+
+[conq_knight_dark_enemy]
+id = 12184
+
+[rand_skillcape_player_female_melee]
+id = 12185
+
+[rand_skillcape_player_female_mage]
+id = 12186
+
+[rand_skillcape_player_female_ranger]
+id = 12187
+
+[peng_rak_polar_bear_nopengop]
+id = 12188
+
+[csi_mime]
+id = 12189
+
+[csi_cave_goblin]
+id = 12190
+
+[csi_cave_goblin_scene]
+id = 12191
+
+[csi_ham_vidar]
+id = 12192
+
+[csi_ham_member]
+id = 12193
+
+[csi_ham_member_guard]
+id = 12194
+
+[conq_tutorial_npc]
+id = 12195
+
+[conq_army_purchase_npc]
+id = 12196
+
+[conq_scout_light]
+id = 12197
+
+[conq_scout_light_friendly]
+id = 12198
+
+[conq_scout_light_enemy]
+id = 12199
+
+[conq_scout_dark]
+id = 12200
+
+[conq_scout_dark_friendly]
+id = 12201
+
+[conq_footman_light]
+id = 12202
+
+[conq_footman_light_friendly]
+id = 12203
+
+[conq_footman_light_enemy]
+id = 12204
+
+[conq_footman_dark]
+id = 12205
+
+[conq_footman_dark_friendly]
+id = 12206
+
+[conq_halberdier_light]
+id = 12207
+
+[conq_halberdier_light_friendly]
+id = 12208
+
+[conq_halberdier_light_enemy]
+id = 12209
+
+[conq_halberdier_dark]
+id = 12210
+
+[conq_halberdier_dark_friendly]
+id = 12211
+
+[conq_archer_light]
+id = 12212
+
+[conq_archer_light_friendly]
+id = 12213
+
+[conq_archer_light_enemy]
+id = 12214
+
+[conq_archer_dark]
+id = 12215
+
+[conq_mage_light]
+id = 12216
+
+[conq_mage_light_friendly]
+id = 12217
+
+[conq_mage_light_enemy]
+id = 12218
+
+[conq_mage_dark]
+id = 12219
+
+[conq_knight_light]
+id = 12220
+
+[conq_knight_light_friendly]
+id = 12221
+
+[conq_knight_light_enemy]
+id = 12222
+
+[conq_knight_dark]
+id = 12223
+
+[conq_champion_light]
+id = 12224
+
+[conq_champion_light_friendly]
+id = 12225
+
+[conq_champion_light_enemy]
+id = 12226
+
+[conq_champion_dark]
+id = 12227
+
+[conq_champion_dark_friendly]
+id = 12228
+
+[csi_ham_member_female]
+id = 12229
+
+[csi_barbarian_female]
+id = 12230
+
+[csi_wizard]
+id = 12231
+
+[csi_ernest]
+id = 12232
+
+[csi_frog_princess]
+id = 12233
+
+[csi_partyroom_pete]
+id = 12234
+
+[csi_partypete_neighbor_court]
+id = 12235
+
+[csi_partypete_neighbor_crimescene]
+id = 12236
+
+[csi_partypete_neighbor]
+id = 12237
+
+[csi_mill_worker]
+id = 12238
+
+[csi_sawmill_opp]
+id = 12239
+
+[csi_sandwich_victim]
+id = 12240
+
+[csi_frog_royal]
+id = 12241
+
+[csi_court_wit_case_6]
+id = 12242
+
+[csi_court_wit_case_7]
+id = 12243
+
+[csi_court_wit_case_8]
+id = 12244
+
+[csi_court_wit_case_9]
+id = 12245
+
+[csi_court_wit_case_10]
+id = 12246
+
+[csi_court_wit_case_11]
+id = 12247
+
+[csi_court_wit_case_12]
+id = 12248
+
+[csi_court_wit_case_13]
+id = 12249
+
+[csi_court_wit_case_14]
+id = 12250
+
+[csi_court_wit_case_15]
+id = 12251
+
+[csi_court_wit_case_16]
+id = 12252
+
+[crcs_acrobat_male_8]
+id = 12253
+
+[crcs_acrobat_male_9]
+id = 12254
+
+[crcs_acrobat_male_10]
+id = 12255
+
+[crcs_acrobat_male_11]
+id = 12256
+
+[crcs_acrobat_female_8]
+id = 12257
+
+[crcs_acrobat_female_9]
+id = 12258
+
+[crcs_acrobat_female_10]
+id = 12259
+
+[crcs_acrobat_female_11]
+id = 12260
+
+[gerrant_npc]
+id = 12261
+
+[vkq3_korasi_injured]
+id = 12262
+
+[vkq3_korasi_with_drone]
+id = 12263
+
+[vkq3_korasi_falador_multi]
+id = 12264
+
+[vkq3_korasi_taverleydungeon_multi]
+id = 12265
+
+[vkq3_jessika]
+id = 12266
+
+[vkq3_jessika_minigame]
+id = 12267
+
+[vkq3_jessika_minigame_sad_ready]
+id = 12268
+
+[vkq3_jessika_cutscene]
+id = 12269
+
+[vkq3_jessika_injured]
+id = 12270
+
+[vkq3_jessika_falador_multi]
+id = 12271
+
+[vkq3_jessika_taverleydungeon_multi]
+id = 12272
+
+[vkq3_survivor_chamber]
+id = 12273
+
+[vkq3_tyr]
+id = 12274
+
+[vkq3_tyr_withsword]
+id = 12275
+
+[vkq3_tyr_taverleydungeon_multi]
+id = 12276
+
+[vkq3_tyr_minigame]
+id = 12277
+
+[loy_troll_general_4]
+id = 12278
+
+[vkq3_tyr_chamber_multi]
+id = 12279
+
+[loy_troll_general_5]
+id = 12280
+
+[vkq3_voidknight_taverleydungeon_multi]
+id = 12281
+
+[vkq3_void_knight]
+id = 12282
+
+[vkq3_voidknight2_taverleydungeon_multi]
+id = 12283
+
+[vkq3_void_knight2]
+id = 12284
+
+[vkq3_guardian]
+id = 12285
+
+[vkq3_cutscene_drone]
+id = 12286
+
+[vkq3_grayzag]
+id = 12287
+
+[vkq3_grayzag_replacement]
+id = 12288
+
+[vkq3_grayzag_minigame]
+id = 12289
+
+[vkq3_grayzag_decision]
+id = 12290
+
+[loy_troll_general_6]
+id = 12291
+
+[vkq3_cutscene_splatter]
+id = 12292
+
+[vkq3_sirtiffy]
+id = 12293
+
+[vkq3_sirtiffy_judgement]
+id = 12294
+
+[loy_troll_general_7]
+id = 12295
+
+[vkq3_sirtiffy_taverleydungeon_multi]
+id = 12296
+
+[loy_troll_general_8]
+id = 12297
+
+[vkq3_sirtiffy_minigame]
+id = 12298
+
+[loy_troll_mage_1]
+id = 12299
+
+[vkq3_sirtiffy_comorb]
+id = 12300
+
+[vkq3_whiteknight_taverleydungeon_multi]
+id = 12301
+
+[vkq3_white_knight]
+id = 12302
+
+[vkq3_daquarius_multi]
+id = 12303
+
+[vkq3_daquarius_cutscene_multi]
+id = 12304
+
+[loy_troll_mage_2]
+id = 12305
+
+[vkq3_daquarius]
+id = 12306
+
+[vkq3_daquarius_minigame]
+id = 12307
+
+[vkq3_daquarius_minigame_mining]
+id = 12308
+
+[loy_troll_mage_3]
+id = 12309
+
+[vkq3_daquarius_withsword]
+id = 12310
+
+[vkq3_bk_commander_multi]
+id = 12311
+
+[vkq3_bk_commander]
+id = 12312
+
+[vkq3_bk_captain_outside_storage_multi]
+id = 12313
+
+[vkq3_bk_captain_inside_storage_multi]
+id = 12314
+
+[vkq3_bk_captain]
+id = 12315
+
+[loy_troll_mage_4]
+id = 12316
+
+[vkq3_bk_lackey_outside_storage_multi]
+id = 12317
+
+[vkq3_bk_lackey_inside_storage_multi]
+id = 12318
+
+[vkq3_bk_lackey]
+id = 12319
+
+[vkq3_bk_lackey_02]
+id = 12320
+
+[vkq3_blackknight_taverleydungeon_multi]
+id = 12321
+
+[vkq3_black_knight]
+id = 12322
+
+[vkq3_puzz2_shifter]
+id = 12323
+
+[vkq3_puzz2_torcher_ranged]
+id = 12324
+
+[vkq3_puzz2_torcher_magic]
+id = 12325
+
+[vkq3_puzz2_brawler]
+id = 12326
+
+[vkq3_puzz2_spinner]
+id = 12327
+
+[vkq3_puzz2_defiler_gilroy]
+id = 12328
+
+[vk3_conquest_splatter]
+id = 12329
+
+[vk3_conquest_shifter]
+id = 12330
+
+[vk3_conquest_ravager]
+id = 12331
+
+[vk3_conquest_spinner]
+id = 12332
+
+[vk3_conquest_torcher]
+id = 12333
+
+[vk3_conquest_defiler]
+id = 12334
+
+[wizard_grayzag_npc]
+id = 12335
+
+[vkq3_voidknight3_taverleydungeon_multi]
+id = 12336
+
+[huntcharm_yaktwee]
+id = 12337
+
+[hunter_charm_beast_controller]
+id = 12338
+
+[hunter_charm_beast_low]
+id = 12339
+
+[hunter_charm_beast_mid]
+id = 12340
+
+[hunter_charm_beast_high]
+id = 12341
+
+[hunter_charm_beast_vis_low]
+id = 12342
+
+[hunter_charm_beast_vis_mid]
+id = 12343
+
+[hunter_charm_beast_vis_high]
+id = 12344
+
+[1st4h_man]
+id = 12345
+
+[1st4h_man2]
+id = 12346
+
+[1st4h_man3]
+id = 12347
+
+[1st4h_giantrat]
+id = 12348
+
+[1st4h_giantrat_grey]
+id = 12349
+
+[1st4h_giantrat_grey2]
+id = 12350
+
+[1st4h_giantrat_grey3]
+id = 12351
+
+[1st4h_giantspider1]
+id = 12352
+
+[1st4h_goblin_unarmed_melee_6]
+id = 12353
+
+[goblin_unarmed_melee_7]
+id = 12354
+
+[1st4h_goblin_unarmed_melee_7]
+id = 12355
+
+[goblin_unarmed_melee_8]
+id = 12356
+
+[1st4h_goblin_unarmed_melee_8]
+id = 12357
+
+[trh189_lunar_noshield]
+id = 12358
+
+[trh189_solar_mage]
+id = 12359
+
+[trh189_solar_mage_no_weapon]
+id = 12360
+
+[trh189_lunar_mage]
+id = 12361
+
+[quest_easter26_spy_2]
+id = 12362
+
+[quest_easter26_spy_3]
+id = 12363
+
+[quest_easter26_druid_multi]
+id = 12364
+
+[quest_easter26_druid]
+id = 12365
+
+[rand_pressure_pen_critter_red_inactive]
+id = 12366
+
+[1st4h_guard_goblin]
+id = 12367
+
+[1st4h_guard_rat]
+id = 12368
+
+[rand_pressure_pen_critter_blue_inactive]
+id = 12369
+
+[rand_pressure_pen_critter_green_inactive]
+id = 12370
+
+[rand_pressure_pen_critter_yellow_inactive]
+id = 12371
+
+[clanwars_zombie_3]
+id = 12372
+
+[hw10_pileofbones]
+id = 12373
+
+[loy_troll_mage_5]
+id = 12374
+
+[hw10_black_zabeth]
+id = 12375
+
+[hw10_black_zabeth_band]
+id = 12376
+
+[hw10_pumpkin_pete]
+id = 12377
+
+[hw10_pumpkin_pete_2]
+id = 12378
+
+[hw10_grim]
+id = 12379
+
+[hw10_edgar]
+id = 12380
+
+[hw10_alan]
+id = 12381
+
+[hw10_greta_multi_start]
+id = 12382
+
+[hw10_greta_multi_stage]
+id = 12383
+
+[hw10_greta]
+id = 12384
+
+[hw10_greta_band]
+id = 12385
+
+[hw10_helga_multi_start]
+id = 12386
+
+[hw10_helga_multi_stage]
+id = 12387
+
+[hw10_helga]
+id = 12388
+
+[hw10_helga_band]
+id = 12389
+
+[hw10_moira_multi_start]
+id = 12390
+
+[hw10_moira_multi_stage]
+id = 12391
+
+[hw10_moira]
+id = 12392
+
+[hw10_moira_band]
+id = 12393
+
+[hw10_djweb]
+id = 12394
+
+[hw10_invis]
+id = 12395
+
+[hw10_dancer_headbang]
+id = 12396
+
+[hw10_dancer_headbang2]
+id = 12397
+
+[hw10_dancer_dance]
+id = 12398
+
+[hw10_dancer_dance2]
+id = 12399
+
+[hw10_dancer_dance_spin]
+id = 12400
+
+[hw10_party_pete]
+id = 12401
+
+[hw10_spidermulti_start_1]
+id = 12402
+
+[hw10_spidermulti_start_2]
+id = 12403
+
+[hw10_spidermulti_start_3]
+id = 12404
+
+[hw10_spidermulti_start_4]
+id = 12405
+
+[hw10_spidermulti_start_5]
+id = 12406
+
+[hw10_spidermulti_start_6]
+id = 12407
+
+[hw10_spidermulti_start_7]
+id = 12408
+
+[hw10_spidermulti_start_8]
+id = 12409
+
+[hw10_spidermulti_on_1]
+id = 12410
+
+[hw10_spidermulti_on_2]
+id = 12411
+
+[hw10_spidermulti_on_3]
+id = 12412
+
+[hw10_spidermulti_on_4]
+id = 12413
+
+[hw10_spidermulti_on_5]
+id = 12414
+
+[hw10_spidermulti_on_6]
+id = 12415
+
+[hw10_spidermulti_on_7]
+id = 12416
+
+[hw10_spidermulti_on_8]
+id = 12417
+
+[loy_troll_mage_6]
+id = 12418
+
+[hw10_spidermulti_hiding_5]
+id = 12419
+
+[hw10_spidermulti_hiding_6]
+id = 12420
+
+[hw10_spidermulti_hiding_7]
+id = 12421
+
+[hw10_spidermulti_hiding_8]
+id = 12422
+
+[hw10_spider_1]
+id = 12423
+
+[hw10_spider_2]
+id = 12424
+
+[hw10_spider_3]
+id = 12425
+
+[hw10_spider_4]
+id = 12426
+
+[hw10_spider_5]
+id = 12427
+
+[hw10_spider_6]
+id = 12428
+
+[hw10_spider_7]
+id = 12429
+
+[hw10_spider_8]
+id = 12430
+
+[hw10_spider_start_6]
+id = 12431
+
+[hw10_spider_start_7]
+id = 12432
+
+[hw10_spider_start_8]
+id = 12433
+
+[loy_troll_mage_7]
+id = 12434
+
+[loy_troll_mage_8]
+id = 12435
+
+[rand_warp_beholder_magic_wall_04_w]
+id = 12436
+
+[rand_warp_beholder_magic_wall_05_w]
+id = 12437
+
+[rand_warp_beholder_magic_wall_06_w]
+id = 12438
+
+[rand_warp_beholder_magic_wall_07_w]
+id = 12439
+
+[rand_warp_beholder_magic_wall_08_w]
+id = 12440
+
+[rand_warp_beholder_magic_wall_09_w]
+id = 12441
+
+[rand_warp_beholder_magic_wall_10_w]
+id = 12442
+
+[rand_warp_beholder_magic_wall_11_w]
+id = 12443
+
+[rand_warp_beholder_magic_wall_12_w]
+id = 12444
+
+[rand_warp_beholder_magic_wall_13_w]
+id = 12445
+
+[rand_warp_beholder_magic_wall_14_w]
+id = 12446
+
+[rand_warp_beholder_magic_wall_15_w]
+id = 12447
+
+[rand_warp_beholder_melee_wall_01_w]
+id = 12448
+
+[rand_warp_beholder_melee_wall_02_w]
+id = 12449
+
+[rand_warp_beholder_melee_wall_03_w]
+id = 12450
+
+[rand_warp_beholder_melee_wall_04_w]
+id = 12451
+
+[rand_warp_beholder_melee_wall_05_w]
+id = 12452
+
+[rand_warp_beholder_melee_wall_06_w]
+id = 12453
+
+[rand_warp_beholder_melee_wall_07_w]
+id = 12454
+
+[rand_warp_beholder_melee_wall_08_w]
+id = 12455
+
+[rand_warp_beholder_melee_wall_09_w]
+id = 12456
+
+[rand_warp_beholder_melee_wall_10_w]
+id = 12457
+
+[rand_warp_beholder_melee_wall_11_w]
+id = 12458
+
+[rand_warp_beholder_melee_wall_12_w]
+id = 12459
+
+[rand_warp_beholder_melee_wall_13_w]
+id = 12460
+
+[rand_warp_beholder_melee_wall_14_w]
+id = 12461
+
+[rand_warp_beholder_melee_wall_15_w]
+id = 12462
+
+[rand_warp_beholder_range_wall_01_s]
+id = 12463
+
+[rand_warp_beholder_range_wall_02_s]
+id = 12464
+
+[rand_warp_beholder_range_wall_03_s]
+id = 12465
+
+[rand_warp_beholder_range_wall_04_s]
+id = 12466
+
+[rand_warp_beholder_range_wall_05_s]
+id = 12467
+
+[rand_warp_beholder_range_wall_06_s]
+id = 12468
+
+[rand_warp_beholder_range_wall_07_s]
+id = 12469
+
+[rand_warp_beholder_range_wall_08_s]
+id = 12470
+
+[rand_warp_beholder_range_wall_09_s]
+id = 12471
+
+[rand_warp_beholder_range_wall_10_s]
+id = 12472
+
+[rand_warp_beholder_range_wall_11_s]
+id = 12473
+
+[rand_warp_beholder_range_wall_12_s]
+id = 12474
+
+[rand_warp_beholder_range_wall_13_s]
+id = 12475
+
+[rand_warp_beholder_range_wall_14_s]
+id = 12476
+
+[rand_warp_beholder_range_wall_15_s]
+id = 12477
+
+[rand_warp_beholder_me0ma0ra1_01]
+id = 12478
+
+[rand_warp_beholder_me0ma0ra1_02]
+id = 12479
+
+[rand_warp_beholder_me0ma0ra1_03]
+id = 12480
+
+[rand_warp_beholder_me0ma0ra1_04]
+id = 12481
+
+[rand_warp_beholder_me0ma0ra1_05]
+id = 12482
+
+[rand_warp_beholder_me0ma0ra1_06]
+id = 12483
+
+[rand_warp_beholder_me0ma0ra1_07]
+id = 12484
+
+[rand_warp_beholder_me0ma0ra1_08]
+id = 12485
+
+[rand_warp_beholder_me0ma0ra1_09]
+id = 12486
+
+[rand_warp_beholder_me0ma0ra1_10]
+id = 12487
+
+[rand_warp_beholder_me0ma0ra1_11]
+id = 12488
+
+[rand_warp_beholder_me0ma0ra1_12]
+id = 12489
+
+[rand_warp_beholder_me0ma0ra1_13]
+id = 12490
+
+[rand_warp_beholder_me0ma0ra1_14]
+id = 12491
+
+[rand_warp_beholder_me0ma0ra1_15]
+id = 12492
+
+[rand_warp_beholder_me1ma1ra1_01]
+id = 12493
+
+[rand_warp_beholder_me1ma1ra1_02]
+id = 12494
+
+[rand_warp_beholder_me1ma1ra1_03]
+id = 12495
+
+[rand_warp_beholder_me1ma1ra1_04]
+id = 12496
+
+[rand_warp_beholder_me1ma1ra1_05]
+id = 12497
+
+[rand_warp_beholder_me1ma1ra1_06]
+id = 12498
+
+[rand_warp_beholder_me1ma1ra1_07]
+id = 12499
+
+[rand_warp_beholder_me1ma1ra1_08]
+id = 12500
+
+[rand_warp_beholder_me1ma1ra1_09]
+id = 12501
+
+[rand_warp_beholder_me1ma1ra1_10]
+id = 12502
+
+[rand_warp_beholder_me1ma1ra1_11]
+id = 12503
+
+[rand_warp_beholder_me1ma1ra1_12]
+id = 12504
+
+[rand_warp_beholder_me1ma1ra1_13]
+id = 12505
+
+[rand_warp_beholder_me1ma1ra1_14]
+id = 12506
+
+[rand_warp_beholder_me1ma1ra1_15]
+id = 12507
+
+[rand_warp_beholder_me0ma1ra0_01]
+id = 12508
+
+[rand_warp_beholder_me0ma1ra0_02]
+id = 12509
+
+[rand_warp_beholder_me0ma1ra0_03]
+id = 12510
+
+[rand_warp_beholder_me0ma1ra0_04]
+id = 12511
+
+[rand_warp_beholder_me0ma1ra0_05]
+id = 12512
+
+[rand_warp_beholder_me0ma1ra0_06]
+id = 12513
+
+[rand_warp_beholder_me0ma1ra0_07]
+id = 12514
+
+[rand_warp_beholder_me0ma1ra0_08]
+id = 12515
+
+[rand_warp_beholder_me0ma1ra0_09]
+id = 12516
+
+[rand_warp_beholder_me0ma1ra0_10]
+id = 12517
+
+[rand_warp_beholder_me0ma1ra0_11]
+id = 12518
+
+[rand_warp_beholder_me0ma1ra0_12]
+id = 12519
+
+[rand_warp_beholder_me0ma1ra0_13]
+id = 12520
+
+[rand_warp_beholder_me0ma1ra0_14]
+id = 12521
+
+[rand_warp_beholder_me0ma1ra0_15]
+id = 12522
+
+[rand_warp_beholder_melee_wall_01_n]
+id = 12523
+
+[rand_warp_beholder_melee_wall_02_n]
+id = 12524
+
+[rand_warp_beholder_melee_wall_03_n]
+id = 12525
+
+[rand_warp_beholder_melee_wall_04_n]
+id = 12526
+
+[rand_warp_beholder_melee_wall_05_n]
+id = 12527
+
+[rand_warp_beholder_melee_wall_06_n]
+id = 12528
+
+[rand_warp_beholder_melee_wall_07_n]
+id = 12529
+
+[rand_warp_beholder_melee_wall_08_n]
+id = 12530
+
+[rand_warp_beholder_melee_wall_09_n]
+id = 12531
+
+[rand_warp_beholder_melee_wall_10_n]
+id = 12532
+
+[rand_warp_beholder_melee_wall_11_n]
+id = 12533
+
+[rand_warp_beholder_melee_wall_12_n]
+id = 12534
+
+[rand_warp_beholder_melee_wall_13_n]
+id = 12535
+
+[rand_warp_beholder_melee_wall_14_n]
+id = 12536
+
+[rand_warp_beholder_melee_wall_15_n]
+id = 12537
+
+[rand_warp_beholder_me0ma0ra0_01]
+id = 12538
+
+[rand_warp_beholder_me0ma0ra0_02]
+id = 12539
+
+[rand_warp_beholder_me0ma0ra0_03]
+id = 12540
+
+[rand_warp_beholder_me0ma0ra0_04]
+id = 12541
+
+[rand_warp_beholder_me0ma0ra0_05]
+id = 12542
+
+[rand_warp_beholder_me0ma0ra0_06]
+id = 12543
+
+[rand_warp_beholder_me0ma0ra0_07]
+id = 12544
+
+[rand_warp_beholder_me0ma0ra0_08]
+id = 12545
+
+[rand_warp_beholder_me0ma0ra0_09]
+id = 12546
+
+[rand_warp_beholder_me0ma0ra0_10]
+id = 12547
+
+[rand_warp_beholder_me0ma0ra0_11]
+id = 12548
+
+[rand_warp_beholder_me0ma0ra0_12]
+id = 12549
+
+[rand_warp_beholder_me0ma0ra0_13]
+id = 12550
+
+[rand_warp_beholder_me0ma0ra0_14]
+id = 12551
+
+[rand_warp_beholder_me0ma0ra0_15]
+id = 12552
+
+[rand_warp_beholder_me1ma1ra0_01]
+id = 12553
+
+[rand_warp_beholder_me1ma1ra0_02]
+id = 12554
+
+[rand_warp_beholder_me1ma1ra0_03]
+id = 12555
+
+[rand_warp_beholder_me1ma1ra0_04]
+id = 12556
+
+[rand_warp_beholder_me1ma1ra0_05]
+id = 12557
+
+[rand_warp_beholder_me1ma1ra0_06]
+id = 12558
+
+[rand_warp_beholder_me1ma1ra0_07]
+id = 12559
+
+[rand_warp_beholder_me1ma1ra0_08]
+id = 12560
+
+[rand_warp_beholder_me1ma1ra0_09]
+id = 12561
+
+[rand_warp_beholder_me1ma1ra0_10]
+id = 12562
+
+[rand_warp_beholder_me1ma1ra0_11]
+id = 12563
+
+[rand_warp_beholder_me1ma1ra0_12]
+id = 12564
+
+[rand_warp_beholder_me1ma1ra0_13]
+id = 12565
+
+[rand_warp_beholder_me1ma1ra0_14]
+id = 12566
+
+[rand_warp_beholder_me1ma1ra0_15]
+id = 12567
+
+[rand_warp_beholder_dead_wall_n]
+id = 12568
+
+[rand_warp_beholder_dead_wall_e]
+id = 12569
+
+[rand_warp_beholder_dead_wall_s]
+id = 12570
+
+[rand_warp_beholder_dead_wall_w]
+id = 12571
+
+[rand_warp_beholder_magic_wall_01_e]
+id = 12572
+
+[rand_warp_beholder_magic_wall_02_e]
+id = 12573
+
+[rand_warp_beholder_magic_wall_03_e]
+id = 12574
+
+[rand_warp_beholder_magic_wall_04_e]
+id = 12575
+
+[rand_warp_beholder_magic_wall_05_e]
+id = 12576
+
+[rand_warp_beholder_magic_wall_06_e]
+id = 12577
+
+[rand_warp_beholder_magic_wall_07_e]
+id = 12578
+
+[rand_warp_beholder_magic_wall_08_e]
+id = 12579
+
+[rand_warp_beholder_magic_wall_09_e]
+id = 12580
+
+[rand_warp_beholder_magic_wall_10_e]
+id = 12581
+
+[rand_warp_beholder_magic_wall_11_e]
+id = 12582
+
+[rand_warp_beholder_magic_wall_12_e]
+id = 12583
+
+[rand_warp_beholder_magic_wall_13_e]
+id = 12584
+
+[rand_warp_beholder_magic_wall_14_e]
+id = 12585
+
+[rand_warp_beholder_magic_wall_15_e]
+id = 12586
+
+[rand_warp_beholder_me0ma1ra1_01]
+id = 12587
+
+[rand_warp_beholder_me0ma1ra1_02]
+id = 12588
+
+[rand_warp_beholder_me0ma1ra1_03]
+id = 12589
+
+[rand_warp_beholder_me0ma1ra1_04]
+id = 12590
+
+[rand_warp_beholder_me0ma1ra1_05]
+id = 12591
+
+[rand_warp_beholder_me0ma1ra1_06]
+id = 12592
+
+[rand_warp_beholder_me0ma1ra1_07]
+id = 12593
+
+[rand_warp_beholder_me0ma1ra1_08]
+id = 12594
+
+[rand_warp_beholder_me0ma1ra1_09]
+id = 12595
+
+[rand_warp_beholder_me0ma1ra1_10]
+id = 12596
+
+[rand_warp_beholder_me0ma1ra1_11]
+id = 12597
+
+[rand_warp_beholder_me0ma1ra1_12]
+id = 12598
+
+[rand_warp_beholder_me0ma1ra1_13]
+id = 12599
+
+[rand_warp_beholder_me0ma1ra1_14]
+id = 12600
+
+[rand_warp_beholder_me0ma1ra1_15]
+id = 12601
+
+[rand_warp_beholder_melee_wall_01_s]
+id = 12602
+
+[rand_warp_beholder_melee_wall_02_s]
+id = 12603
+
+[rand_warp_beholder_melee_wall_03_s]
+id = 12604
+
+[rand_warp_beholder_melee_wall_04_s]
+id = 12605
+
+[rand_warp_beholder_melee_wall_05_s]
+id = 12606
+
+[rand_warp_beholder_melee_wall_06_s]
+id = 12607
+
+[rand_warp_beholder_melee_wall_07_s]
+id = 12608
+
+[rand_warp_beholder_melee_wall_08_s]
+id = 12609
+
+[rand_warp_beholder_melee_wall_09_s]
+id = 12610
+
+[rand_warp_beholder_melee_wall_10_s]
+id = 12611
+
+[rand_warp_beholder_melee_wall_11_s]
+id = 12612
+
+[rand_warp_beholder_melee_wall_12_s]
+id = 12613
+
+[rand_warp_beholder_melee_wall_13_s]
+id = 12614
+
+[rand_warp_beholder_melee_wall_14_s]
+id = 12615
+
+[rand_warp_beholder_melee_wall_15_s]
+id = 12616
+
+[rand_warp_beholder_range_wall_01_e]
+id = 12617
+
+[rand_warp_beholder_range_wall_02_e]
+id = 12618
+
+[rand_warp_beholder_range_wall_03_e]
+id = 12619
+
+[rand_warp_beholder_range_wall_04_e]
+id = 12620
+
+[rand_warp_beholder_range_wall_05_e]
+id = 12621
+
+[rand_warp_beholder_range_wall_06_e]
+id = 12622
+
+[rand_warp_beholder_range_wall_07_e]
+id = 12623
+
+[rand_warp_beholder_range_wall_08_e]
+id = 12624
+
+[rand_warp_beholder_range_wall_09_e]
+id = 12625
+
+[rand_warp_beholder_range_wall_10_e]
+id = 12626
+
+[rand_warp_beholder_range_wall_11_e]
+id = 12627
+
+[rand_warp_beholder_range_wall_12_e]
+id = 12628
+
+[rand_warp_beholder_range_wall_13_e]
+id = 12629
+
+[rand_warp_beholder_range_wall_14_e]
+id = 12630
+
+[rand_warp_beholder_range_wall_15_e]
+id = 12631
+
+[rand_warp_beholder_melee_wall_01_e]
+id = 12632
+
+[rand_warp_beholder_melee_wall_02_e]
+id = 12633
+
+[rand_warp_beholder_melee_wall_03_e]
+id = 12634
+
+[rand_warp_beholder_melee_wall_04_e]
+id = 12635
+
+[rand_warp_beholder_melee_wall_05_e]
+id = 12636
+
+[rand_warp_beholder_melee_wall_06_e]
+id = 12637
+
+[rand_warp_beholder_melee_wall_07_e]
+id = 12638
+
+[rand_warp_beholder_melee_wall_08_e]
+id = 12639
+
+[rand_warp_beholder_melee_wall_09_e]
+id = 12640
+
+[rand_warp_beholder_melee_wall_10_e]
+id = 12641
+
+[rand_warp_beholder_melee_wall_11_e]
+id = 12642
+
+[rand_warp_beholder_melee_wall_12_e]
+id = 12643
+
+[rand_warp_beholder_melee_wall_13_e]
+id = 12644
+
+[rand_warp_beholder_melee_wall_14_e]
+id = 12645
+
+[rand_warp_beholder_melee_wall_15_e]
+id = 12646
+
+[rand_warp_beholder_me1ma0ra0_01]
+id = 12647
+
+[rand_warp_beholder_me1ma0ra0_02]
+id = 12648
+
+[rand_warp_beholder_me1ma0ra0_03]
+id = 12649
+
+[rand_warp_beholder_me1ma0ra0_04]
+id = 12650
+
+[rand_warp_beholder_me1ma0ra0_05]
+id = 12651
+
+[rand_warp_beholder_me1ma0ra0_06]
+id = 12652
+
+[rand_warp_beholder_me1ma0ra0_07]
+id = 12653
+
+[rand_warp_beholder_me1ma0ra0_08]
+id = 12654
+
+[rand_warp_beholder_me1ma0ra0_09]
+id = 12655
+
+[rand_warp_beholder_me1ma0ra0_10]
+id = 12656
+
+[rand_warp_beholder_me1ma0ra0_11]
+id = 12657
+
+[rand_warp_beholder_me1ma0ra0_12]
+id = 12658
+
+[rand_warp_beholder_me1ma0ra0_13]
+id = 12659
+
+[rand_warp_beholder_me1ma0ra0_14]
+id = 12660
+
+[rand_warp_beholder_me1ma0ra0_15]
+id = 12661
+
+[rand_warp_beholder_range_wall_01_n]
+id = 12662
+
+[rand_warp_beholder_range_wall_02_n]
+id = 12663
+
+[rand_warp_beholder_range_wall_03_n]
+id = 12664
+
+[rand_warp_beholder_range_wall_04_n]
+id = 12665
+
+[rand_warp_beholder_range_wall_05_n]
+id = 12666
+
+[rand_warp_beholder_range_wall_06_n]
+id = 12667
+
+[rand_warp_beholder_range_wall_07_n]
+id = 12668
+
+[rand_warp_beholder_range_wall_08_n]
+id = 12669
+
+[rand_warp_beholder_range_wall_09_n]
+id = 12670
+
+[rand_warp_beholder_range_wall_10_n]
+id = 12671
+
+[rand_warp_beholder_range_wall_11_n]
+id = 12672
+
+[rand_warp_beholder_range_wall_12_n]
+id = 12673
+
+[rand_warp_beholder_range_wall_13_n]
+id = 12674
+
+[rand_warp_beholder_range_wall_14_n]
+id = 12675
+
+[rand_warp_beholder_range_wall_15_n]
+id = 12676
+
+[rand_warp_beholder_me1ma0ra1_01]
+id = 12677
+
+[rand_warp_beholder_me1ma0ra1_02]
+id = 12678
+
+[rand_warp_beholder_me1ma0ra1_03]
+id = 12679
+
+[rand_warp_beholder_me1ma0ra1_04]
+id = 12680
+
+[rand_warp_beholder_me1ma0ra1_05]
+id = 12681
+
+[rand_warp_beholder_me1ma0ra1_06]
+id = 12682
+
+[rand_warp_beholder_me1ma0ra1_07]
+id = 12683
+
+[rand_warp_beholder_me1ma0ra1_08]
+id = 12684
+
+[rand_warp_beholder_me1ma0ra1_09]
+id = 12685
+
+[rand_warp_beholder_me1ma0ra1_10]
+id = 12686
+
+[rand_warp_beholder_me1ma0ra1_11]
+id = 12687
+
+[rand_warp_beholder_me1ma0ra1_12]
+id = 12688
+
+[rand_warp_beholder_me1ma0ra1_13]
+id = 12689
+
+[rand_warp_beholder_me1ma0ra1_14]
+id = 12690
+
+[rand_warp_beholder_me1ma0ra1_15]
+id = 12691
+
+[rand_warp_beholder_magic_wall_01_s]
+id = 12692
+
+[rand_warp_beholder_magic_wall_02_s]
+id = 12693
+
+[rand_warp_beholder_magic_wall_03_s]
+id = 12694
+
+[rand_warp_beholder_magic_wall_04_s]
+id = 12695
+
+[rand_warp_beholder_magic_wall_05_s]
+id = 12696
+
+[rand_warp_beholder_magic_wall_06_s]
+id = 12697
+
+[rand_warp_beholder_magic_wall_07_s]
+id = 12698
+
+[rand_warp_beholder_magic_wall_08_s]
+id = 12699
+
+[rand_warp_beholder_magic_wall_09_s]
+id = 12700
+
+[rand_warp_beholder_magic_wall_10_s]
+id = 12701
+
+[rand_warp_beholder_magic_wall_11_s]
+id = 12702
+
+[rand_warp_beholder_magic_wall_12_s]
+id = 12703
+
+[rand_warp_beholder_magic_wall_13_s]
+id = 12704
+
+[rand_warp_beholder_magic_wall_14_s]
+id = 12705
+
+[rand_warp_beholder_magic_wall_15_s]
+id = 12706
+
+[rand_warp_beholder_magic_wall_01_n]
+id = 12707
+
+[rand_warp_beholder_magic_wall_02_n]
+id = 12708
+
+[rand_warp_beholder_magic_wall_03_n]
+id = 12709
+
+[rand_warp_beholder_magic_wall_04_n]
+id = 12710
+
+[rand_warp_beholder_magic_wall_05_n]
+id = 12711
+
+[rand_warp_beholder_magic_wall_06_n]
+id = 12712
+
+[rand_warp_beholder_magic_wall_07_n]
+id = 12713
+
+[rand_warp_beholder_magic_wall_08_n]
+id = 12714
+
+[rand_warp_beholder_magic_wall_09_n]
+id = 12715
+
+[rand_warp_beholder_magic_wall_10_n]
+id = 12716
+
+[rand_warp_beholder_magic_wall_11_n]
+id = 12717
+
+[rand_warp_beholder_magic_wall_12_n]
+id = 12718
+
+[rand_warp_beholder_magic_wall_13_n]
+id = 12719
+
+[rand_warp_beholder_magic_wall_14_n]
+id = 12720
+
+[rand_warp_beholder_magic_wall_15_n]
+id = 12721
+
+[rand_warp_beholder_range_wall_01_w]
+id = 12722
+
+[rand_warp_beholder_range_wall_02_w]
+id = 12723
+
+[rand_warp_beholder_range_wall_03_w]
+id = 12724
+
+[rand_warp_beholder_range_wall_04_w]
+id = 12725
+
+[rand_warp_beholder_range_wall_05_w]
+id = 12726
+
+[rand_warp_beholder_range_wall_06_w]
+id = 12727
+
+[rand_warp_beholder_range_wall_07_w]
+id = 12728
+
+[rand_warp_beholder_range_wall_08_w]
+id = 12729
+
+[rand_warp_beholder_range_wall_09_w]
+id = 12730
+
+[rand_warp_beholder_range_wall_10_w]
+id = 12731
+
+[rand_warp_beholder_range_wall_11_w]
+id = 12732
+
+[rand_warp_beholder_range_wall_12_w]
+id = 12733
+
+[rand_warp_beholder_range_wall_13_w]
+id = 12734
+
+[rand_warp_beholder_range_wall_14_w]
+id = 12735
+
+[rand_warp_beholder_range_wall_15_w]
+id = 12736
+
+[rand_warp_gulega_01]
+id = 12737
+
+[rand_warp_gulega_02]
+id = 12738
+
+[rand_warp_gulega_03]
+id = 12739
+
+[rand_warp_gulega_04]
+id = 12740
+
+[rand_warp_gulega_05]
+id = 12741
+
+[rand_warp_gulega_06]
+id = 12742
+
+[rand_warp_gulega_07]
+id = 12743
+
+[rand_warp_gulega_08]
+id = 12744
+
+[rand_warp_gulega_09]
+id = 12745
+
+[rand_warp_gulega_10]
+id = 12746
+
+[rand_warp_gulega_11]
+id = 12747
+
+[rand_warp_gulega_12]
+id = 12748
+
+[rand_warp_gulega_13]
+id = 12749
+
+[rand_warp_gulega_14]
+id = 12750
+
+[rand_warp_gulega_15]
+id = 12751
+
+[rand_warped_demon_fists_1]
+id = 12752
+
+[rand_warped_demon_fists_2]
+id = 12753
+
+[rand_warped_demon_fists_3]
+id = 12754
+
+[rand_warped_demon_fists_4]
+id = 12755
+
+[rand_warped_demon_fists_5]
+id = 12756
+
+[rand_warped_demon_fists_6]
+id = 12757
+
+[rand_warped_demon_fists_7]
+id = 12758
+
+[rand_warped_demon_fists_8]
+id = 12759
+
+[rand_warped_demon_fists_9]
+id = 12760
+
+[rand_warped_demon_fists_10]
+id = 12761
+
+[rand_warped_demon_fists_11]
+id = 12762
+
+[rand_warped_demon_fists_12]
+id = 12763
+
+[rand_warped_demon_fists_13]
+id = 12764
+
+[rand_warped_demon_fists_14]
+id = 12765
+
+[rand_warped_demon_fists_15]
+id = 12766
+
+[rand_warped_demon_stab_1]
+id = 12767
+
+[rand_warped_demon_stab_2]
+id = 12768
+
+[rand_warped_demon_stab_3]
+id = 12769
+
+[rand_warped_demon_stab_4]
+id = 12770
+
+[rand_warped_demon_stab_5]
+id = 12771
+
+[rand_warped_demon_stab_6]
+id = 12772
+
+[rand_warped_demon_stab_7]
+id = 12773
+
+[rand_warped_demon_stab_8]
+id = 12774
+
+[rand_warped_demon_stab_9]
+id = 12775
+
+[rand_warped_demon_stab_10]
+id = 12776
+
+[rand_warped_demon_stab_11]
+id = 12777
+
+[rand_warped_demon_stab_12]
+id = 12778
+
+[rand_warped_demon_stab_13]
+id = 12779
+
+[rand_warped_demon_stab_14]
+id = 12780
+
+[rand_warped_demon_stab_15]
+id = 12781
+
+[rand_warped_demon_magic_1]
+id = 12782
+
+[rand_warped_demon_magic_2]
+id = 12783
+
+[rand_warped_demon_magic_3]
+id = 12784
+
+[rand_warped_demon_magic_4]
+id = 12785
+
+[rand_warped_demon_magic_5]
+id = 12786
+
+[rand_warped_demon_magic_6]
+id = 12787
+
+[rand_warped_demon_magic_7]
+id = 12788
+
+[rand_warped_demon_magic_8]
+id = 12789
+
+[rand_warped_demon_magic_9]
+id = 12790
+
+[rand_warped_demon_magic_10]
+id = 12791
+
+[rand_warped_demon_magic_11]
+id = 12792
+
+[rand_warped_demon_magic_12]
+id = 12793
+
+[rand_warped_demon_magic_13]
+id = 12794
+
+[rand_warped_demon_magic_14]
+id = 12795
+
+[rand_warped_demon_magic_15]
+id = 12796
+
+[rand_warped_demon_slash_1]
+id = 12797
+
+[rand_warped_demon_slash_2]
+id = 12798
+
+[rand_warped_demon_slash_3]
+id = 12799
+
+[rand_warped_demon_slash_4]
+id = 12800
+
+[rand_warped_demon_slash_5]
+id = 12801
+
+[rand_warped_demon_slash_6]
+id = 12802
+
+[rand_warped_demon_slash_7]
+id = 12803
+
+[rand_warped_demon_slash_8]
+id = 12804
+
+[rand_warped_demon_slash_9]
+id = 12805
+
+[rand_warped_demon_slash_10]
+id = 12806
+
+[rand_warped_demon_slash_11]
+id = 12807
+
+[rand_warped_demon_slash_12]
+id = 12808
+
+[rand_warped_demon_slash_13]
+id = 12809
+
+[rand_warped_demon_slash_14]
+id = 12810
+
+[rand_warped_demon_slash_15]
+id = 12811
+
+[rand_warped_demon_ranged_1]
+id = 12812
+
+[rand_warped_demon_ranged_2]
+id = 12813
+
+[rand_warped_demon_ranged_3]
+id = 12814
+
+[rand_warped_demon_ranged_4]
+id = 12815
+
+[rand_warped_demon_ranged_5]
+id = 12816
+
+[rand_warped_demon_ranged_6]
+id = 12817
+
+[rand_warped_demon_ranged_7]
+id = 12818
+
+[rand_warped_demon_ranged_8]
+id = 12819
+
+[rand_warped_demon_ranged_9]
+id = 12820
+
+[rand_warped_demon_ranged_10]
+id = 12821
+
+[rand_warped_demon_ranged_11]
+id = 12822
+
+[rand_warped_demon_ranged_12]
+id = 12823
+
+[rand_warped_demon_ranged_13]
+id = 12824
+
+[rand_warped_demon_ranged_14]
+id = 12825
+
+[rand_warped_demon_ranged_15]
+id = 12826
+
+[rand_warped_demon_crush_1]
+id = 12827
+
+[rand_warped_demon_crush_2]
+id = 12828
+
+[rand_warped_demon_crush_3]
+id = 12829
+
+[rand_warped_demon_crush_4]
+id = 12830
+
+[rand_warped_demon_crush_5]
+id = 12831
+
+[rand_warped_demon_crush_6]
+id = 12832
+
+[rand_warped_demon_crush_7]
+id = 12833
+
+[rand_warped_demon_crush_8]
+id = 12834
+
+[rand_warped_demon_crush_9]
+id = 12835
+
+[rand_warped_demon_crush_10]
+id = 12836
+
+[rand_warped_demon_crush_11]
+id = 12837
+
+[rand_warped_demon_crush_12]
+id = 12838
+
+[rand_warped_demon_crush_13]
+id = 12839
+
+[rand_warped_demon_crush_14]
+id = 12840
+
+[rand_warped_demon_crush_15]
+id = 12841
+
+[rand_warped_demon_sphere_guardian]
+id = 12842
+
+[rand_warped_froz_demon]
+id = 12843
+
+[rand_warped_furn_demon]
+id = 12844
+
+[rand_warped_war_demon]
+id = 12845
+
+[rand_warped_oclt_demon]
+id = 12846
+
+[rand_warped_knight_portal_npc]
+id = 12847
+
+[rand_warped_knight_1]
+id = 12848
+
+[rand_warped_knight_2]
+id = 12849
+
+[rand_warped_knight_3]
+id = 12850
+
+[rand_warped_knight_4]
+id = 12851
+
+[rand_warped_knight_5]
+id = 12852
+
+[rand_warped_knight_6]
+id = 12853
+
+[rand_warped_knight_7]
+id = 12854
+
+[rand_warped_knight_8]
+id = 12855
+
+[rand_warped_knight_9]
+id = 12856
+
+[rand_warped_knight_10]
+id = 12857
+
+[rand_warped_knight_11]
+id = 12858
+
+[rand_warped_knight_12]
+id = 12859
+
+[rand_warped_knight_13]
+id = 12860
+
+[rand_warped_knight_14]
+id = 12861
+
+[rand_warped_knight_15]
+id = 12862
+
+[rand_warped_knight_guard_1]
+id = 12863
+
+[rand_warped_knight_guard_2]
+id = 12864
+
+[rand_blink_1]
+id = 12865
+
+[rand_blink_2]
+id = 12866
+
+[rand_blink_3]
+id = 12867
+
+[rand_blink_4]
+id = 12868
+
+[rand_blink_5]
+id = 12869
+
+[rand_blink_6]
+id = 12870
+
+[rand_blink_7]
+id = 12871
+
+[rand_blink_8]
+id = 12872
+
+[rand_blink_9]
+id = 12873
+
+[rand_blink_10]
+id = 12874
+
+[rand_blink_11]
+id = 12875
+
+[rand_blink_12]
+id = 12876
+
+[rand_blink_13]
+id = 12877
+
+[rand_blink_14]
+id = 12878
+
+[rand_blink_innactive]
+id = 12879
+
+[loy_troll_runt_1]
+id = 12880
+
+[loy_troll_runt_2]
+id = 12881
+
+[loy_troll_runt_3]
+id = 12882
+
+[loy_troll_runt_4]
+id = 12883
+
+[loy_troll_runt_5]
+id = 12884
+
+[loy_troll_runt_6]
+id = 12885
+
+[rand_warp_devourer_01]
+id = 12886
+
+[rand_warp_devourer_02]
+id = 12887
+
+[rand_warp_devourer_03]
+id = 12888
+
+[rand_warp_devourer_04]
+id = 12889
+
+[rand_warp_devourer_05]
+id = 12890
+
+[rand_warp_devourer_06]
+id = 12891
+
+[rand_warp_devourer_07]
+id = 12892
+
+[rand_warp_devourer_08]
+id = 12893
+
+[rand_warp_devourer_09]
+id = 12894
+
+[rand_warp_devourer_10]
+id = 12895
+
+[rand_warp_devourer_11]
+id = 12896
+
+[rand_warp_devourer_12]
+id = 12897
+
+[rand_warp_devourer_13]
+id = 12898
+
+[rand_warp_devourer_14]
+id = 12899
+
+[rand_warp_devourer_15]
+id = 12900
+
+[loy_troll_runt_7]
+id = 12901
+
+[loy_troll_runt_8]
+id = 12902
+
+[rand_reborn_mage_1]
+id = 12903
+
+[rand_reborn_mage_2]
+id = 12904
+
+[rand_reborn_mage_3]
+id = 12905
+
+[rand_reborn_mage_4]
+id = 12906
+
+[rand_reborn_mage_5]
+id = 12907
+
+[rand_reborn_mage_6]
+id = 12908
+
+[rand_reborn_mage_7]
+id = 12909
+
+[rand_reborn_mage_8]
+id = 12910
+
+[rand_reborn_mage_9]
+id = 12911
+
+[rand_reborn_mage_10]
+id = 12912
+
+[rand_reborn_mage_11]
+id = 12913
+
+[rand_warped_giant_rat_1]
+id = 12914
+
+[rand_warped_giant_rat_2]
+id = 12915
+
+[rand_warped_giant_rat_3]
+id = 12916
+
+[rand_warped_giant_rat_4]
+id = 12917
+
+[rand_warped_giant_rat_5]
+id = 12918
+
+[rand_warped_giant_rat_6]
+id = 12919
+
+[rand_warped_giant_rat_7]
+id = 12920
+
+[loy_troll_boss_1]
+id = 12921
+
+[rand_warped_guard_dog_1]
+id = 12922
+
+[rand_warped_guard_dog_2]
+id = 12923
+
+[rand_warped_guard_dog_3]
+id = 12924
+
+[rand_warped_guard_dog_4]
+id = 12925
+
+[rand_warped_guard_dog_5]
+id = 12926
+
+[rand_warped_guard_dog_6]
+id = 12927
+
+[rand_warped_guard_dog_7]
+id = 12928
+
+[rand_warped_guard_dog_8]
+id = 12929
+
+[rand_warped_guard_dog_9]
+id = 12930
+
+[rand_warped_guard_dog_10]
+id = 12931
+
+[rand_warped_heavy_guard_1]
+id = 12932
+
+[rand_warped_heavy_guard_2]
+id = 12933
+
+[rand_warped_heavy_guard_3]
+id = 12934
+
+[rand_warped_heavy_guard_4]
+id = 12935
+
+[rand_warped_heavy_guard_5]
+id = 12936
+
+[rand_warped_heavy_guard_6]
+id = 12937
+
+[rand_warped_heavy_guard_7]
+id = 12938
+
+[rand_warped_heavy_guard_8]
+id = 12939
+
+[rand_warped_heavy_guard_9]
+id = 12940
+
+[rand_reborn_warrior_1]
+id = 12941
+
+[rand_reborn_warrior_2]
+id = 12942
+
+[rand_reborn_warrior_3]
+id = 12943
+
+[rand_reborn_warrior_4]
+id = 12944
+
+[rand_reborn_warrior_5]
+id = 12945
+
+[rand_reborn_warrior_6]
+id = 12946
+
+[rand_reborn_warrior_7]
+id = 12947
+
+[rand_reborn_warrior_8]
+id = 12948
+
+[rand_reborn_warrior_9]
+id = 12949
+
+[rand_reborn_warrior_10]
+id = 12950
+
+[rand_reborn_warrior_11]
+id = 12951
+
+[rand_isap_statue_static_1_warped]
+id = 12952
+
+[rand_isap_statue_static_2_warped]
+id = 12953
+
+[rand_isap_statue_static_3_warped]
+id = 12954
+
+[rand_isap_statue_static_4_warped]
+id = 12955
+
+[rand_isap_statue_pushable_1_warped]
+id = 12956
+
+[rand_isap_statue_pushable_2_warped]
+id = 12957
+
+[rand_isap_statue_pushable_3_warped]
+id = 12958
+
+[rand_isap_statue_pushable_4_warped]
+id = 12959
+
+[rand_follow_the_leader_statue_warped]
+id = 12960
+
+[rand_follow_the_leader_statue_dormant_warped]
+id = 12961
+
+[rand_follow_the_leader_statue_broken_warped]
+id = 12962
+
+[rand_sliding_block_puzzle_tile_01_warped]
+id = 12963
+
+[rand_sliding_block_puzzle_tile_02_warped]
+id = 12964
+
+[rand_sliding_block_puzzle_tile_03_warped]
+id = 12965
+
+[rand_sliding_block_puzzle_tile_04_warped]
+id = 12966
+
+[rand_sliding_block_puzzle_tile_05_warped]
+id = 12967
+
+[rand_sliding_block_puzzle_tile_06_warped]
+id = 12968
+
+[rand_sliding_block_puzzle_tile_07_warped]
+id = 12969
+
+[rand_sliding_block_puzzle_tile_08_warped]
+id = 12970
+
+[rand_inactive_monolith_warped]
+id = 12971
+
+[rand_active_monolith_warped]
+id = 12972
+
+[rand_kill_leader_leader_01]
+id = 12973
+
+[rand_kill_leader_leader_02]
+id = 12974
+
+[rand_kill_leader_leader_03]
+id = 12975
+
+[rand_kill_leader_leader_04]
+id = 12976
+
+[rand_kill_leader_leader_05]
+id = 12977
+
+[rand_kill_leader_leader_06]
+id = 12978
+
+[rand_kill_leader_leader_07]
+id = 12979
+
+[rand_kill_leader_leader_08]
+id = 12980
+
+[rand_kill_leader_leader_09]
+id = 12981
+
+[rand_kill_leader_leader_10]
+id = 12982
+
+[rand_kill_leader_leader_11]
+id = 12983
+
+[rand_ramokee_ranger_1]
+id = 12984
+
+[rand_ramokee_ranger_2]
+id = 12985
+
+[rand_ramokee_ranger_3]
+id = 12986
+
+[rand_ramokee_ranger_4]
+id = 12987
+
+[rand_ramokee_ranger_5]
+id = 12988
+
+[rand_ramokee_ranger_6]
+id = 12989
+
+[rand_ramokee_ranger_7]
+id = 12990
+
+[rand_ramokee_ranger_8]
+id = 12991
+
+[rand_ramokee_ranger_9]
+id = 12992
+
+[rand_ramokee_ranger_10]
+id = 12993
+
+[rand_ramokee_mage_1]
+id = 12994
+
+[rand_ramokee_mage_2]
+id = 12995
+
+[rand_ramokee_mage_3]
+id = 12996
+
+[rand_ramokee_mage_4]
+id = 12997
+
+[rand_ramokee_mage_5]
+id = 12998
+
+[rand_ramokee_mage_6]
+id = 12999
+
+[rand_ramokee_mage_7]
+id = 13000
+
+[rand_ramokee_mage_8]
+id = 13001
+
+[rand_ramokee_mage_9]
+id = 13002
+
+[rand_ramokee_mage_10]
+id = 13003
+
+[rand_ramokee_healer_1]
+id = 13004
+
+[rand_ramokee_healer_2]
+id = 13005
+
+[rand_ramokee_healer_3]
+id = 13006
+
+[rand_ramokee_healer_4]
+id = 13007
+
+[rand_ramokee_healer_5]
+id = 13008
+
+[rand_ramokee_healer_6]
+id = 13009
+
+[rand_ramokee_healer_7]
+id = 13010
+
+[rand_ramokee_healer_8]
+id = 13011
+
+[rand_ramokee_healer_9]
+id = 13012
+
+[rand_ramokee_healer_10]
+id = 13013
+
+[rand_ramokee_melee_1]
+id = 13014
+
+[rand_ramokee_melee_2]
+id = 13015
+
+[rand_ramokee_melee_3]
+id = 13016
+
+[rand_ramokee_melee_4]
+id = 13017
+
+[rand_ramokee_melee_5]
+id = 13018
+
+[rand_ramokee_melee_6]
+id = 13019
+
+[rand_ramokee_melee_7]
+id = 13020
+
+[rand_ramokee_melee_8]
+id = 13021
+
+[rand_ramokee_melee_9]
+id = 13022
+
+[rand_ramokee_melee_10]
+id = 13023
+
+[rand_pushing_blocks_block_frozen]
+id = 13024
+
+[rand_pushing_blocks_block_blue_frozen]
+id = 13025
+
+[rand_pushing_blocks_block_green_frozen]
+id = 13026
+
+[rand_pushing_blocks_block_yellow_frozen]
+id = 13027
+
+[rand_pushing_blocks_block_violet_frozen]
+id = 13028
+
+[rand_pushing_blocks_block_abandoned]
+id = 13029
+
+[rand_pushing_blocks_block_blue_abandoned]
+id = 13030
+
+[rand_pushing_blocks_block_green_abandoned]
+id = 13031
+
+[rand_pushing_blocks_block_yellow_abandoned]
+id = 13032
+
+[rand_pushing_blocks_block_violet_abandoned]
+id = 13033
+
+[rand_pushing_blocks_block_furnished]
+id = 13034
+
+[rand_pushing_blocks_block_blue_furnished]
+id = 13035
+
+[rand_pushing_blocks_block_green_furnished]
+id = 13036
+
+[rand_pushing_blocks_block_yellow_furnished]
+id = 13037
+
+[rand_pushing_blocks_block_violet_furnished]
+id = 13038
+
+[rand_pushing_blocks_block_occult]
+id = 13039
+
+[rand_pushing_blocks_block_blue_occult]
+id = 13040
+
+[rand_pushing_blocks_block_green_occult]
+id = 13041
+
+[rand_pushing_blocks_block_yellow_occult]
+id = 13042
+
+[rand_pushing_blocks_block_violet_occult]
+id = 13043
+
+[rand_pushing_blocks_block_warped]
+id = 13044
+
+[rand_pushing_blocks_block_blue_warped]
+id = 13045
+
+[rand_pushing_blocks_block_green_warped]
+id = 13046
+
+[rand_pushing_blocks_block_yellow_warped]
+id = 13047
+
+[rand_pushing_blocks_block_violet_warped]
+id = 13048
+
+[rand_rock_paper_scissors_attacker_empty_warped]
+id = 13049
+
+[rand_rock_paper_scissors_defender_empty_warped]
+id = 13050
+
+[rand_rock_paper_scissors_attacker_melee_warped]
+id = 13051
+
+[rand_rock_paper_scissors_attacker_range_warped]
+id = 13052
+
+[rand_rock_paper_scissors_attacker_magic_warped]
+id = 13053
+
+[rand_rock_paper_scissors_defender_melee_warped]
+id = 13054
+
+[rand_rock_paper_scissors_defender_range_warped]
+id = 13055
+
+[rand_rock_paper_scissors_defender_magic_warped]
+id = 13056
+
+[rand_somethings_missing_statue_melee_empty_warped]
+id = 13057
+
+[rand_somethings_missing_statue_range_empty_warped]
+id = 13058
+
+[rand_somethings_missing_statue_magic_empty_warped]
+id = 13059
+
+[rand_somethings_missing_statue_range_armed_warped]
+id = 13060
+
+[rand_somethings_missing_statue_magic_armed_warped]
+id = 13061
+
+[rand_somethings_missing_statue_melee_armed_warped]
+id = 13062
+
+[rand_somethings_missing_statue_melee_bow_warped]
+id = 13063
+
+[rand_somethings_missing_statue_melee_staff_warped]
+id = 13064
+
+[rand_somethings_missing_statue_ranger_sword_warped]
+id = 13065
+
+[rand_somethings_missing_statue_ranger_staff_warped]
+id = 13066
+
+[rand_somethings_missing_statue_magic_sword_warped]
+id = 13067
+
+[rand_somethings_missing_statue_magic_bow_warped]
+id = 13068
+
+[rand_crossing_bridges_statue_fixed_frozen_n]
+id = 13069
+
+[rand_crossing_bridges_statue_fixed_abandoned_n]
+id = 13070
+
+[rand_crossing_bridges_statue_fixed_furnished_n]
+id = 13071
+
+[rand_crossing_bridges_statue_fixed_occult_n]
+id = 13072
+
+[rand_crossing_bridges_statue_fixed_warped_n]
+id = 13073
+
+[rand_crossing_bridges_statue_fixed_frozen_e]
+id = 13074
+
+[rand_crossing_bridges_statue_fixed_abandoned_e]
+id = 13075
+
+[rand_crossing_bridges_statue_fixed_furnished_e]
+id = 13076
+
+[rand_crossing_bridges_statue_fixed_occult_e]
+id = 13077
+
+[rand_crossing_bridges_statue_fixed_warped_e]
+id = 13078
+
+[rand_crossing_bridges_statue_fixed_frozen_s]
+id = 13079
+
+[rand_crossing_bridges_statue_fixed_abandoned_s]
+id = 13080
+
+[rand_crossing_bridges_statue_fixed_furnished_s]
+id = 13081
+
+[rand_crossing_bridges_statue_fixed_occult_s]
+id = 13082
+
+[rand_crossing_bridges_statue_fixed_warped_s]
+id = 13083
+
+[rand_crossing_bridges_statue_fixed_frozen_w]
+id = 13084
+
+[rand_crossing_bridges_statue_fixed_abandoned_w]
+id = 13085
+
+[rand_crossing_bridges_statue_fixed_furnished_w]
+id = 13086
+
+[rand_crossing_bridges_statue_fixed_occult_w]
+id = 13087
+
+[rand_crossing_bridges_statue_fixed_warped_w]
+id = 13088
+
+[lore_seeker_child_1]
+id = 13089
+
+[lore_seeker_adult]
+id = 13090
