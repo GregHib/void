@@ -6,6 +6,7 @@ import content.entity.combat.attackers
 import content.entity.combat.damageDealers
 import content.entity.combat.dead
 import content.entity.combat.killer
+import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
 import content.skill.slayer.*
 import content.social.clan.clan
@@ -81,6 +82,7 @@ class NPCDeath(
                 queue.clear()
                 attackers.clear()
                 softTimers.stopAll()
+                clearTransform()
                 if (Death.afterDeath(npc)) {
                     return@queue
                 }
