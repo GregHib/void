@@ -1567,296 +1567,380 @@ id = 10245
 [rand_human_melee_lvl4_1]
 id = 10246
 hitpoints = 360
-max_hit = 60
-combat_def = "forgotten_warrior_sword"
+max_hit_stab = 60
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl4_2]
 id = 10247
 hitpoints = 372
-max_hit = 73
+max_hit_stab = 73
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl4_3]
 id = 10248
 hitpoints = 378
-max_hit = 80
+max_hit_slash = 80
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl4_4]
 id = 10249
 hitpoints = 384
-max_hit = 87
+max_hit_slash = 87
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl4_5]
 id = 10250
 hitpoints = 372
-max_hit = 73
+max_hit_crush = 73
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl4_6]
 id = 10251
 hitpoints = 384
-max_hit = 87
+max_hit_stab = 87
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl4_7]
 id = 10252
 hitpoints = 384
-max_hit = 87
+max_hit_crush = 87
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl4_8]
 id = 10253
 hitpoints = 372
-max_hit = 73
+max_hit_slash = 73
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl4_9]
 id = 10254
 hitpoints = 372
-max_hit = 73
+max_hit_crush = 73
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl4_10]
 id = 10255
 hitpoints = 372
-max_hit = 73
+max_hit_crush = 73
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl4_11]
 id = 10256
 hitpoints = 378
-max_hit = 80
+max_hit_stab = 80
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl4_12]
 id = 10257
 hitpoints = 378
-max_hit = 80
+max_hit_stab = 80
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl4_13]
 id = 10258
 hitpoints = 372
-max_hit = 73
+max_hit_slash = 73
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl4_14]
 id = 10259
 hitpoints = 372
-max_hit = 73
+max_hit_crush = 73
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl4_15]
 id = 10260
 hitpoints = 378
-max_hit = 80
+max_hit_stab = 80
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl4_16]
 id = 10261
 hitpoints = 366
-max_hit = 66
+max_hit_crush = 66
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl4_17]
 id = 10262
 hitpoints = 378
-max_hit = 80
+max_hit_stab = 80
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl4_18]
 id = 10263
 hitpoints = 378
-max_hit = 80
+max_hit_stab = 80
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl4_19]
 id = 10264
 hitpoints = 390
-max_hit = 94
+max_hit_crush = 94
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl4_20]
 id = 10265
 hitpoints = 372
-max_hit = 73
+max_hit_crush = 73
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl4_21]
 id = 10266
 hitpoints = 366
-max_hit = 66
+max_hit_slash = 66
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl5_1]
 id = 10267
 hitpoints = 460
-max_hit = 82
-combat_def = "forgotten_warrior_sword"
+max_hit_stab = 82
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl5_2]
 id = 10268
+hitpoints = 460
+max_hit_crush = 82
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl5_3]
 id = 10269
 hitpoints = 475
-max_hit = 110
+max_hit_crush = 110
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl5_4]
 id = 10270
 hitpoints = 467
-max_hit = 96
+max_hit_stab = 96
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl5_5]
 id = 10271
 hitpoints = 475
-max_hit = 110
+max_hit_slash = 110
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl5_6]
 id = 10272
+hitpoints = 460
+max_hit_slash = 82
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl5_7]
 id = 10273
 hitpoints = 467
-max_hit = 96
+max_hit_crush = 96
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl5_8]
 id = 10274
 hitpoints = 467
-max_hit = 96
+max_hit_stab = 96
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl5_9]
 id = 10275
 hitpoints = 482
-max_hit = 124
+max_hit_slash = 124
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl5_10]
 id = 10276
 hitpoints = 467
-max_hit = 96
+max_hit_stab = 96
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl5_11]
 id = 10277
 hitpoints = 490
-max_hit = 139
+max_hit_stab = 139
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl5_12]
 id = 10278
 hitpoints = 475
-max_hit = 110
+max_hit_crush = 110
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl5_13]
 id = 10279
 hitpoints = 490
-max_hit = 139
+max_hit_crush = 139
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl5_14]
 id = 10280
 hitpoints = 467
-max_hit = 96
+max_hit_crush = 96
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl5_15]
 id = 10281
 hitpoints = 490
-max_hit = 139
+max_hit_slash = 139
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl5_16]
 id = 10282
 hitpoints = 467
-max_hit = 96
+max_hit_crush = 96
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl5_17]
 id = 10283
 hitpoints = 490
-max_hit = 139
+max_hit_slash = 139
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl5_18]
 id = 10284
 hitpoints = 475
-max_hit = 110
+max_hit_stab = 110
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl5_19]
 id = 10285
+hitpoints = 460
+max_hit_crush = 82
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl5_20]
 id = 10286
 hitpoints = 475
-max_hit = 110
+max_hit_stab = 110
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl5_21]
 id = 10287
+hitpoints = 460
+max_hit_stab = 82
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl6_1]
 id = 10288
 hitpoints = 578
-max_hit = 148
-combat_def = "forgotten_warrior_sword"
+max_hit_stab = 148
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl6_2]
 id = 10289
 hitpoints = 590
-max_hit = 167
+max_hit_slash = 167
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl6_3]
 id = 10290
+hitpoints = 578
+max_hit_stab = 148
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl6_4]
 id = 10291
+hitpoints = 578
+max_hit_stab = 148
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl6_5]
 id = 10292
 hitpoints = 560
-max_hit = 121
+max_hit_crush = 121
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl6_6]
 id = 10293
+hitpoints = 578
+max_hit_crush = 148
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl6_7]
 id = 10294
 hitpoints = 560
-max_hit = 121
+max_hit_slash = 121
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl6_8]
 id = 10295
 hitpoints = 566
-max_hit = 130
+max_hit_stab = 130
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl6_9]
 id = 10296
 hitpoints = 566
-max_hit = 130
+max_hit_crush = 130
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl6_10]
 id = 10297
 hitpoints = 566
-max_hit = 130
+max_hit_crush = 130
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl6_11]
 id = 10298
+hitpoints = 578
+max_hit_stab = 148
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl6_12]
 id = 10299
 hitpoints = 584
-max_hit = 157
+max_hit_slash = 157
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl6_13]
 id = 10300
 hitpoints = 572
-max_hit = 139
+max_hit_slash = 139
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl6_14]
 id = 10301
+hitpoints = 578
+max_hit_crush = 148
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl6_15]
 id = 10302
+hitpoints = 578
+max_hit_stab = 148
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl6_16]
 id = 10303
 hitpoints = 584
-max_hit = 157
+max_hit_crush = 157
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl6_17]
 id = 10304
 hitpoints = 572
-max_hit = 139
+max_hit_crush = 139
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl6_18]
 id = 10305
+hitpoints = 578
+max_hit_stab = 148
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl6_19]
 id = 10306
+hitpoints = 578
+max_hit_slash = 148
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl6_20]
 id = 10307
 hitpoints = 572
-max_hit = 139
+max_hit_stab = 139
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl6_21]
 id = 10308
 hitpoints = 566
-max_hit = 130
+max_hit_crush = 130
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_ranged_lvl1_dummy]
 id = 10309
@@ -2164,13 +2248,13 @@ combat_def = "forgotten_warrior_2h"
 [rand_human_melee_lvl1_7]
 id = 10403
 hitpoints = 70
-max_hit_stab = 22
+max_hit_slash = 22
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl1_8]
 id = 10404
 hitpoints = 65
-max_hit_stab = 19
+max_hit_slash = 19
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl1_9]
@@ -2189,7 +2273,7 @@ combat_def = "forgotten_warrior_spear"
 id = 10407
 hitpoints = 65
 max_hit_crush = 19
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl1_12]
 id = 10408
@@ -2207,13 +2291,13 @@ combat_def = "forgotten_warrior_maul"
 id = 10410
 hitpoints = 60
 max_hit_stab = 17
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl1_15]
 id = 10411
 hitpoints = 60
 max_hit_crush = 17
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl1_16]
 id = 10412
@@ -2231,13 +2315,13 @@ combat_def = "forgotten_warrior_2h"
 id = 10414
 hitpoints = 60
 max_hit_stab = 17
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl1_19]
 id = 10415
 hitpoints = 65
 max_hit_stab = 19
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl1_20]
 id = 10416
@@ -2255,7 +2339,7 @@ combat_def = "forgotten_warrior_hammer"
 id = 10418
 hitpoints = 175
 max_hit_stab = 34
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl2_2]
 id = 10419
@@ -2279,7 +2363,7 @@ combat_def = "forgotten_warrior_hammer"
 id = 10422
 hitpoints = 175
 max_hit_crush = 34
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl2_6]
 id = 10423
@@ -2290,20 +2374,20 @@ combat_def = "forgotten_warrior_spear"
 [rand_human_melee_lvl2_7]
 id = 10424
 hitpoints = 167
-max_hit_stab = 32
+max_hit_slash = 32
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_8]
 id = 10425
 hitpoints = 160
-max_hit_stab = 30
+max_hit_slash = 30
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_9]
 id = 10426
 hitpoints = 160
 max_hit_crush = 30
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl2_10]
 id = 10427
@@ -2315,7 +2399,7 @@ combat_def = "forgotten_warrior_maul"
 id = 10428
 hitpoints = 167
 max_hit_stab = 32
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl2_12]
 id = 10429
@@ -2339,7 +2423,7 @@ combat_def = "forgotten_warrior_dagger"
 id = 10432
 hitpoints = 167
 max_hit_stab = 32
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl2_16]
 id = 10433
@@ -2362,7 +2446,7 @@ combat_def = "forgotten_warrior_dagger"
 [rand_human_melee_lvl2_19]
 id = 10436
 hitpoints = 167
-max_hit_stab = 32
+max_hit_slash = 32
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_20]
@@ -2375,7 +2459,7 @@ combat_def = "forgotten_warrior_spear"
 id = 10438
 hitpoints = 175
 max_hit_crush = 34
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl3_1]
 id = 10439
@@ -2387,7 +2471,7 @@ combat_def = "forgotten_warrior_dagger"
 id = 10440
 hitpoints = 270
 max_hit_stab = 51
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl3_3]
 id = 10441
@@ -2405,7 +2489,7 @@ combat_def = "forgotten_warrior_hammer"
 id = 10443
 hitpoints = 260
 max_hit_crush = 44
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl3_6]
 id = 10444
@@ -2416,7 +2500,7 @@ combat_def = "forgotten_warrior_maul"
 [rand_human_melee_lvl3_7]
 id = 10445
 hitpoints = 280
-max_hit_stab = 58
+max_hit_slash = 58
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_8]
@@ -2429,7 +2513,7 @@ combat_def = "forgotten_warrior_hammer"
 id = 10447
 hitpoints = 290
 max_hit_crush = 65
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl3_10]
 id = 10448
@@ -2441,12 +2525,12 @@ combat_def = "forgotten_warrior_spear"
 id = 10449
 hitpoints = 280
 max_hit_stab = 58
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl3_12]
 id = 10450
 hitpoints = 260
-max_hit_stab = 44
+max_hit_slash = 44
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_13]
@@ -2465,12 +2549,12 @@ combat_def = "forgotten_warrior_dagger"
 id = 10453
 hitpoints = 270
 max_hit_stab = 51
-combat_def = "forgotten_warrior_sword"
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl3_16]
 id = 10454
 hitpoints = 260
-max_hit_stab = 44
+max_hit_slash = 44
 combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_17]
@@ -2489,7 +2573,7 @@ combat_def = "forgotten_warrior_dagger"
 id = 10457
 hitpoints = 260
 max_hit_crush = 44
-combat_def = "forgotten_warrior_hammer"
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl3_20]
 id = 10458
@@ -2647,192 +2731,254 @@ id = 10506
 [rand_human_melee_lvl10_1]
 id = 10507
 hitpoints = 975
-max_hit = 322
-combat_def = "forgotten_warrior_sword"
+max_hit_stab = 322
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl10_2]
 id = 10508
 hitpoints = 970
-max_hit = 297
+max_hit_slash = 297
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl10_3]
 id = 10509
 hitpoints = 972
-max_hit = 309
+max_hit_stab = 309
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl10_4]
 id = 10510
 hitpoints = 970
-max_hit = 297
+max_hit_crush = 297
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl10_5]
 id = 10511
 hitpoints = 972
-max_hit = 309
+max_hit_crush = 309
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl10_6]
 id = 10512
+hitpoints = 975
+max_hit_slash = 322
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl10_7]
 id = 10513
 hitpoints = 970
-max_hit = 297
+max_hit_stab = 297
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl10_8]
 id = 10514
+hitpoints = 975
+max_hit_stab = 322
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl10_9]
 id = 10515
+hitpoints = 975
+max_hit_crush = 322
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl10_10]
 id = 10516
 hitpoints = 980
-max_hit = 347
+max_hit_slash = 347
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl10_11]
 id = 10517
 hitpoints = 970
-max_hit = 297
+max_hit_slash = 297
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl10_12]
 id = 10518
+hitpoints = 975
+max_hit_crush = 322
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl10_13]
 id = 10519
 hitpoints = 980
-max_hit = 347
+max_hit_crush = 347
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl10_14]
 id = 10520
 hitpoints = 970
-max_hit = 297
+max_hit_stab = 297
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl10_15]
 id = 10521
 hitpoints = 972
-max_hit = 309
+max_hit_stab = 309
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl10_16]
 id = 10522
+hitpoints = 975
+max_hit_slash = 322
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl10_17]
 id = 10523
+hitpoints = 975
+max_hit_crush = 322
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl10_18]
 id = 10524
+hitpoints = 975
+max_hit_stab = 322
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl10_19]
 id = 10525
+hitpoints = 975
+max_hit_crush = 322
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl10_20]
 id = 10526
 hitpoints = 977
-max_hit = 334
+max_hit_stab = 334
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl10_21]
 id = 10527
 hitpoints = 977
-max_hit = 334
+max_hit_crush = 334
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl11_1]
 id = 10528
 hitpoints = 1185
-max_hit = 431
-combat_def = "forgotten_warrior_sword"
+max_hit_stab = 431
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl11_2]
 id = 10529
 hitpoints = 1180
-max_hit = 402
+max_hit_slash = 402
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl11_3]
 id = 10530
 hitpoints = 1170
-max_hit = 344
+max_hit_crush = 344
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl11_4]
 id = 10531
+hitpoints = 1185
+max_hit_stab = 431
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl11_5]
 id = 10532
+hitpoints = 1185
+max_hit_crush = 431
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl11_6]
 id = 10533
 hitpoints = 1180
-max_hit = 402
+max_hit_slash = 402
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl11_7]
 id = 10534
 hitpoints = 1175
-max_hit = 373
+max_hit_crush = 373
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl11_8]
 id = 10535
 hitpoints = 1175
-max_hit = 373
+max_hit_stab = 373
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl11_9]
 id = 10536
 hitpoints = 1175
-max_hit = 373
+max_hit_stab = 373
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl11_10]
 id = 10537
 hitpoints = 1180
-max_hit = 402
+max_hit_slash = 402
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl11_11]
 id = 10538
 hitpoints = 1190
-max_hit = 460
+max_hit_slash = 460
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl11_12]
 id = 10539
 hitpoints = 1175
-max_hit = 373
+max_hit_crush = 373
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl11_13]
 id = 10540
+hitpoints = 1185
+max_hit_stab = 431
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl11_14]
 id = 10541
 hitpoints = 1190
-max_hit = 460
+max_hit_crush = 460
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl11_15]
 id = 10542
 hitpoints = 1175
-max_hit = 373
+max_hit_slash = 373
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl11_16]
 id = 10543
 hitpoints = 1180
-max_hit = 402
+max_hit_crush = 402
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl11_17]
 id = 10544
 hitpoints = 1190
-max_hit = 460
+max_hit_stab = 460
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl11_18]
 id = 10545
 hitpoints = 1175
-max_hit = 373
+max_hit_stab = 373
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl11_19]
 id = 10546
 hitpoints = 1170
-max_hit = 344
+max_hit_crush = 344
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl11_20]
 id = 10547
 hitpoints = 1175
-max_hit = 373
+max_hit_crush = 373
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl11_21]
 id = 10548
 hitpoints = 1180
-max_hit = 402
+max_hit_stab = 402
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_magic_lvl1_dummy]
 id = 10549
@@ -3719,306 +3865,380 @@ id = 10842
 [rand_human_melee_lvl7_1]
 id = 10843
 hitpoints = 666
-max_hit = 158
-combat_def = "forgotten_warrior_sword"
+max_hit_stab = 158
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl7_2]
 id = 10844
 hitpoints = 672
-max_hit = 172
+max_hit_crush = 172
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl7_3]
 id = 10845
 hitpoints = 660
-max_hit = 144
+max_hit_stab = 144
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl7_4]
 id = 10846
 hitpoints = 684
-max_hit = 201
+max_hit_stab = 201
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl7_5]
 id = 10847
 hitpoints = 672
-max_hit = 172
+max_hit_crush = 172
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl7_6]
 id = 10848
 hitpoints = 678
-max_hit = 187
+max_hit_slash = 187
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl7_7]
 id = 10849
 hitpoints = 678
-max_hit = 187
+max_hit_slash = 187
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl7_8]
 id = 10850
+hitpoints = 666
+max_hit_stab = 158
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl7_9]
 id = 10851
 hitpoints = 672
-max_hit = 172
+max_hit_slash = 172
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl7_10]
 id = 10852
 hitpoints = 678
-max_hit = 187
+max_hit_slash = 187
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl7_11]
 id = 10853
 hitpoints = 684
-max_hit = 201
+max_hit_stab = 201
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl7_12]
 id = 10854
 hitpoints = 678
-max_hit = 187
+max_hit_crush = 187
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl7_13]
 id = 10855
 hitpoints = 672
-max_hit = 172
+max_hit_crush = 172
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl7_14]
 id = 10856
 hitpoints = 678
-max_hit = 187
+max_hit_crush = 187
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl7_15]
 id = 10857
 hitpoints = 684
-max_hit = 201
+max_hit_stab = 201
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl7_16]
 id = 10858
 hitpoints = 672
-max_hit = 172
+max_hit_crush = 172
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl7_17]
 id = 10859
+hitpoints = 666
+max_hit_crush = 158
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl7_18]
 id = 10860
 hitpoints = 672
-max_hit = 172
+max_hit_slash = 172
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl7_19]
 id = 10861
 hitpoints = 690
-max_hit = 216
+max_hit_crush = 216
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl7_20]
 id = 10862
 hitpoints = 684
-max_hit = 201
+max_hit_stab = 201
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl7_21]
 id = 10863
 hitpoints = 672
-max_hit = 172
+max_hit_stab = 172
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl8_1]
 id = 10864
 hitpoints = 782
-max_hit = 226
-combat_def = "forgotten_warrior_sword"
+max_hit_crush = 226
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl8_2]
 id = 10865
 hitpoints = 790
-max_hit = 240
+max_hit_crush = 240
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl8_3]
 id = 10866
 hitpoints = 778
-max_hit = 220
+max_hit_slash = 220
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl8_4]
 id = 10867
+hitpoints = 782
+max_hit_stab = 226
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl8_5]
 id = 10868
+hitpoints = 782
+max_hit_slash = 226
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl8_6]
 id = 10869
 hitpoints = 790
-max_hit = 240
+max_hit_crush = 240
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl8_7]
 id = 10870
 hitpoints = 786
-max_hit = 233
+max_hit_stab = 233
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl8_8]
 id = 10871
 hitpoints = 770
-max_hit = 207
+max_hit_slash = 207
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl8_9]
 id = 10872
 hitpoints = 774
-max_hit = 213
+max_hit_crush = 213
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl8_10]
 id = 10873
 hitpoints = 778
-max_hit = 220
+max_hit_stab = 220
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl8_11]
 id = 10874
 hitpoints = 774
-max_hit = 213
+max_hit_stab = 213
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl8_12]
 id = 10875
 hitpoints = 786
-max_hit = 233
+max_hit_stab = 233
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl8_13]
 id = 10876
+hitpoints = 782
+max_hit_slash = 226
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl8_14]
 id = 10877
 hitpoints = 778
-max_hit = 220
+max_hit_crush = 220
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl8_15]
 id = 10878
 hitpoints = 778
-max_hit = 220
+max_hit_stab = 220
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl8_16]
 id = 10879
 hitpoints = 786
-max_hit = 233
+max_hit_slash = 233
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl8_17]
 id = 10880
+hitpoints = 782
+max_hit_crush = 226
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl8_18]
 id = 10881
 hitpoints = 774
-max_hit = 213
+max_hit_crush = 213
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl8_19]
 id = 10882
+hitpoints = 782
+max_hit_stab = 226
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl8_20]
 id = 10883
 hitpoints = 778
-max_hit = 220
+max_hit_stab = 220
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl8_21]
 id = 10884
 hitpoints = 786
-max_hit = 233
+max_hit_stab = 233
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl9_1]
 id = 10885
 hitpoints = 870
-max_hit = 335
-combat_def = "forgotten_warrior_sword"
+max_hit_stab = 335
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl9_2]
 id = 10886
 hitpoints = 865
-max_hit = 292
+max_hit_stab = 292
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl9_3]
 id = 10887
 hitpoints = 862
-max_hit = 271
+max_hit_stab = 271
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl9_4]
 id = 10888
 hitpoints = 867
-max_hit = 313
+max_hit_slash = 313
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl9_5]
 id = 10889
 hitpoints = 862
-max_hit = 271
+max_hit_crush = 271
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl9_6]
 id = 10890
 hitpoints = 867
-max_hit = 313
+max_hit_crush = 313
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl9_7]
 id = 10891
 hitpoints = 865
-max_hit = 292
+max_hit_crush = 292
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl9_8]
 id = 10892
 hitpoints = 860
-max_hit = 250
+max_hit_slash = 250
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl9_9]
 id = 10893
 hitpoints = 865
-max_hit = 292
+max_hit_crush = 292
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl9_10]
 id = 10894
 hitpoints = 867
-max_hit = 313
+max_hit_slash = 313
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl9_11]
 id = 10895
 hitpoints = 867
-max_hit = 313
+max_hit_stab = 313
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl9_12]
 id = 10896
 hitpoints = 862
-max_hit = 271
+max_hit_crush = 271
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl9_13]
 id = 10897
 hitpoints = 862
-max_hit = 271
+max_hit_stab = 271
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl9_14]
 id = 10898
 hitpoints = 867
-max_hit = 313
+max_hit_stab = 313
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl9_15]
 id = 10899
 hitpoints = 865
-max_hit = 292
+max_hit_crush = 292
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl9_16]
 id = 10900
 hitpoints = 862
-max_hit = 271
+max_hit_crush = 271
+combat_def = "forgotten_warrior_axe"
 
 [rand_human_melee_lvl9_17]
 id = 10901
 hitpoints = 867
-max_hit = 313
+max_hit_crush = 313
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl9_18]
 id = 10902
 hitpoints = 862
-max_hit = 271
+max_hit_stab = 271
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl9_19]
 id = 10903
 hitpoints = 862
-max_hit = 271
+max_hit_stab = 271
+combat_def = "forgotten_warrior_rapier"
 
 [rand_human_melee_lvl9_20]
 id = 10904
 hitpoints = 865
-max_hit = 292
+max_hit_slash = 292
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl9_21]
 id = 10905
 hitpoints = 867
-max_hit = 313
+max_hit_slash = 313
+combat_def = "forgotten_warrior_sword"
 
 [rand_bat_1]
 id = 10906
