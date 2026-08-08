@@ -1297,38 +1297,129 @@ id = 10155
 [rand_shadow_forger_14]
 id = 10156
 
+# https://runescape.wiki/w/Ice_spider_(Dungeoneering)?oldid=5471861
+# Stats interp def=5..45, att=15..70
+
 [rand_ice_spider_0]
 id = 10157
+hitpoints = 30
+max_hit_crush = 18
+att = 15
+str = 5
+def = 5
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_1]
 id = 10158
+hitpoints = 40
+max_hit_crush = 18
+att = 16
+str = 6
+def = 6
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_2]
 id = 10159
+hitpoints = 80
+max_hit_crush = 18
+att = 19
+str = 8
+def = 8
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_3]
 id = 10160
+hitpoints = 130
+max_hit_crush = 20
+att = 22
+str = 10
+def = 10
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_4]
 id = 10161
+hitpoints = 180
+max_hit_crush = 24
+att = 26
+str = 13
+def = 13
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_5]
 id = 10162
+hitpoints = 230
+max_hit_crush = 27
+att = 29
+str = 15
+def = 15
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_6]
 id = 10163
+hitpoints = 300
+max_hit_crush = 31
+att = 34
+str = 19
+def = 19
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_7]
 id = 10164
+hitpoints = 390
+max_hit_crush = 37
+att = 40
+str = 23
+def = 23
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_8]
 id = 10165
+hitpoints = 520
+max_hit_crush = 47
+att = 49
+str = 30
+def = 30
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_9]
 id = 10166
+hitpoints = 670
+max_hit_crush = 57
+att = 58
+str = 36
+def = 36
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_ice_spider_10]
 id = 10167
+hitpoints = 840
+max_hit_crush = 70
+att = 70
+str = 45
+def = 45
+hunt_mode = "cowardly"
+combat_def = "ice_spider"
+examine = "This spider must have been modified magically."
 
 [rand_animated_pickaxe_1]
 id = 10168
@@ -1501,38 +1592,129 @@ id = 10223
 [rand_black_dragon_6]
 id = 10224
 
+# https://runescape.wiki/w/Ice_warrior_(Dungeoneering)?oldid=5795352
+# Stats interp 5..100 (aligns with normal ice warrior)
+
 [rand_ice_warrior_0]
 id = 10225
+hitpoints = 30
+max_hit_slash = 18
+att = 5
+str = 5
+def = 5
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_1]
 id = 10226
+hitpoints = 60
+max_hit_slash = 19
+att = 7
+str = 7
+def = 7
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_2]
 id = 10227
+hitpoints = 190
+max_hit_slash = 33
+att = 17
+str = 17
+def = 17
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_3]
 id = 10228
+hitpoints = 330
+max_hit_slash = 50
+att = 27
+str = 27
+def = 27
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_4]
 id = 10229
+hitpoints = 450
+max_hit_slash = 71
+att = 37
+str = 37
+def = 37
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_5]
 id = 10230
+hitpoints = 570
+max_hit_slash = 104
+att = 50
+str = 50
+def = 50
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_6]
 id = 10231
+hitpoints = 690
+max_hit_slash = 137
+att = 60
+str = 60
+def = 60
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_7]
 id = 10232
+hitpoints = 830
+max_hit_slash = 185
+att = 70
+str = 70
+def = 70
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_8]
 id = 10233
+hitpoints = 960
+max_hit_slash = 232
+att = 80
+str = 80
+def = 80
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_9]
 id = 10234
+hitpoints = 1100
+max_hit_slash = 280
+att = 90
+str = 90
+def = 90
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_ice_warrior_10]
 id = 10235
+hitpoints = 1160
+max_hit_slash = 332
+att = 100
+str = 100
+def = 100
+combat_def = "ice_warrior"
+hunt_mode = "cowardly"
+examine = "A cold-hearted elemental warrior."
 
 [rand_hobgoblin_1]
 id = 10236
