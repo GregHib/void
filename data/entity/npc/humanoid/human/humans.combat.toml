@@ -1,5 +1,4 @@
 [human]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 

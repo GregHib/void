@@ -1,5 +1,4 @@
 [rabbit_miscellania]
-attack_speed = 4
 defend_anim = "rabbit_defend"
 defend_sound = "rabbit_defend"
 death_anim = "rabbit_death"
@@ -13,7 +12,6 @@ target_hit = { offense = "crush", max = 10 }
 
 
 [einar]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
@@ -23,7 +21,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "human_attack"
 
 [alrik]
-attack_speed = 4
 defend_anim = "alrik_defend"
 death_anim = "alrik_death"
 
@@ -33,7 +30,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "alrik_attack"
 
 [thorhild]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
@@ -43,7 +39,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "human_attack"
 
 [rannveig]
-attack_speed = 4
 defend_anim = "rannveig_defend"
 death_anim = "rannveig_death"
 
@@ -53,7 +48,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "rannveig_attack"
 
 [valgerd]
-attack_speed = 4
 defend_anim = "valgerd_defend"
 death_anim = "valgerd_death"
 
@@ -63,7 +57,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "valgerd_attack"
 
 [broddi]
-attack_speed = 4
 defend_anim = "broddi_defend"
 death_anim = "broddi_death"
 
@@ -73,7 +66,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "broddi_attack"
 
 [ragnvald]
-attack_speed = 4
 defend_anim = "ragnvald_defend"
 death_anim = "ragnvald_death"
 
@@ -83,7 +75,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "ragnvald_attack"
 
 [sea_snake_young]
-attack_speed = 4
 death_anim = "sea_snake_young_death"
 defend_sound = "sea_snake_young_defend"
 death_sound = "sea_snake_young_death"
@@ -95,7 +86,6 @@ anim = "sea_snake_young_attack"
 sound = "sea_snake_young_attack"
 
 [sea_snake_hatchling]
-attack_speed = 4
 death_anim = "sea_snake_hatchling_death"
 defend_sound = "sea_snake_hatchling_defend"
 death_sound = "sea_snake_hatchling_death"

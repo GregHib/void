@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.ui.chat.toInt
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.WeaponStyleDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -242,7 +243,7 @@ var Character.weapon: Item
 
 val Character.attackSpeed: Int
     get() = when {
-        this is NPC -> def["attack_speed", get<CombatDefinitions>().get(transformDef["combat_def", id]).attackSpeed]
+        this is NPC -> def["attack_speed", transformDef["attack_speed", 4]]
         fightStyle == "magic" -> 5
         this is Player && specialAttack && weapon.id.startsWith("granite_maul") -> 1
         else -> weapon.def["attack_speed", 4] - (attackType == "rapid" || attackType == "medium_fuse").toInt()

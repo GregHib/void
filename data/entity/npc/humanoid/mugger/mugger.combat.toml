@@ -1,5 +1,4 @@
 [mugger]
-attack_speed = 4
 defend_anim = "mugger_defend"
 death_anim = "mugger_death"
 death_sound = "mugger_death"

@@ -1,5 +1,4 @@
 [jackal]
-attack_speed = 4
 defend_anim = "jackal_defend"
 defend_sound = "dog_defend"
 death_anim = "jackal_death"
@@ -21,7 +20,6 @@ clone = "jackal.melee"
 anim = "medium_dog_attack"
 
 [wild_dog]
-attack_speed = 4
 defend_anim = "wild_dog_defend"
 death_anim = "wild_dog_death"
 

@@ -1,5 +1,4 @@
 [gargoyle]
-attack_speed = 4
 defend_anim = "gargoyle_defend"
 defend_sound = "gargoyle_defend"
 death_anim = "gargoyle_death"

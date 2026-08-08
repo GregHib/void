@@ -1,5 +1,4 @@
 [panther]
-attack_speed = 4
 defend_anim = "big_cat_defend"
 defend_sound = "dog_defend"
 death_anim = "big_cat_death"

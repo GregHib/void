@@ -1,5 +1,4 @@
 [nechryael]
-attack_speed = 4
 defend_anim = "nechryael_defend"
 defend_sound = "nechryael_defend"
 death_anim = "nechryael_death"
@@ -12,7 +11,6 @@ target_sound = "nechryael_attack"
 target_hit = { offense = "crush", max = 110 }
 
 [death_spawn]
-attack_speed = 4
 defend_anim = "death_spawn_defend"
 defend_sound = "death_spawn_defend"
 death_anim = "death_spawn_death"

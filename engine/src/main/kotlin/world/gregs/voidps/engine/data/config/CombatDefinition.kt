@@ -6,7 +6,6 @@ import kotlin.ranges.random
 
 data class CombatDefinition(
     val npc: String = "",
-    val attackSpeed: Int = 4,
     var attackRange: Int = 1,
     val retreatRange: Int = 8,
     val defendAnim: String = "",

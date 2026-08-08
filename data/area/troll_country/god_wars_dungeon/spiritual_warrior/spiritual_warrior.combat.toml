@@ -1,5 +1,4 @@
 [spiritual_warrior_zamorak]
-attack_speed = 4
 defend_anim = "spiritual_warrior_zamorak_defend"
 defend_sound = "spiritual_warrior_zamorak_defend"
 death_anim = "spiritual_warrior_zamorak_death"
@@ -12,7 +11,6 @@ target_sound = "spiritual_warrior_zamorak_attack"
 target_hit = { offense = "slash", max = 110 }
 
 [spiritual_warrior_saradomin]
-attack_speed = 4
 defend_anim = "human_defend"
 defend_sound = "spiritual_warrior_saradomin_defend"
 death_anim = "human_death"
@@ -24,7 +22,6 @@ target_sound = "spiritual_warrior_saradomin_attack"
 target_hit = { offense = "slash", max = 130 }
 
 [spiritual_warrior_bandos]
-attack_speed = 5
 defend_anim = "spiritual_warrior_bandos_defend"
 defend_sound = "gorak_defend"
 death_anim = "spiritual_warrior_bandos_death"
@@ -39,7 +36,6 @@ target_hit = { offense = "crush", max = 160 }
 
 [spiritual_warrior_armadyl]
 clone = "aviansie_axe"
-attack_speed = 4
 
 [spiritual_warrior_armadyl.attack]
 clone = "aviansie_axe.attack"

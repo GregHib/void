@@ -1,5 +1,4 @@
 [crab]
-attack_speed = 4
 death_anim = "crab_death"
 
 [crab.melee]

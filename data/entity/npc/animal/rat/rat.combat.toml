@@ -1,5 +1,4 @@
 [rat]
-attack_speed = 4
 defend_anim = "rat_defend"
 defend_sound = "rat_defend"
 death_anim = "rat_death"

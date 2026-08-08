@@ -1,5 +1,4 @@
 [elite_dark_ranger]
-attack_speed = 4
 defend_anim = "archer_defend"
 death_anim = "archer_death"
 
@@ -9,7 +8,6 @@ target_hit = { offense = "range", max = 90 }
 anim = "archer_attack"
 
 [elite_dark_mage]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 

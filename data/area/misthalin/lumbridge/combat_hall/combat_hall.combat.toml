@@ -1,5 +1,4 @@
 [magic_dummy]
-attack_speed = 4
 death_anim = "magic_dummy_death"
 
 [magic_dummy.melee]
@@ -8,7 +7,6 @@ target_hit = { offense = "crush", max = 10 }
 anim = "magic_dummy_attack"
 
 [melee_dummy]
-attack_speed = 4
 death_anim = "melee_dummy_death"
 
 [melee_dummy.melee]

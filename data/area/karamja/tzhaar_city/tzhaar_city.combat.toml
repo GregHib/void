@@ -1,5 +1,4 @@
 [tzhaar_ket]
-attack_speed = 4
 defend_anim = "tzhaar_defend"
 death_anim = "tzhaar_death"
 defend_sound = "tzhaar_ket_defend"
@@ -34,7 +33,6 @@ impact_sound = "axe_throw"
 
 [tzhaar_hur]
 clone = "tzhaar_ket"
-attack_speed = 5
 defend_sound = "tzhaar_hur_defend"
 death_sound = "tzhaar_hur_death"
 
@@ -45,7 +43,6 @@ target_hit = { offense = "crush", max = 70 }
 
 [tzhaar_mej]
 clone = "tzhaar_ket"
-attack_speed = 5
 defend_sound = "tzhaar_mej_defend"
 death_sound = "tzhaar_mej_death"
 
@@ -64,7 +61,6 @@ miss_gfx = "giant_splash"
 miss_sound = "spell_splash"
 
 [fire_monster]
-attack_speed = 4
 death_anim = "fire_monster_death"
 
 [fire_monster.magic]

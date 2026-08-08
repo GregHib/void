@@ -1,5 +1,4 @@
 [invrigar_the_necromancer]
-attack_speed = 4
 death_anim = "invrigar_the_necromancer_death"
 
 [invrigar_the_necromancer.melee]
@@ -8,7 +7,6 @@ target_hit = { offense = "crush", max = 30 }
 anim = "invrigar_the_necromancer_attack"
 
 [necromancer]
-attack_speed = 4
 death_anim = "necromancer_death"
 
 [necromancer.melee]

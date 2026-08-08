@@ -1,5 +1,4 @@
 [skeletal_hand]
-attack_speed = 6
 defend_anim = "skeletal_hand_defend"
 death_anim = "skeletal_hand_death"
 
@@ -9,7 +8,6 @@ target_hit = { offense = "crush", max = 130 }
 anim = "skeletal_hand_attack"
 
 [mutated_bloodveld]
-attack_speed = 6
 death_anim = "mutated_bloodveld_death"
 
 [mutated_bloodveld.magic]

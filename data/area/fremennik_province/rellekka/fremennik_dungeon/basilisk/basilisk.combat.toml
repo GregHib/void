@@ -1,5 +1,4 @@
 [basilisk]
-attack_speed = 4
 defend_anim = "basilisk_defend"
 defend_sound = "basilisk_defend"
 death_anim = "basilisk_death"

@@ -1,5 +1,4 @@
 [stronghold_shade]
-attack_speed = 4
 defend_anim = "stronghold_shade_defend"
 defend_sound = "stronghold_shade_defend"
 death_anim = "stronghold_shade_death"

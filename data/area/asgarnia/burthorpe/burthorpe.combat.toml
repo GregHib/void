@@ -1,5 +1,4 @@
 [imperial_soldier]
-attack_speed = 4
 defend_anim = "claws_defend"
 death_anim = "human_death"
 
@@ -9,7 +8,6 @@ anim = "claws_chop"
 target_hit = { offense = "slash", max = 60 }
 
 [archer]
-attack_speed = 4
 defend_anim = "archer_defend"
 death_anim = "archer_death"
 

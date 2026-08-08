@@ -1,5 +1,4 @@
 [aquanite]
-attack_speed = 5
 death_anim = "aquanite_death"
 defend_anim = "aquanite_defend"
 # Unknown sounds

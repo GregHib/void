@@ -1,5 +1,4 @@
 [harpie_bug_swarm]
-attack_speed = 4
 defend_anim = "harpie_bug_swarm_defend"
 defend_sound = "harpie_bug_swarm_defend"
 death_anim = "harpie_bug_swarm_death"
@@ -12,7 +11,6 @@ target_sound = "harpie_bug_swarm_attack"
 target_hit = { offense = "crush", max = 60 }
 
 [shaikahan]
-attack_speed = 4
 defend_anim = "shaikahan_defend"
 defend_sound = "shaikahan_defend"
 death_anim = "shaikahan_death"
@@ -25,7 +23,6 @@ target_sound = "shaikahan_attack"
 target_hit = { offense = "slash", max = 90 }
 
 [giant_ant]
-attack_speed = 4
 defend_anim = "giant_ant_defend"
 defend_sound = "giant_ant_defend"
 death_anim = "giant_ant_death"
@@ -38,7 +35,6 @@ target_sound = "giant_ant_attack"
 target_hit = { offense = "crush", max = 60 }
 
 [tribesman]
-attack_speed = 4
 death_anim = "tribesman_death"
 
 [tribesman.melee]
@@ -47,7 +43,6 @@ target_hit = { offense = "stab", max = 40 }
 anim = "tribesman_attack"
 
 [frog]
-attack_speed = 4
 death_anim = "frog_death"
 
 [frog.melee]
@@ -57,7 +52,6 @@ impact_poison = 68
 anim = "frog_attack"
 
 [tenacious_toucan]
-attack_speed = 6
 death_anim = "tenacious_toucan_death"
 
 [tenacious_toucan.melee]
@@ -66,7 +60,6 @@ target_hit = { offense = "stab", max = 119 }
 anim = "tenacious_toucan_attack"
 
 [giant_wasp]
-attack_speed = 6
 death_anim = "giant_wasp_death"
 
 [giant_wasp.melee]
@@ -75,7 +68,6 @@ target_hit = { offense = "crush", max = 50 }
 anim = "giant_wasp_attack"
 
 [pernicious_parrot]
-attack_speed = 6
 death_anim = "pernicious_parrot_death"
 
 [pernicious_parrot.melee]

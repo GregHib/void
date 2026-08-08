@@ -1,5 +1,4 @@
 [chompy_bird]
-attack_speed = 4
 defend_anim = "chompy_bird_defend"
 defend_sound = "chompy_bird_defend"
 death_anim = "chompy_bird_death"

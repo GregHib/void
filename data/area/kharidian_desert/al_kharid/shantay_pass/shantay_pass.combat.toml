@@ -1,5 +1,4 @@
 [ugthanki]
-attack_speed = 4
 defend_anim = "ugthanki_defend"
 death_anim = "ugthanki_death"
 
