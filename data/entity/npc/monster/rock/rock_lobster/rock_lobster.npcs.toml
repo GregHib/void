@@ -1,5 +1,6 @@
 [rock_lobster]
 id = 2889
+attack_speed = 2
 hunt_range = 3
 hunt_mode = "aggressive"
 categories = ["rock_lobster"]
@@ -12,6 +13,7 @@ str = 100
 def = 100
 mage = 1
 hitpoints = 1500
+attack_speed = 2
 combat_def = "rock_lobster"
 drop_table = "rock_lobster"
 hunt_mode = "aggressive"

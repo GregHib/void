@@ -124,6 +124,7 @@ drop_table = "animated_spade"
 [dagonhai_monk]
 id = 7138
 hitpoints = 880
+attack_speed = 6
 # Made up stats
 mage = 100
 def = 80
@@ -258,10 +259,12 @@ examine = "Leader of the Dagon'hai Order."
 [surok_magis_attack]
 id = 7136
 combat_def = "dagonhai_elite"
+attack_speed = 36
 
 [dagonhai_elite_attack]
 id = 7137
 combat_def = "dagonhai_elite"
+attack_speed = 36
 
 [ork_legion]
 id = 7135
