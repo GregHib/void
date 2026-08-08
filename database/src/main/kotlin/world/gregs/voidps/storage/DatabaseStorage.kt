@@ -4,8 +4,11 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.less
 import org.jetbrains.exposed.sql.transactions.transaction
 import world.gregs.voidps.engine.data.AbuseReport
+import world.gregs.voidps.engine.data.CensusSnapshot
+import world.gregs.voidps.engine.data.EconomyFlag
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.config.AccountDefinition
@@ -212,6 +215,34 @@ class DatabaseStorage : Storage {
             it[time] = report.time
             it[evidence] = report.evidence
         }
+    }
+
+    override fun saveEconomyFlags(flags: List<EconomyFlag>): Unit = transaction {
+        EconomyFlagsTable.batchInsert(flags, shouldReturnGeneratedValues = false) { flag ->
+            this[EconomyFlagsTable.type] = flag.type
+            this[EconomyFlagsTable.timestamp] = flag.timestamp
+            this[EconomyFlagsTable.tick] = flag.tick
+            this[EconomyFlagsTable.sourceName] = flag.source
+            this[EconomyFlagsTable.targetName] = flag.target
+            this[EconomyFlagsTable.item] = flag.item
+            this[EconomyFlagsTable.value] = flag.value
+            this[EconomyFlagsTable.details] = flag.details
+        }
+    }
+
+    override fun saveCensusSnapshots(snapshots: List<CensusSnapshot>): Unit = transaction {
+        EconomyCensusTable.batchInsert(snapshots, shouldReturnGeneratedValues = false) { snapshot ->
+            this[EconomyCensusTable.timestamp] = snapshot.timestamp
+            this[EconomyCensusTable.item] = snapshot.item
+            this[EconomyCensusTable.players] = snapshot.players
+            this[EconomyCensusTable.floor] = snapshot.floor
+            this[EconomyCensusTable.exchange] = snapshot.exchange
+        }
+    }
+
+    override fun pruneEconomy(before: Long): Unit = transaction {
+        EconomyFlagsTable.deleteWhere { timestamp less before }
+        EconomyCensusTable.deleteWhere { timestamp less before }
     }
 
     override fun exists(accountName: String): Boolean = transaction {
@@ -584,7 +615,7 @@ class DatabaseStorage : Storage {
             }
         }
 
-        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable, ReportsTable)
+        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable, ReportsTable, EconomyFlagsTable, EconomyCensusTable)
 
         private const val TYPE_STRING = 0.toByte()
         private const val TYPE_INT = 1.toByte()

@@ -3,6 +3,7 @@ package content.social.trade
 import com.github.michaelbull.logging.InlineLogger
 import content.social.trade.Trade.getPartner
 import content.social.trade.lend.Loan
+import content.social.trade.monitor.TradeFlags
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
@@ -52,6 +53,8 @@ class TradeConfirm : Script {
             request(partner, "confirm_trade") { requester, acceptor ->
                 val requesterLoan = requester.loan[0]
                 val acceptorLoan = acceptor.loan[0]
+                val requesterValue = requester.offer.calculateValue()
+                val acceptorValue = acceptor.offer.calculateValue()
                 val success = acceptor.offer.transaction {
                     moveAll(requester.inventory)
                     link(requester.offer).moveAll(acceptor.inventory)
@@ -69,6 +72,7 @@ class TradeConfirm : Script {
                 loanItem(acceptor, requesterLoan, requester)
                 requester.closeMenu()
                 log(requester, acceptor)
+                TradeFlags.check(requester, acceptor, requesterValue, acceptorValue)
             }
         }
     }

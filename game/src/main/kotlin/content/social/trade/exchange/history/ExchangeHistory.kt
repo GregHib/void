@@ -19,11 +19,15 @@ import kotlin.collections.set
  */
 class ExchangeHistory(val history: MutableMap<String, PriceHistory> = mutableMapOf()) {
     private val marketPrices = mutableMapOf<String, Int>()
+    val listeners = mutableListOf<(item: String, amount: Int, price: Int) -> Unit>()
 
     fun record(item: String, amount: Int, price: Int) {
         val history = history.getOrPut(item) { PriceHistory() }
         val timestamp = epochMilliseconds()
         history.record(timestamp, price, amount)
+        for (listener in listeners) {
+            listener(item, amount, price)
+        }
     }
 
     fun clean() {

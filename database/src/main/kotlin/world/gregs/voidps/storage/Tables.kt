@@ -173,6 +173,32 @@ internal object ReportsTable : Table("abuse_reports") {
     override val primaryKey = PrimaryKey(id, name = "pk_report_id")
 }
 
+internal object EconomyFlagsTable : Table("economy_flags") {
+    val id = integer("id").autoIncrement().uniqueIndex()
+    val type = varchar("type", 32).index()
+    val timestamp = long("timestamp").index()
+    val tick = integer("tick")
+    val sourceName = varchar("source", 12).nullable().default(null)
+    val targetName = varchar("target", 12).nullable().default(null)
+    val item = text("item").nullable().default(null)
+    val value = long("value").default(0)
+    val details = text("details").nullable().default(null)
+
+    override val primaryKey = PrimaryKey(id, name = "pk_economy_flag_id")
+}
+
+internal object EconomyCensusTable : Table("economy_census") {
+    val timestamp = long("timestamp").index()
+    val item = text("item")
+    val players = long("players")
+    val floor = long("floor")
+    val exchange = long("exchange")
+
+    init {
+        index(false, item, timestamp)
+    }
+}
+
 internal object ItemHistoryTable : Table("grand_exchange_item_history") {
     val item = text("item")
     val timestamp = long("timestamp")
