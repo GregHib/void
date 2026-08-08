@@ -1,0 +1,72 @@
+# sword = stab
+# dagger = stab
+# spear = stab
+# 2h = slash
+# hammer = crush
+# maul = crush
+
+[forgotten_warrior_sword]
+attack_speed = 4
+defend_anim = "sword_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[forgotten_warrior_sword.melee]
+range = 1
+anim = "sword_chop"
+target_hit = { offense = "stab", max = 10 }
+
+[forgotten_warrior_dagger]
+attack_speed = 4
+defend_anim = "dagger_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[forgotten_warrior_dagger.melee]
+range = 1
+anim = "dagger_stab"
+target_hit = { offense = "stab", max = 10 }
+
+[forgotten_warrior_2h]
+attack_speed = 4
+defend_anim = "2h_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[forgotten_warrior_2h.melee]
+range = 1
+anim = "2h_chop"
+target_hit = { offense = "slash", max = 10 }
+
+[forgotten_warrior_maul]
+attack_speed = 4
+defend_anim = "maul_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[forgotten_warrior_maul.melee]
+range = 1
+anim = "maul_attack"
+target_hit = { offense = "crush", max = 10 }
+
+[forgotten_warrior_hammer]
+attack_speed = 4
+defend_anim = "hammer_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[forgotten_warrior_hammer.melee]
+range = 1
+anim = "hammer_pound"
+target_hit = { offense = "crush", max = 10 }
+
+[forgotten_warrior_spear]
+attack_speed = 6
+defend_anim = "spear_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[forgotten_warrior_spear.melee]
+range = 1
+anim = "spear_lunge"
+target_hit = { offense = "stab", max = 10 }

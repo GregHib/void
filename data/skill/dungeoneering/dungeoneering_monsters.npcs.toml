@@ -1566,135 +1566,218 @@ id = 10245
 
 [rand_human_melee_lvl4_1]
 id = 10246
+hitpoints = 360
+max_hit = 60
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl4_2]
 id = 10247
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_3]
 id = 10248
+hitpoints = 378
+max_hit = 80
 
 [rand_human_melee_lvl4_4]
 id = 10249
+hitpoints = 384
+max_hit = 87
 
 [rand_human_melee_lvl4_5]
 id = 10250
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_6]
 id = 10251
+hitpoints = 384
+max_hit = 87
 
 [rand_human_melee_lvl4_7]
 id = 10252
+hitpoints = 384
+max_hit = 87
 
 [rand_human_melee_lvl4_8]
 id = 10253
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_9]
 id = 10254
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_10]
 id = 10255
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_11]
 id = 10256
+hitpoints = 378
+max_hit = 80
 
 [rand_human_melee_lvl4_12]
 id = 10257
+hitpoints = 378
+max_hit = 80
 
 [rand_human_melee_lvl4_13]
 id = 10258
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_14]
 id = 10259
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_15]
 id = 10260
+hitpoints = 378
+max_hit = 80
 
 [rand_human_melee_lvl4_16]
 id = 10261
+hitpoints = 366
+max_hit = 66
 
 [rand_human_melee_lvl4_17]
 id = 10262
+hitpoints = 378
+max_hit = 80
 
 [rand_human_melee_lvl4_18]
 id = 10263
+hitpoints = 378
+max_hit = 80
 
 [rand_human_melee_lvl4_19]
 id = 10264
+hitpoints = 390
+max_hit = 94
 
 [rand_human_melee_lvl4_20]
 id = 10265
+hitpoints = 372
+max_hit = 73
 
 [rand_human_melee_lvl4_21]
 id = 10266
+hitpoints = 366
+max_hit = 66
 
 [rand_human_melee_lvl5_1]
 id = 10267
+hitpoints = 460
+max_hit = 82
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl5_2]
 id = 10268
 
 [rand_human_melee_lvl5_3]
 id = 10269
+hitpoints = 475
+max_hit = 110
 
 [rand_human_melee_lvl5_4]
 id = 10270
+hitpoints = 467
+max_hit = 96
 
 [rand_human_melee_lvl5_5]
 id = 10271
+hitpoints = 475
+max_hit = 110
 
 [rand_human_melee_lvl5_6]
 id = 10272
 
 [rand_human_melee_lvl5_7]
 id = 10273
+hitpoints = 467
+max_hit = 96
 
 [rand_human_melee_lvl5_8]
 id = 10274
+hitpoints = 467
+max_hit = 96
 
 [rand_human_melee_lvl5_9]
 id = 10275
+hitpoints = 482
+max_hit = 124
 
 [rand_human_melee_lvl5_10]
 id = 10276
+hitpoints = 467
+max_hit = 96
 
 [rand_human_melee_lvl5_11]
 id = 10277
+hitpoints = 490
+max_hit = 139
 
 [rand_human_melee_lvl5_12]
 id = 10278
+hitpoints = 475
+max_hit = 110
 
 [rand_human_melee_lvl5_13]
 id = 10279
+hitpoints = 490
+max_hit = 139
 
 [rand_human_melee_lvl5_14]
 id = 10280
+hitpoints = 467
+max_hit = 96
 
 [rand_human_melee_lvl5_15]
 id = 10281
+hitpoints = 490
+max_hit = 139
 
 [rand_human_melee_lvl5_16]
 id = 10282
+hitpoints = 467
+max_hit = 96
 
 [rand_human_melee_lvl5_17]
 id = 10283
+hitpoints = 490
+max_hit = 139
 
 [rand_human_melee_lvl5_18]
 id = 10284
+hitpoints = 475
+max_hit = 110
 
 [rand_human_melee_lvl5_19]
 id = 10285
 
 [rand_human_melee_lvl5_20]
 id = 10286
+hitpoints = 475
+max_hit = 110
 
 [rand_human_melee_lvl5_21]
 id = 10287
 
 [rand_human_melee_lvl6_1]
 id = 10288
+hitpoints = 578
+max_hit = 148
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl6_2]
 id = 10289
+hitpoints = 590
+max_hit = 167
 
 [rand_human_melee_lvl6_3]
 id = 10290
@@ -1704,30 +1787,44 @@ id = 10291
 
 [rand_human_melee_lvl6_5]
 id = 10292
+hitpoints = 560
+max_hit = 121
 
 [rand_human_melee_lvl6_6]
 id = 10293
 
 [rand_human_melee_lvl6_7]
 id = 10294
+hitpoints = 560
+max_hit = 121
 
 [rand_human_melee_lvl6_8]
 id = 10295
+hitpoints = 566
+max_hit = 130
 
 [rand_human_melee_lvl6_9]
 id = 10296
+hitpoints = 566
+max_hit = 130
 
 [rand_human_melee_lvl6_10]
 id = 10297
+hitpoints = 566
+max_hit = 130
 
 [rand_human_melee_lvl6_11]
 id = 10298
 
 [rand_human_melee_lvl6_12]
 id = 10299
+hitpoints = 584
+max_hit = 157
 
 [rand_human_melee_lvl6_13]
 id = 10300
+hitpoints = 572
+max_hit = 139
 
 [rand_human_melee_lvl6_14]
 id = 10301
@@ -1737,9 +1834,13 @@ id = 10302
 
 [rand_human_melee_lvl6_16]
 id = 10303
+hitpoints = 584
+max_hit = 157
 
 [rand_human_melee_lvl6_17]
 id = 10304
+hitpoints = 572
+max_hit = 139
 
 [rand_human_melee_lvl6_18]
 id = 10305
@@ -1749,9 +1850,13 @@ id = 10306
 
 [rand_human_melee_lvl6_20]
 id = 10307
+hitpoints = 572
+max_hit = 139
 
 [rand_human_melee_lvl6_21]
 id = 10308
+hitpoints = 566
+max_hit = 130
 
 [rand_human_ranged_lvl1_dummy]
 id = 10309
@@ -2017,194 +2122,386 @@ id = 10395
 [rand_human_melee_lvl11_dummy]
 id = 10396
 
+# Hitpoints and max hits interpolated from combat levels
+# https://runescape.wiki/w/Forgotten_warrior?direction=prev&oldid=6641639
+
 [rand_human_melee_lvl1_1]
 id = 10397
+hitpoints = 65
+max_hit_stab = 19
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl1_2]
 id = 10398
+hitpoints = 60
+max_hit_stab = 17
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl1_3]
 id = 10399
+hitpoints = 65
+max_hit_stab = 19
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl1_4]
 id = 10400
+hitpoints = 65
+max_hit_crush = 19
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl1_5]
 id = 10401
+hitpoints = 60
+max_hit_crush = 17
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl1_6]
 id = 10402
+hitpoints = 60
+max_hit_slash = 17
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl1_7]
 id = 10403
+hitpoints = 70
+max_hit_stab = 22
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl1_8]
 id = 10404
+hitpoints = 65
+max_hit_stab = 19
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl1_9]
 id = 10405
+hitpoints = 70
+max_hit_crush = 22
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl1_10]
 id = 10406
+hitpoints = 65
+max_hit_stab = 19
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl1_11]
 id = 10407
+hitpoints = 65
+max_hit_crush = 19
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl1_12]
 id = 10408
+hitpoints = 80
+max_hit_stab = 27
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl1_13]
 id = 10409
+hitpoints = 70
+max_hit_crush = 22
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl1_14]
 id = 10410
+hitpoints = 60
+max_hit_stab = 17
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl1_15]
 id = 10411
+hitpoints = 60
+max_hit_crush = 17
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl1_16]
 id = 10412
+hitpoints = 70
+max_hit_stab = 22
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl1_17]
 id = 10413
+hitpoints = 60
+max_hit_slash = 17
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl1_18]
 id = 10414
+hitpoints = 60
+max_hit_stab = 17
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl1_19]
 id = 10415
+hitpoints = 65
+max_hit_stab = 19
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl1_20]
 id = 10416
+hitpoints = 60
+max_hit_crush = 17
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl1_21]
 id = 10417
+hitpoints = 60
+max_hit_crush = 17
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl2_1]
 id = 10418
+hitpoints = 175
+max_hit_stab = 34
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_2]
 id = 10419
+hitpoints = 190
+max_hit_stab = 38
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl2_3]
 id = 10420
+hitpoints = 160
+max_hit_crush = 30
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl2_4]
 id = 10421
+hitpoints = 175
+max_hit_crush = 34
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl2_5]
 id = 10422
+hitpoints = 175
+max_hit_crush = 34
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl2_6]
 id = 10423
+hitpoints = 160
+max_hit_stab = 30
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl2_7]
 id = 10424
+hitpoints = 167
+max_hit_stab = 32
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_8]
 id = 10425
+hitpoints = 160
+max_hit_stab = 30
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_9]
 id = 10426
+hitpoints = 160
+max_hit_crush = 30
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl2_10]
 id = 10427
+hitpoints = 175
+max_hit_crush = 34
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl2_11]
 id = 10428
+hitpoints = 167
+max_hit_stab = 32
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_12]
 id = 10429
+hitpoints = 160
+max_hit_crush = 30
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl2_13]
 id = 10430
+hitpoints = 190
+max_hit_slash = 38
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl2_14]
 id = 10431
+hitpoints = 175
+max_hit_stab = 34
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl2_15]
 id = 10432
+hitpoints = 167
+max_hit_stab = 32
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_16]
 id = 10433
+hitpoints = 167
+max_hit_crush = 32
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl2_17]
 id = 10434
+hitpoints = 175
+max_hit_stab = 34
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl2_18]
 id = 10435
+hitpoints = 190
+max_hit_stab = 38
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl2_19]
 id = 10436
+hitpoints = 167
+max_hit_stab = 32
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl2_20]
 id = 10437
+hitpoints = 175
+max_hit_stab = 34
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl2_21]
 id = 10438
+hitpoints = 175
+max_hit_crush = 34
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl3_1]
 id = 10439
+hitpoints = 270
+max_hit_stab = 51
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl3_2]
 id = 10440
+hitpoints = 270
+max_hit_stab = 51
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_3]
 id = 10441
+hitpoints = 270
+max_hit_slash = 51
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl3_4]
 id = 10442
+hitpoints = 270
+max_hit_crush = 51
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl3_5]
 id = 10443
+hitpoints = 260
+max_hit_crush = 44
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl3_6]
 id = 10444
+hitpoints = 270
+max_hit_crush = 51
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl3_7]
 id = 10445
+hitpoints = 280
+max_hit_stab = 58
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_8]
 id = 10446
+hitpoints = 260
+max_hit_crush = 44
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl3_9]
 id = 10447
+hitpoints = 290
+max_hit_crush = 65
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl3_10]
 id = 10448
+hitpoints = 280
+max_hit_stab = 58
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl3_11]
 id = 10449
+hitpoints = 280
+max_hit_stab = 58
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_12]
 id = 10450
+hitpoints = 260
+max_hit_stab = 44
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_13]
 id = 10451
+hitpoints = 280
+max_hit_slash = 58
+combat_def = "forgotten_warrior_2h"
 
 [rand_human_melee_lvl3_14]
 id = 10452
+hitpoints = 270
+max_hit_stab = 51
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl3_15]
 id = 10453
+hitpoints = 270
+max_hit_stab = 51
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_16]
 id = 10454
+hitpoints = 260
+max_hit_stab = 44
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl3_17]
 id = 10455
+hitpoints = 280
+max_hit_crush = 58
+combat_def = "forgotten_warrior_maul"
 
 [rand_human_melee_lvl3_18]
 id = 10456
+hitpoints = 270
+max_hit_stab = 51
+combat_def = "forgotten_warrior_dagger"
 
 [rand_human_melee_lvl3_19]
 id = 10457
+hitpoints = 260
+max_hit_crush = 44
+combat_def = "forgotten_warrior_hammer"
 
 [rand_human_melee_lvl3_20]
 id = 10458
+hitpoints = 270
+max_hit_stab = 51
+combat_def = "forgotten_warrior_spear"
 
 [rand_human_melee_lvl3_21]
 id = 10459
+hitpoints = 280
+max_hit_crush = 58
+combat_def = "forgotten_warrior_hammer"
 
 [rand_ice_golem_1]
 id = 10460
@@ -2349,24 +2646,37 @@ id = 10506
 
 [rand_human_melee_lvl10_1]
 id = 10507
+hitpoints = 975
+max_hit = 322
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl10_2]
 id = 10508
+hitpoints = 970
+max_hit = 297
 
 [rand_human_melee_lvl10_3]
 id = 10509
+hitpoints = 972
+max_hit = 309
 
 [rand_human_melee_lvl10_4]
 id = 10510
+hitpoints = 970
+max_hit = 297
 
 [rand_human_melee_lvl10_5]
 id = 10511
+hitpoints = 972
+max_hit = 309
 
 [rand_human_melee_lvl10_6]
 id = 10512
 
 [rand_human_melee_lvl10_7]
 id = 10513
+hitpoints = 970
+max_hit = 297
 
 [rand_human_melee_lvl10_8]
 id = 10514
@@ -2376,21 +2686,31 @@ id = 10515
 
 [rand_human_melee_lvl10_10]
 id = 10516
+hitpoints = 980
+max_hit = 347
 
 [rand_human_melee_lvl10_11]
 id = 10517
+hitpoints = 970
+max_hit = 297
 
 [rand_human_melee_lvl10_12]
 id = 10518
 
 [rand_human_melee_lvl10_13]
 id = 10519
+hitpoints = 980
+max_hit = 347
 
 [rand_human_melee_lvl10_14]
 id = 10520
+hitpoints = 970
+max_hit = 297
 
 [rand_human_melee_lvl10_15]
 id = 10521
+hitpoints = 972
+max_hit = 309
 
 [rand_human_melee_lvl10_16]
 id = 10522
@@ -2406,18 +2726,29 @@ id = 10525
 
 [rand_human_melee_lvl10_20]
 id = 10526
+hitpoints = 977
+max_hit = 334
 
 [rand_human_melee_lvl10_21]
 id = 10527
+hitpoints = 977
+max_hit = 334
 
 [rand_human_melee_lvl11_1]
 id = 10528
+hitpoints = 1185
+max_hit = 431
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl11_2]
 id = 10529
+hitpoints = 1180
+max_hit = 402
 
 [rand_human_melee_lvl11_3]
 id = 10530
+hitpoints = 1170
+max_hit = 344
 
 [rand_human_melee_lvl11_4]
 id = 10531
@@ -2427,51 +2758,81 @@ id = 10532
 
 [rand_human_melee_lvl11_6]
 id = 10533
+hitpoints = 1180
+max_hit = 402
 
 [rand_human_melee_lvl11_7]
 id = 10534
+hitpoints = 1175
+max_hit = 373
 
 [rand_human_melee_lvl11_8]
 id = 10535
+hitpoints = 1175
+max_hit = 373
 
 [rand_human_melee_lvl11_9]
 id = 10536
+hitpoints = 1175
+max_hit = 373
 
 [rand_human_melee_lvl11_10]
 id = 10537
+hitpoints = 1180
+max_hit = 402
 
 [rand_human_melee_lvl11_11]
 id = 10538
+hitpoints = 1190
+max_hit = 460
 
 [rand_human_melee_lvl11_12]
 id = 10539
+hitpoints = 1175
+max_hit = 373
 
 [rand_human_melee_lvl11_13]
 id = 10540
 
 [rand_human_melee_lvl11_14]
 id = 10541
+hitpoints = 1190
+max_hit = 460
 
 [rand_human_melee_lvl11_15]
 id = 10542
+hitpoints = 1175
+max_hit = 373
 
 [rand_human_melee_lvl11_16]
 id = 10543
+hitpoints = 1180
+max_hit = 402
 
 [rand_human_melee_lvl11_17]
 id = 10544
+hitpoints = 1190
+max_hit = 460
 
 [rand_human_melee_lvl11_18]
 id = 10545
+hitpoints = 1175
+max_hit = 373
 
 [rand_human_melee_lvl11_19]
 id = 10546
+hitpoints = 1170
+max_hit = 344
 
 [rand_human_melee_lvl11_20]
 id = 10547
+hitpoints = 1175
+max_hit = 373
 
 [rand_human_melee_lvl11_21]
 id = 10548
+hitpoints = 1180
+max_hit = 402
 
 [rand_human_magic_lvl1_dummy]
 id = 10549
@@ -3357,75 +3718,121 @@ id = 10842
 
 [rand_human_melee_lvl7_1]
 id = 10843
+hitpoints = 666
+max_hit = 158
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl7_2]
 id = 10844
+hitpoints = 672
+max_hit = 172
 
 [rand_human_melee_lvl7_3]
 id = 10845
+hitpoints = 660
+max_hit = 144
 
 [rand_human_melee_lvl7_4]
 id = 10846
+hitpoints = 684
+max_hit = 201
 
 [rand_human_melee_lvl7_5]
 id = 10847
+hitpoints = 672
+max_hit = 172
 
 [rand_human_melee_lvl7_6]
 id = 10848
+hitpoints = 678
+max_hit = 187
 
 [rand_human_melee_lvl7_7]
 id = 10849
+hitpoints = 678
+max_hit = 187
 
 [rand_human_melee_lvl7_8]
 id = 10850
 
 [rand_human_melee_lvl7_9]
 id = 10851
+hitpoints = 672
+max_hit = 172
 
 [rand_human_melee_lvl7_10]
 id = 10852
+hitpoints = 678
+max_hit = 187
 
 [rand_human_melee_lvl7_11]
 id = 10853
+hitpoints = 684
+max_hit = 201
 
 [rand_human_melee_lvl7_12]
 id = 10854
+hitpoints = 678
+max_hit = 187
 
 [rand_human_melee_lvl7_13]
 id = 10855
+hitpoints = 672
+max_hit = 172
 
 [rand_human_melee_lvl7_14]
 id = 10856
+hitpoints = 678
+max_hit = 187
 
 [rand_human_melee_lvl7_15]
 id = 10857
+hitpoints = 684
+max_hit = 201
 
 [rand_human_melee_lvl7_16]
 id = 10858
+hitpoints = 672
+max_hit = 172
 
 [rand_human_melee_lvl7_17]
 id = 10859
 
 [rand_human_melee_lvl7_18]
 id = 10860
+hitpoints = 672
+max_hit = 172
 
 [rand_human_melee_lvl7_19]
 id = 10861
+hitpoints = 690
+max_hit = 216
 
 [rand_human_melee_lvl7_20]
 id = 10862
+hitpoints = 684
+max_hit = 201
 
 [rand_human_melee_lvl7_21]
 id = 10863
+hitpoints = 672
+max_hit = 172
 
 [rand_human_melee_lvl8_1]
 id = 10864
+hitpoints = 782
+max_hit = 226
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl8_2]
 id = 10865
+hitpoints = 790
+max_hit = 240
 
 [rand_human_melee_lvl8_3]
 id = 10866
+hitpoints = 778
+max_hit = 220
 
 [rand_human_melee_lvl8_4]
 id = 10867
@@ -3435,114 +3842,183 @@ id = 10868
 
 [rand_human_melee_lvl8_6]
 id = 10869
+hitpoints = 790
+max_hit = 240
 
 [rand_human_melee_lvl8_7]
 id = 10870
+hitpoints = 786
+max_hit = 233
 
 [rand_human_melee_lvl8_8]
 id = 10871
+hitpoints = 770
+max_hit = 207
 
 [rand_human_melee_lvl8_9]
 id = 10872
+hitpoints = 774
+max_hit = 213
 
 [rand_human_melee_lvl8_10]
 id = 10873
+hitpoints = 778
+max_hit = 220
 
 [rand_human_melee_lvl8_11]
 id = 10874
+hitpoints = 774
+max_hit = 213
 
 [rand_human_melee_lvl8_12]
 id = 10875
+hitpoints = 786
+max_hit = 233
 
 [rand_human_melee_lvl8_13]
 id = 10876
 
 [rand_human_melee_lvl8_14]
 id = 10877
+hitpoints = 778
+max_hit = 220
 
 [rand_human_melee_lvl8_15]
 id = 10878
+hitpoints = 778
+max_hit = 220
 
 [rand_human_melee_lvl8_16]
 id = 10879
+hitpoints = 786
+max_hit = 233
 
 [rand_human_melee_lvl8_17]
 id = 10880
 
 [rand_human_melee_lvl8_18]
 id = 10881
+hitpoints = 774
+max_hit = 213
 
 [rand_human_melee_lvl8_19]
 id = 10882
 
 [rand_human_melee_lvl8_20]
 id = 10883
+hitpoints = 778
+max_hit = 220
 
 [rand_human_melee_lvl8_21]
 id = 10884
+hitpoints = 786
+max_hit = 233
 
 [rand_human_melee_lvl9_1]
 id = 10885
+hitpoints = 870
+max_hit = 335
+combat_def = "forgotten_warrior_sword"
 
 [rand_human_melee_lvl9_2]
 id = 10886
+hitpoints = 865
+max_hit = 292
 
 [rand_human_melee_lvl9_3]
 id = 10887
+hitpoints = 862
+max_hit = 271
 
 [rand_human_melee_lvl9_4]
 id = 10888
+hitpoints = 867
+max_hit = 313
 
 [rand_human_melee_lvl9_5]
 id = 10889
+hitpoints = 862
+max_hit = 271
 
 [rand_human_melee_lvl9_6]
 id = 10890
+hitpoints = 867
+max_hit = 313
 
 [rand_human_melee_lvl9_7]
 id = 10891
+hitpoints = 865
+max_hit = 292
 
 [rand_human_melee_lvl9_8]
 id = 10892
+hitpoints = 860
+max_hit = 250
 
 [rand_human_melee_lvl9_9]
 id = 10893
+hitpoints = 865
+max_hit = 292
 
 [rand_human_melee_lvl9_10]
 id = 10894
+hitpoints = 867
+max_hit = 313
 
 [rand_human_melee_lvl9_11]
 id = 10895
+hitpoints = 867
+max_hit = 313
 
 [rand_human_melee_lvl9_12]
 id = 10896
+hitpoints = 862
+max_hit = 271
 
 [rand_human_melee_lvl9_13]
 id = 10897
+hitpoints = 862
+max_hit = 271
 
 [rand_human_melee_lvl9_14]
 id = 10898
+hitpoints = 867
+max_hit = 313
 
 [rand_human_melee_lvl9_15]
 id = 10899
+hitpoints = 865
+max_hit = 292
 
 [rand_human_melee_lvl9_16]
 id = 10900
+hitpoints = 862
+max_hit = 271
 
 [rand_human_melee_lvl9_17]
 id = 10901
+hitpoints = 867
+max_hit = 313
 
 [rand_human_melee_lvl9_18]
 id = 10902
+hitpoints = 862
+max_hit = 271
 
 [rand_human_melee_lvl9_19]
 id = 10903
+hitpoints = 862
+max_hit = 271
 
 [rand_human_melee_lvl9_20]
 id = 10904
+hitpoints = 865
+max_hit = 292
 
 [rand_human_melee_lvl9_21]
 id = 10905
+hitpoints = 867
+max_hit = 313
 
 [rand_bat_1]
 id = 10906
@@ -5724,18 +6200,6 @@ id = 11631
 
 [love_mabel_walking_multi]
 id = 11632
-
-[frost_dragon_2]
-id = 11633
-
-[frost_dragon_3]
-id = 11634
-
-[frost_dragon_4]
-id = 11635
-
-[frost_dragon_5]
-id = 11636
 
 [ii_rand_impling_precursor]
 id = 11637
