@@ -1,6 +1,8 @@
 package content.skill.slayer
 
 import WorldTest
+import dialogueContinue
+import dialogueOption
 import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -30,6 +32,21 @@ class SlayerMasterTest : WorldTest() {
 
         player.npcOption(master, "Get-task")
         tick(2)
+
+        assertEquals("duradel", player.slayerMaster)
+        assertNotEquals("nothing", player.slayerTask)
+    }
+
+    @Test
+    fun `Duradel assigns a task instead of sending you to himself`() {
+        val player = maxedPlayer(Tile(2869, 2983))
+        val master = createNPC("duradel_shilo_village", Tile(2869, 2982))
+
+        player.npcOption(master, "Talk-to")
+        tick(2)
+        player.dialogueContinue()
+        player.dialogueOption("line1") // I need another assignment.
+        player.dialogueContinue()
 
         assertEquals("duradel", player.slayerMaster)
         assertNotEquals("nothing", player.slayerTask)

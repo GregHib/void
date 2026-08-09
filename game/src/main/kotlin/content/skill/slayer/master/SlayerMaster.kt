@@ -79,24 +79,12 @@ internal suspend fun Player.slayerMasterChat(master: String) {
     npc<Neutral>("'Ello, and what are you after then?")
     choice {
         option<Neutral>("I need another assignment.") {
-            val nextCombat = when (master) {
-                "turael" -> 50
-                "mazchna" -> 75
-                "vannaka" -> 90
-                "chaeldar" -> 100
-                "sumona" -> 120
-                else -> 128
-            }
-            if (combatLevel <= nextCombat) {
+            val stronger = strongerMaster(master)
+            if (stronger == null || combatLevel <= stronger.first) {
                 assignTaskDialogue(master)
                 return@option
             }
-            val next = when (nextCombat) {
-                50 -> "Mazchna in Canifis"
-                75 -> "Chaeldar in Zanaris"
-                90 -> "Sumona in Pollnivneach"
-                else -> "Duradel in Shilo Village"
-            }
+            val next = stronger.second
             npc<Neutral>("You're actually very strong, are you sure you don't want $next to assign you a task?")
             choice {
                 option<Neutral>("No that's okay, I'll take a task from you.") {
@@ -118,6 +106,19 @@ internal suspend fun Player.slayerMasterChat(master: String) {
         }
         option<Neutral>("Er...nothing... ")
     }
+}
+
+/**
+ * The combat level a master starts sending players to a stronger master at, and where that master
+ * is found. Duradel and Kuradal have no one stronger to defer to.
+ */
+private fun strongerMaster(master: String): Pair<Int, String>? = when (master) {
+    "turael" -> 50 to "Mazchna in Canifis"
+    "mazchna" -> 75 to "Chaeldar in Zanaris"
+    "vannaka" -> 90 to "Sumona in Pollnivneach"
+    "chaeldar" -> 100 to "Duradel in Shilo Village"
+    "sumona" -> 120 to "Duradel in Shilo Village"
+    else -> null
 }
 
 internal suspend fun Player.assignTaskDialogue(master: String) {
