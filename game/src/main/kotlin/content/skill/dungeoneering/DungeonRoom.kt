@@ -331,6 +331,57 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         // tok blood chiller 11
         // 5..21
 
+        // 34 f11:c1
+        // 1, 2, 1 - 4
+        // 2, 1, 1 - 4
+        // 5
+        // 14, 3 - 17
+        // 3, 4 - 7
+        // 1
+        // lu icefiend 9
+        // 1..17
+
+        // 34 f12:c1
+        // 1, 1, 22 - 24
+        // 1, 4, 1 - 6
+        // 4, 5, 1 - 10
+        // 3, 7, 14 - 24
+        // 14, 1 - 15
+        // 28
+        // skin weaver (18)
+        // 6..28
+
+        // 34 f13:c6
+        // 1
+        // 47, 47 (two joined ghosts?)
+        // 4, 18 - 22
+        // 18
+        // 1, 18, 14 - 33
+        // 5, 14 - 19
+        // 28, 1, 28 - 57
+        // 1
+        // 30, 28 - 58
+        // 1, 22, 28 - 51
+        // 31, 10, 1 - 42
+        // bulkwark 7
+        // 1..57
+
+        // 34 f14:c6
+        // 36
+        // 1
+        // 36, 5 - 41
+        // 14, 30 - 44
+        // 14, 36 - 50
+        // 1 (construct puzzle)
+        // 28
+        // 18, 30 - 48
+        // 43
+        // 30, 4 - 34
+        // 56
+        // 14, 1 - 15
+        // 14, 4, 1 - 19
+        // 1.. 50
+
 
         // lvl 32
         // f1:c6:f2p
@@ -472,12 +523,61 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         // more players more combat to split
         //
 
+        // lvl4 + 125 f1:c1:d2
+        // 1, 7, 1 - 9
+        // 15, 1 - 16
+        // 10, 1, 5 - 16
+        // 10, 10, 1 - 21
+        // icy bones 33
+        // 9..21
+
+        // lvl4 + 125 f2:c1:d2
+        // 4, 5, 5 - 14
+        // 5, 7, 10 - 22
+        // 18
+        // astea frostweb 32
+        // 14..22
+
+        // lvl4 + 125 f3:c1:d2
+        // 1, 5, 14 - 20
+        // 14
+        // 5, 25, 14 - 44
+        // 28
+        // 42
+        // glut beh 9
+        // 14..44
+
+        // lvl4 + 125 f3:c1:d2
+        // 1, 7, 1 - 9
+        // 18, 35, 1 - 54
+        // 1, 28, 25, 10 - 64
+        // 48
+        // 5, 28
+        // astea 32
+        // 9..64
+
+        // lvl4 + 125 f4:c1:d1
+        // 1, 1, 1
+        // 1, 1, 1
+        // 1
+        // 1, 1
+        // 1, 1, 1
+        // ice fiend 1
+        // 215
+
         val complexity = player["dungeoneering_complexity", 0]
         if (random.nextInt(5) != 0 || doors.any { it is DungeonDoor.Guardian }) {
             var total = 0
-            dungeon.playerCount
+
+            val members = player.dungeonMembers.sortedBy { it.combatLevel }.take(dungeon.playerCount)
+            val average = members.sumOf { it.combatLevel } / members.size
+
             val combatLevel = player.dungeonMembers.maxOf { it.combatLevel }
 
+            // c1 up to 30, c6 up to 60 @ 34cmb floors 10+
+
+            // 60 @138
+            // c1 @ 64cmb? 64..
             // c1 @ 3cmb 3..?
             // c1 @ 32-33cmb 28..88?
             // floor, 1..60, 50..135 c1 @ 125cmb
@@ -485,10 +585,50 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             // 25 diff between 32 and 3
 //            Interpolation.lerp(floor, 1..60, 50..135)
             total += complexityBonus(combatLevel, complexity)
-            val max = player.dungeonMembers.maxOf { it.combatLevel / 2 } - 20 // If low complexity and f2p??
+            val max = player.dungeonMembers.maxOf { it.combatLevel / 2 }
 
             total.coerceAtLeast(1)
         }
+
+        /*
+            combat:floor:complexity-max level seen
+            125cmb:f1:c6-84
+            125cmb:f35:c6-138
+            125cmb:f1:c1-44
+            125cmb:f35:c1-89
+            32cmb:f1:c1-16
+            32cmb:f1:c6-14
+            32cmb:f1:c1-19
+            32cmb:f2:c1-28
+            32cmb:f3:c1-28
+            32cmb:f4:c1-28
+            33cmb:f5:c1-23
+            33cmb:f6:c1-18
+            33cmb:f6:c1-19
+            33cmb:f7:c1-21
+            34cmb:f8:c1-19
+            34cmb:f8:c1-14
+            34cmb:f9:c1-15
+            34cmb:f10:c1-16
+            34cmb:f10:c1-21
+            34cmb:f11:c1-17
+            34cmb:f12:c1-28
+            34cmb:f13:c6-57
+            34cmb:f14:c6-50
+            32cmb:f1:c6-24
+            3cmb:f1:c1-1
+            3cmb:f1:c1-1
+            3cmb:f1:c6-1
+            125cmb:f20:c1-48
+            125cmb:f20:c6-101
+            125cmb:f25:c1-65
+            125cmb:f25:c1-69
+            125cmb:f25:c6-100
+            4+125cmb:f1:c1-21
+            4+125cmb:f2:c1-32
+            4+125cmb:f3:c1-44
+            4+125cmb:f3:c1-64
+         */
     }
 
     /**
