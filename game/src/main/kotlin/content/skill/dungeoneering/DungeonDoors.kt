@@ -56,6 +56,7 @@ class DungeonDoors : Script {
 
         objectOperate("Force-bar", "barred_door_*") { (target) ->
             target.replace(target.id.replace("barred_door", "unbarred_door"))
+            message("You pull the plank off of the door.")
         }
 
         objectOperate("Imbue-energy", "runed_door_*") { (target) ->
