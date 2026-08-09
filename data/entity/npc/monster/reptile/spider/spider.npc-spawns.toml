@@ -72,13 +72,6 @@ spawns = [
     { id = "spider_ape_atoll", x = 2732, y = 9178, members = true },
     { id = "spider_ape_atoll", x = 2732, y = 9199, members = true },
     { id = "spider_ape_atoll", x = 2734, y = 9170, members = true },
-    # Lumbridge
-    { id = "spider", x = 3182, y = 3188 },
-    { id = "spider", x = 3182, y = 3193 },
-    { id = "spider", x = 3187, y = 3195 },
-    { id = "spider", x = 3190, y = 3182 },
-    { id = "spider", x = 3192, y = 3195 },
-    { id = "spider", x = 3196, y = 3191 },
     # Lumbridge Castle Cellar
     { id = "spider", x = 3209, y = 9618 },
     { id = "spider", x = 3211, y = 9621 },
