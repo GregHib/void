@@ -5,7 +5,6 @@ spawns = [
     { id = "giant_rat", x = 3197, y = 3202 },
     { id = "giant_rat", x = 3193, y = 3203 },
     { id = "giant_rat", x = 3194, y = 3201 },
-    { id = "giant_rat", x = 3194, y = 3211 },
     { id = "giant_rat", x = 3192, y = 3208 },
     { id = "giant_rat", x = 3195, y = 3205 },
     { id = "lumbridge_guardsman_attackable", x = 3187, y = 3245 },
@@ -54,6 +53,7 @@ spawns = [
   { id = "goblin_light_topless_spiked", x = 3187, y = 3246 },
   { id = "goblin_light_topless_spiked", x = 3185, y = 3244 },
   { id = "goblin_light_grey_bald_spear", x = 3167, y = 3205 },
+  { id = "goblin_light_grey_bald_spear", x = 3185, y = 3202 },
 # 12850
   { id = "butterfly_3", x = 3255, y= 3226},
   { id = "butterfly_3", x = 3233, y= 3216},
