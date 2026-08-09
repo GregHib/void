@@ -74,7 +74,7 @@ object VariableDefinitions {
                 }
             }
             for (file in custom) {
-                load(file) { _, stringId, values, default, persist, _ ->
+                load(file, requireId = false) { _, stringId, values, default, persist, _ ->
                     definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
                 }
             }
@@ -84,7 +84,7 @@ object VariableDefinitions {
         return this
     }
 
-    private fun load(path: String, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
+    private fun load(path: String, requireId: Boolean = true, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
         Config.fileReader(path) {
             while (nextSection()) {
                 val stringId = section()
@@ -105,6 +105,7 @@ object VariableDefinitions {
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                     }
                 }
+                require(!requireId || id != -1) { "Variable '$stringId' is missing an id, use a 'vars.toml' file for server-only variables. ${exception()}" }
                 val varValue = VariableValues(values, format, default)
                 block.invoke(id, stringId, varValue, default, persist, transmit)
             }
