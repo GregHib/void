@@ -42,14 +42,14 @@ class NPCContactTest : WorldTest() {
     }
 
     @Test
-    fun `Contacting Duradel reaches Lapalok his stand-in`() {
+    fun `Contacting Duradel reaches the Shilo Village spawn`() {
         val player = createPlayer(Tile(100, 100))
         player.levels.set(Skill.Magic, 67)
         player.open("lunar_spellbook")
         player.inventory.add("astral_rune")
         player.inventory.add("cosmic_rune")
         player.inventory.add("air_rune", 2)
-        createNPC("lapalok_shilo_village", Tile(3000, 3000))
+        createNPC("duradel_shilo_village", Tile(3000, 3000))
 
         player.interfaceOption("lunar_spellbook", "npc_contact", "Cast")
         tick(3)

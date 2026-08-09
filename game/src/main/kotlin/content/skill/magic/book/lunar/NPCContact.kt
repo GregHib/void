@@ -3,6 +3,7 @@ package content.skill.magic.book.lunar
 import content.area.kandarin.ardougne.larryHideAndSeekChat
 import content.area.wilderness.abyss.darkMageChat
 import content.skill.magic.spell.removeSpellItems
+import content.skill.slayer.baseSlayerMaster
 import content.skill.slayer.master.slayerMasterChat
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
@@ -93,11 +94,12 @@ class NPCContact : Script {
     }
 
     private suspend fun Player.contact(id: String) {
-        // Some contacts have no world spawn under their own id; Lapalok replaced
-        // Duradel at Shilo Village and Larry only spawns as his Ardougne variants
+        // Some contacts have no world spawn under their own id; the Canifis and Shilo Village
+        // masters spawn as a transforming npc which switches between the original and their
+        // stand-in, and Larry only spawns as his Ardougne variants
         val candidates = when (id) {
-            "duradel" -> listOf("duradel", "lapalok_shilo_village")
-            "lapalok" -> listOf("lapalok_shilo_village", "duradel")
+            "mazchna" -> listOf("mazchna_canifis", "mazchna")
+            "duradel", "lapalok" -> listOf("duradel_shilo_village", "duradel")
             "larry" -> listOf("larry_ardougne_normal", "larry_ardougne", "larry_ardougne_2")
             else -> listOf(id)
         }
@@ -108,9 +110,7 @@ class NPCContact : Script {
         }
         talkWith(npc)
         when (id) {
-            // Lapalok stands in for Duradel and hands out his task list
-            "lapalok" -> slayerMasterChat("duradel")
-            "turael", "mazchna", "vannaka", "chaeldar", "sumona", "duradel" -> slayerMasterChat(id)
+            "turael", "mazchna", "vannaka", "chaeldar", "sumona", "duradel", "lapalok" -> slayerMasterChat(baseSlayerMaster(id))
             "dark_mage" -> darkMageChat()
             "larry" -> larryHideAndSeekChat()
         }

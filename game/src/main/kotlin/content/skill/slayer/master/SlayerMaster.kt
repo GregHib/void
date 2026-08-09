@@ -11,6 +11,7 @@ import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,15 +21,15 @@ import world.gregs.voidps.engine.inv.inventory
 class SlayerMaster : Script {
 
     init {
-        npcOperate("Talk-to", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") { (target) ->
-            slayerMasterChat(target.id)
+        npcOperate("Talk-to", MASTER_IDS) { (target) ->
+            slayerMasterChat(master(target))
         }
 
-        npcOperate("Get-task", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") { (target) ->
-            assignTaskDialogue(target.id)
+        npcOperate("Get-task", MASTER_IDS) { (target) ->
+            assignTaskDialogue(master(target))
         }
 
-        npcOperate("Trade", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") {
+        npcOperate("Trade", MASTER_IDS) {
             if (contains("broader_fletching")) {
                 openShop("slayer_equipment_broads")
             } else {
@@ -36,9 +37,24 @@ class SlayerMaster : Script {
             }
         }
 
-        npcOperate("Rewards", "turael,mazchna,vannaka,chaeldar,sumona,duradel,kuradal") {
+        npcOperate("Rewards", MASTER_IDS) {
             open("slayer_rewards_learn")
         }
+    }
+
+    /**
+     * The masters in Canifis and Shilo Village are spawned as a transforming npc which switches
+     * between the original and their stand-in, so - like interaction dispatch - the transformed
+     * id names the master talked to, falling back to the id the npc was spawned with.
+     */
+    private fun Player.master(npc: NPC): String {
+        val transformed = npc.def(this).stringId
+        return baseSlayerMaster(if (transformed in MASTERS) transformed else npc.id)
+    }
+
+    companion object {
+        private val MASTERS = setOf("turael", "spria", "mazchna", "achtryn", "vannaka", "chaeldar", "sumona", "duradel", "lapalok", "kuradal")
+        private val MASTER_IDS = MASTERS.joinToString(",")
     }
 }
 

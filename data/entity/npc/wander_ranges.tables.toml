@@ -20995,13 +20995,13 @@ max_range = 1
 [.mazchna]
 wander_range = 3
 
-[.achtryn_3]
+[.achtryn]
 wander_range = 3
 
 [.duradel]
 wander_range = 3
 
-[.lapalok_shilo_village_3]
+[.lapalok]
 wander_range = 3
 
 [.movario_tears_of_guthix_cavern]

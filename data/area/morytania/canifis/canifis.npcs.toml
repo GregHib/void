@@ -153,7 +153,7 @@ id = 6045
 clone = "werewolf"
 examine = "She's looking for flowers."
 
-[achtryn]
+[mazchna_canifis]
 id = 8481
 
 [mazchna_base]
@@ -185,5 +185,5 @@ id = 1576
 [mazchna]
 id = 8464
 
-[achtryn_3]
+[achtryn]
 id = 8465

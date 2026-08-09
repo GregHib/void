@@ -30,6 +30,16 @@ var Player.slayerMaster: String
         this["slayer_master"] = value
     }
 
+/**
+ * Stand-in masters cover for the original while they're away and hand out the same task list.
+ */
+fun baseSlayerMaster(master: String): String = when (master) {
+    "spria" -> "turael"
+    "achtryn" -> "mazchna"
+    "lapalok" -> "duradel"
+    else -> master
+}
+
 var Player.slayerTaskRemaining: Int
     get() = this["slayer_count", 0]
     set(value) {
