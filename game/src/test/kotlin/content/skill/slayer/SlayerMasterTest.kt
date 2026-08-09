@@ -1,8 +1,10 @@
 package content.skill.slayer
 
 import WorldTest
+import content.skill.slayer.master.strongerMaster
 import dialogueContinue
 import dialogueOption
+import net.pearx.kasechange.toSentenceCase
 import npcOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -10,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
+import kotlin.test.assertNull
 
 class SlayerMasterTest : WorldTest() {
 
@@ -50,6 +53,19 @@ class SlayerMasterTest : WorldTest() {
 
         assertEquals("duradel", player.slayerMaster)
         assertNotEquals("nothing", player.slayerTask)
+    }
+
+    @Test
+    fun `Each master defers to the next master up`() {
+        val ladder = listOf("turael", "mazchna", "vannaka", "chaeldar", "sumona", "duradel", "kuradal")
+        for ((index, master) in ladder.withIndex()) {
+            val stronger = strongerMaster(master)
+            if (master == "duradel" || master == "kuradal") {
+                assertNull(stronger, "$master has no stronger master to defer to")
+                continue
+            }
+            assertEquals(ladder[index + 1].toSentenceCase(), stronger?.second?.substringBefore(" in"))
+        }
     }
 
     private fun maxedPlayer(tile: Tile): Player {

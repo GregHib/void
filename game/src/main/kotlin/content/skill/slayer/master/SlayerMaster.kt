@@ -109,14 +109,14 @@ internal suspend fun Player.slayerMasterChat(master: String) {
 }
 
 /**
- * The combat level a master starts sending players to a stronger master at, and where that master
+ * The combat level a master starts sending players to the next master up at, and where that master
  * is found. Duradel and Kuradal have no one stronger to defer to.
  */
-private fun strongerMaster(master: String): Pair<Int, String>? = when (master) {
+internal fun strongerMaster(master: String): Pair<Int, String>? = when (master) {
     "turael" -> 50 to "Mazchna in Canifis"
-    "mazchna" -> 75 to "Chaeldar in Zanaris"
-    "vannaka" -> 90 to "Sumona in Pollnivneach"
-    "chaeldar" -> 100 to "Duradel in Shilo Village"
+    "mazchna" -> 75 to "Vannaka in Edgeville"
+    "vannaka" -> 90 to "Chaeldar in Zanaris"
+    "chaeldar" -> 100 to "Sumona in Pollnivneach"
     "sumona" -> 120 to "Duradel in Shilo Village"
     else -> null
 }
