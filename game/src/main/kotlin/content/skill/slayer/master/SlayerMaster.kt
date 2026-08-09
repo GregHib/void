@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
@@ -80,17 +81,17 @@ internal suspend fun Player.slayerMasterChat(master: String) {
     choice {
         option<Neutral>("I need another assignment.") {
             val stronger = strongerMaster(master)
-            if (stronger == null || combatLevel <= stronger.first) {
+            if (stronger == null) {
                 assignTaskDialogue(master)
                 return@option
             }
-            val next = stronger.second
-            npc<Neutral>("You're actually very strong, are you sure you don't want $next to assign you a task?")
+            val name = stronger.id.toSentenceCase()
+            npc<Neutral>("You're actually very strong, are you sure you don't want $name in ${stronger.location} to assign you a task?")
             choice {
                 option<Neutral>("No that's okay, I'll take a task from you.") {
                     assignTaskDialogue(master)
                 }
-                option<Neutral>("Oh okay then, I'll go talk to ${next.substringBefore(" in")}.")
+                option<Neutral>("Oh okay then, I'll go talk to $name.")
             }
         }
         option<Quiz>("Have you any rewards for me, or anything to trade?") {
@@ -108,17 +109,47 @@ internal suspend fun Player.slayerMasterChat(master: String) {
     }
 }
 
+internal data class SlayerMasterRank(
+    val id: String,
+    val location: String,
+    val combat: Int,
+    val slayer: Int = 1,
+    val quest: String? = null,
+)
+
 /**
- * The combat level a master starts sending players to the next master up at, and where that master
- * is found. Duradel and Kuradal have no one stronger to defer to.
+ * The masters in order of strength, with the requirements the rewards interface lists for each.
  */
-internal fun strongerMaster(master: String): Pair<Int, String>? = when (master) {
-    "turael" -> 50 to "Mazchna in Canifis"
-    "mazchna" -> 75 to "Vannaka in Edgeville"
-    "vannaka" -> 90 to "Chaeldar in Zanaris"
-    "chaeldar" -> 100 to "Sumona in Pollnivneach"
-    "sumona" -> 120 to "Duradel in Shilo Village"
-    else -> null
+internal val slayerMasterRanks = listOf(
+    SlayerMasterRank("turael", "Burthorpe", combat = 3),
+    SlayerMasterRank("mazchna", "Canifis", combat = 20),
+    SlayerMasterRank("vannaka", "Edgeville Dungeon", combat = 40),
+    SlayerMasterRank("chaeldar", "Zanaris", combat = 70),
+    SlayerMasterRank("sumona", "Pollnivneach", combat = 3, slayer = 35, quest = "smoking_kills"),
+    SlayerMasterRank("duradel", "Shilo Village", combat = 100, slayer = 50),
+    SlayerMasterRank("kuradal", "the Ancient Cavern", combat = 110, slayer = 75),
+)
+
+/**
+ * The next master up a player has outgrown their current one for, skipping any they can't yet be
+ * assigned tasks by. Null once they're with the strongest master they qualify for.
+ */
+internal fun Player.strongerMaster(master: String): SlayerMasterRank? {
+    val rank = slayerMasterRanks.indexOfFirst { it.id == master }
+    if (rank == -1) {
+        return null
+    }
+    return slayerMasterRanks.drop(rank + 1).firstOrNull { qualifies(it) }
+}
+
+private fun Player.qualifies(rank: SlayerMasterRank): Boolean {
+    if (combatLevel < rank.combat) {
+        return false
+    }
+    if (!has(Skill.Slayer, rank.slayer)) {
+        return false
+    }
+    return rank.quest == null || questCompleted(rank.quest)
 }
 
 internal suspend fun Player.assignTaskDialogue(master: String) {
