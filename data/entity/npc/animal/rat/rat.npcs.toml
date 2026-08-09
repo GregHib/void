@@ -68,6 +68,7 @@ str = 5
 def = 2
 hitpoints = 100
 slayer_xp = 10.0
+respawn_delay = 30
 combat_def = "giant_rat"
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
@@ -81,8 +82,9 @@ clone = "giant_rat_dark"
 hunt_mode = "cowardly"
 
 [giant_rat_dark_injured]
-clone = "giant_rat_dark"
 id = 8829
+categories = ["giant_rats", "rats"]
+clone = "giant_rat_dark"
 hunt_mode = "cowardly"
 
 [rat_ratcatchers]
