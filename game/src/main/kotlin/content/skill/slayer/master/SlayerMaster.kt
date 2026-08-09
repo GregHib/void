@@ -131,15 +131,15 @@ internal val slayerMasterRanks = listOf(
 )
 
 /**
- * The next master up a player has outgrown their current one for, skipping any they can't yet be
- * assigned tasks by. Null once they're with the strongest master they qualify for.
+ * The strongest master a player can be assigned tasks by, so they're pointed at the best rewards
+ * available to them rather than one rung up. Null once they're already with them.
  */
 internal fun Player.strongerMaster(master: String): SlayerMasterRank? {
     val rank = slayerMasterRanks.indexOfFirst { it.id == master }
     if (rank == -1) {
         return null
     }
-    return slayerMasterRanks.drop(rank + 1).firstOrNull { qualifies(it) }
+    return slayerMasterRanks.drop(rank + 1).lastOrNull { qualifies(it) }
 }
 
 private fun Player.qualifies(rank: SlayerMasterRank): Boolean {

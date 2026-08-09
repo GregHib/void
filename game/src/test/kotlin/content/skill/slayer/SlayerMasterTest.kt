@@ -56,21 +56,18 @@ class SlayerMasterTest : WorldTest() {
     }
 
     @Test
-    fun `Each master defers to the next master they qualify for`() {
+    fun `Every master points at the strongest one you qualify for`() {
         val player = maxedPlayer(Tile(3200, 3200))
         player["smoking_kills"] = "completed"
 
-        assertEquals("mazchna", player.strongerMaster("turael")?.id)
-        assertEquals("vannaka", player.strongerMaster("mazchna")?.id)
-        assertEquals("chaeldar", player.strongerMaster("vannaka")?.id)
-        assertEquals("sumona", player.strongerMaster("chaeldar")?.id)
-        assertEquals("duradel", player.strongerMaster("sumona")?.id)
-        assertEquals("kuradal", player.strongerMaster("duradel")?.id)
+        for (master in listOf("turael", "mazchna", "vannaka", "chaeldar", "sumona", "duradel")) {
+            assertEquals("kuradal", player.strongerMaster(master)?.id, "$master should point at Kuradal")
+        }
         assertNull(player.strongerMaster("kuradal"))
     }
 
     @Test
-    fun `Masters skip over those you can't be assigned tasks by`() {
+    fun `The strongest master is the best one you can be assigned tasks by`() {
         val player = createPlayer(Tile(3200, 3200))
         player.setLevel(Skill.Attack, 80)
         player.setLevel(Skill.Strength, 80)
@@ -79,8 +76,21 @@ class SlayerMasterTest : WorldTest() {
         player.setLevel(Skill.Slayer, 55)
 
         // Combat 70 for Chaeldar, but Smoking Kills is outstanding and Duradel wants combat 100
-        assertEquals("chaeldar", player.strongerMaster("vannaka")?.id)
+        assertEquals("chaeldar", player.strongerMaster("turael")?.id)
         assertNull(player.strongerMaster("chaeldar"))
+    }
+
+    @Test
+    fun `Finishing Smoking Kills promotes Sumona over Chaeldar`() {
+        val player = createPlayer(Tile(3200, 3200))
+        player.setLevel(Skill.Attack, 80)
+        player.setLevel(Skill.Strength, 80)
+        player.setLevel(Skill.Defence, 60)
+        player.setLevel(Skill.Constitution, 60)
+        player.setLevel(Skill.Slayer, 55)
+        player["smoking_kills"] = "completed"
+
+        assertEquals("sumona", player.strongerMaster("turael")?.id)
     }
 
     @Test
