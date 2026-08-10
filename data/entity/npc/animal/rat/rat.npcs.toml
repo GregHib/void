@@ -61,6 +61,30 @@ categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
 hunt_mode = "cowardly"
 
+[giant_rat_2]
+id = 950
+categories = ["giant_rats", "rats"]
+clone = "giant_rat"
+hunt_mode = "cowardly"
+
+[giant_rat_3]
+id = 12349
+categories = ["giant_rats", "rats"]
+clone = "giant_rat"
+hunt_mode = "cowardly"
+
+[giant_rat_4]
+id = 4924
+categories = ["giant_rats", "rats"]
+clone = "giant_rat"
+hunt_mode = "cowardly"
+
+[giant_rat_5]
+id = 12351
+categories = ["giant_rats", "rats"]
+clone = "giant_rat"
+hunt_mode = "cowardly"
+
 [giant_rat_dark]
 id = 8828
 att = 6
