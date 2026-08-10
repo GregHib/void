@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -47,21 +48,21 @@ object Door {
      */
     fun closeDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
         val double = DoubleDoor.get(player, door, def, 1)
+        // The revert plays the sound for us, otherwise it'd play twice
         if (resetExisting(door, double)) {
-            sound(player, def, "close")
             return true
         }
 
         // Single door
         if (double == null && door.id.endsWith("_opened")) {
-            replace(door, def, "_opened", "_closed", 0, 3, ticks, collision)
+            replace(door, def, "_opened", "_closed", 0, 3, ticks, collision, revert(def, door, "open"))
             sound(player, def, "close")
             return true
         }
 
         // Double doors
         if (double != null && door.id.endsWith("_opened") && double.id.endsWith("_opened")) {
-            DoubleDoor.close(player, door, def, double, ticks, collision)
+            DoubleDoor.close(player, door, def, double, ticks, collision, revert(def, door, "open"))
             sound(player, def, "close")
             return true
         }
@@ -74,21 +75,21 @@ object Door {
      */
     fun openDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
         val double = DoubleDoor.get(player, door, def, 0)
+        // The revert plays the sound for us, otherwise it'd play twice
         if (resetExisting(door, double)) {
-            sound(player, def, "open")
             return true
         }
 
         // Single door
         if (double == null && def.stringId.endsWith("_closed")) {
-            replace(door, def, "_closed", "_opened", 1, 1, ticks, collision)
+            replace(door, def, "_closed", "_opened", 1, 1, ticks, collision, revert(def, door, "close"))
             sound(player, def, "open")
             return true
         }
 
         // Double doors
         if (double != null && def.stringId.endsWith("_closed") && double.def(player).stringId.endsWith("_closed")) {
-            DoubleDoor.open(player, door, def, double, ticks, collision)
+            DoubleDoor.open(player, door, def, double, ticks, collision, revert(def, door, "close"))
             sound(player, def, "open")
             return true
         }
@@ -97,22 +98,30 @@ object Door {
     }
 
     private fun sound(player: Player, definition: ObjectDefinition, suffix: String) {
+        player.sound(soundName(definition, suffix))
+    }
+
+    /**
+     * Plays [suffix] to everyone nearby once a temporary door reverts to its original state
+     */
+    private fun revert(definition: ObjectDefinition, obj: GameObject, suffix: String): () -> Unit = {
+        areaSound(soundName(definition, suffix), obj.tile)
+    }
+
+    private fun soundName(definition: ObjectDefinition, suffix: String): String {
         val type = if (definition.isGate()) "gate" else "door"
         val material = definition["material", ""]
         if (material.isEmpty()) {
-            player.sound("${type}_$suffix")
-            return
+            return "${type}_$suffix"
         }
         // Materials are named after either the door type ("iron_door_open") or the sound
         // itself ("grate_open"), fall back to the generic sound rather than playing nothing
         val sounds: SoundDefinitions = get()
-        player.sound(
-            when {
-                sounds.contains("${material}_${type}_$suffix") -> "${material}_${type}_$suffix"
-                sounds.contains("${material}_$suffix") -> "${material}_$suffix"
-                else -> "${type}_$suffix"
-            },
-        )
+        return when {
+            sounds.contains("${material}_${type}_$suffix") -> "${material}_${type}_$suffix"
+            sounds.contains("${material}_$suffix") -> "${material}_$suffix"
+            else -> "${type}_$suffix"
+        }
     }
 
     private fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
@@ -126,7 +135,7 @@ object Door {
     /**
      * Replace door [obj] with [next] for [ticks]
      */
-    private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true) {
+    private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
         val hinged = !def.stringId.contains("single")
         obj.replace(
             id = def.stringId.replace(current, next),
@@ -134,6 +143,7 @@ object Door {
             rotation = if (hinged) obj.rotation(objRotation) else obj.rotation,
             ticks = ticks,
             collision = collision,
+            onRevert = onRevert,
         )
     }
 

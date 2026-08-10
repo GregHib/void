@@ -22,6 +22,7 @@ object Replace {
         secondRotation: Int,
         ticks: Int,
         collision: Boolean = true,
+        onRevert: (() -> Unit)? = null,
     ) {
         val firstId = ObjectDefinitions.get(firstReplacement).id
         val secondId = ObjectDefinitions.get(secondReplacement).id
@@ -39,6 +40,7 @@ object Replace {
             GameObjects.remove(second, collision)
             GameObjects.add(firstOriginal, collision)
             GameObjects.add(secondOriginal, collision)
+            onRevert?.invoke()
         }
     }
 }

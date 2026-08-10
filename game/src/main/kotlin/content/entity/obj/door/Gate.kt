@@ -22,6 +22,7 @@ object Gate {
         objRotation: Int,
         hingeTileRotation: Int,
         tileRotation: Int,
+        onRevert: (() -> Unit)? = null,
     ) {
         val first = if (flip) double else obj
         val second = if (flip) obj else double
@@ -37,6 +38,7 @@ object Gate {
             second.rotation(objRotation),
             ticks,
             collision = collision,
+            onRevert = onRevert,
         )
     }
 
