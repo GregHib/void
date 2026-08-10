@@ -35,5 +35,5 @@ spawns = [
   { id = "undead_one_shilo_village_4", x = 2876, y = 2955 },
   { id = "undead_one_shilo_village_5", x = 2877, y = 2959 },
   { id = "undead_one_shilo_village_6", x = 2873, y = 2951 },
-  { id = "lapalok_shilo_village", x = 2869, y = 2982, level = 1, members = true },
+  { id = "duradel_shilo_village", x = 2869, y = 2982, level = 1, members = true },
 ]
