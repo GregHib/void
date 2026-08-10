@@ -30704,7 +30704,7 @@ wander_range = 2
 wander_range = 1
 
 [.bartender_rusty_anchor_inn_3]
-wander_range = 1
+wander_range = 0
 
 #[.11708]
 #wander_range = 0
