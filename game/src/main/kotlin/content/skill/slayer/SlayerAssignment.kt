@@ -80,13 +80,13 @@ class SlayerAssignment : Script {
             }
             player.interfaces.sendText(id, "text_$i", player["blocked_task_$i", "nothing"].toSentenceCase())
         }
-        val assignment = player["slayer_assignment", ""]
-        if (assignment.isEmpty()) {
+        val assignment = player.slayerTask
+        if (assignment == "nothing") {
             player.interfaces.sendText(id, "reassign_text", "You must have an assignment to use this.")
             player.interfaces.sendText(id, "block_text", "You must have an assignment to use this.")
         } else {
-            player.interfaces.sendText(id, "reassign_text", "Cancel task of $assignment.")
-            player.interfaces.sendText(id, "block_text", "Never assign $assignment again.")
+            player.interfaces.sendText(id, "reassign_text", "Cancel task of ${assignment.toSentenceCase()}.")
+            player.interfaces.sendText(id, "block_text", "Never assign ${assignment.toSentenceCase()} again.")
         }
         player.interfaces.sendColour(id, "reassign_text", if (points < 30) Colours.RED else Colours.ORANGE)
         player.interfaces.sendColour(id, "reassign_points", if (points < 30) Colours.RED else Colours.ORANGE)
