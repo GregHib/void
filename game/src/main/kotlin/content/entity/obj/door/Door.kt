@@ -10,12 +10,14 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -95,8 +97,22 @@ object Door {
     }
 
     private fun sound(player: Player, definition: ObjectDefinition, suffix: String) {
-        val material = if (definition.contains("material")) "${definition["material", ""]}_" else ""
-        player.sound(if (definition.isGate()) "${material}gate_$suffix" else "${material}door_$suffix")
+        val type = if (definition.isGate()) "gate" else "door"
+        val material = definition["material", ""]
+        if (material.isEmpty()) {
+            player.sound("${type}_$suffix")
+            return
+        }
+        // Materials are named after either the door type ("iron_door_open") or the sound
+        // itself ("grate_open"), fall back to the generic sound rather than playing nothing
+        val sounds: SoundDefinitions = get()
+        player.sound(
+            when {
+                sounds.contains("${material}_${type}_$suffix") -> "${material}_${type}_$suffix"
+                sounds.contains("${material}_$suffix") -> "${material}_$suffix"
+                else -> "${type}_$suffix"
+            },
+        )
     }
 
     private fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
