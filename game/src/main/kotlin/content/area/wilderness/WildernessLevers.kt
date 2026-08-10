@@ -3,6 +3,7 @@ package content.area.wilderness
 import content.entity.obj.ObjectTeleports
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import content.skill.magic.book.modern.teleBlocked
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
@@ -10,13 +11,29 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+
+/**
+ * Levers can't be pulled while teleblocked unless a forinthry bracelet is worn.
+ */
+fun Player.leverTeleportBlocked(): Boolean {
+    if (teleBlocked && !equipped(EquipSlot.Hands).id.startsWith("forinthry_bracelet")) {
+        message("A magical force has stopped you from teleporting.")
+        return true
+    }
+    return false
+}
 
 class WildernessLevers(val teleports: ObjectTeleports) : Script {
 
     init {
         objTeleportTakeOff("Pull", "lever_*") { target, option ->
+            if (leverTeleportBlocked()) {
+                return@objTeleportTakeOff Teleport.CANCEL
+            }
             if (target.def(this).stringId == "lever_ardougne_edgeville" && get("wilderness_lever_warning", true)) {
                 statement("Warning! Pulling the lever will teleport you deep into the Wilderness.")
                 choice("Are you sure you wish to pull it?") {

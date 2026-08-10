@@ -13,16 +13,24 @@ max_hit_melee = 120
 attack_bonus = 10
 respawn_delay = 50
 examine = "A well-trained Khazard warrior, on orders to guard this area."
+drop_table = "elite_khazard_guard"
+combat_def = "guard"
 
 [elite_khazard_guard_movarios_base_2]
 id = 8438
 clone = "elite_khazard_guard_movarios_base"
+drop_table = "elite_khazard_guard"
+combat_def = "guard"
 
 [elite_khazard_guard_movarios_base_3]
 id = 8439
 clone = "elite_khazard_guard_movarios_base"
+drop_table = "elite_khazard_guard"
+combat_def = "guard"
 
 [elite_khazard_guard_movarios_base_4]
 id = 8440
 clone = "elite_khazard_guard_movarios_base"
+drop_table = "elite_khazard_guard"
+combat_def = "guard"
 

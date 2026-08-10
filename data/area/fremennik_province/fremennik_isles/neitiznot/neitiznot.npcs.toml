@@ -68,6 +68,7 @@ slayer_xp = 63.0
 categories = ["trolls"]
 respawn_delay = 50
 examine = "An ice troll youngling."
+drop_table = "ice_troll_runt"
 
 [ice_troll_male_neitiznot]
 id = 5522

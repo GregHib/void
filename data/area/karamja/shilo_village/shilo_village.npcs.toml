@@ -17,6 +17,7 @@ categories = ["skeletons"]
 respawn_delay = 50
 drop_table = "undead_one"
 examine = "A minion of Rashiliyia."
+combat_def = "zombie"
 
 [undead_one_shilo_village_2]
 id = 505
@@ -35,6 +36,7 @@ categories = ["zombies"]
 respawn_delay = 50
 drop_table = "undead_one"
 examine = "The animated dead; one of Rashiliyia's minions."
+combat_def = "zombie"
 
 [vigroy_shilo_village]
 id = 511
@@ -67,18 +69,22 @@ examine = "This is Fernahei; he owns the local fishing tackle shop."
 [undead_one_shilo_village_3]
 id = 5355
 clone = "undead_one_shilo_village"
+combat_def = "zombie"
 
 [undead_one_shilo_village_4]
 id = 5356
 clone = "undead_one_shilo_village"
+combat_def = "zombie"
 
 [undead_one_shilo_village_5]
 id = 5357
 clone = "undead_one_shilo_village_2"
+combat_def = "zombie"
 
 [undead_one_shilo_village_6]
 id = 5358
 clone = "undead_one_shilo_village_2"
+combat_def = "zombie"
 
 [lapalok_shilo_village]
 id = 8483

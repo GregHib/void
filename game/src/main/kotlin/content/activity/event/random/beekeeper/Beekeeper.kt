@@ -2,6 +2,8 @@ package content.activity.event.random.beekeeper
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -9,7 +11,6 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.quest.smallInstance
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.Script
@@ -45,7 +46,7 @@ class Beekeeper : Script {
         // The Bee keeper's cache option is "Talk-To" (capital O), like the pinball trolls.
         npcOperate("Talk-To", "bee_keeper") { (keeper) ->
             if (get<String>("random_event") != "beekeeper" || keeper.owner != this) {
-                npc<Neutral>("bee_keeper", "Sorry, you're not the person I need.")
+                npc<Neutral>("Sorry, you're not the person I need.")
                 return@npcOperate
             }
             beekeeperTalk()
@@ -107,9 +108,9 @@ class Beekeeper : Script {
     private suspend fun Player.beekeeperTalk() {
         if (!get("beekeeper_intro", false)) {
             set("beekeeper_intro", true)
-            npc<Neutral>("bee_keeper", "Ah, $name. I'm sorry to drag you away like this, but I need some help building a new hive for my bees.")
+            npc<Neutral>("Ah, $name. I'm sorry to drag you away like this, but I need some help building a new hive for my bees.")
             player<Quiz>("What do you want me to do?")
-            npc<Neutral>("bee_keeper", "All the components of the beehive are jumbled up. You've got to put them in the correct order for building a hive.")
+            npc<Neutral>("All the components of the beehive are jumbled up. You've got to put them in the correct order for building a hive.")
             player<Neutral>("Oh, very well. Let's take a look...")
         }
         openHive()
@@ -156,11 +157,15 @@ class Beekeeper : Script {
 
     private suspend fun Player.succeed() {
         close("beehive_build")
+        onExitInterrupt { leaveApiary() }
         npc<Happy>("bee_keeper", "That's perfect! I'll get some bees moved in immediately. Now, I'm sure I must have something to offer you for all your help...")
-        addOrDrop("random_event_gift")
         message("You've been given a gift!")
+        leaveApiary()
+    }
+
+    private suspend fun Player.leaveApiary() {
         clearState()
-        RandomEvents.complete(this)
+        returnHome("random_event_gift")
     }
 
     private suspend fun Player.fail() {

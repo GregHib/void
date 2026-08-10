@@ -22,6 +22,16 @@ import kotlin.math.max
 
 object SpellRunes {
 
+    fun magicLevel(book: String, spell: String): Int? {
+        val component = InterfaceDefinitions.getComponent(book, spell) ?: return null
+        return component.magicLevel
+    }
+
+    fun requiredItems(book: String, spell: String): Map<String, Int>? {
+        val component = InterfaceDefinitions.getComponent(book, spell) ?: return null
+        return component.spellRequiredItems()
+    }
+
     fun Transaction.removeItems(player: Player, spell: String, message: Boolean = true) {
         val component = InterfaceDefinitions.getComponent(player.spellBook, spell)
         if (component == null || !player.has(Skill.Magic, component.magicLevel, message = message)) {

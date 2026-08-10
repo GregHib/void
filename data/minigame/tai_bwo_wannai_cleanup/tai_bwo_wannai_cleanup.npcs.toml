@@ -72,3 +72,4 @@ examine = "A slithering serpent that likes to hide in the bush."
 [bush_snake_2]
 id = 2490
 clone = "bush_snake"
+drop_table = "bush_snake"

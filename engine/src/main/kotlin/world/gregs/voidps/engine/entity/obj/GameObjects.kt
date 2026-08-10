@@ -232,12 +232,17 @@ object GameObjects : ZoneBatchUpdates.Sender {
     /**
      * Get object by string [id]
      */
-    fun findOrNull(tile: Tile, id: String) = get(tile, ObjectLayer.WALL, id)
-        ?: get(tile, ObjectLayer.WALL_DECORATION, id)
-        ?: get(tile, ObjectLayer.GROUND, id)
-        ?: get(tile, ObjectLayer.GROUND_DECORATION, id)
+    fun findOrNull(tile: Tile, id: String) = findLayerOrNull(tile, ObjectLayer.WALL, id)
+        ?: findLayerOrNull(tile, ObjectLayer.WALL_DECORATION, id)
+        ?: findLayerOrNull(tile, ObjectLayer.GROUND, id)
+        ?: findLayerOrNull(tile, ObjectLayer.GROUND_DECORATION, id)
 
-    private fun get(tile: Tile, layer: Int, id: String): GameObject? {
+    fun findLayer(tile: Tile, layer: Int, id: String) = findLayerOrNull(tile, layer, id) ?: error("Object '$id' not found at $tile layer $layer")
+
+    /**
+     * Get object by [ObjectLayer] and string [id]
+     */
+    fun findLayerOrNull(tile: Tile, layer: Int, id: String): GameObject? {
         val obj = getLayer(tile, layer) ?: return null
         if (obj.id == id) {
             return obj

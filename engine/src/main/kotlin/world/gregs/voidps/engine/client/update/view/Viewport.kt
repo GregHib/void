@@ -24,6 +24,9 @@ class Viewport {
     var lastBatchZone: Zone = Zone.EMPTY
     var loaded: Boolean = false
     var dynamic: Boolean = false
+
+    // The DynamicZones.version the last region update was sent with
+    var dynamicVersion: Int = -1
     var size: Int = 0
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]

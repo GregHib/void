@@ -1,6 +1,5 @@
 [hellhound]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "hellhound_defend"
 defend_sound = "hellhound_defend"
 death_anim = "hellhound_death"

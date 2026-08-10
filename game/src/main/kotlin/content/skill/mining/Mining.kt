@@ -105,6 +105,9 @@ class Mining : Script {
                     }
                 }
                 for (item in ores) {
+                    if (item == "rune_essence" && has(Skill.Mining, 30) && World.members) {
+                        continue
+                    }
                     if (item == "pure_essence" && !World.members) {
                         continue
                     }
@@ -117,7 +120,7 @@ class Mining : Script {
                         val xp = ore.int("xp") / 10.0
                         ShootingStarHandler.extraOreHandler(this, item, xp)
                         val added = addOre(this, item, target)
-                        if (added > 0) {
+                        if (added > 0 || item == "stardust") {
                             exp(Skill.Mining, xp * added)
                         }
                         if (added < 1 || deplete(target, ore)) {
@@ -129,6 +132,7 @@ class Mining : Script {
                 stop("action_delay")
             }
             softTimers.stop("mining")
+            clearAnim()
         }
 
         objectApproach("Prospect") { (target) ->

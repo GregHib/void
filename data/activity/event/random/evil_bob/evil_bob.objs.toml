@@ -9,3 +9,7 @@ examine = "A cold fire for uncooking fish."
 [evil_bob_exit_portal]
 id = 8987
 examine = "A portal leading away from this dreadful place."
+
+[bank_deposit_box_scaperune]
+id = 32930
+examine = "Lets you put items into your bank."

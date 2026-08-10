@@ -17,7 +17,7 @@ class CharacterUpdateTask(
     override fun predicate(character: Player): Boolean = character.networked
 
     override fun run(character: Player) {
-        ZoneBatchUpdates.run(character)
+        ZoneBatchUpdates.send(character)
         playerUpdating.run(character)
         npcUpdating.run(character)
         character.viewport!!.shift()

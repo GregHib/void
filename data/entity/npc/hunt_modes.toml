@@ -90,6 +90,15 @@ check_not_combat_self = true
 check_not_busy = false
 check_zamorak = true
 
+# Mage Arena battle mages; god cape and Kolodion fight exemptions filtered in BattleMages
+[battle_mage]
+type = "player"
+check_visual = "line_of_sight"
+check_not_too_strong = false
+check_not_combat = true
+check_not_combat_self = true
+check_not_busy = false
+
 # Thieving stalls
 [guarding]
 type = "player"

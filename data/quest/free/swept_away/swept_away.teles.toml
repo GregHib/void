@@ -1,12 +1,5 @@
-# 12614 swept_away
-[player_safety_stairs_3rd_floor_down_north]
-option = "Climb-down"
-tile = { x = 3171, y = 4272, level = 3 }
-to = { x = 3174, y = 4273, level = 2 }
-
 # 12870 swept_away
-[fist_of_guthix_stairs]
-option = "Exit"
-tile = { x = 1673, y = 5598 }
-to = { x = 3242, y = 3574 }
-
+[hettys_basement_ladder]
+option = "Climb-up"
+tile = { x = 3165, y = 4514 }
+to = { x = 2967, y = 3201 }

@@ -12,6 +12,7 @@ categories = ["skeletons"]
 respawn_delay = 15
 drop_table = "giant_skeleton_shadow_dungeon"
 examine = "A giant skeleton."
+combat_def = "skeleton_unarmed"
 
 [shadow_hound]
 id = 1976
@@ -31,4 +32,5 @@ examine = "Looks hungry!"
 [giant_skeleton_shadow_dungeon_2]
 id = 5359
 clone = "giant_skeleton_shadow_dungeon"
+combat_def = "skeleton_unarmed"
 

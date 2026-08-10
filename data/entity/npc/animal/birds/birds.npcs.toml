@@ -1,7 +1,6 @@
 [duck_swim]
 id = 46
 attack_bonus = -47
-wander_range = 8
 hitpoints = 30
 slayer_xp = 3.0
 max_hit_melee = 1
@@ -12,6 +11,7 @@ height = 10
 collision = "sea"
 combat_def = "duck_swim"
 examine = "Quackers."
+drop_table = "duck"
 
 [crow]
 id = 1754
@@ -34,14 +34,14 @@ id = 2252
 [duck_grey_swim]
 clone = "duck_swim"
 id = 2693
-wander_range = 8
 examine = "She quackers."
+drop_table = "duck"
 
 [duckling]
 clone = "duck_swim"
 id = 2694
-wander_range = 6
 examine = "Mini quackers."
+drop_table = "bones"
 
 [crow_5]
 clone = "crow"
@@ -54,7 +54,6 @@ id = 4571
 [drake]
 id = 6114
 attack_bonus = -47
-wander_range = 8
 hitpoints = 30
 slayer_xp = 3.0
 categories = ["ducks", "birds"]
@@ -67,7 +66,6 @@ examine = "It quacks like a duck."
 [ducklings]
 id = 6112
 categories = ["ducks", "birds"]
-wander_range = 6
 collision = "sea"
 examine = "Aww, cute."
 
@@ -79,7 +77,6 @@ examine = "Waddle waddle waddle quack."
 [wimpy_bird]
 id = 7031
 categories = ["birds"]
-wander_range = 3
 collision = "sky"
 respawn_delay = 5
 examine = "An ogre snack with wings."

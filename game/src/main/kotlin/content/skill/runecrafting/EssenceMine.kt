@@ -1,9 +1,9 @@
 package content.skill.runecrafting
 
 import content.entity.proj.shoot
-import kotlinx.coroutines.delay
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,11 +15,13 @@ object EssenceMine {
     suspend fun teleport(npc: NPC, player: Player) {
         npc.say("Senventior Disthine Molenko!")
         npc.gfx("curse_cast")
+        areaSound("curse_cast", npc.tile, radius = 10)
         npc.face(player)
         npc.anim("curse")
-        player.gfx("curse_impact")
-        player.shoot("curse", player.tile)
-        player.delay(3)
+        player.gfx("curse_impact", delay = 100)
+        areaSound("curse_impact", player.tile, radius = 10, delay = 100)
+        player.shoot("curse", player.tile, delay = 60)
+        player.delay(4)
         player["last_npc_teleport_to_rune_essence_mine"] = npc.id
         val tile = Areas["essence_mine_teleport"].random(player)!!
         player.tele(tile)

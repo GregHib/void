@@ -2,6 +2,7 @@
 type = "all"
 drops = [
     { table = "flesh_crawler_secondary" },
+    { table = "flesh_crawler_charms", members = true },
 ]
 
 [flesh_crawler_secondary]
@@ -23,4 +24,13 @@ drops = [
     { id = "nothing", chance = 56, members = false },
     { table = "herb_drop_table", chance = 35, members = true },
     { table = "gem_drop_table", chance = 2 },
+]
+
+[flesh_crawler_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 4114 },
+    { id = "green_charm", chance = 5957 },
+    { id = "crimson_charm", chance = 736 },
+    { id = "blue_charm", chance = 264 },
 ]

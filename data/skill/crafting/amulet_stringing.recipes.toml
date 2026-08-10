@@ -15,6 +15,14 @@ remove = ["gold_amulet_unstrung", "ball_of_wool"]
 add = ["gold_amulet"]
 message = "You put some string on your amulet."
 
+[string_sapphire_amulet]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["sapphire_amulet_unstrung", "ball_of_wool"]
+add = ["sapphire_amulet"]
+message = "You put some string on your amulet."
+
 [string_emerald_amulet]
 skill = "crafting"
 xp = 4.0
@@ -54,3 +62,19 @@ ticks = 2
 remove = ["onyx_amulet_unstrung", "ball_of_wool"]
 add = ["onyx_amulet"]
 message = "You put some string on your amulet."
+
+[string_unblessed_symbol]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["unstrung_symbol", "ball_of_wool"]
+add = ["unblessed_symbol"]
+message = "You put some string on your holy symbol."
+
+[string_unpowered_symbol]
+skill = "crafting"
+xp = 4.0
+ticks = 2
+remove = ["unstrung_emblem", "ball_of_wool"]
+add = ["unpowered_symbol"]
+message = "You put some string on your unholy symbol."

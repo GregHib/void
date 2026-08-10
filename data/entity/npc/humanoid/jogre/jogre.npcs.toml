@@ -10,6 +10,5 @@ hunt_mode = "anti_zamorak_aggressive"
 respawn_delay = 25
 drop_table = "jogre"
 categories = ["jogres"]
-wander_range = 6
 god = "bandos"
 examine = "Green and aggressive."

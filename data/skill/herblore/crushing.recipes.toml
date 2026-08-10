@@ -70,3 +70,11 @@ requires = ["pestle_and_mortar"]
 remove = ["chocolate_bar"]
 add = ["chocolate_dust"]
 animation = "pestle_and_mortar"
+
+[ground_mud_runes]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["mud_rune"]
+add = ["ground_mud_runes"]
+animation = "pestle_and_mortar"
+message = "You grind the mud runes into a powder."

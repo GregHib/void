@@ -1,0 +1,72 @@
+[ghostly_warrior_drop_table]
+type = "all"
+drops = [
+    { table = "ghostly_warrior_secondary" },
+]
+
+[ghostly_warrior_secondary]
+roll = 1024
+drops = [
+    { id = "mind_rune", min = 10, max = 40, chance = 64 },
+    { id = "chaos_rune", min = 10, max = 20, chance = 64 },
+    { id = "cosmic_rune", min = 10, max = 20, chance = 64 },
+    { id = "steel_full_helm", chance = 64 },
+    { id = "steel_platebody", chance = 64 },
+    { id = "steel_platelegs", chance = 64 },
+    { id = "coins", min = 20, max = 87, chance = 64 },
+    { id = "soul_rune", min = 1, max = 5, chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "uncut_ruby", chance = 6 },
+    { id = "rune_javelin", amount = 5, chance = 6 },
+    { id = "rune_spear", chance = 6 },
+    { id = "nature_talisman", chance = 6 },
+    { id = "uncut_diamond", chance = 2 },
+    { id = "dragon_spear", chance = 2 },
+    { id = "spirit_shield", chance = 2 },
+    { id = "loop_half_of_a_key", chance = 2 },
+    { id = "tooth_half_of_a_key", chance = 2 },
+    { id = "shield_left_half", chance = 2 },
+]
+
+[tormented_wraith_drop_table]
+type = "all"
+drops = [
+    { table = "tormented_wraith_secondary" },
+]
+
+[tormented_wraith_secondary]
+roll = 1028
+drops = [
+    { id = "black_kiteshield", chance = 64 },
+    { id = "black_longsword", chance = 64 },
+    { id = "black_platebody", chance = 32 },
+    { id = "black_platelegs", chance = 32 },
+    { id = "black_chainbody", chance = 32 },
+    { id = "black_full_helm", chance = 32 },
+    { id = "black_med_helm", chance = 32 },
+    { id = "mithril_dart_p", amount = 23, chance = 32 },
+    { id = "death_rune", amount = 10, chance = 32 },
+    { id = "blood_rune", amount = 7, chance = 32 },
+    { id = "chaos_rune", amount = 15, chance = 32 },
+    { id = "grimy_guam", min = 1, max = 2, chance = 32 },
+    { id = "grimy_marrentill", min = 1, max = 2, chance = 32 },
+    { id = "grimy_tarromin", min = 1, max = 2, chance = 32 },
+    { id = "grimy_harralander", min = 1, max = 2, chance = 32 },
+    { id = "grimy_ranarr", min = 1, max = 2, chance = 32 },
+    { id = "grimy_irit", min = 1, max = 2, chance = 32 },
+    { id = "grimy_avantoe", min = 1, max = 2, chance = 32 },
+    { id = "grimy_kwuarm", min = 1, max = 2, chance = 32 },
+    { id = "grimy_cadantine", min = 1, max = 2, chance = 32 },
+    { id = "grimy_lantadyme", min = 1, max = 2, chance = 32 },
+    { id = "grimy_dwarf_weed", min = 1, max = 2, chance = 32 },
+    { id = "coins", min = 75, max = 993, chance = 32 },
+    { id = "iron_ore", amount = 50, chance = 32 },
+    { id = "adamant_bar", amount = 3, chance = 32 },
+    { id = "oak_plank", amount = 80, chance = 32 },
+    { id = "prayer_potion_3", amount = 2, chance = 32 },
+    { id = "big_bones", amount = 5, chance = 32 },
+    { id = "spirit_shield", chance = 6 },
+    { id = "holy_elixir", chance = 2 },
+    { id = "starved_ancient_effigy", chance = 2 },
+]

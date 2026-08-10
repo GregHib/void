@@ -1,0 +1,44 @@
+[giant_frog_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "giant_frog_secondary" },
+]
+
+[giant_frog_secondary]
+roll = 1024
+drops = [
+    { id = "giant_frog_legs", chance = 64 },
+    { id = "nature_rune", chance = 64 },
+    { id = "coins", amount = 2, chance = 64 },
+    { id = "iron_arrow", amount = 22, chance = 32 },
+    { id = "steel_arrow", amount = 45, chance = 32 },
+    { id = "blood_rune", chance = 32 },
+    { id = "cosmic_rune", min = 1, max = 10, chance = 32 },
+    { id = "coal", chance = 32 },
+    { id = "mithril_spear", chance = 32 },
+    { id = "spinach_roll", chance = 32 },
+    { id = "long_bone", chance = 6 },
+    { id = "adamant_boots", chance = 2 },
+    { id = "curved_bone", chance = 2 },
+]
+
+[big_frog_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "big_frog_secondary" },
+]
+
+[big_frog_secondary]
+roll = 1024
+drops = [
+    { id = "coins", amount = 5, chance = 64 },
+    { id = "water_rune", amount = 12, chance = 32 },
+    { id = "earth_rune", amount = 12, chance = 32 },
+    { id = "cosmic_rune", amount = 2, chance = 32 },
+    { id = "nature_rune", amount = 4, chance = 32 },
+    { id = "water_talisman", chance = 32 },
+    { id = "earth_talisman", chance = 32 },
+    { id = "big_frog_leg", chance = 32 },
+]

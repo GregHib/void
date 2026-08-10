@@ -1,6 +1,5 @@
 [turoth_large]
 attack_speed = 4
-retreat_range = 6
 defend_anim = "turoth_large_defend"
 defend_sound = "turoth_defend"
 death_anim = "turoth_large_death"

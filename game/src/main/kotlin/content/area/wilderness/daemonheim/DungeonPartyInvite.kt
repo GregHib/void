@@ -92,8 +92,8 @@ class DungeonPartyInvite : Script {
                 set("dungeon_party_highest_$i", Skill.all.maxOf { if (it == Skill.Constitution) member.levels.getMax(it) / 10 else member.levels.getMax(it) })
                 set("dungeon_party_total_$i", Skill.all.sumOf { if (it == Skill.Constitution) member.levels.getMax(it) / 10 else member.levels.getMax(it) })
             }
-            set("dungeon_party_floor", leader["dungeoneering_party_floor", 1])
-            set("dungeon_party_complexity", leader["dungeoneering_party_complexity", 1])
+            set("rand_invite_floor", leader["dungeoneering_party_floor", 1])
+            set("rand_invite_complexity", leader["dungeoneering_party_complexity", 1])
         }
 
         interfaceClosed("dungeon_party_invite") {
@@ -136,11 +136,11 @@ class DungeonPartyInvite : Script {
             message("${target.name} is already in your party.")
             return
         }
-        if (get("dungeon_party_complexity", 1) > target["dungeoneering_complexity", 1]) {
+        if (get("rand_invite_complexity", 1) > target["dungeoneering_complexity", 1]) {
             message("${target.name} cannot access that complexity level.")
             return
         }
-        if (get("dungeon_party_floor", 1) > target["dungeoneering_current_progress", 1]) {
+        if (get("rand_invite_floor", 1) > target["dungeoneering_current_progress", 1]) {
             message("${target.name} cannot access that floor.")
             return
         }

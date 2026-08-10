@@ -1,6 +1,5 @@
 [crocodile_kharidian_desert]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "crocodile_defend"
 defend_sound = "crocodile_defend"
 death_anim = "crocodile_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "slash", max = 60 }
 
 [goat_kharidian_desert]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "goat_defend"
 death_anim = "goat_death"
 
@@ -28,3 +26,12 @@ clone = "goat_kharidian_desert"
 
 [goat_kharidian_desert_2.melee]
 clone = "goat_kharidian_desert.melee"
+
+[desert_wolf]
+attack_speed = 4
+death_anim = "desert_wolf_death"
+
+[desert_wolf.melee]
+range = 1
+target_hit = { offense = "slash", max = 30 }
+anim = "desert_wolf_attack"

@@ -24,22 +24,37 @@ max_hit_melee = 60
 respawn_delay = 10
 categories = ["zombies"]
 examine = "This mummy looks like it means business!"
+drop_table = "mummy"
+combat_def = "mummy"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_2]
 id = 2016
 clone = "mummy_klenters_pyramid"
+drop_table = "mummy"
+combat_def = "mummy"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_3]
 id = 2017
 clone = "mummy_klenters_pyramid"
+drop_table = "mummy"
+combat_def = "mummy"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_4]
 id = 2018
 clone = "mummy_klenters_pyramid"
+drop_table = "mummy"
+combat_def = "mummy"
+hunt_mode = "cowardly"
 
 [mummy_klenters_pyramid_5]
 id = 2019
 clone = "mummy_klenters_pyramid"
+drop_table = "mummy"
+combat_def = "mummy"
+hunt_mode = "cowardly"
 
 [high_priest_klenters_pyramid_2]
 id = 1986

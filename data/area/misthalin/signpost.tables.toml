@@ -1,0 +1,55 @@
+[signposts]
+obj = "obj"
+tile = "tile"
+north_text = "string"
+east_text = "string"
+south_text = "string"
+west_text = "string"
+
+[.lumbridge_castle]
+obj = "direction_signpost_1"
+tile = {  x = 3235, y = 3228 }
+north_text = "Head north towards Fred's farm and the Windmill."
+east_text = "Cross the bridge and head east to Al Kharid or north to Varrock."
+south_text = "South to the swamps of Lumbridge."
+west_text = "West to the Lumbridge Castle and Draynor Village. Beware the goblins!"
+
+[.lumbridge_goblins]
+obj = "direction_signpost_2"
+tile = { x = 3261, y = 3230 }
+north_text = "North to farms and Varrock."
+east_text = "East to Al Kharid - toll gate; bring some money."
+south_text = "The River Lum lies to the south."
+west_text = "West to Lumbridge."
+
+[.draynor]
+obj = "direction_signpost_2"
+tile = { x = 3107, y = 3296 }
+north_text = "North to Draynor Manor."
+east_text = "East to Lumbridge"
+south_text = "South to Draynor Village and the Wizards' Tower."
+west_text = "West to Post Sarim, Falador and Rimmington."
+
+[.rimmington]
+obj = "direction_signpost_2"
+tile = { x = 2983, y = 3278 }
+north_text = "North to the glorious White Knights city of Falador."
+east_text = "Follow the path east to Port Sarim and Draynor Village."
+south_text = "Follow the path south to Rimmington."
+west_text = "Follow the path west to the Crafting Guild."
+
+[.varrock]
+obj = "direction_signpost_3"
+tile = { x = 3268, y = 3332 }
+north_text = "Sheep lay this way."
+east_text = "East to Al Kharid mine and follow the path north to Varrock east gate."
+south_text = "South through farms to Al Kharid and Lumbridge."
+west_text = "West to Champions' Guild and Varrock south gate."
+
+[.al_kharid]
+obj = "direction_signpost_3"
+tile = { x = 3283, y = 3333 }
+north_text = "North to Varrock mine and Varrock east gate."
+east_text = "Follow the path east to the Dig Site (members only)."
+south_text = "South to large Mining area and Al Kharid."
+west_text = "West to Champions' Guild and Varrock south gate."

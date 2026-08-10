@@ -1,0 +1,31 @@
+[phrin_shadow]
+attack_speed = 4
+death_anim = "shadow_death"
+
+[phrin_shadow.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+
+[riyl_shadow]
+attack_speed = 4
+death_anim = "shadow_death"
+
+[riyl_shadow.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+
+[asyn_shadow]
+attack_speed = 4
+death_anim = "shadow_death"
+
+[asyn_shadow.melee]
+range = 1
+target_hit = { offense = "crush", max = 90 }
+
+[fiyr_shadow]
+attack_speed = 4
+death_anim = "shadow_death"
+
+[fiyr_shadow.melee]
+range = 1
+target_hit = { offense = "crush", max = 110 }

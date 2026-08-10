@@ -3,6 +3,7 @@ package content.skill.fletching
 import content.entity.player.dialogue.type.makeAmount
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
@@ -37,7 +38,10 @@ fun Player.fletchLogDialog(
     hasTool: Player.() -> Boolean = { inventory.contains("knife") },
     onMissingTool: Player.() -> Unit = { message("You need a knife to do that.") },
 ) {
-    val displayItems = Tables.itemListOrNull("fletchables.$logId.products") ?: return
+    val displayItems = Tables.itemListOrNull("fletchables.$logId.products")?.toMutableList() ?: return
+    if (!Settings["fletching.moreArrowShafts", false] && logId != "logs") {
+        displayItems.remove("arrow_shaft")
+    }
     weakQueue("fletching_make_dialog") {
         val (selected, amount) = makeAmount(
             displayItems,
@@ -45,7 +49,11 @@ fun Player.fletchLogDialog(
             maximum = 27,
             text = "What would you like to fletch?",
         )
-        val unf = Rows.getOrNull("fletching_unf.$selected") ?: return@weakQueue
+        val unf = if (selected == "arrow_shaft") {
+            Rows.getOrNull("arrow_shafts.$logId") ?: return@weakQueue
+        } else {
+            Rows.getOrNull("fletching_unf.$selected") ?: return@weakQueue
+        }
         if (!has(Skill.Fletching, unf.int("level"), true)) {
             return@weakQueue
         }
@@ -56,13 +64,13 @@ fun Player.fletchLogDialog(
 fun Player.fletchLog(
     addItem: String,
     unf: RowDefinition,
-    removeItem: String,
+    logId: String,
     amount: Int,
     animate: Player.() -> Unit = { anim("fletching_log") },
     hasTool: Player.() -> Boolean = { inventory.contains("knife") },
     onMissingTool: Player.() -> Unit = { message("You need a knife to do that.") },
 ) {
-    if (amount <= 0 || !inventory.contains(removeItem)) {
+    if (amount <= 0 || !inventory.contains(logId)) {
         return
     }
 
@@ -75,7 +83,7 @@ fun Player.fletchLog(
     weakQueue("fletching", unf.int("ticks")) {
         val makeAmount = unf.int("amount")
         val success = inventory.transaction {
-            remove(removeItem)
+            remove(logId)
             add(addItem, makeAmount)
         }
 
@@ -88,7 +96,7 @@ fun Player.fletchLog(
         val xp = unf.int("xp") / 10.0
         exp(Skill.Fletching, xp)
         animate()
-        fletchLog(addItem, unf, removeItem, amount - 1, animate, hasTool, onMissingTool)
+        fletchLog(addItem, unf, logId, amount - 1, animate, hasTool, onMissingTool)
     }
 }
 

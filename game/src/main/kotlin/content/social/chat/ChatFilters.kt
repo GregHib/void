@@ -28,17 +28,36 @@ var Player.tradeStatus: String
 
 class ChatFilters : Script {
 
+    val statuses = mapOf(
+        "game_status" to listOf("all", "filter"),
+        "public_status" to listOf("on", "friends", "off", "hide"),
+        "private_status" to listOf("on", "friends", "off"),
+        "trade_status" to listOf("on", "friends", "off"),
+        "clan_status" to listOf("on", "friends", "off"),
+        "assist_status" to listOf("on", "friends", "off"),
+    )
+
     init {
         playerSpawn {
+            // Left-clicking a filter button used to store its "View" option as a status,
+            // leaving an invalid value that hides the filter's messages every session
+            for ((key, values) in statuses) {
+                if (get(key, values.first()) !in values) {
+                    clear(key)
+                }
+            }
             privateStatus(privateStatus)
             publicStatus(publicStatus, tradeStatus)
         }
 
-        interfaceOption("View", id = "filter_buttons:*") {
+        interfaceOption(id = "filter_buttons:*") {
+            if (it.option == "View") {
+                return@interfaceOption
+            }
             when (it.component) {
                 "game", "clan" -> set("${it.component}_status", it.option.lowercase())
                 "public" -> publicStatus = it.option.lowercase()
-                "private" -> privateStatus = it.option.lowercase()
+                // "private" is handled by FriendsList's filter_buttons:private handler
                 "trade" -> tradeStatus = it.option.lowercase()
             }
         }

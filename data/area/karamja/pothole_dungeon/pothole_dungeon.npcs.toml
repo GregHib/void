@@ -1,8 +1,26 @@
 [jogre_pothole_dungeon]
 id = 3449
 examine = "An aggressive humanoid."
+drop_table = "jogre"
+combat_def = "jogre"
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_bonus = 22
+max_hit_crush = 70
+hunt_mode = "cowardly"
 
 [jogre_pothole_dungeon_2]
 id = 3450
 examine = "An aggressive humanoid."
+drop_table = "jogre"
+combat_def = "jogre"
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_bonus = 22
+max_hit_crush = 70
+hunt_mode = "cowardly"
 

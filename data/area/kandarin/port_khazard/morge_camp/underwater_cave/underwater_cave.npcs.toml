@@ -8,6 +8,9 @@ style = "crush"
 max_hit_melee = 30
 respawn_delay = 10
 examine = "Nice claw!"
+drop_table = "crab"
+max_hit_crush = 30
+combat_def = "crab"
 
 [fish_underwater_cave]
 id = 3425

@@ -2,6 +2,8 @@ package content.activity.event.random.gravedigger
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
@@ -9,7 +11,6 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.instance
@@ -24,7 +25,9 @@ import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.minimap
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -112,7 +115,7 @@ class Gravedigger : Script {
         delay(3)
         set("gravedigger_started", true)
         scrambleGraves()
-        setupGraveyard()
+        talkWith(setupGraveyard())
         introDialogue()
     }
 
@@ -133,9 +136,9 @@ class Gravedigger : Script {
     /**
      * Copy the graveyard into a private instance and take the player and Leo there. The graves,
      * gravestones and mausoleum come with the map; each grave is then replaced to match whichever
-     * coffin lies in it.
+     * coffin lies in it. Returns the instance's Leo.
      */
-    private suspend fun Player.setupGraveyard() {
+    private suspend fun Player.setupGraveyard(): NPC {
         smallInstance(Region(GRAVEYARD_REGION), levels = 1)
         setInstanceLogout(Tile(this["random_event_origin", tile.id]))
         val offset = instanceOffset()
@@ -153,6 +156,7 @@ class Gravedigger : Script {
         tab(Tab.Inventory)
         val leo = NPCs.add("leo_gravedigger", LEO_TILE.add(offset), ticks = -1, owner = this)
         leo.watch(this)
+        return leo
     }
 
     /** Swap the object at a grave site to match its contents var. */
@@ -210,45 +214,50 @@ class Gravedigger : Script {
     private fun Player.solved(): Boolean = SITES.indices.all { get("gravedigger_site_$it", 0) == it + 1 }
 
     private suspend fun Player.introDialogue() {
-        npc<Sad>("leo_gravedigger", "Sorry to interrupt, but I could really use your help.")
-        npc<Sad>("leo_gravedigger", "I've been reburying the coffins from these five graves, but I've clean forgotten which coffin came from which grave!")
-        npc<Neutral>("leo_gravedigger", "Check the coffins to see whose remains are inside, and read the gravestones to see who ought to be buried where. Then put each coffin in its proper grave.")
-        npc<Neutral>("leo_gravedigger", "Don't forget to store any items that you don't need in the mausoleum. I'll take them to the bank while you work.")
+        npc<Sad>("Sorry to interrupt, but I could really use your help.")
+        npc<Sad>("I've been reburying the coffins from these five graves, but I've clean forgotten which coffin came from which grave!")
+        npc<Neutral>("Check the coffins to see whose remains are inside, and read the gravestones to see who ought to be buried where. Then put each coffin in its proper grave.")
+        npc<Neutral>("Don't forget to store any items that you don't need in the mausoleum. I'll take them to the bank while you work.")
     }
 
     private suspend fun Player.leoDialogue() {
-        npc<Neutral>("leo_gravedigger", "How are you getting on?")
+        npc<Neutral>("How are you getting on?")
         choice {
             option<Happy>("There, finished!") {
                 if (solved()) {
                     success()
                 } else {
-                    npc<Sad>("leo_gravedigger", "Well, that's a good attempt, but it's just not right.")
-                    npc<Neutral>("leo_gravedigger", "Try looking in the coffins to get a better idea of who is in them, and then read the gravestones to find who needs to be in there.")
+                    npc<Sad>("Well, that's a good attempt, but it's just not right.")
+                    npc<Neutral>("Try looking in the coffins to get a better idea of who is in them, and then read the gravestones to find who needs to be in there.")
                     player<Neutral>("All right, I'll give it another shot.")
                 }
             }
             option<Neutral>("How do I do this again?") {
-                npc<Neutral>("leo_gravedigger", "Check the coffins to see whose remains are inside, and read the gravestones to see who ought to be buried where. Then put each coffin in its proper grave.")
+                npc<Neutral>("Check the coffins to see whose remains are inside, and read the gravestones to see who ought to be buried where. Then put each coffin in its proper grave.")
             }
             option<Sad>("I want to leave.") {
-                npc<Neutral>("leo_gravedigger", "In that case, I'll take you back to where I found you.")
+                npc<Neutral>("In that case, I'll take you back to where I found you.")
                 exitGraveyard()
             }
         }
     }
 
     private suspend fun Player.success() {
-        npc<Happy>("leo_gravedigger", "Wonderful! That's taken care of all of them.")
-        npc<Happy>("leo_gravedigger", "Here, I'll take you back to where I found you, and give you your reward.")
-        addOrDrop("random_event_gift")
+        onExitInterrupt { successExit() }
+        npc<Happy>("Wonderful! That's taken care of all of them.")
+        npc<Happy>("Here, I'll take you back to where I found you, and give you your reward.")
+        successExit()
+    }
+
+    private suspend fun Player.successExit() {
         rewardCostumePoint("zombie")
         set("unlocked_emote_zombie_walk", true)
         set("unlocked_emote_zombie_dance", true)
-        exitGraveyard()
+        exitGraveyard("random_event_gift")
     }
 
-    private fun Player.exitGraveyard() {
+    private suspend fun Player.exitGraveyard(vararg rewards: String) {
+        onExitInterrupt { exitGraveyard(*rewards) }
         for (coffin in SITES.indices) {
             while (inventory.remove(coffinName(coffin))) {
                 // Leo keeps his coffins
@@ -260,7 +269,7 @@ class Gravedigger : Script {
         clear("gravedigger_started")
         openTabs()
         clearMinimap()
-        RandomEvents.complete(this)
+        returnHome(*rewards)
     }
 
     private fun coffinName(index: Int) = if (index == 0) "coffin" else "coffin_${index + 1}"

@@ -1,0 +1,9 @@
+[chaos_dwogre]
+attack_speed = 6
+defend_anim = "chaos_dwogre_defend"
+death_anim = "chaos_dwogre_death"
+
+[chaos_dwogre.magic]
+range = 6
+target_hit = { offense = "magic", max = 121 }
+anim = "chaos_dwogre_attack"

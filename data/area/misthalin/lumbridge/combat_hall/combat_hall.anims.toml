@@ -1,0 +1,10 @@
+[magic_dummy_death]
+id = 97
+[magic_dummy_attack]
+id = 94
+
+[melee_dummy_death]
+id = 97
+
+[melee_dummy_attack]
+id = 94

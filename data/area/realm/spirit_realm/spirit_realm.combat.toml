@@ -1,0 +1,9 @@
+[tormented_wraith]
+attack_speed = 6
+defend_anim = "ghost_defend"
+death_anim = "ghost_death"
+
+[tormented_wraith.melee]
+range = 1
+target_hit = { offense = "crush", max = 220 }
+anim = "ghost_attack"

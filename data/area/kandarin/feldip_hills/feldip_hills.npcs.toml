@@ -12,10 +12,21 @@ slayer_xp = 60.0
 categories = ["ogres"]
 respawn_delay = 30
 examine = "A large dim looking humanoid."
+drop_table = "ogre"
+combat_def = "ogre"
+max_hit_crush = 70
 
 [ogre_feldip_hills_2]
 id = 3451
 clone = "ogre_feldip_hills"
+drop_table = "ogre"
+combat_def = "ogre"
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+attack_bonus = 22
+max_hit_crush = 70
 
 [ogre_boat_feldip_hills]
 id = 3469
@@ -35,10 +46,11 @@ style = "crush"
 max_hit_melee = 10
 respawn_delay = 7
 examine = "It looks fluffy and cute; it's probably deadly."
+drop_table = "empty"
+max_hit_crush = 10
 
 [black_warlock_feldip_hills]
 id = 5082
-wander_range = 4
 respawn_delay = 10
 collision = "sky"
 examine = "A black warlock. The air seems to distort wherever it passes."
@@ -63,26 +75,65 @@ examine = "With all the furs, I almost mistook her for a wild animal."
 id = 7078
 categories = ["ogres"]
 examine = "A fearsome adversary with no sense of humour."
+drop_table = "ogress_champion"
+hitpoints = 880
+att = 86
+str = 86
+def = 84
+max_hit_crush = 100
+hunt_mode = "cowardly"
 
 [ogress_warrior]
 id = 7079
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."
+drop_table = "ogress_warrior"
+combat_def = "guard"
+hitpoints = 800
+att = 106
+str = 106
+def = 1
+max_hit_crush = 120
+hunt_mode = "cowardly"
 
 [ogress_warrior_2]
 id = 7080
 categories = ["ogres"]
 examine = "Irascible, belligerent and stupefyingly impolite."
+drop_table = "ogress_warrior"
+combat_def = "guard"
+hitpoints = 800
+att = 106
+str = 106
+def = 1
+max_hit_crush = 120
+hunt_mode = "cowardly"
 
 [ogress_feldip_hills]
 id = 7081
 categories = ["ogres"]
 examine = "A large and contentious lady ogre."
+drop_table = "ogress"
+hitpoints = 710
+att = 66
+str = 66
+def = 33
+max_hit_crush = 80
+combat_def = "ogress"
+hunt_mode = "cowardly"
 
 [ogress_feldip_hills_2]
 id = 7082
 categories = ["ogres"]
 examine = "A large and contentious lady ogre."
+drop_table = "ogress"
+hitpoints = 710
+att = 66
+str = 66
+def = 33
+max_hit_crush = 80
+combat_def = "ogress"
+hunt_mode = "cowardly"
 
 [rantz_feldip_hills_2]
 id = 8659
@@ -109,6 +160,7 @@ immune_poison = true
 [jungle_strykewyrm]
 id = 9467
 combat_def = "jungle_strykewyrm"
+slayer_level = 73
 examine = "Who said worms were small and harmless?"
 
 [swamp_toad_feldip_hills]

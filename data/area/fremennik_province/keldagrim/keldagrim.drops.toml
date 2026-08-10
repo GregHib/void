@@ -77,3 +77,27 @@ roll = 128
 drops = [
     { table = "medium_clue_scroll" },
 ]
+[trade_floor_guard_drop_table]
+type = "all"
+drops = [
+    { table = "trade_floor_guard_secondary" },
+    { table = "easy_clue_scroll", roll = 16 },
+]
+
+[trade_floor_guard_secondary]
+roll = 1024
+drops = [
+    { id = "bones", chance = 64 },
+    { id = "bronze_warhammer", chance = 64 },
+    { id = "iron_warhammer", chance = 64 },
+    { id = "steel_warhammer", chance = 64 },
+    { id = "black_warhammer", chance = 64 },
+    { id = "coins", chance = 64 },
+    { id = "iron_ore", chance = 64 },
+    { id = "tin_ore", chance = 64 },
+    { id = "grimy_guam", chance = 64 },
+    { id = "cake", chance = 64 },
+    { id = "keg_of_beer", chance = 64 },
+    { id = "bucket_of_water", chance = 64 },
+    { id = "nature_talisman", chance = 64 },
+]

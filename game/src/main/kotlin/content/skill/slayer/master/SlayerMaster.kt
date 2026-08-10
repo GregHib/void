@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
@@ -94,6 +95,11 @@ internal suspend fun Player.slayerMasterChat(master: String) {
         if (master == "turael" && questCompleted("animal_magnetism")) {
             option<Neutral>("I'm here about blessed axes again.")
         }
+        if (master == "kuradal") {
+            option<Quiz>("What is that cape you're wearing?") {
+                skillcapeMasterDialogue(Skill.Slayer, "an incredible student")
+            }
+        }
         option<Neutral>("Er...nothing... ")
     }
 }
@@ -108,10 +114,13 @@ internal suspend fun Player.assignTaskDialogue(master: String) {
         npc<Neutral>("Although, it's not an assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
         npc<Neutral>("If you do get a new one, you will reset your task streak of $slayerStreak. Is that okay?")
     } else {
-        npc<Quiz>("Although, it's a tougher assignment that I'd normally give... I guess I could give you a new assignment, id you'd like.")
+        npc<Quiz>("Although, it's a tougher assignment that I'd normally give... I guess I could give you a new assignment, if you'd like.")
     }
     choice {
         option<Neutral>("Yes, please.") {
+            if (slayerMaster != "turael") {
+                slayerStreak = 0
+            }
             roll(master)
         }
         option<Neutral>("No, thanks.")

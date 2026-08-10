@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.client.variable.stop
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
@@ -98,6 +99,7 @@ class Woodcutting(val drops: DropTables) : Script {
             player.stop("action_delay")
         }
         player.softTimers.stop("woodcutting")
+        player.clearAnim()
     }
 
     fun tryDropNest(player: Player, ivy: Boolean) {
@@ -108,7 +110,7 @@ class Woodcutting(val drops: DropTables) : Script {
         val hasRabbitFoot = player.equipment.contains("strung_rabbit_foot")
         val totalWeight = if (hasRabbitFoot) 95 else 100
 
-        val drop = table.roll(totalWeight).firstOrNull() ?: return
+        val drop = table.roll(totalWeight, multiplier = Settings["world.itemDropRate", 1.0]).firstOrNull() ?: return
 
         val source = if (ivy) "ivy" else "tree"
         player.message("<red>A bird's nest falls out of the $source!")

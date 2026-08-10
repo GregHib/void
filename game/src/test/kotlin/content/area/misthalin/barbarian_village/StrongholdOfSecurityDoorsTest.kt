@@ -4,7 +4,6 @@ import FakeRandom
 import WorldTest
 import content.entity.player.dialogue.continueDialogue
 import intEntry
-import messages
 import net.pearx.kasechange.toSentenceCase
 import objectOption
 import org.junit.jupiter.api.Assertions.assertNull
@@ -54,8 +53,6 @@ class StrongholdOfSecurityDoorsTest : WorldTest() {
             player.objectOption(door, "Open")
             tick(5)
 
-            println(player.messages)
-            println(player.tile)
             assertNull(player.dialogue)
             assertNotEquals(tile, player.tile)
         }

@@ -14,14 +14,34 @@ examine = "He's in control of the coal trucks."
 id = 4257
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_dwarven_outpost_2]
 id = 4258
 categories = ["dwarves"]
 examine = "A dwarven guard."
+drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [goblin_dwarven_outpost]
 id = 4261
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
+combat_def = "goblin"
+hitpoints = 50
+max_hit_crush = 10
 

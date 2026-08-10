@@ -11,6 +11,7 @@ def = 3
 combat_def = "man"
 respawn_delay = 25
 examine = "A holy man."
+drop_table = "bones"
 
 [francis]
 id = 2327

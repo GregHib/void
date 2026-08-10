@@ -2,6 +2,8 @@
 id = 2782
 categories = ["shadow_creatures"]
 examine = "A shadow."
+drop_table = "empty"
+hitpoints = 730
 
 [arianwyn]
 id = 8952

@@ -4,6 +4,7 @@ drops = [
   { table = "gargoyle_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
 
+    { table = "gargoyle_charms", members = true },
 ]
 
 [gargoyle_secondary]
@@ -31,4 +32,13 @@ drops = [
   { id = "coins", min = 500, max = 1000, chance = 80 },
   { id = "coins", amount = 10000, chance = 20 },
   { table = "gem_drop_table", chance = 20 },
+]
+
+[gargoyle_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9565 },
+    { id = "green_charm", chance = 4798 },
+    { id = "crimson_charm", chance = 4881 },
+    { id = "blue_charm", chance = 6989 },
 ]

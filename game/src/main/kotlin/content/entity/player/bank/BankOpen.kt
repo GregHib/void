@@ -1,5 +1,6 @@
 package content.entity.player.bank
 
+import com.github.michaelbull.logging.InlineLogger
 import content.entity.player.bank.Bank.tabs
 import content.entity.player.bank.pin.openBank
 import content.entity.player.bank.pin.openCollection
@@ -18,9 +19,13 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.sendInventory
+import world.gregs.voidps.engine.inv.swap
 
 class BankOpen(val accounts: AccountDefinitions) : Script {
+
+    val logger = InlineLogger()
 
     init {
         adminCommand("bank", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Open the players bank", handler = ::bank)
@@ -71,6 +76,12 @@ class BankOpen(val accounts: AccountDefinitions) : Script {
             interfaceOptions.unlockAll("bank", "inventory", 0 until 516)
             interfaceOptions.unlockAll("bank_side", "inventory", 0 until 28)
             tab(Tab.Inventory)
+        }
+
+        interfaceSwap("bank_side:inventory", "bank_side:inventory") { _, _, fromSlot, toSlot ->
+            if (!inventory.swap(fromSlot, toSlot)) {
+                logger.info { "Failed switching bank side items $this" }
+            }
         }
 
         interfaceOption("Search", "bank:search") {

@@ -26,15 +26,27 @@ data class DropTable(
      * @param list optional list to add the drop to
      * @param player the player for [ItemDrop.predicate]'s
      */
-    fun roll(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), player: Player? = null): MutableList<ItemDrop> {
-        collect(list, player, random(maximumRoll))
+    fun roll(maximumRoll: Int = -1, list: MutableList<ItemDrop> = mutableListOf(), player: Player? = null, multiplier: Double = 1.0): MutableList<ItemDrop> {
+        collect(list, player, random(maximumRoll, multiplier), multiplier)
         return list
     }
 
-    fun random(maximum: Int) = random.nextInt(0, if (roll <= 0 && maximum != -1) maximum else roll)
+    fun random(maximum: Int, multiplier: Double = 1.0): Int {
+        val base = if (roll <= 0 && maximum != -1) maximum else roll
+        if (multiplier <= 1.0) {
+            return random.nextInt(0, base)
+        }
+        val minRoll = drops.sumOf { if (it.chance > 0) it.chance else 0 }
+        val scaled = (base / multiplier)
+            .toInt()
+            .coerceIn(minRoll.coerceAtLeast(1), base)
+        return random.nextInt(0, scaled)
+    }
 
-    fun collect(list: MutableList<ItemDrop>, player: Player?, roll: Int): Boolean {
+    fun collect(list: MutableList<ItemDrop>, player: Player?, roll: Int, multiplier: Double = 1.0): Boolean {
         var count = 0
+        // Assumes drop rate multipliers should preserve items with the lowest chances when table is full
+        val drops = if (multiplier == 1.0) drops else drops.sortedBy { it.chance }
         for (drop in drops) {
             if (drop.chance == 0) {
                 continue
@@ -50,19 +62,20 @@ data class DropTable(
                         continue
                     }
                 }
-                if (drop.collect(list, player, drop.random(-1)) && type == TableType.First) {
+                if (drop.collect(list, player, drop.random(-1, multiplier)) && type == TableType.First) {
                     return true
                 }
             } else if (drop is ItemDrop) {
                 if (type == TableType.All) {
                     list.add(drop)
-                } else {
-                    count += drop.chance
-                    if (roll < count) {
-                        list.add(drop)
-                        return true
-                    }
+                    continue
                 }
+                count += drop.chance
+                if (roll >= count) {
+                    continue
+                }
+                list.add(drop)
+                return true
             }
         }
         return type == TableType.All

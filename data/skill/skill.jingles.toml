@@ -85,10 +85,10 @@ id = 55
 [level_up_prayer_unlock]
 id = 56
 
-[level_up_range]
+[level_up_ranged]
 id = 57
 
-[level_up_range_unlock]
+[level_up_ranged_unlock]
 id = 58
 
 [level_up_runecrafting]

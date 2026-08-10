@@ -30,3 +30,45 @@ drops = [
     { id = "swordfish_noted", amount = 5, chance = 2 },
     { table = "gem_drop_table", chance = 2 },
 ]
+
+[dark_warrior_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "dark_warrior_secondary" },
+]
+
+[dark_warrior_secondary]
+roll = 1024
+drops = [
+    { id = "bronze_med_helm", chance = 64 },
+    { id = "black_med_helm", min = 1, max = 2, chance = 64 },
+    { id = "iron_mace", chance = 64 },
+    { id = "black_mace", chance = 64 },
+    { id = "bronze_arrow", amount = 8, chance = 64 },
+    { id = "mind_rune", amount = 2, chance = 64 },
+    { id = "water_rune", chance = 64 },
+    { id = "earth_rune", chance = 64 },
+    { id = "grimy_guam", chance = 64 },
+    { id = "grimy_marrentill", chance = 64 },
+    { id = "coins", min = 1, max = 20, chance = 64 },
+    { id = "iron_ore", chance = 64 },
+    { id = "chaos_rune", amount = 2, chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "sardine", chance = 32 },
+    { id = "nature_rune", amount = 3, chance = 6 },
+    { id = "grimy_ranarr", chance = 6 },
+    { id = "grimy_irit", chance = 6 },
+    { id = "grimy_avantoe", chance = 6 },
+    { id = "grimy_kwuarm", chance = 6 },
+    { id = "grimy_cadantine", chance = 6 },
+    { id = "grimy_lantadyme", chance = 6 },
+    { id = "grimy_dwarf_weed", chance = 6 },
+]
+
+[guard_bandit_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

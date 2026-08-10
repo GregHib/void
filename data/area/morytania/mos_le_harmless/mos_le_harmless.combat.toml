@@ -1,5 +1,4 @@
 [jungle_horror]
-retreat_range = 8
 attack_speed = 4
 defend_anim = "jungle_horror_defend"
 defend_sound = "jungle_horror_defend"

@@ -31,7 +31,11 @@ class ItemInformation : Script {
                     open("shop_side")
                     interfaceOptions.send("shop_side", "inventory")
                 }
-                "grand_exchange" -> close("item_info")
+                "dungeon_shop" -> {
+                    open("dungeon_shop_side")
+                    interfaceOptions.send("dungeon_shop_side", "inventory")
+                }
+                else -> close("item_info")
             }
         }
 

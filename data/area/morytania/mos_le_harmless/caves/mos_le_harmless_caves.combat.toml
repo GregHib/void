@@ -1,5 +1,4 @@
 [cave_horror]
-retreat_range = 8
 attack_speed = 5 # TODO support irregular attack speeds/override
 defend_anim = "cave_horror_defend"
 death_anim = "cave_horror_howl"
@@ -37,7 +36,6 @@ impact_drains = [
 ]
 
 [giant_mosquito]
-retreat_range = 8
 attack_speed = 12
 defend_anim = "mosquito_defend"
 defend_sound = "mosquito_defend"

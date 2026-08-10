@@ -1,0 +1,14 @@
+[spectral_worshipper_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "spectral_worshipper_secondary" },
+]
+
+[spectral_worshipper_secondary]
+roll = 1024
+drops = [
+    { id = "fire_rune", amount = 5, chance = 32 },
+    { id = "air_rune", amount = 5, chance = 32 },
+    { id = "blood_rune", chance = 32 },
+]

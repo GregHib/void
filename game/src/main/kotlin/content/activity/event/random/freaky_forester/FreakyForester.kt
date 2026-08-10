@@ -2,19 +2,24 @@ package content.activity.event.random.freaky_forester
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.activity.event.random.rewardCostumePoint
 import content.entity.combat.killer
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -54,9 +59,20 @@ class FreakyForester : Script {
             }
             death.dropItems = false
             // The pheasant drops the raw bird for the killer to pick up and hand to the forester.
-            val correct = tailCount(id) == killer.get("freaky_forester_task", 0)
+            val correct = tailCount(id) == killer["freaky_forester_task", 0]
             val bird = if (correct) "raw_pheasant" else "raw_pheasant_incorrect"
             FloorItems.add(tile, bird, revealTicks = FloorItems.NEVER, disappearTicks = 300, owner = killer)
+        }
+
+        objectOperate("Enter", "exit_portal_freaky_forester") {
+            choice("Are you sure you wish to leave?") {
+                // TODO proper message
+                option("Yes I'm sure.") {
+                    clearState()
+                    returnHome()
+                }
+                option("No, I'll stick around.")
+            }
         }
     }
 
@@ -66,22 +82,22 @@ class FreakyForester : Script {
             set("freaky_forester_task", random.nextInt(1, TAILS + 1))
         }
         kidnap(CLEARING)
+        talkWith(NPCs.find(tile.regionLevel, "freaky_forester"))
         giveTask()
     }
 
     private suspend fun Player.foresterDialogue() {
         when {
             inventory.contains("raw_pheasant") -> {
-                // Dialogue first: walking off cancels the handler, so only take the bird
-                // once the suspending lines are done and the reward is guaranteed.
-                npc<Happy>("freaky_forester", "Thanks, $name, you may leave the area now.")
-                reward()
-                inventory.remove("raw_pheasant")
-                clear("freaky_forester_task")
-                RandomEvents.complete(this)
+                // Clicking off the thanks kills the handler; the exit trigger still takes
+                // the bird and sends the player home with their reward.
+                onExitInterrupt { leaveForest() }
+                npc<Happy>("Thanks, $name, you may leave the area now.")
+                npc<Happy>("Please take this gift as a reward for your help, many thanks!")
+                leaveForest()
             }
             inventory.contains("raw_pheasant_incorrect") -> {
-                npc<Neutral>("freaky_forester", "That's not the right one.")
+                npc<Neutral>("That's not the right one.")
                 inventory.remove("raw_pheasant_incorrect")
             }
             else -> giveTask()
@@ -91,16 +107,21 @@ class FreakyForester : Script {
     private suspend fun Player.giveTask() {
         val tails = get("freaky_forester_task", 1)
         npc<Neutral>(
-            "freaky_forester",
             "Hey there $name. Can you kill the ${TAIL_WORDS[tails]} tailed pheasant please. " +
                 "Bring me the raw pheasant when you're done.",
         )
     }
 
-    private suspend fun Player.reward() {
-        npc<Happy>("freaky_forester", "Please take this gift as a reward for your help, many thanks!")
-        addOrDrop("random_event_gift")
+    private suspend fun Player.leaveForest() {
         rewardCostumePoint("lederhosen")
+        clearState()
+        returnHome("random_event_gift")
+    }
+
+    private fun Player.clearState() {
+        inventory.removeToLimit("raw_pheasant", 28)
+        inventory.removeToLimit("raw_pheasant_incorrect", 28)
+        clear("freaky_forester_task")
     }
 
     private fun Player.carriesRawPheasant() = inventory.contains("raw_pheasant") || inventory.contains("raw_pheasant_incorrect")

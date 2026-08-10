@@ -1,18 +1,17 @@
 package world.gregs.voidps.engine.entity.character.mode
 
-import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement.Companion.maxRange
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.type.Tile
 
 class Retreat(
     private val npc: NPC,
     val target: Entity,
     private val spawn: Tile = npc["spawn_tile"]!!,
-    private val retreatRange: Int = npc.def.getOrNull("retreat_range") ?: get<CombatDefinitions>().get(npc.id).retreatRange,
+    private val maxRange: Int = npc.maxRange(),
 ) : Movement(npc) {
 
     override fun start() {
@@ -26,11 +25,11 @@ class Retreat(
             npc.mode = EmptyMode
             return
         }
-        if (!npc.tile.within(spawn, retreatRange)) {
+        if (!npc.tile.within(spawn, maxRange)) {
             npc.mode = EmptyMode
             return
         }
-        if (!target.tile.within(spawn, retreatRange + 11)) {
+        if (!target.tile.within(spawn, maxRange + 11)) {
             npc.mode = EmptyMode
             return
         }
@@ -47,7 +46,7 @@ class Retreat(
         }
         val step = npc.tile.add(deltaX, deltaY)
         // Npcs can't step out of range but can step in
-        if (!step.within(spawn, retreatRange)) {
+        if (!step.within(spawn, maxRange)) {
             return false
         }
         character.steps.queueStep(step)

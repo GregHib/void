@@ -1,0 +1,47 @@
+[soulless]
+attack_speed = 4
+death_anim = "soulless_death"
+
+[soulless.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+anim = "soulless_attack"
+
+[othainian]
+attack_speed = 4
+defend_anim = "othainian_defend"
+death_anim = "othainian_death"
+
+[othainian.melee]
+range = 1
+target_hit = { offense = "slash", max = 90 }
+anim = "othainian_attack"
+
+[doomion]
+attack_speed = 4
+defend_anim = "doomion_defend"
+death_anim = "doomion_death"
+
+[doomion.melee]
+range = 1
+target_hit = { offense = "slash", max = 90 }
+anim = "doomion_attack"
+
+[holthion]
+attack_speed = 4
+defend_anim = "holthion_defend"
+death_anim = "holthion_death"
+
+[holthion.melee]
+range = 1
+target_hit = { offense = "slash", max = 90 }
+anim = "holthion_attack"
+
+[disciple_of_iban]
+attack_speed = 4
+death_anim = "disciple_of_iban_death"
+
+[disciple_of_iban.melee]
+range = 1
+target_hit = { offense = "crush", max = 20 }
+anim = "disciple_of_iban_attack"

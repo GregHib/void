@@ -103,7 +103,9 @@ private fun rollTask(player: Player, master: String): Pair<String, Int>? {
 
 private fun hasRequirements(player: Player, table: TableDefinition, row: Int): Boolean {
     val category = Rows.get(row).rowId
-    val npc = Tables.int("slayer_tasks.$category.npc")
+    // A master listing a task with no matching slayer_tasks entry shouldn't crash the whole
+    // assignment - skip it so the other tasks can still be rolled.
+    val npc = Tables.intOrNull("slayer_tasks.$category.npc") ?: return false
     val slayerLevel = NPCDefinitions.get(npc)["slayer_level", 1]
     if (!player.has(Skill.Slayer, slayerLevel)) {
         return false

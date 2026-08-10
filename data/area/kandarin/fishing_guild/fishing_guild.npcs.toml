@@ -6,26 +6,46 @@ examine = "The man in charge of the fishing guild."
 id = 4272
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
+combat_def = "goblin"
+hitpoints = 50
+max_hit_crush = 10
 
 [goblin_fishing_guild_2]
 id = 4273
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
+combat_def = "goblin"
+hitpoints = 50
+max_hit_crush = 10
 
 [goblin_fishing_guild_3]
 id = 4274
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
+combat_def = "goblin"
+hitpoints = 50
+max_hit_crush = 10
 
 [goblin_fishing_guild_4]
 id = 4275
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
+combat_def = "goblin"
+hitpoints = 50
+max_hit_crush = 10
 
 [goblin_fishing_guild_5]
 id = 4276
 categories = ["goblins"]
 examine = "An ugly green creature."
+drop_table = "goblin"
+combat_def = "goblin"
+hitpoints = 50
+max_hit_crush = 10
 
 [roachey]
 id = 592

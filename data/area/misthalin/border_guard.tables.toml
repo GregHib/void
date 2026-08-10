@@ -1,0 +1,31 @@
+[guards]
+obj = "obj"
+tiles = "list<tile>"
+
+[.border_guard_varrock_south]
+obj = "border_guard_varrock"
+tiles = [{ x = 3291, y = 3385 }, { x = 3293, y = 3385 }]
+
+[.border_guard_edgeville_varrock]
+obj = "border_guard_draynor"
+tiles = [{ x = 3137, y = 3467 }, { x = 3139, y = 3467 }]
+
+[.border_guard_al_kharid_varrock]
+obj = "border_guard_al_kharid"
+tiles = [{ x = 3282, y = 3330 }, { x = 3284, y = 3330 }]
+
+[.border_guard_draynor_falador]
+obj = "border_guard_draynor"
+tiles = [{ x = 3076, y = 3333 }, { x = 3078, y = 3333 }]
+
+[.border_guard_port_sarim_draynor]
+obj = "border_guard_draynor"
+tiles = [{ x = 3070, y = 3275 }, { x = 3070, y = 3277 }]
+
+[.border_guard_draynor_barbarian_village]
+obj = "border_guard_draynor"
+tiles = [{ x = 3145, y = 3336 }, { x = 3147, y = 3336 }]
+
+[.border_guard_barbarian_village_varrock]
+obj = "border_guard_barbarian"
+tiles = [{ x = 3109, y = 3419 }, { x = 3109, y = 3421 }]

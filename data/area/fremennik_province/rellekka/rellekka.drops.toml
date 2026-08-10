@@ -105,3 +105,24 @@ drops = [
     { id = "ring_mould" },
     { table = "gem_drop_table" },
 ]
+
+[unicorn_foal_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[fenris_wolf_drop_table]
+type = "all"
+drops = [
+    { id = "wolf_bones" },
+    { id = "fenris_wolf_pelt" },
+    { table = "fenris_wolf_secondary" },
+]
+
+[fenris_wolf_secondary]
+roll = 1024
+drops = [
+    { id = "wolf_bone", chance = 32 },
+    { id = "starved_ancient_effigy", chance = 6 },
+]

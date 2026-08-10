@@ -17,10 +17,26 @@ id = 325
 [giant_rat_mudskipper_point]
 id = 446
 clone = "giant_rat_lumbridge_swamp"
+drop_table = "giant_rat"
+combat_def = "giant_rat"
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+max_hit_stab = 10
+hunt_mode = "cowardly"
 
 [giant_rat_mudskipper_point_2]
 id = 4924
 clone = "giant_rat_lumbridge_swamp"
+drop_table = "giant_rat"
+combat_def = "giant_rat"
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+max_hit_stab = 10
+hunt_mode = "cowardly"
 
 [mogre]
 id = 114

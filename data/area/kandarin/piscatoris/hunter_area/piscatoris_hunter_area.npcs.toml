@@ -9,10 +9,11 @@ style = "crush"
 max_hit_melee = 10
 respawn_delay = 7
 examine = "It looks fluffy and cute; it's probably deadly."
+drop_table = "empty"
+combat_def = "rat"
 
 [ruby_harvest]
 id = 5085
-wander_range = 3
 respawn_delay = 10
 collision = "sky"
 examine = "It's a ruby harvest butterfly."

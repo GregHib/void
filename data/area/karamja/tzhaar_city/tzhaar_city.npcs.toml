@@ -254,20 +254,59 @@ examine = "A senior citizen TzHaar-Hur."
 
 [tzhaar_hur_tzhaar_caves_2]
 id = 7767
+drop_table = "tzhaar_hur"
+combat_def = "tzhaar_hur"
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+max_hit_crush = 70
 
 [tzhaar_hur_tzhaar_caves_3]
 id = 7768
+drop_table = "tzhaar_hur"
+combat_def = "tzhaar_hur"
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+max_hit_crush = 70
 
 [tzhaar_hur_tzhaar_caves_4]
 id = 7769
+drop_table = "tzhaar_hur"
+combat_def = "tzhaar_hur"
+hitpoints = 800
+att = 60
+str = 60
+def = 60
+mage = 80
+max_hit_crush = 70
 
 [lava_monster_tzhaar_caves]
 id = 7772
 examine = "A monster made of magma."
+drop_table = "empty"
+hitpoints = 470
+att = 40
+str = 40
+def = 40
+combat_def = "fire_elemental"
 
 [fire_monster_tzhaar_caves]
 id = 7773
 examine = "A monster like many others, but on fire."
+drop_table = "fire_monster"
+hitpoints = 260
+att = 1
+str = 1
+def = 55
+mage = 55
+max_hit_magic = 8
+combat_def = "fire_monster"
+hunt_mode = "cowardly"
 
 [tzhaar_mej_roh]
 id = 2623
@@ -285,7 +324,7 @@ att = 120
 str = 140
 def = 120
 mage = 40
-combat_def = "tzhar_ket"
+combat_def = "tzhaar_ket"
 max_hit_crush = 150
 slayer_xp = 140.0
 categories = ["tzhaar"]

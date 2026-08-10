@@ -1,7 +1,6 @@
 [frog_frogland]
 id = 390
 dialogue = "old"
-wander_range = 3
 examine = "A frog."
 
 [frog_2_frogland]

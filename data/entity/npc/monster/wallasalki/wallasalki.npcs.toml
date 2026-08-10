@@ -7,7 +7,6 @@ def = 80
 mage = 100
 combat_def = "wallasalki"
 slayer_xp = 120.0
-wander_range = 5
 hunt_mode = "aggressive"
 categories = ["wallasalki"]
 respawn_delay = 25
@@ -16,3 +15,4 @@ examine = "A fearsome magical water creature."
 [wallasalki_1]
 clone = "wallasalki"
 id = 2884
+drop_table = "wallasalki"

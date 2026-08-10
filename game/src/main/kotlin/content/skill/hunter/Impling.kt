@@ -92,7 +92,7 @@ class Impling(val dropTables: DropTables) : Script {
             }
             if (!puroPuro && !hasJar) {
                 val tables = dropTables.getValue(dropTable(this, target.id))
-                val drops = tables.roll(player = this)
+                val drops = tables.roll(player = this, multiplier = Settings["world.itemDropRate", 1.0])
                 for (drop in drops) {
                     val item = drop.toItem()
                     addOrDrop(item.id, item.amount)
@@ -127,7 +127,7 @@ class Impling(val dropTables: DropTables) : Script {
 
         itemOption("Loot", "*_impling_jar") { (item) ->
             val tables = dropTables.get(dropTable(this, item.id)) ?: return@itemOption
-            val drops = tables.roll(player = this)
+            val drops = tables.roll(player = this, multiplier = Settings["world.itemDropRate", 1.0])
             if (inventory.spaces < 2) {
                 message("You'll need to clear some space in your pack before looting the jar.")
                 return@itemOption

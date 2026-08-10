@@ -11,9 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class MeleeTutor : Script {
 
@@ -123,22 +120,7 @@ class MeleeTutor : Script {
             }
             option("I think I have the money right here, actually.") {
                 player<Happy>("I think I have the money right here, actually.")
-                inventory.transaction {
-                    remove("coins", 99000)
-                    add("defence_hood")
-                    val trimmed = Skill.entries.any { it != Skill.Defence && levels.getMax(it) >= Level.MAX_LEVEL }
-                    add("defence_skillcape${if (trimmed) "_t" else ""}")
-                }
-                when (inventory.transaction.error) {
-                    TransactionError.None -> npc<Happy>("Excellent! Wear that cape with pride my friend.")
-                    is TransactionError.Deficient -> {
-                        player<Sad>("But, unfortunately, I was mistaken.")
-                        npc<Idle>("Well, come back and see me when you do.")
-                    }
-                    is TransactionError.Full, is TransactionError.Invalid -> {
-                        npc<Sad>("Unfortunately all Skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some inventory space before I can sell you one.")
-                    }
-                }
+                buySkillcape(Skill.Defence)
             }
         }
     }

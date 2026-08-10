@@ -24,6 +24,10 @@ class DynamicZones(
     // All recent region changes (including clearing)
     private var update = false
 
+    // Incremented on every change to detect stale player region updates
+    var version: Int = 0
+        private set
+
     fun dynamic(region: Region) = regions.contains(region.id)
 
     fun dynamicUpdate(region: Region) = refresh.contains(region.id)
@@ -43,6 +47,7 @@ class DynamicZones(
             regions.add(region.id)
             refresh.add(region.id)
         }
+        version++
         update = true
     }
 
@@ -70,6 +75,7 @@ class DynamicZones(
                 regions.remove(region.id)
             }
         }
+        version++
         update = true
     }
 
@@ -86,6 +92,7 @@ class DynamicZones(
             }
         }
         if (regions.remove(region.id)) {
+            version++
             update = true
         }
     }

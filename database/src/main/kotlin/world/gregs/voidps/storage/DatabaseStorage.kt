@@ -576,6 +576,11 @@ class DatabaseStorage : Storage {
             Database.connect(HikariDataSource(config))
             transaction {
                 SchemaUtils.create(*tables, inBatch = true)
+                // Drop the legacy grand_exchange_claims -> grand_exchange_offers foreign key.
+                // Claims and offers are persisted by independent, uncoordinated save paths, so the
+                // RESTRICT constraint blocked the per-player offer delete/reinsert. IF EXISTS keeps
+                // this idempotent and a no-op on fresh databases.
+                exec("ALTER TABLE grand_exchange_claims DROP CONSTRAINT IF EXISTS fk_grand_exchange_claims_offer_id__id")
             }
         }
 

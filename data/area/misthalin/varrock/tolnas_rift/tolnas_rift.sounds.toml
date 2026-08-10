@@ -1,0 +1,33 @@
+[angry_unicorn_defend]
+id = 878
+[angry_unicorn_death]
+id = 877
+[angry_unicorn_attack]
+id = 876
+
+[confusion_beast_defend]
+id = 299
+
+[confusion_beast_death]
+id = 298
+
+[confusion_beast_attack]
+id = 297
+
+[fear_reaper_defend]
+id = 299
+
+[fear_reaper_death]
+id = 298
+
+[fear_reaper_attack]
+id = 297
+
+[hopeless_creature_defend]
+id = 299
+
+[hopeless_creature_death]
+id = 298
+
+[hopeless_creature_attack]
+id = 297

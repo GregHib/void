@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.inv.inventory
 internal class FletchingTest : WorldTest() {
 
     @Test
-    fun `Fletch arrow shafts`() {
+    fun `Fletch arrow shafts from logs`() {
         val player = createPlayer()
         player.levels.set(Skill.Fletching, 100)
         player.inventory.add("knife")

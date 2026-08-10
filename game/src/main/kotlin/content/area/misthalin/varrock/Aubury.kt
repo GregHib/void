@@ -11,6 +11,8 @@ import content.skill.runecrafting.EssenceMine
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -42,7 +44,8 @@ class Aubury : Script {
             }
         }
 
-        npcOperate("Teleport", "aubury") { (target) ->
+        npcApproach("Teleport", "aubury") { (target) ->
+            approachRange(2)
             EssenceMine.teleport(target, this)
         }
     }
@@ -124,7 +127,13 @@ class Aubury : Script {
         npc<Idle>("The Cape of Runecrafting has been upgraded with each talisman, allowing you to access all Runecrafting altars. Is there anything else I can help you with?")
         choice {
             option<Happy>("I'd like to view your store please.") {
-                openShop("runecrafting_skillcape")
+                openShop(
+                    when {
+                        levels.getMax(Skill.Runecrafting) < Level.MAX_LEVEL -> "auburys_rune_shop"
+                        otherSkillMaxed(Skill.Runecrafting) -> "runecrafting_skillcape_trimmed"
+                        else -> "runecrafting_skillcape"
+                    },
+                )
             }
             noThanks("No thank you.")
         }

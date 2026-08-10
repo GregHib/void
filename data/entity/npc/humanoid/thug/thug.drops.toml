@@ -4,6 +4,7 @@ drops = [
   { id = "bones" },
   { table = "thug_secondary" },
   { table = "easy_clue_scroll", roll = 128 },
+    { table = "thug_charms", members = true },
 ]
 
 [thug_secondary]
@@ -26,4 +27,13 @@ drops = [
   { id = "coins", amount = 30, chance = 2 },
   { id = "coins", amount = 20 },
   { id = "nothing", amount = 0, chance = 30 },
+]
+
+[thug_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 11508 },
+    { id = "green_charm", chance = 771 },
+    { id = "crimson_charm", chance = 643 },
+    { id = "blue_charm", chance = 338 },
 ]

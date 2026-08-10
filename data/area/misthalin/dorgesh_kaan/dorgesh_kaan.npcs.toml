@@ -221,11 +221,27 @@ examine = "He's the head of the Dorgeshuun Council."
 id = 5800
 categories = ["goblins"]
 examine = "He keeps order in the city."
+drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [guard_dorgesh_kaan_2]
 id = 5801
 categories = ["goblins"]
 examine = "He keeps order in the city."
+drop_table = "guard"
+combat_def = "guard"
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
 
 [zanik_dorgesh_kaan_2]
 id = 5802

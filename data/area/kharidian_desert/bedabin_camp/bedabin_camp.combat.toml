@@ -1,0 +1,8 @@
+[bedabin_nomad_fighter]
+attack_speed = 4
+death_anim = "bedabin_nomad_fighter_death"
+
+[bedabin_nomad_fighter.melee]
+range = 1
+target_hit = { offense = "slash", max = 70 }
+anim = "bedabin_nomad_fighter_attack"

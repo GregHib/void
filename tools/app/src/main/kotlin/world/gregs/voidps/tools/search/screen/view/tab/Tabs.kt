@@ -10,6 +10,7 @@ import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.Parameterized
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.*
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.engine.client.variable.BitwiseValues
@@ -46,6 +47,7 @@ fun buildTabs(path: String): Result<List<DefinitionTab<*>>> = runCatching {
         file.resolve("main_file_cache.dat2").exists() -> path
         else -> error("No cache found in dir: '$path'")
     }
+    Params.exceptions = false
     var loadConfig = false
     val files = if (file.resolve("dirs.txt").exists()) {
         Settings.load()

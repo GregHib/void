@@ -3,6 +3,7 @@ type = "all"
 drops = [
   { table = "earth_warrior_secondary" },
   { table = "earth_warrior_tertiary" },
+    { table = "earth_warrior_charms", members = true },
 ]
 
 [earth_warrior_secondary]
@@ -28,4 +29,13 @@ drops = [
 roll = 5000
 drops = [
     { id = "earth_warrior_champions_scroll", lacks = "earth_warrior_champions_scroll" },
+]
+
+[earth_warrior_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9037 },
+    { id = "green_charm", chance = 4475 },
+    { id = "crimson_charm", chance = 11000 },
+    { id = "blue_charm", chance = 675 },
 ]

@@ -31,7 +31,6 @@ def = 20
 combat_def = "kalphite_worker"
 slayer_xp = 40.0
 respawn_delay = 25
-wander_range = 6
 hunt_mode = "cowardly"
 drop_table = "kalphite_worker"
 categories = ["kalphites"]
@@ -47,7 +46,6 @@ combat_def = "kalphite_worker"
 max_hit_crush = 80
 slayer_xp = 90.0
 respawn_delay = 25
-wander_range = 6
 hunt_mode = "cowardly"
 drop_table = "kalphite_soldier"
 categories = ["kalphites"]
@@ -62,7 +60,6 @@ def = 110
 combat_def = "kalphite_guardian"
 slayer_xp = 170.0
 respawn_delay = 40
-wander_range = 6
 hunt_mode = "cowardly"
 drop_table = "kalphite_guardian"
 categories = ["kalphites"]
@@ -83,6 +80,21 @@ examine = "I don't think insect repellent will work..."
 
 [goat]
 id = 4933
+drop_table = "goat"
+hitpoints = 210
+att = 20
+str = 20
+def = 20
+attack_bonus = 10
+max_hit_crush = 40
 
 [goat_2]
 id = 4934
+drop_table = "goat"
+hitpoints = 210
+att = 20
+str = 20
+def = 20
+attack_bonus = 10
+max_hit_crush = 40
+combat_def = "goat"

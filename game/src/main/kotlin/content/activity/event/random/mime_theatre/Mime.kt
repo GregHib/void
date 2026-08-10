@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
 import world.gregs.voidps.type.Tile
@@ -49,10 +50,19 @@ class Mime : Script {
             set("mime_correct", 0)
         }
         mysteriousOldMan()
+        walkTrigger {
+            strongQueue("start") {
+                start()
+            }
+        }
         kidnap(SPAWN)
+        // The old man stays behind at the kidnap origin, so he narrates by id rather than talkWith.
         npc<Neutral>("mysterious_old_man", "Here's a little challenge for you:<br>Copy the Mime's performance, then you'll be released.")
-        walkOverDelay(WATCH)
+        start()
+    }
 
+    private suspend fun Player.start() {
+        walkOverDelay(WATCH)
         val mime = NPCs.firstOrNull(MIME_TILE) { it.id == "mime" } ?: NPCs.add("mime", MIME_TILE, ticks = -1, owner = this)
         runMime(mime)
     }

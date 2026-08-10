@@ -15,3 +15,12 @@ id = 6564
 
 [medium_dog_attack]
 id = 6565
+
+[wild_dog_defend]
+id = 6563
+
+[wild_dog_death]
+id = 6564
+
+[wild_dog_attack]
+id = 6562

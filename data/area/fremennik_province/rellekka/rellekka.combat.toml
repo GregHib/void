@@ -1,6 +1,5 @@
 [fox]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "fox_defend"
 death_anim = "fox_death"
 
@@ -11,7 +10,6 @@ target_hit = { offense = "crush", max = 40 }
 
 [bunny]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "bunny_defend"
 death_anim = "bunny_death"
 
@@ -19,3 +17,106 @@ death_anim = "bunny_death"
 range = 1
 anim = "bunny_attack"
 target_hit = { offense = "crush", max = 0 }
+
+[black_unicorn]
+attack_speed = 4
+defend_anim = "black_unicorn_defend"
+death_anim = "black_unicorn_death"
+defend_sound = "black_unicorn_defend"
+death_sound = "black_unicorn_death"
+
+[black_unicorn.melee]
+range = 1
+target_hit = { offense = "stab", max = 30 }
+anim = "black_unicorn_attack"
+sound = "black_unicorn_attack"
+
+[freidir]
+attack_speed = 4
+defend_anim = "freidir_defend"
+death_anim = "freidir_death"
+
+[freidir.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+anim = "freidir_attack"
+
+[borrokar]
+attack_speed = 4
+defend_anim = "borrokar_defend"
+death_anim = "borrokar_death"
+
+[borrokar.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+anim = "borrokar_attack"
+
+[lanzig]
+attack_speed = 4
+defend_anim = "lanzig_defend"
+death_anim = "lanzig_death"
+
+[lanzig.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+anim = "lanzig_attack"
+
+[lensa]
+attack_speed = 4
+defend_anim = "lensa_defend"
+death_anim = "lensa_death"
+defend_sound = "lensa_defend"
+death_sound = "lensa_death"
+
+[lensa.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+anim = "lensa_attack"
+sound = "lensa_attack"
+
+[jennella]
+attack_speed = 4
+defend_anim = "human_defend"
+death_anim = "human_death"
+
+[jennella.melee]
+range = 1
+target_hit = { offense = "crush", max = 60 }
+anim = "human_attack"
+
+[unicorn_foal]
+attack_speed = 4
+defend_anim = "unicorn_foal_defend"
+death_anim = "unicorn_foal_death"
+defend_sound = "unicorn_foal_defend"
+death_sound = "unicorn_foal_death"
+
+[unicorn_foal.melee]
+range = 1
+target_hit = { offense = "stab", max = 20 }
+anim = "unicorn_foal_attack"
+sound = "unicorn_foal_attack"
+
+[black_unicorn_foal]
+attack_speed = 4
+death_anim = "black_unicorn_foal_death"
+defend_sound = "black_unicorn_foal_defend"
+death_sound = "black_unicorn_foal_death"
+
+[black_unicorn_foal.melee]
+range = 1
+target_hit = { offense = "stab", max = 30 }
+anim = "black_unicorn_foal_attack"
+sound = "black_unicorn_foal_attack"
+
+[fenris_wolf]
+attack_speed = 4
+death_anim = "fenris_wolf_death"
+defend_sound = "fenris_wolf_defend"
+death_sound = "fenris_wolf_death"
+
+[fenris_wolf.melee]
+range = 1
+target_hit = { offense = "crush", max = 69 }
+anim = "fenris_wolf_attack"
+sound = "fenris_wolf_attack"

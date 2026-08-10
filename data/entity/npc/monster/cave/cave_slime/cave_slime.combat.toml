@@ -1,6 +1,5 @@
 [cave_slime]
 attack_speed = 5
-retreat_range = 13
 defend_anim = "cave_slime_defend"
 death_anim = "cave_slime_death"
 

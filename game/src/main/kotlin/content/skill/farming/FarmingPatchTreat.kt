@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -24,6 +25,7 @@ class FarmingPatchTreat : Script {
     private suspend fun compost(player: Player, interact: ItemOnObjectInteract) {
         val target = interact.target
         if (!target.id.startsWith("farming_")) {
+            player.noInterest()
             return
         }
         val id = target.def(player).stringId
@@ -55,6 +57,10 @@ class FarmingPatchTreat : Script {
 
     private suspend fun water(player: Player, interact: ItemOnObjectInteract) {
         val target = interact.target
+        if (!target.id.startsWith("farming_")) {
+            player.noInterest()
+            return
+        }
         if (!target.id.startsWith("farming_veg") && !target.id.startsWith("farming_flower") && !target.id.startsWith("farming_hops")) {
             player.message("This patch doesn't need watering.")
             return

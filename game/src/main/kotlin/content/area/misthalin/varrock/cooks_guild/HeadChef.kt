@@ -3,17 +3,12 @@ package content.area.misthalin.varrock.cooks_guild
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Sad
+import content.entity.player.dialogue.buySkillcape
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class HeadChef : Script {
     init {
@@ -29,21 +24,7 @@ class HeadChef : Script {
                         choice {
                             option("That's much too expensive.")
                             option<Happy>("Sure") {
-                                inventory.transaction {
-                                    val trimmed = Skill.entries.any { it != Skill.Cooking && levels.getMax(it) >= Level.MAX_LEVEL }
-                                    remove("coins", 99000)
-                                    add("cooking_cape${if (trimmed) "_t" else ""}")
-                                    add("cooking_hood")
-                                }
-                                when (inventory.transaction.error) {
-                                    is TransactionError.Deficient -> {
-                                        player<Sad>("But, unfortunately, I don't have enough coins.")
-                                        npc<Neutral>("Well, come back and see me when you do.")
-                                    }
-                                    is TransactionError.Full -> npc<Sad>("Unfortunately all skillcapes are only available with a free hood, it's part of a skill promotion deal; buy one get one free, you know. So you'll need to free up some backpack space before I can sell you one.")
-                                    TransactionError.None -> npc<Happy>("Now you can use the title Master Chef.")
-                                    else -> {}
-                                }
+                                buySkillcape(Skill.Cooking, success = "Now you can use the title Master Chef.", deficient = "But, unfortunately, I don't have enough coins.")
                             }
                         }
                     }

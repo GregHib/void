@@ -1,0 +1,5 @@
+[ice_demon_drop_table]
+type = "all"
+drops = [
+    { id = "frostenhorn" },
+]

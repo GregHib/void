@@ -1,0 +1,57 @@
+[rand_overlay]
+id = 945
+type = "overlay"
+
+[.rand_dungeon_stats]
+id = 0
+
+[.deaths_icon]
+id = 1
+
+[.rand_progress_layer]
+id = 2
+
+[.rand_progress_bar_background]
+id = 3
+
+[.progress_e1]
+id = 4
+
+[.progress_s]
+id = 5
+
+[.progress_w1]
+id = 6
+
+[.progress_n]
+id = 7
+
+[.progress_se]
+id = 8
+
+[.progress_sw]
+id = 9
+
+[.progress_nw]
+id = 10
+
+[.progress_ne]
+id = 11
+
+[.progress_bar_mid]
+id = 12
+
+[.progress_bar_w]
+id = 13
+
+[.rand_progress_bar_title]
+id = 14
+
+[.rand_fill_layer]
+id = 15
+
+[.rand_progress_bar_fill]
+id = 16
+
+[.rand_progress_end]
+id = 17

@@ -1,6 +1,5 @@
 [fire_giant]
 attack_speed = 5
-retreat_range = 8
 defend_anim = "fire_giant_defend"
 defend_sound = "giant_defend"
 death_anim = "fire_giant_death"

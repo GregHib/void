@@ -1,20 +1,23 @@
 [crab]
 id = 2706
 categories = ["crabs"]
-wander_range = 3
 examine = "Nobody likes crabs..."
 
 [rock_crab]
 id = 1265
-wander_range = 5
 hunt_mode = "aggressive"
 categories = ["crabs"]
 combat_def = "rock_crab"
 examine = "No one likes crabs..."
+hitpoints = 500
+max_hit_crush = 10
 
 [rock_crab_1]
 clone = "rock_crab"
 id = 1267
+drop_table = "rock_crab"
+hitpoints = 500
+max_hit_crush = 10
 
 [rock]
 id = 1266
@@ -45,7 +48,6 @@ hitpoints = 1800
 combat_def = "rock_crab"
 max_hit_crush = 90
 respawn_delay = 50
-wander_range = 5
 hunt_mode = "aggressive"
 categories = ["crabs"]
 examine = "No one likes crabs... especially really big ones!"
@@ -53,6 +55,7 @@ examine = "No one likes crabs... especially really big ones!"
 [giant_rock_crab_light]
 clone = "giant_rock_crab"
 id = 2885
+drop_table = "giant_rock_crab"
 
 [boulder]
 clone = "giant_rock_crab"

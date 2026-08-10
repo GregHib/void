@@ -11,6 +11,7 @@ immune_poison = true
 respawn_delay = 35
 drop_table = "loar_shade"
 examine = "A shadowy sort of entity, kind of creepy looking."
+max_hit_crush = 40
 
 [loar_shade]
 id = 1241

@@ -1,6 +1,5 @@
 [fever_spider]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "spider_large_defend"
 defend_sound = "insect_defend"
 death_anim = "spider_large_death"
@@ -23,7 +22,6 @@ impact_disease = 8
 
 [zombie_pirate]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "zombie_pirate_defend"
 defend_sound = "zombie_pirate_defend"
 death_anim = "zombie_pirate_death"

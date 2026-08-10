@@ -1,0 +1,3 @@
+[skip_level_up_dialogues]
+format = "boolean"
+persist = true

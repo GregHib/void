@@ -1,9 +1,11 @@
 package world.gregs.voidps.engine.entity.character.mode.combat
 
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.config.CombatDefinition
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Mode
@@ -62,7 +64,7 @@ class CombatMovement(
             // de-aggroing and walking back to its spawn while the familiar is still on it.
             val spawn: Tile = character["spawn_tile"] ?: return
             val definition = get<CombatDefinitions>().get(character.transformDef["combat_def", character.id])
-            if (!withinAggro(this.target, spawn, definition)) {
+            if (!withinAggro(character, this.target, spawn, definition)) {
                 character.mode = EmptyMode
                 return
             }
@@ -90,6 +92,12 @@ class CombatMovement(
                     character.mode = EmptyMode
                     return
                 }
+            }
+            // Disengage from targets that are already in combat
+            val attacker = target.get<Character>("attacker")
+            if (character is NPC && character.def[Params.DISENGAGE, true] && attacker != null && attacker != character && !target.contains("in_multi_combat")) {
+                character.mode = EmptyMode
+                return
             }
             if (skip || attack()) {
                 return
@@ -172,8 +180,9 @@ class CombatMovement(
             return this["spawn_tile"]
         }
 
-        fun withinAggro(target: Character, spawn: Tile, definition: CombatDefinition): Boolean {
-            val aggroRange = definition.retreatRange + definition.attackRange
+        fun withinAggro(npc: NPC, target: Character, spawn: Tile, definition: CombatDefinition): Boolean {
+            val maxRange = npc.maxRange()
+            val aggroRange = maxRange + definition.attackRange
             val absX = abs(target.tile.x - spawn.x)
             val absY = abs(target.tile.y - spawn.y)
             if (definition.attackRange == 1 && absX == absY && absX == aggroRange) {
@@ -181,5 +190,7 @@ class CombatMovement(
             }
             return absX <= aggroRange && absY <= aggroRange
         }
+
+        fun NPC.maxRange() = Tables.intOrNull("npc_ranges.${get("transform_id", id)}.max_range") ?: 7
     }
 }

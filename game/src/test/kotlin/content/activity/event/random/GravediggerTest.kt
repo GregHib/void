@@ -65,7 +65,7 @@ class GravediggerTest : WorldTest() {
         dialogueOption(1) // "There, finished!"
         tick()
         skipDialogues()
-        tick(2)
+        tick(6) // covers the modern teleport takeoff on the final claim
     }
 
     private fun coffinName(index: Int) = if (index == 0) "coffin" else "coffin_${index + 1}"
@@ -142,7 +142,7 @@ class GravediggerTest : WorldTest() {
         player.dialogueOption(3) // "I want to leave."
         tick()
         player.skipDialogues()
-        tick(2)
+        tick(6) // wait out the modern teleport takeoff
 
         assertTrue(player.inventory.isEmpty(), "Expected no reward and no coffins kept")
         assertNull(player.get<String>("random_event"))

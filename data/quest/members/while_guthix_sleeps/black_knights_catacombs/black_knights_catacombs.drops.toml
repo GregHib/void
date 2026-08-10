@@ -1,0 +1,71 @@
+[elite_dark_warrior_drop_table]
+type = "all"
+drops = [
+    { table = "elite_dark_warrior_secondary" },
+]
+
+[elite_dark_warrior_secondary]
+roll = 1024
+drops = [
+    { id = "steel_battleaxe", chance = 32 },
+    { id = "black_2h_sword", chance = 32 },
+    { id = "coins", amount = 877, chance = 32 },
+    { id = "air_rune", amount = 39, chance = 32 },
+    { id = "mithril_bar", amount = 3, chance = 32 },
+    { id = "gold_bar", chance = 32 },
+    { id = "potato_with_butter", chance = 32 },
+    { id = "prayer_potion_1", chance = 32 },
+    { id = "rune_mace", chance = 6 },
+]
+
+[elite_dark_ranger_drop_table]
+type = "all"
+drops = [
+    { table = "elite_dark_ranger_secondary" },
+    { table = "medium_clue_scroll", roll = 32 },
+]
+
+[elite_dark_ranger_secondary]
+roll = 1024
+drops = [
+    { id = "mithril_bolts", chance = 32 },
+    { id = "adamant_bolts", amount = 3, chance = 32 },
+    { id = "steel_arrow", chance = 32 },
+    { id = "mithril_arrow", chance = 32 },
+    { id = "black_dart", min = 3, max = 4, chance = 32 },
+    { id = "black_kiteshield", chance = 32 },
+    { id = "apple_pie", amount = 3, chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "ruby_bolt_tips", min = 1, max = 5, chance = 32 },
+    { id = "crossbow_string", amount = 3, chance = 32 },
+    { id = "black_dragonhide", chance = 32 },
+]
+
+[elite_dark_mage_drop_table]
+type = "all"
+drops = [
+    { table = "elite_dark_mage_secondary" },
+    { table = "medium_clue_scroll", roll = 32 },
+]
+
+[elite_dark_mage_secondary]
+roll = 1024
+drops = [
+    { id = "battlestaff", chance = 32 },
+    { id = "mystic_air_staff", chance = 32 },
+    { id = "prayer_potion_1", chance = 32 },
+    { id = "super_attack_1", amount = 2, chance = 32 },
+    { id = "chaos_rune", amount = 25, chance = 32 },
+    { id = "dust_rune", min = 4, max = 10, chance = 32 },
+    { id = "air_rune", min = 11, max = 40, chance = 32 },
+    { id = "nature_rune", min = 1, max = 6, chance = 32 },
+    { id = "fire_rune", min = 5, max = 28, chance = 32 },
+    { id = "blood_rune", min = 1, max = 2, chance = 32 },
+    { id = "death_rune", min = 3, max = 6, chance = 32 },
+    { id = "soul_rune", amount = 4, chance = 32 },
+    { id = "fire_talisman", amount = 2, chance = 32 },
+    { id = "coins", min = 81, max = 300, chance = 32 },
+    { id = "apple_pie", chance = 32 },
+    { id = "big_bones", min = 2, max = 4, chance = 32 },
+    { id = "earth_orb", amount = 2, chance = 32 },
+]

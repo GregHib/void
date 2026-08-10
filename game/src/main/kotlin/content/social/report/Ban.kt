@@ -60,7 +60,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
                 AuditLog.event(this, "perm_banned", target)
                 manager.logout(target, false)
             } else {
-                val save = storage.load(accounts.get(args[0])?.accountName ?: args[0])
+                val save = storage.load(offlineAccount(args[0]))
                 if (save == null) {
                     message("Unable to find player '${args[0]}'.")
                     return@modCommand
@@ -90,11 +90,16 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
     }
 
     /**
+     * The account name behind an offline player's display name, with underscores standing in for
+     * spaces, falling back to treating the input as an account name.
+     */
+    private fun offlineAccount(displayName: String): String = accounts.get(displayName.replace('_', ' '))?.accountName ?: displayName
+
+    /**
      * Bans an offline player's saved account and adds a black mark
      */
     private fun banOffline(displayName: String, until: Int): Boolean {
-        val account = accounts.get(displayName)?.accountName ?: displayName
-        val save = storage.load(account) ?: return false
+        val save = storage.load(offlineAccount(displayName)) ?: return false
         val variables = save.variables.toMutableMap()
         variables["banned_until"] = until
         val marks = activeBlackMarks((variables["black_marks"] as? List<*>)?.filterIsInstance<String>() ?: emptyList())
@@ -107,8 +112,7 @@ class Ban(val accounts: AccountDefinitions, val manager: AccountManager, val sto
      * Updates a variable on an offline player's saved account
      */
     private fun setOfflineVariable(displayName: String, key: String, value: Any?): Boolean {
-        val account = accounts.get(displayName)?.accountName ?: displayName
-        val save = storage.load(account) ?: return false
+        val save = storage.load(offlineAccount(displayName)) ?: return false
         val variables = save.variables.toMutableMap()
         if (value == null) {
             variables.remove(key)

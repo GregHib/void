@@ -11,10 +11,12 @@ attack_bonus = 14
 respawn_delay = 50
 drop_table = "guardian_of_armadyl"
 examine = "A guard who has devoted their life to Armadyl."
+combat_def = "guard"
 
 [guardian_of_armadyl_temple_of_ikov_2]
 id = 275
 clone = "guardian_of_armadyl_temple_of_ikov"
+combat_def = "guard"
 
 [winelda_temple_of_ikov]
 id = 276
@@ -24,6 +26,14 @@ examine = "A witch."
 id = 5341
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [ice_spider]
 id = 64
@@ -38,6 +48,8 @@ slayer_xp = 65.0
 categories = ["spiders"]
 respawn_delay = 30
 examine = "I think this spider has been magically modified."
+drop_table = "ice_spider"
+combat_def = "giant_spider"
 
 [fire_warrior_of_lesarkus]
 id = 277

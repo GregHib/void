@@ -1,5 +1,6 @@
 package content.activity.event.random
 
+import FakeRandom
 import WorldTest
 import content.entity.combat.hit.damage
 import npcOption
@@ -7,10 +8,14 @@ import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -18,6 +23,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class FreakyForesterTest : WorldTest() {
+
+    override var loadNpcs: Boolean = true
 
     private val clearing = Tile(2601, 4777)
 
@@ -76,7 +83,7 @@ class FreakyForesterTest : WorldTest() {
         player.npcOption(forester, "Talk-to")
         tick()
         player.skipDialogues()
-        tick(2)
+        tick(5) // wait out the modern teleport takeoff
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertEquals(1, player.get("lederhosen_costume_points", 0))
@@ -107,5 +114,31 @@ class FreakyForesterTest : WorldTest() {
         val pheasant = createNPC("pheasant_4_tails", Tile(2603, 4777))
 
         assertFalse(CombatApi.canAttack(player, pheasant))
+    }
+
+    @Test
+    fun `Killing a pheasant grants no combat experience`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = until
+            override fun nextInt(from: Int, until: Int) = until
+        })
+        val player = startInClearing("ff_no_xp", task = 2)
+        val pheasant = createNPC("pheasant_2_tails", Tile(2602, 4777))
+        player.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
+        player.experience.set(Skill.Attack, EXPERIENCE)
+        player.experience.set(Skill.Strength, EXPERIENCE)
+        player.experience.set(Skill.Constitution, EXPERIENCE)
+
+        player.npcOption(pheasant, "Attack")
+        tickIf { pheasant.levels.get(Skill.Constitution) > 0 }
+        tick(4)
+
+        assertEquals(EXPERIENCE, player.experience.get(Skill.Attack))
+        assertEquals(EXPERIENCE, player.experience.get(Skill.Strength))
+        assertEquals(EXPERIENCE, player.experience.get(Skill.Constitution))
+    }
+
+    companion object {
+        private const val EXPERIENCE = 14_000_000.0
     }
 }

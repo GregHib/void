@@ -40,7 +40,7 @@ class TzHaarHealers : Script {
                 return@npcMoved
             }
             val jad = NPCs.findOrNull(tile.regionLevel, "tztok_jad") ?: return@npcMoved
-            if (tile.within(jad.tile, 5)) {
+            if (tile.distanceTo(jad.tile, jad.size, jad.size) <= 4) {
                 softTimers.start("yt_hur_kot_heal")
             }
         }
@@ -49,13 +49,13 @@ class TzHaarHealers : Script {
 
         npcTimerTick("yt_hur_kot_heal") {
             val jad = NPCs.findOrNull(tile.regionLevel, "tztok_jad") ?: return@npcTimerTick Timer.CONTINUE
-            if (!tile.within(jad.tile, 5)) {
+            if (tile.distanceTo(jad.tile, jad.size, jad.size) > 4) {
                 return@npcTimerTick Timer.CONTINUE
             }
-            val healed = jad.levels.restore(Skill.Constitution, 50)
-            if (healed > 0) {
+            if (jad.levels.getOffset(Skill.Constitution) < 0) {
                 anim("yt_hur_kot_heal")
                 jad.gfx("tzhaar_heal")
+                // The "healed" hit restores the health
                 jad.directHit(50, "healed")
                 areaSound("self_heal", tile, radius = 10)
             }
@@ -64,8 +64,7 @@ class TzHaarHealers : Script {
     }
 
     private fun heal(target: NPC, amount: Int) {
-        val amount = target.levels.restore(Skill.Constitution, amount)
-        if (amount > 0) {
+        if (target.levels.getOffset(Skill.Constitution) < 0) {
             target.directHit(amount, "healed")
             target.gfx("tzhaar_heal")
         }

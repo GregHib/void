@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { table = "hobgoblin_secondary" },
     { table = "hobgoblin_tertiary" },
+    { table = "hobgoblin_charms", members = true },
 ]
 
 [hobgoblin_secondary]
@@ -56,6 +57,7 @@ drops = [
     { id = "bones" },
     { table = "hobgoblin_armed_secondary" },
     { table = "hobgoblin_tertiary" },
+    { table = "hobgoblin_charms", members = true },
 ]
 
 [hobgoblin_armed_secondary]
@@ -86,4 +88,13 @@ drops = [
     { id = "goblin_mail", chance = 5 },
     { id = "nothing", amount = 0, chance = 2 },
     { table = "gem_drop_table", chance = 2 },
+]
+
+[hobgoblin_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 15988 },
+    { id = "green_charm", chance = 493 },
+    { id = "crimson_charm", chance = 966 },
+    { id = "blue_charm", chance = 150 },
 ]

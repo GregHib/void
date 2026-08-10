@@ -1,6 +1,5 @@
 [monkey]
 attack_speed = 4
-retreat_range = 14
 defend_anim = "monkey_defend"
 defend_sound = "monkey_defend"
 death_anim = "monkey_death"

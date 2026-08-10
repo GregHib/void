@@ -76,3 +76,14 @@ drops = [
     { id = "dwarf_weed_seed" },
     { id = "torstol_seed" },
 ]
+[shady_stranger_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]
+
+[suspicious_outsider_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

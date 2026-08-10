@@ -6,7 +6,6 @@ str = 3
 def = 3
 combat_def = "monkey"
 height = 15
-wander_range = 8
 respawn_delay = 37
 slayer_xp = 6.0
 drop_table = "monkey"

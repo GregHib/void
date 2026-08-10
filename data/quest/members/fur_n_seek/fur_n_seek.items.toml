@@ -302,7 +302,6 @@ id = 15181
 id = 15182
 tradeable = false
 weight = 0.453
-prayer_xp = 15.0
 examine = "This needs a good polish."
 kept = "Wilderness"
 

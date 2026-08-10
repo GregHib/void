@@ -1,2 +1,8 @@
 [wild_ditch_jump]
 id = 6132
+
+[rogue_death]
+id = 836
+
+[rogue_attack]
+id = 386

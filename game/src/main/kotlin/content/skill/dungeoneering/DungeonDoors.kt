@@ -7,16 +7,17 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class DungeonDoors : Script {
     init {
@@ -43,7 +44,7 @@ class DungeonDoors : Script {
             }
             target.remove()
             anim("unlock_dung_door")
-            message("You unlock the door.", ChatType.Filter)
+            message("You unlock the door.")
         }
 
         objectOperate("Open", "orange_*_door_*,silver_*_door_*,yellow_*_door_*,green_*_door_*,blue_*_door_*,purple_*_door_*,crimson_*_door_*,gold_*_door_*", handler = ::handleDoor)
@@ -100,6 +101,8 @@ class DungeonDoors : Script {
 
         objectOperate("Burn", "flammable_debris_*") { (target) ->
             target.remove()
+            // https://youtu.be/C5G4sXKrVSI?t=141
+            message("You burn the pile of debris, clearing the path.")
         }
 
         objectOperate("Chop-down", "wooden_barricade_*") { (target) ->
@@ -110,6 +113,7 @@ class DungeonDoors : Script {
             anim("pruning_mid_high")
             delay(2)
             target.remove()
+            clearAnim()
         }
 
         objectOperate("Dismiss", "ramokee_exile_*") { (target) ->
@@ -141,7 +145,7 @@ class DungeonDoors : Script {
     private suspend fun handleDoor(player: Player, interact: PlayerOnObjectInteract) {
         val target = interact.target
         val dir = direction(target) ?: return
-        val under = GameObjects.at(target.tile.add(dir.inverse())).firstOrNull()
+        val under = GameObjects.getLayer(target.tile.add(dir.inverse()), ObjectLayer.GROUND)
         if (under == null) {
             player.approachRange(1)
             player.openDoor(target)
@@ -185,9 +189,9 @@ class DungeonDoors : Script {
             return
         }
         if (direction.isHorizontal()) {
-            tele(tile.copy(x = target.tile.x + direction.delta.x * 2))
+            tele(Tile(x = target.tile.x + direction.delta.x * 2, y = tile.y.coerceIn(target.tile.y, target.tile.y + 1)))
         } else {
-            tele(tile.copy(y = target.tile.y + direction.delta.y * 2))
+            tele(Tile(x = tile.x.coerceIn(target.tile.x, target.tile.x + 1), y = target.tile.y + direction.delta.y * 2))
         }
     }
 

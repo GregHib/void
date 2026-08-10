@@ -1,5 +1,4 @@
 [frost_dragon]
-retreat_range = 8
 defend_anim = "frost_dragon_block"
 defend_sound = "dragon_defend"
 death_anim = "frost_dragon_death"

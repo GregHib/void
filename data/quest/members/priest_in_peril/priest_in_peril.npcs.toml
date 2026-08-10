@@ -11,6 +11,7 @@ slayer_xp = 45.0
 categories = ["dogs"]
 immune_cannon = true
 examine = "Looks like a big ugly dog."
+drop_table = "temple_guardian"
 
 [priestperilevilmonk1]
 id = 1044

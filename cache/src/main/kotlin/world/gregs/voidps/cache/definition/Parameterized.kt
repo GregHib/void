@@ -9,6 +9,7 @@ import world.gregs.voidps.cache.definition.Params.CATEGORY
 import world.gregs.voidps.cache.definition.Params.MAGIC_STRENGTH
 import world.gregs.voidps.cache.definition.Params.RANGED_STRENGTH
 import world.gregs.voidps.cache.definition.Params.STRENGTH
+import kotlin.collections.set
 
 @Suppress("UNCHECKED_CAST")
 interface Parameterized {
@@ -25,7 +26,8 @@ interface Parameterized {
         if (key == null) {
             return false
         }
-        return params?.containsKey(Params.id(key)) ?: false
+        val key = Params.idOrNull(key) ?: false
+        return params?.containsKey(key) ?: false
     }
 
     fun <T : Any> getOrNull(key: Int) = params?.get(key) as? T
@@ -66,11 +68,12 @@ interface Parameterized {
             writer.writeByte(params.size)
             params.forEach { (id, value) ->
                 writer.writeByte(value is String)
-                writer.writeMedium(id)
-                if (value is String) {
-                    writer.writeString(value)
-                } else if (value is Int) {
-                    writer.writeInt(value)
+                writer.writeMedium(if (value is Set<*>) CATEGORY else id)
+                when (value) {
+                    is String -> writer.writeString(value)
+                    is Int -> writer.writeInt(value)
+                    is Double -> writer.writeInt((value * 10.0).toInt())
+                    is Set<*> -> writer.writeInt(Category.id((value as Set<String>).first()))
                 }
             }
         }

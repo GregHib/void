@@ -10,13 +10,10 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import kotlin.math.min
 
 class ShardSwapping : Script {
@@ -68,23 +65,6 @@ class ShardSwapping : Script {
                     swapForShards(this, actualItem, total)
                 }
                 "Trade-All" -> swapForShards(this, actualItem, Int.MAX_VALUE)
-            }
-        }
-
-        itemOption("Open", "spirit_shard_pack") {
-            inventory.transaction {
-                remove(it.item.id)
-                add("spirit_shards", 5000)
-            }
-        }
-
-        itemOption("Open-All", "spirit_shard_pack") {
-            inventory.transaction {
-                val removed = removeToLimit(it.item.id, it.item.amount)
-                add("spirit_shards", removed * 5000)
-            }
-            if (inventory.transaction.error is TransactionError.Full) {
-                inventoryFull()
             }
         }
     }

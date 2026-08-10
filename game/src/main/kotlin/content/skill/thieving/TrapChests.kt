@@ -19,7 +19,7 @@ import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 class TrapChests(val tables: DropTables) : Script {
 
     init {
-        objectOperate("Open", "*_chest") { (target) ->
+        objectOperate("Open", "dorgesh_kaan_chest,nature_chest,barrows_chest,culinaromancers_chest,blood_rune_chest,dorgesh_kaan_gem_chest,shantay_chest,capn_arnav_chest,coin_chest,ardougne_castle_chest,steel_arrows_chest,maze_chest,lumbridge_closed_chest,big_coin_chest,edgeville_chest") { (target) ->
             when (target.id) {
                 "coin_chest" -> damage(20 + levels.get(Skill.Constitution) / 10)
                 "big_coin_chest" -> damage(40 + (levels.get(Skill.Constitution) * 0.15).toInt())

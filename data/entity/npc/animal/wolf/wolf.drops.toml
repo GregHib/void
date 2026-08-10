@@ -1,0 +1,47 @@
+[wolf_drop_table]
+type = "all"
+drops = [
+    { id = "wolf_bones" },
+    { table = "wolf_charms", members = true },
+]
+
+[wolf_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 32008 },
+    { id = "green_charm", chance = 2813 },
+    { id = "crimson_charm", chance = 3395 },
+    { id = "blue_charm", chance = 388 },
+]
+
+[white_wolf_drop_table]
+type = "all"
+drops = [
+    { id = "wolf_bones" },
+    { table = "white_wolf_charms", members = true },
+]
+
+[white_wolf_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9845 },
+    { id = "green_charm", chance = 3849 },
+    { id = "crimson_charm", chance = 12879 },
+    { id = "blue_charm", chance = 370 },
+]
+
+[big_wolf_drop_table]
+type = "all"
+drops = [
+    { id = "wolf_bones" },
+    { table = "big_wolf_charms", members = true },
+]
+
+[big_wolf_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9033 },
+    { id = "green_charm", chance = 6143 },
+    { id = "crimson_charm", chance = 15808 },
+    { id = "blue_charm", chance = 813 },
+]

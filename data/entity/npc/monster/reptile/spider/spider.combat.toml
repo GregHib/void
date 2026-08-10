@@ -1,6 +1,5 @@
 [spider]
 attack_speed = 4
-retreat_range = 11
 defend_anim = "spider_defend"
 defend_sound = "spider_defend"
 death_anim = "spider_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "stab", max = 10 }
 
 [giant_spider]
 attack_speed = 4
-retreat_range = 13
 defend_anim = "giant_spider_defend"
 defend_sound = "giant_spider_defend"
 death_anim = "giant_spider_death"
@@ -28,7 +26,6 @@ target_hit = { offense = "stab", max = 10 }
 
 [giant_spider_mid]
 clone = "giant_spider"
-retreat_range = 8
 
 [giant_spider_mid.melee]
 clone = "giant_spider.melee"
@@ -43,7 +40,6 @@ target_hit = { offense = "stab", max = 70 }
 
 [deadly_red_spider]
 clone = "giant_spider_mid"
-retreat_range = 11
 
 [deadly_red_spider.melee]
 clone = "giant_spider_mid.melee"

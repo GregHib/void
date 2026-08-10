@@ -1,0 +1,5 @@
+[khazard_guard_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

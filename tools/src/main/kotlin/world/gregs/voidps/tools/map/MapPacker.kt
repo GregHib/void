@@ -8,6 +8,7 @@ import world.gregs.voidps.tools.cache.OpenRS2
 import world.gregs.voidps.tools.cache.Xteas
 import world.gregs.voidps.type.Region
 import java.io.File
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Packs maps that are missing in the target cache when they're found in another cache
@@ -54,7 +55,7 @@ object MapPacker {
                     }
                     invalid.add(region)
                 }
-                delay(10L)
+                delay(10L.milliseconds)
             }
         }
         target.update()

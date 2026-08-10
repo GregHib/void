@@ -28,6 +28,7 @@ object Params {
     const val COLLECT_FOR_NEXT_LAYER = 5024
     const val COLLISION = 5025
     const val COMBAT_DEF = 5026
+    const val COMBAT_EXP = 5266
     const val COMBO = 5027
     const val COMPOSTABLE = 5028
     const val CURRENCY = 5029
@@ -104,7 +105,6 @@ object Params {
     const val LENGTH = 5101
     const val LEVEL = 5102
     const val LIMIT = 5103
-    const val LOCATIONS = 5104
     const val LOWER = 5105
     const val MAGE = 5106
     const val MATERIAL = 5108
@@ -128,7 +128,6 @@ object Params {
     const val PATCH = 5126
     const val POINTS = 5127
     const val POISON_DAMAGE = 5128
-    const val PRAYER_XP = 5129
     const val PRICE = 5130
     const val PROJECTILES = 5131
     const val RAISE = 5132
@@ -182,8 +181,6 @@ object Params {
     const val UPGRADE_TIME = 5181
     const val USE_EXPERIENCE = 5182
     const val WALK = 5183
-    const val WANDER_RADIUS = 5184
-    const val WANDER_RANGE = 5185
     const val WEAPON_TYPE = 5186
     const val WEIGHT = 5187
     const val WIDTH = 5188
@@ -263,8 +260,10 @@ object Params {
     const val VARIABLES = 5263
     const val SUMMONING_BEAST_OF_BURDEN_ESSENCE = 5264
     const val SUMMONING_SPECIAL_COST = 5265
+    const val DISENGAGE = 5266
 
     private fun custom(name: String) = when (name) {
+        "disengage" -> DISENGAGE
         "summoning_beast_of_burden_essence" -> SUMMONING_BEAST_OF_BURDEN_ESSENCE
         "summoning_special_cost" -> SUMMONING_SPECIAL_COST
         "variables" -> VARIABLES
@@ -365,6 +364,7 @@ object Params {
         "collect_for_next_layer" -> COLLECT_FOR_NEXT_LAYER
         "collision" -> COLLISION
         "combat_def" -> COMBAT_DEF
+        "combat_exp" -> COMBAT_EXP
         "combo" -> COMBO
         "compostable" -> COMPOSTABLE
         "currency" -> CURRENCY
@@ -441,7 +441,6 @@ object Params {
         "length" -> LENGTH
         "level" -> LEVEL
         "limit" -> LIMIT
-        "locations" -> LOCATIONS
         "lower" -> LOWER
         "mage" -> MAGE
         "material" -> MATERIAL
@@ -465,7 +464,6 @@ object Params {
         "patch" -> PATCH
         "points" -> POINTS
         "poison_damage" -> POISON_DAMAGE
-        "prayer_xp" -> PRAYER_XP
         "price" -> PRICE
         "projectiles" -> PROJECTILES
         "raise" -> RAISE
@@ -519,8 +517,6 @@ object Params {
         "upgrade_time" -> UPGRADE_TIME
         "use_experience" -> USE_EXPERIENCE
         "walk" -> WALK
-        "wander_radius" -> WANDER_RADIUS
-        "wander_range" -> WANDER_RANGE
         "weapon_type" -> WEAPON_TYPE
         "weight" -> WEIGHT
         "width" -> WIDTH
@@ -941,7 +937,19 @@ object Params {
     const val LINKED_SHADOW_NPC = 2098
     const val CATEGORY = 2195
 
-    fun id(name: String) = idOrNull(name) ?: error("No parameter id found for name '$name'")
+    var exceptions = true
+
+    fun id(name: String): Int {
+        val id = idOrNull(name)
+        if (id == null) {
+            if (exceptions) {
+                error("No parameter id found for key '$name'; make sure it's defined in Params.kt")
+            } else {
+                println("No parameter id found for key '$name'; make sure it's defined in Params.kt")
+            }
+        }
+        return id ?: -1
+    }
 
     fun idOrNull(name: String) = when (name) {
         "stab_attack" -> STAB_ATTACK

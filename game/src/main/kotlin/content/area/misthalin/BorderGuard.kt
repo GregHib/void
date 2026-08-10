@@ -3,11 +3,12 @@ package content.area.misthalin
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.area.Rectangle
 import kotlin.collections.set
 
@@ -15,18 +16,14 @@ class BorderGuard : Script {
 
     val guards = mutableMapOf<Rectangle, List<GameObject>>()
 
-    val raised = mutableMapOf<GameObject, Boolean>()
-
     init {
         worldSpawn {
-            for (border in Areas.tagged("border")) {
-                val passage = border.area as Rectangle
-                for (zone in passage.toZones()) {
-                    guards[passage] = zone.toRectangle().mapNotNull {
-                        val obj = GameObjects.getLayer(it, ObjectLayer.GROUND)
-                        if (obj != null && obj.id.startsWith("border_guard")) obj else null
-                    }
-                }
+            val table = Tables.getOrNull("guards") ?: return@worldSpawn
+            for (row in table.rows()) {
+                val id = row.obj("obj")
+                val tiles = row.tileList("tiles")
+                val passage = Areas[row.rowId] as Rectangle
+                guards[passage] = tiles.map { tile -> GameObjects.findLayer(tile, ObjectLayer.GROUND, id) }
             }
         }
 
@@ -49,29 +46,24 @@ class BorderGuard : Script {
 
     fun enter(player: Player, def: AreaDefinition) {
         val border = def.area as Rectangle
-        if (player.steps.destination in border || player.steps.isEmpty()) {
-            val tile = border.nearestTo(player.tile)
-            val endSide = Border.getOppositeSide(border, tile)
-            player.walkTo(endSide, noCollision = true, forceWalk = true)
-        } else {
-            player.steps.update(noCollision = true, noRun = true)
-        }
+        player["delay"] = 3
+        player.steps.update(noCollision = true, noRun = true)
         val guards = guards[border] ?: return
-        changeGuardState(guards, true)
+        changeGuardState(guards)
     }
 
     fun exit(player: Player, def: AreaDefinition) {
-        val border = def.area as Rectangle
-        val guards = guards[border] ?: return
         player.steps.update(noCollision = false, noRun = false)
-        changeGuardState(guards, false)
     }
 
-    fun changeGuardState(guards: List<GameObject>, raise: Boolean) {
+    fun changeGuardState(guards: List<GameObject>) {
         for (guard in guards) {
-            if (raised.getOrDefault(guard, false) != raise) {
-                guard.anim(guard.def[if (raise) "raise" else "lower"])
-                raised[guard] = raise
+            if (World.containsQueue("${guard.id}_${guard.tile}")) {
+                continue
+            }
+            guard.anim(guard.def["raise"])
+            World.queue("${guard.id}_${guard.tile}", 3) {
+                guard.anim(guard.def["lower"])
             }
         }
     }

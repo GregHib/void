@@ -9,8 +9,12 @@ max_hit_melee = 90
 hunt_mode = "cowardly"
 respawn_delay = 35
 examine = "A huge mouse. It looks hungry..."
+drop_table = "mouse"
+combat_def = "rat"
 
 [mouse_mouse_hole_dark]
 id = 5995
 clone = "mouse_mouse_hole"
+drop_table = "mouse"
+combat_def = "rat"
 

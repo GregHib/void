@@ -168,6 +168,7 @@ weight = 0.7
 destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
 examine = "A raw...fish? Is this a fish??"
 kept = "Vanish"
+unbankable = 2
 
 [fish_like_thing]
 id = 6202
@@ -176,6 +177,7 @@ weight = 0.7
 destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
 examine = "It's a fish-like thing that appears to already be cooked. It looks disgusting."
 kept = "Vanish"
+unbankable = 2
 
 [raw_fish_like_thing_incorrect]
 id = 6204
@@ -184,6 +186,7 @@ weight = 0.7
 destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
 examine = "A raw...fish? Is this a fish??"
 kept = "Reclaim"
+unbankable = 2
 
 [fish_like_thing_incorrect]
 id = 6206
@@ -192,6 +195,7 @@ weight = 0.7
 destroy = "A ghastly fish-like thing caught on Evil Bob's Island."
 examine = "It's a fish-like thing that appears to already be cooked. It looks disgusting."
 kept = "Reclaim"
+unbankable = 2
 
 [manspeak_amulet]
 id = 6208

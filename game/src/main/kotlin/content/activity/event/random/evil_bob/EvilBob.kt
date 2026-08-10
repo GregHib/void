@@ -2,6 +2,8 @@ package content.activity.event.random.evil_bob
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -13,7 +15,6 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import content.quest.instanceOffset
 import content.quest.setInstanceLogout
 import content.quest.smallInstance
@@ -22,14 +23,17 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
+import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -74,10 +78,16 @@ class EvilBob : Script {
             netFishingSpot()
         }
 
-        itemOnObjectOperate("fish_like_thing", "evil_bob_uncooking_pot") {
+        itemOption("Eat", "fish_like_thing*") {
+            message("It looks vile and smells even worse. You're not eating that!")
+        }
+
+        itemOnObjectOperate("fish_like_thing", "evil_bob_uncooking_pot") { (range) ->
+            walkOverDelay(range.tile)
             uncook("fish_like_thing", "raw_fish_like_thing")
         }
-        itemOnObjectOperate("fish_like_thing_incorrect", "evil_bob_uncooking_pot") {
+        itemOnObjectOperate("fish_like_thing_incorrect", "evil_bob_uncooking_pot") { (range) ->
+            walkOverDelay(range.tile)
             uncook("fish_like_thing_incorrect", "raw_fish_like_thing_incorrect")
         }
 
@@ -86,28 +96,27 @@ class EvilBob : Script {
                 npc<Angry>("evil_bob", "You're going nowhere, human!")
                 return@objectOperate
             }
+            onExitInterrupt { leaveIsland() }
             walkOverDelay(portal.tile)
-            bob()?.let { face(it.tile) }
+            delay(1)
+            face(Direction.EAST)
             delay(2)
             anim("emote_raspberry")
             say("Be seeing you!")
             delay(2)
-            reward()
-            clearState()
-            RandomEvents.complete(this)
-            message("Welcome back.")
+            leaveIsland()
         }
     }
 
     private suspend fun Player.startEvent() {
         smallInstance(Region(ISLAND_REGION), levels = 1)
         setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        // The region copy brings the island's static objects (fishing spots, uncooking
+        // pots, exit portal, deposit box) with it; only the nets need spawning.
         val offset = instanceOffset()
-        for (zone in ZONES) {
-            GameObjects.add("evil_bob_fishing_spot", zone.spot.add(offset), collision = false)
+        for (net in NET_TILES) {
+            FloorItems.add(net.add(offset), "small_fishing_net_evil_bobs_island", revealTicks = FloorItems.NEVER, disappearTicks = FloorItems.NEVER, owner = this)
         }
-        GameObjects.add("evil_bob_uncooking_pot", POT.add(offset), collision = false)
-        GameObjects.add("evil_bob_exit_portal", PORTAL.add(offset), collision = false)
 
         evilBobCatIntro()
         kidnap(ISLAND.add(offset))
@@ -120,12 +129,17 @@ class EvilBob : Script {
 
         if (get("evil_bob_zone", 0) == 0) {
             assignZone()
+        } else {
+            // Relog resume: the camera hint died with the old instance, so have the
+            // servant point out the fishing spot again when spoken to.
+            set("evil_bob_new_spot", true)
         }
-        if (!inventory.contains("small_fishing_net")) {
-            inventory.add("small_fishing_net")
+        if (!hasNet()) {
+            inventory.add("small_fishing_net_evil_bobs_island")
         }
         face(bob.tile)
         message("Welcome to ScapeRune.")
+        talkWith(bob)
         evilBobDialogue()
     }
 
@@ -154,7 +168,7 @@ class EvilBob : Script {
                 statement("Evil Bob's had his fill; there's no need to fish any more.")
             get("evil_bob_new_spot", false) ->
                 statement("You don't know if this is a good place to go fishing. Perhaps you should ask someone, like one of the human servants.")
-            !inventory.contains("small_fishing_net") ->
+            !hasNet() ->
                 npc<Sad>("evil_bob_servant", "You'll need a fishing net. There are plenty scattered around the beach.")
             inventory.isFull() ->
                 message("You don't have enough space in your inventory.")
@@ -171,6 +185,8 @@ class EvilBob : Script {
             }
         }
     }
+
+    private fun Player.hasNet() = inventory.contains("small_fishing_net") || inventory.contains("small_fishing_net_evil_bobs_island")
 
     private fun Player.holdsFish() = inventory.contains("fish_like_thing") ||
         inventory.contains("fish_like_thing_incorrect") ||
@@ -190,15 +206,15 @@ class EvilBob : Script {
         if (!inventory.remove("raw_fish_like_thing")) {
             return
         }
-        npc<Unamused>("evil_bob", "Mmm, mmm... that's delicious.")
+        npc<Unamused>("Mmm, mmm... that's delicious.")
         if (get("evil_bob_attentive", false)) {
             set("evil_bob_attentive", false)
             assignZone()
             set("evil_bob_new_spot", true)
-            npc<Angry>("evil_bob", "Now get me another, you no-good human.")
+            npc<Angry>("Now get me another, you no-good human.")
             statement("Evil Bob seems slightly less attentive of you.")
         } else {
-            npc<Neutral>("evil_bob", "Now, let me take... a little... catnap.")
+            npc<Neutral>("Now, let me take... a little... catnap.")
             set("evil_bob_complete", true)
             bob()?.say("ZZZzzz")
             statement("Evil Bob has fallen asleep. Slip away through the portal while you can!")
@@ -211,8 +227,8 @@ class EvilBob : Script {
         }
         set("evil_bob_attentive", true)
         set("evil_bob_new_spot", true)
-        npc<Angry>("evil_bob", "What was this? That was absolutely disgusting!")
-        npc<Angry>("evil_bob", "Don't you know what kind of fish I like? Talk to my other servants for some advice.")
+        npc<Angry>("What was this? That was absolutely disgusting!")
+        npc<Angry>("Don't you know what kind of fish I like? Talk to my other servants for some advice.")
         statement("Evil Bob seems more attentive of you.")
     }
 
@@ -223,7 +239,7 @@ class EvilBob : Script {
             inventory.contains("raw_fish_like_thing") -> serveCorrect()
             inventory.contains("raw_fish_like_thing_incorrect") -> serveWrong()
             inventory.contains("fish_like_thing") || inventory.contains("fish_like_thing_incorrect") ->
-                npc<Angry>("evil_bob", "What, are you giving me cooked fish? What am I going to do with that? Uncook it first!")
+                npc<Angry>("What, are you giving me cooked fish? What am I going to do with that? Uncook it first!")
             !get("evil_bob_seen_intro", false) -> {
                 set("evil_bob_seen_intro", true)
                 introDialogue()
@@ -234,37 +250,37 @@ class EvilBob : Script {
 
     private suspend fun Player.introDialogue() {
         player<Angry>("Where am I?")
-        npc<Neutral>("evil_bob", "On my island.")
+        npc<Neutral>("On my island.")
         player<Angry>("Who brought me here?")
-        npc<Unamused>("evil_bob", "That would be telling.")
+        npc<Unamused>("That would be telling.")
         player<Angry>("Take me to your leader!")
-        npc<Angry>("evil_bob", "I am your leader, you are but a slave.")
+        npc<Angry>("I am your leader, you are but a slave.")
         player<Angry>("I am not a slave, I am a free man!")
-        npc<Angry>("evil_bob", "Ah-ha-ha-ha-ha-ha!")
-        npc<Angry>("evil_bob", "Now catch me some fish, I'm hungry. Talk to my other servants, and hurry it up!")
+        npc<Angry>("Ah-ha-ha-ha-ha-ha!")
+        npc<Angry>("Now catch me some fish, I'm hungry. Talk to my other servants, and hurry it up!")
     }
 
     private suspend fun Player.reasonsDialogue() {
         player<Angry>("Let me out of here!")
-        npc<Angry>("evil_bob", "I will never let you go, $name!")
+        npc<Angry>("I will never let you go, $name!")
         choice {
             option<Neutral>("Why not?") {
-                npc<Angry>("evil_bob", "Because I say so! And because I can never have enough servants!")
-                npc<Angry>("evil_bob", "Now catch me some fish, I'm hungry.")
+                npc<Angry>("Because I say so! And because I can never have enough servants!")
+                npc<Angry>("Now catch me some fish, I'm hungry.")
             }
             option<Neutral>("What's it all about?") {
-                npc<Neutral>("evil_bob", "You are a skilled worker. A human like you is worth a great deal as a slave.")
+                npc<Neutral>("You are a skilled worker. A human like you is worth a great deal as a slave.")
                 player<Angry>("A slave?? I will have nothing to do with you.")
-                npc<Unamused>("evil_bob", "It's just a matter of time before you do everything I ask. Just ask my servants!")
+                npc<Unamused>("It's just a matter of time before you do everything I ask. Just ask my servants!")
             }
             option<Neutral>("How is it possible that you're talking?") {
-                npc<Quiz>("evil_bob", "How is it possible that you're not meowing?")
+                npc<Quiz>("How is it possible that you're not meowing?")
                 player<Neutral>("Meowing?? Why would I be meowing?")
-                npc<Neutral>("evil_bob", "Most humans do; that's why I wear this amulet of Man speak.")
+                npc<Neutral>("Most humans do; that's why I wear this amulet of Man speak.")
             }
             option<Neutral>("What did you do to Bob?") {
-                npc<Neutral>("evil_bob", "Bob? I am Bob! An incarnation of Bob here on ScapeRune.")
-                npc<Angry>("evil_bob", "You work just as well for me. Now get to work, human! Fish for me!")
+                npc<Neutral>("Bob? I am Bob! An incarnation of Bob here on ScapeRune.")
+                npc<Angry>("You work just as well for me. Now get to work, human! Fish for me!")
             }
         }
     }
@@ -273,22 +289,25 @@ class EvilBob : Script {
         when {
             get("evil_bob_complete", false) -> {
                 player<Neutral>("Evil Bob has fallen asleep, come quickly!")
-                npc<Sad>("evil_bob_servant", "You go, $name. I don't belong there... this is the only place I can ever go.")
+                npc<Sad>("You go, $name. I don't belong there... this is the only place I can ever go.")
             }
             !get("evil_bob_servant_helped", false) -> {
                 player<Angry>("I need help, I've been kidnapped by an evil cat!")
-                npc<Scared>("evil_bob_servant", "Meow! Errr... I c-c-c-can't help you... He'll kill us all!")
+                npc<Scared>("Meow! Errr... I c-c-c-can't help you... He'll kill us all!")
                 player<Angry>("He's just a little cat! There must be something I can do!")
-                npc<Sad>("evil_bob_servant", "F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
+                // No continue prompt: the pan starts on the same tick this line shows,
+                // locking the player so they can't wander off mid-cutscene.
+                npc<Sad>("F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.", clickToContinue = false)
                 set("evil_bob_servant_helped", true)
                 showSpot()
             }
             get("evil_bob_new_spot", false) -> {
-                npc<Sad>("evil_bob_servant", "Look... over t-t-there! That fishing spot c-c-contains the f-f-f-fish he likes.")
+                npc<Sad>("Look... over t-t-there! That fishing spot c-c-contains the f-f-f-fish he likes.", clickToContinue = false)
                 showSpot()
             }
             else ->
-                npc<Sad>("evil_bob_servant", "F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
+                // Already shown the spot; just a reminder, no repeat cutscene.
+                npc<Sad>("F-f-f-fish... give him the f-f-f-fish he likes and he might f-f-f-fall asleep.")
         }
     }
 
@@ -296,15 +315,18 @@ class EvilBob : Script {
     private suspend fun Player.showSpot() {
         val zone = ZONES[get("evil_bob_zone", 1).coerceIn(1, ZONES.size) - 1]
         val offset = instanceOffset()
-        moveCamera(zone.cameraMove.add(offset), zone.cameraMoveHeight)
-        turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight)
-        delay(5)
+        moveCamera(zone.cameraMove.add(offset), zone.cameraMoveHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
+        turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
+        delay(10)
         clearCamera()
+        closeDialogue()
         set("evil_bob_new_spot", false)
     }
 
-    private fun Player.reward() {
-        addOrDrop("random_event_gift")
+    private suspend fun Player.leaveIsland() {
+        clearState()
+        returnHome("random_event_gift")
+        message("Welcome back.")
     }
 
     private fun Player.clearState() {
@@ -313,7 +335,8 @@ class EvilBob : Script {
                 // strip every fish-like thing so none survive the trip home
             }
         }
-        inventory.remove("small_fishing_net")
+        // Only confiscate the island's net; one the player brought themselves stays theirs.
+        inventory.remove("small_fishing_net_evil_bobs_island")
         clear("evil_bob_npc")
         clear("evil_bob_zone")
         clear("evil_bob_complete")
@@ -328,7 +351,6 @@ class EvilBob : Script {
         val minY: Int,
         val maxX: Int,
         val maxY: Int,
-        val spot: Tile,
         val cameraMove: Tile,
         val cameraMoveHeight: Int,
         val cameraTurn: Tile,
@@ -342,8 +364,17 @@ class EvilBob : Script {
         private val ISLAND = Tile(3419, 4776)
         private val BOB_TILE = Tile(3420, 4777)
         private val SERVANT_TILE = Tile(3423, 4777)
-        private val POT = Tile(3423, 4780)
-        private val PORTAL = Tile(3416, 4777)
+
+        // Nets scattered around the beaches for the player to pick up.
+        private val NET_TILES = listOf(
+            Tile(3412, 4785),
+            Tile(3417, 4787),
+            Tile(3430, 4784),
+            Tile(3434, 4782),
+            Tile(3429, 4769),
+            Tile(3426, 4766),
+            Tile(3413, 4768),
+        )
 
         private val FISH_ITEMS = listOf(
             "fish_like_thing",
@@ -352,12 +383,21 @@ class EvilBob : Script {
             "raw_fish_like_thing_incorrect",
         )
 
+        // Slow cinematic pan towards the fishing spot; 232 = instant snap.
+        private const val CAMERA_SPEED = 1
+        private const val CAMERA_ACCELERATION = 10
+
         // (region-13642 base 3392,4736 + local coords). Index order = zone id 1..4.
+        // Each zone covers that side's static fishing spots from the region copy.
         private val ZONES = listOf(
-            Zone(3421, 4789, 3427, 4792, Tile(3424, 4791), Tile(3422, 4773), 400, Tile(3422, 4786), 400), // north
-            Zone(3437, 4774, 3440, 4780, Tile(3438, 4777), Tile(3417, 4777), 440, Tile(3434, 4777), 440), // east
-            Zone(3419, 4763, 3426, 4765, Tile(3422, 4764), Tile(3423, 4782), 365, Tile(3421, 4766), 365), // south
-            Zone(3405, 4773, 3408, 4779, Tile(3406, 4776), Tile(3426, 4777), 325, Tile(3408, 4776), 300), // west
+            // NORTH_CAMERA: sits just north of the island centre, panning north towards the spots.
+            Zone(3421, 4789, 3427, 4792, Tile(3422, 4779), 400, Tile(3422, 4786), 400),
+            // EAST_CAMERA: sits east of the island centre, panning east towards the spots.
+            Zone(3437, 4774, 3440, 4780, Tile(3426, 4777), 440, Tile(3434, 4777), 440),
+            // SOUTH_CAMERA: sits south of the island centre, panning south towards the spots.
+            Zone(3419, 4763, 3426, 4765, Tile(3421, 4774), 365, Tile(3421, 4766), 365),
+            // WEST_CAMERA: sits west of the island centre, panning west towards the spots.
+            Zone(3405, 4773, 3408, 4779, Tile(3416, 4776), 325, Tile(3408, 4776), 300),
         )
     }
 }

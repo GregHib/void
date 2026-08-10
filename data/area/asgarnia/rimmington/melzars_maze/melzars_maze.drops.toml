@@ -1,0 +1,5 @@
+[melzar_the_mad_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

@@ -1,0 +1,5 @@
+# 6743 fist_of_guthix_lobby
+[fist_of_guthix_stairs]
+option = "Exit"
+tile = { x = 1673, y = 5598 }
+to = { x = 3242, y = 3574 }

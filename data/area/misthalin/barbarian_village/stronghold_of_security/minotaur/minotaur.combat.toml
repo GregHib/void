@@ -1,6 +1,5 @@
 [minotaur]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "minotaur_defend"
 defend_sound = "minotaur_defend"
 death_anim = "minotaur_death"

@@ -2,7 +2,8 @@
 type = "all"
 drops = [
     { table = "cow_primary" },
-    { table = "easy_clue_scroll", roll = 128 }
+    { table = "easy_clue_scroll", roll = 128 },
+    { table = "cow_charms", members = true },
 ]
 
 [cow_primary]
@@ -11,4 +12,13 @@ drops = [
     { id = "cowhide" },
     { id = "raw_beef" },
     { id = "bones" }
+]
+
+[cow_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 856 },
+    { id = "green_charm", chance = 3892 },
+    { id = "crimson_charm", chance = 226 },
+    { id = "blue_charm", chance = 49 },
 ]

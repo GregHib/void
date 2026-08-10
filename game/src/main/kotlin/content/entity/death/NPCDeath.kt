@@ -12,6 +12,7 @@ import content.social.clan.clan
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
@@ -21,7 +22,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -99,7 +99,7 @@ class NPCDeath(
     fun dropLoot(npc: NPC, killer: Character?, tile: Tile) {
         val table = tables.get("${npc.def["drop_table", npc.id]}_drop_table") ?: return
         val combatLevel = npc.def.combat
-        val drops = table.roll(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player)
+        val drops = table.roll(maximumRoll = if (combatLevel > 0) combatLevel * 10 else -1, player = killer as? Player, multiplier = Settings["world.itemDropRate", 1.0])
             .filterNot { it.id == "nothing" }
             .reversed()
             .map { it.toItem() }

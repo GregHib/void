@@ -37,3 +37,9 @@ drops = [
     { id = "mind_talisman", chance = 3 },
     { id = "iron_ore" },
 ]
+
+[watchman_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+]

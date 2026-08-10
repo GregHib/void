@@ -37,15 +37,9 @@ id = 2705
 categories = ["human"]
 examine = "Keeping an eye out for suspicious activity."
 
-[port_sarim_guard_7]
-id = 2759
-categories = ["human"]
-examine = "Keeping an eye out for suspicious activity."
-
 [bartender_rusty_anchor_inn]
 id = 734
 categories = ["human"]
-wander_range = 4
 collision = "indoors"
 examine = "I could get a beer from him."
 
@@ -103,6 +97,7 @@ combat_def = "man"
 max_hit_crush = 20
 respawn_delay = 25
 examine = "Known for his light-fingered qualities."
+drop_table = "thief"
 
 [jack_seagull]
 id = 2690
@@ -128,10 +123,12 @@ slayer_xp = 20.0
 categories = ["pirates"]
 respawn_delay = 25
 examine = "Yar! Shiver me timbers!"
+drop_table = "pirate"
 
 [thief_port_sarim_2]
 id = 2696
 clone = "thief_port_sarim"
+drop_table = "thief"
 
 [mugger_port_sarim]
 id = 2697
@@ -288,10 +285,7 @@ combat_def = "goblin"
 slayer_xp = 5.0
 categories = ["goblins"]
 examine = "A badly-behaved goblin."
-
-[port_sarim_guard_7_2]
-id = 2747
-examine = "Keeping an eye out for suspicious activity."
+drop_table = "empty"
 
 [ned_port_sarim_2]
 id = 4475

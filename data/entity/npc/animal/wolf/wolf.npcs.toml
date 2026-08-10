@@ -6,12 +6,11 @@ str = 55
 def = 52
 combat_def = "white_wolf"
 max_hit_stab = 60
-wander_range = 4
 slayer_xp = 69.0
 hunt_mode = "aggressive"
 respawn_delay = 90
 categories = ["wolves"]
-drop_table = "wolf_bones"
+drop_table = "wolf"
 examine = "Not man's best friend."
 
 [white_wolf]
@@ -21,11 +20,11 @@ att = 20
 str = 16
 def = 22
 combat_def = "white_wolf"
-wander_range = 4
 slayer_xp = 34.0
 hunt_mode = "aggressive"
 respawn_delay = 90
 categories = ["wolves"]
+drop_table = "white_wolf"
 examine = "A vicious mountain wolf."
 
 [white_wolf_level_38]
@@ -36,11 +35,11 @@ str = 31
 def = 32
 combat_def = "white_wolf"
 max_hit_stab = 40
-wander_range = 4
 slayer_xp = 44.0
 hunt_mode = "aggressive"
 respawn_delay = 90
 categories = ["wolves"]
+drop_table = "white_wolf"
 examine = "A vicious mountain wolf."
 
 [big_wolf]
@@ -55,6 +54,7 @@ hunt_mode = "cowardly"
 slayer_xp = 74.0
 categories = ["wolves"]
 respawn_delay = 90
+drop_table = "big_wolf"
 examine = "Must be the pack leader."
 
 [wolf_stronghold_of_security]
@@ -67,6 +67,7 @@ def = 10
 max_hit_stab = 20
 slayer_xp = 10.0
 hunt_mode = ""
+drop_table = "white_wolf"
 
 [wolf_stronghold_of_security_2]
 clone = "wolf"
@@ -78,6 +79,7 @@ def = 10
 max_hit_stab = 30
 slayer_xp = 15.0
 hunt_mode = ""
+drop_table = "white_wolf"
 
 [big_wolf_2]
 clone = "wolf"
@@ -87,6 +89,7 @@ att = 60
 str = 61
 def = 62
 max_hit_stab = 70
+drop_table = "big_wolf"
 examine = "Must be the pack leader."
 
 [wolf_2]
@@ -98,4 +101,5 @@ str = 16
 def = 22
 max_hit_stab = 30
 slayer_xp = 34.0
+drop_table = "white_wolf"
 examine = "A social killer."

@@ -4,6 +4,7 @@ drops = [
     { id = "big_bones" },
     { table = "moss_giant_secondary" },
     { table = "moss_giant_tertiary", members = true },
+    { table = "moss_giant_charms", members = true },
 ]
 
 [moss_giant_secondary]
@@ -52,5 +53,15 @@ drops = [
 type = "all"
 drops = [
     { id = "big_bones" },
-    { id = "consecration_seed" }
+    { id = "consecration_seed" },
+    { table = "moss_giant_charms", members = true },
+]
+
+[moss_giant_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 33254 },
+    { id = "green_charm", chance = 2780 },
+    { id = "crimson_charm", chance = 2495 },
+    { id = "blue_charm", chance = 524 },
 ]

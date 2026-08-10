@@ -16,30 +16,37 @@ categories = ["trolls"]
 respawn_delay = 50
 drop_table = "mountain_troll"
 examine = "Small for a troll but mean and ugly."
+combat_def = "ice_troll"
 
 [mountain_troll_troll_stronghold_tunnels_2]
 id = 1107
 clone = "mountain_troll_troll_stronghold_tunnels"
+combat_def = "ice_troll"
 
 [mountain_troll_troll_stronghold_tunnels_3]
 id = 1108
 clone = "mountain_troll_troll_stronghold_tunnels"
+combat_def = "ice_troll"
 
 [mountain_troll_troll_stronghold_tunnels_4]
 id = 1109
 clone = "mountain_troll_troll_stronghold_tunnels"
+combat_def = "ice_troll"
 
 [mountain_troll_troll_stronghold_tunnels_5]
 id = 1110
 clone = "mountain_troll_troll_stronghold_tunnels"
+combat_def = "ice_troll"
 
 [mountain_troll_troll_stronghold_tunnels_6]
 id = 1111
 clone = "mountain_troll_troll_stronghold_tunnels"
+combat_def = "ice_troll"
 
 [mountain_troll_troll_stronghold_tunnels_7]
 id = 1112
 clone = "mountain_troll_troll_stronghold_tunnels"
+combat_def = "ice_troll"
 
 [eadgar_troll_stronghold_tunnels]
 id = 1113
@@ -65,16 +72,36 @@ categories = ["trolls"]
 respawn_delay = 50
 drop_table = "rock_troll"
 examine = "One of the troll generals."
+combat_def = "ice_troll"
+max_hit_slash = 380
 
 [troll_general_troll_stronghold_tunnels_2]
 id = 1116
 categories = ["trolls"]
 examine = "One of the troll generals."
+drop_table = "troll_general"
+combat_def = "ice_troll"
+hitpoints = 1400
+att = 70
+str = 140
+def = 40
+attack_bonus = 60
+max_hit_slash = 380
+hunt_mode = "cowardly"
 
 [troll_general_troll_stronghold_tunnels_3]
 id = 1117
 categories = ["trolls"]
 examine = "One of the troll generals."
+drop_table = "troll_general"
+combat_def = "ice_troll"
+hitpoints = 1400
+att = 70
+str = 140
+def = 40
+attack_bonus = 60
+max_hit_slash = 380
+hunt_mode = "cowardly"
 
 [twig_troll_stronghold_tunnels]
 id = 1128
@@ -92,6 +119,8 @@ slayer_xp = 90.0
 categories = ["trolls"]
 drop_table = "mountain_troll"
 examine = "He's guarding the cells."
+max_hit_crush = 130
+combat_def = "twig"
 
 [berry_troll_awake]
 id = 1127
@@ -111,6 +140,8 @@ slayer_xp = 90.0
 categories = ["trolls"]
 drop_table = "mountain_troll"
 examine = "He's guarding the cells."
+max_hit_crush = 130
+combat_def = "berry"
 
 [cook_troll_stronghold_tunnels]
 id = 1135
@@ -141,6 +172,8 @@ slayer_xp = 90.0
 categories = ["trolls"]
 respawn_delay = 50
 examine = "Small for a troll, but mean and ugly."
+drop_table = "mountain_troll"
+combat_def = "ice_troll"
 
 [guard_troll_stronghold_tunnels]
 id = 1142

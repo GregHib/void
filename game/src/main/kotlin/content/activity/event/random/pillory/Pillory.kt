@@ -2,7 +2,8 @@ package content.activity.event.random.pillory
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
-import content.entity.player.inv.item.addOrDrop
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -95,14 +96,18 @@ class Pillory : Script {
         }
     }
 
-    private fun Player.escape() {
+    private suspend fun Player.escape() {
         close("pillory_lock")
         message("You've escaped!")
-        addOrDrop("random_event_gift")
+        onExitInterrupt { leaveCage() }
+        leaveCage()
+    }
+
+    private suspend fun Player.leaveCage() {
         clear("pillory_target")
         clear("pillory_correct")
         clear("pillory_answer")
-        RandomEvents.complete(this)
+        returnHome("random_event_gift")
     }
 
     companion object {

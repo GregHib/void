@@ -1,5 +1,7 @@
 package content.entity.player.command
 
+import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.statement
 import content.skill.prayer.PrayerConfigs
 import content.skill.prayer.isCurses
 import net.pearx.kasechange.toSentenceCase
@@ -8,15 +10,20 @@ import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.command.*
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
 import world.gregs.voidps.engine.queue.queue
 
-class SkillCommands(val accounts: AccountDefinitions) : Script {
+class SkillCommands(
+    val accounts: AccountDefinitions,
+    val questDefinitions: QuestDefinitions,
+) : Script {
 
     init {
         val skills = Skill.entries.map { it.name }.toSet()
@@ -38,6 +45,10 @@ class SkillCommands(val accounts: AccountDefinitions) : Script {
         adminCommands("level", self, other)
         commandSuggestion("level", "set_level")
         adminCommand("reset", stringArg("player-name", "target player (default self)", optional = true, autofill = accounts.displayNames.keys), desc = "Set all skills to level 1", handler = ::reset)
+
+        playerCommand("level_dialogues", desc = "Toggle level up pop-up dialogues.") {
+            message("Level up pop-ups are now ${if (toggle("skip_level_up_dialogues")) "enabled" else "disabled"}.")
+        }
     }
 
     fun set(player: Player, args: List<String>) {
@@ -48,21 +59,25 @@ class SkillCommands(val accounts: AccountDefinitions) : Script {
         }
         val skill = Skill.valueOf(string)
         val level = args[1].toInt()
+        player["skip_level_up"] = true
         target.experience.set(skill, Level.experience(skill, level))
         target.levels.set(skill, level)
         target.queue("flash_reset", 1) {
             target.removeVarbit("skill_stat_flash", skill.name.lowercase())
+            player["skip_level_up"] = false
         }
     }
 
     fun master(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(0)) ?: return
+        player["skip_level_up"] = true
         for (skill in Skill.all) {
             target.experience.set(skill, 14000000.0)
             target.levels.restore(skill, 1000)
         }
         target.queue("clear_flash", 1) {
             player.clear("skill_stat_flash")
+            player["skip_level_up"] = false
         }
     }
 
@@ -77,8 +92,28 @@ class SkillCommands(val accounts: AccountDefinitions) : Script {
         player.message("God mode ${if (player["god_mode", false]) "enabled" else "disabled"} instant kill: ${player["insta_kill", false]}.")
     }
 
-    fun reset(player: Player, args: List<String>) {
+    suspend fun reset(player: Player, args: List<String>) {
         val target = Players.find(player, args.getOrNull(0)) ?: return
+        if (questDefinitions.ids.keys.contains(target.name)) {
+            player.statement(
+                """
+                Did you mean to use the reset_quest command?
+                '${target.name}' is the name of a quest.
+                Are you sure you want to reset this players levels and experience?
+            """,
+            )
+            player.choice {
+                option("Yes reset ${target.name}'s levels.") {
+                    reset(target)
+                }
+                option("No, don't do anything.")
+            }
+            return
+        }
+        reset(target)
+    }
+
+    private fun reset(target: Player) {
         for ((index, skill) in Skill.all.withIndex()) {
             target.experience.set(skill, Experience.defaultExperience[index] / 10.0)
             target.levels.set(skill, Levels.defaultLevels[index])

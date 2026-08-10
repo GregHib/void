@@ -1,0 +1,11 @@
+[ancient_mage_attack]
+id = 1979
+
+[ancient_ranger_attack]
+id = 426
+
+[blood_reaver_attack]
+id = 7004
+
+[blood_reaver_death]
+id = 7000

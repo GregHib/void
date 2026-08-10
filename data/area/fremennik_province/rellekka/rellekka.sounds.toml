@@ -1,0 +1,42 @@
+[black_unicorn_defend]
+id = 371
+[black_unicorn_death]
+id = 370
+[black_unicorn_attack]
+id = 369
+
+[black_unicorn_foal_defend]
+id = 371
+
+[black_unicorn_foal_death]
+id = 370
+
+[black_unicorn_foal_attack]
+id = 369
+
+[fenris_wolf_defend]
+id = 491
+
+[fenris_wolf_death]
+id = 490
+
+[fenris_wolf_attack]
+id = 481
+
+[lensa_defend]
+id = 513
+
+[lensa_death]
+id = 512
+
+[lensa_attack]
+id = 511
+
+[unicorn_foal_defend]
+id = 371
+
+[unicorn_foal_death]
+id = 370
+
+[unicorn_foal_attack]
+id = 369

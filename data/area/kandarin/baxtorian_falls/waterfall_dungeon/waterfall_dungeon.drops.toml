@@ -1,0 +1,36 @@
+[skeleton_mage_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
+    { table = "skeleton_mage_secondary" },
+]
+
+[skeleton_mage_secondary]
+roll = 1024
+drops = [
+    { id = "battlestaff", chance = 32 },
+    { id = "pink_skirt", chance = 32 },
+    { id = "mind_rune", min = 7, max = 9, chance = 32 },
+    { id = "chaos_rune", min = 2, max = 4, chance = 32 },
+    { id = "nature_rune", min = 1, max = 3, chance = 32 },
+    { id = "law_rune", min = 2, max = 3, chance = 32 },
+    { id = "uncut_sapphire", chance = 32 },
+    { id = "uncut_opal", chance = 32 },
+    { id = "uncut_ruby", chance = 32 },
+    { id = "uncut_emerald", chance = 32 },
+    { id = "grimy_guam", chance = 32 },
+    { id = "grimy_marrentill", chance = 32 },
+    { id = "grimy_harralander", chance = 32 },
+    { id = "grimy_tarromin", chance = 32 },
+    { id = "grimy_irit", chance = 32 },
+    { id = "grimy_avantoe", chance = 32 },
+    { id = "grimy_kwuarm", chance = 32 },
+    { id = "grimy_cadantine", chance = 32 },
+    { id = "grimy_lantadyme", chance = 32 },
+    { id = "grimy_ranarr", chance = 32 },
+    { id = "grimy_dwarf_weed", chance = 32 },
+    { id = "coins", min = 29, max = 50, chance = 32 },
+    { id = "pot_of_flour", chance = 32 },
+    { id = "iron_bar", min = 1, max = 2, chance = 32 },
+    { id = "big_bones", min = 2, max = 4, chance = 32 },
+]

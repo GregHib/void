@@ -1,0 +1,36 @@
+[barbarian_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "barbarian_secondary" },
+    { table = "easy_clue_scroll", roll = 170 },
+]
+
+[barbarian_secondary]
+roll = 1083
+drops = [
+    { id = "bronze_hatchet", chance = 64 },
+    { id = "bronze_battleaxe", chance = 64 },
+    { id = "bronze_arrow", amount = 10, chance = 64 },
+    { id = "iron_hatchet", chance = 64 },
+    { id = "iron_mace", chance = 64 },
+    { id = "iron_arrow", amount = 8, chance = 64 },
+    { id = "coins", amount = 5, chance = 64 },
+    { id = "iron_ore", chance = 64 },
+    { id = "tin_ore", chance = 64 },
+    { id = "beer", chance = 64 },
+    { id = "cooked_meat", chance = 64 },
+    { id = "bear_fur", chance = 64 },
+    { id = "earth_rune", min = 2, max = 5, chance = 32 },
+    { id = "chaos_rune", min = 2, max = 6, chance = 32 },
+    { id = "law_rune", amount = 2, chance = 32 },
+    { id = "mind_rune", amount = 4, chance = 32 },
+    { id = "fire_rune", amount = 5, chance = 32 },
+    { id = "staff", chance = 32 },
+    { id = "ring_mould", chance = 32 },
+    { id = "uncut_sapphire", chance = 6 },
+    { id = "uncut_emerald", chance = 6 },
+    { id = "uncut_ruby", chance = 6 },
+    { id = "uncut_diamond", chance = 6 },
+    { id = "flier", chance = 6 },
+]

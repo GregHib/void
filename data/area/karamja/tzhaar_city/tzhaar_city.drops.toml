@@ -1,4 +1,11 @@
 [tzhaar_hur_drop_table]
+type = "all"
+drops = [
+    { table = "tzhaar_hur_secondary" },
+    { table = "tzhaar_charms", members = true },
+]
+
+[tzhaar_hur_secondary]
 roll = 512
 drops = [
     { id = "uncut_sapphire", chance = 2 },
@@ -15,6 +22,13 @@ drops = [
 ]
 
 [tzhaar_mej_drop_table]
+type = "all"
+drops = [
+    { table = "tzhaar_mej_secondary" },
+    { table = "tzhaar_charms", members = true },
+]
+
+[tzhaar_mej_secondary]
 roll = 4096
 drops = [
     { id = "obsidian_cape" },
@@ -33,6 +47,13 @@ drops = [
 ]
 
 [tzhaar_xil_drop_table]
+type = "all"
+drops = [
+    { table = "tzhaar_xil_secondary" },
+    { table = "tzhaar_charms", members = true },
+]
+
+[tzhaar_xil_secondary]
 roll = 2048
 drops = [
     { id = "toktz_xil_ul", min = 10, max = 29, chance = 4 },
@@ -48,6 +69,13 @@ drops = [
 ]
 
 [tzhaar_ket_drop_table]
+type = "all"
+drops = [
+    { table = "tzhaar_ket_secondary" },
+    { table = "tzhaar_charms", members = true },
+]
+
+[tzhaar_ket_secondary]
 roll = 2048
 drops = [
     { id = "tzhaar_ket_om", chance = 4 },
@@ -62,6 +90,13 @@ drops = [
 ]
 
 [tzhaar_ket_high_drop_table]
+type = "all"
+drops = [
+    { table = "tzhaar_ket_high_secondary" },
+    { table = "tzhaar_charms", members = true },
+]
+
+[tzhaar_ket_high_secondary]
 roll = 2048
 drops = [
     { id = "tzhaar_ket_om", chance = 4 },
@@ -74,4 +109,17 @@ drops = [
     { id = "onyx_bolt_tips", min = 1, max = 4, chance = 40 },
     { id = "tokkul", min = 20, max = 83, chance = 768 },
     { id = "nothing", chance = 1096 },
+]
+
+[tzhaar_charms]
+roll = 100000
+drops = [
+    { id = "obsidian_charm", chance = 36000 },
+    { id = "obsidian_charm", amount = 2, chance = 36000 },
+]
+
+[fire_monster_drop_table]
+type = "all"
+drops = [
+    { id = "ashes" },
 ]

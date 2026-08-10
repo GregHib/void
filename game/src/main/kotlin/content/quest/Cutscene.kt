@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -166,6 +167,10 @@ fun Player.clearInstance(): Boolean {
     }
     val cuboid = Region(id).toCuboid() // Region.toCuboid() already defaults to levels=4
     for (zone in cuboid.toZones()) {
+        // Floor items too, or they'd linger and resurface when the instance is reused.
+        for (item in FloorItems.at(zone).flatten()) {
+            FloorItems.remove(item)
+        }
         GameObjects.clear(zone)
         Collisions.clear(zone)
     }

@@ -4,6 +4,7 @@ drops = [
     { id = "bones" },
     { table = "cockatrice_secondary" },
     { table = "cockatrice_tertiary" },
+    { table = "cockatrice_charms", members = true },
 ]
 
 [cockatrice_secondary]
@@ -38,4 +39,13 @@ roll = 1000
 drops = [
     { table = "medium_clue_scroll", chance = 7 },
     { id = "cockatrice_head" },
+]
+
+[cockatrice_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 2266 },
+    { id = "green_charm", chance = 7365 },
+    { id = "crimson_charm", chance = 1174 },
+    { id = "blue_charm", chance = 269 },
 ]

@@ -1,6 +1,5 @@
 [snail]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "snail_defend"
 defend_sound = "snail_defend"
 death_anim = "snail_death"
@@ -15,7 +14,6 @@ target_hit = { offense = "range", max = 20 }
 
 [ghast]
 attack_speed = 20
-retreat_range = 8
 defend_anim = "ghast_defend"
 defend_sound = "ghast_defend"
 death_anim = "ghast_death"
@@ -23,7 +21,6 @@ death_sound = "ghast_death"
 
 [ghast_level_30]
 attack_speed = 20
-retreat_range = 8
 defend_anim = "ghast_defend"
 defend_sound = "ghast_defend"
 death_anim = "ghast_death"

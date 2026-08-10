@@ -18,12 +18,6 @@ level = 5
 xp = 50
 ticks = 3
 
-[.arrow_shaft]
-level = 1
-xp = 50
-amount = 15
-ticks = 2
-
 [.oak_shortbow_u]
 level = 20
 xp = 165
@@ -108,3 +102,61 @@ ticks = 3
 level = 69
 xp = 500
 ticks = 3
+
+[arrow_shafts]
+row_id = "item"
+level = "int"
+level_default = 1
+xp = "int"
+amount = "int"
+amount_default = 1
+ticks = "int"
+ticks_default = -1
+
+[.logs]
+level = 1
+xp = 50
+amount = 15
+ticks = 2
+
+[.oak_logs]
+level = 10
+xp = 75
+amount = 20
+ticks = 2
+
+[.willow_logs]
+level = 20
+xp = 100
+amount = 25
+ticks = 2
+
+[.teak_logs]
+level = 30
+amount = 30
+xp = 112
+ticks = 2
+
+[.maple_logs]
+level = 40
+amount = 35
+xp = 125
+ticks = 2
+
+[.mahogany_logs]
+level = 60
+amount = 45
+xp = 150
+ticks = 2
+
+[.yew_logs]
+level = 70
+amount = 50
+xp = 175
+ticks = 2
+
+[.magic_logs]
+level = 80
+amount = 55
+xp = 200
+ticks = 2

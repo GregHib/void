@@ -2,15 +2,13 @@ package content.area.kandarin.catherby
 
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.skillcapeShop
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.inventory
 
 class Hickton : Script {
 
@@ -47,28 +45,9 @@ class Hickton : Script {
                 }
             }
         }
-
-        bought("fletching_cape") {
-            inventory.add("fletching_hood")
-        }
-
-        bought("fletching_cape_(t)") {
-            inventory.add("fletching_hood")
-        }
     }
 
-    // Helper function to open the appropriate shop based on player's skill levels
     fun openHicktonShop(player: Player) {
-        when {
-            Skill.all.any { it != Skill.Fletching && player.levels.getMax(it) == Level.MAX_LEVEL } -> {
-                player.openShop("hicktons_archery_emporium_trimmed")
-            }
-            player.levels.getMax(Skill.Fletching) == Level.MAX_LEVEL -> {
-                player.openShop("hicktons_archery_emporium_skillcape")
-            }
-            else -> {
-                player.openShop("hicktons_archery_emporium")
-            }
-        }
+        player.openShop(player.skillcapeShop(Skill.Fletching, "hicktons_archery_emporium"))
     }
 }

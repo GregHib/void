@@ -1,6 +1,5 @@
 [hobgoblin_unarmed]
 attack_speed = 4
-retreat_range = 8
 defend_anim = "hobgoblin_defend"
 defend_sound = "hobgoblin_defend"
 death_anim = "hobgoblin_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "crush", max = 30 }
 
 [hobgoblin_armed]
 attack_speed = 6
-retreat_range = 8
 defend_anim = "hobgoblin_armed_defend"
 defend_sound = "hobgoblin_armed_defend"
 death_anim = "hobgoblin_armed_death"

@@ -48,10 +48,25 @@ id = 9104
 id = 9092
 categories = ["dagannoth"]
 examine = "The Dagannoth Mother's guardians."
+drop_table = "dagannoth_guardian"
+hitpoints = 2100
+att = 1
+str = 1
+def = 187
+range = 100
+max_hit_range = 114
+combat_def = "dagannoth_guardian"
+hunt_mode = "cowardly"
 
 [bardur]
 id = 2879
 examine = "A Fremennik warrior, hard at work."
+drop_table = "bones"
+hitpoints = 940
+att = 80
+str = 80
+def = 80
+combat_def = "man"
 
 [dagannoth_fledgeling]
 id = 2880
@@ -67,6 +82,7 @@ categories = ["dagannoth"]
 respawn_delay = 30
 drop_table = "bones"
 examine = "A knee-high horror from the ocean depths..."
+max_hit_stab = 60
 
 [dagannoth_supreme]
 id = 2881

@@ -3,7 +3,6 @@ id = 2859
 price = 334
 limit = 1000
 weight = 0.5
-prayer_xp = 4.5
 examine = "Bones of a recently slain wolf."
 
 [wolf_bones_noted]

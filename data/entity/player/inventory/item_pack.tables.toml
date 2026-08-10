@@ -1,0 +1,35 @@
+[packs]
+unpacked = "item"
+amount = "int"
+
+[.spirit_shard_pack]
+unpacked = "spirit_shards"
+amount = 5000
+
+[.juju_vial_pack]
+unpacked = "juju_vial_of_water_noted"
+amount = 50
+
+[.vial_pack]
+unpacked = "vial_noted"
+amount = 50
+
+[.vial_of_water_pack]
+unpacked = "vial_of_water_noted"
+amount = 50
+
+[.eye_of_newt_pack]
+unpacked = "eye_of_newt_noted"
+amount = 50
+
+[.raw_bird_meat_pack]
+unpacked = "raw_bird_meat_noted"
+amount = 50
+
+[.basket_pack]
+unpacked = "basket_noted"
+amount = 50
+
+[.empty_sack_pack]
+unpacked = "empty_sack_noted"
+amount = 50

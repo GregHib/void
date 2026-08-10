@@ -1,0 +1,15 @@
+[avatar_of_destruction_attack]
+id = 11197
+[avatar_of_destruction_defend]
+id = 11198
+[avatar_of_destruction_death]
+id = 11199
+
+[avatar_of_creation_attack]
+id = 11202
+
+[avatar_of_creation_defend]
+id = 11203
+
+[avatar_of_creation_death]
+id = 11204

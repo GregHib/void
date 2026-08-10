@@ -22,18 +22,48 @@ immune_poison = true
 immune_cannon = true
 respawn_delay = 25
 examine = "An evil, bloodsucking vampyre."
+drop_table = "vyrewatch"
+max_hit_crush = 110
+combat_def = "vyrewatch"
 
 [vyrewatch_darkmeyer_2]
 id = 4807
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
+hitpoints = 1100
+att = 120
+str = 116
+def = 85
+mage = 120
+range = 120
+max_hit_crush = 130
+combat_def = "vyrewatch"
 
 [vyrewatch_darkmeyer_3]
 id = 4819
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
+hitpoints = 1100
+att = 120
+str = 116
+def = 85
+mage = 120
+range = 120
+max_hit_crush = 130
+combat_def = "vyrewatch"
 
 [vyrewatch_darkmeyer_4]
 id = 4832
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
+hitpoints = 1100
+att = 120
+str = 116
+def = 85
+mage = 120
+range = 120
+max_hit_crush = 130
+combat_def = "vyrewatch"
 
 [vyrewatch_darkmeyer_5]
 id = 4834
@@ -53,14 +83,35 @@ immune_poison = true
 immune_cannon = true
 respawn_delay = 25
 examine = "A thirsty-looking, airborne bloodsucker!"
+drop_table = "vyrewatch"
+max_hit_crush = 120
+combat_def = "vyrewatch"
 
 [vyrewatch_darkmeyer_6]
 id = 4835
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
+hitpoints = 1100
+att = 120
+str = 116
+def = 85
+mage = 120
+range = 120
+max_hit_crush = 130
+combat_def = "vyrewatch"
 
 [vyrewatch_darkmeyer_7]
 id = 4836
 clone = "vyrewatch_darkmeyer"
+drop_table = "vyrewatch"
+hitpoints = 1100
+att = 120
+str = 116
+def = 85
+mage = 120
+range = 120
+max_hit_crush = 130
+combat_def = "vyrewatch"
 
 [safalaan_darkmeyer_2]
 id = 4713

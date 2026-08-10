@@ -1,6 +1,5 @@
 [rat]
 attack_speed = 4
-retreat_range = 18
 defend_anim = "rat_defend"
 defend_sound = "rat_defend"
 death_anim = "rat_death"
@@ -14,7 +13,6 @@ target_hit = { offense = "crush", max = 1 }
 
 [giant_rat]
 clone = "rat"
-retreat_range = 10
 defend_anim = "giant_rat_defend"
 death_anim = "giant_rat_death"
 

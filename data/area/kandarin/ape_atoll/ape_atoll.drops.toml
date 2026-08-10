@@ -75,3 +75,29 @@ type = "all"
 drops = [
     { id = "medium_ninja_monkey_bones" },
 ]
+
+[monkey_guard_drop_table]
+type = "all"
+drops = [
+    { id = "monkey_bones" },
+    { table = "monkey_guard_secondary" },
+]
+
+[monkey_guard_secondary]
+roll = 1024
+drops = [
+    { id = "foot_bone", chance = 64 },
+]
+
+[snake_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { table = "snake_secondary" },
+]
+
+[snake_secondary]
+roll = 1024
+drops = [
+    { id = "snake_spine", chance = 32 },
+]

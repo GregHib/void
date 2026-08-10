@@ -145,9 +145,9 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             // Retreat
             val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return
             val spawn: Tile = character.leashAnchor() ?: return
-            if (!CombatMovement.withinAggro(source, spawn, definition)) {
+            if (!CombatMovement.withinAggro(character, source, spawn, definition)) {
                 if (character.mode !is Retreat || (character.mode as Retreat).target != source) {
-                    character.mode = Retreat(character, source, spawn, definition.retreatRange)
+                    character.mode = Retreat(character, source, spawn)
                 }
                 return
             }
@@ -218,7 +218,10 @@ class Combat(val combatDefinitions: CombatDefinitions) :
                     CombatApi.start(character, target)
                 }
             }
-            target.start("under_attack", 8)
+            if (target !is Player || !Target.isDeathSpawn(character)) {
+                target.start("under_attack", 8)
+            }
+            target.start("hunted", 8) // FIXME Temp #1119
             if (character is NPC) {
                 CombatApi.swing(character, target, character.fightStyle)
             } else if (character is Player) {

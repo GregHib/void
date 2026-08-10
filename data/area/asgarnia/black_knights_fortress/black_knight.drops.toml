@@ -1,0 +1,6 @@
+[jailer_black_knights_base_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "jail_key" },
+]

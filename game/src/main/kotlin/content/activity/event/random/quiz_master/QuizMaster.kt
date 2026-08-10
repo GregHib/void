@@ -2,15 +2,17 @@ package content.activity.event.random.quiz_master
 
 import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
+import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Goofy
 import content.entity.player.dialogue.Hysterics
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -57,6 +59,7 @@ class QuizMaster : Script {
         }
         quizHerald()
         kidnap(ROOM)
+        talkWith(NPCs.find(tile.regionLevel, "quiz_master"))
         face(QUIZ_MASTER)
         anim("quiz_show_sit")
         intro()
@@ -69,9 +72,9 @@ class QuizMaster : Script {
                 if (inc("quiz_correct") >= REQUIRED) {
                     break
                 }
-                npc<Goofy>("quiz_master", "Wow, you're a smart one! You're absolutely RIGHT! Okay, next question!")
+                npc<Goofy>("Wow, you're a smart one! You're absolutely RIGHT! Okay, next question!")
             } else {
-                npc<Hysterics>("quiz_master", "WRONG! That's just WRONG! Okay, next question!")
+                npc<Hysterics>("WRONG! That's just WRONG! Okay, next question!")
             }
         }
         win()
@@ -86,9 +89,9 @@ class QuizMaster : Script {
     }
 
     private suspend fun Player.intro() {
-        npc<Hysterics>("quiz_master", "WELCOME to the GREATEST QUIZ SHOW in the whole of RuneScape: <col=8A0808>O D D</col> <col=8A088A>O N E</col> <col=08088A>O U T</col>")
+        npc<Hysterics>("WELCOME to the GREATEST QUIZ SHOW in the whole of RuneScape: <col=8A0808>O D D</col> <col=8A088A>O N E</col> <col=08088A>O U T</col>")
         player<Confused>("I'm sure I didn't ask to take part in a quiz show...")
-        npc<Goofy>("quiz_master", "Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
+        npc<Goofy>("Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
     }
 
     /** Shows a fresh "odd one out" and suspends until the player picks a button, returning its slot. */
@@ -107,12 +110,16 @@ class QuizMaster : Script {
     }
 
     private suspend fun Player.win() {
-        npc<Hysterics>("quiz_master", "<col=08088A>CONGRATULATIONS!</col> You are a <col=8A0808>WINNER</col>! Please take your <col=08088A>PRIZE</col>!")
-        addOrDrop("random_event_gift")
+        onExitInterrupt { leaveShow() }
+        npc<Hysterics>("<col=08088A>CONGRATULATIONS!</col> You are a <col=8A0808>WINNER</col>! Please take your <col=08088A>PRIZE</col>!")
+        leaveShow()
+    }
+
+    private suspend fun Player.leaveShow() {
         clearAnim() // stand up out of the contestant's seat
         clear("quiz_answer")
         clear("quiz_correct")
-        RandomEvents.complete(this)
+        returnHome("random_event_gift")
         message("Welcome back.")
     }
 

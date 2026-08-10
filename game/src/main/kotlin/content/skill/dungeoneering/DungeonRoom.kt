@@ -5,12 +5,15 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
+import world.gregs.voidps.type.random
 
 data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     var type: DungeonRoomType = DungeonRoomType.Normal
@@ -31,30 +34,31 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         }
         open = true
         val target = origin.add(tile.x * 2, tile.y * 2)
-        for (key in keys) {
-            FloorItems.add(target.tile.add(8, 8), key)
-        }
         val zones = get<DynamicZones>()
         for (sx in 0..1) {
             for (sy in 0..1) {
                 // Calculate the target zone offset (tx, ty) based on CW rotation
-                val tx = when (rotation) {
-                    0 -> sx
-                    1 -> 1 - sy
-                    2 -> 1 - sx
-                    3 -> sy
-                    else -> sx
-                }
-                val ty = when (rotation) {
-                    0 -> sy
-                    1 -> sx
-                    2 -> 1 - sy
-                    3 -> 1 - sx
-                    else -> sy
-                }
+                val tx = Dungeoneering.rotateX(sx, sy, rotation, 1)
+                val ty = Dungeoneering.rotateY(sx, sy, rotation, 1)
                 val clientRotation = (4 - rotation) % 4
                 zones.copy(zone.add(sx, sy), target.add(tx, ty), clientRotation)
             }
+        }
+        val keys = keys.toMutableList()
+        val keyTiles = mutableListOf<Tile>()
+        for (x in 0 until 16) {
+            for (y in 0 until 16) {
+                val tile = target.tile.add(x, y)
+                if (GameObjects.getLayer(tile, ObjectLayer.GROUND)?.id == "rand_invis_key_location") {
+                    keyTiles.add(tile)
+                }
+            }
+        }
+        for (key in keys) {
+            FloorItems.add(keyTiles.random(random), key)
+        }
+        for (tile in keyTiles) {
+            GameObjects.getLayer(tile, ObjectLayer.GROUND)?.remove()
         }
         val theme = dungeon.theme
         for ((i, door) in doors.withIndex()) {

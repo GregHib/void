@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
@@ -29,7 +28,7 @@ class TeleportCommands(
     private val places = mapOf(
         "draynor" to Tile(3086, 3248),
         "varrock" to Tile(3212, 3429),
-        "varrock" to Tile(3212, 3429),
+        "yanille" to Tile(2605, 3097),
         "lumbridge" to Tile(3222, 3219),
         "burthorpe" to Tile(2899, 3546),
         "falador" to Tile(2966, 3379),
@@ -66,6 +65,7 @@ class TeleportCommands(
         "uzer" to Tile(3484, 3092),
         "pollnivneach" to Tile(3357, 2968),
         "daemonheim" to Tile(3450, 3710),
+        "naradh" to Tile(3432, 2916),
     )
 
     init {
@@ -79,8 +79,8 @@ class TeleportCommands(
         adminCommands("tele", coords, place, region)
         commandAlias("tele", "tp")
 
-        adminCommand("tele_to", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { args ->
-            val target = Players.firstOrNull { it.name.equals(args[0], true) }
+        adminCommand("tele_to", stringArg("player-name", desc = "Player name (with underscores for spaces)", autofill = accounts.displayNames.keys), desc = "Teleport to another player") { args ->
+            val target = Players.find(args[0])
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand
@@ -88,8 +88,8 @@ class TeleportCommands(
             tele(target.tile)
         }
 
-        adminCommand("tele_to_me", stringArg("player-name", desc = "Player name (use quotes if contains spaces)", autofill = accounts.displayNames.keys), desc = "Teleport another player to you") { args ->
-            val target = Players.firstOrNull { it.name.equals(args[0], true) }
+        adminCommand("tele_to_me", stringArg("player-name", desc = "Player name (with underscores for spaces)", autofill = accounts.displayNames.keys), desc = "Teleport another player to you") { args ->
+            val target = Players.find(args[0])
             if (target == null) {
                 message("Unable to find player '${args[0]}' online.", ChatType.Console)
                 return@adminCommand

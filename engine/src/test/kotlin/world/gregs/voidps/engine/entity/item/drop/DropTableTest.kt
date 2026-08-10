@@ -12,22 +12,68 @@ internal class DropTableTest {
 
     @Test
     fun `Roll number from 0 until drop table roll value`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
         val drops = DropTable(TableType.First, 100, listOf(), 1)
         val roll: Int = drops.random(maximum = Int.MAX_VALUE)
-        assertTrue(roll in 0 until 100)
+        assertEquals(99, roll)
     }
 
     @Test
     fun `Roll number from 0 until value passed in`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
         val drops = DropTable(TableType.First, 0, listOf(), 1)
         val roll: Int = drops.random(maximum = 100)
-        assertTrue(roll in 0 until 100)
+        assertEquals(99, roll)
+    }
+
+    @Test
+    fun `Adjust roll chance by multiplier`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+        val drops = DropTable(TableType.First, 0, listOf(), 1)
+        val roll: Int = drops.random(maximum = 100, multiplier = 2.0)
+        assertTrue(roll in 0 until 50)
+    }
+
+    @Test
+    fun `Can't adjust roll chance by multiplier less than 1`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+        val drops = DropTable(TableType.First, 0, listOf(), 1)
+        val roll: Int = drops.random(maximum = 100, multiplier = 0.1)
+        assertEquals(99, roll)
+    }
+
+    @Test
+    fun `Roll with multiplier sorts ascending to reduce chances of most common items first`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+        })
+        val item1 = drop("1", 1)
+        val item2 = drop("2", 2)
+        val item3 = drop("2", 6)
+        val root = DropTable(TableType.First, 10, listOf(item3, item2, item1), 1)
+
+        val list = mutableListOf<ItemDrop>()
+        root.roll(list = list, multiplier = 2.0)
+
+        assertTrue(list.contains(item1))
     }
 
     @Test
     fun `Roll every item in all type table`() {
         val item1 = drop("1", 1)
-        val item2 = drop("2", 1)
+        val item2 = drop("2", 2)
         val root = DropTable(TableType.All, -1, listOf(item1, item2), 1)
 
         val list = mutableListOf<ItemDrop>()

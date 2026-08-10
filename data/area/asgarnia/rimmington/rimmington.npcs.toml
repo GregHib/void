@@ -3,14 +3,12 @@ id = 530
 categories = ["human"]
 shop = "rimmington_general_store"
 collision = "indoors"
-wander_range = 2
 examine = "Has an interesting assortment of items for sale."
 
 [shop_assistant_rimmington]
 id = 531
 categories = ["human"]
 shop = "rimmington_general_store"
-wander_range = 2
 collision = "indoors"
 examine = "Works on commission."
 
@@ -62,44 +60,106 @@ slayer_xp = 2.0
 categories = ["rats", "zombies"]
 respawn_delay = 30
 examine = "Overgrown undead vermin."
+drop_table = "zombie_rat"
 
 [zombie_rat_rimmington_2]
 id = 6089
 clone = "zombie_rat_rimmington"
+drop_table = "zombie_rat"
 
 [zombie_rat_rimmington_3]
 id = 6090
 clone = "zombie_rat_rimmington"
+drop_table = "zombie_rat"
 
 [skeleton_rimmington]
 id = 6091
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [skeleton_rimmington_2]
 id = 6092
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [skeleton_rimmington_3]
 id = 6093
 categories = ["skeletons"]
 examine = "Could do with gaining a few pounds."
+drop_table = "skeleton"
+combat_def = "skeleton_unarmed"
+hitpoints = 240
+att = 17
+str = 17
+def = 17
+max_hit_crush = 30
+hunt_mode = "cowardly"
 
 [ghost_rimmington]
 id = 6094
+drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_2]
 id = 6095
+drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_3]
 id = 6096
+drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_4]
 id = 6097
 categories = ["ghosts"]
 examine = "Eeek! A ghost!"
+drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [ghost_rimmington_5]
 id = 6098
+drop_table = "empty"
+combat_def = "ghost"
+hitpoints = 250
+att = 13
+str = 13
+def = 18
+max_hit_crush = 20
 
 [tool_leprechaun_rimmington]
 id = 7559

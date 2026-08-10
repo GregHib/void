@@ -1,0 +1,11 @@
+[mourner_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "gas_mask" },
+    { id = "mourner_top" },
+    { id = "mourner_trousers" },
+    { id = "mourner_boots" },
+    { id = "mourner_gloves" },
+    { id = "mourner_cloak" },
+]

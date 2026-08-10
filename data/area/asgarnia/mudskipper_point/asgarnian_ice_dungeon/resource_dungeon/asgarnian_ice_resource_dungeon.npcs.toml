@@ -8,7 +8,6 @@ mage = 150
 height = 25
 combat_def = "frost_dragon"
 drop_table = "frost_dragon"
-wander_range = 4
 hunt_mode = "aggressive"
 allowed_under = true
 slayer_xp = 235.5

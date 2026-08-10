@@ -13549,7 +13549,6 @@ examine = "All members of the party can teleport to this stone from the group ga
 id = 18830
 limit = 10000
 weight = 1.5
-prayer_xp = 180.0
 examine = "I doubt a dog would enjoy eating these."
 kept = "Always"
 
@@ -13561,7 +13560,6 @@ id = 18832
 price = 12800
 limit = 10000
 weight = 1.5
-prayer_xp = 180.0
 examine = "Hmm. I doubt a dog would enjoy eating these."
 
 [frost_dragon_bones_noted]

@@ -64,6 +64,7 @@ object CacheBuilder {
         MoveCameraClientScript.convert(library, cache667)
         FixStructs.fix(library)
         FixItems.fix(library)
+        FixObjects.fix(library)
         FixEnums.fix(library)
         println("Rebuilding cache.")
         library.rebuild(target)

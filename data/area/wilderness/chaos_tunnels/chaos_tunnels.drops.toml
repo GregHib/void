@@ -319,3 +319,15 @@ drops = [
     { id = "femur_bone", chance = 32, variable = "fur_n_seek_wish_list", equals = "started", default = "unstarted" },
     { table = "rare_drop_table" },
 ]
+
+[bloodworm_drop_table]
+type = "all"
+drops = [
+    { table = "bloodworm_secondary" },
+]
+
+[bloodworm_secondary]
+roll = 1024
+drops = [
+    { id = "starved_ancient_effigy", chance = 6 },
+]

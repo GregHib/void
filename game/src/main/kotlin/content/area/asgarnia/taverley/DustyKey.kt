@@ -18,5 +18,15 @@ class DustyKey : Script {
                 message("The gate is locked.")
             }
         }
+
+        objectOperate("Open", "door_547_closed") { (target) ->
+            if (inventory.contains("jail_key")) {
+                sound("unlock")
+                enterDoor(target)
+            } else {
+                sound("locked")
+                message("This door is locked.")
+            }
+        }
     }
 }

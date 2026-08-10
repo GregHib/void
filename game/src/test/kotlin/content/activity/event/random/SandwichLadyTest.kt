@@ -5,6 +5,7 @@ import interfaceOption
 import npcOption
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -80,6 +81,46 @@ class SandwichLadyTest : WorldTest() {
         assertEquals(4, player.inventory.count("logs")) // knockout doesn't note items
         assertNull(player.get<String>("random_event"))
         assertTrue(player.contains("random_event_cooldown"))
+    }
+
+    @Test
+    fun `Talking again instead of clicking continue can't dupe the reward`() {
+        val (player, lady) = setup("sl_dupe", "meat_pie")
+        openTray(player, lady)
+        player.interfaceOption("sandwich_lady_select", "meat_pie", "Choose refreshment")
+        tick()
+
+        // Ignore the "Hope that fills you up!" continue and try talking to her again
+        player.npcOption(lady, "Talk-to")
+        tick()
+        if (player.dialogue != null) {
+            player.skipDialogues()
+        }
+        tick()
+
+        assertFalse(player.interfaces.contains("sandwich_lady_select"))
+        assertEquals(1, player.inventory.count("meat_pie"))
+        assertEquals(1, player.inventory.count("random_event_gift"))
+    }
+
+    @Test
+    fun `Talking during the knockout fade can't reopen the tray`() {
+        val (player, lady) = setup("sl_fade", "meat_pie")
+        openTray(player, lady)
+        player.interfaceOption("sandwich_lady_select", "baguette", "Choose refreshment")
+        tick()
+
+        // Mid-fade, before the exile teleport lands
+        player.npcOption(lady, "Talk-to")
+        tick()
+        if (player.dialogue != null) {
+            player.skipDialogues()
+        }
+        tick(4)
+
+        assertFalse(player.interfaces.contains("sandwich_lady_select"))
+        assertEquals(0, player.inventory.count("meat_pie"))
+        assertEquals(0, player.inventory.count("random_event_gift"))
     }
 
     @Test

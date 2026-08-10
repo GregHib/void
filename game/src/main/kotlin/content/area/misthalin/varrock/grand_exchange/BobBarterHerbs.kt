@@ -18,6 +18,7 @@ class BobBarterHerbs : Script {
         "attack_potion",
         "strength_potion",
         "defence_potion",
+        "restore_potion",
         "prayer_potion",
         "super_attack",
         "super_strength",

@@ -34,7 +34,7 @@ class Certer : Script {
                 message("They aren't interested in talking to you.")
                 return@npcOperate
             }
-            npc<Happy>("giles", "Ah, hello, $name. Could you please help me identify this?")
+            npc<Happy>("Ah, hello, $name. Could you please help me identify this?")
             openPuzzle()
         }
 

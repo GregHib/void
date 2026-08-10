@@ -3,7 +3,8 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "dwarf_secondary" },
-    { table = "easy_clue_scroll", roll = 100 }
+    { table = "easy_clue_scroll", roll = 100 },
+    { table = "dwarf_charms", members = true },
 ]
 
 [dwarf_hammer_drop_table]
@@ -11,6 +12,7 @@ type = "all"
 drops = [
     { table = "bones" },
     { table = "dwarf_secondary" },
+    { table = "dwarf_charms", members = true },
 ]
 
 [dwarf_secondary]
@@ -43,6 +45,7 @@ type = "all"
 drops = [
   { id = "bones" },
   { table = "black_knight_secondary" },
+    { table = "chaos_dwarf_charms", members = true },
 ]
 
 [chaos_dwarf_secondary]
@@ -72,4 +75,22 @@ drops = [
   { id = "mithril_bar", chance = 6 },
   { id = "tomato" },
   { table = "gem_drop_table", chance = 5 },
+]
+
+[dwarf_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 3785 },
+    { id = "green_charm", chance = 1856 },
+    { id = "crimson_charm", chance = 2984 },
+    { id = "blue_charm", chance = 586 },
+]
+
+[chaos_dwarf_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 9562 },
+    { id = "green_charm", chance = 4722 },
+    { id = "crimson_charm", chance = 2388 },
+    { id = "blue_charm", chance = 2396 },
 ]

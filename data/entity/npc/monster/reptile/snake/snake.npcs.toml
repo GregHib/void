@@ -6,7 +6,6 @@ str = 5
 def = 3
 combat_def = "snake"
 respawn_delay = 30
-wander_range = 4
 drop_table = "bones"
 hunt_mode = "cowardly"
 categories = ["snakes"]

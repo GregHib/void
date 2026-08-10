@@ -1,0 +1,20 @@
+[ivory_shredflesh_cursed]
+attack_speed = 4
+
+[ivory_shredflesh_cursed.melee]
+range = 1
+target_hit = { offense = "crush", max = 112 }
+
+[ivory_gromblod_cursed]
+attack_speed = 4
+
+[ivory_gromblod_cursed.range]
+range = 6
+target_hit = { offense = "range", max = 10 }
+
+[ivory_bre_egth_cursed]
+attack_speed = 4
+
+[ivory_bre_egth_cursed.magic]
+range = 6
+target_hit = { offense = "magic", max = 114 }

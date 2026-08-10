@@ -1,7 +1,8 @@
 [skeleton_drop_table]
 type = "all"
 drops = [
-    { table = "bones" }
+    { table = "bones" },
+    { table = "skeleton_charms", members = true },
 ]
 
 [skeleton_unarmed_drop_table]
@@ -10,6 +11,7 @@ drops = [
     { id = "bones" },
     { table = "skeleton_unarmed_secondary" },
     { table = "skeleton_tertiary" },
+    { table = "skeleton_charms", members = true },
 ]
 
 [skeleton_unarmed_secondary]
@@ -46,6 +48,7 @@ drops = [
     { id = "bones" },
     { table = "skeleton_armed_secondary" },
     { table = "skeleton_tertiary" },
+    { table = "skeleton_charms", members = true },
 ]
 
 [skeleton_armed_secondary]
@@ -78,6 +81,7 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "skeleton_catacombs_secondary" },
+    { table = "skeleton_charms", members = true },
 ]
 
 [skeleton_catacombs_secondary]
@@ -125,4 +129,13 @@ drops = [
 roll = 5000
 drops = [
     { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
+]
+
+[skeleton_charms]
+roll = 100000
+drops = [
+    { id = "gold_charm", chance = 5286 },
+    { id = "green_charm", chance = 853 },
+    { id = "crimson_charm", chance = 2472 },
+    { id = "blue_charm", chance = 1023 },
 ]

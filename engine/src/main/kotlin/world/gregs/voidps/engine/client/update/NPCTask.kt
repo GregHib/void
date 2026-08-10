@@ -29,7 +29,7 @@ class NPCTask(
             // owner rather than wandering or standing still after a fight ends.
             val ownerIndex = character["owner_index", -1]
             val owner = if (ownerIndex != -1) Players.indexed(ownerIndex) else null
-            if (owner != null && owner.get("follower_index", -1) == character.index) {
+            if (owner != null && owner["follower_index", -1] == character.index) {
                 character.mode = Follow(character, owner)
             } else if (wanders(character)) {
                 character.mode = Wander(character)

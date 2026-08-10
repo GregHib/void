@@ -31,7 +31,7 @@ fun Client.updateZone(
     yOffset: Int,
     level: Int,
 ) = send(Protocol.UPDATE_ZONE) {
-    writeByteInverse(xOffset)
+    writeByteInverse(yOffset)
     writeByteAdd(level)
-    writeByteAdd(yOffset)
+    writeByteAdd(xOffset)
 }

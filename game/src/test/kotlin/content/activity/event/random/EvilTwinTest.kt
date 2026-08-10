@@ -136,7 +136,7 @@ class EvilTwinTest : WorldTest() {
         player.npcOption(molly, "Talk-to")
         tick(2)
         player.skipDialogues()
-        tick(2)
+        tick(5) // wait out the modern teleport takeoff
 
         assertFalse(player.inventory.isEmpty(), "Expected a gem reward from Molly")
         assertNull(player.get<String>("random_event"))

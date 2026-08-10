@@ -254,7 +254,7 @@ message = "You fill the pie with apple."
 skill = "cooking"
 level = 20
 remove = ["redberries", "pie_shell"]
-add = ["uncooked_meat_pie"]
+add = ["uncooked_berry_pie"]
 ticks = 2
 message = "You fill the pie with meat."
 

@@ -85,3 +85,46 @@ drops = [
     { id = "crimson_charm", chance = 22 },
     { id = "blue_charm", chance = 11 },
 ]
+[ogress_warrior_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ogress_warrior_secondary" },
+]
+
+[ogress_warrior_secondary]
+roll = 1024
+drops = [
+    { id = "iron_spear", chance = 64 },
+    { id = "ogre_club", chance = 64 },
+]
+
+[ogress_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ogress_secondary" },
+]
+
+[ogress_secondary]
+roll = 1024
+drops = [
+    { id = "ogre_club", chance = 32 },
+    { id = "iron_spear", chance = 32 },
+    { id = "long_bone", chance = 6 },
+]
+
+[ogress_champion_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones" },
+    { table = "ogress_champion_secondary" },
+]
+
+[ogress_champion_secondary]
+roll = 1024
+drops = [
+    { id = "ogre_club", chance = 64 },
+    { id = "iron_spear", chance = 64 },
+    { id = "starved_ancient_effigy", chance = 6 },
+]

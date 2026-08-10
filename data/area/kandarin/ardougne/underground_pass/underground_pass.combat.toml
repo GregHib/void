@@ -1,0 +1,48 @@
+[khazard_warlord]
+attack_speed = 4
+death_anim = "khazard_warlord_death"
+
+[khazard_warlord.melee]
+range = 1
+target_hit = { offense = "crush", max = 100 }
+anim = "khazard_warlord_attack"
+
+[sir_jerro]
+attack_speed = 5
+defend_anim = "sir_jerro_defend"
+death_anim = "sir_jerro_death"
+
+[sir_jerro.melee]
+range = 1
+target_hit = { offense = "slash", max = 80 }
+anim = "sir_jerro_attack"
+
+[sir_carl]
+attack_speed = 5
+defend_anim = "sir_carl_defend"
+death_anim = "sir_carl_death"
+
+[sir_carl.melee]
+range = 1
+target_hit = { offense = "slash", max = 80 }
+anim = "sir_carl_attack"
+
+[sir_harry]
+attack_speed = 5
+defend_anim = "sir_harry_defend"
+death_anim = "sir_harry_death"
+
+[sir_harry.melee]
+range = 1
+target_hit = { offense = "slash", max = 80 }
+anim = "sir_harry_attack"
+
+[kalrag]
+attack_speed = 4
+defend_anim = "kalrag_defend"
+death_anim = "kalrag_death"
+
+[kalrag.melee]
+range = 1
+target_hit = { offense = "stab", max = 90 }
+anim = "kalrag_attack"

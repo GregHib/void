@@ -1,0 +1,24 @@
+[billy_goat_defend]
+id = 5342
+[billy_goat_death]
+id = 5343
+[billy_goat_attack]
+id = 5341
+
+[poltenip_defend]
+id = 425
+
+[poltenip_death]
+id = 836
+
+[poltenip_attack]
+id = 395
+
+[radat_defend]
+id = 425
+
+[radat_death]
+id = 836
+
+[radat_attack]
+id = 395

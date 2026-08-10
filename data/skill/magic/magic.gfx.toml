@@ -329,15 +329,14 @@ height = 60
 
 [saradomin_strike_impact]
 id = 76
-height = 60
+height = 100
 
 [claws_of_guthix_impact]
 id = 77
-height = 60
+height = 100
 
 [flames_of_zamorak_impact]
 id = 78
-height = 60
 
 [confuse_cast]
 id = 102

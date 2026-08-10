@@ -138,6 +138,7 @@ class Fishing : Script {
         }
         target.get<MutableSet<String>>("fishers")?.remove(player.name)
         player.softTimers.stop("fishing")
+        player.clearAnim()
     }
 
     fun addCatch(player: Player, catch: String) {
