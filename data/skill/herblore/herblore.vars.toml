@@ -1,3 +1,15 @@
 [recover_special_delay]
 format = "int"
 persist = true
+
+[overload_refreshes_remaining]
+format = "int"
+persist = true
+
+[antifire]
+format = "int"
+persist = true
+
+[super_antifire]
+format = "int"
+persist = true

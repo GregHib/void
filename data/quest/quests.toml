@@ -124,7 +124,6 @@ start_point = "Talk to one of the barbarian guards at the outer entrance of the 
 start_path = [[ 2544, 3569 ]]
 reward = "Access to the Barbarian Outpost agility course"
 variables = [
-  "bar_crawl_miniquest",
   "barcrawl_signatures",
   "alfred_grimhands_barcrawl",
   "bar_crawl_started",

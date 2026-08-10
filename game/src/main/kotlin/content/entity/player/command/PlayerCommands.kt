@@ -313,7 +313,7 @@ class PlayerCommands(
             for (component in Emotes.unlockableEmotes) {
                 target["unlocked_emote_$component"] = true
             }
-            target["unlocked_emote_lost_tribe"] = true
+            target["the_lost_tribe"] = "goblin_emotes"
             target.message("All emotes unlocked.")
         }
         if (type == "all" || type == "quests") {

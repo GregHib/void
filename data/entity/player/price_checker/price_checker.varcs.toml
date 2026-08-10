@@ -2,10 +2,6 @@
 id = 728
 format = "int"
 
-[price_checker_limit]
-id = 729
-format = "int"
-
 [value_0]
 id = 700
 format = "int"

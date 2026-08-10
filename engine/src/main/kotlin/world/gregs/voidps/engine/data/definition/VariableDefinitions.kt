@@ -51,26 +51,30 @@ object VariableDefinitions {
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val varbitIds = Int2ObjectOpenHashMap<String>()
             val varpIds = Int2ObjectOpenHashMap<String>()
+            val varcIds = Int2ObjectOpenHashMap<String>()
+            val varcStrIds = Int2ObjectOpenHashMap<String>()
             for (file in players) {
                 load(file) { id, stringId, values, default, persist, transmit ->
                     definitions[stringId] = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
-                    varpIds[id] = stringId
+                    claim(varpIds, "varp", id, stringId, file)
                 }
             }
             for (file in playerBits) {
                 load(file) { id, stringId, values, default, persist, transmit ->
                     definitions[stringId] = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
-                    varbitIds[id] = stringId
+                    claim(varbitIds, "varbit", id, stringId, file)
                 }
             }
             for (file in clients) {
                 load(file) { id, stringId, values, default, persist, transmit ->
                     definitions[stringId] = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
+                    claim(varcIds, "varc", id, stringId, file)
                 }
             }
             for (file in clientStrings) {
                 load(file) { id, stringId, _, default, persist, transmit ->
                     definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
+                    claim(varcStrIds, "varc string", id, stringId, file)
                 }
             }
             for (file in custom) {
@@ -82,6 +86,14 @@ object VariableDefinitions {
             this.definitions.size
         }
         return this
+    }
+
+    /**
+     * Two variables sharing an [id] both write the same client variable, so setting one silently changes the other.
+     */
+    private fun claim(ids: Int2ObjectOpenHashMap<String>, type: String, id: Int, stringId: String, path: String) {
+        val existing = ids.put(id, stringId)
+        require(existing == null) { "Variables '$existing' and '$stringId' both use $type id $id, in '$path'." }
     }
 
     private fun load(path: String, requireId: Boolean = true, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {

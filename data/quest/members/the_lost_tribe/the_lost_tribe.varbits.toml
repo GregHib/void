@@ -3,4 +3,4 @@ id = 532
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, started = 1, goblin_emotes = 7 }

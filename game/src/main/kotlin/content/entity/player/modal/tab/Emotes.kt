@@ -4,6 +4,7 @@ import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.statement
+import content.quest.questStage
 import net.pearx.kasechange.toSnakeCase
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
@@ -21,6 +22,11 @@ import world.gregs.voidps.type.random
 class Emotes : Script {
 
     companion object {
+        /**
+         * The Goblin emotes are unlocked partway through The Lost Tribe, which shares varbit 532 with the quest's progress.
+         */
+        const val GOBLIN_EMOTES_STAGE = 7
+
         val unlockableEmotes = listOf(
             "glass_box", "climb_rope", "lean", "glass_wall", "idea", "stomp", "flap", "slap_head", "zombie_walk", "zombie_dance",
             "zombie_hand", "scared", "bunny_hop", "snowman_dance", "air_guitar", "safety_first", "explore", "trick", "freeze", "give_thanks",
@@ -79,7 +85,7 @@ class Emotes : Script {
 
     suspend fun Player.unlocked(id: String, emote: String): Boolean {
         if (emote.startsWith("Goblin")) {
-            if (get("unlocked_emote_lost_tribe", false)) {
+            if (questStage("the_lost_tribe") >= GOBLIN_EMOTES_STAGE) {
                 return true
             }
             statement("This emote can be unlocked during the Lost Tribe quest.")

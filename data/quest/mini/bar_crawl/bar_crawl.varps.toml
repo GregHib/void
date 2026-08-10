@@ -1,6 +1,0 @@
-[bar_crawl_miniquest]
-id = 76
-format = "map"
-persist = true
-default = "unstarted"
-values = { unstarted = 0, completed = 6 }

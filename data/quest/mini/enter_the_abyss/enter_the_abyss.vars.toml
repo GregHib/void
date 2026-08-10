@@ -1,0 +1,19 @@
+[enter_abyss_knows_mages]
+format = "boolean"
+persist = true
+
+[enter_abyss_where_runes]
+format = "boolean"
+persist = true
+
+[enter_abyss_offer]
+format = "boolean"
+persist = true
+
+[enter_abyss_has_orb]
+format = "boolean"
+persist = true
+
+[enter_abyss_taken_orb]
+format = "boolean"
+persist = true
