@@ -55,30 +55,35 @@ object VariableDefinitions {
             val varcStrIds = Int2ObjectOpenHashMap<String>()
             for (file in players) {
                 load(file) { id, stringId, values, default, persist, transmit ->
-                    definitions[stringId] = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
+                    claim(definitions, stringId, file)
                     claim(varpIds, "varp", id, stringId, file)
+                    definitions[stringId] = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
                 }
             }
             for (file in playerBits) {
                 load(file) { id, stringId, values, default, persist, transmit ->
-                    definitions[stringId] = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
+                    claim(definitions, stringId, file)
                     claim(varbitIds, "varbit", id, stringId, file)
+                    definitions[stringId] = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
                 }
             }
             for (file in clients) {
                 load(file) { id, stringId, values, default, persist, transmit ->
-                    definitions[stringId] = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
+                    claim(definitions, stringId, file)
                     claim(varcIds, "varc", id, stringId, file)
+                    definitions[stringId] = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
                 }
             }
             for (file in clientStrings) {
                 load(file) { id, stringId, _, default, persist, transmit ->
-                    definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
+                    claim(definitions, stringId, file)
                     claim(varcStrIds, "varc string", id, stringId, file)
+                    definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
                 }
             }
             for (file in custom) {
                 load(file, requireId = false) { _, stringId, values, default, persist, _ ->
+                    claim(definitions, stringId, file)
                     definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
                 }
             }
@@ -94,6 +99,13 @@ object VariableDefinitions {
     private fun claim(ids: Int2ObjectOpenHashMap<String>, type: String, id: Int, stringId: String, path: String) {
         val existing = ids.put(id, stringId)
         require(existing == null) { "Variables '$existing' and '$stringId' both use $type id $id, in '$path'." }
+    }
+
+    /**
+     * A name declared twice is silently won by whichever file loads last, so the other definition never applies.
+     */
+    private fun claim(definitions: Map<String, VariableDefinition>, stringId: String, path: String) {
+        require(!definitions.containsKey(stringId)) { "Variable '$stringId' is declared more than once, in '$path'." }
     }
 
     private fun load(path: String, requireId: Boolean = true, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
