@@ -18,9 +18,6 @@ id = 1195
 [rand_party_complexity_level_trans]
 id = 1320
 
-[rand_display_stage]
-id = 1186
-
 [rand_nurf_amount_trans]
 id = 1321
 format = "boolean"

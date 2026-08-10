@@ -16,10 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class BartenderRustyAnchor : Script {
 
     init {
-        playerSpawn {
-            set("void_dance_bartender", 19)
-        }
-
         npcOperate("Talk-to", "bartender_rusty_anchor_inn*") { (target) ->
             choice {
                 option<Quiz>("Could I buy a beer please?") {

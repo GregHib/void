@@ -24,13 +24,3 @@ persist = true
 format = "map"
 default = "grill"
 values = { grill = 0, grill_rope = 1, grill_open = 2 }
-
-[plaguecity_picture_asked]
-id = 9102
-persist = true
-format = "boolean"
-
-[plaguecity_key_asked]
-id = 9103
-persist = true
-format = "boolean"

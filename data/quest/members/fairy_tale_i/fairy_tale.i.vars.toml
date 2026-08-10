@@ -1,5 +1,0 @@
-[fairy_tale_i]
-persist = true
-format = "list"
-values = [ "unstarted", "completed" ]
-
