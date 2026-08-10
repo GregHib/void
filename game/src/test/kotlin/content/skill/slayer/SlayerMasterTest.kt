@@ -72,10 +72,10 @@ class SlayerMasterTest : WorldTest() {
         player.setLevel(Skill.Attack, 80)
         player.setLevel(Skill.Strength, 80)
         player.setLevel(Skill.Defence, 60)
-        player.setLevel(Skill.Constitution, 60)
+        player.setLevel(Skill.Constitution, 600)
         player.setLevel(Skill.Slayer, 55)
 
-        // Combat 70 for Chaeldar, but Smoking Kills is outstanding and Duradel wants combat 100
+        // Meets Chaeldar's combat 70, but Smoking Kills is outstanding and Duradel wants combat 100
         assertEquals("chaeldar", player.strongerMaster("turael")?.id)
         assertNull(player.strongerMaster("chaeldar"))
     }
@@ -86,7 +86,7 @@ class SlayerMasterTest : WorldTest() {
         player.setLevel(Skill.Attack, 80)
         player.setLevel(Skill.Strength, 80)
         player.setLevel(Skill.Defence, 60)
-        player.setLevel(Skill.Constitution, 60)
+        player.setLevel(Skill.Constitution, 600)
         player.setLevel(Skill.Slayer, 55)
         player["smoking_kills"] = "completed"
 
@@ -103,13 +103,13 @@ class SlayerMasterTest : WorldTest() {
     private fun maxedPlayer(tile: Tile): Player {
         val player = createPlayer(tile)
         for (skill in Skill.entries) {
-            player.setLevel(skill, 99)
+            player.setLevel(skill, skill.maximum())
         }
         return player
     }
 
     private fun Player.setLevel(skill: Skill, level: Int) {
-        experience.set(skill, Level.experience(level))
-        levels.clear(skill)
+        levels.set(skill, level)
+        experience.set(skill, Level.experience(skill, level))
     }
 }
