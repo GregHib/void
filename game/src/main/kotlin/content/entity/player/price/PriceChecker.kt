@@ -29,7 +29,8 @@ class PriceChecker : Script {
         interfaceOpened("price_checker") { id ->
             interfaceOptions.unlockAll(id, "items", 0 until 28)
             set("price_checker_total", 0)
-            set("price_checker_limit", Int.MAX_VALUE)
+            // Varc 729 is the shared value register, also written by the trade screen
+            set("offer_value", Int.MAX_VALUE)
             open("price_checker_side")
         }
 

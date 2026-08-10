@@ -1,0 +1,7 @@
+[plaguecity_picture_asked]
+persist = true
+format = "boolean"
+
+[plaguecity_key_asked]
+persist = true
+format = "boolean"

@@ -1,6 +1,8 @@
+# Bits 0-8 of varp 705, which the quest journal reads. Writing varp 705
+# directly would clobber the twelve other varbits sharing it.
 [in_aid_of_the_myreque]
-id = 1990 # this and varps works
+id = 1990
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, started = 20, completed = 430 }

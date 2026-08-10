@@ -18,16 +18,6 @@ id = 2312
 persist = true
 format = "boolean"
 
-[unlocked_emote_lost_tribe]
-id = 532
-persist = true
-format = "map"
-default = "false"
-values = {
-  false = 0,
-  true = 7
-}
-
 [unlocked_emote_glass_wall]
 id = 1367
 persist = true

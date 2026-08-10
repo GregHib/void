@@ -95,7 +95,7 @@ drink = "You gulp it down."
 effect = "Your head is spinning."
 sign = "The bartender signs your card."
 
-[.bartender_rusty_anchor_inn]
+[.bartender_rusty_anchor_inn_3]
 id = "black_skull_ale"
 price = 8
 insufficient = "I don't have 8 coins with me."

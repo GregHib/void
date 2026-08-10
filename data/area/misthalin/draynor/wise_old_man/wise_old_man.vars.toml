@@ -22,3 +22,7 @@ persist = true
 [wise_old_man_bed_kills]
 format = "int"
 persist = true
+
+[wise_old_man_met]
+persist = true
+format = "boolean"

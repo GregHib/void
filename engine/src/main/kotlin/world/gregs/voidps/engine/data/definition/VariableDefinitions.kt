@@ -51,30 +51,39 @@ object VariableDefinitions {
             val definitions = Object2ObjectOpenHashMap<String, VariableDefinition>()
             val varbitIds = Int2ObjectOpenHashMap<String>()
             val varpIds = Int2ObjectOpenHashMap<String>()
+            val varcIds = Int2ObjectOpenHashMap<String>()
+            val varcStrIds = Int2ObjectOpenHashMap<String>()
             for (file in players) {
                 load(file) { id, stringId, values, default, persist, transmit ->
+                    claim(definitions, stringId, file)
+                    claim(varpIds, "varp", id, stringId, file)
                     definitions[stringId] = VariableDefinition.VarpDefinition(id, values, default, persist, transmit)
-                    varpIds[id] = stringId
                 }
             }
             for (file in playerBits) {
                 load(file) { id, stringId, values, default, persist, transmit ->
+                    claim(definitions, stringId, file)
+                    claim(varbitIds, "varbit", id, stringId, file)
                     definitions[stringId] = VariableDefinition.VarbitDefinition(id, values, default, persist, transmit)
-                    varbitIds[id] = stringId
                 }
             }
             for (file in clients) {
                 load(file) { id, stringId, values, default, persist, transmit ->
+                    claim(definitions, stringId, file)
+                    claim(varcIds, "varc", id, stringId, file)
                     definitions[stringId] = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)
                 }
             }
             for (file in clientStrings) {
                 load(file) { id, stringId, _, default, persist, transmit ->
+                    claim(definitions, stringId, file)
+                    claim(varcStrIds, "varc string", id, stringId, file)
                     definitions[stringId] = VariableDefinition.VarcStrDefinition(id, default, persist, transmit)
                 }
             }
             for (file in custom) {
-                load(file) { _, stringId, values, default, persist, _ ->
+                load(file, requireId = false) { _, stringId, values, default, persist, _ ->
+                    claim(definitions, stringId, file)
                     definitions[stringId] = VariableDefinition.CustomVariableDefinition(values, default, persist)
                 }
             }
@@ -84,7 +93,22 @@ object VariableDefinitions {
         return this
     }
 
-    private fun load(path: String, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
+    /**
+     * Two variables sharing an [id] both write the same client variable, so setting one silently changes the other.
+     */
+    private fun claim(ids: Int2ObjectOpenHashMap<String>, type: String, id: Int, stringId: String, path: String) {
+        val existing = ids.put(id, stringId)
+        require(existing == null) { "Variables '$existing' and '$stringId' both use $type id $id, in '$path'." }
+    }
+
+    /**
+     * A name declared twice is silently won by whichever file loads last, so the other definition never applies.
+     */
+    private fun claim(definitions: Map<String, VariableDefinition>, stringId: String, path: String) {
+        require(!definitions.containsKey(stringId)) { "Variable '$stringId' is declared more than once, in '$path'." }
+    }
+
+    private fun load(path: String, requireId: Boolean = true, block: (Int, String, VariableValues, Any?, Boolean, Boolean) -> Unit) {
         Config.fileReader(path) {
             while (nextSection()) {
                 val stringId = section()
@@ -105,6 +129,7 @@ object VariableDefinitions {
                         else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                     }
                 }
+                require(!requireId || id != -1) { "Variable '$stringId' is missing an id, use a 'vars.toml' file for server-only variables. ${exception()}" }
                 val varValue = VariableValues(values, format, default)
                 block.invoke(id, stringId, varValue, default, persist, transmit)
             }
