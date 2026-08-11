@@ -453,7 +453,7 @@ class DungeonGenerator(
                 floor = 1,
                 complexity = 6,
                 size = DungeonSize.Small,
-                playerCount = 1
+                playerCount = 1,
             )
             val start = System.currentTimeMillis()
             val dungeon = generator.generate()

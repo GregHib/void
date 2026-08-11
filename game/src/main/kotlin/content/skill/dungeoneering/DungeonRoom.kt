@@ -133,7 +133,6 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         val complexity = player["dungeoneering_party_complexity", 0]
         val floor = player["dungeoneering_party_floor", 0]
         if (random.nextInt(5) != 0 || doors.any { it is DungeonDoor.Guardian }) {
-
             val members = player.dungeonMembers.sortedBy { it.combatLevel }.take(dungeon.playerCount)
             val average = members.sumOf { it.combatLevel } / members.size
 
@@ -181,7 +180,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             5 -> 35
             6 -> 45
             else -> 0
-        }
+        },
     )
 
     companion object {
