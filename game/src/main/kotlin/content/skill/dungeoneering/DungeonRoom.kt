@@ -125,20 +125,17 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             return
         }
         // https://runescape.wiki/w/Dungeoneering/Monsters#Overview
-        val spawnCount = random.nextInt(0..dungeon.playerCount + 3)
-        if (spawnCount == 0) {
-            return
-        }
 
-        val complexity = player["dungeoneering_party_complexity", 0]
-        val floor = player["dungeoneering_party_floor", 0]
-        if (random.nextInt(5) != 0 || doors.any { it is DungeonDoor.Guardian }) {
+        val complexity = player["dungeoneering_party_complexity", 1]
+        val floor = player["dungeoneering_party_floor", 1]
+        if (random.nextInt(5) != 0) {
+            val spawnCount = random.nextInt(1..dungeon.playerCount + 3)
             val members = player.dungeonMembers.sortedBy { it.combatLevel }.take(dungeon.playerCount)
             val average = members.sumOf { it.combatLevel } / members.size
 
             // TODO replace with accurate algorithm
             val combatLevel = player.dungeonMembers.maxOf { it.combatLevel }
-            var total = (average * (Interpolation.lerp(floor, 1..60, 1..100) / 100))
+            var total = (average * (Interpolation.lerp(floor, 1..60, 50..100) / 100.0)).toInt()
             total += complexityBonus(combatLevel, complexity)
 
             val npcs = mutableListOf<String>()
@@ -149,18 +146,19 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             }
             for (i in 0 until spawnCount) {
                 total = total.coerceAtLeast(1)
-                val npc = npcs.filter { NPCDefinitions.get(it).combat <= total }.randomOrNull(random)
-                if (npc == null) {
+                val id = npcs.filter { NPCDefinitions.get(it).combat <= total }.randomOrNull(random)
+                if (id == null) {
                     logger.warn { "Failed to find dungeoneering monster with combat=$total" }
                     break
                 }
-                val def = NPCDefinitions.get(npc)
+                val def = NPCDefinitions.get(id)
                 val tile = npcSpawns.random(random).random(CollisionStrategyProvider.get(def), def.size, CollisionFlag.BLOCK_NPCS)
                 if (tile == null) {
                     logger.warn { "Failed to find dungeoneering spawn combat=$total, zone=$zone spawns=$npcSpawns" }
                     continue
                 }
-                NPCs.add(npc, tile)
+                val npc = NPCs.add(id, tile)
+                npc["in_multi_combat"] = true
                 total -= def.combat
             }
         }

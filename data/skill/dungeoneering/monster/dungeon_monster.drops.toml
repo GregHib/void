@@ -3,15 +3,7 @@ type = "all"
 drops = [
     { table = "forgotten_warrior_daggers" },
     { table = "dungeon_food" },
-    { table = "dungeon_runes" },
-    { table = "dungeon_runes" },
-    { table = "torn_bags" },
-    { table = "dungeon_ores", variable = "dungeoneering_party_complexity", default = 1, within_min = 2 },
-    { table = "dungeon_branches", variable = "dungeoneering_party_complexity", default = 1, within_min = 2 },
-    { table = "dungeon_textiles", variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
-    { table = "dungeon_herbs", variable = "dungeoneering_party_complexity", default = 1, within_min = 5 },
-    { table = "dungeon_seeds", variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
-    { table = "dungeon_misc" },
+    { table = "dungeon_secondary" },
 ]
 
 [forgotten_warrior_lvl1_drop_table]
@@ -305,7 +297,7 @@ drops = [
 ]
 
 [forgotten_warrior_daggers]
-roll = 64
+roll = 128
 drops = [
     { id = "novite_dagger", chance = 16 },
     { id = "bathus_dagger", chance = 8 },
@@ -328,7 +320,7 @@ drops = [
 ]
 
 [fish_food]
-roll = 8
+roll = 10
 drops = [
     { id = "heim_crab", skill = "cooking", within_min = 20 },
     { id = "red_eye", skill = "cooking", within_min = 30 },
@@ -364,14 +356,7 @@ type = "all"
 drops = [
     { id = "bones_dungeoneering" },
     { table = "dungeon_food" },
-    { table = "dungeon_runes" },
-    { table = "torn_bags" },
-    { table = "dungeon_ores", variable = "dungeoneering_party_complexity", default = 1, within_min = 2 },
-    { table = "dungeon_branches", variable = "dungeoneering_party_complexity", default = 1, within_min = 2 },
-    { table = "dungeon_textiles", variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
-    { table = "dungeon_herbs", variable = "dungeoneering_party_complexity", default = 1, within_min = 5 },
-    { table = "dungeon_seeds", variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
-    { table = "dungeon_misc" },
+    { table = "dungeon_secondary" },
 ]
 
 [dungeon_ores]
@@ -468,4 +453,17 @@ drops = [
     { id = "thread_dungeoneering", min = 1, max = 10, variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
     { id = "feather_dungeoneering", min = 5, max = 50, variable = "dungeoneering_party_complexity", default = 1, within_min = 2 },
     { id = "rune_essence_dungeoneering", variable = "dungeoneering_party_complexity", default = 1, within_min = 3 },
+]
+
+[dungeon_secondary]
+roll = 16
+drops = [
+    { table = "dungeon_runes" },
+    { table = "torn_bags" },
+    { table = "dungeon_ores", variable = "dungeoneering_party_complexity", default = 1, within_min = 2 },
+    { table = "dungeon_branches", variable = "dungeoneering_party_complexity", default = 1, within_min = 2 },
+    { table = "dungeon_textiles", variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
+    { table = "dungeon_herbs", variable = "dungeoneering_party_complexity", default = 1, within_min = 5 },
+    { table = "dungeon_seeds", variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
+    { table = "dungeon_misc" },
 ]

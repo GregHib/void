@@ -85,6 +85,7 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             set("dungeon_deaths", 0)
             open("rand_overlay")
             set("in_dungeoneering", true)
+            set("in_multi_combat", true)
         }
 
         adminCommand("dungeon") {
