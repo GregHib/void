@@ -56,6 +56,8 @@ class Dungeoneering(val dropTables: DropTables) : Script {
                 complexity = complexity,
                 playerCount = 1,
             )
+            set("dungeoneering_party_floor", floor)
+            set("dungeoneering_party_complexity", complexity)
             set("show_daemonheim_map", true)
             message("")
             message("- Welcome to Daemonheim -")

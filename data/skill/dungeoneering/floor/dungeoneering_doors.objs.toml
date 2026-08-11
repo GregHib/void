@@ -337,7 +337,7 @@ id = 50318
 [wooden_barricade_furnished]
 id = 50319
 
-[cleared_barricade_door_frozen]
+[cleared_barricade_frozen]
 id = 50320
 
 [cleared_barricade_abandoned]

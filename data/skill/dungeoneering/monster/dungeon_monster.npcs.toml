@@ -5363,7 +5363,7 @@ mage = 245
 combat_def = "forgotten_mage_11"
 hunt_mode = "aggressive"
 hunt_range = 5
-drop_table = "forgotten_mage_lvl11"
+drop_table = "forgotten_mage_lvl10"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_2]
@@ -5375,7 +5375,7 @@ mage = 247
 combat_def = "forgotten_mage_11"
 hunt_mode = "aggressive"
 hunt_range = 5
-drop_table = "forgotten_mage_lvl11"
+drop_table = "forgotten_mage_lvl10"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_3]
@@ -5387,7 +5387,7 @@ mage = 250
 combat_def = "forgotten_mage_11"
 hunt_mode = "aggressive"
 hunt_range = 5
-drop_table = "forgotten_mage_lvl11"
+drop_table = "forgotten_mage_lvl10"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_human_magic_lvl11_4]
@@ -5399,7 +5399,7 @@ mage = 247
 combat_def = "forgotten_mage_11"
 hunt_mode = "aggressive"
 hunt_range = 5
-drop_table = "forgotten_mage_lvl11"
+drop_table = "forgotten_mage_lvl10"
 examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_green_dragon_1]

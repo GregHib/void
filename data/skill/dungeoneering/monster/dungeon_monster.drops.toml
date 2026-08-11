@@ -766,11 +766,11 @@ drops = [
 [forgotten_mage_lvl8]
 roll = 32
 drops = [
-    { id = "ectogloves_gloves" },
-    { id = "ectogloves_shoes" },
-    { id = "ectogloves_hood" },
-    { id = "ectogloves_robe_bottom" },
-    { id = "ectogloves_robe_top" },
+    { id = "ectogloves" },
+    { id = "ectoshoes" },
+    { id = "ectohood" },
+    { id = "ectorobe_bottom" },
+    { id = "ectorobe_top" },
 ]
 
 [forgotten_mage_lvl9]
