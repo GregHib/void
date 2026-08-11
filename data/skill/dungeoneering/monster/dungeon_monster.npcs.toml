@@ -1778,6 +1778,7 @@ def = 71
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_2]
@@ -1790,6 +1791,7 @@ def = 75
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_3]
@@ -1802,6 +1804,7 @@ def = 76
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_4]
@@ -1814,6 +1817,7 @@ def = 78
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_5]
@@ -1826,6 +1830,7 @@ def = 75
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_6]
@@ -1838,6 +1843,7 @@ def = 78
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_7]
@@ -1850,6 +1856,7 @@ def = 78
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_8]
@@ -1862,6 +1869,7 @@ def = 75
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_9]
@@ -1874,6 +1882,7 @@ def = 75
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_10]
@@ -1886,6 +1895,7 @@ def = 75
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_11]
@@ -1898,6 +1908,7 @@ def = 76
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_12]
@@ -1910,6 +1921,7 @@ def = 76
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_13]
@@ -1922,6 +1934,7 @@ def = 75
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_14]
@@ -1934,6 +1947,7 @@ def = 75
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_15]
@@ -1946,6 +1960,7 @@ def = 76
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_16]
@@ -1958,6 +1973,7 @@ def = 73
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_17]
@@ -1970,6 +1986,7 @@ def = 76
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_18]
@@ -1982,6 +1999,7 @@ def = 76
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_19]
@@ -1994,6 +2012,7 @@ def = 80
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_20]
@@ -2006,6 +2025,7 @@ def = 75
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl4_21]
@@ -2018,6 +2038,7 @@ def = 73
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl4"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_1]
@@ -2030,6 +2051,7 @@ def = 93
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_2]
@@ -2042,6 +2064,7 @@ def = 93
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_3]
@@ -2054,6 +2077,7 @@ def = 97
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_4]
@@ -2066,6 +2090,7 @@ def = 95
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_5]
@@ -2078,6 +2103,7 @@ def = 97
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_6]
@@ -2090,6 +2116,7 @@ def = 93
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_7]
@@ -2102,6 +2129,7 @@ def = 95
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_8]
@@ -2114,6 +2142,7 @@ def = 95
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_9]
@@ -2126,6 +2155,7 @@ def = 99
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_10]
@@ -2138,6 +2168,7 @@ def = 95
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_11]
@@ -2150,6 +2181,7 @@ def = 101
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_12]
@@ -2162,6 +2194,7 @@ def = 97
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_13]
@@ -2174,6 +2207,7 @@ def = 101
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_14]
@@ -2186,6 +2220,7 @@ def = 95
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_15]
@@ -2198,6 +2233,7 @@ def = 101
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_16]
@@ -2210,6 +2246,7 @@ def = 95
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_17]
@@ -2222,6 +2259,7 @@ def = 101
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_18]
@@ -2234,6 +2272,7 @@ def = 97
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_19]
@@ -2246,6 +2285,7 @@ def = 93
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_20]
@@ -2258,6 +2298,7 @@ def = 97
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl5_21]
@@ -2270,6 +2311,7 @@ def = 93
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl5"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_1]
@@ -2282,6 +2324,7 @@ def = 119
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_2]
@@ -2294,6 +2337,7 @@ def = 123
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_3]
@@ -2306,6 +2350,7 @@ def = 119
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_4]
@@ -2318,6 +2363,7 @@ def = 119
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_5]
@@ -2330,6 +2376,7 @@ def = 114
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_6]
@@ -2342,6 +2389,7 @@ def = 119
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_7]
@@ -2354,6 +2402,7 @@ def = 114
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_8]
@@ -2366,6 +2415,7 @@ def = 116
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_9]
@@ -2378,6 +2428,7 @@ def = 116
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_10]
@@ -2390,6 +2441,7 @@ def = 116
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_11]
@@ -2402,6 +2454,7 @@ def = 119
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_12]
@@ -2414,6 +2467,7 @@ def = 121
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_13]
@@ -2426,6 +2480,7 @@ def = 117
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_14]
@@ -2438,6 +2493,7 @@ def = 119
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_15]
@@ -2450,6 +2506,7 @@ def = 119
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_16]
@@ -2462,6 +2519,7 @@ def = 121
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_17]
@@ -2474,6 +2532,7 @@ def = 117
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_18]
@@ -2486,6 +2545,7 @@ def = 119
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_19]
@@ -2498,6 +2558,7 @@ def = 119
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_20]
@@ -2510,6 +2571,7 @@ def = 117
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl6_21]
@@ -2522,6 +2584,7 @@ def = 116
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl6"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_ranged_lvl1_dummy]
@@ -3157,6 +3220,7 @@ def = 11
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_2]
@@ -3169,6 +3233,7 @@ def = 10
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_3]
@@ -3181,6 +3246,7 @@ def = 11
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_4]
@@ -3193,6 +3259,7 @@ def = 11
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_5]
@@ -3205,6 +3272,7 @@ def = 10
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_6]
@@ -3217,6 +3285,7 @@ def = 10
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_7]
@@ -3229,6 +3298,7 @@ def = 13
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_8]
@@ -3241,6 +3311,7 @@ def = 11
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_9]
@@ -3253,6 +3324,7 @@ def = 13
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_10]
@@ -3265,6 +3337,7 @@ def = 11
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_11]
@@ -3277,6 +3350,7 @@ def = 11
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_12]
@@ -3289,6 +3363,7 @@ def = 17
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_13]
@@ -3301,6 +3376,7 @@ def = 13
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_14]
@@ -3313,6 +3389,7 @@ def = 10
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_15]
@@ -3325,6 +3402,7 @@ def = 10
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_16]
@@ -3337,6 +3415,7 @@ def = 13
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_17]
@@ -3349,6 +3428,7 @@ def = 10
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_18]
@@ -3361,6 +3441,7 @@ def = 10
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_19]
@@ -3373,6 +3454,7 @@ def = 11
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_20]
@@ -3385,6 +3467,7 @@ def = 10
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl1_21]
@@ -3397,6 +3480,7 @@ def = 10
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl1"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_1]
@@ -3409,6 +3493,7 @@ def = 34
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_2]
@@ -3421,6 +3506,7 @@ def = 37
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_3]
@@ -3433,6 +3519,7 @@ def = 30
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_4]
@@ -3445,6 +3532,7 @@ def = 34
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_5]
@@ -3457,6 +3545,7 @@ def = 34
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_6]
@@ -3469,6 +3558,7 @@ def = 30
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_7]
@@ -3481,6 +3571,7 @@ def = 32
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_8]
@@ -3493,6 +3584,7 @@ def = 30
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_9]
@@ -3505,6 +3597,7 @@ def = 30
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_10]
@@ -3517,6 +3610,7 @@ def = 34
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_11]
@@ -3529,6 +3623,7 @@ def = 32
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_12]
@@ -3541,6 +3636,7 @@ def = 30
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_13]
@@ -3553,6 +3649,7 @@ def = 37
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_14]
@@ -3565,6 +3662,7 @@ def = 34
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_15]
@@ -3577,6 +3675,7 @@ def = 32
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_16]
@@ -3589,6 +3688,7 @@ def = 32
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_17]
@@ -3601,6 +3701,7 @@ def = 34
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_18]
@@ -3613,6 +3714,7 @@ def = 37
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_19]
@@ -3625,6 +3727,7 @@ def = 32
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_20]
@@ -3637,6 +3740,7 @@ def = 34
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl2_21]
@@ -3649,6 +3753,7 @@ def = 34
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl2"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_1]
@@ -3661,6 +3766,7 @@ def = 54
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_2]
@@ -3673,6 +3779,7 @@ def = 54
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_3]
@@ -3685,6 +3792,7 @@ def = 54
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_4]
@@ -3697,6 +3805,7 @@ def = 54
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_5]
@@ -3709,6 +3818,7 @@ def = 52
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_6]
@@ -3721,6 +3831,7 @@ def = 54
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_7]
@@ -3733,6 +3844,7 @@ def = 56
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_8]
@@ -3745,6 +3857,7 @@ def = 52
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_9]
@@ -3757,6 +3870,7 @@ def = 58
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_10]
@@ -3769,6 +3883,7 @@ def = 56
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_11]
@@ -3781,6 +3896,7 @@ def = 56
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_12]
@@ -3793,6 +3909,7 @@ def = 52
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_13]
@@ -3805,6 +3922,7 @@ def = 56
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_14]
@@ -3817,6 +3935,7 @@ def = 54
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_15]
@@ -3829,6 +3948,7 @@ def = 54
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_16]
@@ -3841,6 +3961,7 @@ def = 52
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_17]
@@ -3853,6 +3974,7 @@ def = 56
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_18]
@@ -3865,6 +3987,7 @@ def = 54
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_19]
@@ -3877,6 +4000,7 @@ def = 52
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_20]
@@ -3889,6 +4013,7 @@ def = 54
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl3_21]
@@ -3901,6 +4026,7 @@ def = 56
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl3"
 examine = "A warrior who has been long forgotten."
 
 [rand_ice_golem_1]
@@ -4121,6 +4247,7 @@ def = 205
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_2]
@@ -4133,6 +4260,7 @@ def = 201
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_3]
@@ -4145,6 +4273,7 @@ def = 203
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_4]
@@ -4157,6 +4286,7 @@ def = 201
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_5]
@@ -4169,6 +4299,7 @@ def = 203
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_6]
@@ -4181,6 +4312,7 @@ def = 205
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_7]
@@ -4193,6 +4325,7 @@ def = 201
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_8]
@@ -4205,6 +4338,7 @@ def = 205
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_9]
@@ -4217,6 +4351,7 @@ def = 205
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_10]
@@ -4229,6 +4364,7 @@ def = 209
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_11]
@@ -4241,6 +4377,7 @@ def = 201
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_12]
@@ -4253,6 +4390,7 @@ def = 205
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_13]
@@ -4265,6 +4403,7 @@ def = 209
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_14]
@@ -4277,6 +4416,7 @@ def = 201
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_15]
@@ -4289,6 +4429,7 @@ def = 203
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_16]
@@ -4301,6 +4442,7 @@ def = 205
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_17]
@@ -4313,6 +4455,7 @@ def = 205
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_18]
@@ -4325,6 +4468,7 @@ def = 205
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_19]
@@ -4337,6 +4481,7 @@ def = 205
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_20]
@@ -4349,6 +4494,7 @@ def = 207
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl10_21]
@@ -4361,6 +4507,7 @@ def = 207
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_1]
@@ -4373,6 +4520,7 @@ def = 248
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_2]
@@ -4385,6 +4533,7 @@ def = 246
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_3]
@@ -4397,6 +4546,7 @@ def = 242
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_4]
@@ -4409,6 +4559,7 @@ def = 248
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_5]
@@ -4421,6 +4572,7 @@ def = 248
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_6]
@@ -4433,6 +4585,7 @@ def = 246
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_7]
@@ -4445,6 +4598,7 @@ def = 244
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_8]
@@ -4457,6 +4611,7 @@ def = 244
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_9]
@@ -4469,6 +4624,7 @@ def = 244
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_10]
@@ -4481,6 +4637,7 @@ def = 246
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_11]
@@ -4493,6 +4650,7 @@ def = 250
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_12]
@@ -4505,6 +4663,7 @@ def = 244
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_13]
@@ -4517,6 +4676,7 @@ def = 248
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_14]
@@ -4529,6 +4689,7 @@ def = 250
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_15]
@@ -4541,6 +4702,7 @@ def = 244
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_16]
@@ -4553,6 +4715,7 @@ def = 246
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_17]
@@ -4565,6 +4728,7 @@ def = 250
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_18]
@@ -4577,6 +4741,7 @@ def = 244
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_19]
@@ -4589,6 +4754,7 @@ def = 242
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_20]
@@ -4601,6 +4767,7 @@ def = 244
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl11_21]
@@ -4613,6 +4780,7 @@ def = 246
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl10"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_magic_lvl1_dummy]
@@ -5961,6 +6129,7 @@ def = 136
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_2]
@@ -5973,6 +6142,7 @@ def = 138
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_3]
@@ -5985,6 +6155,7 @@ def = 134
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_4]
@@ -5997,6 +6168,7 @@ def = 142
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_5]
@@ -6009,6 +6181,7 @@ def = 138
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_6]
@@ -6021,6 +6194,7 @@ def = 140
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_7]
@@ -6033,6 +6207,7 @@ def = 140
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_8]
@@ -6045,6 +6220,7 @@ def = 136
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_9]
@@ -6057,6 +6233,7 @@ def = 138
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_10]
@@ -6069,6 +6246,7 @@ def = 140
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_11]
@@ -6081,6 +6259,7 @@ def = 142
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_12]
@@ -6093,6 +6272,7 @@ def = 140
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_13]
@@ -6105,6 +6285,7 @@ def = 138
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_14]
@@ -6117,6 +6298,7 @@ def = 140
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_15]
@@ -6129,6 +6311,7 @@ def = 142
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_16]
@@ -6141,6 +6324,7 @@ def = 138
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_17]
@@ -6153,6 +6337,7 @@ def = 136
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_18]
@@ -6165,6 +6350,7 @@ def = 138
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_19]
@@ -6177,6 +6363,7 @@ def = 143
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_20]
@@ -6189,6 +6376,7 @@ def = 142
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl7_21]
@@ -6201,6 +6389,7 @@ def = 138
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl7"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_1]
@@ -6213,6 +6402,7 @@ def = 162
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_2]
@@ -6225,6 +6415,7 @@ def = 166
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_3]
@@ -6237,6 +6428,7 @@ def = 160
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_4]
@@ -6249,6 +6441,7 @@ def = 162
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_5]
@@ -6261,6 +6454,7 @@ def = 162
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_6]
@@ -6273,6 +6467,7 @@ def = 166
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_7]
@@ -6285,6 +6480,7 @@ def = 164
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_8]
@@ -6297,6 +6493,7 @@ def = 156
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_9]
@@ -6309,6 +6506,7 @@ def = 158
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_10]
@@ -6321,6 +6519,7 @@ def = 160
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_11]
@@ -6333,6 +6532,7 @@ def = 158
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_12]
@@ -6345,6 +6545,7 @@ def = 164
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_13]
@@ -6357,6 +6558,7 @@ def = 162
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_14]
@@ -6369,6 +6571,7 @@ def = 160
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_15]
@@ -6381,6 +6584,7 @@ def = 160
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_16]
@@ -6393,6 +6597,7 @@ def = 164
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_17]
@@ -6405,6 +6610,7 @@ def = 162
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_18]
@@ -6417,6 +6623,7 @@ def = 158
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_19]
@@ -6429,6 +6636,7 @@ def = 162
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_20]
@@ -6441,6 +6649,7 @@ def = 160
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl8_21]
@@ -6453,6 +6662,7 @@ def = 164
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl8"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_1]
@@ -6465,6 +6675,7 @@ def = 186
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_2]
@@ -6477,6 +6688,7 @@ def = 183
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_3]
@@ -6489,6 +6701,7 @@ def = 181
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_4]
@@ -6501,6 +6714,7 @@ def = 184
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_5]
@@ -6513,6 +6727,7 @@ def = 181
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_6]
@@ -6525,6 +6740,7 @@ def = 184
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_7]
@@ -6537,6 +6753,7 @@ def = 183
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_8]
@@ -6549,6 +6766,7 @@ def = 179
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_9]
@@ -6561,6 +6779,7 @@ def = 183
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_10]
@@ -6573,6 +6792,7 @@ def = 184
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_11]
@@ -6585,6 +6805,7 @@ def = 184
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_12]
@@ -6597,6 +6818,7 @@ def = 181
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_13]
@@ -6609,6 +6831,7 @@ def = 181
 combat_def = "forgotten_warrior_spear"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_14]
@@ -6621,6 +6844,7 @@ def = 184
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_15]
@@ -6633,6 +6857,7 @@ def = 183
 combat_def = "forgotten_warrior_hammer"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_16]
@@ -6645,6 +6870,7 @@ def = 181
 combat_def = "forgotten_warrior_axe"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_17]
@@ -6657,6 +6883,7 @@ def = 184
 combat_def = "forgotten_warrior_maul"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_18]
@@ -6669,6 +6896,7 @@ def = 181
 combat_def = "forgotten_warrior_dagger"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_19]
@@ -6681,6 +6909,7 @@ def = 181
 combat_def = "forgotten_warrior_rapier"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_20]
@@ -6693,6 +6922,7 @@ def = 183
 combat_def = "forgotten_warrior_2h"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_human_melee_lvl9_21]
@@ -6705,6 +6935,7 @@ def = 184
 combat_def = "forgotten_warrior_sword"
 hunt_mode = "aggressive"
 hunt_range = 2
+drop_table = "forgotten_warrior_lvl9"
 examine = "A warrior who has been long forgotten."
 
 [rand_bat_1]

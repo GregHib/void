@@ -9129,12 +9129,11 @@ limit = 5000
 examine = "Used with a thread to make clothes."
 kept = "Always"
 
-[thread_the_fremennik_trials]
+[thread_dungeoneering]
 id = 17447
 tradeable = false
-destroy = "You'll have to find another from within the building."
 examine = "Some blue thread."
-kept = "Vanish"
+kept = "Always"
 
 [salve_nettles]
 id = 17448
