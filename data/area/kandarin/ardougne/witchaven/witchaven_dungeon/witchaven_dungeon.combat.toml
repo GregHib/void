@@ -1,5 +1,4 @@
 [giant_lobster]
-attack_speed = 4
 death_anim = "giant_lobster_death"
 
 [giant_lobster.melee]

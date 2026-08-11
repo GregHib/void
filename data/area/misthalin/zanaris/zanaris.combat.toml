@@ -1,5 +1,4 @@
 [zygomite]
-attack_speed = 4
 defend_anim = "zygomite_defend"
 defend_sound = "zygomite_defend"
 death_anim = "zygomite_death"
@@ -19,7 +18,6 @@ projectile = "zygomite_spores"
 target_hit = { offense = "magic", defence = "range", max = 100 }
 
 [adolescent_zygomite]
-attack_speed = 4
 defend_anim = "zygomite_defend"
 defend_sound = "adolescent_zygomite_defend"
 death_anim = "zygomite_death"
@@ -40,7 +38,6 @@ impact_sound = "adolescent_zygomite_impact"
 target_hit = { offense = "magic", defence = "range", max = 60 }
 
 [otherworldly_being]
-attack_speed = 4
 defend_anim = "otherworldly_being_defend"
 defend_sound = "otherworldly_being_defend"
 death_anim = "otherworldly_being_death"

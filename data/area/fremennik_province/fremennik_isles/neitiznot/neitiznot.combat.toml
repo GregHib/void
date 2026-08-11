@@ -1,5 +1,4 @@
 [yak]
-attack_speed = 4
 defend_anim = "yak_defend"
 defend_sound = "yak_defend"
 death_anim = "yak_death"
@@ -12,7 +11,6 @@ target_sound = "yak_attack"
 target_hit = { offense = "crush", max = 20 }
 
 [ice_troll]
-attack_speed = 4
 defend_anim = "troll_defend"
 defend_sound = "ice_troll_defend"
 death_anim = "troll_death"
@@ -25,7 +23,6 @@ target_sound = "ice_troll_attack"
 target_hit = { offense = "crush", max = 170 }
 
 [ice_troll_female]
-attack_speed = 4
 defend_anim = "troll_defend"
 defend_sound = "ice_troll_defend"
 death_anim = "troll_death"

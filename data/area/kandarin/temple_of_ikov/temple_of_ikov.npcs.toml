@@ -41,15 +41,14 @@ hitpoints = 650
 att = 50
 str = 55
 def = 43
-style = "crush"
-max_hit_melee = 60
+max_hit_crush = 60
 hunt_mode = "cowardly"
 slayer_xp = 65.0
 categories = ["spiders"]
 respawn_delay = 30
 examine = "I think this spider has been magically modified."
 drop_table = "ice_spider"
-combat_def = "giant_spider"
+combat_def = "ice_spider"
 
 [fire_warrior_of_lesarkus]
 id = 277

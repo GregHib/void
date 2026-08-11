@@ -1,5 +1,4 @@
 [lumbridge_guardsman_attackable]
-attack_speed = 5
 defend_anim = "sword_defend"
 death_anim = "human_death"
 death_sound = "human_death"
@@ -10,7 +9,6 @@ anim = "sword_slash"
 target_hit = { offense = "slash", max = 16 }
 
 [lumbridge_guardsman_attackable2]
-attack_speed = 5
 defend_anim = "sword_defend"
 death_anim = "human_death"
 death_sound = "human_death"

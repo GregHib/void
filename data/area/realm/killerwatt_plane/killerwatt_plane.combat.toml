@@ -1,5 +1,4 @@
 [killerwatt]
-attack_speed = 2
 defend_anim = "killerwatt_defend"
 defend_sound = "killerwatt_defend"
 death_anim = "killerwatt_death"

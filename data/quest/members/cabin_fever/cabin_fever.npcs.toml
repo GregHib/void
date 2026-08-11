@@ -8,6 +8,7 @@ hitpoints = 520
 att = 49
 str = 50
 def = 50
+attack_speed = 5
 style = "slash"
 max_hit_melee = 60
 hunt_mode = "cowardly"

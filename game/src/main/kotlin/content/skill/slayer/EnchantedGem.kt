@@ -33,7 +33,7 @@ class EnchantedGem : Script {
             if (slayerTask == "nothing") {
                 message("You need something new to hunt; return to a Slayer master.")
             } else {
-                message("Your current assignment is: ${slayerTask.lowercase()}; only $slayerTaskRemaining more to go.")
+                message("Your current assignment is: ${slayerTask.toLowerSpaceCase()}; only $slayerTaskRemaining more to go.")
             }
         }
     }

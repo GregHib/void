@@ -1,5 +1,4 @@
 [earth_elemental]
-attack_speed = 6
 defend_anim = "earth_elemental_defend"
 defend_sound = "earth_elemental_defend"
 death_anim = "earth_elemental_death"
@@ -12,7 +11,6 @@ target_sound = "earth_elemental_attack"
 target_hit = { offense = "crush", max = 40 }
 
 [air_elemental]
-attack_speed = 4
 defend_anim = "air_elemental_defend"
 defend_sound = "air_elemental_defend"
 death_anim = "air_elemental_death"
@@ -25,7 +23,6 @@ target_sound = "air_elemental_attack"
 target_hit = { offense = "stab", max = 30 }
 
 [water_elemental]
-attack_speed = 4
 defend_anim = "water_elemental_defend"
 defend_sound = "water_elemental_defend"
 death_anim = "water_elemental_death"

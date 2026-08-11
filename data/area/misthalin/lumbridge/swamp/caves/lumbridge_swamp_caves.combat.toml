@@ -1,5 +1,4 @@
 [cave_goblin]
-attack_speed = 4
 defend_anim = "cave_goblin_defend"
 defend_sound = "cave_goblin_defend"
 death_anim = "cave_goblin_death"
@@ -12,7 +11,6 @@ target_sound = "cave_goblin_attack"
 target_hit = { offense = "crush", max = 10 }
 
 [wall_beast]
-attack_speed = 4
 defend_anim = "wall_beast_defend"
 defend_sound = "wall_beast_defend"
 death_anim = "wall_beast_death"

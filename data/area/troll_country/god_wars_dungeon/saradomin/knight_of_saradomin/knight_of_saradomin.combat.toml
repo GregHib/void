@@ -1,5 +1,4 @@
 [knight_of_saradomin]
-attack_speed = 6
 defend_sound = "man_defend"
 death_sound = "man_death"
 

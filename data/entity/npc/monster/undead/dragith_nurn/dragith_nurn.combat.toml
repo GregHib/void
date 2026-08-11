@@ -1,5 +1,4 @@
 [dragith_nurn]
-attack_speed = 5
 defend_anim = "dragith_nurn_defend"
 death_anim = "dragith_nurn_death"
 

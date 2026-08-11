@@ -6,12 +6,16 @@ import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import java.util.ArrayDeque
 
+/**
+ * @param playerCount The number of players the dungeon was designed for (not necessarily the number that are currently playing)
+ */
 class DungeonMap(
     val width: Int,
     val height: Int,
     val start: Tile,
     val grid: Array<DungeonRoom?>,
     val theme: String,
+    val playerCount: Int,
 ) {
     var region = Region.EMPTY
     val players = mutableListOf<Int>()

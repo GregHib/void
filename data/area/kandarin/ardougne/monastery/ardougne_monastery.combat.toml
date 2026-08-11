@@ -1,5 +1,4 @@
 [monk]
-attack_speed = 4
 death_anim = "monk_death"
 defend_sound = "monk_defend"
 death_sound = "monk_death"

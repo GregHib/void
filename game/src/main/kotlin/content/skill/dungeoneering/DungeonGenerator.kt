@@ -27,6 +27,7 @@ class DungeonGenerator(
     size: DungeonSize,
     val floor: Int,
     val complexity: Int,
+    val playerCount: Int = 1,
     // Estimated chances
     private val puzzleRoomChance: Double = 0.33,
     private val skillDoorChance: Double = 0.33,
@@ -81,7 +82,7 @@ class DungeonGenerator(
         placeKeys(startRoom, grid)
         val themeName = theme()
         populateMap(grid, themeName)
-        return DungeonMap(width, height, startRoom.tile, grid, themeName)
+        return DungeonMap(width, height, startRoom.tile, grid, themeName, playerCount)
     }
 
     /**
@@ -452,6 +453,7 @@ class DungeonGenerator(
                 floor = 1,
                 complexity = 6,
                 size = DungeonSize.Small,
+                playerCount = 1,
             )
             val start = System.currentTimeMillis()
             val dungeon = generator.generate()

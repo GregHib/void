@@ -1,5 +1,4 @@
 [greater_demon]
-attack_speed = 4
 defend_anim = "demon_defend"
 defend_sound = "demon_defend"
 death_anim = "demon_death"
@@ -13,7 +12,6 @@ target_hit = { offense = "slash", max = 90 }
 
 [lesser_demon]
 clone = "greater_demon"
-attack_speed = 4
 
 [lesser_demon.melee]
 clone = "greater_demon.melee"
@@ -21,7 +19,6 @@ target_hit = { offense = "slash", max = 80 }
 
 [delrith]
 clone = "greater_demon"
-attack_speed = 6
 death_anim = "delrith_death"
 
 [delrith.melee]

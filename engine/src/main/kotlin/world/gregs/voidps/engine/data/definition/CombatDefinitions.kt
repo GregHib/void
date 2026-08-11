@@ -58,7 +58,6 @@ class CombatDefinitions {
 
     private fun ConfigReader.definition(definitions: Object2ObjectOpenHashMap<String, CombatDefinition>, section: String, clones: MutableList<Pair<String, String>>) {
         check(!definitions.containsKey(section)) { "Definition $section already exists. Make sure [npc_name] comes before [npc_name.attacks]." }
-        var attackSpeed = 4
         var retreatRange = 8
         var defendAnim = ""
         var deathAnim = ""
@@ -66,7 +65,6 @@ class CombatDefinitions {
         var deathSound: CombatDefinition.CombatSound? = null
         while (nextPair()) {
             when (val key = key()) {
-                "attack_speed" -> attackSpeed = int()
                 "retreat_range" -> retreatRange = int()
                 "defend_anim" -> defendAnim = string()
                 "death_anim" -> deathAnim = string()
@@ -78,7 +76,6 @@ class CombatDefinitions {
         }
         definitions[section] = CombatDefinition(
             npc = section,
-            attackSpeed = attackSpeed,
             retreatRange = retreatRange,
             defendAnim = defendAnim,
             defendSound = defendSound,
@@ -457,7 +454,6 @@ class CombatDefinitions {
     )
 
     private fun override(original: CombatDefinition, clone: CombatDefinition) = original.copy(
-        attackSpeed = if (original.attackSpeed != CombatDefinition.EMPTY.attackSpeed) original.attackSpeed else clone.attackSpeed,
         attackRange = if (original.attackRange != CombatDefinition.EMPTY.attackRange) original.attackRange else clone.attackRange,
         retreatRange = if (original.retreatRange != CombatDefinition.EMPTY.retreatRange) original.retreatRange else clone.retreatRange,
         defendAnim = if (original.defendAnim != CombatDefinition.EMPTY.defendAnim) original.defendAnim else clone.defendAnim,

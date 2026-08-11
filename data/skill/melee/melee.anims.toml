@@ -85,7 +85,7 @@ id = 12008
 [maul_attack]
 id = 13691
 
-[maul_block]
+[maul_defend]
 id = 1666
 
 [vestas_longsword_attack]

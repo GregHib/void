@@ -1,5 +1,4 @@
 [zogre_jiggig_dungeon]
-attack_speed = 6
 defend_anim = "ogre_defend"
 defend_sound = "zogre_hit"
 death_anim = "ogre_death"

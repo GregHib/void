@@ -1,5 +1,4 @@
 [guard]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
@@ -9,7 +8,6 @@ anim = "sword_lunge"
 target_hit = { offense = "stab", max = 30 }
 
 [guard_xbow]
-attack_speed = 6
 defend_anim = "human_defend"
 death_anim = "human_death"
 death_sound = "human_death"
@@ -22,8 +20,7 @@ projectile = "crossbow_bolt"
 target_hit = { offense = "range", max = 40 }
 
 [white_knight]
-attack_speed = 7
-defend_anim = "human_defend"
+defend_anim = "2h_defend"
 death_anim = "human_death"
 death_sound = "human_death"
 
@@ -33,7 +30,6 @@ anim = "2h_chop"
 target_hit = { offense = "slash", max = 60 }
 
 [air_wizard]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 death_sound = "human_death"
@@ -47,7 +43,6 @@ target_sound = "air_strike_cast"
 impact_sound = "air_strike_impact"
 
 [water_wizard]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 death_sound = "human_death"
@@ -61,7 +56,6 @@ target_sound = "water_strike_cast"
 impact_sound = "water_strike_impact"
 
 [earth_wizard]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 death_sound = "human_death"
@@ -75,7 +69,6 @@ target_sound = "earth_strike_cast"
 impact_sound = "earth_strike_impact"
 
 [fire_wizard]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 death_sound = "human_death"
@@ -89,7 +82,6 @@ target_sound = "fire_strike_cast"
 impact_sound = "fire_strike_impact"
 
 [highwayman]
-attack_speed = 4
 defend_anim = "sword_defend"
 death_anim = "human_death"
 death_sound = "human_death"
@@ -100,7 +92,6 @@ anim = "sword_chop"
 target_hit = { offense = "stab", max = 10 }
 
 [pirate_sword]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 death_sound = "human_death"

@@ -1,5 +1,4 @@
 [jake]
-attack_speed = 4
 defend_anim = "jake_defend"
 death_anim = "jake_death"
 
@@ -9,7 +8,6 @@ target_hit = { offense = "crush", max = 40 }
 anim = "jake_attack"
 
 [wilson]
-attack_speed = 4
 defend_anim = "wilson_defend"
 death_anim = "wilson_death"
 
@@ -19,7 +17,6 @@ target_hit = { offense = "crush", max = 40 }
 anim = "wilson_attack"
 
 [palmer]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 

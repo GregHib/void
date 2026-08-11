@@ -1,5 +1,4 @@
 [stag]
-attack_speed = 4
 death_anim = "stag_death"
 defend_sound = "stag_defend"
 death_sound = "stag_death"

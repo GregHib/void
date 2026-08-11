@@ -1,5 +1,4 @@
 [cockatrice]
-attack_speed = 6
 defend_anim = "cockatrice_defend"
 defend_sound = "cockatrice_defend"
 death_anim = "cockatrice_death"

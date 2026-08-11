@@ -1,5 +1,4 @@
 [terror_dog]
-attack_speed = 4
 death_anim = "terror_dog_death"
 
 [terror_dog.melee]

@@ -1,5 +1,4 @@
 [warped_tortoise]
-attack_speed = 6
 death_anim = "warped_tortoise_death"
 
 [warped_tortoise.melee]

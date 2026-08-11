@@ -1,5 +1,4 @@
 [guard_edgeville]
-attack_speed = 4
 defend_anim = "edgeville_guard_defend"
 defend_sound = "man_defend"
 death_anim = "edgeville_guard_death"
@@ -11,7 +10,6 @@ anim = "edgeville_guard_attack"
 target_hit = { offense = "slash", max = 34 }
 
 [outlaw]
-attack_speed = 4
 defend_anim = "sword_defend"
 defend_sound = "man_defend"
 death_anim = "human_death"

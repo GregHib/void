@@ -119,6 +119,7 @@ def = 480
 mage = 480
 range = 960
 height = 512
+attack_speed = 8
 combat_def = "tztok_jad"
 hunt_mode = "aggressive_intolerant"
 hunt_range = 64
