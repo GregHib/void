@@ -211,7 +211,7 @@ class DungeoneeringParty : Script {
 
         var Player.dungeonMembers: List<Player>
             get() {
-                val leader = dungeonLeader ?: return emptyList()
+                val leader = dungeonLeader ?: return listOf(this)
                 return (0 until 5).mapNotNull { i ->
                     val name = leader.get<String>("dungeoneering_member_$i")
                     name?.let { Players.find(it) }

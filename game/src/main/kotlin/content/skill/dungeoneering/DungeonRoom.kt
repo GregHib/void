@@ -1,8 +1,12 @@
 package content.skill.dungeoneering
 
+import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.quest.instance
+import org.rsmod.game.pathfinder.flag.CollisionFlag
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
@@ -11,6 +15,8 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
+import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
@@ -124,48 +130,39 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             return
         }
 
-
-        "You need some construct parts to attempt a repair."
-        "You take a lump of magic stone from the crate."
-        "You carve the block into a part of the stone construct."
-        "You imbune the construct part with rune energy."
-        "You attack the missing part to the construct."
-        "You charge the construct with magical energy and it springs to life."
-        "You must be on a members' world to access this feature." // F2p renew sum obl points
-
-
-        // 4/5 chance of spawning npcs (required by guardian rooms)
-        // party
-        // combat level is split between number of spawns
-        // complexity changes max combat level
-        // puzzle rooms can limit max combat level
-        // more players more combat to split
-
-        val complexity = player["dungeoneering_complexity", 0]
+        val complexity = player["dungeoneering_party_complexity", 0]
+        val floor = player["dungeoneering_party_floor", 0]
         if (random.nextInt(5) != 0 || doors.any { it is DungeonDoor.Guardian }) {
-            var total = 0
 
             val members = player.dungeonMembers.sortedBy { it.combatLevel }.take(dungeon.playerCount)
             val average = members.sumOf { it.combatLevel } / members.size
 
+            // TODO replace with accurate algorithm
             val combatLevel = player.dungeonMembers.maxOf { it.combatLevel }
-
-            // 60 @138
-            // c1 @ 64cmb? 64..
-            // c1 @ 3cmb 3..?
-            // c1 @ 32-33cmb 28..88?
-            // floor, 1..60, 50..135 c1 @ 125cmb
-//            Interpolation.lerp(floor, 1..60, 50..135)
+            var total = (average * (Interpolation.lerp(floor, 1..60, 1..100) / 100))
             total += complexityBonus(combatLevel, complexity)
-            val max = player.dungeonMembers.maxOf { it.combatLevel / 2 }
 
-            total.coerceAtLeast(1)
+            val npcs = mutableListOf<String>()
+            npcs.addAll(Tables.npcList("dungeon_monsters.base.npcs"))
+            val list = Tables.npcListOrNull("dungeon_monsters.${dungeon.theme}.npcs")
+            if (list != null) {
+                npcs.addAll(list)
+            }
             for (i in 0 until spawnCount) {
-                // TODO get all npcs under total combat level
-                //  randomly select one
-                //  minus combat level from total
-                //  pick again with a minimum of cmb level 1
-
+                total = total.coerceAtLeast(1)
+                val npc = npcs.filter { NPCDefinitions.get(it).combat <= total }.randomOrNull(random)
+                if (npc == null) {
+                    logger.warn { "Failed to find dungeoneering monster with combat=$total" }
+                    break
+                }
+                val def = NPCDefinitions.get(npc)
+                val tile = npcSpawns.random(random).random(CollisionStrategyProvider.get(def), def.size, CollisionFlag.BLOCK_NPCS)
+                if (tile == null) {
+                    logger.warn { "Failed to find dungeoneering spawn combat=$total, zone=$zone spawns=$npcSpawns" }
+                    continue
+                }
+                NPCs.add(npc, tile)
+                total -= def.combat
             }
         }
     }
@@ -186,6 +183,10 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             else -> 0
         }
     )
+
+    companion object {
+        private val logger = InlineLogger()
+    }
 }
 
 internal val Direction.roomIndex: Int
