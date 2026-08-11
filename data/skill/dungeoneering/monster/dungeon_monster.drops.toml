@@ -351,7 +351,14 @@ drops = [
     { id = "soul_rune_dungeoneering", min = 10, max = 40 },
 ]
 
-[giant_rat_dungeoneering_drop_table]
+[dungeoneering_drop_table]
+type = "all"
+drops = [
+    { table = "dungeon_food" },
+    { table = "dungeon_secondary" },
+]
+
+[dungeoneering_bones_drop_table]
 type = "all"
 drops = [
     { id = "bones_dungeoneering" },
