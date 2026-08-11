@@ -14,10 +14,12 @@ examine = ""
 
 [pip_underground_door2_opened]
 id = 3446
+material = "grate"
 examine = ""
 
 [pip_underground_door1_opened]
 id = 3446
+material = "grate"
 examine = ""
 
 [pip_prisondoor_closed]
