@@ -480,7 +480,6 @@ drops = [
     { id = "protoleather_body" },
 ]
 
-
 [forgotten_ranger_lvl2]
 roll = 32
 drops = [
@@ -685,4 +684,193 @@ drops = [
     { table = "forgotten_ranger_lvl10" },
     { id = "promethium_arrows", min = 10, max = 40 },
     { table = "forgotten_ranger" },
+]
+
+[forgotten_mage_lvl1]
+roll = 32
+drops = [
+    { id = "salve_gloves" },
+    { id = "salve_shoes" },
+    { id = "salve_hood" },
+    { id = "salve_robe_bottom" },
+    { id = "salve_robe_top" },
+]
+
+[forgotten_mage_lvl2]
+roll = 32
+drops = [
+    { id = "wildercress_gloves" },
+    { id = "wildercress_shoes" },
+    { id = "wildercress_hood" },
+    { id = "wildercress_robe_bottom" },
+    { id = "wildercress_robe_top" },
+]
+
+[forgotten_mage_lvl3]
+roll = 32
+drops = [
+    { id = "blightleaf_gloves" },
+    { id = "blightleaf_shoes" },
+    { id = "blightleaf_hood" },
+    { id = "blightleaf_robe_bottom" },
+    { id = "blightleaf_robe_top" },
+]
+
+[forgotten_mage_lvl4]
+roll = 32
+drops = [
+    { id = "roseblood_gloves" },
+    { id = "roseblood_shoes" },
+    { id = "roseblood_hood" },
+    { id = "roseblood_robe_bottom" },
+    { id = "roseblood_robe_top" },
+]
+
+[forgotten_mage_lvl5]
+roll = 32
+drops = [
+    { id = "bryll_gloves" },
+    { id = "bryll_shoes" },
+    { id = "bryll_hood" },
+    { id = "bryll_robe_bottom" },
+    { id = "bryll_robe_top" },
+]
+
+[forgotten_mage_lvl6]
+roll = 32
+drops = [
+    { id = "duskweed_gloves" },
+    { id = "duskweed_shoes" },
+    { id = "duskweed_hood" },
+    { id = "duskweed_robe_bottom" },
+    { id = "duskweed_robe_top" },
+]
+
+[forgotten_mage_lvl7]
+roll = 32
+drops = [
+    { id = "soulbell_gloves" },
+    { id = "soulbell_shoes" },
+    { id = "soulbell_hood" },
+    { id = "soulbell_robe_bottom" },
+    { id = "soulbell_robe_top" },
+]
+
+[forgotten_mage_lvl8]
+roll = 32
+drops = [
+    { id = "ectogloves_gloves" },
+    { id = "ectogloves_shoes" },
+    { id = "ectogloves_hood" },
+    { id = "ectogloves_robe_bottom" },
+    { id = "ectogloves_robe_top" },
+]
+
+[forgotten_mage_lvl9]
+roll = 32
+drops = [
+    { id = "runic_gloves" },
+    { id = "runic_shoes" },
+    { id = "runic_hood" },
+    { id = "runic_robe_bottom" },
+    { id = "runic_robe_top" },
+]
+
+[forgotten_mage_lvl10]
+roll = 32
+drops = [
+    { id = "spiritbloom_gloves" },
+    { id = "spiritbloom_shoes" },
+    { id = "spiritbloom_hood" },
+    { id = "spiritbloom_robe_bottom" },
+    { id = "spiritbloom_robe_top" },
+]
+
+[forgotten_mage]
+type = "all"
+drops = [
+    { table = "forgotten_warrior_daggers" },
+    { table = "dungeon_food" },
+    { table = "dungeon_runes" },
+    { table = "dungeon_secondary" },
+]
+
+[forgotten_mage_lvl1_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl1" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl2_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl2" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl3_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl3" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl4_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl4" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl5_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl5" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl6_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl6" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl7_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl7" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl8_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl8" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl9_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl9" },
+    { table = "forgotten_mage" },
+]
+
+[forgotten_mage_lvl10_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_mage_lvl10" },
+    { table = "forgotten_mage" },
 ]
