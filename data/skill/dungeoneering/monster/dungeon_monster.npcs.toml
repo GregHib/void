@@ -2632,6 +2632,7 @@ range = 13
 combat_def = "forgotten_ranger_1"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl1"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_2]
@@ -2643,6 +2644,7 @@ range = 13
 combat_def = "forgotten_ranger_1"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl1"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_3]
@@ -2654,6 +2656,7 @@ range = 13
 combat_def = "forgotten_ranger_1"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl1"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl1_4]
@@ -2665,6 +2668,7 @@ range = 13
 combat_def = "forgotten_ranger_1"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl1"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_1]
@@ -2676,6 +2680,7 @@ range = 27
 combat_def = "forgotten_ranger_2"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl2"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_2]
@@ -2687,6 +2692,7 @@ range = 27
 combat_def = "forgotten_ranger_2"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl2"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_3]
@@ -2698,6 +2704,7 @@ range = 27
 combat_def = "forgotten_ranger_2"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl2"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl2_4]
@@ -2709,6 +2716,7 @@ range = 27
 combat_def = "forgotten_ranger_2"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl2"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_1]
@@ -2720,6 +2728,7 @@ range = 42
 combat_def = "forgotten_ranger_3"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl3"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_2]
@@ -2731,6 +2740,7 @@ range = 42
 combat_def = "forgotten_ranger_3"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl3"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_3]
@@ -2742,6 +2752,7 @@ range = 42
 combat_def = "forgotten_ranger_3"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl3"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl3_4]
@@ -2753,6 +2764,7 @@ range = 42
 combat_def = "forgotten_ranger_3"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl3"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_1]
@@ -2764,6 +2776,7 @@ range = 61
 combat_def = "forgotten_ranger_4"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl4"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_2]
@@ -2775,6 +2788,7 @@ range = 61
 combat_def = "forgotten_ranger_4"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl4"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_3]
@@ -2786,6 +2800,7 @@ range = 61
 combat_def = "forgotten_ranger_4"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl4"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl4_4]
@@ -2797,6 +2812,7 @@ range = 61
 combat_def = "forgotten_ranger_4"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl4"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_1]
@@ -2808,6 +2824,7 @@ range = 79
 combat_def = "forgotten_ranger_5"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl5"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_2]
@@ -2819,6 +2836,7 @@ range = 79
 combat_def = "forgotten_ranger_5"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl5"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_3]
@@ -2830,6 +2848,7 @@ range = 79
 combat_def = "forgotten_ranger_5"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl5"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl5_4]
@@ -2841,6 +2860,7 @@ range = 79
 combat_def = "forgotten_ranger_5"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl5"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_1]
@@ -2852,6 +2872,7 @@ range = 94
 combat_def = "forgotten_ranger_6"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl6"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_2]
@@ -2863,6 +2884,7 @@ range = 94
 combat_def = "forgotten_ranger_6"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl6"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_3]
@@ -2874,6 +2896,7 @@ range = 94
 combat_def = "forgotten_ranger_6"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl6"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl6_4]
@@ -2885,6 +2908,7 @@ range = 94
 combat_def = "forgotten_ranger_6"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl6"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_1]
@@ -2896,6 +2920,7 @@ range = 111
 combat_def = "forgotten_ranger_7"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl7"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_2]
@@ -2907,6 +2932,7 @@ range = 111
 combat_def = "forgotten_ranger_7"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl7"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_3]
@@ -2918,6 +2944,7 @@ range = 111
 combat_def = "forgotten_ranger_7"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl7"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl7_4]
@@ -2929,6 +2956,7 @@ range = 111
 combat_def = "forgotten_ranger_7"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl7"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_1]
@@ -2940,6 +2968,7 @@ range = 130
 combat_def = "forgotten_ranger_8"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl8"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_2]
@@ -2951,6 +2980,7 @@ range = 130
 combat_def = "forgotten_ranger_8"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl8"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_3]
@@ -2962,6 +2992,7 @@ range = 130
 combat_def = "forgotten_ranger_8"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl8"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl8_4]
@@ -2973,6 +3004,7 @@ range = 130
 combat_def = "forgotten_ranger_8"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl8"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_1]
@@ -2984,6 +3016,7 @@ range = 146
 combat_def = "forgotten_ranger_9"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl9"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_2]
@@ -2995,6 +3028,7 @@ range = 146
 combat_def = "forgotten_ranger_9"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl9"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_3]
@@ -3006,6 +3040,7 @@ range = 146
 combat_def = "forgotten_ranger_9"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl9"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl9_4]
@@ -3017,6 +3052,7 @@ range = 146
 combat_def = "forgotten_ranger_9"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl9"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_1]
@@ -3028,6 +3064,7 @@ range = 167
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_2]
@@ -3039,6 +3076,7 @@ range = 167
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_3]
@@ -3050,6 +3088,7 @@ range = 167
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl10_4]
@@ -3061,6 +3100,7 @@ range = 167
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_1]
@@ -3072,6 +3112,7 @@ range = 198
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_2]
@@ -3083,6 +3124,7 @@ range = 198
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_3]
@@ -3094,6 +3136,7 @@ range = 198
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_human_ranged_lvl11_4]
@@ -3105,6 +3148,7 @@ range = 198
 combat_def = "forgotten_ranger_10"
 hunt_mode = "aggressive"
 hunt_range = 4
+drop_table = "forgotten_ranger_lvl10"
 examine = "He seems to have gone mad."
 
 [rand_zombie_melee_1]

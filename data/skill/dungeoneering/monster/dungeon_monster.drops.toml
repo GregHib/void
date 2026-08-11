@@ -467,3 +467,222 @@ drops = [
     { table = "dungeon_seeds", variable = "dungeoneering_party_complexity", default = 1, within_min = 4 },
     { table = "dungeon_misc" },
 ]
+
+[forgotten_ranger_lvl1]
+roll = 32
+drops = [
+    { id = "tangle_gum_shortbow" },
+    { id = "tangle_gum_longbow" },
+    { id = "protoleather_vambraces" },
+    { id = "protoleather_boots" },
+    { id = "protoleather_chaps" },
+    { id = "protoleather_coif" },
+    { id = "protoleather_body" },
+]
+
+
+[forgotten_ranger_lvl2]
+roll = 32
+drops = [
+    { id = "seeping_elm_shortbow" },
+    { id = "seeping_elm_longbow" },
+    { id = "subleather_vambraces" },
+    { id = "subleather_boots" },
+    { id = "subleather_chaps" },
+    { id = "subleather_coif" },
+    { id = "subleather_body" },
+]
+
+[forgotten_ranger_lvl3]
+roll = 32
+drops = [
+    { id = "blood_spindle_shortbow" },
+    { id = "blood_spindle_longbow" },
+    { id = "paraleather_vambraces" },
+    { id = "paraleather_boots" },
+    { id = "paraleather_chaps" },
+    { id = "paraleather_coif" },
+    { id = "paraleather_body" },
+]
+
+[forgotten_ranger_lvl4]
+roll = 32
+drops = [
+    { id = "utuku_shortbow" },
+    { id = "utuku_longbow" },
+    { id = "archleather_vambraces" },
+    { id = "archleather_boots" },
+    { id = "archleather_chaps" },
+    { id = "archleather_coif" },
+    { id = "archleather_body" },
+]
+
+[forgotten_ranger_lvl5]
+roll = 32
+drops = [
+    { id = "spinebeam_shortbow" },
+    { id = "spinebeam_longbow" },
+    { id = "dromoleather_vambraces" },
+    { id = "dromoleather_boots" },
+    { id = "dromoleather_chaps" },
+    { id = "dromoleather_coif" },
+    { id = "dromoleather_body" },
+]
+
+[forgotten_ranger_lvl6]
+roll = 32
+drops = [
+    { id = "bovistrangler_shortbow" },
+    { id = "bovistrangler_longbow" },
+    { id = "spinoleather_vambraces" },
+    { id = "spinoleather_boots" },
+    { id = "spinoleather_chaps" },
+    { id = "spinoleather_coif" },
+    { id = "spinoleather_body" },
+]
+
+[forgotten_ranger_lvl7]
+roll = 32
+drops = [
+    { id = "thigat_shortbow" },
+    { id = "thigat_longbow" },
+    { id = "gallileather_vambraces" },
+    { id = "gallileather_boots" },
+    { id = "gallileather_chaps" },
+    { id = "gallileather_coif" },
+    { id = "gallileather_body" },
+]
+
+[forgotten_ranger_lvl8]
+roll = 32
+drops = [
+    { id = "corpsethorn_shortbow" },
+    { id = "corpsethorn_longbow" },
+    { id = "stegoleather_vambraces" },
+    { id = "stegoleather_boots" },
+    { id = "stegoleather_chaps" },
+    { id = "stegoleather_coif" },
+    { id = "stegoleather_body" },
+]
+
+[forgotten_ranger_lvl9]
+roll = 32
+drops = [
+    { id = "entgallow_shortbow" },
+    { id = "entgallow_longbow" },
+    { id = "megaleather_vambraces" },
+    { id = "megaleather_boots" },
+    { id = "megaleather_chaps" },
+    { id = "megaleather_coif" },
+    { id = "megaleather_body" },
+]
+
+[forgotten_ranger_lvl10]
+roll = 32
+drops = [
+    { id = "grave_creeper_shortbow" },
+    { id = "grave_creeper_longbow" },
+    { id = "tyrannoleather_vambraces" },
+    { id = "tyrannoleather_boots" },
+    { id = "tyrannoleather_chaps" },
+    { id = "tyrannoleather_coif" },
+    { id = "tyrannoleather_body" },
+]
+
+[forgotten_ranger]
+type = "all"
+drops = [
+    { table = "forgotten_warrior_daggers" },
+    { table = "dungeon_food" },
+    { table = "dungeon_secondary" },
+]
+
+[forgotten_ranger_lvl1_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl1" },
+    { id = "novite_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl2_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl2" },
+    { id = "bathus_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl3_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl3" },
+    { id = "marmaros_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl4_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl4" },
+    { id = "kratonite_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl5_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl5" },
+    { id = "fractite_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl6_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl6" },
+    { id = "zephyrium_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl7_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl7" },
+    { id = "argonite_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl8_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl8" },
+    { id = "katagon_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl9_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl9" },
+    { id = "gorgonite_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
+
+[forgotten_ranger_lvl10_drop_table]
+type = "all"
+drops = [
+    { id = "bones_dungeoneering" },
+    { table = "forgotten_ranger_lvl10" },
+    { id = "promethium_arrows", min = 10, max = 40 },
+    { table = "forgotten_ranger" },
+]
