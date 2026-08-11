@@ -1,5 +1,4 @@
 [dagannoth_supreme]
-attack_speed = 4
 defend_anim = "dagannoth_king_defend"
 defend_sound = "dagannoth_defend"
 death_anim = "dagannoth_king_death"
@@ -34,7 +33,6 @@ target_sound = "dagannoth_attack"
 target_hit = { offense = "slash", max = 260 }
 
 [spinolyp]
-attack_speed = 4
 defend_anim = "spinolyp_defend"
 death_anim = "spinolyp_death"
 
@@ -48,7 +46,6 @@ impact_sound = "water_strike_impact"
 impact_poison = 20
 
 [dagannoth_fledgeling]
-attack_speed = 4
 death_anim = "dagannoth_fledgeling_death"
 
 [dagannoth_fledgeling.melee]
@@ -57,7 +54,6 @@ target_hit = { offense = "stab", max = 60 }
 anim = "dagannoth_fledgeling_attack"
 
 [dagannoth_guardian]
-attack_speed = 4
 defend_anim = "dagannoth_defend"
 death_anim = "dagannoth_death"
 

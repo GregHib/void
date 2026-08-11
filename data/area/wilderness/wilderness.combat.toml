@@ -1,5 +1,4 @@
 [rogue]
-attack_speed = 4
 death_anim = "rogue_death"
 
 [rogue.melee]

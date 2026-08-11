@@ -1,5 +1,4 @@
 [fox]
-attack_speed = 4
 defend_anim = "fox_defend"
 death_anim = "fox_death"
 
@@ -9,7 +8,6 @@ anim = "fox_attack"
 target_hit = { offense = "crush", max = 40 }
 
 [bunny]
-attack_speed = 4
 defend_anim = "bunny_defend"
 death_anim = "bunny_death"
 
@@ -19,7 +17,6 @@ anim = "bunny_attack"
 target_hit = { offense = "crush", max = 0 }
 
 [black_unicorn]
-attack_speed = 4
 defend_anim = "black_unicorn_defend"
 death_anim = "black_unicorn_death"
 defend_sound = "black_unicorn_defend"
@@ -32,7 +29,6 @@ anim = "black_unicorn_attack"
 sound = "black_unicorn_attack"
 
 [freidir]
-attack_speed = 4
 defend_anim = "freidir_defend"
 death_anim = "freidir_death"
 
@@ -42,7 +38,6 @@ target_hit = { offense = "crush", max = 60 }
 anim = "freidir_attack"
 
 [borrokar]
-attack_speed = 4
 defend_anim = "borrokar_defend"
 death_anim = "borrokar_death"
 
@@ -52,7 +47,6 @@ target_hit = { offense = "crush", max = 60 }
 anim = "borrokar_attack"
 
 [lanzig]
-attack_speed = 4
 defend_anim = "lanzig_defend"
 death_anim = "lanzig_death"
 
@@ -62,7 +56,6 @@ target_hit = { offense = "crush", max = 60 }
 anim = "lanzig_attack"
 
 [lensa]
-attack_speed = 4
 defend_anim = "lensa_defend"
 death_anim = "lensa_death"
 defend_sound = "lensa_defend"
@@ -75,7 +68,6 @@ anim = "lensa_attack"
 sound = "lensa_attack"
 
 [jennella]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
@@ -85,7 +77,6 @@ target_hit = { offense = "crush", max = 60 }
 anim = "human_attack"
 
 [unicorn_foal]
-attack_speed = 4
 defend_anim = "unicorn_foal_defend"
 death_anim = "unicorn_foal_death"
 defend_sound = "unicorn_foal_defend"
@@ -98,7 +89,6 @@ anim = "unicorn_foal_attack"
 sound = "unicorn_foal_attack"
 
 [black_unicorn_foal]
-attack_speed = 4
 death_anim = "black_unicorn_foal_death"
 defend_sound = "black_unicorn_foal_defend"
 death_sound = "black_unicorn_foal_death"
@@ -110,7 +100,6 @@ anim = "black_unicorn_foal_attack"
 sound = "black_unicorn_foal_attack"
 
 [fenris_wolf]
-attack_speed = 4
 death_anim = "fenris_wolf_death"
 defend_sound = "fenris_wolf_defend"
 death_sound = "fenris_wolf_death"

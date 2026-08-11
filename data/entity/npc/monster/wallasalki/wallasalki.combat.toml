@@ -1,5 +1,4 @@
 [wallasalki]
-attack_speed = 6
 defend_anim = "wallasalki_defend"
 death_anim = "wallasalki_death"
 

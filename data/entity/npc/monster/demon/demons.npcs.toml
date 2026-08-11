@@ -4,6 +4,7 @@ hitpoints = 70
 att = 11
 str = 10
 def = 5
+attack_speed = 6
 combat_def = "delrith"
 categories = ["demons"]
 examine = "A freshly summoned demon."

@@ -1,5 +1,4 @@
 [kree_arra]
-attack_speed = 3
 defend_anim = "kree_arra_defend"
 death_anim = "kree_arra_death"
 
@@ -44,7 +43,6 @@ clone = "magic"
 chance = 6
 
 [flight_kilisa]
-attack_speed = 5
 defend_anim = "aviansie_defend"
 defend_sound = "aviansie_defend"
 death_anim = "aviansie_death"

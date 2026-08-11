@@ -1,5 +1,4 @@
 [living_rock_protector]
-attack_speed = 6
 defend_anim = "protector_defend"
 death_anim = "protector_death"
 
@@ -9,7 +8,6 @@ anim = "protector_attack"
 target_hit = { offense = "crush", max = 120 }
 
 [living_rock_striker]
-attack_speed = 6
 defend_anim = "striker_defend"
 death_anim = "protector_death"
 
@@ -26,7 +24,6 @@ impact_gfx = "rock_impact"
 target_hit = { offense = "range", max = 140 }
 
 [living_rock_patriarch]
-attack_speed = 6
 defend_anim = "patriarch_defend"
 death_anim = "patriarch_death"
 

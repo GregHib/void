@@ -1,5 +1,4 @@
 [giant_mole]
-attack_speed = 4
 defend_anim = "giant_mole_defend"
 death_anim = "giant_mole_death"
 defend_sound = "giant_mole_defend"

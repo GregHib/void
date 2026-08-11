@@ -1,5 +1,4 @@
 [king_black_dragon]
-attack_speed = 4
 defend_anim = "king_black_dragon_defend"
 defend_sound = "dragon_defend"
 death_anim = "king_black_dragon_death"

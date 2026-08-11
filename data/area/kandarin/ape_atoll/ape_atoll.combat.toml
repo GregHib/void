@@ -1,6 +1,5 @@
 [spider_ape_atoll]
 clone = "spider"
-attack_speed = 6
 
 [spider_ape_atoll.melee]
 clone = "spider.melee"
@@ -24,7 +23,6 @@ target_hit = { offense = "stab", max = 150 }
 impact_poison = 10
 
 [bird_ape_atol]
-attack_speed = 4
 defend_anim = "bird_defend"
 death_anim = "bird_death"
 
@@ -34,7 +32,6 @@ anim = "bird_attack"
 target_hit = { offense = "stab", max = 20 }
 
 [ninja_monkey]
-attack_speed = 4
 defend_anim = "ninja_monkey_defend_double_scimitar"
 defend_sound = "monkey_defend"
 death_anim = "ninja_monkey_death"
@@ -45,7 +42,6 @@ anim = "ninja_monkey_attack_double_scimitar"
 target_hit = { offense = "slash", max = 140 }
 
 [padulah]
-attack_speed = 4
 defend_anim = "padulah_defend"
 death_anim = "padulah_death"
 
@@ -55,7 +51,6 @@ target_hit = { offense = "slash", max = 200 }
 anim = "padulah_attack"
 
 [monkey_archer]
-attack_speed = 4
 defend_anim = "monkey_archer_defend"
 death_anim = "monkey_archer_death"
 defend_sound = "monkey_archer_defend"

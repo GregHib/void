@@ -1,5 +1,4 @@
 [cyclops]
-attack_speed = 6
 defend_anim = "cyclops_defend"
 defend_sound = "giant_defend"
 death_anim = "cyclops_death"

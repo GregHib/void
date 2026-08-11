@@ -1,5 +1,4 @@
 [salarin_the_twisted]
-attack_speed = 4
 death_anim = "salarin_the_twisted_death"
 
 [salarin_the_twisted.melee]

@@ -1,5 +1,4 @@
 [giant_frog]
-attack_speed = 4
 defend_anim = "giant_frog_defend"
 death_anim = "giant_frog_death"
 
@@ -9,7 +8,6 @@ target_hit = { offense = "crush", max = 90 }
 anim = "giant_frog_attack"
 
 [big_frog]
-attack_speed = 4
 death_anim = "big_frog_death"
 
 [big_frog.melee]

@@ -1,5 +1,4 @@
 [monk_of_zamorak]
-attack_speed = 4
 defend_anim = "monk_of_zamorak_defend"
 defend_sound = "monk_of_zamorak_defend"
 death_anim = "monk_of_zamorak_death"

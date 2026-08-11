@@ -1,5 +1,4 @@
 [thrower_troll]
-attack_speed = 7
 defend_anim = "troll_defend"
 defend_sound = "thrower_troll_defend"
 death_anim = "troll_death"

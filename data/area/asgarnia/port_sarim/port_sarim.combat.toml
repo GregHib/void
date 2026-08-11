@@ -1,5 +1,4 @@
 [seagull]
-attack_speed = 4
 defend_anim = "seagull_defend"
 death_anim = "seagull_death"
 

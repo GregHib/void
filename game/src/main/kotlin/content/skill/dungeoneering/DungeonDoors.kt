@@ -56,6 +56,7 @@ class DungeonDoors : Script {
 
         objectOperate("Force-bar", "barred_door_*") { (target) ->
             target.replace(target.id.replace("barred_door", "unbarred_door"))
+            message("You pull the plank off of the door.")
         }
 
         objectOperate("Imbue-energy", "runed_door_*") { (target) ->
@@ -69,6 +70,7 @@ class DungeonDoors : Script {
             anim("repair_collapsing_doorframe")
             delay(2)
             target.replace(target.id.replace("collapsing_doorframe", "repaired_door"))
+            message("You reforge the key and use it to unlock the door.")
         }
 
         objectOperate("Disarm", "locked_door_*") { (target) ->
@@ -91,6 +93,7 @@ class DungeonDoors : Script {
 
         objectOperate("Mine", "pile_of_rocks_*") { (target) ->
             target.remove()
+            message("You mine the obstruction, clearing the path.")
         }
 
         objectOperate("Repair-key", "broken_key_door_*") { (target) ->
@@ -179,7 +182,7 @@ class DungeonDoors : Script {
     private fun Player.openDoor(target: GameObject) {
         val dungeon = dungeonMap ?: return
         val instance = instance() ?: return
-        val origin = tile.delta(instance.tile)
+        val origin = target.tile.delta(instance.tile)
         val roomTile = origin.room
         val direction = direction(target) ?: return
         val room = dungeon.room(roomTile.x, roomTile.y) ?: return

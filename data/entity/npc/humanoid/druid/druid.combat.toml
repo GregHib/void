@@ -1,5 +1,4 @@
 [druid_staff]
-attack_speed = 4
 defend_anim = "druid_staff_defend"
 defend_sound = "man_defend"
 death_anim = "druid_death"

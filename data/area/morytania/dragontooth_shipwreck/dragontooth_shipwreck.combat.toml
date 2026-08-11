@@ -1,5 +1,4 @@
 [giant_crab]
-attack_speed = 4
 defend_anim = "rock_crab_defend"
 death_anim = "rock_crab_death"
 

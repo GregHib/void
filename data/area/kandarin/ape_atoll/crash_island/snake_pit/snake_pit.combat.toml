@@ -1,5 +1,4 @@
 [big_snake]
-attack_speed = 6
 death_anim = "big_snake_death"
 defend_sound = "big_snake_defend"
 death_sound = "big_snake_death"

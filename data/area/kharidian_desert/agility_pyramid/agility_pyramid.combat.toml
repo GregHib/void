@@ -1,5 +1,4 @@
 [vulture]
-attack_speed = 4
 defend_anim = "vulture_defend"
 death_anim = "vulture_death"
 defend_sound = "vulture_defend"

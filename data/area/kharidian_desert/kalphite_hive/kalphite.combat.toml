@@ -1,5 +1,4 @@
 [kalphite_worker]
-attack_speed = 4
 defend_anim = "kalphite_defend"
 defend_sound = "insect_defend"
 death_anim = "kalphite_death"
@@ -25,7 +24,6 @@ clone = "kalphite_guardian.melee"
 impact_poison = 60
 
 [kalphite_queen]
-attack_speed = 4
 defend_anim = "kalphite_queen_defend"
 defend_sound = "kalphite_queen_defend"
 death_anim = "kalphite_death"
@@ -66,7 +64,6 @@ impact_gfx = "kalphite_queen_lightning_impact"
 target_hit = { offense = "magic", max = 310 }
 
 [kalphite_queen_airborne]
-attack_speed = 4
 defend_anim = "kalphite_queen_airborne_defend"
 defend_sound = "kalphite_queen_airborne_defend"
 death_anim = "kalphite_queen_airborne_death"

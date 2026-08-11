@@ -1,5 +1,4 @@
 [watchman]
-attack_speed = 4
 death_anim = "watchman_death"
 
 [watchman.melee]
@@ -8,7 +7,6 @@ target_hit = { offense = "crush", max = 40 }
 anim = "watchman_attack"
 
 [colonel_radick]
-attack_speed = 4
 defend_anim = "colonel_radick_defend"
 death_anim = "colonel_radick_death"
 

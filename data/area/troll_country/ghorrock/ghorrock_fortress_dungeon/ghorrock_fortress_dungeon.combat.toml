@@ -1,5 +1,4 @@
 [ice_demon]
-attack_speed = 4
 defend_anim = "demon_defend"
 death_anim = "demon_death"
 

@@ -1,5 +1,4 @@
 [cockroach_drone]
-attack_speed = 4
 defend_anim = "cokroach_drone_defend"
 defend_sound = "cockroach_drone_defend"
 death_anim = "cockroach_drone_death"
@@ -16,7 +15,6 @@ defend_anim = "cockroach_worker_defend"
 defend_sound = "cockroach_worker_defend"
 death_anim = "cockroach_worker_death"
 death_sound = "cockroach_worker_death"
-attack_speed = 4
 
 [cockroach_worker.attack]
 anim = "cockroach_worker_attack"
@@ -29,7 +27,6 @@ defend_anim = "cockroach_soldier_defend"
 defend_sound = "cockroach_soldier_defend"
 death_anim = "cockroach_soldier_death"
 death_sound = "cockroach_soldier_death"
-attack_speed = 4
 
 [cockroach_soldier.melee]
 anim = "cockroach_soldier_attack"

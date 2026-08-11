@@ -1,5 +1,4 @@
 [aberrant_spectre]
-attack_speed = 4
 defend_anim = "aberrant_spectre_defend"
 defend_sound = "aberrant_spectre_defend"
 death_anim = "aberrant_spectre_death"

@@ -1,5 +1,4 @@
 [ancient_ranger]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
@@ -9,7 +8,6 @@ target_hit = { offense = "range", max = 650 }
 anim = "ancient_ranger_attack"
 
 [blood_reaver]
-attack_speed = 4
 death_anim = "blood_reaver_death"
 
 [blood_reaver.magic]
@@ -18,7 +16,6 @@ target_hit = { offense = "magic", max = 146 }
 anim = "blood_reaver_attack"
 
 [ancient_mage]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 

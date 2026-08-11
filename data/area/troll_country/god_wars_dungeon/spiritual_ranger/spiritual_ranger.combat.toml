@@ -1,5 +1,4 @@
 [spiritual_ranger]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
@@ -10,7 +9,6 @@ projectile = "rune_arrow"
 target_hit = { offense = "range", max = 150 }
 
 [spiritual_ranger_bandos]
-attack_speed = 3
 defend_anim = "spiritual_ranger_bandos_defend"
 death_anim = "spiritual_ranger_bandos_death"
 
@@ -20,7 +18,6 @@ anim = "spiritual_ranger_bandos_attack"
 target_hit = { offense = "range", max = 130 }
 
 [spiritual_ranger_armadyl]
-attack_speed = 3
 defend_anim = "human_defend"
 death_anim = "human_death"
 

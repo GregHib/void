@@ -1,5 +1,4 @@
 [head_thief]
-attack_speed = 5
 death_anim = "head_thief_death"
 
 [head_thief.melee]

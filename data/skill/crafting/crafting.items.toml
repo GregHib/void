@@ -673,6 +673,7 @@ price = 2
 limit = 10000
 examine = "Used with a needle to make clothes."
 kept = "Wilderness"
+
 [chisel]
 id = 1755
 price = 94

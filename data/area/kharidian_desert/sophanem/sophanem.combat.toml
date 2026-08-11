@@ -1,5 +1,4 @@
 [locust]
-attack_speed = 4
 defend_anim = "locust_defend"
 death_anim = "locust_death"
 death_sound = "locust_death"
@@ -11,7 +10,6 @@ target_sound = "locust_attack"
 target_hit = { offense = "crush", max = 30 }
 
 [plague_frog]
-attack_speed = 4
 death_anim = "plague_frog_death"
 
 [plague_frog.melee]

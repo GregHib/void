@@ -1,5 +1,4 @@
 [bedabin_nomad_fighter]
-attack_speed = 4
 death_anim = "bedabin_nomad_fighter_death"
 
 [bedabin_nomad_fighter.melee]

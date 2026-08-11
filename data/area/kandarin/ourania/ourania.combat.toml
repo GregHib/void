@@ -1,5 +1,4 @@
 [cave_lizard]
-attack_speed = 4
 defend_anim = "gecko_defend"
 death_anim = "gecko_death"
 
@@ -25,7 +24,6 @@ anim = "sword_slash"
 target_hit = { offense = "crush", max = 80 }
 
 [zamorak_mage]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 
@@ -40,7 +38,6 @@ impact_gfx = "fire_bolt_impact"
 impact_sound = "fire_bolt_impact"
 
 [zamorak_ranger]
-attack_speed = 4
 defend_anim = "human_defend"
 death_anim = "human_death"
 

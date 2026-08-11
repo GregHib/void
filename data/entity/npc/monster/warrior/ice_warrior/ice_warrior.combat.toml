@@ -1,5 +1,4 @@
 [ice_warrior]
-attack_speed = 4
 defend_anim = "ice_warrior_defend"
 death_anim = "ice_warrior_death"
 death_sound = "ice_warrior_death"

@@ -1,5 +1,4 @@
 [werewolf_god_wars]
-attack_speed = 4
 defend_anim = "werewolf_defend"
 defend_sound = "werewolf_defend"
 death_anim = "werewolf_death"
