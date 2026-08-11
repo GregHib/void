@@ -1,10 +1,10 @@
 [skoblin]
 id = 9611
-hitpoints = 95
+hitpoints = 950
 combat_def = "skoblin"
 max_hit_melee = 28
-respawn_delay = 3
+respawn_delay = 60
 drop_table = "skoblin"
 categories = ["skoblin"]
-examine = "A skeletal goblin. It looks like the necromancer didn't animate only human bones."
+examine = "Could do with gaining a few pounds."
 hunt_mode = "cowardly"

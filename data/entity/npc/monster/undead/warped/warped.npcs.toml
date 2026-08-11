@@ -1,35 +1,35 @@
 [warped_cockroach]
 id = 7913
-hitpoints = 20
+hitpoints = 200
 combat_def = "warped_cockroach"
-respawn_delay = 3
+respawn_delay = 60
 drop_table = "warped_cockroach"
 categories = ["warped_cockroach"]
-examine = "Dark magic has made this cockroach grow to giant size."
+examine = "Could do with gaining a few pounds."
 
 [warped_bat]
 id = 7922
-hitpoints = 113
+hitpoints = 200
 combat_def = "warped_bat"
-respawn_delay = 3
+respawn_delay = 60
 drop_table = "warped_bat"
 categories = ["warped_bat"]
-examine = "Dark magic has made this bat huge and aggressive."
+examine = "Could do with gaining a few pounds."
 
 [warped_fly]
 id = 7915
-hitpoints = 67
+hitpoints = 250
 combat_def = "warped_fly"
-respawn_delay = 3
+respawn_delay = 60
 drop_table = "warped_fly"
 categories = ["warped_fly"]
-examine = "Dark magic has caused this fly to grow to giant size."
+examine = "Could do with gaining a few pounds."
 
 [warped_rat]
 id = 7920
 hitpoints = 100
 combat_def = "warped_rat"
-respawn_delay = 3
+respawn_delay = 60
 drop_table = "warped_rat"
 categories = ["warped_rat"]
-examine = "A giant, misshapen rat created by dark magic."
+examine = "Could do with gaining a few pounds."
