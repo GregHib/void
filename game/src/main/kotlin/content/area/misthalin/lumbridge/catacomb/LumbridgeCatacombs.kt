@@ -202,15 +202,8 @@ class LumbridgeCatacombs : Script {
                         )
                         if (triggerTiles.any { trigger -> target.tile.distanceTo(trigger) <= 3 }) {
                             NPCs.findOrNull(tile.regionLevel) { it.tile.distanceTo(target.tile) <= 5 }?.let { nearby ->
-                                if (!nearby.dead && !nearby.underAttack) {
-                                    attacker = nearby
-                                    this.target = nearby
-                                    nearby.mode = CombatMovement(nearby, this)
-                                    nearby.target = this
-                                    nearby.attacker = this
-                                    val delay = nearby.attackSpeed / 2
-                                    nearby.start("action_delay", delay)
-                                    nearby.start("under_attack", delay + 8)
+                                if (!nearby.dead && !nearby.inCombat) {
+                                    nearby.interactPlayer(this, "Attack")
                                 }
                             }
                         }
