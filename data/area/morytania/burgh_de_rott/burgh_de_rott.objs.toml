@@ -17,3 +17,7 @@ examine = "A wooden gate."
 [burgh_de_rott_gate_east_closed]
 id = 12816
 examine = "A wooden gate."
+
+[burgh_de_rott_low_fence]
+id = 12776
+examine = "Looks slightly lower than the rest, perhaps you can jump it?"
