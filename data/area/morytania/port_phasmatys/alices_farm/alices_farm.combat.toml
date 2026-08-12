@@ -1,5 +1,4 @@
 [undead_cow]
-attack_speed = 4
 defend_anim = "undead_cow_defend"
 death_anim = "undead_cow_death"
 

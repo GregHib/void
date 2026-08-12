@@ -1,5 +1,4 @@
 [leech]
-attack_speed = 4
 defend_anim = "leech_defend"
 defend_sound = "leech_defend"
 death_anim = "leech_death"
@@ -12,7 +11,6 @@ target_sound = "leech_attack"
 target_hit = { offense = "stab", max = 30 }
 
 [bloodworm]
-attack_speed = 4
 defend_anim = "bloodworm_defend"
 defend_sound = "leech_defend"
 death_anim = "bloodworm_death"
@@ -25,7 +23,6 @@ target_sound = "leech_attack"
 target_hit = { offense = "stab", max = 30 }
 
 [dust_devil]
-attack_speed = 4
 defend_anim = "dust_devil_defend"
 defend_sound = "dust_devil_defend"
 death_anim = "dust_devil_death"
@@ -57,7 +54,6 @@ impact_drains = [
 ]
 
 [giant_crypt_rat]
-attack_speed = 4
 defend_anim = "giant_rat_defend"
 death_anim = "giant_rat_death"
 
@@ -67,7 +63,6 @@ anim = "giant_rat_attack"
 target_hit = { offense = "stab", max = 30 }
 
 [possessed_pickaxe]
-attack_speed = 4
 defend_anim = "possessed_pickaxe_defend"
 death_anim = "possessed_pickaxe_death"
 
@@ -77,7 +72,6 @@ anim = "possessed_pickaxe_attack"
 target_hit = { offense = "stab", max = 60 }
 
 [animated_spade]
-attack_speed = 4
 death_anim = "spade_death"
 
 [animated_spade.melee]
@@ -86,7 +80,6 @@ anim = "spade_attack"
 target_hit = { offense = "stab", max = 60 }
 
 [fire_elemental]
-attack_speed = 4
 defend_anim = "fire_elemental_defend"
 defend_sound = "fire_elemental_defend"
 death_anim = "fire_elemental_death"
@@ -99,7 +92,6 @@ target_sound = "fire_elemental_attack"
 target_hit = { offense = "slash", max = 40 }
 
 [waterfiend]
-attack_speed = 4
 defend_anim = "waterfiend_defend"
 defend_sound = "waterfiend_defend"
 death_anim = "waterfiend_death"
@@ -120,7 +112,6 @@ projectile = "ice_arrow"
 target_hit = { offense = "range", defence = "magic", max = 120 }
 
 [dagonhai_monk]
-attack_speed = 6
 defend_anim = "human_defend"
 defend_sound = "human_defend"
 death_anim = "human_death"
@@ -136,7 +127,6 @@ impact_gfx = "dagonhai_monk_impact"
 miss_gfx = "spell_splash"
 
 [mummy]
-attack_speed = 4
 defend_anim = "mummy_defend"
 defend_sound = "mummy_defend"
 death_anim = "mummy_death"
@@ -149,7 +139,6 @@ target_sound = "mummy_attack"
 target_hit = { offense = "crush", max = 240 }
 
 [bork]
-attack_speed = 6
 defend_anim = "bork_defend"
 defend_sound = "giant_defend"
 death_anim = "bork_death"
@@ -162,7 +151,6 @@ target_sound = "bork_attack"
 target_hit = { offense = "crush", max = 254 }
 
 [dagonhai_elite]
-attack_speed = 36
 defend_anim = "human_defend"
 defend_sound = "human_defend"
 death_anim = "human_death"
@@ -177,7 +165,6 @@ impact_gfx = "dagonhai_elite_impact"
 target_hit = { offense = "magic", min = 100, max = 250, accuracy_roll = false }
 
 [ork_legion]
-attack_speed = 4
 defend_anim = "ork_legion_defend"
 death_anim = "ork_legion_death"
 

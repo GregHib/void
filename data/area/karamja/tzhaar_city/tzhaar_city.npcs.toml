@@ -41,6 +41,7 @@ att = 60
 str = 60
 def = 60
 mage = 80
+attack_speed = 5
 combat_def = "tzhaar_hur"
 slayer_xp = 80.0
 categories = ["tzhaar"]

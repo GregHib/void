@@ -1,5 +1,4 @@
 [kurask]
-attack_speed = 4
 defend_anim = "kurask_defend"
 defend_sound = "kurask_defend"
 death_anim = "kurask_death"

@@ -1,5 +1,4 @@
 [barbarian]
-attack_speed = 4
 death_anim = "barbarian_death"
 
 [barbarian.melee]

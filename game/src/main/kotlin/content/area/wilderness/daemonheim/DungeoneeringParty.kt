@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
 class DungeoneeringParty : Script {
 
@@ -205,9 +206,12 @@ class DungeoneeringParty : Script {
                 return get("in_dungeoneering", false)
             }
 
+        val Player.maxSkills: Map<Skill, Int>
+            get() = Skill.all.associateWith { skill -> dungeonMembers.maxOf { it.levels.getMax(skill) } }
+
         var Player.dungeonMembers: List<Player>
             get() {
-                val leader = dungeonLeader ?: return emptyList()
+                val leader = dungeonLeader ?: return listOf(this)
                 return (0 until 5).mapNotNull { i ->
                     val name = leader.get<String>("dungeoneering_member_$i")
                     name?.let { Players.find(it) }

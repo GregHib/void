@@ -1,5 +1,4 @@
 [yeti]
-attack_speed = 4
 defend_anim = "yeti_defend"
 death_anim = "yeti_death"
 
@@ -9,7 +8,6 @@ target_hit = { offense = "crush", max = 70 }
 anim = "yeti_attack"
 
 [gnoeals]
-attack_speed = 6
 defend_anim = "gnoeals_defend"
 death_anim = "gnoeals_death"
 

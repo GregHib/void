@@ -1,5 +1,4 @@
 [farmer]
-attack_speed = 6
 defend_anim = "farmer_defend"
 defend_sound = "man_defend"
 death_anim = "farmer_death"

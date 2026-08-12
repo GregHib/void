@@ -1,5 +1,4 @@
 [imp]
-attack_speed = 4
 defend_anim = "imp_defend"
 defend_sound = "imp_defend"
 death_anim = "imp_death"

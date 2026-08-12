@@ -1,5 +1,4 @@
 [earth_warrior]
-attack_speed = 4
 defend_anim = "earth_warrior_defend"
 defend_sound = "earth_warrior_defend"
 death_anim = "earth_warrior_death"

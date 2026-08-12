@@ -1,5 +1,4 @@
 [foreman]
-attack_speed = 4
 death_anim = "foreman_death"
 
 [foreman.melee]

@@ -1,5 +1,4 @@
 [catablepon]
-attack_speed = 4
 defend_anim = "catablepon_defend"
 death_anim = "catablepon_death"
 

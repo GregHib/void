@@ -1,5 +1,4 @@
 [zogre_jiggig]
-attack_speed = 6
 defend_anim = "ogre_defend"
 defend_sound = "zogre_hit"
 death_anim = "ogre_death"
@@ -49,7 +48,6 @@ clone = "zogre_jiggig"
 clone = "zogre_jiggig.melee"
 
 [skogre_jiggig]
-attack_speed = 6
 defend_anim = "ogre_defend"
 defend_sound = "skelly_hit"
 death_anim = "ogre_death"

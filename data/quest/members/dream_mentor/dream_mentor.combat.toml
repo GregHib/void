@@ -1,5 +1,4 @@
 [the_inadequacy]
-attack_speed = 4
 death_anim = "the_inadequacy_death"
 
 [the_inadequacy.range]

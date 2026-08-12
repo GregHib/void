@@ -1,5 +1,4 @@
 [magic_axe]
-attack_speed = 4
 defend_anim = "magic_axe_defend"
 defend_sound = "magic_axe_defend"
 death_anim = "magic_axe_death"

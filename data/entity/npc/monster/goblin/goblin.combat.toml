@@ -1,5 +1,4 @@
 [goblin]
-attack_speed = 6
 defend_anim = "goblin_defend"
 defend_sound = "goblin_defend"
 death_anim = "goblin_death"
@@ -27,7 +26,6 @@ target_hit = { offense = "crush", max = 20 }
 
 [goblin_god_wars]
 clone = "goblin"
-attack_speed = 5
 defend_anim = "goblin_god_wars_defend"
 death_anim = "goblin_god_wars_death"
 

@@ -1,5 +1,4 @@
 [crawling_hand]
-attack_speed = 4
 defend_anim = "crawling_hand_defend"
 defend_sound = "crawling_hand_defend"
 death_anim = "crawling_hand_death"

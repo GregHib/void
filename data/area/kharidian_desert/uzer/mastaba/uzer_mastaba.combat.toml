@@ -1,5 +1,4 @@
 [small_scarab]
-attack_speed = 4
 death_anim = "scarab_larva_death"
 
 [small_scarab.melee]

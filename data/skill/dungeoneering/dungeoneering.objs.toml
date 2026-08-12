@@ -1,8 +1,29 @@
 [rand_invis_key_location]
 id = 49257
 
+[rand_npc_spawn_5x5]
+id = 49305
+
+[rand_npc_spawn_4x4]
+id = 49304
+
 [rand_npc_spawn_3x3]
 id = 49303
 
+[rand_npc_spawn_2x2]
+id = 49302
+
+[rand_npc_spawn_1x1]
+id = 49301
+
+[rand_woodcutting_resource_frzn]
+id = 49702
+
 [rand_ground_resource]
 id = 49765
+
+[rand_fishing_resource]
+id = 49922
+
+[rand_furn_farming_patch_empty]
+id = 50076

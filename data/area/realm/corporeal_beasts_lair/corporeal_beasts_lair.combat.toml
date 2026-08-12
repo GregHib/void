@@ -1,5 +1,4 @@
 [corporeal_beast]
-attack_speed = 4
 defend_anim = "corporeal_beast_defend"
 defend_sound = "corporeal_beast_defend"
 death_anim = "corporeal_beast_death"
@@ -38,7 +37,6 @@ range = 10
 anim = "corporeal_beast_magic"
 
 [dark_energy_core]
-attack_speed = 2
 death_anim = "dark_core_death"
 
 [dark_energy_core.attack]

@@ -210,6 +210,7 @@ limit = 10000
 tradeable = false
 weight = 0.002
 examine = "Some blue thread."
+destroy = "You'll have to find another from within the building."
 kept = "Vanish"
 
 [pick]

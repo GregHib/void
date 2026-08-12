@@ -1,6 +1,8 @@
 package content.entity.npc.combat.magic
 
 import content.entity.combat.hit.directHit
+import content.entity.effect.frozen
+import content.entity.effect.frozenImmune
 import content.skill.magic.spell.Spell
 import world.gregs.voidps.engine.Script
 
@@ -11,6 +13,7 @@ class Wizards : Script {
         npcCondition("not_weakened") { target -> Spell.canDrain(target, "weaken") == true }
         npcCondition("not_cursed") { target -> Spell.canDrain(target, "curse") == true }
         npcCondition("not_vulnerable") { target -> Spell.canDrain(target, "vulnerability") == true }
+        npcCondition("not_frozen") { target -> !target.frozen && !target.frozenImmune }
 
         npcCombatDamage("air_wizard") {
             if (it.spell.startsWith("air_")) {

@@ -1,5 +1,4 @@
 [skeleton_unarmed]
-attack_speed = 4
 defend_anim = "skeleton_defend"
 defend_sound = "skeleton_defend"
 death_anim = "skeleton_death"
@@ -59,7 +58,6 @@ target_sound = "skeleton_warhammer_attack"
 target_hit = { offense = "slash", max = 40 }
 
 [skeleton_catacombs]
-attack_speed = 4
 defend_anim = "skeleton_catacombs_defend"
 death_anim = "skeleton_catacombs_death"
 

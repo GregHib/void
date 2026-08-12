@@ -1,5 +1,4 @@
 [dwarf]
-attack_speed = 5
 defend_anim = "dwarf_defend"
 defend_sound = "dwarf_defend"
 death_anim = "dwarf_death"
@@ -13,7 +12,6 @@ target_hit = { offense = "crush", max = 20 }
 
 [dwarf_hammer]
 clone = "dwarf"
-attack_speed = 6
 
 [dwarf_hammer.melee]
 clone = "dwarf.melee"
@@ -21,14 +19,12 @@ target_hit = { offense = "crush", max = 30 }
 
 [dwarf_mining_guild]
 clone = "dwarf"
-attack_speed = 4
 
 [dwarf_mining_guild.melee]
 clone = "dwarf.melee"
 
 [chaos_dwarf]
 clone = "dwarf"
-attack_speed = 4
 defend_sound = "chaos_dwarf_defend"
 death_sound = "chaos_dwarf_death"
 

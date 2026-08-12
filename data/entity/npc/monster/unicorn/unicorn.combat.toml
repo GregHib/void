@@ -1,5 +1,4 @@
 [unicorn]
-attack_speed = 4
 defend_anim = "unicorn_defend"
 defend_sound = "unicorn_defend"
 death_anim = "unicorn_death"

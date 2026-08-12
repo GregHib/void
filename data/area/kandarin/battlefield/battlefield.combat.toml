@@ -1,5 +1,4 @@
 [khazard_commander]
-attack_speed = 4
 death_anim = "khazard_commander_death"
 
 [khazard_commander.melee]
@@ -8,7 +7,6 @@ target_hit = { offense = "stab", max = 50 }
 anim = "khazard_commander_attack"
 
 [tortoise]
-attack_speed = 4
 death_anim = "tortoise_death"
 defend_sound = "tortoise_defend"
 death_sound = "tortoise_death"

@@ -1,5 +1,4 @@
 [twig]
-attack_speed = 6
 defend_anim = "troll_defend"
 death_anim = "troll_death"
 
@@ -9,7 +8,6 @@ target_hit = { offense = "crush", max = 130 }
 anim = "troll_attack"
 
 [berry]
-attack_speed = 6
 defend_anim = "troll_defend"
 death_anim = "troll_death"
 
