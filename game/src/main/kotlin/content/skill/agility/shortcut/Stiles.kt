@@ -29,6 +29,10 @@ class Stiles : Script {
             climbStile(target, Direction.NORTH)
         }
 
+        objectOperate("Climb-over", "meiyerditch_broken_fence") { (target) ->
+            climbStile(target, Direction.NORTH)
+        }
+
         objectOperate("Climb-over", "ardougne_farm_stile") { (target) ->
             climbStile(target, Direction.EAST)
         }
