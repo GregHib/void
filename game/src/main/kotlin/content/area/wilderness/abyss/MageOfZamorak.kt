@@ -47,6 +47,8 @@ class MageOfZamorak : Script {
                     else -> npc<Neutral>("This isn't the place to talk. Visit me in Varrock's Chaos Temple if you have something to discuss.")
                 }
                 return@npcOperate
+            } else {
+                npc<Neutral>("Ah, you again. The Wilderness is hardly the appropriate place for a conversation now, is it? What was it you wanted?")
             }
 
             choice {
@@ -133,7 +135,7 @@ class MageOfZamorak : Script {
         npcOperate("Trade", "mage_of_zamorak_wilderness") {
             if(questCompleted("enter_the_abyss")){
                 openShop("battle_runes_enter_the_abyss")
-            } else { 
+            } else {
                 openShop("battle_runes")
             }
         }
