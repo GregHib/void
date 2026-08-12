@@ -19,7 +19,6 @@ spawns = [
   { id = "banker_3", x = 2657, y = 3286, direction = "WEST", members = true },
   { id = "banker_3", x = 2657, y = 3283, direction = "WEST", members = true },
   { id = "banker_4", x = 2657, y = 3280, direction = "WEST", members = true },
-  { id = "wizard_cromperty", x = 2681, y = 3325, members = true },
 # 10548
   { id = "sheep", x = 2656, y = 3378, members = true },
   { id = "sheep", x = 2650, y = 3375, members = true },

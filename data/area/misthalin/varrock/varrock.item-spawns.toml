@@ -12,4 +12,16 @@ spawns = [
   { id = "coins", amount = 66, x = 3191, y = 9821, delay = 100 },
   { id = "coins", amount = 4, x = 3195, y = 9820, delay = 100 },
   { id = "coins", amount = 3, x = 3195, y = 9834, delay = 100 },
+  # 12597 - Cooks Guild
+  { id = "chocolate_bar", x = 3143, y = 3453, delay = 100 },
+  { id = "chocolate_bar", x = 3143, y = 3453, delay = 100 },
+  { id = "bowl", x = 3140, y = 3452, level = 1, delay = 100 },
+  { id = "cake_tin", x = 3141, y = 3452, level = 1, delay = 100 },
+  { id = "cooking_apple", x = 3140, y = 3447, level = 1, delay = 100 },
+  { id = "cooking_apple", x = 3141, y = 3447, level = 1, delay = 100 },
+  { id = "pie_dish", x = 3142, y = 3447, level = 1, delay = 100 },
+  { id = "redberries", x = 3144, y = 3450, level = 2, delay = 100 },
+  { id = "empty_pot", x = 3144, y = 3449, level = 2, delay = 100 },
+  { id = "empty_jug", x = 3142, y = 3447, level = 2, delay = 100 },
+  { id = "cooking_apple", x = 3141, y = 3447, level = 2, delay = 100 },
 ]
