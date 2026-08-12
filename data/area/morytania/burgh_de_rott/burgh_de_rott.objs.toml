@@ -1,3 +1,19 @@
 [bank_booth_burgh_de_rott]
 id = 12798
 examine = "The bank teller will serve you from here."
+
+[burgh_de_rott_gate_west_opened]
+id = 12819
+examine = "A wooden gate."
+
+[burgh_de_rott_gate_west_closed]
+id = 12817
+examine = "A wooden gate."
+
+[burgh_de_rott_gate_east_opened]
+id = 12818
+examine = "A wooden gate."
+
+[burgh_de_rott_gate_east_closed]
+id = 12816
+examine = "A wooden gate."
