@@ -5,10 +5,12 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.questCompleted
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -37,22 +39,25 @@ class MageOfZamorak : Script {
                 return@npcOperate
             }
 
-            if (questCompleted("rune_mysteries")) {
+            if (!questCompleted("rune_mysteries")) {
                 when (get("enter_the_abyss", "unstarted")) {
                     "unstarted" -> {
-                        npc<Neutral>("If you want to talk, this isn't the place for it. Meet me in Varrock's Chaos Temple, by the rune shop. Unless you're here to buy something?")
+                        npc<Neutral>("Meet me in Varrock's Chaos Temple. Here is not the place to talk.")
                         set("enter_the_abyss", "started")
                     }
-                    "started" -> npc<Neutral>("I already told you to meet me in Varrock's Chaos Temple, by the rune shop. Unless you're here to buy something?")
-                    else -> npc<Neutral>("This isn't the place to talk. Visit me in Varrock's Chaos Temple if you have something to discuss. Unless you're here to buy something?")
+                    "started" -> npc<Neutral>("I already told you! Meet me in Varrock's Chaos Temple!")
+                    else -> npc<Neutral>("This isn't the place to talk. Visit me in Varrock's Chaos Temple if you have something to discuss.")
                 }
-            } else {
-                npc<Angry>("This isn't the place to talk. Unless you're here to buy something, you should leave.")
+                return@npcOperate
             }
 
             choice {
                 option("Let's see what you're selling.") {
-                    openShop("mage_of_zamorak")
+                    if(questCompleted("enter_the_abyss")){
+                    openShop("battle_runes_enter_the_abyss")
+                    } else {
+                        openShop("battle_runes")
+                    }
                 }
                 if (questCompleted("enter_the_abyss")) {
                     option<Quiz>("Could you teleport me to the Abyss?") {
@@ -124,6 +129,14 @@ class MageOfZamorak : Script {
                     whereRunes()
                     option<Neutral>("Just looking around.")
                 }
+            }
+        }
+
+        npcOperate("Trade", "mage_of_zamorak_wilderness") {
+            if(questCompleted("enter_the_abyss")){
+                openShop("battle_runes_enter_the_abyss")
+            } else { 
+                openShop("battle_runes")
             }
         }
     }
