@@ -10,10 +10,6 @@ anim = "unarmed_punch"
 target_sound = "ghoul_attack"
 target_hit = { offense = "crush", max = 50 }
 
-[canifis_citizen]
-clone = "human"
-defend_anim = "werewolf_transform"
-
 [werewolf]
 defend_anim = "werewolf_defend"
 defend_sound = "wolves_defend"
