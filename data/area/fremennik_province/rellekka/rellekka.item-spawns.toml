@@ -7,7 +7,7 @@ spawns = [
 # 10554
   { id = "bones", x = 2675, y = 3720, delay = 100, members = true },
   { id = "knife", x = 2681, y = 3717, delay = 100, members = true },
-  { id = "iron_pickaxe", x = 2671, y = 3728, delay = 500, members = true },
+  { id = "iron_pickaxe", x = 2672, y = 3728, delay = 100, members = true },
   { id = "nature_rune", amount = 2, x = 2670, y = 3739, delay = 200, members = true },
   { id = "nature_rune", amount = 2, x = 2671, y = 3740, delay = 200, members = true },
   { id = "sapphire", x = 2679, y = 3741, delay = 1000, members = true },
