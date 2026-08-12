@@ -48,7 +48,7 @@ class MageOfZamorak : Script {
                 }
                 return@npcOperate
             } else {
-                npc<Neutral>("Ah, you again. The Wilderness is hardly the appropriate place for a conversation now, is it? What was it you wanted?")
+                npc<Neutral>("Ah, you again. What is it you want?")
             }
 
             choice {
