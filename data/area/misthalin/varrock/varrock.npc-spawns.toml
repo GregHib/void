@@ -391,5 +391,5 @@ spawns = [
   { id = "overseer", x = 3316, y = 3491, members = true },
   { id = "guardian_varrock", x = 3323, y = 3501, level = 3, members = true },
   { id = "orlando_smith", x = 1759, y = 4955, members = true },
-  { id = "elsie", x = 2960, y = 3280, members = true },
+  { id = "elsie", x = 3255, y = 3488, level = 1, members = true },
 ]
