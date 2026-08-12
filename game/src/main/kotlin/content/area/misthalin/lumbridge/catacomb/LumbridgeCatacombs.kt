@@ -1,19 +1,17 @@
 package content.area.misthalin.lumbridge.catacomb
 
-import content.entity.combat.attacker
 import content.entity.combat.dead
 import content.entity.combat.hit.directHit
+import content.entity.combat.inCombat
 import content.entity.combat.killer
-import content.entity.combat.target
-import content.entity.combat.underAttack
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.quest.*
-import content.skill.melee.weapon.attackSpeed
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
@@ -24,7 +22,6 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.ModeType
-import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
