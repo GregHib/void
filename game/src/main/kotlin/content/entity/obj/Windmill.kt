@@ -7,7 +7,9 @@ import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.*
 
@@ -65,21 +67,33 @@ class Windmill : Script {
                 message("You need an empty pot to hold the flour in.")
                 return@objectOperate
             }
-            if (target.id == "flour_bin_3" && quest("cooks_assistant") == "started" && get("cooks_assistant_talked_to_millie", 0) == 1) {
-                inventory.remove("empty_pot")
-                if (carriesItem("extra_fine_flour") || bank.contains("extra_fine_flour")) {
-                    inventory.add("pot_of_flour")
-                    message("You fill a pot with flour from the bin.")
-                } else {
-                    inventory.add("extra_fine_flour")
-                    message("You fill a pot with the extra fine flour from the bin.")
-                }
-                dec("flour_bin")
-            } else {
-                inventory.replace("empty_pot", "pot_of_flour")
-                dec("flour_bin")
-                message("You fill a pot with flour from the bin.")
+            takeFlour(target)
+        }
+
+        itemOnObjectOperate("empty_pot", "flour_bin*") { (target) ->
+            if (get("flour_bin", 0) == 0) {
+                message("The flour bin is empty.")
+                return@itemOnObjectOperate
             }
+            takeFlour(target)
+        }
+    }
+
+    private fun Player.takeFlour(target: GameObject) {
+        if (target.id == "flour_bin_3" && quest("cooks_assistant") == "started" && get("cooks_assistant_talked_to_millie", 0) == 1) {
+            inventory.remove("empty_pot")
+            if (carriesItem("extra_fine_flour") || bank.contains("extra_fine_flour")) {
+                inventory.add("pot_of_flour")
+                message("You fill a pot with flour from the bin.")
+            } else {
+                inventory.add("extra_fine_flour")
+                message("You fill a pot with the extra fine flour from the bin.")
+            }
+            dec("flour_bin")
+        } else {
+            inventory.replace("empty_pot", "pot_of_flour")
+            dec("flour_bin")
+            message("You fill a pot with flour from the bin.")
         }
     }
 
