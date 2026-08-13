@@ -90,7 +90,7 @@ suspend fun Player.kidnap(destination: Tile) {
  */
 fun Player.onExitInterrupt(block: suspend Player.() -> Unit) {
     val event: String = get("random_event") ?: return
-    walkTrigger = {
+    walkTrigger {
         queue("random_event_exit") {
             if (get<String>("random_event") == event) {
                 block()
