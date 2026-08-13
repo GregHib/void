@@ -1,0 +1,106 @@
+[ahoy_windspeed]
+id = 205
+persist = true
+format = "boolean"
+
+[ahoy_given_manual]
+id = 206
+persist = true
+format = "boolean"
+
+[ahoy_given_robes]
+id = 207
+persist = true
+format = "boolean"
+
+[ahoy_given_book]
+id = 208
+persist = true
+format = "boolean"
+
+[ahoy_signaturecounter]
+id = 209
+persist = true
+format = "int"
+
+[ahoy_subquest_nettletea]
+id = 211
+persist = true
+format = "int"
+
+[ahoy_subquest_bow]
+id = 212
+persist = true
+format = "int"
+
+[ahoy_templedoor_unlocked]
+id = 213
+persist = true
+format = "boolean"
+
+[ahoy_subquest_toyboat]
+id = 214
+persist = true
+format = "int"
+
+[ahoy_killed_lobster]
+id = 215
+persist = true
+format = "boolean"
+
+[ahoy_requested_sheet]
+id = 216
+persist = true
+format = "boolean"
+
+[ahoy_questvar]
+id = 217
+persist = true
+format = "int"
+
+# Toy boat flag colours — set when the player dyes their model_ship_silk in the various combinations.
+[ahoy_toy_top]
+persist = true
+format = "int"
+
+[ahoy_toy_skull]
+persist = true
+format = "int"
+
+[ahoy_toy_bottom]
+persist = true
+format = "int"
+
+# Mast flag colours — randomised at quest start so the player has to inspect the in-game mast.
+[ahoy_mast_top]
+persist = true
+format = "int"
+
+[ahoy_mast_skull]
+persist = true
+format = "int"
+
+[ahoy_mast_bottom]
+persist = true
+format = "int"
+
+# Runedraw state (transient — reset each time the game starts).
+[ahoy_runedraw_held]
+persist = false
+format = "int"
+
+[ahoy_player_runedraw_turn]
+persist = false
+format = "int"
+
+[ahoy_player_runedraw_sum]
+persist = false
+format = "int"
+
+[ahoy_robin_runedraw_turn]
+persist = false
+format = "int"
+
+[ahoy_robin_runedraw_sum]
+persist = false
+format = "int"
