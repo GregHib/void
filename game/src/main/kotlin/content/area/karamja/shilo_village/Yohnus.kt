@@ -5,6 +5,8 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -43,7 +45,7 @@ class Yohnus : Script {
 private suspend fun Player.furnace() {
     npc<Neutral>("Sorry but the blacksmiths is closed. But I can let you use the furnace at the cost of 20 gold pieces.")
     choice {
-        option<Neutral>("Use Furnace - 20 Gold") {
+        option("Use Furnace - 20 Gold") {
             if (!inventory.remove("coins", 20)) {
                 npc<Neutral>("Sorry, you don't have enough coins.")
                 return@option
