@@ -5,6 +5,7 @@ import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMe
 import content.quest.instance
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -33,6 +34,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     val adjacentRooms = arrayOfNulls<DungeonRoom>(4)
     var parent: DungeonRoom? = null
 
+    var name: String? = null
     var open: Boolean = false
     var zone: Zone? = null
     var rotation: Int = 0
@@ -77,10 +79,14 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             }
         }
         // Spawn keys
-        for (key in keys) {
-            FloorItems.add(keyTiles.random(random), key)
+        if (keyTiles.isNotEmpty()) {
+            for (key in keys) {
+                FloorItems.add(keyTiles.random(random), key)
+            }
+        } else {
+            logger.warn { "Unable to find key tile for ${this.zone} $name" }
         }
-        spawnNpcs(player, dungeon, npcSpawns)
+        spawnNpcs(player, dungeon, npcSpawns, target)
 
         val theme = dungeon.theme
         for ((i, door) in doors.withIndex()) {
@@ -117,11 +123,35 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         }
     }
 
-    private fun spawnNpcs(player: Player, dungeon: DungeonMap, npcSpawns: MutableList<Rectangle>) {
+    private fun spawnBoss(player: Player, dungeon: DungeonMap, target: Zone) {
+        val members = player.dungeonMembers.sortedBy { it.combatLevel }.take(dungeon.playerCount)
+        val average = members.sumOf { it.combatLevel } / members.size
+
+        val row = Rows.getOrNull("boss_spawns.${name}") ?: return
+
+        val ids = row.npcList("ids")
+        val id = ids.filter { NPCDefinitions.get(it).combat <= average }.maxBy { NPCDefinitions.get(it).combat }
+
+        val tile = row.tile("tile")
+        val direction = Direction.SOUTH
+        val actual = Tile(tile.x.rem(16), tile.y.rem(16))
+
+        val x = Dungeoneering.rotateX(actual.x, actual.y, rotation, 15)
+        val y = Dungeoneering.rotateY(actual.x, actual.y, rotation, 15)
+        val clientRotation = (4 - rotation) % 4
+        val boss = NPCs.add(id, target.tile.add(x, y), direction.rotate(clientRotation * 2))
+        boss["in_multi_combat"] = true
+    }
+
+    private fun spawnNpcs(player: Player, dungeon: DungeonMap, npcSpawns: MutableList<Rectangle>, target: Zone) {
+        if (type == DungeonRoomType.Boss) {
+            spawnBoss(player, dungeon, target)
+            return
+        }
         if (npcSpawns.isEmpty()) {
             return
         }
-        if (type == DungeonRoomType.Base || type == DungeonRoomType.Boss) {
+        if (type == DungeonRoomType.Base) {
             return
         }
         // https://runescape.wiki/w/Dungeoneering/Monsters#Overview
