@@ -1,4 +1,4 @@
-[giant_lobster_ghosts_ahoy]
+[giant_lobster]
 id = 1693
 hitpoints = 320
 att = 18
@@ -9,5 +9,23 @@ max_hit_melee = 40
 hunt_mode = "cowardly"
 slayer_xp = 32.0
 categories = ["scorpions"]
-drop_table = "giant_lobster_ghosts_ahoy"
+drop_table = "giant_lobster"
 examine = "An extremely vicious lobster."
+
+[ahoy_oldman]
+id = 1696
+examine = "He looks like he's lost something."
+
+[ahoy_ghost_disguise]
+id = 1707
+examine = "A bedsheet ghost."
+
+[ahoy_ghost_disguise_green]
+id = 1708
+examine = "A bedsheet ghost, soaked in ectoplasm."
+
+[ahoy_akharanu_multi]
+id = 1687
+
+[ahoy_akharanu]
+id = 1688

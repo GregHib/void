@@ -1,5 +1,0 @@
-[giant_lobster]
-type = "all"
-drops = [
-    { id = "seaweed" },
-]
