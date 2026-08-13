@@ -346,6 +346,12 @@ class DungeonGenerator(
             for (c in complexity downTo 1) { // TODO applies to only normal or all??
                 val table = Tables.getOrNull("${theme}_c${c}_$typeName") ?: continue
                 for (row in table.rows()) {
+                    if (room.type == DungeonRoomType.Boss) {
+                        val start = row.intOrNull("start_floor") ?: continue
+                        if (floor < start) {
+                            continue
+                        }
+                    }
                     if (floor in 12..17) {
                         // TODO skip seeker sentinel puzzle, balak pummeller and shadow forgr ihlakhizan bosses
                     }
