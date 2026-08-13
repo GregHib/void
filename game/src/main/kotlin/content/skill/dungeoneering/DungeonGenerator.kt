@@ -342,7 +342,7 @@ class DungeonGenerator(
                 val dir = Direction.westClockwise[idx]
                 room.doors[dir.roomIndex] != null
             }
-            val matchingOptions = mutableListOf<Pair<Zone, Int>>()
+            val matchingOptions = mutableListOf<Triple<Zone, Int, String>>()
             for (c in complexity downTo 1) { // TODO applies to only normal or all??
                 val table = Tables.getOrNull("${theme}_c${c}_$typeName") ?: continue
                 for (row in table.rows()) {
@@ -366,13 +366,13 @@ class DungeonGenerator(
                             // Rotate so puzzle entry door (south) is in the correct orientation
                             val requiredRotation = (entryDir.roomIndex - 3 + 4) % 4
                             if (matchesDoors(actualDoors, requiredDoors, requiredRotation)) {
-                                matchingOptions.add(Pair(zone, requiredRotation))
+                                matchingOptions.add(Triple(zone, requiredRotation, row.rowId))
                             }
                         }
                     } else {
                         for (r in 0..3) {
                             if (matchesDoors(actualDoors, requiredDoors, r)) {
-                                matchingOptions.add(Pair(zone, r))
+                                matchingOptions.add(Triple(zone, r, row.rowId))
                             }
                         }
                     }
@@ -382,6 +382,7 @@ class DungeonGenerator(
                 val selection = matchingOptions.random(random)
                 room.zone = selection.first
                 room.rotation = selection.second
+                room.name = selection.third
             } else {
                 System.err.println("Warning: No matching layout template found for ${theme}_c${complexity}_$typeName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
             }
