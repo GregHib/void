@@ -60,10 +60,12 @@ examine = "Yanni Salika; he buys and sells antiques."
 
 [obli_shilo_village]
 id = 516
+shop = "oblis_general_store"
 examine = "An intelligent-looking shop owner."
 
 [fernahei_shilo_village]
 id = 517
+shop = "fernaheis_fishing_hut"
 examine = "This is Fernahei; he owns the local fishing tackle shop."
 
 [undead_one_shilo_village_3]

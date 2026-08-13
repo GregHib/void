@@ -9,19 +9,16 @@ import world.gregs.voidps.engine.Script
 
 class Fernahei : Script {
     init {
-        npcOperate("Talk-to", "fernahei_shilo_village") {
+        npcOperate("Talk-to", "fernahei_shilo_village") { (target) ->
             npc<Happy>("Welcome to Fernahei's Fishing Shop Bwana! Would you like to see my items?")
             choice {
                 option<Neutral>("Yes please!") {
-                    openShop("fernaheis_fishing_hut")
+                    openShop(target.def["shop"])
                 }
                 option<Neutral>("No, but thanks for the offer.") {
                     npc<Happy>("That's fine and thanks for your interest.")
                 }
             }
-        }
-        npcOperate("Trade", "fernahei_shilo_village") {
-            openShop("fernaheis_fishing_hut")
         }
     }
 }

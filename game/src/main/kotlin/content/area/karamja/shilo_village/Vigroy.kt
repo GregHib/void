@@ -10,8 +10,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
 class Vigroy : Script {
@@ -39,7 +38,7 @@ class Vigroy : Script {
 private val HAJEDY_SPAWN = Tile(2812, 3095) // placeholder, swap for Hajedy's actual spawn tile
 private const val CART_FARE = 30 // adjust to actual RS cart fare
 private const val ARRIVAL_X = 2762 // placeholder Brimhaven coords, swap for actual arrival tile
-private const val ARRIVAL_Z = 3187
+private const val ARRIVAL_Y = 3187
 
 /**
  * Talk-to/Board: full dialogue asking whether the player wants to travel.
@@ -64,22 +63,15 @@ private suspend fun Player.payFare() {
 }
 
 private suspend fun Player.attemptPayment() {
-    inventory.transaction {
-        remove("coins", CART_FARE)
+    if (!inventory.remove("coins", CART_FARE)) {
+        npc<Neutral>("Sorry, but it looks as if you don't have enough money. Come and see me when you have enough for the ride.")
+        return
     }
-    when (inventory.transaction.error) {
-        TransactionError.None -> {
-            npc<Neutral>("You hop into the cart and the driver urges the horses on.")
-            npc<Neutral>("You take a taxing journey through the jungle to Brimhaven.")
-            npc<Neutral>("You feel tired from the journey, but at least you didn't have to walk all that distance.")
-
-            open("fade_out")
-            delay(3)
-            tele(ARRIVAL_X, ARRIVAL_Z)
-            open("fade_in")
-        }
-        else -> {
-            npc<Neutral>("Sorry, but it looks as if you don't have enough money. Come and see me when you have enough for the ride.")
-        }
-    }
+    npc<Neutral>("You hop into the cart and the driver urges the horses on.")
+    npc<Neutral>("You take a taxing journey through the jungle to Brimhaven.")
+    npc<Neutral>("You feel tired from the journey, but at least you didn't have to walk all that distance.")
+    open("fade_out")
+    delay(3)
+    tele(ARRIVAL_X, ARRIVAL_Y)
+    open("fade_in")
 }

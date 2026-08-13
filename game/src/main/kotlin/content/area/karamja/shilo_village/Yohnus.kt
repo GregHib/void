@@ -10,16 +10,16 @@ import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.type.Tile
 
 class Yohnus : Script {
-
     init {
         npcOperate("Talk-to", "yohnus_shilo_village") {
             furnace()
         }
+
         objectOperate("Open", "blacksmiths_door_closed") { (target) ->
             if (tile.y > target.tile.y) {
                 enterDoor(target)
@@ -44,16 +44,12 @@ private suspend fun Player.furnace() {
     npc<Neutral>("Sorry but the blacksmiths is closed. But I can let you use the furnace at the cost of 20 gold pieces.")
     choice {
         option<Neutral>("Use Furnace - 20 Gold") {
-            inventory.transaction {
-                remove("coins", 20)
+            if (!inventory.remove("coins", 20)) {
+                npc<Neutral>("Sorry, you don't have enough coins.")
+                return@option
             }
-            when (inventory.transaction.error) {
-                TransactionError.None -> {
-                    this["yohnus_paid"] = true
-                    npc<Happy>("Thanks Bwana! Enjoy the facilities!")
-                }
-                else -> npc<Neutral>("Sorry, you don't have enough coins.")
-            }
+            this["yohnus_paid"] = true
+            npc<Happy>("Thanks Bwana! Enjoy the facilities!")
         }
         option<Neutral>("No thanks!") {
             npc<Neutral>("Very well Bwana, have a nice day.")
