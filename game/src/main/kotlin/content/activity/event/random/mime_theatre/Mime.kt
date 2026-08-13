@@ -50,18 +50,23 @@ class Mime : Script {
             set("mime_correct", 0)
         }
         mysteriousOldMan()
-        walkTrigger {
-            strongQueue("start") {
-                start()
-            }
-        }
+        trigger()
         kidnap(SPAWN)
         // The old man stays behind at the kidnap origin, so he narrates by id rather than talkWith.
         npc<Neutral>("mysterious_old_man", "Here's a little challenge for you:<br>Copy the Mime's performance, then you'll be released.")
         start()
     }
 
+    private fun Player.trigger() {
+        walkTrigger {
+            strongQueue("start") {
+                start()
+            }
+        }
+    }
+
     private suspend fun Player.start() {
+        trigger()
         walkOverDelay(WATCH)
         val mime = NPCs.firstOrNull(MIME_TILE) { it.id == "mime" } ?: NPCs.add("mime", MIME_TILE, ticks = -1, owner = this)
         runMime(mime)
@@ -136,6 +141,7 @@ class Mime : Script {
         for (unlock in MIME_EMOTES) {
             set("unlocked_emote_$unlock", true)
         }
+        walkTrigger = null
         addOrDrop("random_event_gift")
         rewardCostumePoint("mime")
         clear("mime_emote")
