@@ -3187,7 +3187,7 @@ areas = [ { x = [ 209, 222 ], y = [ 5009, 5022 ] } ]
 
 [icy_bones]
 index = 796
-areas = [ { x = [ 209, 222 ], y = [ 5009, 5022 ] } ]
+areas = [ { x = [ 193, 206 ], y = [ 5009, 5022 ] } ]
 
 [luminescent_icefiend]
 index = 797

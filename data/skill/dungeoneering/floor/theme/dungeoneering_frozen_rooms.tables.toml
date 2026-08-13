@@ -43,40 +43,40 @@ y = 626
 start_floor = 1
 doors = [false, false, false, true]
 
-[.gluttonous_behemoth]
-type = "boss"
-x = 28
-y = 624
-start_floor = 1
-doors = [false, false, false, true]
-
-[.luminescent_icefiend]
-type = "boss"
-x = 24
-y = 624
-start_floor = 3
-doors = [false, false, false, true]
-
-[.plane_freezer_lakhrahnaz]
-type = "boss"
-x = 26
-y = 624
-start_floor = 6
-doors = [false, false, false, true]
-
-[.tokash_the_bloodchiller]
-type = "boss"
-x = 26
-y = 626
-start_floor = 9
-doors = [false, false, false, true]
-
-[.astea_frostweb]
-type = "boss"
-x = 30
-y = 624
-start_floor = 1
-doors = [false, false, false, true]
+#[.gluttonous_behemoth]
+#type = "boss"
+#x = 28
+#y = 624
+#start_floor = 1
+#doors = [false, false, false, true]
+#
+#[.luminescent_icefiend]
+#type = "boss"
+#x = 24
+#y = 624
+#start_floor = 3
+#doors = [false, false, false, true]
+#
+#[.plane_freezer_lakhrahnaz]
+#type = "boss"
+#x = 26
+#y = 624
+#start_floor = 6
+#doors = [false, false, false, true]
+#
+#[.tokash_the_bloodchiller]
+#type = "boss"
+#x = 26
+#y = 626
+#start_floor = 9
+#doors = [false, false, false, true]
+#
+#[.astea_frostweb]
+#type = "boss"
+#x = 30
+#y = 624
+#start_floor = 1
+#doors = [false, false, false, true]
 
 [frozen_c1_normal]
 type = "string"

@@ -1,0 +1,72 @@
+# https://runescape.wiki/w/Icy_Bones?oldid=5118127
+[rand_ice_lord_boss_0]
+id = 10040
+hitpoints = 100
+
+[rand_ice_lord_boss_1]
+id = 10041
+hitpoints = 250 # Guess
+
+[rand_ice_lord_boss_2]
+id = 10042
+hitpoints = 400 # Guess
+
+[rand_ice_lord_boss_3]
+id = 10043
+hitpoints = 600 # Guess
+
+[rand_ice_lord_boss_4]
+id = 10044
+hitpoints = 750 # Guess
+
+[rand_ice_lord_boss_5]
+id = 10045
+hitpoints = 1000 # Guess
+
+[rand_ice_lord_boss_6]
+id = 10046
+hitpoints = 1250 # Guess
+
+[rand_ice_lord_boss_7]
+id = 10047
+hitpoints = 1700 # Guess
+
+[rand_ice_lord_boss_8]
+id = 10048
+hitpoints = 2200 # https://youtu.be/nVUjpmB_2Xw?t=190
+
+[rand_ice_lord_boss_9]
+id = 10049
+hitpoints = 2900 # Guess
+
+[rand_ice_lord_boss_10]
+id = 10050
+hitpoints = 3650
+
+[rand_ice_lord_boss_11]
+id = 10051
+hitpoints = 4400 # Guess
+
+[rand_ice_lord_boss_12]
+id = 10052
+hitpoints = 5310
+
+[rand_ice_lord_boss_13]
+id = 10053
+hitpoints = 6200 # Guess
+
+[rand_ice_lord_boss_14]
+id = 10054
+hitpoints = 7200 # Guess
+
+[rand_ice_lord_boss_15]
+id = 10055
+hitpoints = 8250 # Guess
+
+[rand_ice_lord_boss_16]
+id = 10056
+hitpoints = 9300 # Guess
+
+[rand_ice_lord_boss_17]
+id = 10057
+hitpoints = 10300 # Guess

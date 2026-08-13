@@ -1,0 +1,15 @@
+[icy_bones]
+defend_anim = "icy_bones_defend"
+defend_sound = "icy_bones_defend"
+death_anim = "icy_bones_death"
+death_sound = "icy_bones_death"
+
+[icy_bones.melee]
+range = 2
+anim = "icy_bones_attack"
+target_hit = { offense = "magic", max = 80 }
+
+[icy_bones.freeze]
+range = 5
+anim = "icy_bones_freeze"
+target_hit = { offense = "magic", max = 80 }
