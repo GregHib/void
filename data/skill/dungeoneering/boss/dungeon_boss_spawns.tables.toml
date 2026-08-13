@@ -1,0 +1,28 @@
+[boss_spawns]
+ids = "list<npc>"
+tile = "tile"
+direction = "string"
+
+[.icy_bones]
+ids = [
+    "rand_ice_lord_boss_0",
+    "rand_ice_lord_boss_1",
+    "rand_ice_lord_boss_2",
+    "rand_ice_lord_boss_3",
+    "rand_ice_lord_boss_4",
+    "rand_ice_lord_boss_5",
+    "rand_ice_lord_boss_6",
+    "rand_ice_lord_boss_7",
+    "rand_ice_lord_boss_8",
+    "rand_ice_lord_boss_9",
+    "rand_ice_lord_boss_10",
+    "rand_ice_lord_boss_11",
+    "rand_ice_lord_boss_12",
+    "rand_ice_lord_boss_13",
+    "rand_ice_lord_boss_14",
+    "rand_ice_lord_boss_15",
+    "rand_ice_lord_boss_16",
+    "rand_ice_lord_boss_17",
+]
+tile = { x = 199, y = 5015 }
+direction = "south"
