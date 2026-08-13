@@ -308,7 +308,7 @@ class GhostsAhoy : Script {
                     }
                 } else {
                     message("You are attacked by a giant lobster!!")
-                    val lobster = NPCs.add("giant_lobster", Tile(3616, 3543, 0))
+                    val lobster = NPCs.add("giant_lobster_ghosts_ahoy", Tile(3616, 3543, 0))
                     hint(lobster)
                     lobster.interactPlayer(this, "Attack")
                 }
@@ -562,7 +562,7 @@ class GhostsAhoy : Script {
 
         // === NPC death ===
 
-        npcDeath("giant_lobster") {
+        npcDeath("giant_lobster_ghosts_ahoy") {
             val killer = killer
             if (killer is Player) {
                 killer["ahoy_killed_lobster"] = true
