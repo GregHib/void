@@ -13,3 +13,7 @@ examine = "A rocky outcrop from the running water."
 [shilo_river_stepping_stone]
 id = 10536
 examine = "Handy for crossing rivers."
+
+[travel_cart_shilo_village]
+id = 2265
+examine = "A sturdy cart for travelling in."
