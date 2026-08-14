@@ -10,12 +10,11 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.interact.Interact
+import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.network.client.instruction.Walk
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Distance.nearestTo
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.area.Rectangle
@@ -74,7 +73,7 @@ class Movement : Script {
                 if (player.tile == target && player.mode != EmptyMode && player.mode != PauseMode) {
                     player.mode = EmptyMode
                 }
-                player.walkTo(target, forceWalk = player.equipped(EquipSlot.Weapon).id == "stone_bowl" || player.equipped(EquipSlot.Hat).id.contains("bedsheet"))
+                player.walkTo(target, forceWalk = TargetStrategy.noRun(player))
             }
             if (player.suspension == null) {
                 player.walkTrigger?.invoke()
