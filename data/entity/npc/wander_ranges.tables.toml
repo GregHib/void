@@ -3853,7 +3853,7 @@ wander_range = 2
 wander_range = 0
 max_range = 0
 
-[.ghost_disciple_port_phasmatys]
+[.ahoy_disciple]
 wander_range = 4
 max_range = 4
 

@@ -56,3 +56,15 @@ id = 5259
 [cooking_range_port_phasmatys]
 id = 5275
 examine = "An appliance for cooking with."
+
+[ahoy_ladder_from_cellar]
+id = 5264
+
+[ahoy_new_green_floor]
+id = 17119
+
+[ahoy_tower_stairs_lv1_withwall]
+id = 37454
+
+[ahoy_tower_stairs_lv1_top]
+id = 5281

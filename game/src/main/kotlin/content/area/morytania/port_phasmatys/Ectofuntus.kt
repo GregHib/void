@@ -44,7 +44,7 @@ class Ectofuntus : Script {
                     enterDoor(target)
                     return@objectOperate
                 }
-                val disciple = NPCs.findBySpawn(Tile(3653, 3518, 1), "ghost_disciple_port_phasmatys")
+                val disciple = NPCs.findBySpawn(Tile(3653, 3518, 1), "ahoy_disciple")
                 talkWith(disciple)
                 npc<Neutral>("What are you doing going in there?")
                 player<Scared>("Err, I was just curious...")
