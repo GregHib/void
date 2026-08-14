@@ -57,3 +57,7 @@ format = "boolean"
 id = 217
 persist = true
 format = "int"
+
+[wearing_ghost_speak_amulet]
+id = 3732
+format = "boolean"

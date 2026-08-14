@@ -17,17 +17,13 @@ import world.gregs.voidps.engine.inv.remove
 
 class AkHaranu : Script {
     init {
-        npcOperate("Talk-To", "ahoy_akharanu") {
+        npcOperate("Talk-To", "ahoy_akharanu_multi") {
             val stage = get("ahoy_subquest_bow", 0)
             when {
                 stage == 8 -> postExchange()
                 stage >= 1 -> exchangePhase()
                 else -> introPhase()
             }
-        }
-
-        npcOperate("Trade", "ahoy_akharanu") {
-            openShop("ak_haranus_exotic_shop")
         }
     }
 

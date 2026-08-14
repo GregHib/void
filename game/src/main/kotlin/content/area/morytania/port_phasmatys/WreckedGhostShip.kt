@@ -6,6 +6,8 @@ import content.entity.player.effect.energy.runEnergy
 import content.quest.member.ghosts_ahoy.GhostsAhoy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
@@ -20,6 +22,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
+import kotlin.random.nextInt
 
 class WreckedGhostShip : Script {
 
@@ -86,17 +89,39 @@ class WreckedGhostShip : Script {
                 Teleport.CONTINUE
             }
         }
+
+        entered("ahoy_shipwreck_top") {
+            open("ahoy_windspeed")
+            set("ahoy_windspeed", false)
+            timers.start("windspeed")
+        }
+
+        exited("ahoy_shipwreck_top") {
+            close("ahoy_windspeed")
+            timers.stop("windspeed")
+        }
+
+        timerStart("windspeed") {
+            random.nextInt(0..16) + 2
+        }
+
+        timerTick("windspeed") {
+            val lowWind = get("ahoy_windspeed", false)
+            set("ahoy_windspeed", !lowWind)
+            interfaces.sendText("ahoy_windspeed", "content", if (lowWind) "High" else "Low")
+            random.nextInt(0..16) + 2
+        }
     }
 
     private suspend fun Player.windSpeed() {
-        if (get("ahoy_windspeed", false)) {
-            when (random.nextInt(3)) {
-                0 -> statement("You can see a tattered flag blowing in the wind.<br>The top half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_top", 0))}.")
-                1 -> statement("You can see a tattered flag blowing in the wind.<br>The bottom half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_bottom", 0))}.")
-                else -> statement("You can see a tattered flag blowing in the wind.<br>The skull emblem is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_skull", 0))}.")
-            }
-        } else {
+        if (!get("ahoy_windspeed", false)) {
             statement("You can see a tattered flag blowing in the wind.<br>The wind is blowing too hard to make out any details.")
+            return
+        }
+        when (random.nextInt(3)) {
+            0 -> statement("You can see a tattered flag blowing in the wind.<br>The top half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_top", 0))}.")
+            1 -> statement("You can see a tattered flag blowing in the wind.<br>The bottom half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_bottom", 0))}.")
+            else -> statement("You can see a tattered flag blowing in the wind.<br>The skull emblem is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_skull", 0))}.")
         }
     }
 

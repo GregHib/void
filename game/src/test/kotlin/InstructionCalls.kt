@@ -279,10 +279,9 @@ fun Player.itemOnFloorItem(floorItem: FloorItem, itemSlot: Int, inventory: Strin
     interactItemOn(floorItem, inventory, inventory, item, itemSlot)
 }
 
-fun Player.itemOnItem(
-    firstSlot: Int,
-    secondSlot: Int,
-) {
+fun Player.itemOnItem(first: String, second: String) = itemOnItem(inventory.indexOf(first), inventory.indexOf(second))
+
+fun Player.itemOnItem(firstSlot: Int, secondSlot: Int) {
     val inv = inventories.inventory("inventory")
     runTest {
         instructions.send(

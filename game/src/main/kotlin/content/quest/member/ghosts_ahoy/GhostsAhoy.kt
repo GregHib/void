@@ -38,6 +38,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
@@ -387,22 +388,6 @@ class GhostsAhoy : Script {
             message("You unlock the door.")
         }
 
-        // === Item-on-item hooks ===
-
-        itemOnItem("map_scrap_1", "map_scrap_2") { _, _ -> tryMergeMap() }
-        itemOnItem("map_scrap_1", "map_scrap_3") { _, _ -> tryMergeMap() }
-        itemOnItem("map_scrap_2", "map_scrap_3") { _, _ -> tryMergeMap() }
-
-        // Dye the toy boat's flag. Java: `dyeOnToyBoat` (GhostsAhoy.java:346). Each dye id maps to
-        // colour index ((dye_id - 1761) / 2): red=1, yellow=2, blue=3, orange=4, green=5, purple=6.
-        // Player picks which of the three flag segments (top / skull / bottom) gets the colour.
-        itemOnItem("model_ship_silk", "red_dye") { _, _ -> dyeToyBoat("red", 1) }
-        itemOnItem("model_ship_silk", "yellow_dye") { _, _ -> dyeToyBoat("yellow", 2) }
-        itemOnItem("model_ship_silk", "blue_dye") { _, _ -> dyeToyBoat("blue", 3) }
-        itemOnItem("model_ship_silk", "orange_dye") { _, _ -> dyeToyBoat("orange", 4) }
-        itemOnItem("model_ship_silk", "green_dye") { _, _ -> dyeToyBoat("green", 5) }
-        itemOnItem("model_ship_silk", "purple_dye") { _, _ -> dyeToyBoat("purple", 6) }
-
         // === Item options ===
 
         itemOption("Count", "petition_form") {
@@ -456,94 +441,12 @@ class GhostsAhoy : Script {
         }
 
         itemOption("Dig", "spade") {
-            if (tile.x == 3803 && tile.y == 3530 && inventory.contains("treasure_map") && !inventory.contains("book_of_haricanto") && inventory.spaces > 0) {
+            if (tile.equals(3803, 3530) && inventory.contains("treasure_map") && !inventory.contains("book_of_haricanto") && inventory.spaces > 0) {
                 anim("human_dig")
                 delay(3)
                 addOrDrop("book_of_haricanto")
                 item(item = "book_of_haricanto", text = "You unearth the Book of Haricanto.")
             }
-        }
-
-        itemAdded("bedsheet", "worn_equipment", EquipSlot.Hat) {
-            message("I'll only wear the bedsheet inside Port Phasmatys!")
-            transform("ahoy_ghost_disguise")
-        }
-
-        itemAdded("bedsheet_ectoplasm", "worn_equipment", EquipSlot.Hat) {
-            message("I'll only wear the bedsheet inside Port Phasmatys!")
-            transform("ahoy_ghost_disguise_green")
-        }
-
-        itemRemoved("bedsheet", "worn_equipment", EquipSlot.Hat) {
-            if (this.transform == "ahoy_ghost_disguise" || this.transform == "ahoy_ghost_disguise_green") {
-                clearTransform()
-            }
-        }
-
-        itemRemoved("bedsheet_ectoplasm", "worn_equipment", EquipSlot.Hat) {
-            if (this.transform == "ahoy_ghost_disguise" || this.transform == "ahoy_ghost_disguise_green") {
-                clearTransform()
-            }
-        }
-
-        entered("ahoy_shipwreck_top") {
-            open("ahoy_windspeed")
-            set("ahoy_windspeed", false)
-            timers.start("windspeed")
-        }
-
-        exited("ahoy_shipwreck_top") {
-            close("ahoy_windspeed")
-            timers.stop("windspeed")
-        }
-
-        timerStart("windspeed") {
-            random.nextInt(0..16) + 2
-        }
-
-        timerTick("windspeed") {
-            val lowWind = get("ahoy_windspeed", false)
-            set("ahoy_windspeed", !lowWind)
-            interfaces.sendText("ahoy_windspeed", "content", if (lowWind) "High" else "Low")
-            random.nextInt(0..16) + 2
-        }
-    }
-
-    private suspend fun Player.dyeToyBoat(colourName: String, colourIndex: Int) {
-        choice("Which part of the flag do you want to dye?") {
-            option("Top half") {
-                inventory.remove("${colourName}_dye")
-                set("ahoy_toy_top", colourIndex)
-                item(item = "model_ship_silk", text = "You dye the top of the flag $colourName.")
-            }
-            option("Bottom half") {
-                inventory.remove("${colourName}_dye")
-                set("ahoy_toy_bottom", colourIndex)
-                item(item = "model_ship_silk", text = "You dye the bottom of the flag $colourName.")
-            }
-            option("Skull emblem") {
-                inventory.remove("${colourName}_dye")
-                set("ahoy_toy_skull", colourIndex)
-                item(item = "model_ship_silk", text = "You dye the skull emblem $colourName.")
-            }
-        }
-    }
-
-    private suspend fun Player.tryMergeMap() {
-        if (inventory.contains("map_scrap_1") &&
-            inventory.contains("map_scrap_2") &&
-            inventory.contains("map_scrap_3")
-        ) {
-            inventory.remove("map_scrap_1")
-            inventory.remove("map_scrap_2")
-            inventory.remove("map_scrap_3")
-            inventory.add("treasure_map")
-            item(
-                item = "treasure_map",
-                text = "You piece the three map scraps together to form a complete map.",
-            )
-        } else {
-            statement("You don't have all the pieces of the map yet.")
         }
     }
 
@@ -611,6 +514,5 @@ suspend fun Player.checkGhostspeak(): Boolean {
 
 // TODO lobster spawn time
 // TODO bedsheet runs when interacting
-// TODO you shouldn't have to run up to the mast with object approach
 // TODO <br> adds an extra line ?
 // TODO bill teach with bedsheet

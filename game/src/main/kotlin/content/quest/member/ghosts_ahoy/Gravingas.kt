@@ -39,9 +39,10 @@ class Gravingas : Script {
 
     init {
         npcOperate("Talk-To", "ahoy_ghost_protestor") {
-            if (!checkGhostspeak()) return@npcOperate
+            if (!checkGhostspeak()) {
+                return@npcOperate
+            }
             val petition = get("ahoy_signaturecounter", 0)
-
             when {
                 ghosts_ahoy == 7 -> {
                     player<Neutral>(

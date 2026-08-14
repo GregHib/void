@@ -19,8 +19,10 @@ import world.gregs.voidps.type.Tile
 
 class GhostCaptain : Script {
     init {
-        npcOperate("Talk-To", "ghost_captain*") { (target) ->
-            if (!checkGhostspeak()) return@npcOperate
+        npcOperate("Talk-To", "ahoy_ghost_captain_*") { (target) ->
+            if (!checkGhostspeak()) {
+                return@npcOperate
+            }
             if (equipment.contains("bedsheet") || equipment.contains("bedsheet_ectoplasm")) {
                 if (equipment.contains("bedsheet_ectoplasm")) {
                     npc<Neutral>("Is that your bedsheet covered in filthy slime?")
@@ -47,12 +49,16 @@ class GhostCaptain : Script {
         }
 
         npcOperate("Travel", "ahoy_ghost_captain_1") {
-            if (!checkGhostspeak()) return@npcOperate
+            if (!checkGhostspeak()) {
+                return@npcOperate
+            }
             sailIfAble(toDragontooth = true)
         }
 
         npcOperate("Travel", "ahoy_ghost_captain_2") {
-            if (!checkGhostspeak()) return@npcOperate
+            if (!checkGhostspeak()) {
+                return@npcOperate
+            }
             sail(toDragontooth = false)
         }
     }

@@ -56,10 +56,7 @@ class OldCroneSon : Script {
                 option<Neutral>("Is this your toy boat?") {
                     item(item = "model_ship_silk", text = "The old man inspects the toy boat.")
                     if (hasCorrectBoat()) {
-                        npc<Neutral>(
-                            "My word - so it is!!! I never thought I would see it again!! Where " +
-                                "did you get it from?",
-                        )
+                        npc<Neutral>("My word - so it is!!! I never thought I would see it again!! Where did you get it from?")
                         player<Neutral>("Your mother gave it to me to pass on to you.")
                         npc<Neutral>("My mother? She still lives?")
                         player<Neutral>("Yes, in a shack to the west of here.")
@@ -71,10 +68,7 @@ class OldCroneSon : Script {
                     } else if (inventory.contains("model_ship")) {
                         npc<Neutral>("No - I made a toy boat a long while ago, but that one had a flag.")
                     } else {
-                        npc<Neutral>(
-                            "No - I made a toy boat a long while ago, but the colours on the " +
-                                "flag were different.",
-                        )
+                        npc<Neutral>("No - I made a toy boat a long while ago, but the colours on the flag were different.")
                     }
                 }
             }

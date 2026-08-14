@@ -3849,7 +3849,7 @@ wander_range = 2
 [.ahoy_necrovarus]
 wander_range = 2
 
-[.gravingas_port_phasmatys_3]
+[.ahoy_ghost_protestor]
 wander_range = 0
 max_range = 0
 
@@ -3881,11 +3881,11 @@ max_range = 4
 wander_range = 3
 max_range = 6
 
-[.ghost_captain]
+[.ahoy_ghost_captain_1]
 wander_range = 0
 max_range = 0
 
-[.ghost_captain_2]
+[.ahoy_ghost_captain_2]
 wander_range = 0
 max_range = 0
 
@@ -14920,11 +14920,11 @@ max_range = 3
 wander_range = 60
 max_range = 60
 
-[.gravingas_port_phasmatys]
+[.protester_ghostspeak_multi]
 wander_range = 0
 max_range = 0
 
-[.gravingas_port_phasmatys_2]
+[.protester_standardspeak_multi]
 wander_range = 0
 max_range = 0
 

@@ -9,7 +9,7 @@ spawns = [
   { id = "undead_chicken", x = 3631, y = 3531 },
   { id = "undead_chicken", x = 3632, y = 3526 },
   { id = "undead_chicken", x = 3633, y = 3525 },
-  { id = "old_man_alices_farm", x = 3617, y = 3544, level = 1, members = true },
+  { id = "ahoy_oldman", x = 3617, y = 3544, level = 1, members = true },
   { id = "alice", x = 3627, y = 3526, members = true },
   { id = "lyra", x = 3601, y = 3527, members = true },
   { id = "alices_husband", x = 3617, y = 3528, members = true },

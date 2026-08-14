@@ -15,7 +15,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class GhostInnKeeper : Script {
     init {
         npcOperate("Talk-To", "ahoy_ghost_innkeeper") {
-            if (!checkGhostspeak()) return@npcOperate
+            if (!checkGhostspeak()) {
+                return@npcOperate
+            }
             player<Happy>("Hello there!")
             npc<Neutral>("Greetings, traveller. Welcome to 'The Green Ghost' Tavern. What can I do you for?")
             menu()

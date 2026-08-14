@@ -26,6 +26,12 @@ examine = "A bedsheet ghost, soaked in ectoplasm."
 
 [ahoy_akharanu_multi]
 id = 1687
+shop = "ak_haranus_exotic_shop"
+examine = "A trader from across the eastern sea."
 
 [ahoy_akharanu]
 id = 1688
+
+[ahoy_ghost_innkeeper]
+id = 1700
+examine = "Doesn't look like the bar's open anymore."

@@ -33,7 +33,6 @@ class Robin : Script {
                 inventory.contains("bedsheet") -> deliverBedsheet()
                 stage == 0 -> intro()
                 stage == 1 -> stageOneFlow()
-
                 stage == 7 || stage == 8 -> {
                     if (stage == 7 && !ownsItem("signed_oak_bow") && inventory.contains("oak_longbow")) {
                         player<Neutral>("I need you to sign another longbow.")
@@ -47,7 +46,6 @@ class Robin : Script {
                         player<Angry>("No!")
                     }
                 }
-
                 else -> runedrawResult()
             }
         }
@@ -119,7 +117,7 @@ class Robin : Script {
         if (stage == 2) {
             npc<Neutral>("How about another game?")
         } else {
-            npc<Neutral>("Err ... how about another game?", "We can settle up after we've finished playing.")
+            npc<Neutral>("Err ... how about another game? We can settle up after we've finished playing.")
         }
         runedrawOptions(withDebt = false)
     }
