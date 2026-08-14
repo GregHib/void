@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.queue.longQueue
 
 class Trufitus : Script {
 
@@ -84,8 +85,7 @@ class Trufitus : Script {
                     npc<Neutral>("Hello Bwana, do you have the Snake Weed?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.contains("clean_snake_weed")) {
-                                inventory.remove("clean_snake_weed")
+                            if (inventory.remove("clean_snake_weed")) {
                                 set("jungle_potion", "gave_snake_weed")
                                 item("clean_snake_weed", "You give the Snake Weed to Trufitus.")
                                 npc<Neutral>("Great, you have the Snake Weed! Many thanks. Ok, the next herb is called Ardrigal. It is related to the palm and grows to the east in its brother's shady profusion.")
@@ -107,8 +107,7 @@ class Trufitus : Script {
                     npc<Neutral>("Hello Bwana, have you been able to get the Ardrigal?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.contains("clean_ardrigal")) {
-                                inventory.remove("clean_ardrigal")
+                            if (inventory.remove("clean_ardrigal")) {
                                 set("jungle_potion", "gave_ardrigal")
                                 item("clean_ardrigal", "You give the Ardrigal to Trufitus.")
                                 npc<Neutral>("Great, you have the Ardrigal! Many thanks.")
@@ -131,8 +130,7 @@ class Trufitus : Script {
                     npc<Neutral>("Greetings Bwana, have you been successful in getting the Sito Foil?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.contains("clean_sito_foil")) {
-                                inventory.remove("clean_sito_foil")
+                            if (inventory.remove("clean_sito_foil")) {
                                 set("jungle_potion", "gave_sito_foil")
                                 item("clean_sito_foil", "You give the Sito Foil to Trufitus.")
                                 npc<Neutral>("Well done Bwana, just two more herbs to collect.")
@@ -155,8 +153,7 @@ class Trufitus : Script {
                     npc<Neutral>("Greetings Bwana, have you been successful in getting the Volencia Moss?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.contains("clean_volencia_moss")) {
-                                inventory.remove("clean_volencia_moss")
+                            if (inventory.remove("clean_volencia_moss")) {
                                 set("jungle_potion", "gave_volencia_moss")
                                 item("clean_volencia_moss", "You give the Volencia Moss to Trufitus.")
                                 npc<Neutral>("Ah Volencia Moss, beautiful. One final herb and the potion will be complete. This is the most difficult to find as it inhabits the darkness of the underground. It is called Rogue's Purse, and is only to be found in")
@@ -178,8 +175,7 @@ class Trufitus : Script {
                     npc<Neutral>("Greetings Bwana, have you been successful in getting the Rogue's Purse?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.contains("clean_rogues_purse")) {
-                                inventory.remove("clean_rogues_purse")
+                            if (inventory.remove("clean_rogues_purse")) {
                                 set("jungle_potion", "gave_rogues_purse")
                                 npc<Neutral>("Most excellent Bwana! You have returned all the herbs to me and, I can finish the preparations for the potion, and at last divine with the gods.")
                                 npc<Neutral>("Many blessings on you! I must now prepare, please excuse me while I make the arrangements.")
@@ -276,11 +272,13 @@ class Trufitus : Script {
         inc("quest_points")
         message("Congratulations, you've completed a quest: <navy>Jungle Potion")
         refreshQuestJournal()
-        questComplete(
-            "Jungle Potion",
-            "1 Quest Point",
-            "775 Herblore XP",
-            item = "clean_marrentill",
-        )
+        longQueue("quest_complete", 1) {
+            questComplete(
+                "Jungle Potion",
+                "1 Quest Point",
+                "775 Herblore XP",
+                item = "clean_marrentill",
+            )
+        }
     }
 }
