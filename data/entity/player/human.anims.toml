@@ -81,3 +81,12 @@ id = 834
 
 [human_read_book]
 id = 1350
+
+[human_pick_wall_start]
+id = 2096
+
+[human_pick_wall_middle]
+id = 2097
+
+[human_pick_wall_end]
+id = 2098

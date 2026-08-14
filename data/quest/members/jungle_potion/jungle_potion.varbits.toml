@@ -1,0 +1,69 @@
+[sharimika]
+id = 892
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[mamma_bufetta]
+id = 893
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[layleen]
+id = 894
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[karaday]
+id = 895
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[safta_doc]
+id = 896
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[gabooty]
+id = 897
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[fanellaman]
+id = 898
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[jagbakoba]
+id = 899
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[murcaily]
+id = 900
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
+
+[rionasta]
+id = 901
+persist = true
+format = "list"
+default = "hidden"
+values = [ "hidden", "trading_stick", "no_trading_stick" ]
