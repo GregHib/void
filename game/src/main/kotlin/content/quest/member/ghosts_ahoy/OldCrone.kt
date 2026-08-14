@@ -159,7 +159,7 @@ class OldCrone : Script {
             npc<Neutral>("All his rituals came from a book written by an ancient sorcerer from the East called Haricanto. Bring me this strange book.")
         }
         if (get("ahoy_given_manual", false)) {
-            // TODO
+            npc<Neutral>("You have given me a translation manual.")
         } else {
             npc<Neutral>("I cannot read the strange letters of the eastern lands. I will need something to help me translate the book.")
         }

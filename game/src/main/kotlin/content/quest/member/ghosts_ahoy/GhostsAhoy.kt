@@ -28,9 +28,12 @@ import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
+import java.util.concurrent.TimeUnit
+import kotlin.collections.firstOrNull
 
 class GhostsAhoy : Script {
 
@@ -259,7 +262,8 @@ class GhostsAhoy : Script {
             }
             if (target.tile.x == 3618 && target.tile.y == 3542 && target.tile.level == 0) {
                 val killed = get("ahoy_killed_lobster", false)
-                if (killed || progress != 4) { // TODO or spawned lobster
+                val lobster = NPCs.at(tile.regionLevel).firstOrNull { it["owner", ""] == accountName }
+                if (killed || progress != 4) {
                     if (progress != 4 ||
                         get("ahoy_given_book", false) ||
                         ownsItem("book_of_haricanto") ||
@@ -271,9 +275,9 @@ class GhostsAhoy : Script {
                         addOrDrop("map_scrap_2")
                         item(item = "map_scrap_2", text = "You find a piece of a map inside the chest.")
                     }
-                } else {
+                } else if (lobster != null) {
                     message("You are attacked by a giant lobster!!")
-                    val lobster = NPCs.add("giant_lobster_ghosts_ahoy", Tile(3616, 3543, 0))
+                    val lobster = NPCs.add("giant_lobster_ghosts_ahoy", Tile(3616, 3543, 0), ticks = TimeUnit.MINUTES.toTicks(8), owner = this)
                     hint(lobster)
                     lobster.interactPlayer(this, "Attack")
                 }
@@ -373,6 +377,3 @@ suspend fun Player.checkGhostspeak(): Boolean {
     }
     return true
 }
-
-// TODO lobster spawn time
-// TODO bill teach with bedsheet
