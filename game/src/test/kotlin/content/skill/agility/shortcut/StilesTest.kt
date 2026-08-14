@@ -58,4 +58,26 @@ internal class StilesTest : WorldTest() {
             assertEquals(target, player.tile)
         }
     }
+
+    @TestFactory
+    fun `Climb the Meiyerditch broken fence`() = listOf(
+        Delta(0, 0) to Tile(3584, 3264),
+        Delta(0, -1) to Tile(3584, 3264),
+        Delta(-1, 0) to Tile(3584, 3264),
+        Delta(0, 1) to Tile(3584, 3263),
+        Delta(0, 2) to Tile(3584, 3263),
+        Delta(-1, 1) to Tile(3584, 3263),
+    ).map { (delta, target) ->
+        dynamicTest("Climb broken fence from $delta to $target") {
+            val objTile = Tile(3584, 3263)
+            val obj = GameObjects.find(objTile, "meiyerditch_broken_fence")
+            val player = createPlayer(objTile.add(delta))
+
+            player.objectOption(obj, "Climb-over")
+
+            tick(4)
+
+            assertEquals(target, player.tile)
+        }
+    }
 }

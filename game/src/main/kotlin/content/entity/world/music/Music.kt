@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.to
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.SongEnd
+import world.gregs.voidps.type.random
 
 class Music(val tracks: MusicTracks) : Script {
 
@@ -20,6 +21,7 @@ class Music(val tracks: MusicTracks) : Script {
             unlockDefaultTracks(this)
             playAreaTrack(this)
             sendUnlocks(this)
+            sendPlaylist(this)
         }
 
         moved { from ->
@@ -117,7 +119,7 @@ class Music(val tracks: MusicTracks) : Script {
         val trackIndex = if (player["playlist_shuffle_enabled", false]) {
             // If shuffle is enabled, play a random song from the playlist
             // TODO: Implement a proper shuffle algorithm if one existed in 2011
-            playlistTracks.random()
+            playlistTracks.random(random)
         } else {
             // If the playlist is enabled, but shuffle is not, play the next song in the list
             playlistTracks[(playlistTracks.indexOf(finishedTrackIndex) + 1) % playlistTracks.size]
@@ -132,6 +134,12 @@ class Music(val tracks: MusicTracks) : Script {
         player.interfaceOptions.unlockAll("music_player", "playlist", 0..23)
     }
 
+    fun sendPlaylist(player: Player) {
+        for (slotNum in 1..12) {
+            player.sendVariable("playlist_slot_$slotNum")
+        }
+    }
+
     /**
      * Add a song to the [Player]s playlist based off of the interface slot that was interacted with.
      * If the interface slot is odd that means that the "+" button was clicked, not right-click add song.
@@ -139,11 +147,15 @@ class Music(val tracks: MusicTracks) : Script {
      * @param interfaceSlot: The slot number of the interface that was clicked
      */
     fun Player.addToPlaylist(interfaceSlot: Int) {
-        if (this["playlist_slot_12", 32767] != 32767) return
+        if (this["playlist_slot_12", 32767] != 32767) {
+            return
+        }
 
         val firstEmptyPlaylistSlot = (1..12).first { this["playlist_slot_$it", 32767] == 32767 }
         var slot = interfaceSlot
-        if (slot % 2 != 0) slot -= 1
+        if (slot % 2 != 0) {
+            slot -= 1
+        }
 
         val trackIndex = slot / 2
         this["playlist_slot_$firstEmptyPlaylistSlot"] = trackIndex

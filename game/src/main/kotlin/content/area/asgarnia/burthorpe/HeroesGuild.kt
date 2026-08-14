@@ -16,11 +16,20 @@ import world.gregs.voidps.engine.inv.replace
 class HeroesGuild : Script {
 
     init {
-        itemOnObjectOperate("amulet_of_glory", "fountain_of_heroes") {
-            if (inventory.replace(it.slot, it.item.id, "amulet_of_glory_4")) {
+        itemOnObjectOperate("amulet_of_glory*", "fountain_of_heroes") {
+            var found = false
+            for (index in inventory.items.indices) {
+                val item = inventory[index]
+                if (item.id.startsWith("amulet_of_glory") && item.id != "amulet_of_glory_4" && inventory.replace(index, item.id, if (item.id.startsWith("amulet_of_glory_t")) "amulet_of_glory_t_4" else "amulet_of_glory_4")) {
+                    found = true
+                }
+            }
+            if (found) {
                 message("You dip the amulet in the fountain...")
                 anim("climb_down")
                 item("amulet_of_glory", "You feel a power emanating from the fountain as it recharges your amulet. You can now rub the amulet to teleport and wear it to get more gems whilst mining.")
+            } else {
+                message("You don't have any amulets of glory that the fountain can recharge.")
             }
         }
 

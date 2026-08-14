@@ -1,7 +1,10 @@
 [spells]
 xp = "int"
+# -1 marks a spell which never deals damage, so it produces no hitsplat at all
 max_hit = "int"
 max_heal = "int"
+# Magic level comes from the spellbook interface, only spells needing a second skill list one
+slayer_level = "int"
 animation = "anim"
 animation_staff = "anim"
 graphic = "gfx"
@@ -352,8 +355,9 @@ animation = "iban_blast"
 graphic = "iban_blast_cast"
 
 [.magic_dart]
-max_hit = -1
+# No max_hit, it scales with magic level; see Damage.maximum
 xp = 300
+slayer_level = 55
 animation = "magic_dart"
 graphic = "magic_dart_cast"
 

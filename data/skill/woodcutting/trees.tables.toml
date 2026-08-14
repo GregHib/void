@@ -155,6 +155,15 @@ logs = "bark"
 [.ivy]
 logs = "poison_ivy_berries"
 
+[.ivy_2]
+logs = "poison_ivy_berries"
+
+[.ivy_3]
+logs = "poison_ivy_berries"
+
+[.ivy_4]
+logs = "poison_ivy_berries"
+
 [.jungle_tree]
 logs = "logs"
 

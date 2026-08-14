@@ -1,20 +1,20 @@
 [corpse_spider]
 id = 7914
-hitpoints = 150
+hitpoints = 47
 combat_def = "corpse_spider"
-respawn_delay = 60
+respawn_delay = 3
 drop_table = "corpse_spider"
 categories = ["corpse_spider"]
-examine = "Could do with gaining a few pounds."
+examine = "A wretched dead soul forced into a spider's shape."
 
 [crawling_corpse_torso]
 id = 7916
-hitpoints = 350
+hitpoints = 87
 combat_def = "crawling_corpse_torso"
-respawn_delay = 60
+respawn_delay = 3
 drop_table = "crawling_corpse_torso"
 categories = ["crawling_corpse_torso"]
-examine = "Could do with gaining a few pounds."
+examine = "A wretched creature brought back against its will."
 
 [crawling_corpse_torso_1]
 id = 7917
@@ -30,12 +30,12 @@ clone = "crawling_corpse_torso"
 
 [corpse_archer]
 id = 7923
-hitpoints = 650
+hitpoints = 90
 combat_def = "corpse_archer"
-respawn_delay = 60
+respawn_delay = 3
 drop_table = "corpse_archer"
 categories = ["corpse_archer"]
-examine = "Could do with gaining a few pounds."
+examine = "Bones and arrows."
 
 [corpse_archer_1]
 id = 7924
@@ -71,12 +71,12 @@ clone = "corpse_archer"
 
 [corpse_mage]
 id = 9612
-hitpoints = 750
+hitpoints = 99
 combat_def = "corpse_mage"
-respawn_delay = 60
+respawn_delay = 3
 drop_table = "corpse_mage"
 categories = ["corpse_mage"]
-examine = "Could do with gaining a few pounds."
+examine = "It casts the magic of death to ease its suffering."
 
 [corpse_mage_1]
 id = 9613

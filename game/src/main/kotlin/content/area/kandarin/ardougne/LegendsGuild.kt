@@ -12,27 +12,47 @@ class LegendsGuild : Script {
 
     init {
         objectOperate("Look", "legends_guild_totem_pole") {
-            if (inventory.contains("combat_bracelet") && inventory.replace("combat_bracelet", "combat_bracelet_4")) {
-                combatBracelet()
-            } else if (inventory.contains("skills_necklace") && inventory.replace("skills_necklace", "skills_necklace_4")) {
-                skillsNecklace()
-            } else {
+            if (!combatBracelets() && !skillsNecklaces()) {
                 statement("This totem pole is truly awe inspiring. It depicts powerful Karamjan animals. It is very well carved and brings a sense of power and spiritual fulfilment to anyone who looks at it.")
                 message("You don't have any jewellery that the totem can recharge.")
             }
         }
 
-        itemOnObjectOperate("combat_bracelet", "legends_guild_totem_pole") {
-            if (inventory.replace(it.slot, it.item.id, "combat_bracelet_4")) {
-                combatBracelet()
-            }
+        itemOnObjectOperate("combat_bracelet*", "legends_guild_totem_pole") {
+            combatBracelets()
         }
 
-        itemOnObjectOperate("skills_necklace", "legends_guild_totem_pole") {
-            if (inventory.replace(it.slot, it.item.id, "skills_necklace_4")) {
-                skillsNecklace()
+        itemOnObjectOperate("skills_necklace*", "legends_guild_totem_pole") {
+            skillsNecklaces()
+        }
+    }
+
+    suspend fun Player.skillsNecklaces(): Boolean {
+        var found = false
+        for (index in inventory.items.indices) {
+            val item = inventory[index]
+            if (item.id.startsWith("skills_necklace") && item.id != "skills_necklace_4" && inventory.replace(index, item.id, "skills_necklace_4")) {
+                found = true
             }
         }
+        if (found) {
+            skillsNecklace()
+        }
+        return found
+    }
+
+    suspend fun Player.combatBracelets(): Boolean {
+        var found = false
+        for (index in inventory.items.indices) {
+            val item = inventory[index]
+            if (item.id.startsWith("combat_bracelet") && item.id != "combat_bracelet_4" && inventory.replace(index, item.id, "combat_bracelet_4")) {
+                found = true
+            }
+        }
+        if (found) {
+            combatBracelet()
+        }
+        return found
     }
 
     suspend fun Player.combatBracelet() {

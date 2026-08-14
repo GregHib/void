@@ -56,14 +56,16 @@ class Werewolf : Script {
             }
         }
 
-        npcCombatDamage(werewolves) { (source) ->
-            if (transform != "") {
+        npcCombatDamage(werewolves) { (source, _, _, weapon) ->
+            if (transform != "" || weapon.id == "wolfbane") {
                 return@npcCombatDamage
             }
-            areaSound("lycanthropy", tile, radius = 5)
             source.mode = EmptyMode
             mode = PauseMode
             queue("werewolf_transform", 1) {
+                areaSound("lycanthropy", tile, radius = 5)
+                anim("werewolf_transform", override = true)
+                delay(1)
                 transform("werewolf")
                 if (source is Player) {
                     interactPlayer(source, "Attack")

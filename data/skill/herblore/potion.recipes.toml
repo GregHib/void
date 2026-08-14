@@ -308,6 +308,16 @@ add = ["antipoison+_3"]
 animation = "mixing_potion"
 message = "You mix the yew roots into your potion"
 
+["antipoison++_potion_finished"]
+skill = "herblore"
+level = 79
+xp = 177.5
+ticks = 2
+remove = ["antipoison++_unf", "magic_roots"]
+add = ["antipoison++_3"]
+animation = "mixing_potion"
+message = "You mix the magic roots into your potion"
+
 [antifire_potion_finished]
 skill = "herblore"
 level = 69

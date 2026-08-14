@@ -45,7 +45,7 @@ class Cutscene(
     }
 
     fun onEnd(destroyInstance: Boolean = true, block: suspend () -> Unit) {
-        player.walkTrigger = {
+        player.walkTrigger {
             player.queue.clear("${name}_cutscene_end")
             player.queue("${name}_cutscene_end") {
                 end(destroyInstance)

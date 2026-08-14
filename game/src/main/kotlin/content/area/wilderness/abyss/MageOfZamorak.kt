@@ -27,6 +27,14 @@ import world.gregs.voidps.type.random
 class MageOfZamorak : Script {
 
     init {
+        npcOperate("Trade", "mage_of_zamorak_wilderness_*") {
+            if (questCompleted("enter_the_abyss")) {
+                openShop("battle_runes_enter_the_abyss")
+            } else {
+                openShop("battle_runes")
+            }
+        }
+
         npcOperate("Teleport", "mage_of_zamorak_wilderness_*") { (target) ->
             teleport(this, target)
         }
@@ -52,7 +60,11 @@ class MageOfZamorak : Script {
 
             choice {
                 option("Let's see what you're selling.") {
-                    openShop("mage_of_zamorak")
+                    if (questCompleted("enter_the_abyss")) {
+                        openShop("battle_runes_enter_the_abyss")
+                    } else {
+                        openShop("battle_runes")
+                    }
                 }
                 if (questCompleted("enter_the_abyss")) {
                     option<Quiz>("Could you teleport me to the Abyss?") {

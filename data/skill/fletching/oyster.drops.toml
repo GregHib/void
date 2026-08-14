@@ -1,0 +1,7 @@
+[oysters]
+roll = 100
+drops = [
+    { id = "oyster_pearl", chance = 69 },
+    { id = "empty_oyster", chance = 30 },
+    { id = "oyster_pearls" },
+]

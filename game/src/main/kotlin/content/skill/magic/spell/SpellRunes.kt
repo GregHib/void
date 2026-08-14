@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -35,6 +36,11 @@ object SpellRunes {
     fun Transaction.removeItems(player: Player, spell: String, message: Boolean = true) {
         val component = InterfaceDefinitions.getComponent(player.spellBook, spell)
         if (component == null || !player.has(Skill.Magic, component.magicLevel, message = message)) {
+            error = TransactionError.Deficient(0)
+            return
+        }
+        val slayerLevel = Tables.intOrNull("spells.$spell.slayer_level")
+        if (slayerLevel != null && !player.has(Skill.Slayer, slayerLevel, if (message) " to cast this spell" else null)) {
             error = TransactionError.Deficient(0)
             return
         }

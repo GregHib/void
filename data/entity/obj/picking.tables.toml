@@ -48,6 +48,12 @@ type = "picking.wheat"
 [.wheat_zanaris]
 type = "picking.wheat"
 
+[.wheat_3]
+type = "picking.wheat"
+
+[.wheat_4]
+type = "picking.wheat"
+
 [.cabbage]
 type = "picking.cabbages"
 
