@@ -35,3 +35,7 @@ id = 1688
 [ahoy_ghost_innkeeper]
 id = 1700
 examine = "Doesn't look like the bar's open anymore."
+
+[ahoy_ghost_villager]
+id = 1697
+examine = "A spooky ghost villager."

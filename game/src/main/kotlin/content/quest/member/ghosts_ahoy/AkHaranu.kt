@@ -1,6 +1,5 @@
 package content.quest.member.ghosts_ahoy
 
-import content.entity.npc.shop.openShop
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
@@ -30,26 +29,12 @@ class AkHaranu : Script {
     private suspend fun Player.introPhase() {
         player<Neutral>("It's nice to see a human face around here.")
         npc<Neutral>("My name Ak-Haranu. I am trader, come from many far across sea in east.")
-        player<Neutral>(
-            "You come from the lands of the East? Do you have anything that can help me " +
-                "translate a book that is scribed in your language?",
-        )
-        npc<Neutral>(
-            "Ak-Haranu may help you. A translation manual I have, much good for reading " +
-                "Eastern language.",
-        )
+        player<Neutral>("You come from the lands of the East? Do you have anything that can help me translate a book that is scribed in your language?")
+        npc<Neutral>("Ak-Haranu may help you. A translation manual I have, much good for reading Eastern language.")
         player<Neutral>("How much do you want for it?")
-        npc<Neutral>(
-            "Ak-Haranu not want money for this book, as is such small thing. But there may " +
-                "be something you could do for me. I am big admirer of Robin, Master Bowman. " +
-                "He staying in village inn.",
-        )
+        npc<Neutral>("Ak-Haranu not want money for this book, as is such small thing. But there may be something you could do for me. I am big admirer of Robin, Master Bowman. He staying in village inn.")
         player<Neutral>("What would you like me to do?")
-        npc<Neutral>(
-            "Please get Master Bowman sign an oak longbow for me, so Ak-Haranu can show " +
-                "family and friends when returning home and become much admired. Then I give " +
-                "you book in exchange.",
-        )
+        npc<Neutral>("Please get Master Bowman sign an oak longbow for me, so Ak-Haranu can show family and friends when returning home and become much admired. Then I give you book in exchange.")
         choice {
             option("Okay, wait here - I'll get you your bow.") {
                 player<Neutral>("Okay, wait here - I'll get you your bow.")
@@ -80,25 +65,18 @@ class AkHaranu : Script {
             }
             else -> {
                 player<Neutral>("Have you got an oak longbow that I can get Robin to sign for you?")
-                npc<Neutral>(
-                    "No, Ak-Haranu afraid that no longbow in supply at moment. You must make " +
-                        "one or buy one.",
-                )
+                npc<Neutral>("No, Ak-Haranu afraid that no longbow in supply at moment. You must make one or buy one.")
             }
         }
     }
 
     private suspend fun Player.postExchange() {
         if (ownsItem("translation_manual") || get("ahoy_given_manual", false)) {
-            player<Neutral>(
-                "Thank you for the translation manual, Ak-Haranu - it may save many souls before long.",
-            )
+            player<Neutral>("Thank you for the translation manual, Ak-Haranu - it may save many souls before long.")
             npc<Neutral>("And Ak-Haranu thanks you for kind gift of longbow.")
         } else {
             player<Neutral>("I'm sorry, I seem to have lost the translation manual you gave me.")
-            npc<Neutral>(
-                "Ah, no worry, my friend. For the gift of longbow Ak-Haranu would give a thousand books.",
-            )
+            npc<Neutral>("Ah, no worry, my friend. For the gift of longbow Ak-Haranu would give a thousand books.")
             inventory.add("translation_manual")
             item(item = "translation_manual", text = "Ak-Haranu gives you another translation manual.")
         }

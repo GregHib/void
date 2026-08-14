@@ -10,14 +10,13 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
@@ -74,7 +73,7 @@ class Necrovarus : Script {
         npc<Neutral>("No - listen to me. Go from this place and do not return, or I will remove your head.")
     }
 
-    private suspend fun Player.petitionFlow(necrovarus: world.gregs.voidps.engine.entity.character.npc.NPC) {
+    private suspend fun Player.petitionFlow(necrovarus: NPC) {
         val petition = get("ahoy_signaturecounter", 0)
         val doorUnlocked = get("ahoy_templedoor_unlocked", false)
         when {
@@ -94,63 +93,38 @@ class Necrovarus : Script {
             }
             petition == 11 -> presentPetition(necrovarus)
             petition >= 1 -> {
-                player<Neutral>(
-                    "I must let you know, Necrovarus, that I am collecting signatures from " +
-                        "the citizens of Port Phasmatys.",
-                )
-                npc<Neutral>(
-                    "Oh, I do admire an activist. Do let me know when you're finished, and " +
-                        "I'll give it my fullest consideration.",
-                )
+                player<Neutral>("I must let you know, Necrovarus, that I am collecting signatures from the citizens of Port Phasmatys.")
+                npc<Neutral>("Oh, I do admire an activist. Do let me know when you're finished, and I'll give it my fullest consideration.")
             }
-
             else -> {
-                player<Neutral>(
-                    "Wheels have been set in motion, Necrovarus; wheels that will set the " +
-                        "citizens of Port Phasmatys free.",
-                )
+                player<Neutral>("Wheels have been set in motion, Necrovarus; wheels that will set the citizens of Port Phasmatys free.")
                 npc<Neutral>("Oh goody goody. I just can't wait.")
             }
         }
     }
 
-    private suspend fun Player.presentPetition(necrovarus: world.gregs.voidps.engine.entity.character.npc.NPC) {
-        player<Neutral>(
-            "Necrovarus, I am presenting you with a petition form that has been signed by 10 " +
-                "citizens of Port Phasmatys.",
-        )
+    private suspend fun Player.presentPetition(necrovarus: NPC) {
+        player<Neutral>("Necrovarus, I am presenting you with a petition form that has been signed by 10 citizens of Port Phasmatys.")
         npc<Neutral>("A petition you say? Continue, mortal.")
-        player<Neutral>(
-            "It says that the citizens of Port Phasmatys should have the right to choose " +
-                "whether they pass over into the next world or not, and not have this " +
-                "decided by the powers that be on their behalf.",
-        )
+        player<Neutral>("It says that the citizens of Port Phasmatys should have the right to choose whether they pass over into the next world or not, and not have this decided by the powers that be on their behalf.")
         npc<Neutral>("I see.")
         player<Neutral>("So you will let them pass over if they wish?")
         npc<Neutral>("Oh yes.")
         player<Shifty>("Really?")
-        npc<Neutral>(
-            "NO!!!!! Get out of my sight before I burn every ounce of flesh from your bones!!!!!",
-        )
+        npc<Neutral>("NO!!!!! Get out of my sight before I burn every ounce of flesh from your bones!!!!!")
         set("ahoy_signaturecounter", 31)
-        inventory.remove("petition_form")
-        addOrDrop("ashes")
+        inventory.replace("petition_form", "ashes")
         statement("The petition form turns to ashes in your hand.")
         statement("In his rage, Necrovarus drops a key on the floor.")
         FloorItems.add(necrovarus.tile, "bone_key_ghosts_ahoy", revealTicks = 0, disappearTicks = 300, owner = this)
     }
 
     private suspend fun Player.commandPhase() {
-        npc<Neutral>(
-            "You dare to face me again - you must be truly insane!!!!",
-        )
+        npc<Neutral>("You dare to face me again - you must be truly insane!!!!")
         if (!equipment.contains("ghostspeak_amulet_enchanted")) {
             return
         }
-        player<Neutral>(
-            "No, Necrovarus, I am not insane. With this enchanted amulet of ghostspeak I have " +
-                "the power to command you to do my will!",
-        )
+        player<Neutral>("No, Necrovarus, I am not insane. With this enchanted amulet of ghostspeak I have the power to command you to do my will!")
         commandChoice()
     }
 
@@ -171,9 +145,7 @@ class Necrovarus : Script {
     private suspend fun Player.releaseBan() {
         item(
             item = "ghostspeak_amulet_enchanted",
-            text = "A beam of intense green light radiates out from the amulet of ghostspeak, " +
-                "enveloping Necrovarus in its power. His eyes become softer, and appear to " +
-                "stare into nothingness.",
+            text = "A beam of intense green light radiates out from the amulet of ghostspeak, enveloping Necrovarus in its power. His eyes become softer, and appear to stare into nothingness.",
         )
         ghosts_ahoy = 7
         equipment.replace(EquipSlot.Weapon.index, "ghostspeak_amulet_enchanted", "ghostspeak_amulet")
@@ -190,9 +162,7 @@ class Necrovarus : Script {
     private suspend fun Player.joke() {
         item(
             item = "ghostspeak_amulet_enchanted",
-            text = "A beam of intense green light radiates out from the amulet of ghostspeak, " +
-                "enveloping Necrovarus in its power. His eyes become softer, and appear to " +
-                "stare into nothingness.",
+            text = "A beam of intense green light radiates out from the amulet of ghostspeak, enveloping Necrovarus in its power. His eyes become softer, and appear to stare into nothingness.",
         )
         npc<Neutral>("Knock knock")
         player<Neutral>("Who's there?")
@@ -208,9 +178,7 @@ class Necrovarus : Script {
     private suspend fun Player.chicken() {
         item(
             item = "ghostspeak_amulet_enchanted",
-            text = "A beam of intense green light radiates out from the amulet of ghostspeak, " +
-                "enveloping Necrovarus in its power. His eyes become softer, and appear to " +
-                "stare into nothingness.",
+            text = "A beam of intense green light radiates out from the amulet of ghostspeak, enveloping Necrovarus in its power. His eyes become softer, and appear to stare into nothingness.",
         )
         npc<Neutral>("Cluck cluck squuuaaaakkkk cluck cluck")
         npc<Neutral>("I think I've laid an egg...")
@@ -221,15 +189,9 @@ class Necrovarus : Script {
     }
 
     private suspend fun Player.postQuestTaunt() {
-        player<Neutral>(
-            "Told you I'd defeat you, Necrovarus. My advice to you is to pass over to the " +
-                "next world yourself with everybody else.",
-        )
+        player<Neutral>("Told you I'd defeat you, Necrovarus. My advice to you is to pass over to the next world yourself with everybody else.")
         npc<Neutral>("I should fry you for what you have done...")
-        player<Neutral>(
-            "Quiet, evil priest!! If you try anything I will command you again, but this time " +
-                "it will be to throw yourself into the Endless Void for the rest of eternity.",
-        )
+        player<Neutral>("Quiet, evil priest!! If you try anything I will command you again, but this time it will be to throw yourself into the Endless Void for the rest of eternity.")
         npc<Neutral>("Please no! I will do whatever you say!!")
     }
 }

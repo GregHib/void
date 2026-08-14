@@ -1,6 +1,8 @@
 package content.area.morytania.port_phasmatys
 
 import content.entity.combat.hit.damage
+import content.entity.combat.killer
+import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import content.entity.player.effect.energy.runEnergy
 import content.quest.member.ghosts_ahoy.GhostsAhoy
@@ -12,12 +14,15 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
@@ -110,6 +115,30 @@ class WreckedGhostShip : Script {
             set("ahoy_windspeed", !lowWind)
             interfaces.sendText("ahoy_windspeed", "content", if (lowWind) "High" else "Low")
             random.nextInt(0..16) + 2
+        }
+
+        objectOperate("Talk-to", "ahoy_pirate_captain") {
+            statement("The pirate captain ignores you and continues to stare lifelessly at nothing, as he has clearly been dead for some time.")
+        }
+
+        itemOnObjectOperate("chest_key_ghosts_ahoy", "ahoy_pirate_chest_locked") { interaction ->
+            if (!interaction.target.tile.equals(3619, 3545, 1)) {
+                return@itemOnObjectOperate noInterest()
+            }
+            if (get("ahoy_subquest_toyboat", 0) == 3) {
+                return@itemOnObjectOperate message("The chest is already unlocked.")
+            }
+            inventory.remove("chest_key_ghosts_ahoy")
+            sound("unlock")
+            set("ahoy_subquest_toyboat", 3)
+            item(item = "chest_key_ghosts_ahoy", text = "You unlock the chest.")
+        }
+
+        npcDeath("giant_lobster_ghosts_ahoy") {
+            val killer = killer
+            if (killer is Player) {
+                killer["ahoy_killed_lobster"] = true
+            }
         }
     }
 

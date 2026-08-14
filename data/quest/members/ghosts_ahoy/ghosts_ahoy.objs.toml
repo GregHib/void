@@ -37,3 +37,13 @@ examine = "A long-dead pirate captain, slumped on his bunk."
 [phasmatys_barrier_north]
 id = 52761
 examine = "A ghostly barrier."
+
+[ahoy_harbour_door_opened]
+id = 5245
+material = "creakydoor"
+examine = "Looks a bit tatty..."
+
+[ahoy_harbour_door_closed]
+id = 5244
+material = "creakydoor"
+examine = "Looks a bit tatty..."

@@ -1,5 +1,6 @@
 package content.quest.member.ghosts_ahoy
 
+import FakeRandom
 import WorldTest
 import dialogueOption
 import itemOnItem
@@ -12,13 +13,16 @@ import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.setRandom
 
 class GhostsAhoyTest : WorldTest() {
     override var loadNpcs: Boolean = true
@@ -279,5 +283,84 @@ class GhostsAhoyTest : WorldTest() {
         player.skipDialogues()
         assertEquals(1, player.inventory.count("petition_form"))
 
+        // Petition
+        player.equipment.set(EquipSlot.Hat.index, "bedsheet_ectoplasm")
+        player.tele(3661, 3496)
+        player.inventory.add("ecto_token", 5)
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+        val villager = NPCs.findBySpawn(Tile(3661, 3497), "ahoy_ghost_villager")
+        player.npcOption(villager, "Talk-To")
+        tick(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        assertEquals(2, player["ahoy_signaturecounter", 0])
+
+        player["ahoy_signaturecounter"] = 11
+        player.tele(3660, 3500)
+        player.npcOption(grava, "Talk-To")
+        tick(1)
+        player.skipDialogues()
+
+        // Necrovarus
+        player.tele(3660, 3517)
+        player.npcOption(necrovarus, "Talk-To")
+        tick(1)
+        player.skipDialogues()
+        tick(2)
+        assertEquals(31, player["ahoy_signaturecounter", 0])
+
+        assertNotNull(FloorItems.firstOrNull(necrovarus.tile, "bone_key_ghosts_ahoy"))
+        player.inventory.add("bone_key_ghosts_ahoy")
+
+        // Open door
+        player.tele(3655, 3514, 1)
+        val door = GameObjects.find(Tile(3656, 3514, 1), "ahoy_harbour_door_closed")
+        player.itemOnObject(door, player.inventory.indexOf("bone_key_ghosts_ahoy"))
+        tick(4)
+        assertTrue(player["ahoy_templedoor_unlocked", false])
+
+        player.objectOption(door, "Open")
+        tick(5)
+        assertEquals(Tile(3656, 3514, 1), player.tile)
+
+        // Open coffin
+        player.tele(3658, 3514, 1)
+        var coffin = GameObjects.find(Tile(3659, 3513, 1), "ahoy_necrovarus_coffin_closed")
+        player.objectOption(coffin, "Open")
+        tick(1)
+        coffin = GameObjects.find(Tile(3659, 3513, 1), "ahoy_necrovarus_coffin_open")
+        player.objectOption(coffin, "Search")
+        tick(1)
+        player.skipDialogues()
+        assertEquals(1, player.inventory.count("mystical_robes"))
+
+        // Return all items to old crone
+        player.tele(3461, 3557, 0)
+        player.npcOption(oldCrone, "Talk-To")
+        tick(1)
+        player.skipDialogues()
+        tick(5)
+        assertEquals("ghostspeak_amulet_enchanted", player.equipped(EquipSlot.Amulet).id)
+        assertEquals(6, player["ahoy_questvar", 0])
+
+        // Command Necrovarus
+        player.tele(3660, 3517)
+        player.npcOption(necrovarus, "Talk-To")
+        tick(1)
+        player.skipDialogues()
+        player.dialogueOption(1)
+        player.skipDialogues()
+        assertEquals(7, player["ahoy_questvar", 0])
+
+        // Return to vel
+        player.tele(3677, 3509)
+        player.npcOption(velorina, "Talk-To")
+        tick(1)
+        player.skipDialogues()
+        assertEquals(1, player.inventory.count("ectophial"))
+        assertEquals(8, player["ahoy_questvar", 0])
     }
 }

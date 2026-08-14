@@ -27,24 +27,13 @@ class GhostInnKeeper : Script {
     private suspend fun Player.menu() {
         choice {
             option<Quiz>("Can I buy a beer?") {
-                npc<Neutral>(
-                    "Sorry, but our pumps dried up over half a century ago. We of this village " +
-                        "do not have much of a thirst these days.",
-                )
+                npc<Neutral>("Sorry, but our pumps dried up over half a century ago. We of this village do not have much of a thirst these days.")
             }
             option<Quiz>("Can I hear some gossip?") {
                 npc<Neutral>("I suppose, as long as you keep it to yourself...")
-                npc<Neutral>(
-                    "You see Gravingas out there in the marketplace? He speaks for the silent " +
-                        "majority of Port Phasmatys, for those of us who would prefer to pass " +
-                        "over into the next world.",
-                )
+                npc<Neutral>("You see Gravingas out there in the marketplace? He speaks for the silent majority of Port Phasmatys, for those of us who would prefer to pass over into the next world.")
                 if (ghosts_ahoy == 0) {
-                    npc<Neutral>(
-                        "But old Gravingas is far too obvious in his methods. Now Velorina, " +
-                            "she's a ghost of a different colour altogether. If you feel like " +
-                            "helping our cause at all, go speak to Velorina.",
-                    )
+                    npc<Neutral>("But old Gravingas is far too obvious in his methods. Now Velorina, she's a ghost of a different colour altogether. If you feel like helping our cause at all, go speak to Velorina.")
                 }
             }
             option<Neutral>("Do you have any jobs I can do?") {
@@ -52,17 +41,11 @@ class GhostInnKeeper : Script {
                     npc<Neutral>("Well, you could take that bedsheet through to Robin like I asked.")
                     return@option
                 }
-                npc<Neutral>(
-                    "Yes, actually, I do. We have a very famous Master Bowman named Robin staying " +
-                        "with us at the moment. Could you take him some clean bed linen for me?",
-                )
+                npc<Neutral>("Yes, actually, I do. We have a very famous Master Bowman named Robin staying with us at the moment. Could you take him some clean bed linen for me?")
                 choice {
                     option<Happy>("Yes, I'd be delighted.") {
                         addOrDrop("bedsheet")
-                        npc<Neutral>(
-                            "Oh, thank you. Be careful with that Robin, though - he's far too " +
-                                "full of himself, that one.",
-                        )
+                        npc<Neutral>("Oh, thank you. Be careful with that Robin, though - he's far too full of himself, that one.")
                     }
                     option<Neutral>("No, I didn't mean a job like that.")
                 }

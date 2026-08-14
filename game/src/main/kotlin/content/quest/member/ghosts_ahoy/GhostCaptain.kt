@@ -29,19 +29,12 @@ class GhostCaptain : Script {
                     player<Neutral>("I can say in all honesty that it is not.")
                     npc<Neutral>("Well, whoever it belongs to, it's not coming on this ship!")
                 } else {
-                    npc<Neutral>(
-                        "Would you like to visit Dragontooth Island? If so, I recommend you " +
-                            "take off that sheet first. The winds are very strong out at sea.",
-                    )
+                    npc<Neutral>("Would you like to visit Dragontooth Island? If so, I recommend you take off that sheet first. The winds are very strong out at sea.")
                 }
                 return@npcOperate
             }
             if (target.id == "ahoy_ghost_captain_1") {
-                npc<Neutral>(
-                    "Would you like to visit Dragontooth Island? It is a most pleasant island " +
-                        "in the sea between Morytania and the lands of the east. It'll cost " +
-                        "you 25 ectotokens for the return trip.",
-                )
+                npc<Neutral>("Would you like to visit Dragontooth Island? It is a most pleasant island in the sea between Morytania and the lands of the east. It'll cost you 25 ectotokens for the return trip.")
                 askToSail(toDragontooth = true)
             } else {
                 offerReturn()

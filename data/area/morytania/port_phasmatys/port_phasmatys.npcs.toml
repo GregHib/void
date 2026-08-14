@@ -17,10 +17,6 @@ id = 1688
 id = 1694
 examine = "A master bowman."
 
-[ghost_villager_port_phasmatys]
-id = 1697
-examine = "A spooky ghost villager."
-
 [tortured_soul]
 id = 1698
 hitpoints = 510

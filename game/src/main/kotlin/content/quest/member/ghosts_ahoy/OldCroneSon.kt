@@ -90,10 +90,7 @@ class OldCroneSon : Script {
             npc<Neutral>("Wonderful, wonderful! Mother's coming to get me!")
         } else {
             player<Quiz>("I've lost my key to the chest - do you have another one?")
-            npc<Neutral>(
-                "What? But the chest is only just over there! How on RuneScape did you lose it " +
-                    "in that short distance?",
-            )
+            npc<Neutral>("What? But the chest is only just over there! How on RuneScape did you lose it in that short distance?")
             player<Sad>("Sorry, I won't do it again...")
             addOrDrop("chest_key_ghosts_ahoy")
             item(item = "chest_key_ghosts_ahoy", text = "The old man grudgingly gives you another chest key.")

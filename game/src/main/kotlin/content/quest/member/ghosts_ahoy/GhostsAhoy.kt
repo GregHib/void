@@ -1,18 +1,10 @@
 package content.quest.member.ghosts_ahoy
 
-import content.entity.combat.hit.directHit
-import content.entity.combat.killer
-import content.entity.effect.clearTransform
 import content.entity.effect.transform
-import content.entity.obj.door.Door
-import content.entity.obj.door.walkThroughDoor
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
-import content.entity.player.dialogue.Scared
-import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.quest.questComplete
@@ -23,13 +15,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.hint
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.close
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -37,21 +25,16 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMa
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
-import world.gregs.voidps.type.random
-import kotlin.random.nextInt
 
 class GhostsAhoy : Script {
 
     init {
-
         questJournalOpen("ghosts_ahoy") {
             val progress = ghosts_ahoy
             val lines = mutableListOf<String>()
@@ -299,145 +282,26 @@ class GhostsAhoy : Script {
             message("You search the chest but find nothing.")
         }
 
-        objectOperate("Open", "ahoy_necrovarus_coffin_closed") { (target) ->
-            message("The coffin creaks open...")
-            target.replace("ahoy_necrovarus_coffin_open", ticks = 100)
-        }
-
-        objectOperate("Search", "ahoy_necrovarus_coffin_open") {
-            if (get("ahoy_given_robes", false) || ownsItem("mystical_robes")) {
-                noInterest()
-                return@objectOperate
-            }
-            item(
-                item = "mystical_robes",
-                text = "You take the Robes of Necrovarus from the remains of his mortal body.",
-            )
-            addOrDrop("mystical_robes")
-        }
-
-        objectOperate("Close", "ahoy_necrovarus_coffin_open") { (target) ->
-            message("You close the coffin.")
-            target.replace("ahoy_necrovarus_coffin_closed", ticks = 3)
-        }
-
-        objectOperate("Open", "ahoy_harbour_door_closed") { (target) ->
-            if (target.tile.x == 3656 && target.tile.y == 3514 && target.tile.level == 1) {
-                if (get("ahoy_templedoor_unlocked", false)) {
-                    walkThroughDoor(
-                        target = target,
-                        enter = tile.x < target.tile.x,
-                        enterOffset = -1,
-                        exitOffset = 0,
-                        openId = "ahoy_harbour_door_opened",
-                        openRotation = 1,
-                        openOffset = -1,
-                        openSound = "creakydoor_open",
-                    )
-                    return@objectOperate
-                }
-                val disciple = NPCs.find(tile.regionLevel) { it.id.startsWith("ghost_disciple_port_phasmatys") }
-                talkWith(disciple)
-                npc<Neutral>("What are you doing going in there?")
-                player<Scared>("Err, I was just curious...")
-                npc<Neutral>(
-                    "Inside that room is a coffin, inside which lie the mortal " +
-                            "remains of our most glorious master, Necrovarus. None may enter.",
-                )
-
-                return@objectOperate
-            }
-            Door.openDoor(this, target)
-        }
-
-        objectOperate("Talk-to", "ahoy_pirate_captain") {
-            statement(
-                "The pirate captain ignores you and continues to stare lifelessly at " +
-                        "nothing, as he has clearly been dead for some time.",
-            )
-        }
-
-        // === Item-on-object hooks ===
-
-        itemOnObjectOperate("chest_key_ghosts_ahoy", "ahoy_pirate_chest_locked") { interaction ->
-            if (!interaction.target.tile.equals(3619, 3545, 1)) {
-                return@itemOnObjectOperate noInterest()
-            }
-            if (get("ahoy_subquest_toyboat", 0) == 3) {
-                return@itemOnObjectOperate message("The chest is already unlocked.")
-            }
-            inventory.remove("chest_key_ghosts_ahoy")
-            sound("unlock")
-            set("ahoy_subquest_toyboat", 3)
-            item(item = "chest_key_ghosts_ahoy", text = "You unlock the chest.")
-        }
-
-        itemOnObjectOperate("bone_key_ghosts_ahoy", "ahoy_harbour_door_closed") { interaction ->
-            if (interaction.target.tile.x != 3656 ||
-                interaction.target.tile.y != 3514 ||
-                interaction.target.tile.level != 1
-            ) {
-                return@itemOnObjectOperate noInterest()
-            }
-            if (get("ahoy_templedoor_unlocked", false)) {
-                return@itemOnObjectOperate message("The door is already unlocked.")
-            }
-            sound("unlock")
-            set("ahoy_templedoor_unlocked", true)
-            inventory.remove("bone_key_ghosts_ahoy")
-            message("You unlock the door.")
-        }
-
-        // === Item options ===
-
-        itemOption("Count", "petition_form") {
-            val signed = (get("ahoy_signaturecounter", 0) - 1).coerceAtLeast(0)
-            when (signed) {
-                0 -> message("You haven't got any signatures yet.")
-                1 -> message("You have obtained 1 signature.")
-                else -> message("You have obtained $signed signatures.")
-            }
-        }
-
-        itemOption("Drop", "petition_form") {
-            inventory.remove("petition_form")
-            message("You drop the petition form; it blows away in the wind.")
-        }
-
         itemOption("Repair", "model_ship") {
-            if (inventory.contains("silk") &&
-                inventory.contains("needle") &&
-                inventory.contains("thread") &&
-                inventory.contains("knife")
-            ) {
-                inventory.remove("silk")
-                inventory.remove("thread", 1)
-                inventory.replace("model_ship", "model_ship_silk")
-                item(item = "model_ship_silk", text = "You replace the toy boat's missing flag.")
-            } else {
-                statement(
-                    "You need some silk to replace the flag, something to sew it to the " +
-                            "boat, and something to cut the flag to the right size.",
-                )
+            if (inventory.contains("needle") && inventory.contains("knife")) {
+                val success = inventory.transaction {
+                    remove("silk")
+                    remove("thread", 1)
+                    replace("model_ship", "model_ship_silk")
+                }
+                if (success) {
+                    item(item = "model_ship_silk", text = "You replace the toy boat's missing flag.")
+                    return@itemOption
+                }
             }
+            statement("You need some silk to replace the flag, something to sew it to the boat, and something to cut the flag to the right size.")
         }
 
         itemOption("Inspect", "model_ship_silk") {
             item(
                 item = "model_ship_silk",
-                text = "The top of the flag is ${flagColor(get("ahoy_toy_top", 0))}.<br>" +
-                        "The skull emblem is ${flagColor(get("ahoy_toy_skull", 0))}.<br>" +
-                        "The bottom of the flag is ${flagColor(get("ahoy_toy_bottom", 0))}.",
+                text = "The top of the flag is ${flagColor(get("ahoy_toy_top", 0))}.<br>The skull emblem is ${flagColor(get("ahoy_toy_skull", 0))}.<br>The bottom of the flag is ${flagColor(get("ahoy_toy_bottom", 0))}.",
             )
-        }
-
-        // === NPC death ===
-
-        npcDeath("giant_lobster_ghosts_ahoy") {
-            val killer = killer
-            if (killer is Player) {
-                killer["ahoy_killed_lobster"] = true
-            }
         }
 
         itemOption("Dig", "spade") {
@@ -475,8 +339,6 @@ fun Player.sendGhostsAhoyReward() {
     inc("quest_points", 2)
     AuditLog.event(this, "quest_completed", "ghosts_ahoy")
     ghosts_ahoy = 8
-    // Java completeQuest() side-effects: lock subquest varbits to their finished values and
-    // randomise the in-world mast flag colours for inspection.
     set("ahoy_given_manual", true)
     set("ahoy_given_robes", true)
     set("ahoy_given_book", true)
@@ -513,6 +375,4 @@ suspend fun Player.checkGhostspeak(): Boolean {
 }
 
 // TODO lobster spawn time
-// TODO bedsheet runs when interacting
-// TODO <br> adds an extra line ?
 // TODO bill teach with bedsheet

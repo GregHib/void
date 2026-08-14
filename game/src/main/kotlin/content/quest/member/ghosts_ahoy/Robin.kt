@@ -75,10 +75,7 @@ class Robin : Script {
         player<Neutral>("Oh, Robin, Master Bowman, I see.")
         npc<Neutral>("So have you heard of me?")
         player<Neutral>("No.")
-        npc<Neutral>(
-            "Would you do me a favour? I appear to have run out of bed linen. Can you run along " +
-                "to the innkeeper and get me a clean bedsheet?",
-        )
+        npc<Neutral>("Would you do me a favour? I appear to have run out of bed linen. Can you run along to the innkeeper and get me a clean bedsheet?")
         choice {
             option<Neutral>("Anything for a famous person such as yourself.") {
                 npc<Neutral>("Now that sounds more like it. Run along now, get me my sheet.")
@@ -99,15 +96,9 @@ class Robin : Script {
         if (inventory.contains("oak_longbow")) {
             player<Quiz>("Would you sign this oak longbow for me?")
             npc<Neutral>("I'm sorry, I don't sign autographs.")
-            npc<Neutral>(
-                "While you're here, though, why don't you have a game of Runedraw with me? " +
-                    "If you've got 25 gold pieces I've got a bag of runes we can use.",
-            )
+            npc<Neutral>("While you're here, though, why don't you have a game of Runedraw with me? If you've got 25 gold pieces I've got a bag of runes we can use.")
         } else {
-            npc<Neutral>(
-                "Hey you, why don't you have a game of Runedraw with me? If you've got 25 gold " +
-                    "pieces I've got a bag of runes we can use.",
-            )
+            npc<Neutral>("Hey you, why don't you have a game of Runedraw with me? If you've got 25 gold pieces I've got a bag of runes we can use.")
         }
         runedrawOptions(withDebt = false)
     }
@@ -138,17 +129,9 @@ class Robin : Script {
                 start()
             }
             option<Quiz>("How do you play Runedraw?") {
-                npc<Neutral>(
-                    "Two players take turns to draw a rune from a bag, which contains ten " +
-                        "runes in total. Each rune has a different value: an air rune is worth " +
-                        "one point, up to a Nature rune which is worth nine points.",
-                )
+                npc<Neutral>("Two players take turns to draw a rune from a bag, which contains ten runes in total. Each rune has a different value: an air rune is worth one point, up to a Nature rune which is worth nine points.")
                 npc<Neutral>("If a player draws the Death rune then the game is over, and they have lost.")
-                npc<Neutral>(
-                    "A player can choose to hold if they wish and not draw any more runes, but " +
-                        "this runs the risk of the other player drawing more runes until they " +
-                        "have a greater points total and win.",
-                )
+                npc<Neutral>("A player can choose to hold if they wish and not draw any more runes, but this runs the risk of the other player drawing more runes until they have a greater points total and win.")
             }
             if (withDebt) {
                 option<Angry>("No, you didn't pay up the last time you lost.")
@@ -211,7 +194,6 @@ class Robin : Script {
         val playerSum = get("ahoy_player_runedraw_sum", 0)
         val robinSum = get("ahoy_robin_runedraw_sum", 0)
         val held = get("ahoy_runedraw_held", 0) == 1
-
         when {
             turn + 1 == 10 -> if (playerSum > robinSum) sendWin() else sendLoss()
             roll == 9 -> sendWin()
@@ -220,7 +202,6 @@ class Robin : Script {
                 set("ahoy_player_runedraw_turn", get("ahoy_player_runedraw_turn", 0) + 1)
                 robinTurn()
             }
-
             else -> {
                 interfaces.sendVisibility("ahoy_runedraw", "runedraw_btn_draw", true)
                 interfaces.sendVisibility("ahoy_runedraw", "runedraw_btn_hold", true)
@@ -254,10 +235,7 @@ class Robin : Script {
         val stage = get("ahoy_subquest_bow", 0)
 
         if (stage == 6) {
-            player<Angry>(
-                "I've had enough of you not paying up - you owe me 100 gold coins. " +
-                    "I'm going to tell the ghosts what you're doing.",
-            )
+            player<Angry>("I've had enough of you not paying up - you owe me 100 gold coins. I'm going to tell the ghosts what you're doing.")
             npc<Neutral>("Please don't do that!!! They will suck the life from my bones!!!")
             player<Neutral>("How about you signing my longbow then?")
             handleBowSign(extraSign = false)
@@ -284,9 +262,7 @@ class Robin : Script {
             }
 
             "win" -> {
-                player<Quiz>(
-                    "So are you going to pay up then? You owe me ${(stage - 2) * 25} gold coins!",
-                )
+                player<Quiz>("So are you going to pay up then? You owe me ${(stage - 2) * 25} gold coins!")
                 npc<Neutral>("How about another game? I'll pay you back with the winnings.")
                 player<Quiz>("What if you lose again?")
                 npc<Neutral>("Er ... we'll deal with that when we come to it.")

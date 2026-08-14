@@ -9,8 +9,10 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.timer.Timer
 
 class Gravingas : Script {
@@ -75,10 +77,7 @@ class Gravingas : Script {
                 }
                 petition > 0 -> petitionStatus(petition)
                 else -> {
-                    npc<Neutral>(
-                        "Will you join with me and protest against the evil desires of " +
-                            "Necrovarus and his disciples?",
-                    )
+                    npc<Neutral>("Will you join with me and protest against the evil desires of Necrovarus and his disciples?")
                     askToJoin()
                 }
             }
@@ -95,6 +94,19 @@ class Gravingas : Script {
         npcTimerTick("protester_standardspeak_multi,protester_ghostspeak_multi") {
             say(if (id == "protester_standardspeak_multi") amulet.random() else noAmulet.random())
             Timer.CONTINUE
+        }
+
+        itemOption("Count", "petition_form") {
+            when (val signed = (get("ahoy_signaturecounter", 0) - 1).coerceAtLeast(0)) {
+                0 -> message("You haven't got any signatures yet.")
+                1 -> message("You have obtained 1 signature.")
+                else -> message("You have obtained $signed signatures.")
+            }
+        }
+
+        itemOption("Drop", "petition_form") {
+            inventory.remove("petition_form")
+            message("You drop the petition form; it blows away in the wind.")
         }
     }
 
