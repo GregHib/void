@@ -19,7 +19,7 @@ import world.gregs.voidps.type.Tile
 
 class GhostCaptain : Script {
     init {
-        npcOperate("Talk-To", "ahoy_ghost_captain_*") { (target) ->
+        npcOperate("Talk-To", "ghost_captain*") { (target) ->
             if (!checkGhostspeak()) return@npcOperate
             if (equipment.contains("bedsheet") || equipment.contains("bedsheet_ectoplasm")) {
                 if (equipment.contains("bedsheet_ectoplasm")) {

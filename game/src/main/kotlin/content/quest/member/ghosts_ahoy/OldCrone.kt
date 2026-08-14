@@ -96,7 +96,6 @@ class OldCrone : Script {
             npc<Neutral>("Oh, no thanks; I'm not thirsty anymore.")
             return
         }
-
         when (itemUsed.id) {
             "cup_of_milky_tea_ghosts_ahoy" -> {
                 set("ahoy_subquest_nettletea", 3)

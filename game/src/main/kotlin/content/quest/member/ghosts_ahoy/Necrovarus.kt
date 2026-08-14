@@ -66,10 +66,7 @@ class Necrovarus : Script {
         npc<Neutral>("Silence!! Or I will incinerate the flesh from your bones!!!")
         player<Scared>("But she-")
         ghosts_ahoy = 2
-        npc<Neutral>(
-            "Get out of my sight!! Or I promise you that you will regret your insolence for " +
-                "the rest of eternity!!!",
-        )
+        npc<Neutral>("Get out of my sight!! Or I promise you that you will regret your insolence for the rest of eternity!!!")
     }
 
     private suspend fun Player.ignored() {
@@ -82,16 +79,9 @@ class Necrovarus : Script {
         val doorUnlocked = get("ahoy_templedoor_unlocked", false)
         when {
             petition in 1..11 && !inventory.contains("petition_form") || doorUnlocked -> {
-                player<Neutral>(
-                    "It matters not that you ignore your citizens' wishes, Necrovarus. Wheels " +
-                        "have been set in motion, wheels that will set them free.",
-                )
-                npc<Neutral>(
-                    "I have almost completely lost patience with you, mortal. Another word, " +
-                        "and every threat I have uttered will be made real for you.",
-                )
+                player<Neutral>("It matters not that you ignore your citizens' wishes, Necrovarus. Wheels have been set in motion, wheels that will set them free.")
+                npc<Neutral>("I have almost completely lost patience with you, mortal. Another word, and every threat I have uttered will be made real for you.")
             }
-
             petition == 31 -> {
                 player<Neutral>("So, have you changed your mind yet?")
                 npc<Neutral>("NEVER!!!!!")
@@ -102,7 +92,6 @@ class Necrovarus : Script {
                     FloorItems.add(necrovarus.tile, "bone_key_ghosts_ahoy", revealTicks = 0, disappearTicks = 300, owner = this)
                 }
             }
-
             petition == 11 -> presentPetition(necrovarus)
             petition >= 1 -> {
                 player<Neutral>(

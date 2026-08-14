@@ -34,7 +34,6 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
-import world.gregs.voidps.engine.entity.character.player.wearingGhostspeak
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
@@ -578,14 +577,6 @@ class GhostsAhoy : Script {
             }
         }
 
-        itemAdded("ghostspeak_amulet_enchanted", "worn_equipment", EquipSlot.Amulet) {
-            set("wearing_ghost_speak_amulet", true)
-        }
-
-        itemRemoved("ghostspeak_amulet_enchanted", "worn_equipment", EquipSlot.Amulet) {
-            set("wearing_ghost_speak_amulet", false)
-        }
-
         itemAdded("bedsheet", "worn_equipment", EquipSlot.Hat) {
             message("I'll only wear the bedsheet inside Port Phasmatys!")
             transform("ahoy_ghost_disguise")
@@ -721,7 +712,7 @@ suspend fun Player.sendGhostsAhoyReward() {
 }
 
 suspend fun Player.checkGhostspeak(): Boolean {
-    if (!wearingGhostspeak) {
+    if (!equipped(EquipSlot.Amulet).id.startsWith("ghostspeak_amulet")) {
         npc<Neutral>("Woooo wooo wooooo woooo")
         statement("You cannot understand the ghost.")
         return false

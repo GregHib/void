@@ -173,7 +173,7 @@ respawn_delay = 35
 drop_table = "ghoul"
 examine = "It's totally savage."
 
-[old_crone]
+[ahoy_crone]
 id = 1695
 
 [stranger_2]

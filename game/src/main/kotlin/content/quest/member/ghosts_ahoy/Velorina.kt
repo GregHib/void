@@ -20,7 +20,9 @@ import world.gregs.voidps.engine.inv.inventory
 class Velorina : Script {
     init {
         npcOperate("Talk-To", "ahoy_velorina") {
-            if (!checkGhostspeak()) return@npcOperate
+            if (!checkGhostspeak()) {
+                return@npcOperate
+            }
             when (ghosts_ahoy) {
                 0 -> intro()
                 1 -> notSpoken()
@@ -54,10 +56,7 @@ class Velorina : Script {
     }
 
     private suspend fun Player.intro() {
-        npc<Neutral>(
-            "Take pity on me, please - eternity stretches out before me and I am helpless in " +
-                "its grasp.",
-        )
+        npc<Neutral>("Take pity on me, please - eternity stretches out before me and I am helpless in its grasp.")
         choice {
             option<Quiz>("Why, what is the matter?") {
                 wailExplanation()
@@ -71,9 +70,7 @@ class Velorina : Script {
 
     private suspend fun Player.wailExplanation() {
         npc<Neutral>("Oh, I'm sorry - I was just wailing out loud. I didn't mean to scare you.")
-        player<Neutral>(
-            "No, that's okay - it takes more than a ghost to scare me. What is wrong?",
-        )
+        player<Neutral>("No, that's okay - it takes more than a ghost to scare me. What is wrong?")
     }
 
     private suspend fun Player.explainHistory() {

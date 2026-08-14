@@ -1,8 +1,8 @@
-[velorina_port_phasmatys]
+[ahoy_velorina]
 id = 1683
 examine = "A ghost lady."
 
-[necrovarus_port_phasmatys]
+[ahoy_necrovarus]
 id = 1684
 examine = "An evil priest."
 
