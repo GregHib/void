@@ -29,6 +29,16 @@ option = "Climb-down"
 tile = { x = 3613, y = 3543, level = 1 }
 to = { x = 3614, y = 3543 }
 
+[wrecked_ghost_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3615, y = 3541, level = 2 }
+to = { x = 3615, y = 3541, level = 1 }
+
+[wrecked_ghost_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3615, y = 3545, level = 2 }
+to = { x = 3615, y = 3544, level = 1 }
+
 [trapdoor_ahoy_down]
 option = "Climb-down"
 tile = { x = 3653, y = 3519 }

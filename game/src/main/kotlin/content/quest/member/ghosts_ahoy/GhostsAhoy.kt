@@ -29,7 +29,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -38,12 +38,14 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
+import world.gregs.voidps.type.random
+import kotlin.random.nextInt
 
 class GhostsAhoy : Script {
 
@@ -303,7 +305,7 @@ class GhostsAhoy : Script {
 
         objectOperate("Search", "ahoy_necrovarus_coffin_open") {
             if (get("ahoy_given_robes", false) || ownsItem("mystical_robes")) {
-                message("Nothing interesting happens.")
+                noInterest()
                 return@objectOperate
             }
             item(
@@ -339,7 +341,7 @@ class GhostsAhoy : Script {
                 player<Scared>("Err, I was just curious...")
                 npc<Neutral>(
                     "Inside that room is a coffin, inside which lie the mortal " +
-                        "remains of our most glorious master, Necrovarus. None may enter.",
+                            "remains of our most glorious master, Necrovarus. None may enter.",
                 )
 
                 return@objectOperate
@@ -347,56 +349,18 @@ class GhostsAhoy : Script {
             Door.openDoor(this, target)
         }
 
-        objectApproach("Search", "ahoy_ship_mast") {
-            if (get("ahoy_windspeed", false)) {
-                when ((0..2).random()) {
-                    0 -> statement(
-                        "You can see a tattered flag blowing in the wind.<br>" +
-                            "The top half of the flag is coloured ${flagColor(get("ahoy_mast_top", 0))}.",
-                    )
-
-                    1 -> statement(
-                        "You can see a tattered flag blowing in the wind.<br>" +
-                            "The bottom half of the flag is coloured ${flagColor(get("ahoy_mast_bottom", 0))}.",
-                    )
-
-                    else -> statement(
-                        "You can see a tattered flag blowing in the wind.<br>" +
-                            "The skull emblem is coloured ${flagColor(get("ahoy_mast_skull", 0))}.",
-                    )
-                }
-            } else {
-                statement(
-                    "You can see a tattered flag blowing in the wind.<br>" +
-                        "The wind is blowing too hard to make out any details.",
-                )
-            }
-        }
-
         objectOperate("Talk-to", "ahoy_pirate_captain") {
             statement(
                 "The pirate captain ignores you and continues to stare lifelessly at " +
-                    "nothing, as he has clearly been dead for some time.",
+                        "nothing, as he has clearly been dead for some time.",
             )
-        }
-
-        objTeleportTakeOff("Climb-down", "ahoy_ghostship_laddertop") { obj, _ ->
-            if (obj.tile == Tile(3615, 3545, 2)) {
-                message("That ladder doesn't go anywhere very safe.")
-                Teleport.CANCEL
-            }
-
-            Teleport.CONTINUE
         }
 
         // === Item-on-object hooks ===
 
         itemOnObjectOperate("chest_key_ghosts_ahoy", "ahoy_pirate_chest_locked") { interaction ->
-            if (interaction.target.tile.x != 3619 ||
-                interaction.target.tile.y != 3545 ||
-                interaction.target.tile.level != 1
-            ) {
-                return@itemOnObjectOperate message("Nothing interesting happens.")
+            if (!interaction.target.tile.equals(3619, 3545, 1)) {
+                return@itemOnObjectOperate noInterest()
             }
             if (get("ahoy_subquest_toyboat", 0) == 3) {
                 return@itemOnObjectOperate message("The chest is already unlocked.")
@@ -412,7 +376,7 @@ class GhostsAhoy : Script {
                 interaction.target.tile.y != 3514 ||
                 interaction.target.tile.level != 1
             ) {
-                return@itemOnObjectOperate message("Nothing interesting happens.")
+                return@itemOnObjectOperate noInterest()
             }
             if (get("ahoy_templedoor_unlocked", false)) {
                 return@itemOnObjectOperate message("The door is already unlocked.")
@@ -429,14 +393,6 @@ class GhostsAhoy : Script {
         itemOnItem("map_scrap_1", "map_scrap_3") { _, _ -> tryMergeMap() }
         itemOnItem("map_scrap_2", "map_scrap_3") { _, _ -> tryMergeMap() }
 
-        itemOnItem("bedsheet", "bucket_of_slime") { _, _ ->
-            inventory.remove("bedsheet")
-            inventory.remove("bucket_of_slime")
-            inventory.add("bucket")
-            inventory.add("bedsheet_ectoplasm")
-            message("You dip the bedsheet in the bucket of ectoplasm.")
-        }
-
         // Dye the toy boat's flag. Java: `dyeOnToyBoat` (GhostsAhoy.java:346). Each dye id maps to
         // colour index ((dye_id - 1761) / 2): red=1, yellow=2, blue=3, orange=4, green=5, purple=6.
         // Player picks which of the three flag segments (top / skull / bottom) gets the colour.
@@ -446,55 +402,6 @@ class GhostsAhoy : Script {
         itemOnItem("model_ship_silk", "orange_dye") { _, _ -> dyeToyBoat("orange", 4) }
         itemOnItem("model_ship_silk", "green_dye") { _, _ -> dyeToyBoat("green", 5) }
         itemOnItem("model_ship_silk", "purple_dye") { _, _ -> dyeToyBoat("purple", 6) }
-
-        // Pour a brewed nettle tea into the crone's porcelain cup. Java: `fillPorcelainCup`
-        // (GhostsAhoy.java:375). Source container empties (bowl → bowl; cup → empty_cup) and the
-        // porcelain cup is filled with the appropriate (plain / milky) tea variant.
-        itemOnItem("porcelain_cup", "nettle_tea") { _, _ ->
-            sound("liquid")
-            inventory.remove("porcelain_cup")
-            inventory.remove("nettle_tea")
-            inventory.add("bowl")
-            inventory.add("cup_of_tea_ghosts_ahoy")
-        }
-        itemOnItem("porcelain_cup", "milky_nettle_tea") { _, _ ->
-            sound("liquid")
-            inventory.remove("porcelain_cup")
-            inventory.remove("milky_nettle_tea")
-            inventory.add("bowl")
-            inventory.add("cup_of_milky_tea_ghosts_ahoy")
-        }
-        itemOnItem("porcelain_cup", "cup_of_tea_nettle_tea") { _, _ ->
-            sound("liquid")
-            inventory.remove("porcelain_cup")
-            inventory.remove("cup_of_tea_nettle_tea")
-            inventory.add("empty_cup")
-            inventory.add("cup_of_tea_ghosts_ahoy")
-        }
-        itemOnItem("porcelain_cup", "cup_of_milky_tea") { _, _ ->
-            sound("liquid")
-            inventory.remove("porcelain_cup")
-            inventory.remove("cup_of_milky_tea")
-            inventory.add("empty_cup")
-            inventory.add("cup_of_milky_tea_ghosts_ahoy")
-        }
-
-        // Add milk to the porcelain-cup tea. Java: `addMilkPorcelain` (GhostsAhoy.java:399).
-        itemOnItem("cup_of_tea_ghosts_ahoy", "bucket_of_milk") { _, _ ->
-            sound("liquid")
-            inventory.remove("bucket_of_milk")
-            inventory.add("bucket")
-            inventory.replace("cup_of_tea_ghosts_ahoy", "cup_of_milky_tea_ghosts_ahoy")
-        }
-
-        // Add milk to the standard cup-of-tea (non-porcelain). Java: `addMilkTeaCup`
-        // (GhostsAhoy.java:410).
-        itemOnItem("cup_of_tea_nettle_tea", "bucket_of_milk") { _, _ ->
-            sound("liquid")
-            inventory.remove("bucket_of_milk")
-            inventory.add("bucket")
-            inventory.replace("cup_of_tea_nettle_tea", "cup_of_milky_tea")
-        }
 
         // === Item options ===
 
@@ -525,7 +432,7 @@ class GhostsAhoy : Script {
             } else {
                 statement(
                     "You need some silk to replace the flag, something to sew it to the " +
-                        "boat, and something to cut the flag to the right size.",
+                            "boat, and something to cut the flag to the right size.",
                 )
             }
         }
@@ -534,8 +441,8 @@ class GhostsAhoy : Script {
             item(
                 item = "model_ship_silk",
                 text = "The top of the flag is ${flagColor(get("ahoy_toy_top", 0))}.<br>" +
-                    "The skull emblem is ${flagColor(get("ahoy_toy_skull", 0))}.<br>" +
-                    "The bottom of the flag is ${flagColor(get("ahoy_toy_bottom", 0))}.",
+                        "The skull emblem is ${flagColor(get("ahoy_toy_skull", 0))}.<br>" +
+                        "The bottom of the flag is ${flagColor(get("ahoy_toy_bottom", 0))}.",
             )
         }
 
@@ -591,14 +498,14 @@ class GhostsAhoy : Script {
         }
 
         timerStart("windspeed") {
-            (0..16).random() + 2
+            random.nextInt(0..16) + 2
         }
 
         timerTick("windspeed") {
             val lowWind = get("ahoy_windspeed", false)
             set("ahoy_windspeed", !lowWind)
             interfaces.sendText("ahoy_windspeed", "content", if (lowWind) "High" else "Low")
-            (0..16).random() + 2
+            random.nextInt(0..16) + 2
         }
     }
 
@@ -640,15 +547,17 @@ class GhostsAhoy : Script {
         }
     }
 
-    private fun flagColor(value: Int): String = when (value) {
-        0 -> "white"
-        1 -> "red"
-        2 -> "yellow"
-        3 -> "blue"
-        4 -> "orange"
-        5 -> "green"
-        6 -> "purple"
-        else -> ""
+    companion object {
+        fun flagColor(value: Int): String = when (value) {
+            0 -> "white"
+            1 -> "red"
+            2 -> "yellow"
+            3 -> "blue"
+            4 -> "orange"
+            5 -> "green"
+            6 -> "purple"
+            else -> ""
+        }
     }
 }
 

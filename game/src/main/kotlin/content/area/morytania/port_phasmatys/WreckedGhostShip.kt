@@ -3,10 +3,12 @@ package content.area.morytania.port_phasmatys
 import content.entity.combat.hit.damage
 import content.entity.player.dialogue.type.statement
 import content.entity.player.effect.energy.runEnergy
+import content.quest.member.ghosts_ahoy.GhostsAhoy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -16,6 +18,8 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
+import world.gregs.voidps.type.random
 
 class WreckedGhostShip : Script {
 
@@ -64,6 +68,35 @@ class WreckedGhostShip : Script {
             } else {
                 jump(target, target.tile, direction.inverse())
             }
+        }
+
+        objectApproach("Search", "ahoy_ship_mast") {
+            windSpeed()
+        }
+
+        objectOperate("Search", "ahoy_ship_mast") {
+            windSpeed()
+        }
+
+        objTeleportTakeOff("Climb-down", "wrecked_ghost_ship_ladder_down") { obj, _ ->
+            if (obj.tile.equals(3615, 3545, 2)) {
+                message("That ladder doesn't go anywhere very safe.")
+                Teleport.CANCEL
+            } else {
+                Teleport.CONTINUE
+            }
+        }
+    }
+
+    private suspend fun Player.windSpeed() {
+        if (get("ahoy_windspeed", false)) {
+            when (random.nextInt(3)) {
+                0 -> statement("You can see a tattered flag blowing in the wind.<br>The top half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_top", 0))}.")
+                1 -> statement("You can see a tattered flag blowing in the wind.<br>The bottom half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_bottom", 0))}.")
+                else -> statement("You can see a tattered flag blowing in the wind.<br>The skull emblem is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_skull", 0))}.")
+            }
+        } else {
+            statement("You can see a tattered flag blowing in the wind.<br>The wind is blowing too hard to make out any details.")
         }
     }
 
