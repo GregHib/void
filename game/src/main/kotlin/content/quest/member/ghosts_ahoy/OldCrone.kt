@@ -69,7 +69,7 @@ class OldCrone : Script {
             ghosts_ahoy >= 7 -> postQuestThanks()
             ghosts_ahoy == 6 -> enchantmentFollowUp()
             ghosts_ahoy == 5 -> performEnchantment()
-            ghosts_ahoy == 4 -> stageFourOptions(Item(firstEnchantmentItem()))
+            ghosts_ahoy == 4 -> stageFourOptions(firstEnchantmentItem()?.let { Item(it) } ?: Item.EMPTY)
             ghosts_ahoy == 3 -> wereYouADisciple()
         }
     }
@@ -163,20 +163,21 @@ class OldCrone : Script {
                 "to command Necrovarus to let the ghosts pass on.",
         )
         player<Neutral>("What do you need to perform the enchantment?")
-        npc<Neutral>("You have already given me robes of Necrovarus.")
-        npc<Neutral>(
-            "Necrovarus had a magical robe for which he must have no more use. Only these robes " +
-                "hold the power needed to perform the enchantment.",
-        )
-        npc<Neutral>("You have given me the Book of Haricanto.")
-        npc<Neutral>(
-            "All his rituals came from a book written by an ancient sorcerer from the East " +
-                "called Haricanto. Bring me this strange book.",
-        )
-        npc<Neutral>(
-            "I cannot read the strange letters of the eastern lands. I will need something to " +
-                "help me translate the book.",
-        )
+        if (get("ahoy_given_robes", false)) {
+            npc<Neutral>("You have already given me robes of Necrovarus.")
+        } else {
+            npc<Neutral>("Necrovarus had a magical robe for which he must have no more use. Only these robes hold the power needed to perform the enchantment.")
+        }
+        if (get("ahoy_given_book", false)) {
+            npc<Neutral>("You have given me the Book of Haricanto.")
+        } else {
+            npc<Neutral>("All his rituals came from a book written by an ancient sorcerer from the East called Haricanto. Bring me this strange book.")
+        }
+        if (get("ahoy_given_manual", false)) {
+            // TODO
+        } else {
+            npc<Neutral>("I cannot read the strange letters of the eastern lands. I will need something to help me translate the book.")
+        }
         sendStageFourMenu()
     }
 
@@ -201,7 +202,9 @@ class OldCrone : Script {
                 npc<Neutral>("I will now perform the ritual of enchantment.")
                 performEnchantment()
             }
-            return
+            if (itemUsed.isNotEmpty()) {
+                return
+            }
         }
         sendStageFourMenu()
     }
@@ -338,7 +341,7 @@ class OldCrone : Script {
 
     private fun Player.firstNettleTea(): String? = TEA_PRIORITY.firstOrNull { inventory.contains(it) }
 
-    private fun Player.firstEnchantmentItem(): String = ENCHANTMENT_PRIORITY.first { inventory.contains(it) }
+    private fun Player.firstEnchantmentItem(): String? = ENCHANTMENT_PRIORITY.firstOrNull { inventory.contains(it) }
 
     companion object {
         private val TEA_PRIORITY = listOf(

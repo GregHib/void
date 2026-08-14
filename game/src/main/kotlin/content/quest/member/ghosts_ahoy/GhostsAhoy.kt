@@ -221,26 +221,6 @@ class GhostsAhoy : Script {
 
         // === Object hooks ===
 
-        objectOperate("Pick", "nettles*") { (target) ->
-            if (inventory.isFull()) {
-                message("You can't carry any more nettles.")
-                return@objectOperate
-            }
-            anim("human_pickupfloor")
-            sound("pick")
-            delay(2)
-            val gloves = equipment[EquipSlot.Hands.index].def.name.contains("gloves", ignoreCase = true)
-            if (gloves) {
-                addOrDrop("nettles")
-                message("You pick a handful of nettles.")
-                target.replace(target.id, ticks = 13)
-            } else {
-                message("You have been stung by the nettles!")
-                sound("stung")
-                directHit(20)
-            }
-        }
-
         objectOperate("Open", "ahoy_pirate_chest_locked") { (target) ->
             if (target.tile.x == 3619 && target.tile.y == 3545 && target.tile.level == 1 && get("ahoy_subquest_toyboat", 0) == 3) {
                 sound("chest_open")
@@ -676,7 +656,7 @@ var Player.ghosts_ahoy: Int
     get() = get("ahoy_questvar", 0)
     set(value) = set("ahoy_questvar", value)
 
-suspend fun Player.sendGhostsAhoyReward() {
+fun Player.sendGhostsAhoyReward() {
     jingle("quest_complete_1")
     exp(Skill.Prayer, 2400.0)
     addOrDrop("ectophial")
