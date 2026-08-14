@@ -275,7 +275,7 @@ class GhostsAhoy : Script {
                         addOrDrop("map_scrap_2")
                         item(item = "map_scrap_2", text = "You find a piece of a map inside the chest.")
                     }
-                } else if (lobster != null) {
+                } else if (lobster == null) {
                     message("You are attacked by a giant lobster!!")
                     val lobster = NPCs.add("giant_lobster_ghosts_ahoy", Tile(3616, 3543, 0), ticks = TimeUnit.MINUTES.toTicks(8), owner = this)
                     hint(lobster)

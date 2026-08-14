@@ -32,8 +32,9 @@ class GhostsAhoyTest : WorldTest() {
         val player = createPlayer(Tile(3677, 3509))
         player.levels.set(Skill.Firemaking, 99)
         player.levels.set(Skill.Cooking, 20)
-        player["insta_kill"] = true
         player["auto_retaliate"] = true
+        player["god_mode"] = true
+        player["insta_kill"] = true
         player.inventory.add("bowl")
         player.inventory.add("logs")
         player.inventory.add("tinderbox")
@@ -182,6 +183,10 @@ class GhostsAhoyTest : WorldTest() {
         assertEquals(0, player.inventory.count("chest_key_ghosts_ahoy"))
         assertEquals(1, player.inventory.count("map_scrap_1"))
 
+        setRandom(object : FakeRandom() {
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+
         // Second map piece
         player.tele(3618, 3543, 0)
         chest = GameObjects.find(Tile(3618, 3542), "ahoy_pirate_chest_closed")
@@ -287,9 +292,6 @@ class GhostsAhoyTest : WorldTest() {
         player.equipment.set(EquipSlot.Hat.index, "bedsheet_ectoplasm")
         player.tele(3661, 3496)
         player.inventory.add("ecto_token", 5)
-        setRandom(object : FakeRandom() {
-            override fun nextInt(from: Int, until: Int) = until - 1
-        })
         val villager = NPCs.findBySpawn(Tile(3661, 3497), "ahoy_ghost_villager")
         player.npcOption(villager, "Talk-To")
         tick(1)
