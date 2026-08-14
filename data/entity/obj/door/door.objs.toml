@@ -1106,14 +1106,6 @@ examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
 id = 5186
 examine = "Looks wooden. Feels wooden. I wonder is it wooden?"
 
-[door_146_opened]
-id = 5245
-examine = "Looks a bit tatty..."
-
-[door_146_closed]
-id = 5244
-examine = "Looks a bit tatty..."
-
 [door_148_opened]
 id = 31839
 examine = "A single door."

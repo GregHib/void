@@ -24,9 +24,6 @@ drop_table = "undead_chicken"
 examine = "Yep, definitely a chicken... an undead chicken."
 combat_def = "chicken"
 
-[old_man_alices_farm]
-id = 1696
-
 [alice]
 id = 2307
 shop = "alices_farming_shop"

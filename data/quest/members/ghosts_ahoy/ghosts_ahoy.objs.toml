@@ -1,3 +1,49 @@
 [ectofuntus]
 id = 5282
 examine = "A ghastly fountain filled with slime and bones, the source of Necrovarus' power."
+
+[ahoy_pirate_chest_locked]
+id = 5270
+examine = "A sturdy chest. It looks locked."
+
+[ahoy_pirate_chest_unlocked]
+id = 5271
+examine = "A sturdy chest, hanging open."
+
+[ahoy_pirate_chest_closed]
+id = 5272
+examine = "An old, sturdy pirate's chest."
+
+[ahoy_pirate_chest_open]
+id = 5273
+examine = "An old, sturdy pirate's chest, hanging open."
+
+[ahoy_ship_mast]
+id = 5274
+examine = "A tall ship's mast with a tattered flag."
+
+[ahoy_necrovarus_coffin_closed]
+id = 5278
+examine = "A grand stone coffin."
+
+[ahoy_necrovarus_coffin_open]
+id = 5279
+examine = "A grand stone coffin, hanging open."
+
+[ahoy_pirate_captain]
+id = 5287
+examine = "A long-dead pirate captain, slumped on his bunk."
+
+[phasmatys_barrier_north]
+id = 52761
+examine = "A ghostly barrier."
+
+[ahoy_harbour_door_opened]
+id = 5245
+material = "creakydoor"
+examine = "Looks a bit tatty..."
+
+[ahoy_harbour_door_closed]
+id = 5244
+material = "creakydoor"
+examine = "Looks a bit tatty..."

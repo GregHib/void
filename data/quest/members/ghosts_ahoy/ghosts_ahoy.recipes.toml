@@ -1,0 +1,34 @@
+[cup_of_tea_ghosts_ahoy]
+sound = "liquid"
+remove = ["porcelain_cup", "nettle_tea"]
+add = ["bowl", "cup_of_tea_ghosts_ahoy"]
+
+[milky_nettle_tea]
+sound = "liquid"
+remove = ["porcelain_cup", "milky_nettle_tea"]
+add = ["bowl", "cup_of_milky_tea_ghosts_ahoy"]
+
+[cup_of_tea_nettle_tea]
+sound = "liquid"
+remove = ["porcelain_cup", "cup_of_tea_nettle_tea"]
+add = ["empty_cup", "cup_of_tea_ghosts_ahoy"]
+
+[cup_of_milky_tea]
+sound = "liquid"
+remove = ["porcelain_cup", "cup_of_milky_tea"]
+add = ["empty_cup", "cup_of_milky_tea_ghosts_ahoy"]
+
+[bucket_of_milk]
+sound = "liquid"
+remove = ["bucket_of_milk", "cup_of_tea_nettle_tea"]
+add = ["bucket", "cup_of_milky_tea"]
+
+[bucket_of_milky_tea]
+sound = "liquid"
+remove = ["bucket_of_milk", "cup_of_tea_ghosts_ahoy"]
+add = ["bucket", "cup_of_milky_tea_ghosts_ahoy"]
+
+[bedsheet]
+remove = ["bedsheet", "bucket_of_slime"]
+add = ["bucket", "bedsheet_ectoplasm"]
+message = "You dip the bedsheet in the bucket of ectoplasm."
