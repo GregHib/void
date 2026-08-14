@@ -87,7 +87,7 @@ class Trufitus : Script {
                             if (inventory.contains("clean_snake_weed")) {
                                 inventory.remove("clean_snake_weed")
                                 set("jungle_potion", "gave_snake_weed")
-                                item("clean_snake_weed","You give the Snake Weed to Trufitus.")
+                                item("clean_snake_weed", "You give the Snake Weed to Trufitus.")
                                 npc<Neutral>("Great, you have the Snake Weed! Many thanks. Ok, the next herb is called Ardrigal. It is related to the palm and grows to the east in its brother's shady profusion.")
                                 npc<Neutral>("To the east you will find a small peninsula, it is just after the cliffs come down to meet the sands, here is where you should search for it.")
                             } else if (inventory.contains("grimy_snake_weed")) {
@@ -110,7 +110,7 @@ class Trufitus : Script {
                             if (inventory.contains("clean_ardrigal")) {
                                 inventory.remove("clean_ardrigal")
                                 set("jungle_potion", "gave_ardrigal")
-                                item("clean_ardrigal","You give the Ardrigal to Trufitus.")
+                                item("clean_ardrigal", "You give the Ardrigal to Trufitus.")
                                 npc<Neutral>("Great, you have the Ardrigal! Many thanks.")
                                 npc<Neutral>("You are doing well Bwana. The next herb is called Sito Foil, and it grows best where the ground has been blackened by the living flame.")
                             } else if (inventory.contains("grimy_ardrigal")) {
@@ -134,7 +134,7 @@ class Trufitus : Script {
                             if (inventory.contains("clean_sito_foil")) {
                                 inventory.remove("clean_sito_foil")
                                 set("jungle_potion", "gave_sito_foil")
-                                item("clean_sito_foil","You give the Sito Foil to Trufitus.")
+                                item("clean_sito_foil", "You give the Sito Foil to Trufitus.")
                                 npc<Neutral>("Well done Bwana, just two more herbs to collect.")
                                 npc<Neutral>("The next herb is called Volencia Moss. It clings to rocks for its existence. It is difficult to see, so you must search for it well.")
                                 npc<Neutral>("It prefers rocks of high metal content and a frequently disturbed environment. There is some, I believe to the south east of this village.")
@@ -158,7 +158,7 @@ class Trufitus : Script {
                             if (inventory.contains("clean_volencia_moss")) {
                                 inventory.remove("clean_volencia_moss")
                                 set("jungle_potion", "gave_volencia_moss")
-                                item("clean_volencia_moss","You give the Volencia Moss to Trufitus.")
+                                item("clean_volencia_moss", "You give the Volencia Moss to Trufitus.")
                                 npc<Neutral>("Ah Volencia Moss, beautiful. One final herb and the potion will be complete. This is the most difficult to find as it inhabits the darkness of the underground. It is called Rogue's Purse, and is only to be found in")
                                 npc<Neutral>("caverns in the northern part of this island. A secret entrance to the caverns is set into the northern cliffs of this land. Take care Bwana as it may be dangerous.")
                             } else if (inventory.contains("grimy_volencia_moss")) {
@@ -198,7 +198,7 @@ class Trufitus : Script {
                         }
                     }
                 }
-                "gave_rogues_purse" -> {//todo find the right dialogue. added so the quest can be completed
+                "gave_rogues_purse" -> { // todo find the right dialogue. added so the quest can be completed
                     npc<Neutral>("I must now prepare, please excuse me while I make the arrangements.")
                     statement("Trufitus shows you some techniques in Herblore. You gain some experience in Herblore")
                     questComplete()
@@ -245,8 +245,8 @@ class Trufitus : Script {
                 npc<Neutral>("the ground turns soft and the water kisses your feet.")
             }
             option("No.") {
-                player<Neutral>("Hmmm, sounds difficult, I don't know if I am ready for the challenge.")//todo find expression
-                npc<Neutral>("Very well then Bwana, maybe you will return to me invigorated and ready to take up the challenge one day?")//todo find expression
+                player<Neutral>("Hmmm, sounds difficult, I don't know if I am ready for the challenge.") // todo find expression
+                npc<Neutral>("Very well then Bwana, maybe you will return to me invigorated and ready to take up the challenge one day?") // todo find expression
             }
         }
     }
@@ -255,7 +255,7 @@ class Trufitus : Script {
         npc<Neutral>("looks good for my people. We are happy now that the gods are not angry with us.")
         npc<Neutral>("With some blessings we will be safe here.")
         npc<Neutral>("You should deliver the good news to Bwana Timfraku, Chief of Tai Bwo Wannai.")
-        //set("jungle_potion", "13") //todo find out why it sets jungle_potion to 13
+        // set("jungle_potion", "13") //todo find out why it sets jungle_potion to 13
     }
 
     fun Player.questComplete() {

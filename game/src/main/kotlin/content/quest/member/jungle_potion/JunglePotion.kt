@@ -17,21 +17,21 @@ class JunglePotion : Script {
                     "<navy>I need to pick some fresh <maroon>Snakeweed <navy>for <maroon>Trufitus.",
                 )
                 "gave_snake_weed", "found_ardrigal" -> {
-                     val list = mutableListOf(
+                    val list = mutableListOf(
                         "<str>I spoke to Trufitus, he needs to commune with the",
                         "<str>gods, he's asked me to help him by collecting herbs.",
                         "",
                         "<str>I've given Snakeweed to Trufitus.",
-                     )
-                     if (inventory.contains("clean_ardrigal")) {
+                    )
+                    if (inventory.contains("clean_ardrigal")) {
                         list.add("<str>I picked some fresh Ardrigal for Trufitus.")
                         list.add("")
                         list.add("<navy>I need to give the <maroon>Ardrigal <navy>to <maroon>Trufitus.")
-                     } else {
+                    } else {
                         list.add("")
                         list.add("<navy>I need to pick some fresh <maroon>Ardrigal <navy>for <maroon>Trufitus.")
-                     }
-                     list
+                    }
+                    list
                 }
                 "gave_ardrigal", "found_sito_foil" -> {
                     val list = mutableListOf(
@@ -87,7 +87,7 @@ class JunglePotion : Script {
                     list
                 }
                 "gave_rogues_purse" -> listOf(
-                    "",//todo
+                    "", // todo
                     "",
                     "",
                 )
@@ -107,7 +107,7 @@ class JunglePotion : Script {
                     "<navy>I can start this quest by speaking to <maroon>Trufitus Shakaya",
                     "<navy>who lives in the main hut in <maroon> Tai Bwo Wannai",
                     "<navy>village on the island of <maroon>Karamja.",
-                    )
+                )
             }
             questJournal("Jungle Potion", lines)
         }

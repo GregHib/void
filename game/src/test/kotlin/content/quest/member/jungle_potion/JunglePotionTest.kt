@@ -63,7 +63,7 @@ class JunglePotionTest : WorldTest() {
         player.skipDialogues()
         assertEquals("gave_snake_weed", player.quest("jungle_potion"))
 
-       // getting ardrigal
+        // getting ardrigal
         player.tele(2876, 3121)
         val palm = GameObjects.find(Tile(2877, 3120), "ardrigal_palm_full")
         player.interactObject(palm, "Search")
