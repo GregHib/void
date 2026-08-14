@@ -56,9 +56,3 @@ id = 5259
 [cooking_range_port_phasmatys]
 id = 5275
 examine = "An appliance for cooking with."
-
-[ahoy_ship_mast]
-id = 5274
-
-[ahoy_pirate_chest_locked]
-id = 5270
