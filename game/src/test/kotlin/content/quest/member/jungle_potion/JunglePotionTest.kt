@@ -26,7 +26,7 @@ class JunglePotionTest : WorldTest() {
     fun `Complete the quest`() {
         val player = createPlayer(Tile(2810, 3085))
         player.levels.set(Skill.Herblore, 3)
-        val trufitus = NPCs.find(player.tile.regionLevel, "trufitus_tai_bwo_wannai")
+        val trufitus = NPCs.findBySpawn(Tile(2809, 3086), "trufitus_tai_bwo_wannai")
         player.npcOption(trufitus, "Talk-to")
         tick()
         player.skipDialogues()

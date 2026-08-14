@@ -23,8 +23,8 @@ class Karamja : Script {
             } else {
                 message("You search the vine...")
                 animDelay("open_chest_mid")
-                if(inventory.add("grimy_snake_weed")) {
-                    if (quest("jungle_potion") == "unstarted") {
+                if (inventory.add("grimy_snake_weed")) {
+                    if (quest("jungle_potion") == "started") {
                         set("jungle_potion", "found_snake_weed")
                     }
                     target.replace("snake_vine_empty", ticks = TimeUnit.SECONDS.toTicks(60))
