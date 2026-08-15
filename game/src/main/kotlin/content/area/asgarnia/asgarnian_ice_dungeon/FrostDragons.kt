@@ -9,7 +9,7 @@ import world.gregs.voidps.type.Delta
 class FrostDragons : Script {
 
     init {
-        npcAttack("frost_dragon*", "orb") {
+        npcAttack("frost_dragon", "orb") {
             start("orb_protection", 8)
             start("movement_delay", 8)
             val list = listOf(Delta(1, 0), Delta(0, 1), Delta(0, 2), Delta(1, 3), Delta(2, 3), Delta(3, 2), Delta(3, 1), Delta(2, 0), Delta(1, 0))
