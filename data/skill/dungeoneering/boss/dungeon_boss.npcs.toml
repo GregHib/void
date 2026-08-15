@@ -2,71 +2,231 @@
 [rand_ice_lord_boss_0]
 id = 10040
 hitpoints = 100
+max_hit_crush = 20
+max_hit_range = 20
+att = 10 # Guess
+str = 10 # Guess
+def = 10 # Guess
+range = 10 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_1]
 id = 10041
 hitpoints = 250 # Guess
+att = 12 # Guess
+str = 12 # Guess
+def = 12 # Guess
+range = 12 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_2]
 id = 10042
 hitpoints = 400 # Guess
+max_hit_crush = 60  # Guess
+max_hit_range = 60  # Guess
+att = 15 # Guess
+str = 15 # Guess
+def = 15 # Guess
+range = 15 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_3]
 id = 10043
 hitpoints = 600 # Guess
+max_hit_crush = 80  # Guess
+max_hit_range = 80  # Guess
+att = 18 # Guess
+str = 18 # Guess
+def = 18 # Guess
+range = 18 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_4]
 id = 10044
 hitpoints = 750 # Guess
+max_hit_crush = 80  # Guess
+max_hit_range = 80  # Guess
+att = 20 # Guess
+str = 20 # Guess
+def = 20 # Guess
+range = 20 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_5]
 id = 10045
 hitpoints = 1000 # Guess
+max_hit_crush = 100  # Guess
+max_hit_range = 100  # Guess
+att = 25 # Guess
+str = 25 # Guess
+def = 25 # Guess
+range = 25 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_6]
 id = 10046
-hitpoints = 1250 # Guess
+hitpoints = 1150 # https://youtu.be/8T6c3m8Iw2E
+max_hit_crush = 125  # Guess
+max_hit_range = 125  # Guess
+att = 29 # Guess
+str = 29 # Guess
+def = 29 # Guess
+range = 29 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_7]
 id = 10047
-hitpoints = 1700 # Guess
+hitpoints = 1600 # https://youtu.be/3X9bXQjNh7k?t=173
+max_hit_crush = 150  # Guess
+max_hit_range = 150  # Guess
+att = 36 # Guess
+str = 36 # Guess
+def = 36 # Guess
+range = 36 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_8]
 id = 10048
 hitpoints = 2200 # https://youtu.be/nVUjpmB_2Xw?t=190
+max_hit_crush = 170
+max_hit_range = 170
+att = 45 # Guess
+str = 45 # Guess
+def = 45 # Guess
+range = 45 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_9]
 id = 10049
 hitpoints = 2900 # Guess
+max_hit_crush = 220  # Guess
+max_hit_range = 220  # Guess
+att = 54 # Guess
+str = 54 # Guess
+def = 54 # Guess
+range = 54 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_10]
 id = 10050
 hitpoints = 3650
+max_hit_crush = 267
+max_hit_range = 267
+att = 64 # Guess
+str = 64 # Guess
+def = 64 # Guess
+range = 64 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_11]
 id = 10051
 hitpoints = 4400 # Guess
+max_hit_crush = 330  # Guess
+max_hit_range = 330  # Guess
+att = 74 # Guess
+str = 74 # Guess
+def = 74 # Guess
+range = 74 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_12]
 id = 10052
 hitpoints = 5310
+max_hit_crush = 387
+max_hit_range = 387
+att = 85 # Guess
+str = 85 # Guess
+def = 85 # Guess
+range = 85 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_13]
 id = 10053
 hitpoints = 6200 # Guess
+max_hit_crush = 450  # Guess
+max_hit_range = 450  # Guess
+att = 97 # Guess
+str = 97 # Guess
+def = 97 # Guess
+range = 97 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_14]
 id = 10054
 hitpoints = 7200 # Guess
+max_hit_crush = 520  # Guess
+max_hit_range = 520  # Guess
+att = 110 # Guess
+str = 110 # Guess
+def = 110 # Guess
+range = 110 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_15]
 id = 10055
 hitpoints = 8250 # Guess
+max_hit_crush = 600  # Guess
+max_hit_range = 600  # Guess
+att = 123 # Guess
+str = 123 # Guess
+def = 123 # Guess
+range = 123 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_16]
 id = 10056
 hitpoints = 9300 # Guess
+max_hit_crush = 677  # Guess
+max_hit_range = 677  # Guess
+att = 136 # Guess
+str = 136 # Guess
+def = 136 # Guess
+range = 136 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
 
 [rand_ice_lord_boss_17]
 id = 10057
 hitpoints = 10300 # Guess
+max_hit_crush = 750  # Guess
+max_hit_range = 750  # Guess
+att = 150 # Guess
+str = 150 # Guess
+def = 150 # Guess
+range = 150 # Guess
+combat_def = "icy_bones"
+hunt_mode = "aggressive_retarget"
+hunt_range = 8

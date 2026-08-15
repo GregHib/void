@@ -1,7 +1,7 @@
 [icy_bones_death]
 id = 13785
 
-[icy_bones_melee]
+[icy_bones_punch]
 id = 13624
 
 [icy_bones_freeze]
@@ -10,16 +10,10 @@ id = 10817
 [icy_bones_range]
 id = 13628
 
-[icy_bones_uk]
+[icy_bones_magic]
 id = 13631
 
-[icy_bones_wave]
-id = 13635
-
-[icy_bones_wave]
-id = 13786
-
-[icy_bones_defend]
+[icy_bones_chest]
 id = 13636
 
 [icy_bones_spawn]
