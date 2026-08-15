@@ -68,7 +68,7 @@ class JunglePotion : Script {
                     }
                     list
                 }
-                "gave_volencia_moss", "found_rogues_purse" -> {
+                "gave_volencia_moss", "found_rogues_purse", "gave_rogues_purse" -> {
                     val list = mutableListOf(
                         "<str>I spoke to Trufitus, he needs to commune with the",
                         "<str>gods, he's asked me to help him by collecting herbs.",
@@ -86,11 +86,6 @@ class JunglePotion : Script {
                     }
                     list
                 }
-                "gave_rogues_purse" -> listOf(
-                    "", // todo
-                    "",
-                    "",
-                )
                 "completed" -> listOf(
                     "<str>Trufitus Shakaya of Tai Bwo Wannai village needed",
                     "<str>some jungle herbs in order to make a potion which would",

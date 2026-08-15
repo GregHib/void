@@ -85,17 +85,7 @@ class Trufitus : Script {
                     npc<Neutral>("Hello Bwana, do you have the Snake Weed?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.remove("clean_snake_weed")) {
-                                set("jungle_potion", "gave_snake_weed")
-                                item("clean_snake_weed", "You give the Snake Weed to Trufitus.")
-                                npc<Neutral>("Great, you have the Snake Weed! Many thanks. Ok, the next herb is called Ardrigal. It is related to the palm and grows to the east in its brother's shady profusion.")
-                                npc<Neutral>("To the east you will find a small peninsula, it is just after the cliffs come down to meet the sands, here is where you should search for it.")
-                            } else if (inventory.contains("grimy_snake_weed")) {
-                                npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
-                            } else {
-                                npc<Neutral>("Please don't try to deceive me.")
-                                npc<Neutral>("I really need that Snake Weed if I am to make this potion.")
-                            }
+                            snakeWeed()
                         }
                         option<Happy>("Not yet, sorry, what's the clue again?") {
                             npc<Neutral>("It grows near vines in an area to the south west where the ground turns soft and the water kisses your feet.")
@@ -107,17 +97,7 @@ class Trufitus : Script {
                     npc<Neutral>("Hello Bwana, have you been able to get the Ardrigal?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.remove("clean_ardrigal")) {
-                                set("jungle_potion", "gave_ardrigal")
-                                item("clean_ardrigal", "You give the Ardrigal to Trufitus.")
-                                npc<Neutral>("Great, you have the Ardrigal! Many thanks.")
-                                npc<Neutral>("You are doing well Bwana. The next herb is called Sito Foil, and it grows best where the ground has been blackened by the living flame.")
-                            } else if (inventory.contains("grimy_ardrigal")) {
-                                npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
-                            } else {
-                                npc<Neutral>("Please don't try to deceive me.")
-                                npc<Neutral>("I really need that Ardrigal if I am to make this potion.")
-                            }
+                            ardrigal()
                         }
                         option<Happy>("Not yet, sorry, what's the clue again?") {
                             npc<Neutral>("You are looking for Ardrigal. It is related to the palm  and grows in its brothers shady profusion.")
@@ -130,18 +110,7 @@ class Trufitus : Script {
                     npc<Neutral>("Greetings Bwana, have you been successful in getting the Sito Foil?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.remove("clean_sito_foil")) {
-                                set("jungle_potion", "gave_sito_foil")
-                                item("clean_sito_foil", "You give the Sito Foil to Trufitus.")
-                                npc<Neutral>("Well done Bwana, just two more herbs to collect.")
-                                npc<Neutral>("The next herb is called Volencia Moss. It clings to rocks for its existence. It is difficult to see, so you must search for it well.")
-                                npc<Neutral>("It prefers rocks of high metal content and a frequently disturbed environment. There is some, I believe to the south east of this village.")
-                            } else if (inventory.contains("grimy_sito_foil")) {
-                                npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
-                            } else {
-                                npc<Neutral>("Please don't try to deceive me.")
-                                npc<Neutral>("I really need that Sito Foil if I am to make this potion.")
-                            }
+                            sitoFoil()
                         }
                         option<Happy>("Not yet, sorry, what's the clue again?") {
                             npc<Neutral>("You are looking for Sito Foil, and it grows best where the ground has been blackened by the living flame.")
@@ -153,16 +122,7 @@ class Trufitus : Script {
                     npc<Neutral>("Greetings Bwana, have you been successful in getting the Volencia Moss?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.remove("clean_volencia_moss")) {
-                                set("jungle_potion", "gave_volencia_moss")
-                                item("clean_volencia_moss", "You give the Volencia Moss to Trufitus.")
-                                npc<Neutral>("Ah Volencia Moss, beautiful. One final herb and the potion will be complete. This is the most difficult to find as it inhabits the darkness of the underground. It is called Rogue's Purse, and is only to be found in")
-                                npc<Neutral>("caverns in the northern part of this island. A secret entrance to the caverns is set into the northern cliffs of this land. Take care Bwana as it may be dangerous.")
-                            } else if (inventory.contains("grimy_volencia_moss")) {
-                                npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
-                            } else {
-                                npc<Neutral>("Please don't try to deceive me! I really need that Volencia Moss if I am to make this potion.")
-                            }
+                            volenciaMoss()
                         }
                         option<Happy>("Not yet, sorry, what's the clue again?") {
                             npc<Neutral>("You are looking for Volencia Moss. It clings to rocks for its existence. It is difficult to see, so you must search for it well.")
@@ -175,17 +135,7 @@ class Trufitus : Script {
                     npc<Neutral>("Greetings Bwana, have you been successful in getting the Rogue's Purse?")
                     choice {
                         option<Happy>("Of course!") {
-                            if (inventory.remove("clean_rogues_purse")) {
-                                set("jungle_potion", "gave_rogues_purse")
-                                npc<Neutral>("Most excellent Bwana! You have returned all the herbs to me and, I can finish the preparations for the potion, and at last divine with the gods.")
-                                npc<Neutral>("Many blessings on you! I must now prepare, please excuse me while I make the arrangements.")
-                                statement("Trufitus shows you some techniques in Herblore. You gain some experience in Herblore")
-                                questComplete()
-                            } else if (inventory.contains("grimy_volencia_moss")) {
-                                npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
-                            } else {
-                                npc<Neutral>("Please don't try to deceive me, I really need that Rogue's Purse if I am to make this potion.")
-                            }
+                            roguesPurse()
                         }
                         option<Happy>("Not yet, sorry, what's the clue again?") {
                             npc<Neutral>("You are looking for Rogues Purse.")
@@ -194,12 +144,98 @@ class Trufitus : Script {
                         }
                     }
                 }
-                "gave_rogues_purse" -> { // todo find the right dialogue. added so the quest can be completed
-                    npc<Neutral>("I must now prepare, please excuse me while I make the arrangements.")
-                    statement("Trufitus shows you some techniques in Herblore. You gain some experience in Herblore")
-                    questComplete()
-                } else -> completed()
+                "gave_rogues_purse" -> finishQuest() // TODO check dialogue after early exiting
+                else -> completed()
             }
+        }
+
+        itemOnNPCOperate("*", "trufitus_tai_bwo_wannai") {
+            when (it.item.id) {
+                "clean_snake_weed", "grimy_snake_weed" -> snakeWeed()
+                "clean_ardrigal", "grimy_ardrigal" -> ardrigal()
+                "clean_sito_foil", "grimy_sito_foil" -> sitoFoil()
+                "clean_volencia_moss", "grimy_volencia_moss" -> volenciaMoss()
+                "clean_rogues_purse", "grimy_rogues_purse" -> roguesPurse()
+                else -> {
+                    message("You hand over the item...")
+                    delay(2)
+                    npc<Quiz>("I'm sorry Bwana but I just don't have a use for that!")
+                }
+            }
+        }
+    }
+
+    private suspend fun Player.roguesPurse() {
+        if (inventory.remove("clean_rogues_purse")) {
+            set("jungle_potion", "gave_rogues_purse")
+            npc<Neutral>("Most excellent Bwana! You have returned all the herbs to me and, I can finish the preparations for the potion, and at last divine with the gods.")
+            finishQuest()
+        } else if (inventory.contains("grimy_rogues_purse")) {
+            npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
+        } else {
+            npc<Neutral>("Please don't try to deceive me, I really need that Rogue's Purse if I am to make this potion.")
+        }
+    }
+
+    private suspend fun Player.finishQuest() {
+        npc<Neutral>("Many blessings on you! I must now prepare, please excuse me while I make the arrangements.")
+        statement("Trufitus shows you some techniques in Herblore. You gain some experience in Herblore")
+        questComplete()
+    }
+
+    private suspend fun Player.volenciaMoss() {
+        if (inventory.remove("clean_volencia_moss")) {
+            set("jungle_potion", "gave_volencia_moss")
+            item("clean_volencia_moss", "You give the Volencia Moss to Trufitus.")
+            npc<Neutral>("Ah Volencia Moss, beautiful. One final herb and the potion will be complete. This is the most difficult to find as it inhabits the darkness of the underground. It is called Rogue's Purse, and is only to be found in")
+            npc<Neutral>("caverns in the northern part of this island. A secret entrance to the caverns is set into the northern cliffs of this land. Take care Bwana as it may be dangerous.")
+        } else if (inventory.contains("grimy_volencia_moss")) {
+            npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
+        } else {
+            npc<Neutral>("Please don't try to deceive me! I really need that Volencia Moss if I am to make this potion.")
+        }
+    }
+
+    private suspend fun Player.sitoFoil() {
+        if (inventory.remove("clean_sito_foil")) {
+            set("jungle_potion", "gave_sito_foil")
+            item("clean_sito_foil", "You give the Sito Foil to Trufitus.")
+            npc<Neutral>("Well done Bwana, just two more herbs to collect.")
+            npc<Neutral>("The next herb is called Volencia Moss. It clings to rocks for its existence. It is difficult to see, so you must search for it well.")
+            npc<Neutral>("It prefers rocks of high metal content and a frequently disturbed environment. There is some, I believe to the south east of this village.")
+        } else if (inventory.contains("grimy_sito_foil")) {
+            npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
+        } else {
+            npc<Neutral>("Please don't try to deceive me.")
+            npc<Neutral>("I really need that Sito Foil if I am to make this potion.")
+        }
+    }
+
+    private suspend fun Player.ardrigal() {
+        if (inventory.remove("clean_ardrigal")) {
+            set("jungle_potion", "gave_ardrigal")
+            item("clean_ardrigal", "You give the Ardrigal to Trufitus.")
+            npc<Neutral>("Great, you have the Ardrigal! Many thanks.")
+            npc<Neutral>("You are doing well Bwana. The next herb is called Sito Foil, and it grows best where the ground has been blackened by the living flame.")
+        } else if (inventory.contains("grimy_ardrigal")) {
+            npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
+        } else {
+            npc<Neutral>("Please don't try to deceive me.")
+            npc<Neutral>("I really need that Ardrigal if I am to make this potion.")
+        }
+    }
+
+    private suspend fun Player.snakeWeed() {
+        if (inventory.remove("clean_snake_weed")) {
+            set("jungle_potion", "gave_snake_weed")
+            item("clean_snake_weed", "You give the Snake Weed to Trufitus.")
+            npc<Neutral>("Great, you have the Snake Weed! Many thanks. Ok, the next herb is called Ardrigal. It is related to the palm and grows to the east in its brother's shady profusion.")
+            npc<Neutral>("To the east you will find a small peninsula, it is just after the cliffs come down to meet the sands, here is where you should search for it.")
+        } else if (inventory.contains("grimy_snake_weed")) {
+            npc<Confused>("Sorry, Bwana, that herb is so dirty that I can't even tell whether it is fresh. Please clean it first.")
+        } else {
+            npc<Neutral>("Please don't try to deceive me.")
+            npc<Neutral>("I really need that Snake Weed if I am to make this potion.")
         }
     }
 
