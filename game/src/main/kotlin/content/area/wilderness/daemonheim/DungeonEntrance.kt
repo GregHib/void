@@ -12,6 +12,9 @@ import content.quest.smallInstance
 import content.skill.dungeoneering.DungeonGenerator
 import content.skill.dungeoneering.DungeonMap
 import content.skill.dungeoneering.DungeonSize
+import content.skill.dungeoneering.DungeonStartingItems
+import content.skill.magic.spell.spellBook
+import content.skill.summoning.pet.dismissPet
 import content.skill.summoning.pet.pet
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -22,13 +25,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.carriesItem
+import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.engineQueue
 import world.gregs.voidps.engine.queue.strongQueue
-import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class DungeonEntrance : Script {
     init {
@@ -209,7 +211,14 @@ class DungeonEntrance : Script {
                 member["dungeon_deaths"] = 0
                 member["in_dungeoneering"] = true
                 member["in_multi_combat"] = true
-                member["dungeoneering_started_kinship"] = member.carriesItem("ring_of_kinship")
+                member["dungeoneering_stored_kinship"] = member.carriesItem("ring_of_kinship")
+                member["dungeoneering_stored_spellbook"] = member.spellBook
+                member.open("dungeoneering_spellbook")
+                member.levels.clear()
+                member.inventory.clear()
+                member.equipment.clear()
+                member.dismissPet()
+                DungeonStartingItems.spawn(dungeon, complexity)
                 member.open("rand_overlay")
                 member.message("")
                 member.message("- Welcome to Daemonheim -")
@@ -233,11 +242,6 @@ class DungeonEntrance : Script {
                     }
                 }
                 // TODO not clear which dialogue interface was used https://youtu.be/yCSJaU4azVA?t=384
-                val currentClass = member["kinship_class", "none"]
-                val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
-                member.equipment.transaction {
-                    set(EquipSlot.Ring.index, Item(kinship))
-                }
                 member.tele(tile)
             }
         }
