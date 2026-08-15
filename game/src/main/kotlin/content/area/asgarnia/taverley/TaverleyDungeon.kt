@@ -9,12 +9,16 @@ import world.gregs.voidps.engine.entity.character.mode.interact.ItemOnObjectInte
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
@@ -34,6 +38,23 @@ class TaverleyDungeon : Script {
         itemOnObjectOperate("raw_rat_meat", "cauldron_of_thunder", handler = ::dip)
         itemOnObjectOperate("raw_bear_meat", "cauldron_of_thunder", handler = ::dip)
         itemOnObjectOperate("raw_chicken", "cauldron_of_thunder", handler = ::dip)
+
+        objectOperate("Squeeze-through", "taverly_dungeon_pipe_sc") { (target) ->
+            if (!has(Skill.Agility, 70)) {
+                message("You need an Agility level of 70 to squeeze through the pipe.")
+                return@objectOperate
+            }
+            val dir = if (target.tile.x < 2889) Direction.EAST else Direction.WEST
+            walkToDelay(Tile(if (dir == Direction.EAST) 2886 else 2892, 9799))
+            exactMove(Tile(2889, 9799), startDelay = 30, delay = 96, direction = dir)
+            anim("climb_through_pipe")
+            delay(3)
+            exactMove(Tile(if (dir == Direction.EAST) 2892 else 2886, 9799), startDelay = 30, delay = 96, direction = dir)
+            delay(1)
+            anim("climb_through_pipe")
+            delay(2)
+            exp(Skill.Agility, 10.0)
+        }
     }
 
     fun spawn(player: Player, tile: Tile): Boolean {
