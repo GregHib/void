@@ -1,0 +1,43 @@
+[snake_vine_full]
+id = 2575
+examine = "A marshy jungle vine."
+
+[snake_vine_empty]
+id = 2576
+examine = "A marshy jungle vine."
+
+[ardrigal_palm_full]
+id = 2577
+examine = "A tall palm tree with some plants growing at its stem."
+
+[ardrigal_palm_empty]
+id = 2578
+examine = "A tall palm tree."
+
+[sito_soil_full]
+id = 2579
+examine = "The burnt ground has a plant growing on it."
+
+[sito_soil_empty]
+id = 2580
+examine = "The ground has been burnt here by a fire."
+
+[volencia_moss_rock_full]
+id = 2581
+examine = "A rock with green moss growing on it."
+
+[volencia_moss_rock_empty]
+id = 2582
+examine = "A rock, it looks like something was growing here."
+
+[pothole_cave_entrance]
+id = 2584
+examine = "A collection of rocks over what looks like a depression."
+
+[rogues_purse_cave_full]
+id = 32106
+examine = "It looks as if it is covered in some fungus."
+
+[rogues_purse_cave_empty]
+id = 32107
+examine = "It looks as if it is covered in some fungus."
