@@ -25,11 +25,13 @@ class CombatHitsplats : Script {
         var (source, type, damage, _, spell, _) = it
         if (type == "healed") {
             val actual = target.levels.restore(Skill.Constitution, damage)
-            target.hit(
-                source = source,
-                amount = actual,
-                mark = HitSplat.Mark.Healed,
-            )
+            if (actual > 0) {
+                target.hit(
+                    source = source,
+                    amount = actual,
+                    mark = HitSplat.Mark.Healed,
+                )
+            }
         } else if (damage < 0 || target["god_mode", false]) {
             target.hit(
                 source = source,
