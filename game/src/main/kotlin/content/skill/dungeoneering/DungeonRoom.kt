@@ -7,6 +7,7 @@ import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.combatLevel
@@ -224,3 +225,9 @@ internal val Direction.roomIndex: Int
         Direction.SOUTH -> 3
         else -> -1
     }
+
+
+internal fun Character.dungeonRoom(): Rectangle {
+    val start = Tile(tile.x / 16 * 16 + 1, tile.y / 16 * 16 + 1)
+    return Rectangle(start, 14, 14)
+}

@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.item.drop.DropTables
@@ -56,9 +57,14 @@ class Dungeoneering(val dropTables: DropTables) : Script {
                 complexity = complexity,
                 playerCount = 1,
             )
+            set("dungeoneering_party_size", size.name)
             set("dungeoneering_party_floor", floor)
             set("dungeoneering_party_complexity", complexity)
             set("show_daemonheim_map", true)
+
+            set("dungeoneering_party_leader", name)
+            set("dungeoneering_member_0", name)
+
             message("")
             message("- Welcome to Daemonheim -")
             message("Floor <purple>$floor</col>    Complexity <purple>$complexity")
