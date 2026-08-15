@@ -1,0 +1,19 @@
+[icy_bones_cast]
+id = 2594
+
+[icy_bones_travel]
+id = 2595
+delay = 61
+height = 16
+curve = 8
+time_offset = -15
+multiplier = 10
+
+[icy_bones_splash]
+id = 2596
+
+[icy_bones_freeze_impact]
+id = 2597
+
+[icy_bones_freeze_cast]
+id = 2598
