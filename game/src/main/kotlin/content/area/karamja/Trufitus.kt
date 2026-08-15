@@ -33,39 +33,7 @@ class Trufitus : Script {
                     npc<Happy>("Welcome to our humble village.")
                     choice {
                         option<Happy>("What does Bwana mean?") {
-                            npc<Happy>("Gracious ${if (male) "sir" else "lady"}, it means friend. And friends come in peace. I assume that you come in peace?")
-                            choice {
-                                option<Happy>("Yes, of course I do.") {
-                                    if (has(Skill.Herblore, 3)) {
-                                        npc<Happy>("Well, that is good news, as I may have a proposition for you.")
-                                        choice {
-                                            option<Happy>("A proposition eh? Sounds interesting!") {
-                                                npc<Neutral>("I hoped you would think so. My people are afraid to stay in the village.")
-                                                npc<Neutral>("They have returned to the jungle and I need to commune with the gods")
-                                                npc<Neutral>("to see what fate befalls us. You can help me by collecting some herbs that I need.")
-                                                choice {
-                                                    option<Happy>("Me? How can I help?") {
-                                                        howCanIHelp()
-                                                    }
-                                                    option<Happy>("I am very sorry, but I don't have time for that.") {
-                                                        npc<Neutral>("Very well then, may your journeys bring you much joy.")
-                                                        npc<Neutral>("Maybe you will pass this way again and you then take up my proposal?")
-                                                        npc<Neutral>("But for now, fare thee well.")
-                                                    }
-                                                }
-                                            }
-                                            noSorry()
-                                        }
-                                    } else {
-                                        npc<Happy>("Well, that is good news. Now, I'm sorry to cut this conversation short, but there is something important I need to do.")
-                                        statement("You do not meet all of the requirements to start the Jungle Potion quest.")
-                                    }
-                                }
-                                option<Happy>("What does a warrior like me know about peace?") {
-                                    npc<Sad>("When you grow weary of violence and seek a more enlightened path, please pay me a visit")
-                                    npc<Sad>("as I may have a proposition for you.  Now I need to attend to the plight of my people. Please excuse me...")
-                                }
-                            }
+                            bwana()
                         }
                         option<Happy>("Tai Bwo Wannai? What does that mean?") {
                             npc<Happy>("It means 'small clearing in the jungle' but it is now the name of our village.")
@@ -100,7 +68,7 @@ class Trufitus : Script {
                             ardrigal()
                         }
                         option<Happy>("Not yet, sorry, what's the clue again?") {
-                            npc<Neutral>("You are looking for Ardrigal. It is related to the palm  and grows in its brothers shady profusion.")
+                            npc<Neutral>("You are looking for Ardrigal. It is related to the palm and grows in its brothers shady profusion.")
                             npc<Neutral>("To the east you will find a small peninsula, it is just after the cliffs come down to meet the sands, here is where you should search for it.")
                             npc<Neutral>("I really need that Ardrigal if I am to make this potion.")
                         }
@@ -161,6 +129,42 @@ class Trufitus : Script {
                     delay(2)
                     npc<Quiz>("I'm sorry Bwana but I just don't have a use for that!")
                 }
+            }
+        }
+    }
+
+    private suspend fun Player.bwana() {
+        npc<Happy>("Gracious ${if (male) "sir" else "lady"}, it means friend. And friends come in peace. I assume that you come in peace?")
+        choice {
+            option<Happy>("Yes, of course I do.") {
+                if (!has(Skill.Herblore, 3)) {
+                    npc<Happy>("Well, that is good news. Now, I'm sorry to cut this conversation short, but there is something important I need to do.")
+                    statement("You do not meet all of the requirements to start the Jungle Potion quest.")
+                    return@option
+                }
+                npc<Happy>("Well, that is good news, as I may have a proposition for you.")
+                choice {
+                    option<Happy>("A proposition eh? Sounds interesting!") {
+                        npc<Neutral>("I hoped you would think so. My people are afraid to stay in the village.")
+                        npc<Neutral>("They have returned to the jungle and I need to commune with the gods")
+                        npc<Neutral>("to see what fate befalls us. You can help me by collecting some herbs that I need.")
+                        choice {
+                            option<Happy>("Me? How can I help?") {
+                                howCanIHelp()
+                            }
+                            option<Happy>("I am very sorry, but I don't have time for that.") {
+                                npc<Neutral>("Very well then, may your journeys bring you much joy.")
+                                npc<Neutral>("Maybe you will pass this way again and you then take up my proposal?")
+                                npc<Neutral>("But for now, fare thee well.")
+                            }
+                        }
+                    }
+                    noSorry()
+                }
+            }
+            option<Happy>("What does a warrior like me know about peace?") {
+                npc<Sad>("When you grow weary of violence and seek a more enlightened path, please pay me a visit")
+                npc<Sad>("as I may have a proposition for you. Now I need to attend to the plight of my people. Please excuse me...")
             }
         }
     }
