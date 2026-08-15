@@ -9,3 +9,6 @@ examine = "Ideal for cooking on."
 [obelisk_of_fire]
 id = 2153
 examine = "A column of elemental power."
+
+[taverly_dungeon_pipe_sc]
+id = 9293
