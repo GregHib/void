@@ -1,3 +1,7 @@
 [daemonheim_dungeon_entrance]
 id = 48496
 examine = "This leads into the dungeons of Daemonheim."
+
+[rand_dragonkin_ruin_collapsed_floor_01_var]
+id = 50552
+
