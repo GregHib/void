@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.quest.clearInstance
 import content.skill.summoning.pet.dismissPet
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -319,7 +320,7 @@ class DungeoneeringParty : Script {
 
         private fun dropAll(inventory: Inventory, tile: Tile, kinship: String) {
             for (item in inventory.items) {
-                if (item.isEmpty() || item.id == kinship) { // TODO binded
+                if (item.isEmpty() || item.id == kinship || item.def.contains(Params.DUNGEONEERING_BOUND_AMMO) || item.def.contains(Params.DUNGEONEERING_BOUND_ITEM)) {
                     continue
                 }
                 FloorItems.add(tile, item.id, item.amount, revealTicks = 0)
