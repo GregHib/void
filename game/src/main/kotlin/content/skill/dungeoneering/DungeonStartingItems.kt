@@ -24,10 +24,11 @@ object DungeonStartingItems {
             member.equipment.transaction {
                 set(EquipSlot.Ring.index, Item(kinship))
             }
+            for (item in member.inventories.inventory("dungeoneering_bound").items) {
+                member.inventory.add(item.id)
+            }
             if (complexity == 1) {
                 allocateGear(member)
-            } else {
-                // bound items
             }
         }
         // TODO group gatestone

@@ -61,3 +61,8 @@ persist = true
 [dungeoneering_stored_spellbook]
 format = "string"
 persist = true
+
+[dungeoneering_bound_ammo_count]
+# rs3 varp 2165
+format = "int"
+persist = true
