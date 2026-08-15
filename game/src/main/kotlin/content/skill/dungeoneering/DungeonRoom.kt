@@ -128,7 +128,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         val members = player.dungeonMembers.sortedBy { it.combatLevel }.take(dungeon.playerCount)
         val average = members.sumOf { it.combatLevel } / members.size
 
-        val row = Rows.getOrNull("boss_spawns.${name}") ?: return
+        val row = Rows.getOrNull("boss_spawns.$name") ?: return
 
         val ids = row.npcList("ids")
         val id = ids.filter { NPCDefinitions.get(it).combat <= average }.maxBy { NPCDefinitions.get(it).combat }
@@ -225,7 +225,6 @@ internal val Direction.roomIndex: Int
         Direction.SOUTH -> 3
         else -> -1
     }
-
 
 internal fun Character.dungeonRoom(): Rectangle {
     val start = Tile(tile.x / 16 * 16 + 1, tile.y / 16 * 16 + 1)

@@ -196,6 +196,8 @@ class DungeonMap(
 
     fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
 
+    fun tile(room: DungeonRoom): Tile = region.tile.add(room.tile.x * 16, room.tile.y * 16)
+
     fun traverse(filter: (from: DungeonRoom, door: DungeonDoor, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true }): List<DungeonRoom> = traverse(start(), width, height, grid, filter)
 
     companion object {
