@@ -6,3 +6,9 @@ id = 52286
 
 [rand_stalagmite_clone_3]
 id = 52287
+
+[rand_dungeon_end_trapdoor_locked_frozen]
+id = 49695
+
+[rand_dungeon_end_trapdoor_unlocked_frozen]
+id = 49696

@@ -48,3 +48,9 @@ persist = true
 [dungeoneering_disable_xp_share]
 format = "boolean"
 persist = true
+
+[dungeoneering_party_size]
+format = "list"
+persist = true
+values = ["small", "medium", "large"]
+
