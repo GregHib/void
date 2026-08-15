@@ -66,7 +66,7 @@ class DungeonGenerator(
     }
     private val keys = Tables.itemList("dungeon_keys.all.keys").shuffled(random)
 
-    fun generate(maxSkills: Map<Skill, Int> = emptyMap()): DungeonMap {
+    fun generate(maxSkills: Map<Skill, Int> = emptyMap()): DungeonMap? {
         val grid = arrayOfNulls<DungeonRoom>(width * height)
         val path = createCriticalPath(grid)
         lockCriticalDoors(path)
@@ -81,7 +81,9 @@ class DungeonGenerator(
         assignRoomTypes(grid, maxSkills)
         placeKeys(startRoom, grid)
         val themeName = theme()
-        populateMap(grid, themeName)
+        if (!populateMap(grid, themeName)) {
+            return null
+        }
         return DungeonMap(width, height, startRoom.tile, grid, themeName, playerCount)
     }
 
@@ -334,7 +336,7 @@ class DungeonGenerator(
     /**
      * Populate dungeons rooms with valid map zones
      */
-    private fun populateMap(grid: Array<DungeonRoom?>, theme: String) {
+    private fun populateMap(grid: Array<DungeonRoom?>, theme: String): Boolean {
         val allActiveRooms = grid.filterNotNull()
         for (room in allActiveRooms) {
             val typeName = room.type.name.lowercase()
@@ -385,8 +387,10 @@ class DungeonGenerator(
                 room.name = selection.third
             } else {
                 System.err.println("Warning: No matching layout template found for ${theme}_c${complexity}_$typeName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
+                return false
             }
         }
+        return true
     }
 
     private fun theme(): String = when (floor) {
@@ -463,7 +467,7 @@ class DungeonGenerator(
                 playerCount = 1,
             )
             val start = System.currentTimeMillis()
-            val dungeon = generator.generate()
+            val dungeon = generator.generate() ?: return
             println("Took ${System.currentTimeMillis() - start}ms")
 
             println(dungeon.grid.filter { it != null && it.parent == null }.map { "${it?.type} ${it?.tile}" })

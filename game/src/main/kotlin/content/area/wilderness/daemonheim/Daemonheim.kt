@@ -14,5 +14,9 @@ class Daemonheim : Script {
             exactMoveDelay(Tile(3454, 3724, 1), startDelay = 10, delay = 30)
             tele(3454, 3725, 0)
         }
+
+        // https://youtu.be/1e4dfeuKsdg?t=167
+        // You have entered the automated grouping system and are queued for floors 1- 35.
+        // Party found, entering dungeon.
     }
 }

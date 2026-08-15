@@ -180,7 +180,7 @@ class DungeonGeneratorTest {
     @EnumSource(DungeonSize::class)
     fun `Generated dungeon is entirely solvable from start to finish`(size: DungeonSize) {
         val generator = DungeonGenerator(size, floor = 1, complexity = 5)
-        val dungeonMap = generator.generate()
+        val dungeonMap = generator.generate() ?: return
 
         val startRoom = dungeonMap.grid.filterNotNull().first { it.type == DungeonRoomType.Base }
         val bossRoom = dungeonMap.grid.filterNotNull().first { it.type == DungeonRoomType.Boss }

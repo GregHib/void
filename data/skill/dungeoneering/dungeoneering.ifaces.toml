@@ -4,6 +4,9 @@ id = 934
 [teammate_stats]
 id = 936
 
+[dungeon_book]
+id = 937
+
 [dungeon_complexity]
 id = 938
 
