@@ -44,7 +44,7 @@ class DungeonComplete : Script {
         }
 
         npcDeath("rand_ice_lord_boss_*") {
-            val room = dungeonRoom()
+            val room = dungeonRoomBounds()
             var door = findDoor(room.minX - 1, room.minY - 1, "rand_dungeon_end_trapdoor_locked_frozen")
             if (door == null) {
                 for (tile in Rectangle(room.minX - 1, room.minY - 1, room.minX + 1, room.minY + 1)) {
@@ -77,23 +77,12 @@ class DungeonComplete : Script {
         interfaceOption("Ready", "dungeon_complete:readybutton_player1") {
             exit()
         }
-
-        interfaceOption("Leave", "dungeon_complete:readybutton_player1") {
-            choice("Leave the dungeon permanently?") {
-                option("Yes") {
-                    exit()
-                }
-                option("No")
-            }
-        }
     }
 
     private fun Player.exit() {
         // TODO clear inv etc..
-        for (member in dungeonMembers) {
-            member.tele(3460, 3721, 1)
-        }
-        clearInstance() // TODO handle multiple players
+        tele(3460, 3721, 1)
+        clearInstance() // TODO remove
     }
 
     private fun message(seconds: Int) {
@@ -174,6 +163,12 @@ class DungeonComplete : Script {
             for (i in 1 until 6) {
                 set("rand_award_1_$i", if (i > 1) 0 else i)
             }
+        }
+
+        // TODO other messages
+
+        if (get("dungeoneering_guide_mode", false)) {
+//            item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") FIXME c2?
         }
     }
 

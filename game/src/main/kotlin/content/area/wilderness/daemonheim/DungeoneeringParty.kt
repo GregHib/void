@@ -2,15 +2,25 @@ package content.area.wilderness.daemonheim
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import content.quest.clearInstance
+import content.skill.summoning.pet.dismissPet
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.inv.Inventory
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.clear
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.type.Tile
 
 class DungeoneeringParty : Script {
 
@@ -24,7 +34,9 @@ class DungeoneeringParty : Script {
         }
 
         exited("daemonheim_castle") {
-            leave(this)
+            if (!inDungeoneering) {
+                leave(this)
+            }
         }
 
         interfaceOpened("dungeoneering_party") {
@@ -63,6 +75,32 @@ class DungeoneeringParty : Script {
                 }
             } else {
                 leave(this)
+            }
+        }
+
+        interfaceOption("Leave", "dungeon_complete:readybutton_player1") {
+            if (!inParty(this)) {
+                return@interfaceOption
+            }
+            choice("Leave the dungeon permanently?") {
+                // TODO proper message
+                option("Yes") {
+                    leave(this)
+                }
+                option("No")
+            }
+        }
+
+        objectOperate("Climb-up", "rand_frzn_portal_exit_up") {
+            if (!inParty(this)) {
+                return@objectOperate
+            }
+            choice("Leave the dungeon permanently?") {
+                // TODO proper message
+                option("Yes") {
+                    leave(this)
+                }
+                option("No")
             }
         }
 
@@ -206,9 +244,6 @@ class DungeoneeringParty : Script {
                 return get("in_dungeoneering", false)
             }
 
-        val Player.maxSkills: Map<Skill, Int>
-            get() = Skill.all.associateWith { skill -> dungeonMembers.maxOf { it.levels.getMax(skill) } }
-
         var Player.dungeonMembers: List<Player>
             get() {
                 val leader = dungeonLeader ?: return listOf(this)
@@ -252,16 +287,51 @@ class DungeoneeringParty : Script {
             player.refreshDetails()
         }
 
-        private fun leaveDungeon(player: Player) {
+        private fun leaveDungeon(player: Player, last: Boolean) {
             player.close("rand_overlay")
             player.clear("in_dungeoneering")
+            if (!last) {
+                val currentClass = player["kinship_class", "none"]
+                val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
+                dropAll(player.inventory, player.tile, kinship)
+                dropAll(player.equipment, player.tile, kinship)
+            }
+            player.inventory.clear()
+            player.dismissPet()
+            player.equipment.clear()
+            if (player["dungeoneering_started_kinship", false]) {
+                player.clear("dungeoneering_started_kinship")
+                player.inventory.add("ring_of_kinship")
+            }
+            player.tele(3460, 3721, 1)
+
+            if (player["dungeoneering_guide_mode", false]) {
+                player.strongQueue("guide_exit") {
+                    statement("You have left your dungeon and are now back in the Daemonheim castle. You can exit down by the broken railing to re-enter the lobby and find another party.")
+                }
+            }
+            if (last) {
+                player.clearInstance()
+            }
+        }
+
+        private fun dropAll(inventory: Inventory, tile: Tile, kinship: String) {
+            for (item in inventory.items) {
+                if (item.isEmpty() || item.id == kinship) { // TODO binded
+                    continue
+                }
+                FloorItems.add(tile, item.id, item.amount, revealTicks = 0)
+            }
         }
 
         fun leave(player: Player) {
-            leaveDungeon(player)
+            val leader = player.dungeonLeader
+            val last = player == leader && player.dungeonMembers.size == 1
+            if (player.inDungeoneering) {
+                leaveDungeon(player, last)
+            }
             player.message("You leave the party.")
             player.dungeonMembers -= player
-            val leader = player.dungeonLeader
             if (player == leader && player.dungeonMembers.isNotEmpty()) {
                 promote(player, player.dungeonMembers.first(), leave = true)
             }

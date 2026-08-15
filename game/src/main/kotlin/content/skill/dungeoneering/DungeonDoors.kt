@@ -1,5 +1,6 @@
 package content.skill.dungeoneering
 
+import content.entity.player.dialogue.type.statement
 import content.quest.instance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
@@ -39,6 +40,9 @@ class DungeonDoors : Script {
                 return@objectOperate
             }
             if (!inventory.remove(door.key)) {
+                if (get("dungeoneering_guide_mode", false)) {
+                    statement("You need to find a key that matches the symbol on the door. Keep your eyes open for it in each room of the dungeon.")
+                }
                 message("You don't have the correct key.")
                 return@objectOperate
             }
@@ -179,7 +183,7 @@ class DungeonDoors : Script {
     val Delta.room: Delta
         get() = Delta(x / 16, y / 16)
 
-    private fun Player.openDoor(target: GameObject) {
+    private suspend fun Player.openDoor(target: GameObject) {
         val dungeon = dungeonMap ?: return
         val instance = instance() ?: return
         val origin = target.tile.delta(instance.tile)
@@ -190,6 +194,9 @@ class DungeonDoors : Script {
         if (!adj.open) {
             adj.open(this, dungeon)
             return
+        }
+        if (adj.type == DungeonRoomType.Boss && get("dungeoneering_guide_mode", false)) {
+            statement("You are about to enter a boss room. Make sure you are prepared for a challenge.")
         }
         if (direction.isHorizontal()) {
             tele(Tile(x = target.tile.x + direction.delta.x * 2, y = tile.y.coerceIn(target.tile.y, target.tile.y + 1)))

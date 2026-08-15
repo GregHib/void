@@ -1,6 +1,6 @@
 package content.skill.dungeoneering.boss
 
-import content.skill.dungeoneering.dungeonRoom
+import content.skill.dungeoneering.dungeonRoomBounds
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -29,7 +29,7 @@ class IcyBones : Script {
     }
 
     private fun Character.iceCone() {
-        val room = dungeonRoom()
+        val room = dungeonRoomBounds()
         val dir = direction
         val left = when (dir) {
             Direction.NORTH -> tile.add(-1, size - 1)
@@ -82,7 +82,7 @@ class IcyBones : Script {
     }
 
     private fun Character.iceBox() {
-        val room = dungeonRoom()
+        val room = dungeonRoomBounds()
         for (x in tile.x - 2..tile.x + 2) {
             val top = Tile(x, tile.y + 3)
             if (room.contains(top)) {

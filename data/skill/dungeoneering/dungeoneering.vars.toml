@@ -54,3 +54,6 @@ format = "list"
 persist = true
 values = ["small", "medium", "large"]
 
+[dungeoneering_started_kinship]
+format = "boolean"
+persist = true
