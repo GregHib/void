@@ -79,12 +79,12 @@ class DungeonComplete : Script {
         }
 
         interfaceOption("Leave", "dungeon_complete:readybutton_player1") {
-             choice("Leave the dungeon permanently?") {
-                 option("Yes") {
-                     exit()
-                 }
-                 option("No")
-             }
+            choice("Leave the dungeon permanently?") {
+                option("Yes") {
+                    exit()
+                }
+                option("No")
+            }
         }
     }
 
@@ -155,7 +155,7 @@ class DungeonComplete : Script {
         set("rand_party_complexity_level_trans", get("dungeoneering_party_complexity", 1))
 
         // Deaths
-        set("dungeon_deaths", 0.coerceAtMost(15))
+        set("dungeon_deaths", get("dungeon_deaths", 0).coerceAtMost(15))
         // Unbalanced party penalty x100%
         set("rand_nurf_amount_trans", false)
 
@@ -177,8 +177,5 @@ class DungeonComplete : Script {
         }
     }
 
-    private fun findDoor(x: Int, y: Int, id: String): GameObject? {
-        return GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)
-    }
-
+    private fun findDoor(x: Int, y: Int, id: String): GameObject? = GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)
 }

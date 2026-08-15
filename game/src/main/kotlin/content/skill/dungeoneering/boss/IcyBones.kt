@@ -46,7 +46,7 @@ class IcyBones : Script {
             Direction.NORTH -> tile.add(size, size - 1)
             Direction.NORTH_EAST -> tile.add(size, size - 1)
             Direction.EAST -> tile.add(size - 1, -1)
-            Direction.SOUTH_EAST -> tile.add(size -1, -1)
+            Direction.SOUTH_EAST -> tile.add(size - 1, -1)
             Direction.SOUTH -> tile.add(-1, 0)
             Direction.SOUTH_WEST -> tile.add(-1, 0)
             Direction.WEST -> tile.add(0, size)
@@ -108,5 +108,4 @@ class IcyBones : Script {
     private fun stalagmite(left: Tile) {
         GameObjects.add("rand_stalagmite_clone_${random.nextInt(1..3)}", left, ticks = TimeUnit.SECONDS.toTicks(random.nextInt(6..8)))
     }
-
 }

@@ -85,7 +85,7 @@ class Dungeoneering(val dropTables: DropTables) : Script {
             val startRoom = dungeon.start()
             startRoom.open(this, dungeon)
             dungeon.players.add(index)
-            val center = instance.tile.add(startRoom.tile.x * 16 + 8, startRoom.tile.y * 16 + 8)
+            val center = dungeon.tile(startRoom).add(8, 8)
             NPCs.add("smuggler_dungeoneering", center)
             val partySize = dungeon.players.size
             spawnTableItems(instance.tile, complexity, dungeon, skills, partySize)
@@ -160,7 +160,7 @@ class Dungeoneering(val dropTables: DropTables) : Script {
     private fun spawnTableItems(instance: Tile, complexity: Int, dungeon: DungeonMap, skills: Map<Skill, Int>, partySize: Int) {
         val items = mutableListOf<ItemDrop>()
         val startRoom = dungeon.start()
-        val tile = instance.add(startRoom.tile.x * 16, startRoom.tile.y * 16)
+        val tile = dungeon.tile(startRoom)
         val limit = (skills.getValue(Skill.Constitution) / 100).coerceAtMost(if (World.members) 10 else 5)
         repeat(7 + (partySize * 2)) {
             val index = random.nextInt(0, limit)
