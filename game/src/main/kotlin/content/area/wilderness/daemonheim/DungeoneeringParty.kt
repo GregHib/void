@@ -299,10 +299,12 @@ class DungeoneeringParty : Script {
             player.inventory.clear()
             player.dismissPet()
             player.equipment.clear()
-            if (player["dungeoneering_started_kinship", false]) {
-                player.clear("dungeoneering_started_kinship")
+            if (player["dungeoneering_stored_kinship", false]) {
+                player.clear("dungeoneering_stored_kinship")
                 player.inventory.add("ring_of_kinship")
             }
+            player.open(player["dungeoneering_stored_spellbook", "modern_spellbook"])
+            player.clear("dungeoneering_stored_spellbook")
             player.tele(3460, 3721, 1)
 
             if (player["dungeoneering_guide_mode", false]) {

@@ -54,6 +54,10 @@ format = "list"
 persist = true
 values = ["small", "medium", "large"]
 
-[dungeoneering_started_kinship]
+[dungeoneering_stored_kinship]
 format = "boolean"
+persist = true
+
+[dungeoneering_stored_spellbook]
+format = "string"
 persist = true

@@ -52,7 +52,6 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         DungeonTableItems.spawn(complexity, dungeon, dungeon.skills, dungeon.playerCount)
         DungeonNPCs.spawn(dungeon, this, floor, complexity)
         spawnDoors(target, dungeon.theme)
-        DungeonStartingItems.spawn(dungeon, complexity, dungeon.skills)
     }
 
     private fun spawnKeys(dungeon: DungeonMap) {
