@@ -945,9 +945,11 @@ wander_range = 0
 wander_range = 6
 
 [.gull_draynor]
+wander_range = 5
 max_range = 100
 
 [.gull_draynor_2]
+wander_range = 5
 max_range = 100
 
 [.sanfew]
@@ -5247,10 +5249,10 @@ max_range = 6
 max_range = 50
 
 [.pig_2]
-wander_range = 0
+wander_range = 3
 
 [.piglet]
-wander_range = 0
+wander_range = 3
 
 [.piglet_2]
 wander_range = 3
@@ -5465,6 +5467,9 @@ max_range = 7
 #wander_range = 0
 #max_range = 0
 
+[.cow_calf]
+wander_range = 4
+
 [.sheepdog]
 wander_range = 0
 
@@ -5480,21 +5485,21 @@ wander_range = 5
 [.chicken_falador_3]
 wander_range = 5
 
-#[.2316]
-#wander_range = 3
-#max_range = 5
+[.pig_3]
+wander_range = 3
+max_range = 5
 
-#[.2317]
-#wander_range = 3
-#max_range = 5
+[.pig_4]
+wander_range = 3
+max_range = 5
 
-#[.2318]
-#wander_range = 3
-#max_range = 5
+[.piglet_4]
+wander_range = 3
+max_range = 5
 
-#[.2319]
-#wander_range = 3
-#max_range = 5
+[.piglet_5]
+wander_range = 3
+max_range = 5
 
 [.blandebir_keldagrim]
 wander_range = 3
@@ -7715,6 +7720,9 @@ wander_range = 2
 
 [.gadrin]
 wander_range = 2
+
+[.swan_falador]
+wander_range = 5
 
 #[.3297]
 #max_range = 50
@@ -32711,16 +32719,16 @@ wander_range = 8
 wander_range = 8
 
 [.cow_2]
-wander_range = 2
+wander_range = 4
 
 [.cow_brown_2]
-wander_range = 2
+wander_range = 4
 
 [.cow_calf_2]
-wander_range = 0
+wander_range = 4
 
 [.cow_calf_3]
-wander_range = 0
+wander_range = 4
 max_range = 16
 
 [.lumbridge_guardsman_attackable]

@@ -162,9 +162,11 @@ examine = "He looks as if he could do with a sip of Amontillado."
 
 [gull_draynor]
 id = 450
+collision = "sky"
 
 [gull_draynor_2]
 id = 451
+collision = "sky"
 
 [town_crier_draynor]
 id = 6136

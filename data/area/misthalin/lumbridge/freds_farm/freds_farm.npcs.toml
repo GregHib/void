@@ -38,6 +38,10 @@ id = 5423
 id = 7
 clone = "farmer_lumbridge"
 
+[farmer_2]
+id = 1760
+clone = "farmer_lumbridge"
+
 [hay_bales_2]
 id = 11625
 
