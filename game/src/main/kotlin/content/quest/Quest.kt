@@ -23,6 +23,7 @@ val quests = setOf(
     // members
     "creature_of_fenkenstrain",
     "druidic_ritual",
+    "jungle_potion",
     "nature_spirit",
     "plague_city",
     "priest_in_peril",

@@ -1,6 +1,8 @@
 package content.area.misthalin.lumbridge.catacomb
 
+import content.entity.combat.dead
 import content.entity.combat.hit.directHit
+import content.entity.combat.inCombat
 import content.entity.combat.killer
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
@@ -9,11 +11,13 @@ import content.entity.player.dialogue.type.statement
 import content.quest.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
@@ -169,21 +173,42 @@ class LumbridgeCatacombs : Script {
         objectOperate("Take", "*_demon_statuette") { (target) ->
             val def = target.def(this)
             if (get(def.stringId, "take") != "take") {
-                message("You've already taken this statuette.")
+                message("You've already taken this statue.")
                 return@objectOperate
             }
-            statement("The air grows tense as you approach the statuette. You sense a hostile presence nearby...")
+            statement("The monsters around you seem to become agitated as you approach the statue. You think one of them might attack if you were to take it.")
 
             choice {
-                option("Take the statuette.") {
+                option("Take the statue.") {
+                    if (inventory.isFull()) {
+                        inventoryFull()
+                        return@option
+                    }
+                    start("thieving", 2)
+                    anim("take")
+                    delay(1)
                     if (inventory.add(def.stringId)) {
                         set(def.stringId, "plinth")
-                        message("You carefully take the ${def.stringId}")
+                        message("You think that Xenia might be interested in seeing this statuette.")
+                        val triggerTiles = listOf(
+                            Tile(3989, 5541),
+                            Tile(3998, 5495),
+                            Tile(4012, 5491),
+                            Tile(3995, 5482),
+                            Tile(4020, 5534),
+                        )
+                        if (triggerTiles.any { trigger -> target.tile.distanceTo(trigger) <= 3 }) {
+                            NPCs.findOrNull(tile.regionLevel) { it.tile.distanceTo(target.tile) <= 5 }?.let { nearby ->
+                                if (!nearby.dead && !nearby.inCombat) {
+                                    nearby.interactPlayer(this, "Attack")
+                                }
+                            }
+                        }
                     } else {
                         inventoryFull()
                     }
                 }
-                option("Leave it alone.")
+                option("Leave the statue alone.")
             }
         }
 

@@ -87,6 +87,7 @@ cooked = "drunk_dragon"
 level = 20
 xp = 520
 type = "heat"
+chance_fire = [255, 255]
 chance_range = [255, 255]
 chance_cook_o_matic = [255, 255]
 chance_gauntlet = [255, 255]

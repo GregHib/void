@@ -3,4 +3,4 @@ id = 175
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, completed = 12 }
+values = { unstarted = 0, started = 1, found_snake_weed = 2, gave_snake_weed = 3, found_ardrigal = 4, gave_ardrigal = 5, found_sito_foil = 6, gave_sito_foil = 7, found_volencia_moss = 8, gave_volencia_moss = 9, found_rogues_purse = 10, gave_rogues_purse = 11,  completed = 12 }

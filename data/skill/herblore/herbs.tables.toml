@@ -4,19 +4,44 @@ level = "int"
 xp = "int"
 name = "string"
 
+[.grimy_snake_weed]
+level = 3
+xp = 25
+name = "snake weed"
+
+[.grimy_ardrigal]
+level = 3
+xp = 25
+name = "ardrigal"
+
+[.grimy_sito_foil]
+level = 3
+xp = 25
+name = "sito foil"
+
+[.grimy_volencia_moss]
+level = 3
+xp = 25
+name = "volencia moss"
+
+[.grimy_rogues_purse]
+level = 3
+xp = 25
+name = "rogues purse"
+
 [.grimy_guam]
 level = 3
 xp = 25
 name = "guam leaf"
 
 [.grimy_marrentill]
-level = 9
-xp = 50
+level = 5
+xp = 38
 name = "marrentill"
 
 [.grimy_tarromin]
-level = 5
-xp = 38
+level = 11
+xp = 50
 name = "tarromin"
 
 [.grimy_harralander]

@@ -1,21 +1,33 @@
 package content.area.morytania.port_phasmatys
 
 import content.entity.combat.hit.damage
+import content.entity.combat.killer
+import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import content.entity.player.effect.energy.runEnergy
+import content.quest.member.ghosts_ahoy.GhostsAhoy
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
+import world.gregs.voidps.type.random
+import kotlin.random.nextInt
 
 class WreckedGhostShip : Script {
 
@@ -64,6 +76,81 @@ class WreckedGhostShip : Script {
             } else {
                 jump(target, target.tile, direction.inverse())
             }
+        }
+
+        objectApproach("Search", "ahoy_ship_mast") {
+            windSpeed()
+        }
+
+        objectOperate("Search", "ahoy_ship_mast") {
+            windSpeed()
+        }
+
+        objTeleportTakeOff("Climb-down", "wrecked_ghost_ship_ladder_down") { obj, _ ->
+            if (obj.tile.equals(3615, 3545, 2)) {
+                message("That ladder doesn't go anywhere very safe.")
+                Teleport.CANCEL
+            } else {
+                Teleport.CONTINUE
+            }
+        }
+
+        entered("ahoy_shipwreck_top") {
+            open("ahoy_windspeed")
+            set("ahoy_windspeed", false)
+            timers.start("windspeed")
+        }
+
+        exited("ahoy_shipwreck_top") {
+            close("ahoy_windspeed")
+            timers.stop("windspeed")
+        }
+
+        timerStart("windspeed") {
+            random.nextInt(0..16) + 2
+        }
+
+        timerTick("windspeed") {
+            val lowWind = get("ahoy_windspeed", false)
+            set("ahoy_windspeed", !lowWind)
+            interfaces.sendText("ahoy_windspeed", "content", if (lowWind) "High" else "Low")
+            random.nextInt(0..16) + 2
+        }
+
+        objectOperate("Talk-to", "ahoy_pirate_captain") {
+            statement("The pirate captain ignores you and continues to stare lifelessly at nothing, as he has clearly been dead for some time.")
+        }
+
+        itemOnObjectOperate("chest_key_ghosts_ahoy", "ahoy_pirate_chest_locked") { interaction ->
+            if (!interaction.target.tile.equals(3619, 3545, 1)) {
+                return@itemOnObjectOperate noInterest()
+            }
+            if (get("ahoy_subquest_toyboat", 0) == 3) {
+                return@itemOnObjectOperate message("The chest is already unlocked.")
+            }
+            inventory.remove("chest_key_ghosts_ahoy")
+            sound("unlock")
+            set("ahoy_subquest_toyboat", 3)
+            item(item = "chest_key_ghosts_ahoy", text = "You unlock the chest.")
+        }
+
+        npcDeath("giant_lobster_ghosts_ahoy") {
+            val killer = killer
+            if (killer is Player) {
+                killer["ahoy_killed_lobster"] = true
+            }
+        }
+    }
+
+    private suspend fun Player.windSpeed() {
+        if (!get("ahoy_windspeed", false)) {
+            statement("You can see a tattered flag blowing in the wind.<br>The wind is blowing too hard to make out any details.")
+            return
+        }
+        when (random.nextInt(3)) {
+            0 -> statement("You can see a tattered flag blowing in the wind.<br>The top half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_top", 0))}.")
+            1 -> statement("You can see a tattered flag blowing in the wind.<br>The bottom half of the flag is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_bottom", 0))}.")
+            else -> statement("You can see a tattered flag blowing in the wind.<br>The skull emblem is coloured ${GhostsAhoy.flagColor(get("ahoy_mast_skull", 0))}.")
         }
     }
 

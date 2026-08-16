@@ -1,0 +1,106 @@
+[ahoy_islandmap]
+id = 8
+
+[ahoy_runedraw]
+id = 9
+
+[.com_0]
+id = "0-4"
+
+[.runedraw_btn_draw]
+id = 5
+
+[.runedraw_btn_hold]
+id = 6
+
+# Rune slots — IDs are scattered, ordered by turn number 1..10 for each side.
+[.player_slot_1]
+id = 7
+
+[.com_8]
+id = 8
+
+[.robin_slot_1]
+id = 9
+
+[.robin_slot_3]
+id = 10
+
+[.robin_slot_9]
+id = 11
+
+[.robin_slot_8]
+id = 12
+
+[.robin_slot_7]
+id = 13
+
+[.robin_slot_5]
+id = 14
+
+[.robin_slot_4]
+id = 15
+
+[.robin_slot_6]
+id = 16
+
+[.robin_slot_2]
+id = 17
+
+[.robin_slot_10]
+id = 18
+
+[.com_19]
+id = 19
+
+[.player_slot_2]
+id = 20
+
+[.player_slot_9]
+id = 21
+
+[.player_slot_4]
+id = 22
+
+[.player_slot_3]
+id = 23
+
+[.player_slot_6]
+id = 24
+
+[.player_slot_8]
+id = 25
+
+[.player_slot_5]
+id = 26
+
+[.player_slot_7]
+id = 27
+
+[.player_slot_10]
+id = 28
+
+[.runedraw_score_r]
+id = 29
+
+[.runedraw_totalscore_r]
+id = 30
+
+[.runedraw_score_l]
+id = 31
+
+[.runedraw_totalscore_l]
+id = 32
+
+[.com_33]
+id = "33-34"
+
+[.ahoy_runedraw_close_button]
+id = 35
+
+[ahoy_windspeed]
+id = 10
+type = "overlay"
+
+[.content]
+id = 2
