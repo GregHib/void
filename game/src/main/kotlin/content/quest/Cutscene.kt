@@ -158,6 +158,9 @@ fun Player.instance(): Region? {
 fun Player.clearInstance(): Boolean {
     val id: Int = remove("instance") ?: return false
     clear("instance_offset")
+    // Only meaningful while inside the instance; leaving it set sends the next instance exit
+    // (and any death drop) back to an exit tile that has nothing to do with where the player is.
+    clear("instance_logout_tile")
     val region = Region(id)
     Instances.free(region)
     get<DynamicZones>().clear(region)
