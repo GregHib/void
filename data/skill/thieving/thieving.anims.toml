@@ -9,3 +9,21 @@ id = 881
 ticks = 4
 walk = false
 run = false
+
+[pickpocket_double]
+id = 5074
+ticks = 4
+walk = false
+run = false
+
+[pickpocket_triple]
+id = 5075
+ticks = 4
+walk = false
+run = false
+
+[pickpocket_quad]
+id = 5078
+ticks = 4
+walk = false
+run = false

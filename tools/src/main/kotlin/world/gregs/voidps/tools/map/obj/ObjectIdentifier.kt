@@ -213,7 +213,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         GameObject(12389, Tile(2960, 3507), 10, 1) to GameObject(12390, Tile(2981, 9916), 10, 0), // goblin village dungeon enter
         GameObject(17974, Tile(3038, 4375), 10, 2) to GameObject(21922, Tile(2647, 3213), 10, 0), // tower of life dungeon exit
         GameObject(21922, Tile(2647, 3213), 10, 0) to GameObject(17974, Tile(3038, 4375), 10, 2), // tower of life dungeon enter
-        GameObject(7221, Tile(3057, 5005, 1), 10, 3) to Tile(3057, 5003, 1), // rouges den viewing gallery
+        GameObject(7221, Tile(3057, 5005, 1), 10, 3) to Tile(3057, 5003, 1), // rogues den viewing gallery
         GameObject(29592, Tile(3084, 3452), 10, 2) to GameObject(29589, Tile(3086, 4244), 10, 0), // Stronghold of player safety training centre enter
         GameObject(31417, Tile(3079, 4339), 10, 2) to GameObject(31412, Tile(3338, 9368), 10, 0), // Pollnivneach slayer dungeon turoth
         GameObject(31417, Tile(3126, 4339), 10, 2) to GameObject(31412, Tile(3377, 9367), 10, 0), // Pollnivneach slayer dungeon basilisk

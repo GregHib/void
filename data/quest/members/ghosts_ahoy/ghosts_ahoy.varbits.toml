@@ -53,10 +53,11 @@ id = 216
 persist = true
 format = "boolean"
 
-[ahoy_questvar]
+[ghosts_ahoy]
 id = 217
 persist = true
-format = "int"
+format = "list"
+values = [ "unstarted", "ask_necrovarus", "pleaded", "old_crone", "crone_help", "crone_ritual", "enchanted", "commanded", "completed"]
 
 [wearing_ghost_speak_amulet]
 id = 3732

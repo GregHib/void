@@ -32,7 +32,7 @@ class GhostInnKeeper : Script {
             option<Quiz>("Can I hear some gossip?") {
                 npc<Neutral>("I suppose, as long as you keep it to yourself...")
                 npc<Neutral>("You see Gravingas out there in the marketplace? He speaks for the silent majority of Port Phasmatys, for those of us who would prefer to pass over into the next world.")
-                if (ghosts_ahoy == 0) {
+                if (quest("ghosts_ahoy") == "unstarted") {
                     npc<Neutral>("But old Gravingas is far too obvious in his methods. Now Velorina, she's a ghost of a different colour altogether. If you feel like helping our cause at all, go speak to Velorina.")
                 }
             }

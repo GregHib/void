@@ -8,6 +8,8 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.inv.item.addOrDrop
+import content.quest.quest
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -46,26 +48,26 @@ class Gravingas : Script {
             }
             val petition = get("ahoy_signaturecounter", 0)
             when {
-                ghosts_ahoy == 7 -> {
+                quest("ghosts_ahoy") == "commanded" -> {
                     player<Neutral>(
                         "Why are you still protesting? I have commanded Necrovarus to let you " +
                             "and your friends do as you like! There's no need for this anymore!",
                     )
                     npc<Neutral>("There's always a need for a healthy interest in politics.")
                 }
-                ghosts_ahoy < 4 -> {
+                questStage("ghosts_ahoy") < 4 -> {
                     npc<Neutral>(
                         "Will you join with me and protest against the evil ban of Necrovarus " +
                             "and his disciples?",
                     )
-                    if (ghosts_ahoy < 1) {
+                    if (quest("ghosts_ahoy") == "unstarted") {
                         player<Neutral>("I'm sorry, I don't really think I should get involved.")
                         npc<Neutral>("Ah, the youth of today - so apathetic to politics.")
                         return@npcOperate
                     }
                     askToJoin()
                 }
-                petition == 31 || ghosts_ahoy > 4 -> {
+                petition == 31 || questStage("ghosts_ahoy") > 4 -> {
                     npc<Neutral>("So have you presented the petition to Necrovarus?")
                     player<Sad>("Yes. He burned it.")
                     npc<Neutral>("That's exactly what I thought he would do.")

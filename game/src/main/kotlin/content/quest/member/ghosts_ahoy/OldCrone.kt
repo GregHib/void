@@ -10,6 +10,8 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
+import content.quest.quest
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -28,19 +30,17 @@ class OldCrone : Script {
     init {
         npcOperate("Talk-To", "ahoy_crone") { (target) ->
             // TODO: Animal Magnetism
-            when {
-                ghosts_ahoy == 0 -> idleSmallTalk()
-                ghosts_ahoy > 2 -> ahoyBranch(target)
-                else -> {
-                    choice {
-                        option<Neutral>("I'm here about Necrovarus.") {
-                            ahoyBranch(target)
-                        }
-                        option<Neutral>("I'm here about the farmers east of here.") {
-                            npc<Neutral>("Come back to me about that after you've made some progress with Velorina.")
-                        }
+            when (quest("ghosts_ahoy")) {
+                "unstarted" -> idleSmallTalk()
+                "ask_necrovarus", "pleaded" -> choice {
+                    option<Neutral>("I'm here about Necrovarus.") {
+                        ahoyBranch(target)
+                    }
+                    option<Neutral>("I'm here about the farmers east of here.") {
+                        npc<Neutral>("Come back to me about that after you've made some progress with Velorina.")
                     }
                 }
+                else -> ahoyBranch(target)
             }
         }
 
@@ -63,12 +63,12 @@ class OldCrone : Script {
 
     private suspend fun Player.ahoyBranch(target: NPC) {
         player<Quiz>("I'm here about Necrovarus.")
-        when {
-            ghosts_ahoy >= 7 -> postQuestThanks()
-            ghosts_ahoy == 6 -> enchantmentFollowUp(target)
-            ghosts_ahoy == 5 -> performEnchantment(target)
-            ghosts_ahoy == 4 -> stageFourOptions(target)
-            ghosts_ahoy == 3 -> wereYouADisciple()
+        when (quest("ghosts_ahoy")) {
+            "commanded", "completed" -> postQuestThanks()
+            "enchanted" -> enchantmentFollowUp(target)
+            "crone_ritual" -> performEnchantment(target)
+            "crone_help" -> stageFourOptions(target)
+            "old_crone" -> wereYouADisciple()
         }
     }
 
@@ -90,14 +90,14 @@ class OldCrone : Script {
     }
 
     private suspend fun Player.offerTea(itemUsed: Item) {
-        if (ghosts_ahoy >= 4) {
+        if (questStage("ghosts_ahoy") >= 4) {
             npc<Neutral>("Oh, no thanks; I'm not thirsty anymore.")
             return
         }
         when (itemUsed.id) {
             "cup_of_milky_tea_ghosts_ahoy" -> {
                 set("ahoy_subquest_nettletea", 3)
-                ghosts_ahoy = 4
+                set("ghosts_ahoy", "crone_help")
                 inventory.remove("cup_of_milky_tea_ghosts_ahoy")
                 player<Neutral>("Here's a lovely cup of milky tea for you, in your own special cup.")
             }
@@ -184,7 +184,7 @@ class OldCrone : Script {
         }
         if (get("ahoy_given_manual", false) && get("ahoy_given_robes", false) && get("ahoy_given_book", false)) {
             npc<Neutral>("Wonderful; that's everything I need.")
-            ghosts_ahoy = 5
+            set("ghosts_ahoy", "crone_ritual")
             npc<Neutral>("I will now perform the ritual of enchantment.")
             performEnchantment(target)
         }
@@ -264,7 +264,7 @@ class OldCrone : Script {
         } else if (!inventory.replace("ghostspeak_amulet", "ghostspeak_amulet_enchanted")) {
             return npc<Neutral>("You don't have a ghostspeak amulet for me to enchant.")
         }
-        ghosts_ahoy = 6
+        set("ghosts_ahoy", "enchanted")
         item(
             item = "ghostspeak_amulet_enchanted",
             text = "The ghostspeak amulet emits a green glow from its gem.",

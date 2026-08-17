@@ -7,9 +7,11 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
+import content.quest.quest
 import content.quest.questComplete
 import content.quest.questCompleted
 import content.quest.questJournal
+import content.quest.questStage
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.hint
@@ -39,7 +41,7 @@ class GhostsAhoy : Script {
 
     init {
         questJournalOpen("ghosts_ahoy") {
-            val progress = ghosts_ahoy
+            val progress = questStage("ghosts_ahoy")
             val lines = mutableListOf<String>()
 
             if (progress == 0) {
@@ -245,9 +247,9 @@ class GhostsAhoy : Script {
         }
 
         objectOperate("Search", "ahoy_pirate_chest_open") { (target) ->
-            val progress = ghosts_ahoy
+            val stage = quest("ghosts_ahoy")
             if (target.tile.x == 3606 && target.tile.y == 3564 && target.tile.level == 0) {
-                if (progress != 4 ||
+                if (stage != "crone_help" ||
                     get("ahoy_given_book", false) ||
                     ownsItem("book_of_haricanto") ||
                     ownsItem("treasure_map") ||
@@ -263,8 +265,8 @@ class GhostsAhoy : Script {
             if (target.tile.x == 3618 && target.tile.y == 3542 && target.tile.level == 0) {
                 val killed = get("ahoy_killed_lobster", false)
                 val lobster = NPCs.at(tile.regionLevel).firstOrNull { it["owner", ""] == accountName }
-                if (killed || progress != 4) {
-                    if (progress != 4 ||
+                if (killed || stage != "crone_help") {
+                    if (stage != "crone_help" ||
                         get("ahoy_given_book", false) ||
                         ownsItem("book_of_haricanto") ||
                         ownsItem("treasure_map") ||
@@ -332,17 +334,13 @@ class GhostsAhoy : Script {
     }
 }
 
-var Player.ghosts_ahoy: Int
-    get() = get("ahoy_questvar", 0)
-    set(value) = set("ahoy_questvar", value)
-
 fun Player.sendGhostsAhoyReward() {
     jingle("quest_complete_1")
     exp(Skill.Prayer, 2400.0)
     addOrDrop("ectophial")
     inc("quest_points", 2)
     AuditLog.event(this, "quest_completed", "ghosts_ahoy")
-    ghosts_ahoy = 8
+    set("ghosts_ahoy", "completed")
     set("ahoy_given_manual", true)
     set("ahoy_given_robes", true)
     set("ahoy_given_book", true)

@@ -2,6 +2,7 @@ package content.quest.member.ghosts_ahoy
 
 import FakeRandom
 import WorldTest
+import content.quest.quest
 import dialogueOption
 import itemOnItem
 import itemOnObject
@@ -64,7 +65,7 @@ class GhostsAhoyTest : WorldTest() {
         player.skipDialogues()
         player.dialogueOption(1) // Yes
         player.skipDialogues()
-        assertEquals(1, player["ahoy_questvar", 0])
+        assertEquals("ask_necrovarus", player.quest("ghosts_ahoy"))
 
         // Talk with necrovarus
         player.tele(3660, 3517)
@@ -72,14 +73,14 @@ class GhostsAhoyTest : WorldTest() {
         player.npcOption(necrovarus, "Talk-To")
         tick(1)
         player.skipDialogues()
-        assertEquals(2, player["ahoy_questvar", 0])
+        assertEquals("pleaded", player.quest("ghosts_ahoy"))
 
         // Return to velorina
         player.tele(3677, 3509)
         player.npcOption(velorina, "Talk-To")
         tick(1)
         player.skipDialogues()
-        assertEquals(3, player["ahoy_questvar", 0])
+        assertEquals("old_crone", player.quest("ghosts_ahoy"))
 
         // Fill bowl
         player.tele(3588, 3528)
@@ -132,6 +133,7 @@ class GhostsAhoyTest : WorldTest() {
         player.dialogueOption(1) // Son
         player.skipDialogues()
         assertEquals(1, player["ahoy_subquest_toyboat", 0])
+        assertEquals("crone_help", player.quest("ghosts_ahoy"))
 
         // Repair boat
         player.itemOption("Repair", "model_ship")
@@ -346,7 +348,7 @@ class GhostsAhoyTest : WorldTest() {
         player.skipDialogues()
         tick(5)
         assertEquals("ghostspeak_amulet_enchanted", player.equipped(EquipSlot.Amulet).id)
-        assertEquals(6, player["ahoy_questvar", 0])
+        assertEquals("enchanted", player.quest("ghosts_ahoy"))
 
         // Command Necrovarus
         player.tele(3660, 3517)
@@ -355,7 +357,7 @@ class GhostsAhoyTest : WorldTest() {
         player.skipDialogues()
         player.dialogueOption(1)
         player.skipDialogues()
-        assertEquals(7, player["ahoy_questvar", 0])
+        assertEquals("commanded", player.quest("ghosts_ahoy"))
 
         // Return to vel
         player.tele(3677, 3509)
@@ -363,6 +365,6 @@ class GhostsAhoyTest : WorldTest() {
         tick(1)
         player.skipDialogues()
         assertEquals(1, player.inventory.count("ectophial"))
-        assertEquals(8, player["ahoy_questvar", 0])
+        assertEquals("completed", player.quest("ghosts_ahoy"))
     }
 }

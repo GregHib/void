@@ -1,4 +1,4 @@
-[rouge_pickpocket]
+[rogue_pickpocket]
 roll = 144
 drops = [
     { id = "coins", min = 25, max = 40, chance = 123 },

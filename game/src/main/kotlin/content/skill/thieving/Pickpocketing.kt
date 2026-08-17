@@ -7,6 +7,8 @@ import content.skill.summoning.familiarBoost
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
@@ -19,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.success
+import world.gregs.voidps.engine.entity.item.drop.DropTable
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.inv.discharge
@@ -61,24 +64,48 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             return
         }
         var chances = pickpocket.intRange("chance")
+        println("Double chance: ${level + 10}")
+        println("Triple chance: ${level + 20} ${level + 10}")
+        println("Quadruple chance: ${level + 30} ${level + 20}")
         if (equipped(EquipSlot.Hands).id == "gloves_of_silence" && equipment.discharge(this, EquipSlot.Hands.index)) {
             chances = (chances.first + (chances.first / 20)).coerceAtMost(255)..(chances.last + (chances.last / 20)).coerceAtMost(255)
         }
         val success = success(levels.get(Skill.Thieving) + familiarBoost(Skill.Thieving), chances)
         val table = pickpocket.string("table")
-        val drops = getLoot(target, table) ?: emptyList()
+        val multiplier = lootMultiplier(pickpocket, level)
+        val drops = getLoot(target, table, multiplier) ?: emptyList()
         if (success && !canLoot(this, drops)) {
             return
         }
         val name = target.def.name
         message("You attempt to pick the $name's pocket.", ChatType.Filter)
-        anim("pick_pocket")
+        anim(
+            when (multiplier) {
+                4 -> "pickpocket_quad"
+                3 -> "pickpocket_triple"
+                2 -> "pickpocket_double"
+                else -> "pick_pocket"
+            },
+        )
+        when (multiplier) {
+            4 -> gfx("pickpocket_quad")
+            3 -> gfx("pickpocket_triple")
+            2 -> gfx("pickpocket_double")
+        }
         delay(2)
         if (success) {
             inventory.transaction {
                 addLoot(drops)
             }
-            message("You pick the $name's pocket.", ChatType.Filter)
+            message(
+                when (multiplier) {
+                    4 -> "Your lighting-fast reactions allow you to steal quadruple loot."
+                    3 -> "Your lighting-fast reactions allow you to steal triple loot."
+                    2 -> "Your lighting-fast reactions allow you to steal double loot."
+                    else -> "You pick the $name's pocket."
+                },
+                ChatType.Filter,
+            )
             val xp = pickpocket.int("xp") / 10.0
             exp(Skill.Thieving, xp)
         } else {
@@ -93,22 +120,43 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
         }
     }
 
-    fun getLoot(target: NPC, table: String?): List<ItemDrop>? {
-        var id = dropTables.get("${table}_pickpocket")
-        if (id != null) {
-            return id.roll()
+    private fun Player.lootMultiplier(pickpocket: RowDefinition, level: Int): Int {
+        if (!pickpocket.bool("multiple") || random.nextInt(Settings["thieving.pickpocket.multiChance", 10]) != 0) { // Unknown rates
+            return 1
         }
-        id = dropTables.get("${target.id}_pickpocket")
-        if (id != null) {
-            return id.roll()
+        return when {
+            has(Skill.Thieving, level + 30) && has(Skill.Agility, level + 20) -> 4
+            has(Skill.Thieving, level + 20) && has(Skill.Agility, level + 10) -> 3
+            has(Skill.Thieving, level + 10) && has(Skill.Agility, level) -> 2
+            else -> 1
+        }
+    }
+
+    fun getTable(target: NPC, table: String?): DropTable? {
+        var dropTable = dropTables.get("${table}_pickpocket")
+        if (dropTable != null) {
+            return dropTable
+        }
+        dropTable = dropTables.get("${target.id}_pickpocket")
+        if (dropTable != null) {
+            return dropTable
         }
         for (category in target.categories) {
-            id = dropTables.get("${category}_pickpocket")
-            if (id != null) {
-                return id.roll()
+            dropTable = dropTables.get("${category}_pickpocket")
+            if (dropTable != null) {
+                return dropTable
             }
         }
         return null
+    }
+
+    fun getLoot(target: NPC, table: String?, multiplier: Int): List<ItemDrop>? {
+        val table = getTable(target, table) ?: return null
+        val list = mutableListOf<ItemDrop>()
+        for (i in 0 until multiplier) {
+            table.roll(list = list)
+        }
+        return list
     }
 
     fun canLoot(player: Player, drops: List<ItemDrop>): Boolean {
@@ -130,6 +178,7 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             if (item.isEmpty()) {
                 continue
             }
+            println("Add $item")
             add(item.id, item.amount)
         }
     }
