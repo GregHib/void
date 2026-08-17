@@ -1,10 +1,12 @@
 package content.skill.dungeoneering
 
+import content.entity.player.equip.Equipping
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
@@ -16,7 +18,6 @@ import kotlin.random.nextInt
 object DungeonStartingItems {
 
     fun spawn(dungeon: DungeonMap, complexity: Int) {
-        // Bound weapons - equip first weapon bound https://web.archive.org/web/20150406211914/http://www.xp-waste.com/weapon-wielded-at-the-start-of-a-floor-t2478.html
         for (member in dungeon.members) {
             // Equip type of ring of kinship
             val currentClass = member["kinship_class", "none"]
@@ -24,14 +25,31 @@ object DungeonStartingItems {
             member.equipment.transaction {
                 set(EquipSlot.Ring.index, Item(kinship))
             }
-            for (item in member.inventories.inventory("dungeoneering_bound").items) {
-                member.inventory.add(item.id)
-            }
+            giveBinds(member)
             if (complexity == 1) {
                 allocateGear(member)
             }
         }
         // TODO group gatestone
+    }
+
+    private fun giveBinds(member: Player) {
+        val items = member.inventories.inventory("dungeoneering_bound").items
+        // Equip in order of bind https://web.archive.org/web/20150406211914/http://www.xp-waste.com/weapon-wielded-at-the-start-of-a-floor-t2478.html
+        for (item in items.reversed()) {
+            member.inventory.add(item.id)
+            if (item.def.slot != EquipSlot.None) {
+                Equipping.equip(member, item, member.inventory.indexOf(item.id))
+            }
+        }
+        if (member.contains("dungeoneering_bound_ammo_id")) {
+            val id = member["dungeoneering_bound_ammo_id", ""]
+            member.inventory.add(id, member["dungeoneering_bound_ammo_count", 0])
+            if (id.endsWith("arrows")) {
+                val slot = member.inventory.indexOf(id)
+                Equipping.equip(member, member.inventory[slot], slot)
+            }
+        }
     }
 
     private fun allocateGear(member: Player) {
