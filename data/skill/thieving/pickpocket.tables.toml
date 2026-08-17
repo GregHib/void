@@ -294,7 +294,7 @@ type = "guard"
 type = "guard"
 
 [.rogue_castle]
-type = "rouge"
+type = "rogue"
 
 [.sassilik_rellekka]
 type = "fremmennik"

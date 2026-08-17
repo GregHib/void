@@ -54,7 +54,7 @@ class RugMerchantTest : WorldTest() {
     }
 
     @Test
-    fun `Travel is cheaper after Rouge Trader quest`() {
+    fun `Travel is cheaper after Rogue Trader quest`() {
         val player = createPlayer(Tile(3309, 3109))
         player["rogue_trader"] = "completed"
         player.inventory.add("coins", 200)
@@ -74,7 +74,7 @@ class RugMerchantTest : WorldTest() {
     }
 
     @Test
-    fun `Travel is cheapest with Rouge Trader and Ring of Charos`() {
+    fun `Travel is cheapest with Rogue Trader and Ring of Charos`() {
         val player = createPlayer(Tile(3309, 3109))
         player.inventory.add("coins", 200)
         player["rogue_trader"] = "completed"

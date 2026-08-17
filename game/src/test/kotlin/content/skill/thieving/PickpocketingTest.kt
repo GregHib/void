@@ -26,8 +26,26 @@ internal class PickpocketingTest : WorldTest() {
         player.npcOption(man, "Pickpocket")
         tick(4)
 
-        assertEquals(player.inventory.count("coins"), 3)
-        assertEquals(player.experience.get(Skill.Thieving), 8.0)
+        assertEquals(3, player.inventory.count("coins"))
+        assertEquals(8.0, player.experience.get(Skill.Thieving))
+        assertFalse(player.stunned)
+    }
+
+    @Test
+    fun `Successfully pickpocket multiple loot`() {
+        setRandom(object : FakeRandom() {
+            override fun nextInt(until: Int) = 0
+        })
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Thieving, 11)
+        player.levels.set(Skill.Agility, 1)
+        val man = createNPC("man", emptyTile.addY(1))
+
+        player.npcOption(man, "Pickpocket")
+        tick(4)
+
+        assertEquals(6, player.inventory.count("coins"))
+        assertEquals(8.0, player.experience.get(Skill.Thieving))
         assertFalse(player.stunned)
     }
 
@@ -42,8 +60,8 @@ internal class PickpocketingTest : WorldTest() {
         player.npcOption(man, "Pickpocket")
         tick(4)
 
-        assertEquals(player.inventory.count("coins"), 0)
-        assertEquals(player.experience.get(Skill.Thieving), 0.0)
+        assertEquals(0, player.inventory.count("coins"))
+        assertEquals(0.0, player.experience.get(Skill.Thieving))
         assertTrue(player.stunned)
     }
 
@@ -56,8 +74,8 @@ internal class PickpocketingTest : WorldTest() {
         player.npcOption(man, "Pickpocket")
         tick(4)
 
-        assertEquals(player.inventory.count("coins"), 0)
-        assertEquals(player.experience.get(Skill.Thieving), 0.0)
+        assertEquals(0, player.inventory.count("coins"))
+        assertEquals(0.0, player.experience.get(Skill.Thieving))
         assertFalse(player.stunned)
     }
 }

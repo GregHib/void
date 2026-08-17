@@ -5,6 +5,7 @@ stun_ticks = "int"
 chance = "range"
 table = "string"
 damage = "range"
+multiple = "boolean"
 
 [.fremmennik]
 level = 45
@@ -13,6 +14,7 @@ stun_ticks = 8
 chance = [90, 240]
 damage = [20, 20]
 table = "fremmennik"
+multiple = true
 
 [.desert_bandit]
 level = 53
@@ -20,6 +22,7 @@ xp = 794
 chance = [255, 255]
 damage = [10, 10]
 table = "desert_bandit"
+multiple = true
 
 [.bearded_bandit]
 level = 45
@@ -27,6 +30,7 @@ xp = 650
 chance = [255, 255]
 damage = [10, 10]
 table = "bearded_bandit"
+multiple = true
 
 [.bandit]
 level = 55
@@ -42,6 +46,7 @@ stun_ticks = 8
 chance = [80, 240]
 damage = [10, 10]
 table = "cave_goblin"
+multiple = true
 
 [.workman]
 level = 25
@@ -58,6 +63,7 @@ stun_ticks = 8
 chance = [150, 240]
 damage = [10, 10]
 table = "farmer"
+multiple = true
 
 [.gnome]
 level = 75
@@ -66,6 +72,7 @@ stun_ticks = 8
 chance = [43, 175]
 damage = [10, 10]
 table = "gnome"
+multiple = true
 
 [.guard]
 level = 40
@@ -74,6 +81,7 @@ stun_ticks = 8
 chance = [50, 240]
 damage = [20, 20]
 table = "guard"
+multiple = true
 
 [.ham_member]
 level = 15
@@ -82,6 +90,7 @@ stun_ticks = 6
 chance = [135, 239]
 damage = [10, 30]
 table = "ham_member"
+multiple = true
 
 [.hero]
 level = 80
@@ -89,6 +98,7 @@ xp = 1633
 stun_ticks = 10
 chance = [39, 160]
 table = "hero"
+multiple = true
 
 [.knight]
 level = 55
@@ -97,13 +107,16 @@ stun_ticks = 10
 chance = [50, 240]
 damage = [30, 30]
 table = "knight"
+multiple = true
 
 [.human]
+level = 1
 xp = 80
 stun_ticks = 8
 chance = [180, 240]
 damage = [10, 10]
 table = "man"
+multiple = true
 
 [.master_farmer]
 level = 38
@@ -112,6 +125,7 @@ stun_ticks = 8
 chance = [90, 240]
 damage = [30, 30]
 table = "master_farmer"
+multiple = true
 
 [.thug]
 level = 65
@@ -119,6 +133,7 @@ xp = 1375
 chance = [255, 255]
 damage = [50, 50]
 table = "thug"
+multiple = true
 
 [.paladin]
 level = 70
@@ -127,14 +142,16 @@ stun_ticks = 8
 chance = [40, 170]
 damage = [30, 30]
 table = "paladin"
+multiple = true
 
-[.rouge]
+[.rogue]
 level = 32
 xp = 365
 stun_ticks = 8
 chance = [75, 240]
 damage = [20, 20]
-table = "rouge"
+table = "rogue"
+multiple = true
 
 [.villager]
 level = 30
@@ -150,6 +167,7 @@ stun_ticks = 8
 chance = [100, 240]
 damage = [20, 20]
 table = "warrior"
+multiple = true
 
 [.watchman]
 level = 65
@@ -158,3 +176,4 @@ stun_ticks = 8
 chance = [15, 160]
 damage = [30, 30]
 table = "watchman"
+multiple = true
