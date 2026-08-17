@@ -11,6 +11,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.inv.item.addOrDrop
+import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
@@ -23,21 +24,21 @@ class Velorina : Script {
             if (!checkGhostspeak()) {
                 return@npcOperate
             }
-            when (ghosts_ahoy) {
-                0 -> intro()
-                1 -> notSpoken()
-                2 -> {
+            when (quest("ghosts_ahoy")) {
+                "unstarted" -> intro()
+                "ask_necrovarus" -> notSpoken()
+                "pleaded" -> {
                     player<Sad>("I'm sorry, but Necrovarus will not let you go.")
                     necrovarusRefused()
                 }
-                3 -> oldCroneOptions()
-                4 -> itemRequestOptions()
-                5 -> {
+                "old_crone" -> oldCroneOptions()
+                "crone_help" -> itemRequestOptions()
+                "crone_ritual" -> {
                     npc<Neutral>("How is it going?")
                     player<Neutral>("I found your old friend. She still lives, and has agreed to perform an enchantment for me that will enable me to command Necrovarus to set you free.")
                     npc<Neutral>("Oh, kind ${if (male) "sir" else "lady"} - you are the answer to all our prayers!")
                 }
-                6 -> {
+                "enchanted" -> {
                     npc<Neutral>("How is it going?")
                     if (ownsItem("ghostspeak_amulet_enchanted")) {
                         player<Neutral>("I have had the Amulet of Ghostspeak enchanted, which I shall use to command Necrovarus to set you free.")
@@ -46,8 +47,8 @@ class Velorina : Script {
                     }
                     npc<Neutral>("Oh, kind ${if (male) "sir" else "lady"} - you are the answer to all our prayers!")
                 }
-                7 -> rewardScene()
-                8 -> postQuestOptions()
+                "commanded" -> rewardScene()
+                "completed" -> postQuestOptions()
             }
         }
     }
@@ -107,7 +108,7 @@ class Velorina : Script {
         npc<Neutral>("Would you help us obtain our release into the next world?")
         choice {
             option("Yes.") {
-                ghosts_ahoy = 1
+                set("ghosts_ahoy", "ask_necrovarus")
                 player<Neutral>("Yes, of course I will. Tell me what you want me to do.")
                 npc<Neutral>("Oh, thank you!")
                 explainTask()
@@ -135,7 +136,7 @@ class Velorina : Script {
         player<Quiz>("You spoke of another way.")
         npc<Neutral>("It is only a small chance. During the building of the Ectofuntus one of Necrovarus's disciples spoke out against him. It is such a long time ago I cannot remember her name, although I knew her as a friend.")
         npc<Neutral>("She fled before the Ectofuntus took control over us, but being a disciple of Necrovarus she would have been privy to many of his darkest secrets. She may know of a way to aid us without Necrovarus.")
-        ghosts_ahoy = 3
+        set("ghosts_ahoy", "old_crone")
         oldCroneOptions()
     }
 

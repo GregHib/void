@@ -10,6 +10,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -23,14 +24,16 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class Necrovarus : Script {
     init {
         npcOperate("Talk-To", "ahoy_necrovarus") { (target) ->
-            if (!checkGhostspeak()) return@npcOperate
-            when (ghosts_ahoy) {
-                0 -> chitchatOptions()
-                1 -> pleaForVelorina()
-                2, 3 -> ignored()
-                4 -> petitionFlow(target)
-                6 -> commandPhase()
-                7, 8 -> postQuestTaunt()
+            if (!checkGhostspeak()) {
+                return@npcOperate
+            }
+            when (quest("ghosts_ahoy")) {
+                "unstarted" -> chitchatOptions()
+                "ask_necrovarus" -> pleaForVelorina()
+                "pleaded", "old_crone" -> ignored()
+                "crone_help" -> petitionFlow(target)
+                "enchanted" -> commandPhase()
+                "commanded", "completed" -> postQuestTaunt()
             }
         }
     }
@@ -64,7 +67,7 @@ class Necrovarus : Script {
         player<Scared>("She wants to pass-")
         npc<Neutral>("Silence!! Or I will incinerate the flesh from your bones!!!")
         player<Scared>("But she-")
-        ghosts_ahoy = 2
+        set("ghosts_ahoy", "pleaded")
         npc<Neutral>("Get out of my sight!! Or I promise you that you will regret your insolence for the rest of eternity!!!")
     }
 
@@ -147,7 +150,7 @@ class Necrovarus : Script {
             item = "ghostspeak_amulet_enchanted",
             text = "A beam of intense green light radiates out from the amulet of ghostspeak, enveloping Necrovarus in its power. His eyes become softer, and appear to stare into nothingness.",
         )
-        ghosts_ahoy = 7
+        set("ghosts_ahoy", "commanded")
         equipment.replace(EquipSlot.Weapon.index, "ghostspeak_amulet_enchanted", "ghostspeak_amulet")
         set("ahoy_templedoor_unlocked", true)
         npc<Neutral>("I - will - let ...")
