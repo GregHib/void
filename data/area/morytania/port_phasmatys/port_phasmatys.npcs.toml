@@ -49,6 +49,7 @@ examine = "A ghostship captain."
 
 [ahoy_ghost_captain_2]
 id = 1705
+examine = "A ghostship captain."
 
 [ghost_guard_port_phasmatys]
 id = 1706
