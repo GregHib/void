@@ -67,6 +67,24 @@ class GravestonesTest : WorldTest() {
     }
 
     @Test
+    fun `A stale instance logout tile doesn't move the grave`() {
+        val tile = Tile(2872, 5361, 2) // God Wars Dungeon, Bandos chamber
+        val logout = Tile(3246, 3198) // Lumbridge catacombs exit, left over from Blood Pact
+        val player = createPlayer(tile)
+        player["instance_logout_tile"] = logout.id
+        player.inventory.add("coins", 10)
+        tick()
+
+        player.damage(101)
+        tick(9)
+
+        assertNotNull(NPCs.firstOrNull(tile) { it.id.startsWith("gravestone") })
+        assertNotNull(FloorItems.firstOrNull(tile, "coins"))
+        assertNull(NPCs.firstOrNull(logout) { it.id.startsWith("gravestone") })
+        assertNull(FloorItems.firstOrNull(logout, "coins"))
+    }
+
+    @Test
     fun `A gravestone breaks after 3 minutes`() {
         val tile = Tile(3235, 3220)
         val player = createPlayer(tile)
