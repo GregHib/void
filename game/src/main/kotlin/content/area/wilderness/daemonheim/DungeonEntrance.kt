@@ -56,6 +56,7 @@ class DungeonEntrance : Script {
                         return@option
                     }
                 }
+                return@objectOperate
             }
             if (this != dungeonLeader) {
                 message("<red_orange>Only the party leader can start a dungeon.")

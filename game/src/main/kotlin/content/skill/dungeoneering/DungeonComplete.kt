@@ -170,6 +170,8 @@ class DungeonComplete : Script {
         if (get("dungeoneering_guide_mode", false)) {
 //            item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") FIXME c2?
         }
+        // https://youtu.be/AZtXwFWWiP8?t=251
+//        message("Sine you have previous completed this floor, floor 24 was instead ticked-off.")
     }
 
     private fun findDoor(x: Int, y: Int, id: String): GameObject? = GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)
