@@ -213,6 +213,7 @@ class DragonfireShieldTest : WorldTest() {
         Dragonfire.maxHit(dragon, player, success = true)
 
         assertTrue(player.containsMessage("Your shield absorbs most of the dragon's fiery breath!"))
+        assertFalse(player.containsMessage("horribly burnt"), "only the shield message is sent")
     }
 
     @Test

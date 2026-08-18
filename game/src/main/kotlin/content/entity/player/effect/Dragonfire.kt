@@ -44,10 +44,7 @@ object Dragonfire {
         } else if (source is Player) {
             return SHIELD_MAX_HIT
         } else if (target is Player) {
-            if (Equipment.antiDragonShield(target)) {
-                target.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.Filter)
-            }
-            target.message(if (success) "You're horribly burnt by the dragon fire!" else "You manage to resist some of the dragon fire!", ChatType.Filter)
+            target.message(message(target, success), ChatType.Filter)
         }
         return maxHit(
             type = type,
@@ -60,6 +57,15 @@ object Dragonfire {
                 else -> 0
             },
         )
+    }
+
+    /**
+     * Only whichever protection did the most to soften the breath is reported, they don't stack up.
+     */
+    private fun message(target: Player, success: Boolean): String = when {
+        Equipment.antiDragonShield(target) -> "Your shield absorbs most of the dragon's fiery breath!"
+        !success -> "You manage to resist some of the dragon fire!"
+        else -> "You're horribly burnt by the dragon fire!"
     }
 
     internal fun maxHit(type: String, success: Boolean, shield: Boolean, protection: Boolean = false, potion: Int = 0): Int {
