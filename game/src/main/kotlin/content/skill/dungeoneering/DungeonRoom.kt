@@ -49,7 +49,9 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         spawnKeys(dungeon)
         val complexity = player["dungeoneering_party_complexity", 1]
         val floor = player["dungeoneering_party_floor", 1]
-        DungeonTableItems.spawn(complexity, dungeon, dungeon.skills, dungeon.playerCount)
+        if (type == DungeonRoomType.Base) {
+            DungeonTableItems.spawn(complexity, dungeon, dungeon.skills, dungeon.playerCount)
+        }
         DungeonNPCs.spawn(dungeon, this, floor, complexity)
         spawnDoors(target, dungeon.theme)
     }
