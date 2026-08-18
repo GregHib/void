@@ -97,4 +97,55 @@ class RestlessGhostQuest : WorldTest() {
         assertEquals("completed", player.quest("the_restless_ghost"))
         assertEquals(1125.0, player.experience.get(Skill.Prayer))
     }
+
+    @Test
+    fun `Search the rocks again after losing the skull on death`() {
+        val player = createPlayer(Tile(3234, 3147))
+        player["the_restless_ghost"] = "mining_spot"
+
+        val rock = GameObjects.find(Tile(3234, 3145), "rocks_skull_restless_ghost_quest_base")
+        player.interactObject(rock, "Search")
+        tick()
+        player.continueDialogue()
+
+        assertEquals(1, player.inventory.count("muddy_skull"))
+        assertEquals("no_skull", player["rocks_restless_ghost", ""])
+
+        // Die in the wilderness so the skull is dropped rather than kept, and never reclaimed.
+        player.tele(3100, 3550)
+        tick(2)
+        player.levels.set(Skill.Constitution, 0)
+        tick(10)
+        assertEquals(0, player.inventory.count("muddy_skull"))
+
+        // The rocks now show as emptied but must hand the skull back rather than dead-end the quest.
+        player.tele(3234, 3147)
+        tick()
+        val emptyRock = GameObjects.find(Tile(3234, 3145), "rocks_skull_restless_ghost_quest_base")
+        player.interactObject(emptyRock, "Search")
+        tick()
+        player.continueDialogue()
+
+        assertEquals(1, player.inventory.count("muddy_skull"))
+        assertEquals("found_skull", player.quest("the_restless_ghost"))
+    }
+
+    @Test
+    fun `Rocks stay empty while still carrying the skull`() {
+        val player = createPlayer(Tile(3234, 3147))
+        player["the_restless_ghost"] = "mining_spot"
+
+        val rock = GameObjects.find(Tile(3234, 3145), "rocks_skull_restless_ghost_quest_base")
+        player.interactObject(rock, "Search")
+        tick()
+        player.continueDialogue()
+        assertEquals(1, player.inventory.count("muddy_skull"))
+
+        player.interactObject(GameObjects.find(Tile(3234, 3145), "rocks_skull_restless_ghost_quest_base"), "Search")
+        tick()
+
+        // No "You take the skull" statement, no second skull.
+        assertNull(player.dialogue)
+        assertEquals(1, player.inventory.count("muddy_skull"))
+    }
 }
