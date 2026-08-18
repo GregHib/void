@@ -29,3 +29,7 @@ id = 14012
 [cooking_range_draynor_manor]
 id = 47633
 examine = "It smells of fried fish."
+
+[trinket_chest]
+id = 39242
+examine = "Full of bits and bobs."

@@ -196,6 +196,7 @@ id = 8339
 hitpoints = 300
 combat_def = "man"
 max_hit_crush = 60
+respawn_delay = 50
 examine = "He seems to be trying to watch everyone at once."
 drop_table = "shady_stranger"
 
@@ -204,6 +205,7 @@ id = 8435
 hitpoints = 350
 combat_def = "man"
 max_hit_crush = 60
+respawn_delay = 50
 examine = "He seems to be trying to watch everyone at once."
 drop_table = "shady_stranger"
 
@@ -212,6 +214,7 @@ id = 8436
 hitpoints = 440
 combat_def = "man"
 max_hit_crush = 60
+respawn_delay = 50
 examine = "Haven't seen his sort around here before; what's he doing here?"
 drop_table = "suspicious_outsider"
 
