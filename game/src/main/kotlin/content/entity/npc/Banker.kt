@@ -35,6 +35,10 @@ class Banker : Script {
             openBank()
         }
 
+        objectOperate("Bank", "bank_chest_*") {
+            openBank()
+        }
+
         objectOperate("Use", "bank_booth_*", arrive = false) { (target) ->
             val banker = NPCs.first { it.def.name == "Banker" }
             talkWith(banker)
