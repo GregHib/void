@@ -100,7 +100,7 @@ ticks = 5
 
 [teleport_ectophial]
 id = 8939
-ticks = 2
+ticks = 3
 
 [teleport_land_ectophial]
 id = 8941
