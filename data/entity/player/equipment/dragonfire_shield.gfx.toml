@@ -2,7 +2,7 @@
 # twelve below the standard forty so it leaves and lands at the shield's own height.
 [dragonfire_shield_discharge]
 id = 1166
-delay = 50
+delay = 110
 time_offset = 7
 multiplier = 7
 curve = 10
