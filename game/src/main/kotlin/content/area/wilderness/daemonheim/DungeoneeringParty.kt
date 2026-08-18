@@ -301,6 +301,7 @@ class DungeoneeringParty : Script {
             player.inventory.clear()
             player.dismissPet()
             player.equipment.clear()
+            player.flagAppearance()
             if (player["dungeoneering_stored_kinship", false]) {
                 player.clear("dungeoneering_stored_kinship")
                 player.inventory.add("ring_of_kinship")
