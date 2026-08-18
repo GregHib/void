@@ -97,7 +97,13 @@ interface Teleport {
         }
 
         fun teleport(player: Player, area: String, type: String, spell: String? = null, sound: Boolean = true, force: Boolean = false, xp: Double = 0.0) {
-            teleport(player, Areas[area].random(player)!!, type, spell, sound, force, xp)
+            val tile: Tile = when (area) {
+                "gatestone_teleport" -> player["gatestone_tile"]
+                "group_gatestone_teleport" -> player["group_gatestone_tile"]
+                    ?: player.get<Int>("group_gatestone_player")?.let { Players.indexed(it)?.tile }
+                else -> Areas[area].random(player)
+            } ?: return
+            teleport(player, tile, type, spell, sound, force, xp)
         }
 
         fun teleport(player: Player, tile: Tile, type: String, spell: String? = null, sound: Boolean = true, force: Boolean = false, xp: Double = 0.0): Boolean {

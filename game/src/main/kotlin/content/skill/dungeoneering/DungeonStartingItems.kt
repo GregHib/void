@@ -1,5 +1,6 @@
 package content.skill.dungeoneering
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.entity.player.equip.Equipping
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
@@ -19,6 +20,9 @@ object DungeonStartingItems {
 
     fun spawn(dungeon: DungeonMap, complexity: Int) {
         for (member in dungeon.members) {
+            if (dungeon.members.size > 1 && complexity > 2 && member == member.dungeonLeader) {
+                member.inventory.add("group_gatestone")
+            }
             // Equip type of ring of kinship
             val currentClass = member["kinship_class", "none"]
             val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
@@ -30,7 +34,6 @@ object DungeonStartingItems {
                 allocateGear(member)
             }
         }
-        // TODO group gatestone
     }
 
     private fun giveBinds(member: Player) {

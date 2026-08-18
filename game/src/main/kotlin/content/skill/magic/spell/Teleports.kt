@@ -2,6 +2,7 @@ package content.skill.magic.spell
 
 import content.quest.quest
 import content.quest.questCompleted
+import content.skill.dungeoneering.dungeonMap
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.ItemOption
@@ -27,7 +28,7 @@ class Teleports : Script {
     init {
         interfaceOption("Cast", "*_spellbook:*_teleport") {
             val component = it.component
-            if (component != "lumbridge_home_teleport") {
+            if (!component.endsWith("home_teleport")) {
                 cast(it.id, it.component)
                 return@interfaceOption
             }
@@ -50,9 +51,14 @@ class Teleports : Script {
             }
             weakQueue("home_teleport", total) {
                 start("teleport_delay", 1)
-                tele(Areas["lumbridge_teleport"].random())
-                set("click_your_heels_three_times_task", true)
-                start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
+                if (component == "lumbridge_home_teleport") {
+                    tele(Areas["lumbridge_teleport"].random())
+                    set("click_your_heels_three_times_task", true)
+                    start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
+                } else if (component == "home_teleport") {
+                    val map = dungeonMap ?: return@weakQueue
+                    tele(map.startTile())
+                }
             }
         }
 

@@ -624,3 +624,7 @@ xp = 920
 
 [.teleother_camelot]
 xp = 1000
+
+[.gatestone_teleport]
+
+[.group_gatestone_teleport]
