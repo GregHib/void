@@ -163,10 +163,12 @@ examine = "He looks as if he could do with a sip of Amontillado."
 [gull_draynor]
 id = 450
 collision = "sky"
+examine = "A sea bird."
 
 [gull_draynor_2]
 id = 451
 collision = "sky"
+examine = "A sea bird."
 
 [town_crier_draynor]
 id = 6136
@@ -192,6 +194,14 @@ id = 8204
 [shady_stranger]
 id = 8339
 hitpoints = 300
+combat_def = "man"
+max_hit_crush = 60
+examine = "He seems to be trying to watch everyone at once."
+drop_table = "shady_stranger"
+
+[shady_stranger_2]
+id = 8435
+hitpoints = 350
 combat_def = "man"
 max_hit_crush = 60
 examine = "He seems to be trying to watch everyone at once."
