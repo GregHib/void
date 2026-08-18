@@ -33,7 +33,11 @@ class ItemDropping : Script {
             AuditLog.event(player, "dropped", item, player.tile)
             if (player.inventory.remove(slot, item.id, item.amount)) {
                 if (player.inDungeoneering) {
-                    FloorItems.add(player.tile, item.id, item.amount, revealTicks = 0, disappearTicks = FloorItems.NEVER, owner = player)
+                    if (item.tradeable) {
+                        FloorItems.add(player.tile, item.id, item.amount, revealTicks = 0, disappearTicks = FloorItems.NEVER, owner = player)
+                    } else {
+                        FloorItems.add(player.tile, item.id, item.amount, revealTicks = FloorItems.NEVER, disappearTicks = FloorItems.NEVER, owner = player)
+                    }
                 } else {
                     if (item.tradeable) {
                         FloorItems.add(player.tile, item.id, item.amount, revealTicks = 100, disappearTicks = 200, owner = player)
