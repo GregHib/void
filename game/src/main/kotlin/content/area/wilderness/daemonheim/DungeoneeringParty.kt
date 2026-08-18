@@ -13,15 +13,10 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.inv.Inventory
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.clear
-import world.gregs.voidps.engine.inv.equipment
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.queue.engineQueue
 import world.gregs.voidps.type.Tile
 
 class DungeoneeringParty : Script {
@@ -301,22 +296,21 @@ class DungeoneeringParty : Script {
             player.inventory.clear()
             player.dismissPet()
             player.equipment.clear()
-            player.flagAppearance()
-            if (player["dungeoneering_stored_kinship", false]) {
-                player.clear("dungeoneering_stored_kinship")
-                player.inventory.add("ring_of_kinship")
-            }
-            player.open(player["dungeoneering_stored_spellbook", "modern_spellbook"])
-            player.clear("dungeoneering_stored_spellbook")
-            player.tele(3460, 3721, 1)
-
-            if (player["dungeoneering_guide_mode", false]) {
-                player.strongQueue("guide_exit") {
+            player.queue.clear()
+            player.engineQueue("dungeon_exit") {
+                player.tele(3460, 3721, 1)
+                if (player["dungeoneering_stored_kinship", false]) {
+                    player.clear("dungeoneering_stored_kinship")
+                    player.inventory.add("ring_of_kinship")
+                }
+                player.open(player["dungeoneering_stored_spellbook", "modern_spellbook"]) // TODO use area
+                player.clear("dungeoneering_stored_spellbook")
+                if (player["dungeoneering_guide_mode", false]) {
                     statement("You have left your dungeon and are now back in the Daemonheim castle. You can exit down by the broken railing to re-enter the lobby and find another party.")
                 }
-            }
-            if (last) {
-                player.clearInstance()
+                if (last) {
+                    player.clearInstance()
+                }
             }
         }
 
