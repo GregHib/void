@@ -8,11 +8,14 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.carriesItem
+import world.gregs.voidps.type.Tile
 
 class Gatestone : Script {
     init {
@@ -68,6 +71,12 @@ class Gatestone : Script {
             val gatestone = FloorItems.firstOrNull(tile) { it.id == "gatestone" && it.owner == name } ?: return@teleportLand
             clear("gatestone_tile")
             FloorItems.remove(gatestone)
+        }
+
+        objectOperate("Enter", "rand_*_start_room_portal") {
+            val tile: Tile = get("group_gatestone_tile")
+                ?: get<Int>("group_gatestone_player")?.let { Players.indexed(it)?.tile } ?: return@objectOperate
+            Teleport.teleport(this, tile, type = "group_gatestone")
         }
     }
 }

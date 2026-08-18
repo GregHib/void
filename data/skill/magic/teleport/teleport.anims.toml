@@ -150,3 +150,11 @@ ticks = 2
 [teleport_land_dungeoneering]
 id = 13285
 ticks = 2
+
+[teleport_group_gatestone]
+id = 14279
+ticks = 2
+
+[teleport_land_group_gatestone]
+id = 13285
+ticks = 2
