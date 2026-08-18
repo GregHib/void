@@ -52,13 +52,14 @@ object DungeonNPCs {
     private fun spawnMonsters(room: DungeonRoom, dungeon: DungeonMap, floor: Int, complexity: Int) {
         val npcSpawns = room.findObjects(dungeon, setOf("rand_npc_spawn_1x1", "rand_npc_spawn_2x2", "rand_npc_spawn_3x3", "rand_npc_spawn_4x4", "rand_npc_spawn_5x5"))
         if (npcSpawns.isEmpty()) {
+            logger.warn { "No spawn points found in room ${room.name} ${room.type} ${room.zone}" }
             return
         }
         for (spawn in npcSpawns) {
             spawn.remove()
         }
         // https://runescape.wiki/w/Dungeoneering/Monsters#Overview
-        if (random.nextInt(5) == 0) {
+        if (random.nextInt(10) == 0) {
             return
         }
         val spawnCount = random.nextInt(1..dungeon.playerCount + 3)
