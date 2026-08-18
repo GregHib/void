@@ -125,8 +125,15 @@ class GiantMole : Script {
             areaSound("giant_mole_burrow_down", mole.tile)
             areaGfx("burrow_dust", tileToDust)
             pause(1)
+            // Area.random gives up after 100 attempts to fit the mole, so it can legitimately fail;
+            // surface where it stands rather than throwing, which would leave the mole burrowed
+            // underground for good.
             val newLocation = gianMoleSpawns.random(mole)
-            mole.tele(newLocation!!)
+            if (newLocation == null) {
+                logger.warn { "failed to find a spawn tile for Giant Mole, surfacing in place." }
+            } else {
+                mole.tele(newLocation)
+            }
             mole.anim("mole_burrow_up")
         }
     }
@@ -152,13 +159,25 @@ class GiantMole : Script {
                 nearMole.add(player)
             }
         }
-        for (player in nearMole) {
-            player.open("dirt_on_screen")
-            Light.extinguish(player)
-        }
+        // Queued before the overlay is opened so that a failure while blinding players can never
+        // skip the close and strand everyone behind a dirt screen until they log out.
         World.queue("dirt_on_screen_timer_player", 3) {
             for (player in nearMole) {
-                player.close("dirt_on_screen")
+                // World queue blocks run unguarded inside a game loop stage, so one player
+                // failing here would otherwise take the whole loop down with it.
+                try {
+                    player.close("dirt_on_screen")
+                } catch (e: Exception) {
+                    logger.error(e) { "Failed to clear dirt for '${player.accountName}'." }
+                }
+            }
+        }
+        for (player in nearMole) {
+            try {
+                player.open("dirt_on_screen")
+                Light.extinguish(player)
+            } catch (e: Exception) {
+                logger.error(e) { "Failed to throw dirt at '${player.accountName}'." }
             }
         }
     }

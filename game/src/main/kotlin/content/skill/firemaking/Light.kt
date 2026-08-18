@@ -31,7 +31,7 @@ object Light {
                     // Don't extinguish lanterns
                     continue
                 }
-                val unlit = row.item(".unlit")
+                val unlit = row.item("unlit")
                 replace(index, item.id, unlit)
             }
         }

@@ -29,4 +29,19 @@ internal class FiremakingTest : WorldTest() {
         assertEquals(start.add(Direction.WEST), player.tile)
         assertTrue(player.experience.get(Skill.Firemaking) > 0)
     }
+
+    @Test
+    fun `Extinguishing swaps lit candles and torches for their unlit form`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("white_candle_lit")
+        player.inventory.add("lit_torch")
+        player.inventory.add("candle_lantern_lit_white")
+
+        Light.extinguish(player)
+
+        assertEquals("white_candle", player.inventory[0].id)
+        assertEquals("unlit_torch", player.inventory[1].id)
+        // Lanterns are deliberately left burning.
+        assertEquals("candle_lantern_lit_white", player.inventory[2].id)
+    }
 }
