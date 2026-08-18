@@ -127,7 +127,7 @@ format = "boolean"
 persist = true
 
 [these_arent_the_coins_youre_looking_for_task]
-id = 5723
+id = 5708
 format = "boolean"
 persist = true
 
@@ -158,7 +158,7 @@ format = "boolean"
 persist = true
 
 [i_heard_you_like_mudskips_task]
-id = 5708
+id = 5723
 format = "boolean"
 persist = true
 

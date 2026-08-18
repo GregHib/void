@@ -125,8 +125,15 @@ class GiantMole : Script {
             areaSound("giant_mole_burrow_down", mole.tile)
             areaGfx("burrow_dust", tileToDust)
             pause(1)
+            // Area.random gives up after 100 attempts to fit the mole, so it can legitimately fail;
+            // surface where it stands rather than throwing, which would leave the mole burrowed
+            // underground for good.
             val newLocation = gianMoleSpawns.random(mole)
-            mole.tele(newLocation!!)
+            if (newLocation == null) {
+                logger.warn { "failed to find a spawn tile for Giant Mole, surfacing in place." }
+            } else {
+                mole.tele(newLocation)
+            }
             mole.anim("mole_burrow_up")
         }
     }
