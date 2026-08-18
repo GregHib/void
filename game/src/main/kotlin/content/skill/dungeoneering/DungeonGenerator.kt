@@ -379,6 +379,9 @@ class DungeonGenerator(
                         }
                     }
                 }
+                if (room.type == DungeonRoomType.Base && matchingOptions.isNotEmpty()) {
+                    break
+                }
             }
             if (matchingOptions.isNotEmpty()) {
                 val selection = matchingOptions.random(random)
