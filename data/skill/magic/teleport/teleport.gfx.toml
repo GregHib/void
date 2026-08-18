@@ -95,3 +95,9 @@ height = 52
 [teleport_wilderness]
 id = 661
 delay = 2
+
+[teleport_dungeoneering]
+id = 2516
+
+[teleport_land_dungeoneering]
+id = 2517

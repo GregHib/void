@@ -142,3 +142,11 @@ ticks = 3
 [teleport_land_wilderness]
 id = 8941
 ticks = 2
+
+[teleport_dungeoneering]
+id = 13288
+ticks = 2
+
+[teleport_land_dungeoneering]
+id = 13285
+ticks = 2
