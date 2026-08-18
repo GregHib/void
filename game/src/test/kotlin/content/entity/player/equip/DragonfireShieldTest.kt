@@ -2,19 +2,24 @@ package content.entity.player.equip
 
 import FakeRandom
 import WorldTest
-import containsMessage
 import content.entity.combat.hit.directHit
 import content.entity.combat.target
 import content.entity.player.effect.Dragonfire
+import content.entity.player.effect.antifire
 import content.entity.player.effect.skullCounter
+import content.entity.player.effect.superAntifire
+import content.skill.prayer.getActivePrayerVarKey
 import dialogueContinue
 import interfaceOption
 import itemOnObject
 import itemOption
+import messages
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -204,27 +209,36 @@ class DragonfireShieldTest : WorldTest() {
         assertTrue(rat.levels.get(Skill.Constitution) < health, "the fire lands once the wind up finishes")
     }
 
-    @Test
-    fun `A shield absorbing dragonfire tells the player`() {
-        val player = createPlayer(emptyTile)
-        val dragon = spawn("green_dragon", emptyTile.addY(2))
-        player.equipment.set(shield, charged, 20)
+    @TestFactory
+    fun `Only the strongest dragonfire protection is reported`() = listOf(
+        "Your potion heavily protects you from the dragon's fire." to { player: Player ->
+            player.superAntifire(1)
+            player.equipment.set(shield, charged, 20)
+        },
+        "Your shield and potion fully protect you from the heat of the dragon's breath." to { player: Player ->
+            player.antifire(1)
+            player.equipment.set(shield, charged, 20)
+        },
+        "Your shield manages to block some of the dragon's breath." to { player: Player ->
+            player.equipment.set(shield, charged, 20)
+        },
+        "Your potion slightly protects you from the heat of the dragon's breath." to { player: Player ->
+            player.antifire(1)
+        },
+        "Your prayers help resist some of the dragonfire!" to { player: Player ->
+            player.addVarbit(player.getActivePrayerVarKey(), "protect_from_magic")
+        },
+        "You are hit by the dragon's fiery breath." to { _: Player -> },
+    ).map { (expected, setup) ->
+        DynamicTest.dynamicTest(expected) {
+            val player = createPlayer(emptyTile)
+            val dragon = spawn("green_dragon", emptyTile.addY(2))
+            setup(player)
 
-        Dragonfire.maxHit(dragon, player, success = true)
+            Dragonfire.maxHit(dragon, player, success = true)
 
-        assertTrue(player.containsMessage("Your shield absorbs most of the dragon's fiery breath!"))
-        assertFalse(player.containsMessage("horribly burnt"), "only the shield message is sent")
-    }
-
-    @Test
-    fun `An unshielded player isn't told about absorbing dragonfire`() {
-        val player = createPlayer(emptyTile)
-        val dragon = spawn("green_dragon", emptyTile.addY(2))
-
-        Dragonfire.maxHit(dragon, player, success = true)
-
-        assertFalse(player.containsMessage("Your shield absorbs"))
-        assertTrue(player.containsMessage("You're horribly burnt by the dragon fire!"))
+            assertEquals(listOf(expected), player.messages.filter { it in messages }, "exactly one message is sent")
+        }
     }
 
     private fun spawn(id: String, tile: Tile): NPC {
@@ -240,5 +254,14 @@ class DragonfireShieldTest : WorldTest() {
 
     private companion object {
         private val emptyTile = Tile(3200, 3200)
+
+        private val messages = setOf(
+            "Your potion heavily protects you from the dragon's fire.",
+            "Your shield and potion fully protect you from the heat of the dragon's breath.",
+            "Your shield manages to block some of the dragon's breath.",
+            "Your potion slightly protects you from the heat of the dragon's breath.",
+            "Your prayers help resist some of the dragonfire!",
+            "You are hit by the dragon's fiery breath.",
+        )
     }
 }

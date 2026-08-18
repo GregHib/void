@@ -44,7 +44,7 @@ object Dragonfire {
         } else if (source is Player) {
             return SHIELD_MAX_HIT
         } else if (target is Player) {
-            target.message(message(target, success), ChatType.Filter)
+            target.message(message(target), ChatType.Filter)
         }
         return maxHit(
             type = type,
@@ -60,12 +60,18 @@ object Dragonfire {
     }
 
     /**
-     * Only whichever protection did the most to soften the breath is reported, they don't stack up.
+     * Only the strongest protection is reported, they don't stack up into several messages.
      */
-    private fun message(target: Player, success: Boolean): String = when {
-        Equipment.antiDragonShield(target) -> "Your shield absorbs most of the dragon's fiery breath!"
-        !success -> "You manage to resist some of the dragon fire!"
-        else -> "You're horribly burnt by the dragon fire!"
+    private fun message(target: Player): String {
+        val shield = Equipment.antiDragonShield(target)
+        return when {
+            target.superAntifire -> "Your potion heavily protects you from the dragon's fire."
+            shield && target.antifire -> "Your shield and potion fully protect you from the heat of the dragon's breath."
+            shield -> "Your shield manages to block some of the dragon's breath."
+            target.antifire -> "Your potion slightly protects you from the heat of the dragon's breath."
+            target.protectMagic() -> "Your prayers help resist some of the dragonfire!"
+            else -> "You are hit by the dragon's fiery breath."
+        }
     }
 
     internal fun maxHit(type: String, success: Boolean, shield: Boolean, protection: Boolean = false, potion: Int = 0): Int {
