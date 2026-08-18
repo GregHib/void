@@ -25,6 +25,9 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerRights
+import world.gregs.voidps.engine.entity.character.player.hasRights
+import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
@@ -80,18 +83,7 @@ class DungeonEntrance : Script {
                     }
                 }
             }
-            return@objectOperate
-//            statement("You have just entered a dungeon. In the starting room, you'll find a smuggler to trade with, and some starting supplies in your inventory and about the room. If you want to leave, there is a ladder that will take you back to the surface. For more information speak to the smuggler.")
 //            item("ring_of_kinship", 300, "You have unlocked more features and opportunities within Daemonheim. You can now reach complexity level 2.")
-
-            //
-            message("")
-            message("- Welcome to Daemonheim -")
-            message("Floor <purple>1    <black>Complexity <purple>1")
-            message("Dungeon Size: <purple>Small")
-            message("Party Size:Difficulty <purple>2:2")
-            message("<purple>Guide Mode ON")
-            message("")
         }
 
         adminCommand("start_dungeon", intArg("floor", optional = true), stringArg("size", autofill = setOf("small", "medium", "large"), optional = true), intArg("complexity", optional = true)) { args ->
@@ -170,9 +162,18 @@ class DungeonEntrance : Script {
     }
 
     private fun Player.generate(size: DungeonSize, playerCount: Int) {
-        println("Generating dungeon...")
         val floor = get("dungeoneering_party_floor", 1)
         val complexity = get("dungeoneering_party_complexity", 1)
+        if (!isAdmin()) {
+            if (floor > 11) {
+                message("<red>Floor $floor dungeons are not currently implemented.")
+                return
+            }
+            if (complexity != 1) {
+                message("<red>Complexity $complexity dungeons are not currently implemented.")
+                return
+            }
+        }
         val generator = DungeonGenerator(
             size = size,
             floor = floor,
@@ -187,16 +188,17 @@ class DungeonEntrance : Script {
             message("<red_orange>Failed to generate ${size.name.lowercase()} c$complexity:f$floor dungeon.")
             return
         }
-        println("Took ${System.currentTimeMillis() - start}ms")
         set("dungeon", dungeon)
-        dungeon.prettyPrint()
+        if (get("debug", false)) {
+            println("Dungeon generation took ${System.currentTimeMillis() - start}ms")
+            dungeon.prettyPrint()
+        }
         val instance = when (size) {
             DungeonSize.Small -> smallInstance(logout = false)
             DungeonSize.Medium -> smallInstance(logout = false)
             DungeonSize.Large -> largeInstance()
         }
         dungeon.region = instance
-
         for (member in dungeonMembers) {
             dungeon.players.add(member.index)
             member["delay"] = 3
