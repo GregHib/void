@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
@@ -20,47 +21,21 @@ class LumbridgeSwamp : Script {
 
     init {
         objectOperate("Search", "rocks_skull_restless_ghost_quest") {
-            if (quest("the_restless_ghost") != "mining_spot" && quest("the_restless_ghost") != "found_skull") {
-                message("There's nothing there of any use to you.")
-                return@objectOperate
-            }
-            if (inventory.isFull()) {
-                message("You can see the skull under the rocks, but you don't have enough space to carry it.")
-                return@objectOperate
-            }
-            statement("You take the skull from the pile of rocks.")
-            inventory.add("muddy_skull")
-            set("rocks_restless_ghost", "no_skull")
-            set("the_restless_ghost", "found_skull")
-            val index: Int? = remove("restless_ghost_warlock")
-            if (index != null) {
-                val skeleton = NPCs.indexed(index)
-                if (skeleton != null) {
-                    NPCs.remove(skeleton)
-                }
-            }
-            message("A skeleton warlock has appeared.")
-            val warlock = NPCs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH, ticks = TimeUnit.SECONDS.toTicks(60), owner = this)
-            set("restless_ghost_warlock", warlock.index)
-            warlock.anim("restless_ghost_warlock_spawn")
-            val player = this
-            warlock.queue("delayed_attack", 4) {
-                warlock.interactPlayer(player, "Attack")
-            }
+            takeSkull()
         }
 
         objectOperate("Search", "rocks_no_skull_restless_ghost_quest") {
             if (quest("the_restless_ghost") == "completed") {
                 message("There's nothing of any interest.")
-            } else {
+                return@objectOperate
+            }
+            if (ownsItem("muddy_skull")) {
                 message("You already have the ghost's skull.")
+                return@objectOperate
             }
-        }
-
-        playerDeath {
-            if (!ownsItem("muddy_skull")) {
-                set("rocks_restless_ghost", "skull")
-            }
+            // The skull is no longer held (died with it, dropped it, or let the gravestone
+            // expire) so it's back under the rocks rather than being lost for good.
+            takeSkull()
         }
 
         destroyed("muddy_skull") {
@@ -87,6 +62,36 @@ class LumbridgeSwamp : Script {
                     "",
                 ),
             )
+        }
+    }
+
+    suspend fun Player.takeSkull() {
+        if (quest("the_restless_ghost") != "mining_spot" && quest("the_restless_ghost") != "found_skull") {
+            message("There's nothing there of any use to you.")
+            return
+        }
+        if (inventory.isFull()) {
+            message("You can see the skull under the rocks, but you don't have enough space to carry it.")
+            return
+        }
+        statement("You take the skull from the pile of rocks.")
+        inventory.add("muddy_skull")
+        set("rocks_restless_ghost", "no_skull")
+        set("the_restless_ghost", "found_skull")
+        val index: Int? = remove("restless_ghost_warlock")
+        if (index != null) {
+            val skeleton = NPCs.indexed(index)
+            if (skeleton != null) {
+                NPCs.remove(skeleton)
+            }
+        }
+        message("A skeleton warlock has appeared.")
+        val warlock = NPCs.add("skeleton_warlock", Tile(3236, 3149), Direction.SOUTH, ticks = TimeUnit.SECONDS.toTicks(60), owner = this)
+        set("restless_ghost_warlock", warlock.index)
+        warlock.anim("restless_ghost_warlock_spawn")
+        val player = this
+        warlock.queue("delayed_attack", 4) {
+            warlock.interactPlayer(player, "Attack")
         }
     }
 }
