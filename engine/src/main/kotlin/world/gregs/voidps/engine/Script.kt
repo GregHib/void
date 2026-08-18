@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
@@ -31,7 +32,7 @@ interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operati
         var loading: Boolean = true
 
         private val logger = InlineLogger()
-        private val scope: CoroutineScope = CoroutineScope(Dispatchers.Unconfined)
+        private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Unconfined)
 
         fun launch(block: suspend CoroutineScope.() -> Unit) {
             scope.launch(errorHandler) {
@@ -45,7 +46,7 @@ interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operati
 
         private val errorHandler = CoroutineExceptionHandler { _, throwable ->
             if (throwable !is CancellationException) {
-                logger.warn(throwable) { "Error in script handler." }
+                logger.warn(throwable) { "Error in script coroutine handler." }
             }
         }
 
