@@ -14,8 +14,14 @@ class Item(
         get() = ItemDefinitions.getOrNull(id)
     private val itemCharge: Boolean
         get() {
-            val charges = defOrNull?.getOrNull<Int>("charges")
-            return charges != null && charges > 1 && defOrNull?.contains("charge") != true
+            val definition = defOrNull ?: return false
+            if (definition.contains("charge")) {
+                return false
+            }
+            // Charges held in the item's value, the capacity rather than the starting amount says
+            // whether it's chargeable - an item that starts empty still only ever counts as one.
+            val charges = definition.getOrNull<Int>("charges_max") ?: definition.getOrNull<Int>("charges") ?: return false
+            return charges > 1
         }
     val amount: Int
         get() = if (itemCharge) 1 else value

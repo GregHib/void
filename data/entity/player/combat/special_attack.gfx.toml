@@ -131,11 +131,6 @@ id = 2319
 [power_of_light_impact]
 id = 2320
 
-[dragonfire_shield_discharge]
-id = 1166
-delay = 80
-curve = 0
-
 [guthans_effect]
 id = 398
 height = 50

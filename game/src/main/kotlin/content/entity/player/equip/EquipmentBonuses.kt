@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.appearance
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.network.login.protocol.visual.VisualMask.APPEARANCE_MASK
 import java.math.RoundingMode
@@ -21,6 +22,8 @@ class EquipmentBonuses : Script {
     val df = DecimalFormat("0.0").apply {
         roundingMode = RoundingMode.FLOOR
     }
+
+    val chargeDefences = setOf("stab_defence", "slash_defence", "crush_defence", "range_defence", "summoning_defence")
 
     init {
         playerSpawn {
@@ -102,7 +105,7 @@ class EquipmentBonuses : Script {
 
     fun updateStats(player: Player, item: Item, add: Boolean) {
         names.forEach { (name, key) ->
-            val value = item.def[key, 0]
+            val value = item.def[key, 0] + chargeBonus(item, key)
             if (value == 0) {
                 return@forEach
             }
@@ -115,6 +118,16 @@ class EquipmentBonuses : Script {
             player[key] = modified
             sendBonus(player, name, key, modified)
         }
+    }
+
+    /**
+     * Each charge held by a dragonfire shield adds one to its melee, ranged and summoning defences.
+     */
+    fun chargeBonus(item: Item, key: String): Int {
+        if (item.id != "dragonfire_shield_charged" || key !in chargeDefences) {
+            return 0
+        }
+        return item.charges()
     }
 
     fun sendBonus(player: Player, name: String, key: String, value: Int) {

@@ -9,12 +9,10 @@ import content.skill.melee.weapon.Weapon
 import content.skill.melee.weapon.combatStyle
 import content.skill.prayer.protectMagic
 import content.skill.summoning.isFamiliar
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -39,34 +37,13 @@ object Equipment {
             return baseDamage
         }
         var damage = baseDamage
-        when (source) {
-            is NPC if type == "dragonfire" && source.isFamiliar -> damage = (damage * 0.7).toInt()
-            is Player if type == "icy_breath" && fireResistantShield(source.equipped(EquipSlot.Shield).id) -> damage = 100
-            is Player if type == "dragonfire" -> {
-                val metal = target is NPC && (target.id.contains("bronze") || target.id.contains("iron") || target.id.contains("steel"))
-                var multiplier = 1.0
-
-                val shield = source.equipped(EquipSlot.Shield).id
-                if (shield == "anti_dragon_shield" || shield.startsWith("dragonfire_shield")) {
-                    multiplier -= if (metal) 0.6 else 0.8
-                    source.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.Filter)
-                }
-
-                if (source.antifire || source.superAntifire) {
-                    multiplier -= if (source.superAntifire) 1.0 else 0.5
-                }
-
-                if (multiplier > 0.0) {
-                    val black = target is NPC && target.id.contains("black")
-                    if (!metal && !black && random.nextDouble() <= 0.1) {
-                        multiplier -= 0.1
-                        source.message("You manage to resist some of the dragon fire!", ChatType.Filter)
-                    } else {
-                        source.message("You're horribly burnt by the dragon fire!", ChatType.Filter)
-                    }
-                }
-                damage = (damage * multiplier.coerceAtLeast(0.0)).toInt()
-            }
+        if (source is NPC && type == "dragonfire" && source.isFamiliar) {
+            damage = (damage * 0.7).toInt()
+        }
+        // A fire resistant shield doesn't stop a wyvern's icy breath outright, the rare hit that
+        // gets past it is capped instead.
+        if (type == "icy_breath" && target is Player && fireResistantShield(target.equipped(EquipSlot.Shield).id)) {
+            damage = damage.coerceAtMost(100)
         }
         if (source is Player && target is NPC && target.id.startsWith("tormented_demon") && !target.contains("shield_cooldown")) {
             damage = (damage * 0.25).toInt()
@@ -133,7 +110,7 @@ object Equipment {
 
     fun hasGodArmour(player: Player) = false
 
-    fun fireResistantShield(shield: String) = shield == "elemental_shield" || shield == "mind_shield" || shield == "body_shield" || shield == "dragonfire_shield"
+    fun fireResistantShield(shield: String) = shield == "elemental_shield" || shield == "mind_shield" || shield == "body_shield" || shield.startsWith("dragonfire_shield")
 
     fun wearingMatchingArenaGear(player: Player, spell: String): Boolean = isMatchingArenaSpell(spell, player.equipped(EquipSlot.Cape).id)
     fun isMatchingArenaSpell(spell: String, cape: String): Boolean = isSaradomin(spell, cape) || isGuthix(spell, cape) || isZamorak(spell, cape)

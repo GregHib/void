@@ -1,38 +1,3 @@
-[dragonfire_shield_charged]
-id = 11283
-limit = 10
-tradeable = false
-bank_stacks = false
-aka = ["dragonfire_shield", "dfs", "dragon_fire_shield"]
-charges = 0
-degrade = "dragonfire_shield_uncharged"
-slot = "Shield"
-material = "metal"
-examine = "A heavy shield with a snarling, draconic visage."
-weight = 7.257
-
-[dragonfire_shield_uncharged]
-id = 11284
-price = 10200000
-limit = 10
-slot = "Shield"
-material = "metal"
-examine = "A heavy shield with a snarling, draconic visage."
-weight = 7.257
-
-[dragonfire_shield_uncharged_noted]
-id = 11285
-
-[draconic_visage]
-id = 11286
-price = 10900000
-limit = 10
-weight = 1.814
-examine = "It looks like this could be attached to a shield somehow."
-
-[draconic_visage_noted]
-id = 11287
-
 [dragon_full_helm]
 id = 11335
 price = 48171291

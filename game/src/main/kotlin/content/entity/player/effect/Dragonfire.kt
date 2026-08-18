@@ -7,20 +7,27 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 object Dragonfire {
 
     /**
+     * Maximum hit of the dragonfire shield's discharge.
+     */
+    const val SHIELD_MAX_HIT = 290
+
+    /**
      * Calculate the dragonfire max hit
      * @param success for hitting extra damage if accuracy roll was low or is kbd special dragon breath
      */
     fun maxHit(source: Character, target: Character, success: Boolean): Int {
+        // Player dragonfire always comes from the dragonfire shield, which dragons are immune to.
         if (source is Player && target is NPC && Target.isDragon(target) && !Target.isMetalDragon(target)) {
-            return -1
+            return 0
         }
-        var type = type(source)
+        val type = type(source)
         if (source is Player && target is Player) {
             if (Equipment.antiDragonShield(target)) {
                 return when {
@@ -32,12 +39,15 @@ object Dragonfire {
             return when {
                 target.antifire -> 200
                 target.superAntifire -> 0
-                else -> 250
+                else -> SHIELD_MAX_HIT
             }
         } else if (source is Player) {
-            type = "chromatic"
+            return SHIELD_MAX_HIT
         } else if (target is Player) {
-            target.message(if (success) "You're horribly burnt by the dragon fire!" else "You manage to resist some of the dragon fire!")
+            if (Equipment.antiDragonShield(target)) {
+                target.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.Filter)
+            }
+            target.message(if (success) "You're horribly burnt by the dragon fire!" else "You manage to resist some of the dragon fire!", ChatType.Filter)
         }
         return maxHit(
             type = type,

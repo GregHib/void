@@ -40,6 +40,10 @@ class CombatExperience : Script {
                     }
                     "defensive" -> grant(this, target, Skill.Defence, damage / 2.5)
                 }
+            } else if (type == "dragonfire") {
+                // Dragonfire from a player is the dragonfire shield's discharge.
+                grant(this, target, Skill.Magic, damage / 7.5)
+                grant(this, target, Skill.Defence, damage / 10.0)
             } else if (type == "range") {
                 if (attackType == "long_range") {
                     grant(this, target, Skill.Ranged, damage / 5.0)
