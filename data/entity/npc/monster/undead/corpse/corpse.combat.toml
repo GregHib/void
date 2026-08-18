@@ -21,7 +21,7 @@ defend_anim = "corpse_archer_defend"
 death_anim = "corpse_archer_death"
 
 [corpse_archer.ranged]
-range = 1
+range = 5
 anim = "corpse_archer_attack"
 target_hit = { offense = "range", max = 19 }
 

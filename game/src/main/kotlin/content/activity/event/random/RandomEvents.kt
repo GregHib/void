@@ -176,6 +176,7 @@ object RandomEvents : AutoCloseable {
     }
 
     private fun exit(player: Player): Tile {
+        player.walkTrigger = null
         val origin = Tile(player["random_event_origin", player.tile.id])
         player.clearInstance()
         player.clear("random_event")

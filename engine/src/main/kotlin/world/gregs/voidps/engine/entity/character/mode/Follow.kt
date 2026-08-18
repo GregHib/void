@@ -72,7 +72,7 @@ class Follow(
         clearSteps()
         for (direction in Direction.cardinal.shuffled(random)) {
             if (canStep(direction.delta.x, direction.delta.y)) {
-                character.steps.queueStep(npc.tile.add(direction))
+                character.steps.queueStep(npc.tile.add(direction), noRun = strategy.forceWalk(character))
                 break
             }
         }
@@ -89,7 +89,7 @@ class Follow(
             return false
         }
         if (!equals(strategy.tile, character.steps.destination)) {
-            character.steps.queueStep(strategy.tile)
+            character.steps.queueStep(strategy.tile, noRun = strategy.forceWalk(character))
             return true
         }
         return false

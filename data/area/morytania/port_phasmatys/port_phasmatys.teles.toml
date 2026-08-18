@@ -8,6 +8,12 @@ option = "Climb-up"
 tile = { x = 3613, y = 3543 }
 to = { x = 3614, y = 3543, level = 1 }
 
+[wrecked_ghost_ship_ladder]
+option = "Climb-up"
+tile = { x = 3615, y = 3541, level = 1 }
+to = { x = 3616, y = 3541, level = 2 }
+# TODO what if not during quest?
+
 [wrecked_ghost_ship_ladder_down]
 option = "Climb-down"
 tile = { x = 3609, y = 3543, level = 1 }
@@ -23,10 +29,20 @@ option = "Climb-down"
 tile = { x = 3613, y = 3543, level = 1 }
 to = { x = 3614, y = 3543 }
 
-[trapdoor_ahoy_down]
+[wrecked_ghost_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3615, y = 3541, level = 2 }
+to = { x = 3615, y = 3541, level = 1 }
+
+[wrecked_ghost_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3615, y = 3545, level = 2 }
+to = { x = 3615, y = 3544, level = 1 }
+
+[trapdoor_ahoy_opened]
 option = "Climb-down"
 tile = { x = 3653, y = 3519 }
-to = { x = 3699, y = 9888, level = 3 }
+to = { x = 3669, y = 9888, level = 3 }
 
 [ectopool_shortcut_rail]
 option = "Jump-down"
@@ -67,3 +83,18 @@ near = { x = 3683, y = 9887, level = 0, height = 3 }
 option = "Climb-up"
 tile = { x = 3684, y = 9887 }
 near = { x = 3687, y = 9887, level = 1, height = 3 }
+
+[ahoy_ladder_from_cellar]
+option = "Climb-up"
+tile = { x = 3668, y = 9888, level = 3 }
+to = { x = 3654, y = 3519 }
+
+[ahoy_tower_stairs_lv1_withwall]
+option = "Climb-up"
+tile = { x = 3666, y = 3518 }
+near = { x = 3666, y = 3522, level = 1, width = 2 }
+
+[ahoy_tower_stairs_lv1_top]
+option = "Climb-down"
+tile = { x = 3666, y = 3521, level = 1 }
+near = { x = 3666, y = 3516, width = 2 }

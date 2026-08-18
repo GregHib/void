@@ -16,7 +16,7 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class Nettles : Script {
 
     init {
-        objectOperate("Pick", "nettles") { (target) ->
+        objectOperate("Pick", "nettles*") { (target) ->
             if (inventory.isFull()) {
                 // Rs3 and osrs has this statement.
                 statement("You can't carry any more nettles.")

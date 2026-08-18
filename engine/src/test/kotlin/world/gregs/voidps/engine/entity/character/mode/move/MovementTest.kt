@@ -20,6 +20,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.movementType
 import world.gregs.voidps.engine.entity.character.player.temporaryMoveType
+import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
+import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
 import world.gregs.voidps.type.Direction
@@ -35,6 +37,9 @@ internal class MovementTest : KoinMock() {
     fun setup() {
         player = Player(tile = Tile(5, 5))
         player.collision = CollisionStrategies.Normal
+        player.inventories.normalStack = ItemDependentStack
+        player.inventories.player = player
+        player.inventories.validItemRule = ValidItemRestriction()
         Areas.clear()
         pathFinder = declareMock {
             every { findPath(any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()) } returns Route(

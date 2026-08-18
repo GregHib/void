@@ -1,0 +1,63 @@
+[ahoy_windspeed]
+id = 205
+persist = true
+format = "boolean"
+
+[ahoy_given_manual]
+id = 206
+persist = true
+format = "boolean"
+
+[ahoy_given_robes]
+id = 207
+persist = true
+format = "boolean"
+
+[ahoy_given_book]
+id = 208
+persist = true
+format = "boolean"
+
+[ahoy_signaturecounter]
+id = 209
+persist = true
+format = "int"
+
+[ahoy_subquest_nettletea]
+id = 211
+persist = true
+format = "int"
+
+[ahoy_subquest_bow]
+id = 212
+persist = true
+format = "int"
+
+[ahoy_templedoor_unlocked]
+id = 213
+persist = true
+format = "boolean"
+
+[ahoy_subquest_toyboat]
+id = 214
+persist = true
+format = "int"
+
+[ahoy_killed_lobster]
+id = 215
+persist = true
+format = "boolean"
+
+[ahoy_requested_sheet]
+id = 216
+persist = true
+format = "boolean"
+
+[ahoy_questvar]
+id = 217
+persist = true
+format = "int"
+
+[wearing_ghost_speak_amulet]
+id = 3732
+format = "boolean"

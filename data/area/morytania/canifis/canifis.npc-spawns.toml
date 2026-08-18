@@ -55,5 +55,5 @@ spawns = [
   { id = "ghoul", x = 3419, y = 3512, members = true },
   { id = "ghoul", x = 3420, y = 3517, members = true },
   { id = "ghoul", x = 3420, y = 3518, members = true },
-  { id = "old_crone", x = 3461, y = 3558, members = true },
+  { id = "ahoy_crone", x = 3461, y = 3558, members = true },
 ]

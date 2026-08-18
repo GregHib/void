@@ -72,6 +72,10 @@ class Equipping : Script {
             player.message("That armour is too small for a human.")
             return
         }
+        if (item.id.startsWith("bedsheet") && player.tile !in Areas["port_phasmatys"]) {
+            player.message("I'll only wear the bedsheet inside Port Phasmatys!")
+            return
+        }
         if (replaceWeaponShieldWith2h(player, def) && !player.equipment.move(EquipSlot.Shield.index, player.inventory)) {
             player.inventoryFull()
             return

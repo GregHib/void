@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
@@ -116,7 +117,11 @@ class Furnace : Script {
             player.message(message, ChatType.Filter)
         }
         player.weakQueue("smelting", 4) {
-            val chance = row.int("chance")
+            var chance = row.int("chance")
+            if (row.rowId == "iron_bar") {
+                // https://runescape.wiki/w/Update:Improving_Success_when_Smelting_Iron_(Free_and_Members)
+                chance = Interpolation.lerp(player.levels.get(Skill.Smithing), 15..45, 128..204).coerceIn(128..204)
+            }
             val success = random.nextInt(255) < chance
             val items = requiredOres(id)
             player.inventory.transaction {
