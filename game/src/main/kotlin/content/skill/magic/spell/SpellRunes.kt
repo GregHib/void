@@ -1,5 +1,6 @@
 package content.skill.magic.spell
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.skill.magic.book.lunar.checkSpellbookSwapCast
 import content.skill.magic.spell.SpellRunes.removeItems
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
@@ -17,6 +18,7 @@ import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.Transaction
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import kotlin.math.max
@@ -78,7 +80,18 @@ object SpellRunes {
             if (!key.endsWith("_rune") && key != "banana" && key != "unpowered_orb") {
                 false
             } else {
-                remove(key, required.getValue(key))
+                if (!player.inDungeoneering) {
+                    remove(key, required.getValue(key))
+                } else {
+                    val required = required.getValue(key)
+                    var removed = removeToLimit("${key}_dungeoneering", required)
+                    if (required - removed > 0) {
+                        removed += removeToLimit("${key}_dungeoneering_bound", required - removed)
+                    }
+                    if (removed < required) {
+                        error = TransactionError.Deficient(required - removed)
+                    }
+                }
                 !failed
             }
         }
