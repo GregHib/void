@@ -159,13 +159,25 @@ class GiantMole : Script {
                 nearMole.add(player)
             }
         }
-        for (player in nearMole) {
-            player.open("dirt_on_screen")
-            Light.extinguish(player)
-        }
+        // Queued before the overlay is opened so that a failure while blinding players can never
+        // skip the close and strand everyone behind a dirt screen until they log out.
         World.queue("dirt_on_screen_timer_player", 3) {
             for (player in nearMole) {
-                player.close("dirt_on_screen")
+                // World queue blocks run unguarded inside a game loop stage, so one player
+                // failing here would otherwise take the whole loop down with it.
+                try {
+                    player.close("dirt_on_screen")
+                } catch (e: Exception) {
+                    logger.error(e) { "Failed to clear dirt for '${player.accountName}'." }
+                }
+            }
+        }
+        for (player in nearMole) {
+            try {
+                player.open("dirt_on_screen")
+                Light.extinguish(player)
+            } catch (e: Exception) {
+                logger.error(e) { "Failed to throw dirt at '${player.accountName}'." }
             }
         }
     }
