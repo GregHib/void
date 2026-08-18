@@ -204,7 +204,7 @@ class DragonfireShieldTest : WorldTest() {
 
         assertEquals(health, rat.levels.get(Skill.Constitution), "the shield is still winding up")
 
-        tick(3)
+        tick(2)
 
         assertEquals(health, rat.levels.get(Skill.Constitution), "the shield is still winding up")
 
