@@ -7,11 +7,11 @@ import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -124,9 +124,7 @@ class WysonTheGardener : Script {
     suspend fun Player.buyWoadLeaf() {
         npc<Idle>("Mmmm... okay, that sounds fair.")
         if (inventory.remove("coins", 15)) {
-            if (!inventory.add("woad_leaf")) {
-                FloorItems.add(tile, "woad_leaf", disappearTicks = 300, owner = this)
-            }
+            addOrDrop("woad_leaf")
             player<Happy>("Thanks.")
             item("woad_leaf", "You buy a woad leaf from Wyson.")
             npc<Idle>("I'll be around if you have any more gardening needs.")
@@ -139,9 +137,7 @@ class WysonTheGardener : Script {
         npc<Happy>("Ok that's more than fair.")
         npc<Happy>("Here, have two. You're a generous person.")
         if (inventory.remove("coins", 20)) {
-            if (!inventory.add("woad_leaf", 2)) {
-                FloorItems.add(tile, "woad_leaf", 2, disappearTicks = 300, owner = this)
-            }
+            addOrDrop("woad_leaf", 2)
             player<Happy>("Thanks.")
             item("woad_leaf", "Wyson gives you a pair of woad leaves.")
         } else {
