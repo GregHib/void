@@ -380,6 +380,7 @@ class DungeonGenerator(
                     }
                 }
                 if (room.type == DungeonRoomType.Base && matchingOptions.isNotEmpty()) {
+                    // TODO only use base with group gatestone (c5) when multiple people?
                     break
                 }
             }

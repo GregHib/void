@@ -42,7 +42,9 @@ object DungeonNPCs {
         when (room.type) {
             DungeonRoomType.Base -> NPCs.add("smuggler_dungeoneering", dungeon.startTile().addX(-1))
             DungeonRoomType.Boss -> spawnBoss(dungeon, room)
-            DungeonRoomType.Puzzle -> TODO()
+            DungeonRoomType.Puzzle -> {
+                // TODO
+            }
             DungeonRoomType.Normal -> spawnMonsters(room, dungeon, floor, complexity)
         }
     }
