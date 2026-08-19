@@ -1,6 +1,7 @@
 package content.area.asgarnia.asgarnian_ice_dungeon
 
 import content.entity.combat.hit.Hit
+import content.entity.player.equip.Equipment
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,11 +22,9 @@ class SkeletalWyvern : Script {
     // TODO: fix blue ice orb for range as not as it is on runescape the blue ice orb is above his head not his chest
 
     fun hasWyvernShield(target: Character): Boolean {
-        if (target !is Player) return false
-        val shieldId = target.equipped(EquipSlot.Shield).id
-        return shieldId == "elemental_shield" ||
-            shieldId == "mind_shield" ||
-            shieldId == "body_shield" ||
-            shieldId.startsWith("dragonfire_shield")
+        if (target !is Player) {
+            return false
+        }
+        return Equipment.fireResistantShield(target.equipped(EquipSlot.Shield).id)
     }
 }

@@ -1,0 +1,20 @@
+# The fire waits out the shield's wind up, then travels seven client ticks per tile. Heights sit
+# twelve below the standard forty so it leaves and lands at the shield's own height.
+[dragonfire_shield_discharge]
+id = 1166
+delay = 90
+time_offset = 7
+multiplier = 7
+curve = 10
+height = -12
+end_height = -12
+
+[dragonfire_shield_discharge_cast]
+id = 1165
+
+[dragonfire_shield_discharge_impact]
+id = 1167
+height = 56
+
+[dragonfire_shield_empty]
+id = 1160

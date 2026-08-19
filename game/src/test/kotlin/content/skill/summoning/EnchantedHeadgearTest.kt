@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.inv.charges
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -107,7 +108,7 @@ class EnchantedHeadgearTest : WorldTest() {
         tick(1)
 
         val slot = player.inventory.indexOf("antlers_charged")
-        assertEquals(12, player.inventory[slot].amount, "the helm's charge shows the scroll count")
+        assertEquals(12, player.inventory.charges(player, slot), "the helm's charge shows the scroll count")
     }
 
     @Test
