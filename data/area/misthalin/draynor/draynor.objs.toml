@@ -33,3 +33,47 @@ examine = "It smells of fried fish."
 [trinket_chest]
 id = 39242
 examine = "Full of bits and bobs."
+
+[travelling_box]
+id = 39241
+examine = "Full of clothes and collectibles."
+
+[caravan_draynor]
+id = 39237
+examine = "A house on wheels."
+
+[maggies_cauldron]
+id = 39233
+examine = "Something smells...interesting."
+
+[toy_stall]
+id = 5595
+examine = "Diango's Toy Stall."
+
+[gag_banner]
+id = 12110
+examine = "A banner for Group of Advanced Gardeners."
+
+[aggies_cauldron]
+id = 9736
+examine = "Aggie's cooking something, probably best not to think what..."
+
+[magical_symbol_draynor]
+id = 908
+examine = "A magical wall decoration."
+
+[wardrobe_draynor]
+id = 5622
+examine = "I wonder what's inside..."
+
+[wardrobe_draynor_2]
+id = 5623
+examine = "It smells a bit stuffy."
+
+[wardrobe_draynor_3]
+id = 5624
+examine = "It smelly funny in there."
+
+[broom_draynor]
+id = 5561
+examine = "Aggie's broomstick."

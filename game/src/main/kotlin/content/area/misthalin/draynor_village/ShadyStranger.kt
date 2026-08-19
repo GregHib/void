@@ -63,7 +63,7 @@ class ShadyStranger : Script {
             npc.clearTransform()
             npc.hide = true
             clear("shady_escape_pending")
-            respawn(get("respawn_delay", 50))
+            respawn(get("respawn_delay", 66))
         }
     }
 }

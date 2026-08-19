@@ -8,6 +8,7 @@ examine = "If the mummy is at school, where are the kids?"
 
 [mr_mordau]
 id = 6117
+interacts = false
 examine = "Professor of Unnatural History."
 
 [zombie_surprise_exam]

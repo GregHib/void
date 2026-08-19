@@ -187,16 +187,18 @@ examine = "A feisty cat."
 
 [norman]
 id = 8203
+examine = "A strong ox, no bones about it."
 
 [babe]
 id = 8204
+examine = "How can an ox without lungs sneeze like that?"
 
 [shady_stranger]
 id = 8339
 hitpoints = 300
 combat_def = "man"
 max_hit_crush = 60
-respawn_delay = 50
+respawn_delay = 66
 examine = "He seems to be trying to watch everyone at once."
 drop_table = "shady_stranger"
 
@@ -205,7 +207,7 @@ id = 8435
 hitpoints = 350
 combat_def = "man"
 max_hit_crush = 60
-respawn_delay = 50
+respawn_delay = 66
 examine = "He seems to be trying to watch everyone at once."
 drop_table = "shady_stranger"
 
@@ -214,7 +216,7 @@ id = 8436
 hitpoints = 440
 combat_def = "man"
 max_hit_crush = 60
-respawn_delay = 50
+respawn_delay = 66
 examine = "Haven't seen his sort around here before; what's he doing here?"
 drop_table = "suspicious_outsider"
 
