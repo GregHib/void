@@ -59,7 +59,6 @@ respawn_delay = 30
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
-hunt_mode = "cowardly"
 
 [giant_rat_2]
 id = 950
