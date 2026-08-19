@@ -72,7 +72,7 @@ examine = "It smells a bit stuffy."
 
 [wardrobe_draynor_3]
 id = 5624
-examine = "It smelly funny in there."
+examine = "It smells funny in there."
 
 [broom_draynor]
 id = 5561
