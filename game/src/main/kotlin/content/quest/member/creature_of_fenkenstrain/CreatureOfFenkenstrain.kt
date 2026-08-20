@@ -532,6 +532,8 @@ class CreatureOfFenkenstrain : Script {
             }
             option("Chimney Sweeping on a Budget") {
                 openBook("chimney_sweeping_on_a_budget")
+                interfaces.sendText("book_long", "page_number_left", "26")
+                interfaces.sendText("book_long", "page_number_right", "")
             }
             option("Handy Maggot Avoidance Techniques") {
                 sound("bookcasedoor")
