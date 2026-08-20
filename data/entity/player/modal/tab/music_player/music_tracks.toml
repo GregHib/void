@@ -2027,7 +2027,7 @@ areas = [ { region = 11924 } ]
 
 [chickened_out]
 index = 395
-areas = [ { region = 9796 } ]
+areas = [ { region = 6212 }, { region = 9796 } ]
 
 [too_many_cooks]
 index = 398
