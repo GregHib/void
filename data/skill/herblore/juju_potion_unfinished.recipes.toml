@@ -74,7 +74,7 @@ level = 75
 xp = 179.0
 ticks = 2
 remove = ["samaden_potion_unf", "zamorak_vine"]
-add = ["guthixs_gift_3"]
+add = ["zamoraks_favour_3"]
 animation = "mixing_potion"
 message = "You mix the zamorak vine into your potion."
 

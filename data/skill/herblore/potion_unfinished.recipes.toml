@@ -150,7 +150,7 @@ message = "You put the Star flower into the vial of water."
 
 [snapdragon_unf_potion]
 skill = "herblore"
-level = 30
+level = 63
 xp = 0.0
 ticks = 1
 remove = ["clean_snapdragon", "vial_of_water"]
@@ -240,7 +240,7 @@ message = "You mix the cactus spine into your potion."
 
 ["weaponpoison++_potion_unf"]
 skill = "herblore"
-level = 73
+level = 82
 xp = 1.0
 ticks = 2
 remove = ["coconut_milk", "cave_nightshade"]

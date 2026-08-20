@@ -5,6 +5,7 @@ import itemOnItem
 import net.pearx.kasechange.toSentenceCase
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
@@ -38,7 +39,7 @@ class PotionMakingTest : WorldTest() {
         listOf("tarromin_potion_unf", "limpwurt_root", "strength_potion_3"),
         listOf("harralander_potion_unf", "red_spiders_eggs", "restore_potion_3"),
         listOf("harralander_potion_unf", "chocolate_dust", "energy_potion_3"),
-        listOf("harralander_potion_unf", "desert_goat_horn", "combat_potion_3"),
+        listOf("harralander_potion_unf", "goat_horn_dust", "combat_potion_3"),
         listOf("ranarr_potion_unf", "white_berries", "defence_potion_3"),
         listOf("ranarr_potion_unf", "snape_grass", "prayer_potion_3"),
         listOf("irit_potion_unf", "eye_of_newt", "super_attack_3"),
@@ -50,9 +51,24 @@ class PotionMakingTest : WorldTest() {
         listOf("dwarf_weed_potion_unf", "wine_of_zamorak", "super_ranging_potion_3"),
         listOf("torstol_potion_unf", "jangerberries", "zamorak_brew_3"),
         listOf("toadflax_potion_unf", "crushed_nest", "saradomin_brew_3"),
+        listOf("wergali_potion_unf", "frog_spawn", "crafting_potion_3"),
+        listOf("weapon_poison+_unf", "red_spiders_eggs", "weapon_poison+"),
+        listOf("weapon_poison++_unf", "poison_ivy_berries", "weapon_poison++"),
+        listOf("antifire_3", "phoenix_feather", "super_antifire_3"),
+        listOf("samaden_potion_unf", "zamorak_vine", "zamoraks_favour_3"),
+        listOf("antipoison+_2", "caviar", "antidote+_mix_2"),
         listOf("prayer_potion_3", "wyvern_bonemeal", "super_prayer_3"),
         listOf("super_energy_3", "papaya_fruit", "recover_special_3"),
         listOf("extreme_attack_3", "extreme_strength_3", "extreme_defence_3", "extreme_magic_3", "extreme_ranging_3", "clean_torstol", "overload_3"),
+    )
+
+    private val experience = listOf(
+        listOf("harralander_potion_unf", "red_spiders_eggs", "restore_potion_3") to 62.5,
+        listOf("harralander_potion_unf", "goat_horn_dust", "combat_potion_3") to 84.0,
+        listOf("weapon_poison+_unf", "red_spiders_eggs", "weapon_poison+") to 165.0,
+        listOf("antifire_3", "phoenix_feather", "super_antifire_3") to 210.0,
+        listOf("antipoison_2", "roe", "antipoison_mix_2") to 12.0,
+        listOf("antipoison+_2", "caviar", "antidote+_mix_2") to 52.0,
     )
 
     @TestFactory
@@ -73,6 +89,70 @@ class PotionMakingTest : WorldTest() {
             }
             assertNotEquals(0.0, player.experience.get(Skill.Herblore))
         }
+    }
+
+    @TestFactory
+    fun `Potions give their listed experience`() = experience.map { (items, xp) ->
+        dynamicTest("Create ${items.last().toSentenceCase()}") {
+            val player = createPlayer()
+            player.levels.set(Skill.Herblore, 99)
+            for (item in items.dropLast(1)) {
+                player.inventory.add(item)
+            }
+
+            player.itemOnItem(0, 1)
+            tick(2)
+
+            assertEquals(1, player.inventory.count(items.last()))
+            assertEquals(xp, player.experience.get(Skill.Herblore))
+        }
+    }
+
+    @Test
+    fun `Extreme ranging takes five grenwall spikes`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Herblore, 99)
+        player.inventory.add("super_ranging_potion_3")
+        player.inventory.add("grenwall_spikes", 7)
+
+        player.itemOnItem(0, 1)
+        tick(2)
+
+        assertEquals(1, player.inventory.count("extreme_ranging_3"))
+        assertEquals(2, player.inventory.count("grenwall_spikes"))
+        assertEquals(260.0, player.experience.get(Skill.Herblore))
+    }
+
+    @TestFactory
+    fun `Barbarian mixes need their listed level`() = listOf(
+        Triple("super_magic_potion_2", "super_magic_mix_2", 83),
+        Triple("super_ranging_potion_2", "super_ranging_mix_2", 80),
+        Triple("defence_potion_2", "defence_mix_2", 33),
+    ).map { (potion, mix, level) ->
+        dynamicTest("Mix ${mix.toSentenceCase()}") {
+            val player = createPlayer()
+            player.levels.set(Skill.Herblore, level - 1)
+            player.inventory.add(potion)
+            player.inventory.add("caviar")
+
+            player.itemOnItem(0, 1)
+            tick(2)
+
+            assertEquals(0, player.inventory.count(mix))
+            assertEquals(1, player.inventory.count(potion))
+        }
+    }
+
+    @Test
+    fun `Antipoison+ mix decants into two doses`() {
+        val player = createPlayer()
+        player.inventory.add("antidote+_mix_1", 2)
+
+        player.itemOnItem(0, 1)
+        tick(2)
+
+        assertEquals(1, player.inventory.count("antidote+_mix_2"))
+        assertEquals(1, player.inventory.count("vial"))
     }
 
     @TestFactory

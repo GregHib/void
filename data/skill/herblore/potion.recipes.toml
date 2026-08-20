@@ -30,13 +30,13 @@ message = "You mix the limpwurt root into your potion."
 
 [stat_restore_potion_finished]
 skill = "herblore"
-level = 12
-xp = 50.0
+level = 22
+xp = 62.5
 ticks = 2
 remove = ["harralander_potion_unf", "red_spiders_eggs"]
 add = ["restore_potion_3"]
 animation = "mixing_potion"
-message = "You mix the limpwurt root into your potion."
+message = "You mix the red spiders' eggs into your potion."
 
 [guthix_balance_potion_finished]
 skill = "herblore"
@@ -103,10 +103,10 @@ skill = "herblore"
 level = 36
 xp = 84.0
 ticks = 2
-remove = ["harralander_potion_unf", "desert_goat_horn"]
+remove = ["harralander_potion_unf", "goat_horn_dust"]
 add = ["combat_potion_3"]
 animation = "mixing_potion"
-message = "You mix the desert goat horn into your potion."
+message = "You mix the goat horn dust into your potion."
 
 [prayer_potion_finished]
 skill = "herblore"
@@ -134,7 +134,7 @@ level = 42
 xp = 95.0
 ticks = 2
 remove = ["wergali_potion_unf", "frog_spawn"]
-add = ["summoning_potion_3"]
+add = ["crafting_potion_3"]
 animation = "mixing_potion"
 message = "You mix the frog spawn into your potion."
 
@@ -341,12 +341,12 @@ message = "You mix the wine of zamorak into your potion"
 ["weapon_poison+_finished"]
 skill = "herblore"
 level = 73
-xp = 137.5
+xp = 165.0
 ticks = 2
 remove = ["weapon_poison+_unf", "red_spiders_eggs"]
 add = ["weapon_poison+"]
 animation = "mixing_potion"
-message = "You mix the wine of red spiders eggs into your potion"
+message = "You mix the red spiders' eggs into your potion"
 
 [magic_potion_finished]
 skill = "herblore"
@@ -384,7 +384,7 @@ level = 82
 xp = 190.0
 ticks = 2
 remove = ["weapon_poison++_unf", "poison_ivy_berries"]
-add = ["saradomin_brew_3"]
+add = ["weapon_poison++"]
 animation = "mixing_potion"
 message = "You mix the poison ivy berries into your potion"
 
@@ -401,7 +401,7 @@ message = "You mix the papaya fruit into your potion"
 [super_anti_fire_finished]
 skill = "herblore"
 level = 85
-xp = 200.0
+xp = 210.0
 ticks = 2
 remove = ["antifire_3", "phoenix_feather"]
 add = ["super_antifire_3"]
@@ -451,9 +451,9 @@ message = "You mix the ground mud runes into your potion"
 [extreme_ranging_potion_finished]
 skill = "herblore"
 level = 92
-xp = 250.0
+xp = 260.0
 ticks = 2
-remove = ["super_ranging_potion_3", "grenwall_spikes"]
+remove = ["super_ranging_potion_3", { id = "grenwall_spikes", amount = 5 }]
 add = ["extreme_ranging_3"]
 animation = "mixing_potion"
 message = "You mix the grenwall spikes into your potion"
