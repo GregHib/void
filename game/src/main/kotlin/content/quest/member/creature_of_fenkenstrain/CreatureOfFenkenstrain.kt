@@ -182,6 +182,10 @@ class CreatureOfFenkenstrain : Script {
             addOrDrop("fenk_mausoleum_key")
         }
 
+        objectOperate("Close", "fenk_chest_open") {
+            message("The hinges are filled with rust and won't budge.")
+        }
+
         objectOperate("Open", "fenk_broomcupboard") { (target) ->
             anim("human_opencupboard")
             sound("cupboard_open")
@@ -755,6 +759,3 @@ private val FENK_STAGES = listOf("unstarted", "body_parts", "sewing", "conductor
 
 private val Player.fenkStage: Int
     get() = FENK_STAGES.indexOf(quest("creature_of_fenkenstrain")).coerceAtLeast(0)
-
-// TODO chimney book sendChimeyBook()
-// TODO chest that gives key
