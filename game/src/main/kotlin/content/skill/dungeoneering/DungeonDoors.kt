@@ -93,6 +93,8 @@ class DungeonDoors : Script {
             anim("disarm_locked_door")
             delay(2)
             target.replace(target.id.replace("broken_pulley", "fixed_pulley"))
+            // https://youtu.be/ntOjjRjAh-s?t=495
+            message("You repair the pulley rope, allowing the door to be raised.")
         }
 
         objectOperate("Mine", "pile_of_rocks_*") { (target) ->
