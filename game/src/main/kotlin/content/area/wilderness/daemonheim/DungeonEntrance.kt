@@ -188,7 +188,6 @@ class DungeonEntrance : Script {
             message("<red_orange>Failed to generate ${size.name.lowercase()} c$complexity:f$floor dungeon.")
             return
         }
-        set("dungeon", dungeon)
         if (get("debug", false)) {
             println("Dungeon generation took ${System.currentTimeMillis() - start}ms")
             dungeon.prettyPrint()
@@ -200,6 +199,8 @@ class DungeonEntrance : Script {
         }
         dungeon.region = instance
         for (member in dungeonMembers) {
+            member["dungeon"] = dungeon
+            member["instance"] = instance.id
             dungeon.players.add(member.index)
             member["delay"] = 3
         }
