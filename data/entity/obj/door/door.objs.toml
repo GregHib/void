@@ -1076,17 +1076,17 @@ id = 5128
 [door_138_closed]
 id = 5126
 
-[door_140_opened]
+[fenk_tower_door_opened]
 id = 5173
 
-[door_140_closed]
+[fenk_tower_door_closed]
 id = 5172
 examine = "The door to the Tower."
 
-[door_141_opened]
+[fenk_shed_door_opened]
 id = 5175
 
-[door_141_closed]
+[fenk_shed_door_closed]
 id = 5174
 examine = "The door to the garden shed."
 

@@ -1,8 +1,16 @@
+# The dog is the only experiment with a key on its collar.
+[experiment_dog_drop_table]
+type = "all"
+drops = [
+    { id = "bones" },
+    { id = "fenk_mausoleum_key" },
+    { table = "experiment_secondary" },
+]
+
 [experiment_drop_table]
 type = "all"
 drops = [
     { id = "bones" },
-    { id = "cavern_key", variable = "creature_of_fenkenstrain", equals = "experiments", default = "unstarted" },
     { table = "experiment_secondary" },
 ]
 

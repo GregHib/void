@@ -1,0 +1,4 @@
+# NPC index of the Ed Lestwit copy following the player; server-only, so no varbit id.
+[fenk_gardener_uid]
+persist = true
+format = "int"

@@ -1,0 +1,63 @@
+[tithe_roof_g]
+id = 1757
+examine = ""
+
+[fenk_broomcupboard]
+id = 5156
+examine = ""
+
+[fenk_broomcupboard_open]
+id = 5157
+examine = ""
+
+[fenk_canepile]
+id = 5158
+examine = ""
+
+[fenk_clock]
+id = 5161
+examine = ""
+
+[fenk_chest_open]
+id = 5163
+examine = ""
+
+[fenk_signpost]
+id = 5164
+examine = ""
+
+[fenk_fireplace]
+id = 5165
+examine = ""
+
+[fenk_bookcase]
+id = 5166
+examine = ""
+
+[fenk_coffin]
+id = 5167
+examine = ""
+
+[fenk_grave]
+id = 5168
+examine = ""
+
+[fenk_grave_poor]
+id = 5169
+examine = ""
+
+[fenk_mausoleum_door_closed]
+id = 5170
+examine = ""
+
+[fenk_mausoleum_door_opened]
+id = 5171
+examine = ""
+
+[fenk_conductor_broken]
+id = 5176
+examine = ""
+
+[fenk_conductor_repaired]
+id = 5177
+examine = ""

@@ -3,4 +3,16 @@ id = 399
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+# Values are read by the npc transforms on varp 399: 0-7 show Dr Fenkenstrain
+# (1668 -> 1670) and the creature (1671 -> 1673); 8 hides Fenkenstrain in the
+# tower (1669 -> 1670) and reveals Lord Rologarth (1672 -> 1674).
+values = {
+    unstarted = 0,
+    body_parts = 1,
+    sewing = 2,
+    conductor = 3,
+    creature_alive = 4,
+    creature_loose = 5,
+    creature_convinced = 6,
+    completed = 8,
+}
