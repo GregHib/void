@@ -146,21 +146,12 @@ class CreatureOfFenkenstrain : Script {
         objectOperate("Read", "fenk_signpost") {
             val started = fenkStage >= 1
             if (started) {
-                statement(
-                    "The signpost has a note pinned onto it. The note says:<br>" +
-                        "'~~~Braindead Butler Position Filled~~~<br>" +
-                        "****No Further Applicants Please****'",
-                )
+                statement("The signpost has a note pinned onto it. The note says:<br>'~~~Braindead Butler Position Filled~~~<br>****No Further Applicants Please****'")
             } else {
                 if (!get("fenk_read_signpost", false)) {
                     set("fenk_read_signpost", true)
                 }
-                statement(
-                    "The signpost has a note pinned onto it. The note says:<br>" +
-                        "'----Braindead Butler Wanted----<br>" +
-                        "Gravedigging skills essential - Hunchback advantageous<br>" +
-                        "See Dr Fenkenstrain at the castle NE of Canifis'",
-                )
+                statement("The signpost has a note pinned onto it. The note says:<br>'----Braindead Butler Wanted----<br>Gravedigging skills essential - Hunchback advantageous<br>See Dr Fenkenstrain at the castle NE of Canifis'")
             }
         }
 
@@ -168,8 +159,7 @@ class CreatureOfFenkenstrain : Script {
             if (!inventory.contains("fenk_letter") && !get("fenk_wound_clock", false)) {
                 item(
                     item = "fenk_letter",
-                    text = "As you wind the old clock a letter falls out. Judging by the thick covering of dust it must have been here for some time.",
-                )
+                    text = "As you wind the old clock a letter falls out. Judging by the thick covering of dust it must have been here for some time.")
                 addOrDrop("fenk_letter")
                 set("fenk_wound_clock", true)
             }
@@ -310,8 +300,7 @@ class CreatureOfFenkenstrain : Script {
             set("fenk_coffin", true)
             item(
                 item = "fenk_star_amulet",
-                text = "The star amulet fits exactly into the depression on the coffin lid.",
-            )
+                text = "The star amulet fits exactly into the depression on the coffin lid.")
         }
 
         objectOperate("Open", "fenk_mausoleum_door_closed") { (target) ->
@@ -434,11 +423,7 @@ class CreatureOfFenkenstrain : Script {
             inventory.remove("fenk_conductor")
             sound("lightning")
             set("creature_of_fenkenstrain", "creature_alive")
-            statement(
-                "You repair the lightning conductor not one moment too soon - a tremendous bolt " +
-                    "of lightning melts the new lightning conductor, and power blazes throughout " +
-                    "the castle, if only briefly.",
-            )
+            statement("You repair the lightning conductor not one moment too soon - a tremendous bolt of lightning melts the new lightning conductor, and power blazes throughout the castle, if only briefly.")
         }
 
         itemOnObjectOperate("fenk_brush1,fenk_brush2,fenk_brush3", "fenk_fireplace") { interaction ->
@@ -497,33 +482,21 @@ class CreatureOfFenkenstrain : Script {
                 face(roavar)
                 roavar.face(this)
                 if (inventory.contains(item.id)) {
-                    npc<Neutral>(
-                        "You can leave that alone, my friend. I've already sold you one of your own- eat that. " +
-                            "I can't afford to give away freebies in this business!",
-                    )
+                    npc<Neutral>("You can leave that alone, my friend. I've already sold you one of your own- eat that. I can't afford to give away freebies in this business!")
                 } else {
                     npc<Neutral>("You're interested in our speciality, I see. Would you like to buy some?")
                     player<Neutral>("What exactly is in the jar?")
                     npc<Neutral>("Pickled brain, my friend. Only 50 gold to you.")
                     player<Neutral>("Err...pickled brain from what animal?")
-                    npc<Neutral>(
-                        "Animal? Don't be disgusting, man! No, this is a human brain - only the " +
-                            "best for my customers.",
-                    )
+                    npc<Neutral>("Animal? Don't be disgusting, man! No, this is a human brain - only the best for my customers.")
                     if (inventory.count("coins") < 50) {
-                        player<Neutral>(
-                            "That sounds very nice, but I'm afraid I don't have enough gold at the " +
-                                "moment.",
-                        )
+                        player<Neutral>("That sounds very nice, but I'm afraid I don't have enough gold at the moment.")
                     } else {
                         choice {
                             option<Neutral>("I'll buy one, please.") {
                                 inventory.remove("coins", 50)
                                 addOrDrop("fenk_brain")
-                                npc<Neutral>(
-                                    "A very wise choice, ${if (male) "sir" else "miss"}. Don't eat " +
-                                        "it all at once, savour every morsel - that's my advice to you.",
-                                )
+                                npc<Neutral>("A very wise choice, ${if (male) "sir" else "miss"}. Don't eat it all at once, savour every morsel - that's my advice to you.")
                             }
                             option<Neutral>("I'm afraid I'm not really hungry at the moment.")
                         }
@@ -541,8 +514,7 @@ class CreatureOfFenkenstrain : Script {
             option("Men are from Morytania, Women are from Lumbridge") {
                 item(
                     item = "fenk_journal",
-                    text = "You discover some fascinating insights into the mind of the male kind.",
-                )
+                    text = "You discover some fascinating insights into the mind of the male kind.")
             }
             option("Chimney Sweeping on a Budget") {
                 openBook("chimney_sweeping_on_a_budget")
@@ -551,8 +523,7 @@ class CreatureOfFenkenstrain : Script {
                 sound("bookcasedoor")
                 item(
                     item = "fenk_journal",
-                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.",
-                )
+                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.")
                 if (inventory.contains("fenk_obsidian_amulet") || inventory.contains("fenk_star_amulet") || get("fenk_coffin", false)) {
                     statement("The secret compartment is empty.")
                 } else {
@@ -580,21 +551,18 @@ class CreatureOfFenkenstrain : Script {
             option("Practical Gardening For The Headless") {
                 item(
                     item = "fenk_journal",
-                    text = "This book has some very enlightening points to make, but you are at a loss to know how anyone without a head could possibly read it.",
-                )
+                    text = "This book has some very enlightening points to make, but you are at a loss to know how anyone without a head could possibly read it.")
             }
             option("Human Taxidermy for Nincompoops") {
                 item(
                     item = "fenk_journal",
-                    text = "This book seems to have been read hundreds of times, and has scribbles and formulae on every page. One such scribble says 'None good enough - have had to lock them in the caverns...'",
-                )
+                    text = "This book seems to have been read hundreds of times, and has scribbles and formulae on every page. One such scribble says 'None good enough - have had to lock them in the caverns...'")
             }
             option("The Joy of Gravedigging") {
                 sound("bookcasedoor")
                 item(
                     item = "fenk_journal",
-                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.",
-                )
+                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.")
                 if (inventory.contains("fenk_marble_amulet") || inventory.contains("fenk_star_amulet") || get("fenk_coffin", false)) {
                     statement("The secret compartment is empty.")
                 } else {
@@ -693,8 +661,7 @@ class CreatureOfFenkenstrain : Script {
                 "",
                 "Rologarth,",
                 "",
-                "15th Lord of the North Coast",
-            ),
+                "15th Lord of the North Coast"),
         )
     }
 
@@ -764,8 +731,7 @@ class CreatureOfFenkenstrain : Script {
             Tile(3542, 3486) to "Unknown",
             Tile(3541, 3471) to "Unknown",
             Tile(3572, 3527) to "Unknown",
-            Tile(3576, 3526) to "Unknown",
-        )
+            Tile(3576, 3526) to "Unknown")
     }
 }
 
