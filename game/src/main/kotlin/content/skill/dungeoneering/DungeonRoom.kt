@@ -59,8 +59,16 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     private fun spawnKeys(dungeon: DungeonMap) {
         val keySpots = findObjects(dungeon, setOf("rand_invis_key_location"))
         if (keySpots.isEmpty()) {
-            logger.warn { "Unable to find key tile for $zone $name" }
-            return
+            if (type == DungeonRoomType.Base) {
+                val tile = dungeon.startTile()
+                for (key in keys) {
+                    FloorItems.add(tile, key)
+                }
+                return
+            } else {
+                logger.warn { "Unable to find key tile for $zone $name" }
+                return
+            }
         }
         for (key in keySpots) {
             key.remove()

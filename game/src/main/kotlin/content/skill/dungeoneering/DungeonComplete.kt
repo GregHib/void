@@ -1,6 +1,7 @@
 package content.skill.dungeoneering
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.wilderness.daemonheim.DungeoneeringParty
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.entity.player.dialogue.type.choice
@@ -76,14 +77,8 @@ class DungeonComplete : Script {
         }
 
         interfaceOption("Ready", "dungeon_complete:readybutton_player1") {
-            exit()
+            DungeoneeringParty.leave(this)
         }
-    }
-
-    private fun Player.exit() {
-        // TODO clear inv etc..
-        tele(3460, 3721, 1)
-        clearInstance() // TODO remove
     }
 
     private fun message(seconds: Int) {

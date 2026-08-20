@@ -297,6 +297,7 @@ class DungeoneeringParty : Script {
             player.dismissPet()
             player.equipment.clear()
             player.queue.clear()
+            player.levels.clear()
             player.engineQueue("dungeon_exit") {
                 player.tele(3460, 3721, 1)
                 if (player["dungeoneering_stored_kinship", false]) {
