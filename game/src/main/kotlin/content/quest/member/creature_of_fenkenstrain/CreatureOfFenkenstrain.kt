@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
@@ -410,20 +411,11 @@ class CreatureOfFenkenstrain : Script {
         }
 
         objectOperate("Repair", "fenk_conductor_broken") { (target) ->
-            if (fenkStage > 3) {
-                message("The lightning conductor is now beyond repair.")
-                return@objectOperate
-            }
-            if (!inventory.contains("fenk_conductor")) {
-                message("You don't have anything to repair the conductor with.")
-                return@objectOperate
-            }
+            repairConductor(target)
+        }
 
-            target.replace(id = "fenk_conductor_repaired", ticks = 5)
-            inventory.remove("fenk_conductor")
-            sound("lightning")
-            set("creature_of_fenkenstrain", "creature_alive")
-            statement("You repair the lightning conductor not one moment too soon - a tremendous bolt of lightning melts the new lightning conductor, and power blazes throughout the castle, if only briefly.")
+        itemOnObjectOperate("fenk_conductor", "fenk_conductor_broken") { (target) ->
+            repairConductor(target)
         }
 
         itemOnObjectOperate("fenk_brush1,fenk_brush2,fenk_brush3", "fenk_fireplace") { interaction ->
@@ -509,12 +501,28 @@ class CreatureOfFenkenstrain : Script {
         }
     }
 
+    private suspend fun Player.repairConductor(target: GameObject) {
+        if (fenkStage > 3) {
+            message("The lightning conductor is now beyond repair.")
+            return
+        }
+        if (!inventory.remove("fenk_conductor")) {
+            message("You don't have anything to repair the conductor with.")
+            return
+        }
+        target.replace(id = "fenk_conductor_repaired", ticks = 5)
+        sound("lightning")
+        set("creature_of_fenkenstrain", "creature_alive")
+        statement("You repair the lightning conductor not one moment too soon - a tremendous bolt of lightning melts the new lightning conductor, and power blazes throughout the castle, if only briefly.")
+    }
+
     private suspend fun Player.eastBookcase() {
         choice("Which book would you like to read?") {
             option("Men are from Morytania, Women are from Lumbridge") {
                 item(
                     item = "fenk_journal",
-                    text = "You discover some fascinating insights into the mind of the male kind.")
+                    text = "You discover some fascinating insights into the mind of the male kind."
+                )
             }
             option("Chimney Sweeping on a Budget") {
                 openBook("chimney_sweeping_on_a_budget")
@@ -523,7 +531,8 @@ class CreatureOfFenkenstrain : Script {
                 sound("bookcasedoor")
                 item(
                     item = "fenk_journal",
-                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.")
+                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment."
+                )
                 if (inventory.contains("fenk_obsidian_amulet") || inventory.contains("fenk_star_amulet") || get("fenk_coffin", false)) {
                     statement("The secret compartment is empty.")
                 } else {
@@ -551,18 +560,21 @@ class CreatureOfFenkenstrain : Script {
             option("Practical Gardening For The Headless") {
                 item(
                     item = "fenk_journal",
-                    text = "This book has some very enlightening points to make, but you are at a loss to know how anyone without a head could possibly read it.")
+                    text = "This book has some very enlightening points to make, but you are at a loss to know how anyone without a head could possibly read it."
+                )
             }
             option("Human Taxidermy for Nincompoops") {
                 item(
                     item = "fenk_journal",
-                    text = "This book seems to have been read hundreds of times, and has scribbles and formulae on every page. One such scribble says 'None good enough - have had to lock them in the caverns...'")
+                    text = "This book seems to have been read hundreds of times, and has scribbles and formulae on every page. One such scribble says 'None good enough - have had to lock them in the caverns...'"
+                )
             }
             option("The Joy of Gravedigging") {
                 sound("bookcasedoor")
                 item(
                     item = "fenk_journal",
-                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.")
+                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment."
+                )
                 if (inventory.contains("fenk_marble_amulet") || inventory.contains("fenk_star_amulet") || get("fenk_coffin", false)) {
                     statement("The secret compartment is empty.")
                 } else {
