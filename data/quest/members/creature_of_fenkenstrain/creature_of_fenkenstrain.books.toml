@@ -1,7 +1,10 @@
 [chimney_sweeping_on_a_budget]
 title = "Chimney Sweeping on a Budget"
+type = "long"
 pages = [
     [
+        "",
+        "",
         "that sometimes a sweep",
         "may find themselves",
         "brushless and without the",
@@ -12,6 +15,11 @@ pages = [
         "without his or her brush!",
         "In this kind of situation",
         "any normal long-handled",
+        "",
+        "",
+        "",
+        "",
+        "",
         "brush might be a suitable",
         "replacement, altough",
         "when attaching extensions",
@@ -22,5 +30,8 @@ pages = [
         "themselves losing their",
         "brush and livelyhood to",
         "the forces of gravity",
+        "",
+        "",
+        "",
     ]
 ]
