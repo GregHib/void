@@ -44,10 +44,16 @@ class Gatestone : Script {
             anim("high_alch")
             gfx("high_alch")
             addOrDrop("gatestone")
+            // https://youtu.be/FjsJPnnSEEQ?t=486
+            message("You create a gatestone.")
         }
 
         dropped("gatestone") {
             set("gatestone_tile", tile)
+            // https://youtu.be/FjsJPnnSEEQ?t=507
+//            message("Your gatestone drops to the floor as you die.") // TODO
+            // https://youtu.be/FjsJPnnSEEQ?t=486
+            message("You place the gatestone. You can teleport back to it at any time.")
         }
 
         taken("gatestone") {
@@ -71,6 +77,8 @@ class Gatestone : Script {
             val gatestone = FloorItems.firstOrNull(tile) { it.id == "gatestone" && it.owner == name } ?: return@teleportLand
             clear("gatestone_tile")
             FloorItems.remove(gatestone)
+            // https://youtu.be/FjsJPnnSEEQ?t=486
+            message("The gatestone breaks as you draw upon the magic that binds it.")
         }
 
         objectOperate("Enter", "rand_*_start_room_portal") {
