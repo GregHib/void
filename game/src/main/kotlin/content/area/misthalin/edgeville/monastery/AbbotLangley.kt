@@ -12,7 +12,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.carriesItem
 
 class AbbotLangley : Script {
@@ -37,7 +36,7 @@ class AbbotLangley : Script {
                         npc<Neutral>("I'm sorry but only members of our order are allowed in the second level of the monastery.")
                         choice {
                             option<Neutral>("Well can I join your order?") {
-                                canIJoin()
+                                joinMonasteryOrder()
                             }
                             option<Sad>("Oh, sorry.")
                         }
@@ -45,16 +44,6 @@ class AbbotLangley : Script {
                 }
             }
         }
-    }
-
-    private suspend fun Player.canIJoin() {
-        if (!has(Skill.Prayer, 31)) {
-            npc<Neutral>("No. I am sorry, but I feel you are not devout enough.")
-            message("You need a prayer level of 31 to join the order.")
-            return
-        }
-        npc<Happy>("Ok, I see you are someone suitable for our order. You may join.")
-        set("edgeville_monastery_order_member", true)
     }
 
     private suspend fun Player.wiseOldManLetter() {
