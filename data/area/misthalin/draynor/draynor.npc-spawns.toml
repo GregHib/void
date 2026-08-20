@@ -86,7 +86,7 @@ spawns = [
   { id = "fortunato", x = 3085, y = 3250 },
   { id = "wise_old_man_2", x = 3088, y = 3255, members = true },
   { id = "gull_draynor", x = 3085, y = 3219, members = true },
-  { id = "gull_draynor_2", x = 3079, y = 3229, members = true },
+  { id = "gull_draynor_2", x = 3081, y = 3234, members = true },
   { id = "rat", x = 3101, y = 3355 },
   { id = "ava", x = 3093, y = 3357, members = true },
   { id = "scout_draynor", x = 3072, y = 3336, members = true },
@@ -99,7 +99,8 @@ spawns = [
   { id = "norman", x = 3111, y = 3219 },
   { id = "babe", x = 3112, y = 3220 },
   { id = "shady_stranger", x = 3080, y = 3240, members = true },
-  { id = "shady_stranger", x = 3099, y = 3263, members = true },
+  { id = "shady_stranger", x = 3103, y = 3259, members = true },
+  { id = "shady_stranger_2", x = 3077, y = 3255, members = true },
   { id = "suspicious_outsider", x = 3097, y = 3253, members = true },
   { id = "witch", x = 3099, y = 3370, members = true },
 ]

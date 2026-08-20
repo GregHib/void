@@ -6,6 +6,7 @@ import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -22,15 +23,16 @@ class Cows : Script {
         }
 
         npcTimerStart("eat_grass") {
-            mode = EmptyMode
             random.nextInt(50, 200)
         }
 
         npcTimerTick("eat_grass") {
-            if (mode == EmptyMode) {
-                say("Moo")
-                anim("cow_eat_grass")
+            if (mode != EmptyMode && mode !is Wander) {
+                return@npcTimerTick Timer.CONTINUE
             }
+            mode = EmptyMode
+            say("Moo")
+            anim("cow_eat_grass")
             Timer.CONTINUE
         }
 

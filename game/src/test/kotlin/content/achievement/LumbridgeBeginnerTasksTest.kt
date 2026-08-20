@@ -1179,7 +1179,7 @@ internal class LumbridgeBeginnerTasksTest : WorldTest() {
         skeleton.levels.set(Skill.Constitution, 150)
 
         player.npcOption(skeleton, "Attack")
-        tick(2)
+        tick(1)
         player.levels.drain(Skill.Constitution, 5)
         tick(30)
 

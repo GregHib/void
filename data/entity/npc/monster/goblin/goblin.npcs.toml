@@ -1,6 +1,6 @@
 [goblin_orange_hat_spear]
 id = 3264
-hitpoints = 120
+hitpoints = 160
 att = 3
 def = 4
 attack_bonus = 12
@@ -41,7 +41,7 @@ examine = "An ugly green creature."
 [goblin_mohawk_blue]
 id = 4262
 attack_bonus = -21
-hitpoints = 50
+hitpoints = 67
 combat_def = "goblin"
 slayer_xp = 5.0
 respawn_delay = 35
@@ -85,6 +85,18 @@ id = 4270
 [goblin_mohawk_dark]
 clone = "goblin_mohawk_blue"
 id = 4271
+
+[goblin_machete_orange]
+id = 444
+dialogue = "old"
+clone = "goblin_orange_hat_spear"
+large_head = false
+examine = "An ugly green creature."
+
+[goblin_spear_green]
+id = 445
+clone = "goblin_orange_hat_spear"
+examine = "An ugly green creature."
 
 [goblin_shield_battleaxe_red]
 id = 4479
