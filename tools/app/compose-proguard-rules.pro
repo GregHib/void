@@ -41,3 +41,6 @@
 -keepclassmembers class world.gregs.voidps.tools.search.screen.view.tab.**Wrapper {
     <fields>;
 }
+-keepclassmembers class world.gregs.voidps.**.Params {
+    public static final int *;
+}
