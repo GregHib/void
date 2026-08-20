@@ -22,7 +22,7 @@ spawns = [
   { id = "giant_rat", x = 3495, y = 9812, members = true },
   { id = "giant_rat", x = 3502, y = 9806, members = true },
   { id = "giant_rat_brimhaven", x = 3463, y = 9813, members = true },
-  { id = "giant_rat_wilderness", x = 3469, y = 9816, members = true },
+  { id = "giant_rat_brimhaven", x = 3469, y = 9816, members = true },
   { id = "goblin_light_grey_bald_spear", x = 3465, y = 9797, members = true },
   { id = "hobgoblin_unarmed", x = 3469, y = 9797, members = true },
   { id = "hobgoblin_armed", x = 3469, y = 9796, members = true },
@@ -83,7 +83,7 @@ spawns = [
   { id = "mutated_bloodveld_meiyerditch_tunnels_2", x = 3600, y = 9740 },
   { id = "mutated_bloodveld_meiyerditch_tunnels_2", x = 3605, y = 9738 },
   { id = "giant_rat", x = 3479, y = 9832 },
-  { id = "giant_rat_wilderness_2", x = 3464, y = 9818, members = true },
+  { id = "giant_rat_dark_injured", x = 3464, y = 9818, members = true },
   { id = "dog", x = 3469, y = 9806 },
   { id = "dog", x = 3470, y = 9804 },
 ]

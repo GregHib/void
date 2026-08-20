@@ -4,13 +4,12 @@ att = 2
 str = 3
 def = 2
 combat_def = "giant_rat"
-hitpoints = 50
+hitpoints = 53
 slayer_xp = 5.0
 respawn_delay = 30
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
-hunt_mode = "cowardly"
 
 [fremennik_shipmaster_al_kharid]
 id = 9708

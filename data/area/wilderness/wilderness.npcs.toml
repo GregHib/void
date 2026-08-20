@@ -104,7 +104,8 @@ combat_def = "giant_rat"
 drop_table = "giant_rat"
 categories = ["giant_rats", "rats"]
 examine = "Overgrown vermin."
-hunt_mode = "cowardly"
+hunt_mode = "aggressive"
+respawn_delay = 30
 
 [black_salamander]
 id = 5116
@@ -214,7 +215,8 @@ att = 6
 str = 5
 def = 2
 max_hit_stab = 10
-hunt_mode = "cowardly"
+hunt_mode = "aggressive"
+respawn_delay = 30
 
 [battle_mage_zamorak]
 id = 912

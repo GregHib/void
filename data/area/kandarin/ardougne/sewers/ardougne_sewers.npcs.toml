@@ -62,22 +62,20 @@ id = 4922
 clone = "giant_rat_lumbridge_swamp"
 drop_table = "giant_rat"
 combat_def = "giant_rat"
-hitpoints = 50
+hitpoints = 53
 att = 2
 str = 3
 def = 2
 max_hit_stab = 10
-hunt_mode = "cowardly"
 
 [giant_rat_ardounge_sewer_stubby]
 id = 4923
 clone = "giant_rat_lumbridge_swamp"
 drop_table = "giant_rat"
 combat_def = "giant_rat"
-hitpoints = 50
+hitpoints = 53
 att = 2
 str = 3
 def = 2
 max_hit_stab = 10
-hunt_mode = "cowardly"
 
