@@ -69,6 +69,10 @@ examine = "A stone staircase."
 id = 34978
 examine = "A stone staircase."
 
+[sote_pillar_ithell_b_0]
+id = 35226
+examine = "Shelves filled with interesting books."
+
 # Varrock Museum display case; transforms on golem_retrieved_statuette.
 [vm_timeline_terracotta_statue]
 id = 24626

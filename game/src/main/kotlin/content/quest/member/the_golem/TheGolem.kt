@@ -9,6 +9,8 @@ import content.quest.questJournal
 import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -36,6 +38,22 @@ class TheGolem : Script {
             tele(3491, 3090)
         }
 
+        objectOperate("Search", "sote_pillar_ithell_b_0") {
+            message("You search the bookcase...")
+            delay(3)
+            if (get("golem_b", 0) < 2 || inventory.contains("varmens_notes")) {
+                message("You find nothing of interest.")
+                return@objectOperate
+            }
+            if (inventory.isFull()) {
+                message("You find Varmen's expedition notes, but don't have room to take them.")
+                return@objectOperate
+            }
+            set("golem_b", 3)
+            inventory.add("varmens_notes")
+            item("varmens_notes", "You find Varmen's expedition notes.")
+        }
+
         itemOption("Read", "letter_the_golem") {
             readVarmensLetter()
             if (get("golem_b", 0) == 0) {
@@ -49,6 +67,16 @@ class TheGolem : Script {
             sound("pick")
             anim("take")
             item("black_mushroom", "You pick a mushroom.")
+        }
+
+        // vm_timeline_no_display is the empty-case transform for every museum display,
+        // so scope both options to the terracotta statue's own base object.
+        objectOperate("Study", "vm_timeline_terracotta_statue_multi,vm_timeline_no_display") { (target) ->
+            if (target.id != "vm_timeline_terracotta_statue") {
+                noInterest()
+                return@objectOperate
+            }
+            studyDisplayCase()
         }
 
         objectOperate("Open", "vm_timeline_terracotta_statue_multi") {
@@ -153,6 +181,26 @@ class TheGolem : Script {
             inventory.add("golem_program")
             item("golem_program", "You write on the papyrus:<br>YOUR TASK IS DONE")
         }
+    }
+
+    private fun Player.studyDisplayCase() {
+        if (!open("vm_timeline")) {
+            return
+        }
+        val stolen = get("golem_retrieved_statuette", false)
+        sendScript("museum_rotate_display", 0, 5, 0, 534 shl 16 or 50)
+        interfaces.sendModel("vm_timeline", "vm_timeline_terracotta_statue_model", if (stolen) 25568 else 25576)
+        interfaces.sendText("vm_timeline", "display_num", "30")
+        interfaces.sendText(
+            "vm_timeline",
+            "vm_timeline_text",
+            "3rd Age - yr 3000-4000<br><br>This " +
+                "statuette was found in an underground temple in the ruined city of Uzer, which was destroyed late " +
+                "in the 3rd Age, suddenly, due to causes unknown. It probably represents one of the clay golems " +
+                "that the craftsmen of the city built as warriors and servants. The statuette was originally part " +
+                "of a mechanism whose purpose is unknown." +
+                (if (stolen) "<br><br>Recently this display was stolen and its whereabouts are unknown." else ""),
+        )
     }
 
     private suspend fun Player.openDisplayCase() {
