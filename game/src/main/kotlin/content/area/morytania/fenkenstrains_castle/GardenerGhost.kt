@@ -20,11 +20,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
+import java.util.concurrent.TimeUnit
 
 class GardenerGhost : Script {
-
-    lateinit var gardenerGhost: NPC
 
     init {
         npcOperate("Talk-to", "gardener_ghost") { (target) ->
@@ -37,7 +37,6 @@ class GardenerGhost : Script {
                 return@npcOperate
             }
 
-            gardenerGhost = target
             val hasAmulet = equipment.contains("ghostspeak_amulet")
             val stage = quest("creature_of_fenkenstrain")
             when (stage) {
@@ -54,7 +53,7 @@ class GardenerGhost : Script {
                     sendIntroDialogue()
                     npc<Neutral>("Oim the 'eadless gardener, mate.")
                 }
-                "body_parts", "sewing", "conductor" -> menuForProgress(stage)
+                "body_parts", "sewing", "conductor" -> menuForProgress(stage, target)
                 else -> {
                     npc<Neutral>("Same as ever, mate, just gettin' on with it regardless.")
                     player<Confused>("Good for you ... err ... mate.")
@@ -74,6 +73,13 @@ class GardenerGhost : Script {
                 set("fenk_gardener_directions", false)
             }
         }
+
+        playerDespawn {
+            if (tile.region.id == 14135) {
+                val gardener = NPCs.at(tile.regionLevel).firstOrNull { it.id == "gardener_ghost_normal" && it["owner", ""] == accountName }
+                NPCs.remove(gardener)
+            }
+        }
     }
 
     private suspend fun Player.sendIntroDialogue() {
@@ -84,7 +90,7 @@ class GardenerGhost : Script {
         set("fenk_spoken_to_gardener", true)
     }
 
-    private suspend fun Player.menuForProgress(stage: String) {
+    private suspend fun Player.menuForProgress(stage: String, target: NPC) {
         choice {
             option<Quiz>("Tell me about Fenkenstrain.") { fenkenstrainStory() }
             if (stage == "conductor" && !inventory.contains("fenk_shed_key")) {
@@ -93,7 +99,7 @@ class GardenerGhost : Script {
             if (stage == "conductor") {
                 option<Quiz>("Do you know where a conductor mould is?") { conductorMouldHint() }
             }
-            option<Quiz>("What happened to your head?") { headStory() }
+            option<Quiz>("What happened to your head?") { headStory(target) }
             if (stage in setOf("body_parts", "sewing")) {
                 option<Quiz>("What's your name?") { nameStory() }
             }
@@ -122,7 +128,7 @@ class GardenerGhost : Script {
         npc<Neutral>("One thing I do know is, there ain't no Lord of the castle anymore, 'cept old Fenky. Makes you think a bit, don't it?")
     }
 
-    private suspend fun Player.headStory() {
+    private suspend fun Player.headStory(gardenerGhost: NPC) {
         sendIntroDialogue()
         npc<Neutral>("Oi was in the old 'aunted Forest to the south, diggin' a pit for moi old maaster, old Fenkenstrain, when would you believe it, someone chops me head off. Awful bad luck, weren't it?")
         player<Neutral>("Oh yes, dreadful bad luck.")
@@ -136,7 +142,7 @@ class GardenerGhost : Script {
             return
         }
         npc<Neutral>("Well, oi s'pose oi've got ten minutes to spare.")
-        val npc = NPCs.add("gardener_ghost_normal", gardenerGhost.tile) // TODO spawn for only 10 minutes // TODO handle logging out // TODO teleports when 13 tiles away
+        val npc = NPCs.add("gardener_ghost_normal", gardenerGhost.tile, ticks = TimeUnit.MINUTES.toTicks(10), owner = this) // TODO teleports when 13 tiles away
         npc.mode = Follow(npc, this)
         set("fenk_gardener_uid", npc.index)
         set("fenk_gardener_directions", true)
