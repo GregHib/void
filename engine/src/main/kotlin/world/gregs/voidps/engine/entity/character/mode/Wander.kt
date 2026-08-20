@@ -53,10 +53,6 @@ class Wander(
                 return false
             }
             val id = npc["transform_id", npc.id]
-            val configuredRange = Tables.intOrNull("npc_ranges.$id.wander_range")
-            if (configuredRange != null) {
-                return configuredRange > 0
-            }
             val def = NPCDefinitions.get(id)
             return when (def.walkMode.toInt()) {
                 ModeType.WANDER_THROUGH, ModeType.WANDER_SPECIAL, ModeType.WANDER_WATER -> true
