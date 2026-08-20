@@ -1,0 +1,84 @@
+[fenk_gardener_directions]
+id = 185
+persist = true
+format = "boolean"
+
+[fenk_arms]
+id = 186
+persist = true
+format = "boolean"
+
+[fenk_legs]
+id = 187
+persist = true
+format = "boolean"
+
+[fenk_torso]
+id = 188
+persist = true
+format = "boolean"
+
+[fenk_head]
+id = 189
+persist = true
+format = "boolean"
+
+[fenk_needle]
+id = 190
+persist = true
+format = "boolean"
+
+[fenk_threads_given]
+id = 191
+persist = true
+format = "int"
+
+[fenk_coffin]
+id = 192
+persist = true
+format = "boolean"
+
+[fenk_spoken_to_gardener]
+id = 193
+persist = true
+format = "boolean"
+
+[fenk_conductor_repaired]
+id = 194
+persist = true
+format = "boolean"
+
+[fenk_wound_clock]
+id = 195
+persist = true
+format = "boolean"
+
+[fenk_counter]
+id = 196
+persist = true
+format = "int"
+
+[fenk_digresult]
+id = 197
+persist = true
+format = "int"
+
+[fenk_unlocked_tower]
+id = 198
+persist = true
+format = "boolean"
+
+[fenk_unlocked_cavern]
+id = 199
+persist = true
+format = "boolean"
+
+[fenk_unlocked_shed]
+id = 200
+persist = true
+format = "boolean"
+
+[fenk_read_signpost]
+id = 203
+persist = true
+format = "boolean"

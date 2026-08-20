@@ -1,8 +1,26 @@
-[experiment]
-defend_anim = "experiment_defend"
-death_anim = "experiment_death"
+[experiment_dog]
+defend_anim = "experiment_dog_defend"
+death_anim = "experiment_dog_death"
 
-[experiment.melee]
+[experiment_dog.melee]
 range = 1
 target_hit = { offense = "stab", max = 60 }
-anim = "experiment_attack"
+anim = "experiment_dog_attack"
+
+[experiment_sheep]
+defend_anim = "experiment_sheep_defend"
+death_anim = "experiment_sheep_death"
+
+[experiment_sheep.melee]
+range = 1
+target_hit = { offense = "stab", max = 60 }
+anim = "experiment_sheep_attack"
+
+[experiment_spider]
+defend_anim = "experiment_spider_defend"
+death_anim = "experiment_spider_death"
+
+[experiment_spider.melee]
+range = 1
+target_hit = { offense = "stab", max = 60 }
+anim = "experiment_spider_attack"

@@ -1,71 +1,71 @@
-[star_amulet]
+[fenk_star_amulet]
 id = 4183
 tradeable = false
 weight = 0.01
 examine = "A six-pointed marble and obsidian amulet"
 kept = "Wilderness"
 
-[cavern_key]
+[fenk_mausoleum_key]
 id = 4184
 tradeable = false
 weight = 0.005
 examine = "Upon close examination, this seems to be a key."
 kept = "Wilderness"
 
-[tower_key]
+[fenk_tower_key]
 id = 4185
 tradeable = false
 weight = 0.005
 examine = "Upon close examination, this seems to be a key."
 kept = "Wilderness"
 
-[shed_key]
-clone = "tower_key"
+[fenk_shed_key]
+clone = "fenk_tower_key"
 id = 4186
 
-[marble_amulet]
+[fenk_marble_amulet]
 id = 4187
 tradeable = false
 weight = 0.005
 examine = "Triangular in shape, made from marble, and as large as your hand."
 kept = "Wilderness"
 
-[obsidian_amulet]
+[fenk_obsidian_amulet]
 id = 4188
 tradeable = false
 weight = 0.005
 examine = "Triangular in shape, made from obsidian, and as large as your hand."
 kept = "Wilderness"
 
-[garden_cane]
+[fenk_cane]
 id = 4189
 tradeable = false
 weight = 0.1
 examine = "A length of garden cane."
 kept = "Wilderness"
 
-[garden_brush]
+[fenk_brush0]
 id = 4190
 tradeable = false
 weight = 0.8
 examine = "A typical garden brush."
 kept = "Wilderness"
 
-[extended_brush_1]
+[fenk_brush1]
 id = 4191
 tradeable = false
 weight = 0.9
 examine = "A typical garden brush, with a cane tied to it."
 kept = "Wilderness"
 
-[extended_brush_2]
+[fenk_brush2]
 id = 4192
 tradeable = false
 weight = 1.0
 examine = "A typical garden brush, with two canes tied to it."
 kept = "Wilderness"
 
-[extended_brush_3]
+[fenk_brush3]
 id = 4193
 tradeable = false
 weight = 1.1
@@ -73,56 +73,56 @@ slot = "Weapon"
 examine = "A typical garden brush, with three canes tied to it."
 kept = "Wilderness"
 
-[torso_creature_of_fenkenstrain]
+[fenk_torso]
 id = 4194
 tradeable = false
 weight = 19.05
 examine = "A decomposing torso, from which issues the acrid stench of the grave."
 kept = "Wilderness"
 
-[arms]
+[fenk_arms]
 id = 4195
 tradeable = false
 weight = 6.35
 examine = "A pair of limp, dead arms."
 kept = "Wilderness"
 
-[legs]
+[fenk_legs]
 id = 4196
 tradeable = false
 weight = 6.35
 examine = "A pair of lifeless, rotting legs."
 kept = "Wilderness"
 
-[decapitated_head]
+[fenk_head_empty]
 id = 4197
 tradeable = false
 weight = 2.721
 examine = "A gruesome, decapitated head, whose brain has rotted away."
 kept = "Wilderness"
 
-[decapitated_head_brain]
+[fenk_head_full]
 id = 4198
 tradeable = false
 weight = 3.628
 examine = "A gruesome, decapitated head - its eyes stare lifelessly at nothing."
 kept = "Wilderness"
 
-[pickled_brain]
+[fenk_brain]
 id = 4199
 tradeable = false
 weight = 0.907
 examine = "A pickled brain, submerged inside a jar of vinegar."
 kept = "Wilderness"
 
-[conductor_mould]
+[fenk_lightning_mould]
 id = 4200
 tradeable = false
 weight = 0.05
 examine = "A mould for making silver lightning conductors."
 kept = "Wilderness"
 
-[conductor]
+[fenk_conductor]
 id = 4201
 tradeable = false
 weight = 3.628
@@ -138,11 +138,11 @@ destroy = "The ring will return to Fenkenstrain, its owner. You'll have to pick 
 examine = "The Ring of Charos."
 kept = "Wilderness"
 
-[journal]
+[fenk_journal]
 clone = "journal_horror_from_the_deep"
 id = 4203
 
-[letter_creature_of_fenkenstrain]
+[fenk_letter]
 id = 4204
 tradeable = false
 weight = 0.001

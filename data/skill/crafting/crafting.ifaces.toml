@@ -58,13 +58,13 @@ id = 31
 [.sickle_mould_text]
 id = 32
 
-[.conductor_mould_button]
+[.fenk_lightning_mould_button]
 id = 37
 
-[.conductor_mould_model]
+[.fenk_lightning_mould_model]
 id = 38
 
-[.conductor_mould_text]
+[.fenk_lightning_mould_text]
 id = 39
 
 [.tiara_mould_button]

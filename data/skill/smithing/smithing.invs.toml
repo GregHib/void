@@ -346,7 +346,7 @@ defaults = [
 [silvercast_lightning]
 id = 340
 defaults = [
-    { id = "conductor", amount = 1 },
+    { id = "fenk_conductor", amount = 1 },
 ]
 
 [silvercast_tiara]

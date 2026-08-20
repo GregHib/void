@@ -21,12 +21,12 @@ xp = 1000
 quest = "legacy_of_seergaze"
 product = "silvthril_chain"
 
-[.conductor_mould]
+[.fenk_lightning_mould]
 level = 20
 xp = 500
 name = "lightning rod mould"
 quest = "creature_of_fenkenstrain"
-product = "conductor"
+product = "fenk_conductor"
 
 [.demonic_sigil_mould]
 level = 30

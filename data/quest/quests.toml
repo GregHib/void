@@ -445,6 +445,50 @@ req_combat = "You will need to defeat a level 35 experiment."
 points = 2
 reward = "Ring of Charos<br>Access to the experiment cave"
 xp = "1,000 Thieving XP"
+variables = [
+  "creature_of_fenkenstrain",
+  "fenk_read_signpost",
+  "fenk_spoken_to_gardener",
+  "fenk_gardener_directions",
+  "fenk_gardener_uid",
+  "fenk_arms",
+  "fenk_legs",
+  "fenk_torso",
+  "fenk_head",
+  "fenk_needle",
+  "fenk_threads_given",
+  "fenk_coffin",
+  "fenk_unlocked_cavern",
+  "fenk_unlocked_tower",
+  "fenk_unlocked_shed",
+  "fenk_wound_clock",
+  "fenk_conductor_repaired",
+  "fenk_counter",
+  "fenk_digresult",
+]
+items = [
+  "fenk_star_amulet",
+  "fenk_marble_amulet",
+  "fenk_obsidian_amulet",
+  "fenk_mausoleum_key",
+  "fenk_tower_key",
+  "fenk_shed_key",
+  "fenk_cane",
+  "fenk_brush0",
+  "fenk_brush1",
+  "fenk_brush2",
+  "fenk_brush3",
+  "fenk_torso",
+  "fenk_arms",
+  "fenk_legs",
+  "fenk_head_empty",
+  "fenk_head_full",
+  "fenk_brain",
+  "fenk_lightning_mould",
+  "fenk_conductor",
+  "fenk_letter",
+  "ring_of_charos",
+]
 
 [curse_of_arrav]
 id = 156

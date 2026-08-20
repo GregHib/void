@@ -1,0 +1,6 @@
+# Ed Lestwit walks the player from the castle gardens to the grave in the Haunted
+# Woods; he returns to his garden if led outside of this area.
+[ed_leswit_follow_area]
+x = [3490, 3660]
+y = [3440, 3600]
+level = 0
