@@ -78,3 +78,163 @@ remove = ["mud_rune"]
 add = ["ground_mud_runes"]
 animation = "pestle_and_mortar"
 message = "You grind the mud runes into a powder."
+
+[gorak_claw_powder]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["gorak_claws"]
+add = ["gorak_claw_powder"]
+animation = "pestle_and_mortar"
+message = "You crush the gorak claws."
+
+[goat_horn_dust]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["desert_goat_horn"]
+add = ["goat_horn_dust"]
+animation = "pestle_and_mortar"
+message = "You crush the goat horn."
+
+[ground_ashes]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["ashes"]
+add = ["ground_ashes"]
+animation = "pestle_and_mortar"
+message = "You grind the ashes into a fine powder."
+
+[ground_fishing_bait]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["fishing_bait"]
+add = ["ground_fishing_bait"]
+animation = "pestle_and_mortar"
+message = "You grind the fishing bait."
+
+[ground_seaweed]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["seaweed"]
+add = ["ground_seaweed"]
+animation = "pestle_and_mortar"
+message = "You grind the seaweed."
+
+[karambwan_paste_raw]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["raw_karambwan"]
+add = ["karambwan_paste_raw"]
+animation = "pestle_and_mortar"
+message = "You grind the karambwan into a paste."
+
+[karambwan_paste_cooked]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["cooked_karambwan"]
+add = ["karambwan_paste_cooked"]
+animation = "pestle_and_mortar"
+message = "You grind the karambwan into a paste."
+
+[karambwan_paste_poison]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["poison_karambwan"]
+add = ["karambwan_paste_poison"]
+animation = "pestle_and_mortar"
+message = "You grind the karambwan into a paste."
+
+[ground_bat_bones]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["bat_bones"]
+add = ["ground_bat_bones"]
+animation = "pestle_and_mortar"
+message = "You grind the bat bones to dust."
+
+[ground_charcoal]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["charcoal"]
+add = ["ground_charcoal"]
+animation = "pestle_and_mortar"
+message = "You grind the charcoal."
+
+[ground_cod]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["cod"]
+add = ["ground_cod"]
+animation = "pestle_and_mortar"
+message = "You grind the cod."
+
+[ground_kelp]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["kelp_mogre_camp"]
+add = ["ground_kelp"]
+animation = "pestle_and_mortar"
+message = "You grind the kelp."
+
+[ground_crab_meat]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["crab_meat"]
+add = ["ground_crab_meat"]
+animation = "pestle_and_mortar"
+message = "You grind the crab meat."
+
+[rune_dust]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["rune_shards"]
+add = ["rune_dust"]
+animation = "pestle_and_mortar"
+message = "You grind the rune shards to dust."
+
+[ground_astral_rune]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["astral_rune_shards"]
+add = ["ground_astral_rune"]
+animation = "pestle_and_mortar"
+message = "You grind the astral rune shards to dust."
+
+[ground_tooth]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["suqah_tooth"]
+add = ["ground_tooth"]
+animation = "pestle_and_mortar"
+message = "You grind the suqah tooth."
+
+[diamond_root_dust]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["diamond_root"]
+add = ["diamond_root_dust"]
+animation = "pestle_and_mortar"
+message = "You grind the diamond root."
+
+[ground_thistle]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["dried_thistle"]
+add = ["ground_thistle"]
+animation = "pestle_and_mortar"
+message = "You grind the thistle."
+
+[garlic_powder]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["garlic"]
+add = ["garlic_powder"]
+animation = "pestle_and_mortar"
+message = "You grind the garlic into a powder."
+
+[black_mushroom_ink]
+ticks = 1
+requires = ["pestle_and_mortar"]
+remove = ["black_mushroom"]
+add = ["black_mushroom_ink"]
+animation = "pestle_and_mortar"
+message = "You grind the mushroom into ink."
