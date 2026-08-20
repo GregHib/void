@@ -160,7 +160,8 @@ class CreatureOfFenkenstrain : Script {
             if (!inventory.contains("fenk_letter") && !get("fenk_wound_clock", false)) {
                 item(
                     item = "fenk_letter",
-                    text = "As you wind the old clock a letter falls out. Judging by the thick covering of dust it must have been here for some time.")
+                    text = "As you wind the old clock a letter falls out. Judging by the thick covering of dust it must have been here for some time.",
+                )
                 addOrDrop("fenk_letter")
                 set("fenk_wound_clock", true)
             }
@@ -301,7 +302,8 @@ class CreatureOfFenkenstrain : Script {
             set("fenk_coffin", true)
             item(
                 item = "fenk_star_amulet",
-                text = "The star amulet fits exactly into the depression on the coffin lid.")
+                text = "The star amulet fits exactly into the depression on the coffin lid.",
+            )
         }
 
         objectOperate("Open", "fenk_mausoleum_door_closed") { (target) ->
@@ -521,7 +523,7 @@ class CreatureOfFenkenstrain : Script {
             option("Men are from Morytania, Women are from Lumbridge") {
                 item(
                     item = "fenk_journal",
-                    text = "You discover some fascinating insights into the mind of the male kind."
+                    text = "You discover some fascinating insights into the mind of the male kind.",
                 )
             }
             option("Chimney Sweeping on a Budget") {
@@ -531,7 +533,7 @@ class CreatureOfFenkenstrain : Script {
                 sound("bookcasedoor")
                 item(
                     item = "fenk_journal",
-                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment."
+                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.",
                 )
                 if (inventory.contains("fenk_obsidian_amulet") || inventory.contains("fenk_star_amulet") || get("fenk_coffin", false)) {
                     statement("The secret compartment is empty.")
@@ -560,20 +562,20 @@ class CreatureOfFenkenstrain : Script {
             option("Practical Gardening For The Headless") {
                 item(
                     item = "fenk_journal",
-                    text = "This book has some very enlightening points to make, but you are at a loss to know how anyone without a head could possibly read it."
+                    text = "This book has some very enlightening points to make, but you are at a loss to know how anyone without a head could possibly read it.",
                 )
             }
             option("Human Taxidermy for Nincompoops") {
                 item(
                     item = "fenk_journal",
-                    text = "This book seems to have been read hundreds of times, and has scribbles and formulae on every page. One such scribble says 'None good enough - have had to lock them in the caverns...'"
+                    text = "This book seems to have been read hundreds of times, and has scribbles and formulae on every page. One such scribble says 'None good enough - have had to lock them in the caverns...'",
                 )
             }
             option("The Joy of Gravedigging") {
                 sound("bookcasedoor")
                 item(
                     item = "fenk_journal",
-                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment."
+                    text = "As you pull the book a hidden latch springs into place and the bookcase swings open, revealing a secret compartment.",
                 )
                 if (inventory.contains("fenk_marble_amulet") || inventory.contains("fenk_star_amulet") || get("fenk_coffin", false)) {
                     statement("The secret compartment is empty.")
@@ -673,7 +675,8 @@ class CreatureOfFenkenstrain : Script {
                 "",
                 "Rologarth,",
                 "",
-                "15th Lord of the North Coast"),
+                "15th Lord of the North Coast",
+            ),
         )
     }
 
@@ -743,7 +746,8 @@ class CreatureOfFenkenstrain : Script {
             Tile(3542, 3486) to "Unknown",
             Tile(3541, 3471) to "Unknown",
             Tile(3572, 3527) to "Unknown",
-            Tile(3576, 3526) to "Unknown")
+            Tile(3576, 3526) to "Unknown",
+        )
     }
 }
 
@@ -754,4 +758,3 @@ private val Player.fenkStage: Int
 
 // TODO chimney book sendChimeyBook()
 // TODO chest that gives key
-// TODO ladders and stairs
