@@ -1,7 +1,7 @@
 [erzilla_potion_unf]
 skill = "herblore"
 level = 54
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["juju_vial_of_water", "clean_erzille"]
 add = ["erzille_potion_unf"]
@@ -11,7 +11,7 @@ message = "You mix the erzille into your vial of water."
 [argway_potion_unf]
 skill = "herblore"
 level = 56
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["juju_vial_of_water", "clean_argway"]
 add = ["argway_potion_unf"]
@@ -21,7 +21,7 @@ message = "You mix the argway into your vial of water."
 [ugune_potion_unf]
 skill = "herblore"
 level = 55
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["juju_vial_of_water", "clean_ugune"]
 add = ["ugune_potion_unf"]
@@ -31,7 +31,7 @@ message = "You mix the ugune into your vial of water."
 [shengo_potion_unf]
 skill = "herblore"
 level = 57
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["juju_vial_of_water", "clean_shengo"]
 add = ["shengo_potion_unf"]
@@ -41,7 +41,7 @@ message = "You mix the shengo into your vial of water."
 [samaden_potion_unf]
 skill = "herblore"
 level = 58
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["juju_vial_of_water", "clean_samaden"]
 add = ["samaden_potion_unf"]

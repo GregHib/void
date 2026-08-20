@@ -143,6 +143,27 @@ class PotionMakingTest : WorldTest() {
         }
     }
 
+    @TestFactory
+    fun `Unfinished potions give no experience`() = listOf(
+        Triple("coconut_milk", "clean_toadflax", "antipoison+_unf"),
+        Triple("coconut_milk", "cactus_spine", "weapon_poison+_unf"),
+        Triple("juju_vial_of_water", "clean_erzille", "erzille_potion_unf"),
+        Triple("star_flower", "vial_of_water", "magic_essence_unf"),
+    ).map { (first, second, unfinished) ->
+        dynamicTest("Create ${unfinished.toSentenceCase()}") {
+            val player = createPlayer()
+            player.levels.set(Skill.Herblore, 99)
+            player.inventory.add(first)
+            player.inventory.add(second)
+
+            player.itemOnItem(0, 1)
+            tick(2)
+
+            assertEquals(1, player.inventory.count(unfinished))
+            assertEquals(0.0, player.experience.get(Skill.Herblore))
+        }
+    }
+
     @Test
     fun `Antipoison+ mix decants into two doses`() {
         val player = createPlayer()
@@ -169,6 +190,7 @@ class PotionMakingTest : WorldTest() {
             assertEquals(1, player.inventory.count("${herb.removePrefix("clean_")}_potion_unf"))
             assertEquals(0, player.inventory.count(herb))
             assertEquals(0, player.inventory.count("vial_of_water"))
+            assertEquals(0.0, player.experience.get(Skill.Herblore))
         }
     }
 }

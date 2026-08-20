@@ -41,7 +41,7 @@ message = "You put the Tarromin leaf into the vial of water."
 [rogues_purse_unf_potion]
 skill = "herblore"
 level = 5
-xp = 1.0
+xp = 0.0
 ticks = 1
 remove = ["clean_rogues_purse", "vial_of_water"]
 add = ["rogues_purse_potion_unf"]
@@ -111,7 +111,7 @@ message = "You put the Irit leaf into the vial of water."
 [wergali_unf_potion]
 skill = "herblore"
 level = 5
-xp = 1.0
+xp = 0.0
 ticks = 1
 remove = ["clean_wergali", "vial_of_water"]
 add = ["wergali_potion_unf"]
@@ -141,7 +141,7 @@ message = "You put the Kwuarm leaf into the vial of water."
 [magic_essence_unf_potion]
 skill = "herblore"
 level = 57
-xp = 1.0
+xp = 0.0
 ticks = 1
 remove = ["star_flower", "vial_of_water"]
 add = ["magic_essence_unf"]
@@ -211,7 +211,7 @@ message = "You mix the garlic into your potion."
 ["antipoison+_potion_unf"]
 skill = "herblore"
 level = 68
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["coconut_milk", "clean_toadflax"]
 add = ["antipoison+_unf"]
@@ -221,7 +221,7 @@ message = "You mix the toadflax leaf into your potion."
 ["antipoison++_potion_unf"]
 skill = "herblore"
 level = 79
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["coconut_milk", "clean_irit"]
 add = ["antipoison++_unf"]
@@ -231,7 +231,7 @@ message = "You mix the irit leaf into your potion."
 ["weaponpoison+_potion_unf"]
 skill = "herblore"
 level = 73
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["coconut_milk", "cactus_spine"]
 add = ["weapon_poison+_unf"]
@@ -241,7 +241,7 @@ message = "You mix the cactus spine into your potion."
 ["weaponpoison++_potion_unf"]
 skill = "herblore"
 level = 82
-xp = 1.0
+xp = 0.0
 ticks = 2
 remove = ["coconut_milk", "cave_nightshade"]
 add = ["weapon_poison++_unf"]
