@@ -46,11 +46,6 @@ class BrotherJered : Script {
     }
 
     private suspend fun Player.blessShield() {
-        if (!inventory.contains("coins", cost)) {
-            player<Sad>("But, unfortunately, I don't have enough money with me.")
-            npc<Neutral>("I am sorry to hear that. If you should find yourself in wealthier times come back and see me.")
-            return
-        }
         val success = inventory.transaction {
             remove("holy_elixir")
             remove("spirit_shield")
@@ -58,6 +53,8 @@ class BrotherJered : Script {
             add("blessed_spirit_shield")
         }
         if (!success) {
+            player<Sad>("But, unfortunately, I don't have enough money with me.")
+            npc<Neutral>("I am sorry to hear that. If you should find yourself in wealthier times come back and see me.")
             return
         }
         item("blessed_spirit_shield", "Jered pours the elixir over the shield, closes his eyes and softly chants. Jered passes you the blessed spirit shield.")
