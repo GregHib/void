@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.timer.*
@@ -83,7 +83,7 @@ class Gravestones : Script {
                 message("This gravestone can no longer be repaired.")
                 return@npcOperate
             }
-            if (!has(Skill.Prayer, 2)) {
+            if (!hasMax(Skill.Prayer, 2)) {
                 message("You need a Prayer level of 2 to repair a gravestone.")
                 return@npcOperate
             }
@@ -103,7 +103,7 @@ class Gravestones : Script {
                 message("The gods don't seem to approve of people attempting to bless their own gravestones.")
                 return@npcOperate
             }
-            if (!has(Skill.Prayer, 70)) {
+            if (!hasMax(Skill.Prayer, 70)) {
                 message("You need a prayer level of 70 to bless a gravestone.")
                 return@npcOperate
             }
