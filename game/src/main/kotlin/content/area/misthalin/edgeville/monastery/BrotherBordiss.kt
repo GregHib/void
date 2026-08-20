@@ -59,10 +59,6 @@ class BrotherBordiss : Script {
             npc<Neutral>("You'll need a blessed spirit shield for me to mount it on. Come back and see me once you have one.")
             return
         }
-        if (!inventory.contains("coins", cost)) {
-            player<Sad>("I don't seem to have enough coins, I will return once I do.")
-            return
-        }
         val shield = SpiritShieldSigils.shield(sigil)
         val success = inventory.transaction {
             remove(sigil)
@@ -71,6 +67,7 @@ class BrotherBordiss : Script {
             add(shield)
         }
         if (!success) {
+            player<Sad>("I don't seem to have enough coins, I will return once I do.")
             return
         }
         item(shield, "Bordiss heats the shield through and works the sigil into it, and hands the finished shield back to you.")
