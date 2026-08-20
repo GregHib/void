@@ -476,7 +476,7 @@ class CreatureOfFenkenstrain : Script {
         }
 
         takeable("fenk_brain") { item, telegrab ->
-            if (item.tile != Tile(3504, 3576) && !telegrab) {
+            if (item.tile == Tile(3504, 3576) && !telegrab) {
                 val roavar = NPCs.find(tile.regionLevel) { it.id.startsWith("roavar") }
                 talkWith(roavar)
                 face(roavar)
