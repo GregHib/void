@@ -8,17 +8,57 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
-class BrotherJared : Script {
+class BrotherJered : Script {
+
+    private val cost = 1_000_000
+
     init {
-        npcOperate("Talk-to", "brother_jared") { (target) ->
+        npcOperate("Talk-to", "brother_jered") { (target) ->
             choice {
                 bold()
+                if (inventory.contains("holy_elixir") && inventory.contains("spirit_shield")) {
+                    option<Quiz>("Can you do anything with this holy elixir?") {
+                        offerBlessing()
+                    }
+                }
                 option<Happy>("Praise be to Saradomin!") {
                     npc<Happy>("Yes! Praise he who brings life to this world.")
                 }
             }
         }
+    }
+
+    private suspend fun Player.offerBlessing() {
+        npc<Happy>("An ethereal shield and a holy elixir! Saradomin's blessing would bind the two together into something far stronger.")
+        npc<Neutral>("Such a blessing is no small labour, though; the monastery would need a donation of 1,000,000 coins for it.")
+        choice {
+            option<Happy>("I am always happy to contribute towards the monastery's upkeep.") {
+                blessShield()
+            }
+            option<Sad>("That's a bit expensive!") {
+                npc<Neutral>("It is a small price for Saradomin's favour. Come and see me again if you change your mind.")
+            }
+            option<Neutral>("No, thank you.")
+        }
+    }
+
+    private suspend fun Player.blessShield() {
+        val success = inventory.transaction {
+            remove("holy_elixir")
+            remove("spirit_shield")
+            remove("coins", cost)
+            add("blessed_spirit_shield")
+        }
+        if (!success) {
+            player<Sad>("But, unfortunately, I don't have enough money with me.")
+            npc<Neutral>("I am sorry to hear that. If you should find yourself in wealthier times come back and see me.")
+            return
+        }
+        item("blessed_spirit_shield", "Jered pours the elixir over the shield, closes his eyes and softly chants. Jered passes you the blessed spirit shield.")
+        npc<Happy>("Wear it with faith, and may Saradomin watch over you.")
     }
 
     private fun ChoiceOption.bold() {

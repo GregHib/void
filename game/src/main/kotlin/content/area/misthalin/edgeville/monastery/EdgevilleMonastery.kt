@@ -1,16 +1,12 @@
 package content.area.misthalin.edgeville.monastery
 
-import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 
 class EdgevilleMonastery : Script {
     init {
@@ -19,17 +15,13 @@ class EdgevilleMonastery : Script {
                 npc<Neutral>("abbot_langley", "I'm sorry but only members of our order are allowed in the second level of the monastery.")
                 choice {
                     option<Neutral>("Well can I join your order?") {
-                        if (!has(Skill.Prayer, 31)) {
-                            npc<Neutral>("abbot_langley", "No. I am sorry, but I feel you are not devout enough.")
-                            message("You need a prayer level of 31 to join the order.")
-                            return@option
-                        }
-                        npc<Happy>("abbot_langley", "Ok, I see you are someone suitable for our order. You may join.")
-                        set("edgeville_monastery_order_member", true)
+                        joinMonasteryOrder()
                     }
                     option<Sad>("Oh, sorry.")
                 }
-                return@objTeleportTakeOff Teleport.CANCEL
+                if (!get("edgeville_monastery_order_member", false)) {
+                    return@objTeleportTakeOff Teleport.CANCEL
+                }
             }
             anim("climb_up")
             start("teleport_delay", 2)
