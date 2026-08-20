@@ -106,10 +106,7 @@ class DrFenkenstrain : Script {
         player<Quiz>("What kind of stuff?")
         npc<Neutral>("Well...dead stuff.")
         player<Neutral>("Go on...")
-        npc<Neutral>(
-            "I need you to get me enough dead body parts for me to stitch together a complete " +
-                "body, which I plan to bring to life.",
-        )
+        npc<Neutral>("I need you to get me enough dead body parts for me to stitch together a complete body, which I plan to bring to life.")
         player<Scared>("Right...okay...if you insist.")
     }
 
@@ -176,33 +173,18 @@ class DrFenkenstrain : Script {
         get("fenk_head", false)
 
     private suspend fun Player.whereToFindParts() {
-        npc<Neutral>(
-            "The soil of Morytania is unique in its ability to preserve the bodies of the dead, " +
-                "which is one reason why I have chosen to carry out my experiments here.",
-        )
-        npc<Neutral>(
-            "I recommend digging up some graves in the local area. To the south-east you will " +
-                "find the Haunted Woods; I believe there are many graves there.",
-        )
-        npc<Neutral>(
-            "There is also a mausoleum on an island west of this castle. I expect the bodies " +
-                "that are buried there to be extremely well preserved, as they were wealthy in life.",
-        )
+        npc<Neutral>("The soil of Morytania is unique in its ability to preserve the bodies of the dead, which is one reason why I have chosen to carry out my experiments here.")
+        npc<Neutral>("I recommend digging up some graves in the local area. To the south-east you will find the Haunted Woods; I believe there are many graves there.")
+        npc<Neutral>("There is also a mausoleum on an island west of this castle. I expect the bodies that are buried there to be extremely well preserved, as they were wealthy in life.")
     }
 
     private suspend fun Player.remindMission() {
-        npc<Neutral>(
-            "I need you to get me enough dead body parts for me to stitch together a complete " +
-                "body, which I plan to bring to life.",
-        )
+        npc<Neutral>("I need you to get me enough dead body parts for me to stitch together a complete body, which I plan to bring to life.")
         player<Scared>("Right...okay...if you insist.")
     }
 
     private suspend fun Player.whyCreatureBackstory() {
-        npc<Neutral>(
-            "I came to the land of Morytania many years ago, to find a safe sanctuary for my " +
-                "experiments. This abandoned castle suited my purposes exactly.",
-        )
+        npc<Neutral>("I came to the land of Morytania many years ago, to find a safe sanctuary for my experiments. This abandoned castle suited my purposes exactly.")
         player<Quiz>("What were you experimenting in?")
         npc<Neutral>("Oh, perfectly innocent experiments - for the good of mankind.")
         player<Quiz>("Then why did you need to come to Morytania?")
@@ -241,40 +223,21 @@ class DrFenkenstrain : Script {
 
     private suspend fun Player.sewLifeFromLightning() {
         set("creature_of_fenkenstrain", "conductor")
-        statement(
-            "Fenkenstrain uses the needle and thread to sew the body parts together. Soon, " +
-                "a hideous creature lies inanimate on the ritual table.",
-        )
-        npc<Neutral>(
-            "Perfect. But I need one more thing from you - flesh and bones by themselves do " +
-                "not make life.",
-        )
+        statement("Fenkenstrain uses the needle and thread to sew the body parts together. Soon, a hideous creature lies inanimate on the ritual table.")
+        npc<Neutral>("Perfect. But I need one more thing from you - flesh and bones by themselves do not make life.")
         player<Quiz>("Really?")
-        npc<Neutral>(
-            "I have honed to perfection an ancient ritual that will give life to this creature, " +
-                "but for this I must harness the very power of Nature.",
-        )
+        npc<Neutral>("I have honed to perfection an ancient ritual that will give life to this creature, but for this I must harness the very power of Nature.")
         player<Quiz>("And what power is this?")
         npc<Neutral>("The power of lightning.")
         player<Confused>("Sorry, can't make lightning, you've got the wrong ${if (male) "man" else "woman"}-")
-        npc<Neutral>(
-            "Silence your insolent tongue! The storm that brews overhead will create the " +
-                "lightning. What I need you to do is to repair the lightning conductor on the " +
-                "balcony above.",
-        )
-        player<Confused>(
-            "Repair the lightning conductor, right. Can I have a break, soon? By law I'm " +
-                "entitled to 15 minutes every-",
-        )
+        npc<Neutral>("Silence your insolent tongue! The storm that brews overhead will create the lightning. What I need you to do is to repair the lightning conductor on the balcony above.")
+        player<Confused>("Repair the lightning conductor, right. Can I have a break, soon? By law I'm entitled to 15 minutes every-")
         npc<Angry>("Repair the conductor and BEGONE!!!")
     }
 
     private suspend fun Player.conductorInstructions() {
         player<Quiz>("How do I repair the lightning conductor?")
-        npc<Angry>(
-            "Oh, it would be easier to do it myself! If you find a conductor mould you should " +
-                "be able to cast a new one.",
-        )
+        npc<Angry>("Oh, it would be easier to do it myself! If you find a conductor mould you should be able to cast a new one.")
         npc<Neutral>("Remember this, $name: my experiment will only work with a conductor made from silver.")
     }
 
@@ -312,18 +275,12 @@ class DrFenkenstrain : Script {
         npc<Scared>("Oh my, oh my, this is exactly what I feared!")
         npc<Scared>("Why did you have to pick Rologarth's brain of all brains?!?")
         player<Angry>("I'm through working for you.")
-        npc<Angry>(
-            "No!! I refuse to release you!! You must help me build another creature to destroy " +
-                "this dreadful mistake!!",
-        )
+        npc<Angry>("No!! I refuse to release you!! You must help me build another creature to destroy this dreadful mistake!!")
         postQuestChat()
     }
 
     private suspend fun Player.postQuestChat() {
-        player<Angry>(
-            "It is all you deserve. Lord Rologarth is master of this castle once more. Let him " +
-                "protect you - if he wants to.",
-        )
+        player<Angry>("It is all you deserve. Lord Rologarth is master of this castle once more. Let him protect you - if he wants to.")
         npc<Scared>("theyrecomingtogetme theyrecomingtogetme...")
     }
 

@@ -28,7 +28,6 @@ class GardenerGhost : Script {
 
     init {
         npcOperate("Talk-to", "gardener_ghost") { (target) ->
-
             if (get("fenk_gardener_directions", false)) {
                 when {
                     atGraveSite() -> gardenerLeave()
@@ -40,7 +39,6 @@ class GardenerGhost : Script {
 
             gardenerGhost = target
             val hasAmulet = equipment.contains("ghostspeak_amulet")
-
             val stage = quest("creature_of_fenkenstrain")
             when (stage) {
                 "unstarted" -> player<Quiz>("Who are you?")
@@ -48,10 +46,7 @@ class GardenerGhost : Script {
                 else -> player<Quiz>("How are you?")
             }
             if (!hasAmulet) {
-                statement(
-                    "The Headless Gardener's neck twitches at you, but the lack of any head " +
-                        "prevents him from speaking.",
-                )
+                statement("The Headless Gardener's neck twitches at you, but the lack of any head prevents him from speaking.")
                 return@npcOperate
             }
             when (stage) {
@@ -59,7 +54,6 @@ class GardenerGhost : Script {
                     sendIntroDialogue()
                     npc<Neutral>("Oim the 'eadless gardener, mate.")
                 }
-
                 "body_parts", "sewing", "conductor" -> menuForProgress(stage)
                 else -> {
                     npc<Neutral>("Same as ever, mate, just gettin' on with it regardless.")
@@ -86,12 +80,7 @@ class GardenerGhost : Script {
         if (get("fenk_spoken_to_gardener", false)) {
             return
         }
-
-        item(
-            item = "ghostspeak_amulet",
-            text = "You feel power emanate from the Amulet of Ghostspeak, and the air around you " +
-                "vibrates with the ghostly voice of the Headless Gardener...",
-        )
+        item(item = "ghostspeak_amulet", text = "You feel power emanate from the Amulet of Ghostspeak, and the air around you vibrates with the ghostly voice of the Headless Gardener...")
         set("fenk_spoken_to_gardener", true)
     }
 
@@ -122,44 +111,22 @@ class GardenerGhost : Script {
         sendIntroDialogue()
         npc<Neutral>("Oi could tell you a few things about old Fenky, yeah.")
         player<Quiz>("Go on.")
-        npc<Neutral>(
-            "Once, this castle were full o' good fold - my friends. Fenky was just the castle " +
-                "doctor you know, to the Lord and the castle folk.",
-        )
-        npc<Neutral>(
-            "I don't know what happened to them all, but one by one they all disappeared. When " +
-                "they were gone a while, I went and dug graves for 'em in the forest.",
-        )
+        npc<Neutral>("Once, this castle were full o' good fold - my friends. Fenky was just the castle doctor you know, to the Lord and the castle folk.")
+        npc<Neutral>("I don't know what happened to them all, but one by one they all disappeared. When they were gone a while, I went and dug graves for 'em in the forest.")
         npc<Neutral>("After a while there weren't no-one left, but the Lord, Fenkenstrain, and meself.")
-        npc<Neutral>(
-            "Old Fenky sent me into the Forest to dig 'im a pit. Never said what for. Then would " +
-                "you believe it, someone chops me head off.",
-        )
+        npc<Neutral>("Old Fenky sent me into the Forest to dig 'im a pit. Never said what for. Then would you believe it, someone chops me head off.")
         player<Neutral>("Did you see who did it, before...")
         npc<Neutral>("Before oi kicked the bucket, you mean?")
         player<LookDown>("Umm...")
-        npc<Neutral>(
-            "Don't worry yourself, I'm not worried about bein' dead. Worse things could happen, " +
-                "I suppose.",
-        )
-        npc<Neutral>(
-            "One thing I do know is, there ain't no Lord of the castle anymore, 'cept old Fenky. " +
-                "Makes you think a bit, don't it?",
-        )
+        npc<Neutral>("Don't worry yourself, I'm not worried about bein' dead. Worse things could happen, I suppose.")
+        npc<Neutral>("One thing I do know is, there ain't no Lord of the castle anymore, 'cept old Fenky. Makes you think a bit, don't it?")
     }
 
     private suspend fun Player.headStory() {
         sendIntroDialogue()
-        npc<Neutral>(
-            "Oi was in the old 'aunted Forest to the south, diggin' a pit for moi old maaster, " +
-                "old Fenkenstrain, when would you believe it, someone chops me head off. " +
-                "Awful bad luck, weren't it?",
-        )
+        npc<Neutral>("Oi was in the old 'aunted Forest to the south, diggin' a pit for moi old maaster, old Fenkenstrain, when would you believe it, someone chops me head off. Awful bad luck, weren't it?")
         player<Neutral>("Oh yes, dreadful bad luck.")
-        npc<Neutral>(
-            "So oi thinks to meself, I don't needs any 'ead to be gettin on with me gardenin', " +
-                "long as I got me hands and me spade.",
-        )
+        npc<Neutral>("So oi thinks to meself, I don't needs any 'ead to be gettin on with me gardenin', long as I got me hands and me spade.")
         if (quest("creature_of_fenkenstrain") != "body_parts") {
             return
         }
@@ -169,10 +136,7 @@ class GardenerGhost : Script {
             return
         }
         npc<Neutral>("Well, oi s'pose oi've got ten minutes to spare.")
-        val npc = NPCs.add(
-            "gardener_ghost_normal",
-            gardenerGhost.tile,
-        ) // TODO spawn for only 10 minutes // TODO handle logging out // TODO teleports when 13 tiles away
+        val npc = NPCs.add("gardener_ghost_normal", gardenerGhost.tile) // TODO spawn for only 10 minutes // TODO handle logging out // TODO teleports when 13 tiles away
         npc.mode = Follow(npc, this)
         set("fenk_gardener_uid", npc.index)
         set("fenk_gardener_directions", true)
@@ -180,10 +144,7 @@ class GardenerGhost : Script {
 
     private suspend fun Player.nameStory() {
         sendIntroDialogue()
-        npc<Neutral>(
-            "Me name? It's been a moivellous long while, mate, since I had any use for such a " +
-                "thing as a name.",
-        )
+        npc<Neutral>("Me name? It's been a moivellous long while, mate, since I had any use for such a thing as a name.")
         player<Neutral>("Don't worry, I was just trying to make conversation.")
         npc<Neutral>("No, no, I can't be havin' that - I'll remember in a minute-")
         player<Happy>("Please, don't worry.")
@@ -193,11 +154,7 @@ class GardenerGhost : Script {
     private suspend fun Player.conductorMouldHint() {
         sendIntroDialogue()
         npc<Neutral>("A conductive mould, you say? Let me see-")
-        npc<Neutral>(
-            "There used to be a bloke 'ere, sort of an 'andyman e was. Did everything round " +
-                "the place - fixed what was broke, swept the chimneys and the like. He would " +
-                "'ave had a mould, I imagine.",
-        )
+        npc<Neutral>("There used to be a bloke 'ere, sort of an 'andyman e was. Did everything round the place - fixed what was broke, swept the chimneys and the like. He would 'ave had a mould, I imagine.")
         player<Quiz>("Where is he now?")
         npc<Neutral>("E's dead, just like everyone else round 'ere ... 'cept for me.")
     }
