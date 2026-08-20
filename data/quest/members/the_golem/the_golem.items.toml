@@ -10,6 +10,7 @@ id = 4616
 tradeable = false
 weight = 1.0
 aka = ["the_ruins_of_uzer"]
+book = "varmens_notes"
 examine = "An archaeologist's notes."
 kept = "Wilderness"
 

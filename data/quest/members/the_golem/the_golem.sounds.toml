@@ -1,0 +1,11 @@
+[golem_demondoor]
+id = 1848
+
+[golem_program]
+id = 1849
+
+[golem_repairclay]
+id = 1850
+
+[turn_statue]
+id = 1852

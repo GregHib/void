@@ -56,7 +56,6 @@ class CrushingTest : WorldTest() {
             "diamond_root" to "diamond_root_dust",
             "dried_thistle" to "ground_thistle",
             "garlic" to "garlic_powder",
-            "black_mushroom" to "black_mushroom_ink",
         )
     }
 }
