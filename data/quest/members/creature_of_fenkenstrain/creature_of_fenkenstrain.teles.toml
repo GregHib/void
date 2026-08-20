@@ -1,0 +1,49 @@
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 3539, y = 3543 }
+to = { x = 3540, y = 3543, level = 1 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 3539, y = 3543, level = 1 }
+to = { x = 3540, y = 3543 }
+
+[fenk_stairs_lv1]
+option = "Climb-up"
+tile = { x = 3537, y = 3551 }
+near = { x = 3537, y = 3554, level = 1, width = 2 }
+
+[fenk_stairs_lv1_top]
+option = "Climb-down"
+tile = { x = 3537, y = 3552, level = 1 }
+near = { x = 3537, y = 3550, width = 2 }
+
+[fenk_stairs_lv1]
+option = "Climb-up"
+tile = { x = 3559, y = 3551 }
+near = { x = 3559, y = 3554, level = 1, width = 2 }
+
+[fenk_stairs_lv1_top]
+option = "Climb-down"
+tile = { x = 3559, y = 3552, level = 1 }
+near = { x = 3559, y = 3550, width = 2 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 3548, y = 3539, level = 1 }
+to = { x = 3548, y = 3540, level = 2 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 3548, y = 3539, level = 2 }
+to = { x = 3548, y = 3540, level = 1 }
+
+[basic_ladder_bottom]
+option = "Climb-up"
+tile = { x = 3548, y = 3554, level = 1 }
+to = { x = 3548, y = 3553, level = 2 }
+
+[basic_ladder_top]
+option = "Climb-down"
+tile = { x = 3548, y = 3554, level = 2 }
+to = { x = 3548, y = 3553, level = 1 }

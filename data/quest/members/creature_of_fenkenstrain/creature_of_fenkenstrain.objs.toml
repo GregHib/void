@@ -61,3 +61,9 @@ examine = ""
 [fenk_conductor_repaired]
 id = 5177
 examine = ""
+
+[fenk_stairs_lv1]
+id = 5206
+
+[fenk_stairs_lv1_top]
+id = 5207
