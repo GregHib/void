@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import java.util.concurrent.TimeUnit
+import kotlin.math.pow
 
 class DungeonComplete : Script {
     private val logger = InlineLogger()
@@ -95,20 +96,52 @@ class DungeonComplete : Script {
         // Time until next dungeon: 30 (25, 20, 15, 10, 5, 4, 3, 2, 1)
     }
 
+    private fun baseFloorXp(floor: Int, size: String): Int {
+        // https://www.reddit.com/r/runescape/comments/4ew7kd/has_anyone_figured_out_the_dungeoneering_floor_xp/
+        // TODO large
+        val y = if (size == "medium") {
+            // https://imgur.com/qNRsXbA
+            0.2404 * floor.toDouble().pow(3) + 6.9911 * floor.toDouble().pow(2) + 66.094 * floor + 1283.8
+        } else {
+            // https://imgur.com/C7n8Gqk
+            0.16 * floor.toDouble().pow(3) + 0.28 * floor.toDouble().pow(2) + 76.94 * floor + 587.37
+        }
+        return (y * 10.0).toInt()
+    }
+
+    private fun basePrestigeXp(floor: Int, size: String): Int {
+        // https://www.reddit.com/r/runescape/comments/4ew7kd/has_anyone_figured_out_the_dungeoneering_floor_xp/
+        // TODO large
+        val y = if (size == "medium") {
+            // http://i.imgur.com/tPMAmXy.png
+            284.05 * floor + 68950
+        } else {
+            // https://imgur.com/1my4phK
+            131.8512 * floor + 33611.757
+        }
+        return (y * 10.0).toInt()
+    }
+
     private fun Player.dungeonComplete() {
+
         // https://youtu.be/brr5Ou1SjVE?t=655
         // item(3028, "The next floor is not available at your Dungeoneering level. Consider resetting your progress to gain the best ongoing rate of xp. Click the advisor button for more information.")
 
+        "You have already voted to move on." // https://i1058.photobucket.com/albums/t409/PaddyChe/41fb1db6.png
         closeInterfaces()
         open("dungeon_complete")
 
         // Base XP
-        // Floor
-        set("rand_party_current_floor_trans", get("dungeoneering_party_floor", 1))
+        // Floor XP - Depends on floor number, size and difficulty
+        // A measure of how much time the floor is expected to take (without using actual time taken)
+        val size = get("dungeoneering_party_size", "small")
+        val floor = get("dungeoneering_party_floor", 1)
+        set("rand_party_current_floor_trans", floor)
         val baseFloor = 40
-        set("rand_basefloor_varc", baseFloor) // x10
+        set("rand_basefloor_varc", baseFloorXp(floor, size)) // x10
 
         // Prestige
+        //
         val prestige = 648
         set("dungeon_prestige_current", get("dungeoneering_current_progress", 0))
         set("dungeon_prestige_previous", get("dungeoneering_previous_progress", 0))
@@ -117,7 +150,7 @@ class DungeonComplete : Script {
         set("rand_totalfloor_varc", (baseFloor + prestige) / 2) // x10 Average
 
         // Dungeon size
-        set("rand_dungeon_size_trans", get("dungeoneering_party_size", "small"))
+        set("rand_dungeon_size_trans", size)
 
         var bonusRooms = 0
         var bonusRoomsOpen = 0
