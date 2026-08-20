@@ -197,7 +197,7 @@ class ZogreFleshEatersTest : WorldTest() {
         player.tele(2597, 3108, 0)
         val ladder = GameObjects.find(Tile(2597, 3107), "basic_ladder_bottom")
         player.objectOption(ladder, "Climb-up")
-        tick(2)
+        tick(4)
         assertEquals(1, player["thzfe_sithik_transformed", 0])
 
         player.tele(2593, 3103, 1)
