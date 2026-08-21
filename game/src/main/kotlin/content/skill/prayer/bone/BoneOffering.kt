@@ -35,11 +35,12 @@ class BoneOffering : Script {
 
     /**
      * Percentage of extra Prayer experience granted by the altar standing on [tile], on top of the
-     * base experience for burying the bones. Chaos altars in the Wilderness temples give 250% more.
+     * base experience for burying the bones. Every altar gives [DEFAULT_BONUS], chaos altars in the
+     * Wilderness temples give more.
      */
     fun bonusPercent(tile: Tile): Int = Areas.get(tile.zone)
         .filter { tile in it.area }
-        .maxOfOrNull { it["bone_offering_bonus", 0] } ?: 0
+        .maxOfOrNull { it["bone_offering_bonus", DEFAULT_BONUS] } ?: DEFAULT_BONUS
 
     suspend fun Player.offer(item: Item, amount: Int, tile: Tile, bonus: Int) {
         val xp = Tables.intOrNull("bones.${item.id}.xp") ?: return
@@ -63,5 +64,9 @@ class BoneOffering : Script {
                 mode = EmptyMode
             }
         }
+    }
+
+    companion object {
+        private const val DEFAULT_BONUS = 50
     }
 }

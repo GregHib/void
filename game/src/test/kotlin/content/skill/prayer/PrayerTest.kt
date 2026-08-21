@@ -111,7 +111,7 @@ internal class PrayerTest : WorldTest() {
     }
 
     @Test
-    fun `Offering bones at a chaos altar outside the Wilderness grants no bonus experience`() {
+    fun `Offering bones at a regular altar grants half again the burying experience`() {
         val player = createPlayer(Tile(2454, 3232))
         player.inventory.add("bones")
         val altar = GameObjects.find(Tile(2454, 3231), "prayer_altar_chaos")
@@ -119,6 +119,6 @@ internal class PrayerTest : WorldTest() {
         player.itemOnObject(altar, 0)
         tick(2)
 
-        assertEquals(4.5, player.experience.get(Skill.Prayer))
+        assertEquals(6.7, player.experience.get(Skill.Prayer))
     }
 }
