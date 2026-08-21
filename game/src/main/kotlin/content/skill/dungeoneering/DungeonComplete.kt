@@ -5,11 +5,10 @@ import content.area.wilderness.daemonheim.DungeoneeringParty
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.entity.player.dialogue.type.choice
-import content.quest.clearInstance
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
@@ -20,6 +19,7 @@ import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import java.util.concurrent.TimeUnit
+import kotlin.math.max
 import kotlin.math.pow
 
 class DungeonComplete : Script {
@@ -64,7 +64,7 @@ class DungeonComplete : Script {
 
         timerTick("dungeon_completion") {
             val seconds = dec("dungeon_complete_timer", 30)
-            message(seconds)
+            message(this, seconds)
             if (seconds == 0) {
                 Timer.CANCEL
             } else {
@@ -81,8 +81,16 @@ class DungeonComplete : Script {
         }
     }
 
-    private fun message(seconds: Int) {
+    private fun message(player: Player, seconds: Int) {
         val minutes = TimeUnit.SECONDS.toMinutes(seconds.toLong()).toInt()
+        when (minutes) {
+            240 -> player.message("4 minutes until dungeon ends.")
+            180 -> player.message("3 minutes until dungeon ends.")
+            120 -> player.message("2 minutes until dungeon ends.")
+            60 -> player.message("1 minute until dungeon ends.")
+            30 -> player.message("30 seconds until dungeon ends.")
+            15 -> player.message("15 seconds until dungeon ends.")
+        }
         // TODO broadcast
         // 2 minutes until dungeon ends.
         // 1 minute until dungeon ends.
@@ -93,26 +101,37 @@ class DungeonComplete : Script {
 
     private fun baseFloorXp(floor: Int, size: String): Int {
         // https://www.reddit.com/r/runescape/comments/4ew7kd/has_anyone_figured_out_the_dungeoneering_floor_xp/
-        // TODO large
-        val y = if (size == "medium") {
-            // https://imgur.com/qNRsXbA
-            0.2404 * floor.toDouble().pow(3) + 6.9911 * floor.toDouble().pow(2) + 66.094 * floor + 1283.8
-        } else {
-            // https://imgur.com/C7n8Gqk
-            0.16 * floor.toDouble().pow(3) + 0.28 * floor.toDouble().pow(2) + 76.94 * floor + 587.37
+        val y = when (size) {
+            "large" -> {
+                // Extrapolated from dif between medium + small
+                0.3208 * floor.toDouble().pow(3) + 13.7022 * floor.toDouble().pow(2) + 55.248 * floor + 1980.23
+            }
+            "medium" -> {
+                // https://imgur.com/qNRsXbA
+                0.2404 * floor.toDouble().pow(3) + 6.9911 * floor.toDouble().pow(2) + 66.094 * floor + 1283.8
+            }
+            else -> {
+                // https://imgur.com/C7n8Gqk
+                0.16 * floor.toDouble().pow(3) + 0.28 * floor.toDouble().pow(2) + 76.94 * floor + 587.37
+            }
         }
         return (y * 10.0).toInt()
     }
 
-    private fun basePrestigeXp(floor: Int, size: String): Int {
+    private fun basePrestigeXp(floor: Int, size: String, prestige: Int): Int {
         // https://www.reddit.com/r/runescape/comments/4ew7kd/has_anyone_figured_out_the_dungeoneering_floor_xp/
-        // TODO large
-        val y = if (size == "medium") {
-            // http://i.imgur.com/tPMAmXy.png
-            284.05 * floor + 68950
+        val y = if (prestige == 60) {
+            when (size) {
+                "large" -> 436.2488 * floor + 104288.243 // extrapolated from medium + small
+                "medium" -> 284.05 * floor + 68950 // http://i.imgur.com/tPMAmXy.png
+                else -> 131.8512 * floor + 33611.757 // https://imgur.com/1my4phK
+            }
         } else {
-            // https://imgur.com/1my4phK
-            131.8512 * floor + 33611.757
+            when (size) {
+                "large" -> 7.27081 * prestige * floor + 1738.137 * prestige
+                "medium" -> 4.73417 * prestige * floor + 1149.167 * prestige
+                else -> 2.19752 * prestige * floor + 560.196 * prestige
+            }
         }
         return (y * 10.0).toInt()
     }
@@ -132,17 +151,18 @@ class DungeonComplete : Script {
         val size = get("dungeoneering_party_size", "small")
         val floor = get("dungeoneering_party_floor", 1)
         set("rand_party_current_floor_trans", floor)
-        val baseFloor = 40
-        set("rand_basefloor_varc", baseFloorXp(floor, size)) // x10
+        val baseFloorXp = baseFloorXp(floor, size)
+        set("rand_basefloor_varc", baseFloorXp) // x10
 
         // Prestige
-        //
-        val prestige = 648
-        set("dungeon_prestige_current", get("dungeoneering_current_progress", 0))
-        set("dungeon_prestige_previous", get("dungeoneering_previous_progress", 0))
-        set("rand_prestige_varc", prestige) // x10
-
-        set("rand_totalfloor_varc", (baseFloor + prestige) / 2) // x10 Average
+        val current = get("dungeoneering_current_progress", 0)
+        val previous = get("dungeoneering_previous_progress", 0)
+        val prestige = max(current, previous)
+        set("dungeon_prestige_current", current)
+        set("dungeon_prestige_previous", previous)
+        val prestigeXp = basePrestigeXp(floor, size, prestige)
+        set("rand_prestige_varc", prestigeXp) // x10
+        set("rand_totalfloor_varc", (baseFloorXp + prestigeXp) / 2) // x10 Average
 
         // Dungeon size
         set("rand_dungeon_size_trans", size)
