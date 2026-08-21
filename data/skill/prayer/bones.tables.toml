@@ -1,35 +1,46 @@
 [bones]
 xp = "int"
+bonemeal = "item"
 
 [.skeletal_monkey_bones]
 xp = 30
+bonemeal = "skeletal_monkey_bonemeal"
 
 [.bones]
 xp = 45
+bonemeal = "bonemeal_bones"
 
 [.burnt_bones]
 xp = 45
+bonemeal = "burnt_bonemeal"
 
 [.bat_bones]
 xp = 50
+bonemeal = "bat_bonemeal"
 
 [.wolf_bones]
 xp = 45
+bonemeal = "wolf_bonemeal"
 
 [.monkey_bones]
 xp = 50
+bonemeal = "monkey_bonemeal"
 
 [.small_zombie_monkey_bones]
 xp = 50
+bonemeal = "small_zombie_monkey_bonemeal"
 
 [.large_zombie_monkey_bones]
 xp = 50
+bonemeal = "large_zombie_monkey_bonemeal"
 
 [.big_bones]
 xp = 150
+bonemeal = "big_bonemeal"
 
 [.jogre_bones]
 xp = 150
+bonemeal = "jogre_bonemeal"
 
 [.curved_bone]
 xp = 151
@@ -39,48 +50,64 @@ xp = 151
 
 [.small_ninja_monkey_bones]
 xp = 160
+bonemeal = "small_ninja_monkey_bonemeal"
 
 [.medium_ninja_monkey_bones]
 xp = 180
+bonemeal = "medium_ninja_monkey_bonemeal"
 
 [.gorilla_bones]
 xp = 180
+bonemeal = "gorilla_bonemeal"
 
 [.bearded_gorilla_bones]
 xp = 200
+bonemeal = "bearded_gorilla_bonemeal"
 
 [.shaikahan_bones]
 xp = 250
+bonemeal = "shaikahan_bonemeal"
 
 [.zogre_bones]
 xp = 225
+bonemeal = "zogre_bonemeal"
 
 [.babydragon_bones]
 xp = 300
+bonemeal = "baby_dragon_bonemeal"
 
 [.wyvern_bones]
 xp = 500
+bonemeal = "wyvern_bonemeal"
 
 [.dragon_bones]
 xp = 720
+bonemeal = "dragon_bonemeal"
 
 [.fayrg_bones]
 xp = 840
+bonemeal = "fayrg_bonemeal"
 
 [.raurg_bones]
 xp = 960
+bonemeal = "raurg_bonemeal"
 
 [.dagannoth_bones]
 xp = 1250
+bonemeal = "dagannoth_bonemeal"
 
 [.ourg_bones]
 xp = 1400
+bonemeal = "ourg_bonemeal"
 
 [.ourg_bones_general_graardor]
 xp = 1400
+bonemeal = "ourg_bonemeal"
 
 [.frost_dragon_bones_dungeoneering]
 xp = 1800
+bonemeal = "frost_dragon_bonemeal"
 
 [.frost_dragon_bones]
 xp = 1800
+bonemeal = "frost_dragon_bonemeal"
