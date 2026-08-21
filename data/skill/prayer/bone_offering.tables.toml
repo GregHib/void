@@ -1,0 +1,14 @@
+[bone_offering]
+row_id = "obj"
+bonus = "int"
+wilderness_only = "boolean"
+
+# Chaos Temple, level 12 Wilderness north of Varrock.
+[.prayer_altar_chaos_wilderness]
+bonus = 250
+
+# Chaos Temple hut, level 38 Wilderness. The object is shared with altars
+# outside the Wilderness which don't grant the bonus.
+[.prayer_altar_chaos]
+bonus = 250
+wilderness_only = true

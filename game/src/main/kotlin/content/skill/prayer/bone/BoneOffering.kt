@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -22,7 +23,7 @@ class BoneOffering : Script {
         itemOnObjectOperate(obj = "prayer_altar*") { (target, item) ->
             Tables.intOrNull("bones.${item.id}.xp") ?: return@itemOnObjectOperate
             val tile = target.nearestTo(tile)
-            val bonus = bonusPercent(target.tile)
+            val bonus = bonusPercent(target)
             val count = inventory.count(item.id)
             if (count > 1) {
                 val (_, amount) = makeAmount(listOf(item.id), "", count)
@@ -34,13 +35,18 @@ class BoneOffering : Script {
     }
 
     /**
-     * Percentage of extra Prayer experience granted by the altar standing on [tile], on top of the
-     * base experience for burying the bones. Every altar gives [DEFAULT_BONUS], chaos altars in the
-     * Wilderness temples give more.
+     * Percentage of extra Prayer experience granted by [target], on top of the base experience for
+     * burying the bones. Every altar gives [DEFAULT_BONUS], chaos altars in the Wilderness temples
+     * give more.
      */
-    fun bonusPercent(tile: Tile): Int = Areas.get(tile.zone)
-        .filter { tile in it.area }
-        .maxOfOrNull { it["bone_offering_bonus", DEFAULT_BONUS] } ?: DEFAULT_BONUS
+    fun bonusPercent(target: GameObject): Int {
+        val bonus = Tables.intOrNull("bone_offering.${target.id}.bonus") ?: return DEFAULT_BONUS
+        val wildernessOnly = Tables.boolOrNull("bone_offering.${target.id}.wilderness_only") ?: false
+        if (wildernessOnly && target.tile !in Areas["wilderness"]) {
+            return DEFAULT_BONUS
+        }
+        return bonus
+    }
 
     suspend fun Player.offer(item: Item, amount: Int, tile: Tile, bonus: Int) {
         val xp = Tables.intOrNull("bones.${item.id}.xp") ?: return
