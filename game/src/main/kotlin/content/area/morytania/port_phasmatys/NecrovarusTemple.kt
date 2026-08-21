@@ -21,7 +21,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 
-class Ectofuntus : Script {
+class NecrovarusTemple : Script {
     init {
         itemOnObjectOperate("bone_key_ghosts_ahoy", "ahoy_harbour_door_closed") { interaction ->
             if (!interaction.target.tile.equals(3656, 3514, 1)) {
