@@ -85,4 +85,40 @@ internal class PrayerTest : WorldTest() {
             assertFalse(player.inventory.contains(bone))
         }
     }
+
+    @Test
+    fun `Offering bones at the Chaos Temple altar grants bonus experience`() {
+        val player = createPlayer(Tile(3239, 3607))
+        player.inventory.add("bones")
+        val altar = GameObjects.find(Tile(3239, 3608), "prayer_altar_chaos_wilderness")
+
+        player.itemOnObject(altar, 0)
+        tick(2)
+
+        assertEquals(15.7, player.experience.get(Skill.Prayer))
+    }
+
+    @Test
+    fun `Offering bones at the Chaos Temple hut altar grants bonus experience`() {
+        val player = createPlayer(Tile(2948, 3820))
+        player.inventory.add("bones")
+        val altar = GameObjects.find(Tile(2947, 3820), "prayer_altar_chaos")
+
+        player.itemOnObject(altar, 0)
+        tick(2)
+
+        assertEquals(15.7, player.experience.get(Skill.Prayer))
+    }
+
+    @Test
+    fun `Offering bones at a chaos altar outside the Wilderness grants no bonus experience`() {
+        val player = createPlayer(Tile(2454, 3232))
+        player.inventory.add("bones")
+        val altar = GameObjects.find(Tile(2454, 3231), "prayer_altar_chaos")
+
+        player.itemOnObject(altar, 0)
+        tick(2)
+
+        assertEquals(4.5, player.experience.get(Skill.Prayer))
+    }
 }

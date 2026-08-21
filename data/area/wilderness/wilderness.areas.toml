@@ -46,6 +46,20 @@ y = [3816, 3831]
 level = 0
 tags = ["multi_combat"]
 
+[wilderness_chaos_temple_hut_altar]
+x = [2947, 2947]
+y = [3820, 3821]
+level = 0
+tags = ["bone_offering_bonus"]
+bone_offering_bonus = 250
+
+[wilderness_chaos_temple_altar]
+x = [3239, 3240]
+y = [3608, 3608]
+level = 0
+tags = ["bone_offering_bonus"]
+bone_offering_bonus = 250
+
 [wilderness_bandit_camp_multi_area]
 x = [3008, 3071]
 y = [3600, 3711]

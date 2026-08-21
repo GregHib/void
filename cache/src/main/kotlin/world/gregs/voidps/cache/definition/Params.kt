@@ -261,9 +261,11 @@ object Params {
     const val SUMMONING_BEAST_OF_BURDEN_ESSENCE = 5264
     const val SUMMONING_SPECIAL_COST = 5265
     const val DISENGAGE = 5266
+    const val BONE_OFFERING_BONUS = 5267
 
     private fun custom(name: String) = when (name) {
         "disengage" -> DISENGAGE
+        "bone_offering_bonus" -> BONE_OFFERING_BONUS
         "summoning_beast_of_burden_essence" -> SUMMONING_BEAST_OF_BURDEN_ESSENCE
         "summoning_special_cost" -> SUMMONING_SPECIAL_COST
         "variables" -> VARIABLES
