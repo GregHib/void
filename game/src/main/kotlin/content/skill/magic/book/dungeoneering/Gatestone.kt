@@ -2,6 +2,7 @@ package content.skill.magic.book.dungeoneering
 
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
+import content.entity.player.dialogue.type.item
 import content.entity.player.inv.item.addOrDrop
 import content.skill.magic.spell.removeSpellItems
 import world.gregs.voidps.engine.Script
@@ -30,7 +31,8 @@ class Gatestone : Script {
                 return@interfaceOption
             }
             if (carriesItem("gatestone")) {
-                message("You already have a gatestone in your pack. Making another would be pointless.")
+                // https://youtu.be/ouT__1cWTTU?t=558
+                item("gatestone", "You have a gatestone in your pack. Making another would be pointless.")
                 return@interfaceOption
             }
             if (contains("gatestone_tile")) {

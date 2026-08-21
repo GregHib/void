@@ -97,6 +97,12 @@ class DungeonComplete : Script {
         // 30 seconds until dungeon ends.
         // 15 seconds until dungeon ends.
         // Time until next dungeon: 30 (25, 20, 15, 10, 5, 4, 3, 2, 1)
+
+        // https://youtu.be/nSob5r5-UtE?t=563
+        // You received item:
+
+        // https://youtu.be/2aX5poT8Fnk?t=496
+        // <username> received item:
     }
 
     private fun baseFloorXp(floor: Int, size: String): Int {
@@ -218,8 +224,12 @@ class DungeonComplete : Script {
         if (get("dungeoneering_guide_mode", false)) {
 //            item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") FIXME c2?
         }
+        // https://youtu.be/ouT__1cWTTU?t=583
+        // https://youtu.be/27ZBYBvBnL0?t=718
+//        message("<red>Warning<br>")
+//        message("You have already completed all the available floors of this theme and thus cannot be awarded prestige xp until you reset your progress or switch theme.")
         // https://youtu.be/AZtXwFWWiP8?t=251
-//        message("Sine you have previous completed this floor, floor 24 was instead ticked-off.")
+//        message("Since you have previously completed this floor, floor 24 was instead ticked-off.")
     }
 
     private fun findDoor(x: Int, y: Int, id: String): GameObject? = GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)

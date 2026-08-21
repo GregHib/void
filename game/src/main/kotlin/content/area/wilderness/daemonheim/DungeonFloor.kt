@@ -44,6 +44,7 @@ class DungeonFloor : Script {
             for (member in dungeonMembers) {
                 if (floor > member["dungeoneering_floor", 1]) {
                     if (member != this) {
+                        // https://www.youtube.com/watch?v=YrKF-soguEI
                         message("<red_orange>${member.name} is unable to access that floor. Use the bars on the floor select interface to see which floors your party can access.")
                     }
                     return@interfaceOption
