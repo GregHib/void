@@ -19,7 +19,7 @@ class BananaTrees : Script {
                 return@objectOperate
             }
             sound("pick")
-            anim("climb_down")
+            anim("take")
             message("You pick a banana.")
 
             val remaining = target.id.removePrefix("karamja_banana_tree_").toInt() - 1

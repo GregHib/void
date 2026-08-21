@@ -1,0 +1,7 @@
+[banana_plantation_job]
+persist = true
+format = "boolean"
+
+[banana_crate_bananas]
+persist = true
+format = "int"
