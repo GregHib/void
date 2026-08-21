@@ -28,6 +28,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
 import world.gregs.voidps.engine.entity.character.player.hasRights
 import world.gregs.voidps.engine.entity.character.player.isAdmin
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
@@ -76,6 +77,7 @@ class DungeonEntrance : Script {
             // https://youtu.be/tg1Kf4iAkN4?t=243
             statement("Please select the number of players you want the dungeon to be </col>designed for. <col=531e13>You may not be able to complete a dungeon if too many people leave.")
             val partySize = dungeonMembers.size
+            // TODO recommend 3 when size 5 https://youtu.be/nSob5r5-UtE?t=2
             choice {
                 for (i in 1..partySize) {
                     option("$i${if (i == partySize) " (recommended)" else ""}") {
@@ -113,7 +115,8 @@ class DungeonEntrance : Script {
                     // https://youtu.be/1e4dfeuKsdg?t=133
                     message("You are carrying items that cannot be taken into Daemonheim.")
                 } else {
-                    message("A member of your party has items that cannot be taken into Daemonheim.") // TODO proper message
+                    // https://www.youtube.com/watch?v=nSob5r5-UtE
+                    message("${member.name} is carrying items that cannot be taken into Daemonheim.")
                 }
                 return false
             }

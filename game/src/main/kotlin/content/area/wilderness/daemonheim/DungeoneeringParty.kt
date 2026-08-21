@@ -193,6 +193,7 @@ class DungeoneeringParty : Script {
                 message("A vote to kick in a 2-player party cannot succeed.")
                 return@interfaceOption
             }
+            // https://www.youtube.com/watch?v=qVgiDxAIal4
             // TODO kick vote
             member.message("You were kicked from the party.")
             leave(member)
