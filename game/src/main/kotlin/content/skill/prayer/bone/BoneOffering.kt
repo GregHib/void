@@ -35,7 +35,7 @@ class BoneOffering : Script {
         val xp = Tables.intOrNull("bones.${item.id}.xp") ?: return
         repeat(amount) {
             if (inventory.remove(item.id)) {
-                exp(Skill.Prayer, xp / 10.0)
+                exp(Skill.Prayer, (xp / 10.0) * BONUS)
                 anim("offer_bones")
                 areaGfx("bone_offering", tile)
                 message(
@@ -53,5 +53,12 @@ class BoneOffering : Script {
                 mode = EmptyMode
             }
         }
+    }
+
+    companion object {
+        /**
+         * Offering bones at an altar grants half again the experience gained from burying them.
+         */
+        private const val BONUS = 1.5
     }
 }
