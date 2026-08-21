@@ -21,7 +21,7 @@ class EvilChickenLair : Script {
                 return@itemOnObjectOperate
             }
             message("You place the raw chicken on the shrine.")
-            delay(anim("teleport_evil_chicken_lair"))
+            animDelay("teleport_evil_chicken_lair")
             tele(ENTRANCE)
             anim("teleport_land_evil_chicken_lair")
         }
