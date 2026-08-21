@@ -196,3 +196,7 @@ format = "boolean"
 [equip_crossbow]
 persist = true
 format = "boolean"
+
+[five_a_day_progress]
+persist = true
+format = "int"
