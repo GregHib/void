@@ -27,14 +27,17 @@ id = 2920
 [evil_dave_ruins_of_uzer_2]
 id = 2922
 
-[clay_golem_ruins_of_uzer_2]
+[clay_golem_ruins_of_uzer_broken]
 id = 1908
+examine = "An animated clay statue with a lot of clay missing."
 
-[clay_golem_ruins_of_uzer_3]
+[clay_golem_ruins_of_uzer_damaged]
 id = 1909
+examine = "An animated clay statue with some clay missing."
 
-[clay_golem_ruins_of_uzer_4]
+[clay_golem_ruins_of_uzer_repaired]
 id = 1910
+examine = "An animated clay statue."
 
 [father_badden_ruins_of_uzer_2]
 id = 2902

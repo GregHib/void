@@ -1523,6 +1523,31 @@ req_combat = "None."
 points = 1
 reward = "Ability to collect phoenix feathers<br>Magic carpet route to the ruins of Uzer<br>Ability to search Thammaron's throne to get 6 gems"
 xp = "1,000 Thieving XP<br>1,000 Crafting XP"
+variables = [
+  "the_golem",
+  "golem_b",
+  "golem_clay",
+  "golem_statuettestatusa",
+  "golem_statuettestatusb",
+  "golem_statuettestatusc",
+  "golem_statuettestatusd",
+  "golem_head_open",
+  "golem_throne_gems",
+  "golem_retrieved_statuette",
+  "golem_seen_underground",
+]
+items = [
+  "letter_the_golem",
+  "varmens_notes",
+  "display_cabinet_key",
+  "statuette_the_golem",
+  "strange_implement",
+  "black_mushroom",
+  "black_mushroom_ink",
+  "phoenix_feather",
+  "phoenix_quill_pen",
+  "golem_program",
+]
 
 [the_grand_tree]
 id = 56
