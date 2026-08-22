@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.*
-import world.gregs.voidps.engine.queue.engineQueue
+import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.type.Tile
 
 class DungeoneeringParty : Script {
@@ -299,7 +299,7 @@ class DungeoneeringParty : Script {
             player.equipment.clear()
             player.queue.clear()
             player.levels.clear()
-            player.engineQueue("dungeon_exit") {
+            player.longQueue("dungeon_exit") {
                 player.tele(3460, 3721, 1)
                 if (player["dungeoneering_stored_kinship", false]) {
                     player.clear("dungeoneering_stored_kinship")
