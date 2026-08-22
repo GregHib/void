@@ -206,11 +206,17 @@ object GameObjects : ZoneBatchUpdates.Sender {
      * and calling [onRevert] once reverted
      */
     fun replace(original: GameObject, replacement: GameObject, ticks: Int = NEVER, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+        // Removing a same-tile replacement re-adds the object [set] on game load by itself, so
+        // adding [original] back would revert a replaced replacement to the previous replacement
+        // rather than to the original.
+        val restored = replacement.index == original.index && map[original] > 1
         remove(original, collision)
         add(replacement, collision)
         timers.add(setOf(original, replacement), ticks) {
             remove(replacement, collision)
-            add(original, collision)
+            if (!restored) {
+                add(original, collision)
+            }
             onRevert?.invoke()
         }
     }
