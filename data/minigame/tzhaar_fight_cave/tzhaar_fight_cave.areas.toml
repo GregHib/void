@@ -1,7 +1,7 @@
 [tzhaar_fight_cave_multi_area]
 x = [2368, 2559]
 y = [5056, 5183]
-tags = ["multi_combat"]
+tags = ["multi_combat", "no_cannon"]
 
 [tzhaar_fight_cave_north_west]
 x = [2378, 2385]
@@ -22,4 +22,3 @@ y = [5080, 5086]
 [tzhaar_fight_cave_none]
 x = [2397, 2403]
 y = [5085, 5091]
-

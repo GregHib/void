@@ -2,3 +2,8 @@
 x = [2465, 2467]
 y = [3244, 3246]
 tags = ["teleport"]
+
+[ourania_altar]
+x = [3264, 3327]
+y = [4800, 4863]
+tags = ["no_cannon", "no_cannon_dark_forces"]

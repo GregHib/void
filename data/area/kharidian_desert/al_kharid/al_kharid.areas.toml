@@ -43,3 +43,8 @@ hint = "around the Al Kharid region, north of Shantay Pass."
 [al_kharid_fishing_spot]
 x = [3255, 3281]
 y = [3135, 3166]
+
+[al_kharid_palace]
+x = [3288, 3308]
+y = [3155, 3180]
+tags = ["no_cannon"]

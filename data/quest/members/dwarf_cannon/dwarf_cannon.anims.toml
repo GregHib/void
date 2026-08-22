@@ -1,0 +1,27 @@
+[cannon_setup]
+id = 827
+
+# Barrel rotation, one per octant, in Direction.all order.
+[cannon_turn_north_west]
+id = 514
+
+[cannon_turn_north]
+id = 515
+
+[cannon_turn_north_east]
+id = 516
+
+[cannon_turn_east]
+id = 517
+
+[cannon_turn_south_east]
+id = 518
+
+[cannon_turn_south]
+id = 519
+
+[cannon_turn_south_west]
+id = 520
+
+[cannon_turn_west]
+id = 521

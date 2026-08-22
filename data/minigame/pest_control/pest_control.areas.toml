@@ -2,4 +2,4 @@
 x = [2624, 2687]
 y = [2560, 2623]
 level = 0
-tags = ["multi_combat"]
+tags = ["multi_combat", "no_cannon"]

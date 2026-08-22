@@ -1,7 +1,7 @@
 [entrana]
 x = [2783,2879]
 y = [3328,3391]
-tags = ["penguin_area"]
+tags = ["penguin_area", "no_cannon"]
 hint = "where no weapons may go."
 
 [entrana_dock_fishing_area]

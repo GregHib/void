@@ -2,3 +2,8 @@
 x = [2879, 2882]
 y = [3544, 3548]
 tags = ["teleport"]
+
+[warriors_guild]
+x = [2816, 2879]
+y = [3520, 3583]
+tags = ["no_cannon"]

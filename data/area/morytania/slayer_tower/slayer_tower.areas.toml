@@ -8,3 +8,8 @@ tags = ["abyssal"]
 x = [3428, 3429]
 y = [3531, 3532]
 tags = ["teleport"]
+
+[slayer_tower]
+x = [3392, 3455]
+y = [3520, 3583]
+tags = ["no_cannon"]
