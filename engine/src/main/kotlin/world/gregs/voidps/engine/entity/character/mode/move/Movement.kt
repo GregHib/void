@@ -102,8 +102,7 @@ open class Movement(
             calculate()
         }
         if (character is NPC && character.walkTrigger != null && character.suspension != null) {
-            character.walkTrigger?.invoke()
-            character.walkTrigger = null
+            character.walkTrigger()
         }
         if (step(runStep = false) && character.running) {
             if (character.steps.isNotEmpty()) {

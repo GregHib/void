@@ -59,6 +59,10 @@ interface Character :
 
     override fun compareTo(other: Character): Int = index.compareTo(other.index)
 
+    fun clearWalkTrigger() {
+        walkTrigger = null
+    }
+
     fun walkTrigger() {
         if (suspension != null) {
             return

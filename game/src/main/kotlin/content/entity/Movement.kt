@@ -77,8 +77,7 @@ class Movement : Script {
                 player.walkTo(target, forceWalk = player.equipped(EquipSlot.Weapon).id == "stone_bowl" || player.equipped(EquipSlot.Hat).id.contains("bedsheet"))
             }
             if (player.suspension == null) {
-                player.walkTrigger?.invoke()
-                player.walkTrigger = null
+                player.walkTrigger()
             }
         }
 
