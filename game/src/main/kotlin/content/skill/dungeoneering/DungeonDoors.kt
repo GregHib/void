@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -157,6 +158,14 @@ class DungeonDoors : Script {
         val under = GameObjects.getLayer(target.tile.add(dir.inverse()), ObjectLayer.GROUND)
         if (under == null) {
             player.approachRange(1)
+            if (target.id.startsWith("guardian")) {
+                for (zone in player.dungeonRoomBounds().toZones(0)) {
+                    if (NPCs.at(zone).any { it.def.options.contains("Attack") }) {
+                        player.message("The door won't unlock until all of the guardians in the room have been slain.")
+                        return
+                    }
+                }
+            }
             player.openDoor(target)
             return
         }

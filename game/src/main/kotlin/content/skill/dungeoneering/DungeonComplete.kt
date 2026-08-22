@@ -40,7 +40,7 @@ class DungeonComplete : Script {
                 return@objectOperate
             }
             val leader = dungeonLeader ?: return@objectOperate
-            choice("Are you sure you wish to proceed and take your party with you?") {
+            choice("<br>Are you sure you wish to proceed and take your party with you?") {
                 option("Yes, continue.") {
                     if (dungeonMembers.size == 1) {
                         dungeonComplete()
@@ -245,9 +245,6 @@ class DungeonComplete : Script {
         set("rand_prestige_varc", prestigeXp) // x10
         set("rand_totalfloor_varc", (baseFloorXp + prestigeXp) / 2) // x10 Average
 
-        // Dungeon size
-        set("rand_dungeon_size_trans", size)
-
         var bonusRooms = 0
         var bonusRoomsOpen = 0
         val dungeon = dungeonMap ?: return
@@ -263,22 +260,13 @@ class DungeonComplete : Script {
             }
         }
 
-        // Bonus rooms
+        set("rand_dungeon_size_trans", size)
         set("rand_party_bonus_exploration", Interpolation.lerp(bonusRoomsOpen, 0..bonusRooms, 0..10000)) // +1%
-
-        // Difficulty
-        set("rand_dungeon_difficulty_trans", 11) // 71 = 7:1
-
-        // Complexity
+        set("rand_dungeon_difficulty_trans", dungeonMembers.size * 10 + dungeon.playerCount)
         set("rand_party_complexity_level_trans", get("dungeoneering_party_complexity", 1))
-
-        // Deaths
         set("dungeon_deaths", get("dungeon_deaths", 0).coerceAtMost(15))
         // Unbalanced party penalty x100%
         set("rand_nurf_amount_trans", false)
-
-        // height = (10000 + dungeonSizeHeight + bonusHeight
-        // (totalfloor + 100 * (height - totalFloor) / 100 + 5) / 100
         set("lore_stat_var", 100000)
         set("rand_pointsmod_varc", 2100) // x100
 

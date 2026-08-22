@@ -46,7 +46,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
             }
         }
         // Spawn keys
-        spawnKeys(dungeon)
+        spawnKeys(player, dungeon)
         val complexity = player["dungeoneering_party_complexity", 1]
         val floor = player["dungeoneering_party_floor", 1]
         if (type == DungeonRoomType.Base) {
@@ -56,7 +56,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         spawnDoors(target, dungeon.theme)
     }
 
-    private fun spawnKeys(dungeon: DungeonMap) {
+    private fun spawnKeys(player: Player, dungeon: DungeonMap) {
         val keySpots = findObjects(dungeon, setOf("rand_invis_key_location"))
         if (keySpots.isEmpty()) {
             if (type == DungeonRoomType.Base) {
@@ -67,6 +67,9 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
                 return
             } else {
                 logger.warn { "Unable to find key tile for $zone $name" }
+                for (key in keys) {
+                    FloorItems.add(player.tile, key)
+                }
                 return
             }
         }
