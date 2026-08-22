@@ -197,6 +197,7 @@ class DungeonEntrance : Script {
         }
         if (get("debug", false)) {
             println("Dungeon generation took ${System.currentTimeMillis() - start}ms")
+            println("Floor: $floor Size: $size Complexity:$complexity Difficulty: $playerCount")
             dungeon.prettyPrint()
         }
         val instance = when (size) {

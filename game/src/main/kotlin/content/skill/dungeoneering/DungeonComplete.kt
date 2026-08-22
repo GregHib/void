@@ -243,7 +243,8 @@ class DungeonComplete : Script {
         set("dungeon_prestige_previous", previous)
         val prestigeXp = basePrestigeXp(floor, size, prestige)
         set("rand_prestige_varc", prestigeXp) // x10
-        set("rand_totalfloor_varc", (baseFloorXp + prestigeXp) / 2) // x10 Average
+        val totalFloor = (baseFloorXp + prestigeXp) / 2
+        set("rand_totalfloor_varc", totalFloor) // x10 Average
 
         var bonusRooms = 0
         var bonusRoomsOpen = 0
@@ -261,14 +262,19 @@ class DungeonComplete : Script {
         }
 
         set("rand_dungeon_size_trans", size)
-        set("rand_party_bonus_exploration", Interpolation.lerp(bonusRoomsOpen, 0..bonusRooms, 0..10000)) // +1%
+        val bonus = Interpolation.lerp(bonusRoomsOpen, 0..bonusRooms, 0..10000)
+        set("rand_party_bonus_exploration", bonus) // +1%
         set("rand_dungeon_difficulty_trans", dungeonMembers.size * 10 + dungeon.playerCount)
-        set("rand_party_complexity_level_trans", get("dungeoneering_party_complexity", 1))
-        set("dungeon_deaths", get("dungeon_deaths", 0).coerceAtMost(15))
+        val complexity = get("dungeoneering_party_complexity", 1)
+        set("rand_party_complexity_level_trans", complexity)
+        val deaths = get("dungeon_deaths", 0).coerceAtMost(15)
+        set("dungeon_deaths", deaths)
         // Unbalanced party penalty x100%
         set("rand_nurf_amount_trans", false)
-        set("lore_stat_var", 100000)
-        set("rand_pointsmod_varc", 2100) // x100
+        val loreStat = 100000
+        set("lore_stat_var", loreStat)
+        val pointsMod = 2100
+        set("rand_pointsmod_varc", pointsMod) // x100
 
         for (i in 1..5) {
             val member = dungeonMembers.getOrNull(i - 1)
@@ -282,6 +288,11 @@ class DungeonComplete : Script {
             }
         }
 
+        val final = computeFinalModifierBasisPoints(this, size, bonus, dungeonMembers.size, dungeon.playerCount, deaths, 0, pointsMod, complexity)
+        val totalXp = calculateTotalXp(final, totalFloor)
+        val tokens = calculateTokens(final, totalFloor, loreStat)
+
+        println("Final: $final total-xp: $totalXp tokens: $tokens")
         // TODO other messages
         if (get("dungeoneering_guide_mode", false)) {
 //            item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") FIXME c2?
@@ -294,5 +305,75 @@ class DungeonComplete : Script {
 //        message("Since you have previously completed this floor, floor 24 was instead ticked-off.")
     }
 
+    private fun computeFinalModifierBasisPoints(player: Player, size: String, bonus: Int, partySize: Int, partyDifficulty: Int, deaths: Int, nerf: Int, pointsMod: Int, complexity: Int): Int {
+        println("Size=$size, bonus=$bonus, party=$partySize, diff=$partyDifficulty, deaths=$deaths, nerf=$nerf, mod=$pointsMod, complexity=$complexity")
+        val sizeBonus = when (size) {
+            "medium" -> 792
+            "large" -> 1583
+            else -> 0
+        }
+        val complexityBonus = bonus * 1267 / 10000
+        val difficultyOffset = xpOffset(partySize, partyDifficulty)
+        val deathPenaltyModifier = 10000 - minOf(deaths, 6) * 1000
+        val nerfMultiplier = 10000 - nerf
+
+        var chain = 10000L
+        chain += sizeBonus
+        chain += complexityBonus
+        chain += difficultyOffset
+        chain += pointsMod
+        chain *= computeAdditionalModifier(complexity)
+        chain /= 10000
+        chain *= computeExplorationBonusModifier(player)
+        chain /= 10000
+        chain *= deathPenaltyModifier
+        chain /= 10000
+        chain *= nerfMultiplier
+        chain /= 10000
+        return chain.toInt()
+    }
+
+    private fun computeExplorationBonusModifier(player: Player): Int {
+        if (player["varc_1196", 0] == 1) {
+            return 9000
+        }
+        return 10000
+
+    }
+    private fun computeAdditionalModifier(complexity: Int): Int {
+        return when (complexity) {
+            1 -> 5000
+            2 -> 5500
+            3 -> 6000
+            4 -> 6500
+            5 -> 7000
+            else -> 10000
+        }
+    }
+
+    private val DIFFICULTY_XP_OFFSETS: Map<Int, Map<Int, Int>> = mapOf(
+        1 to mapOf(1 to 0),
+        2 to mapOf(1 to -760, 2 to 507),
+        3 to mapOf(1 to -1520, 2 to 190, 3 to 950),
+        4 to mapOf(1 to -2280, 2 to -760, 3 to 633, 4 to 1457),
+        5 to mapOf(1 to -3040, 2 to -1267, 3 to 380, 4 to 1140, 5 to 1900),
+    )
+
+    fun xpOffset(partySize: Int, partyDifficulty: Int): Int {
+        return DIFFICULTY_XP_OFFSETS[partySize]?.get(partyDifficulty) ?: 0
+    }
+
+    fun calculateTotalXp(finalModifier: Int, before: Int, revealProgress: Int = 100): Int {
+        val after = (finalModifier.toLong() * before / 10000).toInt()
+        return Interpolation.lerp(revealProgress, 0..100, before..after)
+    }
+
+    fun calculateTokens(finalModifier: Int, before: Int, loreStat: Int, revealProgress: Int = 100): String {
+        if (loreStat >= 2_000_000_000) {
+            return "n/a"
+        }
+        val after = (finalModifier.toLong() * before / 10000).toInt()
+        return "${Interpolation.lerp(revealProgress, 0..100, before..after)}%"
+    }
     private fun findDoor(x: Int, y: Int, id: String): GameObject? = GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)
 }
