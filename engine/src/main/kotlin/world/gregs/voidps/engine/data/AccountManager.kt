@@ -118,17 +118,7 @@ class AccountManager(
             World.queue("logout_${player.accountName}", 1) {
                 Players.remove(player)
             }
-            val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
-            val original = player.tile.minus(offset)
-            for (def in Areas.get(original.zone)) {
-                if (original in def.area) {
-                    Moved.exit(player, def.name, def)
-                }
-            }
             Despawn.player(player)
-            player.queue.logout()
-            player.softTimers.stopAll()
-            player.timers.stopAll()
             saveQueue.save(player)
             AuditLog.event(player, "disconnected", player.tile)
         }
