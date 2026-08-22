@@ -76,8 +76,7 @@ class Movement : Script {
                 player.walkTo(target, forceWalk = TargetStrategy.noRun(player))
             }
             if (player.suspension == null) {
-                player.walkTrigger?.invoke()
-                player.walkTrigger = null
+                player.walkTrigger()
             }
         }
 

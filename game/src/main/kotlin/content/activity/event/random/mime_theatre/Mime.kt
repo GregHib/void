@@ -141,7 +141,7 @@ class Mime : Script {
         for (unlock in MIME_EMOTES) {
             set("unlocked_emote_$unlock", true)
         }
-        walkTrigger = null
+        clearWalkTrigger()
         addOrDrop("random_event_gift")
         rewardCostumePoint("mime")
         clear("mime_emote")
