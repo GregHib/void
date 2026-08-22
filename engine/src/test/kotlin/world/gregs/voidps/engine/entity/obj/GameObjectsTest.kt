@@ -250,6 +250,25 @@ class GameObjectsTest : KoinMock() {
         }
     }
 
+    @Test
+    fun `Replacing a replacement is undone back to the original`() {
+        val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val first = GameObject(id = 123, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        val second = GameObject(id = 456, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.replace(original, first, ticks = 5, collision = false)
+        GameObjects.replace(first, second, ticks = 5, collision = false)
+        repeat(5) {
+            assertFalse(GameObjects.contains(original))
+            assertFalse(GameObjects.contains(first))
+            assertTrue(GameObjects.contains(second))
+            GameObjects.timers.run()
+        }
+        assertTrue(GameObjects.contains(original))
+        assertFalse(GameObjects.contains(first))
+        assertFalse(GameObjects.contains(second))
+    }
+
     @AfterEach
     fun teardown() {
         unmockkObject(ZoneBatchUpdates)
