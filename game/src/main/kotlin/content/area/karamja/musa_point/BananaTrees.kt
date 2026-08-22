@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -23,16 +22,11 @@ class BananaTrees : Script {
             message("You pick a banana.")
 
             val remaining = target.id.removePrefix("karamja_banana_tree_").toInt() - 1
-            // Replaced permanently with a single re-armed timer; removing the replacement reverts
-            // the tree all the way back to the original full one rather than only one stage.
-            GameObjects.timers.cancel(target)
-            val replacement = target.replace("karamja_banana_tree_$remaining")
-            GameObjects.timers.add(replacement, Settings["world.objs.bananaTree.regrowTicks", 300]) {
-                GameObjects.remove(replacement, collision = true)
-            }
+            target.replace("karamja_banana_tree_$remaining", ticks = Settings["world.objs.bananaTree.regrowTicks", 300])
 
             if (!get("five_a_day_task", false) && inc("five_a_day_progress") >= 5) {
                 set("five_a_day_task", true)
+                clear("five_a_day_progress")
             }
         }
 

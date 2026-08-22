@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.removeToLimit
 import world.gregs.voidps.type.Tile
 
 /**
@@ -77,18 +78,14 @@ class Luthas : Script {
                 message("The crate is already full.")
                 return@objectOperate
             }
-            val carrying = inventory.count("banana")
-            if (carrying == 0) {
+            val packed = inventory.removeToLimit("banana", space)
+            if (packed == 0) {
                 message("You don't have any bananas to pack.")
-                return@objectOperate
-            }
-            val packed = minOf(space, carrying)
-            if (!inventory.remove("banana", packed)) {
                 return@objectOperate
             }
             animDelay("take")
             inc("banana_crate_bananas", packed)
-            if (packed == carrying) {
+            if (!inventory.contains("banana")) {
                 message("You pack all your bananas into the crate.")
             } else {
                 message("You pack bananas into the crate until it is full.")
