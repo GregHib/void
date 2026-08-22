@@ -85,7 +85,7 @@ class DungeoneeringParty : Script {
 
         interfaceOption("Leave", "dungeon_complete:readybutton_player*") {
             val button = it.component.removePrefix("readybutton_player").toInt()
-            val index = dungeonMembers.indexOf(this)
+            val index = dungeonMembers.indexOf(this) + 1
             if (index != button) {
                 return@interfaceOption
             }
@@ -99,14 +99,14 @@ class DungeoneeringParty : Script {
                 return@interfaceOption
             }
             choice("Leave the dungeon permanently?") {
-                // TODO proper message
-                option("Yes") {
+                // https://youtu.be/nA8QMzwGiYc?t=892
+                option("Yes.") {
                     for (member in dungeonMembers) {
                         member["rand_ready_state_player${button}"] = "left"
                     }
                     leave(this)
                 }
-                option("No")
+                option("No.")
             }
         }
 
