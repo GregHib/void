@@ -8,6 +8,7 @@ import world.gregs.voidps.type.Tile
 class Daemonheim : Script {
     init {
         objectOperate("Jump-down", "rand_dragonkin_ruin_collapsed_floor_01_var") {
+            arriveDelay()
             face(Direction.NORTH)
             anim("rand_player_agility_jump_down")
             delay(1)

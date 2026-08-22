@@ -2,12 +2,16 @@ package content.area.wilderness.daemonheim
 
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import content.entity.player.modal.Tab
 import content.quest.clearInstance
+import content.quest.openTabs
 import content.skill.summoning.pet.dismissPet
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -41,9 +45,13 @@ class DungeoneeringParty : Script {
             refreshDetails()
         }
 
+        interfaceClosed("dungeoneering_party") {
+            clear("quest_tab")
+            refreshDetails()
+        }
+
         interfaceOption("Close", "dungeoneering_party:close") {
             open("quest_journals")
-            clear("quest_tab")
         }
 
         /*
@@ -75,13 +83,27 @@ class DungeoneeringParty : Script {
             }
         }
 
-        interfaceOption("Leave", "dungeon_complete:readybutton_player1") {
+        interfaceOption("Leave", "dungeon_complete:readybutton_player*") {
+            val button = it.component.removePrefix("readybutton_player").toInt()
+            val index = dungeonMembers.indexOf(this)
+            if (index != button) {
+                return@interfaceOption
+            }
             if (!inParty(this)) {
+                return@interfaceOption
+            }
+            val leader = dungeonLeader ?: return@interfaceOption
+            if (leader["dungeon_next_timer", 0] <= 5) {
+                // https://youtu.be/zsSofNiDfnw?t=231
+                message("It's too late to do that: the next dungeon is about to start.")
                 return@interfaceOption
             }
             choice("Leave the dungeon permanently?") {
                 // TODO proper message
                 option("Yes") {
+                    for (member in dungeonMembers) {
+                        member["rand_ready_state_player${button}"] = "left"
+                    }
                     leave(this)
                 }
                 option("No")
@@ -285,20 +307,32 @@ class DungeoneeringParty : Script {
             player.refreshDetails()
         }
 
-        private fun leaveDungeon(player: Player, last: Boolean) {
+        fun clear(player: Player) {
+            player.clearMinimap()
+            player.openTabs(Tab.Options)
+            player.closeInterfaces()
+            player.inventory.clear()
+            player.dismissPet()
+            player.equipment.clear()
+            player.queue.clear()
+            player.levels.clear()
             player.close("rand_overlay")
+            player.clear("show_daemonheim_map")
+            player.clear("dungeoneering_party_size")
+            player.clear("dungeon_deaths")
             player.clear("in_dungeoneering")
+            player.clear("in_multi_combat")
+            player.clearWalkTrigger()
+        }
+
+        private fun leaveDungeon(player: Player, last: Boolean) {
             if (!last) {
                 val currentClass = player["kinship_class", "none"]
                 val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
                 dropAll(player.inventory, player.tile, kinship)
                 dropAll(player.equipment, player.tile, kinship)
             }
-            player.inventory.clear()
-            player.dismissPet()
-            player.equipment.clear()
-            player.queue.clear()
-            player.levels.clear()
+            clear(player)
             player.longQueue("dungeon_exit") {
                 player.tele(3460, 3721, 1)
                 if (player["dungeoneering_stored_kinship", false]) {
