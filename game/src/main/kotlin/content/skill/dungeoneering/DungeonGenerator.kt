@@ -35,7 +35,7 @@ class DungeonGenerator(
     private val bossDoorLockChance: Double = 0.90,
 ) {
     val width: Int = when (size) {
-        DungeonSize.Small -> 5
+        DungeonSize.Small -> 4
         DungeonSize.Medium -> 4
         DungeonSize.Large -> 8
     }
