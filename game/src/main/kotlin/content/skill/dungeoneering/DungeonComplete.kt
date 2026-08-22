@@ -16,10 +16,13 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
@@ -292,7 +295,13 @@ class DungeonComplete : Script {
         val totalXp = calculateTotalXp(final, totalFloor)
         val tokens = calculateTokens(final, totalFloor, loreStat)
 
-        println("Final: $final total-xp: $totalXp tokens: $tokens")
+        if (!get("dungeon_reward_given", false)) {
+            println("Reward: ${totalXp} Tokens: $tokens")
+            exp(Skill.Dungeoneering, totalXp.toDouble())
+            inc("dungeoneering_tokens", tokens.toInt())
+            AuditLog.event(this, "completed_dungeon", floor, complexity, dungeonMembers.size, dungeon.playerCount, deaths, totalXp, tokens.toInt())
+            set("dungeon_reward_given", true)
+        }
         // TODO other messages
         if (get("dungeoneering_guide_mode", false)) {
 //            item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") FIXME c2?
@@ -322,9 +331,9 @@ class DungeonComplete : Script {
         chain += complexityBonus
         chain += difficultyOffset
         chain += pointsMod
-        chain *= computeAdditionalModifier(complexity)
+        chain *= complexityModifier(complexity)
         chain /= 10000
-        chain *= computeExplorationBonusModifier(player)
+        chain *= explorationBonusModifier(player)
         chain /= 10000
         chain *= deathPenaltyModifier
         chain /= 10000
@@ -333,14 +342,14 @@ class DungeonComplete : Script {
         return chain.toInt()
     }
 
-    private fun computeExplorationBonusModifier(player: Player): Int {
+    private fun explorationBonusModifier(player: Player): Int {
         if (player["varc_1196", 0] == 1) {
             return 9000
         }
         return 10000
 
     }
-    private fun computeAdditionalModifier(complexity: Int): Int {
+    private fun complexityModifier(complexity: Int): Int {
         return when (complexity) {
             1 -> 5000
             2 -> 5500
@@ -351,29 +360,34 @@ class DungeonComplete : Script {
         }
     }
 
-    private val DIFFICULTY_XP_OFFSETS: Map<Int, Map<Int, Int>> = mapOf(
-        1 to mapOf(1 to 0),
-        2 to mapOf(1 to -760, 2 to 507),
-        3 to mapOf(1 to -1520, 2 to 190, 3 to 950),
-        4 to mapOf(1 to -2280, 2 to -760, 3 to 633, 4 to 1457),
-        5 to mapOf(1 to -3040, 2 to -1267, 3 to 380, 4 to 1140, 5 to 1900),
-    )
-
-    fun xpOffset(partySize: Int, partyDifficulty: Int): Int {
-        return DIFFICULTY_XP_OFFSETS[partySize]?.get(partyDifficulty) ?: 0
-    }
-
     fun calculateTotalXp(finalModifier: Int, before: Int, revealProgress: Int = 100): Int {
         val after = (finalModifier.toLong() * before / 10000).toInt()
-        return Interpolation.lerp(revealProgress, 0..100, before..after)
+        val revealed = Interpolation.lerp(revealProgress, 0..100, before..after)
+        return (revealed + 5) / 10
     }
 
-    fun calculateTokens(finalModifier: Int, before: Int, loreStat: Int, revealProgress: Int = 100): String {
+    fun calculateTokens(finalModifier: Int, before: Int, loreStat: Int, revealProgress: Int = 100): Long {
         if (loreStat >= 2_000_000_000) {
-            return "n/a"
+            return -1
         }
         val after = (finalModifier.toLong() * before / 10000).toInt()
-        return "${Interpolation.lerp(revealProgress, 0..100, before..after)}%"
+        val revealed = Interpolation.lerp(revealProgress, 0..100, before..after)
+        return revealed.toLong() * 1000 / loreStat
     }
+
     private fun findDoor(x: Int, y: Int, id: String): GameObject? = GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)
+
+    companion object {
+        private val DIFFICULTY_XP_OFFSETS: Array<Map<Int, Int>> = arrayOf(
+            mapOf(1 to 0),
+            mapOf(1 to -760, 2 to 507),
+            mapOf(1 to -1520, 2 to 190, 3 to 950),
+            mapOf(1 to -2280, 2 to -760, 3 to 633, 4 to 1457),
+            mapOf(1 to -3040, 2 to -1267, 3 to 380, 4 to 1140, 5 to 1900),
+        )
+
+        private fun xpOffset(partySize: Int, partyDifficulty: Int): Int {
+            return DIFFICULTY_XP_OFFSETS.getOrNull(partySize - 1)?.get(partyDifficulty) ?: 0
+        }
+    }
 }

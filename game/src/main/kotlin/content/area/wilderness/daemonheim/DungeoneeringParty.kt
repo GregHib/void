@@ -322,6 +322,7 @@ class DungeoneeringParty : Script {
             player.clear("dungeon_deaths")
             player.clear("in_dungeoneering")
             player.clear("in_multi_combat")
+            player.clear("dungeon_reward_given")
             player.clearWalkTrigger()
         }
 
@@ -383,6 +384,10 @@ class DungeoneeringParty : Script {
                 player.clear("dungeoneering_member_$i")
                 player.clear("dungeoneering_member_disabled_xp_share_$i")
             }
+            player.softTimers.clear("dungeon_continuation")
+            player.softTimers.clear("dungeon_complete")
+            player.clear("dungeon_next_timer")
+            player.clear("dungeon_end_timer")
             player.refreshDetails()
         }
 
@@ -474,6 +479,16 @@ class DungeoneeringParty : Script {
             if (members.size > 1) {
                 members.remove(promote)
                 members.add(0, promote)
+            }
+            if (leader.softTimers.contains("dungeon_continuation")) {
+                promote["dungeon_next_timer"] = leader["dungeon_next_timer", 0]
+                leader.softTimers.clear("dungeon_continuation")
+                promote.softTimers.start("dungeon_continuation")
+            }
+            if (leader.softTimers.contains("dungeon_complete")) {
+                promote["dungeon_end_timer"] = leader["dungeon_end_timer", 0]
+                leader.softTimers.clear("dungeon_complete")
+                promote.softTimers.start("dungeon_complete")
             }
             promote["dungeoneering_party_leader"] = promote.name
             promote.dungeonMembers = members
