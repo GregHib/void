@@ -48,11 +48,6 @@ class DungeonEntrance : Script {
                         DungeoneeringParty.setLeader(this)
                         open("dungeoneering_party")
                         tab(Tab.QuestJournals)
-                        // Temp
-                        for (member in dungeonMembers) {
-                            member["dungeoneering_party_floor"] = 1
-                            member["dungeoneering_party_complexity"] = 1
-                        }
                     }
                     option("No.") {
                         message("You must be in a party to enter a dungeon.")
