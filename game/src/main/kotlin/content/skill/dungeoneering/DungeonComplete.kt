@@ -213,6 +213,7 @@ class DungeonComplete : Script {
     }
 
     private fun Player.dungeonComplete() {
+        set("had_party_open", interfaces.contains("dungeoneering_party"))
         minimap(Minimap.HideMap)
         closeTabs(Tab.Options)
         close("dungeoneering_party")

@@ -226,6 +226,7 @@ class DungeonEntrance : Script {
                     member["dungeoneering_stored_kinship"] = member.carriesItem("ring_of_kinship")
                     member["dungeoneering_stored_spellbook"] = member.spellBook
                 }
+                val hasParty = member.interfaces.contains("dungeoneering_party") || get("had_party_open", false)
                 DungeoneeringParty.clear(this)
                 member["show_daemonheim_map"] = true
                 member["dungeoneering_party_size"] = size.name
@@ -233,6 +234,11 @@ class DungeonEntrance : Script {
                 member["in_dungeoneering"] = true
                 member["in_multi_combat"] = true
                 member.open("dungeoneering_spellbook")
+                if (hasParty) {
+                    member.open("dungeoneering_party")
+                    clear("had_party_open")
+                }
+                member.tab(Tab.Inventory)
                 DungeonStartingItems.spawn(dungeon, complexity)
                 member.open("rand_overlay")
                 member.message("")
