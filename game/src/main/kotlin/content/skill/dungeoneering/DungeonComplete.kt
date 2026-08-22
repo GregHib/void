@@ -1,12 +1,17 @@
 package content.skill.dungeoneering
 
 import com.github.michaelbull.logging.InlineLogger
-import content.area.wilderness.daemonheim.DungeoneeringParty
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.entity.player.dialogue.type.choice
+import content.entity.player.modal.Tab
+import content.quest.closeTabs
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.Minimap
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.minimap
+import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,7 +20,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolati
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
 import java.util.concurrent.TimeUnit
@@ -27,19 +34,29 @@ class DungeonComplete : Script {
 
     init {
         objectOperate("End-dungeon", "rand_dungeon_end_trapdoor_unlocked_frozen") {
-            // TODO leader only?
+            if (get("dungeon_move_on_vote", false)) {
+                // https://youtu.be/lOQ0CfveKwY?t=710
+                message("You have already voted to move on.")
+                return@objectOperate
+            }
+            val leader = dungeonLeader ?: return@objectOperate
             choice("Are you sure you wish to proceed and take your party with you?") {
                 option("Yes, continue.") {
                     if (dungeonMembers.size == 1) {
                         dungeonComplete()
-                    } else {
-                        val leader = dungeonLeader ?: return@option
-                        if (!leader.contains("dungeon_complete_timer")) {
-                            val time = dungeonMembers.size * 60
-                            set("dungeon_complete_timer", time)
-                        }
-                        leader.softTimers.startIfAbsent("dungeon_complete")
+                        leader["dungeon_next_timer"] = 30
+                        leader.softTimers.startIfAbsent("dungeon_continuation")
+                        return@option
                     }
+                    set("dungeon_move_on_vote", true)
+                    if (leader.contains("dungeon_end_timer")) {
+                        val time = dungeonMembers.size * 60
+                        set("dungeon_end_timer", time)
+                        leader.softTimers.startIfAbsent("dungeon_complete")
+                    } else {
+                        dec("dungeon_end_timer", 60)
+                    }
+                    endMessage(leader)
                 }
                 option("No, wait.")
             }
@@ -58,14 +75,20 @@ class DungeonComplete : Script {
                 logger.warn { "Error finding dungeon door: $door" }
             }
             door?.replace("rand_dungeon_end_trapdoor_unlocked_frozen")
+            // TODO rewards (based on combat?)
+            // https://youtu.be/nSob5r5-UtE?t=563
+            // You received item:
+
+            // https://youtu.be/2aX5poT8Fnk?t=496
+            // <username> received item:
         }
 
-        timerStart("dungeon_completion") { 30 }
+        timerStart("dungeon_completion") { TimeUnit.SECONDS.toTicks(15) }
 
         timerTick("dungeon_completion") {
-            val seconds = dec("dungeon_complete_timer", 30)
-            message(this, seconds)
-            if (seconds == 0) {
+            val seconds = dec("dungeon_end_timer", 15)
+            endMessage(this)
+            if (seconds <= 0) {
                 Timer.CANCEL
             } else {
                 Timer.CONTINUE
@@ -73,36 +96,83 @@ class DungeonComplete : Script {
         }
 
         timerStop("dungeon_completion") {
-            // TODO
+            for (member in dungeonMembers) {
+                member.dungeonComplete()
+            }
+            set("dungeon_next_timer", TimeUnit.SECONDS.toTicks(30))
+            nextMessage(this)
+            softTimers.startIfAbsent("dungeon_continuation")
         }
 
-        interfaceOption("Ready", "dungeon_complete:readybutton_player1") {
-            DungeoneeringParty.leave(this)
+        interfaceOption("Ready", "dungeon_complete:readybutton_player*") {
+            val button = it.component.removePrefix("readybutton_player").toInt()
+            val index = dungeonMembers.indexOf(this) + 1
+            if (index != button) {
+                return@interfaceOption
+            }
+            val leader = dungeonLeader ?: return@interfaceOption
+            if (leader["dungeon_next_timer", 0] <= 5) {
+                // https://youtu.be/zsSofNiDfnw?t=231
+                message("It's too late to do that: the next dungeon is about to start.")
+                return@interfaceOption
+            }
+            if (get("rand_ready_state_player${button}", "unset") == "ready") {
+                return@interfaceOption
+            }
+            for (member in dungeonMembers) {
+                member["rand_ready_state_player${button}"] = "ready"
+            }
+            val allReady = (1..dungeonMembers.size).all { i -> get("rand_ready_state_player$i", "unset") != "unset" }
+            if (allReady) {
+                leader["dungeon_next_timer"] = 0
+            }
+        }
+
+        timerStart("dungeon_continuation") { 1 }
+
+        timerTick("dungeon_continuation") {
+            val ticks = dec("dungeon_next_timer")
+            nextMessage(this)
+            if (ticks <= 0) {
+                Timer.CANCEL
+            } else {
+                Timer.CONTINUE
+            }
+        }
+
+    }
+
+    private fun nextMessage(player: Player) {
+        val ticks = player["dungeon_next_timer", 0]
+        val seconds = TICKS.toSeconds(ticks).toInt()
+        if (player["dungeon_next_seconds", 0] == seconds) {
+            return
+        }
+        player["dungeon_next_seconds"] = seconds
+        val message = when (seconds) {
+            30, 25, 20, 15, 10, 5, 4, 3, 2, 1 -> "Time until next dungeon: $seconds"
+            else -> return
+        }
+        for (member in player.dungeonMembers) {
+            member.message(message)
         }
     }
 
-    private fun message(player: Player, seconds: Int) {
+    private fun endMessage(player: Player) {
+        val seconds = player["dungeon_end_timer", 0]
         val minutes = TimeUnit.SECONDS.toMinutes(seconds.toLong()).toInt()
-        when (minutes) {
-            240 -> player.message("4 minutes until dungeon ends.")
-            180 -> player.message("3 minutes until dungeon ends.")
-            120 -> player.message("2 minutes until dungeon ends.")
-            60 -> player.message("1 minute until dungeon ends.")
-            30 -> player.message("30 seconds until dungeon ends.")
-            15 -> player.message("15 seconds until dungeon ends.")
+        val message = if (minutes == 0) {
+            if (seconds == 30 || seconds == 15) {
+                "$seconds seconds until dungeon ends."
+            } else {
+                return
+            }
+        } else {
+            "$minutes ${"minute".plural(minutes)} until dungeon ends."
         }
-        // TODO broadcast
-        // 2 minutes until dungeon ends.
-        // 1 minute until dungeon ends.
-        // 30 seconds until dungeon ends.
-        // 15 seconds until dungeon ends.
-        // Time until next dungeon: 30 (25, 20, 15, 10, 5, 4, 3, 2, 1)
-
-        // https://youtu.be/nSob5r5-UtE?t=563
-        // You received item:
-
-        // https://youtu.be/2aX5poT8Fnk?t=496
-        // <username> received item:
+        for (member in player.dungeonMembers) {
+            member.message(message)
+        }
     }
 
     private fun baseFloorXp(floor: Int, size: String): Int {
@@ -143,13 +213,17 @@ class DungeonComplete : Script {
     }
 
     private fun Player.dungeonComplete() {
-
+        minimap(Minimap.HideMap)
+        closeTabs(Tab.Options)
+        close("dungeoneering_party")
         // https://youtu.be/brr5Ou1SjVE?t=655
         // item(3028, "The next floor is not available at your Dungeoneering level. Consider resetting your progress to gain the best ongoing rate of xp. Click the advisor button for more information.")
-
-        "You have already voted to move on." // https://i1058.photobucket.com/albums/t409/PaddyChe/41fb1db6.png
         closeInterfaces()
         open("dungeon_complete")
+        for (i in 1..5) {
+            set("rand_ready_state_player$i", false, "unset")
+            sendVariable("rand_ready_state_player$i")
+        }
 
         // Base XP
         // Floor XP - Depends on floor number, size and difficulty
@@ -220,7 +294,6 @@ class DungeonComplete : Script {
         }
 
         // TODO other messages
-
         if (get("dungeoneering_guide_mode", false)) {
 //            item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") FIXME c2?
         }

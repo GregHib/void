@@ -2,6 +2,7 @@ package content.area.wilderness.daemonheim
 
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
@@ -14,23 +15,21 @@ import content.skill.dungeoneering.DungeonMap
 import content.skill.dungeoneering.DungeonSize
 import content.skill.dungeoneering.DungeonStartingItems
 import content.skill.magic.spell.spellBook
-import content.skill.summoning.pet.dismissPet
 import content.skill.summoning.pet.pet
+import net.pearx.kasechange.toPascalCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerRights
-import world.gregs.voidps.engine.entity.character.player.hasRights
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inv.carriesItem
-import world.gregs.voidps.engine.inv.clear
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.engineQueue
@@ -104,6 +103,16 @@ class DungeonEntrance : Script {
             if (!allMembersCanEnter()) {
                 return@adminCommand
             }
+            generate(size, dungeonMembers.size)
+        }
+
+        timerStop("dungeon_continuation") {
+            val floor = inc("dungeoneering_party_floor")
+            for (member in dungeonMembers) {
+                member["dungeoneering_party_floor"] = floor
+            }
+            val partySize = get("dungeoneering_party_size", "small")
+            val size = DungeonSize.valueOf(partySize.toPascalCase())
             generate(size, dungeonMembers.size)
         }
     }
@@ -205,7 +214,7 @@ class DungeonEntrance : Script {
             member["dungeon"] = dungeon
             member["instance"] = instance.id
             dungeon.players.add(member.index)
-            member["delay"] = 3
+            member.closeInterfaces()
         }
         val guideMode = get("dungeoneering_guide_mode", false)
         val startRoom = dungeon.start()
@@ -213,18 +222,17 @@ class DungeonEntrance : Script {
         val tile = dungeon.startTile()
         strongQueue("enter_dungeon", 2) {
             for (member in dungeonMembers) {
+                if (!member.inDungeoneering) {
+                    member["dungeoneering_stored_kinship"] = member.carriesItem("ring_of_kinship")
+                    member["dungeoneering_stored_spellbook"] = member.spellBook
+                }
+                DungeoneeringParty.clear(this)
                 member["show_daemonheim_map"] = true
                 member["dungeoneering_party_size"] = size.name
                 member["dungeon_deaths"] = 0
                 member["in_dungeoneering"] = true
                 member["in_multi_combat"] = true
-                member["dungeoneering_stored_kinship"] = member.carriesItem("ring_of_kinship")
-                member["dungeoneering_stored_spellbook"] = member.spellBook
                 member.open("dungeoneering_spellbook")
-                member.levels.clear()
-                member.inventory.clear()
-                member.equipment.clear()
-                member.dismissPet()
                 DungeonStartingItems.spawn(dungeon, complexity)
                 member.open("rand_overlay")
                 member.message("")
