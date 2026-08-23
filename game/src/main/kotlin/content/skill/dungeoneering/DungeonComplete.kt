@@ -121,11 +121,11 @@ class DungeonComplete : Script {
                 message("It's too late to do that: the next dungeon is about to start.")
                 return@interfaceOption
             }
-            if (get("rand_ready_state_player${button}", "unset") == "ready") {
+            if (get("rand_ready_state_player$button", "unset") == "ready") {
                 return@interfaceOption
             }
             for (member in dungeonMembers) {
-                member["rand_ready_state_player${button}"] = "ready"
+                member["rand_ready_state_player$button"] = "ready"
             }
             val allReady = (1..dungeonMembers.size).all { i -> get("rand_ready_state_player$i", "unset") != "unset" }
             if (allReady) {
@@ -144,7 +144,6 @@ class DungeonComplete : Script {
                 Timer.CONTINUE
             }
         }
-
     }
 
     private fun continueCountDown(leader: Player) {
@@ -359,10 +358,6 @@ class DungeonComplete : Script {
         return substitute
     }
 
-    private val FLOOR_GROUPS = listOf(1..11, 12..17, 18..29, 30..35, 36..47, 48..60)
-
-    fun floorGroup(floor: Int): IntRange = FLOOR_GROUPS.first { floor in it }
-
     private fun computeFinalModifierBasisPoints(player: Player, size: String, bonus: Int, partySize: Int, partyDifficulty: Int, deaths: Int, nerf: Int, pointsMod: Int, complexity: Int): Int {
         val sizeBonus = when (size) {
             "medium" -> 792
@@ -397,15 +392,13 @@ class DungeonComplete : Script {
         return 10000
     }
 
-    private fun complexityModifier(complexity: Int): Int {
-        return when (complexity) {
-            1 -> 5000
-            2 -> 5500
-            3 -> 6000
-            4 -> 6500
-            5 -> 7000
-            else -> 10000
-        }
+    private fun complexityModifier(complexity: Int): Int = when (complexity) {
+        1 -> 5000
+        2 -> 5500
+        3 -> 6000
+        4 -> 6500
+        5 -> 7000
+        else -> 10000
     }
 
     fun calculateTotalXp(finalModifier: Int, before: Int, revealProgress: Int = 100): Int {
@@ -426,6 +419,10 @@ class DungeonComplete : Script {
     private fun findDoor(x: Int, y: Int, id: String): GameObject? = GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)
 
     companion object {
+        private val FLOOR_GROUPS = listOf(1..11, 12..17, 18..29, 30..35, 36..47, 48..60)
+
+        private fun floorGroup(floor: Int): IntRange = FLOOR_GROUPS.first { floor in it }
+
         private val DIFFICULTY_XP_OFFSETS: Array<Map<Int, Int>> = arrayOf(
             mapOf(1 to 0),
             mapOf(1 to -760, 2 to 507),
@@ -434,8 +431,6 @@ class DungeonComplete : Script {
             mapOf(1 to -3040, 2 to -1267, 3 to 380, 4 to 1140, 5 to 1900),
         )
 
-        private fun xpOffset(partySize: Int, partyDifficulty: Int): Int {
-            return DIFFICULTY_XP_OFFSETS.getOrNull(partySize - 1)?.get(partyDifficulty) ?: 0
-        }
+        private fun xpOffset(partySize: Int, partyDifficulty: Int): Int = DIFFICULTY_XP_OFFSETS.getOrNull(partySize - 1)?.get(partyDifficulty) ?: 0
     }
 }

@@ -38,6 +38,7 @@ class DungeoneeringParty : Script {
         exited("daemonheim_castle") {
             if (!inDungeoneering) {
                 leave(this)
+                close("dungeoneering_party")
             }
         }
 
@@ -103,7 +104,7 @@ class DungeoneeringParty : Script {
                 // https://youtu.be/nA8QMzwGiYc?t=892
                 option("Yes.") {
                     for (member in dungeonMembers) {
-                        member["rand_ready_state_player${button}"] = "left"
+                        member["rand_ready_state_player$button"] = "left"
                     }
                     leave(this)
                 }
