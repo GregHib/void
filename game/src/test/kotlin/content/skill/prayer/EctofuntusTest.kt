@@ -87,6 +87,9 @@ class EctofuntusTest : WorldTest() {
         }
 
         player.objectOption(hopper(), "Fill")
+        tick(20)
+        assertEquals(4, player.inventory.count("big_bones"), "bones leave the inventory when the hopper is loaded")
+        assertEquals(0, player.inventory.count("big_bonemeal"))
         tick(200)
 
         assertEquals(5, player.inventory.count("big_bonemeal"))

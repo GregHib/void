@@ -14,9 +14,6 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
-import world.gregs.voidps.engine.inv.transact.TransactionError
-import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
-import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -231,6 +228,9 @@ class BoneGrinder : Script {
             }
             val filling = anim("fill_bone_hopper")
             sound("fill_grinder")
+            if (!inventory.remove(bones.rowId)) {
+                return
+            }
             pause(filling.coerceAtLeast(GRIND_TICKS))
 
             if (!station(GRINDER_TILE, Direction.NORTH)) {
@@ -251,12 +251,7 @@ class BoneGrinder : Script {
     }
 
     private fun Player.collect(row: RowDefinition): Boolean {
-        val bonemeal = row.item("bonemeal")
-        inventory.transaction {
-            remove(row.rowId)
-            replace("empty_pot", bonemeal)
-        }
-        if (inventory.transaction.error != TransactionError.None) {
+        if (!inventory.replace("empty_pot", row.item("bonemeal"))) {
             return false
         }
         anim("empty_bone_bin")
