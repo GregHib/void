@@ -8,12 +8,17 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import skillCreation
+import walk
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.login.protocol.visual.update.Face
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertTrue
 
@@ -33,6 +38,8 @@ class EctofuntusTest : WorldTest() {
         return player
     }
 
+    private fun facing(direction: Direction): Int = Face.getFaceDirection(direction.delta.x * 100, direction.delta.y * 100)
+
     private fun worshipper(setup: Player.() -> Unit): Player {
         val player = createPlayer(Tile(3660, 3519))
         player.setup()
@@ -47,17 +54,23 @@ class EctofuntusTest : WorldTest() {
         }
 
         player.objectOption(hopper(), "Fill")
-        tick(6)
+        tick(12)
+        assertEquals(Tile(3661, 3526, 1), player.tile)
+        assertEquals(facing(Direction.WEST), player.visuals.face.direction)
         assertEquals(1, player.get("bone_grinder_stage", 0))
         assertEquals("dragon_bones", player.get("bone_grinder_bones", ""))
         assertEquals(0, player.inventory.count("dragon_bones"))
 
         player.objectOption(mill(), "Wind")
-        tick(6)
+        tick(12)
+        assertEquals(Tile(3659, 3524, 1), player.tile)
+        assertEquals(facing(Direction.NORTH), player.visuals.face.direction)
         assertEquals(2, player.get("bone_grinder_stage", 0))
 
         player.objectOption(bin(), "Empty")
-        tick(6)
+        tick(12)
+        assertEquals(Tile(3658, 3524, 1), player.tile)
+        assertEquals(facing(Direction.NORTH), player.visuals.face.direction)
         assertEquals(1, player.inventory.count("dragon_bonemeal"))
         assertEquals(0, player.inventory.count("empty_pot"))
         assertEquals(0, player.get("bone_grinder_stage", 0))
@@ -74,11 +87,94 @@ class EctofuntusTest : WorldTest() {
         }
 
         player.objectOption(hopper(), "Fill")
-        tick(60)
+        tick(200)
 
         assertEquals(5, player.inventory.count("big_bonemeal"))
         assertEquals(0, player.inventory.count("big_bones"))
         assertEquals(0, player.inventory.count("empty_pot"))
+        assertEquals(Tile(3658, 3524, 1), player.tile)
+    }
+
+    @Test
+    fun `Walking away interrupts automatic mode`() {
+        val player = grinderPlayer {
+            set("bone_grinder_auto", true)
+            repeat(5) {
+                inventory.add("big_bones")
+                inventory.add("empty_pot")
+            }
+        }
+
+        player.objectOption(hopper(), "Fill")
+        tick(30)
+        val ground = player.inventory.count("big_bonemeal")
+        player.walk(Tile(3663, 3530, 1))
+        tick(200)
+
+        assertTrue(ground < 5, "expected the batch to still be running after 30 ticks")
+        assertEquals(ground, player.inventory.count("big_bonemeal"))
+        assertEquals(5 - ground, player.inventory.count("big_bones"))
+    }
+
+    @Test
+    fun `Grind a silver bar into dust without a pot`() {
+        val player = grinderPlayer {
+            inventory.add("silver_bar")
+        }
+
+        player.itemOnObject(hopper(), 0)
+        tick(14)
+        player.skillCreation("Silver dust", 1)
+        tick(6)
+
+        assertEquals(1, player.inventory.count("silver_dust"))
+        assertEquals(0, player.inventory.count("silver_bar"))
+        assertEquals(0, player.get("bone_grinder_stage", 0))
+    }
+
+    @Test
+    fun `Grind the chosen number of silver bars`() {
+        val player = grinderPlayer {
+            repeat(5) { inventory.add("silver_bar") }
+        }
+
+        player.itemOnObject(hopper(), 0)
+        tick(14)
+        player.skillCreation("Silver dust", 5)
+
+        val fill = AnimationDefinitions.get("fill_bone_hopper").id
+        val animations = mutableListOf<Int>()
+        var dustPerAnimation = 0
+        repeat(40) { elapsed ->
+            if (player.visuals.animation.force == fill) {
+                animations.add(elapsed)
+            }
+            dustPerAnimation = maxOf(dustPerAnimation, player.inventory.count("silver_dust") - animations.size)
+            tick()
+        }
+        val length = AnimationDefinitions.get("fill_bone_hopper")["ticks", 0]
+        assertEquals(5, animations.size)
+        // The first interval is short by however far into the tick the batch started.
+        assertEquals(List(3) { length }, animations.zipWithNext { a, b -> b - a }.drop(1))
+        assertEquals(0, dustPerAnimation, "no dust may be created before its animation has played")
+
+        assertEquals(5, player.inventory.count("silver_dust"))
+        assertEquals(0, player.inventory.count("silver_bar"))
+    }
+
+    @Test
+    fun `Grind only the requested number of silver bars`() {
+        val player = grinderPlayer {
+            repeat(5) { inventory.add("silver_bar") }
+        }
+
+        player.itemOnObject(hopper(), 0)
+        tick(14)
+        player.skillCreation("Silver dust", 2)
+        tick(60)
+
+        assertEquals(2, player.inventory.count("silver_dust"))
+        assertEquals(3, player.inventory.count("silver_bar"))
     }
 
     @Test

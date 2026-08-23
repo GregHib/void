@@ -1,6 +1,7 @@
 package content.skill.prayer.bone
 
 import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.statement
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
@@ -17,23 +18,41 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class BoneGrinder : Script {
 
     init {
-        objectOperate("Fill", "ectofuntus_hopper") {
+        objectOperate("Fill", "ectofuntus_hopper", arrive = false) {
+            if (!station(HOPPER_TILE, Direction.WEST)) {
+                return@objectOperate
+            }
             fill(null)
         }
 
-        itemOnObjectOperate(obj = "ectofuntus_hopper") { (_, item) ->
+        itemOnObjectOperate(obj = "ectofuntus_hopper", arrive = false) { (_, item) ->
+            if (!station(HOPPER_TILE, Direction.WEST)) {
+                return@itemOnObjectOperate
+            }
+            if (item.id == SILVER_BAR) {
+                grindSilver()
+                return@itemOnObjectOperate
+            }
             fill(item)
         }
 
-        objectOperate("Wind", "ectofuntus_bone_grinder") {
+        objectOperate("Wind", "ectofuntus_bone_grinder", arrive = false) {
+            if (!station(GRINDER_TILE, Direction.NORTH)) {
+                return@objectOperate
+            }
             wind()
         }
 
-        objectOperate("Empty", "ectofuntus_bin") {
+        objectOperate("Empty", "ectofuntus_bin", arrive = false) {
+            if (!station(BIN_TILE, Direction.NORTH)) {
+                return@objectOperate
+            }
             empty()
         }
 
@@ -117,6 +136,41 @@ class BoneGrinder : Script {
         message("You empty the bin into the pot.")
     }
 
+    /**
+     * Silver bars skip the hopper, wind and bin steps entirely; each bar is ground straight
+     * into dust and no pot is used to collect it. Each bar waits out the full length of the
+     * fill animation so one visible grind produces one dust.
+     */
+    private suspend fun Player.grindSilver() {
+        val (_, amount) = makeAmount(
+            items = listOf(SILVER_DUST),
+            type = "Make",
+            maximum = inventory.count(SILVER_BAR),
+            text = "How many would you like to make?",
+        )
+        delay()
+        softTimers.start("grind_silver")
+        crush(amount)
+    }
+
+    private fun Player.crush(amount: Int) {
+        if (amount <= 0 || !inventory.contains(SILVER_BAR)) {
+            softTimers.stop("grind_silver")
+            return
+        }
+        face(Direction.WEST)
+        val ticks = anim("fill_bone_hopper")
+        sound("fill_grinder")
+        weakQueue("grind_silver", ticks.coerceAtLeast(GRIND_TICKS)) {
+            if (!inventory.replace(SILVER_BAR, SILVER_DUST)) {
+                softTimers.stop("grind_silver")
+                return@weakQueue
+            }
+            message("You grind the silver bar into dust.")
+            crush(amount - 1)
+        }
+    }
+
     private fun Player.status() {
         val mode = if (get("bone_grinder_auto", false)) "automatic" else "manual"
         val state = when (get("bone_grinder_stage", 0)) {
@@ -141,39 +195,74 @@ class BoneGrinder : Script {
     }
 
     /**
-     * Automatic mode; runs the fill, wind and empty steps unattended, repeating until the
-     * player runs out of either bones or empty pots.
+     * Walks to [target] and turns to [direction], resting a tick before the walk, before the turn
+     * and before the caller's animation so each part of the sequence reads separately. Every wait
+     * is interruptible, so walking away abandons the interaction; false when they never arrived.
      */
-    private fun Player.grind(row: RowDefinition) {
-        if (!inventory.contains("empty_pot")) {
-            message("You don't have any pots to take the bonemeal with.")
-            return
-        }
-        anim("fill_bone_hopper")
-        sound("fill_grinder")
-        weakQueue("bone_grinder", GRIND_TICKS) {
-            anim("wind_bone_grinder")
-            sound("grinder_grinding")
-            weakQueue("bone_grinder", GRIND_TICKS) {
-                collect(row)
+    private suspend fun Player.station(target: Tile, direction: Direction): Boolean {
+        pause(1)
+        walkTo(target)
+        var ticks = 0
+        while (tile != target) {
+            if (ticks++ >= STATION_TIMEOUT) {
+                return false
             }
+            pause(1)
+        }
+        pause(1)
+        face(direction)
+        pause(1)
+        return true
+    }
+
+    /**
+     * Automatic mode; walks between the hopper, grinder and bin running each step unattended,
+     * repeating until the player runs out of either bones or empty pots.
+     */
+    private suspend fun Player.grind(row: RowDefinition) {
+        var bones = row
+        while (true) {
+            if (!inventory.contains("empty_pot")) {
+                message("You don't have any pots to take the bonemeal with.")
+                return
+            }
+            if (!station(HOPPER_TILE, Direction.WEST)) {
+                return
+            }
+            val filling = anim("fill_bone_hopper")
+            sound("fill_grinder")
+            pause(filling.coerceAtLeast(GRIND_TICKS))
+
+            if (!station(GRINDER_TILE, Direction.NORTH)) {
+                return
+            }
+            val winding = anim("wind_bone_grinder")
+            sound("grinder_grinding")
+            pause(winding.coerceAtLeast(GRIND_TICKS))
+
+            if (!station(BIN_TILE, Direction.NORTH)) {
+                return
+            }
+            if (!collect(bones)) {
+                return
+            }
+            bones = boneRow(null) ?: return
         }
     }
 
-    private fun Player.collect(row: RowDefinition) {
+    private fun Player.collect(row: RowDefinition): Boolean {
         val bonemeal = row.item("bonemeal")
         inventory.transaction {
             remove(row.rowId)
             replace("empty_pot", bonemeal)
         }
         if (inventory.transaction.error != TransactionError.None) {
-            return
+            return false
         }
         anim("empty_bone_bin")
         sound("grinder_empty")
         message("You grind the ${row.rowId.toLowerSpaceCase()} into the pot.")
-        val next = boneRow(null) ?: return
-        grind(next)
+        return true
     }
 
     private fun Player.boneRow(item: Item?): RowDefinition? {
@@ -193,5 +282,11 @@ class BoneGrinder : Script {
         private const val HOPPER = 1
         private const val BIN = 2
         private const val GRIND_TICKS = 3
+        private const val STATION_TIMEOUT = 50
+        private const val SILVER_BAR = "silver_bar"
+        private const val SILVER_DUST = "silver_dust"
+        private val HOPPER_TILE = Tile(3661, 3526, 1)
+        private val GRINDER_TILE = Tile(3659, 3524, 1)
+        private val BIN_TILE = Tile(3658, 3524, 1)
     }
 }

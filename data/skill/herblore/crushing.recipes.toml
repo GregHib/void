@@ -9,17 +9,6 @@ add = ["unicorn_horn_dust"]
 animation = "pestle_and_mortar"
 message = "You crush the unicorn horn."
 
-[silver_dust]
-skill = "herblore"
-level = 1
-xp = 0.0
-ticks = 1
-requires = ["pestle_and_mortar"]
-remove = ["silver_bar"]
-add = ["silver_dust"]
-animation = "pestle_and_mortar"
-message = "You crush the silver bar."
-
 [kebbit_teeth_dust]
 skill = "herblore"
 level = 1
