@@ -116,6 +116,7 @@ class ApeAtoll : Script {
                         exactMoveDelay(Tile(2753, 2744), 5, Direction.SOUTH)
                     } else {
                         exactMoveDelay(Tile(2753, 2743), 30, Direction.SOUTH)
+                        clearAnim()
                     }
                     renderEmote(if (monkey) "ninja_monkey_swim" else "swim")
                     sound("water_splash")

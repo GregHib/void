@@ -168,6 +168,7 @@ interface Items {
 
         fun destroyed(player: Player, item: Item) {
             destroyed[item.id]?.invoke(player, item)
+            destroyed["*"]?.invoke(player, item)
         }
 
         fun consumable(player: Player, item: Item): Boolean {

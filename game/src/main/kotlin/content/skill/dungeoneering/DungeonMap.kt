@@ -1,6 +1,8 @@
 package content.skill.dungeoneering
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
@@ -19,6 +21,12 @@ class DungeonMap(
 ) {
     var region = Region.EMPTY
     val players = mutableListOf<Int>()
+
+    val members: List<Player>
+        get() = players.mapNotNull { i -> Players.indexed(i) }
+
+    val skills: Map<Skill, Int>
+        get() = maxSkills(this@DungeonMap.members)
 
     private val Direction.index: Int
         get() = when (this) {
@@ -194,11 +202,39 @@ class DungeonMap(
 
     fun start() = room(start.x, start.y)!!
 
+    fun startTile() = tile(start()).add(8, 8)
+
     fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
+
+    fun tile(room: DungeonRoom): Tile = region.tile.add(room.tile.x * 16, room.tile.y * 16)
+
+    fun tile(room: DungeonRoom, x: Int, y: Int): Tile {
+        val rotX = rotateX(x, y, room.rotation, 15)
+        val rotY = rotateY(rotX, y, room.rotation, 15)
+        return tile(room).add(rotX, rotY)
+    }
 
     fun traverse(filter: (from: DungeonRoom, door: DungeonDoor, neighbour: DungeonRoom) -> Boolean = { _, _, _ -> true }): List<DungeonRoom> = traverse(start(), width, height, grid, filter)
 
     companion object {
+        fun maxSkills(members: List<Player>): Map<Skill, Int> = Skill.all.associateWith { skill -> members.maxOf { it.levels.getMax(skill) } }
+
+        fun rotateX(x: Int, y: Int, rotation: Int, size: Int) = when (rotation) {
+            0 -> x
+            1 -> size - y
+            2 -> size - x
+            3 -> y
+            else -> x
+        }
+
+        fun rotateY(x: Int, y: Int, rotation: Int, size: Int) = when (rotation) {
+            0 -> y
+            1 -> x
+            2 -> size - y
+            3 -> size - x
+            else -> y
+        }
+
         /**
          * Converts a key string ID (e.g. "blue_rectangle_key") into a 5-letter abbreviation.
          * Takes the first letter of the colour and the first letter of the shape.

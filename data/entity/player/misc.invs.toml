@@ -510,7 +510,7 @@ defaults = [
     { id = "air_rune", amount = 300 },
 ]
 
-[rand_bound]
+[dungeoneering_bound]
 id = 573
 
 [thigui_fence_low_nocosh]

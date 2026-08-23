@@ -4,6 +4,9 @@ id = 934
 [teammate_stats]
 id = 936
 
+[dungeon_book]
+id = 937
+
 [dungeon_complexity]
 id = 938
 
@@ -486,6 +489,9 @@ id = 16
 
 [.sort_teleport]
 id = 17
+
+[.home_teleport]
+id = 24
 
 [.wind_strike]
 id = 25

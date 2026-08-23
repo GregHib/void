@@ -1,5 +1,7 @@
 package content.skill.constitution
 
+import content.entity.combat.hit.directHit
+import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.ItemOption
@@ -74,7 +76,12 @@ class Eating : Script {
         }
         val range: IntRange = item.def.getOrNull("heals") ?: return
         val amount = range.random()
-        if (amount > 0 && player.levels.restore(Skill.Constitution, amount) > 0) {
+        if (amount <= 0) {
+            return
+        }
+        if (item.def.contains(Params.DUNGEONEERING)) {
+            player.directHit(amount, "healed")
+        } else if (player.levels.restore(Skill.Constitution, amount) > 0) {
             player["om_nom_nom_nom_task"] = true
         }
     }

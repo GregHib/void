@@ -31,11 +31,6 @@ persist = true
 format = "boolean"
 persist = true
 
-[dungeoneering_floor]
-format = "int"
-persist = true
-default = 1
-
 [dungeoneering_complexity]
 format = "int"
 persist = true
@@ -46,5 +41,271 @@ format = "boolean"
 persist = true
 
 [dungeoneering_disable_xp_share]
+format = "boolean"
+persist = true
+
+[dungeoneering_party_size]
+format = "list"
+persist = true
+values = ["small", "medium", "large"]
+
+[dungeoneering_stored_kinship]
+format = "boolean"
+persist = true
+
+[dungeoneering_stored_spellbook]
+format = "string"
+persist = true
+
+[dungeoneering_bound_ammo_id]
+format = "string"
+persist = true
+
+[dungeoneering_bound_ammo_count]
+# rs3 varp 2165
+format = "int"
+persist = true
+
+[dungeoneering_floor_unlocked]
+format = "int"
+persist = true
+
+[dungeon_floor_1_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_2_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_3_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_4_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_5_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_6_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_7_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_8_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_9_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_10_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_11_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_12_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_13_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_14_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_15_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_16_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_17_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_18_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_19_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_20_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_21_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_22_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_23_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_24_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_25_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_26_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_27_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_28_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_29_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_30_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_31_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_32_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_33_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_34_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_35_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_36_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_37_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_38_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_39_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_40_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_41_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_42_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_43_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_44_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_45_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_46_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_47_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_48_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_49_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_50_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_51_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_52_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_53_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_54_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_55_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_56_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_57_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_58_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_59_complete]
+format = "boolean"
+persist = true
+
+[dungeon_floor_60_complete]
 format = "boolean"
 persist = true

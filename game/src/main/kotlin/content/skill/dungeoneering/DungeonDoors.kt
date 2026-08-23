@@ -1,11 +1,13 @@
 package content.skill.dungeoneering
 
+import content.entity.player.dialogue.type.statement
 import content.quest.instance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -39,6 +41,9 @@ class DungeonDoors : Script {
                 return@objectOperate
             }
             if (!inventory.remove(door.key)) {
+                if (get("dungeoneering_guide_mode", false)) {
+                    statement("You need to find a key that matches the symbol on the door. Keep your eyes open for it in each room of the dungeon.")
+                }
                 message("You don't have the correct key.")
                 return@objectOperate
             }
@@ -89,6 +94,8 @@ class DungeonDoors : Script {
             anim("disarm_locked_door")
             delay(2)
             target.replace(target.id.replace("broken_pulley", "fixed_pulley"))
+            // https://youtu.be/ntOjjRjAh-s?t=495
+            message("You repair the pulley rope, allowing the door to be raised.")
         }
 
         objectOperate("Mine", "pile_of_rocks_*") { (target) ->
@@ -151,6 +158,14 @@ class DungeonDoors : Script {
         val under = GameObjects.getLayer(target.tile.add(dir.inverse()), ObjectLayer.GROUND)
         if (under == null) {
             player.approachRange(1)
+            if (target.id.startsWith("guardian")) {
+                for (zone in player.dungeonRoomBounds().toZones(0)) {
+                    if (NPCs.at(zone).any { it.def.options.contains("Attack") }) {
+                        player.message("The door won't unlock until all of the guardians in the room have been slain.")
+                        return
+                    }
+                }
+            }
             player.openDoor(target)
             return
         }
@@ -179,7 +194,7 @@ class DungeonDoors : Script {
     val Delta.room: Delta
         get() = Delta(x / 16, y / 16)
 
-    private fun Player.openDoor(target: GameObject) {
+    private suspend fun Player.openDoor(target: GameObject) {
         val dungeon = dungeonMap ?: return
         val instance = instance() ?: return
         val origin = target.tile.delta(instance.tile)
@@ -190,6 +205,9 @@ class DungeonDoors : Script {
         if (!adj.open) {
             adj.open(this, dungeon)
             return
+        }
+        if (adj.type == DungeonRoomType.Boss && get("dungeoneering_guide_mode", false)) {
+            statement("You are about to enter a boss room. Make sure you are prepared for a challenge.")
         }
         if (direction.isHorizontal()) {
             tele(Tile(x = target.tile.x + direction.delta.x * 2, y = tile.y.coerceIn(target.tile.y, target.tile.y + 1)))
