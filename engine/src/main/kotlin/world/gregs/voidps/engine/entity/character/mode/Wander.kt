@@ -23,7 +23,7 @@ class Wander(
     private var lastTile = Tile.EMPTY
 
     override fun tick() {
-        if (npc.tile == lastTile) {
+        if (npc.tile != lastTile) {
             stuckCounter = 0
         } else if (stuckCounter++ >= stuckLimit) {
             npc.tele(spawn)

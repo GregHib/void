@@ -25,7 +25,7 @@ internal class HuntModeTest : WorldTest() {
     @Test
     fun `Cowardly attack low level player when in range`() {
         val player = createPlayer(emptyTile)
-        val npc = createNPC("giant_spider", emptyTile.addY(2))
+        val npc = createNPC("highwayman_no_hood", emptyTile.addY(2))
         assertFalse(player.underAttack)
         assertTrue(Settings["world.npcs.aggression", false])
 
@@ -39,8 +39,8 @@ internal class HuntModeTest : WorldTest() {
     @Test
     fun `Cowardly doesn't attack high level player when in range`() {
         val player = createPlayer(emptyTile)
-        val npc = createNPC("giant_spider", emptyTile.addY(1))
-        player.combatLevel = 5
+        val npc = createNPC("highwayman_no_hood", emptyTile.addY(1))
+        player.combatLevel = 11
         assertFalse(player.underAttack)
 
         tick(6)

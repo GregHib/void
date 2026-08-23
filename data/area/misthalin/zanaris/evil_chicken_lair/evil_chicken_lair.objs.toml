@@ -1,0 +1,23 @@
+[chicken_shrine]
+id = 12093
+examine = "A shrine to the Evil Chicken."
+
+[evil_chicken_lair_portal]
+id = 12260
+examine = "A portal leading out of the lair."
+
+[evil_chicken_lair_tunnel_entrance]
+id = 12253
+examine = "There is a sheer drop below the tunnel."
+
+[evil_chicken_lair_tunnel_entrance_rope]
+id = 12254
+examine = "A rope leading down into the tunnel."
+
+[evil_chicken_lair_rope]
+id = 12255
+examine = "A rope leading up out of the tunnel."
+
+[evil_chicken_nest]
+id = 12259
+examine = "The Evil Chicken's nest."

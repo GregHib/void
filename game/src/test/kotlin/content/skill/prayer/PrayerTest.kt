@@ -85,4 +85,16 @@ internal class PrayerTest : WorldTest() {
             assertFalse(player.inventory.contains(bone))
         }
     }
+
+    @Test
+    fun `Offering bones grants half again the burying experience`() {
+        val player = createPlayer(Tile(3244, 3207))
+        player.inventory.add("bones")
+        val altar = GameObjects.find(Tile(3243, 3206), "prayer_altar_lumbridge")
+
+        player.itemOnObject(altar, 0)
+        tick(2)
+
+        assertEquals(6.7, player.experience.get(Skill.Prayer))
+    }
 }

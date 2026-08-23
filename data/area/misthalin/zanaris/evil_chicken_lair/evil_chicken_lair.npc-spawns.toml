@@ -1,4 +1,6 @@
 spawns = [
+# 6212
+  { id = "kklik", x = 1560, y = 4401, direction = "NORTH" },
   { id = "baby_black_dragon", x = 1542, y = 4393 },
   { id = "black_dragon_evil_chicken_lair", x = 1563, y = 4359 },
   { id = "black_dragon_evil_chicken_lair_2", x = 1558, y = 4370 },

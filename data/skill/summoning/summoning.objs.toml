@@ -1,3 +1,7 @@
 [obelisk]
 id = 28722
 examine = "Glowing with barely-suppressed energies."
+
+[small_obelisk]
+id = 29944
+examine = "Contains traces of summoning energy."

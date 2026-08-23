@@ -5,8 +5,10 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
@@ -45,8 +47,14 @@ class Ectopool : Script {
             return@objTeleportTakeOff Teleport.CANCEL
         }
 
-        itemOnObjectOperate("bucket", "ahoy_new_green_floor") {
-            inventory.replace("bucket", "bucket_of_slime")
+        itemOnObjectOperate("bucket", "pool_of_slime*") {
+            while (inventory.contains("bucket")) {
+                anim("fill_bucket_slime")
+                sound("fill_ectoplasm")
+                inventory.replace("bucket", "bucket_of_slime")
+                delay(3)
+                message("You fill the bucket with ectoplasm.", ChatType.Filter)
+            }
         }
     }
 }

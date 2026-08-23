@@ -52,3 +52,6 @@ mage = 100
 max_hit_slash = 210
 hunt_mode = "cowardly"
 
+[kklik]
+id = 3377
+examine = "A small dragon fairy."

@@ -1,0 +1,27 @@
+[ectofuntus_hopper]
+id = 11162
+examine = "A big grinding thing."
+
+[ectofuntus_bone_grinder]
+id = 11163
+examine = "A big grinding thing."
+
+[ectofuntus_bin]
+id = 11164
+examine = "A big grinding thing."
+
+[pool_of_slime]
+id = 17116
+examine = "A subterranean pool of ectoplasm."
+
+[pool_of_slime_2]
+clone = "pool_of_slime"
+id = 17117
+
+[pool_of_slime_3]
+clone = "pool_of_slime"
+id = 17118
+
+[pool_of_slime_4]
+clone = "pool_of_slime"
+id = 17119

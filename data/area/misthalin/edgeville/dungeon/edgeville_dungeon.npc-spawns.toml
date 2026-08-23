@@ -22,7 +22,7 @@ spawns = [
   { id = "giant_rat", x = 3121, y = 9893 },
   { id = "giant_rat_brimhaven", x = 3089, y = 9895 },
   { id = "giant_rat_brimhaven", x = 3122, y = 9889 },
-  { id = "giant_rat_wilderness", x = 3117, y = 9889 },
+  { id = "giant_rat_dark_injured", x = 3117, y = 9889 },
   { id = "hobgoblin_unarmed", x = 3122, y = 9874 },
   { id = "hobgoblin_unarmed", x = 3126, y = 9875 },
   { id = "hobgoblin_armed", x = 3118, y = 9871 },

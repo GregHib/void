@@ -1,0 +1,19 @@
+# Ectofuntus worships since ecto-tokens were last collected; capped at 53 (265 tokens).
+[ectofuntus_charges]
+format = "int"
+persist = true
+
+# Bone string id currently loaded in the grinder, "" when the grinder is empty.
+[bone_grinder_bones]
+format = "string"
+persist = true
+
+# Grinder stage: 0 = empty, 1 = bones in the hopper, 2 = bonemeal in the bin.
+[bone_grinder_stage]
+format = "int"
+persist = true
+
+# false = manual (fill, wind, empty), true = automatic (one fill grinds the inventory).
+[bone_grinder_auto]
+format = "boolean"
+persist = true
