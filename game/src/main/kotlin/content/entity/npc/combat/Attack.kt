@@ -120,7 +120,7 @@ class Attack(
                         miss = false
                     }
                 }
-                CombatApi.attack(this, target, "${definition.npc}:${attack.id}")
+                CombatApi.attack(this, target, "$defId:${attack.id}")
                 val impactDelay = delays.firstOrNull()
                 target.play(if (!attack.impactRegardless && miss) attack.missGfx else attack.impactGfx, impactDelay)
                 target.play(if (!attack.impactRegardless && miss) attack.missSounds else attack.impactSounds, impactDelay)

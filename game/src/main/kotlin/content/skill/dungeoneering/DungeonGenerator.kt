@@ -35,7 +35,7 @@ class DungeonGenerator(
     private val bossDoorLockChance: Double = 0.90,
 ) {
     val width: Int = when (size) {
-        DungeonSize.Small -> 5
+        DungeonSize.Small -> 4
         DungeonSize.Medium -> 4
         DungeonSize.Large -> 8
     }
@@ -66,7 +66,7 @@ class DungeonGenerator(
     }
     private val keys = Tables.itemList("dungeon_keys.all.keys").shuffled(random)
 
-    fun generate(maxSkills: Map<Skill, Int> = emptyMap()): DungeonMap {
+    fun generate(maxSkills: Map<Skill, Int> = emptyMap()): DungeonMap? {
         val grid = arrayOfNulls<DungeonRoom>(width * height)
         val path = createCriticalPath(grid)
         lockCriticalDoors(path)
@@ -81,7 +81,9 @@ class DungeonGenerator(
         assignRoomTypes(grid, maxSkills)
         placeKeys(startRoom, grid)
         val themeName = theme()
-        populateMap(grid, themeName)
+        if (!populateMap(grid, themeName)) {
+            return null
+        }
         return DungeonMap(width, height, startRoom.tile, grid, themeName, playerCount)
     }
 
@@ -334,7 +336,7 @@ class DungeonGenerator(
     /**
      * Populate dungeons rooms with valid map zones
      */
-    private fun populateMap(grid: Array<DungeonRoom?>, theme: String) {
+    private fun populateMap(grid: Array<DungeonRoom?>, theme: String): Boolean {
         val allActiveRooms = grid.filterNotNull()
         for (room in allActiveRooms) {
             val typeName = room.type.name.lowercase()
@@ -342,10 +344,16 @@ class DungeonGenerator(
                 val dir = Direction.westClockwise[idx]
                 room.doors[dir.roomIndex] != null
             }
-            val matchingOptions = mutableListOf<Pair<Zone, Int>>()
+            val matchingOptions = mutableListOf<Triple<Zone, Int, String>>()
             for (c in complexity downTo 1) { // TODO applies to only normal or all??
                 val table = Tables.getOrNull("${theme}_c${c}_$typeName") ?: continue
                 for (row in table.rows()) {
+                    if (room.type == DungeonRoomType.Boss) {
+                        val start = row.intOrNull("start_floor") ?: continue
+                        if (floor < start) {
+                            continue
+                        }
+                    }
                     if (floor in 12..17) {
                         // TODO skip seeker sentinel puzzle, balak pummeller and shadow forgr ihlakhizan bosses
                     }
@@ -360,26 +368,33 @@ class DungeonGenerator(
                             // Rotate so puzzle entry door (south) is in the correct orientation
                             val requiredRotation = (entryDir.roomIndex - 3 + 4) % 4
                             if (matchesDoors(actualDoors, requiredDoors, requiredRotation)) {
-                                matchingOptions.add(Pair(zone, requiredRotation))
+                                matchingOptions.add(Triple(zone, requiredRotation, row.rowId))
                             }
                         }
                     } else {
                         for (r in 0..3) {
                             if (matchesDoors(actualDoors, requiredDoors, r)) {
-                                matchingOptions.add(Pair(zone, r))
+                                matchingOptions.add(Triple(zone, r, row.rowId))
                             }
                         }
                     }
+                }
+                if (room.type == DungeonRoomType.Base && matchingOptions.isNotEmpty()) {
+                    // TODO only use base with group gatestone (c5) when multiple people?
+                    break
                 }
             }
             if (matchingOptions.isNotEmpty()) {
                 val selection = matchingOptions.random(random)
                 room.zone = selection.first
                 room.rotation = selection.second
+                room.name = selection.third
             } else {
                 System.err.println("Warning: No matching layout template found for ${theme}_c${complexity}_$typeName room at (${room.tile.x}, ${room.tile.y}) [${requiredDoors.joinToString()}]")
+                return false
             }
         }
+        return true
     }
 
     private fun theme(): String = when (floor) {
@@ -456,7 +471,7 @@ class DungeonGenerator(
                 playerCount = 1,
             )
             val start = System.currentTimeMillis()
-            val dungeon = generator.generate()
+            val dungeon = generator.generate() ?: return
             println("Took ${System.currentTimeMillis() - start}ms")
 
             println(dungeon.grid.filter { it != null && it.parent == null }.map { "${it?.type} ${it?.tile}" })

@@ -27,3 +27,21 @@ id = 49922
 
 [rand_furn_farming_patch_empty]
 id = 50076
+
+[rand_frzn_portal_exit_up]
+id = 51156
+
+[rand_oclt_start_room_portal]
+id = 7528
+
+[rand_frzn_start_room_portal]
+id = 53124
+
+[rand_abnd_start_room_portal]
+id = 53125
+
+[rand_furn_start_room_portal]
+id = 53126
+
+[rand_wrpd_start_room_portal]
+id = 55606

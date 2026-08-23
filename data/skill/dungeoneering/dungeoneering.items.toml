@@ -2724,63 +2724,63 @@ type = "Sleeveless"
 examine = "A series of connected metal rings."
 weight = 6.803
 
-[air_rune_b]
+[air_rune_dungeoneering_bound]
 clone = "air_rune_rogue_trader"
 id = 16091
 
-[water_rune_b]
+[water_rune_dungeoneering_bound]
 clone = "air_rune_rogue_trader"
 id = 16092
 
-[earth_rune_b]
+[earth_rune_dungeoneering_bound]
 clone = "air_rune_rogue_trader"
 id = 16093
 
-[fire_rune_b]
+[fire_rune_dungeoneering_bound]
 clone = "air_rune_rogue_trader"
 id = 16094
 
-[mind_rune_b]
+[mind_rune_dungeoneering_bound]
 clone = "mind_rune"
 id = 16095
 
-[chaos_rune_b]
+[chaos_rune_dungeoneering_bound]
 clone = "chaos_rune"
 id = 16096
 
-[death_rune_b]
+[death_rune_dungeoneering_bound]
 clone = "death_rune"
 id = 16097
 
-[blood_rune_b]
+[blood_rune_dungeoneering_bound]
 id = 16098
 limit = 25000
 examine = "Used for high level missile spells."
 
-[body_rune_b]
+[body_rune_dungeoneering_bound]
 clone = "body_rune_rogue_trader"
 id = 16099
 
-[cosmic_rune_b]
+[cosmic_rune_dungeoneering_bound]
 id = 16100
 limit = 25000
 examine = "Used for enchant spells."
 
-[astral_rune_b]
+[astral_rune_dungeoneering_bound]
 id = 16101
 limit = 25000
 examine = "Used for Lunar Spells"
 
-[nature_rune_b]
+[nature_rune_dungeoneering_bound]
 id = 16102
 limit = 25000
 examine = "Used for alchemy spells."
 
-[law_rune_b]
+[law_rune_dungeoneering_bound]
 clone = "law_rune"
 id = 16103
 
-[soul_rune_b]
+[soul_rune_dungeoneering_bound]
 id = 16104
 limit = 25000
 examine = "Used for high level curse spells."
@@ -3049,21 +3049,21 @@ type = "TwoHanded"
 examine = "A two-handed sword."
 weight = 3.628
 
-[sapphire_amulet_b]
+[sapphire_amulet_bound]
 id = 16138
 limit = 5000
 weight = 0.007
 slot = "Amulet"
 examine = "I wonder if I can get this enchanted."
 
-[emerald_amulet_b]
+[emerald_amulet_bound]
 id = 16139
 limit = 5000
 weight = 0.007
 slot = "Amulet"
 examine = "I wonder if I can get this enchanted."
 
-[ruby_amulet_b]
+[ruby_amulet_bound]
 id = 16140
 limit = 5000
 weight = 0.007
@@ -3071,7 +3071,7 @@ slot = "Amulet"
 destroy = "No"
 examine = "I wonder if I can get this enchanted."
 
-[diamond_amulet_b]
+[diamond_amulet_bound]
 id = 16141
 limit = 5000
 weight = 0.007

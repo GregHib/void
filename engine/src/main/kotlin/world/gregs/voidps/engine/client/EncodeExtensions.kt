@@ -232,16 +232,17 @@ fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, dire
 /**
  * Add an [arrow] hint over [character]
  */
-fun Player.hint(character: Character, arrow: Int = HintArrow.FILLED) {
-    val viewport = viewport ?: return
-    val index = viewport.hints.firstOrNull { it == 0 } ?: return
+fun Player.hint(character: Character, arrow: Int = HintArrow.FILLED): Int {
+    val viewport = viewport ?: return -1
+    val index = viewport.hints.firstOrNull { it == 0 } ?: return -1
     val type = when (character) {
         is Player -> 10
         is NPC -> 1
-        else -> return
+        else -> return -1
     }
     viewport.hints[index] = type
     client?.arrowHint(type, index, sprite = arrow, entityIndex = character.index)
+    return index
 }
 
 /**

@@ -63,3 +63,9 @@ id = 8065
 format = "list"
 persist = true
 values = ["none", "tank", "tactician", "berserker", "sniper", "keen_eye", "desperado", "blazer", "blaster", "blitzer", "medic", "gatherer", "artisan"]
+
+[dungeon_gatestone]
+id = 1795
+format = "map"
+default = "false"
+values = { "true" = 0, "false" = -1 }

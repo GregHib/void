@@ -51,9 +51,15 @@ object Level {
 
     fun experience(skill: Skill, level: Int) = experience(if (skill == Skill.Constitution) level / 10 else level)
 
+    /**
+     * Total experience up until [level]
+     */
     fun experience(level: Int): Double = (1 until level)
         .sumOf(::experienceAt) / 4.0
 
+    /**
+     * Experience at a specific [level]
+     */
     fun experienceAt(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
 
     fun Player.has(skill: Skill, level: Int, message: Boolean): Boolean = has(skill, level, if (message) "" else null)
