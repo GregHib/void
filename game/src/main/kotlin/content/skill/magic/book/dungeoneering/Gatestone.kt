@@ -1,0 +1,92 @@
+package content.skill.magic.book.dungeoneering
+
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
+import content.entity.player.dialogue.type.item
+import content.entity.player.inv.item.addOrDrop
+import content.skill.magic.spell.removeSpellItems
+import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.inv.carriesItem
+import world.gregs.voidps.type.Tile
+
+class Gatestone : Script {
+    init {
+        interfaceOption("Cast", "dungeoneering_spellbook:create_gatestone") {
+            if (hasClock("action_delay")) {
+                return@interfaceOption
+            }
+            if (!inDungeoneering) {
+                return@interfaceOption
+            }
+            if (!has(Skill.Magic, 32, message = true)) {
+                return@interfaceOption
+            }
+            if (carriesItem("gatestone")) {
+                // https://youtu.be/ouT__1cWTTU?t=558
+                item("gatestone", "You have a gatestone in your pack. Making another would be pointless.")
+                return@interfaceOption
+            }
+            if (contains("gatestone_tile")) {
+                message("You already have an active gatestone.")
+                return@interfaceOption
+            }
+            if (!removeSpellItems("create_gatestone")) {
+                return@interfaceOption
+            }
+            start("action_delay", 2)
+            anim("high_alch")
+            gfx("high_alch")
+            addOrDrop("gatestone")
+            // https://youtu.be/FjsJPnnSEEQ?t=486
+            message("You create a gatestone.")
+        }
+
+        dropped("gatestone") {
+            set("gatestone_tile", tile)
+            // https://youtu.be/FjsJPnnSEEQ?t=507
+//            message("Your gatestone drops to the floor as you die.") // TODO
+            // https://youtu.be/FjsJPnnSEEQ?t=486
+            message("You place the gatestone. You can teleport back to it at any time.")
+        }
+
+        taken("gatestone") {
+            clear("gatestone_tile")
+        }
+
+        dropped("group_gatestone") {
+            for (member in dungeonMembers) {
+                member["group_gatestone_tile"] = tile
+            }
+        }
+
+        taken("group_gatestone") {
+            for (member in dungeonMembers) {
+                member.clear("group_gatestone_tile")
+                member["group_gatestone_player"] = index
+            }
+        }
+
+        teleportLand("dungeoneering") {
+            val gatestone = FloorItems.firstOrNull(tile) { it.id == "gatestone" && it.owner == name } ?: return@teleportLand
+            clear("gatestone_tile")
+            FloorItems.remove(gatestone)
+            // https://youtu.be/FjsJPnnSEEQ?t=486
+            message("The gatestone breaks as you draw upon the magic that binds it.")
+        }
+
+        objectOperate("Enter", "rand_*_start_room_portal") {
+            val tile: Tile = get("group_gatestone_tile")
+                ?: get<Int>("group_gatestone_player")?.let { Players.indexed(it)?.tile } ?: return@objectOperate
+            Teleport.teleport(this, tile, type = "group_gatestone")
+        }
+    }
+}

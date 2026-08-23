@@ -115,7 +115,7 @@ class BankDeposit : Script {
     companion object {
         private val logger = InlineLogger()
 
-        private fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int, slot: Int = -1, check: Boolean = true) {
+        fun deposit(player: Player, inventory: Inventory, item: Item, amount: Int, slot: Int = -1, check: Boolean = true) {
             if ((check && player.menu != "bank" && player.menu != "bank_deposit_box") || amount < 1) {
                 return
             }
@@ -128,7 +128,7 @@ class BankDeposit : Script {
                 2 -> {
                     // Event items (e.g. Evil Bob's fish-like things) can't leave the event;
                     // depositing them destroys them rather than storing them in the bank.
-                    val toDestroy = minOf(amount, inventory.count(item.id).toInt())
+                    val toDestroy = minOf(amount, inventory.count(item.id))
                     if (toDestroy > 0) {
                         inventory.transaction { remove(item.id, toDestroy) }
                     }
@@ -147,7 +147,7 @@ class BankDeposit : Script {
             var shifted = false
             inventory.transaction {
                 val existing = bank.indexOf(notNoted.id)
-                val available = inventory.count(item.id).toInt()
+                val available = inventory.count(item.id)
                 val added = link(bank).addToLimit(notNoted.id, minOf(amount, available))
                 if (added == 0) {
                     error = TransactionError.Full()

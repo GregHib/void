@@ -1,30 +1,19 @@
 package content.skill.dungeoneering
 
 import com.github.michaelbull.logging.InlineLogger
-import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.quest.instance
-import org.rsmod.game.pathfinder.flag.CollisionFlag
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.combatLevel
-import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
-import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.map.zone.DynamicZones
-import world.gregs.voidps.type.Delta
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
+import world.gregs.voidps.type.*
 import world.gregs.voidps.type.area.Rectangle
-import world.gregs.voidps.type.random
-import kotlin.random.nextInt
 
 data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     var type: DungeonRoomType = DungeonRoomType.Normal
@@ -33,6 +22,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     val adjacentRooms = arrayOfNulls<DungeonRoom>(4)
     var parent: DungeonRoom? = null
 
+    var name: String? = null
     var open: Boolean = false
     var zone: Zone? = null
     var rotation: Int = 0
@@ -49,40 +39,63 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         for (sx in 0..1) {
             for (sy in 0..1) {
                 // Calculate the target zone offset (tx, ty) based on CW rotation
-                val tx = Dungeoneering.rotateX(sx, sy, rotation, 1)
-                val ty = Dungeoneering.rotateY(sx, sy, rotation, 1)
+                val tx = DungeonMap.rotateX(sx, sy, rotation, 1)
+                val ty = DungeonMap.rotateY(sx, sy, rotation, 1)
                 val clientRotation = (4 - rotation) % 4
                 zones.copy(zone.add(sx, sy), target.add(tx, ty), clientRotation)
             }
         }
+        // Spawn keys
+        spawnKeys(player, dungeon)
+        val complexity = player["dungeoneering_party_complexity", 1]
+        val floor = player["dungeoneering_party_floor", 1]
+        if (type == DungeonRoomType.Base) {
+            DungeonTableItems.spawn(complexity, dungeon, dungeon.skills, dungeon.playerCount)
+        }
+        DungeonNPCs.spawn(dungeon, this, floor, complexity)
+        spawnDoors(target, dungeon.theme)
+    }
 
-        val keys = keys.toMutableList()
-        val keyTiles = mutableListOf<Tile>()
-        val npcSpawns = mutableListOf<Rectangle>()
+    private fun spawnKeys(player: Player, dungeon: DungeonMap) {
+        val keySpots = findObjects(dungeon, setOf("rand_invis_key_location"))
+        if (keySpots.isEmpty()) {
+            if (type == DungeonRoomType.Base) {
+                val tile = dungeon.startTile()
+                for (key in keys) {
+                    FloorItems.add(tile, key)
+                }
+                return
+            } else {
+                logger.warn { "Unable to find key tile for $zone $name" }
+                for (key in keys) {
+                    FloorItems.add(player.tile, key)
+                }
+                return
+            }
+        }
+        for (key in keySpots) {
+            key.remove()
+        }
+        for (key in keys) {
+            FloorItems.add(keySpots.random(random).tile, key)
+        }
+    }
+
+    fun findObjects(dungeon: DungeonMap, ids: Set<String>): List<GameObject> {
+        val objects = mutableListOf<GameObject>()
         for (x in 0 until 16) {
             for (y in 0 until 16) {
-                val tile = target.tile.add(x, y)
+                val tile = dungeon.tile(this, x, y)
                 val obj = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: continue
-                when (obj.id) {
-                    "rand_invis_key_location" -> {
-                        keyTiles.add(tile)
-                        obj.remove()
-                    }
-                    "rand_npc_spawn_1x1" -> npcSpawns.add(Rectangle(obj.tile, 1, 1))
-                    "rand_npc_spawn_2x2" -> npcSpawns.add(Rectangle(obj.tile, 2, 2))
-                    "rand_npc_spawn_3x3" -> npcSpawns.add(Rectangle(obj.tile, 3, 3))
-                    "rand_npc_spawn_4x4" -> npcSpawns.add(Rectangle(obj.tile, 4, 4))
-                    "rand_npc_spawn_5x5" -> npcSpawns.add(Rectangle(obj.tile, 5, 5))
+                if (ids.contains(obj.id)) {
+                    objects.add(obj)
                 }
             }
         }
-        // Spawn keys
-        for (key in keys) {
-            FloorItems.add(keyTiles.random(random), key)
-        }
-        spawnNpcs(player, dungeon, npcSpawns)
+        return objects
+    }
 
-        val theme = dungeon.theme
+    private fun spawnDoors(target: Zone, theme: String) {
         for ((i, door) in doors.withIndex()) {
             if (door == null) {
                 continue
@@ -117,70 +130,6 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         }
     }
 
-    private fun spawnNpcs(player: Player, dungeon: DungeonMap, npcSpawns: MutableList<Rectangle>) {
-        if (npcSpawns.isEmpty()) {
-            return
-        }
-        if (type == DungeonRoomType.Base || type == DungeonRoomType.Boss) {
-            return
-        }
-        // https://runescape.wiki/w/Dungeoneering/Monsters#Overview
-
-        val complexity = player["dungeoneering_party_complexity", 1]
-        val floor = player["dungeoneering_party_floor", 1]
-        if (random.nextInt(5) != 0) {
-            val spawnCount = random.nextInt(1..dungeon.playerCount + 3)
-            val members = player.dungeonMembers.sortedBy { it.combatLevel }.take(dungeon.playerCount)
-            val average = members.sumOf { it.combatLevel } / members.size
-
-            // TODO replace with accurate algorithm
-            val combatLevel = player.dungeonMembers.maxOf { it.combatLevel }
-            var total = (average * (Interpolation.lerp(floor, 1..60, 50..100) / 100.0)).toInt()
-            total += complexityBonus(combatLevel, complexity)
-
-            val npcs = mutableListOf<String>()
-            npcs.addAll(Tables.npcList("dungeon_monsters.base.npcs"))
-            val list = Tables.npcListOrNull("dungeon_monsters.${dungeon.theme}.npcs")
-            if (list != null) {
-                npcs.addAll(list)
-            }
-            for (i in 0 until spawnCount) {
-                total = total.coerceAtLeast(1)
-                val id = npcs.filter { NPCDefinitions.get(it).combat <= total }.randomOrNull(random)
-                if (id == null) {
-                    logger.warn { "Failed to find dungeoneering monster with combat=$total" }
-                    break
-                }
-                val def = NPCDefinitions.get(id)
-                val tile = npcSpawns.random(random).random(CollisionStrategyProvider.get(def), def.size, CollisionFlag.BLOCK_NPCS)
-                if (tile == null) {
-                    logger.warn { "Failed to find dungeoneering spawn combat=$total, zone=$zone spawns=$npcSpawns" }
-                    continue
-                }
-                val npc = NPCs.add(id, tile)
-                npc["in_multi_combat"] = true
-                total -= def.combat
-            }
-        }
-    }
-
-    /**
-     * Complexity bonus based off a sample of rs3 low (c1) and high (c6) dungeons
-     * Max combat level of monsters increases by approx: +40 @ 125 combat, +8 @ 32 combat, +0 @ 3 combat
-     */
-    private fun complexityBonus(combatLevel: Int, complexity: Int): Int = Interpolation.lerp(
-        value = combatLevel,
-        inRange = 3..138,
-        result = 0..when (complexity) {
-            2 -> 5
-            3 -> 15
-            4 -> 25
-            5 -> 35
-            6 -> 45
-            else -> 0
-        },
-    )
-
     companion object {
         private val logger = InlineLogger()
     }
@@ -194,3 +143,8 @@ internal val Direction.roomIndex: Int
         Direction.SOUTH -> 3
         else -> -1
     }
+
+internal fun Character.dungeonRoomBounds(): Rectangle {
+    val start = Tile(tile.x / 16 * 16 + 1, tile.y / 16 * 16 + 1)
+    return Rectangle(start, 14, 14)
+}

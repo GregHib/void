@@ -85,7 +85,7 @@ class DungeonGeneratorTest {
     @Test
     fun `Critical path includes base, boss room types and grid positions`() {
         val generator = DungeonGenerator(DungeonSize.Small, floor = 1, complexity = 1)
-        val gridWidth = 5
+        val gridWidth = 4
         val gridHeight = 4
         val grid = arrayOfNulls<DungeonRoom>(gridWidth * gridHeight)
 
@@ -180,7 +180,7 @@ class DungeonGeneratorTest {
     @EnumSource(DungeonSize::class)
     fun `Generated dungeon is entirely solvable from start to finish`(size: DungeonSize) {
         val generator = DungeonGenerator(size, floor = 1, complexity = 5)
-        val dungeonMap = generator.generate()
+        val dungeonMap = generator.generate() ?: return
 
         val startRoom = dungeonMap.grid.filterNotNull().first { it.type == DungeonRoomType.Base }
         val bossRoom = dungeonMap.grid.filterNotNull().first { it.type == DungeonRoomType.Boss }

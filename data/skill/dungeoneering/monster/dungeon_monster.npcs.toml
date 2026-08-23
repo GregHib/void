@@ -946,60 +946,6 @@ id = 10038
 [rand_froz_demon_15]
 id = 10039
 
-[rand_ice_lord_boss_0]
-id = 10040
-
-[rand_ice_lord_boss_01]
-id = 10041
-
-[rand_ice_lord_boss_02]
-id = 10042
-
-[rand_ice_lord_boss_1]
-id = 10043
-
-[rand_ice_lord_boss_2]
-id = 10044
-
-[rand_ice_lord_boss_3]
-id = 10045
-
-[rand_ice_lord_boss_4]
-id = 10046
-
-[rand_ice_lord_boss_5]
-id = 10047
-
-[rand_ice_lord_boss_6]
-id = 10048
-
-[rand_ice_lord_boss_7]
-id = 10049
-
-[rand_ice_lord_boss_8]
-id = 10050
-
-[rand_ice_lord_boss_9]
-id = 10051
-
-[rand_ice_lord_boss_10]
-id = 10052
-
-[rand_ice_lord_boss_11]
-id = 10053
-
-[rand_ice_lord_boss_12]
-id = 10054
-
-[rand_ice_lord_boss_13]
-id = 10055
-
-[rand_ice_lord_boss_14]
-id = 10056
-
-[rand_ice_lord_boss_15]
-id = 10057
-
 [rand_antiboss]
 id = 10058
 

@@ -163,6 +163,8 @@ interface Approachable {
         val npcObject = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCOnObjectInteract) -> Unit>>(2)
         val npcFloorItem = Object2ObjectOpenHashMap<String, MutableList<suspend NPC.(NPCOnFloorItemInteract) -> Unit>>(2)
 
+        var npcMark: (Player.(NPC) -> Unit)? = null
+
         override fun close() {
             playerPlayer.clear()
             onPlayer.clear()
@@ -179,6 +181,7 @@ interface Approachable {
             npcNpc.clear()
             npcObject.clear()
             npcFloorItem.clear()
+            npcMark = null
         }
     }
 }

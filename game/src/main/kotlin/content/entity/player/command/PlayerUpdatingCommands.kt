@@ -87,14 +87,13 @@ class PlayerUpdatingCommands : Script {
             setTimeBar(true, 0, 60, 1)
         }
 
-        adminCommand("face", intArg("delta-x"), intArg("delta-y"), desc = "Turn player to face a direction or delta coordinate") { args ->
-            if (args[0].contains(" ")) {
-                val parts = args[0].split(" ")
-                face(Delta(parts[0].toInt(), parts[1].toInt()))
-            } else {
-                val direction = Direction.valueOf(args[0].toScreamingSnakeCase())
-                face(direction.delta)
-            }
+        adminCommand("face", intArg("delta-x"), intArg("delta-y"), desc = "Turn player to face a delta coordinate") { args ->
+            face(Delta(args[0].toInt(), args[1].toInt()))
+        }
+
+        adminCommand("face", stringArg("dir"), desc = "Turn player to face a direction") { args ->
+            val direction = Direction.valueOf(args[0].toScreamingSnakeCase())
+            face(direction.delta)
         }
 
         adminCommand("skill_level", intArg("level"), desc = "Set the current displayed skill level") { args ->

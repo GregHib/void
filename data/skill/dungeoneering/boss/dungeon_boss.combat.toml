@@ -1,0 +1,44 @@
+[icy_bones]
+defend_anim = "icy_bones_defend"
+defend_sound = "icy_bones_defend"
+death_anim = "icy_bones_death"
+death_sound = "icy_bones_death"
+
+[icy_bones.ice_box]
+chance = 1
+range = 4
+anim = "icy_bones_punch"
+
+[icy_bones.ice_cone]
+chance = 1
+range = 4
+anim = "icy_bones_punch"
+
+[icy_bones.melee]
+chance = 5
+range = 1
+anim = "icy_bones_chest"
+gfx = "icy_bones_freeze_cast"
+multi_radius = 2
+approach = true
+target_hit = { offense = "crush", max = 10 }
+
+[icy_bones.range]
+chance = 4
+range = 8
+anim = "icy_bones_range"
+gfx = "icy_bones_cast"
+projectile = "icy_bones_travel"
+target_hit = { offense = "range", max = 10 }
+
+[icy_bones.magic]
+chance = 1
+condition = "not_frozen"
+range = 8
+anim = "icy_bones_magic"
+gfx = "icy_bones_splash"
+projectile = "bind"
+impact_gfx = "icy_bones_freeze_impact"
+target_hit = { offense = "magic", defence = "range", max = 0 }
+impact_sound = "bind_impact"
+impact_freeze = 8

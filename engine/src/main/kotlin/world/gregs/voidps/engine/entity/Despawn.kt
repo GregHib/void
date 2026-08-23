@@ -3,12 +3,15 @@ package world.gregs.voidps.engine.entity
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.mode.move.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.Wildcard
 import world.gregs.voidps.engine.event.Wildcards
+import world.gregs.voidps.type.Delta
 
 interface Despawn {
 
@@ -66,9 +69,19 @@ interface Despawn {
         }
 
         fun player(player: Player) {
+            val offset = player.get<Long>("instance_offset")?.let { Delta(it) } ?: Delta.EMPTY
+            val original = player.tile.minus(offset)
+            for (def in Areas.get(original.zone)) {
+                if (original in def.area) {
+                    Moved.exit(player, def.name, def)
+                }
+            }
             for (handler in playerDespawns) {
                 handler(player)
             }
+            player.queue.logout()
+            player.softTimers.stopAll()
+            player.timers.stopAll()
         }
 
         fun npc(npc: NPC) {

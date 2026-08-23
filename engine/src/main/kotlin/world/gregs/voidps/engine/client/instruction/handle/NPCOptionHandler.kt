@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.instruction.handle.ObjectOptionHandler.Companion.getDefinition
 import world.gregs.voidps.engine.client.message
@@ -8,6 +9,7 @@ import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.character.mode.interact.NPCOnNPCInteract
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnNPCInteract
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -43,6 +45,10 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
         if (selectedOption == "Listen-to" && player["movement", "walk"] == "music") {
             player.message("You are already resting.")
             return false
+        }
+        if (selectedOption == "Mark") {
+            Approachable.npcMark?.invoke(player, npc)
+            return true
         }
         if (player.hasClock("stunned")) {
             player.message("You're stunned!", ChatType.Filter)

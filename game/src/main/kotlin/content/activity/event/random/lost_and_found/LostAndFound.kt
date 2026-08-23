@@ -95,7 +95,7 @@ class LostAndFound : Script {
     }
 
     private suspend fun Player.leaveAbyss() {
-        walkTrigger = null
+        clearWalkTrigger()
         clear("laf_odd")
         openTabs()
         clearMinimap()

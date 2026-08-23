@@ -100,7 +100,7 @@ ticks = 5
 
 [teleport_ectophial]
 id = 8939
-ticks = 2
+ticks = 3
 
 [teleport_land_ectophial]
 id = 8941
@@ -141,4 +141,20 @@ ticks = 3
 
 [teleport_land_wilderness]
 id = 8941
+ticks = 2
+
+[teleport_dungeoneering]
+id = 13288
+ticks = 2
+
+[teleport_land_dungeoneering]
+id = 13285
+ticks = 2
+
+[teleport_group_gatestone]
+id = 14279
+ticks = 2
+
+[teleport_land_group_gatestone]
+id = 13285
 ticks = 2

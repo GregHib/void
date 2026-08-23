@@ -77,13 +77,11 @@ interface CombatApi {
     }
 
     /**
-     * After an [npc] [attack] type
+     * After an [combat] [attack] type
      */
-    fun npcAttack(npc: String = "*", attack: String = "*", handler: NPC.(target: Character) -> Unit) {
+    fun npcAttack(combat: String = "*", attack: String = "*", handler: NPC.(target: Character) -> Unit) {
         Script.checkLoading()
-        Wildcards.find(npc, Wildcard.Npc) { id ->
-            npcAttack["$id:$attack"] = handler
-        }
+        npcAttack["$combat:$attack"] = handler
     }
 
     /**
