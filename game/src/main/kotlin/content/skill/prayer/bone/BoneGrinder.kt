@@ -184,7 +184,7 @@ class BoneGrinder : Script {
     }
 
     /**
-     * Turns to the machine on [obj], resting a tick either side so the turn reads separately from
+     * Turns to the machine on [obj], resting a tick afterwards so the turn reads separately from
      * the animation that follows. The interaction itself walks the player into reach, so anyone
      * already stood by the machine stays put.
      *
@@ -193,10 +193,9 @@ class BoneGrinder : Script {
      */
     private suspend fun Player.turn(obj: Tile) {
         var ticks = 0
-        while ((steps.isNotEmpty() || steps.last >= GameLoop.tick) && ticks++ < STATION_TIMEOUT) {
+        while ((steps.isNotEmpty() || steps.last > GameLoop.tick) && ticks++ < STATION_TIMEOUT) {
             pause(1)
         }
-        pause(1)
         face(obj)
         pause(1)
     }
@@ -227,14 +226,18 @@ class BoneGrinder : Script {
      */
     private suspend fun Player.grind(row: RowDefinition) {
         var bones = row
+        // The interaction has already walked the player to the hopper and turned them to it, so
+        // the first set is ground where they stand rather than shuffling onto the circuit.
+        var stationed = true
         while (true) {
             if (!inventory.contains("empty_pot")) {
                 message("You don't have any pots to take the bonemeal with.")
                 return
             }
-            if (!station(HOPPER_OBJECT, HOPPER_TILE)) {
+            if (!stationed && !station(HOPPER_OBJECT, HOPPER_TILE)) {
                 return
             }
+            stationed = false
             val filling = anim("fill_bone_hopper")
             sound("fill_grinder")
             if (!inventory.remove(bones.rowId)) {
