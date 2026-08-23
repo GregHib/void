@@ -15,41 +15,32 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.queue.weakQueue
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 class BoneGrinder : Script {
 
     init {
-        objectOperate("Fill", "ectofuntus_hopper", arrive = false) {
-            if (!station(HOPPER_TILE, Direction.WEST)) {
-                return@objectOperate
-            }
+        objectOperate("Fill", "ectofuntus_hopper") { (target) ->
+            turn(target.tile)
             fill(null)
         }
 
-        itemOnObjectOperate(obj = "ectofuntus_hopper", arrive = false) { (_, item) ->
-            if (!station(HOPPER_TILE, Direction.WEST)) {
-                return@itemOnObjectOperate
-            }
+        itemOnObjectOperate(obj = "ectofuntus_hopper") { (target, item) ->
+            turn(target.tile)
             if (item.id == SILVER_BAR) {
-                grindSilver()
+                grindSilver(target.tile)
                 return@itemOnObjectOperate
             }
             fill(item)
         }
 
-        objectOperate("Wind", "ectofuntus_bone_grinder", arrive = false) {
-            if (!station(GRINDER_TILE, Direction.NORTH)) {
-                return@objectOperate
-            }
+        objectOperate("Wind", "ectofuntus_bone_grinder") { (target) ->
+            turn(target.tile)
             wind()
         }
 
-        objectOperate("Empty", "ectofuntus_bin", arrive = false) {
-            if (!station(BIN_TILE, Direction.NORTH)) {
-                return@objectOperate
-            }
+        objectOperate("Empty", "ectofuntus_bin") { (target) ->
+            turn(target.tile)
             empty()
         }
 
@@ -138,7 +129,7 @@ class BoneGrinder : Script {
      * into dust and no pot is used to collect it. Each bar waits out the full length of the
      * fill animation so one visible grind produces one dust.
      */
-    private suspend fun Player.grindSilver() {
+    private suspend fun Player.grindSilver(hopper: Tile) {
         val (_, amount) = makeAmount(
             items = listOf(SILVER_DUST),
             type = "Make",
@@ -147,15 +138,15 @@ class BoneGrinder : Script {
         )
         delay()
         softTimers.start("grind_silver")
-        crush(amount)
+        crush(hopper, amount)
     }
 
-    private fun Player.crush(amount: Int) {
+    private fun Player.crush(hopper: Tile, amount: Int) {
         if (amount <= 0 || !inventory.contains(SILVER_BAR)) {
             softTimers.stop("grind_silver")
             return
         }
-        face(Direction.WEST)
+        face(hopper)
         val ticks = anim("fill_bone_hopper")
         sound("fill_grinder")
         weakQueue("grind_silver", ticks.coerceAtLeast(GRIND_TICKS)) {
@@ -164,7 +155,7 @@ class BoneGrinder : Script {
                 return@weakQueue
             }
             message("You grind the silver bar into dust.")
-            crush(amount - 1)
+            crush(hopper, amount - 1)
         }
     }
 
@@ -192,11 +183,23 @@ class BoneGrinder : Script {
     }
 
     /**
-     * Walks to [target] and turns to [direction], resting a tick before the walk, before the turn
-     * and before the caller's animation so each part of the sequence reads separately. Every wait
-     * is interruptible, so walking away abandons the interaction; false when they never arrived.
+     * Turns to the machine on [obj], resting a tick either side so the turn reads separately from
+     * the animation that follows. The interaction itself walks the player into reach, so anyone
+     * already stood by the machine stays put.
      */
-    private suspend fun Player.station(target: Tile, direction: Direction): Boolean {
+    private suspend fun Player.turn(obj: Tile) {
+        pause(1)
+        face(obj)
+        pause(1)
+    }
+
+    /**
+     * Takes up [target] and turns to the machine on [obj], resting a tick before the walk, before
+     * the turn and before the caller's animation so each part of the sequence reads separately.
+     * Every wait is interruptible, so walking away abandons the batch; false when they never
+     * arrived.
+     */
+    private suspend fun Player.station(obj: Tile, target: Tile): Boolean {
         pause(1)
         walkTo(target)
         var ticks = 0
@@ -206,9 +209,7 @@ class BoneGrinder : Script {
             }
             pause(1)
         }
-        pause(1)
-        face(direction)
-        pause(1)
+        turn(obj)
         return true
     }
 
@@ -223,7 +224,7 @@ class BoneGrinder : Script {
                 message("You don't have any pots to take the bonemeal with.")
                 return
             }
-            if (!station(HOPPER_TILE, Direction.WEST)) {
+            if (!station(HOPPER_OBJECT, HOPPER_TILE)) {
                 return
             }
             val filling = anim("fill_bone_hopper")
@@ -233,14 +234,14 @@ class BoneGrinder : Script {
             }
             pause(filling.coerceAtLeast(GRIND_TICKS))
 
-            if (!station(GRINDER_TILE, Direction.NORTH)) {
+            if (!station(GRINDER_OBJECT, GRINDER_TILE)) {
                 return
             }
             val winding = anim("wind_bone_grinder")
             sound("grinder_grinding")
             pause(winding.coerceAtLeast(GRIND_TICKS))
 
-            if (!station(BIN_TILE, Direction.NORTH)) {
+            if (!station(BIN_OBJECT, BIN_TILE)) {
                 return
             }
             if (!collect(bones)) {
@@ -280,6 +281,9 @@ class BoneGrinder : Script {
         private const val STATION_TIMEOUT = 50
         private const val SILVER_BAR = "silver_bar"
         private const val SILVER_DUST = "silver_dust"
+        private val HOPPER_OBJECT = Tile(3660, 3525, 1)
+        private val GRINDER_OBJECT = Tile(3659, 3525, 1)
+        private val BIN_OBJECT = Tile(3658, 3525, 1)
         private val HOPPER_TILE = Tile(3660, 3524, 1)
         private val GRINDER_TILE = Tile(3659, 3524, 1)
         private val BIN_TILE = Tile(3658, 3524, 1)

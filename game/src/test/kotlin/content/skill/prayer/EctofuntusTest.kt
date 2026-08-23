@@ -17,8 +17,6 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.login.protocol.visual.update.Face
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertTrue
 
@@ -38,7 +36,10 @@ class EctofuntusTest : WorldTest() {
         return player
     }
 
-    private fun facing(direction: Direction): Int = Face.getFaceDirection(direction.delta.x * 100, direction.delta.y * 100)
+    private fun assertFacing(player: Player, tile: Tile) {
+        assertEquals(tile.x, player.visuals.face.targetX)
+        assertEquals(tile.y, player.visuals.face.targetY)
+    }
 
     private fun worshipper(setup: Player.() -> Unit): Player {
         val player = createPlayer(Tile(3660, 3519))
@@ -55,25 +56,36 @@ class EctofuntusTest : WorldTest() {
 
         player.objectOption(hopper(), "Fill")
         tick(12)
-        assertEquals(Tile(3661, 3526, 1), player.tile)
-        assertEquals(facing(Direction.WEST), player.visuals.face.direction)
+        assertFacing(player, Tile(3660, 3525, 1))
         assertEquals(1, player.get("bone_grinder_stage", 0))
         assertEquals("dragon_bones", player.get("bone_grinder_bones", ""))
         assertEquals(0, player.inventory.count("dragon_bones"))
 
         player.objectOption(mill(), "Wind")
         tick(12)
-        assertEquals(Tile(3659, 3524, 1), player.tile)
-        assertEquals(facing(Direction.NORTH), player.visuals.face.direction)
+        assertFacing(player, Tile(3659, 3525, 1))
         assertEquals(2, player.get("bone_grinder_stage", 0))
 
         player.objectOption(bin(), "Empty")
         tick(12)
-        assertEquals(Tile(3658, 3524, 1), player.tile)
-        assertEquals(facing(Direction.NORTH), player.visuals.face.direction)
+        assertFacing(player, Tile(3658, 3525, 1))
         assertEquals(1, player.inventory.count("dragon_bonemeal"))
         assertEquals(0, player.inventory.count("empty_pot"))
         assertEquals(0, player.get("bone_grinder_stage", 0))
+    }
+
+    @Test
+    fun `Winding from an adjacent tile doesn't move the player`() {
+        val player = createPlayer(Tile(3659, 3524, 1))
+        player.set("bone_grinder_stage", 1)
+        player.set("bone_grinder_bones", "dragon_bones")
+
+        player.objectOption(mill(), "Wind")
+        tick(12)
+
+        assertEquals(Tile(3659, 3524, 1), player.tile)
+        assertFacing(player, Tile(3659, 3525, 1))
+        assertEquals(2, player.get("bone_grinder_stage", 0))
     }
 
     @Test
@@ -111,12 +123,13 @@ class EctofuntusTest : WorldTest() {
         player.objectOption(hopper(), "Fill")
         tick(30)
         val ground = player.inventory.count("big_bonemeal")
+        val remaining = player.inventory.count("big_bones")
         player.walk(Tile(3663, 3530, 1))
         tick(200)
 
         assertTrue(ground < 5, "expected the batch to still be running after 30 ticks")
         assertEquals(ground, player.inventory.count("big_bonemeal"))
-        assertEquals(5 - ground, player.inventory.count("big_bones"))
+        assertEquals(remaining, player.inventory.count("big_bones"))
     }
 
     @Test
