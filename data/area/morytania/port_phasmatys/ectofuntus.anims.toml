@@ -1,11 +1,14 @@
 [wind_bone_grinder]
 id = 1648
+ticks = 1
 
 [fill_bone_hopper]
 id = 1649
+ticks = 4
 
 [empty_bone_bin]
 id = 1650
+ticks = 3
 
 [worship_ectofuntus]
 id = 1651
