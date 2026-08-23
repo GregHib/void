@@ -41,7 +41,7 @@ open class Movement(
     private var needsCalculation = true
 
     internal fun calculate() {
-        if (character.steps.isNotEmpty() && !needsCalculation || strategy == null) {
+        if (!needsCalculation || strategy == null) {
             return
         }
         val tile = strategy.destination(character)

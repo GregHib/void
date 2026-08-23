@@ -20,7 +20,7 @@ range = 1
 anim = "icy_bones_chest"
 gfx = "icy_bones_freeze_cast"
 multi_radius = 2
-#approach = true FIXME
+approach = true
 target_hit = { offense = "crush", max = 10 }
 
 [icy_bones.range]
