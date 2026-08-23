@@ -38,22 +38,6 @@ class TheGolem : Script {
             tele(3491, 3090)
         }
 
-        objectOperate("Search", "sote_pillar_ithell_b_0") {
-            message("You search the bookcase...")
-            delay(3)
-            if (get("golem_b", 0) < 2 || inventory.contains("varmens_notes")) {
-                message("You find nothing of interest.")
-                return@objectOperate
-            }
-            if (inventory.isFull()) {
-                message("You find Varmen's expedition notes, but don't have room to take them.")
-                return@objectOperate
-            }
-            set("golem_b", 3)
-            inventory.add("varmens_notes")
-            item("varmens_notes", "You find Varmen's expedition notes.")
-        }
-
         itemOption("Read", "letter_the_golem") {
             readVarmensLetter()
             if (get("golem_b", 0) == 0) {
