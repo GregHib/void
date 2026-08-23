@@ -127,9 +127,8 @@ class BoneGrinder : Script {
     }
 
     /**
-     * Silver bars skip the hopper, wind and bin steps entirely; each bar is ground straight
-     * into dust and no pot is used to collect it. Each bar waits out the full length of the
-     * fill animation so one visible grind produces one dust.
+     * Silver bars skip the hopper, wind and bin steps; each bar grinds straight into dust with
+     * no pot to collect it, waiting out the fill animation so one visible grind is one dust.
      */
     private suspend fun Player.grindSilver(hopper: Tile) {
         val (_, amount) = makeAmount(
@@ -185,13 +184,9 @@ class BoneGrinder : Script {
     }
 
     /**
-     * Turns to the machine on [obj], resting a tick afterwards so the turn reads separately from
-     * the animation that follows. The interaction itself walks the player into reach, so anyone
-     * already stood by the machine stays put.
-     *
-     * Waits for the walk to finish rendering first; the tile updates as a step is taken but the
-     * client walks into it over the tick that follows, and that walk overrides a turn issued while
-     * it is still playing, leaving the player animating the wrong way round.
+     * Waits for the walk to finish rendering before turning to the machine on [obj]; the tile
+     * updates as a step is taken but the client walks into it over the tick that follows, and
+     * that walk overrides a turn issued while it is still playing.
      */
     private suspend fun Player.turn(obj: Tile) {
         var ticks = 0
@@ -203,18 +198,14 @@ class BoneGrinder : Script {
     }
 
     /**
-     * Takes up [target] and turns to the machine on [obj], resting a tick before the walk, before
-     * the turn and before the caller's animation so each part of the sequence reads separately.
-     * Every wait is interruptible, so walking away abandons the batch; false when they never
-     * arrived.
+     * Takes up [target] and turns to the machine on [obj]. Every wait is interruptible, so walking
+     * away abandons the batch; false when the player never arrived.
      */
     private suspend fun Player.station(obj: Tile, target: Tile): Boolean {
         pause(1)
         var ticks = 0
         while (true) {
             if (tile != target) {
-                // The interaction that started the batch keeps pathing back to its own machine,
-                // so re-take the tile rather than assuming one walk is enough.
                 walkTo(target)
             } else if (steps.isEmpty() && steps.last < GameLoop.tick) {
                 break
@@ -233,12 +224,11 @@ class BoneGrinder : Script {
      * repeating until the player runs out of either bones or empty pots.
      */
     private suspend fun Player.grind(row: RowDefinition) {
-        // Drop the interaction that started the batch; left running it keeps pathing back to its
-        // own machine and drags the player off the circuit mid-step.
+        // Left running, the interaction keeps pathing back to its own machine and drags the
+        // player off the circuit mid-step.
         mode = EmptyMode
         var bones = row
-        // The interaction has already walked the player to the hopper and turned them to it, so
-        // the first set is ground where they stand rather than shuffling onto the circuit.
+        // The interaction has already walked the player to the hopper and turned them to it.
         var stationed = true
         while (true) {
             if (!inventory.contains("empty_pot")) {
@@ -273,13 +263,14 @@ class BoneGrinder : Script {
         }
     }
 
-    private fun Player.collect(row: RowDefinition): Boolean {
+    private suspend fun Player.collect(row: RowDefinition): Boolean {
         if (!inventory.replace("empty_pot", row.item("bonemeal"))) {
             return false
         }
-        anim("empty_bone_bin")
+        val emptying = anim("empty_bone_bin")
         sound("grinder_empty")
         message("You grind the ${row.rowId.toLowerSpaceCase()} into the pot.")
+        pause(emptying.coerceAtLeast(GRIND_TICKS))
         return true
     }
 
