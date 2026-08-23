@@ -280,7 +280,7 @@ class BoneGrinder : Script {
         private const val STATION_TIMEOUT = 50
         private const val SILVER_BAR = "silver_bar"
         private const val SILVER_DUST = "silver_dust"
-        private val HOPPER_TILE = Tile(3661, 3526, 1)
+        private val HOPPER_TILE = Tile(3660, 3524, 1)
         private val GRINDER_TILE = Tile(3659, 3524, 1)
         private val BIN_TILE = Tile(3658, 3524, 1)
     }
