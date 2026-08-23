@@ -9,3 +9,37 @@ examine = "A map of the Museum."
 [vm_museum_wallmounted_map_03]
 id = 24392
 examine = "A map of the Museum."
+
+[vm_timeline_soil_layers]
+id = 24621
+
+[vm_digsite_finds_pottery_before_digsite_multi]
+id = 24543
+
+[vm_digsite_finds_jewellery]
+id = 24544
+
+[vm_digsite_finds_vase]
+id = 24541
+
+[vm_digsite_finds_arrow_heads]
+id = 24545
+
+[vm_digsite_finds_coin_senntisten]
+id = 12234
+
+[vm_digsite_finds_coin_saranthium]
+id = 15484
+
+[vm_digsite_finds_saradomin_symbol_old]
+id = 12137
+
+[vm_digsite_finds_saradomin_symbol_ancient]
+id = 12138
+
+[vm_digsite_finds_talisman]
+id = 12232
+
+[vm_digsite_finds_tablet]
+id = 12233
+
