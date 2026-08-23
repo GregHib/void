@@ -180,8 +180,6 @@ class DungeoneeringParty : Script {
                     for (i in 1..60) {
                         clear("dungeon_floor_${i}_complete")
                     }
-                    clear("dungeoneering_party_floor")
-                    clear("dungeoneering_party_complexity")
                     message("Your dungeon progress have been reset.")
                 }
                 option("No, don't reset my progress.")
