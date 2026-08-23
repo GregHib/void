@@ -354,6 +354,7 @@ class DungeoneeringParty : Script {
                 dropAll(player.inventory, player.tile, kinship)
                 dropAll(player.equipment, player.tile, kinship)
             }
+            val hasParty = player.interfaces.contains("dungeoneering_party")
             clear(player)
             player.longQueue("dungeon_exit") {
                 player.tele(3460, 3721, 1)
@@ -365,6 +366,10 @@ class DungeoneeringParty : Script {
                 player.clear("dungeoneering_stored_spellbook")
                 if (player["dungeoneering_guide_mode", false]) {
                     statement("You have left your dungeon and are now back in the Daemonheim castle. You can exit down by the broken railing to re-enter the lobby and find another party.")
+                }
+                if (hasParty) {
+                    player.open("dungeoneering_party")
+                    player.clear("had_party_open")
                 }
                 if (last) {
                     player.clearInstance()
