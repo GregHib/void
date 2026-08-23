@@ -46,7 +46,8 @@ class DungeoneeringPartyTest : WorldTest() {
     @Test
     fun `Select a dungeon floor in daemonheim`() {
         val player = createPlayer(Tile(3449, 3725))
-        player.experience.set(Skill.Dungeoneering, Level.experienceAt(19)) // Floor 10
+        player.experience.set(Skill.Dungeoneering, Level.experience(19)) // Floor 10
+        player["dungeoneering_floor_unlocked"] = 10
         player.inventory.add("ring_of_kinship")
 
         player.itemOption("Open party interface", "ring_of_kinship")
