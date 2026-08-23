@@ -171,6 +171,7 @@ class TheGolem : Script {
         if (!open("vm_timeline")) {
             return
         }
+        anim("vm_display_case_ponder")
         val stolen = get("golem_retrieved_statuette", false)
         sendScript("museum_rotate_display", 0, 5, 0, 534 shl 16 or 50)
         interfaces.sendModel("vm_timeline", "vm_timeline_terracotta_statue_model", if (stolen) 25568 else 25576)
