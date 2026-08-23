@@ -84,7 +84,7 @@ class TheGolemTest : WorldTest() {
 
         // Take Varmen's notes from the Exam Centre bookcase
         player.tele(3366, 3333)
-        val bookcase = GameObjects.find(Tile(3366, 3332), "sote_pillar_ithell_b_0")
+        val bookcase = GameObjects.find(Tile(3366, 3332), "qip_digsite_bookcase_low_digbookcase_shorter_m_o")
         player.objectOption(bookcase, "Search")
         tick(6)
         player.dialogueContinue()

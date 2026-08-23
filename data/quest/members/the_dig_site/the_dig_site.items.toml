@@ -298,6 +298,7 @@ kept = "Reclaim"
 id = 711
 tradeable = false
 weight = 0.51
+book = "volatile_chemicals"
 aka = ["volatile_chemicals_experimental_test_notes"]
 examine = "It's about chemicals, judging from its cover."
 kept = "Wilderness"

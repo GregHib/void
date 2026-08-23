@@ -2,6 +2,7 @@
 id = 9717
 tradeable = false
 weight = 0.1
+book = "elemental_helm"
 aka = ["book_of_the_elemental_helm"]
 examine = "Book of the elemental helm."
 kept = "Wilderness"
