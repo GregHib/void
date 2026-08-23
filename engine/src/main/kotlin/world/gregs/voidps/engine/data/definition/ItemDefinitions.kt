@@ -69,6 +69,10 @@ object ItemDefinitions : DefinitionsDecoder<ItemDefinition> {
                                         params.putAll(definitions[id].params!!)
                                     }
                                 }
+                                in "option_1", "option_2", "option_3", "option_4", "option_5" -> {
+                                    require(id != -1) { "Item option '$key' must be declared after id at $path." }
+                                    definitions[id].options[key.removePrefix("option_").toInt() - 1] = string()
+                                }
                                 "slot" -> params[Params.SLOT] = EquipSlot.by(string())
                                 "type" -> params[Params.TYPE] = EquipType.by(string())
                                 "kept" -> params[Params.KEPT] = ItemKept.by(string())

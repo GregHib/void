@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import world.gregs.voidps.engine.entity.character.player.equip.BodyParts
 import world.gregs.voidps.engine.entity.character.player.skill.exp.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.level.Levels
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.queue.ActionQueue
 import world.gregs.voidps.engine.suspend.Suspension
@@ -86,6 +87,7 @@ class Player(
     lateinit var interfaceOptions: InterfaceOptions
     override lateinit var collision: CollisionStrategy
 //    val area: AreaQueue = AreaQueue(this)
+    val localObjects: MutableMap<Int, GameObject> = mutableMapOf()
 
     val networked: Boolean
         get() = client != null && viewport != null

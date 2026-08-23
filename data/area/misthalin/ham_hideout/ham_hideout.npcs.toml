@@ -32,7 +32,7 @@ combat_def = "guard"
 
 [ham_guard_ham_cave_3]
 id = 1712
-hitpoints = 300
+hitpoints = 310
 att = 16
 str = 20
 def = 12
@@ -58,6 +58,11 @@ examine = "A member of the 'Humans Against Monsters' group."
 
 [ham_member_ham_cave_3]
 id = 1717
+examine = "A member of the 'Humans Against Monsters' group."
+
+[ham_member_ham_cave_4]
+id = 1716
+interacts = false
 examine = "A member of the 'Humans Against Monsters' group."
 
 [jimmy_the_chisel_ham_cave]

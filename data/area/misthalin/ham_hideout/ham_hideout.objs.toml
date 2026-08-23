@@ -1,0 +1,27 @@
+[trapdoor_ham_hideout]
+id = 5490
+examine = "I wonder what's under it?"
+
+[trapdoor_ham_hideout_2]
+id = 5491
+examine = "I wonder what's down there?"
+
+[fire_ham_hideout]
+id = 32099
+examine = "Hot!"
+
+[bed_ham_hideout]
+id = 32030
+examine = "I guess I could sleep in it if I was really tired."
+
+[bed_ham_hideout_2]
+id = 5497
+examine = "A well slept in bed."
+
+[bed_ham_hideout_3]
+id = 32029
+examine = "A well slept in bed."
+
+[crates_ham_hideout]
+id = 31138
+examine = "A pair of stacked storage crates."

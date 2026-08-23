@@ -192,13 +192,10 @@ type = "guard"
 type = "guard"
 
 [.ham_member_ham_cave]
-type = "ham_member"
+type = "ham_member_male"
 
 [.ham_member_ham_cave_2]
-type = "ham_member"
-
-[.ham_member_ham_cave_3]
-type = "ham_member"
+type = "ham_member_female"
 
 [.hero]
 type = "hero"

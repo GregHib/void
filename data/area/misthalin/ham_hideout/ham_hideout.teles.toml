@@ -1,0 +1,10 @@
+#12694
+[5493]
+option = "Climb-up"
+tile = { x = 3149, y = 9653 }
+to = { x = 3165, y = 3251 }
+
+[trapdoor_24_opened]
+option = "Climb-down"
+tile = { x = 3165, y = 3252 }
+to = { x = 3149, y = 9652 }

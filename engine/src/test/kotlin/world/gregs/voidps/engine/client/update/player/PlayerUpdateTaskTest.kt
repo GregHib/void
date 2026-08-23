@@ -264,6 +264,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         val index = 1
 
+        every { player.visuals.appearance.length } returns 1
         every { player.visuals.flagged(2) } returns true
         every { player.index } returns index
         every { Players.indexed(index) } returns player
@@ -281,7 +282,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, false)
             sync.writeBits(6, 17)
             sync.writeBits(6, 14)
-            sync.writeBits(1, false)
+            sync.writeBits(1, true)
             sync.stopBitAccess()
         }
     }

@@ -32,6 +32,9 @@ data class NPC(
     override val visuals: NPCVisuals = NPCVisuals()
 
     var hide = false
+    private val collidesWithNpcs: Boolean
+        get() = this["collides_with_npcs", true]
+
     override val blockMove: Int
         get() {
             if (!transformDef["solid", true]) {
@@ -41,13 +44,14 @@ data class NPC(
             // player standing between them and their target can't block them. They still collide
             // with other npcs (BLOCK_NPCS) and route around them.
             return if (this["owner_index", -1] != -1) {
-                CollisionFlag.BLOCK_NPCS
+                if (collidesWithNpcs) CollisionFlag.BLOCK_NPCS else 0
             } else {
-                CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
+                CollisionFlag.BLOCK_PLAYERS or (if (collidesWithNpcs) CollisionFlag.BLOCK_NPCS else 0)
             }
         }
     override val collisionFlag: Int
-        get() = CollisionFlag.BLOCK_NPCS or if (transformDef["solid", false]) CollisionFlag.FLOOR else 0
+        get() = (if (collidesWithNpcs) CollisionFlag.BLOCK_NPCS else 0) or
+            (if (transformDef["solid", false]) CollisionFlag.FLOOR else 0)
 
     val owner: Player?
         get() {

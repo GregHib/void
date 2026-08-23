@@ -586,6 +586,11 @@ ticks = 8
 walk = false
 run = false
 
+[emote_preach]
+id = 1670
+walk = false
+run = false
+
 [emote_spinning_plate]
 id = 1902
 ticks = 2

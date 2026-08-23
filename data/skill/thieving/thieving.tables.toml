@@ -92,6 +92,24 @@ damage = [10, 30]
 table = "ham_member"
 multiple = true
 
+[.ham_member_female]
+level = 15
+xp = 185
+stun_ticks = 6
+chance = [135, 239]
+damage = [10, 30]
+table = "ham_member"
+multiple = true
+
+[.ham_member_male]
+level = 20
+xp = 222
+stun_ticks = 6
+chance = [135, 239]
+damage = [10, 30]
+table = "ham_member"
+multiple = true
+
 [.hero]
 level = 80
 xp = 1633

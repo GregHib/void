@@ -1,6 +1,7 @@
 package content.skill.thieving
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.misthalin.ham_hideout.HamHideout
 import content.entity.effect.stun
 import content.skill.slayer.categories
 import content.skill.summoning.familiarBoost
@@ -38,17 +39,16 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
     val logger = InlineLogger()
 
     init {
-        npcApproach("Pickpocket") { (target) ->
-            approach(target)
+        npcOperate("Pickpocket") { (target) ->
+            pickpocket(target)
         }
 
-        npcApproach("Steal-from") { (target) ->
-            approach(target)
+        npcOperate("Steal-from") { (target) ->
+            pickpocket(target)
         }
     }
 
-    private suspend fun Player.approach(target: NPC) {
-        approachRange(2)
+    private suspend fun Player.pickpocket(target: NPC) {
         // food_delay and action_delay stay separate.
         if (hasClock("food_delay") || hasClock("action_delay")) {
             return
@@ -77,7 +77,7 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
         if (success && !canLoot(this, drops)) {
             return
         }
-        val name = target.def.name
+        val name = HamHideout.pickpocketTargetName(target)
         message("You attempt to pick the $name's pocket.", ChatType.Filter)
         anim(
             when (multiplier) {
@@ -109,10 +109,21 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             val xp = pickpocket.int("xp") / 10.0
             exp(Skill.Thieving, xp)
         } else {
+            val hamBlowResult = HamHideout.rollBlowResult(this, target)
+            if (hamBlowResult != null && HamHideout.applyConcussionCounter(this, target, hamBlowResult)) {
+                return
+            }
             target.face(this)
-            target.say("What do you think you're doing?")
             target.anim(combatDefinitions.get(target["combat_def", target.id]).defendAnim)
-            message("You fail to pick the $name's pocket.", ChatType.Filter)
+            if (HamHideout.sendFailText(this, target)) {
+                HamHideout.sendCaughtDialogue(this, target)
+                if (hamBlowResult != null) {
+                    HamHideout.sendBlowMessage(this, hamBlowResult)
+                }
+            } else {
+                target.say("What do you think you're doing?")
+                message("You fail to pick the $name's pocket.", ChatType.Filter)
+            }
             val ticks = pickpocket.int("stun_ticks")
             val damage = pickpocket.intRange("damage")
             target.stun(this, ticks, damage.random(random))

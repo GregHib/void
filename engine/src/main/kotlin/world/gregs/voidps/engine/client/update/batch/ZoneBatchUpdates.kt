@@ -89,6 +89,13 @@ object ZoneBatchUpdates : Runnable {
             for (sender in senders) {
                 sender.send(player, zone)
             }
+            val updates = batches[zone.id]?.filter { it.private && it.visible(player.name) } ?: continue
+            if (updates.isNotEmpty()) {
+                player.updateZone(zone)
+            }
+            for (update in updates) {
+                player.client?.send(update)
+            }
         }
         viewport.lastBatchZone = player.tile.zone
     }

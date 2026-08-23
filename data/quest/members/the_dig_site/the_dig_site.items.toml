@@ -137,6 +137,7 @@ kept = "Reclaim"
 
 [buttons]
 id = 688
+option_1 = "Polish"
 tradeable = false
 weight = 0.001
 examine = "Not Dick Whittington's helper at all!"

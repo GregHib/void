@@ -7,8 +7,12 @@ data class ObjectAddition(
     val id: Int,
     val type: Int,
     val rotation: Int,
+    val owner: String? = null,
 ) : ZoneUpdate(
     Protocol.OBJECT_ADD,
     Protocol.Batch.OBJECT_ADD,
     4,
-)
+) {
+    override val private = owner != null
+    override fun visible(owner: String) = this.owner == null || this.owner == owner
+}

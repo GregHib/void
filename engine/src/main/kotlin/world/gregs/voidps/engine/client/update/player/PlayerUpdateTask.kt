@@ -266,7 +266,6 @@ class PlayerUpdateTask {
                 skip = -1
             }
 
-            val appearance = set.needsAppearanceUpdate(player)
             set.add(index)
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
@@ -274,10 +273,8 @@ class PlayerUpdateTask {
             viewport.seen(player)
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
-            sync.writeBits(1, appearance)
-            if (appearance) {
-                encodeVisuals(updates, initialFlag, player, client, set)
-            }
+            sync.writeBits(1, true)
+            encodeVisuals(updates, initialFlag, player, client, set)
         }
         if (skip > -1) {
             writeSkip(sync, skip)
@@ -291,7 +288,7 @@ class PlayerUpdateTask {
      */
     private fun add(player: Player, client: Player, viewport: Viewport, updates: Writer, sync: Writer): Boolean = player.client?.disconnected != true &&
             player.tile.within(client.tile, viewport.radius) &&
-            updates.position() < MAX_UPDATE_SIZE &&
+            updates.position() + player.visuals.appearance.length < MAX_UPDATE_SIZE &&
             sync.position() < MAX_SYNC_SIZE
 
     fun writeSkip(sync: Writer, skip: Int) {

@@ -122,6 +122,7 @@ data class BodyParts(
         if (male != other.male) return false
         if (!looks.contentEquals(other.looks)) return false
         if (!colours.contentEquals(other.colours)) return false
+        if (!parts.contentEquals(other.parts)) return false
 
         return true
     }
@@ -130,6 +131,7 @@ data class BodyParts(
         var result = male.hashCode()
         result = 31 * result + looks.contentHashCode()
         result = 31 * result + colours.contentHashCode()
+        result = 31 * result + parts.contentHashCode()
         return result
     }
 

@@ -26,7 +26,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
         }
         val (objectId, x, y, option) = instruction
         val tile = player.tile.copy(x = x, y = y)
-        val target = getObject(tile, objectId)
+        val target = getObject(player, tile, objectId)
         if (target == null) {
             logger.warn { "Invalid object $objectId $tile" }
             return false
@@ -48,7 +48,11 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
         return true
     }
 
-    private fun getObject(tile: Tile, objectId: Int): GameObject? {
+    private fun getObject(player: Player, tile: Tile, objectId: Int): GameObject? {
+        val local = player.localObjects.values.firstOrNull { it.tile == tile }
+        if (local != null) {
+            return local.takeIf { it.intId == objectId }
+        }
         val obj = GameObjects.findOrNull(tile, objectId)
         if (obj == null) {
             val definition = ObjectDefinitions.getOrNull(objectId)
