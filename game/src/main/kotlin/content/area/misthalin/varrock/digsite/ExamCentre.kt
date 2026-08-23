@@ -51,6 +51,5 @@ class ExamCentre : Script {
             inventory.add("varmens_notes")
             item("varmens_notes", "You find Varmen's expedition notes.")
         }
-
     }
 }
