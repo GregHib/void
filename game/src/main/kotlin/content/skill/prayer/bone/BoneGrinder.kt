@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
@@ -188,12 +189,13 @@ class BoneGrinder : Script {
      * the animation that follows. The interaction itself walks the player into reach, so anyone
      * already stood by the machine stays put.
      *
-     * Waits for the walk to finish first; the tile updates as a step is taken but the client is
-     * still walking into it, so turning straight away animates the player mid-stride.
+     * Waits for the walk to finish rendering first; the tile updates as a step is taken but the
+     * client walks into it over the tick that follows, and that walk overrides a turn issued while
+     * it is still playing, leaving the player animating the wrong way round.
      */
     private suspend fun Player.turn(obj: Tile) {
         var ticks = 0
-        while ((steps.isNotEmpty() || steps.last > GameLoop.tick) && ticks++ < STATION_TIMEOUT) {
+        while ((steps.isNotEmpty() || steps.last >= GameLoop.tick) && ticks++ < STATION_TIMEOUT) {
             pause(1)
         }
         face(obj)
@@ -208,9 +210,15 @@ class BoneGrinder : Script {
      */
     private suspend fun Player.station(obj: Tile, target: Tile): Boolean {
         pause(1)
-        walkTo(target)
         var ticks = 0
-        while (tile != target) {
+        while (true) {
+            if (tile != target) {
+                // The interaction that started the batch keeps pathing back to its own machine,
+                // so re-take the tile rather than assuming one walk is enough.
+                walkTo(target)
+            } else if (steps.isEmpty() && steps.last < GameLoop.tick) {
+                break
+            }
             if (ticks++ >= STATION_TIMEOUT) {
                 return false
             }
@@ -225,6 +233,9 @@ class BoneGrinder : Script {
      * repeating until the player runs out of either bones or empty pots.
      */
     private suspend fun Player.grind(row: RowDefinition) {
+        // Drop the interaction that started the batch; left running it keeps pathing back to its
+        // own machine and drags the player off the circuit mid-step.
+        mode = EmptyMode
         var bones = row
         // The interaction has already walked the player to the hopper and turned them to it, so
         // the first set is ground where they stand rather than shuffling onto the circuit.
