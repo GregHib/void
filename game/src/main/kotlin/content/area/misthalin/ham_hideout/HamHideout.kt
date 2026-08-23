@@ -1,5 +1,7 @@
 package content.area.misthalin.ham_hideout
 
+import content.entity.obj.TrapDoors.Companion.registerCloseHandler
+import content.entity.obj.TrapDoors.Companion.registerOpenHandler
 import content.entity.obj.door.Door.openDoor
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
@@ -118,7 +120,7 @@ class HamHideout : Script {
             if (target.tile != TRAPDOOR_TILE) {
                 return false
             }
-            if (player.get(LOCKED_TRAPDOOR_OPEN_TICK, -1) == GameLoop.tick) {
+            if (player[LOCKED_TRAPDOOR_OPEN_TICK, -1] == GameLoop.tick) {
                 return true
             }
             player[LOCKED_TRAPDOOR_OPEN_TICK] = GameLoop.tick
@@ -127,11 +129,11 @@ class HamHideout : Script {
             return true
         }
 
-        suspend fun handlePrivateTrapdoorClose(player: Player, target: GameObject): Boolean {
+        fun handlePrivateTrapdoorClose(player: Player, target: GameObject): Boolean {
             if (target.tile != TRAPDOOR_TILE || target.intId != OPEN_TRAPDOOR_ID) {
                 return false
             }
-            if (player.get(OPEN_TRAPDOOR_CLOSE_TICK, -1) == GameLoop.tick) {
+            if (player[OPEN_TRAPDOOR_CLOSE_TICK, -1] == GameLoop.tick) {
                 return true
             }
             player[OPEN_TRAPDOOR_CLOSE_TICK] = GameLoop.tick
@@ -143,7 +145,7 @@ class HamHideout : Script {
             if (target.tile != PRISON_DOOR_TILE || target.intId != CLOSED_PRISON_DOOR_ID) {
                 return false
             }
-            if (player.get(LOCKED_PRISON_DOOR_OPEN_TICK, -1) == GameLoop.tick) {
+            if (player[LOCKED_PRISON_DOOR_OPEN_TICK, -1] == GameLoop.tick) {
                 return true
             }
             player[LOCKED_PRISON_DOOR_OPEN_TICK] = GameLoop.tick
@@ -176,12 +178,6 @@ class HamHideout : Script {
         private fun getZoneOffset(viewport: Viewport, zone: Zone): Zone {
             val base = viewport.lastLoadZone.safeMinus(viewport.zoneRadius, viewport.zoneRadius)
             return zone.safeMinus(base)
-        }
-
-        fun resetConcussionCounter(player: Player, target: NPC) {
-            if (target.id in PICKPOCKETABLE_MEMBERS && player.tile.region.id != HAM_HIDEOUT_REGION_ID) {
-                player.clear(CONCUSSION_COUNTER_VAR)
-            }
         }
 
         fun isPickpocketableMember(target: NPC): Boolean = target.id in PICKPOCKETABLE_MEMBERS
@@ -304,7 +300,7 @@ class HamHideout : Script {
             if (movedToDoor) {
                 player.face(Direction.WEST)
             }
-            val attempt = player.get(PRISON_DOOR_ATTEMPTS, 0).coerceIn(0, 3)
+            val attempt = player[PRISON_DOOR_ATTEMPTS, 0].coerceIn(0, 3)
             player.message("You attempt to pick the lock on the door.", ChatType.Filter)
             player.anim("human_lockedchest")
             player.sound("locked")
@@ -339,8 +335,6 @@ class HamHideout : Script {
 
         private fun Player.isInsidePrisonCell(): Boolean = tile.x >= 3183 && tile.y <= 9611
 
-        private fun Player.isAtPrisonDoorInteractTile(): Boolean = tile == PRISON_DOOR_INTERACT_TILE
-
         private fun Player.isAtBlockedPrisonDoorTile(): Boolean = tile in PRISON_DOOR_BLOCKED_TILES
 
         private fun Player.preventsCaughtPickpocketWithHamRobes(): Boolean {
@@ -353,6 +347,12 @@ class HamHideout : Script {
 
     init {
         registerSender()
+        registerOpenHandler("ham_hideout") { target ->
+            handleLockedTrapdoorOpen(this, target)
+        }
+        registerCloseHandler("ham_hideout") { target ->
+            handlePrivateTrapdoorClose(this, target)
+        }
         moved { from ->
             if (from.region.id == HAM_HIDEOUT_REGION_ID && tile.region.id != HAM_HIDEOUT_REGION_ID) {
                 clear(CONCUSSION_COUNTER_VAR)
@@ -367,10 +367,6 @@ class HamHideout : Script {
             }
             queue.clear(AUTO_PICKLOCK_QUEUE)
             pickLockTrapdoor(target)
-        }
-
-        objectOperate("Close", "trapdoor_24_opened") { (target) ->
-            handlePrivateTrapdoorClose(this, target)
         }
 
         objectOperate("Pick-lock") { (target) ->
@@ -436,7 +432,7 @@ class HamHideout : Script {
     }
 
     private object LocalTrapdoorSender : ZoneBatchUpdates.Sender {
-        override fun send(player: Player, zone: world.gregs.voidps.type.Zone) {
+        override fun send(player: Player, zone: Zone) {
             val trapdoor = player.localObjects[LOCAL_TRAPDOOR_KEY] ?: return
             if (trapdoor.tile.zone != zone) {
                 return

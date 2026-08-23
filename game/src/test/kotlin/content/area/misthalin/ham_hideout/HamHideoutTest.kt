@@ -461,6 +461,7 @@ internal class HamHideoutTest : WorldTest() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = when (until) {
                 256 -> 255
+                4 -> 1
                 5 -> 1
                 else -> 0
             }

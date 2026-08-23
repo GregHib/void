@@ -1,17 +1,48 @@
 package content.entity.obj
 
-import content.area.misthalin.ham_hideout.HamHideout.Companion.handleLockedTrapdoorOpen
-import content.area.misthalin.ham_hideout.HamHideout.Companion.handlePrivateTrapdoorClose
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 class TrapDoors : Script {
 
+    companion object {
+        private val openHandlers = linkedMapOf<String, suspend Player.(GameObject) -> Boolean>()
+        private val closeHandlers = linkedMapOf<String, suspend Player.(GameObject) -> Boolean>()
+
+        fun registerOpenHandler(key: String, handler: suspend Player.(GameObject) -> Boolean) {
+            openHandlers[key] = handler
+        }
+
+        fun registerCloseHandler(key: String, handler: suspend Player.(GameObject) -> Boolean) {
+            closeHandlers[key] = handler
+        }
+
+        private suspend fun Player.handleOpen(target: GameObject): Boolean {
+            for (handler in openHandlers.values) {
+                if (handler(target)) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        private suspend fun Player.handleClose(target: GameObject): Boolean {
+            for (handler in closeHandlers.values) {
+                if (handler(target)) {
+                    return true
+                }
+            }
+            return false
+        }
+    }
+
     init {
         objectOperate("Open", "trapdoor_*_closed") { (target) ->
-            if (handleLockedTrapdoorOpen(this, target)) {
+            if (handleOpen(target)) {
                 return@objectOperate
             }
             anim("open_chest")
@@ -22,7 +53,7 @@ class TrapDoors : Script {
         }
 
         objectOperate("Close", "trapdoor_*_opened") { (target) ->
-            if (handlePrivateTrapdoorClose(this, target)) {
+            if (handleClose(target)) {
                 return@objectOperate
             }
             anim("close_chest")
