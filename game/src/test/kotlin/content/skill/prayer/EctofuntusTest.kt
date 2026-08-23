@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import skillCreation
 import walk
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -191,6 +192,42 @@ class EctofuntusTest : WorldTest() {
 
         assertEquals(2, player.inventory.count("silver_dust"))
         assertEquals(3, player.inventory.count("silver_bar"))
+    }
+
+    @Test
+    fun `Automatic mode reaches each machine before animating`() {
+        val player = grinderPlayer {
+            set("bone_grinder_auto", true)
+            repeat(3) {
+                inventory.add("big_bones")
+                inventory.add("empty_pot")
+            }
+        }
+        val stations = mapOf(
+            AnimationDefinitions.get("fill_bone_hopper").id to Tile(3660, 3524, 1),
+            AnimationDefinitions.get("wind_bone_grinder").id to Tile(3659, 3524, 1),
+            AnimationDefinitions.get("empty_bone_bin").id to Tile(3658, 3524, 1),
+        )
+
+        player.objectOption(hopper(), "Fill")
+        val offside = mutableListOf<String>()
+        repeat(200) {
+            val animation = player.visuals.animation.force
+            val expected = stations[animation]
+            if (expected != null) {
+                if (player.tile != expected) {
+                    offside.add("$animation played at ${player.tile}, expected $expected")
+                }
+                // The tile updates as a step is taken while the client is still walking into it.
+                if (player.steps.isNotEmpty() || player.steps.last >= GameLoop.tick) {
+                    offside.add("$animation played while still walking into $expected")
+                }
+            }
+            tick()
+        }
+
+        assertEquals(emptyList<String>(), offside)
+        assertEquals(3, player.inventory.count("big_bonemeal"))
     }
 
     @Test

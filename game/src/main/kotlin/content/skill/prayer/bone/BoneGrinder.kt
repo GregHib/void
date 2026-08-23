@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.makeAmount
 import content.entity.player.dialogue.type.statement
 import net.pearx.kasechange.toLowerSpaceCase
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.RowDefinition
@@ -186,8 +187,15 @@ class BoneGrinder : Script {
      * Turns to the machine on [obj], resting a tick either side so the turn reads separately from
      * the animation that follows. The interaction itself walks the player into reach, so anyone
      * already stood by the machine stays put.
+     *
+     * Waits for the walk to finish first; the tile updates as a step is taken but the client is
+     * still walking into it, so turning straight away animates the player mid-stride.
      */
     private suspend fun Player.turn(obj: Tile) {
+        var ticks = 0
+        while ((steps.isNotEmpty() || steps.last >= GameLoop.tick) && ticks++ < STATION_TIMEOUT) {
+            pause(1)
+        }
         pause(1)
         face(obj)
         pause(1)
