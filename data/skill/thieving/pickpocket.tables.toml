@@ -89,6 +89,9 @@ type = "workman"
 [.farmer]
 type = "farmer"
 
+[.farmer_2]
+type = "farmer"
+
 [.farmer_lumbridge]
 type = "farmer"
 

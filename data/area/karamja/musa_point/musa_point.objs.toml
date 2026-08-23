@@ -5,3 +5,27 @@ examine = "Handy for boarding the ship."
 [gangplank_musa_point_enter]
 id = 2081
 examine = "Handy for boarding the ship."
+
+[karamja_banana_tree_5]
+id = 2073
+examine = "Grows weird yellow fruit."
+
+[karamja_banana_tree_4]
+id = 2074
+examine = "Grows weird yellow fruit."
+
+[karamja_banana_tree_3]
+id = 2075
+examine = "Grows weird yellow fruit."
+
+[karamja_banana_tree_2]
+id = 2076
+examine = "Grows weird yellow fruit."
+
+[karamja_banana_tree_1]
+id = 2077
+examine = "Grows weird yellow fruit."
+
+[karamja_banana_tree_0]
+id = 2078
+examine = "Grows weird yellow fruit."

@@ -6,3 +6,11 @@ id = 2301
 
 [evil_chicken_attack]
 id = 2302
+
+[teleport_evil_chicken_lair]
+id = 2755
+ticks = 1
+
+[teleport_land_evil_chicken_lair]
+id = 2757
+ticks = 1

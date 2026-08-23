@@ -79,8 +79,33 @@ interface Teleport {
         }
 
         suspend fun takeOff(player: Player, target: GameObject, option: String): Int {
-            val handler = objectTakeOff["$option:${target.id}"] ?: objectTakeOff["*:${target.id}"] ?: objectTakeOff["$option:*"] ?: objectTakeOff["*:*"] ?: return CONTINUE
-            return handler.invoke(player, target, option)
+            var handler = objectTakeOff["$option:${target.id}"]
+            var result = CONTINUE
+            if (handler != null) {
+                result = handler.invoke(player, target, option)
+            }
+            if (result != CONTINUE) {
+                return result
+            }
+            handler = objectTakeOff["*:${target.id}"]
+            if (handler != null) {
+                result = handler.invoke(player, target, option)
+            }
+            if (result != CONTINUE) {
+                return result
+            }
+            handler = objectTakeOff["$option:*"]
+            if (handler != null) {
+                result = handler.invoke(player, target, option)
+            }
+            if (result != CONTINUE) {
+                return result
+            }
+            handler = objectTakeOff["*:*"]
+            if (handler != null) {
+                result = handler.invoke(player, target, option)
+            }
+            return result
         }
 
         suspend fun land(player: Player, target: GameObject, option: String) {

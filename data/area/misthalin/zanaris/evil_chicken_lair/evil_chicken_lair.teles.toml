@@ -1,0 +1,15 @@
+# 6212 evil chicken's lair
+[evil_chicken_lair_portal]
+option = "Enter"
+tile = { x = 1563, y = 4354 }
+to = { x = 2452, y = 4476 }
+
+[evil_chicken_lair_tunnel_entrance_rope]
+option = "Climb-down"
+tile = { x = 1559, y = 4380 }
+to = { x = 1545, y = 4382 }
+
+[evil_chicken_lair_rope]
+option = "Climb-up"
+tile = { x = 1545, y = 4381 }
+to = { x = 1561, y = 4380 }

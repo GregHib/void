@@ -1,6 +1,6 @@
 [cow_default]
 id = 81
-hitpoints = 80
+hitpoints = 107
 attack_bonus = -15
 combat_def = "cow"
 immune_poison = true
@@ -21,7 +21,7 @@ id = 1767
 
 [cow_calf]
 id = 2310
-hitpoints = 60
+hitpoints = 69
 attack_bonus = -20
 combat_def = "cow"
 slayer_xp = 6.0

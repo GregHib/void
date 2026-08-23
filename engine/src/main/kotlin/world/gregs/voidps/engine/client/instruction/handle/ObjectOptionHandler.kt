@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.client.instruction.handle
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Transforms
 import world.gregs.voidps.engine.client.instruction.InstructionHandler
 import world.gregs.voidps.engine.client.ui.closeInterfaces
@@ -82,7 +84,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
             return variable.values.toInt(value)
         }
 
-        fun <T, D : DefinitionsDecoder<T>> getDefinition(player: Player, definitions: D, definition: T, def: Transforms): T {
+        fun <T, D : DefinitionsDecoder<T>> getDefinition(player: Player, definitions: D, definition: T, def: Transforms): T where T : Definition, T : Parameterized {
             val transforms = def.transforms ?: return definition
             val varbit = def.varbit
             if (varbit != -1) {

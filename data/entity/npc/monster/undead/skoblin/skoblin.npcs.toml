@@ -7,4 +7,3 @@ respawn_delay = 3
 drop_table = "skoblin"
 categories = ["skoblin"]
 examine = "A skeletal goblin. It looks like the necromancer didn't animate only human bones."
-hunt_mode = "cowardly"
