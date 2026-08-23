@@ -36,6 +36,9 @@ class DungeonFloor : Script {
         }
 
         interfaceOption("Select-floor", "dungeon_floor:select_*") {
+            if (inDungeoneering) {
+                return@interfaceOption
+            }
             val floor = it.component.removePrefix("select_").toInt()
             if (dungeonLeader != this) {
                 message("<red_orange>Only the party leader can select the floor. To lead your own party, use the 'Form party' option on the party details interface when you are not in a party.")
@@ -55,6 +58,10 @@ class DungeonFloor : Script {
         }
 
         interfaceOption("Confirm", "dungeon_floor:confirm") {
+            if (inDungeoneering) {
+                closeMenu()
+                return@interfaceOption
+            }
             if (dungeonLeader != this) {
                 message("<red_orange>Only the party leader change these settings.")
                 return@interfaceOption
