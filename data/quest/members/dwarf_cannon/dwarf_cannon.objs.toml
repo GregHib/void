@@ -1,0 +1,15 @@
+[dwarf_multicannon_base]
+id = 7
+examine = "The cannon is built on this."
+
+[dwarf_multicannon_stand]
+id = 8
+examine = "The mounting for the multicannon."
+
+[dwarf_multicannon_barrels]
+id = 9
+examine = "The barrels of the multicannon."
+
+[dwarf_multicannon]
+id = 6
+examine = "A dwarf multicannon."

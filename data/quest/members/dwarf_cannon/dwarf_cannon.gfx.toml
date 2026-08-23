@@ -1,0 +1,6 @@
+[cannonball]
+id = 53
+delay = 10
+height = 38
+curve = 5
+time_offset = 5

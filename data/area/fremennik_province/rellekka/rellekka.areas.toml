@@ -31,3 +31,7 @@ y = [3708, 3711]
 x = [2675, 2693]
 y = [3592, 3598]
 
+[fremennik_slayer_dungeon]
+x = [2688, 2815]
+y = [9920, 10047]
+tags = ["no_cannon", "no_cannon_dank"]

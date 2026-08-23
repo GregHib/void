@@ -2,3 +2,8 @@
 x = [3313, 3317]
 y = [3233, 3237]
 tags = ["teleport"]
+
+[duel_arena]
+x = [3311, 3391]
+y = [3199, 3290]
+tags = ["no_cannon"]

@@ -27,3 +27,8 @@ y = [2915, 2922]
 [feldip_hills_south_fishing_area]
 x = [2435, 2436]
 y = [2890, 2895]
+
+[zogre_burial_grounds]
+x = [2496, 2559]
+y = [2880, 2943]
+tags = ["no_cannon", "no_cannon_dark_forces"]
