@@ -50,8 +50,10 @@ suspend fun Player.choice(lines: List<String>, title: String? = null): Int {
     val multilineOptions = lines.any { isMultiline(it) }
     val id = getChoiceId(multilineTitle, multilineOptions, lines.size)
     if (!open(id)) {
+        println("choice open failed id=$id title=$title")
         return -1
     }
+    println("choice opened id=$id title=$title")
     if (question != null) {
         val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
         val wide = longestLine > APPROXIMATE_WIDE_TITLE_LENGTH

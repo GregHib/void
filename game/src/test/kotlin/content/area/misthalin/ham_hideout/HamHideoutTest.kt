@@ -231,6 +231,12 @@ internal class HamHideoutTest : WorldTest() {
         player.skipDialogues()
         tick()
 
+        assertNull(player.dialogue)
+        assertEquals(Direction.WEST, npc.direction)
+
+        player.npcOption(npc, "Talk-to")
+        tick(2)
+
         assertEquals("dialogue_multi5", player.dialogue)
         assertEquals(Direction.WEST, npc.direction)
 

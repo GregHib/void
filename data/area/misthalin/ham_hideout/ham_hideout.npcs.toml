@@ -62,7 +62,6 @@ examine = "A member of the 'Humans Against Monsters' group."
 
 [ham_member_ham_cave_4]
 id = 1716
-interacts = false
 examine = "A member of the 'Humans Against Monsters' group."
 
 [jimmy_the_chisel_ham_cave]

@@ -130,6 +130,7 @@ class HamMemberDialogue : Script {
     private suspend inline fun <reified E : Expression> Player.memberNpc(target: NPC, text: String) {
         if (target.id == "ham_member_ham_cave_4") {
             npc<E>(target.id, text)
+            target.lockHamMember4()
         } else {
             npc<E>(text)
         }
