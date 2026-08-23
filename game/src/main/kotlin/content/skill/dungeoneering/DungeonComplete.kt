@@ -1,9 +1,12 @@
 package content.skill.dungeoneering
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.wilderness.daemonheim.DungeonFloor
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.entity.player.dialogue.type.choice
+import content.entity.player.dialogue.type.item
+import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
 import content.quest.closeTabs
 import world.gregs.voidps.engine.Script
@@ -14,6 +17,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -23,6 +27,7 @@ import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
@@ -47,8 +52,7 @@ class DungeonComplete : Script {
                 option("Yes, continue.") {
                     if (dungeonMembers.size == 1) {
                         dungeonComplete()
-                        leader["dungeon_next_timer"] = 30
-                        leader.softTimers.startIfAbsent("dungeon_continuation")
+                        continueCountDown(leader)
                         return@option
                     }
                     set("dungeon_move_on_vote", true)
@@ -102,9 +106,7 @@ class DungeonComplete : Script {
             for (member in dungeonMembers) {
                 member.dungeonComplete()
             }
-            set("dungeon_next_timer", TimeUnit.SECONDS.toTicks(30))
-            nextMessage(this)
-            softTimers.startIfAbsent("dungeon_continuation")
+            continueCountDown(this)
         }
 
         interfaceOption("Ready", "dungeon_complete:readybutton_player*") {
@@ -143,6 +145,12 @@ class DungeonComplete : Script {
             }
         }
 
+    }
+
+    private fun continueCountDown(leader: Player) {
+        leader["dungeon_next_timer"] = TimeUnit.SECONDS.toTicks(Settings["dungeoneering.secondsBetweenDungeons", 30])
+        nextMessage(leader)
+        leader.softTimers.startIfAbsent("dungeon_continuation")
     }
 
     private fun nextMessage(player: Player) {
@@ -216,106 +224,146 @@ class DungeonComplete : Script {
     }
 
     private fun Player.dungeonComplete() {
-        set("had_party_open", interfaces.contains("dungeoneering_party"))
-        minimap(Minimap.HideMap)
-        closeTabs(Tab.Options)
-        close("dungeoneering_party")
-        // https://youtu.be/brr5Ou1SjVE?t=655
-        // item(3028, "The next floor is not available at your Dungeoneering level. Consider resetting your progress to gain the best ongoing rate of xp. Click the advisor button for more information.")
-        closeInterfaces()
-        open("dungeon_complete")
-        for (i in 1..5) {
-            set("rand_ready_state_player$i", false, "unset")
-            sendVariable("rand_ready_state_player$i")
-        }
+        strongQueue("dungeon_info") {
+            set("had_party_open", interfaces.contains("dungeoneering_party"))
+            minimap(Minimap.HideMap)
+            closeTabs(Tab.Options)
+            close("dungeoneering_party")
+            closeInterfaces()
+            open("dungeon_complete")
+            for (i in 1..5) {
+                set("rand_ready_state_player$i", false, "unset")
+                sendVariable("rand_ready_state_player$i")
+            }
 
-        // Base XP
-        // Floor XP - Depends on floor number, size and difficulty
-        // A measure of how much time the floor is expected to take (without using actual time taken)
-        val size = get("dungeoneering_party_size", "small")
-        val floor = get("dungeoneering_party_floor", 1)
-        set("rand_party_current_floor_trans", floor)
-        val baseFloorXp = baseFloorXp(floor, size)
-        set("rand_basefloor_varc", baseFloorXp) // x10
+            // Base XP
+            // Floor XP - Depends on floor number, size and difficulty
+            // A measure of how much time the floor is expected to take (without using actual time taken)
+            val size = get("dungeoneering_party_size", "small")
+            val floor = get("dungeoneering_party_floor", 1)
+            set("rand_party_current_floor_trans", floor)
+            val baseFloorXp = baseFloorXp(floor, size)
+            set("rand_basefloor_varc", baseFloorXp) // x10
 
-        // Prestige
-        val current = get("dungeoneering_current_progress", 0)
-        val previous = get("dungeoneering_previous_progress", 0)
-        val prestige = max(current, previous)
-        set("dungeon_prestige_current", current)
-        set("dungeon_prestige_previous", previous)
-        val prestigeXp = basePrestigeXp(floor, size, prestige)
-        set("rand_prestige_varc", prestigeXp) // x10
-        val totalFloor = (baseFloorXp + prestigeXp) / 2
-        set("rand_totalfloor_varc", totalFloor) // x10 Average
+            // Prestige
+            val current = get("dungeoneering_current_progress", 0)
+            val previous = get("dungeoneering_previous_progress", 0)
+            val ticked = tickOffFloor(floor)
+            val prestige = if (ticked == -1) 0 else max(current, previous).coerceAtMost(60)
+            set("dungeon_prestige_current", current)
+            set("dungeon_prestige_previous", previous)
+            val prestigeXp = basePrestigeXp(floor, size, prestige)
+            set("rand_prestige_varc", prestigeXp) // x10
+            val totalFloor = (baseFloorXp + prestigeXp) / 2
+            set("rand_totalfloor_varc", totalFloor) // x10 Average
 
-        var bonusRooms = 0
-        var bonusRoomsOpen = 0
-        val dungeon = dungeonMap ?: return
-        for (x in 0 until dungeon.width) {
-            for (y in 0 until dungeon.height) {
-                val room = dungeon.room(x, y) ?: continue
-                if (!room.isCritical) {
-                    bonusRooms++
-                    if (room.open) {
-                        bonusRoomsOpen++
+            var bonusRooms = 0
+            var bonusRoomsOpen = 0
+            val dungeon = dungeonMap ?: return@strongQueue
+            for (x in 0 until dungeon.width) {
+                for (y in 0 until dungeon.height) {
+                    val room = dungeon.room(x, y) ?: continue
+                    if (!room.isCritical) {
+                        bonusRooms++
+                        if (room.open) {
+                            bonusRoomsOpen++
+                        }
+                    }
+                }
+            }
+
+            set("rand_dungeon_size_trans", size)
+            val bonus = Interpolation.lerp(bonusRoomsOpen, 0..bonusRooms, 0..10000)
+            set("rand_party_bonus_exploration", bonus) // +1%
+            set("rand_dungeon_difficulty_trans", dungeonMembers.size * 10 + dungeon.playerCount)
+            val complexity = get("dungeoneering_party_complexity", 1)
+            set("rand_party_complexity_level_trans", complexity)
+            val deaths = get("dungeon_deaths", 0).coerceAtMost(15)
+            set("dungeon_deaths", deaths)
+            // Unbalanced party penalty x100%
+            set("rand_nurf_amount_trans", false)
+            val loreStat = 100000
+            set("lore_stat_var", loreStat)
+            val pointsMod = 2100
+            set("rand_pointsmod_varc", pointsMod) // x100
+
+            for (i in 1..5) {
+                val member = dungeonMembers.getOrNull(i - 1)
+                set("rand_exists_$i", member != null)
+                if (member == null) {
+                    continue
+                }
+                set("dungeoneering_player_$i", member.name)
+                for (i in 1 until 6) {
+                    set("rand_award_1_$i", if (i > 1) 0 else i)
+                }
+            }
+
+            val final = computeFinalModifierBasisPoints(this, size, bonus, dungeonMembers.size, dungeon.playerCount, deaths, 0, pointsMod, complexity)
+            val totalXp = calculateTotalXp(final, totalFloor)
+            val tokens = calculateTokens(final, totalFloor, loreStat)
+
+            if (!get("dungeon_reward_given", false)) {
+                if (ticked == -1) {
+                    if (Settings["dungeoneering.warningStatement", true]) {
+                        // https://youtu.be/27ZBYBvBnL0?t=718
+                        statement("<red>Warning<br><black>You have already completed all the available floors of this theme and thus cannot be awarded prestige xp until you reset your progress or switch theme.")
+                    } else {
+                        // https://youtu.be/ouT__1cWTTU?t=583
+                        message("<red>Warning<br>")
+                        message("You have already completed all the available floors of this theme and thus cannot be awarded prestige xp until you reset your progress or switch theme.")
+                    }
+                }
+                // FIXME these dialogues should have a different font. https://youtu.be/lICWj9Ors6w?t=416
+                if (get("dungeoneering_guide_mode", false)) {
+                    item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") // FIXME c2?
+                }
+                if (floor + 1 > DungeonFloor.floorAtLevel(this)) {
+                    if (get("dungeoneering_guide_mode", false)) {
+                        // https://youtu.be/brr5Ou1SjVE?t=655
+                        item(3032, "The next floor is not available at your Dungeoneering level. Consider resetting your progress to gain the best ongoing rate of xp. Click the advisor button for more information.")
+                    } else {
+                        item(3032, "The next floor is not available at your Dungeoneering level.")
+                    }
+                } else {
+                    val unlocked = get("dungeoneering_floor_unlocked", 1)
+                    if (unlocked < 60 && floor == unlocked) {
+                        set("dungeoneering_floor_unlocked", floor + 1)
+                        item(3032, "You have unlocked the next floor. You can now reach floor ${floor + 1}!")
+                    }
+                }
+                set("dungeon_reward_given", true)
+                println("Reward: $totalXp Tokens: $tokens")
+                exp(Skill.Dungeoneering, totalXp.toDouble())
+                inc("dungeoneering_tokens", tokens.toInt())
+                AuditLog.event(this, "completed_dungeon", floor, complexity, dungeonMembers.size, dungeon.playerCount, deaths, totalXp, tokens.toInt())
+
+                if (ticked != -1) {
+                    set("dungeon_floor_${ticked}_complete", true)
+                    inc("dungeoneering_current_progress")
+                    if (ticked != floor) {
+                        // https://youtu.be/AZtXwFWWiP8?t=251
+                        message("Since you have previously completed this floor, floor $ticked was instead ticked-off.")
                     }
                 }
             }
         }
-
-        set("rand_dungeon_size_trans", size)
-        val bonus = Interpolation.lerp(bonusRoomsOpen, 0..bonusRooms, 0..10000)
-        set("rand_party_bonus_exploration", bonus) // +1%
-        set("rand_dungeon_difficulty_trans", dungeonMembers.size * 10 + dungeon.playerCount)
-        val complexity = get("dungeoneering_party_complexity", 1)
-        set("rand_party_complexity_level_trans", complexity)
-        val deaths = get("dungeon_deaths", 0).coerceAtMost(15)
-        set("dungeon_deaths", deaths)
-        // Unbalanced party penalty x100%
-        set("rand_nurf_amount_trans", false)
-        val loreStat = 100000
-        set("lore_stat_var", loreStat)
-        val pointsMod = 2100
-        set("rand_pointsmod_varc", pointsMod) // x100
-
-        for (i in 1..5) {
-            val member = dungeonMembers.getOrNull(i - 1)
-            set("rand_exists_$i", member != null)
-            if (member == null) {
-                continue
-            }
-            set("dungeoneering_player_$i", member.name)
-            for (i in 1 until 6) {
-                set("rand_award_1_$i", if (i > 1) 0 else i)
-            }
-        }
-
-        val final = computeFinalModifierBasisPoints(this, size, bonus, dungeonMembers.size, dungeon.playerCount, deaths, 0, pointsMod, complexity)
-        val totalXp = calculateTotalXp(final, totalFloor)
-        val tokens = calculateTokens(final, totalFloor, loreStat)
-
-        if (!get("dungeon_reward_given", false)) {
-            println("Reward: ${totalXp} Tokens: $tokens")
-            exp(Skill.Dungeoneering, totalXp.toDouble())
-            inc("dungeoneering_tokens", tokens.toInt())
-            AuditLog.event(this, "completed_dungeon", floor, complexity, dungeonMembers.size, dungeon.playerCount, deaths, totalXp, tokens.toInt())
-            set("dungeon_reward_given", true)
-        }
-        // TODO other messages
-        if (get("dungeoneering_guide_mode", false)) {
-//            item(3032, "You have now unlocked high complexity within Daemonheim. The complete Dungeoneering experience awaits you on the next floor!") FIXME c2?
-        }
-        // https://youtu.be/ouT__1cWTTU?t=583
-        // https://youtu.be/27ZBYBvBnL0?t=718
-//        message("<red>Warning<br>")
-//        message("You have already completed all the available floors of this theme and thus cannot be awarded prestige xp until you reset your progress or switch theme.")
-        // https://youtu.be/AZtXwFWWiP8?t=251
-//        message("Since you have previously completed this floor, floor 24 was instead ticked-off.")
     }
 
+    fun Player.tickOffFloor(floor: Int): Int {
+        if (!get("dungeon_floor_${floor}_complete", false)) {
+            return floor
+        }
+        val maxFloor = DungeonFloor.maxFloor(this)
+        val substitute = floorGroup(floor).firstOrNull { it <= maxFloor && !get("dungeon_floor_${floor}_complete", false) } ?: return -1
+        return substitute
+    }
+
+    private val FLOOR_GROUPS = listOf(1..11, 12..17, 18..29, 30..35, 36..47, 48..60)
+
+    fun floorGroup(floor: Int): IntRange = FLOOR_GROUPS.first { floor in it }
+
     private fun computeFinalModifierBasisPoints(player: Player, size: String, bonus: Int, partySize: Int, partyDifficulty: Int, deaths: Int, nerf: Int, pointsMod: Int, complexity: Int): Int {
-        println("Size=$size, bonus=$bonus, party=$partySize, diff=$partyDifficulty, deaths=$deaths, nerf=$nerf, mod=$pointsMod, complexity=$complexity")
         val sizeBonus = when (size) {
             "medium" -> 792
             "large" -> 1583
@@ -347,8 +395,8 @@ class DungeonComplete : Script {
             return 9000
         }
         return 10000
-
     }
+
     private fun complexityModifier(complexity: Int): Int {
         return when (complexity) {
             1 -> 5000

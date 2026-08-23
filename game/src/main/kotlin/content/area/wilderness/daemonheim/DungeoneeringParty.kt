@@ -177,6 +177,11 @@ class DungeoneeringParty : Script {
                 option("Yes, reset my progress.") {
                     set("dungeoneering_previous_progress", get("dungeoneering_current_progress", 0))
                     set("dungeoneering_current_progress", 0)
+                    for (i in 1..60) {
+                        clear("dungeon_floor_${i}_complete")
+                    }
+                    clear("dungeoneering_party_floor")
+                    clear("dungeoneering_party_complexity")
                     message("Your dungeon progress have been reset.")
                 }
                 option("No, don't reset my progress.")
@@ -501,7 +506,7 @@ class DungeoneeringParty : Script {
         fun setLeader(player: Player) {
             player["dungeoneering_party_leader"] = player.name
             setMember(player, player, 0)
-            player["dungeoneering_party_floor"] = player["dungeoneering_floor", 1]
+            player["dungeoneering_party_floor"] = DungeonFloor.maxFloor(player)
             player["dungeoneering_party_complexity"] = player["dungeoneering_complexity", 1]
             player.message("You have been set as the party leader.")
             player.refreshDetails()
