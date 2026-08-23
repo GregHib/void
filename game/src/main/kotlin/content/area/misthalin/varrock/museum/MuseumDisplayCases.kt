@@ -33,11 +33,11 @@ class MuseumDisplayCases : Script {
             "vm_timeline",
             "vm_timeline_text",
             "3rd Age - yr 3000-4000<br><br>This " +
-                    "statuette was found in an underground temple in the ruined city of Uzer, which was destroyed late " +
-                    "in the 3rd Age, suddenly, due to causes unknown. It probably represents one of the clay golems " +
-                    "that the craftsmen of the city built as warriors and servants. The statuette was originally part " +
-                    "of a mechanism whose purpose is unknown." +
-                    (if (stolen) "<br><br>Recently this display was stolen and its whereabouts are unknown." else ""),
+                "statuette was found in an underground temple in the ruined city of Uzer, which was destroyed late " +
+                "in the 3rd Age, suddenly, due to causes unknown. It probably represents one of the clay golems " +
+                "that the craftsmen of the city built as warriors and servants. The statuette was originally part " +
+                "of a mechanism whose purpose is unknown." +
+                (if (stolen) "<br><br>Recently this display was stolen and its whereabouts are unknown." else ""),
         )
     }
 }
