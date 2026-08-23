@@ -263,7 +263,7 @@ class DungeonEntrance : Script {
                 }
                 // TODO not clear which dialogue interface was used https://youtu.be/yCSJaU4azVA?t=384
                 member.tele(tile)
-                member.message("<orange>Warning: Dungeoneering is experimental and has limited monsters, skills, puzzles and bosses. Please reports any bugs.")
+                member.message("<red_orange>Warning: Dungeoneering is experimental and has limited floors, skills, puzzles, monsters and bosses. Please reports any bugs.")
             }
         }
         return true
