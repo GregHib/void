@@ -219,11 +219,3 @@ remove = ["garlic"]
 add = ["garlic_powder"]
 animation = "pestle_and_mortar"
 message = "You grind the garlic into a powder."
-
-[black_mushroom_ink]
-ticks = 1
-requires = ["pestle_and_mortar"]
-remove = ["black_mushroom"]
-add = ["black_mushroom_ink"]
-animation = "pestle_and_mortar"
-message = "You grind the mushroom into ink."

@@ -4305,13 +4305,13 @@ max_range = 10
 wander_range = 15
 max_range = 15
 
-[.clay_golem_ruins_of_uzer_2]
+[.clay_golem_ruins_of_uzer_broken]
 wander_range = 10
 
-[.clay_golem_ruins_of_uzer_3]
+[.clay_golem_ruins_of_uzer_damaged]
 wander_range = 10
 
-[.clay_golem_ruins_of_uzer_4]
+[.clay_golem_ruins_of_uzer_repaired]
 wander_range = 10
 
 [.desert_phoenix_kharidian_desert]

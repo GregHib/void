@@ -1,0 +1,83 @@
+[golem_demon_portal]
+id = 6282
+examine = "A portal to another land?"
+
+[golem_demon_skeleton]
+id = 6296
+examine = "It looks like the demon didn't survive after all."
+
+# Transforms on golem_throne_gems.
+[golem_demon_throne]
+id = 6300
+
+[golem_throne_withgems]
+id = 6301
+examine = "A throne encrusted with sparkling gems."
+
+[golem_throne_nogems]
+id = 6302
+examine = "A throne from which you have removed the gems."
+
+# The four alcoves, each transforming on its own golem_statuettestatus varbit.
+[golem_statuettea]
+id = 6303
+
+[golem_statuetteb]
+id = 6304
+
+[golem_statuettec]
+id = 6305
+
+[golem_statuetted]
+id = 6306
+
+[golem_statuette_facing_right]
+id = 6307
+examine = "A statuette of a golem, facing right."
+
+[golem_statuette_facing_left]
+id = 6308
+examine = "A statuette of a golem, facing left."
+
+[golem_statuette_missing]
+id = 6309
+examine = "The statuette is missing from this alcove."
+
+# Transforms on the_golem: sealed (6363) below stage 5, openable (6364) from 5 on.
+[golem_portal]
+id = 6310
+
+[golem_demon_door]
+id = 6363
+examine = "A very heavy stone door."
+
+[golem_demon_door_always_open]
+id = 6364
+examine = "A door to a demon's lair?"
+
+[golem_black_mushrooms]
+id = 6311
+examine = "Not good for eating."
+
+[golem_insidestairs_base]
+id = 6372
+examine = "A stone staircase."
+
+# 34978 and 35226 carry no 634-era name; the cache dump names them after the
+# later content that reuses the ids. The ids and placements are the golem's.
+[sote_warped_library_floor_lvl2_centre_01]
+id = 34978
+examine = "A stone staircase."
+
+# Varrock Museum display case; transforms on golem_retrieved_statuette.
+[vm_timeline_terracotta_statue]
+id = 24626
+examine = "A terracotta statue."
+
+[vm_timeline_terracotta_statue_multi]
+id = 24627
+examine = "A terracotta statue."
+
+[vm_timeline_no_display]
+id = 24550
+examine = "An empty display case."

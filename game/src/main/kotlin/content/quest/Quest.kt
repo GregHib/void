@@ -29,6 +29,7 @@ val quests = setOf(
     "priest_in_peril",
     "lost_city",
     "tears_of_guthix",
+    "the_golem",
     "zogre_flesh_eaters",
     // mini-quests
     "enter_the_abyss",

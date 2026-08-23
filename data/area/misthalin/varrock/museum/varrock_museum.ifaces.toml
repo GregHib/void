@@ -1,0 +1,63 @@
+[vm_timeline]
+id = 534
+
+[.vm_timeline_text]
+id = 2
+
+[.vm_timeline_terracotta_statue_model]
+id = 50
+
+[.display_num]
+id = 84
+
+[vm_map_timeline1]
+id = 80
+type = "main_screen"
+
+[.lvl1_level_down]
+id = 43
+
+[.lvl1_level_up]
+id = 42
+
+[.lvl1_level_up_1]
+id = 41
+
+[.lvl1_level_down_1]
+id = 40
+
+[vm_map_basement]
+id = 81
+type = "main_screen"
+
+[.basement_level_up_1]
+id = 38
+
+[.basement_level_up_1_1]
+id = 39
+
+[vm_map_timeline2]
+id = 82
+type = "main_screen"
+
+[.lvl2_level_down]
+id = 28
+
+[.lvl2_level_down_1]
+id = 29
+
+[vm_map_digsite]
+id = 83
+type = "main_screen"
+
+[.lvl0_level_down_1_1]
+id = 35
+
+[.lvl0_level_up_1]
+id = 36
+
+[.lvl0_level_up]
+id = 38
+
+[.lvl0_level_down_1]
+id = 39
