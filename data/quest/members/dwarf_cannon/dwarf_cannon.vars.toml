@@ -1,0 +1,10 @@
+# Pieces of a dwarf multicannon owed to the player after theirs vanished when they logged out.
+# Nulodion hands them back free of charge.
+[cannon_lost_parts]
+persist = true
+format = "int"
+
+# Cannonballs that were loaded in it; a replaced cannon comes back with them still in.
+[cannon_lost_balls]
+persist = true
+format = "int"

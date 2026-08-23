@@ -18,6 +18,8 @@ y = [3329, 3454]
 x = [3400, 3520]
 y = [3324, 3455]
 
+tags = ["no_cannon", "no_cannon_damp"]
+
 [filliman_grotto]
 x = [3433, 3447]
 y = [3331, 3343]

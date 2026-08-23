@@ -2,4 +2,4 @@
 x = [3145, 3189]
 y = [3469, 3513]
 level = 0
-tags = ["grand_exchange", "no_random_events"]
+tags = ["grand_exchange", "no_random_events", "no_cannon", "no_cannon_grand_exchange"]

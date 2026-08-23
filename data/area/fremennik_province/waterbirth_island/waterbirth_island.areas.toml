@@ -22,4 +22,4 @@ hint = "on a small crescent island."
 [waterbirth_island_dungeon]
 x = [2432, 2559]
 y = [10112, 10175]
-tags = ["no_random_events"]
+tags = ["no_random_events", "no_cannon"]

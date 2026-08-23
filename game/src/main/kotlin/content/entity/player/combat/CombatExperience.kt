@@ -21,6 +21,11 @@ class CombatExperience : Script {
             if (damage <= 0) {
                 return@combatAttack
             }
+            // The dwarf multicannon gives 2 Ranged xp per 10 life points of damage and no Constitution xp.
+            if (type == "cannon") {
+                grant(this, target, Skill.Ranged, damage / 5.0)
+                return@combatAttack
+            }
             if (type == "magic" || type == "blaze") {
                 val base = (Tables.intOrNull("spells.$spell.xp") ?: 0) / 10.0
                 if (get("defensive_cast", false)) {

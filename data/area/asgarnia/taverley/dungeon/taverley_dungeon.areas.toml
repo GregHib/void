@@ -1,3 +1,8 @@
 [taverley_dungeon_fishing_area]
 x = [2878, 2901]
 y = [9761, 9766]
+
+[wyvern_cave]
+x = [3008, 3071]
+y = [9536, 9599]
+tags = ["no_cannon"]

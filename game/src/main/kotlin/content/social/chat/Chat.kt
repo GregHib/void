@@ -1,5 +1,7 @@
 package content.social.chat
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.social.clan.chatType
 import content.social.clan.clan
 import content.social.ignore.ignores
@@ -71,8 +73,16 @@ class Chat(val huffman: Huffman) : Script {
                     AuditLog.event(player, "said", text)
                     ChatHistory.add(player, "public", text)
                     val compressed = huffman.compress(text)
-                    Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
-                        it.client?.publicChat(player.index, effects, player.rights.ordinal, compressed)
+                    if (player.inDungeoneering) {
+                        for (member in player.dungeonMembers) {
+                            if (!member.ignores(player)) {
+                                member.client?.publicChat(player.index, effects, player.rights.ordinal, compressed)
+                            }
+                        }
+                    } else {
+                        Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }.forEach {
+                            it.client?.publicChat(player.index, effects, player.rights.ordinal, compressed)
+                        }
                     }
                 }
                 "clan" -> {

@@ -64,9 +64,6 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             return
         }
         var chances = pickpocket.intRange("chance")
-        println("Double chance: ${level + 10}")
-        println("Triple chance: ${level + 20} ${level + 10}")
-        println("Quadruple chance: ${level + 30} ${level + 20}")
         if (equipped(EquipSlot.Hands).id == "gloves_of_silence" && equipment.discharge(this, EquipSlot.Hands.index)) {
             chances = (chances.first + (chances.first / 20)).coerceAtMost(255)..(chances.last + (chances.last / 20)).coerceAtMost(255)
         }
@@ -178,7 +175,6 @@ class Pickpocketing(val combatDefinitions: CombatDefinitions, val dropTables: Dr
             if (item.isEmpty()) {
                 continue
             }
-            println("Add $item")
             add(item.id, item.amount)
         }
     }

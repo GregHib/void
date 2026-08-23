@@ -59,6 +59,10 @@ interface Character :
 
     override fun compareTo(other: Character): Int = index.compareTo(other.index)
 
+    fun clearWalkTrigger() {
+        walkTrigger = null
+    }
+
     fun walkTrigger() {
         if (suspension != null) {
             return
@@ -412,7 +416,7 @@ interface Character :
         interact.updateRange(range, update)
         if (range != null) {
             while (!interact.arrived(range) && steps.isNotEmpty()) {
-                delay(1)
+                pause(1)
             }
             interact.launched = true
         }

@@ -1,0 +1,123 @@
+package content.skill.dungeoneering
+
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
+import content.entity.player.equip.Equipping
+import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.slot
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
+import world.gregs.voidps.type.random
+import kotlin.random.nextInt
+
+object DungeonStartingItems {
+
+    fun spawn(dungeon: DungeonMap, complexity: Int) {
+        for (member in dungeon.members) {
+            if (dungeon.members.size > 1 && complexity > 2 && member == member.dungeonLeader) {
+                member.inventory.add("group_gatestone")
+            }
+            // Equip type of ring of kinship
+            val currentClass = member["kinship_class", "none"]
+            val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
+            member.equipment.transaction {
+                set(EquipSlot.Ring.index, Item(kinship))
+            }
+            giveBinds(member)
+            if (complexity == 1) {
+                allocateGear(member)
+            }
+        }
+    }
+
+    private fun giveBinds(member: Player) {
+        val items = member.inventories.inventory("dungeoneering_bound").items
+        // Equip in order of bind https://web.archive.org/web/20150406211914/http://www.xp-waste.com/weapon-wielded-at-the-start-of-a-floor-t2478.html
+        for (item in items.reversed()) {
+            member.inventory.add(item.id)
+            if (item.def.slot != EquipSlot.None) {
+                Equipping.equip(member, item, member.inventory.indexOf(item.id))
+            }
+        }
+        if (member.contains("dungeoneering_bound_ammo_id")) {
+            val id = member["dungeoneering_bound_ammo_id", ""]
+            member.inventory.add(id, member["dungeoneering_bound_ammo_count", 0])
+            if (id.endsWith("arrows")) {
+                val slot = member.inventory.indexOf(id)
+                Equipping.equip(member, member.inventory[slot], slot)
+            }
+        }
+    }
+
+    private fun allocateGear(member: Player) {
+        // Add armour and spells of all styles to inventory
+        val defence = tierName(member, "melee", Skill.Defence)
+        val attack = tierName(member, "melee", Skill.Attack)
+        val rangedArmour = tierName(member, "ranged", Skill.Ranged)
+        val rangedWeapon = tierName(member, "woodcutting", Skill.Ranged)
+        val rangedAmmo = tierName(member, "melee", Skill.Ranged)
+        val magicWeapon = tierName(member, "woodcutting", Skill.Magic)
+        val magicArmour = tierName(member, "magic", Skill.Magic)
+        member.inventory.transaction {
+            add("${defence}_${if (random.nextBoolean()) "platebody" else "chainbody"}")
+            add("${defence}_platelegs")
+            add("${attack}_rapier")
+            add("${attack}_battleaxe")
+            add("${magicArmour}robe_top")
+            add("${magicArmour}robe_bottom")
+            val magic = member.levels.getMax(Skill.Magic)
+            if (magic >= 5) {
+                add("mind_rune_dungeoneering", random.nextInt(87..100))
+            }
+            if (magic >= 58 && !World.members) {
+                add("chaos_rune_dungeoneering", random.nextInt(90..100))
+            }
+            if (magic >= 99 && !World.members) {
+                add("fire_rune_dungeoneering", random.nextInt(90..98))
+            }
+            if (magic >= 99 && World.members) {
+                add("blood_rune_dungeoneering", random.nextInt(96..119))
+            }
+            add("air_rune_dungeoneering", random.nextInt(86..165))
+            if (random.nextBoolean()) {
+                val staves = mutableListOf("water_staff_dungeoneering")
+                if (magic >= 10) {
+                    staves.add("earth_staff_dungeoneering")
+                }
+                if (magic >= 20) {
+                    staves.add("fire_staff_dungeoneering")
+                }
+                if (magic >= 30) {
+                    staves.add("air_staff_dungeoneering")
+                }
+                if (magic >= 50) {
+                    staves.add("empowered_water_staff")
+                }
+                if (magic >= 60) {
+                    staves.add("empowered_earth_staff")
+                }
+                if (magic >= 70) {
+                    staves.add("empowered_fire_staff")
+                }
+                if (magic >= 80) {
+                    staves.add("empowered_air_staff")
+                }
+                add(staves.random(random))
+            } else {
+                add("${magicWeapon}_staff")
+            }
+            add("${rangedArmour}_body")
+            add("${rangedArmour}_chaps")
+            add("${rangedWeapon}_shortbow")
+            add("${rangedAmmo}_arrows", random.nextInt(100..110))
+        }
+    }
+
+    private fun tierName(member: Player, style: String, skill: Skill): String = Tables.stringList("dungeoneering_tiers.$style.names")[((member.levels.getMax(skill) / 10) - 2).coerceAtMost(if (World.members) 8 else 7)]
+}

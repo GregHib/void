@@ -24,12 +24,14 @@ class CombatHitsplats : Script {
     fun hit(target: Character, it: CombatDamage) {
         var (source, type, damage, _, spell, _) = it
         if (type == "healed") {
-            target.hit(
-                source = source,
-                amount = damage,
-                mark = HitSplat.Mark.Healed,
-            )
-            target.levels.restore(Skill.Constitution, damage)
+            val actual = target.levels.restore(Skill.Constitution, damage)
+            if (actual > 0) {
+                target.hit(
+                    source = source,
+                    amount = actual,
+                    mark = HitSplat.Mark.Healed,
+                )
+            }
         } else if (damage < 0 || target["god_mode", false]) {
             target.hit(
                 source = source,

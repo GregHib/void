@@ -8,6 +8,10 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import skillCreation
+import walk
+import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -33,6 +37,11 @@ class EctofuntusTest : WorldTest() {
         return player
     }
 
+    private fun assertFacing(player: Player, tile: Tile) {
+        assertEquals(tile.x, player.visuals.face.targetX)
+        assertEquals(tile.y, player.visuals.face.targetY)
+    }
+
     private fun worshipper(setup: Player.() -> Unit): Player {
         val player = createPlayer(Tile(3660, 3519))
         player.setup()
@@ -47,20 +56,37 @@ class EctofuntusTest : WorldTest() {
         }
 
         player.objectOption(hopper(), "Fill")
-        tick(6)
+        tick(12)
+        assertFacing(player, Tile(3660, 3525, 1))
         assertEquals(1, player.get("bone_grinder_stage", 0))
         assertEquals("dragon_bones", player.get("bone_grinder_bones", ""))
         assertEquals(0, player.inventory.count("dragon_bones"))
 
         player.objectOption(mill(), "Wind")
-        tick(6)
+        tick(12)
+        assertFacing(player, Tile(3659, 3525, 1))
         assertEquals(2, player.get("bone_grinder_stage", 0))
 
         player.objectOption(bin(), "Empty")
-        tick(6)
+        tick(12)
+        assertFacing(player, Tile(3658, 3525, 1))
         assertEquals(1, player.inventory.count("dragon_bonemeal"))
         assertEquals(0, player.inventory.count("empty_pot"))
         assertEquals(0, player.get("bone_grinder_stage", 0))
+    }
+
+    @Test
+    fun `Winding from an adjacent tile doesn't move the player`() {
+        val player = createPlayer(Tile(3659, 3524, 1))
+        player.set("bone_grinder_stage", 1)
+        player.set("bone_grinder_bones", "dragon_bones")
+
+        player.objectOption(mill(), "Wind")
+        tick(12)
+
+        assertEquals(Tile(3659, 3524, 1), player.tile)
+        assertFacing(player, Tile(3659, 3525, 1))
+        assertEquals(2, player.get("bone_grinder_stage", 0))
     }
 
     @Test
@@ -74,11 +100,134 @@ class EctofuntusTest : WorldTest() {
         }
 
         player.objectOption(hopper(), "Fill")
-        tick(60)
+        tick(10)
+        assertEquals(4, player.inventory.count("big_bones"), "bones leave the inventory when the hopper is loaded")
+        assertEquals(0, player.inventory.count("big_bonemeal"))
+        tick(200)
 
         assertEquals(5, player.inventory.count("big_bonemeal"))
         assertEquals(0, player.inventory.count("big_bones"))
         assertEquals(0, player.inventory.count("empty_pot"))
+        assertEquals(Tile(3658, 3524, 1), player.tile)
+    }
+
+    @Test
+    fun `Walking away interrupts automatic mode`() {
+        val player = grinderPlayer {
+            set("bone_grinder_auto", true)
+            repeat(5) {
+                inventory.add("big_bones")
+                inventory.add("empty_pot")
+            }
+        }
+
+        player.objectOption(hopper(), "Fill")
+        tick(30)
+        val ground = player.inventory.count("big_bonemeal")
+        val remaining = player.inventory.count("big_bones")
+        player.walk(Tile(3663, 3530, 1))
+        tick(200)
+
+        assertTrue(ground < 5, "expected the batch to still be running after 30 ticks")
+        assertEquals(ground, player.inventory.count("big_bonemeal"))
+        assertEquals(remaining, player.inventory.count("big_bones"))
+    }
+
+    @Test
+    fun `Grind a silver bar into dust without a pot`() {
+        val player = grinderPlayer {
+            inventory.add("silver_bar")
+        }
+
+        player.itemOnObject(hopper(), 0)
+        tick(14)
+        player.skillCreation("Silver dust", 1)
+        tick(6)
+
+        assertEquals(1, player.inventory.count("silver_dust"))
+        assertEquals(0, player.inventory.count("silver_bar"))
+        assertEquals(0, player.get("bone_grinder_stage", 0))
+    }
+
+    @Test
+    fun `Grind the chosen number of silver bars`() {
+        val player = grinderPlayer {
+            repeat(5) { inventory.add("silver_bar") }
+        }
+
+        player.itemOnObject(hopper(), 0)
+        tick(14)
+        player.skillCreation("Silver dust", 5)
+
+        val fill = AnimationDefinitions.get("fill_bone_hopper").id
+        val animations = mutableListOf<Int>()
+        var dustPerAnimation = 0
+        repeat(40) { elapsed ->
+            if (player.visuals.animation.force == fill) {
+                animations.add(elapsed)
+            }
+            dustPerAnimation = maxOf(dustPerAnimation, player.inventory.count("silver_dust") - animations.size)
+            tick()
+        }
+        val length = AnimationDefinitions.get("fill_bone_hopper")["ticks", 0]
+        assertEquals(5, animations.size)
+        // The first interval is short by however far into the tick the batch started.
+        assertEquals(List(3) { length }, animations.zipWithNext { a, b -> b - a }.drop(1))
+        assertEquals(0, dustPerAnimation, "no dust may be created before its animation has played")
+
+        assertEquals(5, player.inventory.count("silver_dust"))
+        assertEquals(0, player.inventory.count("silver_bar"))
+    }
+
+    @Test
+    fun `Grind only the requested number of silver bars`() {
+        val player = grinderPlayer {
+            repeat(5) { inventory.add("silver_bar") }
+        }
+
+        player.itemOnObject(hopper(), 0)
+        tick(14)
+        player.skillCreation("Silver dust", 2)
+        tick(60)
+
+        assertEquals(2, player.inventory.count("silver_dust"))
+        assertEquals(3, player.inventory.count("silver_bar"))
+    }
+
+    @Test
+    fun `Automatic mode reaches each machine before animating`() {
+        val player = grinderPlayer {
+            set("bone_grinder_auto", true)
+            repeat(3) {
+                inventory.add("big_bones")
+                inventory.add("empty_pot")
+            }
+        }
+        val stations = mapOf(
+            AnimationDefinitions.get("fill_bone_hopper").id to Tile(3660, 3524, 1),
+            AnimationDefinitions.get("wind_bone_grinder").id to Tile(3659, 3524, 1),
+            AnimationDefinitions.get("empty_bone_bin").id to Tile(3658, 3524, 1),
+        )
+
+        player.objectOption(hopper(), "Fill")
+        val offside = mutableListOf<String>()
+        repeat(200) {
+            val animation = player.visuals.animation.force
+            val expected = stations[animation]
+            if (expected != null) {
+                if (player.tile != expected) {
+                    offside.add("$animation played at ${player.tile}, expected $expected")
+                }
+                // The tile updates as a step is taken while the client is still walking into it.
+                if (player.steps.isNotEmpty() || player.steps.last >= GameLoop.tick) {
+                    offside.add("$animation played while still walking into $expected")
+                }
+            }
+            tick()
+        }
+
+        assertEquals(emptyList<String>(), offside)
+        assertEquals(3, player.inventory.count("big_bonemeal"))
     }
 
     @Test

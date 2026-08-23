@@ -208,7 +208,7 @@ class KissTheFrog : Script {
         if (get<String>("random_event") != "kiss_the_frog") {
             return
         }
-        walkTrigger = null
+        clearWalkTrigger()
         open("fade_out")
         delay(2)
         failEvent()
@@ -250,7 +250,7 @@ class KissTheFrog : Script {
     private fun Player.finishEvent() {
         cleanup()
         RandomEvents.complete(this, "random_event_gift")
-        walkTrigger = null
+        clearWalkTrigger()
     }
 
     /** Escaped the frog cave: dump the player somewhere random with no reward. */

@@ -1,6 +1,8 @@
 package content.social.chat
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.bot.bot
 import content.bot.isBot
 import content.social.clan.clan
@@ -55,10 +57,18 @@ class QuickChat(
                     val data = generateData(player, file, data)
                     val text = definition.buildString(EnumDefinitions.definitions, ItemDefinitions.definitions, data)
                     AuditLog.event(player, "said_qc", text)
-                    val nearby = Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }
-                    botResponses(definition, player, nearby)
-                    nearby.forEach { other ->
-                        other.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
+                    if (player.inDungeoneering) {
+                        for (member in player.dungeonMembers) {
+                            if (!member.ignores(player)) {
+                                member.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
+                            }
+                        }
+                    } else {
+                        val nearby = Players.filter { it.tile.within(player.tile, VIEW_RADIUS) && !it.ignores(player) }
+                        botResponses(definition, player, nearby)
+                        nearby.forEach { other ->
+                            other.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
+                        }
                     }
                 }
                 1 -> {
