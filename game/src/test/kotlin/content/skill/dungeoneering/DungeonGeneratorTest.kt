@@ -85,7 +85,7 @@ class DungeonGeneratorTest {
     @Test
     fun `Critical path includes base, boss room types and grid positions`() {
         val generator = DungeonGenerator(DungeonSize.Small, floor = 1, complexity = 1)
-        val gridWidth = 5
+        val gridWidth = 4
         val gridHeight = 4
         val grid = arrayOfNulls<DungeonRoom>(gridWidth * gridHeight)
 
