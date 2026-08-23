@@ -1,5 +1,6 @@
 package content.skill.magic.spell
 
+import content.area.wilderness.daemonheim.DungeoneeringParty
 import content.quest.quest
 import content.quest.questCompleted
 import content.skill.dungeoneering.dungeonMap
@@ -56,8 +57,14 @@ class Teleports : Script {
                     set("click_your_heels_three_times_task", true)
                     start("home_teleport_timeout", TimeUnit.MINUTES.toSeconds(30).toInt(), epochSeconds())
                 } else if (component == "home_teleport") {
-                    val map = dungeonMap ?: return@weakQueue
-                    tele(map.startTile())
+                    val map = dungeonMap
+                    if (map == null) {
+                        // Failsafe in-case someone gets stuck outside dungeoneering
+                        set("in_dungeoneering", true)
+                        DungeoneeringParty.leave(this)
+                    } else {
+                        tele(map.startTile())
+                    }
                 }
             }
         }

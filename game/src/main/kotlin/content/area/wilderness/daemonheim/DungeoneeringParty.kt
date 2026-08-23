@@ -1,5 +1,6 @@
 package content.area.wilderness.daemonheim
 
+import content.entity.player.bank.BankDeposit
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
@@ -308,6 +309,10 @@ class DungeoneeringParty : Script {
         }
 
         fun clear(player: Player) {
+            stow(player, player.inventory)
+            stow(player, player.equipment)
+            stow(player, player.beastOfBurden)
+
             player.clearMinimap()
             player.openTabs(Tab.Options)
             player.closeInterfaces()
@@ -324,6 +329,19 @@ class DungeoneeringParty : Script {
             player.clear("in_multi_combat")
             player.clear("dungeon_reward_given")
             player.clearWalkTrigger()
+        }
+
+        /**
+         * Bank any items that were somehow smuggled into dungeoneering rather than delete
+         */
+        private fun stow(player: Player, inventory: Inventory) {
+            val items = inventory.items.filter { !it.def.contains(Params.DUNGEONEERING) && !it.id.startsWith("ring_of_kinship") }
+            if (items.isEmpty()) {
+                return
+            }
+            for (item in items) {
+                BankDeposit.deposit(player, inventory, item, item.amount, check = false)
+            }
         }
 
         private fun leaveDungeon(player: Player, last: Boolean) {
@@ -360,6 +378,17 @@ class DungeoneeringParty : Script {
             }
         }
 
+        fun disband(player: Player) {
+            for (member in player.dungeonMembers) {
+                if (member.inDungeoneering) {
+                    leaveDungeon(member, true)
+                }
+                player.dungeonMembers -= member
+                member.refreshDetails()
+            }
+            clearLeader(player)
+        }
+
         fun leave(player: Player) {
             val leader = player.dungeonLeader
             val last = player == leader && player.dungeonMembers.size == 1
@@ -377,9 +406,13 @@ class DungeoneeringParty : Script {
                 }
                 member.refreshDetails()
             }
+            clearLeader(player)
+        }
+
+        private fun clearLeader(player: Player) {
             player.clear("dungeoneering_party_leader")
-            player["dungeoneering_party_floor"] = 0
-            player["dungeoneering_party_complexity"] = 0
+            //            player["dungeoneering_party_floor"] = 0
+            //            player["dungeoneering_party_complexity"] = 0
             for (i in 0 until 5) {
                 player.clear("dungeoneering_member_$i")
                 player.clear("dungeoneering_member_disabled_xp_share_$i")

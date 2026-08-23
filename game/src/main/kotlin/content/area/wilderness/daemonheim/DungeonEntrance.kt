@@ -1,5 +1,6 @@
 package content.area.wilderness.daemonheim
 
+import content.area.wilderness.daemonheim.DungeonFloor.Companion.maxFloor
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
@@ -102,13 +103,15 @@ class DungeonEntrance : Script {
         }
 
         timerStop("dungeon_continuation") {
-            val floor = inc("dungeoneering_party_floor")
+            val floor = inc("dungeoneering_party_floor").coerceAtMost(dungeonMembers.maxOf { maxFloor(it) })
             for (member in dungeonMembers) {
                 member["dungeoneering_party_floor"] = floor
             }
             val partySize = get("dungeoneering_party_size", "small")
             val size = DungeonSize.valueOf(partySize.toPascalCase())
-            generate(size, dungeonMembers.size)
+            if (!generate(size, dungeonMembers.size)) {
+                DungeoneeringParty.disband(this)
+            }
         }
     }
 
@@ -168,17 +171,17 @@ class DungeonEntrance : Script {
         }
     }
 
-    private fun Player.generate(size: DungeonSize, playerCount: Int) {
+    private fun Player.generate(size: DungeonSize, playerCount: Int): Boolean {
         val floor = get("dungeoneering_party_floor", 1)
         val complexity = get("dungeoneering_party_complexity", 1)
         if (!isAdmin()) {
             if (floor > 11) {
                 message("<red>Floor $floor dungeons are not currently implemented.")
-                return
+                return false
             }
             if (complexity != 1) {
                 message("<red>Complexity $complexity dungeons are not currently implemented.")
-                return
+                return false
             }
         }
         val generator = DungeonGenerator(
@@ -193,7 +196,7 @@ class DungeonEntrance : Script {
         val dungeon = generator.generate(skills)
         if (dungeon == null) {
             message("<red_orange>Failed to generate ${size.name.lowercase()} c$complexity:f$floor dungeon.")
-            return
+            return false
         }
         if (get("debug", false)) {
             println("Dungeon generation took ${System.currentTimeMillis() - start}ms")
@@ -263,5 +266,6 @@ class DungeonEntrance : Script {
                 member.message("<orange>Warning: Dungeoneering is experimental and has limited monsters, skills, puzzles and bosses. Please reports any bugs.")
             }
         }
+        return true
     }
 }
