@@ -262,7 +262,7 @@ fun Character.hasMenuOpen(): Boolean {
     if (this !is Player) {
         return false
     }
-    return hasTypeOpen("main_screen") || hasTypeOpen("wide_screen") || hasTypeOpen("underlay")
+    return hasTypeOpen("main_screen") || hasTypeOpen("underlay")
 }
 
 fun Player.close(interfaceId: String?) = interfaces.close(interfaceId)
@@ -278,7 +278,7 @@ val Player.dialogue: String?
     get() = interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
 
 val Player.menu: String?
-    get() = interfaces.get("main_screen") ?: interfaces.get("wide_screen") ?: interfaces.get("underlay")
+    get() = interfaces.get("main_screen") ?: interfaces.get("underlay")
 
 fun Player.closeDialogue(): Boolean {
     if (suspension is Suspension.Continue || suspension is Suspension.IntEntry || suspension is Suspension.StringEntry || suspension is Suspension.NameEntry) {
@@ -292,7 +292,7 @@ fun Player.closeMenu(): Boolean = close(menu)
 
 fun Player.closeInterfaces(): Boolean {
     var closed = closeDialogue()
-    if (closeMenu()) {
+    if (closeMenu() || close(interfaces.get("wide_screen"))) {
         closed = true
     }
     queue.clearWeak()
