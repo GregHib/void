@@ -329,15 +329,17 @@ private fun <T, F> decodeFull(
     definitions: DefinitionsDecoder<T>,
 ): List<F> where T : Definition, T : Parameterized, F : Definition, F : Parameterized {
     return decoder.load(cache).map { full ->
-        val def = definitions.getOrNull(full.id)
-        val loaded = def?.params ?: return@map full
-        val params = full.params
-        if (params != null) {
-            (params as MutableMap).putAll(loaded)
-        } else {
-            full.params = params
-        }
+        val def = definitions.getOrNull(full.id) ?: return@map full
         full.stringId = def.stringId
+        val loaded = def.params
+        if (loaded != null) {
+            val params = full.params
+            if (params != null) {
+                (params as MutableMap).putAll(loaded)
+            } else {
+                full.params = loaded
+            }
+        }
         full
     }
 }

@@ -1,2 +1,98 @@
 [vm_display_case_ponder]
 id = 6383
+
+[vm_player_button_push]
+id = 6462
+
+[vm_natural_history_display_case_terror_bird]
+id = 6442
+
+[vm_display_case_cogs]
+id = 6427
+
+[vm_natural_history_display_case_kalphite_queen]
+id = 6476
+
+[vm_natural_history_display_case_kalphite_queen_fixed]
+id = 6477
+
+[vm_natural_historian_terror_bird]
+id = 6409
+
+[vm_natural_historian_kalphite_queen_pincers]
+id = 6407
+
+[vm_natural_history_display_case_monkey]
+id = 6434
+
+[vm_natural_history_display_case_seaslug]
+id = 6432
+
+[vm_natural_history_display_case_snake]
+id = 6452
+
+[vm_natural_history_display_case_snake_fixed]
+id = 6453
+
+[vm_natural_history_display_case_snail]
+id = 6430
+
+[vm_natural_historian_snail_antenna]
+id = 6398
+
+[vm_natural_historian_monkey_hop]
+id = 6400
+
+[vm_natural_historian_seaslug_twist]
+id = 6406
+
+[vm_natural_historian_snake_twist]
+id = 6401
+
+[vm_natural_history_display_case_penguin]
+id = 6438
+
+[vm_natural_history_display_case_mole]
+id = 6450
+
+[vm_natural_history_display_case_camel]
+id = 6440
+
+[vm_natural_history_display_case_leech]
+id = 6428
+
+[vm_natural_historian_camel_hump]
+id = 6403
+
+[vm_natural_historian_leech_twist]
+id = 6405
+
+[vm_natural_historian_mole_tunnel]
+id = 6402
+
+[vm_natural_historian_penguin_waddle]
+id = 6397
+
+[vm_natural_history_display_case_lizard]
+id = 6436
+
+[vm_natural_history_display_case_battle_tortoise]
+id = 6448
+
+[vm_natural_history_display_case_dragon]
+id = 14254
+
+[vm_natural_history_display_case_wyvern]
+id = 6444
+
+[vm_natural_historian_lizard_hop]
+id = 6399
+
+[vm_natural_historian_battle_tortoise]
+id = 6408
+
+[vm_natural_historian_dragon_flap]
+id = 6396
+
+[vm_natural_historian_wyvern]
+id = 6404
