@@ -1,41 +1,83 @@
 [vm_digsite_symbol_old]
 id = 3646
+format = "boolean"
 
 [vm_digsite_symbol_anc]
 id = 3645
+format = "boolean"
 
 [vm_digsite_talisman]
 id = 3644
+format = "boolean"
 
 [vm_digsite_tablet]
 id = 3643
+format = "boolean"
 
 [vm_digsite_coin_senn]
 id = 3647
+format = "boolean"
 
 [vm_digsite_coin_sara]
 id = 3648
+format = "boolean"
 
 [vm_staff_of_armadyl]
 id = 3650
+format = "int"
 
 [vm_robert]
 id = 3657
+format = "boolean"
 
 [vm_salveknights]
 id = 3651
+format = "int"
 
 [vm_observatory]
 id = 3652
+format = "boolean"
 
 [vm_excalibur]
 id = 3655
+format = "boolean"
 
 [vm_surok]
 id = 3660
+format = "boolean"
 
 [vm_timeline_glomem_prophecy]
 id = 5000
+format = "int"
 
 [vm_timeline_meeting_history]
 id = 5091
+format = "boolean"
+
+[vm_digsite_zaros_pottery]
+id = 3661
+format = "boolean"
+
+[vm_rune_mysteries]
+id = 3662
+format = "boolean"
+
+[vm_shield_of_arrav]
+id = 5394
+format = "int"
+
+[vm_demon_slayer]
+id = 3664
+format = "boolean"
+
+[vm_grand_tree]
+id = 3665
+format = "boolean"
+
+[vm_hazeel_cult]
+id = 3666
+format = "boolean"
+
+[vm_hazeel_cult_joined]
+id = 3667
+format = "boolean"

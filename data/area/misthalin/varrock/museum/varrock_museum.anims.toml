@@ -1,2 +1,23 @@
 [vm_display_case_ponder]
 id = 6383
+
+[vm_player_button_push]
+id = 6462
+
+[vm_natural_history_display_case_terror_bird]
+id = 6442
+
+[vm_display_case_cogs]
+id = 6427
+
+[vm_natural_history_display_case_kalphite_queen]
+id = 6476
+
+[vm_natural_history_display_case_kalphite_queen_fixed]
+id = 6477
+
+[vm_natural_historian_terror_bird]
+id = 6409
+
+[vm_natural_historian_kalphite_queen_pincers]
+id = 6407
