@@ -11,23 +11,27 @@ import world.gregs.voidps.engine.Script
 class TeacherAndPupil : Script {
     init {
         npcOperate("Talk-to", "teacher_and_pupil_2") {
+            val teacher = "vm_female_school_teacher_dummy"
+            val child = "vm_female_school_teacher_girl_dummy"
             if (tile.region.id == 1764) {
-                npc<Happy>("What do you want to see now, dear?")
-                npc<Happy>("The penguins, the penguins!")
+                npc<Happy>(teacher, "What do you want to see now, dear?")
+                npc<Happy>(child, "The penguins, the penguins!")
             } else if (tile.level == 2) {
-                npc<Quiz>("That man over there talks funny, miss.")
-                npc<Happy>("That's because he's an art critic, dear. They have some very funny ideas.")
+                npc<Quiz>(child, "That man over there talks funny, miss.")
+                npc<Happy>(teacher, "That's because he's an art critic, dear. They have some very funny ideas.")
             } else {
-                npc<Angry>("Stop pulling, we've plenty of time to see everything.")
-                npc<Happy>("Aww, but miss, it's sooo exciting.")
+                npc<Angry>(teacher, "Stop pulling, we've plenty of time to see everything.")
+                npc<Happy>(child, "Aww, but miss, it's sooo exciting.")
             }
         }
 
         npcOperate("Talk-to", "teacher_and_pupil") {
-            npc<Shock>("Teacher! Sir! I need the toilet!")
-            npc<Bored>("I told you to go before we got here.")
-            npc<Shock>("But sir, I didn't need to go then!")
-            npc<Bored>("Alright, come on then.")
+            val teacher = "vm_male_school_teacher_chathead_dummy"
+            val child = "vm_male_school_teacher_boy_chathead_dummy"
+            npc<Shock>(child, "Teacher! Sir! I need the toilet!")
+            npc<Bored>(teacher, "I told you to go before we got here.")
+            npc<Shock>(child, "But sir, I didn't need to go then!")
+            npc<Bored>(teacher, "Alright, come on then.")
         }
     }
 }

@@ -22,10 +22,12 @@ examine = "A teacher and one of his pupils."
 
 [schoolboy]
 id = 5945
+dialogue = "child"
 examine = "Looks kind of familiar."
 
 [schoolboy_2]
 id = 5946
+dialogue = "child"
 
 [teacher_and_pupil_2]
 id = 5947
@@ -97,3 +99,18 @@ examine = "Loves making molehills."
 
 [schoolgirl_2]
 id = 5984
+
+[vm_male_school_teacher_chathead_dummy]
+id = 5948
+
+[vm_male_school_teacher_boy_chathead_dummy]
+id = 5949
+dialogue = "child"
+
+[vm_female_school_teacher_dummy]
+id = 5950
+
+[vm_female_school_teacher_girl_dummy]
+id = 5951
+dialogue = "child"
+

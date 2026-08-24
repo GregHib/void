@@ -7,7 +7,7 @@ import world.gregs.voidps.type.random
 
 class SchoolPupil : Script {
     init {
-        npcOperate("Talk-to", "schoolboy_2") {
+        npcOperate("Talk-to", "schoolboy*,schoolgirl*") {
             when (random.nextInt(7)) {
                 0 -> npc<Happy>("Maz...Zar...Za-mor-ak is bestest!")
                 1 -> npc<Happy>("*sniff* They won't let me take an arrowhead as a souvenir.")
