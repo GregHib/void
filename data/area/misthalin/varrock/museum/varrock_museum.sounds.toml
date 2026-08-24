@@ -6,3 +6,36 @@ id = 3668
 
 [vm_kalphite]
 id = 3655
+
+[vm_monkey]
+id = 3662
+
+[vm_seaslug]
+id = 3665
+
+[vm_snail]
+id = 3666
+
+[vm_penguin]
+id = 3663
+
+[vm_mole_burrow_up]
+id = 3661
+
+[vm_camel]
+id = 3647
+
+[vm_leech]
+id = 3656
+
+[vm_lizard]
+id = 3657
+
+[vm_tortoise]
+id = 3669
+
+[vm_dragon]
+id = 3649
+
+[vm_wyvern]
+id = 3671
