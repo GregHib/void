@@ -4,22 +4,22 @@ id = 534
 [.vm_timeline_text]
 id = 2
 
-[.vm_timeline_barbarian_village_model]
+[.vm_digsite_coin_saranthium_model]
 id = 3
 
-[.vm_timeline_barbarian_weapons_model]
+[.vm_digsite_coin_senntisten_model]
 id = 4
 
-[.vm_timeline_barrows_suit_of_arms_model]
+[.vm_digsite_arrow_heads_model]
 id = 5
 
-[.vm_timeline_black_knight_armour_model]
+[.vm_digsite_jewllery_model]
 id = 6
 
 [.vm_timeline_bow_and_sword_surrounding_runes_model]
 id = 7
 
-[.vm_timeline_bridge_over_water_model_model]
+[.vm_digsite_pottery_model]
 id = 8
 
 [.vm_timeline_broken_arrow_model]
@@ -37,7 +37,7 @@ id = 12
 [.vm_timeline_infinity_armour_model]
 id = 13
 
-[.vm_timeline_mage_training_guardian_model]
+[.vm_digsite_vase_model]
 id = 14
 
 [.vm_timeline_map_model]

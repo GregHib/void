@@ -25,12 +25,6 @@ id = 24541
 [vm_digsite_finds_arrow_heads]
 id = 24545
 
-[vm_digsite_finds_coin_senntisten]
-id = 12234
-
-[vm_digsite_finds_coin_saranthium]
-id = 15484
-
 [vm_digsite_finds_saradomin_symbol_old]
 id = 12137
 
@@ -43,3 +37,86 @@ id = 12232
 [vm_digsite_finds_tablet]
 id = 12233
 
+[vm_timeline_no_display]
+id = 24550
+examine = "An empty display case."
+
+[vm_digsite_finds_coin_senntisten]
+id = 12234
+
+[vm_digsite_finds_coin_saranthium]
+id = 15484
+
+[vm_timeline_staff_of_armadyll]
+id = 24623
+
+[vm_timeline_terracotta_statue]
+id = 24626
+examine = "A terracotta statue."
+
+[vm_timeline_robert_the_strong]
+id = 24633
+
+[vm_timeline_seven_kights_helms]
+id = 24636
+
+[vm_timeline_observatory_model]
+id = 24642
+
+[vm_timeline_excalibur]
+id = 24653
+
+[surok_timeline_tomb]
+id = 24662
+
+[vm_timeline_glomem_prophecy]
+id = 30017
+
+[vm_timeline_meeting_history]
+id = 38172
+
+[vm_digsite_finds_saradomin_symbol_old_multi]
+id = 24539
+
+[vm_digsite_finds_saradomin_symbol_ancient_multi]
+id = 24540
+
+[vm_digsite_finds_talisman_multi]
+id = 24546
+
+[vm_digsite_finds_tablet_multi]
+id = 24547
+
+[vm_digsite_finds_coin_senntisten_multi]
+id = 24548
+
+[vm_digsite_finds_coin_saranthium_multi]
+id = 24549
+
+[vm_timeline_staff_of_armadyll_multi]
+id = 24624
+
+[vm_timeline_terracotta_statue_multi]
+id = 24627
+examine = "A terracotta statue."
+
+[vm_timeline_robert_the_strong_multi]
+id = 24634
+
+[vm_timeline_seven_kights_helms_multi]
+id = 24637
+
+[vm_timeline_observatory_model_multi]
+id = 24643
+
+[vm_timeline_excalibur_multi]
+id = 24654
+
+[surok_timeline_tomb_multi]
+id = 24663
+
+[vm_timeline_glomem_prophecy_multi]
+id = 30018
+
+[vm_timeline_meeting_history_multi]
+id = 38173

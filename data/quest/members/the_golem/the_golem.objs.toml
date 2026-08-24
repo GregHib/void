@@ -68,16 +68,3 @@ examine = "A stone staircase."
 [sote_warped_library_floor_lvl2_centre_01]
 id = 34978
 examine = "A stone staircase."
-
-# Varrock Museum display case; transforms on golem_retrieved_statuette.
-[vm_timeline_terracotta_statue]
-id = 24626
-examine = "A terracotta statue."
-
-[vm_timeline_terracotta_statue_multi]
-id = 24627
-examine = "A terracotta statue."
-
-[vm_timeline_no_display]
-id = 24550
-examine = "An empty display case."
