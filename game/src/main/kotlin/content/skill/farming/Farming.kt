@@ -157,7 +157,7 @@ class Farming(
             }
             val stage = value.substringAfterLast("_").toIntOrNull() ?: continue
             if (stage >= 30) {
-                player[variable] = value.replace(stage.toString(), "ready")
+                player[variable] = value.substringBefore("_rotting") + "_ready"
                 continue
             }
             player[variable] = value.replace(stage.toString(), "${stage + 1}")
