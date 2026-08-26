@@ -12,10 +12,12 @@ import kotlin.system.measureTimeMillis
 class SaveQueue(
     private val storage: Storage,
     private val fallback: Storage = storage,
-    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO),
+    // SupervisorJob so a failed save doesn't cancel the scope and kill future saves
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
 ) : Runnable {
     private val pending = ConcurrentHashMap<String, PlayerSave>()
     private val logger = InlineLogger()
+    private var job: Job? = null
 
     private val handler = CoroutineExceptionHandler { _, exception ->
         logger.error(exception) { "Error saving players!" }
@@ -29,7 +31,11 @@ class SaveQueue(
         if (pending.isEmpty()) {
             return
         }
-        scope.save(pending.values.toList())
+        val job = job
+        if (job != null && job.isActive) {
+            return
+        }
+        this.job = scope.save(pending.values.toList())
     }
 
     fun direct(): Job = scope.save(Players.filter { !it.contains("bot") }.map { it.copy() })

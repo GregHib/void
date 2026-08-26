@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -14,7 +15,8 @@ import kotlinx.coroutines.withContext
 class Reports(
     private val storage: Storage,
     private val fallback: Storage = storage,
-    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO),
+    // SupervisorJob so a failed save doesn't cancel the scope and kill future saves
+    private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
 ) {
     private val logger = InlineLogger()
 
