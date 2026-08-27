@@ -49,13 +49,19 @@ class DropTables {
                     }
                 }
             }
-            for (table in tables.values) {
+            for ((tableName, table) in tables) {
                 for (i in table.drops.indices) {
                     val drop = table.drops[i]
                     if (drop is ReferenceTable) {
                         val dropTable = tables[drop.tableName]
                         require(dropTable != null) { "Unable to find drop table with name '${drop.tableName}'." }
                         (table.drops as MutableList<Drop>)[i] = dropTable.copy(roll = drop.roll ?: dropTable.roll, chance = if (drop.chance == -1) dropTable.chance else drop.chance, predicate = dropTable.predicate ?: drop.predicate)
+                    }
+                }
+                if (table.type != TableType.All && table.roll >= 1) {
+                    val total = table.drops.sumOf { if (it.chance > 0 && it.predicate == null) it.chance else 0 }
+                    if (total > table.roll) {
+                        logger.warn { "Drop table '$tableName' chances total $total exceeds roll ${table.roll}; drops past the roll can never be selected." }
                     }
                 }
             }
