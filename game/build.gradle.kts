@@ -22,6 +22,8 @@ dependencies {
 
     implementation(kotlin("script-runtime"))
     implementation(libs.bundles.kotlinx)
+    implementation("io.ktor:ktor-server-websockets:3.2.3")
+    implementation("io.ktor:ktor-server-netty:3.2.3")
 
     implementation(libs.koin)
     implementation(libs.bundles.logging)
