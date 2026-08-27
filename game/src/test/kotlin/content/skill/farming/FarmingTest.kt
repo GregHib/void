@@ -217,7 +217,7 @@ class FarmingTest : KoinMock() {
 
         farming.grow(player, 4)
 
-        assertEquals("compostable_rotting_ready", player["compost_bin_falador", "empty"])
+        assertEquals("compostable_ready", player["compost_bin_falador", "empty"])
     }
 
     private fun setDefinition(list: List<String>) {

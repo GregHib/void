@@ -23,15 +23,19 @@ class CompostBin : Script {
 
     init {
         playerSpawn {
-            sendVariable("compost_bin_falador")
-            sendVariable("compost_bin_catherby")
-            sendVariable("compost_bin_port_phasmatys")
-            sendVariable("compost_bin_ardougne")
+            for (variable in listOf("compost_bin_falador", "compost_bin_catherby", "compost_bin_port_phasmatys", "compost_bin_ardougne")) {
+                // Repair saves corrupted by the old rot completion writing "<type>_rotting_ready"
+                val value: String? = this[variable]
+                if (value != null && value.endsWith("_rotting_ready")) {
+                    this[variable] = value.substringBefore("_rotting") + "_ready"
+                }
+                sendVariable(variable)
+            }
         }
 
         itemOnObjectOperate("*", "compost_bin_*", handler = ::compost)
 
-        objectOperate("Close", "compost_bin_*_15") {
+        objectOperate("Close", "compost_bin_compostable_15,compost_bin_supercompostable_15,compost_bin_tomatoes_15") {
             val variable = it.target.id.removePrefix("farming_")
             val current = get(variable, "empty")
             // Takes between 32-60 mins, assuming `farming.decompose.mins` is 2 mins
