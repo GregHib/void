@@ -45,6 +45,9 @@ class DropTables {
                                 else -> throw IllegalArgumentException("Unexpected table key: '$key' ${exception()}")
                             }
                         }
+                        if (tables.containsKey(tableName)) {
+                            logger.warn { "Duplicate drop table '$tableName' in $path overrides an earlier definition." }
+                        }
                         tables[tableName] = DropTable(type, roll, drops, chance)
                     }
                 }
