@@ -37,7 +37,7 @@ class Energy : Script {
                 return@moved
             }
             set("last_energy_drain", GameLoop.tick)
-            if (visuals.runStep != -1 && !get("god_mode", false)) {
+            if (visuals.runStep != -1 && !get("god_mode", false) && !Settings["world.players.infiniteRunEnergy", false]) {
                 runEnergy -= getDrainAmount(this)
                 walkWhenOutOfEnergy(this)
             }
