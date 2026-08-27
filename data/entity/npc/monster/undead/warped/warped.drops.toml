@@ -79,7 +79,7 @@ drops = [
 ]
 
 [warped_rat_secondary]
-roll = 256
+roll = 262
 drops = [
   { id = "bronze_arrow", amount = 18, chance = 16 },
   { id = "bronze_mace", chance = 4 },

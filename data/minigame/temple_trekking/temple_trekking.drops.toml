@@ -5,7 +5,7 @@ drops = [
 ]
 
 [giant_snail_secondary]
-roll = 50
+roll = 51
 drops = [
     { id = "snail_shell", chance = 50 },
     { id = "perfect_snail_shell" },

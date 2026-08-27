@@ -23,7 +23,7 @@ drops = [
     { id = "super_restore_4", amount = 3, chance = 36 },
     { id = "super_defence_3", amount = 3, chance = 48 },
     { id = "super_magic_potion_3", amount = 3, chance = 48 },
-    { id = "coins", min = 19500, max = 20000, chance = 186 },
+    { id = "coins", min = 19500, max = 20000, chance = 146 },
     { id = "diamond_noted", amount = 6, chance = 48 },
     { id = "law_rune", min = 95, max = 100, chance = 48 },
     { id = "grimy_ranarr_noted", amount = 5, chance = 48 },

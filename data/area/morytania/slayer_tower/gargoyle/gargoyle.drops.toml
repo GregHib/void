@@ -1,17 +1,22 @@
 [gargoyle_drop_table]
 type = "all"
 drops = [
+  { table = "gargoyle_unique" },
   { table = "gargoyle_secondary" },
   { table = "hard_clue_scroll", roll = 128 },
+  { table = "gargoyle_charms", members = true },
+]
 
-    { table = "gargoyle_charms", members = true },
+[gargoyle_unique]
+roll = 512
+drops = [
+  { id = "granite_maul", chance = 2 },
+  { id = "mystic_robe_top_dark" },
 ]
 
 [gargoyle_secondary]
 roll = 512
 drops = [
-  { id = "granite_maul", chance = 2 },
-  { id = "mystic_robe_top_dark" },
   { id = "adamant_platelegs", chance = 16 },
   { id = "rune_full_helm", chance = 12 },
   { id = "rune_2h_sword", chance = 8 },
