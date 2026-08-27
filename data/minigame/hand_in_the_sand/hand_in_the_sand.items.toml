@@ -6,7 +6,7 @@ destroy = "Speak to Bert in Yanille to get another sandy hand."
 examine = "A severed hand covered with sand."
 kept = "Wilderness"
 
-[beer_soaked_hand]
+[beer_hand]
 id = 6946
 tradeable = false
 weight = 0.5
@@ -30,7 +30,7 @@ destroy = "Search Sandy's office in Brimhaven for another Rota."
 examine = "An original work rota."
 kept = "Wilderness"
 
-[a_magic_scroll_the_hand_in_the_sand]
+[magic_scroll]
 id = 6949
 tradeable = false
 weight = 0.02
@@ -46,7 +46,7 @@ destroy = "Speak to Zavistic Rarve to replace your magical orb."
 examine = "An ordinary looking magical scrying orb."
 kept = "Wilderness"
 
-[magical_orb_a]
+[magical_orb_active]
 id = 6951
 tradeable = false
 weight = 0.02
@@ -95,7 +95,7 @@ destroy = "Speak to Betty in Port Sarim to get another bottle to make the lens a
 examine = "This lens has a pinkish tinge to it."
 kept = "Wilderness"
 
-[wizards_head]
+[wizard_head]
 id = 6957
 tradeable = false
 weight = 3.628
