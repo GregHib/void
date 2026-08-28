@@ -28,6 +28,13 @@ class Farming(
 
     init {
         playerSpawn {
+            // Repair saves corrupted by disease handling matching "herb" inside "catherby"
+            for (variable in listOf("farming_fruit_tree_patch_catherby", "farming_veg_patch_catherby_north", "farming_veg_patch_catherby_south", "farming_flower_patch_catherby")) {
+                val value: String? = this[variable]
+                if (value != null && value.startsWith("herb_dead_")) {
+                    clear(variable)
+                }
+            }
             if (!contains("farming_offset_mins")) {
                 set("farming_offset_mins", random.nextInt(0, 30))
             }
@@ -90,7 +97,7 @@ class Farming(
                 }
                 val produce = current.substringBeforeLast("_")
                 if (produce.endsWith("diseased")) {
-                    if (variable.contains("herb") && !produce.startsWith("goutweed")) {
+                    if (variable.contains("herb_patch") && !produce.startsWith("goutweed")) {
                         val stage = current.removeSuffix("_diseased").substringAfterLast("_")
                         player[variable] = "herb_dead_$stage"
                     } else {
@@ -201,7 +208,7 @@ class Farming(
 
     fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
         // https://x.com/JagexKieren/status/905860041240137729
-        if (spot == "patch_my_arm_herb" || type == "0" || produce.endsWith("_watered")) {
+        if (spot == "farming_herb_patch_my_arm" || type == "0" || produce.endsWith("_watered")) {
             return false
         }
         if (player["${spot}_protect", false]) {
