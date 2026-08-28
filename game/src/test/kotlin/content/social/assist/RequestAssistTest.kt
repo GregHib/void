@@ -10,12 +10,12 @@ import playerOption
 import walk
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 import kotlin.test.assertFalse
 
