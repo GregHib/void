@@ -46,22 +46,32 @@ class FarmingPatchPlant : Script {
             return
         }
         val patch: String = item.def.getOrNull("farming_patch") ?: return
-        val patchName = target.patchName()
-        if (patchName.removeSuffix(" patch") != patch) {
+        if (!matches(target.id, patch)) {
+            val patchName = target.patchName()
             player.statement("You can only plant ${item.def.name.plural(amount)} in ${patchName.an()} $patchName.")
             return
         }
+    }
+
+    private fun matches(variable: String, patch: String): Boolean {
+        val type = variable.removePrefix("farming_").substringBefore("_patch")
+        return patch == if (type == "veg") "allotment" else type
     }
 
     private suspend fun plant(player: Player, interact: ItemOnObjectInteract) {
         val item = interact.item
         val amount = item.def["farming_amount", 1]
         val variable = interact.target.id
+        val patchName = interact.target.patchName()
+        val patch: String = item.def.getOrNull("farming_patch") ?: return
+        if (!matches(variable, patch)) {
+            player.statement("You can only plant ${item.def.name.plural(amount)} in ${patchName.an()} $patchName.")
+            return
+        }
         if (variable.startsWith("farming_spirit_tree_patch") && hasSpiritTree(player)) {
             player.message("You can only plant one spirit tree at a time.") // TODO proper message
             return
         }
-        val patchName = interact.target.patchName()
         if (patchName.contains("tree") && !player.inventory.contains("spade")) {
             player.message("You need a spade to do that.")
             return

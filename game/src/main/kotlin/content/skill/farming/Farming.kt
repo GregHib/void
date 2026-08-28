@@ -28,11 +28,13 @@ class Farming(
 
     init {
         playerSpawn {
-            // Repair saves corrupted by disease handling matching "herb" inside "catherby"
-            for (variable in listOf("farming_fruit_tree_patch_catherby", "farming_veg_patch_catherby_north", "farming_veg_patch_catherby_south", "farming_flower_patch_catherby")) {
-                val value: String? = this[variable]
-                if (value != null && value.startsWith("herb_dead_")) {
-                    clear(variable)
+            // Repair patches stuck on values missing from their varbit map; they can't be sent or grow
+            for (patches in FarmingPatches.patches.values) {
+                for (variable in patches) {
+                    val value: String = this[variable] ?: continue
+                    if (varbitMap(variable)?.containsKey(value) == false) {
+                        clear(variable)
+                    }
                 }
             }
             if (!contains("farming_offset_mins")) {
@@ -247,7 +249,7 @@ class Farming(
 
     private fun varbitMap(varbit: String): Map<String, Int>? {
         val definition = VariableDefinitions.get(varbit) ?: return null
-        return (definition.values as MapValues).values as Map<String, Int>
+        return (definition.values as? MapValues)?.values as? Map<String, Int>
     }
 
     private fun amuletOfFarming(player: Player, patch: String) {
