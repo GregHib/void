@@ -7,7 +7,7 @@ drops = [
 [cockroach_drone_secondary]
 roll = 128
 drops = [
-    { id = "nothing", chance = 13 },
+    { id = "nothing", chance = 6 },
     { id = "bronze_dagger", chance = 4},
     { id = "bronze_med_helm", chance = 4 },
     { id = "air_rune", min = 1, max = 10, chance = 11 },

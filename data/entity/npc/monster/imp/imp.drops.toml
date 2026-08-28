@@ -7,7 +7,7 @@ drops = [
 ]
 
 [imp_secondary]
-roll = 128
+roll = 135
 drops = [
     { id = "white_bead", chance = 5 },
     { id = "black_bead", chance = 5 },

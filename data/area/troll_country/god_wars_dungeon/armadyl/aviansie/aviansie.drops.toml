@@ -7,6 +7,7 @@ drops = [
 ]
 
 [aviansie_primary]
+type = "all"
 drops = [
     { id = "bones" },
     { id = "feather", min = 1, max = 6 },

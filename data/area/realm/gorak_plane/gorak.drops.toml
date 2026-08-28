@@ -7,7 +7,7 @@ drops = [
 ]
 
 [gorak_secondary]
-roll = 128
+roll = 170
 drops = [
     { id = "iron_halberd", chance = 3 },
     { id = "bronze_dagger_p+", chance = 2 },

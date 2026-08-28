@@ -7,7 +7,7 @@ drops = [
 ]
 
 [corporeal_beast_secondary]
-roll = 512
+roll = 513
 drops = [
     { id = "mystic_air_staff", chance = 10 },
     { id = "mystic_water_staff", chance = 10 },
