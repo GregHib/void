@@ -9,11 +9,14 @@ import org.junit.jupiter.api.Test
 import playerOption
 import walk
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.req.hasRequest
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import java.util.concurrent.TimeUnit
 import kotlin.test.assertFalse
 
 internal class RequestAssistTest : WorldTest() {
@@ -95,6 +98,34 @@ internal class RequestAssistTest : WorldTest() {
 
         receiver.playerOption(assistant, "Req Assist")
         assertFalse(receiver.hasRequest(assistant, "assist"))
+    }
+
+    @Test
+    fun `Capped assistants are refused with the hours remaining`() {
+        val assistant = createPlayer(emptyTile, "assistant")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
+        assistant["total_xp_earned"] = 300000
+        assistant.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt(), epochSeconds())
+
+        receiver.playerOption(assistant, "Req Assist")
+        tick()
+
+        assertFalse(receiver.hasRequest(assistant, "assist"))
+        assertTrue(assistant.containsMessage("An assist request has been refused. You can assist again in 24 hours."))
+    }
+
+    @Test
+    fun `The experience cap resets once the timeout expires`() {
+        val assistant = createPlayer(emptyTile, "assistant")
+        val receiver = createPlayer(emptyTile.addY(1), "receiver")
+        assistant["total_xp_earned"] = 300000
+        assistant["assist_timeout"] = epochSeconds() - 100
+
+        receiver.playerOption(assistant, "Req Assist")
+        tick()
+
+        assertTrue(receiver.hasRequest(assistant, "assist"))
+        assertEquals(0, assistant["total_xp_earned", 0])
     }
 
     @Test

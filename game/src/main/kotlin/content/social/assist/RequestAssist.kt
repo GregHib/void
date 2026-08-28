@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.entity.character.player.req.request
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.timer.TICKS
+import world.gregs.voidps.engine.timer.epochSeconds
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
@@ -76,8 +77,8 @@ class RequestAssist : Script {
         blockedExperience { skill, experience ->
             val player: Player = get("assistant") ?: return@blockedExperience
             val active = player["assist_toggle_${skill.name.lowercase()}", false]
-            var gained = player["total_xp_earned", 0].toDouble()
-            if (active && !exceededMaximum(gained)) {
+            if (active && !hasEarnedMaximumExperience(player)) {
+                var gained = player["total_xp_earned", 0].toDouble()
                 val exp = min(experience / 10.0, (MAX_EXPERIENCE - gained) / 10)
                 gained += exp * 10.0
                 val maxed = exceededMaximum(gained)
@@ -93,7 +94,7 @@ class RequestAssist : Script {
                             You can assist again in 24 hours.
                         """,
                     )
-                    player.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt())
+                    player.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt(), epochSeconds())
                 }
             }
         }
