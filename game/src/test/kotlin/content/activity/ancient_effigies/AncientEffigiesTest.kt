@@ -184,21 +184,75 @@ class AncientEffigiesTest : WorldTest() {
         assertEquals(1, player.inventory.count("nourished_ancient_effigy"))
     }
 
-    private fun setupAssistedInvestigator(assistantLevel: Int): Pair<Player, Player> {
+    private fun setupAssistedInvestigator(assistantLevel: Int, effigy: String = "starved_ancient_effigy"): Pair<Player, Player> {
         val assistant = createPlayer(emptyTile, "assistant")
         assistant["skip_level_up"] = true
         assistant.experience.set(Skill.Crafting, Level.experience(Skill.Crafting, assistantLevel))
         assistant.levels.set(Skill.Crafting, assistantLevel)
         val player = createPlayer(emptyTile.addY(1), "receiver")
-        player.inventory.add("starved_ancient_effigy")
-        player["effigy_starved"] = 0 // Agility and Crafting
+        player.inventory.add(effigy)
+        player["effigy_${effigy.removeSuffix("_ancient_effigy")}"] = 0 // Agility and Crafting
         player.playerOption(assistant, "Req Assist")
         tick()
         assistant.playerOption(player, "Req Assist")
         tick()
+        return Pair(player, assistant)
+    }
+
+    @Test
+    fun `An assistant can help with a nourished effigy`() {
+        assertAssistedStage("nourished_ancient_effigy", level = 93, xp = 20000.0, next = "sated_ancient_effigy")
+    }
+
+    @Test
+    fun `An assistant can help with a sated effigy`() {
+        assertAssistedStage("sated_ancient_effigy", level = 95, xp = 25000.0, next = "gorged_ancient_effigy")
+    }
+
+    @Test
+    fun `An assistant can help with a gorged effigy`() {
+        assertAssistedStage("gorged_ancient_effigy", level = 97, xp = 30000.0, next = "dragonkin_lamp")
+    }
+
+    @Test
+    fun `A capped assistant can still help investigate every stage without gaining xp`() {
+        val (player, assistant) = setupAssistedInvestigator(assistantLevel = 97)
+        val experience = assistant.experience.get(Skill.Crafting)
+
+        player.investigate("starved_ancient_effigy", option = 2)
+        player["effigy_nourished"] = 0 // Agility and Crafting
+        player.investigate("nourished_ancient_effigy", option = 2) // 35k total hits the 30k cap
+        player["effigy_sated"] = 0
+        player.investigate("sated_ancient_effigy", option = 2)
+        player["effigy_gorged"] = 0
+        player.investigate("gorged_ancient_effigy", option = 2)
+
+        assertEquals(experience + 30000.0, assistant.experience.get(Skill.Crafting))
+        assertEquals(0.0, player.experience.get(Skill.Crafting))
+        assertEquals(1, player.inventory.count("dragonkin_lamp"))
+    }
+
+    private fun assertAssistedStage(effigy: String, level: Int, xp: Double, next: String) {
+        val (player, assistant) = setupAssistedInvestigator(assistantLevel = level, effigy = effigy)
+        val experience = assistant.experience.get(Skill.Crafting)
+
+        player.investigate(effigy, option = 2)
+
+        assertEquals(experience + xp, assistant.experience.get(Skill.Crafting), effigy)
+        assertEquals(0.0, player.experience.get(Skill.Crafting), effigy)
+        assertEquals(1, player.inventory.count(next), next)
+    }
+
+    @Test
+    fun `A skill the assistant switched off can't be used to investigate`() {
+        val (player, assistant) = setupAssistedInvestigator(assistantLevel = 91)
         assistant.interfaceOption("assist_xp", "crafting", "Toggle Skill On / Off")
         tick()
-        return Pair(player, assistant)
+
+        player.investigate("starved_ancient_effigy", option = 2)
+
+        assertEquals(1, player.inventory.count("starved_ancient_effigy"))
+        assertTrue(player.containsMessage("You require at least level 91 Crafting to investigate the ancient effigy further."))
     }
 
     @Test

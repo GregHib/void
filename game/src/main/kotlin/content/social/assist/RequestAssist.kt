@@ -83,6 +83,7 @@ class RequestAssist : Script {
                 val maxed = exceededMaximum(gained)
                 player.exp(skill, exp)
                 player["total_xp_earned"] = gained.toInt()
+                // Capped assistants can keep assisting but no longer gain any experience
                 if (maxed) {
                     player.interfaces.sendText(
                         "assist_xp",
@@ -93,7 +94,6 @@ class RequestAssist : Script {
                         """,
                     )
                     player.start("assist_timeout", TimeUnit.HOURS.toSeconds(24).toInt())
-                    stopRedirectingAllExp(this)
                 }
             }
         }
@@ -141,7 +141,7 @@ class RequestAssist : Script {
             sendText("assist_xp", "description", "The Assist System is available for you to use.")
             sendText("assist_xp", "title", "Assist System XP Display - You are assisting ${assisted.name}")
         }
-        applyExistingSkillRedirects(player, assisted)
+        shareSkillsByDefault(player, assisted)
         setAssistAreaStatus(player, true)
         player.sendVariable("total_xp_earned")
         player.anim("assist")
@@ -149,20 +149,20 @@ class RequestAssist : Script {
         toggleInventory(player, enabled = false)
     }
 
-    fun applyExistingSkillRedirects(player: Player, assisted: Player) {
-        var clearedAny = false
+    // All skills are shared by default; the assistant can click any skill to switch it off
+    fun shareSkillsByDefault(player: Player, assisted: Player) {
+        var skippedAny = false
         for (skill in skills) {
             val key = "assist_toggle_${skill.name.lowercase()}"
-            if (player[key, false]) {
-                if (!canAssist(player, assisted, skill)) {
-                    player[key] = false
-                    clearedAny = true
-                } else {
-                    redirectSkillExperience(assisted, skill)
-                }
+            if (canAssist(player, assisted, skill)) {
+                player[key] = true
+                redirectSkillExperience(assisted, skill)
+            } else {
+                player[key] = false
+                skippedAny = true
             }
         }
-        if (clearedAny) {
+        if (skippedAny) {
             player.message("You can only assist skills which are higher than whom you are helping.")
         }
     }
