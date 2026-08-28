@@ -1132,9 +1132,6 @@ wander_range = 2
 [.fairy_shop_assistant]
 wander_range = 2
 
-[.peksa_barbarian_village]
-wander_range = 2
-
 [.silk_trader]
 wander_range = 3
 
@@ -4064,9 +4061,6 @@ max_range = 310
 #[.1790]
 #wander_range = 10
 #max_range = 40
-
-[.tassie_slipcast]
-wander_range = 3
 
 [.ham_agent_walton]
 max_range = 1
