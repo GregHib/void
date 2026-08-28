@@ -61,6 +61,16 @@ internal class VariableDefinitionTest {
     }
 
     @Test
+    fun `Unknown map value is not sent`() {
+        // Given
+        val variable = VariableDefinition.VarbitDefinition(id, VariableValues(mapOf("empty" to 0, "full" to 1), "map", "empty"), "empty", persist, transmit)
+        // When
+        variable.send(client, "overflowing")
+        // Then
+        verify(exactly = 0) { client.sendVarbit(any(), any()) }
+    }
+
+    @Test
     fun `Send varc`() {
         // Given
         val variable = VariableDefinition.VarcDefinition(id, values, default, persist, transmit)

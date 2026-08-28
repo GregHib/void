@@ -37,7 +37,7 @@ class Energy : Script {
                 return@moved
             }
             set("last_energy_drain", GameLoop.tick)
-            if (visuals.runStep != -1 && !get("god_mode", false)) {
+            if (visuals.runStep != -1 && !get("god_mode", false) && !Settings["world.players.infiniteRunEnergy", false]) {
                 runEnergy -= getDrainAmount(this)
                 walkWhenOutOfEnergy(this)
             }
@@ -46,6 +46,10 @@ class Energy : Script {
         timerTick("energy_restore") {
             if (runEnergy >= MAX_RUN_ENERGY) {
                 return@timerTick Timer.CANCEL
+            }
+            // Energy only recovers when not running; drains the tick before restores run
+            if (get("last_energy_drain", -1) == GameLoop.tick - 1) {
+                return@timerTick Timer.CONTINUE
             }
             runEnergy += getRestoreAmount(this)
             return@timerTick Timer.CONTINUE
@@ -63,7 +67,7 @@ class Energy : Script {
     }
 
     fun getDrainAmount(player: Player): Int {
-        val weight = player["weight", 0].coerceIn(0, 64)
+        val weight = player["weight", 0.0].toInt().coerceIn(0, 64)
         var decrement = 67 + ((67 * weight) / 64)
         if (player.hasClock("hamstring")) {
             decrement *= 4
