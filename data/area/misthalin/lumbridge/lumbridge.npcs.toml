@@ -118,24 +118,28 @@ examine = "Lumbridge Castle's head cook."
 [lumbridge_guardsman_dante]
 id = 7885
 categories = ["human"]
-collision = "indoors"
+collision = "outdoors"
 examine = "He tries to keep order around Lumbridge."
 
 [lumbridge_guardsman_deshawn]
 clone = "lumbridge_guardsman_dante"
 id = 7886
+collision = "indoors"
 
 [lumbridge_guardsman_brawn]
 clone = "lumbridge_guardsman_dante"
 id = 7887
+collision = "outdoors"
 
 [lumbridge_guardsman_pazel]
 clone = "lumbridge_guardsman_dante"
 id = 7889
+collision = "outdoors"
 
 [lumbridge_guardsman_peale]
 clone = "lumbridge_guardsman_dante"
 id = 7890
+collision = "indoors"
 
 [lumbridge_man]
 id = 7873

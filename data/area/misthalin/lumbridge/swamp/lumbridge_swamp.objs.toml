@@ -20,3 +20,31 @@ id = 10363
 [zanaris_door_closed]
 id = 2406
 examine = "A pretty door."
+
+[fremennik_ship_lumbride_swamp]
+id = 48579
+examine = "An impressive fremennik longboat."
+
+[broken_raft_lumbridge_swamp]
+id = 17068
+examine = "A smashed up raft."
+
+[broken_raft_lumbridge_swamp_2]
+id = 17070
+examine = "A smashed up raft."
+
+[slimy_tree]
+id = 42303
+examine = "A damp, slimy tree of indeterminate species."
+
+[slimy_tree_2]
+id = 42304
+examine = "A damp, slimy tree of indeterminate species."
+
+[log_lumbridge_swamp]
+id = 47719
+examine = "A haven for all manner of creepy crawlies, no doubt."
+
+[log_lumbridge_swamp_2]
+id = 47720
+examine = "A trunk of a dead tree."

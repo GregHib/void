@@ -36,7 +36,17 @@ examine = "He's cooking up a storm."
 
 [cormorant_daemonheim]
 id = 9718
+collision = "sea"
+examine = "A sea bird."
 
 [thok_master_of_dungeoneering]
 id = 9713
 examine = "The self-proclaimed master of Dungeoneering."
+
+[listless_dead]
+id = 9722
+examine = "A ghostly figure."
+
+[listless_dead_2]
+id = 9723
+examine = "A ghostly figure."

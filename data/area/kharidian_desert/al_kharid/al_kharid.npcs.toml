@@ -66,6 +66,18 @@ examine = "He's not from around here."
 id = 9159
 examine = "He's not from around here."
 
+[ali_the_leaflet_dropper]
+id = 3680
+examine = "A young boy handing out flyers."
+
+[silk_trader]
+id = 539
+examine = "Very snappily dressed."
+
+[gem_trader]
+id = 540
+examine = "Makes his money selling rocks."
+
 [tool_leprechaun_al_kharid]
 id = 7564
 examine = "Looks after your Farming tools."

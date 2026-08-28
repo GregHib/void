@@ -39,7 +39,6 @@ range = 0
 style = "stab"
 max_hit_melee = 30
 attack_bonus = 11
-hunt_mode = "cowardly"
 respawn_delay = 50
 drop_table = "bones"
 examine = "He patrols the Shantay Pass."

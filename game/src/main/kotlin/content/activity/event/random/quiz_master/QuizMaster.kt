@@ -5,7 +5,7 @@ import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Confused
-import content.entity.player.dialogue.Goofy
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Hysterics
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -72,7 +72,7 @@ class QuizMaster : Script {
                 if (inc("quiz_correct") >= REQUIRED) {
                     break
                 }
-                npc<Goofy>("Wow, you're a smart one! You're absolutely RIGHT! Okay, next question!")
+                npc<Happy>("Wow, you're a smart one! You're absolutely RIGHT! Okay, next question!")
             } else {
                 npc<Hysterics>("WRONG! That's just WRONG! Okay, next question!")
             }
@@ -89,9 +89,9 @@ class QuizMaster : Script {
     }
 
     private suspend fun Player.intro() {
-        npc<Hysterics>("WELCOME to the GREATEST QUIZ SHOW in the whole of RuneScape: <col=8A0808>O D D</col> <col=8A088A>O N E</col> <col=08088A>O U T</col>")
+        npc<Happy>("WELCOME to the GREATEST QUIZ SHOW in the whole of RuneScape: <col=8A0808>O D D</col> <col=8A088A>O N E</col> <col=08088A>O U T</col>")
         player<Confused>("I'm sure I didn't ask to take part in a quiz show...")
-        npc<Goofy>("Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
+        npc<Happy>("Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
     }
 
     /** Shows a fresh "odd one out" and suspends until the player picks a button, returning its slot. */
