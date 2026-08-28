@@ -28,6 +28,17 @@ class TaskSystemTest : WorldTest() {
     }
 
     @Test
+    fun `Legacy incomplete quest value is migrated on spawn`() {
+        val player = createPlayer(Tile(3221, 3218))
+        player.variables.data["unstable_foundations"] = "incomplete"
+
+        Spawn.player(player)
+        tick(1)
+
+        assertEquals("started", player["unstable_foundations", ""])
+    }
+
+    @Test
     fun `Dismissing unrelated completed task details doesn't remove pinned task`() {
         val player = createPlayer(Tile(3207, 3224, 2))
         player["unstable_foundations"] = "completed"
