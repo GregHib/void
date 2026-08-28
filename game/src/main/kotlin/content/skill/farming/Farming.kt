@@ -90,7 +90,7 @@ class Farming(
                 }
                 val produce = current.substringBeforeLast("_")
                 if (produce.endsWith("diseased")) {
-                    if (variable.contains("herb") && !produce.startsWith("goutweed")) {
+                    if (variable.contains("herb_patch") && !produce.startsWith("goutweed")) {
                         val stage = current.removeSuffix("_diseased").substringAfterLast("_")
                         player[variable] = "herb_dead_$stage"
                     } else {
@@ -201,7 +201,7 @@ class Farming(
 
     fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
         // https://x.com/JagexKieren/status/905860041240137729
-        if (spot == "patch_my_arm_herb" || type == "0" || produce.endsWith("_watered")) {
+        if (spot == "farming_herb_patch_my_arm" || type == "0" || produce.endsWith("_watered")) {
             return false
         }
         if (player["${spot}_protect", false]) {
