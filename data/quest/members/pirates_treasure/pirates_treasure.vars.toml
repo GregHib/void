@@ -1,0 +1,19 @@
+[pirates_treasure_wydin]
+persist = true
+format = "boolean"
+
+[pirates_treasure_stashed_rum]
+persist = true
+format = "boolean"
+
+[pirates_treasure_delivered_rum]
+persist = true
+format = "boolean"
+
+[pirates_treasure_collected_rum]
+persist = true
+format = "boolean"
+
+[pirates_treasure_spawned_gardener]
+persist = true
+format = "boolean"
