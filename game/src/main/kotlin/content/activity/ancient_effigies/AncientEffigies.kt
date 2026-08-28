@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.skillLamp
 import content.entity.player.dialogue.type.statement
+import content.social.assist.Assistance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
@@ -72,7 +73,8 @@ class AncientEffigies : Script {
     }
 
     private suspend fun Player.focus(item: Item, slot: Int, stage: Stage, key: String, skill: Skill) {
-        if (levels.get(skill) < stage.level) {
+        val assistant = Assistance.assistant(this, skill)
+        if (levels.get(skill) < stage.level && (assistant == null || assistant.levels.get(skill) < stage.level)) {
             anim("effigy_fail")
             item(item.id, "The images in your mind fade; the ancient effigy seems to desire knowledge of experiences you have not yet had.")
             message("You require at least level ${stage.level} ${skill.name} to investigate the ancient effigy further.")

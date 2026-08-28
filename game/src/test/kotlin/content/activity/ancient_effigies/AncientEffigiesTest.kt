@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import playerOption
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -146,6 +147,58 @@ class AncientEffigiesTest : WorldTest() {
         player.dialogueContinue(2)
 
         assertEquals(pair, player.get("effigy_starved", -1))
+    }
+
+    @Test
+    fun `An assistant's level can be used to investigate an effigy`() {
+        val (player, assistant) = setupAssistedInvestigator(assistantLevel = 91)
+        val experience = assistant.experience.get(Skill.Crafting)
+
+        player.investigate("starved_ancient_effigy", option = 2)
+
+        assertEquals(experience + 15000.0, assistant.experience.get(Skill.Crafting))
+        assertEquals(0.0, player.experience.get(Skill.Crafting))
+        assertEquals(1, player.inventory.count("nourished_ancient_effigy"))
+    }
+
+    @Test
+    fun `An assistant below the required level can't help investigate`() {
+        val (player, _) = setupAssistedInvestigator(assistantLevel = 90)
+
+        player.investigate("starved_ancient_effigy", option = 2)
+
+        assertEquals(1, player.inventory.count("starved_ancient_effigy"))
+        assertTrue(player.containsMessage("You require at least level 91 Crafting to investigate the ancient effigy further."))
+    }
+
+    @Test
+    fun `Effigy advances but excess assist xp is lost when the daily cap is reached`() {
+        val (player, assistant) = setupAssistedInvestigator(assistantLevel = 91)
+        assistant["total_xp_earned"] = 250000 // 25k of the 30k daily limit already earned
+        val experience = assistant.experience.get(Skill.Crafting)
+
+        player.investigate("starved_ancient_effigy", option = 2)
+
+        assertEquals(experience + 5000.0, assistant.experience.get(Skill.Crafting))
+        assertEquals(0.0, player.experience.get(Skill.Crafting))
+        assertEquals(1, player.inventory.count("nourished_ancient_effigy"))
+    }
+
+    private fun setupAssistedInvestigator(assistantLevel: Int): Pair<Player, Player> {
+        val assistant = createPlayer(emptyTile, "assistant")
+        assistant["skip_level_up"] = true
+        assistant.experience.set(Skill.Crafting, Level.experience(Skill.Crafting, assistantLevel))
+        assistant.levels.set(Skill.Crafting, assistantLevel)
+        val player = createPlayer(emptyTile.addY(1), "receiver")
+        player.inventory.add("starved_ancient_effigy")
+        player["effigy_starved"] = 0 // Agility and Crafting
+        player.playerOption(assistant, "Req Assist")
+        tick()
+        assistant.playerOption(player, "Req Assist")
+        tick()
+        assistant.interfaceOption("assist_xp", "crafting", "Toggle Skill On / Off")
+        tick()
+        return Pair(player, assistant)
     }
 
     @Test
