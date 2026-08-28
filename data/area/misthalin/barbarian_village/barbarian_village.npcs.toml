@@ -87,6 +87,7 @@ examine = "His furs look very damp."
 
 [tassie_slipcast]
 id = 1793
+collision = "indoors"
 examine = "A hard-working potter."
 
 [barbarian_siegmund]
@@ -216,6 +217,7 @@ examine = "Litara, a barbarian explorer."
 [peksa_barbarian_village]
 id = 538
 shop = "peksas_helmet_shop"
+collision = "indoors"
 examine = "Always up-to-date with the latest helmet fashions."
 
 [student_barbarian_village]
