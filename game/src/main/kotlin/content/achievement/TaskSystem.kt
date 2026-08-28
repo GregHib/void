@@ -17,6 +17,14 @@ import world.gregs.voidps.engine.event.AuditLog
 class TaskSystem : Script {
 
     init {
+        playerSpawn {
+            // Migrate saves the unlock command wrote a boolean into; set directly to avoid re-completing the task
+            if (variables.data["introducing_explorer_jack_task"] == true) {
+                variables.data["introducing_explorer_jack_task"] = "completed"
+                sendVariable("introducing_explorer_jack_task")
+            }
+        }
+
         interfaceOpened("task_system") {
             sendVariable("task_pin_slot")
             sendVariable("task_pinned")
