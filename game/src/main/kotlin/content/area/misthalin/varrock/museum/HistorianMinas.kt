@@ -10,6 +10,8 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.replace
 
 class HistorianMinas : Script {
     init {
@@ -26,9 +28,35 @@ class HistorianMinas : Script {
                     }
                 }
                 someInfo()
+                if (inventory.items.any { it.id.endsWith("_ancient_effigy") }) {
+                    openEffigy()
+                }
                 option<Neutral>("No thanks.")
             }
         }
+    }
+
+    // Only the "top men" lines are documented; the surrounding lines are placeholders.
+    private fun ChoiceOption.openEffigy() = option<Quiz>("Could you take a look at this ancient effigy?") {
+        npc<Happy>("An ancient effigy! A remarkable relic of the dragonkin. If you hand it over to the Museum, I can offer you an antique lamp in exchange.")
+        choice {
+            option("Yes please, take it.") {
+                exchange()
+            }
+            option<Neutral>("No thanks, I'll hold on to it.")
+        }
+    }
+
+    private suspend fun Player.exchange() {
+        val slot = inventory.indices.firstOrNull { inventory[it].id.endsWith("_ancient_effigy") } ?: return
+        val id = inventory[slot].id
+        if (!inventory.replace(slot, id, "antique_lamp_ancient_effigies")) {
+            return
+        }
+        clear("effigy_${id.removeSuffix("_ancient_effigy")}")
+        npc<Happy>("I'll have my top men look into this right away.")
+        player<Quiz>("Who?")
+        npc<Neutral>("Top...men...")
     }
 
     private fun ChoiceOption.newDig(): Unit = option<Neutral>("Tell me about the new dig.") {

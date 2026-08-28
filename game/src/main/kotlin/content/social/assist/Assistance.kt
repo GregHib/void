@@ -27,6 +27,20 @@ object Assistance {
 
     fun canAssist(player: Player, assisted: Player, skill: Skill) = player.levels.getMax(skill) >= assisted.levels.getMax(skill)
 
+    /**
+     * The player currently assisting [player] with [skill], if any
+     */
+    fun assistant(player: Player, skill: Skill): Player? {
+        if (!player.experience.blocked(skill)) {
+            return null
+        }
+        val assistant: Player? = player["assistant"]
+        if (assistant == null || !assistant["assist_toggle_${skill.name.lowercase()}", false]) {
+            return null
+        }
+        return assistant
+    }
+
     fun getHoursRemaining(player: Player): Int {
         val remaining = player.remaining("assist_timeout", epochSeconds())
         if (remaining <= 0) {
