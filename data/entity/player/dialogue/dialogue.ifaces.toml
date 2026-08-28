@@ -1,3 +1,9 @@
+[dialogue_unknown]
+id = 26
+
+[.text]
+id = 0
+
 [dialogue_chat1]
 id = 64
 type = "dialogue_box"
@@ -268,6 +274,12 @@ type = "dialogue_box"
 [dialogue_text_box_model]
 id = 148
 type = "dialogue_box"
+
+[.model]
+id = 0
+
+[.line1]
+id = 1
 
 [dialogue_macro_mime_emotes]
 id = 188
