@@ -17,6 +17,18 @@ import world.gregs.voidps.engine.event.AuditLog
 class TaskSystem : Script {
 
     init {
+        playerSpawn {
+            // Migrate saves the unlock command wrote a boolean into; set directly to avoid re-completing the task
+            if (variables.data["introducing_explorer_jack_task"] == true) {
+                variables.data["introducing_explorer_jack_task"] = "completed"
+                sendVariable("introducing_explorer_jack_task")
+            }
+            // Migrate the invalid "incomplete" value this script used to write
+            if (this["unstable_foundations", ""] == "incomplete") {
+                set("unstable_foundations", "started")
+            }
+        }
+
         interfaceOpened("task_system") {
             sendVariable("task_pin_slot")
             sendVariable("task_pinned")
@@ -29,7 +41,7 @@ class TaskSystem : Script {
                 set("task_pinned", 3520) // Talk to explorer jack
                 set("task_pin_slot", 1)
                 set("task_slot_selected", 1)
-                set("unstable_foundations", "incomplete")
+                set("unstable_foundations", "started")
             }
         }
 

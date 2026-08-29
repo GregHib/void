@@ -5,6 +5,7 @@ import interfaceOption
 import itemOption
 import objectOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -13,6 +14,29 @@ import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 
 class TaskSystemTest : WorldTest() {
+
+    @Test
+    fun `Boolean task value is migrated on spawn without re-completing`() {
+        val player = createPlayer(Tile(3221, 3218))
+        player.variables.data["introducing_explorer_jack_task"] = true
+
+        Spawn.player(player)
+        tick(1)
+
+        assertEquals("completed", player["introducing_explorer_jack_task", ""])
+        assertEquals(0, player["task_progress_overall", 0])
+    }
+
+    @Test
+    fun `Legacy incomplete quest value is migrated on spawn`() {
+        val player = createPlayer(Tile(3221, 3218))
+        player.variables.data["unstable_foundations"] = "incomplete"
+
+        Spawn.player(player)
+        tick(1)
+
+        assertEquals("started", player["unstable_foundations", ""])
+    }
 
     @Test
     fun `Dismissing unrelated completed task details doesn't remove pinned task`() {

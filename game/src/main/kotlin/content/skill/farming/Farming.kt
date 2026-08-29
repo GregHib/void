@@ -28,6 +28,15 @@ class Farming(
 
     init {
         playerSpawn {
+            // Repair patches stuck on values missing from their varbit map; they can't be sent or grow
+            for (patches in FarmingPatches.patches.values) {
+                for (variable in patches) {
+                    val value: String = this[variable] ?: continue
+                    if (varbitMap(variable)?.containsKey(value) == false) {
+                        clear(variable)
+                    }
+                }
+            }
             if (!contains("farming_offset_mins")) {
                 set("farming_offset_mins", random.nextInt(0, 30))
             }
@@ -90,7 +99,7 @@ class Farming(
                 }
                 val produce = current.substringBeforeLast("_")
                 if (produce.endsWith("diseased")) {
-                    if (variable.contains("herb") && !produce.startsWith("goutweed")) {
+                    if (variable.contains("herb_patch") && !produce.startsWith("goutweed")) {
                         val stage = current.removeSuffix("_diseased").substringAfterLast("_")
                         player[variable] = "herb_dead_$stage"
                     } else {
@@ -201,7 +210,7 @@ class Farming(
 
     fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
         // https://x.com/JagexKieren/status/905860041240137729
-        if (spot == "patch_my_arm_herb" || type == "0" || produce.endsWith("_watered")) {
+        if (spot == "farming_herb_patch_my_arm" || type == "0" || produce.endsWith("_watered")) {
             return false
         }
         if (player["${spot}_protect", false]) {
@@ -240,7 +249,7 @@ class Farming(
 
     private fun varbitMap(varbit: String): Map<String, Int>? {
         val definition = VariableDefinitions.get(varbit) ?: return null
-        return (definition.values as MapValues).values as Map<String, Int>
+        return (definition.values as? MapValues)?.values as? Map<String, Int>
     }
 
     private fun amuletOfFarming(player: Player, patch: String) {

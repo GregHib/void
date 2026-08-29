@@ -7,7 +7,9 @@ import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -80,6 +82,34 @@ class FlowerPatchTest : WorldTest() {
 
             assertEquals("${id}_$count", player["farming_flower_patch_falador", "empty"])
         }
+    }
+
+    @Test
+    fun `Bush seed can't be planted in a flower patch`() {
+        val tile = Tile(3054, 3306)
+        val player = createPlayer(tile)
+        player.inventory.add("whiteberry_seed")
+        player.inventory.add("seed_dibber")
+        player.levels.set(Skill.Farming, 99)
+        player["farming_flower_patch_falador"] = "weeds_0"
+        val patch = GameObjects.find(tile.addY(1), "farming_flower_patch_falador")
+
+        player.itemOnObject(patch, 0)
+        tick(10)
+
+        assertEquals("weeds_0", player["farming_flower_patch_falador", "empty"])
+        assertEquals(1, player.inventory.count("whiteberry_seed"))
+    }
+
+    @Test
+    fun `Invalid patch value is repaired on spawn`() {
+        val player = createPlayer(Tile(2809, 3462))
+        player["farming_flower_patch_catherby"] = "whiteberry_watered_0"
+
+        Spawn.player(player)
+        tick(1)
+
+        assertEquals("empty", player["farming_flower_patch_catherby", "empty"])
     }
 
     @TestFactory

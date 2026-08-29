@@ -7,7 +7,7 @@ drops = [
     { id = "ibans_staff_broken" },
 ]
 
-[disciple_of_iban_drop_table]
+[doomion_drop_table]
 type = "all"
 drops = [
     { id = "ashes" },
@@ -56,7 +56,7 @@ drops = [
     { id = "coins", amount = 2, chance = 9 },
     { id = "coins", amount = 18, chance = 7 },
     { id = "coins", amount = 30 },
-    { id = "nothing", amount = 0, chance = 16 },
+    { id = "nothing", amount = 0, chance = 15 },
 ]
 [holthion_drop_table]
 type = "all"

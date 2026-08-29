@@ -39,15 +39,15 @@ drops = [
     { id = "uncut_emerald", chance = 8 },
     { id = "uncut_ruby", chance = 8 },
     { id = "uncut_diamond", chance = 4 },
-    { id = "coins", min = 50, max = 349, chance = 60 },
-    { id = "coins", min = 30, max = 229, chance = 40 },
-    { id = "coins", min = 20, max = 519, chance = 24 },
-    { id = "coins", min = 250, max = 499, chance = 12 },
+    { id = "coins", min = 50, max = 349, chance = 48 },
+    { id = "coins", min = 30, max = 229, chance = 32 },
+    { id = "coins", min = 20, max = 519, chance = 20 },
+    { id = "coins", min = 250, max = 499, chance = 8 },
     { id = "mithril_sword", chance = 16 },
     { id = "adamant_hatchet", chance = 8 },
     { id = "black_hatchet", chance = 8 },
-    { table = "herb_drop_table", chance = 68 },
-    { table = "rare_seed_drop_table", chance = 12 },
+    { table = "herb_drop_table", chance = 52 },
+    { table = "rare_seed_drop_table", chance = 10 },
 ]
 
 [skeletal_wyvern_tertiary]

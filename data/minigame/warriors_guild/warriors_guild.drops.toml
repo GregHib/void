@@ -41,6 +41,7 @@ drops = [
 ]
 
 [animated_black_armour_drop_table]
+type = "all"
 drops = [
     { id = "warrior_guild_token", amount = 20 },
     { id = "black_full_helm" },
@@ -64,6 +65,7 @@ drops = [
 ]
 
 [animated_mithril_armour_drop_table]
+type = "all"
 drops = [
     { id = "warrior_guild_token", amount = 25 },
     { id = "mithril_full_helm" },
@@ -72,6 +74,7 @@ drops = [
 ]
 
 [animated_adamant_armour_drop_table]
+type = "all"
 drops = [
     { id = "warrior_guild_token", amount = 30 },
     { id = "adamant_full_helm" },
@@ -80,6 +83,7 @@ drops = [
 ]
 
 [animated_rune_armour_drop_table]
+type = "all"
 drops = [
     { id = "warrior_guild_token", amount = 40 },
     { id = "rune_full_helm" },
