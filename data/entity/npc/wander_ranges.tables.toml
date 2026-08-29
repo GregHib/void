@@ -2163,7 +2163,7 @@ max_range = 100
 wander_range = 0
 
 [.prissy_scilla]
-wander_range = 0
+wander_range = 3
 
 [.rufus]
 wander_range = 2
@@ -5506,68 +5506,67 @@ wander_range = 3
 max_range = 3
 
 [.elstan]
-wander_range = 0
+wander_range = 3
 
 [.dantaera]
-wander_range = 0
-max_range = 5
+wander_range = 3
 
 [.kragen_ardougne]
-wander_range = 0
+wander_range = 3
 
 [.lyra]
-wander_range = 0
+wander_range = 3
 
 [.francis]
-wander_range = 0
+wander_range = 3
 
 [.muncher_halloween_2007]
 wander_range = 0
 
 [.garth_brimhaven]
-wander_range = 0
+wander_range = 3
 
 [.ellena]
-wander_range = 0
+wander_range = 3
 
 [.selena]
-wander_range = 0
+wander_range = 3
 
 [.vasquen]
-wander_range = 0
+wander_range = 3
 
 [.rhonen]
-wander_range = 0
+wander_range = 3
 
 [.dreven]
-wander_range = 0
+wander_range = 3
 
 [.taria]
-wander_range = 0
+wander_range = 3
 
 [.rhazien]
-wander_range = 0
+wander_range = 3
 
 [.torrell]
-wander_range = 0
+wander_range = 3
 
 [.alain]
-wander_range = 0
+wander_range = 3
 
 [.heskel]
-wander_range = 0
+wander_range = 3
 
 [.treznor]
-wander_range = 0
+wander_range = 3
 
 [.fayeth]
-wander_range = 0
+wander_range = 3
 
 [.bolongo]
-wander_range = 0
+wander_range = 3
 
 [.gileth_observatory]
-wander_range = 0
+wander_range = 3
 
 [.sick_looking_sheep_1_3]
 wander_range = 3
@@ -6731,11 +6730,10 @@ wander_range = 0
 max_range = 50
 
 [.amaethwr]
-wander_range = 0
-max_range = 0
+wander_range = 3
 
 [.teclyn]
-wander_range = 0
+wander_range = 3
 
 #[.2862]
 #wander_range = 5
@@ -7164,7 +7162,7 @@ wander_range = 1
 max_range = 1
 
 [.tool_leprechaun]
-wander_range = 0
+wander_range = 3
 
 [.genie_genies_cave]
 wander_range = 0
@@ -7383,7 +7381,7 @@ wander_range = 25
 max_range = 25
 
 [.tool_leprechaun_kharazi_jungle]
-wander_range = 0
+wander_range = 3
 
 [.papa_mambo_kharazi_jungle]
 wander_range = 0
@@ -10295,7 +10293,7 @@ wander_range = 0
 wander_range = 0
 
 [.garden_supplier]
-wander_range = 0
+wander_range = 3
 
 [.sick_looking_sheep_1_2]
 wander_range = 0
@@ -10928,13 +10926,13 @@ wander_range = 0
 wander_range = 0
 
 [.frizzy_skernip]
-wander_range = 0
+wander_range = 3
 
 [.yulf_squecks]
-wander_range = 0
+wander_range = 3
 
 [.praistan_ebola]
-wander_range = 0
+wander_range = 3
 
 [.hura]
 wander_range = 0
@@ -18859,25 +18857,25 @@ max_range = 15
 wander_range = 0
 
 [.tool_leprechaun_brimhaven]
-wander_range = 0
+wander_range = 3
 
 [.tool_leprechaun_rimmington]
-wander_range = 0
+wander_range = 3
 
 [.tool_leprechaun_tai_bwo_wannai]
-wander_range = 0
+wander_range = 3
 
 [.tool_leprechaun_yanille]
 wander_range = 0
 
 [.tool_leprechaun_monastery]
-wander_range = 0
+wander_range = 3
 
 [.tool_leprechaun_ardougne]
-wander_range = 0
+wander_range = 3
 
 [.tool_leprechaun_al_kharid]
-wander_range = 0
+wander_range = 3
 
 [.tool_leprechaun_lumbridge]
 wander_range = 0
@@ -18894,7 +18892,7 @@ max_range = 0
 max_range = 0
 
 [.tool_leprechaun_alices_farm]
-wander_range = 0
+wander_range = 3
 
 [.zookeeper_2]
 wander_range = 5
@@ -35267,7 +35265,7 @@ max_range = 30000
 #wander_range = 8
 
 [.zombie_farmer_kharazi_jungle]
-wander_range = 0
+wander_range = 3
 
 #[.13102]
 #wander_range = 3

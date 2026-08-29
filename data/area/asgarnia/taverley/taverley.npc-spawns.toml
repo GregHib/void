@@ -9,6 +9,7 @@ spawns = [
   { id = "pet_shop_owner_taverley", x = 2922, y = 3435, members = true },
   { id = "lady_of_the_lake", x = 2924, y = 3405, members = true },
   { id = "alain", x = 2938, y = 3439, members = true },
+  { id = "tool_leprechaun_monastery", x = 2933, y = 3434, members = true },
   { id = "austri", x = 2876, y = 3483, members = true },
   { id = "tegid", x = 2913, y = 3418, direction = "SOUTH_EAST", members = true },
   { id = "gaius", x = 2885, y = 3450, members = true },
