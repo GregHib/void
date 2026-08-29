@@ -34,7 +34,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -175,7 +175,9 @@ class EvilTwin : Script {
         val host = NPCs.add("molly_$hash", MOLLY_TILE.add(offset), ticks = -1, owner = this)
         host.watch(this)
         if (get("evil_twin_caught", false)) {
-            NPCs.add("twin_suspect_$hash", JAIL.add(offset), ticks = -1, owner = this)
+            val twin = NPCs.add("twin_suspect_$hash", JAIL.add(offset), ticks = -1, owner = this)
+            twin.mode = PauseMode
+            twin.face(Direction.NORTH)
         } else {
             spawnSuspects(hash, PEN.offset(offset))
         }
@@ -257,7 +259,9 @@ class EvilTwin : Script {
         }
         val look = suspect.id.removePrefix("twin_suspect_").toInt()
         val twin = look == get("evil_twin_hash", 0)
-        suspect.mode = EmptyMode
+        // PauseMode, not EmptyMode: with world.npcs.randomWalk on, the npc tick re-applies Wander
+        // over EmptyMode, so a grabbed suspect would stroll about mid-lift and out of the jail.
+        suspect.mode = PauseMode
         suspect.anim("evil_twin_lifted")
         suspect.gfx("evil_twin_lifted")
         turnCamera(JAIL.add(offset), CLAW_HEIGHT)
@@ -266,15 +270,16 @@ class EvilTwin : Script {
         removeClaw() // The claw leaves with her, and swings back once she's been dropped off
         suspect.transform("twin_suspect_carried_$look", collision = false)
         suspect.walkOverDelay(JAIL.add(offset))
+        suspect.mode = PauseMode // Stay put in the jail; the walk's Movement mode would reset to Wander
         sound("evil_twin_claw_lower")
         suspect.anim("evil_twin_claw_lower")
         delay(3)
         suspect.clearTransform()
-        suspect.face(tile)
         sound("evil_twin_claw_drop")
         if (twin) {
             catchTwin(suspect)
         } else {
+            suspect.face(tile)
             message("You caught an innocent civilian!")
             suspect.say("You're putting me in prison?!")
             delay(2)
@@ -288,8 +293,10 @@ class EvilTwin : Script {
         message("You caught the evil twin!")
         set("evil_twin_caught", true)
         jingle("twin_is_caught")
-        twin.face(Direction.NORTH)
         delay(2)
+        // Turn on the same tick as the jailed anim, a tick after clearTransform, so the client
+        // can't lose the face flag to the transform update or the walk's leftover facing.
+        twin.face(Direction.NORTH)
         twin.anim("evil_twin_jailed")
         for (npc in NPCs.at(twin.tile.regionLevel)) {
             if (npc.id.startsWith("twin_suspect_") && npc != twin) {
