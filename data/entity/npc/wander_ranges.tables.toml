@@ -6113,7 +6113,7 @@ max_range = 5
 #max_range = 0
 
 [.brother_althric]
-wander_range = 0
+wander_range = 2
 
 #[.2589]
 #wander_range = 10
@@ -19416,7 +19416,7 @@ wander_range = 1
 wander_range = 2
 
 [.brother_bordiss]
-wander_range = 0
+wander_range = 2
 
 [.will]
 wander_range = 5
