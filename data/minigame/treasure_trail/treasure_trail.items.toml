@@ -2602,12 +2602,14 @@ id = 10790
 god = "zamorak"
 slot = "Chest"
 material = "leather"
+examine = "Zamorak blessed dragonhide body armour."
 
 [saradomin_dragonhide]
 id = 10792
 god = "saradomin"
 slot = "Chest"
 material = "leather"
+examine = "Saradomin blessed dragonhide body armour."
 
 [guthix_dragonhide]
 id = 10794

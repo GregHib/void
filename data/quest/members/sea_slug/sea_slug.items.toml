@@ -29,3 +29,4 @@ kept = "Wilderness"
 [torch_sea_slug]
 id = 9665
 slot = "Weapon"
+examine = "A home-made torch."

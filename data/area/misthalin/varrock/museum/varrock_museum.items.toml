@@ -463,6 +463,7 @@ examine = "An intricately carved replica statue piece."
 
 [statue_2]
 id = 15583
+examine = "Statue"
 
 [statue_collection_bag]
 id = 19704
