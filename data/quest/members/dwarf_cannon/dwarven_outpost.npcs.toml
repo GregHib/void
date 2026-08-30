@@ -44,4 +44,3 @@ drop_table = "goblin"
 combat_def = "goblin"
 hitpoints = 50
 max_hit_crush = 10
-

@@ -256,6 +256,7 @@ examine = "He walks with a slight limp."
 
 [local_mage_edgeville_3]
 id = 8348
+examine = "A dedicated servant of a dark and powerful lord."
 
 [hellrat]
 id = 3382

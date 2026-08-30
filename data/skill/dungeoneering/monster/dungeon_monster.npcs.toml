@@ -3,6 +3,7 @@ id = 9724
 
 [rand_furn_nighteye_static_1]
 id = 9725
+examine = "The eyes! THE EYES!"
 
 [rand_furn_nighteye_static_2]
 id = 9726
@@ -87,6 +88,7 @@ id = 9752
 
 [rand_furn_toughguy_1]
 id = 9753
+examine = "A skilled mage and ranger."
 
 [rand_furn_toughguy_2]
 id = 9754
@@ -129,6 +131,7 @@ id = 9766
 
 [rand_furn_rammernaught_1]
 id = 9767
+examine = "He's big, and he's not pleased to see you."
 
 [rand_furn_rammernaught_2]
 id = 9768
@@ -354,6 +357,7 @@ id = 9841
 
 [rand_furn_librarimancer_1]
 id = 9842
+examine = "Keeper of the tomes."
 
 [rand_furn_librarimancer_2]
 id = 9843
@@ -396,12 +400,15 @@ id = 9855
 
 [rand_furn_librarimancer_book_melee_1]
 id = 9856
+examine = "An ancient tome filled with melee combat secrets."
 
 [rand_furn_librarimancer_book_range_1]
 id = 9857
+examine = "An ancient tome filled with ranged combat secrets."
 
 [rand_furn_librarimancer_book_magic_1]
 id = 9858
+examine = "An ancient tome filled with magic combat secrets."
 
 [rand_furn_librarimancer_book_melee_2]
 id = 9859
@@ -522,6 +529,7 @@ id = 9897
 
 [rand_furn_demon_1]
 id = 9898
+examine = "A magical and powerful demon."
 
 [rand_furn_demon_2]
 id = 9899
@@ -543,6 +551,7 @@ id = 9904
 
 [rand_furn_demon_8]
 id = 9905
+examine = "A magical and powerful demon."
 
 [rand_furn_demon_9]
 id = 9906
@@ -564,6 +573,7 @@ id = 9911
 
 [rand_froz_icefiend_boss_00]
 id = 9912
+examine = "A large and powerful ice creature."
 
 [rand_froz_icefiend_boss_0]
 id = 9913
@@ -615,6 +625,7 @@ id = 9928
 
 [rand_cold_stare_boss_0]
 id = 9929
+examine = "It's got a cold stare."
 
 [rand_cold_stare_boss_05]
 id = 9930
@@ -672,6 +683,7 @@ id = 9947
 
 [rand_survival_boss_0]
 id = 9948
+examine = "He looks hungry!"
 
 [rand_survival_boss_05]
 id = 9949
@@ -723,6 +735,7 @@ id = 9964
 
 [rand_ancient_mage_0_melee]
 id = 9965
+examine = "A summoner using a form of ancient magic."
 
 [rand_ancient_mage_0_magic]
 id = 9966
@@ -900,6 +913,7 @@ id = 10023
 
 [rand_froz_demon_0]
 id = 10024
+examine = "A magical and powerful demon."
 
 [rand_froz_demon_1]
 id = 10025
@@ -948,9 +962,11 @@ id = 10039
 
 [rand_antiboss]
 id = 10058
+examine = "An immensely powerful healer of the gorajo."
 
 [rand_hobgoblin_shaman_1]
 id = 10059
+examine = "An ugly, smelly creature with a makeshift staff."
 
 [rand_hobgoblin_shaman_2]
 id = 10060
@@ -993,9 +1009,11 @@ id = 10072
 
 [rand_boulder_beast_1_armoured]
 id = 10073
+examine = "Its armour is made of a hard stone."
 
 [rand_boulder_beast_1_broken]
 id = 10074
+examine = "Its armour is made of a hard stone."
 
 [rand_boulder_beast_2_armoured]
 id = 10075
@@ -1107,6 +1125,7 @@ id = 10110
 
 [rand_undead_archmage_1]
 id = 10111
+examine = "This mage died a long time ago."
 
 [rand_undead_archmage_2]
 id = 10112
@@ -1158,6 +1177,7 @@ id = 10127
 
 [rand_war_demon_1]
 id = 10128
+examine = "A soldier of a demon army."
 
 [rand_war_demon_2]
 id = 10129
@@ -1203,6 +1223,7 @@ id = 10142
 
 [rand_shadow_forger_1]
 id = 10143
+examine = "It's hanging over a deep chasm with four fleshy tentacles."
 
 [rand_shadow_forger_2]
 id = 10144
@@ -1391,6 +1412,7 @@ examine = "This spider must have been modified magically."
 
 [rand_animated_pickaxe_1]
 id = 10168
+examine = "How can it move of its own accord?"
 
 [rand_animated_pickaxe_2]
 id = 10169
@@ -1439,6 +1461,7 @@ id = 10183
 
 [rand_earth_warrior_7]
 id = 10184
+examine = "A strange, inhuman, elemental warrior."
 
 [rand_earth_warrior_8]
 id = 10185
@@ -1478,27 +1501,35 @@ id = 10196
 
 [amberfell_banker]
 id = 10197
+examine = "He can look after my money."
 
 [amberfell_butcher]
 id = 10198
+examine = "Handles the meat of things."
 
 [amberfell_villager_chatting_f]
 id = 10199
+examine = "A resident of Amberfell."
 
 [amberfell_villager_chatting_m]
 id = 10200
+examine = "A resident of Amberfell."
 
 [amberfell_villager]
 id = 10201
+examine = "A resident of Amberfell."
 
 [amberfell_fisherman]
 id = 10202
+examine = "A resident of Amberfell."
 
 [amberfell_child_1]
 id = 10203
+examine = "A budding explorer."
 
 [amberfell_child_2]
 id = 10204
+examine = "A budding hunter."
 
 [wendle_farmer_sheep_multi]
 id = 10205
@@ -1544,24 +1575,30 @@ id = 10218
 
 [rand_black_dragon_1]
 id = 10219
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_2]
 id = 10220
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_3]
 id = 10221
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_4]
 id = 10222
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_5]
 id = 10223
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_6]
 id = 10224
 
 # https://runescape.wiki/w/Ice_warrior_(Dungeoneering)?oldid=5795352
 # Stats interp 5..100 (aligns with normal ice warrior)
+examine = "A fierce dragon with black scales."
 
 [rand_ice_warrior_0]
 id = 10225
@@ -3119,30 +3156,37 @@ id = 10366
 
 [rand_zombie_melee_4]
 id = 10367
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_5]
 id = 10368
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_6]
 id = 10369
 
 [rand_zombie_melee_7]
 id = 10370
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_8]
 id = 10371
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_9]
 id = 10372
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_10]
 id = 10373
 
 [rand_zombie_melee_11]
 id = 10374
+examine = "A walking, rotten corpse."
 
 [rand_zombie_ranged_1]
 id = 10375
+examine = "A walking, rotten corpse."
 
 [rand_zombie_ranged_2]
 id = 10376
@@ -4032,6 +4076,7 @@ examine = "A warrior who has been long forgotten."
 
 [rand_ice_golem_1]
 id = 10460
+examine = "It's made out of blocks of ice."
 
 [rand_ice_golem_2]
 id = 10461
@@ -4195,6 +4240,7 @@ id = 10491
 
 [rand_lesser_demon_1]
 id = 10492
+examine = "Lesser, but still pretty big."
 
 [rand_lesser_demon_2]
 id = 10493
@@ -5350,21 +5396,27 @@ examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_green_dragon_1]
 id = 10604
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_2]
 id = 10605
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_3]
 id = 10606
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_4]
 id = 10607
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_5]
 id = 10608
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_6]
 id = 10609
+examine = "Must be related to Elvarg."
 
 [rand_hydra_1]
 id = 10610
@@ -5425,129 +5477,169 @@ id = 10628
 
 [rand_skeleton_melee_lvl1_1]
 id = 10629
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl1_2]
 id = 10630
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl1_3]
 id = 10631
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl1_4]
 id = 10632
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_1]
 id = 10633
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_2]
 id = 10634
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_3]
 id = 10635
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_4]
 id = 10636
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_1]
 id = 10637
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_2]
 id = 10638
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_3]
 id = 10639
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_4]
 id = 10640
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_5]
 id = 10641
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_1]
 id = 10642
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_2]
 id = 10643
 
 [rand_skeleton_melee_lvl4_3]
 id = 10644
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_4]
 id = 10645
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_1]
 id = 10646
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_2]
 id = 10647
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_3]
 id = 10648
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_4]
 id = 10649
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_1]
 id = 10650
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_2]
 id = 10651
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_3]
 id = 10652
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_4]
 id = 10653
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_1]
 id = 10654
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_2]
 id = 10655
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_3]
 id = 10656
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_4]
 id = 10657
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl8_1]
 id = 10658
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl8_2]
 id = 10659
 
 [rand_skeleton_melee_lvl8_3]
 id = 10660
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl8_4]
 id = 10661
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_1]
 id = 10662
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_2]
 id = 10663
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_3]
 id = 10664
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_4]
 id = 10665
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_1]
 id = 10666
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_2]
 id = 10667
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_3]
 id = 10668
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_4]
 id = 10669
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_ranged_1]
 id = 10670
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_ranged_2]
 id = 10671
@@ -5632,15 +5724,18 @@ id = 10697
 
 [rand_night_spider]
 id = 10698
+examine = "A dark spider with red eyes."
 
 [rand_jelly]
 id = 10699
 
 [rand_spiritual_guardian]
 id = 10700
+examine = "The spiritual remains of a defender of the dungeons."
 
 [rand_seeker]
 id = 10701
+examine = "A floating eye of some sort."
 
 [rand_nechryael]
 id = 10702
@@ -5650,45 +5745,58 @@ id = 10703
 
 [rand_edimmu]
 id = 10704
+examine = "A spiritual zombie that sucks life out of its victims."
 
 [rand_stalker]
 id = 10705
+examine = "A floating eye of some sort."
 
 [rand_hill_giant_1]
 id = 10706
+examine = "A very large foe."
 
 [rand_hill_giant_2]
 id = 10707
+examine = "A very large foe."
 
 [rand_hill_giant_3]
 id = 10708
 
 [rand_hill_giant_4]
 id = 10709
+examine = "A very large foe."
 
 [rand_hill_giant_5]
 id = 10710
+examine = "A very large foe."
 
 [rand_hill_giant_6]
 id = 10711
+examine = "A very large foe."
 
 [rand_hill_giant_7]
 id = 10712
+examine = "A very large foe."
 
 [rand_hill_giant_8]
 id = 10713
+examine = "A very large foe."
 
 [rand_hill_giant_9]
 id = 10714
+examine = "A very large foe."
 
 [rand_hill_giant_10]
 id = 10715
+examine = "A very large foe."
 
 [rand_hill_giant_11]
 id = 10716
+examine = "A very large foe."
 
 [rand_hill_giant_12]
 id = 10717
+examine = "A very large foe."
 
 [rand_greater_demon_1]
 id = 10718
@@ -5701,6 +5809,7 @@ id = 10720
 
 [rand_greater_demon_4]
 id = 10721
+examine = "Big, red and incredibly evil."
 
 [rand_black_demon_1]
 id = 10722
@@ -5713,6 +5822,7 @@ id = 10724
 
 [rand_black_demon_4]
 id = 10725
+examine = "A big, scary, jet-black demon."
 
 [rand_guard_dog_1]
 id = 10726
@@ -5770,6 +5880,7 @@ id = 10743
 
 [rand_animated_book_1]
 id = 10744
+examine = "The book appears to be alive."
 
 [rand_animated_book_2]
 id = 10745
@@ -5803,6 +5914,7 @@ id = 10754
 
 [rand_fire_giant_2]
 id = 10755
+examine = "A very large elemental adversary."
 
 [rand_fire_giant_3]
 id = 10756
@@ -5848,24 +5960,30 @@ id = 10769
 
 [rand_frost_dragon_1]
 id = 10770
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_2]
 id = 10771
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_3]
 id = 10772
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_4]
 id = 10773
 
 [rand_frost_dragon_5]
 id = 10774
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_6]
 id = 10775
+examine = "A dragon covered in frost and ice."
 
 [rand_iron_dragon_1]
 id = 10776
+examine = "Its scales are made of iron."
 
 [rand_iron_dragon_2]
 id = 10777
@@ -5884,15 +6002,19 @@ id = 10781
 
 [rand_ice_troll_melee_1]
 id = 10782
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_2]
 id = 10783
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_3]
 id = 10784
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_4]
 id = 10785
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_5]
 id = 10786
@@ -5911,6 +6033,7 @@ id = 10790
 
 [rand_ice_troll_ranged_1]
 id = 10791
+examine = "Small for a troll, but mean, ugly and throws rocks."
 
 [rand_ice_troll_ranged_2]
 id = 10792
@@ -5929,51 +6052,67 @@ id = 10796
 
 [rand_heavy_guard_1]
 id = 10797
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_1_with_key]
 id = 10798
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_2]
 id = 10799
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_2_with_key]
 id = 10800
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_3]
 id = 10801
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_3_with_key]
 id = 10802
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_4]
 id = 10803
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_4_with_key]
 id = 10804
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_5]
 id = 10805
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_5_with_key]
 id = 10806
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_6]
 id = 10807
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_6_with_key]
 id = 10808
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_7]
 id = 10809
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_7_with_key]
 id = 10810
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_8]
 id = 10811
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_8_with_key]
 id = 10812
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_9]
 id = 10813
@@ -5983,21 +6122,27 @@ id = 10814
 
 [rand_red_dragon_1]
 id = 10815
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_2]
 id = 10816
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_3]
 id = 10817
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_4]
 id = 10818
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_5]
 id = 10819
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_6]
 id = 10820
+examine = "A powerful dragon with red scales."
 
 [rand_ghost_1]
 id = 10821
@@ -7309,6 +7454,7 @@ id = 11005
 
 [rand_bc_golem_active]
 id = 11006
+examine = "Created to perform menial tasks."
 
 [rand_bait_the_plate_critter]
 id = 11007
@@ -7318,6 +7464,7 @@ id = 11008
 
 [rand_sphere_guardian]
 id = 11009
+examine = "A sphere of dangerous portal energy."
 
 [rand_critter_key_critter]
 id = 11010
@@ -7612,363 +7759,424 @@ id = 11106
 
 [rand_loremel_01_combat]
 id = 11107
+examine = "Trained from birth to tear and rend. (Tier 1)"
 
 [rand_loremel_02]
 id = 11108
 
 [rand_loremel_02_combat]
 id = 11109
+examine = "Trained from birth to tear and rend. (Tier 2)"
 
 [rand_loremel_03]
 id = 11110
 
 [rand_loremel_03_combat]
 id = 11111
+examine = "Trained from birth to tear and rend. (Tier 3)"
 
 [rand_loremel_04]
 id = 11112
 
 [rand_loremel_04_combat]
 id = 11113
+examine = "Trained from birth to tear and rend. (Tier 4)"
 
 [rand_loremel_05]
 id = 11114
 
 [rand_loremel_05_combat]
 id = 11115
+examine = "Trained from birth to tear and rend. (Tier 5)"
 
 [rand_loremel_06]
 id = 11116
 
 [rand_loremel_06_combat]
 id = 11117
+examine = "Trained from birth to tear and rend. (Tier 6)"
 
 [rand_loremel_07]
 id = 11118
 
 [rand_loremel_07_combat]
 id = 11119
+examine = "Trained from birth to tear and rend. (Tier 7)"
 
 [rand_loremel_08]
 id = 11120
 
 [rand_loremel_08_combat]
 id = 11121
+examine = "Trained from birth to tear and rend. (Tier 8)"
 
 [rand_loremel_09]
 id = 11122
 
 [rand_loremel_09_combat]
 id = 11123
+examine = "Trained from birth to tear and rend. (Tier 9)"
 
 [rand_loremel_10]
 id = 11124
 
 [rand_loremel_10_combat]
 id = 11125
+examine = "Trained from birth to tear and rend. (Tier 10)"
 
 [rand_loremag_01]
 id = 11126
 
 [rand_loremag_01_combat]
 id = 11127
+examine = "Trained from birth to light the skies with magic. (Tier 1)"
 
 [rand_loremag_02]
 id = 11128
 
 [rand_loremag_02_combat]
 id = 11129
+examine = "Trained from birth to light the skies with magic. (Tier 2)"
 
 [rand_loremag_03]
 id = 11130
 
 [rand_loremag_03_combat]
 id = 11131
+examine = "Trained from birth to light the skies with magic. (Tier 3)"
 
 [rand_loremag_04]
 id = 11132
 
 [rand_loremag_04_combat]
 id = 11133
+examine = "Trained from birth to light the skies with magic. (Tier 4)"
 
 [rand_loremag_05]
 id = 11134
 
 [rand_loremag_05_combat]
 id = 11135
+examine = "Trained from birth to light the skies with magic. (Tier 5)"
 
 [rand_loremag_06]
 id = 11136
 
 [rand_loremag_06_combat]
 id = 11137
+examine = "Trained from birth to light the skies with magic. (Tier 6)"
 
 [rand_loremag_07]
 id = 11138
 
 [rand_loremag_07_combat]
 id = 11139
+examine = "Trained from birth to light the skies with magic. (Tier 7)"
 
 [rand_loremag_08]
 id = 11140
 
 [rand_loremag_08_combat]
 id = 11141
+examine = "Trained from birth to light the skies with magic. (Tier 8)"
 
 [rand_loremag_09]
 id = 11142
 
 [rand_loremag_09_combat]
 id = 11143
+examine = "Trained from birth to light the skies with magic. (Tier 9)"
 
 [rand_loremag_10]
 id = 11144
 
 [rand_loremag_10_combat]
 id = 11145
+examine = "Trained from birth to light the skies with magic. (Tier 10)"
 
 [rand_loreskill_01]
 id = 11146
 
 [rand_loreskill_01_combat]
 id = 11147
+examine = "Trained from birth to provide for the camp. (Tier 1)"
 
 [rand_loreskill_02]
 id = 11148
 
 [rand_loreskill_02_combat]
 id = 11149
+examine = "Trained from birth to provide for the camp. (Tier 2)"
 
 [rand_loreskill_03]
 id = 11150
 
 [rand_loreskill_03_combat]
 id = 11151
+examine = "Trained from birth to provide for the camp. (Tier 3)"
 
 [rand_loreskill_04]
 id = 11152
 
 [rand_loreskill_04_combat]
 id = 11153
+examine = "Trained from birth to provide for the camp. (Tier 4)"
 
 [rand_loreskill_05]
 id = 11154
 
 [rand_loreskill_05_combat]
 id = 11155
+examine = "Trained from birth to provide for the camp. (Tier 5)"
 
 [rand_loreskill_06]
 id = 11156
 
 [rand_loreskill_06_combat]
 id = 11157
+examine = "Trained from birth to provide for the camp. (Tier 6)"
 
 [rand_loreskill_07]
 id = 11158
 
 [rand_loreskill_07_combat]
 id = 11159
+examine = "Trained from birth to provide for the camp. (Tier 7)"
 
 [rand_loreskill_08]
 id = 11160
 
 [rand_loreskill_08_combat]
 id = 11161
+examine = "Trained from birth to provide for the camp. (Tier 8)"
 
 [rand_loreskill_09]
 id = 11162
 
 [rand_loreskill_09_combat]
 id = 11163
+examine = "Trained from birth to provide for the camp. (Tier 9)"
 
 [rand_loreskill_10]
 id = 11164
 
 [rand_loreskill_10_combat]
 id = 11165
+examine = "Trained from birth to provide for the camp. (Tier 10)"
 
 [rand_loreheal_01]
 id = 11166
 
 [rand_loreheal_01_combat]
 id = 11167
+examine = "Trained from birth to bind wounds and heal. (Tier 1)"
 
 [rand_loreheal_02]
 id = 11168
 
 [rand_loreheal_02_combat]
 id = 11169
+examine = "Trained from birth to bind wounds and heal. (Tier 2)"
 
 [rand_loreheal_03]
 id = 11170
 
 [rand_loreheal_03_combat]
 id = 11171
+examine = "Trained from birth to bind wounds and heal. (Tier 3)"
 
 [rand_loreheal_04]
 id = 11172
 
 [rand_loreheal_04_combat]
 id = 11173
+examine = "Trained from birth to bind wounds and heal. (Tier 4)"
 
 [rand_loreheal_05]
 id = 11174
 
 [rand_loreheal_05_combat]
 id = 11175
+examine = "Trained from birth to bind wounds and heal. (Tier 5)"
 
 [rand_loreheal_06]
 id = 11176
 
 [rand_loreheal_06_combat]
 id = 11177
+examine = "Trained from birth to bind wounds and heal. (Tier 6)"
 
 [rand_loreheal_07]
 id = 11178
 
 [rand_loreheal_07_combat]
 id = 11179
+examine = "Trained from birth to bind wounds and heal. (Tier 7)"
 
 [rand_loreheal_08]
 id = 11180
 
 [rand_loreheal_08_combat]
 id = 11181
+examine = "Trained from birth to bind wounds and heal. (Tier 8)"
 
 [rand_loreheal_09]
 id = 11182
 
 [rand_loreheal_09_combat]
 id = 11183
+examine = "Trained from birth to bind wounds and heal. (Tier 9)"
 
 [rand_loreheal_10]
 id = 11184
 
 [rand_loreheal_10_combat]
 id = 11185
+examine = "Trained from birth to bind wounds and heal. (Tier 10)"
 
 [rand_lorebob_01]
 id = 11186
 
 [rand_lorebob_01_combat]
 id = 11187
+examine = "Trained from birth to relieve you of your burdens. (Tier 1)"
 
 [rand_lorebob_02]
 id = 11188
 
 [rand_lorebob_02_combat]
 id = 11189
+examine = "Trained from birth to relieve you of your burdens. (Tier 2)"
 
 [rand_lorebob_03]
 id = 11190
 
 [rand_lorebob_03_combat]
 id = 11191
+examine = "Trained from birth to relieve you of your burdens. (Tier 3)"
 
 [rand_lorebob_04]
 id = 11192
 
 [rand_lorebob_04_combat]
 id = 11193
+examine = "Trained from birth to relieve you of your burdens. (Tier 4)"
 
 [rand_lorebob_05]
 id = 11194
 
 [rand_lorebob_05_combat]
 id = 11195
+examine = "Trained from birth to relieve you of your burdens. (Tier 5)"
 
 [rand_lorebob_06]
 id = 11196
 
 [rand_lorebob_06_combat]
 id = 11197
+examine = "Trained from birth to relieve you of your burdens. (Tier 6)"
 
 [rand_lorebob_07]
 id = 11198
 
 [rand_lorebob_07_combat]
 id = 11199
+examine = "Trained from birth to relieve you of your burdens. (Tier 7)"
 
 [rand_lorebob_08]
 id = 11200
 
 [rand_lorebob_08_combat]
 id = 11201
+examine = "Trained from birth to relieve you of your burdens. (Tier 8)"
 
 [rand_lorebob_09]
 id = 11202
 
 [rand_lorebob_09_combat]
 id = 11203
+examine = "Trained from birth to relieve you of your burdens. (Tier 9)"
 
 [rand_lorebob_10]
 id = 11204
 
 [rand_lorebob_10_combat]
 id = 11205
+examine = "Trained from birth to relieve you of your burdens. (Tier 10)"
 
 [rand_loreran_01]
 id = 11206
 
 [rand_loreran_01_combat]
 id = 11207
+examine = "Trained from birth to lead the hunt. (Tier 1)"
 
 [rand_loreran_02]
 id = 11208
 
 [rand_loreran_02_combat]
 id = 11209
+examine = "Trained from birth to lead the hunt. (Tier 2)"
 
 [rand_loreran_03]
 id = 11210
 
 [rand_loreran_03_combat]
 id = 11211
+examine = "Trained from birth to lead the hunt. (Tier 3)"
 
 [rand_loreran_04]
 id = 11212
 
 [rand_loreran_04_combat]
 id = 11213
+examine = "Trained from birth to lead the hunt. (Tier 4)"
 
 [rand_loreran_05]
 id = 11214
 
 [rand_loreran_05_combat]
 id = 11215
+examine = "Trained from birth to lead the hunt. (Tier 5)"
 
 [rand_loreran_06]
 id = 11216
 
 [rand_loreran_06_combat]
 id = 11217
+examine = "Trained from birth to lead the hunt. (Tier 6)"
 
 [rand_loreran_07]
 id = 11218
 
 [rand_loreran_07_combat]
 id = 11219
+examine = "Trained from birth to lead the hunt. (Tier 7)"
 
 [rand_loreran_08]
 id = 11220
 
 [rand_loreran_08_combat]
 id = 11221
+examine = "Trained from birth to lead the hunt. (Tier 8)"
 
 [rand_loreran_09]
 id = 11222
 
 [rand_loreran_09_combat]
 id = 11223
+examine = "Trained from birth to lead the hunt. (Tier 9)"
 
 [rand_loreran_10]
 id = 11224
 
 [rand_loreran_10_combat]
 id = 11225
+examine = "Trained from birth to lead the hunt. (Tier 10)"
 
 [rand_smuggler]
 id = 11226
+examine = "Our contact on the inside."
 
 [rand_skillcape_player_melee]
 id = 11227
@@ -7990,30 +8198,35 @@ id = 11232
 
 [goblin_unarmed_melee_2]
 id = 11233
+examine = "An ugly, green creature."
 
 [1st4h_goblin_unarmed_melee_2]
 id = 11234
 
 [goblin_unarmed_melee_3]
 id = 11235
+examine = "An ugly, green creature."
 
 [1st4h_goblin_unarmed_melee_3]
 id = 11236
 
 [goblin_unarmed_melee_4]
 id = 11237
+examine = "An ugly, green creature."
 
 [1st4h_goblin_unarmed_melee_4]
 id = 11238
 
 [goblin_unarmed_melee_5]
 id = 11239
+examine = "An ugly, green creature."
 
 [1st4h_goblin_unarmed_melee_5]
 id = 11240
 
 [goblin_unarmed_melee_6]
 id = 11241
+examine = "An ugly, green creature."
 
 [deadly_linza_cutscene_scroll]
 id = 11242
@@ -8026,6 +8239,7 @@ id = 11244
 
 [rand_ghost_with_key_ghost]
 id = 11245
+examine = "Pretty active for a dead guy."
 
 [rand_ransacked_tomb_ghost]
 id = 11246
@@ -8056,6 +8270,7 @@ id = 11254
 
 [loy_troll_melee_1]
 id = 11255
+examine = "Loves to get up close and personal."
 
 [rand_fremenik_camp_chicken_light]
 id = 11256
@@ -8083,30 +8298,37 @@ id = 11263
 
 [slayc_vampire]
 id = 11264
+examine = "Where did that come from?"
 
 [slayc_ghoul]
 id = 11265
+examine = "It's totally savage."
 
 [slayc_snail]
 id = 11266
+examine = "It looks hungry!"
 
 [musa_point_fish_exchanger]
 id = 11267
+examine = "Exchanges lobsters, tuna and swordfish for banknotes."
 
 [thigui_robin_multi]
 id = 11268
 
 [thigui_stallguard]
 id = 11269
+examine = "On guard for thieves and ne'erdowells."
 
 [thigui_crafter]
 id = 11270
 
 [thigui_registryguard]
 id = 11271
+examine = "The key to the vault lever hangs from his belt."
 
 [thigui_registrar]
 id = 11272
+examine = "The Registrar of Guilds."
 
 [thigui_guildmaster]
 id = 11273
@@ -8134,6 +8356,7 @@ id = 11280
 
 [thigui_picktrainer]
 id = 11281
+examine = "A Thieves' Guild trainer."
 
 [thigui_picktarget_npc_1]
 id = 11282
@@ -8173,9 +8396,11 @@ id = 11293
 
 [thigui_locktrainer]
 id = 11294
+examine = "A Thieves' Guild trainer."
 
 [thigui_safetrainer]
 id = 11295
+examine = "A Thieves' Guild trainer."
 
 [thigui_coshtrainer_npc]
 id = 11296
@@ -8185,18 +8410,22 @@ id = 11297
 
 [thigui_shopkeeper]
 id = 11298
+examine = "A shady dealer."
 
 [thigui_banker]
 id = 11299
+examine = "Our man on the inside."
 
 [redeem_runefestbanner_npc]
 id = 11300
 
 [koltroll]
 id = 11301
+examine = "He's a shape-shifter."
 
 [koldarkbeast]
 id = 11302
+examine = "He's a shape-shifter."
 
 [poh_servant_dogsbody_1op]
 id = 11303
@@ -8263,30 +8492,37 @@ id = 11323
 
 [ft3_boss_godfather_shield_3]
 id = 11324
+examine = "I'm gonna make him an offer he can't refuse."
 
 [ft3_boss_godfather_shield_2]
 id = 11325
+examine = "I'm gonna make him an offer he can't refuse."
 
 [ft3_boss_godfather_shield_1]
 id = 11326
+examine = "I'm gonna make him an offer he can't refuse."
 
 [ft3_boss_godfather_fight]
 id = 11327
+examine = "I'm gonna make him an offer he can't refuse."
 
 [ft3_boss_godfather_defeated]
 id = 11328
 
 [ft3_boss_gromblod]
 id = 11329
+examine = "A fearsome ork general - he even fights in his sleep."
 
 [loy_troll_melee_4]
 id = 11330
 
 [ft3_boss_shredflesh]
 id = 11331
+examine = "Shredflesh by name, nice guy by nature...not!"
 
 [ft3_boss_breegth]
 id = 11332
+examine = "General Bre'egth - a tough, spellcasting ork."
 
 [ft3_tooth_shredflesh_ally_multi]
 id = 11333
@@ -8347,12 +8583,15 @@ id = 11351
 
 [ft3_tooth_shredflesh_enemy]
 id = 11352
+examine = "A cursed ivory version of General Shredflesh."
 
 [ft3_tooth_gromblod_enemy]
 id = 11353
+examine = "A cursed ivory version of General Gromblod."
 
 [ft3_tooth_breegth_enemy]
 id = 11354
+examine = "A cursed ivory version of General Breegth."
 
 [ft3_briefing_ork_zanaris1]
 id = 11355
@@ -8368,15 +8607,19 @@ id = 11358
 
 [ft3_ork_fight_01]
 id = 11359
+examine = "A well trained and armoured ork warrior."
 
 [ft3_ork_fight_02]
 id = 11360
+examine = "A well trained and armoured ork warrior."
 
 [ft3_ork_fight_03]
 id = 11361
+examine = "A well trained and armoured ork warrior."
 
 [ft3_ork_fight_04]
 id = 11362
+examine = "A well trained and armoured ork warrior."
 
 [ft3_fairy_slim_louie]
 id = 11363
@@ -8641,6 +8884,7 @@ id = 11449
 
 [castlewars_ballista_saradomin]
 id = 11450
+examine = "Fires deadly projectiles."
 
 [castlewars_ballista_zamorak]
 id = 11451
@@ -8674,6 +8918,7 @@ id = 11460
 
 [csi_court_clerk]
 id = 11461
+examine = "The courthouse clerk."
 
 [csi_judge_dummy]
 id = 11462
@@ -8716,6 +8961,7 @@ id = 11474
 
 [mm_dealga]
 id = 11475
+examine = "A shrewd-looking monkey salesman."
 
 [lumbcat_xenia_uninjured_icon]
 id = 11476
@@ -8761,12 +9007,15 @@ id = 11489
 
 [vkq1_bridge_pest_splatter]
 id = 11490
+examine = "Don't burst its bubble!"
 
 [vkq1_bridge_pest_spinner]
 id = 11491
+examine = "Eeewww!"
 
 [vkq1_bridge_pest_torcher]
 id = 11492
+examine = "Burn, baby, burn!"
 
 [vkq1_commodore_matthias_cutscene]
 id = 11493
@@ -8890,6 +9139,7 @@ id = 11532
 
 [loy_troll_general_1]
 id = 11533
+examine = "He looks tough!"
 
 [vkq1_pest_torcher_1a]
 id = 11534
@@ -8932,6 +9182,7 @@ id = 11546
 
 [milkshop_keeper]
 id = 11547
+examine = "She sells milk."
 
 [vkq1_ghost_commodore]
 id = 11548
@@ -8977,21 +9228,27 @@ id = 11561
 
 [poh_pit_dog]
 id = 11562
+examine = "Like a wolf, only without the glamour."
 
 [poh_pit_ogre]
 id = 11563
+examine = "It's not very smart, but it knows how to fight."
 
 [poh_pit_rockcreature]
 id = 11564
+examine = "A being of ore and minerals."
 
 [poh_pit_scabarite]
 id = 11565
+examine = "Two legs, four arms and a very nasty-looking bow."
 
 [poh_pit_demon]
 id = 11566
+examine = "A big, scary, jet-black demon."
 
 [poh_pit_irondragon]
 id = 11567
+examine = "Its scales are made of iron."
 
 [wom_cutscene_3]
 id = 11568
@@ -9025,6 +9282,7 @@ id = 11577
 
 [love_zenevivia_battle]
 id = 11578
+examine = "Apparently she's the love interest."
 
 [love_zenevivia_battle_statue_protmagic]
 id = 11579
@@ -9070,12 +9328,14 @@ id = 11592
 
 [love_dungeon_demon]
 id = 11593
+examine = "A big, scary, jet-black demon."
 
 [love_dungeon_dragon_inactive]
 id = 11594
 
 [love_dungeon_dragon]
 id = 11595
+examine = "Its scales are made of iron."
 
 [love_dummy]
 id = 11596
@@ -9193,9 +9453,11 @@ id = 11637
 
 [trail_elite]
 id = 11638
+examine = "A follower of Guthix."
 
 [trail_elite2]
 id = 11639
+examine = "A follower of Guthix."
 
 [lore_meerkats]
 id = 11640
@@ -9301,6 +9563,7 @@ id = 11673
 
 [vkq2_kofi]
 id = 11674
+examine = "He clearly takes pride in his appearance."
 
 [vkq2_kofi_ill]
 id = 11675
@@ -9358,6 +9621,7 @@ id = 11692
 
 [vkq2_workshopworker]
 id = 11693
+examine = "The hours are long, but the pay is good: one family not killed per day."
 
 [vkq2_workshopworker2]
 id = 11694
@@ -9367,6 +9631,7 @@ id = 11695
 
 [vkq2_kinshra_guardian]
 id = 11696
+examine = "A Black Knight with lots of combat experience."
 
 [vkq2_kinshra_guardian_auto]
 id = 11697
@@ -9445,6 +9710,7 @@ id = 11721
 
 [rand_oclt_necrolord_add_01]
 id = 11722
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_02]
 id = 11723
@@ -9457,39 +9723,51 @@ id = 11725
 
 [rand_oclt_necrolord_add_05]
 id = 11726
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_06]
 id = 11727
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_07]
 id = 11728
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_08]
 id = 11729
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_09]
 id = 11730
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_10]
 id = 11731
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_11]
 id = 11732
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_12]
 id = 11733
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_13]
 id = 11734
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_14]
 id = 11735
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_15]
 id = 11736
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_01]
 id = 11737
+examine = "An immensely powerful necromancer."
 
 [rand_oclt_necrolord_02]
 id = 11738
@@ -9535,6 +9813,7 @@ id = 11751
 
 [rand_oclt_runed_behemoth_me1ma0ra1_01]
 id = 11752
+examine = "It looks like a magically enhanced behemoth!"
 
 [rand_oclt_runed_behemoth_me1ma0ra1_02]
 id = 11753
@@ -9895,6 +10174,7 @@ id = 11871
 
 [rand_oclt_demon_1]
 id = 11872
+examine = "A demon used to barking orders to its warriors."
 
 [rand_oclt_demon_2]
 id = 11873
@@ -9940,6 +10220,7 @@ id = 11886
 
 [rand_oclt_demon_mage_1]
 id = 11887
+examine = "A mage concentrating on holding the demon in place."
 
 [rand_oclt_demon_mage_2]
 id = 11888
@@ -9964,6 +10245,7 @@ id = 11894
 
 [rand_oclt_eyesplosion_static_01]
 id = 11895
+examine = "The core of the beast."
 
 [rand_oclt_eyesplosion_static_02]
 id = 11896
@@ -10009,6 +10291,7 @@ id = 11909
 
 [rand_oclt_eyesplosion_add_01]
 id = 11910
+examine = "Miniature abominations."
 
 [rand_oclt_eyesplosion_add_02]
 id = 11911
@@ -10054,6 +10337,7 @@ id = 11924
 
 [rand_oclt_eyesplosion_mobile_01]
 id = 11925
+examine = "A bloated abomination. It looks fit to burst..."
 
 [rand_oclt_eyesplosion_mobile_02]
 id = 11926
@@ -10099,6 +10383,7 @@ id = 11939
 
 [rand_trio_melee_melee_01]
 id = 11940
+examine = "A former adventurer, slain and resurrected by a necrolord."
 
 [rand_trio_melee_range_01]
 id = 11941
@@ -10276,6 +10561,7 @@ id = 11998
 
 [rand_trio_magic_melee_01]
 id = 11999
+examine = "A former adventurer, slain and resurrected by a necrolord."
 
 [rand_trio_magic_range_01]
 id = 12000
@@ -10411,6 +10697,7 @@ id = 12043
 
 [rand_trio_range_melee_01]
 id = 12044
+examine = "A former adventurer, slain and resurrected by a necrolord."
 
 [rand_trio_range_range_01]
 id = 12045
@@ -10546,12 +10833,14 @@ id = 12088
 
 [rand_fishing_keys_pondskater_1]
 id = 12089
+examine = "One of these things has the key. Could it be this one?"
 
 [rand_fishing_keys_pondskater_1_nokey]
 id = 12090
 
 [rand_fishing_keys_pondskater_2]
 id = 12091
+examine = "One of these things has the key. Could it be this one?"
 
 [rand_fishing_keys_pondskater_3]
 id = 12092
@@ -10750,18 +11039,23 @@ id = 12156
 
 [rand_pressure_pads_critter_red]
 id = 12157
+examine = "An intelligent little critter."
 
 [rand_pressure_pads_critter_blue]
 id = 12158
+examine = "An intelligent little critter."
 
 [rand_pressure_pads_critter_yellow]
 id = 12159
+examine = "An intelligent little critter."
 
 [rand_pressure_pads_critter_green]
 id = 12160
+examine = "An intelligent little critter."
 
 [rand_pressure_pads_critter_orange]
 id = 12161
+examine = "An intelligent little critter."
 
 [conq_scout_dark_enemy]
 id = 12162
@@ -10864,9 +11158,11 @@ id = 12194
 
 [conq_tutorial_npc]
 id = 12195
+examine = "In charge of Conquest training."
 
 [conq_army_purchase_npc]
 id = 12196
+examine = "Deals with Conquest squad recruitment and formations."
 
 [conq_scout_light]
 id = 12197
@@ -10990,6 +11286,7 @@ id = 12236
 
 [csi_partypete_neighbor]
 id = 12237
+examine = "One of Gielinor's many citizens."
 
 [csi_mill_worker]
 id = 12238
@@ -11134,6 +11431,7 @@ id = 12284
 
 [vkq3_guardian]
 id = 12285
+examine = "The fabled Valluta?"
 
 [vkq3_cutscene_drone]
 id = 12286
@@ -11176,6 +11474,7 @@ id = 12298
 
 [loy_troll_mage_1]
 id = 12299
+examine = "His name would suggest he ate a mage."
 
 [vkq3_sirtiffy_comorb]
 id = 12300
@@ -11260,6 +11559,7 @@ id = 12326
 
 [vkq3_puzz2_spinner]
 id = 12327
+examine = "It seems bigger than most."
 
 [vkq3_puzz2_defiler_gilroy]
 id = 12328
@@ -11290,6 +11590,7 @@ id = 12336
 
 [huntcharm_yaktwee]
 id = 12337
+examine = "A gnome mage and hunter with a somewhat enthusiastic swagger."
 
 [hunter_charm_beast_controller]
 id = 12338
@@ -11332,6 +11633,7 @@ id = 12350
 
 [1st4h_giantrat_grey3]
 id = 12351
+examine = "Overgrown vermin."
 
 [1st4h_giantspider1]
 id = 12352
@@ -11341,12 +11643,14 @@ id = 12353
 
 [goblin_unarmed_melee_7]
 id = 12354
+examine = "An ugly, green creature."
 
 [1st4h_goblin_unarmed_melee_7]
 id = 12355
 
 [goblin_unarmed_melee_8]
 id = 12356
+examine = "An ugly, green creature."
 
 [1st4h_goblin_unarmed_melee_8]
 id = 12357
@@ -11380,9 +11684,11 @@ id = 12366
 
 [1st4h_guard_goblin]
 id = 12367
+examine = "He tries to keep order around Lumbridge by killing goblins."
 
 [1st4h_guard_rat]
 id = 12368
+examine = "He tries to keep order around Lumbridge by killing rats."
 
 [rand_pressure_pen_critter_blue_inactive]
 id = 12369
@@ -11404,24 +11710,30 @@ id = 12374
 
 [hw10_black_zabeth]
 id = 12375
+examine = "He is in high spirits."
 
 [hw10_black_zabeth_band]
 id = 12376
+examine = "He is in high spirits."
 
 [hw10_pumpkin_pete]
 id = 12377
+examine = "He seems to enjoy Hallowe'en a little too much."
 
 [hw10_pumpkin_pete_2]
 id = 12378
 
 [hw10_grim]
 id = 12379
+examine = "What could be beneath that hood?"
 
 [hw10_edgar]
 id = 12380
+examine = "He'll Poe-n you."
 
 [hw10_alan]
 id = 12381
+examine = "He'll Poe-n you."
 
 [hw10_greta_multi_start]
 id = 12382
@@ -11434,6 +11746,7 @@ id = 12384
 
 [hw10_greta_band]
 id = 12385
+examine = "A lycanthropic backing singer."
 
 [hw10_helga_multi_start]
 id = 12386
@@ -11446,6 +11759,7 @@ id = 12388
 
 [hw10_helga_band]
 id = 12389
+examine = "A lycanthropic backing singer."
 
 [hw10_moira_multi_start]
 id = 12390
@@ -11458,30 +11772,38 @@ id = 12392
 
 [hw10_moira_band]
 id = 12393
+examine = "A lycanthropic backing singer."
 
 [hw10_djweb]
 id = 12394
+examine = "She looks familiar."
 
 [hw10_invis]
 id = 12395
 
 [hw10_dancer_headbang]
 id = 12396
+examine = "He seems to be enjoying the party."
 
 [hw10_dancer_headbang2]
 id = 12397
+examine = "He seems to be enjoying the party."
 
 [hw10_dancer_dance]
 id = 12398
+examine = "She seems to be enjoying the party."
 
 [hw10_dancer_dance2]
 id = 12399
+examine = "He seems to be enjoying the party."
 
 [hw10_dancer_dance_spin]
 id = 12400
+examine = "She seems to be enjoying the party."
 
 [hw10_party_pete]
 id = 12401
+examine = "He likes to paaaarty!"
 
 [hw10_spidermulti_start_1]
 id = 12402
@@ -11623,6 +11945,7 @@ id = 12447
 
 [rand_warp_beholder_melee_wall_01_w]
 id = 12448
+examine = "An open eye of World-gorger."
 
 [rand_warp_beholder_melee_wall_02_w]
 id = 12449
@@ -11668,6 +11991,7 @@ id = 12462
 
 [rand_warp_beholder_range_wall_01_s]
 id = 12463
+examine = "An open eye of World-gorger."
 
 [rand_warp_beholder_range_wall_02_s]
 id = 12464
@@ -11713,6 +12037,7 @@ id = 12477
 
 [rand_warp_beholder_me0ma0ra1_01]
 id = 12478
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma0ra1_02]
 id = 12479
@@ -11752,12 +12077,14 @@ id = 12490
 
 [rand_warp_beholder_me0ma0ra1_14]
 id = 12491
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma0ra1_15]
 id = 12492
 
 [rand_warp_beholder_me1ma1ra1_01]
 id = 12493
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma1ra1_02]
 id = 12494
@@ -11803,6 +12130,7 @@ id = 12507
 
 [rand_warp_beholder_me0ma1ra0_01]
 id = 12508
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma1ra0_02]
 id = 12509
@@ -11938,6 +12266,7 @@ id = 12552
 
 [rand_warp_beholder_me1ma1ra0_01]
 id = 12553
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma1ra0_02]
 id = 12554
@@ -12040,6 +12369,7 @@ id = 12586
 
 [rand_warp_beholder_me0ma1ra1_01]
 id = 12587
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma1ra1_02]
 id = 12588
@@ -12220,6 +12550,7 @@ id = 12646
 
 [rand_warp_beholder_me1ma0ra0_01]
 id = 12647
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma0ra0_02]
 id = 12648
@@ -12310,6 +12641,7 @@ id = 12676
 
 [rand_warp_beholder_me1ma0ra1_01]
 id = 12677
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma0ra1_02]
 id = 12678
@@ -12490,6 +12822,7 @@ id = 12736
 
 [rand_warp_gulega_01]
 id = 12737
+examine = "A monster from the Gorajo plane, warped by Daemonheim's taint."
 
 [rand_warp_gulega_02]
 id = 12738
@@ -12535,6 +12868,7 @@ id = 12751
 
 [rand_warped_demon_fists_1]
 id = 12752
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_fists_2]
 id = 12753
@@ -12580,6 +12914,7 @@ id = 12766
 
 [rand_warped_demon_stab_1]
 id = 12767
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_stab_2]
 id = 12768
@@ -12625,6 +12960,7 @@ id = 12781
 
 [rand_warped_demon_magic_1]
 id = 12782
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_magic_2]
 id = 12783
@@ -12670,6 +13006,7 @@ id = 12796
 
 [rand_warped_demon_slash_1]
 id = 12797
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_slash_2]
 id = 12798
@@ -12715,6 +13052,7 @@ id = 12811
 
 [rand_warped_demon_ranged_1]
 id = 12812
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_ranged_2]
 id = 12813
@@ -12760,6 +13098,7 @@ id = 12826
 
 [rand_warped_demon_crush_1]
 id = 12827
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_crush_2]
 id = 12828
@@ -12823,6 +13162,7 @@ id = 12847
 
 [rand_warped_knight_1]
 id = 12848
+examine = "It's hard to determine if the rammernaut controls the eye, or vice versa."
 
 [rand_warped_knight_2]
 id = 12849
@@ -12874,6 +13214,7 @@ id = 12864
 
 [rand_blink_1]
 id = 12865
+examine = "All work and no portal magic makes Blink a dull boy."
 
 [rand_blink_2]
 id = 12866
@@ -12919,6 +13260,7 @@ id = 12879
 
 [loy_troll_runt_1]
 id = 12880
+examine = "A troublesome little troll."
 
 [loy_troll_runt_2]
 id = 12881
@@ -12937,6 +13279,7 @@ id = 12885
 
 [rand_warp_devourer_01]
 id = 12886
+examine = "A dark behemoth that feeds on hope."
 
 [rand_warp_devourer_02]
 id = 12887
@@ -12988,6 +13331,7 @@ id = 12902
 
 [rand_reborn_mage_1]
 id = 12903
+examine = "A mage who died and was reborn thanks to the strange power."
 
 [rand_reborn_mage_2]
 id = 12904
@@ -13021,6 +13365,7 @@ id = 12913
 
 [rand_warped_giant_rat_1]
 id = 12914
+examine = "Overgrown, warped vermin."
 
 [rand_warped_giant_rat_2]
 id = 12915
@@ -13042,9 +13387,11 @@ id = 12920
 
 [loy_troll_boss_1]
 id = 12921
+examine = "An unusually large troll."
 
 [rand_warped_guard_dog_1]
 id = 12922
+examine = "It guards the area from intruding adventurers."
 
 [rand_warped_guard_dog_2]
 id = 12923
@@ -13075,33 +13422,42 @@ id = 12931
 
 [rand_warped_heavy_guard_1]
 id = 12932
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_2]
 id = 12933
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_3]
 id = 12934
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_4]
 id = 12935
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_5]
 id = 12936
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_6]
 id = 12937
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_7]
 id = 12938
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_8]
 id = 12939
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_9]
 id = 12940
 
 [rand_reborn_warrior_1]
 id = 12941
+examine = "A warrior who died and was reborn thanks to the strange power."
 
 [rand_reborn_warrior_2]
 id = 12942
@@ -13198,33 +13554,43 @@ id = 12972
 
 [rand_kill_leader_leader_01]
 id = 12973
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_02]
 id = 12974
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_03]
 id = 12975
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_04]
 id = 12976
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_05]
 id = 12977
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_06]
 id = 12978
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_07]
 id = 12979
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_08]
 id = 12980
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_09]
 id = 12981
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_10]
 id = 12982
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_11]
 id = 12983

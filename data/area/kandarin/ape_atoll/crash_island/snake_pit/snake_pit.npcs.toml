@@ -13,4 +13,3 @@ hunt_mode = "cowardly"
 drop_table = "big_snake"
 examine = "A big snake."
 max_hit_stab = 140
-

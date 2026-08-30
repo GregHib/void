@@ -124,6 +124,7 @@ combat_def = "twig"
 
 [berry_troll_awake]
 id = 1127
+examine = "He's guarding the cells."
 
 [berry_troll_sleeping]
 id = 1129

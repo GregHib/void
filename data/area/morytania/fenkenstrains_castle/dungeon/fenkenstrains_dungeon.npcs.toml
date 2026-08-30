@@ -35,4 +35,3 @@ drop_table = "experiment"
 examine = "One of Fenkenstrain's failed experiments."
 max_hit_crush = 10
 combat_def = "experiment_sheep"
-

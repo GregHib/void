@@ -40,4 +40,3 @@ drop_table = "bones"
 examine = "The boss!"
 max_hit_crush = 30
 combat_def = "foreman"
-
