@@ -85,13 +85,13 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
             val varbit = def.varbit
             if (varbit != -1) {
                 val index = getVarbitIndex(player, varbit)
-                return definitions.get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
+                return definitions.get(transforms.getOrNull(index and transforms.lastIndex) ?: return definition)
             }
 
             val varp = def.varp
             if (varp != -1) {
                 val index = getVarpIndex(player, varp)
-                return definitions.get(transforms.getOrNull(index.coerceAtMost(transforms.lastIndex)) ?: return definition)
+                return definitions.get(transforms.getOrNull(index and transforms.lastIndex) ?: return definition)
             }
             return definition
         }
