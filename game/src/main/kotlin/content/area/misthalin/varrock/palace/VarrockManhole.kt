@@ -10,7 +10,7 @@ class VarrockManhole : Script {
 
     init {
         objectOperate("Open", "varrock_manhole") { (target) ->
-            anim("4597")
+            anim("open_manhole")
             delay(2)
             target.replace("varrock_manhole_open")
             message("You pull back the cover from over the manhole.")
@@ -18,14 +18,13 @@ class VarrockManhole : Script {
         }
 
         objTeleportTakeOff("Climb-down", "varrock_manhole_open") { _, _ ->
-            anim("12551")
-            return@objTeleportTakeOff 2
+            anim("mah4_reach_for_rampart_top")
+            return@objTeleportTakeOff 1
         }
 
         objTeleportLand("Climb-down", "varrock_manhole_open") { _, _ ->
             face(Direction.EAST)
-            val delay = anim("12620").coerceAtLeast(0)
-            delay(delay)
+            animDelay("human_get_off_ladder_in_square")
         }
 
         objectOperate("Close", "varrock_manhole_open") { (target) ->
