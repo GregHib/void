@@ -13,7 +13,7 @@ object TomlExamines {
     @JvmStatic
     fun main(args: Array<String>) {
         val yaml = Yaml()
-        val list = yaml.load<List<Map<String, Any>>>("${System.getProperty("user.home")}\\Downloads\\locs.json")
+        val list = yaml.load<List<Map<String, Any>>>("${System.getProperty("user.home")}\\Downloads\\npcs.json")
         for (element in list) {
             val id = element["id"] as Int
             val examine = element["examine"] as String
@@ -23,7 +23,7 @@ object TomlExamines {
             }
         }
         for (file in File("./data/").walkTopDown()) {
-            if (!file.isFile || !file.name.endsWith(".objs.toml")) {
+            if (!file.isFile || !file.name.endsWith(".npcs.toml")) {
                 continue
             }
             var first = true
@@ -54,7 +54,7 @@ object TomlExamines {
                 lines.add("")
                 notFound(lines, stringId, id, clone)
             }
-            if (lines.last().trim() != "") {
+            if (lines.lastOrNull()?.trim() != "") {
                 lines.add("")
             }
             file.writeText(lines.joinToString(System.lineSeparator()))
@@ -62,11 +62,14 @@ object TomlExamines {
     }
 
     private fun notFound(lines: MutableList<String>, stringId: String, id: Int, clone: Boolean) {
-        if (clone) {
+        if (clone || stringId.endsWith("_noted]") || stringId.endsWith("_lent]")) {
             println("Skip clone $stringId $id")
             return
         }
         val (examine, name) = examines[id] ?: return
+        if (examine == "" || examine == "null") {
+            return
+        }
         val last = lines.removeLast()
         println("Found examine: $stringId $name = \"$examine\"")
         lines.add("examine = \"$examine\"")
