@@ -1,11 +1,15 @@
 [braindeath_island_wooden_stair_down]
 id = 10137
+examine = "Rickety."
 
 [braindeath_island_wooden_stair_up]
 id = 10136
+examine = "Rickety."
 
 [braindeath_island_ladder_up]
 id = 10167
+examine = "It leads up."
 
 [braindeath_island_ladder_down]
 id = 10168
+examine = "I can climb down this."

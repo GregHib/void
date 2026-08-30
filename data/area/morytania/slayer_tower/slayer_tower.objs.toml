@@ -1,41 +1,51 @@
 [slayer_tower_entrance_door_west_opened]
 id = 4491
+examine = "It looks like there might be fish swimming here. Or something, anyway."
 
 [slayer_tower_entrance_door_west_closed]
 id = 4487
+examine = "Better not eat them!"
 
 [slayer_tower_entrance_door_east_opened]
 id = 4492
 
 [slayer_tower_entrance_door_east_closed]
 id = 4490
+examine = "Steam seems to be condensing into the pot. Neat trick!"
 
 [slayer_tower_statue]
 id = 5116
+examine = "It leads to the basement."
 
 [slayer_tower_statue_open]
 id = 5117
 
 [slayer_tower_chain]
 id = 9319
+examine = "A glowing pinball post!"
 
 [slayer_tower_chain_up]
 id = 9319
+examine = "A glowing pinball post!"
 
 [slayer_tower_chain_down]
 id = 9320
+examine = "A glowing pinball post!"
 
 [slayer_tower_stairs_up]
 id = 4493
 
 [slayer_tower_stairs_down]
 id = 4494
+examine = "It leads back to the museum."
 
 [slayer_tower_spectre_stairs_up]
 id = 4495
+examine = "It leads back to the museum."
 
 [slayer_tower_spectre_stairs_down]
 id = 4496
+examine = "It leads back to the museum."
 
 [slayer_tower_door_opened]
 id = 10528

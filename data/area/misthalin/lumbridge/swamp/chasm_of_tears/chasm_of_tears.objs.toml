@@ -1,26 +1,33 @@
 [chasm_of_tears_tunnel]
 id = 6658
+examine = "A tunnel leading upwards."
 
 [chasm_of_tears_rocks_down]
 id = 6672
+examine = "They don't look too easy to climb."
 
 [chasm_of_tears_rocks]
 id = 6673
+examine = "I could climb these."
 
 [chasm_of_tears_cave_entrance]
 id = 42578
+examine = "It feels like this cave opens out onto a larger area."
 
 [chosen_commander_cave_exit]
 id = 42577
+examine = "It feels like this cave opens out onto a larger area."
 
 [juna_base]
 id = 6657
 
 [juna_tears]
 id = 31302
+examine = "An ancient giant serpent."
 
 [juna]
 id = 31303
+examine = "An ancient giant serpent."
 
 [depleted_rocks_chasm_of_tears_1]
 id = 6947

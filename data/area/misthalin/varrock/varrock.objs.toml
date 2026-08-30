@@ -35,6 +35,7 @@ examine = "Fine brews from exotic regions."
 
 [tea_stall_empty]
 id = 634
+examine = "Always a source of good bargains."
 
 [cooking_range_varrock]
 id = 24283

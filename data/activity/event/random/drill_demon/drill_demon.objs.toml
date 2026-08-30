@@ -2,12 +2,16 @@
 # (drill_demon_sign_1..4); the player uses the mat matching the sergeant's order.
 [drill_demon_mat_1]
 id = 10076
+examine = "A mat for exercises."
 
 [drill_demon_mat_2]
 id = 10077
+examine = "A mat for exercises."
 
 [drill_demon_mat_3]
 id = 10078
+examine = "A mat for exercises."
 
 [drill_demon_mat_4]
 id = 10079
+examine = "A mat for exercises."

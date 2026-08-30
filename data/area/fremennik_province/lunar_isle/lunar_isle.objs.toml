@@ -4,12 +4,16 @@ examine = "The bank teller will serve you from here."
 
 [lunar_isle_dock_ladder]
 id = 16960
+examine = "A way up."
 
 [lunar_isle_dock_ladder_top]
 id = 16962
+examine = "A way down."
 
 [lunar_isle_boat_ladder]
 id = 16959
+examine = "A way up."
 
 [lunar_isle_boat_ladder_top]
 id = 16961
+examine = "A way down."

@@ -1,148 +1,195 @@
 [box_trap]
 id = 19187
+examine = "If a creature goes inside, the box should then slam shut."
 
 [box_trap_fail]
 id = 19192
+examine = "This trap has been triggered by something."
 
 [bird_snare]
 id = 19175
+examine = "A simple device for catching birds."
 
 [bird_snare_fail]
 id = 19174
+examine = "The trap has been sprung but has failed to catch anything."
 
 [swamp_net_catching]
 id = 19674
+examine = "It looks like there's something caught in it."
 
 [swamp_net_caught]
 id = 19675
+examine = "It looks like there's something caught in it."
 
 [swamp_net_failing]
 id = 19676
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [swamp_net_failed]
 id = 19677
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [swamp_net_setup]
 id = 19678
+examine = "It's been bent over to provide the springing action for the net trap below."
 
 [swamp_net]
 id = 19679
+examine = "A young tree, probably quite flexible."
 
 [orange_net_setup]
 id = 19650
+examine = "It's been bent over to provide the springing action for the net trap below."
 
 [net]
 id = 19651
+examine = "Theoretically, it should close around anything that trips the trigger string."
 
 [orange_net]
 id = 19652
+examine = "A young tree, probably quite flexible."
 
 [orange_net_caught]
 id = 19654
+examine = "It looks like there's something caught in it."
 
 [orange_net_catching]
 id = 19655
+examine = "It looks like there's something caught in it."
 
 [orange_net_failed]
 id = 19656
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [orange_net_failing]
 id = 19657
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [red_net_catching]
 id = 19658
+examine = "It looks like there's something caught in it."
 
 [red_net_caught]
 id = 19659
+examine = "It looks like there's something caught in it."
 
 [red_net_failing]
 id = 19660
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [red_net_failed]
 id = 19661
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [red_net_setup]
 id = 19662
+examine = "It's been bent over to provide the springing action for the net trap below."
 
 [red_net]
 id = 19663
+examine = "A young tree, probably quite flexible."
 
 [black_net_catching]
 id = 19666
+examine = "It looks like there's something caught in it."
 
 [black_net_caught]
 id = 19667
+examine = "It looks like there's something caught in it."
 
 [black_net_failing]
 id = 19668
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [black_net_failed]
 id = 19669
+examine = "Something has triggered this trap but it looks like it must have escaped."
 
 [black_net_setup]
 id = 19670
+examine = "It's been bent over to provide the springing action for the net trap below."
 
 [black_net]
 id = 19671
+examine = "A young tree, probably quite flexible."
 
 [boulder_trap]
 id = 19205
+examine = "A large flat boulder. It looks like it could be useful for something."
 
 [boulder_trap_setup]
 id = 19206
+examine = "Someone could get their fingers caught in that."
 
 [boulder_trap_fail]
 id = 19219
+examine = "Someone could get their fingers caught in that."
 
 [rabbit_snare]
 id = 19333
+examine = "The snare will tighten around animals passing through."
 
 [rabbit_snare_fail]
 id = 19334
+examine = "Whatever it caught must have escaped."
 
 [rabbit_snare_caught]
 id = 19335
+examine = "There's something caught in it."
 
 [rabbit_snare_inverse]
 id = 19336
 
 
 # Snare trap — triggered states (creature caught inside)
+examine = "There's something caught in it."
 
 [snare_crimson_swift]
 id = 19180
+examine = "There's something caught in it."
 
 [snare_cerulean_twitch]
 id = 19182
+examine = "There's something caught in it."
 
 [snare_golden_warbler]
 id = 19184
+examine = "There's something caught in it."
 
 [snare_copper_longtail]
 id = 19186
+examine = "There's something caught in it."
 
 [snare_tropical_wagtail]
 id = 19178
+examine = "There's something caught in it."
 
 [snare_wimpy_bird]
 id = 28930
 
+examine = "There's something caught in it."
 # Box trap — triggered states
 [box_trap_grey_chinchompa]
 id = 28557
+examine = "It looks like there is something caught inside this trap."
 
 [box_trap_red_chinchompa]
 id = 28558
+examine = "It looks like there is something caught inside this trap."
 
 [box_trap_pawya]
 id = 28567
+examine = "It looks like there is something caught inside this trap."
 
 [box_trap_grenwall]
 id = 28906
 
+examine = "It looks like there is something caught inside this trap."
 # Boulder trap — triggered state
 [boulder_trap_barb_tailed_kebbit]
 id = 19207
+examine = "Someone could get their fingers caught in that."
 
 [pitfall_sabre_toothed_kyatt_0]
 id = 19253
@@ -197,27 +244,36 @@ id = 43614
 
 [pitfall]
 id = 19227
+examine = "A suitable place for a pit trap."
 
 [pitfall_spiked]
 id = 19228
+examine = "Dangerous; someone could trip right into that."
 
 [pitfall_collapsed]
 id = 19229
+examine = "It looks like something fell through the branches on top."
 
 [pitfall_caught_spined_larupia]
 id = 19232
+examine = "Something has fallen into this trap."
 
 [pitfall_inverse_spined_larupia]
 id = 19235
+examine = "Something has fallen into this trap."
 
 [pitfall_caught_horned_graahk]
 id = 19231
+examine = "Something has fallen into this trap."
 
 [pitfall_inverse_horned_graahk]
 id = 19234
+examine = "Something has fallen into this trap."
 
 [pitfall_caught_sabre_toothed_kyatt]
 id = 19233
+examine = "Something has fallen into this trap."
 
 [pitfall_inverse_sabre_toothed_kyatt]
 id = 19236
+examine = "Something has fallen into this trap."

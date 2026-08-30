@@ -12,6 +12,7 @@ examine = "Handy for boarding the ship."
 
 [entrana_ladder]
 id = 2408
+examine = "I can climb down this."
 
 [dramen_tree]
 id = 1292

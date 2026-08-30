@@ -7,3 +7,4 @@ examine = "You should eat your greens!"
 
 [veg_stall_empty]
 id = 4276
+examine = "Always a source of good bargains."

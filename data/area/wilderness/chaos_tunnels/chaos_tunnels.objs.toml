@@ -1,20 +1,26 @@
 [chaos_tunnels_exit]
 id = 28782
+examine = "I can see the surface."
 
 [chaos_tunnels_rift]
 id = 28892
+examine = "I'd better be careful going in there."
 
 [chaos_tunnels_rift_east]
 id = 28893
+examine = "I'd better be careful going in there."
 
 [chaos_tunnels_rift_west]
 id = 28891
+examine = "I'd better be careful going in there."
 
 [bork_exit_portal]
 id = 29537
+examine = "I wonder where this leads."
 
 [chaos_tunnels_portal]
 id = 28779
+examine = "I wonder where this leads."
 
 [mummy_ash_breakup_male]
 id = 20985

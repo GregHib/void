@@ -4,9 +4,12 @@ examine = "The bank teller will serve you from here."
 
 [cave_entrance_mos_le_harmless]
 id = 15767
+examine = "A cave."
 
 [cave_exit_mos_le_harmless]
 id = 15811
+examine = "Cave exit."
 
 [cave_exit_2_mos_le_harmless]
 id = 15812
+examine = "Cave exit."

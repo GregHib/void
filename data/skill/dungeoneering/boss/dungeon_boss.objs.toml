@@ -1,14 +1,19 @@
 [rand_stalagmite_clone_1]
 id = 52285
+examine = "That came out of nowhere!"
 
 [rand_stalagmite_clone_2]
 id = 52286
+examine = "That came out of nowhere!"
 
 [rand_stalagmite_clone_3]
 id = 52287
+examine = "That came out of nowhere!"
 
 [rand_dungeon_end_trapdoor_locked_frozen]
 id = 49695
+examine = "There's something odd about it."
 
 [rand_dungeon_end_trapdoor_unlocked_frozen]
 id = 49696
+examine = "A ladder to the next floor of Daemonheim."
