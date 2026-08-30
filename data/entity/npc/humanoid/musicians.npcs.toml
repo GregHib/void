@@ -169,5 +169,6 @@ examine = "He looks lovelorn."
 [musician_isafdar]
 id = 8723
 song = 704
+interacts = false
 categories = ["elf"]
 examine = "She's beautiful."

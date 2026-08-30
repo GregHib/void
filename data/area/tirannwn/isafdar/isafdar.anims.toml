@@ -1,0 +1,20 @@
+[tripwire_step_over]
+id = 1236
+
+[sticks_trap_pass]
+id = 819
+
+[leaf_trap_jump]
+id = 1115
+
+[dense_forest_climb]
+id = 839
+
+[dense_forest_squeeze]
+id = 1237
+
+[elven_overpass_climb_up]
+id = 2050
+
+[elven_overpass_climb_down]
+id = 2049

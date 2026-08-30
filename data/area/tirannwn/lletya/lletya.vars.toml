@@ -1,0 +1,11 @@
+[teleport_crystal_recharges]
+format = "int"
+default = 0
+persist = true
+transmit = false
+
+[crystal_seed_attunements]
+format = "int"
+default = 0
+persist = true
+transmit = false
