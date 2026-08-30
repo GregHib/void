@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.replace
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.type.Tile
 
 object EssenceMine {
     suspend fun teleport(npc: NPC, player: Player) {
@@ -23,7 +24,12 @@ object EssenceMine {
         player.shoot("curse", player.tile, delay = 60)
         player.delay(4)
         player["last_npc_teleport_to_rune_essence_mine"] = npc.id
-        val tile = Areas["essence_mine_teleport"].random(player)!!
+        val impossibleTiles = setOf(Tile(2906, 4834), Tile(2905, 4834)) // These two don't have any possible way to escape with walking.
+        var tile: Tile
+        do {
+            tile = Areas["essence_mine_teleport"].random(player)
+                ?: return
+        } while (tile in impossibleTiles)
         player.tele(tile)
         if (player["enter_the_abyss", "unstarted"] == "scrying") {
             player["scrying_orb_${npc.id}"] = true
