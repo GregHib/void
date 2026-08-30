@@ -75,6 +75,9 @@ id = 2002
 [rug_merchant_sophanem]
 id = 2297
 
+[rug_merchant_sophanem_visible]
+id = 2298
+
 [monkey_kharidian_desert]
 id = 2302
 
@@ -153,9 +156,6 @@ id = 1925
 
 [wanderer_kharidian_desert_2]
 id = 2006
-
-[rug_merchant_kharidian_desert_2_2]
-id = 2298
 
 [ali_the_wise_kharidian_desert_2]
 id = 7447

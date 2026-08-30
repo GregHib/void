@@ -83,17 +83,16 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
         fun <T, D : DefinitionsDecoder<T>> getDefinition(player: Player, definitions: D, definition: T, def: Transforms): T where T : Definition, T : Parameterized {
             val transforms = def.transforms ?: return definition
             val varbit = def.varbit
-            if (varbit != -1) {
-                val index = getVarbitIndex(player, varbit)
-                return definitions.get(transforms.getOrNull(index and transforms.lastIndex) ?: return definition)
-            }
-
             val varp = def.varp
-            if (varp != -1) {
-                val index = getVarpIndex(player, varp)
-                return definitions.get(transforms.getOrNull(index and transforms.lastIndex) ?: return definition)
+            if (varbit == -1 && varp == -1) {
+                return definition
             }
-            return definition
+            val index = if (varbit != -1) getVarbitIndex(player, varbit) else getVarpIndex(player, varp)
+            var transform = transforms[index]
+            if (transform == -1) {
+                transform = transforms.last()
+            }
+            return definitions.get(transform)
         }
     }
 }
