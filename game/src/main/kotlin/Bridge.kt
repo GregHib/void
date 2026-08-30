@@ -11,11 +11,10 @@ import java.net.InetSocketAddress
 import java.net.Socket
 import kotlin.time.Duration.Companion.seconds
 
-// ---- Configuration: point these at your existing raw TCP Kotlin server ----
 private const val TCP_HOST = "localhost"
-private const val TCP_PORT = 43594          // <-- your existing raw TCP server's port
-private const val BRIDGE_PORT = 8081        // <-- point tailscale serve at THIS port instead
-private const val BRIDGE_PATH = "/bridge"   // <-- browser connects to wss://.../bridge
+private const val TCP_PORT = 43594
+private const val BRIDGE_PORT = 8081
+private const val BRIDGE_PATH = "/bridge"
 
 fun main() {
     embeddedServer(Netty, port = BRIDGE_PORT, host = "0.0.0.0") {
@@ -63,7 +62,6 @@ fun main() {
                     for (frame in incoming) {
                         when (frame) {
                             is Frame.Binary -> output.write(frame.readBytes())
-                            is Frame.Text -> output.write(frame.readBytes()) // adjust if your TCP protocol is text-based
                             is Frame.Close -> break
                             else -> { /* ignore ping/pong, handled automatically by the plugin */ }
                         }
