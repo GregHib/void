@@ -514,6 +514,7 @@ examine = "Sells superior staffs."
 [horvik]
 id = 549
 shop = "horviks_armour_shop"
+collision = "indoors"
 examine = "The man with the armour."
 
 [lowe]

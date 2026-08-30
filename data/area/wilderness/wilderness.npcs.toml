@@ -262,6 +262,7 @@ examine = "He kills in the name of Guthix."
 
 [gull_wilderness]
 id = 9717
+collision = "sea"
 
 [lobster_wilderness]
 id = 9720

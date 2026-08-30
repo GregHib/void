@@ -333,6 +333,7 @@ drop_table = "jeff"
 [guard_falador_7]
 id = 3241
 clone = "guard_falador"
+examine = "He's keeping an eye out."
 
 [dark_wizard_falador]
 id = 3242
