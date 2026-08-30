@@ -261,6 +261,7 @@ object Params {
     const val SUMMONING_BEAST_OF_BURDEN_ESSENCE = 5264
     const val SUMMONING_SPECIAL_COST = 5265
     const val DISENGAGE = 5266
+    const val INSTANT_DEATH = 5267
 
     private fun custom(name: String) = when (name) {
         "disengage" -> DISENGAGE
@@ -431,6 +432,7 @@ object Params {
         "immune_stun" -> IMMUNE_STUN
         "infinite" -> INFINITE
         "infuse_experience" -> INFUSE_EXPERIENCE
+        "instant_death" -> INSTANT_DEATH
         "interact_distance" -> INTERACT_DISTANCE
         "interact_range" -> INTERACT_RANGE
         "interacts" -> INTERACTS
