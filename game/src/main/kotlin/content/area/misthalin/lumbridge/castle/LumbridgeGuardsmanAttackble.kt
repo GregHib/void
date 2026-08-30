@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.queue.queue
 class LumbridgeGuardsmanAttackble : Script {
 
     init {
-        val ratTargets = setOf("giant_rat", "giant_rat_3", "giant_rat_4", "giant_rat_5")
+        val ratTargets = setOf("giant_rat", "giant_rat_3", "giant_rat_mudskipper_point_2", "giant_rat_5")
 
         huntNPC("aggressive_npcs") { target ->
             if (id == "lumbridge_guardsman_attackable2" && (target.id.endsWith("rat") || target.id in ratTargets)) {
@@ -21,7 +21,7 @@ class LumbridgeGuardsmanAttackble : Script {
             }
         }
 
-        npcDeath("goblin*,giant_rat,giant_rat_3,giant_rat_4,giant_rat_5") {
+        npcDeath("goblin*,giant_rat,giant_rat_3,giant_rat_mudskipper_point_2,giant_rat_5") {
             val guard = killer as? NPC ?: return@npcDeath
             when {
                 // Guard attacked rats and giant rats, but only healed when giant rat was killed https://youtu.be/qC_XoAQK6Cs?si=VH9tOmKXu-_Bgjnr&t=137

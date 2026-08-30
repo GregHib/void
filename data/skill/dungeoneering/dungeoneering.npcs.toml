@@ -25,6 +25,9 @@ examine = "Pretty active for a dead guy."
 id = 12089
 examine = "One of these things has the key. Could it be this one?"
 
+[pondskater_dungeoneering_nokey]
+id = 12090
+
 [pondskater_dungeoneering_2]
 id = 12091
 examine = "One of these things has the key. Could it be this one?"
@@ -35,38 +38,101 @@ id = 12092
 [pondskater_dungeoneering_4]
 id = 12093
 
-[sliding_block_dungeoneering]
+[rand_sliding_block_puzzle_tile_01_frozen]
 id = 12125
 
-[sliding_block_dungeoneering_2]
+[rand_sliding_block_puzzle_tile_02_frozen]
 id = 12126
 
-[sliding_block_dungeoneering_3]
+[rand_sliding_block_puzzle_tile_03_frozen]
 id = 12127
 
-[sliding_block_dungeoneering_4]
+[rand_sliding_block_puzzle_tile_04_frozen]
 id = 12128
 
-[sliding_block_dungeoneering_5]
+[rand_sliding_block_puzzle_tile_05_frozen]
 id = 12129
 
-[sliding_block_dungeoneering_6]
+[rand_sliding_block_puzzle_tile_06_frozen]
 id = 12130
 
-[sliding_block_dungeoneering_7]
+[rand_sliding_block_puzzle_tile_07_frozen]
 id = 12131
 
-[sliding_block_dungeoneering_8]
+[rand_sliding_block_puzzle_tile_08_frozen]
 id = 12132
 
-[sliding_block_dungeoneering_9]
+[rand_sliding_block_puzzle_tile_01_abandoned]
+id = 12133
+
+[rand_sliding_block_puzzle_tile_02_abandoned]
+id = 12134
+
+[rand_sliding_block_puzzle_tile_03_abandoned]
 id = 12135
 
-[sliding_block_dungeoneering_10]
+[rand_sliding_block_puzzle_tile_04_abandoned]
+id = 12136
+
+[rand_sliding_block_puzzle_tile_05_abandoned]
+id = 12137
+
+[rand_sliding_block_puzzle_tile_06_abandoned]
+id = 12138
+
+[rand_sliding_block_puzzle_tile_07_abandoned]
+id = 12139
+
+[rand_sliding_block_puzzle_tile_08_abandoned]
+id = 12140
+
+[rand_sliding_block_puzzle_tile_01_furnished]
+id = 12141
+
+[rand_sliding_block_puzzle_tile_02_furnished]
+id = 12142
+
+[rand_sliding_block_puzzle_tile_03_furnished]
+id = 12143
+
+[rand_sliding_block_puzzle_tile_04_furnished]
+id = 12144
+
+[rand_sliding_block_puzzle_tile_05_furnished]
 id = 12145
 
-[sliding_block_dungeoneering_11]
+[rand_sliding_block_puzzle_tile_06_furnished]
+id = 12146
+
+[rand_sliding_block_puzzle_tile_07_furnished]
+id = 12147
+
+[rand_sliding_block_puzzle_tile_08_furnished]
+id = 12148
+
+[rand_sliding_block_puzzle_tile_01_occult]
+id = 12149
+
+[rand_sliding_block_puzzle_tile_02_occult]
+id = 12150
+
+[rand_sliding_block_puzzle_tile_03_occult]
+id = 12151
+
+[rand_sliding_block_puzzle_tile_04_occult]
 id = 12152
+
+[rand_sliding_block_puzzle_tile_05_occult]
+id = 12153
+
+[rand_sliding_block_puzzle_tile_06_occult]
+id = 12154
+
+[rand_sliding_block_puzzle_tile_07_occult]
+id = 12155
+
+[rand_sliding_block_puzzle_tile_08_occult]
+id = 12156
 
 [ferret_dungeoneering]
 id = 12157
@@ -87,9 +153,6 @@ examine = "An intelligent little critter."
 [ferret_dungeoneering_5]
 id = 12161
 examine = "An intelligent little critter."
-
-[sliding_block_dungeoneering_12]
-id = 12964
 
 [luminescent_icefiend_dungeoneering]
 id = 9913

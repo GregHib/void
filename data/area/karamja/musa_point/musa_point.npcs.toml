@@ -61,12 +61,15 @@ id = 5022
 
 [jack_musa_point_2]
 id = 5023
+examine = "A happy child, now that he has been freed."
 
 [jill_musa_point_2]
 id = 5024
+examine = "A happy child, now that he has been freed."
 
 [jeff_musa_point_2]
 id = 5025
+examine = "A happy child, now that he has been freed."
 
 [shop_assistant_musa_point_2]
 id = 11679
