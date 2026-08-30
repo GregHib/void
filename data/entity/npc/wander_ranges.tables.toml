@@ -3859,7 +3859,7 @@ max_range = 0
 wander_range = 4
 max_range = 4
 
-[.ak_haranu_2]
+[.ahoy_akharanu]
 wander_range = 3
 max_range = 3
 
@@ -5423,7 +5423,7 @@ max_range = 0
 wander_range = 2
 max_range = 2
 
-[.rug_merchant_kharidian_desert_2_2]
+[.rug_merchant_sophanem_visible]
 wander_range = 1
 max_range = 1
 
@@ -8105,7 +8105,7 @@ wander_range = 0
 #wander_range = 10
 #max_range = 10
 
-[.jubbly_bird]
+[.jubbly_bird_chompy]
 wander_range = 3
 
 [.plucked_jubbly]
@@ -10830,7 +10830,7 @@ wander_range = 1
 [.goblin_underground_pass]
 wander_range = 15
 
-[.tree_spirit_level_14_2]
+[.scarab_swarm_pyramid_plunder]
 wander_range = 8
 max_range = 8
 

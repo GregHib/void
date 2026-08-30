@@ -1,7 +1,9 @@
 package content.entity.obj.ship
 
 import content.quest.startCutscene
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.sendScript
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -17,7 +19,10 @@ suspend fun Player.boatTravel(journey: String, delay: Int, destination: Tile) {
     sendScript("clear_ships")
     jingle("sailing_journey")
     open("journey_ship")
+    open("total_blackness")
+    sendScript("text_colour_swapper", InterfaceDefinition.pack(333, 0), 0x2a1e06)
     set("ships_set_destination", journey)
     delay(delay)
     cutscene.end()
+    close("total_blackness")
 }

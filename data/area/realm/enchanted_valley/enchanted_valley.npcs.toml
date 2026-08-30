@@ -84,7 +84,3 @@ max_hit_melee = 20
 xp_bonus = -97.5
 hunt_mode = "cowardly"
 examine = "A very angry nymph."
-
-[tree_spirit_level_14_2]
-id = 4500
-clone = "tree_spirit_level_14"

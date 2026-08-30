@@ -21,6 +21,7 @@ combat_def = "chompy_bird"
 slayer_xp = 10.0
 categories = ["birds"]
 immune_poison = true
+drop_table = "jubbly_bird"
 examine = "A large boisterous bird, a delicacy for ogres."
 
 [plucked_chompy]

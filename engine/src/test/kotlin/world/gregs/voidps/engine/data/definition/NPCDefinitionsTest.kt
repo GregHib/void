@@ -26,6 +26,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
     override fun definitions(): NPCDefinitions = NPCDefinitions.init(definitions)
 
     override fun load(definitions: NPCDefinitions) {
+        definitions.definitions[0].stringId = "0" // To by-pass loading checks
         val uri = NPCDefinitionsTest::class.java.getResource("test-npc.toml")!!
         definitions.load(listOf(uri.path))
     }

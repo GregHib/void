@@ -2,9 +2,9 @@ spawns = [
   # 12594
   { id = "giant_rat_3", x = 3190, y = 3203 },
   { id = "giant_rat_3", x = 3192, y = 3211 },
-  { id = "giant_rat_4", x = 3197, y = 3202 },
+  { id = "giant_rat_mudskipper_point_2", x = 3197, y = 3202 },
   { id = "giant_rat_3", x = 3193, y = 3203 },
-  { id = "giant_rat_4", x = 3194, y = 3201 },
+  { id = "giant_rat_mudskipper_point_2", x = 3194, y = 3201 },
   { id = "giant_rat_5", x = 3194, y = 3211 },
   { id = "giant_rat_5", x = 3192, y = 3208 },
   { id = "giant_rat_5", x = 3195, y = 3205 },
