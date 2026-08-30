@@ -27,6 +27,7 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
         "brimhaven",
         "port_khazard",
         "port_sarim",
+        "musa_point",
     )
 
     init {
@@ -39,7 +40,6 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
             interfaces.sendVisibility(id, "port_phasmatys", hasQuestRequirements("port_phasmatys") && prices.containsKey("port_phasmatys"))
             interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements("oo_glog") && prices.containsKey("oo_glog"))
             interfaces.sendVisibility(id, "crandor", false)
-            interfaces.sendVisibility(id, "musa_point", false)
             for (location in locations) {
                 interfaces.sendVisibility(id, location, location != currentLocation && prices.containsKey(location))
             }
@@ -153,7 +153,7 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
     fun Player.hasQuestRequirements(location: String): Boolean {
         return questCompleted(
             when (location) {
-                "mos_le_harmless" -> "mos_le_harmless"
+                "mos_le_harmless" -> "cabin_fever"
                 "shipyard" -> "the_grand_tree"
                 "port_tyras" -> "regicide"
                 "port_phasmatys" -> "priest_in_peril"
@@ -166,7 +166,7 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
     fun location(npc: NPC) = when (npc["spawn_tile", Tile.EMPTY]) {
         Tile(3033, 3192), Tile(3039, 3193), Tile(3042, 3192) -> "port_sarim"
         Tile(2759, 3239), Tile(2760, 3239) -> "brimhaven"
-        Tile(2144, 3122), Tile(2145, 3122) -> "tyras_camp"
+        Tile(2144, 3122), Tile(2145, 3122) -> "port_tyras"
         Tile(3001, 3033), Tile(3001, 3034) -> "shipyard"
         Tile(2673, 3144), Tile(2675, 3144) -> "port_khazard"
         Tile(3671, 2930), Tile(3672, 2930) -> "mos_le_harmless"
