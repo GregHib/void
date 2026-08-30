@@ -45,19 +45,35 @@ fun Client.arrowHint(
     model: Int = 65535,
 ) = send(Protocol.HINT_ARROW) {
     writeByte((arrowIndex shl 5) or type)
+    // The packet is a fixed twelve bytes, so every branch - clearing included - has to write all
+    // of it. Stopping short leaves the client reading the packets behind this one as the rest of
+    // it, which desyncs the stream and takes the client down.
+    if (type == 0) {
+        repeat(PAYLOAD - 1) {
+            writeByte(0)
+        }
+        return@send
+    }
     writeByte(sprite)
-    if (sprite >= 0) {
-        if (type == 1 || type == 10) {
+    when (type) {
+        1, 10 -> {
             writeShort(entityIndex)
             writeInt(0)
             writeShort(0)
-        } else if (type in 2..6) {
+        }
+        in 2..6 -> {
             writeByte(level) // level
             writeShort(x) // x
             writeShort(y) // y
             writeByte(z) // z?
             writeShort(radius)
         }
-        writeShort(model)
+        else -> repeat(8) {
+            writeByte(0)
+        }
     }
+    writeShort(model)
 }
+
+/** Bytes the client reads for a hint arrow, not counting the opcode. */
+private const val PAYLOAD = 12

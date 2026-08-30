@@ -1,6 +1,7 @@
 package content.quest.member.ghosts_ahoy
 
 import content.entity.effect.transform
+import content.entity.npc.markHint
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
@@ -14,7 +15,6 @@ import content.quest.questJournal
 import content.quest.questStage
 import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.hint
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.jingle
@@ -280,7 +280,7 @@ class GhostsAhoy : Script {
                 } else if (lobster == null) {
                     message("You are attacked by a giant lobster!!")
                     val lobster = NPCs.add("giant_lobster_ghosts_ahoy", Tile(3616, 3543, 0), ticks = TimeUnit.MINUTES.toTicks(8), owner = this)
-                    hint(lobster)
+                    lobster.markHint(this)
                     lobster.interactPlayer(this, "Attack")
                 }
                 return@objectOperate
