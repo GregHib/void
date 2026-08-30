@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.queue.weakQueue
 
@@ -18,6 +19,7 @@ class FarmingPatchTreat : Script {
 
     init {
         objectOperate("Rake", "*_patch_weeds_*", handler = ::rake)
+        itemOnObjectOperate("rake", "*", handler = ::rakeWith)
         itemOnObjectOperate("compost,supercompost", "*", handler = ::compost)
         itemOnObjectOperate("watering_can_*", "*", handler = ::water)
     }
@@ -84,7 +86,22 @@ class FarmingPatchTreat : Script {
         player[target.id] = value.replaceFirst("_", "_watered_")
     }
 
-    private fun rake(player: Player, interact: PlayerOnObjectInteract, count: Int = 3) {
+    private fun rake(player: Player, interact: PlayerOnObjectInteract) = rake(player, interact.target)
+
+    /**
+     * Not every patch carries a Rake option - the Rum Deal blindweed patch has none - so the rake
+     * can be used on the patch directly instead.
+     */
+    private fun rakeWith(player: Player, interact: ItemOnObjectInteract) {
+        val target = interact.target
+        if (!target.id.startsWith("farming_")) {
+            player.noInterest()
+            return
+        }
+        rake(player, target)
+    }
+
+    private fun rake(player: Player, obj: GameObject, count: Int = 3) {
         if (count <= 0) {
             return
         }
@@ -92,8 +109,8 @@ class FarmingPatchTreat : Script {
             player.message("You need a rake to weed a farming patch")
             return
         }
-        val obj = interact.target
-        if (player[obj.id, "weeds_life3"] == "weeds_0") {
+        val value = player[obj.id, "weeds_life3"]
+        if (!value.startsWith("weeds") || value == "weeds_0") {
             player.message("This ${obj.patchName()} doesn't need weeding right now.")
             return
         }
@@ -104,6 +121,8 @@ class FarmingPatchTreat : Script {
                 "weeds_life3" -> "weeds_2"
                 "weeds_life2" -> "weeds_1"
                 "weeds_life1" -> "weeds_0"
+                // Allotments use weeds_life* for a fully overgrown patch, everything else weeds_3
+                "weeds_3" -> "weeds_2"
                 "weeds_2" -> "weeds_1"
                 "weeds_1" -> "weeds_0"
                 else -> return@weakQueue
@@ -113,9 +132,9 @@ class FarmingPatchTreat : Script {
                 player.addOrDrop("weeds")
                 player.timers.startIfAbsent("farming_tick")
                 player.exp(Skill.Farming, 8.0)
-                rake(player, interact, count - 1)
+                rake(player, obj, count - 1)
             } else {
-                rake(player, interact, count)
+                rake(player, obj, count)
             }
         }
     }

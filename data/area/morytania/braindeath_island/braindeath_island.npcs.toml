@@ -7,6 +7,7 @@ examine = "A shabby-looking leader."
 
 [50_luke]
 id = 2828
+dialogue = "old"
 
 [davey]
 id = 2829
@@ -14,33 +15,41 @@ examine = "Looks like he's taking a break."
 
 [captain_donnie]
 id = 2830
+dialogue = "old"
 
 [zombie_protester]
 id = 2831
+dialogue = "old"
 hunt_mode = "spotted"
 
 [zombie_protester_2]
 id = 2832
+dialogue = "old"
 hunt_mode = "spotted"
 
 [zombie_protester_3]
 id = 2833
+dialogue = "old"
 hunt_mode = "spotted"
 
 [zombie_protester_4]
 id = 2834
+dialogue = "old"
 hunt_mode = "spotted"
 
 [zombie_protester_5]
 id = 2835
+dialogue = "old"
 hunt_mode = "spotted"
 
 [zombie_protester_6]
 id = 2836
+dialogue = "old"
 hunt_mode = "spotted"
 
 [zombie_pirate]
 id = 2837
+dialogue = "old"
 hitpoints = 520
 att = 49
 str = 50
@@ -75,6 +84,7 @@ clone = "zombie_pirate"
 
 [zombie_swab]
 id = 2843
+dialogue = "old"
 hitpoints = 500
 att = 45
 str = 50
@@ -85,32 +95,32 @@ categories = ["zombies"]
 respawn_delay = 37
 drop_table = "pirate"
 examine = "He talks a good fight."
-hunt_mode = "cowardly"
+hunt_mode = "zombie_swab"
 
 [zombie_swab_2]
 id = 2844
 clone = "zombie_swab"
-hunt_mode = "cowardly"
+hunt_mode = "zombie_swab"
 
 [zombie_swab_3]
 id = 2845
 clone = "zombie_swab"
-hunt_mode = "cowardly"
+hunt_mode = "zombie_swab"
 
 [zombie_swab_4]
 id = 2846
 clone = "zombie_swab"
-hunt_mode = "cowardly"
+hunt_mode = "zombie_swab"
 
 [zombie_swab_5]
 id = 2847
 clone = "zombie_swab"
-hunt_mode = "cowardly"
+hunt_mode = "zombie_swab"
 
 [zombie_swab_6]
 id = 2848
 clone = "zombie_swab"
-hunt_mode = "cowardly"
+hunt_mode = "zombie_swab"
 
 [fever_spider]
 id = 2850

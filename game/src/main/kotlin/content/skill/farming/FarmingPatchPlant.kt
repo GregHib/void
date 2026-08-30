@@ -80,13 +80,13 @@ class FarmingPatchPlant : Script {
             player.message("You need a seed dibber to plant the seed in the dirt.") // TODO proper message
             return
         }
-        if (!player.inventory.remove(item.id, amount)) {
-            player.message("You need $amount ${item.def.name.plural(amount)} to grow those.")
-            return
-        }
         val level = item.def["farming_level", 1]
         if (!player.has(Skill.Farming, level)) {
             player.statement("You need to be a level $level to plant that.")
+            return
+        }
+        if (!player.inventory.remove(item.id, amount)) {
+            player.message("You need $amount ${item.def.name.plural(amount)} to grow those.")
             return
         }
         if (patchName.contains("tree")) {
@@ -100,6 +100,9 @@ class FarmingPatchPlant : Script {
         player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.lowercase().plural(amount)} in the $patchName.", type = ChatType.Filter)
         val crop: String = item.def.getOrNull("farming_crop") ?: return
         player[variable] = "${crop}_0"
+        // Growth is otherwise only kicked off by raking or composting, which leaves a crop
+        // planted into an already clear patch never growing at all.
+        player.timers.startIfAbsent("farming_tick")
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
 
