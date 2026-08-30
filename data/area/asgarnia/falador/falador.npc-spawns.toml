@@ -180,7 +180,6 @@ spawns = [
   { id = "swan_falador", x = 2978, y = 3358 },
   { id = "swan_falador", x = 2989, y = 3383 },
   { id = "zandar_horfyre_falador", x = 2905, y = 3334, level = 2 },
-  { id = "wyson_the_gardener", x = 2987, y = 3386 },
   { id = "ram_lletya", x = 2924, y = 3318 },
   { id = "ram_lletya", x = 2924, y = 3325 },
   { id = "dwarf_falador_2", x = 3018, y = 3340 },
