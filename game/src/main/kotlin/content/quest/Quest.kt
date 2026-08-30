@@ -27,6 +27,7 @@ val quests = setOf(
     "nature_spirit",
     "plague_city",
     "priest_in_peril",
+    "rum_deal",
     "lost_city",
     "tears_of_guthix",
     "the_golem",

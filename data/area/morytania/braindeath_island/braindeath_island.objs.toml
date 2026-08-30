@@ -12,4 +12,43 @@ examine = "It leads up."
 
 [braindeath_island_ladder_down]
 id = 10168
+
+[braindeath_island_stagnant_lake]
+id = 10105
+
+[braindeath_island_brewing_controls_multi]
+id = 10104
+
+[braindeath_island_brewing_controls]
+id = 10142
+
+[braindeath_island_brewing_controls_possessed]
+id = 10143
+
+[braindeath_island_brewing_controls_working]
+id = 10144
+
+[braindeath_island_output_tap]
+id = 10148
+
+[braindeath_island_tool_cupboard]
+id = 10162
+
+[braindeath_island_tool_cupboard_open]
+id = 10163
+
+[braindeath_island_pressure_lever_multi]
+id = 10164
+
+[braindeath_island_pressure_lever_up]
+id = 10165
+
+[braindeath_island_pressure_lever_down]
+id = 10166
+
+[braindeath_island_intake_hopper]
+id = 10170
+
+[braindeath_island_pressure_barrel]
+id = 10171
 examine = "I can climb down this."

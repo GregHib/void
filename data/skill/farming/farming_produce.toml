@@ -192,3 +192,6 @@ disease_chance = 30
 
 [potato]
 disease_chance = 30
+
+[blindweed]
+disease_chance = 0
