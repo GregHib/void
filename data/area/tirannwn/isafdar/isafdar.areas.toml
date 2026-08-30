@@ -9,3 +9,19 @@ y = [3243, 3249]
 [isafdar_hunter_fishing_area]
 x = [2264, 2274]
 y = [3248, 3258]
+
+[isafdar_leaf_trap_1]
+x = [2209]
+y = [3203]
+
+[isafdar_leaf_trap_2]
+x = [2267]
+y = [3203]
+
+[isafdar_leaf_trap_3]
+x = [2274]
+y = [3174]
+
+[isafdar_leaf_trap_4]
+x = [2277]
+y = [3262]
