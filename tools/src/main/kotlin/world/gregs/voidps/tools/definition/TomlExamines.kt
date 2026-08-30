@@ -51,6 +51,7 @@ object TomlExamines {
                 lines.add(line)
             }
             if (!found && !first) {
+                lines.add("")
                 notFound(lines, stringId, id, clone)
             }
             if (lines.last().trim() != "") {
