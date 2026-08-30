@@ -88,7 +88,7 @@ class ObjectOptionHandler : InstructionHandler<InteractObject>() {
                 return definition
             }
             val index = if (varbit != -1) getVarbitIndex(player, varbit) else getVarpIndex(player, varp)
-            var transform = transforms[index]
+            var transform = transforms.getOrNull(index) ?: -1
             if (transform == -1) {
                 transform = transforms.last()
             }
