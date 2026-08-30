@@ -181,4 +181,3 @@ combat_def = "vampyre"
 drop_table = "vampyre"
 categories = ["vampyres"]
 examine = "A feral vampyre. It looks really hungry!"
-

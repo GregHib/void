@@ -12,12 +12,15 @@ examine = "Very hot!"
 
 [zanaris_crop_circle]
 id = 24991
+examine = "The mysterious centre of a crop circle."
 
 [zanaris_al_kharid_fairy_ring]
 id = 12003
+examine = "Better not eat them!"
 
 [puro_puro_exit]
 id = 25014
+examine = "Use this to leave Puro-Puro."
 
 [magic_door_zanaris_opened]
 id = 12046
@@ -25,6 +28,7 @@ examine = "A magic door."
 
 [zanaris_magic_door_opened]
 id = 12046
+examine = "A magic door."
 
 [magic_door_zanaris_closed]
 id = 12045
@@ -40,27 +44,34 @@ examine = "She likes the exercise."
 
 [hopper_controls_zanaris]
 id = 52552
+examine = "These control the flow of wheat from the hopper to the millstones."
 
 [hopper_zanaris]
 id = 52551
+examine = "The wind makes a musical sound as it blows through it..."
 
 [flour_bin_zanaris]
 id = 52550
+examine = "I'll need an empty pot so I can collect my flour."
 
 [flour_bin_zanaris_empty]
 id = 52548
 
 [zanaris_mill_ladder]
 id = 52546
+examine = "Allows access to level above."
 
 [zanaris_mill_ladder_down]
 id = 52547
+examine = "Allows access to level below."
 
 [zanaris_damaged_wall]
 id = 12126
+examine = "This wall has holes in it; looks damaged, but also suspicious."
 
 [zanaris_jutting_wall]
 id = 12127
+examine = "A wall jutting out into the path."
 
 [dairy_churn_zanaris]
 id = 12011

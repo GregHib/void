@@ -1,41 +1,53 @@
 [dharok_stairs]
 id = 6703
+examine = "I can climb these stairs."
 
 [dharok_sarcophagus]
 id = 6771
+examine = "An elegant chair."
 
 [verac_stairs]
 id = 6707
+examine = "I can climb these stairs."
 
 [verac_sarcophagus]
 id = 6823
+examine = "Char must have blocked it; I could try the exit."
 
 [ahrim_stairs]
 id = 6702
+examine = "I can climb these stairs."
 
 [ahrim_sarcophagus]
 id = 6821
 
 [guthan_stairs]
 id = 6704
+examine = "I can climb these stairs."
 
 [guthan_sarcophagus]
 id = 6773
+examine = "A closed box containing fire-breathing equipment."
 
 [karil_stairs]
 id = 6705
+examine = "I can climb these stairs."
 
 [karil_sarcophagus]
 id = 6822
+examine = "It looks unnaturally dark in here."
 
 [torag_stairs]
 id = 6706
+examine = "I can climb these stairs."
 
 [torag_sarcophagus]
 id = 6772
+examine = "An open box containing fire-breathing equipment."
 
 [barrows_rope]
 id = 6708
+examine = "I can climb this."
 
 [barrows_door_left_opened]
 id = 6713
@@ -84,6 +96,8 @@ id = 10284
 
 [barrows_chest_closed]
 id = 6774
+examine = "A large stone chest."
 
 [barrows_chest_open]
 id = 6775
+examine = "A large stone chest."

@@ -1,14 +1,19 @@
 [smoke_dungeon_well]
 id = 36002
+examine = "There is a rope leading to the bottom of this smoke-filled well."
 
 [smoke_dungeon_rope]
 id = 6439
+examine = "Climb this rope to go up."
 
 [pollnivneach_well]
 id = 31359
+examine = "Well made."
 
 [dark_stairs]
 id = 31390
+examine = "They head off into the gloom"
 
 [smoke_dungeon_dark_hole]
 id = 31367
+examine = "It leads to a maze of twisty passages, which are all alike."

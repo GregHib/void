@@ -64,6 +64,8 @@ examine = ""
 
 [fenk_stairs_lv1]
 id = 5206
+examine = "I can climb these stairs."
 
 [fenk_stairs_lv1_top]
 id = 5207
+examine = "They go down."

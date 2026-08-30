@@ -1,17 +1,23 @@
 [pollnivneach_bucket_rope]
 id = 31316
+examine = "That went down well."
 
 [pollnivneach_dungeon_barrier]
 id = 31435
+examine = "Is it keeping you out or in?"
 
 [pollnivneach_dungeon_barrier_north]
 id = 31436
+examine = "Is it keeping you out or in?"
 
 [pollnivneach_stairs_down]
 id = 31412
+examine = "A descending staircase carved into the rock."
 
 [pollnivneach_stairs_up]
 id = 31417
+examine = "An ascending staircase carved into the rock."
 
 [pollnivneach_markings]
 id = 31363
+examine = "Looks suspiciously like a portal to elsewhere."

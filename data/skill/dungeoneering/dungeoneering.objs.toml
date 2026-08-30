@@ -1,5 +1,6 @@
 [rand_invis_key_location]
 id = 49257
+examine = "I can't see a rock."
 
 [rand_npc_spawn_5x5]
 id = 49305
@@ -18,30 +19,39 @@ id = 49301
 
 [rand_woodcutting_resource_frzn]
 id = 49702
+examine = "It looks like a root used to grow on it."
 
 [rand_ground_resource]
 id = 49765
 
 [rand_fishing_resource]
 id = 49922
+examine = "Some water."
 
 [rand_furn_farming_patch_empty]
 id = 50076
+examine = "A place to grow food and herbs."
 
 [rand_frzn_portal_exit_up]
 id = 51156
+examine = "This leads back to the surface."
 
 [rand_oclt_start_room_portal]
 id = 7528
+examine = "It takes you to the location of the group gatestone."
 
 [rand_frzn_start_room_portal]
 id = 53124
+examine = "It takes you to the location of the group gatestone."
 
 [rand_abnd_start_room_portal]
 id = 53125
+examine = "It takes you to the location of the group gatestone."
 
 [rand_furn_start_room_portal]
 id = 53126
+examine = "It takes you to the location of the group gatestone."
 
 [rand_wrpd_start_room_portal]
 id = 55606
+examine = "It takes you to the location of the group gatestone."

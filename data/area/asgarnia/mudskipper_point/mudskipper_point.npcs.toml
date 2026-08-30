@@ -51,5 +51,3 @@ slayer_xp = 48.0
 categories = ["mogres", "ogres"]
 drop_table = "mogre"
 examine = "An angry Ogre in a funny hat."
-
-

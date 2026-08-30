@@ -13,6 +13,7 @@ examine = "A gnarly swamp tree."
 
 [tools]
 id = 10375
+examine = "Someone's been storing assorted tools in here."
 
 [zanaris_door_opened]
 id = 10363

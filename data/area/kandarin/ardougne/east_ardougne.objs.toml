@@ -15,6 +15,7 @@ examine = "This stall smells great."
 
 [bakers_stall_empty]
 id = 34381
+examine = "All sold out."
 
 [silk_stall]
 id = 34383
@@ -25,6 +26,7 @@ examine = "Fine silk woven by experts."
 
 [silk_stall_empty]
 id = 34381
+examine = "All sold out."
 
 [grey_fur_stall]
 id = 34387
@@ -35,6 +37,7 @@ examine = "All manner of animal clothing."
 
 [grey_fur_stall_empty]
 id = 34381
+examine = "All sold out."
 
 [silver_stall]
 id = 34382
@@ -45,6 +48,7 @@ examine = "Fine silver items are for sale here."
 
 [silver_stall_empty]
 id = 34381
+examine = "All sold out."
 
 [spice_stall]
 id = 34386
@@ -55,6 +59,7 @@ examine = "Spices to tingle your taste buds."
 
 [spice_stall_empty]
 id = 34381
+examine = "All sold out."
 
 [gem_stall]
 id = 34385
@@ -65,6 +70,7 @@ examine = "Precious stones from around the world."
 
 [gem_stall_empty]
 id = 34381
+examine = "All sold out."
 
 [ardougne_locked_door_opened]
 id = 34813
@@ -113,12 +119,14 @@ examine = "I wonder what's inside it."
 
 [trap_chest_empty_light]
 id = 2571
+examine = "I wonder what's inside it."
 
 [trap_chest_open]
 id = 2574
 
 [trap_chest_empty]
 id = 2572
+examine = "I wonder what's inside it."
 
 [steel_arrows_chest]
 id = 2573
@@ -176,18 +184,22 @@ id = 8783
 
 [ladder_mourner_tunnels]
 id = 8785
+examine = "I can climb this."
 
 [flour_bin_ardougne]
 id = 1782
+examine = "I'll need an empty pot so I can collect my flour."
 
 [hopper_ardougne]
 id = 2717
 
 [hopper_controls_ardougne]
 id = 2721
+examine = "These control the flow of wheat from the hopper to the millstones."
 
 [flour_bin_ardougne_empty]
 id = 5792
+examine = "When I've ground some flour, I'll be able to collect it here."
 
 [dairy_churn_ardougne]
 id = 34800

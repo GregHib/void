@@ -4,3 +4,4 @@ examine = "Lets you put items into your bank."
 
 [exit_portal_freaky_forester]
 id = 15645
+examine = "A portal back to the real world..."

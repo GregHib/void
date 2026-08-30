@@ -1,1553 +1,2063 @@
 [occult_exit]
 id = 56149
+examine = "This leads back to the surface."
 
 [orange_triangle_door]
 id = 50208
+examine = "A door with orange triangle markings."
 
 [orange_diamond_door]
 id = 50209
+examine = "A door with orange diamond markings."
 
 [orange_rectangle_door]
 id = 50210
+examine = "A door with orange rectangle markings."
 
 [orange_pentagon_door]
 id = 50211
+examine = "A door with orange pentagon markings."
 
 [orange_corner_door]
 id = 50212
+examine = "A door with orange corner markings."
 
 [orange_crescent_door]
 id = 50213
+examine = "A door with orange crescent markings."
 
 [orange_wedge_door]
 id = 50214
+examine = "A door with orange wedge markings."
 
 [orange_shield_door]
 id = 50215
+examine = "A door with orange shield markings."
 
 [silver_triangle_door]
 id = 50216
+examine = "A door with silver triangle markings."
 
 [silver_diamond_door]
 id = 50217
+examine = "A door with silver diamond markings."
 
 [silver_rectangle_door]
 id = 50218
+examine = "A door with silver rectangle markings."
 
 [silver_pentagon_door]
 id = 50219
+examine = "A door with silver pentagon markings."
 
 [silver_corner_door]
 id = 50220
+examine = "A door with silver corner markings."
 
 [silver_crescent_door]
 id = 50221
+examine = "A door with silver crescent markings."
 
 [silver_wedge_door]
 id = 50222
+examine = "A door with silver wedge markings."
 
 [silver_shield_door]
 id = 50223
+examine = "A door with silver shield markings."
 
 [yellow_triangle_door]
 id = 50224
+examine = "A door with yellow triangle markings."
 
 [yellow_diamond_door]
 id = 50225
+examine = "A door with yellow diamond markings."
 
 [yellow_rectangle_door]
 id = 50226
+examine = "A door with yellow rectangle markings."
 
 [yellow_pentagon_door]
 id = 50227
+examine = "A door with yellow pentagon markings."
 
 [yellow_corner_door]
 id = 50228
+examine = "A door with yellow corner markings."
 
 [yellow_crescent_door]
 id = 50229
+examine = "A door with yellow crescent markings."
 
 [yellow_wedge_door]
 id = 50230
+examine = "A door with yellow wedge markings."
 
 [yellow_shield_door]
 id = 50231
+examine = "A door with yellow shield markings."
 
 [green_triangle_door]
 id = 50232
+examine = "A door with green triangle markings."
 
 [green_diamond_door]
 id = 50233
+examine = "A door with green diamond markings."
 
 [green_rectangle_door]
 id = 50234
+examine = "A door with green rectangle markings."
 
 [green_pentagon_door]
 id = 50235
+examine = "A door with green pentagon markings."
 
 [green_corner_door]
 id = 50236
+examine = "A door with green corner markings."
 
 [green_crescent_door]
 id = 50237
+examine = "A door with green crescent markings."
 
 [green_wedge_door]
 id = 50238
+examine = "A door with green wedge markings."
 
 [green_shield_door]
 id = 50239
+examine = "A door with green shield markings."
 
 [blue_triangle_door]
 id = 50240
+examine = "A door with blue triangle markings."
 
 [blue_diamond_door]
 id = 50241
+examine = "A door with blue diamond markings."
 
 [blue_rectangle_door]
 id = 50242
+examine = "A door with blue rectangle markings."
 
 [blue_pentagon_door]
 id = 50243
+examine = "A door with blue pentagon markings."
 
 [blue_corner_door]
 id = 50244
+examine = "A door with blue corner markings."
 
 [blue_crescent_door]
 id = 50245
+examine = "A door with blue crescent markings."
 
 [blue_wedge_door]
 id = 50246
+examine = "A door with blue wedge markings."
 
 [blue_shield_door]
 id = 50247
+examine = "A door with blue shield markings."
 
 [purple_triangle_door]
 id = 50248
+examine = "A door with purple triangle markings."
 
 [purple_diamond_door]
 id = 50249
+examine = "A door with purple diamond markings."
 
 [purple_rectangle_door]
 id = 50250
+examine = "A door with purple rectangle markings."
 
 [purple_pentagon_door]
 id = 50251
+examine = "A door with purple pentagon markings."
 
 [purple_corner_door]
 id = 50252
+examine = "A door with purple corner markings."
 
 [purple_crescent_door]
 id = 50253
+examine = "A door with purple crescent markings."
 
 [purple_wedge_door]
 id = 50254
+examine = "A door with purple wedge markings."
 
 [purple_shield_door]
 id = 50255
+examine = "A door with purple shield markings."
 
 [crimson_triangle_door]
 id = 50256
+examine = "A door with crimson triangle markings."
 
 [crimson_diamond_door]
 id = 50257
+examine = "A door with crimson diamond markings."
 
 [crimson_rectangle_door]
 id = 50258
+examine = "A door with crimson rectangle markings."
 
 [crimson_pentagon_door]
 id = 50259
+examine = "A door with crimson pentagon markings."
 
 [crimson_corner_door]
 id = 50260
+examine = "A door with crimson corner markings."
 
 [crimson_crescent_door]
 id = 50261
+examine = "A door with crimson crescent markings."
 
 [crimson_wedge_door]
 id = 50262
+examine = "A door with crimson wedge markings."
 
 [crimson_shield_door]
 id = 50263
+examine = "A door with crimson shield markings."
 
 [gold_triangle_door]
 id = 50264
+examine = "A door with gold triangle markings."
 
 [gold_diamond_door]
 id = 50265
+examine = "A door with gold diamond markings."
 
 [gold_rectangle_door]
 id = 50266
+examine = "A door with gold rectangle markings."
 
 [gold_pentagon_door]
 id = 50267
+examine = "A door with gold pentagon markings."
 
 [gold_corner_door]
 id = 50268
+examine = "A door with gold corner markings."
 
 [gold_crescent_door]
 id = 50269
+examine = "A door with gold crescent markings."
 
 [gold_wedge_door]
 id = 50270
+examine = "A door with gold wedge markings."
 
 [gold_shield_door]
 id = 50271
+examine = "A door with gold shield markings."
 
 [barred_door_frozen]
 id = 50272
+examine = "The bar is rusted into place."
 
 [barred_door_abandoned]
 id = 50273
+examine = "The bar is rusted into place."
 
 [barred_door_furnished]
 id = 50274
+examine = "The bar is rusted into place."
 
 [unbarred_door_frozen]
 id = 50275
+examine = "This door is closed."
 
 [unbarred_door_abandoned]
 id = 50276
+examine = "This door is closed."
 
 [unbarred_door_furnished]
 id = 50277
+examine = "This door is closed."
 
 [runed_door_frozen]
 id = 50278
+examine = "One of the runes is blank."
 
 [runed_door_abandoned]
 id = 50279
+examine = "One of the runes is blank."
 
 [runed_door_furnished]
 id = 50280
+examine = "One of the runes is blank."
 
 [collapsing_doorframe_frozen]
 id = 50281
 
 [collapsing_doorframe_abandoned]
 id = 50282
+examine = "Structurally unstable."
 
 [collapsing_doorframe_furnished]
 id = 50283
+examine = "Structurally unstable."
 
 [repaired_door_frozen]
 id = 50284
+examine = "This door is closed."
 
 [repaired_door_abandoned]
 id = 50285
+examine = "This door is closed."
 
 [repaired_door_furnished]
 id = 50286
+examine = "This door is closed."
 
 [locked_door_frozen]
 id = 50287
 
 [locked_door_abandoned]
 id = 50288
+examine = "The chain above it looks suspicious."
 
 [locked_door_furnished]
 id = 50289
+examine = "The chain above it looks suspicious."
 
 [unlocked_door_frozen]
 id = 50290
+examine = "This door is closed."
 
 [unlocked_door_abandoned]
 id = 50291
+examine = "This door is closed."
 
 [unlocked_door_furnished]
 id = 50292
+examine = "This door is closed."
 
 [padlocked_door_frozen]
 id = 50293
 
 [padlocked_door_abandoned]
 id = 50294
+examine = "There is a huge padlock on the door."
 
 [padlocked_door_furnished]
 id = 50295
+examine = "There is a huge padlock on the door."
 
 [picked_door_frozen]
 id = 50296
+examine = "This door is closed."
 
 [picked_door_abandoned]
 id = 50297
+examine = "This door is closed."
 
 [picked_door_furnished]
 id = 50298
+examine = "This door is closed."
 
 [broken_pulley_door_frozen]
 id = 50299
+examine = "The rope for the pulley has snapped."
 
 [broken_pulley_door_abandoned]
 id = 50300
+examine = "The rope for the pulley has snapped."
 
 [broken_pulley_door_furnished]
 id = 50301
+examine = "The rope for the pulley has snapped."
 
 [fixed_pulley_door_frozen]
 id = 50302
+examine = "This door is closed."
 
 [fixed_pulley_door_abandoned]
 id = 50303
+examine = "This door is closed."
 
 [fixed_pulley_door_furnished]
 id = 50304
+examine = "This door is closed."
 
 [pile_of_rocks_frozen]
 id = 50305
+examine = "A pile of rocks is blocking the way."
 
 [pile_of_rocks_abandoned]
 id = 50306
+examine = "A pile of rocks is blocking the way."
 
 [pile_of_rocks_furnished]
 id = 50307
+examine = "A pile of rocks is blocking the way."
 
 [broken_key_door_frozen]
 id = 50308
+examine = "The large key hanging by the door is badly bent."
 
 [broken_key_door_abandoned]
 id = 50309
+examine = "The large key hanging by the door is badly bent."
 
 [broken_key_door_furnished]
 id = 50310
+examine = "The large key hanging by the door is badly bent."
 
 [fixed_key_door_frozen]
 id = 50311
+examine = "This door is closed."
 
 [fixed_key_door_abandoned]
 id = 50312
+examine = "This door is closed."
 
 [fixed_key_door_furnished]
 id = 50313
+examine = "This door is closed."
 
 [flammable_debris_frozen]
 id = 50314
+examine = "A pile of flammable debris is blocking the way."
 
 [flammable_debris_abandoned]
 id = 50315
+examine = "A pile of flammable debris is blocking the way."
 
 [flammable_debris_furnished]
 id = 50316
+examine = "A pile of flammable debris is blocking the way."
 
 [wooden_barricade_frozen]
 id = 50317
+examine = "A wooden barricade is blocking the way."
 
 [wooden_barricade_abandoned]
 id = 50318
+examine = "A wooden barricade is blocking the way."
 
 [wooden_barricade_furnished]
 id = 50319
+examine = "A wooden barricade is blocking the way."
 
 [cleared_barricade_door_frozen]
 id = 50320
+examine = "This door is closed."
 
 [cleared_barricade_abandoned]
 id = 50321
+examine = "This door is closed."
 
 [cleared_barricade_furnished]
 id = 50322
+examine = "This door is closed."
 
 [vine_covered_door_frozen]
 id = 50323
 
 [vine_covered_door_abandoned]
 id = 50324
+examine = "There are thorn-covered vines all over the door."
 
 [vine_covered_door_furnished]
 id = 50325
+examine = "There are thorn-covered vines all over the door."
 
 [ramokee_exile_frozen]
 id = 50326
 
 [ramokee_exile_abandoned]
 id = 50327
+examine = "A traitor of the gorajo."
 
 [ramokee_exile_furnished]
 id = 50328
+examine = "A traitor of the gorajo."
 
 [magical_barrier_frozen]
 id = 50329
+examine = "A magical barrier is blocking your path."
 
 [magical_barrier_abandoned]
 id = 50330
+examine = "A magical barrier is blocking your path."
 
 [magical_barrier_furnished]
 id = 50331
+examine = "A magical barrier is blocking your path."
 
 [dark_spirit_frozen]
 id = 50332
+examine = "A dark spirit is blocking your path."
 
 [dark_spirit_abandoned]
 id = 50333
+examine = "A dark spirit is blocking your path."
 
 [dark_spirit_furnished]
 id = 50334
+examine = "A dark spirit is blocking your path."
 
 [liquid_lock_door_frozen]
 id = 50335
 
 [liquid_lock_door_abandoned]
 id = 50336
+examine = "There is a complex liquid-based locking mechanism on the door."
 
 [liquid_lock_door_furnished]
 id = 50337
+examine = "There is a complex liquid-based locking mechanism on the door."
 
 [exploded_liquid_door_frozen]
 id = 50338
+examine = "This door is closed."
 
 [exploded_liquid_door_abandoned]
 id = 50339
+examine = "This door is closed."
 
 [exploded_liquid_door_furnished]
 id = 50340
+examine = "This door is closed."
 
 [door_furnished_1]
 id = 50341
+examine = "This door is closed."
 
 [door_frozen]
 id = 50342
+examine = "This door is closed."
 
 [door_abandoned]
 id = 50343
+examine = "This door is closed."
 
 [door_furnished_2]
 id = 50344
+examine = "This door is closed."
 
 [guardian_door_furnished_1]
 id = 50345
 
 [guardian_door_frozen]
 id = 50346
+examine = "The gazing eye of the door watches over the room."
 
 [guardian_door_abandoned]
 id = 50347
+examine = "The gazing eye of the door watches over the room."
 
 [guardian_door_furnished_2]
 id = 50348
+examine = "The gazing eye of the door watches over the room."
 
 [boss_door_furnished_1]
 id = 50349
 
 [boss_door_frozen]
 id = 50350
+examine = "A door with a complicated lock mechanic."
 
 [boss_door_abandoned]
 id = 50351
+examine = "A door with a complicated lock mechanic."
 
 [boss_door_furnished_2]
 id = 50352
+examine = "A door with a complicated lock mechanic."
 
 [orange_triangle_door_frozen]
 id = 50353
+examine = "A door with orange triangle markings."
 
 [orange_diamond_door_frozen]
 id = 50354
+examine = "A door with orange diamond markings."
 
 [orange_rectangle_door_frozen]
 id = 50355
+examine = "A door with orange rectangle markings."
 
 [orange_pentagon_door_frozen]
 id = 50356
+examine = "A door with orange pentagon markings."
 
 [orange_corner_door_frozen]
 id = 50357
+examine = "A door with orange corner markings."
 
 [orange_crescent_door_frozen]
 id = 50358
+examine = "A door with orange crescent markings."
 
 [orange_wedge_door_frozen]
 id = 50359
+examine = "A door with orange wedge markings."
 
 [orange_shield_door_frozen]
 id = 50360
+examine = "A door with orange shield markings."
 
 [silver_triangle_door_frozen]
 id = 50361
+examine = "A door with silver triangle markings."
 
 [silver_diamond_door_frozen]
 id = 50362
+examine = "A door with silver diamond markings."
 
 [silver_rectangle_door_frozen]
 id = 50363
+examine = "A door with silver rectangle markings."
 
 [silver_pentagon_door_frozen]
 id = 50364
+examine = "A door with silver pentagon markings."
 
 [silver_corner_door_frozen]
 id = 50365
+examine = "A door with silver corner markings."
 
 [silver_crescent_door_frozen]
 id = 50366
+examine = "A door with silver crescent markings."
 
 [silver_wedge_door_frozen]
 id = 50367
+examine = "A door with silver wedge markings."
 
 [silver_shield_door_frozen]
 id = 50368
+examine = "A door with silver shield markings."
 
 [yellow_triangle_door_frozen]
 id = 50369
+examine = "A door with yellow triangle markings."
 
 [yellow_diamond_door_frozen]
 id = 50370
+examine = "A door with yellow diamond markings."
 
 [yellow_rectangle_door_frozen]
 id = 50371
+examine = "A door with yellow rectangle markings."
 
 [yellow_pentagon_door_frozen]
 id = 50372
+examine = "A door with yellow pentagon markings."
 
 [yellow_corner_door_frozen]
 id = 50373
+examine = "A door with yellow corner markings."
 
 [yellow_crescent_door_frozen]
 id = 50374
+examine = "A door with yellow crescent markings."
 
 [yellow_wedge_door_frozen]
 id = 50375
+examine = "A door with yellow wedge markings."
 
 [yellow_shield_door_frozen]
 id = 50376
+examine = "A door with yellow shield markings."
 
 [green_triangle_door_frozen]
 id = 50377
+examine = "A door with green triangle markings."
 
 [green_diamond_door_frozen]
 id = 50378
+examine = "A door with green diamond markings."
 
 [green_rectangle_door_frozen]
 id = 50379
+examine = "A door with green rectangle markings."
 
 [green_pentagon_door_frozen]
 id = 50380
+examine = "A door with green pentagon markings."
 
 [green_corner_door_frozen]
 id = 50381
+examine = "A door with green corner markings."
 
 [green_crescent_door_frozen]
 id = 50382
+examine = "A door with green crescent markings."
 
 [green_wedge_door_frozen]
 id = 50383
+examine = "A door with green wedge markings."
 
 [green_shield_door_frozen]
 id = 50384
+examine = "A door with green shield markings."
 
 [blue_triangle_door_frozen]
 id = 50385
+examine = "A door with blue triangle markings."
 
 [blue_diamond_door_frozen]
 id = 50386
+examine = "A door with blue diamond markings."
 
 [blue_rectangle_door_frozen]
 id = 50387
+examine = "A door with blue rectangle markings."
 
 [blue_pentagon_door_frozen]
 id = 50388
+examine = "A door with blue pentagon markings."
 
 [blue_corner_door_frozen]
 id = 50389
+examine = "A door with blue corner markings."
 
 [blue_crescent_door_frozen]
 id = 50390
+examine = "A door with blue crescent markings."
 
 [blue_wedge_door_frozen]
 id = 50391
+examine = "A door with blue wedge markings."
 
 [blue_shield_door_frozen]
 id = 50392
+examine = "A door with blue shield markings."
 
 [purple_triangle_door_frozen]
 id = 50393
+examine = "A door with purple triangle markings."
 
 [purple_diamond_door_frozen]
 id = 50394
+examine = "A door with purple diamond markings."
 
 [purple_rectangle_door_frozen]
 id = 50395
+examine = "A door with purple rectangle markings."
 
 [purple_pentagon_door_frozen]
 id = 50396
+examine = "A door with purple pentagon markings."
 
 [purple_corner_door_frozen]
 id = 50397
+examine = "A door with purple corner markings."
 
 [purple_crescent_door_frozen]
 id = 50398
+examine = "A door with purple crescent markings."
 
 [purple_wedge_door_frozen]
 id = 50399
+examine = "A door with purple wedge markings."
 
 [purple_shield_door_frozen]
 id = 50400
+examine = "A door with purple shield markings."
 
 [crimson_triangle_door_frozen]
 id = 50401
+examine = "A door with crimson triangle markings."
 
 [crimson_diamond_door_frozen]
 id = 50402
+examine = "A door with crimson diamond markings."
 
 [crimson_rectangle_door_frozen]
 id = 50403
+examine = "A door with crimson rectangle markings."
 
 [crimson_pentagon_door_frozen]
 id = 50404
+examine = "A door with crimson pentagon markings."
 
 [crimson_corner_door_frozen]
 id = 50405
+examine = "A door with crimson corner markings."
 
 [crimson_crescent_door_frozen]
 id = 50406
+examine = "A door with crimson crescent markings."
 
 [crimson_wedge_door_frozen]
 id = 50407
+examine = "A door with crimson wedge markings."
 
 [crimson_shield_door_frozen]
 id = 50408
+examine = "A door with crimson shield markings."
 
 [gold_triangle_door_frozen]
 id = 50409
+examine = "A door with gold triangle markings."
 
 [gold_diamond_door_frozen]
 id = 50410
+examine = "A door with gold diamond markings."
 
 [gold_rectangle_door_frozen]
 id = 50411
+examine = "A door with gold rectangle markings."
 
 [gold_pentagon_door_frozen]
 id = 50412
+examine = "A door with gold pentagon markings."
 
 [gold_corner_door_frozen]
 id = 50413
+examine = "A door with gold corner markings."
 
 [gold_crescent_door_frozen]
 id = 50414
+examine = "A door with gold crescent markings."
 
 [gold_wedge_door_frozen]
 id = 50415
+examine = "A door with gold wedge markings."
 
 [gold_shield_door_frozen]
 id = 50416
+examine = "A door with gold shield markings."
 
 [orange_triangle_door_abandoned]
 id = 50417
+examine = "A door with orange triangle markings."
 
 [orange_diamond_door_abandoned]
 id = 50418
+examine = "A door with orange diamond markings."
 
 [orange_rectangle_door_abandoned]
 id = 50419
+examine = "A door with orange rectangle markings."
 
 [orange_pentagon_door_abandoned]
 id = 50420
+examine = "A door with orange pentagon markings."
 
 [orange_corner_door_abandoned]
 id = 50421
+examine = "A door with orange corner markings."
 
 [orange_crescent_door_abandoned]
 id = 50422
+examine = "A door with orange crescent markings."
 
 [orange_wedge_door_abandoned]
 id = 50423
+examine = "A door with orange wedge markings."
 
 [orange_shield_door_abandoned]
 id = 50424
+examine = "A door with orange shield markings."
 
 [silver_triangle_door_abandoned]
 id = 50425
+examine = "A door with silver triangle markings."
 
 [silver_diamond_door_abandoned]
 id = 50426
+examine = "A door with silver diamond markings."
 
 [silver_rectangle_door_abandoned]
 id = 50427
+examine = "A door with silver rectangle markings."
 
 [silver_pentagon_door_abandoned]
 id = 50428
+examine = "A door with silver pentagon markings."
 
 [silver_corner_door_abandoned]
 id = 50429
+examine = "A door with silver corner markings."
 
 [silver_crescent_door_abandoned]
 id = 50430
+examine = "A door with silver crescent markings."
 
 [silver_wedge_door_abandoned]
 id = 50431
+examine = "A door with silver wedge markings."
 
 [silver_shield_door_abandoned]
 id = 50432
+examine = "A door with silver shield markings."
 
 [yellow_triangle_door_abandoned]
 id = 50433
+examine = "A door with yellow triangle markings."
 
 [yellow_diamond_door_abandoned]
 id = 50434
+examine = "A door with yellow diamond markings."
 
 [yellow_rectangle_door_abandoned]
 id = 50435
+examine = "A door with yellow rectangle markings."
 
 [yellow_pentagon_door_abandoned]
 id = 50436
+examine = "A door with yellow pentagon markings."
 
 [yellow_corner_door_abandoned]
 id = 50437
+examine = "A door with yellow corner markings."
 
 [yellow_crescent_door_abandoned]
 id = 50438
+examine = "A door with yellow crescent markings."
 
 [yellow_wedge_door_abandoned]
 id = 50439
+examine = "A door with yellow wedge markings."
 
 [yellow_shield_door_abandoned]
 id = 50440
+examine = "A door with yellow shield markings."
 
 [green_triangle_door_abandoned]
 id = 50441
+examine = "A door with green triangle markings."
 
 [green_diamond_door_abandoned]
 id = 50442
+examine = "A door with green diamond markings."
 
 [green_rectangle_door_abandoned]
 id = 50443
+examine = "A door with green rectangle markings."
 
 [green_pentagon_door_abandoned]
 id = 50444
+examine = "A door with green pentagon markings."
 
 [green_corner_door_abandoned]
 id = 50445
+examine = "A door with green corner markings."
 
 [green_crescent_door_abandoned]
 id = 50446
+examine = "A door with green crescent markings."
 
 [green_wedge_door_abandoned]
 id = 50447
+examine = "A door with green wedge markings."
 
 [green_shield_door_abandoned]
 id = 50448
+examine = "A door with green shield markings."
 
 [blue_triangle_door_abandoned]
 id = 50449
+examine = "A door with blue triangle markings."
 
 [blue_diamond_door_abandoned]
 id = 50450
+examine = "A door with blue diamond markings."
 
 [blue_rectangle_door_abandoned]
 id = 50451
+examine = "A door with blue rectangle markings."
 
 [blue_pentagon_door_abandoned]
 id = 50452
+examine = "A door with blue pentagon markings."
 
 [blue_corner_door_abandoned]
 id = 50453
+examine = "A door with blue corner markings."
 
 [blue_crescent_door_abandoned]
 id = 50454
+examine = "A door with blue crescent markings."
 
 [blue_wedge_door_abandoned]
 id = 50455
+examine = "A door with blue wedge markings."
 
 [blue_shield_door_abandoned]
 id = 50456
+examine = "A door with blue shield markings."
 
 [purple_triangle_door_abandoned]
 id = 50457
+examine = "A door with purple triangle markings."
 
 [purple_diamond_door_abandoned]
 id = 50458
+examine = "A door with purple diamond markings."
 
 [purple_rectangle_door_abandoned]
 id = 50459
+examine = "A door with purple rectangle markings."
 
 [purple_pentagon_door_abandoned]
 id = 50460
+examine = "A door with purple pentagon markings."
 
 [purple_corner_door_abandoned]
 id = 50461
+examine = "A door with purple corner markings."
 
 [purple_crescent_door_abandoned]
 id = 50462
+examine = "A door with purple crescent markings."
 
 [purple_wedge_door_abandoned]
 id = 50463
+examine = "A door with purple wedge markings."
 
 [purple_shield_door_abandoned]
 id = 50464
+examine = "A door with purple shield markings."
 
 [crimson_triangle_door_abandoned]
 id = 50465
+examine = "A door with crimson triangle markings."
 
 [crimson_diamond_door_abandoned]
 id = 50466
+examine = "A door with crimson diamond markings."
 
 [crimson_rectangle_door_abandoned]
 id = 50467
+examine = "A door with crimson rectangle markings."
 
 [crimson_pentagon_door_abandoned]
 id = 50468
+examine = "A door with crimson pentagon markings."
 
 [crimson_corner_door_abandoned]
 id = 50469
+examine = "A door with crimson corner markings."
 
 [crimson_crescent_door_abandoned]
 id = 50470
+examine = "A door with crimson crescent markings."
 
 [crimson_wedge_door_abandoned]
 id = 50471
+examine = "A door with crimson wedge markings."
 
 [crimson_shield_door_abandoned]
 id = 50472
+examine = "A door with crimson shield markings."
 
 [gold_triangle_door_abandoned]
 id = 50473
+examine = "A door with gold triangle markings."
 
 [gold_diamond_door_abandoned]
 id = 50474
+examine = "A door with gold diamond markings."
 
 [gold_rectangle_door_abandoned]
 id = 50475
+examine = "A door with gold rectangle markings."
 
 [gold_pentagon_door_abandoned]
 id = 50476
+examine = "A door with gold pentagon markings."
 
 [gold_corner_door_abandoned]
 id = 50477
+examine = "A door with gold corner markings."
 
 [gold_crescent_door_abandoned]
 id = 50478
+examine = "A door with gold crescent markings."
 
 [gold_wedge_door_abandoned]
 id = 50479
+examine = "A door with gold wedge markings."
 
 [gold_shield_door_abandoned]
 id = 50480
+examine = "A door with gold shield markings."
 
 [orange_triangle_door_furnished]
 id = 50481
+examine = "A door with orange triangle markings."
 
 [orange_diamond_door_furnished]
 id = 50482
+examine = "A door with orange diamond markings."
 
 [orange_rectangle_door_furnished]
 id = 50483
+examine = "A door with orange rectangle markings."
 
 [orange_pentagon_door_furnished]
 id = 50484
+examine = "A door with orange pentagon markings."
 
 [orange_corner_door_furnished]
 id = 50485
+examine = "A door with orange corner markings."
 
 [orange_crescent_door_furnished]
 id = 50486
+examine = "A door with orange crescent markings."
 
 [orange_wedge_door_furnished]
 id = 50487
+examine = "A door with orange wedge markings."
 
 [orange_shield_door_furnished]
 id = 50488
+examine = "A door with orange shield markings."
 
 [silver_triangle_door_furnished]
 id = 50489
+examine = "A door with silver triangle markings."
 
 [silver_diamond_door_furnished]
 id = 50490
+examine = "A door with silver diamond markings."
 
 [silver_rectangle_door_furnished]
 id = 50491
+examine = "A door with silver rectangle markings."
 
 [silver_pentagon_door_furnished]
 id = 50492
+examine = "A door with silver pentagon markings."
 
 [silver_corner_door_furnished]
 id = 50493
+examine = "A door with silver corner markings."
 
 [silver_crescent_door_furnished]
 id = 50494
+examine = "A door with silver crescent markings."
 
 [silver_wedge_door_furnished]
 id = 50495
+examine = "A door with silver wedge markings."
 
 [silver_shield_door_furnished]
 id = 50496
+examine = "A door with silver shield markings."
 
 [yellow_triangle_door_furnished]
 id = 50497
+examine = "A door with yellow triangle markings."
 
 [yellow_diamond_door_furnished]
 id = 50498
+examine = "A door with yellow diamond markings."
 
 [yellow_rectangle_door_furnished]
 id = 50499
+examine = "A door with yellow rectangle markings."
 
 [yellow_pentagon_door_furnished]
 id = 50500
+examine = "A door with yellow pentagon markings."
 
 [yellow_corner_door_furnished]
 id = 50501
+examine = "A door with yellow corner markings."
 
 [yellow_crescent_door_furnished]
 id = 50502
+examine = "A door with yellow crescent markings."
 
 [yellow_wedge_door_furnished]
 id = 50503
+examine = "A door with yellow wedge markings."
 
 [yellow_shield_door_furnished]
 id = 50504
+examine = "A door with yellow shield markings."
 
 [green_triangle_door_furnished]
 id = 50505
+examine = "A door with green triangle markings."
 
 [green_diamond_door_furnished]
 id = 50506
+examine = "A door with green diamond markings."
 
 [green_rectangle_door_furnished]
 id = 50507
+examine = "A door with green rectangle markings."
 
 [green_pentagon_door_furnished]
 id = 50508
+examine = "A door with green pentagon markings."
 
 [green_corner_door_furnished]
 id = 50509
+examine = "A door with green corner markings."
 
 [green_crescent_door_furnished]
 id = 50510
+examine = "A door with green crescent markings."
 
 [green_wedge_door_furnished]
 id = 50511
+examine = "A door with green wedge markings."
 
 [green_shield_door_furnished]
 id = 50512
+examine = "A door with green shield markings."
 
 [blue_triangle_door_furnished]
 id = 50513
+examine = "A door with blue triangle markings."
 
 [blue_diamond_door_furnished]
 id = 50514
+examine = "A door with blue diamond markings."
 
 [blue_rectangle_door_furnished]
 id = 50515
+examine = "A door with blue rectangle markings."
 
 [blue_pentagon_door_furnished]
 id = 50516
+examine = "A door with blue pentagon markings."
 
 [blue_corner_door_furnished]
 id = 50517
+examine = "A door with blue corner markings."
 
 [blue_crescent_door_furnished]
 id = 50518
+examine = "A door with blue crescent markings."
 
 [blue_wedge_door_furnished]
 id = 50519
+examine = "A door with blue wedge markings."
 
 [blue_shield_door_furnished]
 id = 50520
+examine = "A door with blue shield markings."
 
 [purple_triangle_door_furnished]
 id = 50521
+examine = "A door with purple triangle markings."
 
 [purple_diamond_door_furnished]
 id = 50522
+examine = "A door with purple diamond markings."
 
 [purple_rectangle_door_furnished]
 id = 50523
+examine = "A door with purple rectangle markings."
 
 [purple_pentagon_door_furnished]
 id = 50524
+examine = "A door with purple pentagon markings."
 
 [purple_corner_door_furnished]
 id = 50525
+examine = "A door with purple corner markings."
 
 [purple_crescent_door_furnished]
 id = 50526
+examine = "A door with purple crescent markings."
 
 [purple_wedge_door_furnished]
 id = 50527
+examine = "A door with purple wedge markings."
 
 [purple_shield_door_furnished]
 id = 50528
+examine = "A door with purple shield markings."
 
 [crimson_triangle_door_furnished]
 id = 50529
+examine = "A door with crimson triangle markings."
 
 [crimson_diamond_door_furnished]
 id = 50530
+examine = "A door with crimson diamond markings."
 
 [crimson_rectangle_door_furnished]
 id = 50531
+examine = "A door with crimson rectangle markings."
 
 [crimson_pentagon_door_furnished]
 id = 50532
+examine = "A door with crimson pentagon markings."
 
 [crimson_corner_door_furnished]
 id = 50533
+examine = "A door with crimson corner markings."
 
 [crimson_crescent_door_furnished]
 id = 50534
+examine = "A door with crimson crescent markings."
 
 [crimson_wedge_door_furnished]
 id = 50535
+examine = "A door with crimson wedge markings."
 
 [crimson_shield_door_furnished]
 id = 50536
+examine = "A door with crimson shield markings."
 
 [gold_triangle_door_furnished]
 id = 50537
+examine = "A door with gold triangle markings."
 
 [gold_diamond_door_furnished]
 id = 50538
+examine = "A door with gold diamond markings."
 
 [gold_rectangle_door_furnished]
 id = 50539
+examine = "A door with gold rectangle markings."
 
 [gold_pentagon_door_furnished]
 id = 50540
+examine = "A door with gold pentagon markings."
 
 [gold_corner_door_furnished]
 id = 50541
+examine = "A door with gold corner markings."
 
 [gold_crescent_door_furnished]
 id = 50542
+examine = "A door with gold crescent markings."
 
 [gold_wedge_door_furnished]
 id = 50543
+examine = "A door with gold wedge markings."
 
 [gold_shield_door_furnished]
 id = 50544
+examine = "A door with gold shield markings."
 
 [orange_triangle_door_occult]
 id = 53884
+examine = "A door with orange triangle markings."
 
 [orange_diamond_door_occult]
 id = 53885
+examine = "A door with orange diamond markings."
 
 [orange_rectangle_door_occult]
 id = 53886
+examine = "A door with orange rectangle markings."
 
 [orange_pentagon_door_occult]
 id = 53887
+examine = "A door with orange pentagon markings."
 
 [orange_corner_door_occult]
 id = 53888
+examine = "A door with orange corner markings."
 
 [orange_crescent_door_occult]
 id = 53889
+examine = "A door with orange crescent markings."
 
 [orange_wedge_door_occult]
 id = 53890
+examine = "A door with orange wedge markings."
 
 [orange_shield_door_occult]
 id = 53891
+examine = "A door with orange shield markings."
 
 [silver_triangle_door_occult]
 id = 53892
+examine = "A door with silver triangle markings."
 
 [silver_diamond_door_occult]
 id = 53893
+examine = "A door with silver diamond markings."
 
 [silver_rectangle_door_occult]
 id = 53894
+examine = "A door with silver rectangle markings."
 
 [silver_pentagon_door_occult]
 id = 53895
+examine = "A door with silver pentagon markings."
 
 [silver_corner_door_occult]
 id = 53896
+examine = "A door with silver corner markings."
 
 [silver_crescent_door_occult]
 id = 53897
+examine = "A door with silver crescent markings."
 
 [silver_wedge_door_occult]
 id = 53898
+examine = "A door with silver wedge markings."
 
 [silver_shield_door_occult]
 id = 53899
+examine = "A door with silver shield markings."
 
 [yellow_triangle_door_occult]
 id = 53900
+examine = "A door with yellow triangle markings."
 
 [yellow_diamond_door_occult]
 id = 53901
+examine = "A door with yellow diamond markings."
 
 [yellow_rectangle_door_occult]
 id = 53902
+examine = "A door with yellow rectangle markings."
 
 [yellow_pentagon_door_occult]
 id = 53903
+examine = "A door with yellow pentagon markings."
 
 [yellow_corner_door_occult]
 id = 53904
+examine = "A door with yellow corner markings."
 
 [yellow_crescent_door_occult]
 id = 53905
+examine = "A door with yellow crescent markings."
 
 [yellow_wedge_door_occult]
 id = 53906
+examine = "A door with yellow wedge markings."
 
 [yellow_shield_door_occult]
 id = 53907
+examine = "A door with yellow shield markings."
 
 [green_triangle_door_occult]
 id = 53908
+examine = "A door with green triangle markings."
 
 [green_diamond_door_occult]
 id = 53909
+examine = "A door with green diamond markings."
 
 [green_rectangle_door_occult]
 id = 53910
+examine = "A door with green rectangle markings."
 
 [green_pentagon_door_occult]
 id = 53911
+examine = "A door with green pentagon markings."
 
 [green_corner_door_occult]
 id = 53912
+examine = "A door with green corner markings."
 
 [green_crescent_door_occult]
 id = 53913
+examine = "A door with green crescent markings."
 
 [green_wedge_door_occult]
 id = 53914
+examine = "A door with green wedge markings."
 
 [green_shield_door_occult]
 id = 53915
+examine = "A door with green shield markings."
 
 [blue_triangle_door_occult]
 id = 53916
+examine = "A door with blue triangle markings."
 
 [blue_diamond_door_occult]
 id = 53917
+examine = "A door with blue diamond markings."
 
 [blue_rectangle_door_occult]
 id = 53918
+examine = "A door with blue rectangle markings."
 
 [blue_pentagon_door_occult]
 id = 53919
+examine = "A door with blue pentagon markings."
 
 [blue_corner_door_occult]
 id = 53920
+examine = "A door with blue corner markings."
 
 [blue_crescent_door_occult]
 id = 53921
+examine = "A door with blue crescent markings."
 
 [blue_wedge_door_occult]
 id = 53922
+examine = "A door with blue wedge markings."
 
 [blue_shield_door_occult]
 id = 53923
+examine = "A door with blue shield markings."
 
 [purple_triangle_door_occult]
 id = 53924
+examine = "A door with purple triangle markings."
 
 [purple_diamond_door_occult]
 id = 53925
+examine = "A door with purple diamond markings."
 
 [purple_rectangle_door_occult]
 id = 53926
+examine = "A door with purple rectangle markings."
 
 [purple_pentagon_door_occult]
 id = 53927
+examine = "A door with purple pentagon markings."
 
 [purple_corner_door_occult]
 id = 53928
+examine = "A door with purple corner markings."
 
 [purple_crescent_door_occult]
 id = 53929
+examine = "A door with purple crescent markings."
 
 [purple_wedge_door_occult]
 id = 53930
+examine = "A door with purple wedge markings."
 
 [purple_shield_door_occult]
 id = 53931
+examine = "A door with purple shield markings."
 
 [crimson_triangle_door_occult]
 id = 53932
+examine = "A door with crimson triangle markings."
 
 [crimson_diamond_door_occult]
 id = 53933
+examine = "A door with crimson diamond markings."
 
 [crimson_rectangle_door_occult]
 id = 53934
+examine = "A door with crimson rectangle markings."
 
 [crimson_pentagon_door_occult]
 id = 53935
+examine = "A door with crimson pentagon markings."
 
 [crimson_corner_door_occult]
 id = 53936
+examine = "A door with crimson corner markings."
 
 [crimson_crescent_door_occult]
 id = 53937
+examine = "A door with crimson crescent markings."
 
 [crimson_wedge_door_occult]
 id = 53938
+examine = "A door with crimson wedge markings."
 
 [crimson_shield_door_occult]
 id = 53939
+examine = "A door with crimson shield markings."
 
 [gold_triangle_door_occult]
 id = 53940
+examine = "A door with gold triangle markings."
 
 [gold_diamond_door_occult]
 id = 53941
+examine = "A door with gold diamond markings."
 
 [gold_rectangle_door_occult]
 id = 53942
+examine = "A door with gold rectangle markings."
 
 [gold_pentagon_door_occult]
 id = 53943
+examine = "A door with gold pentagon markings."
 
 [gold_corner_door_occult]
 id = 53944
+examine = "A door with gold corner markings."
 
 [gold_crescent_door_occult]
 id = 53945
+examine = "A door with gold crescent markings."
 
 [gold_wedge_door_occult]
 id = 53946
+examine = "A door with gold wedge markings."
 
 [gold_shield_door_occult]
 id = 53947
+examine = "A door with gold shield markings."
 
 [door_occult]
 id = 53948
+examine = "This door is closed."
 
 [guardian_door_occult]
 id = 53949
+examine = "The gazing eye of the door watches over the room."
 
 [boss_door_occult]
 id = 53950
+examine = "A door with a complicated lock mechanic."
 
 [barred_door_occult]
 id = 53951
+examine = "The bar is rusted into place."
 
 [unbarred_door_occult]
 id = 53952
+examine = "This door is closed."
 
 [runed_door_occult]
 id = 53953
+examine = "One of the runes is blank."
 
 [collapsing_doorframe_occult]
 id = 53954
+examine = "Structurally unstable."
 
 [fixed_door_occult]
 id = 53955
+examine = "This door is closed."
 
 [locked_door_occult]
 id = 53956
+examine = "The chain above it looks suspicious."
 
 [unlocked_door_occult]
 id = 53957
+examine = "This door is closed."
 
 [padlocked_door_occult]
 id = 53958
+examine = "There is a huge padlock on the door."
 
 [picked_door_occult]
 id = 53959
+examine = "This door is closed."
 
 [broken_pulley_door_occult]
 id = 53960
+examine = "The rope for the pulley has snapped."
 
 [fixed_pulley_door_occult]
 id = 53961
+examine = "This door is closed."
 
 [pile_of_rocks_occult]
 id = 53962
+examine = "A pile of rocks is blocking the way."
 
 [broken_key_door_occult]
 id = 53963
+examine = "The large key hanging by the door is badly bent."
 
 [fixed_key_door_occult]
 id = 53964
+examine = "This door is closed."
 
 [flammable_debris_occult]
 id = 53965
+examine = "A pile of flammable debris is blocking the way."
 
 [wooden_barricade_occult]
 id = 53966
+examine = "A wooden barricade is blocking the way."
 
 [cleared_barricade_occult]
 id = 53967
+examine = "This door is closed."
 
 [vine_covered_door_occult]
 id = 53968
+examine = "There are thorn-covered vines all over the door."
 
 [ramokee_exile_occult]
 id = 53969
+examine = "A traitor of the gorajo."
 
 [magical_barrier_occult]
 id = 53970
+examine = "A magical barrier is blocking your path."
 
 [dark_spirit_occult]
 id = 53971
+examine = "A dark spirit is blocking your path."
 
 [liquid_lock_door_occult]
 id = 53972
+examine = "There is a complex liquid-based locking mechanism on the door."
 
 [exploded_liquid_door_occult]
 id = 53973
+examine = "This door is closed."
 
 [orange_triangle_door_warped]
 id = 55675
+examine = "A door with orange triangle markings."
 
 [orange_diamond_door_warped]
 id = 55676
+examine = "A door with orange diamond markings."
 
 [orange_rectangle_door_warped]
 id = 55677
+examine = "A door with orange rectangle markings."
 
 [orange_pentagon_door_warped]
 id = 55678
+examine = "A door with orange pentagon markings."
 
 [orange_corner_door_warped]
 id = 55679
+examine = "A door with orange corner markings."
 
 [orange_crescent_door_warped]
 id = 55680
+examine = "A door with orange crescent markings."
 
 [orange_wedge_door_warped]
 id = 55681
+examine = "A door with orange wedge markings."
 
 [orange_shield_door_warped]
 id = 55682
+examine = "A door with orange shield markings."
 
 [silver_triangle_door_warped]
 id = 55683
+examine = "A door with silver triangle markings."
 
 [silver_diamond_door_warped]
 id = 55684
+examine = "A door with silver diamond markings."
 
 [silver_rectangle_door_warped]
 id = 55685
+examine = "A door with silver rectangle markings."
 
 [silver_pentagon_door_warped]
 id = 55686
+examine = "A door with silver pentagon markings."
 
 [silver_corner_door_warped]
 id = 55687
+examine = "A door with silver corner markings."
 
 [silver_crescent_door_warped]
 id = 55688
+examine = "A door with silver crescent markings."
 
 [silver_wedge_door_warped]
 id = 55689
+examine = "A door with silver wedge markings."
 
 [silver_shield_door_warped]
 id = 55690
+examine = "A door with silver shield markings."
 
 [yellow_triangle_door_warped]
 id = 55691
+examine = "A door with yellow triangle markings."
 
 [yellow_diamond_door_warped]
 id = 55692
+examine = "A door with yellow diamond markings."
 
 [yellow_rectangle_door_warped]
 id = 55693
+examine = "A door with yellow rectangle markings."
 
 [yellow_pentagon_door_warped]
 id = 55694
+examine = "A door with yellow pentagon markings."
 
 [yellow_corner_door_warped]
 id = 55695
+examine = "A door with yellow corner markings."
 
 [yellow_crescent_door_warped]
 id = 55696
+examine = "A door with yellow crescent markings."
 
 [yellow_wedge_door_warped]
 id = 55697
+examine = "A door with yellow wedge markings."
 
 [yellow_shield_door_warped]
 id = 55698
+examine = "A door with yellow shield markings."
 
 [green_triangle_door_warped]
 id = 55699
+examine = "A door with green triangle markings."
 
 [green_diamond_door_warped]
 id = 55700
+examine = "A door with green diamond markings."
 
 [green_rectangle_door_warped]
 id = 55701
+examine = "A door with green rectangle markings."
 
 [green_pentagon_door_warped]
 id = 55702
+examine = "A door with green pentagon markings."
 
 [green_corner_door_warped]
 id = 55703
+examine = "A door with green corner markings."
 
 [green_crescent_door_warped]
 id = 55704
+examine = "A door with green crescent markings."
 
 [green_wedge_door_warped]
 id = 55705
+examine = "A door with green wedge markings."
 
 [green_shield_door_warped]
 id = 55706
+examine = "A door with green shield markings."
 
 [blue_triangle_door_warped]
 id = 55707
+examine = "A door with blue triangle markings."
 
 [blue_diamond_door_warped]
 id = 55708
+examine = "A door with blue diamond markings."
 
 [blue_rectangle_door_warped]
 id = 55709
+examine = "A door with blue rectangle markings."
 
 [blue_pentagon_door_warped]
 id = 55710
+examine = "A door with blue pentagon markings."
 
 [blue_corner_door_warped]
 id = 55711
+examine = "A door with blue corner markings."
 
 [blue_crescent_door_warped]
 id = 55712
+examine = "A door with blue crescent markings."
 
 [blue_wedge_door_warped]
 id = 55713
+examine = "A door with blue wedge markings."
 
 [blue_shield_door_warped]
 id = 55714
+examine = "A door with blue shield markings."
 
 [purple_triangle_door_warped]
 id = 55715
+examine = "A door with purple triangle markings."
 
 [purple_diamond_door_warped]
 id = 55716
+examine = "A door with purple diamond markings."
 
 [purple_rectangle_door_warped]
 id = 55717
+examine = "A door with purple rectangle markings."
 
 [purple_pentagon_door_warped]
 id = 55718
+examine = "A door with purple pentagon markings."
 
 [purple_corner_door_warped]
 id = 55719
+examine = "A door with purple corner markings."
 
 [purple_crescent_door_warped]
 id = 55720
+examine = "A door with purple crescent markings."
 
 [purple_wedge_door_warped]
 id = 55721
+examine = "A door with purple wedge markings."
 
 [purple_shield_door_warped]
 id = 55722
+examine = "A door with purple shield markings."
 
 [crimson_triangle_door_warped]
 id = 55723
+examine = "A door with crimson triangle markings."
 
 [crimson_diamond_door_warped]
 id = 55724
+examine = "A door with crimson diamond markings."
 
 [crimson_rectangle_door_warped]
 id = 55725
+examine = "A door with crimson rectangle markings."
 
 [crimson_pentagon_door_warped]
 id = 55726
+examine = "A door with crimson pentagon markings."
 
 [crimson_corner_door_warped]
 id = 55727
+examine = "A door with crimson corner markings."
 
 [crimson_crescent_door_warped]
 id = 55728
+examine = "A door with crimson crescent markings."
 
 [crimson_wedge_door_warped]
 id = 55729
+examine = "A door with crimson wedge markings."
 
 [crimson_shield_door_warped]
 id = 55730
+examine = "A door with crimson shield markings."
 
 [gold_triangle_door_warped]
 id = 55731
+examine = "A door with gold triangle markings."
 
 [gold_diamond_door_warped]
 id = 55732
+examine = "A door with gold diamond markings."
 
 [gold_rectangle_door_warped]
 id = 55733
+examine = "A door with gold rectangle markings."
 
 [gold_pentagon_door_warped]
 id = 55734
+examine = "A door with gold pentagon markings."
 
 [gold_corner_door_warped]
 id = 55735
+examine = "A door with gold corner markings."
 
 [gold_crescent_door_warped]
 id = 55736
+examine = "A door with gold crescent markings."
 
 [gold_wedge_door_warped]
 id = 55737
+examine = "A door with gold wedge markings."
 
 [gold_shield_door_warped]
 id = 55738
+examine = "A door with gold shield markings."
 
 [barred_door_warped]
 id = 55739
+examine = "The bar is rusted into place."
 
 [unbarred_door_warped]
 id = 55740
+examine = "This door is closed."
 
 [runed_door_warped]
 id = 55741
+examine = "One of the runes is blank."
 
 [collapsing_doorframe_warped]
 id = 55742
+examine = "Structurally unstable."
 
 [repaired_door_warped]
 id = 55743
+examine = "This door is closed."
 
 [locked_door_warped]
 id = 55744
+examine = "The chain above it looks suspicious."
 
 [unlocked_door_warped]
 id = 55745
+examine = "This door is closed."
 
 [padlocked_door_warped]
 id = 55746
+examine = "There is a huge padlock on the door."
 
 [picked_door_warped]
 id = 55747
+examine = "This door is closed."
 
 [broken_pulley_door_warped]
 id = 55748
+examine = "The rope for the pulley has snapped."
 
 [fixed_pulley_door_warped]
 id = 55749
+examine = "This door is closed."
 
 [pile_of_rocks_warped]
 id = 55750
+examine = "A pile of rocks is blocking the way."
 
 [broken_key_door_warped]
 id = 55751
+examine = "The large key hanging by the door is badly bent."
 
 [fixed_key_door_warped]
 id = 55752
+examine = "This door is closed."
 
 [flammable_debris_warped]
 id = 55753
+examine = "A pile of flammable debris is blocking the way."
 
 [wooden_barricade_warped]
 id = 55754
+examine = "A wooden barricade is blocking the way."
 
 [cleared_barricade_warped]
 id = 55755
+examine = "This door is closed."
 
 [vine_covered_door_warped]
 id = 55756
+examine = "There are thorn-covered vines all over the door."
 
 [ramokee_exile_warped]
 id = 55757
+examine = "A traitor of the gorajo."
 
 [magical_barrier_warped]
 id = 55758
+examine = "A magical barrier is blocking your path."
 
 [dark_spirit_warped]
 id = 55759
+examine = "A dark spirit is blocking your path."
 
 [liquid_lock_door_warped]
 id = 55760
+examine = "There is a complex liquid-based locking mechanism on the door."
 
 [exploded_liquid_door_warped]
 id = 55761
+examine = "This door is closed."
 
 [door_warped]
 id = 55762
+examine = "This door is closed."
 
 [guardian_door_warped]
 id = 55763
+examine = "The gazing eye of the door watches over the room."
 
 [boss_door_warped]
 id = 55764
+examine = "A door with a complicated lock mechanic."

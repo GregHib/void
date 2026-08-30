@@ -1,5 +1,7 @@
 [brine_rat_cavern_exit]
 id = 23157
+examine = "Cave exit."
 
 [brine_rat_cavern_exit_cave]
 id = 23158
+examine = "Cave exit."

@@ -5,3 +5,4 @@ examine = "This leads into the dungeons of Daemonheim."
 [rand_dragonkin_ruin_collapsed_floor_01_var]
 id = 50552
 
+examine = "One-way: down."

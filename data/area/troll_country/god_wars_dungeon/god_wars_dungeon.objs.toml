@@ -62,6 +62,7 @@ examine = "A pillar leans over the chasm."
 
 [godwars_armadyl_crate]
 id = 26440
+examine = "A wooden box."
 
 [godwars_zamorak_bridge]
 id = 26439

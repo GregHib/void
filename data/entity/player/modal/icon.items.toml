@@ -28,9 +28,11 @@ id = 12202
 
 [empty_bucket_icon]
 id = 9631
+examine = "It's a wooden bucket."
 
 [sickle_paint]
 id = 9661
+examine = "An icon."
 
 [snowrain]
 id = 9663
@@ -40,111 +42,146 @@ id = 9664
 
 [snowballs2]
 id = 10502
+examine = "Made from snow."
 
 [snowballs3]
 id = 10503
+examine = "Made from snow."
 
 [snowballs4]
 id = 10504
+examine = "Made from snow."
 
 [snowballs5]
 id = 10505
+examine = "Made from snow."
 
 [coins2_2]
 id = 8891
+examine = "Lovely money!"
 
 [coins3_2]
 id = 8892
+examine = "Lovely money!"
 
 [coins4_2]
 id = 8893
+examine = "Lovely money!"
 
 [coins5_2]
 id = 8894
+examine = "Lovely money!"
 
 [coins25_2]
 id = 8895
+examine = "Lovely money!"
 
 [coins100_2]
 id = 8896
+examine = "Lovely money!"
 
 [coins250_2]
 id = 8897
+examine = "Lovely money!"
 
 [coins1000_2]
 id = 8898
+examine = "Lovely money!"
 
 [coins10000_2]
 id = 8899
+examine = "Lovely money!"
 
 [wooden_logs]
 id = 9138
 
 [gravedigger_appron]
 id = 7597
+examine = "It seems bleached with age."
 
 [gravedigger_bones]
 id = 7598
+examine = "It seems bleached with age."
 
 [gravedigger_bowl]
 id = 7599
+examine = "It seems bleached with age."
 
 [gravedigger_cake]
 id = 7600
+examine = "It seems bleached with age."
 
 [gravedigger_chefs_hat]
 id = 7601
+examine = "It seems bleached with age."
 
 [gravedigger_seedler]
 id = 7602
+examine = "It seems bleached with age."
 
 [gravedigger_axe]
 id = 7603
+examine = "It seems bleached with age."
 
 [gravedigger_kebab]
 id = 7604
+examine = "It seems bleached with age."
 
 [gravedigger_knife]
 id = 7605
+examine = "It seems bleached with age."
 
 [gravedigger_ore]
 id = 7606
+examine = "It seems bleached with age."
 
 [gravedigger_pickaxe]
 id = 7607
+examine = "It seems bleached with age."
 
 [gravedigger_plant_pot]
 id = 7608
+examine = "It seems bleached with age."
 
 [gravedigger_seed]
 id = 7609
+examine = "It seems bleached with age."
 
 [gravedigger_secateurs]
 id = 7610
+examine = "It seems bleached with age."
 
 [gravedigger_skull]
 id = 7611
+examine = "It seems bleached with age."
 
 [gravedigger_wood]
 id = 7612
+examine = "It seems bleached with age."
 
 [gravedigger_pot]
 id = 7613
+examine = "It seems bleached with age."
 
 [gravedigger_axe_mould]
 id = 7614
+examine = "Its a symbol."
 
 [gravedigger_chef_hat_mould]
 id = 7615
+examine = "Its a symbol."
 
 [gravedigger_pickaxe_mould]
 id = 7616
+examine = "Its a symbol."
 
 [gravedigger_watering_can_mould]
 id = 7617
+examine = "Its a symbol."
 
 [gravedigger_pot_mould]
 id = 7618
+examine = "Its a symbol."
 
 [number_brown_zero]
 id = 7010
@@ -226,6 +263,7 @@ id = 4065
 
 [catapult]
 id = 4066
+examine = "It's a catapult."
 
 [observatory_telescope]
 id = 4557
@@ -235,39 +273,51 @@ id = 3850
 
 [fire_rune_icon]
 id = 3881
+examine = "A piece used in board games."
 
 [water_rune_icon]
 id = 3882
+examine = "A piece used in board games."
 
 [earth_rune_icon]
 id = 3883
+examine = "A piece used in board games."
 
 [air_rune_icon]
 id = 3884
+examine = "A piece used in board games."
 
 [mind_rune_icon]
 id = 3885
+examine = "A piece used in board games."
 
 [body_rune_icon]
 id = 3886
+examine = "A piece used in board games."
 
 [nature_rune_icon]
 id = 3887
+examine = "A piece used in board games."
 
 [chaos_rune_icon]
 id = 3888
+examine = "A piece used in board games."
 
 [law_rune_icon]
 id = 3889
+examine = "A piece used in board games."
 
 [cosmic_rune_icon]
 id = 3890
+examine = "A piece used in board games."
 
 [blood_rune_icon]
 id = 3891
+examine = "A piece used in board games."
 
 [soul_rune_icon]
 id = 3892
+examine = "A piece used in board games."
 
 [chompy]
 id = 2884
@@ -284,51 +334,65 @@ id = 1666
 
 [sapphire_necklace_icon]
 id = 1668
+examine = "I wonder if this is valuable."
 
 [emerald_necklace_icon]
 id = 1669
+examine = "I wonder if this is valuable."
 
 [ruby_necklace_icon]
 id = 1670
+examine = "I wonder if this is valuable."
 
 [diamond_necklace_icon]
 id = 1671
+examine = "I wonder if this is valuable."
 
 [blank_amulet_unstrung]
 id = 1685
 
 [sapphire_amulet_icon]
 id = 1687
+examine = "It needs a string so I can wear it."
 
 [emerald_amulet_icon]
 id = 1688
+examine = "It needs a string so I can wear it."
 
 [ruby_amulet_icon]
 id = 1689
+examine = "It needs a string so I can wear it."
 
 [diamond_amulet_icon]
 id = 1690
+examine = "It needs a string so I can wear it."
 
 [dragonstone_ammy_icon]
 id = 1691
+examine = "It needs a string so I can wear it."
 
 [blank_ring]
 id = 1647
 
 [sapphire_ring_icon]
 id = 1649
+examine = "A valuable ring."
 
 [emerald_ring_icon]
 id = 1650
+examine = "A valuable ring."
 
 [ruby_ring_icon]
 id = 1651
+examine = "A valuable ring."
 
 [diamond_ring_icon]
 id = 1652
+examine = "A valuable ring."
 
 [dragonstone_ring_icon]
 id = 1653
+examine = "A valuable ring."
 
 [man]
 id = 3241
@@ -808,9 +872,11 @@ examine = "A dwarf lava-flow miner."
 
 [more]
 id = 10165
+examine = "There are so many costumes they have to go on another page!"
 
 [back]
 id = 10166
+examine = "There are so many costumes they have to go on another page!"
 
 [globe]
 id = 8341
@@ -818,69 +884,91 @@ examine = "A wooden planet of your very own."
 
 [character_creation_shadow]
 id = 19713
+examine = "Some junk."
 
 [character_creation_2]
 id = 19714
+examine = "Some junk."
 
 [character_creation_3]
 id = 19715
+examine = "Some junk."
 
 [character_creation_4]
 id = 19716
+examine = "Some junk."
 
 [character_creation_5]
 id = 19717
+examine = "Some junk."
 
 [character_creation_6]
 id = 19718
+examine = "Some junk."
 
 [character_creation_7]
 id = 19719
+examine = "Some junk."
 
 [character_creation_8]
 id = 19720
+examine = "Some junk."
 
 [character_creation_9]
 id = 19721
+examine = "Some junk."
 
 [character_creation_10]
 id = 19722
+examine = "Some junk."
 
 [character_creation_11]
 id = 19723
+examine = "Some junk."
 
 [character_creation_12]
 id = 19724
+examine = "Some junk."
 
 [character_creation_13]
 id = 19725
+examine = "Some junk."
 
 [character_creation_14]
 id = 19726
+examine = "Some junk."
 
 [character_creation_15]
 id = 19727
+examine = "Some junk."
 
 [character_creation_16]
 id = 19728
+examine = "Some junk."
 
 [character_creation_17]
 id = 19729
+examine = "Some junk."
 
 [character_creation_18]
 id = 19730
+examine = "Some junk."
 
 [character_creation_19]
 id = 19731
+examine = "Some junk."
 
 [character_creation_20]
 id = 19732
+examine = "Some junk."
 
 [character_creation_21]
 id = 19733
+examine = "Some junk."
 
 [character_creation_22]
 id = 19734
+examine = "Some junk."
 
 [small_portrait]
 id = 8086

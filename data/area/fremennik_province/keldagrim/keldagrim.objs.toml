@@ -11,6 +11,7 @@ examine = "Bread and cakes are spread out over it."
 
 [bakery_stall_keldagrim_empty]
 id = 6984
+examine = "Empty market stall."
 
 [crossbow_stall]
 id = 17031
@@ -21,6 +22,7 @@ examine = "A whole lot of crossbow items."
 
 [crossbow_stall_empty]
 id = 6984
+examine = "Empty market stall."
 
 [silver_stall_keldagrim]
 id = 6164
@@ -31,6 +33,7 @@ examine = "Finely wrought wares of silver."
 
 [silver_stall_keldagrim_empty]
 id = 6984
+examine = "Empty market stall."
 
 [gem_stall_keldagrim]
 id = 6162
@@ -41,6 +44,7 @@ examine = "Finest precious stones."
 
 [gem_stall_keldagrim_empty]
 id = 6984
+examine = "Empty market stall."
 
 [crafting_stall_keldagrim]
 id = 6166
@@ -51,6 +55,7 @@ examine = "A whole lot of tools for crafting."
 
 [crafting_stall_keldagrim_empty]
 id = 6984
+examine = "Empty market stall."
 
 [clothes_stall_keldagrim]
 id = 6165

@@ -12,3 +12,4 @@ examine = "A column of elemental power."
 
 [taverly_dungeon_pipe_sc]
 id = 9293
+examine = "A pipe I can squeeze through."

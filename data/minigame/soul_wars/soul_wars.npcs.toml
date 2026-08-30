@@ -8,6 +8,7 @@ str = 45
 def = 120
 mage = 45
 max_hit_magic = 50
+examine = "There's always room for jelly."
 
 [nomad_soul_wars]
 id = 8525
@@ -60,4 +61,3 @@ examine = "Nomad's unfortunate minion."
 [zimberfizz_3]
 id = 8526
 examine = "Nomad's unfortunate minion."
-

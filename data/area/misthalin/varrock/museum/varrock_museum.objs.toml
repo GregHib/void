@@ -12,18 +12,23 @@ examine = "A map of the Museum."
 
 [vm_timeline_soil_layers]
 id = 24621
+examine = "A display of the different layers of soil."
 
 [vm_digsite_finds_pottery_before_digsite_multi]
 id = 24543
+examine = "Pottery from the 3rd or 4th Ages."
 
 [vm_digsite_finds_jewellery]
 id = 24544
+examine = "Ancient gold jewelry."
 
 [vm_digsite_finds_vase]
 id = 24541
+examine = "An old vase with Saradominist markings."
 
 [vm_digsite_finds_arrow_heads]
 id = 24545
+examine = "Rusty arrowheads, dating back to the early 4th Age."
 
 [vm_digsite_finds_saradomin_symbol_old]
 id = 12137
@@ -77,24 +82,31 @@ id = 38172
 
 [vm_digsite_finds_saradomin_symbol_old_multi]
 id = 24539
+examine = "A Saradomin symbol from the 4th Age."
 
 [vm_digsite_finds_saradomin_symbol_ancient_multi]
 id = 24540
+examine = "An ancient Saradomin symbol from the 4th Age."
 
 [vm_digsite_finds_talisman_multi]
 id = 24546
+examine = "A Zarosian talisman found at the Dig Site."
 
 [vm_digsite_finds_tablet_multi]
 id = 24547
+examine = "Stone tablet found at the Dig Site."
 
 [vm_digsite_finds_coin_senntisten_multi]
 id = 24548
+examine = "An ancient coin from Senntisten."
 
 [vm_digsite_finds_coin_saranthium_multi]
 id = 24549
+examine = "An old coin, accurately dating the city of Saranthium."
 
 [vm_timeline_staff_of_armadyll_multi]
 id = 24624
+examine = "The staff of Armadyl."
 
 [vm_timeline_terracotta_statue_multi]
 id = 24627
@@ -102,24 +114,31 @@ examine = "A terracotta statue."
 
 [vm_timeline_robert_the_strong_multi]
 id = 24634
+examine = "A display of Robert the Strong in battle with Dragonkin."
 
 [vm_timeline_seven_kights_helms_multi]
 id = 24637
+examine = "A display of seven knights' helms."
 
 [vm_timeline_observatory_model_multi]
 id = 24643
+examine = "A model of the Observatory near Ardougne."
 
 [vm_timeline_excalibur_multi]
 id = 24654
+examine = "Excalibur, de-stoned."
 
 [surok_timeline_tomb_multi]
 id = 24663
+examine = "A display of an ancient tome."
 
 [vm_timeline_glomem_prophecy_multi]
 id = 30018
+examine = "A set of tablets detailing an ancient prophecy."
 
 [vm_timeline_meeting_history_multi]
 id = 38173
+examine = "A rough artist's impression of the time travel portal."
 
 [vm_digsite_finds_pottery]
 id = 12139
@@ -129,231 +148,306 @@ id = 15485
 
 [vm_timeline_king_painting]
 id = 24620
+examine = "A painting of King Lathas."
 
 [vm_timeline_map_of_runescape]
 id = 24622
+examine = "An early map of Gielinor."
 
 [vm_timeline_three_god_symbols]
 id = 24625
+examine = "A display of three god symbols."
 
 [vm_timeline_random_stuff]
 id = 24628
+examine = "Ancient archaeological finds."
 
 [vm_timeline_druid_stone_circle]
 id = 24629
+examine = "A display model of the druid stone circle."
 
 [vm_timeline_world_map]
 id = 24632
+examine = "A map of the world."
 
 [vm_timeline_star_chart]
 id = 24635
+examine = "A star chart."
 
 [vm_timeline_shield_of_arrav]
 id = 24638
 
 [vm_timeline_map_of_morytania]
 id = 24640
+examine = "A map of Morytania."
 
 [vm_timeline_bridge_over_water_model]
 id = 24641
+examine = "A model of a bridge over the River Lum."
 
 [vm_timeline_werewolf_skin]
 id = 24644
+examine = "Fangs for the memory."
 
 [vm_timeline_barbarian_village]
 id = 24645
+examine = "A map of the Barbarian Village."
 
 [vm_timeline_map_of_edgeville]
 id = 24646
+examine = "A map of Edgeville."
 
 [vm_timeline_black_knight_armour]
 id = 24647
+examine = "Black Knight armour."
 
 [vm_timeline_infinity_armour]
 id = 24648
+examine = "Infinity equipment."
 
 [vm_timeline_silverlight]
 id = 24649
+examine = "A replica of Silverlight, the demon slayer."
 
 [vm_timeline_barbarian_weapons]
 id = 24650
+examine = "A display of weapons used by barbarians."
 
 [vm_timeline_bow_and_sword_surrounding_runes]
 id = 24651
+examine = "Some weapons and runes."
 
 [vm_timeline_zamorakian_symbol]
 id = 24652
+examine = "A display of Zamorakian symbols."
 
 [vm_timeline_broken_arrow]
 id = 24655
+examine = "Broken arrows."
 
 [vm_timeline_phoenix_crossbow_and_black_arm_bands]
 id = 24656
+examine = "The Phoenix crossbow and Blackarm bands."
 
 [vm_timeline_skeleton]
 id = 24657
+examine = "A human skeleton - un-undead."
 
 [vm_timeline_white_knights_armour]
 id = 24658
+examine = "Armour worn by White Knights."
 
 [vm_timeline_mage_training_guardian]
 id = 24659
+examine = "A mage arena guardian."
 
 [vm_timeline_gnome_glider]
 id = 24660
+examine = "A Gnome glider model."
 
 [vm_timeline_map_of_ardougne]
 id = 24661
+examine = "A map of Ardougne."
 
 [vm_timeline_shield_of_arrav_multi]
 id = 24639
+examine = "The Shield of Arrav."
 
 [vm_timeline_no_shield_display]
 id = 24551
+examine = "An empty display case."
 
 [vm_timeline_runestones_multi]
 id = 24630
+examine = "A display of different runes."
 
 [vm_timeline_runestone_rock_model_multi]
 id = 24631
+examine = "A display model of the runestone essence rocks."
 
 [vm_cogs_lizard]
 id = 24574
+examine = "A machine that powers the display."
 
 [vm_cogs_battle_tortoise]
 id = 24575
+examine = "A machine that powers the display."
 
 [vm_cogs_dragon]
 id = 24576
+examine = "A machine that powers the display."
 
 [vm_cogs_wyvern]
 id = 24577
+examine = "A machine that powers the display."
 
 [vm_cogs_camel]
 id = 24578
+examine = "A machine that powers the display."
 
 [vm_cogs_leech]
 id = 24579
+examine = "A machine that powers the display."
 
 [vm_cogs_mole]
 id = 24580
+examine = "A machine that powers the display."
 
 [vm_cogs_penguine]
 id = 24581
+examine = "A machine that powers the display."
 
 [vm_cogs_snail]
 id = 24582
+examine = "A machine that powers the display."
 
 [vm_cogs_snake]
 id = 24583
+examine = "A machine that powers the display."
 
 [vm_cogs_monkey]
 id = 24584
+examine = "A machine that powers the display."
 
 [vm_cogs_sea_slug]
 id = 24585
+examine = "A machine that powers the display."
 
 [vm_cogs_terrorbird]
 id = 24586
+examine = "A machine that powers the display."
 
 [vm_cogs_kalphite_queen]
 id = 24587
+examine = "A machine that powers the display."
 
 [vm_button_1x1]
 id = 24588
+examine = "Push me."
 
 [vm_button_2x1]
 id = 24589
+examine = "Push me."
 
 [vm_button_lizard]
 id = 24590
+examine = "Push me."
 
 [vm_button_battle_tortoise]
 id = 24591
+examine = "Push me."
 
 [vm_button_dragon]
 id = 24592
+examine = "Push me."
 
 [vm_button_wyvern]
 id = 24593
+examine = "Push me."
 
 [vm_button_camel]
 id = 24594
+examine = "Push me."
 
 [vm_button_leech]
 id = 24595
+examine = "Push me."
 
 [vm_button_mole]
 id = 24596
+examine = "Push me."
 
 [vm_button_penguine]
 id = 24597
+examine = "Push me."
 
 [vm_button_snail]
 id = 24598
+examine = "Push me."
 
 [vm_button_snake]
 id = 24599
+examine = "Push me."
 
 [vm_button_monkey]
 id = 24600
+examine = "Push me."
 
 [vm_button_seaslug]
 id = 24601
+examine = "Push me."
 
 [vm_button_terrorbird]
 id = 24602
+examine = "Push me."
 
 [vm_button_kalphite_queen]
 id = 24603
+examine = "Push me."
 
 [vm_plaque_inactive]
 id = 24604
 
 [vm_plaque_lizard]
 id = 24605
+examine = "Plaque."
 
 [vm_plaque_battle_tortoise]
 id = 24606
+examine = "Plaque."
 
 [vm_plaque_dragon]
 id = 24607
+examine = "Plaque."
 
 [vm_plaque_wyvern]
 id = 24608
+examine = "Plaque."
 
 [vm_plaque_camel]
 id = 24609
+examine = "Plaque."
 
 [vm_plaque_leech]
 id = 24610
+examine = "Plaque."
 
 [vm_plaque_mole]
 id = 24611
+examine = "Plaque."
 
 [vm_plaque_penguine]
 id = 24612
+examine = "Plaque."
 
 [vm_plaque_snail]
 id = 24613
+examine = "Plaque."
 
 [vm_plaque_snake]
 id = 24614
+examine = "Plaque."
 
 [vm_plaque_monkey]
 id = 24615
+examine = "Plaque."
 
 [vm_plaque_seaslug]
 id = 24616
+examine = "Plaque."
 
 [vm_plaque_terrorbird]
 id = 24617
+examine = "Plaque."
 
 [vm_plaque_kalphite_queen]
 id = 24618
+examine = "Plaque."
 
 [vm_nat_his_kalphite_queen]
 id = 15490
+examine = "Very majestic."
 
 [vm_nat_his_snake]
 id = 24569
+examine = "It's a snake!"

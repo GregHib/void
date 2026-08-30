@@ -32,25 +32,33 @@ examine = "A staircase leading back up."
 
 [blood_pact_tomb_door]
 id = 48793
+examine = "A huge stone door marked with religious symbols."
 
 [tomb_door_sliding_down]
 id = 48795
+examine = "Precious ore."
 
 [tomb_door_sliding_up]
 id = 48796
+examine = "A dilapidated table."
 
 [blood_pact_caitlin_gate]
 id = 48792
+examine = "Metal spears block access further. There should be a mechanism nearby to lower them."
 
 [wall_sliding_up]
 id = 48787
+examine = "A dilapidated chair."
 
 [48786]
 id = 48786
+examine = "A dilapidated chair."
 
 [tomb_door_without_skull]
 id = 48785
+examine = "A huge stone door marked with religious symbols."
 
 [blood_pact_tomb_stairs_down]
 id = 48688
 
+examine = "These stairs lead to the lower levels of the catacombs."

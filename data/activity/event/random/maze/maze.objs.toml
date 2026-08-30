@@ -1,38 +1,49 @@
 [maze_wall]
 id = 3626
+examine = "It looks very sturdy."
 
 # The cache has no swung-open wall variant; the opened ids reuse the same
 # object which the door handler swings by rotation. Opened ids are defined
 # first so map objects resolve to the closed state.
 [maze_door_1_opened]
 id = 3628
+examine = "It looks very sturdy."
 
 [maze_door_2_opened]
 id = 3629
+examine = "It looks very sturdy."
 
 [maze_door_3_opened]
 id = 3630
+examine = "It looks very sturdy."
 
 [maze_door_4_opened]
 id = 3631
+examine = "It looks very sturdy."
 
 [maze_door_5_opened]
 id = 3632
+examine = "It looks very sturdy."
 
 [maze_door_1_closed]
 id = 3628
+examine = "It looks very sturdy."
 
 [maze_door_2_closed]
 id = 3629
+examine = "It looks very sturdy."
 
 [maze_door_3_closed]
 id = 3630
+examine = "It looks very sturdy."
 
 [maze_door_4_closed]
 id = 3631
+examine = "It looks very sturdy."
 
 [maze_door_5_closed]
 id = 3632
+examine = "It looks very sturdy."
 
 [maze_chest]
 id = 3635
