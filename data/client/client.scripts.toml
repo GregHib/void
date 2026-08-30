@@ -329,3 +329,10 @@ params = [
 
 [camera_zoom_out]
 id = 2619
+
+[text_colour_swapper]
+id = 45
+params = [
+  "interface",
+  "colour"
+]
