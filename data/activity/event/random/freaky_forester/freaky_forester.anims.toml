@@ -1,0 +1,8 @@
+[pheasant_attack]
+id = 2371
+
+[pheasant_defend]
+id = 2372
+
+[pheasant_death]
+id = 2373
