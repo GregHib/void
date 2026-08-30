@@ -61,7 +61,7 @@ A good bug report shouldn't leave others needing to chase you up for more inform
 #### How Do I Submit a Good Bug Report?
 
 > [!WARNING]
-> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead, sensitive bugs must be sent by email to <greghib@users.noreply.github.com>.
+> You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead, sensitive bugs should be sent over discord to `greg_void`.
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
 
