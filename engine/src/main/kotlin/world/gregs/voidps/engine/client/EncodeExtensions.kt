@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client
 
 import world.gregs.voidps.engine.client.ui.chat.Colours
+import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.Character
@@ -212,11 +213,24 @@ fun Player.minimap(vararg states: Minimap) {
 fun Player.clearMinimap() = client?.sendMinimapState(0) ?: Unit
 
 /**
+ * The slot the next hint arrow goes in. Slots are only freed by [clearHint], so content that
+ * forgets to clear one leaks it; rather than dropping the arrow entirely once all eight are taken,
+ * the first slot is reused.
+ */
+private fun Viewport.freeHint(): Int {
+    val index = hints.indexOfFirst { it == 0 }
+    if (index == -1) {
+        return 0
+    }
+    return index
+}
+
+/**
  * Add an [arrow] hint to a [tile] with [radius]
  */
 fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, direction: Direction = Direction.NONE, height: Int = 0): Int {
     val viewport = viewport ?: return -1
-    val index = viewport.hints.firstOrNull { it == 0 } ?: return -1
+    val index = viewport.freeHint()
     val type = when (direction) {
         Direction.WEST -> 3
         Direction.EAST -> 4
@@ -234,7 +248,7 @@ fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, dire
  */
 fun Player.hint(character: Character, arrow: Int = HintArrow.FILLED): Int {
     val viewport = viewport ?: return -1
-    val index = viewport.hints.firstOrNull { it == 0 } ?: return -1
+    val index = viewport.freeHint()
     val type = when (character) {
         is Player -> 10
         is NPC -> 1

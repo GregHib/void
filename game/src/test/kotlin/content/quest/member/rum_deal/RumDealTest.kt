@@ -11,6 +11,7 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.client.hint
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -550,27 +551,22 @@ class RumDealTest : WorldTest() {
         player["rum_deal_brewing_control"] = 1
         player.inventory.add("holy_wrench")
 
-        // An arrow belonging to some other content, which must survive. Written straight into
-        // the viewport because Player.hint always allocates slot 0 - see the note below.
-        val otherArrow = 3
-        player.viewport!!.hints[otherArrow] = 1
+        // An arrow belonging to some other content, which must survive
+        val otherArrow = player.hint(Tile(2143, 5101, 1))
 
         val controls = GameObjects.find(Tile(2143, 5100, 1), "braindeath_island_brewing_controls_multi")
         player.itemOnObject(controls, player.inventory.indexOf("holy_wrench"))
         tick(6)
 
         val spirit = NPCs.at(player.tile.regionLevel).first { it.id == "evil_spirit" }
-        val spiritArrow: Int = spirit["hint_index", -1]
-        assertTrue(spiritArrow != -1, "the spirit should record its arrow slot")
-        assertTrue(player.viewport!!.hints[spiritArrow] != 0)
+        val hints = player.viewport!!.hints
+        assertEquals(2, hints.count { it != 0 }, "the spirit's arrow should take a slot of its own")
 
         spirit.damage(5000, source = player)
         tick(6)
 
-        assertEquals(0, player.viewport!!.hints[spiritArrow], "the spirit's arrow should be gone")
-        assertTrue(player.viewport!!.hints[otherArrow] != 0, "other content's arrow must survive")
-        // Note: Player.hint uses firstOrNull instead of indexOfFirst, so it always returns slot 0
-        // and cannot currently allocate a second arrow. Clearing by index is still correct.
+        assertEquals(1, hints.count { it != 0 }, "the spirit's arrow should be gone")
+        assertTrue(hints[otherArrow] != 0, "other content's arrow must survive")
     }
 
     @Test
