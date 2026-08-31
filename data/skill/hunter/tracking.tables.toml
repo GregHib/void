@@ -5,12 +5,19 @@ xp = "int"             # xp * 0.1
 loot = "list<item>"
 catch_anim = "anim"
 limit = "int"          # maximum linking segments in a generated trail
+finals = "list<tile>"  # tiles of the attackable objects a trail can end at
 
 [.polar_kebbit]
 xp = 300
 loot = ["raw_beast_meat", "polar_kebbit_fur", "bones"]
 catch_anim = "noose_catch_polar"
 limit = 3
+finals = [
+    { x = 2708, y = 3819, level = 1 },
+    { x = 2712, y = 3831, level = 1 },
+    { x = 2716, y = 3827, level = 1 },
+    { x = 2718, y = 3820, level = 1 },
+]
 
 [.common_kebbit]
 level = 3
@@ -18,6 +25,28 @@ xp = 360
 loot = ["common_kebbit_fur", "bones", "raw_beast_meat"]
 catch_anim = "noose_catch_common"
 limit = 3
+finals = [
+    { x = 2349, y = 3604 },
+    { x = 2354, y = 3609 },
+    { x = 2355, y = 3601 },
+    { x = 2357, y = 3607 },
+    { x = 2360, y = 3602 },
+]
+
+[.desert_devil]
+level = 13
+xp = 660
+loot = ["bones", "raw_beast_meat", "desert_devil_fur"]
+catch_anim = "noose_catch_desert"
+limit = 3
+finals = [
+    { x = 3393, y = 3122 },
+    { x = 3400, y = 3114 },
+    { x = 3405, y = 3124 },
+    { x = 3407, y = 3121 },
+    { x = 3411, y = 3108 },
+    { x = 3414, y = 3121 },
+]
 
 
 # ---------------------------------------------------------------------------
@@ -179,3 +208,99 @@ varbit = "polar_kebbit_trail_1"
 tunnel = true
 start = { x = 2708, y = 3819, level = 1 }
 end = { x = 2711, y = 3819, level = 1 }
+
+[.desert_7]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_7"
+start = { x = 3396, y = 3106 }
+end = { x = 3393, y = 3122 }
+burrow = "desert_devil_burrow"
+
+[.desert_11]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_11"
+start = { x = 3396, y = 3106 }
+end = { x = 3400, y = 3114 }
+burrow = "desert_devil_burrow"
+
+[.desert_14]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_14"
+start = { x = 3396, y = 3106 }
+end = { x = 3411, y = 3108 }
+burrow = "desert_devil_burrow"
+
+[.desert_0]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_0"
+start = { x = 3402, y = 3131 }
+end = { x = 3393, y = 3122 }
+burrow = "desert_devil_burrow_2"
+
+[.desert_1]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_1"
+start = { x = 3402, y = 3131 }
+end = { x = 3405, y = 3124 }
+burrow = "desert_devil_burrow_2"
+
+[.desert_2]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_2"
+start = { x = 3402, y = 3131 }
+end = { x = 3414, y = 3121 }
+burrow = "desert_devil_burrow_2"
+
+[.desert_3]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_3"
+start = { x = 3396, y = 3121 }
+end = { x = 3393, y = 3122 }
+
+[.desert_4]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_4"
+start = { x = 3396, y = 3121 }
+end = { x = 3405, y = 3122 }
+
+[.desert_5]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_5"
+start = { x = 3405, y = 3122 }
+end = { x = 3409, y = 3121 }
+
+[.desert_6]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_6"
+start = { x = 3409, y = 3121 }
+end = { x = 3414, y = 3121 }
+
+[.desert_8]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_8"
+start = { x = 3396, y = 3121 }
+end = { x = 3400, y = 3114 }
+
+[.desert_9]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_9"
+start = { x = 3409, y = 3121 }
+end = { x = 3407, y = 3121 }
+
+[.desert_10]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_10"
+start = { x = 3411, y = 3114 }
+end = { x = 3411, y = 3108 }
+
+[.desert_12]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_12"
+start = { x = 3399, y = 3111 }
+end = { x = 3406, y = 3111 }
+
+[.desert_13]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_13"
+start = { x = 3406, y = 3111 }
+end = { x = 3411, y = 3108 }

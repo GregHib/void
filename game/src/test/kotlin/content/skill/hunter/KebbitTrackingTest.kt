@@ -99,6 +99,79 @@ class KebbitTrackingTest : WorldTest() {
         assertEquals(4, player["common_kebbit_trail_0", 0])
     }
 
+    // With FakeRandom the desert trail is always burrow -> trail_7 -> inv trail_3 -> trail_4 -> trail_5 -> trail_6,
+    // advanced at sand (3393,3122), rockslide (3405,3122), cactus (3409,3121), ending at sand (3414,3121)
+    @Test
+    fun `Track and catch a desert devil`() {
+        val player = createPlayer(Tile(3395, 3106))
+        player.inventory.add("noose_wand")
+        player.inventory.add("waterskin_4", 3)
+        player.levels.set(Skill.Hunter, 13)
+        val burrow = createObject("desert_devil_burrow", Tile(3396, 3106))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(4, player["desert_devil_trail_7", 0])
+
+        val sand = createObject("disturbed_sand", Tile(3393, 3122))
+        player.objectOption(sand, "Search")
+        tick(20)
+        assertEquals(5, player["desert_devil_trail_3", 0])
+
+        val rockslide = createObject("desert_rockslide_1", Tile(3405, 3122))
+        player.objectOption(rockslide, "Inspect")
+        tick(20)
+        assertEquals(4, player["desert_devil_trail_4", 0])
+
+        val cactus = createObject("desert_cactus_4", Tile(3409, 3121))
+        player.objectOption(cactus, "Inspect")
+        tick(15)
+        assertEquals(4, player["desert_devil_trail_5", 0])
+
+        val last = createObject("disturbed_sand", Tile(3414, 3121))
+        player.objectOption(last, "Search")
+        tick(15)
+        assertEquals(4, player["desert_devil_trail_6", 0])
+        player.objectOption(last, "Search")
+        tick(5)
+        assertTrue(player.containsMessage("something is moving around"))
+
+        player.objectOption(last, "Attack")
+        tick(5)
+        assertEquals(1, player.inventory.count("desert_devil_fur"))
+        assertEquals(1, player.inventory.count("bones"))
+        assertEquals(1, player.inventory.count("raw_beast_meat"))
+        assertEquals(66.0, player.experience.get(Skill.Hunter))
+        assertEquals(0, player["desert_devil_trail_7", 0])
+    }
+
+    @Test
+    fun `False trail digs up an old boot`() {
+        val player = createPlayer(Tile(3395, 3106))
+        player.inventory.add("noose_wand")
+        player.inventory.add("waterskin_4", 3)
+        player.levels.set(Skill.Hunter, 13)
+        val burrow = createObject("desert_devil_burrow", Tile(3396, 3106))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+
+        val wrong = createObject("disturbed_sand", Tile(3400, 3114))
+        player.objectOption(wrong, "Attack")
+        tick(15)
+        assertEquals(1, player.inventory.count("old_boot"))
+        assertEquals(0.0, player.experience.get(Skill.Hunter))
+        assertEquals(4, player["desert_devil_trail_7", 0])
+    }
+
+    @Test
+    fun `Can't track a desert devil below level 13`() {
+        val player = createPlayer(Tile(3395, 3106))
+        player.inventory.add("waterskin_4", 3)
+        val burrow = createObject("desert_devil_burrow", Tile(3396, 3106))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(0, player["desert_devil_trail_7", 0])
+    }
+
     @Test
     fun `Can't track a common kebbit below level 3`() {
         val player = createPlayer(Tile(2353, 3595))

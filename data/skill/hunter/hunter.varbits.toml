@@ -162,3 +162,64 @@ format = "int"
 id = 3061
 format = "int"
 
+
+[desert_devil_trail_0]
+id = 3016
+format = "int"
+
+[desert_devil_trail_1]
+id = 3017
+format = "int"
+
+[desert_devil_trail_2]
+id = 3018
+format = "int"
+
+[desert_devil_trail_3]
+id = 3019
+format = "int"
+
+[desert_devil_trail_4]
+id = 3020
+format = "int"
+
+[desert_devil_trail_5]
+id = 3021
+format = "int"
+
+[desert_devil_trail_6]
+id = 3022
+format = "int"
+
+[desert_devil_trail_7]
+id = 3023
+format = "int"
+
+[desert_devil_trail_8]
+id = 3024
+format = "int"
+
+[desert_devil_trail_9]
+id = 3025
+format = "int"
+
+[desert_devil_trail_10]
+id = 3026
+format = "int"
+
+[desert_devil_trail_11]
+id = 3027
+format = "int"
+
+[desert_devil_trail_12]
+id = 3030
+format = "int"
+
+[desert_devil_trail_13]
+id = 3031
+format = "int"
+
+[desert_devil_trail_14]
+id = 3032
+format = "int"
+

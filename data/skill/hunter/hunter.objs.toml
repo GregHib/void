@@ -424,3 +424,58 @@ id = 19640
 
 [polar_kebbit_hole_2]
 id = 19641
+
+# Desert devil tracking
+[desert_cactus_0]
+id = 19388
+
+[desert_cactus_1]
+id = 19389
+
+[desert_cactus_2]
+id = 19391
+
+[desert_cactus_3]
+id = 19392
+
+[desert_cactus_4]
+id = 19394
+
+[desert_cactus_5]
+id = 19395
+
+[desert_cactus_6]
+id = 19398
+
+[desert_cactus_7]
+id = 19399
+
+[desert_cactus_8]
+id = 19401
+
+[desert_rockslide_0]
+id = 19390
+
+[desert_rockslide_1]
+id = 19393
+
+[desert_rockslide_2]
+id = 19396
+
+[desert_rockslide_3]
+id = 19397
+
+[desert_rockslide_4]
+id = 19400
+
+[desert_rockslide_5]
+id = 19402
+
+[disturbed_sand]
+id = 19430
+
+[desert_devil_burrow]
+id = 19552
+
+[desert_devil_burrow_2]
+id = 19553

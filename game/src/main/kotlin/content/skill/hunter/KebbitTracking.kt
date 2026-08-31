@@ -33,19 +33,19 @@ class KebbitTracking : Script {
     private val trackingSteps = mutableMapOf<String, Int>()
 
     init {
-        objectOperate("Inspect", "common_kebbit_burrow,common_kebbit_burrow_2,polar_kebbit_hole,polar_kebbit_hole_2") { (target) ->
+        objectOperate("Inspect", "common_kebbit_burrow,common_kebbit_burrow_2,polar_kebbit_hole,polar_kebbit_hole_2,desert_devil_burrow,desert_devil_burrow_2") { (target) ->
             inspectBurrow(target)
         }
 
-        objectOperate("Inspect", "kebbit_tracks_plant_*,kebbit_tunnel_*,kebbit_hollow_log_*") { (target) ->
+        objectOperate("Inspect", "kebbit_tracks_plant_*,kebbit_tunnel_*,kebbit_hollow_log_*,desert_cactus_*,desert_rockslide_*") { (target) ->
             inspectTrail(target)
         }
 
-        objectOperate("Search", "kebbit_bush,kebbit_snow_drift") { (target) ->
+        objectOperate("Search", "kebbit_bush,kebbit_snow_drift,disturbed_sand") { (target) ->
             inspectTrail(target)
         }
 
-        objectOperate("Attack", "kebbit_bush,kebbit_snow_drift") { (target) ->
+        objectOperate("Attack", "kebbit_bush,kebbit_snow_drift,disturbed_sand") { (target) ->
             catch(target)
         }
 
@@ -54,7 +54,11 @@ class KebbitTracking : Script {
         }
     }
 
-    private fun kebbit(burrow: String) = if (burrow.startsWith("polar")) "polar_kebbit" else "common_kebbit"
+    private fun kebbit(id: String) = when {
+        id.startsWith("polar") -> "polar_kebbit"
+        id.startsWith("desert") -> "desert_devil"
+        else -> "common_kebbit"
+    }
 
     private fun segments(kebbit: String): List<Segment> = Tables.get("trails").rows().filter { it.string("kebbit") == kebbit }.map { row ->
         Segment(
@@ -73,8 +77,8 @@ class KebbitTracking : Script {
     private fun linkingPool(kebbit: String): List<Segment> {
         val base = segments(kebbit)
         val tunnels = tunnels(kebbit)
-        // Common kebbit starting segments only ever lead away from the burrow
-        val pool = if (kebbit == "common_kebbit") base.filter { it.burrow == null } else base
+        // Only polar kebbit trails can route back through a burrow's starting segments
+        val pool = if (kebbit == "polar_kebbit") base else base.filter { it.burrow == null }
         return pool + pool.map { inverse(it, tunnels) }
     }
 
@@ -88,12 +92,12 @@ class KebbitTracking : Script {
         burrow = null,
     )
 
-    private fun generate(kebbit: String, burrow: String, limit: Int): List<Segment>? {
+    private fun generate(kebbit: String, burrow: String, limit: Int, finals: List<Tile>): List<Segment>? {
         val trail = mutableListOf(segments(kebbit).filter { it.burrow == burrow }.random(random))
         val pool = linkingPool(kebbit)
         var spotsLeft = random.nextInt(2, limit + 1)
-        var tries = spotsLeft * 3
-        while (spotsLeft > 0) {
+        var tries = 20
+        while (spotsLeft > 0 || trail.last().end !in finals) {
             if (tries-- <= 0) {
                 return null
             }
@@ -144,7 +148,7 @@ class KebbitTracking : Script {
         if (!has(Skill.Hunter, row.int("level"), message = true)) {
             return
         }
-        val trail = generate(kebbit, target.id, row.int("limit"))
+        val trail = generate(kebbit, target.id, row.int("limit"), row.tileList("finals"))
         if (trail == null) {
             message("You search but find nothing of interest.")
             return
@@ -193,7 +197,11 @@ class KebbitTracking : Script {
         if (step != trail.lastIndex || trail[step].end != target.tile) {
             anim("noose_fail")
             delay(2)
-            message("You fail to find anything with your noose wand.")
+            if (target.id == "disturbed_sand" && inventory.add("old_boot")) {
+                message("The trail was false. You find an old boot buried in the sand.")
+            } else {
+                message("You fail to find anything with your noose wand.")
+            }
             return
         }
         anim(row.anim("catch_anim"))
