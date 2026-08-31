@@ -33,7 +33,7 @@ class KebbitTracking : Script {
     private val trackingSteps = mutableMapOf<String, Int>()
 
     init {
-        objectOperate("Inspect", "common_kebbit_burrow,common_kebbit_burrow_2,polar_kebbit_hole,polar_kebbit_hole_2,desert_devil_burrow,desert_devil_burrow_2,feldip_weasel_burrow,feldip_weasel_burrow_2") { (target) ->
+        objectOperate("Inspect", "common_kebbit_burrow,common_kebbit_burrow_2,common_kebbit_burrow_3,polar_kebbit_hole,polar_kebbit_hole_2,desert_devil_burrow,desert_devil_burrow_2,feldip_weasel_burrow,feldip_weasel_burrow_2,razor_backed_kebbit_burrow,razor_backed_kebbit_burrow_2,razor_backed_kebbit_burrow_3") { (target) ->
             inspectBurrow(target)
         }
 
@@ -41,11 +41,11 @@ class KebbitTracking : Script {
             inspectTrail(target)
         }
 
-        objectOperate("Search", "kebbit_bush,kebbit_snow_drift,disturbed_sand,weasel_bush") { (target) ->
+        objectOperate("Search", "kebbit_bush,kebbit_snow_drift,disturbed_sand,weasel_bush,razor_kebbit_bush") { (target) ->
             inspectTrail(target)
         }
 
-        objectOperate("Attack", "kebbit_bush,kebbit_snow_drift,disturbed_sand,weasel_bush") { (target) ->
+        objectOperate("Attack", "kebbit_bush,kebbit_snow_drift,disturbed_sand,weasel_bush,razor_kebbit_bush") { (target) ->
             catch(target)
         }
 
@@ -58,6 +58,7 @@ class KebbitTracking : Script {
         id.startsWith("polar") -> "polar_kebbit"
         id.startsWith("desert") -> "desert_devil"
         id.startsWith("feldip") -> "feldip_weasel"
+        id.startsWith("razor") -> "razor_backed_kebbit"
         else -> "common_kebbit"
     }
 

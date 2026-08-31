@@ -266,6 +266,75 @@ class KebbitTrackingTest : WorldTest() {
         assertEquals(0, player["feldip_weasel_trail_0", 0])
     }
 
+    // With FakeRandom the razor trail is always burrow -> trail_0 -> trail_5 -> inverse trail_11,
+    // advanced at bushes (2323,3563) then (2332,3568), ending at the bush (2327,3573)
+    @Test
+    fun `Track and catch a razor-backed kebbit`() {
+        val player = createPlayer(Tile(2330, 3562))
+        player.inventory.add("noose_wand")
+        player.levels.set(Skill.Hunter, 49)
+        val burrow = createObject("razor_backed_kebbit_burrow", Tile(2331, 3562))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(4, player["razor_backed_kebbit_trail_0", 0])
+
+        val first = createObject("razor_kebbit_bush", Tile(2332, 3568))
+        player.objectOption(first, "Search")
+        tick(15)
+        assertEquals(4, player["razor_backed_kebbit_trail_5", 0])
+
+        val last = createObject("razor_kebbit_bush", Tile(2327, 3573))
+        player.objectOption(last, "Search")
+        tick(15)
+        assertEquals(5, player["razor_backed_kebbit_trail_11", 0])
+        player.objectOption(last, "Search")
+        tick(5)
+        assertTrue(player.containsMessage("something is moving around"))
+
+        player.objectOption(last, "Attack")
+        tick(5)
+        assertEquals(1, player.inventory.count("long_kebbit_spike"))
+        assertEquals(1, player.inventory.count("raw_beast_meat"))
+        assertEquals(1, player.inventory.count("bones"))
+        assertEquals(348.0, player.experience.get(Skill.Hunter))
+        assertEquals(0, player["razor_backed_kebbit_trail_0", 0])
+    }
+
+    // With FakeRandom the north burrow trail is burrow -> trail_10 -> trail_18, trimmed short
+    // because nothing links onward from the bush at (2358,3620)
+    @Test
+    fun `Track a common kebbit from the north burrow`() {
+        val player = createPlayer(Tile(2356, 3624))
+        player.inventory.add("noose_wand")
+        player.levels.set(Skill.Hunter, 3)
+        val burrow = createObject("common_kebbit_burrow_3", Tile(2357, 3624))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(4, player["common_kebbit_trail_10", 0])
+
+        val last = createObject("kebbit_bush", Tile(2358, 3620))
+        player.objectOption(last, "Search")
+        tick(15)
+        assertEquals(4, player["common_kebbit_trail_18", 0])
+        player.objectOption(last, "Search")
+        tick(5)
+        assertTrue(player.containsMessage("something is moving around"))
+
+        player.objectOption(last, "Attack")
+        tick(5)
+        assertEquals(1, player.inventory.count("common_kebbit_fur"))
+        assertEquals(36.0, player.experience.get(Skill.Hunter))
+    }
+
+    @Test
+    fun `Can't track a razor-backed kebbit below level 49`() {
+        val player = createPlayer(Tile(2330, 3562))
+        val burrow = createObject("razor_backed_kebbit_burrow", Tile(2331, 3562))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(0, player["razor_backed_kebbit_trail_0", 0])
+    }
+
     @Test
     fun `Can't track a common kebbit below level 3`() {
         val player = createPlayer(Tile(2353, 3595))
