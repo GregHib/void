@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
@@ -128,6 +129,7 @@ class Pinball : Script {
             return
         }
         anim("take")
+        sound("pinball_post_tag")
         val tagged = POSTS.indexOfFirst { it.id == post.id }
         if (tagged != get("pinball_target", 0) - 1) {
             set("pinball_score", 0)
@@ -182,11 +184,17 @@ class Pinball : Script {
         }
     }
 
-    /** Reset the previous flashing post and start a new random one flashing; the target is 1-based. */
+    /**
+     * Reset the previous flashing post and start a new one flashing; the target is 1-based. The
+     * post that was just lit is excluded so the same one is never asked for twice in a row, which
+     * reads as the event having ignored the tag.
+     */
     private fun Player.lightNextPost() {
-        resetPost(get("pinball_target", 0) - 1)
-        val next = POSTS.indices.random(random)
+        val previous = get("pinball_target", 0) - 1
+        resetPost(previous)
+        val next = POSTS.indices.filter { it != previous }.random(random)
         animatePost(next, "pinball_post_flash")
+        sound("pinball_post_${next + 1}_lit")
         set("pinball_target", next + 1)
     }
 
