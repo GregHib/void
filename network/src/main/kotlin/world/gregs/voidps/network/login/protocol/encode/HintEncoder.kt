@@ -44,24 +44,22 @@ fun Client.arrowHint(
     radius: Int = 0,
     model: Int = 65535,
 ) = send(Protocol.HINT_ARROW) {
+    // The client always reads a fixed 12 byte body, so every form must be padded to it
     writeByte((arrowIndex shl 5) or type)
-    // Removals are a single byte; the client stops reading when the type is 0
-    if (type == 0) {
-        return@send
-    }
     writeByte(sprite)
-    if (sprite >= 0) {
-        if (type == 1 || type == 10) {
-            writeShort(entityIndex)
-            writeInt(0)
-            writeShort(0)
-        } else if (type in 2..6) {
-            writeByte(level) // level
-            writeShort(x) // x
-            writeShort(y) // y
-            writeByte(z) // z?
-            writeShort(radius)
-        }
-        writeShort(model)
+    if (type == 1 || type == 10) {
+        writeShort(entityIndex)
+        writeInt(0)
+        writeShort(0)
+    } else if (type in 2..6) {
+        writeByte(level) // level
+        writeShort(x) // x
+        writeShort(y) // y
+        writeByte(z) // z?
+        writeShort(radius)
+    } else {
+        writeInt(0)
+        writeInt(0)
     }
+    writeShort(model)
 }
