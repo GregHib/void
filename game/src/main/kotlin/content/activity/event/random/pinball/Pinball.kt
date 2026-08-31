@@ -4,6 +4,7 @@ import content.activity.event.random.RandomEvents
 import content.activity.event.random.kidnap
 import content.activity.event.random.mysteriousOldMan
 import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.poof
 import content.activity.event.random.returnHome
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Neutral
@@ -213,9 +214,7 @@ class Pinball : Script {
             player.npc<Neutral>("See you later!")
             oldMan.anim("emote_wave")
             player.delay(4)
-            oldMan.gfx("imp_puff")
-            player.delay(1)
-            NPCs.remove(oldMan)
+            oldMan.poof()
             player.statement("Tag the post with the $FLASHING_RINGS.", clickToContinue = false)
         }
 

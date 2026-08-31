@@ -1,9 +1,11 @@
 package content.activity.event.random
 
+import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -58,14 +60,35 @@ class RandomEventKidnap : Script {
 }
 
 /**
+ * Spawn an event's herald beside the player in a puff of smoke, watching them. Falls back to the
+ * player's own tile when there's no free tile alongside them, and despawns on its own after
+ * [ticks] in case the event never gets as far as teleporting the player away.
+ */
+fun Player.eventHerald(id: String, ticks: Int = 25): NPC {
+    val npc = NPCs.addRandom(id, tile.toCuboid(1), ticks = ticks, owner = this)
+        ?: NPCs.add(id, tile, ticks = ticks, owner = this)
+    npc.gfx("random_event_puff")
+    npc.watch(this)
+    return npc
+}
+
+/**
+ * Remove an event npc in a puff of smoke. The graphic is spawned on the npc's tile rather than
+ * flagged on the npc itself because [NPCs.remove] hides it for the rest of the tick, so any
+ * visual set on it in the same tick never reaches the client.
+ */
+fun NPC.poof() {
+    areaGfx("random_event_puff", tile)
+    NPCs.remove(this)
+}
+
+/**
  * The Mysterious Old Man appears beside the player to herald a teleport ("kidnap") event.
  * Kidnap-style launchers call this before [kidnap]; in-place events skip it and spawn their own
  * NPC via [startInPlaceEvent].
  */
 suspend fun Player.mysteriousOldMan() {
-    val npc = NPCs.addRandom("mysterious_old_man", tile.toCuboid(1), ticks = 25, owner = this)
-        ?: NPCs.add("mysterious_old_man", tile, ticks = 25, owner = this)
-    npc.watch(this)
+    val npc = eventHerald("mysterious_old_man")
     npc.say("Ah, $name, you'll do nicely!")
     delay(2)
 }

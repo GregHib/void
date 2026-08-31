@@ -1,8 +1,10 @@
 package content.activity.event.random.evil_twin
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.poof
 import content.activity.event.random.returnHome
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
@@ -139,9 +141,7 @@ class EvilTwin : Script {
         val hash = random.nextInt(LOOKS)
         set("evil_twin_hash", hash)
         // There's no choice about taking part: Molly appears, pleads, and whisks the player away.
-        val molly = NPCs.addRandom("molly_$hash", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("molly_$hash", tile, ticks = 25, owner = this)
-        molly.watch(this)
+        val molly = eventHerald("molly_$hash")
         molly.say(nagLines().random(random))
         delay(3)
         set("evil_twin_tries", TRIES)
@@ -300,8 +300,7 @@ class EvilTwin : Script {
         twin.anim("evil_twin_jailed")
         for (npc in NPCs.at(twin.tile.regionLevel)) {
             if (npc.id.startsWith("twin_suspect_") && npc != twin) {
-                npc.gfx("imp_puff")
-                NPCs.remove(npc)
+                npc.poof()
             }
         }
         delay(2)

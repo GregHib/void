@@ -1,6 +1,7 @@
 package content.activity.event.random.quiz_master
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -82,9 +83,7 @@ class QuizMaster : Script {
     }
 
     private suspend fun Player.quizHerald() {
-        val herald = NPCs.addRandom("quiz_master", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("quiz_master", tile, ticks = 25, owner = this)
-        herald.watch(this)
+        val herald = eventHerald("quiz_master")
         herald.say("Hey $name! It's your lucky day!")
         delay(2)
     }
