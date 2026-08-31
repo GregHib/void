@@ -8,10 +8,10 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.definition.PatrolDefinitions
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.mode.Patrol
 import world.gregs.voidps.engine.entity.character.mode.Retreat
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.queue.queue
 
 class Hans(
@@ -36,23 +36,18 @@ class Hans(
         npcOperate("Talk-to", "hans") { (target) ->
             scheduleResume(this, target, 10)
             npc<Neutral>("Hello. What are you doing here?")
-            when (choice(listOf(
-                "I'm looking for whoever is in charge of this place.",
-                "I have come to kill everyone in this castle!",
-                "I don't know. I'm lost. Where am I?",
-            ))) {
-                1 -> {
+            choice {
+                option<Neutral>("I'm looking for whoever is in charge of this place.") {
                     npc<Neutral>("Who, the Duke? He's in his study, on the first floor.")
                 }
-                2 -> {
+                option<EvilLaugh>("I have come to kill everyone in this castle!") {
                     target["hans_resume_nearest"] = true
                     target.say("Help! Help!")
                     target.mode = Retreat(target, this)
                 }
-                3 -> {
+                option<Confused>("I don't know. I'm lost. Where am I?") {
                     npc<Neutral>("You are in Lumbridge Castle.")
                 }
-                else -> Unit
             }
         }
     }
