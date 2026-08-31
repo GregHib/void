@@ -223,3 +223,64 @@ format = "int"
 id = 3032
 format = "int"
 
+
+[feldip_weasel_trail_0]
+id = 3036
+format = "int"
+
+[feldip_weasel_trail_1]
+id = 3037
+format = "int"
+
+[feldip_weasel_trail_2]
+id = 3038
+format = "int"
+
+[feldip_weasel_trail_3]
+id = 3039
+format = "int"
+
+[feldip_weasel_trail_4]
+id = 3040
+format = "int"
+
+[feldip_weasel_trail_5]
+id = 3041
+format = "int"
+
+[feldip_weasel_trail_6]
+id = 3043
+format = "int"
+
+[feldip_weasel_trail_7]
+id = 3044
+format = "int"
+
+[feldip_weasel_trail_8]
+id = 3045
+format = "int"
+
+[feldip_weasel_trail_9]
+id = 3046
+format = "int"
+
+[feldip_weasel_trail_10]
+id = 3047
+format = "int"
+
+[feldip_weasel_trail_11]
+id = 3048
+format = "int"
+
+[feldip_weasel_trail_12]
+id = 3049
+format = "int"
+
+[feldip_weasel_trail_13]
+id = 3050
+format = "int"
+
+[feldip_weasel_trail_14]
+id = 3051
+format = "int"
+

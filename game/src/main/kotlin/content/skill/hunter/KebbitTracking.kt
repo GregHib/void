@@ -33,19 +33,19 @@ class KebbitTracking : Script {
     private val trackingSteps = mutableMapOf<String, Int>()
 
     init {
-        objectOperate("Inspect", "common_kebbit_burrow,common_kebbit_burrow_2,polar_kebbit_hole,polar_kebbit_hole_2,desert_devil_burrow,desert_devil_burrow_2") { (target) ->
+        objectOperate("Inspect", "common_kebbit_burrow,common_kebbit_burrow_2,polar_kebbit_hole,polar_kebbit_hole_2,desert_devil_burrow,desert_devil_burrow_2,feldip_weasel_burrow,feldip_weasel_burrow_2") { (target) ->
             inspectBurrow(target)
         }
 
-        objectOperate("Inspect", "kebbit_tracks_plant_*,kebbit_tunnel_*,kebbit_hollow_log_*,desert_cactus_*,desert_rockslide_*") { (target) ->
+        objectOperate("Inspect", "kebbit_tracks_plant_*,kebbit_tunnel_*,kebbit_hollow_log_*,desert_cactus_*,desert_rockslide_*,feldip_plant_*") { (target) ->
             inspectTrail(target)
         }
 
-        objectOperate("Search", "kebbit_bush,kebbit_snow_drift,disturbed_sand") { (target) ->
+        objectOperate("Search", "kebbit_bush,kebbit_snow_drift,disturbed_sand,weasel_bush") { (target) ->
             inspectTrail(target)
         }
 
-        objectOperate("Attack", "kebbit_bush,kebbit_snow_drift,disturbed_sand") { (target) ->
+        objectOperate("Attack", "kebbit_bush,kebbit_snow_drift,disturbed_sand,weasel_bush") { (target) ->
             catch(target)
         }
 
@@ -57,6 +57,7 @@ class KebbitTracking : Script {
     private fun kebbit(id: String) = when {
         id.startsWith("polar") -> "polar_kebbit"
         id.startsWith("desert") -> "desert_devil"
+        id.startsWith("feldip") -> "feldip_weasel"
         else -> "common_kebbit"
     }
 
@@ -99,7 +100,7 @@ class KebbitTracking : Script {
         var tries = 20
         while (spotsLeft > 0 || trail.last().end !in finals) {
             if (tries-- <= 0) {
-                return null
+                return trim(trail, finals)
             }
             val previous = trail.last()
             val possible = if (previous.tunnel) {
@@ -108,16 +109,23 @@ class KebbitTracking : Script {
                 pool.filter { it.start == previous.end }
             }.filter { next -> trail.none { it.varbit == next.varbit } }
             if (possible.isEmpty()) {
-                if (trail.last().end in finals) {
-                    return trail
-                }
-                continue
+                return trim(trail, finals)
             }
             val next = possible.random(random)
             trail.add(next)
             if (!next.tunnel) {
                 spotsLeft--
             }
+        }
+        return trail
+    }
+
+    private fun trim(trail: MutableList<Segment>, finals: List<Tile>): List<Segment>? {
+        while (trail.size > 1 && trail.last().end !in finals) {
+            trail.removeAt(trail.lastIndex)
+        }
+        if (trail.last().end !in finals) {
+            return null
         }
         return trail
     }

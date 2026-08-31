@@ -33,6 +33,21 @@ finals = [
     { x = 2360, y = 3602 },
 ]
 
+[.feldip_weasel]
+level = 7
+xp = 480
+loot = ["feldip_weasel_fur", "bones", "raw_beast_meat"]
+catch_anim = "noose_catch_desert"
+limit = 3
+finals = [
+    { x = 2525, y = 2882 },
+    { x = 2531, y = 2890 },
+    { x = 2533, y = 2885 },
+    { x = 2540, y = 2886 },
+    { x = 2542, y = 2881 },
+    { x = 2553, y = 2888 },
+]
+
 [.desert_devil]
 level = 13
 xp = 660
@@ -304,3 +319,113 @@ kebbit = "desert_devil"
 varbit = "desert_devil_trail_13"
 start = { x = 3406, y = 3111 }
 end = { x = 3411, y = 3108 }
+
+[.feldip_0]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_0"
+start = { x = 2525, y = 2889 }
+end = { x = 2525, y = 2882 }
+burrow = "feldip_weasel_burrow"
+
+
+[.feldip_1]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_1"
+start = { x = 2525, y = 2889 }
+end = { x = 2525, y = 2882 }
+burrow = "feldip_weasel_burrow"
+
+
+[.feldip_2]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_2"
+start = { x = 2525, y = 2889 }
+end = { x = 2531, y = 2890 }
+burrow = "feldip_weasel_burrow"
+
+
+[.feldip_12]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_12"
+start = { x = 2554, y = 2882 }
+end = { x = 2542, y = 2881 }
+burrow = "feldip_weasel_burrow_2"
+
+
+[.feldip_13]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_13"
+start = { x = 2554, y = 2882 }
+end = { x = 2553, y = 2888 }
+burrow = "feldip_weasel_burrow_2"
+
+
+[.feldip_14]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_14"
+start = { x = 2554, y = 2882 }
+end = { x = 2553, y = 2888 }
+burrow = "feldip_weasel_burrow_2"
+
+
+[.feldip_3]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_3"
+start = { x = 2531, y = 2890 }
+end = { x = 2533, y = 2885 }
+
+
+[.feldip_4]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_4"
+start = { x = 2525, y = 2882 }
+end = { x = 2533, y = 2882 }
+
+
+[.feldip_5]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_5"
+start = { x = 2533, y = 2882 }
+end = { x = 2533, y = 2885 }
+
+
+[.feldip_6]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_6"
+start = { x = 2531, y = 2890 }
+end = { x = 2539, y = 2890 }
+
+
+[.feldip_7]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_7"
+start = { x = 2533, y = 2885 }
+end = { x = 2540, y = 2886 }
+
+
+[.feldip_8]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_8"
+start = { x = 2542, y = 2881 }
+end = { x = 2533, y = 2882 }
+
+
+[.feldip_9]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_9"
+start = { x = 2540, y = 2886 }
+end = { x = 2542, y = 2881 }
+
+
+[.feldip_10]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_10"
+start = { x = 2539, y = 2890 }
+end = { x = 2540, y = 2886 }
+
+
+[.feldip_11]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_11"
+start = { x = 2543, y = 2890 }
+end = { x = 2553, y = 2888 }

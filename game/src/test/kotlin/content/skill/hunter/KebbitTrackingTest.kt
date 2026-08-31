@@ -191,6 +191,49 @@ class KebbitTrackingTest : WorldTest() {
         assertEquals(0, player["desert_devil_trail_7", 0])
     }
 
+    // With FakeRandom the feldip trail is always burrow -> trail_0 -> trail_4 -> trail_5,
+    // advanced at the plant (2533,2882), ending at the bush (2533,2885)
+    @Test
+    fun `Track and catch a feldip weasel`() {
+        val player = createPlayer(Tile(2524, 2889))
+        player.inventory.add("noose_wand")
+        player.levels.set(Skill.Hunter, 7)
+        val burrow = createObject("feldip_weasel_burrow", Tile(2525, 2889))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(4, player["feldip_weasel_trail_0", 0])
+
+        val plant = createObject("feldip_plant_5", Tile(2533, 2882))
+        player.objectOption(plant, "Inspect")
+        tick(15)
+        assertEquals(4, player["feldip_weasel_trail_4", 0])
+
+        val bush = createObject("weasel_bush", Tile(2533, 2885))
+        player.objectOption(bush, "Search")
+        tick(10)
+        assertEquals(4, player["feldip_weasel_trail_5", 0])
+        player.objectOption(bush, "Search")
+        tick(5)
+        assertTrue(player.containsMessage("something is moving around"))
+
+        player.objectOption(bush, "Attack")
+        tick(5)
+        assertEquals(1, player.inventory.count("feldip_weasel_fur"))
+        assertEquals(1, player.inventory.count("bones"))
+        assertEquals(1, player.inventory.count("raw_beast_meat"))
+        assertEquals(48.0, player.experience.get(Skill.Hunter))
+        assertEquals(0, player["feldip_weasel_trail_0", 0])
+    }
+
+    @Test
+    fun `Can't track a feldip weasel below level 7`() {
+        val player = createPlayer(Tile(2524, 2889))
+        val burrow = createObject("feldip_weasel_burrow", Tile(2525, 2889))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(0, player["feldip_weasel_trail_0", 0])
+    }
+
     @Test
     fun `Can't track a common kebbit below level 3`() {
         val player = createPlayer(Tile(2353, 3595))

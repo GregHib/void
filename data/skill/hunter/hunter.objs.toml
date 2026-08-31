@@ -479,3 +479,58 @@ id = 19552
 
 [desert_devil_burrow_2]
 id = 19553
+
+# Feldip weasel tracking
+[feldip_plant_0]
+id = 19403
+
+[feldip_plant_1]
+id = 19404
+
+[feldip_plant_2]
+id = 19405
+
+[feldip_plant_3]
+id = 19406
+
+[feldip_plant_4]
+id = 19407
+
+[feldip_plant_5]
+id = 19408
+
+[feldip_plant_6]
+id = 19409
+
+[feldip_plant_7]
+id = 19410
+
+[feldip_plant_8]
+id = 19411
+
+[feldip_plant_9]
+id = 19412
+
+[feldip_plant_10]
+id = 19413
+
+[feldip_plant_11]
+id = 19414
+
+[feldip_plant_12]
+id = 19415
+
+[feldip_plant_13]
+id = 19416
+
+[feldip_plant_14]
+id = 19417
+
+[weasel_bush]
+id = 19427
+
+[feldip_weasel_burrow]
+id = 19594
+
+[feldip_weasel_burrow_2]
+id = 19593
