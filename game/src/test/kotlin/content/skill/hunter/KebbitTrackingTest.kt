@@ -144,6 +144,25 @@ class KebbitTrackingTest : WorldTest() {
         assertEquals(0, player["desert_devil_trail_7", 0])
     }
 
+    // The second desert segment runs inverted (sand at 3393,3122 back to the cactus at 3396,3121),
+    // so following the revealed tracks to the cactus must advance the trail too
+    @Test
+    fun `Inspecting the object at the end of an inverted segment advances the trail`() {
+        val player = createPlayer(Tile(3395, 3106))
+        player.inventory.add("waterskin_4", 3)
+        player.levels.set(Skill.Hunter, 13)
+        val burrow = createObject("desert_devil_burrow", Tile(3396, 3106))
+        player.objectOption(burrow, "Inspect")
+        tick(5)
+        assertEquals(4, player["desert_devil_trail_7", 0])
+
+        val cactus = createObject("desert_cactus_2", Tile(3396, 3121))
+        player.objectOption(cactus, "Inspect")
+        tick(20)
+        assertEquals(5, player["desert_devil_trail_3", 0])
+        assertTrue(player.containsMessage("You discover some tracks nearby"))
+    }
+
     @Test
     fun `False trail digs up an old boot`() {
         val player = createPlayer(Tile(3395, 3106))

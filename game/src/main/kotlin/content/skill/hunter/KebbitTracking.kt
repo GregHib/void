@@ -171,7 +171,7 @@ class KebbitTracking : Script {
             message("It looks like something is moving around in there.")
             return
         }
-        if (current.trigger == target.tile) {
+        if (current.trigger == target.tile || current.end == target.tile) {
             trackingSteps[accountName] = step + 1
             updateTrail(this)
             message("You discover some tracks nearby.")
