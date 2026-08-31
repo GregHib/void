@@ -36,7 +36,7 @@ class InPlaceRandomEvent : Script {
         val remaining = npc.dec("random_event_life", refresh = false)
         if (remaining <= 0) {
             RandomEvents.noteAndTeleport(owner)
-            NPCs.remove(npc)
+            npc.poof()
             return Timer.CANCEL
         }
         val interval = npc.get("random_event_nag_interval", DEFAULT_INTERVAL)
@@ -70,13 +70,12 @@ fun Player.startInPlaceEvent(
     lifetime: Int = 300,
     nagInterval: Int = 25,
 ): NPC {
-    val npc = NPCs.addRandom(id, tile.toCuboid(1), owner = this) ?: NPCs.add(id, tile, ticks = -1, owner = this)
+    val npc = eventHerald(id, ticks = -1)
     npc["random_event"] = get<String>("random_event") ?: id
     npc["random_event_life"] = lifetime
     npc["random_event_nag_interval"] = nagInterval
     npc["random_event_nag_lines"] = nagLines
     npc.mode = Follow(npc, this)
-    npc.watch(this)
     npc.softTimers.start(InPlaceRandomEvent.NAG_TIMER)
     return npc
 }
@@ -87,5 +86,5 @@ fun Player.startInPlaceEvent(
  */
 fun endInPlaceEvent(npc: NPC) {
     npc.softTimers.stop(InPlaceRandomEvent.NAG_TIMER)
-    NPCs.remove(npc)
+    npc.poof()
 }

@@ -1,6 +1,7 @@
 package content.activity.event.random.pillory
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.type.Tile
@@ -55,9 +55,7 @@ class Pillory : Script {
     }
 
     private suspend fun Player.pilloryGuard() {
-        val guard = NPCs.addRandom("pillory_guard", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("pillory_guard", tile, ticks = 25, owner = this)
-        guard.watch(this)
+        val guard = eventHerald("pillory_guard")
         guard.say("$name, you're under arrest!")
         delay(2)
     }

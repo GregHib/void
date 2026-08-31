@@ -1,6 +1,7 @@
 package content.activity.event.random.evil_bob
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -144,9 +145,7 @@ class EvilBob : Script {
     }
 
     private suspend fun Player.evilBobCatIntro() {
-        val cat = NPCs.addRandom("evil_bob_cat", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("evil_bob_cat", tile, ticks = 25, owner = this)
-        cat.watch(this)
+        val cat = eventHerald("evil_bob_cat")
         cat.say("Meow.")
         delay(2)
     }
