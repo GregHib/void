@@ -32,6 +32,8 @@ class KebbitTracking : Script {
 
     private val trackingTrails = mutableMapOf<String, List<Segment>>()
     private val trackingSteps = mutableMapOf<String, Int>()
+    private val segmentCache = mutableMapOf<String, List<Segment>>()
+    private val poolCache = mutableMapOf<String, List<Segment>>()
 
     init {
         objectOperate("Inspect", "common_kebbit_burrow,common_kebbit_burrow_2,common_kebbit_burrow_3,polar_kebbit_hole,polar_kebbit_hole_2,desert_devil_burrow,desert_devil_burrow_2,feldip_weasel_burrow,feldip_weasel_burrow_2,razor_backed_kebbit_burrow,razor_backed_kebbit_burrow_2,razor_backed_kebbit_burrow_3") { (target) ->
@@ -63,7 +65,9 @@ class KebbitTracking : Script {
         else -> "common_kebbit"
     }
 
-    private fun segments(kebbit: String): List<Segment> = Tables.get("trails").rows().filter { it.string("kebbit") == kebbit }.map { row ->
+    private fun segments(kebbit: String): List<Segment> = segmentCache.getOrPut(kebbit) { load(kebbit) }
+
+    private fun load(kebbit: String): List<Segment> = Tables.get("trails").rows().filter { it.string("kebbit") == kebbit }.map { row ->
         Segment(
             varbit = row.string("varbit"),
             tunnel = row.bool("tunnel"),
@@ -77,12 +81,12 @@ class KebbitTracking : Script {
 
     private fun tunnels(kebbit: String) = segments(kebbit).filter { it.tunnel }.flatMap { listOf(it.start, it.end) }.toSet()
 
-    private fun linkingPool(kebbit: String): List<Segment> {
+    private fun linkingPool(kebbit: String): List<Segment> = poolCache.getOrPut(kebbit) {
         val base = segments(kebbit)
         val tunnels = tunnels(kebbit)
         // Only polar kebbit trails can route back through a burrow's starting segments
         val pool = if (kebbit == "polar_kebbit") base else base.filter { it.burrow == null }
-        return pool + pool.map { inverse(it, tunnels) }
+        pool + pool.map { inverse(it, tunnels) }
     }
 
     private fun inverse(segment: Segment, tunnels: Set<Tile>) = Segment(

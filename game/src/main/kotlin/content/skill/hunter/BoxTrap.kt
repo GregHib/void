@@ -1,15 +1,12 @@
 package content.skill.hunter
 
 import content.entity.effect.transform
-import content.entity.player.inv.item.drop
 import content.quest.questCompleted
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.config.RowDefinition
-import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
@@ -26,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
-import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -89,12 +85,15 @@ class BoxTrap : Script {
                     return@huntNPC
                 }
             }
-            if (tile.distanceTo(target.tile) > 2) {
+            if (tile.distanceTo(target.tile) > 2 || target["caught", false]) {
                 return@huntNPC
             }
             transform("${id}_off")
             val chance = Traps.chance(this, creature)
             val success = Level.success(player.levels.get(Skill.Hunter), chance)
+            if (success) {
+                target["caught"] = true
+            }
             target.walkToDelay(tile)
             target.walkOverDelay(tile)
             despawn(100)
@@ -114,30 +113,7 @@ class BoxTrap : Script {
         }
 
         npcDespawn("hunting_box_trap_npc") {
-            val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@npcDespawn
-            GameObjects.remove(trap)
-            val bait: String? = get("bait")
-            val player = owner
-            if (player == null) {
-                FloorItems.add(trap.tile, "box_trap")
-                if (bait != null) {
-                    FloorItems.add(trap.tile, bait)
-                }
-                return@npcDespawn
-            }
-            player.dec("trap_count")
-            val drop = if (lifecycle == 0) {
-                player.message("The box trap that you laid has fallen over.")
-                true
-            } else {
-                player["logged_out", false]
-            }
-            if (drop) {
-                player.drop(trap.tile, "box_trap")
-                if (bait != null) {
-                    player.drop(trap.tile, bait)
-                }
-            }
+            Traps.despawn(this, "box_trap", "The box trap that you laid has fallen over.")
         }
     }
 
@@ -161,39 +137,7 @@ class BoxTrap : Script {
     }
 
     private suspend fun Player.layTrap(floorItem: FloorItem?) {
-        val trap = Rows.getOrNull("traps.box_trap") ?: return
-        val level = levels.get(Skill.Hunter)
-        if (!has(Skill.Hunter, trap.int("level"), message = true)) {
-            return
-        }
-        if (Areas.get(tile.zone).any { it.tags.contains("bank") } || GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
-            message("You can't lay a trap here.", ChatType.Filter)
-            return
-        }
-        val max = Traps.max(level, trap.int("max"))
-        val trapCount = get("trap_count", 0)
-        if (trapCount >= max) {
-            message("You may setup only $max ${"trap".plural(max)} at a time at your Hunter level.")
-            return
-        }
-        arriveDelay()
-        message("You begin setting up ${if (max == 1) "the" else "a"} trap.", ChatType.Filter)
-        anim("lay_trap")
-        sound("lay_box_trap")
-        delay(3)
-        if (GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
-            message("You can't lay a trap here.", ChatType.Filter)
-            return
-        }
-        if (floorItem != null) {
-            FloorItems.remove(floorItem)
-        } else {
-            inventory.remove("box_trap")
-        }
-        inc("trap_count")
-        NPCs.add("hunting_box_trap_npc", tile, ticks = 100, owner = this)
-        val obj = GameObjects.add("box_trap", tile)
-        stepAway(obj)
+        Traps.lay(this, "box_trap", "lay_box_trap", floorItem)
     }
 
     private suspend fun Player.dismantleTrap(target: GameObject, creature: RowDefinition?) {
@@ -211,6 +155,9 @@ class BoxTrap : Script {
         anim("take_trap")
         sound("trap_dismantle", delay = 25)
         delay(2)
+        if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND)?.id != target.id) {
+            return
+        }
         val added = inventory.transaction {
             for (item in items + loot) {
                 add(item)

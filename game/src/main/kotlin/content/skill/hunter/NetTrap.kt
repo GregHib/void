@@ -96,12 +96,15 @@ class NetTrap : Script {
             if (!player.has(Skill.Hunter, creature.int("level"))) {
                 return@huntNPC
             }
-            if (tile.distanceTo(target.tile) > 2) {
+            if (tile.distanceTo(target.tile) > 2 || target["caught", false]) {
                 return@huntNPC
             }
             transform("${id}_off")
-            var chance = Traps.chance(this, creature)
+            val chance = Traps.chance(this, creature)
             val success = Level.success(player.levels.get(Skill.Hunter), chance)
+            if (success) {
+                target["caught"] = true
+            }
             val trapId = creature.string("trap")
             target.walkToDelay(tile)
             target.delay(1)
@@ -130,10 +133,12 @@ class NetTrap : Script {
             val net = GameObjects.findOrNull(trap.tile.add(trap.direction()), "net")
             net?.remove()
             GameObjects.remove(trap)
+            val bait: String? = get("bait")
+            val items = if (bait != null) listOf("rope", "small_fishing_net", bait) else listOf("rope", "small_fishing_net")
             val player = owner
             if (player == null) {
-                for (item in listOf("rope", "small_fishing_net")) {
-                    FloorItems.add(tile, item)
+                for (item in items) {
+                    FloorItems.add(tile, item, disappearTicks = 200)
                 }
                 return@npcDespawn
             }
@@ -142,7 +147,7 @@ class NetTrap : Script {
                 player.message("The net trap that you set has collapsed.")
             }
             if (lifecycle == 0 || trap.id.endsWith("_net_failed") || player["logged_out", false]) {
-                for (item in listOf("rope", "small_fishing_net")) {
+                for (item in items) {
                     player.drop(tile, item)
                 }
             }

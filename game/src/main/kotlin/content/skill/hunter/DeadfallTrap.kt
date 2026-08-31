@@ -66,12 +66,15 @@ class DeadfallTrap : Script {
             if (!player.has(Skill.Hunter, creature.int("level"))) {
                 return@huntNPC
             }
-            if (tile.distanceTo(target.tile) > 3) {
+            if (tile.distanceTo(target.tile) > 3 || target["caught", false]) {
                 return@huntNPC
             }
             transform("${id}_off")
             val chance = Traps.chance(this, creature)
             val success = Level.success(player.levels.get(Skill.Hunter), chance)
+            if (success) {
+                target["caught"] = true
+            }
             target.walkToDelay(tile)
             despawn(100)
             val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
@@ -100,7 +103,7 @@ class DeadfallTrap : Script {
             GameObjects.remove(trap)
             val player = owner
             if (player == null) {
-                FloorItems.add(trap.tile, "logs")
+                FloorItems.add(trap.tile, "logs", disappearTicks = 200)
                 return@npcDespawn
             }
             player.dec("trap_count")
@@ -148,11 +151,13 @@ class DeadfallTrap : Script {
         anim("lay_trap")
         sound("set_deadfall")
         delay(3)
-        if (NPCs.findOrNull(target.tile, "hunting_deadfall_trap_npc") != null) {
+        if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND)?.id != "boulder_trap") {
             message("You can't lay a trap here.", ChatType.Filter)
             return
         }
-        inventory.remove("logs")
+        if (!inventory.remove("logs")) {
+            return
+        }
         inc("trap_count")
         inc("deadfall_count")
         NPCs.add("hunting_deadfall_trap_npc", target.tile, ticks = 100, owner = this)
@@ -177,6 +182,9 @@ class DeadfallTrap : Script {
         anim("take_trap")
         sound("take_branches", delay = 25)
         delay(2)
+        if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND)?.id != target.id) {
+            return
+        }
         collapse(this, npc, target)
         for (item in items) {
             inventory.add(item)
