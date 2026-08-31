@@ -55,7 +55,7 @@ respawn_delay = 10
 collision = "sky"
 examine = "A black warlock. The air seems to distort wherever it passes."
 
-[barb_tailed_kebbit_feldip_hills]
+[barb_tailed_kebbit]
 id = 5088
 examine = "It uses its tail to hunt and skewer fish."
 

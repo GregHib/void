@@ -128,10 +128,16 @@ id = 19178
 id = 28930
 
 # Box trap — triggered states
-[box_trap_grey_chinchompa]
+[box_trap_catching]
+id = 19188
+
+[box_trap_ferret]
+id = 19190
+
+[box_trap_chinchompa]
 id = 28557
 
-[box_trap_red_chinchompa]
+[box_trap_carnivorous_chinchompa]
 id = 28558
 
 [box_trap_pawya]
@@ -140,9 +146,31 @@ id = 28567
 [box_trap_grenwall]
 id = 28906
 
-# Boulder trap — triggered state
-[boulder_trap_barb_tailed_kebbit]
+# Boulder trap — falling boulder states (per creature, boulder mid-crush)
+[boulder_trap_wild_kebbit_catching]
+id = 19213
+
+[boulder_trap_barb_tailed_kebbit_catching]
+id = 19211
+
+[boulder_trap_prickly_kebbit_catching]
 id = 19207
+
+[boulder_trap_sabre_toothed_kebbit_catching]
+id = 19209
+
+# Boulder trap — caught states (boulder dropped on creature)
+[boulder_trap_wild_kebbit]
+id = 19215
+
+[boulder_trap_sabre_toothed_kebbit]
+id = 19216
+
+[boulder_trap_barb_tailed_kebbit]
+id = 19217
+
+[boulder_trap_prickly_kebbit]
+id = 19218
 
 [pitfall_sabre_toothed_kyatt_0]
 id = 19253
