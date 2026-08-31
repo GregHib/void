@@ -80,6 +80,10 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
     fun shutdown() {
         // Don't want to do Players.clear() otherwise don't know who to save.
         for (player in Players) {
+            // Area exit handlers key the difference between walking out and leaving the world off
+            // this, and a shutdown is the latter. Without it they'd tear down state the player is
+            // meant to log back in to, and the shutdown save would persist the wreckage.
+            player["logged_out"] = true
             Despawn.player(player)
         }
         Despawn.world()
