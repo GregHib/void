@@ -38,6 +38,11 @@ items = ["logs"]
 max = 1
 npc = "hunting_deadfall_trap_npc"
 
+[.magic_box]
+level = 71
+items = ["magic_box"]
+npc = "hunting_imptrap_npc"
+
 [.swamp_net]
 level = 29
 bait = "guam_tar"
@@ -257,6 +262,16 @@ fail_anim = "grenwall_fail"
 chance = [15, 130]
 bait = "raw_pawya_meat"
 loot = ["grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes"]
+
+[.imp]
+trap = "magic_box"
+caught_obj = "magic_box_caught"
+level = 71
+xp = 4500
+catch_anim = "imp_catch"
+fail_anim = "imp_fail"
+loot = ["imp_in_a_box_2"]
+chance = [15, 130]
 
 [.rabbit]
 trap = "rabbit_snare"

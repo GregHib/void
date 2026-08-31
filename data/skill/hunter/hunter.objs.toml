@@ -127,6 +127,18 @@ id = 19178
 [snare_wimpy_bird]
 id = 28930
 
+[magic_box]
+id = 19223
+
+[magic_box_fail]
+id = 19224
+
+[magic_box_catching]
+id = 19225
+
+[magic_box_caught]
+id = 19226
+
 # Box trap — triggered states
 [box_trap_catching]
 id = 19188

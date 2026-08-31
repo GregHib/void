@@ -56,6 +56,12 @@ id = 8602
 [grenwall_fail]
 id = 8602
 
+[imp_catch]
+id = 5218
+
+[imp_fail]
+id = 5285
+
 [kebbit_catch]
 id = 5275
 
