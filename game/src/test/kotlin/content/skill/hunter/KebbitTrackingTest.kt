@@ -144,6 +144,38 @@ class KebbitTrackingTest : WorldTest() {
         assertEquals(0, player["desert_devil_trail_7", 0])
     }
 
+    // The common trail's final segment has a side trigger at (2352,3603) — re-inspecting it once
+    // the trail is fully revealed must not advance the step past the final segment
+    @Test
+    fun `Re-inspecting the final segment's trigger doesn't break the trail`() {
+        val player = createPlayer(Tile(2353, 3595))
+        player.inventory.add("noose_wand")
+        player.levels.set(Skill.Hunter, 3)
+        startTrail(player)
+
+        val first = createObject("kebbit_tracks_plant_0", Tile(2358, 3599))
+        player.objectOption(first, "Inspect")
+        tick(10)
+        val second = createObject("kebbit_tracks_plant_1", Tile(2352, 3603))
+        player.objectOption(second, "Inspect")
+        tick(10)
+        assertEquals(4, player["common_kebbit_trail_4", 0])
+
+        player.objectOption(second, "Inspect")
+        tick(10)
+        assertTrue(player.containsMessage("You search but find nothing of interest"))
+
+        val bush = createObject("kebbit_bush", Tile(2349, 3604))
+        player.objectOption(bush, "Search")
+        tick(10)
+        assertTrue(player.containsMessage("something is moving around"))
+
+        player.objectOption(bush, "Attack")
+        tick(5)
+        assertEquals(1, player.inventory.count("common_kebbit_fur"))
+        assertEquals(36.0, player.experience.get(Skill.Hunter))
+    }
+
     // The second desert segment runs inverted (sand at 3393,3122 back to the cactus at 3396,3121),
     // so following the revealed tracks to the cactus must advance the trail too
     @Test

@@ -176,12 +176,16 @@ class KebbitTracking : Script {
             message("You search but find nothing.")
             return
         }
-        val step = trackingSteps[accountName] ?: 0
-        val current = if (step < trail.lastIndex) trail[step + 1] else trail[step]
-        if (step == trail.lastIndex && current.end == target.tile) {
-            message("It looks like something is moving around in there.")
+        val step = (trackingSteps[accountName] ?: 0).coerceAtMost(trail.lastIndex)
+        if (step == trail.lastIndex) {
+            if (trail[step].end == target.tile) {
+                message("It looks like something is moving around in there.")
+            } else {
+                message("You search but find nothing of interest.")
+            }
             return
         }
+        val current = trail[step + 1]
         if (current.trigger == target.tile || current.end == target.tile) {
             trackingSteps[accountName] = step + 1
             updateTrail(this)
@@ -201,7 +205,7 @@ class KebbitTracking : Script {
             message("You need a noose wand to catch the kebbit.")
             return
         }
-        val step = trackingSteps[accountName] ?: 0
+        val step = (trackingSteps[accountName] ?: 0).coerceAtMost(trail.lastIndex)
         val kebbit = kebbit(trail.first().varbit)
         val row = Rows.get("tracking.$kebbit")
         sound("hunting_noose")
