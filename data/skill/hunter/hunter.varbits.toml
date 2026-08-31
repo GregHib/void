@@ -86,3 +86,79 @@ values = ["empty", "spiked", "collapsed", "caught", "inverse"]
 [debug_traps]
 id = 3075
 format = "boolean"
+[common_kebbit_trail_0]
+id = 2974
+format = "int"
+
+[common_kebbit_trail_1]
+id = 2975
+format = "int"
+
+[common_kebbit_trail_2]
+id = 2976
+format = "int"
+
+[common_kebbit_trail_3]
+id = 2977
+format = "int"
+
+[common_kebbit_trail_4]
+id = 2978
+format = "int"
+
+[common_kebbit_trail_5]
+id = 2979
+format = "int"
+
+[common_kebbit_trail_6]
+id = 2980
+format = "int"
+
+[common_kebbit_trail_7]
+id = 2981
+format = "int"
+
+[common_kebbit_trail_8]
+id = 2982
+format = "int"
+
+[common_kebbit_trail_9]
+id = 2983
+format = "int"
+
+[polar_kebbit_trail_0]
+id = 3053
+format = "int"
+
+[polar_kebbit_trail_1]
+id = 3054
+format = "int"
+
+[polar_kebbit_trail_2]
+id = 3055
+format = "int"
+
+[polar_kebbit_trail_3]
+id = 3056
+format = "int"
+
+[polar_kebbit_trail_4]
+id = 3057
+format = "int"
+
+[polar_kebbit_trail_5]
+id = 3058
+format = "int"
+
+[polar_kebbit_trail_6]
+id = 3059
+format = "int"
+
+[polar_kebbit_trail_7]
+id = 3060
+format = "int"
+
+[polar_kebbit_trail_8]
+id = 3061
+format = "int"
+

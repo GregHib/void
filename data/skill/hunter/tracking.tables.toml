@@ -1,0 +1,181 @@
+[tracking]
+level = "int"
+level_default = 1
+xp = "int"             # xp * 0.1
+loot = "list<item>"
+catch_anim = "anim"
+limit = "int"          # maximum linking segments in a generated trail
+
+[.polar_kebbit]
+xp = 300
+loot = ["raw_beast_meat", "polar_kebbit_fur", "bones"]
+catch_anim = "noose_catch_polar"
+limit = 3
+
+[.common_kebbit]
+level = 3
+xp = 360
+loot = ["common_kebbit_fur", "bones", "raw_beast_meat"]
+catch_anim = "noose_catch_common"
+limit = 3
+
+
+# ---------------------------------------------------------------------------
+# Trail segments — burrow marks a starting segment for that burrow object,
+# trigger is the trail object inspected to advance (defaults to end)
+# ---------------------------------------------------------------------------
+[trails]
+kebbit = "string"
+varbit = "var"
+tunnel = "boolean"
+tunnel_default = false
+inverted = "boolean"
+inverted_default = false
+start = "tile"
+end = "tile"
+trigger = "tile"
+burrow = "obj"
+
+[.common_0]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_0"
+start = { x = 2354, y = 3595 }
+end = { x = 2360, y = 3602 }
+burrow = "common_kebbit_burrow"
+
+[.common_1]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_1"
+start = { x = 2354, y = 3595 }
+end = { x = 2355, y = 3601 }
+burrow = "common_kebbit_burrow"
+
+[.common_2]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_2"
+start = { x = 2354, y = 3594 }
+end = { x = 2349, y = 3604 }
+burrow = "common_kebbit_burrow"
+
+[.common_6]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_6"
+inverted = true
+start = { x = 2361, y = 3611 }
+end = { x = 2360, y = 3602 }
+burrow = "common_kebbit_burrow_2"
+
+[.common_7]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_7"
+inverted = true
+start = { x = 2360, y = 3612 }
+end = { x = 2357, y = 3607 }
+burrow = "common_kebbit_burrow_2"
+
+[.common_8]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_8"
+start = { x = 2357, y = 3607 }
+end = { x = 2354, y = 3609 }
+trigger = { x = 2355, y = 3608 }
+
+[.common_9]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_9"
+start = { x = 2354, y = 3609 }
+end = { x = 2349, y = 3604 }
+trigger = { x = 2351, y = 3608 }
+
+[.common_3]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_3"
+start = { x = 2360, y = 3602 }
+end = { x = 2355, y = 3601 }
+trigger = { x = 2358, y = 3599 }
+
+[.common_4]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_4"
+start = { x = 2355, y = 3601 }
+end = { x = 2349, y = 3604 }
+trigger = { x = 2352, y = 3603 }
+
+[.common_5]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_5"
+start = { x = 2360, y = 3602 }
+end = { x = 2357, y = 3607 }
+trigger = { x = 2358, y = 3603 }
+
+[.polar_8]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_8"
+tunnel = true
+start = { x = 2712, y = 3831, level = 1 }
+end = { x = 2718, y = 3832, level = 1 }
+burrow = "polar_kebbit_hole"
+
+[.polar_7]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_7"
+inverted = true
+start = { x = 2712, y = 3831, level = 1 }
+end = { x = 2716, y = 3827, level = 1 }
+trigger = { x = 2713, y = 3827, level = 1 }
+burrow = "polar_kebbit_hole"
+
+[.polar_4]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_4"
+start = { x = 2712, y = 3831, level = 1 }
+end = { x = 2708, y = 3819, level = 1 }
+trigger = { x = 2708, y = 3825, level = 1 }
+burrow = "polar_kebbit_hole"
+
+[.polar_0]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_0"
+inverted = true
+start = { x = 2718, y = 3820, level = 1 }
+end = { x = 2708, y = 3819, level = 1 }
+trigger = { x = 2712, y = 3815, level = 1 }
+burrow = "polar_kebbit_hole_2"
+
+[.polar_2]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_2"
+tunnel = true
+start = { x = 2718, y = 3820, level = 1 }
+end = { x = 2715, y = 3820, level = 1 }
+burrow = "polar_kebbit_hole_2"
+
+[.polar_3]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_3"
+tunnel = true
+start = { x = 2718, y = 3820, level = 1 }
+end = { x = 2721, y = 3827, level = 1 }
+burrow = "polar_kebbit_hole_2"
+
+[.polar_5]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_5"
+inverted = true
+start = { x = 2714, y = 3821, level = 1 }
+end = { x = 2716, y = 3827, level = 1 }
+
+[.polar_6]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_6"
+tunnel = true
+inverted = true
+start = { x = 2716, y = 3827, level = 1 }
+end = { x = 2718, y = 3829, level = 1 }
+
+[.polar_1]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_1"
+tunnel = true
+start = { x = 2708, y = 3819, level = 1 }
+end = { x = 2711, y = 3819, level = 1 }

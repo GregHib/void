@@ -261,3 +261,106 @@ id = 19233
 
 [pitfall_inverse_sabre_toothed_kyatt]
 id = 19236
+
+# Kebbit tracking
+[kebbit_tracks_plant_0]
+id = 19356
+
+[kebbit_tracks_plant_1]
+id = 19357
+
+[kebbit_tracks_plant_2]
+id = 19358
+
+[kebbit_tracks_plant_3]
+id = 19359
+
+[kebbit_tracks_plant_4]
+id = 19360
+
+[kebbit_tracks_plant_5]
+id = 19361
+
+[kebbit_tracks_plant_6]
+id = 19362
+
+[kebbit_tracks_plant_7]
+id = 19363
+
+[kebbit_tracks_plant_8]
+id = 19364
+
+[kebbit_tracks_plant_9]
+id = 19365
+
+[kebbit_tracks_plant_10]
+id = 19372
+
+[kebbit_tracks_plant_11]
+id = 19373
+
+[kebbit_tracks_plant_12]
+id = 19374
+
+[kebbit_tracks_plant_13]
+id = 19375
+
+[kebbit_tracks_plant_14]
+id = 19376
+
+[kebbit_tracks_plant_15]
+id = 19377
+
+[kebbit_tracks_plant_16]
+id = 19378
+
+[kebbit_tracks_plant_17]
+id = 19379
+
+[kebbit_tracks_plant_18]
+id = 19380
+
+[kebbit_tunnel_0]
+id = 19419
+
+[kebbit_tunnel_1]
+id = 19420
+
+[kebbit_tunnel_2]
+id = 19421
+
+[kebbit_tunnel_3]
+id = 19423
+
+[kebbit_tunnel_4]
+id = 19424
+
+[kebbit_tunnel_5]
+id = 19426
+
+[kebbit_hollow_log_0]
+id = 36688
+
+[kebbit_hollow_log_1]
+id = 36689
+
+[kebbit_hollow_log_2]
+id = 36690
+
+[kebbit_bush]
+id = 19428
+
+[kebbit_snow_drift]
+id = 19435
+
+[common_kebbit_burrow]
+id = 19439
+
+[common_kebbit_burrow_2]
+id = 19440
+
+[polar_kebbit_hole]
+id = 19640
+
+[polar_kebbit_hole_2]
+id = 19641

@@ -101,3 +101,12 @@ id = 5227
 [big_cat_death]
 id = 5234
 ticks = 2
+
+[noose_catch_polar]
+id = 5256
+
+[noose_catch_common]
+id = 5259
+
+[noose_fail]
+id = 5255
