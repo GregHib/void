@@ -45,6 +45,10 @@ fun Client.arrowHint(
     model: Int = 65535,
 ) = send(Protocol.HINT_ARROW) {
     writeByte((arrowIndex shl 5) or type)
+    // Removals are a single byte; the client stops reading when the type is 0
+    if (type == 0) {
+        return@send
+    }
     writeByte(sprite)
     if (sprite >= 0) {
         if (type == 1 || type == 10) {
