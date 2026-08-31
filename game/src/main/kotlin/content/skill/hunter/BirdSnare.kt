@@ -107,10 +107,14 @@ class BirdSnare : Script {
         }
 
         npcDespawn("hunting_ojibway_trap_npc") {
-            val player = owner ?: return@npcDespawn
             val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@npcDespawn
-            player.dec("trap_count")
             GameObjects.remove(trap)
+            val player = owner
+            if (player == null) {
+                FloorItems.add(trap.tile, "bird_snare")
+                return@npcDespawn
+            }
+            player.dec("trap_count")
             val drop = if (lifecycle == 0) {
                 player.message("The bird snare that you laid has fallen over.")
                 true

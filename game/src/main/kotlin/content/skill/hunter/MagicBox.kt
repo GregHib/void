@@ -101,10 +101,14 @@ class MagicBox : Script {
         }
 
         npcDespawn("hunting_imptrap_npc") {
-            val player = owner ?: return@npcDespawn
             val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@npcDespawn
-            player.dec("trap_count")
             GameObjects.remove(trap)
+            val player = owner
+            if (player == null) {
+                FloorItems.add(trap.tile, "magic_box")
+                return@npcDespawn
+            }
+            player.dec("trap_count")
             val drop = if (lifecycle == 0) {
                 player.message("The magic box that you activated has stopped working.")
                 true
@@ -252,6 +256,10 @@ class MagicBox : Script {
         anim("lay_trap")
         sound("lay_box_trap")
         delay(3)
+        if (GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
+            message("You can't lay a trap here.", ChatType.Filter)
+            return
+        }
         if (floorItem != null) {
             FloorItems.remove(floorItem)
         } else {

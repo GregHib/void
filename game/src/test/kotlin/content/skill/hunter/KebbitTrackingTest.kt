@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -333,6 +334,51 @@ class KebbitTrackingTest : WorldTest() {
         player.objectOption(burrow, "Inspect")
         tick(5)
         assertEquals(0, player["razor_backed_kebbit_trail_0", 0])
+    }
+
+    @Test
+    fun `Full inventory keeps the trail and gives no loot`() {
+        val player = createPlayer(Tile(2353, 3595))
+        player.inventory.add("noose_wand")
+        player.inventory.add("bones", 27)
+        player.levels.set(Skill.Hunter, 3)
+        startTrail(player)
+
+        val first = createObject("kebbit_tracks_plant_0", Tile(2358, 3599))
+        player.objectOption(first, "Inspect")
+        tick(10)
+        val second = createObject("kebbit_tracks_plant_1", Tile(2352, 3603))
+        player.objectOption(second, "Inspect")
+        tick(10)
+        val bush = createObject("kebbit_bush", Tile(2349, 3604))
+        player.objectOption(bush, "Attack")
+        tick(10)
+        assertTrue(player.containsMessage("You don't have enough inventory space"))
+        assertEquals(0.0, player.experience.get(Skill.Hunter))
+        assertEquals(4, player["common_kebbit_trail_0", 0])
+
+        player.inventory.remove("bones", 27)
+        player.objectOption(bush, "Attack")
+        tick(5)
+        assertEquals(1, player.inventory.count("common_kebbit_fur"))
+        assertEquals(36.0, player.experience.get(Skill.Hunter))
+    }
+
+    @Test
+    fun `Inspecting a burrow mid-trail starts a fresh trail`() {
+        val player = createPlayer(Tile(2353, 3595))
+        player.levels.set(Skill.Hunter, 3)
+        val burrow = startTrail(player)
+
+        val first = createObject("kebbit_tracks_plant_0", Tile(2358, 3599))
+        player.objectOption(first, "Inspect")
+        tick(10)
+        assertEquals(4, player["common_kebbit_trail_3", 0])
+
+        player.objectOption(burrow, "Inspect")
+        tick(10)
+        assertEquals(4, player["common_kebbit_trail_0", 0])
+        assertEquals(0, player["common_kebbit_trail_3", 0])
     }
 
     @Test

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -151,15 +152,12 @@ class KebbitTracking : Script {
     }
 
     private fun Player.inspectBurrow(target: GameObject) {
-        if (trackingTrails.containsKey(accountName)) {
-            inspectTrail(target)
-            return
-        }
         val kebbit = kebbit(target.id)
         val row = Rows.get("tracking.$kebbit")
         if (!has(Skill.Hunter, row.int("level"), message = true)) {
             return
         }
+        clearTrail(this)
         val trail = generate(kebbit, target.id, row.int("limit"), row.tileList("finals"))
         if (trail == null) {
             message("You search but find nothing of interest.")
@@ -222,8 +220,14 @@ class KebbitTracking : Script {
         }
         anim(row.anim("catch_anim"))
         delay(2)
-        for (item in row.itemList("loot")) {
-            inventory.add(item)
+        val added = inventory.transaction {
+            for (item in row.itemList("loot")) {
+                add(item)
+            }
+        }
+        if (!added) {
+            message("You don't have enough inventory space.")
+            return
         }
         exp(Skill.Hunter, row.int("xp") / 10.0)
         clearTrail(this)

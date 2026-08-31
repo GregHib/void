@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -126,11 +127,17 @@ class NetTrap : Script {
 
         npcDespawn("hunting_sapling_trap_npc") {
             val trap = GameObjects.getLayer(tile.add(direction.inverse()), ObjectLayer.GROUND) ?: return@npcDespawn
-            val player = owner ?: return@npcDespawn
-            player.dec("trap_count")
             val net = GameObjects.findOrNull(trap.tile.add(trap.direction()), "net")
             net?.remove()
             GameObjects.remove(trap)
+            val player = owner
+            if (player == null) {
+                for (item in listOf("rope", "small_fishing_net")) {
+                    FloorItems.add(tile, item)
+                }
+                return@npcDespawn
+            }
+            player.dec("trap_count")
             if (lifecycle == 0 || trap.id.endsWith("_net_failed")) {
                 player.message("The net trap that you set has collapsed.")
             }

@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -92,14 +93,18 @@ class DeadfallTrap : Script {
         }
 
         npcDespawn("hunting_deadfall_trap_npc") {
-            val player = owner ?: return@npcDespawn
             val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@npcDespawn
             if (trap.id == "boulder_trap") {
                 return@npcDespawn
             }
+            GameObjects.remove(trap)
+            val player = owner
+            if (player == null) {
+                FloorItems.add(trap.tile, "logs")
+                return@npcDespawn
+            }
             player.dec("trap_count")
             player.dec("deadfall_count")
-            GameObjects.remove(trap)
             val drop = if (lifecycle == 0) {
                 player.message("The deadfall trap that you constructed has collapsed.")
                 true
@@ -143,6 +148,10 @@ class DeadfallTrap : Script {
         anim("lay_trap")
         sound("set_deadfall")
         delay(3)
+        if (NPCs.findOrNull(target.tile, "hunting_deadfall_trap_npc") != null) {
+            message("You can't lay a trap here.", ChatType.Filter)
+            return
+        }
         inventory.remove("logs")
         inc("trap_count")
         inc("deadfall_count")

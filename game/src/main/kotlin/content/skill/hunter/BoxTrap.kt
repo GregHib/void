@@ -31,6 +31,7 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
 class BoxTrap : Script {
     init {
@@ -106,16 +107,25 @@ class BoxTrap : Script {
                 return@huntNPC
             }
             target.levels.set(Skill.Constitution, 0)
+            clear("bait")
             catching.replace(Tables.obj("creatures.${target.id}.caught_obj"))
             player.message("Something has been caught in your trap!")
             areaSound("box_trap_catch", tile)
         }
 
         npcDespawn("hunting_box_trap_npc") {
-            val player = owner ?: return@npcDespawn
             val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@npcDespawn
-            player.dec("trap_count")
             GameObjects.remove(trap)
+            val bait: String? = get("bait")
+            val player = owner
+            if (player == null) {
+                FloorItems.add(trap.tile, "box_trap")
+                if (bait != null) {
+                    FloorItems.add(trap.tile, bait)
+                }
+                return@npcDespawn
+            }
+            player.dec("trap_count")
             val drop = if (lifecycle == 0) {
                 player.message("The box trap that you laid has fallen over.")
                 true
@@ -124,7 +134,6 @@ class BoxTrap : Script {
             }
             if (drop) {
                 player.drop(trap.tile, "box_trap")
-                val bait: String? = get("bait")
                 if (bait != null) {
                     player.drop(trap.tile, bait)
                 }
@@ -172,6 +181,10 @@ class BoxTrap : Script {
         anim("lay_trap")
         sound("lay_box_trap")
         delay(3)
+        if (GameObjects.getLayer(tile, ObjectLayer.GROUND) != null) {
+            message("You can't lay a trap here.", ChatType.Filter)
+            return
+        }
         if (floorItem != null) {
             FloorItems.remove(floorItem)
         } else {
@@ -195,24 +208,21 @@ class BoxTrap : Script {
         if (loot.isEmpty() && bait != null) {
             items.add(bait)
         }
-        val size = items.size + loot.size
-        if (inventory.spaces < size) {
-            val slots = size - inventory.spaces
-            message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
-            return
-        }
         anim("take_trap")
         sound("trap_dismantle", delay = 25)
         delay(2)
-        collapse(npc, target)
-        for (item in items) {
-            inventory.add(item)
+        val added = inventory.transaction {
+            for (item in items + loot) {
+                add(item)
+            }
         }
+        if (!added) {
+            message("You don't have enough inventory space.")
+            return
+        }
+        collapse(npc, target)
         message("You dismantle the trap.", ChatType.Filter)
         if (creature != null) {
-            for (item in loot) {
-                inventory.add(item)
-            }
             exp(Skill.Hunter, creature.int("xp") / 10.0)
             message("You've caught a ${creature.rowId.toLowerSpaceCase()}!", ChatType.Filter)
         }

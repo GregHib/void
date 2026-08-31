@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -80,6 +81,58 @@ class BoxTrapTest : WorldTest() {
         } else {
             assertEquals(18, player.inventory.count("grenwall_spikes"))
         }
+    }
+
+    @Test
+    fun `Grenwall spikes stack when checking with few free slots`() {
+        val player = createPlayer()
+        val start = player.tile
+        player.inventory.add("box_trap")
+        player.inventory.add("raw_pawya_meat")
+        player.levels.set(Skill.Hunter, 99)
+
+        player.itemOption("Lay", "box_trap")
+        tick(3)
+        val laid = GameObjects.at(start).firstOrNull { it.id == "box_trap" }
+        assertNotNull(laid)
+        player.itemOnObject(laid, player.inventory.indexOf("raw_pawya_meat"))
+        tick(2)
+        player.inventory.add("bones", 26)
+        assertEquals(2, player.inventory.spaces)
+        createNPC("grenwall", player.tile.addY(2))
+
+        tick(22)
+
+        val trap = GameObjects.at(start).firstOrNull { it.id == "box_trap_grenwall" }
+        assertNotNull(trap)
+        player.objectOption(trap, "Check")
+        tick(3)
+        assertEquals(18, player.inventory.count("grenwall_spikes"))
+        assertEquals(1, player.inventory.count("box_trap"))
+    }
+
+    @Test
+    fun `Bait is not returned when a caught trap collapses`() {
+        val player = createPlayer()
+        val start = player.tile
+        player.inventory.add("box_trap")
+        player.inventory.add("papaya_fruit")
+        player.levels.set(Skill.Hunter, 99)
+
+        player.itemOption("Lay", "box_trap")
+        tick(3)
+        val laid = GameObjects.at(start).firstOrNull { it.id == "box_trap" }
+        assertNotNull(laid)
+        player.itemOnObject(laid, player.inventory.indexOf("papaya_fruit"))
+        tick(2)
+        createNPC("pawya", player.tile.addY(2))
+
+        tick(22)
+        assertNotNull(GameObjects.at(start).firstOrNull { it.id == "box_trap_pawya" })
+
+        tick(110)
+        assertEquals(1, FloorItems.at(start).count { it.id == "box_trap" })
+        assertEquals(0, FloorItems.at(start).count { it.id == "papaya_fruit" })
     }
 
     @Test
