@@ -34,14 +34,18 @@ class Hans(
         }
 
         npcOperate("Talk-to", "hans") { (target) ->
-            scheduleResume(this, target, 10)
+            var resumeFromNearest = false
+            var resumeDelay = 10
+            scheduleResume(this, target, resumeDelay) { resumeFromNearest }
             npc<Neutral>("Hello. What are you doing here?")
             choice {
                 option<Neutral>("I'm looking for whoever is in charge of this place.") {
                     npc<Neutral>("Who, the Duke? He's in his study, on the first floor.")
                 }
                 option<EvilLaugh>("I have come to kill everyone in this castle!") {
-                    target["hans_resume_nearest"] = true
+                    resumeFromNearest = true
+                    resumeDelay = 15
+                    scheduleResume(this, target, resumeDelay) { resumeFromNearest }
                     target.say("Help! Help!")
                     target.mode = Retreat(target, this)
                 }
@@ -52,15 +56,14 @@ class Hans(
         }
     }
 
-    private fun scheduleResume(player: Player, target: NPC, delay: Int) {
+    private fun scheduleResume(player: Player, target: NPC, delay: Int, nearest: () -> Boolean) {
         target.queue.clear("hans_resume_patrol")
         target.queue("hans_resume_patrol", delay) {
             if (player.dialogue != null) {
-                scheduleResume(player, target, 1)
+                scheduleResume(player, target, 1, nearest)
                 return@queue
             }
-            resumePatrol(target, nearest = target["hans_resume_nearest", false])
-            target.clear("hans_resume_nearest")
+            resumePatrol(target, nearest = nearest())
         }
     }
 
