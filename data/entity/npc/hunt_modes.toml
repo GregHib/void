@@ -162,3 +162,10 @@ id = "wild_kebbit,barb_tailed_kebbit,prickly_kebbit,sabre_toothed_kebbit"
 check_visual = "line_of_sight"
 check_not_busy = true
 find_keep_hunting = true
+
+[magic_box]
+type = "npc"
+id = "imp"
+check_visual = "line_of_sight"
+check_not_busy = true
+find_keep_hunting = true

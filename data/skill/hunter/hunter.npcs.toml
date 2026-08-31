@@ -24,7 +24,7 @@ id = 5091
 
 [hunting_imptrap_npc]
 id = 5101
-hunt_mode = "hunter_trap"
+hunt_mode = "magic_box"
 hunt_range = 2
 
 [hunting_imptrap_npc_off]
