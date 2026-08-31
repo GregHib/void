@@ -1,5 +1,6 @@
 package content.skill.hunter
 
+import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Tables
@@ -26,6 +27,20 @@ object Traps {
             return chance
         }
         return (chance.first + add)..(chance.last + add)
+    }
+
+    fun investigate(player: Player, npc: NPC) {
+        val bait: String? = npc["bait"]
+        if (bait != null) {
+            player.message("This trap has been baited with ${bait.toLowerSpaceCase()}.")
+        } else {
+            player.message("This trap has been set without any bait.")
+        }
+        if (npc["smoked", false]) {
+            player.message("The scent on this trap has been masked.")
+        } else {
+            player.message("Your scent lingers around this trap.")
+        }
     }
 
     fun smoke(player: Player, trap: String, tile: Tile) {

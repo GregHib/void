@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -63,12 +62,12 @@ class NetTrap : Script {
 
         objectOperate("Investigate", "net") { (target) ->
             val npc = NPCs.find(target.tile, "hunting_sapling_trap_npc")
-            investigate(npc)
+            Traps.investigate(this, npc)
         }
 
         objectOperate("Investigate", "*_net_setup") { (target) ->
             val npc = NPCs.find(target.tile.add(target.direction()), "hunting_sapling_trap_npc")
-            investigate(npc)
+            Traps.investigate(this, npc)
         }
 
         itemOnObjectOperate("*", "net,*_net_setup") { (target, item) ->
@@ -160,20 +159,6 @@ class NetTrap : Script {
         sound("drop_item", delay = 25)
         npc["bait"] = item.id
         message("You place a blob of tar on the net as bait.")
-    }
-
-    private fun Player.investigate(npc: NPC) {
-        val bait: String? = npc["bait"]
-        if (bait != null) {
-            message("This trap has been baited with ${bait.toLowerSpaceCase()}.")
-        } else {
-            message("This trap has been set without any bait.")
-        }
-        if (npc["smoked", false]) {
-            message("The scent on this trap has been masked.")
-        } else {
-            message("Your scent lingers around this trap.")
-        }
     }
 
     private suspend fun Player.layTrap(trapId: String, obj: GameObject) {
