@@ -101,16 +101,20 @@ class TzhaarFightCave(
             }
         }
 
+        // Logging out inside the cave; the instance is torn down and the player moved to the
+        // matching tile of the real region so they log back in outside of it. Leaving on foot
+        // never reaches here - the exit tile is inside this area too, so it isn't an area
+        // change - and cleans up in [leave] instead.
         exited("tzhaar_fight_cave_multi_area") {
             close("tzhaar_fight_cave")
             clearInstance()
-            if (get("logged_out", false) && wave != -1) {
-                // Save the player's relative position in the original region
-                val offset = tile.delta(tile.region.tile)
-                tele(region.tile.add(offset))
-            } else {
+            if (!get("logged_out", false) || wave == -1) {
                 clear("fight_cave_wave")
+                return@exited
             }
+            // Save the player's relative position in the original region
+            val offset = tile.delta(tile.region.tile)
+            tele(region.tile.add(offset))
         }
 
         /*
@@ -218,7 +222,9 @@ class TzhaarFightCave(
     fun Player.leave(wave: Int, defeatedJad: Boolean = false) {
         clear("fight_cave_wave")
         start("fight_cave_cooldown", TimeUnit.MINUTES.toSeconds(2).toInt(), epochSeconds())
+        close("tzhaar_fight_cave")
         tele(outside)
+        clearInstance()
         var tokkul = wave * (wave + 1)
         if (wave == 63 && defeatedJad) {
             tokkul += 4000
