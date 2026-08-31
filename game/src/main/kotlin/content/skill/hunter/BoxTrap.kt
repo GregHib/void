@@ -191,12 +191,9 @@ class BoxTrap : Script {
         }
         val loot = creature?.itemList("loot") ?: emptyList()
         val bait: String? = npc["bait"]
-        val items = mutableListOf<String>()
-        if (loot.isEmpty()) {
-            items.add("box_trap")
-            if (bait != null) {
-                items.add(bait)
-            }
+        val items = mutableListOf("box_trap")
+        if (loot.isEmpty() && bait != null) {
+            items.add(bait)
         }
         val size = items.size + loot.size
         if (inventory.spaces < size) {

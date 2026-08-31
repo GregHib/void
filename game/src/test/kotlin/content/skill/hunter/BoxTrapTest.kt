@@ -73,6 +73,7 @@ class BoxTrapTest : WorldTest() {
 
         player.objectOption(trap, "Check")
         tick(3)
+        assertEquals(1, player.inventory.count("box_trap"))
         assertNotEquals(0.0, player.experience.get(Skill.Hunter))
         if (id == "pawya") {
             assertEquals(1, player.inventory.count("raw_pawya_meat"))
