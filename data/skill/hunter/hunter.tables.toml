@@ -145,7 +145,7 @@ level = 27
 xp = 1152
 catch_anim = "ferret_catch"
 fail_anim = "ferret_fail"
-loot = ["box_trap", "ferret"]
+loot = ["ferret"]
 chance = [41, 255]
 
 [.chinchompa]
@@ -155,7 +155,7 @@ level = 53
 xp = 1984
 catch_anim = "chinchompa_catch"
 fail_anim = "chinchompa_fail"
-loot = ["box_trap", "chinchompa"]
+loot = ["chinchompa"]
 chance = [145, 268]
 
 [.carnivorous_chinchompa]
@@ -165,7 +165,7 @@ level = 63
 xp = 2650
 catch_anim = "chinchompa_catch"
 fail_anim = "chinchompa_fail"
-loot = ["box_trap", "red_chinchompa"]
+loot = ["red_chinchompa"]
 chance = [115, 228]
 
 [.wild_kebbit]
