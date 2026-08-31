@@ -108,6 +108,9 @@ class KebbitTracking : Script {
                 pool.filter { it.start == previous.end }
             }.filter { next -> trail.none { it.varbit == next.varbit } }
             if (possible.isEmpty()) {
+                if (trail.last().end in finals) {
+                    return trail
+                }
                 continue
             }
             val next = possible.random(random)

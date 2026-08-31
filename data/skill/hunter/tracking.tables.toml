@@ -284,19 +284,19 @@ end = { x = 3400, y = 3114 }
 [.desert_9]
 kebbit = "desert_devil"
 varbit = "desert_devil_trail_9"
-start = { x = 3409, y = 3121 }
+start = { x = 3406, y = 3111 }
 end = { x = 3407, y = 3121 }
 
 [.desert_10]
 kebbit = "desert_devil"
 varbit = "desert_devil_trail_10"
-start = { x = 3411, y = 3114 }
-end = { x = 3411, y = 3108 }
+start = { x = 3411, y = 3108 }
+end = { x = 3414, y = 3121 }
 
 [.desert_12]
 kebbit = "desert_devil"
 varbit = "desert_devil_trail_12"
-start = { x = 3399, y = 3111 }
+start = { x = 3400, y = 3114 }
 end = { x = 3406, y = 3111 }
 
 [.desert_13]
