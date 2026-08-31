@@ -296,3 +296,35 @@ loot = ["big_bones", "tatty_graahk_fur"]
 level = 55
 xp = 3000
 loot = ["big_bones", "tatty_kyatt_fur"]
+
+
+# ---------------------------------------------------------------------------
+# Falconry — keyed by the kebbit npc id
+# ---------------------------------------------------------------------------
+[falconry]
+level = "int"
+xp = "int"           # xp * 0.1
+fur = "item"
+caught = "npc"
+chance = "range"
+
+[.spotted_kebbit]
+level = 43
+xp = 1040
+fur = "spotted_kebbit_fur"
+caught = "spotted_kebbit_caught"
+chance = [26, 310]
+
+[.dark_kebbit]
+level = 57
+xp = 1320
+fur = "dark_kebbit_fur"
+caught = "dark_kebbit_caught"
+chance = [0, 253]
+
+[.dashing_kebbit]
+level = 69
+xp = 1560
+fur = "dashing_kebbit_fur"
+caught = "dashing_kebbit_caught"
+chance = [0, 205]
