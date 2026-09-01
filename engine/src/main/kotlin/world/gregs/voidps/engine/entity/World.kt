@@ -80,6 +80,7 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
     fun shutdown() {
         // Don't want to do Players.clear() otherwise don't know who to save.
         for (player in Players) {
+            player["logged_out"] = true
             Despawn.player(player)
         }
         Despawn.world()

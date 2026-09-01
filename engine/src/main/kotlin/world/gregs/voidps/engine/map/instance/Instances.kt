@@ -33,6 +33,8 @@ object Instances {
 
     fun isInstance(region: Region): Boolean = used.contains(region)
 
+    fun reserved(region: Region): Boolean = region.x > FREE_REGION_X
+
     fun free(instance: Region) {
         if (!used.remove(instance)) {
             return

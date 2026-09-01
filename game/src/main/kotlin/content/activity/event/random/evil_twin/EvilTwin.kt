@@ -1,8 +1,10 @@
 package content.activity.event.random.evil_twin
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
+import content.activity.event.random.poof
 import content.activity.event.random.returnHome
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
@@ -34,7 +36,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.jingle
-import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -139,9 +141,7 @@ class EvilTwin : Script {
         val hash = random.nextInt(LOOKS)
         set("evil_twin_hash", hash)
         // There's no choice about taking part: Molly appears, pleads, and whisks the player away.
-        val molly = NPCs.addRandom("molly_$hash", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("molly_$hash", tile, ticks = 25, owner = this)
-        molly.watch(this)
+        val molly = eventHerald("molly_$hash")
         molly.say(nagLines().random(random))
         delay(3)
         set("evil_twin_tries", TRIES)
@@ -175,7 +175,9 @@ class EvilTwin : Script {
         val host = NPCs.add("molly_$hash", MOLLY_TILE.add(offset), ticks = -1, owner = this)
         host.watch(this)
         if (get("evil_twin_caught", false)) {
-            NPCs.add("twin_suspect_$hash", JAIL.add(offset), ticks = -1, owner = this)
+            val twin = NPCs.add("twin_suspect_$hash", JAIL.add(offset), ticks = -1, owner = this)
+            twin.mode = PauseMode
+            twin.face(Direction.NORTH)
         } else {
             spawnSuspects(hash, PEN.offset(offset))
         }
@@ -257,7 +259,7 @@ class EvilTwin : Script {
         }
         val look = suspect.id.removePrefix("twin_suspect_").toInt()
         val twin = look == get("evil_twin_hash", 0)
-        suspect.mode = EmptyMode
+        suspect.mode = PauseMode
         suspect.anim("evil_twin_lifted")
         suspect.gfx("evil_twin_lifted")
         turnCamera(JAIL.add(offset), CLAW_HEIGHT)
@@ -266,15 +268,16 @@ class EvilTwin : Script {
         removeClaw() // The claw leaves with her, and swings back once she's been dropped off
         suspect.transform("twin_suspect_carried_$look", collision = false)
         suspect.walkOverDelay(JAIL.add(offset))
+        suspect.mode = PauseMode
         sound("evil_twin_claw_lower")
         suspect.anim("evil_twin_claw_lower")
         delay(3)
         suspect.clearTransform()
-        suspect.face(tile)
         sound("evil_twin_claw_drop")
         if (twin) {
             catchTwin(suspect)
         } else {
+            suspect.face(tile)
             message("You caught an innocent civilian!")
             suspect.say("You're putting me in prison?!")
             delay(2)
@@ -288,13 +291,12 @@ class EvilTwin : Script {
         message("You caught the evil twin!")
         set("evil_twin_caught", true)
         jingle("twin_is_caught")
-        twin.face(Direction.NORTH)
         delay(2)
+        twin.face(Direction.NORTH)
         twin.anim("evil_twin_jailed")
         for (npc in NPCs.at(twin.tile.regionLevel)) {
             if (npc.id.startsWith("twin_suspect_") && npc != twin) {
-                npc.gfx("imp_puff")
-                NPCs.remove(npc)
+                npc.poof()
             }
         }
         delay(2)

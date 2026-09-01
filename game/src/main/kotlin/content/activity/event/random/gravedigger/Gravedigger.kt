@@ -1,6 +1,7 @@
 package content.activity.event.random.gravedigger
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -108,9 +109,7 @@ class Gravedigger : Script {
             return
         }
         // There's no choice about taking part: Leo appears, asks, and whisks the player away.
-        val leo = NPCs.addRandom("leo_gravedigger", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("leo_gravedigger", tile, ticks = 25, owner = this)
-        leo.watch(this)
+        val leo = eventHerald("leo_gravedigger")
         leo.say("Can I borrow you for a minute, $name?")
         delay(3)
         set("gravedigger_started", true)

@@ -186,6 +186,7 @@ object Target {
             0
         }
         is NPC if target.id == "harpie_bug_swarm" && source is Player && source.equipped(EquipSlot.Shield).id != "lit_bug_lantern" -> 0
+        is NPC if target.id.startsWith("pheasant") -> target.levels.get(Skill.Constitution)
         is NPC if target.def.contains("damage_cap") -> damage.coerceAtMost(target.def["damage_cap"])
         is NPC if target.def.contains("immune_death") -> damage.coerceAtMost(target.levels.get(Skill.Constitution) - 10)
         is NPC if target.id.endsWith("_impling") -> 0

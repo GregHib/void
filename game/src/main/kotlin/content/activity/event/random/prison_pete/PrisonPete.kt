@@ -1,6 +1,7 @@
 package content.activity.event.random.prison_pete
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -102,9 +103,7 @@ class PrisonPete : Script {
 
     /** The prison is Evil Bob's, so his cat does the kidnapping instead of the Mysterious Old Man. */
     private suspend fun Player.catIntro() {
-        val cat = NPCs.addRandom("evil_bob_cat", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("evil_bob_cat", tile, ticks = 25, owner = this)
-        cat.watch(this)
+        val cat = eventHerald("evil_bob_cat")
         cat.say("Meow.")
         delay(2)
     }

@@ -1,13 +1,26 @@
 package content.activity.event.random
 
 import WorldTest
+import content.quest.instance
+import content.quest.instanceOffset
 import dialogueOption
+import kotlinx.coroutines.runBlocking
+import npcOption
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.client.instruction.Walk
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -16,6 +29,7 @@ class QuizMasterTest : WorldTest() {
     override var loadNpcs: Boolean = true
 
     private val origin = Tile(3221, 3218)
+    private val seat = Tile(1952, 4764, 1)
     private val quiz = "dialogue_macro_quiz_show"
 
     /** Runs the event and skips the intro so the first question interface is open. */
@@ -46,6 +60,29 @@ class QuizMasterTest : WorldTest() {
     }
 
     @Test
+    fun `The player is sat facing north on a tick after they land`() {
+        val player = createPlayer(origin, "quiz_facing")
+        RandomEvents.start(player, "quiz_master")
+
+        var landed = -1
+        var sat = -1
+        for (t in 0 until 12) {
+            tick()
+            if (landed == -1 && player.tile.minus(player.instanceOffset()) == seat) {
+                landed = t
+            }
+            if (sat == -1 && player.visuals.animation.force == AnimationDefinitions.get("quiz_show_sit").id) {
+                sat = t
+            }
+        }
+
+        assertNotNull(player.instance(), "Each contestant gets their own studio")
+        assertTrue(landed != -1, "Player should be teleported to the seat")
+        assertTrue(sat > landed, "Sat on tick $sat, landed on tick $landed - the turn would be lost")
+        assertEquals(Direction.NORTH, player.direction)
+    }
+
+    @Test
     fun `A correct answer counts and a wrong one does not`() {
         val player = enter("quiz_answer")
 
@@ -72,7 +109,75 @@ class QuizMasterTest : WorldTest() {
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))
+        assertNull(player.instance(), "The studio should be torn down on the way out")
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
+    }
+
+    @Test
+    fun `Clicking away puts the same question straight back up`() {
+        val player = enter("quiz_softlock")
+        assertTrue(player.interfaces.contains(quiz))
+        val answer = player.get("quiz_answer", 0)
+
+        runBlocking { player.instructions.send(Walk(player.tile.x + 2, player.tile.y, minimap = true)) }
+        tick(3)
+
+        assertTrue(player.interfaces.contains(quiz), "The question should come straight back")
+        assertEquals(answer, player.get("quiz_answer", 0), "Clicking away shouldn't reroll the answer")
+
+        player.pickAnswer()
+        player.skipDialogues()
+        tick()
+        assertEquals(1, player.get("quiz_correct", 0), "The show carries on from the same score")
+    }
+
+    @Test
+    fun `Talking to the Quiz Master again restarts a show that was clicked out of`() {
+        val player = createPlayer(origin, "quiz_intro")
+        RandomEvents.start(player, "quiz_master")
+        tick(10)
+        assertNotNull(player.dialogue, "The intro should be running")
+
+        player.closeDialogue()
+        tick(3)
+        assertNull(player.dialogue)
+        assertFalse(player.interfaces.contains(quiz))
+
+        player.npcOption(NPCs.find(player.tile.regionLevel, "quiz_master"), "Talk-to")
+        tick(6)
+
+        assertTrue(player.interfaces.contains(quiz), "Talking to him should put the show back on")
+    }
+
+    @Test
+    fun `Resuming the show sits the contestant back down`() {
+        val player = enter("quiz_reseat")
+        val sitAnim = AnimationDefinitions.get("quiz_show_sit").id
+
+        player.closeDialogue()
+        var reseated = false
+        for (t in 0 until 6) {
+            tick()
+            if (player.visuals.animation.force == sitAnim) {
+                reseated = true
+            }
+        }
+
+        assertTrue(reseated, "The sit animation should be sent again with the question")
+        assertEquals(Direction.NORTH, player.direction)
+        assertTrue(player.interfaces.contains(quiz))
+    }
+
+    @Test
+    fun `Two contestants get their own studio`() {
+        val first = enter("quiz_one")
+        val second = enter("quiz_two")
+
+        assertNotNull(first.instance())
+        assertNotNull(second.instance())
+        assertNotEquals(first.instance(), second.instance(), "Contestants shouldn't share a seat")
+        assertEquals(first.tile.minus(first.instanceOffset()), second.tile.minus(second.instanceOffset()))
+        assertNotEquals(first.tile, second.tile)
     }
 }
