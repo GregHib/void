@@ -12,8 +12,6 @@ class AlKharidWarrior : Script {
 
     init {
         npcSpawn("al_kharid_warrior") {
-            hide = false
-            dead = false
             clear("al_kharid_warrior_called_for_help")
             clear("al_kharid_warrior_assisted")
         }
