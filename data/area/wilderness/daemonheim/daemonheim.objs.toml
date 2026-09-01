@@ -6,3 +6,7 @@ examine = "This leads into the dungeons of Daemonheim."
 id = 50552
 
 examine = "One-way: down."
+
+[tent_daemonheim]
+id = 48404
+examine = "A tent."
