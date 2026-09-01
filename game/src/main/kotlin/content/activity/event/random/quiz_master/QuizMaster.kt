@@ -89,8 +89,7 @@ class QuizMaster : Script {
         // the podium is always four tiles north of the seat.
         delay(1)
         talkWith(master)
-        face(Direction.NORTH)
-        anim("quiz_show_sit")
+        sit()
         intro()
         runQuiz()
     }
@@ -112,6 +111,10 @@ class QuizMaster : Script {
 
     /** [resume] re-shows the question already in play rather than rolling a fresh one. */
     private suspend fun Player.runQuiz(resume: Boolean = false) {
+        if (resume) {
+            // Clicking away stands the contestant up and turns them; put them back in the chair.
+            sit()
+        }
         if (!resume || !contains("quiz_models")) {
             rollQuestion()
         }
@@ -127,6 +130,12 @@ class QuizMaster : Script {
             rollQuestion()
         }
         win()
+    }
+
+    /** Face the podium and drop into the chair. */
+    private fun Player.sit() {
+        face(Direction.NORTH)
+        anim("quiz_show_sit")
     }
 
     private suspend fun Player.quizHerald() {

@@ -157,6 +157,26 @@ class QuizMasterTest : WorldTest() {
     }
 
     @Test
+    fun `Resuming the show sits the contestant back down`() {
+        val player = enter("quiz_reseat")
+        val sitAnim = AnimationDefinitions.get("quiz_show_sit").id
+
+        // Clicking away stands them up; the re-shown question has to put them back in the chair.
+        player.closeDialogue()
+        var reseated = false
+        for (t in 0 until 6) {
+            tick()
+            if (player.visuals.animation.force == sitAnim) {
+                reseated = true
+            }
+        }
+
+        assertTrue(reseated, "The sit animation should be sent again with the question")
+        assertEquals(Direction.NORTH, player.direction)
+        assertTrue(player.interfaces.contains(quiz))
+    }
+
+    @Test
     fun `Two contestants get their own studio`() {
         val first = enter("quiz_one")
         val second = enter("quiz_two")
