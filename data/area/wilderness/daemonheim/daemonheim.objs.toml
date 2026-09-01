@@ -7,6 +7,22 @@ id = 50552
 
 examine = "One-way: down."
 
+[daemonheim_staircase_up]
+id = 48611
+examine = "It goes up to the floor below."
+
+[daemonheim_staircase_up_2]
+id = 48612
+examine = "It goes up to the floor above."
+
+[daemonheim_staircase_down]
+id = 50567
+examine = "It goes down to the floor below."
+
+[daemonheim_staircase_down_2]
+id = 50568
+examine = "It goes down to the floor below."
+
 [tent_daemonheim]
 id = 48404
 examine = "A tent."
