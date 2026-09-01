@@ -35,18 +35,12 @@ class Sandy : Script {
                     npc<Angry>("I don't have time to talk to you. Go away!")
                     distractionAttempt()
                 }
-                "activate_orb" -> statement(
-                    "You need to activate the magical scrying orb, obtained from the " +
-                        "wizard in Yanille, to capture the conversation with Sandy!",
-                )
+                "activate_orb" -> statement("You need to activate the magical scrying orb, obtained from the wizard in Yanille, to capture the conversation with Sandy!")
                 "interrogate_sandy" -> {
                     if (inventory.contains("magical_orb_active")) {
                         interrogation()
                     } else {
-                        statement(
-                            "Don't forget you need to capture what Sandy says on the magical " +
-                                "scrying orb that the wizard in Yanille gave you!",
-                        )
+                        statement("Don't forget you need to capture what Sandy says on the magical scrying orb that the wizard in Yanille gave you!")
                     }
                 }
                 else -> npc<Angry>("I don't have time to talk to you. Go away!")
@@ -85,11 +79,7 @@ class Sandy : Script {
         player<Neutral>("Hello Sir, do you run the Sand Corp?")
         npc<Shifty>("Who wants to know?")
         player<Neutral>("I'm $name. I'm here investigating the possible murder of a wizard.")
-        npc<Angry>(
-            "I don't care about that, I have far too much work to " +
-                "do. Let the authorities take care of things like murder " +
-                "and stop snooping around my office!",
-        )
+        npc<Angry>("I don't care about that, I have far too much work to do. Let the authorities take care of things like murder and stop snooping around my office!")
         statement("Sandy seems very keen to get you out of the office, perhaps you should take a look around.")
     }
 
@@ -157,21 +147,14 @@ class Sandy : Script {
             if (q2) {
                 option<Quiz>("Why doesn't Bert remember the change in his hours?") {
                     set("handsand_question2", false)
-                    npc<Neutral>(
-                        "Because.... because.... I bribed a wizard to put a spell " +
-                            "on him so he would believe everything I say!!",
-                    )
+                    npc<Neutral>("Because.... because.... I bribed a wizard to put a spell on him so he would believe everything I say!!")
                     askQuestions()
                 }
             }
             if (q3) {
                 option<Quiz>("What happened to the wizard?") {
                     set("handsand_question3", false)
-                    npc<Angry>(
-                        "I...I... I KILLED HIM! So I wouldn't have to pay him " +
-                            "and no one would know. I put his body in the next " +
-                            "load of sand.",
-                    )
+                    npc<Angry>("I...I... I KILLED HIM! So I wouldn't have to pay him and no one would know. I put his body in the next load of sand.")
                     askQuestions()
                 }
             }
@@ -183,16 +166,11 @@ class Sandy : Script {
     }
 
     private suspend fun Player.finishInterrogation() {
-        player<Shock>(
-            "I think I have enough evidence now, you can go for " +
-                "now, but I think you're up to your neck in it!",
-        )
+        player<Shock>("I think I have enough evidence now, you can go for now, but I think you're up to your neck in it!")
         set("hand_in_the_sand", "return_orb")
         item(
             item = "magical_orb_active",
-            text = "Sandy has told you all he knows. The magical scrying " +
-                "orb is full and needs to be returned to the Wizard in " +
-                "Yanille.",
+            text = "Sandy has told you all he knows. The magical scrying orb is full and needs to be returned to the Wizard in Yanille."
         )
     }
 }
