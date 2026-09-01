@@ -54,10 +54,14 @@ class QuizMaster : Script {
 
         // Any other interaction cancels the suspended question; talking to the Quiz Master
         // resumes the show from the current score.
-        npcOperate("Talk-to", "quiz_master") { (master) ->
+        // Approach rather than operate: the contestant is sat four tiles from the podium with the
+        // desk between them, so there's no tile to stand next to the Quiz Master on and an operate
+        // interaction never reaches him.
+        npcApproach("Talk-to", "quiz_master") { (master) ->
             if (get<String>("random_event") != "quiz_master" || master.owner != this || instance() == null) {
-                return@npcOperate
+                return@npcApproach
             }
+            approachRange(SEAT_RANGE)
             runQuiz(resume = true)
         }
 
@@ -179,6 +183,9 @@ class QuizMaster : Script {
 
         // The studio is a single region on level 1: the seat, and the podium four tiles north.
         private const val STUDIO_REGION = 7754
+
+        // The seat is four tiles from the podium; talking has to work from there.
+        private const val SEAT_RANGE = 4
         private val ROOM = Tile(1952, 4764, 1)
         private val PODIUM = Tile(1952, 4768, 1)
 

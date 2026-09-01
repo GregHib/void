@@ -5,15 +5,20 @@ import content.quest.instance
 import content.quest.instanceOffset
 import dialogueOption
 import kotlinx.coroutines.runBlocking
+import npcOption
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.client.ui.closeDialogue
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -129,6 +134,26 @@ class QuizMasterTest : WorldTest() {
         player.skipDialogues()
         tick()
         assertEquals(1, player.get("quiz_correct", 0), "The show carries on from the same score")
+    }
+
+    @Test
+    fun `Talking to the Quiz Master again restarts a show that was clicked out of`() {
+        val player = createPlayer(origin, "quiz_intro")
+        RandomEvents.start(player, "quiz_master")
+        tick(10)
+        assertNotNull(player.dialogue, "The intro should be running")
+
+        // Clicking away closes the chat box and cancels the intro's suspension.
+        player.closeDialogue()
+        tick(3)
+        assertNull(player.dialogue)
+        assertFalse(player.interfaces.contains(quiz))
+
+        // The Quiz Master is four tiles away across his desk, so this only works as an approach.
+        player.npcOption(NPCs.find(player.tile.regionLevel, "quiz_master"), "Talk-to")
+        tick(6)
+
+        assertTrue(player.interfaces.contains(quiz), "Talking to him should put the show back on")
     }
 
     @Test
