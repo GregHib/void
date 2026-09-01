@@ -1,6 +1,4 @@
 spawns = [
-# 7754
-  { id = "quiz_master", x = 1952, y = 4768, level = 1, direction = "SOUTH" },
 # 8261
   { id = "prison_pete", x = 2084, y = 4460, direction = "NORTH" },
   { id = "balloon_animal_dog", x = 2078, y = 4462 },

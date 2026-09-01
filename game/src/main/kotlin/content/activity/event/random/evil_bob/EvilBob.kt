@@ -1,6 +1,7 @@
 package content.activity.event.random.evil_bob
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -144,9 +145,7 @@ class EvilBob : Script {
     }
 
     private suspend fun Player.evilBobCatIntro() {
-        val cat = NPCs.addRandom("evil_bob_cat", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("evil_bob_cat", tile, ticks = 25, owner = this)
-        cat.watch(this)
+        val cat = eventHerald("evil_bob_cat")
         cat.say("Meow.")
         delay(2)
     }
@@ -317,8 +316,9 @@ class EvilBob : Script {
         val offset = instanceOffset()
         moveCamera(zone.cameraMove.add(offset), zone.cameraMoveHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
         turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
-        delay(10)
+        delay(CAMERA_HOLD)
         clearCamera()
+        delay(1)
         closeDialogue()
         set("evil_bob_new_spot", false)
     }
@@ -383,9 +383,10 @@ class EvilBob : Script {
             "raw_fish_like_thing_incorrect",
         )
 
-        // Slow cinematic pan towards the fishing spot; 232 = instant snap.
-        private const val CAMERA_SPEED = 1
-        private const val CAMERA_ACCELERATION = 10
+        private const val CAMERA_SPEED = 2
+        private const val CAMERA_ACCELERATION = 20
+
+        private const val CAMERA_HOLD = 5
 
         // (region-13642 base 3392,4736 + local coords). Index order = zone id 1..4.
         // Each zone covers that side's static fishing spots from the region copy.

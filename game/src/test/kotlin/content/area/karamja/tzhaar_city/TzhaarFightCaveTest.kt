@@ -12,6 +12,7 @@ import org.koin.test.get
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -22,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 
@@ -179,6 +181,44 @@ class TzhaarFightCaveTest : WorldTest() {
         manager.logout(player, true)
         tick()
         assertEquals(Tile(2413, 5113), player.tile)
+    }
+
+    @Test
+    fun `Server shutdown keeps the wave and moves the player out of the instance`() {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = 0
+        })
+        val player = createPlayer(Tile(2438, 5168), "JalYt-10")
+        player["god_mode"] = true
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
+        player.interactObject(entrance, "Enter")
+        tick(5)
+        player["fight_cave_wave"] = 10
+        assertTrue(Instances.reserved(player.tile.region), "Expected the player inside the instance")
+
+        World.shutdown()
+
+        assertEquals(10, player["fight_cave_wave", -1])
+        assertFalse(Instances.reserved(player.tile.region), "Player should be saved on real map")
+    }
+
+    @Test
+    fun `Logging out mid wave keeps the wave for next login`() = runTest {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = 0
+        })
+        val player = createPlayer(Tile(2438, 5168), "JalYt-9")
+        player["god_mode"] = true
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
+        player.interactObject(entrance, "Enter")
+        tick(5)
+        player["fight_cave_wave"] = 10
+        val manager = get<AccountManager>()
+        manager.logout(player, true)
+        manager.logout(player, true)
+        tick(2)
+
+        assertEquals(10, player["fight_cave_wave", -1])
     }
 
     @Test
