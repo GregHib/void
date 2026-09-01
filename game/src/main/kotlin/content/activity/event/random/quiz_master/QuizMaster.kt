@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseInt
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -61,8 +62,12 @@ class QuizMaster : Script {
         }
         quizHerald()
         kidnap(ROOM)
+        // A turn flagged on the teleport tick is lost to the movement update, leaving the player
+        // sat facing whichever way they arrived. Turn on the tick the sit animation plays instead;
+        // the studio isn't instanced, so the seat is always the same one and the podium is north.
+        delay(1)
         talkWith(NPCs.find(tile.regionLevel, "quiz_master"))
-        face(QUIZ_MASTER)
+        face(Direction.NORTH)
         anim("quiz_show_sit")
         intro()
         runQuiz()
@@ -125,8 +130,9 @@ class QuizMaster : Script {
 
     companion object {
         private const val REQUIRED = 4
+
+        // The seat; the Quiz Master's podium is the static spawn four tiles north of it.
         private val ROOM = Tile(1952, 4764, 1)
-        private val QUIZ_MASTER = Tile(1952, 4768, 1)
 
         // Golden models (8828-8837) grouped so the first of each triple is the odd one out.
         // 28 battleaxe, 29 salmon, 30 trout, 31 necklace, 32 shield, 33 helm, 34 ring,

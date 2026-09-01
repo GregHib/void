@@ -4,8 +4,10 @@ import WorldTest
 import dialogueOption
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -16,6 +18,7 @@ class QuizMasterTest : WorldTest() {
     override var loadNpcs: Boolean = true
 
     private val origin = Tile(3221, 3218)
+    private val seat = Tile(1952, 4764, 1)
     private val quiz = "dialogue_macro_quiz_show"
 
     /** Runs the event and skips the intro so the first question interface is open. */
@@ -43,6 +46,30 @@ class QuizMasterTest : WorldTest() {
         assertEquals("quiz_master", player.get<String>("random_event"))
         assertTrue(player.interfaces.contains(quiz))
         assertTrue(player.get("quiz_answer", 0) in 1..3)
+    }
+
+    @Test
+    fun `The player is sat facing north on a tick after they land`() {
+        val player = createPlayer(origin, "quiz_facing")
+        RandomEvents.start(player, "quiz_master")
+
+        // A turn flagged on the tick the player teleports in is lost to the movement update, so
+        // the sit has to happen on a later tick for the seat to reliably face the podium.
+        var landed = -1
+        var sat = -1
+        for (t in 0 until 12) {
+            tick()
+            if (landed == -1 && player.tile == seat) {
+                landed = t
+            }
+            if (sat == -1 && player.visuals.animation.force == AnimationDefinitions.get("quiz_show_sit").id) {
+                sat = t
+            }
+        }
+
+        assertTrue(landed != -1, "Player should be teleported to the seat")
+        assertTrue(sat > landed, "Sat on tick $sat, landed on tick $landed - the turn would be lost")
+        assertEquals(Direction.NORTH, player.direction)
     }
 
     @Test
