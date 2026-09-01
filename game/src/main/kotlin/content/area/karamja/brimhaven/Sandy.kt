@@ -170,7 +170,7 @@ class Sandy : Script {
         set("hand_in_the_sand", "return_orb")
         item(
             item = "magical_orb_active",
-            text = "Sandy has told you all he knows. The magical scrying orb is full and needs to be returned to the Wizard in Yanille."
+            text = "Sandy has told you all he knows. The magical scrying orb is full and needs to be returned to the Wizard in Yanille.",
         )
     }
 }
