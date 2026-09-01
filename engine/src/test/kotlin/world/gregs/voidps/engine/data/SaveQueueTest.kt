@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data
 
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.Claim
@@ -8,11 +9,15 @@ import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.type.Tile
 import java.io.IOException
+import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 internal class SaveQueueTest : KoinMock() {
@@ -106,6 +111,69 @@ internal class SaveQueueTest : KoinMock() {
             calls.get() == 2
         }
         waitFor("pending to drain") { queue.empty() }
+    }
+
+    @Test
+    fun `Save queued during a write isn't dropped`() {
+        val started = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        val blocked = AtomicBoolean(true)
+        val written = CopyOnWriteArrayList<Tile>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                accounts.mapTo(written) { it.tile }
+                if (!blocked.getAndSet(false)) {
+                    return
+                }
+                started.countDown()
+                release.await(5, TimeUnit.SECONDS)
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "player", tile = Tile(1, 1)))
+        queue.run()
+        assertTrue(started.await(5, TimeUnit.SECONDS), "First save didn't start")
+        queue.save(Player(accountName = "player", tile = Tile(2, 2)))
+        release.countDown()
+        waitFor("newer snapshot to be written") {
+            queue.run()
+            written.contains(Tile(2, 2))
+        }
+        waitFor("pending to drain") { queue.empty() }
+    }
+
+    @Test
+    fun `Completed save clears pending when nothing superseded it`() {
+        val written = CopyOnWriteArrayList<String>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                accounts.mapTo(written) { it.name }
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "player"))
+        waitFor("save to complete") {
+            queue.run()
+            written.contains("player")
+        }
+        waitFor("pending to drain") { queue.empty() }
+        assertFalse(queue.saving("player"))
+    }
+
+    @Test
+    fun `Shutdown save includes accounts pending from a logout`() {
+        val written = CopyOnWriteArrayList<String>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                accounts.mapTo(written) { it.name }
+            }
+        }
+        val queue = SaveQueue(storage)
+        queue.save(Player(accountName = "logged_out_player"))
+
+        runBlocking { queue.direct().join() }
+
+        assertTrue(written.contains("logged_out_player"), "Shutdown dropped a save left pending by a logout")
     }
 
     private fun waitFor(description: String, condition: () -> Boolean) {

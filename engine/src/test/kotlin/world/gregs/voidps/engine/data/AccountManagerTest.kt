@@ -34,6 +34,7 @@ class AccountManagerTest : KoinMock() {
 
     private lateinit var manager: AccountManager
     private lateinit var connectionQueue: ConnectionQueue
+    private lateinit var saveQueue: SaveQueue
 
     override val modules = listOf(
         module {
@@ -78,9 +79,10 @@ class AccountManagerTest : KoinMock() {
             override fun load(accountName: String): PlayerSave? = null
         }
         Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
+        saveQueue = SaveQueue(storage)
         manager = AccountManager(
             accountDefinitions = AccountDefinitions(),
-            saveQueue = SaveQueue(storage),
+            saveQueue = saveQueue,
             connectionQueue = connectionQueue,
             overrides = AppearanceOverrides(),
         )
@@ -131,6 +133,23 @@ class AccountManagerTest : KoinMock() {
             client.logout()
             client.disconnect()
         }
+    }
+
+    @Test
+    fun `Dropped connection still saves the session`() = runTest {
+        val client = DummyClient()
+        val player = Player(accountName = "name", tile = Tile(3200, 3200))
+        manager.setup(player, client, 0, viewport = false)
+        manager.spawn(player, client)
+
+        client.disconnect()
+        client.exit()
+        connectionQueue.run()
+        GameLoop.tick = 2
+        World.run()
+
+        assertTrue(saveQueue.saving("name"), "Dropped connection never queued a save, losing the session")
+        assertTrue(player["logged_out", false], "Dropped connection left the player logged in as a ghost")
     }
 
     @AfterEach

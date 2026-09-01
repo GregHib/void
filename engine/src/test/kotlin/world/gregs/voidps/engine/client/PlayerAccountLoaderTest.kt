@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Response
@@ -136,6 +137,28 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             queue.await()
             client.login("name", 4, 0, member = false, membersWorld = false)
             accounts.spawn(player, client)
+        }
+    }
+
+    @Test
+    fun `Can't login while an earlier session is still in the world`() = runTest {
+        mockkStatic("world.gregs.voidps.network.login.protocol.encode.LoginEncoderKt")
+        mockkObject(Players)
+        val client: Client = mockk(relaxed = true)
+        val ghost = Player(index = 7, accountName = "name")
+        every { Players.findByAccount("name") } returns ghost
+        try {
+            val player = Player(index = 4, accountName = "name", variables = mutableMapOf("display_name" to "name"))
+
+            loader.connect(player, client, 2)
+
+            coVerify {
+                accounts.logout(ghost, safely = false)
+                client.disconnect(Response.ACCOUNT_ONLINE)
+            }
+            coVerify(exactly = 0) { accounts.spawn(player, client) }
+        } finally {
+            unmockkObject(Players)
         }
     }
 

@@ -22,6 +22,7 @@ class AutoSave(
 
         worldDespawn {
             runBlocking {
+                saveQueue.awaitInFlight()
                 saveQueue.direct().join()
                 exchange.save()
             }

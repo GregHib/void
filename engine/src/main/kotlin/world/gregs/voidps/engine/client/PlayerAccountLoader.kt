@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.event.AuditLog
@@ -86,13 +87,20 @@ class PlayerAccountLoader(
     }
 
     suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true) {
-        if (!accounts.setup(player, client, displayMode, viewport)) {
-            logger.warn { "Error setting up account" }
-            client.disconnect(Response.WORLD_FULL)
-            return
-        }
         withContext(gameContext) {
             queue.await()
+            val existing = Players.findByAccount(player.accountName)
+            if (existing != null) {
+                logger.warn { "Logging out stale session for ${player.accountName} before login." }
+                accounts.logout(existing, safely = false)
+                client.disconnect(Response.ACCOUNT_ONLINE)
+                return@withContext
+            }
+            if (!accounts.setup(player, client, displayMode, viewport)) {
+                logger.warn { "Error setting up account" }
+                client.disconnect(Response.WORLD_FULL)
+                return@withContext
+            }
             logger.info { "${if (viewport) "Player" else "Bot"} logged in ${player.accountName} index ${player.index}." }
             client.login(player.name, player.index, player.rights.ordinal, member = World.members, membersWorld = World.members)
             accounts.spawn(player, client)

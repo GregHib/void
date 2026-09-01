@@ -103,7 +103,7 @@ class AccountManager(
             player.message("You need to wait a few moments before you can log out.")
             return
         }
-        if (!Despawn.logout(player)) {
+        if (safely && !Despawn.logout(player)) {
             return
         }
         player["logged_out"] = true
