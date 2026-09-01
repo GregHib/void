@@ -19,7 +19,8 @@ import world.gregs.voidps.engine.inv.inventory
  * Sets a player up to attempt a quest: skills raised to the requirements listed in `quests.toml`,
  * prerequisite quests marked complete, and any items the quest expects the player to bring handed
  * over. Requirements come from the quest definition, so this works for every quest that declares
- * them; supply-your-own items are read from the optional `req_item_ids` key.
+ * them; supply-your-own items are read from the optional `req_item_ids` key, where an item
+ * needed more than once is written as "id:amount".
  */
 class QuestCommands : Script {
 
@@ -42,8 +43,9 @@ class QuestCommands : Script {
     /**
      * Puts a quest back to unstarted. Along with the quest variable itself this clears every
      * variable named after it, which is how quest progress flags are named - Rum Deal's counters
-     * and swab flags are all `rum_deal_*`. Variables a quest shares with a skill (the blindweed
-     * farming patch, say) aren't named after the quest and are left alone.
+     * and swab flags are all `rum_deal_*` - plus anything the quest lists under `reset_vars`, for
+     * the flags it keeps under the client's own varbit names. Variables a quest shares with a skill
+     * (the blindweed farming patch, say) aren't named after the quest and are left alone.
      */
     private fun reset(player: Player, args: List<String>) {
         val questId = args.getOrNull(0) ?: return
@@ -56,8 +58,13 @@ class QuestCommands : Script {
 
         player.clear(questId)
         var cleared = 0
-        for (variable in VariableDefinitions.definitions.keys) {
-            if (variable.startsWith("${questId}_") && player.variables.contains(variable)) {
+        val named = VariableDefinitions.definitions.keys.filter { it.startsWith("${questId}_") }
+        for (variable in named + quest["reset_vars", emptyList<String>()]) {
+            if (VariableDefinitions.get(variable) == null) {
+                player.message("Unknown variable '$variable' in ${quest.stringId} reset list.")
+                continue
+            }
+            if (player.variables.contains(variable)) {
                 player.clear(variable)
                 cleared++
             }
@@ -94,13 +101,16 @@ class QuestCommands : Script {
 
         val items = quest["req_item_ids", emptyList<String>()]
         var given = 0
-        for (item in items) {
-            if (ItemDefinitions.getOrNull(item) == null) {
-                player.message("Unknown item '$item' in ${quest.stringId} requirements.")
+        for (entry in items) {
+            // Items a quest needs more than one of are written as "id:amount"
+            val id = entry.substringBefore(':')
+            val amount = entry.substringAfter(':', "1").toIntOrNull() ?: 1
+            if (ItemDefinitions.getOrNull(id) == null) {
+                player.message("Unknown item '$id' in ${quest.stringId} requirements.")
                 continue
             }
-            if (!player.inventory.contains(item)) {
-                player.addOrDrop(item)
+            if (!player.inventory.contains(id, amount)) {
+                player.addOrDrop(id, amount)
                 given++
             }
         }

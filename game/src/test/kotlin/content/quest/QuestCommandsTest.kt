@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.inventory
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class QuestCommandsTest : WorldTest() {
@@ -36,6 +37,50 @@ class QuestCommandsTest : WorldTest() {
         // req_item_ids - everything else is handed out during the quest
         assertTrue(admin.inventory.contains("slayer_gloves"))
         assertTrue(admin.inventory.contains("spade"))
+    }
+
+    @Test
+    fun `Questprep hands out stacks of the items a quest needs more than one of`() {
+        val admin = createPlayer(name = "prep admin myreque")
+        admin.rights = PlayerRights.Admin
+
+        runTest { Commands.call(admin, "questprep in_search_of_the_myreque") }
+        tick()
+
+        assertEquals(25, admin.levels.getMax(Skill.Agility))
+        assertTrue(admin.questCompleted("nature_spirit"))
+        assertTrue(admin.inventory.contains("steel_longsword"))
+        assertTrue(admin.inventory.contains("steel_sword", 2))
+        assertTrue(admin.inventory.contains("steel_nails", 225))
+        assertTrue(admin.inventory.contains("plank", 6))
+        assertTrue(admin.inventory.contains("druid_pouch_2", 5))
+        assertTrue(admin.inventory.contains("silver_sickle_b"))
+        assertTrue(admin.inventory.contains("coins", 10))
+        assertTrue(admin.inventory.contains("hammer"))
+    }
+
+    @Test
+    fun `Questreset clears the flags a quest keeps under other names`() {
+        val admin = createPlayer(name = "reset admin myreque")
+        admin.rights = PlayerRights.Admin
+        admin["in_search_of_the_myreque"] = "completed"
+        admin["bridgerung1"] = true
+        admin["bridgerung3"] = true
+        admin["route_bridgecomplete"] = true
+        admin["thsfm_vanstrom_hide"] = true
+        admin["met_sani"] = true
+        admin["met_polmafi"] = true
+
+        runTest { Commands.call(admin, "questreset in_search_of_the_myreque") }
+        tick()
+
+        assertEquals("unstarted", admin["in_search_of_the_myreque", "unstarted"])
+        assertFalse(admin["bridgerung1", false])
+        assertFalse(admin["bridgerung3", false])
+        assertFalse(admin["route_bridgecomplete", false])
+        assertFalse(admin["thsfm_vanstrom_hide", false], "Vanstrom sits back down in the tavern")
+        assertFalse(admin["met_sani", false])
+        assertFalse(admin["met_polmafi", false])
     }
 
     @Test

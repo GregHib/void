@@ -1,7 +1,6 @@
 package content.area.morytania.canifis
 
 import content.entity.obj.door.DoubleDoor
-import content.entity.obj.door.enterDoor
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.sound
@@ -9,10 +8,6 @@ import world.gregs.voidps.engine.entity.obj.replace
 
 class CanifisTavern : Script {
     init {
-        objectOperate("Search", "canifis_fake_wall_closed") { (target) ->
-            enterDoor(target)
-        }
-
         objectOperate("Open", "canifis_wooden_door_left_closed,canifis_wooden_door_right_closed") { (target) ->
             anim("take")
             sound("locked")

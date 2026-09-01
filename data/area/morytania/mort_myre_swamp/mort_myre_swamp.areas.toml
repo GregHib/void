@@ -23,3 +23,8 @@ tags = ["no_cannon", "no_cannon_damp"]
 [filliman_grotto]
 x = [3433, 3447]
 y = [3331, 3343]
+
+# The rope bridge over the Hollows, from the tile the southern tree lands on up to the top rung
+[mort_myre_rope_bridge]
+x = [3502, 3502]
+y = [3427, 3430]

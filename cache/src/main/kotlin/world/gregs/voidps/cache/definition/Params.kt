@@ -141,6 +141,9 @@ object Params {
     /** Item ids a quest expects the player to bring; used by the questprep command. */
     const val REQ_ITEM_IDS = 5267
 
+    /** Variables a quest keeps outside of its own name; used by the questreset command. */
+    const val RESET_VARS = 5268
+
     const val REQ_QUEST_POINTS = 5139
     const val REQ_QUESTS = 5140
     const val REQ_SKILLS = 5141
@@ -477,6 +480,7 @@ object Params {
         "region" -> REGION
         "req_combat" -> REQ_COMBAT
         "req_item_ids" -> REQ_ITEM_IDS
+        "reset_vars" -> RESET_VARS
         "req_items" -> REQ_ITEMS
         "req_quest_points" -> REQ_QUEST_POINTS
         "req_quests" -> REQ_QUESTS

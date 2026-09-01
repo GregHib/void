@@ -1,0 +1,11 @@
+[skeleton_hellhound]
+defend_anim = "skeleton_hellhound_defend"
+death_anim = "skeleton_hellhound_death"
+death_sound = "skeleton_hellhound_death"
+
+[skeleton_hellhound.melee]
+range = 1
+anim = "skeleton_hellhound_attack"
+sound = "skeleton_hellhound_attack"
+target_sound = "skeleton_hellhound_hit"
+target_hit = { offense = "crush", max = 120 }

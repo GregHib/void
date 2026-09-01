@@ -1,0 +1,46 @@
+[routequestionscorrect]
+id = 173
+persist = true
+format = "int"
+
+[routequestionsanswered]
+id = 174
+persist = true
+format = "int"
+
+[roomnum]
+id = 175
+persist = true
+format = "boolean"
+
+# The three rungs of the rope bridge over the Hollows, south to north
+[bridgerung1]
+id = 176
+persist = true
+format = "boolean"
+
+[bridgerung2]
+id = 177
+persist = true
+format = "boolean"
+
+[bridgerung3]
+id = 178
+persist = true
+format = "boolean"
+
+# Swaps the stranger in the 'Hair of the Dog' between Vanstrom Klause and a plain stranger
+[thsfm_vanstrom_hide]
+id = 396
+persist = true
+format = "boolean"
+
+[thsfm_spoken_allmyreque]
+id = 2496
+persist = true
+format = "boolean"
+
+[route_bridgecomplete]
+id = 3928
+persist = true
+format = "boolean"
