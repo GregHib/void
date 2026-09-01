@@ -29,17 +29,20 @@ class AutoSave(
 
         settingsReload {
             val minutes = Settings["storage.autoSave.minutes", 0]
-            if (World.contains("auto_save") && minutes <= 0) {
+            if (minutes <= 0) {
                 World.clearQueue("auto_save")
-            } else if (!World.contains("auto_save") && minutes > 0) {
-                autoSave()
+                return@settingsReload
             }
+            autoSave()
         }
     }
 
     fun autoSave() {
         val minutes = Settings["storage.autoSave.minutes", 0]
         if (minutes <= 0) {
+            return
+        }
+        if (World.containsQueue("auto_save")) {
             return
         }
         World.queue("auto_save", TimeUnit.MINUTES.toTicks(minutes)) {
