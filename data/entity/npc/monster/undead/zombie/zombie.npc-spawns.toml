@@ -91,15 +91,6 @@ spawns = [
     { id = "zombie_green_suit", x = 2500, y = 3283, members = true },
     { id = "zombie_black_dress", x = 2506, y = 3284, members = true },
     { id = "zombie_grey_suit_sword", x = 2511, y = 3287, members = true },
-    # Wizards' Guild basement
-    { id = "zombie_green_shorts_sword", x = 87, y = 85, members = true },
-    { id = "zombie_armour_green_shorts_sword", x = 88, y = 83, members = true },
-    { id = "zombie_armour_grey_shorts_sword", x = 91, y = 84, members = true },
-    { id = "zombie_armour_grey_shorts_sword", x = 94, y = 83, members = true },
-    { id = "zombie_green_shorts_sword", x = 94, y = 85, members = true },
-    { id = "zombie_armour_green_shorts_sword", x = 95, y = 84, members = true },
-    { id = "zombie_armour_green_shorts_sword", x = 97, y = 83, members = true },
-    { id = "zombie_green_shorts_sword", x = 97, y = 84, members = true },
     # Entrana Dungeon
     { id = "zombie_entrana_hat", x = 2842, y = 9766, members = true },
     { id = "zombie_entrana_armour", x = 2843, y = 9761, members = true },
