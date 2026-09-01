@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -89,7 +90,7 @@ class QuizMaster : Script {
     }
 
     private suspend fun Player.intro() {
-        npc<Happy>("WELCOME to the GREATEST QUIZ SHOW in the whole of RuneScape: <col=8A0808>O D D</col> <col=8A088A>O N E</col> <col=08088A>O U T</col>")
+        npc<Happy>("WELCOME to the GREATEST QUIZ SHOW in the whole of ${Settings["server.name"]}: <col=8A0808>O D D</col> <col=8A088A>O N E</col> <col=08088A>O U T</col>")
         player<Confused>("I'm sure I didn't ask to take part in a quiz show...")
         npc<Happy>("Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
     }
