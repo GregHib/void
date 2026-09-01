@@ -53,19 +53,12 @@ class HandInTheSand : Script {
                 set("hand_in_the_sand", "confront_bert")
             }
             addOrDrop("sandys_rota")
-            statement(
-                "You quickly sift through some of the papers on Sandy's desk and " +
-                    "find a work rota for Bert.",
-            )
+            statement("You quickly sift through some of the papers on Sandy's desk and find a work rota for Bert.")
         }
 
         objectOperate("Open", "magic_guild_door_closed,magic_guild_door_2_closed") { (target) ->
             if (!hasMax(Skill.Magic, 66)) {
-                npc<Neutral>(
-                    "You need a magic level of 66 for admittance to the guild. The magical " +
-                        "energy inside the guild is unsafe for anyone below that level. For any " +
-                        "other business please ring for attention.",
-                )
+                npc<Neutral>("You need a magic level of 66 for admittance to the guild. The magical energy inside the guild is unsafe for anyone below that level. For any other business please ring for attention.")
                 return@objectOperate
             }
             Door.openDoor(this, target)
@@ -81,9 +74,7 @@ class HandInTheSand : Script {
             set("hand_in_the_sand", "interrogate_sandy")
             item(
                 item = "magical_orb",
-                text = "You rub the magical scrying orb as the Wizard told " +
-                    "you, it starts to glow, recording everything it sees and" +
-                    "hears, now you can talk to Sandy in Brimhaven.",
+                text = "You rub the magical scrying orb as the Wizard told you, it starts to glow, recording everything it sees andhears, now you can talk to Sandy in Brimhaven.",
             )
         }
 
@@ -170,9 +161,7 @@ class HandInTheSand : Script {
             inventory.add("truth_serum")
             item(
                 item = "truth_serum",
-                text = "As you focus the light on the vial and Betty pours the " +
-                    "potion in, the lens heats up and shatters. After a few" +
-                    "seconds Betty hands you the vial of Truth Serum.",
+                text = "As you focus the light on the vial and Betty pours the potion in, the lens heats up and shatters. After a fewseconds Betty hands you the vial of Truth Serum.",
             )
         }
 
@@ -189,10 +178,7 @@ class HandInTheSand : Script {
             set("handsand_sandy_multi", 0)
             sound("handsand_serum")
             inventory.remove("truth_serum")
-            statement(
-                "You pour the serum into Sandy's coffee, then a little while later " +
-                    "watch him drink it.",
-            )
+            statement("You pour the serum into Sandy's coffee, then a little while later watch him drink it.")
         }
     }
 

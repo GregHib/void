@@ -37,10 +37,7 @@ class GuardCaptainYanille : Script {
 
     private suspend fun Player.handDelivery() {
         if (!inventory.contains("sandy_hand")) {
-            statement(
-                "Perhaps you should be carrying the hand that Bert gave you as " +
-                    "evidence of the crime.",
-            )
+            statement("Perhaps you should be carrying the hand that Bert gave you as evidence of the crime.")
             return
         }
         if (!inventory.contains("beer")) {
@@ -65,25 +62,15 @@ class GuardCaptainYanille : Script {
         addOrDrop("beer_hand")
         item(
             item = "beer_hand",
-            text = "You hand the... hand... to the Guard Captain, he " +
-                "fumbles with it, drops it in his beer, fishes it out and " +
-                "hands it back.",
+            text = "You hand the... hand... to the Guard Captain, he fumbles with it, drops it in his beer, fishes it out and hands it back.",
         )
-        npc<Drunk>(
-            "Oops, No 'arm done. S'prob'ly a wizard, i's always the " +
-                "wizards fault, go ask them, jus' ring the bell outshide the " +
-                "guild and talk to the first pointy hatted ninny you shee!",
-        )
+        npc<Drunk>("Oops, No 'arm done. S'prob'ly a wizard, i's always the wizards fault, go ask them, jus' ring the bell outshide the guild and talk to the first pointy hatted ninny you shee!")
         player<Neutral>("Err... ok, I'll go ring the bell and talk to a wizard then.")
     }
 
     private suspend fun Player.wizardsAreToBlame() {
         player<Neutral>("Hello Sir!")
-        npc<Drunk>(
-            "Go 'way! This pint'sh nearly finished! Unlessh you got " +
-                "more that ish....? Wizards, s'all the wizard's fault...prob'ly " +
-                "that Zavistic one, he'sh the worsht!",
-        )
+        npc<Drunk>("Go 'way! This pint'sh nearly finished! Unlessh you got more that ish....? Wizards, s'all the wizard's fault...prob'ly that Zavistic one, he'sh the worsht!")
         if (ownsItem("beer_hand")) {
             player<Neutral>("I think I should go talk to the wizards in the guild before he makes me buy him more beer!")
             return

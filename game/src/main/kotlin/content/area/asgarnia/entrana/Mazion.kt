@@ -42,10 +42,7 @@ class Mazion : Script {
         npc<Neutral>("Uh...greetings $name!")
         player<Shock>("Uhh... How do you know my name?")
         npc<Happy>("Oh, I like to keep ahead of things.")
-        player<Quiz>(
-            "Err.. ok. Well, I've been sent from the Wizards' Guild in Yanille. There's been " +
-                "an... incident... Do you have any body parts?",
-        )
+        player<Quiz>("Err.. ok. Well, I've been sent from the Wizards' Guild in Yanille. There's been an... incident... Do you have any body parts?")
         npc<Shock>("How did you know! I found the most awful thing in my sandpit - a head!")
         player<Happy>("Ahhh good! I need to take it back to be buried!")
         npc<Shock>("You're very strange, but if it means I get rid of the horrid thing...")
@@ -66,10 +63,7 @@ class Mazion : Script {
         npc<Happy>("Hello again $name!")
         choice {
             option<Quiz>("What should I do with the head?") {
-                npc<Angry>(
-                    "It was you that came demanding the head to give to the wizard in the first " +
-                        "place! Go back to Yanille with it!",
-                )
+                npc<Angry>("It was you that came demanding the head to give to the wizard in the first place! Go back to Yanille with it!")
             }
             option<Shock>("I've lost my head!") {
                 replaceHead()
@@ -82,10 +76,7 @@ class Mazion : Script {
             npc<Neutral>("You dropped it and you don't have room to carry it now, come back when you do.")
             return
         }
-        npc<Neutral>(
-            "Keep your hair on! You dropped it! Make sure you take it straight back to the " +
-                "wizards else you won't have a leg to stand on.",
-        )
+        npc<Neutral>("Keep your hair on! You dropped it! Make sure you take it straight back to the wizards else you won't have a leg to stand on.")
         addOrDrop("wizard_head")
         item(item = "wizard_head", text = "Mazion hands you the head.")
     }

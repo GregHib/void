@@ -58,10 +58,7 @@ class Bert : Script {
     }
 
     private suspend fun Player.continueIntro() {
-        npc<Sad>(
-            "They's no' wha' they once was. Tha cap'ain o'the Guard spends near all o'the " +
-                "time drunk in yon pub.",
-        )
+        npc<Sad>("They's no' wha' they once was. Tha cap'ain o'the Guard spends near all o'the time drunk in yon pub.")
         player<Quiz>("Oh? The Guard Captain is drunk in the pub you say? That's not good, what will you do?")
         if (!hasMax(Skill.Thieving, 17) || !hasMax(Skill.Crafting, 49)) {
             statement("You do not meet all of the requirements to start The Hand in the Sand quest.")
@@ -108,24 +105,15 @@ class Bert : Script {
             return
         }
         addOrDrop("sandy_hand")
-        npc<Angry>(
-            "Thank t'gods! I tho' I searched up another when I been pickin' this'un up " +
-                "outside... Take tha' blasted thing to yon Guard Captain quick sharp.",
-        )
+        npc<Angry>("Thank t'gods! I tho' I searched up another when I been pickin' this'un up outside... Take tha' blasted thing to yon Guard Captain quick sharp.")
         player<Happy>("Thanks Bert, I'll go see the Guard Captain right now.")
     }
 
     private suspend fun Player.wizardInfo() {
         npc<Quiz>("Wha' info ye find 'bout hand, $name?")
         player<Neutral>("I dug up quite a lot about the hand. Can you tell me about your job?")
-        npc<Happy>(
-            "Sand! Lots o' sand! Me boss be Sandy o' Sandy's Sand Corp based in Brimhaven on " +
-                "tha isle of Karamja an' I hauls sand fr' there to yon sand pit.",
-        )
-        npc<Happy>(
-            "I's looong harrrrd hours, bu' keeps me busy, y'know what tha say! 'Idle hands'r " +
-                "Zamorak's tools.'",
-        )
+        npc<Happy>("Sand! Lots o' sand! Me boss be Sandy o' Sandy's Sand Corp based in Brimhaven on tha isle of Karamja an' I hauls sand fr' there to yon sand pit.")
+        npc<Happy>("I's looong harrrrd hours, bu' keeps me busy, y'know what tha say! 'Idle hands'r Zamorak's tools.'")
         player<Quiz>("So you're employed by Sandy's Sand Corp in Brimhaven. Have you changed your hours recently?")
         if (inventory.spaces < 1) {
             npc<Neutral>("Yer coul' see fer yerself iffen yer had space in yorn invent'ry, come back when yer do.")
@@ -133,10 +121,7 @@ class Bert : Script {
         }
         set("hand_in_the_sand", "visit_sandy")
         addOrDrop("berts_rota")
-        npc<Neutral>(
-            "Nae! See fer yersel', here's a copy o' me rota tha' be held a' head office - " +
-                "yer can looksee iffin ye talk t' Sandy, me boss.",
-        )
+        npc<Neutral>("Nae! See fer yersel', here's a copy o' me rota tha' be held a' head office - yer can looksee iffin ye talk t' Sandy, me boss.")
         player<Happy>("Thanks for the Rota Bert. I'll go check for the original with Sandy in Brimhaven.")
     }
 
@@ -148,10 +133,7 @@ class Bert : Script {
         }
         player<Sad>("Err, no, I kind of... lost it...")
         if (inventory.spaces < 1) {
-            npc<Angry>(
-                "Lucky fer yorn tha' I's made a copy then ain't it, I's 'ave been given " +
-                    "it to yer iffen you 'ad some space in yer invent'ry.",
-            )
+            npc<Angry>("Lucky fer yorn tha' I's made a copy then ain't it, I's 'ave been given it to yer iffen you 'ad some space in yer invent'ry.")
             return
         }
         addOrDrop("berts_rota")
@@ -169,24 +151,15 @@ class Bert : Script {
         }
         player<Sad>("I managed to get a copy of the original rota. Your hours changed a week ago!")
         npc<Shock>("Nae! Nae! I din't remember tha', bu'... hmmm, aye... tha' migh' be it...")
-        player<Quiz>(
-            "What? Give me a hand here, I'm having a hard time understanding how you don't " +
-                "remember changing hours!",
-        )
-        npc<Neutral>(
-            "I's all be tha wizard's fault! Tha magic leaks fr'm yon magic guild I tells yer! " +
-                "Tha's why this weirrrrd scroll appeareded a week ago!",
-        )
+        player<Quiz>("What? Give me a hand here, I'm having a hard time understanding how you don't remember changing hours!")
+        npc<Neutral>("I's all be tha wizard's fault! Tha magic leaks fr'm yon magic guild I tells yer! Tha's why this weirrrrd scroll appeareded a week ago!")
         player<Quiz>("A scroll appeared? Can I take a look at it while you look at the rotas?")
         if (!inventory.remove("berts_rota") || !inventory.remove("sandys_rota")) {
             return
         }
         set("hand_in_the_sand", "deliver_scroll")
         addOrDrop("magic_scroll")
-        npc<Happy>(
-            "O'course $name, le's be 'avin'yon rota and 'ere be tha scroll, yer be takin' it " +
-                "back ta those inferrrnal wizards quick sharp!",
-        )
+        npc<Happy>("O'course $name, le's be 'avin'yon rota and 'ere be tha scroll, yer be takin' it back ta those inferrrnal wizards quick sharp!")
     }
 
     private suspend fun Player.midQuest() {
@@ -197,10 +170,7 @@ class Bert : Script {
         }
         player<Sad>("Err, no, I kind of... lost the scroll...")
         if (inventory.spaces < 1) {
-            npc<Neutral>(
-                "I's be seein' ya drop it on tha' way out, I's 'ave been given it to yer " +
-                    "iffen you 'ad some space in yer invent'ry.",
-            )
+            npc<Neutral>("I's be seein' ya drop it on tha' way out, I's 'ave been given it to yer iffen you 'ad some space in yer invent'ry.")
             return
         }
         addOrDrop("magic_scroll")
@@ -215,29 +185,14 @@ class Bert : Script {
         player<Happy>("Bert! Good news!")
         npc<Neutral>("Arrr...Good news be always handy.")
         player<Happy>("They arrested Sandy for the murder of a wizard and the sand pit now refills itself!")
-        npc<Shock>(
-            "ME JOB! I'VE LOSTED ME JOB! 'ow c'n yer say tha' be good news?? Me wife'll tear " +
-                "me limb fr'm limb!",
-        )
+        npc<Shock>("ME JOB! I'VE LOSTED ME JOB! 'ow c'n yer say tha' be good news?? Me wife'll tear me limb fr'm limb!")
         player<Laugh>("Don't worry, the Wizards are going to pay you a large pension so that you can retire...")
         npc<Sad>("Bu' wha'll I be doin' wit' me day now! I be lovin' tha sand.")
-        player<Laugh>(
-            "What will you do with your day? Well....You could build sand castles with your " +
-                "own two hands!",
-        )
-        npc<Happy>(
-            "I din't think so... bu' iffen yer ever need someone ta haul buckets o'sand 'round, " +
-                "ye be lettin' me know $name, I's can help yer!",
-        )
-        player<Happy>(
-            "Wow! That would be great, buckets of sand direct to my bank, everday you say? " +
-                "That's great!",
-        )
+        player<Laugh>("What will you do with your day? Well....You could build sand castles with your own two hands!")
+        npc<Happy>("I din't think so... bu' iffen yer ever need someone ta haul buckets o'sand 'round, ye be lettin' me know $name, I's can help yer!")
+        player<Happy>("Wow! That would be great, buckets of sand direct to my bank, everday you say? That's great!")
         set("handsand_employed_bert", true)
-        statement(
-            "Once per day you may ask Bert to help you by carrying 84 " +
-                "buckets of sand to your bank. Just talk to him!",
-        )
+        statement("Once per day you may ask Bert to help you by carrying 84 buckets of sand to your bank. Just talk to him!")
     }
 
     private suspend fun Player.postQuestSandService() {
@@ -253,10 +208,7 @@ class Bert : Script {
                     npc<Sad>("Yer bank be too full fer all tha' sand, come back when yer made some room.")
                     return@option
                 }
-                npc<Happy>(
-                    "I'll ge' on wit' movin' it. Thankee fer makin' sure Sandy go' it in " +
-                        "t'neck fer 'is double dealin's!",
-                )
+                npc<Happy>("I'll ge' on wit' movin' it. Thankee fer makin' sure Sandy go' it in t'neck fer 'is double dealin's!")
                 startSandCooldown()
                 item(item = "bucket_of_sand", text = "Bert delivers the sand to your bank.")
             }

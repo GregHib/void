@@ -102,11 +102,7 @@ class Betty : Script {
         }
         set("handsand_serum", SERUM_BOTTLE)
         inventory.add("bottled_water")
-        npc<Amazed>(
-            "That's good, now you'll need to make a rose tinted lens. Pink dye can be made " +
-                "from red berries in this bottle to make redberry juice, then add white berries. " +
-                "Just use that on a bullseye lens.",
-        )
+        npc<Amazed>("That's good, now you'll need to make a rose tinted lens. Pink dye can be made from red berries in this bottle to make redberry juice, then add white berries. Just use that on a bullseye lens.")
     }
 
     private suspend fun Player.askedAboutLens() {
@@ -115,11 +111,7 @@ class Betty : Script {
         choice {
             option<Sad>("I'm still working on it.")
             option<Sad>("I'm afraid I've forgotten how!") {
-                npc<Happy>(
-                    "Pink dye can be made from red berries in the bottle I gave you. Add white " +
-                        "berries to make the pink dye and then you just need to use that on a " +
-                        "bullseye lens. Good luck!",
-                )
+                npc<Happy>("Pink dye can be made from red berries in the bottle I gave you. Add white berries to make the pink dye and then you just need to use that on a bullseye lens. Good luck!")
             }
             if (!hasSupplies) {
                 option<Shock>("I've lost my bottle!") {
@@ -132,10 +124,7 @@ class Betty : Script {
     private suspend fun Player.replaceBottle() {
         npc<Happy>("Oh don't worry about that deary, I have plenty and you can start the whole thing again.")
         if (inventory.spaces < 1) {
-            npc<Happy>(
-                "I'd let you have another but you don't seem to have a spare hand to carry it, " +
-                    "come back when you have room.",
-            )
+            npc<Happy>("I'd let you have another but you don't seem to have a spare hand to carry it, come back when you have room.")
             return
         }
         inventory.add("bottled_water")
@@ -147,15 +136,9 @@ class Betty : Script {
             statement("Perhaps you should have the rose tinted lens with you before speaking to Betty.")
             return
         }
-        npc<Happy>(
-            "Wonderful deary. When you're ready, just stand in the open doorway and focus the " +
-                "light on the empty vial on my desk and I'll pour the serum into it.",
-        )
+        npc<Happy>("Wonderful deary. When you're ready, just stand in the open doorway and focus the light on the empty vial on my desk and I'll pour the serum into it.")
         player<Happy>("Ok, what does that do?")
-        npc<Happy>(
-            "Why it makes the person who drinks it unable to hide in the shadow of lies. The " +
-                "light of truth will shine!",
-        )
+        npc<Happy>("Why it makes the person who drinks it unable to hide in the shadow of lies. The light of truth will shine!")
         if (get("handsand_counter_multi", false)) {
             return
         }
@@ -179,10 +162,7 @@ class Betty : Script {
             replaceSerum()
             return
         }
-        npc<Happy>(
-            "Ok, now the last ingredient, something personal from the person you need to tell " +
-                "the truth, else it won't work!",
-        )
+        npc<Happy>("Ok, now the last ingredient, something personal from the person you need to tell the truth, else it won't work!")
         if (!inventory.contains("sand")) {
             player<Sad>("Ok, I'll see if I can find something.")
             return
@@ -227,10 +207,7 @@ class Betty : Script {
 
     private suspend fun Player.replaceSerum() {
         if (inventory.spaces < 1) {
-            npc<Happy>(
-                "That's not a problem, I kept some of it here just in case, but you have no " +
-                    "space for it! Come back when you do",
-            )
+            npc<Happy>("That's not a problem, I kept some of it here just in case, but you have no space for it! Come back when you do")
             return
         }
         npc<Happy>("That's not a problem, I kept some of it here just in case, here you are!")
@@ -239,12 +216,11 @@ class Betty : Script {
     }
 
     private suspend fun Player.pinkDyeOffer() {
-        npc<Happy>(
-            "I heard from Zavistic what a good job you did. If you want some more pink dye, I " +
-                "have made up a batch and you can have some for 20 gold.",
-        )
+        npc<Happy>("I heard from Zavistic what a good job you did. If you want some more pink dye, I have made up a batch and you can have some for 20 gold.")
         choice {
-            option<Neutral>("No thanks Betty. Good luck with the shop, I might be back for some dye later.")
+            option("No thanks.") {
+                player<Neutral>("No thanks Betty. Good luck with the shop, I might be back for some dye later.")
+            }
             option<Happy>("Yes please!") {
                 buyPinkDye()
             }
