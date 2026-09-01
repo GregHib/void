@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseInt
 import world.gregs.voidps.type.Direction
@@ -54,13 +55,21 @@ class QuizMaster : Script {
         // Any other interaction cancels the suspended question; talking to the Quiz Master
         // resumes the show from the current score.
         npcOperate("Talk-to", "quiz_master") { (master) ->
-            if (get<String>("random_event") != "quiz_master" || master.owner != this) {
+            if (get<String>("random_event") != "quiz_master" || master.owner != this || instance() == null) {
                 return@npcOperate
             }
-            if (instance() == null) {
-                return@npcOperate
+            runQuiz(resume = true)
+        }
+
+        // Clicking anywhere closes the chat box, and closing it cancels the question's suspension -
+        // the show would be over with the player still sat in the studio. Put the same question
+        // straight back up so there's nothing to click out of.
+        interfaceClosed("dialogue_macro_quiz_show") {
+            if (!get("quiz_pending", false)) {
+                return@interfaceClosed
             }
-            runQuiz()
+            clear("quiz_pending")
+            queue("quiz_resume") { runQuiz(resume = true) }
         }
     }
 
@@ -97,9 +106,13 @@ class QuizMaster : Script {
         return master
     }
 
-    private suspend fun Player.runQuiz() {
+    /** [resume] re-shows the question already in play rather than rolling a fresh one. */
+    private suspend fun Player.runQuiz(resume: Boolean = false) {
+        if (!resume || !contains("quiz_models")) {
+            rollQuestion()
+        }
         while (true) {
-            if (askQuestion() == get("quiz_answer", 0)) {
+            if (showQuestion() == get("quiz_answer", 0)) {
                 if (inc("quiz_correct") >= REQUIRED) {
                     break
                 }
@@ -107,6 +120,7 @@ class QuizMaster : Script {
             } else {
                 npc<Hysterics>("WRONG! That's just WRONG! Okay, next question!")
             }
+            rollQuestion()
         }
         win()
     }
@@ -123,17 +137,25 @@ class QuizMaster : Script {
         npc<Happy>("Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
     }
 
-    /** Shows a fresh "odd one out" and suspends until the player picks a button, returning its slot. */
-    private suspend fun Player.askQuestion(): Int {
+    /** Rolls a fresh "odd one out" and remembers it, so a re-show can't reroll the answer. */
+    private fun Player.rollQuestion() {
         val set = SETS.random(random)
         val answer = set[0]
         val models = set.toList().shuffled(random)
         set("quiz_answer", models.indexOf(answer) + 1) // 1-based slot of the odd one out
-        interfaces.sendModel("dialogue_macro_quiz_show", "model_1", models[0])
-        interfaces.sendModel("dialogue_macro_quiz_show", "model_2", models[1])
-        interfaces.sendModel("dialogue_macro_quiz_show", "model_3", models[2])
+        set("quiz_models", models)
+    }
+
+    /** Shows the question in play and suspends until the player picks a button, returning its slot. */
+    private suspend fun Player.showQuestion(): Int {
+        val models: List<Int> = get("quiz_models")!!
+        for ((index, model) in models.withIndex()) {
+            interfaces.sendModel("dialogue_macro_quiz_show", "model_${index + 1}", model)
+        }
         open("dialogue_macro_quiz_show")
+        set("quiz_pending", true)
         val slot = pauseInt()
+        clear("quiz_pending")
         close("dialogue_macro_quiz_show")
         return slot
     }

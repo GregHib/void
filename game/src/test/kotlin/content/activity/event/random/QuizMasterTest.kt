@@ -4,11 +4,13 @@ import WorldTest
 import content.quest.instance
 import content.quest.instanceOffset
 import dialogueOption
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
@@ -107,6 +109,26 @@ class QuizMasterTest : WorldTest() {
         assertNull(player.instance(), "The studio should be torn down on the way out")
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
+    }
+
+    @Test
+    fun `Clicking away puts the same question straight back up`() {
+        val player = enter("quiz_softlock")
+        assertTrue(player.interfaces.contains(quiz))
+        val answer = player.get("quiz_answer", 0)
+
+        // Walking closes the chat box, which cancels the question's suspension - the show used to
+        // end there with the player stuck in the studio.
+        runBlocking { player.instructions.send(Walk(player.tile.x + 2, player.tile.y, minimap = true)) }
+        tick(3)
+
+        assertTrue(player.interfaces.contains(quiz), "The question should come straight back")
+        assertEquals(answer, player.get("quiz_answer", 0), "Clicking away shouldn't reroll the answer")
+
+        player.pickAnswer()
+        player.skipDialogues()
+        tick()
+        assertEquals(1, player.get("quiz_correct", 0), "The show carries on from the same score")
     }
 
     @Test
