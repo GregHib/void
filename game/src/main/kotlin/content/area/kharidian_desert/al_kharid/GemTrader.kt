@@ -24,9 +24,5 @@ class GemTrader : Script {
                 }
             }
         }
-
-        npcOperate("Trade", "gem_trader") {
-            openShop(shop)
-        }
     }
 }
