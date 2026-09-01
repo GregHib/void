@@ -324,6 +324,9 @@ class EvilBob : Script {
         turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
         delay(CAMERA_HOLD)
         clearCamera()
+        // Stay locked over the reset. The client is still interpolating the last of the pan when
+        // it arrives, and a click made during the pan can reach us on the tick it snaps back.
+        delay(1)
         closeDialogue()
         set("evil_bob_new_spot", false)
     }
@@ -388,11 +391,14 @@ class EvilBob : Script {
             "raw_fish_like_thing_incorrect",
         )
 
-        // Cinematic pan towards the fishing spot; 232 = instant snap, higher = faster.
+        // Cinematic pan towards the fishing spot; 232 = instant snap, higher = faster. Both terms
+        // are per-tick rates - speed is the constant step, acceleration the proportional ease-in -
+        // so they scale with CAMERA_HOLD. Too low for the hold and the camera is still travelling
+        // when it resets, which reads as the player being free to move mid-cutscene.
         private const val CAMERA_SPEED = 2
-        private const val CAMERA_ACCELERATION = 10
+        private const val CAMERA_ACCELERATION = 20
 
-        // How long the pan is held before the camera resets and the player gets control back.
+        // How long the pan is held before the camera resets.
         private const val CAMERA_HOLD = 5
 
         // (region-13642 base 3392,4736 + local coords). Index order = zone id 1..4.

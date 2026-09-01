@@ -30,6 +30,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
+import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -38,6 +39,9 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 class EvilBobTest : WorldTest() {
+
+    /** Ticks the pan holds the lock for: EvilBob's CAMERA_HOLD plus the tick over the reset. */
+    private val cameraTicks = 6
 
     private val origin = Tile(3221, 3218)
 
@@ -83,7 +87,7 @@ class EvilBobTest : WorldTest() {
             dialogueContinue()
             tick()
         }
-        tick(6) // wait out the camera pan (showSpot hands control back after 5 ticks)
+        tick(7) // wait out the camera pan (showSpot hands control back a tick after the reset)
     }
 
     private fun Player.serve() {
@@ -166,6 +170,27 @@ class EvilBobTest : WorldTest() {
         tick(3) // let the pan finish
         assertFalse(player.contains("delay"), "Control returns once the camera resets")
         assertFalse(player["evil_bob_new_spot", false])
+    }
+
+    @Test
+    fun `Clicking the minimap during the cutscene can't walk the player off`() {
+        val player = enter("eb_minimap_walk", zone = 2)
+        player["evil_bob_servant_helped"] = true
+        player["evil_bob_new_spot"] = true
+        player.tele(player.servant().tile.addX(-1))
+        tick()
+        player.npcOption(player.servant(), "Talk-to")
+        tickIf { player.dialogue == null } // hint line shows and the camera pan starts
+        val start = player.tile
+
+        // A minimap click decodes to the same Walk instruction as a click on the map, and must be
+        // dropped for every tick of the pan - including the one the camera resets on.
+        for (tick in 0 until cameraTicks) {
+            runBlocking { player.instructions.send(Walk(start.x + 3, start.y, minimap = true)) }
+            tick()
+            assertEquals(start, player.tile, "Player walked on tick $tick of the pan")
+        }
+        assertFalse(player["evil_bob_new_spot", false], "Cutscene should finish and hand control back")
     }
 
     @Test
