@@ -1,6 +1,8 @@
 package content.activity.event.random
 
 import WorldTest
+import content.quest.instance
+import content.quest.instanceOffset
 import dialogueOption
 import org.junit.jupiter.api.Test
 import skipDialogues
@@ -10,6 +12,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -59,7 +63,7 @@ class QuizMasterTest : WorldTest() {
         var sat = -1
         for (t in 0 until 12) {
             tick()
-            if (landed == -1 && player.tile == seat) {
+            if (landed == -1 && player.tile.minus(player.instanceOffset()) == seat) {
                 landed = t
             }
             if (sat == -1 && player.visuals.animation.force == AnimationDefinitions.get("quiz_show_sit").id) {
@@ -67,6 +71,7 @@ class QuizMasterTest : WorldTest() {
             }
         }
 
+        assertNotNull(player.instance(), "Each contestant gets their own studio")
         assertTrue(landed != -1, "Player should be teleported to the seat")
         assertTrue(sat > landed, "Sat on tick $sat, landed on tick $landed - the turn would be lost")
         assertEquals(Direction.NORTH, player.direction)
@@ -99,7 +104,20 @@ class QuizMasterTest : WorldTest() {
 
         assertEquals(1, player.inventory.count("random_event_gift"))
         assertNull(player.get<String>("random_event"))
+        assertNull(player.instance(), "The studio should be torn down on the way out")
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
+    }
+
+    @Test
+    fun `Two contestants get their own studio`() {
+        val first = enter("quiz_one")
+        val second = enter("quiz_two")
+
+        assertNotNull(first.instance())
+        assertNotNull(second.instance())
+        assertNotEquals(first.instance(), second.instance(), "Contestants shouldn't share a seat")
+        assertEquals(first.tile.minus(first.instanceOffset()), second.tile.minus(second.instanceOffset()))
+        assertNotEquals(first.tile, second.tile)
     }
 }

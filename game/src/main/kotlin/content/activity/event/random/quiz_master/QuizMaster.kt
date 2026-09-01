@@ -10,18 +10,24 @@ import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Hysterics
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.instance
+import content.quest.instanceOffset
+import content.quest.setInstanceLogout
+import content.quest.smallInstance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseInt
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -47,8 +53,11 @@ class QuizMaster : Script {
 
         // Any other interaction cancels the suspended question; talking to the Quiz Master
         // resumes the show from the current score.
-        npcOperate("Talk-to", "quiz_master") {
-            if (get<String>("random_event") != "quiz_master") {
+        npcOperate("Talk-to", "quiz_master") { (master) ->
+            if (get<String>("random_event") != "quiz_master" || master.owner != this) {
+                return@npcOperate
+            }
+            if (instance() == null) {
                 return@npcOperate
             }
             runQuiz()
@@ -61,16 +70,31 @@ class QuizMaster : Script {
             set("quiz_correct", 0)
         }
         quizHerald()
-        kidnap(ROOM)
+        val master = setupStudio()
         // A turn flagged on the teleport tick is lost to the movement update, leaving the player
         // sat facing whichever way they arrived. Turn on the tick the sit animation plays instead;
-        // the studio isn't instanced, so the seat is always the same one and the podium is north.
+        // the podium is always four tiles north of the seat.
         delay(1)
-        talkWith(NPCs.find(tile.regionLevel, "quiz_master"))
+        talkWith(master)
         face(Direction.NORTH)
         anim("quiz_show_sit")
         intro()
         runQuiz()
+    }
+
+    /**
+     * Copy the studio into a private instance and take the player and the Quiz Master there, so
+     * contestants don't share a seat. Logging out inside it drops the player back where they were
+     * taken from. Returns the instance's Quiz Master.
+     */
+    private suspend fun Player.setupStudio(): NPC {
+        smallInstance(Region(STUDIO_REGION), levels = 2)
+        setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        val offset = instanceOffset()
+        kidnap(ROOM.add(offset))
+        val master = NPCs.add("quiz_master", PODIUM.add(offset), Direction.SOUTH, ticks = -1, owner = this)
+        master.watch(this)
+        return master
     }
 
     private suspend fun Player.runQuiz() {
@@ -131,8 +155,10 @@ class QuizMaster : Script {
     companion object {
         private const val REQUIRED = 4
 
-        // The seat; the Quiz Master's podium is the static spawn four tiles north of it.
+        // The studio is a single region on level 1: the seat, and the podium four tiles north.
+        private const val STUDIO_REGION = 7754
         private val ROOM = Tile(1952, 4764, 1)
+        private val PODIUM = Tile(1952, 4768, 1)
 
         // Golden models (8828-8837) grouped so the first of each triple is the odd one out.
         // 28 battleaxe, 29 salmon, 30 trout, 31 necklace, 32 shield, 33 helm, 34 ring,
