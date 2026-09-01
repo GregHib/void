@@ -18,12 +18,15 @@ import content.entity.player.inv.item.addOrDrop
 import content.quest.quest
 import content.quest.questStage
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class Betty : Script {
     init {
@@ -156,8 +159,10 @@ class Betty : Script {
         if (get("handsand_counter_multi", false)) {
             return
         }
-
+        target.walkTo(Tile(3012, 3259))
         delay(3)
+        target.tele(3012, 3259)
+        target.face(Direction.EAST)
         sound("put_down")
         set("handsand_counter_multi", true)
         target.anim("take")
