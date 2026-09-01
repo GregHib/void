@@ -184,11 +184,7 @@ class Pinball : Script {
         }
     }
 
-    /**
-     * Reset the previous flashing post and start a new one flashing; the target is 1-based. The
-     * post that was just lit is excluded so the same one is never asked for twice in a row, which
-     * reads as the event having ignored the tag.
-     */
+    /** Reset the previous flashing post and start a new random one flashing; the target is 1-based. */
     private fun Player.lightNextPost() {
         val previous = get("pinball_target", 0) - 1
         resetPost(previous)

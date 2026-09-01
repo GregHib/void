@@ -1,4 +1,3 @@
-# The pheasant kept its pre-rework bird rig, so the updated chicken anims don't fit it.
 [pheasant]
 defend_anim = "pheasant_defend"
 defend_sound = "pheasant_defend"

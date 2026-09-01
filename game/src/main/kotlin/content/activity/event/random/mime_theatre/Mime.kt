@@ -43,9 +43,6 @@ class Mime : Script {
             (suspension as? Suspension.StringEntry)?.resume(it.component)
         }
 
-        // Clicking anywhere closes the emote picker, and closing it cancels the round's suspension -
-        // the performance would be over with the player still stood in the theatre. Start the round
-        // again so there's nothing to click out of.
         interfaceClosed(INTERFACE) {
             if (!get("mime_pending", false)) {
                 return@interfaceClosed
@@ -74,10 +71,6 @@ class Mime : Script {
         }
     }
 
-    /**
-     * Run the performance again from the top, keeping the score. Walking off and closing the emote
-     * picker can both land on the same tick, so the queued restart is replaced rather than stacked.
-     */
     private fun Player.restart() {
         queue.clear("start")
         strongQueue("start") {

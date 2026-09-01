@@ -278,13 +278,6 @@ open class Movement(
             }
         }
 
-        /**
-         * Maps a tile inside an instance back to the tile it was copied from, so area changes are
-         * checked against real map. Only tiles in the instance block are offset: the teleport that
-         * carries a player into an instance starts on real map, and offsetting that end too would
-         * compare areas against a tile the player was never on, so nothing they actually left would
-         * fire its exit handler.
-         */
         private fun Player.original(tile: Tile): Tile {
             if (!Instances.reserved(tile.region)) {
                 return tile

@@ -54,9 +54,6 @@ class QuizMaster : Script {
 
         // Any other interaction cancels the suspended question; talking to the Quiz Master
         // resumes the show from the current score.
-        // Approach rather than operate: the contestant is sat four tiles from the podium with the
-        // desk between them, so there's no tile to stand next to the Quiz Master on and an operate
-        // interaction never reaches him.
         npcApproach("Talk-to", "quiz_master") { (master) ->
             if (get<String>("random_event") != "quiz_master" || master.owner != this || instance() == null) {
                 return@npcApproach
@@ -65,9 +62,6 @@ class QuizMaster : Script {
             runQuiz(resume = true)
         }
 
-        // Clicking anywhere closes the chat box, and closing it cancels the question's suspension -
-        // the show would be over with the player still sat in the studio. Put the same question
-        // straight back up so there's nothing to click out of.
         interfaceClosed("dialogue_macro_quiz_show") {
             if (!get("quiz_pending", false)) {
                 return@interfaceClosed
@@ -84,9 +78,6 @@ class QuizMaster : Script {
         }
         quizHerald()
         val master = setupStudio()
-        // A turn flagged on the teleport tick is lost to the movement update, leaving the player
-        // sat facing whichever way they arrived. Turn on the tick the sit animation plays instead;
-        // the podium is always four tiles north of the seat.
         delay(1)
         talkWith(master)
         sit()
@@ -94,11 +85,6 @@ class QuizMaster : Script {
         runQuiz()
     }
 
-    /**
-     * Copy the studio into a private instance and take the player and the Quiz Master there, so
-     * contestants don't share a seat. Logging out inside it drops the player back where they were
-     * taken from. Returns the instance's Quiz Master.
-     */
     private suspend fun Player.setupStudio(): NPC {
         smallInstance(Region(STUDIO_REGION), levels = 2)
         setInstanceLogout(Tile(this["random_event_origin", tile.id]))
@@ -109,10 +95,8 @@ class QuizMaster : Script {
         return master
     }
 
-    /** [resume] re-shows the question already in play rather than rolling a fresh one. */
     private suspend fun Player.runQuiz(resume: Boolean = false) {
         if (resume) {
-            // Clicking away stands the contestant up and turns them; put them back in the chair.
             sit()
         }
         if (!resume || !contains("quiz_models")) {
@@ -132,7 +116,6 @@ class QuizMaster : Script {
         win()
     }
 
-    /** Face the podium and drop into the chair. */
     private fun Player.sit() {
         face(Direction.NORTH)
         anim("quiz_show_sit")
@@ -150,7 +133,6 @@ class QuizMaster : Script {
         npc<Happy>("Please welcome our newest contestant: <col=FF0000>$name</col>! Just pick the O D D  O N E  O U T. Four questions right, and then you win!")
     }
 
-    /** Rolls a fresh "odd one out" and remembers it, so a re-show can't reroll the answer. */
     private fun Player.rollQuestion() {
         val set = SETS.random(random)
         val answer = set[0]
@@ -159,7 +141,6 @@ class QuizMaster : Script {
         set("quiz_models", models)
     }
 
-    /** Shows the question in play and suspends until the player picks a button, returning its slot. */
     private suspend fun Player.showQuestion(): Int {
         val models: List<Int> = get("quiz_models")!!
         for ((index, model) in models.withIndex()) {
@@ -190,10 +171,8 @@ class QuizMaster : Script {
     companion object {
         private const val REQUIRED = 4
 
-        // The studio is a single region on level 1: the seat, and the podium four tiles north.
         private const val STUDIO_REGION = 7754
 
-        // The seat is four tiles from the podium; talking has to work from there.
         private const val SEAT_RANGE = 4
         private val ROOM = Tile(1952, 4764, 1)
         private val PODIUM = Tile(1952, 4768, 1)

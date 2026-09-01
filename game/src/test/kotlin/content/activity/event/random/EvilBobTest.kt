@@ -40,7 +40,6 @@ import kotlin.test.assertTrue
 
 class EvilBobTest : WorldTest() {
 
-    /** Ticks the pan holds the lock for: EvilBob's CAMERA_HOLD plus the tick over the reset. */
     private val cameraTicks = 6
 
     private val origin = Tile(3221, 3218)
@@ -87,7 +86,7 @@ class EvilBobTest : WorldTest() {
             dialogueContinue()
             tick()
         }
-        tick(7) // wait out the camera pan (showSpot hands control back a tick after the reset)
+        tick(7)
     }
 
     private fun Player.serve() {
@@ -163,11 +162,11 @@ class EvilBobTest : WorldTest() {
 
         // The far fishing spot's Net option, clicked mid-cutscene, must not move the player.
         player.objectOption(player.spot(eastSpot), "Net")
-        tick(3) // still inside the pan's lock
+        tick(3)
         assertTrue(player.contains("delay"), "The pan should still be holding the lock")
         assertEquals(start, player.tile, "Player should stay put while the pan is running")
 
-        tick(3) // let the pan finish
+        tick(3)
         assertFalse(player.contains("delay"), "Control returns once the camera resets")
         assertFalse(player["evil_bob_new_spot", false])
     }
@@ -180,11 +179,9 @@ class EvilBobTest : WorldTest() {
         player.tele(player.servant().tile.addX(-1))
         tick()
         player.npcOption(player.servant(), "Talk-to")
-        tickIf { player.dialogue == null } // hint line shows and the camera pan starts
+        tickIf { player.dialogue == null }
         val start = player.tile
 
-        // A minimap click decodes to the same Walk instruction as a click on the map, and must be
-        // dropped for every tick of the pan - including the one the camera resets on.
         for (tick in 0 until cameraTicks) {
             runBlocking { player.instructions.send(Walk(start.x + 3, start.y, minimap = true)) }
             tick()

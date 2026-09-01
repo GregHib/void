@@ -54,7 +54,6 @@ class RandomEventsTest : WorldTest() {
         player["random_event"] = "certer"
 
         val npc = player.startInPlaceEvent("mysterious_old_man", listOf("You there!"), lifetime = 100)
-        // The spawn is queued, so the graphic has to survive until the tick the npc is sent to clients.
         tick()
 
         assertEquals(GraphicDefinitions.get("random_event_puff").id, npc.visuals.secondaryGraphic.id)

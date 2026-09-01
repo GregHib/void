@@ -101,10 +101,6 @@ class TzhaarFightCave(
             }
         }
 
-        // Logging out inside the cave; the instance is torn down and the player moved to the
-        // matching tile of the real region so they log back in outside of it. Leaving on foot
-        // never reaches here - the exit tile is inside this area too, so it isn't an area
-        // change - and cleans up in [leave] instead.
         exited("tzhaar_fight_cave_multi_area") {
             close("tzhaar_fight_cave")
             clearInstance()

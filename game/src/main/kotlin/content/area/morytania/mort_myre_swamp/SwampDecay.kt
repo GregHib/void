@@ -46,8 +46,6 @@ class SwampDecay : Script {
         }
 
         timerTick("swamp_decay") {
-            // Area check first: an immune player carried out of the swamp by anything that skips
-            // the exit handler would otherwise keep the timer alive for the rest of their session.
             if (tile !in Areas["mort_myre_swamp"]) {
                 message("The swamp decay effect is now over.")
                 return@timerTick Timer.CANCEL

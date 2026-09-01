@@ -37,10 +37,8 @@ class PinballTest : WorldTest() {
         tick(4)
     }
 
-    /** Tag whichever post is currently flashing; the target moves every time one is tagged. */
     private fun Player.tagTarget() = tag("pinball_post_${get("pinball_target", 0)}")
 
-    /** Any post other than the one currently flashing, so tagging it is always wrong. */
     private fun anyPostBut(target: Int) = (1..5).first { it != target }
 
     @Test

@@ -64,8 +64,6 @@ class QuizMasterTest : WorldTest() {
         val player = createPlayer(origin, "quiz_facing")
         RandomEvents.start(player, "quiz_master")
 
-        // A turn flagged on the tick the player teleports in is lost to the movement update, so
-        // the sit has to happen on a later tick for the seat to reliably face the podium.
         var landed = -1
         var sat = -1
         for (t in 0 until 12) {
@@ -122,8 +120,6 @@ class QuizMasterTest : WorldTest() {
         assertTrue(player.interfaces.contains(quiz))
         val answer = player.get("quiz_answer", 0)
 
-        // Walking closes the chat box, which cancels the question's suspension - the show used to
-        // end there with the player stuck in the studio.
         runBlocking { player.instructions.send(Walk(player.tile.x + 2, player.tile.y, minimap = true)) }
         tick(3)
 
@@ -143,13 +139,11 @@ class QuizMasterTest : WorldTest() {
         tick(10)
         assertNotNull(player.dialogue, "The intro should be running")
 
-        // Clicking away closes the chat box and cancels the intro's suspension.
         player.closeDialogue()
         tick(3)
         assertNull(player.dialogue)
         assertFalse(player.interfaces.contains(quiz))
 
-        // The Quiz Master is four tiles away across his desk, so this only works as an approach.
         player.npcOption(NPCs.find(player.tile.regionLevel, "quiz_master"), "Talk-to")
         tick(6)
 
@@ -161,7 +155,6 @@ class QuizMasterTest : WorldTest() {
         val player = enter("quiz_reseat")
         val sitAnim = AnimationDefinitions.get("quiz_show_sit").id
 
-        // Clicking away stands them up; the re-shown question has to put them back in the chair.
         player.closeDialogue()
         var reseated = false
         for (t in 0 until 6) {

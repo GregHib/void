@@ -259,8 +259,6 @@ class EvilTwin : Script {
         }
         val look = suspect.id.removePrefix("twin_suspect_").toInt()
         val twin = look == get("evil_twin_hash", 0)
-        // PauseMode, not EmptyMode: with world.npcs.randomWalk on, the npc tick re-applies Wander
-        // over EmptyMode, so a grabbed suspect would stroll about mid-lift and out of the jail.
         suspect.mode = PauseMode
         suspect.anim("evil_twin_lifted")
         suspect.gfx("evil_twin_lifted")
@@ -270,7 +268,7 @@ class EvilTwin : Script {
         removeClaw() // The claw leaves with her, and swings back once she's been dropped off
         suspect.transform("twin_suspect_carried_$look", collision = false)
         suspect.walkOverDelay(JAIL.add(offset))
-        suspect.mode = PauseMode // Stay put in the jail; the walk's Movement mode would reset to Wander
+        suspect.mode = PauseMode
         sound("evil_twin_claw_lower")
         suspect.anim("evil_twin_claw_lower")
         delay(3)
@@ -294,8 +292,6 @@ class EvilTwin : Script {
         set("evil_twin_caught", true)
         jingle("twin_is_caught")
         delay(2)
-        // Turn on the same tick as the jailed anim, a tick after clearTransform, so the client
-        // can't lose the face flag to the transform update or the walk's leftover facing.
         twin.face(Direction.NORTH)
         twin.anim("evil_twin_jailed")
         for (npc in NPCs.at(twin.tile.regionLevel)) {

@@ -52,11 +52,9 @@ class MimeTest : WorldTest() {
     fun `Clicking out of the emote picker starts the round again`() {
         val player = enter("mime_softlock")
         player.pickCorrect()
-        tickIf { !player.interfaces.contains(iface) } // second round is up
+        tickIf { !player.interfaces.contains(iface) }
         assertEquals(1, player.get("mime_correct", 0))
 
-        // Closing the picker cancels the round's suspension; without a restart the performance
-        // would be over with the player stood in the theatre until they relogged.
         player.closeDialogue()
         tick(3)
         assertFalse(player.interfaces.contains(iface))

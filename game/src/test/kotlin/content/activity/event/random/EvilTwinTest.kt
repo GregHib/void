@@ -149,9 +149,6 @@ class EvilTwinTest : WorldTest() {
 
     @Test
     fun `Caught suspect is carried to the jail and stays there with random walking on`() {
-        // Live servers run with world.npcs.randomWalk on, which re-applies Wander over EmptyMode
-        // every npc tick - without PauseMode the grabbed suspect strolls around mid-lift and
-        // wanders back out of the jail before turning north.
         Settings.load(mapOf("world.npcs.randomWalk" to "true"))
         val player = enterHouse("et_wander")
         player.openCrane()

@@ -119,7 +119,7 @@ class FreakyForesterTest : WorldTest() {
     @Test
     fun `Pheasants die to a single hit even when the accuracy roll misses`() {
         setRandom(object : FakeRandom() {
-            override fun nextDouble() = 1.0 // Every accuracy roll fails
+            override fun nextDouble() = 1.0
         })
         val player = startInClearing("ff_one_hit", task = 2)
         val pheasant = createNPC("pheasant_2_tails", Tile(2602, 4777))

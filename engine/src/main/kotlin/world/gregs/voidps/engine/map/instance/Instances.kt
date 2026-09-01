@@ -33,11 +33,6 @@ object Instances {
 
     fun isInstance(region: Region): Boolean = used.contains(region)
 
-    /**
-     * Whether [region] falls in the block of regions instances are allocated from, rather than
-     * being real map. Unlike [isInstance] this covers every region an instance spans, not just
-     * the base region it was allocated as.
-     */
     fun reserved(region: Region): Boolean = region.x > FREE_REGION_X
 
     fun free(instance: Region) {
