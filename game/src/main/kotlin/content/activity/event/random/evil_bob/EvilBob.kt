@@ -310,13 +310,19 @@ class EvilBob : Script {
         }
     }
 
-    /** Pans the camera to the assigned fishing spot, then hands control back and unlocks netting. */
+    /**
+     * Pans the camera to the assigned fishing spot, then hands control back and unlocks netting.
+     * The delay is the lock: while it is set every input handler drops the player's clicks, so the
+     * pan runs to the camera reset uninterrupted. A queued action can't be used instead, because
+     * ActionQueue.noInterrupt() refuses to run anything while a dialogue is open and the servant's
+     * hint line stays up for the whole pan.
+     */
     private suspend fun Player.showSpot() {
         val zone = ZONES[get("evil_bob_zone", 1).coerceIn(1, ZONES.size) - 1]
         val offset = instanceOffset()
         moveCamera(zone.cameraMove.add(offset), zone.cameraMoveHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
         turnCamera(zone.cameraTurn.add(offset), zone.cameraTurnHeight, CAMERA_SPEED, CAMERA_ACCELERATION)
-        delay(10)
+        delay(CAMERA_HOLD)
         clearCamera()
         closeDialogue()
         set("evil_bob_new_spot", false)
@@ -382,9 +388,12 @@ class EvilBob : Script {
             "raw_fish_like_thing_incorrect",
         )
 
-        // Slow cinematic pan towards the fishing spot; 232 = instant snap.
-        private const val CAMERA_SPEED = 1
+        // Cinematic pan towards the fishing spot; 232 = instant snap, higher = faster.
+        private const val CAMERA_SPEED = 2
         private const val CAMERA_ACCELERATION = 10
+
+        // How long the pan is held before the camera resets and the player gets control back.
+        private const val CAMERA_HOLD = 5
 
         // (region-13642 base 3392,4736 + local coords). Index order = zone id 1..4.
         // Each zone covers that side's static fishing spots from the region copy.

@@ -83,7 +83,7 @@ class EvilBobTest : WorldTest() {
             dialogueContinue()
             tick()
         }
-        tick(11) // wait out the camera pan (showSpot hands control back after 10 ticks)
+        tick(6) // wait out the camera pan (showSpot hands control back after 5 ticks)
     }
 
     private fun Player.serve() {
@@ -109,7 +109,7 @@ class EvilBobTest : WorldTest() {
         tickIf { player.dialogue == null } // hint line shows and the camera pan starts
 
         player.itemOnItem(0, 1) // try to light a fire mid-cutscene
-        tick(12)
+        tick(6)
 
         // The pan must run to completion (clearing the camera and the hint flag);
         // killing its delay would leave the camera frozen in place.
@@ -141,7 +141,7 @@ class EvilBobTest : WorldTest() {
                 ),
             )
         }
-        tick(12)
+        tick(6)
 
         assertFalse(player["evil_bob_new_spot", false], "Cutscene should finish and hand control back")
     }
@@ -159,10 +159,12 @@ class EvilBobTest : WorldTest() {
 
         // The far fishing spot's Net option, clicked mid-cutscene, must not move the player.
         player.objectOption(player.spot(eastSpot), "Net")
-        tick(6)
+        tick(3) // still inside the pan's lock
+        assertTrue(player.contains("delay"), "The pan should still be holding the lock")
         assertEquals(start, player.tile, "Player should stay put while the pan is running")
 
-        tick(6) // let the pan finish
+        tick(3) // let the pan finish
+        assertFalse(player.contains("delay"), "Control returns once the camera resets")
         assertFalse(player["evil_bob_new_spot", false])
     }
 
