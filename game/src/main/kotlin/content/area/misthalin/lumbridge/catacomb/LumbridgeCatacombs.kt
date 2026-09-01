@@ -171,6 +171,17 @@ class LumbridgeCatacombs : Script {
         }
 
         objectOperate("Take", "*_demon_statuette") { (target) ->
+            if (target.tile == Tile(3998, 5462)) {
+                if (get("diamond_demon_statuette", "take_shield") != "take") {
+                    message("A magical barrier prevents you from taking this statuette.")
+                    return@objectOperate
+                }
+                if (inventory.add("diamond_demon_statuette")) {
+                    set("diamond_demon_statuette", "touch")
+                }
+                return@objectOperate
+            }
+
             val def = target.def(this)
             if (get(def.stringId, "take") != "take") {
                 message("You've already taken this statue.")
@@ -212,8 +223,15 @@ class LumbridgeCatacombs : Script {
             }
         }
 
-        objectOperate("Take", "diamond_demon_statuette") {
+        objectOperate("Take", "*") { (target) ->
+            if (target.tile != Tile(3998, 5462)) {
+                return@objectOperate
+            }
+            if (target.intId != 48674 && target.intId != 48758) {
+                return@objectOperate
+            }
             if (get("diamond_demon_statuette", "take_shield") != "take") {
+                message("A magical barrier prevents you from taking this statuette.")
                 return@objectOperate
             }
             if (inventory.add("diamond_demon_statuette")) {
@@ -224,13 +242,18 @@ class LumbridgeCatacombs : Script {
         npcDeath("dragith_nurn") {
             val killer = killer
             if (killer is Player) {
-                killer.message("With Dragith Nurn defeated, the diamond statuette is now within your grasp.")
-                killer["diamond_demon_statuette"] = "take"
+                if (killer.get("diamond_demon_statuette", "take_shield") == "take_shield") {
+                    killer["diamond_demon_statuette"] = "take"
+                }
             }
         }
 
         destroyed("*_demon_statuette") { item ->
-            set(item.id, "take")
+            if (item.id == "diamond_demon_statuette") {
+                set(item.id, "take")
+            } else {
+                set(item.id, "take")
+            }
         }
 
         entered("kayles_room") {
