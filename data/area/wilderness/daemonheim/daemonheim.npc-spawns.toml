@@ -20,6 +20,7 @@ spawns = [
   { id = "listless_dead_2", x = 3395, y = 3757 },
   { id = "listless_dead_2", x = 3489, y = 3762 },
   { id = "listless_dead_2", x = 3426, y = 3753 },
+  { id = "listless_dead_2", x = 3418, y = 3717 },
   { id = "gull_wilderness", x = 3392, y = 3603, members = true },
   { id = "gull_wilderness", x = 3390, y = 3638, members = true },
   { id = "gull_wilderness", x = 3416, y = 3608, members = true },

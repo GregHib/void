@@ -76,6 +76,7 @@ examine = "Very snappily dressed."
 
 [gem_trader]
 id = 540
+shop = "gem_trader"
 examine = "Makes his money selling rocks."
 
 [tool_leprechaun_al_kharid]
