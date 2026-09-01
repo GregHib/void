@@ -4,7 +4,6 @@ max_range = "int"
 wander_range = "int"
 
 [.hans]
-wander_range = 0
 max_range = 40
 
 [.farmer]
