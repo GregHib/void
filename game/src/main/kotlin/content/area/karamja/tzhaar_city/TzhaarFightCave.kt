@@ -104,13 +104,13 @@ class TzhaarFightCave(
         exited("tzhaar_fight_cave_multi_area") {
             close("tzhaar_fight_cave")
             clearInstance()
-            if (!get("logged_out", false) || wave == -1) {
+            if (get("logged_out", false) && wave != -1) {
+                // Save the player's relative position in the original region
+                val offset = tile.delta(tile.region.tile)
+                tele(region.tile.add(offset))
+            } else {
                 clear("fight_cave_wave")
-                return@exited
             }
-            // Save the player's relative position in the original region
-            val offset = tile.delta(tile.region.tile)
-            tele(region.tile.add(offset))
         }
 
         /*
