@@ -4,11 +4,13 @@ import WorldTest
 import interfaceOption
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.client.ui.closeDialogue
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -44,6 +46,27 @@ class MimeTest : WorldTest() {
         assertTrue(player.interfaces.contains(iface))
         assertNotNull(player.get<String>("mime_emote"))
         assertNotNull(NPCs.firstOrNull(Tile(2011, 4762)) { it.id == "mime" })
+    }
+
+    @Test
+    fun `Clicking out of the emote picker starts the round again`() {
+        val player = enter("mime_softlock")
+        player.pickCorrect()
+        tickIf { !player.interfaces.contains(iface) } // second round is up
+        assertEquals(1, player.get("mime_correct", 0))
+
+        // Closing the picker cancels the round's suspension; without a restart the performance
+        // would be over with the player stood in the theatre until they relogged.
+        player.closeDialogue()
+        tick(3)
+        assertFalse(player.interfaces.contains(iface))
+        tickIf { !player.interfaces.contains(iface) }
+
+        assertTrue(player.interfaces.contains(iface), "The round should start again")
+        assertEquals(1, player.get("mime_correct", 0), "The score carries over")
+        player.pickCorrect()
+        tick()
+        assertEquals(2, player.get("mime_correct", 0))
     }
 
     @Test

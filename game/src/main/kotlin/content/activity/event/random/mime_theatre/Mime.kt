@@ -42,6 +42,17 @@ class Mime : Script {
             }
             (suspension as? Suspension.StringEntry)?.resume(it.component)
         }
+
+        // Clicking anywhere closes the emote picker, and closing it cancels the round's suspension -
+        // the performance would be over with the player still stood in the theatre. Start the round
+        // again so there's nothing to click out of.
+        interfaceClosed(INTERFACE) {
+            if (!get("mime_pending", false)) {
+                return@interfaceClosed
+            }
+            clear("mime_pending")
+            restart()
+        }
     }
 
     private suspend fun Player.startEvent() {
@@ -59,9 +70,18 @@ class Mime : Script {
 
     private fun Player.trigger() {
         walkTrigger {
-            strongQueue("start") {
-                start()
-            }
+            restart()
+        }
+    }
+
+    /**
+     * Run the performance again from the top, keeping the score. Walking off and closing the emote
+     * picker can both land on the same tick, so the queued restart is replaced rather than stacked.
+     */
+    private fun Player.restart() {
+        queue.clear("start")
+        strongQueue("start") {
+            start()
         }
     }
 
@@ -111,7 +131,9 @@ class Mime : Script {
 
     private suspend fun Player.awaitEmote(): String {
         open(INTERFACE)
+        set("mime_pending", true)
         val emote = pauseString()
+        clear("mime_pending")
         close(INTERFACE)
         return emote
     }
