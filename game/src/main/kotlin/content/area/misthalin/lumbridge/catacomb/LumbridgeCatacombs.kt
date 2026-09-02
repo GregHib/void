@@ -21,13 +21,13 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.mode.ModeType
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.add
@@ -174,8 +174,16 @@ class LumbridgeCatacombs : Script {
             if (target.tile == Tile(3998, 5462)) {
                 if (get("diamond_demon_statuette", "take_shield") != "take") {
                     message("A magical barrier prevents you from taking this statuette.")
+                    makeDragithHostile()
                     return@objectOperate
                 }
+                if (inventory.isFull()) {
+                    message("You don't have enough inventory space to take the statuette.")
+                    return@objectOperate
+                }
+                start("thieving", 2)
+                anim("take")
+                delay(1)
                 if (inventory.add("diamond_demon_statuette")) {
                     set("diamond_demon_statuette", "touch")
                 }
@@ -192,7 +200,7 @@ class LumbridgeCatacombs : Script {
             choice {
                 option("Take the statue.") {
                     if (inventory.isFull()) {
-                        inventoryFull()
+                        message("You don't have enough inventory space to take the statuette.")
                         return@option
                     }
                     start("thieving", 2)
@@ -216,7 +224,7 @@ class LumbridgeCatacombs : Script {
                             }
                         }
                     } else {
-                        inventoryFull()
+                        message("You don't have enough inventory space to take the statuette.")
                     }
                 }
                 option("Leave the statue alone.")
@@ -232,11 +240,26 @@ class LumbridgeCatacombs : Script {
             }
             if (get("diamond_demon_statuette", "take_shield") != "take") {
                 message("A magical barrier prevents you from taking this statuette.")
+                makeDragithHostile()
                 return@objectOperate
             }
+            if (inventory.isFull()) {
+                message("You don't have enough inventory space to take the statuette.")
+                return@objectOperate
+            }
+            start("thieving", 2)
+            anim("take")
+            delay(1)
             if (inventory.add("diamond_demon_statuette")) {
                 set("diamond_demon_statuette", "touch")
             }
+        }
+
+        objectOperate("Touch", "*") { (target) ->
+            if (target.tile != Tile(3998, 5462)) {
+                return@objectOperate
+            }
+            makeDragithHostile()
         }
 
         npcDeath("dragith_nurn") {
@@ -297,6 +320,14 @@ class LumbridgeCatacombs : Script {
                 }
             }
         }
+    }
+
+    private fun Player.makeDragithHostile() {
+        val dragith = NPCs.findOrNull(tile.regionLevel, "dragith_nurn") ?: return
+        if (dragith.dead || dragith.mode == PauseMode || dragith.queue.contains("death")) {
+            return
+        }
+        dragith.interactPlayer(this, "Attack")
     }
 
     suspend fun Player.cutscene() {

@@ -98,6 +98,10 @@ examine = "An ornate statuette of a demon holding a large diamond."
 id = 48663
 examine = "A plinth that once supported one of Dragith Nurn's demon statuettes."
 
+[diamond_taken_demon_statuette]
+id = 48801
+examine = "A plinth that once supported one of Dragith Nurn's demon statuettes."
+
 [sage_backpack]
 id = 33510
 examine = "A backpack belonging to the Lumbridge Sage"

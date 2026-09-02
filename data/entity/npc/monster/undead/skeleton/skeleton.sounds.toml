@@ -13,6 +13,15 @@ id = 777
 [skeleton_defend]
 id = 779
 
+[skeleton_catacombs_attack]
+id = 776
+
+[skeleton_catacombs_defend]
+id = 779
+
+[skeleton_catacombs_death]
+id = 777
+
 [skeleton_hatcet_attack]
 id = 3312
 

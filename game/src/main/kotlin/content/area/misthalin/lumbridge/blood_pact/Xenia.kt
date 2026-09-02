@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
@@ -120,7 +119,12 @@ class Xenia : Script {
                         askAnything()
                         return@npcOperate
                     }
-                    npc<Happy>("Hello again, adventurer.")
+                    if (wearingDragithMask()) {
+                        npc<Laugh>("Ha ha! I thought you might put Dragith Nurn's mask back together.")
+                        npc<Laugh>("Oh, take it off. It doesn't suit you. You look ridiculous!")
+                    } else {
+                        npc<Happy>("Hello again, adventurer.")
+                    }
                     choiceAfterQuest()
                 }
             }
@@ -132,6 +136,8 @@ class Xenia : Script {
         npc<Neutral>("Is there anything you want to ask before you go to seek out new adventures?")
         finalDialogBloodPact()
     }
+
+    private fun Player.wearingDragithMask(): Boolean = equipped(EquipSlot.Hat).id == "mask_of_dragith_nurn"
 
     fun Player.hasPlayerWeaponType(weaponType: String): Boolean {
         val equippedWeapon = equipped(EquipSlot.Weapon)
@@ -514,13 +520,25 @@ class Xenia : Script {
     private suspend fun Player.statuetteSaleDialog() {
         npc<Neutral>("You've found some of Dragith Nurn's statuettes!")
         npc<Neutral>("$name, would you sell the statuettes to me? There are several statuettes down there, and I'll pay you for any you can find.")
+        statuetteSaleIntroOptions()
+    }
+
+    private suspend fun Player.statuetteSaleIntroOptions() {
         choice {
             option<Neutral>("I'll sell you the statuettes.") {
                 sellDemonStatuettes()
             }
-            option<Neutral>("Why do you want the statuettes?") {
-                npc<Neutral>("They're relics of Dragith Nurn's old workshop. I'd rather they were out of the catacombs and in safe hands.")
-                statuetteSaleDialog()
+            option("Why do you want the statuettes?") { statuetteWhyDialog() }
+            option<Neutral>("I want to talk about something else.") {
+                choiceAfterQuest()
+            }
+        }
+    }
+
+    private suspend fun Player.statuetteSaleOptions() {
+        choice {
+            option<Neutral>("I'll sell you the statuettes.") {
+                sellDemonStatuettes()
             }
             option<Neutral>("I want to talk about something else.") {
                 choiceAfterQuest()
@@ -528,8 +546,15 @@ class Xenia : Script {
         }
     }
 
+    private suspend fun Player.statuetteWhyDialog() {
+        npc<Sad>("They don't have magical power or anything like that. It's just...you'll probably think this is silly.")
+        npc<Sad>("Meeting Dragith Nurn, all those years ago, was my first real adventure. That was when I changed from a curious kid to an adventurer.")
+        npc<Neutral>("I'd just like to have something to remember it. I've got souvenirs of a lot of my later adventures, but I never got a souvenir from the very first. Those statuettes would be perfect.")
+        statuetteSaleOptions()
+    }
+
     private suspend fun Player.sellDemonStatuettes() {
-        val items = inventory.items.filter { it.id in statuettePrices.keys }
+        val items = inventory.items.filter { it.id in statuettePrices.keys }.sortedBy { statuettePrices.getValue(it.id) }
         if (items.isEmpty()) {
             choiceAfterQuest()
             return
@@ -560,7 +585,7 @@ class Xenia : Script {
                 }
             }
         }
-        npc<Happy>("Thank you. ")
+        npc<Happy>("Thank you, adventurer.")
     }
 
     private fun Player.hasAnyDemonStatuette(): Boolean = inventory.items.any { it.id in statuettePrices.keys }
