@@ -1,5 +1,7 @@
 package content.quest.free.piratetreasure
 
+import content.entity.combat.dead
+import content.entity.combat.hit.directHit
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -14,10 +16,12 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
@@ -31,6 +35,14 @@ import java.util.concurrent.TimeUnit
 class PirateTreasure : Script {
 
     init {
+
+        /*
+            TODO remove karamjan rum from:
+              Captain Shanks' boat to Port Sarim, which loses the rum to a sailor in a game of dice
+              ("During the trip you lose your rum to a sailor in a game of dice. Better luck next time!").
+              Shilo village gate ("Oh dear, you have dropped your rum!")
+
+         */
 
         adminCommand("reset_pirates_treasure", desc = "Reset Pirate's Treasure back to unstarted") {
             resetQuest()
@@ -93,9 +105,8 @@ class PirateTreasure : Script {
         itemOption("Open", "casket_pirates_treasure") {
             val needsSpace = if (inventory.contains("coins")) 1 else 2
             if (inventory.spaces < needsSpace) {
-                return@itemOption message(
-                    "From the weight of this you can guess you need more inventory space to get at the contents.",
-                )
+                message("From the weight of this you can guess you need more inventory space to get at the contents.")
+                return@itemOption
             }
             sound("chest_open")
             message("You open the casket, and find One-Eyed Hector's treasure.")
@@ -141,7 +152,7 @@ class PirateTreasure : Script {
                         message("You do not have enough free space to take a banana.")
                     }
                 }
-                option("No.") {}
+                option("No.")
             }
         }
 
@@ -166,8 +177,31 @@ class PirateTreasure : Script {
             searchFoodCrate("raw chickens", "raw chicken", "raw_chicken")
         }
 
+        objTeleportTakeOff("Enter", "cave_entrance_tzhaar_city") { _, _ ->
+            explodeRum()
+            Teleport.CONTINUE
+        }
+
+        exited("greater_brimhaven") {
+            if (tile !in Areas["karamja"] && tile !in Areas["karamja_dungeon"]) {
+                spillRum()
+            }
+        }
+
+        exited("karamja") {
+            if (tile !in Areas["greater_brimhaven"]) {
+                spillRum()
+            }
+        }
+
+        exited("karamja_dungeon") {
+            if (tile !in Areas["greater_brimhaven"]) {
+                spillRum()
+            }
+        }
+
         for (type in MAGIC_TELEPORTS) {
-            teleportTakeOff(type) {
+            teleportRemoveItems(type) {
                 spillRum()
                 true
             }
@@ -250,6 +284,17 @@ class PirateTreasure : Script {
         refreshQuestJournal()
     }
 
+    private fun Player.explodeRum() {
+        val amount = inventory.count("karamjan_rum")
+        if (amount <= 0) {
+            return
+        }
+        inventory.remove("karamjan_rum", amount)
+        gfx("fire_wave_impact")
+        directHit(10 * amount)
+        message("Your Karamja Rum explodes in the heat!")
+    }
+
     private fun Player.spillRum() {
         val amount = inventory.count("karamjan_rum")
         if (amount <= 0) {
@@ -260,10 +305,10 @@ class PirateTreasure : Script {
     }
 
     private fun Player.gardener(): NPC? = NPCs.at(tile.regionLevel).firstOrNull {
-        it.id == "gardener_level_4" && it["owner", ""] == accountName && !it["dead", false]
+        it.id == "gardener_level_4" && it["owner", ""] == accountName && !it.dead
     }
 
-    private suspend fun Player.completeQuest() {
+    private fun Player.completeQuest() {
         set("pirates_treasure", "completed")
         jingle("quest_complete_1")
         inc("quest_points", 2)
@@ -277,7 +322,7 @@ class PirateTreasure : Script {
         )
     }
 
-    private fun Player.notStartedJournal(): List<String> = listOf(
+    private fun notStartedJournal(): List<String> = listOf(
         "<navy>I can start this quest by speaking to <maroon>Redbeard Frank<navy> who",
         "<navy>is at <maroon>Port Sarim<navy>, south of the <maroon>Rusty Anchor<navy>.",
         "",
@@ -428,7 +473,7 @@ class PirateTreasure : Script {
     }
 
     private companion object {
-        val MAGIC_TELEPORTS = listOf("modern", "ancient", "lunar")
+        val MAGIC_TELEPORTS = listOf("modern", "ancient", "lunar", "jewellery", "scroll", "tablet", "spirit_tree", "fairy_ring")
 
         val FLAGS = listOf(
             "pirates_treasure_wydin",
@@ -452,23 +497,3 @@ class PirateTreasure : Script {
         val CHICKEN_CRATE = Tile(3009, 3209)
     }
 }
-
-/*
- * TODO Karamjan rum destruction routes from the original quest that have no equivalent here yet:
- *
- * - Fairy rings. The original only breaks the rum when departing one of three specific rings
- *   (2801,3003 / 2900,3111 / 2650,4730); the teleport take-off hook here doesn't expose which
- *   ring was used, and fairy ring travel isn't implemented on this server.
- * - Gnome glider. The original destroys the rum inside the glider pilot's dialogue ("Oh my! What
- *   is that thing over there?" ... "Hmm, my mistake, it must have been an optical illusion."),
- *   which distracts you while he takes it. This server's gliders travel from the glider map
- *   interface instead and there is no pilot conversation to hang it off.
- * - Captain Shanks' boat to Port Sarim, which loses the rum to a sailor in a game of dice
- *   ("During the trip you lose your rum to a sailor in a game of dice. Better luck next time!").
- *   Captain Shanks doesn't exist here.
- * - Shilo Village gate and Mosol Rei's dialogue, both of which drop the rum on entry
- *   ("Oh dear, you have dropped your rum!"). Neither is implemented here.
- * - The TzHaar city cave entrance, which destroys the rum and burns you for 10 damage per bottle
- *   ("Your Karamja Rum explodes in the heat!" with a fire wave graphic). The object
- *   'cave_entrance_tzhaar_city' has no handler here, so entering the city isn't implemented.
- */
