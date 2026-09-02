@@ -52,9 +52,7 @@ class Brewer : Script {
             1 -> {
                 npc<Shock>("Who are you?")
                 npc<Angry>("You're one of THEM arent you!")
-                player<Happy>(
-                    "O...kay...walking away now, smiling and not making eye contact.",
-                )
+                player<Happy>("O...kay...walking away now, smiling and not making eye contact.")
             }
             2 -> {
                 npc<Scared>("Game over, man! Game over!")
@@ -63,9 +61,7 @@ class Brewer : Script {
             3 -> {
                 npc<Neutral>("Very well, considering.")
                 player<Quiz>("Considering what?")
-                npc<Neutral>(
-                    "That I've been crawling into the corner to cry whenever nobody is looking.",
-                )
+                npc<Neutral>("That I've been crawling into the corner to cry whenever nobody is looking.")
                 player<Shifty>("Wow... I always thought pirates were tough...")
             }
             4 -> {
@@ -73,21 +69,11 @@ class Brewer : Script {
                 npc<Neutral>("Don't you know there's a war on?")
                 player<Quiz>("I didn't think this counted as a war.")
                 npc<Angry>("That's because you're a landlubber!")
-                npc<Angry>(
-                    "I bet ye've never had to beat a dozen zombies to death with a blunt " +
-                        "toothpick!",
-                )
+                npc<Angry>("I bet ye've never had to beat a dozen zombies to death with a blunt toothpick!")
                 player<Neutral>("That's right. Have you?")
-                npc<Scared>(
-                    "No, I've spent most of my time in the toilet to be honest.",
-                )
+                npc<Scared>("No, I've spent most of my time in the toilet to be honest.")
             }
-            5 -> {
-                npc<Angry>(
-                    "Don't talk to me! If I play this right, I can sell you lot out and make " +
-                        "it to the mainland!",
-                )
-            }
+            5 -> npc<Angry>("Don't talk to me! If I play this right, I can sell you lot out and make it to the mainland!")
             6 -> {
                 npc<Drunk>("No school today mother, my brain hurts real baaaad...")
                 player<Quiz>("What?")
@@ -95,9 +81,7 @@ class Brewer : Script {
             }
             7 -> {
                 npc<Scared>("How do I know you're not one of them?")
-                player<Quiz>(
-                    "Well, I don't know... the way I'm breathing could give it away.",
-                )
+                player<Quiz>("Well, I don't know... the way I'm breathing could give it away.")
                 npc<Angry>("That means nothing! NOTHING!")
             }
             8 -> {
@@ -119,12 +103,8 @@ class Brewer : Script {
                 1 -> npc<Neutral>("Oooh...It's so shiny...")
                 2 -> npc<Sad>("(Sob) It's so beautiful...")
                 3 -> npc<Shock>("I am not worthy to gaze upon it!")
-                4 -> npc<Shock>(
-                    "I can feel the aura of Wrenchly Power radiating from it!",
-                )
-                5 -> npc<Sad>(
-                    "Take it away, I am not worthy to be in its Wrenchly presence.",
-                )
+                4 -> npc<Shock>("I can feel the aura of Wrenchly Power radiating from it!")
+                5 -> npc<Sad>("Take it away, I am not worthy to be in its Wrenchly presence.")
                 6 -> npc<Neutral>("Wow...I don't feel tired any more...")
                 7 -> npc<Scared>("Such power!")
                 8 -> npc<Happy>("We're saved!")
@@ -133,44 +113,20 @@ class Brewer : Script {
             // Asking around for help
             player<Neutral>("I'm looking for a priest. And a wrench.")
             when (brewer) {
-                1 -> {
-                    npc<Shock>("What possible plan could involve a priest and a wrench?")
-                }
+                1 -> npc<Shock>("What possible plan could involve a priest and a wrench?")
                 2 -> {
-                    npc<Scared>(
-                        "What? Are you gonna build some strange mechanical priest to save us?",
-                    )
+                    npc<Scared>("What? Are you gonna build some strange mechanical priest to save us?")
                     npc<Neutral>("What if it runs riot? We'll all be killed!")
                 }
-                3 -> {
-                    npc<Neutral>(
-                        "Well good luck. If you find any spare trousers please pass them my way.",
-                    )
-                }
-                4 -> {
-                    npc<Neutral>(
-                        "Well the usual combo is an old priest and a young priest, but " +
-                            "whatever floats your boat lad.",
-                    )
-                }
-                5 -> {
-                    npc<Shock>(
-                        "What are you going to do to that priest? No, wait, I don't want to know.",
-                    )
-                }
+                3 -> npc<Neutral>("Well good luck. If you find any spare trousers please pass them my way.")
+                4 -> npc<Neutral>("Well the usual combo is an old priest and a young priest, but whatever floats your boat lad.")
+                5 -> npc<Shock>("What are you going to do to that priest? No, wait, I don't want to know.")
                 6 -> {
                     npc<Drunk>("Try Davey, he might have seen it.")
                     player<Happy>("Thanks!")
-                    npc<Drunk>(
-                        "His giant, green, inflatable dwarf might be able to tell you where " +
-                            "one is as well.",
-                    )
+                    npc<Drunk>("His giant, green, inflatable dwarf might be able to tell you where one is as well.")
                 }
-                7 -> {
-                    npc<Quiz>(
-                        "If this is some sort of secret zombie code then I don't get it.",
-                    )
-                }
+                7 -> npc<Quiz>("If this is some sort of secret zombie code then I don't get it.")
                 8 -> {
                     npc<Neutral>("Well I can't help you there.")
                     player<Neutral>("Oh, sorry to have bothered you.")
@@ -194,13 +150,9 @@ class Brewer : Script {
         }
         when (brewer) {
             1 -> {
-                npc<Angry>(
-                    "I don't know what your game is, but I know you're one of THEM!",
-                )
+                npc<Angry>("I don't know what your game is, but I know you're one of THEM!")
                 player<Shock>("But I just saved you!")
-                npc<Angry>(
-                    "The voices tell me different. It's all part of a plot! Confess!",
-                )
+                npc<Angry>("The voices tell me different. It's all part of a plot! Confess!")
             }
             2 -> {
                 npc<Scared>("Have they gone yet?")
@@ -212,10 +164,7 @@ class Brewer : Script {
                 npc<Happy>("Hello yourself!")
                 player<Quiz>("How's things?")
                 npc<Shifty>("Fine...")
-                player<Happy>(
-                    "Excellent! Since I get the feeling I don't want to know why you said " +
-                        "that so oddly I'll just go over here!",
-                )
+                player<Happy>("Excellent! Since I get the feeling I don't want to know why you said that so oddly I'll just go over here!")
                 npc<Neutral>("I think that would be for the best!")
             }
             4 -> {
@@ -225,24 +174,12 @@ class Brewer : Script {
                 player<Happy>("Great!")
             }
             5 -> {
-                npc<Laugh>(
-                    "Hello there, brave hero, in whom I had total confidence!",
-                )
+                npc<Laugh>("Hello there, brave hero, in whom I had total confidence!")
                 player<Quiz>("Total confidence?")
-                npc<Happy>(
-                    "Yes! I was so confident that I would never, ever have sold your soft, " +
-                        "edible body to the pirates outside!",
-                )
+                npc<Happy>("Yes! I was so confident that I would never, ever have sold your soft, edible body to the pirates outside!")
                 player<Shock>("Well, great...")
-                npc<Shifty>(
-                    "On a completely unrelated note, I would steer clear of Hungry Frank for " +
-                        "a while.",
-                )
-                npc<Angry>(
-                    "He's a filthy liar. And a forger. It wouldn't surprise me if he has " +
-                        "written out a note detailing the terms of our surrender and your " +
-                        "dismemberment and cooking in MY handwriting.",
-                )
+                npc<Shifty>("On a completely unrelated note, I would steer clear of Hungry Frank for a while.")
+                npc<Angry>("He's a filthy liar. And a forger. It wouldn't surprise me if he has written out a note detailing the terms of our surrender and your dismemberment and cooking in MY handwriting.")
                 npc<Shifty>("Imagine that, the fiend.")
             }
             6 -> {
@@ -261,11 +198,7 @@ class Brewer : Script {
             8 -> {
                 npc<Happy>("You saved us! Huzzah!")
                 player<Happy>("All in a day's work, think nothing of it.")
-                npc<Neutral>(
-                    "I don't have anything to reward you with except my collection of bleak, " +
-                        "gothic poetry I wrote when I assumed we were all done for. Do you " +
-                        "want it?",
-                )
+                npc<Neutral>("I don't have anything to reward you with except my collection of bleak, gothic poetry I wrote when I assumed we were all done for. Do you want it?")
                 player<Shifty>("I may come for it later, you hang on to it for now.")
             }
         }

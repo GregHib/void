@@ -11,7 +11,9 @@ import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 class FeverSpider : Script {
     init {
         npcCondition("slayer_gloves") { it is Player && it.equipped(EquipSlot.Hands).id == "slayer_gloves" }
+
         npcCondition("no_slayer_gloves") { it is Player && it.equipped(EquipSlot.Hands).id != "slayer_gloves" }
+
         npcAttack("fever_spider", "disease") {
             // Protecting from melee blocks the bite itself but not the disease, which the
             // combat definition applies regardless.

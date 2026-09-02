@@ -60,8 +60,6 @@ class ZombieProtester : Script {
         }
     }
 
-    // ===== Pre-Donnie-drinking-swill: Just yelling "Arr!" =====
-
     private suspend fun Player.soberProtester() {
         player<Quiz>("Excuse me, but...")
         npc<Angry>("Arr!")
@@ -72,15 +70,12 @@ class ZombieProtester : Script {
         player<Bored>("Fiiine...")
     }
 
-    // ===== Post-Donnie-drinking-swill: They mistake the player for a pirate =====
-
     private suspend fun Player.drunkProtester() {
         npc<Drunk>("Arrrr! Tis yerself! Have a drink!")
-        player<Shifty>(
-            "Errr...Arrr! I will in a sec, I've just go to, err, plunder some landlubbers...",
-        )
+        player<Shifty>("Errr...Arrr! I will in a sec, I've just go to, err, plunder some landlubbers...")
         npc<Drunk>("Good huntin'!")
     }
+
     companion object {
         /** How far a protester will chase from its post before losing interest. */
         private const val LEASH_RANGE = 10

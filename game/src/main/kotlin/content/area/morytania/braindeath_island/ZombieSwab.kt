@@ -82,8 +82,7 @@ class ZombieSwab : Script {
             npc<Angry>("Yer goin ter die!")
         }
         statement(
-            "We interrupt this insult to bring you this soothing picture of a kitten. " +
-                "Normal service will be resumed shortly. Thank you for your patience.",
+            "We interrupt this insult to bring you this soothing picture of a kitten. Normal service will be resumed shortly. Thank you for your patience.",
             clickToContinue = false,
         )
         open("rum_deal_censor")
@@ -95,10 +94,7 @@ class ZombieSwab : Script {
         anim("emote_angry")
         when (number) {
             1 -> {
-                player<Angry>(
-                    "...meaning you'll need a dozen Ogres and a team of highly skilled surgeons " +
-                        "to remove them!",
-                )
+                player<Angry>("...meaning you'll need a dozen Ogres and a team of highly skilled surgeons to remove them!")
                 backDown(swab)
             }
             2 -> {
@@ -106,10 +102,7 @@ class ZombieSwab : Script {
                 backDown(swab)
             }
             3 -> {
-                player<Angry>(
-                    "...and then I'll use a wrench to remove the handles, so you'll see it " +
-                        "every time you cough!",
-                )
+                player<Angry>("...and then I'll use a wrench to remove the handles, so you'll see it every time you cough!")
                 backDown(swab)
             }
             4, 5 -> {
@@ -117,10 +110,7 @@ class ZombieSwab : Script {
                 swab.respawn(swab.def["respawn_delay", 50])
             }
             6 -> {
-                player<Angry>(
-                    "...so that you will know exactly what time it is due to the horrible pain " +
-                        "in your earlobes!",
-                )
+                player<Angry>("...so that you will know exactly what time it is due to the horrible pain in your earlobes!")
                 backDown(swab)
             }
         }

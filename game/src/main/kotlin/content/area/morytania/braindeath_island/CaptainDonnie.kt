@@ -30,16 +30,10 @@ class CaptainDonnie : Script {
         }
     }
 
-    // ===== Default greeting (no swill, or wrong quest progress) =====
-
     private suspend fun Player.talkWithDonnie() {
         when {
-            inventory.contains("unsanitary_swill") && questStage("rum_deal") == 17 -> {
-                deliverSwillFirstTime()
-            }
-            inventory.contains("unsanitary_swill") -> {
-                deliverSwillRepeat()
-            }
+            inventory.contains("unsanitary_swill") && questStage("rum_deal") == 17 -> deliverSwillFirstTime()
+            inventory.contains("unsanitary_swill") -> deliverSwillRepeat()
             else -> initialGreeting()
         }
     }
@@ -65,9 +59,7 @@ class CaptainDonnie : Script {
         npc<Happy>("Hahahahahahahahahahahahaha!")
         npc<Happy>("Bwahahahahahahahahahahahaha!")
         npc<Neutral>("Wheeze...wheeze...")
-        npc<Happy>(
-            "Gadzooks lad, that be the funniest thing I've heard all day! Say it again!",
-        )
+        npc<Happy>("Gadzooks lad, that be the funniest thing I've heard all day! Say it again!")
         player<Quiz>("I have come to tell you to leave.")
         npc<Happy>("Stop lad! I'll shatter me ribs!")
     }
@@ -76,39 +68,25 @@ class CaptainDonnie : Script {
         player<Quiz>("I've come to ask you what you want.")
         npc<Angry>("Whadda we want? 'Rum'! When do we want it? Now!")
         player<Quiz>("So...if I were to give you 'rum' you would leave?")
-        npc<Neutral>(
-            "Not really lad. If ye were to give us 'rum' we'd kill ye quickly, as opposed to " +
-                "over a few weeks.",
-        )
+        npc<Neutral>("Not really lad. If ye were to give us 'rum' we'd kill ye quickly, as opposed to over a few weeks.")
         player<Shock>("Oh...")
     }
 
     fun ChoiceOption.joinYourCrew(): Unit = option("Join your crew.") {
         player<Happy>("I've come to join your crew!")
         player<Happy>("Err, I mean...")
-        player<Happy>(
-            "Arr! Shiver me mainbraces and make them landlubbers walk the scurvy plank, Cap'n! " +
-                "I've come to join yer cut-throat, bilge swillin' crew! Also, arr!",
-        )
+        player<Happy>("Arr! Shiver me mainbraces and make them landlubbers walk the scurvy plank, Cap'n! I've come to join yer cut-throat, bilge swillin' crew! Also, arr!")
         npc<Quiz>("Are ye quite done, lad?")
         player<Neutral>("Yes, for the time being anyway.")
-        npc<Happy>(
-            "Well, ye'll be glad to know that after that little performance I'd be glad to " +
-                "have ye on me crew!",
-        )
+        npc<Happy>("Well, ye'll be glad to know that after that little performance I'd be glad to have ye on me crew!")
         player<Happy>("Huzzah!")
         npc<Happy>("Course, I'll have te kill ye first.")
         player<Sad>("Oh...")
-        npc<Neutral>(
-            "Don't ye worry, lad. After we take the island I'll have the boss haul yer body " +
-                "to the temple and...",
-        )
+        npc<Neutral>("Don't ye worry, lad. After we take the island I'll have the boss haul yer body to the temple and...")
         npc<Shifty>("Err, never mind.")
         player<Quiz>("Never mind what?")
         npc<Shifty>("Ferget I said anything.")
     }
-
-    // ===== Progress 17: First swill delivery (the trick) =====
 
     private suspend fun Player.deliverSwillFirstTime() {
         npc<Quiz>("Be that the finest, most abrasive 'rum' I've ever smelled?")
@@ -126,29 +104,19 @@ class CaptainDonnie : Script {
         npc<Happy>("Arr, ye tricky dog!")
         npc<Neutral>("Ye tried to trick old Donnie!")
         player<Neutral>("Oh well, I guess I'll have to try again.")
-        npc<Drunk>(
-            "Arr, lad, you tried to trick me, but I was too clever for ye!",
-        )
-        npc<Neutral>(
-            "Besides, Rabid Jack would have my hide if I told ye it were him that sent me!",
-        )
+        npc<Drunk>("Arr, lad, you tried to trick me, but I was too clever for ye!")
+        npc<Neutral>("Besides, Rabid Jack would have my hide if I told ye it were him that sent me!")
         player<Shifty>("I'm sure he would. Good job you caught me out, eh!")
         npc<Drunk>("Aye! Now get ye gone, and don't return without more 'rum'!")
     }
 
-    // ===== Repeat swill delivery (later attempts) =====
-
     private suspend fun Player.deliverSwillRepeat() {
         npc<Angry>("Hey you! I can smell the 'rum' on ye!")
-        npc<Angry>(
-            "If it isn't in my belly by the time I cout ter three, I'll have ye flogged!",
-        )
+        npc<Angry>("If it isn't in my belly by the time I cout ter three, I'll have ye flogged!")
         inventory.remove("unsanitary_swill")
         statement("Donnie drinks the 'rum' like it is water.")
         npc<Drunk>("Arrr...that hits the spot...")
     }
-
-    // ===== Helpers =====
 
     /**
      * Once Donnie has drunk the swill the whole crew joins him, so every zombie pirate
