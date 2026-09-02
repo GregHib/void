@@ -2,3 +2,8 @@
 x = [3040, 3160]
 y = [3040, 3136]
 tags = ["no_random_events"]
+
+[tutorial_island_cave]
+x = [3072, 3135]
+y = [9472, 9535]
+tags = ["no_random_events"]

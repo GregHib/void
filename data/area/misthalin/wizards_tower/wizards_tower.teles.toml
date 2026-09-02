@@ -1,9 +1,4 @@
 # 12337 wizards_tower
-[3029]
-option = "Climb-down"
-tile = { x = 3088, y = 3119 }
-delta = { y = 6400 }
-
 [2147]
 option = "Climb-down"
 tile = { x = 3104, y = 3162 }
@@ -23,12 +18,6 @@ delta = { x = 1, y = -1, level = -1 }
 option = "Climb-up"
 tile = { x = 3103, y = 3159, level = 1 }
 delta = { level = 1 }
-
-# 12437 wizards_tower
-[3030]
-option = "Climb-up"
-tile = { x = 3111, y = 9526 }
-delta = { y = -6400 }
 
 [portal_runecrafting_guild]
 option = "Enter"

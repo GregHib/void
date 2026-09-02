@@ -1,5 +1,6 @@
 package content.entity.player
 
+import content.area.misthalin.tutorial_island.inTutorial
 import content.bot.isBot
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.type.statement
@@ -24,6 +25,9 @@ class Introduction : Script {
         if (player.contains("creation")) {
             return
         }
+        if (player.inTutorial) {
+            return // Tutorial Island owns character creation, the welcome and the starter kit
+        }
         if (Settings["world.start.creation", true] && !player.isBot) {
             player.sendVariable("movement")
             player["delay"] = -1
@@ -40,6 +44,9 @@ class Introduction : Script {
         playerSpawn(::welcome)
 
         interfaceClosed("character_creation") {
+            if (inTutorial) {
+                return@interfaceClosed
+            }
             flagAppearance()
             setup(this)
         }
@@ -51,30 +58,33 @@ class Introduction : Script {
         }
         player.stop("delay")
         player["creation"] = System.currentTimeMillis()
+        starterKit(player)
+    }
+}
 
-        if (!Settings["world.setup.gear", true]) {
-            return
-        }
-        player.bank.add("coins", 25)
-        player.inventory.apply {
-            add("bronze_hatchet")
-            add("tinderbox")
-            add("small_fishing_net")
-            add("shrimp")
-            add("bucket")
-            add("empty_pot")
-            add("bread")
-            add("bronze_pickaxe")
-            add("bronze_dagger")
-            add("bronze_sword")
-            add("wooden_shield")
-            add("shortbow")
-            add("bronze_arrow", 25)
-            add("air_rune", 25)
-            add("mind_rune", 15)
-            add("water_rune", 6)
-            add("earth_rune", 4)
-            add("body_rune", 2)
-        }
+fun starterKit(player: Player) {
+    if (!Settings["world.start.gear", true]) {
+        return
+    }
+    player.bank.add("coins", 25)
+    player.inventory.apply {
+        add("bronze_hatchet")
+        add("tinderbox")
+        add("small_fishing_net")
+        add("shrimps")
+        add("bucket")
+        add("empty_pot")
+        add("bread")
+        add("bronze_pickaxe")
+        add("bronze_dagger")
+        add("bronze_sword")
+        add("wooden_shield")
+        add("shortbow")
+        add("bronze_arrow", 25)
+        add("air_rune", 25)
+        add("mind_rune", 15)
+        add("water_rune", 6)
+        add("earth_rune", 4)
+        add("body_rune", 2)
     }
 }
