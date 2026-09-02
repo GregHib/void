@@ -1,0 +1,447 @@
+# Tutorial Island stage table. One row per stage, in order; `TutorialIsland` reads
+# `tutorial_island.stage_<n>` and a stage only ever advances to the next index.
+# `title`/`lines` are written to the instruction box (interface 372, 1 title + 6 lines).
+# `%server%` is replaced with the `server.name` setting.
+# `hint_npc`/`hint_tile` place the yellow arrow, `flash` blinks a sidebar tab and
+# `unlock` reveals a game frame component from that stage onwards.
+
+[tutorial_island]
+title = "string"
+lines = "list<string>"
+hint_npc = "string"
+hint_tile = "tile"
+hint_height = "int"
+flash = "string"
+unlock = "string"
+
+# TALK_TO_GUIDE
+[.stage_0]
+title = "Getting started"
+lines = ["To start the tutorial use your left mouse button to click on the", "%server% Guide in this room. He is indicated by a flashing", "yellow arrow above his head. If you can't see him, use your", "keyboard's arrow keys to rotate the view."]
+hint_npc = "runescape_guide"
+
+# OPEN_SETTINGS
+[.stage_1]
+title = "Player controls"
+lines = ["Please click on the flashing spanner icon found at the bottom", "right of your screen. This will display your player controls."]
+flash = "Options"
+unlock = "options"
+
+# TALK_TO_GUIDE_2
+[.stage_2]
+title = "Player controls"
+lines = ["On the side panel you can now see a variety of options, from", "changing the screen brightness and the volume of the music, to", "selecting whether your player should accept help from other", "players. Don't worry about these too much for now. Talk to the", "RuneScape Guide to continue."]
+hint_npc = "runescape_guide"
+
+# LEAVE_GUIDE_ROOM
+[.stage_3]
+title = "Interacting with scenery"
+lines = ["You can interact with many items of scenery by simply clicking", "on them. Right clicking will also give more options. Feel free to", "try it with the things in this room, then click the door", "indicated with the yellow arrow to go through to the next", "instructor."]
+hint_tile = { x = 3097, y = 3107 }
+hint_height = 125
+
+# TALK_TO_SURVIVAL_EXPERT
+[.stage_4]
+title = "Moving around"
+lines = ["Follow the path to find the next instructor. Clicking on the", "ground will walk you to that point. Talk to the Survival Expert by", "the pond to continue the tutorial. Remember that you can rotate", "the view by pressing the arrow keys."]
+hint_npc = "survival_expert"
+
+# OPEN_INVENTORY
+[.stage_5]
+title = "Viewing the items that you were given."
+lines = ["Click on the flashing backpack icon to the right hand side of", "the main window to view your inventory. Your inventory is a list", "of everything you have in your backpack."]
+flash = "Inventory"
+unlock = "inventory"
+
+# CHOP_TREE
+[.stage_6]
+title = "Cut down a tree"
+lines = ["You can click on the backpack icon at any time to view the", "items that you currently have in your inventory. You will see", "that you now have an axe in your inventory. Use this to get", "some logs by clicking on one of the trees in the area."]
+hint_tile = { x = 3099, y = 3095 }
+hint_height = 150
+
+# MAKE_A_FIRE
+[.stage_7]
+title = "Making a fire"
+lines = ["Well done! You managed to cut some logs from the tree! Next,", "use the tinderbox in your inventory to light the logs.", "First click on the tinderbox to 'use' it.", "Then click on the logs in your inventory to light them."]
+
+# OPEN_SKILLS
+[.stage_8]
+title = ""
+lines = ["You gained some experience.", "Click on the flashing bar graph icon near the inventory button", "to see your skill stats."]
+flash = "Stats"
+unlock = "stats"
+
+# TALK_TO_SURVIVAL_EXPERT_2
+[.stage_9]
+title = "Your skill stats."
+lines = ["Here you will see how good your skills are. As you move your", "mouse over any of the icons in this panel, the small yellow", "popup box will show you the exact amount of experience you", "have and how much is needed to get to the next level. Speak to", "the Survival Expert to continue."]
+hint_npc = "survival_expert"
+
+# CATCH_SHRIMP
+[.stage_10]
+title = "Catch some Shrimp"
+lines = ["Click on the sparkling fishing spot, indicated by the flashing", "arrow. Remember, you can check your inventory by clicking the", "backpack icon."]
+hint_npc = "fishing_spot_tutorial_island"
+
+# BURN_SHRIMP
+[.stage_11]
+title = "Cooking your shrimp."
+lines = ["Now you have caught some shrimp, let's cook it. First light a", "fire: chop down a tree and then use the tinderbox on the logs.", "If you've lost your axe or tinderbox Brynna will give you", "another."]
+
+# COOK_SHRIMP
+[.stage_12]
+title = "Burning your shrimp."
+lines = ["You have just burnt your first shrimp. This is normal. As you", "get more experience in Cooking, you will burn stuff less often.", "Let's try cooking without burning it this time. First catch some", "more shrimp, then use them on a fire."]
+
+# LEAVE_SURVIVAL_EXPERT
+[.stage_13]
+title = "Well done, you've just cooked your first %server% meal."
+lines = ["If you'd like a recap on anything you've learnt so far, speak to", "the Survival Expert. You can now move on to the next instructor.", "Click on the gate shown and follow the path.", "Remember, you can move the camera with the arrow keys."]
+hint_tile = { x = 3089, y = 3092 }
+hint_height = 120
+
+# ENTER_CHEF_HOUSE
+[.stage_14]
+title = "Find your next instructor."
+lines = ["Follow the path until you get to the door with the yellow arrow", "above it. Click on the door to open it. Notice the mini-map in", "the top right; this shows a top down view of the area around", "you. This can also be used for navigation."]
+hint_tile = { x = 3078, y = 3084 }
+hint_height = 150
+
+# TALK_TO_CHEF
+[.stage_15]
+title = "Find your next instructor."
+lines = ["Talk to the chef indicated. He will teach you the more advanced", "aspects of Cooking such as combining ingredients. He will also", "teach you about your music player menu as well."]
+hint_npc = "master_chef"
+
+# MAKE_DOUGH
+[.stage_16]
+title = "Making dough."
+lines = ["This is the base for many of the meals. To make dough we must", "mix flour and water. First, right click the bucket of water and", "select use, then left click on the pot of flour."]
+
+# COOK_DOUGH
+[.stage_17]
+title = "Cooking dough."
+lines = ["Now you have made dough, you can cook it. To cook the dough,", "use it with the range shown by the arrow. If you lose your", "dough, talk to Lev - he will give you more ingredients."]
+hint_tile = { x = 3075, y = 3081 }
+hint_height = 125
+
+# OPEN_MUSIC
+[.stage_18]
+title = "Cooking dough"
+lines = ["Well done! Your first loaf of bread. As you gain experience in", "Cooking, you will be able to make other things like pies, cakes", "and even kebabs. Now you've got the hang of cooking, let's", "move on. Click on the flashing icon in the bottom right to see", "the jukebox."]
+flash = "MusicPlayer"
+unlock = "music_player"
+
+# LEAVE_CHEF_HOUSE
+[.stage_19]
+title = "The music player."
+lines = ["From this interface you can control the music that is played.", "As you explore the world, more of the tunes will become", "unlocked. Once you've examined this menu use the next door", "to continue. If you need a recap on anything covered here,", "talk to Lev."]
+hint_tile = { x = 3072, y = 3090 }
+hint_height = 125
+
+# OPEN_EMOTES
+[.stage_20]
+title = "Emotes."
+lines = ["", "Now, how about showing some feelings? You will see a flashing", "icon in the shape of a person. Click on that to access your", "emotes."]
+flash = "Emotes"
+unlock = "emotes"
+
+# USE_EMOTE
+[.stage_21]
+title = "Emotes."
+lines = ["For those situations where words don't quite describe how you", "feel, try an emote. Go ahead, try one out! You might notice that", "some of the emotes are greyed out and cannot be used yet.", "Don't worry! As you progress further into the game you'll gain", "access to all sorts of things, including more fun emotes."]
+
+# RUN
+[.stage_22]
+title = "Running."
+lines = ["It's only a short distance to the next guide.", "Why not try running there? You can run by clicking", "on the boot icon next to your minimap or by holding", "down your control key while clicking your destination."]
+flash = "RunOrb"
+unlock = "energy_orb"
+
+# ENTER_QUEST_GUIDE_HOUSE
+[.stage_23]
+title = "Run to the next guide."
+lines = ["Now that you have the run button turned on, follow the path", "until you come to the end. You may notice that the number on", "the button goes down. This is your run energy. If your run", "energy reaches zero, you'll stop running. Click on the door", "to pass through it."]
+hint_tile = { x = 3086, y = 3126 }
+hint_height = 125
+
+# TALK_TO_QUEST_GUIDE
+[.stage_24]
+title = ""
+lines = ["Talk with the Quest Guide.", "", "He will tell you all about quests.", ""]
+hint_npc = "quest_guide"
+
+# OPEN_QUEST_TAB
+[.stage_25]
+title = ""
+lines = ["Open the Quest Journal.", "", "Click on the flashing icon next to your inventory.", ""]
+flash = "QuestJournals"
+unlock = "quest_journals"
+
+# TALK_TO_QUEST_GUIDE_2
+[.stage_26]
+title = "Your Quest Journal"
+lines = ["", "This is your Quest Journal, a list of all the quests in the game.", "Talk to the Quest Guide again for an explanation.", ""]
+hint_npc = "quest_guide"
+
+# LEAVE_QUEST_GUIDE_HOUSE
+[.stage_27]
+title = ""
+lines = ["Moving on.", "It's time to enter some caves. Click on the ladder to go down to", "the next area.", ""]
+hint_tile = { x = 3088, y = 3119 }
+hint_height = 50
+
+# TALK_TO_MINING_GUIDE
+[.stage_28]
+title = "Mining and Smithing."
+lines = ["Next let's get you a weapon, or more to the point, you can", "make your first weapon yourself. Don't panic, the Mining", "Instructor will help you. Talk to him and he'll tell you all about it.", ""]
+hint_npc = "mining_instructor"
+
+# PROSPECTING_TIN
+[.stage_29]
+title = "Prospecting."
+lines = ["To prospect a mineable rock, just right click it and select the", "'prospect rock' option. This will tell you the type of ore you can", "mine from it. Try it now on one of the rocks indicated.", ""]
+hint_tile = { x = 3076, y = 9504 }
+hint_height = 45
+
+# PROSPECTING_COPPER
+[.stage_30]
+title = "It's tin."
+lines = ["", "So now you know there's tin in the grey rocks, try prospecting", "the brown ones next.", ""]
+hint_tile = { x = 3086, y = 9501 }
+hint_height = 45
+
+# TALK_TO_MINING_GUIDE_2
+[.stage_31]
+title = "It's copper."
+lines = ["Talk to the Mining Instructor to find out about these types of", "ore and how you can mind them. He'll even give you the", "required tools.", ""]
+hint_npc = "mining_instructor"
+
+# MINING_TIN
+[.stage_32]
+title = "Mining."
+lines = ["It's quite simple really. All you need to do is right click on the", "rock and select 'mine'. You can only mine when you have a", "pickaxe. So give it a try: first mine one tin ore.", ""]
+hint_tile = { x = 3076, y = 9504 }
+hint_height = 45
+
+# MINING_COPPER
+[.stage_33]
+title = "Mining."
+lines = ["Now you have some tin ore you just need some copper ore,", "then you'll have all you need to create a bronze bar. As you", "did before right click on the copper rock and select 'mine'.", ""]
+hint_tile = { x = 3086, y = 9501 }
+hint_height = 45
+
+# SMELTING
+[.stage_34]
+title = "Smelting."
+lines = ["You should now have both some copper and tin ore. So let's", "smelt them to make a bronze bar. To do this, right click on", "either tin or copper ore and select use then left click on the", "furnace. Try it now."]
+hint_tile = { x = 3079, y = 9496 }
+hint_height = 125
+
+# TALK_TO_MINING_GUIDE_3
+[.stage_35]
+title = "You've made a bronze bar!"
+lines = ["", "Speak to the Mining Instructor and he'll show you how to make", "it into a weapon.", ""]
+hint_npc = "mining_instructor"
+
+# CLICK_ANVIL
+[.stage_36]
+title = "Smithing a dagger."
+lines = ["To smith you'll need a hammer and enough metal bars to make", "the desired item, as well as a handy anvil. To start the", "process, click on the anvil, or alternatively use the bar on it.", ""]
+hint_tile = { x = 3083, y = 9499 }
+hint_height = 35
+
+# SMITH_DAGGER
+[.stage_37]
+title = "Smithing a dagger."
+lines = ["Now you have the Smithing menu open, you will see a list of all", "the things you can make. Only the dagger can be made at your", "skill level; this is shown by the white text under it. You'll need", "to select the dagger to continue."]
+
+# LEAVE_MINING_AREA
+[.stage_38]
+title = "You've finished in this area."
+lines = ["So let's move on. Go through the gates shown by the arrow.", "Remember, you may need to move the camera to see your", "surroundings. Speak to the guide for a recap at any time.", ""]
+hint_tile = { x = 3094, y = 9502 }
+hint_height = 125
+
+# TALK_TO_COMBAT_INSTRUCTOR
+[.stage_39]
+title = "Combat."
+lines = ["", "In this area you will find out about combat with swords and", "bows. Speak to the guide and he will tell you all about it.", ""]
+hint_npc = "combat_instructor"
+
+# OPEN_EQUIPMENT_TAB
+[.stage_40]
+title = "Wielding weapons."
+lines = ["", "You now have access to a new interface. Click on the flashing", "icon of a man, the one to the right of your backpack icon.", ""]
+flash = "WornEquipment"
+unlock = "worn_equipment"
+
+# OPEN_EQUIPMENT_SCREEN
+[.stage_41]
+title = "This is your worn inventory."
+lines = ["From here you can see what items you have equipped. You will", "notice the button 'View equipment stats'. Click on this now to", "display the details of what you have equipped.", ""]
+
+# WIELD_DAGGER
+[.stage_42]
+title = "Worn interface"
+lines = ["You can see what items you are wearing in the worn inventory", "to the left of the screen, with their combined statistics on the", "right. Let's add something. Left click your dagger to 'wield' it.", ""]
+
+# TALK_TO_COMBAT_INSTRUCTOR_2
+[.stage_43]
+title = "You're now holding your dagger."
+lines = ["Clothes, armour, weapons and many other items are equipped", "like this. You can unequip items by clicking on the item in the", "worn inventory. You can close this window by clicking on the", "small 'x' in the top right hand corner. Speak to the Combat", "Instructor to continue."]
+hint_npc = "combat_instructor"
+
+# EQUIP_SWORD_AND_SHIELD
+[.stage_44]
+title = "Unequipping items."
+lines = ["In your worn inventory panel, right click on the dagger and", "select the remove option from the drop down list. After you've", "unequipped the dagger, wield the sword and shield. As you", "pass the mouse over an item, you will see its name appear at", "the top left of the screen."]
+
+# OPEN_COMBAT_TAB
+[.stage_45]
+title = "Combat interface."
+lines = ["", "Click on the flashing crossed swords icon to see the combat", "interface.", ""]
+flash = "CombatStyles"
+unlock = "combat_styles"
+
+# ENTER_RAT_CAGE
+[.stage_46]
+title = "This is your combat interface."
+lines = ["From this interface you can select the type of attack your", "character will use. Different monsters have different weaknesses.", "Hover your mouse over the buttons to see the type of XP you", "receive from each attack. Now you have the tools for battle, why", "not slay some rats? Click on the gates indicated to continue."]
+hint_tile = { x = 3111, y = 9518 }
+hint_height = 125
+
+# ATTACK_RAT_MELEE
+[.stage_47]
+title = "Attacking."
+lines = ["", "To attack the rat, right click it and select the attack option. You", "will then walk over to it and start hitting it.", ""]
+hint_npc = "giant_rat_tutorial_island"
+
+# KILL_RAT_MELEE
+[.stage_48]
+title = "Sit back and watch."
+lines = ["While you are fighting you will see a bar over your head. The", "bar shows how much health you have left. Your opponent will", "have one too. You will continue to attack the rat until it's dead", "or you do something else."]
+
+# TALK_TO_COMBAT_INSTRUCTOR_3
+[.stage_49]
+title = "Well done, you've made your first kill!"
+lines = ["", "Pass through the gate and talk to the Combat Instructor; he", "will give you your next task.", ""]
+hint_npc = "combat_instructor"
+
+# KILL_RAT_RANGE
+[.stage_50]
+title = "Rat ranging."
+lines = ["Now you have a bow and some arrows. Before you can use", "them you'll need to equip them. Once equipped with the", "ranging gear, try killing another rat. Remember: to attack, right", "click on the monster and select attack."]
+hint_npc = "giant_rat_tutorial_island"
+
+# LEAVE_COMBAT_AREA
+[.stage_51]
+title = "Moving on."
+lines = ["You have completed the tasks here. To move on, click on the", "ladder shown. If you need to go over any of what you learnt", "here, just talk to the Combat Instructor and he'll tell you what", "he can."]
+hint_tile = { x = 3111, y = 9526 }
+hint_height = 125
+
+# OPEN_BANK
+[.stage_52]
+title = "Banking."
+lines = ["Follow the path and you will come to the front of the building.", "This is the Bank of %server%, where you can store all you", "most valued items. To open your bank box just right click on an", "open booth indicated and select 'use'."]
+hint_tile = { x = 3122, y = 3124 }
+hint_height = 125
+
+# ENTER_FINANCIAL_ROOM
+[.stage_53]
+title = "This is your bank box."
+lines = ["You can store stuff here for safekeeping. If you die, anything", "in your bank will be saved. To deposit something, right click it", "and select 'store'. Once you've had a good look, close the", "window and move through the door indicated."]
+hint_tile = { x = 3124, y = 3124 }
+hint_height = 125
+
+# TALK_TO_FINANCIAL_ADVISOR
+[.stage_54]
+title = "Financial advice."
+lines = ["", "The guide here will tell you all about making cash. Just click on", "him to hear what he's got to say.", ""]
+hint_npc = "financial_advisor"
+
+# LEAVE_FINANCIAL_ADVISOR_ROOM
+[.stage_55]
+title = ""
+lines = ["", "Continue through the next door.", "", ""]
+hint_tile = { x = 3129, y = 3124 }
+hint_height = 125
+
+# TALK_TO_BROTHER_BRACE
+[.stage_56]
+title = "Prayer."
+lines = ["Follow the path to the chapel and enter it.", "Once inside talk to the monk. He'll tell you all about the Prayer", "skill.", ""]
+hint_npc = "brother_brace"
+
+# OPEN_PRAYER_TAB
+[.stage_57]
+title = "Your Prayer menu."
+lines = ["", "Click on the flashing icon to open the Prayer menu.", "", ""]
+flash = "PrayerList"
+unlock = "prayer_list"
+
+# TALK_TO_BROTHER_BRACE_2
+[.stage_58]
+title = ""
+lines = ["Your Prayer Menu.", "", "Talk with Brother Brace and he'll tell you about prayers.", ""]
+hint_npc = "brother_brace"
+
+# OPEN_FRIENDS_TAB
+[.stage_59]
+title = ""
+lines = ["Friends list.", "You should now see another new icon. Click on the flashing", "smiling face to open your friends list.", ""]
+flash = "FriendsList"
+unlock = "friends_list"
+
+# OPEN_IGNORE_LIST
+[.stage_60]
+title = "This is your friends list."
+lines = ["", "This will be explained by Brother Brace shortly, but first click", "on the red dot button on the bottom right of the friends list.", ""]
+flash = "IgnoreList"
+unlock = "ignore_list"
+
+# TALK_TO_BROTHER_BRACE_3
+[.stage_61]
+title = "This is your ignore list."
+lines = ["The two lists - friends and ignore - can be very helpful for", "keeping track of when your friends are online or for blocking", "messages from people you simply don't like. Speak with", "Brother Brace and he will tell you more."]
+hint_npc = "brother_brace"
+
+# LEAVE_CHURCH_AREA
+[.stage_62]
+title = ""
+lines = ["Your final instructor!", "You're almost finished on tutorial island. Pass through the", "door to find the path leading to your final instructor.", ""]
+hint_tile = { x = 3122, y = 3102 }
+hint_height = 125
+
+# TALK_TO_MAGIC_INSTRUCTOR
+[.stage_63]
+title = "Your final instructor!"
+lines = ["Just follow the path to the Wizard's house, where you will be", "shown how to cast spells. Just talk with the mage indicated to", "find out more.", ""]
+hint_npc = "magic_instructor"
+
+# OPEN_MAGIC_TAB
+[.stage_64]
+title = "Open up your final menu."
+lines = ["", "Open up the Magic menu by clicking on the flashing icon next", "to the Prayer button you just learned about.", ""]
+flash = "MagicSpellbook"
+unlock = "modern_spellbook"
+
+# TALK_TO_MAGIC_INSTRUCTOR_2
+[.stage_65]
+title = ""
+lines = ["This is your spells list.", "", "Ask the mage about it.", ""]
+hint_npc = "magic_instructor"
+
+# CAST_WIND_STRIKE
+[.stage_66]
+title = "Cast Wind Strike at a chicken."
+lines = ["Now you have runes you should see the Wind Strike icon at the", "top left corner of the Magic interface - third in from the", "left. Walk over to the caged chickens, click the Wind Strike icon", "and then select one of the chickens to cast it on. It may take", "several tries. If you need more runes ask Terrova."]
+hint_npc = "chicken_tutorial_island"
+
+# TALK_TO_MAGIC_INSTRUCTOR_3
+[.stage_67]
+title = "You have almost completed the tutorial!"
+lines = ["", "All you need to do now is move on to the mainland. Just speak", "with Terrova and he'll teleport you to Lumbridge Castle.", ""]
+hint_npc = "magic_instructor"
