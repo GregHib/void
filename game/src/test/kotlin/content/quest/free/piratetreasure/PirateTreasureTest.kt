@@ -330,7 +330,7 @@ class PirateTreasureTest : WorldTest() {
         player.inventory.add("karamjan_rum")
         player.inventory.add("karamjan_rum")
 
-        assertTrue(Teleport.takeOff(player, "modern", ""))
+        Teleport.land(player, "modern")
 
         assertEquals(0, player.inventory.count("karamjan_rum"))
         assertTrue(player.containsMessage("Your Karamjan rum gets broken and spilled."))

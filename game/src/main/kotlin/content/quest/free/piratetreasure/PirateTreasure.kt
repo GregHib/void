@@ -201,9 +201,8 @@ class PirateTreasure : Script {
         }
 
         for (type in MAGIC_TELEPORTS) {
-            teleportRemoveItems(type) {
+            teleportLand(type) {
                 spillRum()
-                true
             }
         }
 
