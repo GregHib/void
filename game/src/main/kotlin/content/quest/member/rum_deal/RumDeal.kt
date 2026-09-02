@@ -42,16 +42,6 @@ import java.util.concurrent.TimeUnit
 class RumDeal : Script {
 
     init {
-
-        val zombieSwabs = listOf(
-            "a" to 2843,
-            "b" to 2844,
-            "c" to 2845,
-            "d" to 2846,
-            "e" to 2847,
-            "f" to 2848,
-        )
-
         questJournalOpen("rum_deal") {
             val lines = when (val stage = questStage("rum_deal")) {
                 0 -> notStartedJournal()
