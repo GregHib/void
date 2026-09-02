@@ -109,7 +109,7 @@ class EvilTree : Script {
             }
         }
 
-        timerStart("evil_tree_buff") { TimeUnit.SECONDS.toTicks(1) }
+        timerStart("evil_tree_buff") { 1 }
 
         timerTick("evil_tree_buff") {
             if (dec("evil_tree_buff") <= 0) Timer.CANCEL else Timer.CONTINUE

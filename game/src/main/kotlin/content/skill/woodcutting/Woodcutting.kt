@@ -66,7 +66,7 @@ class Woodcutting(val drops: DropTables) : Script {
                 break
             }
 
-            if (!ivy && player.inventory.isFull()) {
+            if (!ivy && player.inventory.isFull() && !banksLogs(player, log.rowId)) {
                 player.message("Your inventory is too full to hold any more logs.")
                 break
             }
@@ -161,10 +161,15 @@ class Woodcutting(val drops: DropTables) : Script {
     }
 
     /**
+     * Whether evil tree magic will escort [log] to the players bank rather than their inventory.
+     */
+    private fun banksLogs(player: Player, log: String): Boolean = player.evilTreeMagic && !unbankableLogs.contains(log) && player.bank.spaces > 0
+
+    /**
      * Evil tree magic escorts logs to the bank once the players inventory is full.
      */
     private fun bankLog(player: Player, log: String): Boolean {
-        if (!player.evilTreeMagic || unbankableLogs.contains(log)) {
+        if (!banksLogs(player, log)) {
             return false
         }
         if (!player.bank.add(log)) {

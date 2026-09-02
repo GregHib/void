@@ -206,7 +206,7 @@ internal class EvilTreeTest : WorldTest() {
         assertEquals(185, player.inventory.count("coins")) // half of 370
         assertEquals(12, player.inventory.count("logs_noted")) // half of 24
         assertEquals(100, player["evil_tree_kindling_handed", 0])
-        assertEquals(180, player["evil_tree_buff", 0]) // half of six minutes, in seconds
+        assertEquals(300, player["evil_tree_buff", 0]) // half of six minutes, in ticks
     }
 
     @Test

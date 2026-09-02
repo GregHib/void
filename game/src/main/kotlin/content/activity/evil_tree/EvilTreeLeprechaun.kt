@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItemLimit.removeToLimit
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
@@ -117,11 +118,11 @@ class EvilTreeLeprechaun : Script {
     }
 
     private fun Player.grantMagic(minutes: Int, scale: Double) {
-        val seconds = (TimeUnit.MINUTES.toSeconds(minutes.toLong()) * scale).toInt()
-        if (seconds <= 0) {
+        val ticks = (TimeUnit.MINUTES.toTicks(minutes) * scale).toInt()
+        if (ticks <= 0) {
             return
         }
-        inc("evil_tree_buff", seconds)
+        inc("evil_tree_buff", ticks)
         timers.startIfAbsent("evil_tree_buff")
         message("You feel the evil tree's magic settle on you.")
     }
