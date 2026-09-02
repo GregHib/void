@@ -15,10 +15,11 @@ import world.gregs.voidps.type.Tile
 
 class TutorialDepartureTest : WorldTest() {
 
-    private val home get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
+    private val exit get() = Tile(Settings["world.start.tutorial.exit.x", 0], Settings["world.start.tutorial.exit.y", 0], Settings["world.start.tutorial.exit.level", 0])
 
     @Test
     fun `Welcome message waits until the player has landed in Lumbridge`() {
+        assertEquals(Tile(3236, 3219), exit, "unexpected tutorial exit tile")
         val player = createPlayer(Tile(3142, 3088)) { it.startTutorial(67) }
         val instructor = createNPC("magic_instructor", Tile(3141, 3088))
 
@@ -38,8 +39,8 @@ class TutorialDepartureTest : WorldTest() {
         }
 
         assertNotNull(welcomeTile, "the welcome message never appeared")
-        assertEquals(home, welcomeTile, "the welcome message appeared before the player landed")
-        assertEquals(home, player.tile)
+        assertEquals(exit, welcomeTile, "the welcome message appeared before the player landed")
+        assertEquals(exit, player.tile)
     }
 
     @Test
