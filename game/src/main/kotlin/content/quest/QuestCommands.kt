@@ -1,19 +1,25 @@
 package content.quest
 
+import content.entity.player.bank.bank
+import content.entity.player.command.find
 import content.entity.player.inv.item.addOrDrop
 import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.inv.beastOfBurden
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.removeToLimit
 
 /**
  * Sets a player up to attempt a quest: skills raised to the requirements listed in `quests.toml`,
@@ -25,14 +31,14 @@ class QuestCommands : Script {
 
     init {
         adminCommand(
-            "questreset",
+            "quest_reset",
             stringArg("quest-id", "the quest to reset", autofill = { get<QuestDefinitions>().ids.keys }),
             desc = "Reset a quest back to unstarted, clearing its variables",
             handler = ::reset,
         )
 
         adminCommand(
-            "questprep",
+            "quest_prep",
             stringArg("quest-id", "the quest to prepare for", autofill = { get<QuestDefinitions>().ids.keys }),
             desc = "Meet a quest's skill, quest and item requirements",
             handler = ::prepare,
@@ -44,20 +50,39 @@ class QuestCommands : Script {
      * variable named after it, which is how quest progress flags are named - Rum Deal's counters
      * and swab flags are all `rum_deal_*`. Variables a quest shares with a skill (the blindweed
      * farming patch, say) aren't named after the quest and are left alone.
+     * Note: Not foolproof
+     *   - Doesn't remove them from a quest area
+     *   - Dropped quest items can avoid the reset
+     *   - Doesn't reset rewards
+     *   - Allows player to reclaim rewards (such as XP)
      */
     private fun reset(player: Player, args: List<String>) {
         val questId = args.getOrNull(0) ?: return
+        val target = Players.find(player, args.getOrNull(2)) ?: return
         val quest = findQuest(player, questId) ?: return
         player.clear(questId)
         var cleared = 0
-        for (variable in VariableDefinitions.definitions.keys) {
-            if (variable.startsWith("${questId}_") && player.variables.contains(variable)) {
-                player.clear(variable)
-                cleared++
+        val vars: List<String> = quest.getOrNull("variables") ?: emptyList()
+        for (variable in vars) {
+            target.clear(variable)
+            cleared++
+        }
+        val removeItems = args.getOrNull(1)?.toBooleanStrictOrNull() ?: true
+        if (removeItems) {
+            val items: List<String> = quest.getOrNull("items") ?: emptyList()
+            for (item in items) {
+                removeItems(target, item)
             }
         }
         player.refreshQuestJournal()
-        player.message("Reset ${quest["name", questId]} to unstarted, clearing $cleared ${if (cleared == 1) "variable" else "variables"}.")
+        player.message("Reset ${quest["name", questId]} to unstarted, clearing $cleared ${"variable".plural(cleared)}.")
+    }
+
+    private fun removeItems(player: Player, item: String) {
+        player.inventory.removeToLimit(item, Int.MAX_VALUE)
+        player.bank.removeToLimit(item, Int.MAX_VALUE)
+        player.beastOfBurden.removeToLimit(item, Int.MAX_VALUE)
+        player.equipment.removeToLimit(item, Int.MAX_VALUE)
     }
 
     private fun findQuest(player: Player, questId: String): QuestDefinition? {
@@ -65,7 +90,7 @@ class QuestCommands : Script {
         val quest = questDefinitions.getOrNull(questId)
         if (quest == null) {
             player.message("No quest found with id '$questId'.")
-            return  null
+            return null
         }
         return quest
     }
