@@ -44,20 +44,27 @@ fun Client.arrowHint(
     radius: Int = 0,
     model: Int = 65535,
 ) = send(Protocol.HINT_ARROW) {
+    // The client frames this packet as a fixed 12 bytes, so every branch must write all of
+    // them even when it ignores the contents - a short packet eats the next one off the wire.
     writeByte((arrowIndex shl 5) or type)
     writeByte(sprite)
-    if (sprite >= 0) {
-        if (type == 1 || type == 10) {
+    when {
+        type == 1 || type == 10 -> {
             writeShort(entityIndex)
             writeInt(0)
             writeShort(0)
-        } else if (type in 2..6) {
-            writeByte(level) // level
-            writeShort(x) // x
-            writeShort(y) // y
-            writeByte(z) // z?
+        }
+        type in 2..6 -> {
+            writeByte(level)
+            writeShort(x)
+            writeShort(y)
+            writeByte(z)
             writeShort(radius)
         }
-        writeShort(model)
+        else -> { // Clearing an arrow; the client stops reading after the type but still expects the body.
+            writeInt(0)
+            writeInt(0)
+        }
     }
+    writeShort(model)
 }
