@@ -1,0 +1,20 @@
+# Which members of the Myreque the player has introduced themselves to
+[met_sani]
+persist = true
+format = "boolean"
+
+[met_harold]
+persist = true
+format = "boolean"
+
+[met_ivan]
+persist = true
+format = "boolean"
+
+[met_radigad]
+persist = true
+format = "boolean"
+
+[met_polmafi]
+persist = true
+format = "boolean"

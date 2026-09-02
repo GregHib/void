@@ -1958,7 +1958,7 @@ req_items = "Steel longsword, 2 steel short swords, steel mace, steel warhammer,
 req_combat = "You will need to defeat a level 44 enemy."
 points = 2
 reward = "Access to the Hair of the Dog's cellar<br>Swamp boat shortcut from Mort'ton to The Hollows<br>Access to 2 uncut rubies and 4 big bones"
-xp = "600 Attack XP lamp<br>600 Strength XP lamp<br>600 Crafting XP lamp"
+xp = "600 Attack XP<br>600 Defence XP<br>600 Strength XP<br>600 Constitution XP<br>600 Crafting XP"
 
 [jungle_potion]
 id = 66

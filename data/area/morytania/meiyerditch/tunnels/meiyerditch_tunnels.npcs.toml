@@ -4,10 +4,12 @@ examine = "Looks like the leader of the Myreque."
 
 [sani_piliu_meiyerditch_tunnels]
 id = 1570
+hitpoints = 300
 examine = "A pretty young rogue."
 
 [harold_evans_meiyerditch_tunnels]
 id = 1571
+hitpoints = 300
 examine = "Hot headed, big built youth, who trained in the militia."
 
 [ivan_strom_meiyerditch_tunnels]
