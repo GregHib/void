@@ -77,7 +77,7 @@ class MagicInstructor : Script {
         for (component in gameFrameComponents) {
             open(component)
         }
-        Teleport.teleport(this, homeTile(), "modern")
+        Teleport.teleport(this, exitTile(), "modern")
         // Teleporting is a strong queue, so this has to wait its turn rather than run inline -
         // an open message would otherwise block the teleport until the player dismissed it.
         queue("welcome") {
@@ -85,5 +85,5 @@ class MagicInstructor : Script {
         }
     }
 
-    private fun homeTile() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
+    private fun exitTile() = Tile(Settings["world.start.tutorial.exit.x", 0], Settings["world.start.tutorial.exit.y", 0], Settings["world.start.tutorial.exit.level", 0])
 }
