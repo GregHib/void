@@ -1,5 +1,6 @@
 [evil_tree_type]
 woodcutting = "int"
+firemaking = "int"
 farming = "int"
 nurture_xp = "int"
 burn_xp = "int"
@@ -8,83 +9,116 @@ tree_xp = "int"
 buff = "int"
 health = "int"
 seed_health = "int"
+fire_life = "int"
+fire_life_default = 100
+reward_coins = "int"
+reward_logs = "list<item>"
+reward_amounts = "list<int>"
 
 [.normal]
 woodcutting = 1
+firemaking = 1
 farming = 1
 nurture_xp = 200
 burn_xp = 2000
 root_xp = 30
-tree_xp = 30
+tree_xp = 151
 buff = 6
 health = 150
 seed_health = 2
+reward_coins = 370
+reward_logs = [ "logs" ]
+reward_amounts = [ 24 ]
 
 [.oak]
 woodcutting = 15
+firemaking = 15
 farming = 7
 nurture_xp = 450
 burn_xp = 3000
 root_xp = 64
-tree_xp = 64
+tree_xp = 324
 buff = 10
 health = 300
 seed_health = 4
+reward_coins = 652
+reward_logs = [ "oak_logs" ]
+reward_amounts = [ 48 ]
 
 [.willow]
 woodcutting = 30
+firemaking = 30
 farming = 15
 nurture_xp = 660
 burn_xp = 4500
 root_xp = 91
-tree_xp = 91
+tree_xp = 457
 buff = 14
 health = 450
 seed_health = 6
+reward_coins = 2254
+reward_logs = [ "willow_logs" ]
+reward_amounts = [ 452 ]
 
 [.maple]
 woodcutting = 45
+firemaking = 45
 farming = 22
 nurture_xp = 1215
 burn_xp = 6750
 root_xp = 111
-tree_xp = 111
+tree_xp = 558
 buff = 18
 health = 600
 seed_health = 8
+reward_coins = 2560
+reward_logs = [ "maple_logs" ]
+reward_amounts = [ 262 ]
 
 [.yew]
 woodcutting = 60
+firemaking = 60
 farming = 30
 nurture_xp = 1725
 burn_xp = 10125
-root_xp = 175
-tree_xp = 175
+root_xp = 128
+tree_xp = 644
 buff = 22
 health = 750
 seed_health = 10
+reward_coins = 4668
+reward_logs = [ "yew_logs" ]
+reward_amounts = [ 34 ]
 
 [.magic]
 woodcutting = 75
+firemaking = 75
 farming = 37
-nurture_xp = 3115
+nurture_xp = 3110
 burn_xp = 15175
-root_xp = 250
-tree_xp = 250
+root_xp = 141
+tree_xp = 709
 buff = 26
 health = 750
 seed_health = 12
+reward_coins = 9474
+reward_logs = [ "magic_logs" ]
+reward_amounts = [ 20 ]
 
 [.elder]
-woodcutting = 90
+woodcutting = 85
+firemaking = 85
 farming = 42
-nurture_xp = 7300
-burn_xp = 26005
-root_xp = 325
-tree_xp = 325
+nurture_xp = 6875
+burn_xp = 20005
+root_xp = 155
+tree_xp = 778
 buff = 30
 health = 900
 seed_health = 14
+reward_coins = 17388
+reward_logs = [ "magic_logs", "yew_logs", "teak_logs" ]
+reward_amounts = [ 36, 118, 750 ]
 
 [evil_tree_place]
 hint = "string"

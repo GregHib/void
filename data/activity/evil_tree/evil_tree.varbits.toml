@@ -6,3 +6,4 @@ persist = true
 [evil_tree_rewards]
 id = 1542
 format = "boolean"
+persist = true

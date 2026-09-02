@@ -1,7 +1,6 @@
 package content.quest.member.the_grand_tree
 
-import content.activity.evil_tree.EvilTree
-import content.entity.player.dialogue.Happy
+import content.activity.evil_tree.EvilTreeState
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
@@ -11,12 +10,16 @@ import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Tile
+import java.util.concurrent.TimeUnit
 
 class SpiritTree : Script {
 
@@ -27,35 +30,36 @@ class SpiritTree : Script {
                 return@objectOperate
             }
             npc<Neutral>(
-                "spirit_tree", "If you are a friend of the gnome people, you are a friend of mine. Do you wish to travel, or are you ${
+                "spirit_tree",
+                "If you are a friend of the gnome people, you are a friend of mine. Do you wish to travel, or are you ${
                     when {
-                        EvilTree.tree.id == "strange_sapling" -> "interested in the strange sapling?"
-                        EvilTree.tree.id.endsWith("_stump") -> "to ask about the evil tree?"
-                        else -> "to help dispatch the evil tree?"
+                        EvilTreeState.sapling -> "interested in the strange sapling?"
+                        EvilTreeState.alive -> "to help dispatch the evil tree?"
+                        else -> "to ask about the evil tree?"
                     }
-                }"
+                }",
             )
             choice("What would you like to ask about?") {
                 option("Travel.") {
                     updatePosition(this)
                     open("spirit_tree")
                 }
-                if (EvilTree.isSapling()) {
+                if (EvilTreeState.sapling) {
                     option("Strange sapling.") {
-                        npc<Neutral>("I can help you to find the strange sapling, but my knowledge outside of the anima mundi is limited.")
-                        npc<Neutral>("It can be found ${Tables.string("evil_tree_place.${EvilTree.place}.hint")}.")
+                        npc<Neutral>("spirit_tree", "I can help you to find the strange sapling, but my knowledge outside of the anima mundi is limited.")
+                        npc<Neutral>("spirit_tree", "It can be found ${Tables.string("evil_tree_place.${EvilTreeState.place}.hint")}.")
                     }
                 } else {
                     option("Evil tree.") {
-                        if (EvilTree.tree.id.endsWith("_stump")) {
-                            npc<Neutral>("spirit_tree", "The taint of the evil tree is not currently on the land. There won't be an evil tree for a long time.")
-                            npc<Neutral>("spirit_tree", "The taint of the evil tree is not currently on the land. There will be an evil tree in approximately [number] hour [number] minutes.")
+                        if (!EvilTreeState.alive) {
+                            npc<Neutral>("spirit_tree", "The taint of the evil tree is not currently on the land. There will be an evil tree in approximately ${evilTreeCountdown()}.")
                             return@option
                         }
+                        npc<Neutral>("spirit_tree", "The evil tree has taken root ${Tables.string("evil_tree_place.${EvilTreeState.place}.hint").replaceFirstChar { it.lowercase() }.replace("<br>", " ")}.")
                         npc<Quiz>("spirit_tree", "Would you like me to teleport you directly there?")
                         choice {
                             option("Yes please.") {
-                                Teleport.teleport(this, EvilTree.spawnTile.add(-1, -1), "spirit_tree", sound = false)
+                                Teleport.teleport(this, EvilTreeState.spawnTile.add(-1, -1), "spirit_tree", sound = false)
                             }
                             option<Quiz>("What is this 'evil tree'?") {
                                 npc<Neutral>("spirit_tree", "It is an abomination of nature that must be destroyed as quickly as possible. We do not know where it will appear, but, when it does, you should go to it immediately and help out!")
@@ -110,6 +114,23 @@ class SpiritTree : Script {
             Teleport.teleport(this, Tile(map[index] as Int), "spirit_tree", sound = false)
             message("You feel at one with the spirit tree.")
         }
+    }
+
+    /**
+     * How long until the next evil tree sprouts, in plain english.
+     */
+    private fun evilTreeCountdown(): String {
+        val ticks = World.timers.remaining("evil_tree_spawn")
+        if (ticks <= 0) {
+            return "a very short time"
+        }
+        val minutes = TimeUnit.MINUTES.toTicks(1)
+        val hours = ticks / (minutes * 60)
+        val remainder = (ticks % (minutes * 60)) / minutes
+        if (hours <= 0) {
+            return "$remainder ${"minute".plural(remainder)}"
+        }
+        return "$hours ${"hour".plural(hours)} $remainder ${"minute".plural(remainder)}"
     }
 
     fun updatePosition(player: Player) {
