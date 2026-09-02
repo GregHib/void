@@ -1,0 +1,31 @@
+[blindweed_patch_weeds_3]
+id = 10097
+examine = "Weedy."
+
+[blindweed_patch_weeds_2]
+id = 10098
+examine = "Less weedy."
+
+[blindweed_patch_weeds_1]
+id = 10099
+examine = "Almost clear."
+
+[blindweed_patch_weeded]
+id = 10100
+examine = "Free from weeds."
+
+[blindweed_seedling]
+id = 10101
+examine = "Something is growing here."
+
+[blindweed_fullygrown]
+id = 10102
+harvest = "blindweed"
+examine = "Fully grown Blindweed."
+
+[blindweed_patch_trashed]
+id = 10103
+examine = "Weedy, wrecked and infertile."
+
+[farming_blindweed_patch_braindeath_island]
+id = 10096

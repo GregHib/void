@@ -20,6 +20,7 @@ import content.skill.prayer.getActivePrayerVarKey
 import content.skill.prayer.praying
 import content.skill.summoning.dismissFamiliar
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearHinted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
@@ -71,6 +72,7 @@ class PlayerDeath : Script {
                 message("Oh dear, you are dead!")
                 anim("human_death")
                 queue.clear()
+                clearHinted()
                 delay(5)
                 clearAnim()
                 attackers.clear()
