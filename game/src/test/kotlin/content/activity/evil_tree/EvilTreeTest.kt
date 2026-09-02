@@ -3,6 +3,7 @@ package content.activity.evil_tree
 import WorldTest
 import dialogueContinue
 import dialogueOption
+import kotlinx.coroutines.test.runTest
 import npcOption
 import objectOption
 import org.junit.jupiter.api.AfterEach
@@ -12,10 +13,13 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.client.command.Commands
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerRights
+import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -253,6 +257,20 @@ internal class EvilTreeTest : WorldTest() {
 
         assertTrue(player.inventory.contains("bronze_hatchet"))
         assertTrue(player.inventory.contains("tinderbox"))
+    }
+
+    @Test
+    fun `The magic command grants and removes the reward buff`() {
+        val player = createPlayer(emptyTile)
+        player.rights = PlayerRights.Admin
+
+        runTest { Commands.call(player, "evil_tree_magic 5") }
+        assertEquals(TimeUnit.MINUTES.toTicks(5), player["evil_tree_buff", 0])
+        assertTrue(player.evilTreeMagic)
+
+        runTest { Commands.call(player, "evil_tree_magic 0") }
+        assertEquals(0, player["evil_tree_buff", 0])
+        assertFalse(player.evilTreeMagic)
     }
 
     @Test

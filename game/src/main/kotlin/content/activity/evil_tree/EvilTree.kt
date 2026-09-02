@@ -9,9 +9,11 @@ import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -120,6 +122,29 @@ class EvilTree : Script {
         }
 
         adminCommand("eviltree", stringArg("minutes"), desc = "Start a new evil tree event in [minutes]", handler = ::command)
+
+        adminCommand(
+            "evil_tree_magic",
+            intArg("minutes", "how long it should last, 0 to remove it (default $MAX_BUFF_MINUTES)", optional = true),
+            desc = "Give yourself the evil tree woodcutting reward buff",
+            handler = ::magicCommand,
+        )
+    }
+
+    /**
+     * Grants the reward buff without having to fell a tree for it, for testing the woodcutting
+     * effects it has - banked logs, fewer felled trees and more birds nests.
+     */
+    private fun magicCommand(player: Player, args: List<String>) {
+        val minutes = args.getOrNull(0)?.toIntOrNull() ?: MAX_BUFF_MINUTES
+        if (minutes <= 0) {
+            player["evil_tree_buff"] = 0
+            player.timers.stop("evil_tree_buff")
+            return
+        }
+        player["evil_tree_buff"] = TimeUnit.MINUTES.toTicks(minutes)
+        player.timers.restart("evil_tree_buff")
+        player.message("Evil tree magic granted for $minutes ${"minute".plural(minutes)}.")
     }
 
     private fun command(player: Player, args: List<String>) {
@@ -647,6 +672,7 @@ class EvilTree : Script {
         const val DEATH_TICKS = 20
         const val LIGHTNING_STRIKES = 3
         const val LIGHTNING_INTERVAL_MINUTES = 10
+        const val MAX_BUFF_MINUTES = 30
         const val NOTICE_RADIUS = 8
         val ROOT_LIFE = 3..7
     }
