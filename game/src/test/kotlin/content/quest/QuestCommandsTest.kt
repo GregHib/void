@@ -16,11 +16,11 @@ import kotlin.test.assertTrue
 class QuestCommandsTest : WorldTest() {
 
     @Test
-    fun `Questprep meets a quest's skill, quest and item requirements`() {
+    fun `Quest prep meets a quest's skill, quest and item requirements`() {
         val admin = createPlayer(name = "prep admin")
         admin.rights = PlayerRights.Admin
 
-        runTest { Commands.call(admin, "questprep rum_deal") }
+        runTest { Commands.call(admin, "quest_prep rum_deal") }
         tick()
 
         // req_skills from quests.toml
@@ -39,30 +39,30 @@ class QuestCommandsTest : WorldTest() {
     }
 
     @Test
-    fun `Questprep never lowers a skill the player has already trained`() {
+    fun `Quest prep never lowers a skill the player has already trained`() {
         val admin = createPlayer(name = "prep admin2")
         admin.rights = PlayerRights.Admin
         admin.experience.set(Skill.Fishing, Level.experience(80))
 
-        runTest { Commands.call(admin, "questprep rum_deal") }
+        runTest { Commands.call(admin, "quest_prep rum_deal") }
         tick()
 
         assertEquals(80, admin.levels.getMax(Skill.Fishing))
     }
 
     @Test
-    fun `Questprep reports an unknown quest`() {
+    fun `Quest prep reports an unknown quest`() {
         val admin = createPlayer(name = "prep admin3")
         admin.rights = PlayerRights.Admin
 
-        runTest { Commands.call(admin, "questprep not_a_quest") }
+        runTest { Commands.call(admin, "quest_prep not_a_quest") }
         tick()
 
         assertTrue(admin.containsMessage("No quest found with id 'not_a_quest'."))
     }
 
     @Test
-    fun `Questreset puts the quest back to unstarted and clears its variables`() {
+    fun `Quest reset puts the quest back to unstarted and clears its variables`() {
         val admin = createPlayer(name = "reset admin")
         admin.rights = PlayerRights.Admin
         admin["rum_deal"] = "collect_swill"
@@ -71,7 +71,7 @@ class QuestCommandsTest : WorldTest() {
         admin["rum_deal_swab_a"] = 1
         admin["rum_deal_brewing_control"] = 2
 
-        runTest { Commands.call(admin, "questreset rum_deal") }
+        runTest { Commands.call(admin, "quest_reset rum_deal") }
         tick()
 
         assertEquals("unstarted", admin["rum_deal", "unstarted"])
@@ -82,11 +82,11 @@ class QuestCommandsTest : WorldTest() {
     }
 
     @Test
-    fun `Questreset reports an unknown quest`() {
+    fun `Quest reset reports an unknown quest`() {
         val admin = createPlayer(name = "reset admin2")
         admin.rights = PlayerRights.Admin
 
-        runTest { Commands.call(admin, "questreset not_a_quest") }
+        runTest { Commands.call(admin, "quest_reset not_a_quest") }
         tick()
 
         assertTrue(admin.containsMessage("No quest found with id 'not_a_quest'."))

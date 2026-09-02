@@ -3220,6 +3220,21 @@ req_quests = ["zogre_flesh_eaters"]
 req_items = "Combat equipment and food, Slayer gloves."
 # Everything else is handed out by Captain Braindeath or the basement tool cupboard.
 req_item_ids = ["slayer_gloves", "spade"]
+variables = [
+  "rum_deal",
+  "rum_deal_pressure_count",
+  "rum_deal_brewing_control",
+  "rum_deal_squid_spot",
+  "rum_deal_slugling_count",
+  "rum_deal_karamthulhu_count",
+  "rum_deal_swab_a",
+  "rum_deal_swab_b",
+  "rum_deal_swab_c",
+  "rum_deal_swab_d",
+  "rum_deal_swab_e",
+  "rum_deal_swab_f",
+  "rum_deal_diversion",
+]
 req_combat = "You will need to defeat a level 56 melee enemy and a level 70 ranged enemy."
 points = 2
 reward = "Holy wrench<br>Access to Braindeath Island<br>Tangled fishbowl and net"
