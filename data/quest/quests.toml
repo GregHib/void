@@ -189,10 +189,31 @@ start_point = "Talk to Elena in her house in East Ardougne."
 start_path = [[ 2591, 3335 ]]
 req_quests = ["plague_city"]
 req_items = "Priest gown top and bottom."
+req_item_ids = ["priest_gown_top", "priest_gown_bottom"]
+prep_vars = { plaguecity_elena_at_home = true }
 req_combat = "You will need to defeat a level 33 mourner."
 points = 3
 reward = "Ability to travel freely through the West Ardougne gate<br>Use of the Combat Training Camp north of Ardougne"
 xp = "1,250 Thieving XP"
+variables = [
+  "biohazard",
+  "biohazard_davinci_errand",
+  "biohazard_chancy_errand",
+  "biohazard_hops_errand",
+]
+items = [
+  "ethenea",
+  "liquid_honey",
+  "sulphuric_broline",
+  "plague_sample",
+  "touch_paper",
+  "distillator",
+  "bird_feed",
+  "key_biohazard",
+  "pigeon_cage_full",
+  "pigeon_cage_empty",
+  "doctors_gown",
+]
 
 [black_knights_fortress]
 id = 159

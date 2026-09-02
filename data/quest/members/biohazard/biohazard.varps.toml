@@ -3,4 +3,4 @@ id = 68
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, completed = 16 }
+values = { unstarted = 0, started = 1, spoke_to_jerico = 2, birdfeed_thrown = 3, pigeons_released = 4, crossed_wall = 5, poisoned_stew = 6, found_distillator = 7, collect_chemicals = 10, smuggle_chemicals = 12, sample_tested = 14, told_elena = 15, completed = 16 }

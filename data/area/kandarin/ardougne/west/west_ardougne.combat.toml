@@ -1,0 +1,10 @@
+[mourner]
+defend_anim = "mourner_defend"
+defend_sound = "mourner_defend"
+death_anim = "mourner_death"
+death_sound = "mourner_death"
+
+[mourner.melee]
+range = 1
+anim = "mourner_attack"
+target_hit = { offense = "crush", max = 20 }

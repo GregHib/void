@@ -22,6 +22,7 @@ val quests = setOf(
     "imp_catcher",
     "pirates_treasure",
     // members
+    "biohazard",
     "creature_of_fenkenstrain",
     "druidic_ritual",
     "hand_in_the_sand",
