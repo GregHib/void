@@ -84,6 +84,20 @@ class QuestCommandsTest : WorldTest() {
     }
 
     @Test
+    fun `Questprep sets up the world state a quest inherits from its prerequisites`() {
+        val admin = createPlayer(name = "prep admin biohazard")
+        admin.rights = PlayerRights.Admin
+
+        runTest { Commands.call(admin, "questprep biohazard") }
+        tick()
+
+        assertTrue(admin.questCompleted("plague_city"))
+        assertTrue(admin.inventory.contains("priest_gown_top"))
+        assertTrue(admin.inventory.contains("priest_gown_bottom"))
+        assertTrue(admin["plaguecity_elena_at_home", false], "Elena should be home to start the quest")
+    }
+
+    @Test
     fun `Questprep never lowers a skill the player has already trained`() {
         val admin = createPlayer(name = "prep admin2")
         admin.rights = PlayerRights.Admin

@@ -2,6 +2,8 @@ package content.quest.member.ghosts_ahoy
 
 import FakeRandom
 import WorldTest
+import containsMessage
+import content.entity.effect.transform
 import content.quest.quest
 import dialogueOption
 import itemOnItem
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -366,5 +369,18 @@ class GhostsAhoyTest : WorldTest() {
         player.skipDialogues()
         assertEquals(1, player.inventory.count("ectophial"))
         assertEquals("completed", player.quest("ghosts_ahoy"))
+    }
+
+    @Test
+    fun `The ghost disguise blocks a teleport of any kind`() {
+        val player = createPlayer(Tile(3688, 3510), name = "disguised teleporter")
+        player.equipment.set(EquipSlot.Hat.index, "bedsheet")
+        player.transform("ahoy_ghost_disguise")
+
+        Teleport.teleport(player, Tile(3222, 3218), "jewellery")
+        tick(12)
+
+        assertEquals(Tile(3688, 3510), player.tile, "the teleport should be refused")
+        assertTrue(player.containsMessage("Please remove your ghost disguise before teleporting."))
     }
 }

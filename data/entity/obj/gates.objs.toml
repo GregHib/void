@@ -189,11 +189,12 @@ gate = false
 material = "iron"
 examine = "A wrought-iron gate."
 
-[gate_34_opened]
+[lathas_training_gate_left_opened]
 id = 2040
 
-[gate_34_closed]
+[lathas_training_gate_left_closed]
 id = 2039
+material = "iron_door"
 examine = "It's closed."
 
 [kitchen_gate_2_opened]
@@ -231,11 +232,12 @@ id = 2040
 id = 2673
 examine = "A solid looking gate."
 
-[gate_35_opened]
+[lathas_training_gate_right_opened]
 id = 2042
 
-[gate_35_closed]
+[lathas_training_gate_right_closed]
 id = 2041
+material = "iron_door"
 examine = "It's closed."
 
 [gate_54_opened]
@@ -289,24 +291,24 @@ id = 2042
 id = 2674
 examine = "A solid looking gate."
 
-[gate_36_opened]
+[guidor_gate_left_opened]
 id = 2052
 
-[gate_36_closed]
+[guidor_gate_left_closed]
 id = 2050
 examine = "A wooden gate."
 
-[gate_37_opened]
+[guidor_gate_right_opened]
 id = 2053
 
-[gate_37_closed]
+[guidor_gate_right_closed]
 id = 2051
 examine = "A wooden gate."
 
-[gate_38_opened]
+[mourner_quarters_gate_left_opened]
 id = 2059
 
-[gate_38_closed]
+[mourner_quarters_gate_left_closed]
 id = 2058
 examine = "It's closed."
 
@@ -331,10 +333,10 @@ id = 2059
 id = 2552
 examine = "A metal gate bars your way."
 
-[gate_39_opened]
+[mourner_quarters_gate_right_opened]
 id = 2061
 
-[gate_39_closed]
+[mourner_quarters_gate_right_closed]
 id = 2060
 examine = "It's closed."
 

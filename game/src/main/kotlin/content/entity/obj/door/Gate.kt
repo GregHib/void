@@ -3,7 +3,9 @@ package content.entity.obj.door
 import content.entity.obj.Replace
 import content.entity.obj.door.Door.rotation
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 
 object Gate {
@@ -40,6 +42,41 @@ object Gate {
             collision = collision,
             onRevert = onRevert,
         )
+    }
+
+    fun replaceTogether(
+        player: Player,
+        obj: GameObject,
+        double: GameObject,
+        flip: Boolean,
+        ticks: Int,
+        collision: Boolean,
+        current: String,
+        next: String,
+        objRotation: Int,
+        hingeTileRotation: Int,
+        onRevert: (() -> Unit)? = null,
+    ) {
+        val first = if (flip) double else obj
+        val second = if (flip) obj else double
+        val definition = first.def(player)
+        val tile = Door.tile(first, hingeTileRotation)
+        val suffix = if (next.endsWith("opened")) "open" else "close"
+        val opposite = if (suffix == "open") "close" else "open"
+        Replace.objects(
+            first,
+            definition.stringId.replace(current, next),
+            tile,
+            first.rotation(objRotation),
+            second,
+            second.def(player).stringId.replace(current, next),
+            second.tile.add(tile.delta(first.tile)),
+            second.rotation(-objRotation),
+            ticks,
+            collision = collision,
+            onRevert = onRevert ?: { areaSound(Door.soundName(definition, opposite), first.tile) },
+        )
+        player.sound(Door.soundName(definition, suffix))
     }
 
     fun ObjectDefinition.isGate() = name.contains("gate", true) && this["gate", true]

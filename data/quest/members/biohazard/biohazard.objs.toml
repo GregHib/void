@@ -1,0 +1,39 @@
+[jericos_cupboard_shut]
+id = 2056
+examine = "A cupboard, closed."
+
+[jericos_cupboard_open]
+id = 2057
+examine = "A cupboard, open."
+
+[bio_nurses_cupboard_shut]
+id = 2062
+examine = "A storage box, closed."
+
+[bio_nurses_cupboard_open]
+id = 2063
+examine = "A storage box, open."
+
+[mourner_crate_up]
+id = 2064
+examine = "For storage."
+
+[mourner_stew_cauldron]
+id = 2043
+examine = "Something's cooking."
+
+[bio_watchtower_fence]
+id = 2067
+examine = "The mourners are watching from up there."
+
+[mourner_stew_fence]
+id = 2068
+examine = "There's a gap in the fence."
+
+[bio_ladder]
+id = 36307
+examine = "A rope ladder thrown over the wall."
+
+[bio_ladder_wall]
+id = 36308
+examine = "The wall around West Ardougne."

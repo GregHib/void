@@ -144,6 +144,8 @@ object Params {
     /** Variables a quest keeps outside of its own name; used by the questreset command. */
     const val RESET_VARS = 5268
 
+    const val PREP_VARS = 5269
+
     const val REQ_QUEST_POINTS = 5139
     const val REQ_QUESTS = 5140
     const val REQ_SKILLS = 5141
@@ -479,6 +481,7 @@ object Params {
         "regen_rate_ticks" -> REGEN_RATE_TICKS
         "region" -> REGION
         "req_combat" -> REQ_COMBAT
+        "prep_vars" -> PREP_VARS
         "req_item_ids" -> REQ_ITEM_IDS
         "reset_vars" -> RESET_VARS
         "req_items" -> REQ_ITEMS

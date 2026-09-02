@@ -34,8 +34,8 @@ examine = "A mourner, or plague healer."
 [mourner_1]
 id = 369
 examine = "A mourner, or plague healer."
-drop_table = "mourner"
-combat_def = "guard"
+combat_def = "mourner"
+respawn_delay = 20
 hitpoints = 190
 att = 8
 str = 8
@@ -46,8 +46,9 @@ max_hit_crush = 20
 [mourner_2]
 id = 370
 examine = "A mourner, or plague healer."
-drop_table = "mourner"
-combat_def = "guard"
+drop_table = "mourner_2"
+combat_def = "mourner"
+respawn_delay = 20
 hitpoints = 190
 att = 8
 str = 8
@@ -58,8 +59,8 @@ max_hit_crush = 20
 [mourner_3]
 id = 371
 examine = "A mourner, or plague healer."
-drop_table = "mourner"
-combat_def = "guard"
+combat_def = "mourner"
+respawn_delay = 20
 hitpoints = 190
 att = 8
 str = 8
@@ -81,8 +82,8 @@ style = "crush"
 max_hit_melee = 20
 attack_bonus = 6
 examine = "A mourner, or plague healer."
-drop_table = "mourner"
-combat_def = "guard"
+combat_def = "mourner"
+respawn_delay = 20
 max_hit_crush = 20
 
 [mourner_5]
@@ -94,8 +95,8 @@ def = 12
 style = "crush"
 max_hit_melee = 30
 examine = "A mourner, or plague healer."
-drop_table = "mourner"
-combat_def = "guard"
+combat_def = "mourner"
+respawn_delay = 20
 attack_bonus = 6
 max_hit_crush = 20
 
@@ -107,8 +108,8 @@ str = 10
 def = 10
 max_hit_melee = 20
 categories = ["human"]
-drop_table = "mourner"
-combat_def = "guard"
+combat_def = "mourner"
+respawn_delay = 20
 attack_bonus = 6
 max_hit_crush = 20
 examine = "A mourner, or plague healer."
@@ -121,8 +122,8 @@ str = 95
 def = 80
 style = "stab"
 max_hit_melee = 100
-drop_table = "mourner"
 combat_def = "guard"
+respawn_delay = 20
 max_hit_stab = 100
 examine = "A mourner, or plague healer."
 

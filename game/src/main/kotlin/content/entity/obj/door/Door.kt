@@ -107,7 +107,7 @@ object Door {
         areaSound(soundName(definition, suffix), obj.tile)
     }
 
-    private fun soundName(definition: ObjectDefinition, suffix: String): String {
+    internal fun soundName(definition: ObjectDefinition, suffix: String): String {
         val type = if (definition.isGate()) "gate" else "door"
         val material = definition["material", ""]
         if (material.isEmpty()) {

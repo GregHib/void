@@ -115,9 +115,21 @@ class QuestCommands : Script {
             }
         }
 
+        val variables = quest["prep_vars", emptyMap<String, Any>()]
+        var set = 0
+        for ((variable, value) in variables) {
+            if (VariableDefinitions.get(variable) == null) {
+                player.message("Unknown variable '$variable' in ${quest.stringId} prep list.")
+                continue
+            }
+            player[variable] = value
+            set++
+        }
+
         player.message(
             "Prepared for ${quest["name", questId]}: ${skills.size} skills, " +
-                "${quests.size} ${if (quests.size == 1) "quest" else "quests"}, $given items.",
+                "${quests.size} ${if (quests.size == 1) "quest" else "quests"}, $given items, " +
+                "$set ${if (set == 1) "variable" else "variables"}.",
         )
     }
 }

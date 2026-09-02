@@ -42,10 +42,6 @@ examine = "A wooden crate for storage."
 id = 1999
 examine = "A wooden crate for storage."
 
-[crate_12]
-id = 2064
-examine = "For storage."
-
 [crate_13]
 id = 2071
 examine = "Used for storage."
