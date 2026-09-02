@@ -1,7 +1,6 @@
 package content.minigame.barrows
 
 import content.entity.combat.killer
-import content.entity.npc.markHint
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
@@ -236,7 +235,7 @@ class BarrowsCrypts : Script {
             npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
             npc.interactPlayer(player, "Attack")
             player["${brother}_spawn"] = npc.index
-            npc.markHint(player)
+            player.markHint(npc)
         }
     }
 }

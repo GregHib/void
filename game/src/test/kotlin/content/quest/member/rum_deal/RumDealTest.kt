@@ -11,7 +11,7 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
 import skipDialogues
-import world.gregs.voidps.engine.client.hint
+import world.gregs.voidps.engine.client.markHint
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -552,7 +552,7 @@ class RumDealTest : WorldTest() {
         player.inventory.add("holy_wrench")
 
         // An arrow belonging to some other content, which must survive
-        val otherArrow = player.hint(Tile(2143, 5101, 1))
+        val otherArrow = player.markHint(Tile(2143, 5101, 1))
 
         val controls = GameObjects.find(Tile(2143, 5100, 1), "braindeath_island_brewing_controls_multi")
         player.itemOnObject(controls, player.inventory.indexOf("holy_wrench"))

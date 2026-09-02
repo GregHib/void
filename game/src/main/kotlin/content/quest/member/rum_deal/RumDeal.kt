@@ -1,8 +1,6 @@
 package content.quest.member.rum_deal
 
 import content.entity.combat.killer
-import content.entity.npc.clearHints
-import content.entity.npc.markHint
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Mad
@@ -18,6 +16,7 @@ import content.quest.questJournal
 import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
+import world.gregs.voidps.engine.client.markHint
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -425,7 +424,7 @@ class RumDeal : Script {
                 owner = this,
             )
             if (spirit != null) {
-                spirit.markHint(this)
+                markHint(spirit)
                 spirit.interactPlayer(this, "Attack")
             }
         }
@@ -436,8 +435,6 @@ class RumDeal : Script {
             if (killer.questStage("rum_deal") == 13) {
                 killer["rum_deal"] = "spirit_banished"
             }
-            // Takes the arrow away as the spirit dies rather than waiting for it to despawn
-            clearHints()
             killer.message("You have banished the Evil Spirit!")
         }
     }

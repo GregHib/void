@@ -19,6 +19,16 @@ object HintArrow {
     const val RED_MINIMAP = 8
 }
 
+object HintType {
+    const val CLEAR = 0
+    const val NPC = 1
+    const val TILE = 2
+    const val WEST = 3
+    const val EAST = 4
+    const val SOUTH = 5
+    const val NORTH = 6
+    const val PLAYER = 10
+}
 /**
  * Send system update timer
  * @param type of hint (0=clear, 1=npc, 2=tile_centre, 3=tile_west, 4=tile_east, 5=tile_south, 6=tile_north, 10=player)
@@ -49,7 +59,7 @@ fun Client.arrowHint(
     // of it. Stopping short leaves the client reading the packets behind this one as the rest of
     // it, which desyncs the stream and takes the client down.
     if (type == 0) {
-        repeat(PAYLOAD - 1) {
+        repeat(11) {
             writeByte(0)
         }
         return@send
@@ -58,6 +68,7 @@ fun Client.arrowHint(
     when (type) {
         1, 10 -> {
             writeShort(entityIndex)
+            // Skip 6
             writeInt(0)
             writeShort(0)
         }
@@ -74,6 +85,3 @@ fun Client.arrowHint(
     }
     writeShort(model)
 }
-
-/** Bytes the client reads for a hint arrow, not counting the opcode. */
-private const val PAYLOAD = 12

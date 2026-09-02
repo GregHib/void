@@ -13,12 +13,13 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearHint
-import world.gregs.voidps.engine.client.hint
+import world.gregs.voidps.engine.client.markHint
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.network.login.protocol.encode.HintType
 import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
@@ -42,7 +43,7 @@ class DungeoneeringTutor : Script {
         }
 
         timerStop("dungeoneering_tutor_hint_timeout") {
-            clearHint()
+            clearHint(HintType.NPC)
         }
     }
 
@@ -70,7 +71,7 @@ class DungeoneeringTutor : Script {
             choice {
                 option<Happy>("Yes, please.") {
                     npc<Happy>("It's this way.")
-                    hint(Tile(3449, 3744), radius = 2)
+                    markHint(Tile(3449, 3744), radius = 2)
                     softTimers.start("dungeoneering_tutor_hint_timeout")
                 }
                 option<Neutral>("No thanks, not right now.") {
