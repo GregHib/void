@@ -42,12 +42,7 @@ class PatrolDefinitions {
                                     }
                                     points.add(Tile(x, y, level) to delay)
                                 }
-                                "defaultmode" -> string()
-                                else -> if (key.startsWith("patrol")) {
-                                    points.add(parseLegacyPatrolPoint(string()))
-                                } else {
-                                    throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
-                                }
+                                else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                             }
                         }
                         definitions[stringId] = PatrolDefinition(stringId = stringId, waypoints = points)
@@ -58,18 +53,5 @@ class PatrolDefinitions {
             this.definitions.size
         }
         return this
-    }
-
-    private fun parseLegacyPatrolPoint(value: String): Pair<Tile, Int> {
-        val parts = value.split(",", limit = 2)
-        val coords = parts[0].split("_")
-        require(coords.size == 5) { "Unexpected patrol point value: '$value'" }
-        val level = coords[0].toInt()
-        val regionX = coords[1].toInt()
-        val regionY = coords[2].toInt()
-        val localX = coords[3].toInt()
-        val localY = coords[4].toInt()
-        val delay = parts.getOrNull(1)?.toIntOrNull() ?: 0
-        return Tile(regionX * 64 + localX, regionY * 64 + localY, level) to delay
     }
 }
