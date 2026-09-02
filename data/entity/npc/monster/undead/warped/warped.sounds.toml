@@ -1,0 +1,38 @@
+[warped_death]
+id = 8689
+
+[warped_bat_attack]
+id = 292
+
+[warped_bat_defend]
+id = 294
+
+[warped_bat_death]
+id = 293
+
+[warped_rat_attack]
+id = 710
+
+[warped_rat_defend]
+id = 713
+
+[warped_rat_death]
+id = 711
+
+[warped_fly_attack]
+id = 537
+
+[warped_fly_defend]
+id = 539
+
+[warped_fly_death]
+id = 538
+
+[warped_cockroach_attack]
+id = 537
+
+[warped_cockroach_defend]
+id = 539
+
+[warped_cockroach_death]
+id = 538
