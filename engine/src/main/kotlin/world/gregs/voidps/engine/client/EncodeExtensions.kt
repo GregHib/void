@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.data.definition.FontDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.encode.*
@@ -214,52 +215,81 @@ fun Player.clearMinimap() = client?.sendMinimapState(0) ?: Unit
 /**
  * Add an [arrow] hint to a [tile] with [radius]
  */
-fun Player.hint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, direction: Direction = Direction.NONE, height: Int = 0): Int {
-    val viewport = viewport ?: return -1
-    val index = viewport.hints.firstOrNull { it == 0 } ?: return -1
+fun Player.markHint(tile: Tile, radius: Int = 1, arrow: Int = HintArrow.FILLED, direction: Direction = Direction.NONE, height: Int = 0) {
+    val viewport = viewport ?: return
     val type = when (direction) {
-        Direction.WEST -> 3
-        Direction.EAST -> 4
-        Direction.SOUTH -> 5
-        Direction.NORTH -> 6
-        else -> 2
+        Direction.WEST -> HintType.WEST
+        Direction.EAST -> HintType.EAST
+        Direction.SOUTH -> HintType.SOUTH
+        Direction.NORTH -> HintType.NORTH
+        else -> HintType.TILE
     }
+    val index = hintIndex(type) ?: return
     viewport.hints[index] = type
     client?.arrowHint(type, index, sprite = arrow, x = tile.x, y = tile.y, level = tile.level, z = height, radius = radius)
-    return index
+    return
+}
+
+/**
+ * Clears arrow hints for those who have this character hinted
+ */
+fun Character.clearHinted() {
+    val hints: Set<String> = get("hinted_players") ?: return
+    val type = if (this is NPC) HintType.NPC else HintType.PLAYER
+    for (accountName in hints) {
+        val player = Players.findByAccount(accountName) ?: continue
+        player.clearHint(type, index)
+    }
+    clear("hinted_players")
 }
 
 /**
  * Add an [arrow] hint over [character]
  */
-fun Player.hint(character: Character, arrow: Int = HintArrow.FILLED): Int {
-    val viewport = viewport ?: return -1
-    val index = viewport.hints.firstOrNull { it == 0 } ?: return -1
-    val type = when (character) {
-        is Player -> 10
-        is NPC -> 1
-        else -> return -1
-    }
-    viewport.hints[index] = type
+fun Player.markHint(character: Character, arrow: Int = HintArrow.FILLED) {
+    val viewport = viewport ?: return
+    val type = if (character is NPC) HintType.NPC else HintType.PLAYER
+    val hints = character.getOrPut("hinted_players") { mutableSetOf<String>() }
+    hints.add(accountName)
+    val index = hintIndex(type) ?: return
+    viewport.hints[index] = character.index
     client?.arrowHint(type, index, sprite = arrow, entityIndex = character.index)
-    return index
+}
+
+fun Player.clearHint(type: Int, entityIndex: Int) {
+    val viewport = viewport ?: return
+    val index = hintIndex(type) ?: return
+    if (viewport.hints[index] == entityIndex) {
+        clearHint(type)
+    }
 }
 
 /**
- * Clear the hint at [index] (or all if -1)
+ * Clear the [type] hint
  */
-fun Player.clearHint(index: Int = -1) {
+fun Player.clearHint(type: Int) {
     val viewport = viewport ?: return
-    if (index == -1) {
-        for (i in viewport.hints.indices) {
-            if (viewport.hints[i] == 0) {
-                continue
-            }
-            client?.arrowHint(0, i)
-            viewport.hints[i] = 0
+    val index = hintIndex(type) ?: return
+    if (viewport.hints[index] == 0) {
+        return
+    }
+    client?.arrowHint(HintType.CLEAR, index)
+    viewport.hints[index] = 0
+}
+
+private fun hintIndex(type: Int) = when (type) {
+    HintType.CLEAR -> null
+    HintType.PLAYER -> 7
+    else -> type - 1
+}
+
+fun Player.clearHints() {
+    val viewport = viewport ?: return
+    for (i in viewport.hints.indices) {
+        if (viewport.hints[i] == 0) {
+            continue
         }
-    } else {
-        client?.arrowHint(0, index)
-        viewport.hints[index] = 0
+        client?.arrowHint(HintType.CLEAR, i)
+        viewport.hints[i] = 0
     }
 }

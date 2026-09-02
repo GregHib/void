@@ -15,3 +15,27 @@ id = 5651
 
 [zombie_pirate_death]
 id = 5654
+
+[deal_press_press]
+id = 2808
+
+[deal_smite_control]
+id = 2810
+
+[deal_wrench_flourish]
+id = 2811
+
+[deal_bowl_fish]
+id = 2813
+
+[spirit_attack]
+id = 2804
+
+[spirit_death]
+id = 2805
+
+[spirit_parry]
+id = 2806
+
+[swab_panic]
+id = 9560

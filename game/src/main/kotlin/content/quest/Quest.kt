@@ -20,6 +20,7 @@ val quests = setOf(
     "the_knights_sword",
     "prince_ali_rescue",
     "imp_catcher",
+    "pirates_treasure",
     // members
     "creature_of_fenkenstrain",
     "druidic_ritual",
@@ -28,6 +29,7 @@ val quests = setOf(
     "nature_spirit",
     "plague_city",
     "priest_in_peril",
+    "rum_deal",
     "lost_city",
     "tears_of_guthix",
     "the_golem",

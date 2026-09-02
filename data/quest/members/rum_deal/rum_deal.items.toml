@@ -2,6 +2,10 @@
 [blindweed_seed]
 id = 6710
 tradeable = false
+farming_level = 40
+farming_crop = "blindweed"
+farming_xp = 32.0
+farming_patch = "blindweed"
 examine = "A Blindweed seed - plant in a Blindweed patch."
 kept = "Wilderness"
 
@@ -9,6 +13,7 @@ kept = "Wilderness"
 id = 6711
 tradeable = false
 weight = 0.007
+farming_xp = 45.0
 examine = "An inedible, foul smelling herb."
 kept = "Wilderness"
 

@@ -3,4 +3,4 @@ id = 600
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, agreed_to_help = 1, slay_barrelor = 2, met_braindeath = 3, given_seeds = 4, grown_blindweed = 5, show_blindweed = 6, blindweed_added = 7, fetch_water = 8, collected_water = 9, water_added = 10, catch_creatures = 11, pressurised = 12, bless_wrench = 13, spirit_banished = 14, kill_spider = 15, spider_added = 16, collect_swill = 17, told_donnie = 18, completed = 19 }
