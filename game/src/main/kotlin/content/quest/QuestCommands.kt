@@ -1,7 +1,7 @@
 package content.quest
 
 import content.entity.player.inv.item.addOrDrop
-import content.quest.refreshQuestJournal
+import world.gregs.voidps.cache.config.data.QuestDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.command.stringArg
@@ -47,13 +47,7 @@ class QuestCommands : Script {
      */
     private fun reset(player: Player, args: List<String>) {
         val questId = args.getOrNull(0) ?: return
-        val questDefinitions: QuestDefinitions = get()
-        val quest = questDefinitions.getOrNull(questId)
-        if (quest == null) {
-            player.message("No quest found with id '$questId'.")
-            return
-        }
-
+        val quest = findQuest(player, questId) ?: return
         player.clear(questId)
         var cleared = 0
         for (variable in VariableDefinitions.definitions.keys) {
@@ -66,15 +60,19 @@ class QuestCommands : Script {
         player.message("Reset ${quest["name", questId]} to unstarted, clearing $cleared ${if (cleared == 1) "variable" else "variables"}.")
     }
 
-    private fun prepare(player: Player, args: List<String>) {
-        val questId = args.getOrNull(0) ?: return
+    private fun findQuest(player: Player, questId: String): QuestDefinition? {
         val questDefinitions: QuestDefinitions = get()
         val quest = questDefinitions.getOrNull(questId)
         if (quest == null) {
             player.message("No quest found with id '$questId'.")
-            return
+            return  null
         }
+        return quest
+    }
 
+    private fun prepare(player: Player, args: List<String>) {
+        val questId = args.getOrNull(0) ?: return
+        val quest = findQuest(player, questId) ?: return
         val skills = quest["req_skills", emptyMap<String, Int>()]
         for ((name, level) in skills) {
             val skill = Skill.entries.firstOrNull { it.name == name }

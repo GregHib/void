@@ -282,11 +282,11 @@ class RumDeal : Script {
             val slugs = get("rum_deal_slugling_count", 0)
             val karam = get("rum_deal_karamthulhu_count", 0)
             message(
-                when {
-                    slugs == 0 && karam == 0 -> "This barrel is empty and smells nasty."
-                    slugs == 1 && karam == 0 -> "There are some Sluglings in this barrel."
-                    slugs == 0 && karam == 1 -> "There is a Karamthulhu in this barrel."
-                    slugs == 1 && karam == 1 -> "There are some Sluglings and a Karamthulhu in this barrel."
+                when (slugs) {
+                    0 if karam == 0 -> "This barrel is empty and smells nasty."
+                    1 if karam == 0 -> "There are some Sluglings in this barrel."
+                    0 if karam == 1 -> "There is a Karamthulhu in this barrel."
+                    1 if karam == 1 -> "There are some Sluglings and a Karamthulhu in this barrel."
                     else -> "There are $slugs loads of Sluglings and $karam Karamthulhu in this barrel."
                 },
             )
