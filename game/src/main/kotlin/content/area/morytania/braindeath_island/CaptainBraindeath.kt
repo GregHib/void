@@ -98,7 +98,7 @@ class CaptainBraindeath : Script {
             "These be dark times, though, ${ladOrLass()}. See, a week ago we awoke to find " +
                 "ourselves beseiged.",
         )
-        player<Neutral>(
+        npc<Neutral>(
             "The lads and I have held them off so far, but 'tis only a matter of time before " +
                 "they sweep through the buildin' and put us all to the sword.",
         )

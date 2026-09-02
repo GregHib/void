@@ -126,7 +126,7 @@ class Davey : Script {
     }
 
     private suspend fun Player.blessTheWrench(dave: NPC) {
-        npc<Shifty>("I might well do.  Remember, only the first one's free.")
+        npc<Shifty>("I might well do. Remember, only the first one's free.")
         npc<Neutral>("Dominoes Ad Nauseum, Romanes Eunt Domus.")
         npc<Neutral>("Sorted.")
         player<Quiz>("Is that it?")
@@ -148,7 +148,7 @@ class Davey : Script {
                 "prayer potions if you have it in your pack, if you know what I mean.",
         )
         player<Happy>(
-            "Well, no.  I don't know what you mean, but I'm sure I'll find out!",
+            "Well, no. I don't know what you mean, but I'm sure I'll find out!",
         )
     }
 
