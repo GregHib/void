@@ -11,11 +11,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -80,17 +82,16 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
                         option<Sad>("No thanks.")
                     }
                 }
-                option("Yes, I would like to charter a ship.") {
-                    player<Neutral>("Yes, I would like to charter a ship.")
-                    npc<Neutral>("Certainly sir. Where would you like to go?")
-                }
+                charter(target)
                 option<Sad>("No thanks.")
             }
         }
 
         npcOperate("Charter", "trader_stan,trader_crewmember*") { (target) ->
-            set("charter_ship", location(target))
-            open("charter_ship_map")
+            if (!checkBans(target)) {
+                set("charter_ship", location(target))
+                open("charter_ship_map")
+            }
         }
 
         interfaceOption("Ok", "charter_ship_map:*") {
@@ -136,6 +137,20 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
         }
     }
 
+    private suspend fun Player.checkBans(target: NPC): Boolean {
+        if (inventory.contains("karamjan_rum") && (target.tile in Areas["greater_brimhaven"] || target.tile in Areas["karamja"])) {
+            npc<Neutral>("Sorry, we can't take you anywhere if you are trying to smuggle that rum.")
+            return true
+        } else if (carriesItem("bedsheet_ectoplasm")) {
+            npc<Neutral>("Is that your bedsheet covered in filthy slime?")
+            return true
+        } else if (carriesItem("bedsheet")) {
+            npc<Neutral>("Sorry, we aren't a laundry ship. You'll need to leave those dirty bedsheets behind.")
+            return true
+        }
+        return false
+    }
+
     fun ChoiceOption.trading() {
         option<Neutral>("Yes, let's see what you're trading.") {
             openShop("trader_stans_trading_post")
@@ -144,9 +159,11 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
 
     fun ChoiceOption.charter(target: NPC) {
         option<Neutral>("Yes, I would like to charter a ship.") {
-            npc<Neutral>("Certainly sir. Where would you like to go?")
-            set("charter_ship", location(target))
-            open("charter_ship_map")
+            if (!checkBans(target)) {
+                npc<Neutral>("Certainly sir. Where would you like to go?")
+                set("charter_ship", location(target))
+                open("charter_ship_map")
+            }
         }
     }
 

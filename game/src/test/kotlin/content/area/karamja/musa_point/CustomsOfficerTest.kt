@@ -15,6 +15,8 @@ class CustomsOfficerTest : WorldTest() {
     @Test
     fun `Pay fare from Brimhaven sails to Ardougne`() {
         val player = createPlayer(Tile(2772, 3226))
+        // the Pay-fare option is a Pirate's Treasure reward
+        player["pirates_treasure"] = "completed"
         player.inventory.add("coins", 30)
         val officer = createNPC("customs_officer_brimhaven", Tile(2772, 3225))
 
@@ -29,6 +31,8 @@ class CustomsOfficerTest : WorldTest() {
     @Test
     fun `Pay fare from Musa Point sails to Port Sarim`() {
         val player = createPlayer(Tile(2953, 3148))
+        // the Pay-fare option is a Pirate's Treasure reward
+        player["pirates_treasure"] = "completed"
         player.inventory.add("coins", 30)
         val officer = createNPC("customs_officer_brimhaven", Tile(2953, 3147))
 

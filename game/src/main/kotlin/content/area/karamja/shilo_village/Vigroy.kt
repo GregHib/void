@@ -56,6 +56,15 @@ class Vigroy : Script {
 
         const val CART_FARE = 10
 
+        private fun Player.stealRum() {
+            val amount = inventory.count("karamjan_rum")
+            if (amount <= 0) {
+                return
+            }
+            inventory.remove("karamjan_rum", amount)
+            message("Oh no! On the trip a monkey swung out from the trees and stole your rum!")
+        }
+
         suspend fun payFare(player: Player, tile: Tile) {
             if (!player.inventory.remove("coins", CART_FARE)) {
                 player.npc<Neutral>("Sorry, but it looks as if you don't have enough money. Come and see me when you have enough for the ride.")
@@ -63,6 +72,7 @@ class Vigroy : Script {
             }
             player.open("fade_out")
             player.delay(3)
+            player.stealRum()
             player.tele(tile)
             player.open("fade_in")
             player.message("You feel tired from the journey, but at least you didn't have to walk all that distance.", ChatType.Filter)
@@ -76,6 +86,7 @@ class Vigroy : Script {
             player.statement("You hop into the cart and the driver urges the horses on. You take a taxing journey through the jungle to $location.", clickToContinue = false)
             player.open("fade_out")
             player.delay(3)
+            player.stealRum()
             player.tele(tile)
             player.open("fade_in")
             player.statement("You hop into the cart and the driver urges the horses on. You take a taxing journey through the jungle to $location. You feel tired from the journey, but at least you didn't have to walk all that distance.")
