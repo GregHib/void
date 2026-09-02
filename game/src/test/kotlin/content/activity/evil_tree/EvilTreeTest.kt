@@ -8,10 +8,12 @@ import objectOption
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -97,12 +99,21 @@ internal class EvilTreeTest : WorldTest() {
     }
 
     @Test
+    fun `Roots burst out of the ground and settle into the world`() {
+        matureTree("normal")
+
+        assertEquals(4, EvilTreeState.roots.size)
+        for (root in EvilTreeState.roots.values) {
+            assertEquals(root.obj, GameObjects.getLayer(root.obj.tile, ObjectLayer.GROUND))
+            assertTrue(GameObjects.contains(root.obj))
+        }
+    }
+
+    @Test
     fun `Chopping a root gives kindling`() {
-        val player = createPlayer(emptyTile.add(1, 4))
-        player.levels.set(Skill.Woodcutting, 99)
-        player.inventory.add("dragon_hatchet")
-        grownTree("normal")
-        val root = createRoot()
+        matureTree("normal")
+        val player = chopper(emptyTile.add(1, 4))
+        val root = EvilTreeState.roots.getValue("north").obj
 
         player.objectOption(root, "Chop")
         tickIf { !player.inventory.contains("evil_tree_kindling") }
@@ -113,16 +124,15 @@ internal class EvilTreeTest : WorldTest() {
 
     @Test
     fun `A root dies once it has been chopped through`() {
-        val player = createPlayer(emptyTile.add(1, 4))
-        player.levels.set(Skill.Woodcutting, 99)
-        player.inventory.add("dragon_hatchet")
-        grownTree("normal")
-        val root = createRoot()
+        matureTree("normal")
+        val player = chopper(emptyTile.add(1, 4))
+        val root = EvilTreeState.roots.getValue("north").obj
 
         player.objectOption(root, "Chop")
-        tickIf(limit = 200) { EvilTreeState.roots.isNotEmpty() }
+        tickIf(limit = 200) { EvilTreeState.roots.containsKey("north") }
 
-        assertTrue(EvilTreeState.roots.isEmpty())
+        assertFalse(EvilTreeState.roots.containsKey("north"))
+        assertNull(GameObjects.getLayer(root.tile, ObjectLayer.GROUND))
         assertEquals(3, player.inventory.count("evil_tree_kindling"))
     }
 
@@ -286,10 +296,32 @@ internal class EvilTreeTest : WorldTest() {
         return EvilTreeState.tree
     }
 
-    private fun createRoot(): GameObject {
-        val root = createObject("evil_branches_north", emptyTile.add(1, 3))
-        EvilTreeState.roots["north"] = EvilTreeState.Root(root, 3)
-        return root
+    /**
+     * Grows a tree the whole way through the world tick, so its roots burst out and settle the same
+     * way they do in game rather than being placed into [EvilTreeState] by hand.
+     */
+    private fun matureTree(type: String): GameObject {
+        settings["events.evilTree.growthTicks"] = "10"
+        sapling(type, "evil_tree_${type}_full", emptyTile)
+        EvilTreeState.maxHealth = 150
+        EvilTreeState.health = 150
+        EvilTreeState.grownTick = GameLoop.tick.toLong()
+        World.timers.start("evil_tree")
+        for (row in Tables.get("evil_branches").rows()) {
+            val tile = emptyTile.add(row.int("deltaX"), row.int("deltaY"))
+            GameObjects.add(row.obj("spawn"), tile, rotation = row.int("dir"), ticks = EvilTree.ROOT_BURST_TICKS)
+        }
+        tickIf(limit = 100) { EvilTreeState.roots.size < 4 }
+        // Roots respawn on a timer, which would fight the tests that chop one down
+        World.timers.clear("evil_tree")
+        return EvilTreeState.tree
+    }
+
+    private fun chopper(tile: Tile): Player {
+        val player = createPlayer(tile)
+        player.levels.set(Skill.Woodcutting, 99)
+        player.inventory.add("dragon_hatchet")
+        return player
     }
 
     /**
