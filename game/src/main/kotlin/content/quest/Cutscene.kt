@@ -202,4 +202,25 @@ fun Player.closeTabs(vararg others: Tab) {
 }
 
 fun Player.startCutscene(name: String, region: Region = Region.EMPTY): Cutscene = Cutscene(this, name, region)
+
+/**
+ * Starts a cutscene in a private copy of a [width] by [height] block of chunks, the south west
+ * corner of which is the chunk [base] sits in. For scenes that only need a room or two rather than
+ * a whole region.
+ */
+fun Player.startCutscene(name: String, base: Tile, width: Int, height: Int, levels: Int = 4): Cutscene {
+    val instance = smallInstance()
+    return Cutscene(this, name, instance, copyChunks(instance, base, width, height, levels))
+}
+
+/**
+ * Copies a [width] by [height] block of chunks, starting at the chunk [base] sits in, into
+ * [instance], and returns the offset from the original chunks to the copy.
+ */
+fun Player.copyChunks(instance: Region, base: Tile, width: Int, height: Int, levels: Int = 4): Delta {
+    val offset = instance.tile.delta(base.zone.tile)
+    get<DynamicZones>().copy(base.zone, instance.tile.zone, width, height, levels)
+    set("instance_offset", offset.id)
+    return offset
+}
 fun Player.startCutscene(name: String, region: Region, offset: Delta): Cutscene = Cutscene(this, name, region, offset)
