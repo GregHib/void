@@ -8,6 +8,7 @@ examine = "Who are you calling chicken?"
 
 [fremennik_shipmaster_daemonheim]
 id = 9707
+interacts = false
 examine = "He looks at home in this climate."
 
 [fremennik_banker]
@@ -28,6 +29,7 @@ examine = "She is finding it hard to hide her boredom."
 
 [sonje]
 id = 9715
+interacts = false
 examine = "I wouldn't pick a fight with her."
 
 [wiglaf]

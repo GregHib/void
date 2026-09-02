@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -35,6 +36,9 @@ class CaptainBarnaby : Script {
         }
 
         npcOperate("Pay-fare", "captain_barnaby_2") {
+            if (!questCompleted("pirates_treasure")) {
+                return@npcOperate message("You may only use the Pay-fare option after completing Pirate's Treasure.")
+            }
             if (!inventory.remove("coins", 30)) {
                 message("You do not have enough money for that.")
                 return@npcOperate
