@@ -42,6 +42,14 @@ class Mime : Script {
             }
             (suspension as? Suspension.StringEntry)?.resume(it.component)
         }
+
+        interfaceClosed(INTERFACE) {
+            if (!get("mime_pending", false)) {
+                return@interfaceClosed
+            }
+            clear("mime_pending")
+            restart()
+        }
     }
 
     private suspend fun Player.startEvent() {
@@ -59,9 +67,14 @@ class Mime : Script {
 
     private fun Player.trigger() {
         walkTrigger {
-            strongQueue("start") {
-                start()
-            }
+            restart()
+        }
+    }
+
+    private fun Player.restart() {
+        queue.clear("start")
+        strongQueue("start") {
+            start()
         }
     }
 
@@ -111,7 +124,9 @@ class Mime : Script {
 
     private suspend fun Player.awaitEmote(): String {
         open(INTERFACE)
+        set("mime_pending", true)
         val emote = pauseString()
+        clear("mime_pending")
         close(INTERFACE)
         return emote
     }

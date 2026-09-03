@@ -17,6 +17,8 @@ class CaptainBarnabyTest : WorldTest() {
     @Test
     fun `Pay fare from Ardougne sails to Brimhaven`() {
         val player = createPlayer(Tile(2683, 3274))
+        // the Pay-fare option is a Pirate's Treasure reward
+        player["pirates_treasure"] = "completed"
         player.inventory.add("coins", 30)
         val barnaby = createNPC("captain_barnaby_2", Tile(2683, 3275))
 

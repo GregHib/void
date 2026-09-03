@@ -20,6 +20,7 @@ object FarmingPatches {
             "farming_flower_patch_ardougne",
             "patch_herblore_habitat_vine_flower",
             "farming_flower_patch_morytania",
+            "farming_blindweed_patch_braindeath_island",
         ),
         2 to listOf(
             // allotments

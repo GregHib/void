@@ -117,6 +117,23 @@ class FreakyForesterTest : WorldTest() {
     }
 
     @Test
+    fun `Pheasants die to a single hit even when the accuracy roll misses`() {
+        setRandom(object : FakeRandom() {
+            override fun nextDouble() = 1.0
+        })
+        val player = startInClearing("ff_one_hit", task = 2)
+        val pheasant = createNPC("pheasant_2_tails", Tile(2602, 4777))
+        val dropTile = pheasant.tile
+
+        player.npcOption(pheasant, "Attack")
+        tick(6)
+
+        assertEquals(0, pheasant.levels.get(Skill.Constitution), "Expected the pheasant dead after one swing")
+        tick(4)
+        assertNotNull(FloorItems.firstOrNull(dropTile, "raw_pheasant"))
+    }
+
+    @Test
     fun `Killing a pheasant grants no combat experience`() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int) = until

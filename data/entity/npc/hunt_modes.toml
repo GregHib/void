@@ -44,6 +44,15 @@ check_not_combat_self = true
 check_not_too_strong = true
 check_not_busy = true
 
+# Rum Deal zombie swabs; they lose interest once the quest is over, filtered in ZombieSwab
+[zombie_swab]
+type = "player"
+check_visual = "line_of_sight"
+check_not_combat = true
+check_not_combat_self = true
+check_not_too_strong = true
+check_not_busy = true
+
 # Attacking tzhaar crafters
 [tzhaar_hunter]
 type = "player"

@@ -38,15 +38,22 @@ class SaveQueue(
         this.job = scope.save(pending.values.toList())
     }
 
-    fun direct(): Job = scope.save(Players.filter { !it.contains("bot") }.map { it.copy() })
+    fun direct(): Job {
+        val online = Players.filter { !it.contains("bot") }.map { it.copy() }
+        val names = online.mapTo(HashSet()) { it.name }
+        val queued = pending.values.filter { it.name !in names }
+        return scope.save(online + queued)
+    }
+
+    suspend fun awaitInFlight() {
+        job?.join()
+    }
 
     private fun CoroutineScope.save(accounts: List<PlayerSave>) = launch(handler) {
         val took = measureTimeMillis {
             withContext(NonCancellable) {
                 storage.save(accounts)
-                for (account in accounts) {
-                    pending.remove(account.name)
-                }
+                clearPending(accounts)
             }
         }
         logger.info { "Saved ${accounts.size} ${"account".plural(accounts.size)} in ${took}ms" }
@@ -55,8 +62,14 @@ class SaveQueue(
     private fun CoroutineScope.fallback(accounts: List<PlayerSave>) = launch(fallbackHandler) {
         withContext(NonCancellable) {
             fallback.save(accounts)
-            for (account in accounts) {
-                pending.remove(account.name)
+            clearPending(accounts)
+        }
+    }
+
+    private fun clearPending(accounts: List<PlayerSave>) {
+        for (account in accounts) {
+            pending.computeIfPresent(account.name) { _, current ->
+                if (current === account) null else current
             }
         }
     }

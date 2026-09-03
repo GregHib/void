@@ -37,6 +37,12 @@ id = 422
 [human_block]
 id = 422
 
+[human_farmersfork_stab]
+id = 433
+
+[human_farmersfork_def]
+id = 434
+
 [human_defend]
 id = 424
 
