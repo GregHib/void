@@ -9,8 +9,8 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.clearHint
-import world.gregs.voidps.engine.client.hint
+import world.gregs.voidps.engine.client.clearHinted
+import world.gregs.voidps.engine.client.markHint
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.Rows
@@ -76,11 +76,8 @@ class Falconry : Script {
         }
 
         npcDespawn("*_kebbit_caught") {
+            clearHinted()
             val player = owner ?: return@npcDespawn
-            val hint = get("hint", -1)
-            if (hint != -1) {
-                player.clearHint(hint)
-            }
             if (lifecycle != 0) {
                 return@npcDespawn
             }
@@ -163,7 +160,7 @@ class Falconry : Script {
         equipment.replace("falconers_glove_2", "falconers_glove")
         target.levels.set(Skill.Constitution, 0)
         val caught = NPCs.add(row.npc("caught"), target.tile, ticks = 100, owner = this)
-        caught["hint"] = hint(caught)
+        markHint(caught)
         message("Your falcon successfully swoops down on the kebbit.")
     }
 
