@@ -169,6 +169,7 @@ spawns = [
   { id = "goblin_light_brown_bald", x = 3246, y = 3245 },
   { id = "goblin_light_brown_bald", x = 3248, y = 3233 },
   { id = "goblin_light_brown_bald", x = 3253, y = 3233 },
+  { id = "goblin_light_brown_bald", x = 3255, y = 3247 },
   { id = "goblin_light_brown_mohawk", x = 3254, y = 3224 },
   { id = "goblin_light_brown_mohawk", x = 3254, y = 3240 },
   { id = "goblin_light_brown_mohawk", x = 3248, y = 3238 },
@@ -189,6 +190,7 @@ spawns = [
   { id = "goblin_turquoise_topless_mohawk", x = 3244, y = 3246 },
   { id = "goblin_turquoise_topless_mohawk", x = 3251, y = 3238 },
   { id = "goblin_turquoise_topless_mohawk", x = 3259, y = 3254 },
+  { id = "goblin_turquoise_topless_mohawk", x = 3257, y = 3248 },
   { id = "explorer_jack", x = 3204, y = 3241 },
   { id = "doomsayer", x = 3237, y = 3227, direction = "EAST" },
   # 12851
