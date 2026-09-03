@@ -58,7 +58,7 @@ class BoxTrap : Script {
         itemOnObjectOperate("*", "box_trap") {
             when {
                 it.item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
-                it.item.id == "torch_lit" -> Traps.smoke(this, "box_trap", it.target.tile)
+                it.item.id == "lit_torch" -> Traps.smoke(this, "box_trap", it.target.tile)
                 it.item.id == "papaya_fruit" || it.item.id == "raw_pawya_meat" -> bait(it.item, it.target)
                 it.item.def.contains(Params.HEALS) -> message("I don't think I'd catch much using that as bait.")
                 else -> noInterest()

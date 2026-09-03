@@ -62,7 +62,7 @@ class BirdSnare : Script {
         itemOnObjectOperate("*", "bird_snare") {
             when {
                 it.item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
-                it.item.id == "torch_lit" -> Traps.smoke(this, "bird_snare", it.target.tile)
+                it.item.id == "lit_torch" -> Traps.smoke(this, "bird_snare", it.target.tile)
                 it.item.def.contains(Params.HEALS) -> message("There isn't really anywhere to put any bait on this trap.")
                 else -> noInterest()
             }

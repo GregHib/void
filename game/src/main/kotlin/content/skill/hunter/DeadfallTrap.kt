@@ -50,7 +50,7 @@ class DeadfallTrap : Script {
         itemOnObjectOperate("*", "boulder_trap_setup") {
             when {
                 it.item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
-                it.item.id == "torch_lit" -> Traps.smoke(this, "boulder_trap", it.target.tile)
+                it.item.id == "lit_torch" -> Traps.smoke(this, "boulder_trap", it.target.tile)
                 it.item.def.contains(Params.HEALS) -> message("I don't think I'd catch much using that as bait.")
                 else -> noInterest()
             }
@@ -162,7 +162,6 @@ class DeadfallTrap : Script {
         inc("deadfall_count")
         NPCs.add("hunting_deadfall_trap_npc", target.tile, ticks = 100, owner = this)
         target.replace("boulder_trap_setup")
-        stepAway(target)
     }
 
     private suspend fun Player.dismantleTrap(target: GameObject, creature: RowDefinition?) {
@@ -179,7 +178,7 @@ class DeadfallTrap : Script {
             message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
             return
         }
-        anim("take_trap")
+        anim("lay_trap")
         sound("take_branches", delay = 25)
         delay(2)
         if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND)?.id != target.id) {

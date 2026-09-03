@@ -67,7 +67,7 @@ class Falconry : Script {
         }
 
         npcApproach("Catch", "spotted_kebbit,dark_kebbit,dashing_kebbit") { (target) ->
-            approachRange(6)
+            approachRange(6, update = false)
             catch(target)
         }
 
@@ -96,6 +96,10 @@ class Falconry : Script {
                     set(EquipSlot.Weapon.index, null)
                 }
                 message("You hand the falcon back to Matthias before leaving.")
+            }
+            val caught = NPCs.firstOrNull { it.id.endsWith("_kebbit_caught") && it.owner == this }
+            if (caught != null) {
+                NPCs.remove(caught)
             }
         }
     }

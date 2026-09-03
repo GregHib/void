@@ -61,7 +61,7 @@ object Traps {
         }
         player.inc("trap_count")
         NPCs.add(Tables.npc("traps.$trapId.npc"), player.tile, ticks = 100, owner = player)
-        val obj = GameObjects.add(trapId, player.tile)
+        val obj = GameObjects.add(trapId, player.tile, collision = false)
         player.stepAway(obj)
     }
 

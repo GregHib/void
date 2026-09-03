@@ -161,6 +161,11 @@ class KebbitTracking : Script {
         if (!has(Skill.Hunter, row.int("level"), message = true)) {
             return
         }
+        val existing = trackingTrails[accountName]
+        if (existing != null && existing.first().burrow != target.id) {
+            message("You are already following a different set of tracks.")
+            return
+        }
         clearTrail(this)
         val trail = generate(kebbit, target.id, row.int("limit"), row.tileList("finals"))
         if (trail == null) {

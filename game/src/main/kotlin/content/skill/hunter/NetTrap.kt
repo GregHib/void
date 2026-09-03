@@ -79,7 +79,7 @@ class NetTrap : Script {
             }
             when {
                 item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
-                item.id == "torch_lit" -> Traps.smoke(this, trap.id.removeSuffix("_setup"), trap.tile.add(target.direction()))
+                item.id == "lit_torch" -> Traps.smoke(this, trap.id.removeSuffix("_setup"), trap.tile.add(target.direction()))
                 item.id.endsWith("_tar") -> bait(item, trap)
                 item.def.contains(Params.HEALS) -> message("I don't think I'd catch much using that as bait.")
                 else -> noInterest()
