@@ -87,6 +87,7 @@ class PlayerAccountLoader(
     }
 
     suspend fun connect(player: Player, client: Client, displayMode: Int = 0, viewport: Boolean = true) {
+        accounts.setup(player, client, displayMode, viewport)
         withContext(gameContext) {
             queue.await()
             val existing = Players.findByAccount(player.accountName)
@@ -96,7 +97,7 @@ class PlayerAccountLoader(
                 client.disconnect(Response.ACCOUNT_ONLINE)
                 return@withContext
             }
-            if (!accounts.setup(player, client, displayMode, viewport)) {
+            if (!accounts.index(player)) {
                 logger.warn { "Error setting up account" }
                 client.disconnect(Response.WORLD_FULL)
                 return@withContext

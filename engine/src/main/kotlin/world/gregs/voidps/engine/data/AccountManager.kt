@@ -44,9 +44,7 @@ class AccountManager(
         this["new_player"] = true
     }
 
-    fun setup(player: Player, client: Client?, displayMode: Int, viewport: Boolean = true): Boolean {
-        player.index = Players.index() ?: return false
-        player.visuals.hits.self = player.index
+    fun setup(player: Player, client: Client?, displayMode: Int, viewport: Boolean = true) {
         player.interfaces = Interfaces(player)
         player.interfaceOptions = InterfaceOptions(player)
 //        player.area.areaDefinitions = areaDefinitions
@@ -70,6 +68,11 @@ class AccountManager(
             player.viewport = Viewport()
         }
         player.collision = CollisionStrategyProvider.get(character = player)
+    }
+
+    fun index(player: Player): Boolean {
+        player.index = Players.index() ?: return false
+        player.visuals.hits.self = player.index
         return true
     }
 

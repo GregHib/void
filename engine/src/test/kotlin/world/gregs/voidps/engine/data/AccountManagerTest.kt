@@ -140,6 +140,7 @@ class AccountManagerTest : KoinMock() {
         val client = DummyClient()
         val player = Player(accountName = "name", tile = Tile(3200, 3200))
         manager.setup(player, client, 0, viewport = false)
+        manager.index(player)
         manager.spawn(player, client)
 
         client.disconnect()
