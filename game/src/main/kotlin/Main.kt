@@ -114,6 +114,8 @@ object Main {
     private fun cache(cache: Cache, files: ConfigFiles): Module {
         val members = Settings["world.members", false]
         val module = module {
+            // Needed by scene editor flush (JS5 rewrite) and anything else that get<Cache>().
+            single { cache }
             single(createdAtStart = true) {
                 get<ObjectDefinitions>()
                 MapDefinitions(CollisionDecoder(), cache).load(files)
