@@ -45,3 +45,24 @@ id = 666
 
 [big_cat_death]
 id = 667
+
+[lay_box_trap]
+id = 2636
+
+[box_trap_catch]
+id = 2627
+
+[set_deadfall]
+id = 2645
+
+[deadfall_catch]
+id = 2631
+
+[falcon_swoop]
+id = 2634
+
+[falcon_return]
+id = 2633
+
+[hunting_noose]
+id = 2637

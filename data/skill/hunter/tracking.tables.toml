@@ -1,0 +1,645 @@
+[tracking]
+level = "int"
+level_default = 1
+xp = "int"             # xp * 0.1
+loot = "list<item>"
+catch_anim = "anim"
+limit = "int"          # maximum linking segments in a generated trail
+finals = "list<tile>"  # tiles of the attackable objects a trail can end at
+
+[.polar_kebbit]
+xp = 300
+loot = ["raw_beast_meat", "polar_kebbit_fur", "bones"]
+catch_anim = "noose_catch_polar"
+limit = 3
+finals = [
+    { x = 2708, y = 3819, level = 1 },
+    { x = 2712, y = 3831, level = 1 },
+    { x = 2716, y = 3827, level = 1 },
+    { x = 2718, y = 3820, level = 1 },
+]
+
+[.common_kebbit]
+level = 3
+xp = 360
+loot = ["common_kebbit_fur", "bones", "raw_beast_meat"]
+catch_anim = "noose_catch_common"
+limit = 3
+finals = [
+    { x = 2349, y = 3604 },
+    { x = 2351, y = 3619 },
+    { x = 2354, y = 3609 },
+    { x = 2355, y = 3601 },
+    { x = 2357, y = 3607 },
+    { x = 2358, y = 3620 },
+    { x = 2360, y = 3602 },
+    { x = 2362, y = 3615 },
+]
+
+[.feldip_weasel]
+level = 7
+xp = 480
+loot = ["feldip_weasel_fur", "bones", "raw_beast_meat"]
+catch_anim = "noose_catch_desert"
+limit = 3
+finals = [
+    { x = 2525, y = 2882 },
+    { x = 2531, y = 2890 },
+    { x = 2533, y = 2885 },
+    { x = 2540, y = 2886 },
+    { x = 2542, y = 2881 },
+    { x = 2553, y = 2888 },
+]
+
+[.razor_backed_kebbit]
+level = 49
+xp = 3480
+loot = ["long_kebbit_spike", "raw_beast_meat", "bones"]
+catch_anim = "noose_catch_desert"
+limit = 3
+finals = [
+    { x = 2322, y = 3570 },
+    { x = 2323, y = 3563 },
+    { x = 2327, y = 3573 },
+    { x = 2332, y = 3568 },
+    { x = 2332, y = 3578 },
+    { x = 2336, y = 3571 },
+    { x = 2337, y = 3565 },
+    { x = 2343, y = 3568 },
+]
+
+[.desert_devil]
+level = 13
+xp = 660
+loot = ["bones", "raw_beast_meat", "desert_devil_fur"]
+catch_anim = "noose_catch_desert"
+limit = 3
+finals = [
+    { x = 3393, y = 3122 },
+    { x = 3400, y = 3114 },
+    { x = 3405, y = 3124 },
+    { x = 3407, y = 3121 },
+    { x = 3411, y = 3108 },
+    { x = 3414, y = 3121 },
+]
+
+
+# ---------------------------------------------------------------------------
+# Trail segments — burrow marks a starting segment for that burrow object,
+# trigger is the trail object inspected to advance (defaults to end)
+# ---------------------------------------------------------------------------
+[trails]
+kebbit = "string"
+varbit = "var"
+tunnel = "boolean"
+tunnel_default = false
+inverted = "boolean"
+inverted_default = false
+start = "tile"
+end = "tile"
+trigger = "tile"
+burrow = "obj"
+
+[.common_0]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_0"
+start = { x = 2354, y = 3595 }
+end = { x = 2360, y = 3602 }
+burrow = "common_kebbit_burrow"
+
+[.common_1]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_1"
+start = { x = 2354, y = 3595 }
+end = { x = 2355, y = 3601 }
+burrow = "common_kebbit_burrow"
+
+[.common_2]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_2"
+start = { x = 2354, y = 3594 }
+end = { x = 2349, y = 3604 }
+burrow = "common_kebbit_burrow"
+
+[.common_6]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_6"
+inverted = true
+start = { x = 2361, y = 3611 }
+end = { x = 2360, y = 3602 }
+burrow = "common_kebbit_burrow_2"
+
+[.common_7]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_7"
+inverted = true
+start = { x = 2360, y = 3612 }
+end = { x = 2357, y = 3607 }
+burrow = "common_kebbit_burrow_2"
+
+[.common_8]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_8"
+start = { x = 2357, y = 3607 }
+end = { x = 2354, y = 3609 }
+trigger = { x = 2355, y = 3608 }
+
+[.common_9]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_9"
+start = { x = 2354, y = 3609 }
+end = { x = 2349, y = 3604 }
+trigger = { x = 2351, y = 3608 }
+
+[.common_3]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_3"
+start = { x = 2360, y = 3602 }
+end = { x = 2355, y = 3601 }
+trigger = { x = 2358, y = 3599 }
+
+[.common_4]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_4"
+start = { x = 2355, y = 3601 }
+end = { x = 2349, y = 3604 }
+trigger = { x = 2352, y = 3603 }
+
+[.common_5]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_5"
+start = { x = 2360, y = 3602 }
+end = { x = 2357, y = 3607 }
+trigger = { x = 2358, y = 3603 }
+
+[.polar_8]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_8"
+tunnel = true
+start = { x = 2712, y = 3831, level = 1 }
+end = { x = 2718, y = 3832, level = 1 }
+burrow = "polar_kebbit_hole"
+
+[.polar_7]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_7"
+inverted = true
+start = { x = 2712, y = 3831, level = 1 }
+end = { x = 2716, y = 3827, level = 1 }
+trigger = { x = 2713, y = 3827, level = 1 }
+burrow = "polar_kebbit_hole"
+
+[.polar_4]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_4"
+start = { x = 2712, y = 3831, level = 1 }
+end = { x = 2708, y = 3819, level = 1 }
+trigger = { x = 2708, y = 3825, level = 1 }
+burrow = "polar_kebbit_hole"
+
+[.polar_0]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_0"
+inverted = true
+start = { x = 2718, y = 3820, level = 1 }
+end = { x = 2708, y = 3819, level = 1 }
+trigger = { x = 2712, y = 3815, level = 1 }
+burrow = "polar_kebbit_hole_2"
+
+[.polar_2]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_2"
+tunnel = true
+start = { x = 2718, y = 3820, level = 1 }
+end = { x = 2715, y = 3820, level = 1 }
+burrow = "polar_kebbit_hole_2"
+
+[.polar_3]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_3"
+tunnel = true
+start = { x = 2718, y = 3820, level = 1 }
+end = { x = 2721, y = 3827, level = 1 }
+burrow = "polar_kebbit_hole_2"
+
+[.polar_5]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_5"
+inverted = true
+start = { x = 2714, y = 3821, level = 1 }
+end = { x = 2716, y = 3827, level = 1 }
+
+[.polar_6]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_6"
+tunnel = true
+inverted = true
+start = { x = 2716, y = 3827, level = 1 }
+end = { x = 2718, y = 3829, level = 1 }
+
+[.polar_1]
+kebbit = "polar_kebbit"
+varbit = "polar_kebbit_trail_1"
+tunnel = true
+start = { x = 2708, y = 3819, level = 1 }
+end = { x = 2711, y = 3819, level = 1 }
+
+[.desert_7]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_7"
+start = { x = 3396, y = 3106 }
+end = { x = 3393, y = 3122 }
+burrow = "desert_devil_burrow"
+
+[.desert_11]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_11"
+start = { x = 3396, y = 3106 }
+end = { x = 3400, y = 3114 }
+burrow = "desert_devil_burrow"
+
+[.desert_14]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_14"
+start = { x = 3396, y = 3106 }
+end = { x = 3411, y = 3108 }
+burrow = "desert_devil_burrow"
+
+[.desert_0]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_0"
+start = { x = 3402, y = 3131 }
+end = { x = 3393, y = 3122 }
+burrow = "desert_devil_burrow_2"
+
+[.desert_1]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_1"
+start = { x = 3402, y = 3131 }
+end = { x = 3405, y = 3124 }
+burrow = "desert_devil_burrow_2"
+
+[.desert_2]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_2"
+start = { x = 3402, y = 3131 }
+end = { x = 3414, y = 3121 }
+burrow = "desert_devil_burrow_2"
+
+[.desert_3]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_3"
+start = { x = 3396, y = 3121 }
+end = { x = 3393, y = 3122 }
+
+[.desert_4]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_4"
+start = { x = 3396, y = 3121 }
+end = { x = 3405, y = 3122 }
+
+[.desert_5]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_5"
+start = { x = 3405, y = 3122 }
+end = { x = 3409, y = 3121 }
+
+[.desert_6]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_6"
+start = { x = 3409, y = 3121 }
+end = { x = 3414, y = 3121 }
+
+[.desert_8]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_8"
+start = { x = 3396, y = 3121 }
+end = { x = 3400, y = 3114 }
+
+[.desert_9]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_9"
+start = { x = 3406, y = 3111 }
+end = { x = 3407, y = 3121 }
+
+[.desert_10]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_10"
+start = { x = 3411, y = 3108 }
+end = { x = 3414, y = 3121 }
+
+[.desert_12]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_12"
+start = { x = 3400, y = 3114 }
+end = { x = 3406, y = 3111 }
+
+[.desert_13]
+kebbit = "desert_devil"
+varbit = "desert_devil_trail_13"
+start = { x = 3406, y = 3111 }
+end = { x = 3411, y = 3108 }
+
+[.feldip_0]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_0"
+start = { x = 2525, y = 2889 }
+end = { x = 2525, y = 2882 }
+burrow = "feldip_weasel_burrow"
+
+
+[.feldip_1]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_1"
+start = { x = 2525, y = 2889 }
+end = { x = 2525, y = 2882 }
+burrow = "feldip_weasel_burrow"
+
+
+[.feldip_2]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_2"
+start = { x = 2525, y = 2889 }
+end = { x = 2531, y = 2890 }
+burrow = "feldip_weasel_burrow"
+
+
+[.feldip_12]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_12"
+start = { x = 2554, y = 2882 }
+end = { x = 2542, y = 2881 }
+burrow = "feldip_weasel_burrow_2"
+
+
+[.feldip_13]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_13"
+start = { x = 2554, y = 2882 }
+end = { x = 2553, y = 2888 }
+burrow = "feldip_weasel_burrow_2"
+
+
+[.feldip_14]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_14"
+start = { x = 2554, y = 2882 }
+end = { x = 2553, y = 2888 }
+burrow = "feldip_weasel_burrow_2"
+
+
+[.feldip_3]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_3"
+start = { x = 2531, y = 2890 }
+end = { x = 2533, y = 2885 }
+
+
+[.feldip_4]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_4"
+start = { x = 2525, y = 2882 }
+end = { x = 2533, y = 2882 }
+
+
+[.feldip_5]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_5"
+start = { x = 2533, y = 2882 }
+end = { x = 2533, y = 2885 }
+
+
+[.feldip_6]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_6"
+start = { x = 2531, y = 2890 }
+end = { x = 2539, y = 2890 }
+
+
+[.feldip_7]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_7"
+start = { x = 2533, y = 2885 }
+end = { x = 2540, y = 2886 }
+
+
+[.feldip_8]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_8"
+start = { x = 2542, y = 2881 }
+end = { x = 2533, y = 2882 }
+
+
+[.feldip_9]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_9"
+start = { x = 2540, y = 2886 }
+end = { x = 2542, y = 2881 }
+
+
+[.feldip_10]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_10"
+start = { x = 2539, y = 2890 }
+end = { x = 2540, y = 2886 }
+
+
+[.feldip_11]
+kebbit = "feldip_weasel"
+varbit = "feldip_weasel_trail_11"
+start = { x = 2543, y = 2890 }
+end = { x = 2553, y = 2888 }
+
+[.common_10]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_10"
+start = { x = 2357, y = 3624 }
+end = { x = 2362, y = 3615 }
+burrow = "common_kebbit_burrow_3"
+
+
+[.common_11]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_11"
+start = { x = 2357, y = 3624 }
+end = { x = 2351, y = 3619 }
+burrow = "common_kebbit_burrow_3"
+
+
+[.common_12]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_12"
+start = { x = 2357, y = 3624 }
+end = { x = 2356, y = 3620 }
+burrow = "common_kebbit_burrow_3"
+
+
+[.common_17]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_17"
+start = { x = 2360, y = 3611 }
+end = { x = 2362, y = 3615 }
+burrow = "common_kebbit_burrow_2"
+
+
+[.common_13]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_13"
+start = { x = 2344, y = 3612 }
+end = { x = 2349, y = 3604 }
+
+
+[.common_14]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_14"
+start = { x = 2354, y = 3609 }
+end = { x = 2344, y = 3612 }
+
+
+[.common_15]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_15"
+start = { x = 2344, y = 3612 }
+end = { x = 2351, y = 3619 }
+
+
+[.common_16]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_16"
+start = { x = 2356, y = 3620 }
+end = { x = 2351, y = 3619 }
+
+
+[.common_18]
+kebbit = "common_kebbit"
+varbit = "common_kebbit_trail_18"
+start = { x = 2362, y = 3615 }
+end = { x = 2358, y = 3620 }
+
+
+[.razor_0]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_0"
+start = { x = 2331, y = 3562 }
+end = { x = 2323, y = 3563 }
+burrow = "razor_backed_kebbit_burrow"
+
+
+[.razor_1]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_1"
+start = { x = 2331, y = 3562 }
+end = { x = 2332, y = 3568 }
+burrow = "razor_backed_kebbit_burrow"
+
+
+[.razor_2]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_2"
+start = { x = 2331, y = 3562 }
+end = { x = 2337, y = 3565 }
+burrow = "razor_backed_kebbit_burrow"
+
+
+[.razor_9]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_9"
+start = { x = 2322, y = 3576 }
+end = { x = 2322, y = 3570 }
+burrow = "razor_backed_kebbit_burrow_2"
+
+
+[.razor_12]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_12"
+start = { x = 2322, y = 3576 }
+end = { x = 2327, y = 3573 }
+burrow = "razor_backed_kebbit_burrow_2"
+
+
+[.razor_13]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_13"
+start = { x = 2322, y = 3576 }
+end = { x = 2332, y = 3578 }
+burrow = "razor_backed_kebbit_burrow_2"
+
+
+[.razor_8]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_8"
+start = { x = 2341, y = 3577 }
+end = { x = 2343, y = 3568 }
+burrow = "razor_backed_kebbit_burrow_3"
+
+
+[.razor_15]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_15"
+start = { x = 2341, y = 3577 }
+end = { x = 2336, y = 3571 }
+burrow = "razor_backed_kebbit_burrow_3"
+
+
+[.razor_16]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_16"
+start = { x = 2341, y = 3577 }
+end = { x = 2332, y = 3578 }
+burrow = "razor_backed_kebbit_burrow_3"
+
+
+[.razor_3]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_3"
+start = { x = 2337, y = 3565 }
+end = { x = 2343, y = 3568 }
+
+
+[.razor_4]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_4"
+start = { x = 2322, y = 3570 }
+end = { x = 2323, y = 3563 }
+
+
+[.razor_5]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_5"
+start = { x = 2323, y = 3563 }
+end = { x = 2332, y = 3568 }
+
+
+[.razor_6]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_6"
+start = { x = 2337, y = 3565 }
+end = { x = 2336, y = 3571 }
+
+
+[.razor_7]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_7"
+start = { x = 2343, y = 3568 }
+end = { x = 2336, y = 3571 }
+
+
+[.razor_10]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_10"
+start = { x = 2327, y = 3573 }
+end = { x = 2322, y = 3570 }
+
+
+[.razor_11]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_11"
+start = { x = 2327, y = 3573 }
+end = { x = 2332, y = 3568 }
+
+
+[.razor_14]
+kebbit = "razor_backed_kebbit"
+varbit = "razor_backed_kebbit_trail_14"
+start = { x = 2332, y = 3578 }
+end = { x = 2336, y = 3571 }

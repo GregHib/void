@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -25,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -63,12 +63,12 @@ class NetTrap : Script {
 
         objectOperate("Investigate", "net") { (target) ->
             val npc = NPCs.find(target.tile, "hunting_sapling_trap_npc")
-            investigate(npc)
+            Traps.investigate(this, npc)
         }
 
         objectOperate("Investigate", "*_net_setup") { (target) ->
             val npc = NPCs.find(target.tile.add(target.direction()), "hunting_sapling_trap_npc")
-            investigate(npc)
+            Traps.investigate(this, npc)
         }
 
         itemOnObjectOperate("*", "net,*_net_setup") { (target, item) ->
@@ -79,7 +79,7 @@ class NetTrap : Script {
             }
             when {
                 item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
-                item.id == "torch_lit" -> Traps.smoke(this, trap.id.removeSuffix("_setup"), trap.tile.add(target.direction()))
+                item.id == "lit_torch" -> Traps.smoke(this, trap.id.removeSuffix("_setup"), trap.tile.add(target.direction()))
                 item.id.endsWith("_tar") -> bait(item, trap)
                 item.def.contains(Params.HEALS) -> message("I don't think I'd catch much using that as bait.")
                 else -> noInterest()
@@ -96,12 +96,15 @@ class NetTrap : Script {
             if (!player.has(Skill.Hunter, creature.int("level"))) {
                 return@huntNPC
             }
-            if (tile.distanceTo(target.tile) > 2) {
+            if (tile.distanceTo(target.tile) > 2 || target["caught", false]) {
                 return@huntNPC
             }
             transform("${id}_off")
-            var chance = Traps.chance(this, creature)
+            val chance = Traps.chance(this, creature)
             val success = Level.success(player.levels.get(Skill.Hunter), chance)
+            if (success) {
+                target["caught"] = true
+            }
             val trapId = creature.string("trap")
             target.walkToDelay(tile)
             target.delay(1)
@@ -127,16 +130,24 @@ class NetTrap : Script {
 
         npcDespawn("hunting_sapling_trap_npc") {
             val trap = GameObjects.getLayer(tile.add(direction.inverse()), ObjectLayer.GROUND) ?: return@npcDespawn
-            val player = owner ?: return@npcDespawn
-            player.dec("trap_count")
             val net = GameObjects.findOrNull(trap.tile.add(trap.direction()), "net")
             net?.remove()
             GameObjects.remove(trap)
+            val bait: String? = get("bait")
+            val items = if (bait != null) listOf("rope", "small_fishing_net", bait) else listOf("rope", "small_fishing_net")
+            val player = owner
+            if (player == null) {
+                for (item in items) {
+                    FloorItems.add(tile, item, disappearTicks = 200)
+                }
+                return@npcDespawn
+            }
+            player.dec("trap_count")
             if (lifecycle == 0 || trap.id.endsWith("_net_failed")) {
                 player.message("The net trap that you set has collapsed.")
             }
             if (lifecycle == 0 || trap.id.endsWith("_net_failed") || player["logged_out", false]) {
-                for (item in listOf("rope", "small_fishing_net")) {
+                for (item in items) {
                     player.drop(tile, item)
                 }
             }
@@ -160,20 +171,6 @@ class NetTrap : Script {
         sound("drop_item", delay = 25)
         npc["bait"] = item.id
         message("You place a blob of tar on the net as bait.")
-    }
-
-    private fun Player.investigate(npc: NPC) {
-        val bait: String? = npc["bait"]
-        if (bait != null) {
-            message("This trap has been baited with ${bait.toLowerSpaceCase()}.")
-        } else {
-            message("This trap has been set without any bait.")
-        }
-        if (npc["smoked", false]) {
-            message("The scent on this trap has been masked.")
-        } else {
-            message("Your scent lingers around this trap.")
-        }
     }
 
     private suspend fun Player.layTrap(trapId: String, obj: GameObject) {

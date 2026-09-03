@@ -1,12 +1,11 @@
 package content.skill.hunter
 
 import content.entity.effect.transform
-import content.entity.player.inv.item.drop
+import content.quest.questCompleted
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
@@ -22,53 +21,51 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItem
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.type.Direction
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 
-class BirdSnare : Script {
+class BoxTrap : Script {
     init {
-        itemOption("Lay", "bird_snare") {
+        itemOption("Lay", "box_trap") {
             layTrap(null)
         }
 
         floorItemOperate("Lay") { (item) ->
-            if (item.id == "bird_snare") {
+            if (item.id == "box_trap") {
                 layTrap(item)
             }
         }
 
-        objectOperate("Dismantle", "bird_snare,bird_snare_fail") { (target) ->
+        objectOperate("Dismantle", "box_trap,box_trap_fail") { (target) ->
             dismantleTrap(target, null)
         }
 
-        objectOperate("Check", "snare_*") { (target) ->
-            dismantleTrap(target, creature = Rows.get("creatures.${target.id.removePrefix("snare_")}"))
+        objectOperate("Check", "box_trap_ferret,box_trap_chinchompa,box_trap_carnivorous_chinchompa,box_trap_pawya,box_trap_grenwall") { (target) ->
+            dismantleTrap(target, creature = Rows.get("creatures.${target.id.removePrefix("box_trap_")}"))
         }
 
-        objectOperate("Investigate", "bird_snare") { (target) ->
-            val id = Tables.npc("traps.bird_snare.npc")
+        objectOperate("Investigate", "box_trap") { (target) ->
+            val id = Tables.npc("traps.box_trap.npc")
             val npc = NPCs.find(target.tile, id)
-            if (npc["smoked", false]) {
-                message("The scent on this trap has been masked.")
-            } else {
-                message("Your scent lingers around this trap.") // TODO outfits?
-            }
+            Traps.investigate(this, npc)
         }
 
-        itemOnObjectOperate("*", "bird_snare") {
+        itemOnObjectOperate("*", "box_trap") {
             when {
                 it.item.id == "unlit_torch" -> message("I should light the torch before using it to smoke the trap.")
-                it.item.id == "lit_torch" -> Traps.smoke(this, "bird_snare", it.target.tile)
-                it.item.def.contains(Params.HEALS) -> message("There isn't really anywhere to put any bait on this trap.")
+                it.item.id == "lit_torch" -> Traps.smoke(this, "box_trap", it.target.tile)
+                it.item.id == "papaya_fruit" || it.item.id == "raw_pawya_meat" -> bait(it.item, it.target)
+                it.item.def.contains(Params.HEALS) -> message("I don't think I'd catch much using that as bait.")
                 else -> noInterest()
             }
         }
 
-        huntNPC("bird_snare") { target ->
+        huntNPC("box_trap") { target ->
             if (transform.endsWith("_off")) {
                 return@huntNPC
             }
@@ -77,6 +74,16 @@ class BirdSnare : Script {
             val player = Players.findByAccount(account) ?: return@huntNPC
             if (!player.has(Skill.Hunter, creature.int("level"))) {
                 return@huntNPC
+            }
+            if (target.id == "ferret" && !player.questCompleted("eagles_peak")) {
+                return@huntNPC
+            }
+            val required = creature.itemOrNull("bait")
+            if (required != null) {
+                val bait: String? = get("bait")
+                if (bait != required) {
+                    return@huntNPC
+                }
             }
             if (tile.distanceTo(target.tile) > 2 || target["caught", false]) {
                 return@huntNPC
@@ -89,45 +96,61 @@ class BirdSnare : Script {
             }
             target.walkToDelay(tile)
             target.walkOverDelay(tile)
-            target.face(Direction.SOUTH)
-            target.anim("bird_land")
-            target.delay(1)
-            target.anim(if (success) "bird_catch" else "bird_fail")
-            target.delay(1)
             despawn(100)
             val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
+            val catching = trap.replace("box_trap_catching")
+            target.anim(if (success) creature.anim("catch_anim") else creature.anim("fail_anim"))
+            target.delay(1)
             if (!success) {
-                trap.replace("bird_snare_fail")
-                // TODO is there a message for this?
+                catching.replace("box_trap_fail")
                 return@huntNPC
             }
             target.levels.set(Skill.Constitution, 0)
-            trap.replace(Tables.obj("creatures.${target.id}.caught_obj"))
+            clear("bait")
+            catching.replace(Tables.obj("creatures.${target.id}.caught_obj"))
             player.message("Something has been caught in your trap!")
-            areaSound("bird_caught", tile)
+            areaSound("box_trap_catch", tile)
         }
 
-        npcDespawn("hunting_ojibway_trap_npc") {
-            Traps.despawn(this, "bird_snare", "The bird snare that you laid has fallen over.")
+        npcDespawn("hunting_box_trap_npc") {
+            Traps.despawn(this, "box_trap", "The box trap that you laid has fallen over.")
         }
+    }
+
+    private fun Player.bait(item: Item, trap: GameObject) {
+        val npc = NPCs.find(trap.tile, "hunting_box_trap_npc")
+        if (npc["owner", ""] != accountName) {
+            message("This isn't your trap.")
+            return
+        }
+        if (npc.contains("bait")) {
+            message("You've already baited this trap.")
+            return
+        }
+        if (!inventory.remove(item.id)) {
+            return
+        }
+        anim("lay_trap_small")
+        sound("drop_item", delay = 25)
+        npc["bait"] = item.id
+        message("You bait the trap with ${item.id.toLowerSpaceCase()}.")
     }
 
     private suspend fun Player.layTrap(floorItem: FloorItem?) {
-        Traps.lay(this, "bird_snare", "set_noose", floorItem)
+        Traps.lay(this, "box_trap", "lay_box_trap", floorItem)
     }
 
     private suspend fun Player.dismantleTrap(target: GameObject, creature: RowDefinition?) {
-        val npc = NPCs.findOrNull(target.tile, "hunting_ojibway_trap_npc") ?: return
+        val npc = NPCs.findOrNull(target.tile, "hunting_box_trap_npc") ?: return
         if (npc["owner", ""] != accountName) {
             message("This is not your trap.")
             return
         }
         val loot = creature?.itemList("loot") ?: emptyList()
-        val size = 1 + loot.size
-        if (inventory.spaces < size) {
-            val slots = size - inventory.spaces
-            message("You don't have enough inventory space. You need $slots more free ${"slot".plural(slots)}.")
-            return
+        val bait: String? = npc["bait"]
+        val items = mutableListOf("box_trap")
+        if (loot.isEmpty() && bait != null) {
+            items.add(bait)
         }
         anim("take_trap")
         sound("trap_dismantle", delay = 25)
@@ -135,24 +158,26 @@ class BirdSnare : Script {
         if (GameObjects.getLayer(target.tile, ObjectLayer.GROUND)?.id != target.id) {
             return
         }
-        collapse(npc, target, drop = false)
-        inventory.add("bird_snare")
+        val added = inventory.transaction {
+            for (item in items + loot) {
+                add(item)
+            }
+        }
+        if (!added) {
+            message("You don't have enough inventory space.")
+            return
+        }
+        collapse(npc, target)
         message("You dismantle the trap.", ChatType.Filter)
         if (creature != null) {
-            for (item in loot) {
-                inventory.add(item)
-            }
             exp(Skill.Hunter, creature.int("xp") / 10.0)
             message("You've caught a ${creature.rowId.toLowerSpaceCase()}!", ChatType.Filter)
         }
     }
 
-    private fun Player.collapse(npc: NPC, target: GameObject, drop: Boolean) {
+    private fun Player.collapse(npc: NPC, target: GameObject) {
         dec("trap_count")
         NPCs.remove(npc)
         GameObjects.remove(target)
-        if (drop) {
-            drop(target.tile, "bird_snare")
-        }
     }
 }

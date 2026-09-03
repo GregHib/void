@@ -35,11 +35,38 @@ id = 5172
 [chinchompa_catch]
 id = 5184
 
+[chinchompa_fail]
+id = 5185
+
+[ferret_catch]
+id = 5191
+
+[ferret_fail]
+id = 5192
+
+[pawya_catch]
+id = 8615
+
+[pawya_fail]
+id = 8611
+
+[grenwall_catch]
+id = 8602
+
+[grenwall_fail]
+id = 8602
+
+[imp_catch]
+id = 5218
+
+[imp_fail]
+id = 5285
+
 [kebbit_catch]
-id = 5208
+id = 5275
 
 [kebbit_fail]
-id = 5208
+id = 5277
 
 [net_catch]
 id = 827
@@ -74,3 +101,15 @@ id = 5227
 [big_cat_death]
 id = 5234
 ticks = 2
+
+[noose_catch_polar]
+id = 5256
+
+[noose_catch_common]
+id = 5259
+
+[noose_fail]
+id = 5255
+
+[noose_catch_desert]
+id = 5257
