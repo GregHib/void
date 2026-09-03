@@ -54,34 +54,85 @@ internal class SaveQueueTest : KoinMock() {
     }
 
     @Test
-    fun `Failed save falls back and doesn't kill the queue`() {
-        val fallbackSaved = CountDownLatch(1)
+    fun `Failed save retries against real storage and doesn't kill the queue`() {
+        val attempted = AtomicInteger()
         val saved = CountDownLatch(1)
         var fail = true
         val storage = object : TestStorage() {
             override fun save(accounts: List<PlayerSave>) {
+                attempted.incrementAndGet()
                 if (fail) {
                     throw IOException("Disk full")
                 }
                 saved.countDown()
             }
         }
+        val dumped = CopyOnWriteArrayList<String>()
         val fallback = object : TestStorage() {
             override fun save(accounts: List<PlayerSave>) {
-                fallbackSaved.countDown()
+                accounts.mapTo(dumped) { it.name }
             }
         }
         val queue = SaveQueue(storage, fallback)
         queue.save(Player(accountName = "player"))
         queue.run()
-        assertTrue(fallbackSaved.await(5, TimeUnit.SECONDS), "Fallback didn't run after failed save")
-        waitFor("fallback to clear pending") { queue.empty() }
+        waitFor("first attempt") { attempted.get() >= 1 }
         fail = false
-        queue.save(Player(accountName = "player"))
-        waitFor("save after a failure") {
+        waitFor("retry to succeed") {
             queue.run()
             saved.count == 0L
         }
+        waitFor("pending to drain") { queue.empty() }
+        assertTrue(dumped.isEmpty(), "Transient failure gave up on the first attempt")
+    }
+
+    @Test
+    fun `Failure only touches the accounts that were attempted`() {
+        val started = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        val dumped = CopyOnWriteArrayList<String>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                started.countDown()
+                release.await(5, TimeUnit.SECONDS)
+                throw IOException("Disk full")
+            }
+        }
+        val fallback = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                accounts.mapTo(dumped) { it.name }
+            }
+        }
+        val queue = SaveQueue(storage, fallback, retryMillis = 0)
+        queue.save(Player(accountName = "attempted"))
+        queue.run()
+        assertTrue(started.await(5, TimeUnit.SECONDS), "Save didn't start")
+        queue.save(Player(accountName = "queued_later"))
+        release.countDown()
+        waitFor("attempted account to be dumped") { dumped.contains("attempted") }
+        assertFalse(dumped.contains("queued_later"), "Failure dumped an account storage was never asked to write")
+        assertTrue(queue.saving("queued_later"), "Failure dropped an account storage was never asked to write")
+    }
+
+    @Test
+    fun `Shutdown save writes to the fallback before the job completes`() {
+        val dumped = CopyOnWriteArrayList<String>()
+        val storage = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                throw IOException("Disk full")
+            }
+        }
+        val fallback = object : TestStorage() {
+            override fun save(accounts: List<PlayerSave>) {
+                accounts.mapTo(dumped) { it.name }
+            }
+        }
+        val queue = SaveQueue(storage, fallback)
+        queue.save(Player(accountName = "player"))
+
+        runBlocking { queue.direct().join() }
+
+        assertTrue(dumped.contains("player"), "Shutdown left a failed save nowhere on disk")
     }
 
     @Test
