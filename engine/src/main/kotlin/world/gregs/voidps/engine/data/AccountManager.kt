@@ -40,8 +40,17 @@ class AccountManager(
     private val homeTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
-    fun create(name: String, passwordHash: String): Player = Player(tile = homeTile, accountName = name, passwordHash = passwordHash).apply {
+    private val tutorialTile: Tile
+        get() = Tile(Settings["world.start.tutorial.x", 0], Settings["world.start.tutorial.y", 0], Settings["world.start.tutorial.level", 0])
+
+    private val startTile: Tile
+        get() = if (Settings["world.start.tutorial", false]) tutorialTile else homeTile
+
+    fun create(name: String, passwordHash: String): Player = Player(tile = startTile, accountName = name, passwordHash = passwordHash).apply {
         this["new_player"] = true
+        if (Settings["world.start.tutorial", false]) {
+            this["tutorial_stage"] = 0
+        }
     }
 
     fun setup(player: Player, client: Client?, displayMode: Int, viewport: Boolean = true) {

@@ -19,6 +19,12 @@ resizeIndex = 15
 fixedIndex = 16
 resizeIndex = 69
 
+# The 512x69 strip sitting directly above the chat box, bottom anchored in both frames.
+# Pairs with private_chat, which occupies the matching slot alongside it.
+[above_chat_box]
+fixedIndex = 17
+resizeIndex = 74
+
 # Mini-map
 [energy_orb]
 fixedIndex = 185
@@ -115,6 +121,14 @@ resizeIndex = 104
 
 # Main screen
 [dialogue_box]
+parent = "chat_box"
+index = 13
+permanent = false
+
+# The same chat box slot as dialogue_box, under its own name. Queued actions only tick while
+# `Player.dialogue` is null, and that reads the dialogue_box slots by name - so an interface
+# that simply lives in the chat box must not claim one, or it freezes every delayed action.
+[tutorial_box]
 parent = "chat_box"
 index = 13
 permanent = false

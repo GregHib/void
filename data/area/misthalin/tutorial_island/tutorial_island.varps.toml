@@ -1,0 +1,5 @@
+# Drives the interface 371 progress bar. Client script 1437 lights segment n (component
+# 371:4+n) only when this is greater than n, for n in 1..20 - so 1 is empty and 21 is full.
+[tutorial_progress]
+id = 406
+format = "int"
