@@ -143,8 +143,9 @@ class GameObjectsTest : KoinMock() {
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             spawns.add(obj)
             ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            despawns.add(obj)
+            // The original is restored before the despawn is emitted, so handlers see the tile settled
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            despawns.add(obj)
         }
     }
 
@@ -176,8 +177,9 @@ class GameObjectsTest : KoinMock() {
             spawns.add(override)
             // Remove 4321
             ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            despawns.add(override)
+            // The original is restored before the despawn is emitted, so handlers see the tile settled
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            despawns.add(override)
         }
     }
 
@@ -267,6 +269,55 @@ class GameObjectsTest : KoinMock() {
         assertTrue(GameObjects.contains(original))
         assertFalse(GameObjects.contains(first))
         assertFalse(GameObjects.contains(second))
+    }
+
+    /**
+     * Despawn handlers run while [GameObjects.remove] is midway through its own bookkeeping, so an
+     * object added by one used to be wiped from the map the moment remove resumed - leaving it
+     * drawn on the client but unreachable by every server side lookup.
+     */
+    @Test
+    fun `Object added by a despawn handler stays in the world`() {
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val settled = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        addOnDespawn(obj, settled)
+
+        GameObjects.add(obj, collision = false)
+        GameObjects.remove(obj, collision = false)
+
+        assertEquals(settled, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertTrue(GameObjects.contains(settled))
+        assertFalse(GameObjects.contains(obj))
+    }
+
+    @Test
+    fun `Object added by a despawn handler stays in the world over an original`() {
+        val original = GameObject(id = 1111, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val settled = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        addOnDespawn(obj, settled)
+
+        GameObjects.add(obj, collision = false)
+        GameObjects.remove(obj, collision = false)
+
+        assertEquals(settled, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertTrue(GameObjects.contains(settled))
+    }
+
+    /**
+     * Registers a despawn handler which swaps [obj] out for [replacement] the moment it despawns.
+     */
+    private fun addOnDespawn(obj: GameObject, replacement: GameObject) {
+        object : Despawn {
+            init {
+                objectDespawn {
+                    if (this == obj) {
+                        GameObjects.add(replacement, collision = false)
+                    }
+                }
+            }
+        }
     }
 
     @AfterEach

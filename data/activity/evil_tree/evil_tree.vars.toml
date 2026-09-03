@@ -1,0 +1,22 @@
+[evil_tree_day]
+format = "long"
+persist = true
+
+[evil_tree_trees]
+format = "int"
+persist = true
+
+[evil_tree_spawn_id]
+format = "int"
+persist = true
+
+[evil_tree_kindling_handed]
+format = "int"
+persist = true
+
+[evil_tree_buff]
+format = "int"
+persist = true
+
+[evil_tree_noticed]
+format = "int"
