@@ -586,6 +586,11 @@ class Xenia : Script {
             }
         }
         npc<Happy>("Thank you, adventurer.")
+        if (hasAnyDemonStatuette()) {
+            statuetteSaleOptions()
+        } else {
+            choiceAfterQuest()
+        }
     }
 
     private fun Player.hasAnyDemonStatuette(): Boolean = inventory.items.any { it.id in statuettePrices.keys }

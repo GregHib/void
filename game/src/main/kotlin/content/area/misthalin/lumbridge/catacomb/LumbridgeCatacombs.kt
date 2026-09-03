@@ -186,6 +186,7 @@ class LumbridgeCatacombs : Script {
                 delay(1)
                 if (inventory.add("diamond_demon_statuette")) {
                     set("diamond_demon_statuette", "touch")
+                    message("You think that Xenia might be interested in seeing this statuette.")
                 }
                 return@objectOperate
             }
