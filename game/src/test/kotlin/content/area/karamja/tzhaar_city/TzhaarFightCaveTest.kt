@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.rights
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -181,6 +182,26 @@ class TzhaarFightCaveTest : WorldTest() {
         manager.logout(player, true)
         tick()
         assertEquals(Tile(2413, 5113), player.tile)
+    }
+
+    @Test
+    fun `Connection loss mid wave still logs the player out`() = runTest {
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = 0
+        })
+        val player = createPlayer(Tile(2438, 5168), "JalYt-11")
+        player["god_mode"] = true
+        val entrance = GameObjects.find(Tile(2437, 5166), "cave_entrance_fight_cave")
+        player.interactObject(entrance, "Enter")
+        tick(5)
+        player["fight_cave_wave"] = 10
+
+        get<AccountManager>().logout(player, false)
+        tick(3)
+
+        assertTrue(player["logged_out", false], "Involuntary disconnect was vetoed instead of logging out")
+        assertNull(Players.findByAccount(player.accountName), "Involuntary disconnect left a ghost in the world")
+        assertFalse(Instances.reserved(player.tile.region), "Player should be saved on real map")
     }
 
     @Test

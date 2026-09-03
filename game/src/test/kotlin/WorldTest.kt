@@ -110,7 +110,8 @@ abstract class WorldTest : KoinTest {
             throw IllegalStateException("Player already exists: $name")
         }
         val player = Player(tile = tile, accountName = name, passwordHash = "")
-        assertTrue(accounts.setup(player, null, 0, viewport = true))
+        accounts.setup(player, null, 0, viewport = true)
+        assertTrue(accounts.index(player))
         accountDefs.add(player)
         tick()
         player["creation"] = -1
