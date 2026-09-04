@@ -1,4 +1,4 @@
 [travel_log_locations]
 persist = true
 format = "list"
-values = [ "aiq", "air", "ajq", "ajr", "ajs", "akq", "aks", "alq", "alr", "als", "bip", "biq", "bis", "bjr", "bkp", "bkq", "bkr", "bks", "blp", "blr", "cip", "ciq", "cjr", "ckp", "ckr", "cks", "clp", "clr", "cls", "dir" ]
+values = [ "aiq", "air", "ajq", "ajr", "ajs", "akq", "aks", "alp", "alq", "alr", "als", "bip", "biq", "bir", "bis", "bjr", "bkp", "bkq", "bkr", "bks", "blp", "blq", "blr", "cip", "ciq", "cjr", "ckp", "ckr", "cks", "clp", "clr", "cls", "dip", "dir", "dis", "djp", "djr", "dkp", "dkr", "dks", "dlq", "dlr", "dls" ]

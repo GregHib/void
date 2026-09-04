@@ -34,7 +34,7 @@ drops = [
 [giant_sea_snake_tertiary]
 roll = 5012
 drops = [
-    { id = "heavy_box", chance = 5012 },
+    { id = "heavy_box", chance = 4960 },
     { table = "medium_clue_scroll", chance = 39 },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },

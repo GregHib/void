@@ -1,12 +1,13 @@
 [kalphite_queen_drop_table]
 type = "all"
 drops = [
+    { table = "kalphite_queen_food" },
     { table = "kalphite_queen_secondary" },
     { table = "kalphite_queen_tertiary" },
 ]
 
-[kalphite_queen_secondary]
-roll = 126
+[kalphite_queen_food]
+roll = 112
 drops = [
     { id = "monkfish", amount = 3, chance = 14 },
     { id = "shark", amount = 2, chance = 14 },
@@ -16,6 +17,11 @@ drops = [
     { id = "combat_potion_2", chance = 14 },
     { id = "super_ranging_potion_3", chance = 14 },
     { id = "super_antipoison_2", chance = 14 },
+]
+
+[kalphite_queen_secondary]
+roll = 126
+drops = [
     { id = "battlestaff_noted", amount = 10, chance = 5 },
     { id = "rune_chainbody", chance = 4 },
     { id = "red_dragonhide_body", chance = 4 },

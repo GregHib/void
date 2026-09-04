@@ -54,7 +54,7 @@ class PortPhasmatysBarrierTest : WorldTest() {
     @Test
     fun `Completing Ghosts Ahoy makes passage free`() {
         val player = createPlayer(outside)
-        player.set("ghosts_ahoy", "completed")
+        player["ghosts_ahoy"] = "completed"
 
         player.objectOption(barrier(), "Pass")
         tick(6)

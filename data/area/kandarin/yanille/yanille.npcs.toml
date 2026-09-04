@@ -140,4 +140,3 @@ respawn_delay = 50
 drop_table = "soldier_yanille"
 examine = "A military man."
 max_hit_slash = 40
-

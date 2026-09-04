@@ -5,7 +5,7 @@ drops = [
 ]
 
 [impling_low_tier]
-roll = 100
+roll = 120
 drops = [
     { id = "baby_impling_jar", chance = 20 },
     { id = "young_impling_jar", chance = 20 },
@@ -16,7 +16,7 @@ drops = [
 ]
 
 [impling_mid_tier]
-roll = 100
+roll = 101
 drops = [
     { id = "gourmet_impling_jar", chance = 10 },
     { id = "earth_impling_jar", chance = 10 },
@@ -158,7 +158,7 @@ drops = [
 ]
 
 [gourmet_impling_jar_secondary]
-roll = 500
+roll = 501
 drops = [
     { id = "grubby_key" },
     { id = "tuna", chance = 100 },
@@ -579,7 +579,7 @@ drops = [
 ]
 
 [pirate_impling_jar_trouble_brewing_secondary]
-roll = 101
+roll = 121
 drops = [
     { id = "steel_hatchet", chance = 10 },
     { id = "bucket", chance = 10 },

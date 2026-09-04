@@ -1,0 +1,7 @@
+[handsand_employed_bert]
+persist = true
+format = "boolean"
+
+[handsand_sand_cooldown]
+persist = true
+format = "int"

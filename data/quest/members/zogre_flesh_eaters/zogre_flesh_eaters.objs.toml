@@ -1,32 +1,41 @@
 [ogre_stairs_down]
 id = 6841
+examine = "Some crude stone steps."
 
 [ogre_stairs]
 id = 6842
+examine = "Some crude stone steps."
 
 [zogre_lecturn]
 id = 6846
+examine = "It's damaged."
 
 [zogre_coffin_base]
 id = 6843
 
 [zogre_coffin_special]
 id = 6844
+examine = "An old crude tomb."
 
 [zogre_coffin_special_searched]
 id = 6845
+examine = "An old crude tomb."
 
 [zogre_brentle_skeleton]
 id = 6893
+examine = "I don't think he'd mind us checking for his wallet now..."
 
 [zogre_stand]
 id = 6897
+examine = "A strange ogre plinth, this must be where the artefacts are stored."
 
 [ogre_cavedoorr_closed]
 id = 6871
+examine = "A bulky door made from solid rock."
 
 [ogre_cavedoorl_closed]
 id = 6872
+examine = "A bulky door made from solid rock."
 
 [ogre_cavedoorr_opened]
 id = 6873
@@ -39,24 +48,31 @@ id = 6889
 
 [zogre_sithik_bed_entity]
 id = 6887
+examine = "A sick, frail old man."
 
 [ogre_bedman_loc]
 id = 6888
+examine = "A sick, frail old man - transformed into an ogre."
 
 [sithiks_drawers]
 id = 6875
+examine = "These open and close!"
 
 [sithiks_cupboard]
 id = 6876
+examine = "This may be worth opening."
 
 [sithiks_wardrobe]
 id = 55412
+examine = "I wonder what this item contains."
 
 [ogre_barricade_collapsed]
 id = 6879
 
 [ogre_barricade_collapsedr]
 id = 6881
+examine = "A barricade made of skulls and bones which has been crushed."
 
 [ogre_barricade_collapsedl]
 id = 6882
+examine = "A barricade made of skulls and bones which has been crushed."

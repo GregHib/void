@@ -11,7 +11,7 @@ import world.gregs.voidps.type.random
 
 class Barbarian : Script {
     init {
-        val barbarians = "barbarian_alberich,barbarian_fafner,barbarian_fasolt,barbarian_siegfried,barbarian_minarch,barbarian_brunnhilde,barbarian_edelschwarz"
+        val barbarians = "barbarian_alberich,barbarian_fafner,barbarian_fasolt,barbarian_siegfried,barbarian_minarch,barbarian_brunnhilde,barbarian_edelschwarz,barbarian_siegmund,barbarian_lydspor,barbarian_hagen,barbarian_wotan,barbarian_acelin,barbarian_adelino,barbarian_adolpho,barbarian_aitan,barbarian_gutrune,barbarian_sieglinde"
         npcOperate("Talk-to", barbarians) { (target) ->
             when (random.nextInt(5)) {
                 0 -> npc<Quiz>("Wanna fight?")

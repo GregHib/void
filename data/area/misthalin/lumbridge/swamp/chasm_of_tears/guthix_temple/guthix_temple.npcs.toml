@@ -8,6 +8,7 @@ id = 8455
 
 [wgs_tormented_demon_melee]
 id = 8349
+examine = "Lucien must be incredibly powerful if he can bind such demons to his will."
 
 [wgs_tormented_demon_magic]
 id = 8350

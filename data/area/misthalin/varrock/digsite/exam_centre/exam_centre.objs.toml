@@ -1,0 +1,19 @@
+[qip_digsite_bookcase_low_digbookcase_shorter_m_o]
+id = 35226
+examine = "Shelves filled with interesting books."
+
+[qip_digsite_bookcase_low_digbookcase_shorter]
+id = 35224
+examine = "Shelves filled with interesting books."
+
+[qip_digsite_bookcase_low]
+id = 17320
+examine = "Shelves filled with interesting books."
+
+[qip_digsite_bookcase_high]
+id = 17321
+examine = "Shelves filled with interesting books."
+
+[elemental_workshop_2_bookcase]
+id = 17382
+examine = "A good source of books!"

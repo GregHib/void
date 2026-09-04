@@ -11,6 +11,7 @@ import content.entity.player.inv.item.tradeable
 import content.skill.slayer.*
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearHinted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.Settings
@@ -71,6 +72,7 @@ class NPCDeath(
                 if (combat.deathSound != null) {
                     (killer as? Player)?.sound(combat.deathSound!!.id)
                 }
+                clearHinted()
                 delay(if (ticks == 0) 4 else ticks)
                 if (killer is Player) {
                     AuditLog.event(killer, "killed", npc, tile)

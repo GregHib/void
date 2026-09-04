@@ -600,6 +600,7 @@ id = 10510
 
 [zanaris_choir] # Unobtainable
 id = 10511
+examine = "The choir of Zanaris, obviously."
 
 [snow_globe_2]
 id = 11949

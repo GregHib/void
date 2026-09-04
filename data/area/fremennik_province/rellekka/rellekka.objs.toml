@@ -11,6 +11,7 @@ examine = "All manner of animal clothing."
 
 [fur_stall_empty]
 id = 4276
+examine = "Always a source of good bargains."
 
 [fish_stall]
 id = 4277
@@ -21,6 +22,7 @@ examine = "There's something fishy about this stall."
 
 [fish_stall_empty]
 id = 4276
+examine = "Always a source of good bargains."
 
 [fire_rellekka]
 id = 4265
@@ -40,18 +42,24 @@ examine = "Used for fashioning clay items."
 
 [ice_strykewyrm_cave_entrance]
 id = 48188
+examine = "It looks cold in there."
 
 [ice_strykewyrm_cave_exit]
 id = 48189
+examine = "The exit is this way out."
 
 [erjolf_cave_opening]
 id = 42794
+examine = "This seems to head deeper into the caves."
 
 [erjolf_cave_opening_exit]
 id = 42795
+examine = "I can get through there."
 
 [erjolf_cave_exit]
 id = 42891
+examine = "This must be the way out."
 
 [erjolf_cave_entrance]
 id = 42793
+examine = "An entrance leading under ground."

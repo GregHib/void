@@ -1,5 +1,6 @@
 [clay_golem_ruins_of_uzer]
 id = 1907
+dialogue = "old"
 combat_def = "clay_golem"
 
 [rug_merchant_uzer]
@@ -27,14 +28,20 @@ id = 2920
 [evil_dave_ruins_of_uzer_2]
 id = 2922
 
-[clay_golem_ruins_of_uzer_2]
+[clay_golem_ruins_of_uzer_broken]
 id = 1908
+dialogue = "old"
+examine = "An animated clay statue with a lot of clay missing."
 
-[clay_golem_ruins_of_uzer_3]
+[clay_golem_ruins_of_uzer_damaged]
 id = 1909
+dialogue = "old"
+examine = "An animated clay statue with some clay missing."
 
-[clay_golem_ruins_of_uzer_4]
+[clay_golem_ruins_of_uzer_repaired]
 id = 1910
+dialogue = "old"
+examine = "An animated clay statue."
 
 [father_badden_ruins_of_uzer_2]
 id = 2902

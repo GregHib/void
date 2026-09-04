@@ -7,7 +7,7 @@ drops = [
 ]
 
 [ice_troll_secondary]
-roll = 128
+roll = 134
 drops = [
     { id = "adamant_kiteshield", chance = 8 },
     { id = "black_platebody", chance = 4 },

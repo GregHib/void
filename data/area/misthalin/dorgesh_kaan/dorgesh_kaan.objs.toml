@@ -11,9 +11,11 @@ examine = "A stone chest."
 
 [dorgesh_kaan_chest_empty]
 id = 22698
+examine = "A stone chest."
 
 [dorgesh_kaan_chest_open]
 id = 22699
+examine = "An open stone chest."
 
 [dorgesh_kaan_gem_chest]
 id = 22681
@@ -24,9 +26,11 @@ examine = "A metal bound stone chest."
 
 [dorgesh_kaan_gem_chest_empty]
 id = 22682
+examine = "A metal bound stone chest."
 
 [dorgesh_kaan_gem_chest_open]
 id = 22683
+examine = "An open metal bound stone chest."
 
 [furnace_dorgesh_kaan]
 id = 22721
@@ -34,3 +38,4 @@ examine = "	A very hot furnace."
 
 [dorgesh_kaan_bone_door]
 id = 22945
+examine = "Leads to the goblin caves."

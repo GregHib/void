@@ -119,5 +119,5 @@ object DungeonStartingItems {
         }
     }
 
-    private fun tierName(member: Player, style: String, skill: Skill): String = Tables.stringList("dungeoneering_tiers.$style.names")[((member.levels.getMax(skill) / 10) - 2).coerceAtMost(if (World.members) 8 else 7)]
+    private fun tierName(member: Player, style: String, skill: Skill): String = Tables.stringList("dungeoneering_tiers.$style.names")[((member.levels.getMax(skill) / 10) - 2).coerceIn(0..if (World.members) 8 else 7)]
 }

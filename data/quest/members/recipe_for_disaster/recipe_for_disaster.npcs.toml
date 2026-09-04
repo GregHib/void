@@ -117,15 +117,6 @@ clone = "gelatinnoth_mother_white"
 id = 3502
 clone = "gelatinnoth_mother_white"
 
-[jubbly_bird]
-id = 3476
-att = 5
-str = 5
-def = 6
-slayer_xp = 8.0
-drop_table = "jubbly_bird"
-examine = "A large boisterous bird, a delicacy for ogres."
-
 [karamel_normal]
 id = 3495
 hitpoints = 2500

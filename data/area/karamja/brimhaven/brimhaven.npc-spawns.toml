@@ -36,7 +36,7 @@ spawns = [
     { id = "trobert_brimhaven", x = 2806, y = 3174 },
     { id = "garth_brimhaven", x = 2766, y = 3212, members = true },
     { id = "sandy_brimhaven", x = 2788, y = 3176, members = true },
-    { id = "sandy_brimhaven_2", x = 2787, y = 3176, members = true },
+    { id = "sandy_brimhaven_2", x = 2788, y = 3176, members = true },
     { id = "dell_monti_brimhaven", x = 2763, y = 3186 },
     { id = "customs_officer_brimhaven", x = 2772, y = 3225 },
     { id = "capn_izzy_no_beard_brimhaven", x = 2807, y = 3190, members = true },

@@ -1,0 +1,12 @@
+[estrith_daemonheim]
+points = [
+  { x = 3433, y = 3680, delay = 20 },
+  { x = 3429, y = 3695, delay = 20 },
+  { x = 3441, y = 3693, delay = 20 },
+  { x = 3449, y = 3706, delay = 20 },
+  { x = 3450, y = 3718, delay = 20 },
+  { x = 3449, y = 3706, delay = 20 },
+  { x = 3447, y = 3696, delay = 20 },
+  { x = 3423, y = 3689, delay = 20 },
+  { x = 3433, y = 3680, delay = 20 }
+]

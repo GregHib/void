@@ -11,6 +11,7 @@ range = 10 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
+examine = "Summoner of stalagmites."
 
 [rand_ice_lord_boss_1]
 id = 10041

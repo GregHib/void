@@ -17,6 +17,7 @@ examine = "He seems to run the cocktail bar."
 
 [captain_daerkin]
 id = 4595
+dialogue = "old"
 examine = "A gnome pilot off duty, he looks a bit drunk."
 
 [farquie]

@@ -1,20 +1,27 @@
 [blue_tears]
 id = 6665
+examine = "The wall is weeping blue tears."
 
 [blue_tears_centre]
 id = 6661
+examine = "The wall is weeping blue tears."
 
 [green_tears]
 id = 6662
+examine = "The wall is weeping green tears."
 
 [green_tears_centre]
 id = 6666
+examine = "The wall is weeping green tears."
 
 [no_tears]
 id = 6663
+examine = "The wall is not weeping at the moment."
 
 [no_tears_centre]
 id = 6667
+examine = "The wall is not weeping at the moment."
 
 [weeping_wall]
 id = 6660
+examine = "A rock wall infused with the power of Guthix."

@@ -25,6 +25,7 @@ drops = [
 ]
 
 [wise_old_man_herbs]
+roll = 5
 drops = [
     { id = "grimy_guam_noted" },
     { id = "grimy_marrentill_noted" },

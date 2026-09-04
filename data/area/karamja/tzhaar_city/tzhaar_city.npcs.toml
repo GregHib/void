@@ -313,10 +313,12 @@ hunt_mode = "cowardly"
 id = 2623
 shop = "tzhaar_mej_rohs_rune_store"
 dialogue = "tzhaar"
+examine = "It stocks magical runes."
 
 [tzhaar_ket_zuh]
 id = 2619
 dialogue = "tzhaar"
+examine = "Maybe it'll look after my possessions."
 
 [tzhaar_ket_level_149]
 id = 2610

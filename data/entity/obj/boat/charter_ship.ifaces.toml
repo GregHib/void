@@ -55,3 +55,6 @@ id = 505
 [trollweiss_map]
 id = 727
 
+[total_blackness]
+id = 333
+type = "underlay"

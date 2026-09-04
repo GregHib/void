@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.Script
 
 class Frincos : Script {
     init {
-        npcOperate("Talk-to", "mazion") { (target) ->
+        npcOperate("Talk-to", "frincos") { (target) ->
             npc<Neutral>("Hello, how can I help you?")
             choice {
                 option("What are you selling?") {

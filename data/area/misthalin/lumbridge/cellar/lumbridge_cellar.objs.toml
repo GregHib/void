@@ -7,9 +7,12 @@ id = 6898
 
 [lost_tribe_cellar_hole]
 id = 6905
+examine = "A hole in the wall."
 
 [cave_goblin_city_door_left]
 id = 32953
+examine = "A heavy portal decorated with bone."
 
 [cave_goblin_city_door_right]
 id = 32952
+examine = "A heavy portal decorated with bone."

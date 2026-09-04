@@ -14,6 +14,8 @@ id = 28352
 
 [incubator_idle]
 id = 28336
+examine = "It incubates eggs."
 
 [incubator_active]
 id = 28359
+examine = "It incubates eggs."

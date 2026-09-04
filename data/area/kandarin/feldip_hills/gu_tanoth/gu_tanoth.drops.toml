@@ -1,4 +1,4 @@
-[food_stall_drop_table]
+[rock_cake_stall_drop_table]
 drops = [
     { id = "rock_cake" },
 ]
@@ -27,7 +27,7 @@ drops = [
 [gorad_tertiary]
 roll = 5012
 drops = [
-    { id = "ogre_tooth", chance = 5012 },
+    { id = "ogre_tooth", chance = 4999 },
     { id = "ogre_ribs", chance = 1253, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { id = "long_bone", chance = 12 },
     { id = "curved_bone" },

@@ -19,7 +19,7 @@ drops = [
     { id = "coins", amount = 5, chance = 12 },
     { id = "coins", amount = 15, chance = 4 },
     { id = "coins", amount = 25 },
-    { id = "rope", chance = 46 },
+    { id = "rope", chance = 15 },
     { id = "fishing_bait", chance = 15 },
     { id = "copper_ore", chance = 2 },
     { id = "cabbage", chance = 6 },

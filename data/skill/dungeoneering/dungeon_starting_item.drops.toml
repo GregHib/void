@@ -1,5 +1,5 @@
 [dungeoneering_melee_armour]
-type = "first"
+roll = 8
 drops = [
     { id = "novite_full_helm" },
     { id = "novite_platebody" },
@@ -12,7 +12,7 @@ drops = [
 ]
 
 [dungeoneering_magic_armour]
-type = "first"
+roll = 5
 drops = [
     { id = "salve_hood" },
     { id = "salve_robe_top" },
@@ -22,7 +22,7 @@ drops = [
 ]
 
 [dungeoneering_ranged_armour]
-type = "first"
+roll = 5
 drops = [
     { id = "protoleather_coif" },
     { id = "protoleather_body" },
@@ -32,7 +32,7 @@ drops = [
 ]
 
 [dungeoneering_weapons]
-type = "first"
+roll = 11
 drops = [
     { id = "novite_battleaxe" },
     { id = "novite_dagger" },
@@ -133,7 +133,7 @@ drops = [
 ]
 
 [dungeoneering_starting_armour]
-type = "first"
+roll = 4
 drops = [
     { id = "argonite_platelegs" },
     { id = "anti_dragon_shield_dungeoneering" },

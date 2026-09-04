@@ -55,7 +55,7 @@ drops = [
     { id = "unlit_torch", chance = 36 },
     { id = "eye_of_newt", chance = 4 },
     { id = "bullseye_lantern_empty", chance = 20 },
-    { id = "nothing", amount = 0, chance = 12 },
+    { id = "nothing", amount = 0, chance = 11 },
 ]
 [cave_goblin_drop_table]
 type = "all"

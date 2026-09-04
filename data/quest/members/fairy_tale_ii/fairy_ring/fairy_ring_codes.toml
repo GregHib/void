@@ -13,6 +13,7 @@ tile = { x = 2700, y = 3247 }
 [AJQ]
 name = "Dungeons: Cave south of Dorgesh-Kaan"
 tile = { x = 2735, y = 5221 }
+quest = "death_to_the_dorgeshuun"
 
 [AJR]
 name = "Kandarin: Slayer cave south-east of Rellekka"
@@ -34,11 +35,15 @@ tile = { x = 2319, y = 3619 }
 name = "Feldip Hills: Feldip Hunter area"
 tile = { x = 2571, y = 2956 }
 
-#[ALP]
+[ALP]
+name = "Kandarin: Feldip Hills"
+tile = { x = 2468, y = 4189 }
+quest = "fairy_tale_iii"
 
 [ALQ]
 name = "Morytania: Haunted Woods east of Canifis"
 tile = { x = 3597, y = 3495 }
+quest = "priest_in_peril"
 
 [ALR]
 name = "Other Realms: Abyssal Area"
@@ -56,7 +61,10 @@ tile = { x = 3410, y = 3324 }
 name = "Kharidian Desert near Kalphite Hive."
 tile = { x = 3251, y = 3095 }
 
-#[BIR]
+[BIR]
+name = "Other Realms: Sparse Plane"
+tile = { x = 2455, y = 4396 }
+quest = "fairy_tale_iii"
 
 [BIS]
 name = "Kandarin: Ardougne Zoo - Unicorns"
@@ -64,11 +72,12 @@ tile = { x = 2635, y = 3266 }
 
 #[BJP]
 
-#[BJQ] # Ancient Cavern
+#[BJQ] # Ancient Cavern - requires restoring the ring with bittercap mushrooms after barbarian training
 
 [BJR]
 name = "Other Realms: Realm of the Fisher King"
 tile = { x = 2650, y = 4730 }
+quest = "holy_grail"
 
 #[BJS]
 
@@ -78,10 +87,12 @@ tile = { x = 2385, y = 3035 }
 
 [BKQ]
 name = "Other Realms: Enchanted Valley"
+tile = { x = 3041, y = 4532 }
 
 [BKR]
 name = "Morytania: Mort Myre Swamp, south of Canifis"
 tile = { x = 3469, y = 3431 }
+quest = "priest_in_peril"
 
 [BKS]
 name = "Other Realms: Zanaris"
@@ -91,7 +102,10 @@ tile = { x = 2412, y = 4434 }
 name = "Dungeons: TzHaar area"
 tile = { x = 2437, y = 5126 }
 
-#[BLQ]
+[BLQ]
+name = "Other Realms: Yu'biusk"
+tile = { x = 2228, y = 4244, level = 1 }
+quest = "land_of_the_goblins"
 
 [BLR]
 name = "Kandarin: Legends' Guild"
@@ -102,6 +116,7 @@ tile = { x = 2740, y = 3351 }
 [CIP]
 name = "Islands: Miscellania"
 tile = { x = 2513, y = 3884 }
+quest = "fremennik_trials"
 
 [CIQ]
 name = "Kandarin: North-west of Yanille"
@@ -134,6 +149,7 @@ tile = { x = 2801, y = 3003 }
 [CKS]
 name = "Morytania: Canifis"
 tile = { x = 3447, y = 3470 }
+quest = "priest_in_peril"
 
 [CLP]
 name = "Islands: South of Draynor Village"
@@ -144,12 +160,16 @@ tile = { x = 3082, y = 3206 }
 [CLR]
 name = "Islands: Ape Atoll"
 tile = { x = 2735, y = 2742 }
+quest = "fairy_tale_iii"
 
 [CLS]
 name = "Islands: Hazelmere's home"
 tile = { x = 2682, y = 3081 }
 
-#[DIP]
+[DIP]
+name = "Mos Le'Harmless: Isle on the coast of Mos Le'Harmless"
+tile = { x = 3763, y = 2930 }
+quest = "fairy_tale_iii"
 
 #[DIQ]
 
@@ -197,4 +217,7 @@ tile = { x = 3423, y = 3016 }
 name = "Islands: Poison Waste south of Isafdar"
 tile = { x = 2213, y = 3099 }
 
-#[DLS]
+[DLS]
+name = "Dungeons: Myreque hideout under The Hollows"
+tile = { x = 3501, y = 9821, level = 3 }
+quest = "in_search_of_the_myreque"

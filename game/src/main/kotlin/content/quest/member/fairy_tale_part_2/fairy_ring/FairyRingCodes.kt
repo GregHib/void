@@ -19,14 +19,16 @@ class FairyRingCodes {
                     val stringId = section()
                     var name = ""
                     var tile = Tile.EMPTY
+                    var quest = ""
                     while (nextPair()) {
                         when (val key = key()) {
                             "tile" -> tile = readTile()
                             "name" -> name = string()
+                            "quest" -> quest = string()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    codes[stringId.lowercase()] = FairyRingCode(stringId, name, tile)
+                    codes[stringId.lowercase()] = FairyRingCode(stringId, name, tile, quest)
                 }
             }
             this.codes = codes
@@ -35,5 +37,5 @@ class FairyRingCodes {
         return this
     }
 
-    data class FairyRingCode(val id: String, val name: String, val tile: Tile)
+    data class FairyRingCode(val id: String, val name: String, val tile: Tile, val quest: String = "")
 }

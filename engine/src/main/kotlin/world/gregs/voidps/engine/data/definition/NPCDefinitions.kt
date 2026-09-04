@@ -86,6 +86,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate npc id found '$stringId' at $path." }
                         ids[stringId] = id
+                        require(definitions[id].stringId == id.toString()) { "Duplicate npc id found $id ${definitions[id].stringId} '$stringId' at $path." }
                         definitions[id].stringId = stringId
                         if (params.isNotEmpty()) {
                             if (definitions[id].params != null) {

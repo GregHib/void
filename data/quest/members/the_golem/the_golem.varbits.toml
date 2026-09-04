@@ -1,6 +1,71 @@
+# Cache dump names varbit 346 'golem_a', but the repo already ships it as
+# 'the_golem' and RugMerchant's questCompleted("the_golem") depends on that.
+# Values are read by the temple door (object 6310): 0-4 show the sealed door
+# (6363) and 5-10 the openable portal (6364).
 [the_golem]
 id = 346
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, completed = 10 }
+values = {
+    unstarted = 0,
+    repair_golem = 1,
+    open_portal = 2,
+    find_statuette = 3,
+    statuette_replaced = 4,
+    portal_opened = 5,
+    demon_dead = 6,
+    convince_golem = 7,
+    completed = 10,
+}
+
+[golem_b]
+id = 347
+persist = true
+format = "int"
+
+# Drives npc 1907's transforms: 0-1 broken, 2-3 damaged, 4 repaired.
+[golem_clay]
+id = 348
+persist = true
+format = "int"
+
+[golem_statuettestatusa]
+id = 349
+persist = true
+format = "int"
+
+[golem_statuettestatusb]
+id = 350
+persist = true
+format = "int"
+
+[golem_statuettestatusc]
+id = 351
+persist = true
+format = "int"
+
+[golem_statuettestatusd]
+id = 352
+persist = true
+format = "int"
+
+[golem_head_open]
+id = 353
+persist = false
+format = "boolean"
+
+[golem_throne_gems]
+id = 354
+persist = true
+format = "boolean"
+
+[golem_retrieved_statuette]
+id = 355
+persist = true
+format = "boolean"
+
+[golem_seen_underground]
+id = 356
+persist = true
+format = "boolean"

@@ -99,14 +99,18 @@ combat_def = "guard"
 attack_bonus = 6
 max_hit_crush = 20
 
-[mourner_staff]
+[mourner_armed_vis]
 id = 357
 hitpoints = 190
 att = 10
 str = 10
 def = 10
-style = "crush"
 max_hit_melee = 20
+categories = ["human"]
+drop_table = "mourner"
+combat_def = "guard"
+attack_bonus = 6
+max_hit_crush = 20
 examine = "A mourner, or plague healer."
 
 [mourner]
@@ -117,10 +121,10 @@ str = 95
 def = 80
 style = "stab"
 max_hit_melee = 100
-examine = "A mourner, or plague healer."
 drop_table = "mourner"
 combat_def = "guard"
 max_hit_stab = 100
+examine = "A mourner, or plague healer."
 
 [head_mourner]
 id = 2372

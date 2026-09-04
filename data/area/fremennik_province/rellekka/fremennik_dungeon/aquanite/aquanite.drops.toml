@@ -16,8 +16,8 @@ drops = [
     { id = "death_rune", amount = 3, chance = 8 },
     { id = "blood_rune", amount = 3, chance = 8 },
     { id = "soul_rune", min = 3, max = 6, chance = 8 },
-    { id = "water_battlestaff", chance = 8 },
-    { id = "air_battlestaff", chance = 2 },
+    { id = "water_battlestaff", chance = 2 },
+    { id = "air_battlestaff", chance = 8 },
     { id = "amulet_of_ranging" },
     { id = "adamant_bolts", amount = 10, chance = 32 },
     { id = "runite_bolts", amount = 5, chance = 32 },
@@ -48,10 +48,10 @@ drops = [
     { id = "raw_lobster", min = 1, max = 3, chance = 32 },
     { id = "raw_swordfish", min = 1, max = 2, chance = 32 },
     { id = "raw_shark", chance = 32 },
-    { id = "coins", amount = 500, chance = 32 },
-    { id = "seaweed_noted", min = 3, max = 6, chance = 32 },
-    { id = "snape_grass_noted", amount = 3, chance = 32 },
-    { id = "pelvis_bone", chance = 32, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
+    { id = "coins", amount = 500, chance = 25 },
+    { id = "seaweed_noted", min = 3, max = 6, chance = 25 },
+    { id = "snape_grass_noted", amount = 3, chance = 25 },
+    { id = "pelvis_bone", chance = 8, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
 ]
 
 [aquanite_tertiary]

@@ -41,6 +41,16 @@ edges = [
     { from = { x = 3296, y = 3462 }, to = { x = 3304, y = 3474 } }, # varrock_east_sawmill_crossroad_to_eath_altar_ruins
     { from = { x = 3265, y = 3428 }, to = { x = 3246, y = 3429 } }, # varrock_east_dirt_crossroad_to_bank_crossroad
     { from = { x = 3246, y = 3429 }, to = { x = 3254, y = 3422 } }, # varrock_east_bank_crossroad_to_east_bank
+    { from = { x = 3246, y = 3429 }, to = { x = 3246, y = 3449 } }, # varrock_east_bank_crossroad_to_musuem_front
+    { from = { x = 3246, y = 3449 }, to = { x = 3245, y = 3465 } }, # varrock_museum_front_to_castle_crossroads
+    { from = { x = 3245, y = 3465 }, to = { x = 3273, y = 3428 } }, # varrock_castle_crossroads_to_sewer_entrance #"open" "manhole" east tile "climb-down" "manhole" destination 3237 9858
+    { from = { x = 3246, y = 3429 }, to = { x = 3246, y = 3449 } }, # varrock_east_bank_crossroad_to_musuem_front
+    { from = { x = 3246, y = 3449 }, to = { x = 3245, y = 3465 } }, # varrock_museum_front_to_castle_crossroads
+    { from = { x = 3245, y = 3465 }, to = { x = 3238, y = 3458 } }, # varrock_castle_crossroads_to_sewer_entrance #"open" "manhole" east tile "climb-down" "manhole" destination 3237 9858
+    { from = { x = 3238, y = 3458 }, to = { x = 3237, y = 9858 }, cost = 1, actions = [
+        { object = { option = "Open", id = "varrock_manhole", x = 3238, y = 3458, success = { tile = { x = 3238, y = 3458 } } }},
+        { object = { option = "Climb-down", id = "varrock_manhole_open", x = 3238, y = 3458, success = { tile = { x = 3237, y = 9858 } } }},
+    ] },
     { from = { x = 3230, y = 3430 }, to = { x = 3246, y = 3429 } }, # varrock_east_armour_shop_to_bank_crossroad
     { from = { x = 3230, y = 3430 }, to = { x = 3223, y = 3429 } }, # varrock_east_armour_shop_to_centre_east
     { from = { x = 3238, y = 3295 }, to = { x = 3238, y = 3304 } }, # lumbridge_chicken_entrance_to_varrock_south_split

@@ -13,4 +13,5 @@ spawns = [
   { id = "sir_palomedes_camelot_castle", x = 2754, y = 3509, members = true },
   { id = "ice_giant_light_hair", x = 2805, y = 3514, level = 2 },
   { id = "unicorn", x = 2785, y = 3461 },
+  { id = "unicorn", x = 2791, y = 3462 },
 ]

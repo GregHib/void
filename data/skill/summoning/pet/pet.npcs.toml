@@ -351,6 +351,7 @@ id = 6950
 
 [pet_saradomin_owl_overgrown]
 id = 6951
+examine = "A fantastic Saradomin owl."
 
 [pet_zamorak_hawk_baby]
 id = 6952

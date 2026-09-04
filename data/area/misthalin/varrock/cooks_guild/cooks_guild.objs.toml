@@ -1,14 +1,18 @@
 [flour_bin_cooks_guild]
 id = 24070
+examine = "I'll need an empty pot so I can collect my flour."
 
 [hopper_cooks_guild]
 id = 24071
+examine = "Grain goes in here."
 
 [hopper_controls_cooks_guild]
 id = 24072
+examine = "These control the flow of wheat from the hopper to the millstones."
 
 [flour_bin_cooks_guild_empty]
 id = 24069
+examine = "When I've ground some flour, I'll be able to collect it here."
 
 [dairy_churn_cooks_guild]
 id = 10094

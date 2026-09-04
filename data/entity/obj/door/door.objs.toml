@@ -1072,9 +1072,11 @@ examine = "The door is closed."
 
 [door_138_opened]
 id = 5128
+examine = "The exit sign from an old theatre."
 
 [door_138_closed]
 id = 5126
+examine = "It's covered in junk."
 
 [fenk_tower_door_opened]
 id = 5173
@@ -2527,6 +2529,7 @@ examine = "The door is closed."
 
 [door_448_opened]
 id = 24379
+examine = "The door is open."
 
 [door_448_closed]
 id = 24381

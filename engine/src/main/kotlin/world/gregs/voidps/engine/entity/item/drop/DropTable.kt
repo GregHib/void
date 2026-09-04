@@ -33,13 +33,13 @@ data class DropTable(
 
     fun random(maximum: Int, multiplier: Double = 1.0): Int {
         val base = if (roll <= 0 && maximum != -1) maximum else roll
-        if (multiplier <= 1.0) {
+        if (multiplier <= 1.0 || type == TableType.All) {
             return random.nextInt(0, base)
         }
         val minRoll = drops.sumOf { if (it.chance > 0) it.chance else 0 }
         val scaled = (base / multiplier)
             .toInt()
-            .coerceIn(minRoll.coerceAtLeast(1), base)
+            .coerceIn(minRoll.coerceIn(1, base), base)
         return random.nextInt(0, scaled)
     }
 

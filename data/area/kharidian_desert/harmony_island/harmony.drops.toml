@@ -2,12 +2,16 @@
 type = "all"
 drops = [
     { id = "bones" },
+    { id = "brain_tongs", variable = "great_brain_robbery", equals = "started", default = "unstarted" },
+    { id = "cranial_clamp", variable = "great_brain_robbery", equals = "started", default = "unstarted" },
+    { id = "bell_jar", amount = 3, variable = "great_brain_robbery", equals = "started", default = "unstarted" },
+    { id = "skull_staple", amount = 30, variable = "great_brain_robbery", equals = "started", default = "unstarted" },
     { table = "sorebones_secondary" },
     { table = "sorebones_tertiary" },
 ]
 
 [sorebones_secondary]
-roll = 128
+roll = 129
 drops = [
     { id = "steel_bolts", min = 2, max = 12, chance = 3 },
     { id = "mithril_dagger", chance = 2 },
@@ -35,10 +39,6 @@ drops = [
 [sorebones_tertiary]
 roll = 5000
 drops = [
-    { id = "brain_tongs", chance = 5000 },
-    { id = "cranial_clamp", chance = 5000 },
-    { id = "bell_jar", amount = 3, chance = 5000 },
-    { id = "skull_staple", amount = 30, chance = 5000 },
     { id = "zombie_bone", chance = 1250, variable = "rag_and_bone_man_wish_list", equals = "started", default = "unstarted" },
     { id = "zombie_champions_scroll", members = true, lacks = "zombie_champions_scroll" },
 ]

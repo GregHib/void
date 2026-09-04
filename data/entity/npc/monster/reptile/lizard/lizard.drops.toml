@@ -2,16 +2,22 @@
 type = "all"
 drops = [
     { table = "big_bones" },
+    { table = "lizard_unique" },
     { table = "lizard_secondary" },
     { table = "lizard_tertiary" },
+]
+
+[lizard_unique]
+roll = 512
+drops = [
+    { id = "mystic_gloves_light" },
 ]
 
 [lizard_secondary]
 roll = 512
 drops = [
-    { id = "mystic_gloves_light" },
     { id = "fire_rune", amount = 5, chance = 120 },
-    { id = "fire_rune", amount = 42, chance = 56 },
+    { id = "fire_rune", amount = 42, chance = 16 },
     { id = "nature_rune", amount = 5, chance = 16 },
     { id = "coal", chance = 52 },
     { id = "copper_ore", chance = 12 },
@@ -23,7 +29,7 @@ drops = [
     { table = "lizard_herbs", chance = 40 },
     { table = "lizard_seeds", chance = 36 },
     { id = "kebab", chance = 52 },
-    { id = "waterskin_0", amount = 2, chance = 52 },
+    { id = "waterskin_0", amount = 2, chance = 16 },
     { table = "gem_drop_table", chance = 16 },
     { table = "lizard_gems", chance = 8 },
 ]
@@ -59,6 +65,7 @@ drops = [
 type = "all"
 drops = [
     { table = "bones" },
+    { table = "lizard_unique" },
     { table = "lizard_secondary" },
 ]
 
@@ -66,6 +73,7 @@ drops = [
 type = "all"
 drops = [
     { table = "bones" },
+    { table = "lizard_unique" },
     { table = "lizard_secondary" },
     { table = "desert_lizard_tertiary" },
 ]

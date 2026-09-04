@@ -61,6 +61,7 @@ id = 1986
 
 [priest_klenters_pyramid_2]
 id = 1988
+examine = "Preach, my brother!"
 
 [icthlarin_klenters_pyramid_2]
 id = 2012

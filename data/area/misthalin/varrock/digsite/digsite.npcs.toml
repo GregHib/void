@@ -11,12 +11,15 @@ examine = "This person is working on the site."
 
 [digsite_student_blue]
 id = 615
+examine = "A student busy studying the site."
 
 [digsite_student_orange]
 id = 616
+examine = "A student busy studying the site."
 
 [digsite_student_purple]
 id = 617
+examine = "A student busy studying the site."
 
 [assassin_digsite_2]
 id = 9044

@@ -18,8 +18,10 @@ class PortPhasmatysBarrier : Script {
 
     init {
         objectOperate("Pass", "phasmatys_barrier_north") { (target) ->
-//            https://youtu.be/PrkWAZmuEnw?si=T86lk1tMR91q2fjv&t=150
-            message("All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens. However, you have done the ghosts of our town a service that surpasses all values, so you may pass without charge.", ChatType.Filter)
+            if (!leaving()) {
+//              https://youtu.be/PrkWAZmuEnw?si=T86lk1tMR91q2fjv&t=150
+                message("All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens. However, you have done the ghosts of our town a service that surpasses all values, so you may pass without charge.", ChatType.Filter)
+            }
             cross(target)
         }
 

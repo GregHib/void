@@ -49,4 +49,3 @@ hitpoints = 10
 style = "crush"
 max_hit_melee = 10
 examine = "What is that thing!"
-

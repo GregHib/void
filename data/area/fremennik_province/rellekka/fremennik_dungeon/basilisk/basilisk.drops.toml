@@ -8,7 +8,7 @@ drops = [
 ]
 
 [basilisk_secondary]
-roll = 512
+roll = 513
 drops = [
     { id = "mithril_hatchet", chance = 12 },
     { id = "mithril_spear", chance = 8 },

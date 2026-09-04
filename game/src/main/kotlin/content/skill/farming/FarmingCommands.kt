@@ -91,7 +91,9 @@ class FarmingCommands(
         if (!value.contains("_rotting")) {
             return
         }
-        val stage = value.substringAfterLast("_").toIntOrNull() ?: return
-        player[variable] = value.replace("_$stage", "_ready")
+        if (value.substringAfterLast("_").toIntOrNull() == null) {
+            return
+        }
+        player[variable] = value.substringBefore("_rotting") + "_ready"
     }
 }

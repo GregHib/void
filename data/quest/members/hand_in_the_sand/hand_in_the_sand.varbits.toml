@@ -5,5 +5,60 @@ persist = true
 default = "unstarted"
 values = {
     unstarted = 0,
+    investigate_hand = 10,
+    ask_wizards = 20,
+    bert_hours = 30,
+    visit_sandy = 40,
+    confront_bert = 50,
+    deliver_scroll = 60,
+    make_serum = 70,
+    distract_sandy = 80,
+    drug_coffee = 90,
+    activate_orb = 100,
+    interrogate_sandy = 110,
+    return_orb = 120,
+    gather_runes = 130,
+    search_entrana = 140,
+    return_head = 150,
     completed = 160
 }
+
+[handsand_question1]
+id = 1528
+persist = true
+format = "boolean"
+
+[handsand_question2]
+id = 1529
+persist = true
+format = "boolean"
+
+[handsand_question3]
+id = 1530
+persist = true
+format = "boolean"
+
+[handsand_tele]
+id = 1531
+persist = true
+format = "boolean"
+
+[handsand_serum]
+id = 1532
+persist = true
+format = "int"
+
+[handsand_sandy_multi]
+id = 1535
+persist = true
+format = "int"
+
+[handsand_coffee_multi]
+id = 1536
+persist = true
+format = "int"
+
+[handsand_counter_multi]
+id = 1537
+persist = true
+format = "boolean"

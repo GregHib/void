@@ -1,0 +1,116 @@
+[information_clerk]
+id = 5938
+examine = "A lady with lots of information about the Museum."
+
+[torrcs]
+id = 5939
+examine = "A brave adventurer."
+
+[marfet]
+id = 5940
+examine = "Looks like he knows a thing or two."
+
+[museum_guard]
+id = 5941
+
+[museum_guard_2]
+id = 5943
+
+[teacher_and_pupil]
+id = 5944
+examine = "A teacher and one of his pupils."
+
+[schoolboy]
+id = 5945
+dialogue = "child"
+examine = "Looks kind of familiar."
+
+[schoolboy_2]
+id = 5946
+dialogue = "child"
+
+[teacher_and_pupil_2]
+id = 5947
+examine = "A teacher and one of her pupils."
+
+[natural_historian_north]
+id = 5966
+examine = "An aged expert in natural history."
+
+[natural_historian_south]
+id = 5967
+
+[natural_historian_east]
+id = 5968
+
+[natural_historian_west]
+id = 5969
+
+[vm_natural_historian_cutscene]
+id = 5970
+
+[leech_display]
+id = 5971
+examine = "Bloodsuckers!"
+
+[sea_slugs_display]
+id = 5972
+examine = "Slugs of the sea variety."
+
+[snail_display]
+id = 5973
+examine = "A house on its back."
+
+[monkey_display]
+id = 5974
+examine = "A cheeky little monkey."
+
+[lizard_display]
+id = 5975
+examine = "A scaly little fellow."
+
+[penguin_display]
+id = 5976
+examine = "Nice suit."
+
+[camel_display]
+id = 5977
+examine = "He's got the hump."
+
+[terrorbird_display]
+id = 5978
+examine = "Terrifying!"
+
+[dragon_display]
+id = 5979
+examine = "Looks like a fire-breather."
+
+[wyvern_display]
+id = 5980
+examine = "Needs a good square meal."
+
+[battle_tortoise_display]
+id = 5981
+examine = "A huge beast."
+
+[mole_display]
+id = 5982
+examine = "Loves making molehills."
+
+[schoolgirl_2]
+id = 5984
+
+[vm_male_school_teacher_chathead_dummy]
+id = 5948
+
+[vm_male_school_teacher_boy_chathead_dummy]
+id = 5949
+dialogue = "child"
+
+[vm_female_school_teacher_dummy]
+id = 5950
+
+[vm_female_school_teacher_girl_dummy]
+id = 5951
+dialogue = "child"
+

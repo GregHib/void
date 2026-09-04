@@ -8,10 +8,14 @@ import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.variable.MapValues
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.timer.epochMinutes
 import world.gregs.voidps.type.Tile
 
 class CompostBinTest : WorldTest() {
@@ -114,6 +118,53 @@ class CompostBinTest : WorldTest() {
         assertEquals(3, player.inventory.count("rotten_tomato"))
         assertEquals(13.5, player.experience.get(Skill.Farming))
         assertEquals("rotten_tomatoes_12", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Rotting compost completes to ready after offline catch-up`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player["compost_bin_falador"] = "compostable_rotting_30"
+        player["compost_bin_catherby"] = "supercompostable_rotting_30"
+        player["last_growth_cycle"] = epochMinutes() - 10
+        player.timers.start("farming_tick", true)
+        tick(2)
+
+        assertEquals("compostable_ready", player["compost_bin_falador", "empty"])
+        assertEquals("supercompostable_ready", player["compost_bin_catherby", "empty"])
+    }
+
+    @Test
+    fun `Finished compost bin cannot be closed`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player["compost_bin_falador"] = "compost_15"
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.objectOption(bin, "Close")
+        tick(2)
+
+        assertEquals("compost_15", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Every reachable rotting stage has a varbit value`() {
+        val values = (VariableDefinitions.get("compost_bin_falador")!!.values as MapValues).values
+        for (type in listOf("compostable", "supercompostable", "tomatoes")) {
+            for (stage in 0..30) {
+                assertTrue(values.containsKey("${type}_rotting_$stage"), "${type}_rotting_$stage missing")
+            }
+            assertTrue(values.containsKey("${type}_ready"), "${type}_ready missing")
+        }
+    }
+
+    @Test
+    fun `Corrupted rotting ready value is repaired on spawn`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player["compost_bin_falador"] = "compostable_rotting_ready"
+
+        Spawn.player(player)
+        tick(1)
+
+        assertEquals("compostable_ready", player["compost_bin_falador", "empty"])
     }
 
     @Test

@@ -123,6 +123,9 @@ class EncodersTest {
         { clearZone(123, 234, 12) },
         { updateZone(123, 234, 12) },
         { arrowHint(2, 1, 3, -1, 100, 123, 2, 50, 2, 1234) },
+        // Clearing writes the same twelve bytes as any other hint; a shorter packet
+        // desyncs the client
+        { arrowHint(0, 1) },
     ).mapIndexed { index, packet ->
         random = Random(0)
         val (name, expected) = packets[index]

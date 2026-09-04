@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.*
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
@@ -304,7 +305,8 @@ class PlayerCommands(
         if (type == "all" || type == "tasks" || type == "achievements") {
             for (struct in StructDefinitions.definitions) {
                 if (struct.stringId.endsWith("_task")) {
-                    target[struct.stringId] = true
+                    val definition = VariableDefinitions.get(struct.stringId)
+                    target[struct.stringId] = if (definition?.values is MapValues) "completed" else true
                 }
             }
             target.message("All tasks completed.")

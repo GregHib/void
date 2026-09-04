@@ -28,10 +28,19 @@ class Farming(
 
     init {
         playerSpawn {
+            // Repair patches stuck on values missing from their varbit map; they can't be sent or grow
+            for (patches in FarmingPatches.patches.values) {
+                for (variable in patches) {
+                    val value: String = this[variable] ?: continue
+                    if (varbitMap(variable)?.containsKey(value) == false) {
+                        clear(variable)
+                    }
+                }
+            }
             if (!contains("farming_offset_mins")) {
                 set("farming_offset_mins", random.nextInt(0, 30))
             }
-            if (contains("last_growth_cycle")) {
+            if (contains("last_growth_cycle") || hasCrop()) {
                 timers.start("farming_tick", true)
             }
         }
@@ -50,6 +59,23 @@ class Farming(
             }
             TimeUnit.MINUTES.toTicks(1)
         }
+    }
+
+    /**
+     * A patch with something already in the ground needs the growth timer even when it has never
+     * run. Only raking and composting start it, so a crop planted into an already clear patch would
+     * otherwise sit unfinished forever.
+     */
+    private fun Player.hasCrop(): Boolean {
+        for (patches in FarmingPatches.patches.values) {
+            for (variable in patches) {
+                val value: String = this[variable] ?: continue
+                if (!value.startsWith("weeds")) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     fun grow(player: Player, minute: Int) {
@@ -90,7 +116,7 @@ class Farming(
                 }
                 val produce = current.substringBeforeLast("_")
                 if (produce.endsWith("diseased")) {
-                    if (variable.contains("herb") && !produce.startsWith("goutweed")) {
+                    if (variable.contains("herb_patch") && !produce.startsWith("goutweed")) {
                         val stage = current.removeSuffix("_diseased").substringAfterLast("_")
                         player[variable] = "herb_dead_$stage"
                     } else {
@@ -104,7 +130,11 @@ class Farming(
                         continue
                     }
                     val stage = type.toInt()
-                    val next = (stage + 1).rem(4)
+                    // Stage 3 is fully overgrown - weeds stop there rather than wrapping back to clear
+                    if (stage >= 3) {
+                        continue
+                    }
+                    val next = stage + 1
                     player[variable] = when (next) {
                         3 -> if (variable.contains("farming_veg_")) {
                             "weeds_${
@@ -157,7 +187,7 @@ class Farming(
             }
             val stage = value.substringAfterLast("_").toIntOrNull() ?: continue
             if (stage >= 30) {
-                player[variable] = value.replace(stage.toString(), "ready")
+                player[variable] = value.substringBefore("_rotting") + "_ready"
                 continue
             }
             player[variable] = value.replace(stage.toString(), "${stage + 1}")
@@ -201,7 +231,7 @@ class Farming(
 
     fun disease(player: Player, spot: String, produce: String, type: String): Boolean {
         // https://x.com/JagexKieren/status/905860041240137729
-        if (spot == "patch_my_arm_herb" || type == "0" || produce.endsWith("_watered")) {
+        if (spot == "farming_herb_patch_my_arm" || type == "0" || produce.endsWith("_watered")) {
             return false
         }
         if (player["${spot}_protect", false]) {
@@ -240,7 +270,7 @@ class Farming(
 
     private fun varbitMap(varbit: String): Map<String, Int>? {
         val definition = VariableDefinitions.get(varbit) ?: return null
-        return (definition.values as MapValues).values as Map<String, Int>
+        return (definition.values as? MapValues)?.values as? Map<String, Int>
     }
 
     private fun amuletOfFarming(player: Player, patch: String) {

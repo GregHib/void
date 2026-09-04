@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.config
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.engine.client.variable.MapValues
 import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.client.variable.VariableValues
 import world.gregs.voidps.network.client.Client
@@ -25,6 +26,11 @@ open class VariableDefinition internal constructor(
     class CustomVariableDefinition(values: VariableValues, default: Any?, persistent: Boolean) : VariableDefinition(-1, values, default ?: values.default(), persistent, transmit = false)
 
     fun send(client: Client, value: Any) {
+        val values = values
+        if (values is MapValues && !values.values.containsKey(value) && !values.values.containsKey(value.toString())) {
+            logger.warn { "Unknown value '$value' for map variable $id; not sent." }
+            return
+        }
         try {
             when (this) {
                 is VarpDefinition -> client.sendVarp(id, values.toInt(value))

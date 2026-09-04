@@ -3,15 +3,20 @@ id = 38815
 
 [corporeal_beast_lair_entrance_open]
 id = 37749
+examine = "A massive cave entrance that looks rather unstable."
 
 [corporeal_beast_lair_entrance_collapsed]
 id = 37750
+examine = "A massive, crumbled cave entrance."
 
 [corporeal_beast_lair_exit]
 id = 37928
+examine = "The cave's exit."
 
 [corporeal_beast_lair_passage]
 id = 37929
+examine = "A passage leading into the next chamber of the cave."
 
 [corporeal_beast_lair_door]
 id = 38811
+examine = "A passage leading into the next chamber of the cave."

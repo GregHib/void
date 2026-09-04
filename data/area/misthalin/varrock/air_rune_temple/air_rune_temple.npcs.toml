@@ -9,4 +9,3 @@ examine = "A cute bunny rabbit."
 drop_table = "rabbit"
 combat_def = "rabbit_miscellania"
 max_hit_crush = 10
-

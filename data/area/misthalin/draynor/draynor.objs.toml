@@ -15,6 +15,7 @@ examine = "The wine merchant's stall."
 
 [wine_stall_empty]
 id = 14012
+examine = "With sufficient Agility, you may be able to climb through this."
 
 [seed_stall]
 id = 7053
@@ -25,6 +26,7 @@ examine = "Lots of seeds here."
 
 [seed_stall_empty]
 id = 14012
+examine = "With sufficient Agility, you may be able to climb through this."
 
 [cooking_range_draynor_manor]
 id = 47633

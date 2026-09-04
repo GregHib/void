@@ -84,15 +84,21 @@ drops = [
 ]
 
 [paladin_pickpocket]
+type = "all"
+drops = [
+    { id = "coins", amount = 80 },
+    { id = "chaos_rune", amount = 2 },
+    { table = "paladin_pickpocket_rare" },
+]
+
+[paladin_pickpocket_rare]
 roll = 1000
 drops = [
-    { id = "coins", amount = 80, chance = 1000 },
-    { id = "chaos_rune", amount = 2, chance = 1000 },
-    { table = "hard_clue_scroll" },
+    { id = "court_summons" },
 ]
 
 [hero_pickpocket]
-roll = 1400
+roll = 2331
 drops = [
     { id = "coins", amount = 300, chance = 1050 },
     { id = "coins", amount = 200, chance = 1050 },

@@ -3,6 +3,7 @@ id = 9724
 
 [rand_furn_nighteye_static_1]
 id = 9725
+examine = "The eyes! THE EYES!"
 
 [rand_furn_nighteye_static_2]
 id = 9726
@@ -87,6 +88,7 @@ id = 9752
 
 [rand_furn_toughguy_1]
 id = 9753
+examine = "A skilled mage and ranger."
 
 [rand_furn_toughguy_2]
 id = 9754
@@ -129,6 +131,7 @@ id = 9766
 
 [rand_furn_rammernaught_1]
 id = 9767
+examine = "He's big, and he's not pleased to see you."
 
 [rand_furn_rammernaught_2]
 id = 9768
@@ -354,6 +357,7 @@ id = 9841
 
 [rand_furn_librarimancer_1]
 id = 9842
+examine = "Keeper of the tomes."
 
 [rand_furn_librarimancer_2]
 id = 9843
@@ -396,12 +400,15 @@ id = 9855
 
 [rand_furn_librarimancer_book_melee_1]
 id = 9856
+examine = "An ancient tome filled with melee combat secrets."
 
 [rand_furn_librarimancer_book_range_1]
 id = 9857
+examine = "An ancient tome filled with ranged combat secrets."
 
 [rand_furn_librarimancer_book_magic_1]
 id = 9858
+examine = "An ancient tome filled with magic combat secrets."
 
 [rand_furn_librarimancer_book_melee_2]
 id = 9859
@@ -522,6 +529,7 @@ id = 9897
 
 [rand_furn_demon_1]
 id = 9898
+examine = "A magical and powerful demon."
 
 [rand_furn_demon_2]
 id = 9899
@@ -543,6 +551,7 @@ id = 9904
 
 [rand_furn_demon_8]
 id = 9905
+examine = "A magical and powerful demon."
 
 [rand_furn_demon_9]
 id = 9906
@@ -564,9 +573,7 @@ id = 9911
 
 [rand_froz_icefiend_boss_00]
 id = 9912
-
-[rand_froz_icefiend_boss_0]
-id = 9913
+examine = "A large and powerful ice creature."
 
 [rand_froz_icefiend_boss_1]
 id = 9914
@@ -615,6 +622,7 @@ id = 9928
 
 [rand_cold_stare_boss_0]
 id = 9929
+examine = "It's got a cold stare."
 
 [rand_cold_stare_boss_05]
 id = 9930
@@ -672,6 +680,7 @@ id = 9947
 
 [rand_survival_boss_0]
 id = 9948
+examine = "He looks hungry!"
 
 [rand_survival_boss_05]
 id = 9949
@@ -723,6 +732,7 @@ id = 9964
 
 [rand_ancient_mage_0_melee]
 id = 9965
+examine = "A summoner using a form of ancient magic."
 
 [rand_ancient_mage_0_magic]
 id = 9966
@@ -900,6 +910,7 @@ id = 10023
 
 [rand_froz_demon_0]
 id = 10024
+examine = "A magical and powerful demon."
 
 [rand_froz_demon_1]
 id = 10025
@@ -946,11 +957,9 @@ id = 10038
 [rand_froz_demon_15]
 id = 10039
 
-[rand_antiboss]
-id = 10058
-
 [rand_hobgoblin_shaman_1]
 id = 10059
+examine = "An ugly, smelly creature with a makeshift staff."
 
 [rand_hobgoblin_shaman_2]
 id = 10060
@@ -993,9 +1002,11 @@ id = 10072
 
 [rand_boulder_beast_1_armoured]
 id = 10073
+examine = "Its armour is made of a hard stone."
 
 [rand_boulder_beast_1_broken]
 id = 10074
+examine = "Its armour is made of a hard stone."
 
 [rand_boulder_beast_2_armoured]
 id = 10075
@@ -1107,6 +1118,7 @@ id = 10110
 
 [rand_undead_archmage_1]
 id = 10111
+examine = "This mage died a long time ago."
 
 [rand_undead_archmage_2]
 id = 10112
@@ -1158,6 +1170,7 @@ id = 10127
 
 [rand_war_demon_1]
 id = 10128
+examine = "A soldier of a demon army."
 
 [rand_war_demon_2]
 id = 10129
@@ -1203,6 +1216,7 @@ id = 10142
 
 [rand_shadow_forger_1]
 id = 10143
+examine = "It's hanging over a deep chasm with four fleshy tentacles."
 
 [rand_shadow_forger_2]
 id = 10144
@@ -1391,6 +1405,7 @@ examine = "This spider must have been modified magically."
 
 [rand_animated_pickaxe_1]
 id = 10168
+examine = "How can it move of its own accord?"
 
 [rand_animated_pickaxe_2]
 id = 10169
@@ -1439,6 +1454,7 @@ id = 10183
 
 [rand_earth_warrior_7]
 id = 10184
+examine = "A strange, inhuman, elemental warrior."
 
 [rand_earth_warrior_8]
 id = 10185
@@ -1478,27 +1494,35 @@ id = 10196
 
 [amberfell_banker]
 id = 10197
+examine = "He can look after my money."
 
 [amberfell_butcher]
 id = 10198
+examine = "Handles the meat of things."
 
 [amberfell_villager_chatting_f]
 id = 10199
+examine = "A resident of Amberfell."
 
 [amberfell_villager_chatting_m]
 id = 10200
+examine = "A resident of Amberfell."
 
 [amberfell_villager]
 id = 10201
+examine = "A resident of Amberfell."
 
 [amberfell_fisherman]
 id = 10202
+examine = "A resident of Amberfell."
 
 [amberfell_child_1]
 id = 10203
+examine = "A budding explorer."
 
 [amberfell_child_2]
 id = 10204
+examine = "A budding hunter."
 
 [wendle_farmer_sheep_multi]
 id = 10205
@@ -1544,24 +1568,30 @@ id = 10218
 
 [rand_black_dragon_1]
 id = 10219
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_2]
 id = 10220
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_3]
 id = 10221
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_4]
 id = 10222
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_5]
 id = 10223
+examine = "A fierce dragon with black scales."
 
 [rand_black_dragon_6]
 id = 10224
 
 # https://runescape.wiki/w/Ice_warrior_(Dungeoneering)?oldid=5795352
 # Stats interp 5..100 (aligns with normal ice warrior)
+examine = "A fierce dragon with black scales."
 
 [rand_ice_warrior_0]
 id = 10225
@@ -3119,30 +3149,37 @@ id = 10366
 
 [rand_zombie_melee_4]
 id = 10367
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_5]
 id = 10368
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_6]
 id = 10369
 
 [rand_zombie_melee_7]
 id = 10370
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_8]
 id = 10371
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_9]
 id = 10372
+examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_10]
 id = 10373
 
 [rand_zombie_melee_11]
 id = 10374
+examine = "A walking, rotten corpse."
 
 [rand_zombie_ranged_1]
 id = 10375
+examine = "A walking, rotten corpse."
 
 [rand_zombie_ranged_2]
 id = 10376
@@ -4032,6 +4069,7 @@ examine = "A warrior who has been long forgotten."
 
 [rand_ice_golem_1]
 id = 10460
+examine = "It's made out of blocks of ice."
 
 [rand_ice_golem_2]
 id = 10461
@@ -4195,6 +4233,7 @@ id = 10491
 
 [rand_lesser_demon_1]
 id = 10492
+examine = "Lesser, but still pretty big."
 
 [rand_lesser_demon_2]
 id = 10493
@@ -5350,21 +5389,27 @@ examine = "	One of many dark mages inhabiting the dungeons."
 
 [rand_green_dragon_1]
 id = 10604
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_2]
 id = 10605
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_3]
 id = 10606
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_4]
 id = 10607
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_5]
 id = 10608
+examine = "Must be related to Elvarg."
 
 [rand_green_dragon_6]
 id = 10609
+examine = "Must be related to Elvarg."
 
 [rand_hydra_1]
 id = 10610
@@ -5425,129 +5470,169 @@ id = 10628
 
 [rand_skeleton_melee_lvl1_1]
 id = 10629
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl1_2]
 id = 10630
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl1_3]
 id = 10631
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl1_4]
 id = 10632
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_1]
 id = 10633
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_2]
 id = 10634
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_3]
 id = 10635
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl2_4]
 id = 10636
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_1]
 id = 10637
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_2]
 id = 10638
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_3]
 id = 10639
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_4]
 id = 10640
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl3_5]
 id = 10641
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_1]
 id = 10642
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_2]
 id = 10643
 
 [rand_skeleton_melee_lvl4_3]
 id = 10644
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_4]
 id = 10645
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_1]
 id = 10646
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_2]
 id = 10647
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_3]
 id = 10648
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_4]
 id = 10649
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_1]
 id = 10650
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_2]
 id = 10651
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_3]
 id = 10652
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl6_4]
 id = 10653
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_1]
 id = 10654
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_2]
 id = 10655
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_3]
 id = 10656
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl7_4]
 id = 10657
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl8_1]
 id = 10658
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl8_2]
 id = 10659
 
 [rand_skeleton_melee_lvl8_3]
 id = 10660
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl8_4]
 id = 10661
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_1]
 id = 10662
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_2]
 id = 10663
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_3]
 id = 10664
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl9_4]
 id = 10665
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_1]
 id = 10666
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_2]
 id = 10667
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_3]
 id = 10668
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl10_4]
 id = 10669
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_ranged_1]
 id = 10670
+examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_ranged_2]
 id = 10671
@@ -5632,15 +5717,18 @@ id = 10697
 
 [rand_night_spider]
 id = 10698
+examine = "A dark spider with red eyes."
 
 [rand_jelly]
 id = 10699
 
 [rand_spiritual_guardian]
 id = 10700
+examine = "The spiritual remains of a defender of the dungeons."
 
 [rand_seeker]
 id = 10701
+examine = "A floating eye of some sort."
 
 [rand_nechryael]
 id = 10702
@@ -5650,45 +5738,58 @@ id = 10703
 
 [rand_edimmu]
 id = 10704
+examine = "A spiritual zombie that sucks life out of its victims."
 
 [rand_stalker]
 id = 10705
+examine = "A floating eye of some sort."
 
 [rand_hill_giant_1]
 id = 10706
+examine = "A very large foe."
 
 [rand_hill_giant_2]
 id = 10707
+examine = "A very large foe."
 
 [rand_hill_giant_3]
 id = 10708
 
 [rand_hill_giant_4]
 id = 10709
+examine = "A very large foe."
 
 [rand_hill_giant_5]
 id = 10710
+examine = "A very large foe."
 
 [rand_hill_giant_6]
 id = 10711
+examine = "A very large foe."
 
 [rand_hill_giant_7]
 id = 10712
+examine = "A very large foe."
 
 [rand_hill_giant_8]
 id = 10713
+examine = "A very large foe."
 
 [rand_hill_giant_9]
 id = 10714
+examine = "A very large foe."
 
 [rand_hill_giant_10]
 id = 10715
+examine = "A very large foe."
 
 [rand_hill_giant_11]
 id = 10716
+examine = "A very large foe."
 
 [rand_hill_giant_12]
 id = 10717
+examine = "A very large foe."
 
 [rand_greater_demon_1]
 id = 10718
@@ -5701,6 +5802,7 @@ id = 10720
 
 [rand_greater_demon_4]
 id = 10721
+examine = "Big, red and incredibly evil."
 
 [rand_black_demon_1]
 id = 10722
@@ -5713,6 +5815,7 @@ id = 10724
 
 [rand_black_demon_4]
 id = 10725
+examine = "A big, scary, jet-black demon."
 
 [rand_guard_dog_1]
 id = 10726
@@ -5770,6 +5873,7 @@ id = 10743
 
 [rand_animated_book_1]
 id = 10744
+examine = "The book appears to be alive."
 
 [rand_animated_book_2]
 id = 10745
@@ -5803,6 +5907,7 @@ id = 10754
 
 [rand_fire_giant_2]
 id = 10755
+examine = "A very large elemental adversary."
 
 [rand_fire_giant_3]
 id = 10756
@@ -5848,24 +5953,30 @@ id = 10769
 
 [rand_frost_dragon_1]
 id = 10770
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_2]
 id = 10771
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_3]
 id = 10772
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_4]
 id = 10773
 
 [rand_frost_dragon_5]
 id = 10774
+examine = "A dragon covered in frost and ice."
 
 [rand_frost_dragon_6]
 id = 10775
+examine = "A dragon covered in frost and ice."
 
 [rand_iron_dragon_1]
 id = 10776
+examine = "Its scales are made of iron."
 
 [rand_iron_dragon_2]
 id = 10777
@@ -5884,15 +5995,19 @@ id = 10781
 
 [rand_ice_troll_melee_1]
 id = 10782
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_2]
 id = 10783
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_3]
 id = 10784
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_4]
 id = 10785
+examine = "It's covered in ice and snow."
 
 [rand_ice_troll_melee_5]
 id = 10786
@@ -5911,6 +6026,7 @@ id = 10790
 
 [rand_ice_troll_ranged_1]
 id = 10791
+examine = "Small for a troll, but mean, ugly and throws rocks."
 
 [rand_ice_troll_ranged_2]
 id = 10792
@@ -5929,51 +6045,67 @@ id = 10796
 
 [rand_heavy_guard_1]
 id = 10797
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_1_with_key]
 id = 10798
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_2]
 id = 10799
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_2_with_key]
 id = 10800
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_3]
 id = 10801
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_3_with_key]
 id = 10802
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_4]
 id = 10803
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_4_with_key]
 id = 10804
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_5]
 id = 10805
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_5_with_key]
 id = 10806
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_6]
 id = 10807
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_6_with_key]
 id = 10808
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_7]
 id = 10809
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_7_with_key]
 id = 10810
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_8]
 id = 10811
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_8_with_key]
 id = 10812
+examine = "A heavily armoured guard."
 
 [rand_heavy_guard_9]
 id = 10813
@@ -5983,21 +6115,27 @@ id = 10814
 
 [rand_red_dragon_1]
 id = 10815
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_2]
 id = 10816
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_3]
 id = 10817
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_4]
 id = 10818
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_5]
 id = 10819
+examine = "A powerful dragon with red scales."
 
 [rand_red_dragon_6]
 id = 10820
+examine = "A powerful dragon with red scales."
 
 [rand_ghost_1]
 id = 10821
@@ -7307,17 +7445,11 @@ id = 11004
 [rand_bc_golem_dormant]
 id = 11005
 
-[rand_bc_golem_active]
-id = 11006
-
 [rand_bait_the_plate_critter]
 id = 11007
 
 [rand_bait_the_plate_bait]
 id = 11008
-
-[rand_sphere_guardian]
-id = 11009
 
 [rand_critter_key_critter]
 id = 11010
@@ -7607,1800 +7739,6 @@ id = 11104
 [rand_skinnable_npc_10]
 id = 11105
 
-[rand_loremel_01]
-id = 11106
-
-[rand_loremel_01_combat]
-id = 11107
-
-[rand_loremel_02]
-id = 11108
-
-[rand_loremel_02_combat]
-id = 11109
-
-[rand_loremel_03]
-id = 11110
-
-[rand_loremel_03_combat]
-id = 11111
-
-[rand_loremel_04]
-id = 11112
-
-[rand_loremel_04_combat]
-id = 11113
-
-[rand_loremel_05]
-id = 11114
-
-[rand_loremel_05_combat]
-id = 11115
-
-[rand_loremel_06]
-id = 11116
-
-[rand_loremel_06_combat]
-id = 11117
-
-[rand_loremel_07]
-id = 11118
-
-[rand_loremel_07_combat]
-id = 11119
-
-[rand_loremel_08]
-id = 11120
-
-[rand_loremel_08_combat]
-id = 11121
-
-[rand_loremel_09]
-id = 11122
-
-[rand_loremel_09_combat]
-id = 11123
-
-[rand_loremel_10]
-id = 11124
-
-[rand_loremel_10_combat]
-id = 11125
-
-[rand_loremag_01]
-id = 11126
-
-[rand_loremag_01_combat]
-id = 11127
-
-[rand_loremag_02]
-id = 11128
-
-[rand_loremag_02_combat]
-id = 11129
-
-[rand_loremag_03]
-id = 11130
-
-[rand_loremag_03_combat]
-id = 11131
-
-[rand_loremag_04]
-id = 11132
-
-[rand_loremag_04_combat]
-id = 11133
-
-[rand_loremag_05]
-id = 11134
-
-[rand_loremag_05_combat]
-id = 11135
-
-[rand_loremag_06]
-id = 11136
-
-[rand_loremag_06_combat]
-id = 11137
-
-[rand_loremag_07]
-id = 11138
-
-[rand_loremag_07_combat]
-id = 11139
-
-[rand_loremag_08]
-id = 11140
-
-[rand_loremag_08_combat]
-id = 11141
-
-[rand_loremag_09]
-id = 11142
-
-[rand_loremag_09_combat]
-id = 11143
-
-[rand_loremag_10]
-id = 11144
-
-[rand_loremag_10_combat]
-id = 11145
-
-[rand_loreskill_01]
-id = 11146
-
-[rand_loreskill_01_combat]
-id = 11147
-
-[rand_loreskill_02]
-id = 11148
-
-[rand_loreskill_02_combat]
-id = 11149
-
-[rand_loreskill_03]
-id = 11150
-
-[rand_loreskill_03_combat]
-id = 11151
-
-[rand_loreskill_04]
-id = 11152
-
-[rand_loreskill_04_combat]
-id = 11153
-
-[rand_loreskill_05]
-id = 11154
-
-[rand_loreskill_05_combat]
-id = 11155
-
-[rand_loreskill_06]
-id = 11156
-
-[rand_loreskill_06_combat]
-id = 11157
-
-[rand_loreskill_07]
-id = 11158
-
-[rand_loreskill_07_combat]
-id = 11159
-
-[rand_loreskill_08]
-id = 11160
-
-[rand_loreskill_08_combat]
-id = 11161
-
-[rand_loreskill_09]
-id = 11162
-
-[rand_loreskill_09_combat]
-id = 11163
-
-[rand_loreskill_10]
-id = 11164
-
-[rand_loreskill_10_combat]
-id = 11165
-
-[rand_loreheal_01]
-id = 11166
-
-[rand_loreheal_01_combat]
-id = 11167
-
-[rand_loreheal_02]
-id = 11168
-
-[rand_loreheal_02_combat]
-id = 11169
-
-[rand_loreheal_03]
-id = 11170
-
-[rand_loreheal_03_combat]
-id = 11171
-
-[rand_loreheal_04]
-id = 11172
-
-[rand_loreheal_04_combat]
-id = 11173
-
-[rand_loreheal_05]
-id = 11174
-
-[rand_loreheal_05_combat]
-id = 11175
-
-[rand_loreheal_06]
-id = 11176
-
-[rand_loreheal_06_combat]
-id = 11177
-
-[rand_loreheal_07]
-id = 11178
-
-[rand_loreheal_07_combat]
-id = 11179
-
-[rand_loreheal_08]
-id = 11180
-
-[rand_loreheal_08_combat]
-id = 11181
-
-[rand_loreheal_09]
-id = 11182
-
-[rand_loreheal_09_combat]
-id = 11183
-
-[rand_loreheal_10]
-id = 11184
-
-[rand_loreheal_10_combat]
-id = 11185
-
-[rand_lorebob_01]
-id = 11186
-
-[rand_lorebob_01_combat]
-id = 11187
-
-[rand_lorebob_02]
-id = 11188
-
-[rand_lorebob_02_combat]
-id = 11189
-
-[rand_lorebob_03]
-id = 11190
-
-[rand_lorebob_03_combat]
-id = 11191
-
-[rand_lorebob_04]
-id = 11192
-
-[rand_lorebob_04_combat]
-id = 11193
-
-[rand_lorebob_05]
-id = 11194
-
-[rand_lorebob_05_combat]
-id = 11195
-
-[rand_lorebob_06]
-id = 11196
-
-[rand_lorebob_06_combat]
-id = 11197
-
-[rand_lorebob_07]
-id = 11198
-
-[rand_lorebob_07_combat]
-id = 11199
-
-[rand_lorebob_08]
-id = 11200
-
-[rand_lorebob_08_combat]
-id = 11201
-
-[rand_lorebob_09]
-id = 11202
-
-[rand_lorebob_09_combat]
-id = 11203
-
-[rand_lorebob_10]
-id = 11204
-
-[rand_lorebob_10_combat]
-id = 11205
-
-[rand_loreran_01]
-id = 11206
-
-[rand_loreran_01_combat]
-id = 11207
-
-[rand_loreran_02]
-id = 11208
-
-[rand_loreran_02_combat]
-id = 11209
-
-[rand_loreran_03]
-id = 11210
-
-[rand_loreran_03_combat]
-id = 11211
-
-[rand_loreran_04]
-id = 11212
-
-[rand_loreran_04_combat]
-id = 11213
-
-[rand_loreran_05]
-id = 11214
-
-[rand_loreran_05_combat]
-id = 11215
-
-[rand_loreran_06]
-id = 11216
-
-[rand_loreran_06_combat]
-id = 11217
-
-[rand_loreran_07]
-id = 11218
-
-[rand_loreran_07_combat]
-id = 11219
-
-[rand_loreran_08]
-id = 11220
-
-[rand_loreran_08_combat]
-id = 11221
-
-[rand_loreran_09]
-id = 11222
-
-[rand_loreran_09_combat]
-id = 11223
-
-[rand_loreran_10]
-id = 11224
-
-[rand_loreran_10_combat]
-id = 11225
-
-[rand_smuggler]
-id = 11226
-
-[rand_skillcape_player_melee]
-id = 11227
-
-[rand_skillcape_player_mage]
-id = 11228
-
-[rand_skillcape_player_ranger]
-id = 11229
-
-[deadly_linza_cutscene_harpoon_middle]
-id = 11230
-
-[deadly_linza_cutscene_harpoon_end]
-id = 11231
-
-[1st4h_goblin_unarmed_melee_1]
-id = 11232
-
-[goblin_unarmed_melee_2]
-id = 11233
-
-[1st4h_goblin_unarmed_melee_2]
-id = 11234
-
-[goblin_unarmed_melee_3]
-id = 11235
-
-[1st4h_goblin_unarmed_melee_3]
-id = 11236
-
-[goblin_unarmed_melee_4]
-id = 11237
-
-[1st4h_goblin_unarmed_melee_4]
-id = 11238
-
-[goblin_unarmed_melee_5]
-id = 11239
-
-[1st4h_goblin_unarmed_melee_5]
-id = 11240
-
-[goblin_unarmed_melee_6]
-id = 11241
-
-[deadly_linza_cutscene_scroll]
-id = 11242
-
-[rand_behemoth_stomp]
-id = 11243
-
-[deadly_linza_cutscene_noitem]
-id = 11244
-
-[rand_ghost_with_key_ghost]
-id = 11245
-
-[rand_ransacked_tomb_ghost]
-id = 11246
-
-[deadly_guns_multi]
-id = 11247
-
-[deadly_guns]
-id = 11248
-
-[deadly_crab]
-id = 11249
-
-[deadly_shark1]
-id = 11250
-
-[deadly_shark2]
-id = 11251
-
-[deadly_shark3]
-id = 11252
-
-[tol_npc_builder04_multi]
-id = 11253
-
-[tol_npc_builder04_iconed]
-id = 11254
-
-[loy_troll_melee_1]
-id = 11255
-
-[rand_fremenik_camp_chicken_light]
-id = 11256
-
-[rand_fremenik_camp_chicken_brown]
-id = 11257
-
-[slayc_minotaur]
-id = 11258
-
-[slayc_goblin_1]
-id = 11259
-
-[slayc_goblin_2]
-id = 11260
-
-[slayc_goblin_3]
-id = 11261
-
-[slayc_wolf_1]
-id = 11262
-
-[slayc_wolf_2]
-id = 11263
-
-[slayc_vampire]
-id = 11264
-
-[slayc_ghoul]
-id = 11265
-
-[slayc_snail]
-id = 11266
-
-[musa_point_fish_exchanger]
-id = 11267
-
-[thigui_robin_multi]
-id = 11268
-
-[thigui_stallguard]
-id = 11269
-
-[thigui_crafter]
-id = 11270
-
-[thigui_registryguard]
-id = 11271
-
-[thigui_registrar]
-id = 11272
-
-[thigui_guildmaster]
-id = 11273
-
-[thigui_gm1]
-id = 11274
-
-[thigui_gm2]
-id = 11275
-
-[thigui_gm3]
-id = 11276
-
-[thigui_gm4]
-id = 11277
-
-[loy_troll_melee_2]
-id = 11278
-
-[thigui_robin]
-id = 11279
-
-[thigui_robin1]
-id = 11280
-
-[thigui_picktrainer]
-id = 11281
-
-[thigui_picktarget_npc_1]
-id = 11282
-
-[thigui_picktarget_1]
-id = 11283
-
-[thigui_picktarget_npc_2]
-id = 11284
-
-[thigui_picktarget_2]
-id = 11285
-
-[thigui_picktarget_npc_3]
-id = 11286
-
-[thigui_picktarget_3]
-id = 11287
-
-[thigui_coshtarget_npc_1]
-id = 11288
-
-[thigui_coshtarget_1]
-id = 11289
-
-[thigui_coshtarget_npc_2]
-id = 11290
-
-[thigui_coshtarget_2]
-id = 11291
-
-[thigui_coshtarget_npc_3]
-id = 11292
-
-[thigui_coshtarget_3]
-id = 11293
-
-[thigui_locktrainer]
-id = 11294
-
-[thigui_safetrainer]
-id = 11295
-
-[thigui_coshtrainer_npc]
-id = 11296
-
-[thigui_coshtrainer]
-id = 11297
-
-[thigui_shopkeeper]
-id = 11298
-
-[thigui_banker]
-id = 11299
-
-[redeem_runefestbanner_npc]
-id = 11300
-
-[koltroll]
-id = 11301
-
-[koldarkbeast]
-id = 11302
-
-[poh_servant_dogsbody_1op]
-id = 11303
-
-[poh_servant_waiter_woman_1op]
-id = 11304
-
-[poh_servant_cook_woman_1op]
-id = 11305
-
-[poh_servant_maitre_d_man_1op]
-id = 11306
-
-[poh_servant_demon_1op]
-id = 11307
-
-[ft3_tf_pet_grotto_multi]
-id = 11308
-
-[ft3_tf_pet_grotto]
-id = 11309
-
-[ft3_tf_pet_grotto_pickup]
-id = 11310
-
-[ft3_gromblod_enchanted_valley_multi]
-id = 11311
-
-[ft3_gromblod_enchanted_valley_child]
-id = 11312
-
-[ft3_shredflesh_ogre_cavern_multi]
-id = 11313
-
-[ft3_shredflesh_general_chathead]
-id = 11314
-
-[ft3_shredflesh_general_swollen_chathead_no_tooth]
-id = 11315
-
-[loy_troll_melee_3]
-id = 11316
-
-[ft3_breegth_zanaris_multi]
-id = 11317
-
-[ft3_breegth_general_zanaris_child]
-id = 11318
-
-[ft3_exiled_ork_kchunk_multi]
-id = 11319
-
-[ft3_exiled_ork_plain_child]
-id = 11320
-
-[ft3_exiled_ork_pickpocket]
-id = 11321
-
-[ft3_fairies_with_extractors]
-id = 11322
-
-[ft3_boss_godfather_unattackable]
-id = 11323
-
-[ft3_boss_godfather_shield_3]
-id = 11324
-
-[ft3_boss_godfather_shield_2]
-id = 11325
-
-[ft3_boss_godfather_shield_1]
-id = 11326
-
-[ft3_boss_godfather_fight]
-id = 11327
-
-[ft3_boss_godfather_defeated]
-id = 11328
-
-[ft3_boss_gromblod]
-id = 11329
-
-[loy_troll_melee_4]
-id = 11330
-
-[ft3_boss_shredflesh]
-id = 11331
-
-[ft3_boss_breegth]
-id = 11332
-
-[ft3_tooth_shredflesh_ally_multi]
-id = 11333
-
-[ft3_tooth_shredflesh_ally]
-id = 11334
-
-[ft3_tooth_shredflesh_ally_wand]
-id = 11335
-
-[ft3_tooth_gromblod_ally_multi]
-id = 11336
-
-[ft3_tooth_gromblod_ally]
-id = 11337
-
-[ft3_tooth_gromblod_ally_wand]
-id = 11338
-
-[ft3_tooth_breegth_ally_multi]
-id = 11339
-
-[ft3_tooth_breegth_ally]
-id = 11340
-
-[ft3_tooth_breegth_ally_wand]
-id = 11341
-
-[ft3_boss_gromblod_cutscene]
-id = 11342
-
-[ft3_boss_gromblod_bad_tooth_cutscene]
-id = 11343
-
-[ft3_boss_shredflesh_cutscene]
-id = 11344
-
-[ft3_boss_breegth_cutscene]
-id = 11345
-
-[ft3_boss_godfather_cutscene]
-id = 11346
-
-[ft3_boss_godfather_shield_cutscene]
-id = 11347
-
-[ft3_boss_ork_cutscene_01]
-id = 11348
-
-[ft3_boss_ork_cutscene_02]
-id = 11349
-
-[ft3_boss_ork_cutscene_03]
-id = 11350
-
-[ft3_boss_ork_cutscene_04]
-id = 11351
-
-[ft3_tooth_shredflesh_enemy]
-id = 11352
-
-[ft3_tooth_gromblod_enemy]
-id = 11353
-
-[ft3_tooth_breegth_enemy]
-id = 11354
-
-[ft3_briefing_ork_zanaris1]
-id = 11355
-
-[ft3_briefing_ork_zanaris2]
-id = 11356
-
-[ft3_briefing_ork_zanaris3]
-id = 11357
-
-[ft3_briefing_ork_zanaris4]
-id = 11358
-
-[ft3_ork_fight_01]
-id = 11359
-
-[ft3_ork_fight_02]
-id = 11360
-
-[ft3_ork_fight_03]
-id = 11361
-
-[ft3_ork_fight_04]
-id = 11362
-
-[ft3_fairy_slim_louie]
-id = 11363
-
-[ft3_fairy_fat_rocco]
-id = 11364
-
-[ft3_terror_dog_large_cutscene]
-id = 11365
-
-[ft3_fairy_tooth_hunter_cutscene]
-id = 11366
-
-[ft3_fairy_stitcher_1]
-id = 11367
-
-[ft3_fairy_stitcher_2]
-id = 11368
-
-[ft3_fairy_doctor]
-id = 11369
-
-[ft3_tooth_farmer]
-id = 11370
-
-[ft3_tooth_shredflesh_enemy_cutscene]
-id = 11371
-
-[ft3_tooth_gromblod_enemy_cutscene]
-id = 11372
-
-[ft3_tooth_breegth_enemy_cutscene]
-id = 11373
-
-[ft3_tooth_fairy_multi_rift]
-id = 11374
-
-[ft3_tooth_fairy_multi_hq]
-id = 11375
-
-[ft3_tooth_fairy_child]
-id = 11376
-
-[ft3_fairy_very_wise]
-id = 11377
-
-[ft3_fairyqueen_multi]
-id = 11378
-
-[ft3_fairy_nuff_multi]
-id = 11379
-
-[ft3_fairy_queen_cutscene]
-id = 11380
-
-[ft3_fairy_queen_final]
-id = 11381
-
-[loy_troll_melee_5]
-id = 11382
-
-[ft3_patch_empty]
-id = 11383
-
-[ft3_patch_tooth]
-id = 11384
-
-[ft3_breegth_farming_patch_multi]
-id = 11385
-
-[ft3_shredflesh_farming_patch_multi]
-id = 11386
-
-[ft3_gromblod_farming_patch_multi]
-id = 11387
-
-[ft3_breegth_patch_small]
-id = 11388
-
-[ft3_breegth_patch_medium]
-id = 11389
-
-[ft3_breegth_patch_large]
-id = 11390
-
-[ft3_breegth_patch_small_broken]
-id = 11391
-
-[ft3_breegth_patch_medium_broken]
-id = 11392
-
-[ft3_breegth_patch_large_broken]
-id = 11393
-
-[ft3_shredflesh_patch_small]
-id = 11394
-
-[ft3_shredflesh_patch_medium]
-id = 11395
-
-[ft3_shredflesh_patch_large]
-id = 11396
-
-[ft3_shredflesh_patch_large_broken]
-id = 11397
-
-[ft3_shredflesh_patch_medium_broken]
-id = 11398
-
-[ft3_shredflesh_patch_small_broken]
-id = 11399
-
-[ft3_gromblod_patch_small]
-id = 11400
-
-[ft3_gromblod_patch_medium]
-id = 11401
-
-[ft3_gromblod_patch_large]
-id = 11402
-
-[ft3_gromblod_patch_large_broken]
-id = 11403
-
-[ft3_gromblod_patch_medium_broken]
-id = 11404
-
-[ft3_gromblod_patch_small_broken]
-id = 11405
-
-[loy_troll_melee_6]
-id = 11406
-
-[loy_troll_melee_7]
-id = 11407
-
-[ft3_gnarly_grow]
-id = 11408
-
-[ft3_gnarly_grown]
-id = 11409
-
-[loy_troll_melee_8]
-id = 11410
-
-[lore_ft3_pet_tooth_baby]
-id = 11411
-
-[lore_ft3_pet_tooth_baby_future_decay]
-id = 11412
-
-[lore_ft3_pet_tooth_adult_healthy]
-id = 11413
-
-[lore_ft3_pet_tooth_adult_decayed]
-id = 11414
-
-[fairy_multi3]
-id = 11415
-
-[fairy_multi4]
-id = 11416
-
-[fairy_multi5]
-id = 11417
-
-[fairy_multi6]
-id = 11418
-
-[fairy_multi7]
-id = 11419
-
-[fairy_multi8]
-id = 11420
-
-[fairy_multi9]
-id = 11421
-
-[fairy_multi10]
-id = 11422
-
-[ft2_fairy_godfather_army_1_child]
-id = 11423
-
-[ft2_fairy_godfather_army_2_child]
-id = 11424
-
-[poh_ft3_pet_tooth_adult_healthy]
-id = 11425
-
-[poh_ft3_pet_tooth_adult_decayed]
-id = 11426
-
-[fairy3]
-id = 11427
-
-[fairy4]
-id = 11428
-
-[fairy5]
-id = 11429
-
-[fairy6]
-id = 11430
-
-[fairy7]
-id = 11431
-
-[fairy8]
-id = 11432
-
-[fairy9]
-id = 11433
-
-[fairy10]
-id = 11434
-
-[ft3_fairy_very_wise_child]
-id = 11435
-
-[ft3_fairy_queen_child]
-id = 11436
-
-[elem_3_tile_blank_npc]
-id = 11437
-
-[elem_3_tile_low_cog_npc]
-id = 11438
-
-[elem_3_tile_mid_cog_npc]
-id = 11439
-
-[elem_3_tile_high_cog_npc]
-id = 11440
-
-[rand_heavy_guard_1_unblock]
-id = 11441
-
-[rand_heavy_guard_2_unblock]
-id = 11442
-
-[rand_heavy_guard_3_unblock]
-id = 11443
-
-[rand_heavy_guard_4_unblock]
-id = 11444
-
-[rand_heavy_guard_5_unblock]
-id = 11445
-
-[rand_heavy_guard_6_unblock]
-id = 11446
-
-[rand_heavy_guard_7_unblock]
-id = 11447
-
-[rand_heavy_guard_8_unblock]
-id = 11448
-
-[rand_heavy_guard_9_unblock]
-id = 11449
-
-[castlewars_ballista_saradomin]
-id = 11450
-
-[castlewars_ballista_zamorak]
-id = 11451
-
-[csi_mugger]
-id = 11452
-
-[csi_mugger_victim]
-id = 11453
-
-[csi_rivertrollguardian]
-id = 11454
-
-[csi_evil_twin_accused]
-id = 11455
-
-[csi_evil_twin_accuser]
-id = 11456
-
-[csi_arresting_officer]
-id = 11457
-
-[csi_dwarf_victim]
-id = 11458
-
-[csi_turpentine_poor]
-id = 11459
-
-[csi_turpentine_rich]
-id = 11460
-
-[csi_court_clerk]
-id = 11461
-
-[csi_judge_dummy]
-id = 11462
-
-[csi_jury_dummy]
-id = 11463
-
-[csi_court_defender]
-id = 11464
-
-[csi_court_prosecutor]
-id = 11465
-
-[csi_court_suspect_in_jail]
-id = 11466
-
-[csi_court_opposing_suspect_in_jail]
-id = 11467
-
-[csi_court_arresting_officer_near_jail]
-id = 11468
-
-[csi_court_extra_witness_near_jail]
-id = 11469
-
-[csi_court_wit_case_1]
-id = 11470
-
-[csi_court_wit_case_2]
-id = 11471
-
-[csi_court_wit_case_3]
-id = 11472
-
-[csi_court_wit_case_4]
-id = 11473
-
-[csi_court_wit_case_5]
-id = 11474
-
-[mm_dealga]
-id = 11475
-
-[lumbcat_xenia_uninjured_icon]
-id = 11476
-
-[vkq1_bridge_a]
-id = 11477
-
-[vkq1_bridge_b_start_multi]
-id = 11478
-
-[vkq1_bridge_b_end_multi]
-id = 11479
-
-[vkq1_bridge_b]
-id = 11480
-
-[vkq1_bridge_b_sword]
-id = 11481
-
-[vkq1_bridge_c_start_multi]
-id = 11482
-
-[vkq1_bridge_c_end_multi]
-id = 11483
-
-[vkq1_bridge_c]
-id = 11484
-
-[vkq1_bridge_c_sword]
-id = 11485
-
-[vkq1_bridge_d_start_multi]
-id = 11486
-
-[vkq1_bridge_d_end_multi]
-id = 11487
-
-[vkq1_bridge_d]
-id = 11488
-
-[vkq1_bridge_d_sword]
-id = 11489
-
-[vkq1_bridge_pest_splatter]
-id = 11490
-
-[vkq1_bridge_pest_spinner]
-id = 11491
-
-[vkq1_bridge_pest_torcher]
-id = 11492
-
-[vkq1_commodore_matthias_cutscene]
-id = 11493
-
-[vkq1_jessika_cutscene]
-id = 11494
-
-[vkq1_tyr_cutscene]
-id = 11495
-
-[vkq1_bernard_cutscene]
-id = 11496
-
-[vkq1_matthias_multi]
-id = 11497
-
-[vkq1_commodore_matthias]
-id = 11498
-
-[vkq1_jessika]
-id = 11499
-
-[vkq1_jessika_vkpost_multi]
-id = 11500
-
-[vkq1_jessika_arrested_vkpost_multi]
-id = 11501
-
-[vkq1_arrested_squire_multi]
-id = 11502
-
-[vkq1_korasi_sarim_multi]
-id = 11503
-
-[vkq1_ladytable_sarim_multi]
-id = 11504
-
-[vkq1_korasi_vkpost_multi]
-id = 11505
-
-[vkq1_korasi]
-id = 11506
-
-[vkq1_korasi_tkhq]
-id = 11507
-
-[vkq1_korasi_shocked]
-id = 11508
-
-[vkq1_tyr_multi]
-id = 11509
-
-[vkq1_tyr]
-id = 11510
-
-[vkq1_tyr_advanced]
-id = 11511
-
-[vkq1_sirtiffy]
-id = 11512
-
-[vkq1_tiffy_sarim_multi]
-id = 11513
-
-[vkq1_us_ami_multi]
-id = 11514
-
-[vkq1_us_diana_multi]
-id = 11515
-
-[vkq1_us_terry_multi]
-id = 11516
-
-[vkq1_us_terry_mum_multi]
-id = 11517
-
-[vkq1_us_mikhal_multi]
-id = 11518
-
-[vkq1_us_mikhal_gf_multi]
-id = 11519
-
-[vkq1_us_sam_multi]
-id = 11520
-
-[vkq1_us_bernard_multi]
-id = 11521
-
-[vkq1_us_ami]
-id = 11522
-
-[vkq1_us_ami_sister]
-id = 11523
-
-[vkq1_us_terry]
-id = 11524
-
-[vkq1_us_terry_mother]
-id = 11525
-
-[vkq1_us_mikhal]
-id = 11526
-
-[vkq1_us_mikhal_gf]
-id = 11527
-
-[vkq1_us_mikhal_gf_cry]
-id = 11528
-
-[vkq1_us_sam]
-id = 11529
-
-[vkq1_us_sam_friend]
-id = 11530
-
-[vkq1_pest_brawler_2]
-id = 11531
-
-[vkq1_pest_shifter_korasis]
-id = 11532
-
-[loy_troll_general_1]
-id = 11533
-
-[vkq1_pest_torcher_1a]
-id = 11534
-
-[vkq1_pest_torcher_korasis]
-id = 11535
-
-[vkq1_pest_defiler_1b]
-id = 11536
-
-[vkq1_pest_defiler_2b]
-id = 11537
-
-[vkq1_mysterious]
-id = 11538
-
-[vkq1_combat_commodore]
-id = 11539
-
-[loy_troll_general_2]
-id = 11540
-
-[vkq1_combat_diana]
-id = 11541
-
-[vkq1_combat_bernard]
-id = 11542
-
-[vkq1_combat_ami]
-id = 11543
-
-[vkq1_combat_sam]
-id = 11544
-
-[vkq1_combat_mikhal]
-id = 11545
-
-[vkq1_matrix_pest_torcher]
-id = 11546
-
-[milkshop_keeper]
-id = 11547
-
-[vkq1_ghost_commodore]
-id = 11548
-
-[vkq1_ghost_korasi]
-id = 11549
-
-[vkq1_ghost_diana]
-id = 11550
-
-[vkq1_ghost_bernard]
-id = 11551
-
-[vkq1_ghost_ami]
-id = 11552
-
-[vkq1_slide_1a]
-id = 11553
-
-[vkq1_slide_1b]
-id = 11554
-
-[vkq1_slide_1c]
-id = 11555
-
-[vkq1_slide_2a]
-id = 11556
-
-[vkq1_slide_2b]
-id = 11557
-
-[vkq1_slide_2c]
-id = 11558
-
-[vkq1_slide_3a]
-id = 11559
-
-[vkq1_slide_3b]
-id = 11560
-
-[vkq1_slide_3c]
-id = 11561
-
-[poh_pit_dog]
-id = 11562
-
-[poh_pit_ogre]
-id = 11563
-
-[poh_pit_rockcreature]
-id = 11564
-
-[poh_pit_scabarite]
-id = 11565
-
-[poh_pit_demon]
-id = 11566
-
-[poh_pit_irondragon]
-id = 11567
-
-[wom_cutscene_3]
-id = 11568
-
-[wom_cutscene_4]
-id = 11569
-
-[love_zenevivia_multi]
-id = 11570
-
-[love_zenevivia_draynor]
-id = 11571
-
-[love_wom_outsidehouse]
-id = 11572
-
-[love_wom_walkoutside1]
-id = 11573
-
-[love_wom_walkoutside2]
-id = 11574
-
-[love_wom_walktorimmington]
-id = 11575
-
-[love_treeguard]
-id = 11576
-
-[love_zenevivia_waiting]
-id = 11577
-
-[love_zenevivia_battle]
-id = 11578
-
-[love_zenevivia_battle_statue_protmagic]
-id = 11579
-
-[love_zenevivia_battle_statue_protrange]
-id = 11580
-
-[love_zenevivia_defeated]
-id = 11581
-
-[love_zenevivia_cutscene]
-id = 11582
-
-[love_wom_house]
-id = 11583
-
-[love_dungeon_dog_inactive]
-id = 11584
-
-[love_dungeon_dog]
-id = 11585
-
-[love_dungeon_ogre_inactive]
-id = 11586
-
-[love_dungeon_ogre]
-id = 11587
-
-[love_dungeon_rockcreature_inactive]
-id = 11588
-
-[love_dungeon_rockcreature]
-id = 11589
-
-[love_dungeon_scabarite_inactive]
-id = 11590
-
-[love_dungeon_scabarite]
-id = 11591
-
-[love_dungeon_demon_inactive]
-id = 11592
-
-[love_dungeon_demon]
-id = 11593
-
-[love_dungeon_dragon_inactive]
-id = 11594
-
-[love_dungeon_dragon]
-id = 11595
-
-[love_dummy]
-id = 11596
-
-[love_wom_rimmingtonportal]
-id = 11597
-
-[love_wom_rimmingtonhouse]
-id = 11598
-
-[love_zenevivia_cutscene_staff]
-id = 11599
-
-[love_wizardstower_invisible]
-id = 11600
-
-[love_wizardstower_sedridor]
-id = 11601
-
-[love_wizardstower_mizgog]
-id = 11602
-
-[love_wizardstower_grayzag]
-id = 11603
-
-[love_wizardstower_traiborn]
-id = 11604
-
-[love_wizardstower_imp]
-id = 11605
-
-[love_thingummywut]
-id = 11606
-
-[love_wom_young]
-id = 11607
-
-[love_wom_young_beer]
-id = 11608
-
-[love_wom_young_sidestep]
-id = 11609
-
-[love_wom_young_staff]
-id = 11610
-
-[love_wom_young_alching]
-id = 11611
-
-[love_wom_young_qpcape]
-id = 11612
-
-[love_zenevivia_young]
-id = 11613
-
-[love_zenevivia_young_beer]
-id = 11614
-
-[love_zenevivia_young_sidestep]
-id = 11615
-
-[love_zenevivia_young_staff]
-id = 11616
-
-[love_zenevivia_young_redskull]
-id = 11617
-
-[love_barman]
-id = 11618
-
-[love_barman_beer]
-id = 11619
-
-[raid_rebirth1_moonstone_shards_2]
-id = 11620
-
-[love_kalphiteworker]
-id = 11621
-
-[love_firegiant]
-id = 11622
-
-[love_meleefighter]
-id = 11623
-
-[love_ranger]
-id = 11624
-
-[love_mabel]
-id = 11625
-
-[love_mabel_haystack]
-id = 11626
-
-[love_mabel_multi]
-id = 11627
-
-[love_zenevivia_barn]
-id = 11628
-
-[love_zenevivia_barn_multi]
-id = 11629
-
-[love_haybale]
-id = 11630
-
-[love_mabel_walking]
-id = 11631
-
-[love_mabel_walking_multi]
-id = 11632
-
-[ii_rand_impling_precursor]
-id = 11637
-
-[trail_elite]
-id = 11638
-
-[trail_elite2]
-id = 11639
-
-[lore_meerkats]
-id = 11640
-
-[vkq2_ali]
-id = 11641
-
-[vkq2_ali_npc_sick]
-id = 11642
-
-[vkq2_ali_npc]
-id = 11643
-
-[vkq2_ali_customer_01]
-id = 11644
-
-[vkq2_ali_customer_01_npc]
-id = 11645
-
-[vkq2_ali_customer_02]
-id = 11646
-
-[vkq2_ali_customer_02_npc]
-id = 11647
-
-[vkq2_korasi]
-id = 11648
-
-[vkq2_korasi_orb]
-id = 11649
-
-[vkq2_jessika_orb]
-id = 11650
-
-[vkq2_korasi_outpost]
-id = 11651
-
-[vkq2_korasi_sarim]
-id = 11652
-
-[vkq2_korasi_cellar]
-id = 11653
-
-[vkq2_korasi_musa]
-id = 11654
-
-[vkq2_korasi_musa2]
-id = 11655
-
-[vkq2_korasi_rimmington]
-id = 11656
-
-[vkq2_korasi_falador]
-id = 11657
-
-[vkq2_korasi_antechamber]
-id = 11658
-
-[vkq2_korasi_fort]
-id = 11659
-
-[vkq2_jessika]
-id = 11660
-
-[vkq2_jessika_outpost_prison]
-id = 11661
-
-[vkq2_jessika_outpost_free]
-id = 11662
-
-[vkq2_jessika_sarim]
-id = 11663
-
-[vkq2_jessika_cellar]
-id = 11664
-
-[vkq2_jessika_musa]
-id = 11665
-
-[vkq2_jessika_musa2]
-id = 11666
-
-[vkq2_jessika_rimmington]
-id = 11667
-
-[vkq2_jessika_falador]
-id = 11668
-
-[vkq2_jessika_antechamber]
-id = 11669
-
-[vkq2_jessika_fort]
-id = 11670
-
-[vkq2_sokobeer_barrel]
-id = 11671
-
-[vkq2_sokobeer_empty_barrel]
-id = 11672
-
-[vkq2_sokobeer_done_barrel]
-id = 11673
-
-[vkq2_kofi]
-id = 11674
-
-[vkq2_kofi_ill]
-id = 11675
-
-[vkq2_bartender]
-id = 11676
-
-[vkq2_assistant]
-id = 11677
-
-[vkq2_assistant_npc]
-id = 11678
-
-[vkq2_assistant_sick]
-id = 11679
-
-[loy_troll_general_3]
-id = 11680
-
-[vkq2_tyr]
-id = 11681
-
-[vkq2_tyr_npc]
-id = 11682
-
-[vkq2_ante_korasi]
-id = 11683
-
-[vkq2_ante_jessika]
-id = 11684
-
-[vkq2_guard]
-id = 11685
-
-[vkq2_pushable_barrel]
-id = 11686
-
-[vkq2_unladenworker]
-id = 11687
-
-[vkq2_ladenworker]
-id = 11688
-
-[vkq2_pp_ladenworker]
-id = 11689
-
-[vkq2_doorkeeper_npc]
-id = 11690
-
-[vkq2_doorkeeper]
-id = 11691
-
-[vkq2_doorkeeper_fallen]
-id = 11692
-
-[vkq2_workshopworker]
-id = 11693
-
-[vkq2_workshopworker2]
-id = 11694
-
-[vkq2_workshopworker3]
-id = 11695
-
-[vkq2_kinshra_guardian]
-id = 11696
-
-[vkq2_kinshra_guardian_auto]
-id = 11697
-
-[vkq2_pest_chathead]
-id = 11698
-
-[vkq2_gerrant_sick]
-id = 11699
-
-[vkq2_captain_tobias_sick]
-id = 11700
-
-[makeover_mage_npc_male]
-id = 11701
-
-[makeover_mage_npc_female]
-id = 11702
-
-[quest_easter26_spy_2_multi]
-id = 11703
-
-[quest_easter26_spy_3_multi]
-id = 11704
-
-[quest_easter26_spy_1]
-id = 11705
-
-[rustyanchor_blahman]
-id = 11706
-
-[rustyanchor_barman]
-id = 11707
-
 [rand_oclt_zombie_3]
 id = 11708
 
@@ -9445,6 +7783,7 @@ id = 11721
 
 [rand_oclt_necrolord_add_01]
 id = 11722
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_02]
 id = 11723
@@ -9457,39 +7796,51 @@ id = 11725
 
 [rand_oclt_necrolord_add_05]
 id = 11726
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_06]
 id = 11727
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_07]
 id = 11728
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_08]
 id = 11729
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_09]
 id = 11730
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_10]
 id = 11731
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_11]
 id = 11732
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_12]
 id = 11733
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_13]
 id = 11734
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_14]
 id = 11735
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_add_15]
 id = 11736
+examine = "A skeleton, reanimated by a necrolord!"
 
 [rand_oclt_necrolord_01]
 id = 11737
+examine = "An immensely powerful necromancer."
 
 [rand_oclt_necrolord_02]
 id = 11738
@@ -9535,6 +7886,7 @@ id = 11751
 
 [rand_oclt_runed_behemoth_me1ma0ra1_01]
 id = 11752
+examine = "It looks like a magically enhanced behemoth!"
 
 [rand_oclt_runed_behemoth_me1ma0ra1_02]
 id = 11753
@@ -9895,6 +8247,7 @@ id = 11871
 
 [rand_oclt_demon_1]
 id = 11872
+examine = "A demon used to barking orders to its warriors."
 
 [rand_oclt_demon_2]
 id = 11873
@@ -9940,6 +8293,7 @@ id = 11886
 
 [rand_oclt_demon_mage_1]
 id = 11887
+examine = "A mage concentrating on holding the demon in place."
 
 [rand_oclt_demon_mage_2]
 id = 11888
@@ -9964,6 +8318,7 @@ id = 11894
 
 [rand_oclt_eyesplosion_static_01]
 id = 11895
+examine = "The core of the beast."
 
 [rand_oclt_eyesplosion_static_02]
 id = 11896
@@ -10009,6 +8364,7 @@ id = 11909
 
 [rand_oclt_eyesplosion_add_01]
 id = 11910
+examine = "Miniature abominations."
 
 [rand_oclt_eyesplosion_add_02]
 id = 11911
@@ -10054,6 +8410,7 @@ id = 11924
 
 [rand_oclt_eyesplosion_mobile_01]
 id = 11925
+examine = "A bloated abomination. It looks fit to burst..."
 
 [rand_oclt_eyesplosion_mobile_02]
 id = 11926
@@ -10099,6 +8456,7 @@ id = 11939
 
 [rand_trio_melee_melee_01]
 id = 11940
+examine = "A former adventurer, slain and resurrected by a necrolord."
 
 [rand_trio_melee_range_01]
 id = 11941
@@ -10276,6 +8634,7 @@ id = 11998
 
 [rand_trio_magic_melee_01]
 id = 11999
+examine = "A former adventurer, slain and resurrected by a necrolord."
 
 [rand_trio_magic_range_01]
 id = 12000
@@ -10411,6 +8770,7 @@ id = 12043
 
 [rand_trio_range_melee_01]
 id = 12044
+examine = "A former adventurer, slain and resurrected by a necrolord."
 
 [rand_trio_range_range_01]
 id = 12045
@@ -10544,21 +8904,6 @@ id = 12087
 [rand_trio_range_magic_15]
 id = 12088
 
-[rand_fishing_keys_pondskater_1]
-id = 12089
-
-[rand_fishing_keys_pondskater_1_nokey]
-id = 12090
-
-[rand_fishing_keys_pondskater_2]
-id = 12091
-
-[rand_fishing_keys_pondskater_3]
-id = 12092
-
-[rand_fishing_keys_pondskater_4]
-id = 12093
-
 [rand_somethings_missing_statue_melee_empty_occult]
 id = 12094
 
@@ -10652,117 +8997,6 @@ id = 12123
 [rand_isap_statue_pushable_4_occult]
 id = 12124
 
-[rand_sliding_block_puzzle_tile_01_frozen]
-id = 12125
-
-[rand_sliding_block_puzzle_tile_02_frozen]
-id = 12126
-
-[rand_sliding_block_puzzle_tile_03_frozen]
-id = 12127
-
-[rand_sliding_block_puzzle_tile_04_frozen]
-id = 12128
-
-[rand_sliding_block_puzzle_tile_05_frozen]
-id = 12129
-
-[rand_sliding_block_puzzle_tile_06_frozen]
-id = 12130
-
-[rand_sliding_block_puzzle_tile_07_frozen]
-id = 12131
-
-[rand_sliding_block_puzzle_tile_08_frozen]
-id = 12132
-
-[rand_sliding_block_puzzle_tile_01_abandoned]
-id = 12133
-
-[rand_sliding_block_puzzle_tile_02_abandoned]
-id = 12134
-
-[rand_sliding_block_puzzle_tile_03_abandoned]
-id = 12135
-
-[rand_sliding_block_puzzle_tile_04_abandoned]
-id = 12136
-
-[rand_sliding_block_puzzle_tile_05_abandoned]
-id = 12137
-
-[rand_sliding_block_puzzle_tile_06_abandoned]
-id = 12138
-
-[rand_sliding_block_puzzle_tile_07_abandoned]
-id = 12139
-
-[rand_sliding_block_puzzle_tile_08_abandoned]
-id = 12140
-
-[rand_sliding_block_puzzle_tile_01_furnished]
-id = 12141
-
-[rand_sliding_block_puzzle_tile_02_furnished]
-id = 12142
-
-[rand_sliding_block_puzzle_tile_03_furnished]
-id = 12143
-
-[rand_sliding_block_puzzle_tile_04_furnished]
-id = 12144
-
-[rand_sliding_block_puzzle_tile_05_furnished]
-id = 12145
-
-[rand_sliding_block_puzzle_tile_06_furnished]
-id = 12146
-
-[rand_sliding_block_puzzle_tile_07_furnished]
-id = 12147
-
-[rand_sliding_block_puzzle_tile_08_furnished]
-id = 12148
-
-[rand_sliding_block_puzzle_tile_01_occult]
-id = 12149
-
-[rand_sliding_block_puzzle_tile_02_occult]
-id = 12150
-
-[rand_sliding_block_puzzle_tile_03_occult]
-id = 12151
-
-[rand_sliding_block_puzzle_tile_04_occult]
-id = 12152
-
-[rand_sliding_block_puzzle_tile_05_occult]
-id = 12153
-
-[rand_sliding_block_puzzle_tile_06_occult]
-id = 12154
-
-[rand_sliding_block_puzzle_tile_07_occult]
-id = 12155
-
-[rand_sliding_block_puzzle_tile_08_occult]
-id = 12156
-
-[rand_pressure_pads_critter_red]
-id = 12157
-
-[rand_pressure_pads_critter_blue]
-id = 12158
-
-[rand_pressure_pads_critter_yellow]
-id = 12159
-
-[rand_pressure_pads_critter_green]
-id = 12160
-
-[rand_pressure_pads_critter_orange]
-id = 12161
-
 [conq_scout_dark_enemy]
 id = 12162
 
@@ -10811,27 +9045,6 @@ id = 12176
 [rand_oclt_lib_duty_invis]
 id = 12177
 
-[conq_archer_dark_friendly]
-id = 12178
-
-[conq_mage_dark_friendly]
-id = 12179
-
-[conq_knight_dark_friendly]
-id = 12180
-
-[conq_champion_dark_enemy]
-id = 12181
-
-[conq_archer_dark_enemy]
-id = 12182
-
-[conq_mage_dark_enemy]
-id = 12183
-
-[conq_knight_dark_enemy]
-id = 12184
-
 [rand_skillcape_player_female_melee]
 id = 12185
 
@@ -10840,750 +9053,6 @@ id = 12186
 
 [rand_skillcape_player_female_ranger]
 id = 12187
-
-[peng_rak_polar_bear_nopengop]
-id = 12188
-
-[csi_mime]
-id = 12189
-
-[csi_cave_goblin]
-id = 12190
-
-[csi_cave_goblin_scene]
-id = 12191
-
-[csi_ham_vidar]
-id = 12192
-
-[csi_ham_member]
-id = 12193
-
-[csi_ham_member_guard]
-id = 12194
-
-[conq_tutorial_npc]
-id = 12195
-
-[conq_army_purchase_npc]
-id = 12196
-
-[conq_scout_light]
-id = 12197
-
-[conq_scout_light_friendly]
-id = 12198
-
-[conq_scout_light_enemy]
-id = 12199
-
-[conq_scout_dark]
-id = 12200
-
-[conq_scout_dark_friendly]
-id = 12201
-
-[conq_footman_light]
-id = 12202
-
-[conq_footman_light_friendly]
-id = 12203
-
-[conq_footman_light_enemy]
-id = 12204
-
-[conq_footman_dark]
-id = 12205
-
-[conq_footman_dark_friendly]
-id = 12206
-
-[conq_halberdier_light]
-id = 12207
-
-[conq_halberdier_light_friendly]
-id = 12208
-
-[conq_halberdier_light_enemy]
-id = 12209
-
-[conq_halberdier_dark]
-id = 12210
-
-[conq_halberdier_dark_friendly]
-id = 12211
-
-[conq_archer_light]
-id = 12212
-
-[conq_archer_light_friendly]
-id = 12213
-
-[conq_archer_light_enemy]
-id = 12214
-
-[conq_archer_dark]
-id = 12215
-
-[conq_mage_light]
-id = 12216
-
-[conq_mage_light_friendly]
-id = 12217
-
-[conq_mage_light_enemy]
-id = 12218
-
-[conq_mage_dark]
-id = 12219
-
-[conq_knight_light]
-id = 12220
-
-[conq_knight_light_friendly]
-id = 12221
-
-[conq_knight_light_enemy]
-id = 12222
-
-[conq_knight_dark]
-id = 12223
-
-[conq_champion_light]
-id = 12224
-
-[conq_champion_light_friendly]
-id = 12225
-
-[conq_champion_light_enemy]
-id = 12226
-
-[conq_champion_dark]
-id = 12227
-
-[conq_champion_dark_friendly]
-id = 12228
-
-[csi_ham_member_female]
-id = 12229
-
-[csi_barbarian_female]
-id = 12230
-
-[csi_wizard]
-id = 12231
-
-[csi_ernest]
-id = 12232
-
-[csi_frog_princess]
-id = 12233
-
-[csi_partyroom_pete]
-id = 12234
-
-[csi_partypete_neighbor_court]
-id = 12235
-
-[csi_partypete_neighbor_crimescene]
-id = 12236
-
-[csi_partypete_neighbor]
-id = 12237
-
-[csi_mill_worker]
-id = 12238
-
-[csi_sawmill_opp]
-id = 12239
-
-[csi_sandwich_victim]
-id = 12240
-
-[csi_frog_royal]
-id = 12241
-
-[csi_court_wit_case_6]
-id = 12242
-
-[csi_court_wit_case_7]
-id = 12243
-
-[csi_court_wit_case_8]
-id = 12244
-
-[csi_court_wit_case_9]
-id = 12245
-
-[csi_court_wit_case_10]
-id = 12246
-
-[csi_court_wit_case_11]
-id = 12247
-
-[csi_court_wit_case_12]
-id = 12248
-
-[csi_court_wit_case_13]
-id = 12249
-
-[csi_court_wit_case_14]
-id = 12250
-
-[csi_court_wit_case_15]
-id = 12251
-
-[csi_court_wit_case_16]
-id = 12252
-
-[crcs_acrobat_male_8]
-id = 12253
-
-[crcs_acrobat_male_9]
-id = 12254
-
-[crcs_acrobat_male_10]
-id = 12255
-
-[crcs_acrobat_male_11]
-id = 12256
-
-[crcs_acrobat_female_8]
-id = 12257
-
-[crcs_acrobat_female_9]
-id = 12258
-
-[crcs_acrobat_female_10]
-id = 12259
-
-[crcs_acrobat_female_11]
-id = 12260
-
-[gerrant_npc]
-id = 12261
-
-[vkq3_korasi_injured]
-id = 12262
-
-[vkq3_korasi_with_drone]
-id = 12263
-
-[vkq3_korasi_falador_multi]
-id = 12264
-
-[vkq3_korasi_taverleydungeon_multi]
-id = 12265
-
-[vkq3_jessika]
-id = 12266
-
-[vkq3_jessika_minigame]
-id = 12267
-
-[vkq3_jessika_minigame_sad_ready]
-id = 12268
-
-[vkq3_jessika_cutscene]
-id = 12269
-
-[vkq3_jessika_injured]
-id = 12270
-
-[vkq3_jessika_falador_multi]
-id = 12271
-
-[vkq3_jessika_taverleydungeon_multi]
-id = 12272
-
-[vkq3_survivor_chamber]
-id = 12273
-
-[vkq3_tyr]
-id = 12274
-
-[vkq3_tyr_withsword]
-id = 12275
-
-[vkq3_tyr_taverleydungeon_multi]
-id = 12276
-
-[vkq3_tyr_minigame]
-id = 12277
-
-[loy_troll_general_4]
-id = 12278
-
-[vkq3_tyr_chamber_multi]
-id = 12279
-
-[loy_troll_general_5]
-id = 12280
-
-[vkq3_voidknight_taverleydungeon_multi]
-id = 12281
-
-[vkq3_void_knight]
-id = 12282
-
-[vkq3_voidknight2_taverleydungeon_multi]
-id = 12283
-
-[vkq3_void_knight2]
-id = 12284
-
-[vkq3_guardian]
-id = 12285
-
-[vkq3_cutscene_drone]
-id = 12286
-
-[vkq3_grayzag]
-id = 12287
-
-[vkq3_grayzag_replacement]
-id = 12288
-
-[vkq3_grayzag_minigame]
-id = 12289
-
-[vkq3_grayzag_decision]
-id = 12290
-
-[loy_troll_general_6]
-id = 12291
-
-[vkq3_cutscene_splatter]
-id = 12292
-
-[vkq3_sirtiffy]
-id = 12293
-
-[vkq3_sirtiffy_judgement]
-id = 12294
-
-[loy_troll_general_7]
-id = 12295
-
-[vkq3_sirtiffy_taverleydungeon_multi]
-id = 12296
-
-[loy_troll_general_8]
-id = 12297
-
-[vkq3_sirtiffy_minigame]
-id = 12298
-
-[loy_troll_mage_1]
-id = 12299
-
-[vkq3_sirtiffy_comorb]
-id = 12300
-
-[vkq3_whiteknight_taverleydungeon_multi]
-id = 12301
-
-[vkq3_white_knight]
-id = 12302
-
-[vkq3_daquarius_multi]
-id = 12303
-
-[vkq3_daquarius_cutscene_multi]
-id = 12304
-
-[loy_troll_mage_2]
-id = 12305
-
-[vkq3_daquarius]
-id = 12306
-
-[vkq3_daquarius_minigame]
-id = 12307
-
-[vkq3_daquarius_minigame_mining]
-id = 12308
-
-[loy_troll_mage_3]
-id = 12309
-
-[vkq3_daquarius_withsword]
-id = 12310
-
-[vkq3_bk_commander_multi]
-id = 12311
-
-[vkq3_bk_commander]
-id = 12312
-
-[vkq3_bk_captain_outside_storage_multi]
-id = 12313
-
-[vkq3_bk_captain_inside_storage_multi]
-id = 12314
-
-[vkq3_bk_captain]
-id = 12315
-
-[loy_troll_mage_4]
-id = 12316
-
-[vkq3_bk_lackey_outside_storage_multi]
-id = 12317
-
-[vkq3_bk_lackey_inside_storage_multi]
-id = 12318
-
-[vkq3_bk_lackey]
-id = 12319
-
-[vkq3_bk_lackey_02]
-id = 12320
-
-[vkq3_blackknight_taverleydungeon_multi]
-id = 12321
-
-[vkq3_black_knight]
-id = 12322
-
-[vkq3_puzz2_shifter]
-id = 12323
-
-[vkq3_puzz2_torcher_ranged]
-id = 12324
-
-[vkq3_puzz2_torcher_magic]
-id = 12325
-
-[vkq3_puzz2_brawler]
-id = 12326
-
-[vkq3_puzz2_spinner]
-id = 12327
-
-[vkq3_puzz2_defiler_gilroy]
-id = 12328
-
-[vk3_conquest_splatter]
-id = 12329
-
-[vk3_conquest_shifter]
-id = 12330
-
-[vk3_conquest_ravager]
-id = 12331
-
-[vk3_conquest_spinner]
-id = 12332
-
-[vk3_conquest_torcher]
-id = 12333
-
-[vk3_conquest_defiler]
-id = 12334
-
-[wizard_grayzag_npc]
-id = 12335
-
-[vkq3_voidknight3_taverleydungeon_multi]
-id = 12336
-
-[huntcharm_yaktwee]
-id = 12337
-
-[hunter_charm_beast_controller]
-id = 12338
-
-[hunter_charm_beast_low]
-id = 12339
-
-[hunter_charm_beast_mid]
-id = 12340
-
-[hunter_charm_beast_high]
-id = 12341
-
-[hunter_charm_beast_vis_low]
-id = 12342
-
-[hunter_charm_beast_vis_mid]
-id = 12343
-
-[hunter_charm_beast_vis_high]
-id = 12344
-
-[1st4h_man]
-id = 12345
-
-[1st4h_man2]
-id = 12346
-
-[1st4h_man3]
-id = 12347
-
-[1st4h_giantrat]
-id = 12348
-
-[1st4h_giantrat_grey]
-id = 12349
-
-[1st4h_giantrat_grey2]
-id = 12350
-
-[1st4h_giantrat_grey3]
-id = 12351
-
-[1st4h_giantspider1]
-id = 12352
-
-[1st4h_goblin_unarmed_melee_6]
-id = 12353
-
-[goblin_unarmed_melee_7]
-id = 12354
-
-[1st4h_goblin_unarmed_melee_7]
-id = 12355
-
-[goblin_unarmed_melee_8]
-id = 12356
-
-[1st4h_goblin_unarmed_melee_8]
-id = 12357
-
-[trh189_lunar_noshield]
-id = 12358
-
-[trh189_solar_mage]
-id = 12359
-
-[trh189_solar_mage_no_weapon]
-id = 12360
-
-[trh189_lunar_mage]
-id = 12361
-
-[quest_easter26_spy_2]
-id = 12362
-
-[quest_easter26_spy_3]
-id = 12363
-
-[quest_easter26_druid_multi]
-id = 12364
-
-[quest_easter26_druid]
-id = 12365
-
-[rand_pressure_pen_critter_red_inactive]
-id = 12366
-
-[1st4h_guard_goblin]
-id = 12367
-
-[1st4h_guard_rat]
-id = 12368
-
-[rand_pressure_pen_critter_blue_inactive]
-id = 12369
-
-[rand_pressure_pen_critter_green_inactive]
-id = 12370
-
-[rand_pressure_pen_critter_yellow_inactive]
-id = 12371
-
-[clanwars_zombie_3]
-id = 12372
-
-[hw10_pileofbones]
-id = 12373
-
-[loy_troll_mage_5]
-id = 12374
-
-[hw10_black_zabeth]
-id = 12375
-
-[hw10_black_zabeth_band]
-id = 12376
-
-[hw10_pumpkin_pete]
-id = 12377
-
-[hw10_pumpkin_pete_2]
-id = 12378
-
-[hw10_grim]
-id = 12379
-
-[hw10_edgar]
-id = 12380
-
-[hw10_alan]
-id = 12381
-
-[hw10_greta_multi_start]
-id = 12382
-
-[hw10_greta_multi_stage]
-id = 12383
-
-[hw10_greta]
-id = 12384
-
-[hw10_greta_band]
-id = 12385
-
-[hw10_helga_multi_start]
-id = 12386
-
-[hw10_helga_multi_stage]
-id = 12387
-
-[hw10_helga]
-id = 12388
-
-[hw10_helga_band]
-id = 12389
-
-[hw10_moira_multi_start]
-id = 12390
-
-[hw10_moira_multi_stage]
-id = 12391
-
-[hw10_moira]
-id = 12392
-
-[hw10_moira_band]
-id = 12393
-
-[hw10_djweb]
-id = 12394
-
-[hw10_invis]
-id = 12395
-
-[hw10_dancer_headbang]
-id = 12396
-
-[hw10_dancer_headbang2]
-id = 12397
-
-[hw10_dancer_dance]
-id = 12398
-
-[hw10_dancer_dance2]
-id = 12399
-
-[hw10_dancer_dance_spin]
-id = 12400
-
-[hw10_party_pete]
-id = 12401
-
-[hw10_spidermulti_start_1]
-id = 12402
-
-[hw10_spidermulti_start_2]
-id = 12403
-
-[hw10_spidermulti_start_3]
-id = 12404
-
-[hw10_spidermulti_start_4]
-id = 12405
-
-[hw10_spidermulti_start_5]
-id = 12406
-
-[hw10_spidermulti_start_6]
-id = 12407
-
-[hw10_spidermulti_start_7]
-id = 12408
-
-[hw10_spidermulti_start_8]
-id = 12409
-
-[hw10_spidermulti_on_1]
-id = 12410
-
-[hw10_spidermulti_on_2]
-id = 12411
-
-[hw10_spidermulti_on_3]
-id = 12412
-
-[hw10_spidermulti_on_4]
-id = 12413
-
-[hw10_spidermulti_on_5]
-id = 12414
-
-[hw10_spidermulti_on_6]
-id = 12415
-
-[hw10_spidermulti_on_7]
-id = 12416
-
-[hw10_spidermulti_on_8]
-id = 12417
-
-[loy_troll_mage_6]
-id = 12418
-
-[hw10_spidermulti_hiding_5]
-id = 12419
-
-[hw10_spidermulti_hiding_6]
-id = 12420
-
-[hw10_spidermulti_hiding_7]
-id = 12421
-
-[hw10_spidermulti_hiding_8]
-id = 12422
-
-[hw10_spider_1]
-id = 12423
-
-[hw10_spider_2]
-id = 12424
-
-[hw10_spider_3]
-id = 12425
-
-[hw10_spider_4]
-id = 12426
-
-[hw10_spider_5]
-id = 12427
-
-[hw10_spider_6]
-id = 12428
-
-[hw10_spider_7]
-id = 12429
-
-[hw10_spider_8]
-id = 12430
-
-[hw10_spider_start_6]
-id = 12431
-
-[hw10_spider_start_7]
-id = 12432
-
-[hw10_spider_start_8]
-id = 12433
-
-[loy_troll_mage_7]
-id = 12434
-
-[loy_troll_mage_8]
-id = 12435
 
 [rand_warp_beholder_magic_wall_04_w]
 id = 12436
@@ -11623,6 +9092,7 @@ id = 12447
 
 [rand_warp_beholder_melee_wall_01_w]
 id = 12448
+examine = "An open eye of World-gorger."
 
 [rand_warp_beholder_melee_wall_02_w]
 id = 12449
@@ -11668,6 +9138,7 @@ id = 12462
 
 [rand_warp_beholder_range_wall_01_s]
 id = 12463
+examine = "An open eye of World-gorger."
 
 [rand_warp_beholder_range_wall_02_s]
 id = 12464
@@ -11713,6 +9184,7 @@ id = 12477
 
 [rand_warp_beholder_me0ma0ra1_01]
 id = 12478
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma0ra1_02]
 id = 12479
@@ -11752,12 +9224,14 @@ id = 12490
 
 [rand_warp_beholder_me0ma0ra1_14]
 id = 12491
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma0ra1_15]
 id = 12492
 
 [rand_warp_beholder_me1ma1ra1_01]
 id = 12493
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma1ra1_02]
 id = 12494
@@ -11803,6 +9277,7 @@ id = 12507
 
 [rand_warp_beholder_me0ma1ra0_01]
 id = 12508
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma1ra0_02]
 id = 12509
@@ -11938,6 +9413,7 @@ id = 12552
 
 [rand_warp_beholder_me1ma1ra0_01]
 id = 12553
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma1ra0_02]
 id = 12554
@@ -12040,6 +9516,7 @@ id = 12586
 
 [rand_warp_beholder_me0ma1ra1_01]
 id = 12587
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me0ma1ra1_02]
 id = 12588
@@ -12220,6 +9697,7 @@ id = 12646
 
 [rand_warp_beholder_me1ma0ra0_01]
 id = 12647
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma0ra0_02]
 id = 12648
@@ -12310,6 +9788,7 @@ id = 12676
 
 [rand_warp_beholder_me1ma0ra1_01]
 id = 12677
+examine = "The gaze of this seeker dissolves your innards."
 
 [rand_warp_beholder_me1ma0ra1_02]
 id = 12678
@@ -12490,6 +9969,7 @@ id = 12736
 
 [rand_warp_gulega_01]
 id = 12737
+examine = "A monster from the Gorajo plane, warped by Daemonheim's taint."
 
 [rand_warp_gulega_02]
 id = 12738
@@ -12535,6 +10015,7 @@ id = 12751
 
 [rand_warped_demon_fists_1]
 id = 12752
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_fists_2]
 id = 12753
@@ -12580,6 +10061,7 @@ id = 12766
 
 [rand_warped_demon_stab_1]
 id = 12767
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_stab_2]
 id = 12768
@@ -12625,6 +10107,7 @@ id = 12781
 
 [rand_warped_demon_magic_1]
 id = 12782
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_magic_2]
 id = 12783
@@ -12670,6 +10153,7 @@ id = 12796
 
 [rand_warped_demon_slash_1]
 id = 12797
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_slash_2]
 id = 12798
@@ -12715,6 +10199,7 @@ id = 12811
 
 [rand_warped_demon_ranged_1]
 id = 12812
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_ranged_2]
 id = 12813
@@ -12760,6 +10245,7 @@ id = 12826
 
 [rand_warped_demon_crush_1]
 id = 12827
+examine = "The leader and namesake of the Kal'Ger."
 
 [rand_warped_demon_crush_2]
 id = 12828
@@ -12823,6 +10309,7 @@ id = 12847
 
 [rand_warped_knight_1]
 id = 12848
+examine = "It's hard to determine if the rammernaut controls the eye, or vice versa."
 
 [rand_warped_knight_2]
 id = 12849
@@ -12874,6 +10361,7 @@ id = 12864
 
 [rand_blink_1]
 id = 12865
+examine = "All work and no portal magic makes Blink a dull boy."
 
 [rand_blink_2]
 id = 12866
@@ -12919,6 +10407,7 @@ id = 12879
 
 [loy_troll_runt_1]
 id = 12880
+examine = "A troublesome little troll."
 
 [loy_troll_runt_2]
 id = 12881
@@ -12937,6 +10426,7 @@ id = 12885
 
 [rand_warp_devourer_01]
 id = 12886
+examine = "A dark behemoth that feeds on hope."
 
 [rand_warp_devourer_02]
 id = 12887
@@ -12988,6 +10478,7 @@ id = 12902
 
 [rand_reborn_mage_1]
 id = 12903
+examine = "A mage who died and was reborn thanks to the strange power."
 
 [rand_reborn_mage_2]
 id = 12904
@@ -13021,6 +10512,7 @@ id = 12913
 
 [rand_warped_giant_rat_1]
 id = 12914
+examine = "Overgrown, warped vermin."
 
 [rand_warped_giant_rat_2]
 id = 12915
@@ -13042,9 +10534,11 @@ id = 12920
 
 [loy_troll_boss_1]
 id = 12921
+examine = "An unusually large troll."
 
 [rand_warped_guard_dog_1]
 id = 12922
+examine = "It guards the area from intruding adventurers."
 
 [rand_warped_guard_dog_2]
 id = 12923
@@ -13075,33 +10569,42 @@ id = 12931
 
 [rand_warped_heavy_guard_1]
 id = 12932
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_2]
 id = 12933
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_3]
 id = 12934
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_4]
 id = 12935
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_5]
 id = 12936
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_6]
 id = 12937
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_7]
 id = 12938
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_8]
 id = 12939
+examine = "A heavily armoured guard."
 
 [rand_warped_heavy_guard_9]
 id = 12940
 
 [rand_reborn_warrior_1]
 id = 12941
+examine = "A warrior who died and was reborn thanks to the strange power."
 
 [rand_reborn_warrior_2]
 id = 12942
@@ -13198,33 +10701,43 @@ id = 12972
 
 [rand_kill_leader_leader_01]
 id = 12973
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_02]
 id = 12974
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_03]
 id = 12975
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_04]
 id = 12976
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_05]
 id = 12977
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_06]
 id = 12978
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_07]
 id = 12979
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_08]
 id = 12980
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_09]
 id = 12981
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_10]
 id = 12982
+examine = "The leader of a long-forgotten band of mercenaries."
 
 [rand_kill_leader_leader_11]
 id = 12983
@@ -13543,9 +11056,3 @@ id = 13087
 
 [rand_crossing_bridges_statue_fixed_warped_w]
 id = 13088
-
-[lore_seeker_child_1]
-id = 13089
-
-[lore_seeker_adult]
-id = 13090

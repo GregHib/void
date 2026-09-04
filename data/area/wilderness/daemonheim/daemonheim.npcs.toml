@@ -8,6 +8,7 @@ examine = "Who are you calling chicken?"
 
 [fremennik_shipmaster_daemonheim]
 id = 9707
+interacts = false
 examine = "He looks at home in this climate."
 
 [fremennik_banker]
@@ -28,6 +29,7 @@ examine = "She is finding it hard to hide her boredom."
 
 [sonje]
 id = 9715
+interacts = false
 examine = "I wouldn't pick a fight with her."
 
 [wiglaf]
@@ -36,7 +38,17 @@ examine = "He's cooking up a storm."
 
 [cormorant_daemonheim]
 id = 9718
+collision = "sea"
+examine = "A sea bird."
 
 [thok_master_of_dungeoneering]
 id = 9713
 examine = "The self-proclaimed master of Dungeoneering."
+
+[listless_dead]
+id = 9722
+examine = "A ghostly figure."
+
+[listless_dead_2]
+id = 9723
+examine = "A ghostly figure."

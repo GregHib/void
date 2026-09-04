@@ -59,9 +59,12 @@ examine = "An appliance for cooking with."
 
 [ahoy_ladder_from_cellar]
 id = 5264
+examine = "I can climb this."
 
 [ahoy_tower_stairs_lv1_withwall]
 id = 37454
+examine = "I can climb these stairs."
 
 [ahoy_tower_stairs_lv1_top]
 id = 5281
+examine = "They go down."

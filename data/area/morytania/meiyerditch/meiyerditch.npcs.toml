@@ -370,6 +370,7 @@ max_hit_crush = 40
 
 [papers_meiyerditch]
 id = 4765
+examine = "Some rubbish."
 
 [vampyre_juvinate_level_50]
 id = 3520

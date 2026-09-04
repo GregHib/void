@@ -13,42 +13,54 @@ import world.gregs.voidps.engine.client.variable.ListValues
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
+import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.suspend.Suspension
 import world.gregs.voidps.engine.suspend.pauseString
 import world.gregs.voidps.type.Tile
 
 class FairyRing(val fairyRing: FairyRingCodes) : Script {
 
+    val hub = Tile(2412, 4434)
+
     val Player.code: String
-        get() = "${get("fairy_ring_code_1", "a")}${get("fairy_ring_code_2", "j")}${get("fairy_ring_code_3", "r")}"
+        get() = "${get("fairy_ring_code_1", "a")}${get("fairy_ring_code_2", "i")}${get("fairy_ring_code_3", "p")}"
 
     init {
         objectOperate("Use", "fairy_ring_*") { (target) ->
-            if (target.id == "fairy_ring_zanaris") {
+            if (target.id == "fairy_ring_zanaris" || target.id == "fairy_ring_zanaris_2") {
                 return@objectOperate
             }
-            if (quest("fairy_tale_ii") == "unstarted") {
-                message("You don't have permission to use that fairy ring.")
+            if (!canUseFairyRing()) {
                 return@objectOperate
             }
-            if (!questCompleted("fairy_tale_iii") && weapon.id != "dramen_staff") {
-                message("The fairy ring only works for those who wield fairy magic.")
+            walkOverDelay(target.tile)
+            this["fairy_rings_unlocked"] = true
+            Teleport.teleport(this, hub, "fairy_ring")
+        }
+
+        objectOperate("Use", "fairy_ring_zanaris_2") { (target) ->
+            if (!canUseFairyRing()) {
                 return@objectOperate
             }
+            resetDial()
             open("fairy_ring")
             open("travel_log")
             val code = pauseString()
-            val fairyRing = fairyRing.codes[code] ?: return@objectOperate
-            if (fairyRing.tile == Tile.EMPTY) {
-                return@objectOperate
-            }
             closeMenu()
             delay()
             walkOverDelay(target.tile)
             delay()
-            Teleport.teleport(this, fairyRing.tile, "fairy_ring")
+            this["fairy_rings_unlocked"] = true
+            val destination = fairyRing.codes[code]
+            if (destination == null || destination.tile == Tile.EMPTY || (destination.quest.isNotEmpty() && !questCompleted(destination.quest))) {
+                Teleport.teleport(this, hub.toCuboid(radius = 2).random(this) ?: hub, "fairy_ring")
+                return@objectOperate
+            }
+            Teleport.teleport(this, destination.tile, "fairy_ring")
             val list: MutableList<String> = getOrPut("travel_log_locations") { mutableListOf() }
-            list.add(code)
+            if (!list.contains(code)) {
+                list.add(code)
+            }
         }
 
         interfaceClosed("fairy_ring") {
@@ -72,6 +84,26 @@ class FairyRing(val fairyRing: FairyRingCodes) : Script {
         interfaceOption("Rotate anticlockwise", "fairy_ring:anticlockwise_*") {
             val codeIndex = it.component.removePrefix("anticlockwise_").toInt()
             rotate(this, codeIndex, -1)
+        }
+    }
+
+    fun Player.canUseFairyRing(): Boolean {
+        if (quest("fairy_tale_ii") == "unstarted") {
+            message("You don't have permission to use that fairy ring.")
+            return false
+        }
+        if (!questCompleted("fairy_tale_iii") && weapon.id != "dramen_staff" && weapon.id != "lunar_staff") {
+            message("The fairy ring only works for those who wield fairy magic.")
+            return false
+        }
+        return true
+    }
+
+    fun Player.resetDial() {
+        for (index in 1..3) {
+            val definition = VariableDefinitions.get("fairy_ring_code_$index") ?: continue
+            val list = definition.values as ListValues
+            this["fairy_ring_code_$index"] = list.default()
         }
     }
 

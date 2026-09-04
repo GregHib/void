@@ -1,12 +1,16 @@
 # The four coloured exam doors in Mr Mordaut's classroom (region 7502). Ids match the 634 cache.
 [exam_door_red]
 id = 2188
+examine = "The door is closed."
 
 [exam_door_blue]
 id = 2189
+examine = "The door is closed."
 
 [exam_door_purple]
 id = 2192
+examine = "The door is closed."
 
 [exam_door_green]
 id = 2193
+examine = "The door is closed."

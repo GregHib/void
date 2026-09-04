@@ -7,7 +7,9 @@ import objectOption
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
@@ -103,6 +105,29 @@ class FruitTreePatchTest : WorldTest() {
 
             assertEquals("${id}_life3", player["farming_fruit_tree_patch_gnome_stronghold", "empty"])
         }
+    }
+
+    @Test
+    fun `Corrupted herb dead value is repaired on spawn`() {
+        val player = createPlayer(Tile(2860, 3432))
+        player["farming_fruit_tree_patch_catherby"] = "herb_dead_2"
+
+        Spawn.player(player)
+        tick(1)
+
+        assertEquals("empty", player["farming_fruit_tree_patch_catherby", "empty"])
+    }
+
+    @Test
+    fun `Diseased fruit tree at catherby dies`() {
+        val tile = Tile(2860, 3432)
+        val player = createPlayer(tile)
+        player["farming_fruit_tree_patch_catherby"] = "apple_diseased_2"
+
+        val farming = scripts.filterIsInstance<Farming>().first()
+        farming.grow(player, 32 * 5)
+
+        assertEquals("apple_dead_2", player["farming_fruit_tree_patch_catherby", "empty"])
     }
 
     @TestFactory

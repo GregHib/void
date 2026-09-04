@@ -15,3 +15,4 @@ kept = "Reclaim"
 
 [helper_werewolf_agility_arena]
 id = 4177
+examine = "For magnifying forces applied to werewolves."

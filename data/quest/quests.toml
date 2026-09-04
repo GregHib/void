@@ -1523,6 +1523,31 @@ req_combat = "None."
 points = 1
 reward = "Ability to collect phoenix feathers<br>Magic carpet route to the ruins of Uzer<br>Ability to search Thammaron's throne to get 6 gems"
 xp = "1,000 Thieving XP<br>1,000 Crafting XP"
+variables = [
+  "the_golem",
+  "golem_b",
+  "golem_clay",
+  "golem_statuettestatusa",
+  "golem_statuettestatusb",
+  "golem_statuettestatusc",
+  "golem_statuettestatusd",
+  "golem_head_open",
+  "golem_throne_gems",
+  "golem_retrieved_statuette",
+  "golem_seen_underground",
+]
+items = [
+  "letter_the_golem",
+  "varmens_notes",
+  "display_cabinet_key",
+  "statuette_the_golem",
+  "strange_implement",
+  "black_mushroom",
+  "black_mushroom_ink",
+  "phoenix_feather",
+  "phoenix_quill_pen",
+  "golem_program",
+]
 
 [the_grand_tree]
 id = 56
@@ -3191,7 +3216,25 @@ req_skills = {
   Crafting = 42,
   Slayer = 42
 }
+req_quests = ["zogre_flesh_eaters"]
 req_items = "Combat equipment and food, Slayer gloves."
+# Everything else is handed out by Captain Braindeath or the basement tool cupboard.
+req_item_ids = ["slayer_gloves", "spade"]
+variables = [
+  "rum_deal",
+  "rum_deal_pressure_count",
+  "rum_deal_brewing_control",
+  "rum_deal_squid_spot",
+  "rum_deal_slugling_count",
+  "rum_deal_karamthulhu_count",
+  "rum_deal_swab_a",
+  "rum_deal_swab_b",
+  "rum_deal_swab_c",
+  "rum_deal_swab_d",
+  "rum_deal_swab_e",
+  "rum_deal_swab_f",
+  "rum_deal_diversion",
+]
 req_combat = "You will need to defeat a level 56 melee enemy and a level 70 ranged enemy."
 points = 2
 reward = "Holy wrench<br>Access to Braindeath Island<br>Tangled fishbowl and net"

@@ -13,7 +13,7 @@ drops = [
     { id = "bone_club", chance = 20 },
     { id = "bone_spear", chance = 20 },
     { id = "iron_chainbody", chance = 20 },
-    { id = "nothing", amount = 0, chance = 28 },
+    { id = "nothing", amount = 0, chance = 8 },
     { id = "coins", amount = 12, chance = 20 },
     { id = "oil_lantern", chance = 20 },
     { id = "tinderbox", chance = 20 },

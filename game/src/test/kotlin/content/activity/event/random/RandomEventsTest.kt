@@ -2,6 +2,7 @@ package content.activity.event.random
 
 import WorldTest
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.definition.GraphicDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -45,6 +46,17 @@ class RandomEventsTest : WorldTest() {
         assertEquals("certer", npc.get<String>("random_event"))
         assertTrue(npc.tile.within(player.tile, 2), "Event NPC should spawn beside the player")
         assertNotNull(NPCs.indexed(npc.index), "Event NPC should still be alive")
+    }
+
+    @Test
+    fun `Event NPCs appear in a puff of smoke`() {
+        val player = createPlayer(Tile(3221, 3218), "re_puff")
+        player["random_event"] = "certer"
+
+        val npc = player.startInPlaceEvent("mysterious_old_man", listOf("You there!"), lifetime = 100)
+        tick()
+
+        assertEquals(GraphicDefinitions.get("random_event_puff").id, npc.visuals.secondaryGraphic.id)
     }
 
     @Test

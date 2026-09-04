@@ -52,7 +52,7 @@ drops = [
     { id = "bronze_javelin", amount = 5, chance = 2, members = true },
     { id = "chaos_rune" },
     { id = "nature_rune" },
-    { table = "herb_drop_table", chance = 256 },
+    { table = "herb_drop_table", chance = 3, members = true },
     { id = "coins", chance = 34 },
     { id = "coins", amount = 3, chance = 13 },
     { id = "coins", amount = 5, chance = 8 },

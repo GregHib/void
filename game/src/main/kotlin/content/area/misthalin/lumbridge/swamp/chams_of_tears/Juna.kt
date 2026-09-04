@@ -1,22 +1,12 @@
 package content.area.misthalin.lumbridge.swamp.chams_of_tears
 
 import content.entity.player.dialogue.*
-import content.entity.player.dialogue.type.ChoiceOption
-import content.entity.player.dialogue.type.choice
-import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
+import content.entity.player.dialogue.type.*
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
-import content.quest.closeTabs
-import content.quest.openTabs
-import content.quest.quest
-import content.quest.questComplete
-import content.quest.questCompleted
-import content.quest.refreshQuestJournal
+import content.quest.*
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
-import world.gregs.voidps.engine.client.command.adminCommand
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
@@ -58,12 +48,6 @@ import kotlin.math.floor
 
 class Juna : Script {
     init {
-        adminCommand("test") {
-            clearCamera()
-            moveCamera(Tile(3233, 9505, 2), height = 700, speed = 5, acceleration = 5)
-            turnCamera(Tile(3227, 9493, 2), height = 200, speed = 5, acceleration = 5)
-        }
-
         objectOperate("Talk-to", "juna_tears,juna") { (target) ->
             talkWith(junaNpc())
             if (equipped(EquipSlot.Weapon).id == "stone_bowl") {

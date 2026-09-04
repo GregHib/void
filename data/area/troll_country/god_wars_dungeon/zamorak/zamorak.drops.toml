@@ -24,7 +24,7 @@ drops = [
     { id = "super_strength_3", amount = 3, chance = 48 },
     { id = "super_restore_3", amount = 3, chance = 48 },
     { id = "zamorak_brew_3", amount = 3, chance = 48 },
-    { id = "coins", min = 19500, max = 20000, chance = 216 },
+    { id = "coins", min = 19500, max = 20000, chance = 164 },
     { id = "grimy_lantadyme_noted", amount = 10, chance = 48 },
     { id = "lantadyme_seed", amount = 3, chance = 48 },
     { id = "death_rune", min = 120, max = 125, chance = 48 },

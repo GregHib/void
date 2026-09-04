@@ -218,7 +218,9 @@ class TzhaarFightCave(
     fun Player.leave(wave: Int, defeatedJad: Boolean = false) {
         clear("fight_cave_wave")
         start("fight_cave_cooldown", TimeUnit.MINUTES.toSeconds(2).toInt(), epochSeconds())
+        close("tzhaar_fight_cave")
         tele(outside)
+        clearInstance()
         var tokkul = wave * (wave + 1)
         if (wave == 63 && defeatedJad) {
             tokkul += 4000

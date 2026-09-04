@@ -71,6 +71,28 @@ internal class DropTableTest {
     }
 
     @Test
+    fun `Multiplier ignores all type table with chances exceeding roll`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+        val table = DropTable(TableType.All, 1, listOf(drop("1", 1), drop("2", 1), drop("3", 1)), 1)
+        val roll: Int = table.random(maximum = -1, multiplier = 2.0)
+        assertEquals(0, roll)
+    }
+
+    @Test
+    fun `Multiplier clamps table with chances exceeding roll`() {
+        setRandom(object : Random() {
+            override fun nextBits(bitCount: Int): Int = 0
+            override fun nextInt(from: Int, until: Int) = until - 1
+        })
+        val table = DropTable(TableType.First, 2, listOf(drop("1", 1), drop("2", 1), drop("3", 1)), 1)
+        val roll: Int = table.random(maximum = -1, multiplier = 2.0)
+        assertEquals(1, roll)
+    }
+
+    @Test
     fun `Roll every item in all type table`() {
         val item1 = drop("1", 1)
         val item2 = drop("2", 2)

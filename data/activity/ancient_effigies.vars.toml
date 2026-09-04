@@ -1,0 +1,23 @@
+[effigy_starved]
+format = "int"
+default = -1
+persist = true
+transmit = false
+
+[effigy_nourished]
+format = "int"
+default = -1
+persist = true
+transmit = false
+
+[effigy_sated]
+format = "int"
+default = -1
+persist = true
+transmit = false
+
+[effigy_gorged]
+format = "int"
+default = -1
+persist = true
+transmit = false

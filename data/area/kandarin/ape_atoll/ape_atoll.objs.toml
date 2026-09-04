@@ -9,6 +9,7 @@ examine = "This table has ripe bananas on show."
 
 [food_stall_empty]
 id = 4797
+examine = "Bamboo strips have been lashed together to make this rickety desk."
 
 [crafting_stall]
 id = 4874
@@ -20,6 +21,7 @@ examine = "This table has crafting paraphernalia on it."
 
 [crafting_stall_empty]
 id = 4797
+examine = "Bamboo strips have been lashed together to make this rickety desk."
 
 [general_stall]
 id = 4876
@@ -31,6 +33,7 @@ examine = "This table has items of a general nature on it."
 
 [general_stall_empty]
 id = 4797
+examine = "Bamboo strips have been lashed together to make this rickety desk."
 
 [magic_stall]
 id = 4877
@@ -42,6 +45,7 @@ examine = "This table has items of a general nature on it."
 
 [magic_stall_empty]
 id = 4797
+examine = "Bamboo strips have been lashed together to make this rickety desk."
 
 [scimitar_stall]
 id = 4878
@@ -53,3 +57,4 @@ examine = "This table has items of a general nature on it."
 
 [scimitar_stall_empty]
 id = 4797
+examine = "Bamboo strips have been lashed together to make this rickety desk."

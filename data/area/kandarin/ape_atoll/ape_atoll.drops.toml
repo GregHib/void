@@ -60,6 +60,7 @@ drops = [
 ]
 
 [monkey_zombie_primary]
+roll = 2
 drops = [
     { id = "small_zombie_monkey_bones" },
     { id = "large_zombie_monkey_bones" },

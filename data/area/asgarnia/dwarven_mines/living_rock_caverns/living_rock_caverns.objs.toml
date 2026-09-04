@@ -1,17 +1,31 @@
 [pulley_lift]
 id = 45079
+examine = "I can send items to my bank from here."
 
 [living_rock_caverns_rope]
 id = 45078
+examine = "It looks to be the only way out."
 
 [living_rock_caverns_entrance]
 id = 45077
+examine = "It's secure enough that I could probably climb down it."
 
 [farli]
 id = 45091
+examine = "An intrepid explorer."
+
+[mineral_deposit_coal_collapsed]
+id = 5990
+examine = "A collapsed mineral deposit, a slab of stone is blocking access to the minerals here."
 
 [mineral_deposit_coal]
 id = 5999
+examine = "A large concentration of coal."
+
+[mineral_deposit_gold_collapsed]
+id = 45075
+examine = "A collapsed mineral deposit, a slab of stone is blocking access to the minerals here."
 
 [mineral_deposit_gold]
 id = 45076
+examine = "A large concentration of gold."

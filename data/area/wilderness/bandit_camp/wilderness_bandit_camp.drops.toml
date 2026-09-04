@@ -18,7 +18,7 @@ drops = [
     { id = "water_rune", amount = 30, chance = 3 },
     { id = "mind_rune", amount = 5 },
     { table = "herb_drop_table", chance = 15 },
-    { id = "coins", amount = 48, chance = 30 },
+    { id = "coins", amount = 48, chance = 15 },
     { id = "coins", amount = 15, chance = 18 },
     { id = "coins", amount = 10, chance = 15 },
     { id = "coins", amount = 8, chance = 11 },

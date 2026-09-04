@@ -46,22 +46,32 @@ class FarmingPatchPlant : Script {
             return
         }
         val patch: String = item.def.getOrNull("farming_patch") ?: return
-        val patchName = target.patchName()
-        if (patchName.removeSuffix(" patch") != patch) {
+        if (!matches(target.id, patch)) {
+            val patchName = target.patchName()
             player.statement("You can only plant ${item.def.name.plural(amount)} in ${patchName.an()} $patchName.")
             return
         }
+    }
+
+    private fun matches(variable: String, patch: String): Boolean {
+        val type = variable.removePrefix("farming_").substringBefore("_patch")
+        return patch == if (type == "veg") "allotment" else type
     }
 
     private suspend fun plant(player: Player, interact: ItemOnObjectInteract) {
         val item = interact.item
         val amount = item.def["farming_amount", 1]
         val variable = interact.target.id
+        val patchName = interact.target.patchName()
+        val patch: String = item.def.getOrNull("farming_patch") ?: return
+        if (!matches(variable, patch)) {
+            player.statement("You can only plant ${item.def.name.plural(amount)} in ${patchName.an()} $patchName.")
+            return
+        }
         if (variable.startsWith("farming_spirit_tree_patch") && hasSpiritTree(player)) {
             player.message("You can only plant one spirit tree at a time.") // TODO proper message
             return
         }
-        val patchName = interact.target.patchName()
         if (patchName.contains("tree") && !player.inventory.contains("spade")) {
             player.message("You need a spade to do that.")
             return
@@ -70,13 +80,13 @@ class FarmingPatchPlant : Script {
             player.message("You need a seed dibber to plant the seed in the dirt.") // TODO proper message
             return
         }
-        if (!player.inventory.remove(item.id, amount)) {
-            player.message("You need $amount ${item.def.name.plural(amount)} to grow those.")
-            return
-        }
         val level = item.def["farming_level", 1]
         if (!player.has(Skill.Farming, level)) {
             player.statement("You need to be a level $level to plant that.")
+            return
+        }
+        if (!player.inventory.remove(item.id, amount)) {
+            player.message("You need $amount ${item.def.name.plural(amount)} to grow those.")
             return
         }
         if (patchName.contains("tree")) {
@@ -90,6 +100,9 @@ class FarmingPatchPlant : Script {
         player.message("You plant ${if (amount == 1) "a" else amount} ${item.def.name.lowercase().plural(amount)} in the $patchName.", type = ChatType.Filter)
         val crop: String = item.def.getOrNull("farming_crop") ?: return
         player[variable] = "${crop}_0"
+        // Growth is otherwise only kicked off by raking or composting, which leaves a crop
+        // planted into an already clear patch never growing at all.
+        player.timers.startIfAbsent("farming_tick")
         player.exp(Skill.Farming, item.def["farming_xp", 0.0])
     }
 

@@ -94,7 +94,7 @@ class FarmingTest : KoinMock() {
         setRandom(object : FakeRandom() {
             override fun nextInt(until: Int): Int = 0
         })
-        player["farming_veg_patch_falador_nw"] = "weeds_3"
+        player["farming_veg_patch_falador_nw"] = "weeds_0"
         player["farming_offset_mins"] = 0
 
         // simulate several growth cycles
@@ -217,7 +217,7 @@ class FarmingTest : KoinMock() {
 
         farming.grow(player, 4)
 
-        assertEquals("compostable_rotting_ready", player["compost_bin_falador", "empty"])
+        assertEquals("compostable_ready", player["compost_bin_falador", "empty"])
     }
 
     private fun setDefinition(list: List<String>) {

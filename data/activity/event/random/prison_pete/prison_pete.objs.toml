@@ -1,11 +1,14 @@
 [prison_pete_lever]
 id = 10817
+examine = "Pull me!"
 
 [prison_pete_gate_west]
 id = 2134
+examine = "A door with three locks."
 
 [prison_pete_gate_east]
 id = 2138
+examine = "A door with three locks."
 
 [bank_deposit_box_prisonpete]
 id = 32924

@@ -37,6 +37,7 @@ id = 3133
 
 [furnace_grate_enakhras_temple_2]
 id = 3135
+examine = "It seems to be blocked."
 
 [enakhra_enakhras_temple_2]
 id = 3137
