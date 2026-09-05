@@ -70,7 +70,7 @@ stop:
 		pid=$$(cat $(PID_FILE)); \
 		cmd=$$(ps -p $$pid -o comm= 2>/dev/null); \
 		case "$$cmd" in \
-			java|bash|sh) \
+			java|*/java|bash|*/bash|sh|*/sh) \
 				echo "Stopping server (pid $$pid)..."; \
 				kill $$pid 2>/dev/null; \
 				for i in $$(seq 1 15); do \
@@ -100,12 +100,12 @@ stop:
 		for pid in $$leftovers; do \
 			cmd=$$(ps -p $$pid -o comm= 2>/dev/null); \
 			case "$$cmd" in \
-				java|bash|sh) echo "Killing leftover $$pid on port $(PORT)..."; kill $$pid 2>/dev/null; stopped=1;; \
+				java|*/java|bash|*/bash|sh|*/sh) echo "Killing leftover $$pid on port $(PORT)..."; kill $$pid 2>/dev/null; stopped=1;; \
 				*) echo "Port $(PORT) held by '$$cmd' (pid $$pid) — leaving alone.";; \
 			esac; \
 		done; \
 	fi; \
-	exit $$stopped
+	exit 0
 
 restart: stop start
 
