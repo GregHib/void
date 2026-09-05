@@ -166,20 +166,49 @@ class IsafdarTest : WorldTest() {
 
     @Test
     fun `Pass sticks trap`() {
-        val player = createPlayer(Tile(2236, 3180))
+        val player = createPlayer(Tile(2234, 3181))
         val sticks = GameObjects.find(Tile(2235, 3181), "isafdar_sticks_trap")
 
         player.objectOption(sticks, "Pass")
-        tick(8)
+        tick(10)
 
+        assertEquals(Tile(2237, 3181), player.tile)
         assertTrue(player.containsMessage("You manage to skillfully pass the trap."))
+    }
+
+    @Test
+    fun `Failing the sticks trap springs the player off it`() {
+        val player = createPlayer(Tile(2234, 3181))
+        val sticks = GameObjects.find(Tile(2235, 3181), "isafdar_sticks_trap")
+        setRandom(object : FakeRandom() {
+            override fun nextBits(bitCount: Int): Int = Int.MAX_VALUE
+        })
+
+        player.objectOption(sticks, "Pass")
+        tick(10)
+
+        assertEquals(Tile(2238, 3181), player.tile)
+        assertTrue(player.containsMessage("You set off the trap as you pass."))
+        assertTrue(player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution))
+    }
+
+    @Test
+    fun `Walking over the sticks trap sets it off`() {
+        val player = createPlayer(Tile(2234, 3181))
+
+        player.walk(Tile(2238, 3181))
+        tick(10)
+
+        assertEquals(Tile(2238, 3181), player.tile)
+        assertTrue(player.containsMessage("You set off the trap as you pass."))
+        assertTrue(player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution))
     }
 
     @Test
     fun `Jump over leaf trap`() {
         val player = createPlayer(Tile(2274, 3172))
         player.levels.set(Skill.Agility, 99)
-        val leaves = GameObjects.find(Tile(2274, 3174), "isafdar_leaves_2")
+        val leaves = GameObjects.find(Tile(2274, 3173), "isafdar_leaves_3")
 
         player.objectOption(leaves, "Jump")
         tick(8)

@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.chat.obstacle
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -23,24 +24,42 @@ class DenseForest : Script {
             } else {
                 if (tile.y < target.tile.y) Direction.NORTH else Direction.SOUTH
             }
-            if (target.id == "dense_forest" || target.id == "dense_forest_2") {
-                // Line up on the tile just before the passage's footprint before squeezing through
-                val start = if (sideways) {
-                    val x = if (direction == Direction.EAST) target.tile.x - 1 else target.tile.x + target.width
-                    val centre = tile.y.coerceIn(target.tile.y + (target.height - 1) / 2, target.tile.y + target.height / 2)
-                    Tile(x, centre, tile.level)
-                } else {
-                    val y = if (direction == Direction.NORTH) target.tile.y - 1 else target.tile.y + target.height
-                    val centre = tile.x.coerceIn(target.tile.x + (target.width - 1) / 2, target.tile.x + target.width / 2)
-                    Tile(centre, y, tile.level)
+            // Line up on the centre lane just outside the passage before squeezing through
+            val start = if (sideways) {
+                val x = if (direction == Direction.EAST) target.tile.x - 1 else target.tile.x + target.width
+                val centre = tile.y.coerceIn(target.tile.y + (target.height - 1) / 2, target.tile.y + target.height / 2)
+                Tile(x, centre, tile.level)
+            } else {
+                val y = if (direction == Direction.NORTH) target.tile.y - 1 else target.tile.y + target.height
+                val centre = tile.x.coerceIn(target.tile.x + (target.width - 1) / 2, target.tile.x + target.width / 2)
+                Tile(centre, y, tile.level)
+            }
+            if (tile != start) {
+                walkToDelay(start, forceWalk = true)
+                if (tile != start) {
+                    return@objectOperate
                 }
-                walkOverDelay(start)
             }
             val dest = tile.add(direction.delta.x * 3, direction.delta.y * 3)
             face(direction)
-            delay()
-            anim(if (target.id == "dense_forest") "dense_forest_climb" else "dense_forest_squeeze")
-            exactMoveDelay(dest, delay = 90, direction = direction)
+            when (target.id) {
+                "dense_forest", "dense_forest_hard_2" -> {
+                    anim("dense_forest_climb", delay = 30)
+                    sound("forest_lowwall", delay = 30)
+                    exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
+                }
+                "dense_forest_2", "dense_forest_hard" -> {
+                    anim("dense_forest_double_squeeze", delay = 30)
+                    sound("forest_doublesqueeze", delay = 30)
+                    exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
+                    clearAnim()
+                }
+                else -> {
+                    anim("dense_forest_squeeze", delay = 30)
+                    sound("forest_sidesqueeze", delay = 40)
+                    exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
+                }
+            }
         }
     }
 }
