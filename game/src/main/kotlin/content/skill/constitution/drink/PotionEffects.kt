@@ -59,23 +59,27 @@ fun Player.potionEffects(potion: String) {
         "extreme_ranging" -> extremeBoost(Skill.Ranged)
         "attack_potion", "attack_mix" -> levels.boost(Skill.Attack, 3, 0.1)
         "strength_potion", "strength_mix" -> levels.boost(Skill.Strength, 3, 0.1)
-        "defence_potion", "defence_mix" -> levels.boost(Skill.Defence, 3, 0.1)
+        "defence_potion", "defence_mix", "defence_potion_stealing_creation" -> levels.boost(Skill.Defence, 3, 0.1)
         "magic_essence", "magic_essence_mix" -> levels.boost(Skill.Magic, 3)
         "agility_potion", "agility_mix" -> levels.boost(Skill.Agility, 3)
         "fishing_potion", "fishing_mix" -> levels.boost(Skill.Fishing, 3)
         "crafting_potion" -> levels.boost(Skill.Crafting, 3)
         "hunter_potion", "hunting_mix" -> levels.boost(Skill.Hunter, 3)
         "fletching_potion" -> levels.boost(Skill.Fletching, 3)
-        "super_attack", "super_attack_mix" -> levels.boost(Skill.Attack, 5, 0.15)
-        "super_strength", "super_strength_mix" -> levels.boost(Skill.Strength, 5, 0.15)
-        "super_defence", "super_defence_mix" -> levels.boost(Skill.Defence, 5, 0.15)
-        "super_magic_potion", "super_magic_mix" -> levels.boost(Skill.Magic, 5, 0.15)
-        "super_ranging_potion", "super_ranging_mix" -> levels.boost(Skill.Ranged, 4, 0.10)
+        "super_attack", "super_attack_mix", "super_attack_potion_stealing_creation", "cw_super_attack_potion" ->
+            levels.boost(Skill.Attack, 5, 0.15)
+        "super_strength", "super_strength_mix", "super_strength_potion_stealing_creation", "cw_super_strength_potion" ->
+            levels.boost(Skill.Strength, 5, 0.15)
+        "super_defence", "super_defence_mix", "cw_super_defence_potion" -> levels.boost(Skill.Defence, 5, 0.15)
+        "super_magic_potion", "super_magic_mix", "magic_potion_stealing_creation", "cw_super_magic_potion" ->
+            levels.boost(Skill.Magic, 5, 0.15)
+        "super_ranging_potion", "super_ranging_mix", "ranging_potion_stealing_creation", "cw_super_ranging_potion" ->
+            levels.boost(Skill.Ranged, 4, 0.10)
         "combat_potion", "combat_mix" -> {
             levels.boost(Skill.Attack, 3, 0.1)
             levels.boost(Skill.Strength, 3, 0.1)
         }
-        "summoning_potion" -> levels.boost(Skill.Summoning, 7, 0.25)
+        "summoning_potion", "summoning_potion_stealing_creation" -> levels.boost(Skill.Summoning, 7, 0.25)
         "relicyms_balm", "relicyms_mix" -> cureDisease()
         "sanfew_serum" -> {
             antiPoison(6)
@@ -98,7 +102,8 @@ fun Player.potionEffects(potion: String) {
             levels.drain(Skill.Magic, 2, 0.1)
             levels.drain(Skill.Ranged, 2, 0.1)
         }
-        "prayer_potion", "prayer_mix" -> levels.restore(Skill.Prayer, 7, if (hasHolyItem()) 0.27 else 0.25)
+        "prayer_potion", "prayer_mix", "prayer_potion_stealing_creation" ->
+            levels.restore(Skill.Prayer, 7, if (hasHolyItem()) 0.27 else 0.25)
         "super_prayer" -> levels.restore(Skill.Prayer, 7, if (hasHolyItem()) 0.37 else 0.35)
         "antipoison", "antipoison_mix" -> antiPoison(90, TimeUnit.SECONDS)
         "super_antipoison", "super_antipoison_mix" -> antiPoison(6)
@@ -112,8 +117,8 @@ fun Player.potionEffects(potion: String) {
             levels.restore(Skill.Ranged, 10, 0.3)
         }
         "super_restore", "super_restore_mix" -> restoreAllSkills()
-        "energy_potion", "energy_mix" -> runEnergy += (MAX_RUN_ENERGY / 100) * 10
-        "super_energy", "super_energy_mix" -> runEnergy += (MAX_RUN_ENERGY / 100) * 20
+        "energy_potion", "energy_mix", "energy_potion_stealing_creation" -> runEnergy += (MAX_RUN_ENERGY / 100) * 10
+        "super_energy", "super_energy_mix", "cw_super_energy_potion" -> runEnergy += (MAX_RUN_ENERGY / 100) * 20
         "recover_special" -> {
             specialAttackEnergy = (specialAttackEnergy + (MAX_SPECIAL_ATTACK / 4)).coerceAtMost(MAX_SPECIAL_ATTACK)
             val percentage = ((specialAttackEnergy / MAX_SPECIAL_ATTACK.toDouble()) * 100).toInt()
