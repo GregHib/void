@@ -57,9 +57,6 @@ class DenseForest : Script {
                 }
             }
             exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
-            if (target.id == "dense_forest_hard") {
-                clearAnim()
-            }
             // Interacting faced the object, which is now behind; keep facing the way travelled
             face(direction)
         }
