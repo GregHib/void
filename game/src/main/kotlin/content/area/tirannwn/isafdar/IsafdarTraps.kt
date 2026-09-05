@@ -56,14 +56,21 @@ class IsafdarTraps : Script {
         entered("isafdar_tripwire_1", ::tripwire)
         entered("isafdar_tripwire_2", ::tripwire)
         entered("isafdar_tripwire_3", ::tripwire)
+        entered("isafdar_tripwire_4", ::tripwire)
+        entered("isafdar_tripwire_5", ::tripwire)
 
         exited("isafdar_tripwire_1", ::exitTripwire)
         exited("isafdar_tripwire_2", ::exitTripwire)
         exited("isafdar_tripwire_3", ::exitTripwire)
+        exited("isafdar_tripwire_4", ::exitTripwire)
+        exited("isafdar_tripwire_5", ::exitTripwire)
 
         entered("isafdar_sticks_trap_1", ::sticks)
         entered("isafdar_sticks_trap_2", ::sticks)
         entered("isafdar_sticks_trap_3", ::sticks)
+        entered("isafdar_sticks_trap_4", ::sticks)
+        entered("isafdar_sticks_trap_5", ::sticks)
+        entered("isafdar_sticks_trap_6", ::sticks)
     }
 
     // Tagged "border" so walking at the wire crosses it like a border guard gate
