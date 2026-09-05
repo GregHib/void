@@ -358,121 +358,169 @@ kept = "Reclaim"
 [cw_super_attack_potion_4]
 id = 18715
 weight = 0.035
+excess = "cw_super_attack_potion_3"
+empty = "vial"
 examine = "4 doses of super attack potion."
 
 [cw_super_attack_potion_3]
 id = 18716
 weight = 0.026
+excess = "cw_super_attack_potion_2"
+empty = "vial"
 examine = "3 doses of super attack potion."
 
 [cw_super_attack_potion_2]
 id = 18717
 weight = 0.017
+excess = "cw_super_attack_potion_1"
+empty = "vial"
 examine = "2 doses of super attack potion."
 
 [cw_super_attack_potion_1]
 id = 18718
 weight = 0.008
+excess = "vial"
+empty = "vial"
 examine = "1 dose of super attack potion."
 
 [cw_super_strength_potion_4]
 id = 18719
 weight = 0.035
+excess = "cw_super_strength_potion_3"
+empty = "vial"
 examine = "4 doses of super strength potion."
 
 [cw_super_strength_potion_3]
 id = 18720
 weight = 0.026
+excess = "cw_super_strength_potion_2"
+empty = "vial"
 examine = "3 doses of super strength potion."
 
 [cw_super_strength_potion_2]
 id = 18721
 weight = 0.017
+excess = "cw_super_strength_potion_1"
+empty = "vial"
 examine = "2 doses of super strength potion."
 
 [cw_super_strength_potion_1]
 id = 18722
 weight = 0.008
+excess = "vial"
+empty = "vial"
 examine = "1 dose of super strength potion."
 
 [cw_super_defence_potion_4]
 id = 18723
 weight = 0.035
+excess = "cw_super_defence_potion_3"
+empty = "vial"
 examine = "4 doses of super defence potion."
 
 [cw_super_defence_potion_3]
 id = 18724
 weight = 0.026
+excess = "cw_super_defence_potion_2"
+empty = "vial"
 examine = "3 doses of super defence potion."
 
 [cw_super_defence_potion_2]
 id = 18725
 weight = 0.017
+excess = "cw_super_defence_potion_1"
+empty = "vial"
 examine = "2 doses of super defence potion."
 
 [cw_super_defence_potion_1]
 id = 18726
 weight = 0.008
+excess = "vial"
+empty = "vial"
 examine = "1 dose of super defence potion."
 
 [cw_super_energy_potion_4]
 id = 18727
 weight = 0.035
+excess = "cw_super_energy_potion_3"
+empty = "vial"
 examine = "4 doses of super energy potion."
 
 [cw_super_energy_potion_3]
 id = 18728
 weight = 0.026
+excess = "cw_super_energy_potion_2"
+empty = "vial"
 examine = "3 doses of super energy potion."
 
 [cw_super_energy_potion_2]
 id = 18729
 weight = 0.017
+excess = "cw_super_energy_potion_1"
+empty = "vial"
 examine = "2 doses of super energy potion."
 
 [cw_super_energy_potion_1]
 id = 18730
 weight = 0.008
+excess = "vial"
+empty = "vial"
 examine = "1 dose of super energy potion."
 
 [cw_super_ranging_potion_4]
 id = 18731
 weight = 0.035
+excess = "cw_super_ranging_potion_3"
+empty = "vial"
 examine = "4 doses of super ranging potion."
 
 [cw_super_ranging_potion_3]
 id = 18732
 weight = 0.026
+excess = "cw_super_ranging_potion_2"
+empty = "vial"
 examine = "3 doses of super ranging potion."
 
 [cw_super_ranging_potion_2]
 id = 18733
 weight = 0.017
+excess = "cw_super_ranging_potion_1"
+empty = "vial"
 examine = "2 doses of super ranging potion."
 
 [cw_super_ranging_potion_1]
 id = 18734
 weight = 0.008
+excess = "vial"
+empty = "vial"
 examine = "1 dose of super ranging potion."
 
 [cw_super_magic_potion_4]
 id = 18735
 weight = 0.035
+excess = "cw_super_magic_potion_3"
+empty = "vial"
 examine = "4 doses of super magic potion."
 
 [cw_super_magic_potion_3]
 id = 18736
 weight = 0.026
+excess = "cw_super_magic_potion_2"
+empty = "vial"
 examine = "3 doses of super magic potion."
 
 [cw_super_magic_potion_2]
 id = 18737
 weight = 0.017
+excess = "cw_super_magic_potion_1"
+empty = "vial"
 examine = "2 doses of super magic potion."
 
 [cw_super_magic_potion_1]
 id = 18738
 weight = 0.008
+excess = "vial"
+empty = "vial"
 examine = "1 dose of super magic potion."
 
 [castle_wars_flag_cape]

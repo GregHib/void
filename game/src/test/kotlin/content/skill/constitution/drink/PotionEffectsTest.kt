@@ -161,4 +161,43 @@ internal class PotionEffectsTest : WorldTest() {
         assertTrue(player.inventory.contains("super_prayer_3"))
         assertEquals(1 + 7 + 34, player.levels.get(Skill.Prayer))
     }
+
+    @Test
+    fun `Five dose stealing creation potion can be drunk`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("super_attack_potion_stealing_creation_5")
+        player.experience.set(Skill.Attack, Level.experience(99))
+        player.levels.set(Skill.Attack, 99)
+
+        player.itemOption("Drink", "super_attack_potion_stealing_creation_5")
+
+        assertTrue(player.inventory.contains("super_attack_potion_stealing_creation_4"))
+        assertEquals(99 + 5 + 14, player.levels.get(Skill.Attack))
+    }
+
+    @Test
+    fun `Last dose of a stealing creation potion leaves a vial`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("prayer_potion_stealing_creation_1")
+        player.experience.set(Skill.Prayer, Level.experience(99))
+        player.levels.set(Skill.Prayer, 1)
+
+        player.itemOption("Drink", "prayer_potion_stealing_creation_1")
+
+        assertTrue(player.inventory.contains("vial"))
+        assertEquals(1 + 7 + 24, player.levels.get(Skill.Prayer))
+    }
+
+    @Test
+    fun `Castle wars potion boosts the same as its super potion`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("cw_super_strength_potion_4")
+        player.experience.set(Skill.Strength, Level.experience(99))
+        player.levels.set(Skill.Strength, 99)
+
+        player.itemOption("Drink", "cw_super_strength_potion_4")
+
+        assertTrue(player.inventory.contains("cw_super_strength_potion_3"))
+        assertEquals(99 + 5 + 14, player.levels.get(Skill.Strength))
+    }
 }
