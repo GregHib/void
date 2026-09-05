@@ -1,7 +1,7 @@
 package content.skill.fishing
 
 import com.github.michaelbull.logging.InlineLogger
-import content.skill.constitution.drink.JUJU_SHARK_CHANCE
+import content.skill.constitution.drink.JUJU_SHARK_PERCENT
 import content.skill.constitution.drink.jujuActive
 import content.skill.summoning.familiarActsAsHarpoon
 import content.skill.summoning.familiarBoost
@@ -149,7 +149,7 @@ class Fishing : Script {
         if (bigCatch(fish)) {
             fish = fish.replace("raw_", "big_")
             message = "You catch an enormous ${catch.toLowerSpaceCase()}!"
-        } else if (fish == "raw_shark" && player.jujuActive("juju_fishing") && random.nextInt(100) < JUJU_SHARK_CHANCE) {
+        } else if (fish == "raw_shark" && player.jujuActive("juju_fishing") && random.nextInt(100) < JUJU_SHARK_PERCENT) {
             fish = "raw_baron_shark"
             message = "You catch a raw baron shark!"
         }

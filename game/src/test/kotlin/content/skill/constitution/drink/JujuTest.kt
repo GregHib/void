@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
+import world.gregs.voidps.engine.data.definition.InventoryDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.add
@@ -94,5 +98,75 @@ internal class JujuTest : WorldTest() {
 
         assertFalse(banked)
         assertEquals(0, player.bank.count("copper_ore"))
+    }
+
+    @Test
+    fun `Ore is kept when the bank is full`() {
+        setRandom(
+            object : FakeRandom() {
+                override fun nextInt(from: Int, until: Int): Int = if (until == 100) 0 else from
+            },
+        )
+        val player = createPlayer(emptyTile)
+        player.startJuju("juju_mining")
+        fillBank(player)
+
+        val banked = player.jujuBank("juju_mining", "copper_ore", 1)
+
+        assertFalse(banked)
+        assertFalse(player.bank.contains("copper_ore"))
+    }
+
+    @Test
+    fun `Logs are kept when the bank is full`() {
+        setRandom(
+            object : FakeRandom() {
+                override fun nextInt(from: Int, until: Int): Int = if (until == 100) 0 else from
+            },
+        )
+        val player = createPlayer(emptyTile)
+        player.startJuju("juju_woodcutting")
+        fillBank(player)
+
+        val banked = player.jujuBank("juju_woodcutting", "logs", 1)
+
+        assertFalse(banked)
+        assertFalse(player.bank.contains("logs"))
+    }
+
+    @Test
+    fun `Juju effects persist across logout`() {
+        for (key in listOf(
+            "juju_mining",
+            "juju_woodcutting",
+            "juju_farming",
+            "juju_fishing",
+            "scentless",
+            "saradomins_blessing",
+            "guthixs_gift",
+            "zamoraks_favour",
+            "juju_mining_bank",
+            "juju_woodcutting_bank",
+        )) {
+            assertTrue(VariableDefinitions.get(key).persist, key)
+        }
+    }
+
+    @Test
+    fun `Dying clears juju effects`() {
+        val player = createPlayer(emptyTile)
+        player.startJuju("juju_mining")
+        assertTrue(player.jujuActive("juju_mining"))
+
+        player.levels.set(Skill.Constitution, 0)
+        tick(12)
+
+        assertEquals(0, player["juju_mining", 0])
+    }
+
+    private fun fillBank(player: Player) {
+        for (index in 0 until InventoryDefinitions.get("bank").length) {
+            player.bank.set(index, "coins", 1)
+        }
     }
 }

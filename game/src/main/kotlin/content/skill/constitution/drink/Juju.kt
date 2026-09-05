@@ -9,17 +9,17 @@ import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
 /**
- * Herblore Habitat potions all last five minutes. The mining and woodcutting potions do not send
- * every resource to the bank; each one gathered has a chance to open a short window during which
- * they do.
+ * Herblore Habitat potions all last five minutes. The mining and woodcutting potions open a
+ * banking window rather than sending every resource to the bank, though the roll is repeated on
+ * each resource gathered, so in practice the window is usually refreshed before it closes.
  */
 private const val INTERVAL = 25
 private const val DURATION = 500 / INTERVAL
 private const val BANK_DURATION = 75 / INTERVAL
-private const val BANK_CHANCE = 11
+private const val BANK_PERCENT = 11
 
-const val JUJU_HERB_CHANCE = 3
-const val JUJU_SHARK_CHANCE = 30
+const val JUJU_HERB_ONE_IN = 3
+const val JUJU_SHARK_PERCENT = 30
 
 private val EFFECTS = listOf(
     "juju_mining",
@@ -42,18 +42,21 @@ fun Player.startJuju(effect: String) {
 fun Player.jujuActive(effect: String): Boolean = timers.contains(effect)
 
 /**
- * Rolls for the banking window on every resource gathered, then banks [amount] of [item] for as
- * long as that window stays open.
+ * Rolls for the banking window on every resource gathered, then banks [amount] of [item] while
+ * that window is open. Returns false when the bank cannot take them, so the caller keeps its
+ * normal inventory handling rather than destroying the resource.
  */
 fun Player.jujuBank(effect: String, item: String, amount: Int): Boolean {
-    if (jujuActive(effect) && random.nextInt(100) < BANK_CHANCE) {
+    if (jujuActive(effect) && random.nextInt(100) < BANK_PERCENT) {
         set("${effect}_bank", BANK_DURATION)
         timers.restart("${effect}_bank")
     }
     if (!jujuActive("${effect}_bank")) {
         return false
     }
-    bank.add(item, amount)
+    if (!bank.add(item, amount)) {
+        return false
+    }
     gfx("${effect}_bank")
     return true
 }
@@ -66,6 +69,12 @@ class Juju : Script {
                 if (get(timer, 0) > 0) {
                     timers.restart(timer)
                 }
+            }
+        }
+
+        playerDeath {
+            for (timer in EFFECTS + WINDOWS) {
+                clear(timer)
             }
         }
 
