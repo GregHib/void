@@ -48,7 +48,7 @@ class DenseForest : Script {
                     sound("forest_lowwall", delay = 30)
                 }
                 "dense_forest_hard" -> {
-                    anim("dense_forest_double_squeeze", delay = 30)
+                    anim("dense_forest_squeeze", delay = 30)
                     sound("forest_doublesqueeze", delay = 30)
                 }
                 else -> {
