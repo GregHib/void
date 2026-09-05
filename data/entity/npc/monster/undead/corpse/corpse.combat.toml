@@ -30,6 +30,7 @@ death_sound = "corpse_death"
 [corpse_archer.ranged]
 range = 7
 anim = "corpse_archer_attack"
+projectile = { id = "corpse_archer_range_projectile", curve = 18, delay = 42 }
 target_sound = "corpse_archer_attack"
 target_hit = { offense = "range", max = 19 }
 
