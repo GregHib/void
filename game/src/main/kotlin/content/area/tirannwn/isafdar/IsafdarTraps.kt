@@ -127,11 +127,14 @@ class IsafdarTraps : Script {
         } else {
             Tile(tile.x, if (direction == Direction.NORTH) trap.tile.y + trap.height else trap.tile.y - 1, tile.level)
         }
+        // Flung backwards but the player keeps facing the way they were
+        val facing = if (this.direction == Direction.NONE) direction else this.direction
         message("You set off the trap as you pass.")
         trap.anim("woodspring")
         sound("springtrap")
         anim("trap_stumble_back", delay = 10)
-        exactMoveDelay(out, delay = 56, direction = direction, startDelay = 10)
+        exactMoveDelay(out, delay = 56, direction = facing, startDelay = 10)
+        face(facing)
         damage(80)
     }
 
