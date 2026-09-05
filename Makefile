@@ -37,7 +37,7 @@ start:
 		exit 1; \
 	fi
 	@echo "Starting Void server in background..."
-	@setsid nohup ./gradlew :game:run --console=plain</dev/null >$(LOG_FILE) 2>&1 & echo $$! > $(PID_FILE)
+	@nohup ./gradlew :game:run --console=plain</dev/null >$(LOG_FILE) 2>&1 & echo $$! > $(PID_FILE)
 	@pid=$$(cat $(PID_FILE)); \
 	echo "PID: $$pid | log: $(LOG_FILE)"; \
 	echo "Waiting for port $(PORT) (timeout $(START_TIMEOUT)s)... (Ctrl+C safe, server keeps running)"; \
