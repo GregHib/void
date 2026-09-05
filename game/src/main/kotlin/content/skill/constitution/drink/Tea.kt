@@ -31,7 +31,7 @@ class Tea : Script {
         }
 
         consumed("nettle_tea") { _, _ ->
-            runEnergy = (MAX_RUN_ENERGY / 100) * 5
+            runEnergy += (MAX_RUN_ENERGY / 100) * 5
         }
 
         itemOption("Look-in", "tea_flask") {
