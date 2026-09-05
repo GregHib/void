@@ -45,4 +45,5 @@ anim = "corpse_mage_attack"
 gfx = "corpse_mage_magic_attack"
 projectile = { id = "corpse_mage_magic_projectile", curve = 18, delay = 48 }
 target_sound = { id = "corpse_mage_attack", delay = 18 }
+miss_gfx = "spell_splash"
 target_hit = { offense = "magic", max = 20 }

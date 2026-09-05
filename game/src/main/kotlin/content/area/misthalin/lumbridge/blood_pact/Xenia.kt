@@ -506,13 +506,13 @@ class Xenia : Script {
 
         suspend fun giveWeapons(player: Player) {
             if (!player.ownsItem("kayles_sling") && player.inventory.add("kayles_sling")) {
-                player.statement("Xenia gives you Kayle's sling.")
+                player.item("kayles_sling", "Xenia gives you Kayle's sling.")
             }
             if (!player.ownsItem("caitlins_staff") && player.inventory.add("caitlins_staff")) {
-                player.statement("Xenia gives you Caitlin's staff.")
+                player.item("caitlins_staff", "Xenia gives you Caitlin's staff.")
             }
             if (!player.ownsItem("reeses_sword") && player.inventory.add("reeses_sword")) {
-                player.statement("Xenia gives you Reese's sword.")
+                player.item("reeses_sword", "Xenia gives you Reese's sword.")
             }
         }
     }
