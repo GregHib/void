@@ -1,6 +1,7 @@
 package content.area.tirannwn.isafdar
 
 import content.entity.combat.hit.damage
+import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -50,9 +51,34 @@ class IsafdarTraps : Script {
             clear("crossing_trap")
         }
 
+        entered("isafdar_tripwire_1", ::tripwire)
+        entered("isafdar_tripwire_2", ::tripwire)
+        entered("isafdar_tripwire_3", ::tripwire)
+
+        exited("isafdar_tripwire_1", ::exitTripwire)
+        exited("isafdar_tripwire_2", ::exitTripwire)
+        exited("isafdar_tripwire_3", ::exitTripwire)
+
         entered("isafdar_sticks_trap_1", ::sticks)
         entered("isafdar_sticks_trap_2", ::sticks)
         entered("isafdar_sticks_trap_3", ::sticks)
+    }
+
+    // Tagged "border" so walking at the wire crosses it like a border guard gate
+    fun tripwire(player: Player, definition: AreaDefinition) {
+        player.steps.update(noCollision = true, noRun = true)
+        if (player.contains("crossing_trap")) {
+            return
+        }
+        player["delay"] = 2
+        val wire = findTrap(definition, "tripwire") ?: return
+        player.arrowVolley(wire)
+        player.damage(random.nextInt(20, 41)) // TODO unknown damage
+        player.poison(player, 10)
+    }
+
+    fun exitTripwire(player: Player, definition: AreaDefinition) {
+        player.steps.update(noCollision = false, noRun = false)
     }
 
     fun sticks(player: Player, definition: AreaDefinition) {

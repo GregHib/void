@@ -26,6 +26,21 @@ y = [3173, 3175]
 x = [2276, 2278]
 y = [3261, 3263]
 
+[isafdar_tripwire_1]
+x = [2215]
+y = [3154, 3155]
+tags = ["border"]
+
+[isafdar_tripwire_2]
+x = [2220]
+y = [3153, 3154]
+tags = ["border"]
+
+[isafdar_tripwire_3]
+x = [2285, 2286]
+y = [3188]
+tags = ["border"]
+
 [isafdar_sticks_trap_1]
 x = [2200, 2202]
 y = [3169]
