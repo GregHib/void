@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 
 class IsafdarTraps : Script {
 
@@ -42,7 +41,7 @@ class IsafdarTraps : Script {
         objectOperate("Pass", "isafdar_sticks_trap") { (target) ->
             val (_, _, out, direction) = crossing(target)
             this["crossing_trap"] = true
-            if (Level.success(levels.get(Skill.Agility), 128..250)) { // TODO unknown rate
+            if (Level.success(levels.get(Skill.Agility), 31..156)) {
                 anim("human_walk_forward")
                 exactMoveDelay(out, delay = 60, direction = direction)
                 face(direction)
@@ -133,7 +132,7 @@ class IsafdarTraps : Script {
         sound("springtrap")
         anim("trap_stumble_back", delay = 10)
         exactMoveDelay(out, delay = 56, direction = direction, startDelay = 10)
-        damage(random.nextInt(20, 41)) // TODO unknown damage
+        damage(80)
     }
 
     fun Player.arrowVolley(wire: GameObject) {
