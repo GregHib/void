@@ -28,6 +28,10 @@ class Overload : Script {
             }
         }
 
+        playerDeath {
+            set("overload_refreshes_remaining", 0)
+        }
+
         timerStart("overload", ::start)
         timerTick("overload", ::tick)
         timerStop("overload", ::stop)
