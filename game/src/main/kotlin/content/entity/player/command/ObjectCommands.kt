@@ -6,11 +6,16 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAnimation
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 class ObjectCommands : Script {
@@ -24,6 +29,13 @@ class ObjectCommands : Script {
             intArg("ticks", optional = true),
             desc = "Spawn an object",
             handler = ::spawn,
+        )
+
+        adminCommand(
+            "objsave",
+            stringArg("path", desc = "Path to obj-spawns.toml (relative to data dir)", optional = true),
+            desc = "Save current object spawns to obj-spawns.toml and reload",
+            handler = ::saveObjectSpawns,
         )
 
         adminCommand(
@@ -66,5 +78,16 @@ class ObjectCommands : Script {
         val rotation = args.getOrNull(2)?.toIntOrNull() ?: 0
         val ticks = args.getOrNull(3)?.toIntOrNull() ?: -1
         GameObjects.add(id, player.tile, shape, rotation, ticks)
+    }
+
+    fun saveObjectSpawns(player: Player, args: List<String>) {
+        val files = configFiles()
+        val spawnPaths = files.list(Settings["spawns.objects"])
+        val path = if (args.isNotEmpty()) args[0] else spawnPaths.firstOrNull() ?: "obj-spawns.toml"
+        val file = File("./data/$path")
+        GameObjects.saveObjectSpawns(file)
+        player.message("Saved ${GameObjects.size} object spawns to $path")
+        loadObjectSpawns(files.list(Settings["spawns.objects"]))
+        player.message("Reloaded object spawns")
     }
 }

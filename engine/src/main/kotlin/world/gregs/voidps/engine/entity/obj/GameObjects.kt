@@ -22,6 +22,7 @@ import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import java.io.File
+import java.io.FileWriter
 
 /**
  * Stores GameObjects and modifications mainly for verifying interactions
@@ -369,6 +370,42 @@ object GameObjects : ZoneBatchUpdates.Sender {
         storeUnused = Settings["development.loadAllObjects", false]
         map.clear()
         replacements.clear()
+    }
+
+    /**
+     * Serializes all original object spawns to TOML format string
+     * Only includes objects that were originally set from cache/map (not replacements)
+     */
+    fun serializeObjectSpawns(): String {
+        val builder = StringBuilder()
+        builder.appendLine("spawns = [")
+        map.forEach { x, y, level, layer, value ->
+            if (value > 0 && !replaced(value)) {
+                val id = id(value)
+                val shape = shape(value)
+                val rotation = rotation(value)
+                val definition = ObjectDefinitions.getOrNull(id)
+                if (definition != null) {
+                    builder.append("    { id = \"${definition.id}\", x = $x, y = $y")
+                    if (level != 0) {
+                        builder.append(", level = $level")
+                    }
+                    builder.append(", type = $shape, rotation = $rotation },\n")
+                }
+            }
+        }
+        builder.append("]\n")
+        return builder.toString()
+    }
+
+    /**
+     * Saves current object spawns to the specified file path
+     */
+    fun saveObjectSpawns(file: File) {
+        file.parentFile?.mkdirs()
+        FileWriter(file).use { writer ->
+            writer.write(serializeObjectSpawns())
+        }
     }
 
     override fun send(player: Player, zone: Zone) {

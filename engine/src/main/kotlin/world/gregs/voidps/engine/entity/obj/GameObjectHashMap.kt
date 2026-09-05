@@ -73,6 +73,24 @@ class GameObjectHashMap {
         return size
     }
 
+    /**
+     * Iterates over all stored objects and applies the given block
+     * @param block Function receiving (x, y, level, layer, value) for each entry
+     */
+    fun forEach(block: (Int, Int, Int, Int, Int) -> Unit) {
+        for ((key, value) in data) {
+            val zone = key and 0xffffff
+            val tile = key ushr 24
+            val zoneX = zone ushr 13 and 0xff
+            val zoneY = zone ushr 5 and 0xff
+            val level = zone and 0x1f
+            val x = (zoneX shl 3) or (tile ushr 10 and 0x7)
+            val y = (zoneY shl 3) or (tile ushr 7 and 0x7)
+            val layer = tile ushr 5 and 0x3
+            block(x, y, level, layer, value)
+        }
+    }
+
     companion object {
         private const val EXPECTED_OBJECT_COUNT = 74_000
         private fun index(obj: GameObject): Int = index(obj.x, obj.y, obj.level, ObjectLayer.layer(obj.shape))
