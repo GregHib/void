@@ -39,12 +39,12 @@ class IsafdarTraps : Script {
         }
 
         objectOperate("Pass", "isafdar_sticks_trap") { (target) ->
-            val (_, _, out, direction) = crossing(target)
+            val (entry, _, out, direction) = crossing(target)
             this["crossing_trap"] = true
+            walkToDelay(entry.add(direction.inverse()), forceWalk = true)
+            walkOverDelay(entry)
             if (Level.success(levels.get(Skill.Agility), 31..156)) {
-                anim("human_walk_forward")
-                exactMoveDelay(out, delay = 60, direction = direction)
-                face(direction)
+                walkOverDelay(out)
                 message("You manage to skillfully pass the trap.")
             } else {
                 springTrap(target)
