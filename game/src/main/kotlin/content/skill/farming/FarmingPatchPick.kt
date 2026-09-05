@@ -1,6 +1,6 @@
 package content.skill.farming
 
-import content.skill.constitution.drink.JUJU_HERB_CHANCE
+import content.skill.constitution.drink.JUJU_HERB_ONE_IN
 import content.skill.constitution.drink.jujuActive
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -95,7 +95,7 @@ class FarmingPatchPick : Script {
                 message("You have run out of inventory space.", ChatType.Filter)
                 return@weakQueue
             }
-            if (jujuActive("juju_farming") && obj.id.startsWith("farming_herb_patch") && random.nextInt(JUJU_HERB_CHANCE) == 0) {
+            if (jujuActive("juju_farming") && obj.id.startsWith("farming_herb_patch") && random.nextInt(JUJU_HERB_ONE_IN) == 0) {
                 inventory.add(item.id)
             }
             if (tree) {
