@@ -115,4 +115,50 @@ internal class PotionEffectsTest : WorldTest() {
         assertTrue(player.inventory.contains("cooked_crab_meat_3"))
     }
 
+    @Test
+    fun `Extreme attack potion boosts attack past a super attack potion`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("extreme_attack_4")
+        player.experience.set(Skill.Attack, Level.experience(99))
+        player.levels.set(Skill.Attack, 99)
+
+        player.itemOption("Drink", "extreme_attack_4")
+
+        assertTrue(player.inventory.contains("extreme_attack_3"))
+        assertEquals(99 + 5 + 21, player.levels.get(Skill.Attack))
+    }
+
+    @Test
+    fun `Overload boosts ranged by the same amount as an extreme ranging potion`() {
+        val drinker = createPlayer(emptyTile)
+        drinker.inventory.add("extreme_ranging_4")
+        drinker.experience.set(Skill.Ranged, Level.experience(99))
+        drinker.levels.set(Skill.Ranged, 99)
+
+        drinker.itemOption("Drink", "extreme_ranging_4")
+
+        val overloaded = createPlayer(emptyTile)
+        overloaded.inventory.add("overload_4")
+        overloaded.experience.set(Skill.Constitution, Level.experience(99))
+        overloaded.levels.set(Skill.Constitution, 990)
+        overloaded.experience.set(Skill.Ranged, Level.experience(99))
+        overloaded.levels.set(Skill.Ranged, 99)
+
+        overloaded.itemOption("Drink", "overload_4")
+
+        assertEquals(drinker.levels.get(Skill.Ranged), overloaded.levels.get(Skill.Ranged))
+    }
+
+    @Test
+    fun `Super prayer potion restores more than a prayer potion`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("super_prayer_4")
+        player.experience.set(Skill.Prayer, Level.experience(99))
+        player.levels.set(Skill.Prayer, 1)
+
+        player.itemOption("Drink", "super_prayer_4")
+
+        assertTrue(player.inventory.contains("super_prayer_3"))
+        assertEquals(1 + 7 + 34, player.levels.get(Skill.Prayer))
+    }
 }
