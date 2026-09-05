@@ -99,11 +99,9 @@ class Overload : Script {
     }
 
     fun applyBoost(player: Player) {
-        player.levels.boost(Skill.Attack, 5, 0.22)
-        player.levels.boost(Skill.Strength, 5, 0.22)
-        player.levels.boost(Skill.Defence, 5, 0.22)
-        player.levels.boost(Skill.Magic, 7)
-        player.levels.boost(Skill.Ranged, 4, 0.1923)
+        for (skill in skills) {
+            player.extremeBoost(skill)
+        }
     }
 
     fun removeBoost(player: Player) {

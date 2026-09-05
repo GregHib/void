@@ -21,6 +21,17 @@ import java.util.concurrent.TimeUnit
 
 private fun Player.hasHolyItem() = equipped(EquipSlot.Cape).id.startsWith("prayer_cape") || carriesItem("holy_wrench")
 
+/**
+ * Overload applies the boost of all five extreme potions at once, so both share this definition.
+ */
+fun Player.extremeBoost(skill: Skill) {
+    when (skill) {
+        Skill.Magic -> levels.boost(Skill.Magic, 7)
+        Skill.Ranged -> levels.boost(Skill.Ranged, 4, 0.1923)
+        else -> levels.boost(skill, 5, 0.22)
+    }
+}
+
 private fun Player.restoreAllSkills() {
     for (skill in Skill.all) {
         if (skill == Skill.Constitution) {
@@ -41,6 +52,11 @@ fun Player.potionEffects(potion: String) {
             set("overload_refreshes_remaining", 20)
             timers.start("overload")
         }
+        "extreme_attack" -> extremeBoost(Skill.Attack)
+        "extreme_strength" -> extremeBoost(Skill.Strength)
+        "extreme_defence" -> extremeBoost(Skill.Defence)
+        "extreme_magic" -> extremeBoost(Skill.Magic)
+        "extreme_ranging" -> extremeBoost(Skill.Ranged)
         "attack_potion", "attack_mix" -> levels.boost(Skill.Attack, 3, 0.1)
         "strength_potion", "strength_mix" -> levels.boost(Skill.Strength, 3, 0.1)
         "defence_potion", "defence_mix" -> levels.boost(Skill.Defence, 3, 0.1)
@@ -83,6 +99,7 @@ fun Player.potionEffects(potion: String) {
             levels.drain(Skill.Ranged, 2, 0.1)
         }
         "prayer_potion", "prayer_mix" -> levels.restore(Skill.Prayer, 7, if (hasHolyItem()) 0.27 else 0.25)
+        "super_prayer" -> levels.restore(Skill.Prayer, 7, if (hasHolyItem()) 0.37 else 0.35)
         "antipoison", "antipoison_mix" -> antiPoison(90, TimeUnit.SECONDS)
         "super_antipoison", "super_antipoison_mix" -> antiPoison(6)
         "antipoison+", "antidote+_mix" -> antiPoison(9)
