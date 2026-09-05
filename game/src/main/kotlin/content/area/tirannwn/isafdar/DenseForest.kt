@@ -46,20 +46,22 @@ class DenseForest : Script {
                 "dense_forest", "dense_forest_hard_2" -> {
                     anim("dense_forest_climb", delay = 30)
                     sound("forest_lowwall", delay = 30)
-                    exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
                 }
                 "dense_forest_2", "dense_forest_hard" -> {
                     anim("dense_forest_double_squeeze", delay = 30)
                     sound("forest_doublesqueeze", delay = 30)
-                    exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
-                    clearAnim()
                 }
                 else -> {
                     anim("dense_forest_squeeze", delay = 30)
                     sound("forest_sidesqueeze", delay = 40)
-                    exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
                 }
             }
+            exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
+            if (target.id == "dense_forest_2" || target.id == "dense_forest_hard") {
+                clearAnim()
+            }
+            // Interacting faced the object, which is now behind; keep facing the way travelled
+            face(direction)
         }
     }
 }

@@ -45,11 +45,12 @@ class LeafTraps : Script {
             if (Level.success(levels.get(Skill.Agility), 128..250)) { // TODO unknown rate
                 anim("leaf_trap_jump", delay = 20)
                 sound("jump", delay = 20)
-                exactMoveDelay(dest, delay = 79, direction = direction, startDelay = 30)
+                exactMoveDelay(dest, delay = 60, direction = direction, startDelay = 30)
                 message("You safely jump across.")
             } else {
                 fall(this, site)
             }
+            delay()
             clear("crossing_trap")
         }
 
