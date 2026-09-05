@@ -40,11 +40,11 @@ class IsafdarTraps : Script {
         }
 
         objectOperate("Pass", "isafdar_sticks_trap") { (target) ->
-            val (_, _, _, direction) = crossing(target)
+            val (_, _, out, direction) = crossing(target)
             this["crossing_trap"] = true
             if (Level.success(levels.get(Skill.Agility), 128..250)) { // TODO unknown rate
                 anim("human_walk_forward")
-                exactMoveDelay(target.tile.add(direction.delta.x * 2, direction.delta.y * 2), delay = 60, direction = direction)
+                exactMoveDelay(out, delay = 60, direction = direction)
                 face(direction)
                 message("You manage to skillfully pass the trap.")
             } else {
@@ -59,11 +59,11 @@ class IsafdarTraps : Script {
         entered("isafdar_tripwire_4", ::tripwire)
         entered("isafdar_tripwire_5", ::tripwire)
 
-        exited("isafdar_tripwire_1", ::exitTripwire)
-        exited("isafdar_tripwire_2", ::exitTripwire)
-        exited("isafdar_tripwire_3", ::exitTripwire)
-        exited("isafdar_tripwire_4", ::exitTripwire)
-        exited("isafdar_tripwire_5", ::exitTripwire)
+        exited("isafdar_tripwire_1", ::exitTrap)
+        exited("isafdar_tripwire_2", ::exitTrap)
+        exited("isafdar_tripwire_3", ::exitTrap)
+        exited("isafdar_tripwire_4", ::exitTrap)
+        exited("isafdar_tripwire_5", ::exitTrap)
 
         entered("isafdar_sticks_trap_1", ::sticks)
         entered("isafdar_sticks_trap_2", ::sticks)
@@ -71,6 +71,13 @@ class IsafdarTraps : Script {
         entered("isafdar_sticks_trap_4", ::sticks)
         entered("isafdar_sticks_trap_5", ::sticks)
         entered("isafdar_sticks_trap_6", ::sticks)
+
+        exited("isafdar_sticks_trap_1", ::exitTrap)
+        exited("isafdar_sticks_trap_2", ::exitTrap)
+        exited("isafdar_sticks_trap_3", ::exitTrap)
+        exited("isafdar_sticks_trap_4", ::exitTrap)
+        exited("isafdar_sticks_trap_5", ::exitTrap)
+        exited("isafdar_sticks_trap_6", ::exitTrap)
     }
 
     // Tagged "border" so walking at the wire crosses it like a border guard gate
@@ -87,11 +94,14 @@ class IsafdarTraps : Script {
         player.poison(player, 20)
     }
 
-    fun exitTripwire(player: Player, definition: AreaDefinition) {
+    fun exitTrap(player: Player, definition: AreaDefinition) {
         player.steps.update(noCollision = false, noRun = false)
     }
 
+    // Tagged "border" so walking at the sticks crosses them like a border guard
+    // gate; doing so without interacting always springs the trap
     fun sticks(player: Player, definition: AreaDefinition) {
+        player.steps.update(noCollision = true, noRun = true)
         if (player.contains("crossing_trap")) {
             return
         }

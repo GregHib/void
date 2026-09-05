@@ -190,7 +190,7 @@ class IsafdarTest : WorldTest() {
         player.objectOption(sticks, "Pass")
         tick(10)
 
-        assertEquals(Tile(2237, 3181), player.tile)
+        assertEquals(Tile(2238, 3181), player.tile)
         assertTrue(player.containsMessage("You manage to skillfully pass the trap."))
     }
 
@@ -214,7 +214,7 @@ class IsafdarTest : WorldTest() {
     fun `Walking over the sticks trap sets it off`() {
         val player = createPlayer(Tile(2234, 3181))
 
-        player.walk(Tile(2238, 3181))
+        player.walk(Tile(2236, 3181))
         tick(10)
 
         assertEquals(Tile(2238, 3181), player.tile)
