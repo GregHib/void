@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test
 import walk
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
@@ -138,12 +139,15 @@ class IsafdarTest : WorldTest() {
     fun `Walking at the tripwire crosses it and fires the arrow volley`() {
         val player = createPlayer(Tile(2215, 3156))
         player.running = true
+        player.experience.set(Skill.Constitution, Level.experience(Skill.Constitution, 99))
+        player.levels.set(Skill.Constitution, 990)
 
         player.walk(Tile(2215, 3154))
         tick(10)
 
         assertEquals(Tile(2215, 3153), player.tile)
-        assertTrue(player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution))
+        assertEquals(890, player.levels.get(Skill.Constitution))
+        assertEquals(20, player["poison", 0])
     }
 
     @Test
@@ -163,6 +167,8 @@ class IsafdarTest : WorldTest() {
     fun `Failing to step over tripwire deals damage`() {
         val player = createPlayer(Tile(2215, 3153))
         player.levels.set(Skill.Agility, 1)
+        player.experience.set(Skill.Constitution, Level.experience(Skill.Constitution, 99))
+        player.levels.set(Skill.Constitution, 990)
         val wire = GameObjects.find(Tile(2215, 3154), "tripwire")
         setRandom(object : FakeRandom() {
             override fun nextBits(bitCount: Int): Int = Int.MAX_VALUE
@@ -173,7 +179,7 @@ class IsafdarTest : WorldTest() {
 
         assertEquals(Tile(2215, 3156), player.tile)
         assertTrue(player.containsMessage("You snag the trip wire as you step over it."))
-        assertTrue(player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution))
+        assertEquals(890, player.levels.get(Skill.Constitution))
     }
 
     @Test
