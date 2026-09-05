@@ -145,11 +145,32 @@ internal class JujuTest : WorldTest() {
             "saradomins_blessing",
             "guthixs_gift",
             "zamoraks_favour",
-            "juju_mining_bank",
-            "juju_woodcutting_bank",
         )) {
             assertTrue(VariableDefinitions.get(key).persist, key)
         }
+    }
+
+    @Test
+    fun `Banking windows do not persist across logout`() {
+        for (key in listOf("juju_mining_bank", "juju_woodcutting_bank")) {
+            assertFalse(VariableDefinitions.get(key).persist, key)
+        }
+    }
+
+    @Test
+    fun `A full bank closes the banking window`() {
+        setRandom(
+            object : FakeRandom() {
+                override fun nextInt(from: Int, until: Int): Int = if (until == 100) 0 else from
+            },
+        )
+        val player = createPlayer(emptyTile)
+        player.startJuju("juju_mining")
+        fillBank(player)
+
+        player.jujuBank("juju_mining", "copper_ore", 1)
+
+        assertFalse(player.jujuActive("juju_mining_bank"))
     }
 
     @Test

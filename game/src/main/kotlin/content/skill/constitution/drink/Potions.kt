@@ -4,11 +4,17 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 
+/**
+ * The vials a dosed potion is left in. Matched exactly rather than by substring, so an unrelated
+ * container such as a dungeoneering vial cannot start being read as a potion.
+ */
+private val VIALS = setOf("vial", "juju_vial")
+
 class Potions : Script {
 
     init {
         consumed("*") { item, _ ->
-            if (!item.def["empty", ""].contains("vial")) {
+            if (item.def["empty", ""] !in VIALS) {
                 return@consumed
             }
             val separator = item.id.lastIndexOf('_')

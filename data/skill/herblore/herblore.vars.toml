@@ -34,13 +34,15 @@ persist = true
 format = "int"
 persist = true
 
+# Transient banking window, deliberately not carried across a logout.
 [juju_mining_bank]
 format = "int"
-persist = true
+persist = false
 
+# Transient banking window, deliberately not carried across a logout.
 [juju_woodcutting_bank]
 format = "int"
-persist = true
+persist = false
 
 [overload_refreshes_remaining]
 format = "int"

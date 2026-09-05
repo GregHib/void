@@ -43,8 +43,8 @@ fun Player.jujuActive(effect: String): Boolean = timers.contains(effect)
 
 /**
  * Rolls for the banking window on every resource gathered, then banks [amount] of [item] while
- * that window is open. Returns false when the bank cannot take them, so the caller keeps its
- * normal inventory handling rather than destroying the resource.
+ * that window is open. Returns false when the bank cannot take them, closing the window so the
+ * caller keeps its normal inventory handling rather than destroying the resource.
  */
 fun Player.jujuBank(effect: String, item: String, amount: Int): Boolean {
     if (jujuActive(effect) && random.nextInt(100) < BANK_PERCENT) {
@@ -55,6 +55,8 @@ fun Player.jujuBank(effect: String, item: String, amount: Int): Boolean {
         return false
     }
     if (!bank.add(item, amount)) {
+        timers.stop("${effect}_bank")
+        message("Your bank is too full to send anything else to it.")
         return false
     }
     gfx("${effect}_bank")
@@ -65,7 +67,7 @@ class Juju : Script {
 
     init {
         playerSpawn {
-            for (timer in EFFECTS + WINDOWS) {
+            for (timer in EFFECTS) {
                 if (get(timer, 0) > 0) {
                     timers.restart(timer)
                 }
