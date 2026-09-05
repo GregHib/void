@@ -1,35 +1,20 @@
 package content.entity.player.command
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.buffer.read.ArrayReader
-import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.Index
-import world.gregs.voidps.cache.definition.data.MapDefinition
-import world.gregs.voidps.cache.definition.data.MapObject
-import world.gregs.voidps.cache.definition.encoder.MapObjectEncoder
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
-import world.gregs.voidps.type.Region
+import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
+import world.gregs.voidps.engine.entity.obj.readObjectSpawns
 import world.gregs.voidps.type.Tile
 import java.io.File
-import java.util.concurrent.ConcurrentHashMap
 
-/**
- * Persists scene-editor placements / removals for admins:
- * 1. live [GameObjects] + collision (walk / chop work immediately)
- * 2. data/area/scene/editor.obj-spawns.toml (adds survive restart)
- * 3. JS5 map archive lX_Y rewritten for both adds and deletes + invalidate map cache
- */
 object SceneEditorPersist {
     private val logger = InlineLogger()
-
-    private val placed = ConcurrentHashMap<Long, Entry>()
-    private val removed = ConcurrentHashMap<Long, Entry>()
+    private val lock = Any()
 
     data class Entry(
         val objectId: Int,
@@ -38,50 +23,55 @@ object SceneEditorPersist {
         val plane: Int,
         val rotation: Int,
         val shape: Int,
+        val remove: Boolean,
     )
 
-    fun place(objectId: Int, x: Int, y: Int, plane: Int, rotation: Int = 0, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT): String {
-        val def = ObjectDefinitions.getOrNull(objectId) ?: return "unknown object id $objectId"
-        val tile = Tile(x, y, plane)
-        val rot = rotation and 3
-        val key = packKey(x, y, plane, shape)
-        removeLive(objectId, tile, shape, rot)
-        val obj = GameObject(def.id, tile, shape, rot)
-        GameObjects.add(obj, collision = true)
-        val entry = Entry(def.id, x, y, plane, rot, shape)
-        placed[key] = entry
-        removed.remove(key)
-        return "placed ${def.stringId.ifBlank { def.id.toString() }} @ $x,$y,$plane rot=$rot"
+    fun place(objectId: Int, x: Int, y: Int, plane: Int, rotation: Int = 0, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT): String = synchronized(lock) {
+        val definition = ObjectDefinitions.getOrNull(objectId) ?: return "unknown object id $objectId"
+        val entry = Entry(definition.id, x, y, plane, rotation and 3, shape, remove = false)
+        update(entry)
+        reload()
+        "placed ${definition.stringId.ifBlank { definition.id.toString() }} @ $x,$y,$plane rot=${entry.rotation}"
     }
 
-    fun remove(objectId: Int, x: Int, y: Int, plane: Int, rotation: Int = 0, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT): String {
+    fun remove(objectId: Int, x: Int, y: Int, plane: Int, rotation: Int = 0, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT): String = synchronized(lock) {
         val tile = Tile(x, y, plane)
-        val rot = rotation and 3
-        val key = packKey(x, y, plane, shape)
-        val had = removeLive(objectId, tile, shape, rot)
-        placed.remove(key)
-        removed[key] = Entry(objectId, x, y, plane, rot, shape)
-        return if (had) {
+        val removed = removeLive(objectId, tile, shape, rotation and 3)
+        update(Entry(objectId, x, y, plane, rotation and 3, shape, remove = true))
+        reload()
+        if (removed) {
             "removed $objectId @ $x,$y,$plane (collision cleared)"
         } else {
             "queued remove $objectId @ $x,$y,$plane (not in live map)"
         }
     }
 
-    fun flush(): String {
-        if (placed.isEmpty() && removed.isEmpty()) {
-            return "nothing to flush"
-        }
-        val places = placed.values.toList()
-        val removes = removed.values.toList()
-        writeToml(places)
-        val regions = writeJs5(places, removes)
-        invalidateMapCache()
-        logger.info { "scene flush places=${places.size} removes=${removes.size} regions=$regions" }
-        return "flushed +${places.size}/-${removes.size} across $regions region(s) (toml+js5)"
+    fun flush(): String = synchronized(lock) {
+        val entries = readEntries()
+        reload()
+        logger.info { "scene editor reloaded ${entries.size} persisted changes" }
+        "reloaded ${entries.size} scene-editor change(s) from ${file.name}"
     }
 
-    fun status(): String = "pending=+${placed.size}/-${removed.size}"
+    fun status(): String = synchronized(lock) {
+        val entries = readEntries()
+        "stored=+${entries.count { !it.remove }}/-${entries.count { it.remove }}"
+    }
+
+    private fun update(entry: Entry) {
+        val entries = readEntries().toMutableList()
+        val index = entries.indexOfFirst { it.x == entry.x && it.y == entry.y && it.plane == entry.plane && it.shape == entry.shape }
+        if (index == -1) {
+            entries += entry
+        } else {
+            entries[index] = entry
+        }
+        writeToml(entries)
+    }
+
+    private fun reload() {
+        loadObjectSpawns(configFiles().list(Settings["spawns.objects"]))
+    }
 
     private fun removeLive(objectId: Int, tile: Tile, shape: Int, rotation: Int): Boolean {
         val byShape = GameObjects.getShape(tile, shape)
@@ -102,117 +92,38 @@ object SceneEditorPersist {
         return false
     }
 
-    private fun packKey(x: Int, y: Int, plane: Int, shape: Int): Long =
-        (x.toLong() and 0x3fff) or ((y.toLong() and 0x3fff) shl 14) or ((plane.toLong() and 3) shl 28) or ((shape.toLong() and 0x1f) shl 30)
+    private fun readEntries(): List<Entry> {
+        if (!file.exists()) {
+            return emptyList()
+        }
+        return readObjectSpawns(listOf(file.path)).mapNotNull { spawn ->
+            val objectId = spawn.id.toIntOrNull() ?: ObjectDefinitions.getOrNull(spawn.id)?.id ?: return@mapNotNull null
+            Entry(objectId, spawn.x, spawn.y, spawn.level, spawn.rotation and 3, spawn.type, spawn.remove)
+        }
+    }
 
     private fun writeToml(entries: List<Entry>) {
-        val dir = File(Settings["storage.data"], "area/scene")
-        if (!dir.exists() && !dir.mkdirs()) {
-            throw IllegalStateException("cannot create ${dir.absolutePath}")
-        }
-        val file = File(dir, "editor.obj-spawns.toml")
-        val sb = StringBuilder()
-        sb.append("# Auto-generated by scene editor flush — do not hand-edit.\n")
-        sb.append("spawns = [\n")
-        for (e in entries.sortedWith(compareBy({ it.x }, { it.y }, { it.plane }))) {
-            val id = ObjectDefinitions.getOrNull(e.objectId)?.stringId?.takeIf { it.isNotBlank() }
-                ?: e.objectId.toString()
-            sb.append("    { id = \"").append(id).append("\", x = ").append(e.x)
-                .append(", y = ").append(e.y).append(", level = ").append(e.plane)
-                .append(", type = ").append(e.shape).append(", rotation = ").append(e.rotation)
-                .append(" },\n")
-        }
-        sb.append("]\n")
-        file.writeText(sb.toString())
-    }
-
-    private fun writeJs5(places: List<Entry>, removes: List<Entry>): Int {
-        // Runtime FileCache/MemoryCache is read-only; open a writable CacheDelegate for JS5 rewrite.
-        val cache = CacheDelegate(Settings["storage.cache.path"])
-        try {
-            return writeJs5(cache, places, removes)
-        } finally {
-            cache.close()
-        }
-    }
-
-    private fun writeJs5(cache: Cache, places: List<Entry>, removes: List<Entry>): Int {
-        val byRegion = LinkedHashMap<Region, MutableList<Pair<String, Entry>>>()
-        fun bucket(kind: String, e: Entry) {
-            val region = Tile(e.x, e.y, e.plane).region
-            byRegion.getOrPut(region) { mutableListOf() }.add(kind to e)
-        }
-        for (e in removes) bucket("remove", e)
-        for (e in places) bucket("place", e)
-        for ((region, list) in byRegion) {
-            val def = MapDefinition(region.id)
-            decodeUnmodified(cache, def)
-            for ((kind, e) in list) {
-                val localX = e.x and 0x3f
-                val localY = e.y and 0x3f
-                if (kind == "remove") {
-                    def.objects.removeAll {
-                        it.id == e.objectId && it.x == localX && it.y == localY &&
-                            it.level == e.plane && it.shape == e.shape
+        file.parentFile.mkdirs()
+        file.writeText(
+            buildString {
+                appendLine("# Auto-generated by scene editor. Do not hand-edit.")
+                appendLine("spawns = [")
+                for (entry in entries.sortedWith(compareBy({ it.x }, { it.y }, { it.plane }, { it.shape }))) {
+                    val id = ObjectDefinitions.getOrNull(entry.objectId)?.stringId?.takeIf { it.isNotBlank() }
+                        ?: entry.objectId.toString()
+                    append("    { id = \"").append(id).append("\", x = ").append(entry.x)
+                        .append(", y = ").append(entry.y).append(", level = ").append(entry.plane)
+                        .append(", type = ").append(entry.shape).append(", rotation = ").append(entry.rotation)
+                    if (entry.remove) {
+                        append(", remove = true")
                     }
-                } else {
-                    val already = def.objects.any {
-                        it.id == e.objectId && it.x == localX && it.y == localY &&
-                            it.level == e.plane && it.shape == e.shape
-                    }
-                    if (!already) {
-                        def.objects.add(MapObject(e.objectId, localX, localY, e.plane, e.shape, e.rotation))
-                    }
+                    appendLine(" },")
                 }
-            }
-            val writer = BufferWriter(256_000)
-            with(MapObjectEncoder()) {
-                writer.encode(def)
-            }
-            cache.write(Index.MAPS, "l${region.x}_${region.y}", writer.toArray())
-        }
-        cache.update()
-        return byRegion.size
+                appendLine("]")
+            },
+        )
     }
 
-    private fun decodeUnmodified(cache: Cache, definition: MapDefinition) {
-        val regionX = definition.id shr 8
-        val regionY = definition.id and 0xff
-        val data = cache.data(Index.MAPS, "l${regionX}_$regionY") ?: return
-        val reader = ArrayReader(data)
-        var objectId = -1
-        while (true) {
-            val skip = reader.readLargeSmart()
-            if (skip == 0) {
-                break
-            }
-            objectId += skip
-            var tile = 0
-            while (true) {
-                val loc = reader.readSmart()
-                if (loc == 0) {
-                    break
-                }
-                tile += loc - 1
-                val localX = tile shr 6 and 0x3f
-                val localY = tile and 0x3f
-                val level = tile shr 12
-                val packed = reader.readUnsignedByte()
-                val shape = packed shr 2
-                val rotation = packed and 0x3
-                if (level >= 0 && level < 4) {
-                    definition.objects.add(MapObject(objectId, localX, localY, level, shape, rotation))
-                }
-            }
-        }
-    }
-
-    private fun invalidateMapCache() {
-        if (!Settings["storage.caching.active", false]) {
-            return
-        }
-        val path = Settings["storage.caching.path"]
-        File(path, Settings["storage.caching.objects"]).delete()
-        File(path, Settings["storage.caching.collisions"]).delete()
-    }
+    private val file: File
+        get() = File(Settings["storage.data"], "area/scene/editor.obj-spawns.toml")
 }

@@ -11,9 +11,8 @@ import world.gregs.voidps.engine.entity.obj.ObjectShape
 /**
  * Admin hooks used by the void-client scene editor (`ed save`).
  *
- * - `scene_place <id> <x> <y> <plane> [rot] [shape]` — live GameObjects add
- * - `scene_remove <id> <x> <y> <plane> [rot] [shape]` — live remove + clear collision
- * - `scene_flush` — write obj-spawns.toml + JS5 `lX_Y` (adds + deletes) + drop map cache
+ * Each place/remove command updates editor.obj-spawns.toml and reloads object spawns.
+ * `scene_flush` explicitly reloads the persisted scene changes for client compatibility.
  */
 class SceneEditorCommands : Script {
 
@@ -26,7 +25,7 @@ class SceneEditorCommands : Script {
             intArg("plane"),
             intArg("rotation", optional = true),
             intArg("shape", optional = true),
-            desc = "Place a scene-editor object into the live world (and queue for flush)",
+            desc = "Place a scene-editor object, persist it, and refresh object spawns",
             handler = ::place,
         )
         adminCommand(
@@ -37,17 +36,17 @@ class SceneEditorCommands : Script {
             intArg("plane"),
             intArg("rotation", optional = true),
             intArg("shape", optional = true),
-            desc = "Remove a world object and clear its collision (queue for JS5 flush)",
+            desc = "Remove a scene object, persist it, and refresh object spawns",
             handler = ::remove,
         )
         adminCommand(
             "scene_flush",
-            desc = "Persist queued scene objects to obj-spawns.toml + JS5 map archives",
+            desc = "Reload persisted scene-editor object changes",
             handler = ::flush,
         )
         adminCommand(
             "scene_status",
-            desc = "Show queued scene-editor placements / removals",
+            desc = "Show persisted scene-editor placements / removals",
             handler = ::status,
         )
     }

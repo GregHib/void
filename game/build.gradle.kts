@@ -9,7 +9,6 @@ plugins {
 
 dependencies {
     implementation(project(":engine"))
-    implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":network"))
     implementation(project(":types"))
