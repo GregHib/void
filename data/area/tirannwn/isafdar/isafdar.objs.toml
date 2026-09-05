@@ -1,0 +1,72 @@
+[tripwire]
+id = 3921
+examine = "I wonder who set this here."
+
+[isafdar_sticks_trap]
+id = 3922
+examine = "A suspicious looking bundle of sticks."
+
+[isafdar_leaves]
+id = 3923
+examine = "Are those leaves hiding something?"
+
+[isafdar_leaves_2]
+id = 3924
+examine = "Are those leaves hiding something?"
+
+[isafdar_leaves_3]
+id = 3925
+examine = "Are those leaves hiding something?"
+
+[isafdar_protruding_rocks]
+id = 3927
+examine = "Perhaps I could climb up these."
+
+[isafdar_log_balance]
+id = 3931
+examine = "A slippery looking log."
+
+[isafdar_log_balance_2]
+id = 3932
+examine = "A slippery looking log."
+
+[dense_forest]
+id = 3937
+examine = "Very dense forest."
+
+[dense_forest_2]
+id = 3938
+examine = "Very dense forest."
+
+[dense_forest_3]
+id = 3939
+examine = "Very dense forest."
+
+[dense_forest_hard]
+id = 3998
+level = 56
+examine = "Very dense forest."
+
+[dense_forest_hard_2]
+id = 3999
+level = 56
+examine = "Very dense forest."
+
+[lletya_tree_entrance]
+id = 8742
+examine = "An especially dense patch of trees."
+
+[elven_overpass_rocks_up]
+id = 9296
+examine = "A rocky cliff face."
+
+[elven_overpass_rocks_down]
+id = 9297
+examine = "A rocky cliff face."
+
+[isafdar_cave_entrance]
+id = 4006
+examine = "A dark cave entrance."
+
+[isafdar_arrow_trap]
+id = 3920

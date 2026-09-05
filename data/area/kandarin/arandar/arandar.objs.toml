@@ -1,0 +1,11 @@
+[arandar_heavy_gate]
+id = 3944
+examine = "A heavy wooden gate."
+
+[arandar_heavy_gate_2]
+id = 3945
+examine = "A heavy wooden gate."
+
+[arandar_log_balance]
+id = 3933
+examine = "A slippery looking log."

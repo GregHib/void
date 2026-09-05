@@ -1,0 +1,32 @@
+[tripwire_step_over]
+id = 1236
+
+[trap_stumble_back]
+id = 1441
+
+[leaf_trap_stumble]
+id = 764
+
+[leaf_trap_jump]
+id = 1115
+
+[pit_getup]
+id = 534
+
+[dense_forest_climb]
+id = 839
+
+[dense_forest_squeeze]
+id = 1237
+
+[elven_overpass_climb_up]
+id = 2050
+
+[elven_overpass_climb_down]
+id = 2049
+
+[woodspring]
+id = 1219
+
+[arrowtrip]
+id = 1213
