@@ -80,6 +80,14 @@ fun Player.potionEffects(potion: String) {
             levels.boost(Skill.Strength, 3, 0.1)
         }
         "summoning_potion", "summoning_potion_stealing_creation" -> levels.boost(Skill.Summoning, 7, 0.25)
+        "juju_mining_potion" -> startJuju("juju_mining")
+        "juju_woodcutting_potion" -> startJuju("juju_woodcutting")
+        "juju_farming_potion" -> startJuju("juju_farming")
+        "juju_fishing_potion" -> startJuju("juju_fishing")
+        "scentless_potion" -> startJuju("scentless")
+        "saradomins_blessing" -> startJuju("saradomins_blessing")
+        "guthixs_gift" -> startJuju("guthixs_gift")
+        "zamoraks_favour" -> startJuju("zamoraks_favour")
         "relicyms_balm", "relicyms_mix" -> cureDisease()
         "sanfew_serum" -> {
             antiPoison(6)
