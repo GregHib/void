@@ -184,6 +184,7 @@ class Mining : Script {
             1 -> player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
             2 -> player.message("You manage to mine two ${ore.toLowerSpaceCase().plural(added)}!")
             3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
+            4 -> player.message("You manage to mine four ${ore.toLowerSpaceCase().plural(added)}!")
             else -> player.inventoryFull()
         }
         if (diaryDoubleOre(player, ore)) {
