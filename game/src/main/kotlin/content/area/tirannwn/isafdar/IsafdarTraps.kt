@@ -31,7 +31,9 @@ class IsafdarTraps : Script {
             } else {
                 message("You snag the trip wire as you step over it.")
                 arrowVolley(target)
-                damage(random.nextInt(20, 41)) // TODO unknown damage
+                damage(50)
+                damage(50)
+                poison(this, 20)
             }
             walkOverDelay(out)
             clear("crossing_trap")
@@ -73,8 +75,9 @@ class IsafdarTraps : Script {
         player["delay"] = 2
         val wire = findTrap(definition, "tripwire") ?: return
         player.arrowVolley(wire)
-        player.damage(random.nextInt(20, 41)) // TODO unknown damage
-        player.poison(player, 10)
+        player.damage(50)
+        player.damage(50)
+        player.poison(player, 20)
     }
 
     fun exitTripwire(player: Player, definition: AreaDefinition) {
@@ -124,7 +127,7 @@ class IsafdarTraps : Script {
                 val tile = if (axisX) trapTile.addY(side) else trapTile.addX(side)
                 val launcher = GameObjects.findOrNull(tile, "isafdar_arrow_trap") ?: continue
                 launcher.anim("arrowtrip")
-                launcher.tile.shoot("iron_arrow", this, flightTime = 40, height = 16, endHeight = 140, curve = 45)
+                launcher.tile.shoot("iron_arrow", this, flightTime = 20, height = 16, endHeight = 45, curve = 45)
             }
         }
         sound("tripwire_with_arrows", delay = 20)
