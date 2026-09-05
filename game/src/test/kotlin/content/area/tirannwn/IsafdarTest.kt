@@ -135,6 +135,18 @@ class IsafdarTest : WorldTest() {
     }
 
     @Test
+    fun `Walking at the tripwire crosses it and fires the arrow volley`() {
+        val player = createPlayer(Tile(2215, 3156))
+        player.running = true
+
+        player.walk(Tile(2215, 3154))
+        tick(10)
+
+        assertEquals(Tile(2215, 3153), player.tile)
+        assertTrue(player.levels.get(Skill.Constitution) < player.levels.getMax(Skill.Constitution))
+    }
+
+    @Test
     fun `Step over tripwire`() {
         val player = createPlayer(Tile(2215, 3153))
         player.levels.set(Skill.Agility, 1)
