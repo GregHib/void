@@ -67,3 +67,6 @@ examine = "A rocky cliff face."
 [isafdar_cave_entrance]
 id = 4006
 examine = "A dark cave entrance."
+
+[isafdar_arrow_trap]
+id = 3920

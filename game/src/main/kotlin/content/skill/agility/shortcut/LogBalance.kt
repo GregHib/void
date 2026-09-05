@@ -4,7 +4,6 @@ import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
@@ -112,14 +111,16 @@ class LogBalance : Script {
         if (tile != from) {
             return
         }
-        val wasRunning = running
-        running = false
         message("You walk carefully across the slippery log...", ChatType.Filter)
         delay()
         renderEmote("rope_balance")
-        walkOverDelay(to)
+        walkTo(to, noCollision = true, forceWalk = true)
+        var steps = 0
+        while (tile != to && steps++ < 10) {
+            sound("log_balance")
+            delay()
+        }
         clearRenderEmote()
-        running = wasRunning
         exp(Skill.Agility, 7.5)
         message("... and make it safely to the other side.", ChatType.Filter)
     }
