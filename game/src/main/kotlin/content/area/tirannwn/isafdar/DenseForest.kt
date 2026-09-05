@@ -43,11 +43,11 @@ class DenseForest : Script {
             val dest = tile.add(direction.delta.x * 3, direction.delta.y * 3)
             face(direction)
             when (target.id) {
-                "dense_forest", "dense_forest_hard_2" -> {
+                "dense_forest", "dense_forest_2", "dense_forest_hard_2" -> {
                     anim("dense_forest_climb", delay = 30)
                     sound("forest_lowwall", delay = 30)
                 }
-                "dense_forest_2", "dense_forest_hard" -> {
+                "dense_forest_hard" -> {
                     anim("dense_forest_double_squeeze", delay = 30)
                     sound("forest_doublesqueeze", delay = 30)
                 }
@@ -57,7 +57,7 @@ class DenseForest : Script {
                 }
             }
             exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
-            if (target.id == "dense_forest_2" || target.id == "dense_forest_hard") {
+            if (target.id == "dense_forest_hard") {
                 clearAnim()
             }
             // Interacting faced the object, which is now behind; keep facing the way travelled
