@@ -1011,6 +1011,7 @@ examine = "Wooden crate for storage."
 
 [crate_258]
 id = 29470
+examine = "A tier 4 barbecue, used to prepare rations."
 
 [crate_259]
 id = 30013
@@ -1136,6 +1137,7 @@ examine = "A wooden crate."
 
 [crate_290]
 id = 37587
+examine = "A shelf of body parts."
 
 [crate_291]
 id = 37588
@@ -1190,9 +1192,11 @@ examine = "For storage."
 
 [crate_304]
 id = 40458
+examine = "This patch has some livid growing in it. Pauline will harvest it soon."
 
 [crate_305]
 id = 40459
+examine = "This patch has some livid growing in it. Pauline will harvest it soon."
 
 [crate_306]
 id = 40495

@@ -1,0 +1,9 @@
+[bluemoon_chest]
+id = 2079
+
+[bluemoon_chest_open]
+id = 2080
+
+[raw_chicken_crate]
+id = 15032
+examine = "A wooden crate."

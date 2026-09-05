@@ -11,11 +11,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -27,6 +29,7 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
         "brimhaven",
         "port_khazard",
         "port_sarim",
+        "musa_point",
     )
 
     init {
@@ -39,7 +42,6 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
             interfaces.sendVisibility(id, "port_phasmatys", hasQuestRequirements("port_phasmatys") && prices.containsKey("port_phasmatys"))
             interfaces.sendVisibility(id, "oo_glog", hasQuestRequirements("oo_glog") && prices.containsKey("oo_glog"))
             interfaces.sendVisibility(id, "crandor", false)
-            interfaces.sendVisibility(id, "musa_point", false)
             for (location in locations) {
                 interfaces.sendVisibility(id, location, location != currentLocation && prices.containsKey(location))
             }
@@ -80,17 +82,16 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
                         option<Sad>("No thanks.")
                     }
                 }
-                option("Yes, I would like to charter a ship.") {
-                    player<Neutral>("Yes, I would like to charter a ship.")
-                    npc<Neutral>("Certainly sir. Where would you like to go?")
-                }
+                charter(target)
                 option<Sad>("No thanks.")
             }
         }
 
         npcOperate("Charter", "trader_stan,trader_crewmember*") { (target) ->
-            set("charter_ship", location(target))
-            open("charter_ship_map")
+            if (!checkBans(target)) {
+                set("charter_ship", location(target))
+                open("charter_ship_map")
+            }
         }
 
         interfaceOption("Ok", "charter_ship_map:*") {
@@ -136,6 +137,20 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
         }
     }
 
+    private suspend fun Player.checkBans(target: NPC): Boolean {
+        if (inventory.contains("karamjan_rum") && (target.tile in Areas["greater_brimhaven"] || target.tile in Areas["karamja"])) {
+            npc<Neutral>("Sorry, we can't take you anywhere if you are trying to smuggle that rum.")
+            return true
+        } else if (carriesItem("bedsheet_ectoplasm")) {
+            npc<Neutral>("Is that your bedsheet covered in filthy slime?")
+            return true
+        } else if (carriesItem("bedsheet")) {
+            npc<Neutral>("Sorry, we aren't a laundry ship. You'll need to leave those dirty bedsheets behind.")
+            return true
+        }
+        return false
+    }
+
     fun ChoiceOption.trading() {
         option<Neutral>("Yes, let's see what you're trading.") {
             openShop("trader_stans_trading_post")
@@ -144,16 +159,18 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
 
     fun ChoiceOption.charter(target: NPC) {
         option<Neutral>("Yes, I would like to charter a ship.") {
-            npc<Neutral>("Certainly sir. Where would you like to go?")
-            set("charter_ship", location(target))
-            open("charter_ship_map")
+            if (!checkBans(target)) {
+                npc<Neutral>("Certainly sir. Where would you like to go?")
+                set("charter_ship", location(target))
+                open("charter_ship_map")
+            }
         }
     }
 
     fun Player.hasQuestRequirements(location: String): Boolean {
         return questCompleted(
             when (location) {
-                "mos_le_harmless" -> "mos_le_harmless"
+                "mos_le_harmless" -> "cabin_fever"
                 "shipyard" -> "the_grand_tree"
                 "port_tyras" -> "regicide"
                 "port_phasmatys" -> "priest_in_peril"
@@ -166,7 +183,7 @@ class CharterShip(val ships: CharterShips, val teles: ObjectTeleports) : Script 
     fun location(npc: NPC) = when (npc["spawn_tile", Tile.EMPTY]) {
         Tile(3033, 3192), Tile(3039, 3193), Tile(3042, 3192) -> "port_sarim"
         Tile(2759, 3239), Tile(2760, 3239) -> "brimhaven"
-        Tile(2144, 3122), Tile(2145, 3122) -> "tyras_camp"
+        Tile(2144, 3122), Tile(2145, 3122) -> "port_tyras"
         Tile(3001, 3033), Tile(3001, 3034) -> "shipyard"
         Tile(2673, 3144), Tile(2675, 3144) -> "port_khazard"
         Tile(3671, 2930), Tile(3672, 2930) -> "mos_le_harmless"

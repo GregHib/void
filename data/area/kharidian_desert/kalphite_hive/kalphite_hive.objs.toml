@@ -7,21 +7,28 @@ id = 3828
 
 [kalphite_hive_exit_rope]
 id = 3829
+examine = "I hope this holds!"
 
 [kalphite_hive_wall_tunnel]
 id = 23596
+examine = "Looks like I could squeeze through here."
 
 [kalphite_lair_entrance]
 id = 23609
+examine = "How am I going to get down there?"
 
 [kalphite_lair_entrance_rope]
 id = 23610
+examine = "How am I going to get down there?"
 
 [kalphite_lair_exit_rope]
 id = 3832
+examine = "I hope this holds!"
 
 [kalphite_queen_emerging_legs]
 id = 23591
+examine = "The Kalphite Queen's old legs."
 
 [kalphite_cocoon]
 id = 23611
+examine = "It's moving..."

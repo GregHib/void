@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 
 class CaptainErrdo : Script {
 
@@ -47,6 +49,7 @@ class CaptainErrdo : Script {
                 takeMe(target)
                 return@npcOperate
             }
+            checkForRum()
             location(this, target)
             open("glider_map")
         }
@@ -61,9 +64,22 @@ class CaptainErrdo : Script {
         }
     }
 
+    private suspend fun Player.checkForRum() {
+        if (inventory.contains("karamjan_rum")) {
+            npc<Quiz>("Is that some rum I see in your backpack?")
+            player<Neutral>("Yes, why do you ask?")
+            npc<Shifty>("No reason, I just...")
+            npc<Shock>("Oh my! What is that thing over there?")
+            player<Shock>("Where?")
+            inventory.remove("karamjan_rum", inventory.count("karamjan_rum"))
+            npc<Shifty>("Hmm, my mistake, it must have been an optical illusion.")
+        }
+    }
+
     fun ChoiceOption.takeMe(target: NPC) {
         option<Quiz>("Can you take me on the glider?") {
             npc<Happy>("Of course!")
+            checkForRum()
             location(this, target)
             open("glider_map")
         }

@@ -40,7 +40,7 @@ class Farming(
             if (!contains("farming_offset_mins")) {
                 set("farming_offset_mins", random.nextInt(0, 30))
             }
-            if (contains("last_growth_cycle")) {
+            if (contains("last_growth_cycle") || hasCrop()) {
                 timers.start("farming_tick", true)
             }
         }
@@ -59,6 +59,23 @@ class Farming(
             }
             TimeUnit.MINUTES.toTicks(1)
         }
+    }
+
+    /**
+     * A patch with something already in the ground needs the growth timer even when it has never
+     * run. Only raking and composting start it, so a crop planted into an already clear patch would
+     * otherwise sit unfinished forever.
+     */
+    private fun Player.hasCrop(): Boolean {
+        for (patches in FarmingPatches.patches.values) {
+            for (variable in patches) {
+                val value: String = this[variable] ?: continue
+                if (!value.startsWith("weeds")) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     fun grow(player: Player, minute: Int) {
@@ -113,7 +130,11 @@ class Farming(
                         continue
                     }
                     val stage = type.toInt()
-                    val next = (stage + 1).rem(4)
+                    // Stage 3 is fully overgrown - weeds stop there rather than wrapping back to clear
+                    if (stage >= 3) {
+                        continue
+                    }
+                    val next = stage + 1
                     player[variable] = when (next) {
                         3 -> if (variable.contains("farming_veg_")) {
                             "weeds_${

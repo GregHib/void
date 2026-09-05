@@ -17,15 +17,27 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
+import content.quest.member.hand_in_the_sand.sendHandQuestReward
 import content.quest.quest
 import content.quest.questStage
+import content.quest.setInstanceLogout
+import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearCamera
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.moveCamera
+import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
@@ -33,10 +45,25 @@ import world.gregs.voidps.type.Tile
 class ZavisticRarve : Script {
 
     init {
+        adminCommand("handsand_cutscene", desc = "Replay the Hand in the Sand sandpit cutscene") {
+            val zavistic = NPCs.findOrNull(tile.regionLevel, "zavistic_rarve")
+                ?: NPCs.add("zavistic_rarve", tile.add(y = 1), ticks = 200)
+            talkWith(zavistic)
+            set("hand_in_the_sand", "gather_runes")
+            val missing = 5 - inventory.count("earth_rune")
+            if (missing > 0) {
+                inventory.add("earth_rune", missing)
+            }
+            if (!inventory.contains("bucket_of_sand")) {
+                inventory.add("bucket_of_sand")
+            }
+            sandpitRefillCutscene()
+        }
+
         // ===== Plain Talk-to (or via bell) =====
 
         npcOperate("Talk-to", "zavistic_rarve") { (target) ->
-            val sandProgress = get("hand_in_the_sand", 0)
+            val sandProgress = questStage("hand_in_the_sand")
             val zogreProgress = questStage("zogre_flesh_eaters")
             if (sandProgress < 40 && zogreProgress < 4) {
                 npc<Neutral>("What are you doing bothering me? Don't you think some of us have work to do?")
@@ -63,7 +90,7 @@ class ZavisticRarve : Script {
             }
             talkWith(zavistic)
 
-            val sandProgress = get("hand_in_the_sand", 0)
+            val sandProgress = questStage("hand_in_the_sand")
             val zogreProgress = questStage("zogre_flesh_eaters")
             if (sandProgress < 40 && zogreProgress < 4) {
                 npc<Neutral>("What are you doing ringing that bell?! Don't you think some of us have work to do?")
@@ -130,7 +157,7 @@ class ZavisticRarve : Script {
     // ===== Top-level menu router =====
 
     private suspend fun Player.mainMenu() {
-        val sand = get("hand_in_the_sand", 0) >= 20
+        val sand = questStage("hand_in_the_sand") >= 20
         val zogre = questStage("zogre_flesh_eaters") >= 3
         when {
             zogre && sand -> {
@@ -212,30 +239,28 @@ class ZavisticRarve : Script {
         replaceOrb()
     }
 
-    // ===== HAND IN THE SAND branches =====
-
     private suspend fun Player.sendSandChat() {
-        when (get("hand_in_the_sand", 0)) {
-            20 -> {
+        when (quest("hand_in_the_sand")) {
+            "ask_wizards" -> {
                 if (inventory.contains("beer_hand")) {
                     handInTheSandHandReveal()
                 } else {
                     statement("Maybe you should have the hand with you before speaking to Zavistic.")
                 }
             }
-            30, 40, 50 -> {
+            "bert_hours", "visit_sandy", "confront_bert" -> {
                 npc<Quiz>("Did you find out who killed Clarence yet?")
                 player<Sad>("Not yet, but don't lose your head over it.")
             }
-            60 -> {
+            "deliver_scroll" -> {
                 if (inventory.contains("magic_scroll")) {
                     magicScrollReveal()
                 } else {
                     statement("Perhaps you should have the scroll from Bert with you before you speak to Zavistic.")
                 }
             }
-            70 -> guildMenuWithOrbHelp()
-            80, 90, 100 -> {
+            "make_serum" -> guildMenuWithOrbHelp()
+            "distract_sandy", "drug_coffee", "activate_orb" -> {
                 npc<Quiz>("Have you made the serum and talked to Sandy yet?")
                 if (inventory.contains("magical_orb")) {
                     player<Neutral>("Not yet, but don't bust a gut over it!")
@@ -244,8 +269,8 @@ class ZavisticRarve : Script {
                     replaceOrb()
                 }
             }
-            110 -> guildMenuWithLostOrb()
-            120 -> {
+            "interrogate_sandy" -> guildMenuWithLostOrb()
+            "return_orb" -> {
                 if (inventory.contains("magical_orb_active")) {
                     statement("You hand the magical scrying orb to the Wizard and watch as the recording is played back.")
                     npc<Angry>("Well, well...I think this Sandy needs a lesson, please bring me 5 earth runes and a bucket of sand.")
@@ -257,7 +282,7 @@ class ZavisticRarve : Script {
                     runesAndSandRequest()
                 }
             }
-            130 -> {
+            "gather_runes" -> {
                 if (inventory.contains("earth_rune", 5) && inventory.contains("bucket_of_sand")) {
                     player<Quiz>("I've brought what you wanted, what are you going to do?")
                     sandpitRefillCutscene()
@@ -265,29 +290,27 @@ class ZavisticRarve : Script {
                     npc<Happy>("You really mean you forgot? Bring me 5 earth runes and 1 bucket of sand to help stop that moneygrabbing Sandy!")
                 }
             }
-            140 -> {
+            "search_entrana" -> {
                 npc<Quiz>("Did you visit the Entrana sandpit yet? Ask the worker there if he's found an arm or a leg.")
                 player<Neutral>("Not yet no. I've been running around like a headless chicken, but I'll get to it!")
             }
-            150 -> {
+            "return_head" -> {
                 if (inventory.contains("wizard_head")) {
                     item(item = "wizard_head", text = "You show the wizard the head.")
                     npc<Sad>("Alas poor Clarence. I knew him, $name.")
                     npc<Neutral>("Thank you - we shall bury him today. I have sent word for the guards to arrest Sandy, so no one will ever see him again!")
-//                    sendHandQuestReward()
+                    sendHandQuestReward()
                 } else {
                     statement("Perhaps you should have the wizard's head with you before speaking to Zavistic.")
                 }
             }
-            160 -> {
+            "completed" -> {
                 npc<Happy>("Thank you so much for helping to lay Clarence to rest and lock up his murderer!")
                 guildMenu()
             }
             else -> guildMenu()
         }
     }
-
-    // ===== Hand reveal flow (the murder is revealed) =====
 
     private suspend fun Player.handInTheSandHandReveal() {
         if (!inventory.contains("beer_hand")) {
@@ -301,15 +324,13 @@ class ZavisticRarve : Script {
         player<Shifty>("Erm... no... ")
         player<Neutral>("Well.. maybe, you see Bert found this hand and it might belong to.. a wizard!")
         npc<Quiz>("Bert? Ahh yes, the sandman who seems to have been working very long hours recently. Let's see that hand...")
-        set("hand_in_the_sand", 30)
+        set("hand_in_the_sand", "bert_hours")
         inventory.remove("beer_hand")
         item(item = "beer_hand", text = "You hand it over.")
         npc<Shock>("Oh my! This is most definitely Clarence, my most able student! You must find out who did this!")
         player<Neutral>("Do you have any input as to the matter at hand?")
         npc<Neutral>("Well.... Ask Bert about the long hours he's been working, that sounds suspicious to me. Digging things up at all hours of the day isn't natural.")
     }
-
-    // ===== Magic scroll reveal (mind-altering spell) =====
 
     private suspend fun Player.magicScrollReveal() {
         if (!inventory.contains("magic_scroll")) {
@@ -324,13 +345,11 @@ class ZavisticRarve : Script {
         player<Neutral>("I took a look around his office. I don't know about a hand in it, I think he has both hands and feet in it!")
         npc<Neutral>("Even more suspicious! Here, take this magical scrying orb and get some Truth Serum from Betty in Port Sarim, she owes me a favour, just tell her I sent you if she complains.")
         npc<Neutral>("Then you will be equipped to ask Sandy a few questions. Oh Clarence, I will find your murderer!")
-        set("hand_in_the_sand", 70)
+        set("hand_in_the_sand", "make_serum")
         inventory.remove("magic_scroll")
         addOrDrop("magical_orb")
         item("magical_orb", "You exchange the scroll for the magical scrying orb. Perhaps Zavistic can give you even more of a hand to find the murderer?")
     }
-
-    // ===== "Can you help me more?" / replace orb / teleport =====
 
     private suspend fun Player.helpMoreFlow() {
         if (get("handsand_tele", false)) {
@@ -358,14 +377,13 @@ class ZavisticRarve : Script {
 
     private suspend fun Player.replaceOrb() {
         if (inventory.contains("magical_orb") || inventory.contains("magical_orb_active")) {
-            // Already has one
             return
         }
         if (inventory.isFull()) {
             npc<Sad>("I'd give you another magical scrying orb if you had some space in your inventory.")
             return
         }
-        if (get("hand_in_the_sand", 0) == 110) {
+        if (quest("hand_in_the_sand") == "interrogate_sandy") {
             addOrDrop("magical_orb_active")
             npc<Neutral>("No matter, here, have another I've already activated it for you!")
         } else {
@@ -374,12 +392,10 @@ class ZavisticRarve : Script {
         }
     }
 
-    // ===== Port Sarim teleport cutscene =====
-
     private suspend fun Player.portSarimTeleport() {
         set("handsand_tele", true)
         inventory.remove("vial")
-        // npc.anim("human_castentangle") TODO
+        NPCs.findOrNull(tile.regionLevel, "zavistic_rarve")?.anim("human_castentangle")
         delay(2)
         gfx("pickaxe_summon_effect_spotanim", height = 92)
         anim("human_shrink", delay = 4)
@@ -389,44 +405,59 @@ class ZavisticRarve : Script {
         tele(3014, 3259)
     }
 
-    // ===== Runes and sand request continuation =====
-
     private suspend fun Player.runesAndSandRequest() {
-        set("hand_in_the_sand", 130)
+        set("hand_in_the_sand", "gather_runes")
         inventory.remove("magical_orb_active")
         player<Shock>("Erm, why?")
         npc<Angry>("Don't question me or you'll end up as braindead as that legless Guard Captain!")
         player<Scared>("Umm.. ok, I'll get you the 5 earth runes and bucket of sand.")
     }
 
-    // ===== Sandpit refill cutscene (instanced) =====
-
     private suspend fun Player.sandpitRefillCutscene() {
         npc<Happy>("Ahh excellent, let's have those! Watch and learn...")
-        // TODO: full instanced cutscene
-        // - Create instance at base (317, 386), 3x3 size
-        // - Spawn Bert NPC (id 3108) inside the instance
-        // - Fade out, start cutscene mode
-        // - Camera move to (2536, 3109) height 850, look at (2544, 3102) height 25
-        // - Wizard chants — show info dialogue:
-        //   "The Wizard chants and your attention is taken to the sandpit where Bert found the hand."
-        // - Bert walks to (2542, 3101), faces (2542, 3103)
-        // - Bert animates 2702, sandpit object animates 3037, sound 1591
-        // - Bert says "My sand! My lovely sand"
-        // - Show info dialogue:
-        //   "Something very strange happens to the Sandpit, it looks like it has filled itself up!"
-        // - Set varbit 278 to 1 (sandpit refilled flag)
-        // - Fade out, destroy instance, reset camera, fade in
-        // - Delete 5 earth runes, 1 bucket of sand
-        // - Set hand_in_the_sand to 140
-
+        val origin = tile
+        open("fade_out")
+        val cutscene = startCutscene("handsand", SANDPIT_REGION)
+        setInstanceLogout(origin)
+        cutscene.onEnd {
+            open("fade_out")
+            delay(1)
+            tele(origin)
+            clearCamera()
+        }
+        delay(3)
+        tele(cutscene.tile(PLAYER_VIEWPOINT.x, PLAYER_VIEWPOINT.y), clearInterfaces = false)
+        val bert = NPCs.add("bert", cutscene.tile(BERT_SPAWN.x, BERT_SPAWN.y))
+        bert.mode = PauseMode
+        delay(4)
+        moveCamera(cutscene.tile(PLAYER_VIEWPOINT.x, PLAYER_VIEWPOINT.y), 850)
+        turnCamera(cutscene.tile(CAMERA_TARGET.x, CAMERA_TARGET.y), 25)
+        delay(4)
+        open("fade_in")
+        delay(3)
         statement("The Wizard chants and your attention is taken to the sandpit where Bert found the hand.")
+        bert.walkTo(cutscene.tile(BERT_PIT.x, BERT_PIT.y))
+        delay(4)
+        bert.mode = PauseMode
+        bert.face(cutscene.tile(SANDPIT.x, SANDPIT.y))
+        delay(2)
+        val sandpit = GameObjects.findLayerOrNull(cutscene.tile(SANDPIT.x, SANDPIT.y), ObjectLayer.GROUND, "handsand_sandpit_anim")
+        bert.anim("prisoner_ready_crying")
+        sandpit?.anim("handsand_sand_magic")
+        sound("handsand_sandswirl")
+        delay(1)
+        bert.anim("prisoner_ready_crying")
+        bert.say("My sand! My lovely sand")
+        delay(1)
         statement("Something very strange happens to the Sandpit, it looks like it has filled itself up!")
+        delay(7)
+        cutscene.end()
+        delay(4)
         inventory.remove("earth_rune", 5)
         inventory.remove("bucket_of_sand")
-        set("hand_in_the_sand", 140)
+        set("hand_in_the_sand", "search_entrana")
         npc<Happy>("There, the sand pit will now magically refill. No more work for Bert! ")
-        npc<Neutral>("We must find the rest of Clarence, I've sent some wizards out to some of the sandpits, would you please check the Entrana sandpit?")
+        npc<Sad>("We must find the rest of Clarence, I've sent some wizards out to some of the sandpits, would you please check the Entrana sandpit?")
     }
 
     // ===== ZOGRE FLESH EATERS branches =====
@@ -700,5 +731,14 @@ class ZavisticRarve : Script {
         player<Neutral>("Yes, I have in fact. I poured it into his tea.")
         npc<Neutral>("Ok, that's good, that should work. Pop back in a little while to see Sithik and start questioning him.")
         guildMenu()
+    }
+
+    private companion object {
+        val PLAYER_VIEWPOINT = Tile(2536, 3109)
+        val CAMERA_TARGET = Tile(2544, 3102)
+        val BERT_SPAWN = Tile(2546, 3099)
+        val BERT_PIT = Tile(2542, 3101)
+        val SANDPIT = Tile(2542, 3103)
+        val SANDPIT_REGION = SANDPIT.region
     }
 }

@@ -9,4 +9,5 @@ spawns = [
   { id = "necklace_mould", x = 2932, y = 3287, level = 1, delay = 200 },
   { id = "ring_mould", x = 2935, y = 3283, level = 1, delay = 200 },
   { id = "tiara_mould", x = 2935, y = 3282, level = 1, delay = 100 },
+  { id = "bronze_arrow", x = 2944, y = 3332, amount = 2, delay = 50 },
 ]

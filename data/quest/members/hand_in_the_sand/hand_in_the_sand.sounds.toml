@@ -1,0 +1,26 @@
+[handsand_vialshatter]
+id = 1587
+
+[handsand_drop_hand]
+id = 1588
+
+[handsand_gulp]
+id = 1589
+
+[handsand_orb]
+id = 1590
+
+[handsand_sandswirl]
+id = 1591
+
+[handsand_serum]
+id = 1592
+
+[handsand_take_hand]
+id = 1593
+
+[put_down]
+id = 2739
+
+[teleport_all]
+id = 200

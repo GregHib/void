@@ -1,14 +1,19 @@
 [kuradal_dungeon_cave]
 id = 47232
+examine = "I can't really see that far into it."
 
 [kuradal_dungeon_cave_exit]
 id = 47231
+examine = "I can't really see that far into it."
 
 [kuradal_barrier]
 id = 47236
+examine = "This must be what Kuradal uses to prevent the creatures escaping."
 
 [kuradal_dungeon_gap]
 id = 47237
+examine = "It's a long way, but who doesn't like a challenge?"
 
 [kuradal_dungeon_low_wall]
 id = 47233
+examine = "Wow, it's a low wall!"

@@ -4,6 +4,7 @@ examine = "An old rusty key in a puddle of mud."
 
 [demon_slayer_mud_base]
 id = 17431
+examine = "This leads to the dungeon."
 
 [demon_slayer_mud]
 id = 12972

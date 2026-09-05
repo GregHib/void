@@ -15,6 +15,7 @@ id = 2443
 retaliates = false
 respawn_delay = 0
 death_anim = "door_support_east_fall"
+examine = "This support is propping the door closed."
 
 [door_support_east_fall]
 id = 2444

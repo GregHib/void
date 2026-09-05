@@ -4,6 +4,7 @@ examine = "You see a circle of light at the top."
 
 [lumbridge_cave_stepping_stone]
 id = 5949
+examine = "I can jump from this stepping stone."
 
 [lumbridge_cave_tunnel]
 id = 32944

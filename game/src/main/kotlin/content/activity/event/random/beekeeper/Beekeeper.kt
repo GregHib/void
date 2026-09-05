@@ -1,6 +1,7 @@
 package content.activity.event.random.beekeeper
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -98,9 +99,7 @@ class Beekeeper : Script {
     }
 
     private suspend fun Player.herald() {
-        val keeper = NPCs.addRandom("bee_keeper", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("bee_keeper", tile, ticks = 25, owner = this)
-        keeper.watch(this)
+        val keeper = eventHerald("bee_keeper")
         keeper.say("I need some help, $name!")
         delay(2)
     }

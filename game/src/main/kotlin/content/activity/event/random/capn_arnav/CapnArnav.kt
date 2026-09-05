@@ -1,6 +1,7 @@
 package content.activity.event.random.capn_arnav
 
 import content.activity.event.random.RandomEvents
+import content.activity.event.random.eventHerald
 import content.activity.event.random.kidnap
 import content.activity.event.random.onExitInterrupt
 import content.activity.event.random.returnHome
@@ -16,7 +17,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.entity.character.player.name
@@ -95,9 +95,7 @@ class CapnArnav : Script {
     }
 
     private suspend fun Player.arnavHerald() {
-        val arnav = NPCs.addRandom("capn_arnav", tile.toCuboid(1), ticks = 25, owner = this)
-            ?: NPCs.add("capn_arnav", tile, ticks = 25, owner = this)
-        arnav.watch(this)
+        val arnav = eventHerald("capn_arnav")
         val greetings = listOf(
             "Avast there, $name!",
             "Ahoy, $name!",

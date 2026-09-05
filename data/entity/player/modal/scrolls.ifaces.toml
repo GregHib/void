@@ -20,7 +20,7 @@ id = 16
 
 [message_scroll_handwriting]
 id = 222
-type = "wide_screen"
+type = "main_screen"
 
 [.line0]
 id = "1-11"

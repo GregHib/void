@@ -444,6 +444,7 @@ id = 7568
 
 [lokar_searunner_2]
 id = 406
+examine = "He pulls the cart."
 
 [lokar_searunner]
 id = 413

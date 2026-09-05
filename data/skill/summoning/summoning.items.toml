@@ -4512,6 +4512,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "A full-face helmet."
 
 [dragon_helm_enchanted]
 id = 12666
@@ -4519,6 +4520,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "Makes the wearer pretty intimidating."
 
 [berserker_helm_enchanted]
 id = 12674
@@ -4526,6 +4528,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "This helmet is worn by berserkers."
 
 [warrior_helm_enchanted]
 id = 12676
@@ -4533,6 +4536,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "This helmet is worn by warriors."
 
 [helm_of_neitiznot_enchanted]
 id = 12680
@@ -4540,6 +4544,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "A gift from Neitiznot's Burgher."
 
 [snakeskin_bandana_enchanted]
 id = 12660
@@ -4547,6 +4552,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "Lightweight head protection."
 
 [archer_helm_enchanted]
 id = 12672
@@ -4554,6 +4560,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "This helmet is worn by archers."
 
 [armadyl_helmet_enchanted]
 id = 12670
@@ -4561,6 +4568,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "A helmet of great craftsmanship."
 
 [splitbark_helm_enchanted]
 id = 12662
@@ -4568,6 +4576,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "A wooden helmet."
 
 [farseer_helm_enchanted]
 id = 12678
@@ -4575,6 +4584,7 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "This helmet is worn by farseers."
 
 [lunar_helm_enchanted]
 id = 12668
@@ -4582,3 +4592,4 @@ tradeable = false
 bank_stacks = false
 slot = "Hat"
 kept = "Reclaim"
+examine = "A mystical helmet."

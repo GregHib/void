@@ -164,3 +164,4 @@ examine = "A sturdy iron frame, for climbing up and down."
 
 [door_support_base]
 id = 8967
+examine = "A sturdy looking door, propped shut with a support."

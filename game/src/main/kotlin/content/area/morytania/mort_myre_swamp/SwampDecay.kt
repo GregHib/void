@@ -33,11 +33,24 @@ class SwampDecay : Script {
             softTimers.start("swamp_decay")
         }
 
+        exited("mort_myre_swamp") {
+            if (!softTimers.contains("swamp_decay")) {
+                return@exited
+            }
+            softTimers.stop("swamp_decay")
+            message("The swamp decay effect is now over.")
+        }
+
         timerStart("swamp_decay") {
             230 // 2 minutes 18 seconds
         }
 
         timerTick("swamp_decay") {
+            if (tile !in Areas["mort_myre_swamp"]) {
+                message("The swamp decay effect is now over.")
+                return@timerTick Timer.CANCEL
+            }
+
             if (inventory.any(immunity) || equipment.any(immunity)) {
                 if (equipment.contains("silver_sickle_b")) {
                     message("The blessed sickle prevents the swamp from decaying you.")
@@ -52,15 +65,10 @@ class SwampDecay : Script {
                 return@timerTick Timer.CONTINUE
             }
 
-            if (tile in Areas["mort_myre_swamp"]) {
-                message("The swamp decays you!")
-                directHit(damage = random.nextInt(10..30))
-                gfx("swamp_decay")
-                Timer.CONTINUE
-            } else {
-                message("The swamp decay effect is now over.")
-                Timer.CANCEL
-            }
+            message("The swamp decays you!")
+            directHit(damage = random.nextInt(10..30))
+            gfx("swamp_decay")
+            Timer.CONTINUE
         }
     }
 }

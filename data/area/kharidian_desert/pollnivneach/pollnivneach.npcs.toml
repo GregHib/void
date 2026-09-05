@@ -200,6 +200,7 @@ style = "slash"
 max_hit_melee = 70
 attack_bonus = 9
 respawn_delay = 50
+examine = "Tough-looking."
 
 [bandit_pollnivneach_2_3]
 id = 6388

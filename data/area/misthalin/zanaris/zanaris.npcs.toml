@@ -47,6 +47,7 @@ examine = "Guardian of the market gate."
 [sheep_zanaris]
 id = 3310
 large_head = true
+examine = "White and fluffy."
 
 [fairy_queen]
 id = 3314

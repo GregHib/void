@@ -49,15 +49,16 @@ open class Client(
         }
         disconnected = true
         write.flushAndClose()
-        state = ClientState.Disconnected
         disconnect?.invoke()
     }
 
     suspend fun exit() {
-        if (state == ClientState.Connected) {
-            state = ClientState.Disconnecting
-            disconnecting?.invoke()
+        if (state != ClientState.Connected) {
+            return
         }
+        state = ClientState.Disconnecting
+        disconnecting?.invoke()
+        state = ClientState.Disconnected
     }
 
     open fun flush() {

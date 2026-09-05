@@ -167,6 +167,7 @@ examine = "A pirate."
 
 [captain_tobias]
 id = 376
+examine = "An old sea dog."
 
 [captain_tobias_1]
 id = 11700

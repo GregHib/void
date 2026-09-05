@@ -1,6 +1,7 @@
 package content.quest
 
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearHinted
 
 class InstanceLogout : Script {
     init {
@@ -16,6 +17,7 @@ class InstanceLogout : Script {
             if (get("instance_logout", false)) {
                 exitInstance()
             }
+            clearHinted()
         }
     }
 }

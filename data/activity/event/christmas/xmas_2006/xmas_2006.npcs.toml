@@ -59,24 +59,3 @@ examine = "A chilled, smelly gublinch."
 [gublinch_3]
 id = 5019
 examine = "A freezing cold gublinch."
-
-[gub_musa_multi_child_1]
-id = 5020
-
-[gub_musa_multi_child_2]
-id = 5021
-
-[gub_musa_multi_child_3]
-id = 5022
-
-[gub_musa_child_1]
-id = 5023
-examine = "A happy child, now that he has been freed."
-
-[gub_musa_child_2]
-id = 5024
-examine = "A happy child, now that he has been freed."
-
-[gub_musa_child_3]
-id = 5025
-examine = "A happy child, now that he has been freed."

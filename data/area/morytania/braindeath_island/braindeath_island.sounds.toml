@@ -6,3 +6,32 @@ id = 924
 
 [zombie_pirate_death]
 id = 925
+
+
+[rumdeal_hopper_1]
+id = 1762
+
+[rumdeal_pressurize]
+id = 1763
+
+[rumdeal_stuff_other]
+id = 1764
+
+[rumdeal_stuff_slugling]
+id = 1765
+
+[wrench_crush]
+id = 1766
+
+# Not present in the 474 synth list; the reference plays it at the fishing spot.
+[rumdeal_bowl_fish]
+id = 2600
+
+[deal_spirit_attack]
+id = 1756
+
+[deal_spirit_hit]
+id = 1757
+
+[rumdeal_spirit_depart]
+id = 1755

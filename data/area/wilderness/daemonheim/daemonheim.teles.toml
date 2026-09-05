@@ -1,0 +1,19 @@
+[daemonheim_staircase_up]
+option = "Climb-up"
+tile = { x = 3451, y = 3733 }
+to = { x = 3451, y = 3738, level = 1 }
+
+[daemonheim_staircase_up_2]
+option = "Climb-up"
+tile = { x = 3447, y = 3733 }
+to = { x = 3448, y = 3738, level = 1 }
+
+[daemonheim_staircase_down]
+option = "Climb-down"
+tile = { x = 3448, y = 3737, level = 1 }
+to = { x = 3447, y = 3732 }
+
+[daemonheim_staircase_down_2]
+option = "Climb-down"
+tile = { x = 3451, y = 3737, level = 1 }
+to = { x = 3452, y = 3732 }

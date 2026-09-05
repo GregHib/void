@@ -54,9 +54,6 @@ drop_table = "hazeel_cultist"
 max_hit_crush = 20
 combat_def = "hazeel_cultist"
 
-[elena_southern_ardougne_sewer_normal]
-id = 3215
-
 [giant_rat_ardounge_sewer]
 id = 4922
 clone = "giant_rat_lumbridge_swamp"

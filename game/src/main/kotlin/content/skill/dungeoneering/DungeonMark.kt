@@ -3,7 +3,7 @@ package content.skill.dungeoneering
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.hint
+import world.gregs.voidps.engine.client.markHint
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.Approachable
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -22,8 +22,7 @@ class DungeonMark : Script {
             return
         }
         for (member in dungeonMembers) {
-            val index = member.hint(target)
-            member["dungeon_hint_${target.index}"] = index
+            member.markHint(target)
         }
     }
 }

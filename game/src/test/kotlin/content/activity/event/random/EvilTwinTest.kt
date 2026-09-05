@@ -9,13 +9,16 @@ import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -142,6 +145,23 @@ class EvilTwinTest : WorldTest() {
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
+    }
+
+    @Test
+    fun `Caught suspect is carried to the jail and stays there with random walking on`() {
+        Settings.load(mapOf("world.npcs.randomWalk" to "true"))
+        val player = enterHouse("et_wander")
+        player.openCrane()
+
+        val twin = player.suspects().first { it.id == "twin_suspect_${player.get("evil_twin_hash", 0)}" }
+        twin.tele(player.clawTile())
+        player.interfaceOption("evil_twin_crane", "grab", "Grab")
+        tick(25)
+
+        assertTrue(player.get("evil_twin_caught", false))
+        assertEquals(Tile(1866, 5124).add(player.instanceOffset()), twin.tile)
+        assertEquals(Direction.NORTH, twin.direction)
+        assertEquals(PauseMode, twin.mode)
     }
 
     @Test

@@ -137,6 +137,10 @@ object Params {
     const val REGION = 5136
     const val REQ_COMBAT = 5137
     const val REQ_ITEMS = 5138
+
+    /** Item ids a quest expects the player to bring; used by the questprep command. */
+    const val REQ_ITEM_IDS = 5267
+
     const val REQ_QUEST_POINTS = 5139
     const val REQ_QUESTS = 5140
     const val REQ_SKILLS = 5141
@@ -472,6 +476,7 @@ object Params {
         "regen_rate_ticks" -> REGEN_RATE_TICKS
         "region" -> REGION
         "req_combat" -> REQ_COMBAT
+        "req_item_ids" -> REQ_ITEM_IDS
         "req_items" -> REQ_ITEMS
         "req_quest_points" -> REQ_QUEST_POINTS
         "req_quests" -> REQ_QUESTS

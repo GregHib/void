@@ -26,22 +26,7 @@ class CandleSeller : Script {
             npc<Neutral>("Do you want a lit candle for 1000 gold?")
             choice {
                 option<Neutral>("Yes please.") {
-                    inventory.transaction {
-                        remove("coins", 1000)
-                        add("candle_lit")
-                    }
-                    when (inventory.transaction.error) {
-                        is TransactionError.Deficient -> {
-                            player<Sad>("But I don't have that kind of money on me.")
-                            npc<Angry>("Well then, no candle for you!")
-                        }
-                        is TransactionError.Full -> if (inventory.remove("coins", 1000)) {
-                            addOrDrop("candle_lit")
-                            warn()
-                        }
-                        TransactionError.None -> warn()
-                        else -> {}
-                    }
+                    buyCandle()
                 }
                 option<Shock>("One thousand gold?!") {
                     npc<Neutral>("Look, you're not going to be able to survive down that hole without a light source.")
@@ -50,8 +35,7 @@ class CandleSeller : Script {
                     set("candle_seller_lantern_dialogue", true)
                     choice {
                         option<Neutral>("All right, you win, I'll buy a candle.") {
-                            player<Sad>("But I don't have that kind of money on me.")
-                            npc<Angry>("Well then, no candle for you!")
+                            buyCandle()
                         }
                         option<Angry>("No way.")
                         howToMakeLanterns()
@@ -87,9 +71,30 @@ class CandleSeller : Script {
             npc<Neutral>("For any light source, you'll need a tinderbox to light it. Keep your tinderbox handy in case it goes out!")
             npc<Happy>("But if all that's too complicated, you can buy a candle right here for 1000 gold!")
             choice {
-                option<Neutral>("All right, you win, I'll buy a candle.")
+                option<Neutral>("All right, you win, I'll buy a candle.") {
+                    buyCandle()
+                }
                 option<Neutral>("No thanks, I'd rather curse the darkness.")
             }
+        }
+    }
+
+    private suspend fun Player.buyCandle() {
+        inventory.transaction {
+            remove("coins", 1000)
+            add("white_candle_lit")
+        }
+        when (inventory.transaction.error) {
+            is TransactionError.Deficient -> {
+                player<Sad>("But I don't have that kind of money on me.")
+                npc<Angry>("Well then, no candle for you!")
+            }
+            is TransactionError.Full -> if (inventory.remove("coins", 1000)) {
+                addOrDrop("white_candle_lit")
+                warn()
+            }
+            TransactionError.None -> warn()
+            else -> {}
         }
     }
 }

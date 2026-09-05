@@ -20,3 +20,4 @@ examine = "This leads back to the cruel world above."
 
 [slayer_dungeon_chasm]
 id = 44339
+examine = "A useful shortcut for the most agile of adventurers."

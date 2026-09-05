@@ -235,7 +235,7 @@ class BarrowsCrypts : Script {
             npc.say(if (npc.tile.level == 3) "You dare disturb my rest!" else "You dare steal from us!")
             npc.interactPlayer(player, "Attack")
             player["${brother}_spawn"] = npc.index
-            player.hint(npc)
+            player.markHint(npc)
         }
     }
 }

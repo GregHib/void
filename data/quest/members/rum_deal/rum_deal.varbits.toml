@@ -1,0 +1,47 @@
+[rum_deal_pressure_count]
+id = 1354
+persist = true
+
+[rum_deal_brewing_control]
+id = 1355
+persist = true
+
+[rum_deal_squid_spot]
+id = 1356
+persist = true
+
+[rum_deal_slugling_count]
+id = 1357
+persist = true
+
+[rum_deal_karamthulhu_count]
+id = 1358
+persist = true
+
+[rum_deal_swab_a]
+id = 1359
+persist = true
+
+[rum_deal_swab_b]
+id = 1360
+persist = true
+
+[rum_deal_swab_c]
+id = 1361
+persist = true
+
+[rum_deal_swab_d]
+id = 1362
+persist = true
+
+[rum_deal_swab_e]
+id = 1363
+persist = true
+
+[rum_deal_swab_f]
+id = 1364
+persist = true
+
+[rum_deal_diversion]
+id = 1365
+persist = true

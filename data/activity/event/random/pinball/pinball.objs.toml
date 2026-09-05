@@ -1,17 +1,23 @@
 [pinball_post_1]
 id = 15001
+examine = "A glowing pinball post!"
 
 [pinball_post_2]
 id = 15003
+examine = "A glowing pinball post!"
 
 [pinball_post_3]
 id = 15005
+examine = "A glowing pinball post!"
 
 [pinball_post_4]
 id = 15007
+examine = "A glowing pinball post!"
 
 [pinball_post_5]
 id = 15009
+examine = "A glowing pinball post!"
 
 [pinball_cave_exit]
 id = 15010
+examine = "The way out."

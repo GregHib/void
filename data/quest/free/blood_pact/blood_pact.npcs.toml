@@ -33,6 +33,7 @@ categories = ["human"]
 combat_def = "reese_attackable"
 hunt_mode = "cowardly"
 hunt_range = 10
+examine = "It looks like he's scarred his face deliberately."
 
 [reese_defeated]
 id = 9625
@@ -48,6 +49,7 @@ categories = ["human"]
 combat_def = "kayle_attackable"
 hunt_mode = "aggressive"
 hunt_range = 5
+examine = "He holds his sling a little nervously."
 
 [kayle_defeated]
 id = 9629
@@ -60,6 +62,7 @@ categories = ["human"]
 combat_def = "caitlin_attackable"
 hunt_mode = "aggressive"
 hunt_range = 8
+examine = "A cruel-looking wizard."
 
 [caitlin_defeated]
 id = 9627
