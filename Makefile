@@ -37,6 +37,7 @@ start:
 		exit 1; \
 	fi
 	@echo "Starting Void server in background..."
+	@: >$(LOG_FILE)
 	@nohup ./gradlew :game:run --console=plain</dev/null >$(LOG_FILE) 2>&1 & echo $$! > $(PID_FILE)
 	@pid=$$(cat $(PID_FILE)); \
 	echo "PID: $$pid | log: $(LOG_FILE)"; \
