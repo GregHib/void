@@ -1,5 +1,7 @@
 package content.skill.farming
 
+import content.skill.constitution.drink.JUJU_HERB_CHANCE
+import content.skill.constitution.drink.jujuActive
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.an
@@ -20,6 +22,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.weakQueue
+import world.gregs.voidps.type.random
 
 class FarmingPatchPick : Script {
 
@@ -91,6 +94,9 @@ class FarmingPatchPick : Script {
             if (!inventory.add(item.id)) {
                 message("You have run out of inventory space.", ChatType.Filter)
                 return@weakQueue
+            }
+            if (jujuActive("juju_farming") && obj.id.startsWith("farming_herb_patch") && random.nextInt(JUJU_HERB_CHANCE) == 0) {
+                inventory.add(item.id)
             }
             if (tree) {
                 message("You pick ${item.id.an()} ${item.def.name.lowercase()}.", ChatType.Filter)
