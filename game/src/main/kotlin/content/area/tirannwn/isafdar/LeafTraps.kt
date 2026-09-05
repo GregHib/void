@@ -24,14 +24,17 @@ class LeafTraps : Script {
             val direction: Direction
             val start: Tile
             val dest: Tile
+            // Jump from whichever of the three lanes the player is in
             if (site.centre.y == 3262) {
                 direction = if (tile.x > site.centre.x) Direction.WEST else Direction.EAST
-                start = Tile(site.centre.x - direction.delta.x * 2, site.centre.y, tile.level)
-                dest = Tile(site.centre.x + direction.delta.x * 2, site.centre.y, tile.level)
+                val lane = tile.y.coerceIn(site.centre.y - 1, site.centre.y + 1)
+                start = Tile(site.centre.x - direction.delta.x * 2, lane, tile.level)
+                dest = Tile(site.centre.x + direction.delta.x * 2, lane, tile.level)
             } else {
                 direction = if (tile.y > site.centre.y) Direction.SOUTH else Direction.NORTH
-                start = Tile(site.centre.x, site.centre.y - direction.delta.y * 2, tile.level)
-                dest = Tile(site.centre.x, site.centre.y + direction.delta.y * 2, tile.level)
+                val lane = tile.x.coerceIn(site.centre.x - 1, site.centre.x + 1)
+                start = Tile(lane, site.centre.y - direction.delta.y * 2, tile.level)
+                dest = Tile(lane, site.centre.y + direction.delta.y * 2, tile.level)
             }
             this["crossing_trap"] = true
             if (tile != start) {
