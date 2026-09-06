@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Reports
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File
@@ -24,7 +25,7 @@ fun gameModule(files: ConfigFiles) = module {
     single { BotManager().load(files) }
     single { loadGraph(files) }
     single(createdAtStart = true) { Books().load(files.list(Settings["definitions.books"])) }
-    single(createdAtStart = true) { MusicTracks().load(files.find(Settings["map.music"])) }
+    single(createdAtStart = true) { get<VariableDefinitions>();MusicTracks().load(files.find(Settings["map.music"])) }
     single(createdAtStart = true) { FairyRingCodes().load(files.find(Settings["definitions.fairyCodes"])) }
     single(createdAtStart = true) { CharterShips().load(files.find(Settings["map.ships.prices"])) }
     single { InstructionHandlers(InterfaceHandler(get())) }

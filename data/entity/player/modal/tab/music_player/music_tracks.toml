@@ -3417,7 +3417,7 @@ id = 575
 indexes = [395]
 areas = [ { region = 6212 }, { region = 9796 } ]
 
-[davy_joness_locker]
+[davy_jones_locker]
 id = 576
 indexes = [394]
 areas = [ { region = 11924 } ]
@@ -5202,7 +5202,7 @@ indexes = [959]
 id = 946
 indexes = [960]
 
-[monkey_see_monkey_do]
+[monkey_see_monkey_do2]
 id = 947
 indexes = [957]
 
@@ -5214,7 +5214,7 @@ indexes = [968]
 id = 949
 indexes = [961]
 
-[monkey_see_monkey_do]
+[monkey_see_monkey_do3]
 id = 950
 indexes = [962]
 

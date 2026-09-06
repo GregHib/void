@@ -5,12 +5,17 @@ import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
+import world.gregs.voidps.engine.client.variable.BitwiseValues
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.iterator
 import kotlin.collections.set
 
 class MusicTracks {
@@ -78,8 +83,7 @@ class MusicTracks {
                                 }
                                 var track = tracks[id]
                                 if (track == null) {
-                                    track = Track(id, stringId, indexes.firstOrNull() ?: -1, area)
-                                    tracks[id] = track
+                                    track = addTrack(id, stringId, indexes, area, tracks, ids)
                                 }
                                 for (r in area.toRegions()) {
                                     areas.getOrPut(r.id) { ObjectArrayList(1) }.add(track)
@@ -88,16 +92,24 @@ class MusicTracks {
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    if (tracks[id] == null) {
-                        tracks[id] = Track(id, stringId, indexes.firstOrNull() ?: -1)
-                    }
-                    assert(!ids.containsKey(stringId)) { "Music track with name '$stringId' already found. Index: ${ids.getInt(stringId)}" }
-                    ids[stringId] = id
+                    addTrack(id, stringId, indexes, null, tracks, ids)
                 }
             }
             // Prioritise smaller shape checks over larger region checks
             for (entry in areas) {
                 entry.value.sortBy { it.area?.area }
+            }
+            // TODO save all indexes and check against varps too
+            for ((key, value) in VariableDefinitions.definitions) {
+                if (key.startsWith("unlocked_music")) {
+                    val list = (value.values as BitwiseValues).values as List<String>
+                    for (id in list) {
+                        if (!ids.containsKey(id)) {
+                            val test = id.toIntOrNull()
+                            println("Mismatch: $id in $key actual: ${if (test != null) tracks[test]?.name else ""}")
+                        }
+                    }
+                }
             }
             this.trackAreas = areas
             this.ids = ids
@@ -105,6 +117,14 @@ class MusicTracks {
             ids.size
         }
         return this
+    }
+
+    private fun addTrack(id: Int, stringId: String, indexes: MutableList<Int>, area: Area?, tracks: Array<Track?>, ids: Object2IntOpenHashMap<String>): Track {
+        val track = Track(id, stringId, indexes.firstOrNull() ?: -1, area)
+        tracks[id] = track
+        assert(!ids.containsKey(stringId)) { "Music track with name '$stringId' already found. Index: ${ids.getInt(stringId)}" }
+        ids[stringId] = id
+        return track
     }
 
 }
