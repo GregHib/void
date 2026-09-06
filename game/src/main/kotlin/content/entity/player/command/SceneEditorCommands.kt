@@ -6,6 +6,9 @@ import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 
 /**
@@ -54,6 +57,16 @@ class SceneEditorCommands : Script {
             handler = ::spawnNpc,
         )
         adminCommand(
+            "scene_item_drop",
+            intArg("item-id"),
+            intArg("x"),
+            intArg("y"),
+            intArg("plane"),
+            intArg("amount", optional = true),
+            desc = "Drop a server-backed item for the scene editor",
+            handler = ::dropItem,
+        )
+        adminCommand(
             "scene_status",
             desc = "Show persisted scene-editor placements / removals",
             handler = ::status,
@@ -90,6 +103,26 @@ class SceneEditorCommands : Script {
             args[3].toInt(),
         )
         player.message(result, ChatType.Console)
+    }
+
+    fun dropItem(player: Player, args: List<String>) {
+        val itemId = args[0].toInt()
+        val definition = ItemDefinitions.getOrNull(itemId)
+        if (definition == null) {
+            player.message("unknown item id $itemId", ChatType.Console)
+            return
+        }
+        val amount = (args.getOrNull(4)?.toIntOrNull() ?: 1).coerceAtLeast(1)
+        val id = definition.stringId.ifBlank { itemId.toString() }
+        FloorItems.add(
+            tile = Tile(args[1].toInt(), args[2].toInt(), args[3].toInt()),
+            id = id,
+            amount = amount,
+            revealTicks = FloorItems.IMMEDIATE,
+            disappearTicks = 300,
+            owner = null as String?,
+        )
+        player.message("dropped $id (#$itemId) x$amount @ ${args[1]},${args[2]},${args[3]}", ChatType.Console)
     }
 
     fun flush(player: Player, args: List<String>) {
