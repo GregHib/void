@@ -35,7 +35,7 @@ internal class ConsumableItemsTest : WorldTest() {
         val bases = mutableSetOf<String>()
         for (definition in ItemDefinitions.definitions) {
             val id = definition.stringId
-            if (id.endsWith("_noted") || !id.dropLast(1).endsWith("_")) {
+            if (id.endsWith("_noted") || id.length < 3 || id[id.length - 2] != '_') {
                 continue
             }
             if (id.last() !in '1'..'5') {
@@ -44,17 +44,32 @@ internal class ConsumableItemsTest : WorldTest() {
             if (!definition.contains("heals") && !definition.contains("excess")) {
                 continue
             }
-            val empty: String? = definition.getOrNull("empty")
-            if (empty == null || !empty.contains("vial")) {
-                continue
-            }
             bases.add(id.substringBeforeLast('_'))
         }
 
-        assertEquals(emptySet<String>(), bases - PotionEffects.effects.keys, "dosed potions with no effect entry")
+        assertEquals(emptySet<String>(), bases - NOT_POTIONS - PotionEffects.effects.keys, "dosed potions with no effect entry")
         val unmatched = PotionEffects.effects.keys.filter { base ->
             (1..5).none { ItemDefinitions.ids.containsKey("${base}_$it") }
         }
         assertEquals(emptyList<String>(), unmatched, "effect entries matching no item")
+    }
+
+    private companion object {
+        /**
+         * Items shaped like a dosed potion without being one: food and cocktails that come in
+         * portions, and a second copy of an item whose name happens to end in a digit.
+         */
+        private val NOT_POTIONS = setOf(
+            "blurberry_special",
+            "cooked_crab_meat",
+            "cooked_karambwan",
+            "drunk_dragon",
+            "easter_egg",
+            "food_class",
+            "fruit_blast",
+            "jug_of_bad_wine",
+            "pineapple_punch",
+            "short_green_guy",
+        )
     }
 }
