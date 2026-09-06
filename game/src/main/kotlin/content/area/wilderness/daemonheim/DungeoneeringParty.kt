@@ -399,12 +399,15 @@ class DungeoneeringParty : Script {
         }
 
         fun leave(player: Player) {
+            val left = inParty(player)
             val leader = player.dungeonLeader
             val last = player == leader && player.dungeonMembers.size == 1
             if (player.inDungeoneering) {
                 leaveDungeon(player, last)
             }
-            player.message("You leave the party.")
+            if (left) {
+                player.message("You leave the party.")
+            }
             player.dungeonMembers -= player
             if (player == leader && player.dungeonMembers.isNotEmpty()) {
                 promote(player, player.dungeonMembers.first(), leave = true)
