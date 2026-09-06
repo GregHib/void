@@ -863,6 +863,7 @@ price = 108200000
 limit = 2
 bank_stacks = false
 attack_range = 7
+weapon_style = 16
 weight = 1.814
 charges = 1
 degrade = "zaryte_bow_used"
