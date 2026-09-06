@@ -28,7 +28,11 @@ object DungeonNPCs {
         val row = Rows.getOrNull("boss_spawns.${room.name}") ?: return
 
         val ids = row.npcList("ids")
-        val id = ids.filter { NPCDefinitions.get(it).combat <= average }.maxBy { NPCDefinitions.get(it).combat }
+        // Take lowest level
+        val id = ids
+            .filter { NPCDefinitions.get(it).combat <= average }
+            .maxByOrNull { NPCDefinitions.get(it).combat }
+            ?: ids.first()
 
         val tile = row.tile("tile")
         val direction = Direction.SOUTH
