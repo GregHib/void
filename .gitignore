@@ -12,6 +12,9 @@ scripts.txt
 /data/.temp/*
 /data/avatars/*
 
+# Scene editor data is deployment-specific; each server may implement its own.
+/data/area/scene/
+
 # tools
 *.jar
 /data/dump/

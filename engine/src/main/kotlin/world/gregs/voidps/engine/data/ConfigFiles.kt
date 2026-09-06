@@ -60,18 +60,20 @@ private fun walkPath(
     lastUpdated: Long,
     invalidatedExtensions: MutableSet<String>,
 ) {
-    for (path in Files.newDirectoryStream(dir)) {
-        val name = path.name
-        if (!name.endsWith(".toml")) {
-            walkPath(map, path, lastUpdated, invalidatedExtensions)
-            continue
-        }
-        val extension = name.substringAfter('.')
-        map.getOrPut(extension) { ObjectArrayList() }.add(path.pathString)
+    Files.newDirectoryStream(dir).use { paths ->
+        for (path in paths) {
+            val name = path.name
+            if (!name.endsWith(".toml")) {
+                walkPath(map, path, lastUpdated, invalidatedExtensions)
+                continue
+            }
+            val extension = name.substringAfter('.')
+            map.getOrPut(extension) { ObjectArrayList() }.add(path.pathString)
 
-        // Check file-type hasn't been marked as invalidated before checking the last modified time for invalidation
-        if (!invalidatedExtensions.contains(extension) && Files.getLastModifiedTime(path).toMillis() > lastUpdated) {
-            invalidatedExtensions.add(extension)
+            // Check file-type hasn't been marked as invalidated before checking the last modified time for invalidation
+            if (!invalidatedExtensions.contains(extension) && Files.getLastModifiedTime(path).toMillis() > lastUpdated) {
+                invalidatedExtensions.add(extension)
+            }
         }
     }
 }
@@ -80,13 +82,15 @@ private fun cacheChanged(
     lastUpdated: Long,
     dir: Path = Path.of(Settings["storage.cache.path"]),
 ): Boolean {
-    for (path in Files.newDirectoryStream(dir)) {
-        if (!path.extension.startsWith("dat") && !path.extension.startsWith("idx")) {
-            continue
-        }
-        val lastModified = Files.getLastModifiedTime(path).toMillis()
-        if (lastModified > lastUpdated) {
-            return true
+    Files.newDirectoryStream(dir).use { paths ->
+        for (path in paths) {
+            if (!path.extension.startsWith("dat") && !path.extension.startsWith("idx")) {
+                continue
+            }
+            val lastModified = Files.getLastModifiedTime(path).toMillis()
+            if (lastModified > lastUpdated) {
+                return true
+            }
         }
     }
     return false
