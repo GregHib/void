@@ -296,7 +296,6 @@ areas = [
   }
 ]
 
-
 [gnomeball]
 index = 56
 areas = [ { region = 9526 } ]
@@ -339,7 +338,7 @@ areas = [ { region = 12087 } ]
 index = 64
 areas = [ { region = 9369 } ]
 
-[jolly-r]
+[jolly_r]
 index = 65
 areas = [ { region = 11058 } ]
 
@@ -561,6 +560,9 @@ areas = [
   { region = 12698 },
   { region = 6298 },
 ]
+
+[scape_original]
+index = 103
 
 [scape_sad]
 index = 104
@@ -824,9 +826,27 @@ areas = [ { region = 13203 } ]
 index = 150
 areas = [ { region = 6488 } ]
 
+[ground_scape]
+index = 151
+
+[scape_scared]
+index = 152
+
+[scape_santa]
+index = 153
+
 [land_of_snow]
 index = 154
 areas = [ { region = 10584 } ]
+
+[shaping_up]
+index = 155
+
+[exam_conditions]
+index = 156
+
+[roots_and_flutes]
+index = 157
 
 [incarceration]
 index = 158
@@ -865,7 +885,7 @@ areas = [
 index = 165
 areas = [ { region = 11318 } ]
 
-[wolf_mountain]
+[wild_isle]
 index = 166
 areas = [ { region = 12603 } ]
 
@@ -1227,11 +1247,11 @@ areas = [
 index = 226
 areas = [ { region = 10044 } ]
 
-[etceteria]
+[etcetera]
 index = 227
 areas = [ { region = 10300 } ]
 
-[shadowland]
+[eagle_peak]
 index = 228
 areas = [
   { region = 13875 },
@@ -1669,7 +1689,7 @@ areas = [
   }
 ]
 
-[the_quizmaster]
+[the_quiz_master]
 index = 318
 areas = [ { region = 7754 } ]
 
@@ -1728,7 +1748,7 @@ areas = [ { region = 9886 } ]
 index = 330
 areas = [ { region = 10042 } ]
 
-[spirits_of_the_elid]
+[spirits_of_elid]
 index = 331
 areas = [ { region = 13461 } ]
 
@@ -1811,6 +1831,9 @@ areas = [ { region = 11926 } ]
 index = 349
 areas = [ { region = 11343 } ]
 
+[homescape]
+index = 350
+
 [aye_car_rum_ba]
 index = 351
 areas = [ { region = 8527 } ]
@@ -1844,6 +1867,9 @@ areas = [ { region = 13356 } ]
 index = 356
 areas = [ { region = 10144 } ]
 
+[meddling_kids]
+index = 357
+
 [corridors_of_power]
 index = 358
 areas = [
@@ -1873,6 +1899,12 @@ areas = [ { region = 11824 } ]
 [subterranea]
 index = 362
 areas = [ { region = 10142 }, { region = 6552 } ]
+
+[incantation]
+index = 363
+
+[grip_of_the_talon]
+index = 364
 
 [dagannoth_dawn]
 index = 365
@@ -1939,6 +1971,9 @@ areas = [ { region = 13462, level = 2 } ]
 index = 376
 areas = [ { region = 13462, level = 0 } ]
 
+[scape_hunter]
+index = 377
+
 [making_waves]
 index = 378
 areas = [ { region = 9273 } ]
@@ -1946,6 +1981,9 @@ areas = [ { region = 9273 } ]
 [cabin_fever]
 index = 379
 areas = [ { region = 7243 } ]
+
+[last_stand]
+index = 380
 
 [lament]
 index = 381
@@ -2029,6 +2067,9 @@ areas = [ { region = 11924 } ]
 index = 395
 areas = [ { region = 6212 }, { region = 9796 } ]
 
+[hot_n_bothered]
+index = 396
+
 [too_many_cooks]
 index = 398
 areas = [ { region = 11930 } ]
@@ -2042,7 +2083,7 @@ areas = [
   }
 ]
 
-[chef_surprise]
+[chef_surprize]
 index = 399
 areas = [ { region = 7507, level = 2 } ]
 
@@ -2128,6 +2169,9 @@ areas = [ { region = 7504 } ]
 [pinball_wizard]
 index = 412
 areas = [ { x = [ 1952, 1952, 1984, 1984 ], y = [ 5024, 5056, 5056, 5024 ] } ]
+
+[beetle_juice]
+index = 413
 
 [back_to_life]
 index = 414
@@ -2265,13 +2309,16 @@ areas = [ { region = 8267 } ]
 index = 435
 areas = [ { region = 12115 } ]
 
-["alls_fairy_in_love_&_war"]
+[alls_fairy_in_love_and_war]
 index = 436
 areas = [ { region = 9285 } ]
 
 [major_miner]
 index = 437
 areas = [ { region = 9631 } ]
+
+[jester_minute]
+index = 438
 
 [norse_code]
 index = 439
@@ -2337,6 +2384,12 @@ areas = [ { region = 10834 } ]
 index = 454
 areas = [ { region = 10833 } ]
 
+[floating_free]
+index = 455
+
+[roc_and_roll]
+index = 456
+
 [high_spirits]
 index = 457
 areas = [ { region = 6726 } ]
@@ -2350,6 +2403,12 @@ areas = [
   },
   { region = 6989 }
 ]
+
+[jungle_island_xmas]
+index = 459
+
+[sea_shanty_xmas]
+index = 460
 
 [jungle_bells]
 index = 461
@@ -2501,7 +2560,10 @@ areas = [
   }
 ]
 
-[the_maze]
+[on_the_up]
+index = 488
+
+[melzars_maze]
 index = 489
 areas = [
   {
@@ -2596,6 +2658,12 @@ areas = [{ x = [ 2019, 2032 ], y = [ 4248, 4268 ], level = 1 }]
 index = 501
 areas = [ { region = 13131 } ]
 
+[bolries_diary]
+index = 502
+
+[healin_feelin]
+index = 503
+
 [animal_apogee]
 index = 504
 areas = [ { x = [ 3436, 3448 ], y = [ 9744, 9753 ], level = 1 } ]
@@ -2608,6 +2676,9 @@ areas = [ { region = 11074 } ]
 index = 506
 areas = [ { region = 9794 } ]
 
+[zaniks_theme]
+index = 507
+
 [dusk_in_yubiusk]
 index = 508
 areas = [ { region = 8770, level = 1 } ]
@@ -2619,6 +2690,9 @@ areas = [ { region = 6475 } ]
 [tune_from_the_dune]
 index = 510
 areas = [ { region = 13611 } ]
+
+[spa_bizarre]
+index = 511
 
 [copris_lunaris]
 index = 512
@@ -2654,6 +2728,15 @@ areas = [
 index = 516
 areas = [ { region = 6473 } ]
 
+[bounty_hunter_level_1]
+index = 517
+
+[bounty_hunter_level_2]
+index = 518
+
+[bounty_hunter_level_3]
+index = 519
+
 [the_adventurer]
 index = 520
 areas = [ { x = [ 3202, 3207 ], y = [ 3239, 3244 ] } ]
@@ -2662,13 +2745,192 @@ areas = [ { x = [ 3202, 3207 ], y = [ 3239, 3244 ] } ]
 index = 521
 areas = [ { region = 10062 } ]
 
+[a_new_menace]
+index = 522
+
+[blank_1]
+index = 523
+
+[crest_of_a_wave]
+index = 524
+
+[eye_of_the_storm]
+index = 525
+
+[blank_4]
+index = 526
+
+[blank_5]
+index = 527
+
+[blank_6]
+index = 528
+
+[blank_7]
+index = 529
+
+[blank_8]
+index = 530
+
+[blank_9]
+index = 531
+
+[blank_10]
+index = 532
+
+[brain_battle]
+index = 533
+
+[blank_11]
+index = 534
+
+[blank_12]
+index = 535
+
+[suroks_theme]
+index = 536
+
+[blank_13]
+index = 537
+
+[blank_14]
+index = 538
+
+[blank_15]
+index = 539
+
+[blank_16]
+index = 540
+
+[blank_17]
+index = 541
+
+[blank_18]
+index = 542
+
+[blank_19]
+index = 543
+
+[blank_20]
+index = 544
+
+[blank_21]
+index = 545
+
+[blank_22]
+index = 546
+
+[blank_23]
+index = 547
+
+[blank_24]
+index = 548
+
+[blank_25]
+index = 549
+
+[blank_26]
+index = 550
+
+[blank_27]
+index = 551
+
+[blank_28]
+index = 552
+
+[blank_29]
+index = 553
+
+[blank_30]
+index = 554
+
 [the_trade_parade]
 index = 555
 areas = [ { region = 12598 } ]
 
-[the_mentor]
-index = 611
-areas = [ { region = 10062 } ]
+[jungle_community]
+index = 556
+
+[blank_31]
+index = 557
+
+[icy_trouble_ahead]
+index = 558
+
+[icy_a_worried_gnome]
+index = 559
+
+[blank_32]
+index = 560
+
+[blank_33]
+index = 561
+
+[blank_34]
+index = 562
+
+[blank_35]
+index = 563
+
+[blank_36]
+index = 564
+
+[blank_37]
+index = 565
+
+[blank_38]
+index = 566
+
+[blank_39]
+index = 567
+
+[blank_40]
+index = 568
+
+[blank_41]
+index = 569
+
+[blank_42]
+index = 570
+
+[blank_43]
+index = 571
+
+[blank_44]
+index = 572
+
+[blank_45]
+index = 573
+
+[blank_46]
+index = 574
+
+[blank_47]
+index = 575
+
+[blank_48]
+index = 576
+
+[distant_land]
+index = 577
+
+[castle_wars]
+index = 578
+
+[pest_control]
+index = 579
+
+[competition]
+index = 580
+
+[poles_apart]
+index = 581
+
+[far_away]
+index = 582
+
+[hells_bells]
+index = 583
 
 [bloodbath]
 index = 584
@@ -2703,7 +2965,7 @@ areas = [
 index = 590
 areas = [ { region = 14488 } ]
 
-[dillo-gence_is_key]
+[dillo_gence_is_key]
 index = 591
 areas = [ { region = 8280 } ]
 
@@ -2711,7 +2973,7 @@ areas = [ { region = 8280 } ]
 index = 592
 areas = [ { x = [ 2519, 2536 ], y = [ 5229, 5241 ] } ]
 
-[toktz-ket-ek-mack]
+[toktz_ket_ek_mack]
 index = 593
 areas = [ { region = 9553 } ]
 
@@ -2739,6 +3001,15 @@ areas = [ { region = 13458 }, { region = 13459 } ]
 index = 599
 areas = [ { region = 12078 } ]
 
+[conspiracy_part_1]
+index = 600
+
+[conspiracy_part_2]
+index = 601
+
+[scape_summon]
+index = 602
+
 [guthixs_hunter]
 index = 603
 areas = [
@@ -2753,6 +3024,9 @@ areas = [
 index = 604
 areas = [ { region = 6487 } ]
 
+[cool_for_ali_cats]
+index = 605
+
 [second_vision]
 index = 606
 areas = [ { region = 6741, level = 2 } ]
@@ -2765,13 +3039,29 @@ areas = [
   { region = 13212 },
 ]
 
+[zombie_invasion]
+index = 608
+
 [the_ruins_of_camdozaal]
 index = 609
 areas = [ { region = 12186 } ]
 
+[dream_theatre]
+index = 610
+
+[the_mentor]
+index = 611
+areas = [ { region = 10062 } ]
+
 [slain_to_waste]
 index = 612
 areas = [ { x = [ 3349, 3368 ], y = [ 9429, 9444 ] } ]
+
+[ardougne_ago]
+index = 613
+
+[sarahs_lullaby]
+index = 614
 
 [shining_spirit]
 index = 615
@@ -2789,6 +3079,9 @@ areas = [ { region = 11587, level = 2 } ]
 index = 618
 areas = [ { region = 10820 } ]
 
+[historic_memories]
+index = 619
+
 [stealing_creation]
 index = 620
 areas = [ { region = 7769 } ]
@@ -2805,6 +3098,9 @@ areas = [ { region = 8004 } ]
 index = 623
 areas = [ { region = 12187 } ]
 
+[the_art_of_hocus_pocus]
+index = 624
+
 [magic_and_mystery]
 index = 625
 areas = [ { region = 12614 } ]
@@ -2812,6 +3108,12 @@ areas = [ { region = 12614 } ]
 [the_sound_of_guthix]
 index = 626
 areas = [ { region = 10075 } ]
+
+[blank_49]
+index = 627
+
+[temple_desecrated]
+index = 628
 
 [command_centre]
 index = 629
@@ -2821,9 +3123,18 @@ areas = [ { region = 9516 } ]
 index = 630
 areas = [ { x = [ 3522, 3550 ], y = [ 5186, 5214 ] } ]
 
+[mobilising_armies]
+index = 631
+
 [the_evil_within]
 index = 632
 areas = [ { x = [ 2954, 2957 ], y = [ 3189, 3822 ], level = 1 } ]
+
+[blank_50]
+index = 633
+
+[the_dance_of_the_snow_queen]
+index = 634
 
 [cavernous_mythology]
 index = 635
@@ -2845,6 +3156,18 @@ areas = [ { x = [ 3409, 3409, 3448, 3448, 3422 ], y = [ 4383, 4409, 4409, 4373, 
 index = 639
 areas = [ { x = [ 3397, 3417 ], y = [ 4359, 4378 ] } ]
 
+[glorious_recallation]
+index = 640
+
+[glorious_recallation]
+index = 641
+
+[glorious_recallation]
+index = 642
+
+[the_adventurers_re_united]
+index = 643
+
 [the_plundered_tomb]
 index = 644
 areas = [ { region = 5965 } ]
@@ -2852,6 +3175,9 @@ areas = [ { region = 5965 } ]
 [ancestral_wisdom]
 index = 645
 areas = [ { region = 5963 } ]
+
+[nials_widow]
+index = 646
 
 [the_muspahs_tomb]
 index = 647
@@ -2868,6 +3194,9 @@ areas = [ { region = 12956 }, { region = 13212 } ]
 [snack_attack]
 index = 650
 areas = [ { x = [ 1906, 1917 ], y = [ 5122, 5133 ] } ]
+
+[blank_51]
+index = 651
 
 [soul_wars]
 index = 652
@@ -2888,6 +3217,9 @@ areas = [ { region = 7473 } ]
 index = 654
 areas = [ { region = 11325 } ]
 
+[trees_arent_your_friends]
+index = 655
+
 [the_throne_of_bandos]
 index = 656
 areas = [ { x = [ 2316, 2353 ], y = [ 4265, 4281 ] } ]
@@ -2895,6 +3227,12 @@ areas = [ { x = [ 2316, 2353 ], y = [ 4265, 4281 ] } ]
 [penguin_possible]
 index = 657
 areas = [ { x = [ 2663, 2680 ], y = [ 10376, 10390 ] } ]
+
+[dont_panic_zanik]
+index = 658
+
+[demise_of_the_dorgeshuun]
+index = 659
 
 [the_chosen_commander]
 index = 660
@@ -2908,9 +3246,90 @@ areas = [ { region = 14170 } ]
 index = 662
 areas = [ { region = 11304 } ]
 
+[blank_52]
+index = 663
+
+[blank_53]
+index = 664
+
 [ice_day_for_penguins]
 index = 665
 areas = [ { region = 10814 } ]
+
+[face_off]
+index = 666
+
+[blank_54]
+index = 667
+
+[blank_55]
+index = 668
+
+[blank_56]
+index = 669
+
+[blank_57]
+index = 670
+
+[blank_58]
+index = 671
+
+[blank_59]
+index = 672
+
+[blank_60]
+index = 673
+
+[blank_61]
+index = 674
+
+[blank_62]
+index = 675
+
+[blank_63]
+index = 676
+
+[blank_64]
+index = 677
+
+[blank_65]
+index = 678
+
+[blank_66]
+index = 679
+
+[blank_67]
+index = 680
+
+[blank_68]
+index = 681
+
+[blank_69]
+index = 682
+
+[blank_70]
+index = 683
+
+[blank_71]
+index = 684
+
+[blank_72]
+index = 685
+
+[blank_73]
+index = 686
+
+[blank_74]
+index = 687
+
+[blank_75]
+index = 688
+
+[blank_76]
+index = 689
+
+[blank_77]
+index = 690
 
 [zaros_stirs]
 index = 691
@@ -2920,6 +3339,9 @@ areas = [ { region = 12633 } ]
 index = 692
 areas = [ { x = [ 2891, 2917 ], y = [ 10315, 10325 ], level = 1 } ]
 
+[godslayer]
+index = 693
+
 [but_we_can_fight]
 index = 694
 areas = [ { region = 9795 } ]
@@ -2927,6 +3349,39 @@ areas = [ { region = 9795 } ]
 [lazy_wabbit]
 index = 695
 areas = [ { region = 9810 } ]
+
+[hare_brained_machines]
+index = 696
+
+[blank_78]
+index = 697
+
+[blank_79]
+index = 698
+
+[blank_80]
+index = 699
+
+[blank_81]
+index = 700
+
+[blank_82]
+index = 701
+
+[blank_83]
+index = 702
+
+[blank_84]
+index = 703
+
+[blank_85]
+index = 704
+
+[blank_86]
+index = 705
+
+[blank_87]
+index = 706
 
 [eruption]
 index = 707
@@ -2962,9 +3417,21 @@ areas = [ { x = [ 3379, 3397 ], y = [ 3508, 3526 ] } ]
 index = 712
 areas = [ { region = 5961 } ]
 
+[blank_88]
+index = 713
+
+[blank_89]
+index = 714
+
 [final_destination]
 index = 715
 areas = [ { region = 6482 } ]
+
+[elven_seed]
+index = 716
+
+[scape_theme]
+index = 717
 
 [honkytonky_newbie_melody]
 index = 718
@@ -3031,6 +3498,9 @@ areas = [
 index = 726
 areas = [ { region = 17500 } ]
 
+[blank_90]
+index = 727
+
 [honkytonky_sea_shanty]
 index = 728
 areas = [ { x = [ 3044, 3055 ], y = [ 3255, 3259 ] } ]
@@ -3048,6 +3518,12 @@ areas = [
 index = 730
 areas = [ { region = 17499 } ]
 
+[blank_91]
+index = 731
+
+[blank_92]
+index = 732
+
 [root_canal]
 index = 733
 areas = [ { region = 6465 } ]
@@ -3063,6 +3539,9 @@ areas = [
   { region = 13403 },
 ]
 
+[smorgasbord]
+index = 735
+
 [silent_knight]
 index = 736
 areas = [ { region = 10584 } ]
@@ -3070,6 +3549,9 @@ areas = [ { region = 10584 } ]
 [ghost_of_christmas_presents]
 index = 737
 areas = [ { region = 10327 } ]
+
+[blank_93]
+index = 738
 
 [battle_of_souls]
 index = 739
@@ -3091,6 +3573,9 @@ areas = [
 [dead_and_buried]
 index = 742
 areas = [ { region = 15957 }, { region = 15958 } ]
+
+[the_pact]
+index = 743
 
 [freshwater]
 index = 744
@@ -3117,6 +3602,9 @@ areas = [ { x = [ 2576, 2589 ], y = [ 3523, 3532 ] } ]
 index = 747
 areas = [ { region = 9811 } ]
 
+[blank_94]
+index = 748
+
 [thieves_guild_i]
 index = 749
 areas = [ { region = 18524 } ]
@@ -3137,6 +3625,9 @@ areas = [ { region = 19034 } ]
 index = 753
 areas = [ { region = 16471 } ]
 
+[blank_95]
+index = 754
+
 [love_lost]
 index = 755
 areas = [ { region = 15193 } ]
@@ -3148,6 +3639,15 @@ areas = [ { region = 15448 } ]
 [love_bites]
 index = 757
 areas = [ { x = [ 3800, 3807 ], y = [ 5720, 5727 ] } ]
+
+[blank_96]
+index = 758
+
+[castle_warz]
+index = 759
+
+[blank_97]
+index = 760
 
 [mindful]
 index = 761
@@ -3164,6 +3664,9 @@ areas = [
   { region = 17494, level = 1 },
 ]
 
+[blank_98]
+index = 764
+
 [judge_and_jury]
 index = 765
 areas = [ { region = 7234 } ]
@@ -3176,6 +3679,87 @@ areas = [
   { region = 13882 },
   { region = 13881 },
 ]
+
+[dungeon_defeated]
+index = 767
+
+[glacial_i]
+index = 768
+
+[glacial_ii]
+index = 769
+
+[glacial_iii]
+index = 770
+
+[glacial_iv]
+index = 771
+
+[glacial_v]
+index = 772
+
+[glacial_vi]
+index = 773
+
+[glacial_vii]
+index = 774
+
+[glacial_viii]
+index = 775
+
+[glacial_ix]
+index = 776
+
+[glacial_x]
+index = 777
+
+[glacial_xi]
+index = 778
+
+[glacial_xii]
+index = 779
+
+[glacial_xiii]
+index = 780
+
+[glacial_xiv]
+index = 781
+
+[glacial_xv]
+index = 782
+
+[glacial_xvi]
+index = 783
+
+[glacialis_i]
+index = 784
+
+[glacialis_ii]
+index = 785
+
+[glacialis_iii]
+index = 786
+
+[glacialis_iv]
+index = 787
+
+[glacialis_v]
+index = 788
+
+[glacialis_vi]
+index = 789
+
+[glacialis_vii]
+index = 790
+
+[glacialis_viii]
+index = 791
+
+[glacialis_ix]
+index = 792
+
+[glacialis_x]
+index = 793
 
 [astea_frostweb]
 index = 794
@@ -3197,9 +3781,87 @@ areas = [ { x = [ 193, 206 ], y = [ 4993, 5006 ] } ]
 index = 798
 areas = [ { x = [ 225, 238 ], y = [ 4993, 5006 ] } ]
 
-[plane-freezer_lakhrahnaz]
+[plane_freezer_lakhrahnaz]
 index = 799
 areas = [ { x = [ 209, 222 ], y = [ 4993, 5006 ] } ]
+
+[blank_116]
+index = 800
+
+[blank_117]
+index = 801
+
+[blank_118]
+index = 802
+
+[blank_119]
+index = 803
+
+[blank_120]
+index = 804
+
+[blank_121]
+index = 805
+
+[blank_122]
+index = 806
+
+[blank_123]
+index = 807
+
+[blank_124]
+index = 808
+
+[blank_125]
+index = 809
+
+[blank_126]
+index = 810
+
+[blank_127]
+index = 811
+
+[blank_128]
+index = 812
+
+[blank_129]
+index = 813
+
+[blank_130]
+index = 814
+
+[blank_131]
+index = 815
+
+[desolo_i]
+index = 816
+
+[desolo_ii]
+index = 817
+
+[desolo_iii]
+index = 818
+
+[desolo_iv]
+index = 819
+
+[desolo_v]
+index = 820
+
+[desolo_vi]
+index = 821
+
+[desolo_vii]
+index = 822
+
+[desolo_viii]
+index = 823
+
+[desolo_ix]
+index = 824
+
+[desolo_x]
+index = 825
 
 [ballak_the_pummeller]
 index = 826
@@ -3221,9 +3883,87 @@ areas = [ { x = [ 225, 238 ], y = [ 5121, 5134 ] } ]
 index = 830
 areas = [ { x = [ 212, 219 ], y = [ 5121, 5130 ] } ]
 
-[shadow-divine_skinweaver]
+[divine_skinweaver]
 index = 831
 areas = [ { x = [ 241, 254 ], y = [ 5121, 5134 ] } ]
+
+[blank_132]
+index = 832
+
+[blank_133]
+index = 833
+
+[blank_134]
+index = 834
+
+[blank_135]
+index = 835
+
+[blank_136]
+index = 836
+
+[blank_137]
+index = 837
+
+[blank_138]
+index = 838
+
+[blank_139]
+index = 839
+
+[blank_140]
+index = 840
+
+[blank_141]
+index = 841
+
+[blank_142]
+index = 842
+
+[blank_143]
+index = 843
+
+[blank_144]
+index = 844
+
+[blank_145]
+index = 845
+
+[blank_146]
+index = 846
+
+[blank_147]
+index = 847
+
+[adorno_i]
+index = 848
+
+[adorno_ii]
+index = 849
+
+[adorno_iii]
+index = 850
+
+[adorno_iv]
+index = 851
+
+[adorno_v]
+index = 852
+
+[adorno_vi]
+index = 853
+
+[adorno_vii]
+index = 854
+
+[adorno_viii]
+index = 855
+
+[adorno_ix]
+index = 856
+
+[adorno_x]
+index = 857
 
 [harlakk_the_riftsplitter]
 index = 858
@@ -3233,7 +3973,7 @@ areas = [ { x = [ 225, 238 ], y = [ 5249, 5262 ] } ]
 index = 859
 areas = [ { x = [ 209, 222 ], y = [ 5265, 5278 ] } ]
 
-[night-gazer_khighorahk]
+[night_gazer_khighorahk]
 index = 860
 areas = [ { x = [ 193, 206 ], y = [ 5249, 5262 ] } ]
 
@@ -3248,6 +3988,132 @@ areas = [ { x = [ 209, 222 ], y = [ 5249, 5262 ] } ]
 [stomp]
 index = 863
 areas = [ { x = [ 242, 253 ], y = [ 5249, 5259 ] } ]
+
+[blank_148]
+index = 864
+
+[blank_149]
+index = 865
+
+[blank_150]
+index = 866
+
+[blank_151]
+index = 867
+
+[blank_152]
+index = 868
+
+[blank_153]
+index = 869
+
+[blank_154]
+index = 870
+
+[blank_155]
+index = 871
+
+[blank_156]
+index = 872
+
+[blank_157]
+index = 873
+
+[blank_158]
+index = 874
+
+[blank_159]
+index = 875
+
+[blank_160]
+index = 876
+
+[blank_161]
+index = 877
+
+[blank_162]
+index = 878
+
+[blank_163]
+index = 879
+
+[blank_164]
+index = 880
+
+[blank_165]
+index = 881
+
+[blank_166]
+index = 882
+
+[blank_167]
+index = 883
+
+[blank_168]
+index = 884
+
+[blank_169]
+index = 885
+
+[blank_170]
+index = 886
+
+[blank_171]
+index = 887
+
+[blank_172]
+index = 888
+
+[blank_173]
+index = 889
+
+[blank_174]
+index = 890
+
+[blank_175]
+index = 891
+
+[blank_176]
+index = 892
+
+[blank_177]
+index = 893
+
+[blank_178]
+index = 894
+
+[blank_179]
+index = 895
+
+[occulo_i]
+index = 896
+
+[occulo_ii]
+index = 897
+
+[occulo_iii]
+index = 898
+
+[occulo_iv]
+index = 899
+
+[occulo_v]
+index = 900
+
+[occulo_vi]
+index = 901
+
+[occulo_vii]
+index = 902
+
+[occulo_viii]
+index = 903
+
+[occulo_ix]
+index = 904
+
+[occulo_x]
+index = 905
 
 [necrolord]
 index = 906
@@ -3269,9 +4135,39 @@ areas = [ { x = [ 209, 222 ], y = [ 5377, 5390 ] } ]
 index = 910
 areas = [ { x = [ 209, 222 ], y = [ 5393, 5406 ] } ]
 
-[flesh-spoiler_haasghenahk]
+[flesh_spoiler_haasghenahk]
 index = 911
 areas = [ { x = [ 193, 206 ], y = [ 5393, 5406 ] } ]
+
+[torqueo_i]
+index = 912
+
+[torqueo_ii]
+index = 913
+
+[torqueo_iii]
+index = 914
+
+[torqueo_iv]
+index = 915
+
+[torqueo_v]
+index = 916
+
+[torqueo_vi]
+index = 917
+
+[torqueo_vii]
+index = 918
+
+[torqueo_viii]
+index = 919
+
+[torqueo_ix]
+index = 920
+
+[torqueo_x]
+index = 921
 
 [blink]
 index = 922
@@ -3293,7 +4189,7 @@ areas = [ { x = [ 209, 222 ], y = [ 5505, 5518 ] } ]
 index = 926
 areas = [ { x = [ 225, 238 ], y = [ 5505, 5518 ] } ]
 
-[world-gorger_shukarhazh]
+[world_gorger_shukarhazh]
 index = 927
 areas = [ { x = [ 209, 222 ], y = [ 5521, 5534 ] } ]
 
@@ -3305,6 +4201,12 @@ areas = [ { x = [ 4375, 4386 ], y = [ 5670, 5680 ] } ]
 index = 929
 areas = [ { region = 17751 } ]
 
+[all_for_the_pest]
+index = 930
+
+[destiny]
+index = 931
+
 [unavoidable_conflict]
 index = 932
 areas = [ { region = 10637 } ]
@@ -3315,6 +4217,21 @@ areas = [
   { x = [ 2640, 2651 ], y = [ 9034, 9045 ] },
   { x = [ 2640, 2652 ], y = [ 9054, 9067 ] },
 ]
+
+[blank_180]
+index = 934
+
+[yklagor_the_thunderous]
+index = 935
+
+[gunnarsgrunn]
+index = 936
+
+[blank_181]
+index = 937
+
+[blank_182]
+index = 938
 
 [halloween_party]
 index = 939
@@ -3336,6 +4253,9 @@ areas = [ { x = [ 4493, 4450 ], y = [ 5647, 5681 ] } ]
 index = 943
 areas = [ { region = 18006 } ]
 
+[blank_183]
+index = 944
+
 [the_void_stares_back]
 index = 945
 areas = [ { region = 18007 } ]
@@ -3343,6 +4263,15 @@ areas = [ { region = 18007 } ]
 [precarious_void]
 index = 946
 areas = [ { x = [ 4511, 4529 ], y = [ 5644, 5658 ] } ]
+
+[mystery_revealed]
+index = 947
+
+[who_are_we_to_judge]
+index = 948
+
+[blank_184]
+index = 952
 
 [christmas_caverns]
 index = 953
@@ -3356,24 +4285,60 @@ areas = [
 index = 954
 areas = [ { region = 10841 } ]
 
+[the_task_at_hand]
+index = 955
+
+[monkey_see_monkey_do]
+index = 956
+
+[monkey_see_monkey_do]
+index = 957
+
+[simian_scuffle]
+index = 958
+
+[blank_185]
+index = 959
+
+[blank_186]
+index = 960
+
+[blank_187]
+index = 961
+
+[monkey_see_monkey_do]
+index = 962
+
 [rocky_rescue]
 index = 963
 areas = [ { region = 8792 } ]
+
+[go_with_the_flow]
+index = 964
 
 [the_records_chamber]
 index = 965
 areas = [ { region = 7771 } ]
 
+[corporate_callousness]
+index = 966
+
+[blank_188]
+index = 967
+
+[blank_189]
+index = 968
+
 [colonel_grimsson]
 index = 969
 areas = [ { region = 6747 }, { region = 6235 } ]
 
+[only_a_king]
+index = 970
+
+[blank_190]
+index = 971
+
 [zaros_zeitgeist]
 index = 972
 areas = [ { x = [ 2900, 2940 ], y = [ 5188, 5219 ] } ]
-
-[delrith]
-index = 195
-
-[wally_the_hero]
-index = 196

@@ -76,6 +76,7 @@ class MusicTracks {
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
+                    assert(!names.containsKey(stringId)) { "Music track with name '$stringId' already found. Index: ${names.getInt(stringId)}" }
                     names[stringId] = index
                 }
             }

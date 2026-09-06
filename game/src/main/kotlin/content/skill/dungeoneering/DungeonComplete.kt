@@ -8,6 +8,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
+import content.entity.world.music.playTrack
 import content.quest.closeTabs
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.Minimap
@@ -17,6 +18,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.playTrack
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
@@ -224,6 +226,7 @@ class DungeonComplete : Script {
 
     private fun Player.dungeonComplete() {
         strongQueue("dungeon_info") {
+            playTrack("dungeon_defeated")
             set("had_party_open", interfaces.contains("dungeoneering_party"))
             minimap(Minimap.HideMap)
             closeTabs(Tab.Options)

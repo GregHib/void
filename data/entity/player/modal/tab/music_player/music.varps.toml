@@ -45,7 +45,7 @@ values = [ "la_mort", "stagnant", "breeze", "stratosphere", "time_out", "natural
 id = 311
 persist = true
 format = "bitwise"
-values = [ "deep_down", "chamber", "miscellania", "etcetera", "shadowland", "lair", "deadlands", "rellekka", "saga", "borderland", "stranded", "legend", "frostbite", "warrior", "technology", "monkey_madness", "anywhere", "marooned", "island_life", "temple", "suspicious", "showdown", "find_my_way", "castle_wars", "melodrama", "ready_for_battle", "stillness", "lighthouse", "goblin_game", "out_of_the_deep", "hell's_bells", "the_navigator" ]
+values = [ "deep_down", "chamber", "miscellania", "etcetera", "eagle_peak", "lair", "deadlands", "rellekka", "saga", "borderland", "stranded", "legend", "frostbite", "warrior", "technology", "monkey_madness", "anywhere", "marooned", "island_life", "temple", "suspicious", "showdown", "find_my_way", "castle_wars", "melodrama", "ready_for_battle", "stillness", "lighthouse", "goblin_game", "out_of_the_deep", "hell's_bells", "the_navigator" ]
 
 [unlocked_music_8]
 id = 346

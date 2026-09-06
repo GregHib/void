@@ -1,10 +1,12 @@
 package content.skill.dungeoneering
 
 import content.entity.player.dialogue.type.statement
+import content.entity.world.music.playTrack
 import content.quest.instance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.midi
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -20,6 +22,7 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.random
 
 class DungeonDoors : Script {
     init {
@@ -214,7 +217,23 @@ class DungeonDoors : Script {
         } else {
             tele(Tile(x = tile.x.coerceIn(target.tile.x, target.tile.x + 1), y = target.tile.y + direction.delta.y * 2))
         }
+        if (adj.type == DungeonRoomType.Boss) {
+            playTrack(adj.name ?: return)
+        } else {
+            val song = when (dungeon.theme) {
+                "frozen" -> "glacialis_${numerals.random(random)}"
+                "abandoned" -> "desolo_${numerals.random(random)}"
+                "furnished" -> "adorno_${numerals.random(random)}"
+                "occult" -> "occulo_${numerals.random(random)}"
+                "warped" -> "torqueo_${numerals.random(random)}"
+                else -> return
+            }
+            println(song)
+            playTrack(song)
+        }
     }
+
+    private val numerals = setOf("i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x")
 
     private fun direction(target: GameObject): Direction? = when (target.rotation) {
         0 -> Direction.WEST
