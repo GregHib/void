@@ -14,6 +14,15 @@ import world.gregs.voidps.type.Tile
 import java.io.File
 
 private val logger = InlineLogger()
+private data class SpawnRecord(
+    val id: String,
+    val x: Int,
+    val y: Int,
+    val level: Int,
+    val direction: Direction,
+    val members: Boolean,
+    val remove: Boolean,
+)
 
 fun loadNpcSpawns(files: ConfigFiles, reload: Boolean = false) {
     timedLoad("npc spawn") {
@@ -56,8 +65,7 @@ private fun loadNormal(paths: List<String>, file: File, save: Boolean): Int {
     val writer = ArrayWriter(1_000_000)
     writer.writeInt(0) // Placeholder
     val membersWorld = World.members
-    var count = 0
-    val hashes = mutableSetOf<Long>()
+    val records = mutableListOf<SpawnRecord>()
     for (path in paths) {
         Config.fileReader(path) {
             while (nextPair()) {
@@ -69,6 +77,7 @@ private fun loadNormal(paths: List<String>, file: File, save: Boolean): Int {
                     var y = 0
                     var level = 0
                     var members = false
+                    var remove = false
                     while (nextEntry()) {
                         when (val key = key()) {
                             "id" -> id = string()
@@ -77,32 +86,48 @@ private fun loadNormal(paths: List<String>, file: File, save: Boolean): Int {
                             "level" -> level = int()
                             "direction" -> direction = Direction.valueOf(string())
                             "members" -> members = boolean()
+                            "remove" -> remove = boolean()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    val tile = Tile(x, y, level)
-                    writer.writeString(id)
-                    writer.writeInt(tile.id)
-                    writer.writeByte(direction.ordinal)
-                    writer.writeByte(members)
-                    if (!membersWorld && members) {
-                        continue
-                    }
-                    val definition = NPCDefinitions.getOrNull(id)
-                    if (definition == null) {
-                        logger.warn { "Invalid npc spawn id '$id' in $path." }
-                    } else {
-                        val hash = (tile.id.toLong() shl 32) + definition.id.toLong()
-                        if (hashes.contains(hash)) {
-                            logger.warn { "Duplicate spawn id = \"$id\" x = ${tile.x}, y = ${tile.y}${if (tile.level != 0) ", level = ${tile.level}" else ""} in $path." }
-                        }
-                        hashes.add(hash)
-                    }
-                    NPCs.add(id, tile, direction)
-                    count++
+                    records += SpawnRecord(id, x, y, level, direction, members, remove)
                 }
             }
         }
+    }
+    val removals = records.asSequence()
+        .filter { it.remove }
+        .mapNotNull { record ->
+            val definition = NPCDefinitions.getOrNull(record.id) ?: return@mapNotNull null
+            (Tile(record.x, record.y, record.level).id.toLong() shl 32) + definition.id.toLong()
+        }
+        .toSet()
+    var count = 0
+    val hashes = mutableSetOf<Long>()
+    for (record in records) {
+        writer.writeString(record.id)
+        writer.writeInt(Tile(record.x, record.y, record.level).id)
+        writer.writeByte(record.direction.ordinal)
+        writer.writeByte(record.members)
+        if (record.remove || (!membersWorld && record.members)) {
+            continue
+        }
+        val tile = Tile(record.x, record.y, record.level)
+        val definition = NPCDefinitions.getOrNull(record.id)
+        if (definition == null) {
+            logger.warn { "Invalid npc spawn id '${record.id}'." }
+        } else {
+            val hash = (tile.id.toLong() shl 32) + definition.id.toLong()
+            if (hash in removals) {
+                continue
+            }
+            if (hashes.contains(hash)) {
+                logger.warn { "Duplicate spawn id = \"${record.id}\" x = ${tile.x}, y = ${tile.y}${if (tile.level != 0) ", level = ${tile.level}" else ""}." }
+            }
+            hashes.add(hash)
+        }
+        NPCs.add(record.id, tile, record.direction)
+        count++
     }
     val end = writer.position()
     writer.position(0)

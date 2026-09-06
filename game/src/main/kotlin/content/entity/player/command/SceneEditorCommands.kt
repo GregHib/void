@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
+import world.gregs.voidps.engine.inv.addToLimit
+import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 
@@ -57,6 +59,16 @@ class SceneEditorCommands : Script {
             handler = ::spawnNpc,
         )
         adminCommand(
+            "scene_npc_remove",
+            intArg("npc-id"),
+            intArg("x"),
+            intArg("y"),
+            intArg("plane"),
+            desc = "Remove a scene-editor NPC and delete its persisted spawn",
+            handler = ::removeNpc,
+        )
+
+        adminCommand(
             "scene_item_drop",
             intArg("item-id"),
             intArg("x"),
@@ -65,6 +77,13 @@ class SceneEditorCommands : Script {
             intArg("amount", optional = true),
             desc = "Drop a server-backed item for the scene editor",
             handler = ::dropItem,
+        )
+        adminCommand(
+            "scene_item_bag",
+            intArg("item-id"),
+            intArg("amount", optional = true),
+            desc = "Add a server-backed item directly to the player's bag",
+            handler = ::addItemToBag,
         )
         adminCommand(
             "scene_status",
@@ -105,6 +124,16 @@ class SceneEditorCommands : Script {
         player.message(result, ChatType.Console)
     }
 
+    fun removeNpc(player: Player, args: List<String>) {
+        val result = SceneEditorPersist.removeNpc(
+            args[0].toInt(),
+            args[1].toInt(),
+            args[2].toInt(),
+            args[3].toInt(),
+        )
+        player.message(result, ChatType.Console)
+    }
+
     fun dropItem(player: Player, args: List<String>) {
         val itemId = args[0].toInt()
         val definition = ItemDefinitions.getOrNull(itemId)
@@ -123,6 +152,21 @@ class SceneEditorCommands : Script {
             owner = null as String?,
         )
         player.message("dropped $id (#$itemId) x$amount @ ${args[1]},${args[2]},${args[3]}", ChatType.Console)
+    }
+    fun addItemToBag(player: Player, args: List<String>) {
+        val itemId = args[0].toInt()
+        val definition = ItemDefinitions.getOrNull(itemId)
+        if (definition == null) {
+            player.message("unknown item id $itemId", ChatType.Console)
+            return
+        }
+        val amount = (args.getOrNull(1)?.toIntOrNull() ?: 1).coerceAtLeast(1)
+        val id = definition.stringId.ifBlank { itemId.toString() }
+        val added = player.inventory.addToLimit(id, amount)
+        player.message("added $id (#$itemId) x$added to bag", ChatType.Console)
+        if (added < amount) {
+            player.message("bag is full; $amount requested", ChatType.Console)
+        }
     }
 
     fun flush(player: Player, args: List<String>) {

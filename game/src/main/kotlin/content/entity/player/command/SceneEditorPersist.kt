@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.config.Config
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
-import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -34,6 +33,7 @@ object SceneEditorPersist {
         val x: Int,
         val y: Int,
         val plane: Int,
+        val remove: Boolean = false,
     )
 
     fun place(objectId: Int, x: Int, y: Int, plane: Int, rotation: Int = 0, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT): String = synchronized(lock) {
@@ -64,18 +64,66 @@ object SceneEditorPersist {
         if (NPCs.findOrNull(tile, id) != null) {
             return "NPC already present: $id @ $x,$y,$plane"
         }
-        val entries = readNpcEntries().toMutableList()
-        if (entries.none { it.id == id && it.x == x && it.y == y && it.plane == plane }) {
-            entries += NpcEntry(id, x, y, plane)
-            writeNpcSpawns(entries)
-        }
+        val entries = readNpcEntries().filterNot { it.id == id && it.x == x && it.y == y && it.plane == plane }.toMutableList()
+        entries += NpcEntry(id, x, y, plane)
+        writeNpcSpawns(entries)
         NPCs.add(id, tile)
         "spawned $id (#$definitionId) @ $x,$y,$plane"
     }
+
+    fun removeNpc(definitionId: Int, x: Int, y: Int, plane: Int): String = synchronized(lock) {
+        val definition = NPCDefinitions.getOrNull(definitionId)
+            ?: return "unknown NPC id $definitionId"
+        val id = definition.stringId.ifBlank { definitionId.toString() }
+        val tile = Tile(x, y, plane)
+        val live = NPCs.findOrNull(tile, id)
+            ?: NPCs.at(tile.regionLevel).firstOrNull { npc ->
+                npc.id == id
+                        && kotlin.math.abs(npc.tile.x - x) <= 1
+                        && kotlin.math.abs(npc.tile.y - y) <= 1
+                        && npc.tile.level == plane
+            }
+        if (live != null) {
+            NPCs.remove(live)
+        }
+        // NPCs can wander after spawning. Persist the removal at their original
+        // spawn_tile, not at the tile where the client happened to click them.
+        val spawnTile = live?.get<Tile>("spawn_tile") ?: tile
+        val entries = readNpcEntries()
+        val matching = entries.indices
+            .filter { entries[it].id == id && entries[it].plane == spawnTile.level }
+            .minByOrNull { kotlin.math.abs(entries[it].x - spawnTile.x) + kotlin.math.abs(entries[it].y - spawnTile.y) }
+            ?.takeIf {
+                kotlin.math.abs(entries[it].x - spawnTile.x) <= 1
+                        && kotlin.math.abs(entries[it].y - spawnTile.y) <= 1
+            }
+        val remaining = if (matching == null) {
+            entries
+        } else {
+            entries.filterIndexed { index, _ -> index != matching }
+        }.toMutableList()
+        val persisted = matching != null
+        if (remaining.none {
+                it.remove && it.id == id && it.x == spawnTile.x
+                        && it.y == spawnTile.y && it.plane == spawnTile.level
+            }) {
+            remaining += NpcEntry(id, spawnTile.x, spawnTile.y, spawnTile.level, remove = true)
+        }
+        writeNpcSpawns(remaining)
+        when {
+            live != null && persisted -> "removed $id (#$definitionId) @ $x,$y,$plane"
+            live != null -> "removed live $id (#$definitionId) @ $x,$y,$plane"
+            persisted -> "removed persisted $id (#$definitionId) @ $x,$y,$plane"
+            else -> "queued removal $id (#$definitionId) @ $x,$y,$plane"
+        }
+    }
+
     fun flush(): String = synchronized(lock) {
         val entries = readEntries()
         reload()
-        loadNpcSpawns(configFiles(), reload = true)
+        // Save is the object-editor flush. NPC commands update their live entity
+        // and persistence file directly; reloading NPC spawns here would recreate
+        // removed server NPCs while the object editor is being saved.
         logger.info { "scene editor reloaded ${entries.size} persisted changes" }
         "reloaded ${entries.size} scene-editor change(s) from ${file.name}"
     }
@@ -164,17 +212,19 @@ object SceneEditorPersist {
                     var x = 0
                     var y = 0
                     var plane = 0
+                    var remove = false
                     while (nextEntry()) {
                         when (key()) {
                             "id" -> id = string()
                             "x" -> x = int()
                             "y" -> y = int()
                             "level" -> plane = int()
+                            "remove" -> remove = boolean()
                             else -> throw IllegalArgumentException("Unexpected key '${key()}' ${exception()}")
                         }
                     }
                     if (id.isNotBlank()) {
-                        entries += NpcEntry(id, x, y, plane)
+                        entries += NpcEntry(id, x, y, plane, remove)
                     }
                 }
             }
@@ -188,15 +238,19 @@ object SceneEditorPersist {
             buildString {
                 appendLine("# Auto-generated by scene editor. Do not hand-edit.")
                 appendLine("spawns = [")
-                for (entry in entries.sortedWith(compareBy({ it.x }, { it.y }, { it.plane }, { it.id }))) {
+                for (entry in entries.sortedWith(compareBy({ it.x }, { it.y }, { it.plane }, { it.id }, { it.remove }))) {
                     append("    { id = \"").append(entry.id).append("\", x = ").append(entry.x)
                         .append(", y = ").append(entry.y).append(", level = ").append(entry.plane)
-                        .appendLine(" },")
+                    if (entry.remove) {
+                        append(", remove = true")
+                    }
+                    appendLine(" },")
                 }
                 appendLine("]")
             },
         )
     }
+
 
     private val npcFile: File
         get() = File(Settings["storage.data"], "area/scene/editor.npc-spawns.toml")
