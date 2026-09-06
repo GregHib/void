@@ -47,12 +47,18 @@ object SceneEditorPersist {
     fun remove(objectId: Int, x: Int, y: Int, plane: Int, rotation: Int = 0, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT): String = synchronized(lock) {
         val tile = Tile(x, y, plane)
         val removed = removeLive(objectId, tile, shape, rotation and 3)
-        update(Entry(objectId, x, y, plane, rotation and 3, shape, remove = true))
+        val configured = readObjectSpawns(configFiles().list(Settings["spawns.objects"])).firstOrNull { spawn ->
+            !spawn.remove && spawn.x == x && spawn.y == y && spawn.level == plane
+                    && (spawn.id.toIntOrNull() == objectId || ObjectDefinitions.getOrNull(spawn.id)?.id == objectId)
+        }
+        val persistedShape = removed?.shape ?: configured?.type ?: shape
+        val persistedRotation = removed?.rotation ?: configured?.rotation ?: (rotation and 3)
+        update(Entry(objectId, x, y, plane, persistedRotation, persistedShape, remove = true))
         reload()
-        if (removed) {
-            "removed $objectId @ $x,$y,$plane (collision cleared)"
+        if (removed != null) {
+            "removed $objectId @ $x,$y,$plane shape=$persistedShape (collision cleared)"
         } else {
-            "queued remove $objectId @ $x,$y,$plane (not in live map)"
+            "queued remove $objectId @ $x,$y,$plane shape=$persistedShape (not in live map)"
         }
     }
 
@@ -148,23 +154,23 @@ object SceneEditorPersist {
         loadObjectSpawns(files.list(Settings["spawns.objects"]))
     }
 
-    private fun removeLive(objectId: Int, tile: Tile, shape: Int, rotation: Int): Boolean {
+    private fun removeLive(objectId: Int, tile: Tile, shape: Int, rotation: Int): GameObject? {
         val byShape = GameObjects.getShape(tile, shape)
         if (byShape != null && byShape.intId == objectId) {
             GameObjects.remove(byShape, collision = true)
-            return true
+            return byShape
         }
         val byId = GameObjects.findOrNull(tile, objectId)
         if (byId != null) {
             GameObjects.remove(byId, collision = true)
-            return true
+            return byId
         }
         val probe = GameObject(objectId, tile, shape, rotation)
         if (GameObjects.contains(probe)) {
             GameObjects.remove(probe, collision = true)
-            return true
+            return probe
         }
-        return false
+        return null
     }
 
     private fun readEntries(): List<Entry> {
