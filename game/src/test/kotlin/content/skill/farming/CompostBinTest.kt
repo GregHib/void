@@ -6,6 +6,7 @@ import dialogueOption
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.MapValues
@@ -145,6 +146,16 @@ class CompostBinTest : WorldTest() {
         tick(2)
 
         assertEquals("compost_15", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Every reachable bin state has a distinct varbit value`() {
+        val values = (VariableDefinitions.get("compost_bin_falador")!!.values as MapValues).values
+        val seen = mutableMapOf<Int, Any>()
+        for ((state, value) in values) {
+            val existing = seen.put(value, state)
+            assertNull(existing, "$state and $existing share varbit value $value")
+        }
     }
 
     @Test
