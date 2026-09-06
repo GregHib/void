@@ -681,7 +681,7 @@ id = 14214
 [prayer_potion_stealing_creation_1]
 id = 14215
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of Prayer restore potion."
 
@@ -731,7 +731,7 @@ id = 14224
 [energy_potion_stealing_creation_1]
 id = 14225
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of energy potion."
 
@@ -781,7 +781,7 @@ id = 14234
 [super_attack_potion_stealing_creation_1]
 id = 14235
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of super Attack potion."
 
@@ -831,7 +831,7 @@ id = 14244
 [super_strength_potion_stealing_creation_1]
 id = 14245
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of super Strength potion."
 
@@ -881,7 +881,7 @@ id = 14254
 [ranging_potion_stealing_creation_1]
 id = 14255
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of ranging potion."
 
@@ -931,7 +931,7 @@ id = 14264
 [defence_potion_stealing_creation_1]
 id = 14265
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of Defence potion."
 
@@ -981,7 +981,7 @@ id = 14274
 [magic_potion_stealing_creation_1]
 id = 14275
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of Magic potion."
 
@@ -1031,7 +1031,7 @@ id = 14284
 [summoning_potion_stealing_creation_1]
 id = 14285
 weight = 0.1
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "One dose of Summoning potion."
 
