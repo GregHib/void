@@ -4,6 +4,7 @@ import WorldTest
 import content.entity.player.effect.energy.runEnergy
 import itemOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -176,7 +177,7 @@ internal class PotionEffectsTest : WorldTest() {
     }
 
     @Test
-    fun `Last dose of a stealing creation potion leaves a vial`() {
+    fun `Last dose of a stealing creation potion breaks`() {
         val player = createPlayer(emptyTile)
         player.inventory.add("prayer_potion_stealing_creation_1")
         player.experience.set(Skill.Prayer, Level.experience(99))
@@ -184,8 +185,23 @@ internal class PotionEffectsTest : WorldTest() {
 
         player.itemOption("Drink", "prayer_potion_stealing_creation_1")
 
-        assertTrue(player.inventory.contains("vial"))
+        assertFalse(player.inventory.contains("prayer_potion_stealing_creation_1"))
+        assertFalse(player.inventory.contains("vial"))
         assertEquals(1 + 7 + 24, player.levels.get(Skill.Prayer))
+    }
+
+    @Test
+    fun `Last dose of a castle wars potion breaks`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("cw_super_strength_potion_1")
+        player.experience.set(Skill.Strength, Level.experience(99))
+        player.levels.set(Skill.Strength, 99)
+
+        player.itemOption("Drink", "cw_super_strength_potion_1")
+
+        assertFalse(player.inventory.contains("cw_super_strength_potion_1"))
+        assertFalse(player.inventory.contains("vial"))
+        assertEquals(99 + 5 + 14, player.levels.get(Skill.Strength))
     }
 
     @Test

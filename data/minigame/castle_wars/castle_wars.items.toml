@@ -379,7 +379,7 @@ examine = "2 doses of super attack potion."
 [cw_super_attack_potion_1]
 id = 18718
 weight = 0.008
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "1 dose of super attack potion."
 
@@ -407,7 +407,7 @@ examine = "2 doses of super strength potion."
 [cw_super_strength_potion_1]
 id = 18722
 weight = 0.008
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "1 dose of super strength potion."
 
@@ -435,7 +435,7 @@ examine = "2 doses of super defence potion."
 [cw_super_defence_potion_1]
 id = 18726
 weight = 0.008
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "1 dose of super defence potion."
 
@@ -463,7 +463,7 @@ examine = "2 doses of super energy potion."
 [cw_super_energy_potion_1]
 id = 18730
 weight = 0.008
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "1 dose of super energy potion."
 
@@ -491,7 +491,7 @@ examine = "2 doses of super ranging potion."
 [cw_super_ranging_potion_1]
 id = 18734
 weight = 0.008
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "1 dose of super ranging potion."
 
@@ -519,7 +519,7 @@ examine = "2 doses of super magic potion."
 [cw_super_magic_potion_1]
 id = 18738
 weight = 0.008
-excess = "vial"
+heals = 0
 empty = "vial"
 examine = "1 dose of super magic potion."
 
