@@ -5,8 +5,10 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.playTrack
+import world.gregs.voidps.engine.client.variable.BitwiseValues
 import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.client.instruction.SongEnd
 import world.gregs.voidps.type.random
@@ -30,7 +32,7 @@ class Music(val tracks: MusicTracks) : Script {
             }
             val tracks = tracks[tile.region]
             for (track in tracks) {
-                if (!track.area.contains(from) && track.area.contains(tile)) {
+                if (track.area != null && !track.area.contains(from) && track.area.contains(tile)) {
                     autoPlay(this, track)
                 }
             }
@@ -92,7 +94,7 @@ class Music(val tracks: MusicTracks) : Script {
     fun unlockDefaultTracks(player: Player) {
         EnumDefinitions.get("music_track_hints").map?.forEach { (key, value) ->
             if (value is String && value == "automatically.") {
-                MusicUnlock.unlockTrack(player, key)
+                unlockTrack(player, key)
             }
         }
 
@@ -100,10 +102,17 @@ class Music(val tracks: MusicTracks) : Script {
         player.unlockTrack("scape_theme")
     }
 
+    private fun unlockTrack(player: Player, trackIndex: Int): Boolean {
+        val name = "unlocked_music_${trackIndex / 32}"
+        val list = VariableDefinitions.get(name)?.values as? BitwiseValues
+        val track = list?.values?.get(trackIndex.rem(32)) as? String ?: return false
+        return player.addVarbit("unlocked_music_${trackIndex / 32}", track)
+    }
+
     fun playAreaTrack(player: Player) {
         val tracks = tracks[player.tile.region]
         for (track in tracks) {
-            if (track.area.contains(player.tile)) {
+            if (track.area != null && track.area.contains(player.tile)) {
                 autoPlay(player, track)
                 break
             }
@@ -223,7 +232,7 @@ class Music(val tracks: MusicTracks) : Script {
         return containsVarbit("unlocked_music_${musicIndex / 32}", toIdentifier(name))
     }
 
-    fun autoPlay(player: Player, track: MusicTracks.Track) {
+    fun autoPlay(player: Player, track: Track) {
         val index = track.index
         if (player.addVarbit("unlocked_music_${index / 32}", track.name)) {
             player.message("<red>You have unlocked a new music track: ${EnumDefinitions.get("music_track_names").string(index)}.")

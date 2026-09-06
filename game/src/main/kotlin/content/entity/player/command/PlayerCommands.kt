@@ -7,7 +7,9 @@ import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.skull
 import content.entity.player.effect.unskull
 import content.entity.player.modal.tab.Emotes
+import content.entity.world.music.MusicTracks
 import content.entity.world.music.MusicUnlock
+import content.entity.world.music.unlockTrack
 import content.quest.quests
 import content.quest.refreshQuestJournal
 import content.skill.prayer.PrayerConfigs.PRAYERS
@@ -45,6 +47,7 @@ class PlayerCommands(
     val accounts: AccountDefinitions,
     val exchange: GrandExchange,
     val saveQueue: SaveQueue,
+    val tracks: MusicTracks
 ) : Script {
 
     init {
@@ -297,8 +300,11 @@ class PlayerCommands(
         val target = Players.find(player, args.getOrNull(1)) ?: return
         val type = args[0]
         if (type == "all" || type == "music" || type == "songs" || type == "music tracks" || type == "music_tracks") {
-            EnumDefinitions.get("music_track_names").map?.keys?.forEach { key ->
-                MusicUnlock.unlockTrack(target, key)
+            for (track in tracks.tracks) {
+                if (track == null) {
+                    continue
+                }
+                target.unlockTrack(track.name)
             }
             target.message("All songs unlocked.")
         }
