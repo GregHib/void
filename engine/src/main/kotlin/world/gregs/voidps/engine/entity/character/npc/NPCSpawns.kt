@@ -20,8 +20,14 @@ fun loadNpcSpawns(files: ConfigFiles, reload: Boolean = false) {
         NPCs.clear()
         val file = File("${Settings["storage.caching.path"]}${Settings["storage.caching.npcSpawns"]}")
         val extension = Settings["spawns.npcs"]
-        if (reload || !file.exists() || files.extensions.contains(extension)) {
-            val paths = files.list(extension)
+        val editorPath = Settings["spawns.npcs.editor", ""]
+        val editorFile = if (editorPath.isBlank()) null else File(Settings["storage.data"], editorPath)
+        val paths = files.list(extension).toMutableList()
+        if (editorFile?.isFile == true && editorFile.path !in paths) {
+            paths += editorFile.path
+        }
+        val hasEditorSpawns = editorFile?.isFile == true
+        if (reload || !file.exists() || files.extensions.contains(extension) || hasEditorSpawns) {
             loadNormal(paths, file, Settings["storage.caching.active", false])
         } else {
             loadFast(file)

@@ -45,6 +45,15 @@ class SceneEditorCommands : Script {
             handler = ::flush,
         )
         adminCommand(
+            "scene_npc_spawn",
+            intArg("npc-id"),
+            intArg("x"),
+            intArg("y"),
+            intArg("plane"),
+            desc = "Spawn a server-backed NPC for the scene editor",
+            handler = ::spawnNpc,
+        )
+        adminCommand(
             "scene_status",
             desc = "Show persisted scene-editor placements / removals",
             handler = ::status,
@@ -70,6 +79,16 @@ class SceneEditorCommands : Script {
         val rotation = args.getOrNull(4)?.toIntOrNull() ?: 0
         val shape = args.getOrNull(5)?.toIntOrNull() ?: ObjectShape.CENTRE_PIECE_STRAIGHT
         val result = SceneEditorPersist.remove(id, x, y, plane, rotation, shape)
+        player.message(result, ChatType.Console)
+    }
+
+    fun spawnNpc(player: Player, args: List<String>) {
+        val result = SceneEditorPersist.spawnNpc(
+            args[0].toInt(),
+            args[1].toInt(),
+            args[2].toInt(),
+            args[3].toInt(),
+        )
         player.message(result, ChatType.Console)
     }
 
