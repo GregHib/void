@@ -1,7 +1,5 @@
 package content.skill.constitution.drink
 
-import content.entity.effect.toxin.poisonDamage
-import content.entity.effect.toxin.poisoned
 import content.entity.player.dialogue.type.item
 import content.entity.player.effect.energy.MAX_RUN_ENERGY
 import content.entity.player.effect.energy.runEnergy
@@ -20,14 +18,6 @@ class Tea : Script {
     init {
         consumed("cup_of_tea") { _, _ ->
             levels.boost(Skill.Attack, 3)
-        }
-
-        consumed("guthix_rest_4,guthix_rest_3,guthix_rest_2,guthix_rest_1") { _, _ ->
-            if (poisoned) {
-                poisonDamage -= 10
-            }
-            runEnergy += (MAX_RUN_ENERGY / 100) * 5
-            levels.boost(Skill.Constitution, 50, maximum = 50)
         }
 
         consumed("nettle_tea") { _, _ ->
