@@ -311,9 +311,9 @@ class VinesweeperTest : WorldTest() {
         tick()
         val origin = player.tile
         player.skipDialogues()
-        tick(5)
-        assertEquals(origin, player.tile) // the leprechaun's cast animation plays out first
-        tick(6)
+        tick(2)
+        assertEquals(origin, player.tile) // the projectile lands and the impact graphic plays first
+        tick(4)
 
         assertEquals(Vinesweeper.ARRIVAL_TILE, player.tile)
         assertEquals(origin.id, player.get("vinesweeper_return_tile", -1))
