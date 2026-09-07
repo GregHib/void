@@ -6,6 +6,7 @@ import dialogueOption
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.variable.MapValues
@@ -65,6 +66,8 @@ class CompostBinTest : WorldTest() {
         val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
 
         player.itemOnObject(bin, 0)
+        tick(1)
+        player.dialogueOption("line1") // Make normal compost instead
         tick(3)
         assertTrue(player.inventory.isEmpty())
         assertEquals("compostable_15", player["compost_bin_falador", "empty"])
@@ -146,6 +149,16 @@ class CompostBinTest : WorldTest() {
     }
 
     @Test
+    fun `Every reachable bin state has a distinct varbit value`() {
+        val values = (VariableDefinitions.get("compost_bin_falador")!!.values as MapValues).values
+        val seen = mutableMapOf<Int, Any>()
+        for ((state, value) in values) {
+            val existing = seen.put(value, state)
+            assertNull(existing, "$state and $existing share varbit value $value")
+        }
+    }
+
+    @Test
     fun `Every reachable rotting stage has a varbit value`() {
         val values = (VariableDefinitions.get("compost_bin_falador")!!.values as MapValues).values
         for (type in listOf("compostable", "supercompostable", "tomatoes")) {
@@ -179,5 +192,127 @@ class CompostBinTest : WorldTest() {
         player.dialogueOption("line1")
         tick(1)
         assertEquals("empty", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Fill empty compost bin with super compostable items`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("pineapple", 2)
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(3)
+        assertTrue(player.inventory.isEmpty())
+        assertEquals("supercompostable_2", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Fill empty compost bin with tomatoes`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("tomato", 2)
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(3)
+        assertTrue(player.inventory.isEmpty())
+        assertEquals("tomatoes_2", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Adding super compostable to a normal bin can be confirmed`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("pineapple")
+        player["compost_bin_falador"] = "compostable_2"
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(1)
+        player.dialogueOption("line1") // Yes, I want to use it to make normal compost.
+        tick(3)
+        assertTrue(player.inventory.isEmpty())
+        assertEquals("compostable_3", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Adding super compostable to a normal bin can be declined`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("pineapple")
+        player["compost_bin_falador"] = "compostable_2"
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(1)
+        player.dialogueOption("line2") // No, I don't want to waste it making normal compost.
+        tick(3)
+        assertEquals(1, player.inventory.count("pineapple"))
+        assertEquals("compostable_2", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Adding compostable to a super compost bin can be declined`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("weeds")
+        player["compost_bin_falador"] = "supercompostable_2"
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(1)
+        player.dialogueOption("line2") // I want to stick to making supercompost.
+        tick(3)
+        assertEquals(1, player.inventory.count("weeds"))
+        assertEquals("supercompostable_2", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Can't fill a bin containing finished compost`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("weeds")
+        player["compost_bin_falador"] = "compost_12"
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(3)
+        assertEquals(1, player.inventory.count("weeds"))
+        assertEquals("compost_12", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Can't fill a closed compost bin`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("pineapple")
+        player["compost_bin_falador"] = "supercompostable_rotting_5"
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(3)
+        assertEquals(1, player.inventory.count("pineapple"))
+        assertEquals("supercompostable_rotting_5", player["compost_bin_falador", "empty"])
+    }
+
+    @Test
+    fun `Fill rot and empty a bin of supercompost`() {
+        val player = createPlayer(Tile(3056, 3311))
+        player.inventory.add("pineapple", 15)
+        val bin = GameObjects.find(Tile(3056, 3312), "farming_compost_bin_falador")
+
+        player.itemOnObject(bin, 0)
+        tick(20)
+        assertEquals("supercompostable_15", player["compost_bin_falador", "empty"])
+
+        player.objectOption(bin, "Close")
+        tick(2)
+        assertTrue(player["compost_bin_falador", "empty"].startsWith("supercompostable_rotting"))
+
+        player["compost_bin_falador"] = "supercompostable_ready"
+        player.objectOption(bin, "Open")
+        tick(2)
+        assertEquals("supercompost_15", player["compost_bin_falador", "empty"])
+
+        player.inventory.add("bucket", 2)
+        player.objectOption(bin, "Empty")
+        tick(10)
+        assertEquals(2, player.inventory.count("supercompost"))
+        assertEquals(17.0, player.experience.get(Skill.Farming))
+        assertEquals("supercompost_13", player["compost_bin_falador", "empty"])
     }
 }
