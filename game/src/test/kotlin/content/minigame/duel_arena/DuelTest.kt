@@ -335,6 +335,8 @@ internal class DuelTest : WorldTest() {
         winner.objectOption(scoreboard, "View")
         tick()
         assertEquals("duel_scoreboard", winner.menu)
+        assertEquals("${winner.name} defeated ${loser.name}", winner["duel_scoreboard_0", ""])
+        assertEquals("${winner.name} defeated ${loser.name}", winner["duel_scoreboard_49", ""])
     }
 
     private fun players(): Pair<Player, Player> {
