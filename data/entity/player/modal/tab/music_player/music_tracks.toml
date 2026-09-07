@@ -3718,11 +3718,11 @@ id = 627
 indexes = [421]
 areas = [ { region = 8508 } ]
 
-[glorious_recallation]
+[yeti_to_remember] # glorious_recallation_3
 id = 628
 indexes = [642]
 
-[glorious_recallation]
+[glorious_recallation] # glorious_recallation_2
 id = 629
 indexes = [641]
 
@@ -3774,7 +3774,7 @@ indexes = [643]
 id = 636
 indexes = [646]
 
-[glorious_recallation]
+[memorable_escape] # glorious_recallation_1
 id = 637
 indexes = [640]
 
@@ -4056,7 +4056,7 @@ indexes = [669]
 id = 691
 indexes = [673]
 
-[khazards_frozen_fortress_interior_vi]
+[khazards_frozen_fortress_interior_iv]
 id = 692
 indexes = [682]
 
@@ -4361,7 +4361,7 @@ indexes = [842]
 id = 751
 indexes = [839]
 
-[adorned_vii]
+[adorned_ii]
 id = 752
 indexes = [833]
 
@@ -4468,7 +4468,7 @@ indexes = [800]
 id = 777
 indexes = [806]
 
-[desolate_xvi]
+[desolate_xiv]
 id = 778
 indexes = [813]
 
@@ -4953,7 +4953,7 @@ indexes = [864]
 id = 889
 indexes = [903]
 
-[yklagor_the_thunderous]
+[yklagor_the_subdued] # https://www.youtube.com/watch?v=wEAKu61ldhI
 id = 890
 indexes = [935]
 areas = [ { x = [ 209, 222 ], y = [ 5377, 5390 ] } ]
@@ -5116,7 +5116,7 @@ areas = [ { x = [ 193, 206 ], y = [ 5521, 5534 ] } ]
 id = 925
 indexes = [920]
 
-[twisted_xvi]
+[twisted_xiv]
 id = 926
 indexes = [893]
 
