@@ -9,7 +9,7 @@ id = 5071
 [hunting_box_trap_npc]
 id = 5077
 hunt_mode = "box_trap"
-hunt_range = 2
+hunt_range = 8
 
 [hunting_box_trap_npc_off]
 id = 5078

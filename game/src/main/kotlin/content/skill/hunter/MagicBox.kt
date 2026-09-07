@@ -1,5 +1,6 @@
 package content.skill.hunter
 
+import content.area.wilderness.wildernessLevel
 import content.entity.effect.transform
 import content.entity.player.bank.BankDeposit
 import content.entity.player.dialogue.Happy
@@ -40,7 +41,7 @@ class MagicBox : Script {
             layTrap(null)
         }
 
-        floorItemOperate("Lay") { (item) ->
+        floorItemOperate("Activate") { (item) ->
             if (item.id == "magic_box") {
                 layTrap(item)
             }
@@ -109,6 +110,9 @@ class MagicBox : Script {
         }
 
         itemOption("Bank", "imp_in_a_box_2,imp_in_a_box_1") {
+            if (!canImpBank()) {
+                return@itemOption
+            }
             open("imp_box")
         }
 
@@ -126,9 +130,12 @@ class MagicBox : Script {
             close("imp_box")
         }
 
-        itemOnItem("*", "imp_in_a_box_2,imp_in_a_box_1") { item, box ->
+        itemOnItem("*", "imp_in_a_box_2,imp_in_a_box_1") { item, _ ->
             if (item.id.startsWith("imp_in_a_box") || item.id.startsWith("magic_box")) {
                 message("The imp refuses to take that to your bank.")
+                return@itemOnItem
+            }
+            if (!canImpBank()) {
                 return@itemOnItem
             }
             val before = inventory.count(item.id)
@@ -136,12 +143,9 @@ class MagicBox : Script {
             if (inventory.count(item.id) >= before) {
                 return@itemOnItem
             }
-            if (box.id == "imp_in_a_box_2") {
-                inventory.replace("imp_in_a_box_2", "imp_in_a_box_1")
-                message("The imp takes the item to your bank.")
-            } else {
-                inventory.replace("imp_in_a_box_1", "magic_box")
-                message("The imp takes the item to your bank and escapes from the box.")
+            when (useCharge()) {
+                1 -> message("The imp takes the item to your bank.")
+                0 -> message("The imp takes the item to your bank and escapes from the box.")
             }
         }
     }
@@ -162,16 +166,32 @@ class MagicBox : Script {
         if (inventory.count(item.id) >= before) {
             return
         }
-        if (inventory.contains("imp_in_a_box_2")) {
-            inventory.replace("imp_in_a_box_2", "imp_in_a_box_1")
-            interfaces.sendText("imp_box", "text", depositText())
-        } else if (inventory.contains("imp_in_a_box_1")) {
-            inventory.replace("imp_in_a_box_1", "magic_box")
-            close("imp_box")
-            message("The imp takes your items to the bank and escapes from the box.")
-        } else {
-            close("imp_box")
+        when (useCharge()) {
+            1 -> interfaces.sendText("imp_box", "text", depositText())
+            0 -> {
+                close("imp_box")
+                message("The imp takes your items to the bank and escapes from the box.")
+            }
+            else -> close("imp_box")
         }
+    }
+
+    private fun Player.useCharge(): Int {
+        if (inventory.replace("imp_in_a_box_2", "imp_in_a_box_1")) {
+            return 1
+        }
+        if (inventory.replace("imp_in_a_box_1", "magic_box")) {
+            return 0
+        }
+        return -1
+    }
+
+    private fun Player.canImpBank(): Boolean {
+        if (wildernessLevel > 30) {
+            message("The imp refuses to visit your bank from this deep in the wilderness.")
+            return false
+        }
+        return true
     }
 
     private suspend fun Player.impDialogue() {
@@ -182,7 +202,7 @@ class MagicBox : Script {
 
     private suspend fun Player.impOptions() {
         choice {
-            option<Neutral>("No, I'm going to keep you in there.") {
+            option("No, I'm going to keep you in there.") {
                 player<Neutral>("No, I'm going to keep you in there. I might keep you as a pet.")
                 npc<Neutral>("imp", "Pet!! Nah mate. I fink you'd find dat you'd be my pet!! We is not makin good pets.")
                 player<Quiz>("Really? Why not?")
@@ -192,14 +212,13 @@ class MagicBox : Script {
                 player<Quiz>("Fire risk? How does that work?")
                 npc<Neutral>("imp", "Is those wizzies. Dey don't like de imps so dey make us go BOOOM!!")
             }
-            option<Neutral>("It's not that bad.") {
+            option("It's not that bad.") {
                 player<Neutral>("It's not that bad. You've got four big windows, charming company...er...")
                 npc<Neutral>("imp", "Yeah, we's love tiny, crampt space. It be magical. But I is a busy imp, innit? Dragons needin' ticklin', shiny relics needin' stealin', you know how it goes.")
                 npc<Neutral>("imp", "So, if you's know whas good for ya, you'd be lettin' me go, right?")
                 impOptions()
             }
             option<Quiz>("Don't I get three wishes?") {
-                player<Quiz>("Don't I get three wishes?")
                 npc<Neutral>("imp", "Nah, mate. Dunno what you're chirpin' about.")
                 player<Neutral>("Well, you're a magical creature aren't you? Surely I get some wishes for capturing you, or releasing you, or something?")
                 npc<Neutral>("imp", "I'm finking dat you be a bit confoosed. I is an imp, not some namby-pamby genie or some kinda fairy. Ye can tell by the horns.")
@@ -213,15 +232,16 @@ class MagicBox : Script {
     private suspend fun Player.bankOptions() {
         choice {
             option<Happy>("Okay, that sounds fair.") {
-                open("imp_box")
+                if (canImpBank()) {
+                    open("imp_box")
+                }
             }
-            option<Quiz>("Surely it should be three items?") {
+            option("Surely it should be three items?") {
                 player<Quiz>("Surely it should be three items? Then it's one item per wish.")
                 npc<Neutral>("imp", "I've already told ya, I ain't no bloomin' fairy. Besides, you know wot dey say, three's a crowd innit? I don't fink I can hop about carryin' more dan 2 fings.")
                 bankOptions()
             }
             option<Neutral>("I've got nothing I need banking right now.") {
-                player<Neutral>("I've got nothing I need banking right now.")
                 npc<Neutral>("imp", "Great, just blinkin great, dat is. I'll just sit about countin' zombie sheep then. One...two...two and a bit...three and a bit more... I don't fink sheep 'ave dat many legs...")
             }
         }

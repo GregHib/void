@@ -136,6 +136,18 @@ class BoxTrapTest : WorldTest() {
     }
 
     @Test
+    fun `Chinchompa explodes when killed`() {
+        val player = createPlayer()
+        val chinchompa = createNPC("chinchompa", player.tile.addY(1))
+        tick(2)
+
+        chinchompa.levels.set(Skill.Constitution, 0)
+        assertEquals(2739, chinchompa.visuals.secondaryGraphic.id)
+        tick(10)
+        assertTrue(FloorItems.at(chinchompa.tile).none { it.id != "" })
+    }
+
+    @Test
     fun `Grenwall ignores unbaited trap`() {
         val player = createPlayer()
         val start = player.tile

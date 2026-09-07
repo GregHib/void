@@ -85,7 +85,7 @@ class BoxTrap : Script {
                     return@huntNPC
                 }
             }
-            if (tile.distanceTo(target.tile) > 2 || target["caught", false]) {
+            if (tile.distanceTo(target.tile) > 8 || target["caught", false]) {
                 return@huntNPC
             }
             transform("${id}_off")
@@ -110,6 +110,14 @@ class BoxTrap : Script {
             catching.replace(Tables.obj("creatures.${target.id}.caught_obj"))
             player.message("Something has been caught in your trap!")
             areaSound("box_trap_catch", tile)
+        }
+
+        npcDeath("chinchompa,carnivorous_chinchompa") {
+            if (contains("caught")) {
+                return@npcDeath
+            }
+            gfx("chinchompa_impact")
+            areaSound("chinchompa_explode", tile)
         }
 
         npcDespawn("hunting_box_trap_npc") {
