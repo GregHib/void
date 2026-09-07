@@ -22,7 +22,6 @@ import content.skill.summoning.dismissFamiliar
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearHinted
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
@@ -46,9 +45,6 @@ import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
 class PlayerDeath : Script {
-
-    val respawnTile: Tile
-        get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
     init {
         levelChanged(Skill.Constitution) { _, _, to ->
@@ -93,7 +89,7 @@ class PlayerDeath : Script {
                 if (onDeath.teleport != null) {
                     tele(onDeath.teleport!!)
                 } else {
-                    tele(respawnTile)
+                    tele(this@levelChanged.respawnTile())
                 }
                 face(Direction.SOUTH, update = false)
                 dead = false
