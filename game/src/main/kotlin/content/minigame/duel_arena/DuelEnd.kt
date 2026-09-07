@@ -40,8 +40,13 @@ class DuelEnd : Script {
 
     init {
         playerDeath {
-            val duel = duel ?: return@playerDeath
-            if (!duel.active) {
+            val duel = duel
+            if (duel == null || !duel.active) {
+                // Covers both players dying on the same tick: the arena is always a safe death
+                if (Areas.tagged("duel_arena").any { tile in it.area }) {
+                    it.dropItems = false
+                    it.teleport = hospital(this)
+                }
                 return@playerDeath
             }
             it.dropItems = false
@@ -68,6 +73,7 @@ class DuelEnd : Script {
 
         interfaceClosed("stake_victory") {
             returnItems(winnings)
+            DuelArena.save(this)
         }
     }
 
@@ -127,6 +133,9 @@ class DuelEnd : Script {
                 it.otherStake.clear()
                 it.returnItems(it.stake)
             }
+            if (duel.staked) {
+                DuelArena.save(player, opponent)
+            }
             opponent.message("Other player declined ${if (duel.staked) "stake and " else ""}duel options.", ChatType.Trade)
         }
 
@@ -175,6 +184,7 @@ class DuelEnd : Script {
             for (player in listOf(winner, loser)) {
                 player.otherStake.clear()
             }
+            DuelArena.save(winner, loser)
         }
 
         private fun victory(winner: Player, loser: Player, duel: Duel) {

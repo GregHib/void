@@ -1,5 +1,6 @@
 package content.minigame.duel_arena
 
+import content.minigame.duel_arena.DuelArena.Companion.returnItems
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeMenu
@@ -100,7 +101,7 @@ class DuelRequest : Script {
         for (rule in DuelRules.all) {
             player.clear("duel_$rule")
         }
-        player.stake.clear()
+        player.returnItems(player.stake)
         player.otherStake.clear()
         val screen = duel.screen
         player.interfaces.apply {
