@@ -173,6 +173,11 @@ class Combat(val combatDefinitions: CombatDefinitions) :
                 character.mode = EmptyMode
                 return
             }
+            if (character is Player && character.weapon.isBrokenWeapon()) {
+                character.message("Your weapon is broken and cannot be used.")
+                character.mode = EmptyMode
+                return
+            }
             val attackRange = character.attackRange
             if (!movement.arrived(if (attackRange == 1 && character.weapon.def["weapon_type", ""] != "salamander") -1 else attackRange)) {
                 return
