@@ -75,17 +75,16 @@ class EvilTreeLeprechaun : Script {
     }
 
     private suspend fun Player.claim() {
-        val state = EvilTreeState
-        if (!state.active) {
+        if (!EvilTree.active) {
             npc<Neutral>("leprechaun_evil_tree", "There's no evil tree about just now.")
             return
         }
-        val row = Rows.get("evil_tree_type.${state.type}")
+        val row = Rows.get("evil_tree_type.${EvilTree.type}")
         if (!has(Skill.Woodcutting, row.int("woodcutting"), message = true)) {
             return
         }
         val limit = Settings["events.evilTree.dailyKindlingLimit", 200]
-        resetDaily()
+        evilTreeDailyReset()
         val handIn = minOf(inventory.count("evil_tree_kindling"), limit - this["evil_tree_kindling_handed", 0])
         if (handIn <= 0) {
             npc<Neutral>("leprechaun_evil_tree", "Yez've no kindling for me to be tradin' today.")
@@ -112,7 +111,7 @@ class EvilTreeLeprechaun : Script {
         }
         inc("evil_tree_kindling_handed", handIn)
         this["evil_tree_rewards"] = false
-        AuditLog.event(this, "evil_tree_reward", state.type, handIn)
+        AuditLog.event(this, "evil_tree_reward", EvilTree.type, handIn)
         grantMagic(row.int("buff"), scale)
         statement("You hand over $handIn kindling and receive your reward.")
     }
@@ -130,37 +129,4 @@ class EvilTreeLeprechaun : Script {
     companion object {
         val TOOLS = listOf("bronze_hatchet", "tinderbox")
     }
-}
-
-/**
- * Rolls the players daily evil tree counters over when the day changes.
- */
-fun Player.resetDaily() {
-    val day = TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())
-    if (this["evil_tree_day", -1L] == day) {
-        return
-    }
-    this["evil_tree_day"] = day
-    this["evil_tree_trees"] = 0
-    this["evil_tree_kindling_handed"] = 0
-    this["evil_tree_spawn_id"] = 0
-}
-
-/**
- * Whether the player is allowed to interact with the current evil tree, counting it
- * towards their daily limit the first time they do.
- */
-fun Player.interact(): Boolean {
-    resetDaily()
-    if (this["evil_tree_spawn_id", 0] == EvilTreeState.spawnId) {
-        return true
-    }
-    if (this["evil_tree_trees", 0] >= Settings["events.evilTree.dailyTreeLimit", 2]) {
-        message("You've already helped with as many evil trees as you can today.")
-        return false
-    }
-    this["evil_tree_spawn_id"] = EvilTreeState.spawnId
-    inc("evil_tree_trees")
-    this["evil_tree_rewards"] = true
-    return true
 }

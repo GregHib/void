@@ -32,9 +32,12 @@ import java.util.concurrent.TimeUnit
 
 internal class EvilTreeTest : WorldTest() {
 
+    private val evilTree: EvilTree
+        get() = scripts.filterIsInstance<EvilTree>().first()
+
     @AfterEach
     fun resetEvilTree() {
-        EvilTreeState.reset()
+        evilTree.reset()
     }
 
     @Test
@@ -43,9 +46,9 @@ internal class EvilTreeTest : WorldTest() {
         val seedling = sapling("normal")
 
         player.objectOption(seedling, "Nurture")
-        tickIf { GameObjects.getLayer(EvilTreeState.centre, ObjectLayer.GROUND)?.id == "evil_tree_seedling" }
+        tickIf { GameObjects.getLayer(EvilTree.centre, ObjectLayer.GROUND)?.id == "evil_tree_seedling" }
 
-        assertEquals("evil_tree_sapling", EvilTreeState.tree.id)
+        assertEquals("evil_tree_sapling", evilTree.tree.id)
         // seed_health of two nurtures, each paying nurture_xp / 10 / seed_health
         assertEquals(20.0, player.experience.get(Skill.Farming))
     }
@@ -58,7 +61,7 @@ internal class EvilTreeTest : WorldTest() {
 
         tick(TICK + TICK)
 
-        assertEquals("evil_tree_sapling", EvilTreeState.tree.id)
+        assertEquals("evil_tree_sapling", evilTree.tree.id)
     }
 
     @Test
@@ -67,14 +70,14 @@ internal class EvilTreeTest : WorldTest() {
         val young = sapling("normal", "evil_tree_young_large", emptyTile)
 
         player.objectOption(young, "Nurture")
-        tickIf { !EvilTreeState.grown }
+        tickIf { !EvilTree.grown }
 
-        assertEquals("evil_tree_normal_full", EvilTreeState.tree.id)
-        assertEquals(150, EvilTreeState.health)
-        assertEquals("leprechaun_panic", EvilTreeState.leprechaun.transformId)
+        assertEquals("evil_tree_normal_full", evilTree.tree.id)
+        assertEquals(150, evilTree.health)
+        assertEquals("leprechaun_panic", evilTree.leprechaun.transformId)
         // A root bursts out of each of the four sides
-        tickIf { EvilTreeState.roots.size < 4 }
-        assertEquals(4, EvilTreeState.roots.size)
+        tickIf { evilTree.roots.size < 4 }
+        assertEquals(4, evilTree.roots.size)
     }
 
     @Test
@@ -85,10 +88,10 @@ internal class EvilTreeTest : WorldTest() {
         val tree = grownTree("normal")
 
         player.objectOption(tree, "Chop")
-        tickIf { EvilTreeState.health > 145 }
+        tickIf { evilTree.health > 145 }
 
         assertTrue(player.experience.get(Skill.Woodcutting) > 0)
-        assertTrue(EvilTreeState.health <= 145)
+        assertTrue(evilTree.health <= 145)
     }
 
     @Test
@@ -96,18 +99,18 @@ internal class EvilTreeTest : WorldTest() {
         grownTree("normal")
 
         burnTo(90) // above a third of 150
-        assertEquals("evil_tree_normal_half", EvilTreeState.tree.id)
+        assertEquals("evil_tree_normal_half", evilTree.tree.id)
 
         burnTo(30)
-        assertEquals("evil_tree_normal_weak", EvilTreeState.tree.id)
+        assertEquals("evil_tree_normal_weak", evilTree.tree.id)
     }
 
     @Test
     fun `Roots burst out of the ground and settle into the world`() {
         matureTree("normal")
 
-        assertEquals(4, EvilTreeState.roots.size)
-        for (root in EvilTreeState.roots.values) {
+        assertEquals(4, evilTree.roots.size)
+        for (root in evilTree.roots.values) {
             assertEquals(root.obj, GameObjects.getLayer(root.obj.tile, ObjectLayer.GROUND))
             assertTrue(GameObjects.contains(root.obj))
         }
@@ -117,7 +120,7 @@ internal class EvilTreeTest : WorldTest() {
     fun `Chopping a root gives kindling`() {
         matureTree("normal")
         val player = chopper(emptyTile.add(1, 4))
-        val root = EvilTreeState.roots.getValue("north").obj
+        val root = evilTree.roots.getValue("north").obj
 
         player.objectOption(root, "Chop")
         tickIf { !player.inventory.contains("evil_tree_kindling") }
@@ -130,12 +133,12 @@ internal class EvilTreeTest : WorldTest() {
     fun `A root dies once it has been chopped through`() {
         matureTree("normal")
         val player = chopper(emptyTile.add(1, 4))
-        val root = EvilTreeState.roots.getValue("north").obj
+        val root = evilTree.roots.getValue("north").obj
 
         player.objectOption(root, "Chop")
-        tickIf(limit = 200) { EvilTreeState.roots.containsKey("north") }
+        tickIf(limit = 200) { evilTree.roots.containsKey("north") }
 
-        assertFalse(EvilTreeState.roots.containsKey("north"))
+        assertFalse(evilTree.roots.containsKey("north"))
         assertNull(GameObjects.getLayer(root.tile, ObjectLayer.GROUND))
         assertEquals(3, player.inventory.count("evil_tree_kindling"))
     }
@@ -152,18 +155,18 @@ internal class EvilTreeTest : WorldTest() {
         tickIf { player.inventory.count("evil_tree_kindling") == 2 }
 
         assertEquals(200.0, player.experience.get(Skill.Firemaking))
-        assertEquals(1, EvilTreeState.fires.size)
+        assertEquals(1, evilTree.fires.size)
     }
 
     @Test
     fun `Lit fires burn the tree down over time`() {
         grownTree("normal")
-        EvilTreeState.fires["zero"] = createObject("evil_tree_fire", emptyTile.add(-1, 1))
+        evilTree.fires["zero"] = createObject("evil_tree_fire", emptyTile.add(-1, 1))
         World.timers.start("evil_tree")
 
         tick(TICK)
 
-        assertEquals(149, EvilTreeState.health)
+        assertEquals(149, evilTree.health)
     }
 
     @Test
@@ -171,17 +174,17 @@ internal class EvilTreeTest : WorldTest() {
         grownTree("normal")
         World.timers.start("evil_tree")
 
-        EvilTreeState.grownTick = GameLoop.tick.toLong() - TimeUnit.MINUTES.toTicks(10)
+        EvilTree.grownTick = GameLoop.tick.toLong() - TimeUnit.MINUTES.toTicks(10)
         tick(TICK)
-        assertEquals(75, EvilTreeState.health)
+        assertEquals(75, evilTree.health)
 
-        EvilTreeState.grownTick = GameLoop.tick.toLong() - TimeUnit.MINUTES.toTicks(20)
+        EvilTree.grownTick = GameLoop.tick.toLong() - TimeUnit.MINUTES.toTicks(20)
         tick(TICK)
-        assertEquals(37, EvilTreeState.health)
+        assertEquals(37, evilTree.health)
 
-        EvilTreeState.grownTick = GameLoop.tick.toLong() - TimeUnit.MINUTES.toTicks(30)
+        EvilTree.grownTick = GameLoop.tick.toLong() - TimeUnit.MINUTES.toTicks(30)
         tick(TICK)
-        assertEquals(0, EvilTreeState.health)
+        assertEquals(0, evilTree.health)
     }
 
     @Test
@@ -190,11 +193,11 @@ internal class EvilTreeTest : WorldTest() {
 
         burnTo(0)
 
-        assertEquals("evil_tree_normal_death", EvilTreeState.tree.id)
+        assertEquals("evil_tree_normal_death", evilTree.tree.id)
         assertTrue(World.timers.contains("evil_tree_spawn"))
 
         tick(EvilTree.DEATH_TICKS + TICK)
-        assertEquals("evil_tree_normal_stump", EvilTreeState.tree.id)
+        assertEquals("evil_tree_normal_stump", evilTree.tree.id)
     }
 
     @Test
@@ -249,7 +252,7 @@ internal class EvilTreeTest : WorldTest() {
         val player = createPlayer(emptyTile.add(-1, 0))
         grownTree("normal")
 
-        player.npcOption(EvilTreeState.leprechaun, "Talk-to")
+        player.npcOption(evilTree.leprechaun, "Talk-to")
         tickIf { player.dialogue == null }
         player.dialogueContinue()
         player.dialogueOption("line2")
@@ -279,60 +282,60 @@ internal class EvilTreeTest : WorldTest() {
         player["evil_tree_day"] = TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())
         player["evil_tree_trees"] = 2
         player["evil_tree_spawn_id"] = 0
-        EvilTreeState.spawnId = 7
+        EvilTree.spawnId = 7
 
-        assertFalse(player.interact())
+        assertFalse(player.evilTreeInteract())
         assertEquals(2, player["evil_tree_trees", 0])
     }
 
     @Test
     fun `Interacting twice with the same tree only counts once`() {
         val player = createPlayer(emptyTile)
-        EvilTreeState.spawnId = 3
+        EvilTree.spawnId = 3
 
-        assertTrue(player.interact())
-        assertTrue(player.interact())
+        assertTrue(player.evilTreeInteract())
+        assertTrue(player.evilTreeInteract())
         assertEquals(1, player["evil_tree_trees", 0])
         assertTrue(player["evil_tree_rewards", false])
     }
 
     private fun sapling(type: String, id: String = "evil_tree_seedling", tile: Tile = emptyTile.add(1, 1)): GameObject {
-        EvilTreeState.reset()
-        EvilTreeState.spawnTile = emptyTile
-        EvilTreeState.type = type
-        EvilTreeState.spawnId++
-        EvilTreeState.tree = createObject(id, tile)
-        EvilTreeState.leprechaun = createNPC("leprechaun_evil_tree", emptyTile.add(-1, -1))
-        return EvilTreeState.tree
+        evilTree.reset()
+        EvilTree.spawnTile = emptyTile
+        EvilTree.type = type
+        EvilTree.spawnId++
+        evilTree.tree = createObject(id, tile)
+        evilTree.leprechaun = createNPC("leprechaun_evil_tree", emptyTile.add(-1, -1))
+        return evilTree.tree
     }
 
     private fun grownTree(type: String): GameObject {
         sapling(type, "evil_tree_${type}_full", emptyTile)
-        EvilTreeState.maxHealth = 150
-        EvilTreeState.health = 150
-        EvilTreeState.grownTick = GameLoop.tick.toLong()
-        return EvilTreeState.tree
+        evilTree.maxHealth = 150
+        evilTree.health = 150
+        EvilTree.grownTick = GameLoop.tick.toLong()
+        return evilTree.tree
     }
 
     /**
      * Grows a tree the whole way through the world tick, so its roots burst out and settle the same
-     * way they do in game rather than being placed into [EvilTreeState] by hand.
+     * way they do in game rather than being placed into [EvilTree] by hand.
      */
     private fun matureTree(type: String): GameObject {
         settings["events.evilTree.growthTicks"] = "10"
         sapling(type, "evil_tree_${type}_full", emptyTile)
-        EvilTreeState.maxHealth = 150
-        EvilTreeState.health = 150
-        EvilTreeState.grownTick = GameLoop.tick.toLong()
+        evilTree.maxHealth = 150
+        evilTree.health = 150
+        EvilTree.grownTick = GameLoop.tick.toLong()
         World.timers.start("evil_tree")
         for (row in Tables.get("evil_branches").rows()) {
             val tile = emptyTile.add(row.int("deltaX"), row.int("deltaY"))
             GameObjects.add(row.obj("spawn"), tile, rotation = row.int("dir"), ticks = EvilTree.ROOT_BURST_TICKS)
         }
-        tickIf(limit = 100) { EvilTreeState.roots.size < 4 }
+        tickIf(limit = 100) { evilTree.roots.size < 4 }
         // Roots respawn on a timer, which would fight the tests that chop one down
         World.timers.clear("evil_tree")
-        return EvilTreeState.tree
+        return evilTree.tree
     }
 
     private fun chopper(tile: Tile): Player {
@@ -347,16 +350,16 @@ internal class EvilTreeTest : WorldTest() {
      * takes the damage through the same path players do.
      */
     private fun burnTo(health: Int) {
-        EvilTreeState.health = health + 1
-        EvilTreeState.fires["zero"] = createObject("evil_tree_fire", emptyTile.add(-1, 1))
+        evilTree.health = health + 1
+        evilTree.fires["zero"] = createObject("evil_tree_fire", emptyTile.add(-1, 1))
         World.timers.startIfAbsent("evil_tree")
         tick(TICK)
-        EvilTreeState.fires.clear()
-        assertEquals(health, EvilTreeState.health)
+        evilTree.fires.clear()
+        assertEquals(health, evilTree.health)
     }
 
     private fun claim(player: Player) {
-        player.npcOption(EvilTreeState.leprechaun, "Talk-to")
+        player.npcOption(evilTree.leprechaun, "Talk-to")
         tickIf { player.dialogue == null }
         player.dialogueContinue()
         player.dialogueOption("line3")

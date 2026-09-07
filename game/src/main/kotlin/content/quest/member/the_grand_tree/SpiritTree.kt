@@ -1,6 +1,6 @@
 package content.quest.member.the_grand_tree
 
-import content.activity.evil_tree.EvilTreeState
+import content.activity.evil_tree.EvilTree
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
@@ -33,8 +33,8 @@ class SpiritTree : Script {
                 "spirit_tree",
                 "If you are a friend of the gnome people, you are a friend of mine. Do you wish to travel, or are you ${
                     when {
-                        EvilTreeState.sapling -> "interested in the strange sapling?"
-                        EvilTreeState.alive -> "to help dispatch the evil tree?"
+                        EvilTree.sapling -> "interested in the strange sapling?"
+                        EvilTree.alive -> "to help dispatch the evil tree?"
                         else -> "to ask about the evil tree?"
                     }
                 }",
@@ -44,22 +44,22 @@ class SpiritTree : Script {
                     updatePosition(this)
                     open("spirit_tree")
                 }
-                if (EvilTreeState.sapling) {
+                if (EvilTree.sapling) {
                     option("Strange sapling.") {
                         npc<Neutral>("spirit_tree", "I can help you to find the strange sapling, but my knowledge outside of the anima mundi is limited.")
-                        npc<Neutral>("spirit_tree", "It can be found ${Tables.string("evil_tree_place.${EvilTreeState.place}.hint")}.")
+                        npc<Neutral>("spirit_tree", "It can be found ${Tables.string("evil_tree_place.${EvilTree.place}.hint")}.")
                     }
                 } else {
                     option("Evil tree.") {
-                        if (!EvilTreeState.alive) {
+                        if (!EvilTree.alive) {
                             npc<Neutral>("spirit_tree", "The taint of the evil tree is not currently on the land. There will be an evil tree in approximately ${evilTreeCountdown()}.")
                             return@option
                         }
-                        npc<Neutral>("spirit_tree", "The evil tree has taken root ${Tables.string("evil_tree_place.${EvilTreeState.place}.hint").replaceFirstChar { it.lowercase() }.replace("<br>", " ")}.")
+                        npc<Neutral>("spirit_tree", "The evil tree has taken root ${Tables.string("evil_tree_place.${EvilTree.place}.hint").replaceFirstChar { it.lowercase() }.replace("<br>", " ")}.")
                         npc<Quiz>("spirit_tree", "Would you like me to teleport you directly there?")
                         choice {
                             option("Yes please.") {
-                                Teleport.teleport(this, EvilTreeState.spawnTile.add(-1, -1), "spirit_tree", sound = false)
+                                Teleport.teleport(this, EvilTree.spawnTile.add(-1, -1), "spirit_tree", sound = false)
                             }
                             option<Quiz>("What is this 'evil tree'?") {
                                 npc<Neutral>("spirit_tree", "It is an abomination of nature that must be destroyed as quickly as possible. We do not know where it will appear, but, when it does, you should go to it immediately and help out!")

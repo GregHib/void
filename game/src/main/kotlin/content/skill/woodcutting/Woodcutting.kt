@@ -89,7 +89,7 @@ class Woodcutting(val drops: DropTables) : Script {
             if (!GameObjects.contains(target)) {
                 break
             }
-            if (chopSuccess(player.levels.get(Skill.Woodcutting) + player.familiarBoost(Skill.Woodcutting), hatchet, log)) {
+            if (success(player.levels.get(Skill.Woodcutting) + player.familiarBoost(Skill.Woodcutting), hatchet, log)) {
                 val xp = log.int("xp") / 10.0
                 player.exp(Skill.Woodcutting, xp)
                 tryDropNest(player, ivy)
@@ -189,24 +189,26 @@ class Woodcutting(val drops: DropTables) : Script {
         }
         return ResourceRespawn.ticks(log.int("respawn_delay"))
     }
+
+    companion object {
+        fun success(level: Int, hatchet: Item, log: RowDefinition): Boolean {
+            val chanceRange = log.intRange("chance")
+            val hatchetLowDifference = log.intRange("chance_hatchet_dif_low")
+            val hatchetHighDifference = log.intRange("chance_hatchet_dif_high")
+            val lowHatchetChance = calculateChance(hatchet, hatchetLowDifference)
+            val highHatchetChance = calculateChance(hatchet, hatchetHighDifference)
+            val chance = chanceRange.first + lowHatchetChance..chanceRange.last + highHatchetChance
+            return Level.success(level, chance)
+        }
+
+        fun calculateChance(hatchet: Item, treeHatchetDifferences: IntRange): Int = (0 until hatchet.def["rank", 0]).sumOf { calculateHatchetChance(it, treeHatchetDifferences) }
+
+        /**
+         * Calculates the chance of success out of 256 given a [hatchet] and the hatchet chances for that tree [treeHatchetDifferences]
+         * @param hatchet The index of the hatchet (0..7)
+         * @param treeHatchetDifferences The min and max increase chance between each hatchet
+         * @return chance of success
+         */
+        fun calculateHatchetChance(hatchet: Int, treeHatchetDifferences: IntRange): Int = if (hatchet % 4 < 2) treeHatchetDifferences.last else treeHatchetDifferences.first
+    }
 }
-
-fun chopSuccess(level: Int, hatchet: Item, log: RowDefinition): Boolean {
-    val chanceRange = log.intRange("chance")
-    val hatchetLowDifference = log.intRange("chance_hatchet_dif_low")
-    val hatchetHighDifference = log.intRange("chance_hatchet_dif_high")
-    val lowHatchetChance = calculateChance(hatchet, hatchetLowDifference)
-    val highHatchetChance = calculateChance(hatchet, hatchetHighDifference)
-    val chance = chanceRange.first + lowHatchetChance..chanceRange.last + highHatchetChance
-    return Level.success(level, chance)
-}
-
-fun calculateChance(hatchet: Item, treeHatchetDifferences: IntRange): Int = (0 until hatchet.def["rank", 0]).sumOf { calculateHatchetChance(it, treeHatchetDifferences) }
-
-/**
- * Calculates the chance of success out of 256 given a [hatchet] and the hatchet chances for that tree [treeHatchetDifferences]
- * @param hatchet The index of the hatchet (0..7)
- * @param treeHatchetDifferences The min and max increase chance between each hatchet
- * @return chance of success
- */
-fun calculateHatchetChance(hatchet: Int, treeHatchetDifferences: IntRange): Int = if (hatchet % 4 < 2) treeHatchetDifferences.last else treeHatchetDifferences.first

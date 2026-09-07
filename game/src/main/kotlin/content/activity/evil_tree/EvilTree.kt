@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.transform
 import content.entity.player.dialogue.type.statement
 import content.skill.woodcutting.Hatchet
-import content.skill.woodcutting.chopSuccess
+import content.skill.woodcutting.Woodcutting
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -48,6 +49,19 @@ class EvilTree : Script {
 
     private val logger = InlineLogger()
 
+    internal var tree: GameObject = GameObject(0)
+    internal var leprechaun: NPC = NPC()
+    internal var health: Int = 0
+    internal var maxHealth: Int = 0
+    internal val roots = mutableMapOf<String, Root>()
+    internal val fires = mutableMapOf<String, GameObject>()
+    private var growth: Int = 0
+    private var strikes: Int = 0
+    private var growthDelay: Int = 0
+    private var rootDelay: Int = 0
+    private var deathDelay: Int = 0
+    private var respawnTicks: Int = 0
+
     init {
         worldSpawn {
             if (Settings["events.evilTree.enabled", false]) {
@@ -61,12 +75,12 @@ class EvilTree : Script {
                 clear()
                 return@settingsReload
             }
-            if (!EvilTreeState.active && !World.timers.contains("evil_tree_spawn")) {
+            if (!active && !World.timers.contains("evil_tree_spawn")) {
                 schedule(STARTUP_MINUTES)
             }
         }
 
-        worldTimerStart("evil_tree_spawn") { EvilTreeState.respawnTicks }
+        worldTimerStart("evil_tree_spawn") { respawnTicks }
 
         worldTimerTick("evil_tree_spawn") {
             spawn()
@@ -102,7 +116,7 @@ class EvilTree : Script {
         }
 
         objectDespawn("evil_tree_fire") {
-            EvilTreeState.fires.values.remove(this)
+            fires.values.remove(this)
         }
 
         playerSpawn {
@@ -154,26 +168,25 @@ class EvilTree : Script {
     }
 
     private fun schedule(minutes: Int) {
-        EvilTreeState.respawnTicks = TimeUnit.MINUTES.toTicks(minutes)
+        respawnTicks = TimeUnit.MINUTES.toTicks(minutes)
         World.timers.clear("evil_tree_spawn")
         World.timers.start("evil_tree_spawn")
     }
 
     private fun spawn() {
         clear()
-        val state = EvilTreeState
-        val place = Tables.get("evil_tree_place").rows().random(random)
-        state.place = place.rowId
-        state.spawnTile = place.tileList("tiles").random(random)
-        state.type = Tables.get("evil_tree_type").rows().random(random).rowId
-        state.spawnId++
-        state.tree = GameObjects.add("evil_tree_seedling", state.centre)
+        val row = Tables.get("evil_tree_place").rows().random(random)
+        place = row.rowId
+        spawnTile = row.tileList("tiles").random(random)
+        type = Tables.get("evil_tree_type").rows().random(random).rowId
+        spawnId++
+        tree = GameObjects.add("evil_tree_seedling", centre)
         displace()
-        state.leprechaun = NPCs.add("leprechaun_evil_tree", state.spawnTile.add(-1, -1))
+        leprechaun = NPCs.add("leprechaun_evil_tree", spawnTile.add(-1, -1))
         World.timers.clear("evil_tree")
         World.timers.start("evil_tree")
-        announce(place)
-        logger.info { "Evil tree event has started at: ${state.place} (${state.spawnTile.x}, ${state.spawnTile.y}) type ${state.type}." }
+        announce(row)
+        logger.info { "Evil tree event has started at: $place (${spawnTile.x}, ${spawnTile.y}) type $type." }
     }
 
     private fun announce(place: RowDefinition) {
@@ -187,30 +200,48 @@ class EvilTree : Script {
     }
 
     fun clear() {
-        val state = EvilTreeState
-        if (!state.active) {
+        if (!active) {
             return
         }
         World.timers.clear("evil_tree")
         clearRoots()
         clearFires()
-        GameObjects.remove(state.tree)
-        NPCs.remove(state.leprechaun)
-        state.reset()
+        GameObjects.remove(tree)
+        NPCs.remove(leprechaun)
+        reset()
+    }
+
+    internal fun reset() {
+        place = ""
+        type = "normal"
+        spawnTile = Tile.EMPTY
+        tree = GameObject(0)
+        leprechaun = NPC()
+        health = 0
+        maxHealth = 0
+        growth = 0
+        grownTick = NOT_GROWN
+        strikes = 0
+        dead = false
+        growthDelay = 0
+        rootDelay = 0
+        deathDelay = 0
+        roots.clear()
+        fires.clear()
     }
 
     private fun clearRoots() {
-        for (root in EvilTreeState.roots.values) {
+        for (root in roots.values) {
             GameObjects.remove(root.obj)
         }
-        EvilTreeState.roots.clear()
+        roots.clear()
     }
 
     private fun clearFires() {
-        for (fire in EvilTreeState.fires.values) {
+        for (fire in fires.values) {
             GameObjects.remove(fire)
         }
-        EvilTreeState.fires.clear()
+        fires.clear()
     }
 
     /*
@@ -218,25 +249,24 @@ class EvilTree : Script {
      */
 
     private fun tick(): Int {
-        val state = EvilTreeState
-        if (!state.active) {
+        if (!active) {
             return Timer.CANCEL
         }
-        if (state.deathDelay > 0) {
-            state.deathDelay -= TICK_INTERVAL
-            if (state.deathDelay <= 0) {
-                state.tree = state.tree.replace("evil_tree_${state.type}_stump", state.spawnTile)
+        if (deathDelay > 0) {
+            deathDelay -= TICK_INTERVAL
+            if (deathDelay <= 0) {
+                tree = tree.replace("evil_tree_${type}_stump", spawnTile)
                 return Timer.CANCEL
             }
             return Timer.CONTINUE
         }
-        if (!state.grown) {
+        if (!grown) {
             growthTick()
             return Timer.CONTINUE
         }
-        if (state.fires.isNotEmpty()) {
-            damage(state.fires.size)
-            if (state.deathDelay > 0) {
+        if (fires.isNotEmpty()) {
+            damage(fires.size)
+            if (deathDelay > 0) {
                 return Timer.CONTINUE
             }
         }
@@ -246,13 +276,12 @@ class EvilTree : Script {
     }
 
     private fun growthTick() {
-        val state = EvilTreeState
         notice()
-        state.growthDelay += TICK_INTERVAL
-        if (state.growthDelay < Settings["events.evilTree.growthTicks", 100]) {
+        growthDelay += TICK_INTERVAL
+        if (growthDelay < Settings["events.evilTree.growthTicks", 100]) {
             return
         }
-        state.growthDelay = 0
+        growthDelay = 0
         addGrowth()
     }
 
@@ -260,53 +289,49 @@ class EvilTree : Script {
      * Roots briefly shoot out of the ground around a sprouting sapling, once per player per tree.
      */
     private fun notice() {
-        val state = EvilTreeState
-        Players.forEachInRadius(state.centre, NOTICE_RADIUS) { player ->
-            if (player["evil_tree_noticed", 0] == state.spawnId) {
+        Players.forEachInRadius(centre, NOTICE_RADIUS) { player ->
+            if (player["evil_tree_noticed", 0] == spawnId) {
                 return@forEachInRadius
             }
-            player["evil_tree_noticed"] = state.spawnId
+            player["evil_tree_noticed"] = spawnId
             player.gfx("evil_root")
             player.say("What was that?")
         }
     }
 
     private fun rootTick() {
-        val state = EvilTreeState
-        state.rootDelay += TICK_INTERVAL
-        if (state.rootDelay < ROOT_RESPAWN_TICKS) {
+        rootDelay += TICK_INTERVAL
+        if (rootDelay < ROOT_RESPAWN_TICKS) {
             return
         }
-        state.rootDelay = 0
-        val row = Tables.get("evil_branches").rows().filterNot { state.roots.containsKey(it.rowId) }.randomOrNull(random) ?: return
+        rootDelay = 0
+        val row = Tables.get("evil_branches").rows().filterNot { roots.containsKey(it.rowId) }.randomOrNull(random) ?: return
         spawnRoot(row)
     }
 
     private fun lightning() {
-        val state = EvilTreeState
-        if (state.strikes >= LIGHTNING_STRIKES) {
+        if (strikes >= LIGHTNING_STRIKES) {
             return
         }
-        val minutes = (GameLoop.tick - state.grownTick) / TimeUnit.MINUTES.toTicks(1)
-        if (minutes < (state.strikes + 1) * LIGHTNING_INTERVAL_MINUTES) {
+        val minutes = (GameLoop.tick - grownTick) / TimeUnit.MINUTES.toTicks(1)
+        if (minutes < (strikes + 1) * LIGHTNING_INTERVAL_MINUTES) {
             return
         }
-        state.strikes++
+        strikes++
         say("A bolt of lightning strikes the evil tree!")
-        if (state.strikes >= LIGHTNING_STRIKES) {
-            damage(state.health)
+        if (strikes >= LIGHTNING_STRIKES) {
+            damage(health)
             return
         }
-        val cap = state.maxHealth shr state.strikes
-        if (state.health > cap) {
-            damage(state.health - cap)
+        val cap = maxHealth shr strikes
+        if (health > cap) {
+            damage(health - cap)
         }
     }
 
     private fun say(message: String) {
-        val state = EvilTreeState
-        state.leprechaun.say(message)
-        Players.forEachInRadius(state.centre, 15) { player ->
+        leprechaun.say(message)
+        Players.forEachInRadius(centre, 15) { player ->
             player.message("${Colours.DARK_RED.toTag()}$message")
         }
     }
@@ -316,15 +341,14 @@ class EvilTree : Script {
      */
 
     private fun Player.startNurture(target: GameObject) {
-        val state = EvilTreeState
-        if (!state.isTree(target) || !state.sapling) {
+        if (!isTree(target) || !sapling) {
             return
         }
-        val level = Tables.intOrNull("evil_tree_type.${state.type}.farming") ?: return
+        val level = Tables.intOrNull("evil_tree_type.$type.farming") ?: return
         if (!has(Skill.Farming, level, " to help this sapling grow")) {
             return
         }
-        if (!interact()) {
+        if (!evilTreeInteract()) {
             return
         }
         message("You begin tending to the sapling.", ChatType.Filter)
@@ -332,61 +356,56 @@ class EvilTree : Script {
     }
 
     private fun Player.nurture(target: GameObject) {
-        val state = EvilTreeState
-        if (!state.isTree(target) || !state.sapling) {
+        if (!isTree(target) || !sapling) {
             return
         }
         anim("nurture_sapling")
         weakQueue("nurture_evil_sapling", 3) {
-            if (!state.isTree(target) || !state.sapling) {
+            if (!isTree(target) || !sapling) {
                 return@weakQueue
             }
             exp(Skill.Farming, nurtureExperience())
             addGrowth()
-            nurture(state.tree)
+            nurture(tree)
         }
     }
 
     private fun nurtureExperience(): Double {
-        val state = EvilTreeState
-        val row = Rows.get("evil_tree_type.${state.type}")
+        val row = Rows.get("evil_tree_type.$type")
         return row.int("nurture_xp") / 10.0 / row.int("seed_health")
     }
 
     private fun addGrowth() {
-        val state = EvilTreeState
-        state.growth++
-        if (state.growth < Tables.int("evil_tree_type.${state.type}.seed_health")) {
+        growth++
+        if (growth < Tables.int("evil_tree_type.$type.seed_health")) {
             return
         }
-        state.growth = 0
+        growth = 0
         grow()
     }
 
     private fun grow() {
-        val state = EvilTreeState
-        state.tree = when (state.tree.id) {
-            "evil_tree_seedling" -> state.tree.replace("evil_tree_sapling", state.centre)
-            "evil_tree_sapling" -> state.tree.replace("evil_tree_sapling_large", state.centre)
+        tree = when (tree.id) {
+            "evil_tree_seedling" -> tree.replace("evil_tree_sapling", centre)
+            "evil_tree_sapling" -> tree.replace("evil_tree_sapling_large", centre)
             "evil_tree_sapling_large" -> {
                 displace()
-                state.tree.replace("evil_tree_young", state.spawnTile)
+                tree.replace("evil_tree_young", spawnTile)
             }
-            "evil_tree_young" -> state.tree.replace("evil_tree_young_large", state.spawnTile)
+            "evil_tree_young" -> tree.replace("evil_tree_young_large", spawnTile)
             "evil_tree_young_large" -> return mature()
             else -> return
         }
-        state.leprechaun.say("Whoa!")
+        leprechaun.say("Whoa!")
     }
 
     private fun mature() {
-        val state = EvilTreeState
-        state.maxHealth = Tables.int("evil_tree_type.${state.type}.health")
-        state.health = state.maxHealth
-        state.grownTick = GameLoop.tick.toLong()
-        state.tree = state.tree.replace("evil_tree_${state.type}_full", state.spawnTile)
-        state.leprechaun.transform("leprechaun_panic")
-        state.leprechaun.say("It's alive!")
+        maxHealth = Tables.int("evil_tree_type.$type.health")
+        health = maxHealth
+        grownTick = GameLoop.tick.toLong()
+        tree = tree.replace("evil_tree_${type}_full", spawnTile)
+        leprechaun.transform("leprechaun_panic")
+        leprechaun.say("It's alive!")
         for (row in Tables.get("evil_branches").rows()) {
             spawnRoot(row)
         }
@@ -396,10 +415,9 @@ class EvilTree : Script {
      * Moves anyone standing where the tree is about to grow out of the way.
      */
     private fun displace() {
-        val state = EvilTreeState
-        for (tile in state.spawnTile.toCuboid(3, 3)) {
+        for (tile in spawnTile.toCuboid(3, 3)) {
             for (player in Players.at(tile)) {
-                push(player, state.centre)
+                push(player, centre)
             }
         }
     }
@@ -418,11 +436,10 @@ class EvilTree : Script {
      */
 
     private fun spawnRoot(row: RowDefinition) {
-        val state = EvilTreeState
-        if (state.roots.containsKey(row.rowId)) {
+        if (roots.containsKey(row.rowId)) {
             return
         }
-        val tile = state.spawnTile.add(row.int("deltaX"), row.int("deltaY"))
+        val tile = spawnTile.add(row.int("deltaX"), row.int("deltaY"))
         GameObjects.add(row.obj("spawn"), tile, rotation = row.int("dir"), ticks = ROOT_BURST_TICKS)
         burst(tile)
     }
@@ -431,16 +448,15 @@ class EvilTree : Script {
      * The burst animation object has expired, replace it with the root players can chop.
      */
     private fun settle(spawn: GameObject) {
-        val state = EvilTreeState
-        if (!state.alive) {
+        if (!alive) {
             return
         }
         val row = Tables.get("evil_branches").rows().firstOrNull { it.obj("spawn") == spawn.id } ?: return
-        if (state.roots.containsKey(row.rowId)) {
+        if (roots.containsKey(row.rowId)) {
             return
         }
         val root = GameObjects.add(spawn.id.removeSuffix("_spawn"), spawn.tile, rotation = spawn.rotation)
-        state.roots[row.rowId] = EvilTreeState.Root(root, random.nextInt(ROOT_LIFE.first, ROOT_LIFE.last + 1))
+        roots[row.rowId] = Root(root, random.nextInt(ROOT_LIFE.first, ROOT_LIFE.last + 1))
     }
 
     private fun burst(tile: Tile) {
@@ -455,7 +471,7 @@ class EvilTree : Script {
     }
 
     private fun killRoot(row: String) {
-        val root = EvilTreeState.roots.remove(row) ?: return
+        val root = roots.remove(row) ?: return
         GameObjects.remove(root.obj)
     }
 
@@ -464,18 +480,17 @@ class EvilTree : Script {
      */
 
     private suspend fun Player.chop(target: GameObject) {
-        val state = EvilTreeState
-        if (!state.isTree(target) || !state.alive) {
+        if (!isTree(target) || !alive) {
             return
         }
         val hatchet = hatchet() ?: return
-        val row = Rows.get("evil_tree_type.${state.type}")
-        if (!has(Skill.Woodcutting, row.int("woodcutting"), message = true) || !interact()) {
+        val row = Rows.get("evil_tree_type.$type")
+        if (!has(Skill.Woodcutting, row.int("woodcutting"), message = true) || !evilTreeInteract()) {
             return
         }
         val rates = Rows.get("logs.${row.itemList("reward_logs").first()}")
         while (awaitDialogues()) {
-            if (!state.alive || state.deathDelay > 0) {
+            if (!alive || deathDelay > 0) {
                 break
             }
             if (!Hatchet.hasRequirements(this, hatchet, message = true)) {
@@ -484,7 +499,7 @@ class EvilTree : Script {
             if (!swing(hatchet.id)) {
                 continue
             }
-            if (!chopSuccess(levels.get(Skill.Woodcutting), hatchet, rates)) {
+            if (!Woodcutting.success(levels.get(Skill.Woodcutting), hatchet, rates)) {
                 continue
             }
             exp(Skill.Woodcutting, row.int("tree_xp") / 10.0)
@@ -494,16 +509,15 @@ class EvilTree : Script {
     }
 
     private suspend fun Player.chopRoot(target: GameObject) {
-        val state = EvilTreeState
-        val side = state.roots.entries.firstOrNull { it.value.obj == target }?.key ?: return
+        val side = roots.entries.firstOrNull { it.value.obj == target }?.key ?: return
         val hatchet = hatchet() ?: return
-        val row = Rows.get("evil_tree_type.${state.type}")
-        if (!has(Skill.Woodcutting, row.int("woodcutting"), message = true) || !interact()) {
+        val row = Rows.get("evil_tree_type.$type")
+        if (!has(Skill.Woodcutting, row.int("woodcutting"), message = true) || !evilTreeInteract()) {
             return
         }
         val rates = Rows.get("logs.${row.itemList("reward_logs").first()}")
         while (awaitDialogues()) {
-            val root = state.roots[side]
+            val root = roots[side]
             if (root == null || root.obj != target) {
                 break
             }
@@ -517,7 +531,7 @@ class EvilTree : Script {
             if (!swing(hatchet.id)) {
                 continue
             }
-            if (!chopSuccess(levels.get(Skill.Woodcutting), hatchet, rates)) {
+            if (!Woodcutting.success(levels.get(Skill.Woodcutting), hatchet, rates)) {
                 continue
             }
             exp(Skill.Woodcutting, row.int("root_xp") / 10.0)
@@ -556,17 +570,16 @@ class EvilTree : Script {
      */
 
     private suspend fun Player.light(target: GameObject) {
-        val state = EvilTreeState
-        if (!state.isTree(target) || !state.alive) {
+        if (!isTree(target) || !alive) {
             return
         }
-        val row = Rows.get("evil_tree_type.${state.type}")
-        if (!has(Skill.Firemaking, row.int("firemaking"), message = " to set fire to this evil tree") || !interact()) {
+        val row = Rows.get("evil_tree_type.$type")
+        if (!has(Skill.Firemaking, row.int("firemaking"), message = " to set fire to this evil tree") || !evilTreeInteract()) {
             return
         }
         var first = true
         while (awaitDialogues()) {
-            if (!state.alive || state.deathDelay > 0) {
+            if (!alive || deathDelay > 0) {
                 break
             }
             if (!inventory.contains("tinderbox")) {
@@ -593,54 +606,52 @@ class EvilTree : Script {
             anim("light_fire")
             start("action_delay", LIGHT_TICKS)
             pause(LIGHT_TICKS)
-            if (!state.alive || state.deathDelay > 0 || state.fires.containsKey(spot.rowId)) {
+            if (!alive || deathDelay > 0 || fires.containsKey(spot.rowId)) {
                 continue
             }
             if (!inventory.remove("evil_tree_kindling")) {
                 break
             }
             exp(Skill.Firemaking, row.int("burn_xp") / 10.0)
-            val tile = state.spawnTile.add(spot.int("deltaX"), spot.int("deltaY"))
-            state.fires[spot.rowId] = GameObjects.add("evil_tree_fire", tile, rotation = spot.int("dir"), ticks = row.int("fire_life"))
+            val tile = spawnTile.add(spot.int("deltaX"), spot.int("deltaY"))
+            fires[spot.rowId] = GameObjects.add("evil_tree_fire", tile, rotation = spot.int("dir"), ticks = row.int("fire_life"))
         }
         clearAnim()
     }
 
-    private fun freeFire(): RowDefinition? = Tables.get("evil_fires").rows().filterNot { EvilTreeState.fires.containsKey(it.rowId) }.randomOrNull(random)
+    private fun freeFire(): RowDefinition? = Tables.get("evil_fires").rows().filterNot { fires.containsKey(it.rowId) }.randomOrNull(random)
 
     /*
      * Damage and death
      */
 
     private fun damage(amount: Int) {
-        val state = EvilTreeState
-        if (!state.alive || state.deathDelay > 0) {
+        if (!alive || deathDelay > 0) {
             return
         }
-        state.health = (state.health - amount).coerceAtLeast(0)
-        if (state.health <= 0) {
+        health = (health - amount).coerceAtLeast(0)
+        if (health <= 0) {
             kill()
             return
         }
         val id = when {
-            state.health * 3 > state.maxHealth * 2 -> "evil_tree_${state.type}_full"
-            state.health * 3 > state.maxHealth -> "evil_tree_${state.type}_half"
-            else -> "evil_tree_${state.type}_weak"
+            health * 3 > maxHealth * 2 -> "evil_tree_${type}_full"
+            health * 3 > maxHealth -> "evil_tree_${type}_half"
+            else -> "evil_tree_${type}_weak"
         }
-        if (state.tree.id == id) {
+        if (tree.id == id) {
             return
         }
-        state.tree = state.tree.replace(id, state.spawnTile)
+        tree = tree.replace(id, spawnTile)
     }
 
     private fun kill() {
-        val state = EvilTreeState
-        state.dead = true
+        dead = true
         clearRoots()
         clearFires()
-        state.leprechaun.transform("leprechaun_evil_tree")
-        state.tree = state.tree.replace("evil_tree_${state.type}_death", state.spawnTile)
-        state.deathDelay = DEATH_TICKS
+        leprechaun.transform("leprechaun_evil_tree")
+        tree = tree.replace("evil_tree_${type}_death", spawnTile)
+        deathDelay = DEATH_TICKS
         val minutes = Settings["events.evilTree.minRespawnTimeMinutes", 120]..Settings["events.evilTree.maxRespawnTimeMinutes", 120]
         schedule(minutes.random(random))
     }
@@ -650,18 +661,54 @@ class EvilTree : Script {
      */
 
     private suspend fun Player.inspect() {
-        val state = EvilTreeState
-        val level = Tables.intOrNull("evil_tree_type.${state.type}.woodcutting") ?: return
-        val name = if (state.type == "normal") "Evil tree" else "Evil ${state.type.toLowerSpaceCase()} tree"
-        if (!state.alive) {
+        val level = Tables.intOrNull("evil_tree_type.$type.woodcutting") ?: return
+        val name = if (type == "normal") "Evil tree" else "Evil ${type.toLowerSpaceCase()} tree"
+        if (!alive) {
             statement("This is going to be an $name. A Woodcutting and Firemaking level of at least $level is required to interact with it and the surrounding roots.")
             return
         }
-        val percent = (state.health * 100) / state.maxHealth.coerceAtLeast(1)
+        val percent = (health * 100) / maxHealth.coerceAtLeast(1)
         statement("This is an $name. A Woodcutting and Firemaking level of at least $level is required to interact with this tree and the surrounding roots.<br>There is $percent% of this tree left.")
     }
 
+    internal class Root(var obj: GameObject, var life: Int)
+
     companion object {
+        var place: String = ""
+        var type: String = "normal"
+        var spawnTile: Tile = Tile.EMPTY
+        var spawnId: Int = 0
+        var grownTick: Long = NOT_GROWN
+        var dead: Boolean = false
+            private set
+
+        val active: Boolean
+            get() = spawnTile != Tile.EMPTY
+
+        val grown: Boolean
+            get() = grownTick != NOT_GROWN
+
+        /**
+         * A fully grown tree that hasn't been cut down yet.
+         */
+        val alive: Boolean
+            get() = grown && !dead
+
+        val sapling: Boolean
+            get() = active && !grown && !dead
+
+        /**
+         * Centre of the three by three tree, where the one by one sapling stages sit.
+         */
+        val centre: Tile
+            get() = spawnTile.add(1, 1)
+
+        /**
+         * Whether [obj] is the current evil tree, at any stage of its growth.
+         */
+        private fun isTree(obj: GameObject): Boolean = active && (obj.tile == spawnTile || obj.tile == centre)
+
+        const val NOT_GROWN = -1L
         const val TICK_INTERVAL = 10
         const val STARTUP_MINUTES = 2
         const val ROOT_BURST_TICKS = 2
@@ -676,4 +723,43 @@ class EvilTree : Script {
         const val NOTICE_RADIUS = 8
         val ROOT_LIFE = 3..7
     }
+}
+
+/**
+ * Whether the player still has "evil tree magic" left over from an evil tree reward.
+ */
+val Player.evilTreeMagic: Boolean
+    get() = this["evil_tree_buff", 0] > 0
+
+/**
+ * Rolls the players daily evil tree counters over when the day changes.
+ */
+fun Player.evilTreeDailyReset() {
+    val day = TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis())
+    if (this["evil_tree_day", -1L] == day) {
+        return
+    }
+    this["evil_tree_day"] = day
+    this["evil_tree_trees"] = 0
+    this["evil_tree_kindling_handed"] = 0
+    this["evil_tree_spawn_id"] = 0
+}
+
+/**
+ * Whether the player is allowed to interact with the current evil tree, counting it
+ * towards their daily limit the first time they do.
+ */
+fun Player.evilTreeInteract(): Boolean {
+    evilTreeDailyReset()
+    if (this["evil_tree_spawn_id", 0] == EvilTree.spawnId) {
+        return true
+    }
+    if (this["evil_tree_trees", 0] >= Settings["events.evilTree.dailyTreeLimit", 2]) {
+        message("You've already helped with as many evil trees as you can today.")
+        return false
+    }
+    this["evil_tree_spawn_id"] = EvilTree.spawnId
+    inc("evil_tree_trees")
+    this["evil_tree_rewards"] = true
+    return true
 }
