@@ -249,15 +249,23 @@ internal class DuelTest : WorldTest() {
     }
 
     @Test
-    fun `Clicking the swapped equipment tab forfeits`() {
+    fun `Logging out through the logout tab offers to forfeit`() {
         val (winner, loser) = fight(staked = true, winnerStake = 10, loserStake = 20)
-        assertEquals("forfeit", loser["equipment_tab", ""])
-        loser.interfaceOption("toplevel", "worn_equipment", "Worn Equipment")
+        loser.interfaceOption("toplevel", "logout", "Exit")
+        loser.interfaceOption("logout", "login", "*")
+        tick()
+        loser.dialogueOption(2)
+        tick(2)
+        assertEquals(DuelStage.Fighting, winner.duel!!.stage)
+        assertFalse(loser["logged_out", false])
+        loser.interfaceOption("toplevel", "logout", "Exit")
+        loser.interfaceOption("logout", "login", "*")
         tick()
         loser.dialogueOption(1)
         tick(2)
         assertEquals("stake_victory", winner.menu)
-        assertEquals("worn_equipment", loser["equipment_tab", "worn_equipment"])
+        assertEquals(Item("coins", 30), winner.winnings[0])
+        assertFalse(loser["logged_out", false])
     }
 
     @Test
