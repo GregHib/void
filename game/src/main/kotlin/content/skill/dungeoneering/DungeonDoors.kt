@@ -113,7 +113,7 @@ class DungeonDoors(val tracks: MusicTracks) : Script {
         }
 
         objectOperate("Chop-down", "wooden_barricade_*") { (target) ->
-            target.replace(target.id.replace("wooden_barricade", "cleared_barricade"))
+            target.replace(target.id.replace("wooden_barricade", "cleared_barricade_door"))
         }
 
         objectOperate("Prune-vines", "vine_covered_door_*") { (target) ->
