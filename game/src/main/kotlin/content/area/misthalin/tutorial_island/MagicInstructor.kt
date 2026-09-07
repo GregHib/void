@@ -1,26 +1,16 @@
 package content.area.misthalin.tutorial_island
 
-import content.entity.player.bank.bank
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
-import content.entity.player.modal.gameFrameComponents
-import content.entity.player.starterKit
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.clearMinimap
-import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.clear
-import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.queue.queue
-import world.gregs.voidps.type.Tile
 
 class MagicInstructor : Script {
 
@@ -28,15 +18,15 @@ class MagicInstructor : Script {
         npcOperate("Talk-to", "magic_instructor") {
             when (tutorialStage) {
                 63 -> {
-                    npc<Happy>("Greetings! I am here to teach you the ways of magic.")
-                    npc<Neutral>("Open your spellbook to see the spells you can cast.")
+                    player<Happy>("Hello.")
+                    npc<Happy>("Good day, newcomer. My name is Terrova. I'm here to tell you about Magic. Let's start by opening your spellbook.")
                     advanceTutorial(63)
                 }
                 65 -> {
-                    npc<Neutral>("Every spell needs runes. Take these air and mind runes, and cast Wind Strike on one of those chickens.")
+                    npc<Neutral>("Good. This is a list of your spells. Currently you can only cast one offensive spell called Wind Strike. Let's try it out on one of those chickens.")
                     inventory.add("air_rune", 5)
                     inventory.add("mind_rune", 5)
-                    item("air_rune", "The Magic Instructor gives you some air and mind runes.")
+                    item("air_rune", "Terrova gives you five <blue>air runes</col> and five <blue>mind runes</col>!")
                     advanceTutorial(65)
                 }
                 67 -> finish()
@@ -53,37 +43,26 @@ class MagicInstructor : Script {
     }
 
     private suspend fun Player.finish() {
-        npc<Happy>("Well done, you've completed the tutorial!")
-        npc<Neutral>("You're ready to enter the world proper. Would you like me to send you to Lumbridge now?")
-        choice {
-            option<Happy>("Yes, please.") {
+        npc<Happy>("Well you're all finished here now. I'll give you a reasonable number of runes when you leave.")
+        choice("Do you want to go to the mainland?") {
+            option<Happy>("Yes.") {
                 leave()
             }
-            option<Neutral>("Not yet.") {
+            option<Neutral>("No.") {
                 npc<Neutral>("That's fine. Talk to me again whenever you're ready.")
             }
         }
     }
 
     private suspend fun Player.leave() {
-        leaveTutorial()
-        clearMinimap()
-        TutorialRestrictions.restore(this)
-        // Everyone leaves the island with the same kit, whatever they gathered on it.
-        inventory.clear()
-        equipment.clear()
-        bank.clear()
-        starterKit(this)
-        for (component in gameFrameComponents) {
-            open(component)
-        }
-        Teleport.teleport(this, exitTile(), "modern")
-        // Teleporting is a strong queue, so this has to wait its turn rather than run inline -
-        // an open message would otherwise block the teleport until the player dismissed it.
-        queue("welcome") {
-            statement("Welcome to Lumbridge! To get more help, simply click on the Lumbridge Guide or one of the Tutors - these can be found by looking for the question mark icon on your minimap.")
-        }
+        player<Happy>("Yes, I'm ready to leave.")
+        npc<Happy>("Good good. I've deactivated the protective spells around the island, so now you can teleport yourself out of here.")
+        npc<Neutral>("When you get to the mainland you will find yourself in the town of Lumbridge. If you want some ideas on where to go next, talk to my friend Phileas, also known as the Lumbridge Guide. You can't miss him; he's holding a big staff with a question mark on the end.")
+        npc<Neutral>("He also has a white beard and carries a rucksack full of scrolls. There are also tutors willing to teach you about the many skills you could learn.")
+        // Two boxes, as in the original - statement() caps at five lines.
+        statement("When you get to Lumbridge, look for the question mark icon on your minimap. The Lumbridge Guide and the other tutors will be standing near one of these.")
+        statement("The Lumbridge Guide should be standing slightly to the north-east of the castle's courtyard and the others you will find scattered around Lumbridge.")
+        npc<Neutral>("If all else fails, visit the RuneScape website for a whole chestload of information on quests, skills and minigames as well as a very good starter's guide.")
+        finishTutorial()
     }
-
-    private fun exitTile() = Tile(Settings["world.start.tutorial.exit.x", 0], Settings["world.start.tutorial.exit.y", 0], Settings["world.start.tutorial.exit.level", 0])
 }

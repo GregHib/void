@@ -64,6 +64,22 @@ class Cooking : Script {
             softTimers.start("cooking")
             cook(row, item, amount, target, offset)
         }
+
+        // Ranges and fires can be clicked directly rather than using an item on them.
+        objectOperate("Use", "fire_*,cooking_range*") { (target) ->
+            val cookable = inventory.items.map { it.id }.distinct().filter { Rows.getOrNull("cooking.$it") != null }
+            if (cookable.isEmpty()) {
+                message("You have nothing to cook.")
+                return@objectOperate
+            }
+            val maximum = cookable.maxOf { inventory.count(it) }
+            val (id, amount) = makeAmount(cookable, type = "Cook", maximum = maximum, text = "How many would you like to cook?")
+            val row = Rows.getOrNull("cooking.$id") ?: return@objectOperate
+            val item = inventory.items.first { it.id == id }
+            closeDialogue()
+            softTimers.start("cooking")
+            cook(row, item, amount, target)
+        }
     }
 
     fun Player.cook(row: RowDefinition, item: Item, count: Int, obj: GameObject, offset: Int? = null) {

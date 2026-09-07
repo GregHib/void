@@ -2,10 +2,12 @@ package content.area.misthalin.tutorial_island
 
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.player.Player
 
 class RunescapeGuide : Script {
 
@@ -14,9 +16,19 @@ class RunescapeGuide : Script {
             when (tutorialStage) {
                 0 -> {
                     npc<Happy>("Greetings! I see you are a new arrival to this land. My job is to teach you a few basic skills and functions.")
-                    npc<Neutral>("First we shall go through some of the game's control panels, which you can find at the bottom right of your screen.")
-                    npc<Neutral>("Click on the flashing spanner icon to open your game options.")
-                    advanceTutorial(0)
+                    if (!Settings["world.start.tutorial.skippable", false]) {
+                        begin()
+                        return@npcOperate
+                    }
+                    choice("Do you want to go through the tutorial?") {
+                        option<Neutral>("Yes, show me how to play.") {
+                            begin()
+                        }
+                        option<Happy>("No, send me to the mainland.") {
+                            npc<Neutral>("As you wish. I'll send you on your way with the usual supplies.")
+                            finishTutorial()
+                        }
+                    }
                 }
                 2 -> {
                     npc<Neutral>("The options panel lets you change the screen brightness, the volume of the music and sound effects, and whether other players may offer you help.")
@@ -30,5 +42,11 @@ class RunescapeGuide : Script {
                 }
             }
         }
+    }
+
+    private suspend fun Player.begin() {
+        npc<Neutral>("First we shall go through some of the game's control panels, which you can find at the bottom right of your screen.")
+        npc<Neutral>("Click on the flashing spanner icon to open your game options.")
+        advanceTutorial(0)
     }
 }

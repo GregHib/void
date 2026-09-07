@@ -5,6 +5,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
@@ -34,9 +35,16 @@ class SurvivalExpert : Script {
                         npc<Happy>("Lost your equipment? Here, take another.")
                         return@npcOperate
                     }
-                    npc<Neutral>("Keep going, you're doing well. Just follow the instructions on your screen.")
+                    recap()
                 }
             }
         }
+    }
+
+    /** The stage text tells the player they can ask for a recap at any time. */
+    private suspend fun Player.recap() {
+        npc<Neutral>("Chop a tree with your hatchet for logs, then use your tinderbox on them to light a fire.")
+        npc<Neutral>("Use your net on a fishing spot to catch shrimp, and cook them on a fire once you've caught some.")
+        npc<Neutral>("Your skills panel shows how much experience each of those has earned you.")
     }
 }

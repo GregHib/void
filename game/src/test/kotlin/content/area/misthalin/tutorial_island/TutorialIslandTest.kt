@@ -67,6 +67,26 @@ class TutorialIslandTest : WorldTest() {
     }
 
     @Test
+    fun `Every orb is present from the first stage`() {
+        val player = createPlayer(guideRoom) { it.startTutorial(0) }
+
+        for (orb in listOf("health_orb", "prayer_orb", "energy_orb", "summoning_orb")) {
+            assertTrue(player.tutorialUnlocked(orb), "$orb should be open from the start")
+        }
+        assertFalse(player.tutorialUnlocked("prayer_list"), "sidebar tabs are still revealed in order")
+    }
+
+    @Test
+    fun `Tasks cannot be completed on the island`() {
+        val player = createPlayer(guideRoom) { it.startTutorial(0) }
+
+        player["king_conifer_task"] = true
+        tick()
+
+        assertFalse(player["king_conifer_task", false], "the task should have been rolled back")
+    }
+
+    @Test
     fun `Talking to the guide advances the first stage`() {
         val player = createPlayer(Tile(3095, 3107)) { it.startTutorial(0) }
         val guide = createNPC("runescape_guide", Tile(3094, 3107))
