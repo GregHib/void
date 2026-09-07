@@ -1,0 +1,151 @@
+# Rows of the duel scoreboard (interface 632); cs2 1636/1638 read varc strings 224-273 when it opens
+
+[duel_scoreboard_0]
+id = 224
+
+[duel_scoreboard_1]
+id = 225
+
+[duel_scoreboard_2]
+id = 226
+
+[duel_scoreboard_3]
+id = 227
+
+[duel_scoreboard_4]
+id = 228
+
+[duel_scoreboard_5]
+id = 229
+
+[duel_scoreboard_6]
+id = 230
+
+[duel_scoreboard_7]
+id = 231
+
+[duel_scoreboard_8]
+id = 232
+
+[duel_scoreboard_9]
+id = 233
+
+[duel_scoreboard_10]
+id = 234
+
+[duel_scoreboard_11]
+id = 235
+
+[duel_scoreboard_12]
+id = 236
+
+[duel_scoreboard_13]
+id = 237
+
+[duel_scoreboard_14]
+id = 238
+
+[duel_scoreboard_15]
+id = 239
+
+[duel_scoreboard_16]
+id = 240
+
+[duel_scoreboard_17]
+id = 241
+
+[duel_scoreboard_18]
+id = 242
+
+[duel_scoreboard_19]
+id = 243
+
+[duel_scoreboard_20]
+id = 244
+
+[duel_scoreboard_21]
+id = 245
+
+[duel_scoreboard_22]
+id = 246
+
+[duel_scoreboard_23]
+id = 247
+
+[duel_scoreboard_24]
+id = 248
+
+[duel_scoreboard_25]
+id = 249
+
+[duel_scoreboard_26]
+id = 250
+
+[duel_scoreboard_27]
+id = 251
+
+[duel_scoreboard_28]
+id = 252
+
+[duel_scoreboard_29]
+id = 253
+
+[duel_scoreboard_30]
+id = 254
+
+[duel_scoreboard_31]
+id = 255
+
+[duel_scoreboard_32]
+id = 256
+
+[duel_scoreboard_33]
+id = 257
+
+[duel_scoreboard_34]
+id = 258
+
+[duel_scoreboard_35]
+id = 259
+
+[duel_scoreboard_36]
+id = 260
+
+[duel_scoreboard_37]
+id = 261
+
+[duel_scoreboard_38]
+id = 262
+
+[duel_scoreboard_39]
+id = 263
+
+[duel_scoreboard_40]
+id = 264
+
+[duel_scoreboard_41]
+id = 265
+
+[duel_scoreboard_42]
+id = 266
+
+[duel_scoreboard_43]
+id = 267
+
+[duel_scoreboard_44]
+id = 268
+
+[duel_scoreboard_45]
+id = 269
+
+[duel_scoreboard_46]
+id = 270
+
+[duel_scoreboard_47]
+id = 271
+
+[duel_scoreboard_48]
+id = 272
+
+[duel_scoreboard_49]
+id = 273
