@@ -104,7 +104,15 @@ class LogBalance : Script {
         }
         val from = if (tile.distanceTo(start) <= tile.distanceTo(end)) start else end
         val to = if (from == start) end else start
-        walkOverDelay(from)
+        // Cancellable approach; walkOverDelay's delay would block walking away
+        walkTo(from)
+        var count = 0
+        while (tile != from && count++ < 50) {
+            pause(1)
+        }
+        if (tile != from) {
+            return
+        }
         message("You walk carefully across the slippery log...", ChatType.Filter)
         delay()
         renderEmote("rope_balance")
