@@ -87,31 +87,7 @@ class DuelFight : Script {
         }
 
         objectOperate("Forfeit", "duel_arena_forfeit_trapdoor", arrive = false) {
-            forfeit()
-        }
-
-        // The worn equipment tab icon is swapped for the forfeit trapdoor during a duel (varc 236).
-        // Registered with the exact option so it runs alongside the gameframe's tab handler.
-        interfaceOption("Worn Equipment", "toplevel*:worn_equipment") {
-            if (duel?.active == true) {
-                forfeit()
-            }
-        }
-    }
-
-    suspend fun Player.forfeit() {
-        val duel = duel ?: return
-        if (duel.stage != DuelStage.Fighting) {
-            message("The duel hasn't started yet.")
-            return
-        }
-        if (duel.hasRule("no_forfeit")) {
-            statement("Forfeit has been turned off for this duel.")
-            return
-        }
-        val forfeit = choice(listOf("Yes.", "No."), "Do you wish to forfeit?")
-        if (forfeit == 1 && duel.stage == DuelStage.Fighting) {
-            DuelEnd.finish(duel, winner = duel.opponent(this), loser = this, DuelEnd.Result.Forfeit)
+            forfeitDuel()
         }
     }
 
@@ -190,7 +166,6 @@ class DuelFight : Script {
             player["in_pvp"] = true
             player.options.remove("Challenge")
             player.options.set(ATTACK_SLOT, "Attack")
-            player["equipment_tab"] = "forfeit"
             player.markHint(opponent)
             player.jingle("duel_start")
             if (duel.hasRule("no_food")) {
@@ -245,5 +220,24 @@ class DuelFight : Script {
         }
 
         const val ATTACK_SLOT = 1
+    }
+}
+
+/**
+ * Asks the player to forfeit their current duel; used by the trapdoor and the logout button
+ */
+suspend fun Player.forfeitDuel() {
+    val duel = duel ?: return
+    if (duel.stage != DuelStage.Fighting) {
+        message("The duel hasn't started yet.")
+        return
+    }
+    if (duel.hasRule("no_forfeit")) {
+        statement("Forfeit has been turned off for this duel.")
+        return
+    }
+    val forfeit = choice(listOf("Yes.", "No."), "Do you wish to forfeit?")
+    if (forfeit == 1 && duel.stage == DuelStage.Fighting) {
+        DuelEnd.finish(duel, winner = duel.opponent(this), loser = this, DuelEnd.Result.Forfeit)
     }
 }
