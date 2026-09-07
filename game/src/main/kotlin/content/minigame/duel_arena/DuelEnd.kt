@@ -142,7 +142,6 @@ class DuelEnd : Script {
             player.clear("no_movement_message")
             player.clear("blocked_equip_slots")
             player.clear("blocked_equip_message")
-            player["equipment_tab"] = "worn_equipment"
             for (rule in DuelRules.all) {
                 player.clear("duel_$rule")
             }
