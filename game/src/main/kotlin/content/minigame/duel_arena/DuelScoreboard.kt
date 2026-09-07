@@ -1,8 +1,6 @@
 package content.minigame.duel_arena
 
-import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 
@@ -12,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 object DuelScoreboard {
 
     const val SIZE = 50
-    private const val ROW_HEIGHT = 16
+    private const val EMPTY = "No duels have been fought on this world yet."
 
     private val entries = ArrayDeque<String>(SIZE)
 
@@ -30,16 +28,14 @@ object DuelScoreboard {
         entries.clear()
     }
 
+    /**
+     * The interface builds its rows from varc strings 224-273 when it opens,
+     * showing "Loading..." if every one of them is blank
+     */
     fun open(player: Player) {
-        if (!player.open("duel_scoreboard")) {
-            return
+        for (index in 0 until SIZE) {
+            player["duel_scoreboard_$index"] = entries.getOrNull(index) ?: if (index == 0) EMPTY else ""
         }
-        val list = InterfaceDefinitions.getComponent("duel_scoreboard", "list") ?: return
-        val scrollbar = InterfaceDefinitions.getComponent("duel_scoreboard", "scrollbar") ?: return
-        for ((index, entry) in entries.withIndex()) {
-            player.sendScript("duel_scoreboard_row", 0, index * ROW_HEIGHT, list.id, entry)
-        }
-        player.sendScript("scrollbar_vertical", scrollbar.id, list.id)
-        player.sendScript("set_scroll_height", scrollbar.id, list.id, entries.size * ROW_HEIGHT, 0)
+        player.open("duel_scoreboard")
     }
 }
