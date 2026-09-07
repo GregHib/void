@@ -383,7 +383,7 @@ class DungeoneeringParty : Script {
                 if (item.isEmpty() || item.id == kinship || item.def.contains(Params.DUNGEONEERING_BOUND_AMMO) || item.def.contains(Params.DUNGEONEERING_BOUND_ITEM)) {
                     continue
                 }
-                FloorItems.add(tile, item.id, item.amount, revealTicks = 0)
+                FloorItems.add(tile, item.id, item.amount, revealTicks = FloorItems.IMMEDIATE)
             }
         }
 
