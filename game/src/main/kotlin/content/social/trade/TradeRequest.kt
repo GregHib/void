@@ -2,6 +2,7 @@ package content.social.trade
 
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.minigame.duel_arena.duel
 import content.social.friend.friend
 import content.social.trade.Trade.getPartner
 import world.gregs.voidps.engine.Script
@@ -22,6 +23,14 @@ class TradeRequest : Script {
 
     init {
         playerOperate("Trade with") { (target) ->
+            if (duel != null) {
+                message("You can't trade during a duel.", ChatType.Trade)
+                return@playerOperate
+            }
+            if (target.duel != null) {
+                message("Other player is busy at the moment.", ChatType.Trade)
+                return@playerOperate
+            }
             val filter = target["trade_filter", "on"]
             if (filter == "off" || (filter == "friends" && !target.friend(this))) {
                 return@playerOperate
