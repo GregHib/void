@@ -383,6 +383,20 @@ internal class DuelTest : WorldTest() {
     }
 
     @Test
+    fun `Trading is blocked during a duel`() {
+        val (fighter, opponent) = fight(staked = false)
+        fighter.playerOption(opponent, "Trade with")
+        tick()
+        assertTrue(fighter.containsMessage("You can't trade during a duel."))
+        assertNull(fighter.menu)
+        val bystander = createPlayer(fighter.tile.addX(1), "bystander")
+        bystander.playerOption(fighter, "Trade with")
+        tick()
+        assertTrue(bystander.containsMessage("Other player is busy at the moment."))
+        assertNull(bystander.menu)
+    }
+
+    @Test
     fun `Leftover winnings are returned on login`() {
         val player = createPlayer(lobby, "leftover") {
             it.winnings.add("coins", 50)
