@@ -6,7 +6,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
@@ -59,9 +58,8 @@ class MagicInstructor : Script {
         npc<Happy>("Good good. I've deactivated the protective spells around the island, so now you can teleport yourself out of here.")
         npc<Neutral>("When you get to the mainland you will find yourself in the town of Lumbridge. If you want some ideas on where to go next, talk to my friend Phileas, also known as the Lumbridge Guide. You can't miss him; he's holding a big staff with a question mark on the end.")
         npc<Neutral>("He also has a white beard and carries a rucksack full of scrolls. There are also tutors willing to teach you about the many skills you could learn.")
-        // Two boxes, as in the original - statement() caps at five lines.
-        statement("When you get to Lumbridge, look for the question mark icon on your minimap. The Lumbridge Guide and the other tutors will be standing near one of these.")
-        statement("The Lumbridge Guide should be standing slightly to the north-east of the castle's courtyard and the others you will find scattered around Lumbridge.")
+        item("questionmark_icon", "When you get to Lumbridge, look for this icon on your minimap. The Lumbridge Guide and the other tutors will be standing near one of these.")
+        item("questionmark_icon", "The Lumbridge Guide should be standing slightly to the north-east of the castle's courtyard and the others you will find scattered around Lumbridge.")
         npc<Neutral>("If all else fails, visit the RuneScape website for a whole chestload of information on quests, skills and minigames as well as a very good starter's guide.")
         advanceTutorial(67)
     }
