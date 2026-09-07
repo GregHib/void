@@ -48,6 +48,12 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
         }
 
         interfaceOption("Turn Quick Prayers On", "prayer_orb:orb") {
+            val blocked: String? = get("no_prayer_message")
+            if (blocked != null) {
+                message(blocked)
+                set(USING_QUICK_PRAYERS, false)
+                return@interfaceOption
+            }
             if (levels.get(Skill.Prayer) == 0) {
                 message("You've run out of prayer points.")
                 set(USING_QUICK_PRAYERS, false)
@@ -98,6 +104,11 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
         if (activated) {
             removeVarbit(listKey, name)
         } else {
+            val blocked: String? = get("no_prayer_message")
+            if (!quick && blocked != null) {
+                message(blocked)
+                return
+            }
             if (!quick && !has(Skill.Prayer, 1)) {
                 message("You need to recharge your Prayer at an altar.")
                 return
