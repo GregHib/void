@@ -75,7 +75,7 @@ class Overload : Script {
             repeat(5) {
                 player.directHit(100)
                 player.anim("overload")
-                player.gfx("electric_shock")
+                player.gfx("overload")
                 pause(2)
             }
         }
