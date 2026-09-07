@@ -45,7 +45,7 @@ class DuelArena : Script {
     }
 
     companion object {
-        const val CHALLENGE_SLOT = 3
+        const val CHALLENGE_SLOT = 1
 
         /**
          * Moves everything in [inventory] to the player's inventory, falling back to their bank
