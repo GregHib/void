@@ -444,3 +444,9 @@ hint_npc = "chicken_tutorial_island"
 title = "You have almost completed the tutorial!"
 lines = ["", "All you need to do now is teleport to the mainland. Just speak", "with Terrova and he'll tell you how to do that.", ""]
 hint_npc = "magic_instructor"
+
+# CAST_HOME_TELEPORT
+[.stage_68]
+title = "You have almost completed the tutorial!"
+lines = ["", "Just click on the first spell, Home Teleport, in your Magic", "Spellbook. This spell doesn't require any runes, but can only", "be cast once every 30 minutes.", ""]
+flash = "MagicSpellbook"

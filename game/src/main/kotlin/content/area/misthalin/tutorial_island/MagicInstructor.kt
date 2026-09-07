@@ -63,6 +63,6 @@ class MagicInstructor : Script {
         statement("When you get to Lumbridge, look for the question mark icon on your minimap. The Lumbridge Guide and the other tutors will be standing near one of these.")
         statement("The Lumbridge Guide should be standing slightly to the north-east of the castle's courtyard and the others you will find scattered around Lumbridge.")
         npc<Neutral>("If all else fails, visit the RuneScape website for a whole chestload of information on quests, skills and minigames as well as a very good starter's guide.")
-        finishTutorial()
+        advanceTutorial(67)
     }
 }

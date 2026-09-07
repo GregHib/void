@@ -37,8 +37,21 @@ class TutorialRestrictions : Script {
             experience.set(skill, Level.experience(skill, cap))
         }
 
-        for (type in listOf("modern", "ancient", "lunar", "tablet", "scroll", "jewellery")) {
+        for (type in listOf("ancient", "lunar", "tablet", "scroll", "jewellery")) {
             teleportTakeOff(type) { !inTutorial }
+        }
+
+        // Home Teleport is how the tutorial ends, so it's the one spell that gets through - and
+        // casting it is what completes the tutorial. The spell does the travelling itself.
+        teleportTakeOff("modern") { spell ->
+            if (!inTutorial) {
+                return@teleportTakeOff true
+            }
+            if (tutorialStage != TutorialIsland.lastStage || spell != "lumbridge_home_teleport") {
+                return@teleportTakeOff false
+            }
+            completeTutorial()
+            true
         }
 
         playerDeath {

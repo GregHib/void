@@ -54,6 +54,10 @@ object TutorialIsland {
 
     fun row(stage: Int): RowDefinition? = Rows.getOrNull("$TABLE.stage_$stage")
 
+    /** The closing stage, where the player casts Home Teleport to leave the island. */
+    val lastStage: Int
+        get() = stages - 1
+
     /** Whether [component] has been revealed on or before [stage]. */
     fun unlocked(stage: Int, component: String): Boolean {
         for (index in 0..stage) {
@@ -236,10 +240,10 @@ fun Player.resupply(item: String, amount: Int): Boolean {
 }
 
 /**
- * Ends the tutorial and sends the player to the mainland with the standard kit. Shared by the
- * Magic Instructor and the optional skip offered by the guide.
+ * Ends the tutorial and hands over the standard kit, leaving the player where they are. The
+ * Home Teleport that finishes the tutorial does its own travelling.
  */
-suspend fun Player.finishTutorial() {
+fun Player.completeTutorial() {
     leaveTutorial()
     clearMinimap()
     TutorialRestrictions.restore(this)
@@ -251,6 +255,14 @@ suspend fun Player.finishTutorial() {
     for (component in gameFrameComponents) {
         open(component)
     }
+}
+
+/**
+ * Ends the tutorial and sends the player to the mainland directly, for the optional skip the
+ * guide offers. Players who finish properly leave under their own steam instead.
+ */
+suspend fun Player.finishTutorial() {
+    completeTutorial()
     Teleport.teleport(this, exitTile(), "modern")
     // Teleporting is a strong queue, so this has to wait its turn rather than run inline - an
     // open message would otherwise block the teleport until the player dismissed it.
