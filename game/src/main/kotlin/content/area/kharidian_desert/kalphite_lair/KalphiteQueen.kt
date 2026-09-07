@@ -36,9 +36,6 @@ import java.util.concurrent.TimeUnit
 
 class KalphiteQueen(val lineOfSight: LineValidator) : Script {
     init {
-        npcSpawn("kalphite_queen") {
-            clearTransform()
-        }
         npcCombatDamage("kalphite_queen") {
             if (random.nextInt(20) != 0) {
                 return@npcCombatDamage
