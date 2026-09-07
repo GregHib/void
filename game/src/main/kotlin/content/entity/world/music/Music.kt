@@ -30,10 +30,9 @@ class Music(val tracks: MusicTracks) : Script {
             if (isBot) {
                 return@moved
             }
-            val tracks = tracks[tile.region]
-            for (track in tracks) {
-                if (track.area != null && !track.area.contains(from) && track.area.contains(tile)) {
-                    autoPlay(this, track)
+            for (track in tracks[tile.region]) {
+                if (!track.area.contains(from) && track.area.contains(tile)) {
+                    autoPlay(this, tracks.get(track.id) ?: continue)
                 }
             }
         }
@@ -92,14 +91,18 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun unlockDefaultTracks(player: Player) {
-        EnumDefinitions.get("music_track_hints").map?.forEach { (key, value) ->
+        unlockAutomatics(player, "music_track_hints")
+        unlockAutomatics(player, "music_track_hints_2")
+        player.unlockTrack("scape_summon")
+        player.unlockTrack("scape_theme")
+    }
+
+    private fun unlockAutomatics(player: Player, enum: String) {
+        EnumDefinitions.get(enum).map?.forEach { (key, value) ->
             if (value is String && value == "automatically.") {
                 unlockTrack(player, key)
             }
         }
-
-        player.unlockTrack("scape_summon")
-        player.unlockTrack("scape_theme")
     }
 
     private fun unlockTrack(player: Player, trackIndex: Int): Boolean {
@@ -110,10 +113,9 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun playAreaTrack(player: Player) {
-        val tracks = tracks[player.tile.region]
-        for (track in tracks) {
-            if (track.area != null && track.area.contains(player.tile)) {
-                autoPlay(player, track)
+        for (track in tracks[player.tile.region]) {
+            if (track.area.contains(player.tile)) {
+                autoPlay(player, tracks.get(track.id) ?: continue)
                 break
             }
         }
@@ -139,6 +141,9 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun sendUnlocks(player: Player) {
+        for (i in 0 .. 30) {
+            player.sendVariable("unlocked_music_$i")
+        }
         player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
         player.interfaceOptions.unlockAll("music_player", "playlist", 0..23)
     }
@@ -233,7 +238,7 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun autoPlay(player: Player, track: Track) {
-        val index = track.index
+        val index = track.index ?: return
         if (player.addVarbit("unlocked_music_${index / 32}", track.name)) {
             player.message("<red>You have unlocked a new music track: ${EnumDefinitions.get("music_track_names").string(index)}.")
         }

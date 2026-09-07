@@ -5,22 +5,16 @@ import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import world.gregs.config.Config
-import world.gregs.voidps.engine.client.variable.BitwiseValues
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.type.Area
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.area.Cuboid
 import world.gregs.voidps.type.area.Polygon
 import world.gregs.voidps.type.area.Rectangle
-import kotlin.collections.component1
-import kotlin.collections.component2
-import kotlin.collections.iterator
-import kotlin.collections.set
 
 class MusicTracks {
 
-    private lateinit var trackAreas: Map<Int, List<Track>>
+    private lateinit var trackAreas: Map<Int, List<AreaTrack>>
     private lateinit var ids: Map<String, Int>
     lateinit var tracks: Array<Track?>
 
@@ -28,11 +22,11 @@ class MusicTracks {
 
     fun get(name: String): Track? = get(ids[name] ?: -1)
 
-    operator fun get(region: Region): List<Track> = trackAreas[region.id] ?: emptyList()
+    operator fun get(region: Region): List<AreaTrack> = trackAreas[region.id] ?: emptyList()
 
     fun load(path: String): MusicTracks {
         timedLoad("music track") {
-            val areas = Int2ObjectOpenHashMap<MutableList<Track>>(900)
+            val regions = Int2ObjectOpenHashMap<MutableList<AreaTrack>>(900)
             val ids = Object2IntOpenHashMap<String>(650)
             val tracks = arrayOfNulls<Track>(1000)
             Config.fileReader(path) {
@@ -40,9 +34,11 @@ class MusicTracks {
                     var id = -1
                     val stringId = section().trim('"')
                     val indexes = mutableListOf<Int>()
+                    val areas = mutableListOf<Area>()
                     while (nextPair()) {
                         when (val key = key()) {
                             "id" -> id = int()
+                            // Not sure why a song can have multiple indexes
                             "indexes" -> while (nextElement()) {
                                 indexes.add(int())
                             }
@@ -64,67 +60,46 @@ class MusicTracks {
                                         else -> throw IllegalArgumentException("Unexpected key: '$k' ${exception()}")
                                     }
                                 }
-                                val area = if (region == -1) {
+                                if (region == -1) {
                                     if (x.size <= 2) {
                                         if (level == null) {
-                                            Rectangle(x.first(), y.first(), x.last(), y.last())
+                                            areas.add(Rectangle(x.first(), y.first(), x.last(), y.last()))
                                         } else {
-                                            Cuboid(x.first(), y.first(), x.last(), y.last(), level, level)
+                                            areas.add(Cuboid(x.first(), y.first(), x.last(), y.last(), level, level))
                                         }
                                     } else {
-                                        Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 4)
+                                        areas.add(Polygon(x.toIntArray(), y.toIntArray(), level ?: 0, level ?: 4))
                                     }
+                                } else if (level != null) {
+                                    areas.add(Region(region).toLevel(level).toCuboid())
                                 } else {
-                                    if (level != null) {
-                                        Region(region).toLevel(level).toCuboid()
-                                    } else {
-                                        Region(region).toCuboid()
-                                    }
-                                }
-                                var track = tracks[id]
-                                if (track == null) {
-                                    track = addTrack(id, stringId, indexes, area, tracks, ids)
-                                }
-                                for (r in area.toRegions()) {
-                                    areas.getOrPut(r.id) { ObjectArrayList(1) }.add(track)
+                                    areas.add(Region(region).toCuboid())
                                 }
                             }
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
                         }
                     }
-                    addTrack(id, stringId, indexes, null, tracks, ids)
-                }
-            }
-            // Prioritise smaller shape checks over larger region checks
-            for (entry in areas) {
-                entry.value.sortBy { it.area?.area }
-            }
-            // TODO save all indexes and check against varps too
-            for ((key, value) in VariableDefinitions.definitions) {
-                if (key.startsWith("unlocked_music")) {
-                    val list = (value.values as BitwiseValues).values as List<String>
-                    for (id in list) {
-                        if (!ids.containsKey(id)) {
-                            val test = id.toIntOrNull()
-                            println("Mismatch: $id in $key actual: ${if (test != null) tracks[test]?.name else ""}")
+                    val track = Track(id, stringId, indexes, areas)
+                    tracks[id] = track
+                    require(!ids.containsKey(stringId)) { "Music track with name '$stringId' already found. Index: ${ids.getInt(stringId)}" }
+                    ids[stringId] = id
+                    for (area in areas) {
+                        for (r in area.toRegions()) {
+                            regions.getOrPut(r.id) { ObjectArrayList(1) }.add(AreaTrack(track.id, area))
                         }
                     }
                 }
             }
-            this.trackAreas = areas
+            // Prioritise smaller shape checks over larger region checks
+            for (entry in regions) {
+                entry.value.sortBy { it.area.area }
+            }
+            this.trackAreas = regions
             this.ids = ids
             this.tracks = tracks
             ids.size
         }
         return this
-    }
-
-    private fun addTrack(id: Int, stringId: String, indexes: MutableList<Int>, area: Area?, tracks: Array<Track?>, ids: Object2IntOpenHashMap<String>): Track {
-        val track = Track(id, stringId, indexes.firstOrNull() ?: -1, area)
-        tracks[id] = track
-        assert(!ids.containsKey(stringId)) { "Music track with name '$stringId' already found. Index: ${ids.getInt(stringId)}" }
-        ids[stringId] = id
-        return track
     }
 
 }
