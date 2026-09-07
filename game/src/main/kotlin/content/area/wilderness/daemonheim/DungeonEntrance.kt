@@ -37,6 +37,7 @@ import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.engineQueue
 import world.gregs.voidps.engine.queue.strongQueue
+import world.gregs.voidps.type.Tile
 
 class DungeonEntrance : Script {
     init {
@@ -224,52 +225,56 @@ class DungeonEntrance : Script {
         strongQueue("enter_dungeon", 2) {
             val track = DungeonMusic.ambientTrack(dungeon.theme)
             for (member in dungeonMembers) {
-                if (!member.inDungeoneering) {
-                    member["dungeoneering_stored_kinship"] = member.carriesItem("ring_of_kinship")
-                    member["dungeoneering_stored_spellbook"] = member.spellBook
-                }
-                val hasParty = member.interfaces.contains("dungeoneering_party") || get("had_party_open", false)
-                DungeoneeringParty.clear(this)
-                member["show_daemonheim_map"] = true
-                member["dungeoneering_party_size"] = size.name
-                member["dungeon_deaths"] = 0
-                member["in_dungeoneering"] = true
-                member["in_multi_combat"] = true
-                member.open("dungeoneering_spellbook")
-                if (hasParty) {
-                    member.open("dungeoneering_party")
-                    clear("had_party_open")
-                }
-                member.tab(Tab.Inventory)
-                DungeonStartingItems.spawn(dungeon, complexity)
-                member.open("rand_overlay")
-                member.message("")
-                member.message("- Welcome to Daemonheim -")
-                member.message("Floor <purple>$floor</col>    Complexity <purple>$complexity")
-                member.message("Dungeon Size: <purple>$size")
-                member.message("Party Size:Difficulty <purple>${dungeonMembers.size}:${dungeon.playerCount}")
-                member.message("<purple>Guide Mode ${if (guideMode) "ON" else "OFF"}")
-                member.message("")
-                if (guideMode) {
-                    member.engineQueue("dungeon_start") {
-                        when (floor) {
-                            1 -> {
-                                statement("You have just entered a dungeon. In the starting room, you'll find a smuggler to trade and store items with, as well as some starting supplies in your backpack and around the room.")
-                                statement("If you want to leave, there is a ladder that will take you back to the surface. For more information, speak to the smuggler.")
-                                item("katagon_platebody", "Some equipment has been allocated to you. To find out more about an item, use it on the smuggler.")
-                                item("katagon_platebody", "If you like the equipment, you can keep it by right-clicking 'Bind' on it. To find out more about the bind system, open the bind setup by right-clicking the smuggler.")
-                            }
-                            2 -> item("heim_crab", "Equipment and food have different 'tiers', indicating how good they are (tier 1 being the lowest, tier 11 being the highest). Examine them to find out!")
-                            3 -> statement("Did you know that your whole party can read your chat, regardless of how far away they are?")
-                        }
-                    }
-                }
-                // TODO not clear which dialogue interface was used https://youtu.be/yCSJaU4azVA?t=384
-                member.tele(tile)
-                member.playTrack(track)
-                member.message("<red_orange>Warning: Dungeoneering is experimental and has limited floors, skills, puzzles, monsters and bosses. Please reports any bugs.")
+                member.enter(size, dungeon, complexity, floor, guideMode, tile, track)
             }
         }
         return true
+    }
+
+    private fun Player.enter(size: DungeonSize, dungeon: DungeonMap, complexity: Int, floor: Int, guideMode: Boolean, tile: Tile, track: String?) {
+        if (!inDungeoneering) {
+            this["dungeoneering_stored_kinship"] = carriesItem("ring_of_kinship")
+            this["dungeoneering_stored_spellbook"] = spellBook
+        }
+        val hasParty = interfaces.contains("dungeoneering_party") || this["had_party_open", false]
+        DungeoneeringParty.clear(this)
+        this["show_daemonheim_map"] = true
+        this["dungeoneering_party_size"] = size.name
+        this["dungeon_deaths"] = 0
+        this["in_dungeoneering"] = true
+        this["in_multi_combat"] = true
+        open("dungeoneering_spellbook")
+        if (hasParty) {
+            open("dungeoneering_party")
+            clear("had_party_open")
+        }
+        tab(Tab.Inventory)
+        DungeonStartingItems.spawn(this, dungeon, complexity)
+        open("rand_overlay")
+        message("")
+        message("- Welcome to Daemonheim -")
+        message("Floor <purple>$floor</col>    Complexity <purple>$complexity")
+        message("Dungeon Size: <purple>$size")
+        message("Party Size:Difficulty <purple>${dungeonMembers.size}:${dungeon.playerCount}")
+        message("<purple>Guide Mode ${if (guideMode) "ON" else "OFF"}")
+        message("")
+        if (guideMode) {
+            engineQueue("dungeon_start") {
+                when (floor) {
+                    1 -> {
+                        this@enter.statement("You have just entered a dungeon. In the starting room, you'll find a smuggler to trade and store items with, as well as some starting supplies in your backpack and around the room.")
+                        this@enter.statement("If you want to leave, there is a ladder that will take you back to the surface. For more information, speak to the smuggler.")
+                        this@enter.item("katagon_platebody", "Some equipment has been allocated to you. To find out more about an item, use it on the smuggler.")
+                        this@enter.item("katagon_platebody", "If you like the equipment, you can keep it by right-clicking 'Bind' on it. To find out more about the bind system, open the bind setup by right-clicking the smuggler.")
+                    }
+                    2 -> this@enter.item("heim_crab", "Equipment and food have different 'tiers', indicating how good they are (tier 1 being the lowest, tier 11 being the highest). Examine them to find out!")
+                    3 -> this@enter.statement("Did you know that your whole party can read your chat, regardless of how far away they are?")
+                }
+            }
+        }
+        // TODO not clear which dialogue interface was used https://youtu.be/yCSJaU4azVA?t=384
+        tele(tile)
+        playTrack(track)
+        message("<red_orange>Warning: Dungeoneering is experimental and has limited floors, skills, puzzles, monsters and bosses. Please reports any bugs.")
     }
 }
