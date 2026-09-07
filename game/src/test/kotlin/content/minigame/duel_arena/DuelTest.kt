@@ -307,6 +307,7 @@ internal class DuelTest : WorldTest() {
         val (fighter, _) = fight(staked = false)
         val bystander = createPlayer(fighter.tile.addX(1), "bystander")
         bystander["in_pvp"] = true
+        bystander.options.remove("Challenge")
         bystander.options.set(1, "Attack")
         bystander.playerOption(fighter, "Attack")
         tick()
