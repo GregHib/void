@@ -89,32 +89,32 @@ class DuelRulesScreen : Script {
         resetAccept(duel)
     }
 
-    /**
-     * Both players are checked so either side sees why the duel can't start
-     */
-    fun canAccept(duel: Duel): Boolean {
-        for (player in duel.players) {
-            val opponent = duel.opponent(player)
-            if (duel.hasRule("fun_weapons") && !DuelRules.hasFunWeapon(player)) {
-                player.message("Fun Weapons is selected but you don't have a 'fun weapon'.")
-                opponent.message("Fun Weapons is selected but your opponent does not have a 'fun weapon'.")
-                return false
-            }
-            var needed = DuelRules.removedEquipment(player, duel).size
-            if (duel.staked) {
-                needed += player.stake.count + opponent.stake.count
-            }
-            if (needed > player.inventory.spaces) {
-                player.message("You do not have enough space for the items removed and/or the stake.")
-                opponent.message("Your opponent does not have enough space for the items removed and/or the stake.")
-                return false
-            }
-        }
-        return true
-    }
-
     companion object {
         val SCREENS = listOf("stake", "duel_confirm")
+
+        /**
+         * Both players are checked so either side sees why the duel can't start
+         */
+        fun canAccept(duel: Duel): Boolean {
+            for (player in duel.players) {
+                val opponent = duel.opponent(player)
+                if (duel.hasRule("fun_weapons") && !DuelRules.hasFunWeapon(player)) {
+                    player.message("Fun Weapons is selected but you don't have a 'fun weapon'.")
+                    opponent.message("Fun Weapons is selected but your opponent does not have a 'fun weapon'.")
+                    return false
+                }
+                var needed = DuelRules.removedEquipment(player, duel).size
+                if (duel.staked) {
+                    needed += player.stake.count + opponent.stake.count
+                }
+                if (needed > player.inventory.spaces) {
+                    player.message("You do not have enough space for the items removed and/or the stake.")
+                    opponent.message("Your opponent does not have enough space for the items removed and/or the stake.")
+                    return false
+                }
+            }
+            return true
+        }
 
         fun sync(duel: Duel, rule: String) {
             for (player in duel.players) {

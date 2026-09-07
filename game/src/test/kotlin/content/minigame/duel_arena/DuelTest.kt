@@ -224,6 +224,53 @@ internal class DuelTest : WorldTest() {
     }
 
     @Test
+    fun `Both players dying on the same tick drops nothing`() {
+        val (winner, loser) = fight(staked = false)
+        winner.inventory.add("shark")
+        loser.inventory.add("shark")
+        winner.levels.set(Skill.Constitution, 0)
+        loser.levels.set(Skill.Constitution, 0)
+        tick(12)
+        assertTrue(winner.inventory.contains("shark"))
+        assertTrue(loser.inventory.contains("shark"))
+        assertTrue(winner.tile in Areas["duel_arena_hospital"])
+        assertTrue(loser.tile in Areas["duel_arena_hospital"])
+        assertNull(winner.duel)
+        assertNull(loser.duel)
+    }
+
+    @Test
+    fun `Leftover stake is returned when a new duel starts`() {
+        val (challenger, target) = players()
+        challenger.stake.add("coins", 5)
+        challenger.playerOption(target, "Challenge")
+        tick()
+        challenger.interfaceOption("duel_request", "challenge", "Next-Screen")
+        tick()
+        target.playerOption(challenger, "Challenge")
+        tick()
+        assertNotNull(challenger.duel)
+        assertTrue(challenger.stake.isEmpty())
+        assertEquals(Item("coins", 5), challenger.inventory[0])
+    }
+
+    @Test
+    fun `Winnings go to the bank when the inventory is full`() {
+        val (winner, loser) = fight(staked = true, winnerStake = 100, loserStake = 250)
+        for (i in 0 until 28) {
+            winner.inventory.add("bronze_dagger")
+        }
+        loser.levels.set(Skill.Constitution, 0)
+        tick(12)
+        assertEquals("stake_victory", winner.menu)
+        winner.interfaceOption("stake_victory", "claim", "Claim")
+        tick()
+        assertTrue(winner.winnings.isEmpty())
+        assertTrue(winner.bank.contains("coins", 350))
+        assertTrue(winner.containsMessage("sent to your bank"))
+    }
+
+    @Test
     fun `Friendly duel death opens the victory screen and moves nothing`() {
         val (winner, loser) = fight(staked = false)
         loser.inventory.add("shark")
