@@ -2494,7 +2494,7 @@ areas = [
 id = 405
 indexes = [541]
 
-[crest_of_a_wave_duplicate]
+[crest_of_a_dwarven_wave]
 id = 406
 indexes = [534]
 
@@ -2660,7 +2660,7 @@ areas = [ { region = 7501, level = 2 } ]
 id = 437
 indexes = [507]
 
-[song_438] # upbeat
+[drunken_dwarf]
 id = 438
 
 [catacombs_and_tombs]
@@ -4739,7 +4739,7 @@ id = 840
 indexes = [752]
 areas = [ { region = 19034 } ]
 
-[song_841] # upbeat, beatbox, dramatic
+[thieves_guild_v]
 id = 841
 
 [thieves_guild_i]

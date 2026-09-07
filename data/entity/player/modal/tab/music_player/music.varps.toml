@@ -99,7 +99,7 @@ values = [ "mouse_trap", "fe_fi_fo_fum", "schools_out", "inadequacy", "illusive"
 id = 1104
 persist = true
 format = "bitwise"
-values = [ "copris_lunaris", "narnodes_theme", "tournament", "clan_wars", "charmin_farmin", "bounty_hunter_level_1", "bounty_hunter_level_2", "bounty_hunter_level_3", "the_adventurer", "creepy", "a_new_menace", "silence", "crest_of_a_wave", "eye_of_the_storm", "delrith", "penguin_plots", "the_penguin_bards", "the_fremennik_kings", "wally_the_hero", "wild_roots", "the_fairy_dragon", "brain_battle", "crest_of_a_wave_duplicate", "king_of_the_trolls", "suroks_theme", "dogfight", "tarn_razorlor", "impulses", "dorgeshuun_treaty", "the_consortium", "bobs_on_holiday", "seaslug_sailing_journey" ]
+values = [ "copris_lunaris", "narnodes_theme", "tournament", "clan_wars", "charmin_farmin", "bounty_hunter_level_1", "bounty_hunter_level_2", "bounty_hunter_level_3", "the_adventurer", "creepy", "a_new_menace", "silence", "crest_of_a_wave", "eye_of_the_storm", "delrith", "penguin_plots", "the_penguin_bards", "the_fremennik_kings", "wally_the_hero", "wild_roots", "the_fairy_dragon", "brain_battle", "crest_of_a_dwarven_wave", "king_of_the_trolls", "suroks_theme", "dogfight", "tarn_razorlor", "impulses", "dorgeshuun_treaty", "the_consortium", "bobs_on_holiday", "seaslug_sailing_journey" ]
 
 [unlocked_music_17]
 id = 1136
