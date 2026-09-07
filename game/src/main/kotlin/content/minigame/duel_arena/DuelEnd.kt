@@ -186,8 +186,9 @@ class DuelEnd : Script {
             winner.tele(hospital(winner))
             winner.jingle("duel_arena_victory")
             val screen = if (duel.staked) "stake_victory" else "duel_victory"
+            // The name component is filled from this string by its load script
+            winner["duel_victory_name"] = loser.name
             winner.open(screen)
-            winner.interfaces.sendText(screen, "name", loser.name)
             winner.interfaces.sendText(screen, "combat_level", loser.combatLevel.toString())
             if (!duel.staked) {
                 return

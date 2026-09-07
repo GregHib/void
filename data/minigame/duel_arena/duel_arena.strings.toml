@@ -1,3 +1,7 @@
+# Defeated player's name on the victory screens (633/634); cs2 1640 copies it into the name component on open
+[duel_victory_name]
+id = 274
+
 # Rows of the duel scoreboard (interface 632); cs2 1636/1638 read varc strings 224-273 when it opens
 
 [duel_scoreboard_0]
