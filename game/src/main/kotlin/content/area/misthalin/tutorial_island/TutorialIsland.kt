@@ -1,7 +1,12 @@
 package content.area.misthalin.tutorial_island
 
+import content.entity.player.bank.bank
+import content.entity.player.dialogue.type.statement
+import content.entity.player.modal.gameFrameComponents
 import content.entity.player.modal.tabComponent
+import content.entity.player.starterKit
 import world.gregs.voidps.engine.client.clearHints
+import world.gregs.voidps.engine.client.clearMinimap
 import world.gregs.voidps.engine.client.markHint
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.dialogue
@@ -14,9 +19,14 @@ import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Teleport
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
+import world.gregs.voidps.engine.inv.clear
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.type.Tile
 import kotlin.math.roundToInt
 
 private const val NO_FLASH = "None"
@@ -62,8 +72,8 @@ val Player.inTutorial: Boolean
     get() = tutorialStage >= 0
 
 /**
- * Game frame components that aren't sidebar tabs, and so stay visible for the whole
- * tutorial.
+ * Game frame components that aren't sidebar tabs. The orbs are all present from the start,
+ * only the sidebar is revealed a tab at a time.
  */
 private val alwaysOpen = setOf(
     "chat_box",
@@ -72,6 +82,7 @@ private val alwaysOpen = setOf(
     "private_chat",
     "health_orb",
     "prayer_orb",
+    "energy_orb",
     "summoning_orb",
     "task_popup",
     "area_status_icon",
@@ -223,6 +234,32 @@ fun Player.resupply(item: String, amount: Int): Boolean {
     inventory.add(item, amount)
     return true
 }
+
+/**
+ * Ends the tutorial and sends the player to the mainland with the standard kit. Shared by the
+ * Magic Instructor and the optional skip offered by the guide.
+ */
+suspend fun Player.finishTutorial() {
+    leaveTutorial()
+    clearMinimap()
+    TutorialRestrictions.restore(this)
+    // Everyone leaves the island with the same kit, whatever they gathered on it.
+    inventory.clear()
+    equipment.clear()
+    bank.clear()
+    starterKit(this)
+    for (component in gameFrameComponents) {
+        open(component)
+    }
+    Teleport.teleport(this, exitTile(), "modern")
+    // Teleporting is a strong queue, so this has to wait its turn rather than run inline - an
+    // open message would otherwise block the teleport until the player dismissed it.
+    queue("welcome") {
+        statement("Welcome to Lumbridge! To get more help, simply click on the Lumbridge Guide or one of the Tutors - these can be found by looking for the question mark icon on your minimap.")
+    }
+}
+
+private fun exitTile() = Tile(Settings["world.start.tutorial.exit.x", 0], Settings["world.start.tutorial.exit.y", 0], Settings["world.start.tutorial.exit.level", 0])
 
 fun Player.leaveTutorial() {
     set("tutorial_stage", -1)

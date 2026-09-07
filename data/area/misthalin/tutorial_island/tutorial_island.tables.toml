@@ -157,7 +157,6 @@ lines = ["For those situations where words don't quite describe how you", "feel,
 title = "Running."
 lines = ["It's only a short distance to the next guide.", "Why not try running there? You can run by clicking", "on the boot icon next to your minimap or by holding", "down your control key while clicking your destination."]
 flash = "RunOrb"
-unlock = "energy_orb"
 
 # ENTER_QUEST_GUIDE_HOUSE
 [.stage_23]
@@ -423,8 +422,8 @@ hint_npc = "magic_instructor"
 
 # OPEN_MAGIC_TAB
 [.stage_64]
-title = "Open up your final menu."
-lines = ["", "Open up the Magic menu by clicking on the flashing icon next", "to the Prayer button you just learned about.", ""]
+title = "Open up your final tab."
+lines = ["", "Open up the Magic Spellbook tab by clicking on the flashing icon", "next to the Prayer List tab you just learned about.", ""]
 flash = "MagicSpellbook"
 unlock = "modern_spellbook"
 
@@ -443,5 +442,5 @@ hint_npc = "chicken_tutorial_island"
 # TALK_TO_MAGIC_INSTRUCTOR_3
 [.stage_67]
 title = "You have almost completed the tutorial!"
-lines = ["", "All you need to do now is move on to the mainland. Just speak", "with Terrova and he'll teleport you to Lumbridge Castle.", ""]
+lines = ["", "All you need to do now is teleport to the mainland. Just speak", "with Terrova and he'll tell you how to do that.", ""]
 hint_npc = "magic_instructor"

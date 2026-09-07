@@ -5,6 +5,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 
@@ -40,9 +41,16 @@ class MiningInstructor : Script {
                         npc<Neutral>("Lost your tools? Here's a replacement.")
                         return@npcOperate
                     }
-                    npc<Neutral>("Keep at it. Mining and Smithing are the backbone of any adventurer's kit.")
+                    recap()
                 }
             }
         }
+    }
+
+    /** The stage text tells the player they can ask for a recap at any time. */
+    private suspend fun Player.recap() {
+        npc<Neutral>("Prospecting a rock tells you which ore it holds. Mining it with a pickaxe gets you the ore itself.")
+        npc<Neutral>("Use the ore on the furnace to smelt it into a bar - copper and tin together make bronze.")
+        npc<Neutral>("Then use the bar on an anvil while carrying a hammer, and choose what you'd like to smith.")
     }
 }

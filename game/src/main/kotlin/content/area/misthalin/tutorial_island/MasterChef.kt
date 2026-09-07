@@ -20,9 +20,15 @@ class MasterChef : Script {
                     advanceTutorial(15)
                 }
                 16, 17 -> replaceIngredients()
-                else -> npc<Neutral>("Use the flour with the water to make dough, then cook it on my range.")
+                else -> recap()
             }
         }
+    }
+
+    /** The stage text tells the player they can ask Lev for a recap. */
+    private suspend fun Player.recap() {
+        npc<Neutral>("Use the bucket of water on the pot of flour to make dough, then cook the dough on my range.")
+        npc<Neutral>("The music player lists every tune you've unlocked. More open up as you explore the world.")
     }
 
     /**
