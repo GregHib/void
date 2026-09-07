@@ -51,9 +51,9 @@ open class Movement(
         val pathfinds = character is Player || (character is NPC && character["owner_index", -1] != -1)
         if (pathfinds && !tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
-            character.steps.queueRoute(route, tile, tile.noCollision, noRun = tile.noRun || strategy.forceWalk(character))
+            character.steps.queueRoute(route, tile, tile.noCollision, noRun = strategy.forceWalk(character))
         } else if (tile != Tile.EMPTY) {
-            character.steps.queueStep(tile, tile.noCollision, noRun = tile.noRun || strategy.forceWalk(character))
+            character.steps.queueStep(tile, tile.noCollision, noRun = strategy.forceWalk(character))
         }
         needsCalculation = false
     }
