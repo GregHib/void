@@ -66,7 +66,7 @@ class Mubariz : Script {
     suspend fun Player.duelling() {
         player<Confused>("How do I challenge someone to a duel?")
         npc<Idle>("When you go to the arena you'll go up an access ramp to the walkways that overlook the arenas. From the walkways you can watch the duels and challenge other players.")
-        npc<Idle>("You'll know you're in the right place as you'll have a Duel-with option when you right-click a player.")
+        npc<Idle>("You'll know you're in the right place as you'll have a Challenge option when you right-click a player.")
         choice {
             challenge()
             place()
@@ -77,7 +77,7 @@ class Mubariz : Script {
     }
 
     fun ChoiceOption.options(): Unit = option<Confused>("What kind of options are there?") {
-        npc<Idle>("You and your opponent can offer coins or platinum as a stake. If you win, you receive what your opponent staked minus some tax, but if you lose, your opponent will get whatever items you staked.")
+        npc<Idle>("You and your opponent can offer items as a stake. If you win, you receive whatever your opponent staked, but if you lose, your opponent will get whatever items you staked.")
         npc<Idle>("You can choose to use rules to spice things up a bit. For instance if you both agree to use the 'No Magic' rule then neither player can use magic to attack the other player. The fight will be restricted to ranging and")
         npc<Idle>("melee only.")
         npc<Idle>("The rules are fairly self-evident with lots of different combinations for you to try out!")
