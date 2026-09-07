@@ -9,7 +9,7 @@ values = [ "adventure", "al_kharid", "alone", "ambient_jungle", "arabian", "arab
 id = 21
 persist = true
 format = "bitwise"
-values = [ "deep_wildy", "desert_voyage", "doorways", "dream", "dunjun", "egypt", "emotion", "emperor", "expanse", "expecting", "expedition", "faerie", "fanfare", "fanfare_3", "fishing", "flute_salad", "forever", "gaol", "garden", "gnome_king", "dwarf_theme", "gnome_village", "gnome_village2", "goblin_village", "gnomeball", "greatness", "harmony", "high_seas", "horizon", "iban", "in_the_manor", "inspiration" ]
+values = [ "deep_wildy", "desert_voyage", "doorways", "dream", "dunjun", "egypt", "emotion", "emperor", "expanse", "expecting", "expedition", "faerie", "fanfare", "fanfare3", "fishing", "flute_salad", "forever", "gaol", "garden", "gnome_king", "dwarf_theme", "gnome_village", "gnome_village2", "goblin_village", "gnomeball", "greatness", "harmony", "high_seas", "horizon", "iban", "in_the_manor", "inspiration" ]
 
 [unlocked_music_2]
 id = 22
@@ -45,7 +45,7 @@ values = [ "la_mort", "stagnant", "breeze", "stratosphere", "time_out", "natural
 id = 311
 persist = true
 format = "bitwise"
-values = [ "deep_down", "chamber", "miscellania", "etcetera", "eagle_peak", "lair", "deadlands", "rellekka", "saga", "borderland", "stranded", "legend", "frostbite", "warrior", "technology", "monkey_madness", "anywhere", "marooned", "island_life", "temple", "suspicious", "showdown", "find_my_way", "castle_wars", "melodrama", "ready_for_battle", "stillness", "lighthouse", "goblin_game", "out_of_the_deep", "hells_bells", "the_navigator" ]
+values = [ "deep_down", "chamber", "miscellania", "etcetera", "shadowland", "lair", "deadlands", "rellekka", "saga", "borderland", "stranded", "legend", "frostbite", "warrior", "technology", "monkey_madness", "anywhere", "marooned", "island_life", "temple", "suspicious", "showdown", "find_my_way", "castle_wars", "melodrama", "ready_for_battle", "stillness", "lighthouse", "goblin_game", "out_of_the_deep", "hells_bells", "the_navigator" ]
 
 [unlocked_music_8]
 id = 346
@@ -63,13 +63,13 @@ values = [ "eagle_peak", "time_to_mine", "in_between", "claustrophobia", "far_aw
 id = 464
 persist = true
 format = "bitwise"
-values = [ "320", "pheasant_peasant", "the_lost_tribe", "corporal_punishment", "the_chosen", "have_a_blast", "forgettable_melody", "right_on_track", "over_to_nardah", "the_monsters_below", "the_desolate_isle", "spirits_of_elid", "the_genie", "desert_heat", "fire_and_brimstone", "in_the_pits", "frogland", "strange_place", "brew_hoo_hoo", "tz_haar", "wild_side", "dead_can_dance", "the_cellar_dwellers", "jungle_troubles", "catch_me_if_you_can", "rat_a_tat_tat", "the_noble_rodent", "bubble_and_squeak", "sarims_vermin", "rat_hunt", "homescape", "aye_car_rum_ba" ]
+values = [ "null", "pheasant_peasant", "the_lost_tribe", "corporal_punishment", "the_chosen", "have_a_blast", "forgettable_melody", "right_on_track", "over_to_nardah", "the_monsters_below", "the_desolate_isle", "spirits_of_elid", "the_genie", "desert_heat", "fire_and_brimstone", "in_the_pits", "frogland", "strange_place", "brew_hoo_hoo", "tzhaar", "wild_side", "dead_can_dance", "the_cellar_dwellers", "jungle_troubles", "catch_me_if_you_can", "rat_a_tat_tat", "the_noble_rodent", "bubble_and_squeak", "sarims_vermin", "rat_hunt", "homescape", "aye_car_rum_ba" ]
 
 [unlocked_music_11]
 id = 598
 persist = true
 format = "bitwise"
-values = [ "blistering_barnacles", "distant_land", "fangs_for_the_memory", "pharaohs_tomb", "land_down_under", "meddling_kids", "corridors_of_power", "slither_and_thither", "in_the_clink", "mudskipper_melody", "subterranea", "incantation", "grip_of_the_talon", "dagannoth_dawn", "xenophobe", "title_fight", "victory_is_mine", "woe_of_the_wyvern", "in_the_brine", "diangos_little_helpers", "roll_the_bones", "mind_over_matter", "golden_touch", "fight_or_flight", "the_enchanter", "scape_hunter", "making_waves", "cabin_fever", "last_stand", "lament", "poles_apart", "scarabaeoidea" ]
+values = [ "blistering_barnacles", "distant_land", "fangs_for_the_memory", "pharaohs_tomb", "land_down_under", "meddling_kids", "corridors_of_power", "slither_and_thither", "in_the_clink", "mudskipper_melody", "subterranea", "incantation", "grip_of_the_talon", "dagannoth_dawn", "xenophobe", "title_fight", "victory_is_mine", "woe_of_the_wyvern", "in_the_brine", "diangos_little_helpers", "roll_the_bones", "mind_over_matter", "golden_touch", "null", "the_enchanter", "scape_hunter", "making_waves", "cabin_fever", "last_stand", "lament", "poles_apart", "scarabaeoidea" ]
 
 [unlocked_music_12]
 id = 662
@@ -99,67 +99,73 @@ values = [ "mouse_trap", "fe_fi_fo_fum", "schools_out", "inadequacy", "illusive"
 id = 1104
 persist = true
 format = "bitwise"
-values = [ "copris_lunaris", "narnodes_theme", "tournament", "clan_wars", "charmin_farmin", "bounty_hunter_level_1", "bounty_hunter_level_2", "bounty_hunter_level_3", "the_adventurer", "creepy", "a_new_menace", "icy_trouble_ahead", "xenophobe", "title_fight", "arma_gonna_get_you", "dillo_gence_is_key", "victory_is_mine", "woe_of_the_wyvern", "in_the_brine", "toktz_ket_ek_mack", "diangos_little_helpers", "brain_battle", "mind_over_matter", "golden_touch", "suroks_theme", "dogs_of_war", "autumn_in_bridgelum", "under_the_sand", "desert_smoke", "the_enchanter", "lament", "slain_to_waste" ]
+values = [ "copris_lunaris", "narnodes_theme", "tournament", "clan_wars", "charmin_farmin", "bounty_hunter_level_1", "bounty_hunter_level_2", "bounty_hunter_level_3", "the_adventurer", "creepy", "a_new_menace", "silence", "crest_of_a_wave", "eye_of_the_storm", "delrith", "penguin_plots", "the_penguin_bards", "the_fremennik_kings", "wally_the_hero", "wild_roots", "the_fairy_dragon", "brain_battle", "crest_of_a_wave_duplicate", "king_of_the_trolls", "suroks_theme", "dogfight", "tarn_razorlor", "impulses", "dorgeshuun_treaty", "the_consortium", "bobs_on_holiday", "seaslug_sailing_journey" ]
 
 [unlocked_music_17]
 id = 1136
 persist = true
 format = "bitwise"
-values = [ "making_waves", "cabin_fever", "last_stand", "scape_santa", "poles_apart", "jailbird", "something_fishy", "a_pirates_life_for_me", "the_mentor", "shining_spirit", "troubled_spirit", "the_trade_parade", "jungle_community", "historic_memories", "icy_trouble_ahead", "icy_a_worried_gnome", "dance_of_death", "second_vision", "circus", "the_vacant_abyss", "bane_of_summer", "wrath_and_ruin", "zombie_invasion", "dream_theatre", "storm_brew", "undead_army", "the_ruins_of_camdozaal", "the_art_of_hocus_pocus", "magic_and_mystery", "the_mad_mole", "the_fairy_dragon", "chickened_out" ]
+values = [ "cains_tutorial", "awful_anthem", "mined_out", "sorceress_garden", "look_to_the_stars", "the_giant_wolpertinger", "clarences_funeral", "the_terrorbirds", "the_terrorbirds_tussle", "incomitatus", "hunters_bounty", "the_trade_parade", "jungle_community", "pay_for_train", "icy_trouble_ahead", "icy_a_worried_gnome", "the_sinclairs", "organ_music_1", "organ_music_2", "the_desert", "scape_wild", "insect_queen", "deadlands", "desert_voyage", "the_mad_mole", "tribal", "poles_apart", "fruits_de_mer", "woe_of_the_wyvern", "stagnant", "jungle_island", "gnome_village" ]
 
 [unlocked_music_18]
 id = 1180
 persist = true
 format = "bitwise"
-values = [ "davy_jones_locker", "distant_land2", "castle_wars2", "pest_control2", "competition2", "poles_apart2", "far_away2", "hells_bells2", "bloodbath", "the_route_of_all_evil", "the_route_of_the_problem", "the_wrong_path", "the_columbarium", "the_terrible_tunnels", "the_terrible_caverns", "dillo_gence_is_key", "arma_gonna_get_you", "tok_tz_ket_ek_mack", "jailbird", "bittersweet_bunny", "something_fishy", "under_the_sand", "desert_smoke", "a_pirates_life_for_me", "conspiracy_part_1", "conspiracy_part_2", "scape_summon", "guthixs_hunter", "waiting_for_the_hunt", "cool_for_ali_cats", "second_vision", "undead_army" ]
+values = [ "attack1", "distant_land", "castle_wars", "pest_control", "competition", "poles_apart", "far_away", "hells_bells", "bloodbath", "the_route_of_all_evil", "the_route_of_the_problem", "the_wrong_path", "the_columbarium", "the_terrible_tunnels", "the_terrible_caverns", "dillo_gence_is_key", "arma_gonna_get_you", "toktz_ket_ek_mack", "jailbird", "bittersweet_bunny", "something_fishy", "under_the_sand", "desert_smoke", "a_pirates_life_for_me", "conspiracy_part_1", "conspiracy_part_2", "scape_summon", "guthixs_hunter", "waiting_for_the_hunt", "cool_for_ali_cats", "second_vision", "undead_army" ]
 
 [unlocked_music_19]
 id = 1202
 persist = true
 format = "bitwise"
-values = [ "zombie_invasion", "the_ruins_of_camdozaal", "dream_theatre", "the_mentor", "slain_to_waste", "ardougne_ago", "sarahs_lullaby", "shining_spirit", "troubled_spirit", "bane_of_summer", "the_vacant_abyss", "historic_memories", "stealing_creation", "circus", "dangerous_logic", "black_of_knight", "the_art_of_hocus_pocus", "magic_and_mystery", "the_sound_of_guthix", "isle_of_everywhere", "temple_desecrated", "command_centre", "the_phoenix", "mobilising_armies", "the_evil_within", "on_the_wing", "the_dance_of_the_snow_queen", "cavernous_mythology", "winter_funfare", "waiting_for_battle", "lair_of_kang_admi", "frost_fight" ]
+values = [ "zombie_invasion", "the_ruins_of_camdozaal", "dream_theatre", "the_mentor", "slain_to_waste", "ardougne_ago", "sarahs_lullaby", "shining_spirit", "troubled_spirit", "bane_of_summer", "the_vacant_abyss", "historic_memories", "stealing_creation", "circus", "dangerous_logic", "black_of_knight", "the_art_of_hocus_pocus", "magic_and_mystery", "the_sound_of_guthix", "the_sound_of_guthix_the_stone", "temple_desecrated", "command_centre", "the_phoenix", "mobilising_armies", "the_evil_within", "the_kin", "the_dance_of_the_snow_queen", "cavernous_mythology", "winter_funfare", "waiting_for_battle", "lair_of_kang_admi", "frost_fight" ]
 
 [unlocked_music_20]
 id = 1381
 persist = true
 format = "bitwise"
-values = [ "glorious_recallation", "glorious_recallation2", "glorious_recallation3", "the_adventurers_re_united", "the_plundered_tomb", "ancestral_wisdom", "nials_widow", "the_muspahs_tomb", "lamistards_labyrinth", "the_heist", "snack_attack", "the_pengmersible", "soul_wars", "the_waiting_game", "rest_for_the_weary", "trees_arent_your_friends", "the_throne_of_bandos", "penguin_possible", "dont_panic_zanik", "demise_of_the_dorgeshuun", "the_chosen_commander", "the_pengmersible", "desert_island_bear", "arabian_oboe", "drunken_harmony", "ice_day_for_penguins", "face_off", "eruption", "mobilising_armies", "command_centre", "waiting_for_battle", "heavy_security" ]
+values = [ "memorable_escape", "glorious_recallation", "yeti_to_remember", "the_adventurers_re_united", "the_plundered_tomb", "ancestral_wisdom", "nials_widow", "the_muspahs_tomb", "lamistards_labyrinth", "the_heist", "snack_attack", "heavy_security", "soul_wars", "the_waiting_game", "rest_for_the_weary", "trees_arent_your_friends", "the_throne_of_bandos", "penguin_possible", "dont_panic_zanik", "demise_of_the_dorgeshuun", "the_chosen_commander", "the_pengmersible", "desert_island_bear", "polar_ride", "captains_orders", "ice_day_for_penguins", "face_off", "song_607", "khazards_frozen_fortress_i", "khazards_frozen_fortress_ii", "khazards_frozen_fortress_iii", "khazards_frozen_fortress_iv" ]
 
 [unlocked_music_21]
 id = 1394
 persist = true
 format = "bitwise"
-values = [ "the_heist", "lamistards_labyrinth", "exhibit_a", "veldaban", "the_chaos", "fight_of_the_dwarves", "living_rock", "scape_theme", "elven_seed", "trick_or_treat", "poison_dreams", "itsy_bitsy", "the_duke", "khazards_frozen_fortress_interior_freeze", "khazards_frozen_fortress_iv", "khazards_frozen_fortress_interior_vi", "khazards_frozen_fortress_interior_v", "khazards_frozen_fortress_interior_viii", "khazards_frozen_fortress_ii", "zaros_stirs", "the_horn_of_chill", "godslayer", "but_we_can_fight", "lazy_wabbit", "hare_brained_machines", "khazards_frozen_fortress_v", "khazards_frozen_fortress_ix", "zaros_stirs", "khazards_frozen_fortress_interior_ii", "song_701", "khazards_frozen_fortress_vii", "khazards_frozen_fortress_x" ]
+values = [ "khazards_frozen_fortress_v", "khazards_frozen_fortress_vi", "khazards_frozen_fortress_vii", "khazards_frozen_fortress_viii", "khazards_frozen_fortress_ix", "khazards_frozen_fortress_x", "silence", "khazards_frozen_fortress_interior_i", "khazards_frozen_fortress_interior_ii", "khazards_frozen_fortress_interior_iii", "khazards_frozen_fortress_interior_iv", "khazards_frozen_fortress_interior_v", "khazards_frozen_fortress_interior_vi", "khazards_frozen_fortress_interior_vii", "khazards_frozen_fortress_interior_viii", "silence", "khazards_frozen_fortress_interior_thaw", "khazards_frozen_fortress_interior_freeze", "tomb_stones", "zaros_stirs", "the_horn_of_chill", "godslayer", "but_we_can_fight", "lazy_wabbit", "hare_brained_machines", "norse_accord", "ghostly_pipes", "arabian_2_oboe", "drummers_rest", "drunken_harmony", "harmoney_of_lute", "rellekkas_lute" ]
 
 [unlocked_music_22]
 id = 1434
 persist = true
 format = "bitwise"
-values = [ "khazards_frozen_fortress_viii", "khazards_frozen_fortress_iii", "khazards_frozen_fortress_interior_i", "eruption", "im_counting_on_you", "kharidian_nights", "living_rock", "exhibit_a", "fight_of_the_dwarves", "the_fallen_hero", "jaws_of_the_dagannoth", "final_destination", "elven_seed", "scape_theme", "honkytonky_newbie_melody", "honkytonky_harmony", "trick_or_treat", "itsy_bitsy", "poison_dreams", "honkytonky_medieval", "jaws_of_the_dagannoth", "the_duke", "the_fallen_hero", "battle_of_souls", "honkytonky_sea_shanty", "honkytonky_parade", "maiasaura", "dead_and_buried", "the_pact", "root_canal", "desolate_ruins", "smorgasbord" ]
+values = [ "ocarina_of_the_forest", "spirit_of_strings", "arabian_oboe", "eruption", "im_counting_on_you", "kharidian_nights", "living_rock", "exhibit_a", "fight_of_the_dwarves", "veldaban", "the_chaos", "final_destination", "elven_seed", "scape_theme", "honkytonky_newbie_melody", "honkytonky_harmony", "trick_or_treat", "itsy_bitsy", "poison_dreams", "honkytonky_medieval", "jaws_of_the_dagannoth", "the_duke", "the_fallen_hero", "miscellania_etceteria", "honkytonky_sea_shanty", "honkytonky_parade", "maiasaura", "a_fremennik_funeral", "nomads_treachery", "root_canal", "desolate_ruins", "smorgasbord" ]
 
 [unlocked_music_23]
 id = 1596
 persist = true
 format = "bitwise"
-values = [ "silent_knight", "ghost_of_christmas_presents", "lexicus_runewright", "battle_of_souls", "these_stones", "a_familiar_feeling", "dead_and_buried", "the_pact", "freshwater", "saltwater", "stillwater", "an_easter_united", "adorno_i", "thieves_guild_i", "thieves_guild_ii", "thieves_guild_iii", "thieves_guild_iv", "body_talk", "adorned_x", "love_lost", "love_and_hate", "love_bites", "adorned_iii", "castle_warz", "adorned_v", "mindful", "void_knights_theme", "lortnoc_tsep", "adorned_vi", "judge_and_jury", "born_to_do_this", "harlakk_the_riftsplitter" ]
+values = [ "silent_knight", "ghost_of_christmas_presents", "scourge_of_christmas_present", "battle_of_souls", "these_stones", "a_familiar_feeling", "dead_and_buried", "the_pact", "freshwater", "saltwater", "stillwater", "an_easter_united", "the_zamorakian_blood", "thieves_guild_i", "thieves_guild_ii", "thieves_guild_iii", "thieves_guild_iv", "body_talk", "love_story", "love_lost", "love_and_hate", "love_bites", "love_wins", "castle_warz", "a_voided_memory", "mindful", "void_knights_theme", "lortnoc_tsep", "null", "judge_and_jury", "born_to_do_this", "dungeon_defeated" ]
 
 [unlocked_music_24]
 id = 1618
 persist = true
 format = "bitwise"
-values = [ "sagittare", "adorno_ii", "dungeon_defeated", "desolo_vii", "desolate_viii", "desolate_xiii", "desolate_xi", "desolo_ix", "desolate_i", "desolate_vii", "desolate_xvi", "desolo_i", "desolo_vi", "desolo_ii", "divine_skinweaver", "shadow_forger_ihlakhizan", "glacialis_i", "glacialis_ii", "glacialis_iii", "glacialis_iv", "glacialis_v", "glacialis_vi", "glacialis_vii", "glacialis_viii", "glacialis_ix", "glacialis_x", "astea_frostweb", "tokash_the_bloodchiller", "icy_bones", "luminescent_icefiend", "gluttonous_behemoth", "plane_freezer_lakhrahnaz" ]
+values = [ "glacial_i", "glacial_ii", "glacial_iii", "glacial_iv", "glacial_v", "glacial_vi", "glacial_vii", "glacial_viii", "glacial_ix", "glacial_x", "glacial_xi", "glacial_xii", "glacial_xiii", "glacial_xiv", "glacial_xv", "glacial_xvi", "glacialis_i", "glacialis_ii", "glacialis_iii", "glacialis_iv", "glacialis_v", "glacialis_vi", "glacialis_vii", "glacialis_viii", "glacialis_ix", "glacialis_x", "astea_frostweb", "tokash_the_bloodchiller", "icy_bones", "luminescent_icefiend", "gluttonous_behemoth", "plane_freezer_lakhrahnaz" ]
 
 [unlocked_music_25]
 id = 1619
 persist = true
 format = "bitwise"
-values = [ "desolate_v", "desolo_x", "desolo_iv", "born_to_do_this", "glacial_vi", "glacial_ii", "glacial_iii", "glacial_viii", "glacialis_vi", "glacial_vii", "glacialis_viii", "glacialis_iv", "glacial_xiv", "glacial_xiii", "song_814", "icy_bones", "desolo_i", "desolo_ii", "desolo_iii", "desolo_iv", "desolo_v", "desolo_vi", "desolo_vii", "desolo_viii", "desolo_ix", "desolo_x", "ballak_the_pummeller", "bulwark_beast", "hobgoblin_geomancer", "shadow_forger_ihlakhizan", "unholy_cursebearer", "divine_skinweaver" ]
+values = [ "desolate_i", "desolate_ii", "desolate_iii", "desolate_iv", "desolate_v", "desolate_vi", "desolate_vii", "desolate_viii", "desolate_ix", "desolate_x", "desolate_xi", "desolate_xii", "desolate_xiii", "desolate_xiv", "desolate_xv", "desolate_xvi", "desolo_i", "desolo_ii", "desolo_iii", "desolo_iv", "desolo_v", "desolo_vi", "desolo_vii", "desolo_viii", "desolo_ix", "desolo_x", "ballak_the_pummeller", "bulwark_beast", "hobgoblin_geomancer", "shadow_forger_ihlakhizan", "unholy_cursebearer", "divine_skinweaver" ]
 
 [unlocked_music_26]
 id = 1620
 persist = true
 format = "bitwise"
-values = [ "glacialis_i", "glacialis_ix", "glacialis_ii", "glacial_xi", "glacial_i", "glacialis_x", "thieves_guild_iii", "thieves_guild_ii", "thieves_guild_iv", "song_841", "thieves_guild_i", "root_canal", "body_talk", "castle_warz", "judge_and_jury", "mindful", "adorno_i", "adorno_ii", "adorno_iii", "adorno_iv", "adorno_v", "adorno_vi", "adorno_vii", "adorno_viii", "adorno_ix", "adorno_x", "harlakk_the_riftsplitter", "lexicus_runewright", "night_gazer_khighorahk", "sagittare", "rammernaut", "stomp" ]
+values = [ "adorned_i", "adorned_ii", "adorned_iii", "adorned_iv", "adorned_v", "adorned_vi", "adorned_vii", "adorned_viii", "adorned_ix", "adorned_x", "adorned_xi", "adorned_xii", "adorned_xiii", "adorned_xiv", "adorno_xv", "adorned_xvi", "adorno_i", "adorno_ii", "adorno_iii", "adorno_iv", "adorno_v", "adorno_vi", "adorno_vii", "adorno_viii", "adorno_ix", "adorno_x", "harlakk_the_riftsplitter", "lexicus_runewright", "night_gazer_khighorahk", "sagittare", "rammernaut", "stomp" ]
+
+# unlocked by default
+#[unlocked_music_27]
+#persist = true
+#format = "bitwise"
+#values = [ "occlude_i", "occlude_ii", "occlude_iii", "occlude_iv", "occlude_v", "occlude_vi", "occlude_vii", "occlude_viii", "occlude_ix", "occlude_x", "occlude_xi", "occlude_xii", "occlude_xiii", "occlude_xiv", "occlude_xv", "occlude_xvi", "twisted_i", "twisted_ii", "twisted_iii", "twisted_iv", "twisted_v", "twisted_vi", "twisted_vii", "twisted_viii", "twisted_ix", "twisted_x", "twisted_xi", "song_923", "twisted_xiii", "twisted_xiv", "twisted_xv", "twisted_xvi" ]
 
 [unlocked_music_28]
 id = 1864
@@ -171,10 +177,10 @@ values = [ "occulo_i", "occulo_ii", "occulo_iii", "occulo_iv", "occulo_v", "occu
 id = 1865
 persist = true
 format = "bitwise"
-values = [ "out_of_control", "chain_reaction", "all_for_the_pest", "destiny", "unavoidable_conflict", "right_of_conquest", "twisted_ii", "yklagor_the_thunderous2", "gunnarsgrunn", "world_gorger_shukarhazh", "torqueo_vii", "halloween_party", "black_zabeth_live", "black_zabeth", "in_security", "give_it_your_pest_shot", "simian_scuffle", "the_void_stares_back", "precarious_void", "mystery_revealed", "who_are_we_to_judge", "song_949", "monkey_see_monkey_do3", "seasonal_sports", "salty_claws", "christmas_caverns", "seasonal_sports", "the_task_at_hand", "monkey_see_monkey_do", "monkey_see_monkey_do2", "simian_scuffle", "corporate_callousness" ]
+values = [ "out_of_control", "chain_reaction", "all_for_the_pest", "destiny", "unavoidable_conflict", "right_of_conquest", "conflict_avoidant", "yklagor_the_subdued", "gunnarsgrunn", "gunnars_ground", "beauty_of_a_poet", "halloween_party", "black_zabeth_live", "black_zabeth", "in_security", "give_it_your_pest_shot", "stare_into_the_void", "the_void_stares_back", "precarious_void", "mystery_revealed", "who_are_we_to_judge", "null", "null", "null", "salty_claws", "christmas_caverns", "seasonal_sports", "the_task_at_hand", "monkey_see_monkey_do", "monkey_see_monkey_do2", "simian_scuffle", "monkey_thieve" ]
 
 [unlocked_music_30]
 id = 2019
 persist = true
 format = "bitwise"
-values = [ "zaros_zeitgeist", "961", "monkey_see_monkey_do3", "rocky_rescue", "go_with_the_flow", "the_records_chamber", "corporate_callousness", "967", "968", "colonel_grimsson", "only_a_king", "971", "zaros_zeitgeist", "973", "974", "975", "976", "977", "978", "979", "980", "981", "982", "983", "984", "985", "986", "987", "988", "989", "990", "991" ]
+values = [ "monkey_see_monkey_city", "song_949", "monkey_see_monkey_do3", "rocky_rescue", "go_with_the_flow", "the_records_chamber", "corporate_callousness", "monkey_demon_guardian", "apmekens_pleasure", "colonel_grimsson", "only_a_king", "zaros_stirs", "zaros_zeitgeist" ]
