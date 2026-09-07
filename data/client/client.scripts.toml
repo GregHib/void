@@ -40,6 +40,10 @@ id = 3994
 [clear_dialogues]
 id = 571
 
+# Appends a text row to a scrollable layer: (indent, y, component, text)
+[duel_scoreboard_row]
+id = 2601
+
 [primary_options]
 id = 150
 params = [
