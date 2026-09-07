@@ -1,548 +1,29 @@
-[adventure]
-index = 0
-areas = [ { region = 12854 } ]
-
-[al_kharid]
-index = 1
-areas = [ { region = 13105 } ]
-
-[alone]
-index = 2
-areas = [
-  {
-    x = [ 3008, 3017, 3023, 3024, 3024, 3032, 3032, 3072, 3072, 2984, 2984, 2979, 2979, 2984, 2984, 2990, 2990, 2993, 2993, 3008 ],
-    y = [ 3512, 3512, 3506, 3506, 3504, 3504, 3520, 3520, 3456, 3456, 3458, 3458, 3476, 3481, 3487, 3487, 3511, 3514, 3520, 3520 ]
-  },
-  { region = 10390 }
-]
-
-[ambient_jungle]
-index = 3
-areas = [ { region = 11310}, { region = 11410 } ]
-
-[arabian]
-index = 4
-areas = [ { region = 13106 }, { region = 13617 } ]
-
-[arabian2]
-index = 5
-areas = [ { region = 13107 } ]
-
-[arabian3]
-index = 6
-areas = [ { region = 12848 } ]
-
-[arabique]
-index = 7
-areas = [ { region = 11161 } ]
-
-[army_of_darkness]
-index = 8
-areas = [ { region = 12088 } ]
-
-[arrival]
-index = 9
-areas = [ { region = 11572 } ]
-
-[attack1]
-index = 10
-areas = [
-  { 
-    x = [ 2432, 2432, 2496, 2496, 2560, 2560, 2510, 2510, 2460, 2460 ],
-    y = [ 3306, 3264, 3264, 3200, 3200, 3264, 3264, 3280, 3280, 3306 ]
-  },
-  {
-    x = [ 2432, 2432, 2463, 2463 ],
-    y = [ 3328, 3324, 3324, 3328 ]
-  }
-]
-
-[attack2]
-index = 11
-areas = [ { region = 11414 } ]
-
-[attack3]
-index = 12
-areas = [ { region = 12192 } ]
-
-[attack4]
-index = 13
-areas = [
-  { region = 10289 },
-  { region = 10389 },
-  { region = 8855 }
-]
-
-[attack5]
-index = 14
-areas = [ { region = 9033 } ]
-
-[attack6]
-index = 15
-areas = [ { region = 10387 } ]
-
-[attention]
-index = 16
-areas = [ { region = 11825 } ]
-
-[autumn_voyage]
-index = 17
-areas = [ { region = 12851 } ]
-
-[background]
-index = 18
-areas = [
-  { region = 11060 },
-  {
-    x = [ 1952, 1952, 1984, 1984 ],
-    y = [ 4992, 5024, 5024, 4992 ]
-  }
-]
-
-[ballad_of_enchantment]
-index = 19
-areas = [ { region = 10290 } ]
-
-[baroque]
-index = 20
-areas = [ { region = 10547 } ]
-
-[beyond]
-index = 21
-areas = [
-  {
-    x = [ 2816, 2816, 2880, 2880, 2944, 2944 ],
-    y = [ 9984, 9856, 9856, 9920, 9920, 9984 ]
-  }
-]
-
-[big_chords]
-index = 22
-areas = [ { region = 10032 } ]
-
-[book_of_spells]
-index = 23
-areas = [ { region = 12593 } ]
-
-[camelot]
-index = 24
-areas = [ { region = 11062 } ]
-
-[cave_background]
-index = 25
-areas = [
-  {
-    x = [ 2944, 2944, 3008, 3008, 3072, 3072 ],
-    y = [ 9856, 9792, 9792, 9664, 9664, 9856 ]
-  }
-]
-
-[cavern]
-index = 26
-areas = [ { region = 10388 }, { region = 12193 } ]
-
-[chain_of_command]
-index = 27
-areas = [ { region = 10648 } ]
-
-[crystal_cave]
-index = 28
-areas = [ { region = 9797 } ]
-
-[crystal_sword]
-index = 29
-areas = [ { region = 12855 }, { region = 10647 } ]
-
-[dangerous]
-index = 30
-areas = [ { region = 12343 }, { region = 13115 } ]
-
-[dark]
-index = 31
-areas = [ { region = 13113 } ]
-
-[deep_wildy]
-index = 32
-areas = [ { region = 11835 } ]
-
-[desert_voyage]
-index = 33
-areas = [ 
-  {
-    x = [ 3264, 3392, 3392, 3328, 3328, 3264 ],
-    y = [ 3072, 3072, 3008, 3008, 2944, 2944 ]
-  }
-]
-
-[doorways]
-index = 34
-areas = [ { region = 13110 } ]
-
-[dream]
-index = 35
-areas = [ { region = 12594 } ]
-
-[dunjun]
-index = 36
-areas = [ { region = 11672 } ]
-
-[egypt]
-index = 37
-areas = [ { region = 13104 } ]
-
-[emotion]
-index = 38
-areas = [ { region = 10033 }, { region = 11081 }, { region = 10133 } ]
-
-[emperor]
-index = 39
-areas = [
-  { region = 11570 },
-  {
-    x = [ 2923, 2927, 2927, 2928, 2930, 2932, 2937, 2937, 2938, 2940, 2941, 2941, 2923, 2923, 2921, 2921, 2923 ],
-    y = [ 3240, 3240, 3239, 3238, 3238, 3240, 3240, 3238, 3237, 3237, 3238, 3258, 3258, 3257, 3255, 3253, 3251 ]
-  }
-]
-
-[expanse]
-index = 40
-areas = [
-  { region = 12852 },
-  { region = 12605 },
-  { region = 12952 }
-]
-
-[expecting]
-index = 41
-areas = [
-  { region = 9522 },
-  { region = 9878 }
-]
-
-[expedition]
-index = 42
-areas = [
-  { region = 11676 },
-  { region = 9362 }
-]
-
-[faerie]
-index = 43
-areas = [ { region = 9540 } ]
-
-[fanfare]
-index = 44
-areas = [ { region = 11828 } ]
-
-[fanfare3]
-index = 45
-areas = [ { region = 10545 } ]
-
-[fishing]
-index = 46
-areas = [ { region = 11317 } ]
-
-[flute_salad]
-index = 47
-areas = [ { region = 12595 } ]
-
-[forever]
-index = 48
-areas = [
-  { region = 12342 },
-  { region = 12442 },
-]
-
-[gaol]
-index = 49
-areas = [
-  { region = 10031 },
-  { region = 12090 },
-  { region = 10131 }
-]
-
-[garden]
-index = 50
-areas = [
-  {
-    x = [ 3200, 3253, 3253, 3264, 3264, 3200 ],
-    y = [ 3456, 3456, 3442, 3442, 3392, 3392 ]
-  },
-  { region = 12953 }
-]
-
-[gnome_king]
-index = 51
-areas = [ { region = 9782 } ]
-
-[dwarf_theme]
-index = 52
-areas = [ { region = 12085 } ]
-
-[gnome_village]
-index = 53
-areas = [ { region = 9781 } ]
-
-[gnome_village2]
-index = 54
-areas = [ { region = 9269 } ]
-
-[goblin_village]
-index = 55
-areas = [
-  {
-    x = [ 2979, 2979, 2984, 2984, 2990, 2990, 2993, 2993, 2944, 2944, 2981, 2981, 2980, 2980 ],
-    y = [ 3458, 3476, 3481, 3487, 3487, 3511, 3514, 3520, 3520, 3456, 3456, 3457, 3457, 3458 ]
-  }
-]
-
-
-[gnomeball]
-index = 56
-areas = [ { region = 9526 } ]
-
-[greatness]
-index = 57
-areas = [ { region = 12596 } ]
-
-[harmony]
-index = 58
-areas = [ { region = 12850 }, { region = 7507 } ]
-
-[high_seas]
-index = 59
-areas = [ { region = 11057 } ]
-
-[horizon]
-index = 60
-areas = [
-  { region = 11573 },
-  {
-    x = [ 1920, 1920, 1952, 1952 ],
-    y = [ 5024, 5056, 5056, 5024 ]
-  }
-]
+[scape_theme_login]
+id = 0
 
 [iban]
-index = 61
+id = 1
+indexes = [61]
 areas = [ { region = 8519, level = 1 } ]
 
-[in_the_manor]
-index = 62
-areas = [ { region = 10287 } ]
+[autumn_voyage]
+id = 2
+indexes = [17]
+areas = [ { region = 12851 } ]
 
-[inspiration]
-index = 63
-areas = [ { region = 12087 } ]
+[unknown_land]
+id = 3
+indexes = [133]
+areas = [ { region = 12338 } ]
 
-[intrepid]
-index = 64
-areas = [ { region = 9369 } ]
-
-[jolly-r]
-index = 65
-areas = [ { region = 11058 } ]
-
-[jungle_island]
-index = 66
-areas = [
-  { region = 11313 },
-  { region = 11309 }
-]
-
-[jungly1]
-index = 67
-areas = [
-  { region = 11054 },
-  { region = 11154 },
-]
-
-[jungly2]
-index = 68
-areas = [ { region = 10802 } ]
-
-[jungly3]
-index = 69
-areas = [ { region = 11055 } ]
-
-[knightly]
-index = 70
-areas = [
-  {
-    x = [ 2558, 2558, 2624, 2624 ],
-    y = [ 3264, 3328, 3328, 3264 ]
-  },
-  {
-    x = [ 2560, 2560, 2584, 2584 ],
-    y = [ 9694, 9728, 9728, 9694 ]
-  }
-]
-
-[lasting]
-index = 71
-areas = [ { region = 10549 } ]
-
-[legion]
-index = 72
-areas = [
-  { region = 10039 },
-  { region = 12089 },
-  { region = 10322 },
-  { region = 10139 },
-]
-
-[lightness]
-index = 73
-areas = [ { region = 12599 } ]
-
-[lightwalk]
-index = 74
-areas = [
-  { region = 11061 },
-  { region = 6722 },
-]
-
-[long_ago]
-index = 75
-areas = [ { region = 10544 } ]
-
-[long_way_home]
-index = 76
-areas = [ { region = 11826 } ]
-
-[lullaby]
-index = 77
-areas = [
-  { region = 10551 },
-  { region = 13365 },
-]
-
-[mage_arena]
-index = 78
-areas = [ { region = 12349 }, { region = 10057 } ]
-
-[magic_dance]
-index = 79
-areas = [ { region = 10288 } ]
-
-[magical_journey]
-index = 80
-areas = [ { region = 10805 } ]
-
-[march]
-index = 81
-areas = [
-  {
-    x = [ 2496, 2496, 2560, 2560 ],
-    y = [ 3336, 3392, 3392, 3336 ]
-  }
-]
-
-[medieval]
-index = 82
-areas = [
-  {
-    x = [ 3264, 3264, 3268, 3268, 3328, 3328 ],
-    y = [ 3392, 3442, 3442, 3456, 3456, 3392 ]
-  }
-]
-
-[mellow]
-index = 83
-areas = [ { region = 10293 } ]
-
-[miles_away]
-index = 84
-areas = [
-  { region = 11571 },
-  { region = 10569 },
-]
-
-[miracle_dance]
-index = 85
-areas = [ { region = 11083 } ]
-
-[monarch_waltz]
-index = 86
-areas = [ { region = 10807 } ]
-
-[moody]
-index = 87
-areas = [
-  {
-    x = [ 3138, 3138, 3139, 3145, 3146, 3148, 3148, 3156, 3156, 3158, 3158, 3155, 3155, 3158, 3158, 3154, 3153, 3153, 3152, 3152, 3151, 3151, 3144, 3144, 3140, 3139, 3136, 3136, 3200, 3200, 3136, 3136 ],
-    y = [ 3640, 3645, 3646, 3646, 3645, 3645, 3647, 3647, 3641, 3641, 3636, 3636, 3634, 3634, 3628, 3628, 3627, 3626, 3625, 3624, 3623, 3620, 3620, 3618, 3618, 3617, 3617, 3584, 3584, 3648, 3648, 3640 ]
-  },
-  { region = 9523 },
-]
-
-[neverland]
-index = 88
-areas = [
-  {
-    x = [ 2432, 2432, 2496, 2496, 2463, 2463 ],
-    y = [ 3328, 3392, 3392, 3336, 3336, 3328 ]
-  }
-]
-
-[newbie_melody]
-index = 89
-areas = [
-  {
-    x = [ 3008, 3200, 3200, 3136, 3136, 3008 ],
-    y = [ 3136, 3136, 3072, 3072, 3008, 3008 ]
-  }
-]
-
-[nightfall]
-index = 90
-areas = [
-  { region = 11827 },
-  { region = 12861 },
-]
-
-[oriental]
-index = 91
-areas = [ { region = 11666 } ]
-
-[overture]
-index = 92
-areas = [ { region = 10806 } ]
-
-[parade]
-index = 93
-areas = [ { region = 13366 } ]
-
-[quest]
-index = 94
-areas = [ { region = 10315 } ]
-
-[regal]
-index = 95
-areas = [ { region = 13117 } ]
-
-[reggae]
-index = 96
-areas = [ { region = 11565 } ]
-
-[reggae2]
-index = 97
-areas = [ { region = 11567 } ]
-
-[riverside]
-index = 98
-areas = [ { region = 8495 } ]
-
-[royale]
-index = 99
-areas = [ { region = 11671 } ]
-
-[rune_essence]
-index = 100
-areas = [ { region = 11595 } ]
+[hells_bells]
+id = 4
+indexes = [254, 583]
+areas = [ { region = 11066 } ]
 
 [sad_meadow]
-index = 101
+id = 5
+indexes = [101]
 areas = [
   {
     x = [ 2432, 2463, 2463, 2558, 2558, 2510, 2510, 2460, 2460, 2432 ],
@@ -554,31 +35,193 @@ areas = [
   }
 ]
 
-[scape_cave]
-index = 102
+[jolly_r]
+id = 6
+indexes = [65]
+areas = [ { region = 11058 } ]
+
+[overture]
+id = 7
+indexes = [92]
+areas = [ { region = 10806 } ]
+
+[wildwood]
+id = 8
+indexes = [256]
 areas = [
-  { region = 12436 },
-  { region = 12698 },
-  { region = 6298 },
+  {
+    x = [ 3131, 3130, 3126, 3126, 3124, 3123, 3123, 3124, 3125, 3125, 3136, 3136, 3072, 3072, 3136, 3136 ],
+    y = [ 3617, 3618, 3618, 3622, 3622, 3623, 3632, 3633, 3633, 3640, 3640, 3648, 3648, 3584, 3584, 3617 ]
+  }
 ]
 
-[scape_sad]
-index = 104
-areas = [ { region = 13116 } ]
-
-[scape_wild]
-index = 105
+[kingdom]
+id = 9
+indexes = [190]
 areas = [
-  { region = 12857 },
-  { region = 12604 },
+  {
+    x = [ 2832, 2832, 2816, 2816, 2880, 2880, 2816, 2816, 2825, 2838, 2838, 2839, 2840, 2841, 2842, 2845, 2846, 2847, 2848, 2849, 2849, 2860, 2860, 2865, 2866, 2867, 2868, 2871, 2872, 2873, 2874, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2874, 2873, 2872, 2871, 2868, 2867, 2866, 2865 ],
+    y = [ 3556, 3545, 3545, 3584, 3584, 3520, 3520, 3529, 3538, 3538, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3534, 3534, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3539, 3540, 3541, 3542, 3544, 3545, 3548, 3549, 3551, 3552, 3553, 3554, 3556, 3556, 3557, 3557, 3556, 3556, 3557, 3557, 3556 ]
+  }
 ]
 
-[sea_shanty]
-index = 106
-areas = [ { region = 11569 } ]
+[moody]
+id = 10
+indexes = [87]
+areas = [
+  {
+    x = [ 3138, 3138, 3139, 3145, 3146, 3148, 3148, 3156, 3156, 3158, 3158, 3155, 3155, 3158, 3158, 3154, 3153, 3153, 3152, 3152, 3151, 3151, 3144, 3144, 3140, 3139, 3136, 3136, 3200, 3200, 3136, 3136 ],
+    y = [ 3640, 3645, 3646, 3646, 3645, 3645, 3647, 3647, 3641, 3641, 3636, 3636, 3634, 3634, 3628, 3628, 3627, 3626, 3625, 3624, 3623, 3620, 3620, 3618, 3618, 3617, 3617, 3584, 3584, 3648, 3648, 3640 ]
+  },
+  { region = 9523 },
+]
+
+[spooky2]
+id = 11
+indexes = [218]
+areas = [ { region = 13718 }, { region = 8593 }, { region = 7827 } ]
+
+[long_way_home]
+id = 12
+indexes = [76]
+areas = [ { region = 11826 } ]
+
+[mage_arena]
+id = 13
+indexes = [78]
+areas = [ { region = 12349 }, { region = 10057 } ]
+
+[witching]
+id = 14
+indexes = [145]
+areas = [ { region = 13114 } ]
+
+[workshop]
+id = 15
+indexes = [148]
+areas = [ { region = 12084 } ]
+
+[scape_main]
+id = 16
+indexes = [150]
+areas = [ { region = 6488 } ]
+
+[escape]
+id = 17
+indexes = [176]
+areas = [ { region = 10903 } ]
+
+[horizon]
+id = 18
+indexes = [60]
+areas = [
+  { region = 11573 },
+  {
+    x = [ 1920, 1920, 1952, 1952 ],
+    y = [ 5024, 5056, 5056, 5024 ]
+  }
+]
+
+[arabique]
+id = 19
+indexes = [7]
+areas = [ { region = 11161 } ]
+
+[lullaby]
+id = 20
+indexes = [77]
+areas = [
+  { region = 10551 },
+  { region = 13365 },
+]
+
+[monarch_waltz]
+id = 21
+indexes = [86]
+areas = [ { region = 10807 } ]
+
+[gnome_king]
+id = 22
+indexes = [51]
+areas = [ { region = 9782 } ]
+
+[fe_fi_fo_fum]
+id = 23
+indexes = [481]
+areas = [ { region = 8534, level = 3 } ]
+
+[attack1]
+id = 24
+indexes = [10, 576]
+areas = [
+  {
+    x = [ 2432, 2432, 2496, 2496, 2560, 2560, 2510, 2510, 2460, 2460 ],
+    y = [ 3306, 3264, 3264, 3200, 3200, 3264, 3264, 3280, 3280, 3306 ]
+  },
+  {
+    x = [ 2432, 2432, 2463, 2463 ],
+    y = [ 3328, 3324, 3324, 3328 ]
+  }
+]
+
+[attack2]
+id = 25
+indexes = [11]
+areas = [ { region = 11414 } ]
+
+[attack3]
+id = 26
+indexes = [12]
+areas = [ { region = 12192 } ]
+
+[attack4]
+id = 27
+indexes = [13]
+areas = [
+  { region = 10289 },
+  { region = 10389 },
+  { region = 8855 }
+]
+
+[attack5]
+id = 28
+indexes = [14]
+areas = [ { region = 9033 } ]
+
+[attack6]
+id = 29
+indexes = [15]
+areas = [ { region = 10387 } ]
+
+[voodoo_cult]
+id = 30
+indexes = [138]
+areas = [
+  { region = 9545 },
+  { region = 11665 },
+]
+
+[game_intro_1]
+id = 31
+
+[voyage]
+id = 32
+indexes = [139]
+areas = [ { region = 10038 } ]
+
+[gnome_village]
+id = 33
+indexes = [53, 575]
+areas = [ { region = 9781 } ]
+
+[wonder]
+id = 34
+indexes = [146]
+areas = [ { region = 11831 } ]
 
 [sea_shanty2]
-index = 107
+id = 35
+indexes = [107]
 areas = [
   { region = 12082 },
   {
@@ -587,157 +230,207 @@ areas = [
   }
 ]
 
-[serenade]
-index = 108
-areas = [ { region = 9521 } ]
+[arabian]
+id = 36
+indexes = [4]
+areas = [ { region = 13106 }, { region = 13617 } ]
+
+[deep_wildy]
+id = 37
+indexes = [32]
+areas = [ { region = 11835 } ]
+
+[trawler]
+id = 38
+indexes = [124]
+areas = [ { region = 7499 } ]
+
+[organ_music_1]
+id = 39
+indexes = [561]
+
+[organ_music_2]
+id = 40
+indexes = [562]
+
+[expecting]
+id = 41
+indexes = [41]
+areas = [
+  { region = 9522 },
+  { region = 9878 }
+]
+
+[wilderness2]
+id = 42
+indexes = [143]
+areas = [ { region = 12091 } ]
+
+[wilderness3]
+id = 43
+indexes = [144]
+areas = [ { region = 11834 } ]
+
+[right_on_track]
+id = 44
+indexes = [327]
+areas = [ { region = 7501, level = 1 } ]
+
+[venture2]
+id = 45
+indexes = [168]
+areas = [ { region = 13464 } ]
+
+[harmony2]
+id = 46
+indexes = [167]
+areas = [
+  {
+    x = [ 3200, 3220, 3220, 3264, 3264, 3200 ],
+    y = [ 9600, 9600, 9664, 9664, 9728, 9728 ]
+  }
+]
+
+[duel_arena]
+id = 47
+indexes = [164]
+areas = [
+  {
+    x = [ 3328, 3424, 3424, 3392, 3392, 3328 ],
+    y = [ 3200, 3200, 3268, 3268, 3264, 3264 ]
+  }
+]
+
+[morytania]
+id = 48
+indexes = [180]
+areas = [ { region = 13622 } ]
+
+[wander]
+id = 49
+indexes = [140]
+areas = [ { region = 12083 } ]
+
+[al_kharid]
+id = 50
+indexes = [1]
+areas = [ { region = 13105 } ]
+
+[trawler_minor]
+id = 51
+indexes = [125]
+areas = [ { region = 7755 } ]
 
 [serene]
-index = 109
+id = 52
+indexes = [109]
 areas = [
   { region = 11339 },
   { region = 11837 },
   { region = 11937 },
 ]
 
-[shine]
-index = 110
-areas = [ { region = 13363 } ]
+[royale]
+id = 53
+indexes = [99]
+areas = [ { region = 11671 } ]
 
-[soundscape]
-index = 111
-areas = [ { region = 9774 } ]
+[scape_soft]
+id = 54
+indexes = [159]
+areas = [ { region = 11829 } ]
 
-[spirit]
-index = 112
-areas = [ { region = 12597 } ]
+[high_seas]
+id = 55
+indexes = [59]
+areas = [ { region = 11057 } ]
 
-[splendour]
-index = 113
-areas = [ { region = 11574 } ]
+[doorways]
+id = 56
+indexes = [34]
+areas = [ { region = 13110 } ]
 
-[spooky]
-index = 114
+[rune_essence]
+id = 57
+indexes = [100]
+areas = [ { region = 11595 } ]
+
+[nomad]
+id = 58
+indexes = [171]
+areas = [ { region = 11056 } ]
+
+[cursed]
+id = 59
+indexes = [186]
 areas = [
-  { region = 12340 },
+  { region = 9623 },
+  { region = 9879 },
+]
+
+[lasting]
+id = 60
+indexes = [71]
+areas = [ { region = 10549 } ]
+
+[village]
+id = 61
+indexes = [182]
+areas = [ { region = 13878 } ]
+
+[newbie_melody]
+id = 62
+indexes = [89]
+areas = [
   {
-    x = [ 1920, 1920, 1952, 1952 ],
-    y = [ 4992, 5024, 5024, 4992 ]
+    x = [ 3008, 3200, 3200, 3136, 3136, 3008 ],
+    y = [ 3136, 3136, 3072, 3072, 3008, 3008 ]
   }
 ]
 
-[spooky_jungle]
-index = 115
+[chain_of_command]
+id = 63
+indexes = [27]
+areas = [ { region = 10648 } ]
+
+[book_of_spells]
+id = 64
+indexes = [23]
+areas = [ { region = 12593 } ]
+
+[miracle_dance]
+id = 65
+indexes = [85]
+areas = [ { region = 11083 } ]
+
+[legion]
+id = 66
+indexes = [72]
 areas = [
-  { region = 11053 },
-  { region = 10055 },
-  { region = 11668 },
+  { region = 10039 },
+  { region = 12089 },
+  { region = 10322 },
+  { region = 10139 },
 ]
 
-[starlight]
-index = 116
-areas = [
-  {
-    x = [ 3018, 3018, 3037, 3038, 3038, 3037, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3046, 3046, 3051, 3053, 3055, 3058, 3061, 3062, 3064, 3064, 3067, 3067, 3069, 3069, 3068, 3068, 3064, 3064, 2944, 2944 ],
-    y = [ 9536, 9568, 9568, 9569, 9570, 9571, 9573, 9574, 9574, 9575, 9575, 9574, 9574, 9571, 9569, 9564, 9564, 9562, 9562, 9565, 9565, 9567, 9568, 9571, 9574, 9576, 9580, 9581, 9585, 9589, 9600, 9600, 9536 ]
-  }
-]
+[close_quarters]
+id = 67
+indexes = [175]
+areas = [ { region = 12602 } ]
 
-[start]
-index = 117
-areas = [ { region = 12339 } ]
+[cavern]
+id = 68
+indexes = [26]
+areas = [ { region = 10388 }, { region = 12193 } ]
 
-[still_night]
-index = 118
-areas = [ { region = 13108 } ]
-
-[talking_forest]
-index = 119
-areas = [ { region = 10550 } ]
-
-[the_desert]
-index = 120
-areas = [ { region = 12591 } ]
-
-[the_shadow]
-index = 121
-areas = [ { region = 11314 } ]
-
-[the_tower]
-index = 122
-areas = [
-  {
-    x = [ 2560, 2624, 2624, 2558, 2558, 2560 ],
-    y = [ 3392, 3392, 3328, 3328, 3336, 3336 ]
-  },
-  {
-    x = [ 2496, 2528, 2528, 2560, 2560, 2624, 2624, 2496 ],
-    y = [ 9728, 9728, 9760, 9760, 9728, 9728, 9792, 9792 ]
-  }
-]
-
-[theme]
-index = 123
-areas = [
-  { region = 10294 },
-  { region = 10394 },
-]
-
-[trawler]
-index = 124
-areas = [ { region = 7499 } ]
-
-[trawler_minor]
-index = 125
-areas = [ { region = 7755 } ]
-
-[tree_spirits]
-index = 126
-areas = [ { region = 9268 } ]
-
-[tribal_background]
-index = 127
-areas = [
-  { region = 11312 },
-  { region = 11821 },
-  { region = 11412 },
-]
-
-[tribal]
-index = 128
-areas = [ { region = 11311 } ]
-
-[tribal2]
-index = 129
-areas = [ { region = 11566 } ]
-
-[trinity]
-index = 130
-areas = [
-  { region = 10804 },
-  { region = 10904 },
-]
-
-[troubled]
-index = 131
-areas = [ { region = 11833 } ]
-
-[underground]
-index = 132
-areas = [
-  { region = 11416 },
-  { region = 13368 },
-]
-
-[unknown_land]
-index = 133
-areas = [ { region = 12338 } ]
-
-[underground_pass]
-index = 134
-areas = [ { region = 9621 } ]
+[egypt]
+id = 69
+indexes = [37]
+areas = [ { region = 13104 } ]
 
 [upcoming]
-index = 135
+id = 70
+indexes = [135]
 areas = [
   {
     x = [ 2624, 2648, 2648, 2640, 2640, 2664, 2664, 2656, 2656, 2688, 2688, 2624 ],
@@ -749,196 +442,80 @@ areas = [
   }
 ]
 
+[chompy_hunt]
+id = 71
+indexes = [178]
+areas = [ { region = 10542 }, { region = 10642 } ]
+
+[fanfare]
+id = 72
+indexes = [44]
+areas = [ { region = 11828 } ]
+
+[alls_fairy_in_love_and_war]
+id = 73
+indexes = [436]
+areas = [ { region = 9285 } ]
+
+[lightwalk]
+id = 74
+indexes = [74]
+areas = [
+  { region = 11061 },
+  { region = 6722 },
+]
+
 [venture]
-index = 136
+id = 75
+indexes = [136]
 areas = [ { region = 13364 } ]
 
-[vision]
-index = 137
-areas = [
-  { region = 12337 },
-  {
-    x = [ 3085, 3085, 3136, 3136 ],
-    y = [ 9536, 9600, 9600, 9536 ]
-  }
-]
+[harmony]
+id = 76
+indexes = [58]
+areas = [ { region = 12850 }, { region = 7507 } ]
 
-[voodoo_cult]
-index = 138
-areas = [
-  { region = 9545 },
-  { region = 11665 },
-]
+[splendour]
+id = 77
+indexes = [113]
+areas = [ { region = 11574 } ]
 
-[voyage]
-index = 139
-areas = [ { region = 10038 } ]
+[reggae]
+id = 78
+indexes = [96]
+areas = [ { region = 11565 } ]
 
-[wander]
-index = 140
-areas = [ { region = 12083 } ]
+[the_desert]
+id = 79
+indexes = [120, 563]
+areas = [ { region = 12591 } ]
+
+[soundscape]
+id = 80
+indexes = [111]
+areas = [ { region = 9774 } ]
+
+[wonderous]
+id = 81
+indexes = [147]
+areas = [ { region = 10548 } ]
 
 [waterfall]
-index = 141
+id = 82
+indexes = [141]
 areas = [
   { region = 10037 },
   { region = 10137 },
 ]
 
-[wilderness]
-index = 142
-areas = [
-  { region = 11832 },
-  { region = 12346 },
-]
-
-[wilderness2]
-index = 143
-areas = [ { region = 12091 } ]
-
-[wilderness3]
-index = 144
-areas = [ { region = 11834 } ]
-
-[witching]
-index = 145
-areas = [ { region = 13114 } ]
-
-[wonder]
-index = 146
-areas = [ { region = 11831 } ]
-
-[wonderous]
-index = 147
-areas = [ { region = 10548 } ]
-
-[workshop]
-index = 148
-areas = [ { region = 12084 } ]
-
-[lonesome]
-index = 149
-areas = [ { region = 13203 } ]
-
-[scape_main]
-index = 150
-areas = [ { region = 6488 } ]
-
-[land_of_snow]
-index = 154
-areas = [ { region = 10584 } ]
-
-[incarceration]
-index = 158
-areas = [ { region = 12610, level = 1 } ]
-
-[scape_soft]
-index = 159
-areas = [ { region = 11829 } ]
-
-[shining]
-index = 160
-areas = [ { region = 12858 } ]
-
-[yesteryear]
-index = 161
-areas = [ { region = 12849 } ]
-
-[fanfare2]
-index = 162
-areas = [ { region = 11823 } ]
-
-[tomorrow]
-index = 163
-areas = [ { region = 12081 } ]
-
-[duel_arena]
-index = 164
-areas = [
-  {
-    x = [ 3328, 3424, 3424, 3392, 3392, 3328 ],
-    y = [ 3200, 3200, 3268, 3268, 3264, 3264 ]
-  }
-]
-
-[ice_melody]
-index = 165
-areas = [ { region = 11318 } ]
-
-[wolf_mountain]
-index = 166
-areas = [ { region = 12603 } ]
-
-[harmony2]
-index = 167
-areas = [
-  {
-    x = [ 3200, 3220, 3220, 3264, 3264, 3200 ],
-    y = [ 9600, 9600, 9664, 9664, 9728, 9728 ]
-  }
-]
-
-[venture2]
-index = 168
-areas = [ { region = 13464 } ]
-
-[landlubber]
-index = 169
-areas = [ { region = 10801 } ]
-
-[undercurrent]
-index = 170
-areas = [ { region = 12345 } ]
-
-[nomad]
-index = 171
-areas = [ { region = 11056 } ]
-
-[zealot]
-index = 172
-areas = [ { region = 13899 } ]
-
-[cellar_song]
-index = 173
-areas = [ { region = 12697 } ]
-
-[heart_and_mind]
-index = 174
-areas = [ { region = 10059 } ]
-
-[close_quarters]
-index = 175
-areas = [ { region = 12602 } ]
-
-[escape]
-index = 176
-areas = [ { region = 10903 } ]
-
-[grumpy]
-index = 177
-areas = [
-  { region = 10286 },
-  {
-    x = [ 1968, 2112, 2112, 1984, 1984, 1920, 1920, 1968 ],
-    y = [ 8960, 8960, 9024, 9024, 9088, 9088, 9024, 9024 ],
-    level = 1
-  }
-]
-
-[chompy_hunt]
-index = 178
-areas = [ { region = 10542 }, { region = 10642 } ]
-
-[twilight]
-index = 179
-areas = [ { region = 10906 } ]
-
-[morytania]
-index = 180
-areas = [ { region = 13622 } ]
+[big_chords]
+id = 83
+indexes = [22]
+areas = [ { region = 10032 } ]
 
 [dead_quiet]
-index = 181
+id = 84
+indexes = [181]
 areas = [
   { region = 13621 },
   {
@@ -964,12 +541,428 @@ areas = [
   { region = 9550 },
 ]
 
-[village]
-index = 182
-areas = [ { region = 13878 } ]
+[vision]
+id = 85
+indexes = [137]
+areas = [
+  { region = 12337 },
+  {
+    x = [ 3085, 3085, 3136, 3136 ],
+    y = [ 9536, 9600, 9600, 9536 ]
+  }
+]
+
+[dimension_x]
+id = 86
+indexes = [435]
+areas = [ { region = 12115 } ]
+
+[ice_melody]
+id = 87
+indexes = [165]
+areas = [ { region = 11318 } ]
+
+[twilight]
+id = 88
+indexes = [179]
+areas = [ { region = 10906 } ]
+
+[reggae2]
+id = 89
+indexes = [97]
+areas = [ { region = 11567 } ]
+
+[ambient_jungle]
+id = 90
+indexes = [3]
+areas = [ { region = 11310}, { region = 11410 } ]
+
+[riverside]
+id = 91
+indexes = [98]
+areas = [ { region = 8495 } ]
+
+[sea_shanty]
+id = 92
+indexes = [106]
+areas = [ { region = 11569 } ]
+
+[parade]
+id = 93
+indexes = [93]
+areas = [ { region = 13366 } ]
+
+[tribal2]
+id = 94
+indexes = [129]
+areas = [ { region = 11566 } ]
+
+[intrepid]
+id = 95
+indexes = [64]
+areas = [ { region = 9369 } ]
+
+[inspiration]
+id = 96
+indexes = [63]
+areas = [ { region = 12087 } ]
+
+[hermit]
+id = 97
+indexes = [191]
+areas = [ { region = 9034 } ]
+
+[forever]
+id = 98
+indexes = [48]
+areas = [
+  { region = 12342 },
+  { region = 12442 },
+]
+
+[baroque]
+id = 99
+indexes = [20]
+areas = [ { region = 10547 } ]
+
+[beyond]
+id = 100
+indexes = [21]
+areas = [
+  {
+    x = [ 2816, 2816, 2880, 2880, 2944, 2944 ],
+    y = [ 9984, 9856, 9856, 9920, 9920, 9984 ]
+  }
+]
+
+[gnome_village2]
+id = 101
+indexes = [54]
+areas = [ { region = 9269 } ]
+
+[alone]
+id = 102
+indexes = [2]
+areas = [
+  {
+    x = [ 3008, 3017, 3023, 3024, 3024, 3032, 3032, 3072, 3072, 2984, 2984, 2979, 2979, 2984, 2984, 2990, 2990, 2993, 2993, 3008 ],
+    y = [ 3512, 3512, 3506, 3506, 3504, 3504, 3520, 3520, 3456, 3456, 3458, 3458, 3476, 3481, 3487, 3487, 3511, 3514, 3520, 3520 ]
+  },
+  { region = 10390 }
+]
+
+[oriental]
+id = 103
+indexes = [91]
+areas = [ { region = 11666 } ]
+
+[camelot]
+id = 104
+indexes = [24]
+areas = [ { region = 11062 } ]
+
+[tomorrow]
+id = 105
+indexes = [163]
+areas = [ { region = 12081 } ]
+
+[expanse]
+id = 106
+indexes = [40]
+areas = [
+  { region = 12852 },
+  { region = 12605 },
+  { region = 12952 }
+]
+
+[miles_away]
+id = 107
+indexes = [84]
+areas = [
+  { region = 11571 },
+  { region = 10569 },
+]
+
+[starlight]
+id = 108
+indexes = [116]
+areas = [
+  {
+    x = [ 3018, 3018, 3037, 3038, 3038, 3037, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3046, 3046, 3051, 3053, 3055, 3058, 3061, 3062, 3064, 3064, 3067, 3067, 3069, 3069, 3068, 3068, 3064, 3064, 2944, 2944 ],
+    y = [ 9536, 9568, 9568, 9569, 9570, 9571, 9573, 9574, 9574, 9575, 9575, 9574, 9574, 9571, 9569, 9564, 9564, 9562, 9562, 9565, 9565, 9567, 9568, 9571, 9574, 9576, 9580, 9581, 9585, 9589, 9600, 9600, 9536 ]
+  }
+]
+
+[theme]
+id = 109
+indexes = [123]
+areas = [
+  { region = 10294 },
+  { region = 10394 },
+]
+
+[serenade]
+id = 110
+indexes = [108]
+areas = [ { region = 9521 } ]
+
+[still_night]
+id = 111
+indexes = [118]
+areas = [ { region = 13108 } ]
+
+[gnomeball]
+id = 112
+indexes = [56]
+areas = [ { region = 9526 } ]
+
+[lightness]
+id = 113
+indexes = [73]
+areas = [ { region = 12599 } ]
+
+[jungly1]
+id = 114
+indexes = [67]
+areas = [
+  { region = 11054 },
+  { region = 11154 },
+]
+
+[jungly2]
+id = 115
+indexes = [68]
+areas = [ { region = 10802 } ]
+
+[greatness]
+id = 116
+indexes = [57]
+areas = [ { region = 12596 } ]
+
+[jungly3]
+id = 117
+indexes = [69]
+areas = [ { region = 11055 } ]
+
+[faerie]
+id = 118
+indexes = [43]
+areas = [ { region = 9540 } ]
+
+[fishing]
+id = 119
+indexes = [46]
+areas = [ { region = 11317 } ]
+
+[shining]
+id = 120
+indexes = [160]
+areas = [ { region = 12858 } ]
+
+[forbidden]
+id = 121
+indexes = [185]
+areas = [ { region = 13111 } ]
+
+[shine]
+id = 122
+indexes = [110]
+areas = [ { region = 13363 } ]
+
+[arabian2]
+id = 123
+indexes = [5]
+areas = [ { region = 13107 } ]
+
+[arabian3]
+id = 124
+indexes = [6]
+areas = [ { region = 12848 } ]
+
+[garden]
+id = 125
+indexes = [50]
+areas = [
+  {
+    x = [ 3200, 3253, 3253, 3264, 3264, 3200 ],
+    y = [ 3456, 3456, 3442, 3442, 3392, 3392 ]
+  },
+  { region = 12953 }
+]
+
+[we_are_the_fairies]
+id = 126
+indexes = [434]
+areas = [ { region = 8267 } ]
+
+[nightfall]
+id = 127
+indexes = [90]
+areas = [
+  { region = 11827 },
+  { region = 12861 },
+]
+
+[grumpy]
+id = 128
+indexes = [177]
+areas = [
+  { region = 10286 },
+  {
+    x = [ 1968, 2112, 2112, 1984, 1984, 1920, 1920, 1968 ],
+    y = [ 8960, 8960, 9024, 9024, 9088, 9088, 9024, 9024 ],
+    level = 1
+  }
+]
+
+[spooky_jungle]
+id = 129
+indexes = [115]
+areas = [
+  { region = 11053 },
+  { region = 10055 },
+  { region = 11668 },
+]
+
+[tree_spirits]
+id = 130
+indexes = [126]
+areas = [ { region = 9268 } ]
+
+[understanding]
+id = 131
+indexes = [187]
+areas = [ { region = 9547 } ]
+
+[breeze]
+id = 132
+indexes = [194]
+areas = [ { region = 9010 } ]
+
+[the_tower]
+id = 133
+indexes = [122]
+areas = [
+  {
+    x = [ 2560, 2624, 2624, 2558, 2558, 2560 ],
+    y = [ 3392, 3392, 3328, 3328, 3336, 3336 ]
+  },
+  {
+    x = [ 2496, 2528, 2528, 2560, 2560, 2624, 2624, 2496 ],
+    y = [ 9728, 9728, 9760, 9760, 9728, 9728, 9792, 9792 ]
+  }
+]
+
+[la_mort]
+id = 134
+indexes = [192]
+areas = [ { region = 8779 } ]
+
+[ambience_2]
+id = 135
+
+[ambience_3]
+id = 136
+
+[ambience_4]
+id = 137
+
+[emperor]
+id = 138
+indexes = [39]
+areas = [
+  { region = 11570 },
+  {
+    x = [ 2923, 2927, 2927, 2928, 2930, 2932, 2937, 2937, 2938, 2940, 2941, 2941, 2923, 2923, 2921, 2921, 2923 ],
+    y = [ 3240, 3240, 3239, 3238, 3238, 3240, 3240, 3238, 3237, 3237, 3238, 3258, 3258, 3257, 3255, 3253, 3251 ]
+  }
+]
+
+[song_139]
+id = 139
+
+[talking_forest]
+id = 140
+indexes = [119]
+areas = [ { region = 10550 } ]
+
+[barbarianism]
+id = 141
+indexes = [257]
+areas = [
+  { region = 12341 },
+  { region = 12441 },
+]
+
+[complication]
+id = 142
+indexes = [258]
+areas = [ { region = 9035 } ]
+
+[down_to_earth]
+id = 143
+indexes = [259]
+areas = [ { region = 10571 } ]
+
+[scape_cave]
+id = 144
+indexes = [102]
+areas = [
+  { region = 12436 },
+  { region = 12698 },
+  { region = 6298 },
+]
+
+[yesteryear]
+id = 145
+indexes = [161]
+areas = [ { region = 12849 } ]
+
+[zealot]
+id = 146
+indexes = [172]
+areas = [ { region = 13899 } ]
+
+[silence]
+id = 147
+indexes = [523, 678, 687]
+
+[emotion]
+id = 148
+indexes = [38]
+areas = [ { region = 10033 }, { region = 11081 }, { region = 10133 } ]
+
+[principality]
+id = 149
+indexes = [188]
+areas = [ { region = 11575 } ]
+
+[mouse_trap]
+id = 150
+indexes = [480]
+areas = [ { region = 9046 } ]
+
+[start]
+id = 151
+indexes = [117]
+areas = [ { region = 12339 } ]
+
+[ballad_of_enchantment]
+id = 152
+indexes = [19]
+areas = [ { region = 10290 } ]
+
+[expedition]
+id = 153
+indexes = [42]
+areas = [
+  { region = 11676 },
+  { region = 9362 }
+]
 
 [bone_dance]
-index = 183
+id = 154
+indexes = [183]
 areas = [
   {
     x = [ 3392, 3392, 3456, 3456, 3424, 3424 ],
@@ -977,52 +970,497 @@ areas = [
   }
 ]
 
-[mausoleum]
-index = 184
-areas = [ { region = 13722 } ]
-
-[forbidden]
-index = 185
-areas = [ { region = 13111 } ]
-
-[cursed]
-index = 186
-areas = [
-  { region = 9623 },
-  { region = 9879 },
-]
-
-[understanding]
-index = 187
-areas = [ { region = 9547 } ]
-
-[principality]
-index = 188
-areas = [ { region = 11575 } ]
-
-[tremble]
-index = 189
-areas = [ { region = 11320 } ]
-
-[kingdom]
-index = 190
+[neverland]
+id = 155
+indexes = [88]
 areas = [
   {
-    x = [ 2832, 2832, 2816, 2816, 2880, 2880, 2816, 2816, 2825, 2838, 2838, 2839, 2840, 2841, 2842, 2845, 2846, 2847, 2848, 2849, 2849, 2860, 2860, 2865, 2866, 2867, 2868, 2871, 2872, 2873, 2874, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2874, 2873, 2872, 2871, 2868, 2867, 2866, 2865 ],
-    y = [ 3556, 3545, 3545, 3584, 3584, 3520, 3520, 3529, 3538, 3538, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3534, 3534, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3539, 3540, 3541, 3542, 3544, 3545, 3548, 3549, 3551, 3552, 3553, 3554, 3556, 3556, 3557, 3557, 3556, 3556, 3557, 3557, 3556 ]
+    x = [ 2432, 2432, 2496, 2496, 2463, 2463 ],
+    y = [ 3328, 3392, 3392, 3336, 3336, 3328 ]
   }
 ]
 
-[hermit]
-index = 191
-areas = [ { region = 9034 } ]
+[mausoleum]
+id = 156
+indexes = [184]
+areas = [ { region = 13722 } ]
 
-[la_mort]
-index = 192
-areas = [ { region = 8779 } ]
+[medieval]
+id = 157
+indexes = [82]
+areas = [
+  {
+    x = [ 3264, 3264, 3268, 3268, 3328, 3328 ],
+    y = [ 3392, 3442, 3442, 3456, 3456, 3392 ]
+  }
+]
+
+[quest]
+id = 158
+indexes = [94]
+areas = [ { region = 10315 } ]
+
+[gaol]
+id = 159
+indexes = [49]
+areas = [
+  { region = 10031 },
+  { region = 12090 },
+  { region = 10131 }
+]
+
+[army_of_darkness]
+id = 160
+indexes = [8]
+areas = [ { region = 12088 } ]
+
+[long_ago]
+id = 161
+indexes = [75]
+areas = [ { region = 10544 } ]
+
+[tribal_background]
+id = 162
+indexes = [127]
+areas = [
+  { region = 11312 },
+  { region = 11821 },
+  { region = 11412 },
+]
+
+[flute_salad]
+id = 163
+indexes = [47]
+areas = [ { region = 12595 } ]
+
+[landlubber]
+id = 164
+indexes = [169]
+areas = [ { region = 10801 } ]
+
+[tribal]
+id = 165
+indexes = [128, 569]
+areas = [ { region = 11311 } ]
+
+[fanfare2]
+id = 166
+indexes = [162]
+areas = [ { region = 11823 } ]
+
+[fanfare3]
+id = 167
+indexes = [45]
+areas = [ { region = 10545 } ]
+
+[lonesome]
+id = 168
+indexes = [149]
+areas = [ { region = 13203 } ]
+
+[crystal_sword]
+id = 169
+indexes = [29]
+areas = [ { region = 12855 }, { region = 10647 } ]
+
+[the_shadow]
+id = 170
+indexes = [121]
+areas = [ { region = 11314 } ]
+
+[song_171]
+id = 171
+
+[jungle_island]
+id = 172
+indexes = [66, 574]
+areas = [
+  { region = 11313 },
+  { region = 11309 }
+]
+
+[dunjun]
+id = 173
+indexes = [36]
+areas = [ { region = 11672 } ]
+
+[desert_voyage]
+id = 174
+indexes = [33, 567]
+areas = [
+  {
+    x = [ 3264, 3392, 3392, 3328, 3328, 3264 ],
+    y = [ 3072, 3072, 3008, 3008, 2944, 2944 ]
+  }
+]
+
+[spirit]
+id = 175
+indexes = [112]
+areas = [ { region = 12597 } ]
+
+[undercurrent]
+id = 176
+indexes = [170]
+areas = [ { region = 12345 } ]
+
+[adventure]
+id = 177
+indexes = [0]
+areas = [ { region = 12854 } ]
+
+[courage]
+id = 178
+indexes = [260]
+areas = [ { region = 11673 } ]
+
+[underground]
+id = 179
+indexes = [132]
+areas = [
+  { region = 11416 },
+  { region = 13368 },
+]
+
+[attention]
+id = 180
+indexes = [16]
+areas = [ { region = 11825 } ]
+
+[crystal_cave]
+id = 181
+indexes = [28]
+areas = [ { region = 9797 } ]
+
+[dangerous]
+id = 182
+indexes = [30]
+areas = [ { region = 12343 }, { region = 13115 } ]
+
+[troubled]
+id = 183
+indexes = [131]
+areas = [ { region = 11833 } ]
+
+[magical_journey]
+id = 184
+indexes = [80]
+areas = [ { region = 10805 } ]
+
+[magic_dance]
+id = 185
+indexes = [79]
+areas = [ { region = 10288 } ]
+
+[arrival]
+id = 186
+indexes = [9]
+areas = [ { region = 11572 } ]
+
+[tremble]
+id = 187
+indexes = [189]
+areas = [ { region = 11320 } ]
+
+[in_the_manor]
+id = 188
+indexes = [62]
+areas = [ { region = 10287 } ]
+
+[land_of_snow]
+id = 189
+indexes = [154]
+areas = [ { region = 10584 } ]
+
+[heart_and_mind]
+id = 190
+indexes = [174]
+areas = [ { region = 10059 } ]
+
+[knightly]
+id = 191
+indexes = [70]
+areas = [
+  {
+    x = [ 2558, 2558, 2624, 2624 ],
+    y = [ 3264, 3328, 3328, 3264 ]
+  },
+  {
+    x = [ 2560, 2560, 2584, 2584 ],
+    y = [ 9694, 9728, 9728, 9694 ]
+  }
+]
+
+[trinity]
+id = 192
+indexes = [130]
+areas = [
+  { region = 10804 },
+  { region = 10904 },
+]
+
+[mellow]
+id = 193
+indexes = [83]
+areas = [ { region = 10293 } ]
+
+[brimstails_scales]
+id = 194
+indexes = [443]
+areas = [ { region = 9625 } ]
+
+[delrith]
+id = 195
+indexes = [526]
+
+[wally_the_hero]
+id = 196
+indexes = [530]
+
+[lament_of_meiyerditch]
+id = 197
+indexes = [430]
+areas = [
+  {
+    x = [ 3606, 3617, 3617, 3648, 3648, 3584, 3584, 3591, 3591, 3606 ],
+    y = [ 3312, 3312, 3330, 3330, 3264, 3264, 3328, 3328, 3311, 3311 ]
+  },
+  { region = 14486 },
+  {
+    x = [ 3616, 3648, 3648, 3616 ],
+    y = [ 9728, 9728, 9681, 9681 ]
+  },
+  { region = 9544, level = 2 }
+]
+
+[dagannoth_dawn]
+id = 198
+indexes = [365]
+areas = [ { region = 7236 }, { region = 7748 } ]
+
+[seaslug_sailing_journey]
+id = 199
+indexes = [543]
+
+[the_mollusc_menace]
+id = 200
+indexes = [427]
+areas = [ { region = 10803 } ]
+
+[slug_a_bug_ball]
+id = 201
+indexes = [445]
+areas = [ { region = 9295 } ]
+
+[prime_time]
+id = 202
+indexes = [446]
+areas = [ { region = 7760 } ]
+
+[my_arms_journey]
+id = 203
+indexes = [444]
+areas = [ { region = 7500 } ]
+
+[roc_and_roll]
+id = 204
+indexes = [456]
+
+[high_spirits]
+id = 205
+indexes = [457]
+areas = [ { region = 6726 } ]
+
+[floating_free]
+id = 206
+indexes = [455]
+
+[scape_hunter]
+id = 207
+indexes = [377]
+
+[jungle_island_xmas]
+id = 208
+indexes = [459]
+
+[jungle_bells]
+id = 209
+indexes = [461]
+areas = [ { region = 12627 } ]
+
+[sea_shanty_xmas]
+id = 210
+indexes = [460]
+
+[pirates_of_penance]
+id = 211
+indexes = [442]
+areas = [ { region = 7508 } ]
+
+[cains_tutorial]
+id = 212
+indexes = [544]
+
+[labyrinth]
+id = 213
+indexes = [415]
+areas = [ { region = 13200 } ]
+
+[undead_dungeon]
+id = 214
+indexes = [471]
+areas = [ { region = 12615 } ]
+
+[tarn_razorlor]
+id = 215
+indexes = [538]
+
+[espionage]
+id = 216
+indexes = [470]
+areas = [ { region = 10658 } ]
+
+[have_an_ice_day]
+id = 217
+indexes = [466]
+areas = [ { region = 10558 } ]
+
+[the_penguin_bards]
+id = 218
+indexes = [528]
+
+[penguin_plots]
+id = 219
+indexes = [527]
+
+[island_of_the_trolls]
+id = 220
+indexes = [441]
+areas = [ { region = 9276 } ]
+
+[jester_minute]
+id = 221
+indexes = [438]
+
+[major_miner]
+id = 222
+indexes = [437]
+areas = [ { region = 9631 } ]
+
+[norse_code]
+id = 223
+indexes = [439]
+areas = [ { region = 9531 } ]
+
+[ogre_the_top]
+id = 224
+indexes = [449]
+areas = [ { region = 9632, level = 1 } ]
+
+[volcanic_vikings]
+id = 225
+indexes = [440]
+areas = [ { region = 9275 } ]
+
+[king_of_the_trolls]
+id = 226
+indexes = [535]
+
+[the_fremennik_kings]
+id = 227
+indexes = [529]
+
+[garden_of_autumn]
+id = 228
+indexes = [465]
+areas = [
+  {
+    x = [ 2897, 2897, 2919, 2919 ],
+    y = [ 5447, 5463, 5463, 5447 ]
+  }
+]
+
+[garden_of_spring]
+id = 229
+indexes = [463]
+areas = [
+  {
+    x = [ 2921, 2921, 2937, 2937 ],
+    y = [ 5457, 5479, 5479, 5457 ]
+  }
+]
+
+[garden_of_summer]
+id = 230
+indexes = [462]
+areas = [
+  {
+    x = [ 2905, 2905, 2927, 2927 ],
+    y = [ 5481, 5497, 5497, 5481 ]
+  }
+]
+
+[garden_of_winter]
+id = 231
+indexes = [464]
+areas = [
+  {
+    x = [ 2887, 2887, 2903, 2903 ],
+    y = [ 5465, 5487, 5487, 5465 ]
+  }
+]
+
+[sorceress_garden]
+id = 232
+indexes = [547]
+
+[dogfight]
+id = 233
+indexes = [537]
+
+[creature_cruelty]
+id = 234
+indexes = [468]
+areas = [
+  {
+    x = [ 2640, 2640, 2664, 2664 ],
+    y = [ 3208, 3232, 3232, 3208 ],
+    level = 2
+  }
+]
+
+[magic_magic_magic]
+id = 235
+indexes = [451]
+areas = [ { x = [ 2640, 2640, 2664, 2664 ], y = [ 3208, 3232, 3232, 3208 ], level = 1 } ]
+
+[mutant_medley]
+id = 236
+indexes = [452]
+areas = [ { region = 12100 } ]
+
+[work_work_work]
+id = 237
+indexes = [450]
+areas = [ { x = [ 2640, 2640, 2664, 2664 ], y = [ 3208, 3232, 3232, 3208 ] } ]
+
+[zombiism]
+id = 238
+indexes = [467]
+areas = [ { region = 15148 }, { region = 15248 } ]
+
+[brain_battle]
+id = 239
+indexes = [533]
+
+[dorgeshuun_city]
+id = 240
+indexes = [453]
+areas = [ { region = 10834 } ]
 
 [stagnant]
-index = 193
+id = 241
+indexes = [193, 573]
 areas = [
   { region = 13876 },
   {
@@ -1038,22 +1476,31 @@ areas = [
     y = [ 4992, 5024, 5024, 4992 ]
   }
 ]
-      
-
-[breeze]
-index = 194
-areas = [ { region = 9010 } ]
-
-[stratosphere]
-index = 195
-areas = [ { region = 8523 } ]
 
 [time_out]
-index = 196
+id = 242
+indexes = [196]
 areas = [ { region = 11591 } ]
 
+[stratosphere]
+id = 243
+indexes = [195]
+areas = [ { region = 8523 } ]
+
+[waterlogged]
+id = 244
+indexes = [199]
+areas = [
+  { region = 13877 },
+  {
+    x = [ 2056, 2056, 2112, 2112 ],
+    y = [ 5024, 5056, 5056, 5024 ]
+  }
+]
+
 [natural]
-index = 197
+id = 245
+indexes = [197]
 areas = [
   { region = 13620 },
   {
@@ -1075,37 +1522,42 @@ areas = [
 ]
 
 [grotto]
-index = 198
+id = 246
+indexes = [198]
 areas = [ { region = 13720 } ]
 
-[waterlogged]
-index = 199
-areas = [
-  { region = 13877 },
-  {
-    x = [ 2056, 2056, 2112, 2112 ],
-    y = [ 5024, 5056, 5056, 5024 ]
-  }
-]
-
 [artistry]
-index = 200
+id = 247
+indexes = [200]
 areas = [ { region = 8010 } ]
 
 [aztec]
-index = 201
+id = 248
+indexes = [201]
 areas = [ { region = 11157 } ]
 
-[elven_mist]
-index = 202
-areas = [ { region = 9266 } ]
+[dorgeshuun_deep]
+id = 249
+indexes = [454]
+areas = [ { region = 10833 } ]
+
+[suroks_theme]
+id = 250
+indexes = [536]
 
 [forest]
-index = 203
+id = 251
+indexes = [203]
 areas = [ { region = 9009 } ]
 
+[elven_mist]
+id = 252
+indexes = [202]
+areas = [ { region = 9266 } ]
+
 [lost_soul]
-index = 204
+id = 253
+indexes = [204]
 areas = [
   {
     x = [ 2240, 2240, 2368, 2368, 2280, 2280, 2256, 2256 ],
@@ -1114,38 +1566,38 @@ areas = [
 ]
 
 [meridian]
-index = 205
+id = 254
+indexes = [205]
 areas = [ { region = 8497 } ]
 
 [woodland]
-index = 206
+id = 255
+indexes = [206]
 areas = [ { region = 8498 } ]
 
 [overpass]
-index = 207
+id = 256
+indexes = [207]
 areas = [ { region = 9267 } ]
 
-[contest]
-index = 208
-areas = [ { region = 11576 } ]
-
 [sojourn]
-index = 209
+id = 257
+indexes = [209]
 areas = [ { region = 11321 } ]
 
+[contest]
+id = 258
+indexes = [208]
+areas = [ { region = 11576 } ]
+
 [crystal_castle]
-index = 210
+id = 259
+indexes = [210]
 areas = [ { region = 8499 } ]
 
-[marzipan]
-index = 211
-areas = [
-  { region = 11166 },
-  { region = 11421 },
-]
-
 [insect_queen]
-index = 212
+id = 260
+indexes = [212, 565]
 areas = [
   { region = 13972 },
   {
@@ -1154,32 +1606,53 @@ areas = [
   }
 ]
 
-[mad_eadgar]
-index = 213
-areas = [ { region = 11677 } ]
+[marzipan]
+id = 261
+indexes = [211]
+areas = [
+  { region = 11166 },
+  { region = 11421 },
+]
+
+[righteousness]
+id = 262
+indexes = [223]
+areas = [ { region = 9803 } ]
 
 [bandit_camp]
-index = 214
+id = 263
+indexes = [214]
 areas = [ { region = 12590 } ]
 
-[sunburn]
-index = 215
-areas = [ { region = 12846 }, { region = 13357 } ]
+[mad_eadgar]
+id = 264
+indexes = [213]
+areas = [ { region = 11677 } ]
+
+[superstition]
+id = 265
+indexes = [261]
+areas = [
+  { region = 11153 },
+  {
+    x = [ 1568, 1600, 1600, 1536, 1536, 1568 ],
+    y = [ 10240, 10240, 10176, 10176, 10208, 10208 ]
+  }
+]
 
 [bone_dry]
-index = 216
+id = 266
+indexes = [216]
 areas = [ { region = 12946 } ]
 
-[competition]
-index = 217
-areas = [ { region = 8781 } ]
-
-[spooky2]
-index = 218
-areas = [ { region = 13718 }, { region = 8593 }, { region = 7827 } ]
+[sunburn]
+id = 267
+indexes = [215]
+areas = [ { region = 12846 }, { region = 13357 } ]
 
 [everywhere]
-index = 219
+id = 268
+indexes = [219]
 areas = [
   {
     x = [ 2221, 2221, 2218, 2218, 2304, 2304 ],
@@ -1191,24 +1664,54 @@ areas = [
   }
 ]
 
+[competition]
+id = 269
+indexes = [217, 580]
+areas = [ { region = 8781 } ]
+
 [exposed]
-index = 220
+id = 270
+indexes = [220]
 areas = [ { region = 8752 }, { region = 9790 } ]
 
 [well_of_voyage]
-index = 221
+id = 271
+indexes = [221]
 areas = [ { region = 8009, level = 1 }, { region = 9365 } ]
 
+[alternative_root]
+id = 272
+indexes = [469]
+areas = [ { region = 12625 }, { region = 13141 } ]
+
+[easter_jig]
+id = 273
+indexes = [475]
+areas = [ { region = 9810 } ]
+
+[rising_damp]
+id = 274
+indexes = [447]
+areas = [ { region = 10910 } ]
+
+[slice_of_station]
+id = 275
+indexes = [472]
+areas = [ { region = 9814 } ]
+
+[ham_and_seek]
+id = 276
+indexes = [478]
+areas = [ { region = 9558 } ]
+
 [haunted_mine]
-index = 222
+id = 277
+indexes = [222]
 areas = [ { region = 11077 } ]
 
-[righteousness]
-index = 223
-areas = [ { region = 9803 } ]
-
 [deep_down]
-index = 224
+id = 278
+indexes = [224]
 areas = [
   {
     x = [ 2688, 2816, 2816, 2752, 2752, 2688 ],
@@ -1216,23 +1719,50 @@ areas = [
   }
 ]
 
+[ham_attack]
+id = 279
+indexes = [476]
+areas = [ { region = 9812 } ]
+
+[the_grand_opening]
+id = 280
+
+[slice_of_silent_movie]
+id = 281
+indexes = [477]
+areas = [
+  {
+    x = [ 2528, 2528, 2560, 2560 ],
+    y = [ 5504, 5568, 5568, 5504 ]
+  }
+]
+
 [chamber]
-index = 225
+id = 282
+indexes = [225]
 areas = [
   { region = 10821 },
   { region = 11078 },
 ]
 
+[everlasting]
+id = 283
+indexes = [485]
+areas = [ { region = 7248, level = 2 } ]
+
 [miscellania]
-index = 226
+id = 284
+indexes = [226]
 areas = [ { region = 10044 } ]
 
-[etceteria]
-index = 227
+[etcetera]
+id = 285
+indexes = [227]
 areas = [ { region = 10300 } ]
 
 [shadowland]
-index = 228
+id = 286
+indexes = [228]
 areas = [
   { region = 13875 },
   {
@@ -1243,11 +1773,13 @@ areas = [
 ]
 
 [lair]
-index = 229
+id = 287
+indexes = [229]
 areas = [ { region = 13975 } ]
 
 [deadlands]
-index = 230
+id = 288
+indexes = [230, 566]
 areas = [
   {
     x = [ 3520, 3648, 3648, 3712, 3712, 3636, 3636, 3592, 3592, 3584, 3584, 3520 ],
@@ -1256,7 +1788,8 @@ areas = [
 ]
 
 [rellekka]
-index = 231
+id = 289
+indexes = [231]
 areas = [
   {
     x = [ 2560, 2624, 2624, 2688, 2688, 2560 ],
@@ -1265,79 +1798,167 @@ areas = [
 ]
 
 [saga]
-index = 232
+id = 290
+indexes = [232]
 areas = [ { region = 10296 } ]
 
 [borderland]
-index = 233
+id = 291
+indexes = [233]
 areas = [ { region = 10809 } ]
 
 [stranded]
-index = 234
+id = 292
+indexes = [234]
 areas = [ { region = 11322 } ]
 
 [legend]
-index = 235
+id = 293
+indexes = [235]
 areas = [ { region = 10808 } ]
 
 [frostbite]
-index = 236
+id = 294
+indexes = [236]
 areas = [ { region = 11323 } ]
 
 [warrior]
-index = 237
+id = 295
+indexes = [237]
 areas = [ { region = 10653 } ]
 
 [technology]
-index = 238
+id = 296
+indexes = [238]
 areas = [ { region = 9626 } ]
 
+[awful_anthem]
+id = 297
+indexes = [545]
+
+[illusive]
+id = 298
+indexes = [484]
+areas = [ { region = 7248, level = 2 } ]
+
+[inadequacy]
+id = 299
+indexes = [483]
+areas = [ { region = 7248, level = 2 } ]
+
+[untouchable]
+id = 300
+indexes = [486]
+areas = [ { region = 7248, level = 2 } ]
+
+[down_and_out]
+id = 301
+indexes = [487]
+areas = [
+  {
+    x = [ 2336, 2336, 2368, 2368 ],
+    y = [ 10352, 10368, 10368, 10352 ],
+    level = 2
+  }
+]
+
+[on_the_up]
+id = 302
+indexes = [488]
+
 [monkey_madness]
-index = 239
+id = 303
+indexes = [239]
 areas = [ { region = 11051 }, { region = 8276 } ]
 
-[anywhere]
-index = 240
-areas = [ { region = 10795 } ]
-
 [marooned]
-index = 241
+id = 304
+indexes = [241]
 areas = [ { region = 11562 }, { region = 12117 } ]
 
+[anywhere]
+id = 305
+indexes = [240]
+areas = [ { region = 10795 } ]
+
 [island_life]
-index = 242
+id = 306
+indexes = [242]
 areas = [ { region = 10794 } ]
 
 [temple]
-index = 243
+id = 307
+indexes = [243]
 areas = [ { region = 11151 } ]
 
 [suspicious]
-index = 244
+id = 308
+indexes = [244]
 areas = [ { region = 10311 } ]
 
+[looking_back]
+id = 309
+indexes = [458]
+areas = [
+  {
+    x = [ 3253, 3253, 3268, 3268 ],
+    y = [ 3442, 3456, 3456, 3442 ]
+  },
+  { region = 6989 }
+]
+
+[dwarf_theme]
+id = 310
+indexes = [52]
+areas = [ { region = 12085 } ]
+
 [showdown]
-index = 245
+id = 311
+indexes = [245]
 areas = [ { region = 10895 } ]
 
 [find_my_way]
-index = 246
+id = 312
+indexes = [246]
 areas = [ { region = 10894 } ]
 
+[goblin_village]
+id = 313
+indexes = [55]
+areas = [
+  {
+    x = [ 2979, 2979, 2984, 2984, 2990, 2990, 2993, 2993, 2944, 2944, 2981, 2981, 2980, 2980 ],
+    y = [ 3458, 3476, 3481, 3487, 3487, 3511, 3514, 3520, 3520, 3456, 3456, 3457, 3457, 3458 ]
+  }
+]
+
 [castle_wars]
-index = 247
+id = 314
+indexes = [247, 578]
 areas = [ { region = 9520 } ]
 
+[impulses]
+id = 315
+indexes = [539]
+
+[the_navigator]
+id = 316
+indexes = [255]
+areas = [ { region = 10652 } ]
+
 [melodrama]
-index = 248
+id = 317
+indexes = [248]
 areas = [ { region = 9776 } ]
 
 [ready_for_battle]
-index = 249
+id = 318
+indexes = [249]
 areas = [ { region = 9620 } ]
 
 [stillness]
-index = 250
+id = 319
+indexes = [250]
 areas = [
   {
     x = [ 3392, 3512, 3512, 3520, 3520, 3456, 3456, 3392 ],
@@ -1347,145 +1968,191 @@ areas = [
 ]
 
 [lighthouse]
-index = 251
+id = 320
+indexes = [251]
 areas = [ { region = 10040 } ]
 
-[goblin_game]
-index = 252
-areas = [ { region = 10393 } ]
+[scape_scared]
+id = 321
+indexes = [152]
 
 [out_of_the_deep]
-index = 253
+id = 322
+indexes = [253]
 areas = [ { region = 10056 }, { region = 10140 } ]
 
-[hells_bells]
-index = 254
-areas = [ { region = 11066 } ]
+[underground_pass]
+id = 323
+indexes = [134]
+areas = [ { region = 9621 } ]
 
-[the_navigator]
-index = 255
-areas = [ { region = 10652 } ]
-
-[wildwood]
-index = 256
+[background]
+id = 324
+indexes = [18]
 areas = [
+  { region = 11060 },
   {
-    x = [ 3131, 3130, 3126, 3126, 3124, 3123, 3123, 3124, 3125, 3125, 3136, 3136, 3072, 3072, 3136, 3136 ],
-    y = [ 3617, 3618, 3618, 3622, 3622, 3623, 3632, 3633, 3633, 3640, 3640, 3648, 3648, 3584, 3584, 3617 ]
+    x = [ 1952, 1952, 1984, 1984 ],
+    y = [ 4992, 5024, 5024, 4992 ]
   }
 ]
 
-[barbarianism]
-index = 257
+[cave_background]
+id = 325
+indexes = [25]
 areas = [
-  { region = 12341 },
-  { region = 12441 },
+  {
+    x = [ 2944, 2944, 3008, 3008, 3072, 3072 ],
+    y = [ 9856, 9792, 9792, 9664, 9664, 9856 ]
+  }
 ]
 
-[complication]
-index = 258
-areas = [ { region = 9035 } ]
+[dark]
+id = 326
+indexes = [31]
+areas = [ { region = 13113 } ]
 
-[down_to_earth]
-index = 259
-areas = [ { region = 10571 } ]
+[dream]
+id = 327
+indexes = [35]
+areas = [ { region = 12594 } ]
 
-[courage]
-index = 260
-areas = [ { region = 11673 } ]
-
-[superstition]
-index = 261
+[march]
+id = 328
+indexes = [81]
 areas = [
-  { region = 11153 },
   {
-    x = [ 1568, 1600, 1600, 1536, 1536, 1568 ],
-    y = [ 10240, 10240, 10176, 10176, 10208, 10208 ]
+    x = [ 2496, 2496, 2560, 2560 ],
+    y = [ 3336, 3392, 3392, 3336 ]
+  }
+]
+
+[regal]
+id = 329
+indexes = [95]
+areas = [ { region = 13117 } ]
+
+[cellar_song]
+id = 330
+indexes = [173]
+areas = [ { region = 12697 } ]
+
+[scape_sad]
+id = 331
+indexes = [104]
+areas = [ { region = 13116 } ]
+
+[scape_wild]
+id = 332
+indexes = [105, 564]
+areas = [
+  { region = 12857 },
+  { region = 12604 },
+]
+
+[spooky]
+id = 333
+indexes = [114]
+areas = [
+  { region = 12340 },
+  {
+    x = [ 1920, 1920, 1952, 1952 ],
+    y = [ 4992, 5024, 5024, 4992 ]
   }
 ]
 
 [pirates_of_peril]
-index = 262
+id = 334
+indexes = [262]
 areas = [ { region = 12093 } ]
 
-[dangerous_road]
-index = 263
-areas = [ { region = 11413 } ]
-
 [romancing_the_crone]
-index = 264
+id = 335
+indexes = [264]
 areas = [ { region = 11068 } ]
 
+[dangerous_road]
+id = 336
+indexes = [263]
+areas = [ { region = 11413 } ]
+
 [faithless]
-index = 265
+id = 337
+indexes = [265]
 areas = [ { region = 12856 } ]
 
 [tiptoe]
-index = 266
+id = 338
+indexes = [266]
 areas = [ { region = 12440 } ]
 
 [the_terrible_tower]
-index = 267
+id = 339
+indexes = [267]
 areas = [ { region = 13623 } ]
 
 [masquerade]
-index = 268
+id = 340
+indexes = [268]
 areas = [ { region = 10907 } ]
 
 [the_slayer]
-index = 269
+id = 341
+indexes = [269]
 areas = [ { region = 11164 } ]
 
 [body_parts]
-index = 270
+id = 342
+indexes = [270]
 areas = [ { region = 13979 } ]
 
-[fenkenstrains_refrain]
-index = 271
-areas = [ { region = 13879 } ]
-
 [monster_melee]
-index = 272
+id = 343
+indexes = [272]
 areas = [ { region = 12694 } ]
 
-[fruits_de_mer]
-index = 273
-areas = [ { region = 11059 } ]
+[fenkenstrains_refrain]
+id = 344
+indexes = [271]
+areas = [ { region = 13879 } ]
 
 [barking_mad]
-index = 274
+id = 345
+indexes = [274]
 areas = [ { region = 14234 } ]
 
+[goblin_game]
+id = 346
+indexes = [252]
+areas = [ { region = 10393 } ]
+
+[fruits_de_mer]
+id = 347
+indexes = [273, 571]
+areas = [ { region = 11059 } ]
+
+[narnodes_theme]
+id = 348
+indexes = [513]
+areas = [ { region = 9882 } ]
+
+[impetuous]
+id = 349
+indexes = [474]
+areas = [ { region = 10307 } ]
+
+[crest_of_a_wave]
+id = 350
+indexes = [524]
+
 [dynasty]
-index = 275
+id = 351
+indexes = [275]
 areas = [ { region = 13358 } ]
 
-[shipwrecked]
-index = 276
-areas = [ { region = 14391 } ]
-
-[phasmatys]
-index = 277
-areas = [ { region = 14746 } ]
-
-[the_other_side]
-index = 278
-areas = [ { region = 14646 } ]
-
-[settlement]
-index = 279
-areas = [ { region = 11065 } ]
-
-[cave_of_beasts]
-index = 280
-areas = [ { region = 11165 } ]
-
-[dragontooth_island]
-index = 281
-areas = [ { region = 15159 } ]
-
 [scarab]
-index = 282
+id = 352
+indexes = [282]
 areas = [
   {
     x = [ 3136, 3136, 3328, 3328, 3200, 3200, 3136, 3136, 3072, 3072 ],
@@ -1493,59 +2160,143 @@ areas = [
   }
 ]
 
+[shipwrecked]
+id = 353
+indexes = [276]
+areas = [ { region = 14391 } ]
+
+[phasmatys]
+id = 354
+indexes = [277]
+areas = [ { region = 14746 } ]
+
+[the_other_side]
+id = 355
+indexes = [278]
+areas = [ { region = 14646 } ]
+
+[settlement]
+id = 356
+indexes = [279]
+areas = [ { region = 11065 } ]
+
+[cave_of_beasts]
+id = 357
+indexes = [280]
+areas = [ { region = 11165 } ]
+
+[dragontooth_island]
+id = 358
+indexes = [281]
+areas = [ { region = 15159 } ]
+
 [sarcophagus]
-index = 283
+id = 359
+indexes = [283]
 areas = [
   { region = 11085, level = 1 },
   { region = 12945 },
 ]
 
+[eye_of_the_storm]
+id = 360
+indexes = [525]
+
 [down_below]
-index = 284
+id = 361
+indexes = [284]
 areas = [ { region = 12438 } ]
 
-[7th_realm]
-index = 285
-areas = [ { region = 10644 } ]
-
 [karamja_jam]
-index = 286
+id = 362
+indexes = [286]
 areas = [ { region = 10899 } ]
 
+[7th_realm]
+id = 363
+indexes = [285]
+areas = [ { region = 10644 } ]
+
 [pathways]
-index = 287
+id = 364
+indexes = [287]
 areas = [ { region = 10901 } ]
 
-[eagles_peak]
-index = 288
+[melzars_maze]
+id = 365
+indexes = [489]
+areas = [
+  {
+    x = [ 2923, 2927, 2927, 2928, 2930, 2932, 2937, 2937, 2938, 2940, 2941, 2941, 2923, 2923, 2921, 2921, 2923 ],
+    y = [ 3240, 3240, 3239, 3238, 3238, 3240, 3240, 3238, 3237, 3237, 3238, 3258, 3258, 3257, 3255, 3253, 3251 ]
+  },
+  { region = 11670 },
+  { region = 11408 },
+]
+
+[eagle_peak]
+id = 366
+indexes = [288]
 areas = [ { region = 9014 } ]
 
+[barb_wire]
+id = 367
+indexes = [473]
+areas = [ { region = 6220 }, { region = 6994 } ]
+
+[look_to_the_stars]
+id = 368
+indexes = [548]
+
 [time_to_mine]
-index = 289
+id = 369
+indexes = [289]
 areas = [ { region = 11422 } ]
 
 [in_between]
-index = 290
+id = 370
+indexes = [290]
 areas = [ { region = 10061 } ]
 
-[claustrophobia]
-index = 291
-areas = [ { region = 9293 } ]
+[schools_out]
+id = 371
+indexes = [482]
+areas = [ { region = 7502 } ]
 
 [far_away]
-index = 292
+id = 372
+indexes = [292, 582]
 areas = [ { region = 9265 } ]
 
+[claustrophobia]
+id = 373
+indexes = [291]
+areas = [ { region = 9293 } ]
+
+[knightmare]
+id = 374
+indexes = [498]
+areas = [
+  {
+    x = [ 3008, 3008, 3017, 3023, 3024, 3024, 3032, 3032 ],
+    y = [ 3520, 3512, 3512, 3506, 3506, 3504, 3504, 3520 ]
+  },
+  { region = 7490 }
+]
+
 [fight_or_flight]
-index = 293
+id = 375
+indexes = [293]
 areas = [ { region = 7752 } ]
 
 [temple_of_light]
-index = 294
+id = 376
+indexes = [294]
 areas = [ { region = 7496 } ]
 
 [the_golem]
-index = 295
+id = 377
+indexes = [295]
 areas = [
   {
     x = [ 3392, 3456, 3456, 3520, 3520, 3392 ],
@@ -1554,23 +2305,33 @@ areas = [
 ]
 
 [forgotten]
-index = 296
+id = 378
+indexes = [296]
 areas = [ { region = 10828 } ]
 
 [throne_of_the_demon]
-index = 297
+id = 379
+indexes = [297]
 areas = [ { region = 10828, level = 2 } ]
 
 [dance_of_the_undead]
-index = 298
+id = 380
+indexes = [298]
 areas = [ { region = 14131 } ]
 
 [dangerous_way]
-index = 299
+id = 381
+indexes = [299]
 areas = [ { region = 14231 } ]
 
+[lore_and_order]
+id = 382
+indexes = [499]
+areas = [ { region = 7234 } ]
+
 [city_of_the_dead]
-index = 300
+id = 383
+indexes = [300]
 areas = [
   {
     x = [ 3200, 3200, 3328, 3328, 3264, 3264 ],
@@ -1579,19 +2340,38 @@ areas = [
 ]
 
 [hypnotized]
-index = 301
+id = 384
+indexes = [301]
 areas = [ { region = 13199 } ]
 
+[the_sinclairs]
+id = 385
+indexes = [560]
+
+[bandos_battalion]
+id = 386
+indexes = [492]
+areas = [
+  {
+    x = [ 2816, 2816, 2880, 2880, 2856, 2856, 2848, 2848 ],
+    y = [ 5312, 5376, 5376, 5344, 5344, 5336, 5336, 5312 ],
+    level = 2
+  }
+]
+
 [sphinx]
-index = 302
+id = 387
+indexes = [302]
 areas = [ { region = 13100 } ]
 
 [mirage]
-index = 303
+id = 388
+indexes = [303]
 areas = [ { region = 13199 } ]
 
 [cave_of_the_goblins]
-index = 304
+id = 389
+indexes = [304]
 areas = [
   { region = 12693 },
   {
@@ -1600,32 +2380,50 @@ areas = [
   }
 ]
 
-[bish_bash_bosh]
-index = 305
-areas = [ { region = 10284 } ]
+[romper_chomper]
+id = 390
+indexes = [312]
+areas = [ { region = 9263 } ]
+
+[zamorak_zoo]
+id = 391
+indexes = [490]
+areas = [
+  {
+    x = [ 2880, 2944, 2944, 2912, 2912, 2904, 2904, 2880 ],
+    y = [ 5376, 5376, 5312, 5312, 5336, 5336, 5344, 5344 ],
+    level = 2
+  }
+]
 
 [zogre_dance]
-index = 306
+id = 392
+indexes = [306]
 areas = [ { region = 9775 } ]
 
 [path_of_peril]
-index = 307
+id = 393
+indexes = [307]
 areas = [ { region = 10575 } ]
 
 [wayward]
-index = 308
+id = 394
+indexes = [308]
 areas = [ { region = 9874, level = 2 } ]
 
 [tale_of_keldagrim]
-index = 309
+id = 395
+indexes = [309]
 areas = [ { region = 11678 } ]
 
 [land_of_the_dwarves]
-index = 310
+id = 396
+indexes = [310]
 areas = [ { region = 11423 } ]
 
 [tears_of_guthix]
-index = 311
+id = 397
+indexes = [311]
 areas = [
   {
     x = [ 3200, 3200, 3254, 3254 ],
@@ -1634,12 +2432,40 @@ areas = [
   }
 ]
 
-[romper_chomper]
-index = 312
-areas = [ { region = 9263 } ]
+[the_power_of_tears]
+id = 398
+indexes = [319]
+areas = [
+  {
+    x = [ 3254, 3254, 3264, 3264 ],
+    y = [ 9472, 9536, 9536, 9472 ],
+    level = 2
+  }
+]
+
+[armageddon]
+id = 399
+indexes = [494]
+areas = [
+  {
+    x = [ 2848, 2856, 2856, 2904, 2904, 2912, 2911, 2904, 2904, 2856, 2856, 2848 ],
+    y = [ 5336, 5336, 5344, 5344, 5336, 5336, 5288, 5288, 5280, 5280, 5288, 5288 ],
+    level = 2
+  }
+]
+
+[scape_original]
+id = 400
+indexes = [103]
+
+[the_adventurer]
+id = 401
+indexes = [520]
+areas = [ { x = [ 3202, 3207 ], y = [ 3239, 3244 ] } ]
 
 [the_rogues_den]
-index = 313
+id = 402
+indexes = [313]
 areas = [
   {
     x = [ 2944, 3008, 3008, 3072, 3072, 3008, 3008, 2944 ],
@@ -1649,19 +2475,62 @@ areas = [
 ]
 
 [the_far_side]
-index = 314
+id = 403
+indexes = [314]
 areas = [ { region = 12111, level = 1 } ]
 
+[armadyl_alliance]
+id = 404
+indexes = [493]
+areas = [
+  {
+    x = [ 2816, 2848, 2848, 2856, 2856, 2880, 2880, 2816 ],
+    y = [ 5312, 5312, 5288, 5288, 5280, 5280, 5248, 5248 ],
+    level = 2
+  }
+]
+
+[the_consortium]
+id = 405
+indexes = [541]
+
+[crest_of_a_dwarven_wave]
+id = 406
+indexes = [534]
+
 [the_lost_melody]
-index = 315
+id = 407
+indexes = [315]
 areas = [ { region = 13206 } ]
 
+[strength_of_saradomin]
+id = 408
+indexes = [491]
+areas = [
+  {
+    x = [ 2912, 2944, 2944, 2880, 2880, 2904, 2904, 2912 ],
+    y = [ 5312, 5312, 5248, 5248, 5280, 5280, 5288, 5288 ],
+    level = 1
+  }
+]
+
+[frogland]
+id = 409
+indexes = [336]
+areas = [ { region = 9802 } ]
+
+[dorgeshuun_treaty]
+id = 410
+indexes = [540]
+
 [evil_bobs_island]
-index = 316
+id = 411
+indexes = [316]
 areas = [ { region = 10058 } ]
 
 [into_the_abyss]
-index = 317
+id = 412
+indexes = [317]
 areas = [
   {
     x = [ 3008, 3072, 3072, 3136, 3136, 3096, 3096, 3136, 3136, 2944, 2944, 2984, 2984, 2944, 2944, 2976, 2976, 3008 ],
@@ -1669,26 +2538,41 @@ areas = [
   }
 ]
 
-[the_quizmaster]
-index = 318
+[the_quiz_master]
+id = 413
+indexes = [318]
 areas = [ { region = 7754 } ]
 
-[the_power_of_tears]
-index = 319
-areas = [
-  {
-    x = [ 3254, 3254, 3264, 3264 ],
-    y = [ 9472, 9536, 9536, 9472 ],
-    level = 2
-  }
-]
+[the_longramble_scramble]
+id = 414
+indexes = [496]
+areas = [ { x = [ 2330, 2349 ], y = [ 3086, 3106 ] }]
+
+[athletes_foot]
+id = 415
+
+[healin_feelin]
+id = 416
+indexes = [503]
+
+[terrorbird_tussle]
+id = 417
+indexes = [500]
+areas = [{ x = [ 2019, 2032 ], y = [ 4248, 4268 ], level = 1 }]
+
+[corporal_punishment]
+id = 418
+indexes = [323]
+areas = [ { region = 12619 } ]
 
 [pheasant_peasant]
-index = 321
+id = 419
+indexes = [321]
 areas = [ { region = 10314 } ]
 
 [the_lost_tribe]
-index = 322
+id = 420
+indexes = [322]
 areas = [
   {
     x = [ 3220, 3220, 3264, 3264 ],
@@ -1696,56 +2580,265 @@ areas = [
   }
 ]
 
-[corporal_punishment]
-index = 323
-areas = [ { region = 12619 } ]
+[storeroom_shuffle]
+id = 421
+indexes = [495]
+areas = [ { region = 8022 } ]
+
+[the_terrorbirds]
+id = 422
+indexes = [551]
+
+[the_terrorbirds_tussle]
+id = 423
+indexes = [552]
+
+[incomitatus] # mind_melding
+id = 424
+indexes = [553]
 
 [the_chosen]
-index = 324
+id = 425
+indexes = [324]
 areas = [ { region = 9805 } ]
 
+[waste_defaced]
+id = 426
+indexes = [497]
+areas = [ { region = 8001, level = 1 }, { region = 8002, level = 1 } ]
+
+[bolries_diary]
+id = 427
+indexes = [502]
+
+[altar_ego]
+id = 428
+indexes = [501]
+areas = [ { region = 13131 } ]
+
+[roots_and_flutes]
+id = 429
+indexes = [157]
+
+[clarences_funeral]
+id = 430
+indexes = [550]
+
+[wild_roots]
+id = 431
+indexes = [531]
+
+[grimly_fiendish]
+id = 432
+indexes = [509]
+areas = [ { region = 6475 } ]
+
+[dusk_in_yubiusk]
+id = 433
+indexes = [508]
+areas = [ { region = 8770, level = 1 } ]
+
 [have_a_blast]
-index = 325
+id = 434
+indexes = [325]
 areas = [ { region = 7757 } ]
 
+[wilderness]
+id = 435
+indexes = [142]
+areas = [
+  { region = 11832 },
+  { region = 12346 },
+]
+
 [forgettable_melody]
-index = 326
+id = 436
+indexes = [326]
 areas = [ { region = 7501, level = 2 } ]
 
-[right_on_track]
-index = 327
-areas = [ { region = 7501, level = 1 } ]
+[zaniks_theme]
+id = 437
+indexes = [507]
+
+[drunken_dwarf]
+id = 438
+
+[catacombs_and_tombs]
+id = 439
+indexes = [506]
+areas = [ { region = 9794 } ]
+
+[temple_of_tribes]
+id = 440
+indexes = [505]
+areas = [ { region = 11074 } ]
+
+[tournament]
+id = 441
+indexes = [514]
+areas = [
+  { region = 12367 },
+  { region = 12623 },
+  { region = 12880 },
+  { region = 13135 },
+]
+
+[clan_wars]
+id = 442
+indexes = [515]
+areas = [
+  { region = 13115 },
+  { region = 13114 },
+  { region = 10839 },
+  { region = 10838 },
+  { region = 11606 },
+  { region = 11608 },
+  { region = 11356 },
+  { region = 11612 },
+]
+
+[bounty_hunter_level_2]
+id = 443
+indexes = [518]
+
+[bounty_hunter_level_1]
+id = 444
+indexes = [517]
+
+[bounty_hunter_level_3]
+id = 445
+indexes = [519]
+
+[hunters_bounty] # bounty_hunter
+id = 446
+indexes = [554]
 
 [over_to_nardah]
-index = 328
+id = 447
+indexes = [328]
 areas = [ { region = 13613 } ]
 
 [the_monsters_below]
-index = 329
+id = 448
+indexes = [329]
 areas = [ { region = 9886 } ]
 
+[wild_isle]
+id = 449
+indexes = [166]
+areas = [ { region = 12603 } ]
+
+[venomous]
+id = 450
+indexes = [479]
+areas = [
+  {
+    x = [ 3216, 3225, 3229, 3236, 3259, 3259, 3254, 3250, 3245, 3235, 3234, 3230, 3224, 3216 ],
+    y = [ 3942, 3942, 3937, 3937, 3950, 3956, 3954, 3953, 3949, 3949, 3950, 3950, 3947, 3946 ]
+  }
+]
+
+[tune_from_the_dune]
+id = 451
+indexes = [510]
+areas = [ { region = 13611 } ]
+
+[copris_lunaris]
+id = 452
+indexes = [512]
+areas = [ { region = 13712, level = 1 }, { region = 13456, level = 1 } ]
+
+[jungle_hunt]
+id = 453
+indexes = [384]
+areas = [
+  {
+    x = [ 2473, 2473, 2452, 2452, 2432, 2432, 2624, 2624, 2496, 2496 ],
+    y = [ 2816, 2862, 2862, 2880, 2880, 2944, 2944, 2880, 2880, 2816 ]
+  },
+  { region = 10129 }
+]
+
+[home_sweet_home]
+id = 454
+indexes = [385]
+areas = [ { region = 7257 } ]
+
+[scarabaeoidea]
+id = 455
+indexes = [383]
+areas = [
+  {
+    x = [ 3363, 3373 ],
+    y = [ 9260, 9267 ],
+    level = 1
+  }
+]
+
+[animal_apogee]
+id = 456
+indexes = [504]
+areas = [ { x = [ 3436, 3448 ], y = [ 9744, 9753 ], level = 1 } ]
+
+[scape_summon]
+id = 457
+indexes = [602]
+
+[the_giant_wolpertinger]
+id = 458
+indexes = [549]
+
+[the_route_of_all_evil]
+id = 459
+indexes = [585]
+areas = [ { region = 12629 }, { region = 13142 } ]
+
+[joy_of_the_hunt]
+id = 460
+indexes = [386]
+areas = [ { region = 9015 } ]
+
 [the_desolate_isle]
-index = 330
+id = 461
+indexes = [330]
 areas = [ { region = 10042 } ]
 
-[spirits_of_the_elid]
-index = 331
+[spirits_of_elid]
+id = 462
+indexes = [331]
 areas = [ { region = 13461 } ]
 
+[fire_and_brimstone]
+id = 463
+indexes = [334]
+areas = [ { region = 9552 } ]
+
 [the_genie]
-index = 332
+id = 464
+indexes = [332]
 areas = [ { region = 13457 } ]
 
 [desert_heat]
-index = 333
+id = 465
+indexes = [333]
 areas = [ { region = 13614 } ]
 
-[fire_and_brimstone]
-index = 334
-areas = [ { region = 9552 } ]
+[ground_scape]
+id = 466
+indexes = [151]
+
+[the_route_of_the_problem]
+id = 467
+indexes = [586]
+areas = [ { region = 12630 }, { region = 12885 } ]
+
+[shaping_up]
+id = 468
+indexes = [155]
 
 [in_the_pits]
-index = 335
+id = 469
+indexes = [335]
 areas = [
   {
     x = [ 2432, 2432, 2434, 2436, 2437, 2439, 2447, 2448, 2449, 2450, 2452, 2453, 2455, 2457, 2458, 2459, 2460, 2461, 2465, 2465, 2472, 2473, 2474, 2475, 2476, 2478, 2487, 2489, 2493, 2494, 2494, 2495, 2495, 2494, 2494, 2492, 2492, 2493, 2493, 2494, 2494, 2493, 2493, 2492, 2492 ],
@@ -1753,32 +2846,47 @@ areas = [
   }
 ]
 
-[frogland]
-index = 336
-areas = [ { region = 9802 } ]
-
 [strange_place]
-index = 337
+id = 470
+indexes = [337]
 areas = [ { region = 7494 } ]
 
 [brew_hoo_hoo]
-index = 338
+id = 471
+indexes = [338]
 areas = [ { region = 14747 } ]
 
+[spa_bizarre]
+id = 472
+indexes = [511]
+
 [tzhaar]
-index = 339
+id = 473
+indexes = [339]
 areas = [ { region = 9551 } ]
 
+[bish_bash_bosh]
+id = 474
+indexes = [305]
+areas = [ { region = 10284 } ]
+
 [wild_side]
-index = 340
+id = 475
+indexes = [340]
 areas = [ { region = 12092 } ]
 
 [dead_can_dance]
-index = 341
+id = 476
+indexes = [341]
 areas = [ { region = 12601 } ]
 
+[hot_n_bothered]
+id = 477
+indexes = [396]
+
 [the_cellar_dwellers]
-index = 342
+id = 478
+indexes = [342]
 areas = [
   {
     x = [ 2560, 2584, 2584, 2624, 2624, 2560, 2560, 2496, 2496, 2560 ],
@@ -1788,39 +2896,109 @@ areas = [
 ]
 
 [jungle_troubles]
-index = 343
+id = 479
+indexes = [343]
 areas = [ { region = 11568 } ]
 
+[mined_out]
+id = 480
+indexes = [546]
+
 [catch_me_if_you_can]
-index = 344
+id = 481
+indexes = [344]
 areas = [ { region = 10646 } ]
 
 [rat_a_tat_tat]
-index = 345
+id = 482
+indexes = [345]
 areas = [ { region = 11599 } ]
 
+[jungle_community]
+id = 483
+indexes = [556]
+
+[bobs_on_holiday]
+id = 484
+indexes = [542]
+
+[the_noble_rodent]
+id = 485
+indexes = [346]
+
+[song_486] # lumb draynor dupe?
+id = 486
+
+[charmin_farmin]
+id = 487
+indexes = [516]
+areas = [ { region = 6473 } ]
+
+[the_wrong_path]
+id = 488
+indexes = [587]
+areas = [ { region = 12374 } ]
+
 [bubble_and_squeak]
-index = 347
+id = 489
+indexes = [347]
 areas = [ { region = 7753 } ]
 
 [sarims_vermin]
-index = 348
+id = 490
+indexes = [348]
 areas = [ { region = 11926 } ]
 
 [rat_hunt]
-index = 349
+id = 491
+indexes = [349]
 areas = [ { region = 11343 } ]
 
+[exam_conditions]
+id = 492
+indexes = [156]
+
+[safety_in_numbers]
+id = 493
+indexes = [416]
+areas = [ { x = [ 3072, 3111 ], y = [ 4224, 4255 ] }]
+
+[incarceration]
+id = 494
+indexes = [158]
+areas = [ { region = 12610, level = 1 } ]
+
+[pay_for_train] # evil_kenniths_theme
+id = 495
+indexes = [557]
+
+[the_trade_parade]
+id = 496
+indexes = [555]
+areas = [ { region = 12598 } ]
+
 [aye_car_rum_ba]
-index = 351
+id = 497
+indexes = [351]
 areas = [ { region = 8527 } ]
 
 [blistering_barnacles]
-index = 352
+id = 498
+indexes = [352]
 areas = [ { region = 8528 } ]
 
+[creepy]
+id = 499
+indexes = [521]
+areas = [ { region = 10062 } ]
+
+[a_new_menace]
+id = 500
+indexes = [522]
+
 [distant_land]
-index = 353
+id = 501
+indexes = [353, 577]
 areas = [
   {
     x = [ 3520, 3520, 3456, 3456, 3584, 3584 ],
@@ -1832,20 +3010,49 @@ areas = [
   }
 ]
 
+[bittersweet_bunny]
+id = 502
+indexes = [595]
+areas = [ { region = 15259 } ]
+
+[waiting_for_the_hunt]
+id = 503
+indexes = [604]
+areas = [ { region = 6487 } ]
+
 [fangs_for_the_memory]
-index = 354
+id = 504
+indexes = [354]
 areas = [ { region = 11335 } ]
 
 [pharaohs_tomb]
-index = 355
+id = 505
+indexes = [355]
 areas = [ { region = 13356 } ]
 
 [land_down_under]
-index = 356
+id = 506
+indexes = [356]
 areas = [ { region = 10144 } ]
 
+[guthixs_hunter]
+id = 507
+indexes = [603]
+areas = [
+  { region = 6488 },
+  { region = 6489 },
+  { region = 6745 },
+  { region = 6745 },
+  { region = 6744 },
+]
+
+[meddling_kids]
+id = 508
+indexes = [357]
+
 [corridors_of_power]
-index = 358
+id = 509
+indexes = [358]
 areas = [
   {
     x = [ 2560, 2560, 2608, 2608, 2624, 2624 ],
@@ -1854,7 +3061,8 @@ areas = [
 ]
 
 [slither_and_thither]
-index = 359
+id = 510
+indexes = [359]
 areas = [
   {
     x = [ 2608, 2608, 2624, 2624 ],
@@ -1863,36 +3071,77 @@ areas = [
 ]
 
 [in_the_clink]
-index = 360
+id = 511
+indexes = [360]
 areas = [ { region = 8261 } ]
 
+[bloodbath]
+id = 512
+indexes = [584]
+areas = [ { region = 9804, level = 1 } ]
+
+[conspiracy_part_1]
+id = 513
+indexes = [600]
+
+[the_columbarium]
+id = 514
+indexes = [588]
+areas = [ { region = 13723 } ]
+
 [mudskipper_melody]
-index = 361
+id = 515
+indexes = [361]
 areas = [ { region = 11824 } ]
 
+[conspiracy_part_2]
+id = 516
+indexes = [601]
+
 [subterranea]
-index = 362
+id = 517
+indexes = [362]
 areas = [ { region = 10142 }, { region = 6552 } ]
 
-[dagannoth_dawn]
-index = 365
-areas = [ { region = 7236 }, { region = 7748 } ]
-
-[xenophobe]
-index = 366
-areas = [ { region = 7492 }, { region = 11588 } ]
-
-[victory_is_mine]
-index = 368
+[the_terrible_tunnels]
+id = 518
+indexes = [589]
 areas = [
   {
-    x = [ 3182, 3182, 3181, 3181, 3180, 3178, 3178, 3177, 3176, 3174, 3172, 3171, 3167, 3166, 3163, 3161, 3160, 3158, 3158, 3160, 3161, 3163, 3166, 3167, 3171, 3172, 3174, 3176, 3177, 3178, 3178, 3180, 3181, 3181 ],
-    y = [ 9758, 9759, 9760, 9763, 9764, 9764, 9763, 9762, 9762, 9764, 9764, 9765, 9765, 9764, 9764, 9762, 9762, 9760, 9757, 9755, 9755, 9753, 9753, 9752, 9752, 9753, 9753, 9755, 9755, 9754, 9753, 9753, 9754, 9757 ]
+    x = [ 3614, 3614, 3631, 3631, 3603 ],
+    y = [ 9727, 9679, 9679, 9673, 9673 ]
   }
 ]
 
+[incantation]
+id = 519
+indexes = [363]
+
+[grip_of_the_talon]
+id = 520
+indexes = [364]
+
+[the_terrible_caverns]
+id = 521
+indexes = [590]
+areas = [ { region = 14488 } ]
+
+[icy_a_worried_gnome]
+id = 522
+indexes = [559]
+
+[icy_trouble_ahead]
+id = 523
+indexes = [558]
+
+[xenophobe]
+id = 524
+indexes = [366]
+areas = [ { region = 7492 }, { region = 11588 } ]
+
 [title_fight]
-index = 367
+id = 525
+indexes = [367]
 areas = [
   { region = 12952 },
   {
@@ -1901,8 +3150,29 @@ areas = [
   }
 ]
 
+[arma_gonna_get_you]
+id = 526
+indexes = [592]
+areas = [ { x = [ 2519, 2536 ], y = [ 5229, 5241 ] } ]
+
+[dillo_gence_is_key]
+id = 527
+indexes = [591]
+areas = [ { region = 8280 } ]
+
+[victory_is_mine]
+id = 528
+indexes = [368]
+areas = [
+  {
+    x = [ 3182, 3182, 3181, 3181, 3180, 3178, 3178, 3177, 3176, 3174, 3172, 3171, 3167, 3166, 3163, 3161, 3160, 3158, 3158, 3160, 3161, 3163, 3166, 3167, 3171, 3172, 3174, 3176, 3177, 3178, 3178, 3180, 3181, 3181 ],
+    y = [ 9758, 9759, 9760, 9763, 9764, 9764, 9763, 9762, 9762, 9764, 9764, 9765, 9765, 9764, 9764, 9762, 9762, 9760, 9757, 9755, 9755, 9753, 9753, 9752, 9752, 9753, 9753, 9755, 9755, 9754, 9753, 9753, 9754, 9757 ]
+  }
+]
+
 [woe_of_the_wyvern]
-index = 369
+id = 529
+indexes = [369, 572]
 areas = [
   {
     x = [ 3018, 3018, 3037, 3038, 3038, 3037, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3046, 3046, 3051, 3053, 3055, 3058, 3061, 3062, 3064, 3064, 3067, 3067, 3069, 3069, 3068, 3068, 3064, 3064, 3085, 3085 ],
@@ -1911,11 +3181,18 @@ areas = [
 ]
 
 [in_the_brine]
-index = 370
+id = 530
+indexes = [370]
 areas = [ { region = 14638 } ]
 
+[toktz_ket_ek_mack]
+id = 531
+indexes = [593]
+areas = [ { region = 9553 } ]
+
 [diangos_little_helpers]
-index = 371
+id = 532
+indexes = [371]
 areas = [
   {
     x = [ 1984, 2047 ],
@@ -1924,83 +3201,160 @@ areas = [
 ]
 
 [roll_the_bones]
-index = 372
+id = 533
+indexes = [372]
 areas = [{ region = 13462, level = 1 } ]
 
 [mind_over_matter]
-index = 373
+id = 534
+indexes = [373]
 areas = [ { region = 13463, level = 0 } ]
 
 [golden_touch]
-index = 374
+id = 535
+indexes = [374]
 areas = [ { region = 13462, level = 2 } ]
 
+[cool_for_ali_cats]
+id = 536
+indexes = [605]
+
+[dogs_of_war]
+id = 537
+indexes = [387]
+areas = [ { region = 7505 } ]
+
+[autumn_in_bridgelum]
+id = 538
+
+[under_the_sand]
+id = 539
+indexes = [597]
+areas = [ { region = 13968 } ]
+
+[desert_smoke]
+id = 540
+indexes = [598]
+areas = [ { region = 13458 }, { region = 13459 } ]
+
 [the_enchanter]
-index = 376
+id = 541
+indexes = [376]
 areas = [ { region = 13462, level = 0 } ]
 
+[lament]
+id = 542
+indexes = [381]
+areas = [ { region = 12433 } ]
+
+[slain_to_waste]
+id = 543
+indexes = [612]
+areas = [ { x = [ 3349, 3368 ], y = [ 9429, 9444 ] } ]
+
 [making_waves]
-index = 378
+id = 544
+indexes = [378]
 areas = [ { region = 9273 } ]
 
 [cabin_fever]
-index = 379
+id = 545
+indexes = [379]
 areas = [ { region = 7243 } ]
 
-[lament]
-index = 381
-areas = [ { region = 12433 } ]
+[last_stand]
+id = 546
+indexes = [380]
+
+[scape_santa]
+id = 547
+indexes = [153]
 
 [poles_apart]
-index = 382
+id = 548
+indexes = [382, 570, 581]
 areas = [ { region = 10811 }, { region = 10911 } ]
 
-[scarabaeoidea]
-index = 383
-areas = [
-  {
-    x = [ 3363, 3373 ],
-    y = [ 9260, 9267 ],
-    level = 1
-  }
-]
+[jailbird]
+id = 549
+indexes = [594]
+areas = [ { region = 12078 } ]
 
-[jungle_hunt]
-index = 384
-areas = [
-  {
-    x = [ 2473, 2473, 2452, 2452, 2432, 2432, 2624, 2624, 2496, 2496 ],
-    y = [ 2816, 2862, 2862, 2880, 2880, 2944, 2944, 2880, 2880, 2816 ]
-  },
-  { region = 10129 }
-]
+[something_fishy]
+id = 550
+indexes = [596]
+areas = [ { region = 15259 } ]
 
-[home_sweet_home]
-index = 385
-areas = [ { region = 7257 } ]
+[a_pirates_life_for_me]
+id = 551
+indexes = [599]
+areas = [ { region = 12078 } ]
 
-[joy_of_the_hunt]
-index = 386
-areas = [ { region = 9015 } ]
+[the_mentor]
+id = 552
+indexes = [611]
+areas = [ { region = 10062 } ]
 
-[dogs_of_war]
-index = 387
-areas = [ { region = 7505 } ]
+[shining_spirit]
+id = 553
+indexes = [615]
+areas = [ { region = 11331 } ]
+
+[troubled_spirit]
+id = 554
+indexes = [616]
+areas = [ { region = 11330 } ]
+
+[ardougne_ago]
+id = 555
+indexes = [613]
+
+[sarahs_lullaby]
+id = 556
+indexes = [614]
+
+[historic_memories]
+id = 557
+indexes = [619]
 
 [food_for_thought]
-index = 388
+id = 558
+indexes = [388]
 areas = [ { region = 8017 } ]
 
 [malady]
-index = 389
+id = 559
+indexes = [389]
 areas = [ { region = 8530 } ]
 
 [dance_of_death]
-index = 390
+id = 560
+indexes = [390]
 areas = [ { region = 9297 } ]
 
+[second_vision]
+id = 561
+indexes = [606]
+areas = [ { region = 6741, level = 2 } ]
+
+[circus]
+id = 562
+indexes = [621]
+areas = [ { region = 14167 } ]
+
+[the_vacant_abyss]
+id = 563
+indexes = [618]
+areas = [ { region = 10820 } ]
+
+[bane_of_summer]
+id = 564
+indexes = [617]
+areas = [ { region = 11587, level = 2 } ]
+
 [wrath_and_ruin]
-index = 391
+id = 565
+indexes = [391]
 areas = [
   {
     x = [ 2944, 2944, 3040, 3040, 3008, 3008 ],
@@ -2013,28 +3367,64 @@ areas = [
   }
 ]
 
+[zombie_invasion]
+id = 566
+indexes = [608]
+
+[dream_theatre]
+id = 567
+indexes = [610]
+
 [storm_brew]
-index = 392
+id = 568
+indexes = [392]
 areas = [ { region = 10577 } ]
 
+[undead_army]
+id = 569
+indexes = [607]
+areas = [
+  { region = 11324 },
+  { region = 12956 },
+  { region = 13212 },
+]
+
+[the_ruins_of_camdozaal]
+id = 570
+indexes = [609]
+areas = [ { region = 12186 } ]
+
+[the_art_of_hocus_pocus]
+id = 571
+indexes = [624]
+
+[magic_and_mystery]
+id = 572
+indexes = [625]
+areas = [ { region = 12614 } ]
+
 [the_mad_mole]
-index = 393
+id = 573
+indexes = [393, 568]
 areas = [ { region = 6992 } ]
 
-[davy_jones_locker]
-index = 394
-areas = [ { region = 11924 } ]
+[the_fairy_dragon]
+id = 574
+indexes = [532]
 
 [chickened_out]
-index = 395
+id = 575
+indexes = [395]
 areas = [ { region = 6212 }, { region = 9796 } ]
 
-[too_many_cooks]
-index = 398
-areas = [ { region = 11930 } ]
+[davy_jones_locker]
+id = 576
+indexes = [394]
+areas = [ { region = 11924 } ]
 
 [mastermindless]
-index = 397
+id = 577
+indexes = [397]
 areas = [
   {
     x = [ 2560, 2623 ],
@@ -2042,24 +3432,85 @@ areas = [
   }
 ]
 
-[chef_surprise]
-index = 399
+[stealing_creation]
+id = 578
+indexes = [620]
+areas = [ { region = 7769 } ]
+
+[dangerous_logic]
+id = 579
+indexes = [622]
+areas = [ { region = 8004 } ]
+
+[the_sound_of_guthix_the_stone]
+id = 580
+indexes = [627]
+
+[the_evil_within]
+id = 581
+indexes = [632]
+areas = [ { x = [ 2954, 2957 ], y = [ 3189, 3822 ], level = 1 } ]
+
+[too_many_cooks]
+id = 582
+indexes = [398]
+areas = [ { region = 11930 } ]
+
+[chef_surprize]
+id = 583
+indexes = [399]
 areas = [ { region = 7507, level = 2 } ]
 
+[temple_desecrated]
+id = 584
+indexes = [628]
+
+[black_of_knight]
+id = 585
+indexes = [623]
+areas = [ { region = 12187 } ]
+
+[everlasting_fire]
+id = 586
+indexes = [417]
+areas = [ { region = 13373 } ]
+
 [null_and_void]
-index = 400
+id = 587
+indexes = [400]
 areas = [ { region = 10537 } ]
 
 [pest_control]
-index = 401
+id = 588
+indexes = [401, 579]
 areas = [ { region = 10536 }, { region = 6486 } ]
 
+[the_sound_of_guthix]
+id = 589
+indexes = [626]
+areas = [ { region = 10075 } ]
+
+[the_kin] # dragonkin_theme_while_guthix_sleeps
+id = 590
+indexes = [633]
+
 [tomb_raider]
-index = 402
+id = 591
+indexes = [402]
 areas = [ { region = 7749 } ]
 
+[winter_funfare]
+id = 592
+indexes = [636]
+areas = [ { region = 8282 } ]
+
+[the_dance_of_the_snow_queen]
+id = 593
+indexes = [634]
+
 [no_way_out]
-index = 403
+id = 594
+indexes = [403]
 areas = [
   {
     x = [ 3008, 3008, 3040, 3040 ],
@@ -2075,8 +3526,41 @@ areas = [
   }
 ]
 
+[cavernous_mythology]
+id = 595
+indexes = [635]
+areas = [ { region = 8025 } ]
+
+[the_phoenix]
+id = 596
+indexes = [630]
+areas = [ { x = [ 3522, 3550 ], y = [ 5186, 5214 ] } ]
+
+[the_waiting_game]
+id = 597
+indexes = [653]
+areas = [ { region = 7473 } ]
+
+[soul_wars]
+id = 598
+indexes = [652]
+areas = [
+  { region = 7218 },
+  { region = 7474 },
+  { region = 7730 },
+  { region = 14164 },
+  { region = 14420 },
+  { region = 14676 },
+]
+
+[snack_attack]
+id = 599
+indexes = [650]
+areas = [ { x = [ 1906, 1917 ], y = [ 5122, 5133 ] } ]
+
 [method_of_madness]
-index = 404
+id = 600
+indexes = [404]
 areas = [
   {
     x = [ 3040, 3040, 3072, 3072 ],
@@ -2088,8 +3572,13 @@ areas = [
   }
 ]
 
+[trees_arent_your_friends]
+id = 601
+indexes = [655]
+
 [fear_and_loathing]
-index = 405
+id = 602
+indexes = [405]
 areas = [
   {
     x = [ 3040, 3040, 3072, 3072 ],
@@ -2102,51 +3591,95 @@ areas = [
 ]
 
 [funny_bunnies]
-index = 406
+id = 603
+indexes = [406]
 areas = [ { x = [ 2432, 2559 ], y = [ 5248, 5311 ] } ]
 
 [assault_and_battery]
-index = 407
+id = 604
+indexes = [407]
 areas = [ { region = 7509 } ]
 
+[demise_of_the_dorgeshuun]
+id = 605
+indexes = [659]
+
 [the_depths]
-index = 408
+id = 606
+indexes = [408]
 areas = [ { region = 12944 } ]
 
+[song_607] # static/thunder storm
+id = 607
+indexes = [667]
+
+[but_we_can_fight]
+id = 608
+indexes = [694]
+areas = [ { region = 9795 } ]
+
+[godslayer]
+id = 609
+indexes = [693]
+
 [distillery_hilarity]
-index = 409
+id = 610
+indexes = [409]
 areas = [ { region = 15151 } ]
 
 [trouble_brewing]
-index = 410
+id = 611
+indexes = [410]
 areas = [ { region = 15150 } ]
 
 [head_to_head]
-index = 411
+id = 612
+indexes = [411]
 areas = [ { region = 7504 } ]
 
+[face_off]
+id = 613
+indexes = [666]
+
 [pinball_wizard]
-index = 412
+id = 614
+indexes = [412]
 areas = [ { x = [ 1952, 1952, 1984, 1984 ], y = [ 5024, 5056, 5056, 5024 ] } ]
 
+[beetle_juice]
+id = 615
+indexes = [413]
+
 [back_to_life]
-index = 414
+id = 616
+indexes = [414]
 areas = [ { region = 13099 } ]
 
-[labyrinth]
-index = 415
-areas = [ { region = 13200 } ]
+[the_chosen_commander]
+id = 617
+indexes = [660]
+areas = [ { x = [ 2316, 2353 ], y = [ 4232, 4251 ] } ]
 
-[safety_in_numbers]
-index = 416
-areas = [ { x = [ 3072, 3111 ], y = [ 4224, 4255 ] }]
+[the_throne_of_bandos]
+id = 618
+indexes = [656]
+areas = [ { x = [ 2316, 2353 ], y = [ 4265, 4281 ] } ]
 
-[everlasting_fire]
-index = 417
-areas = [ { region = 13373 } ]
+[spy_games]
+id = 619
+
+[where_eagles_lair]
+id = 620
+indexes = [448]
+areas = [ { region = 7756 }, { region = 8013 } ]
+
+[homescape]
+id = 621
+indexes = [350]
 
 [waking_dream]
-index = 418
+id = 622
+indexes = [418]
 areas = [ { region = 7247, level = 2 },
   {
     x = [ 1744, 1744, 1776, 1776 ],
@@ -2156,19 +3689,22 @@ areas = [ { region = 7247, level = 2 },
 ]
 
 [dreamstate]
-index = 419
+id = 623
+indexes = [419]
 areas = [ { region = 7247 } ]
 
+[dont_panic_zanik]
+id = 624
+indexes = [658]
+
 [the_lunar_isle]
-index = 420
+id = 625
+indexes = [420]
 areas = [ { region = 8252 } ]
 
-[isle_of_everywhere]
-index = 421
-areas = [ { region = 8508 } ]
-
 [way_of_the_enchanter]
-index = 422
+id = 626
+indexes = [422]
 areas = [
   {
     x = [ 2304, 2336, 2336, 2368, 2368, 2304 ],
@@ -2177,21 +3713,41 @@ areas = [
   }
 ]
 
-[warriors_guild]
-index = 423
-areas = [
-  {
-    x = [ 2832, 2832, 2816, 2816, 2825, 2838, 2838, 2839, 2840, 2841, 2842, 2845, 2846, 2847, 2848, 2849, 2849, 2860, 2860, 2865, 2866, 2867, 2868, 2871, 2872, 2873, 2874, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2874, 2873, 2872, 2871, 2868, 2867, 2866, 2865 ],
-    y = [ 3556, 3545, 3545, 3529, 3538, 3538, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3534, 3534, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3539, 3540, 3541, 3542, 3544, 3545, 3548, 3549, 3551, 3552, 3553, 3554, 3556, 3556, 3557, 3557, 3556, 3556, 3557, 3557, 3556 ]
-  }
-]
+[isle_of_everywhere]
+id = 627
+indexes = [421]
+areas = [ { region = 8508 } ]
+
+[yeti_to_remember] # glorious_recallation_3
+id = 628
+indexes = [642]
+
+[glorious_recallation] # glorious_recallation_2
+id = 629
+indexes = [641]
+
+[the_galleon]
+id = 630
+indexes = [428]
+areas = [ { region = 8763 } ]
 
 [lifes_a_beach]
-index = 424
+id = 631
+indexes = [424]
 areas = [ { region = 14894 } ]
 
+[little_cave_of_horrors]
+id = 632
+indexes = [426]
+areas = [
+  { region = 14994 },
+  { region = 14995 },
+  { region = 15251 },
+]
+
 [on_the_wing]
-index = 425
+id = 633
+indexes = [425]
 areas = [
   {
     x = [ 2368, 2368, 2432, 2432 ],
@@ -2200,47 +3756,56 @@ areas = [
   { region = 12102 }
 ]
 
-[little_cave_of_horrors]
-index = 426
+[warriors_guild]
+id = 634
+indexes = [423]
 areas = [
-  { region = 14994 },
-  { region = 14995 },
-  { region = 15251 },
+  {
+    x = [ 2832, 2832, 2816, 2816, 2825, 2838, 2838, 2839, 2840, 2841, 2842, 2845, 2846, 2847, 2848, 2849, 2849, 2860, 2860, 2865, 2866, 2867, 2868, 2871, 2872, 2873, 2874, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2874, 2873, 2872, 2871, 2868, 2867, 2866, 2865 ],
+    y = [ 3556, 3545, 3545, 3529, 3538, 3538, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3534, 3534, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3539, 3540, 3541, 3542, 3544, 3545, 3548, 3549, 3551, 3552, 3553, 3554, 3556, 3556, 3557, 3557, 3556, 3556, 3557, 3557, 3556 ]
+  }
 ]
 
-[the_mollusc_menace]
-index = 427
-areas = [ { region = 10803 } ]
+[the_adventurers_re_united]
+id = 635
+indexes = [643]
 
-[the_galleon]
-index = 428
-areas = [ { region = 8763 } ]
+[nials_widow]
+id = 636
+indexes = [646]
+
+[memorable_escape] # glorious_recallation_1
+id = 637
+indexes = [640]
 
 [ham_fisted]
-index = 429
+id = 638
+indexes = [429]
 areas = [ { region = 10321 } ]
 
-[lament_of_meiyerditch]
-index = 430
-areas = [
-  {
-    x = [ 3606, 3617, 3617, 3648, 3648, 3584, 3584, 3591, 3591, 3606 ],
-    y = [ 3312, 3312, 3330, 3330, 3264, 3264, 3328, 3328, 3311, 3311 ]
-  },
-  { region = 14486 },
-  {
-    x = [ 3616, 3648, 3648, 3616 ],
-    y = [ 9728, 9728, 9681, 9681 ]
-  },
-  { region = 9544, level = 2 }
-]
+[frost_fight]
+id = 639
+indexes = [639]
+areas = [ { x = [ 3397, 3417 ], y = [ 4359, 4378 ] } ]
 
 [sigmunds_showdown]
-index = 431
+id = 640
+indexes = [431]
 areas = [ { region = 8015 } ]
 
+[lair_of_kang_admi]
+id = 641
+indexes = [638]
+areas = [ { x = [ 3409, 3409, 3448, 3448, 3422 ], y = [ 4383, 4409, 4409, 4373, 4373 ] } ]
+
+[lazy_wabbit]
+id = 642
+indexes = [695]
+areas = [ { region = 9810 } ]
+
 [the_last_shanty]
-index = 432
+id = 643
+indexes = [432]
 areas = [
   {
     x = [ 3648, 3648, 3584, 3584, 3648, 3648, 3643, 3638, 3638, 3643 ],
@@ -2248,8 +3813,18 @@ areas = [
   }
 ]
 
+[hare_brained_machines]
+id = 644
+indexes = [696]
+
+[the_muspahs_tomb]
+id = 645
+indexes = [647]
+areas = [ { region = 14422 } ]
+
 [night_of_the_vampyre]
-index = 433
+id = 646
+indexes = [433]
 areas = [
   {
     x = [ 3606, 3591, 3591, 3520, 3520, 3584, 3584, 3561, 3561, 3584, 3584, 3594, 3594, 3606 ],
@@ -2257,679 +3832,97 @@ areas = [
   }
 ]
 
-[we_are_the_fairies]
-index = 434
-areas = [ { region = 8267 } ]
-
-[dimension_x]
-index = 435
-areas = [ { region = 12115 } ]
-
-["alls_fairy_in_love_&_war"]
-index = 436
-areas = [ { region = 9285 } ]
-
-[major_miner]
-index = 437
-areas = [ { region = 9631 } ]
-
-[norse_code]
-index = 439
-areas = [ { region = 9531 } ]
-
-[volcanic_vikings]
-index = 440
-areas = [ { region = 9275 } ]
-
-[island_of_the_trolls]
-index = 441
-areas = [ { region = 9276 } ]
-
-[pirates_of_penance]
-index = 442
-areas = [ { region = 7508 } ]
-
-[brimstails_scales]
-index = 443
-areas = [ { region = 9625 } ]
-
-[my_arms_journey]
-index = 444
-areas = [ { region = 7500 } ]
-
-[slug_a_bug_ball]
-index = 445
-areas = [ { region = 9295 } ]
-
-[prime_time]
-index = 446
-areas = [ { region = 7760 } ]
-
-[rising_damp]
-index = 447
-areas = [ { region = 10910 } ]
-
-[where_eagles_lair]
-index = 448
-areas = [ { region = 7756 }, { region = 8013 } ]
-
-[ogre_the_top]
-index = 449
-areas = [ { region = 9632, level = 1 } ]
-
-[work_work_work]
-index = 450
-areas = [ { x = [ 2640, 2640, 2664, 2664 ], y = [ 3208, 3232, 3232, 3208 ] } ]
-
-[magic_magic_magic]
-index = 451
-areas = [ { x = [ 2640, 2640, 2664, 2664 ], y = [ 3208, 3232, 3232, 3208 ], level = 1 } ]
-
-[mutant_medley]
-index = 452
-areas = [ { region = 12100 } ]
-
-[dorgeshuun_city]
-index = 453
-areas = [ { region = 10834 } ]
-
-[dorgeshuun_deep]
-index = 454
-areas = [ { region = 10833 } ]
-
-[high_spirits]
-index = 457
-areas = [ { region = 6726 } ]
-
-[looking_back]
-index = 458
-areas = [
-  {
-    x = [ 3253, 3253, 3268, 3268 ],
-    y = [ 3442, 3456, 3456, 3442 ]
-  },
-  { region = 6989 }
-]
-
-[jungle_bells]
-index = 461
-areas = [ { region = 12627 } ]
-
-[garden_of_summer]
-index = 462
-areas = [
-  {
-    x = [ 2905, 2905, 2927, 2927 ],
-    y = [ 5481, 5497, 5497, 5481 ]
-  }
-]
-
-[garden_of_spring]
-index = 463
-areas = [
-  {
-    x = [ 2921, 2921, 2937, 2937 ],
-    y = [ 5457, 5479, 5479, 5457 ]
-  }
-]
-
-[garden_of_winter]
-index = 464
-areas = [
-  {
-    x = [ 2887, 2887, 2903, 2903 ],
-    y = [ 5465, 5487, 5487, 5465 ]
-  }
-]
-
-[garden_of_autumn]
-index = 465
-areas = [
-  {
-    x = [ 2897, 2897, 2919, 2919 ],
-    y = [ 5447, 5463, 5463, 5447 ]
-  }
-]
-
-[have_an_ice_day]
-index = 466
-areas = [ { region = 10558 } ]
-
-[zombiism]
-index = 467
-areas = [ { region = 15148 }, { region = 15248 } ]
-
-[creature_cruelty]
-index = 468
-areas = [
-  {
-    x = [ 2640, 2640, 2664, 2664 ],
-    y = [ 3208, 3232, 3232, 3208 ],
-    level = 2
-  }
-]
-
-[alternative_root]
-index = 469
-areas = [ { region = 12625 }, { region = 13141 } ]
-
-[espionage]
-index = 470
-areas = [ { region = 10658 } ]
-
-[undead_dungeon]
-index = 471
-areas = [ { region = 12615 } ]
-
-[slice_of_station]
-index = 472
-areas = [ { region = 9814 } ]
-
-[barb_wire]
-index = 473
-areas = [ { region = 6220 }, { region = 6994 } ]
-
-[impetuous]
-index = 474
-areas = [ { region = 10307 } ]
-
-[easter_jig]
-index = 475
-areas = [ { region = 9810 } ]
-
-[ham_attack]
-index = 476
-areas = [ { region = 9812 } ]
-
-[slice_of_silent_movie]
-index = 477
-areas = [
-  {
-    x = [ 2528, 2528, 2560, 2560 ],
-    y = [ 5504, 5568, 5568, 5504 ]
-  }
-]
-
-[ham_and_seek]
-index = 478
-areas = [ { region = 9558 } ]
-
-[venomous]
-index = 479
-areas = [
-  {
-    x = [ 3216, 3225, 3229, 3236, 3259, 3259, 3254, 3250, 3245, 3235, 3234, 3230, 3224, 3216 ],
-    y = [ 3942, 3942, 3937, 3937, 3950, 3956, 3954, 3953, 3949, 3949, 3950, 3950, 3947, 3946 ]
-  }
-]
-
-[mouse_trap]
-index = 480
-areas = [ { region = 9046 } ]
-
-[fe_fi_fo_fum]
-index = 481
-areas = [ { region = 8534, level = 3 } ]
-
-[schools_out]
-index = 482
-areas = [ { region = 7502 } ]
-
-[inadequacy]
-index = 483
-areas = [ { region = 7248, level = 2 } ]
-
-[illusive]
-index = 484
-areas = [ { region = 7248, level = 2 } ]
-
-[everlasting]
-index = 485
-areas = [ { region = 7248, level = 2 } ]
-
-[untouchable]
-index = 486
-areas = [ { region = 7248, level = 2 } ]
-
-[down_and_out]
-index = 487
-areas = [
-  {
-    x = [ 2336, 2336, 2368, 2368 ],
-    y = [ 10352, 10368, 10368, 10352 ],
-    level = 2
-  }
-]
-
-[the_maze]
-index = 489
-areas = [
-  {
-    x = [ 2923, 2927, 2927, 2928, 2930, 2932, 2937, 2937, 2938, 2940, 2941, 2941, 2923, 2923, 2921, 2921, 2923 ],
-    y = [ 3240, 3240, 3239, 3238, 3238, 3240, 3240, 3238, 3237, 3237, 3238, 3258, 3258, 3257, 3255, 3253, 3251 ]
-  },
-  { region = 11670 },
-  { region = 11408 },
-]
-
-[zamorak_zoo]
-index = 490
-areas = [
-  {
-    x = [ 2880, 2944, 2944, 2912, 2912, 2904, 2904, 2880 ],
-    y = [ 5376, 5376, 5312, 5312, 5336, 5336, 5344, 5344 ],
-    level = 2
-  }
-]
-
-[strength_of_saradomin]
-index = 491
-areas = [
-  {
-    x = [ 2912, 2944, 2944, 2880, 2880, 2904, 2904, 2912 ],
-    y = [ 5312, 5312, 5248, 5248, 5280, 5280, 5288, 5288 ],
-    level = 1
-  }
-]
-
-[bandos_battalion]
-index = 492
-areas = [
-  {
-    x = [ 2816, 2816, 2880, 2880, 2856, 2856, 2848, 2848 ],
-    y = [ 5312, 5376, 5376, 5344, 5344, 5336, 5336, 5312 ],
-    level = 2
-  }
-]
-
-[armadyl_alliance]
-index = 493
-areas = [
-  {
-    x = [ 2816, 2848, 2848, 2856, 2856, 2880, 2880, 2816 ],
-    y = [ 5312, 5312, 5288, 5288, 5280, 5280, 5248, 5248 ],
-    level = 2
-  }
-]
-
-[armageddon]
-index = 494
-areas = [
-  {
-    x = [ 2848, 2856, 2856, 2904, 2904, 2912, 2911, 2904, 2904, 2856, 2856, 2848 ],
-    y = [ 5336, 5336, 5344, 5344, 5336, 5336, 5288, 5288, 5280, 5280, 5288, 5288 ],
-    level = 2
-  }
-]
-
-[storeroom_shuffle]
-index = 495
-areas = [ { region = 8022 } ]
-
-[the_longramble_scramble]
-index = 496
-areas = [ { x = [ 2330, 2349 ], y = [ 3086, 3106 ] }]
-
-[waste_defaced]
-index = 497
-areas = [ { region = 8001, level = 1 }, { region = 8002, level = 1 } ]
-
-[knightmare]
-index = 498
-areas = [
-  {
-    x = [ 3008, 3008, 3017, 3023, 3024, 3024, 3032, 3032 ],
-    y = [ 3520, 3512, 3512, 3506, 3506, 3504, 3504, 3520 ]
-  },
-  { region = 7490 }
-]
-
-[lore_and_order]
-index = 499
-areas = [ { region = 7234 } ]
-
-[terrorbird_tussle]
-index = 500
-areas = [{ x = [ 2019, 2032 ], y = [ 4248, 4268 ], level = 1 }]
-
-[altar_ego]
-index = 501
-areas = [ { region = 13131 } ]
-
-[animal_apogee]
-index = 504
-areas = [ { x = [ 3436, 3448 ], y = [ 9744, 9753 ], level = 1 } ]
-
-[temple_of_tribes]
-index = 505
-areas = [ { region = 11074 } ]
-
-[catacombs_and_tombs]
-index = 506
-areas = [ { region = 9794 } ]
-
-[dusk_in_yubiusk]
-index = 508
-areas = [ { region = 8770, level = 1 } ]
-
-[grimly_fiendish]
-index = 509
-areas = [ { region = 6475 } ]
-
-[tune_from_the_dune]
-index = 510
-areas = [ { region = 13611 } ]
-
-[copris_lunaris]
-index = 512
-areas = [ { region = 13712, level = 1 }, { region = 13456, level = 1 } ]
-
-[narnodes_theme]
-index = 513
-areas = [ { region = 9882 } ]
-
-[tournament]
-index = 514
-areas = [
-  { region = 12367 },
-  { region = 12623 },
-  { region = 12880 },
-  { region = 13135 },
-]
-
-[clan_wars]
-index = 515
-areas = [
-  { region = 13115 },
-  { region = 13114 },
-  { region = 10839 },
-  { region = 10838 },
-  { region = 11606 },
-  { region = 11608 },
-  { region = 11356 },
-  { region = 11612 },
-]
-
-[charmin_farmin]
-index = 516
-areas = [ { region = 6473 } ]
-
-[the_adventurer]
-index = 520
-areas = [ { x = [ 3202, 3207 ], y = [ 3239, 3244 ] } ]
-
-[creepy]
-index = 521
-areas = [ { region = 10062 } ]
-
-[the_trade_parade]
-index = 555
-areas = [ { region = 12598 } ]
-
-[the_mentor]
-index = 611
-areas = [ { region = 10062 } ]
-
-[bloodbath]
-index = 584
-areas = [ { region = 9804, level = 1 } ]
-
-[the_route_of_all_evil]
-index = 585
-areas = [ { region = 12629 }, { region = 13142 } ]
-
-[the_route_of_the_problem]
-index = 586
-areas = [ { region = 12630 }, { region = 12885 } ]
-
-[the_wrong_path]
-index = 587
-areas = [ { region = 12374 } ]
-
-[the_columbarium]
-index = 588
-areas = [ { region = 13723 } ]
-
-[the_terrible_tunnels]
-index = 589
-areas = [
-  {
-    x = [ 3614, 3614, 3631, 3631, 3603 ],
-    y = [ 9727, 9679, 9679, 9673, 9673 ]
-  }
-]
-
-[the_terrible_caverns]
-index = 590
-areas = [ { region = 14488 } ]
-
-[dillo-gence_is_key]
-index = 591
-areas = [ { region = 8280 } ]
-
-[arma_gonna_get_you]
-index = 592
-areas = [ { x = [ 2519, 2536 ], y = [ 5229, 5241 ] } ]
-
-[toktz-ket-ek-mack]
-index = 593
-areas = [ { region = 9553 } ]
-
-[jailbird]
-index = 594
-areas = [ { region = 12078 } ]
-
-[bittersweet_bunny]
-index = 595
-areas = [ { region = 15259 } ]
-
-[something_fishy]
-index = 596
-areas = [ { region = 15259 } ]
-
-[under_the_sand]
-index = 597
-areas = [ { region = 13968 } ]
-
-[desert_smoke]
-index = 598
-areas = [ { region = 13458 }, { region = 13459 } ]
-
-[a_pirates_life_for_me]
-index = 599
-areas = [ { region = 12078 } ]
-
-[guthixs_hunter]
-index = 603
-areas = [
-  { region = 6488 },
-  { region = 6489 },
-  { region = 6745 },
-  { region = 6745 },
-  { region = 6744 },
-]
-
-[waiting_for_the_hunt]
-index = 604
-areas = [ { region = 6487 } ]
-
-[second_vision]
-index = 606
-areas = [ { region = 6741, level = 2 } ]
-
-[undead_army]
-index = 607
-areas = [
-  { region = 11324 },
-  { region = 12956 },
-  { region = 13212 },
-]
-
-[the_ruins_of_camdozaal]
-index = 609
-areas = [ { region = 12186 } ]
-
-[slain_to_waste]
-index = 612
-areas = [ { x = [ 3349, 3368 ], y = [ 9429, 9444 ] } ]
-
-[shining_spirit]
-index = 615
-areas = [ { region = 11331 } ]
-
-[troubled_spirit]
-index = 616
-areas = [ { region = 11330 } ]
-
-[bane_of_summer]
-index = 617
-areas = [ { region = 11587, level = 2 } ]
-
-[the_vacant_abyss]
-index = 618
-areas = [ { region = 10820 } ]
-
-[stealing_creation]
-index = 620
-areas = [ { region = 7769 } ]
-
-[circus]
-index = 621
-areas = [ { region = 14167 } ]
-
-[dangerous_logic]
-index = 622
-areas = [ { region = 8004 } ]
-
-[black_of_knight]
-index = 623
-areas = [ { region = 12187 } ]
-
-[magic_and_mystery]
-index = 625
-areas = [ { region = 12614 } ]
-
-[the_sound_of_guthix]
-index = 626
-areas = [ { region = 10075 } ]
-
-[command_centre]
-index = 629
-areas = [ { region = 9516 } ]
-
-[the_phoenix]
-index = 630
-areas = [ { x = [ 3522, 3550 ], y = [ 5186, 5214 ] } ]
-
-[the_evil_within]
-index = 632
-areas = [ { x = [ 2954, 2957 ], y = [ 3189, 3822 ], level = 1 } ]
-
-[cavernous_mythology]
-index = 635
-areas = [ { region = 8025 } ]
-
-[winter_funfare]
-index = 636
-areas = [ { region = 8282 } ]
-
-[waiting_for_battle]
-index = 637
-areas = [ { region = 16988 } ]
-
-[lair_of_kang_admi]
-index = 638
-areas = [ { x = [ 3409, 3409, 3448, 3448, 3422 ], y = [ 4383, 4409, 4409, 4373, 4373 ] } ]
-
-[frost_fight]
-index = 639
-areas = [ { x = [ 3397, 3417 ], y = [ 4359, 4378 ] } ]
+[rest_for_the_weary]
+id = 647
+indexes = [654]
+areas = [ { region = 11325 } ]
 
 [the_plundered_tomb]
-index = 644
+id = 648
+indexes = [644]
 areas = [ { region = 5965 } ]
 
 [ancestral_wisdom]
-index = 645
+id = 649
+indexes = [645]
 areas = [ { region = 5963 } ]
 
-[the_muspahs_tomb]
-index = 647
-areas = [ { region = 14422 } ]
-
-[lamistards_labyrinth]
-index = 648
-areas = [ { region = 11168 } ]
-
-[the_heist]
-index = 649
-areas = [ { region = 12956 }, { region = 13212 } ]
-
-[snack_attack]
-index = 650
-areas = [ { x = [ 1906, 1917 ], y = [ 5122, 5133 ] } ]
-
-[soul_wars]
-index = 652
-areas = [
-  { region = 7218 },
-  { region = 7474 },
-  { region = 7730 },
-  { region = 14164 },
-  { region = 14420 },
-  { region = 14676 },
-]
-
-[the_waiting_game]
-index = 653
-areas = [ { region = 7473 } ]
-
-[rest_for_the_weary]
-index = 654
-areas = [ { region = 11325 } ]
-
-[the_throne_of_bandos]
-index = 656
-areas = [ { x = [ 2316, 2353 ], y = [ 4265, 4281 ] } ]
-
-[penguin_possible]
-index = 657
-areas = [ { x = [ 2663, 2680 ], y = [ 10376, 10390 ] } ]
-
-[the_chosen_commander]
-index = 660
-areas = [ { x = [ 2316, 2353 ], y = [ 4232, 4251 ] } ]
-
-[the_pengmersible]
-index = 661
-areas = [ { region = 14170 } ]
-
-[desert_island_bear]
-index = 662
-areas = [ { region = 11304 } ]
-
 [ice_day_for_penguins]
-index = 665
+id = 650
+indexes = [665]
 areas = [ { region = 10814 } ]
 
-[zaros_stirs]
-index = 691
-areas = [ { region = 12633 } ]
+[the_pengmersible]
+id = 651
+indexes = [661]
+areas = [ { region = 14170 } ]
 
-[the_horn_of_chill]
-index = 692
-areas = [ { x = [ 2891, 2917 ], y = [ 10315, 10325 ], level = 1 } ]
+[penguin_possible]
+id = 652
+indexes = [657]
+areas = [ { x = [ 2663, 2680 ], y = [ 10376, 10390 ] } ]
 
-[but_we_can_fight]
-index = 694
-areas = [ { region = 9795 } ]
+[captains_orders]
+id = 653
+indexes = [664]
 
-[lazy_wabbit]
-index = 695
-areas = [ { region = 9810 } ]
+[polar_ride]
+id = 654
+indexes = [663]
+
+[desert_island_bear]
+id = 655
+indexes = [662]
+areas = [ { region = 11304 } ]
+
+[ghostly_pipes] # musician_pipes
+id = 656
+indexes = [698]
+
+[spirit_of_strings] # musician_spirit
+id = 657
+indexes = [705]
+
+[norse_accord] # musician_norse_code
+id = 658
+indexes = [697]
+
+[ocarina_of_the_forest] # elf_musician_song
+id = 659
+indexes = [704]
+
+[arabian_2_oboe] # musician_dual_flute
+id = 660
+indexes = [699]
+
+[harmoney_of_lute] # musician_harmoney
+id = 661
+indexes = [702]
+
+[rellekkas_lute] # musician_rellekka
+id = 662
+indexes = [703]
+
+[arabian_oboe]
+id = 663
+indexes = [706]
+
+[drunken_harmony] # musician_harmony_drunk
+id = 664
+indexes = [701]
+
+[drummers_rest] # musician_drums
+id = 665
+indexes = [700]
+
+[kharidian_nights]
+id = 666
+indexes = [709]
+areas = [ { region = 13871 } ]
 
 [eruption]
-index = 707
+id = 667
+indexes = [707]
 areas = [
   { region = 12345 },
   { region = 12346 },
@@ -2937,83 +3930,91 @@ areas = [
   { region = 12602 },
 ]
 
-[im_counting_on_you]
-index = 708
-areas = [ { x = [ 3076, 3085 ], y = [ 9769, 9788 ] } ]
+[mobilising_armies]
+id = 668
+indexes = [631]
 
-[kharidian_nights]
-index = 709
-areas = [ { region = 13871 } ]
+[command_centre]
+id = 669
+indexes = [629]
+areas = [ { region = 9516 } ]
+
+[waiting_for_battle]
+id = 670
+indexes = [637]
+areas = [ { region = 16988 } ]
+
+[heavy_security] # mah3_heist_cutscene
+id = 671
+indexes = [651]
+
+[the_heist]
+id = 672
+indexes = [649]
+areas = [ { region = 12956 }, { region = 13212 } ]
+
+[lamistards_labyrinth]
+id = 673
+indexes = [648]
+areas = [ { region = 11168 } ]
+
+[exhibit_a]
+id = 674
+indexes = [711]
+areas = [ { x = [ 3379, 3397 ], y = [ 3508, 3526 ] } ]
+
+[veldaban] # commander_veldaban
+id = 675
+indexes = [713]
+
+[the_chaos] # foacd_transformation_scene
+id = 676
+indexes = [714]
+
+[fight_of_the_dwarves]
+id = 677
+indexes = [712]
+areas = [ { region = 5961 } ]
 
 [living_rock]
-index = 710
+id = 678
+indexes = [710]
 areas = [
-  { region = 14415 }, 
+  { region = 14415 },
   { region = 14416 },
   { region = 14671 },
   { region = 14672 },
 ]
 
-[exhibit_a]
-index = 711
-areas = [ { x = [ 3379, 3397 ], y = [ 3508, 3526 ] } ]
+[scape_theme]
+id = 679
+indexes = [717]
 
-[fight_of_the_dwarves]
-index = 712
-areas = [ { region = 5961 } ]
-
-[final_destination]
-index = 715
-areas = [ { region = 6482 } ]
-
-[honkytonky_newbie_melody]
-index = 718
-areas = [
-  {
-    x = [ 3216, 3221, 3222, 3224, 3225, 3232, 3232, 3233, 3233, 3232, 3232, 3218, 3218, 3216 ],
-    y = [ 3393, 3393, 3394, 3394, 3393, 3393, 3395, 3395, 3397, 3397, 3402, 3402, 3396, 3396 ]
-  }
-]
-
-[honkytonky_harmony]
-index = 719
-areas = [
-  {
-    x = [ 2955, 2995, 2953, 2953, 2960, 2960, 2961, 2961, 2960, 2960, 2957, 2957 ],
-    y = [ 3378, 3374, 3374, 3366, 3366, 3369, 3369, 3373, 3373, 3375, 3375, 3378 ]
-  }
-]
+[elven_seed]
+id = 680
+indexes = [716]
 
 [trick_or_treat]
-index = 720
+id = 681
+indexes = [720]
 areas = [ { region = 15184 } ]
 
+[poison_dreams]
+id = 682
+indexes = [722]
+areas = [ { region = 14930 } ]
+
 [itsy_bitsy]
-index = 721
+id = 683
+indexes = [721]
 areas = [
   { x = [ 1980, 1971 ], y = [ 5308, 5298 ] },
   { region = 15184 },
 ]
 
-[poison_dreams]
-index = 722
-areas = [ { region = 14930 } ]
-
-[honkytonky_medieval]
-index = 723
-areas = [
-  {
-    x = [ 3266, 3266, 3270, 3273, 3274 ],
-    y = [ 3388, 3394, 3394, 3391, 3391 ]
-  }
-]
-
-[jaws_of_the_dagannoth]
-index = 724
-areas = [ { region = 18012 } ]
-
 [the_duke]
-index = 725
+id = 684
+indexes = [725]
 areas = [
   {
     x = [ 3203, 3217 ],
@@ -3027,16 +4028,167 @@ areas = [
   }
 ]
 
+[khazards_frozen_fortress_interior_freeze]
+id = 685
+indexes = [689]
+
+[khazards_frozen_fortress_iv]
+id = 686
+indexes = [671]
+
+[khazards_frozen_fortress_interior_vi]
+id = 687
+indexes = [684]
+
+[khazards_frozen_fortress_interior_v]
+id = 688
+indexes = [683]
+
+[khazards_frozen_fortress_interior_viii]
+id = 689
+indexes = [686]
+
+[khazards_frozen_fortress_ii]
+id = 690
+indexes = [669]
+
+[khazards_frozen_fortress_vi]
+id = 691
+indexes = [673]
+
+[khazards_frozen_fortress_interior_iv]
+id = 692
+indexes = [682]
+
+[the_horn_of_chill]
+id = 693
+indexes = [692]
+areas = [ { x = [ 2891, 2917 ], y = [ 10315, 10325 ], level = 1 } ]
+
+[tomb_stones]
+id = 694
+indexes = [690]
+
+[khazards_frozen_fortress_interior_thaw]
+id = 695
+indexes = [688]
+
+[khazards_frozen_fortress_interior_vii]
+id = 696
+indexes = [685]
+
+[khazards_frozen_fortress_v]
+id = 697
+indexes = [672]
+
+[khazards_frozen_fortress_ix]
+id = 698
+indexes = [676]
+
+[zaros_stirs]
+id = 699
+indexes = [691, 971]
+areas = [ { region = 12633 } ]
+
+[khazards_frozen_fortress_interior_ii]
+id = 700
+indexes = [680]
+
+[song_701] # long version of khazards i
+id = 701
+
+[khazards_frozen_fortress_vii]
+id = 702
+indexes = [674]
+
+[khazards_frozen_fortress_x]
+id = 703
+indexes = [677]
+
+[khazards_frozen_fortress_viii]
+id = 704
+indexes = [675]
+
+[khazards_frozen_fortress_iii]
+id = 705
+indexes = [670]
+
+[khazards_frozen_fortress_interior_i]
+id = 706
+indexes = [679]
+
+[song_707] # dramatic, harp, long
+id = 707
+
+[khazards_frozen_fortress_interior_iii]
+id = 708
+indexes = [681]
+
+[khazards_frozen_fortress_i]
+id = 709
+indexes = [668]
+
+[final_destination]
+id = 710
+indexes = [715]
+areas = [ { region = 6482 } ]
+
+[miscellania_etceteria] # the_wedding
+id = 711
+indexes = [727]
+
+[a_fremennik_funeral] # the_pyre_ships
+id = 712
+indexes = [731]
+
 [the_fallen_hero]
-index = 726
+id = 713
+indexes = [726]
 areas = [ { region = 17500 } ]
 
+[jaws_of_the_dagannoth]
+id = 714
+indexes = [724]
+areas = [ { region = 18012 } ]
+
+[maiasaura]
+id = 715
+indexes = [730]
+areas = [ { region = 17499 } ]
+
+[honkytonky_newbie_melody]
+id = 716
+indexes = [718]
+areas = [
+  {
+    x = [ 3216, 3221, 3222, 3224, 3225, 3232, 3232, 3233, 3233, 3232, 3232, 3218, 3218, 3216 ],
+    y = [ 3393, 3393, 3394, 3394, 3393, 3393, 3395, 3395, 3397, 3397, 3402, 3402, 3396, 3396 ]
+  }
+]
+
+[im_counting_on_you]
+id = 717
+indexes = [708]
+areas = [ { x = [ 3076, 3085 ], y = [ 9769, 9788 ] } ]
+
+[honkytonky_harmony]
+id = 718
+indexes = [719]
+areas = [
+  {
+    x = [ 2955, 2995, 2953, 2953, 2960, 2960, 2961, 2961, 2960, 2960, 2957, 2957 ],
+    y = [ 3378, 3374, 3374, 3366, 3366, 3369, 3369, 3373, 3373, 3375, 3375, 3378 ]
+  }
+]
+
 [honkytonky_sea_shanty]
-index = 728
+id = 719
+indexes = [728]
 areas = [ { x = [ 3044, 3055 ], y = [ 3255, 3259 ] } ]
 
 [honkytonky_parade]
-index = 729
+id = 720
+indexes = [729]
 areas = [
   {
     x = [ 3275, 3275, 3272, 3272, 3286, 3286, 3288, 3288, 3286, 3286 ],
@@ -3044,16 +4196,46 @@ areas = [
   }
 ]
 
-[maiasaura]
-index = 730
-areas = [ { region = 17499 } ]
+[honkytonky_medieval]
+id = 721
+indexes = [723]
+areas = [
+  {
+    x = [ 3266, 3266, 3270, 3273, 3274 ],
+    y = [ 3388, 3394, 3394, 3391, 3391 ]
+  }
+]
 
-[root_canal]
-index = 733
-areas = [ { region = 6465 } ]
+[ghost_of_christmas_presents]
+id = 722
+indexes = [737]
+areas = [ { region = 10327 } ]
+
+[scourge_of_christmas_present] # scaring_scourge
+id = 723
+indexes = [738]
+
+[smorgasbord]
+id = 724
+indexes = [735]
+
+[silent_knight]
+id = 725
+indexes = [736]
+areas = [ { region = 10584 } ]
+
+[nomads_treachery]
+id = 726
+indexes = [732]
+
+[battle_of_souls]
+id = 727
+indexes = [739]
+areas = [ { region = 13403 } ]
 
 [desolate_ruins]
-index = 734
+id = 728
+indexes = [734]
 areas = [
   { region = 12891 },
   { region = 12892 },
@@ -3063,24 +4245,14 @@ areas = [
   { region = 13403 },
 ]
 
-[silent_knight]
-index = 736
-areas = [ { region = 10584 } ]
-
-[ghost_of_christmas_presents]
-index = 737
-areas = [ { region = 10327 } ]
-
-[battle_of_souls]
-index = 739
-areas = [ { region = 13403 } ]
-
 [these_stones]
-index = 740
+id = 729
+indexes = [740]
 areas = [ { region = 14411 } ]
 
 [a_familiar_feeling]
-index = 741
+id = 730
+indexes = [741]
 areas = [
   { region = 14678 },
   { region = 14679 },
@@ -3089,15 +4261,26 @@ areas = [
 ]
 
 [dead_and_buried]
-index = 742
+id = 731
+indexes = [742]
 areas = [ { region = 15957 }, { region = 15958 } ]
 
+[the_pact]
+id = 732
+indexes = [743]
+
+[the_zamorakian_blood] # the_pact_alternate
+id = 733
+indexes = [748]
+
 [freshwater]
-index = 744
+id = 734
+indexes = [744]
 areas = [ { x = [ 2560, 2623 ], y = [ 3533, 3583 ] } ]
 
 [saltwater]
-index = 745
+id = 735
+indexes = [745]
 areas = [
   {
     x = [ 2560, 2575 ],
@@ -3110,66 +4293,290 @@ areas = [
 ]
 
 [stillwater]
-index = 746
+id = 736
+indexes = [746]
 areas = [ { x = [ 2576, 2589 ], y = [ 3523, 3532 ] } ]
 
 [an_easter_united]
-index = 747
+id = 737
+indexes = [747]
 areas = [ { region = 9811 } ]
 
-[thieves_guild_i]
-index = 749
-areas = [ { region = 18524 } ]
+[lexicus_runewright]
+id = 738
+indexes = [859]
+areas = [ { x = [ 209, 222 ], y = [ 5265, 5278 ] } ]
 
-[thieves_guild_ii]
-index = 750
-areas = [ { region = 19036 } ]
+[adorno_iv]
+id = 739
+indexes = [851]
 
-[thieves_guild_iii]
-index = 751
-areas = [ { region = 18522 } ]
+[adorned_xiii]
+id = 740
+indexes = [844]
 
-[thieves_guild_iv]
-index = 752
-areas = [ { region = 19034 } ]
+[adorno_iii]
+id = 741
+indexes = [850]
 
-[body_talk]
-index = 753
-areas = [ { region = 16471 } ]
+[adorno_v]
+id = 742
+indexes = [852]
 
-[love_lost]
-index = 755
-areas = [ { region = 15193 } ]
+[stomp]
+id = 743
+indexes = [863]
+areas = [ { x = [ 242, 253 ], y = [ 5249, 5259 ] } ]
 
-[love_and_hate]
-index = 756
-areas = [ { region = 15448 } ]
+[adorned_iv]
+id = 744
+indexes = [835]
 
-[love_bites]
-index = 757
-areas = [ { x = [ 3800, 3807 ], y = [ 5720, 5727 ] } ]
+[adorned_ix]
+id = 745
+indexes = [840]
 
-[mindful]
-index = 761
-areas = [ { region = 17238, level = 1 } ]
+[rammernaut]
+id = 746
+indexes = [862]
+areas = [ { x = [ 209, 222 ], y = [ 5249, 5262 ] } ]
 
-[void_knights_theme]
-index = 762
-areas = [ { region = 17238 } ]
+[adorno_ix]
+id = 747
+indexes = [856]
 
-[lortnoc_tsep]
-index = 763
-areas = [
-  { region = 16982, level = 1 },
-  { region = 17494, level = 1 },
-]
+[adorno_i]
+id = 748
+indexes = [848]
 
-[judge_and_jury]
-index = 765
-areas = [ { region = 7234 } ]
+[adorned_vii]
+id = 749
+indexes = [838]
+
+[adorned_xi]
+id = 750
+indexes = [842]
+
+[adorned_viii]
+id = 751
+indexes = [839]
+
+[adorned_ii]
+id = 752
+indexes = [833]
+
+[adorno_vi]
+id = 753
+indexes = [853]
+
+[adorned_x]
+id = 754
+indexes = [841]
+
+[adorned_xiv]
+id = 755
+indexes = [845]
+
+[adorno_x]
+id = 756
+indexes = [857]
+
+[adorno_viii]
+id = 757
+indexes = [855]
+
+[adorned_iii]
+id = 758
+indexes = [834]
+
+[night_gazer_khighorahk]
+id = 759
+indexes = [860]
+areas = [ { x = [ 193, 206 ], y = [ 5249, 5262 ] } ]
+
+[adorned_v]
+id = 760
+indexes = [836]
+
+[adorno_vii]
+id = 761
+indexes = [854]
+
+[adorno_xv]
+id = 762
+indexes = [846]
+
+[adorned_xii]
+id = 763
+indexes = [843]
+
+[adorned_vi]
+id = 764
+indexes = [837]
+
+[adorned_xvi]
+id = 765
+indexes = [847]
+
+[adorned_i]
+id = 766
+indexes = [832]
+
+[harlakk_the_riftsplitter]
+id = 767
+indexes = [858]
+areas = [ { x = [ 225, 238 ], y = [ 5249, 5262 ] } ]
+
+[sagittare]
+id = 768
+indexes = [861]
+areas = [ { x = [ 193, 206 ], y = [ 5265, 5278 ] } ]
+
+[adorno_ii]
+id = 769
+indexes = [849]
+
+[dungeon_defeated] # winterface
+id = 770
+indexes = [767]
+
+[desolo_vii]
+id = 771
+indexes = [822]
+
+[desolate_viii]
+id = 772
+indexes = [807]
+
+[desolate_xiii]
+id = 773
+indexes = [812]
+
+[desolate_xi]
+id = 774
+indexes = [810]
+
+[desolo_ix]
+id = 775
+indexes = [824]
+
+[desolate_i]
+id = 776
+indexes = [800]
+
+[desolate_vii]
+id = 777
+indexes = [806]
+
+[desolate_xiv]
+id = 778
+indexes = [813]
+
+[desolo_i]
+id = 779
+indexes = [816]
+
+[desolo_vi]
+id = 780
+indexes = [821]
+
+[desolo_ii]
+id = 781
+indexes = [817]
+
+[divine_skinweaver]
+id = 782
+indexes = [831]
+areas = [ { x = [ 241, 254 ], y = [ 5121, 5134 ] } ]
+
+[shadow_forger_ihlakhizan]
+id = 783
+indexes = [829]
+areas = [ { x = [ 225, 238 ], y = [ 5121, 5134 ] } ]
+
+[unholy_cursebearer]
+id = 784
+indexes = [830]
+areas = [ { x = [ 212, 219 ], y = [ 5121, 5130 ] } ]
+
+[bulwark_beast]
+id = 785
+indexes = [827]
+areas = [ { x = [ 193, 206 ], y = [ 5137, 5150 ] } ]
+
+[ballak_the_pummeller]
+id = 786
+indexes = [826]
+areas = [ { x = [ 209, 222 ], y = [ 5137, 5150 ] } ]
+
+[hobgoblin_geomancer]
+id = 787
+indexes = [828]
+areas = [ { x = [ 193, 206 ], y = [ 5121, 5134 ] } ]
+
+[desolate_xv]
+id = 788
+indexes = [814]
+
+[desolate_iv]
+id = 789
+indexes = [803]
+
+[desolo_viii]
+id = 790
+indexes = [823]
+
+[desolate_x]
+id = 791
+indexes = [809]
+
+[desolate_xvi]
+id = 792
+indexes = [815]
+
+[desolate_iii]
+id = 793
+indexes = [802]
+
+[desolo_v]
+id = 794
+indexes = [820]
+
+[desolate_ix]
+id = 795
+indexes = [808]
+
+[desolate_vi]
+id = 796
+indexes = [805]
+
+[desolate_ii]
+id = 797
+indexes = [801]
+
+[desolate_xii]
+id = 798
+indexes = [811]
+
+[desolo_iii]
+id = 799
+indexes = [818]
+
+[desolate_v]
+id = 800
+indexes = [804]
+
+[desolo_x]
+id = 801
+indexes = [825]
+
+[desolo_iv]
+id = 802
+indexes = [819]
 
 [born_to_do_this]
-index = 766
+id = 803
+indexes = [766]
 areas = [
   { region = 13626 },
   { region = 13625 },
@@ -3177,203 +4584,686 @@ areas = [
   { region = 13881 },
 ]
 
-[astea_frostweb]
-index = 794
-areas = [ { x = [ 241, 254 ], y = [ 4993, 5006 ] } ]
+[glacial_vi]
+id = 804
+indexes = [773]
 
-[tokash_the_bloodchiller]
-index = 795
-areas = [ { x = [ 209, 222 ], y = [ 5009, 5022 ] } ]
+[glacial_ii]
+id = 805
+indexes = [769]
+
+[glacial_iii]
+id = 806
+indexes = [770]
+
+[glacial_viii]
+id = 807
+indexes = [775]
+
+[glacialis_vi]
+id = 808
+indexes = [789]
+
+[glacial_vii]
+id = 809
+indexes = [774]
+
+[glacialis_viii]
+id = 810
+indexes = [791]
+
+[glacialis_iv]
+id = 811
+indexes = [787]
+
+[glacial_xiv]
+id = 812
+indexes = [781]
+
+[glacial_xiii]
+id = 813
+indexes = [780]
+
+[song_814]
+id = 814
 
 [icy_bones]
-index = 796
+id = 815
+indexes = [796]
 areas = [ { x = [ 193, 206 ], y = [ 5009, 5022 ] } ]
 
-[luminescent_icefiend]
-index = 797
-areas = [ { x = [ 193, 206 ], y = [ 4993, 5006 ] } ]
+[astea_frostweb]
+id = 816
+indexes = [794]
+areas = [ { x = [ 241, 254 ], y = [ 4993, 5006 ] } ]
 
 [gluttonous_behemoth]
-index = 798
+id = 817
+indexes = [798]
 areas = [ { x = [ 225, 238 ], y = [ 4993, 5006 ] } ]
 
-[plane-freezer_lakhrahnaz]
-index = 799
+[luminescent_icefiend]
+id = 818
+indexes = [797]
+areas = [ { x = [ 193, 206 ], y = [ 4993, 5006 ] } ]
+
+[plane_freezer_lakhrahnaz]
+id = 819
+indexes = [799]
 areas = [ { x = [ 209, 222 ], y = [ 4993, 5006 ] } ]
 
-[ballak_the_pummeller]
-index = 826
-areas = [ { x = [ 209, 222 ], y = [ 5137, 5150 ] } ]
+[tokash_the_bloodchiller]
+id = 820
+indexes = [795]
+areas = [ { x = [ 209, 222 ], y = [ 5009, 5022 ] } ]
 
-[bulwark_beast]
-index = 827
-areas = [ { x = [ 193, 206 ], y = [ 5137, 5150 ] } ]
+[luminescent_icefiend_duplicate]
+id = 821
 
-[hobgoblin_geomancer]
-index = 828
-areas = [ { x = [ 193, 206 ], y = [ 5121, 5134 ] } ]
+[glacial_x]
+id = 822
+indexes = [777]
 
-[shadow-forger_ihlakhizan]
-index = 829
-areas = [ { x = [ 225, 238 ], y = [ 5121, 5134 ] } ]
+[glacial_ix]
+id = 823
+indexes = [776]
 
-[unholy_cursebearer]
-index = 830
-areas = [ { x = [ 212, 219 ], y = [ 5121, 5130 ] } ]
+[glacialis_v]
+id = 824
+indexes = [788]
 
-[shadow-divine_skinweaver]
-index = 831
-areas = [ { x = [ 241, 254 ], y = [ 5121, 5134 ] } ]
+[glacial_xvi]
+id = 825
+indexes = [783]
 
-[harlakk_the_riftsplitter]
-index = 858
-areas = [ { x = [ 225, 238 ], y = [ 5249, 5262 ] } ]
+[glacial_xii]
+id = 826
+indexes = [779]
 
-[lexicus_runewright]
-index = 859
-areas = [ { x = [ 209, 222 ], y = [ 5265, 5278 ] } ]
+[glacialis_iii]
+id = 827
+indexes = [786]
 
-[night-gazer_khighorahk]
-index = 860
-areas = [ { x = [ 193, 206 ], y = [ 5249, 5262 ] } ]
+[glacial_xv]
+id = 828
+indexes = [782]
 
-[sagittare]
-index = 861
-areas = [ { x = [ 193, 206 ], y = [ 5265, 5278 ] } ]
+[glacial_v]
+id = 829
+indexes = [772]
 
-[rammernaut]
-index = 862
-areas = [ { x = [ 209, 222 ], y = [ 5249, 5262 ] } ]
+[glacial_iv]
+id = 830
+indexes = [771]
 
-[stomp]
-index = 863
-areas = [ { x = [ 242, 253 ], y = [ 5249, 5259 ] } ]
+[glacialis_vii]
+id = 831
+indexes = [790]
 
-[necrolord]
-index = 906
-areas = [ { x = [ 241, 254 ], y = [ 5377, 5390 ] } ]
+[glacialis_i]
+id = 832
+indexes = [784]
 
-[gravecreeper]
-index = 907
-areas = [ { x = [ 226, 237 ], y = [ 5377, 5390 ] } ]
+[glacialis_ix]
+id = 833
+indexes = [792]
 
-[skeletal_trio]
-index = 908
-areas = [ { x = [ 193, 206 ], y = [ 5377, 5390 ] } ]
+[glacialis_ii]
+id = 834
+indexes = [785]
 
-[yklagor_the_thunderous]
-index = 909
-areas = [ { x = [ 209, 222 ], y = [ 5377, 5390 ] } ]
+[glacial_xi]
+id = 835
+indexes = [778]
 
-[runed_behemoth]
-index = 910
-areas = [ { x = [ 209, 222 ], y = [ 5393, 5406 ] } ]
+[glacial_i]
+id = 836
+indexes = [768]
 
-[flesh-spoiler_haasghenahk]
-index = 911
-areas = [ { x = [ 193, 206 ], y = [ 5393, 5406 ] } ]
+[glacialis_x]
+id = 837
+indexes = [793]
 
-[blink]
-index = 922
-areas = [ { x = [ 195, 204 ], y = [ 5505, 5517 ] } ]
+[thieves_guild_iii]
+id = 838
+indexes = [751]
+areas = [ { region = 18522 } ]
 
-[kalger_the_warmonger]
-index = 923
-areas = [ { x = [ 193, 206 ], y = [ 5521, 5534 ] } ]
+[thieves_guild_ii]
+id = 839
+indexes = [750]
+areas = [ { region = 19036 } ]
 
-[hope_devourer]
-index = 924
-areas = [ { x = [ 241, 254 ], y = [ 5505, 5518 ] } ]
+[thieves_guild_iv]
+id = 840
+indexes = [752]
+areas = [ { region = 19034 } ]
 
-[warped_gulega]
-index = 925
-areas = [ { x = [ 209, 222 ], y = [ 5505, 5518 ] } ]
+[thieves_guild_v]
+id = 841
 
-[dreadnaught]
-index = 926
-areas = [ { x = [ 225, 238 ], y = [ 5505, 5518 ] } ]
+[thieves_guild_i]
+id = 842
+indexes = [749]
+areas = [ { region = 18524 } ]
 
-[world-gorger_shukarhazh]
-index = 927
-areas = [ { x = [ 209, 222 ], y = [ 5521, 5534 ] } ]
+[root_canal]
+id = 843
+indexes = [733]
+areas = [ { region = 6465 } ]
 
-[out_of_control]
-index = 928
-areas = [ { x = [ 4375, 4386 ], y = [ 5670, 5680 ] } ]
+[body_talk]
+id = 844
+indexes = [753]
+areas = [ { region = 16471 } ]
+
+[castle_warz]
+id = 845
+indexes = [759]
+
+[judge_and_jury]
+id = 846
+indexes = [765]
+areas = [ { region = 7234 } ]
+
+[mindful]
+id = 847
+indexes = [761]
+areas = [ { region = 17238, level = 1 } ]
+
+[void_knights_theme]
+id = 848
+indexes = [762]
+areas = [ { region = 17238 } ]
+
+[lortnoc_tsep]
+id = 849
+indexes = [763]
+areas = [
+  { region = 16982, level = 1 },
+  { region = 17494, level = 1 },
+]
+
+[a_voided_memory] # matthias_is_murdered
+id = 850
+indexes = [760]
+
+[love_lost]
+id = 851
+indexes = [755]
+areas = [ { region = 15193 } ]
+
+[love_story] # love song piano
+id = 852
+indexes = [754]
+
+[love_wins] # reconciliation
+id = 853
+indexes = [758]
+
+[love_bites]
+id = 854
+indexes = [757]
+areas = [ { x = [ 3800, 3807 ], y = [ 5720, 5727 ] } ]
+
+[love_and_hate]
+id = 855
+indexes = [756]
+areas = [ { region = 15448 } ]
 
 [chain_reaction]
-index = 929
+id = 856
+indexes = [929]
 areas = [ { region = 17751 } ]
 
+[all_for_the_pest]
+id = 857
+indexes = [930]
+
+[out_of_control]
+id = 858
+indexes = [928]
+areas = [ { x = [ 4375, 4386 ], y = [ 5670, 5680 ] } ]
+
+[destiny]
+id = 859
+indexes = [931]
+
+[occulo_iv]
+id = 860
+indexes = [899]
+
+[occlude_xii]
+id = 861
+indexes = [875]
+
+[occlude_xi]
+id = 862
+indexes = [874]
+
+[yklagor_the_thunderous]
+id = 863
+indexes = [909]
+areas = [ { x = [ 209, 222 ], y = [ 5377, 5390 ] } ]
+
+[occulo_x]
+id = 864
+indexes = [905]
+
+[skeletal_trio]
+id = 865
+indexes = [908]
+areas = [ { x = [ 193, 206 ], y = [ 5377, 5390 ] } ]
+
+[occlude_vii]
+id = 866
+indexes = [870]
+
+[occlude_xiv]
+id = 867
+indexes = [877]
+
+[occlude_xv]
+id = 868
+indexes = [878]
+
+[occlude_xiii]
+id = 869
+indexes = [876]
+
+[occulo_ix]
+id = 870
+indexes = [904]
+
+[occlude_ix]
+id = 871
+indexes = [872]
+
+[occulo_vi]
+id = 872
+indexes = [901]
+
+[occulo_i]
+id = 873
+indexes = [896]
+
+[occlude_x]
+id = 874
+indexes = [873]
+
+[occlude_iv]
+id = 875
+indexes = [867]
+
+[necrolord]
+id = 876
+indexes = [906]
+areas = [ { x = [ 241, 254 ], y = [ 5377, 5390 ] } ]
+
+[runed_behemoth]
+id = 877
+indexes = [910]
+areas = [ { x = [ 209, 222 ], y = [ 5393, 5406 ] } ]
+
+[occlude_v]
+id = 878
+indexes = [868]
+
+[occlude_vi]
+id = 879
+indexes = [869]
+
+[occulo_iii]
+id = 880
+indexes = [898]
+
+[occlude_viii]
+id = 881
+indexes = [871]
+
+[occulo_ii]
+id = 882
+indexes = [897]
+
+[occlude_xvi]
+id = 883
+indexes = [879]
+
+[occlude_ii]
+id = 884
+indexes = [865]
+
+[occulo_vii]
+id = 885
+indexes = [902]
+
+[occulo_v]
+id = 886
+indexes = [900]
+
+[occlude_iii]
+id = 887
+indexes = [866]
+
+[occlude_i]
+id = 888
+indexes = [864]
+
+[occulo_viii]
+id = 889
+indexes = [903]
+
+[yklagor_the_subdued] # https://www.youtube.com/watch?v=wEAKu61ldhI
+id = 890
+indexes = [935]
+areas = [ { x = [ 209, 222 ], y = [ 5377, 5390 ] } ]
+
+[gravecreeper]
+id = 891
+indexes = [907]
+areas = [ { x = [ 226, 237 ], y = [ 5377, 5390 ] } ]
+
+[flesh_spoiler_haasghenahk]
+id = 892
+indexes = [911]
+areas = [ { x = [ 193, 206 ], y = [ 5393, 5406 ] } ]
+
 [unavoidable_conflict]
-index = 932
+id = 893
+indexes = [932]
 areas = [ { region = 10637 } ]
 
+[conflict_avoidant] # conquest_tutorial
+id = 894
+indexes = [934]
+
 [right_of_conquest]
-index = 933
+id = 895
+indexes = [933]
 areas = [
   { x = [ 2640, 2651 ], y = [ 9034, 9045 ] },
   { x = [ 2640, 2652 ], y = [ 9054, 9067 ] },
 ]
 
+[gunnarsgrunn]
+id = 896
+indexes = [936]
+
+[beauty_of_a_poet]
+id = 897
+indexes = [938]
+
+[gunnars_ground]
+id = 898
+indexes = [937]
+
+[mystery_revealed]
+id = 899
+indexes = [947]
+
+[in_security]
+id = 900
+indexes = [942]
+areas = [ { x = [ 4493, 4450 ], y = [ 5647, 5681 ] } ]
+
+[stare_into_the_void]
+id = 901
+indexes = [944]
+
+[precarious_void]
+id = 902
+indexes = [946]
+areas = [ { x = [ 4511, 4529 ], y = [ 5644, 5658 ] } ]
+
+[black_zabeth]
+id = 903
+indexes = [941]
+areas = [ { region = 17237 } ]
+
+[the_void_stares_back]
+id = 904
+indexes = [945]
+areas = [ { region = 18007 } ]
+
+[give_it_your_pest_shot]
+id = 905
+indexes = [943]
+areas = [ { region = 18006 } ]
+
+[who_are_we_to_judge]
+id = 906
+indexes = [948]
+
 [halloween_party]
-index = 939
+id = 907
+indexes = [939]
 areas = [ { region = 17235 } ]
 
 [black_zabeth_live]
-index = 940
+id = 908
+indexes = [940]
 areas = [ { region = 17237 } ]
 
-[black_zabeth]
-index = 941
-areas = [ { region = 17237 } ]
+[twisted_xi]
+id = 909
+indexes = [890]
 
-[in_security]
-index = 942
-areas = [ { x = [ 4493, 4450 ], y = [ 5647, 5681 ] } ]
+[twisted_xvi]
+id = 910
+indexes = [895]
 
-[give_it_your_pest_shot]
-index = 943
-areas = [ { region = 18006 } ]
+[torqueo_iv]
+id = 911
+indexes = [915]
 
-[the_void_stares_back]
-index = 945
-areas = [ { region = 18007 } ]
+[twisted_x]
+id = 912
+indexes = [889]
 
-[precarious_void]
-index = 946
-areas = [ { x = [ 4511, 4529 ], y = [ 5644, 5658 ] } ]
+[dreadnaught]
+id = 913
+indexes = [926]
+areas = [ { x = [ 225, 238 ], y = [ 5505, 5518 ] } ]
+
+[torqueo_ii]
+id = 914
+indexes = [913]
+
+[twisted_vi]
+id = 915
+indexes = [885]
+
+[hope_devourer]
+id = 916
+indexes = [924]
+areas = [ { x = [ 241, 254 ], y = [ 5505, 5518 ] } ]
+
+[torqueo_iii]
+id = 917
+indexes = [914]
+
+[twisted_vii]
+id = 918
+indexes = [886]
+
+[twisted_xv]
+id = 919
+indexes = [894]
+
+[torqueo_viii]
+id = 920
+indexes = [919]
+
+[twisted_iv]
+id = 921
+indexes = [883]
+
+[warped_gulega]
+id = 922
+indexes = [925]
+areas = [ { x = [ 209, 222 ], y = [ 5505, 5518 ] } ]
+
+[song_923] # symbols
+id = 923
+indexes = [891]
+
+[kalger_the_warmonger]
+id = 924
+indexes = [923]
+areas = [ { x = [ 193, 206 ], y = [ 5521, 5534 ] } ]
+
+[torqueo_ix]
+id = 925
+indexes = [920]
+
+[twisted_xiv]
+id = 926
+indexes = [893]
+
+[torqueo_v]
+id = 927
+indexes = [916]
+
+[twisted_i]
+id = 928
+indexes = [880]
+
+[twisted_xiii]
+id = 929
+indexes = [892]
+
+[torqueo_i]
+id = 930
+indexes = [912]
+
+[twisted_viii]
+id = 931
+indexes = [887]
+
+[twisted_iii]
+id = 932
+indexes = [882]
+
+[twisted_v]
+id = 933
+indexes = [884]
+
+[twisted_ii]
+id = 934
+indexes = [881]
+
+[twisted_ix]
+id = 935
+indexes = [888]
+
+[torqueo_x]
+id = 936
+indexes = [921]
+
+[world_gorger_shukarhazh]
+id = 937
+indexes = [927]
+areas = [ { x = [ 209, 222 ], y = [ 5521, 5534 ] } ]
+
+[torqueo_vii]
+id = 938
+indexes = [918]
+
+[torqueo_vi]
+id = 939
+indexes = [917]
+
+[blink]
+id = 940
+indexes = [922]
+areas = [ { x = [ 195, 204 ], y = [ 5505, 5517 ] } ]
+
+[the_task_at_hand]
+id = 941
+indexes = [955]
+
+[monkey_demon_guardian] # wise_monkey_rescued
+id = 942
+indexes = [967]
+
+[monkey_see_monkey_do]
+id = 943
+indexes = [956]
+
+[simian_scuffle]
+id = 944
+indexes = [958]
+
+[monkey_thieve] # simian_scuffle_intro
+id = 945
+indexes = [959]
+
+[monkey_see_monkey_city] # monkey_see_monkey_do_(under_construction)
+id = 946
+indexes = [960]
+
+[monkey_see_monkey_do2]
+id = 947
+indexes = [957]
+
+[apmekens_pleasure] # the_restoration_of_apmeken
+id = 948
+indexes = [968]
+
+[song_949]
+id = 949
+indexes = [961]
+
+[monkey_see_monkey_do3]
+id = 950
+indexes = [962]
+
+[seasonal_sports]
+id = 951
+indexes = [954]
+areas = [ { region = 10841 } ]
+
+[salty_claws] # christmas_caverns_climax
+id = 952
+indexes = [952]
 
 [christmas_caverns]
-index = 953
+id = 953
+indexes = [953]
 areas = [
   { region = 11354 },
   { region = 11098 },
   { region = 11610 },
 ]
 
-[seasonal_sports]
-index = 954
-areas = [ { region = 10841 } ]
-
-[rocky_rescue]
-index = 963
-areas = [ { region = 8792 } ]
+[go_with_the_flow]
+id = 954
+indexes = [964]
 
 [the_records_chamber]
-index = 965
+id = 955
+indexes = [965]
 areas = [ { region = 7771 } ]
 
+[only_a_king]
+id = 956
+indexes = [970]
+
 [colonel_grimsson]
-index = 969
+id = 957
+indexes = [969]
 areas = [ { region = 6747 }, { region = 6235 } ]
 
+[rocky_rescue]
+id = 958
+indexes = [963]
+areas = [ { region = 8792 } ]
+
+[corporate_callousness]
+id = 959
+indexes = [966]
+
 [zaros_zeitgeist]
-index = 972
+id = 960
+indexes = [972]
 areas = [ { x = [ 2900, 2940 ], y = [ 5188, 5219 ] } ]
-
-[delrith]
-index = 195
-
-[wally_the_hero]
-index = 196

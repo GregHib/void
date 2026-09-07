@@ -18,21 +18,19 @@ import kotlin.random.nextInt
 
 object DungeonStartingItems {
 
-    fun spawn(dungeon: DungeonMap, complexity: Int) {
-        for (member in dungeon.members) {
-            if (dungeon.members.size > 1 && complexity > 2 && member == member.dungeonLeader) {
-                member.inventory.add("group_gatestone")
-            }
-            // Equip type of ring of kinship
-            val currentClass = member["kinship_class", "none"]
-            val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
-            member.equipment.transaction {
-                set(EquipSlot.Ring.index, Item(kinship))
-            }
-            giveBinds(member)
-            if (complexity == 1) {
-                allocateGear(member)
-            }
+    fun spawn(member: Player, dungeon: DungeonMap, complexity: Int) {
+        if (dungeon.members.size > 1 && complexity > 2 && member == member.dungeonLeader) {
+            member.inventory.add("group_gatestone")
+        }
+        // Equip type of ring of kinship
+        val currentClass = member["kinship_class", "none"]
+        val kinship = if (currentClass == "none") "ring_of_kinship" else "ring_of_kinship_$currentClass"
+        member.equipment.transaction {
+            set(EquipSlot.Ring.index, Item(kinship))
+        }
+        giveBinds(member)
+        if (complexity == 1) {
+            allocateGear(member)
         }
     }
 

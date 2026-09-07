@@ -53,7 +53,7 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
         if (!ItemDefinitions.contains(id)) {
             logger.warn { "Invalid floor item id: '$id' at $tile" }
         }
-        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == 0) null else owner)
+        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == IMMEDIATE) null else owner)
         display(item)
         return item
     }
