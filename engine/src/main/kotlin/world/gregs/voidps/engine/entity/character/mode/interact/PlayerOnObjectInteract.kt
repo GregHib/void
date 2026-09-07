@@ -22,7 +22,7 @@ data class PlayerOnObjectInteract(
     }
 
     override fun approach() {
-        invoke(Approachable.noDelays, Approachable.playerObject)
+        invoke(emptySet(), Approachable.playerObject)
     }
 
     private fun invoke(noDelays: Set<String>, map: Map<String, List<suspend Player.(PlayerOnObjectInteract) -> Unit>>) {

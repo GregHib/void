@@ -31,12 +31,9 @@ interface Approachable {
         }
     }
 
-    fun objectApproach(option: String, obj: String = "*", arrive: Boolean = true, handler: suspend Player.(PlayerOnObjectInteract) -> Unit) {
+    fun objectApproach(option: String, obj: String = "*", handler: suspend Player.(PlayerOnObjectInteract) -> Unit) {
         Script.checkLoading()
         Wildcards.find(obj, Wildcard.Object) { id ->
-            if (!arrive) {
-                noDelays.add("$option:$id")
-            }
             playerObject.getOrPut("$option:$id") { mutableListOf() }.add(handler)
         }
     }
@@ -146,7 +143,6 @@ interface Approachable {
     }
 
     companion object : AutoCloseable {
-        val noDelays = mutableSetOf<String>()
         val playerPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(PlayerOnPlayerInteract) -> Unit>>(2)
         val onPlayer = Object2ObjectOpenHashMap<String, MutableList<suspend Player.(ItemOnPlayerInteract) -> Unit>>(10)
 
@@ -170,7 +166,6 @@ interface Approachable {
         var npcMark: (Player.(NPC) -> Unit)? = null
 
         override fun close() {
-            noDelays.clear()
             playerPlayer.clear()
             onPlayer.clear()
             playerNpc.clear()
