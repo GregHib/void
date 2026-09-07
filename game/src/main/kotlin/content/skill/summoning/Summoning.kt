@@ -339,6 +339,11 @@ class Summoning : Script {
         }
 
         itemOption("Summon", "*_pouch") { option ->
+            val blocked: String? = get("no_summoning_message")
+            if (blocked != null) {
+                message(blocked)
+                return@itemOption
+            }
             val familiarLevel = EnumDefinitions.get("summoning_pouch_levels").int(option.item.def.id)
             val familiarId = EnumDefinitions.get("summoning_familiar_ids").int(option.item.def.id)
             val summoningXp = option.item.def["summon_experience", 0.0]
