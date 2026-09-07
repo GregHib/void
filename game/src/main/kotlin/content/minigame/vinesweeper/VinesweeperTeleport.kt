@@ -34,6 +34,7 @@ class VinesweeperTeleport : Script {
         set("vinesweeper_return_tile", tile.id)
         leprechaun.face(this)
         leprechaun.say("Avach nimporto!")
+        leprechaun.anim("leprechaun_teleport")
         leprechaun.gfx("curse_cast")
         val flight = leprechaun.shoot("curse", this)
         sound("curse_all")
