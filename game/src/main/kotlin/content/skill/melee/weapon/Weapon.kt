@@ -23,11 +23,14 @@ import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.distanceTo
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.network.login.protocol.visual.update.HitSplat
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.random
 import kotlin.random.nextInt
+
+fun Item.isBrokenWeapon(): Boolean = slot == EquipSlot.Weapon && id.endsWith("_broken")
 
 object Weapon {
     val crossbows = setOf(

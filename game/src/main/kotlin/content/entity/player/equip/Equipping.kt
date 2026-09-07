@@ -1,6 +1,7 @@
 package content.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
+import content.skill.melee.weapon.isBrokenWeapon
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -16,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasRequirements
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.isBrokenEquipment
 import world.gregs.voidps.engine.entity.item.slot
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.engine.inv.*
@@ -55,6 +57,15 @@ class Equipping : Script {
 
     fun equip(player: Player, it: ItemOption) {
         val (item, slot) = it
+        if (item.isBrokenEquipment()) {
+            val message = if (item.isBrokenWeapon()) {
+                "That weapon is broken and cannot be used."
+            } else {
+                "That armour is broken and cannot be worn."
+            }
+            player.message(message)
+            return
+        }
         if (!player.hasRequirements(item, true)) {
             return
         }

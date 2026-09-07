@@ -10,6 +10,8 @@ val ItemDefinition.slot: EquipSlot
 val Item.slot: EquipSlot
     get() = def.slot
 
+fun Item.isBrokenEquipment(): Boolean = slot != EquipSlot.None && id.endsWith("_broken")
+
 val ItemDefinition.type: EquipType
     get() = this["type", EquipType.None]
 
