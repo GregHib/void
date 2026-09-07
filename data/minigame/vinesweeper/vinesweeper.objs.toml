@@ -1,0 +1,70 @@
+[vinesweeper_hole]
+id = 29476
+examine = "A hole in the ground. Something might be planted here."
+
+[vinesweeper_hole_2]
+clone = "vinesweeper_hole"
+id = 29477
+
+[vinesweeper_hole_3]
+clone = "vinesweeper_hole"
+id = 29478
+
+[vinesweeper_number_0]
+id = 29447
+
+[vinesweeper_number_1]
+id = 29448
+
+[vinesweeper_number_2]
+id = 29449
+
+[vinesweeper_number_3]
+id = 29450
+
+[vinesweeper_number_4]
+id = 29451
+
+[vinesweeper_number_5]
+id = 29452
+
+[vinesweeper_number_6]
+id = 29453
+
+[vinesweeper_number_7]
+id = 29454
+
+[vinesweeper_number_8]
+id = 29455
+
+[vinesweeper_dead_plant]
+id = 29456
+examine = "Someone dug up a seed by mistake."
+
+[vinesweeper_flag]
+id = 29457
+examine = "Someone thinks there's a seed here."
+
+[vinesweeper_rabbit_hole]
+id = 29533
+examine = "A rabbit hole."
+
+[vinesweeper_portal]
+id = 29534
+examine = "Gnome sweet Gnome?"
+
+[vinesweeper_sign_farmers]
+id = 29461
+examine = "Instructions for Vinesweeper."
+
+[vinesweeper_sign_points]
+clone = "vinesweeper_sign_farmers"
+id = 29462
+
+[vinesweeper_sign_rabbits]
+clone = "vinesweeper_sign_farmers"
+id = 29463
+
+[vinesweeper_sign_digging]
+clone = "vinesweeper_sign_farmers"
+id = 29464

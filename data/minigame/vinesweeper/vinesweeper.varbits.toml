@@ -1,0 +1,4 @@
+[vinesweeper_points]
+id = 4449
+format = "int"
+persist = true

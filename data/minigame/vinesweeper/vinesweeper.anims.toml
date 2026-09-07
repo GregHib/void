@@ -1,0 +1,35 @@
+[vinesweeper_dig]
+id = 8709
+
+[vinesweeper_inspect]
+id = 8710
+
+[vinesweeper_plant_flag]
+id = 8711
+
+[vinesweeper_rabbit_eat_seed]
+id = 8718
+
+[vinesweeper_rabbit_eat_ogleroot]
+id = 8734
+
+[vinesweeper_farmer_clear]
+id = 8724
+
+[vinesweeper_farmer_dig_flag]
+id = 8725
+
+[vinesweeper_farmer_dig_seed]
+id = 8730
+
+[vinesweeper_farmer_hooray]
+id = 8731
+
+[vinesweeper_farmer_smack]
+id = 8732
+
+[leprechaun_teleport]
+id = 201
+
+[teclyn_teleport]
+id = 437
