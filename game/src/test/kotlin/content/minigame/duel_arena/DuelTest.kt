@@ -206,6 +206,7 @@ internal class DuelTest : WorldTest() {
         loser.levels.set(Skill.Constitution, 0)
         tick(12)
         assertEquals("stake_victory", winner.menu)
+        assertEquals(loser.name, winner["duel_victory_name", ""])
         assertEquals(Item("coins", 350), winner.winnings[0])
         assertTrue(loser.tile in Areas["duel_arena_hospital"])
         assertTrue(winner.tile in Areas["duel_arena_hospital"])
