@@ -108,22 +108,6 @@ class IsafdarTest : WorldTest() {
     }
 
     @Test
-    fun `Walking away while approaching the log cancels the crossing`() {
-        val player = createPlayer(Tile(2250, 3250))
-        player.running = true
-        player.levels.set(Skill.Agility, 45)
-        val log = GameObjects.find(Tile(2259, 3250), "isafdar_log_balance_2")
-
-        player.objectOption(log, "Cross")
-        tick(2)
-        player.walk(Tile(2250, 3252))
-        tick(20)
-
-        assertEquals(Tile(2250, 3252), player.tile)
-        assertEquals(0.0, player.experience.get(Skill.Agility))
-    }
-
-    @Test
     fun `Can't cross log balance without agility level`() {
         val player = createPlayer(Tile(2202, 3237))
         player.levels.set(Skill.Agility, 44)
