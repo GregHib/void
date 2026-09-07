@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.timer.CLIENT_TICKS
 
 /**
  * Tool leprechauns (and Teclyn in Lletya) teleport players to Winkin's Farm.
@@ -38,7 +39,7 @@ class VinesweeperTeleport : Script {
         leprechaun.gfx("curse_cast")
         val flight = leprechaun.shoot("curse", this)
         sound("curse_all")
-        delay(flight + 1)
+        delay(CLIENT_TICKS.toTicks(flight).coerceAtLeast(2))
         tele(Vinesweeper.ARRIVAL_TILE)
         delay(1)
         gfx("curse_impact")

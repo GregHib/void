@@ -311,6 +311,8 @@ class VinesweeperTest : WorldTest() {
         tick()
         val origin = player.tile
         player.skipDialogues()
+        tick()
+        assertEquals(origin, player.tile) // the leprechaun casts first
         tick(6)
 
         assertEquals(Vinesweeper.ARRIVAL_TILE, player.tile)
