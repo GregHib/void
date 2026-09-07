@@ -1,27 +1,516 @@
-[stake_confirm]
-id = 626
+# Component ids verified against the 634 cache.
+# Rule checkboxes are driven by varbits 4157-4183/4275 (varp 286) through cs2 566 (637) and 567 (631).
+[duel_request]
+id = 640
+type = "main_screen"
+
+[.friendly]
+id = 18
+
+[.friendly_box]
+id = 22
+
+[.staked]
+id = 19
+
+[.staked_box]
+id = 21
+
+[.challenge]
+id = 20
+
+[.close]
+id = 24
+
+[duel_overlay]
+id = 638
+type = "overlay"
 
 [warning_duel]
 id = 627
 
-[duel2_side]
-id = 628
-
+# Staked duel rules screen
 [stake]
 id = 631
+type = "main_screen"
+
+[.close]
+id = 23
+
+[.name]
+id = 25
+
+[.combat_level]
+id = 27
+
+[.status]
+id = 28
+
+[.no_ranged]
+id = 29
+
+[.no_ranged_box]
+id = 30
+
+[.no_melee]
+id = 31
+
+[.no_melee_box]
+id = 32
+
+[.no_magic]
+id = 33
+
+[.no_magic_box]
+id = 34
+
+[.fun_weapons]
+id = 35
+
+[.fun_weapons_box]
+id = 36
+
+[.no_forfeit]
+id = 37
+
+[.no_forfeit_box]
+id = 38
+
+[.no_drinks]
+id = 39
+
+[.no_drinks_box]
+id = 40
+
+[.no_food]
+id = 41
+
+[.no_food_box]
+id = 42
+
+[.no_prayer]
+id = 43
+
+[.no_prayer_box]
+id = 44
+
+[.no_movement]
+id = 45
+
+[.no_movement_box]
+id = 46
+
+[.obstacles]
+id = 47
+
+[.obstacles_box]
+id = 48
+
+[.no_special]
+id = 49
+
+[.no_special_box]
+id = 50
+
+[.summoning]
+id = 51
+
+[.summoning_box]
+id = 52
+
+[.no_hat]
+id = 56
+
+[.no_cape]
+id = 57
+
+[.no_amulet]
+id = 58
+
+[.no_ammo]
+id = 59
+
+[.no_weapon]
+id = 60
+
+[.no_body]
+id = 61
+
+[.no_shield]
+id = 62
+
+[.no_legs]
+id = 63
+
+[.no_ring]
+id = 64
+
+[.no_boots]
+id = 65
+
+[.no_gloves]
+id = 66
+
+[.max_stake]
+id = 91
+
+[.other_max_stake]
+id = 92
+
+[.max_stake_label]
+id = 93
+
+[.other_max_stake_label]
+id = 94
+
+[.accept]
+id = 101
+
+# Own stake, drawn by cs2 99 (ops Remove 1/5/10/All/X + Examine)
+[.offer]
+id = 102
+inventory = "dueloffer"
+options = { Remove-1 = 0, Remove-5 = 1, Remove-10 = 2, Remove-All = 3, Remove-X = 4, Examine = 9 }
+
+# Opponent's stake
+[.other_offer]
+id = 103
+inventory = "dueloffer"
+primary = false
+options = { Examine = 0 }
+
+[.decline]
+id = 106
+
+# Staking inventory side tab
+[duel2_side]
+id = 628
+type = "inventory_tab"
+
+[.offer]
+id = 0
+inventory = "inventory"
+options = { Stake-1 = 0, Stake-5 = 1, Stake-10 = 2, Stake-All = 3, Stake-X = 4, Examine = 9 }
+
+# Friendly duel rules screen
+[duel_confirm]
+id = 637
+type = "main_screen"
+
+[.close]
+id = 13
+
+[.name]
+id = 15
+
+[.combat_level]
+id = 17
+
+[.no_ranged]
+id = 18
+
+[.no_ranged_box]
+id = 19
+
+[.no_melee]
+id = 20
+
+[.no_melee_box]
+id = 21
+
+[.no_magic]
+id = 22
+
+[.no_magic_box]
+id = 23
+
+[.fun_weapons]
+id = 24
+
+[.fun_weapons_box]
+id = 25
+
+[.no_forfeit]
+id = 26
+
+[.no_forfeit_box]
+id = 27
+
+[.no_drinks]
+id = 28
+
+[.no_drinks_box]
+id = 29
+
+[.no_food]
+id = 30
+
+[.no_food_box]
+id = 31
+
+[.no_prayer]
+id = 32
+
+[.no_prayer_box]
+id = 33
+
+[.no_movement]
+id = 34
+
+[.no_movement_box]
+id = 35
+
+[.obstacles]
+id = 36
+
+[.obstacles_box]
+id = 37
+
+[.summoning]
+id = 38
+
+[.summoning_box]
+id = 39
+
+[.no_special]
+id = 40
+
+[.no_special_box]
+id = 41
+
+[.status]
+id = 44
+
+[.no_hat]
+id = 45
+
+[.no_cape]
+id = 46
+
+[.no_amulet]
+id = 47
+
+[.no_ammo]
+id = 48
+
+[.no_weapon]
+id = 49
+
+[.no_body]
+id = 50
+
+[.no_shield]
+id = 51
+
+[.no_legs]
+id = 52
+
+[.no_ring]
+id = 53
+
+[.no_boots]
+id = 54
+
+[.no_gloves]
+id = 55
+
+[.accept]
+id = 82
+
+[.decline]
+id = 85
+
+# Staked duel confirmation screen
+[stake_confirm]
+id = 626
+type = "main_screen"
+
+[.close]
+id = 7
+
+[.stake]
+id = 25
+
+[.other_stake]
+id = 26
+
+[.before_0]
+id = 41
+
+[.before_1]
+id = 28
+
+[.before_2]
+id = 29
+
+[.before_3]
+id = 30
+
+[.before_4]
+id = 31
+
+[.during_0]
+id = 33
+
+[.during_1]
+id = 34
+
+[.during_2]
+id = 35
+
+[.during_3]
+id = 36
+
+[.during_4]
+id = 37
+
+[.during_5]
+id = 38
+
+[.during_6]
+id = 39
+
+[.during_7]
+id = 40
+
+[.during_8]
+id = 42
+
+[.during_9]
+id = 43
+
+[.during_10]
+id = 44
+
+[.status]
+id = 45
+
+[.offer]
+id = 48
+inventory = "dueloffer"
+
+[.other_offer]
+id = 49
+inventory = "dueloffer"
+primary = false
+
+[.accept]
+id = 53
+
+[.decline]
+id = 55
+
+# Friendly duel confirmation screen
+[duel_rules_confirm]
+id = 639
+type = "main_screen"
+
+[.close]
+id = 10
+
+[.before_0]
+id = 16
+
+[.before_1]
+id = 17
+
+[.before_2]
+id = 18
+
+[.before_3]
+id = 19
+
+[.before_4]
+id = 20
+
+[.during_0]
+id = 22
+
+[.during_1]
+id = 24
+
+[.during_2]
+id = 23
+
+[.during_3]
+id = 25
+
+[.during_4]
+id = 26
+
+[.during_5]
+id = 27
+
+[.during_6]
+id = 28
+
+[.during_7]
+id = 29
+
+[.during_8]
+id = 30
+
+[.during_9]
+id = 31
+
+[.during_10]
+id = 32
+
+[.status]
+id = 33
+
+[.accept]
+id = 35
+
+[.decline]
+id = 37
 
 [duel_victory]
 id = 633
+type = "main_screen"
+
+[.claim]
+id = 17
+
+[.close]
+id = 25
+
+[.combat_level]
+id = 30
+
+[.name]
+id = 31
 
 [stake_victory]
 id = 634
+type = "main_screen"
 
-[duel_confirm]
-id = 637
+[.claim]
+id = 17
 
-[duel_rules_confirm]
-id = 639
+[.close]
+id = 26
 
-[duel_request]
-id = 640
+[.winnings]
+id = 28
+inventory = "duelwinnings"
+options = { Examine = 0 }
 
+[.combat_level]
+id = 32
+
+[.name]
+id = 33
+
+[duel_scoreboard]
+id = 632
+type = "main_screen"
+
+[.list]
+id = 15
+
+[.scrollbar]
+id = 16
+
+[.close]
+id = 17

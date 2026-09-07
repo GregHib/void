@@ -1,0 +1,97 @@
+# Duel request type shown on interface 640: 1 = friendly, 2 = staked
+[duel_type]
+id = 4157
+format = "int"
+
+# Rules; key minus the "duel_" prefix is the rule name used by content.minigame.duel_arena
+[duel_no_forfeit]
+id = 4159
+format = "boolean"
+
+[duel_no_movement]
+id = 4160
+format = "boolean"
+
+[duel_no_ranged]
+id = 4161
+format = "boolean"
+
+[duel_no_melee]
+id = 4162
+format = "boolean"
+
+[duel_no_magic]
+id = 4163
+format = "boolean"
+
+[duel_no_drinks]
+id = 4164
+format = "boolean"
+
+[duel_no_food]
+id = 4165
+format = "boolean"
+
+[duel_no_prayer]
+id = 4166
+format = "boolean"
+
+[duel_obstacles]
+id = 4167
+format = "boolean"
+
+[duel_fun_weapons]
+id = 4168
+format = "boolean"
+
+[duel_no_special]
+id = 4169
+format = "boolean"
+
+[duel_no_hat]
+id = 4170
+format = "boolean"
+
+[duel_no_cape]
+id = 4171
+format = "boolean"
+
+[duel_no_amulet]
+id = 4172
+format = "boolean"
+
+[duel_no_weapon]
+id = 4173
+format = "boolean"
+
+[duel_no_body]
+id = 4174
+format = "boolean"
+
+[duel_no_shield]
+id = 4175
+format = "boolean"
+
+[duel_no_legs]
+id = 4177
+format = "boolean"
+
+[duel_no_gloves]
+id = 4179
+format = "boolean"
+
+[duel_no_boots]
+id = 4180
+format = "boolean"
+
+[duel_no_ring]
+id = 4182
+format = "boolean"
+
+[duel_no_ammo]
+id = 4183
+format = "boolean"
+
+[duel_summoning]
+id = 4275
+format = "boolean"

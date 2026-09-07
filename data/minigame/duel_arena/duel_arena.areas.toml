@@ -7,3 +7,74 @@ tags = ["teleport"]
 x = [3311, 3391]
 y = [3199, 3290]
 tags = ["no_cannon"]
+
+# Walkways and hospital where players can challenge each other
+[duel_arena_walkways]
+x = [3326, 3392]
+y = [3200, 3280]
+
+# Hospital north of the arenas, where players are sent after a duel
+[duel_arena_hospital]
+x = [3363, 3377]
+y = [3266, 3277]
+
+[duel_arena_1]
+x = [3332, 3357]
+y = [3244, 3258]
+tags = ["duel_arena"]
+
+[duel_arena_2]
+x = [3364, 3388]
+y = [3244, 3259]
+tags = ["duel_arena"]
+
+[duel_arena_3]
+x = [3333, 3357]
+y = [3224, 3239]
+tags = ["duel_arena"]
+
+[duel_arena_4]
+x = [3364, 3388]
+y = [3225, 3240]
+tags = ["duel_arena"]
+
+[duel_arena_5]
+x = [3333, 3357]
+y = [3205, 3220]
+tags = ["duel_arena"]
+
+[duel_arena_6]
+x = [3364, 3388]
+y = [3206, 3221]
+tags = ["duel_arena"]
+
+# Fight start positions inside each arena
+[duel_arena_1_spawn]
+x = [3337, 3351]
+y = [3246, 3256]
+tags = ["duel_spawn", "no_obstacles"]
+
+[duel_arena_2_spawn]
+x = [3367, 3381]
+y = [3246, 3256]
+tags = ["duel_spawn", "obstacles"]
+
+[duel_arena_3_spawn]
+x = [3336, 3350]
+y = [3227, 3237]
+tags = ["duel_spawn", "obstacles"]
+
+[duel_arena_4_spawn]
+x = [3367, 3381]
+y = [3227, 3237]
+tags = ["duel_spawn", "no_obstacles"]
+
+[duel_arena_5_spawn]
+x = [3336, 3352]
+y = [3208, 3218]
+tags = ["duel_spawn", "no_obstacles"]
+
+[duel_arena_6_spawn]
+x = [3367, 3383]
+y = [3208, 3218]
+tags = ["duel_spawn", "obstacles"]
