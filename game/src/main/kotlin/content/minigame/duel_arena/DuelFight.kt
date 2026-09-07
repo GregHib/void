@@ -87,19 +87,31 @@ class DuelFight : Script {
         }
 
         objectOperate("Forfeit", "duel_arena_forfeit_trapdoor", arrive = false) {
-            val duel = duel ?: return@objectOperate
-            if (duel.stage != DuelStage.Fighting) {
-                message("The duel hasn't started yet.")
-                return@objectOperate
+            forfeit()
+        }
+
+        // The worn equipment tab icon is swapped for the forfeit trapdoor during a duel (varc 236).
+        // Registered with the exact option so it runs alongside the gameframe's tab handler.
+        interfaceOption("Worn Equipment", "toplevel*:worn_equipment") {
+            if (duel?.active == true) {
+                forfeit()
             }
-            if (duel.hasRule("no_forfeit")) {
-                statement("Forfeit has been turned off for this duel.")
-                return@objectOperate
-            }
-            val forfeit = choice(listOf("Yes.", "No."), "Do you wish to forfeit?")
-            if (forfeit == 1 && duel.stage == DuelStage.Fighting) {
-                DuelEnd.finish(duel, winner = duel.opponent(this), loser = this, DuelEnd.Result.Forfeit)
-            }
+        }
+    }
+
+    suspend fun Player.forfeit() {
+        val duel = duel ?: return
+        if (duel.stage != DuelStage.Fighting) {
+            message("The duel hasn't started yet.")
+            return
+        }
+        if (duel.hasRule("no_forfeit")) {
+            statement("Forfeit has been turned off for this duel.")
+            return
+        }
+        val forfeit = choice(listOf("Yes.", "No."), "Do you wish to forfeit?")
+        if (forfeit == 1 && duel.stage == DuelStage.Fighting) {
+            DuelEnd.finish(duel, winner = duel.opponent(this), loser = this, DuelEnd.Result.Forfeit)
         }
     }
 

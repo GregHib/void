@@ -249,6 +249,18 @@ internal class DuelTest : WorldTest() {
     }
 
     @Test
+    fun `Clicking the swapped equipment tab forfeits`() {
+        val (winner, loser) = fight(staked = true, winnerStake = 10, loserStake = 20)
+        assertEquals("forfeit", loser["equipment_tab", ""])
+        loser.interfaceOption("toplevel", "worn_equipment", "Worn Equipment")
+        tick()
+        loser.dialogueOption(1)
+        tick(2)
+        assertEquals("stake_victory", winner.menu)
+        assertEquals("worn_equipment", loser["equipment_tab", "worn_equipment"])
+    }
+
+    @Test
     fun `No forfeit rule blocks the trapdoor`() {
         val (winner, loser) = fight(staked = false, rules = listOf("no_forfeit"))
         val trapdoor = createObject("duel_arena_forfeit_trapdoor", loser.tile.addX(1))
