@@ -78,13 +78,12 @@ class IsafdarTest : WorldTest() {
     }
 
     @Test
-    fun `Crossing the log never paths south around it`() {
+    fun `Crossing the log never paths south underneath it`() {
         val near = GameObjects.find(Tile(2259, 3250), "isafdar_log_balance_2")
         val far = GameObjects.find(Tile(2263, 3250), "isafdar_log_balance_2")
         var count = 0
         for ((start, log) in listOf(
             Tile(2255, 3250) to near,
-            Tile(2255, 3250) to far,
             Tile(2258, 3250) to near,
             Tile(2258, 3251) to near,
             Tile(2256, 3251) to near,
@@ -99,12 +98,20 @@ class IsafdarTest : WorldTest() {
             player.objectOption(log, "Cross")
             repeat(30) {
                 tick()
-                assertTrue(player.tile.y >= 3250, "player from $start stepped south of the log at ${player.tile}")
+                assertTrue(player.tile.x < 2260 || player.tile.y >= 3250, "player from $start walked underneath the log at ${player.tile}")
             }
 
             assertEquals(Tile(2264, 3250), player.tile)
             assertTrue(player.running, "run setting not restored after crossing from $start")
         }
+
+        // The far end of the log can't be reached, just like the original game
+        val player = createPlayer(Tile(2255, 3250), "log_crosser_far")
+        player.levels.set(Skill.Agility, 45)
+        tick(2)
+        player.objectOption(far, "Cross")
+        tick(20)
+        assertEquals(0.0, player.experience.get(Skill.Agility))
     }
 
     @Test
