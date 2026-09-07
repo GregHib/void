@@ -145,7 +145,7 @@ spawns = [
   { id = "shop_assistant_lumbridge", x = 3214, y = 3243 },
   { id = "bob", x = 3228, y = 3203 },
   { id = "banker_3", x = 3208, y = 3222, level = 2, direction = "SOUTH" },
-  { id = "hans", x = 3223, y = 3225 },
+  { id = "hans", x = 3219, y = 3222 },
   { id = "giant_spider", x = 3249, y = 3249 },
   { id = "giant_spider", x = 3241, y = 3241 },
   { id = "giant_spider", x = 3250, y = 3239 },
