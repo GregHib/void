@@ -25,6 +25,8 @@ class DungeonDoors(val tracks: MusicTracks) : Script {
     init {
         objectOperate("Enter", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped", handler = ::handleDoor)
         objectApproach("Enter", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped", handler = ::handleDoor)
+        objectOperate("Open", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped", handler = ::handleDoor)
+        objectApproach("Open", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped", handler = ::handleDoor)
 
         /*
             Locked doors
