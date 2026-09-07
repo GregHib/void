@@ -30,7 +30,7 @@ class AncientCavern(val drops: DropTables) : Script {
             open("fade_out")
             delay(4)
             message("You dive into the swirling maelstrom of the whirlpool.", type = ChatType.Filter)
-            tele(1763, 5365, 1)
+            tele(1767, 5366, 1)
             delay(1)
             message("You are swirled beneath the water, the darkness and pressure are overwhelming.", type = ChatType.Filter)
             delay(1)
