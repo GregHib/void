@@ -18,6 +18,11 @@ import world.gregs.voidps.engine.timer.CLIENT_TICKS
  */
 class VinesweeperTeleport : Script {
 
+    companion object {
+        // Animation 11705 runs for 162 client cycles; the player leaves once it has finished.
+        private const val CAST_TICKS = 6
+    }
+
     init {
         npcOperate("Teleport", "tool_leprechaun*,goth_leprechaun*,teclyn") { (target) ->
             npc<Happy>("Would ye like me to send ye off to Winkin's Farm for a spot of Vinesweeper?")
@@ -37,9 +42,10 @@ class VinesweeperTeleport : Script {
         leprechaun.say("Avach nimporto!")
         leprechaun.anim("leprechaun_teleport")
         leprechaun.gfx("curse_cast")
+        delay(CAST_TICKS)
         val flight = leprechaun.shoot("curse", this)
         sound("curse_all")
-        delay(CLIENT_TICKS.toTicks(flight).coerceAtLeast(2))
+        delay(CLIENT_TICKS.toTicks(flight).coerceAtLeast(1))
         tele(Vinesweeper.ARRIVAL_TILE)
         delay(1)
         gfx("curse_impact")
