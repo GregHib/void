@@ -9,10 +9,12 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.entity.world.music.playTrack
 import content.quest.largeInstance
 import content.quest.smallInstance
 import content.skill.dungeoneering.DungeonGenerator
 import content.skill.dungeoneering.DungeonMap
+import content.skill.dungeoneering.DungeonMusic
 import content.skill.dungeoneering.DungeonSize
 import content.skill.dungeoneering.DungeonStartingItems
 import content.skill.magic.spell.spellBook
@@ -220,6 +222,7 @@ class DungeonEntrance : Script {
         startRoom.open(this, dungeon)
         val tile = dungeon.startTile()
         strongQueue("enter_dungeon", 2) {
+            val track = DungeonMusic.ambientTrack(dungeon.theme)
             for (member in dungeonMembers) {
                 if (!member.inDungeoneering) {
                     member["dungeoneering_stored_kinship"] = member.carriesItem("ring_of_kinship")
@@ -263,6 +266,7 @@ class DungeonEntrance : Script {
                 }
                 // TODO not clear which dialogue interface was used https://youtu.be/yCSJaU4azVA?t=384
                 member.tele(tile)
+                member.playTrack(track)
                 member.message("<red_orange>Warning: Dungeoneering is experimental and has limited floors, skills, puzzles, monsters and bosses. Please reports any bugs.")
             }
         }

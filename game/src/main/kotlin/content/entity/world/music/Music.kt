@@ -113,6 +113,11 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun playAreaTrack(player: Player) {
+        val next = MusicApi.nextSong(player)
+        if (next != null) {
+            autoPlay(player, tracks.get(next) ?: return)
+            return
+        }
         for (track in tracks[player.tile.region]) {
             if (track.area.contains(player.tile)) {
                 autoPlay(player, tracks.get(track.id) ?: continue)
@@ -141,7 +146,7 @@ class Music(val tracks: MusicTracks) : Script {
     }
 
     fun sendUnlocks(player: Player) {
-        for (i in 0 .. 30) {
+        for (i in 0..30) {
             player.sendVariable("unlocked_music_$i")
         }
         player.interfaceOptions.unlockAll("music_player", "tracks", 0..2048) // 837.cs2
@@ -242,7 +247,7 @@ class Music(val tracks: MusicTracks) : Script {
         if (player.addVarbit("unlocked_music_${index / 32}", track.name)) {
             player.message("<red>You have unlocked a new music track: ${EnumDefinitions.get("music_track_names").string(index)}.")
         }
-        if (!player["playing_song", false]) {
+        if (!player.autoplay) {
             player.playTrack(index)
         }
     }

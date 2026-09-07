@@ -8,14 +8,12 @@ import world.gregs.voidps.engine.client.command.commandAlias
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.playMusicTrack
-import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.midi
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.network.login.protocol.encode.playJingle
 import world.gregs.voidps.network.login.protocol.encode.playMIDI
 import world.gregs.voidps.network.login.protocol.encode.playSoundEffect
-import kotlin.collections.iterator
 
 class SoundCommands(val tracks: MusicTracks) : Script {
 
@@ -55,7 +53,7 @@ class SoundCommands(val tracks: MusicTracks) : Script {
             }
             val search = args[0].toSnakeCase()
             val track = tracks.get(search)
-            if (track != null)  {
+            if (track != null) {
                 playMusicTrack(track.id)
             } else {
                 message("Song not found with id '$search'.")

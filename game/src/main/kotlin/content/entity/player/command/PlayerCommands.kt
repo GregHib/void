@@ -40,7 +40,7 @@ class PlayerCommands(
     val accounts: AccountDefinitions,
     val exchange: GrandExchange,
     val saveQueue: SaveQueue,
-    val tracks: MusicTracks
+    val tracks: MusicTracks,
 ) : Script {
 
     init {

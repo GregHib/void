@@ -1,15 +1,14 @@
 package content.skill.dungeoneering
 
 import content.entity.player.dialogue.type.statement
+import content.entity.world.music.MusicTracks
+import content.entity.world.music.autoplay
 import content.entity.world.music.playTrack
-import content.quest.instance
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactObject
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.midi
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract
 import world.gregs.voidps.engine.entity.character.move.tele
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -19,12 +18,10 @@ import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.random
 
-class DungeonDoors : Script {
+class DungeonDoors(val tracks: MusicTracks) : Script {
     init {
         objectOperate("Enter", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped", handler = ::handleDoor)
         objectApproach("Enter", "*door_frozen,*door_abandoned,*door_furnished,*door_occult,*door_warped", handler = ::handleDoor)
@@ -35,10 +32,7 @@ class DungeonDoors : Script {
 
         objectOperate("Unlock", "orange_*_door,silver_*_door,yellow_*_door,green_*_door,blue_*_door,purple_*_door,crimson_*_door,gold_*_door") { (target) ->
             val dungeon = dungeonMap ?: return@objectOperate
-            val instance = instance() ?: return@objectOperate
-            val origin = tile.delta(instance.tile)
-            val roomTile = origin.room
-            val room = dungeon.room(roomTile.x, roomTile.y) ?: return@objectOperate
+            val room = dungeon.room(tile) ?: return@objectOperate
             val door = room.doors[target.rotation] ?: return@objectOperate
             if (door !is DungeonDoor.Locked) {
                 return@objectOperate
@@ -161,13 +155,9 @@ class DungeonDoors : Script {
         val under = GameObjects.getLayer(target.tile.add(dir.inverse()), ObjectLayer.GROUND)
         if (under == null) {
             player.approachRange(1)
-            if (target.id.startsWith("guardian")) {
-                for (zone in player.dungeonRoomBounds().toZones(0)) {
-                    if (NPCs.at(zone).any { it.def.options.contains("Attack") }) {
-                        player.message("The door won't unlock until all of the guardians in the room have been slain.")
-                        return
-                    }
-                }
+            if (target.id.startsWith("guardian") && DungeonRoom.hasGuardian(player.tile)) {
+                player.message("The door won't unlock until all of the guardians in the room have been slain.")
+                return
             }
             player.openDoor(target)
             return
@@ -194,16 +184,10 @@ class DungeonDoors : Script {
         }
     }
 
-    val Delta.room: Delta
-        get() = Delta(x / 16, y / 16)
-
     private suspend fun Player.openDoor(target: GameObject) {
         val dungeon = dungeonMap ?: return
-        val instance = instance() ?: return
-        val origin = target.tile.delta(instance.tile)
-        val roomTile = origin.room
         val direction = direction(target) ?: return
-        val room = dungeon.room(roomTile.x, roomTile.y) ?: return
+        val room = dungeon.room(target.tile) ?: return
         val adj = room.adjacentRooms[target.rotation] ?: return
         if (!adj.open) {
             adj.open(this, dungeon)
@@ -217,23 +201,21 @@ class DungeonDoors : Script {
         } else {
             tele(Tile(x = tile.x.coerceIn(target.tile.x, target.tile.x + 1), y = target.tile.y + direction.delta.y * 2))
         }
-        if (adj.type == DungeonRoomType.Boss) {
-            playTrack(adj.name ?: return)
-        } else {
-            val song = when (dungeon.theme) {
-                "frozen" -> "glacialis_${numerals.random(random)}"
-                "abandoned" -> "desolo_${numerals.random(random)}"
-                "furnished" -> "adorno_${numerals.random(random)}"
-                "occult" -> "occulo_${numerals.random(random)}"
-                "warped" -> "torqueo_${numerals.random(random)}"
-                else -> return
+        // Switch songs when going between combat and ambient rooms
+        if (!autoplay) {
+            val currentTrack = get("current_track", -1)
+            val track = tracks.tracks.firstOrNull { it?.indexes?.contains(currentTrack) ?: false }
+            val prefix = track?.name?.substringBefore("_") ?: "null"
+            val expected = if (adj.monsters > 0) DungeonMusic.combatPrefix(dungeon.theme) else DungeonMusic.ambientPrefix(dungeon.theme)
+            val name = when {
+                prefix == expected -> null
+                adj.type == DungeonRoomType.Boss && adj.monsters > 0 -> adj.name
+                adj.monsters > 0 -> DungeonMusic.combatTrack(dungeon.theme)
+                else -> DungeonMusic.ambientTrack(dungeon.theme)
             }
-            println(song)
-            playTrack(song)
+            playTrack(name)
         }
     }
-
-    private val numerals = setOf("i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x")
 
     private fun direction(target: GameObject): Direction? = when (target.rotation) {
         0 -> Direction.WEST

@@ -40,6 +40,7 @@ object DungeonNPCs {
         val clientRotation = (4 - room.rotation) % 4
         val boss = NPCs.add(id, dungeon.tile(room, actual.x, actual.y), direction.rotate(clientRotation * 2))
         boss["in_multi_combat"] = true
+        room.monsters++
     }
 
     fun spawn(dungeon: DungeonMap, room: DungeonRoom, floor: Int, complexity: Int) {
@@ -106,6 +107,7 @@ object DungeonNPCs {
             val npc = NPCs.add(id, tile)
             npc["in_multi_combat"] = true
             total -= def.combat
+            room.monsters++
         }
     }
 
