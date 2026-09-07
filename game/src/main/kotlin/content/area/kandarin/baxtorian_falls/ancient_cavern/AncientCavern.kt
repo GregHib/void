@@ -28,7 +28,7 @@ class AncientCavern(val drops: DropTables) : Script {
             exactMove(Tile(2512, 3508), startDelay = 15, delay = 255, direction = Direction.SOUTH)
             delay(4)
             open("fade_out")
-            delay(4)
+            delay(6)
             message("You dive into the swirling maelstrom of the whirlpool.", type = ChatType.Filter)
             tele(1763, 5365, 1)
             delay(1)
