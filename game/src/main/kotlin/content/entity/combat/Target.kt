@@ -7,6 +7,9 @@ import content.area.wilderness.inWilderness
 import content.entity.combat.hit.Hit
 import content.entity.combat.hit.directHit
 import content.entity.player.equip.Equipment
+import content.minigame.duel_arena.Duel
+import content.minigame.duel_arena.DuelStage
+import content.minigame.duel_arena.duel
 import content.skill.magic.spell.spell
 import content.skill.melee.weapon.combatStyle
 import content.skill.ranged.ammo
@@ -24,6 +27,7 @@ import world.gregs.voidps.engine.entity.character.mode.interact.InteractOption
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.combatLevel
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -78,6 +82,10 @@ object Target {
         if (source.dead || target.dead || source["logged_out", false] || target["logged_out", false]) {
             return false
         }
+        val duel = duel(source) ?: duel(target)
+        if (duel != null) {
+            return duelAttackable(duel, source, target, message)
+        }
         if (source is Player && target is Player) {
             if (!source.inPvp && !source.inWilderness) {
                 if (message) source.message("You can only attack players in a player-vs-player area.")
@@ -118,6 +126,42 @@ object Target {
             return false
         }
         // PVP area, slayer requirements, in combat etc..
+        return true
+    }
+
+    private fun duel(character: Character): Duel? = dueller(character)?.duel
+
+    /**
+     * The player, or the familiar's owner
+     */
+    private fun dueller(character: Character): Player? {
+        if (character is Player) {
+            return character
+        }
+        val owner = character["owner_index", -1]
+        if (owner < 0) {
+            return null
+        }
+        return Players.indexed(owner)
+    }
+
+    /**
+     * Duellers and their familiars can only fight each other, and only once the countdown has finished
+     */
+    private fun duelAttackable(duel: Duel, source: Character, target: Character, message: Boolean): Boolean {
+        val attacker = dueller(source)
+        val defender = dueller(target)
+        if (attacker == null || defender == null || duel.opponent(attacker) != defender || attacker.duel != duel) {
+            if (message) (source as? Player)?.message("You can only attack your opponent!")
+            return false
+        }
+        if (duel.stage != DuelStage.Fighting) {
+            if (message) (source as? Player)?.message("The duel hasn't started yet.")
+            return false
+        }
+        if ((source is NPC || target is NPC) && !duel.hasRule("summoning")) {
+            return false
+        }
         return true
     }
 

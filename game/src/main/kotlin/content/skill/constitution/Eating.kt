@@ -31,6 +31,11 @@ class Eating : Script {
             return
         }
         val drink = option == "Drink"
+        val blocked: String? = player[if (drink) "no_drinks_message" else "no_food_message"]
+        if (blocked != null) {
+            player.message(blocked)
+            return
+        }
         val combo = item.def.contains("combo")
         val delay = when {
             combo -> "combo_delay"
