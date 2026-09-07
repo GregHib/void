@@ -5,7 +5,9 @@ import content.entity.effect.toxin.poison
 import content.entity.proj.shoot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
@@ -18,7 +20,16 @@ import world.gregs.voidps.type.Tile
 
 class IsafdarTraps : Script {
 
+    val destinations = mutableMapOf<Tile, RowDefinition>()
+
     init {
+        worldSpawn {
+            val table = Tables.getOrNull("sticks_traps") ?: return@worldSpawn
+            for (row in table.rows()) {
+                destinations[row.tile("trap")] = row
+            }
+        }
+
         objectOperate("Step-over", "tripwire") { (target) ->
             val (entry, exit, out, direction) = crossing(target)
             this["crossing_trap"] = true
@@ -44,7 +55,7 @@ class IsafdarTraps : Script {
             walkToDelay(entry.add(direction.inverse()), forceWalk = true)
             walkOverDelay(entry)
             if (Level.success(levels.get(Skill.Agility), 31..156)) {
-                walkOverDelay(out)
+                walkOverDelay(destination(target, direction) ?: out)
                 message("You manage to skillfully pass the trap.")
             } else {
                 springTrap(target)
@@ -122,7 +133,7 @@ class IsafdarTraps : Script {
         } else {
             if (trap.rotation == 1) Direction.NORTH else Direction.SOUTH
         }
-        val out = if (axisX) {
+        val out = destination(trap, direction) ?: if (axisX) {
             Tile(if (direction == Direction.EAST) trap.tile.x + trap.width else trap.tile.x - 1, tile.y, tile.level)
         } else {
             Tile(tile.x, if (direction == Direction.NORTH) trap.tile.y + trap.height else trap.tile.y - 1, tile.level)
@@ -137,6 +148,8 @@ class IsafdarTraps : Script {
         face(facing)
         damage(80)
     }
+
+    fun destination(trap: GameObject, direction: Direction): Tile? = destinations[trap.tile]?.tileOrNull(direction.name.lowercase())
 
     fun Player.arrowVolley(wire: GameObject) {
         val axisX = wire.width > wire.height

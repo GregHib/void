@@ -40,6 +40,8 @@ class LogBalance : Script {
             message("... and make it safely to the other side.", ChatType.Filter)
         }
 
+        // Without the early approach the interaction pathfinds to the melee reach
+        // tile diagonally behind the log and walks the full route before operating
         objectApproach("Cross", "isafdar_log_balance,isafdar_log_balance_2,arandar_log_balance", arrive = false) { (target) ->
             approachRange(10)
             steps.clear()
@@ -102,24 +104,11 @@ class LogBalance : Script {
         }
         val from = if (tile.distanceTo(start) <= tile.distanceTo(end)) start else end
         val to = if (from == start) end else start
-        // Approach the log at normal speed; walking away cancels
-        walkTo(from)
-        var count = 0
-        while (tile != from && count++ < 50) {
-            pause(1)
-        }
-        if (tile != from) {
-            return
-        }
+        walkOverDelay(from)
         message("You walk carefully across the slippery log...", ChatType.Filter)
         delay()
         renderEmote("rope_balance")
-        walkTo(to, noCollision = true, forceWalk = true)
-        var steps = 0
-        while (tile != to && steps++ < 10) {
-            sound("log_balance")
-            delay()
-        }
+        walkOverDelay(to)
         clearRenderEmote()
         exp(Skill.Agility, 7.5)
         message("... and make it safely to the other side.", ChatType.Filter)
