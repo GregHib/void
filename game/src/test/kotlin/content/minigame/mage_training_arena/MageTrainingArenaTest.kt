@@ -131,6 +131,19 @@ internal class MageTrainingArenaTest : WorldTest() {
         assertNull(player.dialogue)
     }
 
+    @Test
+    fun `The arena wizards have something to say`() {
+        val player = createPlayer(Tile(3365, 3322, 1), "mta-wizards")
+        for (id in listOf("wizard_shug", "apprentice_clerval", "wizard_dougal", "wizard_edvin")) {
+            val npc = createNPC(id, player.tile.addX(1))
+            player.npcOption(npc, "Talk-to")
+            tick(1)
+            assertNotNull(player.dialogue) { id }
+            player.skipDialogues()
+            assertNull(player.dialogue) { id }
+        }
+    }
+
     private fun enter(name: String, room: String, tile: Tile): Player {
         val player = createPlayer(Tile(3361, 3316), name)
         player.levels.set(Skill.Magic, 50)
