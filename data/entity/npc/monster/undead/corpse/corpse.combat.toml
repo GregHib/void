@@ -7,7 +7,7 @@ death_sound = "corpse_death"
 [corpse_spider.melee]
 range = 1
 anim = "corpse_spider_attack"
-target_sound = "corpse_spider_attack"
+target_sound = "spider_attack"
 target_hit = { offense = "slash", max = 15 }
 
 [crawling_corpse_torso]
@@ -19,6 +19,7 @@ death_sound = "corpse_death"
 [crawling_corpse_torso.melee]
 range = 1
 anim = "crawling_corpse_torso_attack"
+target_sound = { id = "corpse_attack", delay = 18 }
 target_hit = { offense = "slash", max = 20 }
 
 [corpse_archer]
@@ -45,6 +46,6 @@ range = 7
 anim = "corpse_mage_attack"
 gfx = "corpse_mage_magic_attack"
 projectile = { id = "corpse_mage_magic_projectile", curve = 18, delay = 48 }
-target_sound = { id = "corpse_mage_attack", delay = 18 }
+target_sound = { id = "wind_strike_cast", delay = 18 }
 miss_gfx = "spell_splash"
 target_hit = { offense = "magic", max = 20 }
