@@ -326,6 +326,10 @@ examine = "A shrine for the faithful to worship at."
 id = 55340
 examine = "Shrine to the glory of Zaros."
 
+[prayer_altar_zaros_senntisten]
+id = 47120
+examine = "An ancient altar to the glory of Zaros."
+
 [prayer_altar_warped_construction]
 id = 55667
 examine = "A shrine for the faithful to worship at."
