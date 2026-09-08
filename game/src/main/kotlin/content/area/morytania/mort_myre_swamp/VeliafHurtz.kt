@@ -3,7 +3,7 @@ package content.area.morytania.mort_myre_swamp
 import content.entity.combat.hit.damage
 import content.entity.effect.transform
 import content.entity.player.dialogue.Angry
-import content.entity.player.dialogue.Evil
+import content.entity.player.dialogue.EvilLaugh
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
@@ -341,7 +341,7 @@ class VeliafHurtz : Script {
         vanstrom.walkOverDelay(cutscene.tile(3504, 9832, 2))
         NPCs.remove(vanstrom)
         message("Vanstrom Klause: Ha ha ha ha haaaaaa!")
-        npc<Evil>("route_vanstrom_vampire", "Ha ha ha ha haaaaaa!")
+        npc<EvilLaugh>("route_vanstrom_vampire", "Ha ha ha ha haaaaaa!")
 
         open("fade_out")
         delay(2)
