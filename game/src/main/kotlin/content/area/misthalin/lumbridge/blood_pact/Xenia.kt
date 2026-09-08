@@ -19,7 +19,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.longQueue
@@ -514,14 +513,17 @@ class Xenia : Script {
         }
 
         suspend fun giveWeapons(player: Player) {
-            if (!player.ownsItem("kayles_sling") && player.inventory.add("kayles_sling")) {
-                player.item("kayles_sling", "Xenia gives you Kayle's sling.")
-            }
-            if (!player.ownsItem("caitlins_staff") && player.inventory.add("caitlins_staff")) {
-                player.item("caitlins_staff", "Xenia gives you Caitlin's staff.")
-            }
-            if (!player.ownsItem("reeses_sword") && player.inventory.add("reeses_sword")) {
-                player.item("reeses_sword", "Xenia gives you Reese's sword.")
+            val missingWeapons = listOf(
+                "kayles_sling" to "Xenia gives you Kayle's sling.",
+                "caitlins_staff" to "Xenia gives you Caitlin's staff.",
+                "reeses_sword" to "Xenia gives you Reese's sword.",
+            ).filterNot { player.ownsItem(it.first) }
+            for ((weapon, message) in missingWeapons) {
+                if (!player.inventory.add(weapon)) {
+                    player.npc<Neutral>("Speak to me again when you have some free inventory space.")
+                    return
+                }
+                player.item(weapon, message)
             }
         }
     }
@@ -575,24 +577,8 @@ class Xenia : Script {
                 remove(item.id)
                 add("coins", price)
             }
-            when (inventory.transaction.error) {
-                TransactionError.None -> {
-                    val statuette = item.id.removeSuffix("_demon_statuette").replace('_', ' ')
-                    item(item.id, "Xenia gives you $price coins for the $statuette statuette.")
-                }
-                is TransactionError.Deficient -> {
-                    npc<Sad>("It looks like you no longer have all of the statuettes.")
-                    return
-                }
-                is TransactionError.Full -> {
-                    npc<Sad>("You don't have enough space for the coins.")
-                    return
-                }
-                else -> {
-                    npc<Sad>("Something went wrong while selling the statuettes.") //todo figure out what happens ifthe players inventory is full
-                    return
-                }
-            }
+            val statuette = item.id.removeSuffix("_demon_statuette").replace('_', ' ')
+            item(item.id, "Xenia gives you $price coins for the $statuette statuette.")
         }
         npc<Happy>("Thank you, adventurer.")
         if (hasAnyDemonStatuette()) {
