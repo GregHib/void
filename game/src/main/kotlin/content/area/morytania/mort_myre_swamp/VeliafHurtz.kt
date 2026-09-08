@@ -18,6 +18,7 @@ import content.quest.member.myreque.checkMembers
 import content.quest.member.myreque.hasAllWeapons
 import content.quest.member.myreque.myrequeStage
 import content.quest.member.myreque.spawnHellHound
+import content.quest.quest
 import content.quest.questStage
 import content.quest.setInstanceLogout
 import content.quest.startCutscene
@@ -33,7 +34,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Direction
@@ -239,6 +239,11 @@ class VeliafHurtz : Script {
         val cutscene = startCutscene("myreque_ambush", AMBUSH_BASE, width = 6, height = 3)
         setInstanceLogout(VELIAF_SPOT)
         cutscene.onEnd {
+            if (quest("in_search_of_the_myreque") == "hellhound_summoned") {
+                tele(HOUND_SPOT)
+            } else {
+                tele(VELIAF_SPOT)
+            }
             clearCamera()
         }
         delay(4)
