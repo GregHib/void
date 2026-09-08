@@ -25,6 +25,7 @@ val quests = setOf(
     "creature_of_fenkenstrain",
     "druidic_ritual",
     "hand_in_the_sand",
+    "in_search_of_the_myreque",
     "jungle_potion",
     "nature_spirit",
     "plague_city",
@@ -44,6 +45,11 @@ fun Player.questStage(name: String): Int {
     val value = quest(name)
     val def = VariableDefinitions.get(name) ?: return 0
     return def.values.toInt(value)
+}
+
+fun questStage(name: String, stage: String): Int {
+    val def = VariableDefinitions.get(name) ?: return 0
+    return def.values.toInt(stage)
 }
 
 fun Player.questCompleted(name: String): Boolean {

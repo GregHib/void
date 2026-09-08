@@ -1,0 +1,17 @@
+[swamp_bridge1]
+id = 5002
+
+[spooky_tree_base_forbridge]
+id = 5003
+
+[route_cavewalltunnel]
+id = 5046
+
+[route_stalagmite_cave_entrace]
+id = 5050
+
+[freedomfighterundergrounddooropenl]
+id = 30263
+
+[freedomfighterundergrounddooropenr]
+id = 30264

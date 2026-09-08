@@ -1,0 +1,17 @@
+[vanstrom_mist]
+id = 1186
+
+[vanstrom_appear]
+id = 1190
+
+[vanstrom_vampire]
+id = 1194
+
+[skeleton_hellhound_attack]
+id = 1187
+
+[skeleton_hellhound_hit]
+id = 1185
+
+[skeleton_hellhound_death]
+id = 1188
