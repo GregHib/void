@@ -147,7 +147,6 @@ class MageTrainingArena : Script {
          * Items that belong to the arena and are removed when a player leaves a room by any means.
          */
         private val arenaItems = listOf(
-            "coins_mage_training_arena",
             "leather_boots_mage_training_arena",
             "adamant_kiteshield_mage_training_arena",
             "adamant_helm_mage_training_arena",
