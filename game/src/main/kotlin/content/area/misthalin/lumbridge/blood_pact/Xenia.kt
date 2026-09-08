@@ -270,6 +270,9 @@ class Xenia : Script {
             if (checkForLostWeapons(this@choiceAfterQuest)) {
                 lostWeapon()
             }
+            if (hasMaskPart()) {
+                foundMaskPart()
+            }
             leaving()
         }
     }
@@ -278,6 +281,12 @@ class Xenia : Script {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
         giveWeapons(this)
     }
+
+    fun ChoiceOption.foundMaskPart(): Unit = option("I've found part of a mask in the catacombs.") {
+        npc<Neutral>("Oh, yes, I remember that Dragith Nurn had an enchanted ritual mask. If you can find all the pieces, you might be able to put it back together.")
+    }
+
+    private fun Player.hasMaskPart(): Boolean = inventory.items.any { !it.isEmpty() && it.id.startsWith("mask_part_") }
 
     fun ChoiceOption.choiceQuestDetail(): Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
         afterQuestDetail()
