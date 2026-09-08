@@ -53,29 +53,16 @@ class CurpileFyod : Script {
 
     fun ChoiceOption.comeToHelp(curpile: NPC): Unit = option<Happy>("I've come to help the Myreque, I've brought weapons.") {
         if (!hasAllWeapons()) {
-            npc<Angry>(
-                "It doesn't look as if you have the right weapons to me. Get out of here you fake!",
-            )
+            npc<Angry>("It doesn't look as if you have the right weapons to me. Get out of here you fake!")
             return@option
         }
-        npc<Neutral>(
-            "Ok, I see ya got da weapons...but how'd I know you're not gonna use em against my " +
-                "friends?",
-        )
+        npc<Neutral>("Ok, I see ya got da weapons...but how'd I know you're not gonna use em against my friends?")
         player<Neutral>("But I just want to help deliver these weapons.")
-        npc<Neutral>(
-            "Well, dat's as maybe, and I'm not doubting your sincerity here, you seems all sincered " +
-                "up to me...it's choking me up right here, you're making me cry...but hey, I's godda " +
-                "do my job or da kids don't get fed! Ok,",
-        )
+        npc<Neutral>("Well, dat's as maybe, and I'm not doubting your sincerity here, you seems all sincered up to me...it's choking me up right here, you're making me cry...but hey, I's godda do my job or da kids don't get fed! Ok,")
         if (questStage("in_search_of_the_myreque") == myrequeStage("reached_hollows")) {
             set("in_search_of_the_myreque", "questioned_by_curpile")
         }
-        npc<Neutral>(
-            "so say I asks you a few questions and you were to answer them all correct and so on, " +
-                "well that'd make me believe you's...I'd get to feeling that you was the real deal " +
-                "an all. How's dat sound?",
-        )
+        npc<Neutral>("so say I asks you a few questions and you were to answer them all correct and so on, well that'd make me believe you's...I'd get to feeling that you was the real deal an all. How's dat sound?")
         player<Neutral>("Sounds fine to me...go ahead, shoot!")
         npc<Neutral>("Hey...don't tempt me! You's dicing wiv death here my friend!")
         runQuiz(curpile)
@@ -87,18 +74,12 @@ class CurpileFyod : Script {
     }
 
     fun ChoiceOption.noReason(curpile: NPC): Unit = option<Neutral>("No reason!") {
-        npc<Neutral>(
-            "Come on...speak up! I may be able to help you. However, yous gotta know that your " +
-                "tresspassing and that by rights I should slap your around a bit, you know, just " +
-                "like as a warning.",
-        )
+        npc<Neutral>("Come on...speak up! I may be able to help you. However, yous gotta know that your tresspassing and that by rights I should slap your around a bit, you know, just like as a warning.")
         initialChoice(curpile)
     }
 
     fun ChoiceOption.askForWayOut(curpile: NPC): Unit = option<Quiz>("I'm lost, can you show me the way out?") {
-        npc<Neutral>(
-            "You got yourself in here... now get yourself out.. and quickly if I were you.",
-        )
+        npc<Neutral>("You got yourself in here... now get yourself out.. and quickly if I were you.")
         initialChoice(curpile)
     }
 
@@ -161,9 +142,7 @@ class CurpileFyod : Script {
             askRulingFamily()
         }
         else -> {
-            npc<Neutral>(
-                "$prefix Which member of the 'Myreque' originally had a profession as a scholar?",
-            )
+            npc<Neutral>("$prefix Which member of the 'Myreque' originally had a profession as a scholar?")
             askScholar()
         }
     }

@@ -23,18 +23,12 @@ class HaroldEvans : Script {
                     message("This person isn't able to talk to you at this time.")
                 }
                 myrequeStage("entered_hideout") -> {
-                    npc<Happy>(
-                        "Hail and well met friend! You'd better go and introduce yourself to Veliaf. " +
-                            "But after come and have a chat if you've a mind to.",
-                    )
+                    npc<Happy>("Hail and well met friend! You'd better go and introduce yourself to Veliaf. But after come and have a chat if you've a mind to.")
                 }
                 myrequeStage("met_veliaf"), myrequeStage("weapons_accepted") -> {
                     if (!get("met_harold", false)) {
                         set("met_harold", true)
-                        npc<Happy>(
-                            "Well met friend! My name's Harold...nice to meet a fellow soldier. " +
-                                "Just joined us have you?",
-                        )
+                        npc<Happy>("Well met friend! My name's Harold...nice to meet a fellow soldier. Just joined us have you?")
                         player<Confused>("Not exactly! I'd like to ask a few questions if that's Ok?")
                         soldierResponse()
                     } else {
@@ -63,50 +57,26 @@ class HaroldEvans : Script {
     }
 
     fun ChoiceOption.whatsYourJob(): Unit = option<Quiz>("What's your job here?") {
-        npc<Happy>(
-            "I generally do what Veliaf orders...taking a bridge defending a tactical retreat..." +
-                "you name it, I'm usually in the thick of it. It's funny, I seem to cheat death " +
-                "most of the time.",
-        )
+        npc<Happy>("I generally do what Veliaf orders...taking a bridge defending a tactical retreat...you name it, I'm usually in the thick of it. It's funny, I seem to cheat death most of the time.")
         questionsChoice()
     }
 
     fun ChoiceOption.tellMeAboutSquad(): Unit = option<Quiz>("What can you tell me about your squad?") {
-        npc<Neutral>(
-            "They're all good soldiers, though they're pretty much a bunch of irregulars. I " +
-                "consider them a good squad, ready to leap into the fray if needed, but we're " +
-                "seriously outnumbered by the Drakans and their blood.",
-        )
-        npc<Neutral>(
-            "Most fights we have to improvise but this bunch are very good at that. That young " +
-                "lad over there, Ivan Strom, he saved our bacon in the last encounter by his " +
-                "faith in Saradomin, he weakened the Juves and we ran for it!",
-        )
+        npc<Neutral>("They're all good soldiers, though they're pretty much a bunch of irregulars. I consider them a good squad, ready to leap into the fray if needed, but we're seriously outnumbered by the Drakans and their blood.")
+        npc<Neutral>("Most fights we have to improvise but this bunch are very good at that. That young lad over there, Ivan Strom, he saved our bacon in the last encounter by his faith in Saradomin, he weakened the Juves and we ran for it!")
         player<Quiz>("Juves? What are they?")
-        npc<Neutral>(
-            "It's short for 'juvenile', that's the stage that those vampires were at in the " +
-                "forest. They've only recently become vampiric and they're pretty inexperienced.",
-        )
-        npc<Neutral>(
-            "However, they're stronger and faster than many well trained militia men, and twice " +
-                "as blood thirsty.",
-        )
+        npc<Neutral>("It's short for 'juvenile', that's the stage that those vampires were at in the forest. They've only recently become vampiric and they're pretty inexperienced.")
+        npc<Neutral>("However, they're stronger and faster than many well trained militia men, and twice as blood thirsty.")
         questionsChoice()
     }
 
     fun ChoiceOption.graspOfSituation(): Unit = option<Quiz>("What's your grasp of the situation soldier?") {
-        npc<Neutral>(
-            "The situation is grave, it would be dangerous to think differently. We're really up " +
-                "against it here, but we have no choice, this is a battle for our right to exist " +
-                "and we need to employ any tactics to achieve our goal.",
-        )
+        npc<Neutral>("The situation is grave, it would be dangerous to think differently. We're really up against it here, but we have no choice, this is a battle for our right to exist and we need to employ any tactics to achieve our goal.")
         questionsChoice()
     }
 
     fun ChoiceOption.heardAnyRumors(): Unit = option<Quiz>("Have you heard any rumors?") {
-        npc<Neutral>(
-            "Yes, I hear them all the time, thankfully I don't pay any attention to them, though.",
-        )
+        npc<Neutral>("Yes, I hear them all the time, thankfully I don't pay any attention to them, though.")
         questionsChoice()
     }
 }

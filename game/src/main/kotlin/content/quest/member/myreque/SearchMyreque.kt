@@ -97,9 +97,8 @@ class SearchMyreque : Script {
             arriveDelay()
             val progress = questStage("in_search_of_the_myreque")
             if (progress < myrequeStage("answered_questions")) {
-                return@objectOperate statement(
-                    "There seems to be a strange combination on the door. It would take ages to work it out.",
-                )
+                statement("There seems to be a strange combination on the door. It would take ages to work it out.")
+                return@objectOperate
             }
             if (progress == myrequeStage("answered_questions")) {
                 set("in_search_of_the_myreque", "entered_hideout")
@@ -118,10 +117,7 @@ class SearchMyreque : Script {
         }
 
         objectOperate("Look", "route_stalagmite_cave_entrace") {
-            statement(
-                "It looks like an ordinary stalagmite, however, beyond it you can see that there is a " +
-                    "small cave entrance.",
-            )
+            statement("It looks like an ordinary stalagmite, however, beyond it you can see that there is a small cave entrance.")
         }
 
         objectOperate("Squeeze-past", "route_stalagmite_cave_entrace") {
@@ -190,10 +186,7 @@ class SearchMyreque : Script {
     private suspend fun Player.climbTree(target: GameObject) {
         val north = target.tile.y == NORTH_TREE
         if (north && !get(rung(BRIDGE_TOP), false)) {
-            statement(
-                "This bridge run looks broken; you would have nowhere to stand. The southern " +
-                    "side of the rope bridge looks much less damaged.",
-            )
+            statement("This bridge run looks broken; you would have nowhere to stand. The southern side of the rope bridge looks much less damaged.")
             return
         }
         message("You climb the tree.")

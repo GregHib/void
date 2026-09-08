@@ -50,10 +50,7 @@ class VeliafHurtz : Script {
                         npc<Quiz>("Have you introduced yourself to the rest of the gang?")
                         introducedYourselfChoice()
                     } else {
-                        npc<Neutral>(
-                            "Hello again...so, you've introduced yourself to the team have you? Good. " +
-                                "Now, let's have a look at those weapons you brought us.",
-                        )
+                        npc<Neutral>("Hello again...so, you've introduced yourself to the team have you? Good. Now, let's have a look at those weapons you brought us.")
                         if (hasAllWeapons()) {
                             acceptWeapons()
                         } else {
@@ -79,16 +76,9 @@ class VeliafHurtz : Script {
     private suspend fun Player.firstMeeting() {
         player<Neutral>("Hello there...")
         npc<Quiz>("Hello there...how did you get in here? Who are you?")
-        player<Neutral>(
-            "I was asked to bring you some weapons...apparently you need them? Don't worry, " +
-                "I'm a friend.",
-        )
+        player<Neutral>("I was asked to bring you some weapons...apparently you need them? Don't worry, I'm a friend.")
         set("in_search_of_the_myreque", "met_veliaf")
-        npc<Neutral>(
-            "Hmm, well, it's true we could do with some supplies. It's very good of you to bring " +
-                "them to us. I'm sorry but I'm a bit busy at the moment, please introduce yourself " +
-                "to the others, then we can talk about those weapons.",
-        )
+        npc<Neutral>("Hmm, well, it's true we could do with some supplies. It's very good of you to bring them to us. I'm sorry but I'm a bit busy at the moment, please introduce yourself to the others, then we can talk about those weapons.")
         firstMeetingChoice()
     }
 
@@ -103,52 +93,27 @@ class VeliafHurtz : Script {
     }
 
     fun ChoiceOption.areYouLeader(): Unit = option<Neutral>("So are you the leader?") {
-        npc<Neutral>(
-            "Well, as much as anyone is, it's not official or anything, I guess the others just " +
-                "look up to me or something. I feel a certain responsibility for them so I guess " +
-                "that means I'm a leader of sorts.",
-        )
+        npc<Neutral>("Well, as much as anyone is, it's not official or anything, I guess the others just look up to me or something. I feel a certain responsibility for them so I guess that means I'm a leader of sorts.")
         firstMeetingChoice()
     }
 
     fun ChoiceOption.tellMeAboutOrganization(): Unit = option<Quiz>("Can you tell me about your organization?") {
-        npc<Neutral>(
-            "Huh, organization? That's rich! We're really not that organized, however, the " +
-                "Myreque are dedicated to mounting a resistance against the Drakans and the evil " +
-                "that they've brough to Morytania.",
-        )
+        npc<Neutral>("Huh, organization? That's rich! We're really not that organized, however, the Myreque are dedicated to mounting a resistance against the Drakans and the evil that they've brough to Morytania.")
         firstMeetingChoice()
     }
 
     fun ChoiceOption.tellMeAboutMorytania(): Unit = option<Quiz>("What can you tell me about Morytania?") {
-        npc<Sad>(
-            "I can tell you that it used to be a beautiful country before Lowerniel and his " +
-                "quarelling siblings arrived.",
-        )
+        npc<Sad>("I can tell you that it used to be a beautiful country before Lowerniel and his quarelling siblings arrived.")
         player<Neutral>("Lowerniel? Who's that?")
-        npc<Angry>(
-            "Lowerniel Vergidiyad Drakan - he's the head of the Drakan family and along with his " +
-                "brother Ranis and his sister Vanescula they play out their petty backstabbing " +
-                "games using the peoples of Morytania as their pawns.",
-        )
+        npc<Angry>("Lowerniel Vergidiyad Drakan - he's the head of the Drakan family and along with his brother Ranis and his sister Vanescula they play out their petty backstabbing games using the peoples of Morytania as their pawns.")
         player<Neutral>("You sound very bitter.")
-        npc<Sad>(
-            "So would you if you lost everyone dear to you at the hands of such monsters.",
-        )
+        npc<Sad>("So would you if you lost everyone dear to you at the hands of such monsters.")
         firstMeetingChoice()
     }
 
     fun ChoiceOption.futurePlans(): Unit = option<Quiz>("What are your plans for the future?") {
-        npc<Neutral>(
-            "At the moment we're maintaining a low profile after we were spotted scouting out " +
-                "the Drakans' castle. The forest where we camped is infested with vampire, and " +
-                "even though they're only juveniles in terms of experience, we only just managed " +
-                "to survive.",
-        )
-        npc<Neutral>(
-            "After we've regrouped, we will try to recruit more people to our cause, at the " +
-                "minute we're hopelessly outnumberd.",
-        )
+        npc<Neutral>("At the moment we're maintaining a low profile after we were spotted scouting out the Drakans' castle. The forest where we camped is infested with vampire, and even though they're only juveniles in terms of experience, we only just managed to survive.")
+        npc<Neutral>("After we've regrouped, we will try to recruit more people to our cause, at the minute we're hopelessly outnumberd.")
         firstMeetingChoice()
     }
 
@@ -179,10 +144,7 @@ class VeliafHurtz : Script {
     }
 
     private suspend fun Player.wrongWeapons() {
-        npc<Neutral>(
-            "Well, those weapons aren't that useful. We really need specific ones, we have our " +
-                "own specialism.",
-        )
+        npc<Neutral>("Well, those weapons aren't that useful. We really need specific ones, we have our own specialism.")
         weaponChoice()
     }
 
@@ -366,19 +328,9 @@ class VeliafHurtz : Script {
     }
 
     private suspend fun Player.postCutsceneIntro() {
-        npc<Sad>(
-            "That murderer Vanstrom has killed Sani and Harold! He came in and killed them right " +
-                "in front of our eyes. And that beast he summoned probably would have killed the " +
-                "rest of us if it wasn't for you!",
-        )
-        player<Neutral>(
-            "It was the least I could do! After all, I was the one he followed here, I'm sort of " +
-                "responsible.",
-        )
-        npc<Neutral>(
-            "That is for your conscience to bear, but now perhaps you can understand why we " +
-                "fight for our freedom?",
-        )
+        npc<Sad>("That murderer Vanstrom has killed Sani and Harold! He came in and killed them right in front of our eyes. And that beast he summoned probably would have killed the rest of us if it wasn't for you!")
+        player<Neutral>("It was the least I could do! After all, I was the one he followed here, I'm sort of responsible.")
+        npc<Neutral>("That is for your conscience to bear, but now perhaps you can understand why we fight for our freedom?")
         player<Neutral>("Yes, I think I understand now.")
         aftermathChoice()
     }
@@ -394,46 +346,27 @@ class VeliafHurtz : Script {
     }
 
     fun ChoiceOption.joinOrganisation(): Unit = option<Neutral>("I want to join your organisation.") {
-        npc<Neutral>(
-            "Hmm, well thanks for your support. But I'll need to talk to my superior first.",
-        )
+        npc<Neutral>("Hmm, well thanks for your support. But I'll need to talk to my superior first.")
         aftermathChoice()
     }
 
     fun ChoiceOption.whatNext(): Unit = option<Quiz>("What do you plan to do now?") {
-        npc<Neutral>(
-            "Well, I guess Vanstrom will expect that we're dead. He's so arrogant that he doesn't " +
-                "really consider us a threat. I can understand that, if I was that powerful I " +
-                "would probably feel the same.",
-        )
-        npc<Neutral>(
-            "I guess we'll regroup and then try to recruit more people. We first need to know " +
-                "how we can fight against these monsters, then we'll take the war to them!",
-        )
+        npc<Neutral>("Well, I guess Vanstrom will expect that we're dead. He's so arrogant that he doesn't really consider us a threat. I can understand that, if I was that powerful I would probably feel the same.")
+        npc<Neutral>("I guess we'll regroup and then try to recruit more people. We first need to know how we can fight against these monsters, then we'll take the war to them!")
         aftermathChoice()
     }
 
     fun ChoiceOption.howToGetOut(): Unit = option<Quiz>("How do I get out of here?") {
-        npc<Neutral>(
-            "If you go back into the main corridor which leads into this room, it goes down " +
-                "towards the basement of an Inn.",
-        )
+        npc<Neutral>("If you go back into the main corridor which leads into this room, it goes down towards the basement of an Inn.")
         if (questStage("in_search_of_the_myreque") == myrequeStage("killed_hellhound")) {
             set("in_search_of_the_myreque", "shown_way_out")
         }
-        npc<Neutral>(
-            "If you search the wall, you'll find that it is in fact moveable. You should be able " +
-                "to get into the room, take the ladder to come out to the south of the " +
-                "'Hair of the Dog Tavern' in Canifis.",
-        )
+        npc<Neutral>("If you search the wall, you'll find that it is in fact moveable. You should be able to get into the room, take the ladder to come out to the south of the 'Hair of the Dog Tavern' in Canifis.")
         aftermathChoice()
     }
 
     fun ChoiceOption.getRevenge(): Unit = option<Quiz>("Let's get revenge on Vanstrom!") {
-        npc<Happy>(
-            "Yes, of course, we'll certainly get our revenge on him and his superiors! Then " +
-                "they'll taste the bitter sorrow that we've had to endure so long!",
-        )
+        npc<Happy>("Yes, of course, we'll certainly get our revenge on him and his superiors! Then they'll taste the bitter sorrow that we've had to endure so long!")
         aftermathChoice()
     }
 
