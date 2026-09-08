@@ -6,6 +6,9 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.skill.summoning.follower
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.command.adminCommand
+import world.gregs.voidps.engine.client.command.intArg
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasOpen
@@ -79,6 +82,24 @@ class MageTrainingArena : Script {
                 message("You can't teleport out of the training arena!")
                 false
             }
+        }
+
+        adminCommand("pizazz", intArg("amount", desc = "Points to add, negative to remove"), stringArg("room", optional = true, autofill = PizazzPoints.rooms.toSet() + "all"), desc = "Add Pizazz Points to one room or all four") { args ->
+            val amount = args[0].toInt()
+            val room = args.getOrNull(1) ?: "all"
+            val rooms = if (room == "all") PizazzPoints.rooms else listOf(room)
+            for (name in rooms) {
+                if (name !in PizazzPoints.rooms) {
+                    message("Unknown room '$name'; use ${PizazzPoints.rooms.joinToString()} or all.")
+                    return@adminCommand
+                }
+                if (amount >= 0) {
+                    PizazzPoints.add(this, name, amount)
+                } else {
+                    PizazzPoints.remove(this, name, -amount)
+                }
+            }
+            message("Pizazz Points: ${PizazzHat.points(this)}")
         }
 
         npcOperate("Talk-to", "charmed_warrior") {
