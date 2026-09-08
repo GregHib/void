@@ -1,6 +1,6 @@
 [mage_training_arena_alchemist]
 id = 194
-type = "overlay"
+type = "game_screen_overlay"
 
 [.points]
 id = 3
@@ -37,7 +37,7 @@ id = 18
 
 [mage_training_arena_enchanting]
 id = 195
-type = "overlay"
+type = "game_screen_overlay"
 
 [.bonus_cube]
 id = 1
@@ -56,7 +56,7 @@ id = 9
 
 [mage_training_arena_graveyard]
 id = 196
-type = "overlay"
+type = "game_screen_overlay"
 
 [.points]
 id = 12
@@ -75,7 +75,7 @@ options = { Value = 0, Buy = 1, Examine = 9 }
 
 [mage_training_arena_telekinetic]
 id = 198
-type = "overlay"
+type = "game_screen_overlay"
 
 [.points]
 id = 4
