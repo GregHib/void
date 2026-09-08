@@ -40,6 +40,10 @@ class SearchMyreque : Script {
             questJournal("In Search of the Myreque", lines)
         }
 
+        objectOperate("Climb", "swamp_bridge_tree") { (target) ->
+            climbTree(target)
+        }
+
         objectApproach("Climb", "swamp_bridge_tree") { (target) ->
             approachRange(1)
             if (!tile.within(target.tile, 1)) {
