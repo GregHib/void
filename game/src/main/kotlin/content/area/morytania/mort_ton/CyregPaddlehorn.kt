@@ -18,6 +18,7 @@ import content.quest.questCompleted
 import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -267,7 +268,7 @@ private suspend fun Player.offerBoat() {
     if (questStage("in_search_of_the_myreque") == myrequeStage("refused_delivery")) {
         set("in_search_of_the_myreque", "persuaded_boatman")
     }
-    if (inventory.contains("druid_pouch_2", 5) && inventory.contains("silver_sickle_b")) {
+    if (inventory.contains("druid_pouch_2", 5) && carriesItem("silver_sickle_b")) {
         showDruidPouch()
     } else {
         player<Sad>("I don't have anything which I can use against them at this time.")
