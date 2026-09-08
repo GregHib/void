@@ -2,6 +2,7 @@ package content.minigame.mage_training_arena
 
 import WorldTest
 import content.quest.instance
+import floorItemOption
 import interfaceOnFloorItem
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -105,6 +106,26 @@ internal class TelekineticTheatreTest : WorldTest() {
 
         assertNull(player.instance())
         assertEquals(Tile(3363, 3316), player.tile)
+    }
+
+    @Test
+    fun `Observe and Reset work on the statue from across the maze`() {
+        val player = enter("mta-maze-observe")
+        player.tele(TelekineticTheatre.local(player, Tile(15, 51)))
+        tick(2)
+        val start = TelekineticTheatre.statue(player)!!.tile
+
+        player.floorItemOption(TelekineticTheatre.statue(player)!!, "Observe")
+        tick(3)
+
+        assertTrue(player["mage_training_arena_camera", false])
+        assertEquals(TelekineticTheatre.local(player, Tile(15, 51)), player.tile)
+
+        TelekineticTheatre.placeStatue(player, start.addY(1))
+        player.floorItemOption(TelekineticTheatre.statue(player)!!, "Reset")
+        tick(3)
+
+        assertEquals(start, TelekineticTheatre.statue(player)!!.tile)
     }
 
     /**

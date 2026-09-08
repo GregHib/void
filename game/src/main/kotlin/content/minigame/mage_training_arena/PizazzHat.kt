@@ -38,12 +38,11 @@ class PizazzHat : Script {
         }
 
         itemOption("Talk-to", "progress_hat*") {
-            val greeting = greetings.random()
-            player<Neutral>(greeting.first)
-            npc<Neutral>("pizazz_hat", greeting.second)
-            player<Quiz>(greeting.third)
-            npc<Neutral>("pizazz_hat", "Ok, I suppose it's my job. You have: ${points(this)}")
-            player<Neutral>("Thank you!")
+            talk()
+        }
+
+        itemOption("Talk-to", "progress_hat*", inventory = "worn_equipment") {
+            talk()
         }
 
         itemOption("Destroy", "progress_hat*") { (item, slot) ->
@@ -62,6 +61,15 @@ class PizazzHat : Script {
                 }
             }
         }
+    }
+
+    private suspend fun Player.talk() {
+        val greeting = greetings.random()
+        player<Neutral>(greeting.first)
+        npc<Neutral>("pizazz_hat", greeting.second)
+        player<Quiz>(greeting.third)
+        npc<Neutral>("pizazz_hat", "Ok, I suppose it's my job. You have: ${points(this)}")
+        player<Neutral>("Thank you!")
     }
 
     private suspend fun Player.menu() {

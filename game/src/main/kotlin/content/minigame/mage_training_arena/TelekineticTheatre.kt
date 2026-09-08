@@ -79,18 +79,21 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
             }
         }
 
-        floorItemOperate("Observe") { (target) ->
+        // The statue sits inside the maze walls, so these work from a distance rather than walking to it.
+        floorItemApproach("Observe") { (target) ->
             if (target.id != "guardian_statue") {
-                return@floorItemOperate
+                return@floorItemApproach
             }
+            steps.clear()
             observe(this)
         }
 
-        floorItemOperate("Reset") { (target) ->
+        floorItemApproach("Reset") { (target) ->
             if (target.id != "guardian_statue") {
-                return@floorItemOperate
+                return@floorItemApproach
             }
-            val maze = currentMaze(this) ?: return@floorItemOperate
+            steps.clear()
+            val maze = currentMaze(this) ?: return@floorItemApproach
             placeStatue(this, local(this, maze.tile("statue")))
         }
 

@@ -3,13 +3,17 @@ package content.minigame.mage_training_arena
 import WorldTest
 import containsMessage
 import dialogueOption
+import itemOption
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,7 +22,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 internal class MageTrainingArenaTest : WorldTest() {
@@ -110,6 +116,19 @@ internal class MageTrainingArenaTest : WorldTest() {
 
         assertTrue(player.inventory.contains("progress_hat_3"))
         assertEquals(601, PizazzPoints.total(player))
+    }
+
+    @Test
+    fun `The hat can be talked to while worn`() {
+        val player = createPlayer(Tile(3363, 3305), "mta-worn-hat")
+        player.equipment.add("progress_hat")
+
+        player.itemOption("Talk-to", "progress_hat", id = "worn_equipment", component = "hat_slot", optionIndex = 1, inventory = "worn_equipment", slot = EquipSlot.Hat.index)
+        tick(1)
+
+        assertNotNull(player.dialogue)
+        player.skipDialogues()
+        assertNull(player.dialogue)
     }
 
     private fun enter(name: String, room: String, tile: Tile): Player {
