@@ -22,6 +22,10 @@ class BonesTo : Script {
             if (hasClock("action_delay")) {
                 return@interfaceOption
             }
+            if (it.component == "bones_to_peaches" && !get("bones_to_peaches", false)) {
+                message("You can only learn this spell from the Mage Training Arena.")
+                return@interfaceOption
+            }
             convert(this, it.component, tabletSlot = -1)
         }
 
