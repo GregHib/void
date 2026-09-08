@@ -1,0 +1,84 @@
+[mage_training_arena_alchemist]
+id = 194
+type = "overlay"
+
+[.points]
+id = 3
+
+[.value_leather_boots_mage_training_arena]
+id = 9
+
+[.value_adamant_kiteshield_mage_training_arena]
+id = 10
+
+[.value_adamant_helm_mage_training_arena]
+id = 11
+
+[.value_emerald_mage_training_arena]
+id = 12
+
+[.value_rune_longsword_mage_training_arena]
+id = 13
+
+[.free_leather_boots_mage_training_arena]
+id = 14
+
+[.free_adamant_kiteshield_mage_training_arena]
+id = 15
+
+[.free_adamant_helm_mage_training_arena]
+id = 16
+
+[.free_emerald_mage_training_arena]
+id = 17
+
+[.free_rune_longsword_mage_training_arena]
+id = 18
+
+[mage_training_arena_enchanting]
+id = 195
+type = "overlay"
+
+[.bonus_cube]
+id = 1
+
+[.bonus_cylinder]
+id = 2
+
+[.bonus_icosahedron]
+id = 3
+
+[.bonus_pentamid]
+id = 4
+
+[.points]
+id = 9
+
+[mage_training_arena_graveyard]
+id = 196
+type = "overlay"
+
+[.points]
+id = 12
+
+[mage_training_arena_rewards]
+id = 197
+type = "main_screen"
+
+[.close]
+id = 15
+
+[.stock]
+id = 16
+inventory = "mage_training_arena"
+options = { Value = 0, Buy = 1, Examine = 9 }
+
+[mage_training_arena_telekinetic]
+id = 198
+type = "overlay"
+
+[.points]
+id = 4
+
+[.solved]
+id = 7

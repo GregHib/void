@@ -1,0 +1,17 @@
+[mta_barrier]
+id = 1657
+
+[mta_deposit_bone]
+id = 1660
+
+[mta_bone_fall]
+id = 1661
+
+[mta_deposit_fruit]
+id = 1663
+
+[mta_deposit_orb]
+id = 1664
+
+[mta_move_statue]
+id = 1666
