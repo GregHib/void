@@ -53,6 +53,15 @@ tasks.register<JavaExec>("importPetTranscript") {
     workingDir = rootDir
 }
 
+tasks.register<JavaExec>("updateObjectSpawns") {
+    description = "Applies an object spawn TOML file to map archives in a cache."
+    mainClass.set("world.gregs.voidps.tools.map.UpdateObjectSpawns")
+    classpath = sourceSets["main"].runtimeClasspath
+    workingDir = rootDir
+    val cliArgs = (findProperty("args") as String?)?.split(" ")?.filter { it.isNotBlank() } ?: emptyList()
+    args = cliArgs
+}
+
 tasks.register<JavaExec>("fixEnums") {
     classpath = sourceSets["main"].runtimeClasspath
     mainClass.set("world.gregs.voidps.tools.cache.FixEnums")
