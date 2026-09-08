@@ -51,6 +51,7 @@ spell = "Bones to Bananas"
 # Tiles are offsets from the south-west corner of region 13463 (3328, 9664).
 # north/south are local y thresholds, west/east local x thresholds used to pick the statue direction.
 [mta_mazes]
+index = "int"
 base = "tile"
 statue = "tile"
 guardian = "tile"
@@ -62,6 +63,7 @@ west = "int"
 east = "int"
 
 [.maze_1]
+index = 0
 base = { x = 8, y = 54 }
 statue = { x = 15, y = 41 }
 guardian = { x = 8, y = 39 }
@@ -73,6 +75,7 @@ west = 9
 east = 20
 
 [.maze_2]
+index = 1
 base = { x = 34, y = 49, level = 1 }
 statue = { x = 22, y = 53, level = 1 }
 guardian = { x = 26, y = 48, level = 1 }
@@ -84,6 +87,7 @@ west = 12
 east = 23
 
 [.maze_3]
+index = 2
 base = { x = 54, y = 34, level = 1 }
 statue = { x = 48, y = 22, level = 1 }
 guardian = { x = 45, y = 15, level = 1 }
@@ -95,6 +99,7 @@ west = 47
 east = 58
 
 [.maze_4]
+index = 3
 base = { x = 50, y = 42, level = 1 }
 statue = { x = 46, y = 49, level = 1 }
 guardian = { x = 57, y = 41, level = 1 }
@@ -106,6 +111,7 @@ west = 45
 east = 56
 
 [.maze_5]
+index = 4
 base = { x = 46, y = 32 }
 statue = { x = 45, y = 14 }
 guardian = { x = 45, y = 23 }
@@ -117,6 +123,7 @@ west = 40
 east = 51
 
 [.maze_6]
+index = 5
 base = { x = 26, y = 26 }
 statue = { x = 15, y = 16 }
 guardian = { x = 23, y = 24 }
@@ -128,6 +135,7 @@ west = 9
 east = 10
 
 [.maze_7]
+index = 6
 base = { x = 51, y = 52 }
 statue = { x = 40, y = 48 }
 guardian = { x = 55, y = 50 }
@@ -139,6 +147,7 @@ west = 37
 east = 48
 
 [.maze_8]
+index = 7
 base = { x = 31, y = 37, level = 2 }
 statue = { x = 18, y = 54, level = 2 }
 guardian = { x = 28, y = 41, level = 2 }
@@ -150,6 +159,7 @@ west = 14
 east = 25
 
 [.maze_9]
+index = 8
 base = { x = 40, y = 16, level = 2 }
 statue = { x = 20, y = 10, level = 2 }
 guardian = { x = 34, y = 15, level = 2 }
@@ -161,6 +171,7 @@ west = 10
 east = 21
 
 [.maze_10]
+index = 9
 base = { x = 27, y = 29, level = 1 }
 statue = { x = 23, y = 20, level = 1 }
 guardian = { x = 31, y = 25, level = 1 }

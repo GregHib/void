@@ -129,7 +129,11 @@ class MageTrainingArena : Script {
                 return
             }
         }
-        tele(room.tile("enter"))
+        if (room.rowId == "telekinetic") {
+            TelekineticTheatre.start(this)
+        } else {
+            tele(room.tile("enter"))
+        }
         message("You've entered the ${room.string("name")}.")
     }
 
