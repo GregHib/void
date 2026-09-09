@@ -45,7 +45,7 @@ class LeafTraps : Script {
                     return@objectOperate
                 }
             }
-            if (Level.success(levels.get(Skill.Agility), 128..250)) { // TODO unknown rate
+            if (Level.success(levels.get(Skill.Agility), 180..255)) {
                 anim("leaf_trap_jump", delay = 20)
                 sound("jump", delay = 20)
                 exactMoveDelay(dest, delay = 60, direction = direction, startDelay = 30)
@@ -103,7 +103,7 @@ class LeafTraps : Script {
             player.anim("pit_getup")
             player.say("Ouch!")
             player.sound("fall_land")
-            player.damage(random.nextInt(20, 41)) // TODO unknown damage
+            player.damage(random.nextInt(20, 181)) // TODO unknown min damage
         }
     }
 }

@@ -3,6 +3,8 @@ package content.area.tirannwn.lletya
 import content.entity.player.dialogue.type.statement
 import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
@@ -16,10 +18,14 @@ class LletyaTreeEntrance : Script {
             }
             val direction = if (tile.x < target.tile.x) Direction.EAST else Direction.WEST
             val dest = Tile(target.tile.x + direction.delta.x * 2, target.tile.y, tile.level)
-            face(direction)
-            delay()
-            anim("dense_forest_squeeze")
-            exactMoveDelay(dest, delay = 90, direction = direction)
+            val partner = GameObjects.findOrNull(Tile(target.tile.x, if (target.tile.y == 3191) 3195 else 3191, tile.level), "lletya_tree_entrance")
+            target.anim("treegate_open")
+            partner?.anim("treegate_open")
+            sound("treedoor_open")
+            walkOverDelay(dest)
+            target.anim("treegate_close")
+            partner?.anim("treegate_close")
+            sound("treedoor_close")
         }
     }
 }

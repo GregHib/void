@@ -19,12 +19,6 @@ id = 839
 [dense_forest_squeeze]
 id = 1237
 
-[elven_overpass_climb_up]
-id = 2050
-
-[elven_overpass_climb_down]
-id = 2049
-
 [woodspring]
 id = 1219
 
