@@ -57,6 +57,8 @@ class DenseForest : Script {
                 }
             }
             exactMoveDelay(dest, delay = 94, direction = direction, startDelay = 30)
+            // Interacting faced the object, which is now behind; keep facing the way travelled
+            face(direction)
         }
     }
 }

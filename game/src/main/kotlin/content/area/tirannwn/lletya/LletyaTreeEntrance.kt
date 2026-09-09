@@ -23,9 +23,6 @@ class LletyaTreeEntrance : Script {
             partner?.anim("treegate_open")
             sound("treedoor_open")
             walkOverDelay(dest)
-            target.anim("treegate_close")
-            partner?.anim("treegate_close")
-            sound("treedoor_close")
         }
     }
 }

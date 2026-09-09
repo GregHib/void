@@ -9,11 +9,11 @@ class ArandarGate : Script {
 
     init {
         objectOperate("Enter", "arandar_heavy_gate,arandar_heavy_gate_2") { (target) ->
-            // Each half swings open and closes itself a few ticks later
+            // Each half swings 90 degrees open and closes itself a few ticks later
             if (target.id == "arandar_heavy_gate_2") {
-                GameObjects.replace(target, "arandar_heavy_gate_2_open", tile = target.tile.addY(-1), rotation = 2, ticks = 5)
+                GameObjects.replace(target, "arandar_heavy_gate_2_open", tile = target.tile.addY(-1), rotation = 3, ticks = 5)
             } else {
-                GameObjects.replace(target, "arandar_heavy_gate_open", tile = target.tile.add(1, -1), rotation = 2, ticks = 5)
+                GameObjects.replace(target, "arandar_heavy_gate_open", tile = target.tile.add(1, -1), rotation = 1, ticks = 5)
             }
             sound("bigdoor_open")
             val x = tile.x.coerceIn(target.tile.x, target.tile.x + target.width - 1)
