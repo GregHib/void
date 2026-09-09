@@ -453,7 +453,8 @@ class EvilTree : Script {
     }
 
     /**
-     * Whether a settled root is lashing out at the player for working right beside it.
+     * Whether a settled root is lashing out at the player for working on the tree right beside it.
+     * Chopping the root itself is safe.
      */
     private fun Player.swept(): Boolean {
         if (!tile.within(centre, SWEEP_RADIUS) || roots.values.none { tile.within(it.obj.tile, 1) }) {
@@ -551,9 +552,6 @@ class EvilTree : Script {
             val root = roots[side]
             if (root == null || root.obj != target) {
                 break
-            }
-            if (swept()) {
-                return
             }
             if (!Hatchet.hasRequirements(this, hatchet, message = true)) {
                 break
