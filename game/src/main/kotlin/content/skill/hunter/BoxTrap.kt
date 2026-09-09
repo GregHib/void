@@ -1,5 +1,6 @@
 package content.skill.hunter
 
+import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.quest.questCompleted
 import net.pearx.kasechange.toLowerSpaceCase
@@ -96,6 +97,12 @@ class BoxTrap : Script {
             }
             target.walkToDelay(tile)
             target.walkOverDelay(tile)
+            if (target.tile != tile) {
+                // Couldn't reach the trap; re-arm it and free the creature
+                target.clear("caught")
+                clearTransform()
+                return@huntNPC
+            }
             despawn(100)
             val trap = GameObjects.getLayer(tile, ObjectLayer.GROUND) ?: return@huntNPC
             val catching = trap.replace("box_trap_catching")

@@ -146,7 +146,9 @@ class Falconry : Script {
         face(target)
         sound("falcon_swoop")
         equipment.replace("falconers_glove_2", "falconers_glove")
-        shoot("gyr_falcon", target)
+        gfx("falcon_lift")
+        anim("falconer_attack")
+        val flight = shoot("gyr_falcon", target)
         delay(2)
         if (target.tile.distanceTo(tile) > 8) {
             equipment.replace("falconers_glove", "falconers_glove_2")
@@ -154,12 +156,13 @@ class Falconry : Script {
         }
         val success = Level.success(levels.get(Skill.Hunter), row.intRange("chance"))
         if (!success) {
-            target.shoot("gyr_falcon", this)
+            target.shoot("gyr_falcon", this, height = 10, endHeight = 70, curve = 0)
             sound("falcon_return", delay = 20)
             message("The kebbit is too quick for your falcon.")
             equipment.replace("falconers_glove", "falconers_glove_2")
             return
         }
+        target.gfx("falcon_impale", delay = flight)
         target.levels.set(Skill.Constitution, 0)
         val caught = NPCs.add(row.npc("caught"), target.tile, ticks = 100, owner = this)
         markHint(caught)

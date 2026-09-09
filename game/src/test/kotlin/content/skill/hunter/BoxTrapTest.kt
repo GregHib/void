@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -133,6 +134,27 @@ class BoxTrapTest : WorldTest() {
         tick(110)
         assertEquals(1, FloorItems.at(start).count { it.id == "box_trap" })
         assertEquals(0, FloorItems.at(start).count { it.id == "papaya_fruit" })
+    }
+
+    @Test
+    fun `Wandering pawya is lured to a baited trap without line of sight`() {
+        world.gregs.voidps.engine.data.Settings.load(mapOf("world.npcs.randomWalk" to "true"))
+        val player = createPlayer(Tile(2245, 3190))
+        player.inventory.add("box_trap")
+        player.inventory.add("papaya_fruit")
+        player.levels.set(Skill.Hunter, 99)
+        val start = player.tile
+
+        player.itemOption("Lay", "box_trap")
+        tick(3)
+        val laid = GameObjects.at(start).firstOrNull { it.id == "box_trap" }
+        assertNotNull(laid)
+        player.itemOnObject(laid, player.inventory.indexOf("papaya_fruit"))
+        tick(2)
+        createNPC("pawya", Tile(2245, 3192))
+
+        tickIf(limit = 90) { GameObjects.at(start).none { it.id == "box_trap_pawya" } }
+        assertNotNull(GameObjects.at(start).firstOrNull { it.id == "box_trap_pawya" })
     }
 
     @Test
