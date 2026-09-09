@@ -17,7 +17,9 @@ class LletyaTreeEntrance : Script {
                 return@objectOperate
             }
             val direction = if (tile.x < target.tile.x) Direction.EAST else Direction.WEST
-            val dest = Tile(target.tile.x + direction.delta.x * 2, target.tile.y, tile.level)
+            // Only the middle two tiles are a real opening; the rest would clip through the trees
+            val y = tile.y.coerceIn(3194, 3195)
+            val dest = Tile(target.tile.x + direction.delta.x * 2, y, tile.level)
             val partner = GameObjects.findOrNull(Tile(target.tile.x, if (target.tile.y == 3191) 3195 else 3191, tile.level), "lletya_tree_entrance")
             target.anim("treegate_open")
             partner?.anim("treegate_open")
