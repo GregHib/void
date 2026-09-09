@@ -80,7 +80,7 @@ class CooksAssistant : Script {
                     "<maroon>kitchen <navy>of <maroon>Lumbridge Castle.",
                 )
             }
-            questJournal("Cook's Aassistant", lines)
+            questJournal("Cook's Assistant", lines)
         }
     }
 }
