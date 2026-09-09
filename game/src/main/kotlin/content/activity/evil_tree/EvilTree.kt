@@ -16,10 +16,12 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.Colours
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toTag
+import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
@@ -44,12 +46,17 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
+import world.gregs.voidps.network.login.protocol.encode.send
+import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAnimation
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
 
-class EvilTree : Script {
+class EvilTree :
+    Script,
+    ZoneBatchUpdates.Sender {
 
     private val logger = InlineLogger()
 
@@ -67,6 +74,8 @@ class EvilTree : Script {
     private var respawnTicks: Int = 0
 
     init {
+        ZoneBatchUpdates.register(this)
+
         worldSpawn {
             if (Settings["events.evilTree.enabled", false]) {
                 schedule(STARTUP_MINUTES)
@@ -652,10 +661,29 @@ class EvilTree : Script {
                 break
             }
             exp(Skill.Firemaking, row.int("burn_xp") / 10.0)
-            fires[spot.rowId] = GameObjects.add("evil_tree_fire", tile, ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, spot.int("dir"), ticks = row.int("fire_life"))
+            val fire = GameObjects.add("evil_tree_fire", tile, ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, spot.int("dir"), ticks = row.int("fire_life"))
+            fire.anim("evil_tree_fire")
+            fires[spot.rowId] = fire
             break
         }
         clearAnim()
+    }
+
+    /**
+     * The burning animation belongs to the varbit multiloc the fire sits under on the real map, not
+     * to the fire object itself, and object animations aren't part of the zone data the client is
+     * sent on arrival, so replay it for anyone who walks in after a fire was lit.
+     */
+    override fun send(player: Player, zone: Zone) {
+        if (fires.isEmpty()) {
+            return
+        }
+        val animation = AnimationDefinitions.get("evil_tree_fire").id
+        for (fire in fires.values) {
+            if (fire.tile.zone == zone) {
+                player.client?.send(ObjectAnimation(fire.tile.id, animation, fire.shape, fire.rotation))
+            }
+        }
     }
 
     /**
