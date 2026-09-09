@@ -11,9 +11,9 @@ class ArandarGate : Script {
         objectOperate("Enter", "arandar_heavy_gate,arandar_heavy_gate_2") { (target) ->
             // Each half swings across to the opposite side and closes itself a few ticks later
             if (target.id == "arandar_heavy_gate") {
-                GameObjects.replace(target, "arandar_heavy_gate_open", tile = Tile(2384, 3333, target.tile.level), rotation = 2, ticks = 5)
-            } else {
                 GameObjects.replace(target, "arandar_heavy_gate_2_open", tile = Tile(2387, 3333, target.tile.level), rotation = 2, ticks = 5)
+            } else {
+                GameObjects.replace(target, "arandar_heavy_gate_open", tile = Tile(2384, 3333, target.tile.level), rotation = 2, ticks = 5)
             }
             sound("bigdoor_open")
             val x = tile.x.coerceIn(target.tile.x, target.tile.x + target.width - 1)
