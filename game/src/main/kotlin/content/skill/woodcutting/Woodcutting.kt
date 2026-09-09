@@ -1,5 +1,6 @@
 package content.skill.woodcutting
 
+import content.skill.constitution.drink.jujuBank
 import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
@@ -142,6 +143,10 @@ class Woodcutting(val drops: DropTables) : Script {
 
     fun addLog(player: Player, log: String): Boolean {
         if (log == "poison_ivy_berries") {
+            return true
+        }
+        if (player.jujuBank("juju_woodcutting", log, 1)) {
+            player.message("You get some ${log.toLowerSpaceCase()}.")
             return true
         }
         val added = player.inventory.add(log)

@@ -68,6 +68,19 @@ internal class TeaTest : WorldTest() {
     }
 
     @Test
+    fun `Nettle tea adds to existing energy`() {
+        val player = createPlayer(emptyTile)
+        player.inventory.add("nettle_tea")
+        player.experience.set(Skill.Constitution, Level.experience(15))
+        player.levels.set(Skill.Constitution, 100)
+        player.runEnergy = 5000
+
+        player.itemOption("Drink", "nettle_tea")
+
+        assertEquals(5500, player.runEnergy)
+    }
+
+    @Test
     fun `Tea flask boosts attack`() {
         val player = createPlayer(emptyTile)
         player.inventory.set(0, "tea_flask", 5)

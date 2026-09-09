@@ -24,6 +24,7 @@ id = 116
 id = 117
 price = 435
 weight = 0.025
+excess = "strength_potion_1"
 empty = "vial"
 examine = "2 doses of strength potion."
 
@@ -1561,31 +1562,31 @@ examine = "1 dose of extreme defence potion."
 
 [extreme_magic_4]
 id = 15320
-weight = 0.02
+weight = 0.035
 excess = "extreme_magic_3"
 empty = "vial"
-examine = "1 dose of extreme magic potion."
+examine = "4 doses of extreme magic potion."
 
 [extreme_magic_3]
 id = 15321
-weight = 0.025
-excess = "extreme_magic_2"
-empty = "vial"
-examine = "2 doses of extreme magic potion."
-
-[extreme_magic_2]
-id = 15322
 weight = 0.03
-excess = "extreme_magic_1"
+excess = "extreme_magic_2"
 empty = "vial"
 examine = "3 doses of extreme magic potion."
 
+[extreme_magic_2]
+id = 15322
+weight = 0.025
+excess = "extreme_magic_1"
+empty = "vial"
+examine = "2 doses of extreme magic potion."
+
 [extreme_magic_1]
 id = 15323
-weight = 0.035
+weight = 0.02
 excess = "vial"
 empty = "vial"
-examine = "4 doses of extreme magic potion."
+examine = "1 dose of extreme magic potion."
 
 [extreme_ranging_4]
 id = 15324

@@ -4,6 +4,9 @@ price = 139
 limit = 100
 heals = 0
 weight = 0.056
+excess = "cocktail_glass"
+empty = "cocktail_glass"
+eat_message = "You drink the strange green liquid."
 examine = "Stankers gives out these strange cocktails for free."
 
 [poison_chalice_noted]

@@ -3,26 +3,26 @@ package content.skill.constitution.drink
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
-import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
 
 class Potions : Script {
 
     init {
-        consumed("*") { item, slot ->
-            if (!item.id.endsWith("_1") && !item.id.endsWith("_2") && !item.id.endsWith("_3") && !item.id.endsWith("_4")) {
+        consumed("*") { item, _ ->
+            val separator = item.id.lastIndexOf('_')
+            if (separator == -1) {
                 return@consumed
             }
-            val doses = item.id.last().digitToInt()
-            if (doses != 1) {
+            val doses = item.id.substring(separator + 1).toIntOrNull()
+            if (doses == null || doses !in 1..5) {
+                return@consumed
+            }
+            if (!PotionEffects.effects.containsKey(item.id.substring(0, separator))) {
+                return@consumed
+            }
+            if (doses > 1) {
                 message("You have ${doses - 1} ${"dose".plural(doses - 1)} of the potion left.")
-                potionEffects(item.id)
-                return@consumed
-            }
-            message("You have finished your potion.")
-            if (contains("smash_vials")) {
-                inventory.remove(slot, item.id)
-                message("You quickly smash the empty vial using the tick a Barbarian taught you.")
+            } else {
+                message("You have finished your potion.")
             }
             potionEffects(item.id)
         }
