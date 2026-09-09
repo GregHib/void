@@ -292,13 +292,13 @@ class IsafdarTest : WorldTest() {
 
     @Test
     fun `Pass through the lletya tree entrance after roving elves`() {
-        val player = createPlayer(Tile(2304, 3191))
+        val player = createPlayer(Tile(2304, 3195))
         player["roving_elves"] = "completed"
-        val tree = GameObjects.find(Tile(2305, 3191), "lletya_tree_entrance")
+        val tree = GameObjects.find(Tile(2305, 3195), "lletya_tree_entrance")
 
         player.objectOption(tree, "Pass")
         tick(8)
 
-        assertEquals(Tile(2307, 3191), player.tile)
+        assertEquals(Tile(2307, 3195), player.tile)
     }
 }
