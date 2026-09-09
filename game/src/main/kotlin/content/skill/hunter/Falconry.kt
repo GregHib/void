@@ -149,7 +149,9 @@ class Falconry : Script {
         gfx("falcon_lift")
         anim("falconer_attack")
         val flight = shoot("gyr_falcon", target)
-        delay(2)
+        // Flight time is in 30ms client ticks; resume one game tick before impact so
+        // the caught falcon npc's queued spawn appears as the projectile lands
+        delay((flight / 20 - 1).coerceAtLeast(1))
         if (target.tile.distanceTo(tile) > 8) {
             equipment.replace("falconers_glove", "falconers_glove_2")
             return
@@ -162,7 +164,7 @@ class Falconry : Script {
             equipment.replace("falconers_glove", "falconers_glove_2")
             return
         }
-        target.gfx("falcon_impale", delay = flight)
+        target.gfx("falcon_impale")
         target.levels.set(Skill.Constitution, 0)
         val caught = NPCs.add(row.npc("caught"), target.tile, ticks = 100, owner = this)
         markHint(caught)
