@@ -50,10 +50,10 @@
 
 ## Webclient setup (experimental)
 
-1. Download the latest [webclient.zip](https://mega.nz/folder/8A9FnZIR#Vn2l5bujguLx5QCwItusHQ) file
-2. Place (don't unzip!) the file in `/data/`
-3. Set `web.server.enabled` to `true` in `game.properties`
-4. Update `web.client.zip` to match the webclient file you downloaded.
+1. Download the latest [webclient.zip](https://mega.nz/folder/8A9FnZIR#Vn2l5bujguLx5QCwItusHQ) file.
+2. Place (don't unzip!) the file into `/data/`.
+3. Set `web.server.enabled` to `true` in `game.properties`.
+4. Update `web.client.zip` in `game.properties` to match the webclient file you downloaded.
 5. Run the server as normal [^](#quick-setup).
 6. Open `http://localhost:8080/play` in the browser and login with any username or password to create a new account.
 
