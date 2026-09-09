@@ -16,7 +16,8 @@ class ArandarGate : Script {
                 GameObjects.replace(target, "arandar_heavy_gate_open", tile = Tile(2384, 3333, target.tile.level), rotation = 2, ticks = 5)
             }
             sound("bigdoor_open")
-            val x = tile.x.coerceIn(target.tile.x, target.tile.x + target.width - 1)
+            // Only the middle two tiles are a real opening; the rest would clip through the gate
+            val x = tile.x.coerceIn(2385, 2386)
             val dest = Tile(x, if (tile.y > target.tile.y) target.tile.y - 1 else target.tile.y + 1, tile.level)
             walkOverDelay(dest)
         }
