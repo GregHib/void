@@ -156,7 +156,7 @@ class Falconry : Script {
         }
         val success = Level.success(levels.get(Skill.Hunter), row.intRange("chance"))
         if (!success) {
-            target.shoot("gyr_falcon", this, height = 10, endHeight = 70, curve = 0)
+            target.shoot("gyr_falcon", this, height = 5, endHeight = 45, curve = 0)
             sound("falcon_return", delay = 20)
             message("The kebbit is too quick for your falcon.")
             equipment.replace("falconers_glove", "falconers_glove_2")
