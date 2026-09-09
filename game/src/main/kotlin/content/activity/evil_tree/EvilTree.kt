@@ -2,6 +2,7 @@ package content.activity.evil_tree
 
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.effect.transform
+import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.type.statement
 import content.skill.woodcutting.Hatchet
 import content.skill.woodcutting.Woodcutting
@@ -22,6 +23,7 @@ import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,10 +34,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.map.collision.blocked
 import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.timer.Timer
@@ -135,7 +139,7 @@ class EvilTree : Script {
             message("${Colours.DARK_RED.toTag()}Your evil tree magic has worn off.")
         }
 
-        adminCommand("eviltree", stringArg("minutes"), desc = "Start a new evil tree event in [minutes]", handler = ::command)
+        adminCommand("evil_tree", stringArg("minutes"), desc = "Start a new evil tree event in [minutes]", handler = ::command)
 
         adminCommand(
             "evil_tree_magic",
@@ -294,7 +298,7 @@ class EvilTree : Script {
                 return@forEachInRadius
             }
             player["evil_tree_noticed"] = spawnId
-            player.gfx("evil_root")
+            areaGfx("evil_root", player.tile)
             player.say("What was that?")
         }
     }
@@ -417,25 +421,53 @@ class EvilTree : Script {
     private fun displace() {
         for (tile in spawnTile.toCuboid(3, 3)) {
             for (player in Players.at(tile)) {
-                push(player, centre)
+                push(player)
+                player.face(centre)
             }
         }
     }
 
-    private fun push(player: Player, from: Tile) {
-        val delta = player.tile.delta(from)
-        val direction = if (delta.x == 0 && delta.y == 0) Direction.cardinal.random(random) else delta.toDirection()
-        if (direction == Direction.NONE) {
-            return
+    /**
+     * Forces [player] one tile away from the tree, cancelling whatever they were doing to it.
+     */
+    private fun push(player: Player) {
+        val delta = player.tile.delta(centre)
+        val away = if (delta.x == 0 && delta.y == 0) Direction.cardinal.random(random) else delta.toDirection()
+        val direction = listOf(away, Direction.of(away.delta.x, 0), Direction.of(0, away.delta.y))
+            .firstOrNull { it != Direction.NONE && !player.blocked(it) } ?: return
+        player.suspension = null
+        player.mode = EmptyMode
+        player.exactMove(direction.delta, PUSH_DELAY, direction = direction.inverse())
+    }
+
+    /**
+     * Roots throw [player] back from the tree and leave them stunned for a moment.
+     */
+    private fun knockAway(player: Player) {
+        push(player)
+        player.anim("evil_root_dodge")
+        player.gfx("stun_long")
+        player["delay"] = STUN_TICKS
+        player.start("stunned", STUN_TICKS)
+        player.start("movement_delay", STUN_TICKS)
+    }
+
+    /**
+     * Whether a settled root is lashing out at the player for working right beside it.
+     */
+    private fun Player.swept(): Boolean {
+        if (!tile.within(centre, SWEEP_RADIUS) || roots.values.none { tile.within(it.obj.tile, 1) }) {
+            return false
         }
-        player.walkTo(player.tile.add(direction.delta))
+        knockAway(this)
+        return true
     }
 
     /*
      * Roots
      */
 
-    private fun spawnRoot(row: RowDefinition) {
+    internal fun spawnRoot(row: RowDefinition) {
         if (roots.containsKey(row.rowId)) {
             return
         }
@@ -462,11 +494,7 @@ class EvilTree : Script {
     private fun burst(tile: Tile) {
         Players.forEachInRadius(tile, 1) { player ->
             player.message("You dive out of the way as a new root bursts from the ground.")
-            push(player, tile)
-            player.anim("step_back_startled")
-            player["delay"] = STUN_TICKS
-            player.start("stunned", STUN_TICKS)
-            player.start("movement_delay", STUN_TICKS)
+            knockAway(player)
         }
     }
 
@@ -492,6 +520,9 @@ class EvilTree : Script {
         while (awaitDialogues()) {
             if (!alive || deathDelay > 0) {
                 break
+            }
+            if (swept()) {
+                return
             }
             if (!Hatchet.hasRequirements(this, hatchet, message = true)) {
                 break
@@ -520,6 +551,9 @@ class EvilTree : Script {
             val root = roots[side]
             if (root == null || root.obj != target) {
                 break
+            }
+            if (swept()) {
+                return
             }
             if (!Hatchet.hasRequirements(this, hatchet, message = true)) {
                 break
@@ -577,10 +611,21 @@ class EvilTree : Script {
         if (!has(Skill.Firemaking, row.int("firemaking"), message = " to set fire to this evil tree") || !evilTreeInteract()) {
             return
         }
+        val spot = fireSpot(tile) ?: run {
+            message("You can't light a fire here.")
+            return
+        }
         var first = true
         while (awaitDialogues()) {
             if (!alive || deathDelay > 0) {
                 break
+            }
+            if (fires.containsKey(spot.rowId)) {
+                message("That part of the tree is already on fire!")
+                break
+            }
+            if (swept()) {
+                return
             }
             if (!inventory.contains("tinderbox")) {
                 message("You need a tinderbox in order to light a fire.")
@@ -590,10 +635,6 @@ class EvilTree : Script {
                 message("You don't have any kindling to burn.")
                 break
             }
-            val spot = freeFire() ?: run {
-                message("There's nowhere left to light a fire.")
-                null
-            } ?: break
             val remaining = remaining("action_delay")
             if (remaining > 0) {
                 pause(remaining)
@@ -613,13 +654,17 @@ class EvilTree : Script {
                 break
             }
             exp(Skill.Firemaking, row.int("burn_xp") / 10.0)
-            val tile = spawnTile.add(spot.int("deltaX"), spot.int("deltaY"))
-            fires[spot.rowId] = GameObjects.add("evil_tree_fire", tile, rotation = spot.int("dir"), ticks = row.int("fire_life"))
+            fires[spot.rowId] = GameObjects.add("evil_tree_fire", tile, ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, spot.int("dir"), ticks = row.int("fire_life"))
+            break
         }
         clearAnim()
     }
 
-    private fun freeFire(): RowDefinition? = Tables.get("evil_fires").rows().filterNot { fires.containsKey(it.rowId) }.randomOrNull(random)
+    /**
+     * The fire spot on [tile], one of the twelve tiles hugging the sides of the tree.
+     * The fire is a wall decoration facing the tree, the only shape its model comes in.
+     */
+    private fun fireSpot(tile: Tile): RowDefinition? = Tables.get("evil_fires").rows().firstOrNull { spawnTile.add(it.int("deltaX"), it.int("deltaY")) == tile }
 
     /*
      * Damage and death
@@ -714,6 +759,8 @@ class EvilTree : Script {
         const val ROOT_BURST_TICKS = 2
         const val ROOT_RESPAWN_TICKS = 100
         const val STUN_TICKS = 2
+        const val PUSH_DELAY = 60
+        const val SWEEP_RADIUS = 2
         const val CHOP_TICKS = 3
         const val LIGHT_TICKS = 4
         const val DEATH_TICKS = 20

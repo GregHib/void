@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.command.Commands
 import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -141,6 +142,37 @@ internal class EvilTreeTest : WorldTest() {
         assertFalse(evilTree.roots.containsKey("north"))
         assertNull(GameObjects.getLayer(root.tile, ObjectLayer.GROUND))
         assertEquals(3, player.inventory.count("evil_tree_kindling"))
+    }
+
+    @Test
+    fun `Roots sweep away anyone chopping the tree beside them`() {
+        matureTree("normal")
+        // Next to the north root, which sits on the tile to the east
+        val player = chopper(emptyTile.add(0, 3))
+
+        player.objectOption(evilTree.tree, "Chop")
+        tickIf { player.tile == emptyTile.add(0, 3) }
+
+        assertEquals(emptyTile.add(-1, 4), player.tile)
+        assertEquals(150, evilTree.health)
+    }
+
+    @Test
+    fun `A bursting root throws back anyone lighting a fire on its tile`() {
+        val player = createPlayer(emptyTile.add(1, 3))
+        player.levels.set(Skill.Firemaking, 99)
+        player.inventory.add("tinderbox")
+        player.inventory.add("evil_tree_kindling", 2)
+        val tree = grownTree("normal")
+
+        player.objectOption(tree, "Light fire")
+        tick(2)
+        evilTree.spawnRoot(Rows.get("evil_branches.north"))
+        tick(EvilTree.LIGHT_TICKS + 2)
+
+        assertEquals(emptyTile.add(1, 4), player.tile)
+        assertEquals(2, player.inventory.count("evil_tree_kindling"))
+        assertTrue(evilTree.fires.isEmpty())
     }
 
     @Test
