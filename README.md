@@ -29,7 +29,7 @@
 ## Features
 
 * **High-performance**: Capable of supporting thousands of concurrent players.
-* **Rich content**: Offers a wide range of emulated content.
+* **Rich content**: Offers a [wide range](https://github.com/GregHib/void/wiki/content-progress) of emulated content.
 * **AI player characters**: Introduced intelligent player bots to enhance immersion.
 * **User-friendly**: [Scripts](https://github.com/GregHib/void/wiki/scripts) let you add content without touching engine internals.
 * **Lightweight**: Memory usage under 300MB in low-memory mode.
@@ -47,6 +47,15 @@
    > Ctrl + C to exit and shutdown the server when running from a command line terminal.
 
 5. Run the [latest client.jar](https://github.com/GregHib/void-client/releases) and login with any username and password to create a new account.
+
+## Webclient setup (experimental)
+
+1. Download the latest [webclient.zip](https://mega.nz/folder/8A9FnZIR#Vn2l5bujguLx5QCwItusHQ) file.
+2. Place (don't unzip!) the file into `/data/`.
+3. Set `web.server.enabled` to `true` in `game.properties`.
+4. Update `web.client.zip` in `game.properties` to match the webclient file you downloaded.
+5. Run the server as normal [^](#quick-setup).
+6. Open `http://localhost:8080/play` in the browser and login with any username or password to create a new account.
 
 For more details see the full [Installation Guide](https://github.com/GregHib/void/wiki/installation-guide).
 
@@ -123,5 +132,3 @@ If you run into any problems or find any bugs, please open a [GitHub Issue](http
 * Jarryd
 * Tomm - [RSMod Pathfinder](https://github.com/rsmod/rsmod)
 * Graham - [OpenRS2](https://archive.openrs2.org/)
-
-[![image](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.svg)](https://jb.gg/OpenSourceSupport)
