@@ -36,7 +36,7 @@ class IsafdarTraps : Script {
             walkOverDelay(entry)
             anim("tripwire_step_over")
             exactMoveDelay(exit, delay = 30, direction = direction)
-            if (Level.success(levels.get(Skill.Agility), 128..250)) { // TODO unknown rate
+            if (Level.success(levels.get(Skill.Agility), 30..155)) {
                 message("You successfully step over the tripwire.")
             } else {
                 message("You snag the trip wire as you step over it.")
@@ -54,7 +54,7 @@ class IsafdarTraps : Script {
             this["crossing_trap"] = true
             walkToDelay(entry.add(direction.inverse()), forceWalk = true)
             walkOverDelay(entry)
-            if (Level.success(levels.get(Skill.Agility), 31..156)) {
+            if (Level.success(levels.get(Skill.Agility), 30..155)) {
                 walkOverDelay(destination(target, direction) ?: out)
                 message("You manage to skillfully pass the trap.")
             } else {

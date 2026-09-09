@@ -56,11 +56,11 @@ examine = "Very dense forest."
 id = 8742
 examine = "An especially dense patch of trees."
 
-[elven_overpass_rocks_up]
+[elven_overpass_rocks_top]
 id = 9296
 examine = "A rocky cliff face."
 
-[elven_overpass_rocks_down]
+[elven_overpass_rocks_bottom]
 id = 9297
 examine = "A rocky cliff face."
 

@@ -6,6 +6,12 @@ examine = "A heavy wooden gate."
 id = 3945
 examine = "A heavy wooden gate."
 
+[arandar_heavy_gate_open]
+id = 3946
+
+[arandar_heavy_gate_2_open]
+id = 3947
+
 [arandar_log_balance]
 id = 3933
 examine = "A slippery looking log."

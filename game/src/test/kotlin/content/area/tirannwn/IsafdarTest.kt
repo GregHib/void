@@ -270,7 +270,7 @@ class IsafdarTest : WorldTest() {
     fun `Climb elven overpass rocks`() {
         val player = createPlayer(Tile(2346, 3300))
         player.levels.set(Skill.Agility, 59)
-        val rocks = GameObjects.find(Tile(2346, 3299), "elven_overpass_rocks_up")
+        val rocks = GameObjects.find(Tile(2346, 3299), "elven_overpass_rocks_top")
 
         player.objectOption(rocks, "Climb")
         tick(8)
@@ -282,7 +282,7 @@ class IsafdarTest : WorldTest() {
     fun `Can't climb elven overpass without agility level`() {
         val player = createPlayer(Tile(2346, 3300))
         player.levels.set(Skill.Agility, 58)
-        val rocks = GameObjects.find(Tile(2346, 3299), "elven_overpass_rocks_up")
+        val rocks = GameObjects.find(Tile(2346, 3299), "elven_overpass_rocks_top")
 
         player.objectOption(rocks, "Climb")
         tick(4)

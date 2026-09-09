@@ -9,9 +9,10 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.inv.transact.TransactionError
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class Eluned : Script {
 
@@ -36,14 +37,16 @@ class Eluned : Script {
         npc<Happy>("Very well. I'll recharge your teleportation crystal for $price gold. What do you say?")
         choice {
             option<Neutral>("Recharge a crystal.") {
-                if (!inventory.contains("coins", price)) {
-                    player<Sad>("Actually, I don't have enough coins.")
-                    return@option
+                inventory.transaction {
+                    remove("coins", price)
+                    remove("crystal_teleport_seed_uncharged")
+                    add("crystal_teleport_seed_4")
                 }
-                if (inventory.remove("coins", price) && inventory.remove("crystal_teleport_seed_uncharged")) {
-                    inventory.add("crystal_teleport_seed_4")
+                if (inventory.transaction.error == TransactionError.None) {
                     inc("teleport_crystal_recharges")
                     statement("Eluned recharges your elven teleportation crystal for $price gold.")
+                } else {
+                    player<Sad>("Actually, I don't have enough coins.")
                 }
             }
             option<Neutral>("Nevermind, I really must be going.")
