@@ -11,7 +11,8 @@ import kotlinx.html.stream.appendHTML
 fun voidPage(
     title: String,
     description: String? = null,
-    cssPath: String = "void/base.css",
+    assetPrefix: String = "",
+    cssPath: String = "${assetPrefix}void/base.css",
     alpineVersion: String = "3.14.1",
     data: String = "{}",
     head: HEAD.() -> Unit = {},
@@ -26,7 +27,7 @@ fun voidPage(
             meta(name = "description", content = description)
         }
         link(rel = "stylesheet", href = cssPath)
-        script(src = "void/void.js") {}
+        script(src = "${assetPrefix}void/void.js") {}
         script(src = "https://cdn.jsdelivr.net/npm/alpinejs@$alpineVersion/dist/cdn.min.js") {
             attributes["defer"] = ""
         }
@@ -35,7 +36,8 @@ fun voidPage(
     body {
         div {
             attributes["x-data"] = data
-            style = "min-height:100vh;background:var(--surface-app);font:var(--type-body);color:var(--text-body)"
+            style = "min-height:100vh;display:flex;flex-direction:column;background:var(--surface-app);" +
+                "font:var(--type-body);color:var(--text-body)"
             body()
         }
     }

@@ -22,12 +22,15 @@ enum class ButtonSize(val height: Int, val paddingX: Int, val font: String) {
  * The single primary/secondary/ghost/danger/link action control. Gold ([ButtonVariant.Primary])
  * should appear on at most one button per view. Hover/active/disabled colours come from
  * `components.css` (`.void-btn-*`) since inline styles can't express `:hover`/`:active`.
+ * [disabledExpression] binds `:disabled` to an Alpine expression instead of the static [disabled]
+ * flag, for buttons (e.g. pagination) whose enabled state depends on client-side state.
  */
 fun Ui.button(
     text: String,
     variant: ButtonVariant = ButtonVariant.Primary,
     size: ButtonSize = ButtonSize.Medium,
     disabled: Boolean = false,
+    disabledExpression: String? = null,
     glow: Boolean = false,
     icon: String? = null,
     onClick: String? = null,
@@ -36,6 +39,9 @@ fun Ui.button(
     receiver.button {
         if (disabled) {
             this.disabled = true
+        }
+        if (disabledExpression != null) {
+            attributes["x-bind:disabled"] = disabledExpression
         }
         if (onClick != null) {
             attributes["@click"] = onClick
