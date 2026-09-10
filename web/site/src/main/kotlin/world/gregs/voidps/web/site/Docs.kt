@@ -68,8 +68,8 @@ object Docs {
         ui.siteHeader(pages, active = "docs", assetPrefix = "../")
 
         div {
-            style = "display:grid;grid-template-columns:240px minmax(0,1fr) 220px;" +
-                "max-width:var(--container-wide);margin:0 auto"
+            style = "display:grid;grid-template-columns:240px minmax(0,1fr) 220px;flex:1;" +
+                "max-width:var(--container-wide);margin:0 auto;width:100%"
 
             aside {
                 style = "background:var(--surface-inset);border-right:1px solid var(--border-panel);" +
