@@ -12,13 +12,15 @@ import kotlinx.html.style
  * The developer panel's fixed top bar: mark + "DEV PANEL" tag, a page-to-page nav (plain links,
  * one static file per page — see [siteHeader]), and a right-hand slot for the target world, a
  * live/paused switch and the staff account menu. [active] is the current page's [SitePage.id];
- * [homeHref] points back at the public site's home page.
+ * [homeHref] points back at the public site's home page. [liveModel] names the boolean Alpine
+ * property backing the live/paused switch — pass `null` on a page whose data model has no such
+ * property (the switch is omitted rather than binding to an undefined variable).
  */
 fun Ui.devHeader(
     pages: List<SitePage>,
     active: String,
     worldLabel: String = "World 9 · voidmmo-eu-1 · rev 231",
-    liveModel: String = "live",
+    liveModel: String? = "live",
     homeHref: String = "../index.html",
     assetPrefix: String = "",
 ) {
@@ -63,8 +65,10 @@ fun Ui.devHeader(
                 style = "font:var(--type-code);font-size:var(--text-xs);color:var(--text-muted)"
                 +worldLabel
             }
-            span { style = "width:1px;height:22px;background:var(--border-subtle)" }
-            ui.switch("Live", model = liveModel, small = true)
+            if (liveModel != null) {
+                span { style = "width:1px;height:22px;background:var(--border-subtle)" }
+                ui.switch("Live", model = liveModel, small = true)
+            }
             span { style = "width:1px;height:22px;background:var(--border-subtle)" }
             ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = pages.first().href)
         }
