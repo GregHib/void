@@ -1,0 +1,48 @@
+/* Interactive states that can only be expressed as real CSS (:hover, :active, :focus) —
+   inline styles (and the ref canvas's editor-only `style-hover`/`style-active` attributes)
+   can't produce these in a plain browser. */
+
+.void-btn{border-style:solid;border-width:1px}
+.void-btn:disabled{background:var(--action-disabled)!important;color:var(--text-disabled)!important;
+  border-color:var(--umber-600)!important;box-shadow:none!important;cursor:not-allowed}
+
+.void-btn-primary{background:var(--action-primary);color:var(--text-on-gold);border-color:var(--gold-600);
+  box-shadow:var(--bevel-gold),var(--shadow-xs)}
+.void-btn-primary:hover:not(:disabled){background:var(--action-primary-hover)}
+.void-btn-primary:active:not(:disabled){background:var(--action-primary-press);box-shadow:var(--bevel-down)}
+
+.void-btn-secondary{background:var(--action-secondary);color:var(--text-strong);border-color:var(--border-strong);
+  box-shadow:var(--bevel-up)}
+.void-btn-secondary:hover:not(:disabled){background:var(--action-secondary-hover)}
+.void-btn-secondary:active:not(:disabled){background:var(--action-secondary-press);box-shadow:var(--bevel-down)}
+
+.void-btn-ghost{background:transparent;color:var(--text-body);border-color:transparent}
+.void-btn-ghost:hover:not(:disabled){background:var(--surface-hover);color:var(--text-accent)}
+
+.void-btn-danger{background:var(--ember-600);color:var(--parch-50);border-color:var(--ember-600);
+  box-shadow:var(--bevel-up)}
+.void-btn-danger:hover:not(:disabled){background:var(--ember-500)}
+.void-btn-danger:active:not(:disabled){box-shadow:var(--bevel-down)}
+
+.void-btn-link{background:transparent;color:var(--text-link);border-color:transparent;padding:0}
+.void-btn-link:hover{color:var(--text-link-hover);text-decoration:underline}
+
+.void-icon-btn:hover{background:var(--surface-hover);color:var(--text-accent)}
+
+/* Inputs/selects: replace the browser's default focus ring with the token-driven gold one. */
+.void-input,.void-select{outline:none}
+.void-select:focus{box-shadow:var(--ring-focus)}
+.void-input-frame:focus-within{border-color:var(--gold-400);box-shadow:var(--bevel-down),0 0 0 2px rgba(224,174,60,.22)}
+
+/* input[type=range]: the browser default track/thumb is flat grey; re-skin both to match
+   the meter styling used elsewhere (inset track, gold thumb). */
+.void-range{-webkit-appearance:none;appearance:none;width:100%;height:16px;background:transparent;cursor:pointer}
+.void-range::-webkit-slider-runnable-track{height:8px;border-radius:var(--radius-xs);
+  background:var(--surface-inset);border:1px solid var(--border-subtle);box-shadow:var(--bevel-down)}
+.void-range::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;
+  background:var(--gold-400);border:1px solid var(--gold-600);margin-top:-4px;box-shadow:var(--shadow-xs);cursor:pointer}
+.void-range::-moz-range-track{height:8px;border-radius:var(--radius-xs);
+  background:var(--surface-inset);border:1px solid var(--border-subtle);box-shadow:var(--bevel-down)}
+.void-range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+  background:var(--gold-400);border:1px solid var(--gold-600);box-shadow:var(--shadow-xs);cursor:pointer}
+.void-range::-moz-range-progress{height:8px;border-radius:var(--radius-xs);background:var(--gold-500)}
