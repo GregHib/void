@@ -1,0 +1,22 @@
+@import url("styles.css");
+@import url("components.css");
+
+body{margin:0;background:var(--surface-app);color:var(--text-body);font:var(--type-body);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+[x-cloak]{display:none!important}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--text-link-hover);text-decoration:underline}
+
+@keyframes voidGlow{
+  0%,100%{box-shadow:var(--bevel-gold),0 0 0 1px rgba(224,174,60,.35)}
+  50%{box-shadow:var(--bevel-gold),var(--shadow-glow-gold)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* Alpine's x-show removes any inline `display` it doesn't own (see void.js), so components
+   that pair x-show with a non-block layout express that layout as a class instead. */
+.void-flex{display:flex}
+.void-grid{display:grid}

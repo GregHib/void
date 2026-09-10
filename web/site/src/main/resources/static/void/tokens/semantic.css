@@ -1,0 +1,59 @@
+:root{
+  /* Surfaces — dark, warm, three steps only. */
+  --surface-app:var(--umber-850);
+  --surface-panel:var(--umber-800);
+  --surface-panel-raised:var(--umber-700);
+  --surface-inset:var(--umber-900);
+  --surface-header:var(--umber-900);
+  --surface-hover:var(--umber-700);
+  --surface-active:var(--umber-600);
+  --surface-overlay:rgba(23,18,13,.78);
+
+  /* Ink */
+  --text-body:var(--parch-100);
+  --text-strong:var(--parch-50);
+  --text-muted:var(--parch-300);
+  --text-faint:var(--parch-400);
+  --text-accent:var(--gold-300);
+  --text-on-gold:var(--umber-950);
+  --text-link:var(--gold-300);
+  --text-link-hover:var(--gold-200);
+
+  /* Lines */
+  --border-subtle:var(--umber-600);
+  --border-strong:var(--umber-500);
+  --border-gold:var(--gold-600);
+  --border-panel:var(--umber-600);
+
+  /* Actions */
+  --action-primary:var(--gold-400);
+  --action-primary-hover:var(--gold-300);
+  --action-primary-press:var(--gold-500);
+  --action-secondary:var(--umber-600);
+  --action-secondary-hover:var(--umber-500);
+  --action-secondary-press:var(--umber-700);
+  --action-disabled:var(--umber-700);
+  --text-disabled:var(--umber-300);
+
+  /* Feedback */
+  --feedback-success:var(--moss-500);
+  --feedback-success-bg:var(--moss-900);
+  --feedback-danger:var(--ember-500);
+  --feedback-danger-bg:var(--ember-900);
+  --feedback-warning:var(--amber-500);
+  --feedback-warning-bg:var(--amber-900);
+  --feedback-info:var(--steel-500);
+  --feedback-info-bg:var(--steel-900);
+
+  /* Type roles */
+  --type-hero:var(--weight-bold) var(--text-5xl)/var(--leading-tight) var(--font-display);
+  --type-title:var(--weight-bold) var(--text-3xl)/var(--leading-tight) var(--font-display);
+  --type-section:var(--weight-semibold) var(--text-xl)/var(--leading-snug) var(--font-display);
+  --type-panel-head:var(--weight-semibold) var(--text-sm)/1 var(--font-display);
+  --type-body:var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-ui);
+  --type-body-sm:var(--weight-regular) var(--text-sm)/var(--leading-normal) var(--font-ui);
+  --type-label:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);
+  --type-code:var(--weight-regular) var(--text-sm)/var(--leading-normal) var(--font-mono);
+}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--text-link-hover);text-decoration:underline}
