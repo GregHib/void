@@ -345,6 +345,7 @@ object Site {
         File(buildDir, "docs.html").writeText(Website.docsPage())
         File(buildDir, "worlds.html").writeText(Website.worldsPage())
         File(buildDir, "hiscores.html").writeText(Hiscores.page())
+        File(buildDir, "log.html").writeText(AdventurersLog.page())
         File(buildDir, "community.html").writeText(Website.communityPage())
         File(buildDir, "components.html").writeText(buildPage())
         copyStaticAssets(buildDir)

@@ -15,6 +15,7 @@ object Website {
         SitePage("docs", "Docs", "docs/index.html"),
         SitePage("worlds", "Worlds", "worlds.html"),
         SitePage("hiscores", "Hiscores", "hiscores.html"),
+        SitePage("log", "Log", "log.html"),
         SitePage("community", "Community", "community.html"),
     )
 
