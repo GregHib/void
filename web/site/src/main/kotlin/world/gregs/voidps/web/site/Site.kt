@@ -40,7 +40,7 @@ object Site {
                     style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
                     +"v0.41.2"
                 }
-                ui.badge("Account", tone = BadgeTone.Gold, pill = true)
+                ui.accountMenu()
             },
         )
 
@@ -295,7 +295,7 @@ object Site {
 
         footer {
             style = "display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-6);" +
-                "max-width:var(--container-body);margin:0 auto;padding:var(--space-8) var(--space-7) var(--space-11)"
+                "max-width:var(--container-body);margin:auto auto 0;width:100%;padding:var(--space-8) var(--space-7) var(--space-11)"
             div {
                 style = "display:flex;align-items:center;gap:10px"
                 img(src = "void/void-mark-tile-gold.svg", alt = "Void") {
@@ -341,8 +341,14 @@ object Site {
     fun main(args: Array<String>) {
         val buildDir = File("./web/site/build")
         buildDir.mkdirs()
-        File(buildDir, "index.html").writeText(buildPage())
+        File(buildDir, "index.html").writeText(Website.homePage())
+        File(buildDir, "docs.html").writeText(Website.docsPage())
+        File(buildDir, "worlds.html").writeText(Website.worldsPage())
+        File(buildDir, "hiscores.html").writeText(Hiscores.page())
+        File(buildDir, "community.html").writeText(Website.communityPage())
+        File(buildDir, "components.html").writeText(buildPage())
         copyStaticAssets(buildDir)
+        Docs.generate(buildDir)
     }
 
     private fun copyStaticAssets(buildDir: File) {
