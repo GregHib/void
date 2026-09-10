@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.config.RowDefinition
-import world.gregs.voidps.engine.data.definition.AnimationDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
@@ -36,7 +35,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -46,13 +44,12 @@ import world.gregs.voidps.engine.queue.weakQueue
 import world.gregs.voidps.engine.suspend.awaitDialogues
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.network.login.protocol.encode.send
-import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAnimation
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import world.gregs.voidps.type.random
 import java.util.concurrent.TimeUnit
+import kotlin.math.sign
 
 class EvilTree :
     Script,
@@ -128,8 +125,10 @@ class EvilTree :
             settle(this)
         }
 
-        objectDespawn("evil_tree_fire") {
-            fires.values.remove(this)
+        objectDespawn("evil_tree_fire_*") {
+            val side = fires.entries.firstOrNull { it.value == this }?.key ?: return@objectDespawn
+            fires.remove(side)
+            updateFires()
         }
 
         playerSpawn {
@@ -251,10 +250,13 @@ class EvilTree :
     }
 
     private fun clearFires() {
-        for (fire in fires.values) {
+        for (fire in fires.values.toList()) {
             GameObjects.remove(fire)
         }
         fires.clear()
+        for (player in Players) {
+            player.syncFires()
+        }
     }
 
     /*
@@ -661,36 +663,51 @@ class EvilTree :
                 break
             }
             exp(Skill.Firemaking, row.int("burn_xp") / 10.0)
-            val fire = GameObjects.add("evil_tree_fire", tile, ObjectShape.WALL_DECOR_STRAIGHT_NO_OFFSET, spot.int("dir"), ticks = row.int("fire_life"))
-            fire.anim("evil_tree_fire")
-            fires[spot.rowId] = fire
+            val fireTile = spawnTile.add(spot.int("deltaX"), spot.int("deltaY"))
+            fires[spot.rowId] = GameObjects.add(spot.obj("obj"), fireTile, spot.int("shape"), spot.int("dir"), ticks = row.int("fire_life"))
+            updateFires()
             break
         }
         clearAnim()
     }
 
     /**
-     * The burning animation belongs to the varbit multiloc the fire sits under on the real map, not
-     * to the fire object itself, and object animations aren't part of the zone data the client is
-     * sent on arrival, so replay it for anyone who walks in after a fire was lit.
+     * The fire spot on the side of the tree [tile] is on: one of the four sides and four corners.
      */
-    override fun send(player: Player, zone: Zone) {
-        if (fires.isEmpty()) {
-            return
+    private fun fireSpot(tile: Tile): RowDefinition? {
+        val delta = tile.delta(centre)
+        val direction = Direction.of(delta.x.sign, delta.y.sign)
+        return Rows.getOrNull("evil_fires.${direction.name.lowercase()}")
+    }
+
+    /**
+     * The fires are varbit multilocs, the only way the client will animate them, so everyone
+     * nearby has their copy of the fire varbits kept in step with which fires are lit.
+     */
+    private fun updateFires() {
+        Players.forEachInRadius(centre, FIRE_SYNC_RADIUS) { player ->
+            player.syncFires()
         }
-        val animation = AnimationDefinitions.get("evil_tree_fire").id
-        for (fire in fires.values) {
-            if (fire.tile.zone == zone) {
-                player.client?.send(ObjectAnimation(fire.tile.id, animation, fire.shape, fire.rotation))
+    }
+
+    private fun Player.syncFires() {
+        for (row in Tables.get("evil_fires").rows()) {
+            val varbit = row.string("varbit")
+            val lit = fires.containsKey(row.rowId)
+            if (this[varbit, false] != lit) {
+                this[varbit] = lit
             }
         }
     }
 
     /**
-     * The fire spot on [tile], one of the twelve tiles hugging the sides of the tree.
-     * The fire is a wall decoration facing the tree, the only shape its model comes in.
+     * Players walking in after a fire was lit, or who left with one still burning, need their varbits caught up.
      */
-    private fun fireSpot(tile: Tile): RowDefinition? = Tables.get("evil_fires").rows().firstOrNull { spawnTile.add(it.int("deltaX"), it.int("deltaY")) == tile }
+    override fun send(player: Player, zone: Zone) {
+        if (active && player.tile.within(centre, FIRE_SYNC_RADIUS)) {
+            player.syncFires()
+        }
+    }
 
     /*
      * Damage and death
@@ -787,6 +804,7 @@ class EvilTree :
         const val STUN_TICKS = 2
         const val PUSH_DELAY = 60
         const val SWEEP_RADIUS = 2
+        const val FIRE_SYNC_RADIUS = 52
         const val CHOP_TICKS = 3
         const val LIGHT_TICKS = 4
         const val DEATH_TICKS = 20

@@ -225,5 +225,26 @@ id = 11432
 [evil_branches_north_spawn]
 id = 11433
 
-[evil_tree_fire]
-id = 11425
+[evil_tree_fire_west]
+id = 14887
+
+[evil_tree_fire_north]
+id = 15253
+
+[evil_tree_fire_east]
+id = 14888
+
+[evil_tree_fire_south]
+id = 15254
+
+[evil_tree_fire_north_west]
+id = 14889
+
+[evil_tree_fire_south_east]
+id = 15255
+
+[evil_tree_fire_north_east]
+id = 14890
+
+[evil_tree_fire_south_west]
+id = 15491

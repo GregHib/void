@@ -281,66 +281,73 @@ spawn = "evil_branches_north_spawn"
 dir = 1
 
 [evil_fires]
+obj = "obj"
 deltaX = "int"
 deltaY = "int"
+shape = "int"
 dir = "int"
+varbit = "string"
 
-[.zero]
+[.west]
+obj = "evil_tree_fire_west"
 deltaX = -1
 deltaY = 1
+shape = 4
 dir = 2
+varbit = "evil_tree_fire_west"
 
-[.one]
-deltaX = -1
-deltaY = 0
-dir = 2
-
-[.two]
-deltaX = 0
-deltaY = -1
-dir = 1
-
-[.three]
+[.north]
+obj = "evil_tree_fire_north"
 deltaX = 1
-deltaY = -1
-dir = 1
+deltaY = 3
+shape = 4
+dir = 3
+varbit = "evil_tree_fire_north"
 
-[.four]
-deltaX = 2
-deltaY = -1
-dir = 1
-
-[.five]
-deltaX = 3
-deltaY = 0
-dir = 0
-
-[.six]
+[.east]
+obj = "evil_tree_fire_east"
 deltaX = 3
 deltaY = 1
+shape = 4
 dir = 0
+varbit = "evil_tree_fire_east"
 
-[.seven]
-deltaX = 3
-deltaY = 2
-dir = 0
-
-[.eight]
-deltaX = 2
-deltaY = 3
-dir = 3
-
-[.nine]
+[.south]
+obj = "evil_tree_fire_south"
 deltaX = 1
-deltaY = 3
-dir = 3
+deltaY = -1
+shape = 4
+dir = 1
+varbit = "evil_tree_fire_south"
 
-[.ten]
+[.north_west]
+obj = "evil_tree_fire_north_west"
 deltaX = 0
-deltaY = 3
-dir = 3
-
-[.eleven]
-deltaX = -1
 deltaY = 2
+shape = 7
+dir = 0
+varbit = "evil_tree_fire_north_west"
+
+[.south_east]
+obj = "evil_tree_fire_south_east"
+deltaX = 2
+deltaY = 0
+shape = 7
 dir = 2
+varbit = "evil_tree_fire_south_east"
+
+[.north_east]
+obj = "evil_tree_fire_north_east"
+deltaX = 2
+deltaY = 2
+shape = 7
+dir = 1
+varbit = "evil_tree_fire_north_east"
+
+[.south_west]
+obj = "evil_tree_fire_south_west"
+deltaX = 0
+deltaY = 0
+shape = 7
+dir = 3
+varbit = "evil_tree_fire_south_west"

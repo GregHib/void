@@ -187,13 +187,14 @@ internal class EvilTreeTest : WorldTest() {
         tickIf { player.inventory.count("evil_tree_kindling") == 2 }
 
         assertEquals(200.0, player.experience.get(Skill.Firemaking))
-        assertEquals(1, evilTree.fires.size)
+        assertTrue(evilTree.fires.containsKey("north"))
+        assertTrue(player["evil_tree_fire_north", false])
     }
 
     @Test
     fun `Lit fires burn the tree down over time`() {
         grownTree("normal")
-        evilTree.fires["zero"] = createObject("evil_tree_fire", emptyTile.add(-1, 1))
+        evilTree.fires["west"] = createObject("evil_tree_fire_west", emptyTile.add(-1, 1))
         World.timers.start("evil_tree")
 
         tick(TICK)
@@ -383,7 +384,7 @@ internal class EvilTreeTest : WorldTest() {
      */
     private fun burnTo(health: Int) {
         evilTree.health = health + 1
-        evilTree.fires["zero"] = createObject("evil_tree_fire", emptyTile.add(-1, 1))
+        evilTree.fires["west"] = createObject("evil_tree_fire_west", emptyTile.add(-1, 1))
         World.timers.startIfAbsent("evil_tree")
         tick(TICK)
         evilTree.fires.clear()
