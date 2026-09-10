@@ -34,15 +34,7 @@
 .void-select:focus{box-shadow:var(--ring-focus)}
 .void-input-frame:focus-within{border-color:var(--gold-400);box-shadow:var(--bevel-down),0 0 0 2px rgba(224,174,60,.22)}
 
-/* input[type=range]: the browser default track/thumb is flat grey; re-skin both to match
-   the meter styling used elsewhere (inset track, gold thumb). */
-.void-range{-webkit-appearance:none;appearance:none;width:100%;height:16px;background:transparent;cursor:pointer}
-.void-range::-webkit-slider-runnable-track{height:8px;border-radius:var(--radius-xs);
-  background:var(--surface-inset);border:1px solid var(--border-subtle);box-shadow:var(--bevel-down)}
-.void-range::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;
-  background:var(--gold-400);border:1px solid var(--gold-600);margin-top:-4px;box-shadow:var(--shadow-xs);cursor:pointer}
-.void-range::-moz-range-track{height:8px;border-radius:var(--radius-xs);
-  background:var(--surface-inset);border:1px solid var(--border-subtle);box-shadow:var(--bevel-down)}
-.void-range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
-  background:var(--gold-400);border:1px solid var(--gold-600);box-shadow:var(--shadow-xs);cursor:pointer}
-.void-range::-moz-range-progress{height:8px;border-radius:var(--radius-xs);background:var(--gold-500)}
+/* input[type=range]: `accent-color` gives a gold thumb *and* a gold-filled track up to the
+   thumb in every evergreen browser. The custom track/thumb pseudo-elements this used to carry
+   didn't: Chromium has no `::-webkit-slider-progress`, so the fill never painted there. */
+.void-range{width:100%;height:16px;accent-color:var(--gold-400);cursor:pointer}

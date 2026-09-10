@@ -1,6 +1,6 @@
 :root{
   --font-display:"Cinzel",Georgia,"Times New Roman",serif;
-  --font-ui:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --font-ui:"Inter Tight","Helvetica Neue",Arial,sans-serif;
   --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
 
   --text-3xs:10px;--text-2xs:11px;--text-xs:12px;--text-sm:13px;--text-base:15px;

@@ -25,7 +25,7 @@ fun FlowContent.voidBadge(
         style = "display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;" +
             "background:${tone.background};color:${tone.color};border:1px solid ${tone.border};" +
             "border-radius:$radius;font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);" +
-            "letter-spacing:var(--tracking-caps);text-transform:uppercase"
+            "letter-spacing:var(--tracking-caps);text-transform:uppercase;justify-self:start"
         if (dot) {
             span {
                 style = "width:5px;height:5px;border-radius:50%;background:currentColor"

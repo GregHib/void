@@ -1,4 +1,4 @@
 /* Void webfonts. No original font binaries were supplied with the brand
    assets, so these are Google Fonts substitutions (see readme.md > Typography).
    Swap the src URLs for self-hosted files when the real faces are available. */
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap");

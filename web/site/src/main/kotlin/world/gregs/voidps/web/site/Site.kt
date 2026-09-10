@@ -46,7 +46,8 @@ object Site {
 
         section {
             style = "position:relative;padding:var(--space-13) var(--space-7) var(--space-12);" +
-                "background:var(--surface-app);border-bottom:1px solid var(--border-panel)"
+                "background-image:var(--scrim-bottom),url('void/void-background.png');background-size:cover,cover;" +
+                    "background-position:center,center;border-bottom:1px solid var(--border-panel)"
             div {
                 style = "max-width:var(--container-body);margin:0 auto;display:flex;flex-direction:column;" +
                     "gap:var(--space-6);align-items:flex-start"
@@ -57,7 +58,7 @@ object Site {
                 }
                 h1 {
                     style = "margin:0;font:var(--type-hero);font-size:clamp(34px,6vw,62px);color:var(--parch-50)"
-                    +"Every standard component, in one page"
+                    +"Modern mmo emulation"
                 }
                 p {
                     style = "margin:0;max-width:56ch;font:var(--type-body);font-size:var(--text-lg);color:var(--parch-200)"
@@ -105,10 +106,22 @@ object Site {
                         voidBadge("Offline", tone = BadgeTone.Danger, dot = true)
                         voidBadge("Full", tone = BadgeTone.Info)
                     }
-                    voidPanel(title = "Panel", subtitle = "inset, with action", inset = true) {
+                    voidPanel(
+                        title = "Panel",
+                        subtitle = "inset, with action",
+                        inset = true,
+                        action = { voidButton("Copy config", variant = ButtonVariant.Link) },
+                    ) {
+                        style = "display:flex;flex-direction:column;gap:var(--space-5)"
                         p {
                             style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
                             +"Panels carry a 1px outline, shallow corners, and the bevel pair that makes flat brown read as stone."
+                        }
+                        pre {
+                            style = "margin:0;padding:var(--space-5);background:var(--umber-950);" +
+                                "border:1px solid var(--border-subtle);border-radius:var(--radius-xs);" +
+                                "box-shadow:var(--bevel-down);font:var(--type-code);color:var(--parch-200);overflow-x:auto"
+                            +"world.port=43594\nworld.npc_spawns=2000"
                         }
                     }
                 }
@@ -136,6 +149,7 @@ object Site {
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
                         voidCheckbox("Run the world headless", description = "Skips the client bootstrap on start.", model = "agree")
+                        voidCheckbox("Disabled option", model = "agree", disabled = true)
                     }
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
@@ -226,7 +240,10 @@ object Site {
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-8)"
                         voidPanel(title = "Progress bar") {
+                            style = "display:flex;flex-direction:column;gap:var(--space-7)"
                             voidProgressBarLive("Downloading cache", "progress")
+                            voidProgressBar("Small · Moss", 88, tone = ProgressTone.Moss, size = ProgressSize.Small)
+                            voidProgressBar("Large · Ember", 31, tone = ProgressTone.Ember, size = ProgressSize.Large)
                         }
                         voidPanel(title = "Tooltip · Dialog") {
                             style = "display:flex;flex-wrap:wrap;gap:var(--space-8);align-items:center"
