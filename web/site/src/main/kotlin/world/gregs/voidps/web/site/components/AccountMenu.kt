@@ -12,8 +12,16 @@ import kotlinx.html.style
  * account name/email, account-management links and a logout action that reverts the swap. All
  * state (`loggedIn`, `open`) is local to this component's own `x-data` scope, so it can be dropped
  * into [menuBar] or [siteHeader]'s `right` slot without any page-level wiring.
+ *
+ * [isAdmin] adds a "Developer panel" entry above the divider, linking to [devPanelHref], for
+ * staff accounts only.
  */
-fun Ui.accountMenu(name: String = "Zezima", email: String = "zezima@voidps.dev") {
+fun Ui.accountMenu(
+    name: String = "Zezima",
+    email: String = "zezima@voidps.dev",
+    isAdmin: Boolean = false,
+    devPanelHref: String = "dev/index.html",
+) {
     receiver.div {
         xData("{ loggedIn: false, open: false }")
         onClickOutside("open = false")
@@ -72,6 +80,9 @@ fun Ui.accountMenu(name: String = "Zezima", email: String = "zezima@voidps.dev")
                 style = "display:flex;flex-direction:column;padding:var(--space-3)"
                 accountMenuItem(Icons.ACCOUNT, "Account management")
                 accountMenuItem(Icons.SETTINGS, "Settings")
+                if (isAdmin) {
+                    accountMenuItem(Icons.SHIELD, "Developer panel", href = devPanelHref)
+                }
             }
 
             div {
@@ -91,8 +102,8 @@ fun Ui.accountMenu(name: String = "Zezima", email: String = "zezima@voidps.dev")
     }
 }
 
-private fun kotlinx.html.DIV.accountMenuItem(iconPath: String, label: String) {
-    a(href = "#") {
+private fun kotlinx.html.DIV.accountMenuItem(iconPath: String, label: String, href: String = "#") {
+    a(href = href) {
         style = "display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-xs);" +
             "color:var(--text-body);text-decoration:none;font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
             "transition:background var(--dur-fast) var(--ease-standard)"

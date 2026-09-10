@@ -55,7 +55,7 @@ fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "
                 icon(Icons.EXTERNAL, size = 14)
                 +"Source"
             }
-            ui.accountMenu()
+            ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = "${assetPrefix}dev/index.html")
         }
     }
 }

@@ -29,6 +29,8 @@ object Icons {
     const val LIGHTBULB = """<path d="M9 18h6M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.7c.5.4.8 1 .8 1.7v.6h6.4v-.6c0-.7.3-1.3.8-1.7A7 7 0 0 0 12 2Z"></path>"""
     const val MEGAPHONE = """<path d="M3 11v2a2 2 0 0 0 2 2h1l3 5V4L6 9H5a2 2 0 0 0-2 2Z"></path><path d="M15 8a4 4 0 0 1 0 8"></path><path d="M19 5a9 9 0 0 1 0 14"></path>"""
     const val ALERT_TRIANGLE = """<path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path>"""
+    const val SHIELD = """<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>"""
+    const val GAUGE = """<circle cx="12" cy="13" r="8"></circle><path d="M12 13l3-3M9 5h6"></path>"""
 }
 
 fun HTMLTag.icon(path: String, size: Int = 18) {

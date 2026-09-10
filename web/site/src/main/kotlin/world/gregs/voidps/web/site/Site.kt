@@ -40,7 +40,7 @@ object Site {
                     style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
                     +"v0.41.2"
                 }
-                ui.accountMenu()
+                ui.accountMenu(name = "rotce", isAdmin = true)
             },
         )
 
@@ -349,6 +349,11 @@ object Site {
         File(buildDir, "components.html").writeText(buildPage())
         copyStaticAssets(buildDir)
         Docs.generate(buildDir)
+
+        val devDir = File(buildDir, "dev")
+        devDir.mkdirs()
+        File(devDir, "index.html").writeText(Dev.dashboardPage())
+        File(devDir, "players.html").writeText(Dev.playersPage())
     }
 
     private fun copyStaticAssets(buildDir: File) {
