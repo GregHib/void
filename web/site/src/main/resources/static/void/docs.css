@@ -1,0 +1,232 @@
+/* Typesets the raw HTML produced by org.jetbrains:markdown for `.claude/*.md` docs pages,
+   using the same design tokens as the hand-built components rather than its own palette. */
+.markdown-body {
+  font: var(--type-body);
+  color: var(--text-body);
+}
+
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  color: var(--parch-50);
+  scroll-margin-top: var(--space-8);
+}
+
+.markdown-body h1 { margin: var(--space-10) 0 var(--space-6); font-size: var(--text-2xl); line-height: var(--leading-tight); }
+.markdown-body h2 { margin: var(--space-9) 0 var(--space-5); font-size: var(--text-xl); line-height: var(--leading-snug); border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-3); }
+.markdown-body h3 { margin: var(--space-8) 0 var(--space-4); font-size: var(--text-lg); line-height: var(--leading-snug); }
+.markdown-body h4 { margin: var(--space-7) 0 var(--space-4); font-size: var(--text-base); line-height: var(--leading-snug); }
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body blockquote,
+.markdown-body table,
+.markdown-body pre {
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin-top: var(--space-3);
+}
+
+.markdown-body strong { color: var(--text-strong); font-weight: var(--weight-semibold); }
+.markdown-body em { color: var(--text-body); }
+
+.markdown-body a { color: var(--text-link); text-decoration: none; }
+.markdown-body a:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+.markdown-body code {
+  font: var(--type-code);
+  font-size: var(--text-xs);
+  color: var(--gold-300);
+  background: var(--umber-950);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 1px 6px;
+}
+
+.markdown-body pre {
+  background: var(--umber-950);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--bevel-down);
+  padding: var(--space-6);
+  overflow-x: auto;
+}
+
+.markdown-body pre code {
+  font: var(--type-code);
+  color: var(--parch-100);
+  line-height: var(--leading-loose);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.markdown-body blockquote {
+  border-left: 2px solid var(--gold-400);
+  background: var(--surface-inset);
+  color: var(--text-muted);
+  padding: var(--space-5) var(--space-6);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+
+.markdown-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: var(--space-8) 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-panel);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font: var(--type-body-sm);
+}
+
+.markdown-body th,
+.markdown-body td {
+  text-align: left;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--umber-900);
+}
+
+.markdown-body th {
+  background: var(--surface-header);
+  color: var(--gold-300);
+  font: var(--type-label);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.markdown-body tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body tr:nth-child(even) td {
+  background: var(--umber-850);
+}
+
+/* Syntax-highlighting token colours — see Highlight.kt. Applied inside .markdown-body pre code
+   so inline `code` spans (which aren't tokenized) keep their plain --gold-300 colour. */
+.markdown-body pre .tok-kw { color: var(--gold-300); font-weight: var(--weight-semibold); }
+.markdown-body pre .tok-str { color: var(--moss-500); }
+.markdown-body pre .tok-num { color: var(--steel-500); }
+.markdown-body pre .tok-cmt { color: var(--text-faint); font-style: italic; }
+.markdown-body pre .tok-prop { color: var(--parch-200); }
+.markdown-body pre .tok-type { color: var(--amber-500); }
+.markdown-body pre .tok-bool { color: var(--ember-500); }
+.markdown-body pre .tok-fn { color: var(--parch-50); }
+.markdown-body pre .tok-anno { color: var(--steel-500); }
+.markdown-body pre .tok-sec { color: var(--gold-400); font-weight: var(--weight-semibold); }
+.markdown-body pre .tok-pun { color: var(--text-faint); }
+.markdown-body pre .tok-op { color: var(--text-muted); }
+
+/* GitHub-style `> [!NOTE]` callouts (see AlertGeneratingProvider in Markdown.kt). */
+.markdown-body .markdown-alert {
+  margin: 0 0 var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface-inset);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+
+.markdown-body .markdown-alert > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 var(--space-3);
+  font: var(--weight-semibold) var(--text-sm)/1 var(--font-ui);
+  letter-spacing: var(--tracking-wide);
+}
+
+.markdown-body .markdown-alert-title svg {
+  flex: 0 0 auto;
+}
+
+.markdown-body .markdown-alert-note { border-color: var(--steel-500); }
+.markdown-body .markdown-alert-note .markdown-alert-title { color: var(--feedback-info); }
+.markdown-body .markdown-alert-tip { border-color: var(--moss-500); }
+.markdown-body .markdown-alert-tip .markdown-alert-title { color: var(--feedback-success); }
+.markdown-body .markdown-alert-important { border-color: var(--gold-400); }
+.markdown-body .markdown-alert-important .markdown-alert-title { color: var(--gold-300); }
+.markdown-body .markdown-alert-warning { border-color: var(--amber-500); }
+.markdown-body .markdown-alert-warning .markdown-alert-title { color: var(--feedback-warning); }
+.markdown-body .markdown-alert-caution { border-color: var(--ember-500); }
+.markdown-body .markdown-alert-caution .markdown-alert-title { color: var(--feedback-danger); }
+
+/* Switchable code-language tabs — see CodeTabs in Markdown.kt and voidSwitchCodeTab in void.js. */
+.markdown-body .code-tabs {
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body .code-tabs .code-tab-panel {
+  margin: 0;
+}
+
+.markdown-body .code-tabs pre {
+  margin: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.markdown-body .code-tabs-bar {
+  display: flex;
+  gap: 2px;
+  background: var(--surface-header);
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.markdown-body .code-tab-btn {
+  height: 34px;
+  padding: 0 var(--space-6);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-xs)/1 var(--font-ui);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+.markdown-body .code-tab-btn.active {
+  background: var(--surface-panel);
+  border-bottom-color: var(--gold-400);
+  color: var(--text-strong);
+}
