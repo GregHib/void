@@ -456,7 +456,7 @@ class EvilTree :
      */
     private fun knockAway(player: Player) {
         push(player)
-        player.anim("evil_root_dodge")
+        player.anim("evil_root_knock_back")
         player.gfx("stun_long")
         player["delay"] = STUN_TICKS
         player.start("stunned", STUN_TICKS)
