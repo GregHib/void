@@ -1,7 +1,6 @@
 package world.gregs.voidps.web.site.components
 
 import kotlinx.html.BUTTON
-import kotlinx.html.FlowContent
 import kotlinx.html.button
 import kotlinx.html.style
 
@@ -24,7 +23,7 @@ enum class ButtonSize(val height: Int, val paddingX: Int, val font: String) {
  * should appear on at most one button per view. Hover/active/disabled colours come from
  * `components.css` (`.void-btn-*`) since inline styles can't express `:hover`/`:active`.
  */
-fun FlowContent.voidButton(
+fun Ui.button(
     text: String,
     variant: ButtonVariant = ButtonVariant.Primary,
     size: ButtonSize = ButtonSize.Medium,
@@ -34,7 +33,7 @@ fun FlowContent.voidButton(
     onClick: String? = null,
     block: BUTTON.() -> Unit = {},
 ) {
-    button {
+    receiver.button {
         if (disabled) {
             this.disabled = true
         }
@@ -62,14 +61,14 @@ fun FlowContent.voidButton(
 }
 
 /** A square, icon-only control used for row/toolbar actions (search, settings, view toggles). */
-fun FlowContent.voidIconButton(
+fun Ui.iconButton(
     label: String,
     icon: String,
     active: Boolean = false,
     onClick: String? = null,
     size: Int = 32,
 ) {
-    button {
+    receiver.button {
         attributes["aria-label"] = label
         attributes["title"] = label
         attributes["class"] = "void-icon-btn"

@@ -1,6 +1,5 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.FlowContent
 import kotlinx.html.button
 import kotlinx.html.div
 import kotlinx.html.span
@@ -18,14 +17,14 @@ enum class ToastTone(val accent: String) {
  * A dismissible status card. [visible] is a boolean Alpine expression (e.g. `"toasts.success"`);
  * [dismiss] is the statement run when the close button is clicked (e.g. `"toasts.success = false"`).
  */
-fun FlowContent.voidToast(
+fun Ui.toast(
     visible: String,
     dismiss: String,
     title: String,
     message: String,
     tone: ToastTone,
 ) {
-    div {
+    receiver.div {
         attributes["role"] = "status"
         attributes["class"] = "void-flex"
         xShow(visible)

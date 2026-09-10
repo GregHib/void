@@ -9,8 +9,8 @@ enum class TooltipSide { Top, Right }
 /**
  * Wraps [content] in a `x-data` scope and shows [text] on hover, positioned to the [side].
  */
-fun FlowContent.voidTooltip(text: String, side: TooltipSide = TooltipSide.Top, content: FlowContent.() -> Unit) {
-    span {
+fun Ui.tooltip(text: String, side: TooltipSide = TooltipSide.Top, content: FlowContent.() -> Unit) {
+    receiver.span {
         xData("{tooltip:false}")
         attributes["@mouseenter"] = "tooltip = true"
         attributes["@mouseleave"] = "tooltip = false"

@@ -1,6 +1,5 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.FlowContent
 import kotlinx.html.div
 import kotlinx.html.span
 import kotlinx.html.style
@@ -26,8 +25,8 @@ data class WorldEntry(
 private const val COLUMNS = "56px 1.1fr 84px 118px 64px 132px"
 
 /** The world/server list: a header row of labels plus a click-to-select body row per [WorldEntry]. */
-fun FlowContent.voidWorldTable(model: String, worlds: List<WorldEntry>) {
-    div {
+fun Ui.worldTable(model: String, worlds: List<WorldEntry>) {
+    receiver.div {
         style = "display:grid;grid-template-columns:$COLUMNS;gap:var(--space-5);align-items:center;" +
             "padding:0 var(--space-6);height:30px;background:var(--surface-inset);" +
             "border-bottom:1px solid var(--umber-900);font:var(--type-label);letter-spacing:var(--tracking-caps);" +
@@ -41,7 +40,7 @@ fun FlowContent.voidWorldTable(model: String, worlds: List<WorldEntry>) {
     }
     for ((index, world) in worlds.withIndex()) {
         val last = index == worlds.lastIndex
-        div {
+        receiver.div {
             onClick("$model = ${world.number}")
             xToggleStyle(
                 condition = "$model === ${world.number}",
@@ -93,7 +92,7 @@ fun FlowContent.voidWorldTable(model: String, worlds: List<WorldEntry>) {
                 style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)"
                 +(world.ping?.let { "${it}ms" } ?: "—")
             }
-            voidBadge(world.status.label, tone = world.status.tone, dot = world.status.dot)
+            ui.badge(world.status.label, tone = world.status.tone, dot = world.status.dot)
         }
     }
 }

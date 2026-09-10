@@ -15,14 +15,14 @@ data class MenuItem(val id: String, val label: String)
  * The fixed 56px top bar: mark + wordmark, the nav tab row, and a right-hand slot for
  * account/version chrome.
  */
-fun FlowContent.voidMenuBar(
+fun Ui.menuBar(
     model: String,
     items: List<MenuItem>,
     brand: String = "VOID",
     logoSrc: String? = null,
     right: (FlowContent.() -> Unit)? = null,
 ) {
-    header {
+    receiver.header {
         style = "height:56px;display:flex;align-items:stretch;gap:var(--space-8);padding:0 var(--space-7);" +
             "background:var(--surface-header);border-bottom:1px solid var(--border-gold);" +
             "box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:30"

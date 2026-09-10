@@ -1,6 +1,5 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.FlowContent
 import kotlinx.html.InputType
 import kotlinx.html.div
 import kotlinx.html.input
@@ -17,7 +16,7 @@ import kotlinx.html.unsafe
  * `"search ? 'Filtering: ' + search : ''"`) — [hint] is shown until Alpine hydrates and used
  * as the static fallback if [hintExpression] is null.
  */
-fun FlowContent.voidTextInput(
+fun Ui.textInput(
     id: String,
     label: String,
     model: String? = null,
@@ -29,7 +28,7 @@ fun FlowContent.voidTextInput(
     mono: Boolean = false,
     type: InputType = InputType.text,
 ) {
-    div {
+    receiver.div {
         style = "display:flex;flex-direction:column;gap:6px"
         label {
             attributes["for"] = id
@@ -75,14 +74,14 @@ fun FlowContent.voidTextInput(
 }
 
 /** A labelled dropdown. [options] are (value, label) pairs; [model] binds `x-model`. */
-fun FlowContent.voidSelect(
+fun Ui.select(
     id: String,
     label: String,
     model: String,
     options: List<Pair<String, String>>,
     hint: String? = null,
 ) {
-    div {
+    receiver.div {
         style = "display:flex;flex-direction:column;gap:6px"
         label {
             attributes["for"] = id
@@ -124,13 +123,13 @@ fun FlowContent.voidSelect(
 }
 
 /** A checkbox where the box itself carries the bevel treatment; [model] is a boolean Alpine expression. */
-fun FlowContent.voidCheckbox(
+fun Ui.checkbox(
     text: String,
     description: String? = null,
     model: String,
     disabled: Boolean = false,
 ) {
-    label {
+    receiver.label {
         if (disabled) {
             style = "display:flex;gap:10px;align-items:flex-start;cursor:not-allowed;opacity:.55"
         } else {
@@ -178,8 +177,8 @@ fun FlowContent.voidCheckbox(
 }
 
 /** A toggle switch. [model] is a boolean Alpine expression; [small] renders the compact 32px track. */
-fun FlowContent.voidSwitch(text: String, model: String, small: Boolean = false) {
-    label {
+fun Ui.switch(text: String, model: String, small: Boolean = false) {
+    receiver.label {
         style = "display:inline-flex;align-items:center;gap:10px;cursor:pointer"
         onClick("$model = !$model")
         val trackWidth = if (small) 32 else 40
