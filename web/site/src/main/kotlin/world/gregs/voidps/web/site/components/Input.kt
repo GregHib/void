@@ -98,7 +98,8 @@ fun FlowContent.voidSelect(
                 style = "width:100%;height:38px;padding:0 34px 0 12px;appearance:none;" +
                     "background:var(--surface-panel-raised);color:var(--text-strong);" +
                     "border:1px solid var(--border-strong);border-radius:var(--radius-sm);" +
-                    "box-shadow:var(--bevel-up);font:var(--type-body);cursor:pointer;color-scheme:dark"
+                    "box-shadow:var(--bevel-up);font:var(--type-body);cursor:pointer;color-scheme:dark;" +
+                    "accent-color:var(--gold-400)"
                 for ((value, text) in options) {
                     option {
                         this.value = value
