@@ -448,7 +448,7 @@ class EvilTree :
             .firstOrNull { it != Direction.NONE && !player.blocked(it) } ?: return
         player.suspension = null
         player.mode = EmptyMode
-        player.exactMove(direction.delta, PUSH_DELAY, direction = direction.inverse())
+        player.exactMove(direction.delta, PUSH_DELAY, direction = direction)
     }
 
     /**
