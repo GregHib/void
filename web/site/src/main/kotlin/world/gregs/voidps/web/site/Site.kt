@@ -344,6 +344,7 @@ object Site {
         File(buildDir, "index.html").writeText(Website.homePage())
         File(buildDir, "docs.html").writeText(Website.docsPage())
         File(buildDir, "worlds.html").writeText(Website.worldsPage())
+        File(buildDir, "exchange.html").writeText(Exchange.page())
         File(buildDir, "hiscores.html").writeText(Hiscores.page())
         File(buildDir, "log.html").writeText(AdventurersLog.page())
         File(buildDir, "community.html").writeText(Website.communityPage())

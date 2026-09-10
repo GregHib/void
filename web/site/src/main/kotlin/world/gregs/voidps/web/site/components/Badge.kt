@@ -12,12 +12,18 @@ enum class BadgeTone(val background: String, val color: String, val border: Stri
     Info("var(--feedback-info-bg)", "var(--feedback-info)", "var(--steel-600)"),
 }
 
-/** A small status/category chip. [dot] adds the leading status dot used for online/offline states. */
+/**
+ * A small status/category chip. [dot] adds the leading status dot used for online/offline states.
+ * [showWhen] binds `x-show` to an Alpine boolean expression, for a badge whose visibility (rather
+ * than its text/tone) depends on client-side state — e.g. one of two static badges swapped based
+ * on a reactive flag.
+ */
 fun Ui.badge(
     text: String,
     tone: BadgeTone = BadgeTone.Neutral,
     dot: Boolean = false,
     pill: Boolean = true,
+    showWhen: String? = null,
 ) {
     receiver.span {
         val radius = if (pill) "var(--radius-pill)" else "var(--radius-xs)"
@@ -25,6 +31,9 @@ fun Ui.badge(
             "background:${tone.background};color:${tone.color};border:1px solid ${tone.border};" +
             "border-radius:$radius;font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);" +
             "letter-spacing:var(--tracking-caps);text-transform:uppercase;justify-self:start"
+        if (showWhen != null) {
+            xShow(showWhen)
+        }
         if (dot) {
             span {
                 style = "width:5px;height:5px;border-radius:50%;background:currentColor"
