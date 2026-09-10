@@ -31,7 +31,7 @@ object Site {
             "toasts: { success: true, info: true, warning: true, danger: true }, " +
             "agree: true, notify: false, beta: false, search: '', port: '43594', region: 'Germany', progress: 64 }",
     ) {
-        voidMenuBar(
+        ui.menuBar(
             model = "nav",
             items = nav,
             logoSrc = "void/void-mark-glyph-gold.svg",
@@ -40,7 +40,7 @@ object Site {
                     style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
                     +"v0.41.2"
                 }
-                voidBadge("Account", tone = BadgeTone.Gold, pill = true)
+                ui.badge("Account", tone = BadgeTone.Gold, pill = true)
             },
         )
 
@@ -66,8 +66,8 @@ object Site {
                 }
                 div {
                     style = "display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;margin-top:var(--space-2)"
-                    voidButton("Play", size = ButtonSize.Large, glow = true, icon = Icons.PLAY)
-                    voidButton("Download launcher", variant = ButtonVariant.Secondary, size = ButtonSize.Large, icon = Icons.DOWNLOAD)
+                    ui.button("Play", size = ButtonSize.Large, glow = true, icon = Icons.PLAY)
+                    ui.button("Download launcher", variant = ButtonVariant.Secondary, size = ButtonSize.Large, icon = Icons.DOWNLOAD)
                 }
             }
         }
@@ -82,35 +82,35 @@ object Site {
                     style = "margin:0;font:var(--type-title);color:var(--parch-50)"
                     +"Core"
                 }
-                voidPanel(title = "Button", meta = "variant · size · state") {
+                ui.panel(title = "Button", meta = "variant · size · state") {
                     style = "display:flex;flex-direction:column;gap:var(--space-7)"
                     div {
                         style = "display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center"
-                        voidButton("Primary")
-                        voidButton("Secondary", variant = ButtonVariant.Secondary)
-                        voidButton("Ghost", variant = ButtonVariant.Ghost)
-                        voidButton("Delete world", variant = ButtonVariant.Danger)
-                        voidButton("Read the changelog →", variant = ButtonVariant.Link)
-                        voidButton("Disabled", disabled = true)
+                        ui.button("Primary")
+                        ui.button("Secondary", variant = ButtonVariant.Secondary)
+                        ui.button("Ghost", variant = ButtonVariant.Ghost)
+                        ui.button("Delete world", variant = ButtonVariant.Danger)
+                        ui.button("Read the changelog →", variant = ButtonVariant.Link)
+                        ui.button("Disabled", disabled = true)
                     }
                 }
 
                 div {
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-8)"
-                    voidPanel(title = "Badge", meta = "6 tones") {
+                    ui.panel(title = "Badge", meta = "6 tones") {
                         style = "display:flex;flex-wrap:wrap;gap:var(--space-4)"
-                        voidBadge("Neutral")
-                        voidBadge("Members", tone = BadgeTone.Gold)
-                        voidBadge("Online", tone = BadgeTone.Success, dot = true)
-                        voidBadge("Restarting", tone = BadgeTone.Warning, dot = true)
-                        voidBadge("Offline", tone = BadgeTone.Danger, dot = true)
-                        voidBadge("Full", tone = BadgeTone.Info)
+                        ui.badge("Neutral")
+                        ui.badge("Members", tone = BadgeTone.Gold)
+                        ui.badge("Online", tone = BadgeTone.Success, dot = true)
+                        ui.badge("Restarting", tone = BadgeTone.Warning, dot = true)
+                        ui.badge("Offline", tone = BadgeTone.Danger, dot = true)
+                        ui.badge("Full", tone = BadgeTone.Info)
                     }
-                    voidPanel(
+                    ui.panel(
                         title = "Panel",
                         subtitle = "inset, with action",
                         inset = true,
-                        action = { voidButton("Copy config", variant = ButtonVariant.Link) },
+                        action = { ui.button("Copy config", variant = ButtonVariant.Link) },
                     ) {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
                         p {
@@ -133,9 +133,9 @@ object Site {
                     style = "margin:0;font:var(--type-title);color:var(--parch-50)"
                     +"Forms"
                 }
-                voidPanel(title = "Input · Select · Checkbox · Switch") {
+                ui.panel(title = "Input · Select · Checkbox · Switch") {
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-8)"
-                    voidTextInput(
+                    ui.textInput(
                         "void-in-search",
                         "Search worlds",
                         model = "search",
@@ -144,17 +144,17 @@ object Site {
                         hint = "Matches region, mode, and world number.",
                         hintExpression = "search ? 'Filtering: ' + search : 'Matches region, mode, and world number.'",
                     )
-                    voidTextInput("void-in-port", "Listen port", model = "port", mono = true)
-                    voidSelect("void-sel-region", "Region", model = "region", options = listOf("United Kingdom" to "United Kingdom", "Germany" to "Germany", "United States" to "United States", "Australia" to "Australia"))
+                    ui.textInput("void-in-port", "Listen port", model = "port", mono = true)
+                    ui.select("void-sel-region", "Region", model = "region", options = listOf("United Kingdom" to "United Kingdom", "Germany" to "Germany", "United States" to "United States", "Australia" to "Australia"))
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
-                        voidCheckbox("Run the world headless", description = "Skips the client bootstrap on start.", model = "agree")
-                        voidCheckbox("Disabled option", model = "agree", disabled = true)
+                        ui.checkbox("Run the world headless", description = "Skips the client bootstrap on start.", model = "agree")
+                        ui.checkbox("Disabled option", model = "agree", disabled = true)
                     }
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
-                        voidSwitch("Maintenance notices", model = "notify")
-                        voidSwitch("Beta revisions (small)", model = "beta", small = true)
+                        ui.switch("Maintenance notices", model = "notify")
+                        ui.switch("Beta revisions (small)", model = "beta", small = true)
                     }
                 }
             }
@@ -165,8 +165,8 @@ object Site {
                     style = "margin:0;font:var(--type-title);color:var(--parch-50)"
                     +"Navigation"
                 }
-                voidPanel(padded = false) {
-                    voidTabs(
+                ui.panel(padded = false) {
+                    ui.tabs(
                         model = "tab",
                         items = listOf(
                             TabItem("buttons", "Changelog", "24"),
@@ -176,7 +176,7 @@ object Site {
                     )
                     div {
                         style = "padding:var(--space-7) var(--space-6);min-height:150px"
-                        voidTabPanel("tab", "buttons") {
+                        ui.tabPanel("tab", "buttons") {
                             style = "display:flex;flex-direction:column;gap:var(--space-5)"
                             h4 {
                                 style = "margin:0;font:var(--type-section);color:var(--parch-50)"
@@ -187,7 +187,7 @@ object Site {
                                 +"Swapper entries now persist per-account and survive a client restart."
                             }
                         }
-                        voidTabPanel("tab", "builds") {
+                        ui.tabPanel("tab", "builds") {
                             style = "display:flex;flex-direction:column;gap:var(--space-5)"
                             h4 {
                                 style = "margin:0;font:var(--type-section);color:var(--parch-50)"
@@ -198,7 +198,7 @@ object Site {
                                 +"Seven builds available. Built from main every day at 03:00 UTC."
                             }
                         }
-                        voidTabPanel("tab", "issues") {
+                        ui.tabPanel("tab", "issues") {
                             style = "display:flex;flex-direction:column;gap:var(--space-5)"
                             h4 {
                                 style = "margin:0;font:var(--type-section);color:var(--parch-50)"
@@ -221,10 +221,10 @@ object Site {
                 }
                 div {
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--space-8)"
-                    voidPanel(
+                    ui.panel(
                         title = "Toast",
                         action = {
-                            voidButton(
+                            ui.button(
                                 "Restore all",
                                 variant = ButtonVariant.Link,
                                 onClick = "toasts = { success: true, info: true, warning: true, danger: true }",
@@ -232,32 +232,32 @@ object Site {
                         },
                     ) {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
-                        voidToast("toasts.success", "toasts.success = false", "Cache verified", "All 24,331 files match the manifest.", ToastTone.Success)
-                        voidToast("toasts.info", "toasts.info = false", "Update available", "Launcher v0.41.2 is ready to install.", ToastTone.Info)
-                        voidToast("toasts.warning", "toasts.warning = false", "Worlds 12–18 restart", "Scheduled for 04:00 UTC.", ToastTone.Warning)
-                        voidToast("toasts.danger", "toasts.danger = false", "Connection lost", "World 34 dropped the socket. Retrying.", ToastTone.Danger)
+                        ui.toast("toasts.success", "toasts.success = false", "Cache verified", "All 24,331 files match the manifest.", ToastTone.Success)
+                        ui.toast("toasts.info", "toasts.info = false", "Update available", "Launcher v0.41.2 is ready to install.", ToastTone.Info)
+                        ui.toast("toasts.warning", "toasts.warning = false", "Worlds 12–18 restart", "Scheduled for 04:00 UTC.", ToastTone.Warning)
+                        ui.toast("toasts.danger", "toasts.danger = false", "Connection lost", "World 34 dropped the socket. Retrying.", ToastTone.Danger)
                     }
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-8)"
-                        voidPanel(title = "Progress bar") {
+                        ui.panel(title = "Progress bar") {
                             style = "display:flex;flex-direction:column;gap:var(--space-7)"
-                            voidProgressBarLive("Downloading cache", "progress")
-                            voidProgressBar("Small · Moss", 88, tone = ProgressTone.Moss, size = ProgressSize.Small)
-                            voidProgressBar("Large · Ember", 31, tone = ProgressTone.Ember, size = ProgressSize.Large)
+                            ui.progressBarLive("Downloading cache", "progress")
+                            ui.progressBar("Small · Moss", 88, tone = ProgressTone.Moss, size = ProgressSize.Small)
+                            ui.progressBar("Large · Ember", 31, tone = ProgressTone.Ember, size = ProgressSize.Large)
                         }
-                        voidPanel(title = "Tooltip · Dialog") {
+                        ui.panel(title = "Tooltip · Dialog") {
                             style = "display:flex;flex-wrap:wrap;gap:var(--space-8);align-items:center"
-                            voidTooltip("Ping measured over 30s") {
-                                voidButton("Hover me", variant = ButtonVariant.Secondary)
+                            ui.tooltip("Ping measured over 30s") {
+                                ui.button("Hover me", variant = ButtonVariant.Secondary)
                             }
-                            voidTooltip("Side: right", side = TooltipSide.Right) {
+                            ui.tooltip("Side: right", side = TooltipSide.Right) {
                                 span {
                                     style = "font:var(--type-code);font-size:var(--text-xs);color:var(--text-muted);" +
                                         "border-bottom:1px dashed var(--border-strong);cursor:help"
                                     +"a3f91c4"
                                 }
                             }
-                            voidButton("Open dialog", onClick = "dialog = true")
+                            ui.button("Open dialog", onClick = "dialog = true")
                         }
                     }
                 }
@@ -273,22 +273,22 @@ object Site {
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-8)"
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
-                        voidStatBar("Attack", 73, 99)
-                        voidStatBar("Server load", 1284, 2000, showValue = false)
+                        ui.statBar("Attack", 73, 99)
+                        ui.statBar("Server load", 1284, 2000, showValue = false)
                     }
-                    voidPanel(title = "Item slot") {
+                    ui.panel(title = "Item slot") {
                         style = "display:flex;flex-wrap:wrap;gap:var(--space-4)"
-                        voidItemSlot("ORE", quantity = 12, onClick = "slot = 1", selectedWhen = "slot === 1")
-                        voidItemSlot("RUN", borderColor = "var(--gold-500)", onClick = "slot = 2", selectedWhen = "slot === 2")
-                        voidItemSlot("HRB", borderColor = "var(--moss-600)", onClick = "slot = 3", selectedWhen = "slot === 3")
-                        voidItemSlot("RGE", borderColor = "var(--ember-600)", onClick = "slot = 4", selectedWhen = "slot === 4")
-                        voidItemSlot()
-                        voidItemSlot("SM", size = ItemSlotSize.Small)
-                        voidItemSlot("LG", size = ItemSlotSize.Large)
+                        ui.itemSlot("ORE", quantity = 12, onClick = "slot = 1", selectedWhen = "slot === 1")
+                        ui.itemSlot("RUN", borderColor = "var(--gold-500)", onClick = "slot = 2", selectedWhen = "slot === 2")
+                        ui.itemSlot("HRB", borderColor = "var(--moss-600)", onClick = "slot = 3", selectedWhen = "slot === 3")
+                        ui.itemSlot("RGE", borderColor = "var(--ember-600)", onClick = "slot = 4", selectedWhen = "slot === 4")
+                        ui.itemSlot()
+                        ui.itemSlot("SM", size = ItemSlotSize.Small)
+                        ui.itemSlot("LG", size = ItemSlotSize.Large)
                     }
                 }
-                voidPanel(title = "World list", padded = false) {
-                    voidWorldTable("world", worlds)
+                ui.panel(title = "World list", padded = false) {
+                    ui.worldTable("world", worlds)
                 }
             }
         }
@@ -308,12 +308,12 @@ object Site {
             }
         }
 
-        voidDialog(
+        ui.dialog(
             model = "dialog",
             title = "Switch world",
             dialogFooter = {
-                voidButton("Cancel", variant = ButtonVariant.Ghost, onClick = "dialog = false")
-                voidButton("Switch", onClick = "dialog = false")
+                ui.button("Cancel", variant = ButtonVariant.Ghost, onClick = "dialog = false")
+                ui.button("Switch", onClick = "dialog = false")
             },
         ) {
             p {

@@ -1,6 +1,5 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.FlowContent
 import kotlinx.html.div
 import kotlinx.html.span
 import kotlinx.html.style
@@ -12,7 +11,7 @@ enum class ItemSlotSize(val px: Int) { Small(36), Medium(48), Large(64) }
  * Pass [onClick] (an Alpine statement) and [selectedWhen] (an Alpine boolean expression,
  * e.g. `"slot === 1"`) together to make a click-to-select slot; leave both null for a static tile.
  */
-fun FlowContent.voidItemSlot(
+fun Ui.itemSlot(
     label: String? = null,
     quantity: Int? = null,
     size: ItemSlotSize = ItemSlotSize.Medium,
@@ -20,7 +19,7 @@ fun FlowContent.voidItemSlot(
     selectedWhen: String? = null,
     onClick: String? = null,
 ) {
-    div {
+    receiver.div {
         if (onClick != null) {
             attributes["@click"] = onClick
         }

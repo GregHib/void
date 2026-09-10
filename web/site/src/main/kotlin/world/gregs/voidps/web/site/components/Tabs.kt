@@ -1,7 +1,6 @@
 package world.gregs.voidps.web.site.components
 
 import kotlinx.html.DIV
-import kotlinx.html.FlowContent
 import kotlinx.html.button
 import kotlinx.html.div
 import kotlinx.html.span
@@ -9,9 +8,9 @@ import kotlinx.html.style
 
 data class TabItem(val id: String, val label: String, val count: String? = null)
 
-/** The tab strip (2px gold rule on the active tab). Pair with [voidTabPanel] for each tab's content. */
-fun FlowContent.voidTabs(model: String, items: List<TabItem>) {
-    div {
+/** The tab strip (2px gold rule on the active tab). Pair with [Ui.tabPanel] for each tab's content. */
+fun Ui.tabs(model: String, items: List<TabItem>) {
+    receiver.div {
         attributes["role"] = "tablist"
         style = "display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--border-panel);" +
             "background:var(--surface-header);border-top-left-radius:var(--radius-md);" +
@@ -47,8 +46,8 @@ fun FlowContent.voidTabs(model: String, items: List<TabItem>) {
  * it can freely set `style` (including `display`) without fighting the x-show wrapper, which
  * Alpine manages by adding/removing an inline `display` of its own.
  */
-fun FlowContent.voidTabPanel(model: String, id: String, content: DIV.() -> Unit) {
-    div {
+fun Ui.tabPanel(model: String, id: String, content: DIV.() -> Unit) {
+    receiver.div {
         xShow("$model === '$id'")
         div {
             content()

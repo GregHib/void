@@ -1,13 +1,12 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.FlowContent
 import kotlinx.html.div
 import kotlinx.html.span
 import kotlinx.html.style
 
 /** A level/XP or server-load meter row: label, thin fill bar, and a right-aligned value. */
-fun FlowContent.voidStatBar(label: String, value: Int, max: Int, showValue: Boolean = true) {
-    div {
+fun Ui.statBar(label: String, value: Int, max: Int, showValue: Boolean = true) {
+    receiver.div {
         style = "display:flex;align-items:center;gap:var(--space-5);padding:var(--space-4) var(--space-5);" +
             "background:var(--surface-panel-raised);border:1px solid var(--border-panel);" +
             "border-radius:var(--radius-sm);box-shadow:var(--bevel-up)"

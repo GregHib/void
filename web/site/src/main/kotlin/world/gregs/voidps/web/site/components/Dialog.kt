@@ -13,14 +13,14 @@ import kotlinx.html.style
  * A centred modal. [model] is a boolean Alpine expression controlling visibility; clicking the
  * backdrop closes it, clicking the panel itself does not. Supply [footer] for action buttons.
  */
-fun FlowContent.voidDialog(
+fun Ui.dialog(
     model: String,
     title: String,
     width: Int = 440,
     dialogFooter: (FlowContent.() -> Unit)? = null,
     content: DIV.() -> Unit,
 ) {
-    div {
+    receiver.div {
         attributes["role"] = "dialog"
         attributes["aria-modal"] = "true"
         attributes["class"] = "void-flex"

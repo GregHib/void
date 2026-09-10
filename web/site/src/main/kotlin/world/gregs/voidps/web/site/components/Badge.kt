@@ -1,6 +1,5 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.FlowContent
 import kotlinx.html.span
 import kotlinx.html.style
 
@@ -14,13 +13,13 @@ enum class BadgeTone(val background: String, val color: String, val border: Stri
 }
 
 /** A small status/category chip. [dot] adds the leading status dot used for online/offline states. */
-fun FlowContent.voidBadge(
+fun Ui.badge(
     text: String,
     tone: BadgeTone = BadgeTone.Neutral,
     dot: Boolean = false,
     pill: Boolean = true,
 ) {
-    span {
+    receiver.span {
         val radius = if (pill) "var(--radius-pill)" else "var(--radius-xs)"
         style = "display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;" +
             "background:${tone.background};color:${tone.color};border:1px solid ${tone.border};" +

@@ -18,7 +18,7 @@ import kotlinx.html.style
  * The panel does *not* clip overflow, so popovers/tooltips inside [content] can escape its
  * bounds — the header's own top corners are rounded separately to match the panel outline.
  */
-fun FlowContent.voidPanel(
+fun Ui.panel(
     title: String? = null,
     subtitle: String? = null,
     meta: String? = null,
@@ -27,7 +27,7 @@ fun FlowContent.voidPanel(
     action: (FlowContent.() -> Unit)? = null,
     content: DIV.() -> Unit,
 ) {
-    div {
+    receiver.div {
         val surface = if (inset) "var(--surface-inset)" else "var(--surface-panel)"
         style = "background:$surface;border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
             "box-shadow:var(--bevel-up),var(--shadow-xs)"

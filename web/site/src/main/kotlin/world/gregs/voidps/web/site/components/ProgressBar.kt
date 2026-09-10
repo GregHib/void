@@ -1,6 +1,5 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.FlowContent
 import kotlinx.html.InputType
 import kotlinx.html.div
 import kotlinx.html.input
@@ -16,13 +15,13 @@ enum class ProgressTone(val from: String, val to: String) {
 enum class ProgressSize(val height: Int) { Small(4), Medium(8), Large(12) }
 
 /** A static meter bar filled to [percent] (0–100). */
-fun FlowContent.voidProgressBar(
+fun Ui.progressBar(
     label: String,
     percent: Int,
     tone: ProgressTone = ProgressTone.Gold,
     size: ProgressSize = ProgressSize.Medium,
 ) {
-    div {
+    receiver.div {
         style = "display:flex;flex-direction:column;gap:6px"
         span {
             style = "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-muted)"
@@ -43,8 +42,8 @@ fun FlowContent.voidProgressBar(
 }
 
 /** A live meter bound to a numeric Alpine [model] (0–100), with an editable range input. */
-fun FlowContent.voidProgressBarLive(label: String, model: String) {
-    div {
+fun Ui.progressBarLive(label: String, model: String) {
+    receiver.div {
         style = "display:flex;flex-direction:column;gap:var(--space-7)"
         div {
             style = "display:flex;flex-direction:column;gap:6px"
