@@ -40,6 +40,25 @@ class GertrudesCat : Script {
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
+
+            if(progress == 3) {
+                //found_fluffs = 3,
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+
+            if(progress == 4) {
+                //fed_fluffs = 4,
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+
+            if(progress == 5) {
+                //returned_fluffs = 5,
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+            // complete = 6
             questJournal("Gertrude's Cat", lines)
         }
     }
