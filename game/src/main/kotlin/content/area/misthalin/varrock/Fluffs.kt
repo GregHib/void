@@ -31,6 +31,7 @@ class Fluffs : Script {
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "completed" -> talkPostQuest(interact.target)
                 "found_fluffs" -> talkCatFoundFluffs(interact.target)
+                "attempt_fluffs_pickup" -> talkCatFoundFluffs(interact.target)
                 else -> dontBotherCat()
             }
         }
@@ -38,6 +39,7 @@ class Fluffs : Script {
             foundCatCheck()
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "found_fluffs" -> yoinkCatFoundFluffs(interact.target)
+                "attempt_fluffs_pickup" -> yoinkCatFoundFluffs(interact.target)
                 "fed_fluffs" -> yoinkCatFedFluffs()
                 else -> dontBotherCat()
             }
@@ -46,6 +48,7 @@ class Fluffs : Script {
             foundCatCheck()
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "found_fluffs" -> strokeCatFoundFluffs(interact.target)
+                "attempt_fluffs_pickup" -> strokeCatFoundFluffs(interact.target)
                 "fed_fluffs" -> strokeCatFedFluffs()
                 else -> dontBotherCat()
             }
@@ -71,19 +74,16 @@ class Fluffs : Script {
 
     private suspend fun Player.yoinkCatFedFluffs() {}
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
-        animDelay("climb_down")
-        delay(1)
-        cat.say("Hiss!")
-        cat.face(this)
-        cat.animDelay("pet_pounce_kitten")
-        delay(1)
-        say("Ouch!")
-        delay(1)
+        doNotTheCat(cat)
         statement("Fluffs hisses but clearly wants something - maybe she is thirsty?")
     }
 
     private suspend fun Player.strokeCatFedFluffs(){}
     private suspend fun Player.strokeCatFoundFluffs(cat: NPC) {
+        doNotTheCat(cat)
+        statement("Perhaps Fluffs wants something - food or drink, maybe?")
+    }
+    private suspend fun Player.doNotTheCat(cat: NPC) {
         animDelay("climb_down")
         delay(1)
         cat.say("Hiss!")
@@ -92,6 +92,6 @@ class Fluffs : Script {
         delay(1)
         say("Ouch!")
         delay(1)
-        statement("Perhaps Fluffs wants something - food or drink, maybe?")
+        set(GERTRUDES_CAT_STRING_NAME, "attempt_fluffs_pickup")
     }
 }
