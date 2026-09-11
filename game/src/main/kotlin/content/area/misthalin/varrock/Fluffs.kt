@@ -24,6 +24,7 @@ class Fluffs : Script {
         itemOnNPCOperate("doogle_sardine", FLUFFS_STRING_ID) {
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)){
+                "attempt_fluffs_pickup" -> checkCanFeed()
                 else -> message("<red>Fluffs doesn't seem to be hungry right now.")
             }
         }
@@ -33,7 +34,6 @@ class Fluffs : Script {
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)){
                 "attempt_fluffs_pickup" -> checkItem(item)
-                "milked_fluffs" -> checkItem(item)
                 else -> message("<red>Fluffs doesn't seem to be interested in that.") // Actually message unknown, but I'd rather it not be blank.
             }
         }
@@ -65,7 +65,6 @@ class Fluffs : Script {
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "found_fluffs" -> yoinkCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> yoinkCatFoundFluffs(interact.target)
-                "fed_fluffs" -> yoinkCatFedFluffs()
                 else -> dontBotherCat()
             }
         }
@@ -74,10 +73,25 @@ class Fluffs : Script {
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "found_fluffs" -> strokeCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> strokeCatFoundFluffs(interact.target)
-                "fed_fluffs" -> strokeCatFedFluffs()
+                //"fed_fluffs" -> strokeCatFedFluffs(interact.target) TODO: check the player var if you fed the cat or not
                 else -> dontBotherCat()
             }
         }
+    }
+
+    private suspend fun Player.checkCanFeed() {
+        // check player variable if you already fed the cat
+        if(false){
+            dontBotherCat()
+        } else {
+            feedFluffs()
+        }
+    }
+    private suspend fun Player.feedFluffs() {
+        inventory.remove("doogle_sardine")
+        npc<Happy>("Mew!")
+        player<Happy>("Progress, at least.")
+        statement("Fluffs devours the doogle sardine greedily. Then she mews at you again.")
     }
 
     private suspend fun Player.checkItem(item: String) {
@@ -108,7 +122,7 @@ class Fluffs : Script {
         player<Happy>("Progress, at least.")
         inventory.remove("bucket_of_milk")
         inventory.add("bucket")
-        set(GERTRUDES_CAT_STRING_NAME, "milked_fluffs")
+        // TODO Set player variable so we know the player gave the cat milk
         statement("Fluffs laps up the milk greedily. Then she mews at you again.")
     }
 
@@ -130,17 +144,25 @@ class Fluffs : Script {
         cat.say("Miaoww")
     }
 
-    private suspend fun Player.yoinkCatFedFluffs() {}
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
         doNotTheCat(cat)
         statement("Fluffs hisses but clearly wants something - maybe she is thirsty?")
     }
 
-    private suspend fun Player.strokeCatFedFluffs() {}
+    // Based off of memory
+    private suspend fun Player.strokeCatFedFluffs(cat: NPC) {
+        animDelay("climb_down")
+        delay(1)
+        cat.say("Prr...")
+        delay(1)
+        message("Seems like the cat doesn't hate you anymore.")
+    }
+
     private suspend fun Player.strokeCatFoundFluffs(cat: NPC) {
         doNotTheCat(cat)
         statement("Perhaps Fluffs wants something - food or drink, maybe?")
     }
+
     private suspend fun Player.doNotTheCat(cat: NPC) {
         animDelay("climb_down")
         delay(1)

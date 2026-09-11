@@ -9,8 +9,6 @@ values = {
     found_the_boys = 2,
     found_fluffs = 3,
     attempt_fluffs_pickup = 4,
-    milked_fluffs = 5,
-    #fed_fluffs = 6,
-    #returned_fluffs = 7,
+    fluffs_returned = 5,
     completed = 6,
 }
