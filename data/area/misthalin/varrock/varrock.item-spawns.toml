@@ -24,7 +24,7 @@ spawns = [
   { id = "empty_pot", x = 3144, y = 3449, level = 2, delay = 100 },
   { id = "empty_jug", x = 3142, y = 3447, level = 2, delay = 100 },
   { id = "cooking_apple", x = 3141, y = 3447, level = 2, delay = 100 },
-  # Gertrude's Cat https://youtu.be/_pZcnvI1l_Q?si=fMcVTDwzTy4g2QHY&t=195
+  # Gertrude's Cat https://youtu.be/_pZcnvI1l_Q?t=195
   { id = "doogle_leaves", x = 3152, y = 3399, delay = 100 },
   { id = "doogle_leaves", x = 3152, y = 3400, delay = 100 },
   { id = "doogle_leaves", x = 3151, y = 3399, delay = 100 },
