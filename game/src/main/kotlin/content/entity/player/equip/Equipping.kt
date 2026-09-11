@@ -37,6 +37,10 @@ class Equipping : Script {
                 message("You should leave your gas mask on while you're in West Ardougne.")
                 return@itemOption
             }
+            if (item.id.startsWith("falconers_glove")) {
+                message("You should return the falcon to Matthias instead of just dropping it.")
+                return@itemOption
+            }
             if (item.id == "rubber_chicken" || item.id == "easter_carrot") {
                 options.remove("Whack")
             }
@@ -68,6 +72,14 @@ class Equipping : Script {
         }
         if (item.id.endsWith("goblin_mail")) {
             player.message("That armour is too small for a human.")
+            return
+        }
+        if (item.id.startsWith("falconers_glove")) {
+            player.message("You need Matthias to provide you with a bird before you can wear that.")
+            return
+        }
+        if ((item.slot == EquipSlot.Weapon || item.slot == EquipSlot.Shield) && player.equipped(EquipSlot.Weapon).id.startsWith("falconers_glove")) {
+            player.message("You can't wield anything while you have a falcon on your arm.")
             return
         }
         if (item.id.startsWith("bedsheet") && player.tile !in Areas["port_phasmatys"]) {

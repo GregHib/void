@@ -1,0 +1,19 @@
+[imp_box]
+id = 478
+type = "main_screen"
+
+[.title]
+id = 12
+
+[.text]
+id = 13
+
+[.inventory]
+id = 14
+inventory = "inventory"
+width = 7
+height = 4
+options = { Deposit = 0, Examine = 9 }
+
+[.close]
+id = 15

@@ -54,6 +54,7 @@ fun Client.arrowHint(
     radius: Int = 0,
     model: Int = 65535,
 ) = send(Protocol.HINT_ARROW) {
+    // The client always reads a fixed 12 byte body, so every form must be padded to it
     writeByte((arrowIndex shl 5) or type)
     // The packet is a fixed twelve bytes, so every branch - clearing included - has to write all
     // of it. Stopping short leaves the client reading the packets behind this one as the rest of

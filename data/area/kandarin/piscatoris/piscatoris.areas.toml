@@ -19,3 +19,7 @@ hint = "where eagles fly."
 [ppiscatoris_fishing_area]
 x = [2340, 2349]
 y = [3702, 3702]
+
+[piscatoris_falconry_area]
+x = [2363, 2395]
+y = [3579, 3620]

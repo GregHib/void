@@ -33,14 +33,15 @@ npc = "hunting_box_trap_npc"
 
 [.boulder_trap]
 level = 23
-#trap = "boulder_trap_setup"
-#fail = "boulder_trap_fail"
-#setup_anim = "lay_trap"
-#take_down_anim = "lay_trap"
-#requires = ["knife"]
+requires = ["knife"]
 items = ["logs"]
 max = 1
 npc = "hunting_deadfall_trap_npc"
+
+[.magic_box]
+level = 71
+items = ["magic_box"]
+npc = "hunting_imptrap_npc"
 
 [.swamp_net]
 level = 29
@@ -90,6 +91,9 @@ level = "int"          # minimum hunter level to lure
 xp = "int"             # xp * 0.1  (stored as tenths for int precision)
 loot = "list<item>"    # items awarded on catch
 chance = "range"
+bait = "item"          # bait required before the creature will approach the trap
+catch_anim = "anim"    # animation the creature plays on a successful catch
+fail_anim = "anim"     # animation the creature plays on a failed catch
 
 [.crimson_swift]
 trap = "bird_snare"
@@ -139,30 +143,75 @@ xp = 1670
 loot = ["wimpy_feather", "raw_bird_meat", "bones"]
 chance = [65, 350]
 
-[.grey_chinchompa]
+[.ferret]
 trap = "box_trap"
-caught_obj = "box_trap_grey_chinchompa"
+caught_obj = "box_trap_ferret"
+level = 27
+xp = 1152
+catch_anim = "ferret_catch"
+fail_anim = "ferret_fail"
+loot = ["ferret"]
+chance = [41, 255]
+
+[.chinchompa]
+trap = "box_trap"
+caught_obj = "box_trap_chinchompa"
 level = 53
 xp = 1984
-#catch_anim = "chinchompa_catch"
-loot = ["box_trap", "chinchompa"]
+catch_anim = "chinchompa_catch"
+fail_anim = "chinchompa_fail"
+loot = ["chinchompa"]
+chance = [145, 268]
 
-[.red_chinchompa]
+[.carnivorous_chinchompa]
 trap = "box_trap"
-caught_obj = "box_trap_red_chinchompa"
+caught_obj = "box_trap_carnivorous_chinchompa"
 level = 63
 xp = 2650
-#catch_anim = "chinchompa_catch"
-loot = ["box_trap", "red_chinchompa"]
+catch_anim = "chinchompa_catch"
+fail_anim = "chinchompa_fail"
+loot = ["red_chinchompa"]
+chance = [115, 228]
+
+[.wild_kebbit]
+trap = "boulder_trap"
+caught_obj = "boulder_trap_wild_kebbit"
+level = 23
+xp = 1280
+catch_anim = "kebbit_catch"
+fail_anim = "kebbit_fail"
+loot = ["bones", "kebbit_claws"]
+chance = [105, 354]
 
 [.barb_tailed_kebbit]
 trap = "boulder_trap"
 caught_obj = "boulder_trap_barb_tailed_kebbit"
-level = 23
+level = 33
 xp = 1680
-#catch_anim = "kebbit_catch"
-#fail_anim = "kebbit_fail"
+catch_anim = "kebbit_catch"
+fail_anim = "kebbit_fail"
 loot = ["bones", "barb_tail_harpoon"]
+chance = [110, 326]
+
+[.prickly_kebbit]
+trap = "boulder_trap"
+caught_obj = "boulder_trap_prickly_kebbit"
+level = 37
+xp = 2040
+catch_anim = "kebbit_catch"
+fail_anim = "kebbit_fail"
+loot = ["bones", "kebbit_spike"]
+chance = [115, 298]
+
+[.sabre_toothed_kebbit]
+trap = "boulder_trap"
+caught_obj = "boulder_trap_sabre_toothed_kebbit"
+level = 51
+xp = 2000
+catch_anim = "kebbit_catch"
+fail_anim = "kebbit_fail"
+loot = ["bones", "kebbit_teeth"]
+chance = [120, 268]
 
 [.swamp_lizard]
 trap = "swamp_net"
@@ -197,16 +246,32 @@ trap = "box_trap"
 caught_obj = "box_trap_pawya"
 level = 66
 xp = 4000
-#catch_anim = "chinchompa_catch"
+catch_anim = "pawya_catch"
+fail_anim = "pawya_fail"
 loot = ["bones", "raw_pawya_meat"]
+chance = [100, 215]
+bait = "papaya_fruit"
 
 [.grenwall]
 trap = "box_trap"
 caught_obj = "box_trap_grenwall"
 level = 77
 xp = 11000
-#catch_anim = "chinchompa_catch"
+catch_anim = "grenwall_catch"
+fail_anim = "grenwall_fail"
+chance = [15, 130]
+bait = "raw_pawya_meat"
 loot = ["grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes", "grenwall_spikes"]
+
+[.imp]
+trap = "magic_box"
+caught_obj = "magic_box_caught"
+level = 71
+xp = 4500
+catch_anim = "imp_catch"
+fail_anim = "imp_fail"
+loot = ["imp_in_a_box_2"]
+chance = [15, 130]
 
 [.rabbit]
 trap = "rabbit_snare"
@@ -231,3 +296,35 @@ loot = ["big_bones", "tatty_graahk_fur"]
 level = 55
 xp = 3000
 loot = ["big_bones", "tatty_kyatt_fur"]
+
+
+# ---------------------------------------------------------------------------
+# Falconry — keyed by the kebbit npc id
+# ---------------------------------------------------------------------------
+[falconry]
+level = "int"
+xp = "int"           # xp * 0.1
+fur = "item"
+caught = "npc"
+chance = "range"
+
+[.spotted_kebbit]
+level = 43
+xp = 1040
+fur = "spotted_kebbit_fur"
+caught = "spotted_kebbit_caught"
+chance = [26, 310]
+
+[.dark_kebbit]
+level = 57
+xp = 1320
+fur = "dark_kebbit_fur"
+caught = "dark_kebbit_caught"
+chance = [0, 253]
+
+[.dashing_kebbit]
+level = 69
+xp = 1560
+fur = "dashing_kebbit_fur"
+caught = "dashing_kebbit_caught"
+chance = [0, 205]

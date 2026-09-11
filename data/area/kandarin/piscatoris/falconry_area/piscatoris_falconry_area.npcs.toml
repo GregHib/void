@@ -5,3 +5,15 @@ examine = "He's wearing a single glove; how strange."
 [spotted_kebbit]
 id = 5098
 examine = "It seems to be on a permanent sugar rush."
+
+[spotted_kebbit_caught]
+id = 5094
+examine = "It looks like it has caught something."
+
+[dark_kebbit_caught]
+id = 5095
+examine = "It looks like it has caught something."
+
+[dashing_kebbit_caught]
+id = 5096
+examine = "It looks like it has caught something."
