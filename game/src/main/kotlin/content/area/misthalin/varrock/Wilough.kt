@@ -31,7 +31,7 @@ class Wilough : Script {
     init {
         npcOperate("Talk-to", WILOUGH_STRING_NAME){
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
-                "completed" -> postQuest()
+                "completed" -> gertrudePostQuest()
                 "spoke_to_gertrude" -> lookingForInformationBranch()
                 "found_the_boys" -> gertrudeWhereFluffs()
                 else -> gertrudeUnstarted()
@@ -124,7 +124,7 @@ suspend fun Player.gertrudeLookingForInformation() {
     npc<Admit>("Well it's still mine anyway, we need a place to relax sometimes. Those two little brothers at the house are just such babies.", largeHead = true)
 }
 
-suspend fun Player.postQuest() {
+suspend fun Player.gertrudePostQuest() {
     player<Idle>("Hello again.")
     npc<Idle>("You think you're tough do you?", largeHead = true)
     player<Quiz>("Pardon?")

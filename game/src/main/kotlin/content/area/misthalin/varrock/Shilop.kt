@@ -20,7 +20,7 @@ class Shilop : Script {
     init {
         npcOperate("Talk-to", SHILOP_STRING_NAME){
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
-                "completed" -> postQuest()
+                "completed" -> gertrudePostQuest()
                 "spoke_to_gertrude" -> lookingForInformationBranch()
                 "found_the_boys" -> gertrudeWhereFluffs()
                 else -> gertrudeUnstarted()
