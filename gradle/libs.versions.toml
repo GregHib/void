@@ -7,6 +7,7 @@ displeeCache = "7.1.7"
 fastUtil = "8.5.16"
 kotlinIo = "0.1.16"
 kotlinCoroutines = "1.10.2"
+kotlinSerialization = "1.9.0"
 koin = "4.1.1"
 logback = "1.5.18"
 inlineLogging = "1.0.6"
@@ -41,6 +42,13 @@ ktor-network = { module = "io.ktor:ktor-network-jvm", version.ref = "ktor" }
 ktor-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor" }
 ktor-server-html = { module = "io.ktor:ktor-server-html-builder", version.ref = "ktor" }
 ktor-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktor" }
+ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
+ktor-server-sse = { module = "io.ktor:ktor-server-sse", version.ref = "ktor" }
+ktor-server-status-pages = { module = "io.ktor:ktor-server-status-pages", version.ref = "ktor" }
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
 displee-cache = { module = "com.displee:rs-cache-library", version.ref = "displeeCache" }
 fastutil = { module = "it.unimi.dsi:fastutil", version.ref = "fastUtil" }
 lzma = { module = "com.github.jponge:lzma-java", version.ref = "lzma" }
@@ -78,6 +86,7 @@ compose-mac-intel = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-
 compose-mac-arm = { module = "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64", version.ref = "compose" }
 
 [bundles]
+ktor-api = ["ktor", "ktor-cio", "ktor-server-auth", "ktor-server-sse", "ktor-server-status-pages", "ktor-server-content-negotiation", "ktor-serialization-json", "kotlinx-serialization-json"]
 testing = ["junit-params", "mockk", "kotlinx-coroutines-test", "koin-test"]
 kotlinx = ["kotlinx-io", "kotlinx-coroutines"]
 logging = ["koin-log", "logback", "inline-logging"]
@@ -89,6 +98,7 @@ compose-release = ["compose-windows", "compose-linux", "compose-mac-intel", "com
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jacoco-aggregation = { id = "jacoco-report-aggregation" }
 composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
