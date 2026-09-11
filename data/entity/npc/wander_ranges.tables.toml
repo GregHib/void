@@ -52144,3 +52144,9 @@ wander_range = 0
 #[.21079]
 #wander_range = 20
 #max_range = 20
+
+[.leprechaun_evil_tree]
+wander_range = 0
+
+[.leprechaun_panic]
+wander_range = 0
