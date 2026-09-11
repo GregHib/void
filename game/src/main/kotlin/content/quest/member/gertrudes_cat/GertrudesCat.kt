@@ -23,9 +23,20 @@ class GertrudesCat : Script {
             // Couldn't find anything official, this is just extrapolating.
             lines += "<str>I have talked to Gertrude about her cat. She is very upset."
 
-            if(progress == 1){
+            if(progress == 1) {
                 lines += "<navy>I need to speak to <maroon>Gertrude<navy>'s sons,"
                 lines += "<maroon>Shilop <navy>and <maroon>Wilough<navy>, in <maroon>Varrock Marketplace<navy>."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+
+            lines += "<str>I spoke with Gertrude's sons,"
+            lines += "<str>Shilop and Wilough, in Varrock Marketplace."
+
+            if(progress == 2) {
+                lines += "<navy>I need to go to <maroon>Shilop <navy>and <maroon>Wilough<navy>'s secret hideout"
+                lines += "<navy>in an abandoned <maroon>Lumber Mill<navy>, to the <maroon>north-east<navy> and find"
+                lines += "<maroon>Fluffs<navy>, then return her to <maroon>Gertrude<navy>."
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
