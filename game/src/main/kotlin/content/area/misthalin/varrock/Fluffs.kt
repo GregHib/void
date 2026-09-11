@@ -7,6 +7,8 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
+import content.quest.member.gertrudes_cat.KITTEN_CRATES
+import content.quest.member.gertrudes_cat.KittenCrates
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -20,7 +22,7 @@ import world.gregs.voidps.type.Tile
 private const val FLUFFS_STRING_ID = "fluffs_normal"
 private const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
 private const val FLUFFS_MILK_VAR = "gertrudes_cat_fluffs_milk"
-private const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
+const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
 
 class Fluffs : Script {
 
@@ -155,6 +157,8 @@ class Fluffs : Script {
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
         if(get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)){
             doNotTheCat(cat)
+            val crate = KITTEN_CRATES.random()
+            set(KITTENS_HIDING_SPOT, crate)
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
             return
         }
