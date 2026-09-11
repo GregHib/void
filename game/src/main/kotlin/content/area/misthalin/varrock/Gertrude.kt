@@ -26,6 +26,7 @@ class Gertrude : Script {
         npcOperate("Talk-to", "gertrude") {
             when (quest("gertrudes_cat")) {
                 "completed" -> postQuest()
+                "unstarted" -> unstarted()
                 else -> unstarted()
             }
         }
@@ -69,14 +70,37 @@ class Gertrude : Script {
         npc<Sad>("My beloved feline friend, Fluffs. She's been purring by my side for almost a decade. Please, could you go and search for her while I take care of the children?")
         choice {
             option<Idle>("Well, I suppose I could, though I'd need more details.") {
-
+                questAccepted()
             }
             option<Quiz>("What's in it for me?") {
-
+                npc<Sad>("I'm sorry, I'm too poor to pay you anything, the best I could offer is a warm meal.")
+                npc<Quiz>("So, can you help?")
+                player<Quiz>("Just a meal? It's not the best offer I've had, but I suppose I can help.")
+                npc<Happy>("I suppose I could give you some nice, yummy chocolate cake; maybe even a kitten too, if you seem like a nice sort.")
+                npc<Quiz>("Is that something you could be persuaded with?")
+                choice {
+                    option<Idle>("Well, I suppose I could, though I'd need more details.") {
+                        questAccepted()
+                    }
+                    option<Idle>("Sorry, I'm too busy to play pet rescue.") {
+                        questRejected()
+                    }
+                }
             }
             option<Idle>("Sorry, I'm too busy to play pet rescue.") {
-
+                questRejected()
             }
         }
+    }
+    private suspend fun Player.questRejected() {
+        npc<Sad>("Well, okay then. I'll have to find someone else; someone less heartless. It will be on your conscience if a poor kitty is lost in the wilds, though.")
+    }
+    private suspend fun Player.questAccepted() {
+        npc<Happy>("Really? Thank you so much! I really have no idea where she could be!")
+        npc<Idle>("I think my sons, Shilop and Wilough, saw the cat last. They'll be out in the marketplace.")
+        player<Quiz>("The marketplace? Which one would that be? It would help to know what they get up to, as well.")
+        npc<Happy>("Really? Well, I generally let them do what they want, so I've no idea exactly what they would be doing. They are good lads, though. I'm sure they are just watching the passers-by in Varrock Marketplace.")
+        npc<Happy>("Oh, to be young and carefree again!")
+        player<Happy>("Alright then. I'll see what I can do. Two young lads in Varrock Marketplace; I can only hope that there's no school trip passing through when I arrive.")
     }
 }
