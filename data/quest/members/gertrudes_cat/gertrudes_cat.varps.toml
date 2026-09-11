@@ -10,7 +10,7 @@ values = {
     found_fluffs = 3,
     attempt_fluffs_pickup = 4,
     milked_fluffs = 5,
-    fed_fluffs = 6,
-    returned_fluffs = 7,
-    completed = 8,
+    #fed_fluffs = 6,
+    #returned_fluffs = 7,
+    completed = 6,
 }
