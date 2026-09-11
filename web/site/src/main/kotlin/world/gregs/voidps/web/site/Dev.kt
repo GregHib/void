@@ -513,9 +513,10 @@ object Dev {
 
         main {
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8) var(--space-7) var(--space-12);" +
-                "display:flex;flex-wrap:wrap;gap:var(--space-8);align-items:flex-start"
+                "display:flex;flex-wrap:wrap;gap:var(--space-8);align-items:flex-start;flex:1;width:100%"
 
             div {
+                attributes["class"] = "dev-players-search-col"
                 style = "flex:0 1 280px;min-width:240px;display:flex;flex-direction:column;gap:var(--space-6)"
                 attributes["@keydown.enter"] = "searchEnter()"
                 ui.textInput(
@@ -548,6 +549,7 @@ object Dev {
             }
 
             div {
+                attributes["class"] = "dev-players-detail-col"
                 style = "flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:var(--space-8)"
 
                 div {
@@ -596,10 +598,12 @@ object Dev {
                     ui.panel(title = "Combat snapshot", meta = "live") {
                         style = "display:flex;flex-direction:column;gap:var(--space-6)"
                         div {
+                            attributes["class"] = "dev-combat-skills-grid"
                             style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-5)"
                             rawHtml(statBarTemplate("player.combatSkills"))
                         }
                         div {
+                            attributes["class"] = "dev-combat-facts-grid"
                             style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-6);" +
                                 "padding-top:var(--space-6);border-top:1px solid var(--border-subtle)"
                             rawHtml(
@@ -615,6 +619,7 @@ object Dev {
                         }
                     }
                     ui.panel(title = "Skills") {
+                        attributes["class"] = "dev-player-skills-grid"
                         style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4)"
                         rawHtml(statBarTemplate("player.skills", big = false, showRank = true))
                     }
@@ -816,6 +821,7 @@ object Dev {
             }
 
             div {
+                attributes["class"] = "dev-players-side-col"
                 style = "flex:0 1 300px;min-width:260px;display:flex;flex-direction:column;gap:var(--space-8)"
 
                 ui.panel(title = "Location", meta = "live", padded = false) {

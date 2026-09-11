@@ -228,7 +228,11 @@
           this.navigate({ view: "overall" });
         }
       },
-      compareThis: function () { this.navigate({ nameA: this.profile, view: "compare" }); },
+      compareThis: function () {
+        var patch = { nameA: this.profile, view: "compare" };
+        if (this.nameB === this.profile) patch.nameB = "";
+        this.navigate(patch);
+      },
       search: function () {
         var q = this.query.trim();
         if (!q) return;
@@ -253,6 +257,8 @@
       comboFocus: function (side) { this.combo = side; this.comboQ = ""; },
       comboBlur: function () { this.combo = null; this.comboQ = ""; },
       pickCombo: function (side, name) {
+        var other = side === "a" ? this.nameB : this.nameA;
+        if (name === other) return;
         if (side === "a") this.nameA = name; else this.nameB = name;
         this.combo = null;
         this.comboQ = "";
@@ -264,7 +270,8 @@
       comboResults: function (side) {
         if (this.combo !== side) return [];
         var q = this.comboQ.trim().toLowerCase();
-        return PLAYERS.filter(function (p) { return !q || p.name.toLowerCase().indexOf(q) >= 0; })
+        var other = side === "a" ? this.nameB : this.nameA;
+        return PLAYERS.filter(function (p) { return p.name !== other && (!q || p.name.toLowerCase().indexOf(q) >= 0); })
           .slice(0, 25)
           .map(function (p) { return { name: p.name, meta: "rank " + fmt(p.rank) + " · " + abbrev(p.totalXp) + " xp" }; });
       },

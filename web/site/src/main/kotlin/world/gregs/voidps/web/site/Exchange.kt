@@ -396,10 +396,18 @@ object Exchange {
                           </div>
                           <div>
                             <span style="display:block;font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint);padding:var(--space-4) 0 var(--space-2) 66px">Units traded</span>
-                            <svg viewBox="0 0 920 74" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
-                              <g x-html="chartData.barsSvg"></g>
-                              <line x1="66" x2="908" y1="66" y2="66" style="stroke:var(--umber-700);stroke-width:1"></line>
-                            </svg>
+                            <div style="position:relative">
+                              <svg viewBox="0 0 920 74" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
+                                <g x-html="chartData.barsSvg"></g>
+                                <line x1="66" x2="908" y1="66" y2="66" style="stroke:var(--umber-700);stroke-width:1"></line>
+                                <g x-show="chartData.hovering">
+                                  <line :x1="chartData.hx" :x2="chartData.hx" y1="2" y2="66" style="stroke:var(--gold-300);stroke-width:1;stroke-dasharray:3 4"></line>
+                                </g>
+                              </svg>
+                              <div x-show="chartData.hovering" style="position:absolute;top:0;transform:translate(-50%,calc(-100% - 6px));z-index:5;padding:var(--space-2) var(--space-3);background:var(--umber-950);border:1px solid var(--border-gold);border-radius:var(--radius-xs);box-shadow:var(--shadow-md);font:var(--type-code);font-size:11px;color:var(--text-strong);white-space:nowrap;pointer-events:none" :style="{ left: chartData.hoverLeft }">
+                                <span x-text="chartData.vol"></span> traded
+                              </div>
+                            </div>
                           </div>
                         </div>
                         """.trimIndent(),

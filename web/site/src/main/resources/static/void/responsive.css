@@ -95,6 +95,14 @@
   .hiscores-compare-grid > span{padding:var(--space-3) 0!important}
 }
 
+/* Top kill counts / Fastest kills panels: minmax(340px,1fr) still enforces a 340px floor on a
+   single auto-fit column, which overflows phones narrower than that (plus page padding). Drop
+   the floor below that width so the panel fits the viewport and its own tableScroll (already
+   overflow-x:auto per the 900px rule above) handles any remaining fixed-column overflow. */
+@media (max-width:400px){
+  .hiscores-boss-panels-grid{grid-template-columns:1fr!important}
+}
+
 @media (max-width:900px){
   /* The rows inside keep their fixed-width rank/level/xp columns (only the name column shrinks
      via minmax(0,1fr)), so once those hit their minimum content width the whole thing simply
@@ -141,4 +149,23 @@
    plus World list/Runtime/Recent errors) — stacks instead of the sidebar overlapping the charts. */
 @media (max-width:760px){
   .dev-dashboard-grid{grid-template-columns:1fr!important}
+}
+
+/* Dev player management: the player detail column drops to full viewport width well before
+   phone width (the 240px sidebar wraps first), so the Combat snapshot / Skills auto-fit grids'
+   minmax floors (220/160/260px) are what overflow — same class of bug as the hiscores boss
+   panels above, fixed the same way. */
+@media (max-width:480px){
+  .dev-combat-skills-grid,.dev-player-skills-grid{grid-template-columns:1fr!important}
+  .dev-combat-facts-grid{grid-template-columns:1fr 1fr!important}
+}
+
+/* The players page's search/detail/side columns rely on flex-wrap to stack once their combined
+   flex-basis (280+480+300px) doesn't fit a row, but that leaves each column's own used width to
+   the browser's flex-basis/grow resolution — which can land wider than the viewport instead of
+   shrinking to it once a column is alone on its line (seen forcing the detail column, and the
+   tab strip / action buttons inside it, well past 320-375px phones). Forcing each to a 100% basis
+   below the point the three columns first stop fitting side by side removes that ambiguity. */
+@media (max-width:900px){
+  .dev-players-search-col,.dev-players-detail-col,.dev-players-side-col{flex-basis:100%!important;min-width:0!important}
 }
