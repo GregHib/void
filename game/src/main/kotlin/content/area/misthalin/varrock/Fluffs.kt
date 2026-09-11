@@ -1,5 +1,10 @@
 package content.area.misthalin.varrock
 
+import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
 import content.quest.quest
@@ -7,16 +12,39 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 
 private const val FLUFFS_STRING_ID = "fluffs_normal"
 
 class Fluffs : Script {
 
     init {
-        itemOnNPCOperate(item = "doogle_sardine", npc = FLUFFS_STRING_ID) {
+        val doogleSardineItems = setOf("doogle_leaves", "raw_sardine", "sardine")
+        itemOnNPCOperate("doogle_sardine", FLUFFS_STRING_ID) {
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)){
                 else -> message("<red>Fluffs doesn't seem to be hungry right now.")
+            }
+        }
+        itemOnNPCOperate("*", FLUFFS_STRING_ID) { interact ->
+            val item = interact.item.id
+
+            foundCatCheck()
+            when(quest(GERTRUDES_CAT_STRING_NAME)){
+                else -> message("<red>Fluffs doesn't seem to be hungry right now.")
+            }
+            if(item in doogleSardineItems){
+                mildInterest(item)
+            }
+            message("Nothing interesting happens.")
+        }
+        itemOnNPCOperate("bucket_of_milk", FLUFFS_STRING_ID) {
+            foundCatCheck()
+            when(quest(GERTRUDES_CAT_STRING_NAME)){
+                "attempt_fluffs_pickup" -> milkFluffs()
+                else -> message("<red>Fluffs doesn't seem to be thirsty right now.")
             }
         }
         itemOnNPCOperate(npc = FLUFFS_STRING_ID) {
@@ -54,6 +82,29 @@ class Fluffs : Script {
             }
         }
     }
+
+    private suspend fun Player.mildInterest(item: String) {
+        var itemName = item
+        if(item == "doogle_leaves"){
+            itemName = "doogle leaves"
+        }
+        if (item == "raw_sardine"){
+            itemName = "raw sardine"
+        }
+        npc<Angry>("Hiss!")
+        player<Neutral>("She seems to be a very fussy cat.")
+        statement("Fluffs looks vaguely interested at the $itemName but doesn't want it. A similar type of food or drink might be worth a try.")
+    }
+
+    private suspend fun Player.milkFluffs() {
+        npc<Happy>("Mew!")
+        player<Happy>("Progress, at least.")
+        inventory.remove("bucket_of_milk")
+        inventory.add("bucket")
+        set(GERTRUDES_CAT_STRING_NAME, "milked_fluffs")
+        statement("Fluffs laps up the milk greedily. Then she mews at you again.")
+    }
+
     private fun Player.foundCatCheck() {
         when(quest(GERTRUDES_CAT_STRING_NAME)) {
             "found_the_boys" -> set(GERTRUDES_CAT_STRING_NAME, "found_fluffs")
@@ -78,7 +129,7 @@ class Fluffs : Script {
         statement("Fluffs hisses but clearly wants something - maybe she is thirsty?")
     }
 
-    private suspend fun Player.strokeCatFedFluffs(){}
+    private suspend fun Player.strokeCatFedFluffs() {}
     private suspend fun Player.strokeCatFoundFluffs(cat: NPC) {
         doNotTheCat(cat)
         statement("Perhaps Fluffs wants something - food or drink, maybe?")
