@@ -3,6 +3,7 @@ package content.area.misthalin.varrock
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Scared
 import content.entity.player.dialogue.type.choice
@@ -23,10 +24,16 @@ class Shilop : Script {
                 "completed" -> gertrudePostQuest()
                 "spoke_to_gertrude" -> lookingForInformationBranch()
                 "found_the_boys" -> gertrudeWhereFluffs()
+                "attempt_fluffs_pickup" -> gertrudeFluffsNotComeBack()
                 else -> gertrudeUnstarted()
             }
         }
     }
+}
+
+suspend fun Player.gertrudeFluffsNotComeBack() {
+    player<Quiz>("I've found Fluffs but she won't come back home with me. Any ideas?")
+    npc<Neutral>("None at all. Not that I want that boring thing back, anyway. I prefer dogs to a fat cat, any day.")
 }
 
 private suspend fun Player.lookingForInformationBranch() {

@@ -34,6 +34,7 @@ class Wilough : Script {
                 "completed" -> gertrudePostQuest()
                 "spoke_to_gertrude" -> lookingForInformationBranch()
                 "found_the_boys" -> gertrudeWhereFluffs()
+                "attempt_fluffs_pickup" -> gertrudeFluffsNotComeBack()
                 else -> gertrudeUnstarted()
             }
         }
