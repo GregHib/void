@@ -24,20 +24,20 @@ class Philop : Script {
     private suspend fun Player.unstarted() {
         greetChild()
         player<Idle>("Enjoy playing with your dragon, then.")
-        npc<Happy>("Gwwwrrr!", largeHead = true)
+        npc<Happy>("Gwwwrrr!")
     }
     private suspend fun Player.greetChild() {
         player<Happy>("Hello, what's your name?")
-        npc<Happy>("Gwwrr!", largeHead = true)
+        npc<Happy>("Gwwrr!")
         player<Quiz>("Err, hello there. What's that you have there?")
-        npc<Happy>("Gwwwrrr! Dwa-gon Gwwwwrrrr!", largeHead = true)
+        npc<Happy>("Gwwwrrr! Dwa-gon Gwwwwrrrr!")
     }
 
     private suspend fun Player.lookingForInformation() {
         greetChild()
         player<Quiz>("What a nice dragon, have you seen Fluffs little boy?")
-        npc<Happy>("Dwa-gon nasty, dwa-gon eat Fwuffs, gwwwrrr, hungwy chomp chomp!", largeHead = true)
+        npc<Happy>("Dwa-gon nasty, dwa-gon eat Fwuffs, gwwwrrr, hungwy chomp chomp!")
         player<Idle>("I see. I don't think this is the most helpful clue I have ever been given.")
-        npc<Happy>("Gwwrr!", largeHead = true)
+        npc<Happy>("Gwwrr!")
     }
 }

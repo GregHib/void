@@ -25,19 +25,19 @@ class Kanel : Script {
 
     private suspend fun Player.unstarted() {
         player<Happy>("Hello there.")
-        npc<Quiz>("Hel-lo?", largeHead = true)
+        npc<Quiz>("Hel-lo?")
         player<Idle>("Right. Goodbye.")
-        npc<Quiz>("Bye?", largeHead = true)
+        npc<Quiz>("Bye?")
     }
 
     private suspend fun Player.lookingForInformation() {
         player<Happy>("Hello there.")
-        npc<Quiz>("Hel-lo?", largeHead = true)
+        npc<Quiz>("Hel-lo?")
         player<Quiz>("Have you seen Fluffs?")
-        npc<Quiz>("F-wuffs?", largeHead = true)
+        npc<Quiz>("F-wuffs?")
         player<Idle>("She's your mummy's cat.")
-        npc<Quiz>("Cat?", largeHead = true)
+        npc<Quiz>("Cat?")
         player<Idle>("Right. Bye Kanel.")
-        npc<Quiz>("Me?", largeHead = true)
+        npc<Quiz>("Me?")
     }
 }

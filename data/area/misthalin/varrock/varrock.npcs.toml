@@ -429,10 +429,12 @@ examine = "A busy housewife."
 
 [philop]
 id = 782
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [kanel]
 id = 784
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [rogue]
@@ -608,10 +610,12 @@ examine = "A retired vampyre hunter."
 
 [shilop]
 id = 781
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [wilough]
 id = 783
+dialogue = "child"
 examine = "One of Gertrude's sons."
 
 [treznor]
