@@ -2,9 +2,11 @@ package content.area.misthalin.varrock
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.Disheartened
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Laugh
+import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
@@ -31,20 +33,37 @@ class Gertrude : Script {
                 "completed" -> postQuest()
                 "spoke_to_gertrude" -> lookingForInformation()
                 "found_the_boys" -> findingFluffs()
+                "found_fluffs" -> hungryAndThirsty()
                 else -> unstarted()
             }
         }
     }
 
+    private suspend fun Player.hungryAndThirsty() {
+        findShilopQ()
+        player<Happy>("Yes, I've found Fluffs!")
+        npc<Happy>("That's great; where is she?")
+        player<Quiz>("She's still in Varrock. I think she may be hungry, thirsty or both.")
+        npc<Disheartened>("Oh dear, oh dear! Maybe she's just hungry. She loves doogle sardines but I'm all out.")
+        player<Quiz>("Doogle sardines?")
+        npc<Neutral>("Yes, raw sardines seasoned with doogle leaves. Unfortunately, I've used all my doogles leaves, but you may find some on the bush out back.")
+        player<Quiz>("What if she is thirsty?")
+        npc<Neutral>("In that case, she'd probably like some milk. A bucketful would tempt her, I'm sure.")
+        player<Neutral>("It seems a rather large amount of milk for one small cat, but I'll give it a try.")
+    }
+
     private suspend fun Player.findingFluffs() {
-        player<Idle>("Hello Gertrude.")
-        npc<Idle>("Hello again, did you manage to find Shilop? I can't keep an eye on him for the life of me.")
-        player<Idle>("He does seem quite a handful.")
-        npc<Laugh>("You have no idea! Did he help at all?")
+        findShilopQ()
         player<Idle>("I think so. I'm just going to look now.")
         npc<Happy>("Thanks again, adventurer.")
     }
 
+    private suspend fun Player.findShilopQ() {
+        player<Idle>("Hello Gertrude.")
+        npc<Idle>("Hello again, did you manage to find Shilop? I can't keep an eye on him for the life of me.")
+        player<Idle>("He does seem quite a handful.")
+        npc<Laugh>("You have no idea! Did he help at all?")
+    }
     private suspend fun Player.postQuest() {
         npc<Happy>("Hello dear. How are my kittens treating you?")
         choice {
