@@ -107,6 +107,7 @@ object Website {
         section {
             style = "background:var(--surface-inset);border-bottom:1px solid var(--border-panel)"
             div {
+                attributes["class"] = "home-stats-grid"
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8);" +
                     "display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-8)"
                 stat("42", "Worlds online")
@@ -128,6 +129,7 @@ object Website {
                 }
             }
             div {
+                attributes["class"] = "home-feature-grid"
                 style = "display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)"
                 val features = listOf(
                     Triple(Icons.TERMINAL, "Server emulator", "A Kotlin/JVM world server. Deterministic ticks, scriptable content, a plugin API that survives updates."),
@@ -162,6 +164,7 @@ object Website {
             style = "background:var(--surface-inset);border-top:1px solid var(--border-panel);" +
                 "border-bottom:1px solid var(--border-panel)"
             div {
+                attributes["class"] = "home-run-grid"
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
                     "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
                 div {
@@ -429,29 +432,39 @@ object Website {
 
         main {
             xData("worldMenuData()")
+            // width:100% matters here: without it, this flex item (a column-flex child, centered via
+            // margin:0 auto instead of stretched) sizes to its own max-content — including the
+            // unwrapped width of the flex-wrap:wrap header below — instead of filling the available
+            // width, which is exactly what lets that header's content overflow the viewport instead
+            // of wrapping (see [Play.page]'s otherwise-identical main, which already sets this).
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-11) var(--space-8);" +
-                "display:flex;flex-direction:column;gap:var(--space-8)"
+                "display:flex;flex-direction:column;gap:var(--space-8);width:100%"
             header {
-                style = "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8)"
+                style = "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap"
                 div {
-                    h1 {
-                        style = "margin:0;font:var(--type-title);color:var(--parch-50)"
+                    span {
+                        style = "display:block;font:var(--type-label);letter-spacing:var(--tracking-caps);" +
+                            "text-transform:uppercase;color:var(--gold-400);margin-bottom:8px"
                         +"World list"
                     }
+                    h1 {
+                        style = "margin:0 0 10px;font:var(--type-title);color:var(--parch-50)"
+                        +"Choose a world"
+                    }
                     p {
-                        style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
-                        +"Every community-hosted world, its region, mode, population and ping."
+                        style = "margin:0;max-width:58ch;font:var(--type-body);color:var(--text-muted)"
+                        +("Every world runs the same open-source server build. Pick one by region and latency, or " +
+                            "by the ruleset you want to play. Select a row to read its description and hosting details.")
                     }
                 }
                 div {
-                    style = "display:flex;gap:var(--space-4)"
-                    ui.badge("42 / 44 online", tone = BadgeTone.Success, dot = true)
-                    ui.badge("Next restart 04:00 UTC", tone = BadgeTone.Gold)
+                    style = "display:flex;gap:var(--space-8)"
+                    worldStat(String.format("%,d", defaultWorlds.sumOf { it.players }), "Players online")
+                    val online = defaultWorlds.count { it.status != WorldStatus.Offline }
+                    worldStat("$online / ${defaultWorlds.size}", "Worlds up")
                 }
             }
-            ui.panel(title = "Worlds", meta = "click a row to connect", padded = false) {
-                ui.worldTable("world", worlds, onSelect = { "select(${it.number})" })
-            }
+            ui.worldList(defaultWorlds, onSelect = { "select(${it.number})" })
         }
 
         ui.siteFooter()

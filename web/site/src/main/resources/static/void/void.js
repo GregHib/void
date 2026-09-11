@@ -11,10 +11,13 @@ window.voidBx = function (el, on, whenTrue, whenFalse) {
   });
 };
 
-// The connected world: read/written to localStorage so it survives navigating between pages.
-// worldMenuData() backs the navbar's quick-switch dropdown (see WorldMenu.kt); playApp() backs
-// the play page (see Play.kt). Both redirect to play.html?world=N on a fresh pick so the loading
-// screen and the URL stay in sync — the dropdown only does this when already on the play page.
+// The connected world: read/written to localStorage so it survives navigating between pages, and
+// mirrored into an Alpine store (below) so every component on the *same* page — the navbar's
+// worldMenu and a page-body picker are separate x-data components — reacts the instant either one
+// changes it, with no reload needed. worldMenuData() backs the navbar's quick-switch dropdown (see
+// WorldMenu.kt); playApp() backs the play page (see Play.kt). Both redirect to play.html?world=N on
+// a fresh pick so the loading screen and the URL stay in sync — the dropdown only does this when
+// already on the play page.
 var VOID_WORLD_KEY = 'void-world';
 
 function voidGetWorld() {
@@ -42,13 +45,19 @@ function voidClearWorld() {
   }
 }
 
+document.addEventListener('alpine:init', function () {
+  Alpine.store('world', { current: voidGetWorld() });
+});
+
 window.worldMenuData = function () {
   return {
-    world: voidGetWorld(),
     open: false,
+    get world() {
+      return Alpine.store('world').current;
+    },
     select: function (number) {
       voidSetWorld(number);
-      this.world = number;
+      Alpine.store('world').current = number;
       this.open = false;
       if (/(^|\/)play\.html$/.test(window.location.pathname)) {
         window.location.href = 'play.html?world=' + number;
@@ -56,7 +65,7 @@ window.worldMenuData = function () {
     },
     disconnect: function () {
       voidClearWorld();
-      this.world = null;
+      Alpine.store('world').current = null;
       this.open = false;
       // Play.html reads ?world= before localStorage, so a plain redirect there is needed —
       // otherwise the stale query string would just reconnect it on load.
@@ -69,13 +78,15 @@ window.worldMenuData = function () {
 
 window.playApp = function () {
   return {
-    world: null,
+    get world() {
+      return Alpine.store('world').current;
+    },
     init: function () {
       var fromQuery = new URLSearchParams(window.location.search).get('world');
       if (fromQuery) {
         var number = parseInt(fromQuery, 10);
         voidSetWorld(number);
-        this.world = number;
+        Alpine.store('world').current = number;
         return;
       }
       var saved = voidGetWorld();

@@ -108,6 +108,16 @@
   font: var(--type-body-sm);
 }
 
+/* A table wider than the article (many columns on a narrow screen) scrolls horizontally
+   instead of overflowing the page — `display:block` on the table keeps row/cell layout intact
+   while making it a scrollable box. */
+@media (max-width: 900px) {
+  .markdown-body table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
 .markdown-body th,
 .markdown-body td {
   text-align: left;

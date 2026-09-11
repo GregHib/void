@@ -1,6 +1,7 @@
 package world.gregs.voidps.web.site.components
 
 import kotlinx.html.a
+import kotlinx.html.button
 import kotlinx.html.div
 import kotlinx.html.header
 import kotlinx.html.img
@@ -25,6 +26,9 @@ fun Ui.devHeader(
     assetPrefix: String = "",
 ) {
     receiver.header {
+        attributes["class"] = "void-header"
+        xData("{ mobileOpen: false }")
+        onClickOutside("mobileOpen = false")
         style = "height:56px;display:flex;align-items:stretch;gap:var(--space-8);padding:0 var(--space-7);" +
             "background:var(--surface-header);border-bottom:1px solid var(--border-gold);" +
             "box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:30"
@@ -45,6 +49,8 @@ fun Ui.devHeader(
             }
         }
         nav {
+            attributes["class"] = "void-header-nav"
+            xBindClass("mobileOpen ? 'void-nav-open' : ''")
             style = "display:flex;align-items:stretch;gap:var(--space-2);flex:1;min-width:0;overflow:hidden"
             for (page in pages) {
                 val on = page.id == active
@@ -58,19 +64,28 @@ fun Ui.devHeader(
                     +page.label
                 }
             }
-        }
-        div {
-            style = "display:flex;align-items:center;gap:var(--space-6);flex:0 0 auto"
-            span {
-                style = "font:var(--type-code);font-size:var(--text-xs);color:var(--text-muted)"
-                +worldLabel
-            }
-            if (liveModel != null) {
+            div {
+                attributes["class"] = "void-header-nav-end"
+                style = "display:flex;align-items:center;gap:var(--space-6);flex:0 0 auto;margin-left:auto"
+                span {
+                    style = "font:var(--type-code);font-size:var(--text-xs);color:var(--text-muted)"
+                    +worldLabel
+                }
+                if (liveModel != null) {
+                    span { style = "width:1px;height:22px;background:var(--border-subtle)" }
+                    ui.switch("Live", model = liveModel, small = true)
+                }
                 span { style = "width:1px;height:22px;background:var(--border-subtle)" }
-                ui.switch("Live", model = liveModel, small = true)
+                ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = pages.first().href)
             }
-            span { style = "width:1px;height:22px;background:var(--border-subtle)" }
-            ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = pages.first().href)
+        }
+        button {
+            attributes["class"] = "void-header-toggle"
+            attributes["aria-label"] = "Toggle menu"
+            onClick("mobileOpen = !mobileOpen")
+            style = "display:none;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 auto;" +
+                "align-self:center;margin-left:auto;background:transparent;border:none;color:var(--text-muted);cursor:pointer"
+            icon(Icons.MENU, size = 20)
         }
     }
 }

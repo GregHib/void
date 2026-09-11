@@ -25,6 +25,9 @@ fun Ui.siteHeader(
     communityPages: List<SitePage> = emptyList(),
 ) {
     receiver.header {
+        attributes["class"] = "void-header"
+        xData("{ mobileOpen: false }")
+        onClickOutside("mobileOpen = false")
         style = "height:56px;display:flex;align-items:stretch;gap:var(--space-8);padding:0 var(--space-7);" +
             "background:var(--surface-header);border-bottom:1px solid var(--border-gold);" +
             "box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:30"
@@ -40,6 +43,8 @@ fun Ui.siteHeader(
             }
         }
         nav {
+            attributes["class"] = "void-header-nav"
+            xBindClass("mobileOpen ? 'void-nav-open' : ''")
             style = "display:flex;align-items:stretch;gap:var(--space-2);flex:1;min-width:0"
             for (page in pages) {
                 val on = page.id == active
@@ -56,6 +61,7 @@ fun Ui.siteHeader(
             if (communityPages.isNotEmpty()) {
                 val on = communityPages.any { it.id == active }
                 div {
+                    attributes["class"] = "void-header-community"
                     xData("{ open: false }")
                     onClickOutside("open = false")
                     onMouseEnter("open = true")
@@ -73,6 +79,7 @@ fun Ui.siteHeader(
                         icon(Icons.CHEVRON_DOWN, size = 11)
                     }
                     div {
+                        attributes["class"] = "void-header-community-panel"
                         xShow("open")
                         transition()
                         onClickStop("null")
@@ -98,17 +105,30 @@ fun Ui.siteHeader(
                     }
                 }
             }
-        }
-        div {
-            style = "display:flex;align-items:center;gap:var(--space-6);flex:0 0 auto"
-            ui.badge("v0.41.2", pill = false)
-            a(href = "#") {
-                style = "display:inline-flex;align-items:center;gap:var(--space-3);font:var(--type-body-sm)"
-                icon(Icons.EXTERNAL, size = 14)
-                +"Source"
+            div {
+                attributes["class"] = "void-header-nav-end"
+                style = "display:flex;align-items:center;gap:var(--space-6);flex:0 0 auto;margin-left:auto"
+                div {
+                    attributes["class"] = "void-header-extra"
+                    style = "display:flex;align-items:center;gap:var(--space-6)"
+                    ui.badge("v0.41.2", pill = false)
+                    a(href = "#") {
+                        style = "display:inline-flex;align-items:center;gap:var(--space-3);font:var(--type-body-sm)"
+                        icon(Icons.EXTERNAL, size = 14)
+                        +"Source"
+                    }
+                }
+                ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
+                ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = "${assetPrefix}dev/index.html")
             }
-            ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
-            ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = "${assetPrefix}dev/index.html")
+        }
+        button {
+            attributes["class"] = "void-header-toggle"
+            attributes["aria-label"] = "Toggle menu"
+            onClick("mobileOpen = !mobileOpen")
+            style = "display:none;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 auto;" +
+                "align-self:center;margin-left:auto;background:transparent;border:none;color:var(--text-muted);cursor:pointer"
+            icon(Icons.MENU, size = 20)
         }
     }
 }
@@ -125,6 +145,7 @@ fun Ui.siteFooter(assetPrefix: String = "") {
         style = "margin-top:auto;border-top:1px solid var(--border-panel);background:var(--surface-inset);" +
             "padding:var(--space-11) var(--space-8) var(--space-8)"
         div {
+            attributes["class"] = "void-footer-columns"
             style = "max-width:var(--container-wide);margin:0 auto;display:grid;" +
                 "grid-template-columns:1.4fr repeat(4,1fr);gap:var(--space-9)"
             div {
@@ -163,6 +184,7 @@ fun Ui.siteFooter(assetPrefix: String = "") {
             }
         }
         div {
+            attributes["class"] = "void-footer-bottom"
             style = "max-width:var(--container-wide);margin:var(--space-9) auto 0;padding-top:var(--space-6);" +
                 "border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;gap:var(--space-6);" +
                 "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-faint)"

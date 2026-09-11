@@ -114,12 +114,18 @@
     };
   }
 
+  var SEARCH_SORTS = ["level", "rank", "name"];
+
   function urlFor(state) {
     var params = new URLSearchParams();
     if (state.view && state.view !== "overall") params.set("view", state.view);
     if (state.view === "skills" && state.skill) params.set("skill", state.skill);
     if (state.view === "bosses" && state.boss) params.set("boss", state.boss);
     if (state.view === "player" && state.profile) params.set("player", state.profile);
+    if (state.view === "search") {
+      if (state.searchQuery) params.set("q", state.searchQuery);
+      if (state.searchSort && state.searchSort !== "level") params.set("sort", state.searchSort);
+    }
     var qs = params.toString();
     return window.location.pathname + (qs ? "?" + qs : "");
   }
@@ -140,8 +146,9 @@
   window.hiscoresApp = function () {
     return {
       view: "overall", skill: "Attack", boss: BOSSES[0][0], mode: "All", team: "All", query: "",
-      page: 0, skillPage: 0, kcPage: 0, timePage: 0, perPage: 25,
+      page: 0, skillPage: 0, kcPage: 0, timePage: 0, searchPage: 0, perPage: 25,
       nameA: "", nameB: "", profile: PLAYERS[0].name,
+      searchQuery: "", searchSort: "level", navDepth: 0,
       combo: null, comboQ: "",
 
       init: function () {
@@ -150,11 +157,20 @@
         var boss = params.get("boss");
         var player = params.get("player");
         var view = params.get("view");
+        var q = params.get("q");
+        var sort = params.get("sort");
         if (player) this.profile = player;
         if (skill && SKILLS.some(function (s) { return s[0] === skill; })) this.skill = skill;
         if (boss && BOSSES.some(function (b) { return b[0] === boss; })) this.boss = boss;
+        if (q) {
+          this.query = q;
+          this.searchQuery = q;
+        }
+        if (sort && SEARCH_SORTS.indexOf(sort) >= 0) this.searchSort = sort;
         if (view) {
           this.view = view;
+        } else if (q) {
+          this.view = "search";
         } else if (boss) {
           this.view = "bosses";
         } else if (skill) {
@@ -163,11 +179,12 @@
           this.view = "player";
         }
 
-        var state = { view: this.view, skill: this.skill, boss: this.boss, profile: this.profile };
+        var state = this.historyState();
         history.replaceState(state, "", urlFor(state));
 
         var self = this;
         window.addEventListener("popstate", function (e) {
+          self.navDepth = Math.max(0, self.navDepth - 1);
           var s = e.state;
           if (!s) {
             self.view = "overall";
@@ -176,25 +193,59 @@
           if (s.skill) self.skill = s.skill;
           if (s.boss) self.boss = s.boss;
           if (s.profile) self.profile = s.profile;
+          if (s.searchQuery !== undefined) {
+            self.searchQuery = s.searchQuery;
+            self.query = s.searchQuery;
+          }
+          if (s.searchSort) self.searchSort = s.searchSort;
           self.view = s.view || "overall";
+          if (self.view !== "search") self.query = "";
         });
+      },
+
+      historyState: function () {
+        return {
+          view: this.view, skill: this.skill, boss: this.boss, profile: this.profile,
+          searchQuery: this.searchQuery, searchSort: this.searchSort,
+        };
       },
 
       navigate: function (patch) {
         Object.assign(this, patch);
-        var state = { view: this.view, skill: this.skill, boss: this.boss, profile: this.profile };
+        if (this.view !== "search") this.query = "";
+        this.navDepth++;
+        var state = this.historyState();
         history.pushState(state, "", urlFor(state));
       },
 
       open: function (name) { this.navigate({ profile: name, view: "player" }); },
-      backToOverall: function () { this.navigate({ view: "overall" }); },
+      /** Returns to wherever the visitor came from (search results, a leaderboard, …) rather than always the overall view. */
+      back: function () {
+        if (this.navDepth > 0) {
+          this.navDepth--;
+          history.back();
+        } else {
+          this.navigate({ view: "overall" });
+        }
+      },
       compareThis: function () { this.navigate({ nameA: this.profile, view: "compare" }); },
+      search: function () {
+        var q = this.query.trim();
+        if (!q) return;
+        this.searchPage = 0;
+        this.navigate({ view: "search", searchQuery: q });
+      },
+      setSearchSort: function (sort) {
+        this.searchSort = sort;
+        this.searchPage = 0;
+      },
       prevPage: function (key) { var info = this.pagerFor(key); this[key] = Math.max(0, info.page - 1); },
       nextPage: function (key) { var info = this.pagerFor(key); this[key] = Math.min(info.pages - 1, info.page + 1); },
       pagerFor: function (key) {
         if (key === "page") return this.overallPager;
         if (key === "skillPage") return this.skillPager;
         if (key === "kcPage") return this.bossKcPager;
+        if (key === "searchPage") return this.searchPager;
         return this.bossTimePager;
       },
       fmtXp: function (n) { return fmt(n); },
@@ -219,19 +270,46 @@
       },
 
       get pool() {
-        var self = this, q = this.query.trim().toLowerCase();
-        return PLAYERS.filter(function (p) {
-          return (self.mode === "All" || p.mode === self.mode) && (!q || p.name.toLowerCase().indexOf(q) >= 0);
-        });
+        var self = this;
+        return PLAYERS.filter(function (p) { return self.mode === "All" || p.mode === self.mode; });
       },
       get overallEyebrow() {
-        var q = this.query.trim();
-        return fmt(this.pool.length) + " accounts" + (q ? " matching “" + q + "”" : "") + (this.mode !== "All" ? " · " + this.mode : "");
+        return fmt(this.pool.length) + " accounts" + (this.mode !== "All" ? " · " + this.mode : "");
       },
       get overallPager() { return pageInfo(this.pool.length, this.perPage, this.page); },
       get overallRows() {
         var self = this, p = this.overallPager;
         return this.pool.slice(p.start, p.end).map(function (pl, i) {
+          var tone = pl.modeTone ? TONE[pl.modeTone] : null;
+          return {
+            rank: pl.rank, name: pl.name, mode: pl.mode, showBadge: !!tone,
+            badgeBg: tone ? tone.bg : "", badgeFg: tone ? tone.fg : "", badgeBd: tone ? tone.bd : "",
+            totalLevel: fmt(pl.totalLevel), totalXp: self.fmtXp(pl.totalXp),
+            bg: band(i), rankColor: rankColor(pl.rank),
+          };
+        });
+      },
+
+      get searchPool() {
+        var q = this.searchQuery.trim().toLowerCase();
+        if (!q) return [];
+        return PLAYERS.filter(function (p) { return p.name.toLowerCase().indexOf(q) >= 0; });
+      },
+      get searchSorted() {
+        var sort = this.searchSort, list = this.searchPool.slice();
+        if (sort === "name") list.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        else if (sort === "rank") list.sort(function (a, b) { return a.rank - b.rank; });
+        else list.sort(function (a, b) { return b.totalLevel - a.totalLevel || b.totalXp - a.totalXp; });
+        return list;
+      },
+      get searchEyebrow() {
+        var n = this.searchSorted.length, q = this.searchQuery.trim();
+        return fmt(n) + (n === 1 ? " match" : " matches") + (q ? " for “" + q + "”" : "");
+      },
+      get searchPager() { return pageInfo(this.searchSorted.length, this.perPage, this.searchPage); },
+      get searchRows() {
+        var self = this, p = this.searchPager;
+        return this.searchSorted.slice(p.start, p.end).map(function (pl, i) {
           var tone = pl.modeTone ? TONE[pl.modeTone] : null;
           return {
             rank: pl.rank, name: pl.name, mode: pl.mode, showBadge: !!tone,

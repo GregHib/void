@@ -1,5 +1,6 @@
 @import url("styles.css");
 @import url("components.css");
+@import url("responsive.css");
 
 body{margin:0;background:var(--surface-app);color:var(--text-body);font:var(--type-body);-webkit-font-smoothing:antialiased}
 *{box-sizing:border-box}

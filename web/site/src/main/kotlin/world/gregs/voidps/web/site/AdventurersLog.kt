@@ -297,32 +297,35 @@ object AdventurersLog {
                     xText("profile.questPoints")
                 }
             }
-            table {
-                style = "width:100%;border-collapse:collapse"
-                thead {
-                    tr {
-                        questHeader("Quest", "left")
-                        questHeader("Difficulty", "left")
-                        questHeader("Time taken", "right")
-                        questHeader("Completed", "right")
+            div {
+                style = "overflow-x:auto"
+                table {
+                    style = "width:100%;min-width:460px;border-collapse:collapse"
+                    thead {
+                        tr {
+                            questHeader("Quest", "left")
+                            questHeader("Difficulty", "left")
+                            questHeader("Time taken", "right")
+                            questHeader("Completed", "right")
+                        }
                     }
-                }
-                tbody {
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="q in profile.quests" :key="q.name">
-                              <tr :style="{ background: q.band }">
-                                <td style="padding:var(--space-4);font:var(--type-body);color:var(--text-strong)" x-text="q.name"></td>
-                                <td style="padding:var(--space-4)">
-                                  <span :style="{ background: q.tone === 'danger' ? 'var(--feedback-danger-bg)' : q.tone === 'warning' ? 'var(--feedback-warning-bg)' : q.tone === 'success' ? 'var(--feedback-success-bg)' : 'var(--feedback-info-bg)', color: q.tone === 'danger' ? 'var(--feedback-danger)' : q.tone === 'warning' ? 'var(--feedback-warning)' : q.tone === 'success' ? 'var(--feedback-success)' : 'var(--feedback-info)', borderColor: q.tone === 'danger' ? 'var(--ember-600)' : q.tone === 'warning' ? 'var(--gold-700)' : q.tone === 'success' ? 'var(--moss-600)' : 'var(--steel-600)' }" style="display:inline-flex;align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="q.difficulty"></span>
-                                </td>
-                                <td style="padding:var(--space-4);text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--parch-200);white-space:nowrap" x-text="q.duration"></td>
-                                <td style="padding:var(--space-4);text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);white-space:nowrap" x-text="q.date"></td>
-                              </tr>
-                            </template>
-                            """.trimIndent(),
-                        )
+                    tbody {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="q in profile.quests" :key="q.name">
+                                  <tr :style="{ background: q.band }">
+                                    <td style="padding:var(--space-4);font:var(--type-body);color:var(--text-strong)" x-text="q.name"></td>
+                                    <td style="padding:var(--space-4)">
+                                      <span :style="{ background: q.tone === 'danger' ? 'var(--feedback-danger-bg)' : q.tone === 'warning' ? 'var(--feedback-warning-bg)' : q.tone === 'success' ? 'var(--feedback-success-bg)' : 'var(--feedback-info-bg)', color: q.tone === 'danger' ? 'var(--feedback-danger)' : q.tone === 'warning' ? 'var(--feedback-warning)' : q.tone === 'success' ? 'var(--feedback-success)' : 'var(--feedback-info)', borderColor: q.tone === 'danger' ? 'var(--ember-600)' : q.tone === 'warning' ? 'var(--gold-700)' : q.tone === 'success' ? 'var(--moss-600)' : 'var(--steel-600)' }" style="display:inline-flex;align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="q.difficulty"></span>
+                                    </td>
+                                    <td style="padding:var(--space-4);text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--parch-200);white-space:nowrap" x-text="q.duration"></td>
+                                    <td style="padding:var(--space-4);text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);white-space:nowrap" x-text="q.date"></td>
+                                  </tr>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
                     }
                 }
             }
@@ -435,25 +438,6 @@ object AdventurersLog {
         }
     }
 
-    /** [align] is `"left"`, `"right"` or `"center"`; mirrors the same helper in `Hiscores.kt`. */
-    private data class Column(val label: String, val width: String, val align: String = "left")
-
-    private fun FlowContent.logTableHeader(vararg columns: Column) {
-        div {
-            style = "display:grid;grid-template-columns:${columns.joinToString(" ") { it.width }};" +
-                "padding:var(--space-4) var(--space-6);background:var(--umber-900);border-bottom:1px solid var(--border-panel);" +
-                "font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
-            for (column in columns) {
-                span {
-                    if (column.align != "left") {
-                        style = "text-align:${column.align}"
-                    }
-                    +column.label
-                }
-            }
-        }
-    }
-
     private fun FlowContent.overviewSection() {
         div {
             xShow("view === 'overview'")
@@ -478,43 +462,45 @@ object AdventurersLog {
             }
 
             ui.panel(title = "Players", action = eyebrowText("overviewPlayers.length + ' logged'"), padded = false) {
-                logTableHeader(
+                tableScroll(
                     Column("Player", "minmax(0,1fr)"), Column("Clan", "160px", "right"),
                     Column("Total level", "120px", "right"),
-                )
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="p in overviewPlayers" :key="p.name">
-                          <a href="#" @click.prevent="pick(p.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 160px 120px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
-                            <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="p.name"></span>
-                            <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="p.clan || '—'"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="p.total"></span>
-                          </a>
-                        </template>
-                        """.trimIndent(),
-                    )
+                ) {
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="p in overviewPlayers" :key="p.name">
+                              <a href="#" @click.prevent="pick(p.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 160px 120px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
+                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="p.name"></span>
+                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="p.clan || '—'"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="p.total"></span>
+                              </a>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
             }
 
             ui.panel(title = "Clans", action = eyebrowText("overviewClans.length + ' clans'"), padded = false) {
-                logTableHeader(
+                tableScroll(
                     Column("Clan", "minmax(0,1fr)"), Column("Members", "100px", "right"),
                     Column("Combined lvl", "120px", "right"), Column("Average lvl", "120px", "right"),
-                )
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="c in overviewClans" :key="c.name">
-                          <a href="#" @click.prevent="pickClan(c.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 100px 120px 120px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
-                            <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="c.name"></span>
-                            <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="c.members"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="c.combinedLevel"></span>
-                            <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)" x-text="c.averageLevel"></span>
-                          </a>
-                        </template>
-                        """.trimIndent(),
-                    )
+                ) {
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="c in overviewClans" :key="c.name">
+                              <a href="#" @click.prevent="pickClan(c.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 100px 120px 120px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
+                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="c.name"></span>
+                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="c.members"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="c.combinedLevel"></span>
+                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)" x-text="c.averageLevel"></span>
+                              </a>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
             }
         }
@@ -556,23 +542,24 @@ object AdventurersLog {
             }
 
             ui.panel(title = "Members", padded = false) {
-                logTableHeader(
+                tableScroll(
                     Column("Player", "minmax(0,1fr)"), Column("Total level", "130px", "right"),
                     Column("Combat", "100px", "right"), Column("Account", "110px", "right"),
-                )
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="m in clanMembers" :key="m.name">
-                          <a href="#" @click.prevent="pick(m.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 130px 100px 110px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
-                            <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong)" x-text="m.name"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="m.totalLevelLabel"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="m.combat"></span>
-                            <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="m.member ? 'Member' : 'Free'"></span>
-                          </a>
-                        </template>
-                        """.trimIndent(),
-                    )
+                ) {
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="m in clanMembers" :key="m.name">
+                              <a href="#" @click.prevent="pick(m.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 130px 100px 110px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
+                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong)" x-text="m.name"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="m.totalLevelLabel"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="m.combat"></span>
+                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="m.member ? 'Member' : 'Free'"></span>
+                              </a>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
             }
         }
