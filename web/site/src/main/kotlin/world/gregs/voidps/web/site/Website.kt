@@ -29,7 +29,7 @@ object Website {
 
     private fun DIV.stat(value: String, label: String) {
         div {
-            style = "display:flex;flex-direction:column;gap:4px"
+            style = "display:flex;flex-direction:column;gap:var(--space-2)"
             span {
                 style = "font:var(--weight-bold) var(--text-2xl)/1 var(--font-display);color:var(--gold-300)"
                 +value
@@ -266,7 +266,7 @@ object Website {
                         style = "display:flex;flex-direction:column;gap:var(--space-3)"
                         span {
                             style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                                "text-transform:uppercase;color:var(--gold-300);margin-bottom:4px"
+                                "text-transform:uppercase;color:var(--gold-300);margin-bottom:var(--space-2)"
                             +group
                         }
                         for (item in items) {
@@ -275,7 +275,7 @@ object Website {
                                 val background = if (on) "var(--surface-active)" else "transparent"
                                 val border = if (on) "var(--gold-400)" else "transparent"
                                 val color = if (on) "var(--parch-50)" else "var(--text-muted)"
-                                style = "text-align:left;padding:6px 10px;background:$background;" +
+                                style = "text-align:left;padding:var(--space-3) 10px;background:$background;" +
                                     "border-left:2px solid $border;border-radius:var(--radius-xs);" +
                                     "text-decoration:none;font:var(--type-body-sm);color:$color;display:block"
                                 +item
@@ -288,7 +288,7 @@ object Website {
             article {
                 style = "padding:var(--space-10);min-width:0;max-width:var(--container-body)"
                 div {
-                    style = "display:flex;align-items:center;gap:8px;font:var(--type-label);" +
+                    style = "display:flex;align-items:center;gap:var(--space-4);font:var(--type-label);" +
                         "letter-spacing:var(--tracking-wide);color:var(--text-faint);margin-bottom:var(--space-6)"
                     +"Docs"
                     icon(Icons.CHEVRON_RIGHT, size = 12)
@@ -436,7 +436,7 @@ object Website {
                         +"World list"
                     }
                     p {
-                        style = "margin:8px 0 0;font:var(--type-body-sm);color:var(--text-muted)"
+                        style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
                         +"Every community-hosted world, its region, mode, population and ping."
                     }
                 }
@@ -475,7 +475,7 @@ object Website {
                             +"Community"
                         }
                         p {
-                            style = "margin:8px 0 0;font:var(--type-body-sm);color:var(--text-muted)"
+                            style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
                             +"Forums, wiki and the bug tracker. Patch notes are posted here first."
                         }
                     }
@@ -509,7 +509,7 @@ object Website {
                                 "gap:var(--space-5);align-items:center;padding:var(--space-5) var(--space-6);" +
                                 "text-decoration:none;border-bottom:1px solid var(--umber-900);background:$background"
                             span {
-                                style = "display:flex;flex-direction:column;gap:3px;min-width:0"
+                                style = "display:flex;flex-direction:column;gap:var(--space-2);min-width:0"
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);" +
                                         "color:var(--parch-50);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"

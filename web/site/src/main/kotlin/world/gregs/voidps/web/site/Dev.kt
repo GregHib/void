@@ -59,7 +59,7 @@ object Dev {
 
     private fun FlowContent.fact(label: String, valueExpr: String, accent: Boolean = false) {
         div {
-            style = "display:flex;flex-direction:column;gap:6px"
+            style = "display:flex;flex-direction:column;gap:var(--space-3)"
             span {
                 style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
                     "text-transform:uppercase;color:var(--text-faint)"
@@ -101,7 +101,7 @@ object Dev {
                 +world.number.toString()
             }
             div {
-                style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"
+                style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-1)"
                 span {
                     style = "font:var(--type-body-sm);color:var(--text-body);white-space:nowrap;" +
                         "overflow:hidden;text-overflow:ellipsis"
@@ -127,14 +127,14 @@ object Dev {
             }
             div {
                 style = "font:var(--weight-bold) var(--text-2xl)/1 var(--font-mono);" +
-                    "color:var(--parch-50);margin-top:12px"
+                    "color:var(--parch-50);margin-top:var(--space-5)"
                 if (valueExpr != null) {
                     xText(valueExpr)
                 }
                 +value
             }
             div {
-                style = "font:var(--type-body-sm);color:var(--text-faint);margin-top:6px"
+                style = "font:var(--type-body-sm);color:var(--text-faint);margin-top:var(--space-3)"
                 +sub
             }
         }
@@ -174,7 +174,7 @@ object Dev {
                         div {
                             style = "display:flex;gap:var(--space-7);flex-wrap:wrap"
                             div {
-                                style = "display:flex;align-items:center;gap:8px"
+                                style = "display:flex;align-items:center;gap:var(--space-4)"
                                 span { style = "width:10px;height:2px;background:var(--gold-400)" }
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
@@ -187,7 +187,7 @@ object Dev {
                                 }
                             }
                             div {
-                                style = "display:flex;align-items:center;gap:8px"
+                                style = "display:flex;align-items:center;gap:var(--space-4)"
                                 span { style = "width:10px;height:2px;background:var(--steel-500)" }
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
@@ -200,7 +200,7 @@ object Dev {
                                 }
                             }
                             div {
-                                style = "display:flex;align-items:center;gap:8px;margin-left:auto"
+                                style = "display:flex;align-items:center;gap:var(--space-4);margin-left:auto"
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
                                         "letter-spacing:var(--tracking-caps);color:var(--text-faint)"
@@ -278,7 +278,7 @@ object Dev {
                         div {
                             style = "display:flex;gap:var(--space-7);flex-wrap:wrap"
                             div {
-                                style = "display:flex;align-items:center;gap:8px"
+                                style = "display:flex;align-items:center;gap:var(--space-4)"
                                 span { style = "width:10px;height:2px;background:var(--moss-500)" }
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
@@ -291,7 +291,7 @@ object Dev {
                                 }
                             }
                             div {
-                                style = "display:flex;align-items:center;gap:8px"
+                                style = "display:flex;align-items:center;gap:var(--space-4)"
                                 span { style = "width:10px;height:8px;background:var(--umber-400)" }
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
@@ -304,7 +304,7 @@ object Dev {
                                 }
                             }
                             div {
-                                style = "display:flex;align-items:center;gap:8px;margin-left:auto"
+                                style = "display:flex;align-items:center;gap:var(--space-4);margin-left:auto"
                                 span {
                                     style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
                                         "letter-spacing:var(--tracking-caps);color:var(--text-faint)"
@@ -353,14 +353,14 @@ object Dev {
                         for ((index, error) in errors.withIndex()) {
                             div {
                                 val border = if (index == errors.lastIndex) "" else "border-bottom:1px solid var(--border-subtle);"
-                                style = "display:flex;flex-direction:column;gap:4px;padding:var(--space-5) var(--space-6);" +
+                                style = "display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5) var(--space-6);" +
                                     "cursor:pointer;$border"
                                 onClick(
                                     "openError(${jsString(error.level)}, ${jsString(error.tone.name)}, " +
                                         "${jsString(error.time)}, ${jsString(error.text)}, ${jsString(error.meta)})",
                                 )
                                 div {
-                                    style = "display:flex;align-items:center;gap:8px"
+                                    style = "display:flex;align-items:center;gap:var(--space-4)"
                                     ui.badge(error.level, tone = error.tone)
                                     span {
                                         style = "font:var(--type-code);font-size:var(--text-3xs);" +
@@ -444,7 +444,7 @@ object Dev {
                 div {
                     attributes["x-ref"] = "logEl"
                     style = "height:184px;overflow:auto;padding:var(--space-5) var(--space-7);" +
-                        "display:flex;flex-direction:column;gap:3px;background:var(--umber-950)"
+                        "display:flex;flex-direction:column;gap:var(--space-2);background:var(--umber-950)"
                     rawHtml(
                         """
                         <template x-for="(l, i) in log" :key="i">
@@ -506,10 +506,10 @@ object Dev {
                     rawHtml(
                         """
                         <template x-for="p in resultRows" :key="p.id">
-                          <div @click="select(p.id)" :style="{ background: p.selected ? 'var(--surface-active)' : 'var(--surface-panel)', borderLeftColor: p.selected ? 'var(--gold-400)' : 'transparent' }" style="display:flex;flex-direction:column;gap:4px;padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--border-subtle);border-left:2px solid transparent;cursor:pointer">
-                            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                          <div @click="select(p.id)" :style="{ background: p.selected ? 'var(--surface-active)' : 'var(--surface-panel)', borderLeftColor: p.selected ? 'var(--gold-400)' : 'transparent' }" style="display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--border-subtle);border-left:2px solid transparent;cursor:pointer">
+                            <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)">
                               <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--parch-50)" x-text="p.name"></span>
-                              <span :style="{ background: DEV_BADGE_TONE[p.tone].bg, color: DEV_BADGE_TONE[p.tone].fg, borderColor: DEV_BADGE_TONE[p.tone].bd }" style="display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
+                              <span :style="{ background: DEV_BADGE_TONE[p.tone].bg, color: DEV_BADGE_TONE[p.tone].fg, borderColor: DEV_BADGE_TONE[p.tone].bd }" style="display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
                                 <span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span><span x-text="p.state"></span>
                               </span>
                             </div>
@@ -528,7 +528,7 @@ object Dev {
                 div {
                     style = "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-7);flex-wrap:wrap"
                     div {
-                        style = "display:flex;flex-direction:column;gap:8px;min-width:0"
+                        style = "display:flex;flex-direction:column;gap:var(--space-4);min-width:0"
                         h1 {
                             style = "margin:0;font:var(--type-title);color:var(--parch-50)"
                             xText("player.name")
@@ -538,7 +538,7 @@ object Dev {
                             style = "display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap"
                             rawHtml(
                                 """
-                                <span :style="{ background: DEV_BADGE_TONE[player.tone].bg, color: DEV_BADGE_TONE[player.tone].fg, borderColor: DEV_BADGE_TONE[player.tone].bd }" style="display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
+                                <span :style="{ background: DEV_BADGE_TONE[player.tone].bg, color: DEV_BADGE_TONE[player.tone].fg, borderColor: DEV_BADGE_TONE[player.tone].bd }" style="display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
                                   <span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span><span x-text="player.state"></span>
                                 </span>
                                 <span style="display:inline-flex;align-items:center;padding:0 10px;height:20px;background:rgba(224,174,60,.14);color:var(--gold-300);border:1px solid var(--gold-600);border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="player.rank"></span>
@@ -580,7 +580,7 @@ object Dev {
                             rawHtml(
                                 """
                                 <template x-for="f in player.combatFacts" :key="f.k">
-                                  <div style="display:flex;flex-direction:column;gap:4px">
+                                  <div style="display:flex;flex-direction:column;gap:var(--space-2)">
                                     <span style="font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);color:var(--text-faint)" x-text="f.k"></span>
                                     <span style="font:var(--type-code);font-size:var(--text-sm);color:var(--parch-100)" x-text="f.v"></span>
                                   </div>
@@ -604,7 +604,7 @@ object Dev {
                             <template x-for="e in player.equipment" :key="e.slot">
                               <div style="display:flex;align-items:center;gap:var(--space-5)">
                                 <div style="width:36px;height:36px;flex:0 0 auto;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)"></div>
-                                <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                                <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                                   <span style="font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);color:var(--text-faint)" x-text="e.slot.toUpperCase()"></span>
                                   <span style="font:var(--type-body-sm);color:var(--parch-100)" x-text="e.item"></span>
                                 </div>
@@ -684,7 +684,7 @@ object Dev {
                             """
                             <template x-for="v in filteredVariables" :key="v.key">
                               <div style="display:grid;grid-template-columns:minmax(0,2fr) 110px 96px 130px;gap:var(--space-5);align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--border-subtle)">
-                                <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                                <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                                   <span style="font:var(--type-code);font-size:var(--text-xs);color:var(--parch-50);word-break:break-all" x-text="v.key"></span>
                                   <span style="font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint)" x-text="v.label"></span>
                                 </div>
@@ -708,14 +708,14 @@ object Dev {
                               <div x-data="{ open: false }" style="border-bottom:1px solid var(--border-subtle)">
                                 <div @click="a.expand && (open = !open)" :style="{ cursor: a.expand ? 'pointer' : 'default' }" style="display:grid;grid-template-columns:76px 1fr 18px;gap:var(--space-5);align-items:start;padding:var(--space-5) var(--space-6)">
                                   <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="a.time"></span>
-                                  <div style="display:flex;flex-direction:column;gap:3px">
+                                  <div style="display:flex;flex-direction:column;gap:var(--space-2)">
                                     <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--parch-100)" x-text="a.action"></span>
                                     <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)" x-text="a.detail"></span>
                                   </div>
                                   <span x-show="a.expand" :style="{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }" style="font:var(--text-xs) var(--font-ui);color:var(--text-faint);line-height:1.4;transition:transform var(--dur-fast) var(--ease-standard)">›</span>
                                 </div>
                                 <div x-show="open && a.expand" style="padding:0 var(--space-6) var(--space-5) 92px;background:var(--surface-inset)">
-                                  <div style="display:flex;flex-direction:column;gap:4px">
+                                  <div style="display:flex;flex-direction:column;gap:var(--space-2)">
                                     <template x-for="(line, li) in (a.expand || [])" :key="li">
                                       <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="line"></span>
                                     </template>
@@ -731,7 +731,7 @@ object Dev {
                             """
                             <template x-for="(a, idx) in player.audit" :key="idx">
                               <div style="display:grid;grid-template-columns:1fr 120px 150px;align-items:center;gap:var(--space-5);padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--border-subtle)">
-                                <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                                <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                                   <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--parch-100)" x-text="a.action"></span>
                                   <span style="font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint)" x-text="a.reason"></span>
                                 </div>
@@ -817,7 +817,7 @@ object Dev {
                         xText("player.detail")
                     }
                     div {
-                        style = "display:flex;flex-direction:column;gap:6px;margin-top:var(--space-3)"
+                        style = "display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-3)"
                         div {
                             style = "display:flex;justify-content:space-between;font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
                                 "letter-spacing:var(--tracking-caps);color:var(--text-faint)"
@@ -873,7 +873,7 @@ object Dev {
                 <span style="width:20px;height:20px;flex:none;display:flex;align-items:center;justify-content:center">
                   <img :src="'../void/images/skills/' + s.name.toLowerCase() + '.png'" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
                 </span>
-                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
                   <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
                     <span style="font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--parch-200);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="s.name"></span>
                     <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);white-space:nowrap"><span x-text="s.level"></span> / 99</span>

@@ -54,10 +54,10 @@ fun Ui.button(
         val cursor = if (disabled) "not-allowed" else "pointer"
         val animation = if (glow && !disabled) ";animation:voidGlow var(--dur-ambient) var(--ease-glow) infinite" else ""
         style = if (isLink) {
-            "display:inline-flex;align-items:center;gap:6px;padding:0;font:${size.font};" +
+            "display:inline-flex;align-items:center;gap:var(--space-3);padding:0;font:${size.font};" +
                 "letter-spacing:0.06em;cursor:$cursor"
         } else {
-            "display:inline-flex;align-items:center;justify-content:center;gap:8px;height:${size.height}px;" +
+            "display:inline-flex;align-items:center;justify-content:center;gap:var(--space-4);height:${size.height}px;" +
                 "padding:0 ${size.paddingX}px;border-radius:var(--radius-md);font:${size.font};" +
                 "letter-spacing:0.06em;cursor:$cursor;transition:background var(--dur-fast) var(--ease-standard)$animation"
         }

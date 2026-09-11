@@ -35,7 +35,7 @@ object Play {
                         +"Choose a world"
                     }
                     p {
-                        style = "margin:8px 0 0;font:var(--type-body-sm);color:var(--text-muted)"
+                        style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
                         +"Pick a world to connect to. You can switch worlds any time from the nav bar."
                     }
                 }

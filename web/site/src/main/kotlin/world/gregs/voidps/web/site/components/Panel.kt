@@ -33,7 +33,7 @@ fun Ui.panel(
             "box-shadow:var(--bevel-up),var(--shadow-xs)"
         if (title != null) {
             header {
-                style = "display:flex;align-items:center;justify-content:space-between;gap:12px;" +
+                style = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);" +
                     "padding:0 var(--space-6);height:38px;background:var(--surface-header);" +
                     "border-top-left-radius:var(--radius-md);border-top-right-radius:var(--radius-md);" +
                     "border-bottom:1px solid var(--border-gold)"

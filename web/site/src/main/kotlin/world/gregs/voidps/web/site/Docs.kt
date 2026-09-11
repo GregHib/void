@@ -81,7 +81,7 @@ object Docs {
                     style = "display:flex;flex-direction:column;gap:var(--space-3)"
                     span {
                         style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                            "text-transform:uppercase;color:var(--gold-300);margin-bottom:4px"
+                            "text-transform:uppercase;color:var(--gold-300);margin-bottom:var(--space-2)"
                         +"Reference"
                     }
                     for (item in all) {
@@ -90,7 +90,7 @@ object Docs {
                             val background = if (on) "var(--surface-active)" else "transparent"
                             val border = if (on) "var(--gold-400)" else "transparent"
                             val color = if (on) "var(--parch-50)" else "var(--text-muted)"
-                            style = "text-align:left;padding:6px 10px;background:$background;" +
+                            style = "text-align:left;padding:var(--space-3) 10px;background:$background;" +
                                 "border-left:2px solid $border;border-radius:var(--radius-xs);" +
                                 "text-decoration:none;font:var(--type-body-sm);color:$color;display:block"
                             +item.title
@@ -102,7 +102,7 @@ object Docs {
             article {
                 style = "padding:var(--space-10);min-width:0;max-width:var(--container-body)"
                 div {
-                    style = "display:flex;align-items:center;gap:8px;font:var(--type-label);" +
+                    style = "display:flex;align-items:center;gap:var(--space-4);font:var(--type-label);" +
                         "letter-spacing:var(--tracking-wide);color:var(--text-faint);margin-bottom:var(--space-6)"
                     +"Docs"
                     icon(Icons.CHEVRON_RIGHT, size = 12)

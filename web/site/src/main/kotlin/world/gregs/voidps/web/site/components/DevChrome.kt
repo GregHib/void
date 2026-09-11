@@ -40,7 +40,7 @@ fun Ui.devHeader(
             }
             span {
                 style = "font:var(--weight-medium) var(--text-2xs)/1 var(--font-ui);" +
-                    "letter-spacing:var(--tracking-caps);color:var(--text-faint);padding-left:2px"
+                    "letter-spacing:var(--tracking-caps);color:var(--text-faint);padding-left:var(--space-1)"
                 +"DEV PANEL"
             }
         }

@@ -31,7 +31,7 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
                 whenTrue = "background:var(--surface-active);border-color:var(--gold-500)",
                 whenFalse = "background:var(--surface-inset);border-color:var(--border-strong)",
             )
-            style = "display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 10px 0 12px;" +
+            style = "display:inline-flex;align-items:center;gap:var(--space-4);height:28px;padding:0 10px 0 var(--space-5);" +
                 "border:1px solid var(--border-strong);border-radius:var(--radius-md);cursor:pointer;" +
                 "color:var(--parch-100);font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);" +
                 "transition:background var(--dur-fast) var(--ease-standard)"
@@ -69,12 +69,12 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
                             whenFalse = "background:transparent",
                         )
                         style = "width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;" +
-                            "padding:8px 10px;border:none;border-radius:var(--radius-xs);cursor:pointer;" +
+                            "padding:var(--space-4) 10px;border:none;border-radius:var(--radius-xs);cursor:pointer;" +
                             "text-align:left;background:transparent;color:var(--text-body);" +
                             "font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
                             "transition:background var(--dur-fast) var(--ease-standard)"
                         span {
-                            style = "display:flex;flex-direction:column;gap:2px;min-width:0"
+                            style = "display:flex;flex-direction:column;gap:var(--space-1);min-width:0"
                             span {
                                 style = "color:var(--parch-50)"
                                 +"World ${world.number}"
@@ -99,7 +99,7 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
                 style = "padding:var(--space-3);border-top:1px solid var(--border-subtle)"
                 button {
                     onClick("disconnect()")
-                    style = "width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;" +
+                    style = "width:100%;display:flex;align-items:center;gap:10px;padding:var(--space-4) 10px;" +
                         "background:transparent;border:none;border-radius:var(--radius-xs);" +
                         "color:var(--feedback-danger);cursor:pointer;text-align:left;" +
                         "font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
@@ -113,7 +113,7 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
                 style = "padding:var(--space-3);border-top:1px solid var(--border-subtle)"
                 a(href = worldsHref) {
                     style = "display:flex;align-items:center;justify-content:space-between;gap:10px;" +
-                        "padding:8px 10px;border-radius:var(--radius-xs);text-decoration:none;" +
+                        "padding:var(--space-4) 10px;border-radius:var(--radius-xs);text-decoration:none;" +
                         "color:var(--gold-300);font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
                         "transition:background var(--dur-fast) var(--ease-standard)"
                     +"View all worlds"

@@ -149,7 +149,7 @@ object Hiscores {
                         whenFalse = "background:var(--surface-panel);color:var(--parch-200);border-left-color:transparent",
                     )
                     val span = if (isLastAlone) "grid-column:1 / -1;" else ""
-                    style = "$span display:flex;align-items:center;gap:8px;padding:9px 10px;cursor:pointer;text-align:left;" +
+                    style = "$span display:flex;align-items:center;gap:var(--space-4);padding:9px 10px;cursor:pointer;text-align:left;" +
                         "border:none;border-left:2px solid transparent;background:var(--surface-panel);color:var(--parch-200);" +
                         "font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);letter-spacing:var(--tracking-wide)"
                     span {
@@ -184,7 +184,7 @@ object Hiscores {
                             whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
                             whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
                         )
-                        style = "height:28px;padding:0 12px;border-radius:var(--radius-pill);cursor:pointer;" +
+                        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
                             "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
                             "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
                         +m
@@ -212,7 +212,7 @@ object Hiscores {
                             whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
                             whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
                         )
-                        style = "height:26px;padding:0 11px;border-radius:var(--radius-pill);cursor:pointer;" +
+                        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
                             "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
                             "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
                         +t
@@ -237,7 +237,7 @@ object Hiscores {
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
                         whenFalse = "background:var(--surface-panel);color:var(--text-strong);border-top-color:transparent",
                     )
-                    style = "display:flex;flex-direction:column;gap:6px;padding:var(--space-5);cursor:pointer;text-align:left;" +
+                    style = "display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);cursor:pointer;text-align:left;" +
                         "border:none;border-top:2px solid transparent;background:var(--surface-panel);color:var(--text-strong)"
                     span {
                         style = "font:var(--weight-semibold) var(--text-base)/1.2 var(--font-display)"
@@ -273,7 +273,7 @@ object Hiscores {
 
     private fun FlowContent.comboInput(side: String, label: String) {
         div {
-            style = "position:relative;display:flex;flex-direction:column;gap:6px;min-width:0"
+            style = "position:relative;display:flex;flex-direction:column;gap:var(--space-3);min-width:0"
             span {
                 style = "font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
                 +label
@@ -290,14 +290,14 @@ object Hiscores {
             div {
                 xShow("combo === '$side'")
                 attributes["class"] = "void-flex"
-                style = "flex-direction:column;position:absolute;top:100%;left:0;right:0;z-index:30;margin-top:4px;" +
+                style = "flex-direction:column;position:absolute;top:100%;left:0;right:0;z-index:30;margin-top:var(--space-2);" +
                     "max-height:280px;overflow:auto;background:var(--surface-panel);border:1px solid var(--border-panel);" +
                     "border-radius:var(--radius-md);box-shadow:var(--shadow-md)"
                 unsafe {
                     raw(
                         """
                         <template x-for="o in comboResults('$side')" :key="o.name">
-                          <div @mousedown.prevent="pickCombo('$side', o.name)" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--umber-900)">
+                          <div @mousedown.prevent="pickCombo('$side', o.name)" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);padding:var(--space-4) var(--space-5);cursor:pointer;border-bottom:1px solid var(--umber-900)">
                             <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong)" x-text="o.name"></span>
                             <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);white-space:nowrap" x-text="o.meta"></span>
                           </div>
@@ -335,7 +335,7 @@ object Hiscores {
                                 <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-lg)/1 var(--font-display)" x-text="row.rank"></span>
                                 <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
                                   <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
-                                  <span x-show="row.showBadge" class="void-flex" :style="{ background: row.badgeBg, color: row.badgeFg, borderColor: row.badgeBd }" style="align-items:center;gap:6px;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="row.mode"></span>
+                                  <span x-show="row.showBadge" class="void-flex" :style="{ background: row.badgeBg, color: row.badgeFg, borderColor: row.badgeBd }" style="align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="row.mode"></span>
                                 </span>
                                 <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.totalLevel"></span>
                                 <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.totalXp"></span>
@@ -417,7 +417,7 @@ object Hiscores {
                         raw(
                             """
                             <template x-for="card in compareSummary" :key="card.label">
-                              <div style="padding:var(--space-5);background:var(--surface-inset);border:1px solid var(--border-panel);border-radius:var(--radius-md);box-shadow:var(--bevel-down);display:flex;flex-direction:column;gap:6px">
+                              <div style="padding:var(--space-5);background:var(--surface-inset);border:1px solid var(--border-panel);border-radius:var(--radius-md);box-shadow:var(--bevel-down);display:flex;flex-direction:column;gap:var(--space-3)">
                                 <span style="font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)" x-text="card.label"></span>
                                 <span style="font:var(--weight-bold) var(--text-xl)/1.1 var(--font-display);color:var(--gold-300)" x-text="card.leader"></span>
                                 <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)" x-text="card.detail"></span>
@@ -441,7 +441,7 @@ object Hiscores {
                             """
                             <template x-for="(row,i) in compareRows" :key="row.skill">
                               <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1.1fr) 70px 130px 190px 130px 70px;align-items:center;padding:var(--space-3) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                                <span style="display:flex;align-items:center;gap:8px;min-width:0">
+                                <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
                                   <span style="width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center">
                                     <img :src="row.icon" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
                                   </span>
@@ -450,7 +450,7 @@ object Hiscores {
                                 <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aLevel"></span>
                                 <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code);font-size:var(--text-2xs)" x-text="row.aXp"></span>
                                 <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
-                                  <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
+                                  <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;gap:var(--space-3);height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
                                 </span>
                                 <span :style="{ color: row.bColor }" style="font:var(--type-code);font-size:var(--text-2xs)" x-text="row.bXp"></span>
                                 <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bLevel"></span>
@@ -573,8 +573,8 @@ object Hiscores {
                     a {
                         attributes["class"] = "void-btn void-btn-secondary"
                         attributes["x-bind:href"] = "'log.html?player=' + encodeURIComponent(profilePlayer.name)"
-                        style = "display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;" +
-                            "padding:0 12px;border-radius:var(--radius-md);font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);" +
+                        style = "display:inline-flex;align-items:center;justify-content:center;gap:var(--space-4);height:28px;" +
+                            "padding:0 var(--space-5);border-radius:var(--radius-md);font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);" +
                             "letter-spacing:0.06em;cursor:pointer;text-decoration:none;" +
                             "transition:background var(--dur-fast) var(--ease-standard)"
                         +"Adventurers log"
@@ -596,9 +596,9 @@ object Hiscores {
                             """
                             <template x-for="s in profileSkills" :key="s.name">
                               <div style="display:flex;align-items:center;gap:var(--space-5);padding:var(--space-4) var(--space-5);background:var(--surface-panel-raised);border:1px solid var(--border-panel);border-radius:var(--radius-sm);box-shadow:var(--bevel-up)">
-                                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+                                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
                                   <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
-                                    <span style="display:flex;align-items:center;gap:6px;min-width:0;flex:1">
+                                    <span style="display:flex;align-items:center;gap:var(--space-3);min-width:0;flex:1">
                                       <span style="width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center">
                                         <img :src="s.icon" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
                                       </span>

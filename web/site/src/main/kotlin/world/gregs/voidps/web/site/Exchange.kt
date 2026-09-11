@@ -54,7 +54,7 @@ object Exchange {
             select {
                 attributes["id"] = "ge-sort"
                 xModel("sort")
-                style = "width:158px;height:26px;padding:0 24px 0 10px;appearance:none;cursor:pointer;color-scheme:dark;" +
+                style = "width:158px;height:26px;padding:0 var(--space-8) 0 10px;appearance:none;cursor:pointer;color-scheme:dark;" +
                     "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong);" +
                     "border-radius:var(--radius-sm);font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);" +
                     "letter-spacing:var(--tracking-wide)"
@@ -82,7 +82,7 @@ object Exchange {
                 whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
                 whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
             )
-            style = "height:28px;padding:0 12px;border-radius:var(--radius-pill);cursor:pointer;" +
+            style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
                 "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
                 "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
             +label
@@ -123,15 +123,15 @@ object Exchange {
             raw(
                 """
                 <template x-for="r in $listExpr" :key="r.id">
-                  <div @click="open(r.id)" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--umber-900);cursor:pointer;transition:background var(--dur-fast) var(--ease-standard)">
+                  <div @click="open(r.id)" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:14px;padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--umber-900);cursor:pointer;transition:background var(--dur-fast) var(--ease-standard)">
                     <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
                       <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
                     </div>
-                    <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                    <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                       <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="r.name"></span>
                       <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint)" x-text="r.cat"></span>
                     </div>
-                    <div style="display:flex;flex-direction:column;gap:3px;align-items:flex-end">
+                    <div style="display:flex;flex-direction:column;gap:var(--space-2);align-items:flex-end">
                       <span :style="{ color: r.m1Color }" style="font:var(--type-code);font-size:var(--text-base)" x-text="r.m1"></span>
                       <span style="font:var(--type-code);font-size:var(--text-xs);color:var(--text-faint)" x-text="r.m2"></span>
                     </div>
@@ -186,7 +186,7 @@ object Exchange {
                         raw(
                             """
                             <template x-for="s in summary" :key="s.label">
-                              <div style="background:var(--surface-panel);border:1px solid var(--border-panel);border-radius:var(--radius-md);box-shadow:var(--bevel-up),var(--shadow-xs);padding:var(--space-6) var(--space-7);display:flex;flex-direction:column;gap:8px">
+                              <div style="background:var(--surface-panel);border:1px solid var(--border-panel);border-radius:var(--radius-md);box-shadow:var(--bevel-up),var(--shadow-xs);padding:var(--space-6) var(--space-7);display:flex;flex-direction:column;gap:var(--space-4)">
                                 <span style="font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)" x-text="s.label"></span>
                                 <span style="font:var(--weight-semibold) var(--text-3xl)/1 var(--font-display);color:var(--text-strong)" x-text="s.value"></span>
                                 <span :style="{ color: s.color }" style="font:var(--type-body-sm)" x-text="s.note"></span>
@@ -230,7 +230,7 @@ object Exchange {
                     +"Find an item"
                 }
                 p {
-                    style = "margin:8px 0 0;font:var(--type-body-sm);color:var(--text-muted)"
+                    style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
                     attributes["x-text"] = "results.length + ' of 26 tracked items · prices sampled 5 minutes ago'"
                 }
             }
@@ -257,11 +257,11 @@ object Exchange {
                     raw(
                         """
                         <template x-for="r in results" :key="r.id">
-                          <div @click="open(r.id)" style="display:grid;grid-template-columns:48px minmax(0,1fr) 140px 120px 130px 90px;gap:16px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--umber-900);cursor:pointer">
+                          <div @click="open(r.id)" style="display:grid;grid-template-columns:48px minmax(0,1fr) 140px 120px 130px 90px;gap:var(--space-6);align-items:center;padding:var(--space-5) var(--space-7);border-bottom:1px solid var(--umber-900);cursor:pointer">
                             <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
                               <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
                             </div>
-                            <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                            <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                               <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong)" x-text="r.name"></span>
                               <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="r.examine"></span>
                             </div>
@@ -291,7 +291,7 @@ object Exchange {
                 "flex-direction:column;gap:var(--space-6)"
 
             div {
-                style = "display:flex;gap:8px;align-items:center;font:var(--type-body-sm);color:var(--text-faint)"
+                style = "display:flex;gap:var(--space-4);align-items:center;font:var(--type-body-sm);color:var(--text-faint)"
                 a(href = "#") { onClick("goHome()"); +"Market" }
                 span { +"→" }
                 a(href = "#") { onClick("goSearch()"); attributes["x-text"] = "item.cat" }
@@ -321,7 +321,7 @@ object Exchange {
                                 attributes["x-text"] = "item.cat"
                             }
                             span {
-                                style = "display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;" +
+                                style = "display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;" +
                                     "border:1px solid var(--border-strong);border-radius:var(--radius-pill);" +
                                     "font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);" +
                                     "letter-spacing:var(--tracking-caps);text-transform:uppercase;justify-self:start"
@@ -341,7 +341,7 @@ object Exchange {
                     }
                 }
                 div {
-                    style = "display:flex;flex-direction:column;gap:6px;align-items:flex-end"
+                    style = "display:flex;flex-direction:column;gap:var(--space-3);align-items:flex-end"
                     span {
                         style = "font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
                         +"Guide price"
@@ -360,15 +360,15 @@ object Exchange {
 
             ui.panel(title = "Price history", action = eyebrowText("chartData.eyebrow"), padded = false) {
                 div {
-                    style = "display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--umber-900)"
+                    style = "display:flex;flex-wrap:wrap;gap:var(--space-7);align-items:center;justify-content:space-between;padding:var(--space-6) var(--space-7);border-bottom:1px solid var(--umber-900)"
                     unsafe {
                         raw(
                             """
-                            <div style="display:flex;flex-direction:column;gap:4px">
+                            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
                               <span style="font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)" x-text="chartData.stamp"></span>
                               <div style="display:flex;gap:18px;align-items:baseline">
-                                <span style="display:flex;align-items:center;gap:7px;font:var(--type-code);color:var(--gold-300)"><span style="width:10px;height:2px;background:var(--gold-400);display:inline-block"></span>Buy <span x-text="chartData.buy"></span></span>
-                                <span style="display:flex;align-items:center;gap:7px;font:var(--type-code);color:var(--steel-500)"><span style="width:10px;height:2px;background:var(--steel-500);display:inline-block"></span>Sell <span x-text="chartData.sell"></span></span>
+                                <span style="display:flex;align-items:center;gap:var(--space-3);font:var(--type-code);color:var(--gold-300)"><span style="width:10px;height:2px;background:var(--gold-400);display:inline-block"></span>Buy <span x-text="chartData.buy"></span></span>
+                                <span style="display:flex;align-items:center;gap:var(--space-3);font:var(--type-code);color:var(--steel-500)"><span style="width:10px;height:2px;background:var(--steel-500);display:inline-block"></span>Sell <span x-text="chartData.sell"></span></span>
                                 <span style="font:var(--type-code);color:var(--text-muted)">Vol <span x-text="chartData.vol"></span></span>
                               </div>
                             </div>
@@ -376,7 +376,7 @@ object Exchange {
                         )
                     }
                     div {
-                        style = "display:flex;gap:6px"
+                        style = "display:flex;gap:var(--space-3)"
                         for (t in timeframes) {
                             chip(t, "tf === '$t'", "tf = '$t'; hover = null")
                         }
@@ -386,7 +386,7 @@ object Exchange {
                 unsafe {
                     raw(
                         """
-                        <div style="padding:16px 20px 8px" @mousemove="onChartMove(${'$'}event)" @mouseleave="onChartLeave()">
+                        <div style="padding:var(--space-6) var(--space-7) var(--space-4)" @mousemove="onChartMove(${'$'}event)" @mouseleave="onChartLeave()">
                           <div style="position:relative">
                             <svg viewBox="0 0 920 300" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;overflow:visible">
                               <g x-html="chartData.gridSvg"></g>
@@ -405,14 +405,14 @@ object Exchange {
                             <template x-for="l in chartData.xlabels" :key="'x'+l.label+l.left">
                               <div style="position:absolute;transform:translateX(-50%);font:var(--type-code);font-size:11px;color:var(--text-faint);pointer-events:none;white-space:nowrap;bottom:1%" :style="{ left: l.left }" x-text="l.label"></div>
                             </template>
-                            <div x-show="chartData.hovering" style="position:absolute;transform:translate(-50%,calc(-100% - 10px));z-index:5;padding:6px 10px;background:var(--umber-950);border:1px solid var(--border-gold);border-radius:var(--radius-xs);box-shadow:var(--shadow-md);font:var(--type-code);font-size:11px;white-space:nowrap;pointer-events:none" :style="{ left: chartData.hoverLeft, top: chartData.hoverTop }">
-                              <div style="color:var(--text-faint);margin-bottom:4px" x-text="chartData.stamp"></div>
-                              <div style="display:flex;align-items:center;gap:6px;color:var(--gold-300)"><span style="width:8px;height:2px;background:var(--gold-400);display:inline-block"></span>Buy <span x-text="chartData.buy"></span></div>
-                              <div style="display:flex;align-items:center;gap:6px;color:var(--steel-500)"><span style="width:8px;height:2px;background:var(--steel-500);display:inline-block"></span>Sell <span x-text="chartData.sell"></span></div>
+                            <div x-show="chartData.hovering" style="position:absolute;transform:translate(-50%,calc(-100% - 10px));z-index:5;padding:var(--space-3) 10px;background:var(--umber-950);border:1px solid var(--border-gold);border-radius:var(--radius-xs);box-shadow:var(--shadow-md);font:var(--type-code);font-size:11px;white-space:nowrap;pointer-events:none" :style="{ left: chartData.hoverLeft, top: chartData.hoverTop }">
+                              <div style="color:var(--text-faint);margin-bottom:var(--space-2)" x-text="chartData.stamp"></div>
+                              <div style="display:flex;align-items:center;gap:var(--space-3);color:var(--gold-300)"><span style="width:8px;height:2px;background:var(--gold-400);display:inline-block"></span>Buy <span x-text="chartData.buy"></span></div>
+                              <div style="display:flex;align-items:center;gap:var(--space-3);color:var(--steel-500)"><span style="width:8px;height:2px;background:var(--steel-500);display:inline-block"></span>Sell <span x-text="chartData.sell"></span></div>
                             </div>
                           </div>
                           <div>
-                            <span style="display:block;font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint);padding:8px 0 4px 66px">Units traded</span>
+                            <span style="display:block;font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint);padding:var(--space-4) 0 var(--space-2) 66px">Units traded</span>
                             <svg viewBox="0 0 920 74" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block">
                               <g x-html="chartData.barsSvg"></g>
                               <line x1="66" x2="908" y1="66" y2="66" style="stroke:var(--umber-700);stroke-width:1"></line>
@@ -434,7 +434,7 @@ object Exchange {
                             raw(
                                 """
                                 <template x-for="s in stats" :key="s.label">
-                                  <div style="display:flex;flex-direction:column;gap:6px;padding:16px 20px;border-right:1px solid var(--umber-900);border-bottom:1px solid var(--umber-900)">
+                                  <div style="display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-6) var(--space-7);border-right:1px solid var(--umber-900);border-bottom:1px solid var(--umber-900)">
                                     <span style="font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)" x-text="s.label"></span>
                                     <span style="font:var(--type-code);font-size:var(--text-lg);color:var(--text-strong)" x-text="s.value"></span>
                                     <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint)" x-text="s.note"></span>
@@ -451,7 +451,7 @@ object Exchange {
                         raw(
                             """
                             <template x-for="r in related" :key="r.id">
-                              <div @click="open(r.id)" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--umber-900);cursor:pointer">
+                              <div @click="open(r.id)" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:var(--space-5);align-items:center;padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--umber-900);cursor:pointer">
                                 <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
                                   <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
                                 </div>

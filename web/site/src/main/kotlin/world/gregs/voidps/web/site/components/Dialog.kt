@@ -34,7 +34,7 @@ fun Ui.dialog(
                 "border:1px solid var(--border-gold);border-radius:var(--radius-md);" +
                 "box-shadow:var(--bevel-up),var(--shadow-lg);overflow:hidden"
             header {
-                style = "display:flex;align-items:center;justify-content:space-between;gap:12px;" +
+                style = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);" +
                     "padding:0 var(--space-6);height:42px;background:var(--surface-header);" +
                     "border-bottom:1px solid var(--border-gold)"
                 h2 {
