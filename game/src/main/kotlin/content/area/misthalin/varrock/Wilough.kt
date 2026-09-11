@@ -93,40 +93,40 @@ class Wilough : Script {
             set(GERTRUDES_CAT_STRING_NAME, "found_the_boys")
             statement("You give the lad 100 coins.")
             player<Idle>("There you go, now where did you see Fluffs?")
-            npc<Idle>(npcId = WILOUGH_STRING_NAME, "I play at an abandoned lumber mill to the north east. Just beyond the Jolly Boar Inn. I saw Fluffs running around in there.")
+            npc<Idle>(npcId = WILOUGH_STRING_NAME, "I play at an abandoned lumber mill to the north east. Just beyond the Jolly Boar Inn. I saw Fluffs running around in there.", largeHead = true)
             player<Quiz>("Anything else?")
-            npc<Idle>(npcId = SHILOP_STRING_NAME, "Well, you'll have to find the broken fence to get in. I'm sure you can manage that.")
+            npc<Idle>(npcId = SHILOP_STRING_NAME, "Well, you'll have to find the broken fence to get in. I'm sure you can manage that.", largeHead = true)
         } else {
             player<Sad>("This is a bit embarrassing - I'll have to get some money first.")
-            npc<Idle>("I'll be waiting.")
+            npc<Idle>("I'll be waiting.", largeHead = true)
             message("<red>You can not afford that.")
         }
     }
 
     suspend fun Player.gertrudeLifeOfCrime() {
-        npc<Idle>("Okay then, I'll find another way to make money. You only have yourself to blame if I'm forced into a life of crime.")
+        npc<Idle>("Okay then, I'll find another way to make money. You only have yourself to blame if I'm forced into a life of crime.", largeHead = true)
     }
 
     suspend fun Player.gertrudeFluffsLoss() {
-        npc<Idle>("I'm sure our mum will get over it.")
+        npc<Idle>("I'm sure our mum will get over it.", largeHead = true)
     }
 
     suspend fun Player.gertrudeLookingForInformation() {
         player<Idle>("Hello there, I've been looking for you and it's important.")
-        npc<Scared>("I didn't mean to take it! I just forgot to pay.")
+        npc<Scared>("I didn't mean to take it! I just forgot to pay.", largeHead = true)
         player<Quiz>("What? I'm trying to help your mum find some cat called Fluffs.")
-        npc<Idle>("Ohh...well, in that case I might be able to help. Fluffs followed me to my super secret hideout, I haven't seen her since. She's probably off eating small creatures somewhere.")
+        npc<Idle>("Ohh...well, in that case I might be able to help. Fluffs followed me to my super secret hideout, I haven't seen her since. She's probably off eating small creatures somewhere.", largeHead = true)
         player<Quiz>("Where is this secret hideout? I really need to find that cat for your mum.")
-        npc<Idle>("If I told you that, it wouldn't be a secret. What if I need to escape from the law? I need a hideout.")
+        npc<Idle>("If I told you that, it wouldn't be a secret. What if I need to escape from the law? I need a hideout.", largeHead = true)
         player<Idle>("From my limited knowledge of the law, they are not usually involved in manhunts for children.")
-        npc<Admit>("Well it's still mine anyway, we need a place to relax sometimes. Those two little brothers at the house are just such babies.")
+        npc<Admit>("Well it's still mine anyway, we need a place to relax sometimes. Those two little brothers at the house are just such babies.", largeHead = true)
     }
 
     private suspend fun Player.postQuest() {
         player<Idle>("Hello again.")
-        npc<Idle>("You think you're tough do you?")
+        npc<Idle>("You think you're tough do you?", largeHead = true)
         player<Quiz>("Pardon?")
-        npc<Laugh>("I can beat anyone up.")
+        npc<Laugh>("I can beat anyone up.", largeHead = true)
         player<Quiz>("Really?")
         statement("The boy starts jumping around with his fists up. You decide it's best not to kill him yet.") // Source - Under "Trivia" last point: https://runescape.wiki/w/Wilough
     }
@@ -134,6 +134,6 @@ class Wilough : Script {
     // Source: https://oldschool.runescape.wiki/w/Transcript:Gertrude%27s_Cat
     suspend fun Player.gertrudeWhereFluffs() {
         player<Quiz>("Where did you say you saw Fluffs?")
-        npc<Quiz>("Weren't you listening? I saw the flea bag in the old lumber mill just north east of here. Just walk past the Jolly Boar Inn and you should find it.")
+        npc<Quiz>("Weren't you listening? I saw the flea bag in the old lumber mill just north east of here. Just walk past the Jolly Boar Inn and you should find it.", largeHead = true)
     }
 }
