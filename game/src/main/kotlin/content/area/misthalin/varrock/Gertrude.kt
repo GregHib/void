@@ -29,6 +29,7 @@ class Gertrude : Script {
             when (quest("gertrudes_cat")) {
                 "completed" -> postQuest()
                 "spoke_to_gertrude" -> lookingForInformation()
+                "found_the_boys" -> lookingForInformation()
                 else -> unstarted()
             }
         }
