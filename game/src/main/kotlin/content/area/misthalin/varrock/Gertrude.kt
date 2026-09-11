@@ -1,6 +1,7 @@
 package content.area.misthalin.varrock
 
 import content.entity.player.dialogue.Angry
+import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Quiz
@@ -8,6 +9,7 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -26,7 +28,7 @@ class Gertrude : Script {
         npcOperate("Talk-to", "gertrude") {
             when (quest("gertrudes_cat")) {
                 "completed" -> postQuest()
-                "unstarted" -> unstarted()
+                "spoke_to_gertrude" -> lookingForInformation()
                 else -> unstarted()
             }
         }
@@ -96,11 +98,21 @@ class Gertrude : Script {
         npc<Sad>("Well, okay then. I'll have to find someone else; someone less heartless. It will be on your conscience if a poor kitty is lost in the wilds, though.")
     }
     private suspend fun Player.questAccepted() {
+        set(GERTRUDES_CAT_STRING_NAME, "spoke_to_gertrude")
         npc<Happy>("Really? Thank you so much! I really have no idea where she could be!")
         npc<Idle>("I think my sons, Shilop and Wilough, saw the cat last. They'll be out in the marketplace.")
         player<Quiz>("The marketplace? Which one would that be? It would help to know what they get up to, as well.")
         npc<Happy>("Really? Well, I generally let them do what they want, so I've no idea exactly what they would be doing. They are good lads, though. I'm sure they are just watching the passers-by in Varrock Marketplace.")
         npc<Happy>("Oh, to be young and carefree again!")
         player<Happy>("Alright then. I'll see what I can do. Two young lads in Varrock Marketplace; I can only hope that there's no school trip passing through when I arrive.")
+    }
+
+    private suspend fun Player.lookingForInformation() {
+        player<Idle>("Hello Gertrude.")
+        npc<Sad>("Have you seen my poor Fluffs?")
+        player<Sad>("I'm afraid not.")
+        npc<Quiz>("What about Shilop?")
+        player<Sad>("No sign of him either.")
+        npc<Confused>("Hmm, strange; he should be in Varrock Marketplace.")
     }
 }
