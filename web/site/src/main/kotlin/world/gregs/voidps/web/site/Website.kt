@@ -183,18 +183,12 @@ object Website {
                         style = "margin:0;background:var(--umber-950);border:1px solid var(--border-subtle);" +
                             "border-radius:var(--radius-md);box-shadow:var(--bevel-down);padding:var(--space-6);" +
                             "font:var(--type-code);color:var(--parch-100);line-height:1.9;overflow-x:auto"
-                        div {
-                            span { style = "color:var(--gold-400)"; +"$ " }
-                            +"git clone https://github.com/void/emulator.git"
-                        }
-                        div {
-                            span { style = "color:var(--gold-400)"; +"$ " }
-                            +"void cache pull --revision 231"
-                        }
-                        div {
-                            span { style = "color:var(--gold-400)"; +"$ " }
-                            +"./gradlew run"
-                        }
+                        span { style = "color:var(--gold-400)"; +"$ " }
+                        +"git clone https://github.com/void/emulator.git\n"
+                        span { style = "color:var(--gold-400)"; +"$ " }
+                        +"void cache pull --revision 231\n"
+                        span { style = "color:var(--gold-400)"; +"$ " }
+                        +"./gradlew run"
                     }
                     div {
                         style = "display:flex;gap:var(--space-5)"

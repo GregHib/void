@@ -296,8 +296,9 @@
         var gridSvg = grid.map(function (g) {
           return '<line x1="66" x2="908" y1="' + g.y + '" y2="' + g.y + '" style="stroke:var(--umber-700);stroke-width:1"></line>';
         }).join("");
-        var barsSvg = bars.map(function (b) {
-          return '<rect x="' + b.x + '" y="' + b.y + '" width="' + b.w + '" height="' + b.h + '" style="fill:var(--umber-500)"></rect>';
+        var barsSvg = bars.map(function (b, i) {
+          var active = self.hover === i;
+          return '<rect x="' + b.x + '" y="' + b.y + '" width="' + b.w + '" height="' + b.h + '" style="fill:' + (active ? "var(--gold-300)" : "var(--umber-500)") + '"></rect>';
         }).join("");
         var hyBuy = self.hover !== null ? Y(pts[self.hover].buy) : 0;
         var hySell = self.hover !== null ? Y(pts[self.hover].sell) : 0;

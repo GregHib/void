@@ -491,7 +491,7 @@ object Hiscores {
             }
 
             div {
-                attributes["class"] = "void-grid"
+                attributes["class"] = "void-grid hiscores-boss-panels-grid"
                 style = "grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--space-8);align-items:start"
 
                 ui.panel(title = "Top kill counts", action = eyebrowText("boss"), padded = false) {
