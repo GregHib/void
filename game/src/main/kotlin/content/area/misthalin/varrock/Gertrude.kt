@@ -35,7 +35,6 @@ class Gertrude : Script {
                 "found_the_boys" -> findingFluffs()
                 "found_fluffs" -> hungryAndThirsty()
                 "attempt_fluffs_pickup" -> hungryAndThirsty()
-                "milked_fluffs" -> hungryAndThirsty()
                 else -> unstarted()
             }
         }

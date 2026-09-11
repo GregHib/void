@@ -17,6 +17,8 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
 private const val FLUFFS_STRING_ID = "fluffs_normal"
+private const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
+private const val FLUFFS_MILK_VAR = "gertrudes_cat_fluffs_milk"
 
 class Fluffs : Script {
 
@@ -70,10 +72,13 @@ class Fluffs : Script {
         }
         npcOperate("Stroke", FLUFFS_STRING_ID) { interact ->
             foundCatCheck()
+            if(get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false)){
+                strokeCatFedFluffs(interact.target)
+                return@npcOperate
+            }
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "found_fluffs" -> strokeCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> strokeCatFoundFluffs(interact.target)
-                //"fed_fluffs" -> strokeCatFedFluffs(interact.target) TODO: check the player var if you fed the cat or not
                 else -> dontBotherCat()
             }
         }
@@ -81,7 +86,7 @@ class Fluffs : Script {
 
     private suspend fun Player.checkCanFeed() {
         // check player variable if you already fed the cat
-        if(false){
+        if(get(FLUFFS_FED_VAR, false)){
             dontBotherCat()
         } else {
             feedFluffs()
@@ -89,6 +94,7 @@ class Fluffs : Script {
     }
     private suspend fun Player.feedFluffs() {
         inventory.remove("doogle_sardine")
+        set(FLUFFS_FED_VAR, true)
         npc<Happy>("Mew!")
         player<Happy>("Progress, at least.")
         statement("Fluffs devours the doogle sardine greedily. Then she mews at you again.")
@@ -122,7 +128,7 @@ class Fluffs : Script {
         player<Happy>("Progress, at least.")
         inventory.remove("bucket_of_milk")
         inventory.add("bucket")
-        // TODO Set player variable so we know the player gave the cat milk
+        set(FLUFFS_MILK_VAR, true)
         statement("Fluffs laps up the milk greedily. Then she mews at you again.")
     }
 
@@ -145,6 +151,11 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
+        if(get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)){
+            doNotTheCat(cat)
+            statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")
+            return
+        }
         doNotTheCat(cat)
         statement("Fluffs hisses but clearly wants something - maybe she is thirsty?")
     }
