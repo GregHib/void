@@ -42,27 +42,29 @@ class GertrudesCat : Script {
             }
 
             if(progress == 3) {
-                lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill and found"
+                lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found"
                 lines += "<navy>Fluffs <maroon>up a ladder<navy>. I now need to return <maroon>Fluffs <navy>to <maroon>Gertrude<navy>."
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
 
             if(progress == 4) {
-                //fed_fluffs = 4,
-                lines += "fed_fluffs stage 4"
+                lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found and found"
+                lines += "<maroon>Fluffs<navy> up <maroon>a ladder<navy>. I now need to return <maroon>Fluffs<navy> to"
+                lines += "<maroon>Gertrude<navy>. "
+                lines += "<navy>I think <maroon>Fluffs<navy> may be hungry or thirsty but I am not sure what"
+                lines += "<navy>she wants; perhaps <maroon>Gertrude<navy> can help?"
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
 
             if(progress == 5) {
-                //returned_fluffs = 5,
-                lines += "returned_fluffs stage 5"
+
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
-            // complete = 6
-            lines += "complete stage 6"
+            // complete
+            lines += "complete"
             questJournal("Gertrude's Cat", lines)
         }
     }
