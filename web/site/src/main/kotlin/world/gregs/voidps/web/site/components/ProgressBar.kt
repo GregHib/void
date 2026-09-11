@@ -22,7 +22,7 @@ fun Ui.progressBar(
     size: ProgressSize = ProgressSize.Medium,
 ) {
     receiver.div {
-        style = "display:flex;flex-direction:column;gap:6px"
+        style = "display:flex;flex-direction:column;gap:var(--space-3)"
         span {
             style = "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-muted)"
             +label
@@ -46,9 +46,9 @@ fun Ui.progressBarLive(label: String, model: String) {
     receiver.div {
         style = "display:flex;flex-direction:column;gap:var(--space-7)"
         div {
-            style = "display:flex;flex-direction:column;gap:6px"
+            style = "display:flex;flex-direction:column;gap:var(--space-3)"
             div {
-                style = "display:flex;justify-content:space-between;gap:12px;font:var(--type-label);" +
+                style = "display:flex;justify-content:space-between;gap:var(--space-5);font:var(--type-label);" +
                     "letter-spacing:var(--tracking-wide);color:var(--text-muted)"
                 span { +label }
                 span {

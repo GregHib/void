@@ -34,7 +34,7 @@ fun Ui.toast(
             "border-bottom:1px solid var(--border-panel);border-left:2px solid ${tone.accent};" +
             "border-radius:var(--radius-md);box-shadow:var(--bevel-up),var(--shadow-md)"
         div {
-            style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"
+            style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-1)"
             strong {
                 style = "font:var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);color:var(--text-strong)"
                 +title

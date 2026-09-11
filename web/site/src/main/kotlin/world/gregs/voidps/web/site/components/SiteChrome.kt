@@ -51,7 +51,7 @@ fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "
             style = "display:flex;align-items:center;gap:var(--space-6);flex:0 0 auto"
             ui.badge("v0.41.2", pill = false)
             a(href = "#") {
-                style = "display:inline-flex;align-items:center;gap:6px;font:var(--type-body-sm)"
+                style = "display:inline-flex;align-items:center;gap:var(--space-3);font:var(--type-body-sm)"
                 icon(Icons.EXTERNAL, size = 14)
                 +"Source"
             }
@@ -112,7 +112,7 @@ fun Ui.siteFooter(assetPrefix: String = "") {
         }
         div {
             style = "max-width:var(--container-wide);margin:var(--space-9) auto 0;padding-top:var(--space-6);" +
-                "border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;gap:16px;" +
+                "border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;gap:var(--space-6);" +
                 "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-faint)"
             span { +"Void is an independent emulation project. Not affiliated with any game publisher." }
             span {

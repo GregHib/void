@@ -40,7 +40,7 @@ object AdventurersLog {
                         div {
                             xShow("view === 'profile'")
                             attributes["class"] = "void-flex"
-                            style = "flex-direction:column;gap:var(--space-10)"
+                            style = "flex-direction:column;gap:var(--space-8)"
 
                             div {
                                 style = "display:flex;justify-content:flex-start"
@@ -123,13 +123,13 @@ object AdventurersLog {
                             unsafe {
                                 raw(
                                     """
-                                    <span :style="{ background: profile.member ? 'rgba(224,174,60,.14)' : 'var(--umber-700)', color: profile.member ? 'var(--gold-300)' : 'var(--parch-200)', borderColor: profile.member ? 'var(--gold-600)' : 'var(--border-strong)' }" style="display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
+                                    <span :style="{ background: profile.member ? 'rgba(224,174,60,.14)' : 'var(--umber-700)', color: profile.member ? 'var(--gold-300)' : 'var(--parch-200)', borderColor: profile.member ? 'var(--gold-600)' : 'var(--border-strong)' }" style="display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
                                       <span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span>
                                       <span x-text="profile.member ? 'Member' : 'Free account'"></span>
                                     </span>
                                     <span style="display:inline-flex;align-items:center;padding:0 10px;height:20px;background:var(--umber-700);color:var(--parch-200);border:1px solid var(--border-strong);border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="'World ' + profile.world + ' · ' + profile.mode"></span>
                                     <template x-if="profile.clan">
-                                      <a href="#" @click.prevent="pickClan(profile.clan)" style="display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;background:rgba(224,174,60,.14);color:var(--gold-300);border:1px solid var(--gold-600);border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase;text-decoration:none" x-text="profile.clan"></a>
+                                      <a href="#" @click.prevent="pickClan(profile.clan)" style="display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;background:rgba(224,174,60,.14);color:var(--gold-300);border:1px solid var(--gold-600);border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase;text-decoration:none" x-text="profile.clan"></a>
                                     </template>
                                     """.trimIndent(),
                                 )
@@ -157,7 +157,7 @@ object AdventurersLog {
 
     private fun FlowContent.heroStat(label: String, expression: String, gold: Boolean = false) {
         div {
-            style = "display:flex;flex-direction:column;gap:4px"
+            style = "display:flex;flex-direction:column;gap:var(--space-2)"
             span {
                 style = "font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);" +
                     "letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--parch-400)"
@@ -179,7 +179,7 @@ object AdventurersLog {
                     raw(
                         """
                         <template x-for="t in filterTabs" :key="t.label">
-                          <button type="button" @click="t.onClick()" :style="{ borderBottomColor: t.active ? 'var(--gold-400)' : 'transparent', color: t.active ? 'var(--gold-300)' : 'var(--parch-300)' }" style="background:transparent;border:none;border-bottom:2px solid transparent;padding:0 0 6px;cursor:pointer;font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="t.label"></button>
+                          <button type="button" @click="t.onClick()" :style="{ borderBottomColor: t.active ? 'var(--gold-400)' : 'transparent', color: t.active ? 'var(--gold-300)' : 'var(--parch-300)' }" style="background:transparent;border:none;border-bottom:2px solid transparent;padding:0 0 var(--space-3);cursor:pointer;font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="t.label"></button>
                         </template>
                         """.trimIndent(),
                     )
@@ -221,7 +221,7 @@ object AdventurersLog {
                         raw(
                             """
                             <template x-for="s in sortTabs" :key="s.key">
-                              <button type="button" @click="s.onClick()" :style="{ background: s.active ? 'var(--surface-active)' : 'var(--surface-panel-raised)', color: s.active ? 'var(--gold-300)' : 'var(--parch-200)' }" style="border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:var(--bevel-up);height:26px;padding:0 12px;cursor:pointer;font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="s.label"></button>
+                              <button type="button" @click="s.onClick()" :style="{ background: s.active ? 'var(--surface-active)' : 'var(--surface-panel-raised)', color: s.active ? 'var(--gold-300)' : 'var(--parch-200)' }" style="border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:var(--bevel-up);height:26px;padding:0 var(--space-5);cursor:pointer;font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="s.label"></button>
                             </template>
                             """.trimIndent(),
                         )
@@ -234,11 +234,11 @@ object AdventurersLog {
                     raw(
                         """
                         <template x-for="sk in sortedSkills" :key="sk.name">
-                          <div style="display:flex;flex-direction:column;gap:5px;min-width:0">
+                          <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                             <a :href="'hiscores.html?view=skills&skill=' + encodeURIComponent(sk.name)" style="display:flex;align-items:center;gap:var(--space-5);padding:var(--space-4) var(--space-5);background:var(--surface-panel-raised);border:1px solid var(--border-panel);border-radius:var(--radius-sm);box-shadow:var(--bevel-up);text-decoration:none;cursor:pointer">
-                              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+                              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
                                 <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
-                                  <span style="display:flex;align-items:center;gap:6px;min-width:0;flex:1">
+                                  <span style="display:flex;align-items:center;gap:var(--space-3);min-width:0;flex:1">
                                     <span style="width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center">
                                       <img :src="sk.icon" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
                                     </span>
@@ -272,7 +272,7 @@ object AdventurersLog {
                     "padding:var(--space-4) var(--space-5);background:var(--surface-panel-raised);" +
                     "border:1px solid var(--border-panel);border-radius:var(--radius-sm);box-shadow:var(--bevel-up)"
                 div {
-                    style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"
+                    style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)"
                     div {
                         style = "display:flex;justify-content:space-between;gap:10px;align-items:baseline"
                         span {
@@ -393,7 +393,7 @@ object AdventurersLog {
                         """
                         <template x-for="p in results" :key="p.name">
                           <a href="#" @click.prevent="pick(p.name)" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:var(--space-4) var(--space-5);background:var(--surface-panel);text-decoration:none">
-                            <span style="min-width:0;display:flex;flex-direction:column;gap:3px">
+                            <span style="min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
                               <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--gold-300);overflow:hidden;text-overflow:ellipsis;white-space:nowrap" x-text="p.name"></span>
                               <span style="font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint)" x-text="p.meta"></span>
                             </span>
@@ -458,7 +458,7 @@ object AdventurersLog {
         div {
             xShow("view === 'overview'")
             attributes["class"] = "void-flex"
-            style = "flex-direction:column;gap:var(--space-10)"
+            style = "flex-direction:column;gap:var(--space-8)"
 
             header {
                 style = "display:flex;flex-direction:column;gap:var(--space-3)"
@@ -524,7 +524,7 @@ object AdventurersLog {
         div {
             xShow("view === 'clan'")
             attributes["class"] = "void-flex"
-            style = "flex-direction:column;gap:var(--space-10)"
+            style = "flex-direction:column;gap:var(--space-8)"
 
             div {
                 style = "display:flex;justify-content:flex-start"

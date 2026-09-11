@@ -11,7 +11,7 @@ fun Ui.statBar(label: String, value: Int, max: Int, showValue: Boolean = true) {
             "background:var(--surface-panel-raised);border:1px solid var(--border-panel);" +
             "border-radius:var(--radius-sm);box-shadow:var(--bevel-up)"
         div {
-            style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:5px"
+            style = "flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)"
             div {
                 style = "display:flex;justify-content:space-between;gap:10px;align-items:baseline"
                 span {

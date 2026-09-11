@@ -76,7 +76,7 @@ fun Ui.worldTable(model: String, worlds: List<WorldEntry>, onSelect: (WorldEntry
                 +world.region
                 if (world.members) {
                     span {
-                        style = "color:var(--gold-400);margin-left:8px;font:var(--type-label);" +
+                        style = "color:var(--gold-400);margin-left:var(--space-4);font:var(--type-label);" +
                             "letter-spacing:var(--tracking-caps)"
                         +"MEMBERS"
                     }
@@ -87,7 +87,7 @@ fun Ui.worldTable(model: String, worlds: List<WorldEntry>, onSelect: (WorldEntry
                 +world.mode
             }
             span {
-                style = "display:flex;align-items:center;gap:8px"
+                style = "display:flex;align-items:center;gap:var(--space-4)"
                 val percent = if (world.capacity <= 0) 0 else (world.players * 100 / world.capacity).coerceIn(0, 100)
                 span {
                     style = "flex:1;height:4px;background:var(--surface-inset);border-radius:var(--radius-xs);" +

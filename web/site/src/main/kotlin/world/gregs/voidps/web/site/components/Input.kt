@@ -30,7 +30,7 @@ fun Ui.textInput(
     onEnter: String? = null,
 ) {
     receiver.div {
-        style = "display:flex;flex-direction:column;gap:6px"
+        style = "display:flex;flex-direction:column;gap:var(--space-3)"
         label {
             attributes["for"] = id
             style = "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-muted)"
@@ -39,7 +39,7 @@ fun Ui.textInput(
         div {
             attributes["class"] = "void-input-frame"
             val border = if (error != null) "var(--feedback-danger)" else "var(--border-strong)"
-            style = "display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;" +
+            style = "display:flex;align-items:center;gap:var(--space-4);height:34px;padding:0 10px;" +
                 "background:var(--surface-inset);border:1px solid $border;border-radius:var(--radius-sm);" +
                 "box-shadow:var(--bevel-down);transition:border-color var(--dur-fast) var(--ease-standard)"
             if (icon != null) {
@@ -86,7 +86,7 @@ fun Ui.select(
     hint: String? = null,
 ) {
     receiver.div {
-        style = "display:flex;flex-direction:column;gap:6px"
+        style = "display:flex;flex-direction:column;gap:var(--space-3)"
         label {
             attributes["for"] = id
             style = "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-muted)"
@@ -98,7 +98,7 @@ fun Ui.select(
                 attributes["id"] = id
                 attributes["class"] = "void-select"
                 xModel(model)
-                style = "width:100%;height:38px;padding:0 34px 0 12px;appearance:none;" +
+                style = "width:100%;height:38px;padding:0 34px 0 var(--space-5);appearance:none;" +
                     "background:var(--surface-panel-raised);color:var(--text-strong);" +
                     "border:1px solid var(--border-strong);border-radius:var(--radius-sm);" +
                     "box-shadow:var(--bevel-up);font:var(--type-body);cursor:pointer;color-scheme:dark;" +
@@ -148,7 +148,7 @@ fun Ui.checkbox(
                     whenFalse = "background:var(--surface-inset);border-color:var(--border-strong);box-shadow:var(--bevel-down)",
                 )
             }
-            style = "width:16px;height:16px;margin-top:2px;flex:0 0 auto;display:flex;align-items:center;" +
+            style = "width:16px;height:16px;margin-top:var(--space-1);flex:0 0 auto;display:flex;align-items:center;" +
                 "justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);" +
                 "border-radius:var(--radius-xs);box-shadow:var(--bevel-down);" +
                 "transition:background var(--dur-fast) var(--ease-standard)"
@@ -165,7 +165,7 @@ fun Ui.checkbox(
             }
         }
         span {
-            style = "display:flex;flex-direction:column;gap:2px"
+            style = "display:flex;flex-direction:column;gap:var(--space-1)"
             span {
                 style = "font:var(--type-body-sm);color:var(--text-body)"
                 +text
@@ -194,7 +194,7 @@ fun Ui.switch(text: String, model: String, small: Boolean = false) {
                 whenTrue = "background:var(--gold-500);border-color:var(--gold-600);justify-content:flex-end",
                 whenFalse = "background:var(--umber-900);border-color:var(--border-strong);justify-content:flex-start",
             )
-            style = "width:${trackWidth}px;height:${trackHeight}px;border-radius:var(--radius-pill);padding:2px;" +
+            style = "width:${trackWidth}px;height:${trackHeight}px;border-radius:var(--radius-pill);padding:var(--space-1);" +
                 "display:flex;justify-content:flex-start;align-items:center;background:var(--umber-900);" +
                 "border:1px solid var(--border-strong);box-shadow:var(--bevel-down);" +
                 "transition:background var(--dur-fast) var(--ease-standard)"

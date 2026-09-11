@@ -33,7 +33,7 @@ fun Ui.accountMenu(
             onClick("loggedIn = true")
             attributes["class"] = "void-btn void-btn-secondary"
             style = "display:inline-flex;align-items:center;justify-content:center;height:28px;" +
-                "padding:0 12px;border-radius:var(--radius-md);" +
+                "padding:0 var(--space-5);border-radius:var(--radius-md);" +
                 "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:0.06em;cursor:pointer"
             +"Log in"
         }
@@ -64,7 +64,7 @@ fun Ui.accountMenu(
                 "overflow:hidden;z-index:40"
 
             div {
-                style = "display:flex;flex-direction:column;gap:2px;padding:var(--space-5) var(--space-6);" +
+                style = "display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-5) var(--space-6);" +
                     "background:var(--surface-header);border-bottom:1px solid var(--border-gold)"
                 span {
                     style = "font:var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);color:var(--parch-50)"
@@ -89,7 +89,7 @@ fun Ui.accountMenu(
                 style = "padding:var(--space-3);border-top:1px solid var(--border-subtle)"
                 button {
                     onClick("loggedIn = false; open = false")
-                    style = "width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;" +
+                    style = "width:100%;display:flex;align-items:center;gap:10px;padding:var(--space-4) 10px;" +
                         "background:transparent;border:none;border-radius:var(--radius-xs);" +
                         "color:var(--feedback-danger);cursor:pointer;text-align:left;" +
                         "font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
@@ -104,7 +104,7 @@ fun Ui.accountMenu(
 
 private fun kotlinx.html.DIV.accountMenuItem(iconPath: String, label: String, href: String = "#") {
     a(href = href) {
-        style = "display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-xs);" +
+        style = "display:flex;align-items:center;gap:10px;padding:var(--space-4) 10px;border-radius:var(--radius-xs);" +
             "color:var(--text-body);text-decoration:none;font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
             "transition:background var(--dur-fast) var(--ease-standard)"
         span { style = "color:var(--text-faint);display:inline-flex"; icon(iconPath, size = 15) }
