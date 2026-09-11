@@ -1,0 +1,2680 @@
+openapi: 3.1.0
+
+info:
+  title: Void web API
+  version: 1.0.0
+  summary: >-
+    REST API backing the Void website - hiscores, Grand Exchange, adventurer's logs,
+    the staff developer panel and account sessions.
+  description: |
+    Every endpoint here exists to replace a mock dataset currently living in the static site
+    (`web/site/src/main/resources/static/void/*.js`). The mapping is:
+
+    | Page | Mock module | Endpoints |
+    | --- | --- | --- |
+    | Hiscores | `void/hiscores.js` | `/hiscores/*`, `/players/*` |
+    | Grand Exchange | `void/exchange.js` | `/exchange/*` |
+    | Adventurer's log | `void/log.js` | `/players/*` |
+    | Developer panel | `void/dev.js` | `/dev/*`, `/worlds` |
+    | Nav-bar account menu | `components/AccountMenu.kt` | `/auth/*`, `/account/*` |
+
+    A player account is modelled once, under `/players/{name}`. The hiscores player view and the
+    adventurer's log render the same resource with different emphasis, so neither gets its own
+    duplicate profile endpoint; `/hiscores/*` carries leaderboards and head-to-head comparison only.
+
+    Player names are case-insensitive, may contain spaces, and must be URL-encoded. All timestamps
+    are RFC 3339 UTC. Prices, experience and kill counts are integers; the site does the thousands
+    separators, abbreviations and `m:ss` formatting itself.
+  license:
+    name: ISC
+    url: https://github.com/GregHib/void/blob/main/LICENSE
+
+servers:
+  - url: https://voidps.dev/api/v1
+    description: Production
+  - url: http://localhost:8080/api/v1
+    description: Local web server (world.gregs.voidps.web.WebServer)
+
+tags:
+  - name: auth
+    description: Sign-in, sign-out and the current session - drives the nav-bar account slot.
+  - name: account
+    description: The signed-in account's own details and settings.
+  - name: hiscores
+    description: Leaderboards and head-to-head comparison.
+  - name: players
+    description: Public player profiles - shared by the hiscores player view and the adventurer's log.
+  - name: exchange
+    description: Grand Exchange market overview, item search, item detail and price history.
+  - name: worlds
+    description: The public world list.
+  - name: dev-telemetry
+    description: Developer panel dashboard - live world telemetry, errors, runtime and console. Staff only.
+  - name: dev-players
+    description: Developer panel player workbench - account inspection and moderation. Staff only.
+
+security:
+  - sessionCookie: []
+  - bearerAuth: []
+
+paths:
+
+  # ---------------------------------------------------------------- auth
+
+  /auth/login:
+    post:
+      tags: [auth]
+      summary: Sign in
+      description: |
+        Backs the nav-bar "Log in" button. On success the server sets the `void_session` cookie and
+        also returns the token for non-browser clients. The returned account decides what the
+        dropdown shows - display name, email, and whether the "Developer panel" entry is rendered
+        (`account.staff`).
+      operationId: login
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password]
+              properties:
+                username:
+                  type: string
+                  description: Display name or email address.
+                  minLength: 1
+                  maxLength: 254
+                  examples: ["rotce"]
+                password:
+                  type: string
+                  format: password
+                  minLength: 5
+                  maxLength: 128
+                remember:
+                  type: boolean
+                  default: false
+                  description: Issue a long-lived session rather than one expiring with the browser.
+      responses:
+        '200':
+          description: Signed in.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: "void_session=<token>; HttpOnly; Secure; SameSite=Lax; Path=/"
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401':
+          description: Unknown account or wrong password - deliberately indistinguishable.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '423':
+          description: Account is banned or locked.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '429': { $ref: '#/components/responses/TooManyRequests' }
+
+  /auth/logout:
+    post:
+      tags: [auth]
+      summary: Sign out
+      description: Invalidates the session and clears the cookie. Backs the dropdown's "Log out".
+      operationId: logout
+      responses:
+        '204':
+          description: Signed out. Safe to call when already signed out.
+
+  /auth/session:
+    get:
+      tags: [auth]
+      summary: Current session
+      description: |
+        Called on page load to decide whether the nav-bar renders the "Log in" button or the account
+        icon. Returns 401 rather than an empty body when signed out.
+      operationId: currentSession
+      responses:
+        '200':
+          description: An active session.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /auth/refresh:
+    post:
+      tags: [auth]
+      summary: Extend the current session
+      operationId: refreshSession
+      responses:
+        '200':
+          description: Session extended.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  # ---------------------------------------------------------------- account
+
+  /account:
+    get:
+      tags: [account]
+      summary: Account management
+      description: Backs the dropdown's "Account management" entry.
+      operationId: getAccount
+      responses:
+        '200':
+          description: The signed-in account.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Account' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    patch:
+      tags: [account]
+      summary: Update account details
+      operationId: updateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              minProperties: 1
+              properties:
+                email: { type: string, format: email }
+                displayName:
+                  type: string
+                  minLength: 1
+                  maxLength: 12
+                  description: Player name. Subject to a rename cooldown.
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Account' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '409':
+          description: Name or email already taken, or a rename cooldown is active.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/UnprocessableEntity' }
+
+  /account/password:
+    post:
+      tags: [account]
+      summary: Change password
+      operationId: changePassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [currentPassword, newPassword]
+              properties:
+                currentPassword: { type: string, format: password }
+                newPassword: { type: string, format: password, minLength: 8, maxLength: 128 }
+      responses:
+        '204':
+          description: Changed. All other sessions are invalidated.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/UnprocessableEntity' }
+
+  /account/settings:
+    get:
+      tags: [account]
+      summary: Account settings
+      description: |
+        Backs the dropdown's "Settings" entry. `privacy.publicAdventurersLog` is the opt-out the
+        log's "Find a log" panel refers to; when false, `/players/{name}` and its sub-resources
+        return 403 to everyone but the owner and staff.
+      operationId: getSettings
+      responses:
+        '200':
+          description: Current settings.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AccountSettings' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    put:
+      tags: [account]
+      summary: Replace account settings
+      operationId: updateSettings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AccountSettings' }
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AccountSettings' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/UnprocessableEntity' }
+
+  # ---------------------------------------------------------------- hiscores
+
+  /hiscores/metadata:
+    get:
+      tags: [hiscores]
+      summary: Leaderboard metadata
+      description: |
+        The skill list with level caps, the tracked bosses, the account-type filter chips, the team
+        sizes and the "Updated 9 September 2026, 14:20 UTC" stamp. Replaces the hard-coded `skills`
+        and `bosses` lists in `Hiscores.kt` and `hiscores.js`, which currently have to be kept in sync.
+      operationId: hiscoresMetadata
+      security: []
+      responses:
+        '200':
+          description: Metadata.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HiscoresMetadata' }
+
+  /hiscores/overall:
+    get:
+      tags: [hiscores]
+      summary: Overall leaderboard
+      description: Ranked by total experience. Backs the Overall tab, its name search and its pager.
+      operationId: overallHiscores
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/NameQuery'
+        - $ref: '#/components/parameters/AccountMode'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of ranked accounts.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OverallLeaderboard' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /hiscores/skills/{skill}:
+    get:
+      tags: [hiscores]
+      summary: Skill leaderboard
+      description: Ranked by experience in one skill. Backs the Skills tab's tile grid selection.
+      operationId: skillHiscores
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/SkillPath'
+        - $ref: '#/components/parameters/NameQuery'
+        - $ref: '#/components/parameters/AccountMode'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of ranked accounts for the skill.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SkillLeaderboard' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /hiscores/bosses/{boss}/kills:
+    get:
+      tags: [hiscores]
+      summary: Boss kill-count leaderboard
+      description: Backs the Bosses tab's left-hand "Kill count" table.
+      operationId: bossKillHiscores
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/BossPath'
+        - $ref: '#/components/parameters/AccountMode'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of ranked accounts by kill count.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BossKillLeaderboard' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /hiscores/bosses/{boss}/times:
+    get:
+      tags: [hiscores]
+      summary: Boss fastest-time leaderboard
+      description: |
+        Backs the Bosses tab's right-hand "Fastest kill" table and its team-size chips. A team entry
+        lists every member; the site shows the submitting account.
+      operationId: bossTimeHiscores
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/BossPath'
+        - name: teamSize
+          in: query
+          description: Team-size filter. Omit or pass `all` for every size.
+          schema:
+            type: string
+            enum: [all, '1', '2', '3', '4']
+            default: all
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of ranked completions by time.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BossTimeLeaderboard' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /hiscores/compare:
+    get:
+      tags: [hiscores]
+      summary: Head-to-head comparison
+      description: |
+        Backs the Compare tab: the four summary cards, the per-skill rows with their xp deltas, and
+        the per-boss kill-count rows. Computed server-side so both sides come from one consistent
+        snapshot.
+      operationId: comparePlayers
+      security: []
+      parameters:
+        - name: playerA
+          in: query
+          required: true
+          schema: { type: string, maxLength: 12 }
+          examples: { a: { value: "Zephwyrd" } }
+        - name: playerB
+          in: query
+          required: true
+          schema: { type: string, maxLength: 12 }
+          examples: { b: { value: "Vexara" } }
+      responses:
+        '200':
+          description: The comparison.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Comparison' }
+        '404':
+          description: One or both players do not exist, or have a private profile.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  # ---------------------------------------------------------------- players
+
+  /players/search:
+    get:
+      tags: [players]
+      summary: Player name search
+      description: |
+        Typeahead for the hiscores compare combo boxes and the adventurer's log "Find a log" panel.
+        With no query it returns a default list of suggestions, which is what the log panel shows
+        before the visitor types.
+      operationId: searchPlayers
+      security: []
+      parameters:
+        - name: q
+          in: query
+          description: Name prefix or substring. Omit for default suggestions.
+          schema: { type: string, maxLength: 12 }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 50, default: 25 }
+      responses:
+        '200':
+          description: Matching players. Empty `items` drives the "No log matches that name" state.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/PlayerSuggestion' }
+
+  /players/{name}:
+    get:
+      tags: [players]
+      summary: Player profile
+      description: |
+        The account header shared by two pages: the adventurer's log hero band (membership badge,
+        world and mode, joined date, total level, combat, total xp, quest points, milestones) and
+        the hiscores player view header (overall rank, mode, world, joined, last seen).
+      operationId: getPlayer
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/PlayerName'
+      responses:
+        '200':
+          description: The profile.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PlayerProfile' }
+        '403': { $ref: '#/components/responses/PrivateProfile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /players/{name}/skills:
+    get:
+      tags: [players]
+      summary: Player skills
+      description: |
+        Backs the log's Skills panel (with its By level / A-Z sort) and the hiscores player view's
+        skill tiles. `progressPercent` is `level / maxLevel`, precomputed so both meters agree.
+      operationId: getPlayerSkills
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/PlayerName'
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [level, name]
+            default: level
+      responses:
+        '200':
+          description: Every tracked skill for the account.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PlayerSkills' }
+        '403': { $ref: '#/components/responses/PrivateProfile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /players/{name}/bosses:
+    get:
+      tags: [players]
+      summary: Player boss log
+      description: Backs the log's Bosses panel and the hiscores player view's "Boss log" table.
+      operationId: getPlayerBosses
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/PlayerName'
+      responses:
+        '200':
+          description: Per-boss kill counts, best times and ranks.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PlayerBosses' }
+        '403': { $ref: '#/components/responses/PrivateProfile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /players/{name}/quests:
+    get:
+      tags: [players]
+      summary: Player quest log
+      description: Backs the log's Quests panel, including its quest-point meter.
+      operationId: getPlayerQuests
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/PlayerName'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [all, complete, incomplete]
+            default: complete
+      responses:
+        '200':
+          description: Quests and quest points.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PlayerQuests' }
+        '403': { $ref: '#/components/responses/PrivateProfile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /players/{name}/events:
+    get:
+      tags: [players]
+      summary: Player activity feed
+      description: |
+        Backs the log's "Recent activity" panel and its All / Skill / Quest / Combat / Account tabs.
+      operationId: getPlayerEvents
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/PlayerName'
+        - name: type
+          in: query
+          description: Filter to one event kind. Omit or pass `all` for every kind.
+          schema:
+            type: string
+            enum: [all, skill, quest, combat, account]
+            default: all
+        - name: since
+          in: query
+          description: Only events at or after this instant. The panel's eyebrow reads "last 30 days".
+          schema: { type: string, format: date-time }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of events, newest first.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PlayerEventPage' }
+        '403': { $ref: '#/components/responses/PrivateProfile' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ---------------------------------------------------------------- exchange
+
+  /exchange/summary:
+    get:
+      tags: [exchange]
+      summary: Market summary
+      description: The four tiles on the exchange home page.
+      operationId: exchangeSummary
+      security: []
+      responses:
+        '200':
+          description: Market-wide figures for the last sample.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketSummary' }
+
+  /exchange/categories:
+    get:
+      tags: [exchange]
+      summary: Item categories
+      description: |
+        The search page's category chips and the per-category blurb shown on an item page.
+        Replaces the hard-coded `CAT_CODE` / `CAT_BLURB` maps in `exchange.js`.
+      operationId: exchangeCategories
+      security: []
+      responses:
+        '200':
+          description: Every category.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/ItemCategory' }
+
+  /exchange/highlights:
+    get:
+      tags: [exchange]
+      summary: Market highlights
+      description: |
+        The home page's four panels - Top volume, Biggest risers, Biggest fallers, Most expensive -
+        in one round trip, since the page always shows all four together.
+      operationId: exchangeHighlights
+      security: []
+      parameters:
+        - name: limit
+          in: query
+          description: Rows per panel.
+          schema: { type: integer, minimum: 1, maximum: 25, default: 6 }
+      responses:
+        '200':
+          description: The four highlight lists.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MarketHighlights' }
+
+  /exchange/items:
+    get:
+      tags: [exchange]
+      summary: Search items
+      description: |
+        Backs the search page - the name box, the category chips, the sort select and the results
+        table. Also backs the home page's search box, which forwards the query to the search view.
+      operationId: searchItems
+      security: []
+      parameters:
+        - name: q
+          in: query
+          description: Item name substring, case-insensitive.
+          schema: { type: string, maxLength: 64 }
+        - name: category
+          in: query
+          description: Category id. Omit or pass `all` for every category.
+          schema: { type: string, default: all }
+          examples: { weapons: { value: weapons } }
+        - name: members
+          in: query
+          description: Restrict to members-only or free-to-play items.
+          schema: { type: boolean }
+        - name: sort
+          in: query
+          description: |
+            `volume` sorts by gp traded, `price` by guide price, `gain` and `loss` by 24h move,
+            `name` alphabetically. Mirrors the sort select's five options.
+          schema:
+            type: string
+            enum: [volume, price, gain, loss, name]
+            default: volume
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of items. Empty `items` drives the "No item matches that name" state.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ItemPage' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /exchange/items/{itemId}:
+    get:
+      tags: [exchange]
+      summary: Item detail
+      description: |
+        Backs the item page's header (name, category, members badge, examine text, guide price and
+        24h move) and the "Trade data" grid - buy limit, margin, tax, daily volume, alchemy values,
+        shop value and members flag.
+      operationId: getItem
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/ItemId'
+      responses:
+        '200':
+          description: The item.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ItemDetail' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /exchange/items/{itemId}/history:
+    get:
+      tags: [exchange]
+      summary: Item price history
+      description: |
+        Backs the price chart and its 24H / 7D / 30D / 1Y / All chips. Points are ordered oldest
+        first and evenly spaced by `intervalSeconds`, which is what lets the client draw the path
+        without carrying timestamps into its geometry.
+      operationId: getItemHistory
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/ItemId'
+        - name: timeframe
+          in: query
+          schema:
+            type: string
+            enum: ['24h', '7d', '30d', '1y', all]
+            default: '24h'
+      responses:
+        '200':
+          description: The series.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PriceHistory' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /exchange/items/{itemId}/related:
+    get:
+      tags: [exchange]
+      summary: Related items
+      description: The item page's "Related" panel - other items in the same category.
+      operationId: getRelatedItems
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/ItemId'
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 12, default: 4 }
+      responses:
+        '200':
+          description: Related items.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/ItemSummary' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /exchange/prices:
+    get:
+      tags: [exchange]
+      summary: Current prices for specific items
+      description: |
+        A cheap poll for the live price ticker. The page currently fakes this with a 2.5s random
+        drift in `exchangeApp.init`; with a real API it polls whichever ids are on screen.
+      operationId: getPrices
+      security: []
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Item ids.
+          explode: false
+          schema:
+            type: array
+            minItems: 1
+            maxItems: 100
+            items: { type: string }
+          examples:
+            two: { value: [warden-s-sigil, void-rune] }
+      responses:
+        '200':
+          description: Current prices.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [sampledAt, items]
+                properties:
+                  sampledAt: { type: string, format: date-time }
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/ItemPrice' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  # ---------------------------------------------------------------- worlds
+
+  /worlds:
+    get:
+      tags: [worlds]
+      summary: World list
+      description: |
+        The public world table, and the developer panel's compact "World list" panel - the same
+        data, so there is no `/dev/worlds` twin.
+      operationId: listWorlds
+      security: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [all, online, full, restarting, offline]
+            default: all
+      responses:
+        '200':
+          description: Every world.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, totalPlayers]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/World' }
+                  totalPlayers: { type: integer, minimum: 0 }
+
+  # ---------------------------------------------------------------- dev: telemetry
+
+  /dev/stats:
+    get:
+      tags: [dev-telemetry]
+      summary: Dashboard KPI cards
+      description: |
+        The five cards across the top of the developer dashboard - players online, uptime, tick
+        duration, CPU load and heap - plus the tick aggregates the "Tick duration" panel prints.
+      operationId: devStats
+      parameters:
+        - $ref: '#/components/parameters/WorldQuery'
+      responses:
+        '200':
+          description: Current figures.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DevStats' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/metrics:
+    get:
+      tags: [dev-telemetry]
+      summary: Telemetry history
+      description: |
+        The initial fill for the dashboard's four charts - CPU and memory, tick duration, population
+        and logins. Series are parallel arrays of equal length, oldest sample first, spaced by
+        `intervalSeconds`; `devDashboardApp` keeps a 90-sample window, so the default is 90 samples
+        at one second.
+      operationId: devMetrics
+      parameters:
+        - $ref: '#/components/parameters/WorldQuery'
+        - name: samples
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 3600, default: 90 }
+        - name: intervalSeconds
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 3600, default: 1 }
+      responses:
+        '200':
+          description: The series.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MetricsHistory' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/metrics/stream:
+    get:
+      tags: [dev-telemetry]
+      summary: Live telemetry stream
+      description: |
+        Server-sent events, one `sample` event per tick of the sampler. Backs the header's
+        Live/paused switch - pausing closes the stream, resuming reopens it and backfills from
+        `/dev/metrics`.
+      operationId: devMetricsStream
+      parameters:
+        - $ref: '#/components/parameters/WorldQuery'
+      responses:
+        '200':
+          description: An open event stream.
+          content:
+            text/event-stream:
+              schema: { $ref: '#/components/schemas/MetricsSample' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/runtime:
+    get:
+      tags: [dev-telemetry]
+      summary: Runtime information
+      description: |
+        The dashboard's "Runtime" panel - version, commit, JVM, worlds hosted, connections and GC
+        pauses - and the world/revision label in the developer panel's header bar.
+      operationId: devRuntime
+      responses:
+        '200':
+          description: Runtime information.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Runtime' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/errors:
+    get:
+      tags: [dev-telemetry]
+      summary: Recent errors
+      description: The dashboard's "Recent errors" panel, grouped by message so repeats collapse.
+      operationId: devErrors
+      parameters:
+        - $ref: '#/components/parameters/WorldQuery'
+        - name: level
+          in: query
+          schema:
+            type: string
+            enum: [all, warn, error]
+            default: all
+        - name: since
+          in: query
+          description: Defaults to 24 hours ago, matching the panel's "24h" eyebrow.
+          schema: { type: string, format: date-time }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of errors, newest first.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorEntryPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/console/log:
+    get:
+      tags: [dev-telemetry]
+      summary: Console backlog
+      description: The lines already in the console when the dashboard loads.
+      operationId: devConsoleLog
+      parameters:
+        - $ref: '#/components/parameters/WorldQuery'
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 1000, default: 90 }
+      responses:
+        '200':
+          description: Console lines, oldest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [lines]
+                properties:
+                  lines:
+                    type: array
+                    items: { $ref: '#/components/schemas/ConsoleLine' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/console/stream:
+    get:
+      tags: [dev-telemetry]
+      summary: Live console stream
+      description: Server-sent events, one `line` event per console line.
+      operationId: devConsoleStream
+      parameters:
+        - $ref: '#/components/parameters/WorldQuery'
+      responses:
+        '200':
+          description: An open event stream.
+          content:
+            text/event-stream:
+              schema: { $ref: '#/components/schemas/ConsoleLine' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/console/command:
+    post:
+      tags: [dev-telemetry]
+      summary: Run a console command
+      description: |
+        Backs the console's input and Run button. The response carries only the lines produced
+        directly by the command; anything it causes elsewhere arrives on the console stream.
+        Commands the panel already knows about: `help`, `clear`, `world <n>`, `kick <player>`,
+        `broadcast <message>`.
+      operationId: devRunCommand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [command]
+              properties:
+                command:
+                  type: string
+                  minLength: 1
+                  maxLength: 512
+                  examples: ["broadcast server restarting in 5 minutes"]
+                world:
+                  type: integer
+                  description: Target world. Defaults to the console's current target.
+      responses:
+        '200':
+          description: The command ran. Lines include its own echo and output.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [accepted, lines]
+                properties:
+                  accepted:
+                    type: boolean
+                    description: False for an unknown command, which is still logged as a warning.
+                  lines:
+                    type: array
+                    items: { $ref: '#/components/schemas/ConsoleLine' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/UnprocessableEntity' }
+
+  # ---------------------------------------------------------------- dev: players
+
+  /dev/players:
+    get:
+      tags: [dev-players]
+      summary: Look up accounts
+      description: |
+        Backs the workbench's "Look up player" box and the Results list. The query matches display
+        name, account id, IP and world number, which is what the placeholder promises.
+      operationId: devSearchPlayers
+      parameters:
+        - name: q
+          in: query
+          description: Name, account id, IP prefix or world number.
+          schema: { type: string, maxLength: 64 }
+        - name: state
+          in: query
+          schema:
+            type: string
+            enum: [all, online, offline, restarting]
+            default: all
+        - $ref: '#/components/parameters/WorldQuery'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of accounts. Empty `items` drives "No account matches that query."
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DevPlayerPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/players/{playerId}:
+    get:
+      tags: [dev-players]
+      summary: Account detail
+      description: |
+        The workbench header (name, state, rank, account number, world), the "Location" panel, and
+        the "Current activity" panel with its session xp-rate meter.
+      operationId: devGetPlayer
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '200':
+          description: The account.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DevPlayerDetail' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/skills:
+    get:
+      tags: [dev-players]
+      summary: Account skills and combat snapshot
+      description: The Skills tab - the combat snapshot facts and the full skill meter list.
+      operationId: devGetPlayerSkills
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '200':
+          description: Skills and combat state.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DevPlayerSkills' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/equipment:
+    get:
+      tags: [dev-players]
+      summary: Worn equipment
+      description: The Gear tab's Equipment panel. Empty slots are present with a null item.
+      operationId: devGetPlayerEquipment
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '200':
+          description: One entry per equipment slot.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [slots]
+                properties:
+                  slots:
+                    type: array
+                    items: { $ref: '#/components/schemas/EquipmentSlot' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/inventory:
+    get:
+      tags: [dev-players]
+      summary: Inventory
+      description: The Gear tab's Inventory grid and its "used / 28" counter.
+      operationId: devGetPlayerInventory
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '200':
+          description: All 28 slots in order, empty ones included.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Inventory' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/bank:
+    get:
+      tags: [dev-players]
+      summary: Bank contents
+      description: The Gear tab's Bank table. `value` is the Grand Exchange value of the stack.
+      operationId: devGetPlayerBank
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+        - name: tab
+          in: query
+          schema: { type: integer, minimum: 0, maximum: 9 }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of bank items.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BankPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/variables:
+    get:
+      tags: [dev-players]
+      summary: Varbits, varps, attributes and flags
+      description: |
+        The Variables tab. Filtering by name and scope is server-side so the panel's "N shown"
+        counter stays correct for accounts with more variables than fit in one response.
+      operationId: devGetPlayerVariables
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+        - name: q
+          in: query
+          description: Substring match against key and label.
+          schema: { type: string, maxLength: 64 }
+          examples: { varbit: { value: varbit } }
+        - name: scope
+          in: query
+          schema:
+            type: string
+            enum: [all, account, session, world]
+            default: all
+      responses:
+        '200':
+          description: Matching variables. Empty `items` drives "No variable matches that filter."
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, total]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/PlayerVariable' }
+                  total:
+                    type: integer
+                    description: Variables before filtering.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/activity:
+    get:
+      tags: [dev-players]
+      summary: Action history
+      description: The Activity tab's "Action history" panel - this session's actions, newest first.
+      operationId: devGetPlayerActivity
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+        - name: since
+          in: query
+          schema: { type: string, format: date-time }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of actions.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ActionPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/audit:
+    get:
+      tags: [dev-players]
+      summary: Staff audit trail
+      description: |
+        The Activity tab's "Staff audit" panel - every staff action taken against the account,
+        newest first. Moderation actions posted below append here.
+      operationId: devGetPlayerAudit
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of audit entries.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuditPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/chat:
+    get:
+      tags: [dev-players]
+      summary: Chat log
+      description: |
+        The Chat tab. Reading another account's private messages is itself audited. Empty `items`
+        drives "No recent chat for this account."
+      operationId: devGetPlayerChat
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+        - name: channel
+          in: query
+          schema:
+            type: string
+            enum: [all, public, clan, private, game]
+            default: all
+        - name: since
+          in: query
+          description: Defaults to 30 minutes ago, matching the panel's "last 30 min" eyebrow.
+          schema: { type: string, format: date-time }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A page of chat messages, newest first.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ChatPage' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/debug-dump:
+    get:
+      tags: [dev-players]
+      summary: Debug dump
+      description: |
+        Backs "Copy debug dump" - the account's full live state as one blob, for pasting into a bug
+        report. Request `text/plain` for the human-readable form the button copies.
+      operationId: devPlayerDebugDump
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '200':
+          description: The dump.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+            text/plain:
+              schema: { type: string }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /dev/players/{playerId}/kick:
+    post:
+      tags: [dev-players]
+      summary: Disconnect the account
+      description: Backs the "Kick" button. Audited. A no-op on an account that is already offline.
+      operationId: devKickPlayer
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason: { type: string, maxLength: 256 }
+      responses:
+        '202':
+          description: Queued for the next tick.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CommandAccepted' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/PlayerOffline' }
+
+  /dev/players/{playerId}/teleport:
+    post:
+      tags: [dev-players]
+      summary: Teleport the account
+      description: |
+        Backs the Teleport panel's X / Y / Plane inputs and its two buttons - "Teleport" posts the
+        typed coordinates, "Send home" posts `home: true` and ignores them.
+      operationId: devTeleportPlayer
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                x: { type: integer, minimum: 0, maximum: 16383 }
+                y: { type: integer, minimum: 0, maximum: 16383 }
+                plane: { type: integer, minimum: 0, maximum: 3, default: 0 }
+                home:
+                  type: boolean
+                  default: false
+                  description: Send to the account's respawn point, ignoring any coordinates.
+            examples:
+              coordinates: { value: { x: 3183, y: 3436, plane: 0 } }
+              home: { value: { home: true } }
+      responses:
+        '202':
+          description: Queued for the next tick.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CommandAccepted' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/PlayerOffline' }
+        '422': { $ref: '#/components/responses/UnprocessableEntity' }
+
+  /dev/players/{playerId}/follow:
+    post:
+      tags: [dev-players]
+      summary: Follow the account in-world
+      description: |
+        Backs "Follow in-world" - moves the staff member's own character to the account and keeps it
+        there. `DELETE` stops following.
+      operationId: devFollowPlayer
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '202':
+          description: Following.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CommandAccepted' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/PlayerOffline' }
+    delete:
+      tags: [dev-players]
+      summary: Stop following
+      operationId: devUnfollowPlayer
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '204':
+          description: No longer following.
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /dev/players/{playerId}/moderation:
+    get:
+      tags: [dev-players]
+      summary: Active moderation flags
+      description: |
+        Backs the Moderation panel's header, which reads "no active flags" when this comes back
+        empty, and the reason and duration options its two selects offer.
+      operationId: devGetModeration
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      responses:
+        '200':
+          description: Active flags and the options available to the calling staff member.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ModerationState' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    post:
+      tags: [dev-players]
+      summary: Take a moderation action
+      description: |
+        Backs the Mute, Jail and Ban buttons, with the reason, duration and staff note the panel
+        collects. Always audited; the created entry is what `/dev/players/{playerId}/audit` returns.
+      operationId: devModeratePlayer
+      parameters:
+        - $ref: '#/components/parameters/PlayerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action, reason]
+              properties:
+                action:
+                  type: string
+                  enum: [mute, unmute, jail, unjail, ban, unban]
+                reason:
+                  type: string
+                  maxLength: 256
+                  description: One of the reasons from `GET /dev/players/{playerId}/moderation`.
+                  examples: ["Offensive language"]
+                duration:
+                  type: [string, 'null']
+                  description: |
+                    ISO 8601 duration, or null for permanent. The panel's options map to `PT24H`,
+                    `PT48H`, `P7D` and null.
+                  examples: ["PT48H"]
+                note:
+                  type: string
+                  maxLength: 1024
+                  description: Staff-only note.
+      responses:
+        '201':
+          description: Action taken.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuditEntry' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: The calling staff member's rank does not permit this action.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409':
+          description: The account already has, or already lacks, that flag.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/UnprocessableEntity' }
+
+components:
+
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: void_session
+      description: Set by `POST /auth/login`. The browser's normal path.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: The same session token, for non-browser clients.
+
+  parameters:
+
+    Page:
+      name: page
+      in: query
+      description: Zero-based page index.
+      schema: { type: integer, minimum: 0, default: 0 }
+    PageSize:
+      name: pageSize
+      in: query
+      description: Rows per page. The hiscores tables use 25, the boss tables 10.
+      schema: { type: integer, minimum: 1, maximum: 100, default: 25 }
+    NameQuery:
+      name: q
+      in: query
+      description: Player name substring, case-insensitive.
+      schema: { type: string, maxLength: 12 }
+    AccountMode:
+      name: mode
+      in: query
+      description: Account-type filter. Omit or pass `all` for every type.
+      schema:
+        type: string
+        enum: [all, standard, ironman, hardcore, ultimate]
+        default: all
+    SkillPath:
+      name: skill
+      in: path
+      required: true
+      description: Skill id, lowercase. See `GET /hiscores/metadata`.
+      schema: { type: string }
+      examples: { attack: { value: attack } }
+    BossPath:
+      name: boss
+      in: path
+      required: true
+      description: Boss id, lowercase and hyphenated. See `GET /hiscores/metadata`.
+      schema: { type: string }
+      examples: { wyrm: { value: ashen-wyrm } }
+    PlayerName:
+      name: name
+      in: path
+      required: true
+      description: Display name, case-insensitive, URL-encoded.
+      schema: { type: string, minLength: 1, maxLength: 12 }
+      examples: { thornwake: { value: Thornwake } }
+    ItemId:
+      name: itemId
+      in: path
+      required: true
+      description: Item id - the lowercase hyphenated name.
+      schema: { type: string }
+      examples: { sigil: { value: warden-s-sigil } }
+    PlayerId:
+      name: playerId
+      in: path
+      required: true
+      description: Account id, or the lowercase hyphenated display name.
+      schema: { type: string }
+      examples: { spark: { value: power-spark } }
+    WorldQuery:
+      name: world
+      in: query
+      description: World number. Omit to aggregate across every hosted world.
+      schema: { type: integer, minimum: 1 }
+
+  responses:
+
+    BadRequest:
+      description: Malformed request.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Unauthorized:
+      description: No valid session.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Forbidden:
+      description: The session is valid but lacks the required staff rank.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: No such resource.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    PrivateProfile:
+      description: The account has opted out of public profiles in its privacy settings.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    PlayerOffline:
+      description: The action needs the account to be online.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    UnprocessableEntity:
+      description: Well-formed but invalid - see `error.details` for the offending fields.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    TooManyRequests:
+      description: Rate limited.
+      headers:
+        Retry-After:
+          schema: { type: integer }
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+
+  schemas:
+
+    # -------------------------------------------------------------- shared
+
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              description: Stable machine-readable code.
+              examples: [player_not_found]
+            message:
+              type: string
+              description: Human-readable summary. Not for display without review.
+            details:
+              type: array
+              description: Per-field problems, for validation failures.
+              items:
+                type: object
+                required: [field, message]
+                properties:
+                  field: { type: string }
+                  message: { type: string }
+
+    Pagination:
+      type: object
+      required: [page, pageSize, total, totalPages, hasPrevious, hasNext]
+      description: |
+        Everything the site's pagination footer prints - "Showing 1-25 of 1,284" comes from
+        `page`, `pageSize` and `total`; the Previous/Next buttons use `hasPrevious`/`hasNext`.
+      properties:
+        page: { type: integer, minimum: 0 }
+        pageSize: { type: integer, minimum: 1 }
+        total: { type: integer, minimum: 0 }
+        totalPages: { type: integer, minimum: 0 }
+        hasPrevious: { type: boolean }
+        hasNext: { type: boolean }
+
+    AccountModeValue:
+      type: string
+      enum: [standard, ironman, hardcore, ultimate]
+
+    # -------------------------------------------------------------- auth and account
+
+    Session:
+      type: object
+      required: [token, expiresAt, account]
+      properties:
+        token:
+          type: string
+          description: Opaque session token. Also set as the `void_session` cookie.
+        expiresAt: { type: string, format: date-time }
+        account: { $ref: '#/components/schemas/AccountSummary' }
+
+    AccountSummary:
+      type: object
+      description: What the nav-bar dropdown needs, and nothing more.
+      required: [id, displayName, email, roles, staff]
+      properties:
+        id: { type: string }
+        displayName:
+          type: string
+          examples: [rotce]
+        email:
+          type: string
+          format: email
+          examples: [zezima@voidps.dev]
+        avatarUrl: { type: [string, 'null'], format: uri }
+        roles:
+          type: array
+          items:
+            type: string
+            enum: [player, moderator, administrator]
+        staff:
+          type: boolean
+          description: |
+            True when any role outranks `player`. Gates the dropdown's "Developer panel" entry -
+            the `isAdmin` flag `accountMenu` takes today.
+        member: { type: boolean }
+        memberUntil: { type: [string, 'null'], format: date-time }
+
+    Account:
+      allOf:
+        - $ref: '#/components/schemas/AccountSummary'
+        - type: object
+          required: [createdAt, emailVerified, twoFactorEnabled]
+          properties:
+            createdAt: { type: string, format: date-time }
+            lastLoginAt: { type: [string, 'null'], format: date-time }
+            emailVerified: { type: boolean }
+            twoFactorEnabled: { type: boolean }
+            mode: { $ref: '#/components/schemas/AccountModeValue' }
+            renameAvailableAt:
+              type: [string, 'null']
+              format: date-time
+              description: When the display name may next be changed.
+
+    AccountSettings:
+      type: object
+      required: [privacy, notifications]
+      properties:
+        privacy:
+          type: object
+          required: [publicAdventurersLog, publicHiscores]
+          properties:
+            publicAdventurersLog:
+              type: boolean
+              description: |
+                When false, `/players/{name}` and its sub-resources return 403 to everyone but the
+                owner and staff. The log's "Find a log" panel points at this setting.
+            publicHiscores:
+              type: boolean
+              description: When false, the account is omitted from every leaderboard.
+            showOnlineStatus: { type: boolean }
+        notifications:
+          type: object
+          properties:
+            email: { type: boolean }
+            membershipExpiry: { type: boolean }
+        preferredWorld: { type: [integer, 'null'] }
+
+    # -------------------------------------------------------------- hiscores
+
+    HiscoresMetadata:
+      type: object
+      required: [updatedAt, skills, bosses, modes, teamSizes]
+      properties:
+        updatedAt:
+          type: string
+          format: date-time
+          description: When ranks were last recalculated. The page prints this next to the search box.
+        nextUpdateAt: { type: string, format: date-time }
+        maxTrackedXp:
+          type: integer
+          description: Experience above this is not tracked. The page's copy says 200,000,000.
+          examples: [200000000]
+        skills:
+          type: array
+          items:
+            type: object
+            required: [id, name, maxLevel]
+            properties:
+              id: { type: string, examples: [attack] }
+              name: { type: string, examples: [Attack] }
+              maxLevel:
+                type: integer
+                description: Level cap - 99 for most skills, 120 for Dungeoneering.
+                examples: [99]
+              iconUrl:
+                type: string
+                description: |
+                  Sprite path. Constitution's sprite is `hitpoints.png`, so serving the path avoids
+                  the special case both the Kotlin and the JS currently carry.
+                examples: ["void/images/skills/attack.png"]
+        bosses:
+          type: array
+          items:
+            type: object
+            required: [id, name]
+            properties:
+              id: { type: string, examples: [ashen-wyrm] }
+              name: { type: string, examples: [Ashen Wyrm] }
+              baseTimeSeconds:
+                type: integer
+                description: Reference clear time, for scaling the fastest-time table.
+        modes:
+          type: array
+          items:
+            type: object
+            required: [id, name]
+            properties:
+              id: { $ref: '#/components/schemas/AccountModeValue' }
+              name: { type: string }
+        teamSizes:
+          type: array
+          description: The team-size chips on the boss tab.
+          items: { type: integer, minimum: 1 }
+
+    OverallLeaderboard:
+      type: object
+      required: [pagination, items, updatedAt]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        updatedAt: { type: string, format: date-time }
+        items:
+          type: array
+          items:
+            type: object
+            required: [rank, name, mode, totalLevel, totalXp]
+            properties:
+              rank: { type: integer, minimum: 1 }
+              name: { type: string }
+              mode: { $ref: '#/components/schemas/AccountModeValue' }
+              totalLevel: { type: integer }
+              totalXp: { type: integer }
+
+    SkillLeaderboard:
+      type: object
+      required: [skill, maxLevel, pagination, items]
+      properties:
+        skill: { type: string, examples: [attack] }
+        skillName: { type: string, examples: [Attack] }
+        maxLevel: { type: integer, examples: [99] }
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items:
+            type: object
+            required: [rank, name, level, xp]
+            properties:
+              rank: { type: integer, minimum: 1 }
+              name: { type: string }
+              level: { type: integer }
+              xp: { type: integer }
+
+    BossKillLeaderboard:
+      type: object
+      required: [boss, pagination, items]
+      properties:
+        boss: { type: string, examples: [ashen-wyrm] }
+        bossName: { type: string, examples: [Ashen Wyrm] }
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items:
+            type: object
+            required: [rank, name, kills]
+            properties:
+              rank: { type: integer, minimum: 1 }
+              name: { type: string }
+              kills: { type: integer }
+
+    BossTimeLeaderboard:
+      type: object
+      required: [boss, pagination, items]
+      properties:
+        boss: { type: string }
+        bossName: { type: string }
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items:
+            type: object
+            required: [rank, name, teamSize, timeSeconds]
+            properties:
+              rank: { type: integer, minimum: 1 }
+              name:
+                type: string
+                description: The submitting account.
+              teamSize: { type: integer, minimum: 1 }
+              team:
+                type: array
+                description: Every member, including the submitter.
+                items: { type: string }
+              timeSeconds:
+                type: number
+                description: Clear time. The site renders it as `m:ss`.
+              achievedAt: { type: string, format: date-time }
+
+    Comparison:
+      type: object
+      required: [a, b, summary, skills, bosses]
+      properties:
+        a: { $ref: '#/components/schemas/ComparisonSide' }
+        b: { $ref: '#/components/schemas/ComparisonSide' }
+        summary:
+          type: array
+          description: The four cards - total experience, total level, skills ahead, boss kills.
+          items:
+            type: object
+            required: [label, leader, detail]
+            properties:
+              label: { type: string, examples: ["Total experience"] }
+              leader:
+                type: [string, 'null']
+                description: Winning player's name, or null when level.
+              detail: { type: string, examples: ["+4,182,904 xp"] }
+        skills:
+          type: array
+          items:
+            type: object
+            required: [skill, a, b, leader]
+            properties:
+              skill: { type: string }
+              skillName: { type: string }
+              a: { $ref: '#/components/schemas/SkillEntry' }
+              b: { $ref: '#/components/schemas/SkillEntry' }
+              leader:
+                type: string
+                enum: [a, b, tie]
+              differenceXp: { type: integer, minimum: 0 }
+        bosses:
+          type: array
+          items:
+            type: object
+            required: [boss, aKills, bKills, leader]
+            properties:
+              boss: { type: string }
+              bossName: { type: string }
+              aKills: { type: integer }
+              bKills: { type: integer }
+              leader:
+                type: string
+                enum: [a, b, tie]
+              differenceKills: { type: integer, minimum: 0 }
+
+    ComparisonSide:
+      type: object
+      required: [name, totalLevel, totalXp, rank]
+      properties:
+        name: { type: string }
+        mode: { $ref: '#/components/schemas/AccountModeValue' }
+        rank: { type: integer }
+        totalLevel: { type: integer }
+        totalXp: { type: integer }
+        bossKills: { type: integer }
+
+    SkillEntry:
+      type: object
+      required: [level, xp]
+      properties:
+        level: { type: integer }
+        xp: { type: integer }
+
+    # -------------------------------------------------------------- players
+
+    PlayerSuggestion:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        rank: { type: [integer, 'null'] }
+        totalLevel: { type: integer }
+        totalXp: { type: integer }
+        world: { type: [integer, 'null'] }
+        mode: { $ref: '#/components/schemas/AccountModeValue' }
+        clan: { type: [string, 'null'] }
+
+    PlayerProfile:
+      type: object
+      required: [name, member, mode, totalLevel, totalXp, combatLevel, questPoints, questPointsMax, joinedAt]
+      properties:
+        name: { type: string }
+        member: { type: boolean }
+        mode: { $ref: '#/components/schemas/AccountModeValue' }
+        world:
+          type: [integer, 'null']
+          description: Current world, or null when offline.
+        gameMode:
+          type: string
+          description: The world's mode, shown beside the world number.
+          examples: [PvP]
+        clan: { type: [string, 'null'] }
+        overallRank: { type: [integer, 'null'] }
+        totalLevel: { type: integer }
+        totalXp: { type: integer }
+        combatLevel: { type: integer }
+        questPoints: { type: integer }
+        questPointsMax: { type: integer }
+        maxedSkills:
+          type: integer
+          description: Skills at their level cap.
+        bossKills: { type: integer }
+        timePlayedHours: { type: number }
+        joinedAt: { type: string, format: date-time }
+        lastSeenAt: { type: [string, 'null'], format: date-time }
+        milestones:
+          type: array
+          description: The log's Milestones panel - already-formatted label/value pairs.
+          items:
+            type: object
+            required: [label, value]
+            properties:
+              label: { type: string, examples: ["Skills at 99"] }
+              value: { type: string, examples: ["7 of 25"] }
+
+    PlayerSkills:
+      type: object
+      required: [totalLevel, totalXp, maxedCount, items]
+      properties:
+        totalLevel: { type: integer }
+        totalXp: { type: integer }
+        maxedCount: { type: integer }
+        items:
+          type: array
+          items:
+            type: object
+            required: [skill, name, level, maxLevel, xp, progressPercent]
+            properties:
+              skill: { type: string, examples: [attack] }
+              name: { type: string, examples: [Attack] }
+              level: { type: integer }
+              maxLevel: { type: integer }
+              xp: { type: integer }
+              rank: { type: [integer, 'null'] }
+              progressPercent:
+                type: integer
+                minimum: 0
+                maximum: 100
+                description: Level as a percentage of the cap, for the meter.
+              iconUrl: { type: string }
+
+    PlayerBosses:
+      type: object
+      required: [totalKills, items]
+      properties:
+        totalKills: { type: integer }
+        items:
+          type: array
+          items:
+            type: object
+            required: [boss, name, kills]
+            properties:
+              boss: { type: string }
+              name: { type: string }
+              kills: { type: integer }
+              rank:
+                type: [integer, 'null']
+                description: Null when unranked - the table prints "unranked".
+              fastestSeconds:
+                type: [number, 'null']
+                description: Null when never killed - the table prints an em dash.
+              lastKillAt: { type: [string, 'null'], format: date-time }
+
+    PlayerQuests:
+      type: object
+      required: [completed, total, questPoints, questPointsMax, items]
+      properties:
+        completed: { type: integer }
+        total: { type: integer }
+        questPoints: { type: integer }
+        questPointsMax: { type: integer }
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, name, difficulty, status]
+            properties:
+              id: { type: string }
+              name: { type: string, examples: ["The Sunken Archive"] }
+              difficulty:
+                type: string
+                enum: [novice, intermediate, experienced, master, grandmaster]
+              status:
+                type: string
+                enum: [complete, started, not-started]
+              questPoints: { type: integer }
+              durationMinutes:
+                type: [integer, 'null']
+                description: How long this account took. Null when not complete.
+              completedAt: { type: [string, 'null'], format: date-time }
+
+    PlayerEventPage:
+      type: object
+      required: [pagination, items]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, type, text, occurredAt]
+            properties:
+              id: { type: string }
+              type:
+                type: string
+                enum: [skill, quest, combat, account]
+                description: Matches the panel's filter tabs.
+              text:
+                type: string
+                examples: ["Reached level 99 Cooking."]
+              occurredAt: { type: string, format: date-time }
+
+    # -------------------------------------------------------------- exchange
+
+    MarketSummary:
+      type: object
+      required: [trackedItems, valueTraded24h, tradesSettled24h, marketIndex, lastSampleAt]
+      properties:
+        trackedItems: { type: integer }
+        worlds:
+          type: integer
+          description: Worlds contributing samples - the "across 34 worlds" note.
+        valueTraded24h:
+          type: integer
+          description: Total gp changing hands in the last 24 hours.
+        tradesSettled24h: { type: integer }
+        marketIndex:
+          type: number
+          description: Mean fractional price move today. 0.0134 renders as "+1.34%".
+        lastSampleAt: { type: string, format: date-time }
+        nextSampleAt: { type: string, format: date-time }
+
+    ItemCategory:
+      type: object
+      required: [id, name, code, itemCount]
+      properties:
+        id: { type: string, examples: [weapons] }
+        name: { type: string, examples: [Weapons] }
+        code:
+          type: string
+          description: Three-letter tile code, e.g. WPN.
+          maxLength: 4
+        description:
+          type: string
+          description: The blurb shown on an item page below its name.
+        itemCount: { type: integer }
+
+    ItemSummary:
+      type: object
+      description: A row in any of the exchange's lists.
+      required: [id, name, category, price, delta24h]
+      properties:
+        id: { type: string, examples: [warden-s-sigil] }
+        name: { type: string, examples: ["Warden's sigil"] }
+        category: { type: string, examples: [curios] }
+        categoryName: { type: string, examples: [Curios] }
+        categoryCode: { type: string, examples: [CUR] }
+        examine: { type: string }
+        iconUrl: { type: [string, 'null'] }
+        price:
+          type: integer
+          description: Guide price in gp.
+        delta24h:
+          type: number
+          description: Fractional change over 24 hours. -0.0212 renders as "-2.12%".
+        volume24h: { type: integer }
+        valueTraded24h: { type: integer }
+        buyLimit: { type: integer }
+        members: { type: boolean }
+
+    ItemDetail:
+      allOf:
+        - $ref: '#/components/schemas/ItemSummary'
+        - type: object
+          required: [description, tradeable, margin, tax, highAlchemy, lowAlchemy, shopValue, updatedAt]
+          properties:
+            description:
+              type: string
+              description: The category blurb shown under the item name.
+            tradeable:
+              type: boolean
+              description: False renders the "Trading" badge as halted.
+            buyPrice: { type: integer }
+            sellPrice: { type: integer }
+            margin:
+              type: integer
+              description: Buy minus sell.
+            tax:
+              type: integer
+              description: Exchange tax on a sale - 2%, capped at 5,000,000.
+            highAlchemy: { type: integer }
+            lowAlchemy: { type: integer }
+            shopValue: { type: integer }
+            buyLimitWindowHours:
+              type: integer
+              description: The "per 4 hours" note beside the buy limit.
+              examples: [4]
+            updatedAt: { type: string, format: date-time }
+
+    ItemPage:
+      type: object
+      required: [pagination, items]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/ItemSummary' }
+
+    MarketHighlights:
+      type: object
+      required: [topVolume, risers, fallers, mostExpensive]
+      properties:
+        topVolume:
+          type: array
+          items: { $ref: '#/components/schemas/ItemSummary' }
+        risers:
+          type: array
+          items: { $ref: '#/components/schemas/ItemSummary' }
+        fallers:
+          type: array
+          items: { $ref: '#/components/schemas/ItemSummary' }
+        mostExpensive:
+          type: array
+          items: { $ref: '#/components/schemas/ItemSummary' }
+
+    PriceHistory:
+      type: object
+      required: [itemId, timeframe, intervalSeconds, points]
+      properties:
+        itemId: { type: string }
+        timeframe:
+          type: string
+          enum: ['24h', '7d', '30d', '1y', all]
+        intervalSeconds:
+          type: integer
+          description: Spacing between points.
+        points:
+          type: array
+          description: Oldest first. The last point is the current sample.
+          items:
+            type: object
+            required: [at, buy, sell, volume]
+            properties:
+              at: { type: string, format: date-time }
+              buy: { type: integer }
+              sell: { type: integer }
+              volume: { type: integer }
+
+    ItemPrice:
+      type: object
+      required: [id, price, delta24h]
+      properties:
+        id: { type: string }
+        price: { type: integer }
+        buy: { type: integer }
+        sell: { type: integer }
+        delta24h: { type: number }
+
+    # -------------------------------------------------------------- worlds
+
+    World:
+      type: object
+      required: [number, region, mode, players, capacity, status, members]
+      properties:
+        number: { type: integer }
+        region:
+          type: string
+          examples: ["Germany - Falkenstein"]
+        country: { type: [string, 'null'] }
+        members: { type: boolean }
+        mode:
+          type: string
+          examples: [PvP]
+        players: { type: integer }
+        capacity: { type: integer }
+        ping:
+          type: [integer, 'null']
+          description: Milliseconds from the server's own probe. Null when unknown.
+        status:
+          type: string
+          enum: [online, full, restarting, offline]
+        hostname: { type: [string, 'null'], examples: ["voidmmo-eu-1"] }
+
+    # -------------------------------------------------------------- dev telemetry
+
+    DevStats:
+      type: object
+      required: [playersOnline, uptimeSeconds, tick, cpuPercent, heapUsedBytes, heapMaxBytes]
+      properties:
+        playersOnline: { type: integer }
+        playersPeakToday: { type: integer }
+        playersChangeLastHour: { type: integer }
+        loginsPerMinute: { type: integer }
+        uptimeSeconds: { type: integer }
+        startedAt: { type: string, format: date-time }
+        cpuPercent: { type: number }
+        cores: { type: integer }
+        heapUsedBytes: { type: integer }
+        heapMaxBytes: { type: integer }
+        rssBytes: { type: integer }
+        connections: { type: integer }
+        connectionLimit: { type: integer }
+        worldsHosted:
+          type: array
+          items: { type: integer }
+        tick:
+          type: object
+          required: [currentMs, averageMs, budgetMs]
+          description: The "Tick duration" panel's five figures.
+          properties:
+            currentMs: { type: number }
+            averageMs: { type: number }
+            p95Ms: { type: number }
+            maxMs: { type: number }
+            budgetMs:
+              type: integer
+              description: The tick budget the panel prints - 600 ms.
+            overruns:
+              type: integer
+              description: Samples in the window that exceeded the budget.
+
+    MetricsHistory:
+      type: object
+      required: [sampledAt, intervalSeconds, series]
+      properties:
+        sampledAt:
+          type: string
+          format: date-time
+          description: Instant of the newest sample.
+        intervalSeconds: { type: integer }
+        series:
+          type: object
+          description: Parallel arrays, oldest first, all of the same length.
+          properties:
+            cpuPercent:
+              type: array
+              items: { type: number }
+            heapUsedBytes:
+              type: array
+              items: { type: integer }
+            rssBytes:
+              type: array
+              items: { type: integer }
+            tickMs:
+              type: array
+              items: { type: number }
+            players:
+              type: array
+              items: { type: integer }
+            loginsPerMinute:
+              type: array
+              items: { type: integer }
+
+    MetricsSample:
+      type: object
+      description: One `sample` event on the telemetry stream.
+      required: [at]
+      properties:
+        at: { type: string, format: date-time }
+        world: { type: [integer, 'null'] }
+        cpuPercent: { type: number }
+        heapUsedBytes: { type: integer }
+        rssBytes: { type: integer }
+        tickMs: { type: number }
+        players: { type: integer }
+        loginsPerMinute: { type: integer }
+
+    Runtime:
+      type: object
+      required: [version, revision, commit, jvm, startedAt]
+      properties:
+        version: { type: string, examples: ["0.41.2"] }
+        revision:
+          type: integer
+          description: Game revision. Void targets 634; the panel's sample data shows 231.
+        commit: { type: string, examples: [9f1c3ad] }
+        jvm: { type: string, examples: ["OpenJDK 21.0.3"] }
+        startedAt: { type: string, format: date-time }
+        worldsHosted:
+          type: array
+          items: { type: integer }
+        connections: { type: integer }
+        connectionLimit: { type: integer }
+        gcPausesLastHour:
+          type: object
+          properties:
+            count: { type: integer }
+            averageMs: { type: number }
+
+    ErrorEntryPage:
+      type: object
+      required: [pagination, items]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items:
+            type: object
+            required: [id, level, message, occurredAt, occurrences]
+            properties:
+              id: { type: string }
+              level:
+                type: string
+                enum: [warn, error]
+              message:
+                type: string
+                examples: ["NullPointerException: PathFinder.step(Region.java:214)"]
+              source:
+                type: string
+                description: Subsystem - `world 9`, `persistence`, `login-service`.
+              world: { type: [integer, 'null'] }
+              thread: { type: [string, 'null'], examples: [game-tick] }
+              occurrences:
+                type: integer
+                minimum: 1
+                description: Times this message repeated in the window.
+              occurredAt:
+                type: string
+                format: date-time
+                description: Most recent occurrence.
+              stackTrace: { type: [string, 'null'] }
+
+    ConsoleLine:
+      type: object
+      required: [level, text, at]
+      properties:
+        level:
+          type: string
+          enum: [info, ok, warn, error]
+          description: Matches the console's four line colours.
+        text: { type: string }
+        at: { type: string, format: date-time }
+        world: { type: [integer, 'null'] }
+
+    # -------------------------------------------------------------- dev players
+
+    DevPlayerPage:
+      type: object
+      required: [pagination, items]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/DevPlayerSummary' }
+
+    DevPlayerSummary:
+      type: object
+      required: [id, name, state, rank]
+      properties:
+        id: { type: string, examples: [power-spark] }
+        name: { type: string, examples: ["Power Spark"] }
+        accountNumber: { type: string, examples: ["1,284,551"] }
+        state:
+          type: string
+          enum: [online, offline, restarting]
+        rank:
+          type: string
+          enum: [free, member, moderator, administrator]
+        world: { type: [integer, 'null'] }
+        sessionSeconds:
+          type: [integer, 'null']
+          description: Length of the current session. Null when offline.
+
+    DevPlayerDetail:
+      allOf:
+        - $ref: '#/components/schemas/DevPlayerSummary'
+        - type: object
+          required: [location, activity]
+          properties:
+            ip:
+              type: string
+              description: |
+                Masked unless the calling staff member holds the administrator role, in which case
+                the full address is returned and the read is audited.
+              examples: ["89.44.12.- masked"]
+            hostname: { type: [string, 'null'], examples: ["voidmmo-eu-1"] }
+            client: { type: [string, 'null'], examples: ["0.41.2"] }
+            lastLoginAt: { type: [string, 'null'], format: date-time }
+            createdAt: { type: string, format: date-time }
+            location:
+              type: object
+              required: [region, x, y, plane]
+              properties:
+                region:
+                  type: string
+                  examples: ["Varrock - West bank"]
+                x: { type: integer }
+                y: { type: integer }
+                plane: { type: integer, minimum: 0, maximum: 3 }
+                wildernessLevel: { type: [integer, 'null'] }
+            activity:
+              type: object
+              required: [summary]
+              description: The "Current activity" panel.
+              properties:
+                summary:
+                  type: string
+                  examples: ["Trading - Grand Exchange"]
+                detail:
+                  type: string
+                  examples: ["Offer 1 of 3 pending - 4,200 nature runes at 214 gp"]
+                xpPerHour: { type: [integer, 'null'] }
+                xpProgressPercent:
+                  type: [integer, 'null']
+                  minimum: 0
+                  maximum: 100
+                  description: Progress towards the next level in the active skill, for the meter.
+
+    DevPlayerSkills:
+      type: object
+      required: [totalLevel, combatLevel, skills]
+      properties:
+        totalLevel: { type: integer }
+        combatLevel: { type: integer }
+        combat:
+          type: object
+          description: The combat snapshot's four facts.
+          properties:
+            wildernessLevel: { type: [integer, 'null'] }
+            specialEnergyPercent: { type: integer, minimum: 0, maximum: 100 }
+            prayerPoints: { type: integer }
+            prayerPointsMax: { type: integer }
+            hitpoints: { type: integer }
+            hitpointsMax: { type: integer }
+        skills:
+          type: array
+          items:
+            type: object
+            required: [skill, name, level, xp]
+            properties:
+              skill: { type: string }
+              name: { type: string }
+              level: { type: integer }
+              maxLevel: { type: integer }
+              xp: { type: integer }
+              boostedLevel:
+                type: [integer, 'null']
+                description: Current level including boosts and drains, when it differs.
+
+    EquipmentSlot:
+      type: object
+      required: [slot]
+      properties:
+        slot:
+          type: string
+          enum: [head, cape, amulet, weapon, body, shield, legs, hands, feet, ring, ammunition]
+        itemId: { type: [string, 'null'] }
+        itemName:
+          type: [string, 'null']
+          description: Null for an empty slot - the panel prints an em dash.
+        quantity: { type: integer, minimum: 0, default: 0 }
+        iconUrl: { type: [string, 'null'] }
+
+    Inventory:
+      type: object
+      required: [used, capacity, slots]
+      properties:
+        used: { type: integer }
+        capacity: { type: integer, examples: [28] }
+        slots:
+          type: array
+          description: Every slot in order, empty ones included, so indices line up with the grid.
+          items:
+            type: object
+            required: [index]
+            properties:
+              index: { type: integer, minimum: 0 }
+              itemId: { type: [string, 'null'] }
+              itemName: { type: [string, 'null'] }
+              quantity: { type: integer, minimum: 0, default: 0 }
+              iconUrl: { type: [string, 'null'] }
+
+    BankPage:
+      type: object
+      required: [pagination, items, totalValue]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        totalValue: { type: integer }
+        items:
+          type: array
+          items:
+            type: object
+            required: [itemId, itemName, quantity]
+            properties:
+              itemId: { type: string }
+              itemName: { type: string }
+              quantity: { type: integer }
+              tab: { type: integer }
+              value:
+                type: [integer, 'null']
+                description: Exchange value of the stack. Null for untradeable items.
+
+    PlayerVariable:
+      type: object
+      required: [key, value, type, scope]
+      properties:
+        key:
+          type: string
+          examples: ["varbit.4607"]
+        label:
+          type: string
+          description: Human-readable name, when the key is known.
+          examples: ["tutorial stage"]
+        value:
+          type: string
+          description: Rendered value. The type is in `type`.
+          examples: ["12"]
+        type:
+          type: string
+          enum: [varbit, varp, int, double, boolean, string]
+        scope:
+          type: string
+          enum: [account, session, world]
+        updatedAt:
+          type: [string, 'null']
+          format: date-time
+          description: Null when never set.
+
+    ActionPage:
+      type: object
+      required: [pagination, items]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items:
+            type: object
+            required: [at, action]
+            properties:
+              at: { type: string, format: date-time }
+              action:
+                type: string
+                examples: ["Trade offer created"]
+              detail:
+                type: string
+                examples: ["4,200 x nature rune @ 214 gp - Grand Exchange slot 1"]
+
+    AuditPage:
+      type: object
+      required: [pagination, items]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/AuditEntry' }
+
+    AuditEntry:
+      type: object
+      required: [id, action, staff, at]
+      properties:
+        id: { type: string }
+        action:
+          type: string
+          examples: ["Muted 24h"]
+        reason:
+          type: [string, 'null']
+          examples: ["Offensive language in public chat"]
+        note: { type: [string, 'null'] }
+        staff:
+          type: string
+          description: Display name of the staff member, or `system`.
+        at: { type: string, format: date-time }
+        expiresAt:
+          type: [string, 'null']
+          format: date-time
+          description: When a temporary action lapses. Null for permanent or one-off actions.
+
+    ChatPage:
+      type: object
+      required: [pagination, items]
+      properties:
+        pagination: { $ref: '#/components/schemas/Pagination' }
+        items:
+          type: array
+          items:
+            type: object
+            required: [at, channel, text]
+            properties:
+              at: { type: string, format: date-time }
+              channel:
+                type: string
+                enum: [public, clan, private, game]
+              text: { type: string }
+              recipient:
+                type: [string, 'null']
+                description: The other party, for private messages.
+
+    ModerationState:
+      type: object
+      required: [flags, reasons, durations]
+      properties:
+        flags:
+          type: array
+          description: Active flags. Empty means "no active flags".
+          items:
+            type: object
+            required: [type, since]
+            properties:
+              type:
+                type: string
+                enum: [mute, jail, ban]
+              reason: { type: string }
+              staff: { type: string }
+              since: { type: string, format: date-time }
+              expiresAt: { type: [string, 'null'], format: date-time }
+        reasons:
+          type: array
+          description: The Reason select's options.
+          items:
+            type: object
+            required: [id, label]
+            properties:
+              id: { type: string, examples: [offensive-language] }
+              label: { type: string, examples: ["Offensive language"] }
+        durations:
+          type: array
+          description: The Duration select's options. A null value means permanent.
+          items:
+            type: object
+            required: [label]
+            properties:
+              value:
+                type: [string, 'null']
+                description: ISO 8601 duration.
+                examples: ["PT48H"]
+              label: { type: string, examples: ["48 hours"] }
+
+    CommandAccepted:
+      type: object
+      required: [accepted]
+      description: |
+        The result of a queued in-world action. Game actions run on the next tick, so these return
+        202 rather than reporting a finished effect.
+      properties:
+        accepted: { type: boolean }
+        message: { type: string }
+        auditId:
+          type: [string, 'null']
+          description: The audit entry this action created, when it created one.
