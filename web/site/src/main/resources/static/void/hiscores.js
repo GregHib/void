@@ -114,6 +114,16 @@
     };
   }
 
+  function urlFor(state) {
+    var params = new URLSearchParams();
+    if (state.view && state.view !== "overall") params.set("view", state.view);
+    if (state.view === "skills" && state.skill) params.set("skill", state.skill);
+    if (state.view === "bosses" && state.boss) params.set("boss", state.boss);
+    if (state.view === "player" && state.profile) params.set("player", state.profile);
+    var qs = params.toString();
+    return window.location.pathname + (qs ? "?" + qs : "");
+  }
+
   function pageInfo(total, per, page) {
     var pages = Math.max(1, Math.ceil(total / per)), p = Math.min(page, pages - 1);
     return {
@@ -131,12 +141,54 @@
     return {
       view: "overall", skill: "Attack", boss: BOSSES[0][0], mode: "All", team: "All", query: "",
       page: 0, skillPage: 0, kcPage: 0, timePage: 0, perPage: 25,
-      nameA: PLAYERS[0].name, nameB: PLAYERS[3].name, profile: PLAYERS[0].name,
+      nameA: "", nameB: "", profile: PLAYERS[0].name,
       combo: null, comboQ: "",
 
-      open: function (name) { this.profile = name; this.view = "player"; },
-      backToOverall: function () { this.view = "overall"; },
-      compareThis: function () { this.nameA = this.profile; this.view = "compare"; },
+      init: function () {
+        var params = new URLSearchParams(window.location.search);
+        var skill = params.get("skill");
+        var boss = params.get("boss");
+        var player = params.get("player");
+        var view = params.get("view");
+        if (player) this.profile = player;
+        if (skill && SKILLS.some(function (s) { return s[0] === skill; })) this.skill = skill;
+        if (boss && BOSSES.some(function (b) { return b[0] === boss; })) this.boss = boss;
+        if (view) {
+          this.view = view;
+        } else if (boss) {
+          this.view = "bosses";
+        } else if (skill) {
+          this.view = "skills";
+        } else if (player) {
+          this.view = "player";
+        }
+
+        var state = { view: this.view, skill: this.skill, boss: this.boss, profile: this.profile };
+        history.replaceState(state, "", urlFor(state));
+
+        var self = this;
+        window.addEventListener("popstate", function (e) {
+          var s = e.state;
+          if (!s) {
+            self.view = "overall";
+            return;
+          }
+          if (s.skill) self.skill = s.skill;
+          if (s.boss) self.boss = s.boss;
+          if (s.profile) self.profile = s.profile;
+          self.view = s.view || "overall";
+        });
+      },
+
+      navigate: function (patch) {
+        Object.assign(this, patch);
+        var state = { view: this.view, skill: this.skill, boss: this.boss, profile: this.profile };
+        history.pushState(state, "", urlFor(state));
+      },
+
+      open: function (name) { this.navigate({ profile: name, view: "player" }); },
+      backToOverall: function () { this.navigate({ view: "overall" }); },
+      compareThis: function () { this.navigate({ nameA: this.profile, view: "compare" }); },
       prevPage: function (key) { var info = this.pagerFor(key); this[key] = Math.max(0, info.page - 1); },
       nextPage: function (key) { var info = this.pagerFor(key); this[key] = Math.min(info.pages - 1, info.page + 1); },
       pagerFor: function (key) {
@@ -204,10 +256,19 @@
         });
       },
 
-      get compareA() { return byName(this.nameA); },
-      get compareB() { return byName(this.nameB); },
-      get compareEyebrow() { return this.compareA.name + " vs " + this.compareB.name; },
+      get compareA() { return this.nameA ? byName(this.nameA) : null; },
+      get compareB() { return this.nameB ? byName(this.nameB) : null; },
+      get compareReady() { return !!(this.compareA && this.compareB); },
+      get compareEyebrow() {
+        if (!this.compareReady) return "Pick two players to compare";
+        return this.compareA.name + " vs " + this.compareB.name;
+      },
+      get compareBlankText() {
+        if (!this.nameA && !this.nameB) return "Search for two players above to compare their stats.";
+        return "Search for a second player above to compare.";
+      },
       get compareRows() {
+        if (!this.compareReady) return [];
         var A = this.compareA, B = this.compareB;
         return SKILLS.map(function (s, i) {
           var a = A.skills[s[0]], b = B.skills[s[0]];
@@ -221,6 +282,7 @@
         });
       },
       get compareBossRows() {
+        if (!this.compareReady) return [];
         var A = this.compareA, B = this.compareB;
         return BOSSES.map(function (b, i) {
           var a = A.bosses[b[0]].kc, c = B.bosses[b[0]].kc;
@@ -232,6 +294,7 @@
         });
       },
       get compareSummary() {
+        if (!this.compareReady) return [];
         var A = this.compareA, B = this.compareB;
         var bossKcA = BOSSES.reduce(function (t, b) { return t + A.bosses[b[0]].kc; }, 0);
         var bossKcB = BOSSES.reduce(function (t, b) { return t + B.bosses[b[0]].kc; }, 0);

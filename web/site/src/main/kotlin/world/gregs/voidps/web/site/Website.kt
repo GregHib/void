@@ -13,7 +13,7 @@ object Website {
     internal val pages = listOf(
         SitePage("home", "Home", "index.html"),
         SitePage("docs", "Docs", "docs/index.html"),
-        SitePage("worlds", "Worlds", "worlds.html"),
+        SitePage("play", "Play", "play.html"),
         SitePage("exchange", "Exchange", "exchange.html"),
         SitePage("hiscores", "Hiscores", "hiscores.html"),
         SitePage("log", "Log", "log.html"),
@@ -412,14 +412,20 @@ object Website {
         ui.siteFooter()
     }
 
+    /**
+     * The full world list — every community world, not just the navbar [worldMenu] dropdown's
+     * quick-switch rows. Deliberately off the nav bar (reached only via "View all worlds" in that
+     * dropdown); rows connect the same way the dropdown's do, via `worldMenuData()`'s `select()`,
+     * so picking one here persists just as it would from the dropdown.
+     */
     fun worldsPage(): String = voidPage(
         title = "Void — world list",
         description = "Live status for every Void community world.",
-        data = "{ world: 9 }",
     ) {
-        ui.siteHeader(pages, active = "worlds")
+        ui.siteHeader(pages, active = "")
 
         main {
+            xData("worldMenuData()")
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-11) var(--space-8);" +
                 "display:flex;flex-direction:column;gap:var(--space-8)"
             header {
@@ -440,8 +446,8 @@ object Website {
                     ui.badge("Next restart 04:00 UTC", tone = BadgeTone.Gold)
                 }
             }
-            ui.panel(title = "Worlds", meta = "click a row to select", padded = false) {
-                ui.worldTable("world", worlds)
+            ui.panel(title = "Worlds", meta = "click a row to connect", padded = false) {
+                ui.worldTable("world", worlds, onSelect = { "select(${it.number})" })
             }
         }
 

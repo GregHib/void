@@ -54,6 +54,9 @@ object Dev {
         unsafe { raw(html.trimIndent()) }
     }
 
+    /** A single-quoted JS string literal for an [openError]-style inline `@click` call. */
+    private fun jsString(text: String): String = "'" + text.replace("\\", "\\\\").replace("'", "\\'") + "'"
+
     private fun FlowContent.fact(label: String, valueExpr: String, accent: Boolean = false) {
         div {
             style = "display:flex;flex-direction:column;gap:6px"
@@ -135,21 +138,6 @@ object Dev {
                 +sub
             }
         }
-    }
-
-    /** A 300×100-viewBox line/area chart bound to Alpine `:d` expressions for [line] and [area]. */
-    private fun chartSvg(line: String, area: String, lineColor: String, areaFill: String, guides: Int = 3): String {
-        val guideLines = (1..guides).joinToString("") { i ->
-            val y = i * 100.0 / (guides + 1)
-            """<line x1="0" y1="$y" x2="300" y2="$y" stroke="var(--umber-700)" stroke-width="1" vector-effect="non-scaling-stroke"></line>"""
-        }
-        return """
-            <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
-              $guideLines
-              <path :d="$area" fill="$areaFill" stroke="none"></path>
-              <path :d="$line" fill="none" stroke="$lineColor" stroke-width="1.6" vector-effect="non-scaling-stroke"></path>
-            </svg>
-        """
     }
 
     fun dashboardPage(): String = voidPage(
@@ -262,11 +250,25 @@ object Dev {
                             style = "position:relative;height:190px;background:var(--surface-inset);" +
                                 "border:1px solid var(--border-subtle);box-shadow:var(--bevel-down);" +
                                 "border-radius:var(--radius-xs);padding:1px"
-                            rawHtml(chartSvg("tickPath", "tickArea", "var(--gold-300)", "rgba(224,174,60,.12)", guides = 2))
+                            rawHtml(
+                                """
+                                <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
+                                  <line x1="0" y1="33.3" x2="300" y2="33.3" stroke="var(--umber-700)" stroke-width="1" vector-effect="non-scaling-stroke"></line>
+                                  <line x1="0" y1="66.7" x2="300" y2="66.7" stroke="var(--amber-900)" stroke-width="1" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"></line>
+                                  <path :d="tickArea" fill="rgba(224,174,60,.12)" stroke="none"></path>
+                                  <path :d="tickPath" fill="none" stroke="var(--gold-300)" stroke-width="1.6" vector-effect="non-scaling-stroke"></path>
+                                </svg>
+                                """,
+                            )
                             span {
                                 style = "position:absolute;top:4px;left:8px;font:var(--type-code);" +
                                     "font-size:var(--text-3xs);color:var(--text-faint)"
                                 +"300 ms"
+                            }
+                            span {
+                                style = "position:absolute;top:calc(67% - 12px);left:8px;font:var(--type-code);" +
+                                    "font-size:var(--text-3xs);color:var(--feedback-warning)"
+                                +"100 ms warn"
                             }
                         }
                     }
@@ -341,11 +343,22 @@ object Dev {
                         }
                     }
 
+                    ui.panel(title = "Runtime", padded = false) {
+                        for ((index, entry) in runtime.withIndex()) {
+                            keyValueRow(entry.first, entry.second, last = index == runtime.lastIndex)
+                        }
+                    }
+
                     ui.panel(title = "Recent errors", meta = "24h", padded = false) {
                         for ((index, error) in errors.withIndex()) {
                             div {
                                 val border = if (index == errors.lastIndex) "" else "border-bottom:1px solid var(--border-subtle);"
-                                style = "display:flex;flex-direction:column;gap:4px;padding:var(--space-5) var(--space-6);$border"
+                                style = "display:flex;flex-direction:column;gap:4px;padding:var(--space-5) var(--space-6);" +
+                                    "cursor:pointer;$border"
+                                onClick(
+                                    "openError(${jsString(error.level)}, ${jsString(error.tone.name)}, " +
+                                        "${jsString(error.time)}, ${jsString(error.text)}, ${jsString(error.meta)})",
+                                )
                                 div {
                                     style = "display:flex;align-items:center;gap:8px"
                                     ui.badge(error.level, tone = error.tone)
@@ -367,13 +380,40 @@ object Dev {
                             }
                         }
                     }
-
-                    ui.panel(title = "Runtime", padded = false) {
-                        for ((index, entry) in runtime.withIndex()) {
-                            keyValueRow(entry.first, entry.second, last = index == runtime.lastIndex)
-                        }
-                    }
                 }
+            }
+        }
+
+        ui.dialog(
+            model = "errorOpen",
+            title = "Error detail",
+            width = 560,
+            dialogFooter = {
+                ui.button("Close", variant = ButtonVariant.Ghost, onClick = "errorOpen = false")
+                ui.button("Copy", variant = ButtonVariant.Secondary, onClick = "copyError()", textExpr = "copied ? 'Copied' : 'Copy'")
+            },
+        ) {
+            div {
+                style = "display:flex;align-items:center;gap:10px"
+                rawHtml(
+                    """
+                    <span :style="{ background: DEV_BADGE_TONE[errorSel.tone].bg, color: DEV_BADGE_TONE[errorSel.tone].fg, borderColor: DEV_BADGE_TONE[errorSel.tone].bd }" style="display:inline-flex;align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="errorSel.level"></span>
+                    <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="errorSel.time"></span>
+                    """,
+                )
+            }
+            div {
+                style = "background:var(--surface-inset);border:1px solid var(--border-subtle);" +
+                    "box-shadow:var(--bevel-down);border-radius:var(--radius-xs);padding:var(--space-5)"
+                rawHtml(
+                    """
+                    <pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:var(--type-code);font-size:var(--text-xs);color:var(--parch-100)" x-text="errorSel.text"></pre>
+                    """,
+                )
+            }
+            span {
+                style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint)"
+                xText("errorSel.meta")
             }
         }
 
@@ -452,8 +492,10 @@ object Dev {
 
             div {
                 style = "flex:0 1 280px;min-width:240px;display:flex;flex-direction:column;gap:var(--space-6)"
+                attributes["@keydown.enter"] = "searchEnter()"
                 ui.textInput(
                     "dev-player-search", "Look up player", model = "query",
+                    hint = "Press enter to jump straight to the top match.",
                     placeholder = "name, account id or IP", mono = true, icon = Icons.SEARCH,
                 )
                 ui.panel(
@@ -548,8 +590,8 @@ object Dev {
                         }
                     }
                     ui.panel(title = "Skills") {
-                        style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4)"
-                        rawHtml(statBarTemplate("player.skills"))
+                        style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4)"
+                        rawHtml(statBarTemplate("player.skills", big = false, showRank = true))
                     }
                 }
 
@@ -583,16 +625,25 @@ object Dev {
                             """,
                         )
                     }
-                    ui.panel(title = "Bank", padded = false) {
+                    ui.panel(
+                        title = "Bank",
+                        padded = false,
+                        action = { span { style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"; xText("filteredBank.length + ' items'") } },
+                    ) {
+                        div {
+                            style = "padding:var(--space-6);border-bottom:1px solid var(--border-subtle);background:var(--surface-inset)"
+                            ui.textInput("dev-bank-filter", "Filter items", model = "bankFilter", placeholder = "item name…", mono = true, icon = Icons.SEARCH)
+                        }
                         rawHtml(
                             """
-                            <template x-for="(b, idx) in player.bank" :key="idx">
+                            <template x-for="(b, idx) in filteredBank" :key="idx">
                               <div style="display:grid;grid-template-columns:1fr 120px 110px;align-items:center;gap:var(--space-5);padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--border-subtle)">
                                 <span style="font:var(--type-body-sm);color:var(--parch-100)" x-text="b.item"></span>
                                 <span style="font:var(--type-code);font-size:var(--text-xs);color:var(--parch-200);text-align:right" x-text="b.qty"></span>
                                 <span style="font:var(--type-code);font-size:var(--text-xs);color:var(--text-faint);text-align:right" x-text="b.value"></span>
                               </div>
                             </template>
+                            <div x-show="filteredBank.length === 0" style="padding:var(--space-7) var(--space-6);font:var(--type-body-sm);color:var(--text-faint)">No bank items match that filter.</div>
                             """,
                         )
                     }
@@ -654,11 +705,21 @@ object Dev {
                         rawHtml(
                             """
                             <template x-for="(a, idx) in player.activityLog" :key="idx">
-                              <div style="display:grid;grid-template-columns:76px 1fr;gap:var(--space-5);padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--border-subtle)">
-                                <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="a.time"></span>
-                                <div style="display:flex;flex-direction:column;gap:3px">
-                                  <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--parch-100)" x-text="a.action"></span>
-                                  <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)" x-text="a.detail"></span>
+                              <div x-data="{ open: false }" style="border-bottom:1px solid var(--border-subtle)">
+                                <div @click="a.expand && (open = !open)" :style="{ cursor: a.expand ? 'pointer' : 'default' }" style="display:grid;grid-template-columns:76px 1fr 18px;gap:var(--space-5);align-items:start;padding:var(--space-5) var(--space-6)">
+                                  <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="a.time"></span>
+                                  <div style="display:flex;flex-direction:column;gap:3px">
+                                    <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--parch-100)" x-text="a.action"></span>
+                                    <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)" x-text="a.detail"></span>
+                                  </div>
+                                  <span x-show="a.expand" :style="{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }" style="font:var(--text-xs) var(--font-ui);color:var(--text-faint);line-height:1.4;transition:transform var(--dur-fast) var(--ease-standard)">›</span>
+                                </div>
+                                <div x-show="open && a.expand" style="padding:0 var(--space-6) var(--space-5) 92px;background:var(--surface-inset)">
+                                  <div style="display:flex;flex-direction:column;gap:4px">
+                                    <template x-for="(line, li) in (a.expand || [])" :key="li">
+                                      <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="line"></span>
+                                    </template>
+                                  </div>
                                 </div>
                               </div>
                             </template>
@@ -795,26 +856,36 @@ object Dev {
         }
     }
 
-    /** A [listExpr] of `{name, level}` objects rendered as the same meter row `ui.statBar` draws,
-     *  plus the skill's icon from `void/images/skills/` (matched by lowercased name — see
-     *  [Hiscores]'s `skillIcon`, which the same sprite set backs). */
-    private fun statBarTemplate(listExpr: String): String = """
-        <template x-for="s in $listExpr" :key="s.name">
-          <div style="display:flex;align-items:center;gap:var(--space-5);padding:var(--space-4) var(--space-5);background:var(--surface-panel-raised);border:1px solid var(--border-panel);border-radius:var(--radius-sm);box-shadow:var(--bevel-up)">
-            <span style="width:20px;height:20px;flex:none;display:flex;align-items:center;justify-content:center">
-              <img :src="'../void/images/skills/' + s.name.toLowerCase() + '.png'" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
-            </span>
-            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
-              <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
-                <span style="font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--parch-200)" x-text="s.name"></span>
-                <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"><span x-text="s.level"></span> / 99</span>
+    /** A [listExpr] of `{name, level, rank}` objects rendered as the same meter row `ui.statBar`
+     *  draws, plus the skill's icon from `void/images/skills/` (matched by lowercased name — see
+     *  [Hiscores]'s `skillIcon`, which the same sprite set backs). [big] shows the oversized level
+     *  number used for a small highlight set (e.g. combat snapshot); the full skill list turns it
+     *  off in favour of [showRank], which appends the account's hiscore rank for that skill —
+     *  showing both at full size crowds a 24-row grid, so the two are mutually exclusive in practice. */
+    private fun statBarTemplate(listExpr: String, big: Boolean = true, showRank: Boolean = false): String {
+        val bigNumber = """<span style="font:var(--weight-bold) var(--text-xl)/1 var(--font-display);color:var(--gold-300);min-width:34px;text-align:right" x-text="s.level"></span>""".takeIf { big }.orEmpty()
+        val rankLine = """
+            <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)">Rank <span x-text="s.rank.toLocaleString()"></span></span>
+        """.takeIf { showRank }.orEmpty()
+        return """
+            <template x-for="s in $listExpr" :key="s.name">
+              <div style="display:flex;align-items:center;gap:var(--space-5);padding:var(--space-4) var(--space-5);background:var(--surface-panel-raised);border:1px solid var(--border-panel);border-radius:var(--radius-sm);box-shadow:var(--bevel-up)">
+                <span style="width:20px;height:20px;flex:none;display:flex;align-items:center;justify-content:center">
+                  <img :src="'../void/images/skills/' + s.name.toLowerCase() + '.png'" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
+                </span>
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+                  <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">
+                    <span style="font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--parch-200);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="s.name"></span>
+                    <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);white-space:nowrap"><span x-text="s.level"></span> / 99</span>
+                  </div>
+                  <div style="height:6px;background:var(--surface-inset);border:1px solid var(--border-subtle);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);overflow:hidden">
+                    <div :style="{ width: (s.level * 100 / 99) + '%' }" style="height:100%;background:linear-gradient(180deg,var(--gold-300),var(--gold-500))"></div>
+                  </div>
+                  $rankLine
+                </div>
+                $bigNumber
               </div>
-              <div style="height:6px;background:var(--surface-inset);border:1px solid var(--border-subtle);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);overflow:hidden">
-                <div :style="{ width: (s.level * 100 / 99) + '%' }" style="height:100%;background:linear-gradient(180deg,var(--gold-300),var(--gold-500))"></div>
-              </div>
-            </div>
-            <span style="font:var(--weight-bold) var(--text-xl)/1 var(--font-display);color:var(--gold-300);min-width:34px;text-align:right" x-text="s.level"></span>
-          </div>
-        </template>
-    """
+            </template>
+        """
+    }
 }

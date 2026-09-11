@@ -23,7 +23,9 @@ enum class ButtonSize(val height: Int, val paddingX: Int, val font: String) {
  * should appear on at most one button per view. Hover/active/disabled colours come from
  * `components.css` (`.void-btn-*`) since inline styles can't express `:hover`/`:active`.
  * [disabledExpression] binds `:disabled` to an Alpine expression instead of the static [disabled]
- * flag, for buttons (e.g. pagination) whose enabled state depends on client-side state.
+ * flag, for buttons (e.g. pagination) whose enabled state depends on client-side state. [textExpr]
+ * makes the label reactive (e.g. `"copied ? 'Copied' : 'Copy'"`) — [text] is shown until Alpine
+ * hydrates and used as the static fallback, same as [Dev]'s `fact`/`kpiCard` value expressions.
  */
 fun Ui.button(
     text: String,
@@ -34,6 +36,7 @@ fun Ui.button(
     glow: Boolean = false,
     icon: String? = null,
     onClick: String? = null,
+    textExpr: String? = null,
     block: BUTTON.() -> Unit = {},
 ) {
     receiver.button {
@@ -60,6 +63,9 @@ fun Ui.button(
         }
         if (icon != null) {
             icon(icon, size = if (size == ButtonSize.Large) 18 else 16)
+        }
+        if (textExpr != null) {
+            xText(textExpr)
         }
         +text
         block()

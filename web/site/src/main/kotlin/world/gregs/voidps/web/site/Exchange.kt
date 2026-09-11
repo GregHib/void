@@ -47,6 +47,32 @@ object Exchange {
     /** Mirrors the `TFS` keys in `exchange.js` — keep in sync. */
     private val timeframes = listOf("24H", "7D", "30D", "1Y", "All")
 
+    /** Compact sort dropdown for the results panel header — options mirror `sort` in `exchangeApp()`. */
+    private fun FlowContent.sortSelect() {
+        div {
+            style = "position:relative"
+            select {
+                attributes["id"] = "ge-sort"
+                xModel("sort")
+                style = "width:158px;height:26px;padding:0 24px 0 10px;appearance:none;cursor:pointer;color-scheme:dark;" +
+                    "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong);" +
+                    "border-radius:var(--radius-sm);font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);" +
+                    "letter-spacing:var(--tracking-wide)"
+                option { value = "vol"; +"Volume traded" }
+                option { value = "price"; +"Highest price" }
+                option { value = "gain"; +"Biggest gain" }
+                option { value = "loss"; +"Biggest fall" }
+                option { value = "name"; +"Name A–Z" }
+            }
+            span {
+                attributes["aria-hidden"] = "true"
+                style = "position:absolute;right:8px;top:50%;transform:translateY(-50%);" +
+                    "pointer-events:none;color:var(--text-faint);font:10px var(--font-ui)"
+                +"▾"
+            }
+        }
+    }
+
     /** A pill-chip filter button, styled and toggled the same way as [Hiscores]'s mode/team chips. */
     private fun FlowContent.chip(label: String, activeExpression: String, onClick: String) {
         button {
@@ -143,7 +169,7 @@ object Exchange {
                         style = "display:flex;gap:var(--space-5);align-items:flex-end;width:100%;max-width:560px;margin-top:var(--space-2)"
                         div {
                             style = "flex:1;min-width:0"
-                            ui.textInput("ge-search", "Search items", model = "q", placeholder = "Search 26 tracked items", icon = Icons.SEARCH)
+                            ui.textInput("ge-search", "Search items", model = "q", placeholder = "Search 26 tracked items", icon = Icons.SEARCH, onEnter = "goSearch()")
                         }
                         ui.button("Search", size = ButtonSize.Medium, glow = true, onClick = "goSearch()")
                     }
@@ -194,8 +220,9 @@ object Exchange {
     private fun FlowContent.searchView() {
         div {
             xShow("page === 'search'")
+            attributes["class"] = "void-flex"
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8) var(--space-7) var(--space-12);" +
-                "display:flex;flex-direction:column;gap:var(--space-6)"
+                "flex-direction:column;gap:var(--space-6)"
 
             div {
                 h1 {
@@ -209,34 +236,18 @@ object Exchange {
             }
 
             div {
-                style = "display:flex;flex-wrap:wrap;gap:var(--space-6);align-items:flex-end"
-                div {
-                    style = "width:320px;max-width:100%"
-                    ui.textInput("ge-search-2", "Item name", model = "q", placeholder = "Item name", icon = Icons.SEARCH)
-                }
-                div {
-                    style = "width:200px"
-                    ui.select(
-                        "ge-sort", "Sort by", model = "sort",
-                        options = listOf(
-                            "vol" to "Volume traded",
-                            "price" to "Highest price",
-                            "gain" to "Biggest gain",
-                            "loss" to "Biggest fall",
-                            "name" to "Name A–Z",
-                        ),
-                    )
-                }
+                style = "width:320px;max-width:100%"
+                ui.textInput("ge-search-2", "Item name", model = "q", placeholder = "Item name", icon = Icons.SEARCH)
             }
 
             div {
-                style = "display:flex;flex-wrap:wrap;gap:var(--space-3);padding:var(--space-3) 0"
+                style = "display:flex;flex-wrap:wrap;gap:var(--space-3);padding:var(--space-3)"
                 for (c in categories) {
                     chip(c, "cat === '$c'", "cat = '$c'")
                 }
             }
 
-            ui.panel(title = "Results", action = eyebrowText("resultEyebrow"), padded = false) {
+            ui.panel(title = "Results", action = { sortSelect() }, padded = false) {
                 tableHeader(
                     Column("", "48px"), Column("Item", "minmax(0,1fr)"),
                     Column("Buy price", "140px", "right"), Column("24h", "120px", "right"),
@@ -275,8 +286,9 @@ object Exchange {
     private fun FlowContent.itemView() {
         div {
             xShow("page === 'item'")
+            attributes["class"] = "void-flex"
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-7) var(--space-7) var(--space-12);" +
-                "display:flex;flex-direction:column;gap:var(--space-6)"
+                "flex-direction:column;gap:var(--space-6)"
 
             div {
                 style = "display:flex;gap:8px;align-items:center;font:var(--type-body-sm);color:var(--text-faint)"
@@ -308,8 +320,14 @@ object Exchange {
                                     "border:1px solid var(--border-strong);border-radius:var(--radius-pill)"
                                 attributes["x-text"] = "item.cat"
                             }
-                            ui.badge("Members", tone = BadgeTone.Warning, showWhen = "item.memberTone === 'warning'")
-                            ui.badge("Free", tone = BadgeTone.Neutral, showWhen = "item.memberTone !== 'warning'")
+                            span {
+                                style = "display:inline-flex;align-items:center;gap:6px;padding:0 10px;height:20px;" +
+                                    "border:1px solid var(--border-strong);border-radius:var(--radius-pill);" +
+                                    "font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);" +
+                                    "letter-spacing:var(--tracking-caps);text-transform:uppercase;justify-self:start"
+                                attributes["x-bind:style"] = "{ background: item.memberBg, color: item.memberColor, borderColor: item.memberBorder }"
+                                attributes["x-text"] = "item.memberLabel"
+                            }
                             ui.badge("Trading", tone = BadgeTone.Info, dot = true)
                         }
                         p {

@@ -343,6 +343,7 @@ object Site {
         buildDir.mkdirs()
         File(buildDir, "index.html").writeText(Website.homePage())
         File(buildDir, "docs.html").writeText(Website.docsPage())
+        File(buildDir, "play.html").writeText(Play.page())
         File(buildDir, "worlds.html").writeText(Website.worldsPage())
         File(buildDir, "exchange.html").writeText(Exchange.page())
         File(buildDir, "hiscores.html").writeText(Hiscores.page())

@@ -57,6 +57,8 @@
       consoleOpen: true,
       world: 9,
       cpu: [], heap: [], tickMs: [], pop: [], logins: [], log: [], cmd: '', hist: [], histIdx: -1,
+      errorOpen: false, copied: false,
+      errorSel: { level: '', tone: 'Neutral', time: '', text: '', meta: '' },
 
       init: function () {
         var cpu = [], heap = [], tick = [], pop = [], logins = [];
@@ -120,6 +122,19 @@
 
       clearLog: function () { this.log = []; },
       toggleConsole: function () { this.consoleOpen = !this.consoleOpen; },
+
+      openError: function (level, tone, time, text, meta) {
+        this.errorSel = { level: level, tone: tone, time: time, text: text, meta: meta };
+        this.errorOpen = true;
+      },
+      copyError: function () {
+        var e = this.errorSel, self = this;
+        var payload = '[' + e.level + '] ' + e.time + ' — ' + e.text + ' (' + e.meta + ')';
+        navigator.clipboard.writeText(payload).catch(function () {}).then(function () {
+          self.copied = true;
+          setTimeout(function () { self.copied = false; }, 1500);
+        });
+      },
 
       runCmd: function () {
         var text = this.cmd.trim();
@@ -207,7 +222,8 @@
     var out = [];
     SKILL_NAMES.forEach(function (name, i) {
       var v = clamp(Math.round(base + Math.sin(i * 1.7 + base) * spread), 1, 99);
-      out.push({ name: name, level: v });
+      var rank = Math.max(1, Math.round(340000 - v * 3300 - Math.abs(Math.sin(i * 2.3 + base)) * 9000));
+      out.push({ name: name, level: v, rank: rank });
     });
     return out;
   }
@@ -283,10 +299,16 @@
       return [{ time: '14:08:22', action: 'Logout', detail: 'Session ended cleanly · no pending trade' }];
     }
     return [
-      { time: '14:22:07', action: 'Trade offer created', detail: '4,200 × nature rune @ 214 gp · Grand Exchange slot 1' },
+      {
+        time: '14:22:07', action: 'Trade offer created', detail: '4,200 × nature rune @ 214 gp · Grand Exchange slot 1',
+        expand: ['Offer value: 898,800 gp', 'GE tax (1%): 8,988 gp', 'Matched: 0 / 4,200 so far', 'Offer id: 88213-1'],
+      },
       { time: '14:18:44', action: 'Slayer task advanced', detail: 'Greater demon 112 → 107 · streak 41' },
       { time: '14:11:02', action: 'Teleported', detail: 'Varrock teleport · 3183, 3436, 0' },
-      { time: '13:58:31', action: 'Item withdrawn', detail: '2 × abyssal whip from bank tab 3' },
+      {
+        time: '13:58:31', action: 'Item withdrawn', detail: '2 × abyssal whip from bank tab 3',
+        expand: ['Estimated value: 5,148,200 gp', 'Bank tab: 3 (PvM gear)', 'Withdraw mode: note'],
+      },
       { time: '13:44:12', action: 'Level gained', detail: 'Cooking 88 → 89 · 4,470,110 xp' },
       { time: '13:19:03', action: 'Login', detail: 'Client 0.41.2 · 89.44.12.— · revision 231' },
     ];
@@ -383,7 +405,7 @@
   window.devPlayersApp = function () {
     return {
       query: '', selected: 'power-spark', ptab: 'skills',
-      varFilter: '', varScope: 'All scopes',
+      varFilter: '', varScope: 'All scopes', bankFilter: '',
       modReason: 'Offensive language', modDuration: '48 hours', modNote: '',
       tpX: '', tpY: '', tpZ: '',
 
@@ -393,6 +415,10 @@
         this.tpX = String(p.x); this.tpY = String(p.y); this.tpZ = String(p.z);
       },
       select: function (id) { this.selected = id; this.syncTeleport(); },
+      searchEnter: function () {
+        var top = this.filtered[0];
+        if (top) this.select(top.id);
+      },
 
       get filtered() {
         var q = this.query.trim().toLowerCase();
@@ -423,6 +449,13 @@
         });
       },
       resetVarFilter: function () { this.varFilter = ''; this.varScope = 'All scopes'; },
+
+      get filteredBank() {
+        var q = this.bankFilter.trim().toLowerCase();
+        return this.player.bank.filter(function (b) {
+          return !q || b.item.toLowerCase().indexOf(q) >= 0;
+        });
+      },
 
       get inventoryUsed() { return this.player.inventory.filter(function (i) { return !i.empty; }).length; },
       get locationRows() {

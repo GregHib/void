@@ -16,7 +16,7 @@ data class SitePage(val id: String, val label: String, val href: String)
  * each page is its own static file rather than an Alpine tab), and a right-hand slot for the
  * version badge, source link and account action. [active] is the current page's [SitePage.id].
  */
-fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "") {
+fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "", worlds: List<WorldEntry> = defaultWorlds) {
     receiver.header {
         style = "height:56px;display:flex;align-items:stretch;gap:var(--space-8);padding:0 var(--space-7);" +
             "background:var(--surface-header);border-bottom:1px solid var(--border-gold);" +
@@ -55,6 +55,7 @@ fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "
                 icon(Icons.EXTERNAL, size = 14)
                 +"Source"
             }
+            ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
             ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = "${assetPrefix}dev/index.html")
         }
     }

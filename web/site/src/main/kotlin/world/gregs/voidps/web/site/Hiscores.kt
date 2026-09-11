@@ -85,6 +85,8 @@ object Hiscores {
                         TabItem("compare", "Compare"),
                         TabItem("bosses", "Bosses"),
                     ),
+                    filled = false,
+                    onSelect = { id -> "navigate({ view: '$id' })" },
                 )
             }
 
@@ -140,7 +142,7 @@ object Hiscores {
                 val (name, _) = entry
                 val isLastAlone = index == skills.lastIndex && skills.size % 2 != 0
                 button {
-                    onClick("skill = '$name'; skillPage = 0; view = 'skills'")
+                    onClick("navigate({ skill: '$name', skillPage: 0, view: 'skills' })")
                     xToggleStyle(
                         condition = "view === 'skills' && skill === '$name'",
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-left-color:var(--gold-400)",
@@ -229,7 +231,7 @@ object Hiscores {
                 val meta = "best ${bestSeconds / 60}:${(bestSeconds % 60).toString().padStart(2, '0')} · " +
                     "%,d kills logged".format(1200 + base * 37)
                 button {
-                    onClick("boss = '$name'; kcPage = 0; timePage = 0")
+                    onClick("navigate({ boss: '$name', kcPage: 0, timePage: 0, view: 'bosses' })")
                     xToggleStyle(
                         condition = "boss === '$name'",
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
@@ -313,7 +315,7 @@ object Hiscores {
             attributes["class"] = "void-grid"
             style = "grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:var(--space-8);align-items:start"
 
-            ui.panel(title = "Skills", action = eyebrowText("'Jump to a skill table'"), padded = false) {
+            ui.panel(title = "Skills", padded = false) {
                 skillTileGrid()
             }
 
@@ -399,6 +401,16 @@ object Hiscores {
                     comboInput("b", "Player two")
                 }
                 div {
+                    xShow("!compareReady")
+                    style = "margin-top:var(--space-7);padding:var(--space-7);text-align:center;background:var(--surface-inset);" +
+                        "border:1px solid var(--border-panel);border-radius:var(--radius-md);box-shadow:var(--bevel-down)"
+                    span {
+                        style = "font:var(--type-body-sm);color:var(--text-muted)"
+                        attributes["x-text"] = "compareBlankText"
+                    }
+                }
+                div {
+                    xShow("compareReady")
                     attributes["class"] = "void-grid"
                     style = "grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-5);margin-top:var(--space-7)"
                     unsafe {
@@ -417,52 +429,58 @@ object Hiscores {
                 }
             }
 
-            ui.panel(title = "Skill by skill", action = eyebrowText("compareEyebrow"), padded = false) {
-                tableHeader(
-                    Column("Skill", "minmax(0,1.1fr)"), Column("Lvl", "70px", "right"), Column("Xp", "130px", "right"),
-                    Column("Ahead by", "190px", "center"), Column("Xp", "130px"), Column("Lvl", "70px"),
-                )
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="(row,i) in compareRows" :key="row.skill">
-                          <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1.1fr) 70px 130px 190px 130px 70px;align-items:center;padding:var(--space-3) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                            <span style="display:flex;align-items:center;gap:8px;min-width:0">
-                              <span style="width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center">
-                                <img :src="row.icon" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
-                              </span>
-                              <span style="font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--parch-200)" x-text="row.skill"></span>
-                            </span>
-                            <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aLevel"></span>
-                            <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code);font-size:var(--text-2xs)" x-text="row.aXp"></span>
-                            <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
-                              <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
-                            </span>
-                            <span :style="{ color: row.bColor }" style="font:var(--type-code);font-size:var(--text-2xs)" x-text="row.bXp"></span>
-                            <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bLevel"></span>
-                          </div>
-                        </template>
-                        """.trimIndent(),
+            div {
+                xShow("compareReady")
+                ui.panel(title = "Skill by skill", action = eyebrowText("compareEyebrow"), padded = false) {
+                    tableHeader(
+                        Column("Skill", "minmax(0,1.1fr)"), Column("Lvl", "70px", "right"), Column("Xp", "130px", "right"),
+                        Column("Ahead by", "190px", "center"), Column("Xp", "130px"), Column("Lvl", "70px"),
                     )
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="(row,i) in compareRows" :key="row.skill">
+                              <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1.1fr) 70px 130px 190px 130px 70px;align-items:center;padding:var(--space-3) var(--space-6);border-bottom:1px solid var(--umber-900)">
+                                <span style="display:flex;align-items:center;gap:8px;min-width:0">
+                                  <span style="width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center">
+                                    <img :src="row.icon" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
+                                  </span>
+                                  <span style="font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--parch-200)" x-text="row.skill"></span>
+                                </span>
+                                <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aLevel"></span>
+                                <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code);font-size:var(--text-2xs)" x-text="row.aXp"></span>
+                                <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
+                                  <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
+                                </span>
+                                <span :style="{ color: row.bColor }" style="font:var(--type-code);font-size:var(--text-2xs)" x-text="row.bXp"></span>
+                                <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bLevel"></span>
+                              </div>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
             }
 
-            ui.panel(title = "Boss kills", action = eyebrowText("compareEyebrow"), padded = false) {
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="(row,i) in compareBossRows" :key="row.boss">
-                          <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 90px 190px 90px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                            <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
-                            <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aKc"></span>
-                            <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
-                              <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
-                            </span>
-                            <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bKc"></span>
-                          </div>
-                        </template>
-                        """.trimIndent(),
-                    )
+            div {
+                xShow("compareReady")
+                ui.panel(title = "Boss kills", action = eyebrowText("compareEyebrow"), padded = false) {
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="(row,i) in compareBossRows" :key="row.boss">
+                              <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 90px 190px 90px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
+                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aKc"></span>
+                                <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
+                                  <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
+                                </span>
+                                <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bKc"></span>
+                              </div>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
             }
         }
@@ -552,6 +570,15 @@ object Hiscores {
                 }
                 div {
                     style = "display:flex;gap:var(--space-4)"
+                    a {
+                        attributes["class"] = "void-btn void-btn-secondary"
+                        attributes["x-bind:href"] = "'log.html?player=' + encodeURIComponent(profilePlayer.name)"
+                        style = "display:inline-flex;align-items:center;justify-content:center;gap:8px;height:28px;" +
+                            "padding:0 12px;border-radius:var(--radius-md);font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);" +
+                            "letter-spacing:0.06em;cursor:pointer;text-decoration:none;" +
+                            "transition:background var(--dur-fast) var(--ease-standard)"
+                        +"Adventurers log"
+                    }
                     ui.button("Compare", size = ButtonSize.Small, onClick = "compareThis()")
                     ui.button("← Hiscores", variant = ButtonVariant.Secondary, size = ButtonSize.Small, onClick = "backToOverall()")
                 }
