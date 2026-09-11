@@ -21,7 +21,6 @@ private const val FLUFFS_STRING_ID = "fluffs_normal"
 class Fluffs : Script {
 
     init {
-        val doogleSardineItems = setOf("doogle_leaves", "raw_sardine", "sardine")
         itemOnNPCOperate("doogle_sardine", FLUFFS_STRING_ID) {
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)){
@@ -33,12 +32,10 @@ class Fluffs : Script {
 
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)){
-                else -> message("<red>Fluffs doesn't seem to be hungry right now.")
+                "attempt_fluffs_pickup" -> checkItem(item)
+                "milked_fluffs" -> checkItem(item)
+                else -> message("<red>Fluffs doesn't seem to be interested in that.") // Actually message unknown, but I'd rather it not be blank.
             }
-            if(item in doogleSardineItems){
-                mildInterest(item)
-            }
-            message("Nothing interesting happens.")
         }
         itemOnNPCOperate("bucket_of_milk", FLUFFS_STRING_ID) {
             foundCatCheck()
@@ -80,6 +77,16 @@ class Fluffs : Script {
                 "fed_fluffs" -> strokeCatFedFluffs()
                 else -> dontBotherCat()
             }
+        }
+    }
+
+    private suspend fun Player.checkItem(item: String) {
+        val doogleSardineItems = setOf("doogle_leaves", "raw_sardine", "sardine")
+
+        if(item in doogleSardineItems){
+            mildInterest(item)
+        } else {
+            message("<red>Fluffs doesn't seem to be interested in that.")
         }
     }
 
