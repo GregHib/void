@@ -20,6 +20,15 @@ class GertrudesCat : Script {
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
+            // Couldn't find anything official, this is just extrapolating.
+            lines += "<str>I have talked to Gertrude about her cat. She is very upset."
+
+            if(progress == 1){
+                lines += "<navy>I need to speak to <maroon>Gertrude<navy>'s sons,"
+                lines += "<maroon>Shilop <navy>and <maroon>Wilough<navy>, in <maroon>Varrock Marketplace<navy>."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
             questJournal("Gertrude's Cat", lines)
         }
     }
