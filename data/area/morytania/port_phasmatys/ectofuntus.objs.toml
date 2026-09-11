@@ -25,3 +25,4 @@ id = 17118
 [pool_of_slime_4]
 clone = "pool_of_slime"
 id = 17119
+examine = "A subterranean pool of ectoplasm."
