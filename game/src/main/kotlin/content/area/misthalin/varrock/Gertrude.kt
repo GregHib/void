@@ -4,6 +4,7 @@ import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
+import content.entity.player.dialogue.Laugh
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
@@ -29,10 +30,19 @@ class Gertrude : Script {
             when (quest("gertrudes_cat")) {
                 "completed" -> postQuest()
                 "spoke_to_gertrude" -> lookingForInformation()
-                "found_the_boys" -> lookingForInformation()
+                "found_the_boys" -> findingFluffs()
                 else -> unstarted()
             }
         }
+    }
+
+    private suspend fun Player.findingFluffs() {
+        player<Idle>("Hello Gertrude.")
+        npc<Idle>("Hello again, did you manage to find Shilop? I can't keep an eye on him for the life of me.")
+        player<Idle>("He does seem quite a handful.")
+        npc<Laugh>("You have no idea! Did he help at all?")
+        player<Idle>("I think so. I'm just going to look now.")
+        npc<Happy>("Thanks again, adventurer.")
     }
 
     private suspend fun Player.postQuest() {
