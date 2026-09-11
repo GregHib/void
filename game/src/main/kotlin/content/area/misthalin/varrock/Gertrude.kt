@@ -29,6 +29,10 @@ class Gertrude : Script {
 
     init {
         npcOperate("Talk-to", "gertrude") {
+            if(get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false) && quest("gertrudes_cat") == "attempt_fluffs_pickup"){
+                mustBeAReasion()
+                return@npcOperate
+            }
             when (quest("gertrudes_cat")) {
                 "completed" -> postQuest()
                 "spoke_to_gertrude" -> lookingForInformation()
@@ -38,6 +42,13 @@ class Gertrude : Script {
                 else -> unstarted()
             }
         }
+    }
+
+    private suspend fun Player.mustBeAReasion() {
+        player<Happy>("Hi!")
+        npc<Quiz>("Hey traveller, did Fluffs eat the sardines?")
+        player<Neutral>("Yeah, she loved them, but she still won't leave.")
+        npc<Quiz>("Well that is strange, there must be a reason.")
     }
 
     private suspend fun Player.hungryAndThirsty() {

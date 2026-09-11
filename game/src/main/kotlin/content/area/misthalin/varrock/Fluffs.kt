@@ -20,8 +20,8 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 
 private const val FLUFFS_STRING_ID = "fluffs_normal"
-private const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
-private const val FLUFFS_MILK_VAR = "gertrudes_cat_fluffs_milk"
+const val FLUFFS_FED_VAR = "gertrudes_cat_fluffs_fed"
+const val FLUFFS_MILK_VAR = "gertrudes_cat_fluffs_milk"
 const val KITTENS_HIDING_SPOT = "kittens_hiding_here"
 
 class Fluffs : Script {
