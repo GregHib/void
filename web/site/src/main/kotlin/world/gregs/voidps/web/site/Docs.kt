@@ -73,10 +73,12 @@ object Docs {
         ui.siteHeader(pages, active = "docs", assetPrefix = "../", communityPages = communityPages)
 
         div {
+            attributes["class"] = "docs-layout"
             style = "display:grid;grid-template-columns:240px minmax(0,1fr) 220px;flex:1;" +
                 "max-width:var(--container-wide);margin:0 auto;width:100%"
 
             aside {
+                attributes["class"] = "docs-sidebar"
                 style = "background:var(--surface-inset);border-right:1px solid var(--border-panel);" +
                     "padding:var(--space-8) var(--space-6);display:flex;flex-direction:column;gap:var(--space-8)"
                 nav {
@@ -102,6 +104,7 @@ object Docs {
             }
 
             article {
+                attributes["class"] = "docs-article"
                 style = "padding:var(--space-10);min-width:0;max-width:var(--container-body)"
                 div {
                     style = "display:flex;align-items:center;gap:var(--space-4);font:var(--type-label);" +
@@ -124,7 +127,7 @@ object Docs {
                 }
                 if (previous != null || next != null) {
                     div {
-                        style = "display:flex;justify-content:space-between;gap:var(--space-5);" +
+                        style = "display:flex;justify-content:space-between;gap:var(--space-5);flex-wrap:wrap;" +
                             "padding-top:var(--space-6);margin-top:var(--space-8);border-top:1px solid var(--border-subtle)"
                         if (previous != null) {
                             ui.button(
@@ -147,6 +150,7 @@ object Docs {
             }
 
             aside {
+                attributes["class"] = "docs-toc"
                 style = "padding:var(--space-10) var(--space-6);border-left:1px solid var(--border-panel)"
                 val onPage = doc.headings.filter { it.level in 2..3 }
                 if (onPage.isNotEmpty()) {

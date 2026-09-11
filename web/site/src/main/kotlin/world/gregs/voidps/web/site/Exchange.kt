@@ -38,9 +38,6 @@ object Exchange {
         }
     }
 
-    /** [align] is `"left"`, `"right"` or `"center"`; a column keeps its own width from [Column.width]. */
-    private data class Column(val label: String, val width: String, val align: String = "left")
-
     /** Mirrors the category list baked into `exchange.js` (`CAT_BORDER`/`CAT_CODE`/`CAT_BLURB`) — keep in sync. */
     private val categories = listOf("All", "Weapons", "Armour", "Runes", "Consumables", "Resources", "Curios")
 
@@ -86,22 +83,6 @@ object Exchange {
                 "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
                 "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
             +label
-        }
-    }
-
-    private fun FlowContent.tableHeader(vararg columns: Column) {
-        div {
-            style = "display:grid;grid-template-columns:${columns.joinToString(" ") { it.width }};" +
-                "padding:var(--space-4) var(--space-6);background:var(--umber-900);border-bottom:1px solid var(--border-panel);" +
-                "font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
-            for (column in columns) {
-                span {
-                    if (column.align != "left") {
-                        style = "text-align:${column.align}"
-                    }
-                    +column.label
-                }
-            }
         }
     }
 
@@ -198,6 +179,7 @@ object Exchange {
                 }
 
                 div {
+                    attributes["class"] = "exchange-panels-grid"
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:var(--space-7)"
 
                     ui.panel(title = "Top volume", action = eyebrowText("'by gp traded, 24h'"), padded = false) {
@@ -248,31 +230,32 @@ object Exchange {
             }
 
             ui.panel(title = "Results", action = { sortSelect() }, padded = false) {
-                tableHeader(
+                tableScroll(
                     Column("", "48px"), Column("Item", "minmax(0,1fr)"),
                     Column("Buy price", "140px", "right"), Column("24h", "120px", "right"),
                     Column("Volume", "130px", "right"), Column("Limit", "90px", "right"),
-                )
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="r in results" :key="r.id">
-                          <div @click="open(r.id)" style="display:grid;grid-template-columns:48px minmax(0,1fr) 140px 120px 130px 90px;gap:var(--space-6);align-items:center;padding:var(--space-5) var(--space-7);border-bottom:1px solid var(--umber-900);cursor:pointer">
-                            <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
-                              <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
-                            </div>
-                            <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
-                              <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong)" x-text="r.name"></span>
-                              <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="r.examine"></span>
-                            </div>
-                            <span style="font:var(--type-code);text-align:right;color:var(--text-strong)" x-text="r.price"></span>
-                            <span :style="{ color: r.deltaColor }" style="font:var(--type-code);text-align:right" x-text="r.delta"></span>
-                            <span style="font:var(--type-code);text-align:right;color:var(--text-muted)" x-text="r.vol"></span>
-                            <span style="font:var(--type-code);text-align:right;color:var(--text-faint)" x-text="r.limit"></span>
-                          </div>
-                        </template>
-                        """.trimIndent(),
-                    )
+                ) {
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="r in results" :key="r.id">
+                              <div @click="open(r.id)" style="display:grid;grid-template-columns:48px minmax(0,1fr) 140px 120px 130px 90px;gap:var(--space-6);align-items:center;padding:var(--space-5) var(--space-7);border-bottom:1px solid var(--umber-900);cursor:pointer">
+                                <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
+                                  <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
+                                  <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong)" x-text="r.name"></span>
+                                  <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="r.examine"></span>
+                                </div>
+                                <span style="font:var(--type-code);text-align:right;color:var(--text-strong)" x-text="r.price"></span>
+                                <span :style="{ color: r.deltaColor }" style="font:var(--type-code);text-align:right" x-text="r.delta"></span>
+                                <span style="font:var(--type-code);text-align:right;color:var(--text-muted)" x-text="r.vol"></span>
+                                <span style="font:var(--type-code);text-align:right;color:var(--text-faint)" x-text="r.limit"></span>
+                              </div>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
                 div {
                     xShow("results.length === 0")
@@ -425,10 +408,12 @@ object Exchange {
             }
 
             div {
+                attributes["class"] = "exchange-item-grid"
                 style = "display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--space-7);align-items:start"
 
                 ui.panel(title = "Trade data", padded = false) {
                     div {
+                        attributes["class"] = "void-table-scroll"
                         style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"
                         unsafe {
                             raw(

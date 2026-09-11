@@ -33,29 +33,36 @@ fun Ui.panel(
             "box-shadow:var(--bevel-up),var(--shadow-xs)"
         if (title != null) {
             header {
+                attributes["class"] = "void-panel-header"
                 style = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);" +
-                    "padding:0 var(--space-6);height:38px;background:var(--surface-header);" +
+                    "flex-wrap:wrap;row-gap:var(--space-2);padding:var(--space-3) var(--space-6);min-height:38px;" +
+                    "background:var(--surface-header);" +
                     "border-top-left-radius:var(--radius-md);border-top-right-radius:var(--radius-md);" +
                     "border-bottom:1px solid var(--border-gold)"
                 div {
-                    style = "display:flex;align-items:baseline;gap:10px;min-width:0"
+                    style = "display:flex;align-items:baseline;gap:10px;min-width:0;flex:1"
                     h3 {
                         style = "margin:0;font:var(--type-panel-head);letter-spacing:var(--tracking-caps);" +
-                            "text-transform:uppercase;color:var(--gold-300)"
+                            "text-transform:uppercase;color:var(--gold-300);white-space:nowrap;overflow:hidden;" +
+                            "text-overflow:ellipsis"
                         +title
                     }
                     if (subtitle != null) {
                         span {
-                            style = "font:var(--type-body-sm);color:var(--text-faint)"
+                            style = "font:var(--type-body-sm);color:var(--text-faint);white-space:nowrap;" +
+                                "overflow:hidden;text-overflow:ellipsis"
                             +subtitle
                         }
                     }
                 }
                 if (action != null) {
-                    action()
+                    div {
+                        style = "flex:0 0 auto;display:flex;align-items:center;min-width:0"
+                        action()
+                    }
                 } else if (meta != null) {
                     span {
-                        style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
+                        style = "flex:0 0 auto;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
                         +meta
                     }
                 }

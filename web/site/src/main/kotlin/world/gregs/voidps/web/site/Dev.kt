@@ -164,6 +164,7 @@ object Dev {
             }
 
             div {
+                attributes["class"] = "dev-dashboard-grid"
                 style = "display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--space-8);align-items:start"
 
                 div {
@@ -216,6 +217,8 @@ object Dev {
                             style = "position:relative;height:260px;background:var(--surface-inset);" +
                                 "border:1px solid var(--border-subtle);box-shadow:var(--bevel-down);" +
                                 "border-radius:var(--radius-xs);padding:1px"
+                            attributes["@mousemove"] = "onChartHover(${'$'}event, 'cpu', cpu.length)"
+                            attributes["@mouseleave"] = "onChartLeave()"
                             rawHtml(
                                 """
                                 <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
@@ -225,6 +228,7 @@ object Dev {
                                   <path :d="heapArea" fill="rgba(125,157,176,.16)" stroke="none"></path>
                                   <path :d="heapPath" fill="none" stroke="var(--steel-500)" stroke-width="1.5" vector-effect="non-scaling-stroke"></path>
                                   <path :d="cpuPath" fill="none" stroke="var(--gold-400)" stroke-width="1.75" vector-effect="non-scaling-stroke"></path>
+                                  <line x-show="hover.chart === 'cpu'" :x1="hover.x" :x2="hover.x" y1="0" y2="100" stroke="var(--gold-300)" stroke-width="1" stroke-dasharray="2 2" vector-effect="non-scaling-stroke"></line>
                                 </svg>
                                 """,
                             )
@@ -233,6 +237,11 @@ object Dev {
                                     "font-size:var(--text-3xs);color:var(--text-faint)"
                                 +"100% · 12.0 GB"
                             }
+                            rawHtml(
+                                """
+                                <div x-show="hover.chart === 'cpu'" :style="{ left: hover.pct + '%' }" style="position:absolute;top:6px;transform:translateX(-50%);background:var(--umber-950);border:1px solid var(--border-strong);border-radius:var(--radius-xs);padding:2px 8px;font:var(--type-code);font-size:var(--text-3xs);color:var(--parch-100);white-space:nowrap;pointer-events:none;box-shadow:var(--shadow-xs)" x-text="hoverCpuLabel"></div>
+                                """,
+                            )
                         }
                     }
 
@@ -250,6 +259,8 @@ object Dev {
                             style = "position:relative;height:190px;background:var(--surface-inset);" +
                                 "border:1px solid var(--border-subtle);box-shadow:var(--bevel-down);" +
                                 "border-radius:var(--radius-xs);padding:1px"
+                            attributes["@mousemove"] = "onChartHover(${'$'}event, 'tick', tickMs.length)"
+                            attributes["@mouseleave"] = "onChartLeave()"
                             rawHtml(
                                 """
                                 <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
@@ -257,6 +268,7 @@ object Dev {
                                   <line x1="0" y1="66.7" x2="300" y2="66.7" stroke="var(--amber-900)" stroke-width="1" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"></line>
                                   <path :d="tickArea" fill="rgba(224,174,60,.12)" stroke="none"></path>
                                   <path :d="tickPath" fill="none" stroke="var(--gold-300)" stroke-width="1.6" vector-effect="non-scaling-stroke"></path>
+                                  <line x-show="hover.chart === 'tick'" :x1="hover.x" :x2="hover.x" y1="0" y2="100" stroke="var(--gold-300)" stroke-width="1" stroke-dasharray="2 2" vector-effect="non-scaling-stroke"></line>
                                 </svg>
                                 """,
                             )
@@ -270,6 +282,11 @@ object Dev {
                                     "font-size:var(--text-3xs);color:var(--feedback-warning)"
                                 +"100 ms warn"
                             }
+                            rawHtml(
+                                """
+                                <div x-show="hover.chart === 'tick'" :style="{ left: hover.pct + '%' }" style="position:absolute;top:6px;transform:translateX(-50%);background:var(--umber-950);border:1px solid var(--border-strong);border-radius:var(--radius-xs);padding:2px 8px;font:var(--type-code);font-size:var(--text-3xs);color:var(--parch-100);white-space:nowrap;pointer-events:none;box-shadow:var(--shadow-xs)" x-text="hoverTickLabel"></div>
+                                """,
+                            )
                         }
                     }
 
@@ -320,6 +337,8 @@ object Dev {
                             style = "position:relative;height:200px;background:var(--surface-inset);" +
                                 "border:1px solid var(--border-subtle);box-shadow:var(--bevel-down);" +
                                 "border-radius:var(--radius-xs);padding:1px"
+                            attributes["@mousemove"] = "onChartHover(${'$'}event, 'pop', pop.length)"
+                            attributes["@mouseleave"] = "onChartLeave()"
                             rawHtml(
                                 """
                                 <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
@@ -327,7 +346,13 @@ object Dev {
                                   <path :d="loginBarsPath" fill="var(--umber-400)"></path>
                                   <path :d="popArea" fill="rgba(127,174,79,.14)" stroke="none"></path>
                                   <path :d="popPath" fill="none" stroke="var(--moss-500)" stroke-width="1.75" vector-effect="non-scaling-stroke"></path>
+                                  <line x-show="hover.chart === 'pop'" :x1="hover.x" :x2="hover.x" y1="0" y2="100" stroke="var(--gold-300)" stroke-width="1" stroke-dasharray="2 2" vector-effect="non-scaling-stroke"></line>
                                 </svg>
+                                """,
+                            )
+                            rawHtml(
+                                """
+                                <div x-show="hover.chart === 'pop'" :style="{ left: hover.pct + '%' }" style="position:absolute;top:6px;transform:translateX(-50%);background:var(--umber-950);border:1px solid var(--border-strong);border-radius:var(--radius-xs);padding:2px 8px;font:var(--type-code);font-size:var(--text-3xs);color:var(--parch-100);white-space:nowrap;pointer-events:none;box-shadow:var(--shadow-xs)" x-text="hoverPopLabel"></div>
                                 """,
                             )
                         }
@@ -714,7 +739,7 @@ object Dev {
                                   </div>
                                   <span x-show="a.expand" :style="{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }" style="font:var(--text-xs) var(--font-ui);color:var(--text-faint);line-height:1.4;transition:transform var(--dur-fast) var(--ease-standard)">›</span>
                                 </div>
-                                <div x-show="open && a.expand" style="padding:0 var(--space-6) var(--space-5) 92px;background:var(--surface-inset)">
+                                <div x-show="open && a.expand" style="padding:var(--space-4) var(--space-6) var(--space-5) 92px;background:var(--surface-inset)">
                                   <div style="display:flex;flex-direction:column;gap:var(--space-2)">
                                     <template x-for="(line, li) in (a.expand || [])" :key="li">
                                       <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="line"></span>

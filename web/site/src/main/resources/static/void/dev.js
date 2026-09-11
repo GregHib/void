@@ -59,6 +59,7 @@
       cpu: [], heap: [], tickMs: [], pop: [], logins: [], log: [], cmd: '', hist: [], histIdx: -1,
       errorOpen: false, copied: false,
       errorSel: { level: '', tone: 'Neutral', time: '', text: '', meta: '' },
+      hover: { chart: null, index: -1, x: 0, pct: 0 },
 
       init: function () {
         var cpu = [], heap = [], tick = [], pop = [], logins = [];
@@ -123,6 +124,18 @@
       clearLog: function () { this.log = []; },
       toggleConsole: function () { this.consoleOpen = !this.consoleOpen; },
 
+      // Tracks mouse position over a chart as an index into its data array, snapped to the
+      // nearest sample so the hover line lands on an actual plotted point rather than drifting
+      // continuously with the cursor.
+      onChartHover: function (event, chart, n) {
+        var rect = event.currentTarget.getBoundingClientRect();
+        var frac = rect.width ? clamp((event.clientX - rect.left) / rect.width, 0, 1) : 0;
+        var idx = n > 1 ? Math.round(frac * (n - 1)) : 0;
+        var stepX = n > 1 ? 300 / (n - 1) : 0;
+        this.hover = { chart: chart, index: idx, x: idx * stepX, pct: n > 1 ? (idx / (n - 1)) * 100 : 0 };
+      },
+      onChartLeave: function () { this.hover.chart = null; },
+
       openError: function (level, tone, time, text, meta) {
         this.errorSel = { level: level, tone: tone, time: time, text: text, meta: meta };
         this.errorOpen = true;
@@ -176,6 +189,10 @@
       get cpuPath() { return linePath(this.cpu, 0, 100, 300, 100); },
       get heapPath() { return linePath(this.heap, 0, 12, 300, 100); },
       get heapArea() { return areaPath(this.heap, 0, 12, 300, 100); },
+      get hoverCpuLabel() {
+        var i = this.hover.index;
+        return Math.round(this.cpu[i] || 0) + '% CPU · ' + (this.heap[i] || 0).toFixed(1) + ' GB heap';
+      },
 
       get tickNow() { return Math.round(this.tickMs[this.tickMs.length - 1] || 0) + ' ms'; },
       get tickAvg() {
@@ -191,12 +208,17 @@
       get tickOverruns() { return this.tickMs.filter(function (v) { return v > 200; }).length; },
       get tickPath() { return linePath(this.tickMs, 0, 300, 300, 100); },
       get tickArea() { return areaPath(this.tickMs, 0, 300, 300, 100); },
+      get hoverTickLabel() { return Math.round(this.tickMs[this.hover.index] || 0) + ' ms'; },
 
       get popNow() { return fmt(this.pop[this.pop.length - 1] || 0); },
       get popPeak() { return fmt(this.pop.length ? Math.max.apply(null, this.pop) : 0); },
       get loginsNow() { return this.logins[this.logins.length - 1] || 0; },
       get popPath() { return linePath(this.pop, 900, 1600, 300, 100); },
       get popArea() { return areaPath(this.pop, 900, 1600, 300, 100); },
+      get hoverPopLabel() {
+        var i = this.hover.index;
+        return fmt(this.pop[i] || 0) + ' online · ' + (this.logins[i] || 0) + ' logins/min';
+      },
       // A single SVG path of little bar rectangles, rather than a `<template x-for>` of <rect>s —
       // Alpine's template cloning doesn't handle a <template> nested inside foreign (SVG) content.
       get loginBarsPath() {

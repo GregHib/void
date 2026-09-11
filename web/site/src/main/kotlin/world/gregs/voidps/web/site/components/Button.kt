@@ -34,6 +34,7 @@ fun Ui.button(
     disabled: Boolean = false,
     disabledExpression: String? = null,
     glow: Boolean = false,
+    fullWidth: Boolean = false,
     icon: String? = null,
     onClick: String? = null,
     textExpr: String? = null,
@@ -53,11 +54,12 @@ fun Ui.button(
         attributes["class"] = if (isLink) variant.className else "void-btn ${variant.className}"
         val cursor = if (disabled) "not-allowed" else "pointer"
         val animation = if (glow && !disabled) ";animation:voidGlow var(--dur-ambient) var(--ease-glow) infinite" else ""
+        val width = if (fullWidth) "width:100%;" else ""
         style = if (isLink) {
-            "display:inline-flex;align-items:center;gap:var(--space-3);padding:0;font:${size.font};" +
+            "$width display:inline-flex;align-items:center;gap:var(--space-3);padding:0;font:${size.font};" +
                 "letter-spacing:0.06em;cursor:$cursor"
         } else {
-            "display:inline-flex;align-items:center;justify-content:center;gap:var(--space-4);height:${size.height}px;" +
+            "$width display:inline-flex;align-items:center;justify-content:center;gap:var(--space-4);height:${size.height}px;" +
                 "padding:0 ${size.paddingX}px;border-radius:var(--radius-md);font:${size.font};" +
                 "letter-spacing:0.06em;cursor:$cursor;transition:background var(--dur-fast) var(--ease-standard)$animation"
         }

@@ -3,6 +3,7 @@ package world.gregs.voidps.web.site.components
 import kotlinx.html.a
 import kotlinx.html.button
 import kotlinx.html.div
+import kotlinx.html.input
 import kotlinx.html.span
 import kotlinx.html.style
 
@@ -44,9 +45,10 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
 
         div {
             xShow("open")
+            xData("{ query: '' }")
             transition()
             onClickStop("null")
-            style = "position:absolute;top:calc(100% + 10px);right:0;width:240px;" +
+            style = "position:absolute;top:calc(100% + 10px);right:0;width:300px;" +
                 "background:var(--surface-panel);border:1px solid var(--border-gold);" +
                 "border-radius:var(--radius-md);box-shadow:var(--bevel-up),var(--shadow-lg);" +
                 "overflow:hidden;z-index:40"
@@ -59,16 +61,37 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
             }
 
             div {
-                style = "display:flex;flex-direction:column;padding:var(--space-3);max-height:280px;overflow-y:auto"
+                attributes["class"] = "void-input-frame"
+                style = "display:flex;align-items:center;gap:var(--space-4);height:32px;margin:var(--space-3) var(--space-3) 0;" +
+                    "padding:0 10px;background:var(--surface-inset);border:1px solid var(--border-strong);" +
+                    "border-radius:var(--radius-sm);box-shadow:var(--bevel-down)"
+                span {
+                    style = "color:var(--text-faint);display:flex"
+                    icon(Icons.SEARCH, size = 13)
+                }
+                input {
+                    attributes["class"] = "void-input"
+                    xModel("query")
+                    placeholder = "Search worlds"
+                    style = "flex:1;min-width:0;background:transparent;border:none;font:var(--type-body-sm);color:var(--text-strong)"
+                }
+            }
+
+            div {
+                style = "display:flex;flex-direction:column;padding:var(--space-3);max-height:320px;overflow-y:auto"
                 for (world in worlds) {
                     button {
+                        // x-show clears any inline `display` it doesn't own (see base.css), so the flex layout
+                        // is expressed via the `void-flex` class instead of an inline `display:flex`.
+                        attributes["class"] = "void-flex"
+                        xShow(world.matchesSearchExpr())
                         onClick("select(${world.number})")
                         xToggleStyle(
                             condition = "world === ${world.number}",
                             whenTrue = "background:var(--surface-active)",
                             whenFalse = "background:transparent",
                         )
-                        style = "width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;" +
+                        style = "width:100%;align-items:center;justify-content:space-between;gap:10px;" +
                             "padding:var(--space-4) 10px;border:none;border-radius:var(--radius-xs);cursor:pointer;" +
                             "text-align:left;background:transparent;color:var(--text-body);" +
                             "font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
@@ -78,17 +101,33 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
                             span {
                                 style = "color:var(--parch-50)"
                                 +"World ${world.number}"
+                                if (world.members) {
+                                    span {
+                                        style = "color:var(--gold-400);margin-left:var(--space-3);font:var(--type-label);" +
+                                            "letter-spacing:var(--tracking-caps)"
+                                        +"MEMBERS"
+                                    }
+                                }
                             }
                             span {
                                 style = "font:var(--type-label);letter-spacing:var(--tracking-wide);" +
                                     "color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"
-                                +world.region
+                                +"${world.label} · ${world.mode}"
                             }
                         }
                         span {
-                            style = "flex:0 0 auto;font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                                "text-transform:uppercase;color:${world.status.tone.color}"
-                            +world.status.label
+                            style = "flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-1)"
+                            span {
+                                style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
+                                    "text-transform:uppercase;color:${world.status.tone.color}"
+                                +world.status.label
+                            }
+                            if (world.ping != null) {
+                                span {
+                                    style = "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)"
+                                    +"${world.ping}ms"
+                                }
+                            }
                         }
                     }
                 }

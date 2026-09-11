@@ -30,18 +30,26 @@ object Play {
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-11) var(--space-8);" +
                     "display:flex;flex-direction:column;gap:var(--space-8);width:100%"
                 header {
-                    h1 {
-                        style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                        +"Choose a world"
+                    style = "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap"
+                    div {
+                        h1 {
+                            style = "margin:0;font:var(--type-title);color:var(--parch-50)"
+                            +"Choose a world"
+                        }
+                        p {
+                            style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted);max-width:58ch"
+                            +("Every world runs the same open-source server build. Pick one by region and latency, or " +
+                                "by the ruleset you want to play. Select a row to read its description and hosting details.")
+                        }
                     }
-                    p {
-                        style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
-                        +"Pick a world to connect to. You can switch worlds any time from the nav bar."
+                    div {
+                        style = "display:flex;gap:var(--space-8)"
+                        worldStat(String.format("%,d", defaultWorlds.sumOf { it.players }), "Players online")
+                        val online = defaultWorlds.count { it.status != WorldStatus.Offline }
+                        worldStat("$online / ${defaultWorlds.size}", "Worlds up")
                     }
                 }
-                ui.panel(title = "Worlds", meta = "click a row to connect", padded = false) {
-                    ui.worldTable("world", defaultWorlds, onSelect = { "select(${it.number})" })
-                }
+                ui.worldList(defaultWorlds, onSelect = { "select(${it.number})" })
             }
 
             main {

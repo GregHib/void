@@ -66,7 +66,14 @@ object Hiscores {
                     }
                     div {
                         style = "display:flex;align-items:flex-end;gap:var(--space-5);flex-wrap:wrap"
-                        ui.textInput("hs-search", "Find a player", model = "query", placeholder = "Name", icon = Icons.SEARCH)
+                        div {
+                            style = "display:flex;align-items:flex-end;gap:var(--space-4)"
+                            ui.textInput(
+                                "hs-search", "Find a player", model = "query", placeholder = "Name",
+                                icon = Icons.SEARCH, onEnter = "search()",
+                            )
+                            ui.button("Search", size = ButtonSize.Medium, onClick = "search()")
+                        }
                         span {
                             style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);padding-bottom:9px"
                             +"Updated 9 September 2026, 14:20 UTC"
@@ -98,6 +105,7 @@ object Hiscores {
                 skillsView()
                 compareView()
                 bossesView()
+                searchView()
                 playerView()
             }
         }
@@ -252,25 +260,6 @@ object Hiscores {
         }
     }
 
-    /** [align] is `"left"`, `"right"` or `"center"`; a column keeps its own width from [Column.width]. */
-    private data class Column(val label: String, val width: String, val align: String = "left")
-
-    private fun FlowContent.tableHeader(vararg columns: Column) {
-        div {
-            style = "display:grid;grid-template-columns:${columns.joinToString(" ") { it.width }};" +
-                "padding:var(--space-4) var(--space-6);background:var(--umber-900);border-bottom:1px solid var(--border-panel);" +
-                "font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
-            for (column in columns) {
-                span {
-                    if (column.align != "left") {
-                        style = "text-align:${column.align}"
-                    }
-                    +column.label
-                }
-            }
-        }
-    }
-
     private fun FlowContent.comboInput(side: String, label: String) {
         div {
             style = "position:relative;display:flex;flex-direction:column;gap:var(--space-3);min-width:0"
@@ -312,7 +301,7 @@ object Hiscores {
     private fun FlowContent.overallView() {
         div {
             xShow("view === 'overall'")
-            attributes["class"] = "void-grid"
+            attributes["class"] = "void-grid hiscores-split"
             style = "grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:var(--space-8);align-items:start"
 
             ui.panel(title = "Skills", padded = false) {
@@ -323,26 +312,27 @@ object Hiscores {
                 style = "display:flex;flex-direction:column;gap:var(--space-6);min-width:0"
                 modeFilterRow()
                 ui.panel(title = "Overall", action = eyebrowText("overallEyebrow"), padded = false) {
-                    tableHeader(
+                    tableScroll(
                         Column("Rank", "76px"), Column("Player", "minmax(0,1fr)"),
                         Column("Total lvl", "130px", "right"), Column("Total xp", "170px", "right"),
-                    )
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="(row,i) in overallRows" :key="row.name">
-                              <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:76px minmax(0,1fr) 130px 170px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900);transition:background var(--dur-fast) var(--ease-standard)">
-                                <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-lg)/1 var(--font-display)" x-text="row.rank"></span>
-                                <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
-                                  <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
-                                  <span x-show="row.showBadge" class="void-flex" :style="{ background: row.badgeBg, color: row.badgeFg, borderColor: row.badgeBd }" style="align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="row.mode"></span>
-                                </span>
-                                <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.totalLevel"></span>
-                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.totalXp"></span>
-                              </div>
-                            </template>
-                            """.trimIndent(),
-                        )
+                    ) {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="(row,i) in overallRows" :key="row.name">
+                                  <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:76px minmax(0,1fr) 130px 170px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900);transition:background var(--dur-fast) var(--ease-standard)">
+                                    <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-lg)/1 var(--font-display)" x-text="row.rank"></span>
+                                    <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
+                                      <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
+                                      <span x-show="row.showBadge" class="void-flex" :style="{ background: row.badgeBg, color: row.badgeFg, borderColor: row.badgeBd }" style="align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="row.mode"></span>
+                                    </span>
+                                    <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.totalLevel"></span>
+                                    <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.totalXp"></span>
+                                  </div>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
                     }
                     paginationFooter("overallPager", "page")
                 }
@@ -353,29 +343,30 @@ object Hiscores {
     private fun FlowContent.skillsView() {
         div {
             xShow("view === 'skills'")
-            attributes["class"] = "void-grid"
+            attributes["class"] = "void-grid hiscores-split"
             style = "grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:var(--space-8);align-items:start"
 
             ui.panel(title = "Skills", padded = false) { skillTileGrid() }
 
             ui.panel(title = "Skill leaderboard", action = eyebrowText("skillEyebrow"), padded = false) {
-                tableHeader(
+                tableScroll(
                     Column("Rank", "76px"), Column("Player", "minmax(0,1fr)"),
                     Column("Level", "100px", "right"), Column("Xp", "170px", "right"),
-                )
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="(row,i) in skillRows" :key="row.name">
-                          <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:76px minmax(0,1fr) 100px 170px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
-                            <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-lg)/1 var(--font-display)" x-text="row.rank"></span>
-                            <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.level"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.xp"></span>
-                          </div>
-                        </template>
-                        """.trimIndent(),
-                    )
+                ) {
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="(row,i) in skillRows" :key="row.name">
+                              <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:76px minmax(0,1fr) 100px 170px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
+                                <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-lg)/1 var(--font-display)" x-text="row.rank"></span>
+                                <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.level"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.xp"></span>
+                              </div>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
                 paginationFooter("skillPager", "skillPage")
             }
@@ -390,7 +381,7 @@ object Hiscores {
 
             ui.panel(title = "Compare") {
                 div {
-                    attributes["class"] = "void-grid"
+                    attributes["class"] = "void-grid hiscores-compare-grid"
                     style = "grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);gap:var(--space-6);align-items:end"
                     comboInput("a", "Player one")
                     span {
@@ -432,32 +423,33 @@ object Hiscores {
             div {
                 xShow("compareReady")
                 ui.panel(title = "Skill by skill", action = eyebrowText("compareEyebrow"), padded = false) {
-                    tableHeader(
+                    tableScroll(
                         Column("Skill", "minmax(0,1.1fr)"), Column("Lvl", "70px", "right"), Column("Xp", "130px", "right"),
                         Column("Ahead by", "190px", "center"), Column("Xp", "130px"), Column("Lvl", "70px"),
-                    )
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="(row,i) in compareRows" :key="row.skill">
-                              <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1.1fr) 70px 130px 190px 130px 70px;align-items:center;padding:var(--space-3) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                                <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
-                                  <span style="width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center">
-                                    <img :src="row.icon" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
-                                  </span>
-                                  <span style="font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--parch-200)" x-text="row.skill"></span>
-                                </span>
-                                <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aLevel"></span>
-                                <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code);font-size:var(--text-2xs)" x-text="row.aXp"></span>
-                                <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
-                                  <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;gap:var(--space-3);height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
-                                </span>
-                                <span :style="{ color: row.bColor }" style="font:var(--type-code);font-size:var(--text-2xs)" x-text="row.bXp"></span>
-                                <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bLevel"></span>
-                              </div>
-                            </template>
-                            """.trimIndent(),
-                        )
+                    ) {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="(row,i) in compareRows" :key="row.skill">
+                                  <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1.1fr) 70px 130px 190px 130px 70px;align-items:center;padding:var(--space-3) var(--space-6);border-bottom:1px solid var(--umber-900)">
+                                    <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
+                                      <span style="width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center">
+                                        <img :src="row.icon" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
+                                      </span>
+                                      <span style="font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--parch-200)" x-text="row.skill"></span>
+                                    </span>
+                                    <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aLevel"></span>
+                                    <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code);font-size:var(--text-2xs)" x-text="row.aXp"></span>
+                                    <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
+                                      <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;gap:var(--space-3);height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
+                                    </span>
+                                    <span :style="{ color: row.bColor }" style="font:var(--type-code);font-size:var(--text-2xs)" x-text="row.bXp"></span>
+                                    <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bLevel"></span>
+                                  </div>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
                     }
                 }
             }
@@ -465,21 +457,23 @@ object Hiscores {
             div {
                 xShow("compareReady")
                 ui.panel(title = "Boss kills", action = eyebrowText("compareEyebrow"), padded = false) {
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="(row,i) in compareBossRows" :key="row.boss">
-                              <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 90px 190px 90px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
-                                <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aKc"></span>
-                                <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
-                                  <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
-                                </span>
-                                <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bKc"></span>
-                              </div>
-                            </template>
-                            """.trimIndent(),
-                        )
+                    tableScroll(listOf("minmax(0,1fr)", "90px", "190px", "90px")) {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="(row,i) in compareBossRows" :key="row.boss">
+                                  <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 90px 190px 90px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
+                                    <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                    <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aKc"></span>
+                                    <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
+                                      <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
+                                    </span>
+                                    <span :style="{ color: row.bColor }" style="font:var(--type-code)" x-text="row.bKc"></span>
+                                  </div>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
                     }
                 }
             }
@@ -501,44 +495,123 @@ object Hiscores {
                 style = "grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--space-8);align-items:start"
 
                 ui.panel(title = "Top kill counts", action = eyebrowText("boss"), padded = false) {
-                    tableHeader(Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"), Column("Kc", "110px", "right"))
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="(row,i) in bossKcRows" :key="row.name">
-                              <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:56px minmax(0,1fr) 110px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
-                                <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-base)/1 var(--font-display)" x-text="row.rank"></span>
-                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
-                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.kc"></span>
-                              </div>
-                            </template>
-                            """.trimIndent(),
-                        )
+                    tableScroll(Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"), Column("Kc", "110px", "right")) {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="(row,i) in bossKcRows" :key="row.name">
+                                  <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:56px minmax(0,1fr) 110px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
+                                    <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-base)/1 var(--font-display)" x-text="row.rank"></span>
+                                    <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
+                                    <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.kc"></span>
+                                  </div>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
                     }
                     paginationFooter("bossKcPager", "kcPage")
                 }
 
                 ui.panel(title = "Fastest kills", action = eyebrowText("boss"), padded = false) {
                     teamChipsRow()
-                    tableHeader(
+                    tableScroll(
                         Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"),
                         Column("Team", "90px", "right"), Column("Time", "110px", "right"),
-                    )
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="(row,i) in bossTimeRows" :key="row.name">
-                              <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:56px minmax(0,1fr) 90px 110px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
-                                <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-base)/1 var(--font-display)" x-text="row.rank"></span>
-                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
-                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="row.team"></span>
-                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.time"></span>
-                              </div>
-                            </template>
-                            """.trimIndent(),
-                        )
+                    ) {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="(row,i) in bossTimeRows" :key="row.name">
+                                  <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:56px minmax(0,1fr) 90px 110px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
+                                    <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-base)/1 var(--font-display)" x-text="row.rank"></span>
+                                    <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
+                                    <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="row.team"></span>
+                                    <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.time"></span>
+                                  </div>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
                     }
                     paginationFooter("bossTimePager", "timePage")
+                }
+            }
+        }
+    }
+
+    private fun FlowContent.searchSortRow() {
+        div {
+            style = "display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap"
+            span {
+                style = "font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
+                +"Sort by"
+            }
+            div {
+                style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
+                for ((id, label) in listOf("level" to "Total level", "rank" to "Rank", "name" to "Name")) {
+                    button {
+                        onClick("setSearchSort('$id')")
+                        xToggleStyle(
+                            condition = "searchSort === '$id'",
+                            whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
+                            whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
+                        )
+                        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
+                            "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
+                            "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
+                        +label
+                    }
+                }
+            }
+        }
+    }
+
+    private fun FlowContent.searchView() {
+        div {
+            xShow("view === 'search'")
+            attributes["class"] = "void-flex"
+            style = "flex-direction:column;gap:var(--space-6)"
+
+            searchSortRow()
+
+            ui.panel(title = "Search results", action = eyebrowText("searchEyebrow"), padded = false) {
+                div {
+                    xShow("searchSorted.length")
+                    tableScroll(
+                        Column("Rank", "76px"), Column("Player", "minmax(0,1fr)"),
+                        Column("Total lvl", "130px", "right"), Column("Total xp", "170px", "right"),
+                    ) {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="(row,i) in searchRows" :key="row.name">
+                                  <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:76px minmax(0,1fr) 130px 170px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900);transition:background var(--dur-fast) var(--ease-standard)">
+                                    <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-lg)/1 var(--font-display)" x-text="row.rank"></span>
+                                    <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
+                                      <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
+                                      <span x-show="row.showBadge" class="void-flex" :style="{ background: row.badgeBg, color: row.badgeFg, borderColor: row.badgeBd }" style="align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="row.mode"></span>
+                                    </span>
+                                    <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.totalLevel"></span>
+                                    <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.totalXp"></span>
+                                  </div>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
+                    }
+                }
+                div {
+                    xShow("!searchSorted.length")
+                    style = "padding:var(--space-8) var(--space-6);text-align:center"
+                    span {
+                        style = "font:var(--type-body-sm);color:var(--text-muted)"
+                        attributes["x-text"] = "'No players found matching “' + searchQuery + '”'"
+                    }
+                }
+                div {
+                    xShow("searchSorted.length")
+                    paginationFooter("searchPager", "searchPage")
                 }
             }
         }
@@ -580,7 +653,7 @@ object Hiscores {
                         +"Adventurers log"
                     }
                     ui.button("Compare", size = ButtonSize.Small, onClick = "compareThis()")
-                    ui.button("← Hiscores", variant = ButtonVariant.Secondary, size = ButtonSize.Small, onClick = "backToOverall()")
+                    ui.button("← Back", variant = ButtonVariant.Secondary, size = ButtonSize.Small, onClick = "back()")
                 }
             }
 
@@ -620,23 +693,24 @@ object Hiscores {
             }
 
             ui.panel(title = "Boss log", padded = false) {
-                tableHeader(
+                tableScroll(
                     Column("Boss", "minmax(0,1fr)"), Column("Rank", "120px", "right"),
                     Column("Kc", "110px", "right"), Column("Best time", "110px", "right"),
-                )
-                unsafe {
-                    raw(
-                        """
-                        <template x-for="(row,i) in profileBosses" :key="row.boss">
-                          <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 120px 110px 110px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                            <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
-                            <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="row.rank"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.kc"></span>
-                            <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.best"></span>
-                          </div>
-                        </template>
-                        """.trimIndent(),
-                    )
+                ) {
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="(row,i) in profileBosses" :key="row.boss">
+                              <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 120px 110px 110px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
+                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="row.rank"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.kc"></span>
+                                <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.best"></span>
+                              </div>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
                 }
             }
         }
