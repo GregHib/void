@@ -34,6 +34,8 @@ class Gertrude : Script {
                 "spoke_to_gertrude" -> lookingForInformation()
                 "found_the_boys" -> findingFluffs()
                 "found_fluffs" -> hungryAndThirsty()
+                "attempt_fluffs_pickup" -> hungryAndThirsty()
+                "milked_fluffs" -> hungryAndThirsty()
                 else -> unstarted()
             }
         }
@@ -54,14 +56,14 @@ class Gertrude : Script {
 
     private suspend fun Player.findingFluffs() {
         findShilopQ()
-        player<Idle>("I think so. I'm just going to look now.")
+        player<Neutral>("I think so. I'm just going to look now.")
         npc<Happy>("Thanks again, adventurer.")
     }
 
     private suspend fun Player.findShilopQ() {
-        player<Idle>("Hello Gertrude.")
-        npc<Idle>("Hello again, did you manage to find Shilop? I can't keep an eye on him for the life of me.")
-        player<Idle>("He does seem quite a handful.")
+        player<Neutral>("Hello Gertrude.")
+        npc<Neutral>("Hello again, did you manage to find Shilop? I can't keep an eye on him for the life of me.")
+        player<Neutral>("He does seem quite a handful.")
         npc<Laugh>("You have no idea! Did he help at all?")
     }
     private suspend fun Player.postQuest() {
@@ -111,15 +113,15 @@ class Gertrude : Script {
                 npc<Happy>("I suppose I could give you some nice, yummy chocolate cake; maybe even a kitten too, if you seem like a nice sort.")
                 npc<Quiz>("Is that something you could be persuaded with?")
                 choice {
-                    option<Idle>("Well, I suppose I could, though I'd need more details.") {
+                    option<Neutral>("Well, I suppose I could, though I'd need more details.") {
                         questAccepted()
                     }
-                    option<Idle>("Sorry, I'm too busy to play pet rescue.") {
+                    option<Neutral>("Sorry, I'm too busy to play pet rescue.") {
                         questRejected()
                     }
                 }
             }
-            option<Idle>("Sorry, I'm too busy to play pet rescue.") {
+            option<Neutral>("Sorry, I'm too busy to play pet rescue.") {
                 questRejected()
             }
         }
@@ -130,7 +132,7 @@ class Gertrude : Script {
     private suspend fun Player.questAccepted() {
         set(GERTRUDES_CAT_STRING_NAME, "spoke_to_gertrude")
         npc<Happy>("Really? Thank you so much! I really have no idea where she could be!")
-        npc<Idle>("I think my sons, Shilop and Wilough, saw the cat last. They'll be out in the marketplace.")
+        npc<Neutral>("I think my sons, Shilop and Wilough, saw the cat last. They'll be out in the marketplace.")
         player<Quiz>("The marketplace? Which one would that be? It would help to know what they get up to, as well.")
         npc<Happy>("Really? Well, I generally let them do what they want, so I've no idea exactly what they would be doing. They are good lads, though. I'm sure they are just watching the passers-by in Varrock Marketplace.")
         npc<Happy>("Oh, to be young and carefree again!")
@@ -138,7 +140,7 @@ class Gertrude : Script {
     }
 
     private suspend fun Player.lookingForInformation() {
-        player<Idle>("Hello Gertrude.")
+        player<Neutral>("Hello Gertrude.")
         npc<Sad>("Have you seen my poor Fluffs?")
         player<Sad>("I'm afraid not.")
         npc<Quiz>("What about Shilop?")
