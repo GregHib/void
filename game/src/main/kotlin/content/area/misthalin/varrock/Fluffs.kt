@@ -34,7 +34,7 @@ class Fluffs : Script {
             foundCatCheck()
             when(quest(GERTRUDES_CAT_STRING_NAME)){
                 "attempt_fluffs_pickup" -> checkItem(item)
-                else -> message("<red>Fluffs doesn't seem to be interested in that.") // Actually message unknown, but I'd rather it not be blank.
+                else -> message("<red>Fluffs doesn't seem to be interested in that.") // Actual message unknown, but I'd rather it not be blank.
             }
         }
         itemOnNPCOperate("bucket_of_milk", FLUFFS_STRING_ID) {
