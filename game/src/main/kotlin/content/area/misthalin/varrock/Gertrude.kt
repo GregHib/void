@@ -1,6 +1,8 @@
 package content.area.misthalin.varrock
 
+import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
@@ -58,8 +60,23 @@ class Gertrude : Script {
     }
 
     private suspend fun Player.unstarted() {
-        npc<Sad>("Oh dear, oh dear. Whatever shall I do...")
-        player<Quiz>("What's wrong?")
-        npc<Sad>("My poor little kitten has wandered off. Come back another time, dear, I haven't got the heart to chat.")
+        player<Quiz>("Hello, are you okay?")
+        npc<Angry>("Do I look okay? Those kids drive me crazy.")
+        npc<Sad>("I'm sorry. It's just that I've lost her.")
+        player<Quiz>("Lost whom?")
+        npc<Sad>("Fluffs, poor Fluffs. She never hurt anyone.")
+        player<Quiz>("Who's Fluffs?")
+        npc<Sad>("My beloved feline friend, Fluffs. She's been purring by my side for almost a decade. Please, could you go and search for her while I take care of the children?")
+        choice {
+            option<Idle>("Well, I suppose I could, though I'd need more details.") {
+
+            }
+            option<Quiz>("What's in it for me?") {
+
+            }
+            option<Idle>("Sorry, I'm too busy to play pet rescue.") {
+
+            }
+        }
     }
 }
