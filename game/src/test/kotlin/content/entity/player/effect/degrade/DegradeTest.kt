@@ -1,6 +1,8 @@
 package content.entity.player.effect.degrade
 
 import WorldTest
+import containsMessage
+import content.skill.melee.armour.durabilityMessage
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.instruction.handle.interactNpc
@@ -221,5 +223,25 @@ class DegradeTest : WorldTest() {
         npc.interactPlayer(player, "Attack")
         tick(2)
         assertEquals(2499, player.equipment.charges(player, EquipSlot.Shield.index))
+    }
+
+    @Test
+    fun `Durability status reports remaining charges`() {
+        val player = createPlayer()
+        val slot = EquipSlot.Chest.index
+        player.equipment.set(slot, "dharoks_platebody_100", 12345)
+
+        assertTrue(player.equipment[slot].durabilityMessage(player)!!.contains("12345/22500"))
+    }
+
+    @Test
+    fun `Alert is sent when durability reaches zero`() {
+        val player = createPlayer()
+        val slot = EquipSlot.Hat.index
+        player.equipment.set(slot, "ahrims_hood_25")
+        assertTrue(player.equipment.discharge(player, slot))
+
+        assertTrue(player.containsMessage("run out of durability"))
+        assertEquals("ahrims_hood_broken", player.equipment[slot].id)
     }
 }
