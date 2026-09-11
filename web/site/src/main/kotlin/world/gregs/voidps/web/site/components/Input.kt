@@ -27,6 +27,7 @@ fun Ui.textInput(
     icon: String? = null,
     mono: Boolean = false,
     type: InputType = InputType.text,
+    onEnter: String? = null,
 ) {
     receiver.div {
         style = "display:flex;flex-direction:column;gap:6px"
@@ -55,6 +56,9 @@ fun Ui.textInput(
                 }
                 if (placeholder != null) {
                     this.placeholder = placeholder
+                }
+                if (onEnter != null) {
+                    attributes["@keydown.enter"] = onEnter
                 }
                 val font = if (mono) "var(--type-code)" else "var(--type-body-sm)"
                 style = "flex:1;min-width:0;background:transparent;border:none;font:$font;color:var(--text-strong)"

@@ -8,20 +8,26 @@ import kotlinx.html.style
 
 data class TabItem(val id: String, val label: String, val count: String? = null)
 
-/** The tab strip (2px gold rule on the active tab). Pair with [Ui.tabPanel] for each tab's content. */
-fun Ui.tabs(model: String, items: List<TabItem>) {
+/**
+ * The tab strip (2px gold rule on the active tab). Pair with [Ui.tabPanel] for each tab's content.
+ * [filled] toggles whether the active tab gets a raised panel background, or just the gold underline.
+ * [onSelect] overrides the default `model = 'id'` click expression per tab id — pass this when the
+ * page needs to route tab switches through a history-aware navigation method instead.
+ */
+fun Ui.tabs(model: String, items: List<TabItem>, filled: Boolean = true, onSelect: ((String) -> String)? = null) {
     receiver.div {
         attributes["role"] = "tablist"
+        val background = if (filled) "background:var(--surface-header);" else ""
         style = "display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--border-panel);" +
-            "background:var(--surface-header);border-top-left-radius:var(--radius-md);" +
+            "${background}border-top-left-radius:var(--radius-md);" +
             "border-top-right-radius:var(--radius-md)"
         for (item in items) {
             button {
                 attributes["role"] = "tab"
-                onClick("$model = '${item.id}'")
+                onClick(onSelect?.invoke(item.id) ?: "$model = '${item.id}'")
                 xToggleStyle(
                     condition = "$model === '${item.id}'",
-                    whenTrue = "background:var(--surface-panel);border-bottom-color:var(--gold-400);color:var(--text-strong)",
+                    whenTrue = "${if (filled) "background:var(--surface-panel);" else ""}border-bottom-color:var(--gold-400);color:var(--text-strong)",
                     whenFalse = "background:transparent;border-bottom-color:transparent;color:var(--text-muted)",
                 )
                 style = "height:42px;padding:0 18px;display:inline-flex;align-items:center;gap:8px;" +

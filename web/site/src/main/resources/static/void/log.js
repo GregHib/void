@@ -25,9 +25,16 @@
     ["Twin-Fanged", "Intermediate", "info", 63], ["First Light", "Novice", "success", 9],
   ];
   var PLAYER_NAMES = [
-    ["Thornwake", "World 9 · PvP"], ["Ashen Compact", "Clan · 48 members"], ["Brackwater", "World 9"],
-    ["Corvid Ash", "World 12"], ["Duskfen", "World 3"], ["Emberhollow", "World 9"],
-    ["Verdigris", "World 18"], ["Mournvale", "World 24"], ["Sable Kest", "World 9"],
+    ["Thornwake", "World 9 · PvP"], ["Brackwater", "World 9"], ["Corvid Ash", "World 12"],
+    ["Duskfen", "World 3"], ["Emberhollow", "World 9"], ["Verdigris", "World 18"],
+    ["Mournvale", "World 24"], ["Sable Kest", "World 9"], ["Rooksbane", "World 12"],
+    ["Ashgrave", "World 3"], ["Wyrmden", "World 18"], ["Cindermoor", "World 9"],
+  ];
+  // Persistent guild rosters. A player not listed here is clanless (profile.clan is null).
+  var CLANS = [
+    { name: "Ashen Compact", members: ["Thornwake", "Brackwater", "Corvid Ash", "Duskfen", "Emberhollow"] },
+    { name: "Verdant Bastion", members: ["Verdigris", "Mournvale", "Sable Kest"] },
+    { name: "Rookery", members: ["Rooksbane", "Ashgrave", "Wyrmden", "Cindermoor"] },
   ];
   var BAND = ["var(--surface-panel)", "var(--umber-850)"];
   var TODAY = Date.UTC(2026, 8, 9);
@@ -77,6 +84,24 @@
   function band(i) { return BAND[i % 2]; }
   function skillIcon(name) { return "void/images/skills/" + (name === "Constitution" ? "hitpoints" : name.toLowerCase()) + ".png"; }
   function bossAbbr(name) { return name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 3).toUpperCase(); }
+  function clanFor(name) {
+    for (var i = 0; i < CLANS.length; i++) {
+      if (CLANS[i].members.indexOf(name) >= 0) return CLANS[i].name;
+    }
+    return null;
+  }
+  function clanByName(name) {
+    for (var i = 0; i < CLANS.length; i++) {
+      if (CLANS[i].name === name) return CLANS[i];
+    }
+    return CLANS[0];
+  }
+
+  function urlFor(view, profileName, clanName) {
+    if (view === "profile") return "?player=" + encodeURIComponent(profileName);
+    if (view === "clan") return "?clan=" + encodeURIComponent(clanName);
+    return window.location.pathname;
+  }
 
   function buildProfile(name) {
     var r = rng(hashSeed(name));
@@ -140,7 +165,10 @@
       events.push({ kind: "Quest", tone: "info", text: "Completed " + completedQuests[1].name + "." });
     }
     events.push({ kind: "Skill", tone: "gold", text: topSkill.name + " reached level " + topSkill.level + "." });
-    events.push({ kind: "Account", tone: "success", text: "Joined the clan Ashen Compact as a member." });
+    var clanName = clanFor(name);
+    if (clanName) {
+      events.push({ kind: "Account", tone: "success", text: "Joined the clan " + clanName + " as a member." });
+    }
     events = events.map(function (e, i) {
       return {
         kind: e.kind, tone: e.tone, text: e.text,
@@ -154,6 +182,7 @@
     return {
       name: name,
       member: member,
+      clan: clanFor(name),
       world: 3 + Math.floor(r() * 40),
       mode: r() > 0.7 ? "Skill total" : "PvP",
       joined: dateAgo(joinedDaysAgo),
@@ -187,13 +216,96 @@
 
   window.logApp = function () {
     return {
+      view: "overview",
       profileName: "Thornwake",
+      clanName: CLANS[0].name,
       query: "",
       filter: "All",
       sort: "level",
 
+      init: function () {
+        var params = new URLSearchParams(window.location.search);
+        var player = params.get("player");
+        var clan = params.get("clan");
+        if (player) {
+          this.profileName = player;
+          this.view = "profile";
+        } else if (clan) {
+          this.clanName = clan;
+          this.view = "clan";
+        }
+        history.replaceState(
+          { view: this.view, profileName: this.profileName, clanName: this.clanName },
+          "",
+          urlFor(this.view, this.profileName, this.clanName),
+        );
+
+        var self = this;
+        window.addEventListener("popstate", function (e) {
+          var s = e.state;
+          if (!s) {
+            self.view = "overview";
+            return;
+          }
+          self.profileName = s.profileName;
+          self.clanName = s.clanName;
+          self.view = s.view;
+        });
+      },
+
+      navigate: function (view, profileName, clanName) {
+        this.view = view;
+        if (profileName !== undefined) this.profileName = profileName;
+        if (clanName !== undefined) this.clanName = clanName;
+        history.pushState(
+          { view: view, profileName: this.profileName, clanName: this.clanName },
+          "",
+          urlFor(view, this.profileName, this.clanName),
+        );
+      },
+
       get profile() { return profileFor(this.profileName); },
-      pick: function (name) { this.profileName = name; this.query = ""; },
+      pick: function (name) { this.query = ""; this.navigate("profile", name); },
+      pickClan: function (name) { this.navigate("clan", undefined, name); },
+      backToOverview: function () { this.navigate("overview"); },
+
+      get overviewClans() {
+        return CLANS.map(function (c) {
+          var members = c.members.map(profileFor);
+          var combinedLevel = members.reduce(function (s, p) { return s + p.totalLevel; }, 0);
+          return {
+            name: c.name,
+            members: c.members.length,
+            combinedLevel: fmt(combinedLevel),
+            averageLevel: fmt(Math.round(combinedLevel / members.length)),
+          };
+        }).sort(function (a, b) { return parseInt(b.combinedLevel.replace(/,/g, "")) - parseInt(a.combinedLevel.replace(/,/g, "")); });
+      },
+      get overviewPlayers() {
+        return PLAYER_NAMES.map(function (p) {
+          var prof = profileFor(p[0]);
+          return { name: p[0], meta: p[1], clan: prof.clan, total: fmt(prof.totalLevel) };
+        }).sort(function (a, b) { return parseInt(b.total.replace(/,/g, "")) - parseInt(a.total.replace(/,/g, "")); });
+      },
+
+      get clan() { return clanByName(this.clanName); },
+      get clanMembers() {
+        return this.clan.members.map(function (name) {
+          var p = profileFor(name);
+          return { name: name, totalLevel: p.totalLevel, totalLevelLabel: fmt(p.totalLevel), combat: p.combat, member: p.member };
+        }).sort(function (a, b) { return b.totalLevel - a.totalLevel; });
+      },
+      get clanStats() {
+        var members = this.clanMembers;
+        var combinedLevel = members.reduce(function (s, m) { return s + m.totalLevel; }, 0);
+        var combinedCombat = members.reduce(function (s, m) { return s + m.combat; }, 0);
+        return {
+          members: members.length,
+          combinedLevel: fmt(combinedLevel),
+          averageLevel: fmt(Math.round(combinedLevel / members.length)),
+          averageCombat: Math.round(combinedCombat / members.length),
+        };
+      },
 
       get filterTabs() {
         var self = this;
@@ -212,12 +324,13 @@
 
       get sortTabs() {
         var self = this;
-        return [["level", "By level"], ["alphabetical", "A–Z"]].map(function (t) {
+        return [["normal", "Skill order"], ["level", "By level"], ["alphabetical", "A–Z"]].map(function (t) {
           return { key: t[0], label: t[1], active: self.sort === t[0], onClick: function () { self.sort = t[0]; } };
         });
       },
       get sortedSkills() {
         var sort = this.sort;
+        if (sort === "normal") return this.profile.skills.slice();
         return this.profile.skills.slice().sort(function (a, b) {
           return sort === "alphabetical" ? a.name.localeCompare(b.name) : b.level - a.level;
         });

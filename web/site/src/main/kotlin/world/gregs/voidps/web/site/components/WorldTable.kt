@@ -24,8 +24,22 @@ data class WorldEntry(
 
 private const val COLUMNS = "56px 1.1fr 84px 118px 64px 132px"
 
-/** The world/server list: a header row of labels plus a click-to-select body row per [WorldEntry]. */
-fun Ui.worldTable(model: String, worlds: List<WorldEntry>) {
+/** Shared mock world list for surfaces that need one but don't render their own — the navbar's
+ * quick-switch menu ([worldMenu]) and the play page's world picker. */
+val defaultWorlds = listOf(
+    WorldEntry(9, "Germany · Falkenstein", members = true, mode = "PvP", players = 812, capacity = 2000, ping = 38, status = WorldStatus.Online),
+    WorldEntry(12, "United Kingdom · London", mode = "Normal", players = 1743, capacity = 2000, ping = 64, status = WorldStatus.Online),
+    WorldEntry(18, "United States · Ashburn", mode = "Deadman", players = 1980, capacity = 2000, ping = 186, status = WorldStatus.Full),
+    WorldEntry(30, "Germany · Falkenstein", mode = "Normal", players = 1622, capacity = 2000, ping = 37, status = WorldStatus.Restarting),
+)
+
+/**
+ * The world/server list: a header row of labels plus a click-to-select body row per [WorldEntry].
+ * A row's click statement defaults to setting [model] to the clicked world's number; pass
+ * [onSelect] to run something else instead — the play page's picker calls its `select()` method
+ * so choosing a world redirects rather than just updating local state.
+ */
+fun Ui.worldTable(model: String, worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String = { "$model = ${it.number}" }) {
     receiver.div {
         style = "display:grid;grid-template-columns:$COLUMNS;gap:var(--space-5);align-items:center;" +
             "padding:0 var(--space-6);height:30px;background:var(--surface-inset);" +
@@ -41,7 +55,7 @@ fun Ui.worldTable(model: String, worlds: List<WorldEntry>) {
     for ((index, world) in worlds.withIndex()) {
         val last = index == worlds.lastIndex
         receiver.div {
-            onClick("$model = ${world.number}")
+            onClick(onSelect(world))
             xToggleStyle(
                 condition = "$model === ${world.number}",
                 whenTrue = "background:var(--surface-active);border-left-color:var(--gold-400)",

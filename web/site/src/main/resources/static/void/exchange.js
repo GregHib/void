@@ -118,6 +118,9 @@
 
       init: function () {
         var self = this;
+        this.syncFromHash();
+        this.hashListener = function () { self.syncFromHash(); };
+        window.addEventListener("popstate", this.hashListener);
         this.timer = setInterval(function () {
           var d = Object.assign({}, self.drift);
           for (var i = 0; i < 7; i++) {
@@ -128,7 +131,25 @@
           self.drift = d;
         }, 2500);
       },
-      destroy: function () { clearInterval(this.timer); },
+      destroy: function () {
+        clearInterval(this.timer);
+        window.removeEventListener("popstate", this.hashListener);
+      },
+
+      // Pushes a history entry per in-page navigation so the browser back/forward buttons step
+      // through home/search/item states instead of leaving the page on the first back press.
+      syncFromHash: function () {
+        var h = window.location.hash.replace(/^#/, "");
+        if (h.indexOf("item/") === 0) {
+          this.id = decodeURIComponent(h.slice(5));
+          this.page = "item";
+        } else if (h === "search") {
+          this.page = "search";
+        } else {
+          this.page = "home";
+        }
+        this.hover = null;
+      },
 
       series: function (it) {
         var cfg = TFS[this.tf], n = cfg.n;
@@ -163,9 +184,12 @@
       },
       onChartLeave: function () { this.hover = null; },
 
-      open: function (id) { this.id = id; this.page = "item"; this.hover = null; window.scrollTo(0, 0); },
-      goHome: function () { this.page = "home"; },
-      goSearch: function () { this.page = "search"; },
+      open: function (id) {
+        this.id = id; this.page = "item"; this.hover = null; window.scrollTo(0, 0);
+        history.pushState(null, "", "#item/" + id);
+      },
+      goHome: function () { this.page = "home"; history.pushState(null, "", "#"); },
+      goSearch: function () { this.page = "search"; history.pushState(null, "", "#search"); },
 
       row: function (it, kind) {
         var self = this, d = this.deltaOf(it);
@@ -224,15 +248,16 @@
           };
         });
       },
-      get resultEyebrow() { return this.cat === "All" ? "all categories" : this.cat.toLowerCase(); },
-
       get item() {
         var it = ITEMS.filter(function (x) { return x.id === this.id; }, this)[0] || ITEMS[0];
         var price = this.priceOf(it), d = this.deltaOf(it);
         return {
           name: it.name, cat: it.cat, code: it.code, border: it.border, desc: it.desc, examine: it.examine,
           price: gp(price), delta: pct(d), deltaColor: col(d),
-          memberLabel: it.members ? "Members" : "Free", memberTone: it.members ? "warning" : "neutral",
+          memberLabel: it.members ? "Members" : "Free",
+          memberBg: it.members ? "rgba(224,174,60,.14)" : "var(--umber-700)",
+          memberColor: it.members ? "var(--gold-300)" : "var(--parch-200)",
+          memberBorder: it.members ? "var(--gold-600)" : "var(--border-strong)",
         };
       },
       get itemRaw() { return ITEMS.filter(function (x) { return x.id === this.id; }, this)[0] || ITEMS[0]; },
