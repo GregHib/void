@@ -15,13 +15,13 @@ class BrokenFenceSawmill : Script {
         objectOperate("Squeeze-under", "fence_varrock_lumbermill") {
             when (tile) {
                 EAST_TILE -> {
-                    anim("human_squeeze_under", delay = 35)
+                    anim("human_squeeze_under", delay = 40)
                     message("You squeeze underneath the fence", ChatType.Filter)
                     walkOverDelay(WEST_TILE)
                     clearAnim()
                 }
                 WEST_TILE -> {
-                    anim("human_squeeze_under_2", delay = 35)
+                    anim("human_squeeze_under_2", delay = 40)
                     message("You squeeze underneath the fence", ChatType.Filter)
                     walkOverDelay(EAST_TILE)
                     clearAnim()
