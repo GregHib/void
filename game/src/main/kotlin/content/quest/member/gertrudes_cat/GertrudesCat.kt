@@ -50,16 +50,19 @@ class GertrudesCat : Script {
 
             if(progress == 4) {
                 //fed_fluffs = 4,
+                lines += "fed_fluffs stage 4"
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
 
             if(progress == 5) {
                 //returned_fluffs = 5,
+                lines += "returned_fluffs stage 5"
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
             // complete = 6
+            lines += "complete stage 6"
             questJournal("Gertrude's Cat", lines)
         }
     }
