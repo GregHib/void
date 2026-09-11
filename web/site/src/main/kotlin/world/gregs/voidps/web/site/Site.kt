@@ -348,7 +348,6 @@ object Site {
         File(buildDir, "exchange.html").writeText(Exchange.page())
         File(buildDir, "hiscores.html").writeText(Hiscores.page())
         File(buildDir, "log.html").writeText(AdventurersLog.page())
-        File(buildDir, "community.html").writeText(Website.communityPage())
         File(buildDir, "components.html").writeText(buildPage())
         copyStaticAssets(buildDir)
         Docs.generate(buildDir)

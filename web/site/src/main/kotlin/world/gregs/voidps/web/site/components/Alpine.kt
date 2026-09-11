@@ -53,6 +53,14 @@ fun Tag.onClickStop(statement: String) {
     attributes["@click.stop"] = statement
 }
 
+fun Tag.onMouseEnter(statement: String) {
+    attributes["@mouseenter"] = statement
+}
+
+fun Tag.onMouseLeave(statement: String) {
+    attributes["@mouseleave"] = statement
+}
+
 fun Tag.transition() {
     attributes["x-transition"] = ""
 }

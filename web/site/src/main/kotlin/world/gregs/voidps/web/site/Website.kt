@@ -4,9 +4,10 @@ import kotlinx.html.*
 import world.gregs.voidps.web.site.components.*
 
 /**
- * The marketing site: Home, Docs, Worlds and Community, all behind the shared [siteHeader]/
- * [siteFooter] chrome. Each page is written to its own file by [Site] so links between them are
- * plain `<a href>`s rather than an in-page Alpine tab switch.
+ * The marketing site: Home, Docs and Worlds, all behind the shared [siteHeader]/[siteFooter]
+ * chrome. Hiscores, Exchange and Log live elsewhere but are grouped under a "Community" dropdown
+ * on the nav bar via [communityPages]. Each page is written to its own file by [Site] so links
+ * between them are plain `<a href>`s rather than an in-page Alpine tab switch.
  */
 object Website {
 
@@ -14,10 +15,12 @@ object Website {
         SitePage("home", "Home", "index.html"),
         SitePage("docs", "Docs", "docs/index.html"),
         SitePage("play", "Play", "play.html"),
-        SitePage("exchange", "Exchange", "exchange.html"),
+    )
+
+    internal val communityPages = listOf(
         SitePage("hiscores", "Hiscores", "hiscores.html"),
+        SitePage("exchange", "Exchange", "exchange.html"),
         SitePage("log", "Log", "log.html"),
-        SitePage("community", "Community", "community.html"),
     )
 
     private val worlds = listOf(
@@ -55,7 +58,7 @@ object Website {
         description = "Void is an open-source server emulator and client for the classic era.",
         data = "{ world: 9 }",
     ) {
-        ui.siteHeader(pages, active = "home")
+        ui.siteHeader(pages, active = "home", communityPages = communityPages)
 
         section {
             style = "position:relative;min-height:520px;display:flex;align-items:flex-end;" +
@@ -232,7 +235,7 @@ object Website {
                         "Content scripts are open — write a quest, open a pull request.")
                 }
                 div {
-                    ui.button("Join the community", onClick = "window.location = 'community.html'")
+                    ui.button("Join the community", onClick = "window.location = 'hiscores.html'")
                 }
             }
         }
@@ -245,7 +248,7 @@ object Website {
         description = "Getting started, protocol reference, cache tooling and content scripting for Void.",
         data = "{ tab: 'guide' }",
     ) {
-        ui.siteHeader(pages, active = "docs")
+        ui.siteHeader(pages, active = "docs", communityPages = communityPages)
 
         div {
             style = "display:grid;grid-template-columns:240px minmax(0,1fr) 220px;flex:1;" +
@@ -422,7 +425,7 @@ object Website {
         title = "Void — world list",
         description = "Live status for every Void community world.",
     ) {
-        ui.siteHeader(pages, active = "")
+        ui.siteHeader(pages, active = "", communityPages = communityPages)
 
         main {
             xData("worldMenuData()")
@@ -448,134 +451,6 @@ object Website {
             }
             ui.panel(title = "Worlds", meta = "click a row to connect", padded = false) {
                 ui.worldTable("world", worlds, onSelect = { "select(${it.number})" })
-            }
-        }
-
-        ui.siteFooter()
-    }
-
-    fun communityPage(): String = voidPage(
-        title = "Void — community",
-        description = "Forums, wiki and the bug tracker for Void.",
-        data = "{ tab: 'all' }",
-    ) {
-        ui.siteHeader(pages, active = "community")
-
-        div {
-            style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-10) var(--space-8);" +
-                "display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:var(--space-9)"
-
-            div {
-                style = "display:flex;flex-direction:column;gap:var(--space-6);min-width:0"
-                header {
-                    style = "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8)"
-                    div {
-                        h1 {
-                            style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                            +"Community"
-                        }
-                        p {
-                            style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
-                            +"Forums, wiki and the bug tracker. Patch notes are posted here first."
-                        }
-                    }
-                    ui.button("New thread", icon = Icons.MAIL)
-                }
-                div {
-                    style = "display:flex;align-items:center;gap:var(--space-6)"
-                    ui.tabs(
-                        model = "tab",
-                        items = listOf(
-                            TabItem("all", "All", "1204"),
-                            TabItem("server", "Server"),
-                            TabItem("protocol", "Protocol"),
-                            TabItem("tooling", "Tooling"),
-                        ),
-                    )
-                }
-                ui.panel(padded = false) {
-                    data class Thread(val title: String, val author: String, val replies: Int, val tag: String, val time: String)
-                    val threads = listOf(
-                        Thread("Pathfinder rewrite is live on world 30", "rotce", 48, "Server", "2m ago"),
-                        Thread("Deadman beta: sign-up thread", "fixer", 212, "Beta", "18m ago"),
-                        Thread("Opcode 213 changed between 230 and 231?", "elfinlocks", 7, "Protocol", "1h ago"),
-                        Thread("Cache repack tool for Linux arm64", "spark", 31, "Tooling", "3h ago"),
-                        Thread("Weekly world status — 8 Sept 2026", "void-bot", 2, "Service", "6h ago"),
-                    )
-                    for ((index, thread) in threads.withIndex()) {
-                        val background = if (index % 2 == 1) "var(--umber-850)" else "var(--surface-panel)"
-                        a(href = "#") {
-                            style = "display:grid;grid-template-columns:minmax(0,1fr) 110px 90px 80px;" +
-                                "gap:var(--space-5);align-items:center;padding:var(--space-5) var(--space-6);" +
-                                "text-decoration:none;border-bottom:1px solid var(--umber-900);background:$background"
-                            span {
-                                style = "display:flex;flex-direction:column;gap:var(--space-2);min-width:0"
-                                span {
-                                    style = "font:var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);" +
-                                        "color:var(--parch-50);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"
-                                    +thread.title
-                                }
-                                span {
-                                    style = "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-faint)"
-                                    +"${thread.author} · ${thread.time}"
-                                }
-                            }
-                            ui.badge(thread.tag, tone = if (thread.tag == "Beta") BadgeTone.Info else BadgeTone.Neutral)
-                            span {
-                                style = "font:var(--type-code);font-size:var(--text-xs);color:var(--text-muted)"
-                                +"${thread.replies} replies"
-                            }
-                            span {
-                                style = "color:var(--text-faint);justify-self:end"
-                                icon(Icons.CHEVRON_RIGHT, size = 15)
-                            }
-                        }
-                    }
-                }
-            }
-
-            div {
-                style = "display:flex;flex-direction:column;gap:var(--space-6)"
-                ui.panel(title = "Fleet status") {
-                    style = "display:flex;flex-direction:column;gap:var(--space-4)"
-                    val rows = listOf("Worlds online" to "42 / 44", "Players" to "11,853", "Revision" to "231", "Next restart" to "04:00 UTC")
-                    for ((key, value) in rows) {
-                        div {
-                            style = "display:flex;justify-content:space-between;font:var(--type-body-sm)"
-                            span { style = "color:var(--text-faint)"; +key }
-                            span { style = "color:var(--parch-100)"; +value }
-                        }
-                    }
-                    ui.badge("All regions healthy", tone = BadgeTone.Success, dot = true)
-                }
-                ui.panel(title = "Contribute") {
-                    style = "display:flex;flex-direction:column;gap:var(--space-5)"
-                    p {
-                        style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
-                        +"Good first issues are labelled in the tracker. Patches need one review and a passing build."
-                    }
-                    ui.button("Open the tracker", variant = ButtonVariant.Secondary, icon = Icons.EXTERNAL)
-                }
-                div {
-                    style = "position:relative;height:150px;border-radius:var(--radius-md);overflow:hidden;" +
-                        "border:1px solid var(--border-panel)"
-                    img(src = "void/imagery/repository-bg.png", alt = "") {
-                        style = "width:100%;height:100%;object-fit:cover"
-                    }
-                    div { style = "position:absolute;inset:0;background:var(--scrim-bottom)" }
-                    div {
-                        style = "position:absolute;left:14px;bottom:12px"
-                        div {
-                            style = "font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--parch-50)"
-                            +"Weekly world night"
-                        }
-                        div {
-                            style = "font:var(--type-label);letter-spacing:var(--tracking-wide);" +
-                                "color:var(--parch-200);margin-top:3px"
-                            +"Saturdays · 19:00 UTC · World 9"
-                        }
-                    }
-                }
             }
         }
 

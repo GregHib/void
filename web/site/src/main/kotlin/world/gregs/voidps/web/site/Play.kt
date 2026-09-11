@@ -18,7 +18,7 @@ object Play {
         title = "Void — play",
         description = "Connect to a Void world and start playing.",
     ) {
-        ui.siteHeader(Website.pages, active = "play")
+        ui.siteHeader(Website.pages, active = "play", communityPages = Website.communityPages)
 
         div {
             xData("playApp()")

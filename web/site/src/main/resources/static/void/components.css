@@ -29,6 +29,8 @@
 
 .void-icon-btn:hover{background:var(--surface-hover);color:var(--text-accent)}
 
+.void-menu-item:hover{background:var(--surface-hover)}
+
 /* Inputs/selects: replace the browser's default focus ring with the token-driven gold one. */
 .void-input,.void-select{outline:none}
 .void-select:focus{box-shadow:var(--ring-focus)}
