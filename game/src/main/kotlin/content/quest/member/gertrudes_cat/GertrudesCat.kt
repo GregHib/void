@@ -42,7 +42,8 @@ class GertrudesCat : Script {
             }
 
             if(progress == 3) {
-                //found_fluffs = 3,
+                lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill and found"
+                lines += "<navy>Fluffs <maroon>up a ladder<navy>. I now need to return <maroon>Fluffs <navy>to <maroon>Gertrude<navy>."
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
