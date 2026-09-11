@@ -37,7 +37,7 @@ object Hiscores {
         description = "Live overall, skill and boss leaderboards for Void, with head-to-head player comparisons.",
         head = { script(src = "void/hiscores.js") {} },
     ) {
-        ui.siteHeader(Website.pages, active = "hiscores")
+        ui.siteHeader(Website.pages, active = "hiscores", communityPages = Website.communityPages)
 
         div {
             xData("hiscoresApp()")

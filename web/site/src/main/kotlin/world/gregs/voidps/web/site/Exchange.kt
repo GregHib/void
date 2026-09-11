@@ -17,7 +17,7 @@ object Exchange {
         description = "Live buy and sell prices for every tracked item on Void, sampled every five minutes.",
         head = { script(src = "void/exchange.js") {} },
     ) {
-        ui.siteHeader(Website.pages, active = "exchange")
+        ui.siteHeader(Website.pages, active = "exchange", communityPages = Website.communityPages)
 
         div {
             xData("exchangeApp()")

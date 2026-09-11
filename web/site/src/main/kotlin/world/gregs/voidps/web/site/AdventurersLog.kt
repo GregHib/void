@@ -19,7 +19,7 @@ object AdventurersLog {
         description = "Skills, quests, boss kills and recent activity for any Void account.",
         head = { script(src = "void/log.js") {} },
     ) {
-        ui.siteHeader(Website.pages, active = "log")
+        ui.siteHeader(Website.pages, active = "log", communityPages = Website.communityPages)
 
         div {
             xData("logApp()")

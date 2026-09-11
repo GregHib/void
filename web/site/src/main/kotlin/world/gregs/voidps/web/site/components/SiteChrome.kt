@@ -1,6 +1,7 @@
 package world.gregs.voidps.web.site.components
 
 import kotlinx.html.a
+import kotlinx.html.button
 import kotlinx.html.div
 import kotlinx.html.footer
 import kotlinx.html.header
@@ -16,7 +17,13 @@ data class SitePage(val id: String, val label: String, val href: String)
  * each page is its own static file rather than an Alpine tab), and a right-hand slot for the
  * version badge, source link and account action. [active] is the current page's [SitePage.id].
  */
-fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "", worlds: List<WorldEntry> = defaultWorlds) {
+fun Ui.siteHeader(
+    pages: List<SitePage>,
+    active: String,
+    assetPrefix: String = "",
+    worlds: List<WorldEntry> = defaultWorlds,
+    communityPages: List<SitePage> = emptyList(),
+) {
     receiver.header {
         style = "height:56px;display:flex;align-items:stretch;gap:var(--space-8);padding:0 var(--space-7);" +
             "background:var(--surface-header);border-bottom:1px solid var(--border-gold);" +
@@ -33,7 +40,7 @@ fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "
             }
         }
         nav {
-            style = "display:flex;align-items:stretch;gap:var(--space-2);flex:1;min-width:0;overflow:hidden"
+            style = "display:flex;align-items:stretch;gap:var(--space-2);flex:1;min-width:0"
             for (page in pages) {
                 val on = page.id == active
                 a(href = page.href) {
@@ -44,6 +51,51 @@ fun Ui.siteHeader(pages: List<SitePage>, active: String, assetPrefix: String = "
                         "font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
                         "margin-bottom:-1px;transition:color var(--dur-fast) var(--ease-standard)"
                     +page.label
+                }
+            }
+            if (communityPages.isNotEmpty()) {
+                val on = communityPages.any { it.id == active }
+                div {
+                    xData("{ open: false }")
+                    onClickOutside("open = false")
+                    onMouseEnter("open = true")
+                    onMouseLeave("open = false")
+                    style = "position:relative;display:flex;align-items:stretch;flex:0 0 auto"
+                    button {
+                        onClick("open = !open")
+                        val color = if (on) "var(--gold-300)" else "var(--text-muted)"
+                        val underline = if (on) "var(--gold-400)" else "transparent"
+                        style = "display:inline-flex;align-items:center;gap:var(--space-2);padding:0 14px;" +
+                            "color:$color;background:transparent;border:none;border-bottom:2px solid $underline;" +
+                            "font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
+                            "margin-bottom:-1px;cursor:pointer;transition:color var(--dur-fast) var(--ease-standard)"
+                        +"Community"
+                        icon(Icons.CHEVRON_DOWN, size = 11)
+                    }
+                    div {
+                        xShow("open")
+                        transition()
+                        onClickStop("null")
+                        // Flush against the header (no gap below the trigger) so the pointer never
+                        // crosses empty space on the way down — a gap there was closing the menu
+                        // (mouseleave firing) before the cursor reached it.
+                        style = "position:absolute;top:100%;left:0;width:220px;" +
+                            "background:var(--surface-panel);border:1px solid var(--border-gold);" +
+                            "border-top:none;border-radius:0 0 var(--radius-md) var(--radius-md);" +
+                            "box-shadow:var(--bevel-up),var(--shadow-lg);overflow:hidden;z-index:40"
+                        for (page in communityPages) {
+                            val itemOn = page.id == active
+                            a(href = page.href, classes = "void-menu-item") {
+                                val itemColor = if (itemOn) "var(--gold-300)" else "var(--text-body)"
+                                val itemBackground = if (itemOn) "background:var(--surface-active);" else ""
+                                style = "display:block;padding:var(--space-5) var(--space-6);" +
+                                    "text-decoration:none;color:$itemColor;$itemBackground" +
+                                    "font:var(--weight-medium) var(--text-sm)/1 var(--font-ui);" +
+                                    "transition:background var(--dur-fast) var(--ease-standard)"
+                                +page.label
+                            }
+                        }
+                    }
                 }
             }
         }

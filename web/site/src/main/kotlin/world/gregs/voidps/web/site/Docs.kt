@@ -22,10 +22,12 @@ object Docs {
         SitePage("home", "Home", "../index.html"),
         SitePage("docs", "Docs", "index.html"),
         SitePage("play", "Play", "../play.html"),
-        SitePage("exchange", "Exchange", "../exchange.html"),
+    )
+
+    private val communityPages = listOf(
         SitePage("hiscores", "Hiscores", "../hiscores.html"),
+        SitePage("exchange", "Exchange", "../exchange.html"),
         SitePage("log", "Log", "../log.html"),
-        SitePage("community", "Community", "../community.html"),
     )
 
     private val sources = listOf(
@@ -68,7 +70,7 @@ object Docs {
         assetPrefix = "../",
         head = { link(rel = "stylesheet", href = "../void/docs.css") },
     ) {
-        ui.siteHeader(pages, active = "docs", assetPrefix = "../")
+        ui.siteHeader(pages, active = "docs", assetPrefix = "../", communityPages = communityPages)
 
         div {
             style = "display:grid;grid-template-columns:240px minmax(0,1fr) 220px;flex:1;" +
