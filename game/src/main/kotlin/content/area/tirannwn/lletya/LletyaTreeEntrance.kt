@@ -17,6 +17,7 @@ class LletyaTreeEntrance : Script {
                 return@objectOperate
             }
             val direction = if (tile.x < target.tile.x) Direction.EAST else Direction.WEST
+            walkToDelay(tile.copy(y = tile.y.coerceIn(3194..3195)))
             // Only the middle two tiles are a real opening; the rest would clip through the trees
             val y = tile.y.coerceIn(3194, 3195)
             val dest = Tile(target.tile.x + direction.delta.x * 2, y, tile.level)
