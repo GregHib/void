@@ -97,7 +97,7 @@ id = 2097
 [human_pick_wall_end]
 id = 2098
 
-[human_squeeze_under]
+[human_squeeze_under] # Appears to be identical with human_squeeze_under_2
 id = 9220
 
 [human_squeeze_under_2]
