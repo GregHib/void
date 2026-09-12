@@ -48,15 +48,17 @@ final class DiskFileStore extends ResourceProvider {
     }
 
     final byte[] fetchGroup(int file, byte i_7_) {
-        System.out.println("Load " + file + " " + idx);
+//        System.out.println("Load " + file + " " + idx);
         try {
-            System.out.println("Expected: " + Arrays.toString(read(index, file, idx)));
+            byte[] data = read(index, file, idx);
+//            System.out.println("Expected: " + Arrays.toString(data));
+            return data;
         } catch (IOException ioexception) {
             throw new RuntimeException("Failed reading archive " + idx + " file " + file, ioexception);
         }
-        byte[] data1 = cache.data(idx, file, 0, null);
-        System.out.println("Actual: " + Arrays.toString(data1));
-        return data1;//read(index, file, archive);
+//        byte[] data1 = cache.data(idx, file, 0, null);
+//        System.out.println("Actual: " + Arrays.toString(data1));
+//        return data1;//read(index, file, archive);
     }
 
     final Js5Index index(byte i) {
