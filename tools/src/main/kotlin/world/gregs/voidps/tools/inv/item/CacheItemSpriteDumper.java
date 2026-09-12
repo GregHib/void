@@ -27,6 +27,7 @@ public final class CacheItemSpriteDumper {
     private static final int IDX_TEXTURE_DATA = 9;
     private static final int IDX_ITEMS = 19;
     private static final int IDX_MATERIALS = 26;
+    private static final int IDX_BILLBOARD = 29;
     private static final int IDX_FONTS = 31;
 
     public static void main(String[] args) {
@@ -42,6 +43,7 @@ public final class CacheItemSpriteDumper {
             Class369_Sub2.aJs5_8589 = loadArchive(cacheDir, cache, IDX_TEXTURE_DATA, false);
             Class21.aJs5_322 = loadArchive(cacheDir, cache, IDX_TEXTURE_SPRITES, false);
             Class136.aJs5_4796 = loadArchive(cacheDir, cache, IDX_FONTS, true);
+            Class369_Sub3.aJs5_8601 = loadArchive(cacheDir, cache, IDX_BILLBOARD, false);
 
             Class348_Sub40_Sub4.aTextureSource9113 = new Js5TextureSource(Class348_Sub11.aJs5_4770, Class369_Sub2.aJs5_8589, Class21.aJs5_322);
             Exception_Sub1.itemTypeList = new ItemTypeList(0, true, null, Class174.aJs5_2306, aa_Sub3.aJs5_5207);
