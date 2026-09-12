@@ -30,20 +30,16 @@ object Docs {
         SitePage("log", "Log", "../log.html"),
     )
 
-    private val sources = listOf(
-        DocSource("build", "Build", "Build and tests", File(".claude/build.md")),
-        DocSource("modules", "Modules", "Module layout and dependency direction", File(".claude/modules.md")),
-        DocSource("architecture", "Architecture", "Content scripts, events, DI, game loop, inventory", File(".claude/architecture.md")),
-        DocSource("testing", "Testing", "WorldTest, integration vs unit patterns", File(".claude/testing.md")),
-        DocSource("code-style", "Code Style", "ktlint, structural patterns, naming conventions", File(".claude/code-style.md")),
-        DocSource("groml", "Groml Config", "Config format spec and examples", File(".claude/groml.md")),
-    )
-
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.ENGLISH)
 
     fun generate(buildDir: File) {
         val docsDir = File(buildDir, "docs")
         docsDir.mkdirs()
+
+        // TODO get data from within md headers
+        val sources = File("../void-wiki/").listFiles()!!.filter { it.isFile && it.extension == "md" }.map {
+            DocSource(it.nameWithoutExtension.lowercase(), it.nameWithoutExtension.replace("-", " "), "", it)
+        }
 
         val available = sources.filter { it.file.exists() }
         for ((index, source) in available.withIndex()) {
