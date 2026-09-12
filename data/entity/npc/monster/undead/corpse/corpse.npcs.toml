@@ -1,10 +1,12 @@
+## Source for categories: https://runescape.wiki
+## Was the undead tag used back then? Or is that only used for The Raptor? Adding just in case.
 [corpse_spider]
 id = 7914
 hitpoints = 47
 combat_def = "corpse_spider"
 respawn_delay = 3
 drop_table = "corpse_spider"
-categories = ["corpse_spider"]
+categories = ["spider", "zombie", "undead"]
 examine = "A wretched dead soul forced into a spider's shape."
 
 [crawling_corpse_torso]
@@ -13,7 +15,7 @@ hitpoints = 87
 combat_def = "crawling_corpse_torso"
 respawn_delay = 3
 drop_table = "crawling_corpse_torso"
-categories = ["crawling_corpse_torso"]
+categories = ["zombie", "undead"]
 examine = "A wretched creature brought back against its will."
 
 [crawling_corpse_torso_1]
@@ -34,7 +36,7 @@ hitpoints = 90
 combat_def = "corpse_archer"
 respawn_delay = 3
 drop_table = "corpse_archer"
-categories = ["corpse_archer"]
+categories = ["zombie", "undead"]
 examine = "Bones and arrows."
 
 [corpse_archer_1]
@@ -75,7 +77,7 @@ hitpoints = 99
 combat_def = "corpse_mage"
 respawn_delay = 3
 drop_table = "corpse_mage"
-categories = ["corpse_mage"]
+categories = ["zombie", "undead"]
 examine = "It casts the magic of death to ease its suffering."
 
 [corpse_mage_1]
