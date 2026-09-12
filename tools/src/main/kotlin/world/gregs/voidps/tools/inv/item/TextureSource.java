@@ -2,12 +2,12 @@ package world.gregs.voidps.tools.inv.item;/* d - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-interface d {
+interface TextureSource {
     float[] method1(int i, float f, boolean bool, int i_0_, int i_1_, int i_2_);
 
     int method2(boolean bool);
 
-    Class12 method3(int i, int i_3_);
+    TextureMetrics getMetrics(int i, int i_3_);
 
     boolean method4(int i, int i_4_);
 

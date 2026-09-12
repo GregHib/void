@@ -5,49 +5,49 @@ package world.gregs.voidps.tools.inv.item;/* Class124 - Decompiled by JODE
 import java.util.Random;
 
 final class Mesh {
-    int[] anIntArray1816;
-    int anInt1817;
-    int anInt1818;
+    int[] texSpaceScaleY;
+    int faceCount;
+    int texSpaceCount;
     static int anInt1819;
-    byte[] aByteArray1820;
-    int anInt1821;
-    short[] aShortArray1822;
-    byte[] aByteArray1823;
-    int[] anIntArray1824;
-    short[] aShortArray1825;
-    short[] aShortArray1829;
-    int anInt1830 = 12;
-    Class162[] aClass162Array1832;
-    byte[] aByteArray1833;
-    byte[] aByteArray1834;
-    short[] aShortArray1835;
-    int anInt1836 = 0;
+    byte[] faceTexSpace;
+    int maxVertex;
+    short[] faceTexture;
+    byte[] texMappingType;
+    int[] faceLabel;
+    short[] texSpaceDefC;
+    short[] texSpaceDefA;
+    int version = 12;
+    MeshBillboard[] billboards;
+    byte[] texRotation;
+    byte[] faceAlpha;
+    short[] faceB;
+    int vertexCount = 0;
     static int anInt1826;
     static int anInt1828;
-    byte[] aByteArray1839;
-    int[] anIntArray1841;
+    byte[] facePriority;
+    int[] vertexX;
     short[] aShortArray1842;
-    byte[] aByteArray1843;
-    int[] anIntArray1844;
-    Class129[] aClass129Array1846;
-    int[] anIntArray1847;
+    byte[] shadingType;
+    int[] texSpaceScaleZ;
+    ModelParticleEmitter[] emitters;
+    int[] vertexY;
     static Js5 aJs5_1848;
-    short[] aShortArray1849;
-    byte aByte1851;
-    int[] anIntArray1852;
-    byte[] aByteArray1853;
-    short[] aShortArray1855;
+    short[] texSpaceDefB;
+    byte globalPriority;
+    int[] vertexZ;
+    byte[] texDirection;
+    short[] faceC;
     short[] aShortArray1856;
-    int[] anIntArray1857;
-    int[] anIntArray1859;
+    int[] texOffsetY;
+    int[] texSpaceScaleX;
     static int anInt1860;
     static int anInt1861;
-    short[] aShortArray1862;
-    short[] aShortArray1863;
-    int[] anIntArray1865;
-    Class342[] aClass342Array1866;
-    int[] anIntArray1867;
-    int[] anIntArray1868;
+    short[] faceColour;
+    short[] faceA;
+    int[] texOffsetZ;
+    ModelParticleEffector[] effectors;
+    int[] texOffsetX;
+    int[] vertexLabel;
     static int anInt1869;
     static int anInt1831;
     static int anInt1837;
@@ -57,27 +57,27 @@ final class Mesh {
 
     final void upscale(int i, int i_0_) {
         anInt1819++;
-        for (int i_1_ = 0; this.anInt1836 > i_1_; i_1_++) {
-            this.anIntArray1841[i_1_] <<= i;
-            this.anIntArray1847[i_1_] <<= i;
-            this.anIntArray1852[i_1_] <<= i;
+        for (int i_1_ = 0; this.vertexCount > i_1_; i_1_++) {
+            this.vertexX[i_1_] <<= i;
+            this.vertexY[i_1_] <<= i;
+            this.vertexZ[i_1_] <<= i;
         }
         if (i_0_ <= 39) method1107(40, -7, -80, -24);
-        if (this.anInt1818 > 0 && this.anIntArray1859 != null) {
-            for (int i_2_ = 0; i_2_ < this.anIntArray1859.length; i_2_++) {
-                this.anIntArray1859[i_2_] <<= i;
-                this.anIntArray1816[i_2_] <<= i;
-                if (this.aByteArray1823[i_2_] != 1) this.anIntArray1844[i_2_] <<= i;
+        if (this.texSpaceCount > 0 && this.texSpaceScaleX != null) {
+            for (int i_2_ = 0; i_2_ < this.texSpaceScaleX.length; i_2_++) {
+                this.texSpaceScaleX[i_2_] <<= i;
+                this.texSpaceScaleY[i_2_] <<= i;
+                if (this.texMappingType[i_2_] != 1) this.texSpaceScaleZ[i_2_] <<= i;
             }
         }
     }
 
-    final int[][] method1093(byte i) {
+    final int[][] getBillboardGroups(byte i) {
         anInt1854++;
         int[] is = new int[256];
         int i_3_ = 0;
-        for (int i_4_ = 0; this.aClass162Array1832.length > i_4_; i_4_++) {
-            int i_5_ = (this.aClass162Array1832[i_4_].anInt2156);
+        for (int i_4_ = 0; this.billboards.length > i_4_; i_4_++) {
+            int i_5_ = (this.billboards[i_4_].anInt2156);
             if (i_5_ >= 0) {
                 is[i_5_]++;
                 if (i_3_ < i_5_) i_3_ = i_5_;
@@ -89,19 +89,19 @@ final class Mesh {
             is[i_7_] = 0;
         }
         if (i > -68) return null;
-        for (int i_8_ = 0; i_8_ < this.aClass162Array1832.length; i_8_++) {
-            int i_9_ = (this.aClass162Array1832[i_8_].anInt2156);
+        for (int i_8_ = 0; i_8_ < this.billboards.length; i_8_++) {
+            int i_9_ = (this.billboards[i_8_].anInt2156);
             if (i_9_ >= 0) is_6_[i_9_][is[i_9_]++] = i_8_;
         }
         return is_6_;
     }
 
-    final int[][] method1094(byte i) {
+    final int[][] getFaceLabels(byte i) {
         anInt1864++;
         int[] is = new int[256];
         int i_10_ = 0;
-        for (int i_11_ = 0; i_11_ < this.anInt1817; i_11_++) {
-            int i_12_ = this.anIntArray1824[i_11_];
+        for (int i_11_ = 0; i_11_ < this.faceCount; i_11_++) {
+            int i_12_ = this.faceLabel[i_11_];
             if (i_12_ >= 0) {
                 if (i_10_ < i_12_) i_10_ = i_12_;
                 is[i_12_]++;
@@ -113,8 +113,8 @@ final class Mesh {
             is_13_[i_14_] = new int[is[i_14_]];
             is[i_14_] = 0;
         }
-        for (int i_15_ = 0; i_15_ < this.anInt1817; i_15_++) {
-            int i_16_ = this.anIntArray1824[i_15_];
+        for (int i_15_ = 0; i_15_ < this.faceCount; i_15_++) {
+            int i_16_ = this.faceLabel[i_15_];
             if (i_16_ >= 0) is_13_[i_16_][is[i_16_]++] = i_15_;
         }
         return is_13_;
@@ -122,9 +122,9 @@ final class Mesh {
 
     final void retexture(short i, int i_17_, short i_18_) {
         anInt1869++;
-        if (this.aShortArray1822 != null) {
-            for (int i_19_ = i_17_; this.anInt1817 > i_19_; i_19_++) {
-                if (i == this.aShortArray1822[i_19_]) this.aShortArray1822[i_19_] = i_18_;
+        if (this.faceTexture != null) {
+            for (int i_19_ = i_17_; this.faceCount > i_19_; i_19_++) {
+                if (i == this.faceTexture[i_19_]) this.faceTexture[i_19_] = i_18_;
             }
         }
     }
@@ -141,343 +141,343 @@ final class Mesh {
         if (i < 78) aJs5_1848 = null;
         int i_22_;
         do i_22_ = random.nextInt(); while (i_22_ >= i_21_);
-        return Class350.method3452(i_22_, (byte) -15, i_20_);
+        return JavaBillboardAttributes.method3452(i_22_, (byte) -15, i_20_);
     }
 
     final void recolour(short i, byte i_23_, short i_24_) {
         if (i_23_ == 126) {
-            for (int i_25_ = 0; i_25_ < this.anInt1817; i_25_++) {
-                if (i == this.aShortArray1862[i_25_]) this.aShortArray1862[i_25_] = i_24_;
+            for (int i_25_ = 0; i_25_ < this.faceCount; i_25_++) {
+                if (i == this.faceColour[i_25_]) this.faceColour[i_25_] = i_24_;
             }
             anInt1826++;
         }
     }
 
-    private final void method1106(byte[] is, byte i) {
+    private final void method1106(byte[] is, byte i_1234) {
         anInt1828++;
-        Packet packet = new Packet(is);
-        Packet packet_118_ = new Packet(is);
-        Packet packet_119_ = new Packet(is);
-        Packet packet_120_ = new Packet(is);
-        Packet packet_121_ = new Packet(is);
-        Packet packet_122_ = new Packet(is);
-        Packet packet_123_ = new Packet(is);
-        packet.pos = -23 + is.length;
-        this.anInt1836 = packet.readUnsignedShort(842397944);
-        this.anInt1817 = packet.readUnsignedShort(842397944);
-        this.anInt1818 = packet.readUnsignedByte(255);
-        int i_124_ = packet.readUnsignedByte(255);
-        boolean bool = (0x1 & i_124_) == 1;
-        boolean bool_125_ = (i_124_ & 0x2) == 2;
-        boolean bool_126_ = (i_124_ & 0x4) == 4;
-        boolean bool_127_ = (i_124_ & 0x8) == 8;
-        if (bool_127_) {
-            packet.pos -= 7;
-            this.anInt1830 = packet.readUnsignedByte(255);
-            packet.pos += 6;
+        Packet packet1 = new Packet(is);
+        Packet packet2 = new Packet(is);
+        Packet packet3 = new Packet(is);
+        Packet packet4 = new Packet(is);
+        Packet packet5 = new Packet(is);
+        Packet packet6 = new Packet(is);
+        Packet packet7 = new Packet(is);
+        packet1.pos = -23 + is.length;
+        this.vertexCount = packet1.readUnsignedShort(842397944);
+        this.faceCount = packet1.readUnsignedShort(842397944);
+        this.texSpaceCount = packet1.readUnsignedByte(255);
+        int globalFlags = packet1.readUnsignedByte(255);
+        boolean hasFlatShading = (0x1 & globalFlags) == 1;
+        boolean hasParticleEffects = (globalFlags & 0x2) == 2;
+        boolean hasBillboards = (globalFlags & 0x4) == 4;
+        boolean hasVersion = (globalFlags & 0x8) == 8;
+        if (hasVersion) {
+            packet1.pos -= 7;
+            this.version = packet1.readUnsignedByte(255);
+            packet1.pos += 6;
         }
-        int i_128_ = packet.readUnsignedByte(255);
-        int i_129_ = packet.readUnsignedByte(255);
-        int i_130_ = packet.readUnsignedByte(255);
-        int i_131_ = packet.readUnsignedByte(255);
-        int i_132_ = packet.readUnsignedByte(255);
-        int i_133_ = packet.readUnsignedShort(842397944);
-        int i_134_ = packet.readUnsignedShort(842397944);
-        int i_135_ = packet.readUnsignedShort(842397944);
-        int i_136_ = packet.readUnsignedShort(842397944);
-        int i_137_ = packet.readUnsignedShort(842397944);
-        int i_138_ = 0;
-        int i_139_ = 0;
-        int i_140_ = 0;
-        if (this.anInt1818 > 0) {
-            packet.pos = 0;
-            this.aByteArray1823 = new byte[this.anInt1818];
-            for (int i_141_ = 0; (i_141_ < this.anInt1818); i_141_++) {
-                byte i_142_ = (this.aByteArray1823[i_141_] = packet.readByte(-124));
-                if (i_142_ >= 1 && i_142_ <= 3) i_139_++;
-                if (i_142_ == 2) i_140_++;
-                if (i_142_ == 0) i_138_++;
-            }
-        }
-        int i_143_ = this.anInt1818;
-        int i_144_ = i_143_;
-        i_143_ += this.anInt1836;
-        int i_145_ = i_143_;
-        if (bool) i_143_ += this.anInt1817;
-        int i_146_ = i_143_;
-        i_143_ += this.anInt1817;
-        int i_147_ = i_143_;
-        if (i_128_ == 255) i_143_ += this.anInt1817;
-        int i_148_ = i_143_;
-        if (i_130_ == 1) i_143_ += this.anInt1817;
-        int i_149_ = i_143_;
-        if (i_132_ == 1) i_143_ += this.anInt1836;
-        int i_150_ = i_143_;
-        if (i_129_ == 1) i_143_ += this.anInt1817;
-        if (i <= 68) this.anInt1821 = 85;
-        int i_151_ = i_143_;
-        i_143_ += i_136_;
-        int i_152_ = i_143_;
-        if (i_131_ == 1) i_143_ += 2 * this.anInt1817;
-        int i_153_ = i_143_;
-        i_143_ += i_137_;
-        int i_154_ = i_143_;
-        i_143_ += 2 * this.anInt1817;
-        int i_155_ = i_143_;
-        i_143_ += i_133_;
-        int i_156_ = i_143_;
-        i_143_ += i_134_;
-        int i_157_ = i_143_;
-        i_143_ += i_135_;
-        int i_158_ = i_143_;
-        i_143_ += i_138_ * 6;
-        int i_159_ = i_143_;
-        i_143_ += 6 * i_139_;
-        int i_160_ = 6;
-        if (this.anInt1830 == 14) i_160_ = 7;
-        else if (this.anInt1830 >= 15) i_160_ = 9;
-        int i_161_ = i_143_;
-        i_143_ += i_160_ * i_139_;
-        int i_162_ = i_143_;
-        i_143_ += i_139_;
-        int i_163_ = i_143_;
-        i_143_ += i_139_;
-        int i_164_ = i_143_;
-        i_143_ += 2 * i_140_ + i_139_;
-        this.aShortArray1835 = new short[this.anInt1817];
-        this.aShortArray1862 = new short[this.anInt1817];
-        if (i_130_ == 1) this.anIntArray1824 = new int[this.anInt1817];
-        if (this.anInt1818 > 0) {
-            if (i_140_ > 0) {
-                this.anIntArray1857 = new int[i_140_];
-                this.anIntArray1865 = new int[i_140_];
-            }
-            this.aShortArray1849 = new short[this.anInt1818];
-            this.aShortArray1829 = new short[this.anInt1818];
-            if (i_139_ > 0) {
-                this.anIntArray1867 = new int[i_139_];
-                this.aByteArray1853 = new byte[i_139_];
-                this.anIntArray1816 = new int[i_139_];
-                this.aByteArray1833 = new byte[i_139_];
-                this.anIntArray1844 = new int[i_139_];
-                this.anIntArray1859 = new int[i_139_];
-            }
-            this.aShortArray1825 = new short[this.anInt1818];
-        }
-        if (bool) this.aByteArray1843 = new byte[this.anInt1817];
-        if (i_129_ == 1) this.aByteArray1834 = new byte[this.anInt1817];
-        if (i_128_ == 255) this.aByteArray1839 = new byte[this.anInt1817];
-        else this.aByte1851 = (byte) i_128_;
-        this.aShortArray1855 = new short[this.anInt1817];
-        this.anIntArray1847 = new int[this.anInt1836];
-        this.aShortArray1863 = new short[this.anInt1817];
-        if (i_131_ == 1 && this.anInt1818 > 0) this.aByteArray1820 = new byte[this.anInt1817];
-        int i_165_ = i_143_;
-        this.anIntArray1852 = new int[this.anInt1836];
-        this.anIntArray1841 = new int[this.anInt1836];
-        if (i_132_ == 1) this.anIntArray1868 = new int[this.anInt1836];
-        packet.pos = i_144_;
-        if (i_131_ == 1) this.aShortArray1822 = new short[this.anInt1817];
-        packet_118_.pos = i_155_;
-        packet_119_.pos = i_156_;
-        packet_120_.pos = i_157_;
-        packet_121_.pos = i_149_;
-        int i_166_ = 0;
-        int i_167_ = 0;
-        int i_168_ = 0;
-        for (int i_169_ = 0; this.anInt1836 > i_169_; i_169_++) {
-            int i_170_ = packet.readUnsignedByte(255);
-            int i_171_ = 0;
-            if ((i_170_ & 0x1) != 0) i_171_ = packet_118_.method3362((byte) 77);
-            int i_172_ = 0;
-            if ((i_170_ & 0x2) != 0) i_172_ = packet_119_.method3362((byte) 77);
-            int i_173_ = 0;
-            if ((0x4 & i_170_) != 0) i_173_ = packet_120_.method3362((byte) 77);
-            this.anIntArray1841[i_169_] = i_171_ + i_166_;
-            this.anIntArray1847[i_169_] = i_172_ + i_167_;
-            this.anIntArray1852[i_169_] = i_168_ + i_173_;
-            i_167_ = this.anIntArray1847[i_169_];
-            i_166_ = this.anIntArray1841[i_169_];
-            i_168_ = this.anIntArray1852[i_169_];
-            if (i_132_ == 1) this.anIntArray1868[i_169_] = packet_121_.readUnsignedByte(255);
-        }
-        packet.pos = i_154_;
-        packet_118_.pos = i_145_;
-        packet_119_.pos = i_147_;
-        packet_120_.pos = i_150_;
-        packet_121_.pos = i_148_;
-        packet_122_.pos = i_152_;
-        packet_123_.pos = i_153_;
-        for (int i_174_ = 0; (this.anInt1817 > i_174_); i_174_++) {
-            this.aShortArray1862[i_174_] = (short) packet.readUnsignedShort(842397944);
-            if (bool) this.aByteArray1843[i_174_] = packet_118_.readByte(-98);
-            if (i_128_ == 255) this.aByteArray1839[i_174_] = packet_119_.readByte(-78);
-            if (i_129_ == 1) this.aByteArray1834[i_174_] = packet_120_.readByte(-99);
-            if (i_130_ == 1) this.anIntArray1824[i_174_] = packet_121_.readUnsignedByte(255);
-            if (i_131_ == 1) this.aShortArray1822[i_174_] = (short) (packet_122_.readUnsignedShort(842397944) + -1);
-            if (this.aByteArray1820 != null) {
-                if (this.aShortArray1822[i_174_] == -1) this.aByteArray1820[i_174_] = (byte) -1;
-                else this.aByteArray1820[i_174_] = (byte) (-1 + packet_123_.readUnsignedByte(255));
+        int priorityFlag = packet1.readUnsignedByte(255);
+        int faceAlphaFlag = packet1.readUnsignedByte(255);
+        int faceGroupFlag = packet1.readUnsignedByte(255);
+        int faceTextureFlag = packet1.readUnsignedByte(255);
+        int vertexLabelFlag = packet1.readUnsignedByte(255);
+        int vertexLengthX = packet1.readUnsignedShort(842397944);
+        int vertexLengthY = packet1.readUnsignedShort(842397944);
+        int vertexLengthZ = packet1.readUnsignedShort(842397944);
+        int faceDataSize = packet1.readUnsignedShort(842397944);
+        int texSpaceSize = packet1.readUnsignedShort(842397944);
+        int planarMappingCount = 0;
+        int complexMappingCount = 0;
+        int cubeMappingCount = 0;
+        if (this.texSpaceCount > 0) {
+            packet1.pos = 0;
+            this.texMappingType = new byte[this.texSpaceCount];
+            for (int i_141_ = 0; (i_141_ < this.texSpaceCount); i_141_++) {
+                byte type = (this.texMappingType[i_141_] = packet1.readByte(-124));
+                if (type >= 1 && type <= 3) complexMappingCount++;
+                if (type == 2) cubeMappingCount++;
+                if (type == 0) planarMappingCount++;
             }
         }
-        packet.pos = i_151_;
-        this.anInt1821 = -1;
-        packet_118_.pos = i_146_;
-        short i_175_ = 0;
-        short i_176_ = 0;
-        short i_177_ = 0;
-        int i_178_ = 0;
-        for (int i_179_ = 0; (i_179_ < this.anInt1817); i_179_++) {
-            int i_180_ = packet_118_.readUnsignedByte(255);
-            if (i_180_ == 1) {
-                i_175_ = (short) (packet.method3362((byte) 77) + i_178_);
-                i_178_ = i_175_;
-                i_176_ = (short) (packet.method3362((byte) 77) + i_178_);
-                i_178_ = i_176_;
-                i_177_ = (short) (i_178_ + packet.method3362((byte) 77));
-                i_178_ = i_177_;
-                this.aShortArray1863[i_179_] = i_175_;
-                this.aShortArray1835[i_179_] = i_176_;
-                this.aShortArray1855[i_179_] = i_177_;
-                if (i_175_ > this.anInt1821) this.anInt1821 = i_175_;
-                if (this.anInt1821 < i_176_) this.anInt1821 = i_176_;
-                if (i_177_ > this.anInt1821) this.anInt1821 = i_177_;
+        int ptr = this.texSpaceCount;
+        int vertexFlagsPtr = ptr;
+        ptr += this.vertexCount;
+        int smoothingPtr = ptr;
+        if (hasFlatShading) ptr += this.faceCount;
+        int faceTypePtr = ptr;
+        ptr += this.faceCount;
+        int facePriPtr = ptr;
+        if (priorityFlag == 255) ptr += this.faceCount;
+        int faceGroupPtr = ptr;
+        if (faceGroupFlag == 1) ptr += this.faceCount;
+        int vertexLabelPtr = ptr;
+        if (vertexLabelFlag == 1) ptr += this.vertexCount;
+        int i_faceAlphaPtr50_ = ptr;
+        if (faceAlphaFlag == 1) ptr += this.faceCount;
+        if (i_1234 <= 68) this.maxVertex = 85;
+        int faceDataSizePtr = ptr;
+        ptr += faceDataSize;
+        int faceTextureFlagPtr = ptr;
+        if (faceTextureFlag == 1) ptr += 2 * this.faceCount;
+        int texSpaceSizePtr = ptr;
+        ptr += texSpaceSize;
+        int i_154_ = ptr;
+        ptr += 2 * this.faceCount;
+        int vertexLengthXPtr = ptr;
+        ptr += vertexLengthX;
+        int vertexLengthYPtr = ptr;
+        ptr += vertexLengthY;
+        int vertexLengthZPtr = ptr;
+        ptr += vertexLengthZ;
+        int planarMappingCountPtr = ptr;
+        ptr += planarMappingCount * 6;
+        int complexMappingCountPtr = ptr;
+        ptr += 6 * complexMappingCount;
+        int texSpaceScaleSize = 6;
+        if (this.version == 14) texSpaceScaleSize = 7;
+        else if (this.version >= 15) texSpaceScaleSize = 9;
+        int texSpaceScalePtr = ptr;
+        ptr += texSpaceScaleSize * complexMappingCount;
+        int texSpaceRotationPtr = ptr;
+        ptr += complexMappingCount;
+        int texSpaceOrientationPtr = ptr;
+        ptr += complexMappingCount;
+        int texSpaceOffsetPtr = ptr;
+        ptr += 2 * cubeMappingCount + complexMappingCount;
+        this.faceB = new short[this.faceCount];
+        this.faceColour = new short[this.faceCount];
+        if (faceGroupFlag == 1) this.faceLabel = new int[this.faceCount];
+        if (this.texSpaceCount > 0) {
+            if (cubeMappingCount > 0) {
+                this.texOffsetY = new int[cubeMappingCount];
+                this.texOffsetZ = new int[cubeMappingCount];
             }
-            if (i_180_ == 2) {
-                i_176_ = i_177_;
-                i_177_ = (short) (packet.method3362((byte) 77) + i_178_);
-                this.aShortArray1863[i_179_] = i_175_;
-                i_178_ = i_177_;
-                this.aShortArray1835[i_179_] = i_176_;
-                this.aShortArray1855[i_179_] = i_177_;
-                if (this.anInt1821 < i_177_) this.anInt1821 = i_177_;
-            }
-            if (i_180_ == 3) {
-                i_175_ = i_177_;
-                i_177_ = (short) (packet.method3362((byte) 77) + i_178_);
-                i_178_ = i_177_;
-                this.aShortArray1863[i_179_] = i_175_;
-                this.aShortArray1835[i_179_] = i_176_;
-                this.aShortArray1855[i_179_] = i_177_;
-                if (this.anInt1821 < i_177_) this.anInt1821 = i_177_;
-            }
-            if (i_180_ == 4) {
-                short i_181_ = i_175_;
-                i_175_ = i_176_;
-                i_177_ = (short) (i_178_ + packet.method3362((byte) 77));
-                i_176_ = i_181_;
-                this.aShortArray1863[i_179_] = i_175_;
-                i_178_ = i_177_;
-                this.aShortArray1835[i_179_] = i_176_;
-                this.aShortArray1855[i_179_] = i_177_;
-                if (this.anInt1821 < i_177_) this.anInt1821 = i_177_;
+            this.texSpaceDefB = new short[this.texSpaceCount];
+            this.texSpaceDefA = new short[this.texSpaceCount];
+            this.texSpaceDefC = new short[this.texSpaceCount];
+            if (complexMappingCount > 0) {
+                this.texOffsetX = new int[complexMappingCount];
+                this.texDirection = new byte[complexMappingCount];
+                this.texSpaceScaleY = new int[complexMappingCount];
+                this.texRotation = new byte[complexMappingCount];
+                this.texSpaceScaleZ = new int[complexMappingCount];
+                this.texSpaceScaleX = new int[complexMappingCount];
             }
         }
-        packet.pos = i_158_;
-        this.anInt1821++;
-        packet_118_.pos = i_159_;
-        packet_119_.pos = i_161_;
-        packet_120_.pos = i_162_;
-        packet_121_.pos = i_163_;
-        packet_122_.pos = i_164_;
-        for (int i_182_ = 0; this.anInt1818 > i_182_; i_182_++) {
-            int i_183_ = this.aByteArray1823[i_182_] & 0xff;
-            if (i_183_ == 0) {
-                this.aShortArray1829[i_182_] = (short) packet.readUnsignedShort(842397944);
-                this.aShortArray1849[i_182_] = (short) packet.readUnsignedShort(842397944);
-                this.aShortArray1825[i_182_] = (short) packet.readUnsignedShort(842397944);
+        if (hasFlatShading) this.shadingType = new byte[this.faceCount];
+        if (faceAlphaFlag == 1) this.faceAlpha = new byte[this.faceCount];
+        if (priorityFlag == 255) this.facePriority = new byte[this.faceCount];
+        else this.globalPriority = (byte) priorityFlag;
+        this.faceC = new short[this.faceCount];
+        this.vertexY = new int[this.vertexCount];
+        this.faceA = new short[this.faceCount];
+        if (faceTextureFlag == 1 && this.texSpaceCount > 0) this.faceTexSpace = new byte[this.faceCount];
+        int i_165_ = ptr;
+        this.vertexZ = new int[this.vertexCount];
+        this.vertexX = new int[this.vertexCount];
+        if (vertexLabelFlag == 1) this.vertexLabel = new int[this.vertexCount];
+        packet1.pos = vertexFlagsPtr;
+        if (faceTextureFlag == 1) this.faceTexture = new short[this.faceCount];
+        packet2.pos = vertexLengthXPtr;
+        packet3.pos = vertexLengthYPtr;
+        packet4.pos = vertexLengthZPtr;
+        packet5.pos = vertexLabelPtr;
+        int pvX = 0;
+        int pvY = 0;
+        int pvZ = 0;
+        for (int i = 0; this.vertexCount > i; i++) {
+            int vertexData = packet1.readUnsignedByte(255);
+            int x = 0;
+            if ((vertexData & 0x1) != 0) x = packet2.method3362((byte) 77);
+            int y = 0;
+            if ((vertexData & 0x2) != 0) y = packet3.method3362((byte) 77);
+            int z = 0;
+            if ((0x4 & vertexData) != 0) z = packet4.method3362((byte) 77);
+            this.vertexX[i] = x + pvX;
+            this.vertexY[i] = y + pvY;
+            this.vertexZ[i] = pvZ + z;
+            pvY = this.vertexY[i];
+            pvX = this.vertexX[i];
+            pvZ = this.vertexZ[i];
+            if (vertexLabelFlag == 1) this.vertexLabel[i] = packet5.readUnsignedByte(255);
+        }
+        packet1.pos = i_154_;
+        packet2.pos = smoothingPtr;
+        packet3.pos = facePriPtr;
+        packet4.pos = i_faceAlphaPtr50_;
+        packet5.pos = faceGroupPtr;
+        packet6.pos = faceTextureFlagPtr;
+        packet7.pos = texSpaceSizePtr;
+        for (int i = 0; (this.faceCount > i); i++) {
+            this.faceColour[i] = (short) packet1.readUnsignedShort(842397944);
+            if (hasFlatShading) this.shadingType[i] = packet2.readByte(-98);
+            if (priorityFlag == 255) this.facePriority[i] = packet3.readByte(-78);
+            if (faceAlphaFlag == 1) this.faceAlpha[i] = packet4.readByte(-99);
+            if (faceGroupFlag == 1) this.faceLabel[i] = packet5.readUnsignedByte(255);
+            if (faceTextureFlag == 1) this.faceTexture[i] = (short) (packet6.readUnsignedShort(842397944) + -1);
+            if (this.faceTexSpace != null) {
+                if (this.faceTexture[i] == -1) this.faceTexSpace[i] = (byte) -1;
+                else this.faceTexSpace[i] = (byte) (-1 + packet7.readUnsignedByte(255));
             }
-            if (i_183_ == 1) {
-                this.aShortArray1829[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                this.aShortArray1849[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                this.aShortArray1825[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                if (this.anInt1830 >= 15) {
-                    this.anIntArray1859[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1816[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1844[i_182_] = packet_119_.readMedium(-1);
+        }
+        packet1.pos = faceDataSizePtr;
+        this.maxVertex = -1;
+        packet2.pos = faceTypePtr;
+        short faceA = 0;
+        short faceB = 0;
+        short faceC = 0;
+        int facePriority = 0;
+        for (int i = 0; (i < this.faceCount); i++) {
+            int type = packet2.readUnsignedByte(255);
+            if (type == 1) {
+                faceA = (short) (packet1.method3362((byte) 77) + facePriority);
+                facePriority = faceA;
+                faceB = (short) (packet1.method3362((byte) 77) + facePriority);
+                facePriority = faceB;
+                faceC = (short) (facePriority + packet1.method3362((byte) 77));
+                facePriority = faceC;
+                this.faceA[i] = faceA;
+                this.faceB[i] = faceB;
+                this.faceC[i] = faceC;
+                if (faceA > this.maxVertex) this.maxVertex = faceA;
+                if (this.maxVertex < faceB) this.maxVertex = faceB;
+                if (faceC > this.maxVertex) this.maxVertex = faceC;
+            }
+            if (type == 2) {
+                faceB = faceC;
+                faceC = (short) (packet1.method3362((byte) 77) + facePriority);
+                this.faceA[i] = faceA;
+                facePriority = faceC;
+                this.faceB[i] = faceB;
+                this.faceC[i] = faceC;
+                if (this.maxVertex < faceC) this.maxVertex = faceC;
+            }
+            if (type == 3) {
+                faceA = faceC;
+                faceC = (short) (packet1.method3362((byte) 77) + facePriority);
+                facePriority = faceC;
+                this.faceA[i] = faceA;
+                this.faceB[i] = faceB;
+                this.faceC[i] = faceC;
+                if (this.maxVertex < faceC) this.maxVertex = faceC;
+            }
+            if (type == 4) {
+                short i_181_ = faceA;
+                faceA = faceB;
+                faceC = (short) (facePriority + packet1.method3362((byte) 77));
+                faceB = i_181_;
+                this.faceA[i] = faceA;
+                facePriority = faceC;
+                this.faceB[i] = faceB;
+                this.faceC[i] = faceC;
+                if (this.maxVertex < faceC) this.maxVertex = faceC;
+            }
+        }
+        packet1.pos = planarMappingCountPtr;
+        this.maxVertex++;
+        packet2.pos = complexMappingCountPtr;
+        packet3.pos = texSpaceScalePtr;
+        packet4.pos = texSpaceRotationPtr;
+        packet5.pos = texSpaceOrientationPtr;
+        packet6.pos = texSpaceOffsetPtr;
+        for (int i = 0; this.texSpaceCount > i; i++) {
+            int type = this.texMappingType[i] & 0xff;
+            if (type == 0) {
+                this.texSpaceDefA[i] = (short) packet1.readUnsignedShort(842397944);
+                this.texSpaceDefB[i] = (short) packet1.readUnsignedShort(842397944);
+                this.texSpaceDefC[i] = (short) packet1.readUnsignedShort(842397944);
+            }
+            if (type == 1) {
+                this.texSpaceDefA[i] = (short) packet2.readUnsignedShort(842397944);
+                this.texSpaceDefB[i] = (short) packet2.readUnsignedShort(842397944);
+                this.texSpaceDefC[i] = (short) packet2.readUnsignedShort(842397944);
+                if (this.version >= 15) {
+                    this.texSpaceScaleX[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleY[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleZ[i] = packet3.readMedium(-1);
                 } else {
-                    this.anIntArray1859[i_182_] = packet_119_.readUnsignedShort(842397944);
-                    if (this.anInt1830 >= 14) this.anIntArray1816[i_182_] = packet_119_.readMedium(-1);
-                    else this.anIntArray1816[i_182_] = packet_119_.readUnsignedShort(842397944);
-                    this.anIntArray1844[i_182_] = packet_119_.readUnsignedShort(842397944);
+                    this.texSpaceScaleX[i] = packet3.readUnsignedShort(842397944);
+                    if (this.version >= 14) this.texSpaceScaleY[i] = packet3.readMedium(-1);
+                    else this.texSpaceScaleY[i] = packet3.readUnsignedShort(842397944);
+                    this.texSpaceScaleZ[i] = packet3.readUnsignedShort(842397944);
                 }
-                this.aByteArray1833[i_182_] = packet_120_.readByte(-86);
-                this.aByteArray1853[i_182_] = packet_121_.readByte(-116);
-                this.anIntArray1867[i_182_] = packet_122_.readByte(-79);
+                this.texRotation[i] = packet4.readByte(-86);
+                this.texDirection[i] = packet5.readByte(-116);
+                this.texOffsetX[i] = packet6.readByte(-79);
             }
-            if (i_183_ == 2) {
-                this.aShortArray1829[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                this.aShortArray1849[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                this.aShortArray1825[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                if (this.anInt1830 >= 15) {
-                    this.anIntArray1859[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1816[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1844[i_182_] = packet_119_.readMedium(-1);
+            if (type == 2) {
+                this.texSpaceDefA[i] = (short) packet2.readUnsignedShort(842397944);
+                this.texSpaceDefB[i] = (short) packet2.readUnsignedShort(842397944);
+                this.texSpaceDefC[i] = (short) packet2.readUnsignedShort(842397944);
+                if (this.version >= 15) {
+                    this.texSpaceScaleX[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleY[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleZ[i] = packet3.readMedium(-1);
                 } else {
-                    this.anIntArray1859[i_182_] = packet_119_.readUnsignedShort(842397944);
-                    if (this.anInt1830 < 14) this.anIntArray1816[i_182_] = packet_119_.readUnsignedShort(842397944);
-                    else this.anIntArray1816[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1844[i_182_] = packet_119_.readUnsignedShort(842397944);
+                    this.texSpaceScaleX[i] = packet3.readUnsignedShort(842397944);
+                    if (this.version < 14) this.texSpaceScaleY[i] = packet3.readUnsignedShort(842397944);
+                    else this.texSpaceScaleY[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleZ[i] = packet3.readUnsignedShort(842397944);
                 }
-                this.aByteArray1833[i_182_] = packet_120_.readByte(-97);
-                this.aByteArray1853[i_182_] = packet_121_.readByte(-100);
-                this.anIntArray1867[i_182_] = packet_122_.readByte(-124);
-                this.anIntArray1857[i_182_] = packet_122_.readByte(-112);
-                this.anIntArray1865[i_182_] = packet_122_.readByte(-114);
+                this.texRotation[i] = packet4.readByte(-97);
+                this.texDirection[i] = packet5.readByte(-100);
+                this.texOffsetX[i] = packet6.readByte(-124);
+                this.texOffsetY[i] = packet6.readByte(-112);
+                this.texOffsetZ[i] = packet6.readByte(-114);
             }
-            if (i_183_ == 3) {
-                this.aShortArray1829[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                this.aShortArray1849[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                this.aShortArray1825[i_182_] = (short) packet_118_.readUnsignedShort(842397944);
-                if (this.anInt1830 < 15) {
-                    this.anIntArray1859[i_182_] = packet_119_.readUnsignedShort(842397944);
-                    if (this.anInt1830 < 14) this.anIntArray1816[i_182_] = packet_119_.readUnsignedShort(842397944);
-                    else this.anIntArray1816[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1844[i_182_] = packet_119_.readUnsignedShort(842397944);
+            if (type == 3) {
+                this.texSpaceDefA[i] = (short) packet2.readUnsignedShort(842397944);
+                this.texSpaceDefB[i] = (short) packet2.readUnsignedShort(842397944);
+                this.texSpaceDefC[i] = (short) packet2.readUnsignedShort(842397944);
+                if (this.version < 15) {
+                    this.texSpaceScaleX[i] = packet3.readUnsignedShort(842397944);
+                    if (this.version < 14) this.texSpaceScaleY[i] = packet3.readUnsignedShort(842397944);
+                    else this.texSpaceScaleY[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleZ[i] = packet3.readUnsignedShort(842397944);
                 } else {
-                    this.anIntArray1859[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1816[i_182_] = packet_119_.readMedium(-1);
-                    this.anIntArray1844[i_182_] = packet_119_.readMedium(-1);
+                    this.texSpaceScaleX[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleY[i] = packet3.readMedium(-1);
+                    this.texSpaceScaleZ[i] = packet3.readMedium(-1);
                 }
-                this.aByteArray1833[i_182_] = packet_120_.readByte(-104);
-                this.aByteArray1853[i_182_] = packet_121_.readByte(-127);
-                this.anIntArray1867[i_182_] = packet_122_.readByte(-109);
+                this.texRotation[i] = packet4.readByte(-104);
+                this.texDirection[i] = packet5.readByte(-127);
+                this.texOffsetX[i] = packet6.readByte(-109);
             }
         }
-        packet.pos = i_165_;
-        if (bool_125_) {
-            int i_184_ = packet.readUnsignedByte(255);
-            if (i_184_ > 0) {
-                this.aClass129Array1846 = new Class129[i_184_];
-                for (int i_185_ = 0; i_184_ > i_185_; i_185_++) {
-                    int i_186_ = packet.readUnsignedShort(842397944);
-                    int i_187_ = packet.readUnsignedShort(842397944);
-                    byte i_188_;
-                    if (i_128_ != 255) i_188_ = (byte) i_128_;
-                    else i_188_ = this.aByteArray1839[i_187_];
-                    this.aClass129Array1846[i_185_] = (new Class129(i_186_, this.aShortArray1863[i_187_], this.aShortArray1835[i_187_], this.aShortArray1855[i_187_], i_188_));
+        packet1.pos = i_165_;
+        if (hasParticleEffects) {
+            int emitterCount = packet1.readUnsignedByte(255);
+            if (emitterCount > 0) {
+                this.emitters = new ModelParticleEmitter[emitterCount];
+                for (int i = 0; emitterCount > i; i++) {
+                    int type = packet1.readUnsignedShort(842397944);
+                    int face = packet1.readUnsignedShort(842397944);
+                    byte priority;
+                    if (priorityFlag != 255) priority = (byte) priorityFlag;
+                    else priority = this.facePriority[face];
+                    this.emitters[i] = (new ModelParticleEmitter(type, this.faceA[face], this.faceB[face], this.faceC[face], priority));
                 }
             }
-            int i_189_ = packet.readUnsignedByte(255);
-            if (i_189_ > 0) {
-                this.aClass342Array1866 = new Class342[i_189_];
-                for (int i_190_ = 0; i_189_ > i_190_; i_190_++) {
-                    int i_191_ = packet.readUnsignedShort(842397944);
-                    int i_192_ = packet.readUnsignedShort(842397944);
-                    this.aClass342Array1866[i_190_] = new Class342(i_191_, i_192_);
+            int effectorCount = packet1.readUnsignedByte(255);
+            if (effectorCount > 0) {
+                this.effectors = new ModelParticleEffector[effectorCount];
+                for (int i = 0; effectorCount > i; i++) {
+                    int type = packet1.readUnsignedShort(842397944);
+                    int vertex = packet1.readUnsignedShort(842397944);
+                    this.effectors[i] = new ModelParticleEffector(type, vertex);
                 }
             }
         }
-        if (bool_126_) {
-            int i_193_ = packet.readUnsignedByte(255);
-            if (i_193_ > 0) {
-                this.aClass162Array1832 = new Class162[i_193_];
-                for (int i_194_ = 0; i_193_ > i_194_; i_194_++) {
-                    int i_195_ = packet.readUnsignedShort(842397944);
-                    int i_196_ = packet.readUnsignedShort(842397944);
-                    int i_197_ = packet.readUnsignedByte(255);
-                    byte i_198_ = packet.readByte(-127);
-                    this.aClass162Array1832[i_194_] = new Class162(i_195_, i_196_, i_197_, i_198_);
+        if (hasBillboards) {
+            int billboardCount = packet1.readUnsignedByte(255);
+            if (billboardCount > 0) {
+                this.billboards = new MeshBillboard[billboardCount];
+                for (int i = 0; billboardCount > i; i++) {
+                    int type = packet1.readUnsignedShort(842397944);
+                    int face = packet1.readUnsignedShort(842397944);
+                    int group = packet1.readUnsignedByte(255);
+                    byte priority = packet1.readByte(-127);
+                    this.billboards[i] = new MeshBillboard(type, face, group, priority);
                 }
             }
         }
@@ -489,13 +489,13 @@ final class Mesh {
      * guard "if (i_0_ <= 39)" in method1092 is never true for reachable
      * callers). Both are added back verbatim anyway since Java requires
      * them to resolve at compile time (kept code still calls them). */
-    final int[][] method1100(boolean bool, int i) {
+    final int[][] getVertexLabels(boolean bool, int i) {
         anInt1845++;
         int[] is = new int[256];
         int i_31_ = 0;
-        int i_32_ = (!bool ? this.anInt1821 : this.anInt1836);
+        int i_32_ = (!bool ? this.maxVertex : this.vertexCount);
         for (int i_33_ = 0; i_33_ < i_32_; i_33_++) {
-            int i_34_ = this.anIntArray1868[i_33_];
+            int i_34_ = this.vertexLabel[i_33_];
             if (i_34_ >= 0) {
                 is[i_34_]++;
                 if (i_31_ < i_34_) i_31_ = i_34_;
@@ -507,7 +507,7 @@ final class Mesh {
             is[i_36_] = 0;
         }
         for (int i_37_ = 0; i_32_ > i_37_; i_37_++) {
-            int i_38_ = this.anIntArray1868[i_37_];
+            int i_38_ = this.vertexLabel[i_37_];
             if (i_38_ >= 0) is_35_[i_38_][is[i_38_]++] = i_37_;
         }
         if (i > -14) recolour((short) 9, (byte) 80, (short) -118);
@@ -515,17 +515,17 @@ final class Mesh {
     }
 
     private final int method1102(int i, byte i_44_, byte i_45_, short i_46_, byte i_47_, short i_48_, int i_49_, byte i_50_, int i_51_) {
-        this.aShortArray1863[this.anInt1817] = (short) i;
+        this.faceA[this.faceCount] = (short) i;
         anInt1860++;
-        this.aShortArray1835[this.anInt1817] = (short) i_49_;
-        this.aShortArray1855[this.anInt1817] = (short) i_51_;
+        this.faceB[this.faceCount] = (short) i_49_;
+        this.faceC[this.faceCount] = (short) i_51_;
         if (i_47_ < 30) return -92;
-        this.aByteArray1843[this.anInt1817] = i_44_;
-        this.aByteArray1820[this.anInt1817] = i_45_;
-        this.aShortArray1862[this.anInt1817] = i_48_;
-        this.aByteArray1834[this.anInt1817] = i_50_;
-        this.aShortArray1822[this.anInt1817] = i_46_;
-        return this.anInt1817++;
+        this.shadingType[this.faceCount] = i_44_;
+        this.faceTexSpace[this.faceCount] = i_45_;
+        this.faceColour[this.faceCount] = i_48_;
+        this.faceAlpha[this.faceCount] = i_50_;
+        this.faceTexture[this.faceCount] = i_46_;
+        return this.faceCount++;
     }
 
     private final void method1103(int i, byte[] is) {
@@ -538,9 +538,9 @@ final class Mesh {
         Packet packet_55_ = new Packet(is);
         Packet packet_56_ = new Packet(is);
         packet.pos = -18 + is.length;
-        this.anInt1836 = packet.readUnsignedShort(i ^ 0x3235f8f9);
-        this.anInt1817 = packet.readUnsignedShort(842397944);
-        this.anInt1818 = packet.readUnsignedByte(255);
+        this.vertexCount = packet.readUnsignedShort(i ^ 0x3235f8f9);
+        this.faceCount = packet.readUnsignedShort(842397944);
+        this.texSpaceCount = packet.readUnsignedByte(255);
         int i_57_ = packet.readUnsignedByte(255);
         int i_58_ = packet.readUnsignedByte(255);
         int i_59_ = packet.readUnsignedByte(255);
@@ -552,53 +552,53 @@ final class Mesh {
         int i_65_ = packet.readUnsignedShort(842397944);
         int i_66_ = 0;
         int i_67_ = i_66_;
-        i_66_ += this.anInt1836;
+        i_66_ += this.vertexCount;
         int i_68_ = i_66_;
-        i_66_ += this.anInt1817;
+        i_66_ += this.faceCount;
         int i_69_ = i_66_;
-        if (i_58_ == 255) i_66_ += this.anInt1817;
+        if (i_58_ == 255) i_66_ += this.faceCount;
         int i_70_ = i_66_;
-        if (i_60_ == 1) i_66_ += this.anInt1817;
+        if (i_60_ == 1) i_66_ += this.faceCount;
         int i_71_ = i_66_;
-        if (i_57_ == 1) i_66_ += this.anInt1817;
+        if (i_57_ == 1) i_66_ += this.faceCount;
         int i_72_ = i_66_;
-        if (i_61_ == 1) i_66_ += this.anInt1836;
+        if (i_61_ == 1) i_66_ += this.vertexCount;
         int i_73_ = i_66_;
-        if (i == i_59_) i_66_ += this.anInt1817;
+        if (i == i_59_) i_66_ += this.faceCount;
         int i_74_ = i_66_;
         i_66_ += i_65_;
         int i_75_ = i_66_;
-        i_66_ += this.anInt1817 * 2;
+        i_66_ += this.faceCount * 2;
         int i_76_ = i_66_;
-        i_66_ += this.anInt1818 * 6;
+        i_66_ += this.texSpaceCount * 6;
         int i_77_ = i_66_;
         i_66_ += i_62_;
         int i_78_ = i_66_;
         i_66_ += i_63_;
         int i_79_ = i_66_;
-        this.aShortArray1862 = new short[this.anInt1817];
-        if (i_58_ == 255) this.aByteArray1839 = new byte[this.anInt1817];
-        else this.aByte1851 = (byte) i_58_;
-        if (i_61_ == 1) this.anIntArray1868 = new int[this.anInt1836];
-        if (i_59_ == 1) this.aByteArray1834 = new byte[this.anInt1817];
-        this.aShortArray1863 = new short[this.anInt1817];
+        this.faceColour = new short[this.faceCount];
+        if (i_58_ == 255) this.facePriority = new byte[this.faceCount];
+        else this.globalPriority = (byte) i_58_;
+        if (i_61_ == 1) this.vertexLabel = new int[this.vertexCount];
+        if (i_59_ == 1) this.faceAlpha = new byte[this.faceCount];
+        this.faceA = new short[this.faceCount];
         if (i_57_ == 1) {
-            this.aShortArray1822 = new short[this.anInt1817];
-            this.aByteArray1820 = new byte[this.anInt1817];
-            this.aByteArray1843 = new byte[this.anInt1817];
+            this.faceTexture = new short[this.faceCount];
+            this.faceTexSpace = new byte[this.faceCount];
+            this.shadingType = new byte[this.faceCount];
         }
-        this.anIntArray1847 = new int[this.anInt1836];
-        if (i_60_ == 1) this.anIntArray1824 = new int[this.anInt1817];
-        this.aShortArray1855 = new short[this.anInt1817];
-        if (this.anInt1818 > 0) {
-            this.aByteArray1823 = new byte[this.anInt1818];
-            this.aShortArray1829 = new short[this.anInt1818];
-            this.aShortArray1849 = new short[this.anInt1818];
-            this.aShortArray1825 = new short[this.anInt1818];
+        this.vertexY = new int[this.vertexCount];
+        if (i_60_ == 1) this.faceLabel = new int[this.faceCount];
+        this.faceC = new short[this.faceCount];
+        if (this.texSpaceCount > 0) {
+            this.texMappingType = new byte[this.texSpaceCount];
+            this.texSpaceDefA = new short[this.texSpaceCount];
+            this.texSpaceDefB = new short[this.texSpaceCount];
+            this.texSpaceDefC = new short[this.texSpaceCount];
         }
-        this.aShortArray1835 = new short[this.anInt1817];
-        this.anIntArray1852 = new int[this.anInt1836];
-        this.anIntArray1841 = new int[this.anInt1836];
+        this.faceB = new short[this.faceCount];
+        this.vertexZ = new int[this.vertexCount];
+        this.vertexX = new int[this.vertexCount];
         packet.pos = i_67_;
         i_66_ += i_64_;
         packet_53_.pos = i_77_;
@@ -608,7 +608,7 @@ final class Mesh {
         int i_80_ = 0;
         int i_81_ = 0;
         int i_82_ = 0;
-        for (int i_83_ = 0; i_83_ < this.anInt1836; i_83_++) {
+        for (int i_83_ = 0; i_83_ < this.vertexCount; i_83_++) {
             int i_84_ = packet.readUnsignedByte(255);
             int i_85_ = 0;
             if ((i_84_ & 0x1) != 0) i_85_ = packet_53_.method3362((byte) 77);
@@ -616,49 +616,49 @@ final class Mesh {
             if ((i_84_ & 0x2) != 0) i_86_ = packet_54_.method3362((byte) 77);
             int i_87_ = 0;
             if ((0x4 & i_84_) != 0) i_87_ = packet_55_.method3362((byte) 77);
-            this.anIntArray1841[i_83_] = i_85_ + i_80_;
-            this.anIntArray1847[i_83_] = i_81_ - -i_86_;
-            this.anIntArray1852[i_83_] = i_82_ + i_87_;
-            i_82_ = this.anIntArray1852[i_83_];
-            i_81_ = this.anIntArray1847[i_83_];
-            i_80_ = this.anIntArray1841[i_83_];
-            if (i_61_ == 1) this.anIntArray1868[i_83_] = packet_56_.readUnsignedByte(Class348_Sub21.method2955(i, 254));
+            this.vertexX[i_83_] = i_85_ + i_80_;
+            this.vertexY[i_83_] = i_81_ - -i_86_;
+            this.vertexZ[i_83_] = i_82_ + i_87_;
+            i_82_ = this.vertexZ[i_83_];
+            i_81_ = this.vertexY[i_83_];
+            i_80_ = this.vertexX[i_83_];
+            if (i_61_ == 1) this.vertexLabel[i_83_] = packet_56_.readUnsignedByte(Class348_Sub21.method2955(i, 254));
         }
         packet.pos = i_75_;
         packet_53_.pos = i_71_;
         packet_54_.pos = i_69_;
         packet_55_.pos = i_73_;
         packet_56_.pos = i_70_;
-        for (int i_88_ = 0; i_88_ < this.anInt1817; i_88_++) {
-            this.aShortArray1862[i_88_] = (short) packet.readUnsignedShort(842397944);
+        for (int i_88_ = 0; i_88_ < this.faceCount; i_88_++) {
+            this.faceColour[i_88_] = (short) packet.readUnsignedShort(842397944);
             if (i_57_ == 1) {
                 int i_89_ = packet_53_.readUnsignedByte(255);
                 if ((0x1 & i_89_) == 1) {
-                    this.aByteArray1843[i_88_] = (byte) 1;
+                    this.shadingType[i_88_] = (byte) 1;
                     bool = true;
-                } else this.aByteArray1843[i_88_] = (byte) 0;
+                } else this.shadingType[i_88_] = (byte) 0;
                 if ((i_89_ & 0x2) == 2) {
-                    this.aByteArray1820[i_88_] = (byte) (i_89_ >> 2);
-                    this.aShortArray1822[i_88_] = this.aShortArray1862[i_88_];
-                    this.aShortArray1862[i_88_] = (short) 127;
-                    if (this.aShortArray1822[i_88_] != -1) bool_52_ = true;
+                    this.faceTexSpace[i_88_] = (byte) (i_89_ >> 2);
+                    this.faceTexture[i_88_] = this.faceColour[i_88_];
+                    this.faceColour[i_88_] = (short) 127;
+                    if (this.faceTexture[i_88_] != -1) bool_52_ = true;
                 } else {
-                    this.aByteArray1820[i_88_] = (byte) -1;
-                    this.aShortArray1822[i_88_] = (short) -1;
+                    this.faceTexSpace[i_88_] = (byte) -1;
+                    this.faceTexture[i_88_] = (short) -1;
                 }
             }
-            if (i_58_ == 255) this.aByteArray1839[i_88_] = packet_54_.readByte(-108);
-            if (i_59_ == 1) this.aByteArray1834[i_88_] = packet_55_.readByte(Class348_Sub21.method2955(i, -120));
-            if (i_60_ == 1) this.anIntArray1824[i_88_] = packet_56_.readUnsignedByte(255);
+            if (i_58_ == 255) this.facePriority[i_88_] = packet_54_.readByte(-108);
+            if (i_59_ == 1) this.faceAlpha[i_88_] = packet_55_.readByte(Class348_Sub21.method2955(i, -120));
+            if (i_60_ == 1) this.faceLabel[i_88_] = packet_56_.readUnsignedByte(255);
         }
         packet.pos = i_74_;
-        this.anInt1821 = -1;
+        this.maxVertex = -1;
         packet_53_.pos = i_68_;
         short i_90_ = 0;
         short i_91_ = 0;
         short i_92_ = 0;
         int i_93_ = 0;
-        for (int i_94_ = 0; i_94_ < this.anInt1817; i_94_++) {
+        for (int i_94_ = 0; i_94_ < this.faceCount; i_94_++) {
             int i_95_ = packet_53_.readUnsignedByte(255);
             if (i_95_ == 1) {
                 i_90_ = (short) (i_93_ + packet.method3362((byte) 77));
@@ -666,31 +666,31 @@ final class Mesh {
                 i_91_ = (short) (packet.method3362((byte) 77) + i_93_);
                 i_93_ = i_91_;
                 i_92_ = (short) (i_93_ + packet.method3362((byte) 77));
-                this.aShortArray1863[i_94_] = i_90_;
+                this.faceA[i_94_] = i_90_;
                 i_93_ = i_92_;
-                this.aShortArray1835[i_94_] = i_91_;
-                this.aShortArray1855[i_94_] = i_92_;
-                if (i_90_ > this.anInt1821) this.anInt1821 = i_90_;
-                if (this.anInt1821 < i_91_) this.anInt1821 = i_91_;
-                if (this.anInt1821 < i_92_) this.anInt1821 = i_92_;
+                this.faceB[i_94_] = i_91_;
+                this.faceC[i_94_] = i_92_;
+                if (i_90_ > this.maxVertex) this.maxVertex = i_90_;
+                if (this.maxVertex < i_91_) this.maxVertex = i_91_;
+                if (this.maxVertex < i_92_) this.maxVertex = i_92_;
             }
             if (i_95_ == 2) {
                 i_91_ = i_92_;
                 i_92_ = (short) (packet.method3362((byte) 77) + i_93_);
-                this.aShortArray1863[i_94_] = i_90_;
+                this.faceA[i_94_] = i_90_;
                 i_93_ = i_92_;
-                this.aShortArray1835[i_94_] = i_91_;
-                this.aShortArray1855[i_94_] = i_92_;
-                if (i_92_ > this.anInt1821) this.anInt1821 = i_92_;
+                this.faceB[i_94_] = i_91_;
+                this.faceC[i_94_] = i_92_;
+                if (i_92_ > this.maxVertex) this.maxVertex = i_92_;
             }
             if (i_95_ == 3) {
                 i_90_ = i_92_;
                 i_92_ = (short) (packet.method3362((byte) 77) + i_93_);
                 i_93_ = i_92_;
-                this.aShortArray1863[i_94_] = i_90_;
-                this.aShortArray1835[i_94_] = i_91_;
-                this.aShortArray1855[i_94_] = i_92_;
-                if (this.anInt1821 < i_92_) this.anInt1821 = i_92_;
+                this.faceA[i_94_] = i_90_;
+                this.faceB[i_94_] = i_91_;
+                this.faceC[i_94_] = i_92_;
+                if (this.maxVertex < i_92_) this.maxVertex = i_92_;
             }
             if (i_95_ == 4) {
                 short i_96_ = i_90_;
@@ -698,72 +698,72 @@ final class Mesh {
                 i_92_ = (short) (packet.method3362((byte) 77) + i_93_);
                 i_91_ = i_96_;
                 i_93_ = i_92_;
-                this.aShortArray1863[i_94_] = i_90_;
-                this.aShortArray1835[i_94_] = i_91_;
-                this.aShortArray1855[i_94_] = i_92_;
-                if (this.anInt1821 < i_92_) this.anInt1821 = i_92_;
+                this.faceA[i_94_] = i_90_;
+                this.faceB[i_94_] = i_91_;
+                this.faceC[i_94_] = i_92_;
+                if (this.maxVertex < i_92_) this.maxVertex = i_92_;
             }
         }
-        this.anInt1821++;
+        this.maxVertex++;
         packet.pos = i_76_;
-        for (int i_97_ = 0; i_97_ < this.anInt1818; i_97_++) {
-            this.aByteArray1823[i_97_] = (byte) 0;
-            this.aShortArray1829[i_97_] = (short) packet.readUnsignedShort(842397944);
-            this.aShortArray1849[i_97_] = (short) packet.readUnsignedShort(842397944);
-            this.aShortArray1825[i_97_] = (short) packet.readUnsignedShort(842397944);
+        for (int i_97_ = 0; i_97_ < this.texSpaceCount; i_97_++) {
+            this.texMappingType[i_97_] = (byte) 0;
+            this.texSpaceDefA[i_97_] = (short) packet.readUnsignedShort(842397944);
+            this.texSpaceDefB[i_97_] = (short) packet.readUnsignedShort(842397944);
+            this.texSpaceDefC[i_97_] = (short) packet.readUnsignedShort(842397944);
         }
-        if (this.aByteArray1820 != null) {
+        if (this.faceTexSpace != null) {
             boolean bool_98_ = false;
-            for (int i_99_ = 0; i_99_ < this.anInt1817; i_99_++) {
-                int i_100_ = this.aByteArray1820[i_99_] & 0xff;
+            for (int i_99_ = 0; i_99_ < this.faceCount; i_99_++) {
+                int i_100_ = this.faceTexSpace[i_99_] & 0xff;
                 if (i_100_ != 255) {
-                    if (((0xffff & this.aShortArray1829[i_100_]) != this.aShortArray1863[i_99_]) || (this.aShortArray1835[i_99_] != (0xffff & this.aShortArray1849[i_100_])) || ((0xffff & this.aShortArray1825[i_100_]) != this.aShortArray1855[i_99_])) bool_98_ = true;
-                    else this.aByteArray1820[i_99_] = (byte) -1;
+                    if (((0xffff & this.texSpaceDefA[i_100_]) != this.faceA[i_99_]) || (this.faceB[i_99_] != (0xffff & this.texSpaceDefB[i_100_])) || ((0xffff & this.texSpaceDefC[i_100_]) != this.faceC[i_99_])) bool_98_ = true;
+                    else this.faceTexSpace[i_99_] = (byte) -1;
                 }
             }
-            if (!bool_98_) this.aByteArray1820 = null;
+            if (!bool_98_) this.faceTexSpace = null;
         }
-        if (!bool) this.aByteArray1843 = null;
-        if (!bool_52_) this.aShortArray1822 = null;
+        if (!bool) this.shadingType = null;
+        if (!bool_52_) this.faceTexture = null;
     }
 
     final void method1107(int i, int i_199_, int i_200_, int i_201_) {
         if (i_200_ != 0) {
             int i_202_ = Class70.anIntArray1207[i_200_];
             int i_203_ = Class70.anIntArray1204[i_200_];
-            for (int i_204_ = 0; i_204_ < this.anInt1836; i_204_++) {
-                int i_205_ = ((i_203_ * this.anIntArray1841[i_204_] + this.anIntArray1847[i_204_] * i_202_) >> 14);
-                this.anIntArray1847[i_204_] = ((-(this.anIntArray1841[i_204_] * i_202_) + this.anIntArray1847[i_204_] * i_203_) >> 14);
-                this.anIntArray1841[i_204_] = i_205_;
+            for (int i_204_ = 0; i_204_ < this.vertexCount; i_204_++) {
+                int i_205_ = ((i_203_ * this.vertexX[i_204_] + this.vertexY[i_204_] * i_202_) >> 14);
+                this.vertexY[i_204_] = ((-(this.vertexX[i_204_] * i_202_) + this.vertexY[i_204_] * i_203_) >> 14);
+                this.vertexX[i_204_] = i_205_;
             }
         }
-        if (i != 6875) this.aShortArray1835 = null;
+        if (i != 6875) this.faceB = null;
         anInt1837++;
         if (i_201_ != 0) {
             int i_206_ = Class70.anIntArray1207[i_201_];
             int i_207_ = Class70.anIntArray1204[i_201_];
-            for (int i_208_ = 0; i_208_ < this.anInt1836; i_208_++) {
-                int i_209_ = ((this.anIntArray1847[i_208_] * i_207_ + -(i_206_ * this.anIntArray1852[i_208_])) >> 14);
-                this.anIntArray1852[i_208_] = ((this.anIntArray1847[i_208_] * i_206_ - -(i_207_ * this.anIntArray1852[i_208_])) >> 14);
-                this.anIntArray1847[i_208_] = i_209_;
+            for (int i_208_ = 0; i_208_ < this.vertexCount; i_208_++) {
+                int i_209_ = ((this.vertexY[i_208_] * i_207_ + -(i_206_ * this.vertexZ[i_208_])) >> 14);
+                this.vertexZ[i_208_] = ((this.vertexY[i_208_] * i_206_ - -(i_207_ * this.vertexZ[i_208_])) >> 14);
+                this.vertexY[i_208_] = i_209_;
             }
         }
         if (i_199_ != 0) {
             int i_210_ = Class70.anIntArray1207[i_199_];
             int i_211_ = Class70.anIntArray1204[i_199_];
-            for (int i_212_ = 0; this.anInt1836 > i_212_; i_212_++) {
-                int i_213_ = ((i_211_ * this.anIntArray1841[i_212_] + this.anIntArray1852[i_212_] * i_210_) >> 14);
-                this.anIntArray1852[i_212_] = ((i_211_ * this.anIntArray1852[i_212_] + -(this.anIntArray1841[i_212_] * i_210_)) >> 14);
-                this.anIntArray1841[i_212_] = i_213_;
+            for (int i_212_ = 0; this.vertexCount > i_212_; i_212_++) {
+                int i_213_ = ((i_211_ * this.vertexX[i_212_] + this.vertexZ[i_212_] * i_210_) >> 14);
+                this.vertexZ[i_212_] = ((i_211_ * this.vertexZ[i_212_] + -(this.vertexX[i_212_] * i_210_)) >> 14);
+                this.vertexX[i_212_] = i_213_;
             }
         }
     }
 
     Mesh(byte[] is) {
-        this.anInt1817 = 0;
-        this.aByte1851 = (byte) 0;
-        this.anInt1821 = 0;
-        this.anInt1818 = 0;
+        this.faceCount = 0;
+        this.globalPriority = (byte) 0;
+        this.maxVertex = 0;
+        this.texSpaceCount = 0;
         if (is[is.length + -1] == -1 && is[-2 + is.length] == -1) method1106(is, (byte) 93);
         else method1103(1, is);
     }

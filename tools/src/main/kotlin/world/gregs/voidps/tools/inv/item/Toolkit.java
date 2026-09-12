@@ -12,7 +12,7 @@ abstract class Toolkit {
     int index;
     static int anInt4573;
     static int anInt4576;
-    d aD4579;
+    TextureSource textureSource;
     static int anInt4583;
 
     abstract void method3652();
@@ -21,7 +21,7 @@ abstract class Toolkit {
 
     // abstract dependencies of Class213.method1562 (genuine), which calls
     // these on a `ha`-typed reference - all implemented concretely in ha_Sub1.
-    abstract Model createModel(Mesh mesh, int i, int i_366_, int i_367_, int i_368_);
+    abstract Model createModel(Mesh mesh, int functionMask, int featureMask, int ambient, int contrast);
 
     abstract Matrix method3654();
 
@@ -84,22 +84,22 @@ abstract class Toolkit {
         return class348_sub42_sub3.aByteArray9499;
     }
 
-    static final synchronized Toolkit method3692(int i, int i_168_, int i_169_, Js5 js5, int i_170_, d var_d, Canvas canvas, int i_171_) {
+    static final synchronized Toolkit method3692(int i, int i_168_, int i_169_, Js5 js5, int i_170_, TextureSource var_textureSource, Canvas canvas, int i_171_) {
         try {
             anInt4576++;
             // Only the i_170_ == i_171_ branch is ever reachable from this
             // renderer (CacheItemSpriteDumper always calls with both 0); the
             // other renderer-selection branches (Class306/Class262/Class93/
             // Class96) are unreachable per JaCoCo coverage and were dropped.
-            if (i_170_ == i_171_) return Class348_Sub5.method2753(true, i_168_, i_169_, canvas, var_d);
+            if (i_170_ == i_171_) return Class348_Sub5.method2753(true, i_168_, i_169_, canvas, var_textureSource);
             throw new IllegalArgumentException("UM");
         } catch (RuntimeException runtimeexception) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + (js5 != null ? "{...}" : "null") + ',' + i_170_ + ',' + (var_d != null ? "{...}" : "null") + ',' + (canvas != null ? "{...}" : "null") + ',' + i_171_ + ')'));
+            throw Class348_Sub17.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + (js5 != null ? "{...}" : "null") + ',' + i_170_ + ',' + (var_textureSource != null ? "{...}" : "null") + ',' + (canvas != null ? "{...}" : "null") + ',' + i_171_ + ')'));
         }
     }
 
-    Toolkit(d var_d) {
-        this.aD4579 = var_d;
+    Toolkit(TextureSource var_textureSource) {
+        this.textureSource = var_textureSource;
         int i = -1;
         for (int i_215_ = 0; i_215_ < 8; i_215_++) {
             if (!Class348_Sub40_Sub26.aBooleanArray9351[i_215_]) {

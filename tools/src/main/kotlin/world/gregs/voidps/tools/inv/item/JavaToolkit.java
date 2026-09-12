@@ -4,10 +4,10 @@ package world.gregs.voidps.tools.inv.item;/* ha_Sub1 - Decompiled by JODE
 
 import java.awt.*;
 
-final class toolkit_Sub1 extends Toolkit {
+final class JavaToolkit extends Toolkit {
     private int anInt7465;
     private int anInt7466;
-    private Class356 aClass356_7467;
+    private IterableHashTable aIterableHashTable_7467;
     private Canvas aCanvas7468;
     Class348_Sub31 aClass348_Sub31_7469;
     private boolean aBoolean7470 = false;
@@ -20,7 +20,7 @@ final class toolkit_Sub1 extends Toolkit {
     int anInt7477;
     int anInt7478;
     int anInt7479;
-    private Class167[] aClass167Array7480;
+    private JavaThreadResource[] aJavaThreadResourceArray7480;
     private int anInt7481;
     int anInt7482;
     int[] anIntArray7483;
@@ -88,7 +88,7 @@ final class toolkit_Sub1 extends Toolkit {
 
     // dependency of Class109's genuine drawing methods (method1018/method1024
     // call method3645 unconditionally); not itself in the genuine list.
-    final void method3645(int i, int i_41_, int i_42_, int i_43_, int i_44_, int i_45_) {
+    final void line(int i, int i_41_, int i_42_, int i_43_, int i_44_, int i_45_) {
         anInt4563++;
         method3709(i_41_, i, i_42_, i_45_, i_44_, 1);
         if (i_43_ != -8003) method3665(75, 67);
@@ -297,16 +297,16 @@ final class toolkit_Sub1 extends Toolkit {
         this.anInt7490 = this.anInt7476 - this.anInt7504;
         this.anInt7506 = this.anInt7503 - this.anInt7504;
         for (int i = 0; i < this.anInt7485; i++) {
-            Class109 class109 = aClass167Array7480[i].aClass109_2220;
-            class109.anInt1665 = this.anInt7510 - this.anInt7496;
-            class109.anInt1668 = this.anInt7504 - this.anInt7476;
-            class109.anInt1679 = this.anInt7507 - this.anInt7496;
-            class109.anInt1672 = this.anInt7503 - this.anInt7476;
+            Rasterizer rasterizer = aJavaThreadResourceArray7480[i].rasterizer;
+            rasterizer.anInt1665 = this.anInt7510 - this.anInt7496;
+            rasterizer.anInt1668 = this.anInt7504 - this.anInt7476;
+            rasterizer.width = this.anInt7507 - this.anInt7496;
+            rasterizer.height = this.anInt7503 - this.anInt7476;
         }
         int i = (this.anInt7476 * this.anInt7477 + this.anInt7496);
         for (int i_97_ = this.anInt7476; i_97_ < this.anInt7503; i_97_++) {
             for (int i_98_ = 0; i_98_ < this.anInt7485; i_98_++)
-                aClass167Array7480[i_98_].aClass109_2220.anIntArray1676[i_97_ - this.anInt7476] = i;
+                aJavaThreadResourceArray7480[i_98_].rasterizer.lineOffsets[i_97_ - this.anInt7476] = i;
             i += this.anInt7477;
         }
     }
@@ -316,12 +316,12 @@ final class toolkit_Sub1 extends Toolkit {
     }
 
     final Matrix method3705() {
-        Class167 class167 = method3724(Thread.currentThread());
-        return class167.aClass101_Sub1_2209;
+        JavaThreadResource javaThreadResource = threadResource(Thread.currentThread());
+        return javaThreadResource.aClass101_Sub1_2209;
     }
 
     final boolean method3714(int i) {
-        return this.aD4579.method3(i, -6662).aBoolean217 || this.aD4579.method3(i, -6662).aBoolean215;
+        return this.textureSource.getMetrics(i, -6662).aBoolean217 || this.textureSource.getMetrics(i, -6662).aBoolean215;
     }
 
     final boolean method3655() {
@@ -341,10 +341,10 @@ final class toolkit_Sub1 extends Toolkit {
     }
 
     final void f(int i, int i_156_) {
-        Class167 class167 = method3724(Thread.currentThread());
+        JavaThreadResource javaThreadResource = threadResource(Thread.currentThread());
         this.anInt7482 = i;
         this.anInt7494 = i_156_;
-        class167.anInt2210 = this.anInt7494 - 255;
+        javaThreadResource.anInt2210 = this.anInt7494 - 255;
     }
 
     final void ya() {
@@ -412,7 +412,7 @@ final class toolkit_Sub1 extends Toolkit {
 
     private final void method3717() {
         for (int i = 0; i < this.anInt7485; i++)
-            aClass167Array7480[i].method1292(64);
+            aJavaThreadResourceArray7480[i].method1292(64);
         la();
     }
 
@@ -437,10 +437,10 @@ final class toolkit_Sub1 extends Toolkit {
     }
 
     final void method3643(Canvas canvas, int i, int i_232_) {
-        Class348_Sub31 class348_sub31 = ((Class348_Sub31) aClass356_7467.method3480(canvas.hashCode(), -6008));
+        Class348_Sub31 class348_sub31 = ((Class348_Sub31) aIterableHashTable_7467.method3480(canvas.hashCode(), -6008));
         if (class348_sub31 == null) {
             class348_sub31 = Class110.method1035(9029, i_232_, canvas, i);
-            aClass356_7467.method3483((byte) 21, canvas.hashCode(), class348_sub31);
+            aIterableHashTable_7467.put((byte) 21, canvas.hashCode(), class348_sub31);
         } else if (class348_sub31.anInt6917 != i || class348_sub31.anInt6920 != i_232_) method3669(canvas, i, i_232_);
     }
 
@@ -450,9 +450,9 @@ final class toolkit_Sub1 extends Toolkit {
 
     final void method3631(int i) {
         this.anInt7485 = i;
-        aClass167Array7480 = new Class167[this.anInt7485];
+        aJavaThreadResourceArray7480 = new JavaThreadResource[this.anInt7485];
         for (int i_240_ = 0; i_240_ < this.anInt7485; i_240_++)
-            aClass167Array7480[i_240_] = new Class167(this);
+            aJavaThreadResourceArray7480[i_240_] = new JavaThreadResource(this);
     }
 
     final void method3653(Class299 class299) {
@@ -461,11 +461,11 @@ final class toolkit_Sub1 extends Toolkit {
 
     // dependency of method3643 (not in genuine list, required to compile)
     final void method3669(Canvas canvas, int i, int i_578_) {
-        Class348_Sub31 class348_sub31 = ((Class348_Sub31) aClass356_7467.method3480(canvas.hashCode(), -6008));
+        Class348_Sub31 class348_sub31 = ((Class348_Sub31) aIterableHashTable_7467.method3480(canvas.hashCode(), -6008));
         if (class348_sub31 != null) {
-            class348_sub31.method2715((byte) 95);
+            class348_sub31.unlink((byte) 95);
             class348_sub31 = Class110.method1035(9029, i_578_, canvas, i);
-            aClass356_7467.method3483((byte) 112, canvas.hashCode(), class348_sub31);
+            aIterableHashTable_7467.put((byte) 112, canvas.hashCode(), class348_sub31);
             if (aCanvas7468 == canvas && aClass49_7475 == null) {
                 Dimension dimension = canvas.getSize();
                 anInt7465 = dimension.width;
@@ -559,7 +559,7 @@ final class toolkit_Sub1 extends Toolkit {
         aCanvas7468 = null;
         anInt7465 = 0;
         anInt7472 = 0;
-        aClass356_7467 = null;
+        aIterableHashTable_7467 = null;
         aBoolean7470 = true;
     }
 
@@ -567,8 +567,8 @@ final class toolkit_Sub1 extends Toolkit {
         return this.aClass101_Sub1_7492;
     }
 
-    toolkit_Sub1(Canvas canvas, d var_d, int i, int i_355_) {
-        this(var_d);
+    JavaToolkit(Canvas canvas, TextureSource var_textureSource, int i, int i_355_) {
+        this(var_textureSource);
         try {
             method3643(canvas, i, i_355_);
             method3677(canvas);
@@ -584,10 +584,10 @@ final class toolkit_Sub1 extends Toolkit {
         synchronized (aClass60_7498) {
             class348_sub25 = ((Class348_Sub25) aClass60_7498.method583((long) i | ~0x7fffffffffffffffL, 107));
             if (class348_sub25 == null) {
-                if (!this.aD4579.method4(-7953, i)) return null;
-                Class12 class12 = this.aD4579.method3(i, -6662);
-                int i_356_ = (class12.aBoolean199 || aBoolean7489 ? 64 : this.anInt7501);
-                class348_sub25 = new Class348_Sub25(i, i_356_, this.aD4579.method6(-21540, i_356_, 0.7F, i, true, i_356_), class12.anInt200 != 1);
+                if (!this.textureSource.method4(-7953, i)) return null;
+                TextureMetrics textureMetrics = this.textureSource.getMetrics(i, -6662);
+                int i_356_ = (textureMetrics.small || aBoolean7489 ? 64 : this.anInt7501);
+                class348_sub25 = new Class348_Sub25(i, i_356_, this.textureSource.method6(-21540, i_356_, 0.7F, i, true, i_356_), textureMetrics.alphaBlendMode != 1);
                 aClass60_7498.method582(class348_sub25, (long) i | ~0x7fffffffffffffffL, (byte) -126);
             }
         }
@@ -607,8 +607,8 @@ final class toolkit_Sub1 extends Toolkit {
         method3713();
     }
 
-    final Model createModel(Mesh mesh, int i, int i_366_, int i_367_, int i_368_) {
-        return new Model_Sub1(this, mesh, i, i_367_, i_368_, i_366_);
+    final Model createModel(Mesh mesh, int functionMask, int featureMask, int ambient, int contrast) {
+        return new JavaModel(this, mesh, functionMask, ambient, contrast, featureMask);
     }
 
     final Interface13 method3624(int i, int i_369_) {
@@ -626,7 +626,7 @@ final class toolkit_Sub1 extends Toolkit {
                 method3717();
             }
         } else {
-            Class348_Sub31 class348_sub31 = ((Class348_Sub31) aClass356_7467.method3480(canvas.hashCode(), -6008));
+            Class348_Sub31 class348_sub31 = ((Class348_Sub31) aIterableHashTable_7467.method3480(canvas.hashCode(), -6008));
             if (class348_sub31 != null) {
                 aCanvas7468 = canvas;
                 Dimension dimension = canvas.getSize();
@@ -804,7 +804,7 @@ final class toolkit_Sub1 extends Toolkit {
     // dependency of method3712 (used by method3720), not in genuine list
     final void method3720(int i, int i_377_, int i_378_, int i_379_, int i_380_, int i_381_, int i_382_, int i_383_, int i_384_, int i_385_) {
         if (i_379_ != 0 && i_380_ != 0) {
-            if (i_382_ != 65535 && !(this.aD4579.method3(i_382_, -6662).aBoolean209)) {
+            if (i_382_ != 65535 && !(this.textureSource.getMetrics(i_382_, -6662).disableable)) {
                 if (anInt7512 != i_382_) {
                     Sprite sprite = ((Sprite) aClass60_7499.method583(i_382_, 97));
                     if (sprite == null) {
@@ -822,9 +822,9 @@ final class toolkit_Sub1 extends Toolkit {
         }
     }
 
-    final Class167 method3724(Runnable runnable) {
+    final JavaThreadResource threadResource(Runnable runnable) {
         for (int i = 0; i < this.anInt7485; i++) {
-            if (aClass167Array7480[i].aRunnable2198 == runnable) return aClass167Array7480[i];
+            if (aJavaThreadResourceArray7480[i].aRunnable2198 == runnable) return aJavaThreadResourceArray7480[i];
         }
         return null;
     }
@@ -843,12 +843,12 @@ final class toolkit_Sub1 extends Toolkit {
     }
 
     final boolean method3725(int i) {
-        return this.aD4579.method4(-7953, i);
+        return this.textureSource.method4(-7953, i);
     }
 
-    private toolkit_Sub1(d var_d) {
-        super(var_d);
-        aClass356_7467 = new Class356(4);
+    private JavaToolkit(TextureSource var_textureSource) {
+        super(var_textureSource);
+        aIterableHashTable_7467 = new IterableHashTable(4);
         this.anInt7474 = 45823;
         aBoolean7489 = false;
         anInt7487 = 0;
@@ -891,8 +891,8 @@ final class toolkit_Sub1 extends Toolkit {
 
     // dependency of method3665, not in genuine list
     final Sprite method3629(int i, int i_519_, boolean bool) {
-        if (bool) return new Sprite_Sub3_Sub3(this, i, i_519_);
-        return new Sprite_Sub3_Sub1(this, i, i_519_);
+        if (bool) return new JavaArgbSprite(this, i, i_519_);
+        return new JavaRgbSprite(this, i, i_519_);
     }
 
     final Class348_Sub1 method3690(int i, int i_520_, int i_521_, int i_522_, int i_523_, float f) {
@@ -932,8 +932,8 @@ final class toolkit_Sub1 extends Toolkit {
                 }
             }
         }
-        if (bool_425_) return new Sprite_Sub3_Sub3(this, is, i, i_422_, i_423_, i_424_, bool);
-        return new Sprite_Sub3_Sub1(this, is, i, i_422_, i_423_, i_424_, bool);
+        if (bool_425_) return new JavaArgbSprite(this, is, i, i_422_, i_423_, i_424_, bool);
+        return new JavaRgbSprite(this, is, i, i_422_, i_423_, i_424_, bool);
     }
 
     // dependency of method3665, not in genuine list
@@ -946,11 +946,11 @@ final class toolkit_Sub1 extends Toolkit {
     }
 
     final void method3659(int i) {
-        aClass167Array7480[i].method1291(10000, Thread.currentThread());
+        aJavaThreadResourceArray7480[i].method1291(10000, Thread.currentThread());
     }
 
     final int method3726(int i) {
-        return this.aD4579.method3(i, -6662).anInt200;
+        return this.textureSource.getMetrics(i, -6662).alphaBlendMode;
     }
 
     final int method3704() {
@@ -987,6 +987,6 @@ final class toolkit_Sub1 extends Toolkit {
     }
 
     final boolean method3727(int i) {
-        return aBoolean7489 || this.aD4579.method3(i, -6662).aBoolean199;
+        return aBoolean7489 || this.textureSource.getMetrics(i, -6662).small;
     }
 }

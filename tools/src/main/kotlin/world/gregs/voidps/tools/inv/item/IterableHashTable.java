@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.inv.item;/* Class356 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class356 {
+final class IterableHashTable {
     Class348[] aClass348Array4374;
     static int anInt4375;
     int anInt4377;
@@ -63,7 +63,7 @@ final class Class356 {
             for (; ; ) {
                 Class348 class348_9_ = class348.aClass348_4294;
                 if (class348_9_ == class348) break;
-                class348_9_.method2715((byte) 54);
+                class348_9_.unlink((byte) 54);
             }
         }
         aClass348_4389 = null;
@@ -87,11 +87,11 @@ final class Class356 {
         return null;
     }
 
-    final void method3483(byte i, long l, Class348 class348) {
+    final void put(byte i, long l, Class348 class348) {
         try {
             anInt4382++;
             if (i < 18) method3481(71);
-            if (class348.aClass348_4295 != null) class348.method2715((byte) 57);
+            if (class348.aClass348_4295 != null) class348.unlink((byte) 57);
             Class348 class348_10_ = (this.aClass348Array4374[(int) (l & (long) (-1 + this.anInt4377))]);
             class348.aClass348_4294 = class348_10_;
             class348.aClass348_4295 = class348_10_.aClass348_4295;
@@ -109,7 +109,7 @@ final class Class356 {
         return method3482(0);
     }
 
-    Class356(int i) {
+    IterableHashTable(int i) {
         this.anInt4377 = i;
         this.aClass348Array4374 = new Class348[i];
         for (int i_11_ = 0; i > i_11_; i_11_++) {

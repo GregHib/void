@@ -54,7 +54,7 @@ final class Class191 {
                     Class348_Sub6 class348_sub6_15_ = (Class348_Sub6) aClass262_2561.method1993(i + -123);
                     class348_sub6 = new Class348_Sub6(i_14_, class348_sub6_15_.anInt6636);
                     aClass348_Sub6Array2563[class348_sub6_15_.anInt6630] = null;
-                    class348_sub6_15_.method2715((byte) 80);
+                    class348_sub6_15_.unlink((byte) 80);
                 }
                 aClass348_Sub6Array2563[i_14_] = class348_sub6;
             } else this.aBoolean2570 = false;

@@ -43,7 +43,7 @@ public final class CacheItemSpriteDumper {
             Class21.aJs5_322 = loadArchive(cacheDir, cache, IDX_TEXTURE_SPRITES, false);
             Class136.aJs5_4796 = loadArchive(cacheDir, cache, IDX_FONTS, true);
 
-            Class348_Sub40_Sub4.aD9113 = new Class244(Class348_Sub11.aJs5_4770, Class369_Sub2.aJs5_8589, Class21.aJs5_322);
+            Class348_Sub40_Sub4.aTextureSource9113 = new Js5TextureSource(Class348_Sub11.aJs5_4770, Class369_Sub2.aJs5_8589, Class21.aJs5_322);
             Exception_Sub1.itemTypeList = new ItemTypeList(0, true, null, Class174.aJs5_2306, aa_Sub3.aJs5_5207);
         } catch (IOException | RuntimeException exception) {
             System.err.println("Failed to load cache from " + cacheDir);

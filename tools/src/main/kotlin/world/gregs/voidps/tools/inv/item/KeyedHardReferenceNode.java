@@ -6,18 +6,18 @@ package world.gregs.voidps.tools.inv.item;/* Class348_Sub42_Sub9_Sub1 - Decompil
  * out of this batch).
  */
 
-final class Class348_Sub42_Sub9_Sub1 extends Class348_Sub42_Sub9 {
-    static Class356 aClass356_10442 = new Class356(8);
+final class KeyedHardReferenceNode extends KeyReferenceNode {
+    static IterableHashTable aIterableHashTable_10442 = new IterableHashTable(8);
     static int anInt10441;
     private final Object anObject10440;
 
-    final Object method3205(int i) {
+    final Object get(int i) {
         anInt10441++;
         return anObject10440;
     }
 
-    Class348_Sub42_Sub9_Sub1(Interface14 interface14, Object object, int i) {
-        super(interface14, i);
+    KeyedHardReferenceNode(CacheKey cacheKey, Object object, int i) {
+        super(cacheKey, i);
         anObject10440 = object;
     }
 

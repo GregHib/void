@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.inv.item;/* Class189 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class189 {
+final class BillboardType {
     /* Minimal stub: Class64_Sub1's kept code (method623 area) only reads
      * these instance fields off a Class189 obtained from Class73.method742(...)
      * and constructs a Class6 from them. method1418/method1419 are restored
@@ -10,7 +10,7 @@ final class Class189 {
      * decode the cached data before returning it. */
     boolean aBoolean2522 = false;
     static int anInt2528;
-    int anInt2525;
+    int texture;
     int anInt2526;
     int anInt2530;
     boolean aBoolean2531 = false;
@@ -22,8 +22,8 @@ final class Class189 {
         if (i_1_ != 94) this.anInt2526 = -81;
         anInt2532++;
         if (i == 1) {
-            this.anInt2525 = packet.readUnsignedShort(842397944);
-            if (this.anInt2525 == 65535) this.anInt2525 = -1;
+            this.texture = packet.readUnsignedShort(842397944);
+            if (this.texture == 65535) this.texture = -1;
         } else if (i == 2) {
             this.anInt2526 = 1 + packet.readUnsignedShort(842397944);
             this.anInt2530 = packet.readUnsignedShort(842397944) - -1;
@@ -45,10 +45,10 @@ final class Class189 {
         }
     }
 
-    public Class189() {
+    public BillboardType() {
         this.anInt2526 = 64;
         this.anInt2530 = 64;
-        this.anInt2525 = -1;
+        this.texture = -1;
         this.anInt2534 = 2;
     }
 }

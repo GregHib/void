@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.inv.item;/* Class107 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class107 {
+final class Queue {
     static int anInt1653;
     static int anInt1654;
     Class348_Sub42 aClass348_Sub42_1647 = new Class348_Sub42();
@@ -12,14 +12,14 @@ final class Class107 {
         anInt1653++;
         Class348_Sub42 class348_sub42 = (this.aClass348_Sub42_1647.aClass348_Sub42_7063);
         if (class348_sub42 == this.aClass348_Sub42_1647) return null;
-        class348_sub42.method3162(true);
+        class348_sub42.unlink2(true);
         return class348_sub42;
     }
 
     private Class348_Sub42 aClass348_Sub42_1652;
 
-    final void method1005(boolean bool, Class348_Sub42 class348_sub42) {
-        if (class348_sub42.aClass348_Sub42_7060 != null) class348_sub42.method3162(bool);
+    final void add(boolean bool, Class348_Sub42 class348_sub42) {
+        if (class348_sub42.aClass348_Sub42_7060 != null) class348_sub42.unlink2(bool);
         anInt1654++;
         class348_sub42.aClass348_Sub42_7063 = this.aClass348_Sub42_1647;
         class348_sub42.aClass348_Sub42_7060 = (this.aClass348_Sub42_1647.aClass348_Sub42_7060);
@@ -29,7 +29,7 @@ final class Class107 {
         }
     }
 
-    public Class107() {
+    public Queue() {
         this.aClass348_Sub42_1647.aClass348_Sub42_7060 = this.aClass348_Sub42_1647;
         this.aClass348_Sub42_1647.aClass348_Sub42_7063 = this.aClass348_Sub42_1647;
     }

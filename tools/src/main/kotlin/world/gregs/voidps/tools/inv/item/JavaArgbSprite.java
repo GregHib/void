@@ -9,15 +9,15 @@ package world.gregs.voidps.tools.inv.item;/* Class105_Sub3_Sub3 - Decompiled by 
  * is unreachable in practice.
  */
 
-final class Sprite_Sub3_Sub3 extends Sprite_Sub3 {
+final class JavaArgbSprite extends Sprite_Sub3 {
     int[] anIntArray9936;
 
-    Sprite_Sub3_Sub3(toolkit_Sub1 var_ha_Sub1, int i, int i_443_) {
+    JavaArgbSprite(JavaToolkit var_ha_Sub1, int i, int i_443_) {
         super(var_ha_Sub1, i, i_443_);
         this.anIntArray9936 = new int[i * i_443_];
     }
 
-    Sprite_Sub3_Sub3(toolkit_Sub1 var_ha_Sub1, int[] is, int i, int i_1_, int i_2_, int i_3_, boolean bool) {
+    JavaArgbSprite(JavaToolkit var_ha_Sub1, int[] is, int i, int i_1_, int i_2_, int i_3_, boolean bool) {
         super(var_ha_Sub1, i_2_, i_3_);
         if (bool) this.anIntArray9936 = new int[i_2_ * i_3_];
         else this.anIntArray9936 = is;

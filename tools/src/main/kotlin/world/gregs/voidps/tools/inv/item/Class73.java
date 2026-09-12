@@ -28,16 +28,16 @@ final class Class73 {
         class348_sub42_sub15.method3251(i ^ ~0x3eb0);
     }
 
-    static final Class189 method742(int i, int i_0_) {
+    static final BillboardType list(int i, int i_0_) {
         anInt4777++;
-        Class189 class189 = (Class189) Class217.aClass60_2844.method583(i_0_, -104);
-        if (class189 != null) return class189;
+        BillboardType billboardType = (BillboardType) Class217.aClass60_2844.method583(i_0_, -104);
+        if (billboardType != null) return billboardType;
         byte[] is = Class369_Sub3.aJs5_8601.getFile(-1860, 0, i_0_);
         if (i != 104) method741((byte) 98);
-        class189 = new Class189();
-        if (is != null) class189.method1419(i_0_, new Packet(is), (byte) 64);
-        Class217.aClass60_2844.method582(class189, i_0_, (byte) -114);
-        return class189;
+        billboardType = new BillboardType();
+        if (is != null) billboardType.method1419(i_0_, new Packet(is), (byte) 64);
+        Class217.aClass60_2844.method582(billboardType, i_0_, (byte) -114);
+        return billboardType;
     }
 
     static {

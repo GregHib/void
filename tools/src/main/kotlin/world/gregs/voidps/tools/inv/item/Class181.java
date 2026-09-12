@@ -10,7 +10,7 @@ final class Class181 {
     static boolean[] aBooleanArray2374 = new boolean[5];
     static int anInt2398;
 
-    static final void method1367(int i, int i_0_, float f, int i_1_, float[] fs, int i_2_, int i_3_, int i_4_, int i_5_, int i_6_, float[] fs_7_) {
+    static final void sphereMap(int i, int i_0_, float f, int i_1_, float[] fs, int i_2_, int i_3_, int i_4_, int i_5_, int i_6_, float[] fs_7_) {
         try {
             i_2_ -= i;
             anInt2409++;

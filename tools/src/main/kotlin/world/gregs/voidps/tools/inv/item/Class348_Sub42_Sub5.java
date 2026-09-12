@@ -14,10 +14,10 @@ final class Class348_Sub42_Sub5 extends Class348_Sub42 {
     static int anInt9529;
     static int anInt9532;
 
-    final int[] method3183(d var_d, int i, int i_0_, boolean bool, double d, Js5 js5, byte i_1_) {
+    final int[] method3183(TextureSource var_textureSource, int i, int i_0_, boolean bool, double d, Js5 js5, byte i_1_) {
         try {
             anInt9522++;
-            Class286_Sub5.aD6247 = var_d;
+            Class286_Sub5.aTextureSource6247 = var_textureSource;
             Class348.aJs5_4286 = js5;
             for (int i_2_ = 0; aClass348_Sub40Array9520.length > i_2_; i_2_++)
                 aClass348_Sub40Array9520[i_2_].method3045(i, i_0_, -256);
@@ -73,11 +73,11 @@ final class Class348_Sub42_Sub5 extends Class348_Sub42 {
             if (i_1_ != 11) anInt9532 = 97;
             return is;
         } catch (RuntimeException runtimeexception) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.D(" + (var_d != null ? "{...}" : "null") + ',' + i + ',' + i_0_ + ',' + bool + ',' + d + ',' + (js5 != null ? "{...}" : "null") + ',' + i_1_ + ')'));
+            throw Class348_Sub17.method2929(runtimeexception, ("lr.D(" + (var_textureSource != null ? "{...}" : "null") + ',' + i + ',' + i_0_ + ',' + bool + ',' + d + ',' + (js5 != null ? "{...}" : "null") + ',' + i_1_ + ')'));
         }
     }
 
-    final boolean method3184(d var_d, Js5 js5, int i) {
+    final boolean method3184(TextureSource var_textureSource, Js5 js5, int i) {
         try {
             anInt9529++;
             if (Matrix_Sub2.anInt5713 < 0) {
@@ -92,17 +92,17 @@ final class Class348_Sub42_Sub5 extends Class348_Sub42 {
             int i_19_ = 0;
             int i_20_ = -109 / ((10 - i) / 60);
             for (/**/; i_19_ < anIntArray9523.length; i_19_++) {
-                if (!var_d.method4(-7953, anIntArray9523[i_19_])) return false;
+                if (!var_textureSource.method4(-7953, anIntArray9523[i_19_])) return false;
             }
             return true;
         } catch (RuntimeException runtimeexception) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.B(" + (var_d != null ? "{...}" : "null") + ',' + (js5 != null ? "{...}" : "null") + ',' + i + ')'));
+            throw Class348_Sub17.method2929(runtimeexception, ("lr.B(" + (var_textureSource != null ? "{...}" : "null") + ',' + (js5 != null ? "{...}" : "null") + ',' + i + ')'));
         }
     }
 
-    final int[] method3185(int i, d var_d, int i_21_, boolean bool, double d, boolean bool_22_, Js5 js5, int i_23_) {
+    final int[] method3185(int i, TextureSource var_textureSource, int i_21_, boolean bool, double d, boolean bool_22_, Js5 js5, int i_23_) {
         try {
-            Class286_Sub5.aD6247 = var_d;
+            Class286_Sub5.aTextureSource6247 = var_textureSource;
             Class348.aJs5_4286 = js5;
             anInt9526++;
             for (int i_24_ = 0; aClass348_Sub40Array9520.length > i_24_; i_24_++)
@@ -162,7 +162,7 @@ final class Class348_Sub42_Sub5 extends Class348_Sub42 {
                 aClass348_Sub40Array9520[i_40_].method3046((byte) -106);
             return is;
         } catch (RuntimeException runtimeexception) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.C(" + i + ',' + (var_d != null ? "{...}" : "null") + ',' + i_21_ + ',' + bool + ',' + d + ',' + bool_22_ + ',' + (js5 != null ? "{...}" : "null") + ',' + i_23_ + ')'));
+            throw Class348_Sub17.method2929(runtimeexception, ("lr.C(" + i + ',' + (var_textureSource != null ? "{...}" : "null") + ',' + i_21_ + ',' + bool + ',' + d + ',' + bool_22_ + ',' + (js5 != null ? "{...}" : "null") + ',' + i_23_ + ')'));
         }
     }
 

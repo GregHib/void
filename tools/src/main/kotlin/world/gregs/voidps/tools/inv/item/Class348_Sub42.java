@@ -7,9 +7,9 @@ class Class348_Sub42 extends Class348 {
     static int anInt7062;
     Class348_Sub42 aClass348_Sub42_7063;
     static int anInt7064;
-    long aLong7057;
+    long key2;
 
-    final void method3162(boolean bool) {
+    final void unlink2(boolean bool) {
         anInt7064++;
         if (bool != true) method3163((byte) 50);
         if (this.aClass348_Sub42_7060 != null) {

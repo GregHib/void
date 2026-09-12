@@ -3,5 +3,5 @@ package world.gregs.voidps.tools.inv.item;/* Class100 - Decompiled by JODE
  */
 
 final class Class100 {
-    static Class356 aClass356_1585 = new Class356(16);
+    static IterableHashTable aIterableHashTable_1585 = new IterableHashTable(16);
 }

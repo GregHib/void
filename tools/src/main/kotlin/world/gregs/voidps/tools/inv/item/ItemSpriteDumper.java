@@ -41,7 +41,7 @@ final class ItemSpriteDumper {
         if (renderer == null) {
             Canvas canvas = new Canvas();
             canvas.setSize(WIDTH, HEIGHT);
-            renderer = Class104.method958(true, 0, Class348_Sub40_Sub4.aD9113, 0, canvas, Class136.aJs5_4796);
+            renderer = Class104.method958(true, 0, Class348_Sub40_Sub4.aTextureSource9113, 0, canvas, Class136.aJs5_4796);
         }
         return renderer;
     }

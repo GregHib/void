@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.inv.item;/* Class6 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class6 {
+final class JavaBillboardFace {
     /* Minimal stub: only the fields/method/constructor that Class64_Sub1's
      * kept code actually reads/calls are included (verbatim from the
      * original), matching the full Class6(...) constructor signature used
@@ -23,7 +23,7 @@ final class Class6 {
         return i_31_ + (((i & 0xff00) * i_34_ & 0xff0000 | ~0xff00ff & (0xff00ff & i) * i_34_) >>> 8);
     }
 
-    Class6(int i, int i_46_, int i_47_, int i_48_, int i_49_, int i_50_, int i_51_, int i_52_, int i_53_, boolean bool, int i_54_) {
+    JavaBillboardFace(int i, int i_46_, int i_47_, int i_48_, int i_49_, int i_50_, int i_51_, int i_52_, int i_53_, boolean bool, int i_54_) {
         this.aBoolean145 = bool;
         this.aByte156 = (byte) i_53_;
         this.anInt154 = i_54_;

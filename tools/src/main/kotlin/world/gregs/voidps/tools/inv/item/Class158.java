@@ -3,5 +3,5 @@ package world.gregs.voidps.tools.inv.item;/* Class158 - minimal stub (missing fr
  */
 
 final class Class158 {
-    static Class356 aClass356_4934 = new Class356(8);
+    static IterableHashTable aIterableHashTable_4934 = new IterableHashTable(8);
 }

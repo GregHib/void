@@ -5,7 +5,7 @@ package world.gregs.voidps.tools.inv.item;/* Class246 - Decompiled by JODE
 abstract class Class246 {
     static int anInt3175;
 
-    static final void method1885(int i, int i_0_, int i_1_, int i_2_, int i_3_, float[] fs, int i_4_, float f, int i_5_, int i_6_, float f_7_, float[] fs_8_) {
+    static final void cylinderMap(int i, int i_0_, int i_1_, int i_2_, int i_3_, float[] fs, int i_4_, float f, int i_5_, int i_6_, float f_7_, float[] fs_8_) {
         try {
             i_4_ -= i_5_;
             i_0_ -= i;

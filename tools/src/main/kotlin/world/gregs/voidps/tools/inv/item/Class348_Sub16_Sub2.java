@@ -5,7 +5,7 @@ package world.gregs.voidps.tools.inv.item;/* Class348_Sub16_Sub2 - Decompiled by
 final class Class348_Sub16_Sub2 {
     static int anInt8882;
 
-    static final void method2832(int[] is, long[] ls, int i) {
+    static final void sort(int[] is, long[] ls, int i) {
         try {
             IOException_Sub1.method129(i, i + -107, ls, ls.length - 1, is);
             anInt8882++;

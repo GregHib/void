@@ -23,7 +23,7 @@ final class Class322 {
         if (Class312.anInt3931 == 1 || Class312.anInt3931 == 3 || (Class312.anInt3931 != Class83.anInt1447 && (Class312.anInt3931 == 0 || Class83.anInt1447 == 0))) {
             Class348_Sub32.anInt6930 = 0;
             Class150.anInt2057 = 0;
-            Class282.aClass356_3654.method3481(0);
+            Class282.aIterableHashTable_3654.method3481(0);
         }
         Class83.anInt1447 = Class312.anInt3931;
     }
@@ -44,7 +44,7 @@ final class Class322 {
                     Class348_Sub24 class348_sub24_7_ = (Class348_Sub24) aClass262_4021.method1993(-126);
                     class348_sub24 = new Class348_Sub24(i_6_, class348_sub24_7_.anInt6875);
                     aClass348_Sub24Array4033[class348_sub24_7_.anInt6872] = null;
-                    class348_sub24_7_.method2715((byte) 56);
+                    class348_sub24_7_.unlink((byte) 56);
                 } else {
                     class348_sub24 = new Class348_Sub24(i_6_, anInt4025);
                     anInt4025++;

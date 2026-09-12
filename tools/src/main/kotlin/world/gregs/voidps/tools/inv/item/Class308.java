@@ -6,17 +6,17 @@ final class Class308 {
     static int anInt3881;
     static int anInt3885;
     private Class348_Sub42 aClass348_Sub42_3887 = new Class348_Sub42();
-    private final Class356 aClass356_3888;
-    private Class107 aClass107_3889 = new Class107();
+    private final IterableHashTable aIterableHashTable_3888;
+    private Queue aQueue_3889 = new Queue();
     private final int anInt3890;
     private int anInt3891;
 
     final Class348_Sub42 method2302(long l, byte i) {
         try {
-            if (i > -25) aClass107_3889 = null;
+            if (i > -25) aQueue_3889 = null;
             anInt3885++;
-            Class348_Sub42 class348_sub42 = (Class348_Sub42) aClass356_3888.method3480(l, -6008);
-            if (class348_sub42 != null) aClass107_3889.method1005(true, class348_sub42);
+            Class348_Sub42 class348_sub42 = (Class348_Sub42) aIterableHashTable_3888.method3480(l, -6008);
+            if (class348_sub42 != null) aQueue_3889.add(true, class348_sub42);
             return class348_sub42;
         } catch (RuntimeException runtimeexception) {
             throw Class348_Sub17.method2929(runtimeexception, "wu.D(" + l + ',' + i + ')');
@@ -27,17 +27,17 @@ final class Class308 {
         try {
             anInt3881++;
             if ((~anInt3891) == i) {
-                Class348_Sub42 class348_sub42_0_ = aClass107_3889.method1008(20);
-                class348_sub42_0_.method2715((byte) 113);
-                class348_sub42_0_.method3162(true);
+                Class348_Sub42 class348_sub42_0_ = aQueue_3889.method1008(20);
+                class348_sub42_0_.unlink((byte) 113);
+                class348_sub42_0_.unlink2(true);
                 if (class348_sub42_0_ == aClass348_Sub42_3887) {
-                    class348_sub42_0_ = aClass107_3889.method1008(20);
-                    class348_sub42_0_.method2715((byte) 79);
-                    class348_sub42_0_.method3162(true);
+                    class348_sub42_0_ = aQueue_3889.method1008(20);
+                    class348_sub42_0_.unlink((byte) 79);
+                    class348_sub42_0_.unlink2(true);
                 }
             } else anInt3891--;
-            aClass356_3888.method3483((byte) 37, l, class348_sub42);
-            aClass107_3889.method1005(true, class348_sub42);
+            aIterableHashTable_3888.put((byte) 37, l, class348_sub42);
+            aQueue_3889.add(true, class348_sub42);
         } catch (RuntimeException runtimeexception) {
             throw Class348_Sub17.method2929(runtimeexception, ("wu.E(" + l + ',' + (class348_sub42 != null ? "{...}" : "null") + ',' + i + ')'));
         }
@@ -50,6 +50,6 @@ final class Class308 {
         for (i_1_ = 1; i_1_ + i_1_ < i; i_1_ += i_1_) {
             /* empty */
         }
-        aClass356_3888 = new Class356(i_1_);
+        aIterableHashTable_3888 = new IterableHashTable(i_1_);
     }
 }

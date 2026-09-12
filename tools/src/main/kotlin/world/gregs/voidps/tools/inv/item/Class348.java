@@ -16,7 +16,7 @@ class Class348 {
         return this.aClass348_4295 != null;
     }
 
-    final void method2715(byte i) {
+    final void unlink(byte i) {
         anInt4285++;
         if (this.aClass348_4295 != null) {
             this.aClass348_4295.aClass348_4294 = this.aClass348_4294;

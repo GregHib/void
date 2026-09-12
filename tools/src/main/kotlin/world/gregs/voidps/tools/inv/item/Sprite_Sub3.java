@@ -7,7 +7,7 @@ abstract class Sprite_Sub3 extends Sprite {
     int anInt8470;
     int anInt8461;
     int anInt8464;
-    toolkit_Sub1 aHa_Sub1_8460;
+    JavaToolkit aHa_Sub1_8460;
 
     // Only reachable via ha_Sub1.method3712, which is itself unreachable per
     // JaCoCo coverage (0 hits) in the real item-icon dumper run.
@@ -21,7 +21,7 @@ abstract class Sprite_Sub3 extends Sprite {
         return this.anInt8470;
     }
 
-    Sprite_Sub3(toolkit_Sub1 var_ha_Sub1, int i, int i_55_) {
+    Sprite_Sub3(JavaToolkit var_ha_Sub1, int i, int i_55_) {
         this.aHa_Sub1_8460 = var_ha_Sub1;
         this.anInt8471 = i;
         this.anInt8470 = i_55_;

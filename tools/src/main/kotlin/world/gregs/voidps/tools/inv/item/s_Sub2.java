@@ -3,5 +3,5 @@ package world.gregs.voidps.tools.inv.item;/* s_Sub2 - Decompiled by JODE
  */
 
 final class s_Sub2 {
-    static Class107 aClass107_8241 = new Class107();
+    static Queue aQueue_8241 = new Queue();
 }

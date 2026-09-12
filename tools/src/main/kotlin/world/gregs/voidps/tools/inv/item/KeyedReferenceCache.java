@@ -2,35 +2,35 @@ package world.gregs.voidps.tools.inv.item;/* Class175 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class175 {
+final class KeyedReferenceCache {
     private int anInt2311;
-    private final Class356 aClass356_2312;
+    private final IterableHashTable table;
     static int anInt2313;
-    private Class107 aClass107_2316 = new Class107();
+    private Queue history = new Queue();
     private final int anInt2324;
     static int anInt2323;
 
-    final Object method1340(int i, Interface14 interface14) {
+    final Object get(int i, CacheKey cacheKey) {
         anInt2313++;
-        long l = interface14.method52((byte) 64);
-        for (Class348_Sub42_Sub9 class348_sub42_sub9 = (Class348_Sub42_Sub9) aClass356_2312.method3480(l, -6008); class348_sub42_sub9 != null; class348_sub42_sub9 = (Class348_Sub42_Sub9) aClass356_2312.method3476(true)) {
-            if (class348_sub42_sub9.anInterface14_9559.method53(94, interface14)) {
-                Object object = class348_sub42_sub9.method3205(65536);
+        long hash = cacheKey.toLong((byte) 64);
+        for (KeyReferenceNode node = (KeyReferenceNode) table.method3480(hash, -6008); node != null; node = (KeyReferenceNode) table.method3476(true)) {
+            if (node.cacheKey.matches(94, cacheKey)) {
+                Object object = node.get(65536);
                 if (object == null) {
-                    class348_sub42_sub9.method2715((byte) 36);
-                    class348_sub42_sub9.method3162(true);
-                    anInt2311 += (class348_sub42_sub9.anInt9556);
+                    node.unlink((byte) 36);
+                    node.unlink2(true);
+                    anInt2311 += (node.anInt9556);
                 } else {
-                    if (class348_sub42_sub9.method3206((byte) -128)) {
-                        Class348_Sub42_Sub9_Sub1 class348_sub42_sub9_sub1 = (new Class348_Sub42_Sub9_Sub1(interface14, object, (class348_sub42_sub9.anInt9556)));
-                        aClass356_2312.method3483((byte) 125, (class348_sub42_sub9.aLong4291), class348_sub42_sub9_sub1);
-                        aClass107_2316.method1005(true, class348_sub42_sub9_sub1);
-                        class348_sub42_sub9_sub1.aLong7057 = 0L;
-                        class348_sub42_sub9.method2715((byte) 65);
-                        class348_sub42_sub9.method3162(true);
+                    if (node.method3206((byte) -128)) {
+                        KeyedHardReferenceNode hardReference = (new KeyedHardReferenceNode(cacheKey, object, (node.anInt9556)));
+                        table.put((byte) 125, (node.aLong4291), hardReference);
+                        history.add(true, hardReference);
+                        hardReference.key2 = 0L;
+                        node.unlink((byte) 65);
+                        node.unlink2(true);
                     } else {
-                        aClass107_2316.method1005(true, class348_sub42_sub9);
-                        class348_sub42_sub9.aLong7057 = 0L;
+                        history.add(true, node);
+                        node.key2 = 0L;
                     }
                     return object;
                 }
@@ -101,13 +101,13 @@ final class Class175 {
         return fs_12_;
     }
 
-    Class175(int i) {
+    KeyedReferenceCache(int i) {
         anInt2311 = i;
         anInt2324 = i;
         int i_22_;
         for (i_22_ = 1; i_22_ + i_22_ < i; i_22_ += i_22_) {
             /* empty */
         }
-        aClass356_2312 = new Class356(i_22_);
+        table = new IterableHashTable(i_22_);
     }
 }

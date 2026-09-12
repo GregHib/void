@@ -4,7 +4,7 @@ package world.gregs.voidps.tools.inv.item;/* Class348_Sub40_Sub4 - Decompiled by
 
 final class Class348_Sub40_Sub4 extends Class348_Sub40 {
     static Class262 aClass262_9111 = new Class262();
-    static d aD9113;
+    static TextureSource aTextureSource9113;
     static int anInt9115;
 
     final int[] method3042(int i, int i_0_) {

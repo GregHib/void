@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.inv.item;/* Class350 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class350 {
+final class JavaBillboardAttributes {
     int anInt4307;
     int anInt4308;
     int anInt4309;
@@ -23,7 +23,7 @@ final class Class350 {
         return (i + (i >>> 31)) % i_1_ + i_2_;
     }
 
-    Class350(int i) {
+    JavaBillboardAttributes(int i) {
         this.anInt4313 = i;
     }
 }

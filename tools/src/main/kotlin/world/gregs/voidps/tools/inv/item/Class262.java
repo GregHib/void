@@ -13,7 +13,7 @@ final class Class262 {
     static int anInt3341;
     private Class348 aClass348_3342;
 
-    static final void method1991(float f, float f_3_, float[] fs, int i, int i_4_, boolean bool, int i_5_, int i_6_, int i_7_, int i_8_, float f_9_, float[] fs_10_, int i_11_, int i_12_) {
+    static final void cubeMap(float f, float f_3_, float[] fs, int i, int i_4_, boolean bool, int i_5_, int i_6_, int i_7_, int i_8_, float f_9_, float[] fs_10_, int i_11_, int i_12_) {
         do {
             try {
                 anInt3338++;
@@ -59,7 +59,7 @@ final class Class262 {
                 fs_10_[1] = f_17_;
                 fs_10_[0] = f_16_;
                 if (bool == false) break;
-                method1991(0.31271333F, 1.5829445F, null, -17, 88, true, -70, -107, 8, 5, -0.347415F, null, -24, -19);
+                cubeMap(0.31271333F, 1.5829445F, null, -17, 88, true, -70, -107, 8, 5, -0.347415F, null, -24, -19);
             } catch (RuntimeException runtimeexception) {
                 throw Class348_Sub17.method2929(runtimeexception, ("uh.B(" + f + ',' + f_3_ + ',' + (fs != null ? "{...}" : "null") + ',' + i + ',' + i_4_ + ',' + bool + ',' + i_5_ + ',' + i_6_ + ',' + i_7_ + ',' + i_8_ + ',' + f_9_ + ',' + (fs_10_ != null ? "{...}" : "null") + ',' + i_11_ + ',' + i_12_ + ')'));
             }
@@ -85,7 +85,7 @@ final class Class262 {
             for (; ; ) {
                 Class348 class348 = (this.aClass348_3334.aClass348_4294);
                 if (this.aClass348_3334 == class348) break;
-                class348.method2715((byte) 24);
+                class348.unlink((byte) 24);
             }
             aClass348_3342 = null;
         }
@@ -96,13 +96,13 @@ final class Class262 {
         if (i != 8) aClass190ArrayArray3335 = null;
         Class348 class348 = this.aClass348_3334.aClass348_4294;
         if (this.aClass348_3334 == class348) return null;
-        class348.method2715((byte) 114);
+        class348.unlink((byte) 114);
         return class348;
     }
 
     final void method2001(Class348 class348, int i) {
         anInt3330++;
-        if (class348.aClass348_4295 != null) class348.method2715((byte) 63);
+        if (class348.aClass348_4295 != null) class348.unlink((byte) 63);
         class348.aClass348_4295 = this.aClass348_3334;
         class348.aClass348_4294 = this.aClass348_3334.aClass348_4294;
         if (i > -89) aFont_3326 = null;

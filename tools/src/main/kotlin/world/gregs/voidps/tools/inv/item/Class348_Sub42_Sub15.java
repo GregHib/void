@@ -18,8 +18,8 @@ final class Class348_Sub42_Sub15 extends Class348_Sub42 {
 
     final void method3251(int i) {
         anInt9648++;
-        this.aLong7057 = (~0x7fffffffffffffffL & this.aLong7057 | Class62.method599(-120) + 500L);
-        s_Sub2.aClass107_8241.method1005(true, this);
+        this.key2 = (~0x7fffffffffffffffL & this.key2 | Class62.method599(-120) + 500L);
+        s_Sub2.aQueue_8241.add(true, this);
         if (i != -16058) { /* aClass105_9658 = null; (not needed) */ }
     }
 }

@@ -9,7 +9,7 @@ final class ItemType {
     static int anInt2754;
     boolean grandExchange;
     private int mesh;
-    Class356 params;
+    IterableHashTable params;
     int anInt2758;
     int anInt2759;
     private int anInt2760;
@@ -17,7 +17,7 @@ final class ItemType {
     int[] stackIds;
     String[] iop;
     int anInt2764;
-    private int anInt2765;
+    private int resizeZ;
     int anInt2766;
     private int anInt2767;
     private int anInt2770 = -1;
@@ -35,14 +35,14 @@ final class ItemType {
     boolean members;
     int anInt2784;
     private short[] retex_s;
-    private int anInt2786;
+    private int resizeX;
     int anInt2787;
     int anInt2788;
     static long aLong2789;
     static int anInt2790;
-    private int anInt2791;
+    private int ambient;
     private int anInt2792;
-    private int anInt2794;
+    private int resizeY;
     String name;
     static int anInt2796;
     private int anInt2797;
@@ -69,7 +69,7 @@ final class ItemType {
     private byte[] recol_d_palette;
     private int anInt2822;
     private int anInt2823;
-    private int anInt2824;
+    private int contrast;
     int zoom2d;
     int anInt2826;
     int team;
@@ -89,10 +89,10 @@ final class ItemType {
         }
         if (i_0_ == -1) return null;
         Mesh mesh = Class300.load(0, this.list.meshes, i_0_, -1);
-        if ((~mesh.anInt1830) > i) mesh.upscale(2, 54);
+        if ((~mesh.version) > i) mesh.upscale(2, 54);
         if (i_1_ != -1) {
             Mesh mesh_2_ = Class300.load(0, (this.list.meshes), i_1_, -1);
-            if (mesh_2_.anInt1830 < 13) mesh_2_.upscale(2, i ^ ~0x78);
+            if (mesh_2_.version < 13) mesh_2_.upscale(2, i ^ ~0x78);
             Mesh[] meshes = {mesh, mesh_2_};
             mesh = new Mesh(meshes, 2);
         }
@@ -169,7 +169,7 @@ final class ItemType {
             anInt2806++;
             Mesh mesh = Class300.load(0, (this.list.meshes), this.mesh, i_40_ ^ 0x65);
             if (mesh == null) return null;
-            if (mesh.anInt1830 < 13) mesh.upscale(2, i_40_ ^ ~0xb);
+            if (mesh.version < 13) mesh.upscale(2, i_40_ ^ ~0xb);
             if (recol_s != null) {
                 for (int i_42_ = 0; (recol_s.length > i_42_); i_42_++) {
                     if (recol_d_palette == null || i_42_ >= recol_d_palette.length) mesh.recolour(recol_s[i_42_], (byte) 126, aShortArray2771[i_42_]);
@@ -191,13 +191,13 @@ final class ItemType {
             }
             int functionMask = 2048;
             boolean scaled = false;
-            if (anInt2786 != 128 || anInt2794 != 128 || anInt2765 != 128) {
+            if (resizeX != 128 || resizeY != 128 || resizeZ != 128) {
                 functionMask |= 0x7;
                 scaled = true;
             }
-            Model model = scratchToolkit.createModel(mesh, functionMask, 64, anInt2791 + 64, 768 + anInt2824);
+            Model model = scratchToolkit.createModel(mesh, functionMask, 64, ambient + 64, 768 + contrast);
             if (!model.loadedTextures()) return null;
-            if (scaled) model.O(anInt2786, anInt2794, anInt2765);
+            if (scaled) model.O(resizeX, resizeY, resizeZ);
             Sprite sprite = null;
             if (this.notedTemplateId == -1) {
                 if (this.lendTemplateId != -1) {
@@ -350,11 +350,11 @@ final class ItemType {
                                                     }
                                                     this.stackIds[i_57_ - 100] = (packet.readUnsignedShort(842397944));
                                                     this.stackAmounts[i_57_ + -100] = (packet.readUnsignedShort(842397944));
-                                                } else if (i_57_ == 110) anInt2786 = (packet.readUnsignedShort(842397944));
+                                                } else if (i_57_ == 110) resizeX = (packet.readUnsignedShort(842397944));
                                                 else if (i_57_ != 111) {
-                                                    if (i_57_ == 112) anInt2765 = (packet.readUnsignedShort(842397944));
+                                                    if (i_57_ == 112) resizeZ = (packet.readUnsignedShort(842397944));
                                                     else if (i_57_ != 113) {
-                                                        if (i_57_ == 114) anInt2824 = ((packet.readByte(-90)) * 5);
+                                                        if (i_57_ == 114) contrast = ((packet.readByte(-90)) * 5);
                                                         else if (i_57_ == 115) this.team = (packet.readUnsignedByte(255));
                                                         else if (i_57_ != 121) {
                                                             if (i_57_ != 122) {
@@ -388,7 +388,7 @@ final class ItemType {
                                                                     int i_64_ = packet.readUnsignedByte(255);
                                                                     if (this.params == null) {
                                                                         int i_65_ = Class33.method340(i_64_, (byte) 108);
-                                                                        this.params = new Class356(i_65_);
+                                                                        this.params = new IterableHashTable(i_65_);
                                                                     }
                                                                     for (int i_66_ = 0; i_66_ < i_64_; i_66_++) {
                                                                         boolean bool = packet.readUnsignedByte(255) == 1;
@@ -396,13 +396,13 @@ final class ItemType {
                                                                         Class348 class348;
                                                                         if (bool) class348 = new Class348_Sub50(packet.readString((byte) 107));
                                                                         else class348 = new Class348_Sub35(packet.readInt((byte) -126));
-                                                                        this.params.method3483((byte) 76, i_67_, class348);
+                                                                        this.params.put((byte) 76, i_67_, class348);
                                                                     }
                                                                 }
                                                             } else this.lendTemplateId = packet.readUnsignedShort(code + 842397940);
                                                         } else this.anInt2778 = (packet.readUnsignedShort(842397944));
-                                                    } else anInt2791 = (packet.readByte(-88));
-                                                } else anInt2794 = (packet.readUnsignedShort(842397944));
+                                                    } else ambient = (packet.readByte(-88));
+                                                } else resizeY = (packet.readUnsignedShort(842397944));
                                             } else this.anInt2799 = (packet.readUnsignedByte(255));
                                         } else this.anInt2810 = (packet.readUnsignedShort(code + 842397940));
                                     } else anInt2775 = (packet.readUnsignedShort(code + 842397940));
@@ -474,11 +474,11 @@ final class ItemType {
     public ItemType() {
         this.anInt2766 = -1;
         anInt2775 = -1;
-        anInt2765 = 128;
+        resizeZ = 128;
         this.anInt2778 = -1;
         this.anInt2758 = -1;
         this.name = "null";
-        anInt2794 = 128;
+        resizeY = 128;
         this.anInt2799 = 0;
         this.anInt2788 = -1;
         this.anInt2784 = 0;
@@ -492,7 +492,7 @@ final class ItemType {
         anInt2760 = -1;
         this.anInt2817 = -1;
         this.anInt2779 = 0;
-        anInt2786 = 128;
+        resizeX = 128;
         anInt2808 = 0;
         anInt2803 = 0;
         anInt2822 = -1;
@@ -503,7 +503,7 @@ final class ItemType {
         this.anInt2774 = -1;
         this.anInt2826 = 0;
         anInt2807 = 0;
-        anInt2791 = 0;
+        ambient = 0;
         anInt2805 = -1;
         this.anInt2764 = -1;
         this.stackable = 0;
@@ -512,7 +512,7 @@ final class ItemType {
         anInt2797 = 0;
         this.anInt2830 = -1;
         this.team = 0;
-        anInt2824 = 0;
+        contrast = 0;
         this.anInt2819 = 1;
         anInt2753 = 0;
         this.zoom2d = 2000;
