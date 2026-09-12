@@ -7,7 +7,7 @@ final class Class239_Sub25 {
 
     static final void method1827(int i) {
         anInt6112++;
-        if (Class126.anIntArray4983 == null) Class126.anIntArray4983 = new int[65536];
+        if (ItemSpriteCacheKey.anIntArray4983 == null) ItemSpriteCacheKey.anIntArray4983 = new int[65536];
         else return;
         double d = 0.7 + (0.03 * Math.random() - 0.015);
         int i_5_ = 0;
@@ -59,7 +59,7 @@ final class Class239_Sub25 {
                     int i_21_ = (int) (256.0F * f_11_);
                     int i_22_ = (int) (256.0F * f_12_);
                     int i_23_ = ((i_21_ << 8) + ((i_20_ << 16) + (-16777216 + i_22_)));
-                    Class126.anIntArray4983[i_5_++] = i_23_;
+                    ItemSpriteCacheKey.anIntArray4983[i_5_++] = i_23_;
                 }
             }
         }

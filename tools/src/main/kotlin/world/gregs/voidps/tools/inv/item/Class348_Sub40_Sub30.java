@@ -150,7 +150,7 @@ final class Class348_Sub40_Sub30 extends Class348_Sub40 {
         }
     }
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_39_) {
+    final void method3049(Packet packet, int i, int i_39_) {
         while_209_:
         do {
             try {
@@ -159,21 +159,21 @@ final class Class348_Sub40_Sub30 extends Class348_Sub40 {
                     int i_40_ = i;
                     do {
                         if (i_40_ == 0) {
-                            anInt9402 = class348_sub49.readShort(13638);
+                            anInt9402 = packet.readShort(13638);
                             return;
                         } else if (i_40_ != 1) {
                             if (i_40_ == 2) break;
                             break while_209_;
                         }
-                        anInt9390 = (class348_sub49.readByte(-83) << 12) / 100;
+                        anInt9390 = (packet.readByte(-83) << 12) / 100;
                         return;
                     } while (false);
-                    anInt9398 = (class348_sub49.readByte(i_39_ + -31101) << 12) / 100;
+                    anInt9398 = (packet.readByte(i_39_ + -31101) << 12) / 100;
                     break;
                 }
                 break;
             } catch (RuntimeException runtimeexception) {
-                throw Class348_Sub17.method2929(runtimeexception, ("vj.F(" + (class348_sub49 != null ? "{...}" : "null") + ',' + i + ',' + i_39_ + ')'));
+                throw Class348_Sub17.method2929(runtimeexception, ("vj.F(" + (packet != null ? "{...}" : "null") + ',' + i + ',' + i_39_ + ')'));
             }
         } while (false);
     }

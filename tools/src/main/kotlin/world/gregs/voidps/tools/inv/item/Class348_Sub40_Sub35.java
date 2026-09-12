@@ -68,22 +68,22 @@ final class Class348_Sub40_Sub35 extends Class348_Sub40 {
         method3143(-119);
     }
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_18_) {
+    final void method3049(Packet packet, int i, int i_18_) {
         int i_19_ = i;
         while_210_:
         do {
             do {
                 if (i_19_ == 0) {
-                    anInt9448 = class348_sub49.readUnsignedShort(i_18_ ^ 0x323581df);
+                    anInt9448 = packet.readUnsignedShort(i_18_ ^ 0x323581df);
                     break while_210_;
                 } else if (i_19_ != 1) {
                     if (i_19_ == 2) break;
                     break while_210_;
                 }
-                anInt9447 = class348_sub49.readUnsignedShort(842397944);
+                anInt9447 = packet.readUnsignedShort(842397944);
                 break while_210_;
             } while (false);
-            anInt9445 = class348_sub49.readUnsignedShort(842397944);
+            anInt9445 = packet.readUnsignedShort(842397944);
         } while (false);
         anInt9442++;
         if (i_18_ != 31015) aClass161_9443 = null;

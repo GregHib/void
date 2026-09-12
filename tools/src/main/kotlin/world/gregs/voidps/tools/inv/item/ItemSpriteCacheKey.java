@@ -2,13 +2,13 @@ package world.gregs.voidps.tools.inv.item;/* Class126 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class126 implements Interface14 {
+final class ItemSpriteCacheKey implements Interface14 {
     int anInt4981;
     int anInt4982;
     static int[] anIntArray4983;
     int anInt4989;
-    boolean aBoolean4990;
-    int anInt4991;
+    boolean itemWearCol;
+    int toolkitIndex;
     int anInt4992;
     int anInt4993;
     static int anInt4988;
@@ -18,7 +18,7 @@ final class Class126 implements Interface14 {
         anInt4988++;
         long[] ls = Class348_Sub40_Sub21.aLongArray9283;
         long l = -1L;
-        l = (ls[(int) ((l ^ (long) this.anInt4991) & 0xffL)] ^ l >>> 8);
+        l = (ls[(int) ((l ^ (long) this.toolkitIndex) & 0xffL)] ^ l >>> 8);
         l = (l >>> 8 ^ ls[(int) (0xffL & ((long) (this.anInt4992 >> 8) ^ l))]);
         l = (l >>> 8 ^ ls[(int) ((l ^ (long) this.anInt4992) & 0xffL)]);
         l = (l >>> 8 ^ ls[(int) (0xffL & (l ^ (long) (this.anInt4989 >> 24)))]);
@@ -32,7 +32,7 @@ final class Class126 implements Interface14 {
         l = ls[(int) ((l ^ (long) (this.anInt4982 >> 8)) & 0xffL)] ^ l >>> 8;
         l = (l >>> 8 ^ ls[(int) (0xffL & ((long) this.anInt4982 ^ l))]);
         l = (ls[(int) (0xffL & (l ^ (long) this.anInt4981))] ^ l >>> 8);
-        l = (l >>> 8 ^ ls[(int) (0xffL & ((long) (this.aBoolean4990 ? 1 : 0) ^ l))]);
+        l = (l >>> 8 ^ ls[(int) (0xffL & ((long) (this.itemWearCol ? 1 : 0) ^ l))]);
         return l;
     }
 
@@ -41,15 +41,15 @@ final class Class126 implements Interface14 {
      * regardless of whether it was hit at runtime. */
     public final boolean method53(int i, Interface14 interface14) {
         anInt4994++;
-        if (!(interface14 instanceof Class126)) return false;
-        Class126 class126_3_ = (Class126) interface14;
-        if (this.anInt4991 != class126_3_.anInt4991) return false;
+        if (!(interface14 instanceof ItemSpriteCacheKey)) return false;
+        ItemSpriteCacheKey itemSpriteCacheKey_3_ = (ItemSpriteCacheKey) interface14;
+        if (this.toolkitIndex != itemSpriteCacheKey_3_.toolkitIndex) return false;
         if (i <= 50) return true;
-        if (this.anInt4992 != class126_3_.anInt4992) return false;
-        if (this.anInt4989 != class126_3_.anInt4989) return false;
-        if (this.anInt4993 != class126_3_.anInt4993) return false;
-        if (class126_3_.anInt4982 != this.anInt4982) return false;
-        if (this.anInt4981 != class126_3_.anInt4981) return false;
-        return !class126_3_.aBoolean4990 == !this.aBoolean4990;
+        if (this.anInt4992 != itemSpriteCacheKey_3_.anInt4992) return false;
+        if (this.anInt4989 != itemSpriteCacheKey_3_.anInt4989) return false;
+        if (this.anInt4993 != itemSpriteCacheKey_3_.anInt4993) return false;
+        if (itemSpriteCacheKey_3_.anInt4982 != this.anInt4982) return false;
+        if (this.anInt4981 != itemSpriteCacheKey_3_.anInt4981) return false;
+        return !itemSpriteCacheKey_3_.itemWearCol == !this.itemWearCol;
     }
 }

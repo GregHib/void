@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.inv.item;/* Class262 - Decompiled by JODE
  */
 
 final class Class262 {
-    static Class324 aClass324_3326;
+    static Font aFont_3326;
     static int anInt3330;
     Class348 aClass348_3334 = new Class348();
     static Class190[][] aClass190ArrayArray3335;
@@ -105,7 +105,7 @@ final class Class262 {
         if (class348.aClass348_4295 != null) class348.method2715((byte) 63);
         class348.aClass348_4295 = this.aClass348_3334;
         class348.aClass348_4294 = this.aClass348_3334.aClass348_4294;
-        if (i > -89) aClass324_3326 = null;
+        if (i > -89) aFont_3326 = null;
         class348.aClass348_4295.aClass348_4294 = class348;
         class348.aClass348_4294.aClass348_4295 = class348;
     }

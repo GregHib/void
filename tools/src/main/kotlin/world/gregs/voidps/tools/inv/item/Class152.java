@@ -36,14 +36,14 @@ final class Class152 {
         this(-1, 1000000, 1000000);
     }
 
-    final void method1218(byte[] is, int i, Class348_Sub49 class348_sub49) {
+    final void method1218(byte[] is, int i, Packet packet) {
         try {
             if (i != 29123) method1217(-91, null);
             anInt2073++;
-            if ((class348_sub49.aByteArray7154[class348_sub49.anInt7197]) != 31 || (class348_sub49.aByteArray7154[1 + class348_sub49.anInt7197]) != -117) throw new RuntimeException("Invalid GZIP header!");
+            if ((packet.aByteArray7154[packet.pos]) != 31 || (packet.aByteArray7154[1 + packet.pos]) != -117) throw new RuntimeException("Invalid GZIP header!");
             if (anInflater2072 == null) anInflater2072 = new Inflater(true);
             try {
-                anInflater2072.setInput(class348_sub49.aByteArray7154, class348_sub49.anInt7197 - -10, -8 - (10 + class348_sub49.anInt7197 - (class348_sub49.aByteArray7154).length));
+                anInflater2072.setInput(packet.aByteArray7154, packet.pos - -10, -8 - (10 + packet.pos - (packet.aByteArray7154).length));
                 anInflater2072.inflate(is);
             } catch (Exception exception) {
                 anInflater2072.reset();
@@ -51,7 +51,7 @@ final class Class152 {
             }
             anInflater2072.reset();
         } catch (RuntimeException runtimeexception) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ol.A(" + (is != null ? "{...}" : "null") + ',' + i + ',' + (class348_sub49 != null ? "{...}" : "null") + ')'));
+            throw Class348_Sub17.method2929(runtimeexception, ("ol.A(" + (is != null ? "{...}" : "null") + ',' + i + ',' + (packet != null ? "{...}" : "null") + ')'));
         }
     }
 

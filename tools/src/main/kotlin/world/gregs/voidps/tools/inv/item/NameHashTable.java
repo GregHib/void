@@ -2,10 +2,10 @@ package world.gregs.voidps.tools.inv.item;/* Class316 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class316 {
+final class NameHashTable {
     private final int[] anIntArray3961;
 
-    Class316(int[] is) {
+    NameHashTable(int[] is) {
         int i;
         for (i = 1; is.length - -(is.length >> 1) >= i; i <<= 1) {
             /* empty */

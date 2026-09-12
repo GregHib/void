@@ -16,16 +16,16 @@ final class Class348_Sub40_Sub12 extends Class348_Sub40 {
     private final int[] anIntArray9199 = new int[257];
     static int anInt9200;
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_0_) {
+    final void method3049(Packet packet, int i, int i_0_) {
         if (i == 0) {
-            int i_1_ = class348_sub49.readUnsignedByte(255);
+            int i_1_ = packet.readUnsignedByte(255);
             if (i_1_ == 0) {
-                anIntArrayArray9194 = new int[class348_sub49.readUnsignedByte(255)][4];
+                anIntArrayArray9194 = new int[packet.readUnsignedByte(255)][4];
                 for (int i_2_ = 0; anIntArrayArray9194.length > i_2_; i_2_++) {
-                    anIntArrayArray9194[i_2_][0] = class348_sub49.readUnsignedShort(842397944);
-                    anIntArrayArray9194[i_2_][1] = class348_sub49.readUnsignedByte(255) << 4;
-                    anIntArrayArray9194[i_2_][2] = class348_sub49.readUnsignedByte(255) << 4;
-                    anIntArrayArray9194[i_2_][3] = ((class348_sub49.readUnsignedByte(Class348_Sub21.method2955(i_0_, 31192))) << 4);
+                    anIntArrayArray9194[i_2_][0] = packet.readUnsignedShort(842397944);
+                    anIntArrayArray9194[i_2_][1] = packet.readUnsignedByte(255) << 4;
+                    anIntArrayArray9194[i_2_][2] = packet.readUnsignedByte(255) << 4;
+                    anIntArrayArray9194[i_2_][3] = ((packet.readUnsignedByte(Class348_Sub21.method2955(i_0_, 31192))) << 4);
                 }
             } else method3078(i_1_, i_0_ + -31111);
         }
@@ -349,7 +349,7 @@ final class Class348_Sub40_Sub12 extends Class348_Sub40 {
                 if (i_19_ >= 0) {
                     if (i_19_ > 255) i_19_ = 255;
                 } else i_19_ = 0;
-                anIntArray9199[i_13_] = (Class273.method2057(i_18_, Class273.method2057(i_17_ << 16, i_19_ << 8)));
+                anIntArray9199[i_13_] = (Class273.or(i_18_, Class273.or(i_17_ << 16, i_19_ << 8)));
             }
         }
     }

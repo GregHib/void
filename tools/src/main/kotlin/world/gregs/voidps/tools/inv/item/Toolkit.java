@@ -5,11 +5,11 @@ package world.gregs.voidps.tools.inv.item;/* ha - Decompiled by JODE
 import java.awt.*;
 import java.util.Random;
 
-abstract class ha {
+abstract class Toolkit {
     static int anInt4563;
     static int anInt4564;
     static int anInt4565;
-    int anInt4567;
+    int index;
     static int anInt4573;
     static int anInt4576;
     d aD4579;
@@ -17,21 +17,21 @@ abstract class ha {
 
     abstract void method3652();
 
-    abstract Class105 method3711(int[] is, int i, int i_212_, int i_213_, int i_214_, boolean bool);
+    abstract Sprite method3711(int[] is, int i, int i_212_, int i_213_, int i_214_, boolean bool);
 
     // abstract dependencies of Class213.method1562 (genuine), which calls
     // these on a `ha`-typed reference - all implemented concretely in ha_Sub1.
-    abstract Class64 method3625(Class124 class124, int i, int i_366_, int i_367_, int i_368_);
+    abstract Model createModel(Mesh mesh, int i, int i_366_, int i_367_, int i_368_);
 
-    abstract Class101 method3654();
+    abstract Matrix method3654();
 
-    abstract void method3638(Class101 class101);
+    abstract void setCamera(Matrix matrix);
 
     abstract void xa(float f);
 
     abstract void ZA(int i, float f, float f_573_, float f_574_, float f_575_, float f_576_);
 
-    abstract Class101 method3705();
+    abstract Matrix method3705();
 
     abstract int i();
 
@@ -52,11 +52,11 @@ abstract class ha {
     final void method3635(byte i) {
         int i_15_ = -90 % ((i - 8) / 33);
         anInt4573++;
-        Class348_Sub40_Sub26.aBooleanArray9351[this.anInt4567] = false;
+        Class348_Sub40_Sub26.aBooleanArray9351[this.index] = false;
         method3652();
     }
 
-    final Class105 method3662(int i, int[] is, byte i_84_, int i_85_, int i_86_, int i_87_) {
+    final Sprite createSprite(int i, int[] is, byte i_84_, int i_85_, int i_86_, int i_87_) {
         anInt4565++;
         if (i_84_ != 94) return null;
         return method3711(is, i_85_, i_86_, i, i_87_, true);
@@ -73,7 +73,7 @@ abstract class ha {
                 is[i_89_] = (byte) i_89_;
             for (int i_90_ = 0; i_90_ < 255; i_90_++) {
                 int i_91_ = -i_90_ + 255;
-                int i_92_ = Class124.method1097((byte) 95, i_91_, random);
+                int i_92_ = Mesh.method1097((byte) 95, i_91_, random);
                 byte i_93_ = is[i_92_];
                 is[i_92_] = is[i_91_];
                 is[i_91_] = is[511 + -i_90_] = i_93_;
@@ -84,7 +84,7 @@ abstract class ha {
         return class348_sub42_sub3.aByteArray9499;
     }
 
-    static final synchronized ha method3692(int i, int i_168_, int i_169_, Class45 class45, int i_170_, d var_d, Canvas canvas, int i_171_) {
+    static final synchronized Toolkit method3692(int i, int i_168_, int i_169_, Js5 js5, int i_170_, d var_d, Canvas canvas, int i_171_) {
         try {
             anInt4576++;
             // Only the i_170_ == i_171_ branch is ever reachable from this
@@ -94,11 +94,11 @@ abstract class ha {
             if (i_170_ == i_171_) return Class348_Sub5.method2753(true, i_168_, i_169_, canvas, var_d);
             throw new IllegalArgumentException("UM");
         } catch (RuntimeException runtimeexception) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + (class45 != null ? "{...}" : "null") + ',' + i_170_ + ',' + (var_d != null ? "{...}" : "null") + ',' + (canvas != null ? "{...}" : "null") + ',' + i_171_ + ')'));
+            throw Class348_Sub17.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + (js5 != null ? "{...}" : "null") + ',' + i_170_ + ',' + (var_d != null ? "{...}" : "null") + ',' + (canvas != null ? "{...}" : "null") + ',' + i_171_ + ')'));
         }
     }
 
-    ha(d var_d) {
+    Toolkit(d var_d) {
         this.aD4579 = var_d;
         int i = -1;
         for (int i_215_ = 0; i_215_ < 8; i_215_++) {
@@ -109,6 +109,6 @@ abstract class ha {
             }
         }
         if (i == -1) throw new IllegalStateException("NFTI");
-        this.anInt4567 = i;
+        this.index = i;
     }
 }

@@ -6,7 +6,7 @@ package world.gregs.voidps.tools.inv.item;/* aa_Sub3 - Decompiled by JODE
  */
 
 final class aa_Sub3 extends aa {
-    static Class45 aClass45_5207;
+    static Js5 aJs5_5207;
     static Class348_Sub6 aClass348_Sub6_5206 = new Class348_Sub6(0, 0);
     int[] anIntArray5201;
     int[] anIntArray5202;

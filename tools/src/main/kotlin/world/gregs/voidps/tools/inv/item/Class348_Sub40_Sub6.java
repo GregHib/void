@@ -43,14 +43,14 @@ final class Class348_Sub40_Sub6 extends Class348_Sub40 {
         aByteArrayArrayArray9134 = null;
     }
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_11_) {
+    final void method3049(Packet packet, int i, int i_11_) {
         int i_12_ = i;
         do {
             if (i_12_ == 0) {
-                anInt9133 = class348_sub49.readUnsignedShort(842397944) << 4;
+                anInt9133 = packet.readUnsignedShort(842397944) << 4;
                 break;
             } else if (i_12_ != 1) break;
-            this.aBoolean7045 = class348_sub49.readUnsignedByte(255) == 1;
+            this.aBoolean7045 = packet.readUnsignedByte(255) == 1;
         } while (false);
         if (i_11_ != 31015) method3062(false);
         anInt9138++;

@@ -5,7 +5,7 @@ package world.gregs.voidps.tools.inv.item;/* Class79 - Decompiled by JODE
 final class Class79 {
     static int anInt1379;
     static int anInt1387;
-    static Class105 aClass105_1365;
+    static Sprite aSprite_1365;
     static client aClient1367;
 
     static final void method797(int i, int i_29_, byte i_30_) {
@@ -31,7 +31,7 @@ final class Class79 {
     }
 
     public static void method804(int i) {
-        aClass105_1365 = null;
+        aSprite_1365 = null;
         aClient1367 = null;
         if (i != -3752) anInt1387 = 14;
     }

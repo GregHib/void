@@ -4,7 +4,7 @@ package world.gregs.voidps.tools.inv.item;/* ha_Sub1 - Decompiled by JODE
 
 import java.awt.*;
 
-final class ha_Sub1 extends ha {
+final class toolkit_Sub1 extends Toolkit {
     private int anInt7465;
     private int anInt7466;
     private Class356 aClass356_7467;
@@ -32,7 +32,7 @@ final class ha_Sub1 extends ha {
     private boolean aBoolean7489;
     int anInt7490;
     int anInt7491;
-    Class101_Sub1 aClass101_Sub1_7492;
+    Matrix_Sub1 aClass101_Sub1_7492;
     private int anInt7493;
     int anInt7494;
     private int anInt7495;
@@ -53,7 +53,7 @@ final class ha_Sub1 extends ha {
     int anInt7510;
     float[] aFloatArray7511;
     private int anInt7512;
-    private Class105 aClass105_7513;
+    private Sprite aSprite_7513;
 
     final boolean method3695() {
         return true;
@@ -315,7 +315,7 @@ final class ha_Sub1 extends ha {
         return this.anInt7482;
     }
 
-    final Class101 method3705() {
+    final Matrix method3705() {
         Class167 class167 = method3724(Thread.currentThread());
         return class167.aClass101_Sub1_2209;
     }
@@ -336,8 +336,8 @@ final class ha_Sub1 extends ha {
         /* empty */
     }
 
-    final void method3638(Class101 class101) {
-        this.aClass101_Sub1_7492 = (Class101_Sub1) class101;
+    final void setCamera(Matrix matrix) {
+        this.aClass101_Sub1_7492 = (Matrix_Sub1) matrix;
     }
 
     final void f(int i, int i_156_) {
@@ -563,11 +563,11 @@ final class ha_Sub1 extends ha {
         aBoolean7470 = true;
     }
 
-    final Class101 method3640() {
+    final Matrix method3640() {
         return this.aClass101_Sub1_7492;
     }
 
-    ha_Sub1(Canvas canvas, d var_d, int i, int i_355_) {
+    toolkit_Sub1(Canvas canvas, d var_d, int i, int i_355_) {
         this(var_d);
         try {
             method3643(canvas, i, i_355_);
@@ -595,8 +595,8 @@ final class ha_Sub1 extends ha {
         return class348_sub25.method2997();
     }
 
-    final Class101 method3654() {
-        return new Class101_Sub1();
+    final Matrix method3654() {
+        return new Matrix_Sub1();
     }
 
     final void la() {
@@ -607,8 +607,8 @@ final class ha_Sub1 extends ha {
         method3713();
     }
 
-    final Class64 method3625(Class124 class124, int i, int i_366_, int i_367_, int i_368_) {
-        return new Class64_Sub1(this, class124, i, i_367_, i_368_, i_366_);
+    final Model createModel(Mesh mesh, int i, int i_366_, int i_367_, int i_368_) {
+        return new Model_Sub1(this, mesh, i, i_367_, i_368_, i_366_);
     }
 
     final Interface13 method3624(int i, int i_369_) {
@@ -806,18 +806,18 @@ final class ha_Sub1 extends ha {
         if (i_379_ != 0 && i_380_ != 0) {
             if (i_382_ != 65535 && !(this.aD4579.method3(i_382_, -6662).aBoolean209)) {
                 if (anInt7512 != i_382_) {
-                    Class105 class105 = ((Class105) aClass60_7499.method583(i_382_, 97));
-                    if (class105 == null) {
+                    Sprite sprite = ((Sprite) aClass60_7499.method583(i_382_, 97));
+                    if (sprite == null) {
                         int[] is = method3719(i_382_);
                         if (is == null) return;
                         int i_386_ = (method3727(i_382_) ? 64 : this.anInt7501);
-                        class105 = this.method3662(i_386_, is, (byte) 94, 0, i_386_, i_386_);
-                        aClass60_7499.method582(class105, i_382_, (byte) -100);
+                        sprite = this.createSprite(i_386_, is, (byte) 94, 0, i_386_, i_386_);
+                        aClass60_7499.method582(sprite, i_382_, (byte) -100);
                     }
                     anInt7512 = i_382_;
-                    aClass105_7513 = class105;
+                    aSprite_7513 = sprite;
                 }
-                ((Class105_Sub3) aClass105_7513).method996(i - i_379_, i_377_ - i_380_, i_378_, i_379_ << 1, i_380_ << 1, i_384_, i_383_, i_385_, 1);
+                ((Sprite_Sub3) aSprite_7513).method996(i - i_379_, i_377_ - i_380_, i_378_, i_379_ << 1, i_380_ << 1, i_384_, i_383_, i_385_, 1);
             } else method3723(i, i_377_, i_378_, i_379_, i_383_, i_385_);
         }
     }
@@ -846,7 +846,7 @@ final class ha_Sub1 extends ha {
         return this.aD4579.method4(-7953, i);
     }
 
-    private ha_Sub1(d var_d) {
+    private toolkit_Sub1(d var_d) {
         super(var_d);
         aClass356_7467 = new Class356(4);
         this.anInt7474 = 45823;
@@ -868,7 +868,7 @@ final class ha_Sub1 extends ha {
         anInt7512 = -1;
         try {
             aClass60_7498 = new Class60(256);
-            this.aClass101_Sub1_7492 = new Class101_Sub1();
+            this.aClass101_Sub1_7492 = new Matrix_Sub1();
             method3631(1);
             method3659(0);
             Class59_Sub2_Sub1.method566(true, true, (byte) -126);
@@ -890,9 +890,9 @@ final class ha_Sub1 extends ha {
     }
 
     // dependency of method3665, not in genuine list
-    final Class105 method3629(int i, int i_519_, boolean bool) {
-        if (bool) return new Class105_Sub3_Sub3(this, i, i_519_);
-        return new Class105_Sub3_Sub1(this, i, i_519_);
+    final Sprite method3629(int i, int i_519_, boolean bool) {
+        if (bool) return new Sprite_Sub3_Sub3(this, i, i_519_);
+        return new Sprite_Sub3_Sub1(this, i, i_519_);
     }
 
     final Class348_Sub1 method3690(int i, int i_520_, int i_521_, int i_522_, int i_523_, float f) {
@@ -919,7 +919,7 @@ final class ha_Sub1 extends ha {
         return false;
     }
 
-    final Class105 method3711(int[] is, int i, int i_422_, int i_423_, int i_424_, boolean bool) {
+    final Sprite method3711(int[] is, int i, int i_422_, int i_423_, int i_424_, boolean bool) {
         boolean bool_425_ = false;
         int i_426_ = i;
         while_229_:
@@ -932,8 +932,8 @@ final class ha_Sub1 extends ha {
                 }
             }
         }
-        if (bool_425_) return new Class105_Sub3_Sub3(this, is, i, i_422_, i_423_, i_424_, bool);
-        return new Class105_Sub3_Sub1(this, is, i, i_422_, i_423_, i_424_, bool);
+        if (bool_425_) return new Sprite_Sub3_Sub3(this, is, i, i_422_, i_423_, i_424_, bool);
+        return new Sprite_Sub3_Sub1(this, is, i, i_422_, i_423_, i_424_, bool);
     }
 
     // dependency of method3665, not in genuine list

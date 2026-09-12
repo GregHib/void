@@ -1,7 +1,11 @@
 package world.gregs.voidps.tools.inv.item;
 
+import world.gregs.voidps.cache.Cache;
+import world.gregs.voidps.cache.CacheDelegate;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Standalone entry point: dumps every item's inventory icon straight from a
@@ -28,16 +32,19 @@ public final class CacheItemSpriteDumper {
     public static void main(String[] args) {
         String cacheDir = args.length > 0 ? args[0] : "C:\\Users\\Greg\\IdeaProjects\\void\\data\\cache\\";
 
+        Cache cache = new CacheDelegate(cacheDir, null, null);
         try {
-            aa_Sub3.aClass45_5207 = loadArchive(cacheDir, IDX_MODELS, false);
-            Class174.aClass45_2306 = loadArchive(cacheDir, IDX_ITEMS, false);
-            Class348_Sub11.aClass45_4770 = loadArchive(cacheDir, IDX_MATERIALS, true);
-            Class369_Sub2.aClass45_8589 = loadArchive(cacheDir, IDX_TEXTURE_DATA, false);
-            Class21.aClass45_322 = loadArchive(cacheDir, IDX_TEXTURE_SPRITES, false);
-            Class136.aClass45_4796 = loadArchive(cacheDir, IDX_FONTS, true);
+            System.out.println(Arrays.toString(cache.getVersionTable()));
+            System.out.println(Arrays.toString(cache.data(0, 0, 26, null)));
+            aa_Sub3.aJs5_5207 = loadArchive(cacheDir, cache, IDX_MODELS, false);
+            Class174.aJs5_2306 = loadArchive(cacheDir, cache, IDX_ITEMS, false);
+            Class348_Sub11.aJs5_4770 = loadArchive(cacheDir, cache, IDX_MATERIALS, true);
+            Class369_Sub2.aJs5_8589 = loadArchive(cacheDir, cache, IDX_TEXTURE_DATA, false);
+            Class21.aJs5_322 = loadArchive(cacheDir, cache, IDX_TEXTURE_SPRITES, false);
+            Class136.aJs5_4796 = loadArchive(cacheDir, cache, IDX_FONTS, true);
 
-            Class348_Sub40_Sub4.aD9113 = new Class244(Class348_Sub11.aClass45_4770, Class369_Sub2.aClass45_8589, Class21.aClass45_322);
-            Exception_Sub1.aClass255_112 = new Class255(null, 0, true, null, Class174.aClass45_2306, aa_Sub3.aClass45_5207);
+            Class348_Sub40_Sub4.aD9113 = new Class244(Class348_Sub11.aJs5_4770, Class369_Sub2.aJs5_8589, Class21.aJs5_322);
+            Exception_Sub1.itemTypeList = new ItemTypeList(0, true, null, Class174.aJs5_2306, aa_Sub3.aJs5_5207);
         } catch (IOException | RuntimeException exception) {
             System.err.println("Failed to load cache from " + cacheDir);
             exception.printStackTrace();
@@ -49,8 +56,8 @@ public final class CacheItemSpriteDumper {
         ItemSpriteDumper.dump(outDir);
     }
 
-    private static Class45 loadArchive(String cacheDir, int index, boolean unpackEagerly) throws IOException {
-        return new Class45(new DiskFileStore(cacheDir, index), unpackEagerly, 1);
+    private static Js5 loadArchive(String cacheDir, Cache cache, int index, boolean unpackEagerly) throws IOException {
+        return new Js5(new DiskFileStore(cacheDir, index, cache), unpackEagerly, 1);
     }
 
     private CacheItemSpriteDumper() {

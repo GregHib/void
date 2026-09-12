@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.inv.item;/* Class105_Sub3_Sub1 - Decompiled by 
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class105_Sub3_Sub1 extends Class105_Sub3 {
+final class Sprite_Sub3_Sub1 extends Sprite_Sub3 {
     int[] anIntArray9933;
 
     final void method964(int i, int i_883_, int i_884_, int i_885_, int i_886_) {
@@ -340,12 +340,12 @@ final class Class105_Sub3_Sub1 extends Class105_Sub3 {
         throw new IllegalStateException();
     }
 
-    Class105_Sub3_Sub1(ha_Sub1 var_ha_Sub1, int i, int i_743_) {
+    Sprite_Sub3_Sub1(toolkit_Sub1 var_ha_Sub1, int i, int i_743_) {
         super(var_ha_Sub1, i, i_743_);
         this.anIntArray9933 = new int[i * i_743_];
     }
 
-    Class105_Sub3_Sub1(ha_Sub1 var_ha_Sub1, int[] is, int i, int i_744_, int i_745_, int i_746_, boolean bool) {
+    Sprite_Sub3_Sub1(toolkit_Sub1 var_ha_Sub1, int[] is, int i, int i_744_, int i_745_, int i_746_, boolean bool) {
         super(var_ha_Sub1, i_745_, i_746_);
         if (bool) this.anIntArray9933 = new int[i_745_ * i_746_];
         else this.anIntArray9933 = is;
@@ -361,7 +361,7 @@ final class Class105_Sub3_Sub1 extends Class105_Sub3 {
         }
     }
 
-    Class105_Sub3_Sub1(ha_Sub1 var_ha_Sub1, int[] is, int i, int i_751_) {
+    Sprite_Sub3_Sub1(toolkit_Sub1 var_ha_Sub1, int[] is, int i, int i_751_) {
         super(var_ha_Sub1, i, i_751_);
         this.anIntArray9933 = is;
     }

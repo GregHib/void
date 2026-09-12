@@ -25,7 +25,7 @@ final class Class348_Sub40_Sub5 extends Class348_Sub40 {
             aShortArray9116 = new short[512];
             if (anInt9125 > 0) {
                 for (int i = 0; i < 512; i++)
-                    aShortArray9116[i] = (short) Class124.method1097((byte) 81, anInt9125, random);
+                    aShortArray9116[i] = (short) Mesh.method1097((byte) 81, anInt9125, random);
             }
         }
     }
@@ -40,7 +40,7 @@ final class Class348_Sub40_Sub5 extends Class348_Sub40 {
 
     final void method3044(int i) {
         if (i > 108) {
-            aByteArray9119 = ha.method3664(anInt9122, 124);
+            aByteArray9119 = Toolkit.method3664(anInt9122, 124);
             anInt9126++;
             method3061(true);
         }
@@ -163,7 +163,7 @@ final class Class348_Sub40_Sub5 extends Class348_Sub40 {
         return is;
     }
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_17_) {
+    final void method3049(Packet packet, int i, int i_17_) {
         if (i_17_ == 31015) {
             int i_18_ = i;
             while_145_:
@@ -178,7 +178,7 @@ final class Class348_Sub40_Sub5 extends Class348_Sub40 {
                             do {
                                 do {
                                     if (i_18_ == 0) {
-                                        anInt9129 = anInt9117 = class348_sub49.readUnsignedByte(i_17_ ^ 0x79d8);
+                                        anInt9129 = anInt9117 = packet.readUnsignedByte(i_17_ ^ 0x79d8);
                                         break while_145_;
                                     } else if (i_18_ != 1) {
                                         if (i_18_ != 2) {
@@ -194,22 +194,22 @@ final class Class348_Sub40_Sub5 extends Class348_Sub40 {
                                         } else break;
                                         break while_141_;
                                     }
-                                    anInt9122 = class348_sub49.readUnsignedByte(i_17_ + -30760);
+                                    anInt9122 = packet.readUnsignedByte(i_17_ + -30760);
                                     break while_145_;
                                 } while (false);
-                                anInt9125 = class348_sub49.readUnsignedShort(842397944);
+                                anInt9125 = packet.readUnsignedShort(842397944);
                                 break while_145_;
                             } while (false);
-                            anInt9124 = class348_sub49.readUnsignedByte(i_17_ ^ 0x79d8);
+                            anInt9124 = packet.readUnsignedByte(i_17_ ^ 0x79d8);
                             break while_145_;
                         } while (false);
-                        anInt9118 = class348_sub49.readUnsignedByte(i_17_ ^ 0x79d8);
+                        anInt9118 = packet.readUnsignedByte(i_17_ ^ 0x79d8);
                         break while_145_;
                     } while (false);
-                    anInt9129 = class348_sub49.readUnsignedByte(255);
+                    anInt9129 = packet.readUnsignedByte(255);
                     break while_145_;
                 } while (false);
-                anInt9117 = class348_sub49.readUnsignedByte(255);
+                anInt9117 = packet.readUnsignedByte(255);
             } while (false);
             anInt9127++;
         }

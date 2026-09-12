@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.inv.item;/* Class101_Sub1 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-final class Class101_Sub1 extends Class101 {
+final class Matrix_Sub1 extends Matrix {
     float aFloat5655;
     static int anInt5658;
     static long aLong5663;
@@ -22,20 +22,20 @@ final class Class101_Sub1 extends Class101 {
     float aFloat5686;
     static int anInt5688;
 
-    final void method910() {
+    final void makeIdentity() {
         anInt5688++;
         this.aFloat5672 = this.aFloat5678 = this.aFloat5664 = 1.0F;
         this.aFloat5655 = this.aFloat5662 = this.aFloat5673 = this.aFloat5680 = this.aFloat5669 = this.aFloat5666 = this.aFloat5686 = this.aFloat5685 = this.aFloat5681 = 0.0F;
     }
 
-    final void method891(int i, int i_17_, int i_18_) {
+    final void translate(int i, int i_17_, int i_18_) {
         this.aFloat5685 += (float) i_17_;
         this.aFloat5681 += (float) i_18_;
         this.aFloat5686 += (float) i;
         anInt5661++;
     }
 
-    final void method900(int i) {
+    final void rotateAxisX(int i) {
         anInt5658++;
         float f = Class239_Sub4.aFloatArray5876[0x3fff & i];
         float f_24_ = Class239_Sub4.aFloatArray5874[0x3fff & i];
@@ -53,7 +53,7 @@ final class Class101_Sub1 extends Class101 {
         this.aFloat5681 = f_28_ * f_24_ + f * this.aFloat5681;
     }
 
-    final void method902(int i) {
+    final void makeRotationZ(int i) {
         anInt5667++;
         this.aFloat5664 = 1.0F;
         this.aFloat5672 = this.aFloat5678 = Class239_Sub4.aFloatArray5876[0x3fff & i];
@@ -62,7 +62,7 @@ final class Class101_Sub1 extends Class101 {
         this.aFloat5673 = -this.aFloat5655;
     }
 
-    final void method896(int i) {
+    final void makeAxisY(int i) {
         anInt5659++;
         float f = Class239_Sub4.aFloatArray5876[0x3fff & i];
         float f_32_ = Class239_Sub4.aFloatArray5874[i & 0x3fff];
@@ -80,7 +80,7 @@ final class Class101_Sub1 extends Class101 {
         this.aFloat5681 = f * this.aFloat5681 - f_32_ * f_36_;
     }
 
-    public Class101_Sub1() {
-        method910();
+    public Matrix_Sub1() {
+        makeIdentity();
     }
 }

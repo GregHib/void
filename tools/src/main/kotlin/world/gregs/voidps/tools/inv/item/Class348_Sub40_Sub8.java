@@ -20,7 +20,7 @@ final class Class348_Sub40_Sub8 extends Class348_Sub40 {
     int anInt9164;
     static Class238 aClass238_9165;
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_0_) {
+    final void method3049(Packet packet, int i, int i_0_) {
         int i_1_ = i;
         while_151_:
         do {
@@ -34,7 +34,7 @@ final class Class348_Sub40_Sub8 extends Class348_Sub40 {
                         do {
                             do {
                                 if (i_1_ == 0) {
-                                    this.aBoolean9160 = class348_sub49.readUnsignedByte(i_0_ ^ 0x79d8) == 1;
+                                    this.aBoolean9160 = packet.readUnsignedByte(i_0_ ^ 0x79d8) == 1;
                                     break while_151_;
                                 } else if (i_1_ != 1) {
                                     if (i_1_ != 2) {
@@ -50,27 +50,27 @@ final class Class348_Sub40_Sub8 extends Class348_Sub40 {
                                     } else break;
                                     break while_147_;
                                 }
-                                this.anInt9150 = class348_sub49.readUnsignedByte(i_0_ ^ 0x79d8);
+                                this.anInt9150 = packet.readUnsignedByte(i_0_ ^ 0x79d8);
                                 break while_151_;
                             } while (false);
-                            this.anInt9149 = class348_sub49.readShort(13638);
+                            this.anInt9149 = packet.readShort(13638);
                             if (this.anInt9149 < 0) {
                                 aShortArray9159 = new short[(this.anInt9150)];
                                 for (i_1_ = 0; (this.anInt9150 > i_1_); i_1_++)
-                                    aShortArray9159[i_1_] = (short) class348_sub49.readShort(13638);
+                                    aShortArray9159[i_1_] = (short) packet.readShort(13638);
                             }
                             break while_151_;
                         } while (false);
-                        this.anInt9158 = this.anInt9164 = class348_sub49.readUnsignedByte(255);
+                        this.anInt9158 = this.anInt9164 = packet.readUnsignedByte(255);
                         break while_151_;
                     } while (false);
-                    this.anInt9156 = class348_sub49.readUnsignedByte(255);
+                    this.anInt9156 = packet.readUnsignedByte(255);
                     break while_151_;
                 } while (false);
-                this.anInt9158 = class348_sub49.readUnsignedByte(255);
+                this.anInt9158 = packet.readUnsignedByte(255);
                 break while_151_;
             } while (false);
-            this.anInt9164 = class348_sub49.readUnsignedByte(255);
+            this.anInt9164 = packet.readUnsignedByte(255);
         } while (false);
         if (i_0_ != 31015) method3070(20, 127, -38, 124, -110, true, 16);
         anInt9153++;
@@ -92,7 +92,7 @@ final class Class348_Sub40_Sub8 extends Class348_Sub40 {
     }
 
     final void method3044(int i) {
-        aByteArray9152 = ha.method3664(this.anInt9156, 95);
+        aByteArray9152 = Toolkit.method3664(this.anInt9156, 95);
         anInt9148++;
         method3067((byte) -98);
         int i_3_ = this.anInt9150 + -1;

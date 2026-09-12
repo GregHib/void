@@ -6,6 +6,6 @@ package world.gregs.voidps.tools.inv.item;/* Class136 - Decompiled by JODE
  */
 
 final class Class136 {
-    static Class45 aClass45_4796;
-    static short[][] aShortArrayArray4791;
+    static Js5 aJs5_4796;
+    static short[][] recol_s;
 }

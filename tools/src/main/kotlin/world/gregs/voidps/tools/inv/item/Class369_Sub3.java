@@ -3,5 +3,5 @@ package world.gregs.voidps.tools.inv.item;/* Class369_Sub3 - Decompiled by JODE
  */
 
 class Class369_Sub3 {
-    static Class45 aClass45_8601;
+    static Js5 aJs5_8601;
 }

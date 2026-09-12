@@ -35,13 +35,13 @@ final class ItemSpriteDumper {
      * instead, the same way Class22.method294's icon-queue does, so it picks up
      * the real (by-then-initialised) texture provider.
      */
-    private static ha renderer;
+    private static Toolkit renderer;
 
-    private static ha renderer() {
+    private static Toolkit renderer() {
         if (renderer == null) {
             Canvas canvas = new Canvas();
             canvas.setSize(WIDTH, HEIGHT);
-            renderer = Class104.method958(true, 0, Class348_Sub40_Sub4.aD9113, 0, canvas, Class136.aClass45_4796);
+            renderer = Class104.method958(true, 0, Class348_Sub40_Sub4.aD9113, 0, canvas, Class136.aJs5_4796);
         }
         return renderer;
     }
@@ -52,7 +52,7 @@ final class ItemSpriteDumper {
 
     static void dump(File dir) {
         dir.mkdirs();
-        int count = Exception_Sub1.aClass255_112.anInt3271;
+        int count = Exception_Sub1.itemTypeList.num;
         int dumped = 0;
         for (int id = 0; id < count; id++) {
             if (dumpItem(dir, id)) dumped++;
@@ -65,13 +65,13 @@ final class ItemSpriteDumper {
 
     private static boolean dumpItem(File dir, int id) {
         try {
-            Class213 def = Exception_Sub1.aClass255_112.method1940(-104, id);
-            ha var_ha = renderer();
-            int[] pixels = def.method1562(1, false, 0, var_ha, var_ha, null, null, 0, (byte) -102, OUTLINE ? 1 : 0);
+            ItemType def = Exception_Sub1.itemTypeList.list(-104, id);
+            Toolkit toolkit = renderer();
+            int[] pixels = def.sprite(1, false, 0, toolkit, toolkit, null, null, 0, (byte) -102, OUTLINE ? 1 : 0);
             if (pixels == null) return false;
             BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
             image.setRGB(0, 0, WIDTH, HEIGHT, pixels, 0, WIDTH);
-            ImageIO.write(image, "png", new File(dir, id + "_" + sanitize(def.aString2795) + ".png"));
+            ImageIO.write(image, "png", new File(dir, id + "_" + sanitize(def.name) + ".png"));
             return true;
         } catch (IOException ioexception) {
             return false;

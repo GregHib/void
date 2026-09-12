@@ -6,5 +6,5 @@ package world.gregs.voidps.tools.inv.item;/* Exception_Sub1 - Decompiled by JODE
  */
 
 final class Exception_Sub1 {
-    static Class255 aClass255_112;
+    static ItemTypeList itemTypeList;
 }

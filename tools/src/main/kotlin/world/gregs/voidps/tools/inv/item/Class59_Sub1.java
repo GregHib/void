@@ -5,11 +5,11 @@ package world.gregs.voidps.tools.inv.item;/* Class59_Sub1 - Decompiled by JODE
 class Class59_Sub1 {
     static int anInt5284;
     static Class351 aClass351_5288 = new Class351(7, 6);
-    static Class105[] aClass105Array5294;
+    static Sprite[] aSpriteArray5294;
     static Class297 aClass297_5297;
 
     public static void method553(int i) {
-        aClass105Array5294 = null;
+        aSpriteArray5294 = null;
         aClass351_5288 = null;
         if (i != 0) aClass297_5297 = null;
         aClass297_5297 = null;

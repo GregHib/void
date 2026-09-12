@@ -78,7 +78,7 @@ final class Class85 {
         }
         while (l > 8L) {
             int i_36_ = (is[i_29_] << i_30_ & 0xff | (0xff & is[1 + i_29_]) >>> 8 + -i_30_);
-            aByteArray1475[anInt1468] = (byte) Class273.method2057(aByteArray1475[anInt1468], i_36_ >>> i_31_);
+            aByteArray1475[anInt1468] = (byte) Class273.or(aByteArray1475[anInt1468], i_36_ >>> i_31_);
             anInt1468++;
             anInt1463 += 8 - i_31_;
             if (anInt1463 == 512) {
@@ -93,7 +93,7 @@ final class Class85 {
         int i_37_;
         if (l > 0L) {
             i_37_ = 0xff & is[i_29_] << i_30_;
-            aByteArray1475[anInt1468] = (byte) Class273.method2057(aByteArray1475[anInt1468], i_37_ >>> i_31_);
+            aByteArray1475[anInt1468] = (byte) Class273.or(aByteArray1475[anInt1468], i_37_ >>> i_31_);
         } else i_37_ = 0;
         if (l + (long) i_31_ >= 8) {
             anInt1463 += 8 - i_31_;
@@ -109,7 +109,7 @@ final class Class85 {
     }
 
     final void method833(boolean bool, int i, byte[] is) {
-        aByteArray1475[anInt1468] = (byte) Class273.method2057(aByteArray1475[anInt1468], 128 >>> Class139.method1166(anInt1463, 7));
+        aByteArray1475[anInt1468] = (byte) Class273.or(aByteArray1475[anInt1468], 128 >>> Class139.method1166(anInt1463, 7));
         anInt1468++;
         if (anInt1468 > 32) {
             while (anInt1468 < 64) aByteArray1475[anInt1468++] = (byte) 0;

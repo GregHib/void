@@ -2,8 +2,6 @@ package world.gregs.voidps.tools.inv.item;/* Class169 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-import jagex3.jagmisc.jagmisc;
-
 import java.net.InetAddress;
 
 final class Class169 implements Runnable {
@@ -30,7 +28,8 @@ final class Class169 implements Runnable {
             int i;
             try {
                 byte[] is = InetAddress.getByName(class348_sub26.aString6888).getAddress();
-                i = jagmisc.ping(is[0], is[1], is[2], is[3], 1000L);
+//                i = jagmisc.ping(is[0], is[1], is[2], is[3], 1000L);
+                 i = -1;
             } catch (Throwable throwable) {
                 i = 1000;
             }

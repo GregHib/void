@@ -2,12 +2,12 @@ package world.gregs.voidps.tools.inv.item;/* Class105_Sub3 - Decompiled by JODE
  * Visit http://jode.sourceforge.net/
  */
 
-abstract class Class105_Sub3 extends Class105 {
+abstract class Sprite_Sub3 extends Sprite {
     int anInt8471;
     int anInt8470;
     int anInt8461;
     int anInt8464;
-    ha_Sub1 aHa_Sub1_8460;
+    toolkit_Sub1 aHa_Sub1_8460;
 
     // Only reachable via ha_Sub1.method3712, which is itself unreachable per
     // JaCoCo coverage (0 hits) in the real item-icon dumper run.
@@ -21,7 +21,7 @@ abstract class Class105_Sub3 extends Class105 {
         return this.anInt8470;
     }
 
-    Class105_Sub3(ha_Sub1 var_ha_Sub1, int i, int i_55_) {
+    Sprite_Sub3(toolkit_Sub1 var_ha_Sub1, int i, int i_55_) {
         this.aHa_Sub1_8460 = var_ha_Sub1;
         this.anInt8471 = i;
         this.anInt8470 = i_55_;

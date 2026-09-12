@@ -3,7 +3,6 @@ package world.gregs.voidps.tools.inv.item;/* Class348_Sub40_Sub32 - Decompiled b
  */
 
 final class Class348_Sub40_Sub32 extends Class348_Sub40 {
-    static Class273 aClass273_9415 = new Class273("", 12);
     static int anInt9417;
     private static short[] aShortArray9421 = {-10304, 9104, 25485, 4620, 4540};
     private static short[] aShortArray9422 = {-1, -1, -1, -1, -1};
@@ -11,8 +10,6 @@ final class Class348_Sub40_Sub32 extends Class348_Sub40 {
     static short[][] aShortArrayArray9424 = {aShortArray9423, aShortArray9421, aShortArray9422};
 
     public static void method3133(byte i) {
-        aClass273_9415 = null;
-        if (i != -109) aClass273_9415 = null;
         aShortArray9423 = null;
         aShortArray9421 = null;
         aShortArrayArray9424 = null;

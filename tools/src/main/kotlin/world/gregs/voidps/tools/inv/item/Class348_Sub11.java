@@ -6,5 +6,5 @@ package world.gregs.voidps.tools.inv.item;/* Class348_Sub11 - Decompiled by JODE
  */
 
 final class Class348_Sub11 {
-    static Class45 aClass45_4770;
+    static Js5 aJs5_4770;
 }

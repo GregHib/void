@@ -4,7 +4,7 @@ package world.gregs.voidps.tools.inv.item;/* Class348 - Decompiled by JODE
 
 class Class348 {
     static int anInt4285;
-    static Class45 aClass45_4286;
+    static Js5 aJs5_4286;
     Class348 aClass348_4294;
     Class348 aClass348_4295;
     static int anInt4297;

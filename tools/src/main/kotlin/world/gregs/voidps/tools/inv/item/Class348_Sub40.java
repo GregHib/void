@@ -102,7 +102,7 @@ abstract class Class348_Sub40 {
         return this.aClass348_Sub40Array7031[i_59_].method3042(i, i_58_ + -633706082);
     }
 
-    void method3049(Class348_Sub49 class348_sub49, int i, int i_60_) {
+    void method3049(Packet packet, int i, int i_60_) {
         anInt7028++;
         if (i_60_ != 31015) method3038(-16);
     }

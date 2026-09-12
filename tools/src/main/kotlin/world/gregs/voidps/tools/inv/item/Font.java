@@ -5,8 +5,8 @@ package world.gregs.voidps.tools.inv.item;/* Class324 - minimal stub (missing fr
  * is out of scope for the item-icon renderer.
  */
 
-final class Class324 {
-    final void method2576(String string, int i, int i_69_, int i_70_, int i_71_, int i_72_) {
+final class Font {
+    final void render(String string, int i, int i_69_, int i_70_, int i_71_, int i_72_) {
         /* empty - stubbed, see note above */
     }
 }

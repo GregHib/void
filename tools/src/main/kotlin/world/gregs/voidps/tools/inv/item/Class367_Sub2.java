@@ -3,5 +3,5 @@ package world.gregs.voidps.tools.inv.item;/* Class367_Sub2 - minimal stub (missi
  */
 
 final class Class367_Sub2 {
-    static short[][][] aShortArrayArrayArray7290;
+    static short[][][] clientPalette;
 }

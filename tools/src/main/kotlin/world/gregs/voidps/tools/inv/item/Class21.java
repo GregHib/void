@@ -6,5 +6,5 @@ package world.gregs.voidps.tools.inv.item;/* Class21 - Decompiled by JODE
  */
 
 final class Class21 {
-    static Class45 aClass45_322;
+    static Js5 aJs5_322;
 }

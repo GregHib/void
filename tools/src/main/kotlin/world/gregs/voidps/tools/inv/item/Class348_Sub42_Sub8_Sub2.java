@@ -6,7 +6,6 @@ final class Class348_Sub42_Sub8_Sub2 extends Class348_Sub42_Sub8 {
     private final Object anObject10429;
     static int anInt10435;
     static long[][][] aLongArrayArrayArray10431;
-    static Class230 aClass230_10434 = null;
     static Class76 aClass76_10436 = new Class76(true);
     static Class74 aClass74_10437 = new Class74(0, 3);
     static int anInt10438;
@@ -23,7 +22,6 @@ final class Class348_Sub42_Sub8_Sub2 extends Class348_Sub42_Sub8 {
     }
 
     public static void method3202(byte i) {
-        aClass230_10434 = null;
         if (i > 38) {
             aLongArrayArrayArray10431 = null;
             aClass76_10436 = null;

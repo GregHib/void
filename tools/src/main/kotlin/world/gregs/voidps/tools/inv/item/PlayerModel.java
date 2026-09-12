@@ -2,6 +2,6 @@ package world.gregs.voidps.tools.inv.item;/* Class154 - minimal stub (missing fr
  * See client/src/Class154.java for the full original.
  */
 
-final class Class154 {
-    int[] anIntArray2095;
+final class PlayerModel {
+    int[] recol_d;
 }

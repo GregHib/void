@@ -7,9 +7,7 @@ final class Class348_Sub17 {
 
     static final RuntimeException_Sub1 method2929(Throwable throwable, String string) {
         anInt6789++;
-        if (Loader.trace) {
-            throwable.printStackTrace();
-        }
+        throwable.printStackTrace();
         RuntimeException_Sub1 runtimeexception_sub1;
         if (throwable instanceof RuntimeException_Sub1) {
             runtimeexception_sub1 = (RuntimeException_Sub1) throwable;

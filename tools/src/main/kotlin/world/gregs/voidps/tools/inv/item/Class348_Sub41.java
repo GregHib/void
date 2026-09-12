@@ -19,12 +19,12 @@ final class Class348_Sub41 extends Class348 {
         throw new IllegalStateException(); // unreachable per JaCoCo coverage
     }
 
-    static final byte[] method3158(byte[] is, int i) {
+    static final byte[] decodeContainer(byte[] is, int i) {
         anInt7046++;
-        Class348_Sub49 class348_sub49 = new Class348_Sub49(is);
-        int i_37_ = class348_sub49.readUnsignedByte(255);
+        Packet packet = new Packet(is);
+        int i_37_ = packet.readUnsignedByte(255);
         if (i > -74) method3156(true, null);
-        int i_38_ = class348_sub49.readInt((byte) -126);
+        int i_38_ = packet.readInt((byte) -126);
         if (i_38_ < 0 || (Class29.anInt401 != 0 && i_38_ > Class29.anInt401)) {
             throw new RuntimeException();
         }
@@ -35,7 +35,7 @@ final class Class348_Sub41 extends Class348 {
              * threw the placeholder IllegalStateException a prior pass left
              * here on the (incorrect) assumption this was dead per JaCoCo.
              * Restored the real gzip/bzip2 dispatch verbatim. */
-            int i_39_ = class348_sub49.readInt((byte) -126);
+            int i_39_ = packet.readInt((byte) -126);
             if (i_39_ < 0 || (Class29.anInt401 != 0 && i_39_ > Class29.anInt401) || i_39_ > 10000000) {
                 return new byte[4];
             }
@@ -43,13 +43,13 @@ final class Class348_Sub41 extends Class348 {
             if (i_37_ == 1) Class212.method1547(is_40_, i_39_, is, i_38_, 9);
             else {
                 synchronized (Class348_Sub33.aClass152_6955) {
-                    Class348_Sub33.aClass152_6955.method1218(is_40_, 29123, class348_sub49);
+                    Class348_Sub33.aClass152_6955.method1218(is_40_, 29123, packet);
                 }
             }
             return is_40_;
         }
         byte[] is_41_ = new byte[i_38_];
-        class348_sub49.method3389(2147483647, 0, i_38_, is_41_);
+        packet.gdata(2147483647, 0, i_38_, is_41_);
         return is_41_;
     }
 

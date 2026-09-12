@@ -64,9 +64,9 @@ final class Class348_Sub40_Sub29 extends Class348_Sub40 {
         anIntArray9375 = null;
     }
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_15_) {
+    final void method3049(Packet packet, int i, int i_15_) {
         if (i_15_ == 31015) {
-            if (i == 0) anInt9380 = class348_sub49.readUnsignedShort(842397944);
+            if (i == 0) anInt9380 = packet.readUnsignedShort(842397944);
             anInt9376++;
         }
     }

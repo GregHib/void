@@ -8,9 +8,9 @@ final class Class348_Sub40_Sub15 extends Class348_Sub40 {
     private int anInt9220 = 4096;
     static int anInt9221;
 
-    final void method3049(Class348_Sub49 class348_sub49, int i, int i_0_) {
+    final void method3049(Packet packet, int i, int i_0_) {
         int i_1_ = i;
-        if (i_1_ == 0) anInt9220 = (class348_sub49.readUnsignedByte(255) << 12) / 255;
+        if (i_1_ == 0) anInt9220 = (packet.readUnsignedByte(255) << 12) / 255;
         if (i_0_ == 31015) anInt9217++;
     }
 

@@ -9,8 +9,8 @@ final class Class62 {
         if (i > -52) return -121L;
         anInt1113++;
         long l = System.currentTimeMillis();
-        if (Class101_Sub1.aLong5663 > l) Class318_Sub1_Sub1.aLong8728 += Class101_Sub1.aLong5663 - l;
-        Class101_Sub1.aLong5663 = l;
+        if (Matrix_Sub1.aLong5663 > l) Class318_Sub1_Sub1.aLong8728 += Matrix_Sub1.aLong5663 - l;
+        Matrix_Sub1.aLong5663 = l;
         return l + Class318_Sub1_Sub1.aLong8728;
     }
 }

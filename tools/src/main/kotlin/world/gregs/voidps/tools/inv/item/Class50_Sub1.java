@@ -5,7 +5,7 @@ package world.gregs.voidps.tools.inv.item;/* Class50_Sub1 - Decompiled by JODE
 final class Class50_Sub1 {
     static int anInt5215;
 
-    static final byte[] method461(boolean bool, Object object, int i) {
+    static final byte[] unwrap(boolean bool, Object object, int i) {
         anInt5215++;
         if (object == null) return null;
         if (object instanceof byte[]) {
