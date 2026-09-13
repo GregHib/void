@@ -115,6 +115,7 @@ class Cooking : Script {
             }
             val level = levels.get(Skill.Cooking)
             val chance = when {
+                obj.id == "cooking_range_tutorial_island" -> 255..255
                 obj.id == "cooking_range_lumbridge_castle" -> row.intRange("chance_range")
                 equipped(EquipSlot.Hands).id == "cooking_gauntlets" -> row.intRange("chance_cook_o_matic")
                 obj.cookingRange -> row.intRange("chance_range")
