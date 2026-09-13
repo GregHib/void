@@ -46,6 +46,11 @@ class Furnace : Script {
             smeltingOptions(target, bars)
         }
 
+        // Some furnaces, the Tutorial Island one included, offer "Use" rather than "Smelt".
+        objectOperate("Use", "furnace*", arrive = false) { (target) ->
+            smeltingOptions(target, bars)
+        }
+
         itemOnObjectOperate("*_ore", "furnace*", arrive = false) { (target, item) ->
             val list = mutableListOf<String>()
             list.add(oreToBar(item.id))
