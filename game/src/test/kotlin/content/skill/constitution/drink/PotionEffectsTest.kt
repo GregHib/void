@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.inv.add
@@ -215,5 +217,23 @@ internal class PotionEffectsTest : WorldTest() {
 
         assertTrue(player.inventory.contains("cw_super_strength_potion_3"))
         assertEquals(99 + 5 + 14, player.levels.get(Skill.Strength))
+    }
+
+    @Test
+    fun `Barbarian vial smashing removes the empty vial`() {
+        val player = createPlayer(emptyTile)
+        player["vial_smashing"] = true
+        player.inventory.add("strength_potion_1")
+
+        player.itemOption("Drink", "strength_potion_1")
+
+        assertFalse(player.inventory.contains("strength_potion_1"))
+        assertFalse(player.inventory.contains("vial"))
+        assertEquals(4, player.levels.get(Skill.Strength))
+    }
+
+    @Test
+    fun `Vial smashing persists across logout`() {
+        assertTrue(VariableDefinitions.get("vial_smashing").persist)
     }
 }
