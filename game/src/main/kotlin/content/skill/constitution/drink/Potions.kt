@@ -8,15 +8,11 @@ class Potions : Script {
 
     init {
         consumed("*") { item, _ ->
-            val separator = item.id.lastIndexOf('_')
-            if (separator == -1) {
-                return@consumed
-            }
-            val doses = item.id.substring(separator + 1).toIntOrNull()
+            val doses = item.id.substringAfterLast('_').toIntOrNull()
             if (doses == null || doses !in 1..5) {
                 return@consumed
             }
-            if (!PotionEffects.effects.containsKey(item.id.substring(0, separator))) {
+            if (!potionEffects(item.id)) {
                 return@consumed
             }
             if (doses > 1) {
@@ -24,7 +20,6 @@ class Potions : Script {
             } else {
                 message("You have finished your potion.")
             }
-            potionEffects(item.id)
         }
     }
 }
