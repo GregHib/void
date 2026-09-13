@@ -11,10 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level
  */
 class TutorialRestrictions : Script {
 
-    /** Trade and assist slots in [world.gregs.voidps.engine.entity.character.player.PlayerOptions]. */
-    private val tradeSlot = 4
-    private val assistSlot = 7
-
     init {
         playerSpawn {
             if (!inTutorial) {
@@ -39,19 +35,6 @@ class TutorialRestrictions : Script {
 
         for (type in listOf("ancient", "lunar", "tablet", "scroll", "jewellery")) {
             teleportTakeOff(type) { !inTutorial }
-        }
-
-        // Home Teleport is how the tutorial ends, so it's the one spell that gets through - and
-        // casting it is what completes the tutorial. The spell does the travelling itself.
-        teleportTakeOff("modern") { spell ->
-            if (!inTutorial) {
-                return@teleportTakeOff true
-            }
-            if (tutorialStage != TutorialIsland.lastStage || spell != "lumbridge_home_teleport") {
-                return@teleportTakeOff false
-            }
-            completeTutorial()
-            true
         }
 
         playerDeath {

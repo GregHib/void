@@ -1,8 +1,9 @@
 package content.area.misthalin.tutorial_island
 
 import WorldTest
+import content.entity.player.modal.GameFrame
 import content.entity.player.modal.Tab
-import content.entity.player.modal.gameFrameComponents
+import dialogueOption
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -36,8 +37,8 @@ class TutorialIslandTest : WorldTest() {
 
         assertFalse(player.inTutorial)
         assertEquals(-1, player.tutorialStage)
-        for (component in gameFrameComponents) {
-            assertTrue(player.tutorialUnlocked(component), "$component should be unlocked")
+        for (component in GameFrame.components) {
+            assertTrue(TutorialIsland.unlockedTab(player, component), "$component should be unlocked")
         }
     }
 
@@ -56,14 +57,14 @@ class TutorialIslandTest : WorldTest() {
     fun `Tabs unlock as the stage advances`() {
         val player = createPlayer(guideRoom) { it.startTutorial(0) }
 
-        assertFalse(player.tutorialUnlocked("options"))
-        assertFalse(player.tutorialUnlocked("inventory"))
-        assertTrue(player.tutorialUnlocked("chat_box"))
+        assertFalse(TutorialIsland.unlockedTab(player, "options"))
+        assertFalse(TutorialIsland.unlockedTab(player, "inventory"))
+        assertTrue(TutorialIsland.unlockedTab(player, "chat_box"))
 
         player["tutorial_stage"] = 5
-        assertTrue(player.tutorialUnlocked("options"))
-        assertTrue(player.tutorialUnlocked("inventory"))
-        assertFalse(player.tutorialUnlocked("prayer_list"))
+        assertTrue(TutorialIsland.unlockedTab(player, "options"))
+        assertTrue(TutorialIsland.unlockedTab(player, "inventory"))
+        assertFalse(TutorialIsland.unlockedTab(player, "prayer_list"))
     }
 
     @Test
@@ -71,9 +72,9 @@ class TutorialIslandTest : WorldTest() {
         val player = createPlayer(guideRoom) { it.startTutorial(0) }
 
         for (orb in listOf("health_orb", "prayer_orb", "energy_orb", "summoning_orb")) {
-            assertTrue(player.tutorialUnlocked(orb), "$orb should be open from the start")
+            assertTrue(TutorialIsland.unlockedTab(player, orb), "$orb should be open from the start")
         }
-        assertFalse(player.tutorialUnlocked("prayer_list"), "sidebar tabs are still revealed in order")
+        assertFalse(TutorialIsland.unlockedTab(player, "prayer_list"), "sidebar tabs are still revealed in order")
     }
 
     @Test
@@ -129,17 +130,24 @@ class TutorialIslandTest : WorldTest() {
 
     @Test
     fun `Leaving the island grants the starter kit and clears tutorial state`() {
-        val player = createPlayer(Tile(3141, 3088)) { it.startTutorial(67) }
+        settings.setProperty("world.start.tutorial.skippable", "true")
+        val player = createPlayer(Tile(3094, 3106)) { it.startTutorial(0) }
+        val guide = createNPC("runescape_guide", Tile(3094, 3107))
 
-        player.leaveTutorial()
+        player.npcOption(guide, "Talk-to")
+        tick(1)
+        player.skipDialogues()
+        player.dialogueOption(2) // Skip
+        player.skipDialogues()
+        tick(1)
 
         assertFalse(player.inTutorial)
         assertTrue(player["tutorial_complete", false])
         // `Introduction` keys off `creation`, so leaving must stamp it or the starter kit
         // would be handed out a second time on the next login.
         assertTrue(player["creation", 0L] > 0L)
-        for (component in gameFrameComponents) {
-            assertTrue(player.tutorialUnlocked(component), "$component should be unlocked")
+        for (component in GameFrame.components) {
+            assertTrue(TutorialIsland.unlockedTab(player, component), "$component should be unlocked")
         }
     }
 
@@ -147,14 +155,14 @@ class TutorialIslandTest : WorldTest() {
     fun `Progress keeps updating after the overlay is already open`() {
         val player = createPlayer(guideRoom) { it.startTutorial(0) }
 
-        player.renderTutorial()
+        TutorialIsland.refresh(player)
         assertTrue(player.hasOpen("tutorial_overlay"))
         assertTrue(player.hasOpen("tutorial_text"))
 
         // `open` returns false for an already-open interface, so a render that guards on it
         // would silently stop updating here.
         player["tutorial_stage"] = 40
-        player.renderTutorial()
+        TutorialIsland.refresh(player)
 
         // round(40 / 68 * 20) = 12 segments, and the varp is one more than the segment count.
         assertEquals(13, player["tutorial_progress", -1])
@@ -190,14 +198,14 @@ class TutorialIslandTest : WorldTest() {
             val row = TutorialIsland.row(stage)
             assertTrue(row != null, "missing row for stage $stage")
             val lines = row!!.stringListOrNull("lines") ?: emptyList()
-            assertTrue(lines.size <= TUTORIAL_TEXT_LINES, "stage $stage has ${lines.size} lines, the box fits $TUTORIAL_TEXT_LINES")
+            assertTrue(lines.size <= 6, "stage $stage has ${lines.size} lines, the box fits 6")
             val flash = row.stringOrNull("flash")
             if (flash != null) {
                 assertTrue(flash == "RunOrb" || Tab.entries.any { it.name == flash }, "unknown flash target $flash")
             }
             val unlock = row.stringOrNull("unlock")
             if (unlock != null) {
-                assertTrue(gameFrameComponents.contains(unlock), "unknown unlock target $unlock")
+                assertTrue(GameFrame.components.contains(unlock), "unknown unlock target $unlock")
             }
             val npc = row.stringOrNull("hint_npc")
             if (npc != null) {
@@ -208,7 +216,7 @@ class TutorialIslandTest : WorldTest() {
 
     @Test
     fun `Stage table covers every stage index`() {
-        val rows = Tables.get(TutorialIsland.TABLE).rows()
+        val rows = Tables.get("tutorial_island").rows()
         assertEquals(rows.size, TutorialIsland.stages)
         for (stage in 0 until TutorialIsland.stages) {
             assertTrue(TutorialIsland.row(stage) != null, "missing stage $stage")

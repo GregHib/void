@@ -1,6 +1,6 @@
 package content.entity.player.modal
 
-import content.area.misthalin.tutorial_island.tutorialUnlocked
+import content.area.misthalin.tutorial_island.TutorialIsland
 import net.pearx.kasechange.toSnakeCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
@@ -12,8 +12,6 @@ import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.network.client.instruction.ChangeDisplayMode
 
 class GameFrame : Script {
-
-    val list = gameFrameComponents
 
     init {
         Tab.entries.forEach { tab ->
@@ -43,7 +41,7 @@ class GameFrame : Script {
         }
 
         interfaceOpened("toplevel*") {
-            openGamframe(this)
+            openGameFrame(this)
         }
 
         interfaceRefresh("toplevel*,dialogue_npc*") {
@@ -58,9 +56,9 @@ class GameFrame : Script {
         }
     }
 
-    fun GameFrame.openGamframe(player: Player) {
-        for (name in list) {
-            if (!player.tutorialUnlocked(if (name.endsWith("_spellbook")) "modern_spellbook" else name)) {
+    fun openGameFrame(player: Player) {
+        for (name in components) {
+            if (!TutorialIsland.unlockedTab(player, if (name.endsWith("_spellbook")) "modern_spellbook" else name)) {
                 player.interfaces.sendVisibility(player.interfaces.gameFrame, tabComponent(name), false)
                 continue
             }
@@ -79,39 +77,35 @@ class GameFrame : Script {
             }
         }
     }
+    companion object {
+        fun tabComponent(name: String): String = if (name.endsWith("_spellbook")) "magic_spellbook" else name
+
+        val components = listOf(
+            "chat_box",
+            "chat_background",
+            "filter_buttons",
+            "private_chat",
+            "health_orb",
+            "prayer_orb",
+            "energy_orb",
+            "summoning_orb",
+            "combat_styles",
+            "task_system",
+            "task_popup",
+            "stats",
+            "quest_journals",
+            "inventory",
+            "worn_equipment",
+            "prayer_list",
+            "modern_spellbook",
+            "friends_list",
+            "ignore_list",
+            "clan_chat",
+            "options",
+            "emotes",
+            "music_player",
+            "notes",
+            "area_status_icon",
+        )
+    }
 }
-
-/**
- * The toplevel component holding a game frame entry's tab button. Every spellbook opens into
- * the one `magic_spellbook` button.
- */
-fun tabComponent(name: String): String = if (name.endsWith("_spellbook")) "magic_spellbook" else name
-
-/** Every game frame component opened on login, in order. */
-val gameFrameComponents = listOf(
-    "chat_box",
-    "chat_background",
-    "filter_buttons",
-    "private_chat",
-    "health_orb",
-    "prayer_orb",
-    "energy_orb",
-    "summoning_orb",
-    "combat_styles",
-    "task_system",
-    "task_popup",
-    "stats",
-    "quest_journals",
-    "inventory",
-    "worn_equipment",
-    "prayer_list",
-    "modern_spellbook",
-    "friends_list",
-    "ignore_list",
-    "clan_chat",
-    "options",
-    "emotes",
-    "music_player",
-    "notes",
-    "area_status_icon",
-)

@@ -27,7 +27,7 @@ class TutorialDialogueTest : WorldTest() {
         tick(3)
 
         assertNotNull(player.dialogue)
-        assertFalse(player.renderTutorialText(), "instruction box drew over the conversation")
+        assertFalse(TutorialIsland.sendInstruction(player), "instruction box drew over the conversation")
     }
 
     @Test
@@ -40,7 +40,7 @@ class TutorialDialogueTest : WorldTest() {
         player.skipDialogues()
         tick(3)
 
-        assertTrue(player.renderTutorialText())
+        assertTrue(TutorialIsland.sendInstruction(player))
     }
 
     @Test

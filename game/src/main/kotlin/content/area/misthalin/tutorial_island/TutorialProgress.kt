@@ -29,7 +29,7 @@ class TutorialProgress : Script {
                 }
                 return@playerSpawn
             }
-            renderTutorial()
+            TutorialIsland.refresh(this)
         }
 
         interfaceClosed("character_creation") {
@@ -40,7 +40,7 @@ class TutorialProgress : Script {
             set("tutorial_designed", true)
             flagAppearance()
             stop("delay")
-            renderTutorial()
+            TutorialIsland.refresh(this)
         }
 
         // Dialogue shares the chat box slot with the instruction box. Wait a tick before
@@ -57,7 +57,7 @@ class TutorialProgress : Script {
 
         timerTick("tutorial_instructions") {
             if (inTutorial) {
-                renderTutorialText()
+                TutorialIsland.sendInstruction(this)
             }
             Timer.CANCEL
         }

@@ -16,7 +16,7 @@ class TutorialCommands : Script {
             }
             set("tutorial_stage", stage)
             set("tutorial_designed", true)
-            renderTutorial()
+            TutorialIsland.refresh(this)
             message("Tutorial Island stage set to $stage.")
         }
     }
