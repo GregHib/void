@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.Timer
 
 /**
@@ -35,6 +36,7 @@ class TutorialProgress : Script {
             if (!inTutorial) {
                 return@interfaceClosed
             }
+            Skill.entries.forEach { experience.update(it) }
             set("tutorial_designed", true)
             flagAppearance()
             stop("delay")
