@@ -56,8 +56,11 @@ class CharacterName : Script {
         fun Player.openCharacterName() {
             sendScript("character_name_open")
             interfaces.sendText("character_creation", "name_message", "'$accountName' is not available.")
+            interfaces.sendVisibility("character_creation", "name_rules", false)
+            interfaces.sendVisibility("character_creation", "name_suggestions", true)
             this["character_name_page"] = -1
             this["character_name_pages"] = mutableListOf<List<String>>()
+            this["character_name_base"] = name
             suggest(this, 1)
         }
 
@@ -69,6 +72,9 @@ class CharacterName : Script {
             }
             if (nameTaken(chosen)) {
                 reject(this, "'$chosen' is not available.")
+                this["character_name_base"] = chosen
+                this["character_name_pages"] = mutableListOf<List<String>>()
+                this["character_name_page"] = -1
                 suggest(this, 1)
                 return
             }
@@ -95,10 +101,12 @@ class CharacterName : Script {
                 return
             }
             if (page >= pages.size) {
-                pages.add(DisplayNames.suggestions(player.name, SUGGESTIONS, taken = { player.nameTaken(it) }))
+                val base: String = player["character_name_base", player.name]
+                pages.add(DisplayNames.suggestions(base, SUGGESTIONS, taken = { player.nameTaken(it) }))
                 page = pages.lastIndex
             }
             player["character_name_page"] = page
+            player.interfaces.sendVisibility("character_creation", "previous_suggestions", page > 0)
             val names = pages[page]
             for (index in 0 until SUGGESTIONS) {
                 player["character_name_suggestion_$index"] = names.getOrNull(index) ?: ""

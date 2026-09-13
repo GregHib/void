@@ -69,9 +69,24 @@ class DisplayNamesTest {
         assertEquals(6, names.toSet().size)
         for (name in names) {
             assertTrue(DisplayNames.valid(name), name)
-            assertTrue(name.startsWith("Bobsmith"), name)
             assertFalse(name in taken, name)
         }
+        assertTrue(names.any { it.startsWith("Bobsmith") && it.last().isDigit() }, names.toString())
+        assertTrue(names.any { it.startsWith("Bobsmith") && it.last().isLetter() }, names.toString())
+        assertTrue(names.any { it.endsWith("Bobsmith") }, names.toString())
+    }
+
+    @Test
+    fun `Suggestions strip trailing numbers from the base`() {
+        val names = DisplayNames.suggestions("seth2", 4, { false }, Random(7))
+
+        assertTrue(names.any { it.startsWith("Seth") && it != "Seth2" }, names.toString())
+        assertFalse(names.any { it.startsWith("Seth2") }, names.toString())
+    }
+
+    @Test
+    fun `Same seed gives the same suggestions`() {
+        assertEquals(DisplayNames.suggestions("bob", 6, { false }, Random(3)), DisplayNames.suggestions("bob", 6, { false }, Random(3)))
     }
 
     @Test

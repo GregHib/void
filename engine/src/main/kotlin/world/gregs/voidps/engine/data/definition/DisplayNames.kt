@@ -61,23 +61,63 @@ object DisplayNames {
     }
 
     /**
-     * Suggests [count] valid names similar to [base] which aren't [taken]
+     * Suggests [count] valid, memorable names based on [base] which aren't [taken].
+     * Mixes the base with numbers and words so players get a choice of styles.
      */
     fun suggestions(base: String, count: Int, taken: (String) -> Boolean, random: Random = Random.Default): List<String> {
-        val cleaned = sanitise(base).replace(" ", "")
-        val stem = if (cleaned == FALLBACK) FALLBACK else cleaned
+        val stem = stem(base)
         val names = LinkedHashSet<String>()
         var attempts = 0
+        var style = 0
         while (names.size < count && attempts++ < count * MAX_SUGGESTION_ATTEMPTS) {
-            val digits = random.nextInt(2, 5)
-            val number = random.nextInt(0, 10.0.pow(digits).toInt()).toString().padStart(digits, '0')
-            val name = stem.take(MAX_LENGTH - digits) + number
-            if (valid(name) && !taken(name) && names.add(name)) {
-                continue
+            val name = when (style++ % 4) {
+                0 -> stem + digits(random)
+                1 -> fit(stem, NOUNS.random(random))
+                2 -> fit(ADJECTIVES.random(random), stem)
+                else -> fit(ADJECTIVES.random(random), NOUNS.random(random)) + digits(random, max = 2)
+            }
+            if (name.length <= MAX_LENGTH && valid(name) && !taken(name)) {
+                names.add(name)
             }
         }
         return names.toList()
     }
+
+    /**
+     * The player's name without spaces or trailing numbers, e.g. "Seth2" -> "Seth"
+     */
+    private fun stem(base: String): String {
+        val letters = sanitise(base).replace(" ", "").trimEnd { it.isDigit() }
+        if (letters.isEmpty() || letters == FALLBACK) {
+            return FALLBACK
+        }
+        return letters.replaceFirstChar { it.uppercaseChar() }
+    }
+
+    private fun digits(random: Random, max: Int = 3): String {
+        val length = random.nextInt(1, max + 1)
+        return (1..length).joinToString("") { random.nextInt(10).toString() }
+    }
+
+    /**
+     * Joins two words, shortening the first so the result fits within [MAX_LENGTH]
+     */
+    private fun fit(first: String, second: String): String {
+        val room = MAX_LENGTH - second.length
+        if (room < 2) {
+            return second
+        }
+        return first.take(room) + second
+    }
+
+    private val ADJECTIVES = listOf(
+        "Swift", "Iron", "Dark", "Bold", "Wild", "Lone", "Grey", "Red", "Sly", "Grim", "Storm", "Frost",
+        "Fire", "Shadow", "Silent", "Brave", "Mystic", "Royal", "Elder", "Rogue", "Lucky", "Noble", "Steel", "Jade",
+    )
+    private val NOUNS = listOf(
+        "Wolf", "Knight", "Ranger", "Mage", "Rogue", "Archer", "Druid", "Slayer", "Hunter", "Warden", "Raven", "Fox",
+        "Bear", "Hawk", "Drake", "Sage", "Blade", "Rune", "Miner", "Smith", "Fisher", "Wizard", "Paladin", "Scout",
+    )
 
     private const val MAX_ATTEMPTS = 999
     private const val MAX_SUGGESTION_ATTEMPTS = 50

@@ -71,6 +71,12 @@ id = 117
 [.name_message]
 id = 154
 
+[.name_rules]
+id = 155
+
+[.name_suggestions]
+id = 156
+
 [.suggestion_0]
 id = "158-163"
 
