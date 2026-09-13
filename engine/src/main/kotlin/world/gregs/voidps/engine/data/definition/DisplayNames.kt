@@ -71,10 +71,10 @@ object DisplayNames {
         var style = 0
         while (names.size < count && attempts++ < count * MAX_SUGGESTION_ATTEMPTS) {
             val name = when (style++ % 4) {
-                0 -> stem + digits(random)
-                1 -> fit(stem, NOUNS.random(random))
-                2 -> fit(ADJECTIVES.random(random), stem)
-                else -> fit(ADJECTIVES.random(random), NOUNS.random(random)) + digits(random, max = 2)
+                0 -> stem.take(MAX_LENGTH - 3) + digits(random)
+                1 -> join(stem, NOUNS, random)
+                2 -> join(stem, ADJECTIVES, random, prefix = true)
+                else -> join(ADJECTIVES.random(random), NOUNS, random) + digits(random, max = 2)
             }
             if (name.length <= MAX_LENGTH && valid(name) && !taken(name)) {
                 names.add(name)
@@ -100,14 +100,15 @@ object DisplayNames {
     }
 
     /**
-     * Joins two words, shortening the first so the result fits within [MAX_LENGTH]
+     * Joins [word] with a random entry of [words] which fits whole within [MAX_LENGTH], or numbers when none fit
      */
-    private fun fit(first: String, second: String): String {
-        val room = MAX_LENGTH - second.length
-        if (room < 2) {
-            return second
+    private fun join(word: String, words: List<String>, random: Random, prefix: Boolean = false): String {
+        val fitting = words.filter { it.length + word.length <= MAX_LENGTH }
+        if (fitting.isEmpty()) {
+            return word.take(MAX_LENGTH - 3) + digits(random)
         }
-        return first.take(room) + second
+        val other = fitting.random(random)
+        return if (prefix) other + word else word + other
     }
 
     private val ADJECTIVES = listOf(
