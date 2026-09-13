@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.queue.strongQueue
 
 class Introduction : Script {
 
@@ -28,6 +29,19 @@ class Introduction : Script {
         if (player.inTutorial) {
             return // Tutorial Island owns character creation, the welcome and the starter kit
         }
+        if (player["choose_name", false] && !player.isBot) {
+            player.sendVariable("movement")
+            player["delay"] = -1
+            player.strongQueue("choose_name") {
+                chooseDisplayName()
+                start(player)
+            }
+            return
+        }
+        start(player)
+    }
+
+    private fun start(player: Player) {
         if (Settings["world.start.creation", true] && !player.isBot) {
             player.sendVariable("movement")
             player["delay"] = -1
