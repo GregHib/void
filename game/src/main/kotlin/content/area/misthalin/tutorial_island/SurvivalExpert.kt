@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 
 class SurvivalExpert : Script {
@@ -30,7 +31,17 @@ class SurvivalExpert : Script {
                     advanceTutorial(9)
                 }
                 else -> {
-                    val replaced = if (tutorialStage < 9) resupply("bronze_hatchet", "tinderbox") else resupply("small_fishing_net")
+                    var replaced = false
+                    if (tutorialStage < 9) {
+                        if (!carriesItem("bronze_hatchet") && inventory.add("bronze_hatchet")) {
+                            replaced = true
+                        }
+                        if (!carriesItem("tinderbox") && inventory.add("tinderbox")) {
+                            replaced = true
+                        }
+                    } else if (!carriesItem("small_fishing_net") && inventory.add("small_fishing_net")) {
+                        replaced = true
+                    }
                     if (replaced) {
                         npc<Happy>("Lost your equipment? Here, take another.")
                         return@npcOperate

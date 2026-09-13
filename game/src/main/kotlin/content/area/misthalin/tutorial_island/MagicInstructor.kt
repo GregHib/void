@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 
 class MagicInstructor : Script {
@@ -30,10 +31,18 @@ class MagicInstructor : Script {
                 }
                 67 -> finish()
                 else -> {
-                    // Every rune is spent on a cast, so running out would otherwise strand the stage.
-                    if (tutorialStage == 66 && (resupply("air_rune", 5) or resupply("mind_rune", 5))) {
-                        npc<Neutral>("Out of runes? Take some more.")
-                        return@npcOperate
+                    if (tutorialStage == 66) {
+                        var replaced = false
+                        if (!carriesItem("air_rune") && inventory.add("air_rune", 5)) {
+                            replaced = true
+                        }
+                        if (!carriesItem("mind_rune") && inventory.add("mind_rune", 5)) {
+                            replaced = true
+                        }
+                        if (replaced) {
+                            npc<Neutral>("Out of runes? Take some more.")
+                            return@npcOperate
+                        }
                     }
                     npc<Neutral>("Cast Wind Strike on a chicken to finish your training.")
                 }

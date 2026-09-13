@@ -7,6 +7,7 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 
 class MiningInstructor : Script {
@@ -32,10 +33,12 @@ class MiningInstructor : Script {
                     advanceTutorial(35)
                 }
                 else -> {
-                    val replaced = when {
-                        tutorialStage >= 36 -> resupply("bronze_pickaxe", "hammer")
-                        tutorialStage >= 32 -> resupply("bronze_pickaxe")
-                        else -> false
+                    var replaced = false
+                    if (tutorialStage >= 32 && !carriesItem("bronze_pickaxe") && inventory.add("bronze_pickaxe")) {
+                        replaced = true
+                    }
+                    if (tutorialStage >= 36 && !carriesItem("hammer") && inventory.add("hammer")) {
+                        replaced = true
                     }
                     if (replaced) {
                         npc<Neutral>("Lost your tools? Here's a replacement.")

@@ -13,9 +13,6 @@ import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.add
-import world.gregs.voidps.engine.inv.carriesItem
-import world.gregs.voidps.engine.inv.inventory
 import kotlin.math.roundToInt
 
 object TutorialIsland {
@@ -189,28 +186,4 @@ fun Player.advanceTutorial(from: Int) {
     }
     set("tutorial_stage", from + 1)
     TutorialIsland.refresh(this)
-}
-
-/**
- * Hands back any of [items] the player no longer has. Every instructor offers this, so a lost,
- * dropped or ruined attempt can never strand a stage that's waiting on one of them.
- */
-fun Player.resupply(vararg items: String): Boolean {
-    var missing = false
-    for (item in items) {
-        if (carriesItem(item)) {
-            continue
-        }
-        inventory.add(item)
-        missing = true
-    }
-    return missing
-}
-
-fun Player.resupply(item: String, amount: Int): Boolean {
-    if (carriesItem(item)) {
-        return false
-    }
-    inventory.add(item, amount)
-    return true
 }

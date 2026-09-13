@@ -6,7 +6,9 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.carriesItem
+import world.gregs.voidps.engine.inv.inventory
 
 class MasterChef : Script {
 
@@ -45,7 +47,18 @@ class MasterChef : Script {
     }
 
     private suspend fun Player.giveIngredients() {
-        resupply("pot_of_flour", "bucket_of_water")
-        item("pot_of_flour", "The cook gives you a pot of flour and a bucket of water.")
+        var replaced = 0
+        if (!carriesItem("pot_of_flour") && inventory.add("pot_of_flour")) {
+            replaced += 1
+        }
+        if (!carriesItem("bucket_of_water") && inventory.add("bucket_of_water")) {
+            replaced += 2
+        }
+        when (replaced) {
+            1 -> item("pot_of_flour", "The cook gives you a pot of flour.")
+            2 -> item("bucket_of_water", "The cook gives you a bucket of water.")
+            3 -> item("pot_of_flour", "The cook gives you a pot of flour and a bucket of water.")
+            else -> {} // TODO proper message
+        }
     }
 }

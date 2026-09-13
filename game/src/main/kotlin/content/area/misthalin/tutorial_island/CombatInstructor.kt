@@ -6,6 +6,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 
 class CombatInstructor : Script {
@@ -34,11 +35,25 @@ class CombatInstructor : Script {
                     advanceTutorial(49)
                 }
                 else -> {
-                    val replaced = when {
-                        tutorialStage >= 49 -> resupply("shortbow") or resupply("bronze_arrow", 50)
-                        tutorialStage >= 43 -> resupply("bronze_sword", "wooden_shield")
-                        tutorialStage >= 41 -> resupply("bronze_dagger")
-                        else -> false
+                    var replaced = false
+                    when {
+                        tutorialStage >= 49 -> {
+                            if (!carriesItem("shortbow") && inventory.add("shortbow")) {
+                                replaced = true
+                            }
+                            if (!carriesItem("bronze_arrow") && inventory.add("bronze_arrow", 50)) {
+                                replaced = true
+                            }
+                        }
+                        tutorialStage >= 43 -> {
+                            if (!carriesItem("bronze_sword") && inventory.add("bronze_sword")) {
+                                replaced = true
+                            }
+                            if (!carriesItem("wooden_shield") && inventory.add("wooden_shield")) {
+                                replaced = true
+                            }
+                        }
+                        tutorialStage >= 41 -> replaced = !carriesItem("bronze_dagger") && inventory.add("bronze_dagger")
                     }
                     if (replaced) {
                         npc<Neutral>("You'll not get far unarmed. Take these.")
