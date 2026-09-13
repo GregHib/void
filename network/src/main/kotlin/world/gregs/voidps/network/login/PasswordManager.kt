@@ -9,7 +9,7 @@ import world.gregs.voidps.network.Response
 class PasswordManager(private val account: AccountLoader) {
 
     fun validate(username: String, password: String): Int {
-        if (username.length > 12) {
+        if (!AccountNames.valid(username)) {
             return Response.LOGIN_SERVER_REJECTED_SESSION
         }
         val passwordHash = account.password(username)

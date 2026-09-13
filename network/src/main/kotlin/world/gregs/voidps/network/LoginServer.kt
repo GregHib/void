@@ -10,11 +10,11 @@ import kotlinx.io.readByteArray
 import kotlinx.io.readUByte
 import kotlinx.io.readUShort
 import world.gregs.voidps.cache.secure.RSA
-import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.client.IsaacCipher
 import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.AccountNames
 import world.gregs.voidps.network.login.LoginAttempts
 import world.gregs.voidps.network.login.PasswordManager
 import world.gregs.voidps.network.login.protocol.*
@@ -95,7 +95,7 @@ class LoginServer(
         }
         val password: String = rsa.readString()
         val xtea = decryptXtea(packet, isaacKeys)
-        val username = xtea.readString()
+        val username = AccountNames.normalise(xtea.readString())
         xtea.readUByte() // social login
         val displayMode = xtea.readUByte().toInt()
         if (!validate(write, username, password, hostname)) {
@@ -124,7 +124,7 @@ class LoginServer(
             return false
         }
         attempts.succeeded(username)
-        if (username.length > 12) {
+        if (!AccountNames.valid(username)) {
             write.finish(Response.INVALID_CREDENTIALS)
             return false
         }
@@ -148,12 +148,6 @@ class LoginServer(
         }
         val outCipher = IsaacCipher(isaacKeys)
         return Client(write, inCipher, outCipher, hostname)
-    }
-
-    private fun decryptXtea(packet: Source, isaacKeys: IntArray): Source {
-        val remaining = packet.readByteArray(packet.remaining.toInt())
-        Xtea.decipher(remaining, isaacKeys)
-        return ByteReadPacket(remaining)
     }
 
     suspend fun login(read: ByteReadChannel, client: Client, username: String, passwordHash: String, displayMode: Int) {

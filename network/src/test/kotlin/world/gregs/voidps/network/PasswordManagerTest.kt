@@ -90,6 +90,28 @@ class PasswordManagerTest {
     }
 
     @Test
+    fun `Email username is accepted`() {
+        val username = "someone.long@example.com"
+        val password = "password"
+        accountLoader.exists = false
+
+        val result = passwordManager.validate(username, password)
+
+        assertEquals(Response.SUCCESS, result)
+    }
+
+    @Test
+    fun `Invalid email username is rejected`() {
+        val username = "someone@nowhere"
+        val password = "password"
+        accountLoader.exists = false
+
+        val result = passwordManager.validate(username, password)
+
+        assertEquals(Response.LOGIN_SERVER_REJECTED_SESSION, result)
+    }
+
+    @Test
     fun `Encrypt new player returns hashed password`() {
         val username = "newbie"
         val password = "password"

@@ -4,6 +4,7 @@ import org.koin.dsl.module
 import org.rsmod.game.pathfinder.LineValidator
 import org.rsmod.game.pathfinder.PathFinder
 import org.rsmod.game.pathfinder.StepValidator
+import world.gregs.voidps.engine.client.PlayerAccountCreator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.*
@@ -44,7 +45,8 @@ fun engineModule() = module {
     single { AccountManager(get(), get(), get(), AppearanceOverrides().apply { load() }) }
     single { AccountDefinitionsReloader(get(), get(), get()) }
     // IO
-    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game) }
+    single { PlayerAccountLoader(get(), get(), get(), get(), get(), Contexts.Game, get()) }
+    single { PlayerAccountCreator(get(), get(), get(), gameContext = Contexts.Game) }
     single(createdAtStart = true) { AccountDefinitions().load() }
     // Map
     single { DynamicZones(get()) }
