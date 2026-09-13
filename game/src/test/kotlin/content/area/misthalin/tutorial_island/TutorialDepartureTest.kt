@@ -1,6 +1,7 @@
 package content.area.misthalin.tutorial_island
 
 import WorldTest
+import content.entity.player.starterKit
 import dialogueOption
 import interfaceOption
 import npcOption
@@ -86,8 +87,8 @@ class TutorialDepartureTest : WorldTest() {
     fun `Leaving grants the starter kit exactly once`() {
         val player = createPlayer(Tile(3142, 3088)) { it.startTutorial(67) }
 
-        player.leaveTutorial()
-        content.entity.player.starterKit(player)
+        starterKit(player)
+        starterKit(player)
 
         assertEquals(1, player.inventory.count("bronze_hatchet"))
     }

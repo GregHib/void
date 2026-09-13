@@ -66,6 +66,9 @@ fun starterKit(player: Player) {
     if (!Settings["world.start.gear", true]) {
         return
     }
+    if (player["had_starter", false]) {
+        return
+    }
     player.bank.add("coins", 25)
     player.inventory.apply {
         add("bronze_hatchet")
@@ -87,4 +90,5 @@ fun starterKit(player: Player) {
         add("earth_rune", 4)
         add("body_rune", 2)
     }
+    player["had_starter"] = true
 }
