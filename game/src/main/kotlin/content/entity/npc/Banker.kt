@@ -1,5 +1,6 @@
 package content.entity.npc
 
+import content.area.misthalin.tutorial_island.advanceTutorial
 import content.entity.player.bank.pin.openBank
 import content.entity.player.bank.pin.openCollection
 import content.entity.player.dialogue.Neutral
@@ -17,8 +18,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class Banker : Script {
 
     init {
-        npcApproach("Talk-to", "banker*,fremennik_banker") {
+        npcApproach("Talk-to", "banker*,fremennik_banker") { (target) ->
             approachRange(2)
+            if (target.id == "banker_tutorial_island") {
+                advanceTutorial(52)
+            }
             npc<Quiz>("Good day. How may I help you?")
             val loanReturned = getSecondsRemaining(this, "lend_timeout") < 0
             val collection = false
