@@ -1,10 +1,13 @@
 package content.skill.constitution.drink
 
-import content.entity.player.bank.bank
+import content.entity.player.bank.BankDeposit
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.type.random
 
@@ -43,8 +46,9 @@ fun Player.jujuActive(effect: String): Boolean = timers.contains(effect)
 
 /**
  * Rolls for the banking window on every resource gathered, then banks [amount] of [item] while
- * that window is open. Returns false when the bank cannot take them, closing the window so the
- * caller keeps its normal inventory handling rather than destroying the resource.
+ * that window is open. The resource passes through the inventory so it is deposited with the
+ * same checks as a bank booth. Returns false when it could not be banked, closing the window so
+ * the caller keeps its normal inventory handling rather than destroying the resource.
  */
 fun Player.jujuBank(effect: String, item: String, amount: Int): Boolean {
     if (jujuActive(effect) && random.nextInt(100) < BANK_PERCENT) {
@@ -54,9 +58,15 @@ fun Player.jujuBank(effect: String, item: String, amount: Int): Boolean {
     if (!jujuActive("${effect}_bank")) {
         return false
     }
-    if (!bank.add(item, amount)) {
+    val carried = inventory.count(item)
+    if (!inventory.add(item, amount)) {
+        return false
+    }
+    BankDeposit.deposit(this, inventory, Item(item, amount), amount, check = false)
+    val remaining = inventory.count(item) - carried
+    if (remaining > 0) {
+        inventory.remove(item, remaining)
         timers.stop("${effect}_bank")
-        message("Your bank is too full to send anything else to it.")
         return false
     }
     gfx("${effect}_bank")
