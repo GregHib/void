@@ -50,7 +50,9 @@ internal class CharacterNameTest : WorldTest() {
         assertTrue(player.suspension is Suspension.StringEntry)
         player.stringEntry("bob")
         assertFalse(player.interfaces.contains(player.interfaces.gameFrame))
-        assertEquals(1, player["character_name_page", -1])
+        assertEquals(0, player["character_name_page", -1])
+        assertEquals("bob", player["character_name_base", ""])
+        assertTrue(player["character_name_suggestion_0", ""].isNotEmpty())
 
         player.interfaceOption("character_creation", "continue", "Continue")
         tick()
