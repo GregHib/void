@@ -29,7 +29,8 @@ class Introduction : Script {
         if (player.inTutorial) {
             return // Tutorial Island owns character creation, the welcome and the starter kit
         }
-        if (player["choose_name", false] && !player.isBot) {
+        // Character creation ends with the name panel, otherwise fall back to a dialogue prompt
+        if (player["choose_name", false] && !player.isBot && !Settings["world.start.creation", true]) {
             player.sendVariable("movement")
             player["delay"] = -1
             player.strongQueue("choose_name") {
