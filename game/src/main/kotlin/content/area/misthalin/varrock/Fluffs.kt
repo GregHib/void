@@ -120,6 +120,8 @@ class Fluffs : Script {
 
         if(item in doogleSardineItems){
             mildInterest(item)
+        } else if(item == "three_little_kittens") {
+            TODO()
         } else {
             message("<red>Fluffs doesn't seem to be interested in that.")
         }
@@ -166,6 +168,11 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
+        if(inventory.contains("three_little_kittens")) {
+            doNotTheCat(cat)
+
+            statement("Fluffs looks pitifully towards your backpack.")
+        }
         if(get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)){
             doNotTheCat(cat)
 
