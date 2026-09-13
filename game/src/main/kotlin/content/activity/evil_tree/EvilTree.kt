@@ -567,7 +567,7 @@ class EvilTree :
             if (!Hatchet.hasRequirements(this, hatchet, message = true)) {
                 break
             }
-            if (inventory.isFull()) {
+            if (inventory.isFull() && !inventory.contains("evil_tree_kindling")) {
                 message("Your inventory is too full to hold any more kindling.")
                 break
             }
