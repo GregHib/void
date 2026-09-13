@@ -1,8 +1,8 @@
 package content.area.misthalin.tutorial_island
 
 import content.entity.player.modal.GameFrame
-import world.gregs.voidps.engine.client.clearHint
-import world.gregs.voidps.engine.client.hint
+import world.gregs.voidps.engine.client.clearHints
+import world.gregs.voidps.engine.client.markHint
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.hasTypeOpen
@@ -47,15 +47,15 @@ object TutorialIsland {
     }
 
     private fun Player.renderTutorialHint(row: RowDefinition) {
-        clearHint()
+        clearHints()
         val npcId = row.stringOrNull("hint_npc")
         if (npcId != null) {
             val npc = NPCs.findOrNull(tile.regionLevel, npcId) ?: return
-            hint(npc)
+            markHint(npc)
             return
         }
         val target = row.tileOrNull("hint_tile") ?: return
-        hint(target, radius = 2, height = row.intOrNull("hint_height") ?: 0)
+        markHint(target, radius = 2, height = row.intOrNull("hint_height") ?: 0)
     }
 
     /**
