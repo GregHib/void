@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.data.definition
 
+import kotlin.math.pow
 import kotlin.random.Random
 
 /**
@@ -59,5 +60,25 @@ object DisplayNames {
         }
     }
 
+    /**
+     * Suggests [count] valid names similar to [base] which aren't [taken]
+     */
+    fun suggestions(base: String, count: Int, taken: (String) -> Boolean, random: Random = Random.Default): List<String> {
+        val cleaned = sanitise(base).replace(" ", "")
+        val stem = if (cleaned == FALLBACK) FALLBACK else cleaned
+        val names = LinkedHashSet<String>()
+        var attempts = 0
+        while (names.size < count && attempts++ < count * MAX_SUGGESTION_ATTEMPTS) {
+            val digits = random.nextInt(2, 5)
+            val number = random.nextInt(0, 10.0.pow(digits).toInt()).toString().padStart(digits, '0')
+            val name = stem.take(MAX_LENGTH - digits) + number
+            if (valid(name) && !taken(name) && names.add(name)) {
+                continue
+            }
+        }
+        return names.toList()
+    }
+
     private const val MAX_ATTEMPTS = 999
+    private const val MAX_SUGGESTION_ATTEMPTS = 50
 }
