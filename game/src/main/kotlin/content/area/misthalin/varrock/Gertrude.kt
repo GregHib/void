@@ -30,7 +30,7 @@ class Gertrude : Script {
     init {
         npcOperate("Talk-to", "gertrude") {
             if(get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false) && quest("gertrudes_cat") == "attempt_fluffs_pickup"){
-                mustBeAReasion()
+                mustBeAReason()
                 return@npcOperate
             }
             when (quest("gertrudes_cat")) {
@@ -44,7 +44,7 @@ class Gertrude : Script {
         }
     }
 
-    private suspend fun Player.mustBeAReasion() {
+    private suspend fun Player.mustBeAReason() {
         player<Happy>("Hi!")
         npc<Quiz>("Hey traveller, did Fluffs eat the sardines?")
         player<Neutral>("Yeah, she loved them, but she still won't leave.")
