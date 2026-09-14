@@ -30,9 +30,11 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.encode.zone.SoundAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ZoneUpdate
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
@@ -75,10 +77,10 @@ class BiohazardTest : WorldTest() {
     }
 
     @Test
-    fun `Questprep leaves a player able to walk up to Elena and start`() {
+    fun `Quest prep leaves a player able to walk up to Elena and start`() {
         val player = createPlayer(Tile(2592, 3335), name = "biohazard prep")
         player.rights = PlayerRights.Admin
-        runTest { Commands.call(player, "questprep biohazard") }
+        runTest { Commands.call(player, "quest_prep biohazard") }
         tick()
 
         val elena = createNPC("elena2", Tile(2592, 3336))
@@ -128,7 +130,7 @@ class BiohazardTest : WorldTest() {
 
     @Test
     fun `Bird feed thrown on the watchtower goes unnoticed on its own`() {
-        val player = createPlayer(Tile(2560, 3301))
+        val player = createPlayer(Tile(2560, 3300))
         player["biohazard"] = "spoke_to_jerico"
         player.inventory.add("bird_feed")
         val fence = GameObjects.find(Tile(2560, 3301), "bio_watchtower_fence")
@@ -189,6 +191,7 @@ class BiohazardTest : WorldTest() {
     @Test
     fun `Omart's rope ladder drops the player into West Ardougne`() {
         val player = createPlayer(Tile(2559, 3265))
+        player.equipment.set(EquipSlot.Hat.index, "gas_mask")
         player["biohazard"] = "pigeons_released"
         val omart = createNPC("omart_west_ardougne", Tile(2559, 3266))
 

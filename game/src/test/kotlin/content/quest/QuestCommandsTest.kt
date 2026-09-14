@@ -40,11 +40,11 @@ class QuestCommandsTest : WorldTest() {
     }
 
     @Test
-    fun `Questprep hands out stacks of the items a quest needs more than one of`() {
+    fun `Quest prep hands out stacks of the items a quest needs more than one of`() {
         val admin = createPlayer(name = "prep admin myreque")
         admin.rights = PlayerRights.Admin
 
-        runTest { Commands.call(admin, "questprep in_search_of_the_myreque") }
+        runTest { Commands.call(admin, "quest_prep in_search_of_the_myreque") }
         tick()
 
         assertEquals(25, admin.levels.getMax(Skill.Agility))
@@ -84,11 +84,11 @@ class QuestCommandsTest : WorldTest() {
     }
 
     @Test
-    fun `Questprep sets up the world state a quest inherits from its prerequisites`() {
+    fun `Quest prep sets up the world state a quest inherits from its prerequisites`() {
         val admin = createPlayer(name = "prep admin biohazard")
         admin.rights = PlayerRights.Admin
 
-        runTest { Commands.call(admin, "questprep biohazard") }
+        runTest { Commands.call(admin, "quest_prep biohazard") }
         tick()
 
         assertTrue(admin.questCompleted("plague_city"))
