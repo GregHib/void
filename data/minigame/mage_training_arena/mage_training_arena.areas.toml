@@ -3,3 +3,30 @@ x = [3392, 3417]
 y = [3264, 3334]
 tags = ["penguin_area"]
 hint = "to the east of the Mage Training Arena."
+
+[mage_training_arena_lobby]
+x = [3328, 3391]
+y = [3264, 3327]
+
+[mage_training_arena_telekinetic_theatre]
+x = [3328, 3391]
+y = [9664, 9727]
+tags = ["mage_training_arena", "no_random_events", "no_trading"]
+
+[mage_training_arena_enchanting_chamber]
+x = [3335, 3389]
+y = [9612, 9663]
+level = 0
+tags = ["mage_training_arena", "no_random_events", "no_trading"]
+
+[mage_training_arena_creature_graveyard]
+x = [3333, 3390]
+y = [9610, 9663]
+level = 1
+tags = ["mage_training_arena", "no_random_events", "no_trading"]
+
+[mage_training_arena_alchemists_playground]
+x = [3341, 3391]
+y = [9618, 9654]
+level = 2
+tags = ["mage_training_arena", "no_random_events", "no_trading"]
