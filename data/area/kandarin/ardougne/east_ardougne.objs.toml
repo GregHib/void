@@ -219,27 +219,4 @@ examine = "A sturdy wooden ladder."
 
 [bank_deposit_box_east_ardougne]
 id = 34755
-examine = "It lets you put the items into your bank."
-
-# I'm identifying each of the remaining deposit boxes, the final number representing their string ID.
-# I'm adding the string ID to the examine text to let us know that it's a lost deposit box, and needs to be properly assigned to an area.
-# This allows all deposit boxes to work functionally, even if they're not all properly identified.
-[bank_deposit_box_6836]
-id = 6836
-examine = "It lets you put the items into your bank. 6836"
-
-[bank_deposit_box_9398]
-id = 9398
-examine = "It lets you put the items into your bank. 9398"
-
-[bank_deposit_box_20228]
-id = 20228
-examine = "It lets you put the items into your bank. 20228"
-
-[bank_deposit_box_25937]
-id = 25937
-examine = "It lets you put the items into your bank. 25937"
-
-[bank_deposit_box_39830]
-id = 39830
-examine = "It lets you put the items into your bank. 39830"
+examine = "Lets you put items into your bank."
