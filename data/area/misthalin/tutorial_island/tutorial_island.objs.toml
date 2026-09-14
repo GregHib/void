@@ -1,3 +1,27 @@
 [bank_booth_tutorial_island]
 id = 3045
 examine = "The bank teller will serve you from here."
+
+[cooking_range_tutorial_island]
+id = 3039
+examine = "A hot flame cooks the food."
+
+[furnace_tutorial_island]
+id = 3044
+examine = "Hot!"
+
+[ladder_tutorial_island_cave_down]
+id = 3029
+examine = "I can climb down this."
+
+[ladder_tutorial_island_cave_up]
+id = 3028
+examine = "I can climb up this."
+
+[ladder_tutorial_island_rat_pit_down]
+id = 3031
+examine = "I can climb down this."
+
+[ladder_tutorial_island_rat_pit_up]
+id = 3030
+examine = "I can climb up this."
