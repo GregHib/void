@@ -8,7 +8,7 @@ format = "boolean"
 
 [kittens_hiding_here]
 persist = true
-format = "bitwise" ## Maybe bitwise? Honestly no idea what that even means
+format = "int"
 
 [three_little_kittens_found]
 persist = true
