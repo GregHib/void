@@ -11,6 +11,7 @@ import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
 import content.quest.quest
 import content.quest.setInstanceLogout
 import content.quest.startCutscene
+import content.skill.summoning.pet.hasCatspeakAmulet
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
@@ -23,6 +24,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -70,7 +72,7 @@ class Fluffs : Script {
         npcOperate("Talk-to", FLUFFS_STRING_ID) { interact ->
             foundCatCheck()
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
-                "completed" -> talkPostQuest(interact.target)
+                "completed" -> talkPostQuest(interact.target, interact.player.name)
                 "found_fluffs" -> talkCatFoundFluffs(interact.target)
                 "attempt_fluffs_pickup" -> talkCatFoundFluffs(interact.target)
                 else -> dontBotherCat()
@@ -239,9 +241,21 @@ class Fluffs : Script {
         message("You decide it best to not bother the cat.") // Going off of memory here.
     }
 
-    private suspend fun Player.talkPostQuest(cat: NPC) {
+    private suspend fun Player.talkPostQuest(cat: NPC, playerName: String) {
+        // TODO: Dialogue when the player has a kitten either following or in the player's inventory
+        if(hasCatspeakAmulet()){
+            player<Neutral>("Hello Fluffs.")
+            npc<Neutral>("Purrrrr! So you can talk to cats now?")
+            player<Neutral>("Yes, I got this amulet from a Sphinx.")
+            npc<Neutral>("Well, I should thank you for finding my kitten that time. I have a terrible time keeping track of them, and I never know how many Gertrude has managed to sell.")
+            player<Neutral>("They're cute little creatures, aren't they?")
+            npc<Neutral>("Purrrrr!")
+            statement("Fluffs looks proud.")
+            npc<Neutral>("My children have always been popular with adventurers. They inherit their father's adventurous spirit. He's always travelling the world, when he can find some kind person to help him open doors!")
+            player<Neutral>("Look after yourself, Fluffs.")
+            npc<Neutral>("You too, $playerName.")
+        }
         cat.say("Miaoww")
-        // TODO: Amulet of catspeak dialogue
     }
     private fun talkCatFoundFluffs(cat: NPC) {
         cat.say("Miaoww")
