@@ -202,7 +202,7 @@ class Fluffs : Script {
         kittens.say("Purr...")
         delay(6)
         kittens.walkToDelay(cutscene.tile(3310, 3510, 1), true)
-        kittens.despawn()
+        kittens.despawn(1) // Added small delay to let the kittens get to the final tile
         fluffs.walkToDelay(cutscene.tile(3309, 3510, 1), true)
         fluffs.despawn()
 
