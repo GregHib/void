@@ -1784,8 +1784,7 @@ NiceShot
 Nicholas
 Nidoking
 Nidoqueen
-Nidoran♀
-Nidoran♂
+Nidoran
 Nidorina
 Nidorino
 Night
