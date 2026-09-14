@@ -1,9 +1,11 @@
 package content.area.kandarin.ardougne
 
+import content.entity.obj.door.enterDoor
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
+import content.quest.questStage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.open
@@ -23,6 +25,8 @@ class Ardougne : Script {
     val mudpatch = listOf(
         Tile(2566, 3332, 0),
     )
+
+    private val elenaMissing = 22
 
     init {
         itemOnObjectOperate("bucket_of_water", "plague_mud") {
@@ -71,6 +75,15 @@ class Ardougne : Script {
                     item("spade", "You dig the soil... <br> The ground is rather hard.")
                 }
             }
+        }
+
+        objectOperate("Open", "elena_house_door_closed") { (target) ->
+            if (tile.y < target.tile.y || questStage("plague_city") >= elenaMissing) {
+                enterDoor(target)
+                return@objectOperate
+            }
+            message("The door is locked.")
+            sound("locked")
         }
 
         objectOperate("Open", "alrenas_cupboard_shut") { (target) ->
