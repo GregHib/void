@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.moveCamera
+import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
@@ -46,15 +47,7 @@ class Fluffs : Script {
                 "attempt_fluffs_pickup" -> checkCanFeed()
                 else -> message("<red>Fluffs doesn't seem to be hungry right now.")
             }
-        }
-        itemOnNPCOperate("*", FLUFFS_STRING_ID) { interact ->
-            val item = interact.item.id
-
-            foundCatCheck()
-            when(quest(GERTRUDES_CAT_STRING_NAME)){
-                "attempt_fluffs_pickup" -> checkItem(item)
-                else -> message("<red>Fluffs doesn't seem to be interested in that.") // Actual message unknown, but I'd rather it not be blank.
-            }
+            return@itemOnNPCOperate
         }
         itemOnNPCOperate("bucket_of_milk", FLUFFS_STRING_ID) {
             foundCatCheck()
@@ -62,11 +55,15 @@ class Fluffs : Script {
                 "attempt_fluffs_pickup" -> milkFluffs()
                 else -> message("<red>Fluffs doesn't seem to be thirsty right now.")
             }
+            return@itemOnNPCOperate
         }
-        itemOnNPCOperate(npc = FLUFFS_STRING_ID) {
+        itemOnNPCOperate("*", FLUFFS_STRING_ID) { interact ->
+            val item = interact.item.id
+
             foundCatCheck()
-            when(quest(GERTRUDES_CAT_STRING_NAME)) {
+            when(quest(GERTRUDES_CAT_STRING_NAME)){
                 "completed" -> dontBotherCat()
+                "attempt_fluffs_pickup" -> checkItem(item)
                 else -> message("<red>Fluffs regards you with disdain.")
             }
         }
@@ -129,12 +126,16 @@ class Fluffs : Script {
     private suspend fun Player.checkItem(item: String) {
         val doogleSardineItems = setOf("doogle_leaves", "raw_sardine", "sardine")
 
-        if(item in doogleSardineItems){
-            mildInterest(item)
-        } else if(item == "three_little_kittens") {
-            fluffsGoesHome()
-        } else {
-            message("<red>Fluffs doesn't seem to be interested in that.")
+        when (item) {
+            in doogleSardineItems -> {
+                mildInterest(item)
+            }
+            "three_little_kittens" -> {
+                fluffsGoesHome()
+            }
+            else -> {
+                message("<red>Fluffs doesn't seem to be interested in that.")
+            }
         }
     }
 
@@ -159,9 +160,9 @@ class Fluffs : Script {
         val region = Region(13110)
         val custceneStartTile = Tile(3309, 3509, 1)
 
-        // Temporarily disabled for testing
-        // inventory.remove("three_little_kittens")
-        // set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned")
+
+        inventory.remove("three_little_kittens")
+        set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned")
 
         open("fade_out")
         val cutscene = startCutscene("fluffs_kittens_reunite", region)
@@ -183,16 +184,26 @@ class Fluffs : Script {
         kittens.mode = PauseMode
         fluffs.mode = PauseMode
 
-        moveCamera(cutscene.tile(3307, 3508, 1), 500)
+        // TODO: Get that proper camera angle. This is "good enough"
+        moveCamera(cutscene.tile(3304, 3505, 1), 500)
+        turnCamera(cutscene.tile(3309, 3510, 1), 100)
 
         // Scene start
         open("fade_in")
         anim("climb_down")
         npc<Idle>("Purr...")
         kittens.walkToDelay(cutscene.tile(3309, 3511, 1))
-        // TODO: find kitten and fluffs animation
+        kittens.mode = PauseMode // They just wanna zoom around!
+        kittens.animDelay("9207")
+        delay(15)
+        fluffs.animDelay("9205")
+        kittens.say("Purr...")
+        delay(6)
+        kittens.walkToDelay(cutscene.tile(3310, 3510, 1), true)
+        kittens.despawn()
+        fluffs.walkToDelay(cutscene.tile(3309, 3510, 1), true)
+        fluffs.despawn()
 
-        delay(10)
         cutscene.end()
     }
 
@@ -241,6 +252,7 @@ class Fluffs : Script {
             doNotTheCat(cat)
 
             statement("Fluffs looks pitifully towards your backpack.")
+            return
         }
         if(get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)){
             doNotTheCat(cat)
