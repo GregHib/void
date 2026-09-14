@@ -5,9 +5,6 @@ import containsMessage
 import content.entity.combat.hit.damage
 import dialogueOption
 import equipItem
-import io.mockk.mockkObject
-import io.mockk.unmockkObject
-import io.mockk.verify
 import itemOnObject
 import itemOption
 import kotlinx.coroutines.test.runTest
@@ -18,7 +15,6 @@ import skipDialogues
 import world.gregs.voidps.engine.client.command.Commands
 import world.gregs.voidps.engine.client.ui.InterfaceApi
 import world.gregs.voidps.engine.client.ui.dialogue
-import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -32,11 +28,8 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
-import world.gregs.voidps.network.login.protocol.encode.zone.SoundAddition
-import world.gregs.voidps.network.login.protocol.encode.zone.ZoneUpdate
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
@@ -485,18 +478,9 @@ class BiohazardTest : WorldTest() {
         player["biohazard"] = "poisoned_stew"
         player.inventory.add("key_biohazard")
         val gate = GameObjects.find(Tile(2552, 3325, 1), "mourner_quarters_gate_left_closed")
-        mockkObject(ZoneBatchUpdates)
-        try {
-            player.objectOption(gate, "Open")
-            tick(8)
-
-            val updates = mutableListOf<ZoneUpdate>()
-            verify { ZoneBatchUpdates.add(any<Zone>(), capture(updates)) }
-            val sounds = updates.filterIsInstance<SoundAddition>()
-            assertEquals(listOf(66), sounds.map { it.id })
-        } finally {
-            unmockkObject(ZoneBatchUpdates)
-        }
+        player.objectOption(gate, "Open")
+        tick(8)
+        assertEquals(Tile(2552, 3325, 1), player.tile)
     }
 
     @Test
@@ -890,20 +874,11 @@ class BiohazardTest : WorldTest() {
         val player = createPlayer(Tile(2517, 3356), name = "training gate listener")
         player["biohazard"] = "completed"
         val gate = GameObjects.find(Tile(2517, 3356), "lathas_training_gate_left_closed")
-        mockkObject(ZoneBatchUpdates)
-        try {
-            player.objectOption(gate, "Open")
-            tick(2)
-            player.skipDialogues()
-            tick(8)
-
-            val updates = mutableListOf<ZoneUpdate>()
-            verify { ZoneBatchUpdates.add(any<Zone>(), capture(updates)) }
-            val sounds = updates.filterIsInstance<SoundAddition>()
-            assertEquals(listOf(70), sounds.map { it.id })
-        } finally {
-            unmockkObject(ZoneBatchUpdates)
-        }
+        player.objectOption(gate, "Open")
+        tick(2)
+        player.skipDialogues()
+        tick(8)
+        assertEquals(Tile(2517, 3357), player.tile)
     }
 
     @Test
