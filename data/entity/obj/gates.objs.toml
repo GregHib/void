@@ -194,6 +194,7 @@ id = 2040
 
 [lathas_training_gate_left_closed]
 id = 2039
+gate = false
 material = "iron_door"
 examine = "It's closed."
 
@@ -237,6 +238,7 @@ id = 2042
 
 [lathas_training_gate_right_closed]
 id = 2041
+gate = false
 material = "iron_door"
 examine = "It's closed."
 
@@ -310,6 +312,7 @@ id = 2059
 
 [mourner_quarters_gate_left_closed]
 id = 2058
+gate = false
 examine = "It's closed."
 
 [gate_42_opened]
@@ -338,6 +341,7 @@ id = 2061
 
 [mourner_quarters_gate_right_closed]
 id = 2060
+gate = false
 examine = "It's closed."
 
 [gate_62_opened]

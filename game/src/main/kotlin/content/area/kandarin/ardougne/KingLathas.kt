@@ -75,7 +75,7 @@ class KingLathas : Script {
         completeQuest()
     }
 
-    private suspend fun Player.completeQuest() {
+    private fun Player.completeQuest() {
         set("biohazard", "completed")
         jingle("quest_complete_1")
         exp(Skill.Thieving, 1250.0)

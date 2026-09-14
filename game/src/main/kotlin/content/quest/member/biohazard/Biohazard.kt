@@ -1,6 +1,5 @@
 package content.quest.member.biohazard
 
-import content.entity.obj.door.Gate
 import content.entity.obj.door.enterDoor
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Angry
@@ -32,7 +31,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -248,7 +246,6 @@ class Biohazard : Script {
         val entering = tile.x < gate.tile.x
         val row = if (tile.y == QUARTERS_GATE_LEFT.y || tile.y == QUARTERS_GATE_RIGHT.y) tile.y else gate.tile.y
         val near = Tile(if (entering) QUARTERS_GATE_LEFT.x - 1 else QUARTERS_GATE_LEFT.x, row, 1)
-        val far = Tile(if (entering) QUARTERS_GATE_LEFT.x else QUARTERS_GATE_LEFT.x - 1, row, 1)
         if (tile != near) {
             walkOverDelay(near)
         }
@@ -256,23 +253,7 @@ class Biohazard : Script {
             message("The key fits the gate.")
             delay(1)
         }
-        val left = GameObjects.findOrNull(QUARTERS_GATE_LEFT, "mourner_quarters_gate_left_closed")
-        val right = GameObjects.findOrNull(QUARTERS_GATE_RIGHT, "mourner_quarters_gate_right_closed")
-        if (left == null || right == null) {
-            walkOverDelay(far)
-            return
-        }
-        Gate.replaceTogether(
-            this, left, right,
-            flip = false,
-            ticks = GATE_TICKS,
-            collision = false,
-            current = "_closed",
-            next = "_opened",
-            objRotation = 3,
-            hingeTileRotation = 1,
-        )
-        walkOverDelay(far)
+        enterDoor(gate)
     }
 
     private suspend fun Player.searchDistillatorCrate() {
@@ -452,7 +433,6 @@ class Biohazard : Script {
 
         val QUARTERS_GATE_LEFT = Tile(2552, 3325, 1)
         val QUARTERS_GATE_RIGHT = Tile(2552, 3326, 1)
-        const val GATE_TICKS = 3
         val PIGEON_TILES = listOf(Tile(2560, 3304), Tile(2561, 3303), Tile(2561, 3305))
         const val FENCE_WEST = 2541
         const val FENCE_EAST = 2542
