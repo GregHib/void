@@ -66,9 +66,10 @@ examine = "Gnome customer."
 [assistant_le_smith_grand_tree]
 id = 5064
 
-[rometti_grand_tree]
+[rometti]
 id = 601
 dialogue = "old"
+shop = "romettis_fine_fashions"
 examine = "It's a well-dressed tree gnome."
 
 [gulluck_grand_tree]
