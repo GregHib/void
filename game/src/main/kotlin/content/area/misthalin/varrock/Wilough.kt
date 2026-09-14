@@ -122,7 +122,7 @@ suspend fun Player.gertrudeLookingForInformation() {
     player<Quiz>("Where is this secret hideout? I really need to find that cat for your mum.")
     npc<Idle>("If I told you that, it wouldn't be a secret. What if I need to escape from the law? I need a hideout.")
     player<Idle>("From my limited knowledge of the law, they are not usually involved in manhunts for children.")
-    npc<Admit>("Well it's still mine anyway, we need a place to relax sometimes. Those two little brothers at the house are just such babies.")
+    npc<Idle>("Well it's still mine anyway, we need a place to relax sometimes. Those two little brothers at the house are just such babies.")
 }
 
 suspend fun Player.gertrudePostQuest() {
