@@ -130,6 +130,15 @@ class BoxTrap : Script {
         npcDespawn("hunting_box_trap_npc") {
             Traps.despawn(this, "box_trap", "The box trap that you laid has fallen over.")
         }
+
+        // Traps flag a creature as caught before killing it, and the flag has to outlive the death
+        // queue so death handlers can read it. Npc variables survive a respawn, so drop it here or
+        // the respawned creature is never eligible to be caught again.
+        npcSpawn {
+            if (contains("caught")) {
+                clear("caught")
+            }
+        }
     }
 
     private fun Player.bait(item: Item, trap: GameObject) {

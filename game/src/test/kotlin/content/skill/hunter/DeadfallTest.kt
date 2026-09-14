@@ -40,7 +40,7 @@ class DeadfallTest : WorldTest() {
         assertTrue(GameObjects.at(boulder.tile).any { it.id == "boulder_trap_setup" })
         assertEquals(0, player.inventory.count("logs"))
         assertEquals(1, player.inventory.count("knife"))
-        createNPC(id, boulder.tile.addY(2))
+        val npc = createNPC(id, boulder.tile.addY(2))
 
         tick(22)
 
@@ -54,6 +54,11 @@ class DeadfallTest : WorldTest() {
         assertEquals(0, player.inventory.count("logs"))
         assertNotEquals(0.0, player.experience.get(Skill.Hunter))
         assertFalse(GameObjects.at(boulder.tile).any { it.id.startsWith("boulder_trap_") })
+
+        tick(9)
+        assertFalse(npc.hide)
+        assertTrue(npc.tile.within(boulder.tile.addY(2), 1))
+        assertFalse(npc.contains("caught"))
     }
 
     @Test
