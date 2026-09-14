@@ -49,15 +49,17 @@ class Biohazard : Script {
             questJournal("Biohazard", if (stage == 0) notStartedJournal() else startedJournal(stage))
         }
 
-        objectOperate("Investigate", "bio_watchtower_fence") {
-            val mourner = NPCs.findOrNull(tile.regionLevel, "mourner_vial_4") ?: return@objectOperate
+        objectApproach("Investigate", "bio_watchtower_fence") {
+            approachRange(1)
+            val mourner = NPCs.findOrNull(tile.regionLevel, "mourner_vial_4") ?: return@objectApproach
             talkWith(mourner)
             npc<Neutral>("Keep away civilian.")
             player<Angry>("What's it to you?")
             npc<Neutral>("This tower is here for your protection.")
         }
 
-        itemOnObjectOperate("bird_feed", "bio_watchtower_fence") {
+        itemOnObjectApproach("bird_feed", "bio_watchtower_fence") {
+            approachRange(1)
             throwBirdFeed()
         }
 
