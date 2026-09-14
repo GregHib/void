@@ -166,6 +166,11 @@ class SafeStorage(
         appendLine("history = [${save.history.joinToString(", ") { "{item = \"${it.item}\", amount = ${it.amount}, price = ${it.coins}}" }}]")
     }
 
+    override fun create(account: PlayerSave): Boolean {
+        save(listOf(account))
+        return true
+    }
+
     override fun exists(accountName: String): Boolean = false
 
     override fun load(accountName: String): PlayerSave? = null

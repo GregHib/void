@@ -20,6 +20,7 @@ import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.client.Instruction
 import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.AccountNames
 import world.gregs.voidps.network.login.protocol.encode.login
 
 /**
@@ -33,6 +34,7 @@ class PlayerAccountLoader(
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
     private val gameContext: CoroutineDispatcher,
+    private val creator: PlayerAccountCreator? = null,
 ) : AccountLoader {
     private val logger = InlineLogger()
 
@@ -70,6 +72,11 @@ class PlayerAccountLoader(
                     return null
                 }
                 player = accounts.create(username, passwordHash)
+                if (AccountNames.isEmail(username)) {
+                    withContext(gameContext) {
+                        creator?.prepare(player)
+                    }
+                }
             }
             logger.info { "Player $username loaded and queued for login." }
             connect(player, client, displayMode)
