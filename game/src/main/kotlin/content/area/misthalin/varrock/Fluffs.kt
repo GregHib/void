@@ -2,6 +2,7 @@ package content.area.misthalin.varrock
 
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
+import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -158,7 +159,9 @@ class Fluffs : Script {
         val region = Region(13110)
         val custceneStartTile = Tile(3309, 3509, 1)
 
-        // set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned") temporarily disabled for testing
+        // Temporarily disabled for testing
+        // inventory.remove("three_little_kittens")
+        // set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned")
 
         open("fade_out")
         val cutscene = startCutscene("fluffs_kittens_reunite", region)
@@ -176,10 +179,18 @@ class Fluffs : Script {
         tele(cutscene.tile(3309, 3509, 1), clearInterfaces = false)
         face(Direction.NORTH)
         val fluffs = NPCs.add("fluffs_cutscene", cutscene.tile(3309, 3512, 1), Direction.SOUTH)
+        val kittens = NPCs.add("three_little_kittens", cutscene.tile(3309, 3510, 1), Direction.NORTH)
+        kittens.mode = PauseMode
         fluffs.mode = PauseMode
+
         moveCamera(cutscene.tile(3307, 3508, 1), 500)
 
+        // Scene start
         open("fade_in")
+        anim("climb_down")
+        npc<Idle>("Purr...")
+        kittens.walkToDelay(cutscene.tile(3309, 3511, 1))
+        // TODO: find kitten and fluffs animation
 
         delay(10)
         cutscene.end()
