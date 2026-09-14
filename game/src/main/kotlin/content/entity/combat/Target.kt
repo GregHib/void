@@ -80,7 +80,7 @@ object Target {
             return false
         }
         if (source is Player && target is Player) {
-            if (Settings["combat.pvp", false]) {
+            if (!Settings["combat.pvp", true]) {
                 if (message) source.message("Player-vs-player has been disabled in this world.")
                 return false
             }

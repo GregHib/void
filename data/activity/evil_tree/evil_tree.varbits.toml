@@ -2,3 +2,40 @@
 id = 1545
 format = "boolean"
 persist = true
+
+[evil_tree_rewards]
+id = 1542
+format = "boolean"
+persist = true
+
+[evil_tree_fire_west]
+id = 1624
+format = "boolean"
+
+[evil_tree_fire_north]
+id = 1625
+format = "boolean"
+
+[evil_tree_fire_east]
+id = 1626
+format = "boolean"
+
+[evil_tree_fire_south]
+id = 1627
+format = "boolean"
+
+[evil_tree_fire_north_west]
+id = 1771
+format = "boolean"
+
+[evil_tree_fire_south_east]
+id = 1772
+format = "boolean"
+
+[evil_tree_fire_north_east]
+id = 1773
+format = "boolean"
+
+[evil_tree_fire_south_west]
+id = 1774
+format = "boolean"

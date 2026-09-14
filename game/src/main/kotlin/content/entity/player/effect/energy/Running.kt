@@ -14,6 +14,9 @@ class Running : Script {
     init {
         interfaceOpened("energy_orb") {
             sendRunEnergy(energyPercent())
+            // The orb's option depends on varp 173, which isn't sent while it holds its default,
+            // so an orb revealed later would otherwise show a stale run mode.
+            sendVariable("movement")
         }
 
         interfaceOption(option = "Turn Run mode on", id = "energy_orb:*") {

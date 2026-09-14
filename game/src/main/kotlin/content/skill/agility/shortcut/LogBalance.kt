@@ -4,6 +4,7 @@ import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote
 import world.gregs.voidps.engine.entity.character.player.renderEmote
@@ -12,7 +13,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.sound
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.equals
 import world.gregs.voidps.type.random
 
@@ -35,6 +38,10 @@ class LogBalance : Script {
             clearRenderEmote()
             exp(Skill.Agility, 8.5)
             message("... and make it safely to the other side.", ChatType.Filter)
+        }
+
+        objectOperate("Cross", "isafdar_log_balance,isafdar_log_balance_2,arandar_log_balance") { (target) ->
+            crossLog(target)
         }
 
         objectOperate("Walk-across", "ardougne_log_balance_east,ardougne_log_balance_west") { (target) ->
@@ -75,5 +82,27 @@ class LogBalance : Script {
                 exp(Skill.Agility, 2.0)
             }
         }
+    }
+
+    suspend fun Player.crossLog(target: GameObject) {
+        if (!has(Skill.Agility, 45)) {
+            message("You need an Agility level of 45 to negotiate this obstacle.")
+            return
+        }
+        val (start, end) = when (target.id) {
+            "isafdar_log_balance" -> Tile(2202, 3237) to Tile(2196, 3237)
+            "isafdar_log_balance_2" -> Tile(2258, 3250) to Tile(2264, 3250)
+            else -> Tile(2290, 3232) to Tile(2290, 3239)
+        }
+        val from = if (tile.distanceTo(start) <= tile.distanceTo(end)) start else end
+        val to = if (from == start) end else start
+        walkOverDelay(from)
+        message("You walk carefully across the slippery log...", ChatType.Filter)
+        delay()
+        renderEmote("rope_balance")
+        walkOverDelay(to)
+        clearRenderEmote()
+        exp(Skill.Agility, 7.5)
+        message("... and make it safely to the other side.", ChatType.Filter)
     }
 }
