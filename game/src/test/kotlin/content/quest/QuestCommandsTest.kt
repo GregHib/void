@@ -60,7 +60,7 @@ class QuestCommandsTest : WorldTest() {
     }
 
     @Test
-    fun `Questreset clears the flags a quest keeps under other names`() {
+    fun `Quest reset clears the flags a quest keeps under other names`() {
         val admin = createPlayer(name = "reset admin myreque")
         admin.rights = PlayerRights.Admin
         admin["in_search_of_the_myreque"] = "completed"
@@ -71,7 +71,7 @@ class QuestCommandsTest : WorldTest() {
         admin["met_sani"] = true
         admin["met_polmafi"] = true
 
-        runTest { Commands.call(admin, "questreset in_search_of_the_myreque") }
+        runTest { Commands.call(admin, "quest_reset in_search_of_the_myreque") }
         tick()
 
         assertEquals("unstarted", admin["in_search_of_the_myreque", "unstarted"])

@@ -118,13 +118,16 @@ class QuestCommands : Script {
 
         val items = quest["req_item_ids", emptyList<String>()]
         var given = 0
-        for (item in items) {
+        for (key in items) {
+            val item = key.substringBefore(":")
             if (ItemDefinitions.getOrNull(item) == null) {
                 player.message("Unknown item '$item' in ${quest.stringId} requirements.")
                 continue
             }
-            if (!player.inventory.contains(item)) {
-                player.addOrDrop(item)
+            val amount = key.substringAfter(":").toIntOrNull() ?: 1
+            val current = player.inventory.count(item, amount)
+            if (current < amount) {
+                player.addOrDrop(item, amount - current)
                 given++
             }
         }

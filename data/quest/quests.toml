@@ -1975,6 +1975,23 @@ req_skills = {
   Agility = 25
 }
 req_quests = ["nature_spirit"]
+req_item_ids = ["steel_longsword", "steel_sword:2", "steel_mace", "steel_warhammer", "steel_dagger", "steel_nails:225", "druid_pouch_2:5", "silver_sickle_b", "plank:6", "coins:10", "hammer"]
+variables = [
+  "routequestionscorrect",
+  "routequestionsanswered",
+  "roomnum",
+  "bridgerung1",
+  "bridgerung2",
+  "bridgerung3",
+  "thsfm_vanstrom_hide",
+  "thsfm_spoken_allmyreque",
+  "route_bridgecomplete",
+  "met_sani",
+  "met_harold",
+  "met_ivan",
+  "met_radigad",
+  "met_polmafi",
+]
 req_items = "Steel longsword, 2 steel short swords, steel mace, steel warhammer, steel dagger, 75 steel nails, druid pouch (at least 5 charges), blessed silver sickle, 6 planks."
 req_combat = "You will need to defeat a level 44 enemy."
 points = 2
