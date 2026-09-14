@@ -8,15 +8,25 @@ import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
 import content.quest.quest
+import content.quest.setInstanceLogout
+import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.moveCamera
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
 private const val FLUFFS_STRING_ID = "fluffs_normal"
@@ -121,27 +131,58 @@ class Fluffs : Script {
         if(item in doogleSardineItems){
             mildInterest(item)
         } else if(item == "three_little_kittens") {
-            /**
-             * Create a cutscene
-             * Fade to black
-             * Player is on the tile directly west of the ladder
-             * Camera is facing north-east, facing a steep angle, but not quite top-down.
-             * Fluffs is positioned directly north of the player 3 ~ 4 tiles away. Importantly, she is against the box/object.
-             * Player uses climb_down animation
-             * 3 little kittens are already spawned as the cutscene starts
-             * Fluffs says "Purr..."
-             * 3 little kittens moves straight to Fluffs and preforms an animation.
-             * Fluffs then preforms an animation while kittens say "purr"
-             * Kittens move to ladder and go down.
-             * Fluffs follows suit at the same time, but doesn't quite make it to the final tile before vanishing.
-             * Statement - "Fluffs has run off home with her offspring."
-             * Fade to black after statement is resumed.
-             * Cutscene ends, Fluffs disappears.
-             */
-            TODO()
+            fluffsGoesHome()
         } else {
             message("<red>Fluffs doesn't seem to be interested in that.")
         }
+    }
+
+    private suspend fun Player.fluffsGoesHome() {
+        /**
+         * Create a cutscene
+         * Fade to black
+         * Player is on the tile directly west of the ladder
+         * Camera is facing north-east, facing a steep angle, but not quite top-down.
+         * Fluffs is positioned directly north of the player 3 ~ 4 tiles away. Importantly, she is against the box/object.
+         * Player uses climb_down animation
+         * 3 little kittens are already spawned as the cutscene starts
+         * Fluffs says "Purr..."
+         * 3 little kittens moves straight to Fluffs and preforms an animation.
+         * Fluffs then preforms an animation while kittens say "purr"
+         * Kittens move to ladder and go down.
+         * Fluffs follows suit at the same time, but doesn't quite make it to the final tile before vanishing.
+         * Statement - "Fluffs has run off home with her offspring."
+         * Fade to black after statement is resumed.
+         * Cutscene ends, Fluffs disappears.
+         */
+        val region = Region(13110)
+        val custceneStartTile = Tile(3309, 3509, 1)
+
+        // set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned") temporarily disabled for testing
+
+        open("fade_out")
+        val cutscene = startCutscene("fluffs_kittens_reunite", region)
+        setInstanceLogout(custceneStartTile)
+
+        cutscene.onEnd {
+            open("fade_out")
+            delay(3)
+            tele(custceneStartTile)
+            clearCamera()
+            clearAnim()
+        }
+
+        delay(4)
+        tele(cutscene.tile(3309, 3509, 1), clearInterfaces = false)
+        face(Direction.NORTH)
+        val fluffs = NPCs.add("fluffs_cutscene", cutscene.tile(3309, 3512, 1), Direction.SOUTH)
+        fluffs.mode = PauseMode
+        moveCamera(cutscene.tile(3307, 3508, 1), 500)
+
+        open("fade_in")
+
+        delay(10)
+        cutscene.end()
     }
 
     private suspend fun Player.mildInterest(item: String) {
