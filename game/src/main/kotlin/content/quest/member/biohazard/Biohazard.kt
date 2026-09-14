@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -173,7 +174,7 @@ class Biohazard : Script {
     }
 
     private suspend fun Player.releasePigeons() {
-        if (questStage("biohazard") != 3 || tile.x !in TOWER_X || tile.y !in TOWER_Y) {
+        if (questStage("biohazard") != 3 || tile !in Areas["biohazard_watch_tower"]) {
             message("The pigeons don't want to leave.")
             return
         }
@@ -448,8 +449,6 @@ class Biohazard : Script {
 
     private companion object {
         val FOOD_POISONED = 6..7
-        val TOWER_X = 2559..2563
-        val TOWER_Y = 3300..3307
 
         val QUARTERS_GATE_LEFT = Tile(2552, 3325, 1)
         val QUARTERS_GATE_RIGHT = Tile(2552, 3326, 1)
