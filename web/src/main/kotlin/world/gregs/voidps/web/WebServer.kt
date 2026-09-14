@@ -9,8 +9,12 @@ import io.ktor.server.routing.routing
 import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
 import io.ktor.server.websocket.timeout
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.DatabaseConfig
+import world.gregs.voidps.web.index.AuditLogIndexer
 import world.gregs.voidps.web.route.proxy
 import world.gregs.voidps.web.route.webclient
+import java.io.File
 import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.time.Duration.Companion.seconds
@@ -48,7 +52,12 @@ class WebServer(
         @JvmStatic
         fun main(args: Array<String>) {
             val path = Paths.get("./data/webclient.zip")
-            WebServer(path, 8080, "localhost", 43594).start()
+            val db = Database.connect("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;", driver = "org.h2.Driver", databaseConfig = DatabaseConfig {
+                sqlLogger = null
+            })
+            AuditLogIndexer.init(db)
+            AuditLogIndexer.index(File("./data/saves/logs/"), emptySet())
+//            WebServer(path, 8080, "localhost", 43594).start()
         }
     }
 }

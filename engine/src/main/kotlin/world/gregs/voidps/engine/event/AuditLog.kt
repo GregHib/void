@@ -25,6 +25,15 @@ object AuditLog {
     val logs = ObjectArrayList<String>(LOG_BUFFER_SIZE)
     val ISO_LOCAL_FORMAT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss")
 
+    /*
+        Load list of bot names
+        Load last updated point
+
+        Parse all logs from last load point onwards, read entries, skip bots
+        Store in index (disk or memory via config)
+
+
+     */
     fun event(source: Entity, action: String, vararg context: Any?) {
         add {
             append(ref(source)).append("\t")

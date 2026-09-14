@@ -1,0 +1,4 @@
+<configuration>
+    <logger name="org.jetbrains.exposed" level="WARN"/>
+    <logger name="Exposed" level="WARN"/>
+</configuration>
