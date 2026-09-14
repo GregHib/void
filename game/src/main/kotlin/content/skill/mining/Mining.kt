@@ -4,6 +4,7 @@ import content.activity.shooting_star.ShootingStarHandler
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.quest.questCompleted
+import content.skill.constitution.drink.jujuBank
 import content.skill.summoning.familiarBoost
 import net.pearx.kasechange.toLowerSpaceCase
 import world.gregs.voidps.engine.Script
@@ -177,11 +178,13 @@ class Mining : Script {
             "mineral_deposit_coal" -> random.nextInt(1..2)
             else -> 1
         }
-        val added = player.inventory.addToLimit(ore, amount)
+        val banked = player.jujuBank("juju_mining", ore, amount)
+        val added = if (banked) amount else player.inventory.addToLimit(ore, amount)
         when (added) {
             1 -> player.message("You manage to mine some ${ore.toLowerSpaceCase()}.")
             2 -> player.message("You manage to mine two ${ore.toLowerSpaceCase().plural(added)}!")
             3 -> player.message("You manage to mine three ${ore.toLowerSpaceCase().plural(added)}!")
+            4 -> player.message("You manage to mine four ${ore.toLowerSpaceCase().plural(added)}!")
             else -> player.inventoryFull()
         }
         if (diaryDoubleOre(player, ore)) {
