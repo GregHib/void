@@ -14,6 +14,7 @@ class ThreeLittleKittens : Script {
     init {
         // This works, but if the player moves then the kittens aren't shown properly running away.
         // Putting it in a queue does not fix it.
+        // If you drop the kittens up the ladder by Fluffs then the kittens will stick around. Or perhaps I delayed in doing something so the kittens spawned in, but performed the action before they despawned.
         itemOption("Drop", THREE_LITTLE_KITTENS_STRING_NAME) {
             val playerLoc = this.tile
             inventory.remove(THREE_LITTLE_KITTENS_STRING_NAME)

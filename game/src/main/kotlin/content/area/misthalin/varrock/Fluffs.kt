@@ -298,6 +298,7 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.doNotTheCat(cat: NPC) {
+        set(GERTRUDES_CAT_STRING_NAME, "attempt_fluffs_pickup")
         animDelay("climb_down")
         delay(1)
         cat.say("Hiss!")
@@ -306,6 +307,5 @@ class Fluffs : Script {
         delay(1)
         say("Ouch!")
         delay(1)
-        set(GERTRUDES_CAT_STRING_NAME, "attempt_fluffs_pickup")
     }
 }
