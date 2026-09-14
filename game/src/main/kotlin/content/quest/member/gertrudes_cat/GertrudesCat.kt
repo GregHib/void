@@ -49,7 +49,7 @@ class GertrudesCat : Script {
             }
 
             if(progress == 4) {
-                lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found and found"
+                lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found"
                 lines += "<maroon>Fluffs<navy> up <maroon>a ladder<navy>. I now need to return <maroon>Fluffs<navy> to"
                 lines += "<maroon>Gertrude<navy>. "
                 lines += "<navy>I think <maroon>Fluffs<navy> may be hungry or thirsty but I am not sure what"
