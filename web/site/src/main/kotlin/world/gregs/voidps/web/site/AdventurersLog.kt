@@ -53,6 +53,7 @@ object AdventurersLog {
                             heroBand()
                             recentActivity()
                             skillsPanel()
+                            xpChartPanel()
                             questsPanel()
                             bossesPanel()
                         }
@@ -193,8 +194,11 @@ object AdventurersLog {
                         """
                         <template x-for="e in visibleEvents" :key="e.text">
                           <li :style="{ background: e.band }" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-4);padding:var(--space-5)">
-                            <span style="flex:0 0 auto;width:70px;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="e.date"></span>
-                            <span style="flex:1 1 240px;min-width:0;font:var(--type-body);color:var(--text-strong);text-wrap:pretty" x-text="e.text"></span>
+                            <span :title="e.exact" style="flex:0 0 auto;width:70px;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);cursor:default" x-text="e.date"></span>
+                            <span style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
+                              <span style="font:var(--type-body);color:var(--text-strong);text-wrap:pretty" x-text="e.text"></span>
+                              <span x-show="e.description" style="font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);text-wrap:pretty" x-text="e.description"></span>
+                            </span>
                             <span :style="{ background: e.tone === 'gold' ? 'rgba(224,174,60,.14)' : e.tone === 'success' ? 'var(--feedback-success-bg)' : e.tone === 'danger' ? 'var(--feedback-danger-bg)' : 'var(--feedback-info-bg)', color: e.tone === 'gold' ? 'var(--gold-300)' : e.tone === 'success' ? 'var(--feedback-success)' : e.tone === 'danger' ? 'var(--feedback-danger)' : 'var(--feedback-info)', borderColor: e.tone === 'gold' ? 'var(--gold-600)' : e.tone === 'success' ? 'var(--moss-600)' : e.tone === 'danger' ? 'var(--ember-600)' : 'var(--steel-600)' }" style="display:inline-flex;align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-xs);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="e.kind"></span>
                           </li>
                         </template>
@@ -261,6 +265,81 @@ object AdventurersLog {
                         """.trimIndent(),
                     )
                 }
+            }
+        }
+    }
+
+    private fun FlowContent.xpChartPanel() {
+        ui.panel(title = "Experience gained", action = eyebrowText("xpChartData.eyebrow")) {
+            div {
+                style = "display:flex;flex-wrap:wrap;gap:var(--space-7);align-items:center;" +
+                    "justify-content:space-between;margin-bottom:var(--space-6)"
+                div {
+                    style = "display:flex;flex-wrap:wrap;gap:var(--space-5)"
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="l in xpChartData.legend" :key="l.name">
+                              <span style="display:flex;align-items:center;gap:var(--space-3);font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)">
+                                <span :style="{ background: l.color }" style="width:8px;height:8px;border-radius:2px;display:inline-block"></span>
+                                <span x-text="l.name"></span>
+                              </span>
+                            </template>
+                            """.trimIndent(),
+                        )
+                    }
+                }
+                div {
+                    style = "display:flex;gap:var(--space-3)"
+                    unsafe {
+                        raw(
+                            """
+                            <template x-for="t in xpRangeTabs" :key="t.key">
+                              <button type="button" @click="t.onClick()" :style="{ background: t.active ? 'var(--surface-active)' : 'var(--surface-panel-raised)', color: t.active ? 'var(--gold-300)' : 'var(--parch-200)' }" style="border:1px solid var(--border-strong);border-radius:var(--radius-sm);box-shadow:var(--bevel-up);height:26px;padding:0 var(--space-5);cursor:pointer;font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="t.label"></button>
+                            </template>
+                            <button type="button" x-show="xpZoom" @click="resetXpZoom()" style="background:rgba(224,174,60,.14);color:var(--gold-300);border:1px solid var(--gold-600);border-radius:var(--radius-sm);height:26px;padding:0 var(--space-5);cursor:pointer;font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">Reset zoom</button>
+                            """.trimIndent(),
+                        )
+                    }
+                }
+            }
+            unsafe {
+                raw(
+                    """
+                    <p x-show="!xpZoom" style="margin:0 0 var(--space-4);font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)">Click and drag across the chart to zoom into a date range.</p>
+                    <div style="position:relative;user-select:none;cursor:crosshair" @mousedown="onXpChartDown(${'$'}event)" @mousemove="onXpChartMove(${'$'}event)" @mouseup.window="onXpChartUp()" @mouseleave="onXpChartLeave()">
+                      <svg viewBox="0 0 920 300" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;overflow:visible">
+                        <g x-html="xpChartData.gridSvg"></g>
+                        <g x-html="xpChartData.layersSvg"></g>
+                        <g x-show="xpChartData.hovering">
+                          <line :x1="xpChartData.hx" :x2="xpChartData.hx" y1="10" y2="266" style="stroke:var(--gold-300);stroke-width:1;stroke-dasharray:3 4"></line>
+                          <g x-html="xpChartData.hoverDotsSvg"></g>
+                        </g>
+                        <g x-show="xpChartData.dragging" x-html="xpChartData.selectionSvg"></g>
+                      </svg>
+                      <template x-for="g in xpChartData.grid" :key="'xg'+g.label+g.top">
+                        <div style="position:absolute;left:0;width:6.3%;text-align:right;transform:translateY(-50%);font:var(--type-code);font-size:11px;color:var(--text-faint);pointer-events:none" :style="{ top: g.top }" x-text="g.label"></div>
+                      </template>
+                      <template x-for="l in xpChartData.xlabels" :key="'xl'+l.label+l.left">
+                        <div style="position:absolute;transform:translateX(-50%);font:var(--type-code);font-size:11px;color:var(--text-faint);pointer-events:none;white-space:nowrap;bottom:1%" :style="{ left: l.left }" x-text="l.label"></div>
+                      </template>
+                      <div x-show="xpChartData.hovering" style="position:absolute;top:10px;transform:translateX(-50%);z-index:5;padding:var(--space-3) var(--space-4);background:var(--umber-950);border:1px solid var(--border-gold);border-radius:var(--radius-xs);box-shadow:var(--shadow-md);font:var(--type-code);font-size:11px;white-space:nowrap;pointer-events:none;min-width:140px" :style="{ left: xpChartData.hoverLeft }">
+                        <div style="color:var(--text-faint);margin-bottom:var(--space-2);display:flex;justify-content:space-between;gap:var(--space-4)">
+                          <span x-text="xpChartData.stamp"></span>
+                          <span style="color:var(--gold-300)" x-text="xpChartData.dayTotal"></span>
+                        </div>
+                        <template x-for="b in xpChartData.breakdown" :key="b.name">
+                          <div style="display:flex;align-items:center;gap:var(--space-3)">
+                            <span :style="{ background: b.color }" style="width:8px;height:2px;display:inline-block;flex:none"></span>
+                            <span x-text="b.name"></span>
+                            <span style="margin-left:auto;color:var(--text-strong)" x-text="'+' + b.xpLabel"></span>
+                          </div>
+                        </template>
+                        <div x-show="xpChartData.breakdown.length === 0" style="color:var(--text-faint)">No experience gained</div>
+                      </div>
+                    </div>
+                    """.trimIndent(),
+                )
             }
         }
     }
