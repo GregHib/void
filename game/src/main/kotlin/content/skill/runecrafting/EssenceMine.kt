@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.map.collision.random
 
 object EssenceMine {
     suspend fun teleport(npc: NPC, player: Player) {
-        if(!player.questCompleted("rune_mysteries")) {
+        if (!player.questCompleted("rune_mysteries")) {
             player.message("You need to complete Rune Mysteries before you can do this.")
             return
         }
