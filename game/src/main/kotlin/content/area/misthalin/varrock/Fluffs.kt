@@ -273,7 +273,7 @@ class Fluffs : Script {
 
             discoverKittenCrates()
             val crate = kittenCrates.random()
-            set(KITTENS_HIDING_SPOT, crate)
+            set(KITTENS_HIDING_SPOT, crate.id)
             println("Your cat is hiding at $crate")
 
             statement("Fluffs seems afraid to leave. \nIn the Lumber Yard below you can hear kittens mewing.")

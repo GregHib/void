@@ -24,7 +24,8 @@ class KittenCrates : Script {
                 return@objectOperate
             }
 
-            var kittenCrate = get(KITTENS_HIDING_SPOT, Tile(0, 0))
+            val kittenCoords = get(KITTENS_HIDING_SPOT, -1)
+            var kittenCrate = Tile(kittenCoords)
             if(crate.tile == kittenCrate){
                 if(player.inventory.isFull()){
                     message("<red>You find three little kittens but you have no space for them in your backpack.")
