@@ -36,7 +36,7 @@ class BoxTrapTest : WorldTest() {
         player.itemOption("Lay", "box_trap")
         tick(3)
         assertTrue(GameObjects.at(start).any { it.id == "box_trap" })
-        createNPC(id, player.tile.addY(2))
+        val npc = createNPC(id, player.tile.addY(2))
 
         tick(22)
 
@@ -47,6 +47,41 @@ class BoxTrapTest : WorldTest() {
         tick(3)
         assertEquals(1, player.inventory.count("box_trap"))
         assertNotEquals(0.0, player.experience.get(Skill.Hunter))
+
+        tick(9)
+        assertFalse(npc.hide)
+        assertTrue(npc.tile.within(start.addY(2), 1))
+        assertFalse(npc.contains("caught"))
+    }
+
+    @Test
+    fun `Respawned creature can be caught again`() {
+        val player = createPlayer()
+        val start = player.tile
+        player.inventory.add("box_trap")
+        player.levels.set(Skill.Hunter, 99)
+
+        player.itemOption("Lay", "box_trap")
+        tick(3)
+        val npc = createNPC("chinchompa", player.tile.addY(2))
+        tick(22)
+        val trap = GameObjects.at(start).firstOrNull { it.id == "box_trap_chinchompa" }
+        assertNotNull(trap)
+        player.objectOption(trap, "Check")
+        tick(3)
+        assertEquals(1, player.inventory.count("box_trap"))
+        tick(9)
+        assertFalse(npc.hide)
+
+        // Laying steps the player off the trap tile, so the second trap lands on the new tile
+        val second = player.tile
+        player.itemOption("Lay", "box_trap")
+        tick(3)
+        assertTrue(GameObjects.at(second).any { it.id == "box_trap" })
+
+        tick(22)
+
+        assertTrue(GameObjects.at(second).any { it.id == "box_trap_chinchompa" })
     }
 
     @ParameterizedTest
@@ -66,7 +101,7 @@ class BoxTrapTest : WorldTest() {
         player.itemOnObject(laid, player.inventory.indexOf(bait))
         tick(2)
         assertEquals(0, player.inventory.count(bait))
-        createNPC(id, player.tile.addY(2))
+        val npc = createNPC(id, player.tile.addY(2))
 
         tick(22)
 
@@ -82,6 +117,11 @@ class BoxTrapTest : WorldTest() {
         } else {
             assertEquals(18, player.inventory.count("grenwall_spikes"))
         }
+
+        tick(9)
+        assertFalse(npc.hide)
+        assertTrue(npc.tile.within(start.addY(2), 1))
+        assertFalse(npc.contains("caught"))
     }
 
     @Test
