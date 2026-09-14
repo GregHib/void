@@ -161,7 +161,6 @@ object GameObjects : ZoneBatchUpdates.Sender {
                 collisionRemove.modify(obj)
             }
             size--
-            Despawn.gameObject(obj)
             // Re-add original (if exists)
             map.remove(obj, REPLACED)
             if (original > 1) {
@@ -172,6 +171,9 @@ object GameObjects : ZoneBatchUpdates.Sender {
                 }
                 size++
             }
+            // Emitted last so handlers which add an object in this ones place aren't undone by the
+            // map bookkeeping above.
+            Despawn.gameObject(obj)
         } else if (original == obj.value(replaced = false) && original != 0) {
             // Remove original
             map.add(obj, REPLACED)

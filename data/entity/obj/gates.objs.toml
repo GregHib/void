@@ -537,32 +537,41 @@ examine = "A wooden gate."
 id = 3016
 examine = "A wooden gate."
 
+# The Tutorial Island dungeon doorways are named "Gate" in the cache but swing as doors.
 [gate_74_opened]
 id = 26922
+gate = false
 
 [gate_74_closed]
 id = 3020
+gate = false
 examine = "A wrought iron gate."
 
 [gate_75_opened]
 id = 3269
+gate = false
 
 [gate_75_closed]
 id = 3021
+gate = false
 examine = "A wrought iron gate."
 
 [gate_76_opened]
 id = 26922
+gate = false
 
 [gate_76_closed]
 id = 3022
+gate = false
 examine = "A wrought iron gate."
 
 [gate_77_opened]
 id = 3269
+gate = false
 
 [gate_77_closed]
 id = 3023
+gate = false
 examine = "A wrought iron gate."
 
 [gate_79_opened]

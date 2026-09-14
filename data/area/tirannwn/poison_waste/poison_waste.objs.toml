@@ -1,0 +1,35 @@
+[poison_waste_cave_entrance]
+id = 26684
+examine = "A murky cave entrance."
+
+[poison_waste_cave_entrance_2]
+id = 26685
+examine = "A murky cave entrance."
+
+[poison_waste_cave_entrance_3]
+id = 26686
+examine = "A murky cave entrance."
+
+[poison_waste_cave_exit]
+id = 26571
+examine = "A way out of the cave."
+
+[poison_waste_cave_exit_2]
+id = 26572
+examine = "A way out of the cave."
+
+[poison_waste_cave_exit_3]
+id = 26573
+examine = "A way out of the cave."
+
+[poison_waste_cave_exit_4]
+id = 26574
+examine = "A way out of the cave."
+
+[poison_waste_sewer_ladder_up]
+id = 26518
+examine = "A ladder leading up."
+
+[poison_waste_sewer_ladder_down]
+id = 26519
+examine = "A ladder leading down."
