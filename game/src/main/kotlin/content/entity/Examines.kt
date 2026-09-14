@@ -1,5 +1,6 @@
 package content.entity
 
+import content.skill.melee.armour.durabilityMessage
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
 import world.gregs.voidps.engine.client.message
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.client.instruction.ExamineItem
 import world.gregs.voidps.network.client.instruction.ExamineNpc
 import world.gregs.voidps.network.client.instruction.ExamineObject
@@ -34,7 +36,16 @@ class Examines : Script {
         interfaceOption("Examine", "farming_equipment_store:*", ::examineItem)
 
         itemOption("Examine", inventory = "*") { (item) ->
-            message(item.def.getOrNull("examine") ?: return@itemOption, ChatType.ItemExamine)
+            showItemDetails(item.def.getOrNull("examine"), item)
+        }
+        itemOption("Check", inventory = "*") { (item) ->
+            showDurability(item)
+        }
+        itemOption("Check-charges", inventory = "*") { (item) ->
+            showDurability(item)
+        }
+        itemOption("Inspect", inventory = "*") { (item) ->
+            showDurability(item)
         }
 
         objectApproach("Examine") { (target) ->
@@ -67,7 +78,16 @@ class Examines : Script {
         }
     }
 
+    private fun Player.showItemDetails(examine: String?, item: Item) {
+        examine?.let { message(it, ChatType.ItemExamine) }
+        showDurability(item)
+    }
+
+    private fun Player.showDurability(item: Item) {
+        item.durabilityMessage(this)?.let { message(it, ChatType.ItemExamine) }
+    }
+
     private fun examineItem(player: Player, option: InterfaceOption) {
-        player.message(option.item.def.getOrNull("examine") ?: return, ChatType.ItemExamine)
+        player.showItemDetails(option.item.def.getOrNull("examine"), option.item)
     }
 }

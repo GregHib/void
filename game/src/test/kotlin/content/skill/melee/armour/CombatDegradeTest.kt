@@ -51,15 +51,29 @@ internal class CombatDegradeTest : WorldTest() {
         assertEquals("chaotic_rapier", player.equipped(EquipSlot.Weapon).id)
         assertTrue(player.equipment.charges(player, EquipSlot.Weapon.index) < 30000)
         assertEquals("dharoks_platebody_100", player.equipped(EquipSlot.Chest).id)
-        assertTrue(player.equipment.charges(player, EquipSlot.Chest.index) < 22500)
+        assertEquals(22500, player.equipment.charges(player, EquipSlot.Chest.index))
         assertEquals("statiuss_platelegs_degraded", player.equipped(EquipSlot.Legs).id)
-        assertTrue(player.equipment.charges(player, EquipSlot.Legs.index) < 6000)
+        assertEquals(6000, player.equipment.charges(player, EquipSlot.Legs.index))
         assertEquals("binding_necklace", player.equipped(EquipSlot.Amulet).id)
         assertEquals(16, player.equipment.charges(player, EquipSlot.Amulet.index))
         assertEquals("ring_of_duelling_8", player.equipped(EquipSlot.Ring).id)
         assertEquals(1, player.equipment.charges(player, EquipSlot.Ring.index))
         assertEquals("combat_bracelet_4", player.equipped(EquipSlot.Hands).id)
         assertEquals(1, player.equipment.charges(player, EquipSlot.Hands.index))
+    }
+
+    @Test
+    fun `Equipped durability waits between automatic drains`() {
+        val player = createPlayer()
+        val slot = EquipSlot.Hat.index
+        player.equipment.set(slot, "corrupt_dragon_helm_degraded", 1500)
+
+        tick()
+        assertEquals(1499, player.equipment.charges(player, slot))
+        tick(99)
+        assertEquals(1499, player.equipment.charges(player, slot))
+        tick()
+        assertEquals(1498, player.equipment.charges(player, slot))
     }
 
     @Test
@@ -79,7 +93,7 @@ internal class CombatDegradeTest : WorldTest() {
         player.equipment.set(EquipSlot.Legs.index, "statiuss_platelegs_degraded")
 
         player.npcOption(npc, "Attack")
-        tickIf { npc.levels.get(Skill.Constitution) > 0 }
+        tick(2)
 
         assertEquals("chaotic_rapier_broken", player.equipped(EquipSlot.Weapon).id)
         assertEquals(0, player.equipment.charges(player, EquipSlot.Weapon.index))
