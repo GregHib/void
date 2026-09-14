@@ -40,6 +40,43 @@
   var TODAY = Date.UTC(2026, 8, 9);
   var DAY = 86400000;
 
+  // How many days of daily xp-gain history to synthesize per profile, and how many trailing
+  // days of it each chart range toggle shows.
+  var HISTORY_DAYS = 730;
+  var RANGE_DAYS = { week: 7, month: 30, year: 365, all: HISTORY_DAYS };
+  var RANGE_LABEL = { week: "last 7 days", month: "last 30 days", year: "last 365 days", all: "all time" };
+
+  // Fixed per-skill colour, so a skill is always the same colour on the chart no matter which
+  // other skills it's stacked alongside or how the top-5-plus-"Other" bucketing shakes out.
+  var SKILL_COLORS = {
+    Attack: "#c2493a",
+    Defence: "#7d9db0",
+    Strength: "#dd9a2b",
+    Constitution: "#d1495c",
+    Ranged: "#7fae4f",
+    Prayer: "#f0c667",
+    Magic: "#8b6bc4",
+    Cooking: "#e08a3c",
+    Woodcutting: "#6b8e4e",
+    Fletching: "#c9a66b",
+    Fishing: "#5b8fb0",
+    Firemaking: "#e0663c",
+    Crafting: "#b06bb0",
+    Smithing: "#a0a8ad",
+    Mining: "#7a6a57",
+    Herblore: "#4f9e6e",
+    Agility: "#4fb0a8",
+    Thieving: "#6b4e8e",
+    Slayer: "#8e2f2f",
+    Farming: "#6a9e3f",
+    Runecrafting: "#3f9ea0",
+    Hunter: "#9e7a4f",
+    Construction: "#71542c",
+    Summoning: "#7a5ea8",
+    Dungeoneering: "#c2a34a",
+  };
+  var OTHER_COLOR = "#5a646b";
+
   function rng(seed) {
     var a = seed >>> 0;
     return function () {
@@ -75,12 +112,32 @@
 
   function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
   function abbrevXp(n) { return (n / 1e6).toFixed(1) + "M"; }
+  function shortXp(n) {
+    var a = Math.abs(n);
+    if (a >= 1e6) return (n / 1e6).toFixed(1) + "M";
+    if (a >= 1e3) return (n / 1e3).toFixed(1) + "K";
+    return String(Math.round(n));
+  }
+  function xpStamp(t, range) {
+    var d = new Date(t);
+    var D = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if (range === "week") return D[d.getUTCDay()] + " " + d.getUTCDate() + " " + M[d.getUTCMonth()];
+    if (range === "month") return d.getUTCDate() + " " + M[d.getUTCMonth()];
+    return M[d.getUTCMonth()] + " " + d.getUTCFullYear();
+  }
   function mmss(sec) {
     var total = Math.round(sec);
     var m = Math.floor(total / 60), s = total % 60;
     return m + ":" + String(s).padStart(2, "0");
   }
   function dateAgo(days) { return new Date(TODAY - days * DAY).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
+  function exactTime(days, r) {
+    var t = TODAY - days * DAY + Math.floor(r() * DAY);
+    return new Date(t).toLocaleString("en-GB", {
+      day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "2-digit",
+    });
+  }
   function band(i) { return BAND[i % 2]; }
   function skillIcon(name) { return "void/images/skills/" + (name === "Constitution" ? "hitpoints" : name.toLowerCase()) + ".png"; }
   function bossAbbr(name) { return name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 3).toUpperCase(); }
@@ -95,6 +152,33 @@
       if (CLANS[i].name === name) return CLANS[i];
     }
     return CLANS[0];
+  }
+
+  // Synthesizes daily xp gains per skill over the last HISTORY_DAYS days: each skill trains in a
+  // handful of random "active" windows on the timeline, gaining xp on most (not all) days within
+  // them, roughly scaled to how much total xp that skill has ended up with.
+  function buildXpHistory(skills, r) {
+    var days = HISTORY_DAYS;
+    var config = skills.map(function (sk) {
+      var windowCount = 3 + Math.floor(r() * 5);
+      var windows = [];
+      for (var i = 0; i < windowCount; i++) {
+        var start = Math.floor(r() * days);
+        windows.push({ start: start, end: Math.min(days, start + 3 + Math.floor(r() * 21)) });
+      }
+      return { name: sk.name, windows: windows, rate: Math.max(300, sk.xp / (days * 0.12)) };
+    });
+    var history = [];
+    for (var d = 0; d < days; d++) {
+      var gains = {};
+      for (var i = 0; i < config.length; i++) {
+        var cfg = config[i];
+        var active = cfg.windows.some(function (w) { return d >= w.start && d < w.end; });
+        if (active && r() > 0.3) gains[cfg.name] = Math.round(cfg.rate * (0.4 + r() * 1.3));
+      }
+      history.push({ t: TODAY - (days - 1 - d) * DAY, gains: gains });
+    }
+    return history;
   }
 
   function urlFor(view, profileName, clanName) {
@@ -150,34 +234,39 @@
     var topBoss = bosses[0];
     var events = [];
     if (maxedCount > 0) {
-      events.push({ kind: "Skill", tone: "gold", text: "Reached level 99 " + skills.filter(function (k) { return k.level >= k.max; })[0].name + "." });
+      var maxedSkill = skills.filter(function (k) { return k.level >= k.max; })[0].name;
+      events.push({ kind: "Skill", tone: "gold", text: "Reached level 99 " + maxedSkill + ".", description: "Joined the ranks of the elite in " + maxedSkill + ", reaching the maximum level of 99." });
     }
-    events.push({ kind: "Skill", tone: "gold", text: "Total level passed " + (Math.floor(totalLevel / 100) * 100) + "." });
+    events.push({ kind: "Skill", tone: "gold", text: "Total level passed " + (Math.floor(totalLevel / 100) * 100) + ".", description: "Combined level across all skills crossed a new milestone." });
     if (completedQuests.length > 0) {
       var q0 = completedQuests[0];
-      events.push({ kind: "Quest", tone: "info", text: "Completed " + q0.name + ". +" + Math.round(q0.name.length / 3) + " quest points." });
+      events.push({ kind: "Quest", tone: "info", text: "Completed " + q0.name + ". +" + Math.round(q0.name.length / 3) + " quest points.", description: "Finished the " + q0.difficulty.toLowerCase() + " quest \"" + q0.name + "\" in " + q0.duration + "." });
     }
     if (topBoss.kills !== "0") {
-      events.push({ kind: "Combat", tone: "danger", text: "First kill: " + topBoss.name + ", solo." });
+      events.push({ kind: "Combat", tone: "danger", text: "First kill: " + topBoss.name + ", solo.", description: "Defeated " + topBoss.name + " unassisted for the first time." });
     }
-    events.push({ kind: "Account", tone: "success", text: member ? "Membership renewed for 12 months." : "Playing on a free account." });
+    events.push({ kind: "Account", tone: "success", text: member ? "Membership renewed for 12 months." : "Playing on a free account.", description: member ? "Subscription extended, unlocking members-only areas, skills and quests." : "Currently playing without a membership subscription." });
     if (completedQuests.length > 1) {
-      events.push({ kind: "Quest", tone: "info", text: "Completed " + completedQuests[1].name + "." });
+      events.push({ kind: "Quest", tone: "info", text: "Completed " + completedQuests[1].name + ".", description: "Finished the " + completedQuests[1].difficulty.toLowerCase() + " quest \"" + completedQuests[1].name + "\" in " + completedQuests[1].duration + "." });
     }
-    events.push({ kind: "Skill", tone: "gold", text: topSkill.name + " reached level " + topSkill.level + "." });
+    events.push({ kind: "Skill", tone: "gold", text: topSkill.name + " reached level " + topSkill.level + ".", description: "Highest trained skill continues to climb." });
     var clanName = clanFor(name);
     if (clanName) {
-      events.push({ kind: "Account", tone: "success", text: "Joined the clan " + clanName + " as a member." });
+      events.push({ kind: "Account", tone: "success", text: "Joined the clan " + clanName + " as a member.", description: "Became a member of " + clanName + "." });
     }
     events = events.map(function (e, i) {
+      var days = 2 + i * (3 + Math.floor(r() * 5));
       return {
         kind: e.kind, tone: e.tone, text: e.text,
-        date: dateAgo(2 + i * (3 + Math.floor(r() * 5))),
+        description: e.description || "",
+        date: dateAgo(days),
+        exact: exactTime(days, r),
         band: band(i),
       };
     });
 
     var joinedDaysAgo = 200 + Math.floor(r() * 900);
+    var xpHistory = buildXpHistory(skills, r);
 
     return {
       name: name,
@@ -193,6 +282,7 @@
       questPointsMax: Math.round(QUESTS.length * 1.56),
       skills: skills,
       maxedCount: maxedCount,
+      xpHistory: xpHistory,
       events: events,
       quests: completedQuests,
       questTotal: QUESTS.length,
@@ -222,6 +312,12 @@
       query: "",
       filter: "All",
       sort: "level",
+      xpRange: "month",
+      xpHover: null,
+      xpZoom: null,
+      xpDragging: false,
+      xpDragStart: null,
+      xpDragEnd: null,
 
       init: function () {
         var params = new URLSearchParams(window.location.search);
@@ -334,6 +430,153 @@
         return this.profile.skills.slice().sort(function (a, b) {
           return sort === "alphabetical" ? a.name.localeCompare(b.name) : b.level - a.level;
         });
+      },
+
+      // Length/offset (into the full xp-history array) of the window currently on screen — either
+      // a preset range's trailing N days, or a drag-selected zoom slice.
+      xpWindowLength: function () {
+        return this.xpZoom ? this.xpZoom.end - this.xpZoom.start + 1 : RANGE_DAYS[this.xpRange];
+      },
+      xpWindowOffset: function () {
+        return this.xpZoom ? this.xpZoom.start : this.profile.xpHistory.length - RANGE_DAYS[this.xpRange];
+      },
+      xpIndexAt: function (e) {
+        var r = e.currentTarget.getBoundingClientRect();
+        var vb = ((e.clientX - r.left) / r.width) * 920;
+        var n = this.xpWindowLength();
+        var step = (920 - 66 - 12) / Math.max(1, n - 1);
+        return Math.max(0, Math.min(n - 1, Math.round((vb - 66) / step)));
+      },
+      onXpChartDown: function (e) {
+        var i = this.xpIndexAt(e);
+        this.xpDragging = true;
+        this.xpDragStart = i;
+        this.xpDragEnd = i;
+      },
+      onXpChartMove: function (e) {
+        var i = this.xpIndexAt(e);
+        if (this.xpDragging) {
+          this.xpDragEnd = i;
+        } else if (i !== this.xpHover) {
+          this.xpHover = i;
+        }
+      },
+      // Bound with .window so a drag that ends outside the chart still zooms — the mouse doesn't
+      // have to be released back over the SVG.
+      onXpChartUp: function () {
+        if (!this.xpDragging) return;
+        var a = Math.min(this.xpDragStart, this.xpDragEnd);
+        var b = Math.max(this.xpDragStart, this.xpDragEnd);
+        this.xpDragging = false;
+        this.xpDragStart = null;
+        this.xpDragEnd = null;
+        if (b - a >= 1) {
+          var offset = this.xpWindowOffset();
+          this.xpZoom = { start: offset + a, end: offset + b };
+          this.xpHover = null;
+        }
+      },
+      onXpChartLeave: function () { this.xpHover = null; },
+      resetXpZoom: function () { this.xpZoom = null; this.xpHover = null; },
+
+      get xpRangeTabs() {
+        var self = this;
+        return [["week", "Week"], ["month", "Month"], ["year", "Year"], ["all", "All"]].map(function (t) {
+          return {
+            key: t[0], label: t[1], active: !self.xpZoom && self.xpRange === t[0],
+            onClick: function () { self.xpRange = t[0]; self.xpHover = null; self.xpZoom = null; },
+          };
+        });
+      },
+      get xpChartData() {
+        var range = this.xpRange;
+        var full = this.profile.xpHistory;
+        var zoom = this.xpZoom;
+        var pts = zoom ? full.slice(zoom.start, zoom.end + 1) : full.slice(full.length - RANGE_DAYS[range]);
+        var m = pts.length;
+
+        // Every skill that gained xp anywhere in the visible range gets its own stacked layer in
+        // its fixed colour (SKILL_COLORS covers all 25, so nothing needs bucketing into a generic
+        // "Other" band — that grey catch-all was swallowing most of the chart on wider ranges,
+        // where more skills contribute at least a little). Order largest-total-first so the
+        // biggest bands sit at the bottom.
+        var totals = {};
+        pts.forEach(function (day) {
+          Object.keys(day.gains).forEach(function (name) { totals[name] = (totals[name] || 0) + day.gains[name]; });
+        });
+        var layerNames = Object.keys(totals).sort(function (a, b) { return totals[b] - totals[a]; });
+
+        var stacks = pts.map(function (day) {
+          var cum = 0, tops = [];
+          layerNames.forEach(function (name) {
+            cum += day.gains[name] || 0;
+            tops.push(cum);
+          });
+          return tops;
+        });
+        var maxTotal = stacks.reduce(function (mx, s) { return Math.max(mx, s[s.length - 1] || 0); }, 0) || 1;
+
+        var W = 920, PL = 66, PR = 12, PT = 14, PB = 34, H = 300;
+        function X(i) { return PL + (i * (W - PL - PR)) / Math.max(1, m - 1); }
+        function Y(v) { return PT + (1 - v / maxTotal) * (H - PT - PB); }
+
+        var layers = layerNames.map(function (name, li) {
+          var top = stacks.map(function (s, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(s[li]).toFixed(1); }).join(" ");
+          var bottom = stacks.slice().reverse().map(function (s, i) {
+            var idx = m - 1 - i;
+            var v = li ? s[li - 1] : 0;
+            return "L" + X(idx).toFixed(1) + " " + Y(v).toFixed(1);
+          }).join(" ");
+          return { name: name, color: SKILL_COLORS[name] || OTHER_COLOR, d: top + " " + bottom + " Z" };
+        });
+        var layersSvg = layers.map(function (l) {
+          return '<path d="' + l.d + '" style="fill:' + l.color + ';opacity:.88"></path>';
+        }).join("");
+
+        var grid = [0, 0.25, 0.5, 0.75, 1].map(function (f) {
+          var y = PT + f * (H - PT - PB);
+          return { y: y.toFixed(1), top: ((y / H) * 100).toFixed(2) + "%", label: shortXp(maxTotal - f * maxTotal) };
+        });
+        var gridSvg = grid.map(function (g) {
+          return '<line x1="66" x2="908" y1="' + g.y + '" y2="' + g.y + '" style="stroke:var(--umber-700);stroke-width:1"></line>';
+        }).join("");
+        var xlabels = [0, 0.25, 0.5, 0.75, 1].map(function (f) {
+          var i = Math.round(f * (m - 1));
+          return { left: ((X(i) / W) * 100).toFixed(2) + "%", label: xpStamp(pts[i].t, range) };
+        });
+
+        var hoverIndex = this.xpHover !== null ? Math.min(m - 1, this.xpHover) : m - 1;
+        var hoverDay = pts[hoverIndex];
+        var breakdown = Object.keys(hoverDay.gains).map(function (name) {
+          return { name: name, xpLabel: fmt(hoverDay.gains[name]), color: SKILL_COLORS[name] || OTHER_COLOR };
+        }).sort(function (a, b) { return parseInt(b.xpLabel.replace(/,/g, "")) - parseInt(a.xpLabel.replace(/,/g, "")); });
+        var dayTotal = breakdown.reduce(function (s, b) { return s + parseInt(b.xpLabel.replace(/,/g, "")); }, 0);
+        var hoverDotsSvg = layers.map(function (l, li) {
+          return '<circle cx="' + X(hoverIndex).toFixed(1) + '" cy="' + Y(stacks[hoverIndex][li]).toFixed(1) + '" r="2.5" style="fill:' + l.color + '"></circle>';
+        }).join("");
+
+        var selectionSvg = "";
+        if (this.xpDragging && this.xpDragStart !== null && this.xpDragEnd !== null && this.xpDragStart !== this.xpDragEnd) {
+          var sa = X(Math.min(this.xpDragStart, this.xpDragEnd));
+          var sb = X(Math.max(this.xpDragStart, this.xpDragEnd));
+          selectionSvg = '<rect x="' + sa.toFixed(1) + '" y="' + PT + '" width="' + (sb - sa).toFixed(1) + '" height="' + (H - PT - PB) +
+            '" style="fill:rgba(240,198,103,.14);stroke:var(--gold-400);stroke-width:1"></rect>';
+        }
+
+        return {
+          eyebrow: zoom ? (xpStamp(pts[0].t, "year") + " – " + xpStamp(pts[m - 1].t, "year")) : RANGE_LABEL[range],
+          zoomed: !!zoom,
+          legend: layers.map(function (l) { return { name: l.name, color: l.color }; }),
+          layersSvg: layersSvg, gridSvg: gridSvg, grid: grid, xlabels: xlabels,
+          hovering: this.xpHover !== null && !this.xpDragging, hx: X(hoverIndex).toFixed(1),
+          hoverLeft: ((X(hoverIndex) / W) * 100).toFixed(2) + "%",
+          hoverDotsSvg: hoverDotsSvg,
+          stamp: xpStamp(hoverDay.t, range),
+          dayTotal: fmt(dayTotal) + " xp",
+          breakdown: breakdown,
+          selectionSvg: selectionSvg,
+          dragging: this.xpDragging && this.xpDragStart !== null && this.xpDragEnd !== null && this.xpDragStart !== this.xpDragEnd,
+        };
       },
 
       get results() {
