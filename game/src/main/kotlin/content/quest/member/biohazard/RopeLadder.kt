@@ -12,8 +12,10 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.equip.equipped
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.Tile
 
 class RopeLadder : Script {
@@ -84,6 +86,11 @@ class RopeLadder : Script {
     private suspend fun Player.crossChoice(west: Boolean) {
         choice {
             option<Neutral>("Ok, let's do it.") {
+                if (equipped(EquipSlot.Hat).id != "gas_mask") {
+                    npc<Neutral>("I'd recommend you wear a gas mask before entering West Ardougne. You don't want to risk catching the plague.")
+                    player<Neutral>("That would be wise. Thanks Omart.")
+                    return@option
+                }
                 climbLadder(west)
             }
             option<Neutral>("I'll be back soon.") {
