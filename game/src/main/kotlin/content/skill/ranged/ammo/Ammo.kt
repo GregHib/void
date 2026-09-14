@@ -68,7 +68,7 @@ class Ammo(val ammoDefinitions: AmmoDefinitions, val weaponStyles: WeaponStyleDe
             when {
                 weapon.id.startsWith("zaryte_bow") -> player.ammo = "zaryte_arrow"
                 weapon.id.endsWith("sling") -> player.ammo = "sling_rock"
-                weapon.id.startsWith("crystal_bow") -> player.ammo = "special_arrow"
+                weapon.id.startsWith("crystal_bow") || weapon.id == "new_crystal_bow" -> player.ammo = "special_arrow"
                 else -> player.ammo = weapon.id
             }
             return true
