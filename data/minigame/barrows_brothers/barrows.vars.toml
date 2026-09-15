@@ -12,15 +12,3 @@ persist = true
 [barrows_looted]
 format = "boolean"
 persist = true
-
-[barrows_brothers_kills]
-format = "int"
-persist = true
-
-[barrows_chests_opened]
-format = "int"
-persist = true
-
-[barrows_brothers_fastest]
-format = "int"
-persist = true
