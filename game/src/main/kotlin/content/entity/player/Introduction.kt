@@ -17,11 +17,14 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.epochMilliseconds
+import java.util.concurrent.TimeUnit
 
 class Introduction : Script {
 
     fun welcome(player: Player) {
         player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
+        player["login_time"] = epochMilliseconds()
         if (player.contains("creation")) {
             return
         }
@@ -49,6 +52,13 @@ class Introduction : Script {
             }
             flagAppearance()
             setup(this)
+        }
+
+        playerDespawn {
+            val start = get("login_time", 0L)
+            val duration = epochMilliseconds() - start
+            val seconds = TimeUnit.MILLISECONDS.toSeconds(duration).toInt()
+            inc("playtime", seconds)
         }
     }
 
