@@ -35,7 +35,7 @@ class BarrowsCrypts : Script {
                 clear("barrows_looted")
                 val brother = Tables.get("barrows_brothers").rows().random(random)
                 set("barrows_selected_brother", brother.rowId)
-                KillTracker.start(this, "barrows_brothers")
+                KillTracker.start(this, "barrows_brothers_timer")
                 shufflePuzzle()
             }
             val brother = target.id.substringBefore("_sarcophagus")
@@ -74,7 +74,6 @@ class BarrowsCrypts : Script {
             player.inc("barrows_kills")
             player.inc("barrows_killed_monsters")
             player.inc("barrows_kill_levels", def.combat)
-            player.inc("barrows_brothers_kills")
         }
 
         npcDeath("bloodworm,crypt_rat_barrows,giant_crypt_rat_chaos_tunnels,crypt_spider,giant_crypt_spider,skeleton_barrows,skeleton_barrows_2,giant_crypt_rat_chaos_tunnels_2,giant_crypt_rat_chaos_tunnels_3,skeleton_barrows_3,skeleton_barrows_4") {

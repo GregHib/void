@@ -199,6 +199,7 @@ class DatabaseStorage : Storage {
         saveInventories(accounts, playerIds)
         saveOffers(accounts, playerIds)
         saveHistories(accounts, playerIds)
+        saveKills(accounts, playerIds)
     }
 
     override fun saveReport(report: AbuseReport): Unit = transaction {
@@ -240,6 +241,8 @@ class DatabaseStorage : Storage {
         val ranks = playerRow[AccountsTable.ranks]
         val offers = loadOffers(playerId)
         val history = loadHistory(playerId)
+        val kills = loadKills(playerId)
+        val records = loadRecords(playerId)
         return@transaction PlayerSave(
             name = playerRow[AccountsTable.name],
             password = playerRow[AccountsTable.passwordHash],
@@ -256,6 +259,8 @@ class DatabaseStorage : Storage {
             ignores = playerRow[AccountsTable.ignores],
             offers = offers,
             history = history,
+            kills = kills,
+            records = records,
         )
     }
 
@@ -319,6 +324,26 @@ class DatabaseStorage : Storage {
             this[PlayerHistoryTable.item] = history.item
             this[PlayerHistoryTable.amount] = history.amount
             this[PlayerHistoryTable.coins] = history.coins
+        }
+    }
+
+    private fun saveKills(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
+        PlayerKillsTable.deleteWhere { playerId inList playerIds.values }
+        val killData = accounts.flatMap { save -> save.kills.map { Triple(save.name, it.key, it.value) } }
+        PlayerKillsTable.batchUpsert(killData, PlayerKillsTable.playerId, PlayerKillsTable.category) { (id, category, count) ->
+            this[PlayerKillsTable.playerId] = playerIds.getValue(id.lowercase())
+            this[PlayerKillsTable.category] = category
+            this[PlayerKillsTable.count] = count
+        }
+    }
+
+    private fun saveRecords(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
+        PlayerRecordTable.deleteWhere { playerId inList playerIds.values }
+        val killData = accounts.flatMap { save -> save.records.map { Triple(save.name, it.key, it.value) } }
+        PlayerRecordTable.batchUpsert(killData, PlayerRecordTable.playerId, PlayerRecordTable.type) { (id, type, millis) ->
+            this[PlayerRecordTable.playerId] = playerIds.getValue(id.lowercase())
+            this[PlayerRecordTable.type] = type
+            this[PlayerRecordTable.millis] = millis
         }
     }
 
@@ -559,6 +584,18 @@ class DatabaseStorage : Storage {
         val amount = row[PlayerHistoryTable.amount]
         val coins = row[PlayerHistoryTable.coins]
         ExchangeHistory(item, amount, coins)
+    }
+
+    private fun loadKills(playerId: Int): Map<String, Int> = PlayerKillsTable.selectAll().where { PlayerKillsTable.playerId eq playerId }.associate { row ->
+        val category = row[PlayerKillsTable.category]
+        val count = row[PlayerKillsTable.count]
+        category to count
+    }
+
+    private fun loadRecords(playerId: Int): Map<String, Int> = PlayerRecordTable.selectAll().where { PlayerRecordTable.playerId eq playerId }.associate { row ->
+        val type = row[PlayerRecordTable.type]
+        val millis = row[PlayerRecordTable.millis]
+        type to millis
     }
 
     companion object {

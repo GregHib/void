@@ -198,7 +198,7 @@ class TzhaarFightCave(
             strongQueue("fight_cave_start", TimeUnit.SECONDS.toTicks(2)) {
                 val duration = get("tzhaar_fight_cave_duration", 0)
                 val newStart = epochMilliseconds() - duration
-                set("tzhaar_fight_cave_kill_timer", newStart)
+                set("tzhaar_fight_cave_timer", newStart)
                 clear("tzhaar_fight_cave_duration")
                 startWave(this, wave, start = true)
             }
@@ -223,8 +223,7 @@ class TzhaarFightCave(
         clear("fight_cave_wave")
         start("fight_cave_cooldown", TimeUnit.MINUTES.toSeconds(2).toInt(), epochSeconds())
         close("tzhaar_fight_cave")
-        KillTracker.stop(this, "tzhaar_fight_cave", prefix = "Total wave duration")
-        clear("tzhaar_fight_cave_kill_timer")
+        KillTracker.stop(this, "tzhaar_fight_cave_timer", prefix = "Total wave duration")
         clear("tzhaar_fight_cave_duration")
         tele(outside)
         clearInstance()
@@ -265,7 +264,7 @@ class TzhaarFightCave(
         }
         player["fight_cave_wave"] = wave
         if (player["fight_caves_logout_warning", false]) {
-            val startTime = player["tzhaar_fight_cave_kill_timer", 0L]
+            val startTime = player["fight_cave_start_time", 0L]
             val duration = epochMilliseconds() - startTime
             player["tzhaar_fight_cave_duration"] = duration
             Script.launch {
@@ -282,7 +281,7 @@ class TzhaarFightCave(
             val rotation = (1..15).random(random)
             val start = epochMilliseconds()
             player["fight_cave_rotation"] = rotation
-            KillTracker.start(player, "tzhaar_fight_cave")
+            KillTracker.start(player, "tzhaar_fight_cave_timer")
             AuditLog.event(player, "start_fight_cave", start, wave, rotation)
         } else if (wave == 63) {
             player.queue("fight_cave_warning") {

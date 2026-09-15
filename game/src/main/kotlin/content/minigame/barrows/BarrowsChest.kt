@@ -45,11 +45,10 @@ class BarrowsChest(val drops: DropTables) : Script {
                 message("The chest is empty.")
                 return@objectOperate
             }
-
-            KillTracker.kill(this, "Your Barrows chest count is", "barrows_chests_opened")
+            KillTracker.count(this, "barrows_chests", "Your Barrows chest count is")
             val kills = get("barrows_kills", 0).coerceAtMost(6)
             if (kills == 6) {
-                KillTracker.stop(this, "barrows_brothers")
+                KillTracker.stop(this, "barrows_brothers_timer")
             }
             val drops = reward(this)
             AuditLog.event(this, "barrows_chest", *drops.toTypedArray())

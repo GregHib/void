@@ -50,6 +50,8 @@ class Player(
     val body: BodyParts = BodyParts(),
     val offers: Array<ExchangeOffer> = Array(6) { ExchangeOffer() },
     val history: MutableList<ExchangeHistory> = mutableListOf(),
+    val kills: MutableMap<String, Int> = mutableMapOf(),
+    val records: MutableMap<String, Int> = mutableMapOf(),
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)

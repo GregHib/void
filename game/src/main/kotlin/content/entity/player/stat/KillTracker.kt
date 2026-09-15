@@ -5,7 +5,6 @@ import content.entity.combat.killer
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.epochMilliseconds
@@ -31,12 +30,11 @@ class KillTracker : Script {
                 clear("${id}_kill_timer")
             } else if (from == max && to != max) { // Start when hit down from max
                 set("${id}_kill_timer", epochMilliseconds())
-            } else if (to <= 0 && from > 0) {
+            } else if (to <= 0 && from > 0) { // Stop when dead
                 val count = damageDealers.size
                 val start = get("${id}_kill_timer", 0L)
                 for ((char, damage) in damageDealers) {
                     if (char is Player && damage > 0) {
-                        kill(char, "Your ${def.name} kill count is", "${id}_kills")
                         record(char, start, id, count, "Fight duration")
                     }
                 }
@@ -47,27 +45,33 @@ class KillTracker : Script {
         npcDeath {
             val player = killer as? Player ?: return@npcDeath
             val categories: Set<String> = def.getOrNull("categories") ?: return@npcDeath
-            if (!categories.contains("tracked")) {
-                return@npcDeath
+            for (category in categories) {
+                if (category == "boss") {
+                    count(player, id, "Your ${def.name} kill count is")
+                } else {
+                    count(player, category)
+                }
             }
-            player.inc("${toIdentifier(def.name)}_kills")
         }
     }
 
     companion object {
         fun record(player: Player, start: Long, timer: String, teamSize: Int, prefix: String = "Duration") {
             val duration = epochMilliseconds() - start
-            val type = when (teamSize) {
-                0 -> return
-                1 -> "solo"
-                2 -> "duo"
-                3 -> "trio"
-                4 -> "quad"
-                else -> "mass"
+            if (TimeUnit.MILLISECONDS.toHours(duration) > 500) {
+                return // Would exceed integer storage
             }
-            val best = player["${timer}_fastest_${type}", 0L]
+            val key = when (teamSize) {
+                0 -> return
+                1 -> timer
+                2 -> "${timer}_duo"
+                3 -> "${timer}_trio"
+                4 -> "${timer}_quad"
+                else -> "${timer}_mass"
+            }
+            val best = player.records.getOrDefault(key, 0)
             if (duration > best && !player["insta_kill", false] && !player["god_mode", false]) { // No cheating!
-                player["${timer}_fastest_${type}"] = duration.toInt()
+                player.records[key] = duration.toInt()
             }
             if (player["boss_timers", false]) {
                 val time = "<red>${timestamp(duration)}</col>"
@@ -75,28 +79,29 @@ class KillTracker : Script {
                 if (duration > best) {
                     player.message("$teamPrefix$prefix: $time (new personal best)")
                 } else {
-                    player.message("$teamPrefix$prefix: $time. Personal best: ${timestamp(best)}")
+                    player.message("$teamPrefix$prefix: $time. Personal best: ${timestamp(best.toLong())}")
                 }
             }
         }
 
         fun start(player: Player, timer: String) {
-            player["${timer}_kill_timer"] = epochMilliseconds()
+            player[timer] = epochMilliseconds()
         }
 
         fun stop(player: Player, timer: String, teamSize: Int = 1, prefix: String = "Duration") {
-            val start = player["${timer}_kill_timer", 0L]
+            val start = player[timer, 0L]
             if (start == 0L) {
                 return
             }
-            player.clear("${timer}_kill_timer")
+            player.clear(timer)
             record(player, start, timer, teamSize, prefix)
         }
 
-        fun kill(player: Player, prefix: String, tracker: String) {
-            val kills = player.inc(tracker)
-            if (player["kill_counts", false]) {
-                player.message("$prefix: <red>$kills<col>.")
+        fun count(player: Player, category: String, prefix: String? = null) {
+            val count = player.kills.getOrDefault(category, 0) + 1
+            player.kills[category] = count
+            if (player["kill_counts", false] && prefix != null) {
+                player.message("$prefix: <red>$count<col>.")
             }
         }
 
