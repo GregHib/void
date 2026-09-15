@@ -26,3 +26,7 @@ persist = true
 [insta_kill]
 format = "boolean"
 persist = true
+
+[respawn_tile]
+format = "int"
+persist = true
