@@ -2,10 +2,12 @@ package content.minigame.barrows
 
 import content.entity.combat.hit.directHit
 import content.entity.player.inv.item.addOrDrop
+import content.entity.player.stat.BossTracker
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
+import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
@@ -44,9 +46,16 @@ class BarrowsChest(val drops: DropTables) : Script {
                 return@objectOperate
             }
 
+            BossTracker.kill(this, "Your Barrows chest count is", "barrows_chests_opened")
+            val kills = get("barrows_kills", 0).coerceAtMost(6)
+            if (kills == 6) {
+                BossTracker.stop(this, "barrows_brothers")
+            }
             val drops = reward(this)
             AuditLog.event(this, "barrows_chest", *drops.toTypedArray())
+            var value = 0
             for (drop in drops) {
+                value += drop.def.cost
                 addOrDrop(drop.id, drop.amount)
             }
             if (Settings["world.additional.messages", false]) {

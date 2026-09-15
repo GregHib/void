@@ -4,6 +4,7 @@ import content.entity.combat.killer
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import content.entity.player.stat.BossTracker
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.*
@@ -34,6 +35,7 @@ class BarrowsCrypts : Script {
                 clear("barrows_looted")
                 val brother = Tables.get("barrows_brothers").rows().random(random)
                 set("barrows_selected_brother", brother.rowId)
+                BossTracker.start(this, "barrows_brothers")
                 shufflePuzzle()
             }
             val brother = target.id.substringBefore("_sarcophagus")
@@ -72,6 +74,7 @@ class BarrowsCrypts : Script {
             player.inc("barrows_kills")
             player.inc("barrows_killed_monsters")
             player.inc("barrows_kill_levels", def.combat)
+            player.inc("barrows_brothers_kills")
         }
 
         npcDeath("bloodworm,crypt_rat_barrows,giant_crypt_rat_chaos_tunnels,crypt_spider,giant_crypt_spider,skeleton_barrows,skeleton_barrows_2,giant_crypt_rat_chaos_tunnels_2,giant_crypt_rat_chaos_tunnels_3,skeleton_barrows_3,skeleton_barrows_4") {
