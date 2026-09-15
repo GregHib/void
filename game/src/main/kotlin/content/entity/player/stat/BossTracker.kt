@@ -10,11 +10,11 @@ import java.util.concurrent.TimeUnit
 class BossTracker : Script {
     init {
         playerCommand("boss_timers", desc = "Toggle whether boss kill timers are displayed") {
-            toggle("boss_timers")
+            message("Boss timers are now: ${if (toggle("boss_timers")) "enabled" else "disabled"}.")
         }
 
         playerCommand("kill_counts", desc = "Toggle whether boss kill counts are displayed") {
-            toggle("kill_counts")
+            message("Boss kill counts are now: ${if (toggle("kill_counts")) "enabled" else "disabled"}.")
         }
     }
 
@@ -25,6 +25,9 @@ class BossTracker : Script {
 
         fun stop(player: Player, timer: String, prefix: String = "Duration") {
             val start = player["${timer}_timer", 0L]
+            if (start == 0L) {
+                return
+            }
             val duration = epochMilliseconds() - start
             val best = player["${timer}_fastest", 0L]
             if (duration > best) {
@@ -43,7 +46,7 @@ class BossTracker : Script {
         fun kill(player: Player, prefix: String, tracker: String) {
             val kills = player.inc(tracker)
             if (player["kill_counts", false]) {
-                player.message("$prefix: $kills")
+                player.message("$prefix: <red>$kills<col>.")
             }
         }
 
