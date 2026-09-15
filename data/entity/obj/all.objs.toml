@@ -675,14 +675,17 @@ examine = "A stand for hats."
 [wheat_zanaris]
 clone = "wheat"
 id = 15506
+examine = "Baby bread."
 
 [wheat_3]
 clone = "wheat"
 id = 15507
+examine = "Baby bread."
 
 [wheat_4]
 clone = "wheat"
 id = 15508
+examine = "Baby bread."
 
 [railing_7]
 id = 15601
