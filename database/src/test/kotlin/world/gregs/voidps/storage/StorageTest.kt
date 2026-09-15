@@ -46,6 +46,8 @@ abstract class StorageTest {
             assertEquals(rank, account.friends[friend])
         }
         assertContentEquals(save.ignores, account.ignores)
+        assertEquals(save.kills, account.kills)
+        assertEquals(save.records, account.records)
     }
 
     @Test
@@ -69,6 +71,8 @@ abstract class StorageTest {
             },
             offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer.EMPTY },
             history = listOf(ExchangeHistory("item", 123, 321)),
+            kills = mapOf("chickens" to 4, "kree_arra" to 2),
+            records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
         )
         storage.save(listOf(override))
 
@@ -101,6 +105,8 @@ abstract class StorageTest {
         assertFalse(account.friends.containsKey("Greg"))
         assertContentEquals(override.ignores, account.ignores)
         assertContentEquals(override.offers, account.offers)
+        assertEquals(override.kills, account.kills)
+        assertEquals(override.records, account.records)
     }
 
     @Test
@@ -325,6 +331,8 @@ abstract class StorageTest {
             ignores = listOf("Mod Murdoch"),
             offers = arrayOf(ExchangeOffer(1, "item", 4, 123, OfferState.PendingSell, 1, 321)),
             history = listOf(ExchangeHistory("item", 123, 321)),
+            kills = mapOf("chickens" to 4, "kree_arra" to 2),
+            records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
         )
     }
 }

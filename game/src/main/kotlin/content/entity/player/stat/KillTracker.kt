@@ -2,15 +2,26 @@ package content.entity.player.stat
 
 import content.entity.combat.damageDealers
 import content.entity.combat.killer
+import content.entity.player.command.find
+import content.quest.questJournal
+import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.playerCommand
+import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.client.variable.hasClock
+import world.gregs.voidps.engine.client.variable.start
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.epochMilliseconds
 import java.util.concurrent.TimeUnit
 
-class KillTracker : Script {
+class KillTracker(val accounts: AccountDefinitions) : Script {
     init {
         playerCommand("boss_timers", desc = "Toggle whether boss kill timers are displayed") {
             message("Boss timers are now: ${if (toggle("boss_timers")) "enabled" else "disabled"}.")
@@ -19,6 +30,23 @@ class KillTracker : Script {
         playerCommand("kill_counts", desc = "Toggle whether boss kill counts are displayed") {
             message("Boss kill counts are now: ${if (toggle("kill_counts")) "enabled" else "disabled"}.")
         }
+
+        val categories = NPCDefinitions.definitions.flatMap { it.getOrNull<Set<String>>("categories") ?: emptySet() }.toSet() + NPCDefinitions.ids.keys
+        playerCommand(
+            "kills",
+            stringArg("category", optional = true, autofill = categories),
+            stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
+            desc = "Check number of kills for a given npc category",
+            handler = ::listKills
+        )
+
+        playerCommand(
+            "time_records",
+            stringArg("category", optional = true, autofill = categories),
+            stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
+            desc = "Check number of personal best kill counts for a given npc category",
+            handler = ::listRecords
+        )
 
         npcLevelChanged(Skill.Constitution) { skill, from, to ->
             val categories: Set<String> = def.getOrNull("categories") ?: return@npcLevelChanged
@@ -53,6 +81,50 @@ class KillTracker : Script {
                 }
             }
         }
+    }
+
+    private fun listKills(player: Player, args: List<String>) {
+        val target = Players.find(player, args.getOrNull(1)) ?: return
+        val category = args.getOrNull(0)
+        if (category != null) {
+            val count = target.kills[category]
+            if (count == null) {
+                player.message("No kills found for category '$category'.", ChatType.Console)
+            } else {
+                player.message("Kill count: $count for category: '$category'.", ChatType.Console)
+            }
+            return
+        }
+        if (player.hasClock("commands_delay")) {
+            return
+        }
+        player.start("commands_delay", 1)
+        val list = target.kills.toList().sortedByDescending { it.second }.map { "${it.first.toTitleCase()} = ${it.second.toDigitGroupString()}" }
+        player.questJournal("NPC Kills List", list)
+    }
+
+    private fun listRecords(player: Player, args: List<String>) {
+        val target = Players.find(player, args.getOrNull(1)) ?: return
+        val category = args.getOrNull(0)
+        if (player.hasClock("commands_delay")) {
+            return
+        }
+        val records = if (category != null) {
+            val count = target.records.filter { it.key.startsWith(category) }
+            if (count.isEmpty()) {
+                player.message("No records found for category '$category'.", ChatType.Console)
+                return
+            }
+            count
+        } else {
+            target.records
+        }
+        player.start("commands_delay", 1)
+        val list = records.toList().sortedBy { it.second }.map {
+            val name = it.first.replace("_duo", " (Duo)").replace("_trio", " (Trio)").replace("_quad", " (Quad)").replace("_mass", " (Mass)")
+            "${name.toTitleCase()}: ${timestamp(it.second.toLong())}"
+        }
+        player.questJournal("Time Records List", list)
     }
 
     companion object {

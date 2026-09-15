@@ -200,6 +200,7 @@ class DatabaseStorage : Storage {
         saveOffers(accounts, playerIds)
         saveHistories(accounts, playerIds)
         saveKills(accounts, playerIds)
+        saveRecords(accounts, playerIds)
     }
 
     override fun saveReport(report: AbuseReport): Unit = transaction {
@@ -328,22 +329,22 @@ class DatabaseStorage : Storage {
     }
 
     private fun saveKills(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
-        PlayerKillsTable.deleteWhere { playerId inList playerIds.values }
+        KillsTable.deleteWhere { playerId inList playerIds.values }
         val killData = accounts.flatMap { save -> save.kills.map { Triple(save.name, it.key, it.value) } }
-        PlayerKillsTable.batchUpsert(killData, PlayerKillsTable.playerId, PlayerKillsTable.category) { (id, category, count) ->
-            this[PlayerKillsTable.playerId] = playerIds.getValue(id.lowercase())
-            this[PlayerKillsTable.category] = category
-            this[PlayerKillsTable.count] = count
+        KillsTable.batchUpsert(killData, KillsTable.playerId, KillsTable.category) { (id, category, count) ->
+            this[KillsTable.playerId] = playerIds.getValue(id.lowercase())
+            this[KillsTable.category] = category
+            this[KillsTable.count] = count
         }
     }
 
     private fun saveRecords(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
-        PlayerRecordTable.deleteWhere { playerId inList playerIds.values }
+        RecordsTable.deleteWhere { playerId inList playerIds.values }
         val killData = accounts.flatMap { save -> save.records.map { Triple(save.name, it.key, it.value) } }
-        PlayerRecordTable.batchUpsert(killData, PlayerRecordTable.playerId, PlayerRecordTable.type) { (id, type, millis) ->
-            this[PlayerRecordTable.playerId] = playerIds.getValue(id.lowercase())
-            this[PlayerRecordTable.type] = type
-            this[PlayerRecordTable.millis] = millis
+        RecordsTable.batchUpsert(killData, RecordsTable.playerId, RecordsTable.type) { (id, type, millis) ->
+            this[RecordsTable.playerId] = playerIds.getValue(id.lowercase())
+            this[RecordsTable.type] = type
+            this[RecordsTable.millis] = millis
         }
     }
 
@@ -586,15 +587,15 @@ class DatabaseStorage : Storage {
         ExchangeHistory(item, amount, coins)
     }
 
-    private fun loadKills(playerId: Int): Map<String, Int> = PlayerKillsTable.selectAll().where { PlayerKillsTable.playerId eq playerId }.associate { row ->
-        val category = row[PlayerKillsTable.category]
-        val count = row[PlayerKillsTable.count]
+    private fun loadKills(playerId: Int): Map<String, Int> = KillsTable.selectAll().where { KillsTable.playerId eq playerId }.associate { row ->
+        val category = row[KillsTable.category]
+        val count = row[KillsTable.count]
         category to count
     }
 
-    private fun loadRecords(playerId: Int): Map<String, Int> = PlayerRecordTable.selectAll().where { PlayerRecordTable.playerId eq playerId }.associate { row ->
-        val type = row[PlayerRecordTable.type]
-        val millis = row[PlayerRecordTable.millis]
+    private fun loadRecords(playerId: Int): Map<String, Int> = RecordsTable.selectAll().where { RecordsTable.playerId eq playerId }.associate { row ->
+        val type = row[RecordsTable.type]
+        val millis = row[RecordsTable.millis]
         type to millis
     }
 
@@ -621,7 +622,7 @@ class DatabaseStorage : Storage {
             }
         }
 
-        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable, ReportsTable)
+        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable, ReportsTable, KillsTable, RecordsTable)
 
         private const val TYPE_STRING = 0.toByte()
         private const val TYPE_INT = 1.toByte()

@@ -164,6 +164,8 @@ data class PlayerSave(
                 write("}")
             }
             write("\n")
+
+            write("\n")
             writeSection("statistics")
             writeKey("kills")
             writeValue(kills, escapeKey = true)

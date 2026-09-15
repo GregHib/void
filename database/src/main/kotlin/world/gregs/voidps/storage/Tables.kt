@@ -189,7 +189,7 @@ internal object ItemHistoryTable : Table("grand_exchange_item_history") {
     val volumeLow = long("volume_low")
 }
 
-internal object PlayerKillsTable : Table("kills") {
+internal object KillsTable : Table("kills") {
     val playerId = integer("player_id").references(AccountsTable.id)
     val category = text("category")
     val count = integer("count")
@@ -198,7 +198,7 @@ internal object PlayerKillsTable : Table("kills") {
     }
 }
 
-internal object PlayerRecordTable : Table("time_records") {
+internal object RecordsTable : Table("timed_records") {
     val playerId = integer("player_id").references(AccountsTable.id)
     val type = text("type")
     val millis = integer("millis")
