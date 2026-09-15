@@ -110,7 +110,7 @@ class AdventurersLogs(
     companion object {
         fun questCompleted(player: Player, quest: String, points: Int) {
             val def = get<QuestDefinitions>().getOrNull(quest) ?: return
-            val message = Tables.stringOrNull("quest_messages.$quest") ?: "Quest Completed!"
+            val message = Tables.stringOrNull("quest_messages.$quest.message") ?: "Quest Completed!"
             player.logEvent("Quest complete: ${def.name}", message)
             if (points != 0) {
                 val from = player["quest_points", 0]
