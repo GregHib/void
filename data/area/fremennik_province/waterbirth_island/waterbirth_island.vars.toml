@@ -1,0 +1,71 @@
+[dagannoth_supreme_kills]
+format = "int"
+persist = true
+
+[dagannoth_supreme_fastest_solo]
+format = "int"
+persist = true
+
+[dagannoth_supreme_fastest_duo]
+format = "int"
+persist = true
+
+[dagannoth_supreme_fastest_trio]
+format = "int"
+persist = true
+
+[dagannoth_supreme_fastest_quad]
+format = "int"
+persist = true
+
+[dagannoth_supreme_fastest_mass]
+format = "int"
+persist = true
+
+[dagannoth_prime_kills]
+format = "int"
+persist = true
+
+[dagannoth_prime_fastest_solo]
+format = "int"
+persist = true
+
+[dagannoth_prime_fastest_duo]
+format = "int"
+persist = true
+
+[dagannoth_prime_fastest_trio]
+format = "int"
+persist = true
+
+[dagannoth_prime_fastest_quad]
+format = "int"
+persist = true
+
+[dagannoth_prime_fastest_mass]
+format = "int"
+persist = true
+
+[dagannoth_rex_kills]
+format = "int"
+persist = true
+
+[dagannoth_rex_fastest_solo]
+format = "int"
+persist = true
+
+[dagannoth_rex_fastest_duo]
+format = "int"
+persist = true
+
+[dagannoth_rex_fastest_trio]
+format = "int"
+persist = true
+
+[dagannoth_rex_fastest_quad]
+format = "int"
+persist = true
+
+[dagannoth_rex_fastest_mass]
+format = "int"
+persist = true

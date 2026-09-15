@@ -33,7 +33,7 @@ class BossTracker : Script {
                 val count = damageDealers.size
                 val start = get("${id}_kill_timer", 0L)
                 for ((char, damage) in damageDealers) {
-                    if (char is Player) {
+                    if (char is Player && damage > 0) {
                         kill(char, "Your ${def.name} kill count is", "${id}_kills")
                         record(char, start, id, count, "Fight duration")
                     }
@@ -45,9 +45,17 @@ class BossTracker : Script {
     companion object {
         fun record(player: Player, start: Long, timer: String, teamSize: Int, prefix: String = "Duration") {
             val duration = epochMilliseconds() - start
-            val best = player["${timer}_fastest", 0L]
+            val type = when (teamSize) {
+                0 -> return
+                1 -> "solo"
+                2 -> "duo"
+                3 -> "trio"
+                4 -> "quad"
+                else -> "mass"
+            }
+            val best = player["${timer}_fastest_${type}", 0L]
             if (duration > best && !player["insta_kill", false] && !player["god_mode", false]) { // No cheating!
-                player["${timer}_fastest"] = duration.toInt()
+                player["${timer}_fastest_${type}"] = duration.toInt()
             }
             if (player["boss_timers", false]) {
                 val time = "<red>${timestamp(duration)}</col>"

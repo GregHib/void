@@ -5,3 +5,11 @@ persist = true
 [bork_kill_count]
 format = "int"
 persist = true
+
+[bork_kills]
+format = "int"
+persist = true
+
+[bork_fastest_solo]
+format = "int"
+persist = true

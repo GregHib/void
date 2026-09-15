@@ -1,3 +1,99 @@
 [godwars_altar_recharge]
 persist = true
 format = "int"
+
+[kril_tsutsaroth_kills]
+format = "int"
+persist = true
+
+[kril_tsutsaroth_fastest_solo]
+format = "int"
+persist = true
+
+[kril_tsutsaroth_fastest_duo]
+format = "int"
+persist = true
+
+[kril_tsutsaroth_fastest_trio]
+format = "int"
+persist = true
+
+[kril_tsutsaroth_fastest_quad]
+format = "int"
+persist = true
+
+[kril_tsutsaroth_fastest_mass]
+format = "int"
+persist = true
+
+[kree_arra_kills]
+format = "int"
+persist = true
+
+[kree_arra_fastest_solo]
+format = "int"
+persist = true
+
+[kree_arra_fastest_duo]
+format = "int"
+persist = true
+
+[kree_arra_fastest_trio]
+format = "int"
+persist = true
+
+[kree_arra_fastest_quad]
+format = "int"
+persist = true
+
+[kree_arra_fastest_mass]
+format = "int"
+persist = true
+
+[general_graardor_kills]
+format = "int"
+persist = true
+
+[general_graardor_fastest_solo]
+format = "int"
+persist = true
+
+[general_graardor_fastest_duo]
+format = "int"
+persist = true
+
+[general_graardor_fastest_trio]
+format = "int"
+persist = true
+
+[general_graardor_fastest_quad]
+format = "int"
+persist = true
+
+[general_graardor_fastest_mass]
+format = "int"
+persist = true
+
+[commander_zilyana_kills]
+format = "int"
+persist = true
+
+[commander_zilyana_fastest_solo]
+format = "int"
+persist = true
+
+[commander_zilyana_fastest_duo]
+format = "int"
+persist = true
+
+[commander_zilyana_fastest_trio]
+format = "int"
+persist = true
+
+[commander_zilyana_fastest_quad]
+format = "int"
+persist = true
+
+[commander_zilyana_fastest_mass]
+format = "int"
+persist = true

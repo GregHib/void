@@ -1,3 +1,11 @@
 [fight_cave_rotation]
 format = "int"
 persist = true
+
+[tztok_jad_kills]
+format = "int"
+persist = true
+
+[tztok_jad_fastest_solo]
+format = "int"
+persist = true

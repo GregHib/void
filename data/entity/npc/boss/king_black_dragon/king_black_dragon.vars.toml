@@ -1,4 +1,20 @@
-[king_black_dragon_fastest]
+[king_black_dragon_fastest_solo]
+format = "int"
+persist = true
+
+[king_black_dragon_fastest_duo]
+format = "int"
+persist = true
+
+[king_black_dragon_fastest_trio]
+format = "int"
+persist = true
+
+[king_black_dragon_fastest_quad]
+format = "int"
+persist = true
+
+[king_black_dragon_fastest_mass]
 format = "int"
 persist = true
 
