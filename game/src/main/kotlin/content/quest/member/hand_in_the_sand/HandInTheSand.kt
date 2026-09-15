@@ -9,20 +9,15 @@ import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
 import content.quest.messageScroll
 import content.quest.quest
-import content.quest.questComplete
 import content.quest.questJournal
 import content.quest.questStage
-import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -377,32 +372,4 @@ class HandInTheSand : Script {
         val BETTY_DOOR = Tile(3017, 3259, 0)
         val BETTY_DOORWAY = Tile(3016, 3259, 0)
     }
-}
-
-suspend fun Player.sendHandQuestReward() {
-    set("hand_in_the_sand", "completed")
-    jingle("quest_complete_1")
-    exp(Skill.Crafting, 9000.0)
-    exp(Skill.Thieving, 1000.0)
-    inc("quest_points")
-    AuditLog.event(this, "quest_completed", "hand_in_the_sand")
-
-    set("handsand_question1", false)
-    set("handsand_question2", false)
-    set("handsand_question3", false)
-    set("handsand_tele", true)
-    set("handsand_serum", 6)
-    set("handsand_sandy_multi", 2)
-    set("handsand_coffee_multi", 1)
-    set("handsand_counter_multi", false)
-    refreshQuestJournal()
-    questComplete(
-        "Hand in the Sand",
-        "1 Quest Point",
-        "9,000 Crafting XP",
-        "1,000 Thieving XP",
-        "Wizards' Guild Rune Store access",
-        "A secret reward from Bert",
-        item = "sandy_hand",
-    )
 }

@@ -13,6 +13,7 @@ import content.entity.player.effect.energy.runEnergy
 import content.entity.player.equip.DragonfireShield
 import content.entity.player.inv.item.tradeable
 import content.entity.player.kept.ItemsKeptOnDeath
+import content.entity.player.logEvent
 import content.entity.proj.shoot
 import content.quest.instance
 import content.quest.instanceLogout
@@ -32,6 +33,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
@@ -62,6 +64,9 @@ class PlayerDeath : Script {
                 val dealer = damageDealers.maxByOrNull { it.value }
                 val killer = dealer?.key
                 AuditLog.event(this, "died", tile, killer)
+                if (killer is Player) {
+                    killer.logEvent("I killed $name.", "I killed the player $name.")
+                }
                 while (true) {
                     instructions.tryReceive().getOrNull() ?: break
                 }

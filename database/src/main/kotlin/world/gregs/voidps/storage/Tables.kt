@@ -188,3 +188,32 @@ internal object ItemHistoryTable : Table("grand_exchange_item_history") {
     val volumeHigh = long("volume_high")
     val volumeLow = long("volume_low")
 }
+
+internal object KillsTable : Table("kills") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val category = text("category")
+    val count = integer("count")
+    init {
+        index(true, playerId, category)
+    }
+}
+
+internal object RecordsTable : Table("timed_records") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val type = text("type")
+    val millis = integer("millis")
+    init {
+        index(true, playerId, type)
+    }
+}
+
+internal object RecentEventsTable : Table("recent_events") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val index = integer("index")
+    val time = integer("time")
+    val title = text("title")
+    val description = text("description")
+    init {
+        index(true, playerId, index)
+    }
+}

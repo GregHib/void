@@ -29,7 +29,7 @@ spawns = [
   { id = "desert_snake", x = 3396, y = 3029, members = true },
   { id = "desert_snake", x = 3397, y = 3044, members = true },
   { id = "desert_snake", x = 3398, y = 3038, members = true },
-  { id = "desert_phoenix_kharidian_desert", x = 3347, y = 3114, members = true },
+  { id = "desert_phoenix", x = 3347, y = 3114, members = true },
   { id = "eblis_kharidian_desert", x = 3213, y = 2957, members = true },
   { id = "bandit_bandit_camp_6", x = 3272, y = 2977, members = true },
   { id = "bandit_bandit_camp_6", x = 3280, y = 2957, members = true },

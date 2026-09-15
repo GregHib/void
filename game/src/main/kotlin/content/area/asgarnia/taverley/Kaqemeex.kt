@@ -1,5 +1,6 @@
 package content.area.asgarnia.taverley
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -161,6 +162,7 @@ class Kaqemeex : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "druidic_ritual")
+        AdventurersLogs.questCompleted(this, "druidic_ritual", points = 4)
         set("druidic_ritual", "completed")
         jingle("quest_complete_1")
         exp(Skill.Herblore, 250.0)

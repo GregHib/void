@@ -6,6 +6,7 @@ import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMe
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
+import content.entity.player.logEvent
 import content.entity.player.modal.Tab
 import content.entity.world.music.playTrack
 import content.quest.closeTabs
@@ -302,6 +303,7 @@ class DungeonComplete : Script {
                     if (unlocked < 60 && floor == unlocked) {
                         set("dungeoneering_floor_unlocked", floor + 1)
                         item(3032, "You have unlocked the next floor. You can now reach floor ${floor + 1}!")
+                        logEvent("Dungeon floor ${floor + 1} reached.", "I have breached floor ${floor + 1} of Daemonheim for the first time.")
                     }
                 }
                 set("dungeon_reward_given", true)
