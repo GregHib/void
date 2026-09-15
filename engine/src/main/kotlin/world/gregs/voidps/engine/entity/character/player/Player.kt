@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.ui.closeMenu
 import world.gregs.voidps.engine.client.update.view.Viewport
 import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.Variables
+import world.gregs.voidps.engine.data.RecentEvent
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
 import world.gregs.voidps.engine.data.exchange.ExchangeOffer
 import world.gregs.voidps.engine.entity.character.Character
@@ -52,6 +53,7 @@ class Player(
     val history: MutableList<ExchangeHistory> = mutableListOf(),
     val kills: MutableMap<String, Int> = mutableMapOf(),
     val records: MutableMap<String, Int> = mutableMapOf(),
+    val recentEvents: MutableList<RecentEvent> = mutableListOf(),
 ) : Character {
 
     override val visuals: PlayerVisuals = PlayerVisuals(body)

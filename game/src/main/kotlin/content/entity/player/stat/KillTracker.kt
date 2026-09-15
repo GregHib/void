@@ -3,17 +3,22 @@ package content.entity.player.stat
 import content.entity.combat.damageDealers
 import content.entity.combat.killer
 import content.entity.player.command.find
+import content.entity.player.logEvent
 import content.quest.questJournal
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -79,6 +84,44 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
                 } else {
                     count(player, category)
                 }
+            }
+            // Temp store kill counts to write to player on logout
+            player.inc("kills_$id")
+        }
+
+        playerDespawn {
+            val vars = variables as? PlayerVariables ?: return@playerDespawn
+            val temp = vars.temp
+
+            val rex = temp["kills_dagannoth_rex"] as? Int ?: 0
+            val prime = temp["kills_dagannoth_prime"] as? Int ?: 0
+            val supreme = temp["kills_dagannoth_supreme"] as? Int ?: 0
+            val kings = rex + prime + supreme
+            if (kings > 0) {
+                logEvent("I killed ${if (kings > 1) kings else "a"} Dagannoth ${"King".plural(kings)}", "I killed $kings Dagannoth ${"King".plural(kings)}.")
+            }
+
+            val icyBones = temp.filter { it.key.startsWith("kills_rand_ice_lord_boss") }.values.filterIsInstance<Int>().sum()
+            if (icyBones > 0) {
+                logEvent("I killed $icyBones boss ${"monster".plural(icyBones)} in Daemonheim.", "I killed $icyBones boss ${"monster".plural(icyBones)} called: Icy Bones in Daemonheim.")
+            }
+
+            for (key in temp.keys.filter { it.startsWith("kills_") }) {
+                val count = temp[key] as? Int ?: continue
+                val id = key.substringAfter("kills_")
+                val rows = Rows.getOrNull("log_npcs.$id") ?: continue
+                var message = if (count == 1) {
+                    rows.stringOrNull("single") ?: rows.stringOrNull("multiple")
+                } else {
+                    rows.stringOrNull("multiple")
+                } ?: continue
+                val name = NPCDefinitions.get(id).name
+                logEvent(
+                    "I killed${if (count > 1) " $count" else name.an()} ${name.plural(count)}.",
+                    message
+                        .replace("<count>", if (count >= 100) "a great number of" else count.toString())
+                        .replace("<name>", name.plural(count)),
+                )
             }
         }
     }

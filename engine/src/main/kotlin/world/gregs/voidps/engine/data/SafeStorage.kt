@@ -168,6 +168,7 @@ class SafeStorage(
         appendLine("[statistics]")
         appendLine("kills = {${save.kills.toList().joinToString(", ") { "\"${it.first}\" = ${it.second}" }}}")
         appendLine("records = {${save.records.toList().joinToString(", ") { "\"${it.first}\" = ${it.second}" }}}")
+        appendLine("recent_events = [${save.recentEvents.joinToString(", ") { "{title = \"${it.title}\", desc = \"${it.description}\", seconds = ${it.time}}" }}]")
     }
 
     override fun exists(accountName: String): Boolean = false

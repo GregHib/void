@@ -36,6 +36,7 @@ data class PlayerSave(
     val history: List<ExchangeHistory>,
     val kills: Map<String, Int>,
     val records: Map<String, Int>,
+    val recentEvents: List<RecentEvent>,
 ) {
 
     fun toPlayer(): Player = Player(
@@ -53,6 +54,7 @@ data class PlayerSave(
         history = history.toMutableList(),
         kills = kills.toMutableMap(),
         records = records.toMutableMap(),
+        recentEvents = recentEvents.toMutableList(),
     )
 
     fun save(file: File) {
@@ -173,6 +175,21 @@ data class PlayerSave(
             writeKey("records")
             writeValue(records, escapeKey = true)
             write("\n")
+            writeKey("recent_events")
+            list(recentEvents.size) { index ->
+                val event = recentEvents[index]
+                write("{")
+                writeKey("title")
+                writeValue(event.title)
+                write(", ")
+                writeKey("desc")
+                writeValue(event.description)
+                write(", ")
+                writeKey("time")
+                writeValue(event.time)
+                write("}")
+            }
+            write("\n")
         }
     }
 
@@ -199,6 +216,7 @@ data class PlayerSave(
         if (history != other.history) return false
         if (kills != other.kills) return false
         if (records != other.records) return false
+        if (recentEvents != other.recentEvents) return false
         return true
     }
 
@@ -220,6 +238,7 @@ data class PlayerSave(
         result = 31 * result + history.hashCode()
         result = 31 * result + kills.hashCode()
         result = 31 * result + records.hashCode()
+        result = 31 * result + recentEvents.hashCode()
         return result
     }
 
@@ -242,6 +261,7 @@ data class PlayerSave(
             val history = ObjectArrayList<ExchangeHistory>()
             val kills = Object2IntOpenHashMap<String>()
             val records = Object2IntOpenHashMap<String>()
+            val recentEvents = mutableListOf<RecentEvent>()
             Config.fileReader(file) {
                 while (nextPair()) {
                     when (val key = key()) {
@@ -405,6 +425,19 @@ data class PlayerSave(
                                         val millis = int()
                                         records[type] = millis
                                     }
+                                    "recent_events" -> while (nextElement()) {
+                                        var time = 0
+                                        var title = ""
+                                        var desc = ""
+                                        while (nextEntry()) {
+                                            when (key()) {
+                                                "time" -> time = int()
+                                                "title" -> title = string()
+                                                "desc" -> desc = string()
+                                            }
+                                        }
+                                        recentEvents.add(RecentEvent(time, title, desc))
+                                    }
                                 }
                             }
                         }
@@ -430,6 +463,7 @@ data class PlayerSave(
                 history = history,
                 kills = kills,
                 records = records,
+                recentEvents = recentEvents,
             )
         }
     }
@@ -453,4 +487,5 @@ internal fun Player.copy() = PlayerSave(
     history = history.toList(),
     kills = kills.toMap(),
     records = records.toMap(),
+    recentEvents = recentEvents.toList(),
 )

@@ -2,6 +2,10 @@
 format = "int"
 persist = true
 
+[playtime]
+format = "int"
+persist = true
+
 [rights]
 format = "list"
 persist = true

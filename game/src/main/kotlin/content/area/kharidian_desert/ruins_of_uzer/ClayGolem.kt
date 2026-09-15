@@ -1,5 +1,6 @@
 package content.area.kharidian_desert.ruins_of_uzer
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -202,10 +203,11 @@ class ClayGolem : Script {
         npc<Happy>("Task complete!")
         npc<Happy>("Thank you. Now my mind is at rest.")
         inventory.remove("golem_program")
+        AuditLog.event(this, "quest_completed", "the_golem")
+        AdventurersLogs.questCompleted(this, "the_golem", points = 1)
         set("the_golem", "completed")
         jingle("quest_complete_1")
         inc("quest_points")
-        AuditLog.event(this, "quest_completed", "the_golem")
         refreshQuestJournal()
         questComplete(
             "The Golem",
