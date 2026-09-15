@@ -1,5 +1,6 @@
 package content.area.kandarin.ardougne
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -76,11 +77,12 @@ class KingLathas : Script {
     }
 
     private fun Player.completeQuest() {
+        AuditLog.event(this, "quest_completed", "biohazard")
+        AdventurersLogs.questCompleted(this, "biohazard", points = 3)
         set("biohazard", "completed")
         jingle("quest_complete_1")
         exp(Skill.Thieving, 1250.0)
         inc("quest_points", 3)
-        AuditLog.event(this, "quest_completed", "biohazard")
         refreshQuestJournal()
         questComplete(
             "Biohazard",
