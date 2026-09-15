@@ -49,6 +49,9 @@ class BarrowsChest(val drops: DropTables) : Script {
             for (drop in drops) {
                 addOrDrop(drop.id, drop.amount)
             }
+            if (Settings["world.additional.messages", false]) {
+                message("<blue>Your chest is worth around ${value.toDigitGroupString()} coins.")
+            }
             reset(this)
             softTimers.start("barrows_cave_shake")
             set("barrows_looted", true)
