@@ -9,3 +9,11 @@ persist = true
 [tztok_jad_fastest_solo]
 format = "int"
 persist = true
+
+[tzhaar_fight_cave_duration]
+format = "int"
+persist = true
+
+[tzhaar_fight_cave_fastest]
+format = "int"
+persist = true

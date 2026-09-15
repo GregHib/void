@@ -25,7 +25,7 @@ class BossTracker : Script {
                 return@npcLevelChanged
             }
             val max = levels.getMax(skill)
-            if (to == max && from != max) { // Reset if healed back to max
+            if (to == max && from != max) { // Reset when healed back to max
                 clear("${id}_kill_timer")
             } else if (from == max && to != max) { // Start when hit down from max
                 set("${id}_kill_timer", epochMilliseconds())
@@ -38,6 +38,7 @@ class BossTracker : Script {
                         record(char, start, id, count, "Fight duration")
                     }
                 }
+                clear("${id}_kill_timer")
             }
         }
     }
@@ -77,6 +78,7 @@ class BossTracker : Script {
             if (start == 0L) {
                 return
             }
+            player.clear("${timer}_kill_timer")
             record(player, start, timer, teamSize, prefix)
         }
 
@@ -94,8 +96,6 @@ class BossTracker : Script {
             val millis = duration.rem(1000) / 10
             return if (hours > 0) {
                 "$hours:$minutes:$seconds"
-            } else if (minutes > 0) {
-                "$minutes:$seconds"
             } else {
                 "$minutes:$seconds.$millis"
             }
