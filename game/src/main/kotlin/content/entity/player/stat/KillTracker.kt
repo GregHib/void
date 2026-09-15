@@ -1,15 +1,17 @@
 package content.entity.player.stat
 
 import content.entity.combat.damageDealers
+import content.entity.combat.killer
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.playerCommand
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.data.definition.DefinitionsDecoder.Companion.toIdentifier
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.timer.epochMilliseconds
 import java.util.concurrent.TimeUnit
 
-class BossTracker : Script {
+class KillTracker : Script {
     init {
         playerCommand("boss_timers", desc = "Toggle whether boss kill timers are displayed") {
             message("Boss timers are now: ${if (toggle("boss_timers")) "enabled" else "disabled"}.")
@@ -40,6 +42,15 @@ class BossTracker : Script {
                 }
                 clear("${id}_kill_timer")
             }
+        }
+
+        npcDeath {
+            val player = killer as? Player ?: return@npcDeath
+            val categories: Set<String> = def.getOrNull("categories") ?: return@npcDeath
+            if (!categories.contains("tracked")) {
+                return@npcDeath
+            }
+            player.inc("${toIdentifier(def.name)}_kills")
         }
     }
 

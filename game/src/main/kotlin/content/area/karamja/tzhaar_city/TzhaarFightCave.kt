@@ -11,7 +11,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.npc
 import content.entity.player.inv.item.addOrDrop
-import content.entity.player.stat.BossTracker
+import content.entity.player.stat.KillTracker
 import content.quest.clearInstance
 import content.quest.instanceOffset
 import content.quest.smallInstance
@@ -223,7 +223,7 @@ class TzhaarFightCave(
         clear("fight_cave_wave")
         start("fight_cave_cooldown", TimeUnit.MINUTES.toSeconds(2).toInt(), epochSeconds())
         close("tzhaar_fight_cave")
-        BossTracker.stop(this, "tzhaar_fight_cave", prefix = "Total wave duration")
+        KillTracker.stop(this, "tzhaar_fight_cave", prefix = "Total wave duration")
         clear("tzhaar_fight_cave_kill_timer")
         clear("tzhaar_fight_cave_duration")
         tele(outside)
@@ -282,7 +282,7 @@ class TzhaarFightCave(
             val rotation = (1..15).random(random)
             val start = epochMilliseconds()
             player["fight_cave_rotation"] = rotation
-            BossTracker.start(player, "tzhaar_fight_cave")
+            KillTracker.start(player, "tzhaar_fight_cave")
             AuditLog.event(player, "start_fight_cave", start, wave, rotation)
         } else if (wave == 63) {
             player.queue("fight_cave_warning") {

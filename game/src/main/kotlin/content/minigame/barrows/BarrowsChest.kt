@@ -2,7 +2,7 @@ package content.minigame.barrows
 
 import content.entity.combat.hit.directHit
 import content.entity.player.inv.item.addOrDrop
-import content.entity.player.stat.BossTracker
+import content.entity.player.stat.KillTracker
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
@@ -46,10 +46,10 @@ class BarrowsChest(val drops: DropTables) : Script {
                 return@objectOperate
             }
 
-            BossTracker.kill(this, "Your Barrows chest count is", "barrows_chests_opened")
+            KillTracker.kill(this, "Your Barrows chest count is", "barrows_chests_opened")
             val kills = get("barrows_kills", 0).coerceAtMost(6)
             if (kills == 6) {
-                BossTracker.stop(this, "barrows_brothers")
+                KillTracker.stop(this, "barrows_brothers")
             }
             val drops = reward(this)
             AuditLog.event(this, "barrows_chest", *drops.toTypedArray())
