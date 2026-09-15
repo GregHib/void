@@ -312,7 +312,6 @@ class GhostsAhoy : Script {
 
         itemOption("Dig", "spade") {
             if (tile.equals(3803, 3530) && inventory.contains("treasure_map") && !inventory.contains("book_of_haricanto") && inventory.spaces > 0) {
-                anim("human_dig")
                 delay(3)
                 addOrDrop("book_of_haricanto")
                 item(item = "book_of_haricanto", text = "You unearth the Book of Haricanto.")

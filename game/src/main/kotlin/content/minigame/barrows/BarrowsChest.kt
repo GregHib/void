@@ -2,10 +2,12 @@ package content.minigame.barrows
 
 import content.entity.combat.hit.directHit
 import content.entity.player.inv.item.addOrDrop
+import content.entity.player.stat.KillTracker
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
+import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
@@ -43,11 +45,20 @@ class BarrowsChest(val drops: DropTables) : Script {
                 message("The chest is empty.")
                 return@objectOperate
             }
-
+            KillTracker.count(this, "barrows_chests", "Your Barrows chest count is")
+            val kills = get("barrows_kills", 0).coerceAtMost(6)
+            if (kills == 6) {
+                KillTracker.stop(this, "barrows_brothers_timer")
+            }
             val drops = reward(this)
             AuditLog.event(this, "barrows_chest", *drops.toTypedArray())
+            var value = 0
             for (drop in drops) {
+                value += drop.def.cost
                 addOrDrop(drop.id, drop.amount)
+            }
+            if (Settings["world.additional.messages", false]) {
+                message("<blue>Your chest is worth around ${value.toDigitGroupString()} coins.")
             }
             reset(this)
             softTimers.start("barrows_cave_shake")

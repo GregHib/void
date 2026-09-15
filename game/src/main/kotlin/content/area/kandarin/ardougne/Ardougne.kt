@@ -66,9 +66,7 @@ class Ardougne : Script {
         }
 
         itemOption("Dig", "spade") {
-            val playerTile: Tile = tile
-            anim("human_dig")
-            if (mudpatch.contains(playerTile)) {
+            if (mudpatch.contains(tile)) {
                 if (quest("plague_city") == "four_bucket_of_water") {
                     dig()
                 } else {
