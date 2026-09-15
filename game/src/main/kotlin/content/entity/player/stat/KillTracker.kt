@@ -37,7 +37,7 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
             stringArg("category", optional = true, autofill = categories),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
             desc = "Check number of kills for a given npc category",
-            handler = ::listKills
+            handler = ::listKills,
         )
 
         playerCommand(
@@ -45,7 +45,7 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
             stringArg("category", optional = true, autofill = categories),
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
             desc = "Check number of personal best kill counts for a given npc category",
-            handler = ::listRecords
+            handler = ::listRecords,
         )
 
         npcLevelChanged(Skill.Constitution) { skill, from, to ->
@@ -147,7 +147,7 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
             }
             if (player["boss_timers", false]) {
                 val time = "<red>${timestamp(duration)}</col>"
-                val teamPrefix = if (teamSize > 1) "Team size: <red>${teamSize} players</col> " else ""
+                val teamPrefix = if (teamSize > 1) "Team size: <red>$teamSize players</col> " else ""
                 if (duration > best) {
                     player.message("$teamPrefix$prefix: $time (new personal best)")
                 } else {
