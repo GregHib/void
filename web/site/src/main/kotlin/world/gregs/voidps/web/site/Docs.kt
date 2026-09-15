@@ -32,31 +32,119 @@ object Docs {
 
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.ENGLISH)
 
+    private val wikiDir = File("../void-wiki/")
+
     fun generate(buildDir: File) {
         val docsDir = File(buildDir, "docs")
         docsDir.mkdirs()
 
-        // TODO get data from within md headers
-        val sources = File("../void-wiki/").listFiles()!!.filter { it.isFile && it.extension == "md" }.map {
-            DocSource(it.nameWithoutExtension.lowercase(), it.nameWithoutExtension.replace("-", " "), "", it)
-        }
+        val sidebar = File(wikiDir, "_Sidebar.md").takeIf { it.exists() }?.let { parseSidebar(it.readText()) }
+
+        // "_Sidebar.md" and "_Footer.md" are wiki chrome, not content pages.
+        val sources = wikiDir.listFiles()!!
+            .filter { it.isFile && it.extension == "md" && !it.name.startsWith("_") }
+            .map {
+                val (frontMatter, _) = extractFrontMatter(it.readText())
+                DocSource(
+                    id = it.nameWithoutExtension.lowercase(),
+                    title = frontMatter.title ?: it.nameWithoutExtension.replace("-", " "),
+                    description = frontMatter.description ?: "",
+                    file = it,
+                )
+            }
 
         val available = sources.filter { it.file.exists() }
+        val ids = available.mapTo(mutableSetOf()) { it.id }
         for ((index, source) in available.withIndex()) {
-            val markdown = renderMarkdown(source.file.readText())
+            val (_, body) = extractFrontMatter(source.file.readText())
+            val markdown = renderMarkdown(body)
             val previous = available.getOrNull(index - 1)
             val next = available.getOrNull(index + 1)
-            val html = docPage(source, available, markdown, previous, next)
-            File(docsDir, "${source.id}.html").writeText(html)
+            val html = docPage(source, available, sidebar, markdown, previous, next)
+            File(docsDir, "${source.id}.html").writeText(rewriteDocLinks(html, ids))
         }
         available.firstOrNull()?.let {
             File(docsDir, "index.html").writeText(File(docsDir, "${it.id}.html").readText())
         }
     }
 
+    /** Resolves a sidebar/content link's `href` relative to `docs/`; external links pass through. */
+    private fun resolveHref(href: String): String =
+        if (href.startsWith("http://") || href.startsWith("https://")) href else href.removePrefix("./")
+
+    private val hrefAttribute = Regex("""href="([^"]*)"""")
+
+    /**
+     * Rewrites every internal `href` that names a known doc — written the GitHub-wiki way, with
+     * no `.html` (`./roadmap`, `installation-guide#step-6...`) — to point straight at the real
+     * `<id>.html` file. Doc pages used to instead ship an extensionless `docs/<id>` that redirected
+     * client-side, but that meant every one of those clicks did two full page loads (and their own
+     * un-styled first paint) instead of one — the visible flash was that second load, not the CSS.
+     * Direct links avoid it entirely, and are just as robust for a plain static host as a redirect
+     * would have been.
+     */
+    private fun rewriteDocLinks(html: String, ids: Set<String>): String = hrefAttribute.replace(html) { match ->
+        val href = match.groupValues[1]
+        if (href.isEmpty() || href.startsWith("#") || href.contains("://") || href.startsWith("mailto:")) {
+            return@replace match.value
+        }
+        val hash = href.indexOf('#')
+        val path = (if (hash >= 0) href.substring(0, hash) else href).removePrefix("./")
+        val id = path.lowercase()
+        if (id !in ids) {
+            return@replace match.value
+        }
+        val fragment = if (hash >= 0) href.substring(hash) else ""
+        """href="$id.html$fragment""""
+    }
+
+    private fun NAV.sidebarLink(text: String, href: String, active: Boolean, depth: Int) {
+        a(href = href) {
+            val background = if (active) "var(--surface-active)" else "transparent"
+            val border = if (active) "var(--gold-400)" else "transparent"
+            val color = if (active) "var(--parch-50)" else "var(--text-muted)"
+            val indent = 10 + depth * 14
+            style = "text-align:left;padding:var(--space-3) 10px var(--space-3) ${indent}px;" +
+                "background:$background;border-left:2px solid $border;border-radius:var(--radius-xs);" +
+                "text-decoration:none;font:var(--type-body-sm);color:$color;display:block"
+            +text
+        }
+    }
+
+    private fun NAV.sidebarGroupLabel(text: String, depth: Int) {
+        span {
+            val indent = 10 + depth * 14
+            style = "display:block;padding:var(--space-2) 10px 0 ${indent}px;font:var(--type-label);" +
+                "letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--gold-300)"
+            +text
+        }
+    }
+
+    /** Renders one `_Sidebar.md` entry, recursing into nested groups with increasing indent. */
+    private fun NAV.sidebarEntry(entry: SidebarEntry, currentId: String, depth: Int) {
+        when (entry) {
+            is SidebarEntry.Item -> {
+                val href = resolveHref(entry.href)
+                sidebarLink(entry.text, href, active = href == currentId, depth = depth)
+            }
+            is SidebarEntry.Group -> {
+                if (entry.href != null) {
+                    val href = resolveHref(entry.href)
+                    sidebarLink(entry.title, href, active = href == currentId, depth = depth)
+                } else {
+                    sidebarGroupLabel(entry.title, depth)
+                }
+                for (child in entry.children) {
+                    sidebarEntry(child, currentId, depth + 1)
+                }
+            }
+        }
+    }
+
     private fun docPage(
         source: DocSource,
         all: List<DocSource>,
+        sidebar: List<SidebarEntry>?,
         doc: MarkdownDocument,
         previous: DocSource?,
         next: DocSource?,
@@ -79,21 +167,18 @@ object Docs {
                     "padding:var(--space-8) var(--space-6);display:flex;flex-direction:column;gap:var(--space-8)"
                 nav {
                     style = "display:flex;flex-direction:column;gap:var(--space-3)"
-                    span {
-                        style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                            "text-transform:uppercase;color:var(--gold-300);margin-bottom:var(--space-2)"
-                        +"Reference"
-                    }
-                    for (item in all) {
-                        val on = item.id == source.id
-                        a(href = "${item.id}.html") {
-                            val background = if (on) "var(--surface-active)" else "transparent"
-                            val border = if (on) "var(--gold-400)" else "transparent"
-                            val color = if (on) "var(--parch-50)" else "var(--text-muted)"
-                            style = "text-align:left;padding:var(--space-3) 10px;background:$background;" +
-                                "border-left:2px solid $border;border-radius:var(--radius-xs);" +
-                                "text-decoration:none;font:var(--type-body-sm);color:$color;display:block"
-                            +item.title
+                    if (sidebar != null) {
+                        for (entry in sidebar) {
+                            sidebarEntry(entry, source.id, depth = 0)
+                        }
+                    } else {
+                        span {
+                            style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
+                                "text-transform:uppercase;color:var(--gold-300);margin-bottom:var(--space-2)"
+                            +"Reference"
+                        }
+                        for (item in all) {
+                            sidebarLink(item.title, "${item.id}.html", active = item.id == source.id, depth = 0)
                         }
                     }
                 }

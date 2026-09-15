@@ -74,12 +74,22 @@
     flex-direction:row!important;overflow-x:auto;padding:var(--space-5) var(--space-6)!important
   }
   .docs-sidebar nav{flex-direction:row!important;gap:var(--space-3)!important}
-  .docs-sidebar nav > span{display:none}
+  /* Group headings (_Sidebar.md section labels) set their own `display:block` inline — needed
+     for the desktop vertical column — which otherwise beats this rule's specificity and leaves
+     them rendered as full-width blocks shoved into the horizontal strip, overlapping the link
+     pills around them. !important is required to actually win over that inline style. */
+  .docs-sidebar nav > span{display:none!important}
   /* flex-shrink:0 matters here as much as white-space:nowrap: the global min-width:0 reset above
      otherwise lets each link shrink narrower than its own text once there isn't room for all of
      them, and the overflowing text of one link then paints over its neighbour instead of the row
-     just scrolling — same fix as tableScroll's rows, applied to a flex row instead of a grid. */
-  .docs-sidebar nav a{white-space:nowrap;flex-shrink:0;border-left:none!important;border-bottom:2px solid transparent}
+     just scrolling — same fix as tableScroll's rows, applied to a flex row instead of a grid.
+     padding is reset too: nested _Sidebar.md entries carry an inline per-depth left indent for
+     the desktop column, which has no meaning in this flat horizontal strip and otherwise leaves
+     each pill's active/hover background offset from its own text by a different amount. */
+  .docs-sidebar nav a{
+    white-space:nowrap;flex-shrink:0;padding:var(--space-3) 10px!important;
+    border-left:none!important;border-bottom:2px solid transparent
+  }
   .docs-article{padding:var(--space-6)!important}
 }
 

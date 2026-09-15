@@ -52,6 +52,14 @@
 .markdown-body a { color: var(--text-link); text-decoration: none; }
 .markdown-body a:hover { color: var(--text-link-hover); text-decoration: underline; }
 
+/* Keeps embedded screenshots/diagrams within the article column instead of overflowing it. */
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-xs);
+}
+
 .markdown-body code {
   font: var(--type-code);
   font-size: var(--text-xs);
@@ -61,6 +69,47 @@
   border-radius: var(--radius-xs);
   padding: 1px 6px;
 }
+
+/* Wraps every rendered fence (standalone or inside a .code-tabs panel) so the copy button can be
+   positioned relative to the block without disturbing the .code-tabs/pre margin rules below. */
+.markdown-body .code-block {
+  position: relative;
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body .code-tabs .code-block {
+  margin: 0;
+}
+
+.markdown-body .code-block pre {
+  margin: 0;
+}
+
+.markdown-body .code-copy-btn {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  height: 26px;
+  padding: 0 var(--space-4);
+  background: var(--surface-header);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+}
+
+.markdown-body .code-block:hover .code-copy-btn,
+.markdown-body .code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.markdown-body .code-copy-btn:hover { color: var(--text-strong); }
+.markdown-body .code-copy-btn.copied { color: var(--feedback-success); opacity: 1; }
 
 .markdown-body pre {
   background: var(--umber-950);

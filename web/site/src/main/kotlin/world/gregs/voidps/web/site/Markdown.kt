@@ -18,6 +18,27 @@ data class MarkdownHeading(val level: Int, val id: String, val text: String)
 
 data class MarkdownDocument(val html: String, val headings: List<MarkdownHeading>)
 
+/** Jekyll-style `title`/`description` overrides read from a doc's front matter, if present. */
+data class FrontMatter(val title: String?, val description: String?)
+
+private val frontMatterBlock = Regex("^---\\n(.*?)\\n---\\s*\\n?", RegexOption.DOT_MATCHES_ALL)
+
+/**
+ * Strips a leading `---\nkey: value\n---` front-matter block (as used by Jekyll/GitHub Pages)
+ * from [markdown] and returns it alongside the remaining body, so `title`/`description` can be
+ * read without them leaking into the rendered page as a stray paragraph.
+ */
+fun extractFrontMatter(markdown: String): Pair<FrontMatter, String> {
+    val source = markdown.replace("\r\n", "\n").replace('\r', '\n')
+    val match = frontMatterBlock.find(source) ?: return FrontMatter(null, null) to source
+    val fields = match.groupValues[1].lines().mapNotNull { line ->
+        val i = line.indexOf(':')
+        if (i <= 0) null else line.substring(0, i).trim() to line.substring(i + 1).trim().trim('"', '\'')
+    }.toMap()
+    val body = source.substring(match.range.last + 1)
+    return FrontMatter(fields["title"]?.ifBlank { null }, fields["description"]?.ifBlank { null }) to body
+}
+
 private val headingTypes = mapOf(
     MarkdownElementTypes.ATX_1 to 1,
     MarkdownElementTypes.ATX_2 to 2,
@@ -170,7 +191,10 @@ private class CodeFenceGeneratingProvider(private val slots: Map<Int, CodeTabs.S
 
     private fun codeBlockHtml(language: String?, highlighted: String): String {
         val cls = if (language != null) " class=\"language-${language.lowercase()}\"" else ""
-        return "<pre><code$cls>$highlighted</code></pre>"
+        return "<div class=\"code-block\">" +
+            "<button type=\"button\" class=\"code-copy-btn\" onclick=\"voidCopyCode(this)\">Copy</button>" +
+            "<pre><code$cls>$highlighted</code></pre>" +
+            "</div>"
     }
 }
 
@@ -190,6 +214,10 @@ private object CodeTabs {
         return slots
     }
 
+    private fun fenceLanguage(fence: ASTNode, source: String): String =
+        fence.children.find { it.type == MarkdownTokenTypes.FENCE_LANG }
+            ?.getTextInNode(source)?.toString()?.trim()?.takeIf { it.isNotEmpty() } ?: "text"
+
     private fun collectGroups(node: ASTNode, source: String, slots: MutableMap<Int, Slot>) {
         val children = node.children
         var i = 0
@@ -202,7 +230,14 @@ private object CodeTabs {
                     val next = children[j]
                     when (next.type) {
                         MarkdownTokenTypes.EOL -> j++
+                        // Only fold the next fence into this tab group if it's a *different*
+                        // language — two same-language fences in a row are separate snippets
+                        // (e.g. before/after), not alternate views of the same one, and should
+                        // stay stacked rather than being merged into a switchable tab set.
                         MarkdownElementTypes.CODE_FENCE -> {
+                            if (fenceLanguage(next, source) == fenceLanguage(group.last(), source)) {
+                                break
+                            }
                             group += next
                             j++
                         }
@@ -210,10 +245,7 @@ private object CodeTabs {
                     }
                 }
                 if (group.size >= 2) {
-                    val languages = group.map { fence ->
-                        fence.children.find { it.type == MarkdownTokenTypes.FENCE_LANG }
-                            ?.getTextInNode(source)?.toString()?.trim()?.takeIf { it.isNotEmpty() } ?: "text"
-                    }
+                    val languages = group.map { fenceLanguage(it, source) }
                     for ((index, fence) in group.withIndex()) {
                         slots[fence.startOffset] = Slot(index, group.size, languages)
                     }

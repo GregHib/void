@@ -143,3 +143,41 @@ document.addEventListener('DOMContentLoaded', function () {
     window.voidApplyCodeTabLang(saved);
   }
 });
+
+// Copy-to-clipboard button on rendered fenced code blocks (see CodeFenceGeneratingProvider in
+// Markdown.kt). Reads the sibling <pre><code> as plain text so highlighting spans aren't copied.
+window.voidCopyCode = function (btn) {
+  var code = btn.parentElement.querySelector('pre code');
+  if (!code) {
+    return;
+  }
+  var text = code.textContent;
+  var onCopied = function () {
+    var original = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(onCopied, function () {
+      // Clipboard permission denied — leave the button as-is rather than claim success.
+    });
+    return;
+  }
+  var textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    onCopied();
+  } catch (e) {
+    // Unsupported — nothing more we can do.
+  }
+  document.body.removeChild(textarea);
+};
