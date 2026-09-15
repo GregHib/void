@@ -51,7 +51,7 @@ class AdventurersLogs(
             }
             val total = Skill.all.sumOf { (if (it == Skill.Constitution) levels.getMax(it) / 10 - 10 else levels.getMax(it) - 1) }
             if (total == 2496 || total == 100 || total == 150 || total == 250 || total == 500 || total == 1000 || total == 1500 || total == 2000) {
-                logEvent("$total total levels gained", "I now have a total level of ${total}, split among all my skills.")
+                logEvent("$total total levels gained", "I now have a total level of $total, split among all my skills.")
                 return@maxLevelChanged
             }
             val min = Skill.all.minOf { (if (it == Skill.Constitution) levels.getMax(it) / 10 else levels.getMax(it)) }
@@ -67,7 +67,7 @@ class AdventurersLogs(
             "adventurers_log",
             stringArg("player-name", optional = true, autofill = accounts.displayNames.keys),
             desc = "Check the adventurer's logs of a player that's online (blank for self)",
-            handler = ::listLogs
+            handler = ::listLogs,
         )
     }
 
@@ -100,7 +100,7 @@ class AdventurersLogs(
                 for (line in font.splitLines(event.description, 400)) {
                     list.add(line)
                 }
-                list.add("(${timestamp})")
+                list.add("($timestamp)")
                 list.add("")
             }
         }
@@ -110,7 +110,7 @@ class AdventurersLogs(
     companion object {
         fun questCompleted(player: Player, quest: String, points: Int) {
             val def = get<QuestDefinitions>().getOrNull(quest) ?: return
-            val message = Tables.stringOrNull("quest_messages.${quest}") ?: "Quest Completed!"
+            val message = Tables.stringOrNull("quest_messages.$quest") ?: "Quest Completed!"
             player.logEvent("Quest complete: ${def.name}", message)
             if (points != 0) {
                 val from = player["quest_points", 0]

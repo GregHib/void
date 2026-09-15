@@ -65,7 +65,7 @@ class PlayerDeath : Script {
                 val killer = dealer?.key
                 AuditLog.event(this, "died", tile, killer)
                 if (killer is Player) {
-                    killer.logEvent("I killed ${name}.", "I killed the player ${name}.")
+                    killer.logEvent("I killed $name.", "I killed the player $name.")
                 }
                 while (true) {
                     instructions.tryReceive().getOrNull() ?: break

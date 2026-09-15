@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
-import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.Settings

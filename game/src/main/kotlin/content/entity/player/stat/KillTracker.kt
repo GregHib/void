@@ -86,7 +86,7 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
                 }
             }
             // Temp store kill counts to write to player on logout
-            player.inc("kills_${id}")
+            player.inc("kills_$id")
         }
 
         playerDespawn {
@@ -109,7 +109,7 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
             for (key in temp.keys.filter { it.startsWith("kills_") }) {
                 val count = temp[key] as? Int ?: continue
                 val id = key.substringAfter("kills_")
-                val rows = Rows.getOrNull("log_npcs.${id}") ?: continue
+                val rows = Rows.getOrNull("log_npcs.$id") ?: continue
                 var message = if (count == 1) {
                     rows.stringOrNull("single") ?: rows.stringOrNull("multiple")
                 } else {
@@ -117,9 +117,10 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
                 } ?: continue
                 val name = NPCDefinitions.get(id).name
                 logEvent(
-                    "I killed${if (count > 1) " $count" else name.an()} ${name.plural(count)}.", message
+                    "I killed${if (count > 1) " $count" else name.an()} ${name.plural(count)}.",
+                    message
                         .replace("<count>", if (count >= 100) "a great number of" else count.toString())
-                        .replace("<name>", name.plural(count))
+                        .replace("<name>", name.plural(count)),
                 )
             }
         }
