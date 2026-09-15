@@ -1,0 +1,7 @@
+[king_black_dragon_fastest]
+format = "int"
+persist = true
+
+[king_black_dragon_kills]
+format = "int"
+persist = true
