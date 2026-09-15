@@ -206,3 +206,14 @@ internal object RecordsTable : Table("timed_records") {
         index(true, playerId, type)
     }
 }
+
+internal object RecentEventsTable : Table("recent_events") {
+    val playerId = integer("player_id").references(AccountsTable.id)
+    val index = integer("index")
+    val time = integer("time")
+    val title = text("title")
+    val description = text("description")
+    init {
+        index(true, playerId, index)
+    }
+}

@@ -2,6 +2,7 @@ package world.gregs.voidps.storage
 
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.RecentEvent
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
@@ -333,6 +334,7 @@ abstract class StorageTest {
             history = listOf(ExchangeHistory("item", 123, 321)),
             kills = mapOf("chickens" to 4, "kree_arra" to 2),
             records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
+            recentEvents = listOf(RecentEvent(132, "Title", "desc")),
         )
     }
 }

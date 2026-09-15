@@ -7,6 +7,7 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.transactions.transaction
 import world.gregs.voidps.engine.data.AbuseReport
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.RecentEvent
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.exchange.*
@@ -201,6 +202,7 @@ class DatabaseStorage : Storage {
         saveHistories(accounts, playerIds)
         saveKills(accounts, playerIds)
         saveRecords(accounts, playerIds)
+        saveRecentEvents(accounts, playerIds)
     }
 
     override fun saveReport(report: AbuseReport): Unit = transaction {
@@ -244,6 +246,7 @@ class DatabaseStorage : Storage {
         val history = loadHistory(playerId)
         val kills = loadKills(playerId)
         val records = loadRecords(playerId)
+        val recentEvents = loadRecentEvents(playerId)
         return@transaction PlayerSave(
             name = playerRow[AccountsTable.name],
             password = playerRow[AccountsTable.passwordHash],
@@ -262,6 +265,7 @@ class DatabaseStorage : Storage {
             history = history,
             kills = kills,
             records = records,
+            recentEvents = recentEvents,
         )
     }
 
@@ -345,6 +349,18 @@ class DatabaseStorage : Storage {
             this[RecordsTable.playerId] = playerIds.getValue(id.lowercase())
             this[RecordsTable.type] = type
             this[RecordsTable.millis] = millis
+        }
+    }
+
+    private fun saveRecentEvents(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
+        RecentEventsTable.deleteWhere { playerId inList playerIds.values }
+        val eventData = accounts.flatMap { save -> save.recentEvents.withIndex().map { Pair(save.name, it) } }
+        RecentEventsTable.batchUpsert(eventData, RecentEventsTable.playerId, RecentEventsTable.index) { (id, event) ->
+            this[RecentEventsTable.playerId] = playerIds.getValue(id.lowercase())
+            this[RecentEventsTable.index] = event.index
+            this[RecentEventsTable.time] = event.value.time
+            this[RecentEventsTable.title] = event.value.title
+            this[RecentEventsTable.description] = event.value.description
         }
     }
 
@@ -599,6 +615,16 @@ class DatabaseStorage : Storage {
         type to millis
     }
 
+    private fun loadRecentEvents(playerId: Int): List<RecentEvent> = RecentEventsTable.selectAll()
+        .where { RecentEventsTable.playerId eq playerId }
+        .sortedBy { it[RecentEventsTable.index] }
+        .map { row ->
+            val time = row[RecentEventsTable.time]
+            val title = row[RecentEventsTable.title]
+            val description = row[RecentEventsTable.description]
+            RecentEvent(time, title, description)
+        }
+
     companion object {
 
         fun connect(username: String, password: String, driver: String, url: String, poolSize: Int) {
@@ -622,7 +648,7 @@ class DatabaseStorage : Storage {
             }
         }
 
-        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable, ReportsTable, KillsTable, RecordsTable)
+        internal val tables = arrayOf(AccountsTable, ExperienceTable, LevelsTable, VariablesTable, InventoriesTable, OffersTable, ActiveOffersTable, PlayerHistoryTable, ClaimsTable, ItemHistoryTable, ReportsTable, KillsTable, RecordsTable, RecentEventsTable)
 
         private const val TYPE_STRING = 0.toByte()
         private const val TYPE_INT = 1.toByte()
