@@ -8,7 +8,7 @@ id = 904
 persist = true
 format = "map"
 default = "total"
-values = { total = 17 }
+values = { total = 24 }
 
 [bork_defeated_day]
 id = 1199
