@@ -17,12 +17,6 @@ import world.gregs.voidps.engine.timer.CLIENT_TICKS
  * Tool leprechauns (and Teclyn in Lletya) teleport players to Winkin's Farm.
  */
 class VinesweeperTeleport : Script {
-
-    companion object {
-        // The curse impact graphic (110) runs for 36 client cycles; the player leaves once it has finished.
-        private const val IMPACT_TICKS = 2
-    }
-
     init {
         npcOperate("Teleport", "tool_leprechaun*,goth_leprechaun*,teclyn") { (target) ->
             npc<Happy>("Would ye like me to send ye off to Winkin's Farm for a spot of Vinesweeper?")
@@ -30,8 +24,7 @@ class VinesweeperTeleport : Script {
                 option<Happy>("Yes please.") {
                     teleportToFarm(target)
                 }
-                option<Neutral>("No thanks.") {
-                }
+                option<Neutral>("No thanks.")
             }
         }
     }
@@ -47,7 +40,7 @@ class VinesweeperTeleport : Script {
         delay(CLIENT_TICKS.toTicks(flight).coerceAtLeast(1))
         gfx("curse_impact")
         sound("curse_impact")
-        delay(IMPACT_TICKS)
+        delay(2)
         tele(Vinesweeper.ARRIVAL_TILE)
         message("The leprechaun sends you to Winkin's Farm.")
     }
