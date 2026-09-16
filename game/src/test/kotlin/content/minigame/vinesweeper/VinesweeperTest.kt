@@ -235,7 +235,7 @@ class VinesweeperTest : WorldTest() {
     @Test
     fun `First ten flags are free then they cost coins`() {
         val player = digger()
-        val winkin = createNPC("mrs__winkin_minesweeper", corner.addX(1))
+        val winkin = createNPC("mrs_winkin_minesweeper", corner.addX(1))
 
         player.npcOption(winkin, "Buy flags")
         tick(2)

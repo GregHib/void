@@ -32,5 +32,5 @@ spawns = [
   { id = "farmer_minesweeper_3", x = 1633, y = 4684 },
   { id = "farmer_minesweeper_3", x = 1633, y = 4728 },
   { id = "farmer_blinkin_minesweeper", x = 1631, y = 4701, members = true },
-  { id = "mrs__winkin_minesweeper", x = 1631, y = 4706 },
+  { id = "mrs_winkin_minesweeper", x = 1631, y = 4706 },
 ]

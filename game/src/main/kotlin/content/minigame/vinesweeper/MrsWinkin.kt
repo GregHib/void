@@ -13,16 +13,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 class MrsWinkin : Script {
 
     init {
-        npcOperate("Talk-to", "mrs__winkin_minesweeper") {
+        npcOperate("Talk-to", "mrs_winkin_minesweeper") {
             npc<Happy>("Hello there, dearie. Welcome to Winkin's Farm. What can I do for you?")
             menu()
         }
 
-        npcOperate("Trade", "mrs__winkin_minesweeper") {
+        npcOperate("Trade", "mrs_winkin_minesweeper") {
             open("vinesweeper_rewards")
         }
 
-        npcOperate("Buy flags", "mrs__winkin_minesweeper") {
+        npcOperate("Buy flags", "mrs_winkin_minesweeper") {
             buyFlags()
         }
     }
