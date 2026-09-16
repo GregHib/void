@@ -1,5 +1,6 @@
 package content.area.misthalin.varrock
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Disheartened
@@ -12,12 +13,20 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
 import content.quest.quest
+import content.quest.questComplete
+import content.quest.refreshQuestJournal
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.queue.longQueue
 
 /**
  * Minimal Gertrude dialogue. Once Gertrude's Cat quest is completed, lets the
@@ -39,8 +48,57 @@ class Gertrude : Script {
                 "found_the_boys" -> findingFluffs()
                 "found_fluffs" -> hungryAndThirsty()
                 "attempt_fluffs_pickup" -> hungryAndThirsty()
+                "fluffs_returned" -> finishQuest()
                 else -> unstarted()
             }
+        }
+    }
+
+    private suspend fun Player.finishQuest() {
+        if(!get("gertrudes_cat_talked_about_reward", false)) {
+            player<Happy>("Hello, Gertrude. Fluffs had run off with her kittens, lost them and I have now returned them to her.")
+            statement("Gertrude thanks you heartily")
+            npc<Happy>("Thank you! If you hadn't found her kittens then they would have died out there. I've got some presents for you in thanks for your help.")
+            player<Happy>("That's okay, I like to do my bit.")
+            set("gertrudes_cat_talked_about_reward", true)
+        } else {
+            player<Neutral>("Hello again. You said something about presents...")
+        }
+        if(inventory.spaces < 3){
+            npc<Neutral>("You don't have space to hold all four of my presents. Come back and talk to me again when you do.")
+            return
+        }
+        npc<Happy>("I have no real material possessions but I do have kittens. I've cooked you some food too.")
+        player<Neutral>("Well if one needs a home.")
+        npc<Happy>("I would sell one to my cousin in West Ardougne. I hear there's a rat epidemic there but it's too far for me to travel, what with my boys and all.")
+        npc<Happy>("Here you go. Look after her and thank you again.")
+        npc<Neutral>("Oh, by the way, the kitten can live in your backpack but, to ensure it grows, you must take it out, feed it and stroke it often.")
+        statement("Gertrude gives you a kitten.")
+        questComplete()
+    }
+
+    suspend fun Player.questComplete() {
+        AuditLog.event(this, "quest_completed", "gertrudes_cat")
+        // AdventurersLogs.questCompleted(this, "the_restless_ghost", points = 1) // Unknown if needed
+        set(GERTRUDES_CAT_STRING_NAME, "completed")
+        jingle("quest_complete_1")
+        exp(Skill.Cooking, 1525.0)
+        giveKitten()
+        inventory.add("chocolate_cake")
+        inventory.add("stew")
+        refreshQuestJournal()
+        inc("quest_points")
+        longQueue("quest_complete", 1) {
+            questComplete(
+                "Gertrude's Cat",
+                "1 Quest Point",
+                "A kitten!",
+                "1,525 Cooking XP",
+                "A chocolate cake",
+                "A bowl of stew",
+                "The ability to raise cats",
+                item = "pet_cat", // TODO: Find cat id
+            )
         }
     }
 

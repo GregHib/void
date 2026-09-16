@@ -13,3 +13,7 @@ format = "int"
 [three_little_kittens_found]
 persist = true
 format = "boolean"
+
+[gertrudes_cat_talked_about_reward]
+persist = true
+format = "boolean"
