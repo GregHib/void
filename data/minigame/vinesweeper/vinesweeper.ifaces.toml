@@ -1,0 +1,64 @@
+[vinesweeper_points]
+id = 689
+type = "overlay"
+
+[.points]
+id = 8
+
+[vinesweeper_rewards]
+id = 686
+type = "main_screen"
+
+[.items]
+id = 6
+options = { Value = 0, "Buy 1" = 1, "Buy 5" = 2, "Buy 10" = 3, "Buy X" = 4, Examine = 9 }
+
+[.confirm]
+id = 9
+
+[.confirm_text]
+id = 13
+
+[.proceed]
+id = 14
+
+[.cancel]
+id = 16
+
+[.close]
+id = 35
+
+[vinesweeper_instructions]
+id = 685
+type = "main_screen"
+
+[.close]
+id = 7
+
+[vinesweeper_info_rabbits]
+id = 684
+type = "main_screen"
+
+[.close]
+id = 18
+
+[vinesweeper_info_digging]
+id = 687
+type = "main_screen"
+
+[.close]
+id = 45
+
+[vinesweeper_info_points]
+id = 688
+type = "main_screen"
+
+[.close]
+id = 25
+
+[vinesweeper_info_farmers]
+id = 690
+type = "main_screen"
+
+[.close]
+id = 22
