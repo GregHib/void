@@ -68,6 +68,45 @@ internal class ChaosTempleWineTest : WorldTest() {
     }
 
     @Test
+    fun `Telegrab loses to a player who takes the wine first`() {
+        val caster = createPlayer(wineTile.addX(3))
+        caster.levels.set(Skill.Magic, 99)
+        caster.inventory.add("law_rune")
+        caster.inventory.add("air_rune")
+        val thief = createPlayer(wineTile.addX(1))
+        val wine = createFloorItem("wine_of_zamorak", wineTile)
+        tick()
+
+        caster.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", wine)
+        tick()
+        thief.floorItemOption(wine, "Take")
+        tick(8)
+
+        assertTrue(thief.inventory.contains("wine_of_zamorak"))
+        assertFalse(caster.inventory.contains("wine_of_zamorak"))
+        assertEquals(0, caster.inventory.count("law_rune"))
+        assertTrue(FloorItems.at(wineTile).none { it.id == "wine_of_zamorak" })
+    }
+
+    @Test
+    fun `Arriving after the wine is taken isn't punished`() {
+        val late = createPlayer(wineTile.addX(6))
+        late.levels.set(Skill.Attack, 50)
+        val thief = createPlayer(wineTile.addX(1))
+        val wine = createFloorItem("wine_of_zamorak", wineTile)
+        tick()
+
+        late.floorItemOption(wine, "Take")
+        thief.floorItemOption(wine, "Take")
+        tick(10)
+
+        assertTrue(thief.inventory.contains("wine_of_zamorak"))
+        assertFalse(late.inventory.contains("wine_of_zamorak"))
+        assertEquals(50, late.levels.get(Skill.Attack))
+        assertEquals(late.levels.getMax(Skill.Constitution), late.levels.get(Skill.Constitution))
+    }
+
+    @Test
     fun `Wine away from its spawn tile is harmless`() {
         val tile = wineTile.addY(1)
         val player = createPlayer(tile.addX(1))

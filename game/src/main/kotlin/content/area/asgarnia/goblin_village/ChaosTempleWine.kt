@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
@@ -22,7 +23,7 @@ class ChaosTempleWine : Script {
 
     init {
         takeable("wine_of_zamorak") { item, telegrab ->
-            if (telegrab || item.tile != WINE_TILE || inventory.isFull()) {
+            if (telegrab || item.tile != WINE_TILE || inventory.isFull() || item !in FloorItems.at(item.tile)) {
                 return@takeable item.id
             }
             punishTheft()
