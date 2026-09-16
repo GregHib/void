@@ -6,6 +6,7 @@ import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.npc
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
@@ -42,7 +43,7 @@ suspend fun Player.buyFlags() {
         add("flag", amount)
     }
     when (inventory.transaction.error) {
-        TransactionError.None -> item("flag", "You buy $amount flags.")
+        TransactionError.None -> item("flag", "You buy $amount ${"flag".plural(amount)}.")
         is TransactionError.Deficient -> npc<Sad>("You don't have enough coins for that.")
         else -> npc<Sad>("You don't have enough space in your pack for that.")
     }
