@@ -491,6 +491,32 @@ class DatabaseStorage : Storage {
         }
     }
 
+    override fun accounts(): List<PlayerSave> = transaction {
+        AccountsTable.selectAll().map { row ->
+            val playerId = row[AccountsTable.id]
+            PlayerSave(
+                name = row[AccountsTable.name],
+                password = row[AccountsTable.passwordHash],
+                tile = Tile(row[AccountsTable.tile]),
+                experience = loadExperience(playerId),
+                blocked = row[AccountsTable.blockedSkills].map { Skill.entries[it] },
+                levels = loadLevels(playerId),
+                male = row[AccountsTable.male],
+                looks = row[AccountsTable.looks].toIntArray(),
+                colours = row[AccountsTable.colours].toIntArray(),
+                variables = loadVariables(playerId),
+                inventories = loadInventories(playerId),
+                friends = row[AccountsTable.friends].zip(row[AccountsTable.ranks]) { name, rank -> name to ClanRank.valueOf(rank) }.toMap(),
+                ignores = row[AccountsTable.ignores],
+                offers = loadOffers(playerId),
+                history = loadHistory(playerId),
+                kills = loadKills(playerId),
+                records = loadRecords(playerId),
+                recentEvents = loadRecentEvents(playerId),
+            )
+        }
+    }
+
     private fun loadExperience(playerId: Int): IntArray {
         val it = ExperienceTable.selectAll().where { ExperienceTable.playerId eq playerId }.first()
         return intArrayOf(
