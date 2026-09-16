@@ -59,7 +59,7 @@ internal class ChaosTempleWineTest : WorldTest() {
         player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", wine)
         tick(6)
 
-        assertEquals(96, wine.height())
+        assertEquals(384, wine.height())
         assertTrue(player.inventory.contains("wine_of_zamorak"))
         assertEquals(43.0, player.experience.get(Skill.Magic))
         assertEquals(50, player.levels.get(Skill.Attack))

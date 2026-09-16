@@ -16,6 +16,10 @@ import world.gregs.voidps.type.Distance
 import world.gregs.voidps.type.Tile
 
 object ShootProjectile {
+    /**
+     * Client units per packet height unit; the client multiplies projectile heights by 16.
+     */
+    const val HEIGHT_UNIT = 16
     const val DEFAULT_FLIGHT = 40
     const val DEFAULT_HEIGHT = 40
     const val DEFAULT_CURVE = 0

@@ -3,6 +3,7 @@ package content.skill.magic.book.modern
 import content.entity.gfx.areaGfx
 import content.entity.item.height
 import content.entity.player.inv.item.take.ItemTake
+import content.entity.proj.ShootProjectile
 import content.entity.proj.shoot
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
@@ -54,7 +55,7 @@ class TelekineticGrab : Script {
             exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
 
             val height = floorItem.height()
-            val clientTicks = shoot("tele_grab_travel", floorItem.tile, endHeight = height)
+            val clientTicks = shoot("tele_grab_travel", floorItem.tile, endHeight = height / ShootProjectile.HEIGHT_UNIT)
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
             areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks, height = height)
 
