@@ -59,8 +59,10 @@ class TelekineticGrab : Script {
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
             areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks, height = height)
 
-            delay(3)
-            queue("tele_grab", 3) {
+            // Take the item as the projectile lands; client ticks are 20ms, game ticks 600ms
+            val ticks = (clientTicks + 15) / 30
+            start("action_delay", ticks)
+            queue("tele_grab", ticks) {
                 if (tile.level != floorItem.tile.level) {
                     message("Your telegrab fizzles as you move too far away.")
                     return@queue
