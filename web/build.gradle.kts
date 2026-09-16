@@ -4,6 +4,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":engine"))
     implementation(libs.ktor.websockets)
     implementation(libs.ktor.cio)
     implementation(libs.ktor.server.html)

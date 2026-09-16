@@ -2,15 +2,15 @@ package world.gregs.voidps.web.site
 
 import kotlinx.html.*
 import world.gregs.voidps.web.site.components.*
-import kotlin.math.roundToInt
 
 /**
  * The player hiscores: overall/skill/boss leaderboards, a head-to-head comparison, and a
  * player profile view. The tile grid, filter chips and pagination controls are plain Kotlin +
  * [xToggleStyle] since the skill/boss/mode names are known at build time; the ranked tables
- * themselves are driven by the mock dataset in `void/hiscores.js` (`hiscoresApp()`), so those
- * rows are emitted as `<template x-for>` blocks instead of being rendered server-side. The two
- * lists below mirror `SKILLS`/`BOSSES` in that script — keep them in sync.
+ * themselves are fetched from the real hiscores and players endpoints under `/api/v1` by
+ * `void/hiscores.js` (`hiscoresApp()`), so those rows are emitted as `<template x-for>` blocks
+ * instead of being rendered server-side. The two lists below mirror `SKILLS`/`BOSSES` in that
+ * script, which in turn mirror `Skill` and `Bosses` in the `:web` module - keep them in sync.
  */
 object Hiscores {
 
@@ -26,10 +26,12 @@ object Hiscores {
     private fun skillIcon(name: String): String =
         "void/images/skills/${if (name == "Constitution") "hitpoints" else name.lowercase()}.png"
 
+    /** Boss id (matches the npc definition id kills/records are keyed by) to display name. */
     private val bosses = listOf(
-        "Ashen Wyrm" to 214, "Gravelord Thane" to 332, "The Hollow King" to 488, "Sunken Leviathan" to 276,
-        "Mother of Blades" to 191, "Warden of Cinders" to 405, "Rot-Priest Malgrim" to 148, "Frostbound Colossus" to 560,
-        "Twin Serpents of Ord" to 233, "Blightmaw" to 127, "The Pale Choir" to 372, "Verdant Horror" to 302,
+        "giant_mole" to "Giant Mole", "king_black_dragon" to "King Black Dragon", "kril_tsutsaroth" to "Kril Tsutsaroth",
+        "commander_zilyana" to "Commander Zilyana", "general_graardor" to "General Graardor", "kree_arra" to "Kree'arra",
+        "chaos_elemental" to "Chaos Elemental", "dagannoth_rex" to "Dagannoth Rex", "dagannoth_prime" to "Dagannoth Prime",
+        "dagannoth_supreme" to "Dagannoth Supreme", "kalphite_queen" to "Kalphite Queen", "tztok_jad" to "TzTok-Jad",
     )
 
     fun page(): String = voidPage(
@@ -76,7 +78,7 @@ object Hiscores {
                         }
                         span {
                             style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);padding-bottom:9px"
-                            +"Updated 9 September 2026, 14:20 UTC"
+                            attributes["x-text"] = "updatedLabel"
                         }
                     }
                 }
@@ -184,18 +186,18 @@ object Hiscores {
             }
             div {
                 style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
-                for (m in listOf("All", "Standard", "Ironman", "Hardcore", "Ultimate")) {
+                for ((id, label) in listOf("all" to "All", "main" to "Main", "skiller" to "Skiller", "pure" to "Pure")) {
                     button {
-                        onClick("mode = '$m'; page = 0")
+                        onClick("mode = '$id'; page = 0; fetchOverall()")
                         xToggleStyle(
-                            condition = "mode === '$m'",
+                            condition = "mode === '$id'",
                             whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
                             whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
                         )
                         style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
                             "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
                             "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
-                        +m
+                        +label
                     }
                 }
             }
@@ -214,7 +216,7 @@ object Hiscores {
                 style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
                 for (t in listOf("All", "Solo", "2 players", "3 players", "4 players")) {
                     button {
-                        onClick("team = '$t'; timePage = 0")
+                        onClick("team = '$t'; timePage = 0; fetchBossTimes()")
                         xToggleStyle(
                             condition = "team === '$t'",
                             whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
@@ -234,14 +236,11 @@ object Hiscores {
         div {
             attributes["class"] = "void-grid"
             style = "grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--umber-900)"
-            for ((name, base) in bosses) {
-                val bestSeconds = (base * 0.52).roundToInt()
-                val meta = "best ${bestSeconds / 60}:${(bestSeconds % 60).toString().padStart(2, '0')} · " +
-                    "%,d kills logged".format(1200 + base * 37)
+            for ((id, name) in bosses) {
                 button {
-                    onClick("navigate({ boss: '$name', kcPage: 0, timePage: 0, view: 'bosses' })")
+                    onClick("navigate({ boss: '$id', kcPage: 0, timePage: 0, view: 'bosses' })")
                     xToggleStyle(
-                        condition = "boss === '$name'",
+                        condition = "boss === '$id'",
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
                         whenFalse = "background:var(--surface-panel);color:var(--text-strong);border-top-color:transparent",
                     )
@@ -250,10 +249,6 @@ object Hiscores {
                     span {
                         style = "font:var(--weight-semibold) var(--text-base)/1.2 var(--font-display)"
                         +name
-                    }
-                    span {
-                        style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
-                        +meta
                     }
                 }
             }
@@ -269,7 +264,7 @@ object Hiscores {
             }
             input {
                 attributes["x-bind:value"] = "comboValue('$side')"
-                attributes["@input"] = "comboQ = \$event.target.value; combo = '$side'"
+                attributes["@input"] = "comboQ = \$event.target.value; combo = '$side'; comboSearch('$side')"
                 attributes["@focus"] = "comboFocus('$side')"
                 attributes["@blur"] = "comboBlur()"
                 placeholder = "Search players"
@@ -494,7 +489,7 @@ object Hiscores {
                 attributes["class"] = "void-grid hiscores-boss-panels-grid"
                 style = "grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--space-8);align-items:start"
 
-                ui.panel(title = "Top kill counts", action = eyebrowText("boss"), padded = false) {
+                ui.panel(title = "Top kill counts", action = eyebrowText("bossName"), padded = false) {
                     tableScroll(Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"), Column("Kc", "110px", "right")) {
                         unsafe {
                             raw(
@@ -513,7 +508,7 @@ object Hiscores {
                     paginationFooter("bossKcPager", "kcPage")
                 }
 
-                ui.panel(title = "Fastest kills", action = eyebrowText("boss"), padded = false) {
+                ui.panel(title = "Fastest kills", action = eyebrowText("bossName"), padded = false) {
                     teamChipsRow()
                     tableScroll(
                         Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"),
@@ -638,7 +633,7 @@ object Hiscores {
                     }
                     span {
                         style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)"
-                        attributes["x-text"] = "profilePlayer.world + ' · ' + profilePlayer.joined + ' · last seen 2 hours ago'"
+                        attributes["x-text"] = "profilePlayer.joined"
                     }
                 }
                 div {
