@@ -2,14 +2,6 @@ package world.gregs.voidps.web.api
 
 import kotlinx.serialization.Serializable
 
-/**
- * The failures a service is allowed to signal. Implementations throw these; the Ktor layer's
- * `StatusPages` handler is the only thing that knows which HTTP status each maps to, so a service
- * never imports anything from `io.ktor`.
- *
- * [code] is the stable machine-readable string in the error envelope; [message] is prose for a
- * developer, not for display.
- */
 sealed class ApiException(
     val code: String,
     message: String,
