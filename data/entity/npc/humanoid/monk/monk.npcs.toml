@@ -1,5 +1,6 @@
 [monk_of_zamorak]
 id = 190
+height = 40
 hitpoints = 400
 att = 38
 str = 38
