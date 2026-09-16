@@ -15,11 +15,11 @@ import world.gregs.voidps.web.site.components.*
  */
 object Hiscores {
 
-    fun page(): String = voidPage(
+    fun page(gameData: GameData): String = voidPage(
         title = "Void — hiscores",
         description = "Live overall, skill and boss leaderboards for Void, with head-to-head player comparisons.",
         head = {
-            script { unsafe { raw(GameData.script()) } }
+            script { unsafe { raw(gameData.script()) } }
             script(src = "void/hiscores.js") {}
         },
     ) {
@@ -90,7 +90,7 @@ object Hiscores {
                 overallView()
                 skillsView()
                 compareView()
-                bossesView()
+                bossesView(gameData)
                 searchView()
                 playerView()
             }
@@ -216,15 +216,15 @@ object Hiscores {
         }
     }
 
-    private fun FlowContent.bossTileGrid() {
+    private fun FlowContent.bossTileGrid(gameData: GameData) {
         div {
             attributes["class"] = "void-grid"
             style = "grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--umber-900)"
-            for (boss in GameData.bosses) {
+            for ((id, name) in gameData.bosses) {
                 button {
-                    onClick("navigate({ boss: '${boss.id}', kcPage: 0, timePage: 0, view: 'bosses' })")
+                    onClick("navigate({ boss: '${id}', kcPage: 0, timePage: 0, view: 'bosses' })")
                     xToggleStyle(
-                        condition = "boss === '${boss.id}'",
+                        condition = "boss === '${id}'",
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
                         whenFalse = "background:var(--surface-panel);color:var(--text-strong);border-top-color:transparent",
                     )
@@ -232,7 +232,7 @@ object Hiscores {
                         "border:none;border-top:2px solid transparent;background:var(--surface-panel);color:var(--text-strong)"
                     span {
                         style = "font:var(--weight-semibold) var(--text-base)/1.2 var(--font-display)"
-                        +boss.name
+                        +name
                     }
                 }
             }
@@ -459,14 +459,14 @@ object Hiscores {
         }
     }
 
-    private fun FlowContent.bossesView() {
+    private fun FlowContent.bossesView(gameData: GameData) {
         div {
             xShow("view === 'bosses'")
             attributes["class"] = "void-flex"
             style = "flex-direction:column;gap:var(--space-8)"
 
             ui.panel(title = "Bosses", action = eyebrowText("'Pick an encounter'"), padded = false) {
-                bossTileGrid()
+                bossTileGrid(gameData)
             }
 
             div {

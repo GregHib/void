@@ -1,6 +1,12 @@
 package world.gregs.voidps.web.site
 
 import kotlinx.html.*
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.decoder.NPCDecoder
+import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.web.site.components.*
 import java.io.File
 
@@ -339,15 +345,21 @@ object Site {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        Settings.load("./game/src/main/resources/game.properties")
+        val files = configFiles()
+        val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
+        val definitions = NPCDecoder(true).load(cache)
+        NPCDefinitions.init(definitions).load(files.getValue(Settings["definitions.npcs"]))
         val buildDir = File("./web/site/build")
         buildDir.mkdirs()
+        val gameData = GameData()
         File(buildDir, "index.html").writeText(Website.homePage())
         File(buildDir, "docs.html").writeText(Website.docsPage())
         File(buildDir, "play.html").writeText(Play.page())
         File(buildDir, "worlds.html").writeText(Website.worldsPage())
         File(buildDir, "exchange.html").writeText(Exchange.page())
-        File(buildDir, "hiscores.html").writeText(Hiscores.page())
-        File(buildDir, "log.html").writeText(AdventurersLog.page())
+        File(buildDir, "hiscores.html").writeText(Hiscores.page(gameData))
+        File(buildDir, "log.html").writeText(AdventurersLog.page(gameData))
         File(buildDir, "components.html").writeText(buildPage())
         copyStaticAssets(buildDir)
         Docs.generate(buildDir)

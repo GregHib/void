@@ -14,11 +14,11 @@ import world.gregs.voidps.web.site.components.*
  */
 object AdventurersLog {
 
-    fun page(): String = voidPage(
+    fun page(gameData: GameData): String = voidPage(
         title = "Void — adventurer's log",
         description = "Skills, quests, boss kills and recent activity for any Void account.",
         head = {
-            script { unsafe { raw(GameData.script()) } }
+            script { unsafe { raw(gameData.script()) } }
             script(src = "void/log.js") {}
         },
     ) {
