@@ -90,7 +90,11 @@ object VinesweeperField {
         val target = minOf(MAX_SEEDS, holes.size * SEED_PERCENT / 100)
         val candidates = holes.map { it.tile }.filter { !isSeed(it) }.toMutableList()
         while (seeds.size < target && candidates.isNotEmpty()) {
-            val tile = candidates.removeAt(random.nextInt(candidates.size))
+            val index = random.nextInt(candidates.size)
+            if (index !in candidates.indices) {
+                break
+            }
+            val tile = candidates.removeAt(index)
             plant(tile)
         }
     }
