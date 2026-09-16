@@ -1,9 +1,10 @@
 package content.minigame.vinesweeper
 
+import content.minigame.vinesweeper.VinesweeperField.SEED_PERCENT
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.type.Area
+import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.random
 
@@ -15,9 +16,6 @@ object VinesweeperField {
 
     private val seeds = HashSet<Tile>()
     private val flagOwners = HashMap<Tile, String>()
-
-    val area: Area
-        get() = Areas["vinesweeper_field"]
 
     val seedCount: Int
         get() = seeds.size
@@ -59,14 +57,25 @@ object VinesweeperField {
         return count
     }
 
-    fun hole(tile: Tile): GameObject? = GameObjects.at(tile).firstOrNull { it.id.startsWith("vinesweeper_hole") }
+    fun hole(tile: Tile): GameObject? {
+        val obj = GameObjects.getLayer(tile, ObjectLayer.GROUND)
+        if (obj != null && obj.id.startsWith("vinesweeper_hole")) {
+            return obj
+        }
+        return null
+    }
 
-    fun objectAt(tile: Tile, prefix: String): GameObject? = GameObjects.at(tile).firstOrNull { it.id.startsWith(prefix) }
+    fun objectAt(tile: Tile, prefix: String): GameObject? {
+        val obj = GameObjects.getLayer(tile, ObjectLayer.GROUND)
+        if (obj != null && obj.id.startsWith(prefix)) {
+            return obj
+        }
+        return null
+    }
 
     fun holes(): List<GameObject> {
         val list = mutableListOf<GameObject>()
-        val area = area
-        for (tile in area) {
+        for (tile in Areas["vinesweeper_field"]) {
             val hole = hole(tile) ?: continue
             list.add(hole)
         }
