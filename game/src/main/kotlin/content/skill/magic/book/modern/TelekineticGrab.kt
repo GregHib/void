@@ -31,7 +31,7 @@ class TelekineticGrab : Script {
             val spell = "telekinetic_grab"
             val floorItem = it.target
             face(floorItem.tile)
-            val item = Items.takeable(this, floorItem) ?: return@onFloorItemApproach
+            val item = Items.takeable(this, floorItem, telegrab = true) ?: return@onFloorItemApproach
             if (hasClock("action_delay")) {
                 return@onFloorItemApproach
             }
@@ -62,7 +62,7 @@ class TelekineticGrab : Script {
                     message("Your telegrab fizzles as you move too far away.")
                     return@queue
                 }
-                if (!ItemTake.take(this, floorItem)) {
+                if (!ItemTake.take(this, floorItem, telegrab = true)) {
                     return@queue
                 }
                 start("action_delay", 3)
