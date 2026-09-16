@@ -49,7 +49,7 @@ class VinesweeperTest : WorldTest() {
     @Test
     fun `Field holes load from the map`() {
         assertNotNull(hole(corner))
-        assertTrue(VinesweeperField.holes().size > 1000)
+        assertTrue(VinesweeperField.seedlessHoles().size > 1000)
     }
 
     @Test

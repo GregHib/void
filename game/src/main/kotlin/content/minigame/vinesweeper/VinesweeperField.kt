@@ -73,11 +73,14 @@ object VinesweeperField {
         return null
     }
 
-    fun holes(): List<GameObject> {
-        val list = mutableListOf<GameObject>()
+    fun seedlessHoles(): MutableList<Tile> {
+        val list = mutableListOf<Tile>()
         for (tile in Areas["vinesweeper_field"]) {
-            val hole = hole(tile) ?: continue
-            list.add(hole)
+            hole(tile) ?: continue
+            if (isSeed(tile)) {
+                continue
+            }
+            list.add(tile)
         }
         return list
     }
@@ -86,15 +89,14 @@ object VinesweeperField {
      * Top the field up with hidden seeds until [SEED_PERCENT] of the holes are seeded.
      */
     fun populate() {
-        val holes = holes()
+        val holes = seedlessHoles()
         val target = minOf(MAX_SEEDS, holes.size * SEED_PERCENT / 100)
-        val candidates = holes.map { it.tile }.filter { !isSeed(it) }.toMutableList()
-        while (seeds.size < target && candidates.isNotEmpty()) {
-            val index = random.nextInt(candidates.size)
-            if (index !in candidates.indices) {
+        while (seeds.size < target && holes.isNotEmpty()) {
+            val index = random.nextInt(holes.size)
+            if (index !in holes.indices) {
                 break
             }
-            val tile = candidates.removeAt(index)
+            val tile = holes.removeAt(index)
             plant(tile)
         }
     }
