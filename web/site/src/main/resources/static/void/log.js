@@ -3,13 +3,11 @@
 // has something realistic to browse and the "Find a log" search has other accounts to switch to.
 
 (function () {
-  var SKILLS = [
-    ["Attack", 99], ["Defence", 99], ["Strength", 99], ["Constitution", 99], ["Ranged", 99],
-    ["Prayer", 99], ["Magic", 99], ["Cooking", 99], ["Woodcutting", 99], ["Fletching", 99],
-    ["Fishing", 99], ["Firemaking", 99], ["Crafting", 99], ["Smithing", 99], ["Mining", 99],
-    ["Herblore", 99], ["Agility", 99], ["Thieving", 99], ["Slayer", 99], ["Farming", 99],
-    ["Runecrafting", 99], ["Hunter", 99], ["Construction", 99], ["Summoning", 99], ["Dungeoneering", 120],
-  ];
+  // Populated by GameData.script() (see Hiscores.kt/AdventurersLog.kt) as window.VOID_SKILLS, so
+  // the real skill list lives in one place (GameData.kt) instead of being duplicated here.
+  var SKILLS = window.VOID_SKILLS.map(function (s) { return [s.name, s.max]; });
+  // Fictional boss roster for this page's mock profile data - unrelated to the real hiscores
+  // bosses in GameData.kt, so it stays hardcoded here.
   var BOSSES = [
     ["Ashen Wyrm", 214], ["Gravelord Thane", 332], ["The Hollow King", 488], ["Sunken Leviathan", 276],
     ["Mother of Blades", 191], ["Warden of Cinders", 405], ["Rot-Priest Malgrim", 148], ["Frostbound Colossus", 560],
@@ -139,7 +137,7 @@
     });
   }
   function band(i) { return BAND[i % 2]; }
-  function skillIcon(name) { return "void/images/skills/" + (name === "Constitution" ? "hitpoints" : name.toLowerCase()) + ".png"; }
+  function skillIcon(name) { return "void/images/skills/" + name.toLowerCase() + ".png"; }
   function bossAbbr(name) { return name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 3).toUpperCase(); }
   function clanFor(name) {
     for (var i = 0; i < CLANS.length; i++) {

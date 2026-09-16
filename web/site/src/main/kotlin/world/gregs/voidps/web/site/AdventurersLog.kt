@@ -17,7 +17,10 @@ object AdventurersLog {
     fun page(): String = voidPage(
         title = "Void — adventurer's log",
         description = "Skills, quests, boss kills and recent activity for any Void account.",
-        head = { script(src = "void/log.js") {} },
+        head = {
+            script { unsafe { raw(GameData.script()) } }
+            script(src = "void/log.js") {}
+        },
     ) {
         ui.siteHeader(Website.pages, active = "log", communityPages = Website.communityPages)
 

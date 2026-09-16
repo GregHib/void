@@ -4,27 +4,10 @@
 (function () {
   var API = "/api/v1";
 
-  var SKILLS = [
-    "Attack", "Defence", "Strength", "Constitution", "Ranged", "Prayer", "Magic", "Cooking",
-    "Woodcutting", "Fletching", "Fishing", "Firemaking", "Crafting", "Smithing", "Mining",
-    "Herblore", "Agility", "Thieving", "Slayer", "Farming", "Runecrafting", "Hunter",
-    "Construction", "Summoning", "Dungeoneering",
-  ];
-  // Mirrors `Hiscores.bosses` (id to display name) and `world.gregs.voidps.web.hiscores.Bosses`.
-  var BOSSES = [
-    { id: "giant_mole", name: "Giant Mole" },
-    { id: "king_black_dragon", name: "King Black Dragon" },
-    { id: "kril_tsutsaroth", name: "Kril Tsutsaroth" },
-    { id: "commander_zilyana", name: "Commander Zilyana" },
-    { id: "general_graardor", name: "General Graardor" },
-    { id: "kree_arra", name: "Kree'arra" },
-    { id: "chaos_elemental", name: "Chaos Elemental" },
-    { id: "dagannoth_rex", name: "Dagannoth Rex" },
-    { id: "dagannoth_prime", name: "Dagannoth Prime" },
-    { id: "dagannoth_supreme", name: "Dagannoth Supreme" },
-    { id: "kalphite_queen", name: "Kalphite Queen" },
-    { id: "tztok_jad", name: "TzTok-Jad" },
-  ];
+  // Populated by GameData.script() (see Hiscores.kt) as window.VOID_SKILLS/VOID_BOSSES, so the
+  // skill/boss lists live in one place (GameData.kt) instead of being duplicated here.
+  var SKILLS = window.VOID_SKILLS.map(function (s) { return s.name; });
+  var BOSSES = window.VOID_BOSSES;
   var TEAM_SIZE_BY_LABEL = { "Solo": 1, "2 players": 2, "3 players": 3, "4 players": 4 };
   var MODE_TONE = {
     skiller: { bg: "rgba(224,174,60,.14)", fg: "var(--gold-300)", bd: "var(--gold-600)" },
@@ -48,7 +31,7 @@
     return m + ":" + String(s).padStart(2, "0");
   }
   function modeLabel(id) { return id ? id.charAt(0).toUpperCase() + id.slice(1) : ""; }
-  function skillIcon(id) { return "void/images/skills/" + (id === "constitution" ? "hitpoints" : id) + ".png"; }
+  function skillIcon(id) { return "void/images/skills/" + id + ".png"; }
   function formatDate(iso) {
     if (!iso) return "";
     try {
@@ -123,9 +106,6 @@
     var qs = params.toString();
     return window.location.pathname + (qs ? "?" + qs : "");
   }
-
-  window.HISCORES_SKILLS = SKILLS;
-  window.HISCORES_BOSSES = BOSSES;
 
   window.hiscoresApp = function () {
     return {

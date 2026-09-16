@@ -305,6 +305,6 @@ class HiscoresService(private val storage: Storage) {
 
         private fun Skill.displayMax(): Int = if (this == Skill.Constitution) maximum() / 10 else maximum()
 
-        private fun Skill.iconUrl(): String = "void/images/skills/${if (this == Skill.Constitution) "hitpoints" else name.lowercase()}.png"
+        private fun Skill.iconUrl(): String = "void/images/skills/${name.lowercase()}.png"
     }
 }

@@ -1,6 +1,7 @@
 package world.gregs.voidps.web.site
 
 import kotlinx.html.*
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.web.site.components.*
 
 /**
@@ -9,35 +10,18 @@ import world.gregs.voidps.web.site.components.*
  * [xToggleStyle] since the skill/boss/mode names are known at build time; the ranked tables
  * themselves are fetched from the real hiscores and players endpoints under `/api/v1` by
  * `void/hiscores.js` (`hiscoresApp()`), so those rows are emitted as `<template x-for>` blocks
- * instead of being rendered server-side. The two lists below mirror `SKILLS`/`BOSSES` in that
- * script, which in turn mirror `Skill` and `Bosses` in the `:web` module - keep them in sync.
+ * instead of being rendered server-side. Skill/boss names and order come from [GameData], which
+ * this page also serializes onto `window.VOID_SKILLS`/`VOID_BOSSES` for `hiscores.js` to read.
  */
 object Hiscores {
-
-    private val skills = listOf(
-        "Attack" to 99, "Defence" to 99, "Strength" to 99, "Constitution" to 99, "Ranged" to 99,
-        "Prayer" to 99, "Magic" to 99, "Cooking" to 99, "Woodcutting" to 99, "Fletching" to 99,
-        "Fishing" to 99, "Firemaking" to 99, "Crafting" to 99, "Smithing" to 99, "Mining" to 99,
-        "Herblore" to 99, "Agility" to 99, "Thieving" to 99, "Slayer" to 99, "Farming" to 99,
-        "Runecrafting" to 99, "Hunter" to 99, "Construction" to 99, "Summoning" to 99, "Dungeoneering" to 120,
-    )
-
-    /** Matches the file names under `static/void/images/skills/` — Constitution's sprite is `hitpoints.png`. */
-    private fun skillIcon(name: String): String =
-        "void/images/skills/${if (name == "Constitution") "hitpoints" else name.lowercase()}.png"
-
-    /** Boss id (matches the npc definition id kills/records are keyed by) to display name. */
-    private val bosses = listOf(
-        "giant_mole" to "Giant Mole", "king_black_dragon" to "King Black Dragon", "kril_tsutsaroth" to "Kril Tsutsaroth",
-        "commander_zilyana" to "Commander Zilyana", "general_graardor" to "General Graardor", "kree_arra" to "Kree'arra",
-        "chaos_elemental" to "Chaos Elemental", "dagannoth_rex" to "Dagannoth Rex", "dagannoth_prime" to "Dagannoth Prime",
-        "dagannoth_supreme" to "Dagannoth Supreme", "kalphite_queen" to "Kalphite Queen", "tztok_jad" to "TzTok-Jad",
-    )
 
     fun page(): String = voidPage(
         title = "Void — hiscores",
         description = "Live overall, skill and boss leaderboards for Void, with head-to-head player comparisons.",
-        head = { script(src = "void/hiscores.js") {} },
+        head = {
+            script { unsafe { raw(GameData.script()) } }
+            script(src = "void/hiscores.js") {}
+        },
     ) {
         ui.siteHeader(Website.pages, active = "hiscores", communityPages = Website.communityPages)
 
@@ -148,9 +132,9 @@ object Hiscores {
         div {
             attributes["class"] = "void-grid"
             style = "grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--umber-900)"
-            for ((index, entry) in skills.withIndex()) {
-                val (name, _) = entry
-                val isLastAlone = index == skills.lastIndex && skills.size % 2 != 0
+            for ((index, skill) in Skill.entries.withIndex()) {
+                val name = skill.name
+                val isLastAlone = index == Skill.entries.lastIndex && Skill.entries.size % 2 != 0
                 button {
                     onClick("navigate({ skill: '$name', skillPage: 0, view: 'skills' })")
                     xToggleStyle(
@@ -164,7 +148,7 @@ object Hiscores {
                         "font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);letter-spacing:var(--tracking-wide)"
                     span {
                         style = "width:18px;height:18px;flex:none;display:flex;align-items:center;justify-content:center"
-                        img(src = skillIcon(name), alt = "") {
+                        img(src = "void/images/skills/${skill.name.lowercase()}.png", alt = "") {
                             style = "max-width:100%;max-height:100%;width:auto;height:auto;display:block"
                         }
                     }
@@ -236,11 +220,11 @@ object Hiscores {
         div {
             attributes["class"] = "void-grid"
             style = "grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--umber-900)"
-            for ((id, name) in bosses) {
+            for (boss in GameData.bosses) {
                 button {
-                    onClick("navigate({ boss: '$id', kcPage: 0, timePage: 0, view: 'bosses' })")
+                    onClick("navigate({ boss: '${boss.id}', kcPage: 0, timePage: 0, view: 'bosses' })")
                     xToggleStyle(
-                        condition = "boss === '$id'",
+                        condition = "boss === '${boss.id}'",
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
                         whenFalse = "background:var(--surface-panel);color:var(--text-strong);border-top-color:transparent",
                     )
@@ -248,7 +232,7 @@ object Hiscores {
                         "border:none;border-top:2px solid transparent;background:var(--surface-panel);color:var(--text-strong)"
                     span {
                         style = "font:var(--weight-semibold) var(--text-base)/1.2 var(--font-display)"
-                        +name
+                        +boss.name
                     }
                 }
             }
