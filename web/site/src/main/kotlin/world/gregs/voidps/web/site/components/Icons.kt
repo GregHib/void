@@ -31,6 +31,7 @@ object Icons {
     const val ALERT_TRIANGLE = """<path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path>"""
     const val SHIELD = """<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>"""
     const val GAUGE = """<circle cx="12" cy="13" r="8"></circle><path d="M12 13l3-3M9 5h6"></path>"""
+    const val EDIT = """<path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>"""
 }
 
 fun HTMLTag.icon(path: String, size: Int = 18) {

@@ -73,12 +73,22 @@
     border-right:none!important;border-bottom:1px solid var(--border-panel);
     flex-direction:row!important;overflow-x:auto;padding:var(--space-5) var(--space-6)!important
   }
+  .docs-search{flex:0 0 220px}
   .docs-sidebar nav{flex-direction:row!important;gap:var(--space-3)!important}
-  /* Group headings (_Sidebar.md section labels) set their own `display:block` inline — needed
-     for the desktop vertical column — which otherwise beats this rule's specificity and leaves
-     them rendered as full-width blocks shoved into the horizontal strip, overlapping the link
-     pills around them. !important is required to actually win over that inline style. */
-  .docs-sidebar nav > span{display:none!important}
+  /* Collapsible sections (Docs.kt's `.docs-nav-group`/`.docs-nav-header`/`.docs-nav-children`)
+     only make sense as a vertical accordion — there's no room for a toggle target in a horizontal
+     scroll strip, and every link needs to stay reachable without an extra tap. `display:contents`
+     drops the wrapper divs out of the box tree while keeping their `a`/`span` contents as direct
+     flex items of `nav`, so the whole tree flattens into one scrollable row. `!important` is what
+     lets it win over `.docs-nav-children[hidden]`'s `display:none` — a collapsed section on desktop
+     still renders all of its links here. */
+  .docs-nav-group,.docs-nav-header,.docs-nav-children{display:contents!important}
+  /* Hides both shapes of expand control: a plain section header IS this element (a full-width
+     `.docs-nav-row.docs-nav-expand` button, title included), while a linked group's is a separate
+     chevron-only button beside its `<a>` — hiding it here also removes its title/chevron entirely
+     from the strip, since there's nowhere for a horizontal scroller to put a toggle target. */
+  .docs-nav-expand{display:none!important}
+  .docs-nav-label{display:none!important}
   /* flex-shrink:0 matters here as much as white-space:nowrap: the global min-width:0 reset above
      otherwise lets each link shrink narrower than its own text once there isn't room for all of
      them, and the overflowing text of one link then paints over its neighbour instead of the row
@@ -86,8 +96,15 @@
      padding is reset too: nested _Sidebar.md entries carry an inline per-depth left indent for
      the desktop column, which has no meaning in this flat horizontal strip and otherwise leaves
      each pill's active/hover background offset from its own text by a different amount. */
+  /* `.docs-nav-row` sets width:100% for the desktop vertical column, and a linked group's title
+     (docs.css's `.docs-nav-header > .docs-nav-row`) additionally gets flex:1;min-width:0 to share
+     its row with the chevron button. `display:contents` above only drops elements from the box
+     tree — the `>` combinator still matches on the unchanged DOM, so both rules keep applying once
+     "Home" becomes a bare flex item of `nav` here, shrinking it to a sliver that "Roadmap" then
+     renders underneath. `flex:none!important` (content-sized, no grow/shrink) is what actually
+     wins over that more specific desktop rule; width:auto and flex-shrink:0 alone don't. */
   .docs-sidebar nav a{
-    white-space:nowrap;flex-shrink:0;padding:var(--space-3) 10px!important;
+    width:auto!important;flex:none!important;white-space:nowrap;padding:var(--space-3) 10px!important;
     border-left:none!important;border-bottom:2px solid transparent
   }
   .docs-article{padding:var(--space-6)!important}

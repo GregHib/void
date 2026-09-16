@@ -16,7 +16,7 @@ import java.util.Locale
  */
 object Docs {
 
-    private data class DocSource(val id: String, val title: String, val description: String, val file: File)
+    private data class DocSource(val id: String, val slug: String, val title: String, val description: String, val file: File)
 
     private val pages = listOf(
         SitePage("home", "Home", "../index.html"),
@@ -34,6 +34,9 @@ object Docs {
 
     private val wikiDir = File("../void-wiki/")
 
+    /** The wiki's GitHub repo — its pages are edited at `github.com/<repo>/wiki/<Page>/_edit`. */
+    private const val GITHUB_REPO = "GregHib/void"
+
     fun generate(buildDir: File) {
         val docsDir = File(buildDir, "docs")
         docsDir.mkdirs()
@@ -47,23 +50,40 @@ object Docs {
                 val (frontMatter, _) = extractFrontMatter(it.readText())
                 DocSource(
                     id = it.nameWithoutExtension.lowercase(),
+                    slug = it.nameWithoutExtension,
                     title = frontMatter.title ?: it.nameWithoutExtension.replace("-", " "),
                     description = frontMatter.description ?: "",
                     file = it,
                 )
             }
+            .sortedBy { it.title }
 
         val available = sources.filter { it.file.exists() }
         val ids = available.mapTo(mutableSetOf()) { it.id }
-        for ((index, source) in available.withIndex()) {
+        val byId = available.associateBy { it.id }
+
+        // Previous/next follows the curated reading order in `_Sidebar.md` (depth-first) rather
+        // than the filesystem's incidental listing order; falls back to alphabetical by title
+        // when there's no sidebar to read an order from.
+        val order = sidebar
+            ?.let { flattenSidebar(it, ids) }
+            ?.distinct()
+            ?.mapNotNull { byId[it] }
+            ?.takeIf { it.isNotEmpty() }
+            ?: available
+
+        val searchIndex = mutableListOf<String>()
+        for ((position, source) in order.withIndex()) {
             val (_, body) = extractFrontMatter(source.file.readText())
             val markdown = renderMarkdown(body)
-            val previous = available.getOrNull(index - 1)
-            val next = available.getOrNull(index + 1)
+            val previous = order.getOrNull(position - 1)
+            val next = order.getOrNull(position + 1)
             val html = docPage(source, available, sidebar, markdown, previous, next)
             File(docsDir, "${source.id}.html").writeText(rewriteDocLinks(html, ids))
+            searchIndex += indexEntryJson(source, markdown)
         }
-        available.firstOrNull()?.let {
+        File(docsDir, "search-index.json").writeText(searchIndex.joinToString(",", "[", "]"))
+        order.firstOrNull()?.let {
             File(docsDir, "index.html").writeText(File(docsDir, "${it.id}.html").readText())
         }
     }
@@ -71,6 +91,42 @@ object Docs {
     /** Resolves a sidebar/content link's `href` relative to `docs/`; external links pass through. */
     private fun resolveHref(href: String): String =
         if (href.startsWith("http://") || href.startsWith("https://")) href else href.removePrefix("./")
+
+    /** Flattens `_Sidebar.md`'s tree into the depth-first order its entries appear in, keeping
+     *  only hrefs that resolve to a known doc (drops external links and group labels with none). */
+    private fun flattenSidebar(entries: List<SidebarEntry>, ids: Set<String>): List<String> {
+        val result = mutableListOf<String>()
+        fun visit(entry: SidebarEntry) {
+            when (entry) {
+                is SidebarEntry.Item -> {
+                    val id = resolveHref(entry.href).lowercase()
+                    if (id in ids) {
+                        result += id
+                    }
+                }
+                is SidebarEntry.Group -> {
+                    if (entry.href != null) {
+                        val id = resolveHref(entry.href).lowercase()
+                        if (id in ids) {
+                            result += id
+                        }
+                    }
+                    entry.children.forEach(::visit)
+                }
+            }
+        }
+        entries.forEach(::visit)
+        return result
+    }
+
+    /** Whether [entry] — or one of its descendants — links to [currentId], used to pre-expand the
+     *  sidebar section the active page lives in. */
+    private fun containsActive(entry: SidebarEntry, currentId: String): Boolean = when (entry) {
+        is SidebarEntry.Item -> resolveHref(entry.href) == currentId
+        is SidebarEntry.Group ->
+            (entry.href != null && resolveHref(entry.href) == currentId) ||
+                entry.children.any { containsActive(it, currentId) }
+    }
 
     private val hrefAttribute = Regex("""href="([^"]*)"""")
 
@@ -98,44 +154,76 @@ object Docs {
         """href="$id.html$fragment""""
     }
 
-    private fun NAV.sidebarLink(text: String, href: String, active: Boolean, depth: Int) {
-        a(href = href) {
-            val background = if (active) "var(--surface-active)" else "transparent"
-            val border = if (active) "var(--gold-400)" else "transparent"
-            val color = if (active) "var(--parch-50)" else "var(--text-muted)"
-            val indent = 10 + depth * 14
-            style = "text-align:left;padding:var(--space-3) 10px var(--space-3) ${indent}px;" +
-                "background:$background;border-left:2px solid $border;border-radius:var(--radius-xs);" +
-                "text-decoration:none;font:var(--type-body-sm);color:$color;display:block"
-            +text
+    /** `docs-nav-row` is the one look shared by every clickable line in the sidebar — a leaf link,
+     *  a linked group's title, or a plain group's whole header button — so a collapsed section
+     *  reads as just another row rather than a visually mismatched label. [depth] only ever adds
+     *  the `docs-nav-depth-0` emphasis class; indentation itself comes purely from how deep the
+     *  `<a>`/`<button>` sits inside nested `.docs-nav-children` columns (see docs.css), not from
+     *  whether the entry started life as a `_Sidebar.md` heading or a nested list item. */
+    private fun rowClasses(depth: Int, active: Boolean = false, extra: String = ""): String = buildString {
+        append("docs-nav-row")
+        if (depth == 0) {
+            append(" docs-nav-depth-0")
+        }
+        if (active) {
+            append(" active")
+        }
+        if (extra.isNotEmpty()) {
+            append(' ')
+            append(extra)
         }
     }
 
-    private fun NAV.sidebarGroupLabel(text: String, depth: Int) {
-        span {
-            val indent = 10 + depth * 14
-            style = "display:block;padding:var(--space-2) 10px 0 ${indent}px;font:var(--type-label);" +
-                "letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--gold-300)"
-            +text
-        }
+    private fun FlowContent.sidebarLink(text: String, href: String, active: Boolean, depth: Int) {
+        a(href = href, classes = rowClasses(depth, active)) { +text }
     }
 
-    /** Renders one `_Sidebar.md` entry, recursing into nested groups with increasing indent. */
-    private fun NAV.sidebarEntry(entry: SidebarEntry, currentId: String, depth: Int) {
+    /** Renders one `_Sidebar.md` entry. A [SidebarEntry.Group] becomes a collapsible section —
+     *  collapsed by default, expanded if it contains the active page, toggled by [voidToggleDocsSection]
+     *  in `docs.js`, which also collapses whichever sibling section was previously open. */
+    private fun FlowContent.sidebarEntry(entry: SidebarEntry, currentId: String, depth: Int) {
         when (entry) {
             is SidebarEntry.Item -> {
                 val href = resolveHref(entry.href)
                 sidebarLink(entry.text, href, active = href == currentId, depth = depth)
             }
             is SidebarEntry.Group -> {
-                if (entry.href != null) {
-                    val href = resolveHref(entry.href)
-                    sidebarLink(entry.title, href, active = href == currentId, depth = depth)
-                } else {
-                    sidebarGroupLabel(entry.title, depth)
-                }
-                for (child in entry.children) {
-                    sidebarEntry(child, currentId, depth + 1)
+                val open = containsActive(entry, currentId)
+                div(classes = "docs-nav-group" + if (open) " open" else "") {
+                    if (entry.href != null) {
+                        // A linked group heading (e.g. "Home") stays two controls: the title
+                        // navigates, and only the chevron toggles — the two can't be merged into
+                        // one clickable header without losing one of those actions.
+                        div(classes = "docs-nav-header") {
+                            val href = resolveHref(entry.href)
+                            val active = href == currentId
+                            a(href = href, classes = rowClasses(depth, active)) { +entry.title }
+                            button(type = ButtonType.button, classes = "docs-nav-expand") {
+                                attributes["aria-expanded"] = open.toString()
+                                attributes["aria-label"] = "Toggle ${entry.title} section"
+                                attributes["onclick"] = "voidToggleDocsSection(this)"
+                                icon(Icons.CHEVRON_RIGHT, size = 12)
+                            }
+                        }
+                    } else {
+                        // A plain section label (e.g. "Players") has nothing else to click, so the
+                        // whole row is one <button> — the title toggles the section just as well as
+                        // the chevron does, instead of only the chevron being clickable.
+                        button(type = ButtonType.button, classes = rowClasses(depth, extra = "docs-nav-expand")) {
+                            attributes["aria-expanded"] = open.toString()
+                            attributes["onclick"] = "voidToggleDocsSection(this)"
+                            span(classes = "docs-nav-label") { +entry.title }
+                            icon(Icons.CHEVRON_RIGHT, size = 12)
+                        }
+                    }
+                    div(classes = "docs-nav-children") {
+                        if (!open) {
+                            attributes["hidden"] = ""
+                        }
+                        for (child in entry.children) {
+                            sidebarEntry(child, currentId, depth + 1)
+                        }
+                    }
                 }
             }
         }
@@ -152,7 +240,10 @@ object Docs {
         title = "Void docs — ${source.title}",
         description = source.description,
         assetPrefix = "../",
-        head = { link(rel = "stylesheet", href = "../void/docs.css") },
+        head = {
+            link(rel = "stylesheet", href = "../void/docs.css")
+            script(src = "../void/docs.js") {}
+        },
     ) {
         ui.siteHeader(pages, active = "docs", assetPrefix = "../", communityPages = communityPages)
 
@@ -164,7 +255,28 @@ object Docs {
             aside {
                 attributes["class"] = "docs-sidebar"
                 style = "background:var(--surface-inset);border-right:1px solid var(--border-panel);" +
-                    "padding:var(--space-8) var(--space-6);display:flex;flex-direction:column;gap:var(--space-8)"
+                    "padding:var(--space-8) var(--space-6);display:flex;flex-direction:column;gap:var(--space-6)"
+
+                div(classes = "docs-search") {
+                    div(classes = "docs-search-input-frame") {
+                        span {
+                            style = "color:var(--text-faint);display:flex"
+                            icon(Icons.SEARCH, size = 14)
+                        }
+                        input(type = InputType.search, classes = "docs-search-input") {
+                            attributes["id"] = "docs-search-input"
+                            placeholder = "Search docs…"
+                            attributes["autocomplete"] = "off"
+                            attributes["aria-label"] = "Search docs"
+                        }
+                    }
+                    div {
+                        attributes["id"] = "docs-search-results"
+                        attributes["class"] = "docs-search-results"
+                        attributes["hidden"] = ""
+                    }
+                }
+
                 nav {
                     style = "display:flex;flex-direction:column;gap:var(--space-3)"
                     if (sidebar != null) {
@@ -199,9 +311,18 @@ object Docs {
                     +source.title
                 }
                 div {
-                    style = "display:flex;gap:var(--space-4);margin-bottom:var(--space-8)"
+                    style = "display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-8)"
                     ui.badge("Reference", pill = false)
                     ui.badge("Updated ${dateFormat.format(Date(source.file.lastModified()))}", tone = BadgeTone.Gold)
+                    a(href = "https://github.com/$GITHUB_REPO/wiki/${source.slug}/_edit", classes = "void-btn ${ButtonVariant.Secondary.className}") {
+                        attributes["target"] = "_blank"
+                        attributes["rel"] = "noopener noreferrer"
+                        style = "margin-left:auto;height:${ButtonSize.Small.height}px;padding:0 ${ButtonSize.Small.paddingX}px;" +
+                            "border-radius:var(--radius-md);font:${ButtonSize.Small.font};letter-spacing:0.06em;" +
+                            "display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none;cursor:pointer"
+                        icon(Icons.EDIT, size = 14)
+                        +"Edit this page"
+                    }
                 }
                 div(classes = "markdown-body") {
                     unsafe { raw(doc.html) }
@@ -256,5 +377,40 @@ object Docs {
         }
 
         ui.siteFooter(assetPrefix = "../")
+    }
+
+    private val htmlTag = Regex("<[^>]+>")
+    private val whitespace = Regex("\\s+")
+
+    /** Strips markup down to plain text for [indexEntryJson]'s search snippet. */
+    private fun stripHtml(html: String): String {
+        val text = htmlTag.replace(html, " ")
+            .replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
+            .replace("&quot;", "\"").replace("&#39;", "'").replace("&nbsp;", " ")
+        return whitespace.replace(text, " ").trim()
+    }
+
+    private fun jsonString(value: String): String {
+        val sb = StringBuilder(value.length + 2)
+        sb.append('"')
+        for (c in value) {
+            when (c) {
+                '"' -> sb.append("\\\"")
+                '\\' -> sb.append("\\\\")
+                '\n' -> sb.append("\\n")
+                '\r' -> {}
+                '\t' -> sb.append("\\t")
+                else -> if (c.code < 0x20) sb.append("\\u%04x".format(c.code)) else sb.append(c)
+            }
+        }
+        sb.append('"')
+        return sb.toString()
+    }
+
+    /** One `search-index.json` entry `docs.js` fetches client-side for the sidebar search box. */
+    private fun indexEntryJson(source: DocSource, doc: MarkdownDocument): String {
+        val text = stripHtml(doc.html).take(500)
+        return "{\"id\":${jsonString(source.id)},\"title\":${jsonString(source.title)}," +
+            "\"description\":${jsonString(source.description)},\"text\":${jsonString(text)}}"
     }
 }

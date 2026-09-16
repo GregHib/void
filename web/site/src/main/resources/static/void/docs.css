@@ -43,7 +43,11 @@
 
 .markdown-body li > ul,
 .markdown-body li > ol {
-  margin-top: var(--space-3);
+  /* Overrides the generic block margin-bottom above (meant for top-level elements) back to 0 — a
+     nested list already sits inside a `<li>` that's itself spaced from its siblings by the parent
+     `<ul>`'s flex `gap`, so without this a nested list's trailing space stacks on top of that gap
+     and leaves a visibly oversized gap before the next item at the parent's own level. */
+  margin: var(--space-3) 0 0;
 }
 
 .markdown-body strong { color: var(--text-strong); font-weight: var(--weight-semibold); }
@@ -288,4 +292,212 @@
   background: var(--surface-panel);
   border-bottom-color: var(--gold-400);
   color: var(--text-strong);
+}
+
+/* Sidebar search box — see docs.js for the fetch/filter logic behind #docs-search-input. */
+.docs-search {
+  position: relative;
+}
+
+.docs-search-input-frame {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 34px;
+  padding: 0 10px;
+  background: var(--surface-inset);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--bevel-down);
+}
+
+.docs-search-input-frame:focus-within {
+  border-color: var(--gold-400);
+  box-shadow: var(--bevel-down), 0 0 0 2px rgba(224, 174, 60, .22);
+}
+
+.docs-search-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: var(--type-body-sm);
+  color: var(--text-strong);
+}
+
+.docs-search-results {
+  position: absolute;
+  top: calc(100% + var(--space-3));
+  left: 0;
+  right: 0;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  box-shadow: var(--bevel-up), var(--shadow-lg);
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 40;
+}
+
+.docs-search-result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.docs-search-result:last-child {
+  border-bottom: none;
+}
+
+.docs-search-result:hover,
+.docs-search-result:focus-visible {
+  background: var(--surface-active);
+}
+
+.docs-search-result-title {
+  font: var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);
+  color: var(--parch-50);
+}
+
+.docs-search-result-desc {
+  font: var(--type-body-sm);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docs-search-empty {
+  padding: var(--space-5);
+  font: var(--type-body-sm);
+  color: var(--text-faint);
+}
+
+/* Collapsible sidebar sections — see voidToggleDocsSection in docs.js. Collapsed by default;
+   the section holding the active page is expanded on render so navigation keeps its context.
+
+   `.docs-nav-row` is the one look shared by *every* clickable line — a leaf link, a linked
+   group's title (e.g. "Home"), or a plain group's whole header button (e.g. "Players") — so a
+   collapsed section reads as just another row instead of a visually mismatched label sitting
+   between ordinary links. Depth adds exactly one thing, `.docs-nav-depth-0`'s emphasis; actual
+   indentation comes from how deeply a row's `<a>`/`<button>` sits inside nested
+   `.docs-nav-children` columns below, which is purely structural — it doesn't care whether the
+   entry started life as a `_Sidebar.md` heading or a nested list item. */
+.docs-nav-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) 10px;
+  border: none;
+  border-left: 2px solid transparent;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
+}
+
+.docs-nav-row:hover,
+.docs-nav-row:focus-visible {
+  background: var(--surface-active);
+  color: var(--text-strong);
+}
+
+.docs-nav-row.active {
+  background: var(--surface-active);
+  border-left-color: var(--gold-400);
+  color: var(--parch-50);
+}
+
+/* Depth 0 — the top of each section — is the only place weight varies by depth; every level
+   below it reads as a plain row, distinguished only by its chevron (expandable) and the indent
+   guide its parent `.docs-nav-children` draws, not by its own font treatment. */
+.docs-nav-depth-0 {
+  font: var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);
+  color: var(--text-body);
+}
+
+.docs-nav-depth-0.active {
+  color: var(--parch-50);
+}
+
+.docs-nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.docs-nav-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Inside a linked group's header the row shares space with the chevron button, so it drops the
+   full-width treatment it has everywhere else. */
+.docs-nav-header > .docs-nav-row {
+  width: auto;
+  flex: 1;
+  min-width: 0;
+}
+
+.docs-nav-label {
+  flex: 1;
+  min-width: 0;
+}
+
+/* The chevron button: its own small hit target next to a linked group's title, or — via
+   `.docs-nav-row.docs-nav-expand` — folded into a plain group's whole header row instead. */
+button.docs-nav-expand:not(.docs-nav-row) {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+button.docs-nav-expand:not(.docs-nav-row):hover,
+button.docs-nav-expand:not(.docs-nav-row):focus-visible {
+  color: var(--text-strong);
+}
+
+.docs-nav-expand svg {
+  transition: transform var(--dur-fast) var(--ease-standard);
+}
+
+.docs-nav-group.open > .docs-nav-header .docs-nav-expand svg,
+.docs-nav-group.open > .docs-nav-row.docs-nav-expand svg {
+  transform: rotate(90deg);
+}
+
+/* A left guide line ties a section's children visually back to its header and makes the nesting
+   depth legible at a glance — the same job the old per-depth left padding did, but readable even
+   while every row otherwise looks alike. */
+.docs-nav-children {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: var(--space-2) 0 0 20px;
+  padding-left: 10px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.docs-nav-children[hidden] {
+  display: none;
 }
