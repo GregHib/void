@@ -360,7 +360,12 @@ object GameObjects : ZoneBatchUpdates.Sender {
      * Note: Doesn't undo collision changes
      */
     fun clear(zone: Zone) {
-        map.deallocateZone(zone.tile.x, zone.tile.y, zone.level)
+        map.deallocateZone(zone)
+        // Keyed separately from the map, so they'd outlive the zone and revert back into it
+        timers.cancel(zone)
+        for (index in replacements.keys.filter { Tile(it and TILE_MASK).zone == zone }) {
+            replacements.remove(index)
+        }
     }
 
     /**
@@ -405,6 +410,9 @@ object GameObjects : ZoneBatchUpdates.Sender {
 
     const val NEVER = -1
     private const val REPLACED = 0x1
+
+    // A replacement index is a [Tile] plus its [ObjectLayer] in the upper two bits
+    private const val TILE_MASK = 0x3fffffff
 
     private fun empty(value: Int) = value == -1 || value == 0
 
