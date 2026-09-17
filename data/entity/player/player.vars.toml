@@ -19,10 +19,6 @@ persist = true
 format = "boolean"
 persist = true
 
-[registered]
-format = "int"
-persist = true
-
 [lifetime_xp]
 format = "long"
 persist = true
