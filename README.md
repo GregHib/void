@@ -39,8 +39,9 @@
 
 1. Make sure you have [java 21 or above installed](https://adoptium.net/temurin/releases/?package=jre). (`java --version` on command line)
 2. Extract the [latest void.zip released bundle](https://github.com/GregHib/void/releases) into a directory.
-3. Extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/data/cache/`.
-4. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
+3. Run either the `run-server.bat` on Windows, or `run-server.sh` on Linux.
+
+   On first start the server will offer to download the game cache files into `/data/cache/` (configured by `storage.cache.download.url` in `game.properties`). Alternatively extract the [latest pre-modified game files cache.zip](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into `/data/cache/` yourself.
 
    You should see `[Main] - Void loaded in ...ms` to show the server is up and running correctly.
 
@@ -87,7 +88,7 @@ Run the following command in the terminal to set up Gradle or close and re-open 
 ./gradlew build -x test
 ```
 
-Extract the [cache files](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into a new directory called `/cache/` inside of the `/data/` directory.
+On first start the server will offer to download the game cache files into `/data/cache/` (configured by `storage.cache.download.url` in `game.properties`). Alternatively extract the [cache files](https://mega.nz/folder/ZMN2AQaZ#4rJgfzbVW0_mWsr1oPLh1A) into a new directory called `/cache/` inside of the `/data/` directory yourself.
 
 From here you can navigate in the left panel to `/game/src/main/kotlin/` (Or Ctrl/Cmd + N for class search) where you will find [Main.kt](./game/src/main/kotlin/Main.kt) which you should be able to right-click and run.
 
