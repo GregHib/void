@@ -15,6 +15,14 @@ values = [ "None", "Mod", "Admin" ]
 format = "string"
 persist = true
 
+[choose_name]
+format = "boolean"
+persist = true
+
+[registered]
+format = "int"
+persist = true
+
 [lifetime_xp]
 format = "long"
 persist = true

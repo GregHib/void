@@ -17,6 +17,7 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
+import world.gregs.voidps.engine.client.PlayerAccountCreator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
@@ -27,8 +28,12 @@ import world.gregs.voidps.engine.event.Wildcards
 import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
+import world.gregs.voidps.network.RegistrationServer
 import world.gregs.voidps.network.login.protocol.decoders
+import world.gregs.voidps.network.login.registration.RegistrationLimiter
 import world.gregs.voidps.web.WebServer
+import world.gregs.voidps.web.api.ApiConfig
+import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
 import kotlin.concurrent.thread
@@ -57,6 +62,22 @@ object Main {
         val job = server.start(port)
         AuditLog.info("login online")
 
+        // Content
+        val configFiles = configFiles()
+        try {
+            preload(cache, configFiles)
+        } catch (ex: Exception) {
+            logger.error(ex) { "Error loading files." }
+            server.stop()
+        }
+
+        // Login server
+        val decoders = decoders(get<Huffman>())
+        val accountLoader: PlayerAccountLoader = get()
+        val loginServer = LoginServer.load(settings, decoders, accountLoader)
+        val accountCreator: PlayerAccountCreator = get()
+        val registrationServer = RegistrationServer.load(settings, accountCreator)
+
         // Web server
         var site: Job? = null
         if (Settings["web.server.enabled", false]) {
@@ -68,27 +89,13 @@ object Main {
             AuditLog.info("web online")
         }
 
-        // Content
-        val configFiles = configFiles()
-        try {
-            preload(cache, configFiles)
-        } catch (ex: Exception) {
-            logger.error(ex) { "Error loading files." }
-            server.stop()
-            site?.cancel()
-        }
-
-        // Login server
-        val decoders = decoders(get<Huffman>())
-        val accountLoader: PlayerAccountLoader = get()
-        val loginServer = LoginServer.load(settings, decoders, accountLoader)
-
         // Game world
         val stages = getTickStages()
         World.start(configFiles)
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
+        server.registrationServer = registrationServer
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         AuditLog.info("game online")
         runBlocking {
@@ -194,18 +201,40 @@ object Main {
 
     @Suppress("HttpUrlsUsage")
     private fun webServer(port: Int): Job? {
-        val path = Paths.get(Settings["web.client.zip", ""])
-        if (!path.exists()) {
-            logger.error { "No webclient zip file found at path: $path" }
+        val webclient = webclientZip()
+        val api = if (Settings["web.api.enabled", false]) apiConfig() ?: return null else null
+        if (webclient == null && api == null) {
+            logger.error { "Webserver has nothing to serve; provide web.client.zip or enable web.api.enabled." }
             return null
         }
         val webPort = Settings["web.server.port"].toInt()
         val address = "localhost"
-        val webServer = WebServer(path, webPort, address, port)
+        val webServer = WebServer(webPort, address, port, webclient, api)
         val scope = CoroutineScope(Dispatchers.IO)
         return scope.launch {
             logger.info { "Webserver online at http://$address:$webPort/" }
             webServer.start()
         }
+    }
+
+    private fun webclientZip(): Path? {
+        val path = Paths.get(Settings["web.client.zip", ""])
+        if (!path.exists()) {
+            logger.warn { "No webclient zip file found at path: $path; webclient disabled." }
+            return null
+        }
+        return path
+    }
+
+    private fun apiConfig(): ApiConfig? {
+        val token = Settings["web.api.token", ""]
+        if (token.isBlank()) {
+            logger.error { "web.api.token must be set when web.api.enabled is true." }
+            return null
+        }
+        val limit = Settings["web.api.registration.maxPerIP", 3]
+        val minutes = Settings["web.api.registration.windowMinutes", 60L]
+        val limiter = RegistrationLimiter(limit, minutes * 60_000L)
+        return ApiConfig(token, WebAccountService(get(), get(), get(), limiter))
     }
 }

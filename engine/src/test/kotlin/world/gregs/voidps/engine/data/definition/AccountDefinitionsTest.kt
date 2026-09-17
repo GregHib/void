@@ -20,6 +20,39 @@ class AccountDefinitionsTest {
     }
 
     @Test
+    fun `Remove drops definition display name and clan`() {
+        definitions.merge(mapOf("account" to definition("account", "Name", hash = "hash")), mapOf("name" to Clan(owner = "account", ownerDisplayName = "Name", friends = emptyMap(), ignores = emptyList()))) { false }
+
+        definitions.remove("Account")
+
+        assertNull(definitions.get("Name"))
+        assertNull(definitions.getByAccount("account"))
+        assertNull(definitions.displayNames["account"])
+        assertNull(definitions.clan("Name"))
+    }
+
+    @Test
+    fun `Update re-keys the clan under the new display name`() {
+        definitions.merge(mapOf("account" to definition("account", "Name", hash = "hash")), mapOf("name" to Clan(owner = "account", ownerDisplayName = "Name", friends = emptyMap(), ignores = emptyList()))) { false }
+
+        definitions.update("account", "Renamed", "Name")
+
+        assertNull(definitions.get("Name"))
+        assertNull(definitions.clan("Name"))
+        assertEquals("Renamed", definitions.get("Renamed")?.displayName)
+        assertEquals("Name", definitions.get("Renamed")?.previousName)
+        assertEquals("Renamed", definitions.clan("Renamed")?.ownerDisplayName)
+        assertEquals("Renamed", definitions.displayNames["account"])
+    }
+
+    @Test
+    fun `Remove unknown account is ignored`() {
+        definitions.remove("missing")
+
+        assertNull(definitions.getByAccount("missing"))
+    }
+
+    @Test
     fun `Merge adds new definitions and display names`() {
         val definition = definition("new_account", "Newbie", hash = "hash")
 

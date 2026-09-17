@@ -10,6 +10,7 @@ import kotlinx.io.EOFException
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.client.ConnectionTracker
 import world.gregs.voidps.network.login.protocol.finish
+import world.gregs.voidps.network.login.registration.RegistrationResponse
 import java.util.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -25,6 +26,7 @@ class GameServer(
     private var dispatcher: ExecutorCoroutineDispatcher? = null
     private var server: ServerSocket? = null
     var loginServer: Server? = null
+    var registrationServer: RegistrationServer? = null
 
     fun start(port: Int): Job {
         Runtime.getRuntime().addShutdownHook(thread(start = false) { stop() })
@@ -73,6 +75,8 @@ class GameServer(
                 Request.CONNECT_LOGIN -> loginServer?.connect(read, write, hostname)
                     ?: write.finish(Response.LOGIN_SERVER_OFFLINE)
                 Request.CONNECT_JS5 -> fileServer.connect(read, write, hostname)
+                Request.SIGN_UP, Request.CREATE_ACCOUNT -> registrationServer?.connect(opcode, read, write, hostname)
+                    ?: write.finish(RegistrationResponse.UNAVAILABLE)
                 else -> {
                     logger.trace { "Invalid sync session id: $opcode" }
                     write.finish(Response.INVALID_LOGIN_SERVER)

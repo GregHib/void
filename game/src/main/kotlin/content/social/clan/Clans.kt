@@ -1,7 +1,5 @@
 package content.social.clan
 
-import content.social.friend.world
-import content.social.friend.worldName
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player

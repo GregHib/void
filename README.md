@@ -57,6 +57,32 @@
 5. Run the server as normal [^](#quick-setup).
 6. Open `http://localhost:8080/play` in the browser and login with any username or password to create a new account.
 
+## Website api
+
+The webserver can also expose a small json api so a website or launcher can create and manage accounts without a server restart.
+
+1. Set `web.server.enabled=true` and `web.api.enabled=true` in `game.properties` (the webclient zip is optional when only the api is used).
+2. Set `web.api.token` to a long random secret. Every request must send it as `Authorization: Bearer <token>`.
+3. Keep the port private: only trusted server-side callers should reach it and `/api` must never be exposed through a reverse proxy.
+
+| Method | Path | Body | Success |
+| --- | --- | --- | --- |
+| `GET` | `/api/status` | | `{"name","world","worldName","revision","players","uptime"}` |
+| `GET` | `/api/accounts/{name}` | | `{"accountName","displayName","previousName","online"}` |
+| `POST` | `/api/accounts` | `{"name","password","displayName"?}` | `201` + account |
+| `PUT` | `/api/accounts/{name}/password` | `{"password"}` | `204` |
+| `PUT` | `/api/accounts/{name}/name` | `{"displayName"}` | account |
+
+`name` is either a 1-12 character username (which is also the display name) or an email address, in which case `displayName` is required.
+Errors are `{"error", "message"}` with the status: `400` `invalid_name`/`invalid_display_name`/`invalid_password`/`invalid_json`, `401` bad token, `403` `registration_disabled`, `404` `not_found`, `409` `name_taken`/`busy`, `429` `too_many_requests`, `503` `unavailable`.
+
+Send the end user's address as `X-Forwarded-For` when creating accounts so `web.api.registration.maxPerIP` limits players rather than the caller:
+
+```bash
+curl -H 'Authorization: Bearer <token>' -H 'Content-Type: application/json' -H 'X-Forwarded-For: 203.0.113.9' \
+  -d '{"name":"bob@example.com","password":"hunter22","displayName":"Bob"}' http://localhost:8080/api/accounts
+```
+
 For more details see the full [Installation Guide](https://github.com/GregHib/void/wiki/installation-guide).
 
 > [!NOTE]

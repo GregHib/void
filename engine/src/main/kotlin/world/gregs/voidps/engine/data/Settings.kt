@@ -57,6 +57,12 @@ open class Settings {
         private const val PROPERTY_FILE_NAME = "game.properties"
         private val logger = InlineLogger()
 
+        val world: Int
+            get() = this["world.id", 16]
+
+        val worldName: String
+            get() = this["world.name", "World 16"]
+
         fun load(fileName: String = PROPERTY_FILE_NAME): Properties {
             val file = File("./$fileName")
             return if (file.exists()) {
