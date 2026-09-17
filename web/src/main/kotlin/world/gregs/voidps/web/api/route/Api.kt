@@ -14,6 +14,7 @@ import io.ktor.server.routing.route
 import io.ktor.server.sse.SSE
 import kotlinx.serialization.json.Json
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.web.api.ApiException
 import world.gregs.voidps.web.api.model.ErrorBody
 import world.gregs.voidps.web.api.model.ErrorResponse
@@ -72,8 +73,8 @@ const val API_PATH = "/api/v1"
  * Mounts every route under [API_PATH]. Public routes sit at the top level; `/account` and `/dev`
  * wrap themselves in the authentication providers registered by [apiPlugins].
  */
-fun Routing.api(storage: Storage) {
-    val hiscores = HiscoresService(storage)
+fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions) {
+    val hiscores = HiscoresService(storage, questDefinitions)
     route(API_PATH) {
         hiscoresRoutes(hiscores)
     }

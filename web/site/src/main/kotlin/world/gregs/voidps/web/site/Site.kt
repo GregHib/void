@@ -7,6 +7,7 @@ import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.web.site.components.*
 import java.io.File
 
@@ -348,8 +349,10 @@ object Site {
         Settings.load("./game/src/main/resources/game.properties")
         val files = configFiles()
         val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
-        val definitions = NPCDecoder(true).load(cache)
-        NPCDefinitions.init(definitions).load(files.getValue(Settings["definitions.npcs"]))
+
+        val npcDefinitions = NPCDecoder(true).load(cache)
+        NPCDefinitions.init(npcDefinitions).load(files.getValue(Settings["definitions.npcs"]))
+
         val buildDir = File("./web/site/build")
         buildDir.mkdirs()
         val gameData = GameData()

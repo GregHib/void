@@ -1,7 +1,9 @@
 package world.gregs.voidps.web.hiscores
 
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.RecentEvent
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.web.api.model.*
 import java.time.Instant
@@ -14,7 +16,10 @@ import kotlin.math.floor
  * as `standard`; the `mode` filter is kept in the API surface so the site's existing chips keep
  * working once one exists.
  */
-class HiscoresService(private val storage: Storage) {
+class HiscoresService(
+    private val storage: Storage,
+    private val quests: QuestDefinitions
+) {
 
     fun metadata(): HiscoresMetadata = HiscoresMetadata(
         updatedAt = Instant.now().toString(),
@@ -103,15 +108,87 @@ class HiscoresService(private val storage: Storage) {
         val accounts = storage.accounts()
         val save = accounts.find(name) ?: return null
         val rank = rankOverall(accounts).find { it.first === save }?.second
+        val maxedSkills = Skill.all.count { save.skillLevel(it) >= it.displayMax() }
+        val bossKills = Bosses.ids.sumOf { save.bossKills(it) }
+        val lastEvent = save.recentEvents.maxByOrNull { it.time }
         return PlayerProfile(
             name = save.displayName(),
             mode = save.mode(),
+            rights = save.rights(),
             overallRank = rank,
             totalLevel = save.totalLevel(),
             totalXp = save.totalXp(),
             combatLevel = save.combatLevel(),
-            bossKills = Bosses.ids.sumOf { save.bossKills(it) },
+            questPoints = save.questPoints(),
+            questPointsMax = quests.definitions.sumOf { it.questPoints.coerceAtLeast(0) },
+            maxedSkills = maxedSkills,
+            bossKills = bossKills,
+            timePlayedHours = save.playtimeSeconds() / 3600.0,
             joinedAt = save.joinedAt(),
+            lastSeenAt = lastEvent?.let { Instant.ofEpochSecond(it.time.toLong()).toString() },
+            milestones = listOf(
+                Milestone("Skills at 99", "$maxedSkills of ${Skill.count}"),
+                Milestone("Quests complete", "${quests.ids.keys.count { save.questStatus(it) == "complete" }} of ${quests.ids.size}"),
+                Milestone("Bosses defeated", bossKills.toString()),
+                Milestone("Time played", "${(save.playtimeSeconds() / 3600)} h"),
+                Milestone("Last seen", lastEvent?.let { Instant.ofEpochSecond(it.time.toLong()).toString() } ?: "—"),
+            ),
+        )
+    }
+
+    fun playerQuests(name: String, status: String?): PlayerQuests? {
+        val accounts = storage.accounts()
+        val save = accounts.find(name) ?: return null
+        val list = quests.definitions
+            .map { def ->
+                val id = def.stringId
+                val questStatus = save.questStatus(id)
+                PlayerQuestRow(
+                    id = id,
+                    name = def.name ?: "",
+                    difficulty = when (def.difficulty) {
+                        0 -> "novice"
+                        1 -> "intermediate"
+                        2 -> "experienced"
+                        3 -> "master"
+                        4 -> "grandmaster"
+                        else -> ""
+                    },
+                    status = questStatus,
+                    questPoints = def.questPoints.coerceAtLeast(0),
+                    completedAt = if (questStatus == "complete") save.questCompletedAt(def.name ?: "") else null,
+                )
+            }
+            .filter { status == null || status == "all" || (status == "complete") == (it.status == "complete") }
+
+        println("Quests ${quests.ids.size} ${save.questPoints()} ${quests.definitions.sumOf { it.questPoints.coerceAtLeast(0) }}")
+        println("List $list")
+        return PlayerQuests(
+            completed = quests.ids.keys.count { save.questStatus(it) == "complete" },
+            total = quests.ids.size,
+            questPoints = save.questPoints(),
+            questPointsMax = quests.definitions.sumOf { it.questPoints.coerceAtLeast(0) },
+            items = list,
+        )
+    }
+
+    fun playerEvents(name: String, type: String?, page: Int, pageSize: Int): PlayerEventPage? {
+        val accounts = storage.accounts()
+        val save = accounts.find(name) ?: return null
+        val filtered = save.recentEvents
+            .sortedByDescending { it.time }
+            .filter { type == null || type == "all" || it.eventType() == type }
+        val (from, to) = window(filtered.size, page, pageSize)
+        return PlayerEventPage(
+            pagination = Pagination.of(page, pageSize, filtered.size),
+            items = filtered.subList(from, to).mapIndexed { index, event ->
+                PlayerEventRow(
+                    id = "${save.name.lowercase()}-${event.time}-$index",
+                    type = event.eventType(),
+                    text = event.title,
+                    occurredAt = Instant.ofEpochSecond(event.time.toLong()).toString(),
+                )
+            },
         )
     }
 
@@ -278,6 +355,36 @@ class HiscoresService(private val storage: Storage) {
         private fun PlayerSave.bossTimeMillis(bossId: String, teamSize: Int): Int? {
             val key = if (teamSize == 1) bossId else (TEAM_SUFFIXES.firstOrNull { it.first == teamSize }?.second?.let { "$bossId$it" } ?: return null)
             return records[key]
+        }
+
+        /** "none", "mod" or "admin" - mirrors [world.gregs.voidps.engine.entity.character.player.PlayerRights]. */
+        private fun PlayerSave.rights(): String = (variables["rights"] as? String) ?: "none"
+
+        private fun PlayerSave.questVariable(id: String): String = variables[id] as? String ?: "unstarted"
+
+        private fun PlayerSave.questStatus(id: String): String = when {
+            questVariable(id).startsWith("completed") -> "complete"
+            questVariable(id) != "unstarted" -> "started"
+            else -> "not-started"
+        }
+
+        private fun PlayerSave.questPoints(): Int = (variables["quest_points"] as? Int) ?: 0
+
+        private fun PlayerSave.playtimeSeconds(): Int = (variables["playtime"] as? Int) ?: 0
+
+        /** Best-effort: the most recent matching "Quest complete: <name>" entry still in [PlayerSave.recentEvents]. */
+        private fun PlayerSave.questCompletedAt(name: String): String? {
+            val title = "Quest complete: $name"
+            val event = recentEvents.filter { it.title == title }.maxByOrNull { it.time } ?: return null
+            return Instant.ofEpochSecond(event.time.toLong()).toString()
+        }
+
+        /** Inferred from the event's title, since [RecentEvent] doesn't record a kind of its own. */
+        private fun RecentEvent.eventType(): String = when {
+            title.startsWith("Quest complete", ignoreCase = true) || title.contains("Quest points", ignoreCase = true) -> "quest"
+            title.contains("XP in", ignoreCase = true) || title.contains("total level", ignoreCase = true) || title.startsWith("Levelled", ignoreCase = true) -> "skill"
+            title.contains("killed", ignoreCase = true) || title.contains("Dungeon floor", ignoreCase = true) || title.startsWith("I found", ignoreCase = true) -> "combat"
+            else -> "account"
         }
 
         private fun PlayerSave.joinedAt(): String? {

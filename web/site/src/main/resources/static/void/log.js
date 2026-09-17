@@ -1,42 +1,14 @@
-// Adventurer's log page data + Alpine component. A self-contained mock dataset stands in for
-// the profile API: one deterministic account per name (seeded from the name itself) so the log
-// has something realistic to browse and the "Find a log" search has other accounts to switch to.
+// Adventurer's log page data + Alpine component. Every panel is fetched live from the real
+// `/api/v1/players/*` and `/api/v1/hiscores/*` endpoints (see `HiscoresRoutes.kt`) - the only
+// synthesized piece left is the xp-history chart's day-by-day distribution, since the server
+// doesn't keep daily xp snapshots yet; its totals still add up to the account's real per-skill xp.
 
 (function () {
-  // Populated by GameData.script() (see Hiscores.kt/AdventurersLog.kt) as window.VOID_SKILLS, so
-  // the real skill list lives in one place (GameData.kt) instead of being duplicated here.
-  var SKILLS = window.VOID_SKILLS.map(function (s) { return [s.name, s.max]; });
-  // Fictional boss roster for this page's mock profile data - unrelated to the real hiscores
-  // bosses in GameData.kt, so it stays hardcoded here.
-  var BOSSES = [
-    ["Ashen Wyrm", 214], ["Gravelord Thane", 332], ["The Hollow King", 488], ["Sunken Leviathan", 276],
-    ["Mother of Blades", 191], ["Warden of Cinders", 405], ["Rot-Priest Malgrim", 148], ["Frostbound Colossus", 560],
-    ["Twin Serpents of Ord", 233], ["Blightmaw", 127],
-  ];
-  var QUESTS = [
-    ["The Sunken Archive", "Master", "danger", 278], ["Ashes of Ord", "Experienced", "warning", 124],
-    ["The Hollow Road", "Experienced", "warning", 96], ["Warden's Gambit", "Master", "danger", 168],
-    ["Rot in the Rafters", "Intermediate", "info", 58], ["Blightmaw's Bargain", "Intermediate", "info", 71],
-    ["The Pale Choir", "Experienced", "warning", 89], ["Verdant Horror", "Intermediate", "info", 47],
-    ["A Thane's Debt", "Novice", "success", 22], ["Cinders of Home", "Novice", "success", 15],
-    ["The Long Dig", "Experienced", "warning", 84], ["Colossus Waking", "Master", "danger", 312],
-    ["Twin-Fanged", "Intermediate", "info", 63], ["First Light", "Novice", "success", 9],
-  ];
-  var PLAYER_NAMES = [
-    ["Thornwake", "World 9 · PvP"], ["Brackwater", "World 9"], ["Corvid Ash", "World 12"],
-    ["Duskfen", "World 3"], ["Emberhollow", "World 9"], ["Verdigris", "World 18"],
-    ["Mournvale", "World 24"], ["Sable Kest", "World 9"], ["Rooksbane", "World 12"],
-    ["Ashgrave", "World 3"], ["Wyrmden", "World 18"], ["Cindermoor", "World 9"],
-  ];
-  // Persistent guild rosters. A player not listed here is clanless (profile.clan is null).
-  var CLANS = [
-    { name: "Ashen Compact", members: ["Thornwake", "Brackwater", "Corvid Ash", "Duskfen", "Emberhollow"] },
-    { name: "Verdant Bastion", members: ["Verdigris", "Mournvale", "Sable Kest"] },
-    { name: "Rookery", members: ["Rooksbane", "Ashgrave", "Wyrmden", "Cindermoor"] },
-  ];
+  var API = "/api/v1";
+
   var BAND = ["var(--surface-panel)", "var(--umber-850)"];
-  var TODAY = Date.UTC(2026, 8, 9);
-  var DAY = 86400000;
+  var TONE_BY_EVENT_TYPE = { skill: "gold", quest: "info", combat: "danger", account: "success" };
+  var TONE_BY_DIFFICULTY = { novice: "success", intermediate: "info", experienced: "warning", master: "danger" };
 
   // How many days of daily xp-gain history to synthesize per profile, and how many trailing
   // days of it each chart range toggle shows.
@@ -44,36 +16,20 @@
   var RANGE_DAYS = { week: 7, month: 30, year: 365, all: HISTORY_DAYS };
   var RANGE_LABEL = { week: "last 7 days", month: "last 30 days", year: "last 365 days", all: "all time" };
 
-  // Fixed per-skill colour, so a skill is always the same colour on the chart no matter which
-  // other skills it's stacked alongside or how the top-5-plus-"Other" bucketing shakes out.
-  var SKILL_COLORS = {
-    Attack: "#c2493a",
-    Defence: "#7d9db0",
-    Strength: "#dd9a2b",
-    Constitution: "#d1495c",
-    Ranged: "#7fae4f",
-    Prayer: "#f0c667",
-    Magic: "#8b6bc4",
-    Cooking: "#e08a3c",
-    Woodcutting: "#6b8e4e",
-    Fletching: "#c9a66b",
-    Fishing: "#5b8fb0",
-    Firemaking: "#e0663c",
-    Crafting: "#b06bb0",
-    Smithing: "#a0a8ad",
-    Mining: "#7a6a57",
-    Herblore: "#4f9e6e",
-    Agility: "#4fb0a8",
-    Thieving: "#6b4e8e",
-    Slayer: "#8e2f2f",
-    Farming: "#6a9e3f",
-    Runecrafting: "#3f9ea0",
-    Hunter: "#9e7a4f",
-    Construction: "#71542c",
-    Summoning: "#7a5ea8",
-    Dungeoneering: "#c2a34a",
-  };
+  // Populated below from window.VOID_SKILLS (see GameData.kt's `skillColors`), so the fixed
+  // per-skill colours used by the xp chart live in one place instead of being duplicated here.
+  var SKILL_COLORS = {};
+  window.VOID_SKILLS.forEach(function (s) { SKILL_COLORS[s.name] = s.color; });
   var OTHER_COLOR = "#5a646b";
+
+  function getJson(url) {
+    return fetch(url).then(function (response) {
+      if (!response.ok) {
+        throw new Error("Request to " + url + " failed: " + response.status);
+      }
+      return response.json();
+    });
+  }
 
   function rng(seed) {
     var a = seed >>> 0;
@@ -92,24 +48,13 @@
     return h >>> 0;
   }
 
-  function xpTable() {
-    var t = [0, 0], acc = 0;
-    for (var l = 1; l <= 125; l++) {
-      acc += Math.floor(l + 300 * Math.pow(2, l / 7));
-      t[l + 1] = Math.floor(acc / 4);
-    }
-    return t;
-  }
-  var XPT = xpTable();
-
-  function levelFromXp(xp, max) {
-    var l = 1;
-    while (l < max && XPT[l + 1] <= xp) l++;
-    return l;
-  }
-
   function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
-  function abbrevXp(n) { return (n / 1e6).toFixed(1) + "M"; }
+  function abbrevXp(n) {
+    if (n >= 1e9) return (n / 1e9).toFixed(2) + "B";
+    if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
+    if (n >= 1e3) return (n / 1e3).toFixed(1) + "K";
+    return String(Math.round(n));
+  }
   function shortXp(n) {
     var a = Math.abs(n);
     if (a >= 1e6) return (n / 1e6).toFixed(1) + "M";
@@ -129,34 +74,35 @@
     var m = Math.floor(total / 60), s = total % 60;
     return m + ":" + String(s).padStart(2, "0");
   }
-  function dateAgo(days) { return new Date(TODAY - days * DAY).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
-  function exactTime(days, r) {
-    var t = TODAY - days * DAY + Math.floor(r() * DAY);
-    return new Date(t).toLocaleString("en-GB", {
-      day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "2-digit",
-    });
+  function shortDate(iso) {
+    if (!iso) return "—";
+    try {
+      return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    } catch (e) {
+      return "—";
+    }
   }
+  function longDateTime(iso) {
+    if (!iso) return "";
+    try {
+      return new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "long", year: "numeric", hour: "numeric", minute: "2-digit" });
+    } catch (e) {
+      return "";
+    }
+  }
+  function modeLabel(id) { return id ? id.charAt(0).toUpperCase() + id.slice(1) : ""; }
+  function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
   function band(i) { return BAND[i % 2]; }
-  function skillIcon(name) { return "void/images/skills/" + name.toLowerCase() + ".png"; }
   function bossAbbr(name) { return name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 3).toUpperCase(); }
-  function clanFor(name) {
-    for (var i = 0; i < CLANS.length; i++) {
-      if (CLANS[i].members.indexOf(name) >= 0) return CLANS[i].name;
-    }
-    return null;
-  }
-  function clanByName(name) {
-    for (var i = 0; i < CLANS.length; i++) {
-      if (CLANS[i].name === name) return CLANS[i];
-    }
-    return CLANS[0];
-  }
 
   // Synthesizes daily xp gains per skill over the last HISTORY_DAYS days: each skill trains in a
   // handful of random "active" windows on the timeline, gaining xp on most (not all) days within
-  // them, roughly scaled to how much total xp that skill has ended up with.
+  // them, scaled so the total roughly matches the skill's real, already-earned xp. There's no
+  // record of when that xp was actually earned, so the day-by-day shape here is illustrative only.
   function buildXpHistory(skills, r) {
     var days = HISTORY_DAYS;
+    var today = Date.now();
+    var day = 86400000;
     var config = skills.map(function (sk) {
       var windowCount = 3 + Math.floor(r() * 5);
       var windows = [];
@@ -174,139 +120,103 @@
         var active = cfg.windows.some(function (w) { return d >= w.start && d < w.end; });
         if (active && r() > 0.3) gains[cfg.name] = Math.round(cfg.rate * (0.4 + r() * 1.3));
       }
-      history.push({ t: TODAY - (days - 1 - d) * DAY, gains: gains });
+      history.push({ t: today - (days - 1 - d) * day, gains: gains });
     }
     return history;
   }
 
-  function urlFor(view, profileName, clanName) {
+  function urlFor(view, profileName) {
     if (view === "profile") return "?player=" + encodeURIComponent(profileName);
-    if (view === "clan") return "?clan=" + encodeURIComponent(clanName);
     return window.location.pathname;
   }
 
-  function buildProfile(name) {
-    var r = rng(hashSeed(name));
-    var strength = 0.45 + r() * 0.6;
-    var member = r() > 0.15;
-
-    var skills = SKILLS.map(function (s, i) {
-      var capXp = XPT[s[1] + 1];
-      var xp = Math.max(1200, Math.min(capXp, Math.round(capXp * Math.min(1, strength * (0.5 + r() * 0.85)))));
-      var level = levelFromXp(xp, s[1]);
-      return {
-        name: s[0], max: s[1], level: level, xp: xp,
-        xpLabel: fmt(xp), rankLabel: "rank " + fmt(1200 + i * 941 + (s[1] - level) * 1800),
-        icon: skillIcon(s[0]),
-      };
-    });
-    var totalLevel = skills.reduce(function (s, k) { return s + k.level; }, 0);
-    var totalXp = skills.reduce(function (s, k) { return s + k.xp; }, 0);
-    var maxedCount = skills.filter(function (k) { return k.level >= k.max; }).length;
-
-    var questCount = Math.round(QUESTS.length * Math.min(1, strength * 0.9 + r() * 0.2));
-    var completedQuests = QUESTS.slice(0, questCount).map(function (q, i) {
-      var minutes = Math.round(q[3] * (0.7 + r() * 0.6));
-      return {
-        name: q[0], difficulty: q[1], tone: q[2],
-        duration: minutes >= 60 ? Math.floor(minutes / 60) + " h " + String(minutes % 60).padStart(2, "0") + " m" : minutes + " m",
-        date: dateAgo(6 + i * (17 + Math.floor(r() * 10))),
-        band: band(i),
-      };
-    });
-    var questPoints = Math.round(questCount * 1.56);
-
-    var bosses = BOSSES.map(function (b, i) {
-      var kc = Math.round(Math.max(0, 900 * strength * (0.1 + r() * 1.1)) / (1 + i * 0.12));
-      var fastest = kc > 0 ? b[1] * (0.5 + r() * 0.4) : 0;
-      return {
-        name: b[0], abbr: bossAbbr(b[0]), kills: fmt(kc),
-        fastest: kc > 0 ? mmss(fastest) : "—",
-        last: kc > 0 ? dateAgo(1 + Math.floor(r() * 30)) : "—",
-        band: band(i),
-      };
-    }).sort(function (a, b) { return parseInt(b.kills.replace(/,/g, "")) - parseInt(a.kills.replace(/,/g, "")); });
-    var bossKills = bosses.reduce(function (s, b) { return s + (parseInt(b.kills.replace(/,/g, "")) || 0); }, 0);
-
-    var topSkill = skills.slice().sort(function (a, b) { return b.level - a.level; })[0];
-    var topBoss = bosses[0];
-    var events = [];
-    if (maxedCount > 0) {
-      var maxedSkill = skills.filter(function (k) { return k.level >= k.max; })[0].name;
-      events.push({ kind: "Skill", tone: "gold", text: "Reached level 99 " + maxedSkill + ".", description: "Joined the ranks of the elite in " + maxedSkill + ", reaching the maximum level of 99." });
-    }
-    events.push({ kind: "Skill", tone: "gold", text: "Total level passed " + (Math.floor(totalLevel / 100) * 100) + ".", description: "Combined level across all skills crossed a new milestone." });
-    if (completedQuests.length > 0) {
-      var q0 = completedQuests[0];
-      events.push({ kind: "Quest", tone: "info", text: "Completed " + q0.name + ". +" + Math.round(q0.name.length / 3) + " quest points.", description: "Finished the " + q0.difficulty.toLowerCase() + " quest \"" + q0.name + "\" in " + q0.duration + "." });
-    }
-    if (topBoss.kills !== "0") {
-      events.push({ kind: "Combat", tone: "danger", text: "First kill: " + topBoss.name + ", solo.", description: "Defeated " + topBoss.name + " unassisted for the first time." });
-    }
-    events.push({ kind: "Account", tone: "success", text: member ? "Membership renewed for 12 months." : "Playing on a free account.", description: member ? "Subscription extended, unlocking members-only areas, skills and quests." : "Currently playing without a membership subscription." });
-    if (completedQuests.length > 1) {
-      events.push({ kind: "Quest", tone: "info", text: "Completed " + completedQuests[1].name + ".", description: "Finished the " + completedQuests[1].difficulty.toLowerCase() + " quest \"" + completedQuests[1].name + "\" in " + completedQuests[1].duration + "." });
-    }
-    events.push({ kind: "Skill", tone: "gold", text: topSkill.name + " reached level " + topSkill.level + ".", description: "Highest trained skill continues to climb." });
-    var clanName = clanFor(name);
-    if (clanName) {
-      events.push({ kind: "Account", tone: "success", text: "Joined the clan " + clanName + " as a member.", description: "Became a member of " + clanName + "." });
-    }
-    events = events.map(function (e, i) {
-      var days = 2 + i * (3 + Math.floor(r() * 5));
-      return {
-        kind: e.kind, tone: e.tone, text: e.text,
-        description: e.description || "",
-        date: dateAgo(days),
-        exact: exactTime(days, r),
-        band: band(i),
-      };
-    });
-
-    var joinedDaysAgo = 200 + Math.floor(r() * 900);
-    var xpHistory = buildXpHistory(skills, r);
-
+  function buildSkillRow(s) {
     return {
-      name: name,
-      member: member,
-      clan: clanFor(name),
-      world: 3 + Math.floor(r() * 40),
-      mode: r() > 0.7 ? "Skill total" : "PvP",
-      joined: dateAgo(joinedDaysAgo),
-      totalLevel: totalLevel,
-      totalXpLabel: abbrevXp(totalXp),
-      combat: 3 + Math.round((skills[0].level + skills[1].level + skills[2].level + skills[3].level * 1.33 + skills[4].level + skills[5].level + skills[6].level) / 8),
-      questPoints: questPoints,
-      questPointsMax: Math.round(QUESTS.length * 1.56),
-      skills: skills,
-      maxedCount: maxedCount,
-      xpHistory: xpHistory,
-      events: events,
-      quests: completedQuests,
-      questTotal: QUESTS.length,
-      bosses: bosses,
-      bossKills: bossKills,
-      milestones: [
-        { label: "Skills at 99", value: maxedCount + " of " + SKILLS.length },
-        { label: "Quests complete", value: completedQuests.length + " of " + QUESTS.length },
-        { label: "Bosses defeated", value: fmt(bossKills) },
-        { label: "Time played", value: fmt(Math.round(totalXp / 42000)) + " h" },
-        { label: "Last seen", value: events.length ? events[0].date : "—" },
-      ],
+      name: s.name, max: s.maxLevel, level: s.level, xp: s.xp,
+      xpLabel: fmt(s.xp), rankLabel: s.rank ? "rank " + fmt(s.rank) : "unranked",
+      icon: s.iconUrl,
     };
   }
 
-  var PROFILES = {};
-  function profileFor(name) {
-    if (!PROFILES[name]) PROFILES[name] = buildProfile(name);
-    return PROFILES[name];
+  function buildQuestRow(q, i) {
+    return {
+      name: q.name,
+      difficulty: capitalize(q.difficulty),
+      tone: TONE_BY_DIFFICULTY[q.difficulty] || "info",
+      duration: "—",
+      date: shortDate(q.completedAt),
+      band: band(i),
+    };
   }
+
+  function buildBossRow(b, i) {
+    return {
+      name: b.name, abbr: bossAbbr(b.name), kills: fmt(b.kills),
+      fastest: b.fastestSeconds != null ? mmss(b.fastestSeconds) : "—",
+      last: "—",
+      band: band(i),
+    };
+  }
+
+  function buildEventRow(e, i) {
+    return {
+      kind: capitalize(e.type),
+      tone: TONE_BY_EVENT_TYPE[e.type] || "info",
+      text: e.text,
+      description: "",
+      date: shortDate(e.occurredAt),
+      exact: longDateTime(e.occurredAt),
+      band: band(i),
+    };
+  }
+
+  // Builds the `profile` object every panel in the template reads from a name plus the raw
+  // responses of the five per-player endpoints (see `HiscoresRoutes.kt`'s `/players/{name}*`).
+  function buildProfile(name, player, skillsResp, bossesResp, questsResp, eventsResp) {
+    var skills = skillsResp.items.map(buildSkillRow);
+    var completedQuests = questsResp.items
+      .filter(function (q) { return q.status === "complete"; })
+      .map(buildQuestRow);
+    var bosses = bossesResp.items
+      .slice()
+      .sort(function (a, b) { return b.kills - a.kills; })
+      .map(buildBossRow);
+    var events = eventsResp.items.map(buildEventRow);
+    var r = rng(hashSeed(name));
+
+    return {
+      name: player.name,
+      rights: player.rights,
+      mode: modeLabel(player.mode),
+      joined: shortDate(player.joinedAt),
+      totalLevel: player.totalLevel,
+      combat: player.combatLevel,
+      totalXpLabel: abbrevXp(player.totalXp),
+      questPoints: player.questPoints,
+      questPointsMax: player.questPointsMax,
+      skills: skills,
+      maxedCount: player.maxedSkills,
+      xpHistory: buildXpHistory(skills, r),
+      events: events,
+      quests: completedQuests,
+      questTotal: questsResp.total,
+      bosses: bosses,
+      bossKills: player.bossKills,
+      milestones: player.milestones,
+    };
+  }
+
+  var EMPTY_PROFILE = {
+    name: "", rights: "none", mode: "", joined: "—", totalLevel: 0, combat: 0, totalXpLabel: "0",
+    questPoints: 0, questPointsMax: 1, skills: [], maxedCount: 0,
+    xpHistory: [{ t: Date.now(), gains: {} }],
+    events: [], quests: [], questTotal: 0, bosses: [], bossKills: 0, milestones: [],
+  };
 
   window.logApp = function () {
     return {
       view: "overview",
-      profileName: "Thornwake",
-      clanName: CLANS[0].name,
+      profileName: "",
       query: "",
       filter: "All",
       sort: "level",
@@ -317,22 +227,24 @@
       xpDragStart: null,
       xpDragEnd: null,
 
+      profiles: {},
+      topPlayers: [],
+      searchResults: [],
+
       init: function () {
         var params = new URLSearchParams(window.location.search);
         var player = params.get("player");
-        var clan = params.get("clan");
         if (player) {
           this.profileName = player;
           this.view = "profile";
-        } else if (clan) {
-          this.clanName = clan;
-          this.view = "clan";
         }
-        history.replaceState(
-          { view: this.view, profileName: this.profileName, clanName: this.clanName },
-          "",
-          urlFor(this.view, this.profileName, this.clanName),
-        );
+        history.replaceState({ view: this.view, profileName: this.profileName }, "", urlFor(this.view, this.profileName));
+
+        if (this.view === "profile") {
+          this.loadProfile(this.profileName);
+        }
+        this.refreshTopPlayers();
+        this.refreshSearch();
 
         var self = this;
         window.addEventListener("popstate", function (e) {
@@ -342,64 +254,65 @@
             return;
           }
           self.profileName = s.profileName;
-          self.clanName = s.clanName;
           self.view = s.view;
+          if (self.view === "profile") self.loadProfile(self.profileName);
+        });
+        this.$watch("query", function () { self.refreshSearch(); });
+      },
+
+      navigate: function (view, profileName) {
+        this.view = view;
+        if (profileName !== undefined) this.profileName = profileName;
+        if (view === "profile") this.loadProfile(this.profileName);
+        history.pushState({ view: view, profileName: this.profileName }, "", urlFor(view, this.profileName));
+      },
+
+      loadProfile: function (name) {
+        if (!name || this.profiles[name]) return;
+        var self = this;
+        var base = API + "/players/" + encodeURIComponent(name);
+        Promise.all([
+          getJson(base),
+          getJson(base + "/skills"),
+          getJson(base + "/bosses"),
+          getJson(base + "/quests?status=all"),
+          getJson(base + "/events?pageSize=30"),
+        ]).then(function (results) {
+          self.profiles[name] = buildProfile(name, results[0], results[1], results[2], results[3], results[4]);
+        }).catch(function () {
+          self.profiles[name] = null;
         });
       },
 
-      navigate: function (view, profileName, clanName) {
-        this.view = view;
-        if (profileName !== undefined) this.profileName = profileName;
-        if (clanName !== undefined) this.clanName = clanName;
-        history.pushState(
-          { view: view, profileName: this.profileName, clanName: this.clanName },
-          "",
-          urlFor(view, this.profileName, this.clanName),
-        );
-      },
-
-      get profile() { return profileFor(this.profileName); },
+      get profile() { return this.profiles[this.profileName] || EMPTY_PROFILE; },
+      get profileMissing() { return this.profiles[this.profileName] === null; },
       pick: function (name) { this.query = ""; this.navigate("profile", name); },
-      pickClan: function (name) { this.navigate("clan", undefined, name); },
       backToOverview: function () { this.navigate("overview"); },
 
-      get overviewClans() {
-        return CLANS.map(function (c) {
-          var members = c.members.map(profileFor);
-          var combinedLevel = members.reduce(function (s, p) { return s + p.totalLevel; }, 0);
-          return {
-            name: c.name,
-            members: c.members.length,
-            combinedLevel: fmt(combinedLevel),
-            averageLevel: fmt(Math.round(combinedLevel / members.length)),
-          };
-        }).sort(function (a, b) { return parseInt(b.combinedLevel.replace(/,/g, "")) - parseInt(a.combinedLevel.replace(/,/g, "")); });
+      refreshTopPlayers: function () {
+        var self = this;
+        getJson(API + "/hiscores/overall?pageSize=12").then(function (data) {
+          self.topPlayers = data.items.map(function (row) {
+            return { name: row.name, mode: modeLabel(row.mode), total: fmt(row.totalLevel) };
+          });
+        }).catch(function () { self.topPlayers = []; });
       },
-      get overviewPlayers() {
-        return PLAYER_NAMES.map(function (p) {
-          var prof = profileFor(p[0]);
-          return { name: p[0], meta: p[1], clan: prof.clan, total: fmt(prof.totalLevel) };
-        }).sort(function (a, b) { return parseInt(b.total.replace(/,/g, "")) - parseInt(a.total.replace(/,/g, "")); });
-      },
+      get overviewPlayers() { return this.topPlayers; },
 
-      get clan() { return clanByName(this.clanName); },
-      get clanMembers() {
-        return this.clan.members.map(function (name) {
-          var p = profileFor(name);
-          return { name: name, totalLevel: p.totalLevel, totalLevelLabel: fmt(p.totalLevel), combat: p.combat, member: p.member };
-        }).sort(function (a, b) { return b.totalLevel - a.totalLevel; });
+      refreshSearch: function () {
+        var self = this;
+        var params = new URLSearchParams();
+        var q = this.query.trim();
+        if (q) params.set("q", q);
+        params.set("limit", "8");
+        getJson(API + "/players/search?" + params.toString()).then(function (data) {
+          self.searchResults = data.items.map(function (p) {
+            return { name: p.name, meta: modeLabel(p.mode) + (p.rank ? " · rank " + fmt(p.rank) : ""), total: fmt(p.totalLevel) };
+          });
+        }).catch(function () { self.searchResults = []; });
       },
-      get clanStats() {
-        var members = this.clanMembers;
-        var combinedLevel = members.reduce(function (s, m) { return s + m.totalLevel; }, 0);
-        var combinedCombat = members.reduce(function (s, m) { return s + m.combat; }, 0);
-        return {
-          members: members.length,
-          combinedLevel: fmt(combinedLevel),
-          averageLevel: fmt(Math.round(combinedLevel / members.length)),
-          averageCombat: Math.round(combinedCombat / members.length),
-        };
-      },
+      get results() { return this.searchResults; },
+      get noResults() { return this.query.trim().length > 0 && this.searchResults.length === 0; },
 
       get filterTabs() {
         var self = this;
@@ -412,6 +325,13 @@
         });
       },
       get visibleEvents() {
+        if (this.profile.events.length === 0) {
+          return [{
+            kind: "", tone: "info", text: "No recent events",
+            description: "I don't have any recent events yet. I need to do more adventuring.",
+            date: "", exact: "", band: band(0),
+          }];
+        }
         var filter = this.filter;
         return this.profile.events.filter(function (e) { return filter === "All" || e.kind === filter; });
       },
@@ -490,7 +410,7 @@
         var range = this.xpRange;
         var full = this.profile.xpHistory;
         var zoom = this.xpZoom;
-        var pts = zoom ? full.slice(zoom.start, zoom.end + 1) : full.slice(full.length - RANGE_DAYS[range]);
+        var pts = zoom ? full.slice(zoom.start, zoom.end + 1) : full.slice(Math.max(0, full.length - RANGE_DAYS[range]));
         var m = pts.length;
 
         // Every skill that gained xp anywhere in the visible range gets its own stacked layer in
@@ -540,17 +460,17 @@
         }).join("");
         var xlabels = [0, 0.25, 0.5, 0.75, 1].map(function (f) {
           var i = Math.round(f * (m - 1));
-          return { left: ((X(i) / W) * 100).toFixed(2) + "%", label: xpStamp(pts[i].t, range) };
+          return { left: ((X(i) / W) * 100).toFixed(2) + "%", label: pts.length ? xpStamp(pts[i].t, range) : "" };
         });
 
         var hoverIndex = this.xpHover !== null ? Math.min(m - 1, this.xpHover) : m - 1;
-        var hoverDay = pts[hoverIndex];
+        var hoverDay = pts[hoverIndex] || { t: Date.now(), gains: {} };
         var breakdown = Object.keys(hoverDay.gains).map(function (name) {
           return { name: name, xpLabel: fmt(hoverDay.gains[name]), color: SKILL_COLORS[name] || OTHER_COLOR };
         }).sort(function (a, b) { return parseInt(b.xpLabel.replace(/,/g, "")) - parseInt(a.xpLabel.replace(/,/g, "")); });
         var dayTotal = breakdown.reduce(function (s, b) { return s + parseInt(b.xpLabel.replace(/,/g, "")); }, 0);
         var hoverDotsSvg = layers.map(function (l, li) {
-          return '<circle cx="' + X(hoverIndex).toFixed(1) + '" cy="' + Y(stacks[hoverIndex][li]).toFixed(1) + '" r="2.5" style="fill:' + l.color + '"></circle>';
+          return '<circle cx="' + X(hoverIndex).toFixed(1) + '" cy="' + Y(stacks[hoverIndex] ? stacks[hoverIndex][li] : 0).toFixed(1) + '" r="2.5" style="fill:' + l.color + '"></circle>';
         }).join("");
 
         var selectionSvg = "";
@@ -562,30 +482,20 @@
         }
 
         return {
-          eyebrow: zoom ? (xpStamp(pts[0].t, "year") + " – " + xpStamp(pts[m - 1].t, "year")) : RANGE_LABEL[range],
+          eyebrow: zoom ? (pts.length ? xpStamp(pts[0].t, "year") + " – " + xpStamp(pts[m - 1].t, "year") : "") : RANGE_LABEL[range],
           zoomed: !!zoom,
           legend: layers.map(function (l) { return { name: l.name, color: l.color }; }),
           layersSvg: layersSvg, gridSvg: gridSvg, grid: grid, xlabels: xlabels,
           hovering: this.xpHover !== null && !this.xpDragging, hx: X(hoverIndex).toFixed(1),
           hoverLeft: ((X(hoverIndex) / W) * 100).toFixed(2) + "%",
           hoverDotsSvg: hoverDotsSvg,
-          stamp: xpStamp(hoverDay.t, range),
+          stamp: pts.length ? xpStamp(hoverDay.t, range) : "",
           dayTotal: fmt(dayTotal) + " xp",
           breakdown: breakdown,
           selectionSvg: selectionSvg,
           dragging: this.xpDragging && this.xpDragStart !== null && this.xpDragEnd !== null && this.xpDragStart !== this.xpDragEnd,
         };
       },
-
-      get results() {
-        var q = this.query.trim().toLowerCase();
-        var list = q ? PLAYER_NAMES.filter(function (p) { return p[0].toLowerCase().indexOf(q) >= 0; }) : PLAYER_NAMES.slice(0, 6);
-        return list.map(function (p) {
-          var prof = profileFor(p[0]);
-          return { name: p[0], meta: p[1], total: fmt(prof.totalLevel) };
-        });
-      },
-      get noResults() { return this.query.trim().length > 0 && this.results.length === 0; },
     };
   };
 })();

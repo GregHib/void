@@ -4,15 +4,19 @@ import kotlinx.html.*
 import world.gregs.voidps.web.site.components.*
 
 /**
- * The public adventurer's log. Three views share one page, toggled by `logApp()`'s `view` state
- * (`overview`, `clan`, `profile`) and seeded from the `?player=`/`?clan=` query string: an overview
- * listing every clan and player, a clan roster with combined/average stats, and a player's hero
- * band, recent activity feed, and skills/quests/bosses panels. A sidebar search is always visible.
- * All of it is driven by the mock dataset in `void/log.js` (`logApp()`), so the rows/lists below
- * are emitted as `<template x-for>` blocks rather than rendered server-side. Skill and boss rows
- * on the player view link out to the matching `hiscores.html` leaderboard.
+ * The public adventurer's log. Two views share one page, toggled by `logApp()`'s `view` state
+ * (`overview`, `profile`) and seeded from the `?player=` query string: an overview of top players
+ * with a "Find a log" search, and a player's hero band, recent activity feed, and
+ * skills/quests/bosses panels. `void/log.js` fetches the real `/api/v1/players` and
+ * `/api/v1/hiscores` endpoints (see `HiscoresRoutes.kt`) for every view - the only synthesized
+ * data left is the xp-history chart's day-by-day distribution, since daily xp snapshots aren't
+ * tracked yet; its totals still add up to the account's real per-skill xp. Skill and boss rows on
+ * the player view link out to the matching `hiscores.html` leaderboard.
  */
 object AdventurersLog {
+
+    /** The xp-history chart's day-by-day distribution is synthesized (see class doc) - flip this off to hide it. */
+    private const val SHOW_XP_CHART = false
 
     fun page(gameData: GameData): String = voidPage(
         title = "Void — adventurer's log",
@@ -38,7 +42,6 @@ object AdventurersLog {
                         style = "flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:var(--space-8)"
 
                         overviewSection()
-                        clanSection()
 
                         div {
                             xShow("view === 'profile'")
@@ -56,7 +59,7 @@ object AdventurersLog {
                             heroBand()
                             recentActivity()
                             skillsPanel()
-                            xpChartPanel()
+                            if (SHOW_XP_CHART) xpChartPanel()
                             questsPanel()
                             bossesPanel()
                         }
@@ -127,13 +130,12 @@ object AdventurersLog {
                             unsafe {
                                 raw(
                                     """
-                                    <span :style="{ background: profile.member ? 'rgba(224,174,60,.14)' : 'var(--umber-700)', color: profile.member ? 'var(--gold-300)' : 'var(--parch-200)', borderColor: profile.member ? 'var(--gold-600)' : 'var(--border-strong)' }" style="display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
-                                      <span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span>
-                                      <span x-text="profile.member ? 'Member' : 'Free account'"></span>
-                                    </span>
-                                    <span style="display:inline-flex;align-items:center;padding:0 10px;height:20px;background:var(--umber-700);color:var(--parch-200);border:1px solid var(--border-strong);border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="'World ' + profile.world + ' · ' + profile.mode"></span>
-                                    <template x-if="profile.clan">
-                                      <a href="#" @click.prevent="pickClan(profile.clan)" style="display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;background:rgba(224,174,60,.14);color:var(--gold-300);border:1px solid var(--gold-600);border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase;text-decoration:none" x-text="profile.clan"></a>
+                                    <span style="display:inline-flex;align-items:center;padding:0 10px;height:20px;background:var(--umber-700);color:var(--parch-200);border:1px solid var(--border-strong);border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="profile.mode"></span>
+                                    <template x-if="profile.rights !== 'none'">
+                                      <span :style="{ background: profile.rights === 'admin' ? 'var(--feedback-danger-bg)' : 'rgba(224,174,60,.14)', color: profile.rights === 'admin' ? 'var(--feedback-danger)' : 'var(--gold-300)', borderColor: profile.rights === 'admin' ? 'var(--ember-600)' : 'var(--gold-600)' }" style="display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-pill);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase">
+                                        <span style="width:5px;height:5px;border-radius:50%;background:currentColor"></span>
+                                        <span x-text="profile.rights === 'admin' ? 'Admin' : 'Moderator'"></span>
+                                      </span>
                                     </template>
                                     """.trimIndent(),
                                 )
@@ -197,12 +199,12 @@ object AdventurersLog {
                         """
                         <template x-for="e in visibleEvents" :key="e.text">
                           <li :style="{ background: e.band }" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-4);padding:var(--space-5)">
-                            <span :title="e.exact" style="flex:0 0 auto;width:70px;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);cursor:default" x-text="e.date"></span>
+                            <span x-show="e.date" :title="e.exact" style="flex:0 0 auto;width:70px;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);cursor:default" x-text="e.date"></span>
                             <span style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
                               <span style="font:var(--type-body);color:var(--text-strong);text-wrap:pretty" x-text="e.text"></span>
                               <span x-show="e.description" style="font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);text-wrap:pretty" x-text="e.description"></span>
                             </span>
-                            <span :style="{ background: e.tone === 'gold' ? 'rgba(224,174,60,.14)' : e.tone === 'success' ? 'var(--feedback-success-bg)' : e.tone === 'danger' ? 'var(--feedback-danger-bg)' : 'var(--feedback-info-bg)', color: e.tone === 'gold' ? 'var(--gold-300)' : e.tone === 'success' ? 'var(--feedback-success)' : e.tone === 'danger' ? 'var(--feedback-danger)' : 'var(--feedback-info)', borderColor: e.tone === 'gold' ? 'var(--gold-600)' : e.tone === 'success' ? 'var(--moss-600)' : e.tone === 'danger' ? 'var(--ember-600)' : 'var(--steel-600)' }" style="display:inline-flex;align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-xs);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="e.kind"></span>
+                            <span x-show="e.kind" :style="{ background: e.tone === 'gold' ? 'rgba(224,174,60,.14)' : e.tone === 'success' ? 'var(--feedback-success-bg)' : e.tone === 'danger' ? 'var(--feedback-danger-bg)' : 'var(--feedback-info-bg)', color: e.tone === 'gold' ? 'var(--gold-300)' : e.tone === 'success' ? 'var(--feedback-success)' : e.tone === 'danger' ? 'var(--feedback-danger)' : 'var(--feedback-info)', borderColor: e.tone === 'gold' ? 'var(--gold-600)' : e.tone === 'success' ? 'var(--moss-600)' : e.tone === 'danger' ? 'var(--ember-600)' : 'var(--steel-600)' }" style="display:inline-flex;align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-xs);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="e.kind"></span>
                           </li>
                         </template>
                         """.trimIndent(),
@@ -320,10 +322,10 @@ object AdventurersLog {
                         </g>
                         <g x-show="xpChartData.dragging" x-html="xpChartData.selectionSvg"></g>
                       </svg>
-                      <template x-for="g in xpChartData.grid" :key="'xg'+g.label+g.top">
+                      <template x-for="(g, gi) in xpChartData.grid" :key="'xg'+gi">
                         <div style="position:absolute;left:0;width:6.3%;text-align:right;transform:translateY(-50%);font:var(--type-code);font-size:11px;color:var(--text-faint);pointer-events:none" :style="{ top: g.top }" x-text="g.label"></div>
                       </template>
-                      <template x-for="l in xpChartData.xlabels" :key="'xl'+l.label+l.left">
+                      <template x-for="(l, li) in xpChartData.xlabels" :key="'xl'+li">
                         <div style="position:absolute;transform:translateX(-50%);font:var(--type-code);font-size:11px;color:var(--text-faint);pointer-events:none;white-space:nowrap;bottom:1%" :style="{ left: l.left }" x-text="l.label"></div>
                       </template>
                       <div x-show="xpChartData.hovering" style="position:absolute;top:10px;transform:translateX(-50%);z-index:5;padding:var(--space-3) var(--space-4);background:var(--umber-950);border:1px solid var(--border-gold);border-radius:var(--radius-xs);box-shadow:var(--shadow-md);font:var(--type-code);font-size:11px;white-space:nowrap;pointer-events:none;min-width:140px" :style="{ left: xpChartData.hoverLeft }">
@@ -535,108 +537,27 @@ object AdventurersLog {
                 }
                 h1 {
                     style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                    +"Browse clans and players"
+                    +"Browse players"
                 }
                 p {
                     style = "margin:0;max-width:60ch;font:var(--type-body-sm);color:var(--text-muted)"
-                    +"Open a clan for its roster and combined stats, or jump straight to a player's own log."
+                    +"Top accounts by total level, or jump straight to a player's own log with the search on the right."
                 }
             }
 
             ui.panel(title = "Players", action = eyebrowText("overviewPlayers.length + ' logged'"), padded = false) {
                 tableScroll(
-                    Column("Player", "minmax(0,1fr)"), Column("Clan", "160px", "right"),
+                    Column("Player", "minmax(0,1fr)"), Column("Mode", "120px", "right"),
                     Column("Total level", "120px", "right"),
                 ) {
                     unsafe {
                         raw(
                             """
                             <template x-for="p in overviewPlayers" :key="p.name">
-                              <a href="#" @click.prevent="pick(p.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 160px 120px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
+                              <a href="#" @click.prevent="pick(p.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 120px 120px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
                                 <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="p.name"></span>
-                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="p.clan || '—'"></span>
+                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="p.mode"></span>
                                 <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="p.total"></span>
-                              </a>
-                            </template>
-                            """.trimIndent(),
-                        )
-                    }
-                }
-            }
-
-            ui.panel(title = "Clans", action = eyebrowText("overviewClans.length + ' clans'"), padded = false) {
-                tableScroll(
-                    Column("Clan", "minmax(0,1fr)"), Column("Members", "100px", "right"),
-                    Column("Combined lvl", "120px", "right"), Column("Average lvl", "120px", "right"),
-                ) {
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="c in overviewClans" :key="c.name">
-                              <a href="#" @click.prevent="pickClan(c.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 100px 120px 120px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
-                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="c.name"></span>
-                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="c.members"></span>
-                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="c.combinedLevel"></span>
-                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)" x-text="c.averageLevel"></span>
-                              </a>
-                            </template>
-                            """.trimIndent(),
-                        )
-                    }
-                }
-            }
-        }
-    }
-
-    private fun FlowContent.clanSection() {
-        div {
-            xShow("view === 'clan'")
-            attributes["class"] = "void-flex"
-            style = "flex-direction:column;gap:var(--space-8)"
-
-            div {
-                style = "display:flex;justify-content:flex-start"
-                ui.button(
-                    "← Overview", variant = ButtonVariant.Secondary, size = ButtonSize.Small,
-                    onClick = "backToOverview()",
-                )
-            }
-
-            div {
-                style = "display:flex;flex-direction:column;gap:var(--space-3)"
-                span {
-                    style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
-                        "letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--gold-300)"
-                    xText("clanStats.members + ' members'")
-                }
-                h1 {
-                    style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                    xText("clan.name")
-                }
-            }
-
-            div {
-                style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-6)"
-                heroStat("Members", "clanStats.members")
-                heroStat("Combined level", "clanStats.combinedLevel", gold = true)
-                heroStat("Average level", "clanStats.averageLevel")
-                heroStat("Average combat", "clanStats.averageCombat")
-            }
-
-            ui.panel(title = "Members", padded = false) {
-                tableScroll(
-                    Column("Player", "minmax(0,1fr)"), Column("Total level", "130px", "right"),
-                    Column("Combat", "100px", "right"), Column("Account", "110px", "right"),
-                ) {
-                    unsafe {
-                        raw(
-                            """
-                            <template x-for="m in clanMembers" :key="m.name">
-                              <a href="#" @click.prevent="pick(m.name)" style="display:grid;grid-template-columns:minmax(0,1fr) 130px 100px 110px;align-items:center;padding:var(--space-4) var(--space-6);text-decoration:none;border-bottom:1px solid var(--umber-900)">
-                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong)" x-text="m.name"></span>
-                                <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="m.totalLevelLabel"></span>
-                                <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="m.combat"></span>
-                                <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="m.member ? 'Member' : 'Free'"></span>
                               </a>
                             </template>
                             """.trimIndent(),

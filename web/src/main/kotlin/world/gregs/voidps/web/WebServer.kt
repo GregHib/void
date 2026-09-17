@@ -8,7 +8,15 @@ import io.ktor.server.routing.routing
 import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
 import io.ktor.server.websocket.timeout
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.cache.definition.decoder.NPCDecoder
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
+import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.web.api.route.api
 import world.gregs.voidps.web.api.route.apiPlugins
@@ -24,7 +32,8 @@ class WebServer(
     port: Int,
     serverAddress: String,
     serverPort: Int,
-    storage: Storage
+    storage: Storage,
+    questDefinitions: QuestDefinitions
 ) {
     private val embeddedServer = embeddedServer(CIO, port = port) {
         install(WebSockets.Plugin) {
@@ -40,7 +49,7 @@ class WebServer(
                 proxy(serverAddress, serverPort)
                 webclient(port, webclientZip)
             }
-            api(storage)
+            api(storage, questDefinitions)
         }
     }
 
@@ -55,9 +64,17 @@ class WebServer(
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
+            Settings.load("./game/src/main/resources/game.properties")
+            val files = configFiles()
+            val cache: Cache = CacheDelegate(Settings["storage.cache.path"])
+
+            val npcDefinitions = NPCDecoder(true).load(cache)
+            NPCDefinitions.init(npcDefinitions).load(files.getValue(Settings["definitions.npcs"]))
+
+            val questDefinitions = QuestDefinitions().load(files.find(Settings["definitions.quests"]))
             val path = Paths.get("./data/webclient.zip")
             val storage = FileStorage(File("./data/saves"))
-            WebServer(path, 8080, "localhost", 43594, storage).start()
+            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions).start()
         }
     }
 }

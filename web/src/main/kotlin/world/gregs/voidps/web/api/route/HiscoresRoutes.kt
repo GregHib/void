@@ -77,6 +77,18 @@ fun Route.hiscoresRoutes(service: HiscoresService) {
             val name = call.parameters["name"] ?: throw ApiException.Validation("name", "Required")
             call.respond(service.playerBosses(name) ?: throw ApiException.NotFound("player", name))
         }
+        get("/{name}/quests") {
+            val name = call.parameters["name"] ?: throw ApiException.Validation("name", "Required")
+            val status = call.request.queryParameters["status"]
+            call.respond(service.playerQuests(name, status) ?: throw ApiException.NotFound("player", name))
+        }
+        get("/{name}/events") {
+            val name = call.parameters["name"] ?: throw ApiException.Validation("name", "Required")
+            val params = call.request.queryParameters
+            val result = service.playerEvents(name, type = params["type"], page = params.page(), pageSize = params.pageSize())
+                ?: throw ApiException.NotFound("player", name)
+            call.respond(result)
+        }
     }
 }
 
