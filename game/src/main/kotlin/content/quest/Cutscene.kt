@@ -162,8 +162,8 @@ fun Player.clearInstance(): Boolean {
     // (and any death drop) back to an exit tile that has nothing to do with where the player is.
     clear("instance_logout_tile")
     val region = Region(id)
-    // Everything below deletes objects, collision, npcs and floor items outright, with no reload
-    // to put them back, so a stale or wrong id would tear a permanent hole in the live map.
+    // "instance" is persisted, and everything below deletes objects, collision, npcs and floor
+    // items with nothing to put them back
     if (!Instances.reserved(region)) {
         return true
     }
