@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.DisplayNames
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.queue.strongQueue
@@ -111,7 +112,11 @@ class CharacterName : Script {
             for (index in 0 until SUGGESTIONS) {
                 player["character_name_suggestion_$index"] = names.getOrNull(index) ?: ""
             }
-            player.sendScript("character_name_suggestions", 1)
+            // The client queues client string changes until after it has read all packets but runs scripts immediately,
+            // so rendering in the same tick would show the previous strings
+            World.queue("character_name_suggestions_${player.accountName}", 1) {
+                player.sendScript("character_name_suggestions", 1)
+            }
         }
 
         /**
