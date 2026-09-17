@@ -33,8 +33,31 @@ class DisplayNamesTest {
         "..., Player",
         "'  spaced  out ', Spaced out",
     )
-    fun `Sanitise text into display names`(local: String, expected: String) {
+    fun `Sanitise email local parts`(local: String, expected: String) {
         assertEquals(expected, DisplayNames.sanitise(local))
+    }
+
+    @Test
+    fun `Unique returns base when free`() {
+        assertEquals("Bob", DisplayNames.unique("Bob") { false })
+    }
+
+    @Test
+    fun `Unique appends numbers when taken`() {
+        val taken = setOf("Bob", "Bob2", "Bob3")
+        assertEquals("Bob4", DisplayNames.unique("Bob") { it in taken })
+    }
+
+    @Test
+    fun `Unique truncates to fit suffix`() {
+        val taken = setOf("Averyveryver", "Averyveryve2")
+        assertEquals("Averyveryve3", DisplayNames.unique("Averyveryver") { it in taken })
+    }
+
+    @Test
+    fun `Unique falls back to random suffix`() {
+        val name = DisplayNames.unique("Bob") { !it.matches(Regex("Bob\\d{6}")) }
+        assertTrue(name.matches(Regex("Bob\\d{6}")))
     }
 
     @Test

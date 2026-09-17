@@ -9,15 +9,17 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.copy
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.DisplayNames
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.network.login.AccountCreator
 import world.gregs.voidps.network.login.Registration
 import world.gregs.voidps.network.login.registration.RegistrationResponse
+import world.gregs.voidps.network.login.registration.RegistrationValidator
 
 /**
  * Creates accounts registered from the client's login screen.
- * The email address is the account name; the player is given a placeholder display name until they pick their own on first login.
+ * The email address is the account name; a display name is derived from it until the player chooses their own on first login.
  */
 class PlayerAccountCreator(
     private val storage: Storage,
@@ -75,19 +77,12 @@ class PlayerAccountCreator(
     }
 
     /**
-     * Gives an email registered [player] the next free "Player1", "Player2"... display name and flags them to choose their own on first login
+     * Gives an email registered [player] a placeholder display name from the part before the @ and flags them to choose their own on first login
      * Must be called on the game thread before the player is added to [AccountDefinitions]
      */
     fun prepare(player: Player) {
-        var index = 1
-        while (accountDefinitions.get("$PLACEHOLDER$index") != null) {
-            index++
-        }
-        player["display_name"] = "$PLACEHOLDER$index"
+        val base = DisplayNames.sanitise(RegistrationValidator.localPart(player.accountName))
+        player["display_name"] = DisplayNames.unique(base) { accountDefinitions.get(it) != null }
         player["choose_name"] = true
-    }
-
-    companion object {
-        private const val PLACEHOLDER = "Player"
     }
 }
