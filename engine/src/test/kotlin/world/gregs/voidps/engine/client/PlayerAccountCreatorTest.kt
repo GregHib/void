@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.client.variable.BooleanValues
-import world.gregs.voidps.engine.client.variable.IntValues
 import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.data.config.AccountDefinition
 import world.gregs.voidps.engine.data.config.VariableDefinition
@@ -52,7 +51,6 @@ internal class PlayerAccountCreatorTest : KoinMock() {
             mapOf(
                 "display_name" to VariableDefinition.CustomVariableDefinition(StringValues, null, persistent = true),
                 "choose_name" to VariableDefinition.CustomVariableDefinition(BooleanValues, null, persistent = true),
-                "registered" to VariableDefinition.CustomVariableDefinition(IntValues, null, persistent = true),
             ),
         )
         val storage = object : Storage {
@@ -126,14 +124,16 @@ internal class PlayerAccountCreatorTest : KoinMock() {
     }
 
     @Test
-    fun `Email in use when account stored`() {
+    fun `Create rejected when account already stored`() = runTest {
         saved["bob@example.com"] = save("bob@example.com")
 
-        assertEquals(RegistrationResponse.EMAIL_IN_USE, creator.available("bob@example.com"))
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, creator.create(Registration("bob@example.com", "other", "localhost")))
+        assertEquals("hash", saved["bob@example.com"]?.password)
+        assertNull(definitions.getByAccount("bob@example.com"))
     }
 
     @Test
-    fun `Create persists account with derived display name`() = runTest {
+    fun `Create persists account with placeholder display name`() = runTest {
         val response = creator.create(Registration("Bob.Smith@Example.com", "hash", "localhost"))
 
         assertEquals(RegistrationResponse.SUCCESS, response)
@@ -141,20 +141,21 @@ internal class PlayerAccountCreatorTest : KoinMock() {
         assertNotNull(save)
         assertEquals("bob.smith@example.com", save.name)
         assertEquals("hash", save.password)
-        assertEquals("Bob smith", save.variables["display_name"])
+        assertEquals("Player1", save.variables["display_name"])
         assertEquals(true, save.variables["choose_name"])
-        assertNotNull(save.variables["registered"])
-        assertEquals("Bob smith", definitions.getByAccount("bob.smith@example.com")?.displayName)
-        assertEquals("bob.smith@example.com", definitions.get("Bob smith")?.accountName)
+        assertEquals("Player1", definitions.getByAccount("bob.smith@example.com")?.displayName)
+        assertEquals("bob.smith@example.com", definitions.get("Player1")?.accountName)
     }
 
     @Test
-    fun `Derived display name is made unique`() = runTest {
-        definitions.merge(mapOf("other" to AccountDefinition("other", "Bob", "", "hash")), emptyMap()) { false }
+    fun `Placeholder display name skips taken names`() = runTest {
+        definitions.merge(mapOf("other" to AccountDefinition("other", "player1", "", "hash")), emptyMap()) { false }
 
         creator.create(Registration("bob@example.com", "hash", "localhost"))
+        creator.create(Registration("alice@example.com", "hash", "localhost"))
 
-        assertEquals("Bob2", saved["bob@example.com"]?.variables?.get("display_name"))
+        assertEquals("Player2", saved["bob@example.com"]?.variables?.get("display_name"))
+        assertEquals("Player3", saved["alice@example.com"]?.variables?.get("display_name"))
     }
 
     @Test
@@ -165,7 +166,7 @@ internal class PlayerAccountCreatorTest : KoinMock() {
 
         assertEquals(RegistrationResponse.EMAIL_IN_USE, response)
         assertNull(definitions.getByAccount("bob@example.com"))
-        assertNull(definitions.get("Bob"))
+        assertNull(definitions.get("Player1"))
     }
 
     @Test

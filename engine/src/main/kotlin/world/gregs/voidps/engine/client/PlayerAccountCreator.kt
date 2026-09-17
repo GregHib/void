@@ -9,19 +9,15 @@ import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.copy
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
-import world.gregs.voidps.engine.data.definition.DisplayNames
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.AuditLog
-import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.AccountCreator
 import world.gregs.voidps.network.login.Registration
 import world.gregs.voidps.network.login.registration.RegistrationResponse
-import world.gregs.voidps.network.login.registration.RegistrationValidator
-import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Creates accounts registered from the client's login screen.
- * The email address is the account name; a display name is derived from it until the player chooses their own on first login.
+ * The email address is the account name; the player is given a placeholder display name until they pick their own on first login.
  */
 class PlayerAccountCreator(
     private val storage: Storage,
@@ -31,13 +27,12 @@ class PlayerAccountCreator(
     private val gameContext: CoroutineDispatcher,
 ) : AccountCreator {
     private val logger = InlineLogger()
-    private val inFlight: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
     override fun available(email: String): Int {
         if (!Settings["accounts.registration", false]) {
             return RegistrationResponse.REFUSED
         }
-        if (taken(email)) {
+        if (accountDefinitions.getByAccount(email) != null) {
             return RegistrationResponse.EMAIL_IN_USE
         }
         return RegistrationResponse.SUCCESS
@@ -45,19 +40,20 @@ class PlayerAccountCreator(
 
     override suspend fun create(registration: Registration): Int {
         val email = registration.email.lowercase()
-        val response = available(email)
-        if (response != RegistrationResponse.SUCCESS) {
-            return response
-        }
-        if (!inFlight.add(email)) {
-            return RegistrationResponse.EMAIL_IN_USE
-        }
-        try {
-            val player = accounts.create(email, registration.passwordHash)
-            withContext(gameContext) {
+        val player = accounts.create(email, registration.passwordHash)
+        // Checking and reserving the name together on the game thread stops two requests registering the same email
+        val response = withContext(gameContext) {
+            val response = available(email)
+            if (response == RegistrationResponse.SUCCESS) {
                 prepare(player)
                 accountDefinitions.add(player)
             }
+            response
+        }
+        if (response != RegistrationResponse.SUCCESS) {
+            return response
+        }
+        try {
             val save = player.copy()
             val created = withContext(io) { storage.create(save) }
             if (!created) {
@@ -75,22 +71,23 @@ class PlayerAccountCreator(
                 accountDefinitions.remove(email)
             }
             return RegistrationResponse.UNAVAILABLE
-        } finally {
-            inFlight.remove(email)
         }
     }
 
     /**
-     * Gives an email registered [player] a unique placeholder display name and flags them to choose their own on first login
+     * Gives an email registered [player] the next free "Player1", "Player2"... display name and flags them to choose their own on first login
      * Must be called on the game thread before the player is added to [AccountDefinitions]
      */
     fun prepare(player: Player) {
-        val base = DisplayNames.sanitise(RegistrationValidator.localPart(player.accountName))
-        val displayName = DisplayNames.unique(base) { accountDefinitions.get(it) != null }
-        player["display_name"] = displayName
+        var index = 1
+        while (accountDefinitions.get("$PLACEHOLDER$index") != null) {
+            index++
+        }
+        player["display_name"] = "$PLACEHOLDER$index"
         player["choose_name"] = true
-        player["registered"] = epochSeconds()
     }
 
-    private fun taken(email: String): Boolean = inFlight.contains(email) || accountDefinitions.getByAccount(email) != null || storage.exists(email)
+    companion object {
+        private const val PLACEHOLDER = "Player"
+    }
 }
