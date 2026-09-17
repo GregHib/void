@@ -26,7 +26,7 @@ object DisplayNames {
     }
 
     /**
-     * Turns free text into a valid display name
+     * Turns the local part of an email address into a valid display name
      */
     fun sanitise(local: String): String {
         val name = local.replace(disallowed, " ").replace(spaces, " ").trim().take(MAX_LENGTH).trim()
@@ -34,6 +34,29 @@ object DisplayNames {
             return FALLBACK
         }
         return name.replaceFirstChar { it.uppercaseChar() }
+    }
+
+    /**
+     * Finds the first name based on [base] which isn't [taken] by appending a number
+     */
+    fun unique(base: String, taken: (String) -> Boolean): String {
+        if (!taken(base)) {
+            return base
+        }
+        for (suffix in 2..MAX_ATTEMPTS) {
+            val number = suffix.toString()
+            val name = base.take(MAX_LENGTH - number.length).trimEnd() + number
+            if (!taken(name)) {
+                return name
+            }
+        }
+        while (true) {
+            val number = Random.nextInt(100_000, 1_000_000).toString()
+            val name = base.take(MAX_LENGTH - number.length).trimEnd() + number
+            if (!taken(name)) {
+                return name
+            }
+        }
     }
 
     /**
@@ -96,5 +119,6 @@ object DisplayNames {
         "Bear", "Hawk", "Drake", "Sage", "Blade", "Rune", "Miner", "Smith", "Fisher", "Wizard", "Paladin", "Scout",
     )
 
+    private const val MAX_ATTEMPTS = 999
     private const val MAX_SUGGESTION_ATTEMPTS = 50
 }
