@@ -21,7 +21,7 @@ class GertrudesCat : Script {
                 return@questJournalOpen
             }
             // Couldn't find anything official, this is just extrapolating.
-            lines += "<str>I have talked to Gertrude about her cat. She is very upset."
+            lines += "<str>I helped Gertrude to find her lost cat,"
 
             if(progress == 1) {
                 lines += "<navy>I need to speak to <maroon>Gertrude<navy>'s sons,"
@@ -58,13 +58,32 @@ class GertrudesCat : Script {
                 return@questJournalOpen
             }
 
-            if(progress == 5) {
+            if (get("gertrudes_cat_fluffs_milk", false)){
+                lines += "<navy>I have fed the cat milk."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+            if (get("gertrudes_cat_fluffs_fed", false)) {
+                lines += "<navy>I have fed the cat a doogle sardine"
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+            if(get("gertrudes_cat_fluffs_milk", false) && get("gertrudes_cat_fluffs_fed", false)){
+                lines += "<navy>I still need to <maroon>get her to follow me home."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
 
+            lines += "<str>I fed it and returned her missing kitten,"
+
+            if(progress == 5) {
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
             // complete
-            lines += "complete"
+            lines += "<str>Gertrude gave me my very own pet for a reward."
+            lines += ""
+            lines += "<red>QUEST COMPLETE!"
             questJournal("Gertrude's Cat", lines)
         }
     }
