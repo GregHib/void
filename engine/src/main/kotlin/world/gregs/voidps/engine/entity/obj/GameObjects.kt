@@ -431,8 +431,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
      * Index represents a [Tile] and [ObjectLayer]
      */
     private fun index(tile: Tile, layer: Int) = tile.id or (layer shl 30)
-    private fun level(index: Int) = index shr 28 and 0x2
-    private fun layer(index: Int) = index shr 30 and 0x2
+    private fun level(index: Int) = index shr 28 and 0x3
     private fun x(index: Int) = index shr 14 and 0x3fff
     private fun y(index: Int) = index and 0x3fff
     private val GameObject.index: Int
