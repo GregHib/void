@@ -372,9 +372,9 @@ class DungeoneeringParty : Script {
                     player.open("dungeoneering_party")
                     player.clear("had_party_open")
                 }
-                if (last) {
-                    player.clearInstance()
-                }
+                // Every member releases their own hold; the dungeon goes when the last one does,
+                // whatever order they leave in
+                player.clearInstance()
             }
         }
 
