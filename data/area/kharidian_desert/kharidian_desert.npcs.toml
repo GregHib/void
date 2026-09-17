@@ -44,7 +44,7 @@ combat_def = "snake"
 examine = "A slithering serpent."
 drop_table = "desert_snake"
 
-[desert_phoenix_kharidian_desert]
+[desert_phoenix]
 id = 1911
 examine = "Definitely not a chicken."
 

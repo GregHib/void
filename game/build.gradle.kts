@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":types"))
     implementation(project(":config"))
+    implementation(project(":web"))
     if (findProperty("includeDb") != null) {
         implementation(project(":database"))
     }

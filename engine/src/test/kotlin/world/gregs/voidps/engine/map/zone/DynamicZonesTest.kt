@@ -38,6 +38,27 @@ internal class DynamicZonesTest {
     }
 
     @Test
+    fun `Copy a block of zones to another`() {
+        val from = Zone(4, 4)
+        val to = Zone(8, 8)
+        zones.copy(from, to, width = 2, height = 3, levels = 2)
+
+        assertTrue(zones.dynamic(to.region))
+        for (x in 0 until 2) {
+            for (y in 0 until 3) {
+                for (level in 0 until 2) {
+                    assertNotNull(
+                        zones.dynamicZone(Zone(to.x + x, to.y + y, level)),
+                        "zone $x, $y, $level of the block",
+                    )
+                }
+            }
+        }
+        assertNull(zones.dynamicZone(Zone(to.x + 2, to.y, 0)), "nothing outside the block is copied")
+        assertNull(zones.dynamicZone(Zone(to.x, to.y, 2)), "and no levels above it")
+    }
+
+    @Test
     fun `Copy one region to another`() {
         val from = Region(8, 8)
         val to = Region(42, 42)

@@ -1,0 +1,20 @@
+[music_track_names]
+id = 1345
+
+[music_id_to_style]
+id = 1346
+
+[music_id_to_sortname]
+id = 1347
+
+[music_track_hints]
+id = 1349
+
+[non_unlockable_music_id]
+id = 1350
+
+[music_tracks]
+id = 1351
+
+[music_track_hints_2]
+id = 952

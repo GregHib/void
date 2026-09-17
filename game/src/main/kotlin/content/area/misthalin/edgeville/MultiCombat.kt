@@ -1,5 +1,6 @@
 package content.area.misthalin.edgeville
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.area.wilderness.inMultiCombat
 import content.quest.instanceOffset
 import world.gregs.voidps.engine.Script
@@ -27,14 +28,14 @@ class MultiCombat : Script {
 
         entered("*") {
             val offset = instanceOffset()
-            if (Areas.get(tile.minus(offset).zone).any { it.tags.contains("multi_combat") }) {
+            if (inDungeoneering || Areas.get(tile.minus(offset).zone).any { it.tags.contains("multi_combat") }) {
                 set("in_multi_combat", true)
             }
         }
 
         exited("*") {
             val offset = instanceOffset()
-            if (inMultiCombat && Areas.get(tile.minus(offset).zone).none { it.tags.contains("multi_combat") }) {
+            if (inMultiCombat && !inDungeoneering && Areas.get(tile.minus(offset).zone).none { it.tags.contains("multi_combat") }) {
                 clear("in_multi_combat")
             }
         }

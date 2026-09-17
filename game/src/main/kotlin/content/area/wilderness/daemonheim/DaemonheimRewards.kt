@@ -1,6 +1,7 @@
 package content.area.wilderness.daemonheim
 
 import content.entity.player.dialogue.type.intEntry
+import content.entity.player.logEvent
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -122,6 +123,11 @@ class DaemonheimRewards : Script {
                 inventory.charge(this, index, (amount * 0.2).toInt()) // 20% starting charge
             }
             dec("dungeoneering_tokens", cost)
+            when (item.stringId) {
+                "scroll_of_cleansing" -> logEvent("The scroll of cleansing bought.", "I have bought the scroll of cleansing for 20000 dungeoneering tokens.")
+                "scroll_of_efficiency" -> logEvent("The scroll of efficiency bought.", "I have bought the scroll of efficiency for 20000 dungeoneering tokens.")
+                "scroll_of_augury" -> logEvent("Augury prayer bought.", "I have bought the Augury prayer for 153000 dungeoneering tokens.")
+            }
         }
 
         interfaceOption("Cancel", "daemonheim_rewards:cancel") {

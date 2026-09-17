@@ -1,5 +1,6 @@
 package content.area.misthalin.lumbridge.swamp.chams_of_tears
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.player.modal.Tab
@@ -237,6 +238,7 @@ class Juna : Script {
 
     private fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "tears_of_guthix")
+        AdventurersLogs.questCompleted(this, "tears_of_guthix", points = 1)
         inventory.remove("stone_bowl")
         set("tears_of_guthix", "completed")
         jingle("quest_complete_1")
@@ -245,7 +247,7 @@ class Juna : Script {
         message("Congratulations, you've completed a quest: <navy>tears of guthix")
         refreshQuestJournal()
         questComplete(
-            "tears of guthix",
+            "Tears of Guthix",
             "1 Quest Point",
             "1000 Crafting XP",
             "Access to the Tears of Guthix",

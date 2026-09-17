@@ -3,4 +3,4 @@ id = 387
 persist = true
 format = "map"
 default = "unstarted"
-values = { unstarted = 0, started = 1 }
+values = { unstarted = 0, agreed_to_help = 5, refused_delivery = 10, persuaded_boatman = 15, gave_planks = 20, reached_hollows = 25, questioned_by_curpile = 52, answered_questions = 55, entered_hideout = 60, met_veliaf = 65, weapons_accepted = 67, delivered_weapons = 70, hellhound_summoned = 80, killed_hellhound = 85, shown_way_out = 90, in_inn_basement = 95, escaped_to_canifis = 97, completed = 105 }

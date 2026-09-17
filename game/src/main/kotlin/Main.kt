@@ -1,6 +1,9 @@
 import com.github.michaelbull.logging.InlineLogger
 import content.entity.obj.ObjectTeleports
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
@@ -25,8 +28,11 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.LoginServer
 import world.gregs.voidps.network.login.protocol.decoders
+import world.gregs.voidps.web.WebServer
+import java.nio.file.Paths
 import java.util.*
 import kotlin.concurrent.thread
+import kotlin.io.path.exists
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -47,8 +53,20 @@ object Main {
         // File server
         val cache = timed("cache") { Cache.load(settings) }
         server = GameServer.load(cache, settings)
-        val job = server.start(Settings["network.port"].toInt())
+        val port = Settings["network.port"].toInt()
+        val job = server.start(port)
         AuditLog.info("login online")
+
+        // Web server
+        var site: Job? = null
+        if (Settings["web.server.enabled", false]) {
+            site = webServer(port)
+            if (site == null) {
+                server.stop()
+                return
+            }
+            AuditLog.info("web online")
+        }
 
         // Content
         val configFiles = configFiles()
@@ -57,6 +75,7 @@ object Main {
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()
+            site?.cancel()
         }
 
         // Login server
@@ -78,6 +97,7 @@ object Main {
             } finally {
                 engine.cancel()
                 server.stop()
+                site?.cancel()
                 AuditLog.info("game offline")
             }
         }
@@ -170,5 +190,22 @@ object Main {
             single(createdAtStart = true) { ObjectTeleports().load(files.list(Settings["map.teleports"])) }
         }
         return module
+    }
+
+    @Suppress("HttpUrlsUsage")
+    private fun webServer(port: Int): Job? {
+        val path = Paths.get(Settings["web.client.zip", ""])
+        if (!path.exists()) {
+            logger.error { "No webclient zip file found at path: $path" }
+            return null
+        }
+        val webPort = Settings["web.server.port"].toInt()
+        val address = "localhost"
+        val webServer = WebServer(path, webPort, address, port)
+        val scope = CoroutineScope(Dispatchers.IO)
+        return scope.launch {
+            logger.info { "Webserver online at http://$address:$webPort/" }
+            webServer.start()
+        }
     }
 }

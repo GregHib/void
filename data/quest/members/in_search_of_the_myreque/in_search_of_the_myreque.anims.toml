@@ -1,0 +1,33 @@
+[squeeze_past_stalagmite]
+id = 3278
+
+# Curpile's warning jab, and the punch that puts the player out cold
+[curpile_punch]
+id = 422
+
+[curpile_knockout_punch]
+id = 390
+
+# Also used for Sani and Harold going down in Vanstrom's ambush
+[myreque_knockout]
+id = 837
+
+# Vanstrom's ambush in the hideout
+[vanstrom_transform]
+id = 8594
+
+[vanstrom_hover] #9855 in 667
+id = 1500
+
+[vanstrom_summon]
+id = 4707
+
+# Vanstrom's pet shares the hellhound skeleton's attack, block and death
+[skeleton_hellhound_attack]
+id = 6562
+
+[skeleton_hellhound_defend]
+id = 6563
+
+[skeleton_hellhound_death]
+id = 6564

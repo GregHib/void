@@ -1,6 +1,7 @@
 package content.entity.death
 
 import com.github.michaelbull.logging.InlineLogger
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.inDungeoneering
 import content.area.wilderness.inMultiCombat
 import content.entity.combat.attackers
 import content.entity.combat.damageDealers
@@ -8,14 +9,17 @@ import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
+import content.entity.player.logEvent
 import content.skill.slayer.*
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearHinted
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
@@ -110,9 +114,24 @@ class NPCDeath(
             .filter { World.members || !it.def.members }
             .toMutableList()
         AuditLog.event(npc, "dropped", *drops.toTypedArray())
-        if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
+        if (killer is Player && killer.inDungeoneering) {
+            for (item in drops) {
+                if (item.amount <= 0) {
+                    continue
+                }
+                // TODO do items reveal after 60 or immediately?
+                if (item.def.stackable == 0 && item.amount > 1) {
+                    for (i in 0 until item.amount) {
+                        FloorItems.add(tile, item.id, 1, charges = item.charges(), revealTicks = if (item.tradeable) FloorItems.IMMEDIATE else FloorItems.NEVER)
+                    }
+                } else {
+                    FloorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) FloorItems.IMMEDIATE else FloorItems.NEVER)
+                }
+            }
+        } else if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
             shareLoot(killer, npc, tile, drops)
         } else {
+            val player = killer as? Player
             for (item in drops) {
                 if (item.id.contains("clue_scroll") || item.amount <= 0) {
                     continue
@@ -124,8 +143,17 @@ class NPCDeath(
                 } else {
                     FloorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = killer as? Player)
                 }
+                logItems(player, item, npc)
             }
         }
+    }
+
+    fun logItems(player: Player?, item: Item, npc: NPC) {
+        if (player == null) {
+            return
+        }
+        Rows.getOrNull("log_item.${item.id}") ?: return
+        player.logEvent("I found${item.def.name.an()} ${item.def.name}", "After killing${npc.def.name.an()} ${npc.def.name}, it dropped${if (item.def.name.endsWith("boots", ignoreCase = true)) " a pair of" else item.def.name.an()} ${item.def.name}")
     }
 
     fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {

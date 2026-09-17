@@ -1,20 +1,22 @@
 package content.entity.world.music
 
 import world.gregs.voidps.engine.client.ui.playTrack
-import world.gregs.voidps.engine.client.variable.BitwiseValues
-import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.get
 
-object MusicUnlock {
-    fun unlockTrack(player: Player, trackIndex: Int): Boolean {
-        val name = "unlocked_music_${trackIndex / 32}"
-        val list = VariableDefinitions.get(name)?.values as? BitwiseValues
-        val track = list?.values?.get(trackIndex.rem(32)) as? String ?: return false
-        return player.addVarbit("unlocked_music_${trackIndex / 32}", track)
-    }
+fun Player.unlockTrack(track: String): Boolean {
+    val index = get<MusicTracks>().get(track)?.index ?: return false
+    return addVarbit("unlocked_music_${index / 32}", track)
 }
 
-fun Player.unlockTrack(track: String) = addVarbit("unlocked_music_${get<MusicTracks>().get(track) / 32}", track)
+val Player.autoplay: Boolean
+    get() = get("playing_song", false)
 
-fun Player.playTrack(trackName: String) = playTrack(get<MusicTracks>().get(trackName))
+fun Player.playTrack(track: String?) {
+    track ?: return
+    val index = get<MusicTracks>().get(track)?.index ?: return
+    unlockTrack(track)
+    if (!autoplay) {
+        playTrack(index)
+    }
+}

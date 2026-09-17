@@ -1,0 +1,6 @@
+[skeleton_hellhound_drop_table]
+type = "all"
+drops = [
+    { id = "big_bones", amount = 4 },
+    { id = "uncut_ruby", amount = 2 },
+]

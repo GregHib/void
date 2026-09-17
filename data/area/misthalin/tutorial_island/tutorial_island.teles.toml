@@ -34,7 +34,12 @@ option = "Climb-up"
 tile = { x = 3116, y = 3126 }
 delta = { level = 1 }
 
-[3031]
+[ladder_tutorial_island_cave_down]
+option = "Climb-down"
+tile = { x = 3088, y = 3119 }
+delta = { y = 6400 }
+
+[ladder_tutorial_island_rat_pit_down]
 option = "Climb-down"
 tile = { x = 3111, y = 3126 }
 delta = { y = 6400 }
@@ -61,9 +66,14 @@ delta = { level = -1 }
 
 # 12436 tutorial_island
 
-[3028]
+[ladder_tutorial_island_cave_up]
 option = "Climb-up"
 tile = { x = 3088, y = 9519 }
+delta = { y = -6400 }
+
+[ladder_tutorial_island_rat_pit_up]
+option = "Climb-up"
+tile = { x = 3111, y = 9526 }
 delta = { y = -6400 }
 
 # 12592 tutorial_island

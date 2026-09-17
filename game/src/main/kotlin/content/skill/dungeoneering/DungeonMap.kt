@@ -206,6 +206,11 @@ class DungeonMap(
 
     fun room(x: Int, y: Int): DungeonRoom? = grid[y * width + x]
 
+    fun room(tile: Tile): DungeonRoom? {
+        val offset = tile.minus(region.tile)
+        return room(offset.x / 16, offset.y / 16)
+    }
+
     fun tile(room: DungeonRoom): Tile = region.tile.add(room.tile.x * 16, room.tile.y * 16)
 
     fun tile(room: DungeonRoom, x: Int, y: Int): Tile {

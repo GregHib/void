@@ -55,6 +55,7 @@ examine = "A visiting gnome mage."
 
 [magic_store_owner]
 id = 461
+shop = "magic_guild_store_runes_and_staves"
 examine = "A Supplier of Magical items."
 
 [aleck]
