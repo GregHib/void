@@ -2,6 +2,7 @@ package content.area.misthalin.varrock
 
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -289,6 +290,7 @@ class Delrith : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "demon_slayer")
+        AdventurersLogs.questCompleted(this, "demon_slayer", points = 3)
         anim("silverlight_showoff")
         gfx("silverlight_sparkle")
         sound("equip_silverlight")

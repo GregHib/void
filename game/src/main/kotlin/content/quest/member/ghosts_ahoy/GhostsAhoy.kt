@@ -1,6 +1,7 @@
 package content.quest.member.ghosts_ahoy
 
 import content.entity.effect.transform
+import content.entity.player.AdventurersLogs
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.item
@@ -312,7 +313,6 @@ class GhostsAhoy : Script {
 
         itemOption("Dig", "spade") {
             if (tile.equals(3803, 3530) && inventory.contains("treasure_map") && !inventory.contains("book_of_haricanto") && inventory.spaces > 0) {
-                anim("human_dig")
                 delay(3)
                 addOrDrop("book_of_haricanto")
                 item(item = "book_of_haricanto", text = "You unearth the Book of Haricanto.")
@@ -335,11 +335,12 @@ class GhostsAhoy : Script {
 }
 
 fun Player.sendGhostsAhoyReward() {
+    AuditLog.event(this, "quest_completed", "ghosts_ahoy")
+    AdventurersLogs.questCompleted(this, "ghosts_ahoy", points = 2)
     jingle("quest_complete_1")
     exp(Skill.Prayer, 2400.0)
     addOrDrop("ectophial")
     inc("quest_points", 2)
-    AuditLog.event(this, "quest_completed", "ghosts_ahoy")
     set("ghosts_ahoy", "completed")
     set("ahoy_given_manual", true)
     set("ahoy_given_robes", true)

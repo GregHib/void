@@ -186,5 +186,5 @@ internal class PlayerAccountCreatorTest : KoinMock() {
         assertEquals("hash", saved["bob@example.com"]?.password)
     }
 
-    private fun save(name: String) = PlayerSave(name, "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
+    private fun save(name: String) = PlayerSave(name, "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
 }

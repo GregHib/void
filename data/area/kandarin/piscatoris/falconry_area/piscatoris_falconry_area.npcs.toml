@@ -4,6 +4,7 @@ examine = "He's wearing a single glove; how strange."
 
 [spotted_kebbit]
 id = 5098
+respawn_delay = 7
 examine = "It seems to be on a permanent sugar rush."
 
 [spotted_kebbit_caught]

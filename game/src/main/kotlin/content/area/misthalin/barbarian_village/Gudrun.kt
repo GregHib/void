@@ -1,5 +1,6 @@
 package content.area.misthalin.barbarian_village
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.Cutscene
@@ -495,6 +496,7 @@ class Gudrun : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "gunnars_ground")
+        AdventurersLogs.questCompleted(this, "gunnars_ground", points = 5)
         jingle("quest_complete_3")
         set("gunnars_ground", "completed")
         inc("quest_points", 5)

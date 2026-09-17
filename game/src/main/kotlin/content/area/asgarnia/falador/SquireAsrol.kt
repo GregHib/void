@@ -1,5 +1,6 @@
 package content.area.asgarnia.falador
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
@@ -193,6 +194,7 @@ class SquireAsrol : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "the_knights_sword")
+        AdventurersLogs.questCompleted(this, "the_knights_sword", points = 1)
         set("the_knights_sword", "completed")
         jingle("quest_complete_1")
         exp(Skill.Smithing, 12725.0)

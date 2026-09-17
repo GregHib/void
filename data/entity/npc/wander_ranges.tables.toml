@@ -4314,7 +4314,7 @@ wander_range = 10
 [.clay_golem_ruins_of_uzer_repaired]
 wander_range = 10
 
-[.desert_phoenix_kharidian_desert]
+[.desert_phoenix]
 wander_range = 8
 
 [.kamil_normal]
@@ -17611,7 +17611,7 @@ max_range = 5
 [.farmer_blinkin_minesweeper]
 wander_range = 3
 
-[.mrs__winkin_minesweeper]
+[.mrs_winkin_minesweeper]
 wander_range = 3
 
 [.bork_surok]

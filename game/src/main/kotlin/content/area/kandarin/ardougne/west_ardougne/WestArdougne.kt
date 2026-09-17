@@ -138,7 +138,15 @@ class WestArdougne : Script {
             }
         }
 
-        objectOperate("Open", "ardougne_wall_door_2_closed,ardougne_wall_door_closed") {
+        objectOperate("Open", "trapdoor_mourner_tunnels") {
+            message("The trapdoor is bolted on the other side.")
+        }
+
+        objectOperate("Open", "ardougne_wall_door_2_closed,ardougne_wall_door_closed") { (target) ->
+            if (questCompleted("biohazard")) {
+                enterDoor(target, delay = 2)
+                return@objectOperate
+            }
             message("You pull on the large wooden doors...")
             delay(2)
             message("...But they will not open.")
