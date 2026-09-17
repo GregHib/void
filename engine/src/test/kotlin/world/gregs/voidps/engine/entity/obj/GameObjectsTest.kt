@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -303,6 +304,58 @@ class GameObjectsTest : KoinMock() {
 
         assertEquals(settled, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
         assertTrue(GameObjects.contains(settled))
+    }
+
+    @Test
+    fun `Clearing a zone doesn't delete another zone's objects`() {
+        // Zone(814, 61) is an instance zone; tile coordinates aliased it onto Zone(368, 488)
+        val obj = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+
+        GameObjects.clear(Zone(814, 61, 0))
+
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Clearing a zone removes that zone's objects`() {
+        val obj = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val neighbour = GameObject(id = 1234, x = 2955, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        GameObjects.set(neighbour.intId, neighbour.x, neighbour.y, neighbour.level, neighbour.shape, neighbour.rotation, ObjectDefinition.EMPTY)
+
+        GameObjects.clear(obj.tile.zone)
+
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertEquals(neighbour, GameObjects.getLayer(neighbour.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Clearing a zone cancels its pending timers`() {
+        val obj = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        GameObjects.remove(obj, ticks = 2, collision = false)
+
+        GameObjects.clear(obj.tile.zone)
+        repeat(3) { GameObjects.timers.run() }
+
+        // The revert would otherwise resurrect the object into a zone that no longer exists
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Clearing a zone drops its replacements`() {
+        val original = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val replacement = GameObject(id = 4321, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.add(replacement, collision = false)
+
+        GameObjects.clear(original.tile.zone)
+        // An orphaned replacement used to send remove() down the branch that poisons the tile
+        GameObjects.remove(replacement, collision = false)
+
+        assertNull(GameObjects.getLayer(original.tile, ObjectLayer.GROUND))
+        assertFalse(GameObjects.contains(replacement))
     }
 
     /**
