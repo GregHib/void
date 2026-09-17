@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.fastutil)
     implementation(libs.kasechange)
     implementation(libs.rsmod.pathfinder)
+    implementation(libs.jbcrypt)
 
     implementation(kotlin("script-runtime"))
     implementation(libs.bundles.kotlinx)

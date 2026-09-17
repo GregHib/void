@@ -186,5 +186,49 @@ internal class PlayerAccountCreatorTest : KoinMock() {
         assertEquals("hash", saved["bob@example.com"]?.password)
     }
 
+    @Test
+    fun `Username create uses the name as display name`() = runTest {
+        val response = creator.create("Bob", "hash", displayName = null, hostname = "localhost")
+
+        assertEquals(RegistrationResponse.SUCCESS, response)
+        val save = saved["bob"]
+        assertNotNull(save)
+        assertEquals("Bob", save.name)
+        assertEquals("Bob", save.variables["display_name"])
+        assertNull(save.variables["choose_name"])
+        assertNotNull(save.variables["registered"])
+        assertEquals("Bob", definitions.get("bob")?.accountName)
+    }
+
+    @Test
+    fun `Email create with explicit display name skips choosing`() = runTest {
+        val response = creator.create("Bob@Example.com", "hash", displayName = "Bobcat", hostname = "localhost")
+
+        assertEquals(RegistrationResponse.SUCCESS, response)
+        val save = saved["bob@example.com"]
+        assertNotNull(save)
+        assertEquals("bob@example.com", save.name)
+        assertEquals("Bobcat", save.variables["display_name"])
+        assertNull(save.variables["choose_name"])
+        assertEquals("bob@example.com", definitions.get("Bobcat")?.accountName)
+    }
+
+    @Test
+    fun `Direct create ignores the client registration setting`() = runTest {
+        Settings.load(mapOf("accounts.registration" to "false"))
+
+        assertEquals(RegistrationResponse.SUCCESS, creator.create("Bob", "hash", displayName = null, hostname = "localhost"))
+    }
+
+    @Test
+    fun `Create rejected when display name is taken`() = runTest {
+        definitions.merge(mapOf("other" to AccountDefinition("other", "Bobcat", "", "hash")), emptyMap()) { false }
+
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, creator.create("bob@example.com", "hash", displayName = "bobcat", hostname = "localhost"))
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, creator.create("Bobcat", "hash", displayName = null, hostname = "localhost"))
+        assertTrue(saved.isEmpty())
+        assertNull(definitions.getByAccount("bob@example.com"))
+    }
+
     private fun save(name: String) = PlayerSave(name, "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
 }

@@ -43,6 +43,9 @@ class AccountDefinitions(
         definition.displayName = newName
         definition.previousName = previousDisplayName
         displayNames[accountName.lowercase()] = newName
+        val clan = clans.remove(previousDisplayName.lowercase()) ?: return
+        clan.ownerDisplayName = newName
+        clans[newName.lowercase()] = clan
     }
 
     /**

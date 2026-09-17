@@ -14,14 +14,16 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.AccountCreator
+import world.gregs.voidps.network.login.AccountNames
 import world.gregs.voidps.network.login.Registration
 import world.gregs.voidps.network.login.registration.RegistrationResponse
 import world.gregs.voidps.network.login.registration.RegistrationValidator
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * Creates accounts registered from the client's login screen.
- * The email address is the account name; a display name is derived from it until the player chooses their own on first login.
+ * Creates accounts registered from the client's login screen or the web api.
+ * Email account names get a display name derived from the email until the player chooses their own on first login,
+ * unless one is supplied; username account names double as the display name.
  */
 class PlayerAccountCreator(
     private val storage: Storage,
@@ -44,53 +46,76 @@ class PlayerAccountCreator(
     }
 
     override suspend fun create(registration: Registration): Int {
-        val email = registration.email.lowercase()
-        val response = available(email)
-        if (response != RegistrationResponse.SUCCESS) {
-            return response
+        if (!Settings["accounts.registration", false]) {
+            return RegistrationResponse.REFUSED
         }
-        if (!inFlight.add(email)) {
+        return create(registration.email, registration.passwordHash, displayName = null, registration.hostname)
+    }
+
+    /**
+     * Creates and persists an account regardless of the client registration setting
+     * @param displayName explicit display name, or null to derive one from [accountName]
+     * @return a [RegistrationResponse] code
+     */
+    suspend fun create(accountName: String, passwordHash: String, displayName: String?, hostname: String): Int {
+        val name = AccountNames.normalise(accountName)
+        if (taken(name) || displayName != null && accountDefinitions.get(displayName) != null) {
+            return RegistrationResponse.EMAIL_IN_USE
+        }
+        if (!inFlight.add(name)) {
             return RegistrationResponse.EMAIL_IN_USE
         }
         try {
-            val player = accounts.create(email, registration.passwordHash)
+            val player = accounts.create(name, passwordHash)
             withContext(gameContext) {
-                prepare(player)
+                prepare(player, displayName)
                 accountDefinitions.add(player)
             }
             val save = player.copy()
             val created = withContext(io) { storage.create(save) }
             if (!created) {
                 withContext(gameContext) {
-                    accountDefinitions.remove(email)
+                    accountDefinitions.remove(name)
                 }
                 return RegistrationResponse.EMAIL_IN_USE
             }
-            AuditLog.info("registered $email from ${registration.hostname}")
-            logger.info { "Account registered for $email." }
+            withContext(gameContext) {
+                AuditLog.info("registered $name from $hostname")
+            }
+            logger.info { "Account registered for $name." }
             return RegistrationResponse.SUCCESS
         } catch (e: Exception) {
-            logger.error(e) { "Failed to create account for $email." }
+            logger.error(e) { "Failed to create account for $name." }
             withContext(gameContext) {
-                accountDefinitions.remove(email)
+                accountDefinitions.remove(name)
             }
             return RegistrationResponse.UNAVAILABLE
         } finally {
-            inFlight.remove(email)
+            inFlight.remove(name)
         }
     }
 
     /**
-     * Gives an email registered [player] a unique placeholder display name and flags them to choose their own on first login
+     * Sets the display name of a new [player] and, when derived from an email, flags them to choose their own on first login
      * Must be called on the game thread before the player is added to [AccountDefinitions]
      */
-    fun prepare(player: Player) {
-        val base = DisplayNames.sanitise(RegistrationValidator.localPart(player.accountName))
-        val displayName = DisplayNames.unique(base) { accountDefinitions.get(it) != null }
-        player["display_name"] = displayName
-        player["choose_name"] = true
+    fun prepare(player: Player, displayName: String? = null) {
         player["registered"] = epochSeconds()
+        if (displayName != null) {
+            player["display_name"] = displayName
+            return
+        }
+        if (!AccountNames.isEmail(player.accountName)) {
+            player["display_name"] = player.accountName
+            return
+        }
+        val base = DisplayNames.sanitise(RegistrationValidator.localPart(player.accountName))
+        player["display_name"] = DisplayNames.unique(base) { accountDefinitions.get(it) != null }
+        player["choose_name"] = true
     }
 
-    private fun taken(email: String): Boolean = inFlight.contains(email) || accountDefinitions.getByAccount(email) != null || storage.exists(email)
+    /**
+     * Whether [name] is in use as an account name or display name, or is currently being created
+     */
+    fun taken(name: String): Boolean = inFlight.contains(name) || accountDefinitions.getByAccount(name) != null || accountDefinitions.get(name) != null || storage.exists(name)
 }

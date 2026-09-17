@@ -1,9 +1,12 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.RenderEmoteDefinitions
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.network.login.protocol.encode.Friend
+import world.gregs.voidps.network.login.protocol.encode.sendFriendsList
 import world.gregs.voidps.network.login.protocol.visual.VisualMask
 import world.gregs.voidps.network.login.protocol.visual.update.player.Appearance
 import world.gregs.voidps.network.login.protocol.visual.update.player.MoveType
@@ -86,6 +89,29 @@ var Player.name: String
 
 val Player.nameHistory: MutableList<String>
     get() = getOrPut("name_history") { mutableListOf() }
+
+/**
+ * Whether [name] is already in use as another account's display name
+ */
+fun Player.nameTaken(name: String): Boolean {
+    val existing = get<AccountDefinitions>().get(name) ?: return false
+    return existing.accountName != accountName
+}
+
+/**
+ * Changes the display name and notifies online friends of the new name
+ */
+fun Player.rename(toName: String) {
+    val previous = name
+    name = toName
+    val friend = Friend(toName, previous, renamed = true, world = Settings.world, worldName = Settings.worldName)
+    for (other in Players) {
+        if (other == this || !other.friends.contains(accountName)) {
+            continue
+        }
+        other.client?.sendFriendsList(listOf(friend))
+    }
+}
 
 val Player.previousName: String
     get() = nameHistory.firstOrNull() ?: ""

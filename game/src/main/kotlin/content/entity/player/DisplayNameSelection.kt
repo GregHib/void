@@ -2,11 +2,11 @@ package content.entity.player
 
 import content.entity.player.dialogue.type.nameEntry
 import content.entity.player.dialogue.type.statement
-import content.social.friend.nameTaken
-import content.social.friend.rename
 import world.gregs.voidps.engine.data.definition.DisplayNames
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.nameTaken
+import world.gregs.voidps.engine.entity.character.player.rename
 
 /**
  * Accounts registered with an email address are given a placeholder display name until the player picks one on first login

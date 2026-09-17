@@ -8,17 +8,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
-import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.data.definition.DisplayNames
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
-import world.gregs.voidps.engine.entity.character.player.name
-import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.entity.character.player.nameTaken
+import world.gregs.voidps.engine.entity.character.player.rename
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochSeconds
-import world.gregs.voidps.network.login.protocol.encode.Friend
 import java.util.concurrent.TimeUnit
 
 class NameChange : Script {
@@ -57,26 +53,4 @@ class NameChange : Script {
             }
         }
     }
-}
-
-/**
- * Whether [name] is already in use as another account's display name
- */
-fun Player.nameTaken(name: String): Boolean {
-    val definitions: AccountDefinitions = get()
-    val existing = definitions.get(name) ?: return false
-    return existing.accountName != accountName
-}
-
-/**
- * Changes the display name and notifies online friends of the new name
- */
-fun Player.rename(toName: String) {
-    val previous = name
-    name = toName
-    Players
-        .filter { it.friend(this) }
-        .forEach { friend ->
-            friend.updateFriend(Friend(toName, previous, renamed = true, world = Settings.world, worldName = Settings.worldName))
-        }
 }

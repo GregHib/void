@@ -32,6 +32,20 @@ class AccountDefinitionsTest {
     }
 
     @Test
+    fun `Update re-keys the clan under the new display name`() {
+        definitions.merge(mapOf("account" to definition("account", "Name", hash = "hash")), mapOf("name" to Clan(owner = "account", ownerDisplayName = "Name", friends = emptyMap(), ignores = emptyList()))) { false }
+
+        definitions.update("account", "Renamed", "Name")
+
+        assertNull(definitions.get("Name"))
+        assertNull(definitions.clan("Name"))
+        assertEquals("Renamed", definitions.get("Renamed")?.displayName)
+        assertEquals("Name", definitions.get("Renamed")?.previousName)
+        assertEquals("Renamed", definitions.clan("Renamed")?.ownerDisplayName)
+        assertEquals("Renamed", definitions.displayNames["account"])
+    }
+
+    @Test
     fun `Remove unknown account is ignored`() {
         definitions.remove("missing")
 
