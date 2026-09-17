@@ -17,10 +17,13 @@ class KittenCrates : Script {
             val player = interact.player
             val crate = interact.target
 
-            if (get(KITTENS_FOUND, false)) {
+            if (interact.target.tile !in Areas["kitten_search_area"]) {
                 return@objectOperate
             }
-            if (interact.target.tile !in Areas["kitten_search_area"]) {
+            if (get(KITTENS_FOUND, false)) {
+                message("You search the crate.")
+                pause(1)
+                message("You find nothing.")
                 return@objectOperate
             }
 
@@ -34,6 +37,10 @@ class KittenCrates : Script {
                 set(KITTENS_FOUND, true)
                 player.inventory.add("three_little_kittens")
                 statement("You find three little kittens! You carefully place them in your backpack. This explains why Fluffs is so agitated.")
+            } else {
+                message("You search the crate.")
+                pause(1)
+                message("<red>You find nothing. You can hear kittens mewing close by...")
             }
         }
     }
