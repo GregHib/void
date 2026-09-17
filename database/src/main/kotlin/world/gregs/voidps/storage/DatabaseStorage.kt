@@ -195,6 +195,10 @@ class DatabaseStorage : Storage {
             .select(AccountsTable.id, AccountsTable.name)
             .where { LowerCase(AccountsTable.name) inList names.map { it.lowercase() } }
             .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
+        saveSections(accounts, playerIds)
+    }
+
+    private fun saveSections(accounts: List<PlayerSave>, playerIds: Map<String, Int>) {
         saveExperience(accounts, playerIds)
         saveLevels(accounts, playerIds)
         saveVariables(accounts, playerIds)
@@ -236,12 +240,7 @@ class DatabaseStorage : Storage {
                     .select(AccountsTable.id, AccountsTable.name)
                     .where { LowerCase(AccountsTable.name) eq lower }
                     .associate { it[AccountsTable.name].lowercase() to it[AccountsTable.id] }
-                saveExperience(list, playerIds)
-                saveLevels(list, playerIds)
-                saveVariables(list, playerIds)
-                saveInventories(list, playerIds)
-                saveOffers(list, playerIds)
-                saveHistories(list, playerIds)
+                saveSections(list, playerIds)
                 true
             }
         } catch (e: ExposedSQLException) {
