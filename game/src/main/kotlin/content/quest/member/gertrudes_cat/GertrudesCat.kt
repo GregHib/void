@@ -52,7 +52,35 @@ class GertrudesCat : Script {
                 return@questJournalOpen
             }
 
-            // attempt_fluffs_pickup
+            /**
+             * attempt_fluffs_pickup
+             */
+            if (!get("gertrudes_cat_fluffs_milk", false)){
+                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
+                lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+            if (!get("gertrudes_cat_fluffs_fed", false)) {
+                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
+                lines += "<navy>Now I should feed her some <maroon>milk<navy>."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+            if(get("three_little_kittens_found", false)) {
+                lines += "<navy>I have found some <maroon>kittens<navy>. "
+                lines += "<navy>I think I should see whether <maroon>Fluffs<navy> is looking for them."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+            if(get("gertrudes_cat_fluffs_milk", false) && get("gertrudes_cat_fluffs_fed", false)){
+                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> and <maroon>doogle sardine,"
+                lines += "<navy>but she still won't come back. I should look around the <maroon>Lumbermill Yard<navy>"
+                lines += "<navy>for a reason for this behaviour."
+                questJournal("Gertrude's Cat", lines)
+                return@questJournalOpen
+            }
+
             if(progress == 4) {
                 lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found"
                 lines += "<maroon>Fluffs<navy> up <maroon>a ladder<navy>. I now need to return <maroon>Fluffs<navy> to"
@@ -62,26 +90,11 @@ class GertrudesCat : Script {
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
+            /**
+             * End of attempt_fluffs_pickup
+             */
 
-            if (get("gertrudes_cat_fluffs_milk", false)){
-                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
-                lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
-                questJournal("Gertrude's Cat", lines)
-                return@questJournalOpen
-            }
-            if (get("gertrudes_cat_fluffs_fed", false)) {
-                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
-                lines += "<navy>Now I should feed her some <maroon>milk<navy>."
-                questJournal("Gertrude's Cat", lines)
-                return@questJournalOpen
-            }
-            if(get("gertrudes_cat_fluffs_milk", false) && get("gertrudes_cat_fluffs_fed", false)){
-                lines += "<navy>I still need to <maroon>get her to follow me home."
-                questJournal("Gertrude's Cat", lines)
-                return@questJournalOpen
-            }
-
-            lines += "<str>I fed it and returned her missing kitten,"
+            lines += "<str>I fed her and returned her missing kitten,"
 
             // fluffs_returned
             if(progress == 5) {
