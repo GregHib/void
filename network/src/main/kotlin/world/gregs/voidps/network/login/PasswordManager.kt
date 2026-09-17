@@ -10,7 +10,8 @@ class PasswordManager(private val account: AccountLoader) {
 
     fun validate(username: String, password: String): Int {
         if (!AccountNames.valid(username)) {
-            return Response.LOGIN_SERVER_REJECTED_SESSION
+            // The client shows 11 as a weak password warning, 3 is "Invalid username or password"
+            return Response.INVALID_CREDENTIALS
         }
         val passwordHash = account.password(username)
         if (passwordHash == null && account.used(username)) {

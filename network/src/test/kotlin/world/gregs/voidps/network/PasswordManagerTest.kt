@@ -86,7 +86,7 @@ class PasswordManagerTest {
 
         val result = passwordManager.validate(username, password)
 
-        assertEquals(Response.LOGIN_SERVER_REJECTED_SESSION, result)
+        assertEquals(Response.INVALID_CREDENTIALS, result)
     }
 
     @Test
@@ -108,7 +108,7 @@ class PasswordManagerTest {
 
         val result = passwordManager.validate(username, password)
 
-        assertEquals(Response.LOGIN_SERVER_REJECTED_SESSION, result)
+        assertEquals(Response.INVALID_CREDENTIALS, result)
     }
 
     @Test

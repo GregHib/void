@@ -124,10 +124,6 @@ class LoginServer(
             return false
         }
         attempts.succeeded(username)
-        if (!AccountNames.valid(username)) {
-            write.finish(Response.INVALID_CREDENTIALS)
-            return false
-        }
         val name = username.lowercase()
         if (!online.add(name)) {
             write.finish(Response.ACCOUNT_ONLINE)
