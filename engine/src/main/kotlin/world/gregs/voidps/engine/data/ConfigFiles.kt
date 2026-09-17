@@ -23,8 +23,9 @@ data class ConfigFiles(
 
     fun update() {
         val modified = Path.of(Settings["storage.data.modified"])
-        val writer = ArrayWriter(8)
+        val writer = ArrayWriter(9)
         writer.writeLong(System.currentTimeMillis())
+        writer.writeByte(if (storeUnused()) STORE_UNUSED else 0)
         modified.writeBytes(writer.toArray())
     }
 }
@@ -35,6 +36,7 @@ fun configFiles(path: String = Settings["storage.data"], temp: String = Settings
     val modified = Path.of(temp)
     modified.createParentDirectories()
     val lastUpdated = loadLastUpdate(modified)
+    val settingsChanged = loadFlags(modified) != (if (storeUnused()) STORE_UNUSED else 0)
     val extensions = mutableSetOf<String>()
     timedLoad("config file path") {
         val dirs = data.resolve("dirs.txt").toFile().readLines()
@@ -43,7 +45,7 @@ fun configFiles(path: String = Settings["storage.data"], temp: String = Settings
         }
         map.size
     }
-    return ConfigFiles(map, cacheChanged(lastUpdated, Path.of(cachePath)), extensions)
+    return ConfigFiles(map, settingsChanged || cacheChanged(lastUpdated, Path.of(cachePath)), extensions)
 }
 
 private fun loadLastUpdate(path: Path): Long {
@@ -53,6 +55,24 @@ private fun loadLastUpdate(path: Path): Long {
     }
     return 0
 }
+
+/**
+ * Flags the cached maps were built with, stored after the timestamp. Files from before flags
+ * existed return -1 so they never match and the cache is rebuilt once.
+ */
+private fun loadFlags(path: Path): Int {
+    if (path.exists()) {
+        val bytes = path.readBytes()
+        if (bytes.size > Long.SIZE_BYTES) {
+            return bytes[Long.SIZE_BYTES].toInt()
+        }
+    }
+    return -1
+}
+
+private const val STORE_UNUSED = 0x1
+
+private fun storeUnused() = Settings["development.loadAllObjects", false]
 
 private fun walkPath(
     map: MutableMap<String, MutableList<String>>,

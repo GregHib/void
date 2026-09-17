@@ -130,7 +130,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
      * Decide to store [GameObject]s which don't have options or configs
      * Skipping unused objects uses less ram but makes content creation harder.
      */
-    private fun interactive(definition: ObjectDefinition) = storeUnused || definition.options != null || definition.contains("id")
+    private fun interactive(definition: ObjectDefinition) = storeUnused || definition.options != null
 
     /**
      * Removes an object, optionally reverting after [ticks]
