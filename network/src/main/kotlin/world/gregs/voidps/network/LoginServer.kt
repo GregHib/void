@@ -107,10 +107,6 @@ class LoginServer(
             write.finish(response)
             return false
         }
-        if (!AccountNames.valid(username)) {
-            write.finish(Response.INVALID_CREDENTIALS)
-            return false
-        }
         if (!online.add(username)) {
             write.finish(Response.ACCOUNT_ONLINE)
             return false
