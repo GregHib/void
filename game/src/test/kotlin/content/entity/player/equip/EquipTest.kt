@@ -30,6 +30,15 @@ internal class EquipTest : WorldTest() {
     }
 
     @Test
+    fun `Broken armour has no defensive bonus`() {
+        val player = createPlayer()
+        player.equipment.set(EquipSlot.Chest.index, "dharoks_platebody_broken")
+
+        assertEquals(0, player["stab_defence", 0])
+        assertEquals(0, player["slash_defence", 0])
+    }
+
+    @Test
     fun `Can replace weapon with 2h if has one space`() {
         val player = createPlayer()
         player.equipment.set(EquipSlot.Weapon.index, "bronze_sword")

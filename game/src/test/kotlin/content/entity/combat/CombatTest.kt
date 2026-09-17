@@ -2,6 +2,7 @@ package content.entity.combat
 
 import FakeRandom
 import WorldTest
+import containsMessage
 import content.entity.combat.damageDealers
 import content.entity.combat.hit.hit
 import content.entity.effect.stun
@@ -89,6 +90,19 @@ internal class CombatTest : WorldTest() {
         assertTrue(player.experience.get(Skill.Strength) > EXPERIENCE)
         assertTrue(player.experience.get(Skill.Defence) > EXPERIENCE)
         assertNotNull(FloorItems.firstOrNull(tile, "bones"))
+    }
+
+    @Test
+    fun `Broken weapon cannot attack`() {
+        val player = createPlayer(emptyTile)
+        val npc = createNPC("giant_rat", emptyTile.addY(1))
+        player.equipment.set(EquipSlot.Weapon.index, "dharoks_greataxe_broken")
+
+        player.npcOption(npc, "Attack")
+        tick(3)
+
+        assertTrue(npc.visuals.hits.splats.all { it == null })
+        assertTrue(player.containsMessage("Your weapon is broken and cannot be used."))
     }
 
     @Test
