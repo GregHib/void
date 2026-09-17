@@ -47,6 +47,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         dropTables: DropTables? = null,
     ): NPCDefinitions {
         timedLoad("npc config") {
+            definitions.onEach { it.stringId = it.id.toString() }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
