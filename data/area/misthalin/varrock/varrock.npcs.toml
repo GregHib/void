@@ -273,6 +273,8 @@ examine = "He tries to keep order around here."
 
 [sawmill_operator]
 id = 4250
+shop = "construction_supplies"
+examine = "He changes the shape of wood."
 
 [assistant_serf]
 id = 5066

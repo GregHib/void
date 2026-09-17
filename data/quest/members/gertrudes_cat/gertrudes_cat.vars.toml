@@ -17,3 +17,7 @@ format = "boolean"
 [gertrudes_cat_talked_about_reward]
 persist = true
 format = "boolean"
+
+[gertrudes_cat_know_where_fluffs_is]
+persist = true
+format = "boolean"

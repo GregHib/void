@@ -94,6 +94,7 @@ suspend fun  Player.gertrudePayChildren() {
     if (inventory.contains("coins", 100)) {
         inventory.remove("coins", 100)
         set(GERTRUDES_CAT_STRING_NAME, "found_the_boys")
+        set("gertrudes_cat_know_where_fluffs_is", true)
         statement("You give the lad 100 coins.")
         player<Idle>("There you go, now where did you see Fluffs?")
         npc<Idle>(npcId = WILOUGH_STRING_NAME, "I play at an abandoned lumber mill to the north east. Just beyond the Jolly Boar Inn. I saw Fluffs running around in there.")
