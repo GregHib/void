@@ -17,17 +17,17 @@ class KittenCrates : Script {
             val player = interact.player
             val crate = interact.target
 
-            if(get(KITTENS_FOUND, false)) {
+            if (get(KITTENS_FOUND, false)) {
                 return@objectOperate
             }
-            if(interact.target.tile !in Areas["kitten_search_area"]) {
+            if (interact.target.tile !in Areas["kitten_search_area"]) {
                 return@objectOperate
             }
 
             val kittenCoords = get(KITTENS_HIDING_SPOT, -1)
             var kittenCrate = Tile(kittenCoords)
-            if(crate.tile == kittenCrate){
-                if(player.inventory.isFull()){
+            if (crate.tile == kittenCrate) {
+                if (player.inventory.isFull()) {
                     message("<red>You find three little kittens but you have no space for them in your backpack.")
                     return@objectOperate
                 }

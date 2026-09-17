@@ -1,6 +1,5 @@
 package content.area.misthalin.varrock
 
-import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Disheartened
@@ -38,7 +37,7 @@ class Gertrude : Script {
 
     init {
         npcOperate("Talk-to", "gertrude") {
-            if(get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false) && quest("gertrudes_cat") == "attempt_fluffs_pickup"){
+            if (get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false) && quest("gertrudes_cat") == "attempt_fluffs_pickup") {
                 mustBeAReason()
                 return@npcOperate
             }
@@ -55,7 +54,7 @@ class Gertrude : Script {
     }
 
     private suspend fun Player.finishQuest() {
-        if(!get("gertrudes_cat_talked_about_reward", false)) {
+        if (!get("gertrudes_cat_talked_about_reward", false)) {
             player<Happy>("Hello, Gertrude. Fluffs had run off with her kittens, lost them and I have now returned them to her.")
             statement("Gertrude thanks you heartily")
             npc<Happy>("Thank you! If you hadn't found her kittens then they would have died out there. I've got some presents for you in thanks for your help.")
@@ -64,7 +63,7 @@ class Gertrude : Script {
         } else {
             player<Neutral>("Hello again. You said something about presents...")
         }
-        if(inventory.spaces < 3){
+        if (inventory.spaces < 3) {
             npc<Neutral>("You don't have space to hold all three of my presents. Come back and talk to me again when you do.")
             return
         }

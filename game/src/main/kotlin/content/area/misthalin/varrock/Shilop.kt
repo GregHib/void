@@ -19,7 +19,7 @@ const val SHILOP_STRING_NAME = "shilop"
 
 class Shilop : Script {
     init {
-        npcOperate("Talk-to", SHILOP_STRING_NAME){
+        npcOperate("Talk-to", SHILOP_STRING_NAME) {
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "completed" -> gertrudePostQuest()
                 "spoke_to_gertrude" -> lookingForInformationBranch()

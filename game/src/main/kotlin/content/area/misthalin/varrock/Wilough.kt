@@ -1,6 +1,5 @@
 package content.area.misthalin.varrock
 
-import content.entity.player.dialogue.Admit
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Idle
@@ -12,13 +11,13 @@ import content.entity.player.dialogue.Scared
 import content.entity.player.dialogue.Shock
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
+import content.entity.player.dialogue.type.player
+import content.entity.player.dialogue.type.statement
 import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
 import content.quest.quest
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.entity.character.player.Player
-import content.entity.player.dialogue.type.player
-import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 
@@ -29,7 +28,7 @@ const val WILOUGH_STRING_NAME = "wilough"
 
 class Wilough : Script {
     init {
-        npcOperate("Talk-to", WILOUGH_STRING_NAME){
+        npcOperate("Talk-to", WILOUGH_STRING_NAME) {
             when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "completed" -> gertrudePostQuest()
                 "spoke_to_gertrude" -> lookingForInformationBranch()
@@ -86,7 +85,7 @@ suspend fun Player.gertrudeFluffsCost() {
     }
 }
 
-suspend fun  Player.gertrudePayChildren() {
+suspend fun Player.gertrudePayChildren() {
     player<Idle>("Okay then, I'll pay, but I'll want you to tell your mother what a nice person I am.")
     npc<Quiz>("What?")
     player<Idle>("I'll want you to tell your mother what a nice person I am so she rewards me for this search.")

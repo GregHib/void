@@ -45,7 +45,7 @@ class Fluffs : Script {
 
         itemOnNPCOperate("doogle_sardine", FLUFFS_STRING_ID) {
             foundCatCheck()
-            when(quest(GERTRUDES_CAT_STRING_NAME)){
+            when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "attempt_fluffs_pickup" -> checkCanFeed()
                 else -> message("<red>Fluffs doesn't seem to be hungry right now.")
             }
@@ -53,7 +53,7 @@ class Fluffs : Script {
         }
         itemOnNPCOperate("bucket_of_milk", FLUFFS_STRING_ID) {
             foundCatCheck()
-            when(quest(GERTRUDES_CAT_STRING_NAME)){
+            when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "attempt_fluffs_pickup" -> milkFluffs()
                 else -> message("<red>Fluffs doesn't seem to be thirsty right now.")
             }
@@ -63,7 +63,7 @@ class Fluffs : Script {
             val item = interact.item.id
 
             foundCatCheck()
-            when(quest(GERTRUDES_CAT_STRING_NAME)){
+            when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "completed" -> dontBotherCat()
                 "attempt_fluffs_pickup" -> checkItem(item)
                 else -> message("<red>Fluffs regards you with disdain.")
@@ -88,7 +88,7 @@ class Fluffs : Script {
         }
         npcOperate("Stroke", FLUFFS_STRING_ID) { interact ->
             foundCatCheck()
-            if(get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false)){
+            if (get(FLUFFS_MILK_VAR, false) && get(FLUFFS_FED_VAR, false)) {
                 strokeCatFedFluffs(interact.target)
                 return@npcOperate
             }
@@ -111,7 +111,7 @@ class Fluffs : Script {
 
     private suspend fun Player.checkCanFeed() {
         // check player variable if you already fed the cat
-        if(get(FLUFFS_FED_VAR, false)){
+        if (get(FLUFFS_FED_VAR, false)) {
             dontBotherCat()
         } else {
             feedFluffs()
@@ -144,7 +144,6 @@ class Fluffs : Script {
     private suspend fun Player.fluffsGoesHome() {
         val region = Region(13110)
         val custceneStartTile = Tile(3309, 3509, 1)
-
 
         inventory.remove("three_little_kittens")
         set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned")
@@ -195,10 +194,10 @@ class Fluffs : Script {
 
     private suspend fun Player.mildInterest(item: String) {
         var itemName = item
-        if(item == "doogle_leaves"){
+        if (item == "doogle_leaves") {
             itemName = "doogle leaves"
         }
-        if (item == "raw_sardine"){
+        if (item == "raw_sardine") {
             itemName = "raw sardine"
         }
         npc<Angry>("Hiss!")
@@ -216,7 +215,7 @@ class Fluffs : Script {
     }
 
     private fun Player.foundCatCheck() {
-        when(quest(GERTRUDES_CAT_STRING_NAME)) {
+        when (quest(GERTRUDES_CAT_STRING_NAME)) {
             "found_the_boys" -> set(GERTRUDES_CAT_STRING_NAME, "found_fluffs")
         }
     }
@@ -227,7 +226,7 @@ class Fluffs : Script {
 
     private suspend fun Player.talkPostQuest(cat: NPC, playerName: String) {
         // TODO: Dialogue when the player has a kitten either following or in the player's inventory
-        if(hasCatspeakAmulet()){
+        if (hasCatspeakAmulet()) {
             player<Neutral>("Hello Fluffs.")
             npc<Neutral>("Purrrrr! So you can talk to cats now?")
             player<Neutral>("Yes, I got this amulet from a Sphinx.")
@@ -246,13 +245,13 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.yoinkCatFoundFluffs(cat: NPC) {
-        if(inventory.contains("three_little_kittens")) {
+        if (inventory.contains("three_little_kittens")) {
             doNotTheCat(cat)
 
             statement("Fluffs looks pitifully towards your backpack.")
             return
         }
-        if(get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)){
+        if (get(FLUFFS_FED_VAR, false) && get(FLUFFS_MILK_VAR, false)) {
             doNotTheCat(cat)
 
             discoverKittenCrates()
