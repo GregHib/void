@@ -13,6 +13,7 @@ class GertrudesCat : Script {
             val progress = questStage(GERTRUDES_CAT_STRING_NAME)
             val lines = mutableListOf<String>()
 
+            // Unstarted
             if(progress == 0){
                 lines += "<navy>I can start this quest by speaking to <maroon>Gertrude<navy>."
                 lines += "<navy>She can be found in a house south of the road leading west"
@@ -23,6 +24,7 @@ class GertrudesCat : Script {
             // Couldn't find anything official, this is just extrapolating.
             lines += "<str>I helped Gertrude to find her lost cat,"
 
+            // spoke_to_gertrude
             if(progress == 1) {
                 lines += "<navy>I need to speak to <maroon>Gertrude<navy>'s sons,"
                 lines += "<maroon>Shilop <navy>and <maroon>Wilough<navy>, in <maroon>Varrock Marketplace<navy>."
@@ -33,6 +35,7 @@ class GertrudesCat : Script {
             lines += "<str>I spoke with Gertrude's sons,"
             lines += "<str>Shilop and Wilough, in Varrock Marketplace."
 
+            // found_the_boys
             if(progress == 2) {
                 lines += "<navy>I need to go to <maroon>Shilop <navy>and <maroon>Wilough<navy>'s secret hideout"
                 lines += "<navy>in an abandoned <maroon>Lumber Mill<navy>, to the <maroon>north-east<navy> and find"
@@ -41,6 +44,7 @@ class GertrudesCat : Script {
                 return@questJournalOpen
             }
 
+            // found_fluffs
             if(progress == 3) {
                 lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found"
                 lines += "<navy>Fluffs <maroon>up a ladder<navy>. I now need to return <maroon>Fluffs <navy>to <maroon>Gertrude<navy>."
@@ -48,6 +52,7 @@ class GertrudesCat : Script {
                 return@questJournalOpen
             }
 
+            // attempt_fluffs_pickup
             if(progress == 4) {
                 lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found"
                 lines += "<maroon>Fluffs<navy> up <maroon>a ladder<navy>. I now need to return <maroon>Fluffs<navy> to"
@@ -59,12 +64,14 @@ class GertrudesCat : Script {
             }
 
             if (get("gertrudes_cat_fluffs_milk", false)){
-                lines += "<navy>I have fed the cat milk."
+                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
+                lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
             if (get("gertrudes_cat_fluffs_fed", false)) {
-                lines += "<navy>I have fed the cat a doogle sardine"
+                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
+                lines += "<navy>Now I should feed her some <maroon>milk<navy>."
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
@@ -76,11 +83,13 @@ class GertrudesCat : Script {
 
             lines += "<str>I fed it and returned her missing kitten,"
 
+            // fluffs_returned
             if(progress == 5) {
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
-            // complete
+
+            // completed
             lines += "<str>Gertrude gave me my very own pet for a reward."
             lines += ""
             lines += "<red>QUEST COMPLETE!"
