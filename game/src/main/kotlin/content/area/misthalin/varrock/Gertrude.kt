@@ -65,7 +65,7 @@ class Gertrude : Script {
             player<Neutral>("Hello again. You said something about presents...")
         }
         if(inventory.spaces < 3){
-            npc<Neutral>("You don't have space to hold all four of my presents. Come back and talk to me again when you do.")
+            npc<Neutral>("You don't have space to hold all three of my presents. Come back and talk to me again when you do.")
             return
         }
         npc<Happy>("I have no real material possessions but I do have kittens. I've cooked you some food too.")
