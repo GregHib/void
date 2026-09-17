@@ -17,7 +17,6 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
-import world.gregs.voidps.engine.client.PlayerAccountCreator
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
@@ -84,8 +83,7 @@ object Main {
         val decoders = decoders(get<Huffman>())
         val accountLoader: PlayerAccountLoader = get()
         val loginServer = LoginServer.load(settings, decoders, accountLoader)
-        val accountCreator: PlayerAccountCreator = get()
-        val registrationServer = RegistrationServer.load(settings, accountCreator)
+        val registrationServer = RegistrationServer.load(settings, accountLoader)
 
         // Game world
         val stages = getTickStages()
