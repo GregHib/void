@@ -55,33 +55,32 @@ class GertrudesCat : Script {
             /**
              * attempt_fluffs_pickup
              */
-            if (!get("gertrudes_cat_fluffs_milk", false)){
-                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
-                lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
-                questJournal("Gertrude's Cat", lines)
-                return@questJournalOpen
-            }
-            if (!get("gertrudes_cat_fluffs_fed", false)) {
-                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
-                lines += "<navy>Now I should feed her some <maroon>milk<navy>."
-                questJournal("Gertrude's Cat", lines)
-                return@questJournalOpen
-            }
-            if(get("three_little_kittens_found", false)) {
-                lines += "<navy>I have found some <maroon>kittens<navy>. "
-                lines += "<navy>I think I should see whether <maroon>Fluffs<navy> is looking for them."
-                questJournal("Gertrude's Cat", lines)
-                return@questJournalOpen
-            }
-            if(get("gertrudes_cat_fluffs_milk", false) && get("gertrudes_cat_fluffs_fed", false)){
-                lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> and <maroon>doogle sardine,"
-                lines += "<navy>but she still won't come back. I should look around the <maroon>Lumbermill Yard<navy>"
-                lines += "<navy>for a reason for this behaviour."
-                questJournal("Gertrude's Cat", lines)
-                return@questJournalOpen
-            }
-
             if(progress == 4) {
+                if (!get("gertrudes_cat_fluffs_milk", false)){
+                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
+                    lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
+                    questJournal("Gertrude's Cat", lines)
+                    return@questJournalOpen
+                }
+                if (!get("gertrudes_cat_fluffs_fed", false)) {
+                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
+                    lines += "<navy>Now I should feed her some <maroon>milk<navy>."
+                    questJournal("Gertrude's Cat", lines)
+                    return@questJournalOpen
+                }
+                if(get("three_little_kittens_found", false)) {
+                    lines += "<navy>I have found some <maroon>kittens<navy>. "
+                    lines += "<navy>I think I should see whether <maroon>Fluffs<navy> is looking for them."
+                    questJournal("Gertrude's Cat", lines)
+                    return@questJournalOpen
+                }
+                if(get("gertrudes_cat_fluffs_milk", false) && get("gertrudes_cat_fluffs_fed", false)){
+                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> and <maroon>doogle sardine,"
+                    lines += "<navy>but she still won't come back. I should look around the <maroon>Lumbermill Yard<navy>"
+                    lines += "<navy>for a reason for this behaviour."
+                    questJournal("Gertrude's Cat", lines)
+                    return@questJournalOpen
+                }
                 lines += "<navy>I had a poke round the abandoned <maroon>Lumber Mill<navy> and found"
                 lines += "<maroon>Fluffs<navy> up <maroon>a ladder<navy>. I now need to return <maroon>Fluffs<navy> to"
                 lines += "<maroon>Gertrude<navy>. "
@@ -98,6 +97,9 @@ class GertrudesCat : Script {
 
             // fluffs_returned
             if(progress == 5) {
+                lines += "<navy>I returned the <maroon>kittens<navy> to <maroon>Fluffs<navy> who then ran away."
+                lines += "<navy>I think I should see <maroon>Gertrude<navy> in her <maroon>house, west of Varrock<navy>,"
+                lines += "<navy>and explain what has happened."
                 questJournal("Gertrude's Cat", lines)
                 return@questJournalOpen
             }
