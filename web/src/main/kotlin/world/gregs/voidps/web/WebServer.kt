@@ -10,11 +10,12 @@ import io.ktor.server.websocket.pingPeriod
 import io.ktor.server.websocket.timeout
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
-import world.gregs.voidps.cache.definition.Params
+import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.data.file.FileStorage
@@ -33,7 +34,8 @@ class WebServer(
     serverAddress: String,
     serverPort: Int,
     storage: Storage,
-    questDefinitions: QuestDefinitions
+    questDefinitions: QuestDefinitions,
+    itemDefinitions: ItemDefinitions
 ) {
     private val embeddedServer = embeddedServer(CIO, port = port) {
         install(WebSockets.Plugin) {
@@ -49,7 +51,7 @@ class WebServer(
                 proxy(serverAddress, serverPort)
                 webclient(port, webclientZip)
             }
-            api(storage, questDefinitions)
+            api(storage, questDefinitions, itemDefinitions)
         }
     }
 
@@ -72,9 +74,10 @@ class WebServer(
             NPCDefinitions.init(npcDefinitions).load(files.getValue(Settings["definitions.npcs"]))
 
             val questDefinitions = QuestDefinitions().load(files.find(Settings["definitions.quests"]))
+            val itemDefinitions = ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
             val path = Paths.get("./data/webclient.zip")
             val storage = FileStorage(File("./data/saves"))
-            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions).start()
+            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions, itemDefinitions).start()
         }
     }
 }

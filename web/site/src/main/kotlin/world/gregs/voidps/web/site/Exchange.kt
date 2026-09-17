@@ -150,7 +150,7 @@ object Exchange {
                         style = "display:flex;gap:var(--space-5);align-items:flex-end;width:100%;max-width:560px;margin-top:var(--space-2)"
                         div {
                             style = "flex:1;min-width:0"
-                            ui.textInput("ge-search", "Search items", model = "q", placeholder = "Search 26 tracked items", icon = Icons.SEARCH, onEnter = "goSearch()")
+                            ui.textInput("ge-search", "Search items", model = "q", placeholder = "Search tracked items", icon = Icons.SEARCH, onEnter = "goSearch()")
                         }
                         ui.button("Search", size = ButtonSize.Medium, glow = true, onClick = "goSearch()")
                     }
@@ -213,7 +213,7 @@ object Exchange {
                 }
                 p {
                     style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
-                    attributes["x-text"] = "results.length + ' of 26 tracked items · prices sampled 5 minutes ago'"
+                    attributes["x-text"] = "results.length + ' of ' + trackedItems + ' tracked items'"
                 }
             }
 

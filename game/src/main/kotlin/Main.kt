@@ -201,7 +201,7 @@ object Main {
         }
         val webPort = Settings["web.server.port"].toInt()
         val address = "localhost"
-        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>())
+        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>(), get<ItemDefinitions>())
         val scope = CoroutineScope(Dispatchers.IO)
         return scope.launch {
             logger.info { "Webserver online at http://$address:$webPort/" }
