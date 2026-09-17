@@ -358,6 +358,34 @@ class GameObjectsTest : KoinMock() {
         assertFalse(GameObjects.contains(replacement))
     }
 
+    @Test
+    fun `Reset of an upper level replacement leaves the object below alone`() {
+        // level(index) dropped the low bit, so a level 1 replacement was rebuilt at level 0 and
+        // removed whatever matched it there
+        val below = GameObject(id = 1234, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val above = GameObject(id = 1234, x = 100, y = 100, level = 1, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(below.intId, below.x, below.y, below.level, below.shape, below.rotation, ObjectDefinition.EMPTY)
+        GameObjects.add(above, collision = false)
+
+        GameObjects.reset()
+
+        assertEquals(below, GameObjects.getLayer(below.tile, ObjectLayer.GROUND))
+        assertNull(GameObjects.getLayer(above.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Reset of a level three replacement leaves the object two levels down alone`() {
+        val below = GameObject(id = 1234, x = 100, y = 100, level = 2, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val above = GameObject(id = 1234, x = 100, y = 100, level = 3, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(below.intId, below.x, below.y, below.level, below.shape, below.rotation, ObjectDefinition.EMPTY)
+        GameObjects.add(above, collision = false)
+
+        GameObjects.reset()
+
+        assertEquals(below, GameObjects.getLayer(below.tile, ObjectLayer.GROUND))
+        assertNull(GameObjects.getLayer(above.tile, ObjectLayer.GROUND))
+    }
+
     /**
      * Registers a despawn handler which swaps [obj] out for [replacement] the moment it despawns.
      */
