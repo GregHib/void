@@ -1,5 +1,6 @@
 package content.area.misthalin.varrock
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Disheartened
@@ -56,7 +57,7 @@ class Gertrude : Script {
     private suspend fun Player.finishQuest() {
         if (!get("gertrudes_cat_talked_about_reward", false)) {
             player<Happy>("Hello, Gertrude. Fluffs had run off with her kittens, lost them and I have now returned them to her.")
-            statement("Gertrude thanks you heartily")
+            statement("Gertrude thanks you heartily.")
             npc<Happy>("Thank you! If you hadn't found her kittens then they would have died out there. I've got some presents for you in thanks for your help.")
             player<Happy>("That's okay, I like to do my bit.")
             set("gertrudes_cat_talked_about_reward", true)
@@ -78,7 +79,7 @@ class Gertrude : Script {
 
     suspend fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "gertrudes_cat")
-        // AdventurersLogs.questCompleted(this, "the_restless_ghost", points = 1) // Unknown if needed
+        AdventurersLogs.questCompleted(this, "gertrudes_cat", points = 1)
         set(GERTRUDES_CAT_STRING_NAME, "completed")
         jingle("quest_complete_1")
         exp(Skill.Cooking, 1525.0)
