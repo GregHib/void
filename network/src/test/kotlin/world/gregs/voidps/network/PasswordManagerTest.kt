@@ -80,6 +80,16 @@ class PasswordManagerTest {
     }
 
     @Test
+    fun `Unsaved account still checks the password`() {
+        val username = "test"
+        accountLoader.accountMap[username] = BCrypt.hashpw("password", BCrypt.gensalt())
+        accountLoader.exists = false
+
+        assertEquals(Response.SUCCESS, passwordManager.validate(username, "password"))
+        assertEquals(Response.INVALID_CREDENTIALS, passwordManager.validate(username, "wrongPassword"))
+    }
+
+    @Test
     fun `Long username is rejected`() {
         val username = "veryLongUsername"
         val password = "password"
