@@ -11,25 +11,24 @@ class GameLoop(
     private val logger = InlineLogger()
 
     fun start(scope: CoroutineScope) = scope.launch {
-        var start: Long
-        var took: Long
-        try {
-            while (isActive) {
-                start = System.nanoTime()
+        while (isActive) {
+            val start = System.nanoTime()
+            try {
                 tick()
-                took = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)
-                if (took > MILLI_WARNING_THRESHOLD) {
-                    logger.warn { "Tick $tick took ${took}ms" }
-                } else if (took > MILLI_THRESHOLD) {
-                    logger.debug { "Tick $tick took ${took}ms" }
-                }
-                delay(delay - took)
-                tick++
-            }
-        } catch (e: Exception) {
-            if (e !is CancellationException) {
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                // Caught per tick; one bad one shouldn't stop the world for everyone
                 logger.error(e) { "Error in game loop!" }
             }
+            val took = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)
+            if (took > MILLI_WARNING_THRESHOLD) {
+                logger.warn { "Tick $tick took ${took}ms" }
+            } else if (took > MILLI_THRESHOLD) {
+                logger.debug { "Tick $tick took ${took}ms" }
+            }
+            delay(delay - took)
+            tick++
         }
     }
 
