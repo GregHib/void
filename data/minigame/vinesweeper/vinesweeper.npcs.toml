@@ -26,8 +26,10 @@ examine = "A gnome farmer."
 
 [farmer_blinkin_minesweeper]
 id = 7131
+dialogue = "old"
 examine = "The head farmer, apparently."
 
-[mrs__winkin_minesweeper]
+[mrs_winkin_minesweeper]
 id = 7132
+dialogue = "old"
 examine = "Owner of this homestead."

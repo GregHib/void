@@ -65,6 +65,9 @@ class Block(
 
     fun sounds(target: Character, damage: CombatDamage) {
         val source = damage.source
+        if (damage.type == "healed") {
+            return
+        }
         if (target is Player) {
             source.sound(calculateHitSound(target))
             target.sound(calculateHitSound(target))

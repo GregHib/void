@@ -4134,6 +4134,7 @@ id = 10479
 [rand_giant_rat_1]
 id = 10480
 clone = "giant_rat_lumbridge_swamp"
+respawn_delay = -1
 hitpoints = 30
 max_hit_stab = 17
 att = 2
@@ -4146,6 +4147,7 @@ drop_table = "dungeoneering_bones"
 [rand_giant_rat_2]
 id = 10481
 clone = "giant_rat_lumbridge_swamp"
+respawn_delay = -1
 # Estimates based off other stats
 hitpoints = 100
 max_hit_stab = 20
@@ -4159,6 +4161,7 @@ drop_table = "dungeoneering_bones"
 [rand_giant_rat_3]
 id = 10482
 clone = "giant_rat_lumbridge_swamp"
+respawn_delay = -1
 hitpoints = 150
 max_hit_stab = 26
 att = 11
@@ -4171,6 +4174,7 @@ drop_table = "dungeoneering_bones"
 [rand_giant_rat_4]
 id = 10483
 clone = "giant_rat_lumbridge_swamp"
+respawn_delay = -1
 hitpoints = 260
 max_hit_stab = 39
 att = 22
@@ -4183,6 +4187,7 @@ drop_table = "dungeoneering_bones"
 [rand_giant_rat_5]
 id = 10484
 clone = "giant_rat_lumbridge_swamp"
+respawn_delay = -1
 hitpoints = 510
 max_hit_stab = 65
 att = 34
@@ -4195,6 +4200,7 @@ drop_table = "dungeoneering_bones"
 [rand_giant_rat_6]
 id = 10485
 clone = "giant_rat_lumbridge_swamp"
+respawn_delay = -1
 hitpoints = 780
 max_hit_stab = 95
 att = 45
@@ -4207,6 +4213,7 @@ drop_table = "dungeoneering_bones"
 [rand_giant_rat_7]
 id = 10486
 clone = "giant_rat_lumbridge_swamp"
+respawn_delay = -1
 hitpoints = 950
 max_hit_stab = 119
 att = 50

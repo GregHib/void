@@ -14,6 +14,7 @@ scripts.txt
 
 # tools
 *.jar
+*.zip
 /data/dump/
 /data/saves/
 /images/

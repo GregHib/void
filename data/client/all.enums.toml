@@ -100,15 +100,6 @@ id = 731
 [price_garden]
 id = 733
 
-[music_track_names]
-id = 1345
-
-[music_track_hints]
-id = 1349
-
-[music_tracks]
-id = 1351
-
 [character_skin_interfaces]
 id = 746
 

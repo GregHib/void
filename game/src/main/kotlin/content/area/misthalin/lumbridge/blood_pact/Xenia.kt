@@ -4,7 +4,7 @@ import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.entity.player.inv.item.addOrDrop
-import content.entity.world.music.unlockTrack
+import content.entity.world.music.playTrack
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.refreshQuestJournal
@@ -424,8 +424,7 @@ class Xenia : Script {
             set("blood_pact", "completed")
             inc("quest_points", 1)
             jingle("quest_complete_1")
-            unlockTrack("catacomb")
-            unlockTrack("cursed_you_are")
+            playTrack("dead_and_buried")
             exp(Skill.Attack, 100.0)
             exp(Skill.Strength, 100.0)
             exp(Skill.Defence, 100.0)

@@ -1,5 +1,6 @@
 package content.area.kharidian_desert.al_kharid
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
@@ -36,6 +37,7 @@ class Hassan : Script {
                     jingle("quest_complete_1")
                     refreshQuestJournal()
                     AuditLog.event(this, "quest_completed", "prince_ali_rescue")
+                    AdventurersLogs.questCompleted(this, "prince_ali_rescue", points = 3)
                     set("prince_ali_rescue", "completed")
                     inc("quest_points", 3)
                     message("Congratulations! Quest complete!")

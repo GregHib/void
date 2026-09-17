@@ -55,7 +55,7 @@ object Players : Iterable<Player>, CharacterSearch<Player> {
         return null
     }
 
-    fun indexed(index: Int): Player? = indexArray[index]
+    fun indexed(index: Int): Player? = indexArray.getOrNull(index)
 
     override fun at(tile: Tile): List<Player> {
         val list = mutableListOf<Player>()

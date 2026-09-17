@@ -451,11 +451,11 @@ examine = "A wooden barricade is blocking the way."
 id = 50320
 examine = "This door is closed."
 
-[cleared_barricade_abandoned]
+[cleared_barricade_door_abandoned]
 id = 50321
 examine = "This door is closed."
 
-[cleared_barricade_furnished]
+[cleared_barricade_door_furnished]
 id = 50322
 examine = "This door is closed."
 
@@ -1674,7 +1674,7 @@ examine = "A pile of flammable debris is blocking the way."
 id = 53966
 examine = "A wooden barricade is blocking the way."
 
-[cleared_barricade_occult]
+[cleared_barricade_door_occult]
 id = 53967
 examine = "This door is closed."
 
@@ -2022,7 +2022,7 @@ examine = "A pile of flammable debris is blocking the way."
 id = 55754
 examine = "A wooden barricade is blocking the way."
 
-[cleared_barricade_warped]
+[cleared_barricade_door_warped]
 id = 55755
 examine = "This door is closed."
 

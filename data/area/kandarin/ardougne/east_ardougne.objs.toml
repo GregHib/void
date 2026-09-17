@@ -216,3 +216,7 @@ examine = "Handy for boarding the ship."
 [captain_barnaby_ship_ladder]
 id = 9745
 examine = "A sturdy wooden ladder."
+
+[bank_deposit_box_east_ardougne]
+id = 34755
+examine = "Lets you put items into your bank."

@@ -79,7 +79,7 @@ interface DefinitionsDecoder<D> where D : Definition, D : Parameterized {
 
         fun removeTags(text: String) = text.replace(tagRegex, "")
 
-        private val chars = "[\"',()?.!]".toRegex()
+        private val chars = "[\"',()?.!:]".toRegex()
         private val underscoreChars = "[ /-]".toRegex()
 
         fun toIdentifier(name: String) = removeTags(name.lowercase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")

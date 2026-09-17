@@ -1,6 +1,9 @@
 [electric_shock]
 id = 3170
 
+[overload]
+id = 3170
+
 [mixing_potion]
 id = 363
 

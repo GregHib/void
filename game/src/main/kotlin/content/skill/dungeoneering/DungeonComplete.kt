@@ -1,13 +1,14 @@
 package content.skill.dungeoneering
 
-import com.github.michaelbull.logging.InlineLogger
 import content.area.wilderness.daemonheim.DungeonFloor
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonLeader
 import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
+import content.entity.player.logEvent
 import content.entity.player.modal.Tab
+import content.entity.world.music.playTrack
 import content.quest.closeTabs
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.Minimap
@@ -23,23 +24,16 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Interpolation
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.TICKS
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
-import world.gregs.voidps.type.Tile
-import world.gregs.voidps.type.area.Rectangle
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.pow
 
 class DungeonComplete : Script {
-    private val logger = InlineLogger()
-
     init {
         objectOperate("End-dungeon", "rand_dungeon_end_trapdoor_unlocked_frozen") {
             if (get("dungeon_move_on_vote", false)) {
@@ -67,27 +61,6 @@ class DungeonComplete : Script {
                 }
                 option("No, wait.")
             }
-        }
-
-        npcDeath("rand_ice_lord_boss_*") {
-            val room = dungeonRoomBounds()
-            var door = findDoor(room.minX - 1, room.minY - 1, "rand_dungeon_end_trapdoor_locked_frozen")
-            if (door == null) {
-                for (tile in Rectangle(room.minX - 1, room.minY - 1, room.minX + 1, room.minY + 1)) {
-                    val obj = GameObjects.findOrNull(tile, "rand_dungeon_end_trapdoor_locked_frozen")
-                    if (obj != null) {
-                        door = obj
-                    }
-                }
-                logger.warn { "Error finding dungeon door: $door" }
-            }
-            door?.replace("rand_dungeon_end_trapdoor_unlocked_frozen")
-            // TODO rewards (based on combat?)
-            // https://youtu.be/nSob5r5-UtE?t=563
-            // You received item:
-
-            // https://youtu.be/2aX5poT8Fnk?t=496
-            // <username> received item:
         }
 
         timerStart("dungeon_completion") { TimeUnit.SECONDS.toTicks(15) }
@@ -224,6 +197,7 @@ class DungeonComplete : Script {
 
     private fun Player.dungeonComplete() {
         strongQueue("dungeon_info") {
+            playTrack("dungeon_defeated")
             set("had_party_open", interfaces.contains("dungeoneering_party"))
             minimap(Minimap.HideMap)
             closeTabs(Tab.Options)
@@ -329,6 +303,7 @@ class DungeonComplete : Script {
                     if (unlocked < 60 && floor == unlocked) {
                         set("dungeoneering_floor_unlocked", floor + 1)
                         item(3032, "You have unlocked the next floor. You can now reach floor ${floor + 1}!")
+                        logEvent("Dungeon floor ${floor + 1} reached.", "I have breached floor ${floor + 1} of Daemonheim for the first time.")
                     }
                 }
                 set("dungeon_reward_given", true)
@@ -415,8 +390,6 @@ class DungeonComplete : Script {
         val revealed = Interpolation.lerp(revealProgress, 0..100, before..after)
         return revealed.toLong() * 1000 / loreStat
     }
-
-    private fun findDoor(x: Int, y: Int, id: String): GameObject? = GameObjects.findOrNull(Tile(x, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 15, y + 7), id) ?: GameObjects.findOrNull(Tile(x + 7, y), id) ?: GameObjects.findOrNull(Tile(x + 7, y + 15), id)
 
     companion object {
         private val FLOOR_GROUPS = listOf(1..11, 12..17, 18..29, 30..35, 36..47, 48..60)

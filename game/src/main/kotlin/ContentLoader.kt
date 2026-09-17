@@ -1,5 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import content.activity.event.random.RandomEvents
+import content.entity.world.music.MusicApi
 import content.skill.prayer.PrayerApi
 import content.skill.summoning.FamiliarSpecialMoves
 import world.gregs.voidps.engine.Script
@@ -48,6 +49,7 @@ class ContentLoader {
         Script.interfaces.add(PrayerApi)
         Script.interfaces.add(RandomEvents)
         Script.interfaces.add(FamiliarSpecialMoves)
+        Script.interfaces.add(MusicApi)
     }
 
     private fun loadScript(name: String): Any {

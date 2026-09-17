@@ -133,14 +133,15 @@ id = 2704
 examine = "Rocky!"
 
 [copper_rocks_tutorial_island_1]
-clone = "copper_rocks_old_1"
 id = 3042
 examine = "A rocky outcrop."
 
 [tin_rocks_tutorial_island_1]
-clone = "tin_rocks_old_1"
 id = 3043
 examine = "A rocky outcrop."
+
+[depleted_rocks_tutorial_island_1]
+id = 33400
 
 [limestone_rocks_1]
 id = 4027

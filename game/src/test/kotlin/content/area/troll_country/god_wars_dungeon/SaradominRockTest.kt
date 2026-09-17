@@ -2,6 +2,7 @@ package content.area.troll_country.god_wars_dungeon
 
 import WorldTest
 import containsMessage
+import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -119,5 +120,39 @@ class SaradominRockTest : WorldTest() {
         tick(4)
 
         assertEquals(Tile(2920, 5276, 1), player.tile)
+    }
+
+    @Test
+    fun `Use rope on top rock and climb down`() {
+        val player = createPlayer(Tile(2912, 5300, 2))
+        player.inventory.add("rope")
+        player.levels.set(Skill.Agility, 70)
+        val rock = GameObjects.find(Tile(2913, 5300, 2), "godwars_saradomin_rock_top_base")
+
+        player.itemOnObject(rock, itemSlot = 0)
+        tick(2)
+        assertFalse(player.inventory.contains("rope"))
+        assertTrue(player["godwars_saradomin_rope_top", false])
+        player.objectOption(rock, optionIndex = 1) // Climb-down
+        tick(5)
+
+        assertEquals(Tile(2915, 5300, 1), player.tile)
+    }
+
+    @Test
+    fun `Use rope on bottom rock and climb down`() {
+        val player = createPlayer(Tile(2920, 5276, 1))
+        player.inventory.add("rope")
+        player.levels.set(Skill.Agility, 70)
+        val rock = GameObjects.find(Tile(2920, 5274, 1), "godwars_saradomin_rock_bottom_base")
+
+        player.itemOnObject(rock, itemSlot = 0)
+        tick(2)
+        assertFalse(player.inventory.contains("rope"))
+        assertTrue(player["godwars_saradomin_rope_bottom", false])
+        player.objectOption(rock, optionIndex = 1) // Climb-down
+        tick(5)
+
+        assertEquals(Tile(2919, 5274), player.tile)
     }
 }

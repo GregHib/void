@@ -383,7 +383,7 @@ class DungeoneeringParty : Script {
                 if (item.isEmpty() || item.id == kinship || item.def.contains(Params.DUNGEONEERING_BOUND_AMMO) || item.def.contains(Params.DUNGEONEERING_BOUND_ITEM)) {
                     continue
                 }
-                FloorItems.add(tile, item.id, item.amount, revealTicks = 0)
+                FloorItems.add(tile, item.id, item.amount, revealTicks = FloorItems.IMMEDIATE)
             }
         }
 
@@ -399,12 +399,15 @@ class DungeoneeringParty : Script {
         }
 
         fun leave(player: Player) {
+            val left = inParty(player)
             val leader = player.dungeonLeader
             val last = player == leader && player.dungeonMembers.size == 1
             if (player.inDungeoneering) {
                 leaveDungeon(player, last)
             }
-            player.message("You leave the party.")
+            if (left) {
+                player.message("You leave the party.")
+            }
             player.dungeonMembers -= player
             if (player == leader && player.dungeonMembers.isNotEmpty()) {
                 promote(player, player.dungeonMembers.first(), leave = true)

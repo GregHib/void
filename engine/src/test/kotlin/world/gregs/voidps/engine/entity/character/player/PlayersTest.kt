@@ -41,4 +41,10 @@ internal class PlayersTest {
 
         assertEquals(0, Players.size)
     }
+
+    @Test
+    fun `Indexed returns null for invalid player indexes`() {
+        assertNull(Players.indexed(-1))
+        assertNull(Players.indexed(Int.MAX_VALUE))
+    }
 }

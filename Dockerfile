@@ -1,6 +1,7 @@
 FROM eclipse-temurin:21-jdk-alpine
 LABEL authors="Greg"
 EXPOSE 43594/tcp
+EXPOSE 8080
 
 RUN mkdir /app
 WORKDIR /app/

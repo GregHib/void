@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import content.quest.instance
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.*
 import world.gregs.voidps.type.area.Rectangle
+import kotlin.collections.contains
 
 data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     var type: DungeonRoomType = DungeonRoomType.Normal
@@ -26,6 +28,7 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
     var open: Boolean = false
     var zone: Zone? = null
     var rotation: Int = 0
+    var monsters: Int = 0
 
     fun open(player: Player, dungeon: DungeonMap) {
         val zone = zone ?: return
@@ -132,6 +135,20 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
 
     companion object {
         private val logger = InlineLogger()
+
+        fun hasGuardian(tile: Tile): Boolean {
+            for (zone in dungeonRoomBounds(tile).toZones(0)) {
+                if (NPCs.at(zone).any { it.def.options.contains("Attack") }) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        fun dungeonRoomBounds(tile: Tile): Rectangle {
+            val start = Tile(tile.x / 16 * 16 + 1, tile.y / 16 * 16 + 1)
+            return Rectangle(start, 14, 14)
+        }
     }
 }
 
@@ -144,7 +161,4 @@ internal val Direction.roomIndex: Int
         else -> -1
     }
 
-internal fun Character.dungeonRoomBounds(): Rectangle {
-    val start = Tile(tile.x / 16 * 16 + 1, tile.y / 16 * 16 + 1)
-    return Rectangle(start, 14, 14)
-}
+internal fun Character.dungeonRoomBounds(): Rectangle = DungeonRoom.dungeonRoomBounds(tile)
