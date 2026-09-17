@@ -142,23 +142,6 @@ class Fluffs : Script {
     }
 
     private suspend fun Player.fluffsGoesHome() {
-        /**
-         * Create a cutscene
-         * Fade to black
-         * Player is on the tile directly west of the ladder
-         * Camera is facing north-east, facing a steep angle, but not quite top-down.
-         * Fluffs is positioned directly north of the player 3 ~ 4 tiles away. Importantly, she is against the box/object.
-         * Player uses climb_down animation
-         * 3 little kittens are already spawned as the cutscene starts
-         * Fluffs says "Purr..."
-         * 3 little kittens moves straight to Fluffs and preforms an animation.
-         * Fluffs then preforms an animation while kittens say "purr"
-         * Kittens move to ladder and go down.
-         * Fluffs follows suit at the same time, but doesn't quite make it to the final tile before vanishing.
-         * Statement - "Fluffs has run off home with her offspring."
-         * Fade to black after statement is resumed.
-         * Cutscene ends, Fluffs disappears.
-         */
         val region = Region(13110)
         val custceneStartTile = Tile(3309, 3509, 1)
 
@@ -205,6 +188,7 @@ class Fluffs : Script {
         kittens.despawn(1) // Added small delay to let the kittens get to the final tile
         fluffs.walkToDelay(cutscene.tile(3309, 3510, 1), true)
         fluffs.despawn()
+        statement("Fluffs has run off home with her offspring.")
 
         cutscene.end()
     }
