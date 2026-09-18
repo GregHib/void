@@ -9,6 +9,17 @@ import java.time.format.DateTimeFormatter
 data class SitePage(val id: String, val label: String, val href: String)
 
 /**
+ * Resolves a [SitePage.href]/footer link against [assetPrefix]. A leading `/` marks a path as
+ * relative to the *site root* rather than the current page's directory — since GitHub Pages
+ * project sites are served from a subpath (`<user>.github.io/<repo>/`), an actual root-absolute
+ * `href="/…"` would instead resolve against the domain root and drop that subpath. Swapping the
+ * marker for [assetPrefix] keeps the link relative, so it survives being served from any subpath.
+ * Anything else (a plain relative path, or an external `http(s)://` link) passes through as-is.
+ */
+private fun siteHref(href: String, assetPrefix: String): String =
+    if (href.startsWith("/")) "$assetPrefix${href.removePrefix("/")}" else href
+
+/**
  * The site's fixed top bar: mark + wordmark, a page-to-page nav (plain links, since each page is
  * its own static file rather than an Alpine tab), and a right-hand slot for the version badge,
  * source link and account action. [active] is the current page's [SitePage.id].
@@ -62,7 +73,7 @@ fun Ui.siteHeader(
             style = "display:flex;align-items:stretch;gap:var(--space-2);flex:1;min-width:0"
             for (page in pages) {
                 val on = page.id == active
-                a(href = page.href) {
+                a(href = siteHref(page.href, assetPrefix)) {
                     val color = if (on) "var(--gold-300)" else "var(--text-muted)"
                     val underline = if (on) "var(--gold-400)" else "transparent"
                     style = "display:inline-flex;align-items:center;padding:0 14px;color:$color;" +
@@ -106,7 +117,7 @@ fun Ui.siteHeader(
                             "box-shadow:var(--bevel-up),var(--shadow-lg);overflow:hidden;z-index:40"
                         for (page in communityPages) {
                             val itemOn = page.id == active
-                            a(href = page.href, classes = "void-menu-item") {
+                            a(href = siteHref(page.href, assetPrefix), classes = "void-menu-item") {
                                 val itemColor = if (itemOn) "var(--gold-300)" else "var(--text-body)"
                                 val itemBackground = if (itemOn) "background:var(--surface-active);" else ""
                                 style = "display:block;padding:var(--space-5) var(--space-6);" +
@@ -165,9 +176,9 @@ fun Ui.siteHeader(
 /** Four link columns, the mark, and the build-stamp/not-affiliated line every Void surface carries. */
 fun Ui.siteFooter(assetPrefix: String = "") {
     val columns = listOf(
-        "Project" to listOf(Pair("About", "/"), Pair("Roadmap", "docs/roadmap.html"), Pair("Changelog", "https://github.com/GregHib/void/releases"), Pair("Licence", "https://github.com/GregHib/void/blob/main/LICENSE")),
-        "Developers" to listOf(Pair("Getting started", "docs/content-creation.html"), Pair("Contributing", "https://github.com/GregHib/void/blob/main/CONTRIBUTING.md")),
-        "Play" to listOf(Pair("Download", "https://github.com/GregHib/void/releases"), Pair("Install Guide", "docs/installation-guide.html")),
+        "Project" to listOf(Pair("About", "/index.html"), Pair("Roadmap", "/docs/roadmap.html"), Pair("Changelog", "https://github.com/GregHib/void/releases"), Pair("Licence", "https://github.com/GregHib/void/blob/main/LICENSE")),
+        "Developers" to listOf(Pair("Getting started", "/docs/content-creation.html"), Pair("Contributing", "https://github.com/GregHib/void/blob/main/CONTRIBUTING.md")),
+        "Play" to listOf(Pair("Download", "https://github.com/GregHib/void/releases"), Pair("Install Guide", "/docs/installation-guide.html")),
         "Community" to listOf(Pair("Bug tracker", "https://github.com/GregHib/void/issues")),
     )
     receiver.footer {
@@ -204,7 +215,7 @@ fun Ui.siteFooter(assetPrefix: String = "") {
                         +heading
                     }
                     for ((item, ref) in items) {
-                        a(href = ref) {
+                        a(href = siteHref(ref, assetPrefix)) {
                             style = "font:var(--type-body-sm);color:var(--text-muted);text-decoration:none"
                             +item
                         }
