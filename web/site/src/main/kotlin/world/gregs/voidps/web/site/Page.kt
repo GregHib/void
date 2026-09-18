@@ -26,6 +26,7 @@ fun voidPage(
         if (description != null) {
             meta(name = "description", content = description)
         }
+        link(rel = "icon", type = "image/svg+xml", href = "${assetPrefix}void-mark-dark.svg")
         link(rel = "stylesheet", href = cssPath)
         script(src = "${assetPrefix}js/void.js") {}
         script(src = "https://cdn.jsdelivr.net/npm/alpinejs@$alpineVersion/dist/cdn.min.js") {
