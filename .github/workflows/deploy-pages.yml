@@ -73,7 +73,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: web/site/build/pages
+          path: build/pages
 
   deploy:
     name: Deploy
