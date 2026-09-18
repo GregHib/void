@@ -1,5 +1,6 @@
 package content.entity.player.stat
 
+import content.social.report.epochSeconds
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
@@ -54,6 +55,32 @@ class BonusExperience : Script {
 
     companion object {
         /**
+         * When the running event started, or zero while it's off.
+         *
+         * Progress is saved, so without knowing which event a player earned it in, someone who
+         * spent a previous weekend online would start a new one already decayed to the floor
+         * multiplier. Nothing in the server persists world state, so this is the second the event
+         * began rather than a count of events; a count would restart at zero and collide with the
+         * stamps players saved before the restart.
+         */
+        var event: Int = 0
+            private set
+
+        /**
+         * Identity of the running event, starting one if it isn't already.
+         */
+        fun begin(): Int {
+            if (event == 0) {
+                event = epochSeconds()
+            }
+            return event
+        }
+
+        fun end() {
+            event = 0
+        }
+
+        /**
          * Experience multipliers for each 30 minutes spent online.
          */
         private val multipliers = doubleArrayOf(
@@ -71,6 +98,10 @@ class BonusExperience : Script {
  */
 fun syncBonusExperience(): Int {
     val enabled = Settings["events.bonusExperience.enabled", false]
+    if (!enabled) {
+        // Switching it on again is a new event, which nobody has taken part in yet
+        BonusExperience.end()
+    }
     var changed = 0
     for (player in Players) {
         if (enabled == player["bonus_xp_enabled", false]) {
@@ -87,12 +118,19 @@ fun syncBonusExperience(): Int {
 }
 
 /**
- * Start boosting a player's experience, from however long they'd already spent online.
+ * Start boosting a player's experience, from however long they'd spent online during this event.
  *
  * Shared by logging in while the event is on and by switching it on underneath players who are
- * already online.
+ * already online. Time and bonus earned before it started don't count towards it, but a player who
+ * logs back in during the same event keeps the progress they made in it.
  */
 fun Player.startBonusExperience() {
+    val event = BonusExperience.begin()
+    if (this["bonus_xp_event", 0] != event) {
+        this["bonus_xp_time"] = 0
+        this["bonus_xp_counter"] = 0
+        this["bonus_xp_event"] = event
+    }
     experience.multiplier = BonusExperience.multiplier(this["bonus_xp_time", 0])
     softTimers.start("bonus_xp")
     this["bonus_xp_enabled"] = true
@@ -114,6 +152,7 @@ fun Player.stopBonusExperience() {
 }
 
 fun Player.resetBonusExperience() {
+    this["bonus_xp_event"] = 0
     if (this["bonus_xp_time", 0] > 0 || this["bonus_xp_counter", 0] > 0) {
         this["bonus_xp_time"] = 0
         this["bonus_xp_counter"] = 0
