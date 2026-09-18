@@ -46,7 +46,7 @@ class WebServer(
         }
         apiPlugins()
         routing {
-            staticFiles("/", File("./web/site/build/"))
+            staticFiles("/", File("./web/site/build/pages/"))
             if (webclientZip != null) {
                 proxy(serverAddress, serverPort)
                 webclient(port, webclientZip)
