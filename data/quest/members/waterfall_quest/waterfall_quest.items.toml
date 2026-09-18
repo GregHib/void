@@ -54,6 +54,7 @@ kept = "Wilderness"
 
 [flowers_pastel]
 id = 2460
+fun_weapon = true
 price = 860
 limit = 1000
 weight = 0.028
@@ -65,6 +66,7 @@ id = 2461
 
 [red_flowers]
 id = 2462
+fun_weapon = true
 price = 1054
 limit = 1000
 weight = 0.028
@@ -76,6 +78,7 @@ id = 2463
 
 [blue_flowers]
 id = 2464
+fun_weapon = true
 price = 885
 limit = 1000
 weight = 0.028
@@ -87,6 +90,7 @@ id = 2465
 
 [yellow_flowers]
 id = 2466
+fun_weapon = true
 price = 788
 limit = 1000
 weight = 0.028
@@ -98,6 +102,7 @@ id = 2467
 
 [purple_flowers]
 id = 2468
+fun_weapon = true
 price = 834
 limit = 1000
 weight = 0.028
@@ -109,6 +114,7 @@ id = 2469
 
 [orange_flowers]
 id = 2470
+fun_weapon = true
 price = 800
 limit = 1000
 weight = 0.028
@@ -120,6 +126,7 @@ id = 2471
 
 [flowers_mixed]
 id = 2472
+fun_weapon = true
 price = 888
 limit = 1000
 weight = 0.028
@@ -131,6 +138,7 @@ id = 2473
 
 [white_flowers]
 id = 2474
+fun_weapon = true
 price = 21000
 limit = 100
 weight = 0.028
@@ -142,6 +150,7 @@ id = 2475
 
 [black_flowers]
 id = 2476
+fun_weapon = true
 price = 1537
 limit = 100
 weight = 0.028

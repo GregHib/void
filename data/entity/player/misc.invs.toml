@@ -39,9 +39,13 @@ id = 133
 
 [dueloffer]
 id = 134
+width = 4
+height = 7
 
 [duelwinnings]
 id = 136
+width = 5
+height = 6
 
 [trail_puzzleinv]
 id = 140

@@ -140,6 +140,7 @@ object Params {
 
     /** Item ids a quest expects the player to bring; used by the quest prep command. */
     const val REQ_ITEM_IDS = 5267
+    const val FUN_WEAPON = 5268
 
     const val PREP_VARS = 5269
 
@@ -418,6 +419,7 @@ object Params {
         "food" -> FOOD
         "food2" -> FOOD2
         "freeze_ticks" -> FREEZE_TICKS
+        "fun_weapon" -> FUN_WEAPON
         "full" -> FULL
         "gate" -> GATE
         "god" -> GOD

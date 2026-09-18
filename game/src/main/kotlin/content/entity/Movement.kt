@@ -3,6 +3,7 @@ package content.entity
 import content.area.misthalin.Border
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.instruction
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
@@ -50,6 +51,11 @@ class Movement : Script {
 
         instruction<Walk> { player ->
             if (player.contains("delay")) {
+                return@instruction
+            }
+            val blocked: String? = player["no_movement_message"]
+            if (blocked != null) {
+                player.message(blocked)
                 return@instruction
             }
             if (player.mode is Interact) {
