@@ -76,10 +76,10 @@ const val API_PATH = "/api/v1"
  * Mounts every route under [API_PATH]. Public routes sit at the top level; `/account` and `/dev`
  * wrap themselves in the authentication providers registered by [apiPlugins].
  */
-fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, itemDefinitions: ItemDefinitions) {
+fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions) {
     val hiscores = HiscoresService(storage, questDefinitions)
-    val exchange = ExchangeService(storage, itemDefinitions)
-    val dev = DevService(storage, itemDefinitions)
+    val exchange = ExchangeService(storage)
+    val dev = DevService(storage)
     route(API_PATH) {
         hiscoresRoutes(hiscores)
         exchangeRoutes(exchange)

@@ -20,7 +20,6 @@ import java.time.format.DateTimeFormatter
  */
 class DevService(
     private val storage: Storage,
-    private val items: ItemDefinitions,
 ) {
 
     fun searchPlayers(query: String?, limit: Int): DevPlayerSearchResult {
@@ -113,7 +112,7 @@ class DevService(
         return DevPlayerEvents(pagination = Pagination.of(page, pageSize, sorted.size), items = items)
     }
 
-    private fun itemName(item: Item): String = items.definitions.getOrNull(items.ids[item.id] ?: -1)?.name?.takeIf { it.isNotBlank() && it != "null" } ?: item.id
+    private fun itemName(item: Item): String = ItemDefinitions.definitions.getOrNull(ItemDefinitions.ids[item.id] ?: -1)?.name?.takeIf { it.isNotBlank() && it != "null" } ?: item.id
 
     private fun typeOf(value: Any): String = when (value) {
         is Boolean -> "boolean"

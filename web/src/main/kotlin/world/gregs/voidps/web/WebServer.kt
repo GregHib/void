@@ -34,8 +34,7 @@ class WebServer(
     serverAddress: String,
     serverPort: Int,
     storage: Storage,
-    questDefinitions: QuestDefinitions,
-    itemDefinitions: ItemDefinitions
+    questDefinitions: QuestDefinitions
 ) {
     private val embeddedServer = embeddedServer(CIO, port = port) {
         install(WebSockets.Plugin) {
@@ -51,7 +50,7 @@ class WebServer(
                 proxy(serverAddress, serverPort)
                 webclient(port, webclientZip)
             }
-            api(storage, questDefinitions, itemDefinitions)
+            api(storage, questDefinitions)
         }
     }
 
@@ -74,10 +73,10 @@ class WebServer(
             NPCDefinitions.init(npcDefinitions).load(files.getValue(Settings["definitions.npcs"]))
 
             val questDefinitions = QuestDefinitions().load(files.find(Settings["definitions.quests"]))
-            val itemDefinitions = ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
+            ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
             val path = Paths.get("./data/webclient.zip")
             val storage = FileStorage(File("./data/saves"))
-            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions, itemDefinitions).start()
+            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions).start()
         }
     }
 }

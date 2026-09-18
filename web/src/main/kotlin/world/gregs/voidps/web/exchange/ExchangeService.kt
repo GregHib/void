@@ -20,12 +20,11 @@ import kotlin.math.roundToInt
  */
 class ExchangeService(
     private val storage: Storage,
-    private val items: ItemDefinitions,
 ) {
 
     /** Every item the exchange can list: tradeable, named, and not a noted/lent duplicate of another entry. */
     private val pool: List<ItemDefinition> by lazy {
-        items.definitions
+        ItemDefinitions.definitions
             .asSequence()
             .filter { it.exchangeable && it.stringId.isNotBlank() && it.name.isNotBlank() && it.name != "null" }
             .filter { !it.noted && !it.lent }
