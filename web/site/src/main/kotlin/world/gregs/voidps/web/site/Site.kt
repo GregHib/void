@@ -14,7 +14,7 @@ import java.net.http.HttpResponse
 
 /**
  * Builds static pages out of the reusable components and writes them,
- * plus the design-system stylesheet, into `web/site/build/pages/`.
+ * plus the design-system stylesheet, into the specified directory.
  */
 object Site {
 
@@ -30,7 +30,7 @@ object Site {
         val npcDefinitions = NPCDecoder(true).load(cache)
         NPCDefinitions.init(npcDefinitions).load(files.getValue(Settings["definitions.npcs"]))
 
-        val buildDir = File("./web/site/build/pages")
+        val buildDir = File(Settings["web.server.pages"])
         buildDir.mkdirs()
         val gameData = GameData()
         File(buildDir, "index.html").writeText(Website.homePage())

@@ -3,6 +3,7 @@ package world.gregs.voidps.web.hiscores
 import world.gregs.voidps.engine.data.PlayerSave
 import world.gregs.voidps.engine.data.RecentEvent
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.web.api.model.*
@@ -21,13 +22,17 @@ class HiscoresService(
     private val quests: QuestDefinitions
 ) {
 
+    val bosses = NPCDefinitions.definitions
+        .filter { it.getOrNull<Set<String>>("categories")?.contains("boss") == true }
+        .associate { it.stringId to it.name }
+
     fun metadata(): HiscoresMetadata = HiscoresMetadata(
         updatedAt = Instant.now().toString(),
         maxTrackedXp = MAXIMUM_TRACKED_XP,
         skills = Skill.all.map {
             SkillMetadata(id = it.id(), name = it.name, maxLevel = it.displayMax(), iconUrl = it.iconUrl())
         },
-        bosses = Bosses.ids.map { BossMetadata(id = it, name = Bosses.name(it)) },
+        bosses = bosses.map { BossMetadata(it.key, it.value) },
         modes = MODES.map { ModeMetadata(id = it, name = it.replaceFirstChar(Char::uppercase)) },
         teamSizes = TEAM_SIZES,
     )
@@ -63,7 +68,7 @@ class HiscoresService(
     }
 
     fun bossKills(bossId: String, mode: String?, page: Int, pageSize: Int): BossKillLeaderboard? {
-        if (!Bosses.exists(bossId)) return null
+        val name = bosses[bossId] ?: return null
         val ranked = storage.accounts()
             .filter { it.bossKills(bossId) > 0 }
             .sortedWith(compareByDescending<PlayerSave> { it.bossKills(bossId) }.thenBy { it.displayName().lowercase() })
@@ -72,14 +77,14 @@ class HiscoresService(
         val (from, to) = window(filtered.size, page, pageSize)
         return BossKillLeaderboard(
             boss = bossId,
-            bossName = Bosses.name(bossId),
+            bossName = name,
             pagination = Pagination.of(page, pageSize, filtered.size),
             items = filtered.subList(from, to).map { (save, rank) -> BossKillRow(rank = rank, name = save.displayName(), kills = save.bossKills(bossId)) },
         )
     }
 
     fun bossTimes(bossId: String, teamSize: String?, page: Int, pageSize: Int): BossTimeLeaderboard? {
-        if (!Bosses.exists(bossId)) return null
+        val name = bosses[bossId] ?: return null
         val sizes = if (teamSize == null || teamSize == "all") TEAM_SIZES else listOfNotNull(teamSize.toIntOrNull()?.takeIf { it in TEAM_SIZES })
         val entries = storage.accounts().flatMap { save ->
             sizes.mapNotNull { size -> save.bossTimeMillis(bossId, size)?.let { millis -> Triple(save, size, millis) } }
@@ -87,7 +92,7 @@ class HiscoresService(
         val (from, to) = window(entries.size, page, pageSize)
         return BossTimeLeaderboard(
             boss = bossId,
-            bossName = Bosses.name(bossId),
+            bossName = name,
             pagination = Pagination.of(page, pageSize, entries.size),
             items = entries.subList(from, to).mapIndexed { index, (save, size, millis) ->
                 BossTimeRow(rank = from + index + 1, name = save.displayName(), teamSize = size, timeSeconds = millis / 1000.0)
@@ -109,7 +114,7 @@ class HiscoresService(
         val save = accounts.find(name) ?: return null
         val rank = rankOverall(accounts).find { it.first === save }?.second
         val maxedSkills = Skill.all.count { save.skillLevel(it) >= it.displayMax() }
-        val bossKills = Bosses.ids.sumOf { save.bossKills(it) }
+        val bossKills = bosses.keys.sumOf { save.bossKills(it) }
         val lastEvent = save.recentEvents.maxByOrNull { it.time }
         return PlayerProfile(
             name = save.displayName(),
@@ -216,7 +221,7 @@ class HiscoresService(
     fun playerBosses(name: String): PlayerBosses? {
         val accounts = storage.accounts()
         val save = accounts.find(name) ?: return null
-        val items = Bosses.ids.map { bossId ->
+        val items = bosses.map { (bossId, bossName) ->
             val kc = save.bossKills(bossId)
             val rank = if (kc <= 0) {
                 null
@@ -224,7 +229,7 @@ class HiscoresService(
                 accounts.filter { it.bossKills(bossId) > 0 }.sortedByDescending { it.bossKills(bossId) }.indexOfFirst { it === save }.let { if (it < 0) null else it + 1 }
             }
             val fastest = TEAM_SIZES.mapNotNull { size -> save.bossTimeMillis(bossId, size) }.minOrNull()
-            PlayerBossRow(boss = bossId, name = Bosses.name(bossId), kills = kc, rank = rank, fastestSeconds = fastest?.let { it / 1000.0 })
+            PlayerBossRow(boss = bossId, name = bossName, kills = kc, rank = rank, fastestSeconds = fastest?.let { it / 1000.0 })
         }
         return PlayerBosses(totalKills = items.sumOf { it.kills }, items = items)
     }
@@ -236,8 +241,8 @@ class HiscoresService(
         val ranks = rankOverall(accounts)
         val rankA = ranks.find { it.first === a }?.second ?: 0
         val rankB = ranks.find { it.first === b }?.second ?: 0
-        val bossKillsA = Bosses.ids.sumOf { a.bossKills(it) }
-        val bossKillsB = Bosses.ids.sumOf { b.bossKills(it) }
+        val bossKillsA = bosses.keys.sumOf { a.bossKills(it) }
+        val bossKillsB = bosses.keys.sumOf { b.bossKills(it) }
 
         val skillRows = Skill.all.map { skill ->
             val aXp = a.skillXp(skill)
@@ -252,11 +257,11 @@ class HiscoresService(
                 differenceXp = abs(aXp - bXp),
             )
         }
-        val bossRows = Bosses.ids.map { bossId ->
+        val bossRows = bosses.map { (bossId, bossName) ->
             val aKc = a.bossKills(bossId)
             val bKc = b.bossKills(bossId)
             val leader = if (aKc == bKc) "tie" else if (aKc > bKc) "a" else "b"
-            CompareBossRow(boss = bossId, bossName = Bosses.name(bossId), aKills = aKc, bKills = bKc, leader = leader, differenceKills = abs(aKc - bKc))
+            CompareBossRow(boss = bossId, bossName = bossName, aKills = aKc, bKills = bKc, leader = leader, differenceKills = abs(aKc - bKc))
         }
         val skillsAhead = skillRows.count { it.leader == "a" }
         val summary = listOf(

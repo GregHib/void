@@ -1,9 +1,12 @@
 package world.gregs.voidps.web
 
 import io.ktor.server.application.install
+import io.ktor.server.application.log
 import io.ktor.server.cio.CIO
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.http.content.staticFiles
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
@@ -45,7 +48,15 @@ class WebServer(
         }
         apiPlugins()
         routing {
-            staticFiles("/", File("./web/site/build/pages/"))
+            val file = File(Settings["web.server.pages"])
+            if (!file.exists() || file.isDirectory && file.list()?.size == 0) {
+                get("/") {
+                    log.warn("No website found at: $file")
+                    call.respondText("No website found, please run `gradle web:site:run`")
+                }
+            } else {
+                staticFiles("/", file)
+            }
             if (webclientZip != null) {
                 proxy(serverAddress, serverPort)
                 webclient(port, webclientZip)
@@ -74,8 +85,8 @@ class WebServer(
 
             val questDefinitions = QuestDefinitions().load(files.find(Settings["definitions.quests"]))
             ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-            val path = Paths.get("./data/webclient.zip")
-            val storage = FileStorage(File("./data/saves"))
+            val path = Paths.get(Settings["web.client.zip"])
+            val storage = FileStorage(File(Settings["storage.players.path"]))
             WebServer(path, 8080, "localhost", 43594, storage, questDefinitions).start()
         }
     }
