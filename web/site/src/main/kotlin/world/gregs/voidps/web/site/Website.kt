@@ -52,11 +52,6 @@ object Website {
                 style = "position:relative;max-width:var(--container-wide);margin:0 auto;width:100%;" +
                         "padding:var(--space-12) var(--space-8) var(--space-11);display:flex;" +
                         "flex-direction:column;gap:var(--space-7)"
-                div {
-                    style = "display:flex;gap:var(--space-4)"
-                    ui.badge("Revision 634", tone = BadgeTone.Gold)
-                    ui.badge("Open Source", tone = BadgeTone.Success)
-                }
                 h1 {
                     style = "margin:0;max-width:760px;font:var(--type-hero);color:var(--parch-50)"
                     +"RuneScape Revived"
