@@ -22,18 +22,41 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
                     val stringId = section()
                     var id = -1
                     val params = Int2ObjectOpenHashMap<Any>(16, Hash.VERY_FAST_LOAD_FACTOR)
+                    var name = ""
+                    var difficulty = -1
+                    var members = false
+                    var questPoints = -1
                     while (nextPair()) {
                         when (val key = key()) {
                             "id" -> id = int()
+                            "name" -> name = string()
+                            "points" -> questPoints = int()
+                            "members" -> members = boolean()
+                            "difficulty" -> difficulty = int()
                             else -> params[Params.id(key)] = value()
                         }
                     }
                     require(!ids.containsKey(stringId)) { "Duplicate quest id found '$stringId' at $path." }
                     ids[stringId] = id
                     if (params.isNotEmpty()) {
-                        definitions[id] = QuestDefinition(id = id, stringId = stringId, params = params)
+                        definitions[id] = QuestDefinition(
+                            id = id,
+                            stringId = stringId,
+                            name = name,
+                            questPoints = questPoints,
+                            members = members,
+                            difficulty = difficulty,
+                            params = params
+                        )
                     } else {
-                        definitions[id] = QuestDefinition(id = id, stringId = stringId)
+                        definitions[id] = QuestDefinition(
+                            id = id,
+                            stringId = stringId,
+                            name = name,
+                            questPoints = questPoints,
+                            members = members,
+                            difficulty = difficulty,
+                        )
                     }
                 }
             }
