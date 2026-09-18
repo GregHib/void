@@ -1,0 +1,74 @@
+[poison_waste_cave_entrance]
+option = "Enter"
+tile = { x = 2322, y = 3098 }
+to = { x = 1989, y = 4174 }
+
+[poison_waste_cave_entrance_2]
+option = "Enter"
+tile = { x = 2322, y = 3099 }
+to = { x = 1989, y = 4174 }
+
+[poison_waste_cave_entrance_2]
+option = "Enter"
+tile = { x = 2322, y = 3100 }
+to = { x = 1989, y = 4174 }
+
+[poison_waste_cave_entrance_2]
+option = "Enter"
+tile = { x = 2322, y = 3101 }
+to = { x = 1989, y = 4174 }
+
+[poison_waste_cave_entrance_3]
+option = "Enter"
+tile = { x = 2322, y = 3102 }
+to = { x = 1989, y = 4174 }
+
+[poison_waste_cave_exit_2]
+option = "Exit"
+tile = { x = 1984, y = 4171 }
+to = { x = 2321, y = 3100 }
+
+[poison_waste_cave_exit]
+option = "Exit"
+tile = { x = 1984, y = 4172 }
+to = { x = 2321, y = 3100 }
+
+[poison_waste_cave_exit_3]
+option = "Exit"
+tile = { x = 1984, y = 4174 }
+to = { x = 2321, y = 3100 }
+
+[poison_waste_cave_exit_4]
+option = "Exit"
+tile = { x = 1984, y = 4175 }
+to = { x = 2321, y = 3100 }
+
+[poison_waste_sewer_ladder_up]
+option = "Climb-up"
+tile = { x = 1991, y = 4175 }
+delta = { y = 1, level = 1 }
+
+[poison_waste_sewer_ladder_up]
+option = "Climb-up"
+tile = { x = 2041, y = 4172 }
+delta = { x = 1, level = 1 }
+
+[poison_waste_sewer_ladder_up]
+option = "Climb-up"
+tile = { x = 2041, y = 4189 }
+delta = { x = 1, level = 1 }
+
+[poison_waste_sewer_ladder_down]
+option = "Climb-down"
+tile = { x = 1991, y = 4175, level = 1 }
+delta = { y = -1, level = -1 }
+
+[poison_waste_sewer_ladder_down]
+option = "Climb-down"
+tile = { x = 2041, y = 4172, level = 1 }
+delta = { x = -1, level = -1 }
+
+[poison_waste_sewer_ladder_down]
+option = "Climb-down"
+tile = { x = 2041, y = 4189, level = 1 }
+delta = { x = -1, level = -1 }

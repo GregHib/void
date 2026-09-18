@@ -1,0 +1,96 @@
+package world.gregs.voidps.web.site.components
+
+import kotlinx.html.BUTTON
+import kotlinx.html.button
+import kotlinx.html.style
+
+enum class ButtonVariant(val className: String) {
+    Primary("void-btn-primary"),
+    Secondary("void-btn-secondary"),
+    Ghost("void-btn-ghost"),
+    Danger("void-btn-danger"),
+    Link("void-btn-link"),
+}
+
+enum class ButtonSize(val height: Int, val paddingX: Int, val font: String) {
+    Small(28, 12, "var(--weight-semibold) var(--text-xs)/1 var(--font-ui)"),
+    Medium(36, 18, "var(--weight-semibold) var(--text-sm)/1 var(--font-ui)"),
+    Large(46, 28, "var(--weight-semibold) var(--text-lg)/1 var(--font-ui)"),
+}
+
+/**
+ * The single primary/secondary/ghost/danger/link action control. Gold ([ButtonVariant.Primary])
+ * should appear on at most one button per view. Hover/active/disabled colours come from
+ * `components.css` (`.void-btn-*`) since inline styles can't express `:hover`/`:active`.
+ * [disabledExpression] binds `:disabled` to an Alpine expression instead of the static [disabled]
+ * flag, for buttons (e.g. pagination) whose enabled state depends on client-side state. [textExpr]
+ * makes the label reactive (e.g. `"copied ? 'Copied' : 'Copy'"`) — [text] is shown until Alpine
+ * hydrates and used as the static fallback, same as [Dev]'s `fact`/`kpiCard` value expressions.
+ */
+fun Ui.button(
+    text: String,
+    variant: ButtonVariant = ButtonVariant.Primary,
+    size: ButtonSize = ButtonSize.Medium,
+    disabled: Boolean = false,
+    disabledExpression: String? = null,
+    glow: Boolean = false,
+    fullWidth: Boolean = false,
+    icon: String? = null,
+    onClick: String? = null,
+    textExpr: String? = null,
+    block: BUTTON.() -> Unit = {},
+) {
+    receiver.button {
+        if (disabled) {
+            this.disabled = true
+        }
+        if (disabledExpression != null) {
+            attributes["x-bind:disabled"] = disabledExpression
+        }
+        if (onClick != null) {
+            attributes["@click"] = onClick
+        }
+        val isLink = variant == ButtonVariant.Link
+        attributes["class"] = if (isLink) variant.className else "void-btn ${variant.className}"
+        val cursor = if (disabled) "not-allowed" else "pointer"
+        val animation = if (glow && !disabled) ";animation:voidGlow var(--dur-ambient) var(--ease-glow) infinite" else ""
+        val width = if (fullWidth) "width:100%;" else ""
+        style = if (isLink) {
+            "$width display:inline-flex;align-items:center;gap:var(--space-3);padding:0;font:${size.font};" +
+                "letter-spacing:0.06em;cursor:$cursor"
+        } else {
+            "$width display:inline-flex;align-items:center;justify-content:center;gap:var(--space-4);height:${size.height}px;" +
+                "padding:0 ${size.paddingX}px;border-radius:var(--radius-md);font:${size.font};" +
+                "letter-spacing:0.06em;cursor:$cursor;transition:background var(--dur-fast) var(--ease-standard)$animation"
+        }
+        if (icon != null) {
+            icon(icon, size = if (size == ButtonSize.Large) 18 else 16)
+        }
+        if (textExpr != null) {
+            xText(textExpr)
+        }
+        +text
+        block()
+    }
+}
+
+/**
+ * A pill-shaped filter/sort chip toggled via [active] (an Alpine boolean expression comparing
+ * the current selection to this chip's own value), used for the small option rows above a table
+ * (account type, team size, sort order, ...) — distinct from [button] since the active tone
+ * comes from client-side state rather than a static variant.
+ */
+fun Ui.filterChip(active: String, onClickExpr: String, label: String) {
+    receiver.button {
+        onClick(onClickExpr)
+        xToggleStyle(
+            condition = active,
+            whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
+            whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
+        )
+        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
+            "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
+            "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
+        +label
+    }
+}

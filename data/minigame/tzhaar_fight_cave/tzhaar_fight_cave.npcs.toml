@@ -124,7 +124,7 @@ combat_def = "tztok_jad"
 hunt_mode = "aggressive_intolerant"
 hunt_range = 64
 slayer_xp = 25250.0
-categories = ["tz_haar"]
+categories = ["tz_haar", "boss"]
 aka = ["jad"]
 examine = "This is going to hurt..."
 

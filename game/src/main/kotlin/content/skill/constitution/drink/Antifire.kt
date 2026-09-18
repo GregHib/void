@@ -19,15 +19,21 @@ class Antifire : Script {
             }
         }
 
+        playerDeath {
+            clear("antifire")
+            clear("super_antifire")
+        }
+
         timerStart("fire_resistance") { 30 }
         timerStart("fire_immunity") { 20 }
         timerTick("fire_resistance") { decrease(this, "antifire") }
         timerTick("fire_immunity") { decrease(this, "super_antifire") }
-        timerStop("fire_resistance,fire_immunity", ::clear)
+        timerStop("fire_resistance") { logout -> expire(this, "antifire", logout) }
+        timerStop("fire_immunity") { logout -> expire(this, "super_antifire", logout) }
     }
 
     fun decrease(player: Player, key: String): Int {
-        val remaining = player.dec(key, 0)
+        val remaining = player.dec(key)
         if (remaining <= 0) {
             return Timer.CANCEL
         }
@@ -37,9 +43,11 @@ class Antifire : Script {
         return Timer.CONTINUE
     }
 
-    fun clear(player: Player, logout: Boolean) {
+    fun expire(player: Player, key: String, logout: Boolean) {
+        if (logout) {
+            return
+        }
         player.message("<dark_red>Your resistance to dragonfire has run out.")
-        player["antifire"] = 0
-        player["super_antifire"] = 0
+        player.clear(key)
     }
 }

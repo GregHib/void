@@ -1,5 +1,6 @@
 package content.entity.player
 
+import content.area.misthalin.tutorial_island.inTutorial
 import content.bot.isBot
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.type.statement
@@ -16,13 +17,19 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.queue
+import world.gregs.voidps.engine.timer.epochMilliseconds
+import java.util.concurrent.TimeUnit
 
 class Introduction : Script {
 
     fun welcome(player: Player) {
         player.message("Welcome to ${Settings["server.name"]}.", ChatType.Welcome)
+        player["login_time"] = epochMilliseconds()
         if (player.contains("creation")) {
             return
+        }
+        if (player.inTutorial) {
+            return // Tutorial Island owns character creation, the welcome and the starter kit
         }
         if (Settings["world.start.creation", true] && !player.isBot) {
             player.sendVariable("movement")
@@ -40,8 +47,18 @@ class Introduction : Script {
         playerSpawn(::welcome)
 
         interfaceClosed("character_creation") {
+            if (inTutorial) {
+                return@interfaceClosed
+            }
             flagAppearance()
             setup(this)
+        }
+
+        playerDespawn {
+            val start = get("login_time", 0L)
+            val duration = epochMilliseconds() - start
+            val seconds = TimeUnit.MILLISECONDS.toSeconds(duration).toInt()
+            inc("playtime", seconds)
         }
     }
 
@@ -51,30 +68,37 @@ class Introduction : Script {
         }
         player.stop("delay")
         player["creation"] = System.currentTimeMillis()
-
-        if (!Settings["world.setup.gear", true]) {
-            return
-        }
-        player.bank.add("coins", 25)
-        player.inventory.apply {
-            add("bronze_hatchet")
-            add("tinderbox")
-            add("small_fishing_net")
-            add("shrimp")
-            add("bucket")
-            add("empty_pot")
-            add("bread")
-            add("bronze_pickaxe")
-            add("bronze_dagger")
-            add("bronze_sword")
-            add("wooden_shield")
-            add("shortbow")
-            add("bronze_arrow", 25)
-            add("air_rune", 25)
-            add("mind_rune", 15)
-            add("water_rune", 6)
-            add("earth_rune", 4)
-            add("body_rune", 2)
-        }
+        starterKit(player)
     }
+}
+
+fun starterKit(player: Player) {
+    if (!Settings["world.start.gear", true]) {
+        return
+    }
+    if (player["had_starter", false]) {
+        return
+    }
+    player.bank.add("coins", 25)
+    player.inventory.apply {
+        add("bronze_hatchet")
+        add("tinderbox")
+        add("small_fishing_net")
+        add("shrimps")
+        add("bucket")
+        add("empty_pot")
+        add("bread")
+        add("bronze_pickaxe")
+        add("bronze_dagger")
+        add("bronze_sword")
+        add("wooden_shield")
+        add("shortbow")
+        add("bronze_arrow", 25)
+        add("air_rune", 25)
+        add("mind_rune", 15)
+        add("water_rune", 6)
+        add("earth_rune", 4)
+        add("body_rune", 2)
+    }
+    player["had_starter"] = true
 }

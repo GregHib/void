@@ -79,7 +79,7 @@ spawns = [
   { id = "gnome_troop", x = 2466, y = 3500, level = 2 },
   { id = "gnome_troop_2", x = 2463, y = 3503, level = 2, members = true },
   { id = "assistant_le_smith_grand_tree", x = 2480, y = 3458, members = true },
-  { id = "rometti_grand_tree", x = 2482, y = 3510, level = 1, members = true },
+  { id = "rometti", x = 2482, y = 3510, level = 1, members = true },
   { id = "gulluck_grand_tree", x = 2468, y = 3486, level = 2, members = true },
   { id = "gnome", x = 2435, y = 3460 },
   { id = "gnome", x = 2441, y = 3470 },

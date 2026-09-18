@@ -143,7 +143,6 @@ class Bork : Script {
         val day = TimeUnit.DAYS.toSeconds(1)
         val cooldown = (day - epochSeconds().rem(day)).toInt()
         start("bork_cooldown", cooldown, epochSeconds())
-        inc("bork_kill_count")
         open("bork_defeated")
         val offset = instanceOffset()
         val elite = findElite(tile.regionLevel)

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.ObjectRemoval
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -143,8 +144,9 @@ class GameObjectsTest : KoinMock() {
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 1234, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
             spawns.add(obj)
             ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            despawns.add(obj)
+            // The original is restored before the despawn is emitted, so handlers see the tile settled
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            despawns.add(obj)
         }
     }
 
@@ -176,8 +178,9 @@ class GameObjectsTest : KoinMock() {
             spawns.add(override)
             // Remove 4321
             ZoneBatchUpdates.add(obj.tile.zone, ObjectRemoval(tile = obj.tile.id, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0))
-            despawns.add(override)
+            // The original is restored before the despawn is emitted, so handlers see the tile settled
             ZoneBatchUpdates.add(obj.tile.zone, ObjectAddition(tile = obj.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+            despawns.add(override)
         }
     }
 
@@ -267,6 +270,135 @@ class GameObjectsTest : KoinMock() {
         assertTrue(GameObjects.contains(original))
         assertFalse(GameObjects.contains(first))
         assertFalse(GameObjects.contains(second))
+    }
+
+    /**
+     * Despawn handlers run while [GameObjects.remove] is midway through its own bookkeeping, so an
+     * object added by one used to be wiped from the map the moment remove resumed - leaving it
+     * drawn on the client but unreachable by every server side lookup.
+     */
+    @Test
+    fun `Object added by a despawn handler stays in the world`() {
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val settled = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        addOnDespawn(obj, settled)
+
+        GameObjects.add(obj, collision = false)
+        GameObjects.remove(obj, collision = false)
+
+        assertEquals(settled, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertTrue(GameObjects.contains(settled))
+        assertFalse(GameObjects.contains(obj))
+    }
+
+    @Test
+    fun `Object added by a despawn handler stays in the world over an original`() {
+        val original = GameObject(id = 1111, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val settled = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        addOnDespawn(obj, settled)
+
+        GameObjects.add(obj, collision = false)
+        GameObjects.remove(obj, collision = false)
+
+        assertEquals(settled, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertTrue(GameObjects.contains(settled))
+    }
+
+    @Test
+    fun `Clearing a zone doesn't delete another zone's objects`() {
+        // Zone(814, 61) is an instance zone; tile coordinates aliased it onto Zone(368, 488)
+        val obj = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+
+        GameObjects.clear(Zone(814, 61, 0))
+
+        assertEquals(obj, GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Clearing a zone removes that zone's objects`() {
+        val obj = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val neighbour = GameObject(id = 1234, x = 2955, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        GameObjects.set(neighbour.intId, neighbour.x, neighbour.y, neighbour.level, neighbour.shape, neighbour.rotation, ObjectDefinition.EMPTY)
+
+        GameObjects.clear(obj.tile.zone)
+
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+        assertEquals(neighbour, GameObjects.getLayer(neighbour.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Clearing a zone cancels its pending timers`() {
+        val obj = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(obj.intId, obj.x, obj.y, obj.level, obj.shape, obj.rotation, ObjectDefinition.EMPTY)
+        GameObjects.remove(obj, ticks = 2, collision = false)
+
+        GameObjects.clear(obj.tile.zone)
+        repeat(3) { GameObjects.timers.run() }
+
+        // The revert would otherwise resurrect the object into a zone that no longer exists
+        assertNull(GameObjects.getLayer(obj.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Clearing a zone drops its replacements`() {
+        val original = GameObject(id = 1234, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val replacement = GameObject(id = 4321, x = 2947, y = 3904, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.add(replacement, collision = false)
+
+        GameObjects.clear(original.tile.zone)
+        // An orphaned replacement used to send remove() down the branch that poisons the tile
+        GameObjects.remove(replacement, collision = false)
+
+        assertNull(GameObjects.getLayer(original.tile, ObjectLayer.GROUND))
+        assertFalse(GameObjects.contains(replacement))
+    }
+
+    @Test
+    fun `Reset of an upper level replacement leaves the object below alone`() {
+        // level(index) dropped the low bit, so a level 1 replacement was rebuilt at level 0 and
+        // removed whatever matched it there
+        val below = GameObject(id = 1234, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val above = GameObject(id = 1234, x = 100, y = 100, level = 1, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(below.intId, below.x, below.y, below.level, below.shape, below.rotation, ObjectDefinition.EMPTY)
+        GameObjects.add(above, collision = false)
+
+        GameObjects.reset()
+
+        assertEquals(below, GameObjects.getLayer(below.tile, ObjectLayer.GROUND))
+        assertNull(GameObjects.getLayer(above.tile, ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Reset of a level three replacement leaves the object two levels down alone`() {
+        val below = GameObject(id = 1234, x = 100, y = 100, level = 2, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val above = GameObject(id = 1234, x = 100, y = 100, level = 3, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.set(below.intId, below.x, below.y, below.level, below.shape, below.rotation, ObjectDefinition.EMPTY)
+        GameObjects.add(above, collision = false)
+
+        GameObjects.reset()
+
+        assertEquals(below, GameObjects.getLayer(below.tile, ObjectLayer.GROUND))
+        assertNull(GameObjects.getLayer(above.tile, ObjectLayer.GROUND))
+    }
+
+    /**
+     * Registers a despawn handler which swaps [obj] out for [replacement] the moment it despawns.
+     */
+    private fun addOnDespawn(obj: GameObject, replacement: GameObject) {
+        object : Despawn {
+            init {
+                objectDespawn {
+                    if (this == obj) {
+                        GameObjects.add(replacement, collision = false)
+                    }
+                }
+            }
+        }
     }
 
     @AfterEach

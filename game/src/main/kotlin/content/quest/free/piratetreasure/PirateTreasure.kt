@@ -2,6 +2,7 @@ package content.quest.free.piratetreasure
 
 import content.entity.combat.dead
 import content.entity.combat.hit.directHit
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -308,10 +309,11 @@ class PirateTreasure : Script {
     }
 
     private fun Player.completeQuest() {
+        AuditLog.event(this, "quest_completed", "pirates_treasure")
+        AdventurersLogs.questCompleted(this, "pirates_treasure", points = 2)
         set("pirates_treasure", "completed")
         jingle("quest_complete_1")
         inc("quest_points", 2)
-        AuditLog.event(this, "quest_completed", "pirates_treasure")
         refreshQuestJournal()
         questComplete(
             "Pirate's Treasure",

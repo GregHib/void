@@ -52,6 +52,25 @@ class DynamicZones(
     }
 
     /**
+     * Copies a block of zones, for content that only needs part of a region - a room to stage a
+     * cutscene in, say - rather than all sixty four zones of one.
+     * @param from The south west zone of the block to copy
+     * @param to The south west zone the block is copied to
+     * @param width How many zones wide the block is
+     * @param height How many zones high the block is
+     * @param levels How many levels of it to copy, counting up from the level of [from] and [to]
+     */
+    fun copy(from: Zone, to: Zone, width: Int, height: Int, levels: Int = 1) {
+        for (x in 0 until width) {
+            for (y in 0 until height) {
+                for (level in 0 until levels) {
+                    copy(Zone(from.x + x, from.y + y, from.level + level), Zone(to.x + x, to.y + y, to.level + level))
+                }
+            }
+        }
+    }
+
+    /**
      * @param from The region to be copied
      * @param to The region to be replaced
      */

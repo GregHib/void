@@ -1,5 +1,6 @@
 package content.area.morytania.fenkenstrains_castle
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -305,11 +306,12 @@ class DrFenkenstrain : Script {
     }
 
     private fun Player.sendQuestReward() {
+        AuditLog.event(this, "quest_completed", "creature_of_fenkenstrain")
+        AdventurersLogs.questCompleted(this, "creature_of_fenkenstrain", points = 2)
         jingle("quest_complete_1")
         exp(Skill.Thieving, 1000.0)
         addOrDrop("ring_of_charos")
         inc("quest_points", 2)
-        AuditLog.event(this, "quest_completed", "creature_of_fenkenstrain")
         set("creature_of_fenkenstrain", "completed")
         resetQuestVarbits()
         refreshQuestJournal()

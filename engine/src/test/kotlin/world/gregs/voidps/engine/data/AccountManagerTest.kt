@@ -77,6 +77,8 @@ class AccountManagerTest : KoinMock() {
             override fun exists(accountName: String): Boolean = false
 
             override fun load(accountName: String): PlayerSave? = null
+
+            override fun accounts(): List<PlayerSave> = emptyList()
         }
         Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
         saveQueue = SaveQueue(storage)

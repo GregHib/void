@@ -33,7 +33,26 @@ str = 110
 def = 100
 style = "crush"
 max_hit_melee = 120
+combat_def = "skeleton_hellhound"
+attack_speed = 4
 hunt_mode = "cowardly"
 slayer_xp = 55.0
 categories = ["hellhounds"]
+drop_table = "skeleton_hellhound"
 examine = "A creature summoned by Vanstrom to kill the remaining Myreque."
+
+# Vanstrom's forms during the Myreque hideout cutscene
+[route_vanstrom_vampire_misty]
+id = 1578
+dialogue = "old"
+
+[route_vanstrom]
+id = 1579
+
+[route_vanstrom_vampire]
+id = 1580
+dialogue = "old"
+
+[route_vanstrom_vampire_flying]
+id = 1581
+dialogue = "old"

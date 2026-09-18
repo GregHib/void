@@ -70,6 +70,8 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             override fun exists(accountName: String): Boolean = false
 
             override fun load(accountName: String): PlayerSave? = playerSave
+
+            override fun accounts(): List<PlayerSave> = listOfNotNull(playerSave)
         }
         saveQueue = SaveQueue(storage, scope = TestScope())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")), mutableMapOf("accountname" to "name"))
@@ -86,7 +88,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     @Test
     fun `Successful login`() = runTest {
         val client: Client = mockk(relaxed = true)
-        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
         coEvery { queue.await() } just Runs
 
         val instructions = loader.load(client, "name", "pass", 2)
@@ -96,7 +98,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     @Test
     fun `Can't login if banned`() = runTest {
         val client: Client = mockk(relaxed = true)
-        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("banned_until" to Int.MAX_VALUE), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("banned_until" to Int.MAX_VALUE), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
 
         val instructions = loader.load(client, "name", "pass", 2)
         assertNull(instructions)
@@ -106,7 +108,7 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     @Test
     fun `Can login once ban expires`() = runTest {
         val client: Client = mockk(relaxed = true)
-        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("banned_until" to 1), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList())
+        playerSave = PlayerSave("name", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), mapOf("banned_until" to 1), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
         coEvery { queue.await() } just Runs
 
         val instructions = loader.load(client, "name", "pass", 2)

@@ -52,6 +52,9 @@ class Inventory : Script {
             if (attacking) {
                 mode = EmptyMode
             }
+            if (equipOption == "Dig") {
+                anim("human_dig")
+            }
             InterfaceApi.itemOption(this, ItemOption(item, itemSlot, id.substringBefore(":"), equipOption))
         }
     }

@@ -1,0 +1,6 @@
+plugins {
+    id("shared")
+}
+
+dependencies {
+}

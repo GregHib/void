@@ -282,6 +282,9 @@ abstract class StorageTest {
             ignores = listOf("Mod Murdoch"),
             offers = arrayOf(ExchangeOffer(1, "item", 4, 123, OfferState.PendingSell, 1, 321)),
             history = listOf(ExchangeHistory("item", 123, 321)),
+            kills = mapOf("chickens" to 4, "kree_arra" to 2),
+            records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
+            recentEvents = listOf(RecentEvent(132, "Title", "desc")),
         )
     }
 }

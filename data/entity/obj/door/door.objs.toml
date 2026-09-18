@@ -446,34 +446,34 @@ id = 2003
 id = 4640
 examine = "An ornately fashioned door."
 
-[bedroom_door_opened]
+[guidor_door_opened]
 id = 2033
 examine = "This is someone's bedroom door."
 
-[bedroom_door_closed]
+[guidor_door_closed]
 id = 2032
 examine = "This is someone's bedroom door."
 
-[door_30_opened]
+[mourner_stew_door_up_opened]
 id = 2035
 examine = "It's open."
 
-[door_30_closed]
+[mourner_stew_door_up_closed]
 id = 2034
 examine = "It's closed."
 
-[door_32_opened]
-id = 2035
+[mourner_stew_door_opened]
+id = 2037
 examine = "It's open."
 
-[door_32_closed]
+[mourner_stew_door_closed]
 id = 2036
 examine = "It's closed."
 
-[door_36_opened]
+[elena_house_door_opened]
 id = 2055
 
-[door_36_closed]
+[elena_house_door_closed]
 id = 2054
 examine = "It's a door."
 
