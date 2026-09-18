@@ -70,6 +70,8 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             override fun exists(accountName: String): Boolean = false
 
             override fun load(accountName: String): PlayerSave? = playerSave
+
+            override fun accounts(): List<PlayerSave> = listOfNotNull(playerSave)
         }
         saveQueue = SaveQueue(storage, scope = TestScope())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")), mutableMapOf("accountname" to "name"))
