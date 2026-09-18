@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.command
 
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.splitSafe
 
 /**
@@ -7,6 +8,8 @@ import world.gregs.voidps.engine.client.ui.chat.splitSafe
  * values the in-game command autofill uses.
  */
 object ConsoleCompleter {
+
+    private val logger = InlineLogger("Console")
 
     /**
      * Values the word being typed could be, and where that word starts.
@@ -23,7 +26,20 @@ object ConsoleCompleter {
         }
         val command = ConsoleCommands.commands[parts.first().lowercase()] ?: return Completion(start, emptyList())
         val argument = command.args.getOrNull(parts.size - 2) ?: return Completion(start, emptyList())
-        val autofill = argument.autofill?.invoke() ?: return Completion(start, emptyList())
+        val autofill = autofill(argument) ?: return Completion(start, emptyList())
         return Completion(start, autofill.filter { it.startsWith(word, ignoreCase = true) })
+    }
+
+    /**
+     * Autofill is provided by content and read from the console thread, so a value which can't be
+     * collected costs the completion rather than the key press.
+     */
+    private fun autofill(argument: CommandArgument): Set<String>? {
+        try {
+            return argument.autofill?.invoke()
+        } catch (e: Exception) {
+            logger.debug(e) { "Unable to autofill '${argument.key}'." }
+            return null
+        }
     }
 }

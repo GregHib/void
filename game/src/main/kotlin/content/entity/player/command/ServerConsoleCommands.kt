@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toSIIntOrNull
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
@@ -28,6 +29,7 @@ import java.util.concurrent.TimeUnit
  * output as lines for [ConsoleCommands] to log.
  */
 class ServerConsoleCommands(
+    val accountDefinitions: AccountDefinitions,
     val accountLoader: PlayerAccountLoader,
     val accounts: AccountManager,
     val exchange: GrandExchange,
@@ -54,7 +56,9 @@ class ServerConsoleCommands(
 
         consoleCommand(
             "kick",
-            stringArg("player-name", desc = "Display name of the player (use quotes for spaces)", autofill = { Players.map { player -> player.name.replace(' ', '_') }.toSet() }),
+            // Completion runs on the console thread, so names come from the definitions the player
+            // commands autofill from rather than from Players, which the game thread is mutating
+            stringArg("player-name", desc = "Display name of the player", autofill = accountDefinitions.displayNames.keys),
             desc = "Disconnect a player",
             handler = ::kick,
         )

@@ -97,6 +97,9 @@ class ConsoleLine(
         if (text.isNotBlank()) {
             history.remove(text)
             history.add(text)
+            if (history.size > MAX_HISTORY) {
+                history.removeAt(0)
+            }
         }
         historyIndex = history.size
         return Key.Submit(text)
@@ -285,6 +288,7 @@ class ConsoleLine(
 
     private companion object {
         private const val MAX_MATCHES = 10
+        private const val MAX_HISTORY = 100
         private const val TAB = 9
         private const val NEW_LINE = 10
         private const val FORM_FEED = 12

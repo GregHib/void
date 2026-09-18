@@ -40,23 +40,31 @@ class ConsoleOutput(
 
     companion object {
         private const val NEW_LINE = '\n'.code
-        private var original: PrintStream? = null
+        private var out: PrintStream? = null
+        private var error: PrintStream? = null
 
         /**
-         * Redirect everything written to `System.out` through [print], above the input line.
+         * Redirect everything written to `System.out` and `System.err` through [print], above the
+         * input line.
+         *
+         * Logging goes to stdout, but stack traces printed straight to stderr - `printStackTrace`
+         * and anything uncaught off the game thread - would otherwise land on top of the prompt.
          */
         fun install(print: (String) -> Unit) {
-            if (original != null) {
+            if (out != null) {
                 return
             }
-            original = System.out
+            out = System.out
+            error = System.err
             System.setOut(PrintStream(ConsoleOutput(print), true))
+            System.setErr(PrintStream(ConsoleOutput(print), true))
         }
 
         fun uninstall() {
-            val out = original ?: return
-            System.setOut(out)
-            original = null
+            System.setOut(out ?: return)
+            System.setErr(error ?: return)
+            out = null
+            error = null
         }
     }
 }

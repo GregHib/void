@@ -55,6 +55,13 @@ class ConsoleCompleterTest {
     }
 
     @Test
+    fun `Autofill which fails costs the completion rather than the key press`() {
+        ConsoleCommands.register("kick", stringArg("player-name", autofill = { throw ConcurrentModificationException() })) { emptyList() }
+
+        assertEquals(emptyList<String>(), complete("kick h"))
+    }
+
+    @Test
     fun `Unknown command has nothing to complete`() {
         ConsoleCommands.register("players") { emptyList() }
 

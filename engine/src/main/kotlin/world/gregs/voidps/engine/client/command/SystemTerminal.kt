@@ -39,6 +39,11 @@ class SystemTerminal(
     override var onResize: () -> Unit = {}
 
     override fun start(): Boolean {
+        // Non-null only when input and output are both terminals, so output piped to a file or
+        // through tee isn't drawn into even though stty would happily take the input side
+        if (System.console() == null) {
+            return false
+        }
         val saved = stty("-g") ?: return false
         // Line editing and echo off so keys arrive one at a time, flow control off so Ctrl + S
         // can't freeze the console; interrupts are left alone so Ctrl + C still stops the server

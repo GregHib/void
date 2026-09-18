@@ -145,6 +145,19 @@ class ConsoleLineTest {
     }
 
     @Test
+    fun `History is capped so it can't grow forever`() {
+        for (index in 0..120) {
+            type("command$index")
+            line.key(ENTER)
+        }
+
+        // Walking further back than the cap stops at the oldest kept line
+        repeat(200) { up() }
+
+        assertEquals(ConsoleLine.Key.Submit("command21"), line.key(ENTER))
+    }
+
+    @Test
     fun `Ctrl D on an empty line is the end of the input`() {
         assertEquals(ConsoleLine.Key.EndOfFile, line.key(END_OF_FILE))
     }

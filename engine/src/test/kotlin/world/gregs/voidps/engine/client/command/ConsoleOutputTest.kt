@@ -35,6 +35,37 @@ class ConsoleOutputTest {
     }
 
     @Test
+    fun `Installing redirects both output streams and uninstalling restores them`() {
+        val out = System.out
+        val error = System.err
+        val printed = mutableListOf<String>()
+
+        ConsoleOutput.install(printed::add)
+        System.out.print("logged\n")
+        System.err.print("stack trace\n")
+
+        assertEquals(listOf("logged", "stack trace"), printed)
+
+        ConsoleOutput.uninstall()
+
+        assertEquals(out, System.out)
+        assertEquals(error, System.err)
+    }
+
+    @Test
+    fun `Installing twice keeps the original streams`() {
+        val out = System.out
+        val error = System.err
+
+        ConsoleOutput.install {}
+        ConsoleOutput.install {}
+        ConsoleOutput.uninstall()
+
+        assertEquals(out, System.out)
+        assertEquals(error, System.err)
+    }
+
+    @Test
     fun `Windows line endings are trimmed`() {
         output.print("Tick 54 took 103ms\r\n")
 
