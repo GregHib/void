@@ -46,7 +46,7 @@ object Site {
             File(devDir, "players.html").writeText(Dev.playersPage())
         }
         copyStaticAssets(buildDir)
-        Docs.generate(buildDir)
+        Docs.generate(File("./docs/"), buildDir)
     }
 
     private fun copyStaticAssets(buildDir: File) {

@@ -15,9 +15,7 @@ object Docs {
 
     private data class DocSource(val id: String, val title: String, val description: String, val file: File)
 
-    private val wikiDir = File("../void-wiki/")
-
-    fun generate(buildDir: File) {
+    fun generate(wikiDir: File, buildDir: File) {
         val docsDir = File(buildDir, "docs")
         docsDir.mkdirs()
 
