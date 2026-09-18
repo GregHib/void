@@ -69,5 +69,5 @@ fun FlowContent.tableScroll(columnWidths: List<String>, content: DIV.() -> Unit)
 private fun columnMinPx(token: String): Int =
     Regex("^(\\d+)px$").matchEntire(token.trim())?.groupValues?.get(1)?.toInt() ?: 180
 
-/** The same width computation [tableScroll] uses, exposed for tables that build their own bespoke header/scroll wrapper instead of using [tableScroll] directly (see [world.gregs.voidps.web.site.components.worldTable]/`worldList`). */
+/** The same width computation [tableScroll] uses, exposed for tables that build their own bespoke header/scroll wrapper instead of using [tableScroll] directly (see `worldList`). */
 fun tableMinWidth(columnWidths: List<String>): Int = columnWidths.sumOf(::columnMinPx)

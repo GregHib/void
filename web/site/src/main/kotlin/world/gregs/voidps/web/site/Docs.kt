@@ -3,9 +3,6 @@ package world.gregs.voidps.web.site
 import kotlinx.html.*
 import world.gregs.voidps.web.site.components.*
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 /**
  * Generates the docs section from the Markdown files in `.claude/` (the same reference
@@ -16,14 +13,9 @@ import java.util.Locale
  */
 object Docs {
 
-    private data class DocSource(val id: String, val slug: String, val title: String, val description: String, val file: File)
-
-    private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.ENGLISH)
+    private data class DocSource(val id: String, val title: String, val description: String, val file: File)
 
     private val wikiDir = File("../void-wiki/")
-
-    /** The wiki's GitHub repo — its pages are edited at `github.com/<repo>/wiki/<Page>/_edit`. */
-    private const val GITHUB_REPO = "GregHib/void"
 
     fun generate(buildDir: File) {
         val docsDir = File(buildDir, "docs")
@@ -38,7 +30,6 @@ object Docs {
                 val (frontMatter, _) = extractFrontMatter(it.readText())
                 DocSource(
                     id = it.nameWithoutExtension.lowercase(),
-                    slug = it.nameWithoutExtension,
                     title = frontMatter.title ?: it.nameWithoutExtension.replace("-", " "),
                     description = frontMatter.description ?: "",
                     file = it,
@@ -294,20 +285,6 @@ object Docs {
                     style = "margin:0 0 var(--space-6);font:var(--type-title);color:var(--parch-50)"
                     +source.title
                 }
-//                div {
-//                    style = "display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-8)"
-//                    ui.badge("Reference", pill = false)
-//                    ui.badge("Updated ${dateFormat.format(Date(source.file.lastModified()))}", tone = BadgeTone.Gold)
-//                    a(href = "https://github.com/$GITHUB_REPO/wiki/${source.slug}/_edit", classes = "void-btn ${ButtonVariant.Secondary.className}") {
-//                        attributes["target"] = "_blank"
-//                        attributes["rel"] = "noopener noreferrer"
-//                        style = "margin-left:auto;height:${ButtonSize.Small.height}px;padding:0 ${ButtonSize.Small.paddingX}px;" +
-//                            "border-radius:var(--radius-md);font:${ButtonSize.Small.font};letter-spacing:0.06em;" +
-//                            "display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none;cursor:pointer"
-//                        icon(Icons.EDIT, size = 14)
-//                        +"Edit this page"
-//                    }
-//                }
                 div(classes = "markdown-body") {
                     unsafe { raw(doc.html) }
                 }

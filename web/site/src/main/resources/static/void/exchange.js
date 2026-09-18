@@ -24,7 +24,7 @@
     });
   }
 
-  function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
+  var fmt = window.voidFmt;
   function gp(n) { return fmt(n) + " gp"; }
   function short(n) {
     var a = Math.abs(n);

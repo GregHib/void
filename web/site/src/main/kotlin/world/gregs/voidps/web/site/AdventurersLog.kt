@@ -81,13 +81,6 @@ object AdventurersLog {
         ui.siteFooter()
     }
 
-    private fun eyebrowText(expression: String): FlowContent.() -> Unit = {
-        span {
-            style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
-            xText(expression)
-        }
-    }
-
     private fun FlowContent.heroBand() {
         section {
             style = "position:relative;border:1px solid var(--border-panel);border-radius:var(--radius-md);" +

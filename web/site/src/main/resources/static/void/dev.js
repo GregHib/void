@@ -10,7 +10,7 @@
 (function () {
   function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
   function walk(v, step, min, max) { return clamp(v + (Math.random() - 0.5) * 2 * step, min, max); }
-  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  var fmt = window.voidFmt;
   function clockNow() { return new Date().toTimeString().slice(0, 8); }
 
   // Mirrors components/Badge.kt's BadgeTone palette, for badges whose tone depends on
@@ -249,7 +249,7 @@
   var RIGHTS_LABEL = { admin: 'Administrator', mod: 'Moderator', none: 'Member' };
   var RIGHTS_TONE = { admin: 'Gold', mod: 'Info', none: 'Neutral' };
 
-  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  var fmt = window.voidFmt;
   function formatDate(iso) {
     if (!iso) return null;
     try {

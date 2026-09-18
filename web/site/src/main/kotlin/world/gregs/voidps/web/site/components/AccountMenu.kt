@@ -11,7 +11,7 @@ import kotlinx.html.style
  * and swaps itself for a round account icon; clicking the icon opens a small dropdown with the
  * account name/email, account-management links and a logout action that reverts the swap. All
  * state (`loggedIn`, `open`) is local to this component's own `x-data` scope, so it can be dropped
- * into [menuBar] or [siteHeader]'s `right` slot without any page-level wiring.
+ * into [siteHeader]'s `right` slot without any page-level wiring.
  *
  * [isAdmin] adds a "Developer panel" entry above the divider, linking to [devPanelHref], for
  * staff accounts only.

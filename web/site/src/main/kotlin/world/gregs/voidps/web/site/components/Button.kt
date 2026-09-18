@@ -74,26 +74,23 @@ fun Ui.button(
     }
 }
 
-/** A square, icon-only control used for row/toolbar actions (search, settings, view toggles). */
-fun Ui.iconButton(
-    label: String,
-    icon: String,
-    active: Boolean = false,
-    onClick: String? = null,
-    size: Int = 32,
-) {
+/**
+ * A pill-shaped filter/sort chip toggled via [active] (an Alpine boolean expression comparing
+ * the current selection to this chip's own value), used for the small option rows above a table
+ * (account type, team size, sort order, ...) — distinct from [button] since the active tone
+ * comes from client-side state rather than a static variant.
+ */
+fun Ui.filterChip(active: String, onClickExpr: String, label: String) {
     receiver.button {
-        attributes["aria-label"] = label
-        attributes["title"] = label
-        attributes["class"] = "void-icon-btn"
-        if (onClick != null) {
-            attributes["@click"] = onClick
-        }
-        val background = if (active) "var(--surface-active)" else "transparent"
-        val color = if (active) "var(--text-accent)" else "var(--text-muted)"
-        style = "width:${size}px;height:${size}px;display:inline-flex;align-items:center;justify-content:center;" +
-            "border-radius:var(--radius-sm);background:$background;color:$color;border:1px solid transparent;" +
-            "cursor:pointer;transition:background var(--dur-fast) var(--ease-standard),color var(--dur-fast) var(--ease-standard)"
-        icon(icon, size = 18)
+        onClick(onClickExpr)
+        xToggleStyle(
+            condition = active,
+            whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
+            whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
+        )
+        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
+            "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
+            "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
+        +label
     }
 }

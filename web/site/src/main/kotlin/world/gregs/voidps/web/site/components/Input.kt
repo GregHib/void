@@ -8,7 +8,6 @@ import kotlinx.html.option
 import kotlinx.html.select
 import kotlinx.html.span
 import kotlinx.html.style
-import kotlinx.html.unsafe
 
 /**
  * A labelled text field. [model] binds `x-model`; pass an [error] message to switch to the
@@ -121,60 +120,6 @@ fun Ui.select(
             span {
                 style = "font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint)"
                 +hint
-            }
-        }
-    }
-}
-
-/** A checkbox where the box itself carries the bevel treatment; [model] is a boolean Alpine expression. */
-fun Ui.checkbox(
-    text: String,
-    description: String? = null,
-    model: String,
-    disabled: Boolean = false,
-) {
-    receiver.label {
-        if (disabled) {
-            style = "display:flex;gap:10px;align-items:flex-start;cursor:not-allowed;opacity:.55"
-        } else {
-            style = "display:flex;gap:10px;align-items:flex-start;cursor:pointer"
-            onClick("$model = !$model")
-        }
-        span {
-            if (!disabled) {
-                xToggleStyle(
-                    condition = model,
-                    whenTrue = "background:var(--gold-400);border-color:var(--gold-600);box-shadow:var(--bevel-gold)",
-                    whenFalse = "background:var(--surface-inset);border-color:var(--border-strong);box-shadow:var(--bevel-down)",
-                )
-            }
-            style = "width:16px;height:16px;margin-top:var(--space-1);flex:0 0 auto;display:flex;align-items:center;" +
-                "justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);" +
-                "border-radius:var(--radius-xs);box-shadow:var(--bevel-down);" +
-                "transition:background var(--dur-fast) var(--ease-standard)"
-            if (!disabled) {
-                span {
-                    xShow(model)
-                    unsafe {
-                        raw(
-                            """<svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true">""" +
-                                """<path d="M1.5 6.4 4.3 9.2 10.5 3" fill="none" stroke="#17120d" stroke-width="2.2" stroke-linecap="square"></path></svg>""",
-                        )
-                    }
-                }
-            }
-        }
-        span {
-            style = "display:flex;flex-direction:column;gap:var(--space-1)"
-            span {
-                style = "font:var(--type-body-sm);color:var(--text-body)"
-                +text
-            }
-            if (description != null) {
-                span {
-                    style = "font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint)"
-                    +description
-                }
             }
         }
     }

@@ -31,13 +31,6 @@ object Exchange {
         ui.siteFooter()
     }
 
-    private fun eyebrowText(expression: String): FlowContent.() -> Unit = {
-        span {
-            style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
-            attributes["x-text"] = expression
-        }
-    }
-
     /** Mirrors the category list baked into `exchange.js` (`CAT_BORDER`/`CAT_CODE`/`CAT_BLURB`) — keep in sync. */
     private val categories = listOf("All", "Weapons", "Armour", "Runes", "Consumables", "Resources", "Curios")
 
@@ -67,22 +60,6 @@ object Exchange {
                     "pointer-events:none;color:var(--text-faint);font:10px var(--font-ui)"
                 +"▾"
             }
-        }
-    }
-
-    /** A pill-chip filter button, styled and toggled the same way as [Hiscores]'s mode/team chips. */
-    private fun FlowContent.chip(label: String, activeExpression: String, onClick: String) {
-        button {
-            onClick(onClick)
-            xToggleStyle(
-                condition = activeExpression,
-                whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
-                whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
-            )
-            style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
-                "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
-                "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
-            +label
         }
     }
 
@@ -225,7 +202,7 @@ object Exchange {
             div {
                 style = "display:flex;flex-wrap:wrap;gap:var(--space-3);padding:var(--space-3)"
                 for (c in categories) {
-                    chip(c, "cat === '$c'", "cat = '$c'")
+                    ui.filterChip(active = "cat === '$c'", onClickExpr = "cat = '$c'", label = c)
                 }
             }
 
@@ -361,7 +338,7 @@ object Exchange {
                     div {
                         style = "display:flex;gap:var(--space-3)"
                         for (t in timeframes) {
-                            chip(t, "tf === '$t'", "tf = '$t'; hover = null")
+                            ui.filterChip(active = "tf === '$t'", onClickExpr = "tf = '$t'; hover = null", label = t)
                         }
                     }
                 }

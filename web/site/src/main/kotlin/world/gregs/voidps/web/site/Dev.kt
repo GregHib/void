@@ -90,7 +90,7 @@ object Dev {
         }
     }
 
-    /** A narrow world-list row for the dashboard's 300px sidebar — [ui.worldTable]'s columns need
+    /** A narrow world-list row for the dashboard's 300px sidebar — [ui.worldList]'s columns need
      *  far more width than that, so this drops mode/ping down into a caption line under the region. */
     private fun FlowContent.compactWorldRow(world: WorldEntry, last: Boolean = false) {
         div {
@@ -528,7 +528,7 @@ object Dev {
                 ui.panel(
                     title = "Results",
                     padded = false,
-                    action = { span { style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"; xText("resultRows.length + ' matches'") } },
+                    action = eyebrowText("resultRows.length + ' matches'"),
                 ) {
                     rawHtml(
                         """
@@ -644,7 +644,7 @@ object Dev {
                             """,
                         )
                     }
-                    ui.panel(title = "Inventory", action = { span { style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"; xText("inventoryUsed + ' / 28'") } }) {
+                    ui.panel(title = "Inventory", action = eyebrowText("inventoryUsed + ' / 28'")) {
                         style = "display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:var(--space-3);max-width:420px"
                         rawHtml(
                             """
@@ -659,7 +659,7 @@ object Dev {
                     ui.panel(
                         title = "Bank",
                         padded = false,
-                        action = { span { style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"; xText("filteredBank.length + ' items'") } },
+                        action = eyebrowText("filteredBank.length + ' items'"),
                     ) {
                         div {
                             style = "padding:var(--space-6);border-bottom:1px solid var(--border-subtle);background:var(--surface-inset)"
@@ -684,7 +684,7 @@ object Dev {
                     ui.panel(
                         title = "Variables",
                         padded = false,
-                        action = { span { style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"; xText("filteredVariables.length + ' shown'") } },
+                        action = eyebrowText("filteredVariables.length + ' shown'"),
                     ) {
                         div {
                             style = "display:flex;gap:var(--space-5);align-items:flex-end;flex-wrap:wrap;" +

@@ -99,13 +99,6 @@ object Hiscores {
         ui.siteFooter()
     }
 
-    private fun eyebrowText(expression: String): FlowContent.() -> Unit = {
-        span {
-            style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
-            attributes["x-text"] = expression
-        }
-    }
-
     private fun FlowContent.paginationFooter(pagerExpr: String, key: String) {
         div {
             style = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);" +
@@ -171,18 +164,7 @@ object Hiscores {
             div {
                 style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
                 for ((id, label) in listOf("all" to "All", "main" to "Main", "skiller" to "Skiller", "pure" to "Pure")) {
-                    button {
-                        onClick("mode = '$id'; page = 0; fetchOverall()")
-                        xToggleStyle(
-                            condition = "mode === '$id'",
-                            whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
-                            whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
-                        )
-                        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
-                            "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
-                            "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
-                        +label
-                    }
+                    ui.filterChip(active = "mode === '$id'", onClickExpr = "mode = '$id'; page = 0; fetchOverall()", label = label)
                 }
             }
         }
@@ -199,18 +181,7 @@ object Hiscores {
             div {
                 style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
                 for (t in listOf("All", "Solo", "2 players", "3 players", "4 players")) {
-                    button {
-                        onClick("team = '$t'; timePage = 0; fetchBossTimes()")
-                        xToggleStyle(
-                            condition = "team === '$t'",
-                            whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
-                            whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
-                        )
-                        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
-                            "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
-                            "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
-                        +t
-                    }
+                    ui.filterChip(active = "team === '$t'", onClickExpr = "team = '$t'; timePage = 0; fetchBossTimes()", label = t)
                 }
             }
         }
@@ -529,18 +500,7 @@ object Hiscores {
             div {
                 style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
                 for ((id, label) in listOf("level" to "Total level", "rank" to "Rank", "name" to "Name")) {
-                    button {
-                        onClick("setSearchSort('$id')")
-                        xToggleStyle(
-                            condition = "searchSort === '$id'",
-                            whenTrue = "background:rgba(224,174,60,.14);color:var(--gold-300);border-color:var(--gold-600)",
-                            whenFalse = "background:var(--umber-800);color:var(--text-muted);border-color:var(--border-strong)",
-                        )
-                        style = "height:28px;padding:0 var(--space-5);border-radius:var(--radius-pill);cursor:pointer;" +
-                            "font:var(--weight-semibold) var(--text-xs)/1 var(--font-ui);letter-spacing:var(--tracking-wide);" +
-                            "background:var(--umber-800);color:var(--text-muted);border:1px solid var(--border-strong)"
-                        +label
-                    }
+                    ui.filterChip(active = "searchSort === '$id'", onClickExpr = "setSearchSort('$id')", label = label)
                 }
             }
         }

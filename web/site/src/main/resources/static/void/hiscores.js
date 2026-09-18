@@ -19,7 +19,7 @@
     timePage: "fetchBossTimes", searchPage: "fetchSearch",
   };
 
-  function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
+  var fmt = window.voidFmt;
   function abbrev(n) {
     if (n >= 1e9) return (n / 1e9).toFixed(2) + "B";
     if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";

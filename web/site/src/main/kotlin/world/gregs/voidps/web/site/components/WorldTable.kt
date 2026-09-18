@@ -24,9 +24,9 @@ data class WorldEntry(
     val capacity: Int,
     val ping: Int?,
     val status: WorldStatus,
-    // The fields below back [worldList]'s expanded detail panel — the compact [worldTable] and
-    // navbar [worldMenu] rows only ever read the fields above, so mock entries that don't care
-    // about hosting/ruleset detail (Site.kt's component-library page) can leave these at default.
+    // The fields below back [worldList]'s expanded detail panel — the navbar [worldMenu] rows
+    // only ever read the fields above, so mock entries that don't care about hosting/ruleset
+    // detail can leave these at default.
     val name: String = "",
     val description: String = "",
     val host: String = "",
@@ -39,7 +39,7 @@ data class WorldEntry(
     val siteLabel: String = "",
     val note: String = "",
 ) {
-    /** "Name · Region" once a [name] is set, otherwise just the region — [worldTable]'s rows only ever had a region. */
+    /** "Name · Region" once a [name] is set, otherwise just the region. */
     val label: String get() = if (name.isEmpty()) region else "$name · $region"
 }
 
@@ -129,69 +129,7 @@ val defaultWorlds = listOf(
     ),
 )
 
-/**
- * The world/server list: a header row of labels plus a click-to-select body row per [WorldEntry].
- * A row's click statement defaults to setting [model] to the clicked world's number; pass
- * [onSelect] to run something else instead — the play page's picker calls its `select()` method
- * so choosing a world redirects rather than just updating local state.
- */
-fun Ui.worldTable(model: String, worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String = { "$model = ${it.number}" }) {
-    receiver.tableScroll(COLUMNS.split(" ")) {
-        div {
-            style = "display:grid;grid-template-columns:$COLUMNS;gap:var(--space-5);align-items:center;" +
-                "padding:0 var(--space-6);height:30px;background:var(--surface-inset);" +
-                "border-bottom:1px solid var(--umber-900);font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                "color:var(--text-faint)"
-            span { +"#" }
-            span { +"REGION" }
-            span { +"MODE" }
-            span { +"PLAYERS" }
-            span { +"PING" }
-            span { +"STATE" }
-        }
-        for ((index, world) in worlds.withIndex()) {
-            val last = index == worlds.lastIndex
-            div {
-                onClick(onSelect(world))
-                xToggleStyle(
-                    condition = "$model === ${world.number}",
-                    whenTrue = "background:var(--surface-active);border-left-color:var(--gold-400)",
-                    whenFalse = "background:var(--surface-panel);border-left-color:transparent",
-                )
-                val borderBottom = if (last) "" else "border-bottom:1px solid var(--umber-900);"
-                style = "display:grid;grid-template-columns:$COLUMNS;align-items:center;gap:var(--space-5);" +
-                    "padding:0 var(--space-6);height:44px;cursor:pointer;background:var(--surface-panel);" +
-                    "border-left:2px solid transparent;$borderBottom" +
-                    "transition:background var(--dur-fast) var(--ease-standard)"
-                span {
-                    style = "font:var(--weight-bold) var(--text-lg)/1 var(--font-display);color:var(--parch-100)"
-                    +world.number.toString()
-                }
-                span {
-                    style = "font:var(--type-body-sm);color:var(--text-body);white-space:nowrap;" +
-                        "overflow:hidden;text-overflow:ellipsis"
-                    +world.label
-                    if (world.members) {
-                        span {
-                            style = "color:var(--gold-400);margin-left:var(--space-4);font:var(--type-label);" +
-                                "letter-spacing:var(--tracking-caps)"
-                            +"MEMBERS"
-                        }
-                    }
-                }
-                span {
-                    style = "font:var(--type-body-sm);color:var(--text-muted)"
-                    +world.mode
-                }
-                playersCell(world)
-                pingCell(world)
-                ui.badge(world.status.label, tone = world.status.tone, dot = world.status.dot)
-            }
-        }
-    }
-}
-
-/** The players/capacity mini progress bar shared by [worldTable] and [worldList]'s rows. */
+/** The players/capacity mini progress bar shared by [worldList]'s rows. */
 private fun DIV.playersCell(world: WorldEntry) {
     span {
         style = "display:flex;align-items:center;gap:var(--space-4)"
@@ -265,10 +203,10 @@ private fun WorldEntry.visibleExpr() = "${matchesFilterExpr()} && ${matchesSearc
 
 /**
  * The full world-selection surface used by the play page's picker and the "view all worlds" page:
- * mode tabs and a search box above a [worldTable]-style list whose rows expand in place to show
+ * mode tabs and a search box above a leaderboard-style list whose rows expand in place to show
  * hosting/ruleset detail and a connect button. Filtering, search and which row is expanded are all
  * local `x-data` state — nested Alpine components still resolve unrecognised names (like [onSelect]'s
- * `select()` call) against whatever ancestor `x-data` this is dropped into, same as [worldTable].
+ * `select()` call) against whatever ancestor `x-data` this is dropped into.
  */
 fun Ui.worldList(worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String) {
     receiver.div {

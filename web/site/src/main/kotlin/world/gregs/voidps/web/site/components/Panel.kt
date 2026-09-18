@@ -20,6 +20,17 @@ import kotlinx.html.style
  * [highlight] swaps the border for gold and lifts the shadow, for the one card in a row that
  * should read as the featured/primary option (e.g. the recommended path in a set of choices).
  */
+/**
+ * Small mono "eyebrow" text used as a [Ui.panel]'s `action` — a live count, timestamp or other
+ * short status rendered from an Alpine [expression] (e.g. `"items.length + ' shown'"`).
+ */
+fun eyebrowText(expression: String): FlowContent.() -> Unit = {
+    span {
+        style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
+        xText(expression)
+    }
+}
+
 fun Ui.panel(
     title: String? = null,
     subtitle: String? = null,

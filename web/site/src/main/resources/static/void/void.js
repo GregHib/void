@@ -1,6 +1,12 @@
 // Merges a handful of style declarations onto an element without touching the rest of its
 // inline `style` attribute — Alpine's `x-bind:style` string form replaces the whole attribute,
 // which would wipe the static layout styles components set at render time.
+// Shared number formatter used by every page's Alpine app (dev/exchange/hiscores/log) for
+// counts, xp, gp and kill-counts — kept here so they all format the same way from one place.
+window.voidFmt = function (n) {
+  return Math.round(n).toLocaleString('en-US');
+};
+
 window.voidBx = function (el, on, whenTrue, whenFalse) {
   var decls = on ? whenTrue : (whenFalse || '');
   decls.split(';').forEach(function (rule) {
