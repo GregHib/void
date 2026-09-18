@@ -35,8 +35,8 @@ object Website {
     }
 
     fun homePage(): String = voidPage(
-        title = "Void — modern mmo emulation",
-        description = "Void is an open-source server emulator and client for the classic era.",
+        title = "Void",
+        description = "Void is an open-source emulation server for the 2011 RuneScape era.",
         data = "{ world: 9 }",
     ) {
         ui.siteHeader(pages, active = "home", communityPages = communityPages)
@@ -101,18 +101,18 @@ object Website {
                     eyebrow("What is Void?")
                     h2 {
                         style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                        +"An open-source game server for 2011-era RuneScape"
+                        +"A game server for 2011-era RuneScape"
                     }
                     p {
                         style = "margin:0;max-width:540px;font:var(--type-body);font-size:var(--text-lg);color:var(--text-muted)"
-                        +("Void recreates the server side of the game: the world, its NPCs, skills and combat, " +
-                                "written from scratch in Kotlin. Point a client at it and you have a replica of the 2011 " +
-                                "game running on your own machine.")
+                        +("Void lets you play RuneScape exactly as it was in 2011, recreated from scratch to " +
+                                "run on your computer or host for others. Free, open-source, and made for " +
+                                "everyone.")
                     }
                     p {
                         style = "margin:0;max-width:540px;font:var(--type-body);color:var(--text-faint)"
-                        +("It is free, open source under BSD 3-Clause, and built to be easy to use - " +
-                                "whether you just want to play or want to write your own content.")
+                        +("Tweak settings, write your own content, or just log in and experience - Void " +
+                                "is built to be easy whichever way you want to play.")
                     }
                 }
                 div {
