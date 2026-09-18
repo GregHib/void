@@ -22,9 +22,10 @@ object ConsoleCompleter {
         val word = parts.last()
         val start = cursor - word.length
         if (parts.size == 1) {
-            return Completion(start, ConsoleCommands.commands.keys.filter { it.startsWith(word, ignoreCase = true) })
+            val names = ConsoleCommands.commands.keys + ConsoleCommands.aliases.keys
+            return Completion(start, names.filter { it.startsWith(word, ignoreCase = true) })
         }
-        val command = ConsoleCommands.commands[parts.first().lowercase()] ?: return Completion(start, emptyList())
+        val command = ConsoleCommands.find(parts.first().lowercase()) ?: return Completion(start, emptyList())
         val argument = command.args.getOrNull(parts.size - 2) ?: return Completion(start, emptyList())
         val autofill = autofill(argument) ?: return Completion(start, emptyList())
         return Completion(start, autofill.filter { it.startsWith(word, ignoreCase = true) })

@@ -4,6 +4,7 @@ import content.social.trade.exchange.GrandExchange
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.ConsoleCommands
+import world.gregs.voidps.engine.client.command.consoleAlias
 import world.gregs.voidps.engine.client.command.consoleCommand
 import world.gregs.voidps.engine.client.command.intArg
 import world.gregs.voidps.engine.client.command.stringArg
@@ -37,8 +38,13 @@ class ServerConsoleCommands(
 ) : Script {
 
     init {
-        consoleCommand("help", desc = "List the available console commands") {
-            ConsoleCommands.usages()
+        consoleCommand(
+            "help",
+            stringArg("command-name", desc = "Command to look up, otherwise they're all listed", optional = true, autofill = { ConsoleCommands.commands.keys.toSet() }),
+            desc = "List the available console commands",
+        ) { args ->
+            val name = args.getOrNull(0)
+            if (name == null) ConsoleCommands.usages() else ConsoleCommands.help(name)
         }
 
         // Registered for the command list and completion, the reader clears the terminal itself
@@ -60,13 +66,15 @@ class ServerConsoleCommands(
             // commands autofill from rather than from Players, which the game thread is mutating
             stringArg("player-name", desc = "Display name of the player", autofill = accountDefinitions.displayNames.keys),
             desc = "Disconnect a player",
+            rest = true,
             handler = ::kick,
         )
 
         consoleCommand(
             "announce",
-            stringArg("message", desc = "Text to broadcast (use quotes for spaces)"),
+            stringArg("message", desc = "Text to broadcast"),
             desc = "Send a message to all online players",
+            rest = true,
             handler = ::announce,
         )
 
@@ -82,6 +90,10 @@ class ServerConsoleCommands(
             desc = "Shutdown the server, optionally after a countdown",
             handler = ::shutdown,
         )
+
+        consoleAlias("shutdown", "quit", "exit", "stop")
+        consoleAlias("players", "list", "online")
+        consoleAlias("help", "?", "commands")
     }
 
     private fun kick(args: List<String>): List<String> {

@@ -52,9 +52,9 @@ class ConsoleCommandsTest {
         register("players")
         register("save")
 
-        val output = ConsoleCommands.execute("player")
+        val output = ConsoleCommands.execute("wildlyoff")
 
-        assertEquals("Unknown command 'player'.", output[0])
+        assertEquals("Unknown command 'wildlyoff'.", output[0])
         assertTrue(output.any { it.contains("players") })
         assertTrue(output.any { it.contains("save") })
         assertTrue(calls.isEmpty())
@@ -74,6 +74,98 @@ class ConsoleCommandsTest {
 
         assertEquals(listOf("Usage: kick (player-name:string)"), ConsoleCommands.execute("kick one two"))
         assertTrue(calls.isEmpty())
+    }
+
+    @Test
+    fun `Rest arguments take the remainder of the line unquoted`() {
+        ConsoleCommands.register("announce", stringArg("message"), rest = true) { args ->
+            calls.add(args)
+            listOf("ran")
+        }
+
+        ConsoleCommands.execute("announce server restarting soon")
+
+        assertEquals(listOf(listOf("server restarting soon")), calls)
+    }
+
+    @Test
+    fun `Rest arguments only take what's past the earlier ones`() {
+        ConsoleCommands.register("mute", stringArg("hours"), stringArg("reason"), rest = true) { args ->
+            calls.add(args)
+            listOf("ran")
+        }
+
+        ConsoleCommands.execute("mute 5 being rude in chat")
+
+        assertEquals(listOf(listOf("5", "being rude in chat")), calls)
+    }
+
+    @Test
+    fun `Quoting still works for a rest argument`() {
+        ConsoleCommands.register("announce", stringArg("message"), rest = true) { args ->
+            calls.add(args)
+            listOf("ran")
+        }
+
+        ConsoleCommands.execute("""announce "server restarting soon"""")
+
+        assertEquals(listOf(listOf("server restarting soon")), calls)
+    }
+
+    @Test
+    fun `Commands without a rest argument still reject extra arguments`() {
+        register("players")
+
+        assertEquals(listOf("Usage: players"), ConsoleCommands.execute("players and more"))
+        assertTrue(calls.isEmpty())
+    }
+
+    @Test
+    fun `Aliases run the command they point at`() {
+        register("shutdown")
+        ConsoleCommands.alias("shutdown", "quit")
+
+        assertEquals(listOf("ran"), ConsoleCommands.execute("quit"))
+        assertEquals(1, calls.size)
+    }
+
+    @Test
+    fun `A near miss suggests the command meant`() {
+        register("players")
+        register("save")
+
+        assertEquals(listOf("Unknown command 'playrs'. Did you mean 'players'?"), ConsoleCommands.execute("playrs"))
+    }
+
+    @Test
+    fun `Nothing close lists the commands instead`() {
+        register("players")
+
+        val output = ConsoleCommands.execute("absolutely-not-a-command")
+
+        assertEquals("Unknown command 'absolutely-not-a-command'.", output[0])
+        assertTrue(output.any { it.contains("players") })
+    }
+
+    @Test
+    fun `Help describes a single command`() {
+        ConsoleCommands.register("kick", stringArg("player-name", desc = "Display name of the player"), desc = "Disconnect a player") { emptyList() }
+
+        assertEquals(
+            listOf(
+                "kick (player-name:string)",
+                "  Disconnect a player",
+                "  (player-name:string) Display name of the player",
+            ),
+            ConsoleCommands.help("kick"),
+        )
+    }
+
+    @Test
+    fun `Help for an unknown command suggests instead`() {
+        register("players")
+
+        assertEquals(listOf("Unknown command 'playrs'. Did you mean 'players'?"), ConsoleCommands.help("playrs"))
     }
 
     @Test

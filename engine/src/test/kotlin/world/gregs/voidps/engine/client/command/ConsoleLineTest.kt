@@ -170,6 +170,67 @@ class ConsoleLineTest {
     }
 
     @Test
+    fun `Ctrl A and Ctrl E jump to either side of the line`() {
+        type("bc")
+        line.key(LINE_START)
+        type("a")
+        line.key(LINE_END)
+
+        type("d")
+
+        assertEquals(ConsoleLine.Key.Submit("abcd"), line.key(ENTER))
+    }
+
+    @Test
+    fun `Ctrl U kills back to the start`() {
+        type("players extra")
+        left()
+        left()
+
+        line.key(KILL_TO_START)
+
+        assertEquals(ConsoleLine.Key.Submit("ra"), line.key(ENTER))
+    }
+
+    @Test
+    fun `Ctrl K kills to the end`() {
+        type("players extra")
+        home()
+        repeat("players".length) {
+            right()
+        }
+
+        line.key(KILL_TO_END)
+
+        assertEquals(ConsoleLine.Key.Submit("players"), line.key(ENTER))
+    }
+
+    @Test
+    fun `Ctrl W deletes the word behind the cursor`() {
+        type("announce server restarting")
+
+        line.key(KILL_WORD)
+
+        assertEquals(ConsoleLine.Key.Submit("announce server "), line.key(ENTER))
+    }
+
+    @Test
+    fun `Ctrl W skips the spaces it's sat behind`() {
+        type("announce server   ")
+
+        line.key(KILL_WORD)
+
+        assertEquals(ConsoleLine.Key.Submit("announce "), line.key(ENTER))
+    }
+
+    @Test
+    fun `Ctrl W at the start does nothing`() {
+        line.key(KILL_WORD)
+
+        assertEquals(ConsoleLine.Key.Submit(""), line.key(ENTER))
+    }
+
+    @Test
     fun `Ctrl L asks for a clear`() {
         assertEquals(ConsoleLine.Key.Clear, line.key(FORM_FEED))
     }
@@ -270,6 +331,8 @@ class ConsoleLineTest {
         line.key('~'.code)
     }
 
+    private fun right() = escape('C')
+
     private fun escape(final: Char) {
         line.key(ESCAPE)
         line.key('['.code)
@@ -283,5 +346,10 @@ class ConsoleLineTest {
         private const val END_OF_FILE = 4
         private const val FORM_FEED = 12
         private const val ESCAPE = 27
+        private const val LINE_START = 1
+        private const val LINE_END = 5
+        private const val KILL_TO_END = 11
+        private const val KILL_TO_START = 21
+        private const val KILL_WORD = 23
     }
 }

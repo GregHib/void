@@ -9,12 +9,17 @@ data class ConsoleCommand(
     val name: String,
     val args: List<CommandArgument> = emptyList(),
     val description: String = "",
+    /**
+     * Whether the last argument takes the rest of the line, so it doesn't have to be quoted.
+     */
+    val rest: Boolean = false,
     val handler: (List<String>) -> List<String>,
 ) {
     fun usage(): String {
         if (args.isEmpty()) {
             return name
         }
-        return "$name ${args.joinToString(" ")}"
+        val trailing = if (rest) "..." else ""
+        return "$name ${args.joinToString(" ")}$trailing"
     }
 }

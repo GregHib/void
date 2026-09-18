@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.command
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.chat.splitSafe
 import world.gregs.voidps.engine.event.AuditLog
+import world.gregs.voidps.type.Distance
 import java.util.concurrent.ConcurrentLinkedQueue
 
 /**
@@ -20,8 +21,10 @@ import java.util.concurrent.ConcurrentLinkedQueue
 object ConsoleCommands : Runnable {
 
     private val logger = InlineLogger("Console")
+    private const val SUGGESTION_DISTANCE = 2
     private const val GUTTER = "\u001b[36m\u2502\u001b[0m "
     val commands: MutableMap<String, ConsoleCommand> = LinkedHashMap()
+    val aliases: MutableMap<String, String> = LinkedHashMap()
     private val queue = ConcurrentLinkedQueue<String>()
 
     /**
@@ -35,8 +38,39 @@ object ConsoleCommands : Runnable {
      */
     var output: (String) -> Unit = { line -> println("$GUTTER$line") }
 
-    fun register(name: String, vararg args: CommandArgument, desc: String = "", handler: (List<String>) -> List<String>) {
-        commands[name] = ConsoleCommand(name, args.toList(), desc, handler)
+    fun register(name: String, vararg args: CommandArgument, desc: String = "", rest: Boolean = false, handler: (List<String>) -> List<String>) {
+        commands[name] = ConsoleCommand(name, args.toList(), desc, rest, handler)
+    }
+
+    /**
+     * Alternative spellings of a command [name], as [Commands.alias] does for player commands.
+     */
+    fun alias(name: String, vararg alternatives: String) {
+        for (alternative in alternatives) {
+            aliases[alternative] = name
+        }
+    }
+
+    /**
+     * Find a command by an exact name or an [alias].
+     */
+    fun find(name: String): ConsoleCommand? = commands[name] ?: commands[aliases[name]]
+
+    /**
+     * A single command's usage and what each of its arguments is for.
+     */
+    fun help(name: String): List<String> {
+        val command = find(name.lowercase()) ?: return unknown(name)
+        val list = mutableListOf(command.usage())
+        if (command.description.isNotBlank()) {
+            list.add("  ${command.description}")
+        }
+        for (argument in command.args) {
+            if (argument.description.isNotBlank()) {
+                list.add("  $argument ${argument.description}")
+            }
+        }
+        return list
     }
 
     /**
@@ -65,11 +99,8 @@ object ConsoleCommands : Runnable {
     fun execute(line: String): List<String> {
         val parts = parse(line)
         val name = parts.firstOrNull()?.lowercase() ?: return emptyList()
-        val command = commands[name]
-        if (command == null) {
-            return listOf("Unknown command '$name'.") + usages()
-        }
-        val args = parts.drop(1)
+        val command = find(name) ?: return unknown(name)
+        val args = arguments(command, parts.drop(1))
         val required = command.args.count { !it.optional }
         if (args.size < required || args.size > command.args.size) {
             return listOf("Usage: ${command.usage()}")
@@ -86,6 +117,29 @@ object ConsoleCommands : Runnable {
             logger.error(e) { "Error in console command '$name'" }
             return listOf("Error in command '$name': ${e.message ?: e::class.simpleName}")
         }
+    }
+
+    /**
+     * Join everything past the last argument into it, so a command taking a name or a message can be
+     * typed without quoting it.
+     */
+    private fun arguments(command: ConsoleCommand, args: List<String>): List<String> {
+        if (!command.rest || command.args.isEmpty() || args.size <= command.args.size) {
+            return args
+        }
+        val last = command.args.size - 1
+        return args.take(last) + args.drop(last).joinToString(" ")
+    }
+
+    /**
+     * Nearest match if there is an obvious one, the whole list if there isn't.
+     */
+    private fun unknown(name: String): List<String> {
+        val closest = commands.keys.minByOrNull { Distance.levenshtein(it, name) }
+        if (closest != null && Distance.levenshtein(closest, name) <= SUGGESTION_DISTANCE) {
+            return listOf("Unknown command '$name'. Did you mean '$closest'?")
+        }
+        return listOf("Unknown command '$name'.") + usages()
     }
 
     /**
@@ -107,12 +161,17 @@ object ConsoleCommands : Runnable {
 
     fun clear() {
         commands.clear()
+        aliases.clear()
         queue.clear()
         output = { line -> println("$GUTTER$line") }
     }
 
 }
 
-fun consoleCommand(name: String, vararg args: CommandArgument, desc: String = "", handler: (List<String>) -> List<String>) {
-    ConsoleCommands.register(name, *args, desc = desc, handler = handler)
+fun consoleCommand(name: String, vararg args: CommandArgument, desc: String = "", rest: Boolean = false, handler: (List<String>) -> List<String>) {
+    ConsoleCommands.register(name, *args, desc = desc, rest = rest, handler = handler)
+}
+
+fun consoleAlias(name: String, vararg alternatives: String) {
+    ConsoleCommands.alias(name, *alternatives)
 }

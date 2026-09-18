@@ -67,6 +67,26 @@ class ConsoleLine(
             }
             END_OF_FILE -> if (buffer.isEmpty()) Key.EndOfFile else Key.None
             FORM_FEED -> Key.Clear
+            LINE_START -> {
+                jump(0)
+                Key.None
+            }
+            LINE_END -> {
+                jump(buffer.length)
+                Key.None
+            }
+            KILL_TO_START -> {
+                kill(0, cursor)
+                Key.None
+            }
+            KILL_TO_END -> {
+                kill(cursor, buffer.length)
+                Key.None
+            }
+            KILL_WORD -> {
+                kill(word(), cursor)
+                Key.None
+            }
             TAB -> {
                 complete()
                 Key.None
@@ -145,6 +165,32 @@ class ConsoleLine(
         buffer.deleteCharAt(cursor - 1)
         cursor--
         redraw()
+    }
+
+    /**
+     * Remove everything between [start] and [end], leaving the cursor where the text was.
+     */
+    private fun kill(start: Int, end: Int) {
+        if (start >= end) {
+            return
+        }
+        buffer.delete(start, end)
+        cursor = start
+        redraw()
+    }
+
+    /**
+     * Where the word before the cursor starts, skipping any spaces it's sat behind.
+     */
+    private fun word(): Int {
+        var index = cursor
+        while (index > 0 && buffer[index - 1] == ' ') {
+            index--
+        }
+        while (index > 0 && buffer[index - 1] != ' ') {
+            index--
+        }
+        return index
     }
 
     private fun delete() {
@@ -296,6 +342,11 @@ class ConsoleLine(
         private const val BACKSPACE = 8
         private const val DELETE = 127
         private const val END_OF_FILE = 4
+        private const val LINE_START = 1
+        private const val LINE_END = 5
+        private const val KILL_TO_END = 11
+        private const val KILL_TO_START = 21
+        private const val KILL_WORD = 23
         private const val ESCAPE = 27
         private const val CONTROL_SEQUENCE = '['.code
         private const val CURSOR_SEQUENCE = 'O'.code
