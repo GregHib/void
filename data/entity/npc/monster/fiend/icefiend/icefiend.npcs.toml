@@ -13,9 +13,11 @@ examine = "A small ice demon."
 
 [icefiend_normal]
 id = 7714
+clone = "icefiend"
 
 [icefiend_melting]
 id = 7715
+clone = "icefiend"
 
 [icefiend_ghorrock]
 id = 9066
