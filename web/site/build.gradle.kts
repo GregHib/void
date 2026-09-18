@@ -1,5 +1,11 @@
 plugins {
     id("shared")
+    application
+}
+
+application {
+    mainClass.set("world.gregs.voidps.web.site.Site")
+    tasks.run.get().workingDir = rootProject.projectDir
 }
 
 dependencies {
