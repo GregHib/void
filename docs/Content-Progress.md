@@ -80,12 +80,14 @@ Ongoing list of game content added to keep people aware of what exists and what 
 - Sorceress' Garden
 - TzHaar Fight Caves
 - Clan Wars (with bots)
+- Vinesweeper
 
 ## Distractions & Diversions
 - Shooting Stars
 - Penguin Hide & Seek
 - Tears of Guthix
 - Ancient Effigies
+- Evil Tree
 
 ## Dungeons
 - Lumbridge swamp dungeon
@@ -108,7 +110,7 @@ Ongoing list of game content added to keep people aware of what exists and what 
 
 ## Players
 - Grand Exchange
-- Clan Chat 
+- Clan Chat
 - Trading
 - Assisting
 - Combat
