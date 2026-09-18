@@ -14,16 +14,16 @@ object Website {
     val pages = if (Site.FULL) listOf(
         SitePage("home", "Home", "/index.html"),
         SitePage("docs", "Docs", "/docs/index.html"),
-        SitePage("play", "Play", "play.html"),
+        SitePage("play", "Play", "/play.html"),
     ) else listOf(
         SitePage("home", "Home", "/index.html"),
         SitePage("docs", "Docs", "/docs/index.html"),
     )
 
     val communityPages = if (Site.FULL) listOf(
-        SitePage("hiscores", "Hiscores", "hiscores.html"),
-        SitePage("exchange", "Exchange", "exchange.html"),
-        SitePage("log", "Log", "log.html"),
+        SitePage("hiscores", "Hiscores", "/hiscores.html"),
+        SitePage("exchange", "Exchange", "/exchange.html"),
+        SitePage("log", "Log", "/log.html"),
     ) else emptyList()
 
     private fun FlowContent.eyebrow(text: String) {
