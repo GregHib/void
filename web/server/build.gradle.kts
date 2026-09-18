@@ -1,8 +1,17 @@
 plugins {
     id("shared")
+    alias(libs.plugins.kotlinSerialization)
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.12.0")
-    implementation("org.jetbrains:markdown:0.7.12")
+    implementation(project(":cache"))
+    implementation(project(":engine"))
+    implementation(project(":types"))
+    implementation(libs.ktor.websockets)
+    implementation(libs.ktor.cio)
+    implementation(libs.ktor.server.html)
+    implementation(libs.bundles.ktor.api)
+
+    testImplementation(libs.ktor.server.test.host)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

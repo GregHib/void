@@ -1,1 +1,1 @@
-Static site generator for void's documentation and Github pages.
+Static site generator for Void's documentation and GitHub pages.
