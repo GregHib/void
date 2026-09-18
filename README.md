@@ -18,7 +18,7 @@
 <a href="#quick-setup">Quick setup</a> &nbsp;&bull;&nbsp;
 <a href="#development">Development</a> &nbsp;&bull;&nbsp;
 <a href="https://rune-server.org/runescape-development/rs-503-client-and-server/projects/697260-void-634-a.html" target="_blank">Blog</a> &nbsp;&bull;&nbsp;
-<a href="https://github.com/GregHib/void/wiki">Documentation</a> &nbsp;&bull;&nbsp;
+<a href="https://greghib.github.io/void/docs">Documentation</a> &nbsp;&bull;&nbsp;
 <a href="https://github.com/GregHib/void/issues">Bugs</a> &nbsp;&bull;&nbsp;
 <a href="https://greghib.github.io/void-map/">World Map</a>
 
@@ -29,9 +29,9 @@
 ## Features
 
 * **High-performance**: Capable of supporting thousands of concurrent players.
-* **Rich content**: Offers a [wide range](https://github.com/GregHib/void/wiki/content-progress) of emulated content.
+* **Rich content**: Offers a [wide range](https://greghib.github.io/void/docs/content-progress) of emulated content.
 * **AI player characters**: Introduced intelligent player bots to enhance immersion.
-* **User-friendly**: [Scripts](https://github.com/GregHib/void/wiki/scripts) let you add content without touching engine internals.
+* **User-friendly**: [Scripts](https://greghib.github.io/void/docs/scripts) let you add content without touching engine internals.
 * **Lightweight**: Memory usage under 300MB in low-memory mode.
 * **Customisable**: Personalise your gameplay by tweaking settings in the `game.properties` file or modifying the code to suit your preferences.
 
@@ -57,10 +57,10 @@
 5. Run the server as normal [^](#quick-setup).
 6. Open `http://localhost:8080/play` in the browser and login with any username or password to create a new account.
 
-For more details see the full [Installation Guide](https://github.com/GregHib/void/wiki/installation-guide).
+For more details see the full [Installation Guide](https://greghib.github.io/void/docs/installation-guide).
 
 > [!NOTE]
-> For common problems see the [Troubleshooting Guide](https://github.com/GregHib/void/wiki/Troubleshooting).
+> For common problems see the [Troubleshooting Guide](https://greghib.github.io/void/docs/Troubleshooting).
 
 ## Development
 
@@ -108,11 +108,11 @@ Run spotless before commiting to ensure formatting is correct:
 ```
 
 > [!TIP]
-> There are instructions on how to [build your own client](https://github.com/GregHib/void/wiki/client-building) and [build your own cache](https://github.com/GregHib/void/wiki/cache-building)!
+> There are instructions on how to [build your own client](https://greghib.github.io/void/docs/client-building) and [build your own cache](https://greghib.github.io/void/docs/cache-building)!
 
 ## Documentation
 
-For further guides on how to write content please refer to the [Void Wiki](https://github.com/GregHib/void/wiki/).
+For further guides on how to write content please refer to the [Void Wiki](https://greghib.github.io/void/docs/).
 
 ## AI Policy
 
