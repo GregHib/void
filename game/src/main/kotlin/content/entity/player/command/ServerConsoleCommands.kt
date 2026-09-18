@@ -1,6 +1,9 @@
 package content.entity.player.command
 
+import content.social.report.mute
+import content.social.report.unmute
 import content.social.trade.exchange.GrandExchange
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.PlayerAccountLoader
 import world.gregs.voidps.engine.client.command.ConsoleCommands
@@ -14,12 +17,14 @@ import world.gregs.voidps.engine.client.ui.chat.toSIIntOrNull
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.login.protocol.encode.systemUpdate
+import java.lang.management.ManagementFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -91,6 +96,30 @@ class ServerConsoleCommands(
             handler = ::shutdown,
         )
 
+        consoleCommand(
+            "reload",
+            stringArg("config-type", desc = "Type of content config file to reload", autofill = reloadTypes),
+            desc = "Reload configuration files for the game server",
+            handler = ::reload,
+        )
+
+        consoleCommand(
+            "mute",
+            stringArg("player-name", desc = "Display name of an online player", autofill = accountDefinitions.displayNames.keys),
+            intArg("hours", desc = "How long to mute them for, 48 by default", optional = true),
+            desc = "Mute an online player so they can't chat",
+            handler = ::mute,
+        )
+
+        consoleCommand(
+            "unmute",
+            stringArg("player-name", desc = "Display name of an online player", autofill = accountDefinitions.displayNames.keys),
+            desc = "Remove an online player's mute",
+            handler = ::unmute,
+        )
+
+        consoleCommand("uptime", desc = "How long the server has been running for", handler = ::uptime)
+
         consoleAlias("shutdown", "quit", "exit", "stop")
         consoleAlias("players", "list", "online")
         consoleAlias("help", "?", "commands")
@@ -110,12 +139,72 @@ class ServerConsoleCommands(
         return listOf("Kicked '${target.name}'.")
     }
 
+    private fun reload(args: List<String>): List<String> {
+        val type = args[0]
+        val lines = mutableListOf<String>()
+        if (!reloadConfig(type) { message -> lines.add(message) }) {
+            return listOf("Unknown config type '$type'.")
+        }
+        lines.add("Reloaded $type.")
+        return lines
+    }
+
+    private fun mute(args: List<String>): List<String> {
+        val name = args[0]
+        val target = Players.find(name) ?: return listOf("Unable to find player '$name' online.")
+        val hours = args.getOrNull(1)?.toSIIntOrNull() ?: DEFAULT_MUTE_HOURS
+        target.mute(hours)
+        AuditLog.info("console_muted ${target.accountName} $hours")
+        return listOf("${target.name} has been muted for $hours ${"hour".plural(hours)}.")
+    }
+
+    private fun unmute(args: List<String>): List<String> {
+        val name = args[0]
+        val target = Players.find(name) ?: return listOf("Unable to find player '$name' online.")
+        target.unmute()
+        AuditLog.info("console_unmuted ${target.accountName}")
+        return listOf("${target.name} has been unmuted.")
+    }
+
+    private fun uptime(args: List<String>): List<String> {
+        val millis = ManagementFactory.getRuntimeMXBean().uptime
+        val runtime = Runtime.getRuntime()
+        val used = (runtime.totalMemory() - runtime.freeMemory()) / MEGABYTE
+        val max = runtime.maxMemory() / MEGABYTE
+        return listOf(
+            "Up for ${duration(millis)} over ${GameLoop.tick} ticks.",
+            "${Players.size} ${"player".plural(Players.size)} online, ${NPCs.size} npcs.",
+            "Using ${used}mb of ${max}mb.",
+        )
+    }
+
+    /**
+     * Milliseconds as the days, hours and minutes an operator wants to read.
+     */
+    private fun duration(millis: Long): String {
+        val days = TimeUnit.MILLISECONDS.toDays(millis)
+        val hours = TimeUnit.MILLISECONDS.toHours(millis) % 24
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(millis) % 60
+        if (days > 0) {
+            return "${days}d ${hours}h ${minutes}m"
+        }
+        if (hours > 0) {
+            return "${hours}h ${minutes}m"
+        }
+        return "${minutes}m"
+    }
+
     private fun announce(args: List<String>): List<String> {
         val message = args[0]
         for (player in Players) {
             player.message(message)
         }
         return listOf("Announced to ${Players.size} ${"player".plural(Players.size)}: $message")
+    }
+
+    private companion object {
+        private const val DEFAULT_MUTE_HOURS = 48
+        private const val MEGABYTE = 1024 * 1024
     }
 
     private fun shutdown(args: List<String>): List<String> {

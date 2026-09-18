@@ -57,7 +57,7 @@ import kotlin.text.isBlank
 import kotlin.text.split
 import kotlin.text.toIntOrNull
 
-class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader: AccountDefinitionsReloader) : Script {
+class ServerCommands(val accountLoader: PlayerAccountLoader) : Script {
 
     init {
         adminCommand(
@@ -66,86 +66,25 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
             desc = "Start a system shutdown after a set amount of time",
             handler = ::update,
         )
-        val configs = setOf(
-            "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "bots", "npcs", "areas", "emotes", "anims", "containers", "graphics",
-            "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings", "accounts",
-        )
         adminCommand(
             "reload",
-            stringArg("config-type", "type of content config file to reload", autofill = configs),
+            stringArg("config-type", "type of content config file to reload", autofill = reloadTypes),
             desc = "Reload configuration files for the game server",
             handler = ::reload,
         )
     }
 
     fun reload(player: Player, args: List<String>) {
-        val files = configFiles()
-        when (args.joinToString("_")) {
-            "combat" -> get<CombatDefinitions>().load(files.list(Settings["definitions.combatAttacks"]))
-            "book", "books" -> {
-                get<Books>().load(files.list(Settings["definitions.books"]))
-                val menu = player.menu
-                if (menu != null && menu.startsWith("book_")) {
-                    player.open(menu)
-                }
+        val type = args.joinToString("_")
+        if (!reloadConfig(type) { message -> player.message(message, ChatType.Console) }) {
+            player.message("Unknown config type '$type'.", ChatType.Console)
+            return
+        }
+        if (type == "book" || type == "books") {
+            val menu = player.menu
+            if (menu != null && menu.startsWith("book_")) {
+                player.open(menu)
             }
-            "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
-            "tracks", "songs", "music_tracks" -> get<MusicTracks>().load(files.find(Settings["map.music"]))
-            "fairy_ring", "fairy_rings", "fairy_codes" -> get<FairyRingCodes>().load(files.find(Settings["definitions.fairyCodes"]))
-            "ships" -> get<CharterShips>().load(files.find(Settings["map.ships.prices"]))
-            "objects", "objs" -> {
-                ObjectDefinitions.load(files.list(Settings["definitions.objects"]))
-                loadObjectSpawns(files.list(Settings["spawns.objects"]))
-            }
-            "item_defs", "items", "floor_items" -> {
-                val itemSpawns: ItemSpawns = get()
-                FloorItems.clear()
-                ItemDefinitions.load(files.list(Settings["definitions.items"]))
-                loadItemSpawns(itemSpawns, files.list(Settings["spawns.items"]))
-            }
-            "npcs" -> {
-                NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
-                loadNpcSpawns(files, reload = true)
-            }
-            "npc_defs" -> {
-                NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
-            }
-            "areas" -> Areas.load(files.list(Settings["map.areas"]))
-            "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
-            "anim_defs", "anims", "animations" -> AnimationDefinitions.load(files.list(Settings["definitions.animations"]))
-            "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {
-                get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
-            }
-            "graphic_defs", "graphics", "gfx", "gfxs" -> GraphicDefinitions.load(files.list(Settings["definitions.graphics"]))
-            "item_on_item", "item-on-item", "ioi", "recipes" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
-            "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
-            "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
-            "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
-            "midi", "midis" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
-            "vars", "variables" -> VariableDefinitions.load(files)
-            "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
-            "interfaces" -> {
-                InterfaceDefinitions.definitions.onEach { int ->
-                    int.components?.values?.onEach { comp -> comp.stringId = "" }
-                    int.stringId = ""
-                }
-                InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
-            }
-            "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
-            "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))
-            "drops", "drop_tables" -> get<DropTables>().load(files.list(Settings["spawns.drops"]))
-            "cs2", "cs2s", "client_scripts" -> get<ClientScriptDefinitions>().load(files.list(Settings["definitions.clientScripts"]))
-            "settings", "setting", "game_setting", "game_settings", "games_settings", "properties", "props" -> {
-                Settings.load()
-                SettingsReload.now()
-            }
-            "accounts", "account", "passwords" -> {
-                if (!accountReloader.reload { count -> player.message("Reloaded $count account definitions.", ChatType.Console) }) {
-                    player.message("Account reload already in progress.", ChatType.Console)
-                }
-            }
-            "bots" -> get<BotManager>().load(files)
-            "tables", "rows", "dbs", "spells" -> Tables.load(files.list(Settings["definitions.tables"]))
         }
     }
 
@@ -190,6 +129,82 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
         AuditLog.event(player, "started_shutdown", ticks)
         queueShutdown(accountLoader, ticks)
     }
+}
+
+val reloadTypes = setOf(
+    "books", "teleports", "music_tracks", "fairy_rings", "ships", "objects", "items", "bots", "npcs", "areas", "emotes", "anims", "containers", "graphics",
+    "item_on_item", "sounds", "quests", "midis", "variables", "music", "interfaces", "spells", "patrols", "prayers", "drops", "client_scripts", "settings", "accounts",
+)
+
+/**
+ * Reload the config files for a [type] of content, reporting anything worth saying through
+ * [message]; shared by the player and console reload commands. Returns false for an unknown [type].
+ */
+fun reloadConfig(type: String, message: (String) -> Unit): Boolean {
+    val files = configFiles()
+    when (type) {
+        "combat" -> get<CombatDefinitions>().load(files.list(Settings["definitions.combatAttacks"]))
+        "book", "books" -> get<Books>().load(files.list(Settings["definitions.books"]))
+        "stairs", "tele", "teles", "teleports" -> get<ObjectTeleports>().load(files.list(Settings["map.teleports"]))
+        "tracks", "songs", "music_tracks" -> get<MusicTracks>().load(files.find(Settings["map.music"]))
+        "fairy_ring", "fairy_rings", "fairy_codes" -> get<FairyRingCodes>().load(files.find(Settings["definitions.fairyCodes"]))
+        "ships" -> get<CharterShips>().load(files.find(Settings["map.ships.prices"]))
+        "objects", "objs" -> {
+            ObjectDefinitions.load(files.list(Settings["definitions.objects"]))
+            loadObjectSpawns(files.list(Settings["spawns.objects"]))
+        }
+        "item_defs", "items", "floor_items" -> {
+            val itemSpawns: ItemSpawns = get()
+            FloorItems.clear()
+            ItemDefinitions.load(files.list(Settings["definitions.items"]))
+            loadItemSpawns(itemSpawns, files.list(Settings["spawns.items"]))
+        }
+        "npcs" -> {
+            NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
+            loadNpcSpawns(files, reload = true)
+        }
+        "npc_defs" -> {
+            NPCDefinitions.load(files.list(Settings["definitions.npcs"]))
+        }
+        "areas" -> Areas.load(files.list(Settings["map.areas"]))
+        "emotes", "render_anims", "render_emotes" -> get<RenderEmoteDefinitions>().load(files.find(Settings["definitions.renderEmotes"]))
+        "anim_defs", "anims", "animations" -> AnimationDefinitions.load(files.list(Settings["definitions.animations"]))
+        "container_defs", "containers", "inventory_defs", "inventories", "inv_defs", "invs", "shop", "shops" -> {
+            get<InventoryDefinitions>().load(files.list(Settings["definitions.inventories"]), files.list(Settings["definitions.shops"]))
+        }
+        "graphic_defs", "graphics", "gfx", "gfxs" -> GraphicDefinitions.load(files.list(Settings["definitions.graphics"]))
+        "item_on_item", "item-on-item", "ioi", "recipes" -> get<ItemOnItemDefinitions>().load(files.list(Settings["definitions.itemOnItem"]))
+        "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load(files.list(Settings["definitions.sounds"]))
+        "produce", "farming" -> get<FarmingDefinitions>().load(files.find(Settings["definitions.produce"]))
+        "quest", "quests" -> get<QuestDefinitions>().load(files.find(Settings["definitions.quests"]))
+        "midi", "midis" -> get<MidiDefinitions>().load(files.list(Settings["definitions.midis"]))
+        "vars", "variables" -> VariableDefinitions.load(files)
+        "music", "music effects", "jingles" -> get<JingleDefinitions>().load(files.list(Settings["definitions.jingles"]))
+        "interfaces" -> {
+            InterfaceDefinitions.definitions.onEach { int ->
+                int.components?.values?.onEach { comp -> comp.stringId = "" }
+                int.stringId = ""
+            }
+            InterfaceDefinitions.load(files.list(Settings["definitions.interfaces"]), files.find(Settings["definitions.interfaces.types"]))
+        }
+        "patrols", "paths" -> get<PatrolDefinitions>().load(files.list(Settings["definitions.patrols"]))
+        "prayers" -> get<PrayerDefinitions>().load(files.find(Settings["definitions.prayers"]))
+        "drops", "drop_tables" -> get<DropTables>().load(files.list(Settings["spawns.drops"]))
+        "cs2", "cs2s", "client_scripts" -> get<ClientScriptDefinitions>().load(files.list(Settings["definitions.clientScripts"]))
+        "settings", "setting", "game_setting", "game_settings", "games_settings", "properties", "props" -> {
+            Settings.load()
+            SettingsReload.now()
+        }
+        "accounts", "account", "passwords" -> {
+            if (!get<AccountDefinitionsReloader>().reload { count -> message("Reloaded $count account definitions.") }) {
+                message("Account reload already in progress.")
+            }
+        }
+        "bots" -> get<BotManager>().load(files)
+        "tables", "rows", "dbs", "spells" -> Tables.load(files.list(Settings["definitions.tables"]))
+        else -> return false
+    }
+    return true
 }
 
 /**
