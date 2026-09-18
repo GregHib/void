@@ -83,7 +83,7 @@
     var d = it.delta24h;
     return {
       name: it.name, cat: it.categoryName, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)",
-      desc: it.description, examine: it.examine, price: gp(it.price), delta: pct(d), deltaColor: col(d),
+      examine: it.examine, price: gp(it.price), delta: pct(d), deltaColor: col(d),
       memberLabel: it.members ? "Members" : "Free",
       memberBg: it.members ? "rgba(224,174,60,.14)" : "var(--umber-700)",
       memberColor: it.members ? "var(--gold-300)" : "var(--parch-200)",
@@ -105,7 +105,7 @@
   }
 
   var EMPTY_ITEM = {
-    name: "", cat: "", code: "", border: "var(--border-strong)", desc: "", examine: "",
+    name: "", cat: "", code: "", border: "var(--border-strong)", examine: "",
     price: "0 gp", delta: "+0.00%", deltaColor: "var(--moss-500)",
     memberLabel: "Free", memberBg: "var(--umber-700)", memberColor: "var(--parch-200)", memberBorder: "var(--border-strong)",
   };

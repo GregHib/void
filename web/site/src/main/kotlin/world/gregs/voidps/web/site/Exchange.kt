@@ -32,7 +32,7 @@ object Exchange {
     }
 
     /** Mirrors the category list baked into `exchange.js` (`CAT_BORDER`/`CAT_CODE`/`CAT_BLURB`) — keep in sync. */
-    private val categories = listOf("All", "Weapons", "Armour", "Runes", "Consumables", "Resources", "Curios")
+    private val categories = listOf("All", "Weapons", "Armour", "Runes", "Consumables", "Resources", "Misc")
 
     /** Mirrors the `TFS` keys in `exchange.js` — keep in sync. */
     private val timeframes = listOf("24H", "7D", "30D", "1Y", "All")
@@ -289,10 +289,6 @@ object Exchange {
                                 attributes["x-text"] = "item.memberLabel"
                             }
                             ui.badge("Trading", tone = BadgeTone.Info, dot = true)
-                        }
-                        p {
-                            style = "margin:0;max-width:62ch;font:var(--type-body);color:var(--text-muted);text-wrap:pretty"
-                            attributes["x-text"] = "item.desc"
                         }
                         p {
                             style = "margin:0;font:var(--type-body-sm);font-style:italic;color:var(--text-faint)"

@@ -1,5 +1,6 @@
 package world.gregs.voidps.web.exchange
 
+import world.gregs.voidps.cache.definition.Category
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.data.Storage
@@ -51,7 +52,7 @@ class ExchangeService(
     fun categories(): List<ItemCategory> {
         val counts = pool.groupingBy { categoryOf(it) }.eachCount()
         return ExchangeCategory.entries.map {
-            ItemCategory(id = it.id, name = it.displayName, code = it.code, description = it.description, itemCount = counts[it.id] ?: 0)
+            ItemCategory(id = it.id, name = it.displayName, code = it.code, itemCount = counts[it.id] ?: 0)
         }
     }
 
@@ -110,7 +111,6 @@ class ExchangeService(
             valueTraded24h = summary.valueTraded24h,
             buyLimit = summary.buyLimit,
             members = summary.members,
-            description = ExchangeCategory.of(summary.category).description,
             tradeable = definition.exchangeable,
             buyPrice = buyPrice,
             sellPrice = sellPrice,
@@ -187,13 +187,13 @@ class ExchangeService(
             category = category.id,
             categoryName = category.displayName,
             categoryCode = category.code,
-            examine = definition.getOrNull<String>(Params.EXAMINE) ?: "",
+            examine = definition.getOrNull(Params.EXAMINE) ?: "",
             iconUrl = null,
             price = price,
             delta24h = delta24h(history),
             volume24h = volume24h,
             valueTraded24h = volume24h * price,
-            buyLimit = definition.getOrNull<Int>(Params.LIMIT),
+            buyLimit = definition.getOrNull(Params.LIMIT),
             members = definition.members,
         )
     }
@@ -226,35 +226,45 @@ class ExchangeService(
     private fun categoryOf(definition: ItemDefinition): String {
         val categories = definition.getOrNull<Set<String>>(Params.CATEGORIES) ?: emptySet()
         return when {
-            definition.stringId.endsWith("_rune") || categories.contains("runecrafting") -> "runes"
-            categories.any { it.startsWith("melee_weapon") || it in WEAPON_CATEGORIES } -> "weapons"
-            categories.any { it.startsWith("melee_armour") || it in ARMOUR_CATEGORIES } -> "armour"
+            definition.stringId.endsWith("_rune") || categories.contains(RUNECRAFTING) -> "runes"
+            categories.any { it in WEAPON_CATEGORIES } -> "weapons"
+            categories.any { it in ARMOUR_CATEGORIES } -> "armour"
             categories.any { it in CONSUMABLE_CATEGORIES } -> "consumables"
             categories.any { it in RESOURCE_CATEGORIES } -> "resources"
-            else -> "curios"
+            else -> "misc"
         }
     }
 
     companion object {
-        private val WEAPON_CATEGORIES = setOf("magic_weapon", "range_weapon", "throwable", "arrow", "bolt")
-        private val ARMOUR_CATEGORIES = setOf("magic_armour", "range_armour", "prayer_armour", "jewellery")
-        private val CONSUMABLE_CATEGORIES = setOf("potion", "edible", "uncooked_food", "prayer_consumable", "herblore")
+        private val RUNECRAFTING = Category.name(Category.RUNECRAFTING)
+        private val WEAPON_CATEGORIES = setOf(
+            Category.MAGIC_WEAPON, Category.RANGE_WEAPON, Category.THROWABLE, Category.ARROW, Category.BOLT,
+            Category.MELEE_WEAPON_LOW, Category.MELEE_WEAPON_MID, Category.MELEE_WEAPON_HIGH,
+        ).map { Category.name(it) }.toSet()
+        private val ARMOUR_CATEGORIES = setOf(
+            Category.MAGIC_ARMOUR, Category.RANGE_ARMOUR, Category.PRAYER_ARMOUR, Category.JEWELLERY,
+            Category.MELEE_ARMOUR_LOW, Category.MELEE_ARMOUR_MID, Category.MELEE_ARMOUR_HIGH,
+        ).map { Category.name(it) }.toSet()
+        private val CONSUMABLE_CATEGORIES = setOf(
+            Category.POTION, Category.EDIBLE, Category.UNCOOKED_FOOD, Category.PRAYER_CONSUMABLE, Category.HERBLORE,
+        ).map { Category.name(it) }.toSet()
         private val RESOURCE_CATEGORIES = setOf(
-            "mining_smelting", "seed", "log", "fletching", "crafting", "hunter_required_item", "hunter_reward",
-            "construction", "construction_plant", "construction_storable_clothes", "summoning_pouches", "summoning_scroll", "furniture",
-        )
+            Category.MINING_SMELTING, Category.SEED, Category.LOG, Category.FLETCHING, Category.CRAFTING,
+            Category.HUNTER_REQUIRED_ITEM, Category.HUNTER_REWARD, Category.CONSTRUCTION, Category.CONSTRUCTION_PLANT,
+            Category.CONSTRUCTION_STORABLE_CLOTHES, Category.SUMMONING_POUCHES, Category.SUMMONING_SCROLL, Category.FURNITURE,
+        ).map { Category.name(it) }.toSet()
     }
 }
 
-enum class ExchangeCategory(val id: String, val displayName: String, val code: String, val description: String) {
-    Weapons("weapons", "Weapons", "WPN", "Members can trade this weapon freely. Prices track combat activity across the server."),
-    Armour("armour", "Armour", "ARM", "Degrades on use for some sets. Repair costs are excluded from the guide price."),
-    Runes("runes", "Runes", "RUN", "Bulk commodity. Buy limits reset every four hours per account."),
-    Consumables("consumables", "Consumables", "POT", "Consumed on use, so supply is entirely production-side."),
-    Resources("resources", "Resources", "RES", "Raw input for several skills. Volume follows server population."),
-    Curios("curios", "Curios", "CUR", "Rare or specialist items. Trade volume is typically low.");
+enum class ExchangeCategory(val id: String, val displayName: String, val code: String) {
+    Weapons("weapons", "Weapons", "WPN"),
+    Armour("armour", "Armour", "ARM"),
+    Runes("runes", "Runes", "RUN"),
+    Consumables("consumables", "Consumables", "PTN"),
+    Resources("resources", "Resources", "RES"),
+    Misc("misc", "Misc", "MSC");
 
     companion object {
-        fun of(id: String): ExchangeCategory = entries.firstOrNull { it.id == id } ?: Curios
+        fun of(id: String): ExchangeCategory = entries.firstOrNull { it.id == id } ?: Misc
     }
 }

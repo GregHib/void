@@ -18,7 +18,7 @@ import java.net.http.HttpResponse
  */
 object Site {
 
-    const val FULL = false
+    const val FULL = true
     val version = latestRelease()
 
     @JvmStatic

@@ -16,7 +16,6 @@ data class ItemCategory(
     val id: String,
     val name: String,
     val code: String,
-    val description: String,
     val itemCount: Int,
 )
 
@@ -52,7 +51,6 @@ data class ItemDetail(
     val valueTraded24h: Long,
     val buyLimit: Int?,
     val members: Boolean,
-    val description: String,
     val tradeable: Boolean,
     val buyPrice: Int,
     val sellPrice: Int,
