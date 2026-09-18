@@ -1,5 +1,6 @@
 package content.entity.player.command
 
+import content.entity.player.stat.syncBonusExperience
 import content.social.report.mute
 import content.social.report.unmute
 import content.social.trade.exchange.GrandExchange
@@ -16,6 +17,7 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.ui.chat.toSIIntOrNull
 import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.SaveQueue
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -120,9 +122,17 @@ class ServerConsoleCommands(
 
         consoleCommand("uptime", desc = "How long the server has been running for", handler = ::uptime)
 
+        consoleCommand(
+            "bonus_xp",
+            stringArg("state", desc = "on or off, otherwise the current state is reported", optional = true, autofill = setOf("on", "off")),
+            desc = "Start or end Bonus XP Weekend without restarting",
+            handler = ::bonusExperience,
+        )
+
         consoleAlias("shutdown", "quit", "exit", "stop")
         consoleAlias("players", "list", "online")
         consoleAlias("help", "?", "commands")
+        consoleAlias("bonus_xp", "bonusxp", "bxp")
     }
 
     private fun kick(args: List<String>): List<String> {
@@ -166,6 +176,33 @@ class ServerConsoleCommands(
         return listOf("${target.name} has been unmuted.")
     }
 
+    /**
+     * The setting is only read when a player spawns, so switching it over also has to start or stop
+     * the event for everyone already online. It lasts until the server restarts or the settings are
+     * reloaded, both of which take the value from game.properties again.
+     */
+    private fun bonusExperience(args: List<String>): List<String> {
+        val active = Settings[BONUS_EXPERIENCE, false]
+        val state = args.getOrNull(0) ?: return listOf("Bonus XP Weekend is ${state(active)}.")
+        val enable = when (state.lowercase()) {
+            "on", "true", "start", "enable" -> true
+            "off", "false", "stop", "disable" -> false
+            else -> return listOf("Unknown state '$state', expected on or off.")
+        }
+        if (enable == active) {
+            return listOf("Bonus XP Weekend is already ${state(active)}.")
+        }
+        Settings.load(mapOf(BONUS_EXPERIENCE to enable.toString()))
+        val count = syncBonusExperience()
+        AuditLog.info("console_bonus_experience $enable")
+        return listOf(
+            "Bonus XP Weekend ${if (enable) "started" else "ended"} for $count ${"player".plural(count)}.",
+            "Lasts until the server restarts or the settings are reloaded.",
+        )
+    }
+
+    private fun state(active: Boolean): String = if (active) "active" else "inactive"
+
     private fun uptime(args: List<String>): List<String> {
         val millis = ManagementFactory.getRuntimeMXBean().uptime
         val runtime = Runtime.getRuntime()
@@ -203,6 +240,7 @@ class ServerConsoleCommands(
     }
 
     private companion object {
+        private const val BONUS_EXPERIENCE = "events.bonusExperience.enabled"
         private const val DEFAULT_MUTE_HOURS = 48
         private const val MEGABYTE = 1024 * 1024
     }

@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.timer.Timer
 
 /**
@@ -21,11 +22,13 @@ class BonusExperience : Script {
                 reset(this)
                 return@playerSpawn
             }
-            experience.multiplier = multiplier(get("bonus_xp_time", 0))
-            softTimers.start("bonus_xp")
-            set("bonus_xp_enabled", true)
-            sendScript("refresh_bonus_experience")
-            message("Bonus XP Weekend is now active!")
+            startBonusExperience()
+        }
+
+        // Reloading the settings switches the event on or off for anyone already online, the same
+        // way the console command does
+        settingsReload {
+            syncBonusExperience()
         }
 
         timerStart("bonus_xp") { 100 } // 1 minute
@@ -47,13 +50,7 @@ class BonusExperience : Script {
         }
     }
 
-    fun reset(player: Player) {
-        if (player["bonus_xp_time", 0] > 0 || player["bonus_xp_counter", 0] > 0) {
-            player["bonus_xp_time"] = 0
-            player["bonus_xp_counter"] = 0
-            player.sendScript("refresh_bonus_experience")
-        }
-    }
+    fun reset(player: Player) = player.resetBonusExperience()
 
     companion object {
         /**
@@ -65,5 +62,61 @@ class BonusExperience : Script {
         )
 
         fun multiplier(minutes: Int): Double = multipliers[((minutes - 1) / 30).coerceIn(0, multipliers.lastIndex)]
+    }
+}
+
+/**
+ * Bring everyone online in line with the bonus experience setting, returning how many players it
+ * changed anything for.
+ */
+fun syncBonusExperience(): Int {
+    val enabled = Settings["events.bonusExperience.enabled", false]
+    var changed = 0
+    for (player in Players) {
+        if (enabled == player["bonus_xp_enabled", false]) {
+            continue
+        }
+        if (enabled) {
+            player.startBonusExperience()
+        } else {
+            player.stopBonusExperience()
+        }
+        changed++
+    }
+    return changed
+}
+
+/**
+ * Start boosting a player's experience, from however long they'd already spent online.
+ *
+ * Shared by logging in while the event is on and by switching it on underneath players who are
+ * already online.
+ */
+fun Player.startBonusExperience() {
+    experience.multiplier = BonusExperience.multiplier(this["bonus_xp_time", 0])
+    softTimers.start("bonus_xp")
+    this["bonus_xp_enabled"] = true
+    sendScript("refresh_bonus_experience")
+    message("Bonus XP Weekend is now active!")
+}
+
+/**
+ * Stop boosting a player's experience and put their progress back to nothing, as logging in outside
+ * the event does.
+ */
+fun Player.stopBonusExperience() {
+    experience.multiplier = 1.0
+    softTimers.clear("bonus_xp")
+    this["bonus_xp_enabled"] = false
+    resetBonusExperience()
+    sendScript("refresh_bonus_experience")
+    message("Bonus XP Weekend has ended.")
+}
+
+fun Player.resetBonusExperience() {
+    if (this["bonus_xp_time", 0] > 0 || this["bonus_xp_counter", 0] > 0) {
+        this["bonus_xp_time"] = 0
+        this["bonus_xp_counter"] = 0
+        sendScript("refresh_bonus_experience")
     }
 }

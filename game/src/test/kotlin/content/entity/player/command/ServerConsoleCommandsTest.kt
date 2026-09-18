@@ -5,6 +5,7 @@ import containsMessage
 import content.social.report.isMuted
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.command.ConsoleCommands
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Players
 import kotlin.test.assertEquals
@@ -107,6 +108,36 @@ class ServerConsoleCommandsTest : WorldTest() {
     @Test
     fun `Reload of an unknown config type is reported`() {
         assertEquals(listOf("Unknown config type 'nonsense'."), ConsoleCommands.execute("reload nonsense"))
+    }
+
+    @Test
+    fun `Bonus experience starts for players already online and stops again`() {
+        val player = createPlayer(name = "console booster")
+        try {
+            ConsoleCommands.submit("bonus_xp on")
+            tick()
+
+            assertTrue(player["bonus_xp_enabled", false])
+            assertEquals(2.7, player.experience.multiplier)
+            assertTrue(player.containsMessage("Bonus XP Weekend is now active!"))
+
+            ConsoleCommands.submit("bonus_xp off")
+            tick()
+
+            assertFalse(player["bonus_xp_enabled", false])
+            assertEquals(1.0, player.experience.multiplier)
+            assertTrue(player.containsMessage("Bonus XP Weekend has ended."))
+        } finally {
+            // The setting is global, so don't leave it on for anything running after this
+            Settings.load(mapOf("events.bonusExperience.enabled" to "false"))
+        }
+    }
+
+    @Test
+    fun `Bonus experience reports its state and refuses a state it's already in`() {
+        assertEquals(listOf("Bonus XP Weekend is inactive."), ConsoleCommands.execute("bonus_xp"))
+        assertEquals(listOf("Bonus XP Weekend is already inactive."), ConsoleCommands.execute("bonus_xp off"))
+        assertEquals(listOf("Unknown state 'sometimes', expected on or off."), ConsoleCommands.execute("bonus_xp sometimes"))
     }
 
     @Test

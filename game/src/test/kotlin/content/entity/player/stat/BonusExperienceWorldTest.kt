@@ -4,6 +4,7 @@ import WorldTest
 import containsMessage
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import java.util.Properties
@@ -44,6 +45,27 @@ internal class BonusExperienceWorldTest : WorldTest() {
 
         assertEquals(31, player["bonus_xp_time", 0])
         assertEquals(2.55, player.experience.multiplier)
+    }
+
+    @Test
+    fun `Reloading the settings starts and ends the event for players already online`() {
+        enable(false)
+        val player = createPlayer()
+        try {
+            enable(true)
+            SettingsReload.now()
+
+            assertTrue(player["bonus_xp_enabled", false])
+            assertEquals(2.7, player.experience.multiplier)
+
+            enable(false)
+            SettingsReload.now()
+
+            assertFalse(player["bonus_xp_enabled", false])
+            assertEquals(1.0, player.experience.multiplier)
+        } finally {
+            enable(false)
+        }
     }
 
     @Test
