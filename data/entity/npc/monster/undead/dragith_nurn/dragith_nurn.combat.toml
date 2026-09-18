@@ -8,14 +8,13 @@ death_sound =  "dragith_nurn_death"
 range = 7
 anim = "dragith_nurn_magic_attack"
 gfx = "dragith_nurn_staff_charge"
-projectile = { id = "dragith_nurn_magic_projectile", delay = 32 }
+projectile = { id = "dragith_nurn_magic_projectile", delay = 68 }
 target_hit = { offense = "magic", max = 30 }
-impact_gfx = "wind_rush_impact"
 
 [dragith_nurn.ranged]
 range = 7
 anim = "dragith_nurn_range_attack"
-projectile = { id = "dragith_nurn_range_projectile", delay = 32 }
+projectile = { id = "dragith_nurn_range_projectile", delay = 56 }
 target_hit = { offense = "range", max = 20 }
 
 [dragith_nurn.melee]
