@@ -41,9 +41,9 @@ ignores = ["Mod Murdoch"]
 
 [exchange]
 offers = [{id = 1, item = "item", amount = 4, price = 123, state = "PendingSell", completed = 1, coins = 321}]
-history = [{item = "item", amount = 123, price = 321}]
+history = [{item = "item", amount = 123, coins = 321}]
 
 [statistics]
 kills = {"chickens" = 4, "kree_arra" = 2}
 records = {"kree_arra" = 1234, "kree_arra_duo" = 4321}
-recent_events = [{title = "Title", desc = "desc", seconds = 132}]
+recent_events = [{title = "Title", desc = "desc", time = 132}]
