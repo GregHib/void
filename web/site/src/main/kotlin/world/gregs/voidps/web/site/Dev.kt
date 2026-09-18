@@ -10,7 +10,7 @@ import world.gregs.voidps.web.site.components.*
  * marketing pages and [Docs]'s reference pages — plain `<a href>` navigation via [devHeader]
  * rather than an in-page Alpine tab switch.
  *
- * Both pages are driven by `void/dev.js` the same way [Hiscores] is driven by `void/hiscores.js`:
+ * Both pages are driven by `js/dev.js` the same way [Hiscores] is driven by `js/hiscores.js`:
  * the mock dataset, live simulation and search/filter logic live in JS as an Alpine component
  * (`devDashboardApp`/`devPlayersApp`), and this file renders the static shell plus `x-for`
  * templates (via [rawHtml]) for anything that needs to react to that data — the world telemetry
@@ -145,7 +145,7 @@ object Dev {
         description = "Live world telemetry, error console and staff tools for Void administrators.",
         assetPrefix = "../",
         data = "devDashboardApp()",
-        head = { script(src = "../void/dev.js") {} },
+        head = { script(src = "../js/dev.js") {} },
     ) {
         ui.devHeader(pages, active = "dashboard", assetPrefix = "../")
 
@@ -507,7 +507,7 @@ object Dev {
         description = "Look up any account, inspect its live state and take moderation actions.",
         assetPrefix = "../",
         data = "devPlayersApp()",
-        head = { script(src = "../void/dev.js") {} },
+        head = { script(src = "../js/dev.js") {} },
     ) {
         ui.devHeader(pages, active = "players", liveModel = null, assetPrefix = "../")
 
@@ -889,7 +889,7 @@ object Dev {
     }
 
     /** A [listExpr] of `{name, level, rank}` objects rendered as the same meter row `ui.statBar`
-     *  draws, plus the skill's icon from `void/images/skills/` (matched by lowercased name — see
+     *  draws, plus the skill's icon from `images/skills/` (matched by lowercased name — see
      *  [Hiscores]'s `skillIcon`, which the same sprite set backs). [big] shows the oversized level
      *  number used for a small highlight set (e.g. combat snapshot); the full skill list turns it
      *  off in favour of [showRank], which appends the account's hiscore rank for that skill —
@@ -903,7 +903,7 @@ object Dev {
             <template x-for="s in $listExpr" :key="s.name">
               <div style="display:flex;align-items:center;gap:var(--space-5);padding:var(--space-4) var(--space-5);background:var(--surface-panel-raised);border:1px solid var(--border-panel);border-radius:var(--radius-sm);box-shadow:var(--bevel-up)">
                 <span style="width:20px;height:20px;flex:none;display:flex;align-items:center;justify-content:center">
-                  <img :src="'../void/images/skills/' + s.name.toLowerCase() + '.png'" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
+                  <img :src="'../images/skills/' + s.name.toLowerCase() + '.png'" alt="" style="max-width:100%;max-height:100%;width:auto;height:auto;display:block">
                 </span>
                 <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
                   <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline">

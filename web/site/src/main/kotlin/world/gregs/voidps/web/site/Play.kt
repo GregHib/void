@@ -4,7 +4,7 @@ import kotlinx.html.*
 import world.gregs.voidps.web.site.components.*
 
 /**
- * The play entry point. `playApp()` (in `void/void.js`) resolves the connected world on load —
+ * The play entry point. `playApp()` (in `void.js`) resolves the connected world on load —
  * from `?world=` if present, otherwise from the `localStorage` value the navbar's [worldMenu] or
  * a previous visit left behind — and redirects to `play.html?world=N` once one is known so the
  * URL always reflects it. With no world resolved, this renders the same world picker the old

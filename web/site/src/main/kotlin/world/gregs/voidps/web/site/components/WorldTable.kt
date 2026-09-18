@@ -54,7 +54,7 @@ val defaultWorlds = listOf(
         description = "The default entry world. Vanilla ruleset, no rate changes, and the largest population " +
             "on the network. New accounts land here unless they pick otherwise.",
         host = "London, UK", revision = "Rev 231", xpRate = "1×", uptime = "19d 04h",
-        address = "ald.voidmmo.org:43594", site = "#", siteLabel = "voidmmo.org/aldergate",
+        address = "ald.void.org:43594", site = "#", siteLabel = "void.org/aldergate",
         tags = listOf("Vanilla", "Grand exchange", "Skill events"),
         note = "Recommended for first-time accounts.",
     ),
@@ -64,7 +64,7 @@ val defaultWorlds = listOf(
         description = "Open world PvP outside the safe zones, with a 15-second combat logout timer. " +
             "Item loss is on and the wilderness has no level cap.",
         host = "Frankfurt, DE", revision = "Rev 231", xpRate = "1.5×", uptime = "6d 21h",
-        address = "frost.voidmmo.org:43594", site = "#", siteLabel = "frostwood.gg",
+        address = "frost.void.org:43594", site = "#", siteLabel = "frostwood.gg",
         tags = listOf("Full loot", "No cap wilderness", "Clan wars"),
         note = "Item loss is enabled everywhere outside banks.",
     ),
@@ -74,7 +74,7 @@ val defaultWorlds = listOf(
         description = "North American mirror of the default ruleset, hosted in Ashburn. Shares the item " +
             "database with Aldergate but keeps a separate economy.",
         host = "Ashburn, US", revision = "Rev 231", xpRate = "1×", uptime = "31d 12h",
-        address = "tide.voidmmo.org:43594", site = "#", siteLabel = "voidmmo.org/tidemoor",
+        address = "tide.void.org:43594", site = "#", siteLabel = "void.org/tidemoor",
         tags = listOf("Vanilla", "Separate economy"),
     ),
     WorldEntry(
@@ -83,7 +83,7 @@ val defaultWorlds = listOf(
         description = "One life. Death deletes the character and posts it to the memorial board. Drop rates " +
             "are unchanged; XP is doubled to make the run viable.",
         host = "Frankfurt, DE", revision = "Rev 231", xpRate = "2×", uptime = "11d 02h",
-        address = "ember.voidmmo.org:43594", site = "#", siteLabel = "emberfall.world",
+        address = "ember.void.org:43594", site = "#", siteLabel = "emberfall.world",
         tags = listOf("Permadeath", "Memorial board", "2× XP"),
         note = "Character deletion on death is permanent and cannot be appealed.",
     ),
@@ -93,7 +93,7 @@ val defaultWorlds = listOf(
         description = "Solo-only account rules enforced server-side: no trading, no shared drops, no grand " +
             "exchange. Group ironman is available through the account portal.",
         host = "London, UK", revision = "Rev 231", xpRate = "1×", uptime = "0d 00h",
-        address = "grey.voidmmo.org:43594", site = "#", siteLabel = "voidmmo.org/greyhollow",
+        address = "grey.void.org:43594", site = "#", siteLabel = "void.org/greyhollow",
         tags = listOf("Solo only", "Group ironman", "No trade"),
         note = "Restarting for a scheduled cache update. Back at 04:00 UTC.",
     ),
@@ -103,7 +103,7 @@ val defaultWorlds = listOf(
         description = "Oceania world running on community-donated hardware in Sydney. Latency to Europe is " +
             "high by design — this world exists for AU and NZ players.",
         host = "Sydney, AU", revision = "Rev 231", xpRate = "1×", uptime = "8d 17h",
-        address = "salt.voidmmo.org:43594", site = "#", siteLabel = "saltmarch.au",
+        address = "salt.void.org:43594", site = "#", siteLabel = "saltmarch.au",
         tags = listOf("Community hosted", "Oceania"),
         note = "Hosted by the AU community, not by the Void team.",
     ),
@@ -113,7 +113,7 @@ val defaultWorlds = listOf(
         description = "Raid-focused world with a persistent group finder and weekly boss rotations. Queue " +
             "opens automatically when a slot frees up.",
         host = "Portland, US", revision = "Rev 231", xpRate = "1.25×", uptime = "24d 09h",
-        address = "ashen.voidmmo.org:43594", site = "#", siteLabel = "ashenvale.gg",
+        address = "ashen.void.org:43594", site = "#", siteLabel = "ashenvale.gg",
         tags = listOf("Raids", "Group finder", "Weekly rotation"),
         note = "World is at capacity. You will be queued on connect.",
     ),
@@ -123,7 +123,7 @@ val defaultWorlds = listOf(
         description = "Staging world for the next protocol revision. Runs unstable builds from the main " +
             "branch, wipes weekly, and is open to anyone testing patches.",
         host = "Amsterdam, NL", revision = "Rev 232 (beta)", xpRate = "5×", uptime = "0d 00h",
-        address = "null.voidmmo.org:43594", site = "#", siteLabel = "github.com/void/server",
+        address = "null.void.org:43594", site = "#", siteLabel = "github.com/void/server",
         tags = listOf("Weekly wipe", "Unstable build", "5× XP"),
         note = "Offline between test cycles. Progress is wiped every Monday.",
     ),

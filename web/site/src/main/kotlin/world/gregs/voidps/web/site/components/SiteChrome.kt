@@ -41,7 +41,7 @@ fun Ui.siteHeader(
             "box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:30"
         a(href = "${assetPrefix}index.html") {
             style = "display:flex;align-items:center;gap:10px;flex:0 0 auto;text-decoration:none"
-            img(src = "${assetPrefix}void/void-mark-glyph-gold.svg", alt = "Void") {
+            img(src = "${assetPrefix}void-mark-glyph-gold.svg", alt = "Void") {
                 style = "width:26px;height:26px;display:block"
             }
             span {
@@ -162,7 +162,7 @@ fun Ui.siteFooter(assetPrefix: String = "") {
                 style = "display:flex;flex-direction:column;gap:var(--space-5)"
                 div {
                     style = "display:flex;align-items:center;gap:10px"
-                    img(src = "${assetPrefix}void/void-mark-tile-gold.svg", alt = "") {
+                    img(src = "${assetPrefix}void-mark-tile-gold.svg", alt = "") {
                         style = "width:26px;height:26px;display:block"
                     }
                     span {

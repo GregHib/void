@@ -102,13 +102,45 @@ fun renderMarkdown(markdown: String): MarkdownDocument {
         .generateHtml(HtmlGenerator.DefaultTagRenderer(attributesCustomizer, false))
         .removeSurrounding("<body>", "</body>")
 
-    return MarkdownDocument(html, headings)
+    return MarkdownDocument(groupImageRuns(html), headings)
 }
 
-private fun headingText(node: ASTNode, source: String): String =
-    node.getTextInNode(source).toString()
+/**
+ * Raw `<img>` HTML pasted directly into a doc (e.g. GitHub-style screenshot dumps) is emitted by
+ * the parser as a top-level HTML block, not wrapped in a `<p>` — so consecutive images have no
+ * shared container to lay out with. Wraps runs of two or more back-to-back `<img>` tags in an
+ * `.image-row` div so CSS can flex them side by side and wrap onto a new row once they no longer
+ * fit, instead of always stacking one per line.
+ */
+private val imageRun = Regex("(?:<img\\b[^>]*>\\s*){2,}")
+
+private fun groupImageRuns(html: String): String =
+    imageRun.replace(html) { match -> "<div class=\"image-row\">${match.value.trim()}</div>" }
+
+private val headingImage = Regex("!\\[([^\\]]*)]\\([^)]*\\)")
+private val headingLink = Regex("\\[([^\\]]*)]\\([^)]*\\)")
+private val headingBoldItalic = Regex("(\\*\\*\\*|___)(.+?)\\1|(\\*\\*|__)(.+?)\\3|(\\*|_)(.+?)\\5")
+private val headingCode = Regex("`([^`]*)`")
+
+/**
+ * Strips the leading `#`s and renders common inline Markdown (links, images, emphasis, code
+ * spans) down to plain text, so the "on this page" nav and heading `id`s don't end up with raw
+ * `[Combat](combat-scripts)` syntax baked into them.
+ */
+private fun headingText(node: ASTNode, source: String): String {
+    var text = node.getTextInNode(source).toString()
         .trimStart('#')
         .trim()
+    text = headingImage.replace(text) { it.groupValues[1] }
+    text = headingLink.replace(text) { it.groupValues[1] }
+    text = headingCode.replace(text) { it.groupValues[1] }
+    while (headingBoldItalic.containsMatchIn(text)) {
+        text = headingBoldItalic.replace(text) { match ->
+            match.groupValues[2].ifEmpty { match.groupValues[4].ifEmpty { match.groupValues[6] } }
+        }
+    }
+    return text
+}
 
 /** Renders GitHub-style `> [!NOTE]`/`[!TIP]`/`[!WARNING]`/`[!IMPORTANT]`/`[!CAUTION]` callouts. */
 private class AlertGeneratingProvider : GeneratingProvider {

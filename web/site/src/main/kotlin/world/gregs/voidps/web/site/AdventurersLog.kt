@@ -7,7 +7,7 @@ import world.gregs.voidps.web.site.components.*
  * The public adventurer's log. Two views share one page, toggled by `logApp()`'s `view` state
  * (`overview`, `profile`) and seeded from the `?player=` query string: an overview of top players
  * with a "Find a log" search, and a player's hero band, recent activity feed, and
- * skills/quests/bosses panels. `void/log.js` fetches the real `/api/v1/players` and
+ * skills/quests/bosses panels. `js/log.js` fetches the real `/api/v1/players` and
  * `/api/v1/hiscores` endpoints (see `HiscoresRoutes.kt`) for every view - the only synthesized
  * data left is the xp-history chart's day-by-day distribution, since daily xp snapshots aren't
  * tracked yet; its totals still add up to the account's real per-skill xp. Skill and boss rows on
@@ -23,7 +23,7 @@ object AdventurersLog {
         description = "Skills, quests, boss kills and recent activity for any Void account.",
         head = {
             script { unsafe { raw(gameData.script()) } }
-            script(src = "void/log.js") {}
+            script(src = "js/log.js") {}
         },
     ) {
         ui.siteHeader(Website.pages, active = "log", communityPages = Website.communityPages)
@@ -86,7 +86,7 @@ object AdventurersLog {
             style = "position:relative;border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
                 "box-shadow:var(--bevel-up),var(--shadow-sm);overflow:hidden;background:var(--umber-900)"
 
-            img(src = "void/images/repository-bg.png", alt = "") {
+            img(src = "images/repository-bg.png", alt = "") {
                 style = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover"
             }
             div {

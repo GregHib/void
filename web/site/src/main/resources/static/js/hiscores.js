@@ -31,7 +31,7 @@
     return m + ":" + String(s).padStart(2, "0");
   }
   function modeLabel(id) { return id ? id.charAt(0).toUpperCase() + id.slice(1) : ""; }
-  function skillIcon(id) { return "void/images/skills/" + id + ".png"; }
+  function skillIcon(id) { return "images/skills/" + id + ".png"; }
   function formatDate(iso) {
     if (!iso) return "";
     try {

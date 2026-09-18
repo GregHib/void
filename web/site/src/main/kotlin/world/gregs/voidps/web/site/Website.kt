@@ -44,7 +44,7 @@ object Website {
         section {
             style = "position:relative;min-height:520px;display:flex;align-items:flex-end;" +
                     "border-bottom:1px solid var(--border-panel);overflow:hidden"
-            img(src = "void/images/repository-bg.png", alt = "") {
+            img(src = "images/repository-bg.png", alt = "") {
                 style = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover"
             }
             div { style = "position:absolute;inset:0;background:var(--scrim-bottom)" }
@@ -118,7 +118,7 @@ object Website {
                 div {
                     style = "border:1px solid var(--border-gold);border-radius:var(--radius-md);overflow:hidden;" +
                             "box-shadow:var(--bevel-up),var(--shadow-md)"
-                    img(src = "void/images/content/world.png", alt = "") {
+                    img(src = "images/content/world.png", alt = "") {
                         style = "width:100%;aspect-ratio:4/3;object-fit:cover;display:block"
                     }
                 }
@@ -140,12 +140,12 @@ object Website {
                 div {
                     style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:var(--space-6)"
                     val shots = listOf(
-                        Triple("void/images/content/world-map.png", "Open World", "Nearly every city, dungeon and corner of the map ready to explore."),
-                        Triple("void/images/content/boss.png", "Bosses", "Godwars, KBD, Barrows, Jad and more."),
-                        Triple("void/images/content/skill.png", "Skilling", "Nearly all fully functional skills."),
-                        Triple("void/images/content/quest.png", "Quests", "Over 25 quests recreated and ready to play."),
-                        Triple("void/images/content/minigame.png", "Minigames", "Several minigames including, fight caves, sorceress' garden and vinesweeper."),
-                        Triple("void/images/content/evil-tree.png", "Distractions & Diversions", "Penguin Hide & Seek, Shooting stars, evil trees and more..."),
+                        Triple("images/content/world-map.png", "Open World", "Nearly every city, dungeon and corner of the map ready to explore."),
+                        Triple("images/content/boss.png", "Bosses", "Godwars, KBD, Barrows, Jad and more."),
+                        Triple("images/content/skill.png", "Skilling", "Nearly all fully functional skills."),
+                        Triple("images/content/quest.png", "Quests", "Over 25 quests recreated and ready to play."),
+                        Triple("images/content/minigame.png", "Minigames", "Several minigames including, fight caves, sorceress' garden and vinesweeper."),
+                        Triple("images/content/evil-tree.png", "Distractions & Diversions", "Penguin Hide & Seek, Shooting stars, evil trees and more..."),
                     )
                     for ((image, title, body) in shots) {
                         figure {
@@ -227,15 +227,27 @@ object Website {
                         }
                         h3 {
                             style = "margin:0;font:var(--type-section);color:var(--parch-50)"
-                            +"Play online"
+                            if (Site.FULL) {
+                                +"Play online"
+                            } else {
+                                +"Play offline"
+                            }
                         }
                         p {
                             style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
-                            +"Play in the browser on a live world."
+                            if (Site.FULL) {
+                                +"Play in the browser on a live world."
+                            } else {
+                                +"Play anywhere, no internet required."
+                            }
                         }
                         div {
                             style = "margin-top:auto;padding-top:var(--space-4)"
-                            ui.button("Download client", onClick = "window.location = 'play.html'")
+                            if (Site.FULL) {
+                                ui.button("Download client", onClick = "window.location = 'play.html'")
+                            } else {
+                                ui.button("Download server", onClick = "window.location = 'https://github.com/GregHib/void/releases'")
+                            }
                         }
                     }
                     ui.panel {
@@ -254,7 +266,7 @@ object Website {
                         }
                         div {
                             style = "margin-top:auto;padding-top:var(--space-4)"
-                            ui.button("Quick setup", variant = ButtonVariant.Secondary, onClick = "window.location = 'docs/index.html'")
+                            ui.button("Quick setup", variant = ButtonVariant.Secondary, onClick = "window.location = 'docs/installation-guide.html'")
                         }
                     }
                     ui.panel {
@@ -273,7 +285,7 @@ object Website {
                         }
                         div {
                             style = "margin-top:auto;padding-top:var(--space-4)"
-                            ui.button("Dev guide", variant = ButtonVariant.Secondary, onClick = "window.location = 'docs/index.html'")
+                            ui.button("Dev guide", variant = ButtonVariant.Secondary, onClick = "window.location = 'docs/ide-setup.html'")
                         }
                     }
                 }
@@ -292,7 +304,7 @@ object Website {
                     div {
                         style = "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
                                 "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
-                        img(src = "void/images/content/config.png", alt = "") {
+                        img(src = "images/content/config.png", alt = "") {
                             style = "width:100%;aspect-ratio:16/10;object-fit:cover;display:block"
                         }
                     }
@@ -329,7 +341,7 @@ object Website {
                     div {
                         style = "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
                                 "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
-                        img(src = "void/images/content/pvp.png", alt = "") {
+                        img(src = "images/content/pvp.png", alt = "") {
                             style = "width:100%;aspect-ratio:16/10;object-fit:cover;display:block"
                         }
                     }

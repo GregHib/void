@@ -216,8 +216,8 @@ object Docs {
         description = source.description,
         assetPrefix = "../",
         head = {
-            link(rel = "stylesheet", href = "../void/docs.css")
-            script(src = "../void/docs.js") {}
+            link(rel = "stylesheet", href = "../style/docs.css")
+            script(src = "../js/docs.js") {}
         },
     ) {
         ui.siteHeader(Website.pages, active = "docs", assetPrefix = "../", communityPages = Website.communityPages)

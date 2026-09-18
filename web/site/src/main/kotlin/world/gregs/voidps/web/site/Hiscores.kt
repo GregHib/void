@@ -9,7 +9,7 @@ import world.gregs.voidps.web.site.components.*
  * player profile view. The tile grid, filter chips and pagination controls are plain Kotlin +
  * [xToggleStyle] since the skill/boss/mode names are known at build time; the ranked tables
  * themselves are fetched from the real hiscores and players endpoints under `/api/v1` by
- * `void/hiscores.js` (`hiscoresApp()`), so those rows are emitted as `<template x-for>` blocks
+ * `js/hiscores.js` (`hiscoresApp()`), so those rows are emitted as `<template x-for>` blocks
  * instead of being rendered server-side. Skill/boss names and order come from [GameData], which
  * this page also serializes onto `window.VOID_SKILLS`/`VOID_BOSSES` for `hiscores.js` to read.
  */
@@ -20,7 +20,7 @@ object Hiscores {
         description = "Live overall, skill and boss leaderboards for Void, with head-to-head player comparisons.",
         head = {
             script { unsafe { raw(gameData.script()) } }
-            script(src = "void/hiscores.js") {}
+            script(src = "js/hiscores.js") {}
         },
     ) {
         ui.siteHeader(Website.pages, active = "hiscores", communityPages = Website.communityPages)
@@ -141,7 +141,7 @@ object Hiscores {
                         "font:var(--weight-semibold) var(--text-xs)/1.2 var(--font-ui);letter-spacing:var(--tracking-wide)"
                     span {
                         style = "width:18px;height:18px;flex:none;display:flex;align-items:center;justify-content:center"
-                        img(src = "void/images/skills/${skill.name.lowercase()}.png", alt = "") {
+                        img(src = "images/skills/${skill.name.lowercase()}.png", alt = "") {
                             style = "max-width:100%;max-height:100%;width:auto;height:auto;display:block"
                         }
                     }

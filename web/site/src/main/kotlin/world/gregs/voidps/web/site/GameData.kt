@@ -53,7 +53,7 @@ class GameData {
     fun script(): String = buildString {
         append("window.VOID_SKILLS=[")
         Skill.entries.joinTo(this, ",") {
-            "{\"name\":\"${it.name}\",\"max\":${it.maximum()},\"icon\":\"void/images/skills/${it.name.lowercase()}.png\"," +
+            "{\"name\":\"${it.name}\",\"max\":${it.maximum()},\"icon\":\"images/skills/${it.name.lowercase()}.png\"," +
                 "\"color\":\"${skillColors[it.name] ?: otherColor}\"}"
         }
         append("];window.VOID_BOSSES=[")

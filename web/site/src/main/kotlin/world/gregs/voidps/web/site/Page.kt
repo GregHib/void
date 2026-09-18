@@ -12,7 +12,7 @@ fun voidPage(
     title: String,
     description: String? = null,
     assetPrefix: String = "",
-    cssPath: String = "${assetPrefix}void/base.css",
+    cssPath: String = "${assetPrefix}style/base.css",
     alpineVersion: String = "3.14.1",
     data: String = "{}",
     head: HEAD.() -> Unit = {},
@@ -27,7 +27,7 @@ fun voidPage(
             meta(name = "description", content = description)
         }
         link(rel = "stylesheet", href = cssPath)
-        script(src = "${assetPrefix}void/void.js") {}
+        script(src = "${assetPrefix}js/void.js") {}
         script(src = "https://cdn.jsdelivr.net/npm/alpinejs@$alpineVersion/dist/cdn.min.js") {
             attributes["defer"] = ""
         }

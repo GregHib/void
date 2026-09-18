@@ -7,7 +7,7 @@ import world.gregs.voidps.web.site.components.*
  * The Grand Exchange: a market overview, an item search, and a per-item detail page with a
  * price history chart. The stat tiles, filter chips and panel chrome are plain Kotlin + [ui]
  * components since the layout is known at build time; the item dataset, price/volume math and
- * SVG chart geometry live in `void/exchange.js` (`exchangeApp()`) and are emitted below as
+ * SVG chart geometry live in `js/exchange.js` (`exchangeApp()`) and are emitted below as
  * `<template x-for>` blocks, mirroring the pattern in [Hiscores].
  */
 object Exchange {
@@ -15,7 +15,7 @@ object Exchange {
     fun page(): String = voidPage(
         title = "Void — grand exchange",
         description = "Live buy and sell prices for every tracked item on Void, sampled every five minutes.",
-        head = { script(src = "void/exchange.js") {} },
+        head = { script(src = "js/exchange.js") {} },
     ) {
         ui.siteHeader(Website.pages, active = "exchange", communityPages = Website.communityPages)
 

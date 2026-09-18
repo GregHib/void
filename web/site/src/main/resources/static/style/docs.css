@@ -64,6 +64,21 @@
   border-radius: var(--radius-xs);
 }
 
+/* Back-to-back images (e.g. several screenshots pasted one after another with no other content
+   between them) are grouped into an `.image-row` by renderMarkdown() so they sit side by side and
+   wrap onto a new row once they no longer fit, rather than always stacking one per line. */
+.markdown-body .image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body .image-row img {
+  width: auto;
+  margin: 0;
+}
+
 .markdown-body code {
   font: var(--type-code);
   font-size: var(--text-xs);

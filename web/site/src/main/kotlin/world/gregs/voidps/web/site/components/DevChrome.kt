@@ -20,7 +20,7 @@ import kotlinx.html.style
 fun Ui.devHeader(
     pages: List<SitePage>,
     active: String,
-    worldLabel: String = "World 9 · voidmmo-eu-1 · rev 231",
+    worldLabel: String = "World 9 · void-eu-1 · rev 231",
     liveModel: String? = "live",
     homeHref: String = "../index.html",
     assetPrefix: String = "",
@@ -34,7 +34,7 @@ fun Ui.devHeader(
             "box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:30"
         a(href = homeHref) {
             style = "display:flex;align-items:center;gap:10px;flex:0 0 auto;text-decoration:none"
-            img(src = "${assetPrefix}void/void-mark-glyph-gold.svg", alt = "Void") {
+            img(src = "${assetPrefix}void-mark-glyph-gold.svg", alt = "Void") {
                 style = "width:26px;height:26px;display:block"
             }
             span {
