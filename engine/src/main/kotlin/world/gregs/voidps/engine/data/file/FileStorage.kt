@@ -13,6 +13,8 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import java.io.File
 import java.io.Writer
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import java.util.*
 
 class FileStorage(
@@ -331,6 +333,24 @@ class FileStorage(
     }
 
     override fun exists(accountName: String): Boolean = directory.resolve("${accountName.lowercase()}.toml").exists()
+
+    override fun create(account: PlayerSave): Boolean {
+        directory.mkdirs()
+        val file = directory.resolve("${account.name.lowercase()}.toml")
+        if (!file.createNewFile()) {
+            return false
+        }
+        val temp = directory.resolve("${account.name.lowercase()}.toml.tmp")
+        try {
+            account.save(temp)
+            Files.move(temp.toPath(), file.toPath(), StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING)
+        } catch (e: Exception) {
+            temp.delete()
+            file.delete()
+            throw e
+        }
+        return true
+    }
 
     override fun save(accounts: List<PlayerSave>) {
         for (account in accounts) {

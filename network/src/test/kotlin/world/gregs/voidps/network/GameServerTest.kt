@@ -13,8 +13,13 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.network.client.ConnectionTracker
+import world.gregs.voidps.network.login.AccountCreator
+import world.gregs.voidps.network.login.Registration
+import world.gregs.voidps.network.login.registration.RegistrationLimiter
+import world.gregs.voidps.network.login.registration.RegistrationResponse
 import world.gregs.voidps.network.login.protocol.writeByte
 import java.io.BufferedReader
+import java.math.BigInteger
 import java.io.InputStreamReader
 import java.net.Socket
 import java.util.*
@@ -90,6 +95,47 @@ internal class GameServerTest {
 
         assertEquals(Response.SUCCESS, writeChannel.readByte().toInt())
         assertFalse(writeChannel.isClosedForRead)
+    }
+
+    @Test
+    fun `Connect to registration server`() = runTest {
+        val readChannel = ByteChannel(autoFlush = true)
+        val writeChannel = ByteChannel(autoFlush = true)
+        server.registrationServer = RegistrationServer(
+            634,
+            BigInteger.ONE,
+            BigInteger.ONE,
+            object : AccountCreator {
+                override fun available(email: String) = RegistrationResponse.SUCCESS
+
+                override suspend fun create(registration: Registration) = RegistrationResponse.SUCCESS
+            },
+            RegistrationLimiter(0, 0L),
+        )
+
+        launch {
+            server.connect(readChannel, writeChannel, "localhost")
+        }
+        readChannel.writeByte(Request.SIGN_UP.toByte())
+        readChannel.writeShort(2.toShort())
+        readChannel.writeShort(718.toShort())
+
+        assertEquals(RegistrationResponse.CLIENT_OUTDATED, writeChannel.readByte().toInt())
+        assertTrue(writeChannel.isClosedForRead)
+    }
+
+    @Test
+    fun `Connect to offline registration server`() = runTest {
+        val readChannel = ByteChannel(autoFlush = true)
+        val writeChannel = ByteChannel(autoFlush = true)
+
+        launch {
+            server.connect(readChannel, writeChannel, "localhost")
+        }
+        readChannel.writeByte(Request.CREATE_ACCOUNT.toByte())
+
+        assertEquals(RegistrationResponse.UNAVAILABLE, writeChannel.readByte().toInt())
+        assertTrue(writeChannel.isClosedForRead)
     }
 
     @Test
