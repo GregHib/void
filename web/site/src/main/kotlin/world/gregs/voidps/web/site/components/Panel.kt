@@ -17,6 +17,8 @@ import kotlinx.html.style
  *
  * The panel does *not* clip overflow, so popovers/tooltips inside [content] can escape its
  * bounds — the header's own top corners are rounded separately to match the panel outline.
+ * [highlight] swaps the border for gold and lifts the shadow, for the one card in a row that
+ * should read as the featured/primary option (e.g. the recommended path in a set of choices).
  */
 fun Ui.panel(
     title: String? = null,
@@ -24,13 +26,16 @@ fun Ui.panel(
     meta: String? = null,
     inset: Boolean = false,
     padded: Boolean = true,
+    highlight: Boolean = false,
     action: (FlowContent.() -> Unit)? = null,
     content: DIV.() -> Unit,
 ) {
     receiver.div {
         val surface = if (inset) "var(--surface-inset)" else "var(--surface-panel)"
-        style = "background:$surface;border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
-            "box-shadow:var(--bevel-up),var(--shadow-xs)"
+        val border = if (highlight) "var(--border-gold)" else "var(--border-panel)"
+        val shadow = if (highlight) "var(--shadow-md)" else "var(--shadow-xs)"
+        style = "background:$surface;border:1px solid $border;border-radius:var(--radius-md);" +
+            "box-shadow:var(--bevel-up),$shadow"
         if (title != null) {
             header {
                 attributes["class"] = "void-panel-header"

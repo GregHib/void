@@ -9,6 +9,14 @@ import kotlinx.html.img
 import kotlinx.html.nav
 import kotlinx.html.span
 import kotlinx.html.style
+import world.gregs.voidps.web.site.Site
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 data class SitePage(val id: String, val label: String, val href: String)
 
@@ -111,15 +119,17 @@ fun Ui.siteHeader(
                 div {
                     attributes["class"] = "void-header-extra"
                     style = "display:flex;align-items:center;gap:var(--space-6)"
-                    ui.badge("v0.41.2", pill = false)
-                    a(href = "#") {
+                    ui.badge(Site.version, pill = false)
+                    a(href = "https://github.com/GregHib/void") {
                         style = "display:inline-flex;align-items:center;gap:var(--space-3);font:var(--type-body-sm)"
                         icon(Icons.EXTERNAL, size = 14)
                         +"Source"
                     }
                 }
-                ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
-                ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = "${assetPrefix}dev/index.html")
+                if (Site.FULL) {
+                    ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
+                    ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = "${assetPrefix}dev/index.html")
+                }
             }
         }
         button {
@@ -136,10 +146,10 @@ fun Ui.siteHeader(
 /** Four link columns, the mark, and the build-stamp/not-affiliated line every Void surface carries. */
 fun Ui.siteFooter(assetPrefix: String = "") {
     val columns = listOf(
-        "Project" to listOf("About", "Roadmap", "Changelog", "Licence"),
-        "Developers" to listOf("Getting started", "Protocol reference", "Cache tooling", "Contributing"),
-        "Play" to listOf("Download launcher", "World list", "Account", "Membership"),
-        "Community" to listOf("Discord", "Forums", "Wiki", "Bug tracker"),
+        "Project" to listOf(Pair("About", "/"), Pair("Roadmap", "docs/roadmap.html"), Pair("Changelog", "https://github.com/GregHib/void/releases"), Pair("Licence", "https://github.com/GregHib/void/blob/main/LICENSE")),
+        "Developers" to listOf(Pair("Getting started", "docs/content-creation.html"), Pair("Contributing", "https://github.com/GregHib/void/blob/main/CONTRIBUTING.md")),
+        "Play" to listOf(Pair("Download", "https://github.com/GregHib/void/releases"), Pair("Install Guide", "docs/installation-guide.html")),
+        "Community" to listOf(Pair("Bug tracker", "https://github.com/GregHib/void/issues")),
     )
     receiver.footer {
         style = "margin-top:auto;border-top:1px solid var(--border-panel);background:var(--surface-inset);" +
@@ -163,7 +173,7 @@ fun Ui.siteFooter(assetPrefix: String = "") {
                 }
                 span {
                     style = "font:var(--type-body-sm);color:var(--text-faint);max-width:280px"
-                    +"Modern mmo emulation. Open source, run by the people who play it."
+                    +"Void is an unofficial open-source fan project made for archival and educational purposes only. All trademarks and copyrights remain property of their respective owners."
                 }
             }
             for ((heading, items) in columns) {
@@ -174,8 +184,8 @@ fun Ui.siteFooter(assetPrefix: String = "") {
                             "text-transform:uppercase;color:var(--gold-300)"
                         +heading
                     }
-                    for (item in items) {
-                        a(href = "#") {
+                    for ((item, ref) in items) {
+                        a(href = ref) {
                             style = "font:var(--type-body-sm);color:var(--text-muted);text-decoration:none"
                             +item
                         }
@@ -190,8 +200,10 @@ fun Ui.siteFooter(assetPrefix: String = "") {
                 "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-faint)"
             span { +"Void is an independent emulation project. Not affiliated with any game publisher." }
             span {
+                val formatter = DateTimeFormatter.ofPattern("d MMM yyyy")
+                    .withZone(ZoneId.systemDefault())
                 style = "font:var(--type-code);font-size:var(--text-2xs)"
-                +"9f2ac31 · built 8 Sept 2026"
+                +"built ${formatter.format(Instant.now())}"
             }
         }
     }

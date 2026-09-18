@@ -160,9 +160,6 @@ class HiscoresService(
                 )
             }
             .filter { status == null || status == "all" || (status == "complete") == (it.status == "complete") }
-
-        println("Quests ${quests.ids.size} ${save.questPoints()} ${quests.definitions.sumOf { it.questPoints.coerceAtLeast(0) }}")
-        println("List $list")
         return PlayerQuests(
             completed = quests.ids.keys.count { save.questStatus(it) == "complete" },
             total = quests.ids.size,

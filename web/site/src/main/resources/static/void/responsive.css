@@ -150,11 +150,19 @@
    grids: all fixed at two-plus fairly wide tracks, so they stack to one column below the
    width they need. */
 @media (max-width:900px){
-  .home-run-grid{grid-template-columns:1fr!important}
+  .home-run-grid,.home-what-grid,.home-bug-grid{grid-template-columns:1fr!important}
 }
 
-@media (max-width:700px){
-  .home-feature-grid{grid-template-columns:1fr!important}
+/* Home page's gameplay mosaic: a fixed 1-big/4-small 4-column grid, so it needs its own
+   step down to 2 columns (feature tile keeps its 2x2 span, small tiles settle underneath
+   it) before collapsing to 1 column, where the feature tile drops its span entirely. */
+@media (max-width:1000px){
+  .home-mosaic-grid{grid-template-columns:repeat(2,1fr)!important}
+}
+
+@media (max-width:600px){
+  .home-mosaic-grid{grid-template-columns:1fr!important}
+  .home-mosaic-feature{grid-column:span 1!important;grid-row:span 1!important}
 }
 
 @media (max-width:600px){

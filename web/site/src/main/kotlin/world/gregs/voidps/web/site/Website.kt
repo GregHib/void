@@ -11,44 +11,25 @@ import world.gregs.voidps.web.site.components.*
  */
 object Website {
 
-    internal val pages = listOf(
-        SitePage("home", "Home", "index.html"),
-        SitePage("docs", "Docs", "docs/index.html"),
+    val pages = if (Site.FULL) listOf(
+        SitePage("home", "Home", "/index.html"),
+        SitePage("docs", "Docs", "/docs/index.html"),
         SitePage("play", "Play", "play.html"),
+    ) else listOf(
+        SitePage("home", "Home", "/index.html"),
+        SitePage("docs", "Docs", "/docs/index.html"),
     )
 
-    internal val communityPages = listOf(
+    val communityPages = if (Site.FULL) listOf(
         SitePage("hiscores", "Hiscores", "hiscores.html"),
         SitePage("exchange", "Exchange", "exchange.html"),
         SitePage("log", "Log", "log.html"),
-    )
-
-    private val worlds = listOf(
-        WorldEntry(9, "Germany · Falkenstein", members = true, mode = "PvP", players = 812, capacity = 2000, ping = 38, status = WorldStatus.Online),
-        WorldEntry(12, "United Kingdom · London", mode = "Normal", players = 1743, capacity = 2000, ping = 64, status = WorldStatus.Online),
-        WorldEntry(18, "United States · Ashburn", mode = "Deadman", players = 1980, capacity = 2000, ping = 186, status = WorldStatus.Full),
-        WorldEntry(30, "Germany · Falkenstein", mode = "Normal", players = 1622, capacity = 2000, ping = 37, status = WorldStatus.Restarting),
-    )
-
-    private fun DIV.stat(value: String, label: String) {
-        div {
-            style = "display:flex;flex-direction:column;gap:var(--space-2)"
-            span {
-                style = "font:var(--weight-bold) var(--text-2xl)/1 var(--font-display);color:var(--gold-300)"
-                +value
-            }
-            span {
-                style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                    "text-transform:uppercase;color:var(--text-faint)"
-                +label
-            }
-        }
-    }
+    ) else emptyList()
 
     private fun FlowContent.eyebrow(text: String) {
         span {
             style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                "text-transform:uppercase;color:var(--gold-300)"
+                    "text-transform:uppercase;color:var(--gold-300)"
             +text
         }
     }
@@ -62,39 +43,44 @@ object Website {
 
         section {
             style = "position:relative;min-height:520px;display:flex;align-items:flex-end;" +
-                "border-bottom:1px solid var(--border-panel);overflow:hidden"
-            img(src = "void/imagery/repository-bg.png", alt = "") {
+                    "border-bottom:1px solid var(--border-panel);overflow:hidden"
+            img(src = "void/images/repository-bg.png", alt = "") {
                 style = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover"
             }
             div { style = "position:absolute;inset:0;background:var(--scrim-bottom)" }
             div {
                 style = "position:relative;max-width:var(--container-wide);margin:0 auto;width:100%;" +
-                    "padding:var(--space-12) var(--space-8) var(--space-11);display:flex;" +
-                    "flex-direction:column;gap:var(--space-7)"
+                        "padding:var(--space-12) var(--space-8) var(--space-11);display:flex;" +
+                        "flex-direction:column;gap:var(--space-7)"
                 div {
                     style = "display:flex;gap:var(--space-4)"
-                    ui.badge("Revision 231", tone = BadgeTone.Gold)
-                    ui.badge("42 worlds online", tone = BadgeTone.Success, dot = true)
+                    ui.badge("Revision 634", tone = BadgeTone.Gold)
+                    ui.badge("Open Source", tone = BadgeTone.Success)
                 }
                 h1 {
                     style = "margin:0;max-width:760px;font:var(--type-hero);color:var(--parch-50)"
-                    +"Modern mmo emulation"
+                    +"RuneScape Revived"
                 }
                 p {
                     style = "margin:0;max-width:620px;font:var(--weight-regular) var(--text-xl)/1.5 var(--font-ui);" +
-                        "color:var(--parch-200)"
-                    +("Void is an open-source server emulator and client for the classic era. Play on a " +
-                        "community world, or clone the repository and run your own.")
+                            "color:var(--parch-200)"
+                    +("Rediscover 2011 RuneScape with modern server emulation at your fingertips.")
                 }
                 div {
                     style = "display:flex;gap:var(--space-5);align-items:center;flex-wrap:wrap"
-                    ui.button("Download the launcher", size = ButtonSize.Large, glow = true, icon = Icons.DOWNLOAD)
+                    ui.button(
+                        "Download & play",
+                        size = ButtonSize.Large,
+                        glow = true,
+                        icon = Icons.DOWNLOAD,
+                        onClick = "window.location = 'https://github.com/GregHib/void/releases'"
+                    )
                     ui.button(
                         "Run your own world",
                         variant = ButtonVariant.Secondary,
                         size = ButtonSize.Large,
                         icon = Icons.TERMINAL,
-                        onClick = "window.location = 'docs.html'",
+                        onClick = "window.location = 'https://github.com/GregHib/void#development'",
                     )
                     span {
                         style = "font:var(--type-code);font-size:var(--text-xs);color:var(--parch-300)"
@@ -105,304 +91,316 @@ object Website {
         }
 
         section {
-            style = "background:var(--surface-inset);border-bottom:1px solid var(--border-panel)"
+            style = "border-bottom:1px solid var(--border-panel)"
             div {
-                attributes["class"] = "home-stats-grid"
-                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8);" +
-                    "display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-8)"
-                stat("42", "Worlds online")
-                stat("11,853", "Players right now")
-                stat("231", "Cache revision")
-                stat("1,204", "Contributors")
+                attributes["class"] = "home-what-grid"
+                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
+                        "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
+                div {
+                    style = "display:flex;flex-direction:column;gap:var(--space-6)"
+                    eyebrow("What is Void?")
+                    h2 {
+                        style = "margin:0;font:var(--type-title);color:var(--parch-50)"
+                        +"An open-source game server for 2011-era RuneScape"
+                    }
+                    p {
+                        style = "margin:0;max-width:540px;font:var(--type-body);font-size:var(--text-lg);color:var(--text-muted)"
+                        +("Void recreates the server side of the game: the world, its NPCs, skills and combat, " +
+                                "written from scratch in Kotlin. Point a client at it and you have a replica of the 2011 " +
+                                "game running on your own machine.")
+                    }
+                    p {
+                        style = "margin:0;max-width:540px;font:var(--type-body);color:var(--text-faint)"
+                        +("It is free, open source under BSD 3-Clause, and built to be easy to use - " +
+                                "whether you just want to play or want to write your own content.")
+                    }
+                }
+                div {
+                    style = "border:1px solid var(--border-gold);border-radius:var(--radius-md);overflow:hidden;" +
+                            "box-shadow:var(--bevel-up),var(--shadow-md)"
+                    img(src = "void/images/content/world.png", alt = "") {
+                        style = "width:100%;aspect-ratio:4/3;object-fit:cover;display:block"
+                    }
+                }
             }
         }
 
         section {
-            style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
-                "display:flex;flex-direction:column;gap:var(--space-9)"
-            header {
-                style = "display:flex;flex-direction:column;gap:var(--space-5);max-width:640px"
-                eyebrow("What it is")
-                h2 {
-                    style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                    +"An emulator, a client, and the tooling around them"
+            style = "background:var(--surface-inset);border-bottom:1px solid var(--border-panel)"
+            div {
+                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
+                        "display:flex;flex-direction:column;gap:var(--space-9)"
+                div {
+                    style = "display:flex;flex-direction:column;gap:var(--space-5);max-width:640px"
+                    h2 {
+                        style = "margin:0;font:var(--type-title);color:var(--parch-50)"
+                        +"Content"
+                    }
+                }
+                div {
+                    style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:var(--space-6)"
+                    val shots = listOf(
+                        Triple("void/images/content/world-map.png", "Open World", "Nearly every city, dungeon and corner of the map ready to explore."),
+                        Triple("void/images/content/boss.png", "Bosses", "Godwars, KBD, Barrows, Jad and more."),
+                        Triple("void/images/content/skill.png", "Skilling", "Nearly all fully functional skills."),
+                        Triple("void/images/content/quest.png", "Quests", "Over 25 quests recreated and ready to play."),
+                        Triple("void/images/content/minigame.png", "Minigames", "Several minigames including, fight caves, sorceress' garden and vinesweeper."),
+                        Triple("void/images/content/evil-tree.png", "Distractions & Diversions", "Penguin Hide & Seek, Shooting stars, evil trees and more..."),
+                    )
+                    for ((image, title, body) in shots) {
+                        figure {
+                            style = "margin:0;min-width:0;display:flex;flex-direction:column;background:var(--surface-panel);" +
+                                    "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
+                                    "box-shadow:var(--bevel-up),var(--shadow-sm);overflow:hidden"
+                            div {
+                                attributes["role"] = "img"
+                                style = "aspect-ratio:16/10;background-color:var(--umber-950);" +
+                                        "background-image:url($image);background-size:cover;background-position:center"
+                            }
+                            figcaption {
+                                style = "display:flex;flex-direction:column;gap:var(--space-3);" +
+                                        "padding:var(--space-6) var(--space-7);border-top:1px solid var(--border-panel)"
+                                span {
+                                    style = "font:var(--weight-semibold) var(--text-base)/1.3 var(--font-ui);color:var(--parch-50)"
+                                    +title
+                                }
+                                span {
+                                    style = "font:var(--type-body-sm);color:var(--text-muted)"
+                                    +body
+                                }
+                            }
+                        }
+                    }
                 }
             }
+        }
+
+        section {
+            style = "border-bottom:1px solid var(--border-panel)"
             div {
-                attributes["class"] = "home-feature-grid"
-                style = "display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)"
-                val features = listOf(
-                    Triple(Icons.TERMINAL, "Server emulator", "A Kotlin/JVM world server. Deterministic ticks, scriptable content, a plugin API that survives updates."),
-                    Triple(Icons.BOOK, "Protocol reference", "Every opcode for revision 231, documented and versioned alongside the code."),
-                    Triple(Icons.USERS, "Community worlds", "Volunteer-hosted worlds in eight regions, with a public status page and restart schedule."),
-                )
-                for ((iconPath, title, body) in features) {
+                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
+                        "display:flex;flex-direction:column;gap:var(--space-11)"
+                div {
+                    attributes["class"] = "home-run-grid"
+                    style = "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
+                    div {
+                        style = "display:flex;flex-direction:column;gap:var(--space-6)"
+                        h2 {
+                            style = "margin:0;font:var(--type-title);font-size:var(--text-4xl);color:var(--parch-50)"
+                            +"A server you can run, play and rewrite"
+                        }
+                        p {
+                            style = "margin:0;max-width:520px;font:var(--type-body);font-size:var(--text-lg);color:var(--text-muted)"
+                            +("Running your own server is as simple as extracting a zip file, dropping in a cache, and pressing start.")
+                        }
+                    }
+                    div {
+                        style = "background:var(--umber-950);border:1px solid var(--border-subtle);" +
+                                "border-radius:var(--radius-md);box-shadow:var(--bevel-down),var(--shadow-md);overflow:hidden"
+                        div {
+                            style = "display:flex;align-items:center;gap:var(--space-4);height:34px;" +
+                                    "padding:0 var(--space-6);background:var(--umber-900);border-bottom:1px solid var(--border-panel)"
+                            span { style = "width:7px;height:7px;border-radius:50%;background:var(--moss-500)" }
+                            span {
+                                style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);letter-spacing:var(--tracking-wide)"
+                                +"run-server.sh"
+                            }
+                        }
+                        div {
+                            style = "padding:var(--space-7);font:var(--type-code);line-height:2;color:var(--parch-100);overflow-x:auto"
+                            div { span { style = "color:var(--gold-400)"; +"$ " }; +"./gradlew run" }
+                            div { style = "color:var(--text-faint)"; +"[Main] - loading cache 634" }
+                            div { style = "color:var(--text-faint)"; +"[Main] - 20,000 npc spawns" }
+                            div { span { style = "color:var(--moss-500)"; +"[Main] - Void loaded in 4213ms" } }
+                            div { style = "color:var(--text-faint)"; +"[Web] - listening on :8080/play" }
+                        }
+                    }
+                }
+                div {
+                    attributes["class"] = "home-doors-grid"
+                    style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-7)"
+                    ui.panel(highlight = true) {
+                        style = "display:flex;flex-direction:column;gap:var(--space-5)"
+                        span {
+                            style = "color:var(--gold-300)"
+                            icon(Icons.PLAY, size = 24)
+                        }
+                        h3 {
+                            style = "margin:0;font:var(--type-section);color:var(--parch-50)"
+                            +"Play online"
+                        }
+                        p {
+                            style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
+                            +"Play in the browser on a live world."
+                        }
+                        div {
+                            style = "margin-top:auto;padding-top:var(--space-4)"
+                            ui.button("Download client", onClick = "window.location = 'play.html'")
+                        }
+                    }
                     ui.panel {
                         style = "display:flex;flex-direction:column;gap:var(--space-5)"
                         span {
                             style = "color:var(--gold-300)"
-                            icon(iconPath, size = 22)
+                            icon("""<path d="M4 5h16v6H4zM4 13h16v6H4zM8 8h.01M8 16h.01"></path>""", size = 24)
                         }
                         h3 {
-                            style = "margin:0;font:var(--type-section);font-size:var(--text-lg);color:var(--parch-50)"
-                            +title
+                            style = "margin:0;font:var(--type-section);color:var(--parch-50)"
+                            +"Host your own"
                         }
                         p {
                             style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
-                            +body
+                            +"Run a world locally or for friends. Easy setup, no code."
                         }
-                        a(href = "#") {
-                            style = "font:var(--type-body-sm)"
-                            +"Read more →"
-                        }
-                    }
-                }
-            }
-        }
-
-        section {
-            style = "background:var(--surface-inset);border-top:1px solid var(--border-panel);" +
-                "border-bottom:1px solid var(--border-panel)"
-            div {
-                attributes["class"] = "home-run-grid"
-                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
-                    "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
-                div {
-                    style = "display:flex;flex-direction:column;gap:var(--space-6)"
-                    eyebrow("Run your own world")
-                    h2 {
-                        style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                        +"Three commands to a running world"
-                    }
-                    p {
-                        style = "margin:0;font:var(--type-body);color:var(--text-muted)"
-                        +("Clone the repository, drop in a cache, and run the Gradle task. The default config " +
-                            "boots a single world on port 43594 with 2,000 NPC spawns.")
-                    }
-                    pre {
-                        style = "margin:0;background:var(--umber-950);border:1px solid var(--border-subtle);" +
-                            "border-radius:var(--radius-md);box-shadow:var(--bevel-down);padding:var(--space-6);" +
-                            "font:var(--type-code);color:var(--parch-100);line-height:1.9;overflow-x:auto"
-                        span { style = "color:var(--gold-400)"; +"$ " }
-                        +"git clone https://github.com/void/emulator.git\n"
-                        span { style = "color:var(--gold-400)"; +"$ " }
-                        +"void cache pull --revision 231\n"
-                        span { style = "color:var(--gold-400)"; +"$ " }
-                        +"./gradlew run"
-                    }
-                    div {
-                        style = "display:flex;gap:var(--space-5)"
-                        ui.button("Getting started", variant = ButtonVariant.Secondary, onClick = "window.location = 'docs.html'")
-                        ui.button("Browse the source", variant = ButtonVariant.Ghost, icon = Icons.EXTERNAL)
-                    }
-                }
-                div {
-                    style = "display:flex;flex-direction:column;gap:var(--space-6)"
-                    ui.panel(title = "World list", meta = "live", padded = false) {
-                        ui.worldTable("world", worlds)
-                    }
-                    ui.panel(title = "Server health") {
-                        style = "display:flex;flex-direction:column;gap:var(--space-4)"
-                        ui.statBar("Fleet load", 11853, 84000)
-                        ui.statBar("Uptime this month", 9971, 10000)
-                    }
-                }
-            }
-        }
-
-        section {
-            style = "position:relative;overflow:hidden;border-bottom:1px solid var(--border-panel)"
-            img(src = "void/imagery/world-layers.jpg", alt = "") {
-                style = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%"
-            }
-            div {
-                style = "position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,18,13,.95) 0%," +
-                    "rgba(23,18,13,.72) 55%,rgba(23,18,13,.4) 100%)"
-            }
-            div {
-                style = "position:relative;max-width:var(--container-wide);margin:0 auto;" +
-                    "padding:var(--space-12) var(--space-8);display:flex;flex-direction:column;gap:var(--space-6)"
-                h2 {
-                    style = "margin:0;max-width:560px;font:var(--type-title);color:var(--parch-50)"
-                    +"The whole world, from the sky islands down"
-                }
-                p {
-                    style = "margin:0;max-width:520px;font:var(--type-body);color:var(--parch-200)"
-                    +("Every region, dungeon and instance from the era is in the cache and playable. " +
-                        "Content scripts are open — write a quest, open a pull request.")
-                }
-                div {
-                    ui.button("Join the community", onClick = "window.location = 'hiscores.html'")
-                }
-            }
-        }
-
-        ui.siteFooter()
-    }
-
-    fun docsPage(): String = voidPage(
-        title = "Void — docs",
-        description = "Getting started, protocol reference, cache tooling and content scripting for Void.",
-        data = "{ tab: 'guide' }",
-    ) {
-        ui.siteHeader(pages, active = "docs", communityPages = communityPages)
-
-        div {
-            style = "display:grid;grid-template-columns:240px minmax(0,1fr) 220px;flex:1;" +
-                "max-width:var(--container-wide);margin:0 auto;width:100%"
-
-            aside {
-                style = "background:var(--surface-inset);border-right:1px solid var(--border-panel);" +
-                    "padding:var(--space-8) var(--space-6);display:flex;flex-direction:column;gap:var(--space-8)"
-                ui.textInput("void-doc-search", "Search", placeholder = "Search the docs", icon = Icons.BOOK)
-                val groups = listOf(
-                    "Getting started" to listOf("Overview", "Install the launcher", "Build from source", "Run a world"),
-                    "Protocol" to listOf("Handshake", "Login block", "Opcode table", "Packet sizes"),
-                    "Cache" to listOf("Layout", "Pulling a revision", "Repacking", "Sprites"),
-                    "Content" to listOf("Plugin API", "Scripting quests", "NPC definitions"),
-                )
-                for ((group, items) in groups) {
-                    nav {
-                        style = "display:flex;flex-direction:column;gap:var(--space-3)"
-                        span {
-                            style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                                "text-transform:uppercase;color:var(--gold-300);margin-bottom:var(--space-2)"
-                            +group
-                        }
-                        for (item in items) {
-                            val on = item == "Run a world"
-                            a(href = "#") {
-                                val background = if (on) "var(--surface-active)" else "transparent"
-                                val border = if (on) "var(--gold-400)" else "transparent"
-                                val color = if (on) "var(--parch-50)" else "var(--text-muted)"
-                                style = "text-align:left;padding:var(--space-3) 10px;background:$background;" +
-                                    "border-left:2px solid $border;border-radius:var(--radius-xs);" +
-                                    "text-decoration:none;font:var(--type-body-sm);color:$color;display:block"
-                                +item
-                            }
-                        }
-                    }
-                }
-            }
-
-            article {
-                style = "padding:var(--space-10);min-width:0;max-width:var(--container-body)"
-                div {
-                    style = "display:flex;align-items:center;gap:var(--space-4);font:var(--type-label);" +
-                        "letter-spacing:var(--tracking-wide);color:var(--text-faint);margin-bottom:var(--space-6)"
-                    +"Docs"
-                    icon(Icons.CHEVRON_RIGHT, size = 12)
-                    +"Getting started"
-                    icon(Icons.CHEVRON_RIGHT, size = 12)
-                    span { style = "color:var(--parch-200)"; +"Run a world" }
-                }
-                h1 {
-                    style = "margin:0 0 var(--space-6);font:var(--type-title);color:var(--parch-50)"
-                    +"Run a world"
-                }
-                div {
-                    style = "display:flex;gap:var(--space-4);margin-bottom:var(--space-8)"
-                    ui.badge("Revision 231", pill = false)
-                    ui.badge("Updated 4 Sept 2026", tone = BadgeTone.Gold)
-                }
-                ui.tabs(
-                    model = "tab",
-                    items = listOf(TabItem("guide", "Guide"), TabItem("config", "Configuration"), TabItem("api", "API")),
-                )
-                div {
-                    style = "padding:var(--space-8) 0"
-                    p {
-                        style = "margin:0 0 var(--space-6);font:var(--type-body);color:var(--text-body)"
-                        +("You need JDK 21 and a cache for revision 231. The launcher can boot a local checkout, " +
-                            "but the server runs fine on its own — the Gradle task below starts a single world " +
-                            "with default content.")
-                    }
-                    pre {
-                        style = "margin:0 0 var(--space-8);background:var(--umber-950);" +
-                            "border:1px solid var(--border-subtle);border-radius:var(--radius-md);" +
-                            "box-shadow:var(--bevel-down);padding:var(--space-6);font:var(--type-code);" +
-                            "color:var(--parch-100);line-height:1.9;overflow-x:auto"
-                        span { style = "color:var(--gold-400)"; +"$ " }
-                        +"""./gradlew run --args="--world 9 --port 43594""""
-                    }
-                    h2 {
-                        style = "margin:0 0 var(--space-5);font:var(--type-section);color:var(--parch-50)"
-                        +"Configuration"
-                    }
-                    p {
-                        style = "margin:0 0 var(--space-6);font:var(--type-body);color:var(--text-body)"
-                        +"Values below come from "
-                        code {
-                            style = "font:var(--type-code);color:var(--gold-300)"
-                            +"config/world.toml"
-                        }
-                        +"."
-                    }
-                    ui.panel(padded = false) {
-                        style = "margin-bottom:var(--space-8)"
                         div {
-                            style = "display:grid;grid-template-columns:180px 120px minmax(0,1fr);" +
-                                "gap:var(--space-5);padding:0 var(--space-6);height:32px;align-items:center;" +
-                                "background:var(--surface-header);border-bottom:1px solid var(--border-gold);" +
-                                "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                                "text-transform:uppercase;color:var(--gold-300)"
-                            span { +"Key" }
-                            span { +"Default" }
-                            span { +"Description" }
+                            style = "margin-top:auto;padding-top:var(--space-4)"
+                            ui.button("Quick setup", variant = ButtonVariant.Secondary, onClick = "window.location = 'docs/index.html'")
                         }
-                        val rows = listOf(
-                            Triple("world.id", "9", "World number shown in the launcher list."),
-                            Triple("net.port", "43594", "TCP port the world listens on."),
-                            Triple("cache.path", "~/.void/cache", "Location of the unpacked cache."),
-                            Triple("npc.spawns", "true", "Seed NPC spawns from the cache on boot."),
-                        )
-                        for ((index, row) in rows.withIndex()) {
-                            val (key, default, description) = row
-                            val background = if (index % 2 == 1) "var(--umber-850)" else "var(--surface-panel)"
-                            div {
-                                style = "display:grid;grid-template-columns:180px 120px minmax(0,1fr);" +
-                                    "gap:var(--space-5);padding:var(--space-4) var(--space-6);" +
-                                    "align-items:baseline;background:$background;" +
-                                    "border-bottom:1px solid var(--umber-900)"
+                    }
+                    ui.panel {
+                        style = "display:flex;flex-direction:column;gap:var(--space-5)"
+                        span {
+                            style = "color:var(--gold-300)"
+                            icon(Icons.TERMINAL, size = 24)
+                        }
+                        h3 {
+                            style = "margin:0;font:var(--type-section);color:var(--parch-50)"
+                            +"Develop"
+                        }
+                        p {
+                            style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
+                            +"Clone it in IntelliJ and build with gradle."
+                        }
+                        div {
+                            style = "margin-top:auto;padding-top:var(--space-4)"
+                            ui.button("Dev guide", variant = ButtonVariant.Secondary, onClick = "window.location = 'docs/index.html'")
+                        }
+                    }
+                }
+            }
+        }
+
+        section {
+            style = "background:var(--surface-inset);border-bottom:1px solid var(--border-panel)"
+            div {
+                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
+                        "display:flex;flex-direction:column;gap:var(--space-10)"
+                div {
+                    attributes["class"] = "home-content-row"
+                    style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));" +
+                            "gap:var(--space-10);align-items:center"
+                    div {
+                        style = "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
+                                "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
+                        img(src = "void/images/content/config.png", alt = "") {
+                            style = "width:100%;aspect-ratio:16/10;object-fit:cover;display:block"
+                        }
+                    }
+                    div {
+                        style = "display:flex;flex-direction:column;gap:var(--space-5)"
+                        eyebrow("Configurable")
+                        h3 {
+                            style = "margin:0;font:var(--type-title);font-size:var(--text-3xl);color:var(--parch-50)"
+                            +"Customise without code"
+                        }
+                        p {
+                            style = "margin:0;max-width:480px;font:var(--type-body);font-size:var(--text-lg);color:var(--text-muted)"
+                            +("Properties and config files lets you customise your experience without any programming knowledge.")
+                        }
+                    }
+                }
+                div {
+                    attributes["class"] = "home-content-row"
+                    style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));" +
+                            "gap:var(--space-10);align-items:center"
+                    div {
+                        style = "display:flex;flex-direction:column;gap:var(--space-5)"
+                        eyebrow("Bots")
+                        h3 {
+                            style = "margin:0;font:var(--type-title);font-size:var(--text-3xl);color:var(--parch-50)"
+                            +"A world that feels populated on day one"
+                        }
+                        p {
+                            style = "margin:0;max-width:480px;font:var(--type-body);font-size:var(--text-lg);color:var(--text-muted)"
+                            +("Intelligent player bots train, fight and move through the world, so a " +
+                                    "single-player server still looks and behaves like a live one.")
+                        }
+                    }
+                    div {
+                        style = "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
+                                "overflow:hidden;box-shadow:var(--bevel-up),var(--shadow-md)"
+                        img(src = "void/images/content/pvp.png", alt = "") {
+                            style = "width:100%;aspect-ratio:16/10;object-fit:cover;display:block"
+                        }
+                    }
+                }
+            }
+        }
+
+        section {
+            style = "border-bottom:1px solid var(--border-panel)"
+            div {
+                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-12) var(--space-8);" +
+                        "display:flex;flex-direction:column;gap:var(--space-10)"
+                div {
+                    attributes["class"] = "home-bug-grid"
+                    style = "display:grid;grid-template-columns:1fr 1fr;gap:var(--space-11);align-items:center"
+                    div {
+                        style = "display:flex;flex-direction:column;gap:var(--space-6)"
+                        h2 {
+                            style = "margin:0;font:var(--type-title);color:var(--parch-50)"
+                            +"Found a bug? Open an issue"
+                        }
+                        p {
+                            style = "margin:0;max-width:540px;font:var(--type-body);color:var(--text-muted)"
+                            +"If you run into any problems or find any bugs, please open a GitHub Issue describing the problem. Check the contributing guidelines before your first pull request, and run "
+                            code {
+                                style = "font:var(--type-code);color:var(--gold-300)"
+                                +"./gradlew spotlessApply"
+                            }
+                            +" before committing."
+                        }
+                        div {
+                            style = "display:flex;gap:var(--space-5);flex-wrap:wrap"
+                            ui.button("Open an issue", onClick = "window.location = 'https://github.com/GregHib/void/issues'")
+                            ui.button(
+                                "Contributing guidelines",
+                                variant = ButtonVariant.Secondary,
+                                onClick = "window.location = 'https://github.com/GregHib/void/blob/master/CONTRIBUTING.md'",
+                            )
+                        }
+                    }
+                    div {
+                        style = "display:flex;flex-direction:column;gap:var(--space-5)"
+                        span {
+                            style = "font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
+                            +"Thanks to"
+                        }
+                        div {
+                            style = "display:flex;flex-wrap:wrap;gap:var(--space-4)"
+                            val thanks = listOf("All contributors", "Kris (osrs-docs)", "Ebp90", "Jarryd", "Tomm (RSMod Pathfinder)", "Graham (OpenRS2)")
+                            for (name in thanks) {
                                 span {
-                                    style = "font:var(--type-code);font-size:var(--text-xs);color:var(--gold-300)"
-                                    +key
-                                }
-                                span {
-                                    style = "font:var(--type-code);font-size:var(--text-xs);color:var(--parch-200)"
-                                    +default
-                                }
-                                span {
-                                    style = "font:var(--type-body-sm);color:var(--text-muted)"
-                                    +description
+                                    style = "font:var(--type-body-sm);color:var(--parch-200);background:var(--surface-panel);" +
+                                            "border:1px solid var(--border-panel);border-radius:var(--radius-pill);" +
+                                            "box-shadow:var(--bevel-up);padding:6px 14px"
+                                    +name
                                 }
                             }
                         }
                     }
-                    div {
-                        style = "display:flex;gap:var(--space-5);padding-top:var(--space-6);" +
-                            "border-top:1px solid var(--border-subtle)"
-                        ui.button("← Build from source", variant = ButtonVariant.Secondary)
-                        ui.button("Handshake →", variant = ButtonVariant.Secondary)
-                    }
                 }
-            }
-
-            aside {
-                style = "padding:var(--space-10) var(--space-6);border-left:1px solid var(--border-panel)"
                 div {
-                    style = "position:sticky;top:calc(56px + var(--space-6));display:flex;flex-direction:column;gap:var(--space-4)"
-                    span {
-                        style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                            "text-transform:uppercase;color:var(--gold-300)"
-                        +"On this page"
-                    }
-                    val onPage = listOf("Requirements", "Boot a world", "Configuration", "Plugins", "Troubleshooting")
-                    for ((index, item) in onPage.withIndex()) {
-                        a(href = "#") {
-                            style = "font:var(--type-body-sm);text-decoration:none;" +
-                                "color:${if (index == 0) "var(--gold-300)" else "var(--text-muted)"}"
-                            +item
+                    style = "align-self:flex-start"
+                    ui.panel(title = "AI policy") {
+                        style = "display:flex;flex-direction:column;gap:var(--space-6);padding:var(--space-4) var(--space-2)"
+                        p {
+                            style = "margin:0;font:var(--type-body);color:var(--text-muted);max-width:760px"
+                            +("This project was crafted by hand over 5+ years with care and attention to be open and " +
+                                    "accessible. AI-assisted contributions are welcome but held to the same high standard " +
+                                    "as any other submission: keep changes small and focused, ensure they are well tested, " +
+                                    "with minimal comments, and make sure the code style follows that of the" +
+                                    "surrounding codebase. Overly large, low-effort or bulk-generated PRs will not be accepted.")
                         }
                     }
                 }
@@ -432,13 +430,13 @@ object Website {
             // width, which is exactly what lets that header's content overflow the viewport instead
             // of wrapping (see [Play.page]'s otherwise-identical main, which already sets this).
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-11) var(--space-8);" +
-                "display:flex;flex-direction:column;gap:var(--space-8);width:100%"
+                    "display:flex;flex-direction:column;gap:var(--space-8);width:100%"
             header {
                 style = "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap"
                 div {
                     span {
                         style = "display:block;font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                            "text-transform:uppercase;color:var(--gold-400);margin-bottom:8px"
+                                "text-transform:uppercase;color:var(--gold-400);margin-bottom:8px"
                         +"World list"
                     }
                     h1 {
@@ -448,7 +446,7 @@ object Website {
                     p {
                         style = "margin:0;max-width:58ch;font:var(--type-body);color:var(--text-muted)"
                         +("Every world runs the same open-source server build. Pick one by region and latency, or " +
-                            "by the ruleset you want to play. Select a row to read its description and hosting details.")
+                                "by the ruleset you want to play. Select a row to read its description and hosting details.")
                     }
                 }
                 div {

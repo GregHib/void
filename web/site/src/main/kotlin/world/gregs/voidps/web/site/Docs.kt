@@ -18,18 +18,6 @@ object Docs {
 
     private data class DocSource(val id: String, val slug: String, val title: String, val description: String, val file: File)
 
-    private val pages = listOf(
-        SitePage("home", "Home", "../index.html"),
-        SitePage("docs", "Docs", "index.html"),
-        SitePage("play", "Play", "../play.html"),
-    )
-
-    private val communityPages = listOf(
-        SitePage("hiscores", "Hiscores", "../hiscores.html"),
-        SitePage("exchange", "Exchange", "../exchange.html"),
-        SitePage("log", "Log", "../log.html"),
-    )
-
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.ENGLISH)
 
     private val wikiDir = File("../void-wiki/")
@@ -63,14 +51,10 @@ object Docs {
         val byId = available.associateBy { it.id }
 
         // Previous/next follows the curated reading order in `_Sidebar.md` (depth-first) rather
-        // than the filesystem's incidental listing order; falls back to alphabetical by title
-        // when there's no sidebar to read an order from.
-        val order = sidebar
-            ?.let { flattenSidebar(it, ids) }
-            ?.distinct()
-            ?.mapNotNull { byId[it] }
-            ?.takeIf { it.isNotEmpty() }
-            ?: available
+        // than the filesystem's incidental listing order. Docs that exist but aren't listed in
+        // `_Sidebar.md` still get generated — they're appended afterwards, alphabetically by title.
+        val sidebarOrder = sidebar?.let { flattenSidebar(it, ids) }?.distinct()?.mapNotNull { byId[it] } ?: emptyList()
+        val order = sidebarOrder + available.filter { it.id !in sidebarOrder.mapTo(mutableSetOf()) { doc -> doc.id } }
 
         val searchIndex = mutableListOf<String>()
         for ((position, source) in order.withIndex()) {
@@ -245,7 +229,7 @@ object Docs {
             script(src = "../void/docs.js") {}
         },
     ) {
-        ui.siteHeader(pages, active = "docs", assetPrefix = "../", communityPages = communityPages)
+        ui.siteHeader(Website.pages, active = "docs", assetPrefix = "../", communityPages = Website.communityPages)
 
         div {
             attributes["class"] = "docs-layout"
@@ -310,20 +294,20 @@ object Docs {
                     style = "margin:0 0 var(--space-6);font:var(--type-title);color:var(--parch-50)"
                     +source.title
                 }
-                div {
-                    style = "display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-8)"
-                    ui.badge("Reference", pill = false)
-                    ui.badge("Updated ${dateFormat.format(Date(source.file.lastModified()))}", tone = BadgeTone.Gold)
-                    a(href = "https://github.com/$GITHUB_REPO/wiki/${source.slug}/_edit", classes = "void-btn ${ButtonVariant.Secondary.className}") {
-                        attributes["target"] = "_blank"
-                        attributes["rel"] = "noopener noreferrer"
-                        style = "margin-left:auto;height:${ButtonSize.Small.height}px;padding:0 ${ButtonSize.Small.paddingX}px;" +
-                            "border-radius:var(--radius-md);font:${ButtonSize.Small.font};letter-spacing:0.06em;" +
-                            "display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none;cursor:pointer"
-                        icon(Icons.EDIT, size = 14)
-                        +"Edit this page"
-                    }
-                }
+//                div {
+//                    style = "display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-8)"
+//                    ui.badge("Reference", pill = false)
+//                    ui.badge("Updated ${dateFormat.format(Date(source.file.lastModified()))}", tone = BadgeTone.Gold)
+//                    a(href = "https://github.com/$GITHUB_REPO/wiki/${source.slug}/_edit", classes = "void-btn ${ButtonVariant.Secondary.className}") {
+//                        attributes["target"] = "_blank"
+//                        attributes["rel"] = "noopener noreferrer"
+//                        style = "margin-left:auto;height:${ButtonSize.Small.height}px;padding:0 ${ButtonSize.Small.paddingX}px;" +
+//                            "border-radius:var(--radius-md);font:${ButtonSize.Small.font};letter-spacing:0.06em;" +
+//                            "display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none;cursor:pointer"
+//                        icon(Icons.EDIT, size = 14)
+//                        +"Edit this page"
+//                    }
+//                }
                 div(classes = "markdown-body") {
                     unsafe { raw(doc.html) }
                 }

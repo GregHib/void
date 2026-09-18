@@ -41,7 +41,7 @@ object Dev {
     )
 
     private val runtime = listOf(
-        "Version" to "0.41.2 · revision 231",
+        "Version" to "2.10.2 · revision 634",
         "Commit" to "9f1c3ad",
         "JVM" to "OpenJDK 21.0.3",
         "Worlds hosted" to "2 (9, 30)",

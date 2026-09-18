@@ -93,7 +93,7 @@ object AdventurersLog {
             style = "position:relative;border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
                 "box-shadow:var(--bevel-up),var(--shadow-sm);overflow:hidden;background:var(--umber-900)"
 
-            img(src = "void/imagery/repository-bg.png", alt = "") {
+            img(src = "void/images/repository-bg.png", alt = "") {
                 style = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover"
             }
             div {
