@@ -1,6 +1,7 @@
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.BotManager
 import content.social.trade.exchange.GrandExchange
+import world.gregs.voidps.engine.client.command.ConsoleCommands
 import world.gregs.voidps.engine.client.instruction.InstructionHandlers
 import world.gregs.voidps.engine.client.instruction.InstructionTask
 import world.gregs.voidps.engine.client.update.CharacterTask
@@ -59,6 +60,7 @@ fun getTickStages(
         NPCs,
         FloorItems,
         // Tick
+        ConsoleCommands, // Console input is queued off-thread, run it before player input
         InstructionTask(handlers),
         World,
         NPCTask(sequentialNpc),

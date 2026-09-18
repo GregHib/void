@@ -188,12 +188,19 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
 
     fun shutdown(player: Player, ticks: Int) {
         AuditLog.event(player, "started_shutdown", ticks)
-        // Prevent players logging-in 1 minute before update
-        World.queue("system_shutdown", (ticks - 100).coerceAtLeast(0)) {
-            accountLoader.update = true
-        }
-        World.queue("system_update", ticks) {
-            Main.server.stop()
-        }
+        queueShutdown(accountLoader, ticks)
+    }
+}
+
+/**
+ * Stop the server in [ticks] time, shared by the player and console shutdown commands.
+ */
+fun queueShutdown(accountLoader: PlayerAccountLoader, ticks: Int) {
+    // Prevent players logging-in 1 minute before update
+    World.queue("system_shutdown", (ticks - 100).coerceAtLeast(0)) {
+        accountLoader.update = true
+    }
+    World.queue("system_update", ticks) {
+        Main.server.stop()
     }
 }
