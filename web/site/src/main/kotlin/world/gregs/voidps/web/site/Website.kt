@@ -399,7 +399,7 @@ object Website {
                             +("This project was crafted by hand over 5+ years with care and attention to be open and " +
                                     "accessible. AI-assisted contributions are welcome but held to the same high standard " +
                                     "as any other submission: keep changes small and focused, ensure they are well tested, " +
-                                    "with minimal comments, and make sure the code style follows that of the" +
+                                    "with minimal comments, and make sure the code style follows that of the " +
                                     "surrounding codebase. Overly large, low-effort or bulk-generated PRs will not be accepted.")
                         }
                     }
