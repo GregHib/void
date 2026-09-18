@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.web.api.ApiException
 import world.gregs.voidps.web.api.model.ErrorBody
 import world.gregs.voidps.web.api.model.ErrorResponse
+import world.gregs.voidps.web.dev.DevService
 import world.gregs.voidps.web.exchange.ExchangeService
 import world.gregs.voidps.web.hiscores.HiscoresService
 
@@ -78,8 +79,10 @@ const val API_PATH = "/api/v1"
 fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, itemDefinitions: ItemDefinitions) {
     val hiscores = HiscoresService(storage, questDefinitions)
     val exchange = ExchangeService(storage, itemDefinitions)
+    val dev = DevService(storage, itemDefinitions)
     route(API_PATH) {
         hiscoresRoutes(hiscores)
         exchangeRoutes(exchange)
+        devRoutes(dev)
     }
 }

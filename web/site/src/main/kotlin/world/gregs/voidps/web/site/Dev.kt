@@ -518,16 +518,17 @@ object Dev {
             div {
                 attributes["class"] = "dev-players-search-col"
                 style = "flex:0 1 280px;min-width:240px;display:flex;flex-direction:column;gap:var(--space-6)"
-                attributes["@keydown.enter"] = "searchEnter()"
+                attributes["@input.debounce.250ms"] = "search()"
+                attributes["@keyup.enter"] = "searchEnter()"
                 ui.textInput(
                     "dev-player-search", "Look up player", model = "query",
                     hint = "Press enter to jump straight to the top match.",
-                    placeholder = "name, account id or IP", mono = true, icon = Icons.SEARCH,
+                    placeholder = "name…", mono = true, icon = Icons.SEARCH,
                 )
                 ui.panel(
                     title = "Results",
                     padded = false,
-                    action = { span { style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"; xText("filtered.length + ' matches'") } },
+                    action = { span { style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"; xText("resultRows.length + ' matches'") } },
                 ) {
                     rawHtml(
                         """
@@ -573,7 +574,7 @@ object Dev {
                             )
                             span {
                                 style = "font:var(--type-code);font-size:var(--text-xs);color:var(--text-muted)"
-                                xText("'Account #' + player.account + ' · world ' + player.world")
+                                xText("player.account")
                             }
                         }
                     }
@@ -621,7 +622,7 @@ object Dev {
                     ui.panel(title = "Skills") {
                         attributes["class"] = "dev-player-skills-grid"
                         style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4)"
-                        rawHtml(statBarTemplate("player.skills", big = false, showRank = true))
+                        rawHtml(statBarTemplate("player.skills", big = false, showRank = false))
                     }
                 }
 

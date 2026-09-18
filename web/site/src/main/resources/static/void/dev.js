@@ -1,8 +1,11 @@
 // Developer panel data + Alpine components. The dashboard runs a small self-contained
 // simulation (CPU/heap/tick/population random walks, ticking on an interval) so the live
-// charts and console have something to animate without a server round-trip; the player
-// workbench ships a mock account roster so search, selection and the variables/moderation
-// filters have real data to operate on. Mirrors the mock-data-in-JS pattern in hiscores.js.
+// charts and console have something to animate without a server round-trip - that telemetry
+// only exists inside a running game server's JVM, which this static site has no channel into.
+// The player workbench is real: it's fetched live from `/api/v1/dev/players/*`, the same way
+// hiscores.js drives the hiscores page. Those endpoints only see what's been saved to disk,
+// so there's no live online/offline state, position, chat or moderation history - see the
+// DevService class doc for why.
 
 (function () {
   function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
@@ -234,240 +237,145 @@
 
   // ---------------------------------------------------------------- players
 
-  var SKILL_NAMES = [
-    'Attack', 'Strength', 'Defence', 'Ranged', 'Prayer', 'Magic', 'Runecrafting', 'Construction',
-    'Hitpoints', 'Agility', 'Herblore', 'Thieving', 'Crafting', 'Fletching', 'Slayer', 'Hunter',
-    'Mining', 'Smithing', 'Fishing', 'Cooking', 'Firemaking', 'Woodcutting', 'Farming',
-  ];
+  var API = '/api/v1';
 
-  function skillSet(base, spread) {
-    var out = [];
-    SKILL_NAMES.forEach(function (name, i) {
-      var v = clamp(Math.round(base + Math.sin(i * 1.7 + base) * spread), 1, 99);
-      var rank = Math.max(1, Math.round(340000 - v * 3300 - Math.abs(Math.sin(i * 2.3 + base)) * 9000));
-      out.push({ name: name, level: v, rank: rank });
+  function getJson(url) {
+    return fetch(url).then(function (response) {
+      if (!response.ok) throw new Error('Request to ' + url + ' failed: ' + response.status);
+      return response.json();
     });
-    return out;
   }
 
-  function equipmentFor(id) {
-    var sets = {
-      'power-spark': [
-        ['Head', 'Void mage helm'], ['Cape', 'Cooking cape (t)'], ['Amulet', 'Amulet of fury'],
-        ['Weapon', 'Abyssal whip'], ['Body', 'Void knight top'], ['Shield', 'Dragon defender'],
-        ['Legs', 'Void knight robe'], ['Hands', 'Barrows gloves'], ['Feet', 'Ranger boots'],
-        ['Ring', 'Ring of wealth'], ['Ammunition', 'Rune arrow × 480'],
-      ],
-      'rotce': [
-        ['Head', '—'], ['Cape', 'Staff of office'], ['Amulet', '—'], ['Weapon', 'Staff of office'],
-        ['Body', 'Dev robe top'], ['Shield', '—'], ['Legs', 'Dev robe bottom'], ['Hands', '—'],
-        ['Feet', '—'], ['Ring', '—'], ['Ammunition', '—'],
-      ],
+  var RIGHTS_LABEL = { admin: 'Administrator', mod: 'Moderator', none: 'Member' };
+  var RIGHTS_TONE = { admin: 'Gold', mod: 'Info', none: 'Neutral' };
+
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  function formatDate(iso) {
+    if (!iso) return null;
+    try {
+      return new Date(iso).toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    } catch (e) { return null; }
+  }
+
+  function emptyPlayer(name) {
+    return {
+      name: name || '', rights: 'none', tone: 'Neutral', state: 'No live session', rank: 'Member',
+      account: name || '', world: '—',
+      combatSkills: [], combatFacts: [], skills: [],
+      equipment: [], inventory: [], bank: [], variables: [],
+      activityLog: [], audit: [], chat: [],
+      activity: 'No live session data', detail: 'This panel only reflects the account’s last save to disk.',
+      xpRate: '—', xpPct: 0, x: 0, y: 0, z: 0,
     };
-    return (sets[id] || sets['power-spark']).map(function (e) { return { slot: e[0], item: e[1] }; });
   }
-
-  function inventoryFor(seed) {
-    var out = [];
-    for (var i = 0; i < 28; i++) {
-      var empty = (i * 7 + seed) % 3 === 0;
-      out.push({ empty: empty, qty: empty ? 0 : 1 + ((i * 53 + seed * 11) % 4000) });
-    }
-    return out;
-  }
-
-  function bankFor(id) {
-    if (id === 'rotce') {
-      return [
-        { item: 'Coins', qty: '999,999,999', value: '—' },
-        { item: 'Test bond', qty: '99', value: '—' },
-      ];
-    }
-    return [
-      { item: 'Coins', qty: '1,912,447', value: '—' },
-      { item: 'Nature rune', qty: '48,220', value: '10.3M gp' },
-      { item: 'Abyssal whip', qty: '2', value: '5.1M gp' },
-      { item: 'Shark', qty: '1,140', value: '1.3M gp' },
-      { item: 'Rune bar', qty: '860', value: '10.9M gp' },
-      { item: 'Dragon bones', qty: '2,411', value: '6.7M gp' },
-      { item: 'Magic logs', qty: '740', value: '0.8M gp' },
-    ];
-  }
-
-  function variablesFor(id) {
-    var base = [
-      { key: 'varbit.4607', label: 'tutorial stage', value: '12', type: 'varbit', scope: 'Account', updated: '2d ago' },
-      { key: 'varbit.8063', label: 'slayer task streak', value: '41', type: 'varbit', scope: 'Account', updated: '18m ago' },
-      { key: 'varp.101', label: 'quest points', value: '218', type: 'varp', scope: 'Account', updated: '3h ago' },
-      { key: 'attr.slayer_task', label: 'Greater demon', value: '107 left', type: 'string', scope: 'Session', updated: '18m ago' },
-      { key: 'attr.run_energy', label: 'run energy', value: '88', type: 'int', scope: 'Session', updated: '4s ago' },
-      { key: 'attr.special_energy', label: 'special attack', value: '100', type: 'int', scope: 'Session', updated: '1m ago' },
-      { key: 'config.xp_rate', label: 'xp multiplier', value: '5.0', type: 'double', scope: 'World', updated: 'on boot' },
-      { key: 'config.pvp_enabled', label: 'pvp toggle', value: 'false', type: 'boolean', scope: 'World', updated: 'on boot' },
-      { key: 'flag.muted', label: 'chat mute', value: 'false', type: 'boolean', scope: 'Account', updated: '—' },
-      { key: 'flag.jailed', label: 'jail flag', value: 'false', type: 'boolean', scope: 'Account', updated: '—' },
-      { key: 'pref.menu_swap', label: 'menu entry swapper', value: 'on', type: 'string', scope: 'Account', updated: '7d ago' },
-      { key: 'stat.deaths', label: 'deaths total', value: '37', type: 'int', scope: 'Account', updated: '6d ago' },
-      { key: 'session.ping', label: 'client ping', value: '38', type: 'int', scope: 'Session', updated: 'live' },
-    ];
-    if (id === 'rotce') {
-      base = base.concat([{ key: 'flag.staff', label: 'staff account', value: 'true', type: 'boolean', scope: 'Account', updated: '1y ago' }]);
-    }
-    return base;
-  }
-
-  function activityFor(id) {
-    if (id === 'sablewisp') {
-      return [{ time: '14:08:22', action: 'Logout', detail: 'Session ended cleanly · no pending trade' }];
-    }
-    return [
-      {
-        time: '14:22:07', action: 'Trade offer created', detail: '4,200 × nature rune @ 214 gp · Grand Exchange slot 1',
-        expand: ['Offer value: 898,800 gp', 'GE tax (1%): 8,988 gp', 'Matched: 0 / 4,200 so far', 'Offer id: 88213-1'],
-      },
-      { time: '14:18:44', action: 'Slayer task advanced', detail: 'Greater demon 112 → 107 · streak 41' },
-      { time: '14:11:02', action: 'Teleported', detail: 'Varrock teleport · 3183, 3436, 0' },
-      {
-        time: '13:58:31', action: 'Item withdrawn', detail: '2 × abyssal whip from bank tab 3',
-        expand: ['Estimated value: 5,148,200 gp', 'Bank tab: 3 (PvM gear)', 'Withdraw mode: note'],
-      },
-      { time: '13:44:12', action: 'Level gained', detail: 'Cooking 88 → 89 · 4,470,110 xp' },
-      { time: '13:19:03', action: 'Login', detail: 'Client 0.41.2 · 89.44.12.— · revision 231' },
-    ];
-  }
-
-  function auditFor(id) {
-    return [
-      { action: 'Mute lifted', reason: 'Appeal accepted · first offence', staff: 'kilnfast', time: '2 Sept 2026' },
-      { action: 'Muted 24h', reason: 'Offensive language in public chat', staff: 'kilnfast', time: '1 Sept 2026' },
-      { action: id === 'rotce' ? 'Staff role granted' : 'Name change approved', reason: id === 'rotce' ? 'Promoted to administrator' : 'Old name: PowerSpark2', staff: 'rotce', time: '14 Aug 2026' },
-      { action: 'Account created', reason: '—', staff: 'system', time: '11 Mar 2024' },
-    ];
-  }
-
-  var CHAT_TONE = { Public: 'var(--text-muted)', Clan: 'var(--gold-300)', Private: 'var(--steel-500)', Game: 'var(--moss-500)' };
-
-  function chatFor(id) {
-    if (id === 'sablewisp') return [];
-    return [
-      { time: '14:22:41', channel: 'Public', text: 'selling nature runes 214 each, 4k in stock' },
-      { time: '14:21:08', channel: 'Clan', text: 'anyone up for a demon trip after ge run' },
-      { time: '14:19:50', channel: 'Private', text: 'to Kilnfast: thanks for sorting the mute appeal' },
-      { time: '14:17:32', channel: 'Game', text: 'Your slayer task is now 107 greater demons.' },
-      { time: '14:12:10', channel: 'Public', text: 'ge prices still lagging behind the update' },
-      { time: '14:08:45', channel: 'Clan', text: 'world 9 felt laggy for a minute there' },
-      { time: '13:59:04', channel: 'Public', text: 'buying rune bars 12.7k' },
-    ].map(function (c) { return Object.assign({ tint: CHAT_TONE[c.channel] }, c); });
-  }
-
-  function makePlayer(p) {
-    var skills = skillSet(p.skillBase, p.skillSpread);
-    var byName = {};
-    skills.forEach(function (s) { byName[s.name] = s.level; });
-    var totalLevel = skills.reduce(function (t, s) { return t + s.level; }, 0);
-    return Object.assign({}, p, {
-      skills: skills,
-      totalLevel: totalLevel,
-      combatSkills: ['Attack', 'Strength', 'Defence', 'Hitpoints'].map(function (n) { return { name: n, level: byName[n] }; }),
-      combatFacts: [
-        { k: 'Combat level', v: String(Math.round(3 + totalLevel / 8)) },
-        { k: 'Wilderness level', v: p.wilderness || '—' },
-        { k: 'Special energy', v: '100%' },
-        { k: 'Prayer points', v: byName.Prayer + ' / ' + byName.Prayer },
-      ],
-      equipment: equipmentFor(p.id),
-      inventory: inventoryFor(p.seed),
-      bank: bankFor(p.id),
-      variables: variablesFor(p.id),
-      activityLog: activityFor(p.id),
-      audit: auditFor(p.id),
-      chat: chatFor(p.id),
-    });
-  }
-
-  var PLAYERS = [
-    makePlayer({
-      id: 'power-spark', name: 'Power Spark', world: 9, state: 'Online', tone: 'Success', rank: 'Member',
-      account: '1,284,551', region: 'Varrock · West bank', meta: '4h 12m', ip: '89.44.12.— masked',
-      activity: 'Trading · Grand Exchange', detail: 'Offer 1 of 3 pending · 4,200 nature runes at 214 gp',
-      xpRate: '41,200 xp/h', xpPct: 64, x: 3183, y: 3436, z: 0, skillBase: 68, skillSpread: 16, seed: 1,
-    }),
-    makePlayer({
-      id: 'rotce', name: 'rotce', world: 30, state: 'Online', tone: 'Success', rank: 'Administrator',
-      account: '1', region: 'Developer world · Lumbridge', meta: '19h 02m', ip: '10.0.0.— internal',
-      activity: 'Idle · scripted test rig', detail: 'Attached debugger · packet trace on opcode 41',
-      xpRate: '0 xp/h', xpPct: 0, x: 3222, y: 3218, z: 0, skillBase: 99, skillSpread: 0, seed: 2,
-    }),
-    makePlayer({
-      id: 'lumbriwick', name: 'Lumbriwick', world: 12, state: 'Online', tone: 'Success', rank: 'Member',
-      account: '1,301,882', region: 'Wilderness · level 24', meta: '52m', ip: '77.21.9.— masked',
-      activity: 'Combat · fighting Greater demon', detail: 'Skulled · 3 kills this trip · risk 1.2M gp',
-      xpRate: '88,400 xp/h', xpPct: 31, x: 3094, y: 3711, z: 0, wilderness: '24', skillBase: 60, skillSpread: 22, seed: 3,
-    }),
-    makePlayer({
-      id: 'graveltoe', name: 'Graveltoe', world: 9, state: 'Restarting', tone: 'Warning', rank: 'Free',
-      account: '1,299,004', region: 'Mining guild · Falador', meta: '2h 41m', ip: '212.5.78.— masked',
-      activity: 'Mining · coal rocks', detail: 'Auto-retaliate off · inventory 26/28',
-      xpRate: '22,900 xp/h', xpPct: 47, x: 3021, y: 9740, z: 0, skillBase: 42, skillSpread: 12, seed: 4,
-    }),
-    makePlayer({
-      id: 'sablewisp', name: 'Sablewisp', world: 18, state: 'Offline', tone: 'Danger', rank: 'Member',
-      account: '1,240,117', region: 'Last seen · Ardougne market', meta: '—', ip: '95.60.31.— masked',
-      activity: 'Logged out 14 min ago', detail: 'Session ended cleanly · no pending trade',
-      xpRate: '—', xpPct: 0, x: 2655, y: 3283, z: 0, skillBase: 55, skillSpread: 18, seed: 5,
-    }),
-    makePlayer({
-      id: 'kilnfast', name: 'Kilnfast', world: 9, state: 'Online', tone: 'Success', rank: 'Moderator',
-      account: '884,220', region: 'Karamja · volcano', meta: '6h 05m', ip: '88.19.44.— masked',
-      activity: 'Skilling · smithing rune bars', detail: 'Furnace queue 84 bars · 12 min remaining',
-      xpRate: '63,700 xp/h', xpPct: 78, x: 2857, y: 3168, z: 0, skillBase: 74, skillSpread: 10, seed: 6,
-    }),
-  ];
 
   window.devPlayersApp = function () {
     return {
-      query: '', selected: 'power-spark', ptab: 'skills',
+      query: '', selectedName: '', ptab: 'skills',
       varFilter: '', varScope: 'All scopes', bankFilter: '',
       modReason: 'Offensive language', modDuration: '48 hours', modNote: '',
       tpX: '', tpY: '', tpZ: '',
+      resultRows: [], player: emptyPlayer(''), loading: false,
 
-      init: function () { this.syncTeleport(); },
+      init: function () {
+        var params = new URLSearchParams(window.location.search);
+        var player = params.get('player');
+        var self = this;
+        this.fetchSearch('').then(function () {
+          var top = self.resultRows.filter(function (r) { return player && r.name.toLowerCase() === player.toLowerCase(); })[0] || self.resultRows[0];
+          if (top) self.select(top.name);
+        });
+      },
+
+      fetchSearch: function (q) {
+        var self = this;
+        var params = new URLSearchParams({ limit: 30 });
+        if (q) params.set('q', q);
+        return getJson(API + '/dev/players/search?' + params).then(function (data) {
+          self.resultRows = data.items.map(function (row) {
+            return {
+              id: row.name, name: row.name, meta: row.meta,
+              state: RIGHTS_LABEL[row.rights] || 'Member', tone: RIGHTS_TONE[row.rights] || 'Neutral',
+              selected: row.name === self.player.name,
+            };
+          });
+        }).catch(function () { self.resultRows = []; });
+      },
+
+      search: function () { this.fetchSearch(this.query.trim()); },
+      searchEnter: function () {
+        var self = this;
+        this.fetchSearch(this.query.trim()).then(function () {
+          var top = self.resultRows[0];
+          if (top) self.select(top.name);
+        });
+      },
+
+      select: function (name) {
+        var self = this;
+        this.selectedName = name;
+        this.resultRows = this.resultRows.map(function (r) { return Object.assign({}, r, { selected: r.name === name }); });
+        this.loading = true;
+        var encoded = encodeURIComponent(name);
+        return Promise.all([
+          getJson(API + '/dev/players/' + encoded),
+          getJson(API + '/dev/players/' + encoded + '/skills'),
+          getJson(API + '/dev/players/' + encoded + '/inventories'),
+          getJson(API + '/dev/players/' + encoded + '/variables'),
+          getJson(API + '/dev/players/' + encoded + '/events?pageSize=30'),
+        ]).then(function (results) {
+          var overview = results[0], skills = results[1], inventories = results[2], variables = results[3], events = results[4];
+          var byName = {};
+          skills.items.forEach(function (s) { byName[s.name] = s.level; });
+          self.player = {
+            name: overview.name, rights: overview.rights,
+            tone: 'Neutral', state: 'No live session', rank: RIGHTS_LABEL[overview.rights] || 'Member',
+            account: overview.name, world: '—',
+            combatSkills: ['Attack', 'Strength', 'Defence', 'Constitution'].map(function (n) {
+              return { name: n === 'Constitution' ? 'Hitpoints' : n, level: byName[n] || 1 };
+            }),
+            combatFacts: [
+              { k: 'Combat level', v: String(overview.combatLevel) },
+              { k: 'Quest points', v: String(overview.questPoints) },
+              { k: 'Boss kills', v: fmt(overview.bossKills) },
+              { k: 'Playtime', v: overview.playtimeHours.toFixed(1) + ' h' },
+            ],
+            skills: skills.items,
+            equipment: inventories.equipment,
+            inventory: Array.from({ length: inventories.inventorySize }, function (_, idx) {
+              var stack = inventories.inventory.filter(function (i) { return i.slot === idx; })[0];
+              return stack ? { empty: false, qty: stack.amount, name: stack.name } : { empty: true, qty: 0 };
+            }),
+            bank: inventories.bank.map(function (b) { return { item: b.name, qty: fmt(b.amount), value: '—' }; }),
+            variables: variables.items.map(function (v) { return { key: v.key, label: v.type, value: v.value, type: v.type, scope: 'Account', updated: '—' }; }),
+            activityLog: events.items.map(function (e) {
+              return { time: formatDate(e.occurredAt) || e.occurredAt, action: e.title, detail: e.description || '' };
+            }),
+            audit: [],
+            chat: [],
+            activity: 'No live session data',
+            detail: 'This panel only reflects the account’s last save to disk — there is no live connection to a running game world.',
+            xpRate: '—', xpPct: 0,
+            x: overview.tile.x, y: overview.tile.y, z: overview.tile.plane,
+          };
+          self.loading = false;
+          self.syncTeleport();
+        }).catch(function () {
+          self.player = emptyPlayer(name);
+          self.loading = false;
+        });
+      },
+
       syncTeleport: function () {
         var p = this.player;
         this.tpX = String(p.x); this.tpY = String(p.y); this.tpZ = String(p.z);
-      },
-      select: function (id) { this.selected = id; this.syncTeleport(); },
-      searchEnter: function () {
-        var top = this.filtered[0];
-        if (top) this.select(top.id);
-      },
-
-      get filtered() {
-        var q = this.query.trim().toLowerCase();
-        return PLAYERS.filter(function (p) {
-          return !q || p.name.toLowerCase().indexOf(q) >= 0 || p.id.indexOf(q) >= 0 ||
-            p.account.toLowerCase().indexOf(q) >= 0 || p.ip.toLowerCase().indexOf(q) >= 0 ||
-            String(p.world).indexOf(q) >= 0;
-        });
-      },
-      get player() {
-        var self = this;
-        var direct = PLAYERS.filter(function (p) { return p.id === self.selected; })[0];
-        if (direct) return direct;
-        return this.filtered[0] || PLAYERS[0];
-      },
-      get resultRows() {
-        var self = this;
-        return this.filtered.map(function (p) {
-          return { id: p.id, name: p.name, state: p.state, tone: p.tone, meta: 'world ' + p.world + ' · ' + p.meta, selected: p.id === self.player.id };
-        });
       },
 
       get filteredVariables() {
         var self = this, q = this.varFilter.trim().toLowerCase(), scope = this.varScope;
         return this.player.variables.filter(function (v) {
           return (scope === 'All scopes' || v.scope === scope) &&
-            (!q || v.key.toLowerCase().indexOf(q) >= 0 || v.label.toLowerCase().indexOf(q) >= 0);
+            (!q || v.key.toLowerCase().indexOf(q) >= 0);
         });
       },
       resetVarFilter: function () { this.varFilter = ''; this.varScope = 'All scopes'; },
@@ -483,11 +391,9 @@
       get locationRows() {
         var p = this.player;
         return [
-          { k: 'Region', v: p.region },
-          { k: 'Coordinates', v: p.x + ', ' + p.y + ', plane ' + p.z },
-          { k: 'World', v: p.world + ' · voidmmo-eu-1' },
-          { k: 'IP', v: p.ip },
-          { k: 'Session', v: p.meta },
+          { k: 'Tile', v: p.x + ', ' + p.y + ', plane ' + p.z },
+          { k: 'World', v: p.world },
+          { k: 'Session', v: 'No live session data' },
         ];
       },
     };
