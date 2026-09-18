@@ -117,9 +117,9 @@ private val imageRun = Regex("(?:<img\\b[^>]*>\\s*){2,}")
 private fun groupImageRuns(html: String): String =
     imageRun.replace(html) { match -> "<div class=\"image-row\">${match.value.trim()}</div>" }
 
-private val headingImage = Regex("!\\[([^\\]]*)]\\([^)]*\\)")
-private val headingLink = Regex("\\[([^\\]]*)]\\([^)]*\\)")
-private val headingBoldItalic = Regex("(\\*\\*\\*|___)(.+?)\\1|(\\*\\*|__)(.+?)\\3|(\\*|_)(.+?)\\5")
+private val headingImage = Regex("!\\[([^]]*)]\\([^)]*\\)")
+private val headingLink = Regex("\\[([^]]*)]\\([^)]*\\)")
+private val headingBoldItalic = Regex("(\\*\\*\\*|___)(.+?)\\1|(\\*\\*|__)(.+?)\\3|([*_])(.+?)\\5")
 private val headingCode = Regex("`([^`]*)`")
 
 /**

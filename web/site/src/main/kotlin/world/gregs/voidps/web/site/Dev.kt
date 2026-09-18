@@ -7,8 +7,8 @@ import world.gregs.voidps.web.site.components.*
  * The staff-only developer panel: a live world dashboard and a player management workbench.
  * Reachable from [AccountMenu]'s "Developer panel" entry for admin accounts. Both pages are
  * written to their own file under `dev/` by [Site], following the same pattern as [Website]'s
- * marketing pages and [Docs]'s reference pages — plain `<a href>` navigation via [devHeader]
- * rather than an in-page Alpine tab switch.
+ * marketing pages and [Docs]'s reference pages — plain `<a href>` navigation between [pages] via
+ * the shared [siteHeader] rather than an in-page Alpine tab switch.
  *
  * Both pages are driven by `js/dev.js` the same way [Hiscores] is driven by `js/hiscores.js`:
  * the mock dataset, live simulation and search/filter logic live in JS as an Alpine component
@@ -22,6 +22,8 @@ object Dev {
         SitePage("dashboard", "Dashboard", "index.html"),
         SitePage("players", "Players", "players.html"),
     )
+
+    private const val WORLD_LABEL = "World 9 · void-eu-1 · rev 231"
 
     private val worlds = listOf(
         WorldEntry(9, "Germany · Falkenstein", members = true, mode = "PvP", players = 812, capacity = 2000, ping = 38, status = WorldStatus.Online),
@@ -147,7 +149,10 @@ object Dev {
         data = "devDashboardApp()",
         head = { script(src = "../js/dev.js") {} },
     ) {
-        ui.devHeader(pages, active = "dashboard", assetPrefix = "../")
+        ui.siteHeader(
+            pages, active = "dashboard", assetPrefix = "../",
+            panelTag = "DEV PANEL", worldLabel = WORLD_LABEL, liveModel = "live", devPanelHref = pages.first().href,
+        )
 
         main {
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8) var(--space-7);" +
@@ -509,7 +514,10 @@ object Dev {
         data = "devPlayersApp()",
         head = { script(src = "../js/dev.js") {} },
     ) {
-        ui.devHeader(pages, active = "players", liveModel = null, assetPrefix = "../")
+        ui.siteHeader(
+            pages, active = "players", assetPrefix = "../",
+            panelTag = "DEV PANEL", worldLabel = WORLD_LABEL, liveModel = null, devPanelHref = pages.first().href,
+        )
 
         main {
             style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8) var(--space-7) var(--space-12);" +

@@ -6,6 +6,18 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.web.api.model.*
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.combatLevel
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.displayMax
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.displayName
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.id
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.joinedAt
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.playtimeSeconds
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.questPoints
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.rights
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.skillLevel
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.skillXp
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.totalLevel
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.totalXp
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -133,31 +145,6 @@ class DevService(
             7 to "Legs", 9 to "Hands", 10 to "Feet", 12 to "Ring", 13 to "Ammunition",
         )
 
-        private fun PlayerSave.displayName(): String = (variables["display_name"] as? String)?.takeIf { it.isNotBlank() } ?: name
-
-        private fun PlayerSave.rights(): String = (variables["rights"] as? String) ?: "none"
-
-        private fun PlayerSave.skillLevel(skill: Skill): Int {
-            val raw = levels.getOrElse(skill.ordinal) { 1 }
-            return if (skill == Skill.Constitution) raw / 10 else raw
-        }
-
-        private fun PlayerSave.skillXp(skill: Skill): Long = experience.getOrElse(skill.ordinal) { 0 }.toLong() / 10
-
-        private fun PlayerSave.totalLevel(): Int = Skill.all.sumOf { skillLevel(it) }
-
-        private fun PlayerSave.totalXp(): Long = Skill.all.sumOf { skillXp(it) }
-
-        private fun PlayerSave.questPoints(): Int = (variables["quest_points"] as? Int) ?: 0
-
-        private fun PlayerSave.playtimeSeconds(): Int = (variables["playtime"] as? Int) ?: 0
-
-        private fun PlayerSave.joinedAt(): String? {
-            val creation = variables["creation"]
-            val millis = (creation as? Long) ?: (creation as? Int)?.toLong() ?: return null
-            return Instant.ofEpochMilli(millis).toString()
-        }
-
         private fun PlayerSave.lastSeenAt(): String? {
             val event = recentEvents.maxByOrNull { it.time } ?: return null
             return Instant.ofEpochSecond(event.time.toLong()).toString()
@@ -167,24 +154,5 @@ class DevService(
             val at = lastSeenAt() ?: return "no activity recorded"
             return "last active " + DateTimeFormatter.ofPattern("d MMM yyyy").withZone(ZoneOffset.UTC).format(Instant.parse(at))
         }
-
-        private fun PlayerSave.combatLevel(): Int {
-            val defence = skillLevel(Skill.Defence)
-            val hitpoints = skillLevel(Skill.Constitution)
-            val prayer = skillLevel(Skill.Prayer)
-            val attack = skillLevel(Skill.Attack)
-            val strength = skillLevel(Skill.Strength)
-            val ranged = skillLevel(Skill.Ranged)
-            val magic = skillLevel(Skill.Magic)
-            val base = (defence + hitpoints + prayer / 2) * 0.25
-            val melee = (attack + strength) * 0.325
-            val range = (ranged * 1.5) * 0.325
-            val mage = (magic * 1.5) * 0.325
-            return kotlin.math.floor(base + maxOf(melee, range, mage)).toInt()
-        }
-
-        private fun Skill.id(): String = name.lowercase()
-
-        private fun Skill.displayMax(): Int = if (this == Skill.Constitution) maximum() / 10 else maximum()
     }
 }

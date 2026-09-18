@@ -1,19 +1,7 @@
 package world.gregs.voidps.web.site.components
 
-import kotlinx.html.a
-import kotlinx.html.button
-import kotlinx.html.div
-import kotlinx.html.footer
-import kotlinx.html.header
-import kotlinx.html.img
-import kotlinx.html.nav
-import kotlinx.html.span
-import kotlinx.html.style
+import kotlinx.html.*
 import world.gregs.voidps.web.site.Site
-import java.net.URI
-import java.net.http.HttpClient
-import java.net.http.HttpRequest
-import java.net.http.HttpResponse
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -21,9 +9,16 @@ import java.time.format.DateTimeFormatter
 data class SitePage(val id: String, val label: String, val href: String)
 
 /**
- * The marketing site's fixed top bar: mark + wordmark, a page-to-page nav (plain links, since
- * each page is its own static file rather than an Alpine tab), and a right-hand slot for the
- * version badge, source link and account action. [active] is the current page's [SitePage.id].
+ * The site's fixed top bar: mark + wordmark, a page-to-page nav (plain links, since each page is
+ * its own static file rather than an Alpine tab), and a right-hand slot for the version badge,
+ * source link and account action. [active] is the current page's [SitePage.id].
+ *
+ * Also backs the staff-only developer panel ([world.gregs.voidps.web.site.Dev]) — pass
+ * [panelTag] for the "DEV PANEL" mark next to the wordmark, and [worldLabel] to swap the version
+ * badge/source link/world menu for a target-world readout with an optional [liveModel]-backed
+ * live/paused switch (`null` omits the switch on pages whose data model has no such property).
+ * [devPanelHref] overrides where [accountMenu]'s "Developer panel" entry points — pass the
+ * panel's own first page when already inside it, since the default assumes a marketing page.
  */
 fun Ui.siteHeader(
     pages: List<SitePage>,
@@ -31,6 +26,10 @@ fun Ui.siteHeader(
     assetPrefix: String = "",
     worlds: List<WorldEntry> = defaultWorlds,
     communityPages: List<SitePage> = emptyList(),
+    panelTag: String? = null,
+    worldLabel: String? = null,
+    liveModel: String? = null,
+    devPanelHref: String = "${assetPrefix}dev/index.html",
 ) {
     receiver.header {
         attributes["class"] = "void-header"
@@ -48,6 +47,13 @@ fun Ui.siteHeader(
                 style = "font:var(--weight-bold) var(--text-lg)/1 var(--font-display);" +
                     "letter-spacing:var(--tracking-caps);color:var(--parch-50)"
                 +"VOID"
+            }
+            if (panelTag != null) {
+                span {
+                    style = "font:var(--weight-medium) var(--text-2xs)/1 var(--font-ui);" +
+                        "letter-spacing:var(--tracking-caps);color:var(--text-faint);padding-left:var(--space-1)"
+                    +panelTag
+                }
             }
         }
         nav {
@@ -116,19 +122,32 @@ fun Ui.siteHeader(
             div {
                 attributes["class"] = "void-header-nav-end"
                 style = "display:flex;align-items:center;gap:var(--space-6);flex:0 0 auto;margin-left:auto"
-                div {
-                    attributes["class"] = "void-header-extra"
-                    style = "display:flex;align-items:center;gap:var(--space-6)"
-                    ui.badge(Site.version, pill = false)
-                    a(href = "https://github.com/GregHib/void") {
-                        style = "display:inline-flex;align-items:center;gap:var(--space-3);font:var(--type-body-sm)"
-                        icon(Icons.EXTERNAL, size = 14)
-                        +"Source"
+                if (worldLabel != null) {
+                    span {
+                        style = "font:var(--type-code);font-size:var(--text-xs);color:var(--text-muted)"
+                        +worldLabel
                     }
-                }
-                if (Site.FULL) {
-                    ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
-                    ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = "${assetPrefix}dev/index.html")
+                    if (liveModel != null) {
+                        span { style = "width:1px;height:22px;background:var(--border-subtle)" }
+                        ui.switch("Live", model = liveModel, small = true)
+                    }
+                    span { style = "width:1px;height:22px;background:var(--border-subtle)" }
+                    ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = devPanelHref)
+                } else {
+                    div {
+                        attributes["class"] = "void-header-extra"
+                        style = "display:flex;align-items:center;gap:var(--space-6)"
+                        ui.badge(Site.version, pill = false)
+                        a(href = "https://github.com/GregHib/void") {
+                            style = "display:inline-flex;align-items:center;gap:var(--space-3);font:var(--type-body-sm)"
+                            icon(Icons.EXTERNAL, size = 14)
+                            +"Source"
+                        }
+                    }
+                    if (Site.FULL) {
+                        ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
+                        ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = devPanelHref)
+                    }
                 }
             }
         }

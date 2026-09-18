@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.web.api.model.*
+import world.gregs.voidps.web.hiscores.HiscoresService.Companion.skillLevel
 import java.time.Instant
 import kotlin.math.abs
 import kotlin.math.floor
@@ -325,7 +326,7 @@ class HiscoresService(
         /** The skills a pure trains selectively and a skiller avoids entirely. */
         private val COMBAT_SKILLS = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Magic, Skill.Ranged, Skill.Prayer, Skill.Summoning)
 
-        private fun PlayerSave.displayName(): String = (variables["display_name"] as? String)?.takeIf { it.isNotBlank() } ?: name
+        internal fun PlayerSave.displayName(): String = (variables["display_name"] as? String)?.takeIf { it.isNotBlank() } ?: name
 
         /**
          * There is no account-type system in the engine, so the type is derived from how many
@@ -341,26 +342,26 @@ class HiscoresService(
             }
         }
 
-        private fun PlayerSave.skillLevel(skill: Skill): Int {
+        internal fun PlayerSave.skillLevel(skill: Skill): Int {
             val raw = levels.getOrElse(skill.ordinal) { 1 }
             return if (skill == Skill.Constitution) raw / 10 else raw
         }
 
-        private fun PlayerSave.skillXp(skill: Skill): Long = experience.getOrElse(skill.ordinal) { 0 }.toLong() / 10
+        internal fun PlayerSave.skillXp(skill: Skill): Long = experience.getOrElse(skill.ordinal) { 0 }.toLong() / 10
 
-        private fun PlayerSave.totalLevel(): Int = Skill.all.sumOf { skillLevel(it) }
+        internal fun PlayerSave.totalLevel(): Int = Skill.all.sumOf { skillLevel(it) }
 
-        private fun PlayerSave.totalXp(): Long = Skill.all.sumOf { skillXp(it) }
+        internal fun PlayerSave.totalXp(): Long = Skill.all.sumOf { skillXp(it) }
 
-        private fun PlayerSave.bossKills(id: String): Int = kills[id] ?: 0
+        internal fun PlayerSave.bossKills(id: String): Int = kills[id] ?: 0
 
-        private fun PlayerSave.bossTimeMillis(bossId: String, teamSize: Int): Int? {
+        internal fun PlayerSave.bossTimeMillis(bossId: String, teamSize: Int): Int? {
             val key = if (teamSize == 1) bossId else (TEAM_SUFFIXES.firstOrNull { it.first == teamSize }?.second?.let { "$bossId$it" } ?: return null)
             return records[key]
         }
 
         /** "none", "mod" or "admin" - mirrors [world.gregs.voidps.engine.entity.character.player.PlayerRights]. */
-        private fun PlayerSave.rights(): String = (variables["rights"] as? String) ?: "none"
+        internal fun PlayerSave.rights(): String = (variables["rights"] as? String) ?: "none"
 
         private fun PlayerSave.questVariable(id: String): String = variables[id] as? String ?: "unstarted"
 
@@ -370,9 +371,9 @@ class HiscoresService(
             else -> "not-started"
         }
 
-        private fun PlayerSave.questPoints(): Int = (variables["quest_points"] as? Int) ?: 0
+        internal fun PlayerSave.questPoints(): Int = (variables["quest_points"] as? Int) ?: 0
 
-        private fun PlayerSave.playtimeSeconds(): Int = (variables["playtime"] as? Int) ?: 0
+        internal fun PlayerSave.playtimeSeconds(): Int = (variables["playtime"] as? Int) ?: 0
 
         /** Best-effort: the most recent matching "Quest complete: <name>" entry still in [PlayerSave.recentEvents]. */
         private fun PlayerSave.questCompletedAt(name: String): String? {
@@ -389,13 +390,13 @@ class HiscoresService(
             else -> "account"
         }
 
-        private fun PlayerSave.joinedAt(): String? {
+        internal fun PlayerSave.joinedAt(): String? {
             val creation = variables["creation"]
             val millis = (creation as? Long) ?: (creation as? Int)?.toLong() ?: return null
             return Instant.ofEpochMilli(millis).toString()
         }
 
-        private fun PlayerSave.combatLevel(): Int {
+        internal fun PlayerSave.combatLevel(): Int {
             val defence = skillLevel(Skill.Defence)
             val hitpoints = skillLevel(Skill.Constitution)
             val prayer = skillLevel(Skill.Prayer)
@@ -410,10 +411,11 @@ class HiscoresService(
             return floor(base + maxOf(melee, range, mage)).toInt()
         }
 
-        private fun Skill.id(): String = name.lowercase()
+        internal fun Skill.id(): String = name.lowercase()
 
-        private fun Skill.displayMax(): Int = if (this == Skill.Constitution) maximum() / 10 else maximum()
+        internal fun Skill.displayMax(): Int = if (this == Skill.Constitution) maximum() / 10 else maximum()
 
         private fun Skill.iconUrl(): String = "void/images/skills/${name.lowercase()}.png"
     }
 }
+
