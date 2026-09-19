@@ -18,6 +18,7 @@ import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.*
 import world.gregs.voidps.engine.client.PlayerAccountLoader
+import world.gregs.voidps.engine.client.command.ConsoleReader
 import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.World
@@ -88,6 +89,9 @@ object Main {
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
+        if (Settings["console.enabled", true]) {
+            ConsoleReader().start()
+        }
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         AuditLog.info("game online")
         runBlocking {

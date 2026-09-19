@@ -1,0 +1,146 @@
+package world.gregs.voidps.engine.client.command
+
+import com.github.michaelbull.logging.InlineLogger
+import java.io.IOException
+import kotlin.concurrent.thread
+
+/**
+ * Reads operator commands from [terminal] and queues them for the game thread.
+ *
+ * Runs on a daemon thread so that a blocked read can never hold up the game loop, and never keeps
+ * the jvm alive once Ctrl + C has triggered the shutdown hook.
+ *
+ * Terminals which can't be drawn into, like the pipes gradle's rich console gives a forked process,
+ * are read line by line without a prompt instead.
+ */
+class ConsoleReader(
+    private val terminal: ConsoleTerminal = SystemTerminal(),
+    private val submit: (String) -> Unit = ConsoleCommands::submit,
+) : Runnable {
+
+    private val line = ConsoleLine(PROMPT, terminal::write) { terminal.width }
+
+    fun start(): Thread {
+        if (terminal.start()) {
+            // Logs are printed above the input line rather than on top of it
+            ConsoleOutput.install(line::printAbove)
+            terminal.onResize = line::show
+        }
+        Runtime.getRuntime().addShutdownHook(thread(start = false) { stop() })
+        return thread(isDaemon = true, name = "console", block = ::run)
+    }
+
+    override fun run() {
+        try {
+            logger.info { "Console ready, type 'help' for a list of commands." }
+            if (!terminal.interactive) {
+                logger.info { "No terminal detected, commands are read without a prompt. Start the server from a terminal, or enable your IDE's terminal emulation, for the full console." }
+                plain()
+                return
+            }
+            keys()
+        } finally {
+            stop()
+        }
+    }
+
+    /**
+     * Read keys as they're typed, drawing the input line back out as we go.
+     */
+    private fun keys() {
+        line.show()
+        while (true) {
+            val code = try {
+                terminal.read()
+            } catch (e: IOException) {
+                logger.debug(e) { "Console input closed." }
+                return
+            }
+            // Reading returns -1 at end of stream, without which the loop would spin at 100% cpu
+            if (code == -1) {
+                logger.debug { "No console input available, stopping console reader." }
+                return
+            }
+            when (val key = line.key(code)) {
+                is ConsoleLine.Key.Submit -> entered(key.line)
+                ConsoleLine.Key.EndOfFile -> return
+                ConsoleLine.Key.Clear -> clearScreen()
+                ConsoleLine.Key.None -> {}
+            }
+        }
+    }
+
+    /**
+     * Read whole lines echoed by whatever is on the other end of the stream.
+     */
+    private fun plain() {
+        val reader = terminal.reader()
+        while (true) {
+            val text = try {
+                reader.readLine()
+            } catch (e: IOException) {
+                logger.debug(e) { "Console input closed." }
+                return
+            }
+            // readLine returns null at end of stream; stdin is closed under `docker run` without -i,
+            // under systemd and when output is piped. Without returning the loop spins at 100% cpu.
+            if (text == null) {
+                logger.debug { "No console input available, stopping console reader." }
+                return
+            }
+            if (text.isBlank() || clear(text)) {
+                continue
+            }
+            submit(text)
+        }
+    }
+
+    private fun entered(text: String) {
+        if (!terminal.watching) {
+            // Nothing tells us about resizes, so catch up before the next line is drawn
+            terminal.refreshWidth()
+        }
+        if (!text.isBlank() && !clear(text)) {
+            submit(text)
+        }
+        line.show()
+    }
+
+    /**
+     * Clear the screen, done here rather than on the game thread as it draws to the terminal.
+     */
+    private fun clear(text: String): Boolean {
+        if (!text.trim().equals(ConsoleCommands.CLEAR, ignoreCase = true)) {
+            return false
+        }
+        if (!terminal.interactive) {
+            ConsoleCommands.output.invoke("Unable to clear without a terminal.")
+            return true
+        }
+        clearScreen()
+        return true
+    }
+
+    /**
+     * Wipe the screen and the scrollback above it, then draw the input line back.
+     */
+    private fun clearScreen() {
+        terminal.write(CLEAR_SCREEN)
+        line.show()
+    }
+
+    private fun stop() {
+        ConsoleOutput.uninstall()
+        terminal.restore()
+    }
+
+    private companion object {
+        private val logger = InlineLogger("Console")
+        private const val PROMPT = "› "
+
+        /**
+         * Cursor home, erase the screen, then erase the scrollback.
+         */
+        private const val CLEAR_SCREEN = "[H[2J[3J"
+    }
+}

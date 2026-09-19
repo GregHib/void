@@ -33,6 +33,8 @@ dependencies {
 application {
     mainClass.set("Main")
     tasks.run.get().workingDir = rootProject.projectDir
+    // Forward the terminal to the server console, gradle gives the process an empty stream otherwise
+    tasks.run.get().standardInput = System.`in`
 }
 
 tasks {
