@@ -1,8 +1,8 @@
 package content.area.misthalin.lumbridge.blood_pact
 
+import content.entity.player.dialogue.type.item
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
-import content.entity.player.dialogue.type.item
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
