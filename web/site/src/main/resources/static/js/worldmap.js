@@ -52,6 +52,7 @@ window.worldMapApp = function () {
     level: 0,
     zoom: BASE_ZOOM,
     showAreaLabels: true,
+    showAreaPolygons: false,
     showRegionGrid: true,
     showRegionLabels: false,
     showPlayerPins: true,
@@ -78,6 +79,7 @@ window.worldMapApp = function () {
       this.tileLayer = root.querySelector('#wm-tile-layer');
       this.gridLayer = root.querySelector('#wm-grid-layer');
       this.regionLabelLayer = root.querySelector('#wm-region-labels');
+      this.areaPolygonLayer = root.querySelector('#wm-area-polygons');
       this.areaLabelLayer = root.querySelector('#wm-area-labels');
       this.playerLayer = root.querySelector('#wm-players');
 
@@ -94,6 +96,17 @@ window.worldMapApp = function () {
       var self = this;
       window.addEventListener('resize', function () {
         self.scheduleRender();
+      });
+
+      // Layers whose content is only built inside render() (rather than always kept in sync and
+      // merely hidden via `x-show`, like the pre-rendered area label/player pin layers) need an
+      // explicit re-render when their toggle flips — otherwise switching one on before the next
+      // pan/zoom would just reveal an empty layer. Region grid/labels also route through here even
+      // though they default on, in case a future toggle-off-then-on leaves them stale.
+      ['showRegionGrid', 'showRegionLabels', 'showAreaPolygons'].forEach(function (key) {
+        self.$watch(key, function () {
+          self.scheduleRender();
+        });
       });
     },
 
@@ -450,6 +463,29 @@ window.worldMapApp = function () {
       return (targetWidth / refWidth) * REF_SIZE;
     },
 
+    // `window.VOID_AREAS` is injected server-side by [WorldMap.areasScript] — each entry's `x`/`y`
+    // are game-space polygon vertices (box areas pre-expanded to four corners), drawn here as one
+    // SVG <polygon> apiece rather than DOM divs since a polygon isn't expressible as a CSS box.
+    renderAreaPolygons: function (offsetX, offsetY, scale) {
+      var areas = window.VOID_AREAS || [];
+      var level = this.level;
+      var html = '';
+      for (var i = 0; i < areas.length; i++) {
+        var area = areas[i];
+        if (level < area.minLevel || level > area.maxLevel) {
+          continue;
+        }
+        var points = '';
+        for (var p = 0; p < area.x.length; p++) {
+          var x = offsetX + area.x[p] * scale;
+          var y = offsetY - area.y[p] * scale;
+          points += x.toFixed(1) + ',' + y.toFixed(1) + ' ';
+        }
+        html += '<polygon class="wm-area-polygon" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
+      }
+      this.areaPolygonLayer.innerHTML = html ? '<svg style="position:absolute;overflow:visible">' + html + '</svg>' : '';
+    },
+
     renderAreaLabels: function () {
       var targetWidth = this.labelTargetWidth(64 * this._scale);
       var nodes = this.areaLabelLayer.children;
@@ -494,4 +530,10 @@ function onTileError() {
   // Missing tile (ocean, ungenerated zoom, or a level with nothing on it) — leave transparent
   // rather than showing a broken-image icon.
   this.style.display = 'none';
+}
+
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
 }

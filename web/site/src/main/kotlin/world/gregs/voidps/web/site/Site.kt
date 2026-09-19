@@ -5,6 +5,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import java.io.File
 import java.net.URI
@@ -29,6 +30,7 @@ object Site {
 
         val npcDefinitions = NPCDecoder(true).load(cache)
         NPCDefinitions.init(npcDefinitions).load(files.getValue(Settings["definitions.npcs"]))
+        Areas.load(files.list(Settings["map.areas"]))
 
         val buildDir = File(Settings["web.server.pages"])
         buildDir.mkdirs()

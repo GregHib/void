@@ -1,6 +1,12 @@
 package world.gregs.voidps.web.site
 
 import kotlinx.html.*
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.type.Area
+import world.gregs.voidps.type.area.Cuboid
+import world.gregs.voidps.type.area.Polygon
+import world.gregs.voidps.type.area.Rectangle
 import world.gregs.voidps.web.site.components.*
 
 /**
@@ -71,6 +77,47 @@ object WorldMap {
         }
     }
 
+    /**
+     * Corner/vertex points of [area] in game coordinates, or `null` for an [Area] shape not drawable
+     * as a polygon. [Rectangle]/[Cuboid] are box-shaped so their four corners are used directly.
+     */
+    private fun points(area: Area): Pair<IntArray, IntArray>? = when (area) {
+        is Polygon -> area.xPoints to area.yPoints
+        is Rectangle -> intArrayOf(area.minX, area.maxX, area.maxX, area.minX) to intArrayOf(area.minY, area.minY, area.maxY, area.maxY)
+        is Cuboid -> intArrayOf(area.minX, area.maxX, area.maxX, area.minX) to intArrayOf(area.minY, area.minY, area.maxY, area.maxY)
+        else -> null
+    }
+
+    /** The height levels [area] should be drawn on, matching [Areas.load]'s "no level means every level" rule. */
+    private fun levels(area: Area): IntRange = when (area) {
+        is Polygon -> area.bounds.minLevel..area.bounds.maxLevel
+        is Cuboid -> area.minLevel..area.maxLevel
+        else -> 0..3
+    }
+
+    /** Inline `<script>` body defining `window.VOID_AREAS` as JSON for `worldmap.js` to read (see [WorldMap.page]). */
+    private fun areasScript(): String = buildString {
+        append("window.VOID_AREAS=[")
+        var first = true
+        for (definition: AreaDefinition in Areas.getAll()) {
+            val (x, y) = points(definition.area) ?: continue
+            if (!first) {
+                append(",")
+            }
+            first = false
+            val levels = levels(definition.area)
+            append("{\"name\":\"${escape(definition.name)}\",\"minLevel\":${levels.first},\"maxLevel\":${levels.last},")
+            append("\"x\":[")
+            x.joinTo(this, ",")
+            append("],\"y\":[")
+            y.joinTo(this, ",")
+            append("]}")
+        }
+        append("];")
+    }
+
+    private fun escape(text: String): String = text.replace("\\", "\\\\").replace("\"", "\\\"")
+
     private fun DIV.displayToggle(label: String, model: String, last: Boolean = false) {
         div {
             style = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);padding:10px 0;" +
@@ -89,6 +136,7 @@ object WorldMap {
         data = "worldMapApp()",
         head = {
             link(rel = "stylesheet", href = "style/world-map.css")
+            script { unsafe { raw(areasScript()) } }
             script(src = "js/worldmap.js") {}
         },
     ) {
@@ -116,6 +164,11 @@ object WorldMap {
                     style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
                 }
                 div {
+                    attributes["id"] = "wm-area-polygons"
+                    xShow("showAreaPolygons")
+                    style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
+                }
+                div {
                     attributes["id"] = "wm-area-labels"
                     xShow("showAreaLabels")
                     style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
@@ -139,6 +192,7 @@ object WorldMap {
                 ui.panel(title = "Map display", padded = false) {
                     style = "padding:4px var(--space-6) var(--space-4)"
                     displayToggle("Area labels", "showAreaLabels")
+                    displayToggle("Area polygons", "showAreaPolygons")
                     displayToggle("Region grid", "showRegionGrid")
                     displayToggle("Region labels", "showRegionLabels")
                     displayToggle("Player pins", "showPlayerPins", last = true)

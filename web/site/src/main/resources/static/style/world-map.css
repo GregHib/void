@@ -46,6 +46,14 @@
   user-select: none;
 }
 
+.wm-area-polygon {
+  fill: rgba(240, 198, 103, 0.1);
+  stroke: rgba(240, 198, 103, 0.55);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
 .wm-pin-tooltip {
   opacity: 0;
   pointer-events: none;
