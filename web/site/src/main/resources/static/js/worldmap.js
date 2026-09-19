@@ -7,11 +7,11 @@
 // standard XYZ tile pyramid, so tile index = floor(worldPx / 256) at every zoom.
 //
 // `zoom` itself is continuous (see ZOOM_STEP), but the tile pyramid only has images at integer
-// levels — there's no `8.4/x/y.png`. So tiles are always fetched at `nativeZoom`, the nearest
-// integer to the current zoom, and then scaled up/down via `zoomRatio` to match the in-between
-// continuous scale — the same "snap the tile set, scale it smoothly in between" trick standard
-// slippy maps use for fractional zoom. Everything else (panning, offsets, grid, labels) uses the
-// continuous scale directly and doesn't need to know about the native/fractional distinction.
+// levels — there's no `8.4/x/y.png`. So tiles are always fetched at `nativeZoom` (see
+// `nativeZoomFor`) and then scaled via `zoomRatio` to match the in-between continuous scale — the
+// same "snap the tile set, scale it smoothly in between" trick standard slippy maps use for
+// fractional zoom. Everything else (panning, offsets, grid, labels) uses the continuous scale
+// directly and doesn't need to know about the native/fractional distinction.
 //
 // Y is inverted between game space and screen space: game Y increases north, which should read
 // as "up" on screen, but CSS/canvas pixel Y increases downward. The tile row index in the
@@ -37,6 +37,24 @@ window.worldMapApp = function () {
   var LOAD_STAGGER_MS = 6;
   var LOAD_STAGGER_MAX = 10;
   var LABEL_CAP_ZOOM = 10;
+  // Map labels (`window.VOID_MAP_LABELS`, see MapLabels.kt) carry the cache's own font size class:
+  // 0 for detail ("Bats", "Rat Pits"), 1 for towns, 2 for kingdoms/regions. LABEL_SIZE_TILES, in
+  // GAME TILES rather than pixels, is what each class is sized in: a label covers the same patch
+  // of world at every zoom, growing and shrinking with the terrain under it instead of floating
+  // over it at a near-fixed screen size. "Kingdom of Misthalin" spans a kingdom's worth of map
+  // whether you're looking at the whole world or one street of it.
+  //
+  // Every class is drawn at every zoom: a label never pops in or out as you zoom, it only grows
+  // and shrinks with the map like the terrain beneath it. What that costs is legibility at the two
+  // ends of the range, and unavoidably so — a size fixed in world units has to be tiny when the
+  // world is tiny. At MIN_ZOOM a detail label is under a pixel and a kingdom a little over two; at
+  // MAX_ZOOM a kingdom label is a few hundred pixels of text. Restoring per-class zoom bands is the
+  // fix if that matters more than the popping did.
+  var LABEL_SIZE_TILES = [3, 5.76, 9];
+  // How far outside the viewport a label's anchor may sit and still be rendered. Its text is
+  // centred on that anchor, so a label just past the edge still has half its width showing —
+  // and since these scale with the map, that half-width scales too (see `renderAreaLabels`).
+  var LABEL_CULL_PAD = 160;
   // Must match `.wm-tile`'s `transition: opacity var(--dur-fast) ...` in world-map.css (currently
   // 130ms). A tile's `load` event fires the instant its bytes are decoded — well before its
   // opacity has actually finished animating from 0 to 1 — so `flushStaleTiles` can't treat "loaded"
@@ -46,13 +64,50 @@ window.worldMapApp = function () {
   // the event) entirely rather than shortening it. A fixed wait matching the CSS duration covers
   // both cases uniformly instead of depending on paint timing.
   var TILE_FADE_MS = 130;
+  // The zoom the map settles at when the console jumps to a single point (a player, a place
+  // name) — close enough to read the terrain around it, but only ever zoomed *in* to, so a
+  // viewer already reading street detail isn't yanked back out. An area solves its own zoom
+  // instead, see `zoomFitting`.
+  var FOCUS_ZOOM = 9;
+  // How much bigger than an area itself its framed view is, so an area jumped to from search
+  // has some surrounding terrain to place it against instead of filling the viewport edge to
+  // edge.
+  var FIT_MARGIN = 1.35;
+  var SEARCH_LIMIT = 40;
+  // Tie-break order for equally good name matches — a named player is the most specific thing
+  // a query could have meant, a place name the least.
+  var KIND_ORDER = ['Player', 'Area', 'Place'];
 
   function pxPerTile(zoom) {
     return BASE_PX_PER_TILE * Math.pow(2, zoom - BASE_ZOOM);
   }
 
+  // Which pyramid level to fetch for a continuous `zoom`. Never the *nearest* level: the aim either
+  // side of BASE_ZOOM is to put the sharpest available pixels on screen and let the browser do the
+  // fractional scaling, rather than to minimise how much scaling it does.
+  //
+  // BASE_ZOOM is the only level actually rendered from the cache. Below it, each level is a halving
+  // of the one above (see MapZoomImageGenerator), so each is softer than its parent and the
+  // softening compounds on the way down; the ceiling reaches for the sharper of the two levels a
+  // fractional zoom sits between. Rounding to nearest meant zoom 7.40 magnified a zoom-7 tile 1.32x
+  // — all of level 7's accumulated softness, blown up — while 7.50 minified a zoom-8 tile and
+  // looked sharp, a visible cliff mid-band.
+  //
+  // Above BASE_ZOOM there is no sharper level to reach for, because those levels are nearest-
+  // neighbour doublings of BASE_ZOOM (see `generateZoomInLevel`) and hold nothing it doesn't. So
+  // they're skipped entirely and BASE_ZOOM is magnified instead: `image-rendering: pixelated`
+  // reproduces exactly the doubling that generated them, pixel for pixel, from a fraction of the
+  // bytes. Measured at zoom 11, same viewport: 2 tile requests and 26.8 KiB against 42 and 170.2
+  // KiB, for an identical image — and 21x fewer <img> elements to lay out and decode.
+  //
+  // The cost below BASE_ZOOM is tiles on screen: `zoomRatio` runs (0.5, 1] rather than
+  // [0.71, 1.41], so just above an integer zoom the viewport needs ~4x the tile images it would at
+  // 1:1 (measured: 20 -> 72 at zoom 7.40). They're small, static and cached after one pan.
   function nativeZoomFor(zoom) {
-    return clamp(Math.round(zoom), MIN_ZOOM, MAX_ZOOM);
+    if (zoom >= BASE_ZOOM) {
+      return BASE_ZOOM;
+    }
+    return clamp(Math.ceil(zoom), MIN_ZOOM, MAX_ZOOM);
   }
 
   // See the file header: the deployed tile pyramid's row index runs one zoom-8 tile (64 game
@@ -67,6 +122,19 @@ window.worldMapApp = function () {
     return Math.max(min, Math.min(max, v));
   }
 
+  // Rounds a CSS-pixel length to a whole *device* pixel. Every layer's geometry derives from
+  // `offsetX`/`offsetY` and a tile's own box, and a fractional CSS position puts a pixel-art tile
+  // on a fractional device pixel — which, under nearest-neighbour sampling, changes *which* source
+  // rows survive from one tile to the next (a visible seam) and from one frame to the next while
+  // panning (thin lines flickering in and out). Snapping gives the whole map one consistent
+  // sampling grid. `devicePixelRatio` is read per call, not cached: it changes when the window
+  // moves to a monitor with different scaling, or the browser's own zoom changes, neither of which
+  // reliably fires a resize.
+  function snapPx(value) {
+    var dpr = window.devicePixelRatio || 1;
+    return Math.round(value * dpr) / dpr;
+  }
+
   return {
     gameX: 3200,
     gameY: 3200,
@@ -78,8 +146,9 @@ window.worldMapApp = function () {
     showRegionLabels: false,
     showPlayerPins: true,
     displayPanelOpen: true,
+    teleportPanelOpen: true,
     tilesMissing: false,
-    ptab: 'teleport',
+    ptab: 'players',
     tpX: '3200',
     tpY: '3200',
     tpZ: '0',
@@ -87,6 +156,18 @@ window.worldMapApp = function () {
     hoverY: 3200,
     hoverAreaNames: [],
     levelLabels: ['SURFACE', 'FLOOR 1', 'FLOOR 2', 'FLOOR 3'],
+
+    // Online players, injected server-side by [WorldMap.playersScript] on a Site.FULL build and
+    // absent otherwise. The console's list, its name filter and the search index all read this
+    // one array — as do the pins, rendered from the same source server-side.
+    players: window.VOID_PLAYERS || [],
+    playerQuery: '',
+    // Name of the player whose console row is highlighted and whose pin is ringed on the map
+    // (see `renderPlayers`); '' for none.
+    selectedPlayer: '',
+    searchQuery: '',
+    // Index into `searchResults` of the highlighted row — moved by the arrow keys, taken by enter.
+    searchCursor: 0,
 
     tileEls: {},
     _raf: null,
@@ -109,6 +190,10 @@ window.worldMapApp = function () {
     // good — see `onTileSettled`. Deliberately never resets on pan/zoom, so panning past the one
     // generated corner of an otherwise-empty tile set doesn't make the message flicker back.
     _tileSuccessCount: 0,
+    // Areas and place names can't change after load, so the half of the search index built from
+    // them is built once on first use rather than per keystroke — the surface alone has several
+    // thousand place names. Players are merged in per query instead, that list being live.
+    _searchEntries: null,
 
     // Named `boot`, not `init` — Alpine auto-calls a data object's own `init()` method with no
     // arguments as a component lifecycle hook, which would collide with (and crash before) this
@@ -142,10 +227,19 @@ window.worldMapApp = function () {
       // explicit re-render when their toggle flips — otherwise switching one on before the next
       // pan/zoom would just reveal an empty layer. Region grid/labels also route through here even
       // though they default on, in case a future toggle-off-then-on leaves them stale.
-      ['showRegionGrid', 'showRegionLabels', 'showAreaPolygons'].forEach(function (key) {
+      ['showRegionGrid', 'showRegionLabels', 'showAreaPolygons', 'showAreaLabels'].forEach(function (key) {
         self.$watch(key, function () {
           self.scheduleRender();
         });
+      });
+
+      // The selected player's pin is ringed by `renderPlayers`, which only runs from render().
+      self.$watch('selectedPlayer', function () {
+        self.scheduleRender();
+      });
+      // A changed query invalidates whichever row the arrow keys had landed on.
+      self.$watch('searchQuery', function () {
+        self.searchCursor = 0;
       });
     },
 
@@ -394,36 +488,233 @@ window.worldMapApp = function () {
       this.scheduleUrlWrite();
     },
 
+    // The teleport panel's own button/enter key. A field left blank or unparseable keeps whatever
+    // the map is already showing for that axis rather than snapping it to 0.
     teleportTo: function () {
       var x = parseInt(this.tpX, 10);
       var y = parseInt(this.tpY, 10);
       var z = parseInt(this.tpZ, 10);
-      if (!isNaN(x)) {
-        this.gameX = x;
+      this.focusOn(isNaN(x) ? this.gameX : x, isNaN(y) ? this.gameY : y, isNaN(z) ? this.level : z);
+    },
+
+    // The one way anything moves the view onto a place: the teleport panel, a pin's "Move here", a
+    // players row, a search result. `zoom` is optional — left out, the current zoom is kept. The
+    // teleport fields are written back here rather than only read, so that panel keeps showing
+    // where the map actually is whichever of the four did the moving.
+    focusOn: function (x, y, level, zoom) {
+      this.gameX = x;
+      this.gameY = y;
+      if (level >= 0 && level <= 3) {
+        this.level = level;
       }
-      if (!isNaN(y)) {
-        this.gameY = y;
+      if (zoom) {
+        this.zoom = clamp(zoom, MIN_ZOOM, MAX_ZOOM);
       }
-      if (!isNaN(z) && z >= 0 && z <= 3) {
-        this.level = z;
-      }
+      this.tpX = String(Math.round(this.gameX));
+      this.tpY = String(Math.round(this.gameY));
+      this.tpZ = String(this.level);
       this.scheduleRender();
       this.scheduleUrlWrite();
     },
 
-    // "Move here" from a [WorldMap.playerPin]'s right-click menu — jumps the map view to that
-    // player's position, same as typing their coordinates into the teleport console.
-    moveToPlayer: function (x, y, level) {
-      this.tpX = String(x);
-      this.tpY = String(y);
-      this.tpZ = String(level);
-      this.teleportTo();
+    // Picking a player — from the console's list, a search result or a pin's "Move here" — both
+    // highlights them (row and pin together) and moves the view onto them, following them down to
+    // their own height level.
+    selectPlayer: function (name) {
+      var player = this.playerNamed(name);
+      if (!player) {
+        return;
+      }
+      this.selectedPlayer = player.name;
+      this.focusOn(player.x, player.y, player.level, Math.max(this.zoom, FOCUS_ZOOM));
     },
 
-    // "Kick" from a [WorldMap.playerPin]'s right-click menu — placeholder until the server bridge
-    // is wired up, same as the Players/Search console tabs.
+    playerNamed: function (name) {
+      for (var i = 0; i < this.players.length; i++) {
+        if (this.players[i].name === name) {
+          return this.players[i];
+        }
+      }
+      return null;
+    },
+
+    // The console's players list, narrowed by its name filter.
+    get filteredPlayers() {
+      var query = this.playerQuery.trim().toLowerCase();
+      if (!query) {
+        return this.players;
+      }
+      return this.players.filter(function (player) {
+        return player.name.toLowerCase().indexOf(query) !== -1;
+      });
+    },
+
+    // Enter in the players filter — jumps straight to the top match, so narrowing the list to one
+    // name doesn't then need a click.
+    selectFirstPlayer: function () {
+      var first = this.filteredPlayers[0];
+      if (!first) {
+        return;
+      }
+      this.selectPlayer(first.name);
+    },
+
+    // "Kick", from a pin's right-click menu or a players row — placeholder until the server bridge
+    // is wired up, same as the player list it acts on.
     kickPlayer: function (name) {
       console.log('Kick requested for ' + name + ' (server bridge not wired up yet)');
+    },
+
+    // Everything the search box can jump to that isn't a player, as one flat list: areas (from
+    // `window.VOID_AREAS`, the same polygons the area layer draws) and place names (from
+    // `window.VOID_MAP_LABELS`, the cache's own map text). Players are merged in per query by
+    // `searchResults` instead — this list is cached for the life of the page and that one isn't
+    // stable.
+    //
+    // An area is reduced to the centre of its bounding box, keeping that box's size so
+    // `goToResult` can pick a zoom that frames the whole shape; a place name is already one tile.
+    searchEntries: function () {
+      if (this._searchEntries) {
+        return this._searchEntries;
+      }
+      var entries = [];
+      var areas = window.VOID_AREAS || [];
+      for (var i = 0; i < areas.length; i++) {
+        var area = areas[i];
+        var minX = Math.min.apply(null, area.x);
+        var maxX = Math.max.apply(null, area.x);
+        var minY = Math.min.apply(null, area.y);
+        var maxY = Math.max.apply(null, area.y);
+        entries.push({
+          key: 'a' + i,
+          kind: 'Area',
+          colour: 'var(--feedback-info)',
+          name: area.name,
+          x: Math.round((minX + maxX) / 2),
+          y: Math.round((minY + maxY) / 2),
+          level: area.minLevel,
+          width: maxX - minX,
+          height: maxY - minY,
+        });
+      }
+      var labels = window.VOID_MAP_LABELS || [];
+      for (var l = 0; l < labels.length; l++) {
+        var label = labels[l];
+        entries.push({
+          key: 'l' + l,
+          kind: 'Place',
+          colour: 'var(--text-muted)',
+          // The cache wraps these at an authored point ("Kingdom of" / "Misthalin"), joined back up
+          // here so searching "kingdom of misthalin" matches the name as it reads on the map.
+          name: label.lines.join(' '),
+          x: label.x,
+          y: label.y,
+          level: label.level,
+        });
+      }
+      this._searchEntries = entries;
+      return entries;
+    },
+
+    // Case-insensitive substring match over players, areas and places, ordered so the most literal
+    // matches come first: a name that *starts* with the query before one that merely contains it,
+    // then the shortest name — which puts the place "Varrock" above both "Varrock Sewers" and the
+    // `varrock_teleport` area — and only then KIND_ORDER, to break a tie between equal names.
+    get searchResults() {
+      var query = this.searchQuery.trim().toLowerCase();
+      if (!query) {
+        return [];
+      }
+      var candidates = this.players.map(function (player) {
+        return {
+          key: 'p' + player.name,
+          kind: 'Player',
+          colour: 'var(--gold-300)',
+          name: player.name,
+          x: player.x,
+          y: player.y,
+          level: player.level,
+          player: player.name,
+        };
+      });
+      candidates = candidates.concat(this.searchEntries());
+      var matches = [];
+      for (var i = 0; i < candidates.length; i++) {
+        var at = candidates[i].name.toLowerCase().indexOf(query);
+        if (at === -1) {
+          continue;
+        }
+        matches.push({ leading: at === 0 ? 0 : 1, kind: KIND_ORDER.indexOf(candidates[i].kind), entry: candidates[i] });
+      }
+      matches.sort(function (a, b) {
+        if (a.leading !== b.leading) {
+          return a.leading - b.leading;
+        }
+        if (a.entry.name.length !== b.entry.name.length) {
+          return a.entry.name.length - b.entry.name.length;
+        }
+        if (a.kind !== b.kind) {
+          return a.kind - b.kind;
+        }
+        return a.entry.name.localeCompare(b.entry.name);
+      });
+      return matches.slice(0, SEARCH_LIMIT).map(function (match) {
+        return match.entry;
+      });
+    },
+
+    // Arrow keys in the search pane, wrapping at both ends. The result list scrolls, so the row
+    // the cursor lands on is pulled back into view — browsing by keyboard otherwise walks the
+    // highlight straight off the bottom of the list. Deferred a tick so the row being scrolled to
+    // is the one Alpine has just re-rendered, not the previous frame's.
+    moveSearchCursor: function (delta) {
+      var count = this.searchResults.length;
+      if (!count) {
+        return;
+      }
+      this.searchCursor = (this.searchCursor + delta + count) % count;
+      var self = this;
+      this.$nextTick(function () {
+        var list = document.getElementById('wm-search-results');
+        var row = list && list.querySelectorAll('[data-row]')[self.searchCursor];
+        if (row) {
+          row.scrollIntoView({ block: 'nearest' });
+        }
+      });
+    },
+
+    // Enter in the search pane — takes the highlighted row, falling back to the first one when the
+    // arrow keys haven't been used yet (the common case: type a name, press enter).
+    openSearchResult: function () {
+      var results = this.searchResults;
+      var result = results[this.searchCursor] || results[0];
+      if (!result) {
+        return;
+      }
+      this.goToResult(result);
+    },
+
+    // Jump to a search result. A player or a place is a single point, so the view just moves onto
+    // it at FOCUS_ZOOM or closer; an area is a shape, so its zoom is solved to frame the whole of
+    // it — jumping to "Wilderness" at street zoom would drop you inside it with nothing to see.
+    goToResult: function (result) {
+      if (result.player) {
+        this.selectPlayer(result.player);
+        return;
+      }
+      var zoom = result.kind === 'Area' ? this.zoomFitting(result.width, result.height) : Math.max(this.zoom, FOCUS_ZOOM);
+      this.focusOn(result.x, result.y, result.level, zoom);
+    },
+
+    // The zoom at which a `width` x `height` box of game tiles fits inside the viewport with
+    // FIT_MARGIN of room around it. Solved from `pxPerTile`'s own definition: since
+    // scale = BASE_PX_PER_TILE * 2^(zoom - BASE_ZOOM), zoom = BASE_ZOOM + log2(scale / BASE_PX_PER_TILE).
+    zoomFitting: function (width, height) {
+      var rect = this.viewport.getBoundingClientRect();
+      var fitX = rect.width / Math.max(width * FIT_MARGIN, 1);
+      var fitY = rect.height / Math.max(height * FIT_MARGIN, 1);
+      var scale = Math.min(fitX, fitY);
+      return clamp(BASE_ZOOM + Math.log(scale / BASE_PX_PER_TILE) / Math.LN2, MIN_ZOOM, MAX_ZOOM);
     },
 
     scheduleRender: function () {
@@ -446,13 +737,17 @@ window.worldMapApp = function () {
       var scale = pxPerTile(this.zoom);
       var worldCenterX = this.gameX * scale;
       var worldCenterY = -this.gameY * scale;
-      var offsetX = rect.width / 2 - worldCenterX;
-      var offsetY = rect.height / 2 - worldCenterY;
+      // Snapped once here, before anything reads them, so tiles, grid, labels and pins all share
+      // the same device-pixel-aligned origin rather than each rounding independently.
+      var offsetX = snapPx(rect.width / 2 - worldCenterX);
+      var offsetY = snapPx(rect.height / 2 - worldCenterY);
       this._offsetX = offsetX;
       this._offsetY = offsetY;
       this._scale = scale;
 
-      this.tileLayer.style.transform = 'translate(' + offsetX.toFixed(1) + 'px,' + offsetY.toFixed(1) + 'px)';
+      // Not `.toFixed(1)`: a tenth of a CSS pixel isn't a whole device pixel at any of the common
+      // scaling factors, so rounding to it would undo the snapping `offsetX`/`offsetY` just did.
+      this.tileLayer.style.transform = 'translate(' + offsetX + 'px,' + offsetY + 'px)';
 
       // Tiles are always fetched at the nearest native pyramid level and scaled by `zoomRatio` to
       // match the continuous `scale` — see the file header. Tile-index math below runs in native
@@ -461,6 +756,20 @@ window.worldMapApp = function () {
       var nativeZoom = nativeZoomFor(this.zoom);
       var nativeScale = pxPerTile(nativeZoom);
       var zoomRatio = scale / nativeScale;
+
+      // Nearest-neighbour (`.wm-tile`'s `image-rendering: pixelated`) is the right filter for
+      // *magnification*: it keeps pixel art crisp and cannot lose a source pixel. Minification is
+      // the opposite — point sampling discards whole source rows and columns, so at a zoomRatio of
+      // 0.71, 29% of rows are never sampled at all: measured against the Lumbridge tile, 29% of its
+      // one-pixel roads/walls/fences disappear outright and what's left moires. Below 1:1 the
+      // browser's own smooth filter averages neighbouring pixels instead, so a thin line survives
+      // as a dimmer line rather than vanishing. The two filters agree at exactly 1:1, so crossing
+      // the threshold isn't itself visible.
+      //
+      // Since `nativeZoomFor` prefers the sharper level, everything below BASE_ZOOM that isn't
+      // exactly on a level minifies, down to a ratio of 0.5 — which is what makes getting this
+      // filter right matter across most of the zoom-out range rather than just half of one band.
+      this.tileLayer.classList.toggle('wm-tiles-smooth', zoomRatio < 1);
 
       var pad = TILE_SIZE;
       var minTileX = Math.floor((-offsetX - pad) / zoomRatio / TILE_SIZE);
@@ -490,7 +799,11 @@ window.worldMapApp = function () {
       } else if (this.areaPolygonLayer) {
         this.areaPolygonLayer.innerHTML = '';
       }
-      this.renderAreaLabels();
+      if (this.showAreaLabels) {
+        this.renderAreaLabels(offsetX, offsetY, scale, rect);
+      } else if (this.areaLabelLayer) {
+        this.areaLabelLayer.innerHTML = '';
+      }
       this.renderPlayers();
       // Re-checked on every render (not just pointermove) so panning/zooming/changing level under
       // a stationary cursor, or toggling the polygon layer on, keeps the hover state honest.
@@ -666,10 +979,20 @@ window.worldMapApp = function () {
     // — see the file header.
     positionTile: function (img, tx, ty, rowPx, zoomRatio) {
       var renderSize = TILE_SIZE * zoomRatio;
-      img.style.left = tx * renderSize + 'px';
-      img.style.top = -(ty * renderSize + rowPx * zoomRatio) + 'px';
-      img.style.width = renderSize + 'px';
-      img.style.height = renderSize + 'px';
+      var shift = rowPx * zoomRatio;
+      // Both edges are snapped from their own expression rather than snapping the origin and
+      // adding a rounded size, because tile N's far edge and tile N+1's near edge are then the
+      // same expression and round to the same device pixel — so neighbours butt up exactly, with
+      // no sub-pixel gap (a hairline of background showing between tiles) and no overlap (a
+      // doubled row of pixels along the seam). `ty - 1` is the row below, Y being flipped.
+      var left = snapPx(tx * renderSize);
+      var right = snapPx((tx + 1) * renderSize);
+      var top = snapPx(-(ty * renderSize + shift));
+      var bottom = snapPx(-((ty - 1) * renderSize + shift));
+      img.style.left = left + 'px';
+      img.style.top = top + 'px';
+      img.style.width = right - left + 'px';
+      img.style.height = bottom - top + 'px';
     },
 
     // Drawn as plain positioned lines (using the exact same offsetX/offsetY/regionPx formula as
@@ -819,22 +1142,62 @@ window.worldMapApp = function () {
       }
     },
 
-    renderAreaLabels: function () {
-      var targetWidth = this.labelTargetWidth(64 * this._scale);
-      var nodes = this.areaLabelLayer.children;
-      for (var i = 0; i < nodes.length; i++) {
-        var el = nodes[i];
-        el.style.fontSize = this.labelFontSize(el.textContent, targetWidth, 600) + 'px';
+    // `window.VOID_MAP_LABELS` is injected server-side by [MapLabels.script] — the world map's own
+    // place names, straight out of the cache, each with the tile it's anchored to, the colour the
+    // client paints it (white for places, orange for kingdoms/regions) and a size class.
+    //
+    // Unlike region/area labels these aren't width-solved via `labelFontSize`: that fits text to a
+    // fixed target width, which works when every label is about as long as the next (region ids)
+    // but would blow "Bats" up to the same width as "Kingdom of Misthalin". These are sized in
+    // game tiles instead (LABEL_SIZE_TILES), so a label keeps the same size *relative to the map*
+    // at every zoom — the terrain and the name over it scale together.
+    renderAreaLabels: function (offsetX, offsetY, scale, rect) {
+      var labels = window.VOID_MAP_LABELS || [];
+      var level = this.level;
+      var html = '';
+      for (var i = 0; i < labels.length; i++) {
+        var label = labels[i];
+        if (label.level !== level) {
+          continue;
+        }
+        // Tiles -> pixels through the same `scale` the tile layer uses, and nothing else: that one
+        // multiplication is what keeps the label locked to the map rather than to the screen.
+        var fontPx = LABEL_SIZE_TILES[label.size] * scale;
+        // Y flipped, same reasoning as renderTiles: game Y increases north, screen Y downward.
+        var x = offsetX + label.x * scale;
+        var y = offsetY - label.y * scale;
+        // A big label reaches further past its anchor than a small one, so the cull margin is
+        // derived from the text's own size — a fixed margin would clip wide labels at high zoom,
+        // where a single line runs several hundred pixels either side of the tile it names.
+        var pad = Math.max(LABEL_CULL_PAD, fontPx * 6);
+        if (x < -pad || x > rect.width + pad || y < -pad || y > rect.height + pad) {
+          continue;
+        }
+        // The cache authors these names to wrap at a specific point ("Kingdom of" / "Misthalin"),
+        // so each line is its own block rather than left to reflow against the label's width.
+        var lines = '';
+        for (var l = 0; l < label.lines.length; l++) {
+          lines += '<span>' + escapeHtml(label.lines[l]) + '</span>';
+        }
+        html += '<div class="wm-area-label" style="left:' + x.toFixed(1) + 'px;top:' + y.toFixed(1) +
+          'px;font-size:' + fontPx.toFixed(2) + 'px;color:' + label.colour + '">' + lines + '</div>';
       }
-      this.positionLayer(this.areaLabelLayer);
+      this.areaLabelLayer.innerHTML = html;
     },
 
     renderPlayers: function () {
+      // Absent entirely on a non-[Site.FULL] build — WorldMap.kt only renders the pin layer,
+      // its display toggle and the console's player tabs while that (placeholder) content is on.
+      if (!this.playerLayer) {
+        return;
+      }
       var nodes = this.playerLayer.children;
       for (var i = 0; i < nodes.length; i++) {
         var el = nodes[i];
         var onLevel = parseInt(el.getAttribute('data-level'), 10) === this.level;
         el.style.display = onLevel ? '' : 'none';
+        // Ringed and tooltip-pinned while this player is the console's selected one.
+        el.classList.toggle('wm-pin-selected', el.getAttribute('data-name') === this.selectedPlayer);
       }
       this.positionLayer(this.playerLayer);
     },

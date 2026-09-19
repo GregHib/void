@@ -19,7 +19,7 @@ import java.net.http.HttpResponse
  */
 object Site {
 
-    const val FULL = true
+    const val FULL = false
     val version = latestRelease()
 
     @JvmStatic
@@ -36,13 +36,15 @@ object Site {
         buildDir.mkdirs()
         val gameData = GameData()
         File(buildDir, "index.html").writeText(Website.homePage())
+        // Linked from the header on every build (see [Website.pages]) — [WorldMap] keeps the pieces
+        // that need a server bridge (the player pins and the console's players tab) behind [FULL] itself.
+        File(buildDir, "world-map.html").writeText(WorldMap.page(MapLabels(cache)))
         if (FULL) {
             File(buildDir, "play.html").writeText(Play.page())
             File(buildDir, "worlds.html").writeText(Website.worldsPage())
             File(buildDir, "exchange.html").writeText(Exchange.page())
             File(buildDir, "hiscores.html").writeText(Hiscores.page(gameData))
             File(buildDir, "log.html").writeText(AdventurersLog.page(gameData))
-            File(buildDir, "world-map.html").writeText(WorldMap.page())
             val devDir = File(buildDir, "dev")
             devDir.mkdirs()
             File(devDir, "index.html").writeText(Dev.dashboardPage())

@@ -25,7 +25,9 @@ object Website {
         SitePage("exchange", "Exchange", "/exchange.html"),
         SitePage("log", "Log", "/log.html"),
         SitePage("worldmap", "World Map", "/world-map.html"),
-    ) else emptyList()
+    ) else listOf(
+        SitePage("worldmap", "World Map", "/world-map.html"),
+    )
 
     private fun FlowContent.eyebrow(text: String) {
         span {
