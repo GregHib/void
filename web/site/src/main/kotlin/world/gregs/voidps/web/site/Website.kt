@@ -24,7 +24,10 @@ object Website {
         SitePage("hiscores", "Hiscores", "/hiscores.html"),
         SitePage("exchange", "Exchange", "/exchange.html"),
         SitePage("log", "Log", "/log.html"),
-    ) else emptyList()
+        SitePage("worldmap", "World Map", "/world-map.html"),
+    ) else listOf(
+        SitePage("worldmap", "World Map", "/world-map.html"),
+    )
 
     private fun FlowContent.eyebrow(text: String) {
         span {
@@ -52,11 +55,6 @@ object Website {
                 style = "position:relative;max-width:var(--container-wide);margin:0 auto;width:100%;" +
                         "padding:var(--space-12) var(--space-8) var(--space-11);display:flex;" +
                         "flex-direction:column;gap:var(--space-7)"
-                div {
-                    style = "display:flex;gap:var(--space-4)"
-                    ui.badge("Revision 634", tone = BadgeTone.Gold)
-                    ui.badge("Open Source", tone = BadgeTone.Success)
-                }
                 h1 {
                     style = "margin:0;max-width:760px;font:var(--type-hero);color:var(--parch-50)"
                     +"RuneScape Revived"

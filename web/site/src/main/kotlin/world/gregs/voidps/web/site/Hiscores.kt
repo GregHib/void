@@ -28,48 +28,27 @@ object Hiscores {
         div {
             xData("hiscoresApp()")
 
-            section {
-                style = "border-bottom:1px solid var(--border-panel);background:var(--surface-inset)"
-                div {
-                    style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-9) var(--space-7) var(--space-7);" +
-                        "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap"
+            ui.pageHeader(
+                eyebrow = "Hiscores",
+                title = "Player hiscores",
+                description = "Ranks are recalculated every 20 minutes from all live worlds. Experience above " +
+                    "200,000,000 in a single skill is not tracked.",
+                backgroundImage = "images/bg/hiscores.jpg",
+                actions = {
                     div {
-                        style = "display:flex;flex-direction:column;gap:var(--space-4);min-width:0"
-                        span {
-                            style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                                "text-transform:uppercase;color:var(--gold-300)"
-                            +"Hiscores"
-                        }
-                        h1 {
-                            style = "margin:0;font:var(--type-title);color:var(--text-strong)"
-                            +"Player hiscores"
-                        }
-                        p {
-                            style = "margin:0;max-width:52ch;font:var(--type-body-sm);color:var(--text-muted);text-wrap:pretty"
-                            +("Ranks are recalculated every 20 minutes from all live worlds. Experience above " +
-                                "200,000,000 in a single skill is not tracked.")
-                        }
+                        style = "display:flex;align-items:flex-end;gap:var(--space-4)"
+                        ui.textInput(
+                            "hs-search", "Find a player", model = "query", placeholder = "Name",
+                            icon = Icons.SEARCH, onEnter = "search()",
+                        )
+                        ui.button("Search", size = ButtonSize.Medium, onClick = "search()")
                     }
-                    div {
-                        style = "display:flex;align-items:flex-end;gap:var(--space-5);flex-wrap:wrap"
-                        div {
-                            style = "display:flex;align-items:flex-end;gap:var(--space-4)"
-                            ui.textInput(
-                                "hs-search", "Find a player", model = "query", placeholder = "Name",
-                                icon = Icons.SEARCH, onEnter = "search()",
-                            )
-                            ui.button("Search", size = ButtonSize.Medium, onClick = "search()")
-                        }
-                        span {
-                            style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);padding-bottom:9px"
-                            attributes["x-text"] = "updatedLabel"
-                        }
-                    }
-                }
-            }
+                },
+            )
 
             div {
-                style = "max-width:var(--container-wide);width:100%;margin:0 auto;padding:0 var(--space-7)"
+                style = "max-width:var(--container-wide);width:100%;margin:0 auto;padding:0 var(--space-7);" +
+                    "display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap"
                 ui.tabs(
                     model = "view",
                     items = listOf(
@@ -81,6 +60,10 @@ object Hiscores {
                     filled = false,
                     onSelect = { id -> "navigate({ view: '$id' })" },
                 )
+                span {
+                    style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);white-space:nowrap"
+                    attributes["x-text"] = "updatedLabel"
+                }
             }
 
             main {

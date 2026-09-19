@@ -9,7 +9,9 @@ application {
 }
 
 dependencies {
+    implementation(project(":buffer"))
     implementation(project(":cache"))
+    implementation(project(":types"))
     implementation(project(":engine"))
     implementation(libs.kotlinx.html)
     implementation(libs.markdown)
