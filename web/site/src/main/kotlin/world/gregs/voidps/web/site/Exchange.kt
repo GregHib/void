@@ -23,6 +23,18 @@ object Exchange {
             xData("exchangeApp()")
             attributes["x-init"] = "init()"
 
+            ui.pageHeader(
+                eyebrow = "Market overview",
+                title = "Grand Exchange",
+                description = "Buy and sell prices from every Void world, sampled every five minutes. " +
+                    "Prices update live on this page.",
+                backgroundImage = "images/bg/ge.jpg",
+                actions = {
+                    ui.textInput("ge-search", "Find an item", model = "q", placeholder = "Search tracked items", icon = Icons.SEARCH, onEnter = "goSearch()")
+                    ui.button("Search", size = ButtonSize.Medium, onClick = "goSearch()")
+                },
+            )
+
             homeView()
             searchView()
             itemView()
@@ -104,36 +116,6 @@ object Exchange {
         div {
             xShow("page === 'home'")
 
-            section {
-                style = "border-bottom:1px solid var(--border-panel);background:var(--surface-inset)"
-                div {
-                    style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-11) var(--space-7) var(--space-9);" +
-                        "display:flex;flex-direction:column;align-items:center;gap:var(--space-6);text-align:center"
-                    span {
-                        style = "display:block;width:100%;text-align:center;font:var(--type-label);" +
-                            "letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--gold-300)"
-                        +"Market overview"
-                    }
-                    h1 {
-                        style = "margin:0;font:var(--type-hero);color:var(--text-strong);text-wrap:pretty"
-                        +"Grand Exchange"
-                    }
-                    p {
-                        style = "margin:0;max-width:56ch;font:var(--type-body);color:var(--text-muted);text-wrap:pretty"
-                        +("Buy and sell prices from every Void world, sampled every five minutes. " +
-                            "Prices update live on this page.")
-                    }
-                    div {
-                        style = "display:flex;gap:var(--space-5);align-items:flex-end;width:100%;max-width:560px;margin-top:var(--space-2)"
-                        div {
-                            style = "flex:1;min-width:0"
-                            ui.textInput("ge-search", "Search items", model = "q", placeholder = "Search tracked items", icon = Icons.SEARCH, onEnter = "goSearch()")
-                        }
-                        ui.button("Search", size = ButtonSize.Medium, glow = true, onClick = "goSearch()")
-                    }
-                }
-            }
-
             div {
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8) var(--space-7) var(--space-12);" +
                     "display:flex;flex-direction:column;gap:var(--space-7)"
@@ -184,29 +166,30 @@ object Exchange {
                 "flex-direction:column;gap:var(--space-6)"
 
             div {
-                h1 {
-                    style = "margin:0;font:var(--type-title);color:var(--text-strong)"
-                    +"Find an item"
-                }
-                p {
-                    style = "margin:var(--space-4) 0 0;font:var(--type-body-sm);color:var(--text-muted)"
-                    attributes["x-text"] = "results.length + ' of ' + trackedItems + ' tracked items'"
-                }
-            }
-
-            div {
-                style = "width:320px;max-width:100%"
-                ui.textInput("ge-search-2", "Item name", model = "q", placeholder = "Item name", icon = Icons.SEARCH)
-            }
-
-            div {
-                style = "display:flex;flex-wrap:wrap;gap:var(--space-3);padding:var(--space-3)"
-                for (c in categories) {
-                    ui.filterChip(active = "cat === '$c'", onClickExpr = "cat = '$c'", label = c)
+                style = "display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap"
+                ui.button("← Overview", variant = ButtonVariant.Secondary, size = ButtonSize.Small, onClick = "goHome()")
+                div {
+                    style = "display:flex;flex-wrap:wrap;gap:var(--space-3);padding:var(--space-3)"
+                    for (c in categories) {
+                        ui.filterChip(active = "cat === '$c'", onClickExpr = "cat = '$c'", label = c)
+                    }
                 }
             }
 
-            ui.panel(title = "Results", action = { sortSelect() }, padded = false) {
+            ui.panel(
+                title = "Results",
+                action = {
+                    div {
+                        style = "display:flex;align-items:center;gap:var(--space-5)"
+                        span {
+                            style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)"
+                            attributes["x-text"] = "results.length + ' of ' + trackedItems + ' tracked items'"
+                        }
+                        sortSelect()
+                    }
+                },
+                padded = false,
+            ) {
                 tableScroll(
                     Column("", "48px"), Column("Item", "minmax(0,1fr)"),
                     Column("Buy price", "140px", "right"), Column("24h", "120px", "right"),
@@ -281,6 +264,7 @@ object Exchange {
                                 attributes["x-text"] = "item.cat"
                             }
                             span {
+                                xShow("item.members")
                                 style = "display:inline-flex;align-items:center;gap:var(--space-3);padding:0 10px;height:20px;" +
                                     "border:1px solid var(--border-strong);border-radius:var(--radius-pill);" +
                                     "font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);" +
@@ -288,7 +272,6 @@ object Exchange {
                                 attributes["x-bind:style"] = "{ background: item.memberBg, color: item.memberColor, borderColor: item.memberBorder }"
                                 attributes["x-text"] = "item.memberLabel"
                             }
-                            ui.badge("Trading", tone = BadgeTone.Info, dot = true)
                         }
                         p {
                             style = "margin:0;font:var(--type-body-sm);font-style:italic;color:var(--text-faint)"
@@ -342,7 +325,11 @@ object Exchange {
                 unsafe {
                     raw(
                         """
-                        <div style="padding:var(--space-6) var(--space-7) var(--space-4)" @mousemove="onChartMove(${'$'}event)" @mouseleave="onChartLeave()">
+                        <div x-show="rawHistory.length === 0" style="padding:var(--space-11) var(--space-6);text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--space-3)">
+                          <span style="font:var(--type-body);color:var(--text-muted)">No price history yet</span>
+                          <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint)">This item hasn't been traded on the Grand Exchange, so there's no chart data to show.</span>
+                        </div>
+                        <div x-show="rawHistory.length > 0" style="padding:var(--space-6) var(--space-7) var(--space-4)" @mousemove="onChartMove(${'$'}event)" @mouseleave="onChartLeave()">
                           <div style="position:relative">
                             <svg viewBox="0 0 920 300" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;overflow:visible">
                               <g x-html="chartData.gridSvg"></g>

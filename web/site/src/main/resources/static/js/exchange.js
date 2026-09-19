@@ -200,6 +200,7 @@
       // through home/search/item states instead of leaving the page on the first back press.
       syncFromHash: function () {
         var h = window.location.hash.replace(/^#/, "");
+        var wasSearch = this.page === "search";
         if (h.indexOf("item/") === 0) {
           this.id = decodeURIComponent(h.slice(5));
           this.page = "item";
@@ -210,6 +211,7 @@
         } else {
           this.page = "home";
         }
+        if (wasSearch && this.page !== "search") this.q = "";
         this.hover = null;
       },
 
@@ -233,11 +235,18 @@
       onChartLeave: function () { this.hover = null; },
 
       open: function (id) {
+        var wasSearch = this.page === "search";
         this.id = id; this.page = "item"; this.hover = null; window.scrollTo(0, 0);
+        if (wasSearch) this.q = "";
         this.enterItem(id);
         history.pushState(null, "", "#item/" + id);
       },
-      goHome: function () { this.page = "home"; history.pushState(null, "", "#"); },
+      goHome: function () {
+        var wasSearch = this.page === "search";
+        this.page = "home";
+        if (wasSearch) this.q = "";
+        history.pushState(null, "", "#");
+      },
       goSearch: function () { this.page = "search"; this.loadSearch(); history.pushState(null, "", "#search"); },
 
       get itemRaw() { return this.items[this.id]; },

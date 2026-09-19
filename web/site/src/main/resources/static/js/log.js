@@ -134,7 +134,7 @@
     return {
       name: s.name, max: s.maxLevel, level: s.level, xp: s.xp,
       xpLabel: fmt(s.xp), rankLabel: s.rank ? "rank " + fmt(s.rank) : "unranked",
-      icon: s.iconUrl,
+      icon: "images/skills/" + s.name.toLowerCase() + ".png",
     };
   }
 

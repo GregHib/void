@@ -368,7 +368,7 @@
             joined: profile.joinedAt ? "joined " + formatDate(profile.joinedAt) : "",
           };
           self.profileSkills = skills.items.map(function (s) {
-            return { name: s.name, icon: s.iconUrl, level: s.level, max: s.maxLevel, percent: s.progressPercent };
+            return { name: s.name, icon: skillIcon(s.name.toLowerCase()), level: s.level, max: s.maxLevel, percent: s.progressPercent };
           });
           self.profileBosses = bosses.items.map(function (b) {
             return {
