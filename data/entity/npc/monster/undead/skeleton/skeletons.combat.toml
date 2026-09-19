@@ -60,8 +60,11 @@ target_hit = { offense = "slash", max = 40 }
 [skeleton_catacombs]
 defend_anim = "skeleton_catacombs_defend"
 death_anim = "skeleton_catacombs_death"
+defend_sound = "skeleton_defend"
+death_sound = "skeleton_death"
 
 [skeleton_catacombs.melee]
 range = 1
 anim = "skeleton_catacombs_attack"
+target_sound = "skeleton_attack_unarmed"
 target_hit = { offense = "crush", max = 30 }
