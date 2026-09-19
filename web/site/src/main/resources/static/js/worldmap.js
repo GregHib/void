@@ -6,6 +6,13 @@
 // — see the `pxPerTile` comment). Zoom halves/doubles that scale per level either side, same as a
 // standard XYZ tile pyramid, so tile index = floor(worldPx / 256) at every zoom.
 //
+// `zoom` itself is continuous (see ZOOM_STEP), but the tile pyramid only has images at integer
+// levels — there's no `8.4/x/y.png`. So tiles are always fetched at `nativeZoom`, the nearest
+// integer to the current zoom, and then scaled up/down via `zoomRatio` to match the in-between
+// continuous scale — the same "snap the tile set, scale it smoothly in between" trick standard
+// slippy maps use for fractional zoom. Everything else (panning, offsets, grid, labels) uses the
+// continuous scale directly and doesn't need to know about the native/fractional distinction.
+//
 // Y is inverted between game space and screen space: game Y increases north, which should read
 // as "up" on screen, but CSS/canvas pixel Y increases downward. The tile row index in the
 // filename (`ty`) increases together with game Y, so fetching a tile still just floors game Y
@@ -25,13 +32,27 @@ window.worldMapApp = function () {
   var BASE_PX_PER_TILE = 4;
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 11;
+  var ZOOM_STEP = 0.1;
   var TILE_BASE = 'map-tiles';
   var LOAD_STAGGER_MS = 6;
   var LOAD_STAGGER_MAX = 10;
   var LABEL_CAP_ZOOM = 10;
+  // Must match `.wm-tile`'s `transition: opacity var(--dur-fast) ...` in world-map.css (currently
+  // 130ms). A tile's `load` event fires the instant its bytes are decoded — well before its
+  // opacity has actually finished animating from 0 to 1 — so `flushStaleTiles` can't treat "loaded"
+  // as "safe to drop what's behind it" without racing the fade. `transitionend` looked like the
+  // fix, but is unreliable here: a tile that resolves fast enough (cached/local) can have its
+  // opacity flip 0->1 before the browser ever paints the 0 frame, which skips the transition (and
+  // the event) entirely rather than shortening it. A fixed wait matching the CSS duration covers
+  // both cases uniformly instead of depending on paint timing.
+  var TILE_FADE_MS = 130;
 
   function pxPerTile(zoom) {
     return BASE_PX_PER_TILE * Math.pow(2, zoom - BASE_ZOOM);
+  }
+
+  function nativeZoomFor(zoom) {
+    return clamp(Math.round(zoom), MIN_ZOOM, MAX_ZOOM);
   }
 
   // See the file header: the deployed tile pyramid's row index runs one zoom-8 tile (64 game
@@ -56,12 +77,15 @@ window.worldMapApp = function () {
     showRegionGrid: true,
     showRegionLabels: false,
     showPlayerPins: true,
+    displayPanelOpen: true,
+    tilesMissing: false,
     ptab: 'teleport',
     tpX: '3200',
     tpY: '3200',
     tpZ: '0',
     hoverX: 3200,
     hoverY: 3200,
+    hoverAreaNames: [],
     levelLabels: ['SURFACE', 'FLOOR 1', 'FLOOR 2', 'FLOOR 3'],
 
     tileEls: {},
@@ -70,6 +94,21 @@ window.worldMapApp = function () {
     _offsetX: 0,
     _offsetY: 0,
     _scale: BASE_PX_PER_TILE,
+    // Tiles no longer in the wanted set (e.g. the previous native zoom's, after a zoom crossing)
+    // aren't removed until their replacements finish loading — otherwise the already-loaded old
+    // tile disappears immediately while the new one is still fading in from opacity 0, flashing
+    // empty background over content that was already there. `_pendingTileLoads` is a running
+    // count across every in-flight `<img>`, so a stale tile only gets flushed once *everything*
+    // currently loading has settled, not just whatever a single render() pass happened to request.
+    // Entries are `{key, el}` (rather than bare elements) so `reviveStaleTile` can find one by key
+    // and reclaim it if the zoom crosses back before it's flushed — see renderTiles.
+    _staleTileEls: [],
+    _pendingTileLoads: 0,
+    // Drives `tilesMissing` (the "run MapZoomImageGenerator" empty state): every attempted tile
+    // request counts here, and the moment one ever succeeds `tilesMissing` is latched false for
+    // good — see `onTileSettled`. Deliberately never resets on pan/zoom, so panning past the one
+    // generated corner of an otherwise-empty tile set doesn't make the message flicker back.
+    _tileSuccessCount: 0,
 
     // Named `boot`, not `init` — Alpine auto-calls a data object's own `init()` method with no
     // arguments as a component lifecycle hook, which would collide with (and crash before) this
@@ -115,7 +154,7 @@ window.worldMapApp = function () {
       var x = parseInt(params.get('x'), 10);
       var y = parseInt(params.get('y'), 10);
       var z = parseInt(params.get('z'), 10);
-      var zoom = parseInt(params.get('zoom'), 10);
+      var zoom = parseFloat(params.get('zoom'));
       if (!isNaN(x)) {
         this.gameX = x;
       }
@@ -135,7 +174,7 @@ window.worldMapApp = function () {
       params.set('x', Math.round(this.gameX));
       params.set('y', Math.round(this.gameY));
       params.set('z', this.level);
-      params.set('zoom', this.zoom);
+      params.set('zoom', this.zoom.toFixed(2));
       var url = window.location.pathname + '?' + params.toString();
       window.history.replaceState(null, '', url);
     },
@@ -148,35 +187,124 @@ window.worldMapApp = function () {
       }, 350);
     },
 
+    // Single-finger drag pans (pointer events unify mouse/touch/pen, and `.wm-viewport`'s
+    // `touch-action:none` stops the browser's own scroll/zoom from competing with that drag).
+    // Two fingers pinch-zoom instead: `pointers` tracks every currently-down touch by id, and the
+    // moment a second one lands, panning is handed off to `updatePinch`, which re-derives zoom and
+    // pan together from the two fingers' current midpoint/spread every move — see its comment.
     attachInteraction: function () {
       var self = this;
       var vp = this.viewport;
       var dragging = false;
       var lastX = 0;
       var lastY = 0;
+      var pointers = {};
+      var pinching = false;
+      var pinchStartDist = 0;
+      var pinchStartZoom = 0;
+      var pinchAnchorGameX = 0;
+      var pinchAnchorGameY = 0;
+
+      function pointerCount() {
+        return Object.keys(pointers).length;
+      }
+
+      function twoPointers() {
+        var ids = Object.keys(pointers);
+        return [pointers[ids[0]], pointers[ids[1]]];
+      }
+
+      function distance(a, b) {
+        return Math.hypot(b.x - a.x, b.y - a.y);
+      }
+
+      // Re-anchors the pinch on whichever two fingers are down right now — called both when a
+      // pinch starts and whenever the finger count changes but stays at 2 (e.g. a third finger
+      // touches down and lifts again) — so a stale anchor from a different finger pair never bends
+      // the map. `pinchAnchorGameX/Y` is the game coordinate under the fingers' midpoint *at this
+      // instant*; `updatePinch` then keeps that same game point under the moving midpoint.
+      function startPinch() {
+        var pts = twoPointers();
+        pinchStartDist = distance(pts[0], pts[1]);
+        pinchStartZoom = self.zoom;
+        var rect = vp.getBoundingClientRect();
+        var scale = pxPerTile(self.zoom);
+        var midX = (pts[0].x + pts[1].x) / 2;
+        var midY = (pts[0].y + pts[1].y) / 2;
+        var localX = midX - rect.left - rect.width / 2;
+        var localY = midY - rect.top - rect.height / 2;
+        pinchAnchorGameX = self.gameX + localX / scale;
+        pinchAnchorGameY = self.gameY - localY / scale;
+      }
+
+      // Mirrors the wheel handler's "keep the point under the cursor stationary" trick, but with
+      // the pinch midpoint standing in for the cursor and re-solved from the live finger positions
+      // every move (rather than the wheel's per-event cursor position), so panning falls naturally
+      // out of the two fingers translating together instead of needing separate drag handling.
+      function updatePinch() {
+        var pts = twoPointers();
+        var dist = distance(pts[0], pts[1]);
+        if (pinchStartDist < 1) {
+          return;
+        }
+        var nextZoom = clamp(pinchStartZoom + Math.log2(dist / pinchStartDist), MIN_ZOOM, MAX_ZOOM);
+        var rect = vp.getBoundingClientRect();
+        var midX = (pts[0].x + pts[1].x) / 2;
+        var midY = (pts[0].y + pts[1].y) / 2;
+        var localX = midX - rect.left - rect.width / 2;
+        var localY = midY - rect.top - rect.height / 2;
+        self.zoom = nextZoom;
+        var scaleAfter = pxPerTile(self.zoom);
+        self.gameX = pinchAnchorGameX - localX / scaleAfter;
+        self.gameY = pinchAnchorGameY + localY / scaleAfter;
+        self.scheduleRender();
+        self.scheduleUrlWrite();
+      }
 
       vp.addEventListener('pointerdown', function (e) {
         if (e.button !== 0) {
           return;
         }
-        dragging = true;
-        lastX = e.clientX;
-        lastY = e.clientY;
+        pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
         try {
           vp.setPointerCapture(e.pointerId);
         } catch (err) {
           // Ignore — dragging still works without capture, just less robust off-element.
         }
+
+        if (pointerCount() >= 2) {
+          dragging = false;
+          vp.classList.remove('wm-dragging');
+          pinching = true;
+          startPinch();
+          return;
+        }
+        dragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
         vp.classList.add('wm-dragging');
       });
 
       vp.addEventListener('pointermove', function (e) {
+        if (pointers[e.pointerId]) {
+          pointers[e.pointerId].x = e.clientX;
+          pointers[e.pointerId].y = e.clientY;
+        }
+
+        if (pinching) {
+          if (pointerCount() >= 2) {
+            updatePinch();
+          }
+          return;
+        }
+
         var rect = vp.getBoundingClientRect();
         var scale = pxPerTile(self.zoom);
         var localX = e.clientX - rect.left - rect.width / 2;
         var localY = e.clientY - rect.top - rect.height / 2;
         self.hoverX = Math.round(self.gameX + localX / scale);
         self.hoverY = Math.round(self.gameY - localY / scale);
+        self.updateHoverAreas();
 
         if (!dragging) {
           return;
@@ -192,16 +320,39 @@ window.worldMapApp = function () {
       });
 
       function endDrag(e) {
-        if (!dragging) {
-          return;
-        }
-        dragging = false;
-        vp.classList.remove('wm-dragging');
+        delete pointers[e.pointerId];
         try {
           vp.releasePointerCapture(e.pointerId);
         } catch (err) {
           // Already released (e.g. pointercancel) — nothing to do.
         }
+
+        if (pinching) {
+          if (pointerCount() >= 2) {
+            // Still 2+ fingers down (one of 3+ lifted) — re-anchor on whichever pair remains
+            // instead of ending the pinch, so the map doesn't jump.
+            startPinch();
+            return;
+          }
+          pinching = false;
+          if (pointerCount() === 1) {
+            // One finger remains — resume a plain drag from here rather than requiring a fresh
+            // pointerdown, so lifting the second finger doesn't stop the pan dead.
+            var ids = Object.keys(pointers);
+            var p = pointers[ids[0]];
+            dragging = true;
+            lastX = p.x;
+            lastY = p.y;
+            vp.classList.add('wm-dragging');
+          }
+          return;
+        }
+
+        if (!dragging) {
+          return;
+        }
+        dragging = false;
+        vp.classList.remove('wm-dragging');
       }
       vp.addEventListener('pointerup', endDrag);
       vp.addEventListener('pointercancel', endDrag);
@@ -211,8 +362,8 @@ window.worldMapApp = function () {
         'wheel',
         function (e) {
           e.preventDefault();
-          var nextZoom = clamp(self.zoom + (e.deltaY > 0 ? -1 : 1), MIN_ZOOM, MAX_ZOOM);
-          if (nextZoom === self.zoom) {
+          var nextZoom = clamp(self.zoom + (e.deltaY > 0 ? -ZOOM_STEP : ZOOM_STEP), MIN_ZOOM, MAX_ZOOM);
+          if (Math.abs(nextZoom - self.zoom) < 1e-9) {
             return;
           }
           var rect = vp.getBoundingClientRect();
@@ -260,6 +411,21 @@ window.worldMapApp = function () {
       this.scheduleUrlWrite();
     },
 
+    // "Move here" from a [WorldMap.playerPin]'s right-click menu — jumps the map view to that
+    // player's position, same as typing their coordinates into the teleport console.
+    moveToPlayer: function (x, y, level) {
+      this.tpX = String(x);
+      this.tpY = String(y);
+      this.tpZ = String(level);
+      this.teleportTo();
+    },
+
+    // "Kick" from a [WorldMap.playerPin]'s right-click menu — placeholder until the server bridge
+    // is wired up, same as the Players/Search console tabs.
+    kickPlayer: function (name) {
+      console.log('Kick requested for ' + name + ' (server bridge not wired up yet)');
+    },
+
     scheduleRender: function () {
       var self = this;
       if (this._raf) {
@@ -288,18 +454,26 @@ window.worldMapApp = function () {
 
       this.tileLayer.style.transform = 'translate(' + offsetX.toFixed(1) + 'px,' + offsetY.toFixed(1) + 'px)';
 
+      // Tiles are always fetched at the nearest native pyramid level and scaled by `zoomRatio` to
+      // match the continuous `scale` — see the file header. Tile-index math below runs in native
+      // worldPx (dividing continuous worldPx by `zoomRatio` first); gameYAtTop/Bottom don't need
+      // that conversion since they solve for an actual game coordinate, which is native-agnostic.
+      var nativeZoom = nativeZoomFor(this.zoom);
+      var nativeScale = pxPerTile(nativeZoom);
+      var zoomRatio = scale / nativeScale;
+
       var pad = TILE_SIZE;
-      var minTileX = Math.floor((-offsetX - pad) / TILE_SIZE);
-      var maxTileX = Math.floor((-offsetX + rect.width + pad) / TILE_SIZE);
+      var minTileX = Math.floor((-offsetX - pad) / zoomRatio / TILE_SIZE);
+      var maxTileX = Math.floor((-offsetX + rect.width + pad) / zoomRatio / TILE_SIZE);
       // Y is flipped (see the file header): the row visible at the TOP of the viewport (screen
       // y = -pad) is the highest tile index, and the row at the BOTTOM is the lowest. Converting
       // through gameY (rather than reusing the X-axis's plain pixel-division formula) is what
       // picks up the row-index correction from `tileRowIndex`.
       var gameYAtTop = (offsetY + pad) / scale;
       var gameYAtBottom = (offsetY - rect.height - pad) / scale;
-      var maxTileY = tileRowIndex(gameYAtTop, scale);
-      var minTileY = tileRowIndex(gameYAtBottom, scale);
-      this.renderTiles(minTileX, maxTileX, minTileY, maxTileY, scale);
+      var maxTileY = tileRowIndex(gameYAtTop, nativeScale);
+      var minTileY = tileRowIndex(gameYAtBottom, nativeScale);
+      this.renderTiles(minTileX, maxTileX, minTileY, maxTileY, nativeZoom, nativeScale, zoomRatio);
 
       if (this.showRegionGrid) {
         this.renderGrid(offsetX, offsetY, scale, rect);
@@ -311,8 +485,16 @@ window.worldMapApp = function () {
       } else if (this.regionLabelLayer) {
         this.regionLabelLayer.innerHTML = '';
       }
+      if (this.showAreaPolygons) {
+        this.renderAreaPolygons(offsetX, offsetY, scale);
+      } else if (this.areaPolygonLayer) {
+        this.areaPolygonLayer.innerHTML = '';
+      }
       this.renderAreaLabels();
       this.renderPlayers();
+      // Re-checked on every render (not just pointermove) so panning/zooming/changing level under
+      // a stationary cursor, or toggling the polygon layer on, keeps the hover state honest.
+      this.updateHoverAreas();
     },
 
     // Tiles are keyed by `level/zoom/x/y` so switching either immediately drops every tile that
@@ -320,11 +502,10 @@ window.worldMapApp = function () {
     // distance from the viewport centre (rather than raster/row order) with a small staggered
     // fade-in delay makes the reveal expand outward from the middle of the screen instead of
     // popping in row by row.
-    renderTiles: function (minTileX, maxTileX, minTileY, maxTileY, scale) {
+    renderTiles: function (minTileX, maxTileX, minTileY, maxTileY, zoom, nativeScale, zoomRatio) {
       var layer = this.tileLayer;
-      var zoom = this.zoom;
       var level = this.level;
-      var rowPx = 64 * scale;
+      var rowPx = 64 * nativeScale;
       var centerX = (minTileX + maxTileX) / 2;
       var centerY = (minTileY + maxTileY) / 2;
       var wanted = {};
@@ -334,7 +515,23 @@ window.worldMapApp = function () {
         for (var ty = minTileY; ty <= maxTileY; ty++) {
           var key = level + '/' + zoom + '/' + tx + '/' + ty;
           wanted[key] = true;
-          if (this.tileEls[key]) {
+          var existing = this.tileEls[key];
+          if (existing) {
+            this.positionTile(existing, tx, ty, rowPx, zoomRatio);
+            continue;
+          }
+          // A tile that was wanted a render or two ago (e.g. hovering right on a .5 zoom boundary
+          // flips `nativeZoom` back and forth) may still be sitting in `_staleTileEls`, already
+          // loaded and fully opaque, waiting on `flushStaleTiles` to confirm nothing needs it
+          // anymore. Reclaiming it here — instead of falling through to `pending` and creating a
+          // brand-new `<img>` for the same URL — keeps it at opacity 1 the whole time, rather than
+          // restarting it from opacity 0 and having it fade in on top of itself (or, worse, having
+          // `flushStaleTiles` remove the old one before the new duplicate finishes loading, which
+          // is what caused the flash).
+          var revived = this.reviveStaleTile(key);
+          if (revived) {
+            this.positionTile(revived, tx, ty, rowPx, zoomRatio);
+            this.tileEls[key] = revived;
             continue;
           }
           pending.push({ key: key, x: tx, y: ty, dist: (tx - centerX) * (tx - centerX) + (ty - centerY) * (ty - centerY) });
@@ -344,6 +541,7 @@ window.worldMapApp = function () {
         return a.dist - b.dist;
       });
 
+      var self = this;
       for (var i = 0; i < pending.length; i++) {
         var tile = pending[i];
         var img = document.createElement('img');
@@ -351,25 +549,127 @@ window.worldMapApp = function () {
         img.alt = '';
         img.draggable = false;
         img.style.position = 'absolute';
-        img.style.left = tile.x * TILE_SIZE + 'px';
-        img.style.top = -(tile.y * TILE_SIZE + rowPx) + 'px';
-        img.style.width = TILE_SIZE + 'px';
-        img.style.height = TILE_SIZE + 'px';
+        this.positionTile(img, tile.x, tile.y, rowPx, zoomRatio);
         img.style.opacity = '0';
-        img.style.transitionDelay = Math.min(i, LOAD_STAGGER_MAX) * LOAD_STAGGER_MS + 'ms';
-        img.addEventListener('load', onTileLoad);
-        img.addEventListener('error', onTileError);
+        var delayMs = Math.min(i, LOAD_STAGGER_MAX) * LOAD_STAGGER_MS;
+        img.style.transitionDelay = delayMs + 'ms';
+        this._pendingTileLoads++;
+        img.addEventListener('load', function () {
+          onTileLoad.call(this);
+          self._tileSuccessCount++;
+          self.tilesMissing = false;
+          // Bytes decoded doesn't mean the fade has visually finished — see `TILE_FADE_MS`. Only
+          // once this timer's up is it actually safe to let `flushStaleTiles` drop whatever this
+          // tile is covering, so the old tile stays put for the whole crossfade instead of
+          // vanishing out from under a still-transparent replacement.
+          setTimeout(function () {
+            self._pendingTileLoads--;
+            self.flushStaleTiles();
+          }, delayMs + TILE_FADE_MS);
+        });
+        img.addEventListener('error', function () {
+          onTileError.call(this);
+          self._pendingTileLoads--;
+          self.checkTilesMissing();
+          self.flushStaleTiles();
+        });
         img.src = TILE_BASE + '/' + tile.key + '.png';
         layer.appendChild(img);
         this.tileEls[tile.key] = img;
       }
 
+      // No-longer-wanted tiles (previous zoom/level's) are handed to `_staleTileEls` instead of
+      // being removed here — see the field comment. They stay visible, underneath whatever just
+      // got appended above, until `flushStaleTiles` decides it's safe to drop them, or
+      // `reviveStaleTile` reclaims one that turns out to be wanted again after all. `nativeZoom`
+      // is parsed back out of the key (its own pyramid level, not necessarily this render's) so
+      // `repositionStaleTiles` can keep scaling it correctly for as long as it lingers.
       for (var key in this.tileEls) {
         if (!wanted[key]) {
-          this.tileEls[key].remove();
+          var parts = key.split('/');
+          this._staleTileEls.push({
+            key: key,
+            el: this.tileEls[key],
+            nativeZoom: parseInt(parts[1], 10),
+            tx: parseInt(parts[2], 10),
+            ty: parseInt(parts[3], 10),
+          });
           delete this.tileEls[key];
         }
       }
+      // A tile doesn't stop needing repositioning just because it's stale — see
+      // `repositionStaleTiles` for why leaving it at its last on-screen size/position is itself
+      // the flash the .5-zoom bug reports were describing.
+      this.repositionStaleTiles();
+      this.flushStaleTiles();
+    },
+
+    // The tile layer's own `translate(offsetX, offsetY)` is recomputed every render from the live
+    // continuous `scale` (see `render`), but a stale tile's `left`/`top`/`width`/`height` were only
+    // ever set once, back when it was still wanted, using whatever `scale` was current *then*.
+    // Continuous zoom keeps moving for as long as the gesture continues, so by the very next frame
+    // that frozen size/position no longer matches the live translate it's sitting inside — a real,
+    // immediate geometric misalignment, not a loading race. That mismatch *is* the flash: it fires
+    // on every crossing of a `.5` zoom boundary, at any zoom speed, because nativeZoom flipping is
+    // what pushes a tile into `_staleTileEls` in the first place. Recomputing every stale tile's
+    // position each render — same formula as a live tile, just using its own remembered native
+    // zoom instead of this render's — keeps it correctly aligned for however long it lingers.
+    repositionStaleTiles: function () {
+      var scale = this._scale;
+      for (var i = 0; i < this._staleTileEls.length; i++) {
+        var entry = this._staleTileEls[i];
+        var nativeScale = pxPerTile(entry.nativeZoom);
+        var rowPx = 64 * nativeScale;
+        this.positionTile(entry.el, entry.tx, entry.ty, rowPx, scale / nativeScale);
+      }
+    },
+
+    // Pulls a still-loaded tile back out of `_staleTileEls` for `key`, if one's there — see the
+    // call site in renderTiles. Returns null when there isn't one, so the caller falls back to
+    // requesting it fresh.
+    reviveStaleTile: function (key) {
+      for (var i = 0; i < this._staleTileEls.length; i++) {
+        if (this._staleTileEls[i].key === key) {
+          var el = this._staleTileEls[i].el;
+          this._staleTileEls.splice(i, 1);
+          return el;
+        }
+      }
+      return null;
+    },
+
+    // Only removes stale tiles once nothing is still loading — if new tiles are still fading in,
+    // dropping the old ones now would flash empty background over content that was already there.
+    flushStaleTiles: function () {
+      if (this._pendingTileLoads > 0 || this._staleTileEls.length === 0) {
+        return;
+      }
+      for (var i = 0; i < this._staleTileEls.length; i++) {
+        this._staleTileEls[i].el.remove();
+      }
+      this._staleTileEls = [];
+    },
+
+    // Shows the "run MapZoomImageGenerator" empty state once every tile requested so far has come
+    // back a 404 and none are still in flight — i.e. `map-tiles/` looks entirely ungenerated rather
+    // than just missing the one tile under an ocean. Only ever flips `tilesMissing` on; a load
+    // flips it back off directly (see the `load` listener above) the moment any tile succeeds.
+    checkTilesMissing: function () {
+      if (this._tileSuccessCount > 0 || this._pendingTileLoads > 0) {
+        return;
+      }
+      this.tilesMissing = true;
+    },
+
+    // Tiles are always fetched at native resolution and re-scaled by `zoomRatio` (current
+    // continuous scale / native tile scale) to match the continuous zoom in between native levels
+    // — see the file header.
+    positionTile: function (img, tx, ty, rowPx, zoomRatio) {
+      var renderSize = TILE_SIZE * zoomRatio;
+      img.style.left = tx * renderSize + 'px';
+      img.style.top = -(ty * renderSize + rowPx * zoomRatio) + 'px';
+      img.style.width = renderSize + 'px';
+      img.style.height = renderSize + 'px';
     },
 
     // Drawn as plain positioned lines (using the exact same offsetX/offsetY/regionPx formula as
@@ -481,9 +781,42 @@ window.worldMapApp = function () {
           var y = offsetY - area.y[p] * scale;
           points += x.toFixed(1) + ',' + y.toFixed(1) + ' ';
         }
-        html += '<polygon class="wm-area-polygon" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
+        html += '<polygon class="wm-area-polygon" data-i="' + i + '" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
       }
       this.areaPolygonLayer.innerHTML = html ? '<svg style="position:absolute;overflow:visible">' + html + '</svg>' : '';
+    },
+
+    // Which `window.VOID_AREAS` entries (see [renderAreaPolygons]) the cursor's current game tile
+    // (`hoverX`/`hoverY`) falls inside, on the current level. Drives both `hoverAreaNames` (read by
+    // the bottom-left panel via Alpine reactivity) and the `wm-area-polygon-hover` highlight class —
+    // the latter toggled directly on the existing `<polygon>` elements rather than going through a
+    // full `renderAreaPolygons` rebuild, since this runs on every `pointermove` and a full innerHTML
+    // rebuild per mouse pixel would be wasteful (and would restart the fill/stroke transition).
+    updateHoverAreas: function () {
+      var areas = window.VOID_AREAS || [];
+      var level = this.level;
+      var x = this.hoverX;
+      var y = this.hoverY;
+      var names = [];
+      var hovered = {};
+      for (var i = 0; i < areas.length; i++) {
+        var area = areas[i];
+        if (level < area.minLevel || level > area.maxLevel) {
+          continue;
+        }
+        if (pointInPolygon(x, y, area.x, area.y)) {
+          names.push(area.name);
+          hovered[i] = true;
+        }
+      }
+      this.hoverAreaNames = names;
+      if (this.areaPolygonLayer) {
+        var nodes = this.areaPolygonLayer.querySelectorAll('.wm-area-polygon');
+        for (var n = 0; n < nodes.length; n++) {
+          var node = nodes[n];
+          node.classList.toggle('wm-area-polygon-hover', !!hovered[node.getAttribute('data-i')]);
+        }
+      }
     },
 
     renderAreaLabels: function () {
@@ -530,6 +863,23 @@ function onTileError() {
   // Missing tile (ocean, ungenerated zoom, or a level with nothing on it) — leave transparent
   // rather than showing a broken-image icon.
   this.style.display = 'none';
+}
+
+// Standard even-odd ray-casting point-in-polygon test (ties broken however they fall on an edge —
+// unlike the server's [world.gregs.voidps.type.area.Polygon.pointInPolygon], exact edge inclusion
+// doesn't need to match pixel-for-pixel here, this is just for the hover highlight).
+function pointInPolygon(x, y, xs, ys) {
+  var inside = false;
+  for (var i = 0, j = xs.length - 1; i < xs.length; j = i++) {
+    var xi = xs[i];
+    var yi = ys[i];
+    var xj = xs[j];
+    var yj = ys[j];
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
+      inside = !inside;
+    }
+  }
+  return inside;
 }
 
 function escapeHtml(text) {

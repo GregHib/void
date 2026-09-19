@@ -13,6 +13,18 @@
 
 .wm-tile {
   transition: opacity var(--dur-fast) var(--ease-out);
+  /* Tiles are pixel art scaled to non-integer sizes between native zoom levels (see
+     `worldmap.js`'s `zoomRatio`) — the browser's default bilinear smoothing blurs them at those
+     in-between scales, so force nearest-neighbour sampling instead. `pixelated` is the only
+     standard keyword the spec actually defines as nearest-neighbour; `crisp-edges` and
+     `-webkit-optimize-contrast` are UA-defined "preserve edges" filters that aren't guaranteed to
+     be point-sampled, so they're deliberately left out rather than risking a browser picking one
+     of those instead. `-moz-crisp-edges` is the one exception — old Firefox (<62) implemented it
+     as true nearest-neighbour before it supported the `pixelated` keyword. Declared in fallback
+     order: unsupported values are dropped per-declaration, so `pixelated` (last, standard) wins
+     in every current browser. */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
 }
 
 .wm-grid-line {
@@ -52,6 +64,14 @@
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
   pointer-events: none;
+  transition:
+    fill var(--dur-fast) var(--ease-standard),
+    stroke var(--dur-fast) var(--ease-standard);
+}
+.wm-area-polygon-hover {
+  fill: rgba(240, 198, 103, 0.32);
+  stroke: var(--gold-300);
+  stroke-width: 2;
 }
 
 .wm-pin-tooltip {
@@ -81,5 +101,31 @@
   }
   100% {
     box-shadow: 0 0 0 0 rgba(224, 174, 60, 0);
+  }
+}
+
+/* Small screens: the bottom console and top-left display panel are sized for desktop (a fixed
+   640px/190px) in WorldMap.kt's inline styles — shrink both to fit a phone viewport instead of
+   letting the console overflow it. `!important` matches the rest of the site's inline-style
+   override convention (see responsive.css's header). */
+@media (max-width: 700px) {
+  .wm-console {
+    width: calc(100vw - 24px) !important;
+    left: 12px !important;
+    transform: none !important;
+  }
+  .wm-display-wrap {
+    width: 150px !important;
+  }
+}
+@media (max-width: 420px) {
+  .wm-elevation-wrap {
+    top: 12px !important;
+    right: 12px !important;
+  }
+  .wm-display-wrap {
+    top: 12px !important;
+    left: 12px !important;
+    width: 130px !important;
   }
 }

@@ -36,23 +36,56 @@ object WorldMap {
         }
     }
 
-    /** A single map pin. [level] hides it when the viewer isn't on that height level. */
-    private fun FlowContent.playerPin(x: Int, y: Int, level: Int, name: String, playerLevel: Int, you: Boolean) {
+    /** Shared style for a row in [playerPin]'s right-click menu — see its [danger] variant for "Kick". */
+    private fun BUTTON.menuItemStyle(danger: Boolean, first: Boolean) {
+        attributes["type"] = "button"
+        style = "width:100%;box-sizing:border-box;text-align:left;display:flex;align-items:center;gap:8px;" +
+            "padding:9px 12px;background:transparent;border:none;font:var(--type-body-sm);cursor:pointer;" +
+            "color:" + (if (danger) "var(--feedback-danger)" else "var(--text-body)") +
+            (if (first) "" else ";border-top:1px solid var(--border-subtle)")
+    }
+
+    /**
+     * A single map pin. [level] hides it when the viewer isn't on that height level. [rank] labels
+     * the pin's owner in its right-click menu header (e.g. "dev") — `null` for a plain player. The
+     * right-click menu applies to every pin, including [you] — moving your own view to where you
+     * already are is harmless, and an admin may still want to kick themselves off for testing.
+     *
+     * The outer box is a fixed [PIN_WIDTH]x[PIN_HEIGHT], not sized from its content: every child is
+     * positioned by a pixel offset from *its* edges rather than left to stack in flow, so
+     * `translate(-50%,-100%)` below anchors a known point — the box's bottom-centre — exactly on the
+     * game tile, instead of wherever the content happened to reach. Off that one anchor: [dot] (one
+     * game tile's on-screen footprint at the base zoom — see `BASE_PX_PER_TILE` in worldmap.js) is
+     * centred exactly on it, and the map-pin icon sits directly above with its tip touching the dot's
+     * top edge, so the icon visibly points down at the dot rather than swallowing it.
+     */
+    private fun FlowContent.playerPin(x: Int, y: Int, level: Int, name: String, playerLevel: Int, you: Boolean, rank: String? = null) {
+        val pinWidth = 20
+        val pinHeight = 26
+        val dotSize = 4
         div {
             attributes["class"] = "wm-pin"
             attributes["data-gx"] = x.toString()
             attributes["data-gy"] = y.toString()
             attributes["data-level"] = level.toString()
-            style = "position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:default"
+            style = "position:absolute;width:${pinWidth}px;height:${pinHeight}px;" +
+                "transform:translate(-50%,-100%);pointer-events:auto;cursor:default"
+            xData("{ menuOpen: false }")
+            onContextMenu("menuOpen = true")
+            onClickOutside("menuOpen = false")
             div {
                 attributes["class"] = "wm-pin-dot"
-                style = "position:relative;z-index:1;width:8px;height:8px;border-radius:999px;" +
-                    "background:var(--gold-400);margin:0 auto 2px;" +
+                // Centred on the box's bottom edge (the anchor): half of `dotSize` hangs past it.
+                style = "position:absolute;left:50%;bottom:-${dotSize / 2}px;transform:translateX(-50%);z-index:1;" +
+                    "width:${dotSize}px;height:${dotSize}px;border-radius:999px;background:var(--gold-400);" +
                     (if (you) "animation:wmPinPulse 2.4s ease-out infinite" else "")
             }
             unsafe {
                 raw(
-                    """<svg width="16" height="20" viewBox="0 0 24 28" style="display:block;margin:-6px auto 0;position:relative;z-index:2">""" +
+                    // `bottom` matches [dot]'s own top edge (`dotSize` above the anchor) so the
+                    // teardrop's point sits flush against the dot instead of overlapping it.
+                    """<svg width="16" height="20" viewBox="0 0 24 28" style="position:absolute;left:50%;""" +
+                        """bottom:${dotSize}px;transform:translateX(-50%);z-index:2">""" +
                         """<path d="M12 1C6.48 1 2 5.48 2 11c0 7 10 16 10 16s10-9 10-16c0-5.52-4.48-10-10-10z" """ +
                         """fill="var(--gold-400)" stroke="var(--umber-950)" stroke-width="1.5"></path>""" +
                         """<circle cx="12" cy="11" r="3.2" fill="var(--umber-950)"></circle></svg>""",
@@ -72,6 +105,31 @@ object WorldMap {
                     attributes["class"] = "wm-pin-coords"
                     style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);margin-top:2px"
                     +"$x, $y, $level"
+                }
+            }
+            div {
+                attributes["class"] = "wm-pin-menu"
+                xShow("menuOpen")
+                transition()
+                style = "position:absolute;top:-6px;left:24px;width:172px;z-index:10;" +
+                    "background:var(--surface-panel);border:1px solid var(--border-panel);" +
+                    "border-radius:var(--radius-md);box-shadow:var(--shadow-md);overflow:hidden"
+                div {
+                    style = "padding:9px 12px;font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);" +
+                        "color:var(--text-strong);background:var(--surface-header);border-bottom:1px solid var(--border-subtle)"
+                    +if (rank != null) "$name · $rank" else name
+                }
+                button {
+                    menuItemStyle(danger = false, first = true)
+                    onClick("moveToPlayer($x, $y, $level); menuOpen = false")
+                    icon(Icons.CROSSHAIR, size = 13)
+                    +" Move here"
+                }
+                button {
+                    menuItemStyle(danger = true, first = false)
+                    onClick("kickPlayer('${escape(name)}'); menuOpen = false")
+                    icon(Icons.CIRCLE_X, size = 13)
+                    +" Kick"
                 }
             }
         }
@@ -181,15 +239,69 @@ object WorldMap {
                     attributes["id"] = "wm-players"
                     xShow("showPlayerPins")
                     style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
-                    // Example pin only — real player positions will replace this once the server bridge exists.
+                    // Example pins only — real player positions will replace these once the server
+                    // bridge exists. "Kaelbrand" demonstrates [playerPin]'s `rank` param, shown in
+                    // every pin's right-click menu header.
                     playerPin(3222, 3218, level = 0, name = "Hein", playerLevel = 3, you = true)
+                    playerPin(3293, 3182, level = 0, name = "Kaelbrand", playerLevel = 45, you = false, rank = "dev")
                 }
             }
 
-            // Map display toggles.
+            // Empty state — shown once every attempted tile request has failed, meaning nobody has
+            // generated `map-tiles/` yet. Hidden the moment a single tile loads (see `tilesMissing`
+            // in worldmap.js), so it never lingers behind a map that's actually there.
             div {
+                // `xToggleStyle` (not `xShow`) because Alpine's `x-show` toggles `display` between
+                // `none` and simply *unset* rather than restoring `flex` — which would collapse this
+                // div's centering the moment it's shown after being hidden once.
+                xToggleStyle(condition = "tilesMissing", whenTrue = "display:flex", whenFalse = "display:none")
+                style = "position:absolute;inset:0;display:none;align-items:center;justify-content:center;" +
+                    "pointer-events:none;z-index:15"
+                div {
+                    style = "pointer-events:auto;max-width:380px;text-align:center;background:var(--surface-panel);" +
+                        "border:1px solid var(--border-panel);border-radius:var(--radius-md);" +
+                        "box-shadow:var(--bevel-up),var(--shadow-md);padding:var(--space-8) var(--space-7)"
+                    h3 {
+                        style = "margin:0 0 var(--space-3);font:var(--type-panel-head);letter-spacing:var(--tracking-caps);" +
+                            "text-transform:uppercase;color:var(--gold-300)"
+                        +"No map tiles found"
+                    }
+                    p {
+                        style = "margin:0;font:var(--type-body-sm);color:var(--text-muted);line-height:var(--leading-normal)"
+                        +"Run "
+                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"MapZoomImageGenerator" }
+                        +" (in the "
+                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"tools" }
+                        +" module) to render "
+                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"map-tiles/" }
+                        +", then point "
+                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"web.map.tiles" }
+                        +" at its output and reload."
+                    }
+                }
+            }
+
+            // Map display toggles — collapsible via [Ui.panel]'s `action` slot so the panel can be
+            // shrunk down to just its header on a small screen without losing the toggles.
+            div {
+                attributes["class"] = "wm-display-wrap"
                 style = "position:absolute;top:20px;left:20px;width:190px;z-index:25"
-                ui.panel(title = "Map display", padded = false) {
+                ui.panel(
+                    title = "Map display",
+                    padded = false,
+                    action = {
+                        button {
+                            attributes["type"] = "button"
+                            attributes["aria-label"] = "Toggle map display options"
+                            onClick("displayPanelOpen = !displayPanelOpen")
+                            xToggleStyle(condition = "displayPanelOpen", whenTrue = "transform:rotate(0deg)", whenFalse = "transform:rotate(-90deg)")
+                            style = "background:transparent;border:none;color:var(--text-muted);cursor:pointer;" +
+                                "display:flex;align-items:center;justify-content:center;width:20px;height:20px;padding:0"
+                            icon(Icons.CHEVRON_DOWN, size = 14)
+                        }
+                    },
+                ) {
+                    xShow("displayPanelOpen")
                     style = "padding:4px var(--space-6) var(--space-4)"
                     displayToggle("Area labels", "showAreaLabels")
                     displayToggle("Area polygons", "showAreaPolygons")
@@ -201,6 +313,7 @@ object WorldMap {
 
             // Elevation stepper.
             div {
+                attributes["class"] = "wm-elevation-wrap"
                 style = "position:absolute;top:20px;right:20px;display:flex;flex-direction:column;" +
                     "align-items:center;gap:7px;z-index:25"
                 div {
@@ -252,18 +365,53 @@ object WorldMap {
                 }
             }
 
-            // Bottom-left coordinate readout — the game tile under the cursor.
+            // Bottom-left coordinate readout — the game tile under the cursor, plus the name(s) of
+            // whichever area polygon(s) (see [areasScript]) that tile falls inside, if any, each on
+            // its own line above the readout — but only while the polygon layer is actually on, so
+            // the list doesn't call out areas the map isn't currently outlining. `align-items:flex-
+            // start` (on both this column and the nested name list) keeps every pill sized to its own
+            // text — without it a flex column stretches every child to the widest one, so a long area
+            // name would otherwise widen its neighbours, including the (fixed-content) coordinate
+            // pill beneath it, to match.
             div {
-                style = "position:absolute;left:20px;bottom:20px;background:var(--surface-panel);" +
-                    "border:1px solid var(--border-panel);border-radius:var(--radius-pill);" +
-                    "box-shadow:var(--bevel-up),var(--shadow-sm);padding:7px 16px;font:var(--type-code);" +
-                    "font-size:var(--text-sm);color:var(--parch-100);z-index:20"
-                xText("hoverX + ', ' + hoverY + ', ' + level")
-                +"3200, 3200, 0"
+                style = "position:absolute;left:20px;bottom:20px;display:flex;flex-direction:column;" +
+                    "align-items:flex-start;gap:8px;z-index:20"
+                div {
+                    // `x-show` (no `x-transition`) unconditionally strips the `display` property
+                    // from an element's inline style when re-showing it — it doesn't restore
+                    // whatever value was there before, it just removes the property outright (see
+                    // Alpine's `show` directive source). So this outer div, the one `xShow` toggles,
+                    // deliberately carries no `display:` of its own — the actual `display:flex`/`gap`
+                    // that lays out the name pills lives on the nested, never-toggled div below,
+                    // which x-show can't touch. Getting this backwards silently collapses the list to
+                    // default block layout (and `gap` with it) the first time it's hidden then shown.
+                    xShow("showAreaPolygons && hoverAreaNames.length")
+                    div {
+                        style = "display:flex;flex-direction:column;align-items:flex-start;gap:12px"
+                        unsafe {
+                            raw(
+                                """<template x-for="name in hoverAreaNames" :key="name">""" +
+                                    """<div style="background:var(--surface-panel);border:1px solid var(--border-gold);""" +
+                                    """border-radius:var(--radius-pill);box-shadow:var(--bevel-up),var(--shadow-sm);""" +
+                                    """padding:7px 16px;font:var(--type-body-sm);color:var(--gold-300);max-width:400px;""" +
+                                    """width:fit-content;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="name"></div>""" +
+                                    """</template>""",
+                            )
+                        }
+                    }
+                }
+                div {
+                    style = "background:var(--surface-panel);border:1px solid var(--border-panel);" +
+                        "border-radius:var(--radius-pill);box-shadow:var(--bevel-up),var(--shadow-sm);" +
+                        "padding:7px 16px;font:var(--type-code);font-size:var(--text-sm);color:var(--parch-100)"
+                    xText("hoverX + ', ' + hoverY + ', ' + level")
+                    +"3200, 3200, 0"
+                }
             }
 
             // Bottom-center console: teleport (functional), players/search (placeholders for now).
             div {
+                attributes["class"] = "wm-console"
                 style = "position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:640px;" +
                     "background:var(--surface-panel);border:1px solid var(--border-gold);" +
                     "border-radius:var(--radius-md);box-shadow:var(--bevel-up),var(--shadow-lg);box-sizing:border-box;" +
