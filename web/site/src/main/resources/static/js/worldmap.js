@@ -33,7 +33,10 @@ window.worldMapApp = function () {
   var MIN_ZOOM = 4;
   var MAX_ZOOM = 11;
   var ZOOM_STEP = 0.1;
-  var TILE_BASE = 'map-tiles';
+  // Set inline by WorldMap.kt from Site.tileBase() - the built site's own `map-tiles/`, or a
+  // remote base serving the identical tile set. Never trailing a slash; the separator is added
+  // at the one call site below. The fallback only matters if this script is loaded standalone.
+  var TILE_BASE = window.VOID_TILE_BASE || 'map-tiles';
   var LOAD_STAGGER_MS = 6;
   var LOAD_STAGGER_MAX = 10;
   var LABEL_CAP_ZOOM = 10;

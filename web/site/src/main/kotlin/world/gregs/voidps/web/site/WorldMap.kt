@@ -12,9 +12,9 @@ import world.gregs.voidps.web.site.components.*
 /**
  * A near-infinite, lazily-tiled world map: pan by drag, zoom by wheel, and step between the four
  * height levels. Tiles are plain `{level}/{zoom}/{x}/{y}.png` images (256px, see
- * `void-map-tiles`) fetched straight from `map-tiles/` — [world.gregs.voidps.web.site.Site]
- * copies whatever `web.map.tiles` points at alongside the rest of the static assets, the same way
- * it copies `static/`. All of the actual tile math, panning/zoom interaction and URL persistence
+ * `void-map-tiles`), fetched from whichever base [Site.tileBase] resolves to — the built site's
+ * own `map-tiles/`, which [world.gregs.voidps.web.site.Site] copies in alongside the rest of the
+ * static assets, or the remote tile repository. All of the actual tile math, panning/zoom interaction and URL persistence
  * lives in `js/worldmap.js`'s `worldMapApp()`; this file only renders the static chrome (panels,
  * console, the player pins) that Alpine then positions/reacts to, plus the JSON every layer and
  * the search index are built from — [areasScript]'s area polygons, [MapLabels]' cache place names
@@ -180,6 +180,9 @@ object WorldMap {
         is Cuboid -> area.minLevel..area.maxLevel
         else -> 0..3
     }
+
+    /** Inline `<script>` body defining `window.VOID_TILE_BASE` — see [Site.tileBase] for the two it picks between. */
+    private fun tileBaseScript(): String = "window.VOID_TILE_BASE=\"${jsonString(Site.tileBase())}\";"
 
     /** Inline `<script>` body defining `window.VOID_AREAS` as JSON for `worldmap.js` to read (see [WorldMap.page]). */
     private fun areasScript(): String = buildString {
@@ -420,7 +423,7 @@ object WorldMap {
         head = {
             link(rel = "stylesheet", href = "style/world-map.css")
             val playerData = if (Site.FULL) playersScript() else ""
-            script { unsafe { raw(areasScript() + mapLabels.script() + playerData) } }
+            script { unsafe { raw(tileBaseScript() + areasScript() + mapLabels.script() + playerData) } }
             script(src = "js/worldmap.js") {}
         },
     ) {
@@ -494,15 +497,25 @@ object WorldMap {
                     }
                     p {
                         style = "margin:0;font:var(--type-body-sm);color:var(--text-muted);line-height:var(--leading-normal)"
-                        +"Run "
-                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"MapZoomImageGenerator" }
-                        +" (in the "
-                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"tools" }
-                        +" module) to render "
-                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"map-tiles/" }
-                        +", then point "
-                        code { style = "font:var(--type-code);color:var(--text-accent)"; +"web.map.tiles" }
-                        +" at its output and reload."
+                        // Two different failures wear the same empty state: a local build hasn't
+                        // generated its tiles, whereas a [Site.REMOTE_MAP_TILES] one can only be
+                        // failing to reach the host — telling that reader to run a generator would
+                        // send them after a file the page never asks for.
+                        if (Site.REMOTE_MAP_TILES) {
+                            +"Couldn't load any tiles from "
+                            code { style = "font:var(--type-code);color:var(--text-accent)"; +Site.MAP_TILES_URL }
+                            +". Check your connection and reload."
+                        } else {
+                            +"Run "
+                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"MapZoomImageGenerator" }
+                            +" (in the "
+                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"tools" }
+                            +" module) to render "
+                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"map-tiles/" }
+                            +", then point "
+                            code { style = "font:var(--type-code);color:var(--text-accent)"; +"web.map.tiles" }
+                            +" at its output and reload."
+                        }
                     }
                 }
             }

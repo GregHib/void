@@ -20,7 +20,30 @@ import java.net.http.HttpResponse
 object Site {
 
     const val FULL = false
+
+    /**
+     * Where [WorldMap] loads its `{level}/{zoom}/{x}/{y}.png` tiles from.
+     *
+     * Off, [copyMapTiles] copies whatever `web.map.tiles` points at into the built site's own
+     * `map-tiles/`, the same way [copyStaticAssets] copies `static/` — what you want while working
+     * on the map offline, or against a tile set that's been regenerated but not pushed yet.
+     *
+     * On, nothing is copied and the page fetches straight from [MAP_TILES_URL], keeping a couple of
+     * hundred MiB of tiles out of the deployed site. The two are interchangeable: the remote
+     * repository holds the same tile set in the same layout.
+     */
+    const val REMOTE_MAP_TILES = true
+
+    /** The tile set [REMOTE_MAP_TILES] serves from; a trailing slash is optional (see [tileBase]). */
+    const val MAP_TILES_URL = "https://raw.githubusercontent.com/GregHib/void-map-tiles/master/"
+
     val version = latestRelease()
+
+    /**
+     * What [WorldMap] hands `worldmap.js` to hang tile requests off. Never ends in a slash — the
+     * separator belongs to the path `worldmap.js` builds onto it, so one here would double up.
+     */
+    fun tileBase(): String = if (REMOTE_MAP_TILES) MAP_TILES_URL.trimEnd('/') else "map-tiles"
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -51,7 +74,9 @@ object Site {
             File(devDir, "players.html").writeText(Dev.playersPage())
         }
         copyStaticAssets(buildDir)
-        copyMapTiles(buildDir)
+        if (!REMOTE_MAP_TILES) {
+            copyMapTiles(buildDir)
+        }
         Docs.generate(File("./docs/"), buildDir)
     }
 
@@ -66,8 +91,12 @@ object Site {
     /** Pre-rendered map tiles (see `void-map-tiles`) aren't checked into this repo — copied in
      *  from wherever [Settings] points, the same way [copyStaticAssets] copies `static/`, so
      *  [WorldMap]'s `map-tiles/{level}/{zoom}/{x}/{y}.png` requests resolve when that path is set
-     *  up. Silently skipped when it isn't — the map still renders, just without tile imagery. */
+     *  up. Silently skipped when it isn't — the map still renders, just without tile imagery — and
+     *  skipped outright under [REMOTE_MAP_TILES], where those requests never come here at all. */
     private fun copyMapTiles(buildDir: File) {
+        if (REMOTE_MAP_TILES) {
+            return
+        }
         val source = File(Settings["web.map.tiles", "./data/map-tiles/"])
         if (!source.exists()) {
             return
