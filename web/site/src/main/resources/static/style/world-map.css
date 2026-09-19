@@ -1,0 +1,77 @@
+/* World map viewer — interactive states and animations that inline styles (set once at render
+   time by WorldMap.kt) can't express: cursor swap while dragging, tile fade-in transitions,
+   pulsing "you are here" pin, and the pin tooltip's hover reveal. */
+
+.wm-viewport {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.wm-viewport.wm-dragging {
+  cursor: grabbing;
+}
+
+.wm-tile {
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.wm-grid-line {
+  position: absolute;
+  background: rgba(240, 198, 103, 0.22);
+  pointer-events: none;
+}
+.wm-grid-line-v {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+}
+.wm-grid-line-h {
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.wm-region-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: rgba(240, 198, 103, 0.7);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.wm-area-label {
+  user-select: none;
+}
+
+.wm-pin-tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-standard);
+}
+.wm-pin:hover .wm-pin-tooltip {
+  opacity: 1;
+}
+
+.wm-elevation-btn:hover:not(:disabled) {
+  background: var(--surface-hover) !important;
+  color: var(--gold-300) !important;
+}
+.wm-elevation-btn:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+@keyframes wmPinPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(224, 174, 60, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(224, 174, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(224, 174, 60, 0);
+  }
+}

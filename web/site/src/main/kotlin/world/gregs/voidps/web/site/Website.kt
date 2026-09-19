@@ -24,6 +24,7 @@ object Website {
         SitePage("hiscores", "Hiscores", "/hiscores.html"),
         SitePage("exchange", "Exchange", "/exchange.html"),
         SitePage("log", "Log", "/log.html"),
+        SitePage("worldmap", "World Map", "/world-map.html"),
     ) else emptyList()
 
     private fun FlowContent.eyebrow(text: String) {

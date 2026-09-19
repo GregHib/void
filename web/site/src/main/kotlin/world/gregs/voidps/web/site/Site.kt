@@ -18,7 +18,7 @@ import java.net.http.HttpResponse
  */
 object Site {
 
-    const val FULL = false
+    const val FULL = true
     val version = latestRelease()
 
     @JvmStatic
@@ -40,12 +40,14 @@ object Site {
             File(buildDir, "exchange.html").writeText(Exchange.page())
             File(buildDir, "hiscores.html").writeText(Hiscores.page(gameData))
             File(buildDir, "log.html").writeText(AdventurersLog.page(gameData))
+            File(buildDir, "world-map.html").writeText(WorldMap.page())
             val devDir = File(buildDir, "dev")
             devDir.mkdirs()
             File(devDir, "index.html").writeText(Dev.dashboardPage())
             File(devDir, "players.html").writeText(Dev.playersPage())
         }
         copyStaticAssets(buildDir)
+        copyMapTiles(buildDir)
         Docs.generate(File("./docs/"), buildDir)
     }
 
@@ -55,6 +57,18 @@ object Site {
             return
         }
         source.copyRecursively(target = buildDir, overwrite = true)
+    }
+
+    /** Pre-rendered map tiles (see `void-map-tiles`) aren't checked into this repo — copied in
+     *  from wherever [Settings] points, the same way [copyStaticAssets] copies `static/`, so
+     *  [WorldMap]'s `map-tiles/{level}/{zoom}/{x}/{y}.png` requests resolve when that path is set
+     *  up. Silently skipped when it isn't — the map still renders, just without tile imagery. */
+    private fun copyMapTiles(buildDir: File) {
+        val source = File(Settings["web.map.tiles", "./data/map-tiles/"])
+        if (!source.exists()) {
+            return
+        }
+        source.copyRecursively(target = File(buildDir, "map-tiles"), overwrite = true)
     }
 
     private fun latestRelease(): String {
