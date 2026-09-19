@@ -235,26 +235,33 @@ str = 3
 combat_def = "man"
 respawn_delay = 25
 drop_table = "citizen"
+categories = ["human"]
 examine = "One of Gielinor's many citizens, currently incapacitated by alcohol."
 
 [man_falador]
 id = 3223
+categories = ["human"]
 examine = "One of Gielinor's many citizens."
 drop_table = "man"
 combat_def = "man"
 hitpoints = 70
 max_hit_crush = 10
+respawn_delay = 25
+collision = "indoors"
 
 [man_falador_2]
 id = 1086
+examine = "One of Gielinor's many citizens."
 
 [woman_falador]
 id = 3226
+categories = ["human"]
 examine = "One of Gielinor's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
 max_hit_crush = 10
+respawn_delay = 25
 
 [guard_falador]
 id = 3228
@@ -303,7 +310,8 @@ hitpoints = 70
 def = 3
 combat_def = "man"
 respawn_delay = 25
-drop_table = "citizen"
+drop_table = "human"
+categories = ["human"]
 examine = "He looks a bit dodgy."
 
 [narf]
@@ -311,7 +319,8 @@ id = 3238
 hitpoints = 70
 combat_def = "man"
 respawn_delay = 25
-drop_table = "citizen"
+drop_table = "human"
+categories = ["human"]
 examine = "Looks unpleasant."
 
 [rusty]
@@ -319,7 +328,8 @@ id = 3239
 hitpoints = 70
 combat_def = "man"
 respawn_delay = 25
-drop_table = "citizen"
+drop_table = "human"
+categories = ["human"]
 examine = "Seems to be loitering."
 
 [jeff]
@@ -327,8 +337,10 @@ id = 3240
 hitpoints = 70
 combat_def = "man"
 respawn_delay = 25
+drop_table = "human"
+categories = ["human"]
 examine = "Untrustworthy."
-drop_table = "jeff"
+
 
 [guard_falador_7]
 id = 3241
@@ -506,6 +518,7 @@ examine = "He works in the power station."
 
 [brother_bordiss_falador]
 id = 7729
+collision = "indoors"
 
 [hazelmere_falador]
 id = 8276
@@ -524,6 +537,7 @@ id = 8421
 
 [silif_falador]
 id = 8469
+examine = "A mysterious, sharply-dressed man."
 
 [turael_falador]
 id = 8474
@@ -542,6 +556,7 @@ id = 8478
 
 [karma_the_chameleon]
 id = 8588
+examine = "Party Pete's pet."
 
 [sir_vant_falador]
 id = 8854
@@ -618,9 +633,11 @@ id = 8442
 
 [silif_falador_2]
 id = 8430
+examine = "A mysterious, sharply-dressed man."
 
 [silif_falador_3]
 id = 8431
+examine = "A mysterious, sharply-dressed man."
 
 [turael_falador_2]
 id = 8273
@@ -692,3 +709,43 @@ combat_def = "white_knight"
 respawn_delay = 50
 examine = "The knight seems to be watching something."
 drop_table = "white_knight"
+
+[white_knight_2]
+id = 3348
+hitpoints = 520
+att = 30
+str = 29
+def = 25
+attack_bonus = 30
+combat_def = "white_knight"
+respawn_delay = 50
+examine = "A White Knight proselyte."
+drop_table = "white_knight"
+
+[white_knight_3]
+id = 3349
+hitpoints = 520
+att = 32
+str = 29
+def = 27
+attack_bonus = 30
+combat_def = "white_knight"
+respawn_delay = 50
+examine = "A White Knight acolyte."
+drop_table = "white_knight"
+
+[white_knight_4]
+id = 3350
+hitpoints = 550
+att = 32
+str = 35
+def = 27
+attack_bonus = 30
+combat_def = "white_knight"
+respawn_delay = 50
+examine = "A White Knight partisan."
+drop_table = "white_knight"
+
+[akrisae]
+id = 8338
+examine = "A priest of Saradomin, with ties to the Temple Knights."
