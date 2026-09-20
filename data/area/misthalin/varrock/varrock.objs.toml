@@ -44,3 +44,7 @@ examine = "Ideal for cooking on."
 [cooking_range_varrock_palace_oven]
 id = 24313
 examine = "For cooking food."
+
+[john_everyman]
+id = 12962
+examine = "A pub local."
