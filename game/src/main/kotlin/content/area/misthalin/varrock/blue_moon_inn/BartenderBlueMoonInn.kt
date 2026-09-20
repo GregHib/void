@@ -1,4 +1,4 @@
-package content.area.misthalin.varrock
+package content.area.misthalin.varrock.blue_moon_inn
 
 import content.entity.combat.hit.damage
 import content.entity.npc.shop.buy
@@ -22,7 +22,7 @@ class BartenderBlueMoonInn : Script {
 
     init {
         npcApproach("Talk-to", "bartender_blue_moon_inn") { (target) ->
-            approachRange(4)
+            approachRange(5)
             npc<Quiz>("What can I do yer for?")
             choice {
                 option<Neutral>("A glass of your finest ale please.") {
