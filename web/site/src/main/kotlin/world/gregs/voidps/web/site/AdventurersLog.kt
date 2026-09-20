@@ -31,6 +31,16 @@ object AdventurersLog {
         div {
             xData("logApp()")
 
+            div {
+                xShow("view === 'overview'")
+                ui.pageHeader(
+                    eyebrow = "Adventurer's log",
+                    title = "Browse players",
+                    description = "Top accounts by total level, or jump straight to a player's own log with the search on the right.",
+                    backgroundImage = "images/bg/logs.jpg",
+                )
+            }
+
             main {
                 style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8) var(--space-7) var(--space-12);" +
                     "display:flex;flex-direction:column;gap:var(--space-8)"
@@ -87,7 +97,7 @@ object AdventurersLog {
                 "box-shadow:var(--bevel-up),var(--shadow-sm);overflow:hidden;background:var(--umber-900)"
 
             img(src = "images/repository-bg.png", alt = "") {
-                style = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover"
+                style = "position:absolute;top:50%;left:0;width:100%;height:auto;transform:translateY(-50%);display:block"
             }
             div {
                 style = "position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,18,13,.94) 0%," +
@@ -520,23 +530,6 @@ object AdventurersLog {
             xShow("view === 'overview'")
             attributes["class"] = "void-flex"
             style = "flex-direction:column;gap:var(--space-8)"
-
-            header {
-                style = "display:flex;flex-direction:column;gap:var(--space-3)"
-                span {
-                    style = "font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);" +
-                        "letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--gold-300)"
-                    +"Adventurer's log"
-                }
-                h1 {
-                    style = "margin:0;font:var(--type-title);color:var(--parch-50)"
-                    +"Browse players"
-                }
-                p {
-                    style = "margin:0;max-width:60ch;font:var(--type-body-sm);color:var(--text-muted)"
-                    +"Top accounts by total level, or jump straight to a player's own log with the search on the right."
-                }
-            }
 
             ui.panel(title = "Players", action = eyebrowText("overviewPlayers.length + ' logged'"), padded = false) {
                 tableScroll(

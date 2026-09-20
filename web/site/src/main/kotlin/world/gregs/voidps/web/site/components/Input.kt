@@ -13,7 +13,10 @@ import kotlinx.html.style
  * A labelled text field. [model] binds `x-model`; pass an [error] message to switch to the
  * danger outline. [hintExpression] makes the hint line reactive (e.g.
  * `"search ? 'Filtering: ' + search : ''"`) — [hint] is shown until Alpine hydrates and used
- * as the static fallback if [hintExpression] is null.
+ * as the static fallback if [hintExpression] is null. [inlineLabel] sets the label beside the
+ * field rather than above it, for a narrow column of short fields (an X/Y/Level triplet) where
+ * stacking each label on its own line costs more height than the fields themselves; the hint,
+ * when there is one, still goes underneath the pair.
  */
 fun Ui.textInput(
     id: String,
@@ -27,40 +30,52 @@ fun Ui.textInput(
     mono: Boolean = false,
     type: InputType = InputType.text,
     onEnter: String? = null,
+    inlineLabel: Boolean = false,
 ) {
     receiver.div {
         style = "display:flex;flex-direction:column;gap:var(--space-3)"
-        label {
-            attributes["for"] = id
-            style = "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-muted)"
-            +label
-        }
         div {
-            attributes["class"] = "void-input-frame"
-            val border = if (error != null) "var(--feedback-danger)" else "var(--border-strong)"
-            style = "display:flex;align-items:center;gap:var(--space-4);height:34px;padding:0 10px;" +
-                "background:var(--surface-inset);border:1px solid $border;border-radius:var(--radius-sm);" +
-                "box-shadow:var(--bevel-down);transition:border-color var(--dur-fast) var(--ease-standard)"
-            if (icon != null) {
-                span {
-                    style = "color:var(--text-faint);display:flex"
-                    icon(icon, size = 14)
-                }
+            // The label and the field, as their own group, so an [inlineLabel] can lay the two out
+            // in a row without dragging the hint line up alongside them.
+            style = if (inlineLabel) {
+                "display:flex;align-items:center;gap:var(--space-5)"
+            } else {
+                "display:flex;flex-direction:column;gap:var(--space-3)"
             }
-            input(type = type) {
-                attributes["id"] = id
-                attributes["class"] = "void-input"
-                if (model != null) {
-                    xModel(model)
+            label {
+                attributes["for"] = id
+                style = "font:var(--type-label);letter-spacing:var(--tracking-wide);color:var(--text-muted)" +
+                    (if (inlineLabel) ";flex:0 0 auto;min-width:34px" else "")
+                +label
+            }
+            div {
+                attributes["class"] = "void-input-frame"
+                val border = if (error != null) "var(--feedback-danger)" else "var(--border-strong)"
+                style = "display:flex;align-items:center;gap:var(--space-4);height:34px;padding:0 10px;" +
+                    "background:var(--surface-inset);border:1px solid $border;border-radius:var(--radius-sm);" +
+                    "box-shadow:var(--bevel-down);transition:border-color var(--dur-fast) var(--ease-standard)" +
+                    (if (inlineLabel) ";flex:1;min-width:0" else "")
+                if (icon != null) {
+                    span {
+                        style = "color:var(--text-faint);display:flex"
+                        icon(icon, size = 14)
+                    }
                 }
-                if (placeholder != null) {
-                    this.placeholder = placeholder
+                input(type = type) {
+                    attributes["id"] = id
+                    attributes["class"] = "void-input"
+                    if (model != null) {
+                        xModel(model)
+                    }
+                    if (placeholder != null) {
+                        this.placeholder = placeholder
+                    }
+                    if (onEnter != null) {
+                        attributes["@keydown.enter"] = onEnter
+                    }
+                    val font = if (mono) "var(--type-code)" else "var(--type-body-sm)"
+                    style = "flex:1;min-width:0;background:transparent;border:none;font:$font;color:var(--text-strong)"
                 }
-                if (onEnter != null) {
-                    attributes["@keydown.enter"] = onEnter
-                }
-                val font = if (mono) "var(--type-code)" else "var(--type-body-sm)"
-                style = "flex:1;min-width:0;background:transparent;border:none;font:$font;color:var(--text-strong)"
             }
         }
         val hintColor = if (error != null) "var(--feedback-danger)" else "var(--text-faint)"

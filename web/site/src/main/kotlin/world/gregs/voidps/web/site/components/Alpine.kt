@@ -53,6 +53,10 @@ fun Tag.onClickStop(statement: String) {
     attributes["@click.stop"] = statement
 }
 
+fun Tag.onContextMenu(statement: String) {
+    attributes["@contextmenu.prevent"] = statement
+}
+
 fun Tag.onMouseEnter(statement: String) {
     attributes["@mouseenter"] = statement
 }
