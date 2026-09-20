@@ -44,3 +44,7 @@ examine = "Ideal for cooking on."
 [cooking_range_varrock_palace_oven]
 id = 24313
 examine = "For cooking food."
+
+[fence_varrock_lumbermill]
+id = 31149
+examine = "A damaged wooden fence" # Source: https://classic.runescape.wiki/w/Low_Fence_%28Lumber_Mill%29
