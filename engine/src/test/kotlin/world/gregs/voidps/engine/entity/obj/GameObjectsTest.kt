@@ -386,6 +386,23 @@ class GameObjectsTest : KoinMock() {
         assertNull(GameObjects.getLayer(above.tile, ObjectLayer.GROUND))
     }
 
+    @Test
+    fun `Resetting a zone restores the original exactly once`() {
+        val original = GameObject(id = 123, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        val replacement = GameObject(id = 4321, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 0)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        GameObjects.add(replacement, collision = false)
+        val size = GameObjects.size
+
+        GameObjects.reset(original.tile.zone, collision = false)
+
+        assertEquals(original, GameObjects.getLayer(original.tile, ObjectLayer.GROUND))
+        assertEquals(size, GameObjects.size)
+        verify(exactly = 1) {
+            ZoneBatchUpdates.add(original.tile.zone, ObjectAddition(tile = original.tile.id, id = 123, type = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1))
+        }
+    }
+
     /**
      * Registers a despawn handler which swaps [obj] out for [replacement] the moment it despawns.
      */
