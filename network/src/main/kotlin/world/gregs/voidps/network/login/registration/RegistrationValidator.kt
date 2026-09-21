@@ -16,7 +16,6 @@ object RegistrationValidator {
     const val MAX_LOCAL_PART_LENGTH = 64
     const val MIN_PASSWORD_LENGTH = 5
     const val MAX_PASSWORD_LENGTH = 20
-    const val MIN_AGE = 13
 
     fun email(email: String): Int {
         if (email.length > MAX_EMAIL_LENGTH || localPart(email).length > MAX_LOCAL_PART_LENGTH) {
@@ -38,13 +37,6 @@ object RegistrationValidator {
         val lower = password.lowercase()
         if (lower in guessable || lower == localPart(email).lowercase()) {
             return RegistrationResponse.PASSWORD_GUESSABLE
-        }
-        return RegistrationResponse.SUCCESS
-    }
-
-    fun age(age: Int): Int {
-        if (age < MIN_AGE) {
-            return RegistrationResponse.REFUSED
         }
         return RegistrationResponse.SUCCESS
     }

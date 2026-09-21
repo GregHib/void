@@ -93,17 +93,13 @@ class RegistrationServer(
         if (xtea.readUByte().toInt() == 1) {
             xtea.readString() // additional information
         }
-        val age = xtea.readUByte().toInt()
+        xtea.readUByte() // age
         val optIn = xtea.readUByte().toInt() == 1
         var response = RegistrationValidator.email(email)
         if (response != RegistrationResponse.SUCCESS) {
             return response
         }
         response = RegistrationValidator.password(password, email)
-        if (response != RegistrationResponse.SUCCESS) {
-            return response
-        }
-        response = RegistrationValidator.age(age)
         if (response != RegistrationResponse.SUCCESS) {
             return response
         }
