@@ -12,7 +12,7 @@ class DuelConfirm : Script {
     init {
         interfaceOption("Accept", "stake_confirm:accept,duel_rules_confirm:accept") {
             val duel = duel ?: return@interfaceOption
-            if (duel.stage != DuelStage.Confirm || !DuelRulesScreen.canAccept(duel)) {
+            if (duel.stage != DuelStage.Confirm || !DuelRulesScreen.canAccept(duel, this)) {
                 return@interfaceOption
             }
             DuelRulesScreen.accept(duel, this, duel.confirmScreen)
