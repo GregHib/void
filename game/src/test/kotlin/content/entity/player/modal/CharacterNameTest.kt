@@ -25,9 +25,9 @@ internal class CharacterNameTest : WorldTest() {
         player.interfaceOption("character_creation", "confirm", optionIndex = 0)
 
         assertFalse(player.interfaces.contains(player.interfaces.gameFrame))
-        assertEquals("Newbie", player["character_name_base", ""])
-        assertTrue(player["character_name_suggestion_0", ""].isNotEmpty())
-        assertEquals(0, player["character_name_page", -1])
+        // Suggestions only appear once a wanted name turns out to be taken
+        assertTrue(player["character_name_suggestion_0", ""].isEmpty())
+        assertEquals(-1, player["character_name_page", -1])
     }
 
     @Test
@@ -72,9 +72,14 @@ internal class CharacterNameTest : WorldTest() {
 
     @Test
     fun `Suggestions page and can be picked`() {
+        createPlayer(name = "Bob")
         val player = registered("newbie@example.com")
         player.interfaceOption("character_creation", "confirm", optionIndex = 0)
+        player.interfaceOption("character_creation", "continue", "Continue")
+        tick()
+        player.stringEntry("bob")
         val first = player["character_name_suggestion_0", ""]
+        assertTrue(first.isNotEmpty())
 
         player.interfaceOption("character_creation", "more_suggestions", "More Suggestions")
         assertEquals(1, player["character_name_page", -1])
