@@ -2,6 +2,8 @@ package content.minigame.duel_arena
 
 import WorldTest
 import containsMessage
+import content.entity.combat.dead
+import content.entity.combat.hit.hit
 import content.entity.player.bank.bank
 import content.entity.player.inv.item.tradeable
 import dialogueOption
@@ -302,6 +304,21 @@ internal class DuelTest : WorldTest() {
         assertEquals("stake_victory", winner.menu)
         assertEquals(Item("coins", 30), winner.winnings[0])
         assertTrue(loser.tile in Areas["duel_arena_hospital"])
+    }
+
+    @Test
+    fun `Hits still in the air are cancelled when a duel ends`() {
+        val (winner, loser) = fight(staked = false)
+        val lethal = winner.levels.get(Skill.Constitution)
+        loser.hit(winner, offensiveType = "range", delay = 64, damage = lethal)
+        val trapdoor = createObject("duel_arena_forfeit_trapdoor", loser.tile.addX(1))
+        loser.objectOption(trapdoor, "Forfeit")
+        tick()
+        loser.dialogueOption(1)
+        tick(10)
+        assertFalse(winner.dead)
+        assertEquals(winner.levels.getMax(Skill.Constitution), winner.levels.get(Skill.Constitution))
+        assertTrue(winner.tile in Areas["duel_arena_hospital"])
     }
 
     @Test
