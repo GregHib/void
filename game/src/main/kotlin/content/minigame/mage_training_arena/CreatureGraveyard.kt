@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -34,10 +33,15 @@ import world.gregs.voidps.type.random
 /**
  * Bones grabbed from piles are converted to fruit and fed through the food chute for points while
  * bones rain down on everyone in the room.
+ *
+ * The Graveyard Guardian is the room's controller: its timer drops the bones.
  */
 class CreatureGraveyard : Script {
 
     private val lives = HashMap<Tile, Int>()
+
+    private val bones: List<RowDefinition>
+        get() = Tables.get("mta_bones").rows()
 
     init {
         objectOperate("Grab", "bones_mage_training_arena_*") { (target) ->
@@ -91,10 +95,6 @@ class CreatureGraveyard : Script {
             guardianMenu()
         }
 
-        entered("mage_training_arena_creature_graveyard") {
-            World.timers.startIfAbsent("mta_graveyard")
-        }
-
         playerDeath {
             if (!MageTrainingArena.inRoom(this, "graveyard")) {
                 return@playerDeath
@@ -107,18 +107,22 @@ class CreatureGraveyard : Script {
             message("You lost $lost Pizazz Points upon death!")
         }
 
-        worldTimerStart("mta_graveyard") {
+        npcSpawn("graveyard_guardian") {
+            softTimers.start("mta_graveyard")
+        }
+
+        npcTimerStart("mta_graveyard") {
             Tables.int("mta_graveyard.settings.interval")
         }
 
-        worldTimerTick("mta_graveyard") {
+        npcTimerTick("mta_graveyard") {
             val players = Players.filter { MageTrainingArena.inRoom(it, "graveyard") }
             if (players.isEmpty()) {
-                return@worldTimerTick Timer.CANCEL
+                return@npcTimerTick Timer.CONTINUE
             }
-            for (tile in Tables.tileList("mta_graveyard.settings.bone_drops")) {
+            for (drop in Tables.tileList("mta_graveyard.settings.bone_drops")) {
                 if (random.nextInt(12) < 8) {
-                    areaGfx("mta_falling_bones", tile)
+                    areaGfx("mta_falling_bones", drop)
                 }
             }
             val hit = Tables.int("mta_graveyard.settings.hit")
@@ -155,10 +159,5 @@ class CreatureGraveyard : Script {
                 npc<Neutral>("use what you've learned, young one.")
             }
         }
-    }
-
-    companion object {
-        val bones: List<RowDefinition>
-            get() = Tables.get("mta_bones").rows()
     }
 }

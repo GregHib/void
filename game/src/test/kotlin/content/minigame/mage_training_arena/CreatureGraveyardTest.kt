@@ -120,6 +120,7 @@ internal class CreatureGraveyardTest : WorldTest() {
         player.levels.set(Skill.Magic, 50)
         player["mage_training_arena_started"] = true
         player.inventory.add("progress_hat")
+        createNPC("graveyard_guardian", Tile(3362, 9644, 1))
         player.tele(Tile(3363, 9639, 1))
         tick(2)
         assertEquals("graveyard", player["mage_training_arena_room", ""])

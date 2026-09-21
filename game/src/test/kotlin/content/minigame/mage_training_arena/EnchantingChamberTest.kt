@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import skipDialogues
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -20,13 +22,16 @@ import world.gregs.voidps.type.Tile
 
 internal class EnchantingChamberTest : WorldTest() {
 
+    private lateinit var guardian: NPC
+
     @Test
     fun `Entering spawns private dragonstones and shows the bonus shape`() {
         val player = enter("mta-ench-enter")
 
-        assertEquals(6, EnchantingChamber.dragonstones(player).size)
-        val stone = FloorItems.at(Tile(3354, 9645)).firstOrNull { it.id == "dragonstone_mage_training_arena" }
-        assertEquals(player.name, stone?.owner)
+        val stones = Tables.tileList("mta_enchanting.settings.dragonstones").mapNotNull { tile ->
+            FloorItems.firstOrNull(tile) { it.id == "dragonstone_mage_training_arena" && it.owner == player.name }
+        }
+        assertEquals(6, stones.size)
     }
 
     @Test
@@ -45,7 +50,6 @@ internal class EnchantingChamberTest : WorldTest() {
     @Test
     fun `Enchanting a shape makes an orb with reduced experience`() {
         val player = enter("mta-ench-cast")
-        EnchantingChamber.bonus = "pentamid"
         player.inventory.add("cube")
         player.inventory.add("cosmic_rune")
         player.inventory.add("water_rune")
@@ -62,7 +66,6 @@ internal class EnchantingChamberTest : WorldTest() {
     @Test
     fun `Every tenth shape scores the spell level`() {
         val player = enter("mta-ench-tenth")
-        EnchantingChamber.bonus = "pentamid"
         player["mage_training_arena_shapes_converted"] = 9
         player.inventory.add("cylinder")
         player.inventory.add("cosmic_rune")
@@ -77,7 +80,7 @@ internal class EnchantingChamberTest : WorldTest() {
     @Test
     fun `The bonus shape scores an extra point`() {
         val player = enter("mta-ench-bonus")
-        EnchantingChamber.bonus = "icosahedron"
+        guardian["mta_bonus"] = "icosahedron"
         player.inventory.add("icosahedron")
         player.inventory.add("cosmic_rune")
         player.inventory.add("water_rune")
@@ -119,6 +122,16 @@ internal class EnchantingChamberTest : WorldTest() {
         assertEquals(3, listOf("death_rune", "blood_rune", "cosmic_rune").sumOf { player.inventory.count(it) })
     }
 
+    @Test
+    fun `The guardian changes the bonus shape on its timer`() {
+        enter("mta-ench-timer")
+
+        tick(40)
+
+        val bonus: String = guardian["mta_bonus", ""]
+        assertTrue(bonus in listOf("cube", "cylinder", "icosahedron")) { bonus }
+    }
+
     private fun enchant(player: Player, item: String) {
         player.interfaceOnItem("modern_spellbook", "enchant_level_1", Item(item), player.inventory.indexOf(item))
         tick(3)
@@ -129,6 +142,8 @@ internal class EnchantingChamberTest : WorldTest() {
         player.levels.set(Skill.Magic, 50)
         player["mage_training_arena_started"] = true
         player.inventory.add("progress_hat")
+        guardian = createNPC("enchantment_guardian", Tile(3364, 9647))
+        guardian["mta_bonus"] = "pentamid"
         player.tele(Tile(3363, 9649))
         tick(2)
         assertEquals("enchanting", player["mage_training_arena_room", ""])

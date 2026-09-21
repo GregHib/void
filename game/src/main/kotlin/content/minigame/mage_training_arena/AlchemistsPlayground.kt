@@ -19,8 +19,8 @@ import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.move.tele
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -38,12 +38,22 @@ import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.type.random
 
 /**
  * Eight cupboards whose contents rotate; alching the arena items makes arena coins that are
  * deposited for points, with a share banked as real coins on the way out.
+ *
+ * The Alchemy Guardian is the room's controller: its timer rotates the cupboards and it holds the
+ * current item values, rotation and free item.
  */
 class AlchemistsPlayground : Script {
+
+    private val rows: List<RowDefinition>
+        get() = Tables.get("mta_alchemist_items").rows()
+
+    private val items: List<String>
+        get() = rows.map { it.item("item") }
 
     init {
         objectOperate("Search", "cupboard_mage_training_arena_*") { (target) ->
@@ -52,7 +62,7 @@ class AlchemistsPlayground : Script {
                 anim("mta_search_cupboard")
                 target.replace("${target.id}_open", ticks = 35)
             }
-            val item = itemAt(slot)
+            val item = guardian(this)?.let { itemAt(it, slot) }
             if (item == null) {
                 message("The cupboard is empty.")
                 return@objectOperate
@@ -74,14 +84,18 @@ class AlchemistsPlayground : Script {
             if (!has(Skill.Magic, level, message = true)) {
                 return@onItem
             }
-            val value = values[item.id] ?: return@onItem
+            val guardian = guardian(this) ?: return@onItem
+            val value: Int = guardian["mta_value_${item.id}", 0]
+            if (value <= 0) {
+                return@onItem
+            }
             tab(Tab.Inventory)
             val eject = Tables.int("mta_alchemist.settings.eject_amount")
             if (inventory.count("coins_mage_training_arena") + value > eject) {
                 message("Warning: You can't deposit more than $eject coins at a time.")
             }
             inventory.transaction {
-                if (item.id != freeItem) {
+                if (item.id != guardian["mta_free_item", ""]) {
                     removeItems(this@onItem, spell)
                 }
                 remove(item.id)
@@ -132,26 +146,25 @@ class AlchemistsPlayground : Script {
         }
 
         entered("mage_training_arena_alchemists_playground") {
-            if (values.isEmpty()) {
-                shuffle()
-            }
-            World.timers.startIfAbsent("mta_alchemist")
-            refresh(this)
+            val guardian = guardian(this) ?: return@entered
+            refresh(this, guardian)
         }
 
         exited("mage_training_arena_alchemists_playground") {
             payout(this)
         }
 
-        worldTimerStart("mta_alchemist") {
+        npcSpawn("alchemy_guardian") {
+            shuffle(this)
+            softTimers.start("mta_alchemist")
+        }
+
+        npcTimerStart("mta_alchemist") {
             Tables.int("mta_alchemist.settings.interval")
         }
 
-        worldTimerTick("mta_alchemist") {
-            if (Players.none { MageTrainingArena.inRoom(it, "alchemist") }) {
-                return@worldTimerTick Timer.CANCEL
-            }
-            rotate()
+        npcTimerTick("mta_alchemist") {
+            rotate(this)
             Timer.CONTINUE
         }
     }
@@ -206,58 +219,48 @@ class AlchemistsPlayground : Script {
         player.message("You've been awarded $reward coins straight into your bank as a reward!")
     }
 
-    companion object {
-        var rotation = 0
-        val values = HashMap<String, Int>()
-        var freeItem: String? = null
+    private fun guardian(player: Player): NPC? = NPCs.findOrNull(player.tile.regionLevel, "alchemy_guardian")
 
-        private val rows: List<RowDefinition>
-            get() = Tables.get("mta_alchemist_items").rows()
+    /**
+     * Which item a cupboard holds after the guardian's current rotation; slots past the item count are empty.
+     */
+    private fun itemAt(guardian: NPC, slot: Int): String? {
+        val index = (slot - guardian["mta_rotation", 0]).mod(8)
+        return rows.firstOrNull { it.int("slot") == index }?.item("item")
+    }
 
-        val items: List<String>
-            get() = rows.map { it.item("item") }
-
-        /**
-         * Which item a cupboard holds after the current rotation; slots past the item count are empty.
-         */
-        fun itemAt(slot: Int): String? {
-            val index = (slot - rotation).mod(8)
-            return rows.firstOrNull { it.int("slot") == index }?.item("item")
+    private fun shuffle(guardian: NPC) {
+        val list = Tables.intList("mta_alchemist.settings.values").shuffled(random)
+        for ((index, item) in items.withIndex()) {
+            guardian["mta_value_$item"] = list[index % list.size]
         }
+    }
 
-        fun shuffle() {
-            val list = Tables.intList("mta_alchemist.settings.values").shuffled()
-            for ((index, item) in items.withIndex()) {
-                values[item] = list[index % list.size]
-            }
+    private fun rotate(guardian: NPC) {
+        guardian["mta_rotation"] = (guardian["mta_rotation", 0] + 1) % 8
+        shuffle(guardian)
+        if (guardian.contains("mta_free_item")) {
+            guardian.clear("mta_free_item")
+            guardian.say("The costs are changing!")
+        } else {
+            val row = rows.random(random)
+            guardian["mta_free_item"] = row.item("item")
+            val name = row.string("name")
+            guardian.say("The $name ${if (name.endsWith("s")) "are" else "is"} free to convert!")
         }
-
-        fun rotate() {
-            rotation = (rotation + 1) % 8
-            shuffle()
-            val guardian = NPCs.firstOrNull { it.id == "alchemy_guardian" }
-            if (freeItem == null) {
-                val row = rows.random()
-                freeItem = row.item("item")
-                val name = row.string("name")
-                guardian?.say("The $name ${if (name.endsWith("s")) "are" else "is"} free to convert!")
-            } else {
-                freeItem = null
-                guardian?.say("The costs are changing!")
-            }
-            for (player in Players) {
-                if (MageTrainingArena.inRoom(player, "alchemist")) {
-                    refresh(player)
-                }
+        for (player in Players) {
+            if (MageTrainingArena.inRoom(player, "alchemist")) {
+                refresh(player, guardian)
             }
         }
+    }
 
-        fun refresh(player: Player) {
-            val overlay = "mage_training_arena_alchemist"
-            for (item in items) {
-                player.interfaces.sendText(overlay, "value_$item", (values[item] ?: 0).toString())
-                player.interfaces.sendVisibility(overlay, "free_$item", item == freeItem)
-            }
+    private fun refresh(player: Player, guardian: NPC) {
+        val overlay = "mage_training_arena_alchemist"
+        val free: String = guardian["mta_free_item", ""]
+        for (item in items) {
+            player.interfaces.sendText(overlay, "value_$item", guardian["mta_value_$item", 0].toString())
+            player.interfaces.sendVisibility(overlay, "free_$item", item == free)
         }
     }
 }

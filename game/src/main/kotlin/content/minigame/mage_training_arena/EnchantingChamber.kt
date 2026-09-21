@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -31,12 +32,21 @@ import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.timer.Timer
+import world.gregs.voidps.type.random
 
 /**
- * Shapes taken from piles are enchanted into orbs for points; a bonus shape rotates on a world
- * timer and private dragonstones respawn around the room for double points.
+ * Shapes taken from piles are enchanted into orbs for points; private dragonstones respawn around
+ * the room for double points.
+ *
+ * The Enchantment Guardian is the room's controller: its timer changes the bonus shape and it
+ * holds which shape is currently the bonus.
  */
 class EnchantingChamber : Script {
+
+    private val dragonstones = HashMap<Int, MutableList<FloorItem>>()
+
+    private val shapes: List<RowDefinition>
+        get() = Tables.get("mta_shapes").rows()
 
     init {
         objectOperate("Take-from", "cube_pile,cylinder_pile,icosahedron_pile,pentamid_pile") { (target) ->
@@ -125,7 +135,6 @@ class EnchantingChamber : Script {
         }
 
         entered("mage_training_arena_enchanting_chamber") {
-            World.timers.startIfAbsent("mta_enchanting")
             spawnDragonstones(this)
             refresh(this)
         }
@@ -134,15 +143,17 @@ class EnchantingChamber : Script {
             removeDragonstones(this)
         }
 
-        worldTimerStart("mta_enchanting") {
+        npcSpawn("enchantment_guardian") {
+            this["mta_bonus"] = shapes.random(random).rowId
+            softTimers.start("mta_enchanting")
+        }
+
+        npcTimerStart("mta_enchanting") {
             Tables.int("mta_enchanting.settings.bonus_interval")
         }
 
-        worldTimerTick("mta_enchanting") {
-            if (Players.none { MageTrainingArena.inRoom(it, "enchanting") }) {
-                return@worldTimerTick Timer.CANCEL
-            }
-            changeBonus()
+        npcTimerTick("mta_enchanting") {
+            changeBonus(this)
             Timer.CONTINUE
         }
     }
@@ -172,72 +183,67 @@ class EnchantingChamber : Script {
         }
     }
 
-    companion object {
-        var bonus: String = "cube"
+    private fun guardian(player: Player): NPC? = NPCs.findOrNull(player.tile.regionLevel, "enchantment_guardian")
 
-        private val dragonstones = HashMap<Int, MutableList<FloorItem>>()
+    private fun bonus(player: Player): String? = guardian(player)?.get<String>("mta_bonus")
 
-        val shapes: List<RowDefinition>
-            get() = Tables.get("mta_shapes").rows()
+    private fun shape(item: String): String? = shapes.firstOrNull { it.item("item") == item }?.rowId
 
-        fun shape(item: String): String? = shapes.firstOrNull { it.item("item") == item }?.rowId
-
-        /**
-         * Dragonstones score double immediately; shapes score every tenth conversion plus one for the bonus shape.
-         */
-        fun points(player: Player, item: String, spellLevel: Int): Int {
-            if (item == "dragonstone_mage_training_arena") {
-                return spellLevel * 2
-            }
-            val shape = shape(item) ?: return 0
-            var points = 0
-            val converted = player.inc("mage_training_arena_shapes_converted")
-            if (converted >= Tables.int("mta_enchanting.settings.shapes_per_reward")) {
-                player["mage_training_arena_shapes_converted"] = 0
-                points += spellLevel
-            }
-            if (shape == bonus) {
-                points += 1
-                player.message("You get $points bonus point${if (points != 1) "s" else ""}!")
-            }
-            return points
+    /**
+     * Dragonstones score double immediately; shapes score every tenth conversion plus one for the bonus shape.
+     */
+    private fun points(player: Player, item: String, spellLevel: Int): Int {
+        if (item == "dragonstone_mage_training_arena") {
+            return spellLevel * 2
         }
+        val shape = shape(item) ?: return 0
+        var points = 0
+        val converted = player.inc("mage_training_arena_shapes_converted")
+        if (converted >= Tables.int("mta_enchanting.settings.shapes_per_reward")) {
+            player["mage_training_arena_shapes_converted"] = 0
+            points += spellLevel
+        }
+        if (shape == bonus(player)) {
+            points += 1
+            player.message("You get $points bonus point${if (points != 1) "s" else ""}!")
+        }
+        return points
+    }
 
-        fun changeBonus() {
-            val next = shapes.map { it.rowId }.filter { it != bonus }.random()
-            bonus = next
-            NPCs.firstOrNull { it.id == "enchantment_guardian" }?.say("The bonus shape has changed to the $next.")
-            for (player in Players) {
-                if (MageTrainingArena.inRoom(player, "enchanting")) {
-                    refresh(player)
-                }
+    private fun changeBonus(guardian: NPC) {
+        val current: String = guardian["mta_bonus", ""]
+        val next = shapes.map { it.rowId }.filter { it != current }.random(random)
+        guardian["mta_bonus"] = next
+        guardian.say("The bonus shape has changed to the $next.")
+        for (player in Players) {
+            if (MageTrainingArena.inRoom(player, "enchanting")) {
+                refresh(player)
             }
         }
+    }
 
-        fun refresh(player: Player) {
-            for (shape in shapes) {
-                player.interfaces.sendVisibility("mage_training_arena_enchanting", "bonus_${shape.rowId}", shape.rowId == bonus)
-            }
+    private fun refresh(player: Player) {
+        val bonus = bonus(player)
+        for (shape in shapes) {
+            player.interfaces.sendVisibility("mage_training_arena_enchanting", "bonus_${shape.rowId}", shape.rowId == bonus)
         }
+    }
 
-        fun dragonstones(player: Player): List<FloorItem> = dragonstones[player.index] ?: emptyList()
-
-        private fun spawnDragonstones(player: Player) {
-            removeDragonstones(player)
-            val stones = mutableListOf<FloorItem>()
-            for (tile in Tables.tileList("mta_enchanting.settings.dragonstones")) {
-                stones.add(FloorItems.add(tile, "dragonstone_mage_training_arena", owner = player))
-            }
-            dragonstones[player.index] = stones
+    private fun spawnDragonstones(player: Player) {
+        removeDragonstones(player)
+        val stones = mutableListOf<FloorItem>()
+        for (tile in Tables.tileList("mta_enchanting.settings.dragonstones")) {
+            stones.add(FloorItems.add(tile, "dragonstone_mage_training_arena", owner = player))
         }
+        dragonstones[player.index] = stones
+    }
 
-        private fun removeDragonstones(player: Player) {
-            for (stone in dragonstones.remove(player.index) ?: return) {
-                FloorItems.remove(stone)
-            }
-            for (tile in Tables.tileList("mta_enchanting.settings.dragonstones")) {
-                World.clearQueue("mta_dragonstone_${player.index}_${tile.id}")
-            }
+    private fun removeDragonstones(player: Player) {
+        for (stone in dragonstones.remove(player.index) ?: return) {
+            FloorItems.remove(stone)
+        }
+        for (tile in Tables.tileList("mta_enchanting.settings.dragonstones")) {
+            World.clearQueue("mta_dragonstone_${player.index}_${tile.id}")
         }
     }
 }
