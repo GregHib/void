@@ -148,8 +148,12 @@ internal class DuelTest : WorldTest() {
         target.interfaceOption("stake", "accept", "Accept")
         tick()
         assertEquals(0, challenger.duel!!.accepted.size)
-        assertTrue(challenger.containsMessage("Your opponent does not have enough space"))
         assertTrue(target.containsMessage("You do not have enough space"))
+        assertFalse(challenger.containsMessage("Your opponent does not have enough space"))
+        challenger.interfaceOption("stake", "accept", "Accept")
+        tick()
+        assertEquals(0, challenger.duel!!.accepted.size)
+        assertTrue(challenger.containsMessage("Your opponent does not have enough space"))
     }
 
     @Test
@@ -160,7 +164,12 @@ internal class DuelTest : WorldTest() {
         tick()
         assertEquals(0, challenger.duel!!.accepted.size)
         assertTrue(challenger.containsMessage("you don't have a 'fun weapon'"))
+        assertFalse(target.containsMessage("fun weapon"))
         challenger.inventory.add("rubber_chicken")
+        challenger.interfaceOption("duel_confirm", "accept", "Accept")
+        tick()
+        assertEquals(0, challenger.duel!!.accepted.size)
+        assertTrue(challenger.containsMessage("your opponent does not have a 'fun weapon'"))
         target.inventory.add("rubber_chicken")
         challenger.interfaceOption("duel_confirm", "accept", "Accept")
         tick()
