@@ -25,6 +25,7 @@ internal class CharacterNameTest : WorldTest() {
         player.interfaceOption("character_creation", "confirm", optionIndex = 0)
 
         assertFalse(player.interfaces.contains(player.interfaces.gameFrame))
+        assertEquals("Newbie", player["character_name_base", ""])
         assertTrue(player["character_name_suggestion_0", ""].isNotEmpty())
         assertEquals(0, player["character_name_page", -1])
     }
