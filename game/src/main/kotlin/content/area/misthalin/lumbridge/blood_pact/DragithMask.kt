@@ -10,7 +10,8 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class DragithMask : Script {
 
     init {
-        itemOnItem("mask_part_1,mask_part_2,mask_part_3,mask_part_4,mask_part_5", "mask_part_1,mask_part_2,mask_part_3,mask_part_4,mask_part_5", bidirectional = false) { fromItem, toItem ->
+        val masks = "mask_part_1,mask_part_2,mask_part_3,mask_part_4,mask_part_5"
+        itemOnItem(masks, masks, bidirectional = false) { fromItem, toItem ->
             if (fromItem.id == toItem.id) {
                 return@itemOnItem
             }
