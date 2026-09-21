@@ -556,6 +556,7 @@ id = 8478
 
 [karma_the_chameleon]
 id = 8588
+dialogue = "old"
 examine = "Party Pete's pet."
 
 [sir_vant_falador]
