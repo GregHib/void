@@ -1,6 +1,8 @@
 package content.minigame.mage_training_arena
 
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -77,19 +79,19 @@ class MageTrainingArenaRewards(private val inventoryDefinitions: InventoryDefini
 
     private suspend fun Player.menu() {
         choice {
-            option<Neutral>("Who are you?") {
+            option<Quiz>("Who are you?") {
                 npc<Neutral>("Me? I'm here to grant you rewards for any of the Pizazz Points you may have earned in this training arena. Like my fellow Guardians, I am part of the arena and live to ensure its safe running.")
                 player<Neutral>("I see.")
                 menu()
             }
-            option<Neutral>("Can I trade my Pizazz Points please?") {
+            option<Quiz>("Can I trade my Pizazz Points please?") {
                 npc<Neutral>("Why of course.")
                 openRewards()
             }
-            option<Neutral>("Got anything else I can buy?") {
+            option<Quiz>("Got anything else I can buy?") {
                 npc<Neutral>("Well, we do stock a special book that you may be interested in, which provides a comprehensive guide to this training arena. It costs 200gp. Would like one?")
                 choice {
-                    option<Neutral>("Yes please.") {
+                    option<Happy>("Yes please.") {
                         buy(this, Tables.get("mta_rewards").rows().first { it.item("item") == "arena_book" })
                     }
                     option<Neutral>("No thanks.")

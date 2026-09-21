@@ -2,6 +2,7 @@ package content.minigame.mage_training_arena
 
 import content.entity.player.bank.bank
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -157,25 +158,27 @@ class AlchemistsPlayground : Script {
 
     private suspend fun Player.guardianMenu() {
         choice {
-            option<Neutral>("What do I have to do in this room?") {
+            option<Quiz>("What do I have to do in this room?") {
                 npc<Neutral>("In this room you will see various cupboards. It is your task to search the cupboards to find items to turn into gold using your low or high alchemy spells. You must deposit the money in the receptacle at the end of the")
                 npc<Neutral>("hall in order to receive your Alchemist Pizazz Points, otherwise the money will be taken from you as you leave through the portal. This money is used for the upkeep of the training arena as well as magic shops all")
                 npc<Neutral>("around Gielinor. Keep an eye on the cost of each items as these will change from time-to-time, as will the location of the items. Occasionally one of the items will be indicated as costing no runestones to convert to money.")
                 guardianMenu()
             }
-            option<Neutral>("What are the rewards?") {
+            option<Quiz>("What are the rewards?") {
                 npc<Neutral>("You will get experience from casting the alchemist spells, as well as 1 Alchemist Pizazz Point for every 100 coins you deposit, and 10% of the coins you deposit will be given to you as you leave. Keep in mind that you")
                 npc<Neutral>("will not be able to take more than 1000 coins back out with you.")
                 guardianMenu()
             }
-            option<Neutral>("Got any tips that may help me?") {
+            option<Quiz>("Got any tips that may help me?") {
                 npc<Neutral>("You must remember to keep an eye on the various costs of the items. If you watch the movements of the other players, you might be able to guess which are the best places to visit. You will get 1 Pizazz Point for")
                 npc<Neutral>("every 100 coins, so if you have 190 coins, why not get an extra 10?")
-                player<Neutral>("I see.")
+                player<Quiz>("I see.")
                 npc<Neutral>("Oh, and a word of warning: should you decide to leave this room by a method other than the exit portals, you will be teleported to the entrance and have any items that you picked up in the room removed.")
                 guardianMenu()
             }
-            option<Neutral>("Thanks, bye!")
+            option<Neutral>("Thanks, bye!") {
+                npc<Neutral>("use what you've learned, young one.")
+            }
         }
     }
 

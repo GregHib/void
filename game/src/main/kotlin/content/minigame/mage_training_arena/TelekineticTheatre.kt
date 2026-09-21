@@ -2,6 +2,7 @@ package content.minigame.mage_training_arena
 
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -135,16 +136,17 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
                 npc<Neutral>("your view to normal by selecting the same option again. There is also a 'Reset' option on the statue just in case things aren't going too well.")
                 guardianMenu()
             }
-            option<Neutral>("What are the rewards?") {
+            option<Quiz>("What are the rewards?") {
                 npc<Neutral>("As well as the experience in casting magic, you will get Telekinetic Pizazz Points for each maze successfully solved and bonus points for completing five mazes in a row without returning to the entrance.")
                 guardianMenu()
             }
-            option<Neutral>("Got any tips that may help me?") {
+            option<Quiz>("Got any tips that may help me?") {
                 npc<Neutral>("Have a good look at the maze before you try to solve it because this can save you time and runes required to navigate the maze. Although you will still be getting magic experience for moving the statue incorrectly, you")
                 npc<Neutral>("won't be progressing towards collecting Telekinetic Pizazz Points. Lastly, all the mazes can be solved in ten moves or less.")
-                player<Neutral>("I see.")
             }
-            option<Neutral>("Thanks, bye!")
+            option<Neutral>("Thanks, bye!") {
+                npc<Neutral>("use what you've learned, young one.")
+            }
         }
     }
 

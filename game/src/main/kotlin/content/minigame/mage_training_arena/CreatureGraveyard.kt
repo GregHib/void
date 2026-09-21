@@ -3,6 +3,7 @@ package content.minigame.mage_training_arena
 import content.entity.combat.hit.damage
 import content.entity.gfx.areaGfx
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
@@ -133,24 +134,26 @@ class CreatureGraveyard : Script {
 
     private suspend fun Player.guardianMenu() {
         choice {
-            option<Neutral>("What do I have to do in this room?") {
+            option<Quiz>("What do I have to do in this room?") {
                 npc<Neutral>("Have you noticed all the bones around the room? These are teleported here from all over Gielinor to help clean up the landscape of countless bones left behind from combat. What better use for these bones than to")
                 npc<Neutral>("convert them to nutritious fruit to be eaten by you mortals? You have to use your Bones to Bananas spell to convert the bones and then place them in the holes on the walls to earn Graveyard Pizazz Points.")
                 npc<Neutral>("Unluckily for you, your health will constantly decrease from getting hit by these dropping bones so you will probably want to eat some of the bananas yourself to increase your stay here.")
                 guardianMenu()
             }
-            option<Neutral>("What are the rewards?") {
+            option<Quiz>("What are the rewards?") {
                 npc<Neutral>("You will get experience from casting your bones to bananas spell and you will get Graveyard Pizazz Points when you put the bananas though the wall. Occasionally you will also be credited with a runestone")
                 npc<Neutral>("to help you in your future spell casting.")
                 guardianMenu()
             }
-            option<Neutral>("Got any tips that may help me?") {
+            option<Quiz>("Got any tips that may help me?") {
                 npc<Neutral>("Different bones will provide you with different numbers of bananas, so try to find the best type. Collect enough points and you will be able to buy a 'Bones to Peaches' spell from my fellow guardian above the entrance hall.")
                 npc<Neutral>("This spell can be used here just like the bones to bananas spell, except this spell will give you even more experience and the peaches will restore more health!")
-                player<Neutral>("I see.")
+                player<Quiz>("I see.")
                 npc<Neutral>("Oh, and a word of warning: should you decide to leave this room by a method other than the exit portals, you will be teleported to the entrance and have any items that you picked up in the room removed.")
             }
-            option<Neutral>("Thanks, bye!")
+            option<Neutral>("Thanks, bye!") {
+                npc<Neutral>("use what you've learned, young one.")
+            }
         }
     }
 

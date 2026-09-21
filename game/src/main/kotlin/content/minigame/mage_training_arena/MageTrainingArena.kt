@@ -1,6 +1,8 @@
 package content.minigame.mage_training_arena
 
+import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
+import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
@@ -103,25 +105,25 @@ class MageTrainingArena : Script {
         }
 
         npcOperate("Talk-to", "charmed_warrior") {
-            player<Neutral>("Is there anybody there?")
+            player<Quiz>("Is there anybody there?")
             npc<Neutral>("What do you think?")
         }
 
         npcOperate("Talk-to", "charmed_warrior_2") {
-            player<Neutral>("Is there anybody there?")
+            player<Quiz>("Is there anybody there?")
             npc<Neutral>("Wooo wooo! Be afraid for I'm a scary ghost. Wooo!")
             player<Neutral>("Er, whatever.")
         }
 
         npcOperate("Talk-to", "charmed_warrior_3") {
-            player<Neutral>("Hello?")
+            player<Quiz>("Hello?")
             npc<Neutral>("Hey! You haven't paid for your Magic Training Arena Membership money!")
-            player<Neutral>("You're lying. I can see right through you!")
+            player<Happy>("You're lying. I can see right through you!")
             npc<Neutral>("Oh, HA HA, very funny.")
         }
 
         npcOperate("Talk-to", "charmed_warrior_4") {
-            player<Neutral>("Hello?")
+            player<Quiz>("Hello?")
             npc<Neutral>("Can't you see I'm busy?")
             player<Neutral>("Well, I can't really see YOU.")
         }
