@@ -155,6 +155,8 @@ class DuelEnd : Script {
                 player.clear("duel_$rule")
             }
             player.attackers.clear()
+            // Projectiles still in the air must not land after the players leave the arena
+            player.queue.clear("hit")
             player.clearHinted()
             player.options.remove("Attack")
             player.options.set(DuelArena.CHALLENGE_SLOT, "Challenge")
