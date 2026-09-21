@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.pauseString
-import world.gregs.voidps.network.login.AccountNames
-import world.gregs.voidps.network.login.registration.RegistrationValidator
 
 /**
  * The "Character Name" panel at the end of character creation, where accounts registered with an email address pick their display name.
@@ -58,15 +56,11 @@ class CharacterName : Script {
          */
         fun Player.openCharacterName() {
             sendScript("character_name_open")
-            // Registered accounts log in with an email; show the name derived from it rather than the login
-            val base = if (AccountNames.isEmail(accountName)) DisplayNames.sanitise(RegistrationValidator.localPart(accountName)) else name
-            interfaces.sendText("character_creation", "name_message", "'$base' is not available.")
-            interfaces.sendVisibility("character_creation", "name_rules", false)
-            interfaces.sendVisibility("character_creation", "name_suggestions", true)
+            interfaces.sendText("character_creation", "name_message", "Please enter your desired character name.")
+            interfaces.sendVisibility("character_creation", "name_rules", true)
+            interfaces.sendVisibility("character_creation", "name_suggestions", false)
             this["character_name_page"] = -1
             this["character_name_pages"] = mutableListOf<List<String>>()
-            this["character_name_base"] = base
-            suggest(this, 1)
         }
 
         fun Player.chooseCharacterName(entered: String) {
@@ -77,6 +71,9 @@ class CharacterName : Script {
             }
             if (nameTaken(chosen)) {
                 reject(this, "'$chosen' is not available.")
+                // Swap the rules for suggestions based on the name they wanted
+                interfaces.sendVisibility("character_creation", "name_rules", false)
+                interfaces.sendVisibility("character_creation", "name_suggestions", true)
                 this["character_name_base"] = chosen
                 this["character_name_pages"] = mutableListOf<List<String>>()
                 this["character_name_page"] = -1
