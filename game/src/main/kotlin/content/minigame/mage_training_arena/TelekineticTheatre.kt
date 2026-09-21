@@ -25,6 +25,7 @@ import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.config.RowDefinition
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -48,7 +49,24 @@ import world.gregs.voidps.type.Tile
  */
 class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
 
+    private val region = Region(13463)
+    private val statues = HashMap<Int, FloorItem>()
+    private val guardians = HashMap<Int, NPC>()
+
+    private val mazes: List<RowDefinition>
+        get() = Tables.get("mta_mazes").rows()
+
     init {
+        objectOperate("Enter", "telekinetic_portal") {
+            if (!MageTrainingArena.canEnter(this, Rows.get("mta_rooms.telekinetic"))) {
+                return@objectOperate
+            }
+            smallInstance(region, levels = 3)
+            setInstanceLogout(MageTrainingArena.lobby)
+            delay(1)
+            nextMaze(this)
+        }
+
         onFloorItemApproach("modern_spellbook:telekinetic_grab", "guardian_statue") {
             approachRange(10)
             steps.clear()
@@ -239,81 +257,64 @@ class TelekineticTheatre(private val stepValidator: StepValidator) : Script {
         }
     }
 
-    companion object {
-        val region = Region(13463)
-
-        private val statues = HashMap<Int, FloorItem>()
-        private val guardians = HashMap<Int, NPC>()
-
-        private val mazes: List<RowDefinition>
-            get() = Tables.get("mta_mazes").rows()
-
-        suspend fun start(player: Player) {
-            player.smallInstance(region, levels = 3)
-            player.setInstanceLogout(MageTrainingArena.lobby)
-            player.delay(1)
-            nextMaze(player)
+    /**
+     * Picks an unsolved maze other than the current one, refilling the set once all ten are solved.
+     */
+    private fun nextMaze(player: Player) {
+        val all = mazes
+        var solved = player["mage_training_arena_mazes_solved", 0]
+        if (all.indices.all { solved and (1 shl it) != 0 }) {
+            solved = 0
+            player["mage_training_arena_mazes_solved"] = 0
         }
+        val current = player["mage_training_arena_telekinetic_maze", 0]
+        val remaining = all.filter { solved and (1 shl it.int("index")) == 0 }
+        val choices = remaining.filter { it.int("index") + 1 != current }.ifEmpty { remaining }
+        val maze = choices.random()
+        player["mage_training_arena_telekinetic_maze"] = maze.int("index") + 1
+        NPCs.remove(guardians.remove(player.index))
+        placeStatue(player, local(player, maze.tile("statue")))
+        guardians[player.index] = NPCs.add("telekinetic_guardian", local(player, maze.tile("guardian")))
+        player.tele(local(player, maze.tile("base")))
+    }
 
-        /**
-         * Picks an unsolved maze other than the current one, refilling the set once all ten are solved.
-         */
-        fun nextMaze(player: Player) {
-            val all = mazes
-            var solved = player["mage_training_arena_mazes_solved", 0]
-            if (all.indices.all { solved and (1 shl it) != 0 }) {
-                solved = 0
-                player["mage_training_arena_mazes_solved"] = 0
-            }
-            val current = player["mage_training_arena_telekinetic_maze", 0]
-            val remaining = all.filter { solved and (1 shl it.int("index")) == 0 }
-            val choices = remaining.filter { it.int("index") + 1 != current }.ifEmpty { remaining }
-            val maze = choices.random()
-            player["mage_training_arena_telekinetic_maze"] = maze.int("index") + 1
-            NPCs.remove(guardians.remove(player.index))
-            placeStatue(player, local(player, maze.tile("statue")))
-            guardians[player.index] = NPCs.add("telekinetic_guardian", local(player, maze.tile("guardian")))
-            player.tele(local(player, maze.tile("base")))
+    private fun currentMaze(player: Player): RowDefinition? {
+        val index = player["mage_training_arena_telekinetic_maze", 0] - 1
+        return mazes.firstOrNull { it.int("index") == index }
+    }
+
+    fun statue(player: Player): FloorItem? = statues[player.index]
+
+    fun placeStatue(player: Player, tile: Tile) {
+        statues.remove(player.index)?.let { FloorItems.remove(it) }
+        statues[player.index] = FloorItems.add(tile, "guardian_statue", owner = player)
+    }
+
+    /**
+     * Converts a maze offset into a tile inside the player's instance.
+     */
+    private fun local(player: Player, offset: Tile): Tile = region.tile.add(offset).add(player.instanceOffset())
+
+    /**
+     * The side of the maze the player stands on decides where the statue travels.
+     */
+    private fun direction(player: Player, maze: RowDefinition): Direction? {
+        val origin = region.tile.add(player.instanceOffset())
+        val x = player.tile.x - origin.x
+        val y = player.tile.y - origin.y
+        return when {
+            y >= maze.int("north") -> Direction.NORTH
+            y <= maze.int("south") -> Direction.SOUTH
+            x <= maze.int("west") -> Direction.WEST
+            x >= maze.int("east") -> Direction.EAST
+            else -> null
         }
+    }
 
-        fun currentMaze(player: Player): RowDefinition? {
-            val index = player["mage_training_arena_telekinetic_maze", 0] - 1
-            return mazes.firstOrNull { it.int("index") == index }
+    private fun refreshSolved(player: Player) {
+        if (!player.hasOpen("mage_training_arena_telekinetic")) {
+            return
         }
-
-        fun statue(player: Player): FloorItem? = statues[player.index]
-
-        fun placeStatue(player: Player, tile: Tile) {
-            statues.remove(player.index)?.let { FloorItems.remove(it) }
-            statues[player.index] = FloorItems.add(tile, "guardian_statue", owner = player)
-        }
-
-        /**
-         * Converts a maze offset into a tile inside the player's instance.
-         */
-        fun local(player: Player, offset: Tile): Tile = region.tile.add(offset).add(player.instanceOffset())
-
-        /**
-         * The side of the maze the player stands on decides where the statue travels.
-         */
-        fun direction(player: Player, maze: RowDefinition): Direction? {
-            val origin = region.tile.add(player.instanceOffset())
-            val x = player.tile.x - origin.x
-            val y = player.tile.y - origin.y
-            return when {
-                y >= maze.int("north") -> Direction.NORTH
-                y <= maze.int("south") -> Direction.SOUTH
-                x <= maze.int("west") -> Direction.WEST
-                x >= maze.int("east") -> Direction.EAST
-                else -> null
-            }
-        }
-
-        fun refreshSolved(player: Player) {
-            if (!player.hasOpen("mage_training_arena_telekinetic")) {
-                return
-            }
-            player.interfaces.sendText("mage_training_arena_telekinetic", "solved", player["mage_training_arena_maze_streak", 0].toString())
-        }
+        player.interfaces.sendText("mage_training_arena_telekinetic", "solved", player["mage_training_arena_maze_streak", 0].toString())
     }
 }

@@ -2,6 +2,7 @@ package content.minigame.mage_training_arena
 
 import WorldTest
 import content.quest.instance
+import content.quest.instanceOffset
 import floorItemOption
 import interfaceOnFloorItem
 import objectOption
@@ -22,9 +23,13 @@ import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
 internal class TelekineticTheatreTest : WorldTest() {
+
+    private val theatre: TelekineticTheatre
+        get() = scripts.filterIsInstance<TelekineticTheatre>().first()
 
     @Test
     fun `Entering the portal instances the first unsolved maze`() {
@@ -33,10 +38,10 @@ internal class TelekineticTheatreTest : WorldTest() {
         assertNotNull(player.instance())
         assertEquals("telekinetic", player["mage_training_arena_room", ""])
         assertEquals(1, player["mage_training_arena_telekinetic_maze", 0])
-        assertEquals(TelekineticTheatre.local(player, Tile(8, 54)), player.tile)
-        assertEquals(TelekineticTheatre.local(player, Tile(15, 41)), TelekineticTheatre.statue(player)?.tile)
+        assertEquals(local(player, Tile(8, 54)), player.tile)
+        assertEquals(local(player, Tile(15, 41)), theatre.statue(player)?.tile)
         assertTrue(player.hasOpen("mage_training_arena_telekinetic"))
-        assertTrue(NPCs.any { it.id == "telekinetic_guardian" && it.tile == TelekineticTheatre.local(player, Tile(8, 39)) })
+        assertTrue(NPCs.any { it.id == "telekinetic_guardian" && it.tile == local(player, Tile(8, 39)) })
     }
 
     @Test
@@ -44,15 +49,15 @@ internal class TelekineticTheatreTest : WorldTest() {
         val player = enter("mta-maze-slide")
         player.inventory.add("law_rune", 5)
         player.inventory.add("air_rune", 5)
-        player.tele(TelekineticTheatre.local(player, Tile(15, 51)))
+        player.tele(local(player, Tile(15, 51)))
         tick(2)
-        val statue = TelekineticTheatre.statue(player)!!
+        val statue = theatre.statue(player)!!
         val before = statue.tile
 
         player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", statue)
         tick(15)
 
-        val after = TelekineticTheatre.statue(player)!!.tile
+        val after = theatre.statue(player)!!.tile
         assertTrue(after.y > before.y) { "Statue didn't move north: $before -> $after" }
         assertEquals(before.x, after.x)
         assertEquals(4, player.inventory.count("law_rune"))
@@ -72,7 +77,7 @@ internal class TelekineticTheatreTest : WorldTest() {
         assertEquals(2, PizazzPoints.get(player, "telekinetic"))
         assertEquals(1, player["mage_training_arena_maze_streak", 0])
         assertEquals(1023, player["mage_training_arena_mazes_solved", 0])
-        assertNull(TelekineticTheatre.statue(player))
+        assertNull(theatre.statue(player))
         assertTrue(NPCs.any { it.id == "maze_guardian" && it.tile == end })
     }
 
@@ -96,7 +101,7 @@ internal class TelekineticTheatreTest : WorldTest() {
     @Test
     fun `Exit portal frees the instance and returns to the lobby`() {
         val player = enter("mta-maze-exit")
-        val base = TelekineticTheatre.local(player, Tile(0, 0))
+        val base = local(player, Tile(0, 0))
         val exit = MageTrainingArenaTest.findObject("exit_portal_mage_training_arena", base, base.add(63, 63))
         player.tele(exit.tile.addY(-1))
         tick(2)
@@ -111,36 +116,36 @@ internal class TelekineticTheatreTest : WorldTest() {
     @Test
     fun `Observe and Reset work on the statue from across the maze`() {
         val player = enter("mta-maze-observe")
-        player.tele(TelekineticTheatre.local(player, Tile(15, 51)))
+        player.tele(local(player, Tile(15, 51)))
         tick(2)
-        val start = TelekineticTheatre.statue(player)!!.tile
+        val start = theatre.statue(player)!!.tile
 
-        player.floorItemOption(TelekineticTheatre.statue(player)!!, "Observe")
+        player.floorItemOption(theatre.statue(player)!!, "Observe")
         tick(3)
 
         assertTrue(player["mage_training_arena_camera", false])
-        assertEquals(TelekineticTheatre.local(player, Tile(15, 51)), player.tile)
+        assertEquals(local(player, Tile(15, 51)), player.tile)
 
-        TelekineticTheatre.placeStatue(player, start.addY(1))
-        player.floorItemOption(TelekineticTheatre.statue(player)!!, "Reset")
+        theatre.placeStatue(player, start.addY(1))
+        player.floorItemOption(theatre.statue(player)!!, "Reset")
         tick(3)
 
-        assertEquals(start, TelekineticTheatre.statue(player)!!.tile)
+        assertEquals(start, theatre.statue(player)!!.tile)
     }
 
     /**
      * Places the statue one step from the exit and casts from the matching side of the maze.
      */
     private fun solve(player: Player): Tile {
-        val end = TelekineticTheatre.local(player, Tile(19, 50))
+        val end = local(player, Tile(19, 50))
         val validator = get<StepValidator>()
         val direction = listOf(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST).first { direction ->
             val from = end.minus(direction)
             validator.canTravel(level = from.level, x = from.x, z = from.y, offsetX = direction.delta.x, offsetZ = direction.delta.y, size = 1, extraFlag = 0, collision = CollisionStrategies.Normal)
         }
         val statueTile = end.minus(direction)
-        TelekineticTheatre.placeStatue(player, statueTile)
-        val origin = TelekineticTheatre.local(player, Tile(0, 0))
+        theatre.placeStatue(player, statueTile)
+        val origin = local(player, Tile(0, 0))
         val side = when (direction) {
             Direction.NORTH -> Tile(statueTile.x, origin.y + 51 + 1, statueTile.level)
             Direction.SOUTH -> Tile(statueTile.x, origin.y + 40 - 1, statueTile.level)
@@ -149,9 +154,14 @@ internal class TelekineticTheatreTest : WorldTest() {
         }
         player.tele(side)
         tick(2)
-        player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", TelekineticTheatre.statue(player)!!)
+        player.interfaceOnFloorItem("modern_spellbook", "telekinetic_grab", theatre.statue(player)!!)
         return end
     }
+
+    /**
+     * Converts a maze offset into a tile inside the player's instance of region 13463.
+     */
+    private fun local(player: Player, offset: Tile): Tile = Region(13463).tile.add(offset).add(player.instanceOffset())
 
     private fun enter(name: String): Player {
         val player = createPlayer(Tile(3361, 3316), name)

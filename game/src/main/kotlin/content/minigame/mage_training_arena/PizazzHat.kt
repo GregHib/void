@@ -178,7 +178,7 @@ class PizazzHat : Script {
 
         fun points(player: Player): String = "${PizazzPoints.get(player, "telekinetic")} Telekinetic, ${PizazzPoints.get(player, "alchemist")} Alchemist, ${PizazzPoints.get(player, "enchanting")} Enchantment, and ${PizazzPoints.get(player, "graveyard")} Graveyard Pizazz Points."
 
-        fun tier(player: Player): String {
+        private fun tier(player: Player): String {
             val total = PizazzPoints.total(player)
             return when {
                 total > 600 -> "progress_hat_3"
@@ -190,7 +190,7 @@ class PizazzHat : Script {
         /**
          * Hands the player a fresh hat of the correct tier, replacing any they already carry.
          */
-        fun give(player: Player) {
+        private fun give(player: Player) {
             for (hat in hats) {
                 val held = player.inventory.count(hat)
                 if (held > 0) {

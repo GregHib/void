@@ -42,7 +42,6 @@ internal class MageTrainingArenaTest : WorldTest() {
 
         assertTrue(player["mage_training_arena_started", false])
         assertTrue(player.inventory.contains("progress_hat"))
-        assertEquals("progress_hat", PizazzHat.tier(player))
     }
 
     @Test

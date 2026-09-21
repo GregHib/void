@@ -32,6 +32,32 @@ import world.gregs.voidps.type.Tile
  */
 class MageTrainingArena : Script {
 
+    private val rooms: List<RowDefinition>
+        get() = Tables.get("mta_rooms").rows()
+
+    /**
+     * Items that belong to the arena and are removed when a player leaves a room by any means.
+     */
+    private val arenaItems = listOf(
+        "leather_boots_mage_training_arena",
+        "adamant_kiteshield_mage_training_arena",
+        "adamant_helm_mage_training_arena",
+        "emerald_mage_training_arena",
+        "rune_longsword_mage_training_arena",
+        "cube",
+        "cylinder",
+        "icosahedron",
+        "pentamid",
+        "dragonstone_mage_training_arena",
+        "orb",
+        "animals_bones_1",
+        "animals_bones_2",
+        "animals_bones_3",
+        "animals_bones_4",
+        "banana",
+        "peach",
+    )
+
     init {
         objectOperate("Enter", "doorway_mage_training_arena") { (target) ->
             target.anim("mta_light_door_open")
@@ -39,9 +65,12 @@ class MageTrainingArena : Script {
             walkOverDelay(target.tile.addY(if (tile.y < target.tile.y) 1 else -1))
         }
 
-        objectOperate("Enter", "telekinetic_portal,alchemists_portal,enchanters_portal,graveyard_portal") { (target) ->
+        objectOperate("Enter", "alchemists_portal,enchanters_portal,graveyard_portal") { (target) ->
             val room = rooms.firstOrNull { it.obj("portal") == target.id } ?: return@objectOperate
-            enterRoom(room)
+            if (!canEnter(this, room)) {
+                return@objectOperate
+            }
+            tele(room.tile("enter"))
         }
 
         objectOperate("Enter", "exit_portal_mage_training_arena") {
@@ -54,6 +83,7 @@ class MageTrainingArena : Script {
                 set("mage_training_arena_room", room.rowId)
                 open(room.string("overlay"))
                 PizazzPoints.refresh(this, room.rowId)
+                message("You've entered the ${room.string("name")}.")
             }
             exited(room.string("area")) {
                 close(room.string("overlay"))
@@ -123,86 +153,58 @@ class MageTrainingArena : Script {
         }
     }
 
-    private suspend fun Player.enterRoom(room: RowDefinition) {
-        if (!get("mage_training_arena_started", false) || !hasProgressHat(this)) {
-            statement("You need a Pizazz Progress Hat in order to enter. Talk to the Entrance Guardian if you don't have one.")
-            return
-        }
-        if (follower != null) {
-            statement("You can't take a familiar into the arena.")
-            return
-        }
-        if (levels.get(Skill.Magic) < room.int("level")) {
-            statement("You need to be able to cast the ${room.string("spell")} spell in order to enter.")
-            return
-        }
-        when (room.rowId) {
-            "alchemist" -> if (inventory.contains("coins")) {
-                statement("You cannot take money into the Alchemists' Playground.")
-                return
+    private fun currentRoom(player: Player): RowDefinition? {
+        val room: String = player.get("mage_training_arena_room") ?: return null
+        return Rows.getOrNull("mta_rooms.$room")
+    }
+
+    private fun confiscate(player: Player) {
+        for (item in arenaItems) {
+            val held = player.inventory.count(item)
+            if (held > 0) {
+                player.inventory.remove(item, held)
             }
-            "graveyard" -> if (inventory.contains("banana") || inventory.contains("peach")) {
-                statement("You can't take bananas or peaches into the arena.")
-                return
+            val worn = player.equipment.count(item)
+            if (worn > 0) {
+                player.equipment.remove(item, worn)
             }
         }
-        if (room.rowId == "telekinetic") {
-            TelekineticTheatre.start(this)
-        } else {
-            tele(room.tile("enter"))
-        }
-        message("You've entered the ${room.string("name")}.")
     }
 
     companion object {
         val lobby = Tile(3363, 3302, 0)
 
-        val rooms: List<RowDefinition>
-            get() = Tables.get("mta_rooms").rows()
-
-        /**
-         * Items that belong to the arena and are removed when a player leaves a room by any means.
-         */
-        private val arenaItems = listOf(
-            "leather_boots_mage_training_arena",
-            "adamant_kiteshield_mage_training_arena",
-            "adamant_helm_mage_training_arena",
-            "emerald_mage_training_arena",
-            "rune_longsword_mage_training_arena",
-            "cube",
-            "cylinder",
-            "icosahedron",
-            "pentamid",
-            "dragonstone_mage_training_arena",
-            "orb",
-            "animals_bones_1",
-            "animals_bones_2",
-            "animals_bones_3",
-            "animals_bones_4",
-            "banana",
-            "peach",
-        )
-
-        fun currentRoom(player: Player): RowDefinition? {
-            val room: String = player.get("mage_training_arena_room") ?: return null
-            return Rows.getOrNull("mta_rooms.$room")
-        }
-
         fun inRoom(player: Player, room: String): Boolean = player["mage_training_arena_room", ""] == room
 
         fun hasProgressHat(player: Player): Boolean = PizazzHat.hats.any { player.inventory.contains(it) || player.equipment.contains(it) }
 
-        fun confiscate(player: Player) {
-            for (item in arenaItems) {
-                val held = player.inventory.count(item)
-                if (held > 0) {
-                    player.inventory.remove(item, held)
+        /**
+         * The rules every room's portal applies before letting a player in, telling them why if not.
+         */
+        suspend fun canEnter(player: Player, room: RowDefinition): Boolean {
+            if (!player.get("mage_training_arena_started", false) || !hasProgressHat(player)) {
+                player.statement("You need a Pizazz Progress Hat in order to enter. Talk to the Entrance Guardian if you don't have one.")
+                return false
+            }
+            if (player.follower != null) {
+                player.statement("You can't take a familiar into the arena.")
+                return false
+            }
+            if (player.levels.get(Skill.Magic) < room.int("level")) {
+                player.statement("You need to be able to cast the ${room.string("spell")} spell in order to enter.")
+                return false
+            }
+            when (room.rowId) {
+                "alchemist" -> if (player.inventory.contains("coins")) {
+                    player.statement("You cannot take money into the Alchemists' Playground.")
+                    return false
                 }
-                val worn = player.equipment.count(item)
-                if (worn > 0) {
-                    player.equipment.remove(item, worn)
+                "graveyard" -> if (player.inventory.contains("banana") || player.inventory.contains("peach")) {
+                    player.statement("You can't take bananas or peaches into the arena.")
+                    return false
                 }
             }
+            return true
         }
     }
 }
@@ -220,7 +222,7 @@ object PizazzPoints {
         "graveyard" to 16383,
     )
 
-    fun key(room: String) = "mage_training_arena_${room}_points"
+    private fun key(room: String) = "mage_training_arena_${room}_points"
 
     fun get(player: Player, room: String): Int = player[key(room), 0]
 
