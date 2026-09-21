@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.nameHistory
 import world.gregs.voidps.engine.get
-import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.suspend.Suspension
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -16,17 +15,12 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-internal class DisplayNameSelectionTest : WorldTest() {
+internal class IntroductionTest : WorldTest() {
 
     @Test
     fun `Choose a display name rejects invalid and taken names`() {
         createPlayer(name = "Bob")
-        val player = createPlayer(name = "newbie@example.com")
-        player["choose_name"] = true
-        player.strongQueue("choose_name") {
-            chooseDisplayName()
-        }
-        tick()
+        val player = welcome("newbie@example.com")
 
         player.enterName("bad_name!")
         assertTrue(player.suspension is Suspension.Continue)
@@ -48,12 +42,7 @@ internal class DisplayNameSelectionTest : WorldTest() {
 
     @Test
     fun `Keeping the current name clears the flag without renaming`() {
-        val player = createPlayer(name = "Keeper")
-        player["choose_name"] = true
-        player.strongQueue("choose_name") {
-            chooseDisplayName()
-        }
-        tick()
+        val player = welcome("Keeper")
 
         player.enterName("Keeper")
 
@@ -61,6 +50,17 @@ internal class DisplayNameSelectionTest : WorldTest() {
         assertEquals("Keeper", player.name)
         assertTrue(player.nameHistory.isEmpty())
         assertFalse(player["choose_name", false])
+    }
+
+    /**
+     * Logs in a registered account which still has to choose its display name, without the character creation screen
+     */
+    private fun welcome(name: String): Player {
+        settings["world.start.creation"] = "false"
+        return createPlayer(name = name) {
+            it.clear("creation")
+            it["choose_name"] = true
+        }
     }
 
     private fun Player.enterName(name: String) {
