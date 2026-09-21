@@ -1,11 +1,7 @@
 package content.minigame.duel_arena
 
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.chat.Colours
-import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
-import world.gregs.voidps.engine.client.ui.chat.toTag
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.Inventory
 
 class DuelConfirm : Script {
 
@@ -50,10 +46,6 @@ class DuelConfirm : Script {
             for (index in 0 until DURING_LINES) {
                 player.interfaces.sendText(screen, "during_$index", during.getOrElse(index) { "" })
             }
-            if (duel.staked) {
-                player.interfaces.sendText(screen, "stake", itemsText(player.stake))
-                player.interfaces.sendText(screen, "other_stake", itemsText(player.otherStake))
-            }
             player.interfaces.sendText(screen, "status", "")
         }
 
@@ -88,28 +80,6 @@ class DuelConfirm : Script {
                 lines.add("You will fight using normal combat.")
             }
             return lines
-        }
-
-        fun itemsText(inventory: Inventory): String {
-            if (inventory.isEmpty()) {
-                return "Absolutely nothing!"
-            }
-            return buildString {
-                for (item in inventory.items) {
-                    if (item.isEmpty()) {
-                        continue
-                    }
-                    append(Colours.ORANGE.toTag())
-                    append(item.def.name)
-                    if (item.amount > 1) {
-                        append(Colours.WHITE.toTag())
-                        append(" x ")
-                        append(Colours.YELLOW.toTag())
-                        append(item.amount.toLong().toDigitGroupString())
-                    }
-                    append("<br>")
-                }
-            }
         }
     }
 }
