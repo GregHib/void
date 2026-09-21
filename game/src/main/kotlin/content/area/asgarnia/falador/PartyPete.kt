@@ -64,8 +64,7 @@ class PartyPete : Script {
                     option("Yes.") {
                         openShop("party_petes_emporium")
                     }
-                    option("No.") {
-                    }
+                    option("No.")
                 }
             }
             option<Quiz>("Why's there a chameleon in here?") {
@@ -89,8 +88,7 @@ class PartyPete : Script {
                 npc<Happy>("I couldn't chuck the little chappy out! A pet is for life!")
                 chameleon()
             }
-            option<Quiz>("Aww, that's nice.") {
-            }
+            option<Quiz>("Aww, that's nice.")
         }
     }
 }

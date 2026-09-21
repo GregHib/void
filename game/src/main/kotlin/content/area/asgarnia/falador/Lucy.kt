@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class Lucy : Script {
@@ -37,13 +38,10 @@ class Lucy : Script {
 
     suspend fun Player.beer() {
         npc<Happy>("Coming right up ${if (male) "sir" else "ma'am"}!")
-        if (inventory.count("coins") < 2) {
+        if (inventory.remove("coins", 2)) {
             npc<Angry>("I said 2 coins! You haven't got 2 coins!")
             player<Sad>("Sorry. I'll come back another day.")
             return
-        }
-        inventory.transaction {
-            remove("coins", 2)
         }
         addOrDrop("beer")
         player<Happy>("Thanks, Lucy.")

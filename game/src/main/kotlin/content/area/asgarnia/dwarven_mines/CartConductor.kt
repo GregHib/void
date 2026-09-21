@@ -5,7 +5,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.quest.quest
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 
@@ -24,7 +24,7 @@ class CartConductor : Script {
                 menu()
             }
             option<Quiz>("Where can you take me?") {
-                if (quest("the_giant_dwarf") == "completed") {
+                if (questCompleted("the_giant_dwarf")) {
                     npc<Neutral>("This track leads right up to Keldagrim. Only stop.")
                 } else {
                     npc<Neutral>("I don't think I'm allowed to take you into the city of Keldagrim, human. Perhaps, when you find another way into the city and talk to someone of significance there, you will be allowed to.")

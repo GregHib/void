@@ -8,7 +8,6 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 
@@ -16,14 +15,12 @@ class Hura : Script {
 
     init {
         npcOperate("Talk-to", "hura") { (target) ->
-            talkWith(target) {
-                npc<Happy>("'Ello, $name.")
-                player<Quiz>("Hello, what's that you've got there?")
-                npc<Quiz>("A crossbow, are you interested?")
-                player<Quiz>("Maybe, are they any good?")
-                npc<Laugh>("Are they any good?! They're dwarven engineering at its best!")
-                menu()
-            }
+            npc<Happy>("'Ello, $name.")
+            player<Quiz>("Hello, what's that you've got there?")
+            npc<Quiz>("A crossbow, are you interested?")
+            player<Quiz>("Maybe, are they any good?")
+            npc<Laugh>("Are they any good?! They're dwarven engineering at its best!")
+            menu()
         }
     }
 

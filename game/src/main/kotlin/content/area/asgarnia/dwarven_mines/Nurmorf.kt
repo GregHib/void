@@ -6,7 +6,7 @@ import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.Sad
 import content.entity.player.dialogue.type.*
-import content.quest.quest
+import content.quest.questCompleted
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -23,7 +23,7 @@ class Nurmorf : Script {
             if (!target.tile.equals(2996, 9846)) {
                 return@objTeleportTakeOff Teleport.CONTINUE
             }
-            if (quest("perils_of_ice_mountain") != "completed") {
+            if (!questCompleted("perils_of_ice_mountain")) {
                 val nurmof = NPCs.findBySpawn(Tile(2996, 9844), "nurmof")
                 face(nurmof.tile)
                 npc<Sad>("nurmof", "I'm afraid you can't use that ladder. Drorkar is very strict; it's for power station workers only.")
@@ -38,12 +38,11 @@ class Nurmorf : Script {
                 option("Yes, please.") {
                     openShop(shop)
                 }
-                option<Neutral>("No, thank you.") {
-                }
+                option<Neutral>("No, thank you.")
                 option<Quiz>("Are your pickaxes better than other pickaxes, then?") {
                     npc<Happy>("Of course they are! My pickaxes are made of higher grade metal than your ordinary bronze pickaxes, allowing you to mine ore just that little bit faster than normal.")
                 }
-                if (quest("perils_of_ice_mountain") == "completed") {
+                if (questCompleted("perils_of_ice_mountain")) {
                     option<Quiz>("How is the wind power station working out?") {
                         npc<Happy>("Very well, thank you. I had been worried about supply cutting out when the wind drops, but Bordiss has installed some kind of device to store power for those times.")
                         npc<Happy>("It's far less smelly than the old power station, too! It almost makes me want to go for a walk on the surface, and few things make an old dwarf like me want to go to the surface!")
@@ -82,8 +81,7 @@ class Nurmorf : Script {
                     machine(3)
                 }
             }
-            option<Neutral>("Oh, right.") {
-            }
+            option<Neutral>("Oh, right.")
         }
     }
 }

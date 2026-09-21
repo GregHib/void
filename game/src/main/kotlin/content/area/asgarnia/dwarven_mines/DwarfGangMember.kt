@@ -30,8 +30,7 @@ class DwarfGangMember : Script {
                 npc<Neutral>("I have an ongoing contract with Hammerspike, when he gives the word, the hammer starts flying.")
                 menu()
             }
-            option<Neutral>("Okay, thanks.") {
-            }
+            option<Neutral>("Okay, thanks.")
         }
     }
 }

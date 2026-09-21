@@ -39,8 +39,7 @@ class MiningGuildDwarf : Script {
                     return@option
                 }
             }
-            option("No thanks, I'm fine.") {
-            }
+            option("No thanks, I'm fine.")
         }
     }
 }

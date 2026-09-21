@@ -6,22 +6,20 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class Boot : Script {
 
     init {
         npcOperate("Talk-to", "boot_dwarven_mine") { (target) ->
-            talkWith(target) {
-                npc<Neutral>("Hello tall person.")
-                menu()
-            }
+            npc<Neutral>("Hello tall person.")
+            menu()
         }
     }
 
     private suspend fun Player.menu() = choice("Select an Option") {
         option<Neutral>("Hello short person.") {
+            npc<Neutral>("Hello tall person.")
         }
         option("Why are you called boot?") {
             player<Quiz>("Why are you called Boot?")

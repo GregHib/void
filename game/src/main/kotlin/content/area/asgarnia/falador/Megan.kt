@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.male
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
 class Megan : Script {
@@ -36,21 +37,17 @@ class Megan : Script {
                     npc<Neutral>("Not at the moment. I've heard that the known world is expanding as new places are discovered.")
                     npc<Happy>("These are exciting times indeed!")
                 }
-                option<Neutral>("Never mind.") {
-                }
+                option<Neutral>("Never mind.")
             }
         }
     }
 
     suspend fun Player.beer() {
         npc<Happy>("Certainly ${if (male) "sir" else "ma'am"}! Coming right up! That's two coins, please.")
-        if (inventory.count("coins") < 2) {
+        if (!inventory.remove("coins", 2)) {
             npc<Angry>("I said 2 coins! You haven't got 2 coins!")
             player<Sad>("Sorry. I'll come back another day.")
             return
-        }
-        inventory.transaction {
-            remove("coins", 2)
         }
         addOrDrop("beer")
         player<Happy>("Thanks, Megan.")
