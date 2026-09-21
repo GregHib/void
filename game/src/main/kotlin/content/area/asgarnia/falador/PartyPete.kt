@@ -46,7 +46,9 @@ class PartyPete : Script {
             }
             option<Quiz>("I wanna party!") {
                 npc<Happy>("I've won the Dance Trophy at the Kandarin Ball three years in a trot!")
-                player<Happy>("Show me your moves Pete!") // todo implement the dancing interaction
+                player<Happy>("Show me your moves Pete!")
+                delay(2)
+                target.anim("partyroom_dance")
             }
             option("More.") {
                 more(target)
