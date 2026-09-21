@@ -28,6 +28,8 @@ max_hit_crush = 40
 
 [dwarf_gang_member_3]
 id = 1797
+categories = ["dwarves"]
+examine = "A short stout menacing fellow."
 drop_table = "dwarf_gang_member"
 combat_def = "dwarf"
 hitpoints = 250

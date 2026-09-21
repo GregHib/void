@@ -1,0 +1,11 @@
+[corpse_attack]
+id = 8674
+
+[corpse_death]
+id = 8689
+
+[corpse_defend]
+id = 8693
+
+[corpse_archer_attack]
+id = 8701

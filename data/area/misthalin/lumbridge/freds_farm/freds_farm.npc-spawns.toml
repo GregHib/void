@@ -51,7 +51,7 @@ spawns = [
     { id = "beefy_bill", x = 3180, y = 3320 },
     { id = "black_lamb", x = 3208, y = 3260 },
     { id = "larry_farmer", x = 3185, y = 3292, members = true },
-    { id = "goblin_spear_green", x = 3161, y = 3278},
+    { id = "goblin_spear_green", x = 3163, y = 3279 },
     { id = "goblin_machete_orange", x = 3142, y = 3296 },
     { id = "farmer_2", x = 3149, y = 3276 },
     { id = "farmer", x = 3154, y = 3293 },
