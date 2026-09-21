@@ -1,0 +1,88 @@
+### [**Home**](./home)
+- [Roadmap](./roadmap)
+- [Content Progress](./content-progress)
+
+# Players
+- Getting Started
+  - [Installation](installation-guide)
+  - [First launch](installation-guide#step-6-launch-the-server)
+  - [Game Settings](properties)
+- Player Commands
+  - [Make yourself admin](player-rights#modifying-rights)
+  - [Using commands](commands)
+  - [Spawning items](commands#item)
+- [Common issues](troubleshooting)
+
+# Content Creation
+- [Cheat Sheet](content-cheat-sheet)
+- [Overview](content-creation)
+  - [Content Added](content-progress)
+  - [Content Planned](roadmap)
+- Setup
+  - [IDE Setup](ide-setup)
+  - Git Basics
+    - [Updating](update)
+    - [Rebasing](rebase)
+- Core Concepts
+  - [Scripts](scripts)
+    - [Event Handlers](event-handlers)
+    - [Interactions](interaction)
+    - [Wildcards](wildcards)
+  - [Entities](entities)
+    - [Players](players)
+    - [Bots](bots)
+    - [NPCs](npcs)
+    - [Objects](game-objects)
+    - [Floor Items](floor-items)
+  - [Interfaces](interfaces)
+    - [Dialogues](dialogues)
+    - [Inventories](inventories)
+      - [Transactions](transactions)
+      - [Shops](shops)
+  - [Definitions](definitions)
+    - [Cache viewer](cache-viewer)
+  - [Config Files](config-files)
+    - [Tables](data-tables)
+  - [Variables](character-variables)
+  - [Clocks](clocks)
+  - [Timers](timers)
+  - Sounds
+  - [Teleports](config-files#teleports)
+- Guides
+  - [Errors Explained](reading-Errors)
+  - [Fork Updating](rebase)
+  - [Script Creation](scripts#creating-a-script)
+  - [Add an NPC](npcs#adding-npcs)
+  - [Add an object](game-objects#adding-objects)
+  - [Add an item spawn](floor-items#adding-floor-items)
+  - [Add a shop](shops#adding-default-shops)
+  - [Build your own client](client-building)
+  - [Build your own cache](cache-building)
+  - [How to auto-format code](code-formatting)
+  - [Save to PostgreSQL](storage#postgresql)
+- Tools
+  - [Definition Browser](cache-viewer)
+  - [Interactive Map](https://greghib.github.io/void-map/)
+
+# Developers
+- [Setup](ide-setup)
+- Architecture
+  - [Philosophy](philosophy)
+  - [String Ids](string-identifiers)
+- Technical Concepts
+  - [Wildcard system](wildcard-system)
+  - [Queues](queues)
+  - [Combat](combat-scripts)
+    - [Combat lifecycle](combat-lifecycle)
+  - [Monster Drops](drop-tables)
+  - [Instances](instances)
+  - [Hunt Modes](hunt-modes)
+  - [Events](events)
+  - [Item Charges & Degrading](charges-and-degrading)
+  - Movement Modes
+  - [Bot Architecture](bot-architecture)
+  - [Database Storage](storage)
+  - Delta's
+  - [Drops and variables](drop-tables)
+- Contributing
+  - [Guidelines](https://github.com/GregHib/void/blob/main/CONTRIBUTING.md)

@@ -331,12 +331,12 @@ object GameObjects : ZoneBatchUpdates.Sender {
      */
     fun reset(zone: Zone, collision: Boolean = true) {
         forEachReplaced(zone) { tile, layer, value ->
-            if (value != 1) {
-                add(GameObject(id(value), tile, shape(value), rotation(value)), collision)
-            }
             val replaced = replacements[index(tile, layer)]
             if (replaced != null) {
+                // Removing the replacement re-adds the original by itself
                 remove(GameObject(id(replaced), tile, shape(replaced), rotation(replaced)), collision)
+            } else if (value != 1) {
+                add(GameObject(id(value), tile, shape(value), rotation(value)), collision)
             }
         }
     }

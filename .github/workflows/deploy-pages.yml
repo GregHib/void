@@ -1,0 +1,88 @@
+name: Deploy Static Site
+
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+env:
+  CACHE_VERSION: 1.4.5
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v3
+        with:
+          java-version: "21"
+          distribution: "temurin"
+          architecture: x64
+          cache: "gradle"
+
+      - name: Grant Permissions to gradlew
+        run: chmod +x gradlew
+
+      - name: Create cache folder
+        run: mkdir -p data/cache/
+
+      - name: Get cache version
+        run: echo "cache_version=$(./gradlew -q printCacheVersion | tail -n1 | xargs)" >> $GITHUB_ENV
+
+      - name: Restore game cache files from cache
+        id: cache-files
+        uses: actions/cache@v3
+        with:
+          key: cache-${{ env.cache_version }}-${{ hashFiles('data/cache/main_file_cache.idx255') }}
+          path: data/cache/
+          enableCrossOsArchive: 'true'
+          restore-keys:
+            cache-${{ env.cache_version }}
+            cache-
+
+      - name: Download game cache files
+        if: steps.cache-files.outputs.cache-hit != 'true'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-west-2
+        run: aws s3 cp --recursive s3://void-rsps/caches/${{ env.CACHE_VERSION }}/ data/cache/
+
+      - name: Build static site
+        run: ./gradlew :web:site:run
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/pages
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

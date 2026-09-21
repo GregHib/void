@@ -1,0 +1,103 @@
+[piackaxe_machine]
+id = 30813
+examine = "Automated pickaxe construction."
+
+[train_cart_dwarven_mine]
+id = 7029
+examine = "A steam powered cart."
+
+[buffer_dwarven_mine]
+id = 46348
+examine = "Stops carts from leaving the track."
+
+[cooking_pot_dwarven_mine]
+id = 32105
+examine = "Hot!"
+
+[caming_gear_dwarven_mine]
+id = 6229
+examine = "Camping and cooking equipment."
+
+[stool_dwarven_mine]
+id = 7821
+examine = "It is too dirty to sit on."
+
+[chest_dwarven_mine]
+id = 2587
+examine = "I wonder what's inside."
+
+[chest_dwarven_mine_2]
+id = 6222
+examine = "A secure chest."
+
+[chest_dwarven_mine_3]
+id = 30928
+examine = "A secure chest."
+
+[chest_dwarven_mine_4]
+id = 30963
+examine = "It looks very secure."
+
+[workbench_dwarven_mine]
+id = 5762
+examine = "This might be handy for a workman."
+
+[stacked_crates_dwarven_mine]
+id = 5748
+examine = "Some wooden crates."
+
+[barrel_dwarven_mine]
+id = 30926
+examine = "A wooden barrel for storage."
+
+[crevice_dwarven_mine]
+id = 5906
+examine = "Just another crack in the wall."
+
+[sacks_dwarven_mine]
+id = 30938
+examine = "These may have something in them."
+
+[standard_dwarven_mine]
+id = 851
+examine = "A tatty old standard."
+
+[candle_stand_dwarven_mine]
+id = 25122
+examine = "A burning candle on an interesting stand."
+
+[fungus_dwarven_mine]
+id = 25138
+examine = "I doubt that's edible."
+
+[fungus_dwarven_mine_2]
+id = 25139
+examine = "I doubt that's edible."
+
+[fungus_dwarven_mine_3]
+id = 5115
+examine = "I doubt that's edible."
+
+[vines_dwarven_mine]
+id = 25136
+examine = "Some weird vines."
+
+[mine_cart_dwarven_mine]
+id = 6045
+examine = "You can 'cart' things around on this."
+
+[small_obelisk_dwarven_mine]
+id = 5787
+examine = "Contains traces of Summoning energy."
+
+[stairs_dwarven_mine]
+id = 30943
+examine = "It's a flight of stairs."
+
+[ladder_up_dwarven_mine]
+id = 6226
+examine = "I can climb this."
+
+[31002]
+id = 31002
+examine = "I can climb this."
