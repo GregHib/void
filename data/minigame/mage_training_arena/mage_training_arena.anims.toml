@@ -1,2 +1,5 @@
 [mta_search_cupboard]
 id = 3032
+
+[mta_light_door_open]
+id = 3024

@@ -25,7 +25,6 @@ import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 
 /**
@@ -34,15 +33,10 @@ import world.gregs.voidps.type.Tile
 class MageTrainingArena : Script {
 
     init {
-        objectOperate("Enter", "doorway_mage_training_arena") {
-            if (levels.get(Skill.Magic) < 7) {
-                statement("You need a Magic level of at least 7 to enter the guild.")
-                return@objectOperate
-            }
-            val direction = if (tile.y < 3300) Direction.NORTH else Direction.SOUTH
-            sound("mta_barrier")
-            anim("pass_through_barrier")
-            exactMoveDelay(tile.add(direction.delta.x * 2, direction.delta.y * 2), delay = 90, direction = direction, startDelay = 30)
+        objectOperate("Enter", "doorway_mage_training_arena") { (target) ->
+            target.anim("mta_light_door_open")
+            sound("light_beam_start")
+            walkOverDelay(target.tile.addY(if (tile.y < target.tile.y) 1 else -1))
         }
 
         objectOperate("Enter", "telekinetic_portal,alchemists_portal,enchanters_portal,graveyard_portal") { (target) ->

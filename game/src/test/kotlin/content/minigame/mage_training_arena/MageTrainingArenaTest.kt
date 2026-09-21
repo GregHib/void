@@ -46,6 +46,22 @@ internal class MageTrainingArenaTest : WorldTest() {
     }
 
     @Test
+    fun `The doorway walks the player through to the far side`() {
+        val door = findObject("doorway_mage_training_arena", Tile(3355, 3290), Tile(3372, 3305))
+        val player = createPlayer(door.tile.addY(-1), "mta-door")
+
+        player.objectOption(door, "Enter")
+        tick(6)
+
+        assertEquals(door.tile.addY(1), player.tile)
+
+        player.objectOption(door, "Enter")
+        tick(6)
+
+        assertEquals(door.tile.addY(-1), player.tile)
+    }
+
+    @Test
     fun `Portals refuse players without a progress hat`() {
         val player = createPlayer(Tile(3361, 3316), "mta-no-hat")
         player.levels.set(Skill.Magic, 50)
