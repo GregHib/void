@@ -250,7 +250,7 @@ class PirateTreasure : Script {
         if (!get("pirates_treasure_spawned_gardener", false)) {
             set("pirates_treasure_spawned_gardener", true)
             val gardener = NPCs.add(
-                id = "gardener_level_4",
+                id = "gardener_level_4_2",
                 tile = tile.add(x = 1),
                 ticks = TimeUnit.MINUTES.toTicks(8),
                 owner = this,
@@ -305,7 +305,7 @@ class PirateTreasure : Script {
     }
 
     private fun Player.gardener(): NPC? = NPCs.at(tile.regionLevel).firstOrNull {
-        it.id == "gardener_level_4" && it["owner", ""] == accountName && !it.dead
+        it.id == "gardener_level_4_2" && it["owner", ""] == accountName && !it.dead
     }
 
     private fun Player.completeQuest() {
