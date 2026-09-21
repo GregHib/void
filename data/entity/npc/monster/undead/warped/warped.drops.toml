@@ -8,6 +8,7 @@ drops = [
 [warped_cockroach_secondary]
 roll = 64
 drops = [
+  { id = "mask_part_1", chance = 21 },
   { id = "shortbow", chance = 4 },
   { id = "bronze_arrow", amount = 5 },
   { id = "bronze_sword" },
@@ -26,7 +27,6 @@ drops = [
   { id = "leather" },
   { id = "copper_ore" },
   { id = "tin_ore" },
-  { id = "mask_part_1" },
 ]
 
 [warped_fly_drop_table]
@@ -39,6 +39,7 @@ drops = [
 [warped_fly_secondary]
 roll = 256
 drops = [
+  { id = "mask_part_1", chance = 85 },
   { id = "water_rune", amount = 3, chance = 16 },
   { id = "air_rune", amount = 10, chance = 16 },
   { id = "fire_rune", amount = 3, chance = 16 },
@@ -63,7 +64,6 @@ drops = [
   { id = "coins", amount = 80, chance = 16 },
   { id = "fishing_bait", amount = 30, chance = 16 },
   { id = "leather", chance = 4 },
-  { id = "mask_part_1", chance = 4 },
   { id = "gold_amulet" },
   { id = "gold_ring" },
   { id = "feather", min = 5, max = 7 },
@@ -81,6 +81,7 @@ drops = [
 [warped_rat_secondary]
 roll = 262
 drops = [
+  { id = "mask_part_3", chance = 87 },
   { id = "bronze_arrow", amount = 18, chance = 16 },
   { id = "bronze_mace", chance = 4 },
   { id = "sling", chance = 4 },
@@ -111,7 +112,6 @@ drops = [
   { id = "gold_amulet", chance = 4 },
   { id = "holy_symbol" },
   { id = "gold_necklace" },
-  { id = "mask_part_3" },
 ]
 
 [warped_bat_drop_table]
@@ -124,6 +124,7 @@ drops = [
 [warped_bat_secondary]
 roll = 512
 drops = [
+  { id = "mask_part_3", chance = 171 },
   { id = "bronze_arrow", amount = 25, chance = 8 },
   { id = "shortbow", chance = 8 },
   { id = "magic_staff", chance = 8 },
@@ -149,7 +150,6 @@ drops = [
   { id = "thread", amount = 42, chance = 32 },
   { id = "feather", amount = 10, chance = 32 },
   { id = "gold_necklace", chance = 8 },
-  { id = "mask_part_3", chance = 8 },
   { id = "leather", chance = 8 },
   { id = "gold_amulet", chance = 2 },
   { id = "gold_ring", chance = 2 },
