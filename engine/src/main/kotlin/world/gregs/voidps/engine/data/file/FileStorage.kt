@@ -345,9 +345,10 @@ class FileStorage(
             account.save(temp)
             Files.move(temp.toPath(), file.toPath(), StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING)
         } catch (e: Exception) {
-            temp.delete()
             file.delete()
             throw e
+        } finally {
+            temp.delete()
         }
         return true
     }
