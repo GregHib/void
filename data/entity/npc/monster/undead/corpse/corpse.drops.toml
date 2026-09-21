@@ -8,6 +8,7 @@ drops = [
 [crawling_corpse_torso_secondary]
 roll = 256
 drops = [
+  { id = "mask_part_2", chance = 85 },
   { id = "air_rune", amount = 10, chance = 8 },
   { id = "mind_rune", amount = 22, chance = 8 },
   { id = "water_rune", amount = 4, chance = 8 },
@@ -34,7 +35,6 @@ drops = [
   { id = "gold_amulet", chance = 8 },
   { id = "gold_necklace", chance = 8 },
   { id = "thread", amount = 25, chance = 4 },
-  { id = "mask_part_2" },
 ]
 
 [corpse_spider_drop_table]
@@ -47,6 +47,7 @@ drops = [
 [corpse_spider_secondary]
 roll = 256
 drops = [
+  { id = "mask_part_1", chance = 85 },
   { id = "bronze_mace", chance = 16 },
   { id = "bronze_med_helm", chance = 4 },
   { id = "shortbow", chance = 16 },
@@ -61,7 +62,6 @@ drops = [
   { id = "staff" },
   { id = "coins", amount = 60, chance = 16 },
   { id = "fishing_bait", amount = 20, chance = 16 },
-  { id = "mask_part_1", chance = 4 },
   { id = "feather", amount = 3, chance = 4 },
   { id = "thread", amount = 15, chance = 4 },
   { id = "leather" },
@@ -79,6 +79,7 @@ drops = [
 [corpse_archer_secondary]
 roll = 256
 drops = [
+  { id = "mask_part_3", chance = 85 },
   { id = "air_rune", amount = 12, chance = 8 },
   { id = "water_rune", amount = 6, chance = 8 },
   { id = "earth_rune", amount = 6, chance = 8 },
@@ -113,7 +114,6 @@ drops = [
   { id = "coins", amount = 200, chance = 8 },
   { id = "fishing_bait", amount = 50, chance = 8 },
   { id = "leather", chance = 8 },
-  { id = "mask_part_3" },
 ]
 
 [corpse_mage_drop_table]
@@ -126,6 +126,7 @@ drops = [
 [corpse_mage_secondary]
 roll = 256
 drops = [
+  { id = "mask_part_4", chance = 85 },
   { id = "air_rune", amount = 18, chance = 8 },
   { id = "mind_rune", amount = 40, chance = 8 },
   { id = "water_rune", amount = 8, chance = 8 },
@@ -165,6 +166,4 @@ drops = [
   { id = "fishing_bait", amount = 80, chance = 8 },
   { id = "feather", amount = 15, chance = 8 },
   { id = "leather", chance = 8 },
-  { id = "mask_part_4" },
 ]
-

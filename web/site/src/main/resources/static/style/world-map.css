@@ -1,0 +1,181 @@
+/* World map viewer — interactive states and animations that inline styles (set once at render
+   time by WorldMap.kt) can't express: cursor swap while dragging, tile fade-in transitions,
+   pulsing "you are here" pin, and the pin tooltip's hover reveal. */
+
+.wm-viewport {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.wm-viewport.wm-dragging {
+  cursor: grabbing;
+}
+
+.wm-tile {
+  transition: opacity var(--dur-fast) var(--ease-out);
+  /* Tiles are pixel art scaled to non-integer sizes between native zoom levels (see
+     `worldmap.js`'s `zoomRatio`) — the browser's default bilinear smoothing blurs them at those
+     in-between scales, so force nearest-neighbour sampling instead. `pixelated` is the only
+     standard keyword the spec actually defines as nearest-neighbour; `crisp-edges` and
+     `-webkit-optimize-contrast` are UA-defined "preserve edges" filters that aren't guaranteed to
+     be point-sampled, so they're deliberately left out rather than risking a browser picking one
+     of those instead. `-moz-crisp-edges` is the one exception — old Firefox (<62) implemented it
+     as true nearest-neighbour before it supported the `pixelated` keyword. Declared in fallback
+     order: unsupported values are dropped per-declaration, so `pixelated` (last, standard) wins
+     in every current browser. */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* ...but only while the tiles are being scaled *up*. Point sampling a minified image discards
+   whole source rows and columns rather than averaging them, which deletes the one-pixel roads,
+   walls and fences outright and moires whatever survives — at a zoomRatio of 0.71, 29% of rows
+   are never sampled at all. `worldmap.js`'s render() adds this class for the whole layer whenever
+   zoomRatio drops below 1, which (see `nativeZoomFor`, which always reaches for the sharper level)
+   is most of the zoom-out range, handing those scales back to the browser's smooth filter.
+   A single `auto` overrides both declarations above, being later and more specific. */
+.wm-tiles-smooth .wm-tile {
+  image-rendering: auto;
+}
+
+.wm-grid-line {
+  position: absolute;
+  background: rgba(240, 198, 103, 0.22);
+  pointer-events: none;
+}
+.wm-grid-line-v {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+}
+.wm-grid-line-h {
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.wm-region-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: rgba(240, 198, 103, 0.7);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Built by `renderAreaLabels` from `window.VOID_MAP_LABELS`; `left`/`top`/`font-size`/`color` are
+   set inline per label, everything shared lives here. `<span>` per authored line (the cache wraps
+   these names at a chosen point), centred on the tile the label is anchored to. */
+.wm-area-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-caps);
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(10, 7, 4, 0.9);
+  pointer-events: none;
+  user-select: none;
+}
+.wm-area-label span {
+  display: block;
+}
+
+.wm-area-polygon {
+  fill: rgba(240, 198, 103, 0.1);
+  stroke: rgba(240, 198, 103, 0.55);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+  transition:
+    fill var(--dur-fast) var(--ease-standard),
+    stroke var(--dur-fast) var(--ease-standard);
+}
+.wm-area-polygon-hover {
+  fill: rgba(240, 198, 103, 0.32);
+  stroke: var(--gold-300);
+  stroke-width: 2;
+}
+
+.wm-pin-tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-standard);
+}
+.wm-pin:hover .wm-pin-tooltip {
+  opacity: 1;
+}
+
+/* The pin of whoever is selected in the console's players list (`renderPlayers` puts this class
+   on by `data-name`) — ringed, and with its tooltip held open rather than waiting for a hover, so
+   picking a name off the list visibly points at somebody on the map. */
+.wm-pin-selected .wm-pin-tooltip {
+  opacity: 1;
+}
+.wm-pin-selected svg {
+  filter: drop-shadow(0 0 5px var(--gold-300));
+}
+.wm-pin-selected .wm-pin-dot {
+  box-shadow: 0 0 0 3px rgba(240, 198, 103, 0.35);
+}
+
+/* Per-row action button in the console's players list (currently just "Kick") — reads as a quiet
+   outline until hovered, so a list of them doesn't look like a column of danger buttons. */
+.wm-row-action:hover {
+  background: var(--surface-hover);
+  border-color: var(--feedback-danger);
+  color: var(--feedback-danger);
+}
+
+.wm-elevation-btn:hover:not(:disabled) {
+  background: var(--surface-hover) !important;
+  color: var(--gold-300) !important;
+}
+.wm-elevation-btn:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+@keyframes wmPinPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(224, 174, 60, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(224, 174, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(224, 174, 60, 0);
+  }
+}
+
+/* Small screens: the bottom console and the top-left display panel are sized for desktop (a
+   fixed 460px/190px) in WorldMap.kt's inline styles — shrink both to fit a phone viewport instead
+   of letting the console overflow it. Nothing in the top-right corner is touched: the teleport
+   panel is already at its narrowest (see `teleportPanel`), and the elevation stepper above it is
+   a row of controls with a floor to its width. `!important` matches the rest of the site's
+   inline-style override convention (see responsive.css's header). */
+@media (max-width: 700px) {
+  .wm-console {
+    width: calc(100vw - 24px) !important;
+    left: 12px !important;
+    transform: none !important;
+  }
+  .wm-display-wrap {
+    width: 170px !important;
+  }
+}
+@media (max-width: 420px) {
+  .wm-top-right {
+    top: 12px !important;
+    right: 12px !important;
+  }
+  .wm-display-wrap {
+    top: 12px !important;
+    left: 12px !important;
+    width: 130px !important;
+  }
+}

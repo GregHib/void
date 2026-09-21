@@ -72,6 +72,7 @@ clone = "corpse_archer"
 [corpse_mage]
 id = 9612
 hitpoints = 99
+attack_speed = 4
 combat_def = "corpse_mage"
 respawn_delay = 3
 drop_table = "corpse_mage"
@@ -113,4 +114,3 @@ clone = "corpse_mage"
 [corpse_mage_9]
 id = 9621
 clone = "corpse_mage"
-
