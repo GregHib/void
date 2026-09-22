@@ -63,6 +63,59 @@ class ConsoleReaderTest {
     }
 
     @Test
+    fun `A tab in an entered line completes it instead of running it`() {
+        val replies = mutableListOf<String>()
+        ConsoleCommands.output = replies::add
+        ConsoleCommands.register("players") { emptyList() }
+
+        ConsoleReader(FakeTerminal("play\t\n"), submitted::add).run()
+
+        assertEquals(listOf("players"), replies)
+        assertTrue(submitted.isEmpty())
+    }
+
+    @Test
+    fun `A tab completes an argument mid line`() {
+        val replies = mutableListOf<String>()
+        ConsoleCommands.output = replies::add
+        ConsoleCommands.register("kick", stringArg("player-name", autofill = setOf("harley gilpin"))) { emptyList() }
+
+        ConsoleReader(FakeTerminal("kick har\t\n"), submitted::add).run()
+
+        assertEquals(listOf("kick harley gilpin"), replies)
+    }
+
+    @Test
+    fun `A tab with several matches lists them`() {
+        val replies = mutableListOf<String>()
+        ConsoleCommands.output = replies::add
+        ConsoleCommands.register("save") { emptyList() }
+        ConsoleCommands.register("say") { emptyList() }
+
+        ConsoleReader(FakeTerminal("sa\t\n"), submitted::add).run()
+
+        assertEquals(listOf("Matches:", "  save", "  say"), replies)
+    }
+
+    @Test
+    fun `Typing on past a tab runs the line without it`() {
+        ConsoleReader(FakeTerminal("play\ters\n"), submitted::add).run()
+
+        assertEquals(listOf("players"), submitted)
+    }
+
+    @Test
+    fun `A tab with nothing to complete says so`() {
+        val replies = mutableListOf<String>()
+        ConsoleCommands.output = replies::add
+        ConsoleCommands.register("players") { emptyList() }
+
+        ConsoleReader(FakeTerminal("zzz\t\n"), submitted::add).run()
+
+        assertEquals(listOf("No completions for 'zzz'."), replies)
+    }
+
+    @Test
     fun `Closed input stops the reader instead of spinning`() {
         // Reading returns -1 when there's no stdin e.g. `docker run` without -i
         assertTimeoutPreemptively(Duration.ofSeconds(5)) {

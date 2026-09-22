@@ -290,10 +290,8 @@ class ConsoleLine(
      * List what the word being typed could be, above the input line.
      */
     private fun matches(candidates: List<String>) {
-        val shown = candidates.take(MAX_MATCHES)
-        val header = if (candidates.size > shown.size) "Matches (showing ${shown.size} of ${candidates.size}):" else "Matches:"
-        val lines = shown.joinToString("\r\n") { candidate -> "  $candidate" }
-        write("${erase()}$header\r\n$lines\r\n${render()}")
+        val lines = ConsoleCompleter.matches(candidates).joinToString("\r\n")
+        write("${erase()}$lines\r\n${render()}")
     }
 
     private fun redraw() {
@@ -333,7 +331,6 @@ class ConsoleLine(
     }
 
     private companion object {
-        private const val MAX_MATCHES = 10
         private const val MAX_HISTORY = 100
         private const val TAB = 9
         private const val NEW_LINE = 10

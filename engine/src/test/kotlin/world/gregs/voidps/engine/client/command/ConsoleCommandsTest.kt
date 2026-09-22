@@ -130,6 +130,24 @@ class ConsoleCommandsTest {
     }
 
     @Test
+    fun `Half a command name suggests the whole one`() {
+        register("players")
+        register("save")
+
+        assertEquals(listOf("Unknown command 'play'. Did you mean 'players'?"), ConsoleCommands.execute("play"))
+    }
+
+    @Test
+    fun `Half a name matching several commands lists them`() {
+        register("save")
+        register("say")
+
+        val output = ConsoleCommands.execute("sa")
+
+        assertEquals(listOf("Unknown command 'sa'.", "Matches:", "  save", "  say"), output)
+    }
+
+    @Test
     fun `A near miss suggests the command meant`() {
         register("players")
         register("save")

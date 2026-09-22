@@ -133,8 +133,18 @@ object ConsoleCommands : Runnable {
 
     /**
      * Nearest match if there is an obvious one, the whole list if there isn't.
+     *
+     * Half a command name is a likelier mistake than a misspelling of one, and is further away by
+     * edit distance the more of it is missing, so what was typed is matched as a prefix first.
      */
     private fun unknown(name: String): List<String> {
+        val prefixed = commands.keys.filter { it.startsWith(name, ignoreCase = true) }
+        if (prefixed.size == 1) {
+            return listOf("Unknown command '$name'. Did you mean '${prefixed.first()}'?")
+        }
+        if (prefixed.size > 1) {
+            return listOf("Unknown command '$name'.") + ConsoleCompleter.matches(prefixed)
+        }
         val closest = commands.keys.minByOrNull { Distance.levenshtein(it, name) }
         if (closest != null && Distance.levenshtein(closest, name) <= SUGGESTION_DISTANCE) {
             return listOf("Unknown command '$name'. Did you mean '$closest'?")

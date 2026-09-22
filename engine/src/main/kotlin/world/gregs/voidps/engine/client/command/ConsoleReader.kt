@@ -88,11 +88,49 @@ class ConsoleReader(
                 logger.debug { "No console input available, stopping console reader." }
                 return
             }
-            if (text.isBlank() || clear(text)) {
+            if (text.isBlank() || complete(text)) {
                 continue
             }
-            submit(text)
+            // Tabs typed in the middle of a line were only ever an indent
+            val line = text.replace(TAB.toString(), "")
+            if (clear(line)) {
+                continue
+            }
+            submit(line)
         }
+    }
+
+    /**
+     * Answer a tab in a line which has already been entered.
+     *
+     * Terminals which can't be drawn into hand over a whole line at a time, so the tab arrives as a
+     * character in the middle of it rather than as a key press to complete on. Intellij's console on
+     * windows is the common one; it indents rather than completing. The completion is printed for
+     * the operator to type rather than run, since the line they meant is still ambiguous.
+     *
+     * Only a tab at the end of the line asks for that; carrying on typing after one means it was an
+     * indent and the line is run with it taken out.
+     */
+    private fun complete(text: String): Boolean {
+        val tab = text.indexOf(TAB)
+        if (tab == -1 || text.substring(tab + 1).isNotBlank()) {
+            return false
+        }
+        val typed = text.substring(0, tab)
+        val completion = ConsoleCompleter.complete(typed, typed.length)
+        val word = typed.substring(completion.start)
+        if (completion.candidates.isEmpty()) {
+            ConsoleCommands.output.invoke("No completions for '$word'.")
+            return true
+        }
+        if (completion.candidates.size == 1) {
+            ConsoleCommands.output.invoke(typed.substring(0, completion.start) + completion.candidates.first())
+            return true
+        }
+        for (line in ConsoleCompleter.matches(completion.candidates)) {
+            ConsoleCommands.output.invoke(line)
+        }
+        return true
     }
 
     private fun entered(text: String) {
@@ -137,6 +175,8 @@ class ConsoleReader(
     private companion object {
         private val logger = InlineLogger("Console")
         private const val PROMPT = "› "
+        private const val TAB = '\t'
+
 
         /**
          * Cursor home, erase the screen, then erase the scrollback.

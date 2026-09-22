@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.ui.chat.splitSafe
 object ConsoleCompleter {
 
     private val logger = InlineLogger("Console")
+    private const val MAX_MATCHES = 10
 
     /**
      * Values the word being typed could be, and where that word starts.
@@ -29,6 +30,15 @@ object ConsoleCompleter {
         val argument = command.args.getOrNull(parts.size - 2) ?: return Completion(start, emptyList())
         val autofill = autofill(argument) ?: return Completion(start, emptyList())
         return Completion(start, autofill.filter { it.startsWith(word, ignoreCase = true) })
+    }
+
+    /**
+     * What the word being typed could be, as lines to show the operator.
+     */
+    fun matches(candidates: List<String>): List<String> {
+        val shown = candidates.take(MAX_MATCHES)
+        val header = if (candidates.size > shown.size) "Matches (showing ${shown.size} of ${candidates.size}):" else "Matches:"
+        return listOf(header) + shown.map { candidate -> "  $candidate" }
     }
 
     /**
