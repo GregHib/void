@@ -58,6 +58,15 @@ object Main {
         val job = server.start(port)
         AuditLog.info("login online")
 
+        // Content
+        val configFiles = configFiles()
+        try {
+            preload(cache, configFiles)
+        } catch (ex: Exception) {
+            logger.error(ex) { "Error loading files." }
+            server.stop()
+        }
+
         // Web server
         var site: Job? = null
         if (Settings["web.server.enabled", false]) {
@@ -67,16 +76,6 @@ object Main {
                 return
             }
             AuditLog.info("web online")
-        }
-
-        // Content
-        val configFiles = configFiles()
-        try {
-            preload(cache, configFiles)
-        } catch (ex: Exception) {
-            logger.error(ex) { "Error loading files." }
-            server.stop()
-            site?.cancel()
         }
 
         // Login server
@@ -203,7 +202,7 @@ object Main {
         }
         val webPort = Settings["web.server.port"].toInt()
         val address = "localhost"
-        val webServer = WebServer(path, webPort, address, port)
+        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>())
         val scope = CoroutineScope(Dispatchers.IO)
         return scope.launch {
             logger.info { "Webserver online at http://$address:$webPort/" }

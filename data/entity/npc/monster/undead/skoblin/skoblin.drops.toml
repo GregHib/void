@@ -8,6 +8,7 @@ drops = [
 [skoblin_secondary]
 roll = 512
 drops = [
+  { id = "mask_part_4", chance = 171 },
   { id = "shortbow", chance = 16 },
   { id = "bronze_mace", chance = 16 },
   { id = "staff_of_air", chance = 2 },
@@ -46,7 +47,5 @@ drops = [
   { id = "air_talisman", chance = 16 },
   { id = "mind_talisman", chance = 16 },
   { id = "fire_talisman", chance = 2 },
-  { id = "mask_part_4", chance = 2 },
   { id = "skeleton_champions_scroll", members = true, lacks = "skeleton_champions_scroll" },
 ]
-

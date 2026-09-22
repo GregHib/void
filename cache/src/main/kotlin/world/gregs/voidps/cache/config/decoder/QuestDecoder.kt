@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.config.decoder
 
+import world.gregs.voidps.buffer.Unicode
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.Config.QUESTS
 import world.gregs.voidps.cache.config.ConfigDecoder
@@ -45,11 +46,15 @@ class QuestDecoder : ConfigDecoder<QuestDefinition>(QUESTS) {
             val sb = StringBuilder()
             var b: Int
             while (readableBytes() > 0) {
-                b = readChar()
+                b = readByte()
                 if (b == 0) {
                     break
                 }
-                sb.append(b)
+                if (b in 128..<160) {
+                    sb.append(Unicode.byteToChar(b))
+                } else {
+                    sb.append(b.toChar())
+                }
             }
             return sb.toString()
         }

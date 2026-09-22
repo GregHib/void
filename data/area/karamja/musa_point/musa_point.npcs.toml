@@ -30,11 +30,19 @@ id = 11666
 
 [man_musa_point]
 id = 170
+categories = ["human"]
 examine = "One of Gielinor's many citizens, apparently trying to be an explorer."
 drop_table = "man"
 combat_def = "man"
+respawn_delay = 25
 hitpoints = 70
 max_hit_crush = 10
+
+[man_musa_point_2]
+id = 3915
+categories = ["human"]
+examine = "One of Gielinor's many citizens."
+clone = "man"
 
 [fishing_spot_musa_point]
 id = 323
@@ -44,6 +52,7 @@ id = 324
 
 [luthas_musa_point]
 id = 379
+collision = "indoors"
 examine = "The owner of the banana plantation."
 
 [swarm_musa_point]

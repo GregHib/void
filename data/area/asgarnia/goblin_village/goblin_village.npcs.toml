@@ -33,15 +33,19 @@ id = 6000
 
 [baby_icefiend]
 id = 7732
+examine = "A little baby icefiend."
 
 [baby_icefiend_2]
 id = 7733
+examine = "A little baby icefiend."
 
 [baby_icefiend_3]
 id = 7734
+examine = "A little baby icefiend."
 
 [baby_icefiend_4]
 id = 7735
+examine = "A little baby icefiend."
 
 [miazrqa]
 id = 5988
@@ -70,9 +74,11 @@ id = 7725
 
 [baby_icefiend_5]
 id = 7736
+examine = "A little baby icefiend."
 
 [baby_icefiend_6]
 id = 7713
+examine = "A little baby icefiend."
 
 [stubthumb_2]
 id = 8054
