@@ -39,7 +39,7 @@ class SystemTerminal(
     override var onResize: () -> Unit = {}
 
     override val attached: Boolean
-        get() = terminal()
+        get() = attachedTerminal()
 
     override fun start(): Boolean {
         if (!attached) {
@@ -83,20 +83,6 @@ class SystemTerminal(
 
     override fun refreshWidth() {
         width = size(stty("size")) ?: return
-    }
-
-    /**
-     * Whether input and output are both a terminal, so output piped to a file or through tee isn't
-     * drawn into even though stty would happily take the input side.
-     */
-    private fun terminal(): Boolean {
-        val console = System.console() ?: return false
-        // Java 22 hands back a console whether or not it's a terminal, and tells you which
-        try {
-            return console.javaClass.getMethod(TERMINAL).invoke(console) as Boolean
-        } catch (e: ReflectiveOperationException) {
-            return true
-        }
     }
 
     /**
@@ -144,7 +130,6 @@ class SystemTerminal(
 
     companion object {
         private const val COMMAND = "stty"
-        private const val TERMINAL = "isTerminal"
         private const val DEFAULT_WIDTH = 80
         private const val TIMEOUT_SECONDS = 1L
         private const val SHOW_CURSOR = "[?25h"

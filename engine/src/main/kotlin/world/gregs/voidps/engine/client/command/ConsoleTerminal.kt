@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.client.command
 import java.io.BufferedReader
 
 /**
- * The terminal the server is being operated from, see [SystemTerminal].
+ * The terminal the server is being operated from, see [SystemTerminal] and [WindowsTerminal].
  */
 interface ConsoleTerminal {
 
@@ -53,4 +53,24 @@ interface ConsoleTerminal {
      * Hand the terminal back in the state it was found in.
      */
     fun restore()
+}
+
+/**
+ * The terminal for whichever platform the server is running on; windows consoles are driven through
+ * the console api rather than `stty`.
+ */
+fun consoleTerminal(os: String = System.getProperty("os.name", "")): ConsoleTerminal = if (os.startsWith("Windows", ignoreCase = true)) WindowsTerminal() else SystemTerminal()
+
+/**
+ * Whether input and output are both a terminal, so output piped to a file or through tee isn't
+ * drawn into even though the input side would happily be taken.
+ */
+internal fun attachedTerminal(): Boolean {
+    val console = System.console() ?: return false
+    // Java 22 hands back a console whether or not it's a terminal, and tells you which
+    try {
+        return console.javaClass.getMethod("isTerminal").invoke(console) as Boolean
+    } catch (e: ReflectiveOperationException) {
+        return true
+    }
 }

@@ -19,7 +19,7 @@ import kotlin.concurrent.thread
  * Gradle hands a forked process pipes, as does an ide run window which isn't emulating a terminal.
  */
 class ConsoleReader(
-    private val terminal: ConsoleTerminal = SystemTerminal(),
+    private val terminal: ConsoleTerminal = consoleTerminal(),
     private val submit: (String) -> Unit = ConsoleCommands::submit,
     setting: String = Settings["console.enabled", AUTO],
 ) : Runnable {
