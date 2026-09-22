@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.command
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertTimeoutPreemptively
@@ -161,12 +162,38 @@ class ConsoleReaderTest {
     }
 
     @Test
+    fun `The console doesn't run when there's no terminal to run it in`() {
+        val out = System.out
+
+        val thread = ConsoleReader(FakeTerminal("players\n"), submitted::add).start()
+
+        assertNull(thread)
+        assertTrue(submitted.isEmpty())
+        assertEquals(out, System.out)
+    }
+
+    @Test
+    fun `Piped input is read when it's asked for`() {
+        ConsoleReader(FakeTerminal("players\n"), submitted::add, setting = "true").start()?.join()
+
+        assertEquals(listOf("players"), submitted)
+    }
+
+    @Test
     fun `Output isn't redirected for a terminal which can't be drawn into`() {
         val out = System.out
 
-        ConsoleReader(FakeTerminal("players\n"), {}).start().join()
+        ConsoleReader(FakeTerminal("players\n"), submitted::add, setting = "true").start()?.join()
 
         assertEquals(out, System.out)
+    }
+
+    @Test
+    fun `The console can be turned off entirely`() {
+        val thread = ConsoleReader(FakeTerminal("players\n", interactive = true), submitted::add, setting = "false").start()
+
+        assertNull(thread)
+        assertTrue(submitted.isEmpty())
     }
 
     @Test

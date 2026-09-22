@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.command
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.data.Settings
 import java.io.IOException
 import kotlin.concurrent.thread
 
@@ -10,21 +11,35 @@ import kotlin.concurrent.thread
  * Runs on a daemon thread so that a blocked read can never hold up the game loop, and never keeps
  * the jvm alive once Ctrl + C has triggered the shutdown hook.
  *
- * Terminals which can't be drawn into, like the pipes gradle's rich console gives a forked process,
- * are read line by line without a prompt instead.
+ * Without a terminal to take control of there's nowhere to hold the input line, so what's typed ends
+ * up cut through by whatever the server logs and tab indents rather than completing. Gradle hands a
+ * forked process pipes, and intellij's console isn't a terminal either, so the console stays out of
+ * the way there unless [setting] asks for it.
  */
 class ConsoleReader(
     private val terminal: ConsoleTerminal = SystemTerminal(),
     private val submit: (String) -> Unit = ConsoleCommands::submit,
+    setting: String = Settings["console.enabled", AUTO],
 ) : Runnable {
 
     private val line = ConsoleLine(PROMPT, terminal::write) { terminal.width }
+    private val disabled = setting.equals(NEVER, ignoreCase = true)
+    private val piped = setting.equals(ALWAYS, ignoreCase = true)
 
-    fun start(): Thread {
+    /**
+     * Start reading commands, returning null when there's nothing to read them from.
+     */
+    fun start(): Thread? {
+        if (disabled) {
+            return null
+        }
         if (terminal.start()) {
             // Logs are printed above the input line rather than on top of it
             ConsoleOutput.install(line::printAbove)
             terminal.onResize = line::show
+        } else if (!piped) {
+            logger.info { "No terminal to read commands from, console disabled. Start the server from a terminal for it, or set console.enabled=true to read commands piped in." }
+            return null
         }
         Runtime.getRuntime().addShutdownHook(thread(start = false) { stop() })
         return thread(isDaemon = true, name = "console", block = ::run)
@@ -34,7 +49,7 @@ class ConsoleReader(
         try {
             logger.info { "Console ready, type 'help' for a list of commands." }
             if (!terminal.interactive) {
-                logger.info { "No terminal detected, commands are read without a prompt. Start the server from a terminal, or enable your IDE's terminal emulation, for the full console." }
+                logger.info { "No terminal to draw into, commands are read a line at a time without a prompt." }
                 plain()
                 return
             }
@@ -175,6 +190,18 @@ class ConsoleReader(
     private companion object {
         private val logger = InlineLogger("Console")
         private const val PROMPT = "› "
+
+        /**
+         * Only take the console when there's a terminal for it, the default.
+         */
+        private const val AUTO = "auto"
+
+        /**
+         * Read lines piped in as well, for scripted input.
+         */
+        private const val ALWAYS = "true"
+
+        private const val NEVER = "false"
         private const val TAB = '\t'
 
 

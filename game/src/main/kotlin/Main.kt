@@ -90,9 +90,7 @@ object Main {
         val scope = CoroutineScope(Contexts.Game)
         val engine = GameLoop(stages).start(scope)
         server.loginServer = loginServer
-        if (Settings["console.enabled", true]) {
-            ConsoleReader().start()
-        }
+        ConsoleReader().start()
         logger.info { "${Settings["server.name"]} loaded in ${System.currentTimeMillis() - startTime}ms" }
         AuditLog.info("game online")
         runBlocking {
