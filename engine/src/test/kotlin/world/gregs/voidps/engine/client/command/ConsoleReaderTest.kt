@@ -173,6 +173,16 @@ class ConsoleReaderTest {
     }
 
     @Test
+    fun `A terminal which can't be taken over is still read a line at a time`() {
+        // Windows has a terminal but no stty to put it into character mode
+        val terminal = FakeTerminal("players\n", interactive = false, attached = true)
+
+        ConsoleReader(terminal, submitted::add).start()?.join()
+
+        assertEquals(listOf("players"), submitted)
+    }
+
+    @Test
     fun `Piped input is read when it's asked for`() {
         ConsoleReader(FakeTerminal("players\n"), submitted::add, setting = "true").start()?.join()
 

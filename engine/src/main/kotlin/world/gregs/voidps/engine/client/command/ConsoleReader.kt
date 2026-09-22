@@ -11,10 +11,12 @@ import kotlin.concurrent.thread
  * Runs on a daemon thread so that a blocked read can never hold up the game loop, and never keeps
  * the jvm alive once Ctrl + C has triggered the shutdown hook.
  *
- * Without a terminal to take control of there's nowhere to hold the input line, so what's typed ends
- * up cut through by whatever the server logs and tab indents rather than completing. Gradle hands a
- * forked process pipes, and intellij's console isn't a terminal either, so the console stays out of
- * the way there unless [setting] asks for it.
+ * A terminal which can't be taken control of - windows has no `stty` to do it with - is read a line
+ * at a time instead, without the prompt or completion a key at a time gives.
+ *
+ * With no terminal at all the console stays out of the way unless [setting] asks for it: there's
+ * nowhere to hold the input line, so what's typed ends up cut through by whatever the server logs.
+ * Gradle hands a forked process pipes, as does an ide run window which isn't emulating a terminal.
  */
 class ConsoleReader(
     private val terminal: ConsoleTerminal = SystemTerminal(),
@@ -37,7 +39,7 @@ class ConsoleReader(
             // Logs are printed above the input line rather than on top of it
             ConsoleOutput.install(line::printAbove)
             terminal.onResize = line::show
-        } else if (!piped) {
+        } else if (!piped && !terminal.attached) {
             logger.info { "No terminal to read commands from, console disabled. Start the server from a terminal for it, or set console.enabled=true to read commands piped in." }
             return null
         }

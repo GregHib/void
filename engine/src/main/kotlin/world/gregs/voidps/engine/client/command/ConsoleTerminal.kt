@@ -8,6 +8,12 @@ import java.io.BufferedReader
 interface ConsoleTerminal {
 
     /**
+     * Whether the server was started from a terminal at all, whether or not [start] can take it
+     * over. Windows has one but no `stty` to control it with.
+     */
+    val attached: Boolean
+
+    /**
      * Whether keys can be read one at a time and drawn back to the terminal.
      */
     val interactive: Boolean

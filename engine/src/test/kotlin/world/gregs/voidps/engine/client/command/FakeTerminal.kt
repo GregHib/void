@@ -10,6 +10,7 @@ class FakeTerminal(
     input: String,
     override val interactive: Boolean = false,
     override val width: Int = 80,
+    override val attached: Boolean = interactive,
 ) : ConsoleTerminal {
 
     private val stream = ByteArrayInputStream(input.toByteArray())
