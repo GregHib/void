@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.set
 
 class DynamicZones(
-    private val extract: MapDefinitions,
+    private val definitions: MapDefinitions,
 ) : Runnable {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
     // All dynamic regions
@@ -51,7 +51,7 @@ class DynamicZones(
         }
         for ((from, to, rotation) in entries) {
             zones[to.id] = from.rotatedId(rotation)
-            extract.loadZone(from, to, rotation)
+            definitions.loadZone(from, to, rotation)
             for (region in to.toCuboid(radius = 3).toRegions()) {
                 regions.add(region.id)
                 refresh.add(region.id)
@@ -93,7 +93,7 @@ class DynamicZones(
         zones.remove(zone.id)
         GameObjects.reset(zone)
         Collisions.clear(zone)
-        extract.loadZone(zone, zone, 0)
+        definitions.loadZone(zone, zone, 0)
         for (region in zone.toCuboid(radius = 3).toRegions()) {
             if (region.toRectangle().toZones().none { zones.containsKey(it.id) }) {
                 regions.remove(region.id)
@@ -111,7 +111,7 @@ class DynamicZones(
             if (zones.containsKey(zone.id)) {
                 GameObjects.clear(zone)
                 Collisions.clear(zone)
-                extract.loadZone(zone, zone, 0)
+                definitions.loadZone(zone, zone, 0)
                 zones.remove(zone.id)
             }
         }
