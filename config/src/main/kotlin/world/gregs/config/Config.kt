@@ -7,15 +7,15 @@ import java.io.*
  */
 object Config {
 
-    fun fileReader(path: String, maxStringLength: Int = 150, block: ConfigReader.() -> Unit) {
+    fun fileReader(path: String, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
         ConfigReader(BufferedInputStream(FileInputStream(path)), maxStringLength, path).use(block)
     }
 
-    fun fileReader(file: File, maxStringLength: Int = 150, block: ConfigReader.() -> Unit) {
+    fun fileReader(file: File, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
         ConfigReader(BufferedInputStream(FileInputStream(file)), maxStringLength, file.path).use(block)
     }
 
-    fun stringReader(string: String, maxStringLength: Int = 150, block: ConfigReader.() -> Unit) {
+    fun stringReader(string: String, maxStringLength: Int = 100, block: ConfigReader.() -> Unit) {
         ConfigReader(BufferedInputStream(string.byteInputStream()), maxStringLength).use(block)
     }
 
