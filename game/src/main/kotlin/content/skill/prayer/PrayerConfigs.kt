@@ -23,9 +23,9 @@ object PrayerConfigs {
 fun Character.praying(name: String): Boolean = when (this) {
     is Player -> containsVarbit(getActivePrayerVarKey(), name)
     is NPC -> when (name) {
-        "protect_from_melee" -> transform == "tormented_demon_melee"
-        "protect_from_magic" -> transform == "tormented_demon_magic"
-        "protect_from_missiles" -> transform == "tormented_demon_range"
+        "protect_from_melee" -> transformId.endsWith("_melee")
+        "protect_from_magic" -> transformId.endsWith("_magic")
+        "protect_from_missiles" -> transformId.endsWith("_ranged") || transformId.endsWith("_range")
         else -> false
     }
     else -> false

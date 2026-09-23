@@ -12,9 +12,12 @@ import content.entity.player.modal.tab
 import content.entity.world.music.playTrack
 import content.quest.largeInstance
 import content.quest.smallInstance
+import content.skill.dungeoneering.DungeonDoor
 import content.skill.dungeoneering.DungeonGenerator
 import content.skill.dungeoneering.DungeonMap
 import content.skill.dungeoneering.DungeonMusic
+import content.skill.dungeoneering.DungeonRoom
+import content.skill.dungeoneering.DungeonRoomType
 import content.skill.dungeoneering.DungeonSize
 import content.skill.dungeoneering.DungeonStartingItems
 import content.skill.magic.spell.spellBook
@@ -28,6 +31,7 @@ import world.gregs.voidps.engine.client.command.stringArg
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.isAdmin
@@ -38,6 +42,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.queue.engineQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.Zone
 
 class DungeonEntrance : Script {
     init {
@@ -115,6 +120,42 @@ class DungeonEntrance : Script {
             if (!generate(size, dungeonMembers.size)) {
                 DungeoneeringParty.disband(this)
             }
+        }
+
+        adminCommand("dungeon_boss", stringArg("boss_name")) { args ->
+            val name = args[0]
+            val theme = "frozen"
+            val complexity = 1
+            val table = Tables.getOrNull("${theme}_c${complexity}_boss")
+            if (table == null) {
+                message("Unable to find boss rooms for $theme c$complexity")
+                return@adminCommand
+            }
+            val room = table.rows().firstOrNull { it.rowId == name }
+            if (room == null) {
+                message("Unable to find boss with name '$name'")
+                return@adminCommand
+            }
+            val width = 1
+            val height = 2
+            val generator = DungeonGenerator(DungeonSize.Small, 1, complexity)
+            val boss = DungeonRoom(Tile(0, 1), true).apply {
+                type = DungeonRoomType.Boss
+                doors[3] = DungeonDoor.Normal
+            }
+            val base = DungeonRoom(Tile(0, 0), true).apply {
+                type = DungeonRoomType.Base
+                doors[1] = DungeonDoor.Normal
+                adjacentRooms[1] = boss
+            }
+            boss.parent = base
+            boss.adjacentRooms[3] = base
+            val grid = arrayOf<DungeonRoom?>(base, boss)
+            generator.populateMap(grid, theme)
+            boss.name = room.rowId
+            boss.zone = Zone(room.int("x"), room.int("y"))
+            val dungeon = DungeonMap(width, height, Tile(0, 0), grid, theme, 1)
+            enter(DungeonSize.Small, dungeon, complexity, 1)
         }
     }
 
@@ -206,6 +247,11 @@ class DungeonEntrance : Script {
             println("Floor: $floor Size: $size Complexity:$complexity Difficulty: $playerCount")
             dungeon.prettyPrint()
         }
+        enter(size, dungeon, complexity, floor)
+        return true
+    }
+
+    private fun Player.enter(size: DungeonSize, dungeon: DungeonMap, complexity: Int, floor: Int) {
         val instance = when (size) {
             DungeonSize.Small -> smallInstance(logout = false)
             DungeonSize.Medium -> smallInstance(logout = false)
@@ -228,7 +274,6 @@ class DungeonEntrance : Script {
                 member.enter(size, dungeon, complexity, floor, guideMode, tile, track)
             }
         }
-        return true
     }
 
     private fun Player.enter(size: DungeonSize, dungeon: DungeonMap, complexity: Int, floor: Int, guideMode: Boolean, tile: Tile, track: String?) {
