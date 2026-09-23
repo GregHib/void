@@ -228,4 +228,5 @@ fun Player.copyChunks(instance: Region, base: Tile, width: Int, height: Int, lev
     set("instance_offset", offset.id)
     return offset
 }
+
 fun Player.startCutscene(name: String, region: Region, offset: Delta): Cutscene = Cutscene(this, name, region, offset)
