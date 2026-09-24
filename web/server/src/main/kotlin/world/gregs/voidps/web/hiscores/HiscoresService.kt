@@ -6,29 +6,93 @@ import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.web.PeriodicSnapshot
 import world.gregs.voidps.web.api.model.*
-import world.gregs.voidps.web.hiscores.HiscoresService.Companion.skillLevel
 import java.time.Instant
+import java.util.IdentityHashMap
 import kotlin.math.abs
 import kotlin.math.floor
 
 /**
- * Computes hiscores leaderboards and player profiles from [Storage] on demand. There is no
- * ironman/hardcore/ultimate account-type system in the engine yet, so every account is reported
- * as `standard`; the `mode` filter is kept in the API surface so the site's existing chips keep
- * working once one exists.
+ * Serves hiscores leaderboards and player profiles from a [PeriodicSnapshot] of [Storage] rebuilt
+ * at most once per `refreshMillis`. Loading every account is far too slow to do per request, so
+ * the snapshot loads them once, drops everything hiscores never reads (inventories, banks,
+ * password hashes...) and precomputes every leaderboard along with each player's ranks, leaving
+ * requests with a lookup and a page slice.
+ *
+ * There is no ironman/hardcore/ultimate account-type system in the engine yet, so every account is
+ * reported as `standard`; the `mode` filter is kept in the API surface so the site's existing chips
+ * keep working once one exists.
  */
 class HiscoresService(
     private val storage: Storage,
-    private val quests: QuestDefinitions
+    private val quests: QuestDefinitions,
+    refreshMillis: Long = REFRESH_MS,
 ) {
 
     val bosses = NPCDefinitions.definitions
         .filter { it.getOrNull<Set<String>>("categories")?.contains("boss") == true }
         .associate { it.stringId to it.name }
 
+    private val snapshot = PeriodicSnapshot("hiscores", refreshMillis) { rank(storage.accounts()) }
+
+    private class Profile(val save: PlayerSave, val overallRank: Int, val skillRanks: Map<Skill, Int>, val bossRanks: Map<String, Int>)
+
+    private class Rankings(
+        val overall: List<Pair<PlayerSave, Int>>,
+        val skills: Map<Skill, List<Pair<PlayerSave, Int>>>,
+        val bossKills: Map<String, List<Pair<PlayerSave, Int>>>,
+        /** Every recorded (account, team size, millis) per boss, fastest first. */
+        val bossTimes: Map<String, List<Triple<PlayerSave, Int, Int>>>,
+        /** Keyed by lowercase display name and lowercase account name. */
+        val profiles: Map<String, Profile>,
+        val updatedAt: String,
+    ) {
+        fun find(name: String): Profile? = profiles[name.lowercase()]
+    }
+
+    private fun rank(loaded: List<PlayerSave>): Rankings {
+        val accounts = loaded.map { it.slim() }
+        val overall = rankOverall(accounts)
+        val skills = Skill.all.associateWith { skill ->
+            accounts
+                .sortedWith(compareByDescending<PlayerSave> { it.skillXp(skill) }.thenBy { it.displayName().lowercase() })
+                .mapIndexed { index, save -> save to index + 1 }
+        }
+        val bossKills = bosses.keys.associateWith { bossId ->
+            accounts
+                .filter { it.bossKills(bossId) > 0 }
+                .sortedWith(compareByDescending<PlayerSave> { it.bossKills(bossId) }.thenBy { it.displayName().lowercase() })
+                .mapIndexed { index, save -> save to index + 1 }
+        }
+        val bossTimes = bosses.keys.associateWith { bossId ->
+            accounts.flatMap { save ->
+                TEAM_SIZES.mapNotNull { size -> save.bossTimeMillis(bossId, size)?.let { millis -> Triple(save, size, millis) } }
+            }.sortedBy { it.third }
+        }
+        val skillRanks = IdentityHashMap<PlayerSave, MutableMap<Skill, Int>>()
+        for ((skill, ranked) in skills) {
+            for ((save, rank) in ranked) {
+                skillRanks.getOrPut(save) { mutableMapOf() }[skill] = rank
+            }
+        }
+        val bossRanks = IdentityHashMap<PlayerSave, MutableMap<String, Int>>()
+        for ((bossId, ranked) in bossKills) {
+            for ((save, rank) in ranked) {
+                bossRanks.getOrPut(save) { mutableMapOf() }[bossId] = rank
+            }
+        }
+        val profiles = HashMap<String, Profile>()
+        for ((save, rank) in overall) {
+            val profile = Profile(save, rank, skillRanks[save] ?: emptyMap(), bossRanks[save] ?: emptyMap())
+            profiles.putIfAbsent(save.displayName().lowercase(), profile)
+            profiles.putIfAbsent(save.name.lowercase(), profile)
+        }
+        return Rankings(overall, skills, bossKills, bossTimes, profiles, Instant.now().toString())
+    }
+
     fun metadata(): HiscoresMetadata = HiscoresMetadata(
-        updatedAt = Instant.now().toString(),
+        updatedAt = snapshot.get().updatedAt,
         maxTrackedXp = MAXIMUM_TRACKED_XP,
         skills = Skill.all.map {
             SkillMetadata(id = it.id(), name = it.name, maxLevel = it.displayMax(), iconUrl = it.iconUrl())
@@ -39,11 +103,12 @@ class HiscoresService(
     )
 
     fun overall(query: String?, mode: String?, page: Int, pageSize: Int): OverallLeaderboard {
-        val filtered = filterByModeAndName(rankOverall(storage.accounts()), mode, query)
+        val rankings = snapshot.get()
+        val filtered = filterByModeAndName(rankings.overall, mode, query)
         val (from, to) = window(filtered.size, page, pageSize)
         return OverallLeaderboard(
             pagination = Pagination.of(page, pageSize, filtered.size),
-            updatedAt = Instant.now().toString(),
+            updatedAt = rankings.updatedAt,
             items = filtered.subList(from, to).map { (save, rank) ->
                 OverallRow(rank = rank, name = save.displayName(), mode = save.mode(), totalLevel = save.totalLevel(), totalXp = save.totalXp())
             },
@@ -52,10 +117,7 @@ class HiscoresService(
 
     fun skill(skillId: String, query: String?, mode: String?, page: Int, pageSize: Int): SkillLeaderboard? {
         val skill = Skill.all.firstOrNull { it.name.equals(skillId, ignoreCase = true) } ?: return null
-        val ranked = storage.accounts()
-            .sortedWith(compareByDescending<PlayerSave> { it.skillXp(skill) }.thenBy { it.displayName().lowercase() })
-            .mapIndexed { index, save -> save to index + 1 }
-        val filtered = filterByModeAndName(ranked, mode, query)
+        val filtered = filterByModeAndName(snapshot.get().skills[skill] ?: emptyList(), mode, query)
         val (from, to) = window(filtered.size, page, pageSize)
         return SkillLeaderboard(
             skill = skill.id(),
@@ -70,11 +132,7 @@ class HiscoresService(
 
     fun bossKills(bossId: String, mode: String?, page: Int, pageSize: Int): BossKillLeaderboard? {
         val name = bosses[bossId] ?: return null
-        val ranked = storage.accounts()
-            .filter { it.bossKills(bossId) > 0 }
-            .sortedWith(compareByDescending<PlayerSave> { it.bossKills(bossId) }.thenBy { it.displayName().lowercase() })
-            .mapIndexed { index, save -> save to index + 1 }
-        val filtered = filterByModeAndName(ranked, mode, null)
+        val filtered = filterByModeAndName(snapshot.get().bossKills[bossId] ?: emptyList(), mode, null)
         val (from, to) = window(filtered.size, page, pageSize)
         return BossKillLeaderboard(
             boss = bossId,
@@ -87,9 +145,7 @@ class HiscoresService(
     fun bossTimes(bossId: String, teamSize: String?, page: Int, pageSize: Int): BossTimeLeaderboard? {
         val name = bosses[bossId] ?: return null
         val sizes = if (teamSize == null || teamSize == "all") TEAM_SIZES else listOfNotNull(teamSize.toIntOrNull()?.takeIf { it in TEAM_SIZES })
-        val entries = storage.accounts().flatMap { save ->
-            sizes.mapNotNull { size -> save.bossTimeMillis(bossId, size)?.let { millis -> Triple(save, size, millis) } }
-        }.sortedBy { it.third }
+        val entries = (snapshot.get().bossTimes[bossId] ?: emptyList()).filter { it.second in sizes }
         val (from, to) = window(entries.size, page, pageSize)
         return BossTimeLeaderboard(
             boss = bossId,
@@ -102,18 +158,18 @@ class HiscoresService(
     }
 
     fun searchPlayers(query: String?, limit: Int): List<PlayerSuggestion> {
-        val ranked = rankOverall(storage.accounts())
         val q = query?.trim()?.lowercase()
-        return ranked
+        return snapshot.get().overall
+            .asSequence()
             .filter { (save, _) -> q.isNullOrEmpty() || save.displayName().lowercase().contains(q) }
             .take(limit)
             .map { (save, rank) -> PlayerSuggestion(name = save.displayName(), rank = rank, totalLevel = save.totalLevel(), totalXp = save.totalXp(), mode = save.mode()) }
+            .toList()
     }
 
     fun player(name: String): PlayerProfile? {
-        val accounts = storage.accounts()
-        val save = accounts.find(name) ?: return null
-        val rank = rankOverall(accounts).find { it.first === save }?.second
+        val profile = snapshot.get().find(name) ?: return null
+        val save = profile.save
         val maxedSkills = Skill.all.count { save.skillLevel(it) >= it.displayMax() }
         val bossKills = bosses.keys.sumOf { save.bossKills(it) }
         val lastEvent = save.recentEvents.maxByOrNull { it.time }
@@ -121,7 +177,7 @@ class HiscoresService(
             name = save.displayName(),
             mode = save.mode(),
             rights = save.rights(),
-            overallRank = rank,
+            overallRank = profile.overallRank,
             totalLevel = save.totalLevel(),
             totalXp = save.totalXp(),
             combatLevel = save.combatLevel(),
@@ -143,8 +199,7 @@ class HiscoresService(
     }
 
     fun playerQuests(name: String, status: String?): PlayerQuests? {
-        val accounts = storage.accounts()
-        val save = accounts.find(name) ?: return null
+        val save = snapshot.get().find(name)?.save ?: return null
         val list = quests.definitions
             .map { def ->
                 val id = def.stringId
@@ -176,8 +231,7 @@ class HiscoresService(
     }
 
     fun playerEvents(name: String, type: String?, page: Int, pageSize: Int): PlayerEventPage? {
-        val accounts = storage.accounts()
-        val save = accounts.find(name) ?: return null
+        val save = snapshot.get().find(name)?.save ?: return null
         val filtered = save.recentEvents
             .sortedByDescending { it.time }
             .filter { type == null || type == "all" || it.eventType() == type }
@@ -196,17 +250,16 @@ class HiscoresService(
     }
 
     fun playerSkills(name: String): PlayerSkills? {
-        val accounts = storage.accounts()
-        val save = accounts.find(name) ?: return null
+        val profile = snapshot.get().find(name) ?: return null
+        val save = profile.save
         val items = Skill.all.map { skill ->
-            val rank = accounts.sortedByDescending { it.skillXp(skill) }.indexOfFirst { it === save }.let { if (it < 0) null else it + 1 }
             PlayerSkillRow(
                 skill = skill.id(),
                 name = skill.name,
                 level = save.skillLevel(skill),
                 maxLevel = skill.displayMax(),
                 xp = save.skillXp(skill),
-                rank = rank,
+                rank = profile.skillRanks[skill],
                 progressPercent = (save.skillLevel(skill) * 100) / skill.displayMax(),
                 iconUrl = skill.iconUrl(),
             )
@@ -220,28 +273,23 @@ class HiscoresService(
     }
 
     fun playerBosses(name: String): PlayerBosses? {
-        val accounts = storage.accounts()
-        val save = accounts.find(name) ?: return null
+        val profile = snapshot.get().find(name) ?: return null
+        val save = profile.save
         val items = bosses.map { (bossId, bossName) ->
-            val kc = save.bossKills(bossId)
-            val rank = if (kc <= 0) {
-                null
-            } else {
-                accounts.filter { it.bossKills(bossId) > 0 }.sortedByDescending { it.bossKills(bossId) }.indexOfFirst { it === save }.let { if (it < 0) null else it + 1 }
-            }
             val fastest = TEAM_SIZES.mapNotNull { size -> save.bossTimeMillis(bossId, size) }.minOrNull()
-            PlayerBossRow(boss = bossId, name = bossName, kills = kc, rank = rank, fastestSeconds = fastest?.let { it / 1000.0 })
+            PlayerBossRow(boss = bossId, name = bossName, kills = save.bossKills(bossId), rank = profile.bossRanks[bossId], fastestSeconds = fastest?.let { it / 1000.0 })
         }
         return PlayerBosses(totalKills = items.sumOf { it.kills }, items = items)
     }
 
     fun compare(nameA: String, nameB: String): Comparison? {
-        val accounts = storage.accounts()
-        val a = accounts.find(nameA) ?: return null
-        val b = accounts.find(nameB) ?: return null
-        val ranks = rankOverall(accounts)
-        val rankA = ranks.find { it.first === a }?.second ?: 0
-        val rankB = ranks.find { it.first === b }?.second ?: 0
+        val rankings = snapshot.get()
+        val profileA = rankings.find(nameA) ?: return null
+        val profileB = rankings.find(nameB) ?: return null
+        val a = profileA.save
+        val b = profileB.save
+        val rankA = profileA.overallRank
+        val rankB = profileB.overallRank
         val bossKillsA = bosses.keys.sumOf { a.bossKills(it) }
         val bossKillsB = bosses.keys.sumOf { b.bossKills(it) }
 
@@ -304,6 +352,9 @@ class HiscoresService(
 
     private fun filterByModeAndName(ranked: List<Pair<PlayerSave, Int>>, mode: String?, query: String?): List<Pair<PlayerSave, Int>> {
         val q = query?.trim()?.lowercase()
+        if ((mode == null || mode == "all") && q.isNullOrEmpty()) {
+            return ranked
+        }
         return ranked.filter { (save, _) ->
             (mode == null || mode == "all" || mode == save.mode()) && (q.isNullOrEmpty() || save.displayName().lowercase().contains(q))
         }
@@ -315,9 +366,8 @@ class HiscoresService(
         return from to to
     }
 
-    private fun List<PlayerSave>.find(name: String): PlayerSave? = firstOrNull { it.displayName().equals(name, ignoreCase = true) || it.name.equals(name, ignoreCase = true) }
-
     companion object {
+        const val REFRESH_MS = 60_000L
         const val MAXIMUM_TRACKED_XP = 200_000_000L
         val MODES = listOf("main", "skiller", "pure")
         val TEAM_SIZES = listOf(1, 2, 3, 4)
@@ -325,6 +375,16 @@ class HiscoresService(
 
         /** The skills a pure trains selectively and a skiller avoids entirely. */
         private val COMBAT_SKILLS = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Magic, Skill.Ranged, Skill.Prayer, Skill.Summoning)
+
+        /** Drops everything hiscores never reads so a snapshot of every account stays small (and holds no password hashes). */
+        private fun PlayerSave.slim(): PlayerSave = copy(
+            password = "",
+            inventories = emptyMap(),
+            friends = emptyMap(),
+            ignores = emptyList(),
+            offers = emptyArray(),
+            history = emptyList(),
+        )
 
         internal fun PlayerSave.displayName(): String = (variables["display_name"] as? String)?.takeIf { it.isNotBlank() } ?: name
 
@@ -418,4 +478,3 @@ class HiscoresService(
         private fun Skill.iconUrl(): String = "void/images/skills/${name.lowercase()}.png"
     }
 }
-
