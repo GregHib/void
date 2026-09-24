@@ -8,6 +8,7 @@ spawns = [
   { id = "jeed", x = 3361, y = 3242 },
   { id = "captain_daerkin", x = 3362, y = 3222 },
   # 13363
+  { id = "mubariz", x = 3316, y = 3238 },
   { id = "fadli", x = 3383, y = 3269 },
   { id = "a_abla", x = 3362, y = 3273 },
   { id = "sabreen", x = 3368, y = 3278 },

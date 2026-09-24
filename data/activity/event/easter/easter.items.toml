@@ -8,6 +8,7 @@ kept = "Wilderness"
 
 [basket_of_eggs]
 id = 4565
+fun_weapon = true
 tradeable = false
 weight = 0.1
 slot = "Weapon"
@@ -16,6 +17,7 @@ kept = "Reclaim"
 
 [rubber_chicken]
 id = 4566
+fun_weapon = true
 tradeable = false
 weight = 0.453
 slot = "Weapon"
