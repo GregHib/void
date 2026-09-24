@@ -204,6 +204,12 @@ window.worldMapApp = function () {
     // good — see `onTileSettled`. Deliberately never resets on pan/zoom, so panning past the one
     // generated corner of an otherwise-empty tile set doesn't make the message flicker back.
     _tileSuccessCount: 0,
+    // Keys of tiles that failed to load (open ocean, mostly — the tile set has no image there), so
+    // panning back over them doesn't create an `<img>` for each again. `map-tiles-sw.js` already
+    // answers those repeats from its cache, but every one still costs an element, a decode attempt
+    // and a console 404. An `<img>` error can't tell a 404 from a dropped connection, so this is
+    // cleared whenever the browser comes back online (see boot) rather than trusted for the visit.
+    _emptyTiles: {},
     // Areas and place names can't change after load, so the half of the search index built from
     // them is built once on first use rather than per keystroke — the surface alone has several
     // thousand place names. Players are merged in per query instead, that list being live.
@@ -228,11 +234,16 @@ window.worldMapApp = function () {
       this.hoverX = Math.round(this.gameX);
       this.hoverY = Math.round(this.gameY);
 
+      registerTileCache();
       this.attachInteraction();
       this.scheduleRender();
 
       var self = this;
       window.addEventListener('resize', function () {
+        self.scheduleRender();
+      });
+      window.addEventListener('online', function () {
+        self._emptyTiles = {};
         self.scheduleRender();
       });
 
@@ -947,6 +958,9 @@ window.worldMapApp = function () {
             this.tileEls[key] = revived;
             continue;
           }
+          if (this._emptyTiles[key]) {
+            continue;
+          }
           pending.push({ key: key, x: tx, y: ty, dist: (tx - centerX) * (tx - centerX) + (ty - centerY) * (ty - centerY) });
         }
       }
@@ -961,6 +975,10 @@ window.worldMapApp = function () {
         img.className = 'wm-tile';
         img.alt = '';
         img.draggable = false;
+        // CORS rather than no-cors, so `map-tiles-sw.js` gets a readable response it can afford to
+        // cache instead of an opaque one - see that file's header.
+        img.crossOrigin = 'anonymous';
+        img._tileKey = tile.key;
         img.style.position = 'absolute';
         this.positionTile(img, tile.x, tile.y, rowPx, zoomRatio);
         img.style.opacity = '0';
@@ -982,6 +1000,7 @@ window.worldMapApp = function () {
         });
         img.addEventListener('error', function () {
           onTileError.call(this);
+          self._emptyTiles[this._tileKey] = true;
           self._pendingTileLoads--;
           self.checkTilesMissing();
           self.flushStaleTiles();
@@ -1322,6 +1341,23 @@ window.worldMapApp = function () {
     },
   };
 };
+
+// Neither tile source gives browsers a long-lived HTTP cache - the remote host sends a five-minute
+// max-age, and the site's own web server only caches tiles server-side, which saves it work but
+// not anyone's bandwidth - so `map-tiles-sw.js` keeps its own copy client-side (see its header).
+// The base is resolved to an absolute URL first, since a local `map-tiles` one would otherwise
+// resolve against the worker's location rather than this page's. Service workers need a secure
+// context (HTTPS or localhost); anywhere else this is a no-op and tiles just load straight from
+// the network as before.
+function registerTileCache() {
+  if (!('serviceWorker' in navigator) || !window.isSecureContext) {
+    return;
+  }
+  var base = new URL(window.VOID_TILE_BASE || 'map-tiles', window.location.href).href;
+  navigator.serviceWorker.register('map-tiles-sw.js?base=' + encodeURIComponent(base)).catch(function (e) {
+    console.warn('Map tile cache unavailable', e);
+  });
+}
 
 function onTileLoad() {
   this.style.opacity = '1';

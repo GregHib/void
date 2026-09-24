@@ -153,9 +153,14 @@ function voidRefreshPings() {
 // Settles to an empty list if the file can't be loaded.
 var voidWorldsLoaded = null;
 
+// Resolved against this script's own URL (it lives at `<site root>/js/worlds.js`) rather than
+// the domain root, since GitHub Pages project sites are served from a subpath
+// (`<user>.github.io/<repo>/`) and pages sit at different depths below it.
+var VOID_WORLDS_URL = new URL('../worlds.json', (document.currentScript && document.currentScript.src) || document.baseURI).href;
+
 function voidLoadWorldList() {
   if (!voidWorldsLoaded) {
-    voidWorldsLoaded = fetch('/worlds.json')
+    voidWorldsLoaded = fetch(VOID_WORLDS_URL)
       .then(function (res) { return res.ok ? res.json() : []; })
       .catch(function () { return []; })
       .then(function (worlds) {
