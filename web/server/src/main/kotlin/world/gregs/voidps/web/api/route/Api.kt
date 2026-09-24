@@ -77,7 +77,7 @@ const val API_PATH = "/api/v1"
 fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions) {
     val hiscores = HiscoresService(storage, questDefinitions)
     val exchange = ExchangeService(storage)
-    val dev = DevService(storage)
+    val dev = DevService(storage, hiscores)
     route(API_PATH) {
         hiscoresRoutes(hiscores)
         exchangeRoutes(exchange)

@@ -79,12 +79,14 @@ class ExchangeService(
 
     fun summary(): MarketSummary = snapshot.get().summary
 
-    fun categories(): List<ItemCategory> {
+    private val categories: List<ItemCategory> by lazy {
         val counts = pool.groupingBy { categoryOf(it) }.eachCount()
-        return ExchangeCategory.entries.map {
+        ExchangeCategory.entries.map {
             ItemCategory(id = it.id, name = it.displayName, code = it.code, itemCount = counts[it.id] ?: 0)
         }
     }
+
+    fun categories(): List<ItemCategory> = categories
 
     fun highlights(limit: Int): MarketHighlights {
         val sorted = snapshot.get().sorted

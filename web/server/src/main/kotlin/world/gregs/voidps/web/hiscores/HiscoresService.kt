@@ -44,6 +44,8 @@ class HiscoresService(
         val bossKills: Map<String, List<Pair<PlayerSave, Int>>>,
         /** Every recorded (account, team size, millis) per boss, fastest first. */
         val bossTimes: Map<String, List<Triple<PlayerSave, Int, Int>>>,
+        /** Every account by display name, for the staff panel's search. */
+        val byName: List<PlayerSave>,
         /** Keyed by lowercase display name and lowercase account name. */
         val profiles: Map<String, Profile>,
         val updatedAt: String,
@@ -88,19 +90,32 @@ class HiscoresService(
             profiles.putIfAbsent(save.displayName().lowercase(), profile)
             profiles.putIfAbsent(save.name.lowercase(), profile)
         }
-        return Rankings(overall, skills, bossKills, bossTimes, profiles, Instant.now().toString())
+        val byName = accounts.sortedBy { it.displayName().lowercase() }
+        return Rankings(overall, skills, bossKills, bossTimes, byName, profiles, Instant.now().toString())
     }
 
-    fun metadata(): HiscoresMetadata = HiscoresMetadata(
-        updatedAt = snapshot.get().updatedAt,
-        maxTrackedXp = MAXIMUM_TRACKED_XP,
-        skills = Skill.all.map {
-            SkillMetadata(id = it.id(), name = it.name, maxLevel = it.displayMax(), iconUrl = it.iconUrl())
-        },
-        bosses = bosses.map { BossMetadata(it.key, it.value) },
-        modes = MODES.map { ModeMetadata(id = it, name = it.replaceFirstChar(Char::uppercase)) },
-        teamSizes = TEAM_SIZES,
-    )
+    /** Every account in the snapshot ordered by display name; see [slim] for what's left out. */
+    internal fun accountsByName(): List<PlayerSave> = snapshot.get().byName
+
+    /** The account name belonging to a display or account [name], as of the last snapshot. */
+    internal fun accountName(name: String): String? = snapshot.get().find(name)?.save?.name
+
+    private val questPointsMax by lazy { quests.definitions.sumOf { it.questPoints.coerceAtLeast(0) } }
+
+    private val metadata by lazy {
+        HiscoresMetadata(
+            updatedAt = "",
+            maxTrackedXp = MAXIMUM_TRACKED_XP,
+            skills = Skill.all.map {
+                SkillMetadata(id = it.id(), name = it.name, maxLevel = it.displayMax(), iconUrl = it.iconUrl())
+            },
+            bosses = bosses.map { BossMetadata(it.key, it.value) },
+            modes = MODES.map { ModeMetadata(id = it, name = it.replaceFirstChar(Char::uppercase)) },
+            teamSizes = TEAM_SIZES,
+        )
+    }
+
+    fun metadata(): HiscoresMetadata = metadata.copy(updatedAt = snapshot.get().updatedAt)
 
     fun overall(query: String?, mode: String?, page: Int, pageSize: Int): OverallLeaderboard {
         val rankings = snapshot.get()
@@ -182,7 +197,7 @@ class HiscoresService(
             totalXp = save.totalXp(),
             combatLevel = save.combatLevel(),
             questPoints = save.questPoints(),
-            questPointsMax = quests.definitions.sumOf { it.questPoints.coerceAtLeast(0) },
+            questPointsMax = questPointsMax,
             maxedSkills = maxedSkills,
             bossKills = bossKills,
             timePlayedHours = save.playtimeSeconds() / 3600.0,
@@ -225,7 +240,7 @@ class HiscoresService(
             completed = quests.ids.keys.count { save.questStatus(it) == "complete" },
             total = quests.ids.size,
             questPoints = save.questPoints(),
-            questPointsMax = quests.definitions.sumOf { it.questPoints.coerceAtLeast(0) },
+            questPointsMax = questPointsMax,
             items = list,
         )
     }
