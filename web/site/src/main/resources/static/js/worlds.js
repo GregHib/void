@@ -148,18 +148,41 @@ function voidRefreshPings() {
   return Promise.all([worlds, voidPingCustomWorlds()]);
 }
 
-function voidStartWorlds() {
-  fetch('/worlds.json')
-    .then(function (res) { return res.ok ? res.json() : []; })
-    .catch(function () { return []; })
-    .then(function (worlds) {
-      voidWorldList = worlds;
-      voidRefreshInfo();
-      voidRefreshPings();
-      setInterval(voidRefreshInfo, VOID_INFO_REFRESH_MS);
-      setInterval(voidRefreshPings, VOID_PING_REFRESH_MS);
-    });
+// `worlds.json`, fetched once however many callers ask — the world list on page start-up, and
+// voidWorldWeb, which the world map can reach first (it boots before `alpine:initialized`).
+// Settles to an empty list if the file can't be loaded.
+var voidWorldsLoaded = null;
+
+function voidLoadWorldList() {
+  if (!voidWorldsLoaded) {
+    voidWorldsLoaded = fetch('/worlds.json')
+      .then(function (res) { return res.ok ? res.json() : []; })
+      .catch(function () { return []; })
+      .then(function (worlds) {
+        voidWorldList = worlds;
+        return worlds;
+      });
+  }
+  return voidWorldsLoaded;
 }
+
+function voidStartWorlds() {
+  voidLoadWorldList().then(function () {
+    voidRefreshInfo();
+    voidRefreshPings();
+    setInterval(voidRefreshInfo, VOID_INFO_REFRESH_MS);
+    setInterval(voidRefreshPings, VOID_PING_REFRESH_MS);
+  });
+}
+
+// Resolves to world `number`'s web server base URL (see voidWebBase), or null when it isn't in
+// `worlds.json` or has no usable address.
+window.voidWorldWeb = function (number) {
+  return voidLoadWorldList().then(function (worlds) {
+    var world = worlds.find(function (entry) { return entry.number === number; });
+    return world ? voidWebBase(world.web) : null;
+  });
+};
 
 // --- Custom servers: name/web address the visitor typed in themselves, kept in this browser only ---
 

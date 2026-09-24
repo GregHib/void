@@ -12,3 +12,11 @@ data class ServerInfo(
     val dropRate: Double,
     val uptimeSeconds: Long,
 )
+
+@Serializable
+data class PlayerLocation(
+    val name: String,
+    val x: Int,
+    val y: Int,
+    val level: Int,
+)

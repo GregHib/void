@@ -10,14 +10,21 @@ import io.ktor.server.testing.testApplication
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.type.Tile
+import world.gregs.voidps.web.api.model.PlayerLocation
 import world.gregs.voidps.web.api.model.ServerInfo
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class WorldsRoutesTest {
 
     @AfterEach
     fun teardown() {
         Settings.clear()
+        Players.clear()
+        PlayerSnapshot.clear()
     }
 
     @Test
@@ -53,5 +60,39 @@ class WorldsRoutesTest {
         assertEquals(HttpStatusCode.NoContent, response.status)
         assertEquals("*", response.headers[HttpHeaders.AccessControlAllowOrigin])
         assertEquals("no-store", response.headers[HttpHeaders.CacheControl])
+    }
+
+    @Test
+    fun `Players lists locations except wilderness and opted out players`() = testApplication {
+        application {
+            apiPlugins()
+            routing { route(API_PATH) { worldsRoutes() } }
+        }
+        Players.add(Player(index = 1, tile = Tile(3222, 3218), accountName = "shown"))
+        Players.add(Player(index = 2, tile = Tile(3100, 3600), accountName = "wildy").apply { set("in_wilderness", true) })
+        Players.add(Player(index = 3, tile = Tile(3200, 3200, 1), accountName = "hidden").apply { set("world_map_hidden", true) })
+
+        val response = client.get("$API_PATH/players")
+
+        assertEquals(HttpStatusCode.OK, response.status)
+        assertEquals("*", response.headers[HttpHeaders.AccessControlAllowOrigin])
+        val players = apiJson.decodeFromString<List<PlayerLocation>>(response.bodyAsText())
+        assertEquals(listOf(PlayerLocation("shown", 3222, 3218, 0)), players)
+    }
+
+    @Test
+    fun `Players are cached between refreshes`() = testApplication {
+        application {
+            apiPlugins()
+            routing { route(API_PATH) { worldsRoutes() } }
+        }
+        Players.add(Player(index = 1, tile = Tile(3222, 3218), accountName = "first"))
+        val first = client.get("$API_PATH/players").bodyAsText()
+
+        Players.add(Player(index = 2, tile = Tile(3200, 3200), accountName = "second"))
+        val second = client.get("$API_PATH/players")
+
+        assertEquals(first, second.bodyAsText())
+        assertTrue(second.headers[HttpHeaders.CacheControl]!!.startsWith("public, max-age="))
     }
 }

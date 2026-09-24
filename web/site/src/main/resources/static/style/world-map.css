@@ -140,18 +140,6 @@
   cursor: not-allowed;
 }
 
-@keyframes wmPinPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(224, 174, 60, 0.55);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(224, 174, 60, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(224, 174, 60, 0);
-  }
-}
-
 /* Small screens: the bottom console and the top-left display panel are sized for desktop (a
    fixed 460px/190px) in WorldMap.kt's inline styles — shrink both to fit a phone viewport instead
    of letting the console overflow it. Nothing in the top-right corner is touched: the teleport
