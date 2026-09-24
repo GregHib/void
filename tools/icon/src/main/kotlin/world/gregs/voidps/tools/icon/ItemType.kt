@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.icon
 
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.Cache
 
 /* Class213 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
@@ -79,10 +80,10 @@ internal class ItemType {
             i_0_ = anInt2822
         }
         if (i_0_ == -1) return null
-        var mesh = Class300.load(0, this.list!!.cache!!, i_0_, -1)
+        var mesh = load(0, this.list!!.cache!!, i_0_, -1)
         if ((mesh!!.version.inv()) > i) mesh.upscale(2, 54)
         if (i_1_ != -1) {
-            val mesh_2_ = Class300.load(0, this.list!!.cache!!, i_1_, -1)
+            val mesh_2_ = load(0, this.list!!.cache!!, i_1_, -1)
             if (mesh_2_!!.version < 13) mesh_2_.upscale(2, i xor 0x78.inv())
             val meshes = arrayOf<Mesh?>(mesh, mesh_2_)
             mesh = Mesh(meshes, 2)
@@ -140,7 +141,7 @@ internal class ItemType {
             }
             this.iop!![4] = LocalisedText.Discard!!.method2063((this.list!!.languageId), 544)
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("rq.G(" + (if (itemType_9_ != null) "{...}" else "null") + ',' + i + ',' + (if (itemType_10_ != null) "{...}" else "null") + ')'))
+            throw method2929(runtimeexception, ("rq.G(" + (if (itemType_9_ != null) "{...}" else "null") + ',' + i + ',' + (if (itemType_10_ != null) "{...}" else "null") + ')'))
         }
     }
 
@@ -155,14 +156,14 @@ internal class ItemType {
     fun sprite(invCount: Int, bool: Boolean, graphicShadow: Int, toolkit: Toolkit?, scratchToolkit: Toolkit?, font: Font?, playerModel: PlayerModel?, itemNumMode: Int, i_40_: Byte, outline: Int): IntArray? {
         try {
             anInt2806++
-            val mesh = Class300.load(0, this.list!!.cache!!, this.mesh, i_40_.toInt() xor 0x65)
+            val mesh = load(0, this.list!!.cache!!, this.mesh, i_40_.toInt() xor 0x65)
             if (mesh == null) return null
             if (mesh.version < 13) mesh.upscale(2, i_40_.toInt() xor 0xb.inv())
             if (recol_s != null) {
                 var i_42_ = 0
                 while ((recol_s!!.size > i_42_)) {
                     if (recol_d_palette == null || i_42_ >= recol_d_palette!!.size) mesh.recolour(recol_s!![i_42_], 126.toByte(), aShortArray2771!![i_42_])
-                    else mesh.recolour(recol_s!![i_42_], 126.toByte(), (Class336.aShortArray4172[recol_d_palette!![i_42_].toInt() and 0xff]))
+                    else mesh.recolour(recol_s!![i_42_], 126.toByte(), (aShortArray4172[recol_d_palette!![i_42_].toInt() and 0xff]))
                     i_42_++
                 }
             }
@@ -176,9 +177,9 @@ internal class ItemType {
             if (playerModel != null) {
                 for (i_44_ in 0..4) {
                     var i_45_ = 0
-                    while ((i_45_ < Class367_Sub2.clientPalette!!.size)) {
-                        if ((Class367_Sub2.clientPalette!![i_45_]!![i_44_])!!.size > playerModel.recol_d!![i_44_]) {
-                            mesh.recolour((Class136.recol_s!![i_45_]!![i_44_]), 126.toByte(), (Class367_Sub2.clientPalette!![i_45_]!![i_44_]!![(playerModel.recol_d!![i_44_])]))
+                    while ((i_45_ < clientPalette!!.size)) {
+                        if ((clientPalette!![i_45_]!![i_44_])!!.size > playerModel.recol_d!![i_44_]) {
+                            mesh.recolour((clientRecol_s!![i_45_]!![i_44_]), 126.toByte(), (clientPalette!![i_45_]!![i_44_]!![(playerModel.recol_d!![i_44_])]))
                         }
                         i_45_++
                     }
@@ -217,7 +218,7 @@ internal class ItemType {
             val scratch = scratchToolkit.method3705()
             scratch!!.makeRotationZ(-this.anInt2810 shl 3)
             scratch.makeAxisY(this.anInt2781 shl 3)
-            scratch.translate(this.anInt2779 shl 2, ((zoom * (Class70.anIntArray1207[this.anInt2787 shl 3]) shr 14) - model.fa() / 2 + (this.anInt2826 shl 2)), ((zoom * (Class70.anIntArray1204[this.anInt2787 shl 3]) shr 14) - -(this.anInt2826 shl 2)))
+            scratch.translate(this.anInt2779 shl 2, ((zoom * (Mesh.anIntArray1207[this.anInt2787 shl 3]) shr 14) - model.fa() / 2 + (this.anInt2826 shl 2)), ((zoom * (Mesh.anIntArray1204[this.anInt2787 shl 3]) shr 14) - -(this.anInt2826 shl 2)))
             scratch.rotateAxisX(this.anInt2787 shl 3)
             val i_50_ = scratchToolkit.i()
             val i_51_ = scratchToolkit.XA()
@@ -243,12 +244,12 @@ internal class ItemType {
             }
             image = scratchToolkit.na(0, 0, 36, 32)
             for (i_52_ in image!!.indices) {
-                if ((0xffffff and image[i_52_]) != 0) image[i_52_] = Class273.or(image[i_52_], -16777216)
+                if ((0xffffff and image[i_52_]) != 0) image[i_52_] = Class348_Sub40_Sub12.or(image[i_52_], -16777216)
                 else image[i_52_] = 0
             }
             return image
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("rq.O(" + invCount + ',' + bool + ',' + graphicShadow + ',' + (if (toolkit != null) "{...}" else "null") + ',' + (if (scratchToolkit != null) "{...}" else "null") + ',' + (if (font != null) "{...}" else "null") + ',' + (if (playerModel != null) "{...}" else "null") + ',' + itemNumMode + ',' + i_40_ + ',' + outline + ')'))
+            throw method2929(runtimeexception, ("rq.O(" + invCount + ',' + bool + ',' + graphicShadow + ',' + (if (toolkit != null) "{...}" else "null") + ',' + (if (scratchToolkit != null) "{...}" else "null") + ',' + (if (font != null) "{...}" else "null") + ',' + (if (playerModel != null) "{...}" else "null") + ',' + itemNumMode + ',' + i_40_ + ',' + outline + ')'))
         }
     }
 
@@ -379,7 +380,7 @@ internal class ItemType {
                                                                 else if (i_57_ == 249) {
                                                                     val i_64_ = packet!!.readUnsignedByte(255)
                                                                     if (this.params == null) {
-                                                                        val i_65_ = Class33.method340(i_64_, 108.toByte())
+                                                                        val i_65_ = method340(i_64_, 108.toByte())
                                                                         this.params = IterableHashTable(i_65_)
                                                                     }
                                                                     for (i_66_ in 0..<i_64_) {
@@ -406,7 +407,7 @@ internal class ItemType {
             } else mesh = packet!!.readUnsignedShort(code + 842397940)
             anInt2754++
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("rq.L(" + code + ',' + i_57_ + ',' + (if (packet != null) "{...}" else "null") + ')'))
+            throw method2929(runtimeexception, ("rq.L(" + code + ',' + i_57_ + ',' + (if (packet != null) "{...}" else "null") + ')'))
         }
     }
 
@@ -420,7 +421,7 @@ internal class ItemType {
             }
             anInt2800++
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("rq.I(" + i + ',' + (if (packet != null) "{...}" else "null") + ')'))
+            throw method2929(runtimeexception, ("rq.I(" + i + ',' + (if (packet != null) "{...}" else "null") + ')'))
         }
     }
 
@@ -444,7 +445,7 @@ internal class ItemType {
             this.name = itemType_94_.name
             mesh = itemType_95_.mesh
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("rq.F(" + i + ',' + (if (itemType_94_ != null) "{...}" else "null") + ',' + (if (itemType_95_ != null) "{...}" else "null") + ')'))
+            throw method2929(runtimeexception, ("rq.F(" + i + ',' + (if (itemType_94_ != null) "{...}" else "null") + ',' + (if (itemType_95_ != null) "{...}" else "null") + ')'))
         }
     }
 
@@ -459,7 +460,7 @@ internal class ItemType {
             }
             anInt2790++
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("rq.M(" + i + ',' + (if (`is` != null) "{...}" else "null") + ',' + i_96_ + ')'))
+            throw method2929(runtimeexception, ("rq.M(" + i + ',' + (if (`is` != null) "{...}" else "null") + ',' + i_96_ + ')'))
         }
     }
 
@@ -508,11 +509,52 @@ internal class ItemType {
             }
             return is_101_
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("rq.K(" + i + ',' + i_100_ + ',' + (if (`is` != null) "{...}" else "null") + ')'))
+            throw method2929(runtimeexception, ("rq.K(" + i + ',' + i_100_ + ',' + (if (`is` != null) "{...}" else "null") + ')'))
         }
     }
 
     companion object {
+        var anInt459: Int = 0
+
+        fun method340(i: Int, i_5_: Byte): Int {
+            var i = i
+            anInt459++
+            i = --i or (i ushr 1)
+            i = i or (i ushr 2)
+            i = i or (i ushr 4)
+            if (i_5_.toInt() != 108) return 34
+            i = i or (i ushr 8)
+            i = i or (i ushr 16)
+            return 1 + i
+        }
+
+        var anInt3815: Int = 0
+        var aBoolean3819: Boolean = false
+
+        fun load(i: Int, cache: Cache, i_5_: Int, i_6_: Int): Mesh? {
+            if (i_6_ != -1) aBoolean3819 = true
+            anInt3815++
+            val `is` = cache.data(Index.MODELS, i_5_, i)
+            if (`is` == null) return null
+            return Mesh(`is`)
+        }
+
+        var anInt6789: Int = 0
+
+        fun method2929(throwable: Throwable, string: String?): RuntimeException_Sub1 {
+            anInt6789++
+            throwable.printStackTrace()
+            val runtimeexception_sub1: RuntimeException_Sub1
+            if (throwable is RuntimeException_Sub1) {
+                runtimeexception_sub1 = throwable
+                runtimeexception_sub1.aString4594 += ' '.toString() + string
+            } else runtimeexception_sub1 = RuntimeException_Sub1(throwable, string)
+            return runtimeexception_sub1
+        }
+
+        var clientPalette: Array<Array<ShortArray?>?>? = null
+        var aShortArray4172: ShortArray = ShortArray(256)
+        var clientRecol_s: Array<ShortArray?>? = null
         var anInt2754: Int = 0
         var aClass238_2773: Class238? = null
         var anInt2776: Int = 0

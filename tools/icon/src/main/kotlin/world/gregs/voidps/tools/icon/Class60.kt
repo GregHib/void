@@ -25,7 +25,7 @@ internal class Class60 @JvmOverloads constructor(private var anInt1086: Int, i_1
             aQueue_1089!!.add(true, class348_sub42_sub8_sub2)
             class348_sub42_sub8_sub2.key2 = 0L
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("jr.E(" + i + ',' + (if (`object` != null) "{...}" else "null") + ',' + l + ',' + i_5_ + ')'))
+            throw ItemType.method2929(runtimeexception, ("jr.E(" + i + ',' + (if (`object` != null) "{...}" else "null") + ',' + l + ',' + i_5_ + ')'))
         }
     }
 
@@ -35,7 +35,7 @@ internal class Class60 @JvmOverloads constructor(private var anInt1086: Int, i_1
             anInt1095++
             method580(31902, `object`, l, 1)
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("jr.B(" + (if (`object` != null) "{...}" else "null") + ',' + l + ',' + i + ')'))
+            throw ItemType.method2929(runtimeexception, ("jr.B(" + (if (`object` != null) "{...}" else "null") + ',' + l + ',' + i + ')'))
         }
     }
 
@@ -65,7 +65,7 @@ internal class Class60 @JvmOverloads constructor(private var anInt1086: Int, i_1
             }
             return `object`
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, "jr.K(" + l + ',' + i + ')')
+            throw ItemType.method2929(runtimeexception, "jr.K(" + l + ',' + i + ')')
         }
     }
 
@@ -86,7 +86,7 @@ internal class Class60 @JvmOverloads constructor(private var anInt1086: Int, i_1
             val class348_sub42_sub8 = aIterableHashTable_1100.method3480(l, -6008) as Class348_Sub42_Sub8?
             method585(class348_sub42_sub8, -57)
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, "jr.J(" + l + ',' + i + ')')
+            throw ItemType.method2929(runtimeexception, "jr.J(" + l + ',' + i + ')')
         }
     }
 
@@ -101,6 +101,8 @@ internal class Class60 @JvmOverloads constructor(private var anInt1086: Int, i_1
     }
 
     companion object {
+        var anInterface17_1244: Interface17? = null
+        var aIterableHashTable_4934: IterableHashTable = IterableHashTable(8)
         var anInt1085: Int = 0
         var anInt1090: Int = 0
         var anInt1092: Int = 0
@@ -112,8 +114,8 @@ internal class Class60 @JvmOverloads constructor(private var anInt1086: Int, i_1
             if (class42 == null) return false
             if (i != -4) return false
             if (!class42.aBoolean574) return false
-            if (!class42.method373(Class75.anInterface17_1244!!, i xor 0x2d.inv())) return false
-            if (Class158.aIterableHashTable_4934.method3480(class42.anInt581.toLong(), i xor 0x1774) != null) return false
+            if (!class42.method373(anInterface17_1244!!, i xor 0x2d.inv())) return false
+            if (aIterableHashTable_4934.method3480(class42.anInt581.toLong(), i xor 0x1774) != null) return false
             return KeyedHardReferenceNode.Companion.aIterableHashTable_10442.method3480(class42.anInt596.toLong(), i + -6004) == null
         }
     }

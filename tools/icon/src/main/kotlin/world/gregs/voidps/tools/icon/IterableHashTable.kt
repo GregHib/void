@@ -50,7 +50,7 @@ internal class IterableHashTable(var anInt4377: Int) {
             aClass348_4389 = null
             return null
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, "eq.C(" + l + ',' + i + ')')
+            throw ItemType.method2929(runtimeexception, "eq.C(" + l + ',' + i + ')')
         }
     }
 
@@ -99,7 +99,7 @@ internal class IterableHashTable(var anInt4377: Int) {
             class348.aClass348_4294!!.aClass348_4295 = class348
             class348.aLong4291 = l
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("eq.K(" + i + ',' + l + ',' + (if (class348 != null) "{...}" else "null") + ')'))
+            throw ItemType.method2929(runtimeexception, ("eq.K(" + i + ',' + l + ',' + (if (class348 != null) "{...}" else "null") + ')'))
         }
     }
 

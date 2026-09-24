@@ -455,7 +455,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     fun method3643(canvas: Canvas?, i: Int, i_232_: Int) {
         var class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong(), -6008) as Class348_Sub31?)
         if (class348_sub31 == null) {
-            class348_sub31 = Class110.method1035(9029, i_232_, canvas, i)
+            class348_sub31 = method1035(9029, i_232_, canvas, i)
             aIterableHashTable_7467!!.put(21.toByte(), canvas.hashCode().toLong(), class348_sub31)
         } else if (class348_sub31.anInt6917 != i || class348_sub31.anInt6920 != i_232_) method3669(canvas, i, i_232_)
     }
@@ -479,7 +479,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         var class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong(), -6008) as Class348_Sub31?)
         if (class348_sub31 != null) {
             class348_sub31.unlink(95.toByte())
-            class348_sub31 = Class110.method1035(9029, i_578_, canvas, i)
+            class348_sub31 = method1035(9029, i_578_, canvas, i)
             aIterableHashTable_7467!!.put(112.toByte(), canvas.hashCode().toLong(), class348_sub31)
             if (aCanvas7468 === canvas && aClass49_7475 == null) {
                 val dimension = canvas!!.getSize()
@@ -914,7 +914,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             method3659(0)
             Class59_Sub2_Sub1.method566(true, true, (-126).toByte())
             aBoolean7471 = true
-            anInt7466 = Class62.method599(-70).toInt()
+            anInt7466 = Class348_Sub42_Sub15.method599(-70).toInt()
         } catch (throwable: Throwable) {
             throwable.printStackTrace()
             this.method3635((-98).toByte())
@@ -1036,5 +1036,23 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
 
     fun method3727(i: Int): Boolean {
         return aBoolean7489 || this.textureSource!!.getMetrics(i, -6662)!!.small
+    }
+
+    companion object {
+        var anInt1705: Int = 0
+
+        fun method1035(i: Int, i_16_: Int, canvas: Canvas?, i_17_: Int): Class348_Sub31? {
+            anInt1705++
+            if (i != 9029) return null
+            try {
+                val class348_sub31: Class348_Sub31 = Class348_Sub31_Sub1()
+                class348_sub31.method3008(canvas!!, i_17_, -90, i_16_)
+                return class348_sub31
+            } catch (throwable: Throwable) {
+                val class348_sub31_sub2 = Class348_Sub31_Sub2()
+                class348_sub31_sub2.method3008(canvas!!, i_17_, -128, i_16_)
+                return class348_sub31_sub2
+            }
+        }
     }
 }

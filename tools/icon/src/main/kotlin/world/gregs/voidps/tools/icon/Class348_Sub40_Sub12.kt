@@ -17,7 +17,7 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                     anIntArrayArray9194!![i_2_][0] = packet.readUnsignedShort(842397944)
                     anIntArrayArray9194!![i_2_][1] = packet.readUnsignedByte(255) shl 4
                     anIntArrayArray9194!![i_2_][2] = packet.readUnsignedByte(255) shl 4
-                    anIntArrayArray9194!![i_2_][3] = ((packet.readUnsignedByte(Class348_Sub21.method2955(i_0_, 31192))) shl 4)
+                    anIntArrayArray9194!![i_2_][3] = ((packet.readUnsignedByte(Mesh.method2955(i_0_, 31192))) shl 4)
                     i_2_++
                 }
             } else method3078(i_1_, i_0_ + -31111)
@@ -40,9 +40,9 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                 if (i_9_ < 0) i_9_ = 0
                 if (i_9_ > 256) i_9_ = 256
                 i_9_ = anIntArray9199[i_9_]
-                is_5_[i_8_] = Class139.method1166(i_9_, 16711680) shr 12
-                is_6_[i_8_] = Class139.method1166(65280, i_9_) shr 4
-                is_7_[i_8_] = Class139.method1166(4080, i_9_ shl 4)
+                is_5_[i_8_] = Class348_Sub40_Sub17.method1166(i_9_, 16711680) shr 12
+                is_6_[i_8_] = Class348_Sub40_Sub17.method1166(65280, i_9_) shr 4
+                is_7_[i_8_] = Class348_Sub40_Sub17.method1166(4080, i_9_ shl 4)
                 i_8_++
             }
         }
@@ -321,12 +321,16 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                 if (i_19_ >= 0) {
                     if (i_19_ > 255) i_19_ = 255
                 } else i_19_ = 0
-                anIntArray9199[i_13_] = (Class273.or(i_18_, Class273.or(i_17_ shl 16, i_19_ shl 8)))
+                anIntArray9199[i_13_] = (or(i_18_, or(i_17_ shl 16, i_19_ shl 8)))
             }
         }
     }
 
     companion object {
+        fun or(i: Int, i_2_: Int): Int {
+            return i or i_2_
+        }
+
         var aClass351_9189: Class351? = Class351(28, 2)
         var anInt9190: Int = 0
         var anInt9191: Int = 0

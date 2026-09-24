@@ -8,17 +8,21 @@ import kotlin.math.sin
 */
 
 internal object Class220 {
+    var anIntArray3068: IntArray? = null
+
+    var anIntArray4654: IntArray? = null
+
     var anInt2876: Int = 0
     var anInt2878: Int = 0
 
     fun method1605(i: Int) {
-        if (Class235.anIntArray3068 == null || Class127.anIntArray4654 == null) {
-            Class127.anIntArray4654 = IntArray(256)
-            Class235.anIntArray3068 = IntArray(256)
+        if (anIntArray3068 == null || anIntArray4654 == null) {
+            anIntArray4654 = IntArray(256)
+            anIntArray3068 = IntArray(256)
             for (i_0_ in 0..255) {
                 val d = 6.283185307179586 * (i_0_.toDouble() / 255.0)
-                Class235.anIntArray3068!![i_0_] = (4096.0 * sin(d)).toInt()
-                Class127.anIntArray4654!![i_0_] = (4096.0 * cos(d)).toInt()
+                anIntArray3068!![i_0_] = (4096.0 * sin(d)).toInt()
+                anIntArray4654!![i_0_] = (4096.0 * cos(d)).toInt()
             }
         }
         anInt2878++

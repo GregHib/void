@@ -18,7 +18,7 @@ internal class Class308(private var anInt3891: Int) {
             if (class348_sub42 != null) aQueue_3889!!.add(true, class348_sub42)
             return class348_sub42
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, "wu.D(" + l + ',' + i + ')')
+            throw ItemType.method2929(runtimeexception, "wu.D(" + l + ',' + i + ')')
         }
     }
 
@@ -38,7 +38,7 @@ internal class Class308(private var anInt3891: Int) {
             aIterableHashTable_3888.put(37.toByte(), l, class348_sub42)
             aQueue_3889!!.add(true, class348_sub42!!)
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("wu.E(" + l + ',' + (if (class348_sub42 != null) "{...}" else "null") + ',' + i + ')'))
+            throw ItemType.method2929(runtimeexception, ("wu.E(" + l + ',' + (if (class348_sub42 != null) "{...}" else "null") + ',' + i + ')'))
         }
     }
 

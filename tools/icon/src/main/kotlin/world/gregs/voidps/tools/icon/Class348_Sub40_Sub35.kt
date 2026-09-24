@@ -36,14 +36,14 @@ internal class Class348_Sub40_Sub35 : Class348_Sub40(1, true) {
         anInt9446++
         val `is` = this.aClass191_7032!!.method1433(0, i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val i_5_ = Class248.anInt3201 * anInt9448 shr 12
-            val is_6_ = this.method3048(Class299_Sub2.anInt6325 and -1 + i, 633706337, 0)
+            val i_5_ = Class79.anInt3201 * anInt9448 shr 12
+            val is_6_ = this.method3048(Class348_Sub40_Sub6.anInt6325 and -1 + i, 633706337, 0)
             val is_7_ = this.method3048(i, 633706337, 0)
-            val is_8_ = this.method3048(Class299_Sub2.anInt6325 and i - -1, i_4_ + 633706082, 0)
+            val is_8_ = this.method3048(Class348_Sub40_Sub6.anInt6325 and i - -1, i_4_ + 633706082, 0)
             var i_9_ = 0
             while (Class348_Sub40_Sub6.Companion.anInt9139 > i_9_) {
                 val i_10_ = i_5_ * (is_8_!![i_9_] - is_6_!![i_9_]) shr 12
-                val i_11_ = (i_5_ * (-is_7_!![Class239_Sub22.anInt6076 and i_9_ - -1] + is_7_[-1 + i_9_ and Class239_Sub22.anInt6076]) shr 12)
+                val i_11_ = (i_5_ * (-is_7_!![Class348_Sub40_Sub37.anInt6076 and i_9_ - -1] + is_7_[-1 + i_9_ and Class348_Sub40_Sub37.anInt6076]) shr 12)
                 var i_12_ = i_11_ shr 4
                 var i_13_ = i_10_ shr 4
                 if (i_12_ < 0) i_12_ = -i_12_

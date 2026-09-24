@@ -53,14 +53,14 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
             val is_2_ = `is`!![0]
             val is_3_ = `is`[1]
             val is_4_ = `is`[2]
-            var i_5_ = (this.anInt9237 * (if (this.anInt9241 != Class286_Sub2.anInt6212) (this.anInt9241 * i / Class286_Sub2.anInt6212) else i))
+            var i_5_ = (this.anInt9237 * (if (this.anInt9241 != Class79.anInt6212) (this.anInt9241 * i / Class79.anInt6212) else i))
             if (Class348_Sub40_Sub6.Companion.anInt9139 == this.anInt9237) {
                 var i_6_ = 0
                 while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_6_)) {
                     val i_7_ = this.anIntArray9232!![i_5_++]
-                    is_4_[i_6_] = Class139.method1166(4080, i_7_ shl 4)
-                    is_3_[i_6_] = Class139.method1166(65280, i_7_) shr 4
-                    is_2_[i_6_] = Class139.method1166(4080, i_7_ shr 12)
+                    is_4_[i_6_] = method1166(4080, i_7_ shl 4)
+                    is_3_[i_6_] = method1166(65280, i_7_) shr 4
+                    is_2_[i_6_] = method1166(4080, i_7_ shr 12)
                     i_6_++
                 }
             } else {
@@ -68,9 +68,9 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
                 while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_8_)) {
                     val i_9_: Int = (this.anInt9237 * i_8_ / Class348_Sub40_Sub6.Companion.anInt9139)
                     val i_10_ = (this.anIntArray9232!![i_9_ + i_5_])
-                    is_4_[i_8_] = Class139.method1166(i_10_, 255) shl 4
-                    is_3_[i_8_] = Class139.method1166(i_10_ shr 4, 4080)
-                    is_2_[i_8_] = Class139.method1166(i_10_, 16711680) shr 12
+                    is_4_[i_8_] = method1166(i_10_, 255) shl 4
+                    is_3_[i_8_] = method1166(i_10_ shr 4, 4080)
+                    is_2_[i_8_] = method1166(i_10_, 16711680) shr 12
                     i_8_++
                 }
             }
@@ -79,6 +79,10 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
     }
 
     companion object {
+        fun method1166(i: Int, i_12_: Int): Int {
+            return i and i_12_
+        }
+
         var anInt9233: Int = 0
         var anInt9238: Int = 0
         var anInt9239: Int = 0

@@ -169,7 +169,7 @@ internal class Js5TextureSource(private val cache: Cache) : TextureSource {
                 i++
             }
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("tda.<init>({...})"))
+            throw ItemType.method2929(runtimeexception, ("tda.<init>({...})"))
         }
     }
 

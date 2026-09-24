@@ -64,7 +64,7 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
             }*/
             return sprite
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ub.C(" + (if (scratchToolkit != null) "{...}" else "null") + ',' + graphicShadow + ',' + invCount + ',' + (if (font != null) "{...}" else "null") + ',' + (if (playerModel != null) "{...}" else "null") + ',' + itemNumMode + ',' + temp + ',' + i_2_ + ',' + (if (realToolkit != null) "{...}" else "null") + ',' + itemId + ',' + bool_5_ + ',' + outline + ')'))
+            throw ItemType.method2929(runtimeexception, ("ub.C(" + (if (scratchToolkit != null) "{...}" else "null") + ',' + graphicShadow + ',' + invCount + ',' + (if (font != null) "{...}" else "null") + ',' + (if (playerModel != null) "{...}" else "null") + ',' + itemNumMode + ',' + temp + ',' + i_2_ + ',' + (if (realToolkit != null) "{...}" else "null") + ',' + itemId + ',' + bool_5_ + ',' + outline + ')'))
         }
     }
 
@@ -77,7 +77,7 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
         if (type != null) return type
         val data: ByteArray?
         synchronized(cache!!) {
-            data = cache.data(Index.ITEMS, Class54.method500(7, id), Class251.method1914(-23590, id))
+            data = cache.data(Index.ITEMS, method500(7, id), method1914(-23590, id))
         }
         type = ItemType()
         type.list = this
@@ -125,7 +125,7 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
             spriteCacheKey.outline = outline
             return this.spriteCache.get(123, spriteCacheKey) as Sprite?
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ub.D(" + outline + ',' + i_15_ + ',' + itemId + ',' + invCount + ',' + graphicShadow + ',' + itemNumMode + ',' + (if (toolkit != null) "{...}" else "null") + ',' + (if (playerModel != null) "{...}" else "null") + ')'))
+            throw ItemType.method2929(runtimeexception, ("ub.D(" + outline + ',' + i_15_ + ',' + itemId + ',' + invCount + ',' + graphicShadow + ',' + itemNumMode + ',' + (if (toolkit != null) "{...}" else "null") + ',' + (if (playerModel != null) "{...}" else "null") + ')'))
         }
     }
 
@@ -142,11 +142,49 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
             defaultOps = (arrayOf<String?>(null, null, LocalisedText.Companion.TAKE!!.method2063(this.languageId, 544), null, null))
             defaultIops = (arrayOf<String?>(null, null, null, null, LocalisedText.Companion.DROP!!.method2063(this.languageId, 544)))
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ub.<init>(" + ',' + languageId + ',' + members + ',' + (if (class326 != null) "{...}" else "null") + ',' + (if (cache != null) "{...}" else "null") + ')'))
+            throw ItemType.method2929(runtimeexception, ("ub.<init>(" + ',' + languageId + ',' + members + ',' + (if (class326 != null) "{...}" else "null") + ',' + (if (cache != null) "{...}" else "null") + ')'))
         }
     }
 
     companion object {
+        fun method3534(bool: Boolean, i: Int, i_5_: Int, bool_6_: Boolean, i_7_: Int, class46s: Array<Class46?>?) {
+            /* empty - stubbed, see note above */
+        }
+
+        fun method1728(i: Int, i_2_: Int, i_3_: Int, bool: Boolean, i_4_: Int) {
+            /* empty - stubbed, see note above */
+        }
+
+        var aIterableHashTable_4915: IterableHashTable = IterableHashTable(8)
+
+        var anInt3231: Int = 0
+        var anInt3235: Int = 0
+
+        fun method1913(bool: Boolean, i: Int, class46: Class46?) {
+            anInt3235++
+            val i_0_ = -40 % ((-35 - i) / 51)
+            val i_1_ = (if (class46!!.anInt698 == 0) class46.anInt709 else class46.anInt698)
+            val i_2_ = (if (class46.anInt791 != 0) class46.anInt791 else class46.anInt789)
+            method3534(false, class46.anInt830, i_1_, bool, i_2_, (Class348_Sub40_Sub33.aClass46ArrayArray9427!![(class46.anInt830 shr 16)]))
+            if (class46.aClass46Array798 != null) method3534(false, class46.anInt830, i_1_, bool, i_2_, class46.aClass46Array798)
+            val class348_sub41 = (aIterableHashTable_4915.method3480(class46.anInt830.toLong(), -6008) as Class348_Sub41?)
+            if (class348_sub41 != null) method1728(i_2_, -1, (class348_sub41.anInt7050), bool, i_1_)
+        }
+
+        fun method1914(i: Int, i_3_: Int): Int {
+            anInt3231++
+            if (i != -23590) method1913(false, -115, null)
+            return i_3_ and 0xff
+        }
+
+        var anInt975: Int = 0
+
+        fun method500(i: Int, i_0_: Int): Int {
+            anInt975++
+            if (i != 7) return -107
+            return i_0_ ushr 8
+        }
+
         var anInt3266: Int = 0
         var anInt3282: Int = 0
         var anInt3283: Int = 0

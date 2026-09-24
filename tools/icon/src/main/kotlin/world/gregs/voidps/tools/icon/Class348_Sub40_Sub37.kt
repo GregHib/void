@@ -38,7 +38,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
             val i_32_ = 65536 / i_31_
             val is_33_ = arrayOfNulls<Array<IntArray>>(i_29_)
             for (i_34_ in i + -anInt9463..anInt9463 + i) {
-                val is_35_ = this.method3039(55.toByte(), Class299_Sub2.anInt6325 and i_34_, 0)
+                val is_35_ = this.method3039(55.toByte(), Class348_Sub40_Sub6.anInt6325 and i_34_, 0)
                 val is_36_: Array<IntArray> = Array(3) { IntArray(Class348_Sub40_Sub6.Companion.anInt9139) }
                 var i_37_ = 0
                 var i_38_ = 0
@@ -47,7 +47,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
                 val is_41_ = is_35_[1]
                 val is_42_ = is_35_[2]
                 for (i_43_ in -anInt9466..anInt9466) {
-                    val i_44_ = Class239_Sub22.anInt6076 and i_43_
+                    val i_44_ = anInt6076 and i_43_
                     i_39_ += is_42_[i_44_]
                     i_37_ += is_40_[i_44_]
                     i_38_ += is_41_[i_44_]
@@ -60,12 +60,12 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
                     is_45_[i_48_] = i_37_ * i_32_ shr 16
                     is_46_[i_48_] = i_38_ * i_32_ shr 16
                     is_47_[i_48_] = i_39_ * i_32_ shr 16
-                    var i_49_ = Class239_Sub22.anInt6076 and -anInt9466 + i_48_
+                    var i_49_ = anInt6076 and -anInt9466 + i_48_
                     i_37_ -= is_40_[i_49_]
                     i_48_++
                     i_38_ -= is_41_[i_49_]
                     i_39_ -= is_42_[i_49_]
-                    i_49_ = i_48_ - -anInt9466 and Class239_Sub22.anInt6076
+                    i_49_ = i_48_ - -anInt9466 and anInt6076
                     i_39_ += is_42_[i_49_]
                     i_38_ += is_41_[i_49_]
                     i_37_ += is_40_[i_49_]
@@ -96,6 +96,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
     }
 
     companion object {
+        var anInt6076: Int = 0
         var anInt9459: Int = 0
         var anInt9464: Int = 0
         var aLongArray9465: LongArray? = null
@@ -125,7 +126,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
                     i_6_ += i_2_
                 }
             } catch (runtimeexception: RuntimeException) {
-                throw Class348_Sub17.method2929(runtimeexception, ("fd.D(" + i + ',' + i_0_ + ',' + i_1_ + ',' + i_2_ + ',' + i_3_ + ',' + i_4_ + ',' + (if (`is` != null) "{...}" else "null") + ',' + (if (is_5_ != null) "{...}" else "null") + ',' + i_6_ + ')'))
+                throw ItemType.method2929(runtimeexception, ("fd.D(" + i + ',' + i_0_ + ',' + i_1_ + ',' + i_2_ + ',' + i_3_ + ',' + i_4_ + ',' + (if (`is` != null) "{...}" else "null") + ',' + (if (is_5_ != null) "{...}" else "null") + ',' + i_6_ + ')'))
             }
         }
 

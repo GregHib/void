@@ -1,6 +1,8 @@
 package world.gregs.voidps.tools.icon
 
 import java.util.*
+import kotlin.math.cos
+import kotlin.math.sin
 
 /* Class124 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
@@ -628,7 +630,7 @@ internal class Mesh {
             i_82_ = this.vertexZ!![i_83_]
             i_81_ = this.vertexY!![i_83_]
             i_80_ = this.vertexX!![i_83_]
-            if (i_61_ == 1) this.vertexLabel!![i_83_] = packet_56_.readUnsignedByte(Class348_Sub21.method2955(i, 254))
+            if (i_61_ == 1) this.vertexLabel!![i_83_] = packet_56_.readUnsignedByte(method2955(i, 254))
         }
         packet.pos = i_75_
         packet_53_.pos = i_71_
@@ -654,7 +656,7 @@ internal class Mesh {
                 }
             }
             if (i_58_ == 255) this.facePriority!![i_88_] = packet_54_.readByte(-108)
-            if (i_59_ == 1) this.faceAlpha!![i_88_] = packet_55_.readByte(Class348_Sub21.method2955(i, -120))
+            if (i_59_ == 1) this.faceAlpha!![i_88_] = packet_55_.readByte(method2955(i, -120))
             if (i_60_ == 1) this.faceLabel!![i_88_] = packet_56_.readUnsignedByte(255)
         }
         packet.pos = i_74_
@@ -735,8 +737,8 @@ internal class Mesh {
 
     fun method1107(i: Int, i_199_: Int, i_200_: Int, i_201_: Int) {
         if (i_200_ != 0) {
-            val i_202_ = Class70.anIntArray1207[i_200_]
-            val i_203_ = Class70.anIntArray1204[i_200_]
+            val i_202_ = anIntArray1207[i_200_]
+            val i_203_ = anIntArray1204[i_200_]
             for (i_204_ in 0..<this.vertexCount) {
                 val i_205_ = ((i_203_ * this.vertexX!![i_204_] + this.vertexY!![i_204_] * i_202_) shr 14)
                 this.vertexY!![i_204_] = ((-(this.vertexX!![i_204_] * i_202_) + this.vertexY!![i_204_] * i_203_) shr 14)
@@ -746,8 +748,8 @@ internal class Mesh {
         if (i != 6875) this.faceB = null
         anInt1837++
         if (i_201_ != 0) {
-            val i_206_ = Class70.anIntArray1207[i_201_]
-            val i_207_ = Class70.anIntArray1204[i_201_]
+            val i_206_ = anIntArray1207[i_201_]
+            val i_207_ = anIntArray1204[i_201_]
             for (i_208_ in 0..<this.vertexCount) {
                 val i_209_ = ((this.vertexY!![i_208_] * i_207_ + -(i_206_ * this.vertexZ!![i_208_])) shr 14)
                 this.vertexZ!![i_208_] = ((this.vertexY!![i_208_] * i_206_ - -(i_207_ * this.vertexZ!![i_208_])) shr 14)
@@ -755,8 +757,8 @@ internal class Mesh {
             }
         }
         if (i_199_ != 0) {
-            val i_210_ = Class70.anIntArray1207[i_199_]
-            val i_211_ = Class70.anIntArray1204[i_199_]
+            val i_210_ = anIntArray1207[i_199_]
+            val i_211_ = anIntArray1204[i_199_]
             var i_212_ = 0
             while (this.vertexCount > i_212_) {
                 val i_213_ = ((i_211_ * this.vertexX!![i_212_] + this.vertexZ!![i_212_] * i_210_) shr 14)
@@ -783,6 +785,29 @@ internal class Mesh {
     constructor(meshes: Array<Mesh?>?, i: Int)
 
     companion object {
+        var anInt2582: Int = 0
+
+        fun method1436(i: Int, i_3_: Int): Boolean {
+            val i_4_ = 22 % ((i - 16) / 35)
+            anInt2582++
+            return i_3_ == (i_3_ and -i_3_)
+        }
+
+        fun method2955(i: Int, i_24_: Int): Int {
+            return i xor i_24_
+        }
+
+        var anIntArray1204: IntArray
+        var anIntArray1207: IntArray = IntArray(16384)
+
+        init {
+            anIntArray1204 = IntArray(16384)
+            val d = 3.834951969714103E-4
+            for (i in 0..16383) {
+                anIntArray1207[i] = (16384.0 * sin(d * i.toDouble())).toInt()
+                anIntArray1204[i] = (cos(d * i.toDouble()) * 16384.0).toInt()
+            }
+        }
         var anInt1819: Int = 0
         var anInt1826: Int = 0
         var anInt1828: Int = 0
@@ -801,7 +826,7 @@ internal class Mesh {
         fun method1097(i: Byte, i_20_: Int, random: Random): Int {
             anInt1861++
             require(i_20_ > 0)
-            if (Class192.method1436(-19, i_20_)) return (i_20_.toLong() * (0xffffffffL and random.nextInt().toLong()) shr 32).toInt()
+            if (method1436(-19, i_20_)) return (i_20_.toLong() * (0xffffffffL and random.nextInt().toLong()) shr 32).toInt()
             val i_21_ = -2147483648 + -(4294967296L % i_20_.toLong()).toInt()
             var i_22_: Int
             do i_22_ = random.nextInt() while (i_22_ >= i_21_)

@@ -1,5 +1,8 @@
 package world.gregs.voidps.tools.icon
 
+import kotlin.math.cos
+import kotlin.math.sin
+
 /* Class101_Sub1 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
@@ -42,8 +45,8 @@ internal class Matrix_Sub1 : Matrix() {
 
     override fun rotateAxisX(i: Int) {
         anInt5658++
-        val f = Class239_Sub4.aFloatArray5876[0x3fff and i]
-        val f_24_ = Class239_Sub4.aFloatArray5874[0x3fff and i]
+        val f = aFloatArray5876[0x3fff and i]
+        val f_24_ = aFloatArray5874[0x3fff and i]
         val f_25_ = this.aFloat5655
         val f_26_ = this.aFloat5678
         val f_27_ = this.aFloat5666
@@ -61,9 +64,9 @@ internal class Matrix_Sub1 : Matrix() {
     override fun makeRotationZ(i: Int) {
         anInt5667++
         this.aFloat5664 = 1.0f
-        this.aFloat5678 = Class239_Sub4.aFloatArray5876[0x3fff and i]
+        this.aFloat5678 = aFloatArray5876[0x3fff and i]
         this.aFloat5672 = this.aFloat5678
-        this.aFloat5655 = Class239_Sub4.aFloatArray5874[0x3fff and i]
+        this.aFloat5655 = aFloatArray5874[0x3fff and i]
         this.aFloat5681 = 0.0f
         this.aFloat5680 = this.aFloat5681
         this.aFloat5662 = this.aFloat5680
@@ -76,8 +79,8 @@ internal class Matrix_Sub1 : Matrix() {
 
     override fun makeAxisY(i: Int) {
         anInt5659++
-        val f = Class239_Sub4.aFloatArray5876[0x3fff and i]
-        val f_32_ = Class239_Sub4.aFloatArray5874[i and 0x3fff]
+        val f = aFloatArray5876[0x3fff and i]
+        val f_32_ = aFloatArray5874[i and 0x3fff]
         val f_33_ = this.aFloat5672
         val f_34_ = this.aFloat5673
         val f_35_ = this.aFloat5669
@@ -97,6 +100,16 @@ internal class Matrix_Sub1 : Matrix() {
     }
 
     companion object {
+        var aFloatArray5874: FloatArray = FloatArray(16384)
+        var aFloatArray5876: FloatArray = FloatArray(16384)
+
+        init {
+            val d = 3.834951969714103E-4
+            for (i in 0..16383) {
+                aFloatArray5874[i] = sin(d * i.toDouble()).toFloat()
+                aFloatArray5876[i] = cos(i.toDouble() * d).toFloat()
+            }
+        }
         var anInt5658: Int = 0
         var aLong5663: Long = 0
         var anInt5659: Int = 0

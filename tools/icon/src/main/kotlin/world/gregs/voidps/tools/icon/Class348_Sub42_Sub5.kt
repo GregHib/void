@@ -2,6 +2,8 @@ package world.gregs.voidps.tools.icon
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
+import kotlin.math.min
+import kotlin.math.pow
 
 /* Class348_Sub42_Sub5 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
@@ -17,14 +19,14 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
     fun method3183(var_textureSource: TextureSource?, i: Int, i_0_: Int, bool: Boolean, d: Double, cache: Cache?, i_1_: Byte): IntArray {
         try {
             anInt9522++
-            Class286_Sub5.aTextureSource6247 = var_textureSource
+            Class348_Sub40_Sub29.aTextureSource6247 = var_textureSource
             Class348.Companion.aCache_4286 = cache
             var i_2_ = 0
             while (aClass348_Sub40Array9520.size > i_2_) {
                 aClass348_Sub40Array9520[i_2_]!!.method3045(i, i_0_, -256)
                 i_2_++
             }
-            Class348_Sub42_Sub13.method3232(d, (-122).toByte())
+            method3232(d, (-122).toByte())
             Class79.method797(i_0_, i, 114.toByte())
             val `is` = IntArray(i * i_0_)
             var i_3_ = 0
@@ -57,10 +59,10 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
                     if (i_13_ < 0) i_13_ = 0
                     var i_14_ = is_5_[i_11_] shr 4
                     if (i_14_ > 255) i_14_ = 255
-                    i_13_ = Class318_Sub1_Sub3_Sub3.anIntArray10266[i_13_]
+                    i_13_ = anIntArray10266[i_13_]
                     if (i_14_ < 0) i_14_ = 0
-                    i_12_ = Class318_Sub1_Sub3_Sub3.anIntArray10266[i_12_]
-                    i_14_ = Class318_Sub1_Sub3_Sub3.anIntArray10266[i_14_]
+                    i_12_ = anIntArray10266[i_12_]
+                    i_14_ = anIntArray10266[i_14_]
                     var i_15_: Int
                     if (i_12_ == 0 && i_13_ == 0 && i_14_ == 0) i_15_ = 0
                     else {
@@ -81,7 +83,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             if (i_1_.toInt() != 11) anInt9532 = 97
             return `is`
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.D(" + (if (var_textureSource != null) "{...}" else "null") + ',' + i + ',' + i_0_ + ',' + bool + ',' + d + ',' + (if (cache != null) "{...}" else "null") + ',' + i_1_ + ')'))
+            throw ItemType.method2929(runtimeexception, ("lr.D(" + (if (var_textureSource != null) "{...}" else "null") + ',' + i + ',' + i_0_ + ',' + bool + ',' + d + ',' + (if (cache != null) "{...}" else "null") + ',' + i_1_ + ')'))
         }
     }
 
@@ -109,13 +111,13 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             }
             return true
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.B(" + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (cache != null) "{...}" else "null") + ',' + i + ')'))
+            throw ItemType.method2929(runtimeexception, ("lr.B(" + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (cache != null) "{...}" else "null") + ',' + i + ')'))
         }
     }
 
     fun method3185(i: Int, var_textureSource: TextureSource?, i_21_: Int, bool: Boolean, d: Double, bool_22_: Boolean, cache: Cache?, i_23_: Int): IntArray {
         try {
-            Class286_Sub5.aTextureSource6247 = var_textureSource
+            Class348_Sub40_Sub29.aTextureSource6247 = var_textureSource
             Class348.Companion.aCache_4286 = cache
             anInt9526++
             var i_24_ = 0
@@ -123,7 +125,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
                 aClass348_Sub40Array9520[i_24_]!!.method3045(i, i_23_, i_21_ + -256)
                 i_24_++
             }
-            Class348_Sub42_Sub13.method3232(d, (-89).toByte())
+            method3232(d, (-89).toByte())
             Class79.method797(i_23_, i, 122.toByte())
             val `is` = IntArray(i_23_ * i)
             val i_25_: Int
@@ -166,10 +168,10 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
                     if (i_37_ < 0) i_37_ = 0
                     var i_38_ = is_32_[i_35_] shr 4
                     if (i_38_ > 255) i_38_ = 255
-                    i_37_ = Class318_Sub1_Sub3_Sub3.anIntArray10266[i_37_]
-                    i_36_ = Class318_Sub1_Sub3_Sub3.anIntArray10266[i_36_]
+                    i_37_ = anIntArray10266[i_37_]
+                    i_36_ = anIntArray10266[i_36_]
                     if (i_38_ < 0) i_38_ = 0
-                    i_38_ = Class318_Sub1_Sub3_Sub3.anIntArray10266[i_38_]
+                    i_38_ = anIntArray10266[i_38_]
                     var i_39_ = (i_37_ shl 8) + (i_36_ shl 16) + i_38_
                     if (i_39_ != 0) i_39_ = i_39_ or 0xffffff.inv()
                     `is`[i_28_++] = i_39_
@@ -185,7 +187,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             }
             return `is`
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.C(" + i + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + i_21_ + ',' + bool + ',' + d + ',' + bool_22_ + ',' + (if (cache != null) "{...}" else "null") + ',' + i_23_ + ')'))
+            throw ItemType.method2929(runtimeexception, ("lr.C(" + i + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + i_21_ + ',' + bool + ',' + d + ',' + bool_22_ + ',' + (if (cache != null) "{...}" else "null") + ',' + i_23_ + ')'))
         }
     }
 
@@ -196,7 +198,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
         val `is` = arrayOfNulls<IntArray>(i)
         aClass348_Sub40Array9520 = arrayOfNulls<Class348_Sub40>(i)
         for (i_58_ in 0..<i) {
-            val class348_sub40 = Class348_Sub37.method3031(125, packet)
+            val class348_sub40 = Class348_Sub40.method3031(125, packet)
             if (class348_sub40!!.method3037(-121) >= 0) i_56_++
             if (class348_sub40.method3043(-1) >= 0) i_57_++
             val i_59_ = (class348_sub40.aClass348_Sub40Array7031).size
@@ -231,6 +233,24 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
     }
 
     companion object {
+        var aDouble8713: Double = -1.0
+
+        var anInt9618: Int = 0
+
+        fun method3232(d: Double, i: Byte) {
+            if (i <= -54) {
+                if (d != aDouble8713) {
+                    for (i_0_ in 0..255) {
+                        val i_1_ = (255.0 * (i_0_.toDouble() / 255.0).pow(d)).toInt()
+                        Class348_Sub42_Sub5.anIntArray10266[i_0_] = min(i_1_, 255)
+                    }
+                    aDouble8713 = d
+                }
+                anInt9618++
+            }
+        }
+
+        var anIntArray10266: IntArray = IntArray(256)
         var anInt9522: Int = 0
         var anInt9526: Int = 0
         var anInt9529: Int = 0

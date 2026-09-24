@@ -17,7 +17,7 @@ internal class TextureUniverse(`is`: IntArray?, is_1_: IntArray?, is_2_: IntArra
             this.originY = is_1_
             this.originX = `is`
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ew.<init>(" + (if (`is` != null) "{...}" else "null") + ',' + (if (is_1_ != null) "{...}" else "null") + ',' + (if (is_2_ != null) "{...}" else "null") + ',' + (if (fs != null) "{...}" else "null") + ')'))
+            throw ItemType.method2929(runtimeexception, ("ew.<init>(" + (if (`is` != null) "{...}" else "null") + ',' + (if (is_1_ != null) "{...}" else "null") + ',' + (if (is_2_ != null) "{...}" else "null") + ',' + (if (fs != null) "{...}" else "null") + ')'))
         }
     }
 }

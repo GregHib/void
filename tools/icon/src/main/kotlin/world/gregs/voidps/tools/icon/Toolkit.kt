@@ -70,6 +70,20 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
     }
 
     companion object {
+        var anInt6628: Int = 0
+        var aByteArray6624: ByteArray? = ByteArray(2048)
+
+        fun method2753(bool: Boolean, i: Int, i_4_: Int, canvas: Canvas?, var_textureSource: TextureSource?): Toolkit {
+            try {
+                anInt6628++
+                if (bool != true) aByteArray6624 = null
+                return JavaToolkit(canvas, var_textureSource, i_4_, i)
+            } catch (runtimeexception: RuntimeException) {
+                throw ItemType.method2929(runtimeexception, ("fba.M(" + bool + ',' + i + ',' + i_4_ + ',' + (if (canvas != null) "{...}" else "null") + ',' + (if (var_textureSource != null) "{...}" else "null") + ')'))
+            }
+        }
+
+        var aClass308_8815: Class308 = Class308(16)
         var anInt4563: Int = 0
         var anInt4564: Int = 0
         var anInt4565: Int = 0
@@ -80,7 +94,7 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
         fun method3664(i: Int, i_88_: Int): ByteArray? {
             anInt4564++
             if (i_88_ <= 21) anInt4583 = 60
-            var class348_sub42_sub3 = (Class348_Sub1_Sub2.aClass308_8815.method2302(i.toLong(), (-120).toByte()) as Class348_Sub42_Sub3?)
+            var class348_sub42_sub3 = (aClass308_8815.method2302(i.toLong(), (-120).toByte()) as Class348_Sub42_Sub3?)
             if (class348_sub42_sub3 == null) {
                 val `is` = ByteArray(512)
                 val random = Random(i.toLong())
@@ -94,7 +108,7 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
                     `is`[i_91_] = `is`[511 + -i_90_]
                 }
                 class348_sub42_sub3 = Class348_Sub42_Sub3(`is`)
-                Class348_Sub1_Sub2.aClass308_8815.method2305(i.toLong(), class348_sub42_sub3, -1)
+                aClass308_8815.method2305(i.toLong(), class348_sub42_sub3, -1)
             }
             return class348_sub42_sub3.aByteArray9499
         }
@@ -107,10 +121,10 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
                 // renderer (CacheItemSpriteDumper always calls with both 0); the
                 // other renderer-selection branches (Class306/Class262/Class93/
                 // Class96) are unreachable per JaCoCo coverage and were dropped.
-                if (i_170_ == i_171_) return Class348_Sub5.method2753(true, i_168_, i_169_, canvas, var_textureSource)
+                if (i_170_ == i_171_) return method2753(true, i_168_, i_169_, canvas, var_textureSource)
                 throw IllegalArgumentException("UM")
             } catch (runtimeexception: RuntimeException) {
-                throw Class348_Sub17.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + i_170_ + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (canvas != null) "{...}" else "null") + ',' + i_171_ + ')'))
+                throw ItemType.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + i_170_ + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (canvas != null) "{...}" else "null") + ',' + i_171_ + ')'))
             }
         }
     }

@@ -13,6 +13,28 @@ import javax.imageio.ImageIO
  * the model archive are loaded.
  */
 internal object ItemSpriteDumper {
+    var anInt1610: Int = 0
+    var aClass221_1620: Class221? = Class221()
+
+    fun method958(bool: Boolean, i: Int, var_textureSource: TextureSource?, i_61_: Int, canvas: Canvas?): Toolkit {
+        try {
+            if (bool != true) aClass221_1620 = null
+            anInt1610++
+            var i_62_ = 0
+            var i_63_ = 0
+            if (canvas != null) {
+                val dimension = canvas.getSize()
+                i_63_ = dimension.height
+                i_62_ = dimension.width
+            }
+            return Toolkit.Companion.method3692(i_61_, i_63_, i_62_, 0, var_textureSource, canvas, i)
+        } catch (runtimeexception: RuntimeException) {
+            throw ItemType.method2929(runtimeexception, ("mha.E(" + bool + ',' + i + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + i_61_ + ',' + (if (canvas != null) "{...}" else "null") + ')'))
+        }
+    }
+
+    var itemTypeList: ItemTypeList? = null
+
     private const val WIDTH = 36
     private const val HEIGHT = 32
 
@@ -40,7 +62,7 @@ internal object ItemSpriteDumper {
         if (renderer == null) {
             val canvas = Canvas()
             canvas.setSize(WIDTH, HEIGHT)
-            renderer = Class104.method958(true, 0, Class348_Sub40_Sub4.Companion.aTextureSource9113, 0, canvas)
+            renderer = method958(true, 0, Class348_Sub40_Sub4.Companion.aTextureSource9113, 0, canvas)
         }
         return renderer!!
     }
@@ -48,7 +70,7 @@ internal object ItemSpriteDumper {
     @JvmOverloads
     fun dump(dir: File = File("item_sprites")) {
         dir.mkdirs()
-        val count = Exception_Sub1.itemTypeList!!.num
+        val count = itemTypeList!!.num
         var dumped = 0
         for (id in 0..<count) {
             if (dumpItem(dir, id)) dumped++
@@ -61,7 +83,7 @@ internal object ItemSpriteDumper {
 
     private fun dumpItem(dir: File?, id: Int): Boolean {
         try {
-            val def = Exception_Sub1.itemTypeList!!.list(-104, id)
+            val def = itemTypeList!!.list(-104, id)
             val toolkit = renderer()
             val pixels = def.sprite(1, false, 0, toolkit, toolkit, null, null, 0, (-102).toByte(), if (OUTLINE) 1 else 0)
             if (pixels == null) return false

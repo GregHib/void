@@ -170,7 +170,7 @@ internal class Class348_Sub40_Sub30 : Class348_Sub40(1, false) {
                 }
                 break
             } catch (runtimeexception: RuntimeException) {
-                throw Class348_Sub17.method2929(runtimeexception, ("vj.F(" + (if (packet != null) "{...}" else "null") + ',' + i + ',' + i_39_ + ')'))
+                throw ItemType.method2929(runtimeexception, ("vj.F(" + (if (packet != null) "{...}" else "null") + ',' + i + ',' + i_39_ + ')'))
             }
         } while (false)
     }

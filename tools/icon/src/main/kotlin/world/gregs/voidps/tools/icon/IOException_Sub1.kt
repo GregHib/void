@@ -52,7 +52,7 @@ internal object IOException_Sub1 {
                 if (i_0_ < -72) break
                 method130(99)
             } catch (runtimeexception: RuntimeException) {
-                throw Class348_Sub17.method2929(runtimeexception, ("gv.A(" + i + ',' + i_0_ + ',' + (if (ls != null) "{...}" else "null") + ',' + i_1_ + ',' + (if (`is` != null) "{...}" else "null") + ')'))
+                throw ItemType.method2929(runtimeexception, ("gv.A(" + i + ',' + i_0_ + ',' + (if (ls != null) "{...}" else "null") + ',' + i_1_ + ',' + (if (`is` != null) "{...}" else "null") + ')'))
             }
             break
         } while (false)

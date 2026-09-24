@@ -1,12 +1,17 @@
 package world.gregs.voidps.tools.icon
 
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.cache.Cache
 
 /* Class73 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
 
 internal object Class73 {
+    var cache: Cache? = null
+
+    var aClass60_2844: Class60 = Class60(64)
+
     var aFloatArray4772: FloatArray?
     var anInt4777: Int = 0
     var aClass114_4779: Class114?
@@ -28,19 +33,19 @@ internal object Class73 {
 
     fun method743(i: Int, i_2_: Int) {
         anInt4775++
-        val class348_sub42_sub15 = Class318_Sub9_Sub1.method2516(i_2_, 105.toByte(), i) //9
+        val class348_sub42_sub15 = Class348_Sub42_Sub15.method2516(i_2_, 105.toByte(), i) //9
         class348_sub42_sub15.method3251(i xor 0x3eb0.inv())
     }
 
     fun list(i: Int, i_0_: Int): BillboardType {
         anInt4777++
-        var billboardType = Class217.aClass60_2844.method583(i_0_.toLong(), -104) as BillboardType?
+        var billboardType = aClass60_2844.method583(i_0_.toLong(), -104) as BillboardType?
         if (billboardType != null) return billboardType
-        val `is` = Class369_Sub3.cache!!.data(Index.BILLBOARDS, 0, i_0_)
+        val `is` = cache!!.data(Index.BILLBOARDS, 0, i_0_)
         if (i != 104) method741(98.toByte())
         billboardType = BillboardType()
         if (`is` != null) billboardType.method1419(i_0_, Packet(`is`), 64.toByte())
-        Class217.aClass60_2844.method582(billboardType, i_0_.toLong(), (-114).toByte())
+        aClass60_2844.method582(billboardType, i_0_.toLong(), (-114).toByte())
         return billboardType
     }
 

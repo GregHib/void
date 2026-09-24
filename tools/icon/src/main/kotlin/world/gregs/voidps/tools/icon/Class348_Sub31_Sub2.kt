@@ -12,7 +12,7 @@ import java.awt.image.ImageProducer
 * Visit http://jode.sourceforge.net/
 *
 * Trimmed: method3016 (static cleanup, pulls in Class357) dropped - not
-* needed by Class110.method1035 (genuine), which only ever constructs this
+* needed by JavaToolkit.method1035 (genuine), which only ever constructs this
 * class in a Throwable fallback path (AWT peer creation failure) and calls
 * method3008 on it.
 */

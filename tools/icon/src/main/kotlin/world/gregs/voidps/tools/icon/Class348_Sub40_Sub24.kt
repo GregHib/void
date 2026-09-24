@@ -16,7 +16,7 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
         anInt9328++
         val `is` = this.aClass191_7032!!.method1433(0, i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val i_1_ = Class239_Sub18.anIntArray6035!![i]
+            val i_1_ = Class79.anIntArray6035!![i]
             if (anInt9325 == 0) {
                 var i_7_ = 0
                 for (i_8_ in 0..<anInt9329) {
@@ -30,7 +30,7 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
                 for (i_2_ in 0..<Class348_Sub40_Sub6.Companion.anInt9139) {
                     var i_3_ = 0
                     var i_4_ = 0
-                    val i_5_ = Class318_Sub6.anIntArray6432!![i_2_]
+                    val i_5_ = Class348_Sub40_Sub8.anIntArray6432!![i_2_]
                     var i_6_ = anInt9325
                     while_197_@ do {
                         do {

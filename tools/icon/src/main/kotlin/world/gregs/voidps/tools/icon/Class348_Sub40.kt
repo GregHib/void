@@ -86,6 +86,26 @@ internal abstract class Class348_Sub40(i: Int, var aBoolean7045: Boolean) {
     }
 
     companion object {
+        var anInt6996: Int = 0
+
+        fun method3031(i: Int, packet: Packet): Class348_Sub40? {
+            anInt6996++
+            packet.readUnsignedByte(255)
+            val i_0_ = packet.readUnsignedByte(255)
+            val class348_sub40 = Class59_Sub1_Sub1.method557(i_0_, (-84).toByte())
+            class348_sub40!!.anInt7036 = packet.readUnsignedByte(255)
+            val i_1_ = packet.readUnsignedByte(255)
+            if (i < 123) return null
+            var i_2_ = 0
+            while (i_1_ > i_2_) {
+                val i_3_ = packet.readUnsignedByte(255)
+                class348_sub40.method3049(packet, i_3_, 31015)
+                i_2_++
+            }
+            class348_sub40.method3044(120)
+            return class348_sub40
+        }
+
         var anInt7027: Int = 0
         var anInt7028: Int = 0
         var anInt7034: Int = 0
@@ -104,7 +124,7 @@ internal abstract class Class348_Sub40(i: Int, var aBoolean7045: Boolean) {
         // Class348_Sub51 client singleton graph -- none of which exist in, or
         // are relevant to, this standalone item-icon renderer. This is also
         // confirmed dead in practice: the only call site
-        // (Class348_Sub37.method3031 -> Class348_Sub40.method3049) always
+        // (method3031 -> Class348_Sub40.method3049) always
         // passes i_60_ == 31015, so the "if (i_60_ != 31015) method3038(-16);"
         // guard in method3049 below never actually invokes this method.
         fun method3038(i: Int) {

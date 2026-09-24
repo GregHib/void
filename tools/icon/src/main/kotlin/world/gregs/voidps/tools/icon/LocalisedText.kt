@@ -21,7 +21,7 @@ internal class LocalisedText private constructor(string: String?, string_7_: Str
         try {
             aStringArray3481 = arrayOf<String?>(string, string_7_, string_8_, string_9_)
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("va.<init>(" + (if (string != null) "{...}" else "null") + ',' + (if (string_7_ != null) "{...}" else "null") + ',' + (if (string_8_ != null) "{...}" else "null") + ',' + (if (string_9_ != null) "{...}" else "null") + ')'))
+            throw ItemType.method2929(runtimeexception, ("va.<init>(" + (if (string != null) "{...}" else "null") + ',' + (if (string_7_ != null) "{...}" else "null") + ',' + (if (string_8_ != null) "{...}" else "null") + ',' + (if (string_9_ != null) "{...}" else "null") + ')'))
         }
     }
 

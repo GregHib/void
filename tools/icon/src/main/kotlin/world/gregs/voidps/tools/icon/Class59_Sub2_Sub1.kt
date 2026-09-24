@@ -5,6 +5,8 @@ package world.gregs.voidps.tools.icon
 */
 
 internal object Class59_Sub2_Sub1 {
+    var anInt383: Int = 0
+
     var anInt8671: Int = 0
     var anInt8673: Int = 0
 
@@ -89,14 +91,14 @@ internal object Class59_Sub2_Sub1 {
                             f_22_ = (mesh.texSpaceScaleZ!![i_20_]).toFloat() / 1024.0f
                             f_23_ = (mesh.texSpaceScaleX!![i_20_]).toFloat() / 1024.0f
                         }
-                        fs[i_20_] = (KeyedReferenceCache.Companion.method1347(mesh.texSpaceDefC!![i_20_].toInt(), mesh.texSpaceDefB!![i_20_].toInt(), f_22_, f_23_, 126, f, mesh.texSpaceDefA!![i_20_].toInt(), Class139.method1166(255, (mesh.texRotation!![i_20_]).toInt())))
+                        fs[i_20_] = (KeyedReferenceCache.Companion.method1347(mesh.texSpaceDefC!![i_20_].toInt(), mesh.texSpaceDefB!![i_20_].toInt(), f_22_, f_23_, 126, f, mesh.texSpaceDefA!![i_20_].toInt(), Class348_Sub40_Sub17.method1166(255, (mesh.texRotation!![i_20_]).toInt())))
                     }
                     i_20_++
                 }
             }
             return TextureUniverse(is_1_, is_2_, is_3_, fs)
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("dha.B(" + i + ',' + i_0_ + ',' + (if (mesh != null) "{...}" else "null") + ',' + (if (`is` != null) "{...}" else "null") + ')'))
+            throw ItemType.method2929(runtimeexception, ("dha.B(" + i + ',' + i_0_ + ',' + (if (mesh != null) "{...}" else "null") + ',' + (if (`is` != null) "{...}" else "null") + ')'))
         }
     }
 
@@ -108,7 +110,7 @@ internal object Class59_Sub2_Sub1 {
             Class239_Sub25.method1827(1415665776)
         }
         if (bool_25_) {
-            Class26.anInt383++
+            anInt383++
             Class348_Sub6.Companion.method2770(2)
         }
     }

@@ -295,7 +295,7 @@ internal class JavaModel : Model {
     }
 
     private fun method642(i: Int, i_305_: Short, i_306_: Int): Int {
-        var i_307_ = Class10.anIntArray179!![method637(i, i_306_)]
+        var i_307_ = Class348_Sub6.anIntArray179!![method637(i, i_306_)]
         val textureMetrics = toolkit.textureSource!!.getMetrics(i_305_.toInt() and 0xffff, -6662)
         val i_308_ = textureMetrics!!.alpha.toInt() and 0xff
         if (i_308_ != 0) {
@@ -590,7 +590,7 @@ internal class JavaModel : Model {
             if (i_287_.toInt() == -1) {
                 val i_288_ = faceColour!![i].toInt() and 0xffff
                 val i_289_ = (i_288_ and 0x7f) * ambient shr 7
-                val i_290_ = Class25.method303(i_288_ and 0x7f.inv() or i_289_, 30)
+                val i_290_ = method303(i_288_ and 0x7f.inv() or i_289_, 30)
                 if (anIntArray5366!![i] == -1) {
                     val i_291_ = anIntArray5368!![i] and 0x1ffff.inv()
                     anIntArray5368!![i] = i_291_ or method2198(0, i_291_ shr 17, i_290_.toInt())
@@ -1198,7 +1198,7 @@ internal class JavaModel : Model {
                     if (i_740_.toInt() == 0) {
                         val i_743_ = faceColour!![i_739_].toInt() and 0xffff
                         val i_744_ = (i_743_ and 0x7f) * ambient shr 7
-                        val i_745_ = Class25.method303(i_743_ and 0x7f.inv() or i_744_, 30)
+                        val i_745_ = method303(i_743_ and 0x7f.inv() or i_744_, 30)
                         var class360: Class360
                         if (aClass360Array5313 != null && (aClass360Array5313!![faceA!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceA!![i_739_].toInt()]!!
                         else class360 = aClass360Array5360!![faceA!![i_739_].toInt()]!!
@@ -1221,7 +1221,7 @@ internal class JavaModel : Model {
                     } else if (i_740_.toInt() == 1) {
                         val i_749_ = faceColour!![i_739_].toInt() and 0xffff
                         val i_750_ = (i_749_ and 0x7f) * ambient shr 7
-                        val i_751_ = Class25.method303(i_749_ and 0x7f.inv() or i_750_, 30)
+                        val i_751_ = method303(i_749_ and 0x7f.inv() or i_750_, 30)
                         val class41 = aClass41Array5385!![i_739_]
                         val i_752_ = ((i * class41!!.anInt561 + i_734_ * class41.anInt560 + i_735_ * class41.anInt559) shr 16)
                         val i_753_ = if (i_752_ > 256) i_737_ else i_738_
@@ -1484,7 +1484,7 @@ internal class JavaModel : Model {
             faceIds[i] = (i_791_.toLong() shl 32) + i_792_.toLong()
             transparent = transparent or transparentFace
         }
-        Class348_Sub16_Sub2.sort(faceIndex, faceIds, 0)
+        sort(faceIndex, faceIds, 0)
         if (mesh.billboards != null) {
             billboardCount = mesh.billboards!!.size
             billboardFaces = arrayOfNulls<JavaBillboardFace>(billboardCount)
@@ -1691,6 +1691,34 @@ internal class JavaModel : Model {
     }
 
     companion object {
+        var anInt362: Int = 0
+
+        fun method303(i: Int, i_3_: Int): Short {
+            anInt362++
+            val i_4_ = (i and 0xfe66) shr 10
+            var i_5_ = i shr 3 and 0x70
+            val i_6_ = i and 0x7f
+            i_5_ = (if (i_6_ <= 64) i_6_ * i_5_ shr 7 else i_5_ * (127 + -i_6_) shr 7)
+            val i_7_ = i_5_ + i_6_
+            val i_8_: Int
+            if (i_7_ != 0) i_8_ = (i_5_ shl 8) / i_7_
+            else i_8_ = i_5_ shl 1
+            val i_9_ = i_7_
+            if (i_3_ != 30) return 79.toShort()
+            return (i_9_ or (i_8_ shr 4 shl 7 or (i_4_ shl 10))).toShort()
+        }
+
+        var anInt8882: Int = 0
+
+        fun sort(`is`: IntArray?, ls: LongArray?, i: Int) {
+            try {
+                IOException_Sub1.method129(i, i + -107, ls, ls!!.size - 1, `is`)
+                anInt8882++
+            } catch (runtimeexception: RuntimeException) {
+                throw ItemType.method2929(runtimeexception, ("iha.I(" + (if (`is` != null) "{...}" else "null") + ',' + (if (ls != null) "{...}" else "null") + ',' + i + ')'))
+            }
+        }
+
         var anInt5346: Int = 4096
         var anInt5350: Int = 4096
         fun method2198(i: Int, i_0_: Int, i_1_: Int): Int {

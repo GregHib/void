@@ -34,7 +34,6 @@ internal class Class262 {
 
     fun method1997(i: Int): Class348? {
         anInt3341++
-        if (i != 8) aClass190ArrayArray3335 = null
         val class348 = this.aClass348_3334.aClass348_4294
         if (this.aClass348_3334 === class348) return null
         class348!!.unlink(114.toByte())
@@ -59,7 +58,6 @@ internal class Class262 {
     companion object {
         var aFont_3326: Font? = null
         var anInt3330: Int = 0
-        var aClass190ArrayArray3335: Array<Array<Class190?>?>? = null
         var anInt3336: Int = 0
         var anInt3338: Int = 0
         var anInt3339: Int = 0
@@ -115,7 +113,7 @@ internal class Class262 {
                     if (bool == false) break
                     cubeMap(0.31271333f, 1.5829445f, null, -17, 88, true, -70, -107, 8, 5, -0.347415f, null, -24, -19)
                 } catch (runtimeexception: RuntimeException) {
-                    throw Class348_Sub17.method2929(runtimeexception, ("uh.B(" + f + ',' + f_3_ + ',' + (if (fs != null) "{...}" else "null") + ',' + i + ',' + i_4_ + ',' + bool + ',' + i_5_ + ',' + i_6_ + ',' + i_7_ + ',' + i_8_ + ',' + f_9_ + ',' + (if (fs_10_ != null) "{...}" else "null") + ',' + i_11_ + ',' + i_12_ + ')'))
+                    throw ItemType.method2929(runtimeexception, ("uh.B(" + f + ',' + f_3_ + ',' + (if (fs != null) "{...}" else "null") + ',' + i + ',' + i_4_ + ',' + bool + ',' + i_5_ + ',' + i_6_ + ',' + i_7_ + ',' + i_8_ + ',' + f_9_ + ',' + (if (fs_10_ != null) "{...}" else "null") + ',' + i_11_ + ',' + i_12_ + ')'))
                 }
                 break
             } while (false)

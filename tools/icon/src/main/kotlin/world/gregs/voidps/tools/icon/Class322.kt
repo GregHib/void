@@ -41,7 +41,7 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
             return (anIntArrayArrayArray4029!![class348_sub24.anInt6875])
         }
         this.aBoolean4035 = aClass348_Sub24Array4033!![i_6_] == null
-        aClass348_Sub24Array4033!![i_6_] = Class341.aClass348_Sub24_4226
+        aClass348_Sub24Array4033!![i_6_] = aClass348_Sub24_4226
         return anIntArrayArrayArray4029!![i_6_]
     }
 
@@ -65,6 +65,12 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
     }
 
     companion object {
+        var anInt1447: Int = 0
+        var anInt6930: Int = 0
+        var aClass348_Sub24_4226: Class348_Sub24? = null
+        var anInt3931: Int = 0
+        var aIterableHashTable_3654: IterableHashTable = IterableHashTable(8)
+        var anInt2057: Int = 0
         var anInt4019: Int = 0
         var anInt4023: Int = 0
         var anInt4030: Int = 0
@@ -73,12 +79,12 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
         fun method2554(i: Byte) {
             if (i.toInt() != -45) anInt4032 = 61
             anInt4030++
-            if (Class312.anInt3931 == 1 || Class312.anInt3931 == 3 || (Class312.anInt3931 != Class83.anInt1447 && (Class312.anInt3931 == 0 || Class83.anInt1447 == 0))) {
-                Class348_Sub32.anInt6930 = 0
-                Class150.anInt2057 = 0
-                Class282.aIterableHashTable_3654.method3481(0)
+            if (anInt3931 == 1 || anInt3931 == 3 || (anInt3931 != anInt1447 && (anInt3931 == 0 || anInt1447 == 0))) {
+                anInt6930 = 0
+                anInt2057 = 0
+                aIterableHashTable_3654.method3481(0)
             }
-            Class83.anInt1447 = Class312.anInt3931
+            anInt1447 = anInt3931
         }
     }
 }
