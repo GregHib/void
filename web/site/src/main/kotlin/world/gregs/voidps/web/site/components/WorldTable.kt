@@ -44,9 +44,7 @@ data class WorldEntry(
     /** Base URL of this world's Void web server, which serves its live `/api/v1/info`. */
     val web: String = "",
     val tags: List<String> = emptyList(),
-    val site: String = "",
-    val siteLabel: String = "",
-    /** Extra label → url links for the detail panel; only the first [MAX_WORLD_LINKS] are shown. */
+    /** Label → url links for the detail panel, in order; only the first [MAX_WORLD_LINKS] are shown. */
     val links: Map<String, String> = emptyMap(),
     val note: String = "",
 ) {
@@ -311,16 +309,10 @@ fun Ui.worldList(worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String) {
                                 onClick = "navigator.clipboard && navigator.clipboard.writeText('${jsString(world.address)}')",
                             )
                             val links = world.links.entries.take(MAX_WORLD_LINKS)
-                            if (world.site.isNotEmpty() || links.isNotEmpty()) {
+                            if (links.isNotEmpty()) {
                                 div { style = "height:1px;background:var(--border-panel)" }
                                 div {
                                     style = "display:flex;flex-direction:column;gap:10px"
-                                    if (world.site.isNotEmpty()) {
-                                        a(href = world.site) {
-                                            style = "font:var(--type-body-sm)"
-                                            +world.siteLabel
-                                        }
-                                    }
                                     for ((label, url) in links) {
                                         a(href = url) {
                                             style = "font:var(--type-body-sm)"

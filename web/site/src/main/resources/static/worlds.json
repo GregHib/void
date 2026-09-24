@@ -8,8 +8,6 @@
     "host": "",
     "address": "localhost:43594",
     "web": "http://localhost:8080",
-    "site": "#",
-    "siteLabel": "",
     "tags": [],
     "links": {
       "Source code": "https://github.com/GregHib/void",
@@ -24,12 +22,11 @@
     "mode": "Normal",
     "description": "A live server with community.",
     "host": "",
-    "address": "2011.rs/proxy:43594",
+    "address": "2011.rs:43594",
     "web": "https://2011.rs/",
-    "site": "https://2011.rs/",
-    "siteLabel": "2011.rs",
     "tags": ["Vanilla", "Community", "Double XP Weekends"],
     "links": {
+      "2011.rs": "https://2011.rs/",
       "World rules": "https://2011.rs/rules",
       "Forums": "https://2011.rs/services/m=forum/"
     },
