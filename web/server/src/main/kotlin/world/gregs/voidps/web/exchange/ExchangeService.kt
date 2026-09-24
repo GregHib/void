@@ -7,20 +7,26 @@ import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.exchange.Aggregate
 import world.gregs.voidps.engine.data.exchange.PriceHistory
+import world.gregs.voidps.web.PeriodicSnapshot
 import world.gregs.voidps.web.api.model.*
 import java.time.Instant
 import kotlin.math.roundToInt
 
 /**
- * Computes Grand Exchange listings, market highlights and price history from real item
- * definitions and [Storage.priceHistory] on demand. There's no live "current price" tracked
- * anywhere on disk - that only exists as in-memory state inside a running game server's
- * `ExchangeHistory.marketPrices` - so the guide price here is derived from the most recent
- * persisted [Aggregate] close, falling back to the item's configured/shop price for anything
- * that hasn't traded yet.
+ * Serves Grand Exchange listings, market highlights and price history from real item definitions
+ * and [Storage.priceHistory]. Reading every item's history is too slow to do per request, and the
+ * game only writes it to storage hourly anyway, so it's read into a [PeriodicSnapshot] rebuilt at
+ * most once per `refreshMillis` along with every item's summary row pre-sorted each way the API
+ * can sort them.
+ *
+ * There's no live "current price" tracked anywhere on disk - that only exists as in-memory state
+ * inside a running game server's `ExchangeHistory.marketPrices` - so the guide price here is
+ * derived from the most recent persisted [Aggregate] close, falling back to the item's
+ * configured/shop price for anything that hasn't traded yet.
  */
 class ExchangeService(
     private val storage: Storage,
+    refreshMillis: Long = REFRESH_MS,
 ) {
 
     /** Every item the exchange can list: tradeable, named, and not a noted/lent duplicate of another entry. */
@@ -34,65 +40,81 @@ class ExchangeService(
             .toList()
     }
 
-    private fun definition(itemId: String): ItemDefinition? = pool.firstOrNull { it.stringId == itemId }
+    private val definitions: Map<String, ItemDefinition> by lazy { pool.associateBy { it.stringId } }
 
-    fun summary(): MarketSummary {
-        val history = storage.priceHistory()
+    private val snapshot = PeriodicSnapshot("exchange", refreshMillis) { market(storage.priceHistory()) }
+
+    private class Market(
+        val history: Map<String, PriceHistory>,
+        /** Every [pool] item's row, keyed by id. */
+        val rows: Map<String, ItemSummary>,
+        /** Every row, ordered by each of the `/items` sort options. */
+        val sorted: Map<String, List<ItemSummary>>,
+        val summary: MarketSummary,
+        val sampledAt: String,
+    ) {
+        val byVolume: List<ItemSummary> get() = sorted.getValue("volume")
+    }
+
+    private fun market(history: Map<String, PriceHistory>): Market {
+        val sampledAt = Instant.now().toString()
         val rows = pool.map { row(it, history[it.stringId]) }
         val active = rows.filter { it.volume24h > 0 }
-        return MarketSummary(
+        val summary = MarketSummary(
             trackedItems = pool.size,
             valueTraded24h = rows.sumOf { it.valueTraded24h },
             tradesSettled24h = rows.sumOf { it.volume24h },
             marketIndex = if (active.isEmpty()) 0.0 else active.sumOf { it.delta24h } / active.size,
-            lastSampleAt = Instant.now().toString(),
+            lastSampleAt = sampledAt,
         )
+        val sorted = mapOf(
+            "volume" to rows.sortedByDescending { it.valueTraded24h },
+            "price" to rows.sortedByDescending { it.price },
+            "gain" to rows.sortedByDescending { it.delta24h },
+            "loss" to rows.sortedBy { it.delta24h },
+            "name" to rows.sortedBy { it.name.lowercase() },
+        )
+        return Market(history, rows.associateBy { it.id }, sorted, summary, sampledAt)
     }
 
-    fun categories(): List<ItemCategory> {
+    fun summary(): MarketSummary = snapshot.get().summary
+
+    private val categories: List<ItemCategory> by lazy {
         val counts = pool.groupingBy { categoryOf(it) }.eachCount()
-        return ExchangeCategory.entries.map {
+        ExchangeCategory.entries.map {
             ItemCategory(id = it.id, name = it.displayName, code = it.code, itemCount = counts[it.id] ?: 0)
         }
     }
 
+    fun categories(): List<ItemCategory> = categories
+
     fun highlights(limit: Int): MarketHighlights {
-        val history = storage.priceHistory()
-        val rows = pool.map { row(it, history[it.stringId]) }
+        val sorted = snapshot.get().sorted
         return MarketHighlights(
-            topVolume = rows.sortedByDescending { it.valueTraded24h }.take(limit),
-            risers = rows.sortedByDescending { it.delta24h }.take(limit),
-            fallers = rows.sortedBy { it.delta24h }.take(limit),
-            mostExpensive = rows.sortedByDescending { it.price }.take(limit),
+            topVolume = sorted.getValue("volume").take(limit),
+            risers = sorted.getValue("gain").take(limit),
+            fallers = sorted.getValue("loss").take(limit),
+            mostExpensive = sorted.getValue("price").take(limit),
         )
     }
 
     fun items(query: String?, category: String?, members: Boolean?, sort: String, page: Int, pageSize: Int): ItemPage {
-        val history = storage.priceHistory()
+        val market = snapshot.get()
         val q = query?.trim()?.lowercase()
-        var filtered = pool.asSequence()
+        val filtered = (market.sorted[sort] ?: market.byVolume)
             .filter { q.isNullOrEmpty() || it.name.lowercase().contains(q) }
-            .filter { category == null || category == "all" || categoryOf(it) == category }
+            .filter { category == null || category == "all" || it.category == category }
             .filter { members == null || it.members == members }
-            .map { row(it, history[it.stringId]) }
-            .toList()
-        filtered = when (sort) {
-            "price" -> filtered.sortedByDescending { it.price }
-            "gain" -> filtered.sortedByDescending { it.delta24h }
-            "loss" -> filtered.sortedBy { it.delta24h }
-            "name" -> filtered.sortedBy { it.name.lowercase() }
-            else -> filtered.sortedByDescending { it.valueTraded24h }
-        }
         val from = (page * pageSize).coerceIn(0, filtered.size)
         val to = (from + pageSize).coerceIn(from, filtered.size)
         return ItemPage(pagination = Pagination.of(page, pageSize, filtered.size), items = filtered.subList(from, to))
     }
 
     fun item(itemId: String): ItemDetail? {
-        val definition = definition(itemId) ?: return null
-        val history = storage.priceHistory()[itemId]
-        val summary = row(definition, history)
-        val latest = latestAggregate(history)
+        val definition = definitions[itemId] ?: return null
+        val market = snapshot.get()
+        val summary = market.rows[itemId] ?: return null
+        val latest = latestAggregate(market.history[itemId])
         val price = summary.price
         val buyPrice = latest?.high ?: price
         val sellPrice = latest?.low?.takeIf { it != Int.MAX_VALUE } ?: price
@@ -120,13 +142,13 @@ class ExchangeService(
             lowAlchemy = (definition.cost * 0.4).roundToInt(),
             shopValue = definition.cost,
             buyLimitWindowHours = summary.buyLimit?.let { 4 },
-            updatedAt = Instant.now().toString(),
+            updatedAt = market.sampledAt,
         )
     }
 
     fun history(itemId: String, timeframe: String): PriceHistoryResponse? {
-        val definition = definition(itemId) ?: return null
-        val history = storage.priceHistory()[itemId]
+        val definition = definitions[itemId] ?: return null
+        val history = snapshot.get().history[itemId]
         val (bucket, intervalSeconds) = when (timeframe) {
             "7d" -> (history?.week to 3_600)
             "30d" -> (history?.month to 21_600)
@@ -147,33 +169,29 @@ class ExchangeService(
     }
 
     fun related(itemId: String, limit: Int): List<ItemSummary>? {
-        val definition = definition(itemId) ?: return null
+        val definition = definitions[itemId] ?: return null
         val category = categoryOf(definition)
-        val history = storage.priceHistory()
-        return pool.asSequence()
-            .filter { it.stringId != definition.stringId && categoryOf(it) == category }
-            .map { row(it, history[it.stringId]) }
-            .sortedByDescending { it.valueTraded24h }
+        return snapshot.get().byVolume
+            .asSequence()
+            .filter { it.id != definition.stringId && it.category == category }
             .take(limit)
             .toList()
     }
 
     fun prices(ids: List<String>): ItemPricesResponse {
-        val history = storage.priceHistory()
+        val market = snapshot.get()
         val items = ids.mapNotNull { id ->
-            val definition = definition(id) ?: return@mapNotNull null
-            val itemHistory = history[definition.stringId]
-            val price = guidePrice(definition, itemHistory)
-            val latest = latestAggregate(itemHistory)
+            val row = market.rows[id] ?: return@mapNotNull null
+            val latest = latestAggregate(market.history[id])
             ItemPrice(
-                id = definition.stringId,
-                price = price,
-                buy = latest?.high ?: price,
-                sell = latest?.low?.takeIf { it != Int.MAX_VALUE } ?: price,
-                delta24h = delta24h(itemHistory),
+                id = row.id,
+                price = row.price,
+                buy = latest?.high ?: row.price,
+                sell = latest?.low?.takeIf { it != Int.MAX_VALUE } ?: row.price,
+                delta24h = row.delta24h,
             )
         }
-        return ItemPricesResponse(sampledAt = Instant.now().toString(), items = items)
+        return ItemPricesResponse(sampledAt = market.sampledAt, items = items)
     }
 
     private fun row(definition: ItemDefinition, history: PriceHistory?): ItemSummary {
@@ -236,6 +254,7 @@ class ExchangeService(
     }
 
     companion object {
+        const val REFRESH_MS = 300_000L
         private val RUNECRAFTING = Category.name(Category.RUNECRAFTING)
         private val WEAPON_CATEGORIES = setOf(
             Category.MAGIC_WEAPON, Category.RANGE_WEAPON, Category.THROWABLE, Category.ARROW, Category.BOLT,

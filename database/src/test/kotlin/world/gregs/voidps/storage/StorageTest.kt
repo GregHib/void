@@ -136,6 +136,47 @@ abstract class StorageTest {
     }
 
     @Test
+    fun `Load every account`() {
+        val other = save.copy(
+            name = "zezima",
+            experience = IntArray(25) { 100 },
+            levels = IntArray(25) { 2 },
+            variables = mapOf("display_name" to "Zezima", "meaning" to 7),
+            inventories = mapOf("inventory" to Array(28) { Item.EMPTY }.apply { this[0] = Item("coins", 5) }),
+            offers = emptyArray(),
+            history = emptyList(),
+            kills = mapOf("chickens" to 1),
+            records = emptyMap(),
+            recentEvents = listOf(RecentEvent(1, "First", "a"), RecentEvent(2, "Second", "b")),
+        )
+        storage.save(listOf(save, other))
+
+        val accounts = storage.accounts().associateBy { it.name }
+
+        assertEquals(setOf(save.name, other.name), accounts.keys)
+        for (expected in listOf(save, other)) {
+            val account = accounts.getValue(expected.name)
+            assertContentEquals(expected.experience, account.experience)
+            assertContentEquals(expected.levels, account.levels)
+            assertEquals(expected.variables, account.variables)
+            assertEquals(expected.inventories.keys, account.inventories.keys)
+            for ((key, value) in expected.inventories) {
+                assertContentEquals(value, account.inventories[key])
+            }
+            assertEquals(expected.offers.map { it.id }, account.offers.filter { it != ExchangeOffer.EMPTY }.map { it.id })
+            assertEquals(expected.history, account.history)
+            assertEquals(expected.kills, account.kills)
+            assertEquals(expected.records, account.records)
+            assertEquals(expected.recentEvents, account.recentEvents)
+        }
+    }
+
+    @Test
+    fun `No accounts gives empty list`() {
+        assertTrue(storage.accounts().isEmpty())
+    }
+
+    @Test
     fun `Loading non-existent account returns null`() {
         assertNull(storage.load(save.name))
     }

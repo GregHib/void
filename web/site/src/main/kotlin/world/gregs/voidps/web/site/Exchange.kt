@@ -21,13 +21,11 @@ object Exchange {
 
         div {
             xData("exchangeApp()")
-            attributes["x-init"] = "init()"
 
             ui.pageHeader(
                 eyebrow = "Market overview",
                 title = "Grand Exchange",
-                description = "Buy and sell prices from every Void world, sampled every five minutes. " +
-                    "Prices update live on this page.",
+                description = "Buy and sell prices of items and tracking their history.",
                 backgroundImage = "images/bg/ge.jpg",
                 actions = {
                     ui.textInput("ge-search", "Find an item", model = "q", placeholder = "Search tracked items", icon = Icons.SEARCH, onEnter = "goSearch()")

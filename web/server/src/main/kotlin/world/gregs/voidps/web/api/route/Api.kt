@@ -1,14 +1,18 @@
 package world.gregs.voidps.web.api.route
 
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
+import io.ktor.server.application.createRouteScopedPlugin
 import io.ktor.server.application.install
 import io.ktor.server.application.log
 import io.ktor.server.plugins.BadRequestException
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.statuspages.StatusPages
+import io.ktor.server.response.header
 import io.ktor.server.response.respond
+import io.ktor.server.routing.Route
 import io.ktor.server.routing.Routing
 import io.ktor.server.routing.route
 import io.ktor.server.sse.SSE
@@ -71,13 +75,28 @@ private fun ApiException.status(): HttpStatusCode = when (this) {
 const val API_PATH = "/api/v1"
 
 /**
+ * Lets any origin read every response under this route, errors included. The site reads
+ * hiscores, exchange and player data from whichever world the visitor has selected, so these are
+ * fetched cross-origin from each world's own web server (see the site's `worlds.js`).
+ */
+fun Route.allowAnyOrigin() {
+    install(AllowAnyOrigin)
+}
+
+private val AllowAnyOrigin = createRouteScopedPlugin("AllowAnyOrigin") {
+    onCall { call ->
+        call.response.header(HttpHeaders.AccessControlAllowOrigin, "*")
+    }
+}
+
+/**
  * Mounts every route under [API_PATH]. Public routes sit at the top level; `/account` and `/dev`
  * wrap themselves in the authentication providers registered by [apiPlugins].
  */
 fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions) {
     val hiscores = HiscoresService(storage, questDefinitions)
     val exchange = ExchangeService(storage)
-    val dev = DevService(storage)
+    val dev = DevService(storage, hiscores)
     route(API_PATH) {
         hiscoresRoutes(hiscores)
         exchangeRoutes(exchange)

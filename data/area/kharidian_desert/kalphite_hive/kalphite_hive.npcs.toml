@@ -10,7 +10,7 @@ combat_def = "kalphite_queen"
 xp_bonus = 0.5
 hunt_mode = "aggressive"
 slayer_xp = 535.5
-categories = ["kalphite", "boss"]
+categories = ["kalphite"]
 aka = ["kq"]
 respawn_delay = 50
 drop_table = "kalphite_queen"
@@ -20,6 +20,7 @@ examine = "I don't think insect repellent will work..."
 id = 1160
 clone = "kalphite_queen"
 combat_def = "kalphite_queen_airborne"
+categories = ["kalphite", "boss"]
 xp_bonus = 12.5
 
 [kalphite_worker]

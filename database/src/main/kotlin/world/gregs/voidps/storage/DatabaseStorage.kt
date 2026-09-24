@@ -491,98 +491,112 @@ class DatabaseStorage : Storage {
         }
     }
 
+    /**
+     * Loads every table once and groups the rows by player, rather than querying each child table
+     * per account (a dozen queries per player).
+     */
     override fun accounts(): List<PlayerSave> = transaction {
+        val experience = ExperienceTable.selectAll().associate { it[ExperienceTable.playerId] to experience(it) }
+        val levels = LevelsTable.selectAll().associate { it[LevelsTable.playerId] to levels(it) }
+        val variables = VariablesTable.selectAll().groupBy({ it[VariablesTable.playerId] }, { it[VariablesTable.name] to variable(it) })
+        val inventories = InventoriesTable.selectAll().groupBy({ it[InventoriesTable.playerId] }, ::inventory)
+        val offers = OffersTable.selectAll().groupBy({ it[OffersTable.playerId] }, { it })
+        val history = PlayerHistoryTable.selectAll().groupBy({ it[PlayerHistoryTable.playerId] }, ::history)
+        val kills = KillsTable.selectAll().groupBy({ it[KillsTable.playerId] }, { it[KillsTable.category] to it[KillsTable.count] })
+        val records = RecordsTable.selectAll().groupBy({ it[RecordsTable.playerId] }, { it[RecordsTable.type] to it[RecordsTable.millis] })
+        val recentEvents = RecentEventsTable.selectAll().groupBy { it[RecentEventsTable.playerId] }
         AccountsTable.selectAll().map { row ->
             val playerId = row[AccountsTable.id]
             PlayerSave(
                 name = row[AccountsTable.name],
                 password = row[AccountsTable.passwordHash],
                 tile = Tile(row[AccountsTable.tile]),
-                experience = loadExperience(playerId),
+                experience = experience.getValue(playerId),
                 blocked = row[AccountsTable.blockedSkills].map { Skill.entries[it] },
-                levels = loadLevels(playerId),
+                levels = levels.getValue(playerId),
                 male = row[AccountsTable.male],
                 looks = row[AccountsTable.looks].toIntArray(),
                 colours = row[AccountsTable.colours].toIntArray(),
-                variables = loadVariables(playerId),
-                inventories = loadInventories(playerId),
+                variables = variables[playerId]?.toMap() ?: emptyMap(),
+                inventories = inventories[playerId]?.toMap() ?: emptyMap(),
                 friends = row[AccountsTable.friends].zip(row[AccountsTable.ranks]) { name, rank -> name to ClanRank.valueOf(rank) }.toMap(),
                 ignores = row[AccountsTable.ignores],
-                offers = loadOffers(playerId),
-                history = loadHistory(playerId),
-                kills = loadKills(playerId),
-                records = loadRecords(playerId),
-                recentEvents = loadRecentEvents(playerId),
+                offers = offers(offers[playerId] ?: emptyList()),
+                history = history[playerId] ?: emptyList(),
+                kills = kills[playerId]?.toMap() ?: emptyMap(),
+                records = records[playerId]?.toMap() ?: emptyMap(),
+                recentEvents = recentEvents(recentEvents[playerId] ?: emptyList()),
             )
         }
     }
 
-    private fun loadExperience(playerId: Int): IntArray {
-        val it = ExperienceTable.selectAll().where { ExperienceTable.playerId eq playerId }.first()
-        return intArrayOf(
-            it[ExperienceTable.attack],
-            it[ExperienceTable.defence],
-            it[ExperienceTable.strength],
-            it[ExperienceTable.constitution],
-            it[ExperienceTable.ranged],
-            it[ExperienceTable.prayer],
-            it[ExperienceTable.magic],
-            it[ExperienceTable.cooking],
-            it[ExperienceTable.woodcutting],
-            it[ExperienceTable.fletching],
-            it[ExperienceTable.fishing],
-            it[ExperienceTable.firemaking],
-            it[ExperienceTable.crafting],
-            it[ExperienceTable.smithing],
-            it[ExperienceTable.mining],
-            it[ExperienceTable.herblore],
-            it[ExperienceTable.agility],
-            it[ExperienceTable.thieving],
-            it[ExperienceTable.slayer],
-            it[ExperienceTable.farming],
-            it[ExperienceTable.runecrafting],
-            it[ExperienceTable.hunter],
-            it[ExperienceTable.construction],
-            it[ExperienceTable.summoning],
-            it[ExperienceTable.dungeoneering],
-        )
-    }
+    private fun loadExperience(playerId: Int): IntArray = experience(ExperienceTable.selectAll().where { ExperienceTable.playerId eq playerId }.first())
 
-    private fun loadLevels(playerId: Int): IntArray {
-        val it = LevelsTable.selectAll().where { LevelsTable.playerId eq playerId }.first()
-        return intArrayOf(
-            it[LevelsTable.attack],
-            it[LevelsTable.defence],
-            it[LevelsTable.strength],
-            it[LevelsTable.constitution],
-            it[LevelsTable.ranged],
-            it[LevelsTable.prayer],
-            it[LevelsTable.magic],
-            it[LevelsTable.cooking],
-            it[LevelsTable.woodcutting],
-            it[LevelsTable.fletching],
-            it[LevelsTable.fishing],
-            it[LevelsTable.firemaking],
-            it[LevelsTable.crafting],
-            it[LevelsTable.smithing],
-            it[LevelsTable.mining],
-            it[LevelsTable.herblore],
-            it[LevelsTable.agility],
-            it[LevelsTable.thieving],
-            it[LevelsTable.slayer],
-            it[LevelsTable.farming],
-            it[LevelsTable.runecrafting],
-            it[LevelsTable.hunter],
-            it[LevelsTable.construction],
-            it[LevelsTable.summoning],
-            it[LevelsTable.dungeoneering],
-        )
-    }
+    private fun experience(it: ResultRow): IntArray = intArrayOf(
+        it[ExperienceTable.attack],
+        it[ExperienceTable.defence],
+        it[ExperienceTable.strength],
+        it[ExperienceTable.constitution],
+        it[ExperienceTable.ranged],
+        it[ExperienceTable.prayer],
+        it[ExperienceTable.magic],
+        it[ExperienceTable.cooking],
+        it[ExperienceTable.woodcutting],
+        it[ExperienceTable.fletching],
+        it[ExperienceTable.fishing],
+        it[ExperienceTable.firemaking],
+        it[ExperienceTable.crafting],
+        it[ExperienceTable.smithing],
+        it[ExperienceTable.mining],
+        it[ExperienceTable.herblore],
+        it[ExperienceTable.agility],
+        it[ExperienceTable.thieving],
+        it[ExperienceTable.slayer],
+        it[ExperienceTable.farming],
+        it[ExperienceTable.runecrafting],
+        it[ExperienceTable.hunter],
+        it[ExperienceTable.construction],
+        it[ExperienceTable.summoning],
+        it[ExperienceTable.dungeoneering],
+    )
+
+    private fun loadLevels(playerId: Int): IntArray = levels(LevelsTable.selectAll().where { LevelsTable.playerId eq playerId }.first())
+
+    private fun levels(it: ResultRow): IntArray = intArrayOf(
+        it[LevelsTable.attack],
+        it[LevelsTable.defence],
+        it[LevelsTable.strength],
+        it[LevelsTable.constitution],
+        it[LevelsTable.ranged],
+        it[LevelsTable.prayer],
+        it[LevelsTable.magic],
+        it[LevelsTable.cooking],
+        it[LevelsTable.woodcutting],
+        it[LevelsTable.fletching],
+        it[LevelsTable.fishing],
+        it[LevelsTable.firemaking],
+        it[LevelsTable.crafting],
+        it[LevelsTable.smithing],
+        it[LevelsTable.mining],
+        it[LevelsTable.herblore],
+        it[LevelsTable.agility],
+        it[LevelsTable.thieving],
+        it[LevelsTable.slayer],
+        it[LevelsTable.farming],
+        it[LevelsTable.runecrafting],
+        it[LevelsTable.hunter],
+        it[LevelsTable.construction],
+        it[LevelsTable.summoning],
+        it[LevelsTable.dungeoneering],
+    )
 
     private fun loadVariables(playerId: Int): Map<String, Any> = VariablesTable.selectAll().where { VariablesTable.playerId eq playerId }.associate { row ->
-        val variableName = row[VariablesTable.name]
+        row[VariablesTable.name] to variable(row)
+    }
+
+    private fun variable(row: ResultRow): Any {
         val variableType = row[VariablesTable.type]
-        variableName to when (variableType) {
+        return when (variableType) {
             TYPE_STRING -> row[VariablesTable.string]!!
             TYPE_INT -> row[VariablesTable.int]!!
             TYPE_BOOLEAN -> row[VariablesTable.boolean]!!
@@ -594,7 +608,9 @@ class DatabaseStorage : Storage {
         }
     }
 
-    private fun loadInventories(playerId: Int): Map<String, Array<Item>> = InventoriesTable.selectAll().where { InventoriesTable.playerId eq playerId }.associate { row ->
+    private fun loadInventories(playerId: Int): Map<String, Array<Item>> = InventoriesTable.selectAll().where { InventoriesTable.playerId eq playerId }.associate(::inventory)
+
+    private fun inventory(row: ResultRow): Pair<String, Array<Item>> {
         val inventoryName = row[InventoriesTable.inventoryName]
         val itemIds = row[InventoriesTable.items]
         val amounts = row[InventoriesTable.amounts]
@@ -603,12 +619,14 @@ class DatabaseStorage : Storage {
             Item(itemId, amount)
         }.toTypedArray()
 
-        inventoryName to items
+        return inventoryName to items
     }
 
-    private fun loadOffers(playerId: Int): Array<ExchangeOffer> {
+    private fun loadOffers(playerId: Int): Array<ExchangeOffer> = offers(OffersTable.selectAll().where { OffersTable.playerId eq playerId }.toList())
+
+    private fun offers(rows: List<ResultRow>): Array<ExchangeOffer> {
         val array = Array(6) { ExchangeOffer.EMPTY }
-        OffersTable.selectAll().where { OffersTable.playerId eq playerId }.map { row ->
+        for (row in rows) {
             val id = row[OffersTable.id]
             val index = row[OffersTable.index]
             val item = row[OffersTable.item]
@@ -622,11 +640,13 @@ class DatabaseStorage : Storage {
         return array
     }
 
-    private fun loadHistory(playerId: Int): List<ExchangeHistory> = PlayerHistoryTable.selectAll().where { PlayerHistoryTable.playerId eq playerId }.map { row ->
+    private fun loadHistory(playerId: Int): List<ExchangeHistory> = PlayerHistoryTable.selectAll().where { PlayerHistoryTable.playerId eq playerId }.map(::history)
+
+    private fun history(row: ResultRow): ExchangeHistory {
         val item = row[PlayerHistoryTable.item]
         val amount = row[PlayerHistoryTable.amount]
         val coins = row[PlayerHistoryTable.coins]
-        ExchangeHistory(item, amount, coins)
+        return ExchangeHistory(item, amount, coins)
     }
 
     private fun loadKills(playerId: Int): Map<String, Int> = KillsTable.selectAll().where { KillsTable.playerId eq playerId }.associate { row ->
@@ -641,8 +661,9 @@ class DatabaseStorage : Storage {
         type to millis
     }
 
-    private fun loadRecentEvents(playerId: Int): List<RecentEvent> = RecentEventsTable.selectAll()
-        .where { RecentEventsTable.playerId eq playerId }
+    private fun loadRecentEvents(playerId: Int): List<RecentEvent> = recentEvents(RecentEventsTable.selectAll().where { RecentEventsTable.playerId eq playerId }.toList())
+
+    private fun recentEvents(rows: List<ResultRow>): List<RecentEvent> = rows
         .sortedBy { it[RecentEventsTable.index] }
         .map { row ->
             val time = row[RecentEventsTable.time]

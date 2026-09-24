@@ -31,8 +31,7 @@ object Hiscores {
             ui.pageHeader(
                 eyebrow = "Hiscores",
                 title = "Player hiscores",
-                description = "Ranks are recalculated every 20 minutes from all live worlds. Experience above " +
-                    "200,000,000 in a single skill is not tracked.",
+                description = "Compare skills and kills to your friends and fellow adventurers.",
                 backgroundImage = "images/bg/hiscores.jpg",
                 actions = {
                     div {
@@ -182,8 +181,19 @@ object Hiscores {
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
                         whenFalse = "background:var(--surface-panel);color:var(--text-strong);border-top-color:transparent",
                     )
-                    style = "display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);cursor:pointer;text-align:left;" +
+                    style = "display:flex;align-items:center;gap:var(--space-4);padding:var(--space-5);cursor:pointer;text-align:left;" +
                         "border:none;border-top:2px solid transparent;background:var(--surface-panel);color:var(--text-strong)"
+                    span {
+                        style = "flex:0 0 auto;width:32px;height:32px;display:flex;align-items:center;justify-content:center;" +
+                            "background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);" +
+                            "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden"
+                        span { +GameData.bossAbbr(name) }
+                        img(src = GameData.bossIcon(name), alt = "") {
+                            attributes["loading"] = "lazy"
+                            attributes["onerror"] = "this.remove()"
+                            style = "position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)"
+                        }
+                    }
                     span {
                         style = "font:var(--weight-semibold) var(--text-base)/1.2 var(--font-display)"
                         +name
@@ -394,9 +404,15 @@ object Hiscores {
                         unsafe {
                             raw(
                                 """
-                                <template x-for="(row,i) in compareBossRows" :key="row.boss">
+                                <template x-for="(row,i) in compareBossRows" :key="row.key">
                                   <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 90px 190px 90px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                                    <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                    <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
+                                      <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden">
+                                        <span x-text="row.abbr"></span>
+                                        <img :src="row.icon" alt="" loading="lazy" @error="${'$'}el.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)">
+                                      </span>
+                                      <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                    </span>
                                     <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aKc"></span>
                                     <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
                                       <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
@@ -622,9 +638,15 @@ object Hiscores {
                     unsafe {
                         raw(
                             """
-                            <template x-for="(row,i) in profileBosses" :key="row.boss">
+                            <template x-for="(row,i) in profileBosses" :key="row.key">
                               <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 120px 110px 110px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
+                                  <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden">
+                                    <span x-text="row.abbr"></span>
+                                    <img :src="row.icon" alt="" loading="lazy" @error="${'$'}el.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)">
+                                  </span>
+                                  <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                </span>
                                 <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="row.rank"></span>
                                 <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.kc"></span>
                                 <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.best"></span>

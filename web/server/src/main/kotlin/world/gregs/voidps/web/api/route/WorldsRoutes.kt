@@ -51,8 +51,14 @@ fun Route.worldsRoutes() {
     }
 }
 
+/**
+ * `/players` shares its route with the hiscores' `/players/...`, which already allows any origin
+ * (see [Route.allowAnyOrigin]); a second copy of the header would make browsers reject it.
+ */
 private fun RoutingCall.allowAnyOrigin() {
-    response.header(HttpHeaders.AccessControlAllowOrigin, "*")
+    if (response.headers[HttpHeaders.AccessControlAllowOrigin] == null) {
+        response.header(HttpHeaders.AccessControlAllowOrigin, "*")
+    }
 }
 
 private fun info(): ServerInfo {

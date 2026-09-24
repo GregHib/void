@@ -1,5 +1,6 @@
-// Hiscores page data + Alpine component. Every table is fetched live from the real
-// `/api/v1/hiscores/*` and `/api/v1/players/*` endpoints - there is no mock dataset here.
+// Hiscores page data + Alpine component. Every table is fetched live from the selected world's
+// `/api/v1/hiscores/*` and `/api/v1/players/*` endpoints - there is no mock dataset here. With no
+// world selected, or the selected one offline, every table is left empty.
 
 (function () {
   var API = "/api/v1";
@@ -32,6 +33,12 @@
   }
   function modeLabel(id) { return id ? id.charAt(0).toUpperCase() + id.slice(1) : ""; }
   function skillIcon(id) { return "images/skills/" + id + ".png"; }
+  function bossAbbr(name) { return name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 3).toUpperCase(); }
+  // "TzTok-Jad" -> "tz_tok_jad", "King Black Dragon" -> "king_black_dragon", "K'ril Tsutsaroth" -> "kril_tsutsaroth".
+  function bossIcon(name) {
+    var file = name.replace(/'/g, "").replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    return "images/boss/" + file + ".png";
+  }
   function formatDate(iso) {
     if (!iso) return "";
     try {
@@ -51,14 +58,8 @@
     }
   }
 
-  function getJson(url) {
-    return fetch(url).then(function (response) {
-      if (!response.ok) {
-        throw new Error("Request to " + url + " failed: " + response.status);
-      }
-      return response.json();
-    });
-  }
+  // Every request goes to the world selected in the navbar (see worlds.js), never this site's own origin.
+  var getJson = window.voidWorldJson;
 
   function band(i) { return i % 2 === 0 ? "var(--surface-panel)" : "var(--umber-850)"; }
   function rankColor(r) {
@@ -177,7 +178,25 @@
           self.loadView();
         });
 
-        this.loadView();
+        // Loads the current view now, and again from scratch whenever the selected world changes;
+        // everything shown belongs to the world it came from, so it's all cleared first.
+        window.voidWatchWorld(function (world) {
+          self.clearData(world);
+          if (world != null) self.loadView();
+        });
+      },
+
+      clearData: function (world) {
+        this.updatedLabel = world != null ? "Loading…" : Alpine.store("world").current != null ? "World offline" : "No world selected";
+        this.overallRows = []; this.overallPager = derivePager(null); this.overallEyebrow = "";
+        this.skillRows = []; this.skillPager = derivePager(null); this.skillEyebrow = "";
+        this.bossKcRows = []; this.bossKcPager = derivePager(null);
+        this.bossTimeRows = []; this.bossTimePager = derivePager(null);
+        this.searchRows = []; this.searchPager = derivePager(null); this.searchEyebrow = "";
+        this.compareResult = null;
+        this.comboItems = { a: [], b: [] };
+        this.profilePlayer = { rank: "—", mode: "", name: this.profile, totalLevel: 0, totalXp: 0, joined: "" };
+        this.profileSkills = []; this.profileBosses = [];
       },
 
       historyState: function () {
@@ -372,7 +391,7 @@
           });
           self.profileBosses = bosses.items.map(function (b) {
             return {
-              boss: b.name, kc: fmt(b.kills), best: b.fastestSeconds ? mmss(b.fastestSeconds) : "—",
+              key: b.boss, boss: b.name, abbr: bossAbbr(b.name), icon: bossIcon(b.name), kc: fmt(b.kills), best: b.fastestSeconds ? mmss(b.fastestSeconds) : "—",
               rank: b.kills > 0 ? "rank " + fmt(b.rank) : "unranked",
             };
           });
@@ -456,7 +475,7 @@
         if (!this.compareResult) return [];
         return this.compareResult.bosses.map(function (r, i) {
           return Object.assign({
-            boss: r.bossName, aKc: fmt(r.aKills), bKc: fmt(r.bKills),
+            key: r.boss, boss: r.bossName, abbr: bossAbbr(r.bossName), icon: bossIcon(r.bossName), aKc: fmt(r.aKills), bKc: fmt(r.bKills),
             aColor: r.leader === "a" ? "var(--gold-300)" : "var(--text-faint)",
             bColor: r.leader === "b" ? "var(--gold-300)" : "var(--text-faint)",
             bg: band(i),
