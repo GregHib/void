@@ -1,7 +1,9 @@
 [billy_goat_defend]
 id = 5342
+
 [billy_goat_death]
 id = 5343
+
 [billy_goat_attack]
 id = 5341
 

@@ -6,3 +6,9 @@ id = 13397
 
 [mysterious_shade_magic]
 id = 13398
+
+[ice_spider_spawn]
+id = 6862
+
+[ice_spider_despawn]
+id = 5321

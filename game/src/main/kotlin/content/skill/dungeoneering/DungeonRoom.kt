@@ -39,15 +39,17 @@ data class DungeonRoom(val tile: Tile, val isCritical: Boolean) {
         open = true
         val target = origin.add(tile.x * 2, tile.y * 2)
         val zones = get<DynamicZones>()
+        val clientRotation = (4 - rotation) % 4
+        val entries = mutableListOf<Triple<Zone, Zone, Int>>()
         for (sx in 0..1) {
             for (sy in 0..1) {
                 // Calculate the target zone offset (tx, ty) based on CW rotation
                 val tx = DungeonMap.rotateX(sx, sy, rotation, 1)
                 val ty = DungeonMap.rotateY(sx, sy, rotation, 1)
-                val clientRotation = (4 - rotation) % 4
-                zones.copy(zone.add(sx, sy), target.add(tx, ty), clientRotation)
+                entries.add(Triple(zone.add(sx, sy), target.add(tx, ty), clientRotation))
             }
         }
+        zones.copy(entries)
         // Spawn keys
         spawnKeys(player, dungeon)
         val complexity = player["dungeoneering_party_complexity", 1]

@@ -1,22 +1,26 @@
 package world.gregs.voidps.engine.map.zone
 
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.data.definition.MapDefinitions
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 
 internal class DynamicZonesTest {
 
     private lateinit var zones: DynamicZones
-    private lateinit var extract: MapDefinitions
+    private lateinit var definitions: MapDefinitions
 
     @BeforeEach
     fun setup() {
-        extract = mockk(relaxed = true)
-        zones = DynamicZones(extract)
+        definitions = mockk(relaxed = true)
+        zones = DynamicZones(definitions)
     }
 
     @Test
@@ -56,6 +60,31 @@ internal class DynamicZonesTest {
         }
         assertNull(zones.dynamicZone(Zone(to.x + 2, to.y, 0)), "nothing outside the block is copied")
         assertNull(zones.dynamicZone(Zone(to.x, to.y, 2)), "and no levels above it")
+    }
+
+    @Test
+    fun `Copying multiple zones preserves collision spillover`() {
+        val fromA = Zone(4, 4)
+        val fromB = Zone(5, 4)
+        val toA = Zone(20, 20)
+        val toB = Zone(21, 20)
+        val spillTile = toB.tile
+
+        every { definitions.loadZone(fromA, toA, 0) } answers {
+            Collisions.allocateIfAbsent(toA.tile.x, toA.tile.y, toA.level)
+            Collisions.allocateIfAbsent(spillTile.x, spillTile.y, spillTile.level)
+            Collisions[spillTile.x, spillTile.y, spillTile.level] = CollisionFlag.FLOOR
+        }
+        every { definitions.loadZone(fromB, toB, 0) } answers {
+            Collisions.allocateIfAbsent(toB.tile.x, toB.tile.y, toB.level)
+        }
+
+        zones.copy(listOf(Triple(fromA, toA, 0), Triple(fromB, toB, 0)))
+
+        assertTrue(
+            Collisions.check(spillTile.x, spillTile.y, spillTile.level, CollisionFlag.FLOOR),
+            "collision from zone A's object should survive zone B being cleared afterwards",
+        )
     }
 
     @Test

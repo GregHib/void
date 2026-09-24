@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.set
 
 class DynamicZones(
-    private val extract: MapDefinitions,
+    private val definitions: MapDefinitions,
 ) : Runnable {
     private val zones: MutableMap<Int, Int> = Int2IntArrayMap()
     // All dynamic regions
@@ -38,36 +38,42 @@ class DynamicZones(
      * @param from The zone to be copied
      * @param to The zone things will be copied to
      */
-    fun copy(from: Zone, to: Zone = from, rotation: Int = 0) {
-        zones[to.id] = from.rotatedId(rotation)
-        GameObjects.reset(to)
-        Collisions.clear(to)
-        extract.loadZone(from, to, rotation)
-        for (region in to.toCuboid(radius = 3).toRegions()) {
-            regions.add(region.id)
-            refresh.add(region.id)
+    fun copy(from: Zone, to: Zone = from, rotation: Int = 0) = copy(listOf(Triple(from, to, rotation)))
+
+    /**
+     * Clears several zones before copying to prevent collisions that
+     * overlap boundaries from being lost.
+     */
+    fun copy(entries: List<Triple<Zone, Zone, Int>>) {
+        for ((_, to) in entries) {
+            GameObjects.reset(to)
+            Collisions.clear(to)
+        }
+        for ((from, to, rotation) in entries) {
+            zones[to.id] = from.rotatedId(rotation)
+            definitions.loadZone(from, to, rotation)
+            for (region in to.toCuboid(radius = 3).toRegions()) {
+                regions.add(region.id)
+                refresh.add(region.id)
+            }
         }
         version++
         update = true
     }
 
     /**
-     * Copies a block of zones, for content that only needs part of a region - a room to stage a
-     * cutscene in, say - rather than all sixty four zones of one.
-     * @param from The south west zone of the block to copy
-     * @param to The south west zone the block is copied to
-     * @param width How many zones wide the block is
-     * @param height How many zones high the block is
-     * @param levels How many levels of it to copy, counting up from the level of [from] and [to]
+     * Copies a block of zones, for content that only needs part of a region
      */
     fun copy(from: Zone, to: Zone, width: Int, height: Int, levels: Int = 1) {
+        val entries = mutableListOf<Triple<Zone, Zone, Int>>()
         for (x in 0 until width) {
             for (y in 0 until height) {
                 for (level in 0 until levels) {
-                    copy(Zone(from.x + x, from.y + y, from.level + level), Zone(to.x + x, to.y + y, to.level + level))
+                    entries.add(Triple(Zone(from.x + x, from.y + y, from.level + level), Zone(to.x + x, to.y + y, to.level + level), 0))
                 }
             }
         }
+        copy(entries)
     }
 
     /**
@@ -76,9 +82,8 @@ class DynamicZones(
      */
     fun copy(from: Region, to: Region, levels: Int = 4) {
         val targetZones = LinkedList(to.toCuboid(levels = levels).toZones())
-        for (zone in from.toCuboid(levels = levels).toZones()) {
-            copy(zone, targetZones.poll())
-        }
+        val entries = from.toCuboid(levels = levels).toZones().map { Triple(it, targetZones.poll(), 0) }
+        copy(entries)
     }
 
     /**
@@ -88,7 +93,7 @@ class DynamicZones(
         zones.remove(zone.id)
         GameObjects.reset(zone)
         Collisions.clear(zone)
-        extract.loadZone(zone, zone, 0)
+        definitions.loadZone(zone, zone, 0)
         for (region in zone.toCuboid(radius = 3).toRegions()) {
             if (region.toRectangle().toZones().none { zones.containsKey(it.id) }) {
                 regions.remove(region.id)
@@ -106,7 +111,7 @@ class DynamicZones(
             if (zones.containsKey(zone.id)) {
                 GameObjects.clear(zone)
                 Collisions.clear(zone)
-                extract.loadZone(zone, zone, 0)
+                definitions.loadZone(zone, zone, 0)
                 zones.remove(zone.id)
             }
         }

@@ -42,3 +42,43 @@ impact_gfx = "icy_bones_freeze_impact"
 target_hit = { offense = "magic", defence = "range", max = 0 }
 impact_sound = "bind_impact"
 impact_freeze = 8
+
+[astea_frostweb]
+defend_anim = "human_unarmed_def"
+defend_sound = "human_defend"
+death_anim = "human_death"
+death_sound = "human_death"
+
+[astea_frostweb.strike]
+chance = 5
+range = 1
+anim = "human_cast_strike"
+target_hit = { offense = "magic", max = 20 }
+# TODO orb gfx + sound
+
+[astea_frostweb.freeze] # multi
+chance = 2
+range = 8
+anim = "human_cast_strike"
+target_sound = "ice_barrage_cast"
+projectile = { id = "ice_blitz", end_height = 0 }
+multi_target_radius = 2
+target_hit = { offense = "magic", min = 0, max = 20 }
+impact_gfx = "ice_barrage_impact"
+impact_sound = "ice_barrage_impact"
+miss_sound = "spell_splash"
+impact_freeze = 10
+
+[astea_frostweb.spike]
+chance = 2
+range = 8
+anim = "human_cast_strike"
+impact_freeze = 4
+impact_gfx = "astea_frostweb_frozen"
+target_hit = { offense = "magic", min = 0, max = 20 }
+multi_target_area = "dungeoneering_room"
+impact_regardless = true
+
+[astea_frostweb.spider]
+chance = 1
+range = 8

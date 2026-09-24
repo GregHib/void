@@ -231,3 +231,283 @@ range = 150 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
+
+[rand_ancient_mage_0_melee]
+id = 9965
+combat_def = "astea_frostweb"
+max_hit_magic = 21
+hunt_mode = "aggressive_retarget"
+hunt_range = 8
+mage = 10 # Guess
+immune_deflect = true
+examine = "A summoner using a form of ancient magic."
+
+[rand_ancient_mage_0_magic]
+id = 9966
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 100 # https://www.youtube.com/watch?v=6EYQJYVk3MQ
+
+[rand_ancient_mage_0_ranged]
+id = 9967
+clone = "rand_ancient_mage_0_melee"
+
+[rand_ancient_mage_05_melee]
+id = 9968
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 23 # Guess
+mage = 10 # Guess
+
+[rand_ancient_mage_05_magic]
+id = 9969
+clone = "rand_ancient_mage_05_melee"
+
+[rand_ancient_mage_05_ranged]
+id = 9970
+clone = "rand_ancient_mage_05_melee"
+
+[rand_ancient_mage_1_melee]
+id = 9971
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 26 # Guess
+mage = 11 # Guess
+
+[rand_ancient_mage_1_magic]
+id = 9972
+clone = "rand_ancient_mage_1_melee"
+
+[rand_ancient_mage_1_ranged]
+id = 9973
+clone = "rand_ancient_mage_1_melee"
+
+[rand_ancient_mage_2_melee]
+id = 9974
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 35 # Guess
+mage = 13 # Guess
+
+[rand_ancient_mage_2_magic]
+id = 9975
+clone = "rand_ancient_mage_2_melee"
+
+[rand_ancient_mage_2_ranged]
+id = 9976
+clone = "rand_ancient_mage_2_melee"
+
+[rand_ancient_mage_3_melee]
+id = 9977
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 500 # https://www.youtube.com/watch?v=pvRXMhwSpGY
+max_hit_magic = 46 # guess
+mage = 16 # Guess
+
+[rand_ancient_mage_3_magic]
+id = 9978
+clone = "rand_ancient_mage_3_melee"
+
+[rand_ancient_mage_3_ranged]
+id = 9979
+clone = "rand_ancient_mage_3_melee"
+
+[rand_ancient_mage_4_melee]
+id = 9980
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 730 # https://www.youtube.com/watch?v=8MQ8JizBfIU
+max_hit_magic = 64 # guess
+mage = 21 # Guess
+
+[rand_ancient_mage_4_magic]
+id = 9981
+clone = "rand_ancient_mage_4_melee"
+
+[rand_ancient_mage_4_ranged]
+id = 9982
+clone = "rand_ancient_mage_4_melee"
+
+[rand_ancient_mage_5_melee]
+id = 9983
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 1330 # https://www.youtube.com/watch?v=pik1sAuiylU, https://www.youtube.com/watch?v=VYm_gVAR8YI
+max_hit_magic = 95 # guess
+mage = 29 # Guess
+
+[rand_ancient_mage_5_magic]
+id = 9984
+clone = "rand_ancient_mage_5_melee"
+
+[rand_ancient_mage_5_ranged]
+id = 9985
+clone = "rand_ancient_mage_5_melee"
+
+[rand_ancient_mage_6_melee]
+id = 9986
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 1770 # https://www.youtube.com/watch?v=72-NS-PDhEA
+max_hit_magic = 124 # wiki
+mage = 36 # Guess
+
+[rand_ancient_mage_6_magic]
+id = 9987
+clone = "rand_ancient_mage_6_melee"
+
+[rand_ancient_mage_6_ranged]
+id = 9988
+clone = "rand_ancient_mage_6_melee"
+
+[rand_ancient_mage_7_melee]
+id = 9989
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 2100 # https://www.youtube.com/watch?v=sFIjcKPdSQM
+max_hit_magic = 151 # guess
+mage = 42 # Guess
+
+[rand_ancient_mage_7_magic]
+id = 9990
+clone = "rand_ancient_mage_7_melee"
+
+[rand_ancient_mage_7_ranged]
+id = 9991
+clone = "rand_ancient_mage_7_melee"
+
+[rand_ancient_mage_8_melee]
+id = 9992
+clone = "rand_ancient_mage_0_melee"
+# Might vary between versions or combat levels - 2550 here: https://www.youtube.com/watch?v=qmbJgx-KO58
+hitpoints = 2715 # Approx, source: https://www.youtube.com/watch?v=s3RLavRRt2g
+max_hit_magic = 177 # wiki
+mage = 47 # Guess
+
+[rand_ancient_mage_8_magic]
+id = 9993
+clone = "rand_ancient_mage_8_melee"
+
+[rand_ancient_mage_8_ranged]
+id = 9994
+clone = "rand_ancient_mage_8_melee"
+
+[rand_ancient_mage_9_melee]
+id = 9995
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 3090 # https://www.youtube.com/watch?v=BVq00e-2BTs
+max_hit_magic = 197 # wiki
+mage = 53 # Guess
+
+[rand_ancient_mage_9_magic]
+id = 9996
+clone = "rand_ancient_mage_9_melee"
+
+[rand_ancient_mage_9_ranged]
+id = 9997
+clone = "rand_ancient_mage_9_melee"
+
+[rand_ancient_mage_10_melee]
+id = 9998
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 229 # guess
+mage = 62 # Guess
+
+[rand_ancient_mage_10_magic]
+id = 9999
+clone = "rand_ancient_mage_10_melee"
+
+[rand_ancient_mage_10_ranged]
+id = 10000
+clone = "rand_ancient_mage_10_melee"
+
+[rand_ancient_mage_11_melee]
+id = 10001
+clone = "rand_ancient_mage_0_melee"
+hitpoints = 5075 # https://www.youtube.com/watch?v=ghvwpCuUkmA
+max_hit_magic = 259 # guess
+mage = 71 # Guess
+
+[rand_ancient_mage_11_magic]
+id = 10002
+clone = "rand_ancient_mage_11_melee"
+
+[rand_ancient_mage_11_ranged]
+id = 10003
+clone = "rand_ancient_mage_11_melee"
+
+[rand_ancient_mage_12_melee]
+id = 10004
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 290 # guess
+mage = 80 # Guess
+
+[rand_ancient_mage_12_magic]
+id = 10005
+clone = "rand_ancient_mage_12_melee"
+
+[rand_ancient_mage_12_ranged]
+id = 10006
+clone = "rand_ancient_mage_12_melee"
+
+[rand_ancient_mage_13_melee]
+id = 10007
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 322 # guess
+mage = 90 # Guess
+
+[rand_ancient_mage_13_magic]
+id = 10008
+clone = "rand_ancient_mage_13_melee"
+
+[rand_ancient_mage_13_ranged]
+id = 10009
+clone = "rand_ancient_mage_13_melee"
+
+[rand_ancient_mage_14_melee]
+id = 10010
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 364 # guess
+mage = 103 # Guess
+
+[rand_ancient_mage_14_magic]
+id = 10011
+clone = "rand_ancient_mage_14_melee"
+
+[rand_ancient_mage_14_ranged]
+id = 10012
+clone = "rand_ancient_mage_14_melee"
+
+[rand_ancient_mage_15_melee]
+id = 10013
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 409 # guess
+mage = 116 # Guess
+
+[rand_ancient_mage_15_magic]
+id = 10014
+clone = "rand_ancient_mage_15_melee"
+
+[rand_ancient_mage_15_ranged]
+id = 10015
+clone = "rand_ancient_mage_15_melee"
+
+[rand_ancient_mage_16_melee]
+id = 10016
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 463 # guess
+mage = 132 # Guess
+
+[rand_ancient_mage_16_magic]
+id = 10017
+clone = "rand_ancient_mage_16_melee"
+
+[rand_ancient_mage_16_ranged]
+id = 10018
+clone = "rand_ancient_mage_16_melee"
+
+[rand_ancient_mage_17_melee]
+id = 10019
+clone = "rand_ancient_mage_0_melee"
+max_hit_magic = 521 # guess
+mage = 150 # Guess
+
+[rand_ancient_mage_17_magic]
+id = 10020
+clone = "rand_ancient_mage_17_melee"
+
+[rand_ancient_mage_17_ranged]
+id = 10021
+clone = "rand_ancient_mage_17_melee"

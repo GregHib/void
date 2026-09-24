@@ -215,7 +215,7 @@ class DungeonMap(
 
     fun tile(room: DungeonRoom, x: Int, y: Int): Tile {
         val rotX = rotateX(x, y, room.rotation, 15)
-        val rotY = rotateY(rotX, y, room.rotation, 15)
+        val rotY = rotateY(x, y, room.rotation, 15)
         return tile(room).add(rotX, rotY)
     }
 

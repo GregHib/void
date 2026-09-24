@@ -71,12 +71,12 @@ doors = [false, false, false, true]
 #start_floor = 9
 #doors = [false, false, false, true]
 #
-#[.astea_frostweb]
-#type = "boss"
-#x = 30
-#y = 624
-#start_floor = 1
-#doors = [false, false, false, true]
+[.astea_frostweb]
+type = "boss"
+x = 30
+y = 624
+start_floor = 1
+doors = [false, false, false, true]
 
 [frozen_c1_normal]
 type = "string"

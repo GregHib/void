@@ -1,7 +1,9 @@
 [kalrag_defend]
 id = 5320
+
 [kalrag_death]
 id = 5321
+
 [kalrag_attack]
 id = 5319
 
