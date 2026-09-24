@@ -1,5 +1,7 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.cache.Index
+
 /* Class73 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
@@ -34,7 +36,7 @@ internal object Class73 {
         anInt4777++
         var billboardType = Class217.aClass60_2844.method583(i_0_.toLong(), -104) as BillboardType?
         if (billboardType != null) return billboardType
-        val `is` = Class369_Sub3.aJs5_8601!!.getFile(-1860, 0, i_0_)
+        val `is` = Class369_Sub3.cache!!.data(Index.BILLBOARDS, 0, i_0_)
         if (i != 104) method741(98.toByte())
         billboardType = BillboardType()
         if (`is` != null) billboardType.method1419(i_0_, Packet(`is`), 64.toByte())

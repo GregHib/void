@@ -5,7 +5,6 @@ package world.gregs.voidps.tools.icon
 */
 
 internal object Class59_Sub2_Sub1 {
-    var aJs5_8670: Js5? = null
     var anInt8671: Int = 0
     var anInt8673: Int = 0
 
@@ -13,7 +12,6 @@ internal object Class59_Sub2_Sub1 {
         try {
             anInt8673++
             var is_1_: IntArray? = null
-            if (i != 255) aJs5_8670 = null
             var is_2_: IntArray? = null
             var is_3_: IntArray? = null
             var fs: Array<FloatArray?>? = null

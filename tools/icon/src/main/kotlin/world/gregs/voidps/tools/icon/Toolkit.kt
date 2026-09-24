@@ -100,7 +100,7 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
         }
 
         @Synchronized
-        fun method3692(i: Int, i_168_: Int, i_169_: Int, js5: Js5?, i_170_: Int, var_textureSource: TextureSource?, canvas: Canvas?, i_171_: Int): Toolkit {
+        fun method3692(i: Int, i_168_: Int, i_169_: Int, i_170_: Int, var_textureSource: TextureSource?, canvas: Canvas?, i_171_: Int): Toolkit {
             try {
                 anInt4576++
                 // Only the i_170_ == i_171_ branch is ever reachable from this
@@ -110,7 +110,7 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
                 if (i_170_ == i_171_) return Class348_Sub5.method2753(true, i_168_, i_169_, canvas, var_textureSource)
                 throw IllegalArgumentException("UM")
             } catch (runtimeexception: RuntimeException) {
-                throw Class348_Sub17.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + (if (js5 != null) "{...}" else "null") + ',' + i_170_ + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (canvas != null) "{...}" else "null") + ',' + i_171_ + ')'))
+                throw Class348_Sub17.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + i_170_ + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (canvas != null) "{...}" else "null") + ',' + i_171_ + ')'))
             }
         }
     }

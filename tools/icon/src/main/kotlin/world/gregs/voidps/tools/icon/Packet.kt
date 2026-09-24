@@ -8,31 +8,6 @@ internal open class Packet : Class348 {
     var aByteArray7154: ByteArray
     var pos: Int
 
-    fun method3367(i: Int, `is`: IntArray, i_47_: Int, i_48_: Int) {
-        anInt7178++
-        val i_49_ = this.pos
-        this.pos = i_47_
-        val i_50_ = (i_48_ + -i_47_) / 8
-        var i_51_ = 0
-        while (i_50_ > i_51_) {
-            var i_52_ = readInt((-126).toByte())
-            var i_53_ = readInt((-126).toByte())
-            var i_54_ = -957401312
-            val i_55_ = -1640531527
-            var i_56_ = 32
-            while (i_56_-- > 0) {
-                i_53_ -= ((i_52_ shl 4 xor (i_52_ ushr 5)) + i_52_ xor i_54_ - -`is`[0x4d000003 and (i_54_ ushr 11)])
-                i_54_ -= i_55_
-                i_52_ -= (i_54_ - -`is`[i_54_ and 0x3] xor (i_53_ shl 4 xor (i_53_ ushr 5)) - -i_53_)
-            }
-            this.pos -= 8
-            writeInt(113.toByte(), i_52_)
-            writeInt(126.toByte(), i_53_)
-            i_51_++
-        }
-        if (i == 607818341) this.pos = i_49_
-    }
-
     fun readUnsignedShort(i: Int): Int {
         if (i != 842397944) return 111
         this.pos += 2
@@ -210,7 +185,6 @@ internal open class Packet : Class348 {
         var anInt7202: Int = 0
         var anInt7203: Int = 0
         var anInt7204: Int = 0
-        var anInt7178: Int = 0
         var anInt7207: Int = 0
     }
 }

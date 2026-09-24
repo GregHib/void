@@ -1,5 +1,8 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
+
 /* Class207 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
@@ -83,14 +86,14 @@ internal class Class207 {
     }
 
     companion object {
-        fun method1512(js5: Js5, i: Int): Class207? {
-            val `is` = js5.getFile(73.toByte(), i)
+        fun method1512(cache: Cache, i: Int): Class207? {
+            val `is` = cache.data(Index.SPRITES, i)
             if (`is` == null) return null
             return method1517(`is`)[0]
         }
 
-        fun method1521(js5: Js5, i: Int, i_112_: Int): Class207? {
-            val `is` = js5.getFile(-1860, i, i_112_)
+        fun method1521(cache: Cache, i: Int, i_112_: Int): Class207? {
+            val `is` = cache.data(Index.SPRITES, i, i_112_)
             if (`is` == null) return null
             return method1517(`is`)[0]
         }

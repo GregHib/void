@@ -1,12 +1,14 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
+
 /* Class255 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
 
-internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class326?, index: Js5?, meshes: Js5?) {
-    private val index: Js5?
-    var meshes: Js5? = null
+internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class326?, cache: Cache?) {
+    val cache: Cache?
     private var allowMembers = false
     var num: Int = 0
     private val recentUse = Class60(64)
@@ -74,8 +76,8 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
         }
         if (type != null) return type
         val data: ByteArray?
-        synchronized(index!!) {
-            data = index.getFile(-1860, Class54.method500(7, id), Class251.method1914(-23590, id))
+        synchronized(cache!!) {
+            data = cache.data(Index.ITEMS, Class54.method500(7, id), Class251.method1914(-23590, id))
         }
         type = ItemType()
         type.list = this
@@ -131,17 +133,16 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
         try {
             allowMembers = members
             aClass326_3292 = class326
-            this.meshes = meshes
             this.languageId = languageId
-            this.index = index
-            if (this.index != null) {
-                val lastGroup = -1 + this.index.groupSize(-1)
-                this.num = this.index.fileLimit(0, lastGroup) + lastGroup * 256
+            this.cache = cache
+            if (this.cache != null) {
+                val lastGroup = this.cache.lastArchiveId(Index.ITEMS)
+                this.num = this.cache.lastFileId(Index.ITEMS, lastGroup) + 1 + lastGroup * 256
             } else this.num = 0
             defaultOps = (arrayOf<String?>(null, null, LocalisedText.Companion.TAKE!!.method2063(this.languageId, 544), null, null))
             defaultIops = (arrayOf<String?>(null, null, null, null, LocalisedText.Companion.DROP!!.method2063(this.languageId, 544)))
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("ub.<init>(" + ',' + languageId + ',' + members + ',' + (if (class326 != null) "{...}" else "null") + ',' + (if (index != null) "{...}" else "null") + ',' + (if (meshes != null) "{...}" else "null") + ')'))
+            throw Class348_Sub17.method2929(runtimeexception, ("ub.<init>(" + ',' + languageId + ',' + members + ',' + (if (class326 != null) "{...}" else "null") + ',' + (if (cache != null) "{...}" else "null") + ')'))
         }
     }
 

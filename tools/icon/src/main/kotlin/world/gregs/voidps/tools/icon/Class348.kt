@@ -1,5 +1,7 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.cache.Cache
+
 /* Class348 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
@@ -28,7 +30,7 @@ internal open class Class348 {
 
     companion object {
         var anInt4285: Int = 0
-        var aJs5_4286: Js5? = null
+        var aCache_4286: Cache? = null
         var anInt4297: Int = 0
     }
 }

@@ -1,5 +1,8 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
+
 /* Class348_Sub42_Sub5 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
@@ -11,11 +14,11 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
     private val anIntArray9524: IntArray
     private val aClass348_Sub40_9527: Class348_Sub40
     private val aClass348_Sub40_9528: Class348_Sub40?
-    fun method3183(var_textureSource: TextureSource?, i: Int, i_0_: Int, bool: Boolean, d: Double, js5: Js5?, i_1_: Byte): IntArray {
+    fun method3183(var_textureSource: TextureSource?, i: Int, i_0_: Int, bool: Boolean, d: Double, cache: Cache?, i_1_: Byte): IntArray {
         try {
             anInt9522++
             Class286_Sub5.aTextureSource6247 = var_textureSource
-            Class348.Companion.aJs5_4286 = js5
+            Class348.Companion.aCache_4286 = cache
             var i_2_ = 0
             while (aClass348_Sub40Array9520.size > i_2_) {
                 aClass348_Sub40Array9520[i_2_]!!.method3045(i, i_0_, -256)
@@ -78,23 +81,23 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             if (i_1_.toInt() != 11) anInt9532 = 97
             return `is`
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.D(" + (if (var_textureSource != null) "{...}" else "null") + ',' + i + ',' + i_0_ + ',' + bool + ',' + d + ',' + (if (js5 != null) "{...}" else "null") + ',' + i_1_ + ')'))
+            throw Class348_Sub17.method2929(runtimeexception, ("lr.D(" + (if (var_textureSource != null) "{...}" else "null") + ',' + i + ',' + i_0_ + ',' + bool + ',' + d + ',' + (if (cache != null) "{...}" else "null") + ',' + i_1_ + ')'))
         }
     }
 
-    fun method3184(var_textureSource: TextureSource?, js5: Js5?, i: Int): Boolean {
+    fun method3184(var_textureSource: TextureSource?, cache: Cache?, i: Int): Boolean {
         try {
             anInt9529++
             if (Matrix_Sub2.anInt5713 < 0) {
                 var i_17_ = 0
                 while ((anIntArray9524.size > i_17_)) {
-                    if (!js5!!.isFileReady(false, anIntArray9524[i_17_])) return false
+                    if (!cache!!.exists(Index.SPRITES, anIntArray9524[i_17_])) return false
                     i_17_++
                 }
             } else {
                 var i_18_ = 0
                 while ((i_18_ < anIntArray9524.size)) {
-                    if (!js5!!.requestDownload(-10499, Matrix_Sub2.anInt5713, anIntArray9524[i_18_])) return false
+                    if (!cache!!.exists(Index.SPRITES, Matrix_Sub2.anInt5713, anIntArray9524[i_18_])) return false
                     i_18_++
                 }
             }
@@ -106,14 +109,14 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             }
             return true
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.B(" + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (js5 != null) "{...}" else "null") + ',' + i + ')'))
+            throw Class348_Sub17.method2929(runtimeexception, ("lr.B(" + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (cache != null) "{...}" else "null") + ',' + i + ')'))
         }
     }
 
-    fun method3185(i: Int, var_textureSource: TextureSource?, i_21_: Int, bool: Boolean, d: Double, bool_22_: Boolean, js5: Js5?, i_23_: Int): IntArray {
+    fun method3185(i: Int, var_textureSource: TextureSource?, i_21_: Int, bool: Boolean, d: Double, bool_22_: Boolean, cache: Cache?, i_23_: Int): IntArray {
         try {
             Class286_Sub5.aTextureSource6247 = var_textureSource
-            Class348.Companion.aJs5_4286 = js5
+            Class348.Companion.aCache_4286 = cache
             anInt9526++
             var i_24_ = 0
             while (aClass348_Sub40Array9520.size > i_24_) {
@@ -182,7 +185,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             }
             return `is`
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("lr.C(" + i + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + i_21_ + ',' + bool + ',' + d + ',' + bool_22_ + ',' + (if (js5 != null) "{...}" else "null") + ',' + i_23_ + ')'))
+            throw Class348_Sub17.method2929(runtimeexception, ("lr.C(" + i + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + i_21_ + ',' + bool + ',' + d + ',' + bool_22_ + ',' + (if (cache != null) "{...}" else "null") + ',' + i_23_ + ')'))
         }
     }
 

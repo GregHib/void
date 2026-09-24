@@ -1,27 +1,28 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
+
 /* Class244 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
 
-internal class Js5TextureSource(js5: Js5?, js5_12_: Js5?, js5_13_: Js5?) : TextureSource {
+internal class Js5TextureSource(private val cache: Cache) : TextureSource {
     private val textureMetrics: Array<TextureMetrics?>
-    private val sprites: Js5?
     private val aClass308_4622 = Class308(256)
-    private val textures: Js5?
     private val textureCount: Int
 
     override fun method6(i: Int, i_0_: Int, f: Float, i_1_: Int, bool: Boolean, i_2_: Int): IntArray {
         if (i != -21540) getMetrics(-46, 6)
         anInt4617++
-        return method1881(i_1_, false)!!.method3183(this, i_2_, i_0_, (textureMetrics[i_1_]!!.aBoolean207), f.toDouble(), textures, 11.toByte())
+        return method1881(i_1_, false)!!.method3183(this, i_2_, i_0_, (textureMetrics[i_1_]!!.aBoolean207), f.toDouble(), cache, 11.toByte())
     }
 
     private fun method1881(i: Int, bool: Boolean): Class348_Sub42_Sub5? {
         anInt4620++
         val class348_sub42 = aClass308_4622.method2302(i.toLong(), (-34).toByte())
         if (class348_sub42 != null) return class348_sub42 as Class348_Sub42_Sub5
-        val `is` = sprites!!.getFile(73.toByte(), i)
+        val `is` = cache.data(Index.TEXTURES, i)
         if (`is` == null) return null
         if (bool != false) method1(-58, 1.9039171f, false, -106, -22, -18)
         val class348_sub42_sub5 = Class348_Sub42_Sub5(Packet(`is`))
@@ -38,14 +39,14 @@ internal class Js5TextureSource(js5: Js5?, js5_12_: Js5?, js5_13_: Js5?) : Textu
     override fun method5(bool: Boolean, i: Int, f: Float, i_4_: Int, i_5_: Int, i_6_: Int): IntArray {
         val i_7_ = 41 / ((i_6_ - -69) / 48)
         anInt4614++
-        return method1881(i, false)!!.method3185(i_4_, this, 0, textureMetrics[i]!!.aBoolean207, f.toDouble(), bool, textures, i_5_)
+        return method1881(i, false)!!.method3185(i_4_, this, 0, textureMetrics[i]!!.aBoolean207, f.toDouble(), bool, cache, i_5_)
     }
 
     override fun method4(i: Int, i_8_: Int): Boolean {
         anInt4616++
         val class348_sub42_sub5 = method1881(i_8_, false)
         if (i != -7953) method4(56, -109)
-        return class348_sub42_sub5 != null && class348_sub42_sub5.method3184(this, textures, -85)
+        return class348_sub42_sub5 != null && class348_sub42_sub5.method3184(this, cache, -85)
     }
 
     /* NOTE: method1 is NOT in the genuine-methods list (0 JaCoCo hits) for
@@ -66,9 +67,7 @@ internal class Js5TextureSource(js5: Js5?, js5_12_: Js5?, js5_13_: Js5?) : Textu
 
     init {
         try {
-            sprites = js5_12_
-            textures = js5_13_
-            val packet = Packet(js5!!.getFile(-1860, 0, 0)!!)
+            val packet = Packet(cache.data(Index.TEXTURE_DEFINITIONS, 0, 0)!!)
             textureCount = packet.readUnsignedShort(842397944)
             textureMetrics = arrayOfNulls<TextureMetrics>(textureCount)
             run {
@@ -170,7 +169,7 @@ internal class Js5TextureSource(js5: Js5?, js5_12_: Js5?, js5_13_: Js5?) : Textu
                 i++
             }
         } catch (runtimeexception: RuntimeException) {
-            throw Class348_Sub17.method2929(runtimeexception, ("tda.<init>(" + (if (js5 != null) "{...}" else "null") + ',' + (if (js5_12_ != null) "{...}" else "null") + ',' + (if (js5_13_ != null) "{...}" else "null") + ')'))
+            throw Class348_Sub17.method2929(runtimeexception, ("tda.<init>({...})"))
         }
     }
 

@@ -8,6 +8,5 @@ package world.gregs.voidps.tools.icon
 */
 
 internal object Class136 {
-    var aJs5_4796: Js5? = null
     var recol_s: Array<ShortArray?>? = null
 }

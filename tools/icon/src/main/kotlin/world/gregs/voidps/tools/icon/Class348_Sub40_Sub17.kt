@@ -14,7 +14,7 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
         if (bool != true) return true
         if (this.anIntArray9232 != null) return true
         if (anInt9243 >= 0) {
-            val class207: Class207? = (if (Matrix_Sub2.anInt5713 >= 0) Class207.Companion.method1521(Class348.Companion.aJs5_4286!!, Matrix_Sub2.anInt5713, anInt9243) else Class207.Companion.method1512(Class348.Companion.aJs5_4286!!, anInt9243))
+            val class207: Class207? = (if (Matrix_Sub2.anInt5713 >= 0) Class207.Companion.method1521(Class348.Companion.aCache_4286!!, Matrix_Sub2.anInt5713, anInt9243) else Class207.Companion.method1512(Class348.Companion.aCache_4286!!, anInt9243))
             class207!!.method1524()
             this.anIntArray9232 = class207.method1516()
             this.anInt9237 = class207.anInt2702

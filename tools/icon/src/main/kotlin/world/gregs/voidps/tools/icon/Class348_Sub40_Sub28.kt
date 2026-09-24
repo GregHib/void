@@ -119,7 +119,6 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
     companion object {
         var anInt9361: Int = 0
         var anInt9363: Int = 0
-        var aJs5_9365: Js5? = null
         var anInt9366: Int = 0
         var anInt9370: Int = 0
 
@@ -130,7 +129,6 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
      * Class367_Sub8 (owned by a parallel agent, off limits) to compile a
      * path that is provably dead here. */
         fun method3122(i: Byte): Array<Class364?>? {
-            if (i < 86) aJs5_9365 = null
             anInt9361++
             throw IllegalStateException() // unreachable per JaCoCo coverage
         }

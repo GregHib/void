@@ -786,7 +786,6 @@ internal class Mesh {
         var anInt1819: Int = 0
         var anInt1826: Int = 0
         var anInt1828: Int = 0
-        var aJs5_1848: Js5? = null
         var anInt1860: Int = 0
         var anInt1861: Int = 0
         var anInt1869: Int = 0
@@ -797,7 +796,6 @@ internal class Mesh {
         var anInt1845: Int = 0
 
         fun method1096(i: Int) {
-            if (i >= 88) aJs5_1848 = null
         }
 
         fun method1097(i: Byte, i_20_: Int, random: Random): Int {
@@ -805,7 +803,6 @@ internal class Mesh {
             require(i_20_ > 0)
             if (Class192.method1436(-19, i_20_)) return (i_20_.toLong() * (0xffffffffL and random.nextInt().toLong()) shr 32).toInt()
             val i_21_ = -2147483648 + -(4294967296L % i_20_.toLong()).toInt()
-            if (i < 78) aJs5_1848 = null
             var i_22_: Int
             do i_22_ = random.nextInt() while (i_22_ >= i_21_)
             return JavaBillboardAttributes.Companion.method3452(i_22_, (-15).toByte(), i_20_)

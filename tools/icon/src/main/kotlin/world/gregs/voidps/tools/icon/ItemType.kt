@@ -1,5 +1,7 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.cache.Index
+
 /* Class213 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
@@ -77,10 +79,10 @@ internal class ItemType {
             i_0_ = anInt2822
         }
         if (i_0_ == -1) return null
-        var mesh = Class300.load(0, this.list!!.meshes!!, i_0_, -1)
+        var mesh = Class300.load(0, this.list!!.cache!!, i_0_, -1)
         if ((mesh!!.version.inv()) > i) mesh.upscale(2, 54)
         if (i_1_ != -1) {
-            val mesh_2_ = Class300.load(0, (this.list!!.meshes!!), i_1_, -1)
+            val mesh_2_ = Class300.load(0, this.list!!.cache!!, i_1_, -1)
             if (mesh_2_!!.version < 13) mesh_2_.upscale(2, i xor 0x78.inv())
             val meshes = arrayOf<Mesh?>(mesh, mesh_2_)
             mesh = Mesh(meshes, 2)
@@ -153,7 +155,7 @@ internal class ItemType {
     fun sprite(invCount: Int, bool: Boolean, graphicShadow: Int, toolkit: Toolkit?, scratchToolkit: Toolkit?, font: Font?, playerModel: PlayerModel?, itemNumMode: Int, i_40_: Byte, outline: Int): IntArray? {
         try {
             anInt2806++
-            val mesh = Class300.load(0, (this.list!!.meshes!!), this.mesh, i_40_.toInt() xor 0x65)
+            val mesh = Class300.load(0, this.list!!.cache!!, this.mesh, i_40_.toInt() xor 0x65)
             if (mesh == null) return null
             if (mesh.version < 13) mesh.upscale(2, i_40_.toInt() xor 0xb.inv())
             if (recol_s != null) {
@@ -267,9 +269,9 @@ internal class ItemType {
         }
         if (i_53_ == -1) return true
         var bool_56_ = true
-        if (!this.list!!.meshes!!.requestDownload(-10499, i_53_, 0)) bool_56_ = false
-        if (i_54_ != -1 && !this.list!!.meshes!!.requestDownload(i xor 0x2902, i_54_, 0)) bool_56_ = false
-        if (i != i_55_ && !this.list!!.meshes!!.requestDownload(-10499, i_55_, 0)) bool_56_ = false
+        if (!this.list!!.cache!!.exists(Index.MODELS, i_53_)) bool_56_ = false
+        if (i_54_ != -1 && !this.list!!.cache!!.exists(Index.MODELS, i_54_)) bool_56_ = false
+        if (i != i_55_ && !this.list!!.cache!!.exists(Index.MODELS, i_55_)) bool_56_ = false
         return bool_56_
     }
 

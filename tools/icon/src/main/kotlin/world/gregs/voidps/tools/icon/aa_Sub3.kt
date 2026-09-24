@@ -2,9 +2,6 @@ package world.gregs.voidps.tools.icon
 
 /* aa_Sub3 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
-*
-* Trimmed for item_renderer_standalone: only the static field used as the
-* models archive index storage (aa_Sub3.aClass45_5207) is kept.
 */
 
 internal class aa_Sub3(i: Int, i_3_: Int, `is`: IntArray?, is_4_: IntArray?) : aa() {
@@ -21,7 +18,6 @@ internal class aa_Sub3(i: Int, i_3_: Int, `is`: IntArray?, is_4_: IntArray?) : a
     }
 
     companion object {
-        var aJs5_5207: Js5? = null
         var aClass348_Sub6_5206: Class348_Sub6 = Class348_Sub6(0, 0)
     }
 }
