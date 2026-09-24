@@ -16,44 +16,17 @@ import world.gregs.voidps.web.site.components.*
  * own `map-tiles/`, which [world.gregs.voidps.web.site.Site] copies in alongside the rest of the
  * static assets, or the remote tile repository. All of the actual tile math, panning/zoom interaction and URL persistence
  * lives in `js/worldmap.js`'s `worldMapApp()`; this file only renders the static chrome (panels,
- * console, the player pins) that Alpine then positions/reacts to, plus the JSON every layer and
- * the search index are built from — [areasScript]'s area polygons, [MapLabels]' cache place names
- * and [playersScript]'s online players.
+ * console, the player pin template) that Alpine then positions/reacts to, plus the JSON every
+ * layer and the search index are built from — [areasScript]'s area polygons and [MapLabels]' cache
+ * place names. Online players aren't baked in: `worldmap.js` polls the connected world's
+ * `/api/v1/players` (see WorldsRoutes.kt) while a world is connected in the navbar's world
+ * switcher, and Alpine stamps out a [playerPin] and a console row per entry.
  *
  * Chrome layout: the map display toggles top-left, the elevation stepper and teleport panel
  * stacked top-right, the hovered-tile readout bottom-left and the console (players, search)
- * bottom-centre. Everything player-related — the pins, their display toggle and the console's
- * players tab — is placeholder content pending a server bridge, so it only renders on a
- * [Site.FULL] build. Search doesn't need that bridge (areas and place names are baked into the
- * page), so it renders on every build and simply has no players to match against on a public one.
+ * bottom-centre. Only "Kick" is left behind [Site.FULL] — it's staff-only and not wired up yet.
  */
 object WorldMap {
-
-    /**
-     * One player on the map. Three things read the same record so they can't drift out of sync:
-     * the [playerPin]s, the console's players list and the search index (the latter two via
-     * [playersScript]). Placeholder data until the server bridge exists — see the class doc.
-     * [you] marks the viewer's own pin (it pulses); [rank] labels a staff account ("dev", "mod").
-     */
-    private data class Player(
-        val name: String,
-        val x: Int,
-        val y: Int,
-        val level: Int,
-        val combat: Int,
-        val you: Boolean = false,
-        val rank: String? = null,
-    )
-
-    /** Spread over three height levels so the level filter on both pins and rows is visible. */
-    private val players = listOf(
-        Player("Hein", 3222, 3218, level = 0, combat = 3, you = true),
-        Player("Kaelbrand", 3293, 3182, level = 0, combat = 45, rank = "dev"),
-        Player("Orrin", 3210, 3424, level = 0, combat = 78),
-        Player("Mirelda", 2964, 3378, level = 0, combat = 112),
-        Player("Sable", 3205, 3209, level = 1, combat = 61),
-        Player("Vossyn", 2848, 3432, level = 2, combat = 126, rank = "mod"),
-    )
 
     /** Drops the raw [html] straight into the page — Alpine `<template>` loops kotlinx.html can't express. */
     private fun HTMLTag.rawHtml(html: String) {
@@ -70,11 +43,10 @@ object WorldMap {
     }
 
     /**
-     * A single map pin. `data-level` hides it when the viewer isn't on that height level, and
-     * `data-name` is how `renderPlayers` finds the pin belonging to the console's selected row —
-     * see `.wm-pin-selected` in world-map.css. The right-click menu applies to every pin, including
-     * the viewer's own ([Player.you]) — moving your own view to where you already are is harmless,
-     * and an admin may still want to kick themselves off for testing.
+     * The map pin for `p`, one entry of `worldmap.js`'s `players` — this is the body of an Alpine
+     * `x-for` template, so every value is bound rather than written. `data-level` hides it when the
+     * viewer isn't on that height level, and `data-name` is how `renderPlayers` finds the pin
+     * belonging to the console's selected row — see `.wm-pin-selected` in world-map.css.
      *
      * The outer box is a fixed [pinWidth]x[pinHeight], not sized from its content: every child is
      * positioned by a pixel offset from *its* edges rather than left to stack in flow, so
@@ -84,16 +56,16 @@ object WorldMap {
      * is centred exactly on it, and the map-pin icon sits directly above with its tip touching the
      * dot's top edge, so the icon visibly points down at the dot rather than swallowing it.
      */
-    private fun FlowContent.playerPin(player: Player) {
+    private fun FlowContent.playerPin() {
         val pinWidth = 20
         val pinHeight = 26
         val dotSize = 4
         div {
             attributes["class"] = "wm-pin"
-            attributes["data-gx"] = player.x.toString()
-            attributes["data-gy"] = player.y.toString()
-            attributes["data-level"] = player.level.toString()
-            attributes["data-name"] = player.name
+            attributes[":data-gx"] = "p.x"
+            attributes[":data-gy"] = "p.y"
+            attributes[":data-level"] = "p.level"
+            attributes[":data-name"] = "p.name"
             style = "position:absolute;width:${pinWidth}px;height:${pinHeight}px;" +
                 "transform:translate(-50%,-100%);pointer-events:auto;cursor:default"
             xData("{ menuOpen: false }")
@@ -103,8 +75,7 @@ object WorldMap {
                 attributes["class"] = "wm-pin-dot"
                 // Centred on the box's bottom edge (the anchor): half of `dotSize` hangs past it.
                 style = "position:absolute;left:50%;bottom:-${dotSize / 2}px;transform:translateX(-50%);z-index:1;" +
-                    "width:${dotSize}px;height:${dotSize}px;border-radius:999px;background:var(--gold-400);" +
-                    (if (player.you) "animation:wmPinPulse 2.4s ease-out infinite" else "")
+                    "width:${dotSize}px;height:${dotSize}px;border-radius:999px;background:var(--gold-400)"
             }
             unsafe {
                 raw(
@@ -125,12 +96,12 @@ object WorldMap {
                     "box-shadow:var(--bevel-up),var(--shadow-md);margin-bottom:6px"
                 div {
                     style = "font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui)"
-                    +"${player.name} · Lv ${player.combat}"
+                    xText("p.name")
                 }
                 div {
                     attributes["class"] = "wm-pin-coords"
                     style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);margin-top:2px"
-                    +"${player.x}, ${player.y}, ${player.level}"
+                    xText("p.x + ', ' + p.y + ', ' + p.level")
                 }
             }
             div {
@@ -143,21 +114,23 @@ object WorldMap {
                 div {
                     style = "padding:9px 12px;font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);" +
                         "color:var(--text-strong);background:var(--surface-header);border-bottom:1px solid var(--border-subtle)"
-                    +if (player.rank != null) "${player.name} · ${player.rank}" else player.name
+                    xText("p.name")
                 }
                 button {
                     menuItemStyle(danger = false, first = true)
                     // Routed through `selectPlayer` rather than a bare coordinate jump so the
                     // console's players list highlights whoever the map just moved to.
-                    onClick("selectPlayer('${jsString(player.name)}'); menuOpen = false")
+                    onClick("selectPlayer(p.name); menuOpen = false")
                     icon(Icons.CROSSHAIR, size = 13)
                     +" Move here"
                 }
-                button {
-                    menuItemStyle(danger = true, first = false)
-                    onClick("kickPlayer('${jsString(player.name)}'); menuOpen = false")
-                    icon(Icons.CIRCLE_X, size = 13)
-                    +" Kick"
+                if (Site.FULL) {
+                    button {
+                        menuItemStyle(danger = true, first = false)
+                        onClick("kickPlayer(p.name); menuOpen = false")
+                        icon(Icons.CIRCLE_X, size = 13)
+                        +" Kick"
+                    }
                 }
             }
         }
@@ -201,22 +174,6 @@ object WorldMap {
             append("],\"y\":[")
             y.joinTo(this, ",")
             append("]}")
-        }
-        append("];")
-    }
-
-    /**
-     * Inline `<script>` body defining `window.VOID_PLAYERS` as JSON — the same [players] the pins
-     * are rendered from, handed to `worldmap.js` so the console's list and the search index don't
-     * have to scrape them back out of the DOM. Only emitted on a [Site.FULL] build; `worldmap.js`
-     * reads a missing array as "no players", which is exactly right for a public one.
-     */
-    private fun playersScript(): String = buildString {
-        append("window.VOID_PLAYERS=[")
-        players.joinTo(this, ",") { player ->
-            val rank = if (player.rank == null) "null" else "\"${jsonString(player.rank)}\""
-            "{\"name\":\"${jsonString(player.name)}\",\"x\":${player.x},\"y\":${player.y}," +
-                "\"level\":${player.level},\"combat\":${player.combat},\"you\":${player.you},\"rank\":$rank}"
         }
         append("];")
     }
@@ -297,21 +254,6 @@ object WorldMap {
         }
     }
 
-    /**
-     * One pane of the bottom console. A [Site.FULL] build has both panes and so has a tab strip to
-     * pick between them; a public build only has search, so there's nothing for a [Ui.tabPanel] to
-     * key off — the pane renders as a plain, always-visible div instead.
-     */
-    private fun FlowContent.consolePane(id: String, content: DIV.() -> Unit) {
-        if (Site.FULL) {
-            ui.tabPanel("ptab", id, content)
-        } else {
-            div {
-                content()
-            }
-        }
-    }
-
     /** Shared style for one row of the console's players/search lists. */
     private const val ROW_STYLE = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);" +
         "padding:8px 14px;border-left:2px solid transparent;border-bottom:1px solid var(--border-subtle);cursor:pointer"
@@ -325,9 +267,15 @@ object WorldMap {
      * The players pane: every online player, filterable by name, with the selected row and that
      * player's pin highlighted together — `selectedPlayer` drives both (see `renderPlayers`).
      * Picking a row moves the map to that player, switching height level when they're on a
-     * different one; "Kick" stops the click bubbling so it doesn't also move the view.
+     * different one; "Kick" ([Site.FULL] only) stops the click bubbling so it doesn't also move
+     * the view.
      */
     private fun DIV.playersPane() {
+        val kickButton = if (Site.FULL) {
+            """<button type="button" class="wm-row-action" @click.stop="kickPlayer(p.name)" style="flex:0 0 auto;height:22px;padding:0 10px;background:transparent;border:1px solid var(--border-strong);border-radius:var(--radius-pill);color:var(--text-muted);font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);cursor:pointer">Kick</button>"""
+        } else {
+            ""
+        }
         style = "padding:var(--space-5) 0 0;display:flex;flex-direction:column"
         div {
             // Padded below as well as at the sides: the field's hint line is the last thing in the
@@ -348,16 +296,14 @@ object WorldMap {
                     <span style="min-width:0;display:flex;flex-direction:column;gap:3px">
                       <span style="display:flex;align-items:center;gap:6px;min-width:0">
                         <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--parch-50);overflow:hidden;text-overflow:ellipsis;white-space:nowrap" x-text="p.name"></span>
-                        <span x-show="p.rank" style="$PILL_STYLE;color:var(--gold-300);border-color:var(--gold-600)" x-text="p.rank"></span>
-                        <span x-show="p.you" style="$PILL_STYLE;color:var(--text-faint);border-color:var(--border-strong)">you</span>
                       </span>
-                      <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="'Lv ' + p.combat + ' · ' + p.x + ', ' + p.y + ', ' + p.level"></span>
+                      <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="p.x + ', ' + p.y + ', ' + p.level"></span>
                     </span>
-                    <button type="button" class="wm-row-action" @click.stop="kickPlayer(p.name)" style="flex:0 0 auto;height:22px;padding:0 10px;background:transparent;border:1px solid var(--border-strong);border-radius:var(--radius-pill);color:var(--text-muted);font:var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);cursor:pointer">Kick</button>
+                    $kickButton
                   </div>
                 </template>
                 <div x-show="players.length && !filteredPlayers.length" style="padding:var(--space-7) 14px;font:var(--type-body-sm);color:var(--text-faint)">No online player matches that name.</div>
-                <div x-show="!players.length" style="padding:var(--space-7) 14px;font:var(--type-body-sm);color:var(--text-faint)">No connected players yet — this will list online players once the server bridge is wired up.</div>
+                <div x-show="!players.length" style="padding:var(--space-7) 14px;font:var(--type-body-sm);color:var(--text-faint)" x-text="!${'$'}store.world.current ? 'Select a world to see its players on the map.' : playersError ? 'Player locations are unavailable — this world is not responding.' : 'Nobody is showing on the map right now.'"></div>
                 """,
             )
         }
@@ -422,8 +368,7 @@ object WorldMap {
         data = "worldMapApp()",
         head = {
             link(rel = "stylesheet", href = "style/world-map.css")
-            val playerData = if (Site.FULL) playersScript() else ""
-            script { unsafe { raw(tileBaseScript() + areasScript() + mapLabels.script() + playerData) } }
+            script { unsafe { raw(tileBaseScript() + areasScript() + mapLabels.script()) } }
             script(src = "js/worldmap.js") {}
         },
     ) {
@@ -461,18 +406,15 @@ object WorldMap {
                     style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
                     // Filled from `window.VOID_MAP_LABELS` (see [MapLabels]) on every render.
                 }
-                if (Site.FULL) {
-                    div {
-                        attributes["id"] = "wm-players"
-                        xShow("showPlayerPins")
-                        style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
-                        // Example pins only — real player positions will replace these once the
-                        // server bridge exists. Rendered from the same [players] list the console's
-                        // list and the search index read through [playersScript].
-                        for (player in players) {
-                            playerPin(player)
-                        }
-                    }
+                div {
+                    attributes["id"] = "wm-players"
+                    xShow("showPlayerPins")
+                    style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
+                    // One pin per entry of the live `players` list `worldmap.js` polls for: Alpine
+                    // stamps them out beside the template and `renderPlayers` positions them.
+                    unsafe { raw("""<template x-for="p in players" :key="p.name">""") }
+                    playerPin()
+                    unsafe { raw("</template>") }
                 }
             }
 
@@ -536,10 +478,8 @@ object WorldMap {
                     displayToggle("Area labels", "showAreaLabels")
                     displayToggle("Area polygons", "showAreaPolygons")
                     displayToggle("Region grid", "showRegionGrid")
-                    displayToggle("Region labels", "showRegionLabels", last = !Site.FULL)
-                    if (Site.FULL) {
-                        displayToggle("Player pins", "showPlayerPins", last = true)
-                    }
+                    displayToggle("Region labels", "showRegionLabels")
+                    displayToggle("Player pins", "showPlayerPins", last = true)
                 }
             }
 
@@ -645,10 +585,7 @@ object WorldMap {
                 }
             }
 
-            // Bottom-centre console: search on every build, plus the players list on a [Site.FULL]
-            // one. A public build has the one pane, so it renders with no tab strip above it — one
-            // tab is just a label, and a single-item [Ui.tabs] strip still draws its background and
-            // bottom rule as a stray 1px line across the top of the panel.
+            // Bottom-centre console: the online players list and search, one tab each.
             div {
                 attributes["class"] = "wm-console"
                 // A fixed width rather than a shrink-wrapped one: both panes are lists, and their
@@ -659,14 +596,12 @@ object WorldMap {
                     "background:var(--surface-panel);border:1px solid var(--border-gold);" +
                     "border-radius:var(--radius-md);box-shadow:var(--bevel-up),var(--shadow-lg);box-sizing:border-box;" +
                     "overflow:hidden;z-index:25"
-                if (Site.FULL) {
-                    ui.tabs(
-                        model = "ptab",
-                        items = listOf(TabItem("players", "Players"), TabItem("search", "Search")),
-                    )
-                    consolePane("players") { playersPane() }
-                }
-                consolePane("search") { searchPane() }
+                ui.tabs(
+                    model = "ptab",
+                    items = listOf(TabItem("search", "Search"), TabItem("players", "Players")),
+                )
+                ui.tabPanel("ptab", "players") { playersPane() }
+                ui.tabPanel("ptab", "search") { searchPane() }
             }
         }
     }

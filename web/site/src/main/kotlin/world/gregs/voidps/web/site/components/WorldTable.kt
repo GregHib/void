@@ -7,144 +7,96 @@ import kotlinx.html.h2
 import kotlinx.html.p
 import kotlinx.html.span
 import kotlinx.html.style
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import world.gregs.voidps.web.site.Site
+import java.io.File
 
+/** The states a world's live `status` (from `worlds.js`'s `worlds` Alpine store) can be in. */
 enum class WorldStatus(val label: String, val tone: BadgeTone, val dot: Boolean) {
+    Checking("Checking", BadgeTone.Neutral, false),
     Online("Online", BadgeTone.Success, true),
     Full("Full", BadgeTone.Info, false),
     Restarting("Restarting", BadgeTone.Warning, true),
     Offline("Offline", BadgeTone.Danger, true),
+    ;
+
+    companion object {
+        /** JS expression mapping a status name in [statusExpr] to its tone's text colour. */
+        fun colorExpr(statusExpr: String) = "({${entries.joinToString(",") { "${it.name}:'${it.tone.color}'" }}})[$statusExpr]"
+    }
 }
 
+/**
+ * A world's static description, as listed in `worlds.json`. Anything that changes while the world
+ * runs (status, players, capacity, xp/drop rates, uptime, ping) isn't here — it's fetched live
+ * from the world's own [web] server by `worlds.js` and read back through [live].
+ */
+@Serializable
 data class WorldEntry(
     val number: Int,
     val region: String,
-    val members: Boolean = false,
     val mode: String,
-    val players: Int,
-    val capacity: Int,
-    val ping: Int?,
-    val status: WorldStatus,
-    // The fields below back [worldList]'s expanded detail panel — the navbar [worldMenu] rows
-    // only ever read the fields above, so mock entries that don't care about hosting/ruleset
-    // detail can leave these at default.
     val name: String = "",
     val description: String = "",
     val host: String = "",
-    val revision: String = "",
-    val xpRate: String = "",
-    val uptime: String = "",
     val address: String = "",
+    /** Base URL of this world's Void web server, which serves its live `/api/v1/info`. */
+    val web: String = "",
     val tags: List<String> = emptyList(),
-    val site: String = "",
-    val siteLabel: String = "",
+    /** Label → url links for the detail panel, in order; only the first [MAX_WORLD_LINKS] are shown. */
+    val links: Map<String, String> = emptyMap(),
     val note: String = "",
 ) {
     /** "Name · Region" once a [name] is set, otherwise just the region. */
     val label: String get() = if (name.isEmpty()) region else "$name · $region"
+
+    /** JS expression for this world's live state in the `worlds` Alpine store (see `worlds.js`). */
+    val live: String get() = "${'$'}store.worlds.get($number)"
 }
+
+private const val MAX_WORLD_LINKS = 3
 
 private const val COLUMNS = "56px 1.1fr 84px 118px 64px 132px"
 
-/** Shared mock world list for surfaces that need one but don't render their own — the navbar's
- * quick-switch menu ([worldMenu]), the play page's world picker, and the full [worldList] page. */
-val defaultWorlds = listOf(
-    WorldEntry(
-        number = 4, name = "Aldergate", region = "United Kingdom", mode = "Normal",
-        players = 1284, capacity = 2000, ping = 24, status = WorldStatus.Online,
-        description = "The default entry world. Vanilla ruleset, no rate changes, and the largest population " +
-            "on the network. New accounts land here unless they pick otherwise.",
-        host = "London, UK", revision = "Rev 231", xpRate = "1×", uptime = "19d 04h",
-        address = "ald.void.org:43594", site = "#", siteLabel = "void.org/aldergate",
-        tags = listOf("Vanilla", "Grand exchange", "Skill events"),
-        note = "Recommended for first-time accounts.",
-    ),
-    WorldEntry(
-        number = 7, name = "Frostwood", region = "Germany", members = true, mode = "PvP",
-        players = 812, capacity = 1200, ping = 38, status = WorldStatus.Online,
-        description = "Open world PvP outside the safe zones, with a 15-second combat logout timer. " +
-            "Item loss is on and the wilderness has no level cap.",
-        host = "Frankfurt, DE", revision = "Rev 231", xpRate = "1.5×", uptime = "6d 21h",
-        address = "frost.void.org:43594", site = "#", siteLabel = "frostwood.gg",
-        tags = listOf("Full loot", "No cap wilderness", "Clan wars"),
-        note = "Item loss is enabled everywhere outside banks.",
-    ),
-    WorldEntry(
-        number = 9, name = "Tidemoor", region = "United States (East)", mode = "Normal",
-        players = 604, capacity = 2000, ping = 96, status = WorldStatus.Online,
-        description = "North American mirror of the default ruleset, hosted in Ashburn. Shares the item " +
-            "database with Aldergate but keeps a separate economy.",
-        host = "Ashburn, US", revision = "Rev 231", xpRate = "1×", uptime = "31d 12h",
-        address = "tide.void.org:43594", site = "#", siteLabel = "void.org/tidemoor",
-        tags = listOf("Vanilla", "Separate economy"),
-    ),
-    WorldEntry(
-        number = 12, name = "Emberfall", region = "Germany", members = true, mode = "Hardcore",
-        players = 317, capacity = 600, ping = 41, status = WorldStatus.Online,
-        description = "One life. Death deletes the character and posts it to the memorial board. Drop rates " +
-            "are unchanged; XP is doubled to make the run viable.",
-        host = "Frankfurt, DE", revision = "Rev 231", xpRate = "2×", uptime = "11d 02h",
-        address = "ember.void.org:43594", site = "#", siteLabel = "emberfall.world",
-        tags = listOf("Permadeath", "Memorial board", "2× XP"),
-        note = "Character deletion on death is permanent and cannot be appealed.",
-    ),
-    WorldEntry(
-        number = 15, name = "Greyhollow", region = "United Kingdom", mode = "Ironman",
-        players = 498, capacity = 1200, ping = 27, status = WorldStatus.Restarting,
-        description = "Solo-only account rules enforced server-side: no trading, no shared drops, no grand " +
-            "exchange. Group ironman is available through the account portal.",
-        host = "London, UK", revision = "Rev 231", xpRate = "1×", uptime = "0d 00h",
-        address = "grey.void.org:43594", site = "#", siteLabel = "void.org/greyhollow",
-        tags = listOf("Solo only", "Group ironman", "No trade"),
-        note = "Restarting for a scheduled cache update. Back at 04:00 UTC.",
-    ),
-    WorldEntry(
-        number = 18, name = "Saltmarch", region = "Australia", mode = "Normal",
-        players = 186, capacity = 800, ping = 174, status = WorldStatus.Online,
-        description = "Oceania world running on community-donated hardware in Sydney. Latency to Europe is " +
-            "high by design — this world exists for AU and NZ players.",
-        host = "Sydney, AU", revision = "Rev 231", xpRate = "1×", uptime = "8d 17h",
-        address = "salt.void.org:43594", site = "#", siteLabel = "saltmarch.au",
-        tags = listOf("Community hosted", "Oceania"),
-        note = "Hosted by the AU community, not by the Void team.",
-    ),
-    WorldEntry(
-        number = 21, name = "Ashenvale", region = "United States (West)", members = true, mode = "PvE",
-        players = 742, capacity = 800, ping = 118, status = WorldStatus.Full,
-        description = "Raid-focused world with a persistent group finder and weekly boss rotations. Queue " +
-            "opens automatically when a slot frees up.",
-        host = "Portland, US", revision = "Rev 231", xpRate = "1.25×", uptime = "24d 09h",
-        address = "ashen.void.org:43594", site = "#", siteLabel = "ashenvale.gg",
-        tags = listOf("Raids", "Group finder", "Weekly rotation"),
-        note = "World is at capacity. You will be queued on connect.",
-    ),
-    WorldEntry(
-        number = 30, name = "Nullreach", region = "Netherlands", mode = "Beta",
-        players = 0, capacity = 400, ping = 33, status = WorldStatus.Offline,
-        description = "Staging world for the next protocol revision. Runs unstable builds from the main " +
-            "branch, wipes weekly, and is open to anyone testing patches.",
-        host = "Amsterdam, NL", revision = "Rev 232 (beta)", xpRate = "5×", uptime = "0d 00h",
-        address = "null.void.org:43594", site = "#", siteLabel = "github.com/void/server",
-        tags = listOf("Weekly wipe", "Unstable build", "5× XP"),
-        note = "Offline between test cycles. Progress is wiped every Monday.",
-    ),
-)
+private val worldsJson = Json { ignoreUnknownKeys = true }
+
+/**
+ * Reads the canonical world list out of the `worlds.json` data file (served as-is at the site
+ * root) rather than embedding it in Kotlin, so it's the single source of truth for every surface
+ * that renders a world list — the navbar's quick-switch menu ([worldMenu]), the play page's world
+ * picker, and the full [worldList] page. The browser re-fetches the same file at runtime (see
+ * `worlds.js`) to fill in each world's live state from its info endpoint and ping — this
+ * server-side read only has to produce the page's static structure.
+ */
+private fun loadWorlds(path: String = "./web/site/src/main/resources/static/worlds.json"): List<WorldEntry> {
+    val file = File(path)
+    if (!file.exists()) {
+        return emptyList()
+    }
+    return worldsJson.decodeFromString(file.readText())
+}
+
+val defaultWorlds: List<WorldEntry> = loadWorlds()
 
 /** The players/capacity mini progress bar shared by [worldList]'s rows. */
 private fun DIV.playersCell(world: WorldEntry) {
     span {
         style = "display:flex;align-items:center;gap:var(--space-4)"
-        val percent = if (world.capacity <= 0) 0 else (world.players * 100 / world.capacity).coerceIn(0, 100)
+        val live = world.live
         span {
             style = "flex:1;height:4px;background:var(--surface-inset);border-radius:var(--radius-xs);" +
                 "box-shadow:var(--bevel-down);overflow:hidden"
             span {
-                style = "display:block;width:$percent%;height:100%;background:var(--gold-400)"
+                xEffectStyle("width", "($live.capacity ? Math.min(100, $live.players * 100 / $live.capacity) : 0) + '%'")
+                style = "display:block;width:0;height:100%;background:var(--gold-400)"
             }
         }
         span {
             style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);" +
                 "min-width:34px;text-align:right"
-            +String.format("%,d", world.players)
+            xText("voidFormatNumber($live.players)")
+            +"—"
         }
     }
 }
@@ -152,7 +104,15 @@ private fun DIV.playersCell(world: WorldEntry) {
 private fun DIV.pingCell(world: WorldEntry) {
     span {
         style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-muted)"
-        +(world.ping?.let { "${it}ms" } ?: "—")
+        xText("${world.live}.ping != null ? ${world.live}.ping + 'ms' : '—'")
+        +"—"
+    }
+}
+
+/** One badge per [WorldStatus], with only the one matching the world's live status shown. */
+private fun Ui.statusBadge(world: WorldEntry) {
+    for (status in WorldStatus.entries) {
+        badge(status.label, tone = status.tone, dot = status.dot, showWhen = "${world.live}.status === '${status.name}'")
     }
 }
 
@@ -276,13 +236,6 @@ fun Ui.worldList(worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String) {
                             style = "font:var(--type-body-sm);color:var(--text-body);white-space:nowrap;" +
                                 "overflow:hidden;text-overflow:ellipsis"
                             +world.label
-                            if (world.members) {
-                                span {
-                                    style = "color:var(--gold-400);margin-left:var(--space-4);font:var(--type-label);" +
-                                        "letter-spacing:var(--tracking-caps)"
-                                    +"MEMBERS"
-                                }
-                            }
                         }
                         span {
                             style = "font:var(--type-body-sm);color:var(--text-muted)"
@@ -290,7 +243,7 @@ fun Ui.worldList(worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String) {
                         }
                         playersCell(world)
                         pingCell(world)
-                        ui.badge(world.status.label, tone = world.status.tone, dot = world.status.dot)
+                        span { ui.statusBadge(world) }
                     }
 
                     div {
@@ -318,22 +271,16 @@ fun Ui.worldList(worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String) {
                             div {
                                 style = "display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));" +
                                     "gap:var(--space-5) var(--space-6)"
+                                val live = world.live
                                 worldDetailStat("Host", world.host)
-                                worldDetailStat("Revision", world.revision, mono = true)
-                                worldDetailStat("XP rate", world.xpRate)
-                                worldDetailStat("Uptime", world.uptime)
-                                worldDetailStat("Capacity", "${String.format("%,d", world.players)} / ${String.format("%,d", world.capacity)}", mono = true)
-                                if (world.address.isNotEmpty()) {
-                                    div {
-                                        style = "min-width:0;grid-column:1/-1"
-                                        worldDetailLabel("Address")
-                                        span {
-                                            style = "display:block;font:var(--type-code);font-size:var(--text-xs);" +
-                                                "color:var(--text-body);overflow-wrap:anywhere"
-                                            +world.address
-                                        }
-                                    }
-                                }
+                                worldDetailStat("XP rate", expr = "voidFormatRate($live.xpRate)")
+                                worldDetailStat("Drop rate", expr = "voidFormatRate($live.dropRate)")
+                                worldDetailStat("Uptime", expr = "voidFormatUptime($live.uptimeSeconds)")
+                                worldDetailStat(
+                                    "Capacity",
+                                    expr = "voidFormatNumber($live.players) + ' / ' + voidFormatNumber($live.capacity)",
+                                    mono = true,
+                                )
                             }
                             if (world.tags.isNotEmpty()) {
                                 div {
@@ -347,30 +294,32 @@ fun Ui.worldList(worlds: List<WorldEntry>, onSelect: (WorldEntry) -> String) {
 
                         div {
                             style = "display:flex;flex-direction:column;gap:var(--space-5);align-items:stretch"
-                            val locked = world.status == WorldStatus.Offline
-                            val playLabel = when (world.status) {
-                                WorldStatus.Full -> "Join queue"
-                                WorldStatus.Offline -> "Unavailable"
-                                else -> "Play world ${world.number}"
-                            }
-                            ui.button(playLabel, disabled = locked, fullWidth = true, onClick = if (locked) null else onSelect(world))
+                            val status = "${world.live}.status"
+                            ui.button(
+                                "${if (Site.FULL) "Play" else "Select"} world ${world.number}",
+                                disabledExpression = "$status === 'Offline'",
+                                fullWidth = true,
+                                onClick = "if ($status !== 'Offline') { ${onSelect(world)} }",
+                                textExpr = "$status === 'Full' ? 'Join queue' : $status === 'Offline' ? 'Unavailable' : '${if (Site.FULL) "Play" else "Select"} world ${world.number}'",
+                            )
                             ui.button(
                                 "Copy config",
                                 variant = ButtonVariant.Secondary,
                                 fullWidth = true,
                                 onClick = "navigator.clipboard && navigator.clipboard.writeText('${jsString(world.address)}')",
                             )
-                            div { style = "height:1px;background:var(--border-panel)" }
-                            div {
-                                style = "display:flex;flex-direction:column;gap:10px"
-                                if (world.site.isNotEmpty()) {
-                                    a(href = world.site) {
-                                        style = "font:var(--type-body-sm)"
-                                        +"${world.siteLabel} →"
+                            val links = world.links.entries.take(MAX_WORLD_LINKS)
+                            if (links.isNotEmpty()) {
+                                div { style = "height:1px;background:var(--border-panel)" }
+                                div {
+                                    style = "display:flex;flex-direction:column;gap:10px"
+                                    for ((label, url) in links) {
+                                        a(href = url) {
+                                            style = "font:var(--type-body-sm)"
+                                            +label
+                                        }
                                     }
                                 }
-                                a(href = "#") { style = "font:var(--type-body-sm)"; +"Status & uptime history →" }
-                                a(href = "#") { style = "font:var(--type-body-sm)"; +"World rules →" }
                             }
                             if (world.note.isNotEmpty()) {
                                 span {
@@ -401,10 +350,13 @@ private fun DIV.worldDetailLabel(text: String) {
 }
 
 /** A big number over a small caption — the players-online/worlds-up pair on [Play.page]/[Website.worldsPage]. */
-fun DIV.worldStat(value: String, label: String) {
+fun DIV.worldStat(value: String, label: String, expr: String? = null) {
     div {
         span {
             style = "display:block;font:var(--weight-bold) var(--text-2xl)/1 var(--font-display);color:var(--gold-300)"
+            if (expr != null) {
+                xText(expr)
+            }
             +value
         }
         span {
@@ -415,7 +367,8 @@ fun DIV.worldStat(value: String, label: String) {
     }
 }
 
-private fun DIV.worldDetailStat(label: String, value: String, mono: Boolean = false) {
+/** A static [value], or a live one bound to the JS [expr] (showing "—" until it resolves). */
+private fun DIV.worldDetailStat(label: String, value: String = "—", mono: Boolean = false, expr: String? = null) {
     if (value.isEmpty()) {
         return
     }
@@ -424,6 +377,9 @@ private fun DIV.worldDetailStat(label: String, value: String, mono: Boolean = fa
         span {
             val font = if (mono) "var(--type-code);font-size:var(--text-xs)" else "var(--type-body-sm)"
             style = "font:$font;color:var(--text-body)"
+            if (expr != null) {
+                xText(expr)
+            }
             +value
         }
     }

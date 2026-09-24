@@ -59,12 +59,12 @@ object Site {
         buildDir.mkdirs()
         val gameData = GameData()
         File(buildDir, "index.html").writeText(Website.homePage())
-        // Linked from the header on every build (see [Website.pages]) — [WorldMap] keeps the pieces
-        // that need a server bridge (the player pins and the console's players tab) behind [FULL] itself.
+        // Linked from the header on every build (see [Website.pages]) — [WorldMap] keeps its one
+        // staff-only piece (kicking a player) behind [FULL] itself.
         File(buildDir, "world-map.html").writeText(WorldMap.page(MapLabels(cache)))
+        File(buildDir, "worlds.html").writeText(Website.worldsPage())
         if (FULL) {
             File(buildDir, "play.html").writeText(Play.page())
-            File(buildDir, "worlds.html").writeText(Website.worldsPage())
             File(buildDir, "exchange.html").writeText(Exchange.page())
             File(buildDir, "hiscores.html").writeText(Hiscores.page(gameData))
             File(buildDir, "log.html").writeText(AdventurersLog.page(gameData))

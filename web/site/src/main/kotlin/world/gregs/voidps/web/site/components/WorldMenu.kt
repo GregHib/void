@@ -101,13 +101,6 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
                             span {
                                 style = "color:var(--parch-50)"
                                 +"World ${world.number}"
-                                if (world.members) {
-                                    span {
-                                        style = "color:var(--gold-400);margin-left:var(--space-3);font:var(--type-label);" +
-                                            "letter-spacing:var(--tracking-caps)"
-                                        +"MEMBERS"
-                                    }
-                                }
                             }
                             span {
                                 style = "font:var(--type-label);letter-spacing:var(--tracking-wide);" +
@@ -118,15 +111,16 @@ fun Ui.worldMenu(worlds: List<WorldEntry>, worldsHref: String = "worlds.html") {
                         span {
                             style = "flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-1)"
                             span {
+                                val status = "${world.live}.status"
+                                xText(status)
+                                xEffectStyle("color", WorldStatus.colorExpr(status))
                                 style = "font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                                    "text-transform:uppercase;color:${world.status.tone.color}"
-                                +world.status.label
+                                    "text-transform:uppercase;color:${WorldStatus.Checking.tone.color}"
+                                +WorldStatus.Checking.label
                             }
-                            if (world.ping != null) {
-                                span {
-                                    style = "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)"
-                                    +"${world.ping}ms"
-                                }
+                            span {
+                                xText("${world.live}.ping != null ? ${world.live}.ping + 'ms' : ''")
+                                style = "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)"
                             }
                         }
                     }

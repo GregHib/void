@@ -81,6 +81,13 @@ window.worldMapApp = function () {
   // a query could have meant, a place name the least.
   var KIND_ORDER = ['Player', 'Area', 'Place'];
 
+  // Online player locations come from the connected world's own web server (its `web` address in
+  // `worlds.json`, see WorldsRoutes.kt's `/players`), which already leaves out anyone in the
+  // wilderness or opted out with `::world_map`.
+  var PLAYERS_PATH = '/api/v1/players';
+  var PLAYERS_REFRESH_MS = 30000;
+  var PLAYERS_TIMEOUT_MS = 5000;
+
   function pxPerTile(zoom) {
     return BASE_PX_PER_TILE * Math.pow(2, zoom - BASE_ZOOM);
   }
@@ -151,7 +158,7 @@ window.worldMapApp = function () {
     displayPanelOpen: true,
     teleportPanelOpen: true,
     tilesMissing: false,
-    ptab: 'players',
+    ptab: 'search',
     tpX: '3200',
     tpY: '3200',
     tpZ: '0',
@@ -160,10 +167,14 @@ window.worldMapApp = function () {
     hoverAreaNames: [],
     levelLabels: ['SURFACE', 'FLOOR 1', 'FLOOR 2', 'FLOOR 3'],
 
-    // Online players, injected server-side by [WorldMap.playersScript] on a Site.FULL build and
-    // absent otherwise. The console's list, its name filter and the search index all read this
-    // one array — as do the pins, rendered from the same source server-side.
-    players: window.VOID_PLAYERS || [],
+    // Online players, `{name, x, y, level}` each, refreshed by `loadPlayers` every
+    // PLAYERS_REFRESH_MS. The pins, the console's list, its name filter and the search index all
+    // read this one array.
+    players: [],
+    // Set once a refresh fails, so the players pane can say the world isn't answering rather than
+    // that nobody's online; cleared by the next refresh that succeeds.
+    playersError: false,
+    _playersTimer: null,
     playerQuery: '',
     // Name of the player whose console row is highlighted and whose pin is ringed on the map
     // (see `renderPlayers`); '' for none.
@@ -239,6 +250,30 @@ window.worldMapApp = function () {
       // The selected player's pin is ringed by `renderPlayers`, which only runs from render().
       self.$watch('selectedPlayer', function () {
         self.scheduleRender();
+      });
+
+      // Polling stops while the tab is hidden — nobody's looking at the pins — and catches up
+      // the moment it's shown again rather than waiting out the rest of the interval. It's also
+      // tied to the navbar's world switcher (the `world` store in void.js): any change of world —
+      // a switch or a disconnect — clears every pin straight away, since they belong to the world
+      // being left, and a newly connected one loads without waiting for the interval. Runs once
+      // immediately, which stands in for the first load.
+      Alpine.effect(function () {
+        var world = Alpine.store('world').current;
+        self.clearPlayers();
+        if (world != null) {
+          self.loadPlayers();
+        }
+      });
+      self._playersTimer = setInterval(function () {
+        if (!document.hidden) {
+          self.loadPlayers();
+        }
+      }, PLAYERS_REFRESH_MS);
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) {
+          self.loadPlayers();
+        }
       });
       // A changed query invalidates whichever row the arrow keys had landed on.
       self.$watch('searchQuery', function () {
@@ -562,8 +597,70 @@ window.worldMapApp = function () {
       this.selectPlayer(first.name);
     },
 
-    // "Kick", from a pin's right-click menu or a players row — placeholder until the server bridge
-    // is wired up, same as the player list it acts on.
+    clearPlayers: function () {
+      var self = this;
+      this.players = [];
+      this.playersError = false;
+      this.selectedPlayer = '';
+      this.$nextTick(function () {
+        self.scheduleRender();
+      });
+    },
+
+    // Replaces `players` with the connected world's current list. A failed refresh keeps the last
+    // list rather than wiping the map, so one dropped request doesn't blink every pin out — that
+    // list can only be this world's, as switching clears it (see `boot`). Does nothing while no
+    // world is connected, and drops any answer for a world that's no longer the connected one, so
+    // a slow reply from the previous world can't land on the new one's map.
+    loadPlayers: function () {
+      var self = this;
+      var world = Alpine.store('world').current;
+      if (world == null) {
+        return;
+      }
+      var stillConnected = function () {
+        return Alpine.store('world').current === world;
+      };
+      var timeout = null;
+      window.voidWorldWeb(world)
+        .then(function (base) {
+          if (!base) {
+            throw new Error('No web address for world ' + world);
+          }
+          var controller = typeof AbortController === 'function' ? new AbortController() : null;
+          timeout = controller ? setTimeout(function () { controller.abort(); }, PLAYERS_TIMEOUT_MS) : null;
+          return fetch(base + PLAYERS_PATH, { cache: 'no-store', signal: controller ? controller.signal : undefined });
+        })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('HTTP ' + response.status);
+          }
+          return response.json();
+        })
+        .then(function (list) {
+          if (!stillConnected()) {
+            return;
+          }
+          self.players = Array.isArray(list) ? list : [];
+          self.playersError = false;
+          // Pins are stamped out by Alpine's `x-for`, so they only exist to be positioned once it
+          // has re-rendered.
+          self.$nextTick(function () {
+            self.scheduleRender();
+          });
+        })
+        .catch(function () {
+          if (stillConnected()) {
+            self.playersError = true;
+          }
+        })
+        .finally(function () {
+          clearTimeout(timeout);
+        });
+    },
+
+    // "Kick", from a pin's right-click menu or a players row ([Site.FULL] builds only) — a
+    // placeholder until there's a staff endpoint for it.
     kickPlayer: function (name) {
       console.log('Kick requested for ' + name + ' (server bridge not wired up yet)');
     },
@@ -1189,14 +1286,16 @@ window.worldMapApp = function () {
     },
 
     renderPlayers: function () {
-      // Absent entirely on a non-[Site.FULL] build — WorldMap.kt only renders the pin layer,
-      // its display toggle and the console's player tabs while that (placeholder) content is on.
       if (!this.playerLayer) {
         return;
       }
       var nodes = this.playerLayer.children;
       for (var i = 0; i < nodes.length; i++) {
         var el = nodes[i];
+        // The `x-for` template the pins are stamped from sits among them.
+        if (el.tagName === 'TEMPLATE') {
+          continue;
+        }
         var onLevel = parseInt(el.getAttribute('data-level'), 10) === this.level;
         el.style.display = onLevel ? '' : 'none';
         // Ringed and tooltip-pinned while this player is the console's selected one.
@@ -1212,6 +1311,9 @@ window.worldMapApp = function () {
       var nodes = layer.children;
       for (var i = 0; i < nodes.length; i++) {
         var el = nodes[i];
+        if (el.tagName === 'TEMPLATE') {
+          continue;
+        }
         var gx = parseFloat(el.getAttribute('data-gx'));
         var gy = parseFloat(el.getAttribute('data-gy'));
         el.style.left = offsetX + gx * scale + 'px';

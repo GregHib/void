@@ -1,6 +1,7 @@
 plugins {
     id("shared")
     application
+    alias(libs.plugins.kotlinSerialization)
 }
 
 application {
@@ -15,4 +16,5 @@ dependencies {
     implementation(project(":engine"))
     implementation(libs.kotlinx.html)
     implementation(libs.markdown)
+    implementation(libs.kotlinx.serialization.json)
 }

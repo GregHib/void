@@ -44,9 +44,8 @@ object Play {
                     }
                     div {
                         style = "display:flex;gap:var(--space-8)"
-                        worldStat(String.format("%,d", defaultWorlds.sumOf { it.players }), "Players online")
-                        val online = defaultWorlds.count { it.status != WorldStatus.Offline }
-                        worldStat("$online / ${defaultWorlds.size}", "Worlds up")
+                        worldStat("—", "Players online", expr = "voidFormatNumber(${'$'}store.worlds.totalPlayers())")
+                        worldStat("— / ${defaultWorlds.size}", "Worlds up", expr = "${'$'}store.worlds.up() + ' / ${defaultWorlds.size}'")
                     }
                 }
                 ui.worldList(defaultWorlds, onSelect = { "select(${it.number})" })

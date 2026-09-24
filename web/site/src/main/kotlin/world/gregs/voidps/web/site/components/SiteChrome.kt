@@ -155,8 +155,8 @@ fun Ui.siteHeader(
                             +"Source"
                         }
                     }
+                    ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
                     if (Site.FULL) {
-                        ui.worldMenu(worlds, worldsHref = "${assetPrefix}worlds.html")
                         ui.accountMenu(name = "rotce", isAdmin = true, devPanelHref = devPanelHref)
                     }
                 }

@@ -50,6 +50,13 @@ class PlayerCommands(
             AuditLog.save()
         }
 
+        playerCommand("world_map", desc = "Toggle whether your location is shown on the website's world map") {
+            if (toggle("world_map_hidden")) {
+                message("You are now hidden from the website's world map.")
+            } else {
+                message("You are now shown on the website's world map.")
+            }
+        }
         adminCommand("skull", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Apply a skull to the player", handler = ::skull)
         adminCommand("unskull", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Remove skull from the player", handler = ::unskull)
         adminCommand("rest", stringArg("player-name", optional = true, autofill = accounts.displayNames.keys), desc = "Set run energy to full", handler = ::rest)
