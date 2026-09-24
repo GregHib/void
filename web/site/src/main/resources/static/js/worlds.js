@@ -189,6 +189,66 @@ window.voidWorldWeb = function (number) {
   });
 };
 
+// The selected world while it can be asked for data: its number, or null when no world is
+// selected or the selected one is known to be Offline. `Checking` counts as available, so a page
+// doesn't wait on the first ping before loading; a world that's really down just fails the fetch.
+function voidAvailableWorld() {
+  var world = Alpine.store('world').current;
+  if (world == null) {
+    return null;
+  }
+  return Alpine.store('worlds').get(world).status === 'Offline' ? null : world;
+}
+
+window.voidAvailableWorld = voidAvailableWorld;
+
+// Calls `callback(world)` straight away and again whenever the available world (see
+// voidAvailableWorld) changes — a switch, a disconnect, or the selected world going offline or
+// coming back — with null when there's nothing to load from. Pages clear their data and, given a
+// world, reload it from there. The callback runs outside the effect so whatever it reads doesn't
+// become a dependency of it.
+window.voidWatchWorld = function (callback) {
+  var last;
+  Alpine.effect(function () {
+    var world = voidAvailableWorld();
+    if (world === last) {
+      return;
+    }
+    last = world;
+    Promise.resolve().then(function () { callback(world); });
+  });
+};
+
+// Resolves to the JSON at `path` (e.g. `/api/v1/hiscores/overall?page=0`) on the selected world's
+// web server. Rejects when no world is available, the world has no web address, the request fails,
+// or the selection changes before the reply lands, so a slow answer from the previous world can't
+// fill a page that has since moved to another one.
+window.voidWorldJson = function (path) {
+  var world = voidAvailableWorld();
+  if (world == null) {
+    return Promise.reject(new Error('No world available'));
+  }
+  return window.voidWorldWeb(world)
+    .then(function (base) {
+      if (!base) {
+        throw new Error('No web address for world ' + world);
+      }
+      return fetch(base + path);
+    })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('Request to ' + path + ' failed: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      if (voidAvailableWorld() !== world) {
+        throw new Error('World changed from ' + world);
+      }
+      return data;
+    });
+};
+
 // --- Custom servers: name/web address the visitor typed in themselves, kept in this browser only ---
 
 function voidGetCustomWorlds() {

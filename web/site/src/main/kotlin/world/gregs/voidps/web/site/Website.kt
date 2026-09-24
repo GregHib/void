@@ -26,6 +26,8 @@ object Website {
         SitePage("log", "Log", "/log.html"),
         SitePage("worldmap", "World Map", "/world-map.html"),
     ) else listOf(
+        SitePage("hiscores", "Hiscores", "/hiscores.html"),
+        SitePage("log", "Adventure Logs", "/log.html"),
         SitePage("worldmap", "World Map", "/world-map.html"),
     )
 

@@ -14,6 +14,7 @@ import world.gregs.voidps.web.hiscores.HiscoresService
  */
 fun Route.hiscoresRoutes(service: HiscoresService) {
     route("/hiscores") {
+        allowAnyOrigin()
         get("/metadata") {
             call.respond(service.metadata())
         }
@@ -60,6 +61,7 @@ fun Route.hiscoresRoutes(service: HiscoresService) {
         }
     }
     route("/players") {
+        allowAnyOrigin()
         get("/search") {
             val params = call.request.queryParameters
             val limit = (params["limit"]?.toIntOrNull() ?: 25).coerceIn(1, 50)

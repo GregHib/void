@@ -1,9 +1,10 @@
-// Grand Exchange page data + Alpine component. Every panel is fetched live from the real
-// `/api/v1/exchange/*` endpoints (see `ExchangeRoutes.kt`) - market summary, highlights, item
-// search, item detail, price history and related items are all backed by real item definitions
-// and `Storage.priceHistory()`. Most items have no recorded trades yet (history only exists for
-// items that have actually been bought/sold on the Grand Exchange), so their guide price falls
-// back to the item's configured/shop value and their chart is empty until someone trades them.
+// Grand Exchange page data + Alpine component. Every panel is fetched live from the selected
+// world's `/api/v1/exchange/*` endpoints (see `ExchangeRoutes.kt`) - market summary, highlights,
+// item search, item detail, price history and related items are all backed by real item
+// definitions and `Storage.priceHistory()`. Most items have no recorded trades yet (history only
+// exists for items that have actually been bought/sold on the Grand Exchange), so their guide
+// price falls back to the item's configured/shop value and their chart is empty until someone
+// trades them. With no world selected, or the selected one offline, every panel is left empty.
 
 (function () {
   var API = "/api/v1/exchange";
@@ -15,14 +16,8 @@
   };
   var TIMEFRAME_ID = { "24H": "24h", "7D": "7d", "30D": "30d", "1Y": "1y", All: "all" };
 
-  function getJson(url) {
-    return fetch(url).then(function (response) {
-      if (!response.ok) {
-        throw new Error("Request to " + url + " failed: " + response.status);
-      }
-      return response.json();
-    });
-  }
+  // Every request goes to the world selected in the navbar (see worlds.js), never this site's own origin.
+  var getJson = window.voidWorldJson;
 
   var fmt = window.voidFmt;
   function gp(n) { return fmt(n) + " gp"; }
@@ -124,10 +119,15 @@
 
       init: function () {
         var self = this;
-        this.syncFromHash();
-        this.hashListener = function () { self.syncFromHash(); };
+        this.syncFromHash(false);
+        this.hashListener = function () { self.syncFromHash(true); };
         window.addEventListener("popstate", this.hashListener);
-        this.loadHome();
+        // Loads the current page now, and again from scratch whenever the selected world changes;
+        // prices belong to the world they came from, so every cache is cleared first.
+        window.voidWatchWorld(function (world) {
+          self.clearData();
+          if (world != null) self.reload();
+        });
         this.$watch("q", function () { if (self.page === "search") self.loadSearch(); });
         this.$watch("cat", function () { if (self.page === "search") self.loadSearch(); });
         this.$watch("sort", function () { if (self.page === "search") self.loadSearch(); });
@@ -135,6 +135,22 @@
       },
       destroy: function () {
         window.removeEventListener("popstate", this.hashListener);
+      },
+
+      clearData: function () {
+        this.trackedItems = 0;
+        this.summaryTiles = [];
+        this.topVolume = []; this.risers = []; this.fallers = []; this.mostExpensive = [];
+        this.searchResults = [];
+        this.items = {};
+        this.historyPoints = {};
+        this.relatedItems = [];
+        this.hover = null;
+      },
+      reload: function () {
+        this.loadHome();
+        if (this.page === "search") this.loadSearch();
+        else if (this.page === "item") this.enterItem(this.id);
       },
 
       loadHome: function () {
@@ -175,19 +191,26 @@
 
       loadItem: function (id) {
         var self = this;
+        var world = window.voidAvailableWorld();
         return getJson(API + "/items/" + encodeURIComponent(id)).then(function (data) {
           self.items[id] = data;
         }).catch(function () {
-          self.items[id] = null;
+          // Only a failure on the world still selected means the item is missing; one cut short by
+          // a switch (see voidWorldJson), or with no world at all, leaves the page blank instead.
+          if (world != null && window.voidAvailableWorld() === world) self.items[id] = null;
         });
       },
       loadHistory: function () {
         var self = this, id = this.id, tf = this.tf;
         var key = id + ":" + tf;
+        var world = window.voidAvailableWorld();
         if (this.historyPoints[key]) return;
         getJson(API + "/items/" + encodeURIComponent(id) + "/history?timeframe=" + TIMEFRAME_ID[tf]).then(function (data) {
           self.historyPoints[key] = data.points;
-        }).catch(function () { self.historyPoints[key] = []; });
+        }).catch(function () {
+          // Don't cache a failure from a world that's since been switched away from.
+          if (window.voidAvailableWorld() === world) self.historyPoints[key] = [];
+        });
       },
       loadRelated: function (id) {
         var self = this;
@@ -198,16 +221,19 @@
 
       // Pushes a history entry per in-page navigation so the browser back/forward buttons step
       // through home/search/item states instead of leaving the page on the first back press.
-      syncFromHash: function () {
+      // With `load` false (on start-up, where the world watcher does the first load) or no world
+      // available, only the page state is restored.
+      syncFromHash: function (load) {
         var h = window.location.hash.replace(/^#/, "");
         var wasSearch = this.page === "search";
+        load = load && window.voidAvailableWorld() != null;
         if (h.indexOf("item/") === 0) {
           this.id = decodeURIComponent(h.slice(5));
           this.page = "item";
-          this.enterItem(this.id);
+          if (load) this.enterItem(this.id);
         } else if (h === "search") {
           this.page = "search";
-          this.loadSearch();
+          if (load) this.loadSearch();
         } else {
           this.page = "home";
         }

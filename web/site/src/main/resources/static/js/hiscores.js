@@ -1,5 +1,6 @@
-// Hiscores page data + Alpine component. Every table is fetched live from the real
-// `/api/v1/hiscores/*` and `/api/v1/players/*` endpoints - there is no mock dataset here.
+// Hiscores page data + Alpine component. Every table is fetched live from the selected world's
+// `/api/v1/hiscores/*` and `/api/v1/players/*` endpoints - there is no mock dataset here. With no
+// world selected, or the selected one offline, every table is left empty.
 
 (function () {
   var API = "/api/v1";
@@ -51,14 +52,8 @@
     }
   }
 
-  function getJson(url) {
-    return fetch(url).then(function (response) {
-      if (!response.ok) {
-        throw new Error("Request to " + url + " failed: " + response.status);
-      }
-      return response.json();
-    });
-  }
+  // Every request goes to the world selected in the navbar (see worlds.js), never this site's own origin.
+  var getJson = window.voidWorldJson;
 
   function band(i) { return i % 2 === 0 ? "var(--surface-panel)" : "var(--umber-850)"; }
   function rankColor(r) {
@@ -177,7 +172,25 @@
           self.loadView();
         });
 
-        this.loadView();
+        // Loads the current view now, and again from scratch whenever the selected world changes;
+        // everything shown belongs to the world it came from, so it's all cleared first.
+        window.voidWatchWorld(function (world) {
+          self.clearData(world);
+          if (world != null) self.loadView();
+        });
+      },
+
+      clearData: function (world) {
+        this.updatedLabel = world != null ? "Loading…" : Alpine.store("world").current != null ? "World offline" : "No world selected";
+        this.overallRows = []; this.overallPager = derivePager(null); this.overallEyebrow = "";
+        this.skillRows = []; this.skillPager = derivePager(null); this.skillEyebrow = "";
+        this.bossKcRows = []; this.bossKcPager = derivePager(null);
+        this.bossTimeRows = []; this.bossTimePager = derivePager(null);
+        this.searchRows = []; this.searchPager = derivePager(null); this.searchEyebrow = "";
+        this.compareResult = null;
+        this.comboItems = { a: [], b: [] };
+        this.profilePlayer = { rank: "—", mode: "", name: this.profile, totalLevel: 0, totalXp: 0, joined: "" };
+        this.profileSkills = []; this.profileBosses = [];
       },
 
       historyState: function () {

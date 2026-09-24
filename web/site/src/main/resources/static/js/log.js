@@ -1,7 +1,8 @@
-// Adventurer's log page data + Alpine component. Every panel is fetched live from the real
-// `/api/v1/players/*` and `/api/v1/hiscores/*` endpoints (see `HiscoresRoutes.kt`) - the only
-// synthesized piece left is the xp-history chart's day-by-day distribution, since the server
+// Adventurer's log page data + Alpine component. Every panel is fetched live from the selected
+// world's `/api/v1/players/*` and `/api/v1/hiscores/*` endpoints (see `HiscoresRoutes.kt`) - the
+// only synthesized piece left is the xp-history chart's day-by-day distribution, since the server
 // doesn't keep daily xp snapshots yet; its totals still add up to the account's real per-skill xp.
+// With no world selected, or the selected one offline, every panel is left empty.
 
 (function () {
   var API = "/api/v1";
@@ -22,14 +23,8 @@
   window.VOID_SKILLS.forEach(function (s) { SKILL_COLORS[s.name] = s.color; });
   var OTHER_COLOR = "#5a646b";
 
-  function getJson(url) {
-    return fetch(url).then(function (response) {
-      if (!response.ok) {
-        throw new Error("Request to " + url + " failed: " + response.status);
-      }
-      return response.json();
-    });
-  }
+  // Every request goes to the world selected in the navbar (see worlds.js), never this site's own origin.
+  var getJson = window.voidWorldJson;
 
   function rng(seed) {
     var a = seed >>> 0;
@@ -151,6 +146,8 @@
 
   function buildBossRow(b, i) {
     return {
+      // Names aren't unique (both Kalphite Queen forms), so the bosses `x-for` keys on the id.
+      key: b.boss,
       name: b.name, abbr: bossAbbr(b.name), kills: fmt(b.kills),
       fastest: b.fastestSeconds != null ? mmss(b.fastestSeconds) : "—",
       last: "—",
@@ -160,6 +157,9 @@
 
   function buildEventRow(e, i) {
     return {
+      // Keys the activity list's `x-for`: texts repeat ("I killed Test." for every kill) and a
+      // duplicate key breaks Alpine's list for good, empty state included.
+      key: e.id,
       kind: capitalize(e.type),
       tone: TONE_BY_EVENT_TYPE[e.type] || "info",
       text: e.text,
@@ -240,13 +240,18 @@
         }
         history.replaceState({ view: this.view, profileName: this.profileName }, "", urlFor(this.view, this.profileName));
 
-        if (this.view === "profile") {
-          this.loadProfile(this.profileName);
-        }
-        this.refreshTopPlayers();
-        this.refreshSearch();
-
         var self = this;
+        // Loads the current view now, and again from scratch whenever the selected world changes;
+        // accounts belong to the world they came from, so everything is cleared first.
+        window.voidWatchWorld(function (world) {
+          self.profiles = {};
+          self.topPlayers = [];
+          self.searchResults = [];
+          if (world == null) return;
+          if (self.view === "profile") self.loadProfile(self.profileName);
+          self.refreshTopPlayers();
+          self.refreshSearch();
+        });
         window.addEventListener("popstate", function (e) {
           var s = e.state;
           if (!s) {
@@ -268,7 +273,8 @@
       },
 
       loadProfile: function (name) {
-        if (!name || this.profiles[name]) return;
+        var world = window.voidAvailableWorld();
+        if (!name || this.profiles[name] || world == null) return;
         var self = this;
         var base = API + "/players/" + encodeURIComponent(name);
         Promise.all([
@@ -280,7 +286,9 @@
         ]).then(function (results) {
           self.profiles[name] = buildProfile(name, results[0], results[1], results[2], results[3], results[4]);
         }).catch(function () {
-          self.profiles[name] = null;
+          // Only a failure on the world still selected means the account is missing; one cut
+          // short by a switch (see voidWorldJson) is left for the new world's own load.
+          if (window.voidAvailableWorld() === world) self.profiles[name] = null;
         });
       },
 
@@ -327,7 +335,7 @@
       get visibleEvents() {
         if (this.profile.events.length === 0) {
           return [{
-            kind: "", tone: "info", text: "No recent events",
+            key: "none", kind: "", tone: "info", text: "No recent events",
             description: "I don't have any recent events yet. I need to do more adventuring.",
             date: "", exact: "", band: band(0),
           }];

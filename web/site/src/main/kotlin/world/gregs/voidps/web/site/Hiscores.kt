@@ -31,8 +31,7 @@ object Hiscores {
             ui.pageHeader(
                 eyebrow = "Hiscores",
                 title = "Player hiscores",
-                description = "Ranks are recalculated every 20 minutes from all live worlds. Experience above " +
-                    "200,000,000 in a single skill is not tracked.",
+                description = "Compare skills and kills to your friends and fellow adventurers.",
                 backgroundImage = "images/bg/hiscores.jpg",
                 actions = {
                     div {

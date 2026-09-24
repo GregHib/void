@@ -382,7 +382,7 @@ class HiscoresService(
     }
 
     companion object {
-        const val REFRESH_MS = 60_000L
+        const val REFRESH_MS = 1_200_000L
         const val MAXIMUM_TRACKED_XP = 200_000_000L
         val MODES = listOf("main", "skiller", "pure")
         val TEAM_SIZES = listOf(1, 2, 3, 4)
