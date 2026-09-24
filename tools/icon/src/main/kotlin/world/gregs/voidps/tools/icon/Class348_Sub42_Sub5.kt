@@ -5,7 +5,7 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
-    private val aClass348_Sub40Array9520: Array<Class348_Sub40>
+    private val aClass348_Sub40Array9520: Array<Class348_Sub40?>
     private val aClass348_Sub40_9521: Class348_Sub40
     private val anIntArray9523: IntArray
     private val anIntArray9524: IntArray
@@ -18,10 +18,10 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             Class348.Companion.aJs5_4286 = js5
             var i_2_ = 0
             while (aClass348_Sub40Array9520.size > i_2_) {
-                aClass348_Sub40Array9520[i_2_].method3045(i, i_0_, -256)
+                aClass348_Sub40Array9520[i_2_]!!.method3045(i, i_0_, -256)
                 i_2_++
             }
-            Class348_Sub42_Sub13.method3232(d, -122.toByte())
+            Class348_Sub42_Sub13.method3232(d, (-122).toByte())
             Class79.method797(i_0_, i, 114.toByte())
             val `is` = IntArray(i * i_0_)
             var i_3_ = 0
@@ -32,19 +32,19 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
                 val is_7_: IntArray
                 if (aClass348_Sub40_9521.aBoolean7045) {
                     val is_8_ = aClass348_Sub40_9521.method3042(i_4_, 255)
-                    is_7_ = is_8_
+                    is_7_ = is_8_!!
                     is_5_ = is_8_
                     is_6_ = is_8_
                 } else {
                     val is_9_ = aClass348_Sub40_9521.method3047(i_4_, -1564599039)
-                    is_5_ = is_9_[2]
+                    is_5_ = is_9_!![2]
                     is_6_ = is_9_[1]
                     is_7_ = is_9_[0]
                 }
                 if (bool) i_3_ = i_4_
                 val is_10_: IntArray
-                if (aClass348_Sub40_9527.aBoolean7045) is_10_ = aClass348_Sub40_9527.method3042(i_4_, i_1_ + 244)
-                else is_10_ = (aClass348_Sub40_9527.method3047(i_4_, -1564599039)[0])
+                if (aClass348_Sub40_9527.aBoolean7045) is_10_ = aClass348_Sub40_9527.method3042(i_4_, i_1_ + 244)!!
+                else is_10_ = (aClass348_Sub40_9527.method3047(i_4_, -1564599039)!![0])
                 for (i_11_ in i - 1 downTo 0) {
                     var i_12_ = is_7_[i_11_] shr 4
                     if (i_12_ > 255) i_12_ = 255
@@ -72,7 +72,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             }
             var i_16_ = 0
             while ((i_16_ < aClass348_Sub40Array9520.size)) {
-                aClass348_Sub40Array9520[i_16_].method3046(-116.toByte())
+                aClass348_Sub40Array9520[i_16_]!!.method3046((-116).toByte())
                 i_16_++
             }
             if (i_1_.toInt() != 11) anInt9532 = 97
@@ -117,10 +117,10 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             anInt9526++
             var i_24_ = 0
             while (aClass348_Sub40Array9520.size > i_24_) {
-                aClass348_Sub40Array9520[i_24_].method3045(i, i_23_, i_21_ + -256)
+                aClass348_Sub40Array9520[i_24_]!!.method3045(i, i_23_, i_21_ + -256)
                 i_24_++
             }
-            Class348_Sub42_Sub13.method3232(d, -89.toByte())
+            Class348_Sub42_Sub13.method3232(d, (-89).toByte())
             Class79.method797(i_23_, i, 122.toByte())
             val `is` = IntArray(i_23_ * i)
             val i_25_: Int
@@ -143,12 +143,12 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
                 val is_32_: IntArray
                 if (aClass348_Sub40_9521.aBoolean7045) {
                     val is_33_ = aClass348_Sub40_9521.method3042(i_29_, 255)
-                    is_30_ = is_33_
+                    is_30_ = is_33_!!
                     is_31_ = is_33_
                     is_32_ = is_33_
                 } else {
                     val is_34_ = aClass348_Sub40_9521.method3047(i_29_, -1564599039)
-                    is_30_ = is_34_[1]
+                    is_30_ = is_34_!![1]
                     is_31_ = is_34_[0]
                     is_32_ = is_34_[2]
                 }
@@ -177,7 +177,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             }
             var i_40_ = i_21_
             while ((aClass348_Sub40Array9520.size > i_40_)) {
-                aClass348_Sub40Array9520[i_40_].method3046(-106.toByte())
+                aClass348_Sub40Array9520[i_40_]!!.method3046((-106).toByte())
                 i_40_++
             }
             return `is`
@@ -208,7 +208,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
         var i_61_ = 0
         while (i > i_61_) {
             val class348_sub40 = aClass348_Sub40Array9520[i_61_]
-            val i_62_ = (class348_sub40.aClass348_Sub40Array7031).size
+            val i_62_ = (class348_sub40!!.aClass348_Sub40Array7031).size
             var i_63_ = 0
             while (i_62_ > i_63_) {
                 class348_sub40.aClass348_Sub40Array7031[i_63_] = aClass348_Sub40Array9520[`is`[i_61_]!![i_63_]]
@@ -221,8 +221,8 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             `is`[i_61_] = null
             i_61_++
         }
-        aClass348_Sub40_9521 = aClass348_Sub40Array9520[packet.readUnsignedByte(255)]
-        aClass348_Sub40_9527 = aClass348_Sub40Array9520[packet.readUnsignedByte(255)]
+        aClass348_Sub40_9521 = aClass348_Sub40Array9520[packet.readUnsignedByte(255)]!!
+        aClass348_Sub40_9527 = aClass348_Sub40Array9520[packet.readUnsignedByte(255)]!!
         aClass348_Sub40_9528 = aClass348_Sub40Array9520[packet.readUnsignedByte(255)]
         val `object`: Any? = null
     }

@@ -4,6 +4,8 @@ package world.gregs.voidps.tools.icon
 * Visit http://jode.sourceforge.net/
 */
 
-internal object Matrix_Sub2 : Matrix() {
-    var anInt5713: Int = -1
+internal abstract class Matrix_Sub2 : Matrix() {
+    companion object {
+        var anInt5713: Int = -1
+    }
 }

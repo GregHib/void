@@ -15,43 +15,43 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
     var aBoolean2202: Boolean = true
     var anInt2210: Int
     var anInt2211: Int = 0
-    var anIntArray2212: IntArray?
-    var anIntArray2213: IntArray?
-    var anIntArray2214: IntArray?
+    var anIntArray2212: IntArray
+    var anIntArray2213: IntArray
+    var anIntArray2214: IntArray
     var anInt2215: Int = 0
-    var anIntArray2216: IntArray?
-    var anIntArray2217: IntArray?
-    var anIntArray2218: IntArray?
+    var anIntArray2216: IntArray
+    var anIntArray2217: IntArray
+    var anIntArray2218: IntArray
     var aClass101_Sub1_2209: Matrix_Sub1?
     var aClass64_Sub1_2219: JavaModel?
     var rasterizer: Rasterizer?
     var anInt2221: Int = 0
-    var anIntArray2222: IntArray?
+    var anIntArray2222: IntArray
     var aClass64_Sub1_2223: JavaModel?
     var aClass64_Sub1_2224: JavaModel?
     var aClass64_Sub1_2225: JavaModel?
-    var aFloatArray2226: FloatArray?
+    var aFloatArray2226: FloatArray
     var aClass64_Sub1_2227: JavaModel?
-    var anIntArray2228: IntArray?
+    var anIntArray2228: IntArray
     var anInt2229: Int = 0
-    var anIntArray2230: IntArray?
+    var anIntArray2230: IntArray
     var aClass64_Sub1_2231: JavaModel?
-    var anIntArray2232: IntArray?
+    var anIntArray2232: IntArray
     var aClass64_Sub1_2233: JavaModel?
-    var anIntArray2234: IntArray?
-    var anIntArray2235: IntArray?
-    var anIntArray2236: IntArray?
-    var anIntArray2237: IntArray?
-    var anIntArray2238: IntArray?
+    var anIntArray2234: IntArray
+    var anIntArray2235: IntArray
+    var anIntArray2236: IntArray
+    var anIntArray2237: IntArray
+    var anIntArray2238: IntArray
     var aClass64_Sub1_2239: JavaModel?
-    var anIntArray2240: IntArray?
-    var anIntArray2241: IntArray?
-    var anIntArray2242: IntArray?
+    var anIntArray2240: IntArray
+    var anIntArray2241: IntArray
+    var anIntArray2242: IntArray
     var aClass64_Sub1_2243: JavaModel?
-    var anIntArray2244: IntArray?
-    var anIntArray2245: IntArray?
+    var anIntArray2244: IntArray
+    var anIntArray2245: IntArray
     var aClass64_Sub1_2246: JavaModel?
-    var anIntArray2247: IntArray?
+    var anIntArray2247: IntArray
 
     fun method1291(i: Int, runnable: Runnable?) {
         if (i == 10000) {
@@ -106,7 +106,7 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
         this.anIntArray2242 = IntArray(JavaModel.Companion.anInt5346)
         var i = 0
         while (JavaModel.Companion.anInt5346 > i) {
-            this.anIntArray2242!![i] = -1
+            this.anIntArray2242[i] = -1
             i++
         }
     }

@@ -14,8 +14,8 @@ internal class Class243 {
         class318.aClass318_3976 = aClass318_3166.aClass318_3976
         if (i > -81) aClass318_3167 = null
         class318.aClass318_3970 = aClass318_3166
-        class318.aClass318_3976.aClass318_3970 = class318
-        class318.aClass318_3970.aClass318_3976 = class318
+        class318.aClass318_3976!!.aClass318_3970 = class318
+        class318.aClass318_3970!!.aClass318_3976 = class318
     }
 
     fun method1870(i: Int): Class318? {
@@ -26,7 +26,7 @@ internal class Class243 {
             aClass318_3167 = null
             return null
         }
-        aClass318_3167 = class318.aClass318_3976
+        aClass318_3167 = class318!!.aClass318_3976
         return class318
     }
 
@@ -38,7 +38,7 @@ internal class Class243 {
             aClass318_3167 = null
             return null
         }
-        aClass318_3167 = class318.aClass318_3970
+        aClass318_3167 = class318!!.aClass318_3970
         return class318
     }
 
@@ -46,7 +46,7 @@ internal class Class243 {
         anInt3160++
         val class318 = aClass318_3166.aClass318_3970
         if (class318 === aClass318_3166) return null
-        class318.method2373(false)
+        class318!!.method2373(false)
         if (i != 60) method1878(16.toByte())
         return class318
     }

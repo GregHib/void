@@ -15,10 +15,10 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
     override fun method3044(i: Int) {
         anInt9363++
         Class220.method1605(26188)
-        if (i < 108) Companion.method3122(-111.toByte())
+        if (i < 108) Companion.method3122((-111).toByte())
     }
 
-    override fun method3049(packet: Packet, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
         anInt9370++
         if (i_0_ != 31015) anInt9364 = -29
         val i_1_ = i
@@ -27,7 +27,7 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
                 while_202_@ do {
                     do {
                         if (i_1_ == 0) {
-                            anInt9367 = packet.readUnsignedByte(255)
+                            anInt9367 = packet!!.readUnsignedByte(255)
                             return
                         } else if (i_1_ != 1) {
                             if (i_1_ != 2) {
@@ -38,26 +38,26 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
                             } else break
                             break@while_202_
                         }
-                        anInt9362 = packet.readUnsignedShort(842397944)
+                        anInt9362 = packet!!.readUnsignedShort(842397944)
                         return
                     } while (false)
-                    anInt9368 = packet.readUnsignedByte(255)
+                    anInt9368 = packet!!.readUnsignedByte(255)
                     return
                 } while (false)
-                anInt9369 = packet.readUnsignedShort(842397944)
+                anInt9369 = packet!!.readUnsignedShort(842397944)
                 return
             } while (false)
-            anInt9364 = packet.readUnsignedShort(842397944)
+            anInt9364 = packet!!.readUnsignedShort(842397944)
         } while (false)
     }
 
     override fun method3042(i: Int, i_2_: Int): IntArray? {
         anInt9366++
         if (i_2_ != 255) method3044(-48)
-        val `is` = this.aClass191_7032.method1433(0, i)
-        if (this.aClass191_7032.aBoolean2570) {
+        val `is` = this.aClass191_7032!!.method1433(0, i)
+        if (this.aClass191_7032!!.aBoolean2570) {
             val i_3_ = anInt9364 shr 1
-            val is_4_ = this.aClass191_7032.method1427(16.toByte())
+            val is_4_ = this.aClass191_7032!!.method1427(16.toByte())
             val random = Random(anInt9367.toLong())
             var i_5_ = 0
             while (anInt9362 > i_5_) {
@@ -65,8 +65,8 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
                 i_6_ = i_6_ shr 4 and 0xff
                 var i_7_: Int = Mesh.Companion.method1097(81.toByte(), Class348_Sub40_Sub6.Companion.anInt9139, random)
                 var i_8_: Int = Mesh.Companion.method1097(123.toByte(), Class286_Sub2.anInt6212, random)
-                var i_9_ = i_7_ - -(anInt9368 * Class127.anIntArray4654[i_6_] shr 12)
-                var i_10_ = ((Class235.anIntArray3068[i_6_] * anInt9368 shr 12) + i_8_)
+                var i_9_ = i_7_ - -(anInt9368 * Class127.anIntArray4654!![i_6_] shr 12)
+                var i_10_ = ((Class235.anIntArray3068!![i_6_] * anInt9368 shr 12) + i_8_)
                 var i_11_ = -i_8_ + i_10_
                 var i_12_ = -i_7_ + i_9_
                 if (i_12_ != 0 || i_11_ != 0) {
@@ -101,8 +101,8 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
                         val i_25_ = (i_24_ - i_7_) * i_21_ + (i_22_ + 1024)
                         val i_26_ = Class239_Sub22.anInt6076 and i_24_
                         val i_27_ = i_17_ and Class299_Sub2.anInt6325
-                        if (bool) is_4_[i_27_]!![i_26_] = i_25_
-                        else is_4_[i_26_]!![i_27_] = i_25_
+                        if (bool) is_4_!![i_27_]!![i_26_] = i_25_
+                        else is_4_!![i_26_]!![i_27_] = i_25_
                         i_20_ += i_19_
                         if (i_20_ > 0) {
                             i_17_ -= -i_23_

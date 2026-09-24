@@ -17,8 +17,8 @@ internal object Class220 {
             Class235.anIntArray3068 = IntArray(256)
             for (i_0_ in 0..255) {
                 val d = 6.283185307179586 * (i_0_.toDouble() / 255.0)
-                Class235.anIntArray3068[i_0_] = (4096.0 * sin(d)).toInt()
-                Class127.anIntArray4654[i_0_] = (4096.0 * cos(d)).toInt()
+                Class235.anIntArray3068!![i_0_] = (4096.0 * sin(d)).toInt()
+                Class127.anIntArray4654!![i_0_] = (4096.0 * cos(d)).toInt()
             }
         }
         anInt2878++
@@ -28,7 +28,7 @@ internal object Class220 {
     fun method1606(i: Int, i_1_: Int, i_2_: Int): Byte {
         anInt2876++
         if (i_2_ != 9) return 0.toByte()
-        if (i_1_ != -27939) return -50.toByte()
+        if (i_1_ != -27939) return (-50).toByte()
         if ((i and 0x1) == 0) return 1.toByte()
         return 2.toByte()
     }

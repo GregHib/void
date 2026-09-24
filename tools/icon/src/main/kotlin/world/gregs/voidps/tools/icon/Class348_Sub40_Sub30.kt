@@ -20,13 +20,13 @@ internal class Class348_Sub40_Sub30 : Class348_Sub40(1, false) {
 
     override fun method3047(i: Int, i_8_: Int): Array<IntArray> {
         anInt9393++
-        val `is` = this.aClass322_7033.method2557(-105, i)
-        if (this.aClass322_7033.aBoolean4035) {
+        val `is` = this.aClass322_7033!!.method2557(-105, i)
+        if (this.aClass322_7033!!.aBoolean4035) {
             val is_9_ = this.method3039(50.toByte(), i, 0)
-            val is_10_ = is_9_[0]
+            val is_10_ = is_9_!![0]
             val is_11_ = is_9_[1]
             val is_12_ = is_9_[2]
-            val is_13_ = `is`[0]
+            val is_13_ = `is`!![0]
             val is_14_ = `is`[1]
             val is_15_ = `is`[2]
             var i_16_ = 0
@@ -45,7 +45,7 @@ internal class Class348_Sub40_Sub30 : Class348_Sub40(1, false) {
                 if (anInt9389 < 0) anInt9389 = 0
                 if (anInt9401 > 4096) anInt9401 = 4096
                 if (anInt9389 > 4096) anInt9389 = 4096
-                method3130(anInt9389, anInt9400, -120.toByte(), anInt9401)
+                method3130(anInt9389, anInt9400, (-120).toByte(), anInt9401)
                 is_13_[i_16_] = anInt9386
                 is_14_[i_16_] = anInt9396
                 is_15_[i_16_] = anInt9392
@@ -53,7 +53,7 @@ internal class Class348_Sub40_Sub30 : Class348_Sub40(1, false) {
             }
         }
         if (i_8_ != -1564599039) anInt9399 = 25
-        return `is`
+        return `is`!!
     }
 
     private fun method3129(i: Int, i_17_: Int, i_18_: Byte, i_19_: Int) {

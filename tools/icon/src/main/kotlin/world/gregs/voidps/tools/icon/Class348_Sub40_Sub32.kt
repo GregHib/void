@@ -8,13 +8,13 @@ internal class Class348_Sub40_Sub32 : Class348_Sub40(1, false) {
     override fun method3047(i: Int, i_9_: Int): Array<IntArray> {
         if (i_9_ != -1564599039) method3133(4.toByte())
         anInt9417++
-        val `is` = this.aClass322_7033.method2557(-78, i)
-        if (this.aClass322_7033.aBoolean4035) {
-            val is_10_ = this.method3039(-104.toByte(), i, 0)
-            val is_11_ = is_10_[0]
+        val `is` = this.aClass322_7033!!.method2557(-78, i)
+        if (this.aClass322_7033!!.aBoolean4035) {
+            val is_10_ = this.method3039((-104).toByte(), i, 0)
+            val is_11_ = is_10_!![0]
             val is_12_ = is_10_[1]
             val is_13_ = is_10_[2]
-            val is_14_ = `is`[0]
+            val is_14_ = `is`!![0]
             val is_15_ = `is`[1]
             val is_16_ = `is`[2]
             var i_17_ = 0
@@ -25,7 +25,7 @@ internal class Class348_Sub40_Sub32 : Class348_Sub40(1, false) {
                 i_17_++
             }
         }
-        return `is`
+        return `is`!!
     }
 
     companion object {

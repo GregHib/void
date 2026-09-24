@@ -5,5 +5,5 @@ package world.gregs.voidps.tools.icon
 */
 
 internal object Class367_Sub2 {
-    var clientPalette: Array<Array<ShortArray?>?>?
+    var clientPalette: Array<Array<ShortArray?>?>? = null
 }

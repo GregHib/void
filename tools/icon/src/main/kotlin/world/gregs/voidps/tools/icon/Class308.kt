@@ -31,12 +31,12 @@ internal class Class308(private var anInt3891: Int) {
                 class348_sub42_0_.unlink2(true)
                 if (class348_sub42_0_ === aClass348_Sub42_3887) {
                     class348_sub42_0_ = aQueue_3889!!.method1008(20)
-                    class348_sub42_0_.unlink(79.toByte())
+                    class348_sub42_0_!!.unlink(79.toByte())
                     class348_sub42_0_.unlink2(true)
                 }
             } else anInt3891--
             aIterableHashTable_3888.put(37.toByte(), l, class348_sub42)
-            aQueue_3889!!.add(true, class348_sub42)
+            aQueue_3889!!.add(true, class348_sub42!!)
         } catch (runtimeexception: RuntimeException) {
             throw Class348_Sub17.method2929(runtimeexception, ("wu.E(" + l + ',' + (if (class348_sub42 != null) "{...}" else "null") + ',' + i + ')'))
         }

@@ -5,7 +5,7 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class IterableHashTable(var anInt4377: Int) {
-    var aClass348Array4374: Array<Class348>
+    var aClass348Array4374: Array<Class348?>
     private var aLong4385: Long = 0
     private var aClass348_4389: Class348? = null
     private var aClass348_4390: Class348? = null
@@ -38,7 +38,7 @@ internal class IterableHashTable(var anInt4377: Int) {
             anInt4379++
             val class348 = (this.aClass348Array4374[(l and (this.anInt4377 + -1).toLong()).toInt()])
             if (i != -6008) method3484(80)
-            aClass348_4389 = class348.aClass348_4294
+            aClass348_4389 = class348!!.aClass348_4294
             while (aClass348_4389 !== class348) {
                 if (l == aClass348_4389!!.aLong4291) {
                     val class348_7_ = aClass348_4389
@@ -60,9 +60,9 @@ internal class IterableHashTable(var anInt4377: Int) {
         while (this.anInt4377 > i_8_) {
             val class348 = this.aClass348Array4374[i_8_]
             while (true) {
-                val class348_9_ = class348.aClass348_4294
+                val class348_9_ = class348!!.aClass348_4294
                 if (class348_9_ === class348) break
-                class348_9_.unlink(54.toByte())
+                class348_9_!!.unlink(54.toByte())
             }
             i_8_++
         }
@@ -78,9 +78,9 @@ internal class IterableHashTable(var anInt4377: Int) {
             return class348
         }
         while (this.anInt4377 > anInt4391) {
-            val class348 = (this.aClass348Array4374[anInt4391++].aClass348_4294)
+            val class348 = (this.aClass348Array4374[anInt4391++]!!.aClass348_4294)
             if (this.aClass348Array4374[-1 + anInt4391] !== class348) {
-                aClass348_4390 = class348.aClass348_4294
+                aClass348_4390 = class348!!.aClass348_4294
                 return class348
             }
         }
@@ -94,9 +94,9 @@ internal class IterableHashTable(var anInt4377: Int) {
             if (class348!!.aClass348_4295 != null) class348.unlink(57.toByte())
             val class348_10_ = (this.aClass348Array4374[(l and (-1 + this.anInt4377).toLong()).toInt()])
             class348.aClass348_4294 = class348_10_
-            class348.aClass348_4295 = class348_10_.aClass348_4295
-            class348.aClass348_4295.aClass348_4294 = class348
-            class348.aClass348_4294.aClass348_4295 = class348
+            class348.aClass348_4295 = class348_10_!!.aClass348_4295
+            class348.aClass348_4295!!.aClass348_4294 = class348
+            class348.aClass348_4294!!.aClass348_4295 = class348
             class348.aLong4291 = l
         } catch (runtimeexception: RuntimeException) {
             throw Class348_Sub17.method2929(runtimeexception, ("eq.K(" + i + ',' + l + ',' + (if (class348 != null) "{...}" else "null") + ')'))
@@ -115,7 +115,7 @@ internal class IterableHashTable(var anInt4377: Int) {
         while (anInt4377 > i_11_) {
             this.aClass348Array4374[i_11_] = Class348()
             val class348 = this.aClass348Array4374[i_11_]
-            class348.aClass348_4294 = class348
+            class348!!.aClass348_4294 = class348
             class348.aClass348_4295 = class348
             i_11_++
         }

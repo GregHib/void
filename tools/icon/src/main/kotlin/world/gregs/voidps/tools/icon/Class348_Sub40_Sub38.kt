@@ -10,22 +10,22 @@ internal class Class348_Sub40_Sub38 : Class348_Sub40(1, false) {
     private var anInt9470 = 4096
     private var anInt9474 = 0
 
-    override fun method3049(packet: Packet, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
         if (i_0_ != 31015) anInt9470 = -15
         val i_1_ = i
         while_213_@ do {
             do {
                 if (i_1_ == 0) {
-                    anInt9474 = packet.readUnsignedShort(i_0_ + 842366929)
+                    anInt9474 = packet!!.readUnsignedShort(i_0_ + 842366929)
                     break@while_213_
                 } else if (i_1_ != 1) {
                     if (i_1_ == 2) break
                     break@while_213_
                 }
-                anInt9470 = packet.readUnsignedShort(i_0_ + 842366929)
+                anInt9470 = packet!!.readUnsignedShort(i_0_ + 842366929)
                 break@while_213_
             } while (false)
-            this.aBoolean7045 = packet.readUnsignedByte(i_0_ + -30760) == 1
+            this.aBoolean7045 = packet!!.readUnsignedByte(i_0_ + -30760) == 1
         } while (false)
         anInt9472++
     }
@@ -33,13 +33,13 @@ internal class Class348_Sub40_Sub38 : Class348_Sub40(1, false) {
     override fun method3047(i: Int, i_2_: Int): Array<IntArray> {
         if (i_2_ != -1564599039) method3150(true)
         anInt9468++
-        val `is` = this.aClass322_7033.method2557(-117, i)
-        if (this.aClass322_7033.aBoolean4035) {
-            val is_3_ = this.method3039(-88.toByte(), i, 0)
-            val is_4_ = is_3_[0]
+        val `is` = this.aClass322_7033!!.method2557(-117, i)
+        if (this.aClass322_7033!!.aBoolean4035) {
+            val is_3_ = this.method3039((-88).toByte(), i, 0)
+            val is_4_ = is_3_!![0]
             val is_5_ = is_3_[1]
             val is_6_ = is_3_[2]
-            val is_7_ = `is`[0]
+            val is_7_ = `is`!![0]
             val is_8_ = `is`[1]
             val is_9_ = `is`[2]
             var i_10_ = 0
@@ -57,7 +57,7 @@ internal class Class348_Sub40_Sub38 : Class348_Sub40(1, false) {
                 i_10_++
             }
         }
-        return `is`
+        return `is`!!
     }
 
     companion object {

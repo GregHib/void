@@ -17,14 +17,14 @@ internal class KeyedReferenceCache(private var anInt2311: Int) {
         val hash = cacheKey.toLong(64.toByte())
         var node = table.method3480(hash, -6008) as KeyReferenceNode?
         while (node != null) {
-            if (node.cacheKey.matches(94, cacheKey)) {
+            if (node.cacheKey!!.matches(94, cacheKey)) {
                 val `object` = node.get(65536)
                 if (`object` == null) {
                     node.unlink(36.toByte())
                     node.unlink2(true)
                     anInt2311 += (node.anInt9556)
                 } else {
-                    if (node.method3206(-128.toByte())) {
+                    if (node.method3206((-128).toByte())) {
                         val hardReference = (KeyedHardReferenceNode(cacheKey, `object`, (node.anInt9556)))
                         table.put(125.toByte(), (node.aLong4291), hardReference)
                         history.add(true, hardReference)

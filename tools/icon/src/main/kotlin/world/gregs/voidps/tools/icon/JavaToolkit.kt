@@ -10,7 +10,7 @@ import kotlin.math.sqrt
 
 internal class JavaToolkit private constructor(var_textureSource: TextureSource?) : Toolkit(var_textureSource) {
     private var anInt7465 = 0
-    private val anInt7466 = 0
+    private var anInt7466 = 0
     private var aIterableHashTable_7467: IterableHashTable?
     private var aCanvas7468: Canvas? = null
     var aClass348_Sub31_7469: Class348_Sub31? = null
@@ -24,10 +24,10 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     var anInt7477: Int = 0
     var anInt7478: Int
     var anInt7479: Int = 0
-    private var aJavaThreadResourceArray7480: Array<JavaThreadResource?>
+    private var aJavaThreadResourceArray7480: Array<JavaThreadResource?>? = null
     private var anInt7481 = 0
     var anInt7482: Int
-    var anIntArray7483: IntArray?
+    var anIntArray7483: IntArray? = null
     var anInt7484: Int = 0
     var anInt7485: Int = 0
     private var anInt7486 = 0
@@ -46,7 +46,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     private val aClass60_7499: Class60
     var anInt7500: Int
     var anInt7501: Int
-    var aFloatArray7502: FloatArray?
+    var aFloatArray7502: FloatArray? = null
     var anInt7503: Int
     var anInt7504: Int = 0
     private val anInt7505: Int
@@ -55,7 +55,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     var anInt7508: Int = 0
     var anInt7509: Int = 0
     var anInt7510: Int = 0
-    var aFloatArray7511: FloatArray
+    var aFloatArray7511: FloatArray? = null
     private var anInt7512: Int
     private var aSprite_7513: Sprite? = null
 
@@ -315,15 +315,15 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         this.anInt7490 = this.anInt7476 - this.anInt7504
         this.anInt7506 = this.anInt7503 - this.anInt7504
         for (i in 0..<this.anInt7485) {
-            val rasterizer = aJavaThreadResourceArray7480[i]!!.rasterizer
-            rasterizer.anInt1665 = this.anInt7510 - this.anInt7496
+            val rasterizer = aJavaThreadResourceArray7480!![i]!!.rasterizer
+            rasterizer!!.anInt1665 = this.anInt7510 - this.anInt7496
             rasterizer.anInt1668 = this.anInt7504 - this.anInt7476
             rasterizer.width = this.anInt7507 - this.anInt7496
             rasterizer.height = this.anInt7503 - this.anInt7476
         }
         var i = (this.anInt7476 * this.anInt7477 + this.anInt7496)
         for (i_97_ in this.anInt7476..<this.anInt7503) {
-            for (i_98_ in 0..<this.anInt7485) aJavaThreadResourceArray7480[i_98_]!!.rasterizer.lineOffsets[i_97_ - this.anInt7476] = i
+            for (i_98_ in 0..<this.anInt7485) aJavaThreadResourceArray7480!![i_98_]!!.rasterizer!!.lineOffsets[i_97_ - this.anInt7476] = i
             i += this.anInt7477
         }
     }
@@ -338,7 +338,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     }
 
     fun method3714(i: Int): Boolean {
-        return this.textureSource.getMetrics(i, -6662).aBoolean217 || this.textureSource.getMetrics(i, -6662).aBoolean215
+        return this.textureSource!!.getMetrics(i, -6662)!!.aBoolean217 || this.textureSource!!.getMetrics(i, -6662)!!.aBoolean215
     }
 
     fun method3655(): Boolean {
@@ -366,20 +366,20 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
 
     override fun ya() {
         if (this.anInt7496 == 0 && this.anInt7507 == this.anInt7477 && this.anInt7476 == 0 && this.anInt7503 == anInt7486) {
-            val i = this.aFloatArray7511.size
+            val i = this.aFloatArray7511!!.size
             val i_176_ = i - (i and 0x7)
             var i_177_ = 0
             while (i_177_ < i_176_) {
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
-                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
+                this.aFloatArray7511!![i_177_++] = 2.14748365E9f
             }
-            while (i_177_ < i) this.aFloatArray7511[i_177_++] = 2.14748365E9f
+            while (i_177_ < i) this.aFloatArray7511!![i_177_++] = 2.14748365E9f
         } else {
             var i = this.anInt7507 - this.anInt7496
             val i_178_ = this.anInt7503 - this.anInt7476
@@ -392,19 +392,19 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_181_ > 0) {
                     var i_184_ = i_181_
                     do {
-                        this.aFloatArray7511[++i] = 2.14748365E9f
-                        this.aFloatArray7511[++i] = 2.14748365E9f
-                        this.aFloatArray7511[++i] = 2.14748365E9f
-                        this.aFloatArray7511[++i] = 2.14748365E9f
-                        this.aFloatArray7511[++i] = 2.14748365E9f
-                        this.aFloatArray7511[++i] = 2.14748365E9f
-                        this.aFloatArray7511[++i] = 2.14748365E9f
-                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
+                        this.aFloatArray7511!![++i] = 2.14748365E9f
                     } while (--i_184_ > 0)
                 }
                 if (i_182_ > 0) {
                     var i_185_ = i_182_
-                    do this.aFloatArray7511[++i] = 2.14748365E9f while (--i_185_ > 0)
+                    do this.aFloatArray7511!![++i] = 2.14748365E9f while (--i_185_ > 0)
                 }
                 i += i_179_
             }
@@ -428,7 +428,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     }
 
     private fun method3717() {
-        for (i in 0..<this.anInt7485) aJavaThreadResourceArray7480[i]!!.method1292(64)
+        for (i in 0..<this.anInt7485) aJavaThreadResourceArray7480!![i]!!.method1292(64)
         la()
     }
 
@@ -467,7 +467,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     fun method3631(i: Int) {
         this.anInt7485 = i
         aJavaThreadResourceArray7480 = arrayOfNulls<JavaThreadResource>(this.anInt7485)
-        for (i_240_ in 0..<this.anInt7485) aJavaThreadResourceArray7480[i_240_] = JavaThreadResource(this)
+        for (i_240_ in 0..<this.anInt7485) aJavaThreadResourceArray7480!![i_240_] = JavaThreadResource(this)
     }
 
     fun method3653(class299: Class299?) {
@@ -486,7 +486,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 anInt7465 = dimension.width
                 anInt7472 = dimension.height
                 this.aClass348_Sub31_7469 = class348_sub31
-                this.anIntArray7483 = class348_sub31.anIntArray6916
+                this.anIntArray7483 = class348_sub31!!.anIntArray6916
                 this.anInt7477 = class348_sub31.anInt6917
                 anInt7486 = class348_sub31.anInt6920
                 if (this.anInt7477 != anInt7495 || anInt7486 != anInt7488) {
@@ -596,7 +596,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             method3677(canvas)
         } catch (throwable: Throwable) {
             throwable.printStackTrace()
-            this.method3635(-115.toByte())
+            this.method3635((-115).toByte())
             throw RuntimeException("")
         }
     }
@@ -606,11 +606,11 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         synchronized(aClass60_7498) {
             class348_sub25 = (aClass60_7498.method583(i.toLong() or 0x7fffffffffffffffL.inv(), 107) as Class348_Sub25?)
             if (class348_sub25 == null) {
-                if (!this.textureSource.method4(-7953, i)) return null
-                val textureMetrics = this.textureSource.getMetrics(i, -6662)
-                val i_356_ = (if (textureMetrics.small || aBoolean7489) 64 else this.anInt7501)
-                class348_sub25 = Class348_Sub25(i, i_356_, this.textureSource.method6(-21540, i_356_, 0.7f, i, true, i_356_), textureMetrics.alphaBlendMode != 1)
-                aClass60_7498.method582(class348_sub25, i.toLong() or 0x7fffffffffffffffL.inv(), -126.toByte())
+                if (!this.textureSource!!.method4(-7953, i)) return null
+                val textureMetrics = this.textureSource!!.getMetrics(i, -6662)
+                val i_356_ = (if (textureMetrics!!.small || aBoolean7489) 64 else this.anInt7501)
+                class348_sub25 = Class348_Sub25(i, i_356_, this.textureSource!!.method6(-21540, i_356_, 0.7f, i, true, i_356_)!!, textureMetrics.alphaBlendMode != 1)
+                aClass60_7498.method582(class348_sub25, i.toLong() or 0x7fffffffffffffffL.inv(), (-126).toByte())
             }
         }
         class348_sub25!!.aBoolean6882 = true
@@ -704,7 +704,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_462_ > this.anInt7507) i_462_ = this.anInt7507
                 var i_463_ = i_461_ + i_454_ * this.anInt7477
                 for (i_464_ in i_461_..<i_462_) {
-                    if (i_448_.toFloat() < this.aFloatArray7511[i_463_]) this.anIntArray7483!![i_463_] = i_450_
+                    if (i_448_.toFloat() < this.aFloatArray7511!![i_463_]) this.anIntArray7483!![i_463_] = i_450_
                     i_463_++
                 }
                 i_454_++
@@ -727,7 +727,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_466_ > this.anInt7507 - 1) i_466_ = this.anInt7507 - 1
                 var i_467_ = i_465_ + i_454_ * this.anInt7477
                 for (i_468_ in i_465_..i_466_) {
-                    if (i_448_.toFloat() < this.aFloatArray7511[i_467_]) this.anIntArray7483!![i_467_] = i_450_
+                    if (i_448_.toFloat() < this.aFloatArray7511!![i_467_]) this.anIntArray7483!![i_467_] = i_450_
                     i_467_++
                 }
                 i_454_++
@@ -748,7 +748,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_471_ > this.anInt7507) i_471_ = this.anInt7507
                 var i_472_ = i_470_ + i_454_ * this.anInt7477
                 for (i_473_ in i_470_..<i_471_) {
-                    if (i_448_.toFloat() < this.aFloatArray7511[i_472_]) {
+                    if (i_448_.toFloat() < this.aFloatArray7511!![i_472_]) {
                         var i_474_ = this.anIntArray7483!![i_472_]
                         i_474_ = (((i_474_ and 0xff00ff) * i_469_ shr 8 and 0xff00ff) + ((i_474_ and 0xff00) * i_469_ shr 8 and 0xff00))
                         this.anIntArray7483!![i_472_] = i_450_ + i_474_
@@ -775,7 +775,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_476_ > this.anInt7507 - 1) i_476_ = this.anInt7507 - 1
                 var i_477_ = i_475_ + i_454_ * this.anInt7477
                 for (i_478_ in i_475_..i_476_) {
-                    if (i_448_.toFloat() < this.aFloatArray7511[i_477_]) {
+                    if (i_448_.toFloat() < this.aFloatArray7511!![i_477_]) {
                         var i_479_ = this.anIntArray7483!![i_477_]
                         i_479_ = (((i_479_ and 0xff00ff) * i_469_ shr 8 and 0xff00ff) + ((i_479_ and 0xff00) * i_469_ shr 8 and 0xff00))
                         this.anIntArray7483!![i_477_] = i_450_ + i_479_
@@ -798,7 +798,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_481_ > this.anInt7507) i_481_ = this.anInt7507
                 var i_482_ = i_480_ + i_454_ * this.anInt7477
                 for (i_483_ in i_480_..<i_481_) {
-                    if (i_448_.toFloat() < this.aFloatArray7511[i_482_]) {
+                    if (i_448_.toFloat() < this.aFloatArray7511!![i_482_]) {
                         var i_484_ = this.anIntArray7483!![i_482_]
                         val i_485_ = i_450_ + i_484_
                         val i_486_ = (i_450_ and 0xff00ff) + (i_484_ and 0xff00ff)
@@ -827,7 +827,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                 if (i_488_ > this.anInt7507 - 1) i_488_ = this.anInt7507 - 1
                 var i_489_ = i_487_ + i_454_ * this.anInt7477
                 for (i_490_ in i_487_..i_488_) {
-                    if (i_448_.toFloat() < this.aFloatArray7511[i_489_]) {
+                    if (i_448_.toFloat() < this.aFloatArray7511!![i_489_]) {
                         var i_491_ = this.anIntArray7483!![i_489_]
                         val i_492_ = i_450_ + i_491_
                         val i_493_ = (i_450_ and 0xff00ff) + (i_491_ and 0xff00ff)
@@ -846,7 +846,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     // dependency of method3712 (used by method3720), not in genuine list
     fun method3720(i: Int, i_377_: Int, i_378_: Int, i_379_: Int, i_380_: Int, i_381_: Int, i_382_: Int, i_383_: Int, i_384_: Int, i_385_: Int) {
         if (i_379_ != 0 && i_380_ != 0) {
-            if (i_382_ != 65535 && !(this.textureSource.getMetrics(i_382_, -6662).disableable)) {
+            if (i_382_ != 65535 && !(this.textureSource!!.getMetrics(i_382_, -6662)!!.disableable)) {
                 if (anInt7512 != i_382_) {
                     var sprite = (aClass60_7499.method583(i_382_.toLong(), 97) as Sprite?)
                     if (sprite == null) {
@@ -854,7 +854,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
                         if (`is` == null) return
                         val i_386_ = (if (method3727(i_382_)) 64 else this.anInt7501)
                         sprite = this.createSprite(i_386_, `is`, 94.toByte(), 0, i_386_, i_386_)
-                        aClass60_7499.method582(sprite, i_382_.toLong(), -100.toByte())
+                        aClass60_7499.method582(sprite, i_382_.toLong(), (-100).toByte())
                     }
                     anInt7512 = i_382_
                     aSprite_7513 = sprite
@@ -866,7 +866,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
 
     fun threadResource(runnable: Runnable?): JavaThreadResource? {
         for (i in 0..<this.anInt7485) {
-            if (aJavaThreadResourceArray7480[i]!!.aRunnable2198 === runnable) return aJavaThreadResourceArray7480[i]
+            if (aJavaThreadResourceArray7480!![i]!!.aRunnable2198 === runnable) return aJavaThreadResourceArray7480!![i]
         }
         return null
     }
@@ -885,7 +885,7 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     }
 
     fun method3725(i: Int): Boolean {
-        return this.textureSource.method4(-7953, i)
+        return this.textureSource!!.method4(-7953, i)
     }
 
     init {
@@ -912,12 +912,12 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             this.aClass101_Sub1_7492 = Matrix_Sub1()
             method3631(1)
             method3659(0)
-            Class59_Sub2_Sub1.method566(true, true, -126.toByte())
+            Class59_Sub2_Sub1.method566(true, true, (-126).toByte())
             aBoolean7471 = true
             anInt7466 = Class62.method599(-70).toInt()
         } catch (throwable: Throwable) {
             throwable.printStackTrace()
-            this.method3635(-98.toByte())
+            this.method3635((-98).toByte())
             throw RuntimeException("")
         }
     }
@@ -986,11 +986,11 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     }
 
     fun method3659(i: Int) {
-        aJavaThreadResourceArray7480[i]!!.method1291(10000, Thread.currentThread())
+        aJavaThreadResourceArray7480!![i]!!.method1291(10000, Thread.currentThread())
     }
 
     fun method3726(i: Int): Int {
-        return this.textureSource.getMetrics(i, -6662).alphaBlendMode
+        return this.textureSource!!.getMetrics(i, -6662)!!.alphaBlendMode
     }
 
     fun method3704(): Int {
@@ -1035,6 +1035,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     }
 
     fun method3727(i: Int): Boolean {
-        return aBoolean7489 || this.textureSource.getMetrics(i, -6662).small
+        return aBoolean7489 || this.textureSource!!.getMetrics(i, -6662)!!.small
     }
 }

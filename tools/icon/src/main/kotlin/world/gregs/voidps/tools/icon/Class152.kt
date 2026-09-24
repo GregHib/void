@@ -43,11 +43,6 @@ internal class Class152 private constructor(i: Int, i_6_: Int, i_7_: Int) {
                     while ((class357s_3_[i_4_]!!.size > i_5_)) {
                         val class357 = class357s_3_[i_4_]!![i_5_]
                         if (class357 != null) {
-                            if (class357.aClass318_Sub1_Sub1_4402 is Interface10) (class357.aClass318_Sub1_Sub1_4402 as Interface10).method40(-12031)
-                            if (class357.aClass318_Sub1_Sub5_4395 is Interface10) (class357.aClass318_Sub1_Sub5_4395 as Interface10).method40(-12031)
-                            if (class357.aClass318_Sub1_Sub5_4407 is Interface10) (class357.aClass318_Sub1_Sub5_4407 as Interface10).method40(-12031)
-                            if (class357.aClass318_Sub1_Sub4_4406 is Interface10) (class357.aClass318_Sub1_Sub4_4406 as Interface10).method40(-12031)
-                            if (class357.aClass318_Sub1_Sub4_4403 is Interface10) (class357.aClass318_Sub1_Sub4_4403 as Interface10).method40(-12031)
                             var class148 = class357.aClass148_4396
                             while (class148 != null) {
                                 val class318_sub1_sub3 = (class148.aClass318_Sub1_Sub3_2040)

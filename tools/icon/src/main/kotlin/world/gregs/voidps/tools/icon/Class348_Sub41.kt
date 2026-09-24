@@ -25,10 +25,10 @@ internal class Class348_Sub41 : Class348() {
 
         fun decodeContainer(`is`: ByteArray?, i: Int): ByteArray {
             anInt7046++
-            val packet = Packet(`is`)
+            val packet = Packet(`is`!!)
             val i_37_ = packet.readUnsignedByte(255)
             if (i > -74) method3156(true, null)
-            val i_38_ = packet.readInt(-126.toByte())
+            val i_38_ = packet.readInt((-126).toByte())
             if (i_38_ < 0 || (Class29.anInt401 != 0 && i_38_ > Class29.anInt401)) {
                 throw RuntimeException()
             }
@@ -39,7 +39,7 @@ internal class Class348_Sub41 : Class348() {
              * threw the placeholder IllegalStateException a prior pass left
              * here on the (incorrect) assumption this was dead per JaCoCo.
              * Restored the real gzip/bzip2 dispatch verbatim. */
-                val i_39_ = packet.readInt(-126.toByte())
+                val i_39_ = packet.readInt((-126).toByte())
                 if (i_39_ < 0 || (Class29.anInt401 != 0 && i_39_ > Class29.anInt401) || i_39_ > 10000000) {
                     return ByteArray(4)
                 }

@@ -29,9 +29,9 @@ internal object Class37 {
         if (Class348_Sub40_Sub6.Companion.aByteArrayArrayArray9134 != null) {
             var i_10_ = 0
             while (Class59_Sub2_Sub2.anIntArray8684!!.size > i_10_) {
-                if ((i == Class59_Sub2_Sub2.anIntArray8684[i_10_]) && Class190.anIntArray2552[i_10_] > 0) {
-                    val `is`: ByteArray? = (Class348_Sub40_Sub6.Companion.aByteArrayArrayArray9134[i_10_][--Class190.anIntArray2552[i_10_]])
-                    Class348_Sub40_Sub6.Companion.aByteArrayArrayArray9134[i_10_][Class190.anIntArray2552[i_10_]] = null
+                if ((i == Class59_Sub2_Sub2.anIntArray8684!![i_10_]) && Class190.anIntArray2552!![i_10_] > 0) {
+                    val `is`: ByteArray? = (Class348_Sub40_Sub6.Companion.aByteArrayArrayArray9134!![i_10_]!![--Class190.anIntArray2552!![i_10_]]!!)
+                    Class348_Sub40_Sub6.Companion.aByteArrayArrayArray9134!![i_10_]!![Class190.anIntArray2552!![i_10_]] = null
                     return `is`
                 }
                 i_10_++

@@ -19,7 +19,7 @@ internal class Js5TextureSource(js5: Js5?, js5_12_: Js5?, js5_13_: Js5?) : Textu
 
     private fun method1881(i: Int, bool: Boolean): Class348_Sub42_Sub5? {
         anInt4620++
-        val class348_sub42 = aClass308_4622.method2302(i.toLong(), -34.toByte())
+        val class348_sub42 = aClass308_4622.method2302(i.toLong(), (-34).toByte())
         if (class348_sub42 != null) return class348_sub42 as Class348_Sub42_Sub5
         val `is` = sprites!!.getFile(73.toByte(), i)
         if (`is` == null) return null
@@ -68,7 +68,7 @@ internal class Js5TextureSource(js5: Js5?, js5_12_: Js5?, js5_13_: Js5?) : Textu
         try {
             sprites = js5_12_
             textures = js5_13_
-            val packet = Packet(js5!!.getFile(-1860, 0, 0))
+            val packet = Packet(js5!!.getFile(-1860, 0, 0)!!)
             textureCount = packet.readUnsignedShort(842397944)
             textureMetrics = arrayOfNulls<TextureMetrics>(textureCount)
             run {
@@ -160,7 +160,7 @@ internal class Js5TextureSource(js5: Js5?, js5_12_: Js5?, js5_13_: Js5?) : Textu
             run {
                 var i = 0
                 while (textureCount > i) {
-                    if (textureMetrics[i] != null) textureMetrics[i]!!.effectParam2 = packet.readInt(-126.toByte())
+                    if (textureMetrics[i] != null) textureMetrics[i]!!.effectParam2 = packet.readInt((-126).toByte())
                     i++
                 }
             }

@@ -7,7 +7,7 @@ import java.awt.Canvas
 */
 
 internal abstract class Class348_Sub31 : Class348() {
-    var anIntArray6916: IntArray?
+    var anIntArray6916: IntArray? = null
     var anInt6917: Int = 0
     var anInt6920: Int = 0
 

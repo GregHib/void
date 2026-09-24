@@ -7,9 +7,9 @@ package world.gregs.voidps.tools.icon
 internal class Class207 {
     var aByteArray2695: ByteArray? = null
     var anInt2696: Int = 0
-    lateinit var anIntArray2697: IntArray
+    var anIntArray2697: IntArray? = null
     var anInt2698: Int = 0
-    lateinit var aByteArray2699: ByteArray
+    var aByteArray2699: ByteArray? = null
     var anInt2700: Int = 0
     var anInt2701: Int = 0
     var anInt2702: Int = 0
@@ -27,7 +27,7 @@ internal class Class207 {
                 var i_68_ = i_67_ * this.anInt2702
                 var i_69_ = (this.anInt2703 + (i_67_ + this.anInt2700) * i)
                 for (i_70_ in 0..<this.anInt2702) {
-                    val i_71_ = (this.anIntArray2697[this.aByteArray2699[i_68_++].toInt() and 0xff])
+                    val i_71_ = (this.anIntArray2697!![this.aByteArray2699!![i_68_++].toInt() and 0xff])
                     if (i_71_ != 0) `is`[i_69_++] = 0xffffff.inv() or i_71_
                     else `is`[i_69_++] = 0
                 }
@@ -37,7 +37,7 @@ internal class Class207 {
                 var i_64_ = i_63_ * this.anInt2702
                 var i_65_ = (this.anInt2703 + (i_63_ + this.anInt2700) * i)
                 for (i_66_ in 0..<this.anInt2702) {
-                    `is`[i_65_++] = (this.aByteArray2695!![i_64_].toInt() shl 24 or (this.anIntArray2697[(this.aByteArray2699[i_64_].toInt() and 0xff)]))
+                    `is`[i_65_++] = (this.aByteArray2695!![i_64_].toInt() shl 24 or (this.anIntArray2697!![(this.aByteArray2699!![i_64_].toInt() and 0xff)]))
                     i_64_++
                 }
             }
@@ -58,7 +58,7 @@ internal class Class207 {
                 for (i_119_ in 0..<this.anInt2696) {
                     var i_120_ = i_119_ * this.anInt2702
                     var i_121_ = ((i_119_ + this.anInt2700) * i + this.anInt2703)
-                    for (i_122_ in 0..<this.anInt2702) `is`[i_121_++] = this.aByteArray2699[i_120_++]
+                    for (i_122_ in 0..<this.anInt2702) `is`[i_121_++] = this.aByteArray2699!![i_120_++]
                 }
             } else {
                 val is_114_ = ByteArray(i * i_113_)
@@ -66,7 +66,7 @@ internal class Class207 {
                     var i_116_ = i_115_ * this.anInt2702
                     var i_117_ = ((i_115_ + this.anInt2700) * i + this.anInt2703)
                     for (i_118_ in 0..<this.anInt2702) {
-                        `is`[i_117_] = this.aByteArray2699[i_116_]
+                        `is`[i_117_] = this.aByteArray2699!![i_116_]
                         is_114_[i_117_++] = this.aByteArray2695!![i_116_++]
                     }
                 }
@@ -128,24 +128,24 @@ internal class Class207 {
                 val i_86_ = packet.readUnsignedByte(255)
                 if ((i_86_ and 0x2) == 0) {
                     if ((i_86_ and 0x1) == 0) {
-                        for (i_87_ in 0..<i_85_) class207.aByteArray2699[i_87_] = packet.readByte(-126)
+                        for (i_87_ in 0..<i_85_) class207.aByteArray2699!![i_87_] = packet.readByte(-126)
                     } else {
                         for (i_88_ in 0..<class207.anInt2702) {
-                            for (i_89_ in 0..<class207.anInt2696) class207.aByteArray2699[(i_88_ + i_89_ * class207.anInt2702)] = packet.readByte(-96)
+                            for (i_89_ in 0..<class207.anInt2696) class207.aByteArray2699!![(i_88_ + i_89_ * class207.anInt2702)] = packet.readByte(-96)
                         }
                     }
                 } else {
                     var bool = false
                     class207.aByteArray2695 = ByteArray(i_85_)
                     if ((i_86_ and 0x1) == 0) {
-                        for (i_90_ in 0..<i_85_) class207.aByteArray2699[i_90_] = packet.readByte(-118)
+                        for (i_90_ in 0..<i_85_) class207.aByteArray2699!![i_90_] = packet.readByte(-118)
                         for (i_91_ in 0..<i_85_) {
                             val i_92_ = (packet.readByte(-89).also { class207.aByteArray2695!![i_91_] = it })
                             bool = bool or (i_92_.toInt() != -1)
                         }
                     } else {
                         for (i_93_ in 0..<class207.anInt2702) {
-                            for (i_94_ in 0..<class207.anInt2696) class207.aByteArray2699[(i_93_ + i_94_ * class207.anInt2702)] = packet.readByte(-84)
+                            for (i_94_ in 0..<class207.anInt2696) class207.aByteArray2699!![(i_93_ + i_94_ * class207.anInt2702)] = packet.readByte(-84)
                         }
                         for (i_95_ in 0..<class207.anInt2702) {
                             for (i_96_ in 0..<class207.anInt2696) {

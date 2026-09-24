@@ -10,19 +10,19 @@ internal class Class348_Sub40_Sub31 : Class348_Sub40(1, false) {
     override fun method3047(i: Int, i_0_: Int): Array<IntArray>? {
         anInt9407++
         if (i_0_ != -1564599039) return null
-        val `is` = this.aClass322_7033.method2557(-111, i)
-        if (this.aClass322_7033.aBoolean4035) {
+        val `is` = this.aClass322_7033!!.method2557(-111, i)
+        if (this.aClass322_7033!!.aBoolean4035) {
             val i_1_: Int = Class348_Sub40_Sub6.Companion.anInt9139 / anInt9405
             val i_2_ = Class286_Sub2.anInt6212 / anInt9410
             val is_3_: Array<IntArray>
             if (i_2_ > 0) {
                 val i_4_ = i % i_2_
-                is_3_ = this.method3039(-86.toByte(), Class286_Sub2.anInt6212 * i_4_ / i_2_, 0)
-            } else is_3_ = this.method3039(105.toByte(), 0, 0)
+                is_3_ = this.method3039((-86).toByte(), Class286_Sub2.anInt6212 * i_4_ / i_2_, 0)!!
+            } else is_3_ = this.method3039(105.toByte(), 0, 0)!!
             val is_5_ = is_3_[0]
             val is_6_ = is_3_[1]
             val is_7_ = is_3_[2]
-            val is_8_ = `is`[0]
+            val is_8_ = `is`!![0]
             val is_9_ = `is`[1]
             val is_10_ = `is`[2]
             var i_11_ = 0
@@ -42,15 +42,15 @@ internal class Class348_Sub40_Sub31 : Class348_Sub40(1, false) {
         return `is`
     }
 
-    override fun method3049(packet: Packet, i: Int, i_14_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_14_: Int) {
         if (i_14_ == 31015) {
             val i_15_ = i
             do {
                 if (i_15_ == 0) {
-                    anInt9405 = packet.readUnsignedByte(255)
+                    anInt9405 = packet!!.readUnsignedByte(255)
                     break
                 } else if (i_15_ != 1) break
-                anInt9410 = packet.readUnsignedByte(255)
+                anInt9410 = packet!!.readUnsignedByte(255)
             } while (false)
             anInt9413++
         }

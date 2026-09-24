@@ -5,13 +5,13 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
-    private var anIntArrayArray9194: Array<IntArray>?
+    private var anIntArrayArray9194: Array<IntArray>? = null
     private val anIntArray9199 = IntArray(257)
-    override fun method3049(packet: Packet, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
         if (i == 0) {
-            val i_1_ = packet.readUnsignedByte(255)
+            val i_1_ = packet!!.readUnsignedByte(255)
             if (i_1_ == 0) {
-                anIntArrayArray9194 = Array<IntArray?>(packet.readUnsignedByte(255)) { IntArray(4) }
+                anIntArrayArray9194 = Array(packet.readUnsignedByte(255)) { IntArray(4) }
                 var i_2_ = 0
                 while (anIntArrayArray9194!!.size > i_2_) {
                     anIntArrayArray9194!![i_2_][0] = packet.readUnsignedShort(842397944)
@@ -28,15 +28,15 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
 
     override fun method3047(i: Int, i_3_: Int): Array<IntArray>? {
         anInt9192++
-        val `is` = this.aClass322_7033.method2557(i_3_ xor 0x5d41e287, i)
-        if (this.aClass322_7033.aBoolean4035) {
+        val `is` = this.aClass322_7033!!.method2557(i_3_ xor 0x5d41e287, i)
+        if (this.aClass322_7033!!.aBoolean4035) {
             val is_4_ = this.method3048(i, 633706337, 0)
-            val is_5_ = `is`[0]
+            val is_5_ = `is`!![0]
             val is_6_ = `is`[1]
             val is_7_ = `is`[2]
             var i_8_ = 0
             while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_8_)) {
-                var i_9_ = is_4_[i_8_] shr 4
+                var i_9_ = is_4_!![i_8_] shr 4
                 if (i_9_ < 0) i_9_ = 0
                 if (i_9_ > 256) i_9_ = 256
                 i_9_ = anIntArray9199[i_9_]
@@ -69,7 +69,7 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                             while_153_@ do {
                                 do {
                                     if (i_11_ == 1) {
-                                        anIntArrayArray9194 = Array<IntArray?>(2) { IntArray(4) }
+                                        anIntArrayArray9194 = Array(2) { IntArray(4) }
                                         anIntArrayArray9194!![0][1] = 0
                                         anIntArrayArray9194!![0][2] = 0
                                         anIntArrayArray9194!![0][0] = 0
@@ -90,7 +90,7 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                                         } else break
                                         break@while_153_
                                     }
-                                    anIntArrayArray9194 = Array<IntArray?>(8) { IntArray(4) }
+                                    anIntArrayArray9194 = Array(8) { IntArray(4) }
                                     anIntArrayArray9194!![0][3] = 2361
                                     anIntArrayArray9194!![0][1] = 2650
                                     anIntArrayArray9194!![0][0] = 0
@@ -125,7 +125,7 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                                     anIntArrayArray9194!![7][0] = 4096
                                     break@while_157_
                                 } while (false)
-                                anIntArrayArray9194 = Array<IntArray?>(7) { IntArray(4) }
+                                anIntArrayArray9194 = Array(7) { IntArray(4) }
                                 anIntArrayArray9194!![0][0] = 0
                                 anIntArrayArray9194!![0][1] = 0
                                 anIntArrayArray9194!![0][2] = 0
@@ -156,7 +156,7 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                                 anIntArrayArray9194!![6][1] = 0
                                 break@while_157_
                             } while (false)
-                            anIntArrayArray9194 = Array<IntArray?>(6) { IntArray(4) }
+                            anIntArrayArray9194 = Array(6) { IntArray(4) }
                             anIntArrayArray9194!![0][2] = 0
                             anIntArrayArray9194!![0][1] = 0
                             anIntArrayArray9194!![0][3] = 0
@@ -183,7 +183,7 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                             anIntArrayArray9194!![5][1] = 4096
                             break@while_157_
                         } while (false)
-                        anIntArrayArray9194 = Array<IntArray?>(16) { IntArray(4) }
+                        anIntArrayArray9194 = Array(16) { IntArray(4) }
                         anIntArrayArray9194!![0][0] = 0
                         anIntArrayArray9194!![0][3] = 321
                         anIntArrayArray9194!![0][2] = 192
@@ -250,7 +250,7 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                         anIntArrayArray9194!![15][0] = 4096
                         break@while_157_
                     } while (false)
-                    anIntArrayArray9194 = Array<IntArray?>(4) { IntArray(4) }
+                    anIntArrayArray9194 = Array(4) { IntArray(4) }
                     anIntArrayArray9194!![0][1] = 0
                     anIntArrayArray9194!![0][2] = 4096
                     anIntArrayArray9194!![0][3] = 0

@@ -11,8 +11,8 @@ internal class JavaRgbSprite : Sprite_Sub3 {
         var i = i
         var i_883_ = i_883_
         var i_885_ = i_885_
-        check(!this.aHa_Sub1_8460.method3716())
-        val i_887_ = this.aHa_Sub1_8460.anInt7477
+        check(!this.aHa_Sub1_8460!!.method3716())
+        val i_887_ = this.aHa_Sub1_8460!!.anInt7477
         i += this.anInt8461
         i_883_ += this.anInt8464
         var i_888_ = i_883_ * i_887_ + i
@@ -21,43 +21,43 @@ internal class JavaRgbSprite : Sprite_Sub3 {
         var i_891_ = this.anInt8471
         var i_892_ = i_887_ - i_891_
         var i_893_ = 0
-        if (i_883_ < this.aHa_Sub1_8460.anInt7476) {
-            val i_894_ = (this.aHa_Sub1_8460.anInt7476 - i_883_)
+        if (i_883_ < this.aHa_Sub1_8460!!.anInt7476) {
+            val i_894_ = (this.aHa_Sub1_8460!!.anInt7476 - i_883_)
             i_890_ -= i_894_
-            i_883_ = this.aHa_Sub1_8460.anInt7476
+            i_883_ = this.aHa_Sub1_8460!!.anInt7476
             i_889_ += i_894_ * i_891_
             i_888_ += i_894_ * i_887_
         }
-        if (i_883_ + i_890_ > this.aHa_Sub1_8460.anInt7503) i_890_ -= i_883_ + i_890_ - this.aHa_Sub1_8460.anInt7503
-        if (i < this.aHa_Sub1_8460.anInt7496) {
-            val i_895_ = (this.aHa_Sub1_8460.anInt7496 - i)
+        if (i_883_ + i_890_ > this.aHa_Sub1_8460!!.anInt7503) i_890_ -= i_883_ + i_890_ - this.aHa_Sub1_8460!!.anInt7503
+        if (i < this.aHa_Sub1_8460!!.anInt7496) {
+            val i_895_ = (this.aHa_Sub1_8460!!.anInt7496 - i)
             i_891_ -= i_895_
-            i = this.aHa_Sub1_8460.anInt7496
+            i = this.aHa_Sub1_8460!!.anInt7496
             i_889_ += i_895_
             i_888_ += i_895_
             i_893_ += i_895_
             i_892_ += i_895_
         }
-        if (i + i_891_ > this.aHa_Sub1_8460.anInt7507) {
-            val i_896_ = (i + i_891_ - (this.aHa_Sub1_8460.anInt7507))
+        if (i + i_891_ > this.aHa_Sub1_8460!!.anInt7507) {
+            val i_896_ = (i + i_891_ - (this.aHa_Sub1_8460!!.anInt7507))
             i_891_ -= i_896_
             i_893_ += i_896_
             i_892_ += i_896_
         }
         if (i_891_ > 0 && i_890_ > 0) {
-            val `is` = (this.aHa_Sub1_8460.anIntArray7483)
+            val `is` = (this.aHa_Sub1_8460!!.anIntArray7483)
             if (i_886_ == 0) {
                 if (i_884_ == 1) {
                     for (i_897_ in -i_890_..-1) {
                         var i_898_ = i_888_ + i_891_ - 3
                         while (i_888_ < i_898_) {
-                            `is`[i_888_++] = (this.anIntArray9933[i_889_++])
+                            `is`!![i_888_++] = (this.anIntArray9933[i_889_++])
                             `is`[i_888_++] = (this.anIntArray9933[i_889_++])
                             `is`[i_888_++] = (this.anIntArray9933[i_889_++])
                             `is`[i_888_++] = (this.anIntArray9933[i_889_++])
                         }
                         i_898_ += 3
-                        while (i_888_ < i_898_) `is`[i_888_++] = (this.anIntArray9933[i_889_++])
+                        while (i_888_ < i_898_) `is`!![i_888_++] = (this.anIntArray9933[i_889_++])
                         i_888_ += i_892_
                         i_889_ += i_893_
                     }
@@ -73,7 +73,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                             val i_905_ = (i_904_ and 0xff0000) * i_899_ and 0xffffff.inv()
                             val i_906_ = (i_904_ and 0xff00) * i_900_ and 0xff0000
                             val i_907_ = (i_904_ and 0xff) * i_901_ and 0xff00
-                            `is`[i_888_++] = (i_905_ or i_906_ or i_907_) ushr 8
+                            `is`!![i_888_++] = (i_905_ or i_906_ or i_907_) ushr 8
                         }
                         i_888_ += i_892_
                         i_889_ += i_893_
@@ -87,7 +87,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                             val i_911_ = i_910_ + i_885_
                             val i_912_ = (i_910_ and 0xff00ff) + (i_885_ and 0xff00ff)
                             val i_913_ = ((i_912_ and 0x1000100) + (i_911_ - i_912_ and 0x10000))
-                            `is`[i_888_++] = i_911_ - i_913_ or i_913_ - (i_913_ ushr 8)
+                            `is`!![i_888_++] = i_911_ - i_913_ or i_913_ - (i_913_ ushr 8)
                         }
                         i_888_ += i_892_
                         i_889_ += i_893_
@@ -105,7 +105,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                             val i_920_ = (this.anIntArray9933[i_889_++])
                             i_916_ = (i_920_ and 0xff00ff) * i_914_ and 0xff00ff.inv()
                             i_917_ = (i_920_ and 0xff00) * i_914_ and 0xff0000
-                            `is`[i_888_++] = ((i_916_ or i_917_) ushr 8) + i_885_
+                            `is`!![i_888_++] = ((i_916_ or i_917_) ushr 8) + i_885_
                         }
                         i_888_ += i_892_
                         i_889_ += i_893_
@@ -120,22 +120,22 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                         var i_922_ = i_888_ + i_891_ - 3
                         while (i_888_ < i_922_) {
                             var i_923_ = (this.anIntArray9933[i_889_++])
-                            if (i_923_ != 0) `is`[i_888_++] = i_923_
+                            if (i_923_ != 0) `is`!![i_888_++] = i_923_
                             else i_888_++
                             i_923_ = (this.anIntArray9933[i_889_++])
-                            if (i_923_ != 0) `is`[i_888_++] = i_923_
+                            if (i_923_ != 0) `is`!![i_888_++] = i_923_
                             else i_888_++
                             i_923_ = (this.anIntArray9933[i_889_++])
-                            if (i_923_ != 0) `is`[i_888_++] = i_923_
+                            if (i_923_ != 0) `is`!![i_888_++] = i_923_
                             else i_888_++
                             i_923_ = (this.anIntArray9933[i_889_++])
-                            if (i_923_ != 0) `is`[i_888_++] = i_923_
+                            if (i_923_ != 0) `is`!![i_888_++] = i_923_
                             else i_888_++
                         }
                         i_922_ += 3
                         while (i_888_ < i_922_) {
                             val i_924_ = (this.anIntArray9933[i_889_++])
-                            if (i_924_ != 0) `is`[i_888_++] = i_924_
+                            if (i_924_ != 0) `is`!![i_888_++] = i_924_
                             else i_888_++
                         }
                         i_888_ += i_892_
@@ -151,7 +151,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                             for (i_928_ in -i_891_..-1) {
                                 val i_929_ = (this.anIntArray9933[i_889_++])
                                 if (i_929_ != 0) {
-                                    val i_930_ = `is`[i_888_]
+                                    val i_930_ = `is`!![i_888_]
                                     `is`[i_888_++] = ((((i_929_ and 0xff00ff) * i_925_ + (i_930_ and 0xff00ff) * i_926_) and 0xff00ff.inv()) + (((i_929_ and 0xff00) * i_925_ + (i_930_ and 0xff00) * i_926_) and 0xff0000)) shr 8
                                 } else i_888_++
                             }
@@ -172,13 +172,13 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                                         val i_943_ = ((i_938_ and 0xff0000) * i_931_ and 0xffffff.inv())
                                         val i_944_ = ((i_938_ and 0xff00) * i_932_ and 0xff0000)
                                         val i_945_ = ((i_938_ and 0xff) * i_933_ and 0xff00)
-                                        `is`[i_888_++] = (i_943_ or i_944_ or i_945_) ushr 8
+                                        `is`!![i_888_++] = (i_943_ or i_944_ or i_945_) ushr 8
                                     } else {
                                         val i_939_ = ((i_938_ and 0xff0000) * i_931_ and 0xffffff.inv())
                                         val i_940_ = ((i_938_ and 0xff00) * i_932_ and 0xff0000)
                                         val i_941_ = ((i_938_ and 0xff) * i_933_ and 0xff00)
                                         i_938_ = (i_939_ or i_940_ or i_941_) ushr 8
-                                        val i_942_ = `is`[i_888_]
+                                        val i_942_ = `is`!![i_888_]
                                         `is`[i_888_++] = ((((i_938_ and 0xff00ff) * i_934_ + ((i_942_ and 0xff00ff) * i_935_)) and 0xff00ff.inv()) + (((i_938_ and 0xff00) * i_934_ + ((i_942_ and 0xff00) * i_935_)) and 0xff0000)) shr 8
                                     }
                                 } else i_888_++
@@ -202,10 +202,10 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                             i_953_ = i_951_ - i_953_ or i_953_ - (i_953_ ushr 8)
                             if (i_950_ == 0 && i_946_ != 255) {
                                 i_950_ = i_953_
-                                i_953_ = `is`[i_888_]
+                                i_953_ = `is`!![i_888_]
                                 i_953_ = ((((i_950_ and 0xff00ff) * i_946_ + (i_953_ and 0xff00ff) * i_947_) and 0xff00ff.inv()) + (((i_950_ and 0xff00) * i_946_ + (i_953_ and 0xff00) * i_947_) and 0xff0000)) shr 8
                             }
-                            `is`[i_888_++] = i_953_
+                            `is`!![i_888_++] = i_953_
                         }
                         i_888_ += i_892_
                         i_889_ += i_893_
@@ -224,7 +224,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                             if (i_960_ != 0) {
                                 i_956_ = (i_960_ and 0xff00ff) * i_954_ and 0xff00ff.inv()
                                 i_957_ = (i_960_ and 0xff00) * i_954_ and 0xff0000
-                                `is`[i_888_++] = ((i_956_ or i_957_) ushr 8) + i_885_
+                                `is`!![i_888_++] = ((i_956_ or i_957_) ushr 8) + i_885_
                             } else i_888_++
                         }
                         i_888_ += i_892_
@@ -240,7 +240,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                         for (i_962_ in -i_891_..-1) {
                             val i_963_ = (this.anIntArray9933[i_889_++])
                             if (i_963_ != 0) {
-                                var i_964_ = `is`[i_888_]
+                                var i_964_ = `is`!![i_888_]
                                 val i_965_ = i_963_ + i_964_
                                 val i_966_ = ((i_963_ and 0xff00ff) + (i_964_ and 0xff00ff))
                                 i_964_ = (i_966_ and 0x1000100) + (i_965_ - i_966_ and 0x10000)
@@ -264,7 +264,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                                 val i_974_ = (i_972_ and 0xff00) * i_968_ and 0xff0000
                                 val i_975_ = (i_972_ and 0xff) * i_969_ and 0xff00
                                 i_972_ = (i_973_ or i_974_ or i_975_) ushr 8
-                                var i_976_ = `is`[i_888_]
+                                var i_976_ = `is`!![i_888_]
                                 val i_977_ = i_972_ + i_976_
                                 val i_978_ = ((i_972_ and 0xff00ff) + (i_976_ and 0xff00ff))
                                 i_976_ = (i_978_ and 0x1000100) + (i_977_ - i_978_ and 0x10000)
@@ -284,7 +284,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                             var i_983_ = (i_981_ and 0xff00ff) + (i_885_ and 0xff00ff)
                             var i_984_ = ((i_983_ and 0x1000100) + (i_982_ - i_983_ and 0x10000))
                             i_981_ = i_982_ - i_984_ or i_984_ - (i_984_ ushr 8)
-                            i_984_ = `is`[i_888_]
+                            i_984_ = `is`!![i_888_]
                             i_982_ = i_981_ + i_984_
                             i_983_ = (i_981_ and 0xff00ff) + (i_984_ and 0xff00ff)
                             i_984_ = (i_983_ and 0x1000100) + (i_982_ - i_983_ and 0x10000)
@@ -308,7 +308,7 @@ internal class JavaRgbSprite : Sprite_Sub3 {
                                 i_987_ = (i_991_ and 0xff00ff) * i_985_ and 0xff00ff.inv()
                                 i_988_ = (i_991_ and 0xff00) * i_985_ and 0xff0000
                                 i_991_ = ((i_987_ or i_988_) ushr 8) + i_885_
-                                var i_992_ = `is`[i_888_]
+                                var i_992_ = `is`!![i_888_]
                                 val i_993_ = i_991_ + i_992_
                                 val i_994_ = ((i_991_ and 0xff00ff) + (i_992_ and 0xff00ff))
                                 i_992_ = (i_994_ and 0x1000100) + (i_993_ - i_994_ and 0x10000)
@@ -327,11 +327,11 @@ internal class JavaRgbSprite : Sprite_Sub3 {
     }
 
     fun method979(i: Int, i_589_: Int, i_590_: Int, i_591_: Int, i_592_: Int, i_593_: Int) {
-        val `is` = this.aHa_Sub1_8460.anIntArray7483
+        val `is` = this.aHa_Sub1_8460!!.anIntArray7483
         for (i_594_ in 0..<i_591_) {
             val i_595_ = (i_589_ + i_594_) * this.anInt8471 + i
-            val i_596_ = ((i_593_ + i_594_) * this.aHa_Sub1_8460.anInt7477 + i_592_)
-            for (i_597_ in 0..<i_590_) this.anIntArray9933[i_595_ + i_597_] = `is`[i_596_ + i_597_]
+            val i_596_ = ((i_593_ + i_594_) * this.aHa_Sub1_8460!!.anInt7477 + i_592_)
+            for (i_597_ in 0..<i_590_) this.anIntArray9933[i_595_ + i_597_] = `is`!![i_596_ + i_597_]
         }
     }
 

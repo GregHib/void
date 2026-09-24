@@ -11,11 +11,11 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
     var index: Int
     abstract fun method3652()
 
-    abstract fun method3711(`is`: IntArray?, i: Int, i_212_: Int, i_213_: Int, i_214_: Int, bool: Boolean): Sprite?
+    abstract fun method3711(`is`: IntArray, i: Int, i_212_: Int, i_213_: Int, i_214_: Int, bool: Boolean): Sprite?
 
     // abstract dependencies of Class213.method1562 (genuine), which calls
     // these on a `ha`-typed reference - all implemented concretely in ha_Sub1.
-    abstract fun createModel(mesh: Mesh?, functionMask: Int, featureMask: Int, ambient: Int, contrast: Int): Model?
+    abstract fun createModel(mesh: Mesh, functionMask: Int, featureMask: Int, ambient: Int, contrast: Int): Model?
 
     abstract fun method3654(): Matrix?
 
@@ -46,21 +46,21 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
     fun method3635(i: Byte) {
         val i_15_ = -90 % ((i - 8) / 33)
         anInt4573++
-        Class348_Sub40_Sub26.aBooleanArray9351[this.index] = false
+        Class348_Sub40_Sub26.aBooleanArray9351!![this.index] = false
         method3652()
     }
 
     fun createSprite(i: Int, `is`: IntArray?, i_84_: Byte, i_85_: Int, i_86_: Int, i_87_: Int): Sprite? {
         anInt4565++
         if (i_84_.toInt() != 94) return null
-        return method3711(`is`, i_85_, i_86_, i, i_87_, true)
+        return method3711(`is`!!, i_85_, i_86_, i, i_87_, true)
     }
 
     init {
         var i = -1
         for (i_215_ in 0..7) {
-            if (!Class348_Sub40_Sub26.aBooleanArray9351[i_215_]) {
-                Class348_Sub40_Sub26.aBooleanArray9351[i_215_] = true
+            if (!Class348_Sub40_Sub26.aBooleanArray9351!![i_215_]) {
+                Class348_Sub40_Sub26.aBooleanArray9351!![i_215_] = true
                 i = i_215_
                 break
             }
@@ -80,7 +80,7 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
         fun method3664(i: Int, i_88_: Int): ByteArray? {
             anInt4564++
             if (i_88_ <= 21) anInt4583 = 60
-            var class348_sub42_sub3 = (Class348_Sub1_Sub2.aClass308_8815.method2302(i.toLong(), -120.toByte()) as Class348_Sub42_Sub3?)
+            var class348_sub42_sub3 = (Class348_Sub1_Sub2.aClass308_8815.method2302(i.toLong(), (-120).toByte()) as Class348_Sub42_Sub3?)
             if (class348_sub42_sub3 == null) {
                 val `is` = ByteArray(512)
                 val random = Random(i.toLong())

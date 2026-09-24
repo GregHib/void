@@ -5,5 +5,5 @@ package world.gregs.voidps.tools.icon
 */
 
 internal object Class235 {
-    var anIntArray3068: IntArray?
+    var anIntArray3068: IntArray? = null
 }

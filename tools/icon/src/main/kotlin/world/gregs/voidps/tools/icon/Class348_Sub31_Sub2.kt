@@ -77,7 +77,7 @@ internal class Class348_Sub31_Sub2 : Class348_Sub31(), ImageProducer {
         graphics.setClip(shape)
     }
 
-    override fun method3008(canvas: Canvas, i: Int, i_11_: Int, i_12_: Int) {
+    override fun method3008(canvas: Canvas?, i: Int, i_11_: Int, i_12_: Int) {
         this.anInt6920 = i_12_
         anInt9079++
         this.anInt6917 = i
@@ -86,7 +86,7 @@ internal class Class348_Sub31_Sub2 : Class348_Sub31(), ImageProducer {
         aColorModel9078 = DirectColorModel(32, 16711680, 65280, 255)
         if (i_11_ <= -42) {
             anImage9075 = aCanvas9073!!.createImage(this)
-            method3017(-117.toByte())
+            method3017((-117).toByte())
             aCanvas9073!!.prepareImage(anImage9075, aCanvas9073)
             method3017(86.toByte())
             aCanvas9073!!.prepareImage(anImage9075, aCanvas9073)

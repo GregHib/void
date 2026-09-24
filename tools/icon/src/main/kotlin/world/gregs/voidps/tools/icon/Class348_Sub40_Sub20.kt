@@ -15,17 +15,17 @@ internal class Class348_Sub40_Sub20 : Class348_Sub40(0, true) {
 
     override fun method3042(i: Int, i_3_: Int): IntArray {
         anInt9261++
-        val `is` = this.aClass191_7032.method1433(0, i)
-        if (this.aClass191_7032.aBoolean2570) {
-            val i_4_ = Class239_Sub18.anIntArray6035[i]
+        val `is` = this.aClass191_7032!!.method1433(0, i)
+        if (this.aClass191_7032!!.aBoolean2570) {
+            val i_4_ = Class239_Sub18.anIntArray6035!![i]
             var i_5_ = 0
             while ((i_5_ < Class348_Sub40_Sub6.Companion.anInt9139)) {
-                `is`[i_5_] = method3103(i_4_, Class318_Sub6.anIntArray6432[i_5_], 22) % 4096
+                `is`!![i_5_] = method3103(i_4_, Class318_Sub6.anIntArray6432!![i_5_], 22) % 4096
                 i_5_++
             }
         }
         if (i_3_ != 255) method3042(38, -42)
-        return `is`
+        return `is`!!
     }
 
     companion object {

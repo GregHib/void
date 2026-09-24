@@ -85,7 +85,7 @@ internal object Class212 {
                 while (true) {
                     if (i_25_ == 0) break@while_75_
                     if (i_19_ == 1) break
-                    is_23_[i_24_] = i
+                    is_23_!![i_24_] = i
                     i_19_--
                     i_24_++
                     i_25_--
@@ -94,7 +94,7 @@ internal object Class212 {
                     i_19_ = 1
                     break
                 }
-                is_23_[i_24_] = i
+                is_23_!![i_24_] = i
                 i_24_++
                 i_25_--
             }
@@ -104,7 +104,7 @@ internal object Class212 {
                     break@while_75_
                 }
                 i = i_21_.toByte()
-                i_22_ = `is`[i_22_]
+                i_22_ = `is`!![i_22_]
                 val i_28_ = i_22_.toByte().toInt()
                 i_22_ = i_22_ shr 8
                 i_20_++
@@ -114,7 +114,7 @@ internal object Class212 {
                         i_19_ = 1
                         break@while_75_
                     }
-                    is_23_[i_24_] = i
+                    is_23_!![i_24_] = i
                     i_24_++
                     i_25_--
                 } else {
@@ -123,7 +123,7 @@ internal object Class212 {
                         i_19_ = 1
                         break@while_75_
                     }
-                    is_23_[i_24_] = i
+                    is_23_!![i_24_] = i
                     i_24_++
                     i_25_--
                 }
@@ -254,7 +254,7 @@ internal object Class212 {
                 class40.aByteArray544[i_60_] = i_61_.toByte()
             }
             val is_62_ = ByteArray(6)
-            for (i_63_ in 0..<i_58_) is_62_[i_63_.toInt()] = i_63_
+            for (i_63_ in 0..<i_58_) is_62_[i_63_] = i_63_.toByte()
             for (i_64_ in 0..<i_59_) {
                 var i_65_ = class40.aByteArray544[i_64_]
                 val i_66_ = is_62_[i_65_.toInt()]
@@ -275,17 +275,17 @@ internal object Class212 {
                         if (i_51_.toInt() == 0) i_68_++
                         else i_68_--
                     }
-                    class40.aByteArrayArray549[i_67_][i_69_] = i_68_.toByte()
+                    class40.aByteArrayArray549[i_67_]!![i_69_] = i_68_.toByte()
                 }
             }
             for (i_70_ in 0..<i_58_) {
                 var i_71_ = 32
                 var i_72_: Byte = 0
                 for (i_73_ in 0..<i_57_) {
-                    if (class40.aByteArrayArray549[i_70_][i_73_] > i_72_) i_72_ = (class40.aByteArrayArray549[i_70_][i_73_])
-                    if (class40.aByteArrayArray549[i_70_][i_73_] < i_71_) i_71_ = (class40.aByteArrayArray549[i_70_][i_73_]).toInt()
+                    if (class40.aByteArrayArray549[i_70_]!![i_73_] > i_72_) i_72_ = (class40.aByteArrayArray549[i_70_]!![i_73_])
+                    if (class40.aByteArrayArray549[i_70_]!![i_73_] < i_71_) i_71_ = (class40.aByteArrayArray549[i_70_]!![i_73_]).toInt()
                 }
-                method1546(class40.anIntArrayArray556[i_70_], class40.anIntArrayArray553[i_70_], class40.anIntArrayArray529[i_70_], class40.aByteArrayArray549[i_70_], i_71_, i_72_.toInt(), i_57_)
+                method1546(class40.anIntArrayArray556[i_70_]!!, class40.anIntArrayArray553[i_70_]!!, class40.anIntArrayArray529[i_70_]!!, class40.aByteArrayArray549[i_70_]!!, i_71_, i_72_.toInt(), i_57_)
                 class40.anIntArray525[i_70_] = i_71_
             }
             val i_74_ = class40.anInt541 + 1
@@ -352,7 +352,7 @@ internal object Class212 {
                     i_52_ = (class40.aByteArray528[(class40.aByteArray545[class40.anIntArray540[0]]).toInt() and 0xff]).toInt()
                     class40.anIntArray535[i_52_ and 0xff] += i_87_
                     while ( /**/i_87_ > 0) {
-                        Class286_Sub3.anIntArray6228[i_81_] = i_52_ and 0xff
+                        Class286_Sub3.anIntArray6228!![i_81_] = i_52_ and 0xff
                         i_81_++
                         i_87_--
                     }
@@ -403,7 +403,7 @@ internal object Class212 {
                         }
                     }
                     class40.anIntArray535[(class40.aByteArray528[i_51_.toInt() and 0xff].toInt() and 0xff)]++
-                    Class286_Sub3.anIntArray6228[i_81_] = (class40.aByteArray528[i_51_.toInt() and 0xff].toInt() and 0xff)
+                    Class286_Sub3.anIntArray6228!![i_81_] = (class40.aByteArray528[i_51_.toInt() and 0xff].toInt() and 0xff)
                     i_81_++
                     if (i_76_ == 0) {
                         i_75_++
@@ -431,13 +431,13 @@ internal object Class212 {
             for (i_100_ in 1..256) class40.anIntArray557[i_100_] = class40.anIntArray535[i_100_ - 1]
             for (i_101_ in 1..256) class40.anIntArray557[i_101_] += class40.anIntArray557[i_101_ - 1]
             for (i_102_ in 0..<i_81_) {
-                i_52_ = (Class286_Sub3.anIntArray6228[i_102_] and 0xff).toByte().toInt()
-                Class286_Sub3.anIntArray6228[(class40.anIntArray557[i_52_ and 0xff])] = Class286_Sub3.anIntArray6228[(class40.anIntArray557[i_52_ and 0xff])] or (i_102_ shl 8)
+                i_52_ = (Class286_Sub3.anIntArray6228!![i_102_] and 0xff).toByte().toInt()
+                Class286_Sub3.anIntArray6228!![(class40.anIntArray557[i_52_ and 0xff])] = Class286_Sub3.anIntArray6228!![(class40.anIntArray557[i_52_ and 0xff])] or (i_102_ shl 8)
                 class40.anIntArray557[i_52_ and 0xff]++
             }
-            class40.anInt552 = (Class286_Sub3.anIntArray6228[class40.anInt530] shr 8)
+            class40.anInt552 = (Class286_Sub3.anIntArray6228!![class40.anInt530] shr 8)
             class40.anInt555 = 0
-            class40.anInt552 = Class286_Sub3.anIntArray6228[class40.anInt552]
+            class40.anInt552 = Class286_Sub3.anIntArray6228!![class40.anInt552]
             class40.anInt537 = (class40.anInt552 and 0xff).toByte().toInt()
             class40.anInt552 = class40.anInt552 shr 8
             class40.anInt555++

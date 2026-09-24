@@ -7,14 +7,14 @@ package world.gregs.voidps.tools.icon
 internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class326?, index: Js5?, meshes: Js5?) {
     private val index: Js5?
     var meshes: Js5? = null
-    private val allowMembers = false
+    private var allowMembers = false
     var num: Int = 0
     private val recentUse = Class60(64)
     var languageId: Int = 0
     var spriteCache: KeyedReferenceCache = KeyedReferenceCache(250)
     private val spriteCacheKey = ItemSpriteCacheKey()
     private val defaultOps: Array<String?>
-    private val aClass326_3292: Class326? = null
+    private var aClass326_3292: Class326? = null
     private val defaultIops: Array<String?>
 
     /* NOTE: originally calls method1935(...) behind "if (i_2_ != 83)".
@@ -33,11 +33,11 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
             if (invCount > 1 && itemType.stackIds != null) {
                 var stackId = -1
                 for (i_8_ in 0..9) {
-                    if ((itemType.stackAmounts[i_8_] <= invCount) && itemType.stackAmounts[i_8_] != 0) stackId = itemType.stackIds[i_8_]
+                    if ((itemType.stackAmounts!![i_8_] <= invCount) && itemType.stackAmounts!![i_8_] != 0) stackId = itemType.stackIds!![i_8_]
                 }
                 if (stackId != -1) itemType = list(127, stackId)
             }
-            val image = itemType.sprite(invCount, bool_5_, graphicShadow, realToolkit, scratchToolkit, font, playerModel, itemNumMode, -102.toByte(), outline)
+            val image = itemType.sprite(invCount, bool_5_, graphicShadow, realToolkit, scratchToolkit, font, playerModel, itemNumMode, (-102).toByte(), outline)
             if (image == null) return null
             val sprite: Sprite?
             if (temp) sprite = scratchToolkit!!.createSprite(36, image, 94.toByte(), 0, 36, 32)
@@ -80,14 +80,14 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
         type = ItemType()
         type.list = this
         type.id = id
-        type.op = arrayOf<String?>(null, null, LocalisedText.Companion.TAKE.method2063(this.languageId, 544), null, null)
-        type.iop = (arrayOf<String?>(null, null, null, null, LocalisedText.Companion.DROP.method2063(this.languageId, 544)))
+        type.op = arrayOf<String?>(null, null, LocalisedText.Companion.TAKE!!.method2063(this.languageId, 544), null, null)
+        type.iop = (arrayOf<String?>(null, null, null, null, LocalisedText.Companion.DROP!!.method2063(this.languageId, 544)))
         if (data != null) type.decode(768, Packet(data))
         type.postDecode(92.toByte())
         if (type.notedTemplateId != -1) type.noteGen(1, list(90, type.anInt2758), list(101, type.notedTemplateId))
-        if (type.lendTemplateId != -1) type.lendGen(list(-58, type.anInt2778), -29.toByte(), list(-82, type.lendTemplateId))
+        if (type.lendTemplateId != -1) type.lendGen(list(-58, type.anInt2778), (-29).toByte(), list(-82, type.lendTemplateId))
         if (!allowMembers && type.members) {
-            type.name = LocalisedText.Companion.MEMBERS_OBJECT.method2063(this.languageId, 544)
+            type.name = LocalisedText.Companion.MEMBERS_OBJECT!!.method2063(this.languageId, 544)
             type.team = 0
             type.op = defaultOps
             type.iop = defaultIops
@@ -95,18 +95,18 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
             type.quests = null
             if (type.params != null) {
                 var bool = false
-                var class348 = type.params.method3484(0)
+                var class348 = type.params!!.method3484(0)!!
                 while (class348 != null) {
                     val class254 = aClass326_3292!!.method2600(class348.aLong4291.toInt(), 28364)
                     if (class254.aBoolean3261) class348.unlink(60.toByte())
                     else bool = true
-                    class348 = type.params.method3482(0)
+                    class348 = type.params!!.method3482(0)!!
                 }
                 if (!bool) type.params = null
             }
         }
         synchronized(recentUse) {
-            recentUse.method582(type, id.toLong(), -118.toByte())
+            recentUse.method582(type, id.toLong(), (-118).toByte())
         }
         return type
     }
@@ -138,8 +138,8 @@ internal class ItemTypeList(languageId: Int, members: Boolean, class326: Class32
                 val lastGroup = -1 + this.index.groupSize(-1)
                 this.num = this.index.fileLimit(0, lastGroup) + lastGroup * 256
             } else this.num = 0
-            defaultOps = (arrayOf<String?>(null, null, LocalisedText.Companion.TAKE.method2063(this.languageId, 544), null, null))
-            defaultIops = (arrayOf<String?>(null, null, null, null, LocalisedText.Companion.DROP.method2063(this.languageId, 544)))
+            defaultOps = (arrayOf<String?>(null, null, LocalisedText.Companion.TAKE!!.method2063(this.languageId, 544), null, null))
+            defaultIops = (arrayOf<String?>(null, null, null, null, LocalisedText.Companion.DROP!!.method2063(this.languageId, 544)))
         } catch (runtimeexception: RuntimeException) {
             throw Class348_Sub17.method2929(runtimeexception, ("ub.<init>(" + ',' + languageId + ',' + members + ',' + (if (class326 != null) "{...}" else "null") + ',' + (if (index != null) "{...}" else "null") + ',' + (if (meshes != null) "{...}" else "null") + ')'))
         }

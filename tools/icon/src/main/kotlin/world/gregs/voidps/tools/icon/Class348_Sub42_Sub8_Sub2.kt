@@ -6,7 +6,7 @@ package world.gregs.voidps.tools.icon
 
 internal class Class348_Sub42_Sub8_Sub2(private val anObject10429: Any?, i: Int) : Class348_Sub42_Sub8(i) {
     override fun method3195(i: Int): Boolean {
-        if (i != -4) Companion.method3202(-58.toByte())
+        if (i != -4) Companion.method3202((-58).toByte())
         anInt10438++
         return false
     }
@@ -19,7 +19,7 @@ internal class Class348_Sub42_Sub8_Sub2(private val anObject10429: Any?, i: Int)
 
     companion object {
         var anInt10435: Int = 0
-        var aLongArrayArrayArray10431: Array<Array<LongArray?>?>?
+        var aLongArrayArrayArray10431: Array<Array<LongArray?>?>? = null
         var aClass76_10436: Class76? = Class76(true)
         var aClass74_10437: Class74? = Class74(0, 3)
         var anInt10438: Int = 0

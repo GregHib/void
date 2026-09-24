@@ -7,16 +7,16 @@ package world.gregs.voidps.tools.icon
 internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
     private var anInt9325 = 0
     private var anInt9329 = 10
-    private var anIntArray9332: IntArray?
-    private var anIntArray9333: IntArray?
+    private var anIntArray9332: IntArray? = null
+    private var anIntArray9333: IntArray? = null
     private var anInt9334 = 2048
 
     override fun method3042(i: Int, i_0_: Int): IntArray {
         if (i_0_ != 255) anIntArray9333 = null
         anInt9328++
-        val `is` = this.aClass191_7032.method1433(0, i)
-        if (this.aClass191_7032.aBoolean2570) {
-            val i_1_ = Class239_Sub18.anIntArray6035[i]
+        val `is` = this.aClass191_7032!!.method1433(0, i)
+        if (this.aClass191_7032!!.aBoolean2570) {
+            val i_1_ = Class239_Sub18.anIntArray6035!![i]
             if (anInt9325 == 0) {
                 var i_7_ = 0
                 for (i_8_ in 0..<anInt9329) {
@@ -25,12 +25,12 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
                         break
                     }
                 }
-                Class214.method1579(`is`, 0, Class348_Sub40_Sub6.Companion.anInt9139, i_7_)
+                Class214.method1579(`is`!!, 0, Class348_Sub40_Sub6.Companion.anInt9139, i_7_)
             } else {
                 for (i_2_ in 0..<Class348_Sub40_Sub6.Companion.anInt9139) {
                     var i_3_ = 0
                     var i_4_ = 0
-                    val i_5_ = Class318_Sub6.anIntArray6432[i_2_]
+                    val i_5_ = Class318_Sub6.anIntArray6432!![i_2_]
                     var i_6_ = anInt9325
                     while_197_@ do {
                         do {
@@ -54,35 +54,35 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
                         }
                         i_6_++
                     }
-                    `is`[i_2_] = i_4_
+                    `is`!![i_2_] = i_4_
                 }
             }
         }
-        return `is`
+        return `is`!!
     }
 
     override fun method3044(i: Int) {
         if (i < 108) method3049(null, -68, -1)
         anInt9330++
-        method3116(-111.toByte())
+        method3116((-111).toByte())
     }
 
-    override fun method3049(packet: Packet, i: Int, i_9_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_9_: Int) {
         anInt9331++
         val i_10_ = i
         while_198_@ do {
             do {
                 if (i_10_ == 0) {
-                    anInt9329 = packet.readUnsignedByte(255)
+                    anInt9329 = packet!!.readUnsignedByte(255)
                     break@while_198_
                 } else if (i_10_ != 1) {
                     if (i_10_ == 2) break
                     break@while_198_
                 }
-                anInt9334 = packet.readUnsignedShort(842397944)
+                anInt9334 = packet!!.readUnsignedShort(842397944)
                 break@while_198_
             } while (false)
-            anInt9325 = packet.readUnsignedByte(i_9_ xor 0x79d8)
+            anInt9325 = packet!!.readUnsignedByte(i_9_ xor 0x79d8)
         } while (false)
         if (i_9_ != 31015) method3049(null, 38, 1)
     }

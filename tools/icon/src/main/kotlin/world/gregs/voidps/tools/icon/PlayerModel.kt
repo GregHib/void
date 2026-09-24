@@ -5,5 +5,5 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class PlayerModel {
-    var recol_d: IntArray?
+    var recol_d: IntArray? = null
 }

@@ -16,16 +16,12 @@ internal abstract class Class348_Sub40(i: Int, var aBoolean7045: Boolean) {
         return -1
     }
 
-    fun method3039(i: Byte, i_1_: Int, i_2_: Int): Array<IntArray?>? {
+    fun method3039(i: Byte, i_1_: Int, i_2_: Int): Array<IntArray>? {
         anInt7039++
         val i_3_ = 9 / ((6 - i) / 37)
         if (this.aClass348_Sub40Array7031[i_2_]!!.aBoolean7045) {
-            val `is` = this.aClass348_Sub40Array7031[i_2_]!!.method3042(i_1_, 255)
-            val is_4_ = arrayOfNulls<IntArray>(3)
-            is_4_[2] = `is`
-            is_4_[1] = `is`
-            is_4_[0] = `is`
-            return is_4_
+            val `is` = this.aClass348_Sub40Array7031[i_2_]!!.method3042(i_1_, 255)!!
+            return arrayOf(`is`, `is`, `is`)
         }
         return this.aClass348_Sub40Array7031[i_2_]!!.method3047(i_1_, -1564599039)
     }
@@ -56,7 +52,7 @@ internal abstract class Class348_Sub40(i: Int, var aBoolean7045: Boolean) {
 
     open fun method3046(i: Byte) {
         anInt7038++
-        if (i > -102) method3046(-112.toByte())
+        if (i > -102) method3046((-112).toByte())
         if (this.aBoolean7045) {
             this.aClass191_7032!!.method1432(124.toByte())
             this.aClass191_7032 = null
@@ -66,7 +62,7 @@ internal abstract class Class348_Sub40(i: Int, var aBoolean7045: Boolean) {
         }
     }
 
-    open fun method3047(i: Int, i_57_: Int): Array<IntArray?>? {
+    open fun method3047(i: Int, i_57_: Int): Array<IntArray>? {
         anInt7040++
         if (i_57_ != -1564599039) method3048(-4, -64, 20)
         throw IllegalStateException("This operation does not have a colour output")

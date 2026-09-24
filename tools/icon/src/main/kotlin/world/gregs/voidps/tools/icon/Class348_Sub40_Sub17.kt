@@ -5,7 +5,7 @@ package world.gregs.voidps.tools.icon
 */
 
 internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
-    var anIntArray9232: IntArray?
+    var anIntArray9232: IntArray? = null
     var anInt9237: Int = 0
     var anInt9241: Int = 0
     private var anInt9243 = -1
@@ -14,7 +14,7 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
         if (bool != true) return true
         if (this.anIntArray9232 != null) return true
         if (anInt9243 >= 0) {
-            val class207: Class207? = (if (Matrix_Sub2.anInt5713 >= 0) Class207.Companion.method1521(Class348.Companion.aJs5_4286, Matrix_Sub2.anInt5713, anInt9243) else Class207.Companion.method1512(Class348.Companion.aJs5_4286, anInt9243))
+            val class207: Class207? = (if (Matrix_Sub2.anInt5713 >= 0) Class207.Companion.method1521(Class348.Companion.aJs5_4286!!, Matrix_Sub2.anInt5713, anInt9243) else Class207.Companion.method1512(Class348.Companion.aJs5_4286!!, anInt9243))
             class207!!.method1524()
             this.anIntArray9232 = class207.method1516()
             this.anInt9237 = class207.anInt2702
@@ -24,9 +24,9 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
         return false
     }
 
-    override fun method3049(packet: Packet, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
         if (i_0_ == 31015) {
-            if (i == 0) anInt9243 = packet.readUnsignedShort(842397944)
+            if (i == 0) anInt9243 = packet!!.readUnsignedShort(842397944)
             anInt9236++
         }
     }
@@ -38,7 +38,7 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
     }
 
     override fun method3046(i: Byte) {
-        super.method3046(-112.toByte())
+        super.method3046((-112).toByte())
         if (i < -102) {
             anInt9238++
             this.anIntArray9232 = null
@@ -48,9 +48,9 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
     override fun method3047(i: Int, i_1_: Int): Array<IntArray> {
         anInt9239++
         if (i_1_ != -1564599039) method3047(8, -86)
-        val `is` = this.aClass322_7033.method2557(-108, i)
-        if (this.aClass322_7033.aBoolean4035 && method3090(true)) {
-            val is_2_ = `is`[0]
+        val `is` = this.aClass322_7033!!.method2557(-108, i)
+        if (this.aClass322_7033!!.aBoolean4035 && method3090(true)) {
+            val is_2_ = `is`!![0]
             val is_3_ = `is`[1]
             val is_4_ = `is`[2]
             var i_5_ = (this.anInt9237 * (if (this.anInt9241 != Class286_Sub2.anInt6212) (this.anInt9241 * i / Class286_Sub2.anInt6212) else i))
@@ -75,7 +75,7 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
                 }
             }
         }
-        return `is`
+        return `is`!!
     }
 
     companion object {

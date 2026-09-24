@@ -9,7 +9,7 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class Class216(var anInt4974: Int, var anInt4978: Int) : Interface13 {
-    var aFloatArray4980: FloatArray?
+    var aFloatArray4980: FloatArray
 
     init {
         this.aFloatArray4980 = FloatArray(anInt4974 * anInt4978)

@@ -24,7 +24,7 @@ internal class Class348_Sub31_Sub1 : Class348_Sub31() {
         this.anInt6917 = i
         this.anInt6920 = i_7_
         this.anIntArray6916 = IntArray((this.anInt6920 * this.anInt6917))
-        val databufferint = DataBufferInt(this.anIntArray6916, (this.anIntArray6916).size)
+        val databufferint = DataBufferInt(this.anIntArray6916, (this.anIntArray6916)!!.size)
         if (i_6_ > -42) method3008(null, 6, -14, 63)
         val directcolormodel = DirectColorModel(32, 16711680, 65280, 255)
         val writableraster = Raster.createWritableRaster((directcolormodel.createCompatibleSampleModel((this.anInt6917), (this.anInt6920))), databufferint, null)

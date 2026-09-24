@@ -4,7 +4,7 @@ package world.gregs.voidps.tools.icon
 * See client/src/Class348_Sub40_Sub21.java for the full original.
 */
 
-internal object Class348_Sub40_Sub21 : Class348_Sub40() {
+internal object Class348_Sub40_Sub21 : Class348_Sub40(0, false) {
     var anInt9280: Int
     var crc64table: LongArray
 

@@ -5,16 +5,16 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
-    private var anIntArray9208: IntArray?
-    private var anIntArrayArray9210: Array<IntArray>?
+    private var anIntArray9208: IntArray? = null
+    private var anIntArrayArray9210: Array<IntArray>? = null
     private var anInt9211 = 0
-    private var anIntArray9214: IntArray?
+    private var anIntArray9214: IntArray? = null
     private var aShortArray9215: ShortArray? = ShortArray(257)
 
-    override fun method3049(packet: Packet, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
         if (i == 0) {
-            anInt9211 = packet.readUnsignedByte(i_0_ + -30760)
-            anIntArrayArray9210 = Array<IntArray?>(packet.readUnsignedByte(255)) { IntArray(2) }
+            anInt9211 = packet!!.readUnsignedByte(i_0_ + -30760)
+            anIntArrayArray9210 = Array(packet.readUnsignedByte(255)) { IntArray(2) }
             var i_1_ = 0
             while ((i_1_ < anIntArrayArray9210!!.size)) {
                 anIntArrayArray9210!![i_1_][0] = packet.readUnsignedShort(842397944)
@@ -41,7 +41,7 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
                         }
                         val `is` = anIntArrayArray9210!![i_4_ - 1]
                         val is_5_ = anIntArrayArray9210!![i_4_]
-                        val i_6_ = method3083(-2 + i_4_, -120.toByte())!![1]
+                        val i_6_ = method3083(-2 + i_4_, (-120).toByte())!![1]
                         val i_7_ = `is`[1]
                         val i_8_ = is_5_[1]
                         val i_9_ = method3083(1 + i_4_, 81.toByte())!![1]
@@ -74,7 +74,7 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
                     val `is` = anIntArrayArray9210!![-1 + i_21_]
                     val is_22_ = anIntArrayArray9210!![i_21_]
                     val i_23_ = ((-`is`[0] + i_20_ shl 12) / (is_22_[0] - `is`[0]))
-                    val i_24_ = (-(Class127.anIntArray4654[(i_23_ and 0x1ff6) shr 5]) + 4096 shr 1)
+                    val i_24_ = (-(Class127.anIntArray4654!![(i_23_ and 0x1ff6) shr 5]) + 4096 shr 1)
                     val i_25_ = -i_24_ + 4096
                     var i_26_ = `is`[1] * i_25_ + is_22_[1] * i_24_ shr 12
                     if (i_26_ <= -32768) i_26_ = -32767
@@ -110,18 +110,18 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
 
     override fun method3042(i: Int, i_33_: Int): IntArray {
         anInt9207++
-        val `is` = this.aClass191_7032.method1433(0, i)
+        val `is` = this.aClass191_7032!!.method1433(0, i)
         if (i_33_ != 255) anIntArray9214 = null
-        if (this.aClass191_7032.aBoolean2570) {
+        if (this.aClass191_7032!!.aBoolean2570) {
             val is_34_ = this.method3048(i, 633706337, 0)
             for (i_35_ in 0..<Class348_Sub40_Sub6.Companion.anInt9139) {
-                var i_36_ = is_34_[i_35_] shr 4
+                var i_36_ = is_34_!![i_35_] shr 4
                 if (i_36_ < 0) i_36_ = 0
                 if (i_36_ > 256) i_36_ = 256
-                `is`[i_35_] = aShortArray9215!![i_36_].toInt()
+                `is`!![i_35_] = aShortArray9215!![i_36_].toInt()
             }
         }
-        return `is`
+        return `is`!!
     }
 
     private fun method3082(i: Byte) {
@@ -136,7 +136,7 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
     }
 
     override fun method3044(i: Int) {
-        if (anIntArrayArray9210 == null) anIntArrayArray9210 = arrayOf<IntArray?>(IntArray(2), intArrayOf(4096, 4096))
+        if (anIntArrayArray9210 == null) anIntArrayArray9210 = arrayOf(IntArray(2), intArrayOf(4096, 4096))
         if (i <= 108) anIntArrayArray9210 = null
         anInt9209++
         if (anIntArrayArray9210!!.size < 2) throw RuntimeException("Curve operation requires at least two markers")

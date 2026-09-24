@@ -7,43 +7,43 @@ package world.gregs.voidps.tools.icon
 internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
     private var anInt9463 = 1
     private var anInt9466 = 1
-    override fun method3049(packet: Packet, i: Int, i_11_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_11_: Int) {
         anInt9460++
         if (i_11_ != 31015) method3147(32.toByte())
         val i_12_ = i
         while_212_@ do {
             do {
                 if (i_12_ == 0) {
-                    anInt9466 = packet.readUnsignedByte(255)
+                    anInt9466 = packet!!.readUnsignedByte(255)
                     return
                 } else if (i_12_ != 1) {
                     if (i_12_ == 2) break
                     break@while_212_
                 }
-                anInt9463 = packet.readUnsignedByte(255)
+                anInt9463 = packet!!.readUnsignedByte(255)
                 return
             } while (false)
-            this.aBoolean7045 = packet.readUnsignedByte(i_11_ xor 0x79d8) == 1
+            this.aBoolean7045 = packet!!.readUnsignedByte(i_11_ xor 0x79d8) == 1
         } while (false)
     }
 
     override fun method3047(i: Int, i_28_: Int): Array<IntArray>? {
         if (i_28_ != -1564599039) return null
         anInt9462++
-        val `is` = this.aClass322_7033.method2557(i_28_ xor 0x5d41e2a6, i)
-        if (this.aClass322_7033.aBoolean4035) {
+        val `is` = this.aClass322_7033!!.method2557(i_28_ xor 0x5d41e2a6, i)
+        if (this.aClass322_7033!!.aBoolean4035) {
             val i_29_ = 1 + (anInt9463 + anInt9463)
             val i_30_ = 65536 / i_29_
             val i_31_ = anInt9466 + (anInt9466 + 1)
             val i_32_ = 65536 / i_31_
-            val is_33_: Array<Array<IntArray?>> = arrayOfNulls<Array<IntArray?>>(i_29_)
+            val is_33_ = arrayOfNulls<Array<IntArray>>(i_29_)
             for (i_34_ in i + -anInt9463..anInt9463 + i) {
                 val is_35_ = this.method3039(55.toByte(), Class299_Sub2.anInt6325 and i_34_, 0)
-                val is_36_: Array<IntArray> = Array<IntArray?>(3) { IntArray(Class348_Sub40_Sub6.Companion.anInt9139) }
+                val is_36_: Array<IntArray> = Array(3) { IntArray(Class348_Sub40_Sub6.Companion.anInt9139) }
                 var i_37_ = 0
                 var i_38_ = 0
                 var i_39_ = 0
-                val is_40_ = is_35_[0]
+                val is_40_ = is_35_!![0]
                 val is_41_ = is_35_[1]
                 val is_42_ = is_35_[2]
                 for (i_43_ in -anInt9466..anInt9466) {
@@ -72,7 +72,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
                 }
                 is_33_[i_34_ + anInt9463 + -i] = is_36_
             }
-            val is_50_ = `is`[0]
+            val is_50_ = `is`!![0]
             val is_51_ = `is`[1]
             val is_52_ = `is`[2]
             var i_53_ = 0
@@ -82,9 +82,9 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
                 var i_56_ = 0
                 for (i_57_ in 0..<i_29_) {
                     val is_58_ = is_33_[i_57_]
-                    i_54_ += is_58_[0]!![i_53_]
-                    i_55_ += is_58_[1]!![i_53_]
-                    i_56_ += is_58_[2]!![i_53_]
+                    i_54_ += is_58_!![0][i_53_]
+                    i_55_ += is_58_[1][i_53_]
+                    i_56_ += is_58_[2][i_53_]
                 }
                 is_50_[i_53_] = i_54_ * i_30_ shr 16
                 is_51_[i_53_] = i_55_ * i_30_ shr 16
@@ -98,8 +98,8 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
     companion object {
         var anInt9459: Int = 0
         var anInt9464: Int = 0
-        var aLongArray9465: LongArray?
-        var aSpriteArray9467: Array<Sprite?>?
+        var aLongArray9465: LongArray? = null
+        var aSpriteArray9467: Array<Sprite?>? = null
         var anIntArray9458: IntArray?
         var anInt9460: Int = 0
         var anInt9462: Int = 0
@@ -142,7 +142,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
         fun method3148(bool: Boolean) {
             anIntArray9458 = null
             aLongArray9465 = null
-            if (bool != true) Companion.method3146(79, -54, -128.toByte(), -109, 85, -107, null, null, 58)
+            if (bool != true) Companion.method3146(79, -54, (-128).toByte(), -109, 85, -107, null, null, 58)
             aSpriteArray9467 = null
         }
 

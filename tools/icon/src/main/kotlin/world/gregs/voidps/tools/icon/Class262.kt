@@ -15,7 +15,7 @@ internal class Class262 {
             aClass348_3342 = null
             return null
         }
-        aClass348_3342 = class348.aClass348_4295
+        aClass348_3342 = class348!!.aClass348_4295
         if (i > -65) method1993(67)
         return class348
     }
@@ -26,7 +26,7 @@ internal class Class262 {
             while (true) {
                 val class348 = (this.aClass348_3334.aClass348_4294)
                 if (this.aClass348_3334 === class348) break
-                class348.unlink(24.toByte())
+                class348!!.unlink(24.toByte())
             }
             aClass348_3342 = null
         }
@@ -37,7 +37,7 @@ internal class Class262 {
         if (i != 8) aClass190ArrayArray3335 = null
         val class348 = this.aClass348_3334.aClass348_4294
         if (this.aClass348_3334 === class348) return null
-        class348.unlink(114.toByte())
+        class348!!.unlink(114.toByte())
         return class348
     }
 
@@ -47,8 +47,8 @@ internal class Class262 {
         class348.aClass348_4295 = this.aClass348_3334
         class348.aClass348_4294 = this.aClass348_3334.aClass348_4294
         if (i > -89) aFont_3326 = null
-        class348.aClass348_4295.aClass348_4294 = class348
-        class348.aClass348_4294.aClass348_4295 = class348
+        class348.aClass348_4295!!.aClass348_4294 = class348
+        class348.aClass348_4294!!.aClass348_4295 = class348
     }
 
     init {
@@ -59,7 +59,7 @@ internal class Class262 {
     companion object {
         var aFont_3326: Font? = null
         var anInt3330: Int = 0
-        var aClass190ArrayArray3335: Array<Array<Class190?>?>?
+        var aClass190ArrayArray3335: Array<Array<Class190?>?>? = null
         var anInt3336: Int = 0
         var anInt3338: Int = 0
         var anInt3339: Int = 0

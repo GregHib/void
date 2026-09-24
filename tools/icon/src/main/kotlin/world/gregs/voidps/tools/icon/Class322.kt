@@ -9,14 +9,14 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
     private var anInt4022: Int
     private val anInt4024: Int
     private var anInt4025 = 0
-    private var anIntArrayArrayArray4029: Array<Array<IntArray?>?>?
+    private var anIntArrayArrayArray4029: Array<Array<IntArray>>?
     private var aClass348_Sub24Array4033: Array<Class348_Sub24?>?
     var aBoolean4035: Boolean
     private var aClass262_4021: Class262?
 
-    fun method2557(i: Int, i_6_: Int): Array<IntArray?>? {
+    fun method2557(i: Int, i_6_: Int): Array<IntArray>? {
         anInt4034++
-        if (i >= -75) Companion.method2554(-61.toByte())
+        if (i >= -75) Companion.method2554((-61).toByte())
         if (anInt4020 != anInt4024) {
             if (anInt4020 == 1) {
                 this.aBoolean4035 = i_6_ != anInt4022
@@ -48,14 +48,6 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
     fun method2558(i: Int) {
         anInt4019++
         if (i != 6144) anIntArrayArrayArray4029 = null
-        var i_8_ = 0
-        while (anInt4020 > i_8_) {
-            anIntArrayArrayArray4029!![i_8_]!![0] = null
-            anIntArrayArrayArray4029!![i_8_]!![1] = null
-            anIntArrayArrayArray4029!![i_8_]!![2] = null
-            anIntArrayArrayArray4029!![i_8_] = null
-            i_8_++
-        }
         aClass348_Sub24Array4033 = null
         anIntArrayArrayArray4029 = null
         aClass262_4021!!.method1996(99)
@@ -69,7 +61,7 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
         anInt4020 = i
         anInt4024 = i_9_
         aClass348_Sub24Array4033 = arrayOfNulls<Class348_Sub24>(anInt4024)
-        anIntArrayArrayArray4029 = Array<Array<IntArray?>?>(anInt4020) { Array<IntArray?>(3) { IntArray(i_10_) } }
+        anIntArrayArrayArray4029 = Array(anInt4020) { Array(3) { IntArray(i_10_) } }
     }
 
     companion object {

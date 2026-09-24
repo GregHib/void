@@ -15,8 +15,8 @@ internal open class Packet : Class348 {
         val i_50_ = (i_48_ + -i_47_) / 8
         var i_51_ = 0
         while (i_50_ > i_51_) {
-            var i_52_ = readInt(-126.toByte())
-            var i_53_ = readInt(-126.toByte())
+            var i_52_ = readInt((-126).toByte())
+            var i_53_ = readInt((-126).toByte())
             var i_54_ = -957401312
             val i_55_ = -1640531527
             var i_56_ = 32
@@ -83,7 +83,7 @@ internal open class Packet : Class348 {
     }
 
     fun readByte(i: Int): Byte {
-        if (i >= -75) writeByteAdd(-18.toByte(), -24)
+        if (i >= -75) writeByteAdd((-18).toByte(), -24)
         anInt7143++
         return (this.aByteArray7154[this.pos++])
     }
@@ -100,7 +100,7 @@ internal open class Packet : Class348 {
 
     constructor(i: Int) {
         this.pos = 0
-        this.aByteArray7154 = Class37.method359(i, -1)
+        this.aByteArray7154 = Class37.method359(i, -1)!!
     }
 
     constructor(`is`: ByteArray) {
@@ -115,20 +115,20 @@ internal open class Packet : Class348 {
         return ((0xff and (this.aByteArray7154[this.pos - 1]).toInt()) + ((((this.aByteArray7154[-4 + this.pos]).toInt() and 0xff) shl 24) + (0xff0000 and ((this.aByteArray7154[-3 + this.pos]).toInt() shl 16))) - -(((this.aByteArray7154[-2 + this.pos]).toInt() and 0xff) shl 8))
     }
 
-    fun method3350(i: Int, bool: Boolean, `is`: IntArray, i_25_: Int) {
+    fun method3350(i: Int, bool: Boolean, `is`: IntArray?, i_25_: Int) {
         anInt7137++
         val i_26_ = this.pos
         this.pos = i
         val i_27_ = (-i + i_25_) / 8
         var i_28_ = 0
         while (i_27_ > i_28_) {
-            var i_29_ = readInt(-126.toByte())
-            var i_30_ = readInt(-126.toByte())
+            var i_29_ = readInt((-126).toByte())
+            var i_30_ = readInt((-126).toByte())
             var i_31_ = 0
             val i_32_ = -1640531527
             var i_33_ = 32
             while (i_33_-- > 0) {
-                i_29_ += (i_31_ - -`is`[i_31_ and 0x3] xor (i_30_ ushr 5 xor (i_30_ shl 4)) - -i_30_)
+                i_29_ += (i_31_ - -`is`!![i_31_ and 0x3] xor (i_30_ ushr 5 xor (i_30_ shl 4)) - -i_30_)
                 i_31_ += i_32_
                 i_30_ += (i_31_ - -`is`[(0x1a0b and i_31_) ushr 11] xor i_29_ + (i_29_ ushr 5 xor (i_29_ shl 4)))
             }
@@ -156,10 +156,10 @@ internal open class Packet : Class348 {
         return l
     }
 
-    fun writeBytes(i: Int, i_73_: Int, `is`: ByteArray, i_74_: Int) {
+    fun writeBytes(i: Int, i_73_: Int, `is`: ByteArray?, i_74_: Int) {
         var i_75_ = i_73_
         while (i_73_ + i > i_75_) {
-            this.aByteArray7154[this.pos++] = `is`[i_75_]
+            this.aByteArray7154[this.pos++] = `is`!![i_75_]
             i_75_++
         }
         val i_76_ = -41 % ((8 - i_74_) / 52)
@@ -174,7 +174,7 @@ internal open class Packet : Class348 {
 
     fun writeInt(i: Byte, i_90_: Int) {
         this.aByteArray7154[this.pos++] = (i_90_ shr 24).toByte()
-        if (i < 84) writeByteAdd(-122.toByte(), -112)
+        if (i < 84) writeByteAdd((-122).toByte(), -112)
         anInt7202++
         this.aByteArray7154[this.pos++] = (i_90_ shr 16).toByte()
         this.aByteArray7154[this.pos++] = (i_90_ shr 8).toByte()

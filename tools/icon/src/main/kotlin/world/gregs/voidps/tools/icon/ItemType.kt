@@ -22,8 +22,8 @@ internal class ItemType {
     var anInt2766: Int
     private var anInt2767: Int
     private var anInt2770 = -1
-    private lateinit var aShortArray2771: ShortArray
-    lateinit var quests: IntArray
+    private var aShortArray2771: ShortArray? = null
+    var quests: IntArray? = null
     var anInt2774: Int
     private var anInt2775: Int
     private var recol_s: ShortArray? = null
@@ -42,7 +42,7 @@ internal class ItemType {
     var name: String? = "null"
     private var anInt2797 = 0
     private var anInt2799 = 0
-    private lateinit var retex_d: ShortArray
+    private var retex_d: ShortArray? = null
     var anInt2802: Int
     private var anInt2803 = 0
     private var anInt2804: Int
@@ -50,7 +50,7 @@ internal class ItemType {
     private var anInt2807 = 0
     private var anInt2808 = 0
     var anInt2810: Int = 0
-    lateinit var op: Array<String?>
+    var op: Array<String?>? = null
     var lendTemplateId: Int
     var anInt2815: Int
     var anInt2817: Int
@@ -65,7 +65,7 @@ internal class ItemType {
     var anInt2826: Int = 0
     var team: Int = 0
     var anInt2830: Int
-    lateinit var stackAmounts: IntArray
+    var stackAmounts: IntArray? = null
     var notedTemplateId: Int
 
     fun method1554(bool: Boolean, i: Int): Mesh? {
@@ -86,10 +86,10 @@ internal class ItemType {
             mesh = Mesh(meshes, 2)
         }
         if (recol_s != null) {
-            for (i_3_ in recol_s!!.indices) mesh.recolour(recol_s!![i_3_], 126.toByte(), aShortArray2771[i_3_])
+            for (i_3_ in recol_s!!.indices) mesh.recolour(recol_s!![i_3_], 126.toByte(), aShortArray2771!![i_3_])
         }
         if (retex_s != null) {
-            for (i_4_ in retex_s!!.indices) mesh.retexture(retex_s!![i_4_], 0, retex_d[i_4_])
+            for (i_4_ in retex_s!!.indices) mesh.retexture(retex_s!![i_4_], 0, retex_d!![i_4_])
         }
         return mesh
     }
@@ -159,7 +159,7 @@ internal class ItemType {
             if (recol_s != null) {
                 var i_42_ = 0
                 while ((recol_s!!.size > i_42_)) {
-                    if (recol_d_palette == null || i_42_ >= recol_d_palette!!.size) mesh.recolour(recol_s!![i_42_], 126.toByte(), aShortArray2771[i_42_])
+                    if (recol_d_palette == null || i_42_ >= recol_d_palette!!.size) mesh.recolour(recol_s!![i_42_], 126.toByte(), aShortArray2771!![i_42_])
                     else mesh.recolour(recol_s!![i_42_], 126.toByte(), (Class336.aShortArray4172[recol_d_palette!![i_42_].toInt() and 0xff]))
                     i_42_++
                 }
@@ -167,7 +167,7 @@ internal class ItemType {
             if (retex_s != null) {
                 var i_43_ = 0
                 while ((retex_s!!.size > i_43_)) {
-                    mesh.retexture(retex_s!![i_43_], 0, retex_d[i_43_])
+                    mesh.retexture(retex_s!![i_43_], 0, retex_d!![i_43_])
                     i_43_++
                 }
             }
@@ -175,8 +175,8 @@ internal class ItemType {
                 for (i_44_ in 0..4) {
                     var i_45_ = 0
                     while ((i_45_ < Class367_Sub2.clientPalette!!.size)) {
-                        if ((Class367_Sub2.clientPalette[i_45_][i_44_]).size > playerModel.recol_d[i_44_]) {
-                            mesh.recolour((Class136.recol_s[i_45_][i_44_]), 126.toByte(), (Class367_Sub2.clientPalette[i_45_][i_44_][(playerModel.recol_d[i_44_])]))
+                        if ((Class367_Sub2.clientPalette!![i_45_]!![i_44_])!!.size > playerModel.recol_d!![i_44_]) {
+                            mesh.recolour((Class136.recol_s!![i_45_]!![i_44_]), 126.toByte(), (Class367_Sub2.clientPalette!![i_45_]!![i_44_]!![(playerModel.recol_d!![i_44_])]))
                         }
                         i_45_++
                     }
@@ -189,7 +189,7 @@ internal class ItemType {
                 scaled = true
             }
             val model = scratchToolkit!!.createModel(mesh, functionMask, 64, ambient + 64, 768 + contrast)
-            if (!model.loadedTextures()) return null
+            if (!model!!.loadedTextures()) return null
             if (scaled) model.O(resizeX, resizeY, resizeZ)
             var sprite: Sprite? = null
             if (this.notedTemplateId == -1) {
@@ -208,12 +208,12 @@ internal class ItemType {
             } else zoom = ((1.5 * this.zoom2d.toDouble()).toInt() shl 2)
             scratchToolkit.DA(16, 16, 512, 512)
             val matrix = scratchToolkit.method3654()
-            matrix.makeIdentity()
+            matrix!!.makeIdentity()
             scratchToolkit.setCamera(matrix)
             scratchToolkit.xa(1.0f)
             scratchToolkit.ZA(16777215, 1.0f, 1.0f, -50.0f, -10.0f, -50.0f)
             val scratch = scratchToolkit.method3705()
-            scratch.makeRotationZ(-this.anInt2810 shl 3)
+            scratch!!.makeRotationZ(-this.anInt2810 shl 3)
             scratch.makeAxisY(this.anInt2781 shl 3)
             scratch.translate(this.anInt2779 shl 2, ((zoom * (Class70.anIntArray1207[this.anInt2787 shl 3]) shr 14) - model.fa() / 2 + (this.anInt2826 shl 2)), ((zoom * (Class70.anIntArray1204[this.anInt2787 shl 3]) shr 14) - -(this.anInt2826 shl 2)))
             scratch.rotateAxisX(this.anInt2787 shl 3)
@@ -232,7 +232,7 @@ internal class ItemType {
                 if (outline >= 2) image = colourBorder(-1, -1, image)
             }
             if (graphicShadow != 0) applyShadow(graphicShadow, image, 119.toByte())
-            scratchToolkit.createSprite(36, image, 94.toByte(), 0, 36, 32).render(0, 0)
+            scratchToolkit.createSprite(36, image, 94.toByte(), 0, 36, 32)!!.render(0, 0)
             if (this.notedTemplateId == -1) {
                 if (this.lendTemplateId != -1) sprite!!.render(0, 0)
             } else sprite!!.render(0, 0)
@@ -240,7 +240,7 @@ internal class ItemType {
                 font!!.render(formatAmount(invCount, i_40_ + -11517), -256, 9, 0, -16777215, i_40_ + -15)
             }
             image = scratchToolkit.na(0, 0, 36, 32)
-            for (i_52_ in image.indices) {
+            for (i_52_ in image!!.indices) {
                 if ((0xffffff and image[i_52_]) != 0) image[i_52_] = Class273.or(image[i_52_], -16777216)
                 else image[i_52_] = 0
             }
@@ -267,9 +267,9 @@ internal class ItemType {
         }
         if (i_53_ == -1) return true
         var bool_56_ = true
-        if (!this.list!!.meshes.requestDownload(-10499, i_53_, 0)) bool_56_ = false
-        if (i_54_ != -1 && !this.list!!.meshes.requestDownload(i xor 0x2902, i_54_, 0)) bool_56_ = false
-        if (i != i_55_ && !this.list!!.meshes.requestDownload(-10499, i_55_, 0)) bool_56_ = false
+        if (!this.list!!.meshes!!.requestDownload(-10499, i_53_, 0)) bool_56_ = false
+        if (i_54_ != -1 && !this.list!!.meshes!!.requestDownload(i xor 0x2902, i_54_, 0)) bool_56_ = false
+        if (i != i_55_ && !this.list!!.meshes!!.requestDownload(-10499, i_55_, 0)) bool_56_ = false
         return bool_56_
     }
 
@@ -304,7 +304,7 @@ internal class ItemType {
                                     var i_59_ = 0
                                     while (i_58_ > i_59_) {
                                         recol_s!![i_59_] = (packet.readUnsignedShort(842397944)).toShort()
-                                        aShortArray2771[i_59_] = (packet.readUnsignedShort(842397944)).toShort()
+                                        aShortArray2771!![i_59_] = (packet.readUnsignedShort(842397944)).toShort()
                                         i_59_++
                                     }
                                 } else if (i_57_ == 41) {
@@ -313,7 +313,7 @@ internal class ItemType {
                                     retex_s = ShortArray(i_68_)
                                     for (i_69_ in 0..<i_68_) {
                                         retex_s!![i_69_] = (packet.readUnsignedShort(842397944)).toShort()
-                                        retex_d[i_69_] = (packet.readUnsignedShort(842397944)).toShort()
+                                        retex_d!![i_69_] = (packet.readUnsignedShort(842397944)).toShort()
                                     }
                                 } else if (i_57_ == 42) {
                                     val i_60_ = packet!!.readUnsignedByte(code + 251)
@@ -336,7 +336,7 @@ internal class ItemType {
                                                         this.stackIds = (IntArray(10))
                                                     }
                                                     this.stackIds!![i_57_ - 100] = (packet!!.readUnsignedShort(842397944))
-                                                    this.stackAmounts[i_57_ + -100] = (packet.readUnsignedShort(842397944))
+                                                    this.stackAmounts!![i_57_ + -100] = (packet.readUnsignedShort(842397944))
                                                 } else if (i_57_ == 110) resizeX = (packet!!.readUnsignedShort(842397944))
                                                 else if (i_57_ != 111) {
                                                     if (i_57_ == 112) resizeZ = (packet!!.readUnsignedShort(842397944))
@@ -370,7 +370,7 @@ internal class ItemType {
                                                                     this.quests = IntArray(i_62_)
                                                                     var i_63_ = 0
                                                                     while (i_62_ > i_63_) {
-                                                                        this.quests[i_63_] = packet.readUnsignedShort(842397944)
+                                                                        this.quests!![i_63_] = packet.readUnsignedShort(842397944)
                                                                         i_63_++
                                                                     }
                                                                 } else if (i_57_ == 134) this.anInt2784 = packet!!.readUnsignedByte(255)
@@ -385,7 +385,7 @@ internal class ItemType {
                                                                         val i_67_ = packet.readMedium(-1)
                                                                         val class348: Class348?
                                                                         if (bool) class348 = Class348_Sub50(packet.readString(107.toByte()))
-                                                                        else class348 = Class348_Sub35(packet.readInt(-126.toByte()))
+                                                                        else class348 = Class348_Sub35(packet.readInt((-126).toByte()))
                                                                         this.params!!.put(76.toByte(), i_67_.toLong(), class348)
                                                                     }
                                                                 }
@@ -397,10 +397,10 @@ internal class ItemType {
                                         } else this.anInt2810 = (packet!!.readUnsignedShort(code + 842397940))
                                     } else anInt2775 = (packet!!.readUnsignedShort(code + 842397940))
                                 } else anInt2767 = packet!!.readUnsignedShort(842397944)
-                            } else this.op[-30 + i_57_] = packet!!.readString(98.toByte())
-                        } else this.anInt2819 = packet!!.readInt(-126.toByte())
+                            } else this.op!![-30 + i_57_] = packet!!.readString(98.toByte())
+                        } else this.anInt2819 = packet!!.readInt((-126).toByte())
                     } else this.stackable = 1
-                } else this.name = packet!!.readString(-42.toByte())
+                } else this.name = packet!!.readString((-42).toByte())
             } else mesh = packet!!.readUnsignedShort(code + 842397940)
             anInt2754++
         } catch (runtimeexception: RuntimeException) {

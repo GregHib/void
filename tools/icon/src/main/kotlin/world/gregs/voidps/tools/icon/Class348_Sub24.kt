@@ -12,7 +12,7 @@ internal class Class348_Sub24(var anInt6872: Int, var anInt6875: Int) : Class348
         var anInt6871: Int = 0
         var aString6876: String?
         var aString6877: String?
-        var anIntArray6878: IntArray?
+        var anIntArray6878: IntArray? = null
 
         fun method2993(i: Byte) {
             anIntArray6878 = null

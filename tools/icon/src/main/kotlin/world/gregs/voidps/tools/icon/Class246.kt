@@ -7,7 +7,7 @@ import kotlin.math.atan2
 */
 
 internal abstract class Class246 {
-    abstract fun method1888(i: Int, class348_sub42_sub8: Class348_Sub42_Sub8?): Class348_Sub42_Sub8?
+    abstract fun method1888(i: Int, class348_sub42_sub8: Class348_Sub42_Sub8): Class348_Sub42_Sub8?
 
     companion object {
         var anInt3175: Int = 0

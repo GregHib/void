@@ -11,11 +11,11 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
     var aBoolean1669: Boolean = true
     var clamp: Boolean = false
     var height: Int = 0
-    private val anIntArray1673: IntArray
+    private val anIntArray1673: IntArray?
     var anInt1674: Int = 0
     private var aBoolean1675 = false
     var lineOffsets: IntArray = IntArray(4096)
-    private val aFloatArray1677: FloatArray
+    private val aFloatArray1677: FloatArray?
     private val anInt1678: Int
     var width: Int = 0
     private val aBoolean1680 = false
@@ -79,7 +79,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
             i += i_1_
             while (i_18_-- > 0) {
                 val f_28_ = 1.0f / f
-                if (f_28_ < aFloatArray1677[i]) {
+                if (f_28_ < aFloatArray1677!![i]) {
                     var i_29_ = (f_4_ * f_28_ * anInt1693.toFloat()).toInt()
                     if (aBoolean1694) i_29_ = i_29_ and anInt1690
                     else if (i_29_ < 0) i_29_ = 0
@@ -188,14 +188,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_41_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_41_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_46_, f_59_)
                                     f_45_ += f_57_
                                     f_43_ += f_55_
                                     f_46_ += f_60_
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_46_, f_59_)
                                     f_45_ += f_57_
                                     f_44_ += f_56_
                                     f_46_ += f_60_
@@ -206,14 +206,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_41_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_41_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_46_, f_59_)
                                     f_45_ += f_57_
                                     f_43_ += f_55_
                                     f_46_ += f_60_
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_46_, f_59_)
                                     f_45_ += f_57_
                                     f_44_ += f_56_
                                     f_46_ += f_60_
@@ -237,14 +237,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_42_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_46_, f_59_)
                                     f_44_ += f_57_
                                     f_43_ += f_55_
                                     f_46_ += f_60_
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_41_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_46_, f_59_)
                                     f_45_ += f_56_
                                     f_43_ += f_55_
                                     f_46_ += f_60_
@@ -255,14 +255,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_42_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_46_, f_59_)
                                     f_44_ += f_57_
                                     f_43_ += f_55_
                                     f_46_ += f_60_
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_41_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_46_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_46_, f_59_)
                                     f_45_ += f_56_
                                     f_43_ += f_55_
                                     f_46_ += f_60_
@@ -293,14 +293,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_42_ -= f_41_
                                 f_41_ = (this.lineOffsets[f_41_.toInt()]).toFloat()
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_47_, f_59_)
                                     f_43_ += f_55_
                                     f_44_ += f_56_
                                     f_47_ += f_60_
                                     f_41_ += anInt1678.toFloat()
                                 }
                                 while (--f >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_47_, f_59_)
                                     f_43_ += f_55_
                                     f_45_ += f_57_
                                     f_47_ += f_60_
@@ -311,14 +311,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_42_ -= f_41_
                                 f_41_ = (this.lineOffsets[f_41_.toInt()]).toFloat()
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_47_, f_59_)
                                     f_43_ += f_55_
                                     f_44_ += f_56_
                                     f_47_ += f_60_
                                     f_41_ += anInt1678.toFloat()
                                 }
                                 while (--f >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_47_, f_59_)
                                     f_43_ += f_55_
                                     f_45_ += f_57_
                                     f_47_ += f_60_
@@ -342,14 +342,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f -= f_41_
                                 f_41_ = (this.lineOffsets[f_41_.toInt()]).toFloat()
                                 while (--f >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_47_, f_59_)
                                     f_45_ += f_55_
                                     f_44_ += f_56_
                                     f_47_ += f_60_
                                     f_41_ += anInt1678.toFloat()
                                 }
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_47_, f_59_)
                                     f_43_ += f_57_
                                     f_44_ += f_56_
                                     f_47_ += f_60_
@@ -360,14 +360,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f -= f_41_
                                 f_41_ = (this.lineOffsets[f_41_.toInt()]).toFloat()
                                 while (--f >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_47_, f_59_)
                                     f_45_ += f_55_
                                     f_44_ += f_56_
                                     f_47_ += f_60_
                                     f_41_ += anInt1678.toFloat()
                                 }
                                 while (--f_42_ >= 0.0f) {
-                                    method1026(anIntArray1673, aFloatArray1677, f_41_.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_47_, f_59_)
+                                    method1026(anIntArray1673!!, aFloatArray1677!!, f_41_.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_47_, f_59_)
                                     f_43_ += f_57_
                                     f_44_ += f_56_
                                     f_47_ += f_60_
@@ -397,14 +397,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f -= f_42_
                             f_42_ = (this.lineOffsets[f_42_.toInt()]).toFloat()
                             while (--f >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_48_, f_59_)
                                 f_44_ += f_56_
                                 f_45_ += f_57_
                                 f_48_ += f_60_
                                 f_42_ += anInt1678.toFloat()
                             }
                             while (--f_41_ >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_44_.toInt(), f_43_.toInt(), f_48_, f_59_)
                                 f_44_ += f_56_
                                 f_43_ += f_55_
                                 f_48_ += f_60_
@@ -415,14 +415,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f -= f_42_
                             f_42_ = (this.lineOffsets[f_42_.toInt()]).toFloat()
                             while (--f >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_48_, f_59_)
                                 f_44_ += f_56_
                                 f_45_ += f_57_
                                 f_48_ += f_60_
                                 f_42_ += anInt1678.toFloat()
                             }
                             while (--f_41_ >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_43_.toInt(), f_44_.toInt(), f_48_, f_59_)
                                 f_44_ += f_56_
                                 f_43_ += f_55_
                                 f_48_ += f_60_
@@ -446,14 +446,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_41_ -= f_42_
                             f_42_ = (this.lineOffsets[f_42_.toInt()]).toFloat()
                             while (--f_41_ >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_43_.toInt(), f_45_.toInt(), f_48_, f_59_)
                                 f_43_ += f_56_
                                 f_45_ += f_57_
                                 f_48_ += f_60_
                                 f_42_ += anInt1678.toFloat()
                             }
                             while (--f >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_44_.toInt(), f_45_.toInt(), f_48_, f_59_)
                                 f_44_ += f_55_
                                 f_45_ += f_57_
                                 f_48_ += f_60_
@@ -464,14 +464,14 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_41_ -= f_42_
                             f_42_ = (this.lineOffsets[f_42_.toInt()]).toFloat()
                             while (--f_41_ >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_45_.toInt(), f_43_.toInt(), f_48_, f_59_)
                                 f_43_ += f_56_
                                 f_45_ += f_57_
                                 f_48_ += f_60_
                                 f_42_ += anInt1678.toFloat()
                             }
                             while (--f >= 0.0f) {
-                                method1026(anIntArray1673, aFloatArray1677, f_42_.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_48_, f_59_)
+                                method1026(anIntArray1673!!, aFloatArray1677!!, f_42_.toInt(), i, 0, f_45_.toInt(), f_44_.toInt(), f_48_, f_59_)
                                 f_44_ += f_55_
                                 f_45_ += f_57_
                                 f_48_ += f_60_
@@ -509,7 +509,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         if (this.anInt1674 == 0) {
                             if (i_62_ > 0) {
                                 do {
-                                    i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                                    i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                                     f += f_65_
                                     if (f_66_ < fs[++i]) {
                                         `is`[i] = i_61_
@@ -535,7 +535,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             }
                             i_62_ = i_64_ - i_63_ and 0x3
                             if (i_62_ > 0) {
-                                i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                                i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                                 do {
                                     if (f_66_ < fs[++i]) {
                                         `is`[i] = i_61_
@@ -549,7 +549,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             val i_69_ = 256 - this.anInt1674
                             if (i_62_ > 0) {
                                 do {
-                                    i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                                    i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                                     f += f_65_
                                     i_61_ = (((i_61_ and 0xff00ff) * i_69_ shr 8 and 0xff00ff) + ((i_61_ and 0xff00) * i_69_ shr 8 and 0xff00))
                                     if (f_66_ < fs[++i]) {
@@ -580,7 +580,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             }
                             i_62_ = i_64_ - i_63_ and 0x3
                             if (i_62_ <= 0) break
-                            i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                            i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                             i_61_ = (((i_61_ and 0xff00ff) * i_69_ shr 8 and 0xff00ff) + ((i_61_ and 0xff00) * i_69_ shr 8 and 0xff00))
                             do {
                                 if (f_66_ < fs[++i]) {
@@ -597,7 +597,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     if (this.anInt1674 == 0) {
                         do {
                             if (f_66_ < fs[++i]) {
-                                `is`[i] = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                                `is`[i] = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                                 fs[i] = f_66_
                             }
                             f_66_ += f_67_
@@ -609,7 +609,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     val i_76_ = 256 - this.anInt1674
                     do {
                         if (f_66_ < fs[++i]) {
-                            i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                            i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                             i_61_ = (((i_61_ and 0xff00ff) * i_76_ shr 8 and 0xff00ff) + ((i_61_ and 0xff00) * i_76_ shr 8 and 0xff00))
                             val i_77_ = `is`[i]
                             `is`[i] = (i_61_ + ((i_77_ and 0xff00ff) * i_75_ shr 8 and 0xff00ff) + ((i_77_ and 0xff00) * i_75_ shr 8 and 0xff00))
@@ -627,7 +627,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         if (this.anInt1674 == 0) {
                             if (i_62_ > 0) {
                                 do {
-                                    i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                                    i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                                     f += f_65_
                                     if (f_66_ < fs[++i]) `is`[i] = i_61_
                                     f_66_ += f_67_
@@ -641,7 +641,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             }
                             i_62_ = i_64_ - i_63_ and 0x3
                             if (i_62_ > 0) {
-                                i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                                i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                                 do {
                                     if (f_66_ < fs[++i]) `is`[i] = i_61_
                                     f_66_ += f_67_
@@ -652,7 +652,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             val i_79_ = 256 - this.anInt1674
                             if (i_62_ > 0) {
                                 do {
-                                    i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                                    i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                                     f += f_65_
                                     i_61_ = (((i_61_ and 0xff00ff) * i_79_ shr 8 and 0xff00ff) + ((i_61_ and 0xff00) * i_79_ shr 8 and 0xff00))
                                     if (f_66_ < fs[++i]) {
@@ -679,7 +679,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             }
                             i_62_ = i_64_ - i_63_ and 0x3
                             if (i_62_ <= 0) break
-                            i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                            i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                             i_61_ = (((i_61_ and 0xff00ff) * i_79_ shr 8 and 0xff00ff) + ((i_61_ and 0xff00) * i_79_ shr 8 and 0xff00))
                             do {
                                 if (f_66_ < fs[++i]) {
@@ -694,7 +694,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     i_62_ = i_64_ - i_63_
                     if (this.anInt1674 == 0) {
                         do {
-                            if (f_66_ < fs[++i]) `is`[i] = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                            if (f_66_ < fs[++i]) `is`[i] = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                             f_66_ += f_67_
                             f += f_65_
                         } while (--i_62_ > 0)
@@ -704,7 +704,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     val i_86_ = 256 - this.anInt1674
                     do {
                         if (f_66_ < fs[++i]) {
-                            i_61_ = ItemSpriteCacheKey.Companion.HSV_TO_RGB[f.toInt()]
+                            i_61_ = ItemSpriteCacheKey.HSV_TO_RGB!![f.toInt()]
                             i_61_ = (((i_61_ and 0xff00ff) * i_86_ shr 8 and 0xff00ff) + ((i_61_ and 0xff00) * i_86_ shr 8 and 0xff00))
                             val i_87_ = `is`[i]
                             `is`[i] = (i_61_ + ((i_87_ and 0xff00ff) * i_85_ shr 8 and 0xff00ff) + ((i_87_ and 0xff00) * i_85_ shr 8 and 0xff00))
@@ -1318,9 +1318,9 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
         var f_323_ = f_323_
         var f_324_ = f_324_
         if (aBoolean1675) {
-            aHa_Sub1_1666.line(f.toInt(), f_316_.toInt(), f_317_.toInt(), -8003, ItemSpriteCacheKey.Companion.HSV_TO_RGB[f_322_.toInt()], f_314_.toInt())
-            aHa_Sub1_1666.line(f_314_.toInt(), f_317_.toInt(), f_318_.toInt(), -8003, ItemSpriteCacheKey.Companion.HSV_TO_RGB[f_322_.toInt()], f_315_.toInt())
-            aHa_Sub1_1666.line(f_315_.toInt(), f_318_.toInt(), f_316_.toInt(), -8003, ItemSpriteCacheKey.Companion.HSV_TO_RGB[f_322_.toInt()], f.toInt())
+            aHa_Sub1_1666.line(f.toInt(), f_316_.toInt(), f_317_.toInt(), -8003, ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f_314_.toInt())
+            aHa_Sub1_1666.line(f_314_.toInt(), f_317_.toInt(), f_318_.toInt(), -8003, ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f_315_.toInt())
+            aHa_Sub1_1666.line(f_315_.toInt(), f_318_.toInt(), f_316_.toInt(), -8003, ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f.toInt())
         } else {
             val f_325_ = f_317_ - f_316_
             val f_326_ = f_314_ - f
@@ -1369,7 +1369,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_314_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_314_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_318_ += f_335_
                                     f_316_ += f_334_
                                     f_322_ += f_338_
@@ -1377,7 +1377,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_318_ += f_335_
                                     f_317_ += f_333_
                                     f_322_ += f_338_
@@ -1389,7 +1389,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_314_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_314_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_318_ += f_335_
                                     f_316_ += f_334_
                                     f_322_ += f_338_
@@ -1397,7 +1397,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_318_ += f_335_
                                     f_317_ += f_333_
                                     f_322_ += f_338_
@@ -1423,7 +1423,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_317_ += f_335_
                                     f_316_ += f_334_
                                     f_322_ += f_338_
@@ -1431,7 +1431,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_314_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_318_ += f_333_
                                     f_316_ += f_334_
                                     f_322_ += f_338_
@@ -1443,7 +1443,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_317_ += f_335_
                                     f_316_ += f_334_
                                     f_322_ += f_338_
@@ -1451,7 +1451,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_314_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_322_, f_337_, f_319_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_322_, f_337_, f_319_, f_339_)
                                     f_318_ += f_333_
                                     f_316_ += f_334_
                                     f_322_ += f_338_
@@ -1485,7 +1485,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ -= f_314_
                                 f_314_ = (this.lineOffsets[f_314_.toInt()]).toFloat()
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_316_ += f_334_
                                     f_317_ += f_333_
                                     f_323_ += f_338_
@@ -1493,7 +1493,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_314_ += anInt1678.toFloat()
                                 }
                                 while (--f >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_316_ += f_334_
                                     f_318_ += f_335_
                                     f_323_ += f_338_
@@ -1505,7 +1505,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ -= f_314_
                                 f_314_ = (this.lineOffsets[f_314_.toInt()]).toFloat()
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_316_ += f_334_
                                     f_317_ += f_333_
                                     f_323_ += f_338_
@@ -1513,7 +1513,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_314_ += anInt1678.toFloat()
                                 }
                                 while (--f >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_316_ += f_334_
                                     f_318_ += f_335_
                                     f_323_ += f_338_
@@ -1539,7 +1539,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f -= f_314_
                                 f_314_ = (this.lineOffsets[f_314_.toInt()]).toFloat()
                                 while (--f >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_318_ += f_334_
                                     f_317_ += f_333_
                                     f_323_ += f_338_
@@ -1547,7 +1547,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_314_ += anInt1678.toFloat()
                                 }
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_316_ += f_335_
                                     f_317_ += f_333_
                                     f_323_ += f_338_
@@ -1559,7 +1559,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f -= f_314_
                                 f_314_ = (this.lineOffsets[f_314_.toInt()]).toFloat()
                                 while (--f >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_318_ += f_334_
                                     f_317_ += f_333_
                                     f_323_ += f_338_
@@ -1567,7 +1567,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_314_ += anInt1678.toFloat()
                                 }
                                 while (--f_315_ >= 0.0f) {
-                                    method1019(anIntArray1673, aFloatArray1677, f_314_.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_323_, f_337_, f_320_, f_339_)
+                                    method1019(anIntArray1673!!, aFloatArray1677!!, f_314_.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_323_, f_337_, f_320_, f_339_)
                                     f_316_ += f_335_
                                     f_317_ += f_333_
                                     f_323_ += f_338_
@@ -1600,7 +1600,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f -= f_315_
                             f_315_ = (this.lineOffsets[f_315_.toInt()]).toFloat()
                             while (--f >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_317_ += f_333_
                                 f_318_ += f_335_
                                 f_324_ += f_338_
@@ -1608,7 +1608,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ += anInt1678.toFloat()
                             }
                             while (--f_314_ >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_317_.toInt(), f_316_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_317_ += f_333_
                                 f_316_ += f_334_
                                 f_324_ += f_338_
@@ -1620,7 +1620,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f -= f_315_
                             f_315_ = (this.lineOffsets[f_315_.toInt()]).toFloat()
                             while (--f >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_317_ += f_333_
                                 f_318_ += f_335_
                                 f_324_ += f_338_
@@ -1628,7 +1628,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ += anInt1678.toFloat()
                             }
                             while (--f_314_ >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_316_.toInt(), f_317_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_317_ += f_333_
                                 f_316_ += f_334_
                                 f_324_ += f_338_
@@ -1654,7 +1654,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_314_ -= f_315_
                             f_315_ = (this.lineOffsets[f_315_.toInt()]).toFloat()
                             while (--f_314_ >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_316_.toInt(), f_318_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_316_ += f_333_
                                 f_318_ += f_335_
                                 f_324_ += f_338_
@@ -1662,7 +1662,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ += anInt1678.toFloat()
                             }
                             while (--f >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_317_.toInt(), f_318_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_317_ += f_334_
                                 f_318_ += f_335_
                                 f_324_ += f_338_
@@ -1674,7 +1674,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_314_ -= f_315_
                             f_315_ = (this.lineOffsets[f_315_.toInt()]).toFloat()
                             while (--f_314_ >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_318_.toInt(), f_316_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_316_ += f_333_
                                 f_318_ += f_335_
                                 f_324_ += f_338_
@@ -1682,7 +1682,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_315_ += anInt1678.toFloat()
                             }
                             while (--f >= 0.0f) {
-                                method1019(anIntArray1673, aFloatArray1677, f_315_.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_324_, f_337_, f_321_, f_339_)
+                                method1019(anIntArray1673!!, aFloatArray1677!!, f_315_.toInt(), 0, 0, f_318_.toInt(), f_317_.toInt(), f_324_, f_337_, f_321_, f_339_)
                                 f_317_ += f_334_
                                 f_318_ += f_335_
                                 f_324_ += f_338_
@@ -1884,7 +1884,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_341_ -= f
                         f = this.lineOffsets[f.toInt()].toFloat()
                         while (--f_341_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
                             f_343_ += f_374_
                             f_345_ += f_394_
                             f_346_ += f_375_
@@ -1906,7 +1906,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f += anInt1678.toFloat()
                         }
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
                             f_344_ += f_384_
                             f_345_ += f_394_
                             f_347_ += f_385_
@@ -1932,7 +1932,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_341_ -= f
                         f = this.lineOffsets[f.toInt()].toFloat()
                         while (--f_341_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
                             f_343_ += f_374_
                             f_345_ += f_394_
                             f_346_ += f_375_
@@ -1954,7 +1954,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f += anInt1678.toFloat()
                         }
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
                             f_344_ += f_384_
                             f_345_ += f_394_
                             f_347_ += f_385_
@@ -2024,7 +2024,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ -= f
                         f = this.lineOffsets[f.toInt()].toFloat()
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
                             f_343_ += f_374_
                             f_344_ += f_394_
                             f_346_ += f_375_
@@ -2046,7 +2046,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f += anInt1678.toFloat()
                         }
                         while (--f_341_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
                             f_345_ += f_384_
                             f_343_ += f_374_
                             f_348_ += f_385_
@@ -2072,7 +2072,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ -= f
                         f = this.lineOffsets[f.toInt()].toFloat()
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
                             f_344_ += f_394_
                             f_343_ += f_374_
                             f_347_ += f_395_
@@ -2094,7 +2094,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f += anInt1678.toFloat()
                         }
                         while (--f_341_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
+                            method1016(anIntArray1673!!, anIntArray1698, f.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
                             f_343_ += f_374_
                             f_345_ += f_384_
                             f_346_ += f_375_
@@ -2170,7 +2170,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ -= f_341_
                         f_341_ = (this.lineOffsets[f_341_.toInt()]).toFloat()
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
                             f_343_ += f_374_
                             f_344_ += f_384_
                             f_346_ += f_375_
@@ -2192,7 +2192,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_341_ += anInt1678.toFloat()
                         }
                         while (--f >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
                             f_343_ += f_374_
                             f_345_ += f_394_
                             f_346_ += f_375_
@@ -2218,7 +2218,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ -= f_341_
                         f_341_ = (this.lineOffsets[f_341_.toInt()]).toFloat()
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
                             f_344_ += f_384_
                             f_343_ += f_374_
                             f_347_ += f_385_
@@ -2240,7 +2240,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_341_ += anInt1678.toFloat()
                         }
                         while (--f >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
                             f_345_ += f_394_
                             f_343_ += f_374_
                             f_348_ += f_395_
@@ -2310,7 +2310,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     f_341_ = (this.lineOffsets[f_341_.toInt()]).toFloat()
                     if (f_374_ < f_384_) {
                         while (--f >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
                             f_345_ += f_374_
                             f_344_ += f_384_
                             f_348_ += f_375_
@@ -2332,7 +2332,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_341_ += anInt1678.toFloat()
                         }
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
                             f_343_ += f_394_
                             f_344_ += f_384_
                             f_346_ += f_395_
@@ -2355,7 +2355,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         }
                     } else {
                         while (--f >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
                             f_344_ += f_384_
                             f_345_ += f_374_
                             f_347_ += f_385_
@@ -2377,7 +2377,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_341_ += anInt1678.toFloat()
                         }
                         while (--f_342_ >= 0.0f) {
-                            method1016(anIntArray1673, anIntArray1698, f_341_.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
+                            method1016(anIntArray1673!!, anIntArray1698, f_341_.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
                             f_344_ += f_384_
                             f_343_ += f_394_
                             f_347_ += f_385_
@@ -2452,7 +2452,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     f -= f_342_
                     f_342_ = (this.lineOffsets[f_342_.toInt()]).toFloat()
                     while (--f >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
                         f_344_ += f_384_
                         f_345_ += f_394_
                         f_347_ += f_385_
@@ -2474,7 +2474,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ += anInt1678.toFloat()
                     }
                     while (--f_341_ >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_344_.toInt(), f_343_.toInt(), f_347_, f_346_, f_350_, f_349_, f_353_, f_352_, i_359_.toFloat(), i_358_.toFloat(), f_363_, f_362_, f_366_, f_365_, f_369_, f_368_, f_372_, f_371_)
                         f_344_ += f_384_
                         f_343_ += f_374_
                         f_347_ += f_385_
@@ -2500,7 +2500,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     f -= f_342_
                     f_342_ = (this.lineOffsets[f_342_.toInt()]).toFloat()
                     while (--f >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
                         f_345_ += f_394_
                         f_344_ += f_384_
                         f_348_ += f_395_
@@ -2522,7 +2522,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ += anInt1678.toFloat()
                     }
                     while (--f_341_ >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_343_.toInt(), f_344_.toInt(), f_346_, f_347_, f_349_, f_350_, f_352_, f_353_, i_358_.toFloat(), i_359_.toFloat(), f_362_, f_363_, f_365_, f_366_, f_368_, f_369_, f_371_, f_372_)
                         f_343_ += f_374_
                         f_344_ += f_384_
                         f_346_ += f_375_
@@ -2592,7 +2592,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     f_341_ -= f_342_
                     f_342_ = (this.lineOffsets[f_342_.toInt()]).toFloat()
                     while (--f_341_ >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_343_.toInt(), f_345_.toInt(), f_346_, f_348_, f_349_, f_351_, f_352_, f_354_, i_358_.toFloat(), i_360_.toFloat(), f_362_, f_364_, f_365_, f_367_, f_368_, f_370_, f_371_, f_373_)
                         f_343_ += f_384_
                         f_345_ += f_394_
                         f_346_ += f_385_
@@ -2614,7 +2614,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ += anInt1678.toFloat()
                     }
                     while (--f >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_344_.toInt(), f_345_.toInt(), f_347_, f_348_, f_350_, f_351_, f_353_, f_354_, i_359_.toFloat(), i_360_.toFloat(), f_363_, f_364_, f_366_, f_367_, f_369_, f_370_, f_372_, f_373_)
                         f_344_ += f_374_
                         f_345_ += f_394_
                         f_347_ += f_375_
@@ -2640,7 +2640,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     f_341_ -= f_342_
                     f_342_ = (this.lineOffsets[f_342_.toInt()]).toFloat()
                     while (--f_341_ >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_345_.toInt(), f_343_.toInt(), f_348_, f_346_, f_351_, f_349_, f_354_, f_352_, i_360_.toFloat(), i_358_.toFloat(), f_364_, f_362_, f_367_, f_365_, f_370_, f_368_, f_373_, f_371_)
                         f_345_ += f_394_
                         f_343_ += f_384_
                         f_348_ += f_395_
@@ -2662,7 +2662,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_342_ += anInt1678.toFloat()
                     }
                     while (--f >= 0.0f) {
-                        method1016(anIntArray1673, anIntArray1698, f_342_.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
+                        method1016(anIntArray1673!!, anIntArray1698, f_342_.toInt(), f_345_.toInt(), f_344_.toInt(), f_348_, f_347_, f_351_, f_350_, f_354_, f_353_, i_360_.toFloat(), i_359_.toFloat(), f_364_, f_363_, f_367_, f_366_, f_370_, f_369_, f_373_, f_372_)
                         f_345_ += f_394_
                         f_344_ += f_374_
                         f_348_ += f_395_
@@ -2939,7 +2939,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_469_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_469_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_473_ += f_493_
                                     f_471_ += f_492_
                                     f_474_ += f_496_
@@ -2949,7 +2949,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_473_ += f_493_
                                     f_472_ += f_491_
                                     f_474_ += f_496_
@@ -2963,7 +2963,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_469_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_469_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_473_ += f_493_
                                     f_471_ += f_492_
                                     f_474_ += f_496_
@@ -2973,7 +2973,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_473_ += f_493_
                                     f_472_ += f_491_
                                     f_474_ += f_496_
@@ -3003,7 +3003,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_472_ += f_493_
                                     f_471_ += f_492_
                                     f_474_ += f_496_
@@ -3013,7 +3013,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_469_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_473_ += f_491_
                                     f_471_ += f_492_
                                     f_474_ += f_496_
@@ -3027,7 +3027,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ -= f
                                 f = (this.lineOffsets[f.toInt()]).toFloat()
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_472_ += f_493_
                                     f_471_ += f_492_
                                     f_474_ += f_496_
@@ -3037,7 +3037,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f += anInt1678.toFloat()
                                 }
                                 while (--f_469_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_474_, f_495_, f_503_, f_497_, f_504_, f_499_, f_505_, f_501_)
                                     f_473_ += f_491_
                                     f_471_ += f_492_
                                     f_474_ += f_496_
@@ -3077,7 +3077,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ -= f_469_
                                 f_469_ = (this.lineOffsets[f_469_.toInt()]).toFloat()
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_471_ += f_492_
                                     f_472_ += f_491_
                                     f_475_ += f_496_
@@ -3087,7 +3087,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_469_ += anInt1678.toFloat()
                                 }
                                 while (--f >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_471_ += f_492_
                                     f_473_ += f_493_
                                     f_475_ += f_496_
@@ -3101,7 +3101,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ -= f_469_
                                 f_469_ = (this.lineOffsets[f_469_.toInt()]).toFloat()
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_471_ += f_492_
                                     f_472_ += f_491_
                                     f_475_ += f_496_
@@ -3111,7 +3111,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_469_ += anInt1678.toFloat()
                                 }
                                 while (--f >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_471_ += f_492_
                                     f_473_ += f_493_
                                     f_475_ += f_496_
@@ -3141,7 +3141,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f -= f_469_
                                 f_469_ = (this.lineOffsets[f_469_.toInt()]).toFloat()
                                 while (--f >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_473_ += f_492_
                                     f_472_ += f_491_
                                     f_475_ += f_496_
@@ -3151,7 +3151,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_469_ += anInt1678.toFloat()
                                 }
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_471_ += f_493_
                                     f_472_ += f_491_
                                     f_475_ += f_496_
@@ -3165,7 +3165,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f -= f_469_
                                 f_469_ = (this.lineOffsets[f_469_.toInt()]).toFloat()
                                 while (--f >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_473_ += f_492_
                                     f_472_ += f_491_
                                     f_475_ += f_496_
@@ -3175,7 +3175,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                     f_469_ += anInt1678.toFloat()
                                 }
                                 while (--f_470_ >= 0.0f) {
-                                    method1021(anIntArray1673, aFloatArray1677, f_469_.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
+                                    method1021(anIntArray1673!!, aFloatArray1677!!, f_469_.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_475_, f_495_, f_506_, f_497_, f_507_, f_499_, f_508_, f_501_)
                                     f_471_ += f_493_
                                     f_472_ += f_491_
                                     f_475_ += f_496_
@@ -3214,7 +3214,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f -= f_470_
                             f_470_ = (this.lineOffsets[f_470_.toInt()]).toFloat()
                             while (--f >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_472_ += f_491_
                                 f_473_ += f_493_
                                 f_476_ += f_496_
@@ -3224,7 +3224,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ += anInt1678.toFloat()
                             }
                             while (--f_469_ >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_472_.toInt(), f_471_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_472_ += f_491_
                                 f_471_ += f_492_
                                 f_476_ += f_496_
@@ -3238,7 +3238,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f -= f_470_
                             f_470_ = (this.lineOffsets[f_470_.toInt()]).toFloat()
                             while (--f >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_472_ += f_491_
                                 f_473_ += f_493_
                                 f_476_ += f_496_
@@ -3248,7 +3248,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ += anInt1678.toFloat()
                             }
                             while (--f_469_ >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_471_.toInt(), f_472_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_472_ += f_491_
                                 f_471_ += f_492_
                                 f_476_ += f_496_
@@ -3278,7 +3278,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_469_ -= f_470_
                             f_470_ = (this.lineOffsets[f_470_.toInt()]).toFloat()
                             while (--f_469_ >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_471_.toInt(), f_473_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_471_ += f_491_
                                 f_473_ += f_493_
                                 f_476_ += f_496_
@@ -3288,7 +3288,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ += anInt1678.toFloat()
                             }
                             while (--f >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_472_.toInt(), f_473_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_472_ += f_492_
                                 f_473_ += f_493_
                                 f_476_ += f_496_
@@ -3302,7 +3302,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_469_ -= f_470_
                             f_470_ = (this.lineOffsets[f_470_.toInt()]).toFloat()
                             while (--f_469_ >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_473_.toInt(), f_471_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_471_ += f_491_
                                 f_473_ += f_493_
                                 f_476_ += f_496_
@@ -3312,7 +3312,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_470_ += anInt1678.toFloat()
                             }
                             while (--f >= 0.0f) {
-                                method1021(anIntArray1673, aFloatArray1677, f_470_.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
+                                method1021(anIntArray1673!!, aFloatArray1677!!, f_470_.toInt(), 0, 0, f_473_.toInt(), f_472_.toInt(), f_476_, f_495_, f_509_, f_497_, f_510_, f_499_, f_511_, f_501_)
                                 f_472_ += f_492_
                                 f_473_ += f_493_
                                 f_476_ += f_496_

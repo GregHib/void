@@ -9,15 +9,15 @@ import kotlin.math.min
 
 internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
     private var anInt9226 = 6
-    override fun method3049(packet: Packet, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
         if (i_0_ != 31015) anInt9226 = -83
         val i_1_ = i
         do {
             if (i_1_ == 0) {
-                anInt9226 = packet.readUnsignedByte(255)
+                anInt9226 = packet!!.readUnsignedByte(255)
                 break
             } else if (i_1_ != 1) break
-            this.aBoolean7045 = packet.readUnsignedByte(255) == 1
+            this.aBoolean7045 = packet!!.readUnsignedByte(255) == 1
         } while (false)
         anInt9227++
     }
@@ -25,18 +25,18 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
     override fun method3047(i: Int, i_2_: Int): Array<IntArray> {
         if (i_2_ != -1564599039) method3089(-88)
         anInt9223++
-        val `is` = this.aClass322_7033.method2557(i_2_ xor 0x5d41e2a7, i)
+        val `is` = this.aClass322_7033!!.method2557(i_2_ xor 0x5d41e2a7, i)
         while_168_@ do {
-            if (this.aClass322_7033.aBoolean4035) {
-                val is_3_ = this.method3039(-51.toByte(), i, 0)
-                val is_4_ = this.method3039(-66.toByte(), i, 1)
-                val is_5_ = `is`[0]
+            if (this.aClass322_7033!!.aBoolean4035) {
+                val is_3_ = this.method3039((-51).toByte(), i, 0)
+                val is_4_ = this.method3039((-66).toByte(), i, 1)
+                val is_5_ = `is`!![0]
                 val is_6_ = `is`[1]
                 val is_7_ = `is`[2]
-                val is_8_ = is_3_[0]
+                val is_8_ = is_3_!![0]
                 val is_9_ = is_3_[1]
                 val is_10_ = is_3_[2]
-                val is_11_ = is_4_[0]
+                val is_11_ = is_4_!![0]
                 val is_12_ = is_4_[1]
                 val is_13_ = is_4_[2]
                 var i_14_ = anInt9226
@@ -220,15 +220,15 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                 }
             }
         } while (false)
-        return `is`
+        return `is`!!
     }
 
     override fun method3042(i: Int, i_51_: Int): IntArray {
         if (i_51_ != 255) method3047(50, -18)
         anInt9224++
-        val `is` = this.aClass191_7032.method1433(0, i)
+        val `is` = this.aClass191_7032!!.method1433(0, i)
         while_178_@ do {
-            if (this.aClass191_7032.aBoolean2570) {
+            if (this.aClass191_7032!!.aBoolean2570) {
                 val is_52_ = this.method3048(i, 633706337, 0)
                 val is_53_ = this.method3048(i, 633706337, 1)
                 var i_54_ = anInt9226
@@ -245,7 +245,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                         if (i_54_ == 1) {
                                                             i_54_ = 0
                                                             while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
-                                                                `is`[i_54_] = ((is_52_[i_54_]) + (is_53_[i_54_]))
+                                                                `is`!![i_54_] = ((is_52_!![i_54_]) + (is_53_!![i_54_]))
                                                                 i_54_++
                                                             }
                                                             break@while_178_
@@ -277,94 +277,94 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                         }
                                                         i_54_ = 0
                                                         while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
-                                                            `is`[i_54_] = ((is_52_[i_54_]) + -(is_53_[i_54_]))
+                                                            `is`!![i_54_] = ((is_52_!![i_54_]) + -(is_53_!![i_54_]))
                                                             i_54_++
                                                         }
                                                         break@while_178_
                                                     } while (false)
                                                     i_54_ = 0
                                                     while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
-                                                        `is`[i_54_] = ((is_53_[i_54_] * (is_52_[i_54_])) shr 12)
+                                                        `is`!![i_54_] = ((is_53_!![i_54_] * (is_52_!![i_54_])) shr 12)
                                                         i_54_++
                                                     }
                                                     break@while_178_
                                                 } while (false)
                                                 i_54_ = 0
                                                 while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
-                                                    val i_55_ = is_53_[i_54_]
-                                                    `is`[i_54_] = (if (i_55_ != 0) ((is_52_[i_54_] shl 12) / i_55_) else 4096)
+                                                    val i_55_ = is_53_!![i_54_]
+                                                    `is`!![i_54_] = (if (i_55_ != 0) ((is_52_!![i_54_] shl 12) / i_55_) else 4096)
                                                     i_54_++
                                                 }
                                                 break@while_178_
                                             } while (false)
                                             i_54_ = 0
                                             while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_54_)) {
-                                                `is`[i_54_] = -(((4096 - is_52_[i_54_]) * (4096 - is_53_[i_54_])) shr 12) + 4096
+                                                `is`!![i_54_] = -(((4096 - is_52_!![i_54_]) * (4096 - is_53_!![i_54_])) shr 12) + 4096
                                                 i_54_++
                                             }
                                             break@while_178_
                                         } while (false)
                                         i_54_ = 0
                                         while ((i_54_ < Class348_Sub40_Sub6.Companion.anInt9139)) {
-                                            val i_56_ = is_53_[i_54_]
-                                            `is`[i_54_] = (if (i_56_ >= 2048) (4096 + -(((-i_56_ + 4096) * (4096 - is_52_[i_54_])) shr 11)) else (i_56_ * is_52_[i_54_] shr 11))
+                                            val i_56_ = is_53_!![i_54_]
+                                            `is`!![i_54_] = (if (i_56_ >= 2048) (4096 + -(((-i_56_ + 4096) * (4096 - is_52_!![i_54_])) shr 11)) else (i_56_ * is_52_!![i_54_] shr 11))
                                             i_54_++
                                         }
                                         break@while_178_
                                     } while (false)
                                     i_54_ = 0
                                     while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
-                                        val i_57_ = is_52_[i_54_]
-                                        `is`[i_54_] = (if (i_57_ != 4096) ((is_53_[i_54_] shl 12) / (-i_57_ + 4096)) else 4096)
+                                        val i_57_ = is_52_!![i_54_]
+                                        `is`!![i_54_] = (if (i_57_ != 4096) ((is_53_!![i_54_] shl 12) / (-i_57_ + 4096)) else 4096)
                                         i_54_++
                                     }
                                     break@while_178_
                                 } while (false)
                                 i_54_ = 0
                                 while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
-                                    val i_58_ = is_52_[i_54_]
-                                    `is`[i_54_] = (if (i_58_ == 0) 0 else -((4096 - is_53_[i_54_] shl 12) / i_58_) + 4096)
+                                    val i_58_ = is_52_!![i_54_]
+                                    `is`!![i_54_] = (if (i_58_ == 0) 0 else -((4096 - is_53_!![i_54_] shl 12) / i_58_) + 4096)
                                     i_54_++
                                 }
                                 break@while_178_
                             } while (false)
                             i_54_ = 0
                             while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
-                                val i_59_ = is_53_[i_54_]
-                                val i_60_ = is_52_[i_54_]
-                                `is`[i_54_] = (min(i_59_, i_60_))
+                                val i_59_ = is_53_!![i_54_]
+                                val i_60_ = is_52_!![i_54_]
+                                `is`!![i_54_] = (min(i_59_, i_60_))
                                 i_54_++
                             }
                             break@while_178_
                         } while (false)
                         i_54_ = 0
                         while (Class348_Sub40_Sub6.Companion.anInt9139 > i_54_) {
-                            val i_61_ = is_53_[i_54_]
-                            val i_62_ = is_52_[i_54_]
-                            `is`[i_54_] = max(i_62_, i_61_)
+                            val i_61_ = is_53_!![i_54_]
+                            val i_62_ = is_52_!![i_54_]
+                            `is`!![i_54_] = max(i_62_, i_61_)
                             i_54_++
                         }
                         break@while_178_
                     } while (false)
                     i_54_ = 0
                     while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
-                        val i_63_ = is_53_[i_54_]
-                        val i_64_ = is_52_[i_54_]
-                        `is`[i_54_] = (if (i_63_ >= i_64_) i_63_ + -i_64_ else i_64_ - i_63_)
+                        val i_63_ = is_53_!![i_54_]
+                        val i_64_ = is_52_!![i_54_]
+                        `is`!![i_54_] = (if (i_63_ >= i_64_) i_63_ + -i_64_ else i_64_ - i_63_)
                         i_54_++
                     }
                     break@while_178_
                 } while (false)
                 i_54_ = 0
                 while (Class348_Sub40_Sub6.Companion.anInt9139 > i_54_) {
-                    val i_65_ = is_53_[i_54_]
-                    val i_66_ = is_52_[i_54_]
-                    `is`[i_54_] = i_66_ - -i_65_ - (i_66_ * i_65_ shr 11)
+                    val i_65_ = is_53_!![i_54_]
+                    val i_66_ = is_52_!![i_54_]
+                    `is`!![i_54_] = i_66_ - -i_65_ - (i_66_ * i_65_ shr 11)
                     i_54_++
                 }
             }
         } while (false)
-        return `is`
+        return `is`!!
     }
 
     companion object {
