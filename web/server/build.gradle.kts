@@ -11,6 +11,7 @@ dependencies {
     implementation(libs.ktor.cio)
     implementation(libs.ktor.server.html)
     implementation(libs.bundles.ktor.api)
+    implementation(libs.koin)
 
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlinx.coroutines.test)

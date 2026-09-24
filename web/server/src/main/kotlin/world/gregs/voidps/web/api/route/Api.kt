@@ -82,5 +82,6 @@ fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions) {
         hiscoresRoutes(hiscores)
         exchangeRoutes(exchange)
         devRoutes(dev)
+        worldsRoutes()
     }
 }

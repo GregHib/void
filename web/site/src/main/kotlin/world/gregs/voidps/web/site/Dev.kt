@@ -25,12 +25,7 @@ object Dev {
 
     private const val WORLD_LABEL = "World 9 · void-eu-1 · rev 231"
 
-    private val worlds = listOf(
-        WorldEntry(9, "Germany · Falkenstein", members = true, mode = "PvP", players = 812, capacity = 2000, ping = 38, status = WorldStatus.Online),
-        WorldEntry(12, "United Kingdom · London", mode = "Normal", players = 1743, capacity = 2000, ping = 64, status = WorldStatus.Online),
-        WorldEntry(18, "United States · Ashburn", mode = "Deadman", players = 1980, capacity = 2000, ping = 186, status = WorldStatus.Full),
-        WorldEntry(30, "Germany · Falkenstein", mode = "Normal", players = 1622, capacity = 2000, ping = 37, status = WorldStatus.Restarting),
-    )
+    private val worlds = defaultWorlds
 
     private data class ErrorEntry(val level: String, val tone: BadgeTone, val time: String, val text: String, val meta: String)
 
@@ -111,10 +106,16 @@ object Dev {
                 }
                 span {
                     style = "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)"
-                    +"${world.mode} · ${"%,d".format(world.players)}${world.ping?.let { " · ${it}ms" } ?: ""}"
+                    val live = world.live
+                    xText("'${jsString(world.mode)} · ' + voidFormatNumber($live.players) + ($live.ping != null ? ' · ' + $live.ping + 'ms' : '')")
+                    +world.mode
                 }
             }
-            ui.badge(world.status.label, tone = world.status.tone, dot = world.status.dot)
+            span {
+                for (status in WorldStatus.entries) {
+                    ui.badge(status.label, tone = status.tone, dot = status.dot, showWhen = "${world.live}.status === '${status.name}'")
+                }
+            }
         }
     }
 
