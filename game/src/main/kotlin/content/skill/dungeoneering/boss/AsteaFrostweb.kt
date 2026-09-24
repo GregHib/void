@@ -7,9 +7,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactPlayer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.random
-import world.gregs.voidps.engine.map.spiral
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.type.Direction
@@ -28,12 +26,13 @@ class AsteaFrostweb : Script {
             val type = transformId.substringAfterLast("_")
             transform(
                 id.replace(
-                    "melee", when (type) {
+                    "melee",
+                    when (type) {
                         "magic" -> if (random.nextBoolean()) "melee" else "ranged"
                         "ranged" -> if (random.nextBoolean()) "melee" else "magic"
                         else -> if (random.nextBoolean()) "magic" else "ranged"
-                    }
-                )
+                    },
+                ),
             )
             Timer.CONTINUE
         }
@@ -113,6 +112,5 @@ class AsteaFrostweb : Script {
                 }
             }
         }
-
     }
 }

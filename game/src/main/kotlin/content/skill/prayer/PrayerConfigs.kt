@@ -1,6 +1,5 @@
 package content.skill.prayer
 
-import content.entity.effect.transform
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
