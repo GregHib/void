@@ -30,9 +30,7 @@ object Site {
      *
      * On, nothing is copied and the page fetches straight from [MAP_TILES_URL], keeping a couple of
      * hundred MiB of tiles out of the deployed site. The two are interchangeable: the remote
-     * repository holds the same tile set in the same layout. Either way `worldmap.js` registers
-     * `map-tiles-sw.js` to keep tiles in the browser's Cache API (refreshed weekly in the
-     * background), since neither source lets browsers cache them for long on their own.
+     * repository holds the same tile set in the same layout.
      */
     const val REMOTE_MAP_TILES = true
 
