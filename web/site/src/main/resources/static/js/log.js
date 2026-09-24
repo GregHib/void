@@ -89,6 +89,11 @@
   function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
   function band(i) { return BAND[i % 2]; }
   function bossAbbr(name) { return name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 3).toUpperCase(); }
+  // "TzTok-Jad" -> "tz_tok_jad", "King Black Dragon" -> "king_black_dragon", "K'ril Tsutsaroth" -> "kril_tsutsaroth".
+  function bossIcon(name) {
+    var file = name.replace(/'/g, "").replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    return "images/boss/" + file + ".png";
+  }
 
   // Synthesizes daily xp gains per skill over the last HISTORY_DAYS days: each skill trains in a
   // handful of random "active" windows on the timeline, gaining xp on most (not all) days within
@@ -148,7 +153,7 @@
     return {
       // Names aren't unique (both Kalphite Queen forms), so the bosses `x-for` keys on the id.
       key: b.boss,
-      name: b.name, abbr: bossAbbr(b.name), kills: fmt(b.kills),
+      name: b.name, abbr: bossAbbr(b.name), icon: bossIcon(b.name), kills: fmt(b.kills),
       fastest: b.fastestSeconds != null ? mmss(b.fastestSeconds) : "—",
       last: "—",
       band: band(i),

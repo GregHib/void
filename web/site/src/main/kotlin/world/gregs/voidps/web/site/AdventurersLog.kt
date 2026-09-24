@@ -450,7 +450,10 @@ object AdventurersLog {
                                   <tr :style="{ background: b.band }">
                                     <td style="padding:var(--space-4)">
                                       <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
-                                        <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="b.abbr"></span>
+                                        <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden">
+                                          <span x-text="b.abbr"></span>
+                                          <img :src="b.icon" alt="" loading="lazy" @error="${'$'}el.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)">
+                                        </span>
                                         <a :href="'hiscores.html?view=bosses&boss=' + encodeURIComponent(b.name)" style="font:var(--type-body);color:var(--text-strong);text-decoration:none" x-text="b.name"></a>
                                       </span>
                                     </td>

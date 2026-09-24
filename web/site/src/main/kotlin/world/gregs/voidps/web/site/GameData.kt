@@ -60,4 +60,19 @@ class GameData {
         bosses.joinTo(this, ",") { "{\"id\":\"${it.first}\",\"name\":\"${it.second}\"}" }
         append("];")
     }
+
+    companion object {
+        /** Boss portrait path from its display name; mirrors `bossIcon` in `hiscores.js`/`log.js` ("TzTok-Jad" -> "tz_tok_jad"). */
+        fun bossIcon(name: String): String {
+            val file = name.replace("'", "")
+                .replace(Regex("([a-z])([A-Z])"), "$1_$2")
+                .lowercase()
+                .replace(Regex("[^a-z0-9]+"), "_")
+                .trim('_')
+            return "images/boss/$file.png"
+        }
+
+        /** Initials shown in place of a boss portrait that doesn't exist yet. */
+        fun bossAbbr(name: String): String = name.split(" ").joinToString("") { it.take(1) }.take(3).uppercase()
+    }
 }

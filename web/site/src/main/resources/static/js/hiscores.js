@@ -33,6 +33,12 @@
   }
   function modeLabel(id) { return id ? id.charAt(0).toUpperCase() + id.slice(1) : ""; }
   function skillIcon(id) { return "images/skills/" + id + ".png"; }
+  function bossAbbr(name) { return name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 3).toUpperCase(); }
+  // "TzTok-Jad" -> "tz_tok_jad", "King Black Dragon" -> "king_black_dragon", "K'ril Tsutsaroth" -> "kril_tsutsaroth".
+  function bossIcon(name) {
+    var file = name.replace(/'/g, "").replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    return "images/boss/" + file + ".png";
+  }
   function formatDate(iso) {
     if (!iso) return "";
     try {
@@ -385,7 +391,7 @@
           });
           self.profileBosses = bosses.items.map(function (b) {
             return {
-              boss: b.name, kc: fmt(b.kills), best: b.fastestSeconds ? mmss(b.fastestSeconds) : "—",
+              key: b.boss, boss: b.name, abbr: bossAbbr(b.name), icon: bossIcon(b.name), kc: fmt(b.kills), best: b.fastestSeconds ? mmss(b.fastestSeconds) : "—",
               rank: b.kills > 0 ? "rank " + fmt(b.rank) : "unranked",
             };
           });
@@ -469,7 +475,7 @@
         if (!this.compareResult) return [];
         return this.compareResult.bosses.map(function (r, i) {
           return Object.assign({
-            boss: r.bossName, aKc: fmt(r.aKills), bKc: fmt(r.bKills),
+            key: r.boss, boss: r.bossName, abbr: bossAbbr(r.bossName), icon: bossIcon(r.bossName), aKc: fmt(r.aKills), bKc: fmt(r.bKills),
             aColor: r.leader === "a" ? "var(--gold-300)" : "var(--text-faint)",
             bColor: r.leader === "b" ? "var(--gold-300)" : "var(--text-faint)",
             bg: band(i),
