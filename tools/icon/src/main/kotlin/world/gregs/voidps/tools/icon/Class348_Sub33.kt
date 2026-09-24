@@ -1,10 +1,12 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub33 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- *
- * Trimmed for item_renderer_standalone: only the shared Class152 (gzip)
- * instance used by Class348_Sub41.method3158's decompression dispatch is kept.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub33 extends Class348 {
-    static Class152 aClass152_6955 = new Class152();
+/* Class348_Sub33 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*
+* Trimmed for item_renderer_standalone: only the shared Class152 (gzip)
+* instance used by Class348_Sub41.method3158's decompression dispatch is kept.
+*/
+
+internal object Class348_Sub33 : Class348() {
+    var aClass152_6955: Class152 = Class152()
 }

@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class344 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-abstract class Class344 {
-    abstract void method2691(byte i, byte[] is);
+/* Class344 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    abstract byte[] method2692(int i);
+internal abstract class Class344 {
+    abstract fun method2691(i: Byte, `is`: ByteArray?)
+
+    abstract fun method2692(i: Int): ByteArray?
 }

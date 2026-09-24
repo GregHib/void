@@ -1,31 +1,32 @@
-package world.gregs.voidps.tools.icon;/* Class12 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class TextureMetrics {
-    byte speedU;
-    boolean small;
-    int alphaBlendMode;
-    byte alpha;
-    byte effectParam1;
-    int colourOp;
-    boolean aBoolean204;
-    byte aByte205;
-    int effectParam2;
-    boolean aBoolean207;
-    short aShort208;
-    boolean disableable;
-    static int anInt210;
-    byte speedV;
-    boolean aBoolean212;
-    byte effectType;
-    static int anInt214;
-    boolean aBoolean215;
-    byte aByte216;
-    boolean aBoolean217;
-    boolean aBoolean218;
+/* Class12 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    public TextureMetrics() {
-        /* empty */
+internal class TextureMetrics {
+    var speedU: Byte = 0
+    var small: Boolean = false
+    var alphaBlendMode: Int = 0
+    var alpha: Byte = 0
+    var effectParam1: Byte = 0
+    var colourOp: Int = 0
+    var aBoolean204: Boolean = false
+    var aByte205: Byte = 0
+    var effectParam2: Int = 0
+    var aBoolean207: Boolean = false
+    var aShort208: Short = 0
+    var disableable: Boolean = false
+    var speedV: Byte = 0
+    var aBoolean212: Boolean = false
+    var effectType: Byte = 0
+    var aBoolean215: Boolean = false
+    var aByte216: Byte = 0
+    var aBoolean217: Boolean = false
+    var aBoolean218: Boolean = false
+
+    companion object {
+        var anInt210: Int = 0
+        var anInt214: Int = 0
     }
 }

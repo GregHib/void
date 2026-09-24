@@ -1,15 +1,16 @@
-package world.gregs.voidps.tools.icon;/* Class199 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- *
- * Trimmed for item_renderer_standalone: only the static field referenced by
- * Class348_Sub24.method2994 is kept.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class199 {
-    static int[] anIntArray2631 = new int[4096];
+/* Class199 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*
+* Trimmed for item_renderer_standalone: only the static field referenced by
+* Class348_Sub24.method2994 is kept.
+*/
 
-    static {
-        for (int i = 0; i < 4096; i++)
-            anIntArray2631[i] = Class252.method1918(-3358, i);
+internal object Class199 {
+    var anIntArray2631: IntArray = IntArray(4096)
+
+    init {
+        for (i in 0..4095) anIntArray2631[i] = Class252.method1918(-3358, i)
     }
 }

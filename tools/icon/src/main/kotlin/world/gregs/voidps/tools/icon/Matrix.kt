@@ -1,19 +1,17 @@
-package world.gregs.voidps.tools.icon;/* Class101 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-abstract class Matrix {
-    abstract void translate(int i, int i_0_, int i_1_);
+/* Class101 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    abstract void makeAxisY(int i);
+internal abstract class Matrix {
+    abstract fun translate(i: Int, i_0_: Int, i_1_: Int)
 
-    abstract void rotateAxisX(int i);
+    abstract fun makeAxisY(i: Int)
 
-    abstract void makeRotationZ(int i);
+    abstract fun rotateAxisX(i: Int)
 
-    abstract void makeIdentity();
+    abstract fun makeRotationZ(i: Int)
 
-    public Matrix() {
-        /* empty */
-    }
+    abstract fun makeIdentity()
 }

@@ -1,29 +1,28 @@
-package world.gregs.voidps.tools.icon;/* Class350 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class JavaBillboardAttributes {
-    int anInt4307;
-    int anInt4308;
-    int anInt4309;
-    int anInt4310;
-    int anInt4311 = 128;
-    int anInt4312;
-    int anInt4313;
-    int anInt4314 = 128;
-    static int anInt4315;
-    int anInt4316;
-    int anInt4317;
-    int anInt4320;
+/* Class350 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    static final int method3452(int i, byte i_0_, int i_1_) {
-        if (i_0_ != -15) method3452(80, (byte) 123, -88);
-        anInt4315++;
-        int i_2_ = i_1_ + -1 & i >> 31;
-        return (i + (i >>> 31)) % i_1_ + i_2_;
-    }
+internal class JavaBillboardAttributes(var anInt4313: Int) {
+    var anInt4307: Int = 0
+    var anInt4308: Int = 0
+    var anInt4309: Int = 0
+    var anInt4310: Int = 0
+    var anInt4311: Int = 128
+    var anInt4312: Int = 0
+    var anInt4314: Int = 128
+    var anInt4316: Int = 0
+    var anInt4317: Int = 0
+    var anInt4320: Int = 0
 
-    JavaBillboardAttributes(int i) {
-        this.anInt4313 = i;
+    companion object {
+        var anInt4315: Int = 0
+        fun method3452(i: Int, i_0_: Byte, i_1_: Int): Int {
+            if (i_0_.toInt() != -15) method3452(80, 123.toByte(), -88)
+            anInt4315++
+            val i_2_ = i_1_ + -1 and (i shr 31)
+            return (i + (i ushr 31)) % i_1_ + i_2_
+        }
     }
 }

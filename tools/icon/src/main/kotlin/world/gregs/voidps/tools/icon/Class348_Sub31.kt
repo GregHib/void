@@ -1,18 +1,19 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub31 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-import java.awt.*;
+import java.awt.Canvas
 
-abstract class Class348_Sub31 extends Class348 {
-    static int anInt6913 = 0;
-    int[] anIntArray6916;
-    int anInt6917;
-    int anInt6920;
+/* Class348_Sub31 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    abstract void method3008(Canvas canvas, int i, int i_1_, int i_2_);
+internal abstract class Class348_Sub31 : Class348() {
+    var anIntArray6916: IntArray?
+    var anInt6917: Int = 0
+    var anInt6920: Int = 0
 
-    public Class348_Sub31() {
-        /* empty */
+    abstract fun method3008(canvas: Canvas?, i: Int, i_1_: Int, i_2_: Int)
+
+    companion object {
+        var anInt6913: Int = 0
     }
 }

@@ -10,11 +10,10 @@
  * *.java directly under src/ - javac does not require this file to live
  * under a jagex3/jagmisc/ subdirectory when passed explicitly.
  */
+package world.gregs.voidps.tools.icon
 
-package world.gregs.voidps.tools.icon;
-
-public final class jagmisc {
-    public static int ping(byte b0, byte b1, byte b2, byte b3, long timeout) {
-        return 1000;
+object jagmisc {
+    fun ping(b0: Byte, b1: Byte, b2: Byte, b3: Byte, timeout: Long): Int {
+        return 1000
     }
 }

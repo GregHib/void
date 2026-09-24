@@ -1,17 +1,22 @@
-package world.gregs.voidps.tools.icon;/* Class70 - minimal stub (missing from trimmed tree)
- * See client/src/Class70.java for the full original.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class70 {
-    static int[] anIntArray1204;
-    static int[] anIntArray1207 = new int[16384];
+import kotlin.math.cos
+import kotlin.math.sin
 
-    static {
-        anIntArray1204 = new int[16384];
-        double d = 3.834951969714103E-4;
-        for (int i = 0; i < 16384; i++) {
-            anIntArray1207[i] = (int) (16384.0 * Math.sin(d * (double) i));
-            anIntArray1204[i] = (int) (Math.cos(d * (double) i) * 16384.0);
+/* Class70 - minimal stub (missing from trimmed tree)
+* See client/src/Class70.java for the full original.
+*/
+
+internal object Class70 {
+    var anIntArray1204: IntArray
+    var anIntArray1207: IntArray = IntArray(16384)
+
+    init {
+        anIntArray1204 = IntArray(16384)
+        val d = 3.834951969714103E-4
+        for (i in 0..16383) {
+            anIntArray1207[i] = (16384.0 * sin(d * i.toDouble())).toInt()
+            anIntArray1204[i] = (cos(d * i.toDouble()) * 16384.0).toInt()
         }
     }
 }

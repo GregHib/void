@@ -1,17 +1,15 @@
-package world.gregs.voidps.tools.icon;/* Class314 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-abstract class ResourceProvider {
-    public ResourceProvider() {
-        /* empty */
-    }
+/* Class314 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    abstract int method2335(int i, int i_0_);
+internal abstract class ResourceProvider {
+    abstract fun method2335(i: Int, i_0_: Int): Int
 
-    abstract void method2338(byte i, int i_6_);
+    abstract fun method2338(i: Byte, i_6_: Int)
 
-    abstract byte[] fetchGroup(int i, byte i_7_);
+    abstract fun fetchGroup(i: Int, i_7_: Byte): ByteArray?
 
-    abstract Js5Index index(byte i);
+    abstract fun index(i: Byte): Js5Index?
 }

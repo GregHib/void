@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class17 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class17 {
-    static boolean aBoolean247 = false;
+/* Class17 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class17 {
+    var aBoolean247: Boolean = false
 }

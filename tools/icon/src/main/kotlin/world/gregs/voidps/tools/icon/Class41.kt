@@ -1,13 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class41 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class41 {
-    int anInt559;
-    int anInt560;
-    int anInt561;
+/* Class41 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    public Class41() {
-        /* empty */
-    }
+internal class Class41 {
+    var anInt559: Int = 0
+    var anInt560: Int = 0
+    var anInt561: Int = 0
 }

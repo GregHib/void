@@ -1,20 +1,18 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub40_Sub26 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- *
- * Trimmed for item_renderer_standalone: only the static renderer-slot
- * bookkeeping array (aBooleanArray9351), used by ha's constructor/method3635,
- * is kept.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub40_Sub26 extends Class348_Sub40 {
-    static boolean[] aBooleanArray9351;
-    static int anInt9346 = 0;
+/* Class348_Sub40_Sub26 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*
+* Trimmed for item_renderer_standalone: only the static renderer-slot
+* bookkeeping array (aBooleanArray9351), used by ha's constructor/method3635,
+* is kept.
+*/
 
-    public Class348_Sub40_Sub26() {
-        super(1, false);
-    }
+internal object Class348_Sub40_Sub26 : Class348_Sub40() {
+    var aBooleanArray9351: BooleanArray?
+    var anInt9346: Int = 0
 
-    static {
-        aBooleanArray9351 = new boolean[8];
+    init {
+        aBooleanArray9351 = BooleanArray(8)
     }
 }

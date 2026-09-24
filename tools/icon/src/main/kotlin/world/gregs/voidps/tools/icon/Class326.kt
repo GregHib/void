@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class326 - minimal stub (missing from trimmed tree)
- * See client/src/Class326.java for the full original.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class326 {
-    final Class254 method2600(int i, int i_0_) {
-        return new Class254();
+/* Class326 - minimal stub (missing from trimmed tree)
+* See client/src/Class326.java for the full original.
+*/
+
+internal class Class326 {
+    fun method2600(i: Int, i_0_: Int): Class254 {
+        return Class254()
     }
 }

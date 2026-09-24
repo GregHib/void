@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Interface17 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-interface Interface17 {
-    int method61(int i, byte i_0_);
+/* Interface17 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    int method62(int i, int i_1_);
+internal interface Interface17 {
+    fun method61(i: Int, i_0_: Byte): Int
+
+    fun method62(i: Int, i_1_: Int): Int
 }

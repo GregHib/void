@@ -1,11 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class223 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class223 {
-    int anInt2896;
+/* Class223 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class223(int i, int i_1_) {
-        this.anInt2896 = i_1_;
-    }
-}
+internal class Class223(i: Int, var anInt2896: Int)

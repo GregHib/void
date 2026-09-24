@@ -1,42 +1,43 @@
-package world.gregs.voidps.tools.icon;/* Class105_Sub3_Sub3 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- *
- * Trimmed for item_renderer_standalone: constructed by ha_Sub1.method3629 and
- * ha_Sub1.method3711 when the "has alpha" branch is taken, but per JaCoCo
- * coverage that branch is never actually hit while dumping item icons (0
- * coverage on this whole class). Only the two constructors those call sites
- * use are kept verbatim; the abstract method964 override is a stub since it
- * is unreachable in practice.
- */
+package world.gregs.voidps.tools.icon
 
-final class JavaArgbSprite extends Sprite_Sub3 {
-    int[] anIntArray9936;
+/* Class105_Sub3_Sub3 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*
+* Trimmed for item_renderer_standalone: constructed by ha_Sub1.method3629 and
+* ha_Sub1.method3711 when the "has alpha" branch is taken, but per JaCoCo
+* coverage that branch is never actually hit while dumping item icons (0
+* coverage on this whole class). Only the two constructors those call sites
+* use are kept verbatim; the abstract method964 override is a stub since it
+* is unreachable in practice.
+*/
 
-    JavaArgbSprite(JavaToolkit var_ha_Sub1, int i, int i_443_) {
-        super(var_ha_Sub1, i, i_443_);
-        this.anIntArray9936 = new int[i * i_443_];
+internal class JavaArgbSprite : Sprite_Sub3 {
+    var anIntArray9936: IntArray
+
+    constructor(var_ha_Sub1: JavaToolkit?, i: Int, i_443_: Int) : super(var_ha_Sub1, i, i_443_) {
+        this.anIntArray9936 = IntArray(i * i_443_)
     }
 
-    JavaArgbSprite(JavaToolkit var_ha_Sub1, int[] is, int i, int i_1_, int i_2_, int i_3_, boolean bool) {
-        super(var_ha_Sub1, i_2_, i_3_);
-        if (bool) this.anIntArray9936 = new int[i_2_ * i_3_];
-        else this.anIntArray9936 = is;
-        i_1_ -= this.anInt8471;
-        int i_4_ = 0;
-        for (int i_5_ = 0; i_5_ < i_3_; i_5_++) {
-            for (int i_6_ = 0; i_6_ < i_2_; i_6_++)
-                this.anIntArray9936[i_4_++] = is[i++];
-            i += i_1_;
+    constructor(var_ha_Sub1: JavaToolkit?, `is`: IntArray, i: Int, i_1_: Int, i_2_: Int, i_3_: Int, bool: Boolean) : super(var_ha_Sub1, i_2_, i_3_) {
+        var i = i
+        var i_1_ = i_1_
+        if (bool) this.anIntArray9936 = IntArray(i_2_ * i_3_)
+        else this.anIntArray9936 = `is`
+        i_1_ -= this.anInt8471
+        var i_4_ = 0
+        for (i_5_ in 0..<i_3_) {
+            for (i_6_ in 0..<i_2_) this.anIntArray9936[i_4_++] = `is`[i++]
+            i += i_1_
         }
     }
 
     // Unreachable per JaCoCo coverage (0 hits for this whole class).
-    final void method964(int i, int i_148_, int i_149_, int i_150_, int i_151_) {
-        throw new IllegalStateException();
+    override fun method964(i: Int, i_148_: Int, i_149_: Int, i_150_: Int, i_151_: Int) {
+        throw IllegalStateException()
     }
 
     // Unreachable per JaCoCo coverage (0 hits) - see Class105_Sub3.method996.
-    final void method996(int i, int i_444_, int i_445_, int i_446_, int i_447_, int i_448_, int i_449_, int i_450_, int i_451_) {
-        throw new IllegalStateException();
+    override fun method996(i: Int, i_444_: Int, i_445_: Int, i_446_: Int, i_447_: Int, i_448_: Int, i_449_: Int, i_450_: Int, i_451_: Int) {
+        throw IllegalStateException()
     }
 }

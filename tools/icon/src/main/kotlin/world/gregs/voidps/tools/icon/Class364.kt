@@ -1,11 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class364 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class364 {
-    int anInt4466;
+/* Class364 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class364(String string, int i) {
-        this.anInt4466 = i;
-    }
-}
+internal class Class364(string: String?, var anInt4466: Int)

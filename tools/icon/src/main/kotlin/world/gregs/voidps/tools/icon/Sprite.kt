@@ -1,15 +1,13 @@
-package world.gregs.voidps.tools.icon;/* Class105 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-abstract class Sprite implements Interface3 {
-    abstract void method964(int i, int i_26_, int i_27_, int i_28_, int i_29_);
+/* Class105 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    final void render(int i, int i_64_) {
-        method964(i, i_64_, 1, 0, 1);
-    }
+internal abstract class Sprite : Interface3 {
+    abstract fun method964(i: Int, i_26_: Int, i_27_: Int, i_28_: Int, i_29_: Int)
 
-    public Sprite() {
-        /* empty */
+    fun render(i: Int, i_64_: Int) {
+        method964(i, i_64_, 1, 0, 1)
     }
 }

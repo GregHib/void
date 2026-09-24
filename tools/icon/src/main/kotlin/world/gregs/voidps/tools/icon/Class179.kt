@@ -1,25 +1,27 @@
-package world.gregs.voidps.tools.icon;/* Class179 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class179 {
-    static int anInt2361 = 1;
-    static int anInt2363;
+/* Class179 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    static final Object wrap(byte[] is, boolean bool, byte i) {
-        if (i < 73) anInt2361 = -51;
-        anInt2363++;
-        if (is == null) return null;
-        if (is.length > 136 && !Class17.aBoolean247) {
+internal object Class179 {
+    var anInt2361: Int = 1
+    var anInt2363: Int = 0
+
+    fun wrap(`is`: ByteArray?, bool: Boolean, i: Byte): Any? {
+        if (i < 73) anInt2361 = -51
+        anInt2363++
+        if (`is` == null) return null
+        if (`is`.size > 136 && !Class17.aBoolean247) {
             try {
-                Class344 class344 = new Class344_Sub1();
-                class344.method2691((byte) 62, is);
-                return class344;
-            } catch (Throwable throwable) {
-                Class17.aBoolean247 = true;
+                val class344: Class344 = Class344_Sub1()
+                class344.method2691(62.toByte(), `is`)
+                return class344
+            } catch (throwable: Throwable) {
+                Class17.aBoolean247 = true
             }
         }
-        if (bool) return ha_Sub3.method3873(is, 0);
-        return is;
+        if (bool) return ha_Sub3.method3873(`is`, 0)
+        return `is`
     }
 }

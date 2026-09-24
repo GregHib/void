@@ -1,14 +1,12 @@
-package world.gregs.voidps.tools.icon;/* Class360 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class360 {
-    int anInt4427;
-    int anInt4428;
-    int anInt4429;
-    int anInt4430;
+/* Class360 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    public Class360() {
-        /* empty */
-    }
+internal class Class360 {
+    var anInt4427: Int = 0
+    var anInt4428: Int = 0
+    var anInt4429: Int = 0
+    var anInt4430: Int = 0
 }

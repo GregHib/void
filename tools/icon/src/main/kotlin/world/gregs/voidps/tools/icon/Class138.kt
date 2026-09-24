@@ -1,17 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class138 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class138 {
-    int anInt1941;
-    int anInt1943;
-    int anInt1944;
-    int anInt1945;
+/* Class138 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class138(int i, int i_0_, int i_1_, int i_2_) {
-        this.anInt1943 = i_1_;
-        this.anInt1945 = i_0_;
-        this.anInt1941 = i;
-        this.anInt1944 = i_2_;
-    }
-}
+internal class Class138(var anInt1941: Int, var anInt1945: Int, var anInt1943: Int, var anInt1944: Int)

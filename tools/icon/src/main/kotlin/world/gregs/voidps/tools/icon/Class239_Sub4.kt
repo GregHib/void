@@ -1,16 +1,21 @@
-package world.gregs.voidps.tools.icon;/* Class239_Sub4 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class239_Sub4 {
-    static float[] aFloatArray5874 = new float[16384];
-    static float[] aFloatArray5876 = new float[16384];
+import kotlin.math.cos
+import kotlin.math.sin
 
-    static {
-        double d = 3.834951969714103E-4;
-        for (int i = 0; i < 16384; i++) {
-            aFloatArray5874[i] = (float) Math.sin(d * (double) i);
-            aFloatArray5876[i] = (float) Math.cos((double) i * d);
+/* Class239_Sub4 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class239_Sub4 {
+    var aFloatArray5874: FloatArray = FloatArray(16384)
+    var aFloatArray5876: FloatArray = FloatArray(16384)
+
+    init {
+        val d = 3.834951969714103E-4
+        for (i in 0..16383) {
+            aFloatArray5874[i] = sin(d * i.toDouble()).toFloat()
+            aFloatArray5876[i] = cos(i.toDouble() * d).toFloat()
         }
     }
 }

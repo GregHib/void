@@ -1,23 +1,25 @@
-package world.gregs.voidps.tools.icon;/* Class50_Sub1 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class50_Sub1 {
-    static int anInt5215;
+/* Class50_Sub1 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    static final byte[] unwrap(boolean bool, Object object, int i) {
-        anInt5215++;
-        if (object == null) return null;
-        if (object instanceof byte[]) {
-            byte[] is = (byte[]) object;
-            if (bool) return ha_Sub3.method3873(is, 0);
-            return is;
+internal object Class50_Sub1 {
+    var anInt5215: Int = 0
+
+    fun unwrap(bool: Boolean, `object`: Any?, i: Int): ByteArray? {
+        anInt5215++
+        if (`object` == null) return null
+        if (`object` is ByteArray) {
+            val `is` = `object`
+            if (bool) return ha_Sub3.method3873(`is`, 0)
+            return `is`
         }
-        if (i != 53146732) return null;
-        if (object instanceof Class344) {
-            Class344 class344 = (Class344) object;
-            return class344.method2692(-3672);
+        if (i != 53146732) return null
+        if (`object` is Class344) {
+            val class344 = `object`
+            return class344.method2692(-3672)
         }
-        throw new IllegalArgumentException();
+        throw IllegalArgumentException()
     }
 }

@@ -1,9 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class74 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class74 {
-    Class74(int i, int i_0_) {
-        /* empty */
-    }
-}
+/* Class74 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal class Class74(i: Int, i_0_: Int)

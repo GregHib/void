@@ -1,37 +1,35 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub42_Sub8_Sub2 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub42_Sub8_Sub2 extends Class348_Sub42_Sub8 {
-    private final Object anObject10429;
-    static int anInt10435;
-    static long[][][] aLongArrayArrayArray10431;
-    static Class76 aClass76_10436 = new Class76(true);
-    static Class74 aClass74_10437 = new Class74(0, 3);
-    static int anInt10438;
+/* Class348_Sub42_Sub8_Sub2 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class348_Sub42_Sub8_Sub2(Object object, int i) {
-        super(i);
-        anObject10429 = object;
+internal class Class348_Sub42_Sub8_Sub2(private val anObject10429: Any?, i: Int) : Class348_Sub42_Sub8(i) {
+    override fun method3195(i: Int): Boolean {
+        if (i != -4) Companion.method3202(-58.toByte())
+        anInt10438++
+        return false
     }
 
-    final boolean method3195(int i) {
-        if (i != -4) method3202((byte) -58);
-        anInt10438++;
-        return false;
+    override fun method3193(i: Int): Any? {
+        anInt10435++
+        if (i < 75) method3193(-128)
+        return anObject10429
     }
 
-    public static void method3202(byte i) {
-        if (i > 38) {
-            aLongArrayArrayArray10431 = null;
-            aClass76_10436 = null;
-            aClass74_10437 = null;
+    companion object {
+        var anInt10435: Int = 0
+        var aLongArrayArrayArray10431: Array<Array<LongArray?>?>?
+        var aClass76_10436: Class76? = Class76(true)
+        var aClass74_10437: Class74? = Class74(0, 3)
+        var anInt10438: Int = 0
+
+        fun method3202(i: Byte) {
+            if (i > 38) {
+                aLongArrayArrayArray10431 = null
+                aClass76_10436 = null
+                aClass74_10437 = null
+            }
         }
-    }
-
-    final Object method3193(int i) {
-        anInt10435++;
-        if (i < 75) method3193(-128);
-        return anObject10429;
     }
 }

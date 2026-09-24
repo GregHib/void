@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class273 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class273 {
-    static int or(int i, int i_2_) {
-        return i | i_2_;
+/* Class273 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class273 {
+    fun or(i: Int, i_2_: Int): Int {
+        return i or i_2_
     }
 }

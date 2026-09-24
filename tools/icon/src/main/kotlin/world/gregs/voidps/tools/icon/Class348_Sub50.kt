@@ -1,11 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub50 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub50 extends Class348 {
-    String aString7211;
+/* Class348_Sub50 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class348_Sub50(String string) {
-        this.aString7211 = string;
-    }
-}
+internal class Class348_Sub50(var aString7211: String?) : Class348()

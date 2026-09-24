@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class277 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class277 {
-    static long method2068(long l, long l_0_) {
-        return l | l_0_;
+/* Class277 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class277 {
+    fun method2068(l: Long, l_0_: Long): Long {
+        return l or l_0_
     }
 }

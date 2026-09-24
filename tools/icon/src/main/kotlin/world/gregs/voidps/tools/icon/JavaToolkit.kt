@@ -1,992 +1,1040 @@
-package world.gregs.voidps.tools.icon;/* ha_Sub1 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-import java.awt.*;
+import java.awt.Canvas
+import kotlin.math.floor
+import kotlin.math.sqrt
 
-final class JavaToolkit extends Toolkit {
-    private int anInt7465;
-    private int anInt7466;
-    private IterableHashTable aIterableHashTable_7467;
-    private Canvas aCanvas7468;
-    Class348_Sub31 aClass348_Sub31_7469;
-    private boolean aBoolean7470 = false;
-    private boolean aBoolean7471 = false;
-    private int anInt7472;
-    int anInt7473;
-    int anInt7474;
-    private Class49 aClass49_7475;
-    int anInt7476;
-    int anInt7477;
-    int anInt7478;
-    int anInt7479;
-    private JavaThreadResource[] aJavaThreadResourceArray7480;
-    private int anInt7481;
-    int anInt7482;
-    int[] anIntArray7483;
-    int anInt7484;
-    int anInt7485;
-    private int anInt7486;
-    private int anInt7487;
-    private int anInt7488;
-    private boolean aBoolean7489;
-    int anInt7490;
-    int anInt7491;
-    Matrix_Sub1 aClass101_Sub1_7492;
-    private int anInt7493;
-    int anInt7494;
-    private int anInt7495;
-    int anInt7496;
-    int anInt7497;
-    private final Class60 aClass60_7498;
-    private final Class60 aClass60_7499;
-    int anInt7500;
-    int anInt7501;
-    float[] aFloatArray7502;
-    int anInt7503;
-    int anInt7504;
-    private int anInt7505;
-    int anInt7506;
-    int anInt7507;
-    int anInt7508;
-    int anInt7509;
-    int anInt7510;
-    float[] aFloatArray7511;
-    private int anInt7512;
-    private Sprite aSprite_7513;
+/* ha_Sub1 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    final boolean method3695() {
-        return true;
+internal class JavaToolkit private constructor(var_textureSource: TextureSource?) : Toolkit(var_textureSource) {
+    private var anInt7465 = 0
+    private val anInt7466 = 0
+    private var aIterableHashTable_7467: IterableHashTable?
+    private var aCanvas7468: Canvas? = null
+    var aClass348_Sub31_7469: Class348_Sub31? = null
+    private var aBoolean7470 = false
+    private var aBoolean7471 = false
+    private var anInt7472 = 0
+    var anInt7473: Int = 0
+    var anInt7474: Int
+    private var aClass49_7475: Class49? = null
+    var anInt7476: Int
+    var anInt7477: Int = 0
+    var anInt7478: Int
+    var anInt7479: Int = 0
+    private var aJavaThreadResourceArray7480: Array<JavaThreadResource?>
+    private var anInt7481 = 0
+    var anInt7482: Int
+    var anIntArray7483: IntArray?
+    var anInt7484: Int = 0
+    var anInt7485: Int = 0
+    private var anInt7486 = 0
+    private val anInt7487: Int
+    private var anInt7488 = 0
+    private val aBoolean7489: Boolean
+    var anInt7490: Int = 0
+    var anInt7491: Int
+    var aClass101_Sub1_7492: Matrix_Sub1? = null
+    private var anInt7493 = 0
+    var anInt7494: Int
+    private var anInt7495 = 0
+    var anInt7496: Int
+    var anInt7497: Int
+    private val aClass60_7498: Class60
+    private val aClass60_7499: Class60
+    var anInt7500: Int
+    var anInt7501: Int
+    var aFloatArray7502: FloatArray?
+    var anInt7503: Int
+    var anInt7504: Int = 0
+    private val anInt7505: Int
+    var anInt7506: Int = 0
+    var anInt7507: Int
+    var anInt7508: Int = 0
+    var anInt7509: Int = 0
+    var anInt7510: Int = 0
+    var aFloatArray7511: FloatArray
+    private var anInt7512: Int
+    private var aSprite_7513: Sprite? = null
+
+    fun method3695(): Boolean {
+        return true
     }
 
-    final int[] na(int i, int i_0_, int i_1_, int i_2_) {
-        int[] is = new int[i_1_ * i_2_];
-        int i_3_ = 0;
-        for (int i_4_ = 0; i_4_ < i_2_; i_4_++) {
-            int i_5_ = (i_0_ + i_4_) * this.anInt7477 + i;
-            for (int i_6_ = 0; i_6_ < i_1_; i_6_++)
-                is[i_3_++] = this.anIntArray7483[i_5_ + i_6_];
+    override fun na(i: Int, i_0_: Int, i_1_: Int, i_2_: Int): IntArray {
+        val `is` = IntArray(i_1_ * i_2_)
+        var i_3_ = 0
+        for (i_4_ in 0..<i_2_) {
+            val i_5_ = (i_0_ + i_4_) * this.anInt7477 + i
+            for (i_6_ in 0..<i_1_) `is`[i_3_++] = this.anIntArray7483!![i_5_ + i_6_]
         }
-        return is;
+        return `is`
     }
 
-    final aa method3661(int i, int i_63_, int[] is, int[] is_64_) {
-        return new aa_Sub3(i, i_63_, is, is_64_);
+    fun method3661(i: Int, i_63_: Int, `is`: IntArray?, is_64_: IntArray?): aa {
+        return aa_Sub3(i, i_63_, `is`, is_64_)
     }
 
-    final void method3642(int i, Class348_Sub1[] class348_sub1s) {
+    fun method3642(i: Int, class348_sub1s: Array<Class348_Sub1?>?) {
         /* empty */
     }
 
-    final boolean method3693() {
-        return false;
+    fun method3693(): Boolean {
+        return false
     }
 
-    final void method3710() {
+    fun method3710() {
         /* empty */
     }
 
     // dependency of Class109's genuine drawing methods (method1018/method1024
     // call method3645 unconditionally); not itself in the genuine list.
-    final void line(int i, int i_41_, int i_42_, int i_43_, int i_44_, int i_45_) {
-        Toolkit.anInt4563++;
-        method3709(i_41_, i, i_42_, i_45_, i_44_, 1);
-        if (i_43_ != -8003) method3665(75, 67);
+    fun line(i: Int, i_41_: Int, i_42_: Int, i_43_: Int, i_44_: Int, i_45_: Int) {
+        Toolkit.Companion.anInt4563++
+        method3709(i_41_, i, i_42_, i_45_, i_44_, 1)
+        if (i_43_ != -8003) method3665(75, 67)
     }
 
     // dependency of method3645
-    final void method3709(int i, int i_241_, int i_242_, int i_243_, int i_244_, int i_245_) {
-        i_242_ -= i;
-        i_243_ -= i_241_;
+    fun method3709(i: Int, i_241_: Int, i_242_: Int, i_243_: Int, i_244_: Int, i_245_: Int) {
+        var i = i
+        var i_241_ = i_241_
+        var i_242_ = i_242_
+        var i_243_ = i_243_
+        var i_244_ = i_244_
+        i_242_ -= i
+        i_243_ -= i_241_
         if (i_243_ == 0) {
-            if (i_242_ >= 0) U(i, i_241_, i_242_ + 1, i_244_, i_245_);
-            else U(i + i_242_, i_241_, -i_242_ + 1, i_244_, i_245_);
+            if (i_242_ >= 0) U(i, i_241_, i_242_ + 1, i_244_, i_245_)
+            else U(i + i_242_, i_241_, -i_242_ + 1, i_244_, i_245_)
         } else if (i_242_ == 0) {
-            if (i_243_ >= 0) P(i, i_241_, i_243_ + 1, i_244_, i_245_);
-            else P(i, i_241_ + i_243_, -i_243_ + 1, i_244_, i_245_);
+            if (i_243_ >= 0) P(i, i_241_, i_243_ + 1, i_244_, i_245_)
+            else P(i, i_241_ + i_243_, -i_243_ + 1, i_244_, i_245_)
         } else {
             if (i_242_ + i_243_ < 0) {
-                i += i_242_;
-                i_242_ = -i_242_;
-                i_241_ += i_243_;
-                i_243_ = -i_243_;
+                i += i_242_
+                i_242_ = -i_242_
+                i_241_ += i_243_
+                i_243_ = -i_243_
             }
             if (i_242_ > i_243_) {
-                i_241_ <<= 16;
-                i_241_ += 32768;
-                i_243_ <<= 16;
-                int i_246_ = (int) Math.floor((double) i_243_ / (double) i_242_ + 0.5);
-                i_242_ += i;
+                i_241_ = i_241_ shl 16
+                i_241_ += 32768
+                i_243_ = i_243_ shl 16
+                val i_246_ = floor(i_243_.toDouble() / i_242_.toDouble() + 0.5).toInt()
+                i_242_ += i
                 if (i < this.anInt7496) {
-                    i_241_ += i_246_ * (this.anInt7496 - i);
-                    i = this.anInt7496;
+                    i_241_ += i_246_ * (this.anInt7496 - i)
+                    i = this.anInt7496
                 }
-                if (i_242_ >= this.anInt7507) i_242_ = this.anInt7507 - 1;
-                int i_247_ = i_244_ >>> 24;
+                if (i_242_ >= this.anInt7507) i_242_ = this.anInt7507 - 1
+                val i_247_ = i_244_ ushr 24
                 if (i_245_ == 0 || i_245_ == 1 && i_247_ == 255) {
-                    for (/**/; i <= i_242_; i++) {
-                        int i_248_ = i_241_ >> 16;
-                        if (i_248_ >= this.anInt7476 && i_248_ < this.anInt7503) this.anIntArray7483[i + i_248_ * this.anInt7477] = i_244_;
-                        i_241_ += i_246_;
+                    while ( /**/i <= i_242_) {
+                        val i_248_ = i_241_ shr 16
+                        if (i_248_ >= this.anInt7476 && i_248_ < this.anInt7503) this.anIntArray7483!![i + i_248_ * this.anInt7477] = i_244_
+                        i_241_ += i_246_
+                        i++
                     }
-                    return;
+                    return
                 }
                 if (i_245_ == 1) {
-                    i_244_ = (((i_244_ & 0xff00ff) * i_247_ >> 8 & 0xff00ff) + ((i_244_ & 0xff00) * i_247_ >> 8 & 0xff00) + (i_247_ << 24));
-                    int i_249_ = 256 - i_247_;
-                    for (/**/; i <= i_242_; i++) {
-                        int i_250_ = i_241_ >> 16;
+                    i_244_ = (((i_244_ and 0xff00ff) * i_247_ shr 8 and 0xff00ff) + ((i_244_ and 0xff00) * i_247_ shr 8 and 0xff00) + (i_247_ shl 24))
+                    val i_249_ = 256 - i_247_
+                    while ( /**/i <= i_242_) {
+                        val i_250_ = i_241_ shr 16
                         if (i_250_ >= this.anInt7476 && i_250_ < this.anInt7503) {
-                            int i_251_ = i + i_250_ * this.anInt7477;
-                            int i_252_ = this.anIntArray7483[i_251_];
-                            i_252_ = (((i_252_ & 0xff00ff) * i_249_ >> 8 & 0xff00ff) + ((i_252_ & 0xff00) * i_249_ >> 8 & 0xff00));
-                            this.anIntArray7483[i_251_] = i_244_ + i_252_;
+                            val i_251_ = i + i_250_ * this.anInt7477
+                            var i_252_ = this.anIntArray7483!![i_251_]
+                            i_252_ = (((i_252_ and 0xff00ff) * i_249_ shr 8 and 0xff00ff) + ((i_252_ and 0xff00) * i_249_ shr 8 and 0xff00))
+                            this.anIntArray7483!![i_251_] = i_244_ + i_252_
                         }
-                        i_241_ += i_246_;
+                        i_241_ += i_246_
+                        i++
                     }
-                    return;
+                    return
                 }
                 if (i_245_ == 2) {
-                    for (/**/; i <= i_242_; i++) {
-                        int i_253_ = i_241_ >> 16;
+                    while ( /**/i <= i_242_) {
+                        val i_253_ = i_241_ shr 16
                         if (i_253_ >= this.anInt7476 && i_253_ < this.anInt7503) {
-                            int i_254_ = i + i_253_ * this.anInt7477;
-                            int i_255_ = this.anIntArray7483[i_254_];
-                            int i_256_ = i_244_ + i_255_;
-                            int i_257_ = (i_244_ & 0xff00ff) + (i_255_ & 0xff00ff);
-                            i_255_ = (i_257_ & 0x1000100) + (i_256_ - i_257_ & 0x10000);
-                            this.anIntArray7483[i_254_] = i_256_ - i_255_ | i_255_ - (i_255_ >>> 8);
+                            val i_254_ = i + i_253_ * this.anInt7477
+                            var i_255_ = this.anIntArray7483!![i_254_]
+                            val i_256_ = i_244_ + i_255_
+                            val i_257_ = (i_244_ and 0xff00ff) + (i_255_ and 0xff00ff)
+                            i_255_ = (i_257_ and 0x1000100) + (i_256_ - i_257_ and 0x10000)
+                            this.anIntArray7483!![i_254_] = i_256_ - i_255_ or i_255_ - (i_255_ ushr 8)
                         }
-                        i_241_ += i_246_;
+                        i_241_ += i_246_
+                        i++
                     }
-                    return;
+                    return
                 }
-                throw new IllegalArgumentException();
+                throw IllegalArgumentException()
             }
-            i <<= 16;
-            i += 32768;
-            i_242_ <<= 16;
-            int i_258_ = (int) Math.floor((double) i_242_ / (double) i_243_ + 0.5);
-            i_243_ += i_241_;
+            i = i shl 16
+            i += 32768
+            i_242_ = i_242_ shl 16
+            val i_258_ = floor(i_242_.toDouble() / i_243_.toDouble() + 0.5).toInt()
+            i_243_ += i_241_
             if (i_241_ < this.anInt7476) {
-                i += i_258_ * (this.anInt7476 - i_241_);
-                i_241_ = this.anInt7476;
+                i += i_258_ * (this.anInt7476 - i_241_)
+                i_241_ = this.anInt7476
             }
-            if (i_243_ >= this.anInt7503) i_243_ = this.anInt7503 - 1;
-            int i_259_ = i_244_ >>> 24;
+            if (i_243_ >= this.anInt7503) i_243_ = this.anInt7503 - 1
+            val i_259_ = i_244_ ushr 24
             if (i_245_ == 0 || i_245_ == 1 && i_259_ == 255) {
-                for (/**/; i_241_ <= i_243_; i_241_++) {
-                    int i_260_ = i >> 16;
-                    if (i_260_ >= this.anInt7496 && i_260_ < this.anInt7507) this.anIntArray7483[i_260_ + i_241_ * this.anInt7477] = i_244_;
-                    i += i_258_;
+                while ( /**/i_241_ <= i_243_) {
+                    val i_260_ = i shr 16
+                    if (i_260_ >= this.anInt7496 && i_260_ < this.anInt7507) this.anIntArray7483!![i_260_ + i_241_ * this.anInt7477] = i_244_
+                    i += i_258_
+                    i_241_++
                 }
             } else if (i_245_ == 1) {
-                i_244_ = (((i_244_ & 0xff00ff) * i_259_ >> 8 & 0xff00ff) + ((i_244_ & 0xff00) * i_259_ >> 8 & 0xff00) + (i_259_ << 24));
-                int i_261_ = 256 - i_259_;
-                for (/**/; i_241_ <= i_243_; i_241_++) {
-                    int i_262_ = i >> 16;
+                i_244_ = (((i_244_ and 0xff00ff) * i_259_ shr 8 and 0xff00ff) + ((i_244_ and 0xff00) * i_259_ shr 8 and 0xff00) + (i_259_ shl 24))
+                val i_261_ = 256 - i_259_
+                while ( /**/i_241_ <= i_243_) {
+                    val i_262_ = i shr 16
                     if (i_262_ >= this.anInt7496 && i_262_ < this.anInt7507) {
-                        int i_263_ = i_262_ + i_241_ * this.anInt7477;
-                        int i_264_ = this.anIntArray7483[i_263_];
-                        i_264_ = (((i_264_ & 0xff00ff) * i_261_ >> 8 & 0xff00ff) + ((i_264_ & 0xff00) * i_261_ >> 8 & 0xff00));
-                        this.anIntArray7483[i_262_ + i_241_ * this.anInt7477] = i_244_ + i_264_;
+                        val i_263_ = i_262_ + i_241_ * this.anInt7477
+                        var i_264_ = this.anIntArray7483!![i_263_]
+                        i_264_ = (((i_264_ and 0xff00ff) * i_261_ shr 8 and 0xff00ff) + ((i_264_ and 0xff00) * i_261_ shr 8 and 0xff00))
+                        this.anIntArray7483!![i_262_ + i_241_ * this.anInt7477] = i_244_ + i_264_
                     }
-                    i += i_258_;
+                    i += i_258_
+                    i_241_++
                 }
             } else if (i_245_ == 2) {
-                for (/**/; i_241_ <= i_243_; i_241_++) {
-                    int i_265_ = i >> 16;
+                while ( /**/i_241_ <= i_243_) {
+                    val i_265_ = i shr 16
                     if (i_265_ >= this.anInt7496 && i_265_ < this.anInt7507) {
-                        int i_266_ = i_265_ + i_241_ * this.anInt7477;
-                        int i_267_ = this.anIntArray7483[i_266_];
-                        int i_268_ = i_244_ + i_267_;
-                        int i_269_ = (i_244_ & 0xff00ff) + (i_267_ & 0xff00ff);
-                        i_267_ = (i_269_ & 0x1000100) + (i_268_ - i_269_ & 0x10000);
-                        this.anIntArray7483[i_266_] = i_268_ - i_267_ | i_267_ - (i_267_ >>> 8);
+                        val i_266_ = i_265_ + i_241_ * this.anInt7477
+                        var i_267_ = this.anIntArray7483!![i_266_]
+                        val i_268_ = i_244_ + i_267_
+                        val i_269_ = (i_244_ and 0xff00ff) + (i_267_ and 0xff00ff)
+                        i_267_ = (i_269_ and 0x1000100) + (i_268_ - i_269_ and 0x10000)
+                        this.anIntArray7483!![i_266_] = i_268_ - i_267_ or i_267_ - (i_267_ ushr 8)
                     }
-                    i += i_258_;
+                    i += i_258_
+                    i_241_++
                 }
-            } else throw new IllegalArgumentException();
+            } else throw IllegalArgumentException()
         }
     }
 
     // dependency of method3709
-    final void U(int i, int i_186_, int i_187_, int i_188_, int i_189_) {
+    fun U(i: Int, i_186_: Int, i_187_: Int, i_188_: Int, i_189_: Int) {
+        var i = i
+        var i_187_ = i_187_
+        var i_188_ = i_188_
         if (i_186_ >= this.anInt7476 && i_186_ < this.anInt7503) {
             if (i < this.anInt7496) {
-                i_187_ -= this.anInt7496 - i;
-                i = this.anInt7496;
+                i_187_ -= this.anInt7496 - i
+                i = this.anInt7496
             }
-            if (i + i_187_ > this.anInt7507) i_187_ = this.anInt7507 - i;
-            int i_190_ = i + i_186_ * this.anInt7477;
-            int i_191_ = i_188_ >>> 24;
+            if (i + i_187_ > this.anInt7507) i_187_ = this.anInt7507 - i
+            val i_190_ = i + i_186_ * this.anInt7477
+            val i_191_ = i_188_ ushr 24
             if (i_189_ == 0 || i_189_ == 1 && i_191_ == 255) {
-                for (int i_192_ = 0; i_192_ < i_187_; i_192_++)
-                    this.anIntArray7483[i_190_ + i_192_] = i_188_;
+                for (i_192_ in 0..<i_187_) this.anIntArray7483!![i_190_ + i_192_] = i_188_
             } else if (i_189_ == 1) {
-                i_188_ = (((i_188_ & 0xff00ff) * i_191_ >> 8 & 0xff00ff) + ((i_188_ & 0xff00) * i_191_ >> 8 & 0xff00) + (i_191_ << 24));
-                int i_193_ = 256 - i_191_;
-                for (int i_194_ = 0; i_194_ < i_187_; i_194_++) {
-                    int i_195_ = this.anIntArray7483[i_190_ + i_194_];
-                    i_195_ = (((i_195_ & 0xff00ff) * i_193_ >> 8 & 0xff00ff) + ((i_195_ & 0xff00) * i_193_ >> 8 & 0xff00));
-                    this.anIntArray7483[i_190_ + i_194_] = i_188_ + i_195_;
+                i_188_ = (((i_188_ and 0xff00ff) * i_191_ shr 8 and 0xff00ff) + ((i_188_ and 0xff00) * i_191_ shr 8 and 0xff00) + (i_191_ shl 24))
+                val i_193_ = 256 - i_191_
+                for (i_194_ in 0..<i_187_) {
+                    var i_195_ = this.anIntArray7483!![i_190_ + i_194_]
+                    i_195_ = (((i_195_ and 0xff00ff) * i_193_ shr 8 and 0xff00ff) + ((i_195_ and 0xff00) * i_193_ shr 8 and 0xff00))
+                    this.anIntArray7483!![i_190_ + i_194_] = i_188_ + i_195_
                 }
             } else if (i_189_ == 2) {
-                for (int i_196_ = 0; i_196_ < i_187_; i_196_++) {
-                    int i_197_ = this.anIntArray7483[i_190_ + i_196_];
-                    int i_198_ = i_188_ + i_197_;
-                    int i_199_ = (i_188_ & 0xff00ff) + (i_197_ & 0xff00ff);
-                    i_197_ = (i_199_ & 0x1000100) + (i_198_ - i_199_ & 0x10000);
-                    this.anIntArray7483[i_190_ + i_196_] = i_198_ - i_197_ | i_197_ - (i_197_ >>> 8);
+                for (i_196_ in 0..<i_187_) {
+                    var i_197_ = this.anIntArray7483!![i_190_ + i_196_]
+                    val i_198_ = i_188_ + i_197_
+                    val i_199_ = (i_188_ and 0xff00ff) + (i_197_ and 0xff00ff)
+                    i_197_ = (i_199_ and 0x1000100) + (i_198_ - i_199_ and 0x10000)
+                    this.anIntArray7483!![i_190_ + i_196_] = i_198_ - i_197_ or i_197_ - (i_197_ ushr 8)
                 }
-            } else throw new IllegalArgumentException();
+            } else throw IllegalArgumentException()
         }
     }
 
     // dependency of method3709
-    final void P(int i, int i_71_, int i_72_, int i_73_, int i_74_) {
+    fun P(i: Int, i_71_: Int, i_72_: Int, i_73_: Int, i_74_: Int) {
+        var i_71_ = i_71_
+        var i_72_ = i_72_
+        var i_73_ = i_73_
         if (i >= this.anInt7496 && i < this.anInt7507) {
             if (i_71_ < this.anInt7476) {
-                i_72_ -= this.anInt7476 - i_71_;
-                i_71_ = this.anInt7476;
+                i_72_ -= this.anInt7476 - i_71_
+                i_71_ = this.anInt7476
             }
-            if (i_71_ + i_72_ > this.anInt7503) i_72_ = this.anInt7503 - i_71_;
-            int i_75_ = i + i_71_ * this.anInt7477;
-            int i_76_ = i_73_ >>> 24;
+            if (i_71_ + i_72_ > this.anInt7503) i_72_ = this.anInt7503 - i_71_
+            val i_75_ = i + i_71_ * this.anInt7477
+            val i_76_ = i_73_ ushr 24
             if (i_74_ == 0 || i_74_ == 1 && i_76_ == 255) {
-                for (int i_77_ = 0; i_77_ < i_72_; i_77_++)
-                    this.anIntArray7483[i_75_ + i_77_ * this.anInt7477] = i_73_;
+                for (i_77_ in 0..<i_72_) this.anIntArray7483!![i_75_ + i_77_ * this.anInt7477] = i_73_
             } else if (i_74_ == 1) {
-                i_73_ = (((i_73_ & 0xff00ff) * i_76_ >> 8 & 0xff00ff) + ((i_73_ & 0xff00) * i_76_ >> 8 & 0xff00) + (i_76_ << 24));
-                int i_78_ = 256 - i_76_;
-                for (int i_79_ = 0; i_79_ < i_72_; i_79_++) {
-                    int i_80_ = i_75_ + i_79_ * this.anInt7477;
-                    int i_81_ = this.anIntArray7483[i_80_];
-                    i_81_ = (((i_81_ & 0xff00ff) * i_78_ >> 8 & 0xff00ff) + ((i_81_ & 0xff00) * i_78_ >> 8 & 0xff00));
-                    this.anIntArray7483[i_80_] = i_73_ + i_81_;
+                i_73_ = (((i_73_ and 0xff00ff) * i_76_ shr 8 and 0xff00ff) + ((i_73_ and 0xff00) * i_76_ shr 8 and 0xff00) + (i_76_ shl 24))
+                val i_78_ = 256 - i_76_
+                for (i_79_ in 0..<i_72_) {
+                    val i_80_ = i_75_ + i_79_ * this.anInt7477
+                    var i_81_ = this.anIntArray7483!![i_80_]
+                    i_81_ = (((i_81_ and 0xff00ff) * i_78_ shr 8 and 0xff00ff) + ((i_81_ and 0xff00) * i_78_ shr 8 and 0xff00))
+                    this.anIntArray7483!![i_80_] = i_73_ + i_81_
                 }
             } else if (i_74_ == 2) {
-                for (int i_82_ = 0; i_82_ < i_72_; i_82_++) {
-                    int i_83_ = i_75_ + i_82_ * this.anInt7477;
-                    int i_84_ = this.anIntArray7483[i_83_];
-                    int i_85_ = i_73_ + i_84_;
-                    int i_86_ = (i_73_ & 0xff00ff) + (i_84_ & 0xff00ff);
-                    i_84_ = (i_86_ & 0x1000100) + (i_85_ - i_86_ & 0x10000);
-                    this.anIntArray7483[i_83_] = i_85_ - i_84_ | i_84_ - (i_84_ >>> 8);
+                for (i_82_ in 0..<i_72_) {
+                    val i_83_ = i_75_ + i_82_ * this.anInt7477
+                    var i_84_ = this.anIntArray7483!![i_83_]
+                    val i_85_ = i_73_ + i_84_
+                    val i_86_ = (i_73_ and 0xff00ff) + (i_84_ and 0xff00ff)
+                    i_84_ = (i_86_ and 0x1000100) + (i_85_ - i_86_ and 0x10000)
+                    this.anIntArray7483!![i_83_] = i_85_ - i_84_ or i_84_ - (i_84_ ushr 8)
                 }
-            } else throw new IllegalArgumentException();
+            } else throw IllegalArgumentException()
         }
     }
 
-    final void method3647(boolean bool) {
+    fun method3647(bool: Boolean) {
         /* empty */
     }
 
-    final void xa(float f) {
-        this.anInt7500 = (int) (f * 65535.0F);
+    override fun xa(f: Float) {
+        this.anInt7500 = (f * 65535.0f).toInt()
     }
 
-    final void method3651(za var_za) {
+    fun method3651(var_za: za?) {
         /* empty */
     }
 
-// explicitly listed as genuine
-    private final void method3713() {
-        this.anInt7509 = this.anInt7496 - this.anInt7510;
-        this.anInt7508 = this.anInt7507 - this.anInt7510;
-        this.anInt7490 = this.anInt7476 - this.anInt7504;
-        this.anInt7506 = this.anInt7503 - this.anInt7504;
-        for (int i = 0; i < this.anInt7485; i++) {
-            Rasterizer rasterizer = aJavaThreadResourceArray7480[i].rasterizer;
-            rasterizer.anInt1665 = this.anInt7510 - this.anInt7496;
-            rasterizer.anInt1668 = this.anInt7504 - this.anInt7476;
-            rasterizer.width = this.anInt7507 - this.anInt7496;
-            rasterizer.height = this.anInt7503 - this.anInt7476;
+    // explicitly listed as genuine
+    private fun method3713() {
+        this.anInt7509 = this.anInt7496 - this.anInt7510
+        this.anInt7508 = this.anInt7507 - this.anInt7510
+        this.anInt7490 = this.anInt7476 - this.anInt7504
+        this.anInt7506 = this.anInt7503 - this.anInt7504
+        for (i in 0..<this.anInt7485) {
+            val rasterizer = aJavaThreadResourceArray7480[i]!!.rasterizer
+            rasterizer.anInt1665 = this.anInt7510 - this.anInt7496
+            rasterizer.anInt1668 = this.anInt7504 - this.anInt7476
+            rasterizer.width = this.anInt7507 - this.anInt7496
+            rasterizer.height = this.anInt7503 - this.anInt7476
         }
-        int i = (this.anInt7476 * this.anInt7477 + this.anInt7496);
-        for (int i_97_ = this.anInt7476; i_97_ < this.anInt7503; i_97_++) {
-            for (int i_98_ = 0; i_98_ < this.anInt7485; i_98_++)
-                aJavaThreadResourceArray7480[i_98_].rasterizer.lineOffsets[i_97_ - this.anInt7476] = i;
-            i += this.anInt7477;
+        var i = (this.anInt7476 * this.anInt7477 + this.anInt7496)
+        for (i_97_ in this.anInt7476..<this.anInt7503) {
+            for (i_98_ in 0..<this.anInt7485) aJavaThreadResourceArray7480[i_98_]!!.rasterizer.lineOffsets[i_97_ - this.anInt7476] = i
+            i += this.anInt7477
         }
     }
 
-    final int i() {
-        return this.anInt7482;
+    override fun i(): Int {
+        return this.anInt7482
     }
 
-    final Matrix method3705() {
-        JavaThreadResource javaThreadResource = threadResource(Thread.currentThread());
-        return javaThreadResource.aClass101_Sub1_2209;
+    override fun method3705(): Matrix? {
+        val javaThreadResource = threadResource(Thread.currentThread())
+        return javaThreadResource!!.aClass101_Sub1_2209
     }
 
-    final boolean method3714(int i) {
-        return this.textureSource.getMetrics(i, -6662).aBoolean217 || this.textureSource.getMetrics(i, -6662).aBoolean215;
+    fun method3714(i: Int): Boolean {
+        return this.textureSource.getMetrics(i, -6662).aBoolean217 || this.textureSource.getMetrics(i, -6662).aBoolean215
     }
 
-    final boolean method3655() {
-        return false;
+    fun method3655(): Boolean {
+        return false
     }
 
-    final Class299 method3697(int i, int i_137_, int i_138_, int i_139_, int i_140_, int i_141_) {
-        return null;
+    fun method3697(i: Int, i_137_: Int, i_138_: Int, i_139_: Int, i_140_: Int, i_141_: Int): Class299? {
+        return null
     }
 
-    final void method3698() {
+    fun method3698() {
         /* empty */
     }
 
-    final void setCamera(Matrix matrix) {
-        this.aClass101_Sub1_7492 = (Matrix_Sub1) matrix;
+    override fun setCamera(matrix: Matrix?) {
+        this.aClass101_Sub1_7492 = matrix as Matrix_Sub1
     }
 
-    final void f(int i, int i_156_) {
-        JavaThreadResource javaThreadResource = threadResource(Thread.currentThread());
-        this.anInt7482 = i;
-        this.anInt7494 = i_156_;
-        javaThreadResource.anInt2210 = this.anInt7494 - 255;
+    override fun f(i: Int, i_156_: Int) {
+        val javaThreadResource = threadResource(Thread.currentThread())
+        this.anInt7482 = i
+        this.anInt7494 = i_156_
+        javaThreadResource!!.anInt2210 = this.anInt7494 - 255
     }
 
-    final void ya() {
+    override fun ya() {
         if (this.anInt7496 == 0 && this.anInt7507 == this.anInt7477 && this.anInt7476 == 0 && this.anInt7503 == anInt7486) {
-            int i = this.aFloatArray7511.length;
-            int i_176_ = i - (i & 0x7);
-            int i_177_ = 0;
+            val i = this.aFloatArray7511.size
+            val i_176_ = i - (i and 0x7)
+            var i_177_ = 0
             while (i_177_ < i_176_) {
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
-                this.aFloatArray7511[i_177_++] = 2.14748365E9F;
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
+                this.aFloatArray7511[i_177_++] = 2.14748365E9f
             }
-            while (i_177_ < i) this.aFloatArray7511[i_177_++] = 2.14748365E9F;
+            while (i_177_ < i) this.aFloatArray7511[i_177_++] = 2.14748365E9f
         } else {
-            int i = this.anInt7507 - this.anInt7496;
-            int i_178_ = this.anInt7503 - this.anInt7476;
-            int i_179_ = this.anInt7477 - i;
-            int i_180_ = (this.anInt7496 + this.anInt7476 * this.anInt7477);
-            int i_181_ = i >> 3;
-            int i_182_ = i & 0x7;
-            i = i_180_ - 1;
-            for (int i_183_ = -i_178_; i_183_ < 0; i_183_++) {
+            var i = this.anInt7507 - this.anInt7496
+            val i_178_ = this.anInt7503 - this.anInt7476
+            val i_179_ = this.anInt7477 - i
+            val i_180_ = (this.anInt7496 + this.anInt7476 * this.anInt7477)
+            val i_181_ = i shr 3
+            val i_182_ = i and 0x7
+            i = i_180_ - 1
+            for (i_183_ in -i_178_..-1) {
                 if (i_181_ > 0) {
-                    int i_184_ = i_181_;
+                    var i_184_ = i_181_
                     do {
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                        this.aFloatArray7511[++i] = 2.14748365E9F;
-                    } while (--i_184_ > 0);
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                        this.aFloatArray7511[++i] = 2.14748365E9f
+                    } while (--i_184_ > 0)
                 }
                 if (i_182_ > 0) {
-                    int i_185_ = i_182_;
-                    do this.aFloatArray7511[++i] = 2.14748365E9F; while (--i_185_ > 0);
+                    var i_185_ = i_182_
+                    do this.aFloatArray7511[++i] = 2.14748365E9f while (--i_185_ > 0)
                 }
-                i += i_179_;
+                i += i_179_
             }
         }
     }
 
-    final boolean method3639() {
-        return true;
+    fun method3639(): Boolean {
+        return true
     }
 
-    final boolean method3716() {
-        return aBoolean7470;
+    fun method3716(): Boolean {
+        return aBoolean7470
     }
 
-    final void method3658(int i, int i_205_, int i_206_, int i_207_) {
+    fun method3658(i: Int, i_205_: Int, i_206_: Int, i_207_: Int) {
         /* empty */
     }
 
-    final void method3700(float f, float f_213_, float f_214_) {
+    fun method3700(f: Float, f_213_: Float, f_214_: Float) {
         /* empty */
     }
 
-    private final void method3717() {
-        for (int i = 0; i < this.anInt7485; i++)
-            aJavaThreadResourceArray7480[i].method1292(64);
-        la();
+    private fun method3717() {
+        for (i in 0..<this.anInt7485) aJavaThreadResourceArray7480[i]!!.method1292(64)
+        la()
     }
 
-    final boolean method3682() {
-        return false;
+    fun method3682(): Boolean {
+        return false
     }
 
-    final boolean method3670() {
-        return false;
+    fun method3670(): Boolean {
+        return false
     }
 
-    final void DA(int i, int i_223_, int i_224_, int i_225_) {
-        this.anInt7510 = i;
-        this.anInt7504 = i_223_;
-        this.anInt7491 = i_224_;
-        this.anInt7497 = i_225_;
-        method3713();
+    override fun DA(i: Int, i_223_: Int, i_224_: Int, i_225_: Int) {
+        this.anInt7510 = i
+        this.anInt7504 = i_223_
+        this.anInt7491 = i_224_
+        this.anInt7497 = i_225_
+        method3713()
     }
 
-    final boolean method3627() {
-        return false;
+    fun method3627(): Boolean {
+        return false
     }
 
-    final void method3643(Canvas canvas, int i, int i_232_) {
-        Class348_Sub31 class348_sub31 = ((Class348_Sub31) aIterableHashTable_7467.method3480(canvas.hashCode(), -6008));
+    fun method3643(canvas: Canvas?, i: Int, i_232_: Int) {
+        var class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong(), -6008) as Class348_Sub31?)
         if (class348_sub31 == null) {
-            class348_sub31 = Class110.method1035(9029, i_232_, canvas, i);
-            aIterableHashTable_7467.put((byte) 21, canvas.hashCode(), class348_sub31);
-        } else if (class348_sub31.anInt6917 != i || class348_sub31.anInt6920 != i_232_) method3669(canvas, i, i_232_);
+            class348_sub31 = Class110.method1035(9029, i_232_, canvas, i)
+            aIterableHashTable_7467!!.put(21.toByte(), canvas.hashCode().toLong(), class348_sub31)
+        } else if (class348_sub31.anInt6917 != i || class348_sub31.anInt6920 != i_232_) method3669(canvas, i, i_232_)
     }
 
-    final void method3633() {
+    fun method3633() {
         /* empty */
     }
 
-    final void method3631(int i) {
-        this.anInt7485 = i;
-        aJavaThreadResourceArray7480 = new JavaThreadResource[this.anInt7485];
-        for (int i_240_ = 0; i_240_ < this.anInt7485; i_240_++)
-            aJavaThreadResourceArray7480[i_240_] = new JavaThreadResource(this);
+    fun method3631(i: Int) {
+        this.anInt7485 = i
+        aJavaThreadResourceArray7480 = arrayOfNulls<JavaThreadResource>(this.anInt7485)
+        for (i_240_ in 0..<this.anInt7485) aJavaThreadResourceArray7480[i_240_] = JavaThreadResource(this)
     }
 
-    final void method3653(Class299 class299) {
+    fun method3653(class299: Class299?) {
         /* empty */
     }
 
     // dependency of method3643 (not in genuine list, required to compile)
-    final void method3669(Canvas canvas, int i, int i_578_) {
-        Class348_Sub31 class348_sub31 = ((Class348_Sub31) aIterableHashTable_7467.method3480(canvas.hashCode(), -6008));
+    fun method3669(canvas: Canvas?, i: Int, i_578_: Int) {
+        var class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong(), -6008) as Class348_Sub31?)
         if (class348_sub31 != null) {
-            class348_sub31.unlink((byte) 95);
-            class348_sub31 = Class110.method1035(9029, i_578_, canvas, i);
-            aIterableHashTable_7467.put((byte) 112, canvas.hashCode(), class348_sub31);
-            if (aCanvas7468 == canvas && aClass49_7475 == null) {
-                Dimension dimension = canvas.getSize();
-                anInt7465 = dimension.width;
-                anInt7472 = dimension.height;
-                this.aClass348_Sub31_7469 = class348_sub31;
-                this.anIntArray7483 = class348_sub31.anIntArray6916;
-                this.anInt7477 = class348_sub31.anInt6917;
-                anInt7486 = class348_sub31.anInt6920;
+            class348_sub31.unlink(95.toByte())
+            class348_sub31 = Class110.method1035(9029, i_578_, canvas, i)
+            aIterableHashTable_7467!!.put(112.toByte(), canvas.hashCode().toLong(), class348_sub31)
+            if (aCanvas7468 === canvas && aClass49_7475 == null) {
+                val dimension = canvas!!.getSize()
+                anInt7465 = dimension.width
+                anInt7472 = dimension.height
+                this.aClass348_Sub31_7469 = class348_sub31
+                this.anIntArray7483 = class348_sub31.anIntArray6916
+                this.anInt7477 = class348_sub31.anInt6917
+                anInt7486 = class348_sub31.anInt6920
                 if (this.anInt7477 != anInt7495 || anInt7486 != anInt7488) {
-                    anInt7481 = anInt7495 = this.anInt7477;
-                    anInt7493 = anInt7488 = anInt7486;
-                    this.aFloatArray7502 = this.aFloatArray7511 = new float[anInt7495 * anInt7488];
+                    anInt7495 = this.anInt7477
+                    anInt7481 = anInt7495
+                    anInt7488 = anInt7486
+                    anInt7493 = anInt7488
+                    this.aFloatArray7511 = FloatArray(anInt7495 * anInt7488)
+                    this.aFloatArray7502 = this.aFloatArray7511
                 }
-                method3717();
+                method3717()
             }
         }
     }
 
-    final void aa(int i, int i_334_, int i_335_, int i_336_, int i_337_, int i_338_) {
+    override fun aa(i: Int, i_334_: Int, i_335_: Int, i_336_: Int, i_337_: Int, i_338_: Int) {
+        var i = i
+        var i_334_ = i_334_
+        var i_335_ = i_335_
+        var i_336_ = i_336_
+        var i_337_ = i_337_
         if (i < this.anInt7496) {
-            i_335_ -= this.anInt7496 - i;
-            i = this.anInt7496;
+            i_335_ -= this.anInt7496 - i
+            i = this.anInt7496
         }
         if (i_334_ < this.anInt7476) {
-            i_336_ -= this.anInt7476 - i_334_;
-            i_334_ = this.anInt7476;
+            i_336_ -= this.anInt7476 - i_334_
+            i_334_ = this.anInt7476
         }
-        if (i + i_335_ > this.anInt7507) i_335_ = this.anInt7507 - i;
-        if (i_334_ + i_336_ > this.anInt7503) i_336_ = this.anInt7503 - i_334_;
+        if (i + i_335_ > this.anInt7507) i_335_ = this.anInt7507 - i
+        if (i_334_ + i_336_ > this.anInt7503) i_336_ = this.anInt7503 - i_334_
         if (i_335_ > 0 && i_336_ > 0 && i <= this.anInt7507 && i_334_ <= this.anInt7503) {
-            int i_339_ = this.anInt7477 - i_335_;
-            int i_340_ = i + i_334_ * this.anInt7477;
-            int i_341_ = i_337_ >>> 24;
+            val i_339_ = this.anInt7477 - i_335_
+            var i_340_ = i + i_334_ * this.anInt7477
+            val i_341_ = i_337_ ushr 24
             if (i_338_ == 0 || i_338_ == 1 && i_341_ == 255) {
-                int i_342_ = i_335_ >> 3;
-                int i_343_ = i_335_ & 0x7;
-                i_335_ = i_340_ - 1;
-                for (int i_344_ = -i_336_; i_344_ < 0; i_344_++) {
+                val i_342_ = i_335_ shr 3
+                val i_343_ = i_335_ and 0x7
+                i_335_ = i_340_ - 1
+                for (i_344_ in -i_336_..-1) {
                     if (i_342_ > 0) {
-                        i = i_342_;
+                        i = i_342_
                         do {
-                            this.anIntArray7483[++i_335_] = i_337_;
-                            this.anIntArray7483[++i_335_] = i_337_;
-                            this.anIntArray7483[++i_335_] = i_337_;
-                            this.anIntArray7483[++i_335_] = i_337_;
-                            this.anIntArray7483[++i_335_] = i_337_;
-                            this.anIntArray7483[++i_335_] = i_337_;
-                            this.anIntArray7483[++i_335_] = i_337_;
-                            this.anIntArray7483[++i_335_] = i_337_;
-                        } while (--i > 0);
+                            this.anIntArray7483!![++i_335_] = i_337_
+                            this.anIntArray7483!![++i_335_] = i_337_
+                            this.anIntArray7483!![++i_335_] = i_337_
+                            this.anIntArray7483!![++i_335_] = i_337_
+                            this.anIntArray7483!![++i_335_] = i_337_
+                            this.anIntArray7483!![++i_335_] = i_337_
+                            this.anIntArray7483!![++i_335_] = i_337_
+                            this.anIntArray7483!![++i_335_] = i_337_
+                        } while (--i > 0)
                     }
                     if (i_343_ > 0) {
-                        i = i_343_;
-                        do this.anIntArray7483[++i_335_] = i_337_; while (--i > 0);
+                        i = i_343_
+                        do this.anIntArray7483!![++i_335_] = i_337_ while (--i > 0)
                     }
-                    i_335_ += i_339_;
+                    i_335_ += i_339_
                 }
             } else if (i_338_ == 1) {
-                i_337_ = (((i_337_ & 0xff00ff) * i_341_ >> 8 & 0xff00ff) + (((i_337_ & ~0xff00ff) >>> 8) * i_341_ & ~0xff00ff));
-                int i_345_ = 256 - i_341_;
-                for (int i_346_ = 0; i_346_ < i_336_; i_346_++) {
-                    for (int i_347_ = -i_335_; i_347_ < 0; i_347_++) {
-                        int i_348_ = this.anIntArray7483[i_340_];
-                        i_348_ = (((i_348_ & 0xff00ff) * i_345_ >> 8 & 0xff00ff) + (((i_348_ & ~0xff00ff) >>> 8) * i_345_ & ~0xff00ff));
-                        this.anIntArray7483[i_340_++] = i_337_ + i_348_;
+                i_337_ = (((i_337_ and 0xff00ff) * i_341_ shr 8 and 0xff00ff) + (((i_337_ and 0xff00ff.inv()) ushr 8) * i_341_ and 0xff00ff.inv()))
+                val i_345_ = 256 - i_341_
+                for (i_346_ in 0..<i_336_) {
+                    for (i_347_ in -i_335_..-1) {
+                        var i_348_ = this.anIntArray7483!![i_340_]
+                        i_348_ = (((i_348_ and 0xff00ff) * i_345_ shr 8 and 0xff00ff) + (((i_348_ and 0xff00ff.inv()) ushr 8) * i_345_ and 0xff00ff.inv()))
+                        this.anIntArray7483!![i_340_++] = i_337_ + i_348_
                     }
-                    i_340_ += i_339_;
+                    i_340_ += i_339_
                 }
             } else if (i_338_ == 2) {
-                for (int i_349_ = 0; i_349_ < i_336_; i_349_++) {
-                    for (int i_350_ = -i_335_; i_350_ < 0; i_350_++) {
-                        int i_351_ = this.anIntArray7483[i_340_];
-                        int i_352_ = i_337_ + i_351_;
-                        int i_353_ = (i_337_ & 0xff00ff) + (i_351_ & 0xff00ff);
-                        i_351_ = (i_353_ & 0x1000100) + (i_352_ - i_353_ & 0x10000);
-                        this.anIntArray7483[i_340_++] = i_352_ - i_351_ | i_351_ - (i_351_ >>> 8);
+                for (i_349_ in 0..<i_336_) {
+                    for (i_350_ in -i_335_..-1) {
+                        var i_351_ = this.anIntArray7483!![i_340_]
+                        val i_352_ = i_337_ + i_351_
+                        val i_353_ = (i_337_ and 0xff00ff) + (i_351_ and 0xff00ff)
+                        i_351_ = (i_353_ and 0x1000100) + (i_352_ - i_353_ and 0x10000)
+                        this.anIntArray7483!![i_340_++] = i_352_ - i_351_ or i_351_ - (i_351_ ushr 8)
                     }
-                    i_340_ += i_339_;
+                    i_340_ += i_339_
                 }
-            } else throw new IllegalArgumentException();
+            } else throw IllegalArgumentException()
         }
     }
 
     // Only reachable from ha.method3635's dead exception-handler path (the
     // constructors that call it succeed without throwing in this renderer).
-    final void method3652() {
+    override fun method3652() {
         if (aBoolean7471) {
-            aBoolean7471 = false;
+            aBoolean7471 = false
         }
-        this.aClass348_Sub31_7469 = null;
-        aCanvas7468 = null;
-        anInt7465 = 0;
-        anInt7472 = 0;
-        aIterableHashTable_7467 = null;
-        aBoolean7470 = true;
+        this.aClass348_Sub31_7469 = null
+        aCanvas7468 = null
+        anInt7465 = 0
+        anInt7472 = 0
+        aIterableHashTable_7467 = null
+        aBoolean7470 = true
     }
 
-    final Matrix method3640() {
-        return this.aClass101_Sub1_7492;
+    fun method3640(): Matrix {
+        return this.aClass101_Sub1_7492!!
     }
 
-    JavaToolkit(Canvas canvas, TextureSource var_textureSource, int i, int i_355_) {
-        this(var_textureSource);
+    constructor(canvas: Canvas?, var_textureSource: TextureSource?, i: Int, i_355_: Int) : this(var_textureSource) {
         try {
-            method3643(canvas, i, i_355_);
-            method3677(canvas);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            this.method3635((byte) -115);
-            throw new RuntimeException("");
+            method3643(canvas, i, i_355_)
+            method3677(canvas)
+        } catch (throwable: Throwable) {
+            throwable.printStackTrace()
+            this.method3635(-115.toByte())
+            throw RuntimeException("")
         }
     }
 
-    final int[] method3719(int i) {
-        Class348_Sub25 class348_sub25;
-        synchronized (aClass60_7498) {
-            class348_sub25 = ((Class348_Sub25) aClass60_7498.method583((long) i | ~0x7fffffffffffffffL, 107));
+    fun method3719(i: Int): IntArray? {
+        var class348_sub25: Class348_Sub25?
+        synchronized(aClass60_7498) {
+            class348_sub25 = (aClass60_7498.method583(i.toLong() or 0x7fffffffffffffffL.inv(), 107) as Class348_Sub25?)
             if (class348_sub25 == null) {
-                if (!this.textureSource.method4(-7953, i)) return null;
-                TextureMetrics textureMetrics = this.textureSource.getMetrics(i, -6662);
-                int i_356_ = (textureMetrics.small || aBoolean7489 ? 64 : this.anInt7501);
-                class348_sub25 = new Class348_Sub25(i, i_356_, this.textureSource.method6(-21540, i_356_, 0.7F, i, true, i_356_), textureMetrics.alphaBlendMode != 1);
-                aClass60_7498.method582(class348_sub25, (long) i | ~0x7fffffffffffffffL, (byte) -126);
+                if (!this.textureSource.method4(-7953, i)) return null
+                val textureMetrics = this.textureSource.getMetrics(i, -6662)
+                val i_356_ = (if (textureMetrics.small || aBoolean7489) 64 else this.anInt7501)
+                class348_sub25 = Class348_Sub25(i, i_356_, this.textureSource.method6(-21540, i_356_, 0.7f, i, true, i_356_), textureMetrics.alphaBlendMode != 1)
+                aClass60_7498.method582(class348_sub25, i.toLong() or 0x7fffffffffffffffL.inv(), -126.toByte())
             }
         }
-        class348_sub25.aBoolean6882 = true;
-        return class348_sub25.method2997();
+        class348_sub25!!.aBoolean6882 = true
+        return class348_sub25.method2997()
     }
 
-    final Matrix method3654() {
-        return new Matrix_Sub1();
+    override fun method3654(): Matrix {
+        return Matrix_Sub1()
     }
 
-    final void la() {
-        this.anInt7496 = 0;
-        this.anInt7476 = 0;
-        this.anInt7507 = this.anInt7477;
-        this.anInt7503 = anInt7486;
-        method3713();
+    override fun la() {
+        this.anInt7496 = 0
+        this.anInt7476 = 0
+        this.anInt7507 = this.anInt7477
+        this.anInt7503 = anInt7486
+        method3713()
     }
 
-    final Model createModel(Mesh mesh, int functionMask, int featureMask, int ambient, int contrast) {
-        return new JavaModel(this, mesh, functionMask, ambient, contrast, featureMask);
+    override fun createModel(mesh: Mesh, functionMask: Int, featureMask: Int, ambient: Int, contrast: Int): Model {
+        return JavaModel(this, mesh, functionMask, ambient, contrast, featureMask)
     }
 
-    final Interface13 method3624(int i, int i_369_) {
-        return new Class216(i, i_369_);
+    fun method3624(i: Int, i_369_: Int): Interface13 {
+        return Class216(i, i_369_)
     }
 
-    final void method3677(Canvas canvas) {
+    fun method3677(canvas: Canvas?) {
         if (canvas == null) {
-            aCanvas7468 = null;
-            this.aClass348_Sub31_7469 = null;
+            aCanvas7468 = null
+            this.aClass348_Sub31_7469 = null
             if (aClass49_7475 == null) {
-                this.anIntArray7483 = null;
-                this.anInt7477 = anInt7486 = 1;
-                anInt7495 = anInt7488 = 1;
-                method3717();
+                this.anIntArray7483 = null
+                anInt7486 = 1
+                this.anInt7477 = anInt7486
+                anInt7488 = 1
+                anInt7495 = anInt7488
+                method3717()
             }
         } else {
-            Class348_Sub31 class348_sub31 = ((Class348_Sub31) aIterableHashTable_7467.method3480(canvas.hashCode(), -6008));
+            val class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong(), -6008) as Class348_Sub31?)
             if (class348_sub31 != null) {
-                aCanvas7468 = canvas;
-                Dimension dimension = canvas.getSize();
-                anInt7465 = dimension.width;
-                anInt7472 = dimension.height;
-                this.aClass348_Sub31_7469 = class348_sub31;
+                aCanvas7468 = canvas
+                val dimension = canvas.getSize()
+                anInt7465 = dimension.width
+                anInt7472 = dimension.height
+                this.aClass348_Sub31_7469 = class348_sub31
                 if (aClass49_7475 == null) {
-                    this.anIntArray7483 = class348_sub31.anIntArray6916;
-                    this.anInt7477 = class348_sub31.anInt6917;
-                    anInt7486 = class348_sub31.anInt6920;
+                    this.anIntArray7483 = class348_sub31.anIntArray6916
+                    this.anInt7477 = class348_sub31.anInt6917
+                    anInt7486 = class348_sub31.anInt6920
                     if (this.anInt7477 != anInt7495 || anInt7486 != anInt7488) {
-                        anInt7481 = anInt7495 = this.anInt7477;
-                        anInt7493 = anInt7488 = anInt7486;
-                        this.aFloatArray7502 = this.aFloatArray7511 = new float[anInt7495 * anInt7488];
+                        anInt7495 = this.anInt7477
+                        anInt7481 = anInt7495
+                        anInt7488 = anInt7486
+                        anInt7493 = anInt7488
+                        this.aFloatArray7511 = FloatArray(anInt7495 * anInt7488)
+                        this.aFloatArray7502 = this.aFloatArray7511
                     }
-                    method3717();
+                    method3717()
                 }
             }
         }
     }
 
-    private final void method3723(int i, int i_447_, int i_448_, int i_449_, int i_450_, int i_451_) {
-        if (i_449_ < 0) i_449_ = -i_449_;
-        int i_452_ = i_447_ - i_449_;
-        if (i_452_ < this.anInt7476) i_452_ = this.anInt7476;
-        int i_453_ = i_447_ + i_449_ + 1;
-        if (i_453_ > this.anInt7503) i_453_ = this.anInt7503;
-        int i_454_ = i_452_;
-        int i_455_ = i_449_ * i_449_;
-        int i_456_ = 0;
-        int i_457_ = i_447_ - i_454_;
-        int i_458_ = i_457_ * i_457_;
-        int i_459_ = i_458_ - i_457_;
-        if (i_447_ > i_453_) i_447_ = i_453_;
-        int i_460_ = i_450_ >>> 24;
+    private fun method3723(i: Int, i_447_: Int, i_448_: Int, i_449_: Int, i_450_: Int, i_451_: Int) {
+        var i_447_ = i_447_
+        var i_449_ = i_449_
+        var i_450_ = i_450_
+        if (i_449_ < 0) i_449_ = -i_449_
+        var i_452_ = i_447_ - i_449_
+        if (i_452_ < this.anInt7476) i_452_ = this.anInt7476
+        var i_453_ = i_447_ + i_449_ + 1
+        if (i_453_ > this.anInt7503) i_453_ = this.anInt7503
+        var i_454_ = i_452_
+        val i_455_ = i_449_ * i_449_
+        var i_456_ = 0
+        var i_457_ = i_447_ - i_454_
+        var i_458_ = i_457_ * i_457_
+        var i_459_ = i_458_ - i_457_
+        if (i_447_ > i_453_) i_447_ = i_453_
+        val i_460_ = i_450_ ushr 24
         if (i_451_ == 0 || i_451_ == 1 && i_460_ == 255) {
             while (i_454_ < i_447_) {
-                for (/**/; i_459_ <= i_455_ || i_458_ <= i_455_; i_459_ += i_456_++ + i_456_)
-                    i_458_ += i_456_ + i_456_;
-                int i_461_ = i - i_456_ + 1;
-                if (i_461_ < this.anInt7496) i_461_ = this.anInt7496;
-                int i_462_ = i + i_456_;
-                if (i_462_ > this.anInt7507) i_462_ = this.anInt7507;
-                int i_463_ = i_461_ + i_454_ * this.anInt7477;
-                for (int i_464_ = i_461_; i_464_ < i_462_; i_464_++) {
-                    if ((float) i_448_ < this.aFloatArray7511[i_463_]) this.anIntArray7483[i_463_] = i_450_;
-                    i_463_++;
+                while ( /**/i_459_ <= i_455_ || i_458_ <= i_455_) {
+                    i_458_ += i_456_ + i_456_
+                    i_459_ += i_456_++ + i_456_
                 }
-                i_454_++;
-                i_458_ -= i_457_-- + i_457_;
-                i_459_ -= i_457_ + i_457_;
+                var i_461_ = i - i_456_ + 1
+                if (i_461_ < this.anInt7496) i_461_ = this.anInt7496
+                var i_462_ = i + i_456_
+                if (i_462_ > this.anInt7507) i_462_ = this.anInt7507
+                var i_463_ = i_461_ + i_454_ * this.anInt7477
+                for (i_464_ in i_461_..<i_462_) {
+                    if (i_448_.toFloat() < this.aFloatArray7511[i_463_]) this.anIntArray7483!![i_463_] = i_450_
+                    i_463_++
+                }
+                i_454_++
+                i_458_ -= i_457_-- + i_457_
+                i_459_ -= i_457_ + i_457_
             }
-            i_456_ = i_449_;
-            i_457_ = i_454_ - i_447_;
-            i_459_ = i_457_ * i_457_ + i_455_;
-            i_458_ = i_459_ - i_456_;
-            i_459_ -= i_457_;
+            i_456_ = i_449_
+            i_457_ = i_454_ - i_447_
+            i_459_ = i_457_ * i_457_ + i_455_
+            i_458_ = i_459_ - i_456_
+            i_459_ -= i_457_
             while (i_454_ < i_453_) {
-                for (/**/; i_459_ > i_455_ && i_458_ > i_455_; i_458_ -= i_456_ + i_456_)
-                    i_459_ -= i_456_-- + i_456_;
-                int i_465_ = i - i_456_;
-                if (i_465_ < this.anInt7496) i_465_ = this.anInt7496;
-                int i_466_ = i + i_456_;
-                if (i_466_ > this.anInt7507 - 1) i_466_ = this.anInt7507 - 1;
-                int i_467_ = i_465_ + i_454_ * this.anInt7477;
-                for (int i_468_ = i_465_; i_468_ <= i_466_; i_468_++) {
-                    if ((float) i_448_ < this.aFloatArray7511[i_467_]) this.anIntArray7483[i_467_] = i_450_;
-                    i_467_++;
+                while ( /**/i_459_ > i_455_ && i_458_ > i_455_) {
+                    i_459_ -= i_456_-- + i_456_
+                    i_458_ -= i_456_ + i_456_
                 }
-                i_454_++;
-                i_459_ += i_457_ + i_457_;
-                i_458_ += i_457_++ + i_457_;
+                var i_465_ = i - i_456_
+                if (i_465_ < this.anInt7496) i_465_ = this.anInt7496
+                var i_466_ = i + i_456_
+                if (i_466_ > this.anInt7507 - 1) i_466_ = this.anInt7507 - 1
+                var i_467_ = i_465_ + i_454_ * this.anInt7477
+                for (i_468_ in i_465_..i_466_) {
+                    if (i_448_.toFloat() < this.aFloatArray7511[i_467_]) this.anIntArray7483!![i_467_] = i_450_
+                    i_467_++
+                }
+                i_454_++
+                i_459_ += i_457_ + i_457_
+                i_458_ += i_457_++ + i_457_
             }
         } else if (i_451_ == 1) {
-            i_450_ = (((i_450_ & 0xff00ff) * i_460_ >> 8 & 0xff00ff) + ((i_450_ & 0xff00) * i_460_ >> 8 & 0xff00) + (i_460_ << 24));
-            int i_469_ = 256 - i_460_;
+            i_450_ = (((i_450_ and 0xff00ff) * i_460_ shr 8 and 0xff00ff) + ((i_450_ and 0xff00) * i_460_ shr 8 and 0xff00) + (i_460_ shl 24))
+            val i_469_ = 256 - i_460_
             while (i_454_ < i_447_) {
-                for (/**/; i_459_ <= i_455_ || i_458_ <= i_455_; i_459_ += i_456_++ + i_456_)
-                    i_458_ += i_456_ + i_456_;
-                int i_470_ = i - i_456_ + 1;
-                if (i_470_ < this.anInt7496) i_470_ = this.anInt7496;
-                int i_471_ = i + i_456_;
-                if (i_471_ > this.anInt7507) i_471_ = this.anInt7507;
-                int i_472_ = i_470_ + i_454_ * this.anInt7477;
-                for (int i_473_ = i_470_; i_473_ < i_471_; i_473_++) {
-                    if ((float) i_448_ < this.aFloatArray7511[i_472_]) {
-                        int i_474_ = this.anIntArray7483[i_472_];
-                        i_474_ = (((i_474_ & 0xff00ff) * i_469_ >> 8 & 0xff00ff) + ((i_474_ & 0xff00) * i_469_ >> 8 & 0xff00));
-                        this.anIntArray7483[i_472_] = i_450_ + i_474_;
-                    }
-                    i_472_++;
+                while ( /**/i_459_ <= i_455_ || i_458_ <= i_455_) {
+                    i_458_ += i_456_ + i_456_
+                    i_459_ += i_456_++ + i_456_
                 }
-                i_454_++;
-                i_458_ -= i_457_-- + i_457_;
-                i_459_ -= i_457_ + i_457_;
+                var i_470_ = i - i_456_ + 1
+                if (i_470_ < this.anInt7496) i_470_ = this.anInt7496
+                var i_471_ = i + i_456_
+                if (i_471_ > this.anInt7507) i_471_ = this.anInt7507
+                var i_472_ = i_470_ + i_454_ * this.anInt7477
+                for (i_473_ in i_470_..<i_471_) {
+                    if (i_448_.toFloat() < this.aFloatArray7511[i_472_]) {
+                        var i_474_ = this.anIntArray7483!![i_472_]
+                        i_474_ = (((i_474_ and 0xff00ff) * i_469_ shr 8 and 0xff00ff) + ((i_474_ and 0xff00) * i_469_ shr 8 and 0xff00))
+                        this.anIntArray7483!![i_472_] = i_450_ + i_474_
+                    }
+                    i_472_++
+                }
+                i_454_++
+                i_458_ -= i_457_-- + i_457_
+                i_459_ -= i_457_ + i_457_
             }
-            i_456_ = i_449_;
-            i_457_ = -i_457_;
-            i_459_ = i_457_ * i_457_ + i_455_;
-            i_458_ = i_459_ - i_456_;
-            i_459_ -= i_457_;
+            i_456_ = i_449_
+            i_457_ = -i_457_
+            i_459_ = i_457_ * i_457_ + i_455_
+            i_458_ = i_459_ - i_456_
+            i_459_ -= i_457_
             while (i_454_ < i_453_) {
-                for (/**/; i_459_ > i_455_ && i_458_ > i_455_; i_458_ -= i_456_ + i_456_)
-                    i_459_ -= i_456_-- + i_456_;
-                int i_475_ = i - i_456_;
-                if (i_475_ < this.anInt7496) i_475_ = this.anInt7496;
-                int i_476_ = i + i_456_;
-                if (i_476_ > this.anInt7507 - 1) i_476_ = this.anInt7507 - 1;
-                int i_477_ = i_475_ + i_454_ * this.anInt7477;
-                for (int i_478_ = i_475_; i_478_ <= i_476_; i_478_++) {
-                    if ((float) i_448_ < this.aFloatArray7511[i_477_]) {
-                        int i_479_ = this.anIntArray7483[i_477_];
-                        i_479_ = (((i_479_ & 0xff00ff) * i_469_ >> 8 & 0xff00ff) + ((i_479_ & 0xff00) * i_469_ >> 8 & 0xff00));
-                        this.anIntArray7483[i_477_] = i_450_ + i_479_;
-                    }
-                    i_477_++;
+                while ( /**/i_459_ > i_455_ && i_458_ > i_455_) {
+                    i_459_ -= i_456_-- + i_456_
+                    i_458_ -= i_456_ + i_456_
                 }
-                i_454_++;
-                i_459_ += i_457_ + i_457_;
-                i_458_ += i_457_++ + i_457_;
+                var i_475_ = i - i_456_
+                if (i_475_ < this.anInt7496) i_475_ = this.anInt7496
+                var i_476_ = i + i_456_
+                if (i_476_ > this.anInt7507 - 1) i_476_ = this.anInt7507 - 1
+                var i_477_ = i_475_ + i_454_ * this.anInt7477
+                for (i_478_ in i_475_..i_476_) {
+                    if (i_448_.toFloat() < this.aFloatArray7511[i_477_]) {
+                        var i_479_ = this.anIntArray7483!![i_477_]
+                        i_479_ = (((i_479_ and 0xff00ff) * i_469_ shr 8 and 0xff00ff) + ((i_479_ and 0xff00) * i_469_ shr 8 and 0xff00))
+                        this.anIntArray7483!![i_477_] = i_450_ + i_479_
+                    }
+                    i_477_++
+                }
+                i_454_++
+                i_459_ += i_457_ + i_457_
+                i_458_ += i_457_++ + i_457_
             }
         } else if (i_451_ == 2) {
             while (i_454_ < i_447_) {
-                for (/**/; i_459_ <= i_455_ || i_458_ <= i_455_; i_459_ += i_456_++ + i_456_)
-                    i_458_ += i_456_ + i_456_;
-                int i_480_ = i - i_456_ + 1;
-                if (i_480_ < this.anInt7496) i_480_ = this.anInt7496;
-                int i_481_ = i + i_456_;
-                if (i_481_ > this.anInt7507) i_481_ = this.anInt7507;
-                int i_482_ = i_480_ + i_454_ * this.anInt7477;
-                for (int i_483_ = i_480_; i_483_ < i_481_; i_483_++) {
-                    if ((float) i_448_ < this.aFloatArray7511[i_482_]) {
-                        int i_484_ = this.anIntArray7483[i_482_];
-                        int i_485_ = i_450_ + i_484_;
-                        int i_486_ = (i_450_ & 0xff00ff) + (i_484_ & 0xff00ff);
-                        i_484_ = (i_486_ & 0x1000100) + (i_485_ - i_486_ & 0x10000);
-                        this.anIntArray7483[i_482_] = i_485_ - i_484_ | i_484_ - (i_484_ >>> 8);
-                    }
-                    i_482_++;
+                while ( /**/i_459_ <= i_455_ || i_458_ <= i_455_) {
+                    i_458_ += i_456_ + i_456_
+                    i_459_ += i_456_++ + i_456_
                 }
-                i_454_++;
-                i_458_ -= i_457_-- + i_457_;
-                i_459_ -= i_457_ + i_457_;
+                var i_480_ = i - i_456_ + 1
+                if (i_480_ < this.anInt7496) i_480_ = this.anInt7496
+                var i_481_ = i + i_456_
+                if (i_481_ > this.anInt7507) i_481_ = this.anInt7507
+                var i_482_ = i_480_ + i_454_ * this.anInt7477
+                for (i_483_ in i_480_..<i_481_) {
+                    if (i_448_.toFloat() < this.aFloatArray7511[i_482_]) {
+                        var i_484_ = this.anIntArray7483!![i_482_]
+                        val i_485_ = i_450_ + i_484_
+                        val i_486_ = (i_450_ and 0xff00ff) + (i_484_ and 0xff00ff)
+                        i_484_ = (i_486_ and 0x1000100) + (i_485_ - i_486_ and 0x10000)
+                        this.anIntArray7483!![i_482_] = i_485_ - i_484_ or i_484_ - (i_484_ ushr 8)
+                    }
+                    i_482_++
+                }
+                i_454_++
+                i_458_ -= i_457_-- + i_457_
+                i_459_ -= i_457_ + i_457_
             }
-            i_456_ = i_449_;
-            i_457_ = -i_457_;
-            i_459_ = i_457_ * i_457_ + i_455_;
-            i_458_ = i_459_ - i_456_;
-            i_459_ -= i_457_;
+            i_456_ = i_449_
+            i_457_ = -i_457_
+            i_459_ = i_457_ * i_457_ + i_455_
+            i_458_ = i_459_ - i_456_
+            i_459_ -= i_457_
             while (i_454_ < i_453_) {
-                for (/**/; i_459_ > i_455_ && i_458_ > i_455_; i_458_ -= i_456_ + i_456_)
-                    i_459_ -= i_456_-- + i_456_;
-                int i_487_ = i - i_456_;
-                if (i_487_ < this.anInt7496) i_487_ = this.anInt7496;
-                int i_488_ = i + i_456_;
-                if (i_488_ > this.anInt7507 - 1) i_488_ = this.anInt7507 - 1;
-                int i_489_ = i_487_ + i_454_ * this.anInt7477;
-                for (int i_490_ = i_487_; i_490_ <= i_488_; i_490_++) {
-                    if ((float) i_448_ < this.aFloatArray7511[i_489_]) {
-                        int i_491_ = this.anIntArray7483[i_489_];
-                        int i_492_ = i_450_ + i_491_;
-                        int i_493_ = (i_450_ & 0xff00ff) + (i_491_ & 0xff00ff);
-                        i_491_ = (i_493_ & 0x1000100) + (i_492_ - i_493_ & 0x10000);
-                        this.anIntArray7483[i_489_] = i_492_ - i_491_ | i_491_ - (i_491_ >>> 8);
-                    }
-                    i_489_++;
+                while ( /**/i_459_ > i_455_ && i_458_ > i_455_) {
+                    i_459_ -= i_456_-- + i_456_
+                    i_458_ -= i_456_ + i_456_
                 }
-                i_454_++;
-                i_459_ += i_457_ + i_457_;
-                i_458_ += i_457_++ + i_457_;
+                var i_487_ = i - i_456_
+                if (i_487_ < this.anInt7496) i_487_ = this.anInt7496
+                var i_488_ = i + i_456_
+                if (i_488_ > this.anInt7507 - 1) i_488_ = this.anInt7507 - 1
+                var i_489_ = i_487_ + i_454_ * this.anInt7477
+                for (i_490_ in i_487_..i_488_) {
+                    if (i_448_.toFloat() < this.aFloatArray7511[i_489_]) {
+                        var i_491_ = this.anIntArray7483!![i_489_]
+                        val i_492_ = i_450_ + i_491_
+                        val i_493_ = (i_450_ and 0xff00ff) + (i_491_ and 0xff00ff)
+                        i_491_ = (i_493_ and 0x1000100) + (i_492_ - i_493_ and 0x10000)
+                        this.anIntArray7483!![i_489_] = i_492_ - i_491_ or i_491_ - (i_491_ ushr 8)
+                    }
+                    i_489_++
+                }
+                i_454_++
+                i_459_ += i_457_ + i_457_
+                i_458_ += i_457_++ + i_457_
             }
-        } else throw new IllegalArgumentException();
+        } else throw IllegalArgumentException()
     }
 
     // dependency of method3712 (used by method3720), not in genuine list
-    final void method3720(int i, int i_377_, int i_378_, int i_379_, int i_380_, int i_381_, int i_382_, int i_383_, int i_384_, int i_385_) {
+    fun method3720(i: Int, i_377_: Int, i_378_: Int, i_379_: Int, i_380_: Int, i_381_: Int, i_382_: Int, i_383_: Int, i_384_: Int, i_385_: Int) {
         if (i_379_ != 0 && i_380_ != 0) {
             if (i_382_ != 65535 && !(this.textureSource.getMetrics(i_382_, -6662).disableable)) {
                 if (anInt7512 != i_382_) {
-                    Sprite sprite = ((Sprite) aClass60_7499.method583(i_382_, 97));
+                    var sprite = (aClass60_7499.method583(i_382_.toLong(), 97) as Sprite?)
                     if (sprite == null) {
-                        int[] is = method3719(i_382_);
-                        if (is == null) return;
-                        int i_386_ = (method3727(i_382_) ? 64 : this.anInt7501);
-                        sprite = this.createSprite(i_386_, is, (byte) 94, 0, i_386_, i_386_);
-                        aClass60_7499.method582(sprite, i_382_, (byte) -100);
+                        val `is` = method3719(i_382_)
+                        if (`is` == null) return
+                        val i_386_ = (if (method3727(i_382_)) 64 else this.anInt7501)
+                        sprite = this.createSprite(i_386_, `is`, 94.toByte(), 0, i_386_, i_386_)
+                        aClass60_7499.method582(sprite, i_382_.toLong(), -100.toByte())
                     }
-                    anInt7512 = i_382_;
-                    aSprite_7513 = sprite;
+                    anInt7512 = i_382_
+                    aSprite_7513 = sprite
                 }
-                ((Sprite_Sub3) aSprite_7513).method996(i - i_379_, i_377_ - i_380_, i_378_, i_379_ << 1, i_380_ << 1, i_384_, i_383_, i_385_, 1);
-            } else method3723(i, i_377_, i_378_, i_379_, i_383_, i_385_);
+                (aSprite_7513 as Sprite_Sub3).method996(i - i_379_, i_377_ - i_380_, i_378_, i_379_ shl 1, i_380_ shl 1, i_384_, i_383_, i_385_, 1)
+            } else method3723(i, i_377_, i_378_, i_379_, i_383_, i_385_)
         }
     }
 
-    final JavaThreadResource threadResource(Runnable runnable) {
-        for (int i = 0; i < this.anInt7485; i++) {
-            if (aJavaThreadResourceArray7480[i].aRunnable2198 == runnable) return aJavaThreadResourceArray7480[i];
+    fun threadResource(runnable: Runnable?): JavaThreadResource? {
+        for (i in 0..<this.anInt7485) {
+            if (aJavaThreadResourceArray7480[i]!!.aRunnable2198 === runnable) return aJavaThreadResourceArray7480[i]
         }
-        return null;
+        return null
     }
 
-    final int E() {
-        return 0;
+    fun E(): Int {
+        return 0
     }
 
-    final void ZA(int i, float f, float f_573_, float f_574_, float f_575_, float f_576_) {
-        this.anInt7474 = (int) (f * 65535.0F);
-        this.anInt7478 = (int) (f_573_ * 65535.0F);
-        float f_577_ = (float) Math.sqrt(f_574_ * f_574_ + f_575_ * f_575_ + f_576_ * f_576_);
-        this.anInt7484 = (int) (f_574_ * 65535.0F / f_577_);
-        this.anInt7473 = (int) (f_575_ * 65535.0F / f_577_);
-        this.anInt7479 = (int) (f_576_ * 65535.0F / f_577_);
+    override fun ZA(i: Int, f: Float, f_573_: Float, f_574_: Float, f_575_: Float, f_576_: Float) {
+        this.anInt7474 = (f * 65535.0f).toInt()
+        this.anInt7478 = (f_573_ * 65535.0f).toInt()
+        val f_577_ = sqrt((f_574_ * f_574_ + f_575_ * f_575_ + f_576_ * f_576_).toDouble()).toFloat()
+        this.anInt7484 = (f_574_ * 65535.0f / f_577_).toInt()
+        this.anInt7473 = (f_575_ * 65535.0f / f_577_).toInt()
+        this.anInt7479 = (f_576_ * 65535.0f / f_577_).toInt()
     }
 
-    final boolean method3725(int i) {
-        return this.textureSource.method4(-7953, i);
+    fun method3725(i: Int): Boolean {
+        return this.textureSource.method4(-7953, i)
     }
 
-    private JavaToolkit(TextureSource var_textureSource) {
-        super(var_textureSource);
-        aIterableHashTable_7467 = new IterableHashTable(4);
-        this.anInt7474 = 45823;
-        aBoolean7489 = false;
-        anInt7487 = 0;
-        this.anInt7501 = 128;
-        this.anInt7476 = 0;
-        this.anInt7482 = 50;
-        this.anInt7503 = 0;
-        this.anInt7496 = 0;
-        this.anInt7497 = 512;
-        this.anInt7500 = 75518;
-        this.anInt7491 = 512;
-        anInt7505 = 0;
-        this.anInt7494 = 3500;
-        this.anInt7507 = 0;
-        this.anInt7478 = 78642;
-        aClass60_7499 = new Class60(16);
-        anInt7512 = -1;
+    init {
+        aIterableHashTable_7467 = IterableHashTable(4)
+        this.anInt7474 = 45823
+        aBoolean7489 = false
+        anInt7487 = 0
+        this.anInt7501 = 128
+        this.anInt7476 = 0
+        this.anInt7482 = 50
+        this.anInt7503 = 0
+        this.anInt7496 = 0
+        this.anInt7497 = 512
+        this.anInt7500 = 75518
+        this.anInt7491 = 512
+        anInt7505 = 0
+        this.anInt7494 = 3500
+        this.anInt7507 = 0
+        this.anInt7478 = 78642
+        aClass60_7499 = Class60(16)
+        anInt7512 = -1
         try {
-            aClass60_7498 = new Class60(256);
-            this.aClass101_Sub1_7492 = new Matrix_Sub1();
-            method3631(1);
-            method3659(0);
-            Class59_Sub2_Sub1.method566(true, true, (byte) -126);
-            aBoolean7471 = true;
-            anInt7466 = (int) Class62.method599(-70);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-            this.method3635((byte) -98);
-            throw new RuntimeException("");
+            aClass60_7498 = Class60(256)
+            this.aClass101_Sub1_7492 = Matrix_Sub1()
+            method3631(1)
+            method3659(0)
+            Class59_Sub2_Sub1.method566(true, true, -126.toByte())
+            aBoolean7471 = true
+            anInt7466 = Class62.method599(-70).toInt()
+        } catch (throwable: Throwable) {
+            throwable.printStackTrace()
+            this.method3635(-98.toByte())
+            throw RuntimeException("")
         }
     }
 
-    final boolean method3708() {
-        return true;
+    fun method3708(): Boolean {
+        return true
     }
 
-    final za method3702(int i) {
-        return null;
+    fun method3702(i: Int): za? {
+        return null
     }
 
     // dependency of method3665, not in genuine list
-    final Sprite method3629(int i, int i_519_, boolean bool) {
-        if (bool) return new JavaArgbSprite(this, i, i_519_);
-        return new JavaRgbSprite(this, i, i_519_);
+    fun method3629(i: Int, i_519_: Int, bool: Boolean): Sprite {
+        if (bool) return JavaArgbSprite(this, i, i_519_)
+        return JavaRgbSprite(this, i, i_519_)
     }
 
-    final Class348_Sub1 method3690(int i, int i_520_, int i_521_, int i_522_, int i_523_, float f) {
-        return null;
+    fun method3690(i: Int, i_520_: Int, i_521_: Int, i_522_: Int, i_523_: Int, f: Float): Class348_Sub1? {
+        return null
     }
 
-    final boolean method3666() {
-        return false;
+    fun method3666(): Boolean {
+        return false
     }
 
-    final Class299 method3706(Class299 class299, Class299 class299_524_, float f, Class299 class299_525_) {
-        return null;
+    fun method3706(class299: Class299?, class299_524_: Class299?, f: Float, class299_525_: Class299?): Class299? {
+        return null
     }
 
-    final int XA() {
-        return this.anInt7494;
+    override fun XA(): Int {
+        return this.anInt7494
     }
 
-    final boolean method3699() {
-        return false;
+    fun method3699(): Boolean {
+        return false
     }
 
-    final boolean method3671() {
-        return false;
+    fun method3671(): Boolean {
+        return false
     }
 
-    final Sprite method3711(int[] is, int i, int i_422_, int i_423_, int i_424_, boolean bool) {
-        boolean bool_425_ = false;
-        int i_426_ = i;
-        while_229_:
-        for (int i_427_ = 0; i_427_ < i_424_; i_427_++) {
-            for (int i_428_ = 0; i_428_ < i_423_; i_428_++) {
-                int i_429_ = is[i_426_++] >>> 24;
+    override fun method3711(`is`: IntArray, i: Int, i_422_: Int, i_423_: Int, i_424_: Int, bool: Boolean): Sprite {
+        var bool_425_ = false
+        var i_426_ = i
+        while_229_@ for (i_427_ in 0..<i_424_) {
+            for (i_428_ in 0..<i_423_) {
+                val i_429_ = `is`[i_426_++] ushr 24
                 if (i_429_ != 0 && i_429_ != 255) {
-                    bool_425_ = true;
-                    break while_229_;
+                    bool_425_ = true
+                    break@while_229_
                 }
             }
         }
-        if (bool_425_) return new JavaArgbSprite(this, is, i, i_422_, i_423_, i_424_, bool);
-        return new JavaRgbSprite(this, is, i, i_422_, i_423_, i_424_, bool);
+        if (bool_425_) return JavaArgbSprite(this, `is`, i, i_422_, i_423_, i_424_, bool)
+        return JavaRgbSprite(this, `is`, i, i_422_, i_423_, i_424_, bool)
     }
 
     // dependency of method3665, not in genuine list
-    final Interface3 method3665(int i, int i_591_) {
-        return method3629(i, i_591_, false);
+    fun method3665(i: Int, i_591_: Int): Interface3 {
+        return method3629(i, i_591_, false)
     }
 
-    final void X(int i) {
+    fun X(i: Int) {
         /* empty */
     }
 
-    final void method3659(int i) {
-        aJavaThreadResourceArray7480[i].method1291(10000, Thread.currentThread());
+    fun method3659(i: Int) {
+        aJavaThreadResourceArray7480[i]!!.method1291(10000, Thread.currentThread())
     }
 
-    final int method3726(int i) {
-        return this.textureSource.getMetrics(i, -6662).alphaBlendMode;
+    fun method3726(i: Int): Int {
+        return this.textureSource.getMetrics(i, -6662).alphaBlendMode
     }
 
-    final int method3704() {
-        return 0;
+    fun method3704(): Int {
+        return 0
     }
 
-    final boolean method3694() {
-        return true;
+    fun method3694(): Boolean {
+        return true
     }
 
-    final void da(int i, int i_636_, int i_637_, int[] is) {
-        float f = ((this.aClass101_Sub1_7492.aFloat5681) + ((this.aClass101_Sub1_7492.aFloat5662) * (float) i + (this.aClass101_Sub1_7492.aFloat5680) * (float) i_636_ + (this.aClass101_Sub1_7492.aFloat5664) * (float) i_637_));
-        if (f >= (float) this.anInt7482 && f <= (float) this.anInt7494) {
-            int i_638_ = (int) ((float) this.anInt7491 * (this.aClass101_Sub1_7492.aFloat5686 + ((this.aClass101_Sub1_7492.aFloat5672) * (float) i + (this.aClass101_Sub1_7492.aFloat5673) * (float) i_636_ + (this.aClass101_Sub1_7492.aFloat5669) * (float) i_637_)) / f);
-            int i_639_ = (int) ((float) this.anInt7497 * (this.aClass101_Sub1_7492.aFloat5685 + ((this.aClass101_Sub1_7492.aFloat5655) * (float) i + (this.aClass101_Sub1_7492.aFloat5678) * (float) i_636_ + (this.aClass101_Sub1_7492.aFloat5666) * (float) i_637_)) / f);
+    fun da(i: Int, i_636_: Int, i_637_: Int, `is`: IntArray) {
+        val f = ((this.aClass101_Sub1_7492!!.aFloat5681) + ((this.aClass101_Sub1_7492!!.aFloat5662) * i.toFloat() + (this.aClass101_Sub1_7492!!.aFloat5680) * i_636_.toFloat() + (this.aClass101_Sub1_7492!!.aFloat5664) * i_637_.toFloat()))
+        if (f >= this.anInt7482.toFloat() && f <= this.anInt7494.toFloat()) {
+            val i_638_ = (this.anInt7491.toFloat() * (this.aClass101_Sub1_7492!!.aFloat5686 + ((this.aClass101_Sub1_7492!!.aFloat5672) * i.toFloat() + (this.aClass101_Sub1_7492!!.aFloat5673) * i_636_.toFloat() + (this.aClass101_Sub1_7492!!.aFloat5669) * i_637_.toFloat())) / f).toInt()
+            val i_639_ = (this.anInt7497.toFloat() * (this.aClass101_Sub1_7492!!.aFloat5685 + ((this.aClass101_Sub1_7492!!.aFloat5655) * i.toFloat() + (this.aClass101_Sub1_7492!!.aFloat5678) * i_636_.toFloat() + (this.aClass101_Sub1_7492!!.aFloat5666) * i_637_.toFloat())) / f).toInt()
             if (i_638_ >= this.anInt7509 && i_638_ <= this.anInt7508 && i_639_ >= this.anInt7490 && i_639_ <= this.anInt7506) {
-                is[0] = i_638_ - this.anInt7509;
-                is[1] = i_639_ - this.anInt7490;
-                is[2] = (int) f;
-            } else is[0] = is[1] = is[2] = -1;
-        } else is[0] = is[1] = is[2] = -1;
+                `is`[0] = i_638_ - this.anInt7509
+                `is`[1] = i_639_ - this.anInt7490
+                `is`[2] = f.toInt()
+            } else {
+                `is`[2] = -1
+                `is`[1] = `is`[2]
+                `is`[0] = `is`[1]
+            }
+        } else {
+            `is`[2] = -1
+            `is`[1] = `is`[2]
+            `is`[0] = `is`[1]
+        }
     }
 
-    final void method3673() {
+    fun method3673() {
         /* empty */
     }
 
-    final boolean method3644() {
-        return false;
+    fun method3644(): Boolean {
+        return false
     }
 
-    final int method3679(int i, int i_640_) {
-        return i | i_640_;
+    fun method3679(i: Int, i_640_: Int): Int {
+        return i or i_640_
     }
 
-    final boolean method3727(int i) {
-        return aBoolean7489 || this.textureSource.getMetrics(i, -6662).small;
+    fun method3727(i: Int): Boolean {
+        return aBoolean7489 || this.textureSource.getMetrics(i, -6662).small
     }
 }

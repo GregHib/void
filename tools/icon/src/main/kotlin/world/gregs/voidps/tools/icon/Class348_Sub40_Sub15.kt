@@ -1,38 +1,39 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub40_Sub15 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub40_Sub15 extends Class348_Sub40 {
-    static Class114 aClass114_9216 = new Class114(91, 2);
-    static int anInt9217;
-    private int anInt9220 = 4096;
-    static int anInt9221;
+/* Class348_Sub40_Sub15 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    final void method3049(Packet packet, int i, int i_0_) {
-        int i_1_ = i;
-        if (i_1_ == 0) anInt9220 = (packet.readUnsignedByte(255) << 12) / 255;
-        if (i_0_ == 31015) anInt9217++;
+internal class Class348_Sub40_Sub15(i: Int) : Class348_Sub40(0, true) {
+    private var anInt9220 = 4096
+    override fun method3049(packet: Packet, i: Int, i_0_: Int) {
+        val i_1_ = i
+        if (i_1_ == 0) anInt9220 = (packet.readUnsignedByte(255) shl 12) / 255
+        if (i_0_ == 31015) anInt9217++
     }
 
-    public static void method3085(int i) {
-        aClass114_9216 = null;
-        if (i != 0) aClass114_9216 = null;
+    init {
+        anInt9220 = i
     }
 
-    Class348_Sub40_Sub15(int i) {
-        super(0, true);
-        anInt9220 = i;
+    override fun method3042(i: Int, i_8_: Int): IntArray? {
+        anInt9221++
+        val `is` = this.aClass191_7032.method1433(0, i)
+        if (this.aClass191_7032.aBoolean2570) Class214.method1579(`is`, 0, Class348_Sub40_Sub6.Companion.anInt9139, anInt9220)
+        if (i_8_ != 255) method3085(63)
+        return `is`
     }
 
-    final int[] method3042(int i, int i_8_) {
-        anInt9221++;
-        int[] is = this.aClass191_7032.method1433(0, i);
-        if (this.aClass191_7032.aBoolean2570) Class214.method1579(is, 0, Class348_Sub40_Sub6.anInt9139, anInt9220);
-        if (i_8_ != 255) method3085(63);
-        return is;
-    }
+    constructor() : this(4096)
 
-    public Class348_Sub40_Sub15() {
-        this(4096);
+    companion object {
+        var aClass114_9216: Class114? = Class114(91, 2)
+        var anInt9217: Int = 0
+        var anInt9221: Int = 0
+
+        fun method3085(i: Int) {
+            aClass114_9216 = null
+            if (i != 0) aClass114_9216 = null
+        }
     }
 }

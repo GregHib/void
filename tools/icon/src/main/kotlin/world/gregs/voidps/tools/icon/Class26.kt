@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class26 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class26 {
-    static int anInt383;
+/* Class26 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class26 {
+    var anInt383: Int = 0
 }

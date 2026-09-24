@@ -1,13 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class114 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class114 {
-    private int anInt1747;
-    int anInt1749;
+/* Class114 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class114(int i, int i_0_) {
-        this.anInt1749 = i_0_;
-        anInt1747 = i;
-    }
-}
+internal class Class114(private val anInt1747: Int, var anInt1749: Int)

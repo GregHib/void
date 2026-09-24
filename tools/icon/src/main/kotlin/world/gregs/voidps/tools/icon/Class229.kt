@@ -1,9 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class229 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class229 {
-    public Class229() {
-        /* empty */
-    }
-}
+/* Class229 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal class Class229 

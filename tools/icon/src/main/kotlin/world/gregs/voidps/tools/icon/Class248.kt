@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class248 - minimal stub (missing from trimmed tree)
- * See client/src/Class248.java for the full original.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class248 {
-    static int anInt3201;
+/* Class248 - minimal stub (missing from trimmed tree)
+* See client/src/Class248.java for the full original.
+*/
+
+internal object Class248 {
+    var anInt3201: Int = 0
 }

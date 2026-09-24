@@ -1,30 +1,40 @@
-package world.gregs.voidps.tools.icon;/* Class46 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class46 {
-    int anInt698;
-    int anInt709;
-    int anInt789;
-    Class46[] aClass46Array798;
-    int anInt791;
-    int anInt830;
-    static byte[] aByteArray821 = new byte[32896];
-    static Class196 aClass196_838;
+import kotlin.math.sqrt
 
-    public static void method442(byte i) {
-        if (i <= -8) {
-            aClass196_838 = null;
-            aByteArray821 = null;
+/* Class46 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal class Class46 {
+    var anInt698: Int = 0
+    var anInt709: Int = 0
+    var anInt789: Int = 0
+    var aClass46Array798: Array<Class46?>? = null
+    var anInt791: Int = 0
+    var anInt830: Int = 0
+
+    companion object {
+        var aByteArray821: ByteArray? = ByteArray(32896)
+        var aClass196_838: Class196?
+
+        fun method442(i: Byte) {
+            if (i <= -8) {
+                aClass196_838 = null
+                aByteArray821 = null
+            }
         }
-    }
 
-    static {
-        int i = 0;
-        for (int i_69_ = 0; i_69_ < 256; i_69_++) {
-            for (int i_70_ = 0; i_69_ >= i_70_; i_70_++)
-                aByteArray821[i++] = (byte) (int) (255.0 / Math.sqrt((float) ((i_69_ * i_69_) + (i_70_ * i_70_) - -65535) / 65535.0F));
+        init {
+            var i = 0
+            for (i_69_ in 0..255) {
+                var i_70_ = 0
+                while (i_69_ >= i_70_) {
+                    aByteArray821!![i++] = (255.0 / sqrt((((i_69_ * i_69_) + (i_70_ * i_70_) - -65535).toFloat() / 65535.0f).toDouble())).toInt().toByte()
+                    i_70_++
+                }
+            }
+            aClass196_838 = Class196()
         }
-        aClass196_838 = new Class196();
     }
 }

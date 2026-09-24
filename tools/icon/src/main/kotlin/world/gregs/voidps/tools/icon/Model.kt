@@ -1,22 +1,20 @@
-package world.gregs.voidps.tools.icon;/* Class64 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-abstract class Model {
-    boolean aBoolean1124 = false;
+/* Class64 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal abstract class Model {
+    var aBoolean1124: Boolean = false
 
     // abstract dependencies of Class213.method1562 (genuine), which calls
     // these on a Class64-typed reference - all implemented concretely in
     // Class64_Sub1.
-    abstract void render(Matrix matrix, Class318_Sub3 class318_sub3, int i);
+    abstract fun render(matrix: Matrix?, class318_sub3: Class318_Sub3?, i: Int)
 
-    abstract int fa();
+    abstract fun fa(): Int
 
-    abstract boolean loadedTextures();
+    abstract fun loadedTextures(): Boolean
 
-    abstract void O(int i, int i_765_, int i_766_);
-
-    public Model() {
-        /* empty */
-    }
+    abstract fun O(i: Int, i_765_: Int, i_766_: Int)
 }

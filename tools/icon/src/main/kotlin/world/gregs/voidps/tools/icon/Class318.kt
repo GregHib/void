@@ -1,23 +1,24 @@
-package world.gregs.voidps.tools.icon;/* Class318 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-class Class318 {
-    Class318 aClass318_3970;
-    static int anInt3975;
-    Class318 aClass318_3976;
+/* Class318 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    final void method2373(boolean bool) {
-        anInt3975++;
+internal open class Class318 {
+    var aClass318_3970: Class318? = null
+    var aClass318_3976: Class318? = null
+
+    fun method2373(bool: Boolean) {
+        anInt3975++
         if (this.aClass318_3976 != null) {
-            this.aClass318_3976.aClass318_3970 = this.aClass318_3970;
-            this.aClass318_3970.aClass318_3976 = this.aClass318_3976;
-            this.aClass318_3970 = null;
-            if (bool == false) this.aClass318_3976 = null;
+            this.aClass318_3976!!.aClass318_3970 = this.aClass318_3970
+            this.aClass318_3970!!.aClass318_3976 = this.aClass318_3976
+            this.aClass318_3970 = null
+            if (bool == false) this.aClass318_3976 = null
         }
     }
 
-    public Class318() {
-        /* empty */
+    companion object {
+        var anInt3975: Int = 0
     }
 }

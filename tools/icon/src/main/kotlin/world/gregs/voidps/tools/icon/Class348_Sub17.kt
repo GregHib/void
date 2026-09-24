@@ -1,22 +1,20 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub17 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub17 {
-    static int anInt6789;
+/* Class348_Sub17 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    static final RuntimeException_Sub1 method2929(Throwable throwable, String string) {
-        anInt6789++;
-        throwable.printStackTrace();
-        RuntimeException_Sub1 runtimeexception_sub1;
-        if (throwable instanceof RuntimeException_Sub1) {
-            runtimeexception_sub1 = (RuntimeException_Sub1) throwable;
-            runtimeexception_sub1.aString4594 += ' ' + string;
-        } else runtimeexception_sub1 = new RuntimeException_Sub1(throwable, string);
-        return runtimeexception_sub1;
-    }
+internal object Class348_Sub17 {
+    var anInt6789: Int = 0
 
-    public Class348_Sub17() {
-        /* empty */
+    fun method2929(throwable: Throwable, string: String?): RuntimeException_Sub1 {
+        anInt6789++
+        throwable.printStackTrace()
+        val runtimeexception_sub1: RuntimeException_Sub1
+        if (throwable is RuntimeException_Sub1) {
+            runtimeexception_sub1 = throwable
+            runtimeexception_sub1.aString4594 += ' '.toString() + string
+        } else runtimeexception_sub1 = RuntimeException_Sub1(throwable, string)
+        return runtimeexception_sub1
     }
 }

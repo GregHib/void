@@ -1,18 +1,20 @@
-package world.gregs.voidps.tools.icon;/* Class89 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class89 {
-    static int[] anIntArray1508 = new int[256];
+/* Class89 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    static {
-        for (int i = 0; i < 256; i++) {
-            int i_23_ = i;
-            for (int i_24_ = 0; i_24_ < 8; i_24_++) {
-                if ((i_23_ & 0x1) != 1) i_23_ >>>= 1;
-                else i_23_ = i_23_ >>> 1 ^ ~0x12477cdf;
+internal object Class89 {
+    var anIntArray1508: IntArray = IntArray(256)
+
+    init {
+        for (i in 0..255) {
+            var i_23_ = i
+            for (i_24_ in 0..7) {
+                if ((i_23_ and 0x1) != 1) i_23_ = i_23_ ushr 1
+                else i_23_ = i_23_ ushr 1 xor 0x12477cdf.inv()
             }
-            anIntArray1508[i] = i_23_;
+            anIntArray1508[i] = i_23_
         }
     }
 }

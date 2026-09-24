@@ -1,12 +1,10 @@
-package world.gregs.voidps.tools.icon;/* aa - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- *
- * Trimmed for item_renderer_standalone: only the empty constructor is kept
- * (aa_Sub3 extends this purely as a marker/return type in the renderer).
- */
+package world.gregs.voidps.tools.icon
 
-abstract class aa {
-    public aa() {
-        /* empty */
-    }
-}
+/* aa - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*
+* Trimmed for item_renderer_standalone: only the empty constructor is kept
+* (aa_Sub3 extends this purely as a marker/return type in the renderer).
+*/
+
+internal abstract class aa 

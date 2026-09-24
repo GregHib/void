@@ -1,11 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub42_Sub3 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub42_Sub3 extends Class348_Sub42 {
-    byte[] aByteArray9499;
+/* Class348_Sub42_Sub3 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class348_Sub42_Sub3(byte[] is) {
-        this.aByteArray9499 = is;
-    }
-}
+internal class Class348_Sub42_Sub3(var aByteArray9499: ByteArray?) : Class348_Sub42()

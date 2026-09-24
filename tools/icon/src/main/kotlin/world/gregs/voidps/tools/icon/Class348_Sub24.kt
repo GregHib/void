@@ -1,75 +1,73 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub24 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-import java.io.File;
+import java.io.File
+import java.util.*
 
-final class Class348_Sub24 extends Class348 {
-    static int anInt6871;
-    int anInt6872;
-    int anInt6875;
-    static String aString6876;
-    static String aString6877;
-    static int[] anIntArray6878;
+/* Class348_Sub24 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    public static void method2993(byte i) {
-        anIntArray6878 = null;
-        aString6876 = null;
-        aString6877 = null;
-        int i_37_ = 31 % ((3 - i) / 37);
-    }
+internal class Class348_Sub24(var anInt6872: Int, var anInt6875: Int) : Class348() {
+    companion object {
+        var anInt6871: Int = 0
+        var aString6876: String?
+        var aString6877: String?
+        var anIntArray6878: IntArray?
 
-    static final void method2994(int i) {
-        anInt6871++;
-    }
+        fun method2993(i: Byte) {
+            anIntArray6878 = null
+            aString6876 = null
+            aString6877 = null
+            val i_37_ = 31 % ((3 - i) / 37)
+        }
 
-    Class348_Sub24(int i, int i_38_) {
-        this.anInt6872 = i;
-        this.anInt6875 = i_38_;
-    }
+        fun method2994(i: Int) {
+            anInt6871++
+        }
 
-    static {
-        String string = "Unknown";
-        try {
-            string = System.getProperty("java.vendor").toLowerCase();
-        } catch (Exception exception) {
-            /* empty */
+        init {
+            var string = "Unknown"
+            try {
+                string = System.getProperty("java.vendor").lowercase(Locale.getDefault())
+            } catch (exception: Exception) {
+                /* empty */
+            }
+            string.lowercase(Locale.getDefault())
+            string = "Unknown"
+            try {
+                string = System.getProperty("java.version").lowercase(Locale.getDefault())
+            } catch (exception: Exception) {
+                /* empty */
+            }
+            string.lowercase(Locale.getDefault())
+            string = "Unknown"
+            try {
+                string = System.getProperty("os.name").lowercase(Locale.getDefault())
+            } catch (exception: Exception) {
+                /* empty */
+            }
+            aString6877 = string.lowercase(Locale.getDefault())
+            string = "Unknown"
+            try {
+                string = System.getProperty("os.arch").lowercase(Locale.getDefault())
+            } catch (exception: Exception) {
+                /* empty */
+            }
+            aString6876 = string.lowercase(Locale.getDefault())
+            string = "Unknown"
+            try {
+                string = System.getProperty("os.version").lowercase(Locale.getDefault())
+            } catch (exception: Exception) {
+                /* empty */
+            }
+            string.lowercase(Locale.getDefault())
+            string = "~/"
+            try {
+                string = System.getProperty("user.home").lowercase(Locale.getDefault())
+            } catch (exception: Exception) {
+                /* empty */
+            }
+            File(string)
         }
-        string.toLowerCase();
-        string = "Unknown";
-        try {
-            string = System.getProperty("java.version").toLowerCase();
-        } catch (Exception exception) {
-            /* empty */
-        }
-        string.toLowerCase();
-        string = "Unknown";
-        try {
-            string = System.getProperty("os.name").toLowerCase();
-        } catch (Exception exception) {
-            /* empty */
-        }
-        aString6877 = string.toLowerCase();
-        string = "Unknown";
-        try {
-            string = System.getProperty("os.arch").toLowerCase();
-        } catch (Exception exception) {
-            /* empty */
-        }
-        aString6876 = string.toLowerCase();
-        string = "Unknown";
-        try {
-            string = System.getProperty("os.version").toLowerCase();
-        } catch (Exception exception) {
-            /* empty */
-        }
-        string.toLowerCase();
-        string = "~/";
-        try {
-            string = System.getProperty("user.home").toLowerCase();
-        } catch (Exception exception) {
-            /* empty */
-        }
-        new File(string);
     }
 }

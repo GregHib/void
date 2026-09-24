@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class217 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class217 {
-    static Class60 aClass60_2844 = new Class60(64);
+/* Class217 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class217 {
+    var aClass60_2844: Class60 = Class60(64)
 }

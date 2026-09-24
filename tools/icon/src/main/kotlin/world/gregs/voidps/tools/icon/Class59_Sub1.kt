@@ -1,23 +1,25 @@
-package world.gregs.voidps.tools.icon;/* Class59_Sub1 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-class Class59_Sub1 {
-    static int anInt5284;
-    static Class351 aClass351_5288 = new Class351(7, 6);
-    static Sprite[] aSpriteArray5294;
-    static Class297 aClass297_5297;
+/* Class59_Sub1 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    public static void method553(int i) {
-        aSpriteArray5294 = null;
-        aClass351_5288 = null;
-        if (i != 0) aClass297_5297 = null;
-        aClass297_5297 = null;
+internal object Class59_Sub1 {
+    var anInt5284: Int = 0
+    var aClass351_5288: Class351? = Class351(7, 6)
+    var aSpriteArray5294: Array<Sprite?>? = null
+    var aClass297_5297: Class297? = null
+
+    fun method553(i: Int) {
+        aSpriteArray5294 = null
+        aClass351_5288 = null
+        if (i != 0) aClass297_5297 = null
+        aClass297_5297 = null
     }
 
-    static final int method554(int i, int i_42_, byte[] is) {
-        if (i != 5126) method553(52);
-        anInt5284++;
-        return Class171.method1319(i_42_, true, is, 0);
+    fun method554(i: Int, i_42_: Int, `is`: ByteArray?): Int {
+        if (i != 5126) method553(52)
+        anInt5284++
+        return Class171.method1319(i_42_, true, `is`!!, 0)
     }
 }

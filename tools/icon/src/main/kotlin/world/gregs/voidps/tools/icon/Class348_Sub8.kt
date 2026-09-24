@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub8 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub8 {
-    static long method2777(long l, long l_7_) {
-        return l & l_7_;
+/* Class348_Sub8 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class348_Sub8 {
+    fun method2777(l: Long, l_7_: Long): Long {
+        return l and l_7_
     }
 }

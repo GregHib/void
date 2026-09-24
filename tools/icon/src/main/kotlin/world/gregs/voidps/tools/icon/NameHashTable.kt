@@ -1,25 +1,30 @@
-package world.gregs.voidps.tools.icon;/* Class316 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class NameHashTable {
-    private final int[] anIntArray3961;
+/* Class316 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    NameHashTable(int[] is) {
-        int i;
-        for (i = 1; is.length - -(is.length >> 1) >= i; i <<= 1) {
-            /* empty */
+internal class NameHashTable(`is`: IntArray) {
+    private val anIntArray3961: IntArray
+
+    init {
+        var i: Int
+        i = 1
+        while (`is`.size - -(`is`.size shr 1) >= i) {
+            i = i shl 1
         }
-        anIntArray3961 = new int[i + i];
-        for (int i_34_ = 0; i_34_ < i + i; i_34_++)
-            anIntArray3961[i_34_] = -1;
-        for (int i_35_ = 0; is.length > i_35_; i_35_++) {
-            int i_36_;
-            for (i_36_ = is[i_35_] & -1 + i; anIntArray3961[i_36_ - -i_36_ - -1] != -1; i_36_ = -1 + i & 1 + i_36_) {
-                /* empty */
+        anIntArray3961 = IntArray(i + i)
+        for (i_34_ in 0..<i + i) anIntArray3961[i_34_] = -1
+        var i_35_ = 0
+        while (`is`.size > i_35_) {
+            var i_36_: Int
+            i_36_ = `is`[i_35_] and -1 + i
+            while (anIntArray3961[i_36_ - -i_36_ - -1] != -1) {
+                i_36_ = -1 + i and 1 + i_36_
             }
-            anIntArray3961[i_36_ + i_36_] = is[i_35_];
-            anIntArray3961[i_36_ - (-i_36_ + -1)] = i_35_;
+            anIntArray3961[i_36_ + i_36_] = `is`[i_35_]
+            anIntArray3961[i_36_ - (-i_36_ + -1)] = i_35_
+            i_35_++
         }
     }
 }

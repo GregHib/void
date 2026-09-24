@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Interface10 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-interface Interface10 {
-    void method40(int i);
+/* Interface10 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal interface Interface10 {
+    fun method40(i: Int)
 }

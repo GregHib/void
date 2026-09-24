@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Interface14 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-interface CacheKey {
-    long toLong(byte i);
+/* Interface14 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    boolean matches(int i, CacheKey cacheKey_0_);
+internal interface CacheKey {
+    fun toLong(i: Byte): Long
+
+    fun matches(i: Int, cacheKey_0_: CacheKey?): Boolean
 }

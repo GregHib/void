@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class139 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class139 {
-    static int method1166(int i, int i_12_) {
-        return i & i_12_;
+/* Class139 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class139 {
+    fun method1166(i: Int, i_12_: Int): Int {
+        return i and i_12_
     }
 }

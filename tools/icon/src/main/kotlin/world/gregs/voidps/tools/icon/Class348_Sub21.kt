@@ -1,9 +1,11 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub21 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub21 {
-    static int method2955(int i, int i_24_) {
-        return i ^ i_24_;
+/* Class348_Sub21 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class348_Sub21 {
+    fun method2955(i: Int, i_24_: Int): Int {
+        return i xor i_24_
     }
 }

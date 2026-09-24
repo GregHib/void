@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class286_Sub2 - minimal stub (missing from trimmed tree)
- * See client/src/Class286_Sub2.java for the full original.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class286_Sub2 {
-    static int anInt6212;
+/* Class286_Sub2 - minimal stub (missing from trimmed tree)
+* See client/src/Class286_Sub2.java for the full original.
+*/
+
+internal object Class286_Sub2 {
+    var anInt6212: Int = 0
 }

@@ -1,11 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class304 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class304 {
-    int anInt3850;
+/* Class304 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class304(int i) {
-        this.anInt3850 = i;
-    }
-}
+internal class Class304(var anInt3850: Int)

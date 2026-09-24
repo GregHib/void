@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class83 - minimal stub (missing from trimmed tree)
- * See client/src/Class83.java for the full original.
- */
+package world.gregs.voidps.tools.icon
 
-final class Class83 {
-    static int anInt1447;
+/* Class83 - minimal stub (missing from trimmed tree)
+* See client/src/Class83.java for the full original.
+*/
+
+internal object Class83 {
+    var anInt1447: Int = 0
 }

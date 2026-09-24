@@ -1,18 +1,22 @@
-package world.gregs.voidps.tools.icon;/* Class284 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class284 {
-    static int anInt3674;
-    static int anInt3676 = 0;
+/* Class284 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    final Class246 method2118(byte i) {
-        anInt3674++;
+internal class Class284 {
+    fun method2118(i: Byte): Class246? {
+        anInt3674++
         try {
-            if (i != -42) anInt3676 = -23;
-            return new Class246_Sub1();
-        } catch (Throwable throwable) {
-            return null;
+            if (i.toInt() != -42) anInt3676 = -23
+            return Class246_Sub1()
+        } catch (throwable: Throwable) {
+            return null
         }
+    }
+
+    companion object {
+        var anInt3674: Int = 0
+        var anInt3676: Int = 0
     }
 }

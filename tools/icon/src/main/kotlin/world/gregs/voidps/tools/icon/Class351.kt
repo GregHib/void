@@ -1,13 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class351 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class351 {
-    int anInt4323;
-    private int anInt4326;
+/* Class351 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class351(int i, int i_1_) {
-        anInt4326 = i;
-        this.anInt4323 = i_1_;
-    }
-}
+internal class Class351(private val anInt4326: Int, var anInt4323: Int)

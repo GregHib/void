@@ -1,27 +1,29 @@
-package world.gregs.voidps.tools.icon;/* Class104 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-import java.awt.*;
+import java.awt.Canvas
 
-final class Class104 {
-    static int anInt1610;
-    static Class221 aClass221_1620 = new Class221();
+/* Class104 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    static final Toolkit method958(boolean bool, int i, TextureSource var_textureSource, int i_61_, Canvas canvas, Js5 js5) {
+internal object Class104 {
+    var anInt1610: Int = 0
+    var aClass221_1620: Class221? = Class221()
+
+    fun method958(bool: Boolean, i: Int, var_textureSource: TextureSource?, i_61_: Int, canvas: Canvas?, js5: Js5?): Toolkit {
         try {
-            if (bool != true) aClass221_1620 = null;
-            anInt1610++;
-            int i_62_ = 0;
-            int i_63_ = 0;
+            if (bool != true) aClass221_1620 = null
+            anInt1610++
+            var i_62_ = 0
+            var i_63_ = 0
             if (canvas != null) {
-                Dimension dimension = canvas.getSize();
-                i_63_ = dimension.height;
-                i_62_ = dimension.width;
+                val dimension = canvas.getSize()
+                i_63_ = dimension.height
+                i_62_ = dimension.width
             }
-            return Toolkit.method3692(i_61_, i_63_, i_62_, js5, 0, var_textureSource, canvas, i);
-        } catch (RuntimeException runtimeexception) {
-            throw Class348_Sub17.method2929(runtimeexception, ("mha.E(" + bool + ',' + i + ',' + (var_textureSource != null ? "{...}" : "null") + ',' + i_61_ + ',' + (canvas != null ? "{...}" : "null") + ',' + (js5 != null ? "{...}" : "null") + ')'));
+            return Toolkit.Companion.method3692(i_61_, i_63_, i_62_, js5, 0, var_textureSource, canvas, i)
+        } catch (runtimeexception: RuntimeException) {
+            throw Class348_Sub17.method2929(runtimeexception, ("mha.E(" + bool + ',' + i + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + i_61_ + ',' + (if (canvas != null) "{...}" else "null") + ',' + (if (js5 != null) "{...}" else "null") + ')'))
         }
     }
 }

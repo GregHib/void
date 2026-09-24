@@ -1,11 +1,13 @@
-package world.gregs.voidps.tools.icon;/* Class76 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class76 {
-    boolean aBoolean1283 = false;
+/* Class76 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    Class76(boolean bool) {
-        this.aBoolean1283 = bool;
+internal class Class76(bool: Boolean) {
+    var aBoolean1283: Boolean = false
+
+    init {
+        this.aBoolean1283 = bool
     }
 }

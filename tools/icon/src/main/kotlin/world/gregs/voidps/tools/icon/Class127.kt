@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class127 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class127 {
-    static int[] anIntArray4654;
+/* Class127 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class127 {
+    var anIntArray4654: IntArray? = null
 }

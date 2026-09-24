@@ -1,9 +1,7 @@
-package world.gregs.voidps.tools.icon;/* Class173 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class173 {
-    public Class173() {
-        /* empty */
-    }
-}
+/* Class173 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal class Class173 

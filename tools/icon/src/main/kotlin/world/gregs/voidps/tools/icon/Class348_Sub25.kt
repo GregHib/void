@@ -1,94 +1,98 @@
-package world.gregs.voidps.tools.icon;/* Class348_Sub25 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class348_Sub25 {
-    int anInt6883;
-    boolean aBoolean6882;
-    private final int anInt6880;
-    private static int[] anIntArray6881;
-    private int[] anIntArray6884;
+/* Class348_Sub25 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    public static void method2996() {
-        anIntArray6881 = null;
+internal class Class348_Sub25(var anInt6883: Int, private val anInt6880: Int, `is`: IntArray, bool: Boolean) {
+    var aBoolean6882: Boolean = false
+    private var anIntArray6884: IntArray?
+
+    fun method2997(): IntArray? {
+        return anIntArray6884
     }
 
-    final int[] method2997() {
-        return anIntArray6884;
-    }
-
-    Class348_Sub25(int i, int i_11_, int[] is, boolean bool) {
-        this.anInt6883 = i;
-        anInt6880 = i_11_;
-        anIntArray6884 = is;
+    init {
+        anIntArray6884 = `is`
         if (bool) {
-            int[] is_12_ = new int[anInt6880];
-            int[] is_13_ = new int[anInt6880];
-            int[] is_14_ = new int[anInt6880];
-            int[] is_15_ = new int[anInt6880];
-            if (anIntArray6881 == null || anIntArray6881.length != anIntArray6884.length) anIntArray6881 = new int[anIntArray6884.length];
-            int i_16_ = anInt6880;
-            int i_17_ = anInt6880;
-            int i_18_ = i_16_ - 1;
-            int i_19_ = i_17_ - 1;
-            int i_20_ = i_16_ * i_17_;
-            int i_22_;
-            int i_21_ = i_22_ = i_16_;
-            for (int i_23_ = 2; i_23_ >= 0; i_23_--) {
-                for (int i_24_ = i_18_; i_24_ >= 0; i_24_--) {
-                    int i_25_ = anIntArray6884[--i_22_];
-                    is_12_[i_24_] += i_25_ >> 24 & 0xff;
-                    is_13_[i_24_] += i_25_ >> 16 & 0xff;
-                    is_14_[i_24_] += i_25_ >> 8 & 0xff;
-                    is_15_[i_24_] += i_25_ & 0xff;
+            val is_12_ = IntArray(anInt6880)
+            val is_13_ = IntArray(anInt6880)
+            val is_14_ = IntArray(anInt6880)
+            val is_15_ = IntArray(anInt6880)
+            if (anIntArray6881 == null || anIntArray6881!!.size != anIntArray6884!!.size) anIntArray6881 = IntArray(anIntArray6884!!.size)
+            val i_16_ = anInt6880
+            val i_17_ = anInt6880
+            val i_18_ = i_16_ - 1
+            val i_19_ = i_17_ - 1
+            val i_20_ = i_16_ * i_17_
+            var i_22_: Int
+            i_22_ = i_16_
+            var i_21_ = i_22_
+            for (i_23_ in 2 downTo 0) {
+                for (i_24_ in i_18_ downTo 0) {
+                    val i_25_ = anIntArray6884!![--i_22_]
+                    is_12_[i_24_] += i_25_ shr 24 and 0xff
+                    is_13_[i_24_] += i_25_ shr 16 and 0xff
+                    is_14_[i_24_] += i_25_ shr 8 and 0xff
+                    is_15_[i_24_] += i_25_ and 0xff
                 }
-                if (i_22_ == 0) i_22_ = i_20_;
+                if (i_22_ == 0) i_22_ = i_20_
             }
-            int i_26_ = i_20_;
-            for (int i_27_ = i_19_; i_27_ >= 0; i_27_--) {
-                int i_28_ = 1;
-                int i_29_ = 1;
-                int i_31_;
-                int i_32_;
-                int i_33_;
-                int i_30_ = i_31_ = i_32_ = i_33_ = 0;
-                for (int i_34_ = 2; i_34_ >= 0; i_34_--) {
-                    i_29_--;
-                    i_30_ += is_12_[i_29_];
-                    i_31_ += is_13_[i_29_];
-                    i_33_ += is_14_[i_29_];
-                    i_32_ += is_15_[i_29_];
-                    if (i_29_ == 0) i_29_ = i_16_;
+            var i_26_ = i_20_
+            for (i_27_ in i_19_ downTo 0) {
+                var i_28_ = 1
+                var i_29_ = 1
+                var i_31_: Int
+                var i_32_: Int
+                var i_33_: Int
+                i_33_ = 0
+                i_32_ = i_33_
+                i_31_ = i_32_
+                var i_30_ = i_31_
+                for (i_34_ in 2 downTo 0) {
+                    i_29_--
+                    i_30_ += is_12_[i_29_]
+                    i_31_ += is_13_[i_29_]
+                    i_33_ += is_14_[i_29_]
+                    i_32_ += is_15_[i_29_]
+                    if (i_29_ == 0) i_29_ = i_16_
                 }
-                for (int i_35_ = i_18_; i_35_ >= 0; i_35_--) {
-                    i_29_--;
-                    i_28_--;
-                    int i_36_ = i_30_ / 9;
-                    int i_37_ = i_31_ / 9;
-                    int i_38_ = i_33_ / 9;
-                    int i_39_ = i_32_ / 9;
-                    anIntArray6881[--i_26_] = i_36_ << 24 | i_37_ << 16 | i_38_ << 8 | i_39_;
-                    i_30_ += is_12_[i_29_] - is_12_[i_28_];
-                    i_31_ += is_13_[i_29_] - is_13_[i_28_];
-                    i_32_ += is_15_[i_29_] - is_15_[i_28_];
-                    i_33_ += is_14_[i_29_] - is_14_[i_28_];
-                    if (i_29_ == 0) i_29_ = i_16_;
-                    if (i_28_ == 0) i_28_ = i_16_;
+                for (i_35_ in i_18_ downTo 0) {
+                    i_29_--
+                    i_28_--
+                    val i_36_ = i_30_ / 9
+                    val i_37_ = i_31_ / 9
+                    val i_38_ = i_33_ / 9
+                    val i_39_ = i_32_ / 9
+                    anIntArray6881!![--i_26_] = i_36_ shl 24 or (i_37_ shl 16) or (i_38_ shl 8) or i_39_
+                    i_30_ += is_12_[i_29_] - is_12_[i_28_]
+                    i_31_ += is_13_[i_29_] - is_13_[i_28_]
+                    i_32_ += is_15_[i_29_] - is_15_[i_28_]
+                    i_33_ += is_14_[i_29_] - is_14_[i_28_]
+                    if (i_29_ == 0) i_29_ = i_16_
+                    if (i_28_ == 0) i_28_ = i_16_
                 }
-                for (int i_40_ = i_18_; i_40_ >= 0; i_40_--) {
-                    int i_41_ = anIntArray6884[--i_22_];
-                    int i_42_ = anIntArray6884[--i_21_];
-                    is_12_[i_40_] += (i_41_ >> 24 & 0xff) - (i_42_ >> 24 & 0xff);
-                    is_13_[i_40_] += (i_41_ >> 16 & 0xff) - (i_42_ >> 16 & 0xff);
-                    is_14_[i_40_] += (i_41_ >> 8 & 0xff) - (i_42_ >> 8 & 0xff);
-                    is_15_[i_40_] += (i_41_ & 0xff) - (i_42_ & 0xff);
+                for (i_40_ in i_18_ downTo 0) {
+                    val i_41_ = anIntArray6884!![--i_22_]
+                    val i_42_ = anIntArray6884!![--i_21_]
+                    is_12_[i_40_] += (i_41_ shr 24 and 0xff) - (i_42_ shr 24 and 0xff)
+                    is_13_[i_40_] += (i_41_ shr 16 and 0xff) - (i_42_ shr 16 and 0xff)
+                    is_14_[i_40_] += (i_41_ shr 8 and 0xff) - (i_42_ shr 8 and 0xff)
+                    is_15_[i_40_] += (i_41_ and 0xff) - (i_42_ and 0xff)
                 }
-                if (i_22_ == 0) i_22_ = i_20_;
-                if (i_21_ == 0) i_21_ = i_20_;
+                if (i_22_ == 0) i_22_ = i_20_
+                if (i_21_ == 0) i_21_ = i_20_
             }
-            int[] is_43_ = anIntArray6884;
-            anIntArray6884 = anIntArray6881;
-            anIntArray6881 = is_43_;
+            val is_43_ = anIntArray6884
+            anIntArray6884 = anIntArray6881
+            anIntArray6881 = is_43_
+        }
+    }
+
+    companion object {
+        private var anIntArray6881: IntArray?
+        fun method2996() {
+            anIntArray6881 = null
         }
     }
 }

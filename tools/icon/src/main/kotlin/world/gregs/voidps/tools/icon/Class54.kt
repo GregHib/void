@@ -1,13 +1,15 @@
-package world.gregs.voidps.tools.icon;/* Class54 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class Class54 {
-    static int anInt975;
+/* Class54 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    static final int method500(int i, int i_0_) {
-        anInt975++;
-        if (i != 7) return -107;
-        return i_0_ >>> 8;
+internal object Class54 {
+    var anInt975: Int = 0
+
+    fun method500(i: Int, i_0_: Int): Int {
+        anInt975++
+        if (i != 7) return -107
+        return i_0_ ushr 8
     }
 }

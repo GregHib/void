@@ -1,7 +1,9 @@
-package world.gregs.voidps.tools.icon;/* Class369_Sub3 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-class Class369_Sub3 {
-    static Js5 aJs5_8601;
+/* Class369_Sub3 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
+
+internal object Class369_Sub3 {
+    var aJs5_8601: Js5? = null
 }

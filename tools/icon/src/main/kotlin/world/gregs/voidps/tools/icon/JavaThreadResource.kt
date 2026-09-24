@@ -1,115 +1,118 @@
-package world.gregs.voidps.tools.icon;/* Class167 - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
+package world.gregs.voidps.tools.icon
 
-final class JavaThreadResource {
-    private final JavaToolkit aHa_Sub1_2191;
-    int anInt2192;
-    static int anInt2193;
-    static int anInt2194;
-    boolean aBoolean2195 = false;
-    Runnable aRunnable2198;
-    int anInt2197;
-    int anInt2205;
-    boolean aBoolean2201;
-    boolean aBoolean2202;
-    int anInt2210;
-    int anInt2211;
-    int[] anIntArray2212;
-    int[] anIntArray2213;
-    int[] anIntArray2214;
-    int anInt2215;
-    int[] anIntArray2216;
-    int[] anIntArray2217;
-    int[] anIntArray2218;
-    Matrix_Sub1 aClass101_Sub1_2209;
-    JavaModel aClass64_Sub1_2219;
-    Rasterizer rasterizer;
-    int anInt2221;
-    int[] anIntArray2222;
-    JavaModel aClass64_Sub1_2223;
-    JavaModel aClass64_Sub1_2224;
-    JavaModel aClass64_Sub1_2225;
-    float[] aFloatArray2226;
-    JavaModel aClass64_Sub1_2227;
-    int[] anIntArray2228;
-    int anInt2229;
-    int[] anIntArray2230;
-    JavaModel aClass64_Sub1_2231;
-    int[] anIntArray2232;
-    JavaModel aClass64_Sub1_2233;
-    int[] anIntArray2234;
-    int[] anIntArray2235;
-    int[] anIntArray2236;
-    int[] anIntArray2237;
-    int[] anIntArray2238;
-    JavaModel aClass64_Sub1_2239;
-    int[] anIntArray2240;
-    int[] anIntArray2241;
-    int[] anIntArray2242;
-    JavaModel aClass64_Sub1_2243;
-    int[] anIntArray2244;
-    int[] anIntArray2245;
-    JavaModel aClass64_Sub1_2246;
-    int[] anIntArray2247;
+/* Class167 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*/
 
-    final void method1291(int i, Runnable runnable) {
+internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
+    private val aHa_Sub1_2191: JavaToolkit
+    var anInt2192: Int = 0
+    var aBoolean2195: Boolean = false
+    var aRunnable2198: Runnable? = null
+    var anInt2197: Int = 0
+    var anInt2205: Int = 0
+    var aBoolean2201: Boolean = false
+    var aBoolean2202: Boolean = true
+    var anInt2210: Int
+    var anInt2211: Int = 0
+    var anIntArray2212: IntArray?
+    var anIntArray2213: IntArray?
+    var anIntArray2214: IntArray?
+    var anInt2215: Int = 0
+    var anIntArray2216: IntArray?
+    var anIntArray2217: IntArray?
+    var anIntArray2218: IntArray?
+    var aClass101_Sub1_2209: Matrix_Sub1?
+    var aClass64_Sub1_2219: JavaModel?
+    var rasterizer: Rasterizer?
+    var anInt2221: Int = 0
+    var anIntArray2222: IntArray?
+    var aClass64_Sub1_2223: JavaModel?
+    var aClass64_Sub1_2224: JavaModel?
+    var aClass64_Sub1_2225: JavaModel?
+    var aFloatArray2226: FloatArray?
+    var aClass64_Sub1_2227: JavaModel?
+    var anIntArray2228: IntArray?
+    var anInt2229: Int = 0
+    var anIntArray2230: IntArray?
+    var aClass64_Sub1_2231: JavaModel?
+    var anIntArray2232: IntArray?
+    var aClass64_Sub1_2233: JavaModel?
+    var anIntArray2234: IntArray?
+    var anIntArray2235: IntArray?
+    var anIntArray2236: IntArray?
+    var anIntArray2237: IntArray?
+    var anIntArray2238: IntArray?
+    var aClass64_Sub1_2239: JavaModel?
+    var anIntArray2240: IntArray?
+    var anIntArray2241: IntArray?
+    var anIntArray2242: IntArray?
+    var aClass64_Sub1_2243: JavaModel?
+    var anIntArray2244: IntArray?
+    var anIntArray2245: IntArray?
+    var aClass64_Sub1_2246: JavaModel?
+    var anIntArray2247: IntArray?
+
+    fun method1291(i: Int, runnable: Runnable?) {
         if (i == 10000) {
-            this.aRunnable2198 = runnable;
-            anInt2193++;
+            this.aRunnable2198 = runnable
+            anInt2193++
         }
     }
 
-    final void method1292(int i) {
+    fun method1292(i: Int) {
         if (i == 64) {
-            anInt2194++;
-            this.rasterizer = new Rasterizer(aHa_Sub1_2191, this);
+            anInt2194++
+            this.rasterizer = Rasterizer(aHa_Sub1_2191, this)
         }
     }
 
-    JavaThreadResource(JavaToolkit var_ha_Sub1) {
-        this.anInt2192 = 0;
-        this.anInt2197 = 0;
-        this.anInt2205 = 0;
-        this.aBoolean2202 = true;
-        this.anInt2211 = 0;
-        this.aClass101_Sub1_2209 = new Matrix_Sub1();
-        this.anIntArray2213 = new int[JavaModel.anInt5350];
-        this.anIntArray2214 = new int[JavaModel.anInt5350];
-        this.anIntArray2212 = new int[64];
-        this.aFloatArray2226 = new float[2];
-        this.anIntArray2216 = new int[10000];
-        this.anIntArray2222 = new int[JavaModel.anInt5350];
-        this.anIntArray2232 = new int[64];
-        this.anIntArray2218 = new int[8];
-        this.anIntArray2237 = new int[JavaModel.anInt5350];
-        this.anIntArray2236 = new int[10000];
-        this.anIntArray2230 = new int[JavaModel.anInt5350];
-        this.anIntArray2240 = new int[10];
-        this.anIntArray2228 = new int[64];
-        this.anIntArray2238 = new int[10];
-        this.anIntArray2241 = new int[8];
-        this.anIntArray2235 = new int[10];
-        this.anIntArray2245 = new int[8];
-        this.anIntArray2217 = new int[64];
-        this.anIntArray2244 = new int[JavaModel.anInt5350];
-        this.anIntArray2247 = new int[10];
-        this.anIntArray2234 = new int[JavaModel.anInt5350];
-        aHa_Sub1_2191 = var_ha_Sub1;
-        this.anInt2210 = aHa_Sub1_2191.anInt7494 + -255;
-        this.rasterizer = new Rasterizer(var_ha_Sub1, this);
-        this.aClass64_Sub1_2243 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2224 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2219 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2239 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2233 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2231 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2223 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2227 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2246 = new JavaModel(aHa_Sub1_2191);
-        this.aClass64_Sub1_2225 = new JavaModel(aHa_Sub1_2191);
-        this.anIntArray2242 = new int[JavaModel.anInt5346];
-        for (int i = 0; JavaModel.anInt5346 > i; i++)
-            this.anIntArray2242[i] = -1;
+    init {
+        this.aClass101_Sub1_2209 = Matrix_Sub1()
+        this.anIntArray2213 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2214 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2212 = IntArray(64)
+        this.aFloatArray2226 = FloatArray(2)
+        this.anIntArray2216 = IntArray(10000)
+        this.anIntArray2222 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2232 = IntArray(64)
+        this.anIntArray2218 = IntArray(8)
+        this.anIntArray2237 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2236 = IntArray(10000)
+        this.anIntArray2230 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2240 = IntArray(10)
+        this.anIntArray2228 = IntArray(64)
+        this.anIntArray2238 = IntArray(10)
+        this.anIntArray2241 = IntArray(8)
+        this.anIntArray2235 = IntArray(10)
+        this.anIntArray2245 = IntArray(8)
+        this.anIntArray2217 = IntArray(64)
+        this.anIntArray2244 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2247 = IntArray(10)
+        this.anIntArray2234 = IntArray(JavaModel.Companion.anInt5350)
+        aHa_Sub1_2191 = var_ha_Sub1
+        this.anInt2210 = aHa_Sub1_2191.anInt7494 + -255
+        this.rasterizer = Rasterizer(var_ha_Sub1, this)
+        this.aClass64_Sub1_2243 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2224 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2219 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2239 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2233 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2231 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2223 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2227 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2246 = JavaModel(aHa_Sub1_2191)
+        this.aClass64_Sub1_2225 = JavaModel(aHa_Sub1_2191)
+        this.anIntArray2242 = IntArray(JavaModel.Companion.anInt5346)
+        var i = 0
+        while (JavaModel.Companion.anInt5346 > i) {
+            this.anIntArray2242!![i] = -1
+            i++
+        }
+    }
+
+    companion object {
+        var anInt2193: Int = 0
+        var anInt2194: Int = 0
     }
 }
