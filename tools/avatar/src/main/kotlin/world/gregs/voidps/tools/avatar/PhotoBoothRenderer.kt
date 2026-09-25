@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.avatar
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.config.decoder.IdentityKitDecoder
 import world.gregs.voidps.cache.config.decoder.RenderAnimationDecoder
+import world.gregs.voidps.cache.definition.decoder.AnimationDecoderFull
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.engine.data.Settings
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.data.file.FileStorage
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.storage.DatabaseStorage
+import world.gregs.voidps.tools.render.AnimationFrameSet
 import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
 import world.gregs.voidps.tools.render.Class73
 import world.gregs.voidps.tools.render.Js5TextureSource
@@ -32,7 +34,8 @@ import javax.imageio.ImageIO
  *  --players=<name,name,...>                        render several players (e.g. the dirty set)
  *  --all-dirty                                      render every player flagged photo_booth_dirty
  *
- * Options: --out=<dir> (default ./data/avatars), --size=<px> (default 192), --yaw=<deg>/--pitch=<deg> (chathead angle).
+ * Options: --out=<dir> (default ./data/avatars), --size=<px> (default 192), --yaw=<deg>/--pitch=<deg> (chathead angle),
+ *  --chat-anim=<id>/--chat-frame=<n> (chathead expression, default 9807 frame 0).
  * DB modes require storage.database.* in game.properties.
  *
  * Gradle: ./gradlew :tools:avatar:renderPhotoBooth -Pargs="--player=name --out=/tmp/avatar"
@@ -40,6 +43,7 @@ import javax.imageio.ImageIO
 object PhotoBoothRenderer {
 
     private const val DEFAULT_RENDER_EMOTE = 1426
+    private const val DEFAULT_CHAT_ANIMATION = 9807
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -70,6 +74,10 @@ object PhotoBoothRenderer {
             renderEmote = { itemId -> ItemDefinitions.definitions.getOrNull(itemId)?.get("render_emote", DEFAULT_RENDER_EMOTE) ?: DEFAULT_RENDER_EMOTE },
         )
         val renderer = AvatarRenderer(Class348_Sub40_Sub4.aTextureSource9113)
+        val animations = AvatarAnimations(AnimationDecoderFull().load(cache), AnimationFrameSet.Loader(cache))
+        // Neutral dialogue expression; the first frame has the mouth closed
+        val chatAnimation = args.value("--chat-anim")?.toIntOrNull() ?: DEFAULT_CHAT_ANIMATION
+        val chatFrame = args.value("--chat-frame")?.toIntOrNull() ?: 0
         // Chathead is turned to a 3/4 view (and tilted slightly) to match RS forum avatars
         val chatYaw = args.value("--yaw")?.toDoubleOrNull() ?: -25.0
         val chatPitch = args.value("--pitch")?.toDoubleOrNull() ?: 8.0
@@ -90,13 +98,14 @@ object PhotoBoothRenderer {
                 println("  ! $name: no renderable model (empty snapshot?)")
                 return
             }
+            val stand = animations.body(assembler.standAnimation(snapshot))
             if (body != null) {
-                writePng(renderer.render(body, size, ambient = 64, contrast = 850, pitch = 10.0), "full", name)
+                writePng(renderer.render(body, size, ambient = 64, contrast = 850, frames = stand, pitch = 10.0), "full", name)
             }
             when {
-                head != null -> writePng(renderer.render(head, size, ambient = 64, contrast = 768, pitch = chatPitch, yaw = chatYaw), "chat", name)
+                head != null -> writePng(renderer.render(head, size, ambient = 64, contrast = 768, frames = animations.head(chatAnimation, chatFrame), pitch = chatPitch, yaw = chatYaw), "chat", name)
                 // No dedicated chathead mesh (e.g. full helm): crop the head from the body model.
-                body != null -> writePng(renderer.renderHeadCrop(assembler.body(snapshot)!!, size, ambient = 64, contrast = 850, pitch = chatPitch, yaw = chatYaw), "chat", name)
+                body != null -> writePng(renderer.renderHeadCrop(assembler.body(snapshot)!!, size, ambient = 64, contrast = 850, frames = stand, pitch = chatPitch, yaw = chatYaw), "chat", name)
             }
         }
 

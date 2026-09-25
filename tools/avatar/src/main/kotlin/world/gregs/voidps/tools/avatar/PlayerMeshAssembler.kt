@@ -41,8 +41,7 @@ class PlayerMeshAssembler(
             }
         }
         if (meshes.all { it == null }) return null
-        val weapon = itemId(EquipSlot.Weapon, snapshot)
-        val offsets = renderAnimations.getOrNull(renderEmote(weapon ?: -1))?.anIntArrayArray3273
+        val offsets = renderAnimation(snapshot)?.anIntArrayArray3273
         if (offsets != null) {
             for (slot in 0 until minOf(SLOTS, offsets.size)) {
                 val mesh = meshes[slot] ?: continue
@@ -57,6 +56,21 @@ class PlayerMeshAssembler(
         val mesh = Mesh(meshes, SLOTS)
         BodyColours.apply(mesh, snapshot.colours)
         return mesh
+    }
+
+    /**
+     * Class225.method1621 - the render animation's stand animation, or the first of its
+     * alternatives (the client picks one at random by weight).
+     */
+    fun standAnimation(snapshot: PhotoSnapshot): Int {
+        val definition = renderAnimation(snapshot) ?: return -1
+        if (definition.primaryIdle != -1) return definition.primaryIdle
+        return definition.anIntArray3294?.firstOrNull() ?: -1
+    }
+
+    private fun renderAnimation(snapshot: PhotoSnapshot): RenderAnimationDefinition? {
+        val weapon = itemId(EquipSlot.Weapon, snapshot)
+        return renderAnimations.getOrNull(renderEmote(weapon ?: -1))
     }
 
     fun head(snapshot: PhotoSnapshot): Mesh? {

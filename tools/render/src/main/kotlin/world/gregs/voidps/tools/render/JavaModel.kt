@@ -71,6 +71,13 @@ internal class JavaModel : Model {
     private var anIntArray5399: IntArray? = null
     private var anIntArray5400: IntArray? = null
 
+    // Animation state: Class64_Sub1.anInt5338/anInt5375/anInt5342, aBoolean5372 and aBoolean5380
+    private var originX = 0
+    private var originY = 0
+    private var originZ = 0
+    private var upscaled = false
+    private var coloursChanged = false
+
     private fun method629(i: Int): Boolean {
         if (faceAlpha == null) return false
         return faceAlpha!![i].toInt() != 0
@@ -945,6 +952,177 @@ internal class JavaModel : Model {
             }
             aBoolean5323 = false
         }
+    }
+
+    override fun prepareAnimation(): Boolean {
+        // Class64_Sub1.method633 lights and calculates normals for the bind pose before the animated copy is posed
+        method634(false)
+        method636()
+        if (vertexLabels == null) return false
+        originX = 0
+        originY = 0
+        originZ = 0
+        return true
+    }
+
+    override fun transform(type: Int, labels: IntArray, x: Int, y: Int, z: Int) {
+        var x = x
+        var y = y
+        var z = z
+        val vertexLabels = vertexLabels!!
+        val vertexX = vertexX!!
+        val vertexY = vertexY!!
+        val vertexZ = vertexZ!!
+        when (type) {
+            0 -> {
+                x = x shl 4
+                y = y shl 4
+                z = z shl 4
+                upscaleForAnimation()
+                var count = 0
+                originX = 0
+                originY = 0
+                originZ = 0
+                for (label in labels) {
+                    if (label >= vertexLabels.size) continue
+                    for (vertex in vertexLabels[label]!!) {
+                        originX += vertexX[vertex]
+                        originY += vertexY[vertex]
+                        originZ += vertexZ[vertex]
+                        count++
+                    }
+                }
+                if (count > 0) {
+                    originX = originX / count + x
+                    originY = originY / count + y
+                    originZ = originZ / count + z
+                } else {
+                    originX = x
+                    originY = y
+                    originZ = z
+                }
+            }
+            1 -> {
+                x = x shl 4
+                y = y shl 4
+                z = z shl 4
+                upscaleForAnimation()
+                for (label in labels) {
+                    if (label >= vertexLabels.size) continue
+                    for (vertex in vertexLabels[label]!!) {
+                        vertexX[vertex] += x
+                        vertexY[vertex] += y
+                        vertexZ[vertex] += z
+                    }
+                }
+            }
+            2 -> for (label in labels) {
+                if (label >= vertexLabels.size) continue
+                for (vertex in vertexLabels[label]!!) {
+                    vertexX[vertex] -= originX
+                    vertexY[vertex] -= originY
+                    vertexZ[vertex] -= originZ
+                    // Roll, pitch then yaw
+                    if (z != 0) {
+                        val sin = Mesh.anIntArray1207[z]
+                        val cos = Mesh.anIntArray1204[z]
+                        val rotated = (vertexY[vertex] * sin + vertexX[vertex] * cos + 16383) shr 14
+                        vertexY[vertex] = (vertexY[vertex] * cos - vertexX[vertex] * sin + 16383) shr 14
+                        vertexX[vertex] = rotated
+                    }
+                    if (x != 0) {
+                        val sin = Mesh.anIntArray1207[x]
+                        val cos = Mesh.anIntArray1204[x]
+                        val rotated = (vertexY[vertex] * cos - vertexZ[vertex] * sin + 16383) shr 14
+                        vertexZ[vertex] = (vertexY[vertex] * sin + vertexZ[vertex] * cos + 16383) shr 14
+                        vertexY[vertex] = rotated
+                    }
+                    if (y != 0) {
+                        val sin = Mesh.anIntArray1207[y]
+                        val cos = Mesh.anIntArray1204[y]
+                        val rotated = (vertexZ[vertex] * sin + vertexX[vertex] * cos + 16383) shr 14
+                        vertexZ[vertex] = (vertexZ[vertex] * cos - vertexX[vertex] * sin + 16383) shr 14
+                        vertexX[vertex] = rotated
+                    }
+                    vertexX[vertex] += originX
+                    vertexY[vertex] += originY
+                    vertexZ[vertex] += originZ
+                }
+            }
+            3 -> for (label in labels) {
+                if (label >= vertexLabels.size) continue
+                for (vertex in vertexLabels[label]!!) {
+                    vertexX[vertex] -= originX
+                    vertexY[vertex] -= originY
+                    vertexZ[vertex] -= originZ
+                    vertexX[vertex] = vertexX[vertex] * x / 128
+                    vertexY[vertex] = vertexY[vertex] * y / 128
+                    vertexZ[vertex] = vertexZ[vertex] * z / 128
+                    vertexX[vertex] += originX
+                    vertexY[vertex] += originY
+                    vertexZ[vertex] += originZ
+                }
+            }
+            // Billboard updates are omitted from 5 and 7 as billboards aren't drawn
+            5 -> {
+                val faceLabels = faceLabels ?: return
+                val faceAlpha = faceAlpha ?: return
+                for (label in labels) {
+                    if (label >= faceLabels.size) continue
+                    for (face in faceLabels[label]!!) {
+                        faceAlpha[face] = ((faceAlpha[face].toInt() and 0xff) + x * 8).coerceIn(0, 255).toByte()
+                    }
+                }
+            }
+            7 -> {
+                val faceLabels = faceLabels ?: return
+                val faceColour = faceColour ?: return
+                for (label in labels) {
+                    if (label >= faceLabels.size) continue
+                    for (face in faceLabels[label]!!) {
+                        val colour = faceColour[face].toInt() and 0xffff
+                        val hue = (colour shr 10 and 0x3f) + x and 0x3f
+                        val saturation = ((colour shr 7 and 0x7) + y).coerceIn(0, 7)
+                        val lightness = ((colour and 0x7f) + z).coerceIn(0, 127)
+                        faceColour[face] = (hue shl 10 or (saturation shl 7) or lightness).toShort()
+                    }
+                    coloursChanged = true
+                }
+            }
+        }
+    }
+
+    override fun finishAnimation() {
+        if (upscaled) {
+            val vertexX = vertexX!!
+            val vertexY = vertexY!!
+            val vertexZ = vertexZ!!
+            for (i in 0 until vertexCount) {
+                vertexX[i] = vertexX[i] + 7 shr 4
+                vertexY[i] = vertexY[i] + 7 shr 4
+                vertexZ[i] = vertexZ[i] + 7 shr 4
+            }
+            upscaled = false
+        }
+        if (coloursChanged) {
+            method647()
+            coloursChanged = false
+        }
+        aBoolean5323 = false
+    }
+
+    /** Vertices are animated with 4 bits of extra precision, removed again in [finishAnimation]. */
+    private fun upscaleForAnimation() {
+        if (upscaled) return
+        val vertexX = vertexX!!
+        val vertexY = vertexY!!
+        val vertexZ = vertexZ!!
+        for (i in 0 until vertexCount) {
+            vertexX[i] = vertexX[i] shl 4
+            vertexY[i] = vertexY[i] shl 4
+            vertexZ[i] = vertexZ[i] shl 4
+        }
+        upscaled = true
     }
 
     // dependency of method643, not in genuine list

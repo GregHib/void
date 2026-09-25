@@ -39,14 +39,13 @@ class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_A
                 }
                 val length = buffer.readUnsignedByte()
                 anIntArrayArray3273!![length] = IntArray(6)
-                for (index in 0 until 5) {
-                    anIntArrayArray3273!![length]!![index] = buffer.readUnsignedShort()
+                for (index in 0 until 6) {
+                    anIntArrayArray3273!![length]!![index] = buffer.readShort()
                 }
             }
             28 -> {
-                val length = buffer.readUnsignedByte()
-                anIntArray3276 = IntArray(length)
-                for (count in 0 until length) {
+                anIntArray3276 = IntArray(12)
+                for (count in 0 until 12) {
                     anIntArray3276!![count] = buffer.readUnsignedByte()
                     if (anIntArray3276!![count] == 255) {
                         anIntArray3276!![count] = -1

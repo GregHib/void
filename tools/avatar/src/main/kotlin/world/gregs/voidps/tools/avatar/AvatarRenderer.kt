@@ -1,5 +1,6 @@
 package world.gregs.voidps.tools.avatar
 
+import world.gregs.voidps.tools.render.AnimationFrame
 import world.gregs.voidps.tools.render.Mesh
 import world.gregs.voidps.tools.render.TextureSource
 import world.gregs.voidps.tools.render.Toolkit
@@ -23,16 +24,17 @@ class AvatarRenderer(private val textureSource: TextureSource?) {
 
     /**
      * @param ambient/contrast the client uses 64/850 for the full body and 64/768 for chatheads.
+     * @param frames animation frames to pose the model with, applied in order.
      * @param pitch/yaw in degrees; positive pitch looks down on the model.
      */
-    fun render(mesh: Mesh, size: Int, ambient: Int, contrast: Int, pitch: Double = 0.0, yaw: Double = 0.0): BufferedImage {
-        val raw = draw(mesh, size * SUPERSAMPLE, ambient, contrast, pitch, yaw)
+    fun render(mesh: Mesh, size: Int, ambient: Int, contrast: Int, frames: List<AnimationFrame> = emptyList(), pitch: Double = 0.0, yaw: Double = 0.0): BufferedImage {
+        val raw = draw(mesh, size * SUPERSAMPLE, ambient, contrast, frames, pitch, yaw)
         return scaleTo(cropTight(raw), size)
     }
 
     /** Fallback chathead for cases with no dedicated chathead mesh: renders the body and keeps the top [topFraction]. */
-    fun renderHeadCrop(mesh: Mesh, size: Int, ambient: Int, contrast: Int, pitch: Double = 0.0, yaw: Double = 0.0, topFraction: Double = 0.26): BufferedImage {
-        val raw = draw(mesh, size * SUPERSAMPLE, ambient, contrast, pitch, yaw)
+    fun renderHeadCrop(mesh: Mesh, size: Int, ambient: Int, contrast: Int, frames: List<AnimationFrame> = emptyList(), pitch: Double = 0.0, yaw: Double = 0.0, topFraction: Double = 0.26): BufferedImage {
+        val raw = draw(mesh, size * SUPERSAMPLE, ambient, contrast, frames, pitch, yaw)
         return scaleTo(cropTop(raw, topFraction), size)
     }
 
@@ -49,15 +51,19 @@ class AvatarRenderer(private val textureSource: TextureSource?) {
         return toolkit
     }
 
-    private fun draw(mesh: Mesh, dimension: Int, ambient: Int, contrast: Int, pitchDegrees: Double, yawDegrees: Double): BufferedImage {
+    private fun draw(mesh: Mesh, dimension: Int, ambient: Int, contrast: Int, frames: List<AnimationFrame>, pitchDegrees: Double, yawDegrees: Double): BufferedImage {
         val radius = centre(mesh)
         val toolkit = toolkit(dimension)
-        val model = toolkit.createModel(mesh, FUNCTION_MASK, FEATURE_MASK, ambient, contrast)!!
+        // Lighting is calculated when the model is first posed or drawn, so must be set up first (Class358.method3489)
+        toolkit.xa(1.1523438f)
+        toolkit.ZA(0xFFFFFF, 0.69921875f, 1.2f, -200.0f, -240.0f, -200.0f)
+        val model = toolkit.createModel(mesh, functionMask(frames), FEATURE_MASK, ambient, contrast)!!
         model.loadedTextures()
+        for (frame in frames) model.animate(frame)
 
-        // Keep the whole bounding sphere on screen with a mild perspective
+        // Keep the whole bind pose bounding sphere, plus some room for the pose, on screen with a mild perspective
         val distance = radius * 5
-        val scale = (dimension.toLong() * distance / (radius * 2.8)).toInt()
+        val scale = (dimension.toLong() * distance / (radius * 3.4)).toInt()
         val pitch = angle(pitchDegrees)
         val yaw = angle(yawDegrees)
 
@@ -65,9 +71,6 @@ class AvatarRenderer(private val textureSource: TextureSource?) {
         val camera = toolkit.method3654()!!
         camera.makeIdentity()
         toolkit.setCamera(camera)
-        // Class358.method3489 with the default brightness setting
-        toolkit.xa(1.1523438f)
-        toolkit.ZA(0xFFFFFF, 0.69921875f, 1.2f, -200.0f, -240.0f, -200.0f)
         val matrix = toolkit.method3705()!!
         matrix.makeRotationZ(0)
         matrix.makeAxisY(yaw)
@@ -116,6 +119,19 @@ class AvatarRenderer(private val textureSource: TextureSource?) {
             radius = max(radius, sqrt(xs[i].toDouble() * xs[i] + ys[i].toDouble() * ys[i] + zs[i].toDouble() * zs[i]))
         }
         return radius.toInt() + 1
+    }
+
+    /**
+     * Class154.method1226 - vertex labels are kept for animating, and face labels plus
+     * colours/alphas when a frame modifies them.
+     */
+    private fun functionMask(frames: List<AnimationFrame>): Int {
+        var mask = FUNCTION_MASK
+        if (frames.isEmpty()) return mask
+        mask = mask or 0x20
+        if (frames.any { it.colour }) mask = mask or 0x80
+        if (frames.any { it.alpha }) mask = mask or 0x100
+        return mask
     }
 
     /** Degrees to the client's 14-bit angle. */
