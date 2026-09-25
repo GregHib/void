@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.icon
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.FileCache
+import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
 import world.gregs.voidps.tools.render.Class73
 import world.gregs.voidps.tools.render.Js5TextureSource
@@ -31,7 +32,13 @@ object CacheItemSpriteDumper {
             val cache: Cache = FileCache(cacheDir)
             Class73.cache = cache
             Class348_Sub40_Sub4.aTextureSource9113 = Js5TextureSource(cache)
-            ItemSpriteDumper.itemTypeList = ItemTypeList(0, cache)
+            val decoder = ItemDecoderFull()
+            val definitions = decoder.load(cache)
+            // Notes/lends are generated while decoding in id order, so re-apply now that every template has been decoded
+            for (definition in definitions) {
+                decoder.changeValues(definitions, definition)
+            }
+            ItemSpriteDumper.icons = ItemIconRenderer(cache, definitions)
         } catch (exception: RuntimeException) {
             System.err.println("Failed to load cache from " + cacheDir)
             exception.printStackTrace()

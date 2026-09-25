@@ -27,7 +27,7 @@ internal object ItemSpriteDumper {
         return Toolkit.method3692(i_63_, i_62_, var_textureSource, canvas)
     }
 
-    var itemTypeList: ItemTypeList? = null
+    var icons: ItemIconRenderer? = null
 
     private const val WIDTH = 36
     private const val HEIGHT = 32
@@ -64,7 +64,7 @@ internal object ItemSpriteDumper {
     @JvmOverloads
     fun dump(dir: File = File("item_sprites")) {
         dir.mkdirs()
-        val count = itemTypeList!!.num
+        val count = icons!!.size
         var dumped = 0
         for (id in 0..<count) {
             if (dumpItem(dir, id)) dumped++
@@ -77,10 +77,8 @@ internal object ItemSpriteDumper {
 
     private fun dumpItem(dir: File?, id: Int): Boolean {
         try {
-            val def = itemTypeList!!.list(id)
-            val toolkit = renderer()
-            val pixels = def.sprite(1, false, 0, toolkit, toolkit, if (OUTLINE) 1 else 0)
-            if (pixels == null) return false
+            val def = icons!!.definition(id) ?: return false
+            val pixels = icons!!.pixels(def, 1, false, 0, renderer(), if (OUTLINE) 1 else 0) ?: return false
             val image = BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB)
             image.setRGB(0, 0, WIDTH, HEIGHT, pixels, 0, WIDTH)
             ImageIO.write(image, "png", File(dir, id.toString() + "_" + sanitize(def.name) + ".png"))
@@ -92,8 +90,8 @@ internal object ItemSpriteDumper {
         }
     }
 
-    private fun sanitize(name: String?): String {
-        if (name == null || name.length == 0) return "unnamed"
+    private fun sanitize(name: String): String {
+        if (name.isEmpty()) return "unnamed"
         return name.replace("[^a-zA-Z0-9_-]".toRegex(), "_")
     }
 }
