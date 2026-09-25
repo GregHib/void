@@ -83,10 +83,10 @@
     return [
       { label: "Buy limit", value: it.buyLimit != null ? fmt(it.buyLimit) : "None", note: it.buyLimitWindowHours ? "per " + it.buyLimitWindowHours + " hours" : "" },
       { label: "Margin", value: gp(it.margin), note: "buy minus sell" },
-      { label: "Tax", value: gp(it.tax), note: "2%, capped at 5m" },
-      { label: "Daily volume", value: short(it.volume24h), note: "units, 24h mean" },
-      { label: "High alchemy", value: gp(it.highAlchemy), note: "nature rune not included" },
-      { label: "Low alchemy", value: gp(it.lowAlchemy), note: "fire runes only" },
+      // { label: "Tax", value: gp(it.tax), note: "2%, capped at 5m" },
+      // { label: "Daily volume", value: short(it.volume24h), note: "units, 24h mean" },
+      { label: "Low alchemy", value: gp(it.lowAlchemy), note: "" },
+      { label: "High alchemy", value: gp(it.highAlchemy), note: "" },
       { label: "Shop value", value: gp(it.shopValue), note: "general store base" },
       { label: "Members", value: it.members ? "Yes" : "No", note: it.members ? "members worlds only" : "all worlds" },
     ];
