@@ -1754,7 +1754,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                             f_349_ += f_376_
                             f_351_ += f_386_
                             f_352_ += f_377_
-                            f_354_ += f_397_
+                            f_354_ += f_387_
                             i_358_ = (i_358_ + f_378_).toInt()
                             i_360_ = (i_360_ + f_388_).toInt()
                             f_362_ += f_379_
@@ -2330,9 +2330,9 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                         f_367_ += f_400_
                         f_366_ += f_380_
                         f_370_ += f_401_
-                        f_369_ += f_391_
+                        f_369_ += f_381_
                         f_373_ += f_402_
-                        f_372_ += f_392_
+                        f_372_ += f_382_
                         f_342_ += anInt1678.toFloat()
                     }
                 }
