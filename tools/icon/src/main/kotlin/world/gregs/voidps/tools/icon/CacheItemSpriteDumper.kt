@@ -28,7 +28,7 @@ object CacheItemSpriteDumper {
             val cache: Cache = FileCache(cacheDir)
             Class73.cache = cache
             Class348_Sub40_Sub4.aTextureSource9113 = Js5TextureSource(cache)
-            ItemSpriteDumper.itemTypeList = ItemTypeList(0, true, null, cache)
+            ItemSpriteDumper.itemTypeList = ItemTypeList(0, cache)
         } catch (exception: RuntimeException) {
             System.err.println("Failed to load cache from " + cacheDir)
             exception.printStackTrace()

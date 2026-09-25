@@ -5,11 +5,9 @@ package world.gregs.voidps.tools.icon
 */
 
 internal object Class348_Sub40_Sub21 : Class348_Sub40(0, false) {
-    var anInt9280: Int
     var crc64table: LongArray
 
     init {
-        anInt9280 = 0
         crc64table = LongArray(256)
         for (i in 0..255) {
             var l = i.toLong()

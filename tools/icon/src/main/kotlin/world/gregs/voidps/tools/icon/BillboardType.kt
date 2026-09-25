@@ -18,39 +18,31 @@ internal class BillboardType {
     var anInt2533: Int = 1
     var anInt2534: Int = 2
 
-    private fun method1418(i: Int, i_0_: Int, packet: Packet, i_1_: Byte) {
-        if (i_1_.toInt() != 94) this.anInt2526 = -81
-        anInt2532++
+    private fun method1418(i: Int, packet: Packet) {
         if (i == 1) {
-            this.texture = packet.readUnsignedShort(842397944)
+            this.texture = packet.readUnsignedShort()
             if (this.texture == 65535) this.texture = -1
         } else if (i == 2) {
-            this.anInt2526 = 1 + packet.readUnsignedShort(842397944)
-            this.anInt2530 = packet.readUnsignedShort(842397944) - -1
+            this.anInt2526 = 1 + packet.readUnsignedShort()
+            this.anInt2530 = packet.readUnsignedShort() - -1
         } else if (i != 3) {
-            if (i == 4) this.anInt2534 = packet.readUnsignedByte(255)
+            if (i == 4) this.anInt2534 = packet.readUnsignedByte()
             else if (i != 5) {
                 if (i == 6) this.aBoolean2522 = true
                 else if (i == 7) this.aBoolean2531 = true
-            } else this.anInt2533 = packet.readUnsignedByte(255)
-        } else packet.readByte(-106)
+            } else this.anInt2533 = packet.readUnsignedByte()
+        } else packet.readByte()
     }
 
-    fun method1419(i: Int, packet: Packet, i_2_: Byte) {
-        anInt2528++
+    fun method1419(packet: Packet) {
         while (true) {
-            val i_4_ = packet.readUnsignedByte(255)
+            val i_4_ = packet.readUnsignedByte()
             if (i_4_ == 0) break
-            method1418(i_4_, i, packet, 94.toByte())
+            method1418(i_4_, packet)
         }
     }
 
     init {
         this.texture = -1
-    }
-
-    companion object {
-        var anInt2528: Int = 0
-        var anInt2532: Int = 0
     }
 }

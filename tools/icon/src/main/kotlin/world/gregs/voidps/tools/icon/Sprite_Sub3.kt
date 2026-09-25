@@ -12,11 +12,4 @@ internal abstract class Sprite_Sub3(var aHa_Sub1_8460: JavaToolkit?, var anInt84
     // JaCoCo coverage (0 hits) in the real item-icon dumper run.
     abstract fun method996(i: Int, i_40_: Int, i_41_: Int, i_42_: Int, i_43_: Int, i_44_: Int, i_45_: Int, i_46_: Int, i_47_: Int)
 
-    fun method971(): Int {
-        return this.anInt8471
-    }
-
-    fun method969(): Int {
-        return this.anInt8470
-    }
 }

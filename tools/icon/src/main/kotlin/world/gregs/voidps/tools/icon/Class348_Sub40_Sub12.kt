@@ -7,30 +7,27 @@ package world.gregs.voidps.tools.icon
 internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
     private var anIntArrayArray9194: Array<IntArray>? = null
     private val anIntArray9199 = IntArray(257)
-    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int) {
         if (i == 0) {
-            val i_1_ = packet!!.readUnsignedByte(255)
+            val i_1_ = packet!!.readUnsignedByte()
             if (i_1_ == 0) {
-                anIntArrayArray9194 = Array(packet.readUnsignedByte(255)) { IntArray(4) }
+                anIntArrayArray9194 = Array(packet.readUnsignedByte()) { IntArray(4) }
                 var i_2_ = 0
                 while (anIntArrayArray9194!!.size > i_2_) {
-                    anIntArrayArray9194!![i_2_][0] = packet.readUnsignedShort(842397944)
-                    anIntArrayArray9194!![i_2_][1] = packet.readUnsignedByte(255) shl 4
-                    anIntArrayArray9194!![i_2_][2] = packet.readUnsignedByte(255) shl 4
-                    anIntArrayArray9194!![i_2_][3] = ((packet.readUnsignedByte(Mesh.method2955(i_0_, 31192))) shl 4)
+                    anIntArrayArray9194!![i_2_][0] = packet.readUnsignedShort()
+                    anIntArrayArray9194!![i_2_][1] = packet.readUnsignedByte() shl 4
+                    anIntArrayArray9194!![i_2_][2] = packet.readUnsignedByte() shl 4
+                    anIntArrayArray9194!![i_2_][3] = ((packet.readUnsignedByte()) shl 4)
                     i_2_++
                 }
-            } else method3078(i_1_, i_0_ + -31111)
+            } else method3078(i_1_)
         }
-        anInt9190++
-        if (i_0_ != 31015) method3077(100.toByte())
     }
 
-    override fun method3047(i: Int, i_3_: Int): Array<IntArray>? {
-        anInt9192++
-        val `is` = this.aClass322_7033!!.method2557(i_3_ xor 0x5d41e287, i)
+    override fun method3047(i: Int): Array<IntArray>? {
+        val `is` = this.aClass322_7033!!.method2557(i)
         if (this.aClass322_7033!!.aBoolean4035) {
-            val is_4_ = this.method3048(i, 633706337, 0)
+            val is_4_ = this.method3048(i, 0)
             val is_5_ = `is`!![0]
             val is_6_ = `is`[1]
             val is_7_ = `is`[2]
@@ -46,20 +43,15 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                 i_8_++
             }
         }
-        if (i_3_ != -1564599039) return null
         return `is`
     }
 
-    override fun method3044(i: Int) {
-        if (i >= 108) {
-            anInt9196++
-            if (anIntArrayArray9194 == null) method3078(1, -97)
-            method3079(-29547)
-        }
+    override fun method3044() {
+        if (anIntArrayArray9194 == null) method3078(1)
+        method3079()
     }
 
-    private fun method3078(i: Int, i_10_: Int) {
-        anInt9193++
+    private fun method3078(i: Int) {
         while_157_@ do {
             if (i != 0) {
                 val i_11_ = i
@@ -272,12 +264,9 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
                 throw RuntimeException("Invalid gradient preset")
             }
         } while (false)
-        if (i_10_ > -95) anInt9200 = -61
     }
 
-    private fun method3079(i: Int) {
-        anInt9191++
-        if (i != -29547) method3076(-28, false)
+    private fun method3079() {
         val i_12_ = anIntArrayArray9194!!.size
         if (i_12_ > 0) {
             for (i_13_ in 0..256) {
@@ -329,35 +318,6 @@ internal class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
     companion object {
         fun or(i: Int, i_2_: Int): Int {
             return i or i_2_
-        }
-
-        var aClass351_9189: Class351? = Class351(28, 2)
-        var anInt9190: Int = 0
-        var anInt9191: Int = 0
-        var anInt9192: Int = 0
-        var anInt9193: Int = 0
-        var aClass263_9195: Class263? = null
-        var anInt9196: Int = 0
-        var aClass114_9197: Class114? = Class114(61, -1)
-        var anInt9198: Int = 0
-        var anInt9200: Int = 0
-
-        // Trimmed for item_renderer_standalone: the original body reset dozens
-        // of unrelated interface components (chat, minimap, HUD, etc.) via the
-        // giant Class348_Sub51 client singleton graph, none of which exist in
-        // this standalone item-icon renderer. Not in the genuine-members list
-        // for this class, and every reachable call site passes a constant that
-        // makes the guarded call into this method dead code in practice (see
-        // method3049/method3079 below), so the body is elided.
-        fun method3076(i: Int, bool: Boolean) {
-            anInt9198++
-        }
-
-        fun method3077(i: Byte) {
-            aClass351_9189 = null
-            aClass114_9197 = null
-            if (i.toInt() != -98) method3077(27.toByte())
-            aClass263_9195 = null
         }
     }
 }

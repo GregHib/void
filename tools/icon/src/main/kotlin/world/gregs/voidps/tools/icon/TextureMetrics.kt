@@ -26,7 +26,5 @@ internal class TextureMetrics {
     var aBoolean218: Boolean = false
 
     companion object {
-        var anInt210: Int = 0
-        var anInt214: Int = 0
     }
 }

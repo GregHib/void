@@ -21,7 +21,6 @@ internal class Matrix_Sub1 : Matrix() {
     var aFloat5685: Float = 0f
     var aFloat5686: Float = 0f
     override fun makeIdentity() {
-        anInt5688++
         this.aFloat5664 = 1.0f
         this.aFloat5678 = this.aFloat5664
         this.aFloat5672 = this.aFloat5678
@@ -40,11 +39,9 @@ internal class Matrix_Sub1 : Matrix() {
         this.aFloat5685 += i_17_.toFloat()
         this.aFloat5681 += i_18_.toFloat()
         this.aFloat5686 += i.toFloat()
-        anInt5661++
     }
 
     override fun rotateAxisX(i: Int) {
-        anInt5658++
         val f = aFloatArray5876[0x3fff and i]
         val f_24_ = aFloatArray5874[0x3fff and i]
         val f_25_ = this.aFloat5655
@@ -62,7 +59,6 @@ internal class Matrix_Sub1 : Matrix() {
     }
 
     override fun makeRotationZ(i: Int) {
-        anInt5667++
         this.aFloat5664 = 1.0f
         this.aFloat5678 = aFloatArray5876[0x3fff and i]
         this.aFloat5672 = this.aFloat5678
@@ -78,7 +74,6 @@ internal class Matrix_Sub1 : Matrix() {
     }
 
     override fun makeAxisY(i: Int) {
-        anInt5659++
         val f = aFloatArray5876[0x3fff and i]
         val f_32_ = aFloatArray5874[i and 0x3fff]
         val f_33_ = this.aFloat5672
@@ -110,11 +105,5 @@ internal class Matrix_Sub1 : Matrix() {
                 aFloatArray5876[i] = cos(i.toDouble() * d).toFloat()
             }
         }
-        var anInt5658: Int = 0
-        var aLong5663: Long = 0
-        var anInt5659: Int = 0
-        var anInt5661: Int = 0
-        var anInt5667: Int = 0
-        var anInt5688: Int = 0
     }
 }

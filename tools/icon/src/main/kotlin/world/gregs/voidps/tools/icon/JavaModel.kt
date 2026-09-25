@@ -14,27 +14,21 @@ internal class JavaModel : Model {
     private var anIntArray5315: IntArray? = null
     private var functionMask = 0
     private var faceA: ShortArray? = null
-    private var anIntArray5318: IntArray? = null
     private var aClass101_Sub1_5320: Matrix_Sub1? = null
     private var anIntArray5321: IntArray? = null
     private var emitters: Array<ModelParticleEmitter?>? = null
     private var aBoolean5323 = false
     private var aShort5324: Short = 0
     private var faceAlpha: ByteArray? = null
-    private var anIntArray5326: IntArray? = null
     private var faceIndices: ShortArray? = null
     private var aShort5329: Short = 0
     private var faceLabels: Array<IntArray?>? = null
     private var aShort5331: Short = 0
     private var vertexY: IntArray? = null
-    private var aShortArray5333: ShortArray? = null
     private var vertexLabels: Array<IntArray?>? = null
     private var effectors: Array<ModelParticleEffector?>? = null
     private var anIntArray5337: IntArray? = null
-    private var anInt5338 = 0
     private var vertexCount = 0
-    private var anInt5342 = 0
-    private var anInt5375 = 0
     private var anIntArray5343: IntArray? = null
     private var ambient = 0
     private var texCoordV: Array<FloatArray?>? = null
@@ -48,7 +42,6 @@ internal class JavaModel : Model {
     private var vertexX: IntArray? = null
     private var aBoolean5357 = false
     private var facePriority: ByteArray? = null
-    private var anIntArray5359: IntArray? = null
     private var aClass360Array5360: Array<Class360?>? = null
     private var billboardFaces: Array<JavaBillboardFace?>? = null
     private var anIntArray5362: IntArray? = null
@@ -58,11 +51,7 @@ internal class JavaModel : Model {
     private var anIntArray5366: IntArray? = null
     private var aJavaThreadResource_5367: JavaThreadResource? = null
     private var anIntArray5368: IntArray? = null
-    private val aBoolean5369: Boolean
-    private var aShortArray5370: ShortArray? = null
     private var anIntArray5371: IntArray? = null
-    private val aBoolean5372: Boolean
-    private var anIntArray5373: IntArray? = null
     private var anIntArray5377: IntArray? = null
     private var billboardLabels: Array<IntArray?>? = null
     private var anIntArray5381: IntArray? = null
@@ -79,33 +68,12 @@ internal class JavaModel : Model {
     private var aShort5393: Short = 0
     private var faceB: ShortArray? = null
     private var aShort5395: Short = 0
-    private var anIntArray5398: IntArray? = null
     private var anIntArray5399: IntArray? = null
     private var anIntArray5400: IntArray? = null
 
     private fun method629(i: Int): Boolean {
         if (faceAlpha == null) return false
         return faceAlpha!![i].toInt() != 0
-    }
-
-    // dependency of method645, not in genuine list
-    private fun method630(i: Int, i_0_: Int, i_1_: Int, i_2_: Int, i_3_: Int, i_4_: Int, i_5_: Int, i_6_: Int): Boolean {
-        if (i_0_ < i_1_ && i_0_ < i_2_ && i_0_ < i_3_) return false
-        if (i_0_ > i_1_ && i_0_ > i_2_ && i_0_ > i_3_) return false
-        if (i < i_4_ && i < i_5_ && i < i_6_) return false
-        return i <= i_4_ || i <= i_5_ || i <= i_6_
-    }
-
-    private fun method631() {
-        aClass360Array5360 = null
-        aClass360Array5313 = null
-        aClass41Array5385 = null
-        aBoolean5323 = false
-    }
-
-    fun EA(): Int {
-        if (!aBoolean5323) method655()
-        return aShort5365.toInt()
     }
 
     private fun method632(thread: Thread?) {
@@ -120,15 +88,10 @@ internal class JavaModel : Model {
             anIntArray5321 = aJavaThreadResource_5367!!.anIntArray2234
             anIntArray5343 = aJavaThreadResource_5367!!.anIntArray2230
             anIntArray5355 = aJavaThreadResource_5367!!.anIntArray2213
-            anIntArray5359 = aJavaThreadResource_5367!!.anIntArray2218
-            anIntArray5373 = aJavaThreadResource_5367!!.anIntArray2241
-            anIntArray5398 = aJavaThreadResource_5367!!.anIntArray2245
             anIntArray5315 = aJavaThreadResource_5367!!.anIntArray2238
             anIntArray5371 = aJavaThreadResource_5367!!.anIntArray2247
             anIntArray5381 = aJavaThreadResource_5367!!.anIntArray2235
             anIntArray5377 = aJavaThreadResource_5367!!.anIntArray2240
-            anIntArray5326 = aJavaThreadResource_5367!!.anIntArray2236
-            anIntArray5318 = aJavaThreadResource_5367!!.anIntArray2216
             anIntArray5400 = aJavaThreadResource_5367!!.anIntArray2242
         }
     }
@@ -139,15 +102,6 @@ internal class JavaModel : Model {
                 method657(bool)
             }
         } else method657(bool)
-    }
-
-    fun method619(): Array<ModelParticleEmitter?>? {
-        return emitters
-    }
-
-    fun V(): Int {
-        if (!aBoolean5323) method655()
-        return aShort5395.toInt()
     }
 
     private fun method635(i: Int) {
@@ -167,7 +121,7 @@ internal class JavaModel : Model {
                 anIntArray5355!![i_39_.toInt()].toFloat(),
                 anIntArray5355!![i_40_.toInt()].toFloat(),
                 anIntArray5355!![i_41_.toInt()].toFloat(),
-                (ItemSpriteCacheKey.Companion.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff])
+                (ItemSpriteCacheKey.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff])
             )
             else rasterizer!!.method1022(
                 anIntArray5343!![i_39_.toInt()].toFloat(),
@@ -241,13 +195,8 @@ internal class JavaModel : Model {
         }
     }
 
-    override fun render(matrix: Matrix?, class318_sub3: Class318_Sub3?, i: Int) {
-        method654(matrix, class318_sub3, -1, i)
-    }
-
-    fun HA(): Int {
-        if (!aBoolean5323) method655()
-        return aShort5352.toInt()
+    override fun render(matrix: Matrix?, i: Int) {
+        method654(matrix, i)
     }
 
     private fun method636() {
@@ -278,10 +227,6 @@ internal class JavaModel : Model {
         return anIntArray5400!![i] != -1
     }
 
-    fun da(): Int {
-        return contrast
-    }
-
     override fun loadedTextures(): Boolean {
         if (faceTextures == null) return true
         for (i in faceTextures!!.indices) {
@@ -290,13 +235,9 @@ internal class JavaModel : Model {
         return true
     }
 
-    fun method612() {
-        /* empty */
-    }
-
     private fun method642(i: Int, i_305_: Short, i_306_: Int): Int {
         var i_307_ = Class348_Sub6.anIntArray179!![method637(i, i_306_)]
-        val textureMetrics = toolkit.textureSource!!.getMetrics(i_305_.toInt() and 0xffff, -6662)
+        val textureMetrics = toolkit.textureSource!!.getMetrics(i_305_.toInt() and 0xffff)
         val i_308_ = textureMetrics!!.alpha.toInt() and 0xff
         if (i_308_ != 0) {
             val i_309_ = 131586 * i_306_
@@ -319,18 +260,6 @@ internal class JavaModel : Model {
             i_307_ = (i_313_ shl 8 and 0xff0000) + (i_314_ and 0xff00) + (i_315_ shr 8)
         }
         return i_307_
-    }
-
-    fun method608(matrix: Matrix?, class318_sub3: Class318_Sub3?, i: Int, i_316_: Int) {
-        method654(matrix, class318_sub3, i, i_316_)
-    }
-
-    fun NA(): Boolean {
-        if (vertexLabels == null) return false
-        anInt5338 = 0
-        anInt5375 = 0
-        anInt5342 = 0
-        return true
     }
 
     private fun method643(i: Int, bool: Boolean, bool_317_: Boolean) {
@@ -379,17 +308,9 @@ internal class JavaModel : Model {
         }
     }
 
-    fun F(): Boolean {
-        return transparent
-    }
-
     fun na(): Int {
         if (!aBoolean5323) method655()
         return aShort5324.toInt()
-    }
-
-    fun ba(var_r: r?): r? {
-        return null
     }
 
     // dependency of method643, not in genuine list
@@ -489,7 +410,7 @@ internal class JavaModel : Model {
         if (i_540_ == 3) {
             if (i_563_ < 0 || i_564_ < 0 || i_565_ < 0 || i_563_ > aJavaThreadResource_5367!!.anInt2221 || i_564_ > aJavaThreadResource_5367!!.anInt2221 || i_565_ > aJavaThreadResource_5367!!.anInt2221) rasterizer!!.clamp = true
             if (faceTextures == null || faceTextures!![i].toInt() == -1) {
-                if (anIntArray5366!![i] == -1) rasterizer!!.method1018(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), (ItemSpriteCacheKey.Companion.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff]))
+                if (anIntArray5366!![i] == -1) rasterizer!!.method1018(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), (ItemSpriteCacheKey.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff]))
                 else rasterizer!!.method1022(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), anIntArray5377!![0].toFloat(), anIntArray5377!![1].toFloat(), anIntArray5377!![2].toFloat())
             } else {
                 var i_569_ = -16777216
@@ -503,7 +424,7 @@ internal class JavaModel : Model {
             if (i_563_ < 0 || i_564_ < 0 || i_565_ < 0 || i_563_ > aJavaThreadResource_5367!!.anInt2221 || i_564_ > aJavaThreadResource_5367!!.anInt2221 || i_565_ > aJavaThreadResource_5367!!.anInt2221 || anIntArray5315!![3] < 0 || anIntArray5315!![3] > aJavaThreadResource_5367!!.anInt2221) rasterizer!!.clamp = true
             if (faceTextures == null || faceTextures!![i].toInt() == -1) {
                 if (anIntArray5366!![i] == -1) {
-                    val i_571_: Int = ItemSpriteCacheKey.Companion.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff]
+                    val i_571_: Int = ItemSpriteCacheKey.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff]
                     rasterizer!!.method1018(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), i_571_)
                     rasterizer!!.method1018(i_566_.toFloat(), i_568_.toFloat(), anIntArray5371!![3].toFloat(), i_563_.toFloat(), i_565_.toFloat(), anIntArray5315!![3].toFloat(), i_545_.toFloat(), i_546_.toFloat(), anIntArray5381!![3].toFloat(), i_571_)
                 } else {
@@ -590,171 +511,21 @@ internal class JavaModel : Model {
             if (i_287_.toInt() == -1) {
                 val i_288_ = faceColour!![i].toInt() and 0xffff
                 val i_289_ = (i_288_ and 0x7f) * ambient shr 7
-                val i_290_ = method303(i_288_ and 0x7f.inv() or i_289_, 30)
+                val i_290_ = method303(i_288_ and 0x7f.inv() or i_289_)
                 if (anIntArray5366!![i] == -1) {
                     val i_291_ = anIntArray5368!![i] and 0x1ffff.inv()
-                    anIntArray5368!![i] = i_291_ or method2198(0, i_291_ shr 17, i_290_.toInt())
+                    anIntArray5368!![i] = i_291_ or method2198(i_291_ shr 17, i_290_.toInt())
                 } else if (anIntArray5366!![i] != -2) {
                     var i_292_ = anIntArray5368!![i] and 0x1ffff.inv()
-                    anIntArray5368!![i] = i_292_ or method2198(0, i_292_ shr 17, i_290_.toInt())
+                    anIntArray5368!![i] = i_292_ or method2198(i_292_ shr 17, i_290_.toInt())
                     i_292_ = anIntArray5337!![i] and 0x1ffff.inv()
-                    anIntArray5337!![i] = i_292_ or method2198(0, i_292_ shr 17, i_290_.toInt())
+                    anIntArray5337!![i] = i_292_ or method2198(i_292_ shr 17, i_290_.toInt())
                     i_292_ = anIntArray5366!![i] and 0x1ffff.inv()
-                    anIntArray5366!![i] = i_292_ or method2198(0, i_292_ shr 17, i_290_.toInt())
+                    anIntArray5366!![i] = i_292_ or method2198(i_292_ shr 17, i_290_.toInt())
                 }
             }
         }
         anInt5354 = 2
-    }
-
-    fun C(i: Int) {
-        check((functionMask and 0x1000) == 4096)
-        ambient = i
-        anInt5354 = 0
-    }
-
-    fun RA(): Int {
-        if (!aBoolean5323) method655()
-        return aShort5393.toInt()
-    }
-
-    fun method623(i: Int, i_474_: Int, matrix: Matrix?, bool: Boolean, i_475_: Int, i_476_: Int): Boolean {
-        return method645(i, i_474_, matrix, bool, i_475_, i_476_)
-    }
-
-    fun method604(): Array<ModelParticleEffector?>? {
-        return effectors
-    }
-
-    fun WA(): Int {
-        return ambient
-    }
-
-    fun method621() {
-        if (toolkit.anInt7485 > 1) {
-            synchronized(this) {
-                this.aBoolean1124 = false
-                (this as Object).notifyAll()
-            }
-        }
-    }
-
-    fun method628(i: Int, i_486_: Int, matrix: Matrix?, bool: Boolean, i_487_: Int): Boolean {
-        return method645(i, i_486_, matrix, bool, i_487_, -1)
-    }
-
-    fun ma(): Int {
-        if (!aBoolean5323) method655()
-        return aShort5348.toInt()
-    }
-
-    // dependency of method623 and method628, not in genuine list
-    private fun method645(i: Int, i_488_: Int, matrix: Matrix?, bool: Boolean, i_489_: Int, i_490_: Int): Boolean {
-        aClass101_Sub1_5320 = matrix as Matrix_Sub1
-        val class101_sub1 = toolkit.aClass101_Sub1_7492
-        val f = (class101_sub1!!.aFloat5686 + ((class101_sub1.aFloat5672 * aClass101_Sub1_5320!!.aFloat5686) + (class101_sub1.aFloat5673 * aClass101_Sub1_5320!!.aFloat5685) + (class101_sub1.aFloat5669 * aClass101_Sub1_5320!!.aFloat5681)))
-        val f_491_ = (class101_sub1.aFloat5685 + ((class101_sub1.aFloat5655 * aClass101_Sub1_5320!!.aFloat5686) + (class101_sub1.aFloat5678 * aClass101_Sub1_5320!!.aFloat5685) + (class101_sub1.aFloat5666 * aClass101_Sub1_5320!!.aFloat5681)))
-        val f_492_ = (class101_sub1.aFloat5681 + ((class101_sub1.aFloat5662 * aClass101_Sub1_5320!!.aFloat5686) + (class101_sub1.aFloat5680 * aClass101_Sub1_5320!!.aFloat5685) + (class101_sub1.aFloat5664 * aClass101_Sub1_5320!!.aFloat5681)))
-        val f_493_ = ((class101_sub1.aFloat5672 * aClass101_Sub1_5320!!.aFloat5672) + (class101_sub1.aFloat5673 * aClass101_Sub1_5320!!.aFloat5655) + (class101_sub1.aFloat5669 * aClass101_Sub1_5320!!.aFloat5662))
-        val f_494_ = ((class101_sub1.aFloat5672 * aClass101_Sub1_5320!!.aFloat5673) + (class101_sub1.aFloat5673 * aClass101_Sub1_5320!!.aFloat5678) + (class101_sub1.aFloat5669 * aClass101_Sub1_5320!!.aFloat5680))
-        val f_495_ = ((class101_sub1.aFloat5672 * aClass101_Sub1_5320!!.aFloat5669) + (class101_sub1.aFloat5673 * aClass101_Sub1_5320!!.aFloat5666) + (class101_sub1.aFloat5669 * aClass101_Sub1_5320!!.aFloat5664))
-        val f_496_ = ((class101_sub1.aFloat5655 * aClass101_Sub1_5320!!.aFloat5672) + (class101_sub1.aFloat5678 * aClass101_Sub1_5320!!.aFloat5655) + (class101_sub1.aFloat5666 * aClass101_Sub1_5320!!.aFloat5662))
-        val f_497_ = ((class101_sub1.aFloat5655 * aClass101_Sub1_5320!!.aFloat5673) + (class101_sub1.aFloat5678 * aClass101_Sub1_5320!!.aFloat5678) + (class101_sub1.aFloat5666 * aClass101_Sub1_5320!!.aFloat5680))
-        val f_498_ = ((class101_sub1.aFloat5655 * aClass101_Sub1_5320!!.aFloat5669) + (class101_sub1.aFloat5678 * aClass101_Sub1_5320!!.aFloat5666) + (class101_sub1.aFloat5666 * aClass101_Sub1_5320!!.aFloat5664))
-        val f_499_ = ((class101_sub1.aFloat5662 * aClass101_Sub1_5320!!.aFloat5672) + (class101_sub1.aFloat5680 * aClass101_Sub1_5320!!.aFloat5655) + (class101_sub1.aFloat5664 * aClass101_Sub1_5320!!.aFloat5662))
-        val f_500_ = ((class101_sub1.aFloat5662 * aClass101_Sub1_5320!!.aFloat5673) + (class101_sub1.aFloat5680 * aClass101_Sub1_5320!!.aFloat5678) + (class101_sub1.aFloat5664 * aClass101_Sub1_5320!!.aFloat5680))
-        val f_501_ = ((class101_sub1.aFloat5662 * aClass101_Sub1_5320!!.aFloat5669) + (class101_sub1.aFloat5680 * aClass101_Sub1_5320!!.aFloat5666) + (class101_sub1.aFloat5664 * aClass101_Sub1_5320!!.aFloat5664))
-        var bool_502_ = false
-        val i_503_ = toolkit.anInt7510
-        val i_504_ = toolkit.anInt7504
-        val i_505_ = toolkit.anInt7491
-        val i_506_ = toolkit.anInt7497
-        var i_507_ = 2147483647
-        var i_508_ = -2147483648
-        var i_509_ = 2147483647
-        var i_510_ = -2147483648
-        method632(Thread.currentThread())
-        if (!aBoolean5323) method655()
-        val i_511_ = aShort5393 - aShort5395 shr 1
-        val i_512_ = aShort5365 - aShort5329 shr 1
-        val i_513_ = aShort5331 - aShort5352 shr 1
-        val i_514_ = aShort5395 + i_511_
-        val i_515_ = aShort5329 + i_512_
-        val i_516_ = aShort5352 + i_513_
-        val i_517_ = i_514_ - (i_511_ shl i_489_)
-        val i_518_ = i_515_ - (i_512_ shl i_489_)
-        val i_519_ = i_516_ - (i_513_ shl i_489_)
-        val i_520_ = i_514_ + (i_511_ shl i_489_)
-        val i_521_ = i_515_ + (i_512_ shl i_489_)
-        val i_522_ = i_516_ + (i_513_ shl i_489_)
-        anIntArray5359!![0] = i_517_
-        anIntArray5373!![0] = i_518_
-        anIntArray5398!![0] = i_519_
-        anIntArray5359!![1] = i_520_
-        anIntArray5373!![1] = i_518_
-        anIntArray5398!![1] = i_519_
-        anIntArray5359!![2] = i_517_
-        anIntArray5373!![2] = i_521_
-        anIntArray5398!![2] = i_519_
-        anIntArray5359!![3] = i_520_
-        anIntArray5373!![3] = i_521_
-        anIntArray5398!![3] = i_519_
-        anIntArray5359!![4] = i_517_
-        anIntArray5373!![4] = i_518_
-        anIntArray5398!![4] = i_522_
-        anIntArray5359!![5] = i_520_
-        anIntArray5373!![5] = i_518_
-        anIntArray5398!![5] = i_522_
-        anIntArray5359!![6] = i_517_
-        anIntArray5373!![6] = i_521_
-        anIntArray5398!![6] = i_522_
-        anIntArray5359!![7] = i_520_
-        anIntArray5373!![7] = i_521_
-        anIntArray5398!![7] = i_522_
-        for (i_523_ in 0..7) {
-            val i_524_ = anIntArray5359!![i_523_]
-            val i_525_ = anIntArray5373!![i_523_]
-            val i_526_ = anIntArray5398!![i_523_]
-            val f_527_ = f + (f_493_ * i_524_.toFloat() + f_494_ * i_525_.toFloat() + f_495_ * i_526_.toFloat())
-            val f_528_ = f_491_ + (f_496_ * i_524_.toFloat() + f_497_ * i_525_.toFloat() + f_498_ * i_526_.toFloat())
-            var f_529_ = f_492_ + (f_499_ * i_524_.toFloat() + f_500_ * i_525_.toFloat() + f_501_ * i_526_.toFloat())
-            if (f_529_ >= toolkit.anInt7482.toFloat()) {
-                if (i_490_ > 0) f_529_ = i_490_.toFloat()
-                val i_530_ = i_503_ + (f_527_ * i_505_.toFloat() / f_529_).toInt()
-                val i_531_ = i_504_ + (f_528_ * i_506_.toFloat() / f_529_).toInt()
-                if (i_530_ < i_507_) i_507_ = i_530_
-                if (i_530_ > i_508_) i_508_ = i_530_
-                if (i_531_ < i_509_) i_509_ = i_531_
-                if (i_531_ > i_510_) i_510_ = i_531_
-                bool_502_ = true
-            }
-        }
-        if (bool_502_ && i > i_507_ && i < i_508_ && i_488_ > i_509_ && i_488_ < i_510_) {
-            if (bool) return true
-            for (i_532_ in 0..<vertexCount) {
-                val i_533_ = vertexX!![i_532_]
-                val i_534_ = vertexY!![i_532_]
-                val i_535_ = vertexZ!![i_532_]
-                val f_536_ = f + (f_493_ * i_533_.toFloat() + f_494_ * i_534_.toFloat() + f_495_ * i_535_.toFloat())
-                val f_537_ = f_491_ + (f_496_ * i_533_.toFloat() + f_497_ * i_534_.toFloat() + f_498_ * i_535_.toFloat())
-                var f_538_ = f_492_ + (f_499_ * i_533_.toFloat() + f_500_ * i_534_.toFloat() + f_501_ * i_535_.toFloat())
-                if (f_538_ >= toolkit.anInt7482.toFloat()) {
-                    if (i_490_ > 0) f_538_ = i_490_.toFloat()
-                    anIntArray5321!![i_532_] = i_503_ + (f_536_ * i_505_.toFloat() / f_538_).toInt()
-                    anIntArray5343!![i_532_] = i_504_ + (f_537_ * i_506_.toFloat() / f_538_).toInt()
-                } else anIntArray5321!![i_532_] = -999999
-            }
-            for (i_539_ in 0..<faceCount) {
-                if (anIntArray5321!![faceA!![i_539_].toInt()] != -999999 && anIntArray5321!![faceB!![i_539_].toInt()] != -999999 && anIntArray5321!![faceC!![i_539_].toInt()] != -999999 && method630(i, i_488_, anIntArray5343!![faceA!![i_539_].toInt()], anIntArray5343!![faceB!![i_539_].toInt()], anIntArray5343!![faceC!![i_539_].toInt()], anIntArray5321!![faceA!![i_539_].toInt()], anIntArray5321!![faceB!![i_539_].toInt()], anIntArray5321!![faceC!![i_539_].toInt()])) return true
-            }
-        }
-        return false
-    }
-
-    fun LA(i: Int) {
-        check((functionMask and 0x2000) == 8192)
-        contrast = i
-        anInt5354 = 0
     }
 
     private fun method649() {
@@ -848,7 +619,7 @@ internal class JavaModel : Model {
         }
     }
 
-    private fun method654(matrix: Matrix?, class318_sub3: Class318_Sub3?, i: Int, i_632_: Int) {
+    private fun method654(matrix: Matrix?, i_632_: Int) {
         if (maxVertex >= 1) {
             aClass101_Sub1_5320 = matrix as Matrix_Sub1
             val class101_sub1 = toolkit.aClass101_Sub1_7492
@@ -882,9 +653,7 @@ internal class JavaModel : Model {
                     i_642_ = ((i_640_ - aShort5324) * toolkit.anInt7491)
                     i_643_ = ((i_641_ + aShort5324) * toolkit.anInt7491)
                 }
-                if (i == -1) {
-                    if (i_642_ / i_637_ >= toolkit.anInt7508 || (i_643_ / i_637_ <= toolkit.anInt7509)) return
-                } else if (i_642_ / i >= toolkit.anInt7508 || (i_643_ / i <= toolkit.anInt7509)) return
+                if (i_642_ / i_637_ >= toolkit.anInt7508 || (i_643_ / i_637_ <= toolkit.anInt7509)) return
                 val f_644_ = (class101_sub1.aFloat5685 + (class101_sub1.aFloat5655 * aClass101_Sub1_5320!!.aFloat5686) + (class101_sub1.aFloat5678 * aClass101_Sub1_5320!!.aFloat5685) + (class101_sub1.aFloat5666 * aClass101_Sub1_5320!!.aFloat5681))
                 val f_645_ = (if (bool) class101_sub1.aFloat5678 else ((class101_sub1.aFloat5655 * aClass101_Sub1_5320!!.aFloat5673) + (class101_sub1.aFloat5678 * (aClass101_Sub1_5320!!.aFloat5678)) + (class101_sub1.aFloat5666 * (aClass101_Sub1_5320!!.aFloat5680))))
                 val i_646_ = (f_644_ + aShort5329.toFloat() * f_645_).toInt()
@@ -898,9 +667,7 @@ internal class JavaModel : Model {
                     i_648_ = ((i_646_ - aShort5324) * toolkit.anInt7497)
                     i_649_ = ((i_647_ + aShort5324) * toolkit.anInt7497)
                 }
-                if (i == -1) {
-                    if (i_648_ / i_637_ >= toolkit.anInt7506 || (i_649_ / i_637_ <= toolkit.anInt7490)) return
-                } else if (i_648_ / i >= toolkit.anInt7506 || (i_649_ / i <= toolkit.anInt7490)) return
+                if (i_648_ / i_637_ >= toolkit.anInt7506 || (i_649_ / i_637_ <= toolkit.anInt7490)) return
                 val f_650_: Float
                 val f_651_: Float
                 val f_652_: Float
@@ -945,158 +712,55 @@ internal class JavaModel : Model {
                 val i_659_ = toolkit.anInt7491
                 val i_660_ = toolkit.anInt7497
                 val i_661_ = toolkit.anInt7482
-                if (i == -1) {
-                    for (i_662_ in 0..<vertexCount) {
-                        val i_663_ = vertexX!![i_662_]
-                        val i_664_ = vertexY!![i_662_]
-                        val i_665_ = vertexZ!![i_662_]
-                        val f_666_ = (f_638_ + f_650_ * i_663_.toFloat() + f_639_ * i_664_.toFloat() + f_653_ * i_665_.toFloat())
-                        val f_667_ = (f_644_ + f_651_ * i_663_.toFloat() + f_645_ * i_664_.toFloat() + f_654_ * i_665_.toFloat())
-                        val f_668_ = (f + f_652_ * i_663_.toFloat() + f_633_ * i_664_.toFloat() + f_655_ * i_665_.toFloat())
-                        anIntArray5355!![i_662_] = f_668_.toInt()
-                        if (f_668_ >= i_661_.toFloat()) {
-                            anIntArray5321!![i_662_] = (aJavaThreadResource_5367!!.anInt2229 + (f_666_ * i_659_.toFloat() / f_668_).toInt())
-                            anIntArray5343!![i_662_] = (aJavaThreadResource_5367!!.anInt2215 + (f_667_ * i_660_.toFloat() / f_668_).toInt())
-                        } else {
-                            anIntArray5321!![i_662_] = -5000
-                            bool_656_ = true
-                        }
-                        if (bool_658_) {
-                            anIntArray5399!![i_662_] = f_666_.toInt()
-                            anIntArray5384!![i_662_] = f_667_.toInt()
-                            anIntArray5392!![i_662_] = f_668_.toInt()
-                        }
-                        if (aJavaThreadResource_5367!!.aBoolean2195) anIntArray5362!![i_662_] = ((aClass101_Sub1_5320!!.aFloat5685) + ((aClass101_Sub1_5320!!.aFloat5655 * i_663_.toFloat()) + (aClass101_Sub1_5320!!.aFloat5678 * i_664_.toFloat()) + (aClass101_Sub1_5320!!.aFloat5666 * i_665_.toFloat()))).toInt()
+                for (i_662_ in 0..<vertexCount) {
+                    val i_663_ = vertexX!![i_662_]
+                    val i_664_ = vertexY!![i_662_]
+                    val i_665_ = vertexZ!![i_662_]
+                    val f_666_ = (f_638_ + f_650_ * i_663_.toFloat() + f_639_ * i_664_.toFloat() + f_653_ * i_665_.toFloat())
+                    val f_667_ = (f_644_ + f_651_ * i_663_.toFloat() + f_645_ * i_664_.toFloat() + f_654_ * i_665_.toFloat())
+                    val f_668_ = (f + f_652_ * i_663_.toFloat() + f_633_ * i_664_.toFloat() + f_655_ * i_665_.toFloat())
+                    anIntArray5355!![i_662_] = f_668_.toInt()
+                    if (f_668_ >= i_661_.toFloat()) {
+                        anIntArray5321!![i_662_] = (aJavaThreadResource_5367!!.anInt2229 + (f_666_ * i_659_.toFloat() / f_668_).toInt())
+                        anIntArray5343!![i_662_] = (aJavaThreadResource_5367!!.anInt2215 + (f_667_ * i_660_.toFloat() / f_668_).toInt())
+                    } else {
+                        anIntArray5321!![i_662_] = -5000
+                        bool_656_ = true
                     }
-                    if (billboardFaces != null) {
-                        for (i_669_ in 0..<billboardCount) {
-                            val javaBillboardFace = billboardFaces!![i_669_]
-                            val javaBillboardAttributes = billboardAttributes!![i_669_]
-                            val i_670_ = faceA!![javaBillboardFace!!.anInt144]
-                            val i_671_ = faceB!![javaBillboardFace.anInt144]
-                            val i_672_ = faceC!![javaBillboardFace.anInt144]
-                            val i_673_ = ((vertexX!![i_670_.toInt()] + vertexX!![i_671_.toInt()] + vertexX!![i_672_.toInt()]) / 3)
-                            val i_674_ = ((vertexY!![i_670_.toInt()] + vertexY!![i_671_.toInt()] + vertexY!![i_672_.toInt()]) / 3)
-                            val i_675_ = ((vertexZ!![i_670_.toInt()] + vertexZ!![i_671_.toInt()] + vertexZ!![i_672_.toInt()]) / 3)
-                            val f_676_ = (javaBillboardAttributes!!.anInt4316.toFloat() + (f_638_ + f_650_ * i_673_.toFloat() + f_639_ * i_674_.toFloat() + f_653_ * i_675_.toFloat()))
-                            val f_677_ = (javaBillboardAttributes.anInt4317.toFloat() + (f_644_ + f_651_ * i_673_.toFloat() + f_645_ * i_674_.toFloat() + f_654_ * i_675_.toFloat()))
-                            val f_678_ = (f + f_652_ * i_673_.toFloat() + f_633_ * i_674_.toFloat() + f_655_ * i_675_.toFloat())
-                            if (f_678_ > (toolkit.anInt7482).toFloat()) {
-                                javaBillboardAttributes.anInt4312 = (toolkit.anInt7510 + (f_676_ * i_659_.toFloat() / f_678_).toInt())
-                                javaBillboardAttributes.anInt4310 = (toolkit.anInt7504 + (f_677_ * i_660_.toFloat() / f_678_).toInt())
-                                javaBillboardAttributes.anInt4320 = (f_678_.toInt() - javaBillboardFace.anInt154)
-                                javaBillboardAttributes.anInt4309 = (((javaBillboardAttributes.anInt4314) * (javaBillboardFace.aShort150) * i_659_).toFloat() / (f_678_ * 128.0f)).toInt()
-                                javaBillboardAttributes.anInt4307 = (((javaBillboardAttributes.anInt4311) * (javaBillboardFace.aShort143) * i_660_).toFloat() / (f_678_ * 128.0f)).toInt()
-                            } else {
-                                javaBillboardAttributes.anInt4307 = 0
-                                javaBillboardAttributes.anInt4309 = javaBillboardAttributes.anInt4307
-                            }
-                        }
+                    if (bool_658_) {
+                        anIntArray5399!![i_662_] = f_666_.toInt()
+                        anIntArray5384!![i_662_] = f_667_.toInt()
+                        anIntArray5392!![i_662_] = f_668_.toInt()
                     }
-                } else {
-                    for (i_679_ in 0..<vertexCount) {
-                        val i_680_ = vertexX!![i_679_]
-                        val i_681_ = vertexY!![i_679_]
-                        val i_682_ = vertexZ!![i_679_]
-                        val f_683_ = (f_638_ + f_650_ * i_680_.toFloat() + f_639_ * i_681_.toFloat() + f_653_ * i_682_.toFloat())
-                        val f_684_ = (f_644_ + f_651_ * i_680_.toFloat() + f_645_ * i_681_.toFloat() + f_654_ * i_682_.toFloat())
-                        val f_685_ = (f + f_652_ * i_680_.toFloat() + f_633_ * i_681_.toFloat() + f_655_ * i_682_.toFloat())
-                        anIntArray5355!![i_679_] = f_685_.toInt()
-                        anIntArray5321!![i_679_] = (aJavaThreadResource_5367!!.anInt2229 + (f_683_ * i_659_.toFloat() / i.toFloat()).toInt())
-                        anIntArray5343!![i_679_] = (aJavaThreadResource_5367!!.anInt2215 + (f_684_ * i_660_.toFloat() / i.toFloat()).toInt())
-                        if (bool_658_) {
-                            anIntArray5399!![i_679_] = f_683_.toInt()
-                            anIntArray5384!![i_679_] = f_684_.toInt()
-                            anIntArray5392!![i_679_] = i
-                        }
-                        if (aJavaThreadResource_5367!!.aBoolean2195) anIntArray5362!![i_679_] = ((aClass101_Sub1_5320!!.aFloat5685) + ((aClass101_Sub1_5320!!.aFloat5655 * i_680_.toFloat()) + (aClass101_Sub1_5320!!.aFloat5678 * i_681_.toFloat()) + (aClass101_Sub1_5320!!.aFloat5666 * i_682_.toFloat()))).toInt()
-                    }
-                    if (billboardFaces != null) {
-                        for (i_686_ in 0..<billboardCount) {
-                            val javaBillboardFace = billboardFaces!![i_686_]
-                            val javaBillboardAttributes = billboardAttributes!![i_686_]
-                            val i_687_ = faceA!![javaBillboardFace!!.anInt144]
-                            val i_688_ = faceB!![javaBillboardFace.anInt144]
-                            val i_689_ = faceC!![javaBillboardFace.anInt144]
-                            val i_690_ = ((vertexX!![i_687_.toInt()] + vertexX!![i_688_.toInt()] + vertexX!![i_689_.toInt()]) / 3)
-                            val i_691_ = ((vertexY!![i_687_.toInt()] + vertexY!![i_688_.toInt()] + vertexY!![i_689_.toInt()]) / 3)
-                            val i_692_ = ((vertexZ!![i_687_.toInt()] + vertexZ!![i_688_.toInt()] + vertexZ!![i_689_.toInt()]) / 3)
-                            val f_693_ = (f_638_ + f_650_ * i_690_.toFloat() + f_639_ * i_691_.toFloat() + f_653_ * i_692_.toFloat())
-                            val f_694_ = (f_644_ + f_651_ * i_690_.toFloat() + f_645_ * i_691_.toFloat() + f_654_ * i_692_.toFloat())
-                            val f_695_ = (f + f_652_ * i_690_.toFloat() + f_633_ * i_691_.toFloat() + f_655_ * i_692_.toFloat())
-                            javaBillboardAttributes!!.anInt4312 = (toolkit.anInt7510 + (f_693_ * i_659_.toFloat() / i.toFloat()).toInt())
-                            javaBillboardAttributes.anInt4310 = (toolkit.anInt7504 + (f_694_ * i_660_.toFloat() / i.toFloat()).toInt())
-                            javaBillboardAttributes.anInt4320 = i - javaBillboardFace.anInt154
-                            javaBillboardAttributes.anInt4309 = (javaBillboardAttributes.anInt4314 * javaBillboardFace.aShort150 * i_659_ / (i shl 7))
-                            javaBillboardAttributes.anInt4307 = (javaBillboardAttributes.anInt4311 * javaBillboardFace.aShort143 * i_660_ / (i shl 7))
-                        }
-                    }
+                    if (aJavaThreadResource_5367!!.aBoolean2195) anIntArray5362!![i_662_] = ((aClass101_Sub1_5320!!.aFloat5685) + ((aClass101_Sub1_5320!!.aFloat5655 * i_663_.toFloat()) + (aClass101_Sub1_5320!!.aFloat5678 * i_664_.toFloat()) + (aClass101_Sub1_5320!!.aFloat5666 * i_665_.toFloat()))).toInt()
                 }
-                if (class318_sub3 != null) {
-                    var bool_696_ = false
-                    var bool_697_ = true
-                    val i_698_ = aShort5395 + aShort5393 shr 1
-                    val i_699_ = aShort5352 + aShort5331 shr 1
-                    var i_700_ = i_698_
-                    var i_701_ = aShort5329
-                    var i_702_ = i_699_
-                    val f_703_ = (f_638_ + f_650_ * i_700_.toFloat() + f_639_ * i_701_.toFloat() + f_653_ * i_702_.toFloat())
-                    val f_704_ = (f_644_ + f_651_ * i_700_.toFloat() + f_645_ * i_701_.toFloat() + f_654_ * i_702_.toFloat())
-                    val f_705_ = (f + f_652_ * i_700_.toFloat() + f_633_ * i_701_.toFloat() + f_655_ * i_702_.toFloat())
-                    if (f_705_ >= i_661_.toFloat()) {
-                        var i_706_ = f_705_.toInt()
-                        if (i != -1) i_706_ = i
-                        class318_sub3.anInt6405 = (toolkit.anInt7510 + (f_703_ * i_659_.toFloat() / i_706_.toFloat()).toInt())
-                        class318_sub3.anInt6402 = (toolkit.anInt7504 + (f_704_ * i_660_.toFloat() / i_706_.toFloat()).toInt())
-                    } else bool_696_ = true
-                    i_700_ = i_698_
-                    i_701_ = aShort5365
-                    i_702_ = i_699_
-                    val f_707_ = (f_638_ + f_650_ * i_700_.toFloat() + f_639_ * i_701_.toFloat() + f_653_ * i_702_.toFloat())
-                    val f_708_ = (f_644_ + f_651_ * i_700_.toFloat() + f_645_ * i_701_.toFloat() + f_654_ * i_702_.toFloat())
-                    val f_709_ = (f + f_652_ * i_700_.toFloat() + f_633_ * i_701_.toFloat() + f_655_ * i_702_.toFloat())
-                    if (f_709_ >= i_661_.toFloat()) {
-                        var i_710_ = f_709_.toInt()
-                        if (i != -1) i_710_ = i
-                        class318_sub3.anInt6406 = (toolkit.anInt7510 + (f_707_ * i_659_.toFloat() / i_710_.toFloat()).toInt())
-                        class318_sub3.anInt6404 = (toolkit.anInt7504 + (f_708_ * i_660_.toFloat() / i_710_.toFloat()).toInt())
-                    } else bool_696_ = true
-                    if (bool_696_) {
-                        if (f_705_ < i_661_.toFloat() && f_709_ < i_661_.toFloat()) bool_697_ = false
-                        else if (f_705_ < i_661_.toFloat()) {
-                            val f_711_ = ((f_709_ - (toolkit.anInt7482).toFloat()) / (f_709_ - f_705_))
-                            val i_712_ = (f_707_ + (f_707_ - f_703_) * f_711_).toInt()
-                            val i_713_ = (f_708_ + (f_708_ - f_704_) * f_711_).toInt()
-                            var i_714_ = i_661_
-                            if (i != -1) i_714_ = i
-                            class318_sub3.anInt6405 = (toolkit.anInt7510 + i_712_ * i_659_ / i_714_)
-                            class318_sub3.anInt6402 = (toolkit.anInt7504 + i_713_ * i_660_ / i_714_)
-                        } else if (f_709_ < i_661_.toFloat()) {
-                            val f_715_ = ((f_705_ - i_661_.toFloat()) / (f_705_ - f_709_))
-                            val i_716_ = (f_703_ + (f_703_ - f_707_) * f_715_).toInt()
-                            val i_717_ = (f_704_ + (f_704_ - f_708_) * f_715_).toInt()
-                            var i_718_ = i_661_
-                            if (i != -1) i_718_ = i
-                            class318_sub3.anInt6405 = (toolkit.anInt7510 + i_716_ * i_659_ / i_718_)
-                            class318_sub3.anInt6402 = (toolkit.anInt7504 + i_717_ * i_660_ / i_718_)
-                        }
-                    }
-                    if (bool_697_) {
-                        if (f_705_ > f_709_) {
-                            var i_719_ = f_705_.toInt()
-                            if (i != -1) i_719_ = i
-                            class318_sub3.anInt6403 = (toolkit.anInt7510 + ((f_703_ + aShort5324.toFloat()) * i_659_.toFloat() / i_719_.toFloat()).toInt() - (class318_sub3.anInt6405))
+                if (billboardFaces != null) {
+                    for (i_669_ in 0..<billboardCount) {
+                        val javaBillboardFace = billboardFaces!![i_669_]
+                        val javaBillboardAttributes = billboardAttributes!![i_669_]
+                        val i_670_ = faceA!![javaBillboardFace!!.anInt144]
+                        val i_671_ = faceB!![javaBillboardFace.anInt144]
+                        val i_672_ = faceC!![javaBillboardFace.anInt144]
+                        val i_673_ = ((vertexX!![i_670_.toInt()] + vertexX!![i_671_.toInt()] + vertexX!![i_672_.toInt()]) / 3)
+                        val i_674_ = ((vertexY!![i_670_.toInt()] + vertexY!![i_671_.toInt()] + vertexY!![i_672_.toInt()]) / 3)
+                        val i_675_ = ((vertexZ!![i_670_.toInt()] + vertexZ!![i_671_.toInt()] + vertexZ!![i_672_.toInt()]) / 3)
+                        val f_676_ = (javaBillboardAttributes!!.anInt4316.toFloat() + (f_638_ + f_650_ * i_673_.toFloat() + f_639_ * i_674_.toFloat() + f_653_ * i_675_.toFloat()))
+                        val f_677_ = (javaBillboardAttributes.anInt4317.toFloat() + (f_644_ + f_651_ * i_673_.toFloat() + f_645_ * i_674_.toFloat() + f_654_ * i_675_.toFloat()))
+                        val f_678_ = (f + f_652_ * i_673_.toFloat() + f_633_ * i_674_.toFloat() + f_655_ * i_675_.toFloat())
+                        if (f_678_ > (toolkit.anInt7482).toFloat()) {
+                            javaBillboardAttributes.anInt4312 = (toolkit.anInt7510 + (f_676_ * i_659_.toFloat() / f_678_).toInt())
+                            javaBillboardAttributes.anInt4310 = (toolkit.anInt7504 + (f_677_ * i_660_.toFloat() / f_678_).toInt())
+                            javaBillboardAttributes.anInt4320 = (f_678_.toInt() - javaBillboardFace.anInt154)
+                            javaBillboardAttributes.anInt4309 = (((javaBillboardAttributes.anInt4314) * (javaBillboardFace.aShort150) * i_659_).toFloat() / (f_678_ * 128.0f)).toInt()
+                            javaBillboardAttributes.anInt4307 = (((javaBillboardAttributes.anInt4311) * (javaBillboardFace.aShort143) * i_660_).toFloat() / (f_678_ * 128.0f)).toInt()
                         } else {
-                            var i_720_ = f_709_.toInt()
-                            if (i != -1) i_720_ = i
-                            class318_sub3.anInt6403 = (toolkit.anInt7510 + ((f_707_ + aShort5324.toFloat()) * i_659_.toFloat() / i_720_.toFloat()).toInt() - (class318_sub3.anInt6406))
+                            javaBillboardAttributes.anInt4307 = 0
+                            javaBillboardAttributes.anInt4309 = javaBillboardAttributes.anInt4307
                         }
-                        class318_sub3.aBoolean6401 = true
                     }
                 }
                 method634(true)
                 rasterizer!!.aBoolean1669 = (i_632_ and 0x1) == 0
-                rasterizer!!.aBoolean1667 = false
                 try {
                     method650(bool_656_, ((aJavaThreadResource_5367!!.aBoolean2201 && (i_637_ > aJavaThreadResource_5367!!.anInt2210)) || aJavaThreadResource_5367!!.aBoolean2195), i_636_, i_637_ - i_636_)
                 } catch (exception: Exception) {
@@ -1114,10 +778,6 @@ internal class JavaModel : Model {
                 }
             }
         }
-    }
-
-    fun r(): Boolean {
-        return movingTextures
     }
 
     private fun method655() {
@@ -1198,35 +858,35 @@ internal class JavaModel : Model {
                     if (i_740_.toInt() == 0) {
                         val i_743_ = faceColour!![i_739_].toInt() and 0xffff
                         val i_744_ = (i_743_ and 0x7f) * ambient shr 7
-                        val i_745_ = method303(i_743_ and 0x7f.inv() or i_744_, 30)
+                        val i_745_ = method303(i_743_ and 0x7f.inv() or i_744_)
                         var class360: Class360
                         if (aClass360Array5313 != null && (aClass360Array5313!![faceA!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceA!![i_739_].toInt()]!!
                         else class360 = aClass360Array5360!![faceA!![i_739_].toInt()]!!
                         var i_746_ = (((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16)
                         var i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         var i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
-                        anIntArray5368!![i_739_] = i_748_ shl 17 or method2198(0, i_748_, i_745_.toInt())
+                        anIntArray5368!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
                         if (aClass360Array5313 != null && (aClass360Array5313!![faceB!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceB!![i_739_].toInt()]!!
                         else class360 = aClass360Array5360!![faceB!![i_739_].toInt()]!!
                         i_746_ = ((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16
                         i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
-                        anIntArray5337!![i_739_] = i_748_ shl 17 or method2198(0, i_748_, i_745_.toInt())
+                        anIntArray5337!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
                         if (aClass360Array5313 != null && (aClass360Array5313!![faceC!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceC!![i_739_].toInt()]!!
                         else class360 = aClass360Array5360!![faceC!![i_739_].toInt()]!!
                         i_746_ = ((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16
                         i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
-                        anIntArray5366!![i_739_] = i_748_ shl 17 or method2198(0, i_748_, i_745_.toInt())
+                        anIntArray5366!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
                     } else if (i_740_.toInt() == 1) {
                         val i_749_ = faceColour!![i_739_].toInt() and 0xffff
                         val i_750_ = (i_749_ and 0x7f) * ambient shr 7
-                        val i_751_ = method303(i_749_ and 0x7f.inv() or i_750_, 30)
+                        val i_751_ = method303(i_749_ and 0x7f.inv() or i_750_)
                         val class41 = aClass41Array5385!![i_739_]
                         val i_752_ = ((i * class41!!.anInt561 + i_734_ * class41.anInt560 + i_735_ * class41.anInt559) shr 16)
                         val i_753_ = if (i_752_ > 256) i_737_ else i_738_
                         val i_754_ = (i_736_ shr 1) + (i_753_ * i_752_ shr 17)
-                        anIntArray5368!![i_739_] = i_754_ shl 17 or method2198(0, i_754_, i_751_.toInt())
+                        anIntArray5368!![i_739_] = i_754_ shl 17 or method2198(i_754_, i_751_.toInt())
                         anIntArray5366!![i_739_] = -1
                     } else if (i_740_.toInt() == 3) {
                         anIntArray5368!![i_739_] = 128
@@ -1287,10 +947,6 @@ internal class JavaModel : Model {
         }
     }
 
-    fun ua(): Int {
-        return functionMask
-    }
-
     // dependency of method643, not in genuine list
     private fun method658(i: Int) {
         if (aJavaThreadResource_5367!!.aBoolean2195) {
@@ -1319,9 +975,9 @@ internal class JavaModel : Model {
                     anIntArray5355!![i_777_.toInt()].toFloat(),
                     anIntArray5355!![i_778_.toInt()].toFloat(),
                     anIntArray5355!![i_779_.toInt()].toFloat(),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.Companion.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.Companion.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.Companion.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
+                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
                 )
                 else rasterizer!!.method1027(
                     anIntArray5343!![i_777_.toInt()].toFloat(),
@@ -1333,9 +989,9 @@ internal class JavaModel : Model {
                     anIntArray5355!![i_777_.toInt()].toFloat(),
                     anIntArray5355!![i_778_.toInt()].toFloat(),
                     anIntArray5355!![i_779_.toInt()].toFloat(),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.Companion.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.Companion.HSV_TO_RGB!![(anIntArray5337!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.Companion.HSV_TO_RGB!![(anIntArray5366!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
+                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5337!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5366!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
                 )
             } else {
                 var i_775_ = -16777216
@@ -1398,9 +1054,7 @@ internal class JavaModel : Model {
 
     constructor(var_ha_Sub1: JavaToolkit) {
         anInt5354 = 0
-        aBoolean5369 = false
         faceCount = 0
-        aBoolean5372 = false
         movingTextures = false
         maxVertex = 0
         transparent = false
@@ -1409,9 +1063,7 @@ internal class JavaModel : Model {
 
     constructor(toolkit: JavaToolkit, mesh: Mesh, functionMask: Int, ambient: Int, contrast: Int, featureMask: Int) {
         anInt5354 = 0
-        aBoolean5369 = false
         faceCount = 0
-        aBoolean5372 = false
         movingTextures = false
         maxVertex = 0
         transparent = false
@@ -1432,11 +1084,9 @@ internal class JavaModel : Model {
         facePriority = mesh.facePriority
         faceColour = mesh.faceColour
         faceAlpha = mesh.faceAlpha
-        aShortArray5370 = mesh.aShortArray1856
         shadingType = mesh.shadingType
         emitters = mesh.emitters
         effectors = mesh.effectors
-        aShortArray5333 = mesh.aShortArray1842
         val faceIndex = IntArray(faceCount)
         for (i_788_ in 0..<faceCount) faceIndex[i_788_] = i_788_
         val faceIds = LongArray(faceCount)
@@ -1453,10 +1103,10 @@ internal class JavaModel : Model {
                 for (j in mesh.billboards!!.indices) {
                     val billboard = mesh.billboards!![j]!!
                     if (index == billboard.face) {
-                        val type = Class73.list(104, (billboard.id))
+                        val type = Class73.list((billboard.id))
                         if (type.aBoolean2531) hideFace = true
                         if (type.texture != -1) {
-                            val textureMetrics_797_ = source!!.getMetrics((type.texture), -6662)
+                            val textureMetrics_797_ = source!!.getMetrics((type.texture))
                             if (textureMetrics_797_!!.alphaBlendMode == 2) transparent = true
                         }
                     }
@@ -1467,7 +1117,7 @@ internal class JavaModel : Model {
             if (mesh.faceTexture != null) {
                 texture = mesh.faceTexture!![index].toInt()
                 if (texture != -1) {
-                    metrics = source!!.getMetrics(texture and 0xffff, -6662)
+                    metrics = source!!.getMetrics(texture and 0xffff)
                     if ((featureMask and 0x40) == 0 || !metrics!!.disableable) {
                         i_793_ = metrics!!.effectType.toInt()
                         i_794_ = metrics.effectParam1.toInt()
@@ -1484,15 +1134,15 @@ internal class JavaModel : Model {
             faceIds[i] = (i_791_.toLong() shl 32) + i_792_.toLong()
             transparent = transparent or transparentFace
         }
-        sort(faceIndex, faceIds, 0)
+        sort(faceIndex, faceIds)
         if (mesh.billboards != null) {
             billboardCount = mesh.billboards!!.size
             billboardFaces = arrayOfNulls<JavaBillboardFace>(billboardCount)
             billboardAttributes = arrayOfNulls<JavaBillboardAttributes>(billboardCount)
             for (i_800_ in mesh.billboards!!.indices) {
                 val billboard = mesh.billboards!![i_800_]!!
-                val type = Class73.list(104, billboard.id)
-                var i_801_: Int = ((ItemSpriteCacheKey.Companion.HSV_TO_RGB!![(mesh.faceColour!![billboard.face]).toInt() and 0xffff]) and 0xffffff)
+                val type = Class73.list(billboard.id)
+                var i_801_: Int = ((ItemSpriteCacheKey.HSV_TO_RGB!![(mesh.faceColour!![billboard.face]).toInt() and 0xffff]) and 0xffffff)
                 i_801_ = (i_801_ or (255 - (if (mesh.faceAlpha != null) (mesh.faceAlpha!![billboard.face]).toInt() and 0xff else 0) shl 24))
                 billboardFaces!![i_800_] = JavaBillboardFace(billboard.face, (mesh.faceA!![billboard.face]).toInt(), (mesh.faceB!![billboard.face]).toInt(), (mesh.faceC!![billboard.face]).toInt(), type.anInt2526, type.anInt2530, type.texture, type.anInt2533, type.anInt2534, type.aBoolean2531, billboard.anInt2158)
                 billboardAttributes!![i_800_] = JavaBillboardAttributes(i_801_)
@@ -1500,7 +1150,7 @@ internal class JavaModel : Model {
         }
         texCoordU = arrayOfNulls<FloatArray>(faceCount)
         texCoordV = arrayOfNulls<FloatArray>(faceCount)
-        val universe = Class59_Sub2_Sub1.fromMesh(255, faceCount, mesh, faceIndex)
+        val universe = Class59_Sub2_Sub1.fromMesh(faceCount, mesh, faceIndex)
         val javaThreadResource = this.toolkit.threadResource(Thread.currentThread())
         val fs = javaThreadResource!!.aFloatArray2226
         var bool_802_ = false
@@ -1511,7 +1161,7 @@ internal class JavaModel : Model {
             else i_805_ = mesh.faceTexSpace!![i_804_].toInt()
             var i_806_ = (if (mesh.faceTexture == null) -1 else mesh.faceTexture!![i_804_]).toInt()
             if (i_806_ != -1 && (featureMask and 0x40) != 0) {
-                val metrics = source!!.getMetrics(i_806_ and 0xffff, -6662)
+                val metrics = source!!.getMetrics(i_806_ and 0xffff)
                 if (metrics!!.disableable) i_806_ = -1
             }
             if (i_806_ != -1) {
@@ -1520,7 +1170,6 @@ internal class JavaModel : Model {
                 val fs_807_ = texCoordU!![i_804_]
                 texCoordV!![i_804_] = FloatArray(3)
                 val fs_808_ = texCoordV!![i_804_]
-                val bool_809_ = false
                 if (i_805_ == -1) {
                     fs_807_!![0] = 0.0f
                     fs_808_!![0] = 1.0f
@@ -1585,13 +1234,13 @@ internal class JavaModel : Model {
                         val f = ((mesh.texOffsetX!![i_805_]).toFloat() / 256.0f)
                         if (mappingType.toInt() == 1) {
                             val f_849_ = ((mesh.texSpaceScaleZ!![i_805_]).toFloat() / 1024.0f)
-                            Class246.Companion.cylinderMap(i_846_, vertexZ!![i_841_.toInt()], direction.toInt(), 8, vertexX!![i_841_.toInt()], fs, vertexY!![i_841_.toInt()], f, i_845_, i_844_, f_849_, fs_847_)
+                            Class246.cylinderMap(i_846_, vertexZ!![i_841_.toInt()], direction.toInt(), vertexX!![i_841_.toInt()], fs, vertexY!![i_841_.toInt()], f, i_845_, i_844_, f_849_, fs_847_)
                             fs_807_!![0] = fs[0]
                             fs_808_!![0] = fs[1]
-                            Class246.Companion.cylinderMap(i_846_, vertexZ!![i_842_.toInt()], direction.toInt(), 8, vertexX!![i_842_.toInt()], fs, vertexY!![i_842_.toInt()], f, i_845_, i_844_, f_849_, fs_847_)
+                            Class246.cylinderMap(i_846_, vertexZ!![i_842_.toInt()], direction.toInt(), vertexX!![i_842_.toInt()], fs, vertexY!![i_842_.toInt()], f, i_845_, i_844_, f_849_, fs_847_)
                             fs_807_[1] = fs[0]
                             fs_808_[1] = fs[1]
-                            Class246.Companion.cylinderMap(i_846_, vertexZ!![i_843_.toInt()], direction.toInt(), 8, vertexX!![i_843_.toInt()], fs, vertexY!![i_843_.toInt()], f, i_845_, i_844_, f_849_, fs_847_)
+                            Class246.cylinderMap(i_846_, vertexZ!![i_843_.toInt()], direction.toInt(), vertexX!![i_843_.toInt()], fs, vertexY!![i_843_.toInt()], f, i_845_, i_844_, f_849_, fs_847_)
                             fs_807_[2] = fs[0]
                             fs_808_[2] = fs[1]
                             val f_850_ = f_849_ / 2.0f
@@ -1624,24 +1273,24 @@ internal class JavaModel : Model {
                             val f_865_ = ((i_859_.toFloat() * fs_847_!![0] + i_860_.toFloat() * fs_847_[1] + i_861_.toFloat() * fs_847_[2]) / f_862_)
                             val f_866_ = ((i_859_.toFloat() * fs_847_[3] + i_860_.toFloat() * fs_847_[4] + i_861_.toFloat() * fs_847_[5]) / f_863_)
                             val f_867_ = ((i_859_.toFloat() * fs_847_[6] + i_860_.toFloat() * fs_847_[7] + i_861_.toFloat() * fs_847_[8]) / f_864_)
-                            val i_868_ = Class331.method2635(f_866_, false, f_867_, f_865_)
-                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_841_.toInt()], i_846_, false, direction.toInt(), i_844_, vertexX!![i_841_.toInt()], vertexY!![i_841_.toInt()], f_851_, fs, i_845_, i_868_)
+                            val i_868_ = Class331.method2635(f_866_, f_867_, f_865_)
+                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_841_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_841_.toInt()], vertexY!![i_841_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_!![0] = fs[0]
                             fs_808_!![0] = fs[1]
-                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_842_.toInt()], i_846_, false, direction.toInt(), i_844_, vertexX!![i_842_.toInt()], vertexY!![i_842_.toInt()], f_851_, fs, i_845_, i_868_)
+                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_842_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_842_.toInt()], vertexY!![i_842_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_[1] = fs[0]
                             fs_808_[1] = fs[1]
-                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_843_.toInt()], i_846_, false, direction.toInt(), i_844_, vertexX!![i_843_.toInt()], vertexY!![i_843_.toInt()], f_851_, fs, i_845_, i_868_)
+                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_843_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_843_.toInt()], vertexY!![i_843_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_[2] = fs[0]
                             fs_808_[2] = fs[1]
                         } else if (mappingType.toInt() == 3) {
-                            Class181.sphereMap(i_846_, direction.toInt(), f, vertexX!![i_841_.toInt()], fs, vertexZ!![i_841_.toInt()], i_844_, vertexY!![i_841_.toInt()], i_845_, -4, fs_847_)
+                            Class181.sphereMap(i_846_, direction.toInt(), f, vertexX!![i_841_.toInt()], fs, vertexZ!![i_841_.toInt()], i_844_, vertexY!![i_841_.toInt()], i_845_, fs_847_)
                             fs_807_!![0] = fs[0]
                             fs_808_!![0] = fs[1]
-                            Class181.sphereMap(i_846_, direction.toInt(), f, vertexX!![i_842_.toInt()], fs, vertexZ!![i_842_.toInt()], i_844_, vertexY!![i_842_.toInt()], i_845_, -4, fs_847_)
+                            Class181.sphereMap(i_846_, direction.toInt(), f, vertexX!![i_842_.toInt()], fs, vertexZ!![i_842_.toInt()], i_844_, vertexY!![i_842_.toInt()], i_845_, fs_847_)
                             fs_807_[1] = fs[0]
                             fs_808_[1] = fs[1]
-                            Class181.sphereMap(i_846_, direction.toInt(), f, vertexX!![i_843_.toInt()], fs, vertexZ!![i_843_.toInt()], i_844_, vertexY!![i_843_.toInt()], i_845_, -4, fs_847_)
+                            Class181.sphereMap(i_846_, direction.toInt(), f, vertexX!![i_843_.toInt()], fs, vertexZ!![i_843_.toInt()], i_844_, vertexY!![i_843_.toInt()], i_845_, fs_847_)
                             fs_807_[2] = fs[0]
                             fs_808_[2] = fs[1]
                             if ((direction.toInt() and 0x1) == 0) {
@@ -1664,16 +1313,16 @@ internal class JavaModel : Model {
             texCoordV = null
             texCoordU = texCoordV
         }
-        if (mesh.vertexLabel != null && (this.functionMask and 0x20) != 0) vertexLabels = mesh.getVertexLabels(true, -122)
-        if (mesh.faceLabel != null && (this.functionMask and 0x180) != 0) faceLabels = mesh.getFaceLabels(30.toByte())
-        if (mesh.billboards != null && (this.functionMask and 0x400) != 0) billboardLabels = mesh.getBillboardGroups((-75).toByte())
+        if (mesh.vertexLabel != null && (this.functionMask and 0x20) != 0) vertexLabels = mesh.getVertexLabels()
+        if (mesh.faceLabel != null && (this.functionMask and 0x180) != 0) faceLabels = mesh.getFaceLabels()
+        if (mesh.billboards != null && (this.functionMask and 0x400) != 0) billboardLabels = mesh.getBillboardGroups()
         if (mesh.faceTexture != null) {
             faceTextures = ShortArray(faceCount)
             var hasTextures = false
             for (i_870_ in 0..<faceCount) {
                 val i_871_ = mesh.faceTexture!![i_870_]
                 if (i_871_.toInt() != -1) {
-                    val metrics = this.toolkit.textureSource!!.getMetrics(i_871_.toInt(), -6662)
+                    val metrics = this.toolkit.textureSource!!.getMetrics(i_871_.toInt())
                     if ((featureMask and 0x40) == 0 || !metrics!!.disableable) {
                         faceTextures!![i_870_] = i_871_
                         hasTextures = true
@@ -1691,10 +1340,8 @@ internal class JavaModel : Model {
     }
 
     companion object {
-        var anInt362: Int = 0
 
-        fun method303(i: Int, i_3_: Int): Short {
-            anInt362++
+        fun method303(i: Int): Short {
             val i_4_ = (i and 0xfe66) shr 10
             var i_5_ = i shr 3 and 0x70
             val i_6_ = i and 0x7f
@@ -1704,28 +1351,19 @@ internal class JavaModel : Model {
             if (i_7_ != 0) i_8_ = (i_5_ shl 8) / i_7_
             else i_8_ = i_5_ shl 1
             val i_9_ = i_7_
-            if (i_3_ != 30) return 79.toShort()
             return (i_9_ or (i_8_ shr 4 shl 7 or (i_4_ shl 10))).toShort()
         }
 
-        var anInt8882: Int = 0
 
-        fun sort(`is`: IntArray?, ls: LongArray?, i: Int) {
-            try {
-                IOException_Sub1.method129(i, i + -107, ls, ls!!.size - 1, `is`)
-                anInt8882++
-            } catch (runtimeexception: RuntimeException) {
-                throw ItemType.method2929(runtimeexception, ("iha.I(" + (if (`is` != null) "{...}" else "null") + ',' + (if (ls != null) "{...}" else "null") + ',' + i + ')'))
-            }
+        fun sort(`is`: IntArray?, ls: LongArray?) {
+            IOException_Sub1.method129(0, ls, ls!!.size - 1, `is`)
         }
 
         var anInt5346: Int = 4096
         var anInt5350: Int = 4096
-        fun method2198(i: Int, i_0_: Int, i_1_: Int): Int {
+        fun method2198(i_0_: Int, i_1_: Int): Int {
             var i_0_ = i_0_
             i_0_ = i_0_ * (i_1_ and 0x7f) shr 7
-            if (i != 0) method2198(52, -11, 108)
-            //        anInt3741++;
             if (i_0_ >= 2) {
                 if (i_0_ > 126) i_0_ = 126
             } else i_0_ = 2

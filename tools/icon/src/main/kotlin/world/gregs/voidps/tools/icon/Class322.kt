@@ -14,9 +14,7 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
     var aBoolean4035: Boolean
     private var aClass262_4021: Class262?
 
-    fun method2557(i: Int, i_6_: Int): Array<IntArray>? {
-        anInt4034++
-        if (i >= -75) Companion.method2554((-61).toByte())
+    fun method2557(i_6_: Int): Array<IntArray>? {
         if (anInt4020 != anInt4024) {
             if (anInt4020 == 1) {
                 this.aBoolean4035 = i_6_ != anInt4022
@@ -27,17 +25,17 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
             if (class348_sub24 == null) {
                 this.aBoolean4035 = true
                 if (anInt4020 <= anInt4025) {
-                    val class348_sub24_7_ = aClass262_4021!!.method1993(-126) as Class348_Sub24?
+                    val class348_sub24_7_ = aClass262_4021!!.method1993() as Class348_Sub24?
                     class348_sub24 = Class348_Sub24(i_6_, class348_sub24_7_!!.anInt6875)
                     aClass348_Sub24Array4033!![class348_sub24_7_.anInt6872] = null
-                    class348_sub24_7_.unlink(56.toByte())
+                    class348_sub24_7_.unlink()
                 } else {
                     class348_sub24 = Class348_Sub24(i_6_, anInt4025)
                     anInt4025++
                 }
                 aClass348_Sub24Array4033!![i_6_] = class348_sub24
             } else this.aBoolean4035 = false
-            aClass262_4021!!.method2001(class348_sub24, -110)
+            aClass262_4021!!.method2001(class348_sub24)
             return (anIntArrayArrayArray4029!![class348_sub24.anInt6875])
         }
         this.aBoolean4035 = aClass348_Sub24Array4033!![i_6_] == null
@@ -45,12 +43,10 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
         return anIntArrayArrayArray4029!![i_6_]
     }
 
-    fun method2558(i: Int) {
-        anInt4019++
-        if (i != 6144) anIntArrayArrayArray4029 = null
+    fun method2558() {
         aClass348_Sub24Array4033 = null
         anIntArrayArrayArray4029 = null
-        aClass262_4021!!.method1996(99)
+        aClass262_4021!!.method1996()
         aClass262_4021 = null
     }
 
@@ -65,26 +61,6 @@ internal class Class322(i: Int, i_9_: Int, i_10_: Int) {
     }
 
     companion object {
-        var anInt1447: Int = 0
-        var anInt6930: Int = 0
         var aClass348_Sub24_4226: Class348_Sub24? = null
-        var anInt3931: Int = 0
-        var aIterableHashTable_3654: IterableHashTable = IterableHashTable(8)
-        var anInt2057: Int = 0
-        var anInt4019: Int = 0
-        var anInt4023: Int = 0
-        var anInt4030: Int = 0
-        var anInt4032: Int = -1
-        var anInt4034: Int = 0
-        fun method2554(i: Byte) {
-            if (i.toInt() != -45) anInt4032 = 61
-            anInt4030++
-            if (anInt3931 == 1 || anInt3931 == 3 || (anInt3931 != anInt1447 && (anInt3931 == 0 || anInt1447 == 0))) {
-                anInt6930 = 0
-                anInt2057 = 0
-                aIterableHashTable_3654.method3481(0)
-            }
-            anInt1447 = anInt3931
-        }
     }
 }

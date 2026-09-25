@@ -11,13 +11,9 @@ internal class TextureUniverse(`is`: IntArray?, is_1_: IntArray?, is_2_: IntArra
     var originX: IntArray?
 
     init {
-        try {
-            this.originZ = is_2_
-            this.matrices = fs
-            this.originY = is_1_
-            this.originX = `is`
-        } catch (runtimeexception: RuntimeException) {
-            throw ItemType.method2929(runtimeexception, ("ew.<init>(" + (if (`is` != null) "{...}" else "null") + ',' + (if (is_1_ != null) "{...}" else "null") + ',' + (if (is_2_ != null) "{...}" else "null") + ',' + (if (fs != null) "{...}" else "null") + ')'))
-        }
+        this.originZ = is_2_
+        this.matrices = fs
+        this.originY = is_1_
+        this.originX = `is`
     }
 }

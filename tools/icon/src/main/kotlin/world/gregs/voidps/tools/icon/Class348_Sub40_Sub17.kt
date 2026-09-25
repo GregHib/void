@@ -9,12 +9,10 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
     var anInt9237: Int = 0
     var anInt9241: Int = 0
     private var anInt9243 = -1
-    fun method3090(bool: Boolean): Boolean {
-        anInt9235++
-        if (bool != true) return true
+    fun method3090(): Boolean {
         if (this.anIntArray9232 != null) return true
         if (anInt9243 >= 0) {
-            val class207: Class207? = (if (Matrix_Sub2.anInt5713 >= 0) Class207.Companion.method1521(Class348.Companion.aCache_4286!!, Matrix_Sub2.anInt5713, anInt9243) else Class207.Companion.method1512(Class348.Companion.aCache_4286!!, anInt9243))
+            val class207: Class207? = Class207.Companion.method1512(Class348.Companion.aCache_4286!!, anInt9243)
             class207!!.method1524()
             this.anIntArray9232 = class207.method1516()
             this.anInt9237 = class207.anInt2702
@@ -24,32 +22,22 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
         return false
     }
 
-    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
-        if (i_0_ == 31015) {
-            if (i == 0) anInt9243 = packet!!.readUnsignedShort(842397944)
-            anInt9236++
-        }
+    override fun method3049(packet: Packet?, i: Int) {
+        if (i == 0) anInt9243 = packet!!.readUnsignedShort()
     }
 
-    override fun method3037(i: Int): Int {
-        anInt9233++
-        if (i > -113) aBoolean9242 = false
+    override fun method3037(): Int {
         return anInt9243
     }
 
-    override fun method3046(i: Byte) {
-        super.method3046((-112).toByte())
-        if (i < -102) {
-            anInt9238++
-            this.anIntArray9232 = null
-        }
+    override fun method3046() {
+        super.method3046()
+        this.anIntArray9232 = null
     }
 
-    override fun method3047(i: Int, i_1_: Int): Array<IntArray> {
-        anInt9239++
-        if (i_1_ != -1564599039) method3047(8, -86)
-        val `is` = this.aClass322_7033!!.method2557(-108, i)
-        if (this.aClass322_7033!!.aBoolean4035 && method3090(true)) {
+    override fun method3047(i: Int): Array<IntArray> {
+        val `is` = this.aClass322_7033!!.method2557(i)
+        if (this.aClass322_7033!!.aBoolean4035 && method3090()) {
             val is_2_ = `is`!![0]
             val is_3_ = `is`[1]
             val is_4_ = `is`[2]
@@ -82,12 +70,5 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
         fun method1166(i: Int, i_12_: Int): Int {
             return i and i_12_
         }
-
-        var anInt9233: Int = 0
-        var anInt9238: Int = 0
-        var anInt9239: Int = 0
-        var aBoolean9242: Boolean = false
-        var anInt9235: Int = 0
-        var anInt9236: Int = 0
     }
 }

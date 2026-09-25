@@ -9,27 +9,23 @@ import kotlin.math.min
 
 internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
     private var anInt9226 = 6
-    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
-        if (i_0_ != 31015) anInt9226 = -83
+    override fun method3049(packet: Packet?, i: Int) {
         val i_1_ = i
         do {
             if (i_1_ == 0) {
-                anInt9226 = packet!!.readUnsignedByte(255)
+                anInt9226 = packet!!.readUnsignedByte()
                 break
             } else if (i_1_ != 1) break
-            this.aBoolean7045 = packet!!.readUnsignedByte(255) == 1
+            this.aBoolean7045 = packet!!.readUnsignedByte() == 1
         } while (false)
-        anInt9227++
     }
 
-    override fun method3047(i: Int, i_2_: Int): Array<IntArray> {
-        if (i_2_ != -1564599039) method3089(-88)
-        anInt9223++
-        val `is` = this.aClass322_7033!!.method2557(i_2_ xor 0x5d41e2a7, i)
+    override fun method3047(i: Int): Array<IntArray> {
+        val `is` = this.aClass322_7033!!.method2557(i)
         while_168_@ do {
             if (this.aClass322_7033!!.aBoolean4035) {
-                val is_3_ = this.method3039((-51).toByte(), i, 0)
-                val is_4_ = this.method3039((-66).toByte(), i, 1)
+                val is_3_ = this.method3039(i, 0)
+                val is_4_ = this.method3039(i, 1)
                 val is_5_ = `is`!![0]
                 val is_6_ = `is`[1]
                 val is_7_ = `is`[2]
@@ -223,14 +219,12 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
         return `is`!!
     }
 
-    override fun method3042(i: Int, i_51_: Int): IntArray {
-        if (i_51_ != 255) method3047(50, -18)
-        anInt9224++
-        val `is` = this.aClass191_7032!!.method1433(0, i)
+    override fun method3042(i: Int): IntArray {
+        val `is` = this.aClass191_7032!!.method1433(i)
         while_178_@ do {
             if (this.aClass191_7032!!.aBoolean2570) {
-                val is_52_ = this.method3048(i, 633706337, 0)
-                val is_53_ = this.method3048(i, 633706337, 1)
+                val is_52_ = this.method3048(i, 0)
+                val is_53_ = this.method3048(i, 1)
                 var i_54_ = anInt9226
                 while_177_@ do {
                     while_176_@ do {
@@ -365,21 +359,5 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
             }
         } while (false)
         return `is`!!
-    }
-
-    companion object {
-        var anInt9222: Int = 0
-        var anInt9223: Int = 0
-        var anInt9224: Int = 0
-        var anInt9227: Int = 0
-
-        /* NOTE: method3089 is NOT in the genuine-methods list (0 JaCoCo hits)
-     * for this renderer, so it is stubbed rather than pulling in
-     * Class248/Class97/Class334/Class259's world-state fields to compile a
-     * path that never executes here. */
-        fun method3089(i: Int) {
-            anInt9222++
-            throw IllegalStateException() // unreachable per JaCoCo coverage
-        }
     }
 }

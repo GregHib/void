@@ -13,24 +13,15 @@ import javax.imageio.ImageIO
  * the model archive are loaded.
  */
 internal object ItemSpriteDumper {
-    var anInt1610: Int = 0
-    var aClass221_1620: Class221? = Class221()
-
-    fun method958(bool: Boolean, i: Int, var_textureSource: TextureSource?, i_61_: Int, canvas: Canvas?): Toolkit {
-        try {
-            if (bool != true) aClass221_1620 = null
-            anInt1610++
-            var i_62_ = 0
-            var i_63_ = 0
-            if (canvas != null) {
-                val dimension = canvas.getSize()
-                i_63_ = dimension.height
-                i_62_ = dimension.width
-            }
-            return Toolkit.Companion.method3692(i_61_, i_63_, i_62_, 0, var_textureSource, canvas, i)
-        } catch (runtimeexception: RuntimeException) {
-            throw ItemType.method2929(runtimeexception, ("mha.E(" + bool + ',' + i + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + i_61_ + ',' + (if (canvas != null) "{...}" else "null") + ')'))
+    fun method958(var_textureSource: TextureSource?, canvas: Canvas?): Toolkit {
+        var i_62_ = 0
+        var i_63_ = 0
+        if (canvas != null) {
+            val dimension = canvas.getSize()
+            i_63_ = dimension.height
+            i_62_ = dimension.width
         }
+        return Toolkit.Companion.method3692(i_63_, i_62_, var_textureSource, canvas)
     }
 
     var itemTypeList: ItemTypeList? = null
@@ -62,7 +53,7 @@ internal object ItemSpriteDumper {
         if (renderer == null) {
             val canvas = Canvas()
             canvas.setSize(WIDTH, HEIGHT)
-            renderer = method958(true, 0, Class348_Sub40_Sub4.Companion.aTextureSource9113, 0, canvas)
+            renderer = method958(Class348_Sub40_Sub4.Companion.aTextureSource9113, canvas)
         }
         return renderer!!
     }
@@ -83,9 +74,9 @@ internal object ItemSpriteDumper {
 
     private fun dumpItem(dir: File?, id: Int): Boolean {
         try {
-            val def = itemTypeList!!.list(-104, id)
+            val def = itemTypeList!!.list(id)
             val toolkit = renderer()
-            val pixels = def.sprite(1, false, 0, toolkit, toolkit, null, null, 0, (-102).toByte(), if (OUTLINE) 1 else 0)
+            val pixels = def.sprite(1, false, 0, toolkit, toolkit, if (OUTLINE) 1 else 0)
             if (pixels == null) return false
             val image = BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB)
             image.setRGB(0, 0, WIDTH, HEIGHT, pixels, 0, WIDTH)

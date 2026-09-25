@@ -11,21 +11,20 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
     private var anIntArray9214: IntArray? = null
     private var aShortArray9215: ShortArray? = ShortArray(257)
 
-    override fun method3049(packet: Packet?, i: Int, i_0_: Int) {
+    override fun method3049(packet: Packet?, i: Int) {
         if (i == 0) {
-            anInt9211 = packet!!.readUnsignedByte(i_0_ + -30760)
-            anIntArrayArray9210 = Array(packet.readUnsignedByte(255)) { IntArray(2) }
+            anInt9211 = packet!!.readUnsignedByte()
+            anIntArrayArray9210 = Array(packet.readUnsignedByte()) { IntArray(2) }
             var i_1_ = 0
             while ((i_1_ < anIntArrayArray9210!!.size)) {
-                anIntArrayArray9210!![i_1_][0] = packet.readUnsignedShort(842397944)
-                anIntArrayArray9210!![i_1_][1] = packet.readUnsignedShort(842397944)
+                anIntArrayArray9210!![i_1_][0] = packet.readUnsignedShort()
+                anIntArrayArray9210!![i_1_][1] = packet.readUnsignedShort()
                 i_1_++
             }
         }
-        if (i_0_ == 31015) anInt9213++
     }
 
-    private fun method3081(i: Int) {
+    private fun method3081() {
         var i_2_ = anInt9211
         while_158_@ do {
             do {
@@ -41,10 +40,10 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
                         }
                         val `is` = anIntArrayArray9210!![i_4_ - 1]
                         val is_5_ = anIntArrayArray9210!![i_4_]
-                        val i_6_ = method3083(-2 + i_4_, (-120).toByte())!![1]
+                        val i_6_ = method3083(-2 + i_4_)!![1]
                         val i_7_ = `is`[1]
                         val i_8_ = is_5_[1]
-                        val i_9_ = method3083(1 + i_4_, 81.toByte())!![1]
+                        val i_9_ = method3083(1 + i_4_)!![1]
                         val i_10_ = ((-`is`[0] + i_3_ shl 12) / (is_5_[0] + -`is`[0]))
                         val i_11_ = i_10_ * i_10_ shr 12
                         val i_12_ = i_7_ + -i_8_ + (i_9_ + -i_6_)
@@ -104,16 +103,12 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
                 i_2_++
             }
         } while (false)
-        if (i != -1) aShortArray9215 = null
-        anInt9205++
     }
 
-    override fun method3042(i: Int, i_33_: Int): IntArray {
-        anInt9207++
-        val `is` = this.aClass191_7032!!.method1433(0, i)
-        if (i_33_ != 255) anIntArray9214 = null
+    override fun method3042(i: Int): IntArray {
+        val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val is_34_ = this.method3048(i, 633706337, 0)
+            val is_34_ = this.method3048(i, 0)
             for (i_35_ in 0..<Class348_Sub40_Sub6.Companion.anInt9139) {
                 var i_36_ = is_34_!![i_35_] shr 4
                 if (i_36_ < 0) i_36_ = 0
@@ -124,41 +119,26 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
         return `is`!!
     }
 
-    private fun method3082(i: Byte) {
-        anInt9206++
+    private fun method3082() {
         val `is` = anIntArrayArray9210!![0]
         val is_37_ = anIntArrayArray9210!![1]
         val is_38_ = anIntArrayArray9210!![-2 + anIntArrayArray9210!!.size]
         val is_39_ = anIntArrayArray9210!![-1 + anIntArrayArray9210!!.size]
         anIntArray9208 = intArrayOf(is_38_[0] - (is_39_[0] + -is_38_[0]), is_38_[1] - (-is_38_[1] + is_39_[1]))
-        if (i.toInt() != 73) method3042(75, 39)
         anIntArray9214 = intArrayOf(`is`[0] + -is_37_[0] + `is`[0], `is`[1] - (-`is`[1] - -is_37_[1]))
     }
 
-    override fun method3044(i: Int) {
+    override fun method3044() {
         if (anIntArrayArray9210 == null) anIntArrayArray9210 = arrayOf(IntArray(2), intArrayOf(4096, 4096))
-        if (i <= 108) anIntArrayArray9210 = null
-        anInt9209++
         if (anIntArrayArray9210!!.size < 2) throw RuntimeException("Curve operation requires at least two markers")
-        if (anInt9211 == 2) method3082(73.toByte())
-        Class220.method1605(26188)
-        method3081(-1)
+        if (anInt9211 == 2) method3082()
+        Class220.method1605()
+        method3081()
     }
 
-    private fun method3083(i: Int, i_40_: Byte): IntArray? {
-        anInt9212++
+    private fun method3083(i: Int): IntArray? {
         if (i < 0) return anIntArray9214
-        val i_41_ = -48 % ((i_40_ - 13) / 56)
         if (anIntArrayArray9210!!.size <= i) return anIntArray9208
         return anIntArrayArray9210!![i]
-    }
-
-    companion object {
-        var anInt9205: Int = 0
-        var anInt9206: Int = 0
-        var anInt9207: Int = 0
-        var anInt9209: Int = 0
-        var anInt9212: Int = 0
-        var anInt9213: Int = 0
     }
 }

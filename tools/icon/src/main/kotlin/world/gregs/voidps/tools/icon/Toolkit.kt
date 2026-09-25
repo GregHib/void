@@ -11,7 +11,7 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
     var index: Int
     abstract fun method3652()
 
-    abstract fun method3711(`is`: IntArray, i: Int, i_212_: Int, i_213_: Int, i_214_: Int, bool: Boolean): Sprite?
+    abstract fun method3711(`is`: IntArray, i: Int, i_212_: Int, i_213_: Int, i_214_: Int): Sprite?
 
     // abstract dependencies of Class213.method1562 (genuine), which calls
     // these on a `ha`-typed reference - all implemented concretely in ha_Sub1.
@@ -43,17 +43,13 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
 
     abstract fun DA(i: Int, i_223_: Int, i_224_: Int, i_225_: Int)
 
-    fun method3635(i: Byte) {
-        val i_15_ = -90 % ((i - 8) / 33)
-        anInt4573++
+    fun method3635() {
         Class348_Sub40_Sub26.aBooleanArray9351!![this.index] = false
         method3652()
     }
 
-    fun createSprite(i: Int, `is`: IntArray?, i_84_: Byte, i_85_: Int, i_86_: Int, i_87_: Int): Sprite? {
-        anInt4565++
-        if (i_84_.toInt() != 94) return null
-        return method3711(`is`!!, i_85_, i_86_, i, i_87_, true)
+    fun createSprite(i: Int, `is`: IntArray?, i_86_: Int, i_87_: Int): Sprite? {
+        return method3711(`is`!!, 0, i_86_, i, i_87_)
     }
 
     init {
@@ -70,62 +66,30 @@ internal abstract class Toolkit(var textureSource: TextureSource?) {
     }
 
     companion object {
-        var anInt6628: Int = 0
-        var aByteArray6624: ByteArray? = ByteArray(2048)
-
-        fun method2753(bool: Boolean, i: Int, i_4_: Int, canvas: Canvas?, var_textureSource: TextureSource?): Toolkit {
-            try {
-                anInt6628++
-                if (bool != true) aByteArray6624 = null
-                return JavaToolkit(canvas, var_textureSource, i_4_, i)
-            } catch (runtimeexception: RuntimeException) {
-                throw ItemType.method2929(runtimeexception, ("fba.M(" + bool + ',' + i + ',' + i_4_ + ',' + (if (canvas != null) "{...}" else "null") + ',' + (if (var_textureSource != null) "{...}" else "null") + ')'))
-            }
-        }
-
         var aClass308_8815: Class308 = Class308(16)
-        var anInt4563: Int = 0
-        var anInt4564: Int = 0
-        var anInt4565: Int = 0
-        var anInt4573: Int = 0
-        var anInt4576: Int = 0
-        var anInt4583: Int = 0
-
-        fun method3664(i: Int, i_88_: Int): ByteArray? {
-            anInt4564++
-            if (i_88_ <= 21) anInt4583 = 60
-            var class348_sub42_sub3 = (aClass308_8815.method2302(i.toLong(), (-120).toByte()) as Class348_Sub42_Sub3?)
+        fun method3664(i: Int): ByteArray? {
+            var class348_sub42_sub3 = (aClass308_8815.method2302(i.toLong()) as Class348_Sub42_Sub3?)
             if (class348_sub42_sub3 == null) {
                 val `is` = ByteArray(512)
                 val random = Random(i.toLong())
                 for (i_89_ in 0..254) `is`[i_89_] = i_89_.toByte()
                 for (i_90_ in 0..254) {
                     val i_91_ = -i_90_ + 255
-                    val i_92_: Int = Mesh.Companion.method1097(95.toByte(), i_91_, random)
+                    val i_92_: Int = Mesh.Companion.method1097(i_91_, random)
                     val i_93_ = `is`[i_92_]
                     `is`[i_92_] = `is`[i_91_]
                     `is`[511 + -i_90_] = i_93_
                     `is`[i_91_] = `is`[511 + -i_90_]
                 }
                 class348_sub42_sub3 = Class348_Sub42_Sub3(`is`)
-                aClass308_8815.method2305(i.toLong(), class348_sub42_sub3, -1)
+                aClass308_8815.method2305(i.toLong(), class348_sub42_sub3)
             }
             return class348_sub42_sub3.aByteArray9499
         }
 
         @Synchronized
-        fun method3692(i: Int, i_168_: Int, i_169_: Int, i_170_: Int, var_textureSource: TextureSource?, canvas: Canvas?, i_171_: Int): Toolkit {
-            try {
-                anInt4576++
-                // Only the i_170_ == i_171_ branch is ever reachable from this
-                // renderer (CacheItemSpriteDumper always calls with both 0); the
-                // other renderer-selection branches (Class306/Class262/Class93/
-                // Class96) are unreachable per JaCoCo coverage and were dropped.
-                if (i_170_ == i_171_) return method2753(true, i_168_, i_169_, canvas, var_textureSource)
-                throw IllegalArgumentException("UM")
-            } catch (runtimeexception: RuntimeException) {
-                throw ItemType.method2929(runtimeexception, ("ha.TJ(" + i + ',' + i_168_ + ',' + i_169_ + ',' + i_170_ + ',' + (if (var_textureSource != null) "{...}" else "null") + ',' + (if (canvas != null) "{...}" else "null") + ',' + i_171_ + ')'))
-            }
+        fun method3692(i_168_: Int, i_169_: Int, var_textureSource: TextureSource?, canvas: Canvas?): Toolkit {
+            return JavaToolkit(canvas, var_textureSource, i_169_, i_168_)
         }
     }
 }

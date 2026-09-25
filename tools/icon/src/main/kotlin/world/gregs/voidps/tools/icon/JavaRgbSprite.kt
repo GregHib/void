@@ -326,19 +326,6 @@ internal class JavaRgbSprite : Sprite_Sub3 {
         }
     }
 
-    fun method979(i: Int, i_589_: Int, i_590_: Int, i_591_: Int, i_592_: Int, i_593_: Int) {
-        val `is` = this.aHa_Sub1_8460!!.anIntArray7483
-        for (i_594_ in 0..<i_591_) {
-            val i_595_ = (i_589_ + i_594_) * this.anInt8471 + i
-            val i_596_ = ((i_593_ + i_594_) * this.aHa_Sub1_8460!!.anInt7477 + i_592_)
-            for (i_597_ in 0..<i_590_) this.anIntArray9933[i_595_ + i_597_] = `is`!![i_596_ + i_597_]
-        }
-    }
-
-    fun method968(i: Int, i_741_: Int, i_742_: Int) {
-        throw IllegalStateException("Can't capture alpha into a java_sprite_24")
-    }
-
     // Unreachable per JaCoCo coverage (0 hits) - see Class105_Sub3.method996.
     override fun method996(i: Int, i_995_: Int, i_996_: Int, i_997_: Int, i_998_: Int, i_999_: Int, i_1000_: Int, i_1001_: Int, i_1002_: Int) {
         throw IllegalStateException()
@@ -348,11 +335,10 @@ internal class JavaRgbSprite : Sprite_Sub3 {
         this.anIntArray9933 = IntArray(i * i_743_)
     }
 
-    constructor(var_ha_Sub1: JavaToolkit?, `is`: IntArray, i: Int, i_744_: Int, i_745_: Int, i_746_: Int, bool: Boolean) : super(var_ha_Sub1, i_745_, i_746_) {
+    constructor(var_ha_Sub1: JavaToolkit?, `is`: IntArray, i: Int, i_744_: Int, i_745_: Int, i_746_: Int) : super(var_ha_Sub1, i_745_, i_746_) {
         var i = i
         var i_744_ = i_744_
-        if (bool) this.anIntArray9933 = IntArray(i_745_ * i_746_)
-        else this.anIntArray9933 = `is`
+        this.anIntArray9933 = IntArray(i_745_ * i_746_)
         i_744_ -= this.anInt8471
         var i_747_ = 0
         for (i_748_ in 0..<i_746_) {

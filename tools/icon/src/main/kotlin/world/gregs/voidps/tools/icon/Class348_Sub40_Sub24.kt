@@ -11,10 +11,8 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
     private var anIntArray9333: IntArray? = null
     private var anInt9334 = 2048
 
-    override fun method3042(i: Int, i_0_: Int): IntArray {
-        if (i_0_ != 255) anIntArray9333 = null
-        anInt9328++
-        val `is` = this.aClass191_7032!!.method1433(0, i)
+    override fun method3042(i: Int): IntArray {
+        val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
             val i_1_ = Class79.anIntArray6035!![i]
             if (anInt9325 == 0) {
@@ -61,34 +59,29 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
         return `is`!!
     }
 
-    override fun method3044(i: Int) {
-        if (i < 108) method3049(null, -68, -1)
-        anInt9330++
-        method3116((-111).toByte())
+    override fun method3044() {
+        method3116()
     }
 
-    override fun method3049(packet: Packet?, i: Int, i_9_: Int) {
-        anInt9331++
+    override fun method3049(packet: Packet?, i: Int) {
         val i_10_ = i
         while_198_@ do {
             do {
                 if (i_10_ == 0) {
-                    anInt9329 = packet!!.readUnsignedByte(255)
+                    anInt9329 = packet!!.readUnsignedByte()
                     break@while_198_
                 } else if (i_10_ != 1) {
                     if (i_10_ == 2) break
                     break@while_198_
                 }
-                anInt9334 = packet!!.readUnsignedShort(842397944)
+                anInt9334 = packet!!.readUnsignedShort()
                 break@while_198_
             } while (false)
-            anInt9325 = packet!!.readUnsignedByte(i_9_ xor 0x79d8)
+            anInt9325 = packet!!.readUnsignedByte()
         } while (false)
-        if (i_9_ != 31015) method3049(null, 38, 1)
     }
 
-    private fun method3116(i: Byte) {
-        anInt9326++
+    private fun method3116() {
         var i_11_ = 0
         anIntArray9333 = IntArray(anInt9329 - -1)
         anIntArray9332 = IntArray(anInt9329 - -1)
@@ -101,15 +94,7 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
             i_11_ += i_12_
             i_14_++
         }
-        if (i.toInt() != -111) anIntArray9332 = null
         anIntArray9332!![anInt9329] = 4096
         anIntArray9333!![anInt9329] = 4096 - -anIntArray9333!![0]
-    }
-
-    companion object {
-        var anInt9326: Int = 0
-        var anInt9328: Int = 0
-        var anInt9330: Int = 0
-        var anInt9331: Int = 0
     }
 }

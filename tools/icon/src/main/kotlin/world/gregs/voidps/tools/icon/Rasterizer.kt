@@ -5,7 +5,6 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJavaThreadResource_1670: JavaThreadResource) {
-    var aBoolean1667: Boolean = false
     var anInt1665: Int = 0
     var anInt1668: Int = 0
     var aBoolean1669: Boolean = true
@@ -18,22 +17,10 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
     private val aFloatArray1677: FloatArray?
     private val anInt1678: Int
     var width: Int = 0
-    private val aBoolean1680 = false
-    private val aFloat1681 = 0.0f
-    private val aFloat1682 = 0.0f
     private var anInt1683 = 0
-    private val aFloat1684 = 0.0f
-    private val anIntArray1685: IntArray? = null
-    private val anInt1686 = 0
-    private val anInt1687: Int
-    private val anInt1688 = 0
-    private val anInt1689: Int
     private var anInt1690 = 0
-    private val anInt1691 = 0
-    private val anIntArray1692: IntArray? = null
     private var anInt1693 = 0
     private var aBoolean1694 = true
-    private val anInt1695 = 0
     private var anInt1696 = 0
     private val anInt1697: Int
     private var anIntArray1698: IntArray? = null
@@ -131,10 +118,6 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
         }
     }
 
-    fun method1017(): Int {
-        return this.lineOffsets[0] / anInt1678
-    }
-
     fun method1018(f: Float, f_41_: Float, f_42_: Float, f_43_: Float, f_44_: Float, f_45_: Float, f_46_: Float, f_47_: Float, f_48_: Float, i: Int) {
         var f = f
         var f_41_ = f_41_
@@ -146,9 +129,9 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
         var f_47_ = f_47_
         var f_48_ = f_48_
         if (aBoolean1675) {
-            aHa_Sub1_1666.line(f.toInt(), f_43_.toInt(), f_44_.toInt(), -8003, i, f_41_.toInt())
-            aHa_Sub1_1666.line(f_41_.toInt(), f_44_.toInt(), f_45_.toInt(), -8003, i, f_42_.toInt())
-            aHa_Sub1_1666.line(f_42_.toInt(), f_45_.toInt(), f_43_.toInt(), -8003, i, f.toInt())
+            aHa_Sub1_1666.line(f.toInt(), f_43_.toInt(), f_44_.toInt(), i, f_41_.toInt())
+            aHa_Sub1_1666.line(f_41_.toInt(), f_44_.toInt(), f_45_.toInt(), i, f_42_.toInt())
+            aHa_Sub1_1666.line(f_42_.toInt(), f_45_.toInt(), f_43_.toInt(), i, f.toInt())
         } else {
             val f_49_ = f_44_ - f_43_
             val f_50_ = f_41_ - f
@@ -735,11 +718,12 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
             if (i_170_ < 0) i_170_ = 0
         }
         if (i_170_ < i_171_) {
-            if (aBoolean1680) {
-                i += i_170_
-                f_173_ += f_174_ * i_170_.toFloat()
-                f_175_ += f_176_ * i_170_.toFloat()
-                f_177_ += f_178_ * i_170_.toFloat()
+            i += i_170_ - 1
+            f += f_172_ * i_170_.toFloat()
+            f_173_ += f_174_ * i_170_.toFloat()
+            f_175_ += f_176_ * i_170_.toFloat()
+            f_177_ += f_178_ * i_170_.toFloat()
+            if (aJavaThreadResource_1670.aBoolean2202) {
                 if (this.aBoolean1669) {
                     i_169_ = i_171_ - i_170_ shr 2
                     f_174_ *= 4.0f
@@ -752,99 +736,86 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                                 f_173_ += f_174_
                                 f_175_ += f_176_
                                 f_177_ += f_178_
-                                `is`[i++] = i_168_
-                                `is`[i++] = i_168_
-                                `is`[i++] = i_168_
-                                `is`[i++] = i_168_
+                                if (f < fs[++i]) {
+                                    `is`[i] = i_168_
+                                    fs[i] = f
+                                }
+                                f += f_172_
+                                if (f < fs[++i]) {
+                                    `is`[i] = i_168_
+                                    fs[i] = f
+                                }
+                                f += f_172_
+                                if (f < fs[++i]) {
+                                    `is`[i] = i_168_
+                                    fs[i] = f
+                                }
+                                f += f_172_
+                                if (f < fs[++i]) {
+                                    `is`[i] = i_168_
+                                    fs[i] = f
+                                }
+                                f += f_172_
                             } while (--i_169_ > 0)
                         }
                         i_169_ = i_171_ - i_170_ and 0x3
                         if (i_169_ > 0) {
                             i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            do `is`[i++] = i_168_ while (--i_169_ > 0)
-                        }
-                    } else if (this.aBoolean1667) {
-                        if (i_169_ > 0) {
                             do {
-                                i_168_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                f_173_ += f_174_
-                                f_175_ += f_176_
-                                f_177_ += f_178_
-                                val is_183_ = `is`
-                                val i_184_ = i++
-                                val i_185_ = i_168_
-                                var i_186_ = is_183_[i_184_]
-                                val i_187_ = i_185_ + i_186_
-                                val i_188_ = ((i_185_ and 0xff00ff) + (i_186_ and 0xff00ff))
-                                i_186_ = (i_188_ and 0x1000100) + (i_187_ - i_188_ and 0x10000)
-                                is_183_[i_184_] = (0xffffff.inv() or i_187_ - i_186_ or i_186_ - (i_186_ ushr 8))
-                                val is_189_ = `is`
-                                val i_190_ = i++
-                                val i_191_ = i_168_
-                                var i_192_ = is_189_[i_190_]
-                                val i_193_ = i_191_ + i_192_
-                                val i_194_ = ((i_191_ and 0xff00ff) + (i_192_ and 0xff00ff))
-                                i_192_ = (i_194_ and 0x1000100) + (i_193_ - i_194_ and 0x10000)
-                                is_189_[i_190_] = (0xffffff.inv() or i_193_ - i_192_ or i_192_ - (i_192_ ushr 8))
-                                val is_195_ = `is`
-                                val i_196_ = i++
-                                val i_197_ = i_168_
-                                var i_198_ = is_195_[i_196_]
-                                val i_199_ = i_197_ + i_198_
-                                val i_200_ = ((i_197_ and 0xff00ff) + (i_198_ and 0xff00ff))
-                                i_198_ = (i_200_ and 0x1000100) + (i_199_ - i_200_ and 0x10000)
-                                is_195_[i_196_] = (0xffffff.inv() or i_199_ - i_198_ or i_198_ - (i_198_ ushr 8))
-                                val is_201_ = `is`
-                                val i_202_ = i++
-                                val i_203_ = i_168_
-                                var i_204_ = is_201_[i_202_]
-                                val i_205_ = i_203_ + i_204_
-                                val i_206_ = ((i_203_ and 0xff00ff) + (i_204_ and 0xff00ff))
-                                i_204_ = (i_206_ and 0x1000100) + (i_205_ - i_206_ and 0x10000)
-                                is_201_[i_202_] = (0xffffff.inv() or i_205_ - i_204_ or i_204_ - (i_204_ ushr 8))
-                            } while (--i_169_ > 0)
-                        }
-                        i_169_ = i_171_ - i_170_ and 0x3
-                        if (i_169_ > 0) {
-                            i_168_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            do {
-                                val is_207_ = `is`
-                                val i_208_ = i++
-                                val i_209_ = i_168_
-                                var i_210_ = is_207_[i_208_]
-                                val i_211_ = i_209_ + i_210_
-                                val i_212_ = ((i_209_ and 0xff00ff) + (i_210_ and 0xff00ff))
-                                i_210_ = (i_212_ and 0x1000100) + (i_211_ - i_212_ and 0x10000)
-                                is_207_[i_208_] = (0xffffff.inv() or i_211_ - i_210_ or i_210_ - (i_210_ ushr 8))
+                                if (f < fs[++i]) {
+                                    `is`[i] = i_168_
+                                    fs[i] = f
+                                }
+                                f += f_172_
                             } while (--i_169_ > 0)
                         }
                     } else {
-                        val i_179_ = this.anInt1674
-                        val i_180_ = 256 - this.anInt1674
+                        val i_222_ = this.anInt1674
+                        val i_223_ = 256 - this.anInt1674
                         if (i_169_ > 0) {
                             do {
                                 i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
                                 f_173_ += f_174_
                                 f_175_ += f_176_
                                 f_177_ += f_178_
-                                i_168_ = (((i_168_ and 0xff00ff) * i_180_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_180_ shr 8 and 0xff00))
-                                var i_181_ = `is`[i]
-                                `is`[i++] = (i_168_ + ((i_181_ and 0xff00ff) * i_179_ shr 8 and 0xff00ff) + ((i_181_ and 0xff00) * i_179_ shr 8 and 0xff00))
-                                i_181_ = `is`[i]
-                                `is`[i++] = (i_168_ + ((i_181_ and 0xff00ff) * i_179_ shr 8 and 0xff00ff) + ((i_181_ and 0xff00) * i_179_ shr 8 and 0xff00))
-                                i_181_ = `is`[i]
-                                `is`[i++] = (i_168_ + ((i_181_ and 0xff00ff) * i_179_ shr 8 and 0xff00ff) + ((i_181_ and 0xff00) * i_179_ shr 8 and 0xff00))
-                                i_181_ = `is`[i]
-                                `is`[i++] = (i_168_ + ((i_181_ and 0xff00ff) * i_179_ shr 8 and 0xff00ff) + ((i_181_ and 0xff00) * i_179_ shr 8 and 0xff00))
+                                i_168_ = (((i_168_ and 0xff00ff) * i_223_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_223_ shr 8 and 0xff00))
+                                if (f < fs[++i]) {
+                                    val i_224_ = `is`[i]
+                                    `is`[i] = (i_168_ + (((i_224_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_224_ and 0xff00) * i_222_ shr 8) and 0xff00))
+                                    fs[i] = f
+                                }
+                                f += f_172_
+                                if (f < fs[++i]) {
+                                    val i_225_ = `is`[i]
+                                    `is`[i] = (i_168_ + (((i_225_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_225_ and 0xff00) * i_222_ shr 8) and 0xff00))
+                                    fs[i] = f
+                                }
+                                f += f_172_
+                                if (f < fs[++i]) {
+                                    val i_226_ = `is`[i]
+                                    `is`[i] = (i_168_ + (((i_226_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_226_ and 0xff00) * i_222_ shr 8) and 0xff00))
+                                    fs[i] = f
+                                }
+                                f += f_172_
+                                if (f < fs[++i]) {
+                                    val i_227_ = `is`[i]
+                                    `is`[i] = (i_168_ + (((i_227_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_227_ and 0xff00) * i_222_ shr 8) and 0xff00))
+                                    fs[i] = f
+                                }
+                                f += f_172_
                             } while (--i_169_ > 0)
                         }
                         i_169_ = i_171_ - i_170_ and 0x3
                         if (i_169_ > 0) {
                             i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            i_168_ = (((i_168_ and 0xff00ff) * i_180_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_180_ shr 8 and 0xff00))
+                            i_168_ = (((i_168_ and 0xff00ff) * i_223_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_223_ shr 8 and 0xff00))
                             do {
-                                val i_182_ = `is`[i]
-                                `is`[i++] = (i_168_ + ((i_182_ and 0xff00ff) * i_179_ shr 8 and 0xff00ff) + ((i_182_ and 0xff00) * i_179_ shr 8 and 0xff00))
+                                if (f < fs[++i]) {
+                                    val i_228_ = `is`[i]
+                                    `is`[i] = (i_168_ + (((i_228_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_228_ and 0xff00) * i_222_ shr 8) and 0xff00))
+                                    fs[i] = f
+                                }
+                                f += f_172_
                             } while (--i_169_ > 0)
                         }
                     }
@@ -852,455 +823,136 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     i_169_ = i_171_ - i_170_
                     if (this.anInt1674 == 0) {
                         do {
-                            `is`[i++] = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            f_173_ += f_174_
-                            f_175_ += f_176_
-                            f_177_ += f_178_
-                        } while (--i_169_ > 0)
-                    } else if (this.aBoolean1667) {
-                        do {
-                            val is_216_ = `is`
-                            val i_217_ = i++
-                            val i_218_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            var i_219_ = is_216_[i_217_]
-                            val i_220_ = i_218_ + i_219_
-                            val i_221_ = (i_218_ and 0xff00ff) + (i_219_ and 0xff00ff)
-                            i_219_ = (i_221_ and 0x1000100) + (i_220_ - i_221_ and 0x10000)
-                            is_216_[i_217_] = (0xffffff.inv() or i_220_ - i_219_ or i_219_ - (i_219_ ushr 8))
+                            if (f < fs[++i]) {
+                                `is`[i] = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
+                                fs[i] = f
+                            }
+                            f += f_172_
                             f_173_ += f_174_
                             f_175_ += f_176_
                             f_177_ += f_178_
                         } while (--i_169_ > 0)
                     } else {
-                        val i_213_ = this.anInt1674
-                        val i_214_ = 256 - this.anInt1674
+                        val i_259_ = this.anInt1674
+                        val i_260_ = 256 - this.anInt1674
+                        do {
+                            if (f < fs[++i]) {
+                                i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
+                                i_168_ = (((i_168_ and 0xff00ff) * i_260_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_260_ shr 8 and 0xff00))
+                                val i_261_ = `is`[i]
+                                `is`[i] = (i_168_ + ((i_261_ and 0xff00ff) * i_259_ shr 8 and 0xff00ff) + ((i_261_ and 0xff00) * i_259_ shr 8 and 0xff00))
+                                fs[i] = f
+                            }
+                            f += f_172_
+                            f_173_ += f_174_
+                            f_175_ += f_176_
+                            f_177_ += f_178_
+                        } while (--i_169_ > 0)
+                    }
+                }
+            } else if (this.aBoolean1669) {
+                i_169_ = i_171_ - i_170_ shr 2
+                f_174_ *= 4.0f
+                f_176_ *= 4.0f
+                f_178_ *= 4.0f
+                if (this.anInt1674 == 0) {
+                    if (i_169_ > 0) {
                         do {
                             i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
                             f_173_ += f_174_
                             f_175_ += f_176_
                             f_177_ += f_178_
-                            i_168_ = (((i_168_ and 0xff00ff) * i_214_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_214_ shr 8 and 0xff00))
-                            val i_215_ = `is`[i]
-                            `is`[i++] = (i_168_ + ((i_215_ and 0xff00ff) * i_213_ shr 8 and 0xff00ff) + ((i_215_ and 0xff00) * i_213_ shr 8 and 0xff00))
+                            if (f < fs[++i]) `is`[i] = i_168_
+                            f += f_172_
+                            if (f < fs[++i]) `is`[i] = i_168_
+                            f += f_172_
+                            if (f < fs[++i]) `is`[i] = i_168_
+                            f += f_172_
+                            if (f < fs[++i]) `is`[i] = i_168_
+                            f += f_172_
+                        } while (--i_169_ > 0)
+                    }
+                    i_169_ = i_171_ - i_170_ and 0x3
+                    if (i_169_ > 0) {
+                        i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
+                        do {
+                            if (f < fs[++i]) `is`[i] = i_168_
+                            f += f_172_
+                        } while (--i_169_ > 0)
+                    }
+                } else {
+                    val i_268_ = this.anInt1674
+                    val i_269_ = 256 - this.anInt1674
+                    if (i_169_ > 0) {
+                        do {
+                            i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
+                            f_173_ += f_174_
+                            f_175_ += f_176_
+                            f_177_ += f_178_
+                            i_168_ = (((i_168_ and 0xff00ff) * i_269_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_269_ shr 8 and 0xff00))
+                            if (f < fs[++i]) {
+                                val i_270_ = `is`[i]
+                                `is`[i] = (i_168_ + ((i_270_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_270_ and 0xff00) * i_268_ shr 8 and 0xff00))
+                            }
+                            f += f_172_
+                            if (f < fs[++i]) {
+                                val i_271_ = `is`[i]
+                                `is`[i] = (i_168_ + ((i_271_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_271_ and 0xff00) * i_268_ shr 8 and 0xff00))
+                            }
+                            f += f_172_
+                            if (f < fs[++i]) {
+                                val i_272_ = `is`[i]
+                                `is`[i] = (i_168_ + ((i_272_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_272_ and 0xff00) * i_268_ shr 8 and 0xff00))
+                            }
+                            f += f_172_
+                            if (f < fs[++i]) {
+                                val i_273_ = `is`[i]
+                                `is`[i] = (i_168_ + ((i_273_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_273_ and 0xff00) * i_268_ shr 8 and 0xff00))
+                            }
+                            f += f_172_
+                        } while (--i_169_ > 0)
+                    }
+                    i_169_ = i_171_ - i_170_ and 0x3
+                    if (i_169_ > 0) {
+                        i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
+                        i_168_ = (((i_168_ and 0xff00ff) * i_269_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_269_ shr 8 and 0xff00))
+                        do {
+                            if (f < fs[++i]) {
+                                val i_274_ = `is`[i]
+                                `is`[i] = (i_168_ + ((i_274_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_274_ and 0xff00) * i_268_ shr 8 and 0xff00))
+                            }
+                            f += f_172_
                         } while (--i_169_ > 0)
                     }
                 }
             } else {
-                i += i_170_ - 1
-                f += f_172_ * i_170_.toFloat()
-                f_173_ += f_174_ * i_170_.toFloat()
-                f_175_ += f_176_ * i_170_.toFloat()
-                f_177_ += f_178_ * i_170_.toFloat()
-                if (aJavaThreadResource_1670.aBoolean2202) {
-                    if (this.aBoolean1669) {
-                        i_169_ = i_171_ - i_170_ shr 2
-                        f_174_ *= 4.0f
-                        f_176_ *= 4.0f
-                        f_178_ *= 4.0f
-                        if (this.anInt1674 == 0) {
-                            if (i_169_ > 0) {
-                                do {
-                                    i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                    f_173_ += f_174_
-                                    f_175_ += f_176_
-                                    f_177_ += f_178_
-                                    if (f < fs[++i]) {
-                                        `is`[i] = i_168_
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        `is`[i] = i_168_
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        `is`[i] = i_168_
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        `is`[i] = i_168_
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                } while (--i_169_ > 0)
-                            }
-                            i_169_ = i_171_ - i_170_ and 0x3
-                            if (i_169_ > 0) {
-                                i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                do {
-                                    if (f < fs[++i]) {
-                                        `is`[i] = i_168_
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                } while (--i_169_ > 0)
-                            }
-                        } else if (this.aBoolean1667) {
-                            if (i_169_ > 0) {
-                                do {
-                                    i_168_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                    f_173_ += f_174_
-                                    f_175_ += f_176_
-                                    f_177_ += f_178_
-                                    if (f < fs[++i]) {
-                                        val is_229_ = `is`
-                                        val i_230_ = i
-                                        val i_231_ = i_168_
-                                        var i_232_ = is_229_[i_230_]
-                                        val i_233_ = i_231_ + i_232_
-                                        val i_234_ = ((i_231_ and 0xff00ff) + (i_232_ and 0xff00ff))
-                                        i_232_ = ((i_234_ and 0x1000100) + (i_233_ - i_234_ and 0x10000))
-                                        is_229_[i_230_] = (0xffffff.inv() or i_233_ - i_232_ or i_232_ - (i_232_ ushr 8))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        val is_235_ = `is`
-                                        val i_236_ = i
-                                        val i_237_ = i_168_
-                                        var i_238_ = is_235_[i_236_]
-                                        val i_239_ = i_237_ + i_238_
-                                        val i_240_ = ((i_237_ and 0xff00ff) + (i_238_ and 0xff00ff))
-                                        i_238_ = ((i_240_ and 0x1000100) + (i_239_ - i_240_ and 0x10000))
-                                        is_235_[i_236_] = (0xffffff.inv() or i_239_ - i_238_ or i_238_ - (i_238_ ushr 8))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        val is_241_ = `is`
-                                        val i_242_ = i
-                                        val i_243_ = i_168_
-                                        var i_244_ = is_241_[i_242_]
-                                        val i_245_ = i_243_ + i_244_
-                                        val i_246_ = ((i_243_ and 0xff00ff) + (i_244_ and 0xff00ff))
-                                        i_244_ = ((i_246_ and 0x1000100) + (i_245_ - i_246_ and 0x10000))
-                                        is_241_[i_242_] = (0xffffff.inv() or i_245_ - i_244_ or i_244_ - (i_244_ ushr 8))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        val is_247_ = `is`
-                                        val i_248_ = i
-                                        val i_249_ = i_168_
-                                        var i_250_ = is_247_[i_248_]
-                                        val i_251_ = i_249_ + i_250_
-                                        val i_252_ = ((i_249_ and 0xff00ff) + (i_250_ and 0xff00ff))
-                                        i_250_ = ((i_252_ and 0x1000100) + (i_251_ - i_252_ and 0x10000))
-                                        is_247_[i_248_] = (0xffffff.inv() or i_251_ - i_250_ or i_250_ - (i_250_ ushr 8))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                } while (--i_169_ > 0)
-                            }
-                            i_169_ = i_171_ - i_170_ and 0x3
-                            if (i_169_ > 0) {
-                                i_168_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                do {
-                                    if (f < fs[++i]) {
-                                        val is_253_ = `is`
-                                        val i_254_ = i
-                                        val i_255_ = i_168_
-                                        var i_256_ = is_253_[i_254_]
-                                        val i_257_ = i_255_ + i_256_
-                                        val i_258_ = ((i_255_ and 0xff00ff) + (i_256_ and 0xff00ff))
-                                        i_256_ = ((i_258_ and 0x1000100) + (i_257_ - i_258_ and 0x10000))
-                                        is_253_[i_254_] = (0xffffff.inv() or i_257_ - i_256_ or i_256_ - (i_256_ ushr 8))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                } while (--i_169_ > 0)
-                            }
-                        } else {
-                            val i_222_ = this.anInt1674
-                            val i_223_ = 256 - this.anInt1674
-                            if (i_169_ > 0) {
-                                do {
-                                    i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                    f_173_ += f_174_
-                                    f_175_ += f_176_
-                                    f_177_ += f_178_
-                                    i_168_ = (((i_168_ and 0xff00ff) * i_223_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_223_ shr 8 and 0xff00))
-                                    if (f < fs[++i]) {
-                                        val i_224_ = `is`[i]
-                                        `is`[i] = (i_168_ + (((i_224_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_224_ and 0xff00) * i_222_ shr 8) and 0xff00))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        val i_225_ = `is`[i]
-                                        `is`[i] = (i_168_ + (((i_225_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_225_ and 0xff00) * i_222_ shr 8) and 0xff00))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        val i_226_ = `is`[i]
-                                        `is`[i] = (i_168_ + (((i_226_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_226_ and 0xff00) * i_222_ shr 8) and 0xff00))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                    if (f < fs[++i]) {
-                                        val i_227_ = `is`[i]
-                                        `is`[i] = (i_168_ + (((i_227_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_227_ and 0xff00) * i_222_ shr 8) and 0xff00))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                } while (--i_169_ > 0)
-                            }
-                            i_169_ = i_171_ - i_170_ and 0x3
-                            if (i_169_ > 0) {
-                                i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                i_168_ = (((i_168_ and 0xff00ff) * i_223_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_223_ shr 8 and 0xff00))
-                                do {
-                                    if (f < fs[++i]) {
-                                        val i_228_ = `is`[i]
-                                        `is`[i] = (i_168_ + (((i_228_ and 0xff00ff) * i_222_ shr 8) and 0xff00ff) + (((i_228_ and 0xff00) * i_222_ shr 8) and 0xff00))
-                                        fs[i] = f
-                                    }
-                                    f += f_172_
-                                } while (--i_169_ > 0)
-                            }
-                        }
-                    } else {
-                        i_169_ = i_171_ - i_170_
-                        if (this.anInt1674 == 0) {
-                            do {
-                                if (f < fs[++i]) {
-                                    `is`[i] = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                    fs[i] = f
-                                }
-                                f += f_172_
-                                f_173_ += f_174_
-                                f_175_ += f_176_
-                                f_177_ += f_178_
-                            } while (--i_169_ > 0)
-                        } else if (this.aBoolean1667) {
-                            do {
-                                if (f < fs[++i]) {
-                                    val is_262_ = `is`
-                                    val i_263_ = i
-                                    val i_264_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                    var i_265_ = is_262_[i_263_]
-                                    val i_266_ = i_264_ + i_265_
-                                    val i_267_ = ((i_264_ and 0xff00ff) + (i_265_ and 0xff00ff))
-                                    i_265_ = ((i_267_ and 0x1000100) + (i_266_ - i_267_ and 0x10000))
-                                    is_262_[i_263_] = (0xffffff.inv() or i_266_ - i_265_ or i_265_ - (i_265_ ushr 8))
-                                    fs[i] = f
-                                }
-                                f += f_172_
-                                f_173_ += f_174_
-                                f_175_ += f_176_
-                                f_177_ += f_178_
-                            } while (--i_169_ > 0)
-                        } else {
-                            val i_259_ = this.anInt1674
-                            val i_260_ = 256 - this.anInt1674
-                            do {
-                                if (f < fs[++i]) {
-                                    i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                    i_168_ = (((i_168_ and 0xff00ff) * i_260_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_260_ shr 8 and 0xff00))
-                                    val i_261_ = `is`[i]
-                                    `is`[i] = (i_168_ + ((i_261_ and 0xff00ff) * i_259_ shr 8 and 0xff00ff) + ((i_261_ and 0xff00) * i_259_ shr 8 and 0xff00))
-                                    fs[i] = f
-                                }
-                                f += f_172_
-                                f_173_ += f_174_
-                                f_175_ += f_176_
-                                f_177_ += f_178_
-                            } while (--i_169_ > 0)
-                        }
-                    }
-                } else if (this.aBoolean1669) {
-                    i_169_ = i_171_ - i_170_ shr 2
-                    f_174_ *= 4.0f
-                    f_176_ *= 4.0f
-                    f_178_ *= 4.0f
-                    if (this.anInt1674 == 0) {
-                        if (i_169_ > 0) {
-                            do {
-                                i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                f_173_ += f_174_
-                                f_175_ += f_176_
-                                f_177_ += f_178_
-                                if (f < fs[++i]) `is`[i] = i_168_
-                                f += f_172_
-                                if (f < fs[++i]) `is`[i] = i_168_
-                                f += f_172_
-                                if (f < fs[++i]) `is`[i] = i_168_
-                                f += f_172_
-                                if (f < fs[++i]) `is`[i] = i_168_
-                                f += f_172_
-                            } while (--i_169_ > 0)
-                        }
-                        i_169_ = i_171_ - i_170_ and 0x3
-                        if (i_169_ > 0) {
-                            i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            do {
-                                if (f < fs[++i]) `is`[i] = i_168_
-                                f += f_172_
-                            } while (--i_169_ > 0)
-                        }
-                    } else if (this.aBoolean1667) {
-                        if (i_169_ > 0) {
-                            do {
-                                i_168_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                f_173_ += f_174_
-                                f_175_ += f_176_
-                                f_177_ += f_178_
-                                if (f < fs[++i]) {
-                                    val is_275_ = `is`
-                                    val i_276_ = i
-                                    val i_277_ = i_168_
-                                    var i_278_ = is_275_[i_276_]
-                                    val i_279_ = i_277_ + i_278_
-                                    val i_280_ = ((i_277_ and 0xff00ff) + (i_278_ and 0xff00ff))
-                                    i_278_ = ((i_280_ and 0x1000100) + (i_279_ - i_280_ and 0x10000))
-                                    is_275_[i_276_] = (0xffffff.inv() or i_279_ - i_278_ or i_278_ - (i_278_ ushr 8))
-                                }
-                                f += f_172_
-                                if (f < fs[++i]) {
-                                    val is_281_ = `is`
-                                    val i_282_ = i
-                                    val i_283_ = i_168_
-                                    var i_284_ = is_281_[i_282_]
-                                    val i_285_ = i_283_ + i_284_
-                                    val i_286_ = ((i_283_ and 0xff00ff) + (i_284_ and 0xff00ff))
-                                    i_284_ = ((i_286_ and 0x1000100) + (i_285_ - i_286_ and 0x10000))
-                                    is_281_[i_282_] = (0xffffff.inv() or i_285_ - i_284_ or i_284_ - (i_284_ ushr 8))
-                                }
-                                f += f_172_
-                                if (f < fs[++i]) {
-                                    val is_287_ = `is`
-                                    val i_288_ = i
-                                    val i_289_ = i_168_
-                                    var i_290_ = is_287_[i_288_]
-                                    val i_291_ = i_289_ + i_290_
-                                    val i_292_ = ((i_289_ and 0xff00ff) + (i_290_ and 0xff00ff))
-                                    i_290_ = ((i_292_ and 0x1000100) + (i_291_ - i_292_ and 0x10000))
-                                    is_287_[i_288_] = (0xffffff.inv() or i_291_ - i_290_ or i_290_ - (i_290_ ushr 8))
-                                }
-                                f += f_172_
-                                if (f < fs[++i]) {
-                                    val is_293_ = `is`
-                                    val i_294_ = i
-                                    val i_295_ = i_168_
-                                    var i_296_ = is_293_[i_294_]
-                                    val i_297_ = i_295_ + i_296_
-                                    val i_298_ = ((i_295_ and 0xff00ff) + (i_296_ and 0xff00ff))
-                                    i_296_ = ((i_298_ and 0x1000100) + (i_297_ - i_298_ and 0x10000))
-                                    is_293_[i_294_] = (0xffffff.inv() or i_297_ - i_296_ or i_296_ - (i_296_ ushr 8))
-                                }
-                                f += f_172_
-                            } while (--i_169_ > 0)
-                        }
-                        i_169_ = i_171_ - i_170_ and 0x3
-                        if (i_169_ > 0) {
-                            i_168_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            do {
-                                if (f < fs[++i]) {
-                                    val is_299_ = `is`
-                                    val i_300_ = i
-                                    val i_301_ = i_168_
-                                    var i_302_ = is_299_[i_300_]
-                                    val i_303_ = i_301_ + i_302_
-                                    val i_304_ = ((i_301_ and 0xff00ff) + (i_302_ and 0xff00ff))
-                                    i_302_ = ((i_304_ and 0x1000100) + (i_303_ - i_304_ and 0x10000))
-                                    is_299_[i_300_] = (0xffffff.inv() or i_303_ - i_302_ or i_302_ - (i_302_ ushr 8))
-                                }
-                                f += f_172_
-                            } while (--i_169_ > 0)
-                        }
-                    } else {
-                        val i_268_ = this.anInt1674
-                        val i_269_ = 256 - this.anInt1674
-                        if (i_169_ > 0) {
-                            do {
-                                i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                f_173_ += f_174_
-                                f_175_ += f_176_
-                                f_177_ += f_178_
-                                i_168_ = (((i_168_ and 0xff00ff) * i_269_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_269_ shr 8 and 0xff00))
-                                if (f < fs[++i]) {
-                                    val i_270_ = `is`[i]
-                                    `is`[i] = (i_168_ + ((i_270_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_270_ and 0xff00) * i_268_ shr 8 and 0xff00))
-                                }
-                                f += f_172_
-                                if (f < fs[++i]) {
-                                    val i_271_ = `is`[i]
-                                    `is`[i] = (i_168_ + ((i_271_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_271_ and 0xff00) * i_268_ shr 8 and 0xff00))
-                                }
-                                f += f_172_
-                                if (f < fs[++i]) {
-                                    val i_272_ = `is`[i]
-                                    `is`[i] = (i_168_ + ((i_272_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_272_ and 0xff00) * i_268_ shr 8 and 0xff00))
-                                }
-                                f += f_172_
-                                if (f < fs[++i]) {
-                                    val i_273_ = `is`[i]
-                                    `is`[i] = (i_168_ + ((i_273_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_273_ and 0xff00) * i_268_ shr 8 and 0xff00))
-                                }
-                                f += f_172_
-                            } while (--i_169_ > 0)
-                        }
-                        i_169_ = i_171_ - i_170_ and 0x3
-                        if (i_169_ > 0) {
-                            i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            i_168_ = (((i_168_ and 0xff00ff) * i_269_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_269_ shr 8 and 0xff00))
-                            do {
-                                if (f < fs[++i]) {
-                                    val i_274_ = `is`[i]
-                                    `is`[i] = (i_168_ + ((i_274_ and 0xff00ff) * i_268_ shr 8 and 0xff00ff) + ((i_274_ and 0xff00) * i_268_ shr 8 and 0xff00))
-                                }
-                                f += f_172_
-                            } while (--i_169_ > 0)
-                        }
-                    }
+                i_169_ = i_171_ - i_170_
+                if (this.anInt1674 == 0) {
+                    do {
+                        if (f < fs[++i]) `is`[i] = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
+                        f += f_172_
+                        f_173_ += f_174_
+                        f_175_ += f_176_
+                        f_177_ += f_178_
+                    } while (--i_169_ > 0)
                 } else {
-                    i_169_ = i_171_ - i_170_
-                    if (this.anInt1674 == 0) {
-                        do {
-                            if (f < fs[++i]) `is`[i] = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                            f += f_172_
-                            f_173_ += f_174_
-                            f_175_ += f_176_
-                            f_177_ += f_178_
-                        } while (--i_169_ > 0)
-                    } else if (this.aBoolean1667) {
-                        do {
-                            if (f < fs[++i]) {
-                                val is_308_ = `is`
-                                val i_309_ = i
-                                val i_310_ = (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                var i_311_ = is_308_[i_309_]
-                                val i_312_ = i_310_ + i_311_
-                                val i_313_ = ((i_310_ and 0xff00ff) + (i_311_ and 0xff00ff))
-                                i_311_ = (i_313_ and 0x1000100) + (i_312_ - i_313_ and 0x10000)
-                                is_308_[i_309_] = (0xffffff.inv() or i_312_ - i_311_ or i_311_ - (i_311_ ushr 8))
-                            }
-                            f += f_172_
-                            f_173_ += f_174_
-                            f_175_ += f_176_
-                            f_177_ += f_178_
-                        } while (--i_169_ > 0)
-                    } else {
-                        val i_305_ = this.anInt1674
-                        val i_306_ = 256 - this.anInt1674
-                        do {
-                            if (f < fs[++i]) {
-                                i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
-                                i_168_ = (((i_168_ and 0xff00ff) * i_306_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_306_ shr 8 and 0xff00))
-                                val i_307_ = `is`[i]
-                                `is`[i] = (i_168_ + ((i_307_ and 0xff00ff) * i_305_ shr 8 and 0xff00ff) + ((i_307_ and 0xff00) * i_305_ shr 8 and 0xff00))
-                            }
-                            f += f_172_
-                            f_173_ += f_174_
-                            f_175_ += f_176_
-                            f_177_ += f_178_
-                        } while (--i_169_ > 0)
-                    }
+                    val i_305_ = this.anInt1674
+                    val i_306_ = 256 - this.anInt1674
+                    do {
+                        if (f < fs[++i]) {
+                            i_168_ = 0xffffff.inv() or (f_173_.toInt() and 0xff0000 or (f_175_.toInt() and 0xff00) or (f_177_.toInt() and 0xff))
+                            i_168_ = (((i_168_ and 0xff00ff) * i_306_ shr 8 and 0xff00ff) + ((i_168_ and 0xff00) * i_306_ shr 8 and 0xff00))
+                            val i_307_ = `is`[i]
+                            `is`[i] = (i_168_ + ((i_307_ and 0xff00ff) * i_305_ shr 8 and 0xff00ff) + ((i_307_ and 0xff00) * i_305_ shr 8 and 0xff00))
+                        }
+                        f += f_172_
+                        f_173_ += f_174_
+                        f_175_ += f_176_
+                        f_177_ += f_178_
+                    } while (--i_169_ > 0)
                 }
             }
+        
         }
     }
 
@@ -1318,9 +970,9 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
         var f_323_ = f_323_
         var f_324_ = f_324_
         if (aBoolean1675) {
-            aHa_Sub1_1666.line(f.toInt(), f_316_.toInt(), f_317_.toInt(), -8003, ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f_314_.toInt())
-            aHa_Sub1_1666.line(f_314_.toInt(), f_317_.toInt(), f_318_.toInt(), -8003, ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f_315_.toInt())
-            aHa_Sub1_1666.line(f_315_.toInt(), f_318_.toInt(), f_316_.toInt(), -8003, ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f.toInt())
+            aHa_Sub1_1666.line(f.toInt(), f_316_.toInt(), f_317_.toInt(), ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f_314_.toInt())
+            aHa_Sub1_1666.line(f_314_.toInt(), f_317_.toInt(), f_318_.toInt(), ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f_315_.toInt())
+            aHa_Sub1_1666.line(f_315_.toInt(), f_318_.toInt(), f_316_.toInt(), ItemSpriteCacheKey.HSV_TO_RGB!![f_322_.toInt()], f.toInt())
         } else {
             val f_325_ = f_317_ - f_316_
             val f_326_ = f_314_ - f
@@ -2876,9 +2528,9 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
         var f_475_ = f_475_
         var f_476_ = f_476_
         if (aBoolean1675) {
-            aHa_Sub1_1666.line(f.toInt(), f_471_.toInt(), f_472_.toInt(), -8003, 0xffffff.inv() or i, f_469_.toInt())
-            aHa_Sub1_1666.line(f_469_.toInt(), f_472_.toInt(), f_473_.toInt(), -8003, 0xffffff.inv() or i, f_470_.toInt())
-            aHa_Sub1_1666.line(f_470_.toInt(), f_473_.toInt(), f_471_.toInt(), -8003, 0xffffff.inv() or i, f.toInt())
+            aHa_Sub1_1666.line(f.toInt(), f_471_.toInt(), f_472_.toInt(), 0xffffff.inv() or i, f_469_.toInt())
+            aHa_Sub1_1666.line(f_469_.toInt(), f_472_.toInt(), f_473_.toInt(), 0xffffff.inv() or i, f_470_.toInt())
+            aHa_Sub1_1666.line(f_470_.toInt(), f_473_.toInt(), f_471_.toInt(), 0xffffff.inv() or i, f.toInt())
         } else {
             val f_479_ = f_472_ - f_471_
             val f_480_ = f_469_ - f
@@ -3328,13 +2980,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
         }
     }
 
-    fun method1028(): Int {
-        return this.lineOffsets[0] % anInt1678
-    }
-
     init {
-        anInt1687 = -1
-        anInt1689 = -1
         anInt1697 = -1
         anInt1678 = aHa_Sub1_1666.anInt7477
         anIntArray1673 = aHa_Sub1_1666.anIntArray7483

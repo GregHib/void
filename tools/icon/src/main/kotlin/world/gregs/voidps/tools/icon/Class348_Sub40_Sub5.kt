@@ -18,29 +18,21 @@ internal class Class348_Sub40_Sub5 : Class348_Sub40(0, true) {
     private var anInt9125 = 2048
     private var anInt9129 = 5
 
-    private fun method3061(bool: Boolean) {
-        anInt9120++
-        if (bool == true) {
-            val random = Random(anInt9122.toLong())
-            aShortArray9116 = ShortArray(512)
-            if (anInt9125 > 0) {
-                for (i in 0..511) aShortArray9116[i] = Mesh.Companion.method1097(81.toByte(), anInt9125, random).toShort()
-            }
+    private fun method3061() {
+        val random = Random(anInt9122.toLong())
+        aShortArray9116 = ShortArray(512)
+        if (anInt9125 > 0) {
+            for (i in 0..511) aShortArray9116[i] = Mesh.Companion.method1097(anInt9125, random).toShort()
         }
     }
 
-    override fun method3044(i: Int) {
-        if (i > 108) {
-            aByteArray9119 = Toolkit.Companion.method3664(anInt9122, 124)!!
-            anInt9126++
-            method3061(true)
-        }
+    override fun method3044() {
+        aByteArray9119 = Toolkit.Companion.method3664(anInt9122)!!
+        method3061()
     }
 
-    override fun method3042(i: Int, i_0_: Int): IntArray {
-        anInt9123++
-        val `is` = this.aClass191_7032!!.method1433(0, i)
-        if (i_0_ != 255) method3044(-57)
+    override fun method3042(i: Int): IntArray {
+        val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
             val i_1_ = anInt9117 * Class79.anIntArray6035!![i] + 2048
             val i_2_ = i_1_ shr 12
@@ -158,52 +150,49 @@ internal class Class348_Sub40_Sub5 : Class348_Sub40(0, true) {
         return `is`!!
     }
 
-    override fun method3049(packet: Packet?, i: Int, i_17_: Int) {
-        if (i_17_ == 31015) {
-            val i_18_ = i
-            while_145_@ do {
-                while_144_@ do {
-                    while_143_@ do {
-                        while_142_@ do {
-                            while_141_@ do {
-                                do {
-                                    if (i_18_ == 0) {
-                                        anInt9117 = packet!!.readUnsignedByte(i_17_ xor 0x79d8)
-                                        anInt9129 = anInt9117
-                                        break@while_145_
-                                    } else if (i_18_ != 1) {
-                                        if (i_18_ != 2) {
-                                            if (i_18_ != 3) {
-                                                if (i_18_ != 4) {
-                                                    if (i_18_ != 5) {
-                                                        if (i_18_ == 6) break@while_144_
-                                                        break@while_145_
-                                                    }
-                                                } else break@while_142_
-                                                break@while_143_
-                                            }
-                                        } else break
-                                        break@while_141_
-                                    }
-                                    anInt9122 = packet!!.readUnsignedByte(i_17_ + -30760)
+    override fun method3049(packet: Packet?, i: Int) {
+        val i_18_ = i
+        while_145_@ do {
+            while_144_@ do {
+                while_143_@ do {
+                    while_142_@ do {
+                        while_141_@ do {
+                            do {
+                                if (i_18_ == 0) {
+                                    anInt9117 = packet!!.readUnsignedByte()
+                                    anInt9129 = anInt9117
                                     break@while_145_
-                                } while (false)
-                                anInt9125 = packet!!.readUnsignedShort(842397944)
+                                } else if (i_18_ != 1) {
+                                    if (i_18_ != 2) {
+                                        if (i_18_ != 3) {
+                                            if (i_18_ != 4) {
+                                                if (i_18_ != 5) {
+                                                    if (i_18_ == 6) break@while_144_
+                                                    break@while_145_
+                                                }
+                                            } else break@while_142_
+                                            break@while_143_
+                                        }
+                                    } else break
+                                    break@while_141_
+                                }
+                                anInt9122 = packet!!.readUnsignedByte()
                                 break@while_145_
                             } while (false)
-                            anInt9124 = packet!!.readUnsignedByte(i_17_ xor 0x79d8)
+                            anInt9125 = packet!!.readUnsignedShort()
                             break@while_145_
                         } while (false)
-                        anInt9118 = packet!!.readUnsignedByte(i_17_ xor 0x79d8)
+                        anInt9124 = packet!!.readUnsignedByte()
                         break@while_145_
                     } while (false)
-                    anInt9129 = packet!!.readUnsignedByte(255)
+                    anInt9118 = packet!!.readUnsignedByte()
                     break@while_145_
                 } while (false)
-                anInt9117 = packet!!.readUnsignedByte(255)
+                anInt9129 = packet!!.readUnsignedByte()
+                break@while_145_
             } while (false)
-            anInt9127++
-        }
+            anInt9117 = packet!!.readUnsignedByte()
+        } while (false)
     }
 
     companion object {
@@ -211,9 +200,5 @@ internal class Class348_Sub40_Sub5 : Class348_Sub40(0, true) {
         var anInt2835: Int = 0
         var anInt2023: Int = 0
         var anInt4715: Int = 0
-        var anInt9120: Int = 0
-        var anInt9123: Int = 0
-        var anInt9126: Int = 0
-        var anInt9127: Int = 0
     }
 }

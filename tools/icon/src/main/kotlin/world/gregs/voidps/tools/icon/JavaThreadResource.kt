@@ -10,7 +10,6 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
     var aBoolean2195: Boolean = false
     var aRunnable2198: Runnable? = null
     var anInt2197: Int = 0
-    var anInt2205: Int = 0
     var aBoolean2201: Boolean = false
     var aBoolean2202: Boolean = true
     var anInt2210: Int
@@ -53,18 +52,12 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
     var aClass64_Sub1_2246: JavaModel?
     var anIntArray2247: IntArray
 
-    fun method1291(i: Int, runnable: Runnable?) {
-        if (i == 10000) {
-            this.aRunnable2198 = runnable
-            anInt2193++
-        }
+    fun method1291(runnable: Runnable?) {
+        this.aRunnable2198 = runnable
     }
 
-    fun method1292(i: Int) {
-        if (i == 64) {
-            anInt2194++
-            this.rasterizer = Rasterizer(aHa_Sub1_2191, this)
-        }
+    fun method1292() {
+        this.rasterizer = Rasterizer(aHa_Sub1_2191, this)
     }
 
     init {
@@ -109,10 +102,5 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
             this.anIntArray2242[i] = -1
             i++
         }
-    }
-
-    companion object {
-        var anInt2193: Int = 0
-        var anInt2194: Int = 0
     }
 }

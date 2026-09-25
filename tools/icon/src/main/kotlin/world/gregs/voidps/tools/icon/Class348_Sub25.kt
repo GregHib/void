@@ -5,7 +5,6 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class Class348_Sub25(var anInt6883: Int, private val anInt6880: Int, `is`: IntArray, bool: Boolean) {
-    var aBoolean6882: Boolean = false
     private var anIntArray6884: IntArray?
 
     fun method2997(): IntArray? {
@@ -91,8 +90,5 @@ internal class Class348_Sub25(var anInt6883: Int, private val anInt6880: Int, `i
 
     companion object {
         private var anIntArray6881: IntArray? = null
-        fun method2996() {
-            anIntArray6881 = null
-        }
     }
 }

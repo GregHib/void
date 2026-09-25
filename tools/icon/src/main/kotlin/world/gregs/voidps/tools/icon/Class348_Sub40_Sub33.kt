@@ -4,6 +4,4 @@ package world.gregs.voidps.tools.icon
 * See client/src/Class348_Sub40_Sub33.java for the full original.
 */
 
-internal object Class348_Sub40_Sub33 : Class348_Sub40(0, false) {
-    var aClass46ArrayArray9427: Array<Array<Class46?>?>? = null
-}
+internal object Class348_Sub40_Sub33 : Class348_Sub40(0, false)

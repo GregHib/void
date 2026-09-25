@@ -9,11 +9,7 @@ import kotlin.math.pow
 internal class Class348_Sub6(var anInt6630: Int, var anInt6636: Int) : Class348() {
     companion object {
         var anIntArray179: IntArray? = null
-        var anInt6634: Int = -2
-        var anInt6638: Int = 0
-
-        fun method2770(i: Int) {
-            anInt6638++
+        fun method2770() {
             if (anIntArray179 == null) anIntArray179 = IntArray(65536)
             else return
             val d = 0.7 + (0.03 * Math.random() - 0.015)
@@ -60,7 +56,6 @@ internal class Class348_Sub6(var anInt6630: Int, var anInt6636: Int) : Class348(
                 val i_20_ = (i_18_ shl 8) + (i_17_ shl 16) - -i_19_
                 anIntArray179!![i_5_] = i_20_
             }
-            if (i != 2) anInt6634 = 92
         }
     }
 }

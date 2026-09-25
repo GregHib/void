@@ -5,11 +5,8 @@ package world.gregs.voidps.tools.icon
 */
 
 internal object Class59_Sub1_Sub1 {
-    var anInt8653: Int = 0
 
-    fun method557(i: Int, i_0_: Byte): Class348_Sub40? {
-        val i_1_ = 22 / ((i_0_ - 37) / 63)
-        anInt8653++
+    fun method557(i: Int): Class348_Sub40? {
         val i_2_ = i
         while_42_@ do {
             while_41_@ do {

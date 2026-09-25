@@ -4,7 +4,7 @@ package world.gregs.voidps.tools.icon
 * Visit http://jode.sourceforge.net/
 */
 
-internal abstract class Sprite : Interface3 {
+internal abstract class Sprite {
     abstract fun method964(i: Int, i_26_: Int, i_27_: Int, i_28_: Int, i_29_: Int)
 
     fun render(i: Int, i_64_: Int) {

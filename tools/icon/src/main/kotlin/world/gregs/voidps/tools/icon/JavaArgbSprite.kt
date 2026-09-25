@@ -18,11 +18,10 @@ internal class JavaArgbSprite : Sprite_Sub3 {
         this.anIntArray9936 = IntArray(i * i_443_)
     }
 
-    constructor(var_ha_Sub1: JavaToolkit?, `is`: IntArray, i: Int, i_1_: Int, i_2_: Int, i_3_: Int, bool: Boolean) : super(var_ha_Sub1, i_2_, i_3_) {
+    constructor(var_ha_Sub1: JavaToolkit?, `is`: IntArray, i: Int, i_1_: Int, i_2_: Int, i_3_: Int) : super(var_ha_Sub1, i_2_, i_3_) {
         var i = i
         var i_1_ = i_1_
-        if (bool) this.anIntArray9936 = IntArray(i_2_ * i_3_)
-        else this.anIntArray9936 = `is`
+        this.anIntArray9936 = IntArray(i_2_ * i_3_)
         i_1_ -= this.anInt8471
         var i_4_ = 0
         for (i_5_ in 0..<i_3_) {

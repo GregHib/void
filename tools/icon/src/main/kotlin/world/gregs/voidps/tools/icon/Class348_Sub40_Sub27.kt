@@ -5,14 +5,12 @@ package world.gregs.voidps.tools.icon
 */
 
 internal class Class348_Sub40_Sub27 : Class348_Sub40(3, false) {
-    override fun method3047(i: Int, i_0_: Int): Array<IntArray>? {
-        if (i_0_ != -1564599039) return null
-        anInt9356++
-        val `is` = this.aClass322_7033!!.method2557(-90, i)
+    override fun method3047(i: Int): Array<IntArray>? {
+        val `is` = this.aClass322_7033!!.method2557(i)
         if (this.aClass322_7033!!.aBoolean4035) {
-            val is_1_ = this.method3048(i, i_0_ + -2096661920, 2)
-            val is_2_ = this.method3039((-74).toByte(), i, 0)
-            val is_3_ = this.method3039((-58).toByte(), i, 1)
+            val is_1_ = this.method3048(i, 2)
+            val is_2_ = this.method3039(i, 0)
+            val is_3_ = this.method3039(i, 1)
             val is_4_ = `is`!![0]
             val is_5_ = `is`[1]
             val is_6_ = `is`[2]
@@ -45,14 +43,12 @@ internal class Class348_Sub40_Sub27 : Class348_Sub40(3, false) {
         return `is`
     }
 
-    override fun method3042(i: Int, i_16_: Int): IntArray? {
-        if (i_16_ != 255) return null
-        anInt9359++
-        val `is` = this.aClass191_7032!!.method1433(0, i)
+    override fun method3042(i: Int): IntArray? {
+        val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val is_17_ = this.method3048(i, i_16_ xor 0x25c5979e, 0)
-            val is_18_ = this.method3048(i, 633706337, 1)
-            val is_19_ = this.method3048(i, i_16_ + 633706082, 2)
+            val is_17_ = this.method3048(i, 0)
+            val is_18_ = this.method3048(i, 1)
+            val is_19_ = this.method3048(i, 2)
             var i_20_ = 0
             while (Class348_Sub40_Sub6.Companion.anInt9139 > i_20_) {
                 val i_21_ = is_19_!![i_20_]
@@ -66,16 +62,7 @@ internal class Class348_Sub40_Sub27 : Class348_Sub40(3, false) {
         return `is`
     }
 
-    override fun method3049(packet: Packet?, i: Int, i_22_: Int) {
-        anInt9358++
-        if (i_22_ != 31015) anInt9360 = -16
-        if (i == 0) this.aBoolean7045 = packet!!.readUnsignedByte(255) == 1
-    }
-
-    companion object {
-        var anInt9356: Int = 0
-        var anInt9358: Int = 0
-        var anInt9359: Int = 0
-        var anInt9360: Int = 0
+    override fun method3049(packet: Packet?, i: Int) {
+        if (i == 0) this.aBoolean7045 = packet!!.readUnsignedByte() == 1
     }
 }

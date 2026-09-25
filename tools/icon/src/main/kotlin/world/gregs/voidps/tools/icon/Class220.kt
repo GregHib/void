@@ -12,10 +12,8 @@ internal object Class220 {
 
     var anIntArray4654: IntArray? = null
 
-    var anInt2876: Int = 0
-    var anInt2878: Int = 0
 
-    fun method1605(i: Int) {
+    fun method1605() {
         if (anIntArray3068 == null || anIntArray4654 == null) {
             anIntArray4654 = IntArray(256)
             anIntArray3068 = IntArray(256)
@@ -25,15 +23,5 @@ internal object Class220 {
                 anIntArray4654!![i_0_] = (4096.0 * cos(d)).toInt()
             }
         }
-        anInt2878++
-        if (i != 26188) method1606(-76, 98, 86)
-    }
-
-    fun method1606(i: Int, i_1_: Int, i_2_: Int): Byte {
-        anInt2876++
-        if (i_2_ != 9) return 0.toByte()
-        if (i_1_ != -27939) return (-50).toByte()
-        if ((i and 0x1) == 0) return 1.toByte()
-        return 2.toByte()
     }
 }

@@ -7,30 +7,26 @@ package world.gregs.voidps.tools.icon
 internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
     private var anInt9463 = 1
     private var anInt9466 = 1
-    override fun method3049(packet: Packet?, i: Int, i_11_: Int) {
-        anInt9460++
-        if (i_11_ != 31015) method3147(32.toByte())
+    override fun method3049(packet: Packet?, i: Int) {
         val i_12_ = i
         while_212_@ do {
             do {
                 if (i_12_ == 0) {
-                    anInt9466 = packet!!.readUnsignedByte(255)
+                    anInt9466 = packet!!.readUnsignedByte()
                     return
                 } else if (i_12_ != 1) {
                     if (i_12_ == 2) break
                     break@while_212_
                 }
-                anInt9463 = packet!!.readUnsignedByte(255)
+                anInt9463 = packet!!.readUnsignedByte()
                 return
             } while (false)
-            this.aBoolean7045 = packet!!.readUnsignedByte(i_11_ xor 0x79d8) == 1
+            this.aBoolean7045 = packet!!.readUnsignedByte() == 1
         } while (false)
     }
 
-    override fun method3047(i: Int, i_28_: Int): Array<IntArray>? {
-        if (i_28_ != -1564599039) return null
-        anInt9462++
-        val `is` = this.aClass322_7033!!.method2557(i_28_ xor 0x5d41e2a6, i)
+    override fun method3047(i: Int): Array<IntArray>? {
+        val `is` = this.aClass322_7033!!.method2557(i)
         if (this.aClass322_7033!!.aBoolean4035) {
             val i_29_ = 1 + (anInt9463 + anInt9463)
             val i_30_ = 65536 / i_29_
@@ -38,7 +34,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
             val i_32_ = 65536 / i_31_
             val is_33_ = arrayOfNulls<Array<IntArray>>(i_29_)
             for (i_34_ in i + -anInt9463..anInt9463 + i) {
-                val is_35_ = this.method3039(55.toByte(), Class348_Sub40_Sub6.anInt6325 and i_34_, 0)
+                val is_35_ = this.method3039(Class348_Sub40_Sub6.anInt6325 and i_34_, 0)
                 val is_36_: Array<IntArray> = Array(3) { IntArray(Class348_Sub40_Sub6.Companion.anInt9139) }
                 var i_37_ = 0
                 var i_38_ = 0
@@ -97,58 +93,5 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
 
     companion object {
         var anInt6076: Int = 0
-        var anInt9459: Int = 0
-        var anInt9464: Int = 0
-        var aLongArray9465: LongArray? = null
-        var aSpriteArray9467: Array<Sprite?>? = null
-        var anIntArray9458: IntArray?
-        var anInt9460: Int = 0
-        var anInt9462: Int = 0
-
-        fun method3146(i: Int, i_0_: Int, i_1_: Byte, i_2_: Int, i_3_: Int, i_4_: Int, `is`: ByteArray?, is_5_: ByteArray?, i_6_: Int) {
-            var i_0_ = i_0_
-            var i_4_ = i_4_
-            var i_6_ = i_6_
-            try {
-                anInt9464++
-                val i_7_ = -(i_0_ shr 2)
-                i_0_ = -(i_0_ and 0x3)
-                if (i_1_ >= -12) method3148(true)
-                for (i_8_ in -i_3_..-1) {
-                    for (i_9_ in i_7_..-1) {
-                        `is`!![i_4_++] = (`is`[i_4_++] + -is_5_!![i_6_++]).toByte()
-                        `is`[i_4_++] = (`is`[i_4_++] + -is_5_[i_6_++]).toByte()
-                        `is`[i_4_++] = (`is`[i_4_++] + -is_5_[i_6_++]).toByte()
-                        `is`[i_4_++] = (`is`[i_4_++] + -is_5_[i_6_++]).toByte()
-                    }
-                    for (i_10_ in i_0_..-1) `is`!![i_4_++] = (`is`[i_4_++] + -is_5_!![i_6_++]).toByte()
-                    i_4_ += i
-                    i_6_ += i_2_
-                }
-            } catch (runtimeexception: RuntimeException) {
-                throw ItemType.method2929(runtimeexception, ("fd.D(" + i + ',' + i_0_ + ',' + i_1_ + ',' + i_2_ + ',' + i_3_ + ',' + i_4_ + ',' + (if (`is` != null) "{...}" else "null") + ',' + (if (is_5_ != null) "{...}" else "null") + ',' + i_6_ + ')'))
-            }
-        }
-
-        /* NOTE: method3147 is NOT in the genuine-methods list (0 JaCoCo hits)
-     * for this renderer, so it is stubbed rather than pulling in
-     * Class248/Class97/Class259's world-state fields to compile a path
-     * that never executes here. */
-        fun method3147(i: Byte) {
-            if (i.toInt() != 27) method3146(-85, 87, 91.toByte(), 46, -77, 54, null, null, -117)
-            anInt9459++
-            throw IllegalStateException() // unreachable per JaCoCo coverage
-        }
-
-        fun method3148(bool: Boolean) {
-            anIntArray9458 = null
-            aLongArray9465 = null
-            if (bool != true) Companion.method3146(79, -54, (-128).toByte(), -109, 85, -107, null, null, 58)
-            aSpriteArray9467 = null
-        }
-
-        init {
-            anIntArray9458 = IntArray(1000)
-        }
     }
 }

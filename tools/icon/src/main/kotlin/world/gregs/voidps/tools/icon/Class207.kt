@@ -92,25 +92,19 @@ internal class Class207 {
             return method1517(`is`)[0]
         }
 
-        fun method1521(cache: Cache, i: Int, i_112_: Int): Class207? {
-            val `is` = cache.data(Index.SPRITES, i, i_112_)
-            if (`is` == null) return null
-            return method1517(`is`)[0]
-        }
-
         private fun method1517(`is`: ByteArray): Array<Class207> {
             val packet = Packet(`is`)
             packet.pos = `is`.size - 2
-            val i = packet.readUnsignedShort(842397944)
+            val i = packet.readUnsignedShort()
             val class207s: Array<Class207> = Array(i) { Class207() }
             packet.pos = `is`.size - 7 - i * 8
-            val i_73_ = packet.readUnsignedShort(842397944)
-            val i_74_ = packet.readUnsignedShort(842397944)
-            val i_75_ = (packet.readUnsignedByte(255) and 0xff) + 1
-            for (i_76_ in 0..<i) class207s[i_76_].anInt2703 = packet.readUnsignedShort(842397944)
-            for (i_77_ in 0..<i) class207s[i_77_].anInt2700 = packet.readUnsignedShort(842397944)
-            for (i_78_ in 0..<i) class207s[i_78_].anInt2702 = packet.readUnsignedShort(842397944)
-            for (i_79_ in 0..<i) class207s[i_79_].anInt2696 = packet.readUnsignedShort(842397944)
+            val i_73_ = packet.readUnsignedShort()
+            val i_74_ = packet.readUnsignedShort()
+            val i_75_ = (packet.readUnsignedByte() and 0xff) + 1
+            for (i_76_ in 0..<i) class207s[i_76_].anInt2703 = packet.readUnsignedShort()
+            for (i_77_ in 0..<i) class207s[i_77_].anInt2700 = packet.readUnsignedShort()
+            for (i_78_ in 0..<i) class207s[i_78_].anInt2702 = packet.readUnsignedShort()
+            for (i_79_ in 0..<i) class207s[i_79_].anInt2696 = packet.readUnsignedShort()
             for (i_80_ in 0..<i) {
                 val class207 = class207s[i_80_]
                 class207.anInt2698 = (i_73_ - class207.anInt2702 - class207.anInt2703)
@@ -119,7 +113,7 @@ internal class Class207 {
             packet.pos = `is`.size - 7 - i * 8 - (i_75_ - 1) * 3
             val is_81_ = IntArray(i_75_)
             for (i_82_ in 1..<i_75_) {
-                is_81_[i_82_] = packet.readMedium(-1)
+                is_81_[i_82_] = packet.readMedium()
                 if (is_81_[i_82_] == 0) is_81_[i_82_] = 1
             }
             for (i_83_ in 0..<i) class207s[i_83_].anIntArray2697 = is_81_
@@ -128,31 +122,31 @@ internal class Class207 {
                 val class207 = class207s[i_84_]
                 val i_85_ = (class207.anInt2702 * class207.anInt2696)
                 class207.aByteArray2699 = ByteArray(i_85_)
-                val i_86_ = packet.readUnsignedByte(255)
+                val i_86_ = packet.readUnsignedByte()
                 if ((i_86_ and 0x2) == 0) {
                     if ((i_86_ and 0x1) == 0) {
-                        for (i_87_ in 0..<i_85_) class207.aByteArray2699!![i_87_] = packet.readByte(-126)
+                        for (i_87_ in 0..<i_85_) class207.aByteArray2699!![i_87_] = packet.readByte()
                     } else {
                         for (i_88_ in 0..<class207.anInt2702) {
-                            for (i_89_ in 0..<class207.anInt2696) class207.aByteArray2699!![(i_88_ + i_89_ * class207.anInt2702)] = packet.readByte(-96)
+                            for (i_89_ in 0..<class207.anInt2696) class207.aByteArray2699!![(i_88_ + i_89_ * class207.anInt2702)] = packet.readByte()
                         }
                     }
                 } else {
                     var bool = false
                     class207.aByteArray2695 = ByteArray(i_85_)
                     if ((i_86_ and 0x1) == 0) {
-                        for (i_90_ in 0..<i_85_) class207.aByteArray2699!![i_90_] = packet.readByte(-118)
+                        for (i_90_ in 0..<i_85_) class207.aByteArray2699!![i_90_] = packet.readByte()
                         for (i_91_ in 0..<i_85_) {
-                            val i_92_ = (packet.readByte(-89).also { class207.aByteArray2695!![i_91_] = it })
+                            val i_92_ = (packet.readByte().also { class207.aByteArray2695!![i_91_] = it })
                             bool = bool or (i_92_.toInt() != -1)
                         }
                     } else {
                         for (i_93_ in 0..<class207.anInt2702) {
-                            for (i_94_ in 0..<class207.anInt2696) class207.aByteArray2699!![(i_93_ + i_94_ * class207.anInt2702)] = packet.readByte(-84)
+                            for (i_94_ in 0..<class207.anInt2696) class207.aByteArray2699!![(i_93_ + i_94_ * class207.anInt2702)] = packet.readByte()
                         }
                         for (i_95_ in 0..<class207.anInt2702) {
                             for (i_96_ in 0..<class207.anInt2696) {
-                                val i_97_ = (packet.readByte(-122).also { class207.aByteArray2695!![i_95_ + i_96_ * (class207.anInt2702)] = it })
+                                val i_97_ = (packet.readByte().also { class207.aByteArray2695!![i_95_ + i_96_ * (class207.anInt2702)] = it })
                                 bool = bool or (i_97_.toInt() != -1)
                             }
                         }

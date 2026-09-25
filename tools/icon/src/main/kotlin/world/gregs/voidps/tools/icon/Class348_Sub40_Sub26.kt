@@ -10,7 +10,6 @@ package world.gregs.voidps.tools.icon
 
 internal object Class348_Sub40_Sub26 : Class348_Sub40(1, false) {
     var aBooleanArray9351: BooleanArray? = null
-    var anInt9346: Int = 0
 
     init {
         aBooleanArray9351 = BooleanArray(8)

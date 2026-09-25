@@ -4,178 +4,62 @@ package world.gregs.voidps.tools.icon
 * Visit http://jode.sourceforge.net/
 */
 
-internal open class Packet : Class348 {
-    var aByteArray7154: ByteArray
-    var pos: Int
+internal open class Packet(var aByteArray7154: ByteArray) : Class348() {
+    var pos: Int = 0
 
-    fun readUnsignedShort(i: Int): Int {
-        if (i != 842397944) return 111
+    fun readUnsignedShort(): Int {
         this.pos += 2
-        anInt7186++
         return ((0xff and (this.aByteArray7154[-1 + this.pos]).toInt()) + ((this.aByteArray7154[-2 + this.pos]).toInt() shl 8 and 0xff00))
     }
 
-    fun method3362(i: Byte): Int {
-        anInt7155++
+    fun method3362(): Int {
         val i_43_ = ((this.aByteArray7154[this.pos]).toInt() and 0xff)
-        if (i.toInt() != 77) readByte(-48)
-        if (i_43_ < 128) return -64 + readUnsignedByte(255)
-        return readUnsignedShort(i.toInt() xor 0x3235f8b5) - 49152
+        if (i_43_ < 128) return -64 + readUnsignedByte()
+        return readUnsignedShort() - 49152
     }
 
-    fun readMedium(i: Int): Int {
+    fun readMedium(): Int {
         this.pos += 3
-        anInt7203++
-        if (i != -1) return -52
         return ((0xff00 and ((this.aByteArray7154[-2 + this.pos]).toInt() shl 8)) + ((((this.aByteArray7154[-3 + this.pos]).toInt() and 0xff) shl 16) - -((this.aByteArray7154[-1 + this.pos]).toInt() and 0xff)))
     }
 
-    fun readShort(i: Int): Int {
-        anInt7204++
-        if (i != 13638) method3350(-23, true, null, -10)
+    fun readShort(): Int {
         this.pos += 2
         var i_65_ = (((this.aByteArray7154[this.pos - 1]).toInt() and 0xff) + (((this.aByteArray7154[-2 + this.pos]).toInt() and 0xff) shl 8))
         if (i_65_ > 32767) i_65_ -= 65536
         return i_65_
     }
 
-    fun readString(i: Byte): String {
-        anInt7166++
-        val i_68_ = -81 / ((i - 30) / 52)
+    fun readString(): String {
         val i_69_ = this.pos
         while ((this.aByteArray7154[this.pos++]).toInt() != 0) {
             /* empty */
         }
         val i_70_ = -1 + this.pos - i_69_
         if (i_70_ == 0) return ""
-        return method3546(this.aByteArray7154, 0, i_70_, i_69_)
+        return method3546(this.aByteArray7154, i_70_, i_69_)
     }
 
-    fun readUnsignedByte(i: Int): Int {
-        if (i != 255) writeBytes(-101, 111, null, 33)
-        anInt7153++
+    fun readUnsignedByte(): Int {
         return ((this.aByteArray7154[this.pos++]).toInt() and 0xff)
     }
 
-    fun readByte(i: Int): Byte {
-        if (i >= -75) writeByteAdd((-18).toByte(), -24)
-        anInt7143++
+    fun readByte(): Byte {
         return (this.aByteArray7154[this.pos++])
     }
 
-    fun gdata(i: Int, i_82_: Int, i_83_: Int, `is`: ByteArray) {
-        anInt7159++
-        var i_84_ = i_82_
-        while (i_83_ + i_82_ > i_84_) {
-            `is`[i_84_] = (this.aByteArray7154[this.pos++])
-            i_84_++
-        }
-        if (i != 2147483647) anInt7207 = -47
-    }
-
-    constructor(i: Int) {
-        this.pos = 0
-        this.aByteArray7154 = Class37.method359(i, -1)!!
-    }
-
-    constructor(`is`: ByteArray) {
-        this.aByteArray7154 = `is`
-        this.pos = 0
-    }
-
-    fun readInt(i: Byte): Int {
-        anInt7196++
+    fun readInt(): Int {
         this.pos += 4
-        if (i.toInt() != -126) method3368(-61, -64)
         return ((0xff and (this.aByteArray7154[this.pos - 1]).toInt()) + ((((this.aByteArray7154[-4 + this.pos]).toInt() and 0xff) shl 24) + (0xff0000 and ((this.aByteArray7154[-3 + this.pos]).toInt() shl 16))) - -(((this.aByteArray7154[-2 + this.pos]).toInt() and 0xff) shl 8))
-    }
-
-    fun method3350(i: Int, bool: Boolean, `is`: IntArray?, i_25_: Int) {
-        anInt7137++
-        val i_26_ = this.pos
-        this.pos = i
-        val i_27_ = (-i + i_25_) / 8
-        var i_28_ = 0
-        while (i_27_ > i_28_) {
-            var i_29_ = readInt((-126).toByte())
-            var i_30_ = readInt((-126).toByte())
-            var i_31_ = 0
-            val i_32_ = -1640531527
-            var i_33_ = 32
-            while (i_33_-- > 0) {
-                i_29_ += (i_31_ - -`is`!![i_31_ and 0x3] xor (i_30_ ushr 5 xor (i_30_ shl 4)) - -i_30_)
-                i_31_ += i_32_
-                i_30_ += (i_31_ - -`is`[(0x1a0b and i_31_) ushr 11] xor i_29_ + (i_29_ ushr 5 xor (i_29_ shl 4)))
-            }
-            this.pos -= 8
-            writeInt(91.toByte(), i_29_)
-            writeInt(98.toByte(), i_30_)
-            i_28_++
-        }
-        if (bool != true) method3394(88, 83)
-        this.pos = i_26_
-    }
-
-    fun method3368(i: Int, i_57_: Int): Long {
-        var i = i
-        i--
-        anInt7191++
-        require(!(i < 0 || i > 7))
-        if (i_57_ != 3060) return 99L
-        var i_58_ = 8 * i
-        var l = 0L
-        while ( /**/i_58_ >= 0) {
-            l = l or (((this.aByteArray7154[this.pos++]).toLong() and 0xffL) shl i_58_)
-            i_58_ -= 8
-        }
-        return l
-    }
-
-    fun writeBytes(i: Int, i_73_: Int, `is`: ByteArray?, i_74_: Int) {
-        var i_75_ = i_73_
-        while (i_73_ + i > i_75_) {
-            this.aByteArray7154[this.pos++] = `is`!![i_75_]
-            i_75_++
-        }
-        val i_76_ = -41 % ((8 - i_74_) / 52)
-        anInt7199++
-    }
-
-    fun writeByteAdd(i: Byte, i_94_: Int) {
-        anInt7192++
-        this.aByteArray7154[this.pos++] = (i_94_ + 128).toByte()
-        val i_95_ = -21 % ((-8 - i) / 57)
-    }
-
-    fun writeInt(i: Byte, i_90_: Int) {
-        this.aByteArray7154[this.pos++] = (i_90_ shr 24).toByte()
-        if (i < 84) writeByteAdd((-122).toByte(), -112)
-        anInt7202++
-        this.aByteArray7154[this.pos++] = (i_90_ shr 16).toByte()
-        this.aByteArray7154[this.pos++] = (i_90_ shr 8).toByte()
-        this.aByteArray7154[this.pos++] = i_90_.toByte()
-    }
-
-    fun method3394(i: Int, i_93_: Int) {
-        this.aByteArray7154[this.pos++] = i_93_.toByte()
-        anInt7141++
-        this.aByteArray7154[this.pos++] = (i_93_ shr 8).toByte()
-        if (i == -23892) {
-            this.aByteArray7154[this.pos++] = (i_93_ shr 16).toByte()
-            this.aByteArray7154[this.pos++] = (i_93_ shr 24).toByte()
-        }
     }
 
     companion object {
         var aCharArray625: CharArray = charArrayOf('€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ')
 
-        var anInt7349: Int = 0
-
-        fun method3546(`is`: ByteArray, i: Int, i_0_: Int, i_1_: Int): String {
-            anInt7349++
+        fun method3546(`is`: ByteArray, i_0_: Int, i_1_: Int): String {
             val cs = CharArray(i_0_)
             var i_2_ = 0
-            for (i_3_ in i..<i_0_) {
+            for (i_3_ in 0..<i_0_) {
                 var i_4_ = 0xff and `is`[i_3_ + i_1_].toInt()
                 if (i_4_ != 0) {
                     if (i_4_ >= 128 && i_4_ < 160) {
@@ -188,25 +72,5 @@ internal open class Packet : Class348 {
             }
             return String(cs, 0, i_2_)
         }
-
-        var anInt7137: Int = 0
-        var anInt7141: Int = 0
-        var anInt7143: Int = 0
-        var anInt7144: Int = 0
-        var anInt7150: Int = 0
-        var anInt7153: Int = 0
-        var anInt7155: Int = 0
-        var anInt7158: Int = 0
-        var anInt7159: Int = 0
-        var anInt7166: Int = 0
-        var anInt7186: Int = 0
-        var anInt7191: Int = 0
-        var anInt7192: Int = 0
-        var anInt7196: Int = 0
-        var anInt7199: Int = 0
-        var anInt7202: Int = 0
-        var anInt7203: Int = 0
-        var anInt7204: Int = 0
-        var anInt7207: Int = 0
     }
 }
