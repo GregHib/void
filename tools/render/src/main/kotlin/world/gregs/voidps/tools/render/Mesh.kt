@@ -44,6 +44,13 @@ class Mesh {
     var effectors: Array<ModelParticleEffector?>? = null
     var texOffsetX: IntArray? = null
     var vertexLabel: IntArray? = null
+
+    /** Bit `1 << n` of the source mesh each face came from when merged, used to transform individual body parts. */
+    var faceSource: ShortArray? = null
+
+    /** OR of the source mesh bits sharing each vertex when merged. */
+    var vertexSource: ShortArray? = null
+
     fun upscale(i: Int) {
         var i_1_ = 0
         while (this.vertexCount > i_1_) {
@@ -121,6 +128,71 @@ class Mesh {
         for (i_25_ in 0..<this.faceCount) {
             if (i == this.faceColour!![i_25_]) this.faceColour!![i_25_] = i_24_
         }
+    }
+
+    // Class124.method1099
+    fun translate(x: Int, y: Int, z: Int) {
+        for (i in 0..<this.vertexCount) {
+            this.vertexX!![i] += x
+            this.vertexY!![i] += y
+            this.vertexZ!![i] += z
+        }
+    }
+
+    /**
+     * Class124.method1107 - rotates about the z-axis ([roll]), then the x-axis ([pitch]), then the y-axis ([yaw]).
+     * Angles are 14-bit (16384 = 360 degrees).
+     */
+    fun rotate(pitch: Int, yaw: Int, roll: Int) {
+        if (roll != 0) {
+            val sin = anIntArray1207[roll and 0x3fff]
+            val cos = anIntArray1204[roll and 0x3fff]
+            for (i in 0..<this.vertexCount) {
+                val x = (cos * this.vertexX!![i] + this.vertexY!![i] * sin) shr 14
+                this.vertexY!![i] = (-(this.vertexX!![i] * sin) + this.vertexY!![i] * cos) shr 14
+                this.vertexX!![i] = x
+            }
+        }
+        if (pitch != 0) {
+            val sin = anIntArray1207[pitch and 0x3fff]
+            val cos = anIntArray1204[pitch and 0x3fff]
+            for (i in 0..<this.vertexCount) {
+                val y = (this.vertexY!![i] * cos - sin * this.vertexZ!![i]) shr 14
+                this.vertexZ!![i] = (this.vertexY!![i] * sin + cos * this.vertexZ!![i]) shr 14
+                this.vertexY!![i] = y
+            }
+        }
+        if (yaw != 0) {
+            val sin = anIntArray1207[yaw and 0x3fff]
+            val cos = anIntArray1204[yaw and 0x3fff]
+            for (i in 0..<this.vertexCount) {
+                val x = (cos * this.vertexX!![i] + this.vertexZ!![i] * sin) shr 14
+                this.vertexZ!![i] = (cos * this.vertexZ!![i] - this.vertexX!![i] * sin) shr 14
+                this.vertexX!![i] = x
+            }
+        }
+    }
+
+    /**
+     * Class124.method1104 - appends [mesh]'s vertex [index] unless a vertex at the same position already
+     * exists, in which case the existing one is shared and tagged with [source] too.
+     */
+    private fun addVertex(mesh: Mesh, index: Int, source: Short): Int {
+        val x = mesh.vertexX!![index]
+        val y = mesh.vertexY!![index]
+        val z = mesh.vertexZ!![index]
+        for (i in 0..<this.vertexCount) {
+            if (this.vertexX!![i] == x && this.vertexY!![i] == y && this.vertexZ!![i] == z) {
+                this.vertexSource!![i] = (this.vertexSource!![i].toInt() or source.toInt()).toShort()
+                return i
+            }
+        }
+        this.vertexX!![this.vertexCount] = x
+        this.vertexY!![this.vertexCount] = y
+        this.vertexZ!![this.vertexCount] = z
+        this.vertexSource!![this.vertexCount] = source
+        this.vertexLabel!![this.vertexCount] = mesh.vertexLabel?.get(index) ?: -1
+        return this.vertexCount++
     }
 
     private fun method1106(`is`: ByteArray) {
@@ -689,6 +761,160 @@ class Mesh {
         this.texSpaceCount = 0
         if (`is`[`is`.size + -1].toInt() == -1 && `is`[-2 + `is`.size].toInt() == -1) method1106(`is`)
         else method1103(`is`)
+    }
+
+    /**
+     * Class124(Class124[], int) - merges the first [count] non-null [meshes] into one, sharing vertices at identical
+     * positions. Faces and vertices are tagged with their source mesh index in [faceSource]/[vertexSource].
+     */
+    constructor(meshes: Array<Mesh?>, count: Int) {
+        var emitterCount = 0
+        var effectorCount = 0
+        var billboardCount = 0
+        var hasShading = false
+        var hasPriorities = false
+        var hasAlpha = false
+        var hasTexSpaces = false
+        var hasTextures = false
+        var hasLabels = false
+        this.globalPriority = (-1).toByte()
+        for (i in 0..<count) {
+            val mesh = meshes[i] ?: continue
+            this.faceCount += mesh.faceCount
+            this.vertexCount += mesh.vertexCount
+            this.texSpaceCount += mesh.texSpaceCount
+            hasShading = hasShading or (mesh.shadingType != null)
+            billboardCount += mesh.billboards?.size ?: 0
+            emitterCount += mesh.emitters?.size ?: 0
+            effectorCount += mesh.effectors?.size ?: 0
+            hasTextures = hasTextures or (mesh.faceTexture != null)
+            hasTexSpaces = hasTexSpaces or (mesh.faceTexSpace != null)
+            if (mesh.facePriority == null) {
+                if (this.globalPriority.toInt() == -1) this.globalPriority = mesh.globalPriority
+                if (this.globalPriority != mesh.globalPriority) hasPriorities = true
+            } else {
+                hasPriorities = true
+            }
+            hasAlpha = hasAlpha or (mesh.faceAlpha != null)
+            hasLabels = hasLabels or (mesh.faceLabel != null)
+        }
+        this.faceB = ShortArray(this.faceCount)
+        if (this.texSpaceCount > 0) {
+            this.texSpaceDefA = ShortArray(this.texSpaceCount)
+            this.texMappingType = ByteArray(this.texSpaceCount)
+            this.texOffsetX = IntArray(this.texSpaceCount)
+            this.texSpaceScaleZ = IntArray(this.texSpaceCount)
+            this.texRotation = ByteArray(this.texSpaceCount)
+            this.texOffsetY = IntArray(this.texSpaceCount)
+            this.texOffsetZ = IntArray(this.texSpaceCount)
+            this.texSpaceScaleX = IntArray(this.texSpaceCount)
+            this.texDirection = ByteArray(this.texSpaceCount)
+            this.texSpaceDefB = ShortArray(this.texSpaceCount)
+            this.texSpaceScaleY = IntArray(this.texSpaceCount)
+            this.texSpaceDefC = ShortArray(this.texSpaceCount)
+        }
+        this.faceSource = ShortArray(this.faceCount)
+        if (hasTextures) this.faceTexture = ShortArray(this.faceCount)
+        this.faceA = ShortArray(this.faceCount)
+        if (hasLabels) this.faceLabel = IntArray(this.faceCount)
+        if (hasPriorities) this.facePriority = ByteArray(this.faceCount)
+        if (hasShading) this.shadingType = ByteArray(this.faceCount)
+        if (billboardCount > 0) this.billboards = arrayOfNulls(billboardCount)
+        if (effectorCount > 0) this.effectors = arrayOfNulls(effectorCount)
+        this.vertexLabel = IntArray(this.vertexCount)
+        if (hasTexSpaces) this.faceTexSpace = ByteArray(this.faceCount)
+        this.vertexZ = IntArray(this.vertexCount)
+        this.faceColour = ShortArray(this.faceCount)
+        this.vertexX = IntArray(this.vertexCount)
+        this.vertexY = IntArray(this.vertexCount)
+        if (emitterCount > 0) this.emitters = arrayOfNulls(emitterCount)
+        this.faceC = ShortArray(this.faceCount)
+        if (hasAlpha) this.faceAlpha = ByteArray(this.faceCount)
+        this.vertexSource = ShortArray(this.vertexCount)
+        this.texSpaceCount = 0
+        effectorCount = 0
+        billboardCount = 0
+        emitterCount = 0
+        this.faceCount = 0
+        this.vertexCount = 0
+        for (i in 0..<count) {
+            val source = (1 shl i).toShort()
+            val mesh = meshes[i] ?: continue
+            val billboards = mesh.billboards
+            if (billboards != null) {
+                for (billboard in billboards) {
+                    billboard!!
+                    this.billboards!![billboardCount++] = MeshBillboard(billboard.id, billboard.face + this.faceCount, billboard.anInt2156, billboard.anInt2158)
+                }
+            }
+            for (face in 0..<mesh.faceCount) {
+                if (hasShading && mesh.shadingType != null) this.shadingType!![this.faceCount] = mesh.shadingType!![face]
+                if (hasPriorities) this.facePriority!![this.faceCount] = mesh.facePriority?.get(face) ?: mesh.globalPriority
+                if (hasAlpha && mesh.faceAlpha != null) this.faceAlpha!![this.faceCount] = mesh.faceAlpha!![face]
+                if (hasTextures) this.faceTexture!![this.faceCount] = mesh.faceTexture?.get(face) ?: -1
+                if (hasLabels) this.faceLabel!![this.faceCount] = mesh.faceLabel?.get(face) ?: -1
+                this.faceA!![this.faceCount] = addVertex(mesh, mesh.faceA!![face].toInt(), source).toShort()
+                this.faceB!![this.faceCount] = addVertex(mesh, mesh.faceB!![face].toInt(), source).toShort()
+                this.faceC!![this.faceCount] = addVertex(mesh, mesh.faceC!![face].toInt(), source).toShort()
+                this.faceSource!![this.faceCount] = source
+                this.faceColour!![this.faceCount] = mesh.faceColour!![face]
+                this.faceCount++
+            }
+            val emitters = mesh.emitters
+            if (emitters != null) {
+                for (emitter in emitters) {
+                    emitter!!
+                    val a = addVertex(mesh, emitter.vertexA, source)
+                    val b = addVertex(mesh, emitter.vertexB, source)
+                    val c = addVertex(mesh, emitter.vertexC, source)
+                    this.emitters!![emitterCount++] = emitter.copy(a, b, c)
+                }
+            }
+            val effectors = mesh.effectors
+            if (effectors != null) {
+                for (effector in effectors) {
+                    effector!!
+                    this.effectors!![effectorCount++] = effector.copy(addVertex(mesh, effector.vertex, source))
+                }
+            }
+        }
+        var faceIndex = 0
+        this.maxVertex = this.vertexCount
+        for (i in 0..<count) {
+            val source = (1 shl i).toShort()
+            val mesh = meshes[i] ?: continue
+            if (hasTexSpaces) {
+                val texSpaces = mesh.faceTexSpace
+                for (face in 0..<mesh.faceCount) {
+                    this.faceTexSpace!![faceIndex++] = if (texSpaces != null && texSpaces[face].toInt() != -1) (texSpaces[face] + this.texSpaceCount).toByte() else -1
+                }
+            }
+            for (texSpace in 0..<mesh.texSpaceCount) {
+                val type = mesh.texMappingType!![texSpace]
+                this.texMappingType!![this.texSpaceCount] = type
+                if (type.toInt() == 0) {
+                    this.texSpaceDefA!![this.texSpaceCount] = addVertex(mesh, mesh.texSpaceDefA!![texSpace].toInt(), source).toShort()
+                    this.texSpaceDefB!![this.texSpaceCount] = addVertex(mesh, mesh.texSpaceDefB!![texSpace].toInt(), source).toShort()
+                    this.texSpaceDefC!![this.texSpaceCount] = addVertex(mesh, mesh.texSpaceDefC!![texSpace].toInt(), source).toShort()
+                }
+                if (type.toInt() in 1..3) {
+                    this.texSpaceDefA!![this.texSpaceCount] = mesh.texSpaceDefA!![texSpace]
+                    this.texSpaceDefB!![this.texSpaceCount] = mesh.texSpaceDefB!![texSpace]
+                    this.texSpaceDefC!![this.texSpaceCount] = mesh.texSpaceDefC!![texSpace]
+                    this.texSpaceScaleX!![this.texSpaceCount] = mesh.texSpaceScaleX!![texSpace]
+                    this.texSpaceScaleY!![this.texSpaceCount] = mesh.texSpaceScaleY!![texSpace]
+                    this.texSpaceScaleZ!![this.texSpaceCount] = mesh.texSpaceScaleZ!![texSpace]
+                    this.texRotation!![this.texSpaceCount] = mesh.texRotation!![texSpace]
+                    this.texDirection!![this.texSpaceCount] = mesh.texDirection!![texSpace]
+                    this.texOffsetX!![this.texSpaceCount] = mesh.texOffsetX!![texSpace]
+                }
+                if (type.toInt() == 2) {
+                    this.texOffsetY!![this.texSpaceCount] = mesh.texOffsetY!![texSpace]
+                    this.texOffsetZ!![this.texSpaceCount] = mesh.texOffsetZ!![texSpace]
+                }
+                this.texSpaceCount++
+            }
+        }
     }
 
     companion object {
