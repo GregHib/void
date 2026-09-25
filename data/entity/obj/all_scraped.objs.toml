@@ -1,0 +1,545 @@
+# Manually cross-referenced with examine texts pulled from:
+# https://z-kris.com/media/2021/05/object%20examines.json
+# https://web.archive.org/web/20250812083934/https://rune-server.org/threads/196-3-item-npc-and-object-examines.699041/
+# Based on a 28-May-2021 cache.
+
+
+[scraped_201_lamp]
+id = 201
+examine = "These insects love this light."
+
+[scraped_362_barrel]
+id = 362
+examine = "A wooden barrel for storage."
+
+[scraped_684_swamp_bubbles1]
+id = 684
+examine = "The noxious liquid bubbles horribly."
+
+[scraped_724_standing_torch]
+id = 724
+examine = "A crude torch stuck in the ground."
+
+[scraped_735_swamp_bubbles2]
+id = 735
+examine = "The noxious liquid bubbles horribly."
+
+[scraped_822_cannonballs]
+id = 822
+examine = "Big heavy metal balls."
+
+[scraped_849_spear_wall]
+id = 849
+examine = "Rows of sharp pointy spears."
+
+[scraped_1113_stool]
+id = 1113
+examine = "Park it here..."
+
+[scraped_1116_hedge]
+id = 1116
+examine = "Keeps the neighbours out!"
+
+[scraped_1117_hedge]
+id = 1117
+examine = "Keeps the neighbours out!"
+
+[scraped_1124_bush]
+id = 1124
+examine = "A commonly found bush."
+
+[scraped_1158_potted_plant]
+id = 1158
+examine = "A large potted plant."
+
+[scraped_1171_fungus]
+id = 1171
+examine = "I doubt that's edible."
+
+[scraped_1176_waterlily]
+id = 1176
+examine = "Otherwise known as a lilypad."
+
+[scraped_1177_waterlily]
+id = 1177
+examine = "A home for frogs."
+
+[scraped_1184_creeping_plant]
+id = 1184
+examine = "The tendrils of a creeping plant."
+
+[scraped_1186_curling_plant]
+id = 1186
+examine = "A large curling plant."
+
+[scraped_1194_tulips]
+id = 1194
+examine = "Can this talk?"
+
+[scraped_1199_flowerbed]
+id = 1199
+examine = "These smell nice."
+
+[scraped_1201_flowerbed]
+id = 1201
+examine = "These are pretty."
+
+[scraped_1204_jungle_plant]
+id = 1204
+examine = "A small fernlike plant."
+
+[scraped_1301_tree]
+id = 1301
+examine = "Home to many unusual creatures."
+
+[scraped_1302_leafy_tree]
+id = 1302
+examine = "A leafy tree."
+
+[scraped_1304_tree]
+id = 1304
+examine = "A tree found in tropical areas."
+
+[scraped_1326_tropical_tree]
+id = 1326
+examine = "A terribly tall tropical tree."
+
+[scraped_1327_tropical_tree]
+id = 1327
+examine = "A terribly tall tropical tree."
+
+[scraped_1328_tropical_tree]
+id = 1328
+examine = "A terribly tall tropical tree."
+
+[scraped_1329_tropical_leaves]
+id = 1329
+examine = "Leaves of a bamboo tree."
+
+[scraped_1366_roots]
+id = 1366
+examine = "A gnarly old tree root."
+
+[scraped_1367_roots]
+id = 1367
+examine = "The roots of this tree are exposed."
+
+[scraped_1368_roots]
+id = 1368
+examine = "I hope I don't trip over any of these."
+
+[scraped_1371_tropical_tree]
+id = 1371
+examine = "This tree contains dangerous insects no doubt."
+
+[scraped_1372_tropical_tree]
+id = 1372
+examine = "This tree contains dangerous insects no doubt."
+
+[scraped_1374_tropical_tree]
+id = 1374
+examine = "This tree contains dangerous insects no doubt."
+
+[scraped_1390_jungle_plant]
+id = 1390
+examine = "Commonly found in these parts."
+
+[scraped_1400_jungle_plant]
+id = 1400
+examine = "A large waxy jungle plant."
+
+[scraped_1402_jungle_plant]
+id = 1402
+examine = "A large waxy jungle plant."
+
+[scraped_1405_cactus]
+id = 1405
+examine = "How do these things manage to grow?"
+
+[scraped_1406_cactus]
+id = 1406
+examine = "How do these things manage to grow?"
+
+[scraped_1900_suit_of_armour]
+id = 1900
+examine = "This could do with a bit of a spit and polish."
+
+[scraped_2376_soil]
+id = 2376
+examine = "Soil. Dug up!"
+
+[scraped_2377_soil]
+id = 2377
+examine = "Soil. Dug up!"
+
+[scraped_2378_soil]
+id = 2378
+examine = "Soil. Dug up!"
+
+[scraped_3247_bridge]
+id = 3247
+examine = "A bridge."
+
+[scraped_3249_bridge]
+id = 3249
+examine = "A bridge."
+
+[scraped_3918_elven_lamp]
+id = 3918
+examine = "The lamp has a glowing crystal at its core."
+
+[scraped_4057_huge_mushroom]
+id = 4057
+examine = "These fat fungi take up so much room."
+
+[scraped_4328_tree_stump]
+id = 4328
+examine = "This tree has been cut down."
+
+[scraped_4656_stool]
+id = 4656
+examine = "A comfy stool."
+
+[scraped_4676_rocks]
+id = 4676
+examine = "A rocky outcrop."
+
+[scraped_4749_banana_tree]
+id = 4749
+examine = "It's a banana tree, full of bananas."
+
+[scraped_4812_jungle_grass]
+id = 4812
+examine = "Looks good for hiding in..."
+
+[scraped_4813_jungle_grass]
+id = 4813
+examine = "Looks good for hiding in..."
+
+[scraped_4814_jungle_grass]
+id = 4814
+examine = "Looks good for hiding in..."
+
+[scraped_4825_jungle_plant]
+id = 4825
+examine = "A small fernlike plant."
+
+[scraped_4845_tropical_tree]
+id = 4845
+examine = "A terribly tall tropical tree."
+
+[scraped_4846_tropical_tree]
+id = 4846
+examine = "A terribly tall tropical tree."
+
+[scraped_4847_tropical_tree]
+id = 4847
+examine = "A terribly tall tropical tree."
+
+[scraped_4848_tropical_leaves]
+id = 4848
+examine = "Leaves of a tropical tree."
+
+[scraped_4856_glowing_fungus]
+id = 4856
+examine = "It's a small patch of glowing fungus."
+
+[scraped_4857_glowing_fungus]
+id = 4857
+examine = "It's a medium patch of glowing fungus."
+
+[scraped_4862_glowing_fungus]
+id = 4862
+examine = "It's a large patch of glowing fungus."
+
+[scraped_5605_rock]
+id = 5605
+examine = "A small rock."
+
+[scraped_6203_lamp]
+id = 6203
+examine = "Gives out light, but then you knew that already."
+
+[scraped_6476_ice_chunks]
+id = 6476
+examine = "Chunky pieces of ice."
+
+[scraped_6477_ice_chunks]
+id = 6477
+examine = "Chunky pieces of ice."
+
+[scraped_7022_track]
+id = 7022
+examine = "Tracks for the carts to run over."
+
+[scraped_7227_floor]
+id = 7227
+examine = "It's the floor..."
+
+[scraped_7230_floor]
+id = 7230
+examine = "It's the floor..."
+
+[scraped_8887_track]
+id = 8887
+examine = "Cart tracks."
+
+[scraped_8899_track_support]
+id = 8899
+examine = "A support for the tracks."
+
+[scraped_8903_track_support]
+id = 8903
+examine = "A support for the tracks."
+
+[scraped_10335_rat_wall]
+id = 10335
+examine = "Observe the rats."
+
+[scraped_13830_window]
+id = 13830
+examine = "Lets you see through walls."
+
+[scraped_14516_tree_stump]
+id = 14516
+examine = "This tree has been cut down."
+
+[scraped_14517_tree_stump]
+id = 14517
+examine = "A twisted tree stump."
+
+[scraped_16187_cloud_bank]
+id = 16187
+examine = "Thick cloud."
+
+[scraped_16189_cloud_bank]
+id = 16189
+examine = "Thick cloud."
+
+[scraped_16573_timber_defence]
+id = 16573
+examine = "These obviously mean keep out!"
+
+[scraped_21509_rope_bridge]
+id = 21509
+examine = "Don't look down."
+
+[scraped_21875_pipe]
+id = 21875
+examine = "A water pipe. Plain and simple."
+
+[scraped_21876_pipe]
+id = 21876
+examine = "A water pipe. Plain and simple."
+
+[scraped_22751_cable]
+id = 22751
+examine = "The cable connects the lampposts."
+
+[scraped_22760_lamp]
+id = 22760
+examine = "A bright light."
+
+[scraped_25016_magical_wheat]
+id = 25016
+examine = "100% wholegrain."
+
+[scraped_25017_magical_wheat]
+id = 25017
+examine = "100% wholegrain."
+
+[scraped_25139_fungus]
+id = 25139
+examine = "I doubt that's edible."
+
+[scraped_29476_hole]
+id = 29476
+examine = "A hole."
+
+[scraped_29477_hole]
+id = 29477
+examine = "A hole."
+
+[scraped_29478_hole]
+id = 29478
+examine = "A hole."
+
+[scraped_595_table]
+id = 595
+examine = "A nice sturdy looking table."
+
+[scraped_848_spear_wall]
+id = 848
+examine = "A row of sharp pointy spears."
+
+[scraped_1123_bush]
+id = 1123
+examine = "All the leaves have fallen off."
+
+[scraped_1125_bush]
+id = 1125
+examine = "Bushy!"
+
+[scraped_1166_mushrooms]
+id = 1166
+examine = "Poisonous no doubt."
+
+[scraped_1175_waterlily]
+id = 1175
+examine = "A home for frogs."
+
+[scraped_1195_flowers]
+id = 1195
+examine = "You don't see that many of these."
+
+[scraped_1196_flowers]
+id = 1196
+examine = "I wonder what these are?"
+
+[scraped_1303_tree]
+id = 1303
+examine = "A tree found in tropical areas."
+
+[scraped_1341_tree_stump]
+id = 1341
+examine = "This tree has been cut down."
+
+[scraped_1373_tropical_tree]
+id = 1373
+examine = "This tree contains dangerous insects no doubt."
+
+[scraped_1396_cactus]
+id = 1396
+examine = "How do these things manage to grow?"
+
+[scraped_1398_jungle_plant]
+id = 1398
+examine = "A leafy fern."
+
+[scraped_2798_bush]
+id = 2798
+examine = "A leafy bush."
+
+[scraped_3248_bridge]
+id = 3248
+examine = "A bridge."
+
+[scraped_3886_tree]
+id = 3886
+examine = "It doesn't look healthy."
+
+[scraped_4048_tree]
+id = 4048
+examine = "Spooky!"
+
+[scraped_4049_tree]
+id = 4049
+examine = "Spooky!"
+
+[scraped_4050_tree]
+id = 4050
+examine = "Spooky!"
+
+[scraped_4051_tree]
+id = 4051
+examine = "It doesn't look healthy..."
+
+[scraped_4053_tree]
+id = 4053
+examine = "It doesn't look healthy..."
+
+[scraped_4055_huge_mushroom]
+id = 4055
+examine = "These fat fungi take up so much room."
+
+[scraped_4651_table]
+id = 4651
+examine = "A table for board games."
+
+[scraped_5979_wall_of_flame]
+id = 5979
+examine = "It's a sheer wall of fire, rising as high as you can see."
+
+[scraped_5989_mineral_vein]
+id = 5989
+examine = "A mineral vein that looks distinctly like gold."
+
+[scraped_6198_table]
+id = 6198
+examine = "Useful for a dwarf."
+
+[scraped_9519_barrel]
+id = 9519
+examine = "A wooden barrel for storage."
+
+[scraped_10179_standing_torch]
+id = 10179
+examine = "A lit torch."
+
+[scraped_10337_rat_wall]
+id = 10337
+examine = "Observe the rats."
+
+[scraped_14513_tree]
+id = 14513
+examine = "It doesn't look healthy."
+
+[scraped_14541_mushroom]
+id = 14541
+examine = "Not good for eating."
+
+[scraped_14565_tree]
+id = 14565
+examine = "It doesn't look healthy."
+
+[scraped_14566_tree]
+id = 14566
+examine = "It doesn't look healthy."
+
+[scraped_14593_tree]
+id = 14593
+examine = "It doesn't look healthy."
+
+[scraped_14594_tree]
+id = 14594
+examine = "It doesn't look healthy."
+
+[scraped_14595_tree]
+id = 14595
+examine = "It doesn't look healthy."
+
+[scraped_14596_tree_stump]
+id = 14596
+examine = "A twisted tree stump."
+
+[scraped_14738_tree]
+id = 14738
+examine = "Maybe it caught fire?"
+
+[scraped_14761_roots]
+id = 14761
+examine = "I hope I don't trip over any of these."
+
+[scraped_15317_door_hotspot]
+id = 15317
+examine = "You can make this into a room."
+
+[scraped_15369_fencing]
+id = 15369
+examine = "You can build a fence here."
+
+[scraped_17237_torch]
+id = 17237
+examine = "A wooden torch."
+
+[scraped_17656_crates]
+id = 17656
+examine = "Some wooden crates."
+
+[scraped_25018_magical_wheat]
+id = 25018
+examine = "100% wholegrain."
+
+[scraped_40888_dead_vine]
+id = 40888
+examine = "A dried-up vine."
