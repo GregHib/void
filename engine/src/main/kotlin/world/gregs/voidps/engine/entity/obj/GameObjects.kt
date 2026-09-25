@@ -40,12 +40,21 @@ object GameObjects : ZoneBatchUpdates.Sender {
     var size = 0
         private set
 
-    fun load(file: File) {
-        size = map.load(file)
+    /**
+     * Loads objects from [file], returning false if it was written with different settings and
+     * needs decoding from the cache instead
+     */
+    fun load(file: File): Boolean {
+        val loaded = map.load(file, storeUnused)
+        if (loaded == GameObjectHashMap.INVALID) {
+            return false
+        }
+        size = loaded
+        return true
     }
 
     fun save(file: File) {
-        map.save(file)
+        map.save(file, storeUnused)
     }
 
     /**
@@ -130,7 +139,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
      * Decide to store [GameObject]s which don't have options or configs
      * Skipping unused objects uses less ram but makes content creation harder.
      */
-    private fun interactive(definition: ObjectDefinition) = storeUnused || definition.options != null || definition.contains("id")
+    private fun interactive(definition: ObjectDefinition) = storeUnused || definition.options != null
 
     /**
      * Removes an object, optionally reverting after [ticks]

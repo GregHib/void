@@ -3,6 +3,9 @@ package world.gregs.voidps.engine.entity.obj
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.io.TempDir
+import world.gregs.voidps.buffer.write.ArrayWriter
+import java.io.File
 
 class GameObjectHashMapTest {
 
@@ -21,6 +24,44 @@ class GameObjectHashMapTest {
 
         val result = map.get(x = 115, y = 110, level = 1, layer = ObjectLayer.GROUND)
         assertEquals(value, result)
+    }
+
+    @Test
+    fun `Save and load a map`(@TempDir dir: File) {
+        val file = File(dir, "objects.dat")
+        val value = GameObjects.value(false, 1234, 10, 2)
+        map.set(x = 2500, y = 3900, level = 1, layer = ObjectLayer.GROUND, mask = value)
+        map.save(file, storeUnused = true)
+
+        val loaded = GameObjectHashMap()
+
+        assertEquals(1, loaded.load(file, storeUnused = true))
+        assertEquals(value, loaded.get(x = 2500, y = 3900, level = 1, layer = ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Reject a map saved with a different storeUnused`(@TempDir dir: File) {
+        val file = File(dir, "objects.dat")
+        map.set(x = 2500, y = 3900, level = 1, layer = ObjectLayer.GROUND, mask = GameObjects.value(false, 1234, 10, 2))
+        map.save(file, storeUnused = true)
+
+        val loaded = GameObjectHashMap()
+
+        assertEquals(GameObjectHashMap.INVALID, loaded.load(file, storeUnused = false))
+        assertEquals(-1, loaded.get(x = 2500, y = 3900, level = 1, layer = ObjectLayer.GROUND))
+    }
+
+    @Test
+    fun `Reject a map saved without a header`(@TempDir dir: File) {
+        val file = File(dir, "objects.dat")
+        // The old format opened with the object count
+        val writer = ArrayWriter(12)
+        writer.writeInt(1)
+        writer.writeInt(0)
+        writer.writeInt(0)
+        file.writeBytes(writer.toArray())
+
+        assertEquals(GameObjectHashMap.INVALID, map.load(file, storeUnused = true))
     }
 
     @Test
