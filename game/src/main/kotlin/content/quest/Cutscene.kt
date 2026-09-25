@@ -167,7 +167,11 @@ fun Player.clearInstance(): Boolean {
     if (!Instances.reserved(region)) {
         return true
     }
-    Instances.free(region)
+    // Only the last player out tears the instance down; a party member leaving early would
+    // otherwise pull the map out from under everyone still inside
+    if (!Instances.free(region)) {
+        return true
+    }
     get<DynamicZones>().clear(region)
     // clears all region levels
     for (level in 0..3) {

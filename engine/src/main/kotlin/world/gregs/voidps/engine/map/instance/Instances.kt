@@ -7,7 +7,12 @@ object Instances {
 
     private var small: Deque<Region> = LinkedList()
     private var large: Deque<Region> = LinkedList()
-    private var used: MutableSet<Region> = mutableSetOf()
+
+    /**
+     * How many players hold each allocated region, so a shared instance isn't handed out again
+     * while some of its party are still inside
+     */
+    private var used: MutableMap<Region, Int> = mutableMapOf()
 
     init {
         reset()
@@ -16,34 +21,48 @@ object Instances {
     /**
      * Allocates an empty 128x128 (2x2 region) area
      */
-    fun small(): Region {
-        val region = small.pollFirst()
-        used.add(region)
-        return region
-    }
+    fun small(): Region = allocate(small)
 
     /**
      * Allocates an empty 320x320 (5x5 region) area
      */
-    fun large(): Region {
-        val region = large.pollFirst()
-        used.add(region)
+    fun large(): Region = allocate(large)
+
+    private fun allocate(pool: Deque<Region>): Region {
+        val region = pool.pollFirst()
+        used[region] = 1
         return region
     }
 
-    fun isInstance(region: Region): Boolean = used.contains(region)
+    /**
+     * Records another holder of [instance], so it survives until they've all [free]d it
+     */
+    fun claim(instance: Region) {
+        val holders = used[instance] ?: return
+        used[instance] = holders + 1
+    }
+
+    fun isInstance(region: Region): Boolean = used.containsKey(region)
 
     fun reserved(region: Region): Boolean = region.x > FREE_REGION_X
 
-    fun free(instance: Region) {
-        if (!used.remove(instance)) {
-            return
+    /**
+     * Releases one hold on [instance], returning true once the last holder has let go and the
+     * region is back in the pool
+     */
+    fun free(instance: Region): Boolean {
+        val holders = used[instance] ?: return false
+        if (holders > 1) {
+            used[instance] = holders - 1
+            return false
         }
+        used.remove(instance)
         if (instance.y >= MID_POINT) {
             large.add(instance)
         } else {
             small.add(instance)
         }
+        return true
     }
 
     fun reset() {
