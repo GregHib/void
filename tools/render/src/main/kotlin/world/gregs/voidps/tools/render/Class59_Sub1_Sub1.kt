@@ -18,7 +18,7 @@ internal object Class59_Sub1_Sub1 {
         8 -> Class348_Sub40_Sub14()
         9 -> Class348_Sub40_Sub7()
         10 -> Class348_Sub40_Sub12()
-        11 -> Class348_Sub40_Sub26
+        11 -> Class348_Sub40_Sub26()
         12 -> Class348_Sub40_Sub36()
         13 -> Class348_Sub40_Sub20()
         14 -> Class348_Sub40_Sub11()
@@ -30,7 +30,7 @@ internal object Class59_Sub1_Sub1 {
         20 -> Class348_Sub40_Sub31()
         21 -> Class348_Sub40_Sub27()
         22 -> Class348_Sub40_Sub32()
-        23 -> Class348_Sub40_Sub33
+        23 -> Class348_Sub40_Sub33()
         24 -> Class348_Sub40_Sub13()
         25 -> Class348_Sub40_Sub1()
         26 -> Class348_Sub40_Sub3()
@@ -44,7 +44,7 @@ internal object Class59_Sub1_Sub1 {
         34 -> Class348_Sub40_Sub8()
         35 -> Class348_Sub40_Sub9()
         36 -> Class348_Sub40_Sub29()
-        37 -> Class348_Sub40_Sub21
+        37 -> Class348_Sub40_Sub21()
         38 -> Class348_Sub40_Sub28()
         39 -> Class348_Sub40_Sub17()
         else -> null

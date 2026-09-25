@@ -40,6 +40,29 @@ internal class Class348_Sub40_Sub31 : Class348_Sub40(1, false) {
         return `is`
     }
 
+    override fun method3042(i: Int): IntArray? {
+        val `is` = this.aClass191_7032!!.method1433(i)
+        if (this.aClass191_7032!!.aBoolean2570) {
+            val i_17_ = Class348_Sub40_Sub6.anInt9139 / anInt9405
+            val i_18_ = Class79.anInt6212 / anInt9410
+            val is_19_: IntArray
+            if (i_18_ > 0) {
+                val i_20_ = i % i_18_
+                is_19_ = this.method3048(i_20_ * Class79.anInt6212 / i_18_, 0)!!
+            } else is_19_ = this.method3048(0, 0)!!
+            var i_21_ = 0
+            while (Class348_Sub40_Sub6.anInt9139 > i_21_) {
+                if (i_17_ <= 0) `is`!![i_21_] = is_19_[0]
+                else {
+                    val i_22_ = i_21_ % i_17_
+                    `is`!![i_21_] = is_19_[Class348_Sub40_Sub6.anInt9139 * i_22_ / i_17_]
+                }
+                i_21_++
+            }
+        }
+        return `is`
+    }
+
     override fun method3049(packet: Packet?, i: Int) {
         val i_15_ = i
         do {

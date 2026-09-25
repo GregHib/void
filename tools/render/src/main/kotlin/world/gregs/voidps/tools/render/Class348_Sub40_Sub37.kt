@@ -25,6 +25,39 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
         } while (false)
     }
 
+    override fun method3042(i: Int): IntArray? {
+        val `is` = this.aClass191_7032!!.method1433(i)
+        if (this.aClass191_7032!!.aBoolean2570) {
+            val i_14_ = 1 + (anInt9463 + anInt9463)
+            val i_15_ = 65536 / i_14_
+            val i_16_ = 1 + anInt9466 + anInt9466
+            val i_17_ = 65536 / i_16_
+            val is_18_ = arrayOfNulls<IntArray>(i_14_)
+            for (i_19_ in -anInt9463 + i..i - -anInt9463) {
+                val is_20_ = this.method3048(Class348_Sub40_Sub6.anInt6325 and i_19_, 0)!!
+                val is_21_ = IntArray(Class348_Sub40_Sub6.anInt9139)
+                var i_22_ = 0
+                for (i_23_ in -anInt9466..anInt9466) i_22_ += is_20_[i_23_ and anInt6076]
+                var i_24_ = 0
+                while (i_24_ < Class348_Sub40_Sub6.anInt9139) {
+                    is_21_[i_24_] = i_17_ * i_22_ shr 16
+                    i_22_ -= (is_20_[-anInt9466 + i_24_ and anInt6076])
+                    i_24_++
+                    i_22_ += (is_20_[i_24_ + anInt9466 and anInt6076])
+                }
+                is_18_[-i + (i_19_ + anInt9463)] = is_21_
+            }
+            var i_25_ = 0
+            while (Class348_Sub40_Sub6.anInt9139 > i_25_) {
+                var i_26_ = 0
+                for (i_27_ in 0..<i_14_) i_26_ += is_18_[i_27_]!![i_25_]
+                `is`!![i_25_] = i_26_ * i_15_ shr 16
+                i_25_++
+            }
+        }
+        return `is`
+    }
+
     override fun method3047(i: Int): Array<IntArray>? {
         val `is` = this.aClass322_7033!!.method2557(i)
         if (this.aClass322_7033!!.aBoolean4035) {

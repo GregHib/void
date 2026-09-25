@@ -28,6 +28,19 @@ internal class Class348_Sub40_Sub38 : Class348_Sub40(1, false) {
         } while (false)
     }
 
+    override fun method3042(i: Int): IntArray? {
+        val `is` = this.aClass191_7032!!.method1433(i)
+        if (this.aClass191_7032!!.aBoolean2570) {
+            val is_16_ = this.method3048(i, 0)!!
+            for (i_17_ in 0..<Class348_Sub40_Sub6.anInt9139) {
+                val i_18_ = is_16_[i_17_]
+                if (anInt9474 > i_18_) `is`!![i_17_] = anInt9474
+                else `is`!![i_17_] = min(i_18_, anInt9470)
+            }
+        }
+        return `is`
+    }
+
     override fun method3047(i: Int): Array<IntArray> {
         val `is` = this.aClass322_7033!!.method2557(i)
         if (this.aClass322_7033!!.aBoolean4035) {

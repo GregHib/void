@@ -43,6 +43,12 @@ class Class322(i: Int, i_9_: Int, i_10_: Int) {
         return anIntArrayArrayArray4029!![i_6_]
     }
 
+    fun method2553(): Array<Array<IntArray>>? {
+        if (anInt4024 != anInt4020) throw RuntimeException("Can only retrieve a full image cache")
+        for (i_2_ in 0..<anInt4020) aClass348_Sub24Array4033!![i_2_] = aClass348_Sub24_4226
+        return anIntArrayArrayArray4029
+    }
+
     fun method2558() {
         aClass348_Sub24Array4033 = null
         anIntArrayArrayArray4029 = null
