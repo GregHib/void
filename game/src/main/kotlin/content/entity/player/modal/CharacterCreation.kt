@@ -1,5 +1,6 @@
 package content.entity.player.modal
 
+import content.entity.player.modal.CharacterName.Companion.openCharacterName
 import content.entity.player.modal.CharacterStyle.onStyle
 import world.gregs.voidps.cache.config.data.StructDefinition
 import world.gregs.voidps.engine.Script
@@ -129,7 +130,11 @@ class CharacterCreation : Script {
             body.setColour(BodyColour.Feet, get("makeover_colour_shoes", 0))
             body.setColour(BodyColour.Skin, get("makeover_colour_skin", 0))
             flagAppearance()
-            open(interfaces.gameFrame)
+            if (contains("choose_name")) {
+                openCharacterName()
+            } else {
+                open(interfaces.gameFrame)
+            }
         }
     }
 

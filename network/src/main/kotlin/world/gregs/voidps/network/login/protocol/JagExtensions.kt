@@ -4,7 +4,9 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.bits.reverseByteOrder
 import io.ktor.utils.io.core.*
 import kotlinx.io.Source
+import kotlinx.io.readByteArray
 import kotlinx.io.readUByte
+import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.buffer.write.ArrayWriter
 import kotlin.random.Random
 import kotlin.text.toByteArray
@@ -145,6 +147,15 @@ suspend fun ByteWriteChannel.respond(value: Int) {
 suspend fun ByteWriteChannel.finish(value: Int) {
     respond(value)
     flushAndClose()
+}
+
+/**
+ * Deciphers the remainder of the packet with the client's isaac [keys]
+ */
+fun Source.decryptXtea(keys: IntArray): Source {
+    val remaining = readByteArray(remaining.toInt())
+    Xtea.decipher(remaining, keys)
+    return ByteReadPacket(remaining)
 }
 
 fun Source.readString(): String {
