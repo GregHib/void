@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class105_Sub3_Sub1 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class105_Sub3_Sub1 */
 
 internal class JavaRgbSprite : Sprite_Sub3 {
     var anIntArray9933: IntArray
@@ -325,8 +323,6 @@ internal class JavaRgbSprite : Sprite_Sub3 {
             throw IllegalArgumentException()
         }
     }
-
-    // Unreachable per JaCoCo coverage (0 hits) - see Class105_Sub3.method996.
     override fun method996(i: Int, i_995_: Int, i_996_: Int, i_997_: Int, i_998_: Int, i_999_: Int, i_1000_: Int, i_1001_: Int, i_1002_: Int) {
         throw IllegalStateException()
     }

@@ -4,9 +4,7 @@ import java.util.*
 import kotlin.math.cos
 import kotlin.math.sin
 
-/* Class124 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class124 */
 
 class Mesh {
     var texSpaceScaleY: IntArray? = null

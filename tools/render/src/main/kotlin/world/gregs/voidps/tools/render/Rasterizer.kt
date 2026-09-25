@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class109 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class109 */
 
 internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJavaThreadResource_1670: JavaThreadResource) {
     var anInt1665: Int = 0
@@ -1352,10 +1350,7 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
         aBoolean1675 = bool
     }
 
-    /* NOTE: originally calls method1027(...) behind "if (anIntArray1698 ==
-     * null)" (a texture-lookup-miss branch). method1027 is not in the
-     * genuine-methods list (never observed covered), so it is treated as
-     * dead code and omitted. Flagged for a follow-up compile-fix pass. */
+    // The client calls method1027 here when anIntArray1698 is null; omitted.
     fun method1024(f: Float, f_341_: Float, f_342_: Float, f_343_: Float, f_344_: Float, f_345_: Float, f_346_: Float, f_347_: Float, f_348_: Float, f_349_: Float, f_350_: Float, f_351_: Float, f_352_: Float, f_353_: Float, f_354_: Float, i: Int, i_355_: Int, i_356_: Int, i_357_: Int, i_358_: Int, i_359_: Int, i_360_: Int, i_361_: Int) {
         var f = f
         var f_341_ = f_341_

@@ -5,9 +5,7 @@ import kotlin.math.floor
 import kotlin.math.sqrt
 import kotlin.math.pow
 
-/* ha_Sub1 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* ha_Sub1 */
 
 internal class JavaToolkit private constructor(var_textureSource: TextureSource?) : Toolkit(var_textureSource) {
     private var aIterableHashTable_7467: IterableHashTable?
@@ -59,14 +57,9 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         }
         return `is`
     }
-
-    // dependency of Class109's genuine drawing methods (method1018/method1024
-    // call method3645 unconditionally); not itself in the genuine list.
     fun line(i: Int, i_41_: Int, i_42_: Int, i_44_: Int, i_45_: Int) {
         method3709(i_41_, i, i_42_, i_45_, i_44_, 1)
     }
-
-    // dependency of method3645
     fun method3709(i: Int, i_241_: Int, i_242_: Int, i_243_: Int, i_244_: Int, i_245_: Int) {
         var i = i
         var i_241_ = i_241_
@@ -192,8 +185,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             } else throw IllegalArgumentException()
         }
     }
-
-    // dependency of method3709
     fun U(i: Int, i_186_: Int, i_187_: Int, i_188_: Int, i_189_: Int) {
         var i = i
         var i_187_ = i_187_
@@ -227,8 +218,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             } else throw IllegalArgumentException()
         }
     }
-
-    // dependency of method3709
     fun P(i: Int, i_71_: Int, i_72_: Int, i_73_: Int, i_74_: Int) {
         var i_71_ = i_71_
         var i_72_ = i_72_
@@ -268,8 +257,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     override fun xa(f: Float) {
         this.anInt7500 = (f * 65535.0f).toInt()
     }
-
-    // explicitly listed as genuine
     private fun method3713() {
         this.anInt7509 = this.anInt7496 - this.anInt7510
         this.anInt7508 = this.anInt7507 - this.anInt7510
@@ -390,8 +377,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         aJavaThreadResourceArray7480 = arrayOfNulls<JavaThreadResource>(this.anInt7485)
         for (i_240_ in 0..<this.anInt7485) aJavaThreadResourceArray7480!![i_240_] = JavaThreadResource(this)
     }
-
-    // dependency of method3643 (not in genuine list, required to compile)
     fun method3669(canvas: Canvas?, i: Int, i_578_: Int) {
         var class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong()) as Class348_Sub31?)
         if (class348_sub31 != null) {
@@ -481,9 +466,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             } else throw IllegalArgumentException()
         }
     }
-
-    // Only reachable from ha.method3635's dead exception-handler path (the
-    // constructors that call it succeed without throwing in this renderer).
     override fun method3652() {
         if (aBoolean7471) {
             aBoolean7471 = false
@@ -728,8 +710,6 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             }
         } else throw IllegalArgumentException()
     }
-
-    // dependency of method3712 (used by method3720), not in genuine list
     fun method3720(i: Int, i_377_: Int, i_378_: Int, i_379_: Int, i_380_: Int, i_381_: Int, i_382_: Int, i_383_: Int, i_384_: Int, i_385_: Int) {
         if (i_379_ != 0 && i_380_ != 0) {
             if (i_382_ != 65535 && !(this.textureSource!!.getMetrics(i_382_)!!.disableable)) {

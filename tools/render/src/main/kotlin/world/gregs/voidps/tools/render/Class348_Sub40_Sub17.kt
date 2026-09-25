@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub17 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
     var anIntArray9232: IntArray? = null
     var anInt9237: Int = 0

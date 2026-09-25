@@ -6,9 +6,7 @@ import kotlin.math.asin
 import kotlin.math.cos
 import kotlin.math.sin
 
-/* Class64_Sub1 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class64_Sub1 */
 
 internal class JavaModel : Model {
     private var faceColour: ShortArray? = null
@@ -323,8 +321,6 @@ internal class JavaModel : Model {
         if (!aBoolean5323) method655()
         return aShort5324.toInt()
     }
-
-    // dependency of method643, not in genuine list
     private fun method646(i: Int) {
         var i_540_ = 0
         val i_541_ = toolkit.anInt7482
@@ -504,8 +500,6 @@ internal class JavaModel : Model {
             }
         }
     }
-
-    // dependency of method657, not in genuine list
     private fun method647() {
         if (anInt5354 == 0) method634(false)
         else if (toolkit.anInt7485 > 1) {
@@ -514,8 +508,6 @@ internal class JavaModel : Model {
             }
         } else method640()
     }
-
-    // dependency of method647, not in genuine list
     private fun method640() {
         for (i in 0..<faceCount) {
             val i_287_: Short = if (faceTextures != null) faceTextures!![i] else (-1).toShort()
@@ -706,7 +698,6 @@ internal class JavaModel : Model {
                             try {
                                 (this as Object).wait()
                             } catch (interruptedexception: InterruptedException) {
-                                /* empty */
                             }
                         }
                         aBoolean5357 = true
@@ -775,7 +766,6 @@ internal class JavaModel : Model {
                 try {
                     method650(bool_656_, ((aJavaThreadResource_5367!!.aBoolean2201 && (i_637_ > aJavaThreadResource_5367!!.anInt2210)) || aJavaThreadResource_5367!!.aBoolean2195), i_636_, i_637_ - i_636_)
                 } catch (exception: Exception) {
-                    /* empty */
                 }
                 if (billboardFaces != null) {
                     for (i_721_ in 0..<faceCount) anIntArray5400!![i_721_] = -1
@@ -1128,8 +1118,6 @@ internal class JavaModel : Model {
         }
         upscaled = true
     }
-
-    // dependency of method643, not in genuine list
     private fun method658(i: Int) {
         if (aJavaThreadResource_5367!!.aBoolean2195) {
             val i_777_ = faceA!![i]

@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import kotlin.math.atan2
 
-/* Class348_Sub40_Sub33 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub33 : Class348_Sub40(1, false) {
 
     override fun method3047(i: Int): Array<IntArray>? {

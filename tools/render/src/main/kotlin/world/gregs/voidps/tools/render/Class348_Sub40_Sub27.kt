@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub27 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub27 : Class348_Sub40(3, false) {
     override fun method3047(i: Int): Array<IntArray>? {
         val `is` = this.aClass322_7033!!.method2557(i)

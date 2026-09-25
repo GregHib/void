@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class107 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class107 */
 
 internal class Queue {
     var aClass348_Sub42_1647: Class348_Sub42 = Class348_Sub42()

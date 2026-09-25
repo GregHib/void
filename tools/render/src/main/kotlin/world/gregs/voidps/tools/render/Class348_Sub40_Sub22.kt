@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import java.util.Random
 
-/* Class348_Sub40_Sub22 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub22 : Class348_Sub40(0, true) {
     private var anInt9284 = 1024
     private var anIntArrayArray9286: Array<IntArray>? = null

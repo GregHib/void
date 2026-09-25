@@ -1,10 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub39 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*
-* Draws vector shapes (lines, curves, rectangles, ellipses) - see Class50 and Class17.
-*/
+/* Draws vector shapes (lines, curves, rectangles, ellipses) - see Class50 and Class17. */
 
 internal class Class348_Sub40_Sub39 : Class348_Sub40(0, true) {
     private var aClass50Array9481: Array<Class50?>? = null

@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub12 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 class Class348_Sub40_Sub12 : Class348_Sub40(1, false) {
     private var anIntArrayArray9194: Array<IntArray>? = null
     private val anIntArray9199 = IntArray(257)

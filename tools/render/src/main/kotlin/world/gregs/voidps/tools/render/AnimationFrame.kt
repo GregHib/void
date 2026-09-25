@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class4 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class4 */
 
 /**
  * A single animation frame: a list of transforms, each referencing a group in [base].

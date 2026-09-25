@@ -3,10 +3,6 @@ package world.gregs.voidps.tools.render
 import kotlin.math.max
 import kotlin.math.min
 
-/* Class348_Sub40_Sub30 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub30 : Class348_Sub40(1, false) {
     private var anInt9386 = 0
     private var anInt9389 = 0

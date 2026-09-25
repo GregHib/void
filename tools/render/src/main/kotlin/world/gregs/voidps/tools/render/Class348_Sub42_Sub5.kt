@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.Index
 import kotlin.math.min
 import kotlin.math.pow
 
-/* Class348_Sub42_Sub5 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
     private val aClass348_Sub40Array9520: Array<Class348_Sub40?>
     private val aClass348_Sub40_9521: Class348_Sub40

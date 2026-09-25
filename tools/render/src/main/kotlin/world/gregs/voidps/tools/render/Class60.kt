@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class60 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 class Class60 @JvmOverloads constructor(private var anInt1086: Int, i_10_: Int = anInt1086) {
     private val anInt1084: Int
     private var aQueue_1089: Queue? = Queue()

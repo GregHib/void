@@ -4,10 +4,6 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-/* Class348_Sub40_Sub35 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub35 : Class348_Sub40(1, true) {
     private var anInt9445 = 3216
     private var anInt9447 = 3216

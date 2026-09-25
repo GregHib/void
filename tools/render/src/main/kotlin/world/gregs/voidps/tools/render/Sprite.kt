@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class105 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class105 */
 
 abstract class Sprite {
     abstract fun method964(i: Int, i_26_: Int, i_27_: Int, i_28_: Int, i_29_: Int)

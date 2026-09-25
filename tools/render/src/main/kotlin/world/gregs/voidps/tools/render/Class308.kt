@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class308 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 class Class308(private var anInt3891: Int) {
     private val aClass348_Sub42_3887 = Class348_Sub42()
     private val aIterableHashTable_3888: IterableHashTable

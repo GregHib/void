@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import kotlin.math.sqrt
 
-/* Class348_Sub40_Sub36 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub36 : Class348_Sub40(0, true) {
     private var anInt9451 = 0
     private var anInt9453 = 1

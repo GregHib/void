@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class12 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class12 */
 
 class TextureMetrics {
     var speedU: Byte = 0
@@ -24,7 +22,4 @@ class TextureMetrics {
     var aByte216: Byte = 0
     var aBoolean217: Boolean = false
     var aBoolean218: Boolean = false
-
-    companion object {
-    }
 }

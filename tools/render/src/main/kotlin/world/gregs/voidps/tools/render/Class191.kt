@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class191 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 class Class191(i: Int, i_16_: Int, i_17_: Int) {
     private var anInt2557 = 0
     private val anInt2559: Int

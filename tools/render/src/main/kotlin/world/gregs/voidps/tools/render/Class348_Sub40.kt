@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 abstract class Class348_Sub40(i: Int, var aBoolean7045: Boolean) {
     var aClass348_Sub40Array7031: Array<Class348_Sub40?> = arrayOfNulls(i)
     var aClass191_7032: Class191? = null

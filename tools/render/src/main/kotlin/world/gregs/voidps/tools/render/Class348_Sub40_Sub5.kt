@@ -4,10 +4,6 @@ import java.util.*
 import kotlin.math.max
 import kotlin.math.sqrt
 
-/* Class348_Sub40_Sub5 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub5 : Class348_Sub40(0, true) {
     private var aShortArray9116 = ShortArray(512)
     private var anInt9117 = 5

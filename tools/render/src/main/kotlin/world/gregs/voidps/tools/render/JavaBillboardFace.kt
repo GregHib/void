@@ -1,14 +1,8 @@
 package world.gregs.voidps.tools.render
 
-/* Class6 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class6 */
 
 internal class JavaBillboardFace(var anInt144: Int, i_46_: Int, i_47_: Int, i_48_: Int, i_49_: Int, i_50_: Int, i_51_: Int, i_52_: Int, i_53_: Int, var aBoolean145: Boolean, var anInt154: Int) {
-    /* Minimal stub: only the fields/method/constructor that Class64_Sub1's
-     * kept code actually reads/calls are included (verbatim from the
-     * original), matching the full Class6(...) constructor signature used
-     * at the aClass6Array5361[...] = new Class6(...) call site. */
     var aShort143: Short
     var aShort146: Short
     var aByte148: Byte

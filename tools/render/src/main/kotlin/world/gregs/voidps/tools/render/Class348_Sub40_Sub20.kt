@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub20 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub20 : Class348_Sub40(0, true) {
     private fun method3103(i: Int, i_0_: Int): Int {
         var i_2_ = i_0_ - -(57 * i)

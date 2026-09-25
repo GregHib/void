@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class167 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class167 */
 
 internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
     private val aHa_Sub1_2191: JavaToolkit

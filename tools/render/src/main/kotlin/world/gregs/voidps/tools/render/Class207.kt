@@ -3,10 +3,6 @@ package world.gregs.voidps.tools.render
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 
-/* Class207 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class207 {
     var aByteArray2695: ByteArray? = null
     var anInt2696: Int = 0

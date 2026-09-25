@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import kotlin.math.pow
 
-/* Class348_Sub6 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub6(var anInt6630: Int, var anInt6636: Int) : Class348() {
     companion object {
         var anIntArray179: IntArray? = null

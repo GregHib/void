@@ -2,25 +2,10 @@ package world.gregs.voidps.tools.render
 
 import kotlin.math.min
 
-/* Class17 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*
-* Software rasteriser for drawing vector shapes (Class50) into an int[][] (row-major, [y][x])
-* target, used by texture op 29 (Class348_Sub40_Sub39).
-*
-* Relocated client statics/methods (obfuscated names preserved, dummy params dropped):
-*   Class17.anIntArrayArray255, Class369.anInt4960 (min x), Class113.anInt1745 (max x),
-*   Class132.anInt1910 (min y), Class38.anInt513 (max y), Class348_Sub49_Sub2.anIntArray9757,
-*   Class12.method223/method224, Class348_Sub27.method3000, Class85.method831, Class135_Sub2.method1156,
-*   Class117.method1070, Class299_Sub2.method2267, ha.method3641, Class170.method1308, Class97.method872,
-*   Class318_Sub1_Sub5.method2486, Class367_Sub3.method3540, Class339.method2665, Npc.method2441,
-*   Class348_Sub40.method3041, Class348_Sub31.method3012/method3009, Class127.method1116, Class55.method515,
-*   Class239_Sub27.method1839, Class299.method2255, Class205.method1496, Class6.method203,
-*   Class14_Sub4.method253, Class239_Sub3.method1730, s_Sub3.method4004, Class184.method1388,
-*   Class89.method849, Class58.method535, Class369_Sub3_Sub1.method3575, Class125.method1111,
-*   Class239_Sub16.method1792, Class316.method2364, Class336.method2656, Class5_Sub2.method196,
-*   Class239_Sub15.method1783, Class332.method2641
-*/
+/*
+ * Software rasteriser for drawing vector shapes (Class50) into an int[][] (row-major, [y][x])
+ * target, used by texture op 29 (Class348_Sub40_Sub39).
+ */
 
 internal object Class17 {
     var anIntArrayArray255: Array<IntArray?>? = null

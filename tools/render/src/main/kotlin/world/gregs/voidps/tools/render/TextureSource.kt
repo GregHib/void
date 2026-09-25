@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* d - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* d */
 
 interface TextureSource {
     fun getMetrics(i: Int): TextureMetrics?

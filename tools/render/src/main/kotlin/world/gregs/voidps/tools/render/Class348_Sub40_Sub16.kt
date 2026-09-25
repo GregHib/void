@@ -3,10 +3,6 @@ package world.gregs.voidps.tools.render
 import kotlin.math.max
 import kotlin.math.min
 
-/* Class348_Sub40_Sub16 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
     private var anInt9226 = 6
     override fun method3049(packet: Packet?, i: Int) {

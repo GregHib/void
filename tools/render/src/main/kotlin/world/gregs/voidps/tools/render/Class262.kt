@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class262 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class262 {
     var aClass348_3334: Class348 = Class348()
 

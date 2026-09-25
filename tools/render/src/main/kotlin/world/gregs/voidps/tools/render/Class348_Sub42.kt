@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub42 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 open class Class348_Sub42 : Class348() {
     var aClass348_Sub42_7060: Class348_Sub42? = null
     var aClass348_Sub42_7063: Class348_Sub42? = null

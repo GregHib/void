@@ -3,9 +3,7 @@ package world.gregs.voidps.tools.render
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 
-/* Class348_Sub42_Sub17 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class348_Sub42_Sub17 */
 
 /**
  * All frames in one archive of [Index.ANIMATION_FRAMES], indexed by file id.

@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class358 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class358 */
 
 internal class TextureUniverse(`is`: IntArray?, is_1_: IntArray?, is_2_: IntArray?, fs: Array<FloatArray?>?) {
     var matrices: Array<FloatArray?>?

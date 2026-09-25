@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub37 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
     private var anInt9463 = 1
     private var anInt9466 = 1

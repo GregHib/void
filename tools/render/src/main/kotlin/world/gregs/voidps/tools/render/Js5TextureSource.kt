@@ -3,9 +3,7 @@ package world.gregs.voidps.tools.render
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 
-/* Class244 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class244 */
 
 class Js5TextureSource(private val cache: Cache) : TextureSource {
     private val textureMetrics: Array<TextureMetrics?>

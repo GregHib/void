@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub25 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub25(var anInt6883: Int, private val anInt6880: Int, `is`: IntArray, bool: Boolean) {
     private var anIntArray6884: IntArray?
 

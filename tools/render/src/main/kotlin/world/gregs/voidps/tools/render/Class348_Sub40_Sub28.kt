@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import java.util.*
 
-/* Class348_Sub40_Sub28 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
     private var anInt9362 = 2000
     private var anInt9364 = 4096

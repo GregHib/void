@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub7 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub7 : Class348_Sub40(1, false) {
     private var aBoolean9140 = true
     private var aBoolean9147 = true

@@ -1,12 +1,10 @@
 package world.gregs.voidps.tools.render
 
-/* Class50 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*
-* Vector shape used by Class348_Sub40_Sub39 (texture op 29). Subclasses and their
-* packet readers (Class182.method1374, Class348_Sub23_Sub1.method2970,
-* Class348_Sub40.method3036, Class265.method2022) are kept together here.
-*/
+/*
+ * Vector shape used by Class348_Sub40_Sub39 (texture op 29). Subclasses and their
+ * packet readers (Class182.method1374, Class348_Sub23_Sub1.method2970,
+ * Class348_Sub40.method3036, Class265.method2022) are kept together here.
+ */
 
 internal abstract class Class50(i: Int, i_7_: Int, i_8_: Int) {
     var anInt862: Int = i_8_

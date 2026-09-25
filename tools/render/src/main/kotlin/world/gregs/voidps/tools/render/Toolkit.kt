@@ -3,18 +3,13 @@ package world.gregs.voidps.tools.render
 import java.awt.Canvas
 import java.util.*
 
-/* ha - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* ha */
 
 abstract class Toolkit(var textureSource: TextureSource?) {
     var index: Int
     abstract fun method3652()
 
     abstract fun method3711(`is`: IntArray, i: Int, i_212_: Int, i_213_: Int, i_214_: Int): Sprite?
-
-    // abstract dependencies of Class213.method1562 (genuine), which calls
-    // these on a `ha`-typed reference - all implemented concretely in ha_Sub1.
     abstract fun createModel(mesh: Mesh, functionMask: Int, featureMask: Int, ambient: Int, contrast: Int): Model?
 
     abstract fun method3654(): Matrix?

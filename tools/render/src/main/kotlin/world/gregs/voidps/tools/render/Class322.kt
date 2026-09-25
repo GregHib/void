@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class322 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 class Class322(i: Int, i_9_: Int, i_10_: Int) {
     private val anInt4020: Int
     private var anInt4022: Int

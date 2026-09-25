@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import kotlin.math.pow
 
-/* Class348_Sub40_Sub8 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub8 : Class348_Sub40(0, true) {
     var anInt9149: Int = 1638
     var anInt9150: Int = 4

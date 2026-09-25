@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class356 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class356 */
 
 class IterableHashTable(var anInt4377: Int) {
     var aClass348Array4374: Array<Class348?>

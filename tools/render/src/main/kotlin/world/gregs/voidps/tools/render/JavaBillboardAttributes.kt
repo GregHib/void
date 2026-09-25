@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class350 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class350 */
 
 internal class JavaBillboardAttributes(var anInt4313: Int) {
     var anInt4307: Int = 0

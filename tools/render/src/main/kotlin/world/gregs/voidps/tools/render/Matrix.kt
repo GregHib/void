@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class101 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class101 */
 
 abstract class Matrix {
     abstract fun translate(i: Int, i_0_: Int, i_1_: Int)

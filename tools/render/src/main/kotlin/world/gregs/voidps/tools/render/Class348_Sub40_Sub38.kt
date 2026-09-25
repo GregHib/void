@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import kotlin.math.min
 
-/* Class348_Sub40_Sub38 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub38 : Class348_Sub40(1, false) {
     private var anInt9470 = 4096
     private var anInt9474 = 0

@@ -3,10 +3,6 @@ package world.gregs.voidps.tools.render
 import kotlin.math.cos
 import kotlin.math.sin
 
-/* Class348_Sub40_Sub6 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub6 : Class348_Sub40(3, false) {
     private var anInt9133 = 32768
     override fun method3042(i: Int): IntArray {

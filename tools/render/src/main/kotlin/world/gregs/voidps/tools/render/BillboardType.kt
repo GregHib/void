@@ -3,16 +3,9 @@ package world.gregs.voidps.tools.render
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.Cache
 
-/* Class189 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class189 */
 
 class BillboardType {
-    /* Minimal stub: Class64_Sub1's kept code (method623 area) only reads
-     * these instance fields off a Class189 obtained from Class73.method742(...)
-     * and constructs a Class6 from them. method1418/method1419 are restored
-     * below because Class73.method742 (genuine) itself calls method1419 to
-     * decode the cached data before returning it. */
     var aBoolean2522: Boolean = false
     var texture: Int
     var anInt2526: Int = 64

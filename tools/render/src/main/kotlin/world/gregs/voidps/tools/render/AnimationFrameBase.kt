@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub33 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class348_Sub33 */
 
 /**
  * An animation skeleton: groups of vertex/face labels and the transform type applied to each group.

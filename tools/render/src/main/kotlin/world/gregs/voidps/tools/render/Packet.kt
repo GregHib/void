@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub49 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class348_Sub49 */
 
 open class Packet(var aByteArray7154: ByteArray) : Class348() {
     var pos: Int = 0
@@ -33,7 +31,6 @@ open class Packet(var aByteArray7154: ByteArray) : Class348() {
     fun readString(): String {
         val i_69_ = this.pos
         while ((this.aByteArray7154[this.pos++]).toInt() != 0) {
-            /* empty */
         }
         val i_70_ = -1 + this.pos - i_69_
         if (i_70_ == 0) return ""

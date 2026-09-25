@@ -1,9 +1,5 @@
 package world.gregs.voidps.tools.render
 
-/* Class348_Sub40_Sub15 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub15(i: Int) : Class348_Sub40(0, true) {
     private var anInt9220 = 4096
     override fun method3049(packet: Packet?, i: Int) {

@@ -9,10 +9,6 @@ import java.awt.image.DirectColorModel
 import java.awt.image.Raster
 import java.util.*
 
-/* Class348_Sub31_Sub1 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub31_Sub1 : Class348_Sub31() {
     private var anImage9066: Image? = null
     private var aRectangle9067: Rectangle? = null

@@ -3,9 +3,7 @@ package world.gregs.voidps.tools.render
 import kotlin.math.cos
 import kotlin.math.sin
 
-/* Class101_Sub1 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
+/* Class101_Sub1 */
 
 internal class Matrix_Sub1 : Matrix() {
     var aFloat5655: Float = 0f

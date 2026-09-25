@@ -2,10 +2,6 @@ package world.gregs.voidps.tools.render
 
 import world.gregs.voidps.cache.Cache
 
-/* Class348 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 open class Class348 {
     var aClass348_4294: Class348? = null
     var aClass348_4295: Class348? = null

@@ -4,10 +4,6 @@ import java.util.Random
 import kotlin.math.max
 import kotlin.math.min
 
-/* Class348_Sub40_Sub23 - Decompiled by JODE
-* Visit http://jode.sourceforge.net/
-*/
-
 internal class Class348_Sub40_Sub23 : Class348_Sub40(0, true) {
     private var anInt9306 = 0
     private var anInt9310 = 1024
