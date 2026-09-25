@@ -113,8 +113,16 @@ object AdventurersLog {
                     div {
                         style = "width:96px;height:96px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;" +
                             "border:1px solid var(--gold-600);border-radius:var(--radius-sm);box-shadow:var(--bevel-down);" +
-                            "background:var(--umber-950);color:var(--gold-300)"
+                            "background:var(--umber-950);color:var(--gold-300);position:relative;overflow:hidden"
                         icon(Icons.ACCOUNT, size = 44)
+                        // The account's chathead covers the icon once it loads; accounts without a render keep the icon.
+                        unsafe {
+                            raw(
+                                """
+                                <img x-show="profile.avatar" :src="profile.avatar" :alt="profile.name" @load="${'$'}el.style.visibility = 'visible'" @error="${'$'}el.style.visibility = 'hidden'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;visibility:hidden;background:var(--umber-950)">
+                                """.trimIndent(),
+                            )
+                        }
                     }
                     div {
                         style = "min-width:0;display:flex;flex-direction:column;gap:var(--space-4)"
