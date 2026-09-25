@@ -1,5 +1,6 @@
 [monk_of_zamorak_goblin_village]
 id = 188
+height = 40
 hitpoints = 200
 att = 18
 str = 18

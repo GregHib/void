@@ -1,0 +1,4 @@
+spawns = [
+# 11574
+  { id = "wine_of_zamorak", x = 2931, y = 3515, delay = 50 },
+]

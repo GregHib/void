@@ -1,7 +1,9 @@
 package content.skill.magic.book.modern
 
 import content.entity.gfx.areaGfx
+import content.entity.item.height
 import content.entity.player.inv.item.take.ItemTake
+import content.entity.proj.ShootProjectile
 import content.entity.proj.shoot
 import content.skill.magic.spell.removeSpellItems
 import content.skill.magic.spell.spell
@@ -31,7 +33,7 @@ class TelekineticGrab : Script {
             val spell = "telekinetic_grab"
             val floorItem = it.target
             face(floorItem.tile)
-            val item = Items.takeable(this, floorItem) ?: return@onFloorItemApproach
+            val item = Items.takeable(this, floorItem, telegrab = true) ?: return@onFloorItemApproach
             if (hasClock("action_delay")) {
                 return@onFloorItemApproach
             }
@@ -52,17 +54,20 @@ class TelekineticGrab : Script {
             sound("tele_grab_cast")
             exp(Skill.Magic, Tables.int("spells.$spell.xp") / 10.0)
 
-            val clientTicks = shoot("tele_grab_travel", floorItem.tile)
+            val height = floorItem.height()
+            val clientTicks = shoot("tele_grab_travel", floorItem.tile, endHeight = height / ShootProjectile.HEIGHT_UNIT)
             areaSound("tele_grab_impact", floorItem.tile, delay = clientTicks, radius = 10)
-            areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks)
+            areaGfx("tele_grab_impact", floorItem.tile, delay = clientTicks, height = height)
 
-            delay(3)
-            queue("tele_grab", 3) {
+            // Take the item as the projectile lands; client ticks are 20ms, game ticks 600ms
+            val ticks = (clientTicks + 15) / 30
+            start("action_delay", ticks)
+            queue("tele_grab", ticks) {
                 if (tile.level != floorItem.tile.level) {
                     message("Your telegrab fizzles as you move too far away.")
                     return@queue
                 }
-                if (!ItemTake.take(this, floorItem)) {
+                if (!ItemTake.take(this, floorItem, telegrab = true)) {
                     return@queue
                 }
                 start("action_delay", 3)
