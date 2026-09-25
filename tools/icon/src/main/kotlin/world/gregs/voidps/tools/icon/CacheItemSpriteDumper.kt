@@ -36,7 +36,7 @@ object CacheItemSpriteDumper {
             return
         }
 
-        val outDir = File(if (args.size > 1) args[1] else "item_sprites")
+        val outDir = File(if (args.size > 1) args[1] else "web/site/build/images/items")
         ItemSpriteDumper.dump(outDir)
     }
 }

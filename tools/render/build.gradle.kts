@@ -6,7 +6,6 @@ kotlin {
     dependencies {
         implementation(project(":buffer"))
         implementation(project(":cache"))
-        implementation(project(":tools:render"))
         implementation(libs.displee.cache)
     }
 }
