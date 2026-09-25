@@ -1,0 +1,7 @@
+[mage_training_arena_room]
+format = "string"
+
+# Bitmask of mazes solved in the current set of ten; refilled when all are solved.
+[mage_training_arena_mazes_solved]
+format = "int"
+persist = true

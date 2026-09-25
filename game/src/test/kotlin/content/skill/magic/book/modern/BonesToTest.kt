@@ -1,8 +1,10 @@
 package content.skill.magic.book.modern
 
 import WorldTest
+import containsMessage
 import interfaceOption
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -15,6 +17,7 @@ class BonesToTest : WorldTest() {
     @ValueSource(strings = ["bananas", "peaches"])
     fun `Convert all bones and big bones`(type: String) {
         val player = createPlayer()
+        player["bones_to_peaches"] = true
         player.levels.set(Skill.Magic, 60)
         player.inventory.add("nature_rune", 2)
         player.inventory.add("water_rune", 4)
@@ -46,6 +49,7 @@ class BonesToTest : WorldTest() {
     @ValueSource(strings = ["bananas", "peaches"])
     fun `Can't cast without runes`(type: String) {
         val player = createPlayer()
+        player["bones_to_peaches"] = true
         player.levels.set(Skill.Magic, 60)
         player.inventory.add("nature_rune", 2)
         player.inventory.add("water_rune", 1)
@@ -69,6 +73,7 @@ class BonesToTest : WorldTest() {
     @ValueSource(strings = ["bananas", "peaches"])
     fun `Can't cast without level`(type: String) {
         val player = createPlayer()
+        player["bones_to_peaches"] = true
         player.levels.set(Skill.Magic, 14)
         player.inventory.add("nature_rune", 2)
         player.inventory.add("water_rune", 4)
@@ -92,6 +97,7 @@ class BonesToTest : WorldTest() {
     @ValueSource(strings = ["bananas", "peaches"])
     fun `Can't cast without bones`(type: String) {
         val player = createPlayer()
+        player["bones_to_peaches"] = true
         player.levels.set(Skill.Magic, 10)
         player.inventory.add("nature_rune", 2)
         player.inventory.add("water_rune", 4)
@@ -105,5 +111,22 @@ class BonesToTest : WorldTest() {
         assertEquals(4, player.inventory.count("earth_rune"))
         assertEquals(0.0, player.experience.get(Skill.Magic))
         assertEquals(0, player.inventory.count(if (type == "bananas") "banana" else "peach"))
+    }
+
+    @Test
+    fun `Bones to Peaches must be learnt at the Mage Training Arena`() {
+        val player = createPlayer()
+        player.levels.set(Skill.Magic, 60)
+        player.inventory.add("nature_rune", 2)
+        player.inventory.add("water_rune", 4)
+        player.inventory.add("earth_rune", 4)
+        player.inventory.add("bones")
+
+        player.interfaceOption("modern_spellbook", "bones_to_peaches", "Cast")
+        tick(1)
+
+        assertEquals(1, player.inventory.count("bones"))
+        assertEquals(2, player.inventory.count("nature_rune"))
+        assertTrue(player.containsMessage("You can only learn this spell from the Mage Training Arena."))
     }
 }
