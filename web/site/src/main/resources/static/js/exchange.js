@@ -69,7 +69,8 @@
   function itemView(it) {
     var d = it.delta24h;
     return {
-      name: it.name, cat: it.categoryName, code: it.categoryCode, icon: it.iconUrl,
+      // The detail page shows the 2x `{id}_hd.png` sprite rather than the 36x32 list one.
+      name: it.name, cat: it.categoryName, code: it.categoryCode, icon: it.iconUrl ? it.iconUrl.replace(/\.png$/, "_hd.png") : null,
       examine: it.examine, price: gp(it.price), delta: pct(d), deltaColor: col(d),
       memberLabel: it.members ? "Members" : "Free",
       memberBg: it.members ? "rgba(224,174,60,.14)" : "var(--umber-700)",

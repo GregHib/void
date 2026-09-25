@@ -74,14 +74,14 @@ object Exchange {
     }
 
     /**
-     * Square item tile showing the item's 36x32 inventory sprite (`images/items/<id>.png`, dumped by
-     * `:tools:icon:dumpItemSprites`) at [scale]x in a 32x32 box — the sprite is left-aligned so the
-     * extra 4px is trimmed off the right. Falls back to the category code when there's no sprite
+     * Square item tile showing the item's inventory sprite (`images/items/<id>.png`, dumped by
+     * `:tools:icon:dumpItemSprites`) in a 32x32 box, [scale]d for the `<id>_hd.png` sprites the item
+     * page uses — the 36x32 sprite is left-aligned so the extra 4px is trimmed off the right. Falls back to the category code when there's no sprite
      * or it fails to load. [row] is the Alpine expression for the item row.
      */
     private fun itemTile(row: String, scale: Int = 1): String =
         """<div style="box-sizing:content-box;width:${32 * scale}px;height:${32 * scale}px;flex:none;display:flex;align-items:center;justify-content:flex-start;overflow:hidden;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">""" +
-            """<img x-show="$row.icon && !$row.iconMissing" :src="$row.icon" :alt="$row.name" @error="$row.iconMissing = true" width="${36 * scale}" height="${32 * scale}" style="flex:none;max-width:none;image-rendering:pixelated">""" +
+            """<img x-show="$row.icon && !$row.iconMissing" :src="$row.icon" :alt="$row.name" @error="$row.iconMissing = true" width="${36 * scale}" height="${32 * scale}" style="flex:none;max-width:none">""" +
             """<span x-show="!$row.icon || $row.iconMissing" style="width:100%;text-align:center;font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="$row.code"></span>""" +
             """</div>"""
 

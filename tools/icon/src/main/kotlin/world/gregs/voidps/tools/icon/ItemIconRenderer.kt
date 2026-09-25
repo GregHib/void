@@ -9,7 +9,7 @@ import world.gregs.voidps.tools.render.Sprite
 import world.gregs.voidps.tools.render.Toolkit
 
 /**
- * Renders the 36x32 inventory icon for items decoded by
+ * Renders the 36x32 inventory icon (or a [scale]d up high resolution version) for items decoded by
  * [world.gregs.voidps.cache.definition.decoder.ItemDecoderFull].
  */
 internal class ItemIconRenderer(
@@ -22,7 +22,7 @@ internal class ItemIconRenderer(
 
     fun definition(id: Int): ItemDefinitionFull? = definitions.getOrNull(id)
 
-    fun sprite(scratchToolkit: Toolkit, graphicShadow: Int, invCount: Int, itemId: Int, small: Boolean, outline: Int): Sprite? {
+    fun sprite(scratchToolkit: Toolkit, graphicShadow: Int, invCount: Int, itemId: Int, small: Boolean, outline: Int, scale: Int = 1): Sprite? {
         var definition = definitions[itemId]
         val stackIds = definition.stackIds
         val stackAmounts = definition.stackAmounts
@@ -33,11 +33,17 @@ internal class ItemIconRenderer(
             }
             if (stackId != -1) definition = definitions[stackId]
         }
-        val image = pixels(definition, invCount, small, graphicShadow, scratchToolkit, outline) ?: return null
-        return scratchToolkit.createSprite(WIDTH, image, WIDTH, HEIGHT)
+        val image = pixels(definition, invCount, small, graphicShadow, scratchToolkit, outline, scale) ?: return null
+        return scratchToolkit.createSprite(WIDTH * scale, image, WIDTH * scale, HEIGHT * scale)
     }
 
-    fun pixels(definition: ItemDefinitionFull, invCount: Int, small: Boolean, graphicShadow: Int, scratchToolkit: Toolkit, outline: Int): IntArray? {
+    /**
+     * @param scale multiplier applied to the 36x32 icon size; the model is projected at the higher resolution
+     * rather than upscaled, and [scratchToolkit]'s canvas must be at least `36 * scale` x `32 * scale`
+     */
+    fun pixels(definition: ItemDefinitionFull, invCount: Int, small: Boolean, graphicShadow: Int, scratchToolkit: Toolkit, outline: Int, scale: Int = 1): IntArray? {
+        val width = WIDTH * scale
+        val height = HEIGHT * scale
         val mesh = mesh(definition.modelId) ?: return null
         if (mesh.version < 13) mesh.upscale(2)
         val originalColours = definition.originalColours
@@ -72,9 +78,9 @@ internal class ItemIconRenderer(
         if (scaled) model.O(resizeX, resizeY, resizeZ)
         var overlay: Sprite? = null
         if (definition.notedTemplateId != -1) {
-            overlay = sprite(scratchToolkit, 0, 10, definition.noteId, true, 1) ?: return null
+            overlay = sprite(scratchToolkit, 0, 10, definition.noteId, true, 1, scale) ?: return null
         } else if (definition.lendTemplateId != -1) {
-            overlay = sprite(scratchToolkit, graphicShadow, invCount, definition.lendId, false, outline) ?: return null
+            overlay = sprite(scratchToolkit, graphicShadow, invCount, definition.lendId, false, outline, scale) ?: return null
         }
         val zoom = if (small) {
             (1.5 * definition.spriteScale.toDouble()).toInt() shl 2
@@ -83,7 +89,7 @@ internal class ItemIconRenderer(
         } else {
             definition.spriteScale shl 2
         }
-        scratchToolkit.DA(16, 16, 512, 512)
+        scratchToolkit.DA(16 * scale, 16 * scale, 512 * scale, 512 * scale)
         val matrix = scratchToolkit.method3654()
         matrix!!.makeIdentity()
         scratchToolkit.setCamera(matrix)
@@ -105,18 +111,19 @@ internal class ItemIconRenderer(
         scratchToolkit.f(50, Int.MAX_VALUE)
         scratchToolkit.ya()
         scratchToolkit.la()
-        scratchToolkit.aa(0, 0, WIDTH, HEIGHT, 0, 0)
+        scratchToolkit.aa(0, 0, width, height, 0, 0)
         model.render(scratch, 1)
         scratchToolkit.f(near, far)
-        var image = scratchToolkit.na(0, 0, WIDTH, HEIGHT)!!
+        var image = scratchToolkit.na(0, 0, width, height)!!
+        // Repeat 1px outlines and shadows so they keep the same thickness relative to the icon
         if (outline >= 1) {
-            image = colourBorder(-16777214, image)
-            if (outline >= 2) image = colourBorder(-1, image)
+            repeat(scale) { image = colourBorder(-16777214, image, width, height) }
+            if (outline >= 2) repeat(scale) { image = colourBorder(-1, image, width, height) }
         }
-        if (graphicShadow != 0) applyShadow(graphicShadow, image)
-        scratchToolkit.createSprite(WIDTH, image, WIDTH, HEIGHT)!!.render(0, 0)
+        if (graphicShadow != 0) repeat(scale) { applyShadow(graphicShadow, image, width, height) }
+        scratchToolkit.createSprite(width, image, width, height)!!.render(0, 0)
         overlay?.render(0, 0)
-        image = scratchToolkit.na(0, 0, WIDTH, HEIGHT)!!
+        image = scratchToolkit.na(0, 0, width, height)!!
         for (i in image.indices) {
             image[i] = if (0xffffff and image[i] != 0) Class348_Sub40_Sub12.or(image[i], -16777216) else 0
         }
@@ -128,29 +135,29 @@ internal class ItemIconRenderer(
         return Mesh(data)
     }
 
-    private fun applyShadow(colour: Int, image: IntArray) {
-        for (y in HEIGHT - 1 downTo 1) {
-            val offset = WIDTH * y
-            for (x in WIDTH - 1 downTo 1) {
-                if (image[x + offset] == 0 && image[x + offset - 1 - WIDTH] != 0) image[x + offset] = colour
+    private fun applyShadow(colour: Int, image: IntArray, width: Int, height: Int) {
+        for (y in height - 1 downTo 1) {
+            val offset = width * y
+            for (x in width - 1 downTo 1) {
+                if (image[x + offset] == 0 && image[x + offset - 1 - width] != 0) image[x + offset] = colour
             }
         }
     }
 
-    private fun colourBorder(colour: Int, image: IntArray): IntArray {
-        val output = IntArray(WIDTH * HEIGHT)
+    private fun colourBorder(colour: Int, image: IntArray, width: Int, height: Int): IntArray {
+        val output = IntArray(width * height)
         var index = 0
-        for (y in 0 until HEIGHT) {
-            for (x in 0 until WIDTH) {
+        for (y in 0 until height) {
+            for (x in 0 until width) {
                 var pixel = image[index]
                 if (pixel == 0) {
                     if (x > 0 && image[index - 1] != 0) {
                         pixel = colour
-                    } else if (y > 0 && image[index - WIDTH] != 0) {
+                    } else if (y > 0 && image[index - width] != 0) {
                         pixel = colour
-                    } else if (x < WIDTH - 1 && image[index + 1] != 0) {
+                    } else if (x < width - 1 && image[index + 1] != 0) {
                         pixel = colour
-                    } else if (y < HEIGHT - 1 && image[index + WIDTH] != 0) {
+                    } else if (y < height - 1 && image[index + width] != 0) {
                         pixel = colour
                     }
                 }

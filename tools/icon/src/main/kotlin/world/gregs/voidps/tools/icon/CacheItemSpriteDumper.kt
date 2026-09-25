@@ -26,7 +26,7 @@ object CacheItemSpriteDumper {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cacheDir = if (args.size > 0) args[0] else "C:\\Users\\Greg\\IdeaProjects\\void\\data\\cache\\"
+        val cacheDir = if (args.size > 0) args[0] else "./data/cache/"
 
         try {
             val cache: Cache = FileCache(cacheDir)
@@ -45,8 +45,9 @@ object CacheItemSpriteDumper {
             System.exit(1)
             return
         }
-
-        val outDir = File(if (args.size > 1) args[1] else "web/site/build/images/items")
+        val outDir = File(if (args.size > 1) args[1] else "./build/pages/images/items")
+        val start = System.currentTimeMillis()
         ItemSpriteDumper.dump(outDir)
+        println("Took ${System.currentTimeMillis() - start}ms")
     }
 }

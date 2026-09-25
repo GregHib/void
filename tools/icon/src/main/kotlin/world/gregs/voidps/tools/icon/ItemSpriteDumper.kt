@@ -20,7 +20,7 @@ internal object ItemSpriteDumper {
         var i_62_ = 0
         var i_63_ = 0
         if (canvas != null) {
-            val dimension = canvas.getSize()
+            val dimension = canvas.size
             i_63_ = dimension.height
             i_62_ = dimension.width
         }
@@ -29,17 +29,11 @@ internal object ItemSpriteDumper {
 
     var icons: ItemIconRenderer? = null
 
-    private const val WIDTH = 36
-    private const val HEIGHT = 32
+    private const val WIDTH = ItemIconRenderer.WIDTH
+    private const val HEIGHT = ItemIconRenderer.HEIGHT
 
-    /** Toggle the black selection outline that item icons are normally drawn with.  */
-    private const val OUTLINE = true
-
-    /**
-     * Ids outside the normal item definition range that still need dumping:
-     * 799 is the "note" background/overlay, 13009 the "lent" item background.
-     */
-    private val EXTRA_IDS = intArrayOf(799, 13009)
+    /** Scale of the additional high resolution `{id}_hd.png` icons (72x64).  */
+    private const val HD_SCALE = 2
 
     /**
      * Class348_Sub8.aHa6654 is constructed once very early (during the loading
@@ -50,15 +44,13 @@ internal object ItemSpriteDumper {
      * instead, the same way Class22.method294's icon-queue does, so it picks up
      * the real (by-then-initialised) texture provider.
      */
-    private var renderer: Toolkit? = null
+    private val renderers = mutableMapOf<Int, Toolkit>()
 
-    private fun renderer(): Toolkit {
-        if (renderer == null) {
-            val canvas = Canvas()
-            canvas.setSize(WIDTH, HEIGHT)
-            renderer = method958(Class348_Sub40_Sub4.aTextureSource9113, canvas)
-        }
-        return renderer!!
+    /** One renderer per scale as the toolkit's pixel buffer is sized to its canvas. */
+    private fun renderer(scale: Int): Toolkit = renderers.getOrPut(scale) {
+        val canvas = Canvas()
+        canvas.setSize(WIDTH * scale, HEIGHT * scale)
+        method958(Class348_Sub40_Sub4.aTextureSource9113, canvas)
     }
 
     @JvmOverloads
@@ -67,31 +59,26 @@ internal object ItemSpriteDumper {
         val count = icons!!.size
         var dumped = 0
         for (id in 0..<count) {
-            if (dumpItem(dir, id)) dumped++
+            if (dumpItem(dir, id, outline = true)) dumped++
+            dumpItem(dir, id, HD_SCALE, outline = false)
         }
-        for (id in EXTRA_IDS) {
-            if (id >= count && dumpItem(dir, id)) dumped++
-        }
-        println("ItemSpriteDumper: wrote " + dumped + " item icons to " + dir.getAbsolutePath())
+        println("ItemSpriteDumper: wrote " + dumped + " item icons to " + dir.absolutePath)
     }
 
-    private fun dumpItem(dir: File?, id: Int): Boolean {
+    private fun dumpItem(dir: File?, id: Int, scale: Int = 1, outline: Boolean): Boolean {
         try {
             val def = icons!!.definition(id) ?: return false
-            val pixels = icons!!.pixels(def, 1, false, 0, renderer(), if (OUTLINE) 1 else 0) ?: return false
-            val image = BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB)
-            image.setRGB(0, 0, WIDTH, HEIGHT, pixels, 0, WIDTH)
-            ImageIO.write(image, "png", File(dir, id.toString() + "_" + sanitize(def.name) + ".png"))
+            val pixels = icons!!.pixels(def, 1, false, 0, renderer(scale), if (outline) 1 else 0, scale) ?: return false
+            val width = WIDTH * scale
+            val height = HEIGHT * scale
+            val image = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
+            image.setRGB(0, 0, width, height, pixels, 0, width)
+            ImageIO.write(image, "png", File(dir, if (scale == 1) "$id.png" else "${id}_hd.png"))
             return true
         } catch (ioexception: IOException) {
             return false
         } catch (runtimeexception: RuntimeException) {
             return false
         }
-    }
-
-    private fun sanitize(name: String): String {
-        if (name.isEmpty()) return "unnamed"
-        return name.replace("[^a-zA-Z0-9_-]".toRegex(), "_")
     }
 }
