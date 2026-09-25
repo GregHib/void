@@ -41,7 +41,7 @@ object Exchange {
         ui.siteFooter()
     }
 
-    /** Mirrors the category list baked into `exchange.js` (`CAT_BORDER`/`CAT_CODE`/`CAT_BLURB`) — keep in sync. */
+    /** Mirrors the category list baked into `exchange.js` (`CATEGORY_ID`) — keep in sync. */
     private val categories = listOf("All", "Weapons", "Armour", "Runes", "Consumables", "Resources", "Misc")
 
     /** Mirrors the `TFS` keys in `exchange.js` — keep in sync. */
@@ -73,28 +73,25 @@ object Exchange {
         }
     }
 
-    /** Coloured, monospace item-code tile — a stand-in for a real item sprite. [size] is CSS pixels. */
-    private fun DIV.itemCodeTemplate(borderExpr: String, codeExpr: String, size: Int) {
-        unsafe {
-            raw(
-                """
-                <div :style="{ borderColor: $borderExpr }" style="width:${size}px;height:${size}px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
-                  <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="$codeExpr"></span>
-                </div>
-                """.trimIndent(),
-            )
-        }
-    }
+    /**
+     * Square item tile showing the item's 36x32 inventory sprite (`images/items/<id>.png`, dumped by
+     * `:tools:icon:dumpItemSprites`) at [scale]x in a 32x32 box — the sprite is left-aligned so the
+     * extra 4px is trimmed off the right. Falls back to the category code when there's no sprite
+     * or it fails to load. [row] is the Alpine expression for the item row.
+     */
+    private fun itemTile(row: String, scale: Int = 1): String =
+        """<div style="box-sizing:content-box;width:${32 * scale}px;height:${32 * scale}px;flex:none;display:flex;align-items:center;justify-content:flex-start;overflow:hidden;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">""" +
+            """<img x-show="$row.icon && !$row.iconMissing" :src="$row.icon" :alt="$row.name" @error="$row.iconMissing = true" width="${36 * scale}" height="${32 * scale}" style="flex:none;max-width:none;image-rendering:pixelated">""" +
+            """<span x-show="!$row.icon || $row.iconMissing" style="width:100%;text-align:center;font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="$row.code"></span>""" +
+            """</div>"""
 
     private fun DIV.rowListTemplate(listExpr: String) {
         unsafe {
             raw(
                 """
                 <template x-for="r in $listExpr" :key="r.id">
-                  <div @click="open(r.id)" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:14px;padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--umber-900);cursor:pointer;transition:background var(--dur-fast) var(--ease-standard)">
-                    <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
-                      <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
-                    </div>
+                  <div @click="open(r.id)" style="display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:14px;padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--umber-900);cursor:pointer;transition:background var(--dur-fast) var(--ease-standard)">
+                    ${itemTile("r")}
                     <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                       <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="r.name"></span>
                       <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint)" x-text="r.cat"></span>
@@ -198,9 +195,7 @@ object Exchange {
                             """
                             <template x-for="r in results" :key="r.id">
                               <div @click="open(r.id)" style="display:grid;grid-template-columns:48px minmax(0,1fr) 140px 120px 130px 90px;gap:var(--space-6);align-items:center;padding:var(--space-5) var(--space-7);border-bottom:1px solid var(--umber-900);cursor:pointer">
-                                <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
-                                  <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
-                                </div>
+                                ${itemTile("r")}
                                 <div style="display:flex;flex-direction:column;gap:var(--space-2);min-width:0">
                                   <span style="font:var(--weight-semibold) var(--text-base)/1.2 var(--font-ui);color:var(--text-strong)" x-text="r.name"></span>
                                   <span style="font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="r.examine"></span>
@@ -245,7 +240,7 @@ object Exchange {
                     "padding:var(--space-5) 0"
                 div {
                     style = "display:flex;gap:var(--space-6);align-items:flex-start;min-width:0"
-                    itemCodeTemplate("item.border", "item.code", 64)
+                    unsafe { raw(itemTile("item", scale = 2)) }
                     div {
                         style = "display:flex;flex-direction:column;gap:var(--space-4);min-width:0"
                         h1 {
@@ -402,10 +397,8 @@ object Exchange {
                         raw(
                             """
                             <template x-for="r in related" :key="r.id">
-                              <div @click="open(r.id)" style="display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:var(--space-5);align-items:center;padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--umber-900);cursor:pointer">
-                                <div :style="{ borderColor: r.border }" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down)">
-                                  <span style="font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="r.code"></span>
-                                </div>
+                              <div @click="open(r.id)" style="display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:var(--space-5);align-items:center;padding:var(--space-5) var(--space-6);border-bottom:1px solid var(--umber-900);cursor:pointer">
+                                ${itemTile("r")}
                                 <span style="font:var(--type-body-sm);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="r.name"></span>
                                 <span :style="{ color: r.deltaColor }" style="font:var(--type-code);font-size:var(--text-xs)" x-text="r.delta"></span>
                               </div>

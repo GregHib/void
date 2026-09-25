@@ -42,18 +42,10 @@
     return M[d.getUTCMonth()] + " " + String(d.getUTCFullYear()).slice(2);
   }
 
-  // Coloured category border/code, mirroring the chips baked into `Exchange.kt` - kept here since
-  // the API's `categoryCode` already gives the three-letter tile code, only the border colour
-  // (a CSS variable) needs a client-side lookup.
-  var CAT_BORDER = {
-    weapons: "var(--ember-600)", armour: "var(--border-strong)", runes: "var(--steel-600)",
-    consumables: "var(--moss-600)", resources: "var(--border-strong)", curios: "var(--gold-500)",
-  };
-
   function itemRow(it, kind) {
     var d = it.delta24h;
     return {
-      id: it.id, name: it.name, cat: it.categoryName, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)",
+      id: it.id, name: it.name, cat: it.categoryName, code: it.categoryCode, icon: it.iconUrl,
       m1: kind === "vol" ? short(it.volume24h) : kind === "price" ? gp(it.price) : pct(d),
       m2: kind === "vol" ? gp(it.price) : kind === "price" ? short(it.volume24h) + " traded" : gp(it.price),
       m1Color: kind === "delta" ? col(d) : "var(--text-strong)",
@@ -63,7 +55,7 @@
   function searchRow(it) {
     var d = it.delta24h;
     return {
-      id: it.id, name: it.name, examine: it.examine, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)",
+      id: it.id, name: it.name, examine: it.examine, code: it.categoryCode, icon: it.iconUrl,
       price: gp(it.price), delta: pct(d), deltaColor: col(d),
       vol: short(it.volume24h), limit: it.buyLimit != null ? fmt(it.buyLimit) : "None",
     };
@@ -71,13 +63,13 @@
 
   function relatedRow(it) {
     var d = it.delta24h;
-    return { id: it.id, name: it.name, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)", delta: pct(d), deltaColor: col(d) };
+    return { id: it.id, name: it.name, code: it.categoryCode, icon: it.iconUrl, delta: pct(d), deltaColor: col(d) };
   }
 
   function itemView(it) {
     var d = it.delta24h;
     return {
-      name: it.name, cat: it.categoryName, code: it.categoryCode, border: CAT_BORDER[it.category] || "var(--border-strong)",
+      name: it.name, cat: it.categoryName, code: it.categoryCode, icon: it.iconUrl,
       examine: it.examine, price: gp(it.price), delta: pct(d), deltaColor: col(d),
       memberLabel: it.members ? "Members" : "Free",
       memberBg: it.members ? "rgba(224,174,60,.14)" : "var(--umber-700)",
@@ -100,7 +92,7 @@
   }
 
   var EMPTY_ITEM = {
-    name: "", cat: "", code: "", border: "var(--border-strong)", examine: "",
+    name: "", cat: "", code: "", icon: null, examine: "",
     price: "0 gp", delta: "+0.00%", deltaColor: "var(--moss-500)",
     memberLabel: "Free", memberBg: "var(--umber-700)", memberColor: "var(--parch-200)", memberBorder: "var(--border-strong)",
   };

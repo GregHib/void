@@ -206,7 +206,7 @@ class ExchangeService(
             categoryName = category.displayName,
             categoryCode = category.code,
             examine = definition.getOrNull(Params.EXAMINE) ?: "",
-            iconUrl = null,
+            iconUrl = "images/items/${definition.id}.png",
             price = price,
             delta24h = delta24h(history),
             volume24h = volume24h,
