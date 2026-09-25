@@ -1,7 +1,16 @@
 package world.gregs.voidps.tools.icon
 
-import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.Index
+import world.gregs.voidps.tools.render.Class348
+import world.gregs.voidps.tools.render.Class348_Sub35
+import world.gregs.voidps.tools.render.Class348_Sub40_Sub12
+import world.gregs.voidps.tools.render.Class348_Sub50
+import world.gregs.voidps.tools.render.IterableHashTable
+import world.gregs.voidps.tools.render.Mesh
+import world.gregs.voidps.tools.render.Packet
+import world.gregs.voidps.tools.render.Sprite
+import world.gregs.voidps.tools.render.Toolkit
 
 /* Class213 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/

@@ -1,0 +1,17 @@
+package world.gregs.voidps.tools.render
+
+/* Class348_Sub40_Sub26 - Decompiled by JODE
+* Visit http://jode.sourceforge.net/
+*
+* Trimmed for item_renderer_standalone: only the static renderer-slot
+* bookkeeping array (aBooleanArray9351), used by ha's constructor/method3635,
+* is kept.
+*/
+
+internal object Class348_Sub40_Sub26 : Class348_Sub40(1, false) {
+    var aBooleanArray9351: BooleanArray? = null
+
+    init {
+        aBooleanArray9351 = BooleanArray(8)
+    }
+}

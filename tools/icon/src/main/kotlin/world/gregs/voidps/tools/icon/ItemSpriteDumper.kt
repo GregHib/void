@@ -1,5 +1,8 @@
 package world.gregs.voidps.tools.icon
 
+import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
+import world.gregs.voidps.tools.render.TextureSource
+import world.gregs.voidps.tools.render.Toolkit
 import java.awt.Canvas
 import java.awt.image.BufferedImage
 import java.io.File

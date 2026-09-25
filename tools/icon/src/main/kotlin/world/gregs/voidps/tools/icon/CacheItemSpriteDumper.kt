@@ -3,6 +3,9 @@ package world.gregs.voidps.tools.icon
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.FileCache
+import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
+import world.gregs.voidps.tools.render.Class73
+import world.gregs.voidps.tools.render.Js5TextureSource
 import java.io.File
 
 /**

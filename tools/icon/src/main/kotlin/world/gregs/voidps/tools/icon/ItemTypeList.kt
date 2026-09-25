@@ -2,6 +2,10 @@ package world.gregs.voidps.tools.icon
 
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
+import world.gregs.voidps.tools.render.Class60
+import world.gregs.voidps.tools.render.Packet
+import world.gregs.voidps.tools.render.Sprite
+import world.gregs.voidps.tools.render.Toolkit
 
 /* Class255 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
