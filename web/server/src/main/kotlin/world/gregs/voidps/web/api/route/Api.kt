@@ -17,14 +17,18 @@ import io.ktor.server.routing.Routing
 import io.ktor.server.routing.route
 import io.ktor.server.sse.SSE
 import kotlinx.serialization.json.Json
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
 import world.gregs.voidps.web.api.ApiException
 import world.gregs.voidps.web.api.model.ErrorBody
 import world.gregs.voidps.web.api.model.ErrorResponse
+import world.gregs.voidps.web.avatar.AvatarService
 import world.gregs.voidps.web.dev.DevService
 import world.gregs.voidps.web.exchange.ExchangeService
 import world.gregs.voidps.web.hiscores.HiscoresService
+import java.io.File
 
 /**
  * The JSON dialect the API speaks. Nulls are written rather than omitted because several fields
@@ -93,14 +97,22 @@ private val AllowAnyOrigin = createRouteScopedPlugin("AllowAnyOrigin") {
  * Mounts every route under [API_PATH]. Public routes sit at the top level; `/account` and `/dev`
  * wrap themselves in the authentication providers registered by [apiPlugins].
  */
-fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions) {
+fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, cache: Cache) {
     val hiscores = HiscoresService(storage, questDefinitions)
     val exchange = ExchangeService(storage)
     val dev = DevService(storage, hiscores)
+    val avatars = AvatarService(
+        storage,
+        cache,
+        directory = File(Settings["web.avatars.path", "./data/avatars/"]),
+        size = Settings["web.avatars.size", 192],
+        accountName = hiscores::accountName,
+    )
     route(API_PATH) {
         hiscoresRoutes(hiscores)
         exchangeRoutes(exchange)
         devRoutes(dev)
+        avatarRoutes(avatars)
         worldsRoutes()
     }
 }

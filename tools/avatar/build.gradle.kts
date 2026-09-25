@@ -8,9 +8,7 @@ kotlin {
         implementation(project(":cache"))
         implementation(project(":engine"))
         implementation(project(":network"))
-        implementation(project(":database"))
         implementation(project(":tools:render"))
-        runtimeOnly(project(":game"))
         implementation(libs.displee.cache)
     }
 }
