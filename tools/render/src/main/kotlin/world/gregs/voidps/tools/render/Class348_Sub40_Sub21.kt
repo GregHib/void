@@ -16,7 +16,7 @@ internal class Class348_Sub40_Sub21 : Class348_Sub40(0, true) {
     override fun method3042(i: Int): IntArray? {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val i_1_ = -2048 + Class79.anIntArray6035!![i]
+            val i_1_ = -2048 + Class348_Sub40_Sub33.anIntArray6035!![i]
             var i_2_ = 0
             while (i_2_ < Class348_Sub40_Sub6.anInt9139) {
                 val i_3_ = -2048 + Class348_Sub40_Sub8.anIntArray6432!![i_2_]
@@ -40,12 +40,12 @@ internal class Class348_Sub40_Sub21 : Class348_Sub40(0, true) {
     }
 
     override fun method3044() {
-        Class220.method1605()
+        Class348_Sub40_Sub6.method1605()
     }
 
     private fun method3105(i: Int, i_9_: Int): Boolean {
         val i_10_ = (i_9_ + i) * anInt9279 shr 12
-        var i_11_ = Class220.anIntArray4654!![(i_10_ * 255 and 0xfff2f) shr 12]
+        var i_11_ = Class348_Sub40_Sub6.anIntArray4654!![(i_10_ * 255 and 0xfff2f) shr 12]
         i_11_ = (i_11_ shl 12) / anInt9279
         i_11_ = (i_11_ shl 12) / anInt9277
         i_11_ = i_11_ * anInt9276 shr 12
@@ -54,7 +54,7 @@ internal class Class348_Sub40_Sub21 : Class348_Sub40(0, true) {
 
     private fun method3108(i: Int, i_21_: Int): Boolean {
         val i_22_ = anInt9279 * (i - i_21_) shr 12
-        var i_23_ = Class220.anIntArray4654!![(0xff530 and 255 * i_22_) shr 12]
+        var i_23_ = Class348_Sub40_Sub6.anIntArray4654!![(0xff530 and 255 * i_22_) shr 12]
         i_23_ = (i_23_ shl 12) / anInt9279
         i_23_ = (i_23_ shl 12) / anInt9277
         i_23_ = anInt9276 * i_23_ shr 12

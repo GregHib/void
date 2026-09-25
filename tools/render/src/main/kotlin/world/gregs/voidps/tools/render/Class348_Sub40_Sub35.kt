@@ -33,7 +33,7 @@ internal class Class348_Sub40_Sub35 : Class348_Sub40(1, true) {
     override fun method3042(i: Int): IntArray? {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val i_5_ = Class79.anInt3201 * anInt9448 shr 12
+            val i_5_ = Class348_Sub40_Sub33.anInt3201 * anInt9448 shr 12
             val is_6_ = this.method3048(Class348_Sub40_Sub6.anInt6325 and -1 + i, 0)
             val is_7_ = this.method3048(i, 0)
             val is_8_ = this.method3048(Class348_Sub40_Sub6.anInt6325 and i - -1, 0)
@@ -47,7 +47,7 @@ internal class Class348_Sub40_Sub35 : Class348_Sub40(1, true) {
                 if (i_13_ < 0) i_13_ = -i_13_
                 if (i_12_ > 255) i_12_ = 255
                 if (i_13_ > 255) i_13_ = 255
-                val i_14_ = (Class46.aByteArray821!![i_12_ + (i_13_ * (1 + i_13_) shr 1)].toInt() and 0xff)
+                val i_14_ = (aByteArray821!![i_12_ + (i_13_ * (1 + i_13_) shr 1)].toInt() and 0xff)
                 var i_15_ = i_14_ * 4096 shr 8
                 var i_16_ = i_14_ * i_11_ shr 8
                 var i_17_ = i_10_ * i_14_ shr 8
@@ -81,5 +81,22 @@ internal class Class348_Sub40_Sub35 : Class348_Sub40(1, true) {
             } while (false)
             anInt9445 = packet!!.readUnsignedShort()
         } while (false)
+    }
+
+    companion object {
+        /** Class46.aByteArray821 */
+        var aByteArray821: ByteArray? = ByteArray(32896)
+
+        /** Class46 init */
+        init {
+            var i = 0
+            for (i_69_ in 0..255) {
+                var i_70_ = 0
+                while (i_69_ >= i_70_) {
+                    aByteArray821!![i++] = (255.0 / sqrt((((i_69_ * i_69_) + (i_70_ * i_70_) - -65535).toFloat() / 65535.0f).toDouble())).toInt().toByte()
+                    i_70_++
+                }
+            }
+        }
     }
 }

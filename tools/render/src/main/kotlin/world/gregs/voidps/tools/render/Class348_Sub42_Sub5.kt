@@ -25,7 +25,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             i_2_++
         }
         method3232(d)
-        Class79.method797(i_0_, i)
+        Class348_Sub40_Sub33.method797(i_0_, i)
         val `is` = IntArray(i * i_0_)
         var i_3_ = 0
         var i_4_ = 0
@@ -104,7 +104,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
             i_24_++
         }
         method3232(d)
-        Class79.method797(i_23_, i)
+        Class348_Sub40_Sub33.method797(i_23_, i)
         val `is` = IntArray(i_23_ * i)
         var i_28_ = 0
         var i_29_ = 0

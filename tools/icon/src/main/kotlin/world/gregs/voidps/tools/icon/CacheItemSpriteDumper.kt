@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.FileCache
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
 import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
-import world.gregs.voidps.tools.render.Class73
+import world.gregs.voidps.tools.render.BillboardType
 import world.gregs.voidps.tools.render.Js5TextureSource
 import java.io.File
 
@@ -30,7 +30,7 @@ object CacheItemSpriteDumper {
 
         try {
             val cache: Cache = FileCache(cacheDir)
-            Class73.cache = cache
+            BillboardType.cache = cache
             Class348_Sub40_Sub4.aTextureSource9113 = Js5TextureSource(cache)
             val decoder = ItemDecoderFull()
             val definitions = decoder.load(cache)

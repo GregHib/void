@@ -73,7 +73,7 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
                     val `is` = anIntArrayArray9210!![-1 + i_21_]
                     val is_22_ = anIntArrayArray9210!![i_21_]
                     val i_23_ = ((-`is`[0] + i_20_ shl 12) / (is_22_[0] - `is`[0]))
-                    val i_24_ = (-(Class220.anIntArray4654!![(i_23_ and 0x1ff6) shr 5]) + 4096 shr 1)
+                    val i_24_ = (-(Class348_Sub40_Sub6.anIntArray4654!![(i_23_ and 0x1ff6) shr 5]) + 4096 shr 1)
                     val i_25_ = -i_24_ + 4096
                     var i_26_ = `is`[1] * i_25_ + is_22_[1] * i_24_ shr 12
                     if (i_26_ <= -32768) i_26_ = -32767
@@ -132,7 +132,7 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
         if (anIntArrayArray9210 == null) anIntArrayArray9210 = arrayOf(IntArray(2), intArrayOf(4096, 4096))
         if (anIntArrayArray9210!!.size < 2) throw RuntimeException("Curve operation requires at least two markers")
         if (anInt9211 == 2) method3082()
-        Class220.method1605()
+        Class348_Sub40_Sub6.method1605()
         method3081()
     }
 

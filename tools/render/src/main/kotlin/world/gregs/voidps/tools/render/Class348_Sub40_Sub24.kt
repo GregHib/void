@@ -14,7 +14,7 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
     override fun method3042(i: Int): IntArray {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val i_1_ = Class79.anIntArray6035!![i]
+            val i_1_ = Class348_Sub40_Sub33.anIntArray6035!![i]
             if (anInt9325 == 0) {
                 var i_7_ = 0
                 for (i_8_ in 0..<anInt9329) {
@@ -23,7 +23,7 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
                         break
                     }
                 }
-                Class214.method1579(`is`!!, 0, Class348_Sub40_Sub6.anInt9139, i_7_)
+                Class348_Sub40_Sub23.method1579(`is`!!, 0, Class348_Sub40_Sub6.anInt9139, i_7_)
             } else {
                 for (i_2_ in 0..<Class348_Sub40_Sub6.anInt9139) {
                     var i_3_ = 0

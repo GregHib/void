@@ -11,11 +11,11 @@ internal class Class348_Sub40_Sub31 : Class348_Sub40(1, false) {
         val `is` = this.aClass322_7033!!.method2557(i)
         if (this.aClass322_7033!!.aBoolean4035) {
             val i_1_: Int = Class348_Sub40_Sub6.anInt9139 / anInt9405
-            val i_2_ = Class79.anInt6212 / anInt9410
+            val i_2_ = Class348_Sub40_Sub33.anInt6212 / anInt9410
             val is_3_: Array<IntArray>
             if (i_2_ > 0) {
                 val i_4_ = i % i_2_
-                is_3_ = this.method3039(Class79.anInt6212 * i_4_ / i_2_, 0)!!
+                is_3_ = this.method3039(Class348_Sub40_Sub33.anInt6212 * i_4_ / i_2_, 0)!!
             } else is_3_ = this.method3039(0, 0)!!
             val is_5_ = is_3_[0]
             val is_6_ = is_3_[1]
@@ -44,11 +44,11 @@ internal class Class348_Sub40_Sub31 : Class348_Sub40(1, false) {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
             val i_17_ = Class348_Sub40_Sub6.anInt9139 / anInt9405
-            val i_18_ = Class79.anInt6212 / anInt9410
+            val i_18_ = Class348_Sub40_Sub33.anInt6212 / anInt9410
             val is_19_: IntArray
             if (i_18_ > 0) {
                 val i_20_ = i % i_18_
-                is_19_ = this.method3048(i_20_ * Class79.anInt6212 / i_18_, 0)!!
+                is_19_ = this.method3048(i_20_ * Class348_Sub40_Sub33.anInt6212 / i_18_, 0)!!
             } else is_19_ = this.method3048(0, 0)!!
             var i_21_ = 0
             while (Class348_Sub40_Sub6.anInt9139 > i_21_) {

@@ -11,7 +11,7 @@ internal class Class348_Sub40_Sub39 : Class348_Sub40(0, true) {
 
     private fun method3151(`is`: Array<IntArray?>?) {
         val i_0_ = Class348_Sub40_Sub6.anInt9139
-        val i_1_ = Class79.anInt6212
+        val i_1_ = Class348_Sub40_Sub33.anInt6212
         Class17.method224(`is`)
         Class17.method3000(Class348_Sub40_Sub37.anInt6076, 0, Class348_Sub40_Sub6.anInt6325, 0)
         val shapes = aClass50Array9481
@@ -58,11 +58,11 @@ internal class Class348_Sub40_Sub39 : Class348_Sub40(0, true) {
         val `is` = this.aClass322_7033!!.method2557(i)
         if (this.aClass322_7033!!.aBoolean4035) {
             val i_11_ = Class348_Sub40_Sub6.anInt9139
-            val i_12_ = Class79.anInt6212
+            val i_12_ = Class348_Sub40_Sub33.anInt6212
             val is_13_: Array<IntArray?> = Array(i_12_) { IntArray(i_11_) }
             val is_14_ = this.aClass322_7033!!.method2553()!!
             method3151(is_13_)
-            for (i_15_ in 0..<Class79.anInt6212) {
+            for (i_15_ in 0..<Class348_Sub40_Sub33.anInt6212) {
                 val is_16_ = is_13_[i_15_]!!
                 val is_17_ = is_14_[i_15_]
                 val is_18_ = is_17_[0]

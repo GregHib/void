@@ -1,5 +1,8 @@
 package world.gregs.voidps.tools.render
 
+import kotlin.math.cos
+import kotlin.math.sin
+
 /* Class348_Sub40_Sub6 - Decompiled by JODE
 * Visit http://jode.sourceforge.net/
 */
@@ -14,8 +17,8 @@ internal class Class348_Sub40_Sub6 : Class348_Sub40(3, false) {
             for (i_3_ in 0..<anInt9139) {
                 val i_4_ = 0xff and (is_1_!![i_3_] shr 4)
                 val i_5_ = anInt9133 * is_2_!![i_3_] shr 12
-                val i_6_ = Class220.anIntArray4654!![i_4_] * i_5_ shr 12
-                val i_7_ = Class220.anIntArray3068!![i_4_] * i_5_ shr 12
+                val i_6_ = anIntArray4654!![i_4_] * i_5_ shr 12
+                val i_7_ = anIntArray3068!![i_4_] * i_5_ shr 12
                 val i_8_ = i_3_ - -(i_6_ shr 12) and Class348_Sub40_Sub37.anInt6076
                 val i_9_ = i - -(i_7_ shr 12) and anInt6325
                 val is_10_ = this.method3048(i_9_, 0)
@@ -37,7 +40,7 @@ internal class Class348_Sub40_Sub6 : Class348_Sub40(3, false) {
     }
 
     override fun method3044() {
-        Class220.method1605()
+        method1605()
     }
 
     override fun method3047(i: Int): Array<IntArray> {
@@ -52,8 +55,8 @@ internal class Class348_Sub40_Sub6 : Class348_Sub40(3, false) {
             while (anInt9139 > i_19_) {
                 val i_20_ = 0xff and (255 * is_14_!![i_19_] shr 12)
                 val i_21_ = anInt9133 * is_15_!![i_19_] shr 12
-                val i_22_ = i_21_ * Class220.anIntArray4654!![i_20_] shr 12
-                val i_23_ = i_21_ * Class220.anIntArray3068!![i_20_] shr 12
+                val i_22_ = i_21_ * anIntArray4654!![i_20_] shr 12
+                val i_23_ = i_21_ * anIntArray3068!![i_20_] shr 12
                 val i_24_ = i_19_ + (i_22_ shr 12) and Class348_Sub40_Sub37.anInt6076
                 val i_25_ = (i_23_ shr 12) + i and anInt6325
                 val is_26_ = this.method3039(i_25_, 0)
@@ -67,6 +70,25 @@ internal class Class348_Sub40_Sub6 : Class348_Sub40(3, false) {
     }
 
     companion object {
+        /** Class220.anIntArray3068 */
+        var anIntArray3068: IntArray? = null
+
+        /** Class220.anIntArray4654 */
+        var anIntArray4654: IntArray? = null
+
+        /** Class220.method1605 */
+        fun method1605() {
+            if (anIntArray3068 == null || anIntArray4654 == null) {
+                anIntArray4654 = IntArray(256)
+                anIntArray3068 = IntArray(256)
+                for (i_0_ in 0..255) {
+                    val d = 6.283185307179586 * (i_0_.toDouble() / 255.0)
+                    anIntArray3068!![i_0_] = (4096.0 * sin(d)).toInt()
+                    anIntArray4654!![i_0_] = (4096.0 * cos(d)).toInt()
+                }
+            }
+        }
+
         var anInt6325: Int = 0
         var anInt9139: Int = 0
     }

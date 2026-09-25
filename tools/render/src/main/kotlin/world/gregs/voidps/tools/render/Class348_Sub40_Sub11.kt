@@ -10,7 +10,7 @@ internal class Class348_Sub40_Sub11 : Class348_Sub40(0, true) {
     override fun method3042(i: Int): IntArray? {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val i_1_ = Class79.anIntArray6035!![i]
+            val i_1_ = Class348_Sub40_Sub33.anIntArray6035!![i]
             for (i_2_ in 0..<Class348_Sub40_Sub6.anInt9139) {
                 val i_3_ = Class348_Sub40_Sub8.anIntArray6432!![i_2_]
                 if (anInt9187 < i_3_ && 4096 - anInt9187 > i_3_ && i_1_ > 2048 - anInt9187 && i_1_ < 2048 + anInt9187) {

@@ -18,7 +18,7 @@ class Class191(i: Int, i_16_: Int, i_17_: Int) {
         if (anInt2559 != anInt2565) throw RuntimeException("Can only retrieve a full image cache")
         var i_0_ = 0
         while (anInt2559 > i_0_) {
-            aClass348_Sub6Array2563!![i_0_] = aa_Sub3.aClass348_Sub6_5206
+            aClass348_Sub6Array2563!![i_0_] = aClass348_Sub6_5206
             i_0_++
         }
         return anIntArrayArray2564
@@ -35,7 +35,7 @@ class Class191(i: Int, i_16_: Int, i_17_: Int) {
     fun method1433(i_14_: Int): IntArray? {
         if (anInt2559 == anInt2565) {
             this.aBoolean2570 = aClass348_Sub6Array2563!![i_14_] == null
-            aClass348_Sub6Array2563!![i_14_] = aa_Sub3.aClass348_Sub6_5206
+            aClass348_Sub6Array2563!![i_14_] = aClass348_Sub6_5206
             return anIntArrayArray2564!![i_14_]
         }
         if (anInt2559 != 1) {
@@ -68,5 +68,10 @@ class Class191(i: Int, i_16_: Int, i_17_: Int) {
         anInt2565 = i_16_
         aClass348_Sub6Array2563 = arrayOfNulls<Class348_Sub6>(anInt2565)
         anIntArrayArray2564 = Array<IntArray?>(anInt2559) { IntArray(i_17_) }
+    }
+
+    companion object {
+        /** aa_Sub3.aClass348_Sub6_5206 */
+        internal var aClass348_Sub6_5206: Class348_Sub6 = Class348_Sub6(0, 0)
     }
 }

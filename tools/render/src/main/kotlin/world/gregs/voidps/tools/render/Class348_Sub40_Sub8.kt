@@ -109,7 +109,7 @@ internal class Class348_Sub40_Sub8 : Class348_Sub40(0, true) {
     }
 
     fun method3069(i: Int, `is`: IntArray) {
-        val i_9_ = (Class79.anIntArray6035!![i] * this.anInt9164)
+        val i_9_ = (Class348_Sub40_Sub33.anIntArray6035!![i] * this.anInt9164)
         if (this.anInt9150 == 1) {
             val i_39_ = aShortArray9162!![0].toInt() shl 12
             val i_40_ = aShortArray9159!![0].toInt()

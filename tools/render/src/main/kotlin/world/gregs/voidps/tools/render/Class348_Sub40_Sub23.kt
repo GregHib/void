@@ -47,11 +47,11 @@ internal class Class348_Sub40_Sub23 : Class348_Sub40(0, true) {
                 val i_10_ = width - i_3_
                 for (i_11_ in 0..<i_2_) {
                     val is_12_ = `is`[i_11_ + i_4_]!!
-                    Class214.method1579(is_12_, i_3_, i_10_, i_6_)
-                    Class214.method1579(is_12_, 0, i_5_ - i_10_, i_6_)
+                    method1579(is_12_, i_3_, i_10_, i_6_)
+                    method1579(is_12_, 0, i_5_ - i_10_, i_6_)
                 }
             } else {
-                for (i_13_ in 0..<i_2_) Class214.method1579(`is`[i_13_ + i_4_]!!, i_3_, i_5_, i_6_)
+                for (i_13_ in 0..<i_2_) method1579(`is`[i_13_ + i_4_]!!, i_3_, i_5_, i_6_)
             }
         } else if (i_2_ > 0 && i_5_ > 0) {
             val i_14_ = i_5_ / 2
@@ -80,11 +80,11 @@ internal class Class348_Sub40_Sub23 : Class348_Sub40(0, true) {
                         }
                     }
                     if (width >= i_19_ + i_18_) {
-                        Class214.method1579(is_21_, i_18_, i_19_, i_22_)
+                        method1579(is_21_, i_18_, i_19_, i_22_)
                     } else {
                         val i_27_ = width - i_18_
-                        Class214.method1579(is_21_, i_18_, i_27_, i_22_)
-                        Class214.method1579(is_21_, 0, i_19_ - i_27_, i_22_)
+                        method1579(is_21_, i_18_, i_27_, i_22_)
+                        method1579(is_21_, 0, i_19_ - i_27_, i_22_)
                     }
                 } else {
                     val i_28_ = i_2_ - i_20_ - 1
@@ -106,11 +106,11 @@ internal class Class348_Sub40_Sub23 : Class348_Sub40(0, true) {
                             }
                         }
                         if (i_19_ + i_18_ <= width) {
-                            Class214.method1579(is_21_, i_18_, i_19_, i_29_)
+                            method1579(is_21_, i_18_, i_19_, i_29_)
                         } else {
                             val i_34_ = width - i_18_
-                            Class214.method1579(is_21_, i_18_, i_34_, i_29_)
-                            Class214.method1579(is_21_, 0, i_19_ - i_34_, i_29_)
+                            method1579(is_21_, i_18_, i_34_, i_29_)
+                            method1579(is_21_, 0, i_19_ - i_34_, i_29_)
                         }
                     } else {
                         for (i_35_ in 0..<i_16_) {
@@ -119,11 +119,11 @@ internal class Class348_Sub40_Sub23 : Class348_Sub40(0, true) {
                             is_21_[(i_35_ + i_3_) and mask] = v
                         }
                         if (width >= i_18_ + i_19_) {
-                            Class214.method1579(is_21_, i_18_, i_19_, i_6_)
+                            method1579(is_21_, i_18_, i_19_, i_6_)
                         } else {
                             val i_36_ = width - i_18_
-                            Class214.method1579(is_21_, i_18_, i_36_, i_6_)
-                            Class214.method1579(is_21_, 0, i_19_ - i_36_, i_6_)
+                            method1579(is_21_, i_18_, i_36_, i_6_)
+                            method1579(is_21_, 0, i_19_ - i_36_, i_6_)
                         }
                     }
                 }
@@ -135,7 +135,7 @@ internal class Class348_Sub40_Sub23 : Class348_Sub40(0, true) {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
             val width = Class348_Sub40_Sub6.anInt9139
-            val height = Class79.anInt6212
+            val height = Class348_Sub40_Sub33.anInt6212
             val is_42_ = this.aClass191_7032!!.method1427()!!
             var i_43_ = 0
             var i_44_ = 0
@@ -259,5 +259,26 @@ internal class Class348_Sub40_Sub23 : Class348_Sub40(0, true) {
             }
         }
         return `is`
+    }
+
+    companion object {
+        /** Class214.method1579 */
+        fun method1579(`is`: IntArray, i: Int, i_16_: Int, i_17_: Int) {
+            var i = i
+            var i_16_ = i_16_
+            i_16_ = i + i_16_ - 7
+            while (i < i_16_) {
+                `is`[i++] = i_17_
+                `is`[i++] = i_17_
+                `is`[i++] = i_17_
+                `is`[i++] = i_17_
+                `is`[i++] = i_17_
+                `is`[i++] = i_17_
+                `is`[i++] = i_17_
+                `is`[i++] = i_17_
+            }
+            i_16_ += 7
+            while (i < i_16_) `is`[i++] = i_17_
+        }
     }
 }

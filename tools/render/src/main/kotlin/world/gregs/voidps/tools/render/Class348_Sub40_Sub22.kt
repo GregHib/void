@@ -77,7 +77,7 @@ internal class Class348_Sub40_Sub22 : Class348_Sub40(0, true) {
             val anIntArray9297 = anIntArray9297!!
             val anIntArrayArray9287 = anIntArrayArray9287!!
             var i_11_ = 0
-            var i_12_ = anInt9293 + Class79.anIntArray6035!![i]
+            var i_12_ = anInt9293 + Class348_Sub40_Sub33.anIntArray6035!![i]
             while (i_12_ < 0) i_12_ += 4096
             while (i_12_ > 4096) i_12_ -= 4096
             while (i_11_ < anInt9301) {
@@ -109,7 +109,7 @@ internal class Class348_Sub40_Sub22 : Class348_Sub40(0, true) {
                     }
                 }
             } else {
-                Class214.method1579(`is`, 0, Class348_Sub40_Sub6.anInt9139, 0)
+                Class348_Sub40_Sub23.method1579(`is`, 0, Class348_Sub40_Sub6.anInt9139, 0)
             }
         }
         return `is`

@@ -20,13 +20,13 @@ internal class Class348_Sub40_Sub36 : Class348_Sub40(0, true) {
     }
 
     override fun method3044() {
-        Class220.method1605()
+        Class348_Sub40_Sub6.method1605()
     }
 
     override fun method3042(i: Int): IntArray? {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
-            val i_3_ = Class79.anIntArray6035!![i]
+            val i_3_ = Class348_Sub40_Sub33.anIntArray6035!![i]
             val i_4_ = -2048 + i_3_ shr 1
             var i_5_ = 0
             while (i_5_ < Class348_Sub40_Sub6.anInt9139) {
@@ -48,7 +48,7 @@ internal class Class348_Sub40_Sub36 : Class348_Sub40(0, true) {
                         i_8_ = 2048 - i_8_ shl 1
                     }
                 } else {
-                    i_8_ = 4096 + (Class220.anIntArray3068!![i_8_ shr 4 and 0xff]) shr 1
+                    i_8_ = 4096 + (Class348_Sub40_Sub6.anIntArray3068!![i_8_ shr 4 and 0xff]) shr 1
                 }
                 `is`!![i_5_] = i_8_
                 i_5_++

@@ -13,7 +13,7 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
     private var anInt9368 = 16
     private var anInt9369 = 0
     override fun method3044() {
-        Class220.method1605()
+        Class348_Sub40_Sub6.method1605()
     }
 
     override fun method3049(packet: Packet?, i: Int) {
@@ -58,9 +58,9 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
                 var i_6_ = (if (anInt9364 > 0) anInt9369 + Mesh.method1097(anInt9364, random) + -i_3_ else anInt9369)
                 i_6_ = i_6_ shr 4 and 0xff
                 var i_7_: Int = Mesh.method1097(Class348_Sub40_Sub6.anInt9139, random)
-                var i_8_: Int = Mesh.method1097(Class79.anInt6212, random)
-                var i_9_ = i_7_ - -(anInt9368 * Class220.anIntArray4654!![i_6_] shr 12)
-                var i_10_ = ((Class220.anIntArray3068!![i_6_] * anInt9368 shr 12) + i_8_)
+                var i_8_: Int = Mesh.method1097(Class348_Sub40_Sub33.anInt6212, random)
+                var i_9_ = i_7_ - -(anInt9368 * Class348_Sub40_Sub6.anIntArray4654!![i_6_] shr 12)
+                var i_10_ = ((Class348_Sub40_Sub6.anIntArray3068!![i_6_] * anInt9368 shr 12) + i_8_)
                 var i_11_ = -i_8_ + i_10_
                 var i_12_ = -i_7_ + i_9_
                 if (i_12_ != 0 || i_11_ != 0) {

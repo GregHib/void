@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.tools.render.AnimationFrameSet
 import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
-import world.gregs.voidps.tools.render.Class73
+import world.gregs.voidps.tools.render.BillboardType
 import world.gregs.voidps.tools.render.Js5TextureSource
 import java.awt.image.BufferedImage
 import java.io.File
@@ -41,7 +41,7 @@ class PhotoBooth(
     private val animations: AvatarAnimations
 
     init {
-        Class73.cache = cache
+        BillboardType.cache = cache
         Class348_Sub40_Sub4.aTextureSource9113 = Js5TextureSource(cache)
         val equipIndexToItemId = HashMap<Int, Int>(8192)
         ItemDefinitions.definitions.forEachIndexed { id, def ->
