@@ -975,9 +975,9 @@ internal class JavaModel : Model {
                     anIntArray5355!![i_777_.toInt()].toFloat(),
                     anIntArray5355!![i_778_.toInt()].toFloat(),
                     anIntArray5355!![i_779_.toInt()].toFloat(),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
+                    JavaBillboardFace.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
                 )
                 else rasterizer!!.method1027(
                     anIntArray5343!![i_777_.toInt()].toFloat(),
@@ -989,9 +989,9 @@ internal class JavaModel : Model {
                     anIntArray5355!![i_777_.toInt()].toFloat(),
                     anIntArray5355!![i_778_.toInt()].toFloat(),
                     anIntArray5355!![i_779_.toInt()].toFloat(),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5337!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.Companion.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5366!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
+                    JavaBillboardFace.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5337!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    JavaBillboardFace.method206((ItemSpriteCacheKey.HSV_TO_RGB!![(anIntArray5366!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
                 )
             } else {
                 var i_775_ = -16777216
@@ -1274,13 +1274,13 @@ internal class JavaModel : Model {
                             val f_866_ = ((i_859_.toFloat() * fs_847_[3] + i_860_.toFloat() * fs_847_[4] + i_861_.toFloat() * fs_847_[5]) / f_863_)
                             val f_867_ = ((i_859_.toFloat() * fs_847_[6] + i_860_.toFloat() * fs_847_[7] + i_861_.toFloat() * fs_847_[8]) / f_864_)
                             val i_868_ = Class331.method2635(f_866_, f_867_, f_865_)
-                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_841_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_841_.toInt()], vertexY!![i_841_.toInt()], f_851_, fs, i_845_, i_868_)
+                            Class262.cubeMap(f_852_, f, fs_847_, vertexZ!![i_841_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_841_.toInt()], vertexY!![i_841_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_!![0] = fs[0]
                             fs_808_!![0] = fs[1]
-                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_842_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_842_.toInt()], vertexY!![i_842_.toInt()], f_851_, fs, i_845_, i_868_)
+                            Class262.cubeMap(f_852_, f, fs_847_, vertexZ!![i_842_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_842_.toInt()], vertexY!![i_842_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_[1] = fs[0]
                             fs_808_[1] = fs[1]
-                            Class262.Companion.cubeMap(f_852_, f, fs_847_, vertexZ!![i_843_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_843_.toInt()], vertexY!![i_843_.toInt()], f_851_, fs, i_845_, i_868_)
+                            Class262.cubeMap(f_852_, f, fs_847_, vertexZ!![i_843_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_843_.toInt()], vertexY!![i_843_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_[2] = fs[0]
                             fs_808_[2] = fs[1]
                         } else if (mappingType.toInt() == 3) {

@@ -12,7 +12,7 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
     fun method3090(): Boolean {
         if (this.anIntArray9232 != null) return true
         if (anInt9243 >= 0) {
-            val class207: Class207? = Class207.Companion.method1512(Class348.Companion.aCache_4286!!, anInt9243)
+            val class207: Class207? = Class207.method1512(Class348.aCache_4286!!, anInt9243)
             class207!!.method1524()
             this.anIntArray9232 = class207.method1516()
             this.anInt9237 = class207.anInt2702
@@ -42,9 +42,9 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
             val is_3_ = `is`[1]
             val is_4_ = `is`[2]
             var i_5_ = (this.anInt9237 * (if (this.anInt9241 != Class79.anInt6212) (this.anInt9241 * i / Class79.anInt6212) else i))
-            if (Class348_Sub40_Sub6.Companion.anInt9139 == this.anInt9237) {
+            if (Class348_Sub40_Sub6.anInt9139 == this.anInt9237) {
                 var i_6_ = 0
-                while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_6_)) {
+                while ((Class348_Sub40_Sub6.anInt9139 > i_6_)) {
                     val i_7_ = this.anIntArray9232!![i_5_++]
                     is_4_[i_6_] = method1166(4080, i_7_ shl 4)
                     is_3_[i_6_] = method1166(65280, i_7_) shr 4
@@ -53,8 +53,8 @@ internal open class Class348_Sub40_Sub17 : Class348_Sub40(0, false) {
                 }
             } else {
                 var i_8_ = 0
-                while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_8_)) {
-                    val i_9_: Int = (this.anInt9237 * i_8_ / Class348_Sub40_Sub6.Companion.anInt9139)
+                while ((Class348_Sub40_Sub6.anInt9139 > i_8_)) {
+                    val i_9_: Int = (this.anInt9237 * i_8_ / Class348_Sub40_Sub6.anInt9139)
                     val i_10_ = (this.anIntArray9232!![i_9_ + i_5_])
                     is_4_[i_8_] = method1166(i_10_, 255) shl 4
                     is_3_[i_8_] = method1166(i_10_ shr 4, 4080)

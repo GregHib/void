@@ -23,9 +23,9 @@ internal class Class348_Sub40_Sub24 : Class348_Sub40(0, true) {
                         break
                     }
                 }
-                Class214.method1579(`is`!!, 0, Class348_Sub40_Sub6.Companion.anInt9139, i_7_)
+                Class214.method1579(`is`!!, 0, Class348_Sub40_Sub6.anInt9139, i_7_)
             } else {
-                for (i_2_ in 0..<Class348_Sub40_Sub6.Companion.anInt9139) {
+                for (i_2_ in 0..<Class348_Sub40_Sub6.anInt9139) {
                     var i_3_ = 0
                     var i_4_ = 0
                     val i_5_ = Class348_Sub40_Sub8.anIntArray6432!![i_2_]

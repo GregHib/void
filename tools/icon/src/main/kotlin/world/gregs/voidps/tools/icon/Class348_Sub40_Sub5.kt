@@ -22,12 +22,12 @@ internal class Class348_Sub40_Sub5 : Class348_Sub40(0, true) {
         val random = Random(anInt9122.toLong())
         aShortArray9116 = ShortArray(512)
         if (anInt9125 > 0) {
-            for (i in 0..511) aShortArray9116[i] = Mesh.Companion.method1097(anInt9125, random).toShort()
+            for (i in 0..511) aShortArray9116[i] = Mesh.method1097(anInt9125, random).toShort()
         }
     }
 
     override fun method3044() {
-        aByteArray9119 = Toolkit.Companion.method3664(anInt9122)!!
+        aByteArray9119 = Toolkit.method3664(anInt9122)!!
         method3061()
     }
 
@@ -38,7 +38,7 @@ internal class Class348_Sub40_Sub5 : Class348_Sub40(0, true) {
             val i_2_ = i_1_ shr 12
             val i_3_ = 1 + i_2_
             var i_4_ = 0
-            while_140_@ while ( /**/Class348_Sub40_Sub6.Companion.anInt9139 > i_4_) {
+            while_140_@ while ( /**/Class348_Sub40_Sub6.anInt9139 > i_4_) {
                 anInt4715 = 2147483647
                 anInt2023 = anInt4715
                 anInt2835 = anInt2023

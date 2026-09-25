@@ -36,7 +36,7 @@ internal class Class348_Sub40_Sub10 : Class348_Sub40(1, false) {
         if (this.aClass191_7032!!.aBoolean2570) {
             val is_3_ = this.method3048(i, 0)
             var i_4_ = 0
-            while (Class348_Sub40_Sub6.Companion.anInt9139 > i_4_) {
+            while (Class348_Sub40_Sub6.anInt9139 > i_4_) {
                 `is`!![i_4_] = anInt9176 - -(anInt9182 * is_3_!![i_4_] shr 12)
                 i_4_++
             }
@@ -55,7 +55,7 @@ internal class Class348_Sub40_Sub10 : Class348_Sub40(1, false) {
             val is_11_ = `is`[1]
             val is_12_ = `is`[2]
             var i_13_ = 0
-            while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_13_)) {
+            while ((Class348_Sub40_Sub6.anInt9139 > i_13_)) {
                 is_10_[i_13_] = (anInt9182 * is_7_[i_13_] shr 12) + anInt9176
                 is_11_[i_13_] = (anInt9182 * is_8_[i_13_] shr 12) + anInt9176
                 is_12_[i_13_] = (is_9_[i_13_] * anInt9182 shr 12) + anInt9176

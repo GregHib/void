@@ -35,7 +35,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
             val is_33_ = arrayOfNulls<Array<IntArray>>(i_29_)
             for (i_34_ in i + -anInt9463..anInt9463 + i) {
                 val is_35_ = this.method3039(Class348_Sub40_Sub6.anInt6325 and i_34_, 0)
-                val is_36_: Array<IntArray> = Array(3) { IntArray(Class348_Sub40_Sub6.Companion.anInt9139) }
+                val is_36_: Array<IntArray> = Array(3) { IntArray(Class348_Sub40_Sub6.anInt9139) }
                 var i_37_ = 0
                 var i_38_ = 0
                 var i_39_ = 0
@@ -52,7 +52,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
                 val is_46_ = is_36_[1]
                 val is_47_ = is_36_[2]
                 var i_48_ = 0
-                while (Class348_Sub40_Sub6.Companion.anInt9139 > i_48_) {
+                while (Class348_Sub40_Sub6.anInt9139 > i_48_) {
                     is_45_[i_48_] = i_37_ * i_32_ shr 16
                     is_46_[i_48_] = i_38_ * i_32_ shr 16
                     is_47_[i_48_] = i_39_ * i_32_ shr 16
@@ -72,7 +72,7 @@ internal class Class348_Sub40_Sub37 : Class348_Sub40(1, false) {
             val is_51_ = `is`[1]
             val is_52_ = `is`[2]
             var i_53_ = 0
-            while (Class348_Sub40_Sub6.Companion.anInt9139 > i_53_) {
+            while (Class348_Sub40_Sub6.anInt9139 > i_53_) {
                 var i_54_ = 0
                 var i_55_ = 0
                 var i_56_ = 0

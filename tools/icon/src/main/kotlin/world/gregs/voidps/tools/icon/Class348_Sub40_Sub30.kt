@@ -29,7 +29,7 @@ internal class Class348_Sub40_Sub30 : Class348_Sub40(1, false) {
             val is_14_ = `is`[1]
             val is_15_ = `is`[2]
             var i_16_ = 0
-            while ((i_16_ < Class348_Sub40_Sub6.Companion.anInt9139)) {
+            while ((i_16_ < Class348_Sub40_Sub6.anInt9139)) {
                 method3129(is_10_[i_16_], is_11_[i_16_], is_12_[i_16_])
                 anInt9401 += anInt9390
                 anInt9400 += anInt9402

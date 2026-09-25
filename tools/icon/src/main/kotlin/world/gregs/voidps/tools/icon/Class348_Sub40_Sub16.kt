@@ -48,7 +48,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                     do {
                                                         if (i_14_ == 1) {
                                                             i_14_ = 0
-                                                            while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_14_)) {
+                                                            while (((Class348_Sub40_Sub6.anInt9139) > i_14_)) {
                                                                 is_5_[i_14_] = ((is_11_[i_14_]) + (is_8_[i_14_]))
                                                                 is_6_[i_14_] = ((is_9_[i_14_]) + (is_12_[i_14_]))
                                                                 is_7_[i_14_] = ((is_10_[i_14_]) + (is_13_[i_14_]))
@@ -82,7 +82,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                             break@while_159_
                                                         }
                                                         i_14_ = 0
-                                                        while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_14_)) {
+                                                        while (((Class348_Sub40_Sub6.anInt9139) > i_14_)) {
                                                             is_5_[i_14_] = (is_8_[i_14_] - (is_11_[i_14_]))
                                                             is_6_[i_14_] = (is_9_[i_14_] + -(is_12_[i_14_]))
                                                             is_7_[i_14_] = (-(is_13_[i_14_]) + (is_10_[i_14_]))
@@ -91,7 +91,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                         break@while_168_
                                                     } while (false)
                                                     i_14_ = 0
-                                                    while ((i_14_ < (Class348_Sub40_Sub6.Companion.anInt9139))) {
+                                                    while ((i_14_ < (Class348_Sub40_Sub6.anInt9139))) {
                                                         is_5_[i_14_] = ((is_11_[i_14_] * is_8_[i_14_]) shr 12)
                                                         is_6_[i_14_] = ((is_12_[i_14_] * is_9_[i_14_]) shr 12)
                                                         is_7_[i_14_] = ((is_10_[i_14_] * (is_13_[i_14_])) shr 12)
@@ -100,7 +100,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                     break@while_168_
                                                 } while (false)
                                                 i_14_ = 0
-                                                while ((i_14_ < (Class348_Sub40_Sub6.Companion.anInt9139))) {
+                                                while ((i_14_ < (Class348_Sub40_Sub6.anInt9139))) {
                                                     val i_15_ = is_11_[i_14_]
                                                     val i_16_ = is_13_[i_14_]
                                                     val i_17_ = is_12_[i_14_]
@@ -112,7 +112,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                 break@while_168_
                                             } while (false)
                                             i_14_ = 0
-                                            while ((i_14_ < (Class348_Sub40_Sub6.Companion.anInt9139))) {
+                                            while ((i_14_ < (Class348_Sub40_Sub6.anInt9139))) {
                                                 is_5_[i_14_] = (4096 + -(((-is_11_[i_14_] + 4096) * (4096 - is_8_[i_14_])) shr 12))
                                                 is_6_[i_14_] = (4096 + -(((4096 + -is_12_[i_14_]) * (4096 - is_9_[i_14_])) shr 12))
                                                 is_7_[i_14_] = (4096 - (((-is_13_[i_14_] + 4096) * (4096 - is_10_[i_14_])) shr 12))
@@ -121,7 +121,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                             break@while_168_
                                         } while (false)
                                         i_14_ = 0
-                                        while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_14_)) {
+                                        while ((Class348_Sub40_Sub6.anInt9139 > i_14_)) {
                                             val i_18_ = is_11_[i_14_]
                                             val i_19_ = is_13_[i_14_]
                                             val i_20_ = is_12_[i_14_]
@@ -133,7 +133,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                         break@while_168_
                                     } while (false)
                                     i_14_ = 0
-                                    while (Class348_Sub40_Sub6.Companion.anInt9139 > i_14_) {
+                                    while (Class348_Sub40_Sub6.anInt9139 > i_14_) {
                                         val i_21_ = is_10_[i_14_]
                                         val i_22_ = is_9_[i_14_]
                                         val i_23_ = is_8_[i_14_]
@@ -145,7 +145,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                     break@while_168_
                                 } while (false)
                                 i_14_ = 0
-                                while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_14_)) {
+                                while ((Class348_Sub40_Sub6.anInt9139 > i_14_)) {
                                     val i_24_ = is_9_[i_14_]
                                     val i_25_ = is_8_[i_14_]
                                     val i_26_ = is_10_[i_14_]
@@ -157,7 +157,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                 break@while_168_
                             } while (false)
                             i_14_ = 0
-                            while (i_14_ < Class348_Sub40_Sub6.Companion.anInt9139) {
+                            while (i_14_ < Class348_Sub40_Sub6.anInt9139) {
                                 val i_27_ = is_9_[i_14_]
                                 val i_28_ = is_12_[i_14_]
                                 val i_29_ = is_13_[i_14_]
@@ -172,7 +172,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                             break@while_168_
                         } while (false)
                         i_14_ = 0
-                        while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_14_)) {
+                        while ((Class348_Sub40_Sub6.anInt9139 > i_14_)) {
                             val i_33_ = is_9_[i_14_]
                             val i_34_ = is_10_[i_14_]
                             val i_35_ = is_12_[i_14_]
@@ -187,7 +187,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                         break@while_168_
                     } while (false)
                     i_14_ = 0
-                    while (Class348_Sub40_Sub6.Companion.anInt9139 > i_14_) {
+                    while (Class348_Sub40_Sub6.anInt9139 > i_14_) {
                         val i_39_ = is_13_[i_14_]
                         val i_40_ = is_9_[i_14_]
                         val i_41_ = is_10_[i_14_]
@@ -202,7 +202,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                     break@while_168_
                 } while (false)
                 i_14_ = 0
-                while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_14_)) {
+                while ((Class348_Sub40_Sub6.anInt9139 > i_14_)) {
                     val i_45_ = is_8_[i_14_]
                     val i_46_ = is_10_[i_14_]
                     val i_47_ = is_13_[i_14_]
@@ -238,7 +238,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                     do {
                                                         if (i_54_ == 1) {
                                                             i_54_ = 0
-                                                            while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
+                                                            while (((Class348_Sub40_Sub6.anInt9139) > i_54_)) {
                                                                 `is`!![i_54_] = ((is_52_!![i_54_]) + (is_53_!![i_54_]))
                                                                 i_54_++
                                                             }
@@ -270,21 +270,21 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                             break@while_169_
                                                         }
                                                         i_54_ = 0
-                                                        while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
+                                                        while (((Class348_Sub40_Sub6.anInt9139) > i_54_)) {
                                                             `is`!![i_54_] = ((is_52_!![i_54_]) + -(is_53_!![i_54_]))
                                                             i_54_++
                                                         }
                                                         break@while_178_
                                                     } while (false)
                                                     i_54_ = 0
-                                                    while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
+                                                    while (((Class348_Sub40_Sub6.anInt9139) > i_54_)) {
                                                         `is`!![i_54_] = ((is_53_!![i_54_] * (is_52_!![i_54_])) shr 12)
                                                         i_54_++
                                                     }
                                                     break@while_178_
                                                 } while (false)
                                                 i_54_ = 0
-                                                while (((Class348_Sub40_Sub6.Companion.anInt9139) > i_54_)) {
+                                                while (((Class348_Sub40_Sub6.anInt9139) > i_54_)) {
                                                     val i_55_ = is_53_!![i_54_]
                                                     `is`!![i_54_] = (if (i_55_ != 0) ((is_52_!![i_54_] shl 12) / i_55_) else 4096)
                                                     i_54_++
@@ -292,14 +292,14 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                                 break@while_178_
                                             } while (false)
                                             i_54_ = 0
-                                            while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_54_)) {
+                                            while ((Class348_Sub40_Sub6.anInt9139 > i_54_)) {
                                                 `is`!![i_54_] = -(((4096 - is_52_!![i_54_]) * (4096 - is_53_!![i_54_])) shr 12) + 4096
                                                 i_54_++
                                             }
                                             break@while_178_
                                         } while (false)
                                         i_54_ = 0
-                                        while ((i_54_ < Class348_Sub40_Sub6.Companion.anInt9139)) {
+                                        while ((i_54_ < Class348_Sub40_Sub6.anInt9139)) {
                                             val i_56_ = is_53_!![i_54_]
                                             `is`!![i_54_] = (if (i_56_ >= 2048) (4096 + -(((-i_56_ + 4096) * (4096 - is_52_!![i_54_])) shr 11)) else (i_56_ * is_52_!![i_54_] shr 11))
                                             i_54_++
@@ -307,7 +307,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                         break@while_178_
                                     } while (false)
                                     i_54_ = 0
-                                    while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
+                                    while (i_54_ < Class348_Sub40_Sub6.anInt9139) {
                                         val i_57_ = is_52_!![i_54_]
                                         `is`!![i_54_] = (if (i_57_ != 4096) ((is_53_!![i_54_] shl 12) / (-i_57_ + 4096)) else 4096)
                                         i_54_++
@@ -315,7 +315,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                     break@while_178_
                                 } while (false)
                                 i_54_ = 0
-                                while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
+                                while (i_54_ < Class348_Sub40_Sub6.anInt9139) {
                                     val i_58_ = is_52_!![i_54_]
                                     `is`!![i_54_] = (if (i_58_ == 0) 0 else -((4096 - is_53_!![i_54_] shl 12) / i_58_) + 4096)
                                     i_54_++
@@ -323,7 +323,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                                 break@while_178_
                             } while (false)
                             i_54_ = 0
-                            while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
+                            while (i_54_ < Class348_Sub40_Sub6.anInt9139) {
                                 val i_59_ = is_53_!![i_54_]
                                 val i_60_ = is_52_!![i_54_]
                                 `is`!![i_54_] = (min(i_59_, i_60_))
@@ -332,7 +332,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                             break@while_178_
                         } while (false)
                         i_54_ = 0
-                        while (Class348_Sub40_Sub6.Companion.anInt9139 > i_54_) {
+                        while (Class348_Sub40_Sub6.anInt9139 > i_54_) {
                             val i_61_ = is_53_!![i_54_]
                             val i_62_ = is_52_!![i_54_]
                             `is`!![i_54_] = max(i_62_, i_61_)
@@ -341,7 +341,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                         break@while_178_
                     } while (false)
                     i_54_ = 0
-                    while (i_54_ < Class348_Sub40_Sub6.Companion.anInt9139) {
+                    while (i_54_ < Class348_Sub40_Sub6.anInt9139) {
                         val i_63_ = is_53_!![i_54_]
                         val i_64_ = is_52_!![i_54_]
                         `is`!![i_54_] = (if (i_63_ >= i_64_) i_63_ + -i_64_ else i_64_ - i_63_)
@@ -350,7 +350,7 @@ internal class Class348_Sub40_Sub16 : Class348_Sub40(2, false) {
                     break@while_178_
                 } while (false)
                 i_54_ = 0
-                while (Class348_Sub40_Sub6.Companion.anInt9139 > i_54_) {
+                while (Class348_Sub40_Sub6.anInt9139 > i_54_) {
                     val i_65_ = is_53_!![i_54_]
                     val i_66_ = is_52_!![i_54_]
                     `is`!![i_54_] = i_66_ - -i_65_ - (i_66_ * i_65_ shr 11)

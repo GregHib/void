@@ -16,9 +16,9 @@ internal class Class348_Sub40_Sub29 : Class348_Sub40(0, false) {
             val is_2_ = `is`!![0]
             val is_3_ = `is`[1]
             val is_4_ = `is`[2]
-            if (Class348_Sub40_Sub6.Companion.anInt9139 == anInt9374) {
+            if (Class348_Sub40_Sub6.anInt9139 == anInt9374) {
                 var i_8_ = 0
-                while ((Class348_Sub40_Sub6.Companion.anInt9139 > i_8_)) {
+                while ((Class348_Sub40_Sub6.anInt9139 > i_8_)) {
                     val i_9_ = anIntArray9375!![i_1_++]
                     is_4_[i_8_] = Class348_Sub40_Sub17.method1166(255, i_9_) shl 4
                     is_3_[i_8_] = Class348_Sub40_Sub17.method1166(i_9_ shr 4, 4080)
@@ -26,8 +26,8 @@ internal class Class348_Sub40_Sub29 : Class348_Sub40(0, false) {
                     i_8_++
                 }
             } else {
-                for (i_5_ in 0..<Class348_Sub40_Sub6.Companion.anInt9139) {
-                    val i_6_: Int = anInt9374 * i_5_ / Class348_Sub40_Sub6.Companion.anInt9139
+                for (i_5_ in 0..<Class348_Sub40_Sub6.anInt9139) {
+                    val i_6_: Int = anInt9374 * i_5_ / Class348_Sub40_Sub6.anInt9139
                     val i_7_ = anIntArray9375!![i_6_ + i_1_]
                     is_4_[i_5_] = Class348_Sub40_Sub17.method1166(i_7_, 255) shl 4
                     is_3_[i_5_] = Class348_Sub40_Sub17.method1166(65280, i_7_) shr 4

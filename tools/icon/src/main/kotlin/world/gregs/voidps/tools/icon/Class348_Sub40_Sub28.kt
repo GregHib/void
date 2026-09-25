@@ -55,10 +55,10 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
             val random = Random(anInt9367.toLong())
             var i_5_ = 0
             while (anInt9362 > i_5_) {
-                var i_6_ = (if (anInt9364 > 0) anInt9369 + Mesh.Companion.method1097(anInt9364, random) + -i_3_ else anInt9369)
+                var i_6_ = (if (anInt9364 > 0) anInt9369 + Mesh.method1097(anInt9364, random) + -i_3_ else anInt9369)
                 i_6_ = i_6_ shr 4 and 0xff
-                var i_7_: Int = Mesh.Companion.method1097(Class348_Sub40_Sub6.Companion.anInt9139, random)
-                var i_8_: Int = Mesh.Companion.method1097(Class79.anInt6212, random)
+                var i_7_: Int = Mesh.method1097(Class348_Sub40_Sub6.anInt9139, random)
+                var i_8_: Int = Mesh.method1097(Class79.anInt6212, random)
                 var i_9_ = i_7_ - -(anInt9368 * Class220.anIntArray4654!![i_6_] shr 12)
                 var i_10_ = ((Class220.anIntArray3068!![i_6_] * anInt9368 shr 12) + i_8_)
                 var i_11_ = -i_8_ + i_10_
@@ -88,7 +88,7 @@ internal class Class348_Sub40_Sub28 : Class348_Sub40(0, true) {
                     var i_19_ = -i_8_ + i_10_
                     var i_20_ = -i_18_ / 2
                     val i_21_ = 2048 / i_18_
-                    val i_22_: Int = 1024 - (Mesh.Companion.method1097(4096, random) shr 2)
+                    val i_22_: Int = 1024 - (Mesh.method1097(4096, random) shr 2)
                     if (i_19_ < 0) i_19_ = -i_19_
                     val i_23_ = if (i_10_ <= i_8_) -1 else 1
                     for (i_24_ in i_7_..<i_9_) {

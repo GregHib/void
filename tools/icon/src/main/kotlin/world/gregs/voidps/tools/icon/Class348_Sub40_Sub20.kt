@@ -16,7 +16,7 @@ internal class Class348_Sub40_Sub20 : Class348_Sub40(0, true) {
         if (this.aClass191_7032!!.aBoolean2570) {
             val i_4_ = Class79.anIntArray6035!![i]
             var i_5_ = 0
-            while ((i_5_ < Class348_Sub40_Sub6.Companion.anInt9139)) {
+            while ((i_5_ < Class348_Sub40_Sub6.anInt9139)) {
                 `is`!![i_5_] = method3103(i_4_, Class348_Sub40_Sub8.anIntArray6432!![i_5_]) % 4096
                 i_5_++
             }

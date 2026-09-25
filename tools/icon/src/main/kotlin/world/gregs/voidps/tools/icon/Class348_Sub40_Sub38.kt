@@ -39,7 +39,7 @@ internal class Class348_Sub40_Sub38 : Class348_Sub40(1, false) {
             val is_8_ = `is`[1]
             val is_9_ = `is`[2]
             var i_10_ = 0
-            while ((i_10_ < Class348_Sub40_Sub6.Companion.anInt9139)) {
+            while ((i_10_ < Class348_Sub40_Sub6.anInt9139)) {
                 val i_11_ = is_4_[i_10_]
                 val i_12_ = is_5_[i_10_]
                 val i_13_ = is_6_[i_10_]

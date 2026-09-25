@@ -109,7 +109,7 @@ internal class Class348_Sub40_Sub14 : Class348_Sub40(1, true) {
         val `is` = this.aClass191_7032!!.method1433(i)
         if (this.aClass191_7032!!.aBoolean2570) {
             val is_34_ = this.method3048(i, 0)
-            for (i_35_ in 0..<Class348_Sub40_Sub6.Companion.anInt9139) {
+            for (i_35_ in 0..<Class348_Sub40_Sub6.anInt9139) {
                 var i_36_ = is_34_!![i_35_] shr 4
                 if (i_36_ < 0) i_36_ = 0
                 if (i_36_ > 256) i_36_ = 256

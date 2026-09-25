@@ -715,7 +715,7 @@ internal class Mesh {
             val i_21_ = -2147483648 + -(4294967296L % i_20_.toLong()).toInt()
             var i_22_: Int
             do i_22_ = random.nextInt() while (i_22_ >= i_21_)
-            return JavaBillboardAttributes.Companion.method3452(i_22_, i_20_)
+            return JavaBillboardAttributes.method3452(i_22_, i_20_)
         }
     }
 }

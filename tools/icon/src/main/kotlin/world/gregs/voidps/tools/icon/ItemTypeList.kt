@@ -40,8 +40,8 @@ internal class ItemTypeList(languageId: Int, cache: Cache?) {
         type = ItemType()
         type.list = this
         type.id = id
-        type.op = arrayOf<String?>(null, null, LocalisedText.Companion.TAKE!!.method2063(this.languageId), null, null)
-        type.iop = (arrayOf<String?>(null, null, null, null, LocalisedText.Companion.DROP!!.method2063(this.languageId)))
+        type.op = arrayOf<String?>(null, null, LocalisedText.TAKE!!.method2063(this.languageId), null, null)
+        type.iop = (arrayOf<String?>(null, null, null, null, LocalisedText.DROP!!.method2063(this.languageId)))
         if (data != null) type.decode(Packet(data))
         if (type.notedTemplateId != -1) type.noteGen(list(type.anInt2758), list(type.notedTemplateId))
         if (type.lendTemplateId != -1) type.lendGen(list(type.anInt2778), list(type.lendTemplateId))

@@ -18,7 +18,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
     private val aClass348_Sub40_9528: Class348_Sub40?
     fun method3183(var_textureSource: TextureSource?, i: Int, i_0_: Int, bool: Boolean, d: Double, cache: Cache?): IntArray {
         Class348_Sub40_Sub29.aTextureSource6247 = var_textureSource
-        Class348.Companion.aCache_4286 = cache
+        Class348.aCache_4286 = cache
         var i_2_ = 0
         while (aClass348_Sub40Array9520.size > i_2_) {
             aClass348_Sub40Array9520[i_2_]!!.method3045(i, i_0_)
@@ -97,7 +97,7 @@ internal class Class348_Sub42_Sub5(packet: Packet) : Class348_Sub42() {
 
     fun method3185(i: Int, var_textureSource: TextureSource?, bool: Boolean, d: Double, cache: Cache?, i_23_: Int): IntArray {
         Class348_Sub40_Sub29.aTextureSource6247 = var_textureSource
-        Class348.Companion.aCache_4286 = cache
+        Class348.aCache_4286 = cache
         var i_24_ = 0
         while (aClass348_Sub40Array9520.size > i_24_) {
             aClass348_Sub40Array9520[i_24_]!!.method3045(i, i_23_)

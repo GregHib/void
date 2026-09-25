@@ -96,6 +96,6 @@ internal object Class59_Sub2_Sub1 {
 
     fun method566() {
         Class239_Sub25.method1827()
-        Class348_Sub6.Companion.method2770()
+        Class348_Sub6.method2770()
     }
 }

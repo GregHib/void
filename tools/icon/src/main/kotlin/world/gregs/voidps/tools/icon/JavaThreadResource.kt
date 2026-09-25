@@ -62,17 +62,17 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
 
     init {
         this.aClass101_Sub1_2209 = Matrix_Sub1()
-        this.anIntArray2213 = IntArray(JavaModel.Companion.anInt5350)
-        this.anIntArray2214 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2213 = IntArray(JavaModel.anInt5350)
+        this.anIntArray2214 = IntArray(JavaModel.anInt5350)
         this.anIntArray2212 = IntArray(64)
         this.aFloatArray2226 = FloatArray(2)
         this.anIntArray2216 = IntArray(10000)
-        this.anIntArray2222 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2222 = IntArray(JavaModel.anInt5350)
         this.anIntArray2232 = IntArray(64)
         this.anIntArray2218 = IntArray(8)
-        this.anIntArray2237 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2237 = IntArray(JavaModel.anInt5350)
         this.anIntArray2236 = IntArray(10000)
-        this.anIntArray2230 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2230 = IntArray(JavaModel.anInt5350)
         this.anIntArray2240 = IntArray(10)
         this.anIntArray2228 = IntArray(64)
         this.anIntArray2238 = IntArray(10)
@@ -80,9 +80,9 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
         this.anIntArray2235 = IntArray(10)
         this.anIntArray2245 = IntArray(8)
         this.anIntArray2217 = IntArray(64)
-        this.anIntArray2244 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2244 = IntArray(JavaModel.anInt5350)
         this.anIntArray2247 = IntArray(10)
-        this.anIntArray2234 = IntArray(JavaModel.Companion.anInt5350)
+        this.anIntArray2234 = IntArray(JavaModel.anInt5350)
         aHa_Sub1_2191 = var_ha_Sub1
         this.anInt2210 = aHa_Sub1_2191.anInt7494 + -255
         this.rasterizer = Rasterizer(var_ha_Sub1, this)
@@ -96,9 +96,9 @@ internal class JavaThreadResource(var_ha_Sub1: JavaToolkit) {
         this.aClass64_Sub1_2227 = JavaModel(aHa_Sub1_2191)
         this.aClass64_Sub1_2246 = JavaModel(aHa_Sub1_2191)
         this.aClass64_Sub1_2225 = JavaModel(aHa_Sub1_2191)
-        this.anIntArray2242 = IntArray(JavaModel.Companion.anInt5346)
+        this.anIntArray2242 = IntArray(JavaModel.anInt5346)
         var i = 0
-        while (JavaModel.Companion.anInt5346 > i) {
+        while (JavaModel.anInt5346 > i) {
             this.anIntArray2242[i] = -1
             i++
         }

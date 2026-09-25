@@ -1388,9 +1388,9 @@ internal class Rasterizer(private val aHa_Sub1_1666: JavaToolkit, private val aJ
                     f_346_.toInt().toFloat(),
                     f_347_.toInt().toFloat(),
                     f_348_.toInt().toFloat(),
-                    JavaBillboardFace.Companion.method206(i, i_357_ or (i_358_ shl 24), 255),
-                    JavaBillboardFace.Companion.method206(i_355_, i_357_ or (i_359_ shl 24), 255),
-                    JavaBillboardFace.Companion.method206(i_356_, i_357_ or (i_360_ shl 24), 255)
+                    JavaBillboardFace.method206(i, i_357_ or (i_358_ shl 24), 255),
+                    JavaBillboardFace.method206(i_355_, i_357_ or (i_359_ shl 24), 255),
+                    JavaBillboardFace.method206(i_356_, i_357_ or (i_360_ shl 24), 255)
                 )
                 return
             }

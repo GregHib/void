@@ -21,7 +21,7 @@ internal object ItemSpriteDumper {
             i_63_ = dimension.height
             i_62_ = dimension.width
         }
-        return Toolkit.Companion.method3692(i_63_, i_62_, var_textureSource, canvas)
+        return Toolkit.method3692(i_63_, i_62_, var_textureSource, canvas)
     }
 
     var itemTypeList: ItemTypeList? = null
@@ -53,7 +53,7 @@ internal object ItemSpriteDumper {
         if (renderer == null) {
             val canvas = Canvas()
             canvas.setSize(WIDTH, HEIGHT)
-            renderer = method958(Class348_Sub40_Sub4.Companion.aTextureSource9113, canvas)
+            renderer = method958(Class348_Sub40_Sub4.aTextureSource9113, canvas)
         }
         return renderer!!
     }
