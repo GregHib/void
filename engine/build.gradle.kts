@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":config"))
 
     implementation(libs.fastutil)
+    implementation(libs.jansi)
     implementation(libs.kasechange)
 
     implementation(libs.koin)

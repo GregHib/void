@@ -45,9 +45,7 @@ class PlayerCommands(
 
     init {
         modCommand("save", desc = "Save all players") {
-            Players.forEach(saveQueue::save)
-            exchange.save()
-            AuditLog.save()
+            saveAll(saveQueue, exchange)
         }
 
         playerCommand("world_map", desc = "Toggle whether your location is shown on the website's world map") {
@@ -336,6 +334,16 @@ class PlayerCommands(
             target.message("All quests unlocked.")
         }
     }
+}
+
+/**
+ * Flush all online players, the exchange and audit logs to disk, shared by the player and console
+ * save commands.
+ */
+fun saveAll(saveQueue: SaveQueue, exchange: GrandExchange) {
+    Players.forEach(saveQueue::save)
+    exchange.save()
+    AuditLog.save()
 }
 
 fun Players.find(player: Player, name: String?): Player? {

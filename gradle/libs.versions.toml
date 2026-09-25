@@ -13,6 +13,7 @@ markdown = "0.7.12"
 koin = "4.1.1"
 logback = "1.5.18"
 inlineLogging = "1.0.6"
+jansi = "2.4.2"
 mockk = "1.14.5"
 jbcrypt = "0.4"
 kaseChange = "1.4.1"
@@ -60,6 +61,7 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-log = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 inline-logging = { module = "com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm", version.ref = "inlineLogging" }
+jansi = { module = "org.fusesource.jansi:jansi", version.ref = "jansi" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 jbcrypt = { module = "org.mindrot:jbcrypt", version.ref = "jbcrypt" }
 kasechange = { module = "net.pearx.kasechange:kasechange", version.ref = "kaseChange" }

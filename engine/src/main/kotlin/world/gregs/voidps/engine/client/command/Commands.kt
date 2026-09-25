@@ -124,23 +124,6 @@ open class Commands {
         }
     }
 
-    /**
-     * Find the longest string which all [strings] start with
-     */
-    private fun longestCommonPrefix(strings: Collection<String>): String? {
-        if (strings.isEmpty()) {
-            return null
-        }
-        val shortest = strings.minByOrNull { it.length } ?: return null
-        for (i in shortest.indices) {
-            val c = shortest[i]
-            if (strings.any { it[i] != c }) {
-                return shortest.substring(0, i)
-            }
-        }
-        return shortest
-    }
-
     fun clear() {
         aliases.clear()
         suggestions.clear()
@@ -202,4 +185,21 @@ fun modCommands(name: String, vararg signatures: CommandSignature) {
 
 fun adminCommands(name: String, vararg signatures: CommandSignature) {
     Commands.register(name, signatures.toList(), PlayerRights.Admin)
+}
+
+/**
+ * Find the longest string which all [strings] start with
+ */
+internal fun longestCommonPrefix(strings: Collection<String>): String? {
+    if (strings.isEmpty()) {
+        return null
+    }
+    val shortest = strings.minByOrNull { it.length } ?: return null
+    for (i in shortest.indices) {
+        val c = shortest[i]
+        if (strings.any { it[i] != c }) {
+            return shortest.substring(0, i)
+        }
+    }
+    return shortest
 }
