@@ -363,8 +363,8 @@ object WorldMap {
     }
 
     fun page(mapLabels: MapLabels): String = voidPage(
-        title = "Void — world map",
-        description = "A lazily-tiled, zoomable map of the Void game world.",
+        title = "Void - World Map",
+        description = "An interactive map of the Void game world.",
         data = "worldMapApp()",
         head = {
             link(rel = "stylesheet", href = "style/world-map.css")

@@ -13,8 +13,8 @@ import world.gregs.voidps.web.site.components.*
 object Exchange {
 
     fun page(): String = voidPage(
-        title = "Void — grand exchange",
-        description = "Live buy and sell prices for every tracked item on Void, sampled every five minutes.",
+        title = "Void - Grand Exchange",
+        description = "Live buy and sell prices for every tracked item.",
         head = { script(src = "js/exchange.js") {} },
     ) {
         ui.siteHeader(Website.pages, active = "exchange", communityPages = Website.communityPages)

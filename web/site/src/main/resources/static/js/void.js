@@ -51,9 +51,72 @@ function voidClearWorld() {
   }
 }
 
+// Whether the play page's nav bar is tucked away to give the client the whole window.
+var VOID_NAV_HIDDEN_KEY = 'void-play-nav-hidden';
+
+function voidGetNavHidden() {
+  try {
+    return localStorage.getItem(VOID_NAV_HIDDEN_KEY) === 'true';
+  } catch (e) {
+    return false;
+  }
+}
+
 document.addEventListener('alpine:init', function () {
   Alpine.store('world', { current: voidGetWorld() });
+  // Only honoured while a world is loaded (see Play.kt), so the world picker always keeps its nav.
+  Alpine.store('playNav', {
+    hidden: voidGetNavHidden(),
+    setHidden: function (hidden) {
+      this.hidden = hidden;
+      try {
+        localStorage.setItem(VOID_NAV_HIDDEN_KEY, String(hidden));
+      } catch (e) {
+        // Private browsing / storage disabled — the nav bar still hides for this view.
+      }
+    },
+  });
 });
+
+// The size the client should render at: `#client`'s area. Starts at the game's minimum so a
+// client started while `#client` has no size yet (a hidden or collapsed tab) never sees a 0x0
+// window, which it can't recover from.
+var voidClientView = { width: 765, height: 503 };
+
+// Recomputes voidClientView from `#client`. The client sizes itself from
+// window.innerWidth/innerHeight on load and on every window `resize` (and has no other hook), so
+// voidClientViewport() points those at voidClientView and a synthetic `resize` tells it to pick
+// the new size up.
+function voidClientLayout() {
+  var client = document.getElementById('client');
+  if (!client || !window.voidClientViewportInstalled) {
+    return;
+  }
+  var width = client.clientWidth;
+  var height = client.clientHeight;
+  if (width <= 0 || height <= 0) {
+    return;
+  }
+  voidClientView = { width: width, height: height };
+  window.dispatchEvent(new Event('resize'));
+  // The client sizes its game canvas from its root element's size as last seen by a
+  // ResizeObserver, which hasn't caught up with the resize above yet — so nudge it again once
+  // the frame's observers have run.
+  requestAnimationFrame(function () {
+    setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 0);
+  });
+}
+
+function voidClientViewport() {
+  if (window.voidClientViewportInstalled) {
+    return;
+  }
+  window.voidClientViewportInstalled = true;
+  Object.defineProperty(window, 'innerWidth', { configurable: true, get: function () { return voidClientView.width; } });
+  Object.defineProperty(window, 'innerHeight', { configurable: true, get: function () { return voidClientView.height; } });
+  new ResizeObserver(voidClientLayout).observe(document.getElementById('client'));
+  voidClientLayout();
+}
 
 window.worldMenuData = function () {
   return {
@@ -84,6 +147,7 @@ window.worldMenuData = function () {
 
 window.playApp = function () {
   return {
+    status: 'Loading world ...',
     get world() {
       return Alpine.store('world').current;
     },
@@ -93,6 +157,8 @@ window.playApp = function () {
         var number = parseInt(fromQuery, 10);
         voidSetWorld(number);
         Alpine.store('world').current = number;
+        this.status = 'Loading world ' + number + ' ...';
+        this.launch(number);
         return;
       }
       var saved = voidGetWorld();
@@ -102,6 +168,29 @@ window.playApp = function () {
     },
     select: function (number) {
       window.location.href = 'play.html?world=' + number;
+    },
+    // Loads the web client from world `number`'s web server, which serves it under `/play/` and
+    // proxies its websocket at `/proxy` through to the game server.
+    launch: function (number) {
+      // Two clients on one page would both run their game loops (and both log in).
+      if (window.voidClientLaunched) {
+        return;
+      }
+      window.voidClientLaunched = true;
+      var self = this;
+      window.voidWorldWeb(number).then(function (base) {
+        if (!base) {
+          self.status = 'World ' + number + ' has no web address to play from.';
+          return;
+        }
+        window.CONFIG = { url: base.replace(/^http/i, 'ws') + '/proxy' };
+        voidClientViewport();
+        var script = document.createElement('script');
+        script.src = base + '/play/void-client.js';
+        script.onload = function () { self.status = null; };
+        script.onerror = function () { self.status = 'Couldn\'t load the client from world ' + number + '.'; };
+        document.body.appendChild(script);
+      });
     },
   };
 };
