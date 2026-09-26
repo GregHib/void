@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.map.instance
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -51,6 +53,39 @@ internal class InstancesTest {
         // Then
         assertEquals(second, one)
         assertEquals(first, two)
+    }
+
+    @Test
+    fun `A claimed instance isn't reused until every holder frees it`() {
+        val instance = Instances.small()
+        Instances.claim(instance)
+        Instances.claim(instance)
+
+        assertFalse(Instances.free(instance))
+        assertFalse(Instances.free(instance))
+        assertTrue(Instances.isInstance(instance))
+
+        assertTrue(Instances.free(instance))
+        assertFalse(Instances.isInstance(instance))
+    }
+
+    @Test
+    fun `Freeing an instance nobody holds does nothing`() {
+        val instance = Instances.small()
+        assertTrue(Instances.free(instance))
+
+        // A stale id from a save written before a restart lands here
+        assertFalse(Instances.free(instance))
+    }
+
+    @Test
+    fun `Claiming an instance nobody holds does nothing`() {
+        val instance = Instances.small()
+        Instances.free(instance)
+
+        Instances.claim(instance)
+
+        assertFalse(Instances.isInstance(instance))
     }
 
     @Test

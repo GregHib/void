@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @Disabled("Flaky")
 internal class GameLoopTest {
@@ -74,8 +74,9 @@ internal class GameLoopTest {
         val job = loop.start(this)
         delay(5)
 
-        // Then
-        assertFalse(job.isActive)
-        assertEquals(1, count)
+        // Then the loop carries on; one bad stage shouldn't stop the world for everyone
+        assertTrue(job.isActive)
+        assertTrue(count > 1, "Expected ticks after the failing stage, got $count")
+        job.cancelAndJoin()
     }
 }

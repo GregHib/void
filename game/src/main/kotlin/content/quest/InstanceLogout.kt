@@ -16,6 +16,10 @@ class InstanceLogout : Script {
         playerDespawn {
             if (get("instance_logout", false)) {
                 exitInstance()
+            } else {
+                // Content that handles its own exit still has to hand the region back, or nothing
+                // ever does once everyone has disconnected
+                clearInstance()
             }
             clearHinted()
         }

@@ -39,6 +39,7 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.inv.carriesItem
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.queue.engineQueue
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
@@ -261,6 +262,10 @@ class DungeonEntrance : Script {
         for (member in dungeonMembers) {
             member["dungeon"] = dungeon
             member["instance"] = instance.id
+            if (member != this) {
+                // The allocation counts for whoever started it; the rest hold it too
+                Instances.claim(instance)
+            }
             dungeon.players.add(member.index)
             member.closeInterfaces()
         }
