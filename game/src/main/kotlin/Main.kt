@@ -193,9 +193,9 @@ object Main {
 
     @Suppress("HttpUrlsUsage")
     private fun webServer(port: Int, cache: Cache): Job? {
-        val path = Paths.get(Settings["web.client.zip", ""])
+        val path = Paths.get(Settings["web.client.path", ""])
         if (!path.exists()) {
-            logger.error { "No webclient zip file found at path: $path" }
+            logger.error { "No webclient file found at path: $path" }
             return null
         }
         val webPort = Settings["web.server.port"].toInt()

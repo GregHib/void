@@ -32,7 +32,7 @@ import java.nio.file.Paths
 import kotlin.time.Duration.Companion.seconds
 
 class WebServer(
-    webclientZip: Path?,
+    webclient: Path?,
     port: Int,
     serverAddress: String,
     serverPort: Int,
@@ -58,9 +58,9 @@ class WebServer(
             } else {
                 staticFiles("/", file)
             }
-            if (webclientZip != null) {
+            if (webclient != null) {
                 proxy(serverAddress, serverPort)
-                webclient(webclientZip)
+                webclient(webclient)
             }
             api(storage, questDefinitions, cache)
         }
@@ -86,7 +86,7 @@ class WebServer(
 
             val questDefinitions = QuestDefinitions().load(files.find(Settings["definitions.quests"]))
             ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-            val path = Paths.get(Settings["web.client.zip"])
+            val path = Paths.get(Settings["web.client.path"])
             val storage = FileStorage(File(Settings["storage.players.path"]))
             WebServer(path, 8080, "localhost", 43594, storage, questDefinitions, cache).start()
         }
