@@ -3,7 +3,7 @@ package world.gregs.voidps.tools.icon
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.definition.data.ItemDefinitionFull
-import world.gregs.voidps.tools.render.Class348_Sub40_Sub12
+import world.gregs.voidps.tools.render.TextureOpColorGradient
 import world.gregs.voidps.tools.render.Mesh
 import world.gregs.voidps.tools.render.Sprite
 import world.gregs.voidps.tools.render.Toolkit
@@ -125,7 +125,7 @@ internal class ItemIconRenderer(
         overlay?.render(0, 0)
         image = scratchToolkit.na(0, 0, width, height)!!
         for (i in image.indices) {
-            image[i] = if (0xffffff and image[i] != 0) Class348_Sub40_Sub12.or(image[i], -16777216) else 0
+            image[i] = if (0xffffff and image[i] != 0) TextureOpColorGradient.or(image[i], -16777216) else 0
         }
         return image
     }

@@ -11,7 +11,7 @@ import kotlin.math.sin
 internal class JavaModel : Model {
     private var faceColour: ShortArray? = null
     private var vertexZ: IntArray? = null
-    private var aClass360Array5313: Array<Class360?>? = null
+    private var aVertexNormalArray5313: Array<VertexNormal?>? = null
     private var texCoordU: Array<FloatArray?>? = null
     private var anIntArray5315: IntArray? = null
     private var functionMask = 0
@@ -44,7 +44,7 @@ internal class JavaModel : Model {
     private var vertexX: IntArray? = null
     private var aBoolean5357 = false
     private var facePriority: ByteArray? = null
-    private var aClass360Array5360: Array<Class360?>? = null
+    private var aVertexNormalArray5360: Array<VertexNormal?>? = null
     private var billboardFaces: Array<JavaBillboardFace?>? = null
     private var anIntArray5362: IntArray? = null
     private var billboardAttributes: Array<JavaBillboardAttributes?>? = null
@@ -60,7 +60,7 @@ internal class JavaModel : Model {
     private var transparent: Boolean
     private var rasterizer: Rasterizer? = null
     private var anIntArray5384: IntArray? = null
-    private var aClass41Array5385: Array<Class41?>? = null
+    private var aFaceNormalArray5385: Array<FaceNormal?>? = null
     private var shadingType: ByteArray? = null
     private var maxVertex: Int
     private var faceTextures: ShortArray? = null
@@ -209,7 +209,7 @@ internal class JavaModel : Model {
     }
 
     private fun method636() {
-        if (anInt5354 == 0 && aClass360Array5360 == null) {
+        if (anInt5354 == 0 && aVertexNormalArray5360 == null) {
             if (toolkit.anInt7485 > 1) {
                 synchronized(this) {
                     method649()
@@ -245,7 +245,7 @@ internal class JavaModel : Model {
     }
 
     private fun method642(i: Int, i_305_: Short, i_306_: Int): Int {
-        var i_307_ = Class348_Sub6.anIntArray179!![method637(i, i_306_)]
+        var i_307_ = MonochromeImageCacheEntry.anIntArray179!![method637(i, i_306_)]
         val textureMetrics = toolkit.textureSource!!.getMetrics(i_305_.toInt() and 0xffff)
         val i_308_ = textureMetrics!!.alpha.toInt() and 0xff
         if (i_308_ != 0) {
@@ -532,8 +532,8 @@ internal class JavaModel : Model {
     }
 
     private fun method649() {
-        aClass360Array5360 = arrayOfNulls<Class360>(maxVertex)
-        for (i in 0..<maxVertex) aClass360Array5360!![i] = Class360()
+        aVertexNormalArray5360 = arrayOfNulls<VertexNormal>(maxVertex)
+        for (i in 0..<maxVertex) aVertexNormalArray5360!![i] = VertexNormal()
         for (i in 0..<faceCount) {
             val i_599_ = faceA!![i]
             val i_600_ = faceB!![i]
@@ -562,25 +562,25 @@ internal class JavaModel : Model {
             if (shadingType == null) i_612_ = 0.toByte()
             else i_612_ = shadingType!![i]
             if (i_612_.toInt() == 0) {
-                var class360 = aClass360Array5360!![i_599_.toInt()]
+                var class360 = aVertexNormalArray5360!![i_599_.toInt()]
                 class360!!.anInt4430 += i_608_
                 class360.anInt4428 += i_609_
                 class360.anInt4427 += i_610_
                 class360.anInt4429++
-                class360 = aClass360Array5360!![i_600_.toInt()]
+                class360 = aVertexNormalArray5360!![i_600_.toInt()]
                 class360!!.anInt4430 += i_608_
                 class360.anInt4428 += i_609_
                 class360.anInt4427 += i_610_
                 class360.anInt4429++
-                class360 = aClass360Array5360!![i_601_.toInt()]
+                class360 = aVertexNormalArray5360!![i_601_.toInt()]
                 class360!!.anInt4430 += i_608_
                 class360.anInt4428 += i_609_
                 class360.anInt4427 += i_610_
                 class360.anInt4429++
             } else if (i_612_.toInt() == 1) {
-                if (aClass41Array5385 == null) aClass41Array5385 = arrayOfNulls<Class41>(faceCount)
-                aClass41Array5385!![i] = Class41()
-                val class41 = aClass41Array5385!![i]
+                if (aFaceNormalArray5385 == null) aFaceNormalArray5385 = arrayOfNulls<FaceNormal>(faceCount)
+                aFaceNormalArray5385!![i] = FaceNormal()
+                val class41 = aFaceNormalArray5385!![i]
                 class41!!.anInt561 = i_608_
                 class41.anInt560 = i_609_
                 class41.anInt559 = i_610_
@@ -860,22 +860,22 @@ internal class JavaModel : Model {
                         val i_743_ = faceColour!![i_739_].toInt() and 0xffff
                         val i_744_ = (i_743_ and 0x7f) * ambient shr 7
                         val i_745_ = method303(i_743_ and 0x7f.inv() or i_744_)
-                        var class360: Class360
-                        if (aClass360Array5313 != null && (aClass360Array5313!![faceA!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceA!![i_739_].toInt()]!!
-                        else class360 = aClass360Array5360!![faceA!![i_739_].toInt()]!!
-                        var i_746_ = (((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16)
+                        var vertexNormal: VertexNormal
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceA!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceA!![i_739_].toInt()]!!
+                        else vertexNormal = aVertexNormalArray5360!![faceA!![i_739_].toInt()]!!
+                        var i_746_ = (((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16)
                         var i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         var i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
                         anIntArray5368!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
-                        if (aClass360Array5313 != null && (aClass360Array5313!![faceB!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceB!![i_739_].toInt()]!!
-                        else class360 = aClass360Array5360!![faceB!![i_739_].toInt()]!!
-                        i_746_ = ((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceB!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceB!![i_739_].toInt()]!!
+                        else vertexNormal = aVertexNormalArray5360!![faceB!![i_739_].toInt()]!!
+                        i_746_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
                         anIntArray5337!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
-                        if (aClass360Array5313 != null && (aClass360Array5313!![faceC!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceC!![i_739_].toInt()]!!
-                        else class360 = aClass360Array5360!![faceC!![i_739_].toInt()]!!
-                        i_746_ = ((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceC!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceC!![i_739_].toInt()]!!
+                        else vertexNormal = aVertexNormalArray5360!![faceC!![i_739_].toInt()]!!
+                        i_746_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
                         anIntArray5366!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
@@ -883,7 +883,7 @@ internal class JavaModel : Model {
                         val i_749_ = faceColour!![i_739_].toInt() and 0xffff
                         val i_750_ = (i_749_ and 0x7f) * ambient shr 7
                         val i_751_ = method303(i_749_ and 0x7f.inv() or i_750_)
-                        val class41 = aClass41Array5385!![i_739_]
+                        val class41 = aFaceNormalArray5385!![i_739_]
                         val i_752_ = ((i * class41!!.anInt561 + i_734_ * class41.anInt560 + i_735_ * class41.anInt559) shr 16)
                         val i_753_ = if (i_752_ > 256) i_737_ else i_738_
                         val i_754_ = (i_736_ shr 1) + (i_753_ * i_752_ shr 17)
@@ -896,27 +896,27 @@ internal class JavaModel : Model {
                 } else {
                     val i_755_ = faceColour!![i_739_].toInt() and 0xffff
                     if (i_740_.toInt() == 0) {
-                        var class360: Class360
-                        if (aClass360Array5313 != null && (aClass360Array5313!![faceA!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceA!![i_739_].toInt()]!!
-                        else class360 = aClass360Array5360!![faceA!![i_739_].toInt()]!!
-                        var i_756_ = (((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16)
+                        var vertexNormal: VertexNormal
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceA!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceA!![i_739_].toInt()]!!
+                        else vertexNormal = aVertexNormalArray5360!![faceA!![i_739_].toInt()]!!
+                        var i_756_ = (((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16)
                         var i_757_ = if (i_756_ > 256) i_737_ else i_738_
                         var i_758_ = method656((i_736_ shr 2) + (i_757_ * i_756_ shr 18))
                         anIntArray5368!![i_739_] = i_758_ shl 24 or method642(i_755_, i_742_, i_758_)
-                        if (aClass360Array5313 != null && (aClass360Array5313!![faceB!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceB!![i_739_].toInt()]!!
-                        else class360 = aClass360Array5360!![faceB!![i_739_].toInt()]!!
-                        i_756_ = ((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceB!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceB!![i_739_].toInt()]!!
+                        else vertexNormal = aVertexNormalArray5360!![faceB!![i_739_].toInt()]!!
+                        i_756_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_757_ = if (i_756_ > 256) i_737_ else i_738_
                         i_758_ = method656((i_736_ shr 2) + (i_757_ * i_756_ shr 18))
                         anIntArray5337!![i_739_] = i_758_ shl 24 or method642(i_755_, i_742_, i_758_)
-                        if (aClass360Array5313 != null && (aClass360Array5313!![faceC!![i_739_].toInt()] != null)) class360 = aClass360Array5313!![faceC!![i_739_].toInt()]!!
-                        else class360 = aClass360Array5360!![faceC!![i_739_].toInt()]!!
-                        i_756_ = ((i * class360.anInt4430 + i_734_ * class360.anInt4428 + i_735_ * class360.anInt4427) / class360.anInt4429) shr 16
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceC!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceC!![i_739_].toInt()]!!
+                        else vertexNormal = aVertexNormalArray5360!![faceC!![i_739_].toInt()]!!
+                        i_756_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_757_ = if (i_756_ > 256) i_737_ else i_738_
                         i_758_ = method656((i_736_ shr 2) + (i_757_ * i_756_ shr 18))
                         anIntArray5366!![i_739_] = i_758_ shl 24 or method642(i_755_, i_742_, i_758_)
                     } else if (i_740_.toInt() == 1) {
-                        val class41 = aClass41Array5385!![i_739_]
+                        val class41 = aFaceNormalArray5385!![i_739_]
                         val i_759_ = ((i * class41!!.anInt561 + i_734_ * class41.anInt560 + i_735_ * class41.anInt559) shr 16)
                         val i_760_ = if (i_759_ > 256) i_737_ else i_738_
                         val i_761_ = method656((i_736_ shr 2) + (i_760_ * i_759_ shr 18))
@@ -925,9 +925,9 @@ internal class JavaModel : Model {
                     } else anIntArray5366!![i_739_] = -2
                 }
             }
-            aClass360Array5360 = null
-            aClass360Array5313 = null
-            aClass41Array5385 = null
+            aVertexNormalArray5360 = null
+            aVertexNormalArray5313 = null
+            aFaceNormalArray5385 = null
             if ((functionMask and 0x97098) == 0 && texCoordU == null) faceColour = null
             if (bool) shadingType = null
             anInt5354 = 2
@@ -1444,13 +1444,13 @@ internal class JavaModel : Model {
                             val f_866_ = ((i_859_.toFloat() * fs_847_[3] + i_860_.toFloat() * fs_847_[4] + i_861_.toFloat() * fs_847_[5]) / f_863_)
                             val f_867_ = ((i_859_.toFloat() * fs_847_[6] + i_860_.toFloat() * fs_847_[7] + i_861_.toFloat() * fs_847_[8]) / f_864_)
                             val i_868_ = method2635(f_866_, f_867_, f_865_)
-                            Class262.cubeMap(f_852_, f, fs_847_, vertexZ!![i_841_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_841_.toInt()], vertexY!![i_841_.toInt()], f_851_, fs, i_845_, i_868_)
+                            LinkedList.cubeMap(f_852_, f, fs_847_, vertexZ!![i_841_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_841_.toInt()], vertexY!![i_841_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_!![0] = fs[0]
                             fs_808_!![0] = fs[1]
-                            Class262.cubeMap(f_852_, f, fs_847_, vertexZ!![i_842_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_842_.toInt()], vertexY!![i_842_.toInt()], f_851_, fs, i_845_, i_868_)
+                            LinkedList.cubeMap(f_852_, f, fs_847_, vertexZ!![i_842_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_842_.toInt()], vertexY!![i_842_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_[1] = fs[0]
                             fs_808_[1] = fs[1]
-                            Class262.cubeMap(f_852_, f, fs_847_, vertexZ!![i_843_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_843_.toInt()], vertexY!![i_843_.toInt()], f_851_, fs, i_845_, i_868_)
+                            LinkedList.cubeMap(f_852_, f, fs_847_, vertexZ!![i_843_.toInt()], i_846_, direction.toInt(), i_844_, vertexX!![i_843_.toInt()], vertexY!![i_843_.toInt()], f_851_, fs, i_845_, i_868_)
                             fs_807_[2] = fs[0]
                             fs_808_[2] = fs[1]
                         } else if (mappingType.toInt() == 3) {
@@ -1590,7 +1590,7 @@ internal class JavaModel : Model {
                             f_22_ = (mesh.texSpaceScaleZ!![i_20_]).toFloat() / 1024.0f
                             f_23_ = (mesh.texSpaceScaleX!![i_20_]).toFloat() / 1024.0f
                         }
-                        fs[i_20_] = (method1347(mesh.texSpaceDefC!![i_20_].toInt(), mesh.texSpaceDefB!![i_20_].toInt(), f_22_, f_23_, f, mesh.texSpaceDefA!![i_20_].toInt(), Class348_Sub40_Sub17.method1166(255, (mesh.texRotation!![i_20_]).toInt())))
+                        fs[i_20_] = (method1347(mesh.texSpaceDefC!![i_20_].toInt(), mesh.texSpaceDefB!![i_20_].toInt(), f_22_, f_23_, f, mesh.texSpaceDefA!![i_20_].toInt(), TextureOpSprite.method1166(255, (mesh.texRotation!![i_20_]).toInt())))
                     }
                     i_20_++
                 }

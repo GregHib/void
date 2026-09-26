@@ -39,7 +39,7 @@ abstract class Toolkit(var textureSource: TextureSource?) {
     abstract fun DA(i: Int, i_223_: Int, i_224_: Int, i_225_: Int)
 
     fun method3635() {
-        Class348_Sub40_Sub26.aBooleanArray9351!![this.index] = false
+        TextureOpColourise.aBooleanArray9351!![this.index] = false
         method3652()
     }
 
@@ -50,8 +50,8 @@ abstract class Toolkit(var textureSource: TextureSource?) {
     init {
         var i = -1
         for (i_215_ in 0..7) {
-            if (!Class348_Sub40_Sub26.aBooleanArray9351!![i_215_]) {
-                Class348_Sub40_Sub26.aBooleanArray9351!![i_215_] = true
+            if (!TextureOpColourise.aBooleanArray9351!![i_215_]) {
+                TextureOpColourise.aBooleanArray9351!![i_215_] = true
                 i = i_215_
                 break
             }
@@ -61,10 +61,10 @@ abstract class Toolkit(var textureSource: TextureSource?) {
     }
 
     companion object {
-        var aClass308_8815: Class308 = Class308(16)
+        var aLruHashTable_8815: LruHashTable = LruHashTable(16)
         fun method3664(i: Int): ByteArray? {
-            var class348_sub42_sub3 = (aClass308_8815.method2302(i.toLong()) as Class348_Sub42_Sub3?)
-            if (class348_sub42_sub3 == null) {
+            var byteArraySecondaryNode = (aLruHashTable_8815.method2302(i.toLong()) as ByteArraySecondaryNode?)
+            if (byteArraySecondaryNode == null) {
                 val `is` = ByteArray(512)
                 val random = Random(i.toLong())
                 for (i_89_ in 0..254) `is`[i_89_] = i_89_.toByte()
@@ -76,10 +76,10 @@ abstract class Toolkit(var textureSource: TextureSource?) {
                     `is`[511 + -i_90_] = i_93_
                     `is`[i_91_] = `is`[511 + -i_90_]
                 }
-                class348_sub42_sub3 = Class348_Sub42_Sub3(`is`)
-                aClass308_8815.method2305(i.toLong(), class348_sub42_sub3)
+                byteArraySecondaryNode = ByteArraySecondaryNode(`is`)
+                aLruHashTable_8815.method2305(i.toLong(), byteArraySecondaryNode)
             }
-            return class348_sub42_sub3.aByteArray9499
+            return byteArraySecondaryNode.aByteArray9499
         }
 
         @Synchronized

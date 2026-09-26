@@ -1,6 +1,6 @@
 package world.gregs.voidps.tools.icon
 
-import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
+import world.gregs.voidps.tools.render.TextureOpVerticalGradient
 import world.gregs.voidps.tools.render.TextureSource
 import world.gregs.voidps.tools.render.Toolkit
 import java.awt.Canvas
@@ -50,7 +50,7 @@ internal object ItemSpriteDumper {
     private fun renderer(scale: Int): Toolkit = renderers.getOrPut(scale) {
         val canvas = Canvas()
         canvas.setSize(WIDTH * scale, HEIGHT * scale)
-        method958(Class348_Sub40_Sub4.aTextureSource9113, canvas)
+        method958(TextureOpVerticalGradient.aTextureSource9113, canvas)
     }
 
     @JvmOverloads

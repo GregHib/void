@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.equip.EquipType
 import world.gregs.voidps.engine.entity.item.type
 import world.gregs.voidps.tools.render.AnimationFrameSet
-import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
+import world.gregs.voidps.tools.render.TextureOpVerticalGradient
 import world.gregs.voidps.tools.render.BillboardType
 import world.gregs.voidps.tools.render.Js5TextureSource
 import java.awt.image.BufferedImage
@@ -42,7 +42,7 @@ class PhotoBooth(
 
     init {
         BillboardType.cache = cache
-        Class348_Sub40_Sub4.aTextureSource9113 = Js5TextureSource(cache)
+        TextureOpVerticalGradient.aTextureSource9113 = Js5TextureSource(cache)
         val equipIndexToItemId = HashMap<Int, Int>(8192)
         ItemDefinitions.definitions.forEachIndexed { id, def ->
             if (def.equipIndex != -1) equipIndexToItemId[def.equipIndex] = id
@@ -56,7 +56,7 @@ class PhotoBooth(
             itemType = { itemId -> ItemDefinitions.definitions.getOrNull(itemId)?.type ?: EquipType.None },
             renderEmote = { itemId -> ItemDefinitions.definitions.getOrNull(itemId)?.get("render_emote", DEFAULT_RENDER_EMOTE) ?: DEFAULT_RENDER_EMOTE },
         )
-        renderer = AvatarRenderer(Class348_Sub40_Sub4.aTextureSource9113)
+        renderer = AvatarRenderer(TextureOpVerticalGradient.aTextureSource9113)
         animations = AvatarAnimations(AnimationDecoderFull().load(cache), AnimationFrameSet.Loader(cache))
     }
 

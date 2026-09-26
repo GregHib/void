@@ -33,8 +33,8 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     private var anInt7495 = 0
     var anInt7496: Int
     var anInt7497: Int
-    private val aClass60_7498: Class60
-    private val aClass60_7499: Class60
+    private val aReferenceCache_7498: ReferenceCache
+    private val aReferenceCache_7499: ReferenceCache
     var anInt7500: Int
     var anInt7501: Int
     var anInt7503: Int
@@ -365,11 +365,11 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     }
 
     fun method3643(canvas: Canvas?, i: Int, i_232_: Int) {
-        var class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong()) as Class348_Sub31?)
-        if (class348_sub31 == null) {
-            class348_sub31 = method1035(i_232_, canvas, i)
-            aIterableHashTable_7467!!.put(canvas.hashCode().toLong(), class348_sub31)
-        } else if (class348_sub31.anInt6917 != i || class348_sub31.anInt6920 != i_232_) method3669(canvas, i, i_232_)
+        var frameBuffer = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong()) as FrameBuffer?)
+        if (frameBuffer == null) {
+            frameBuffer = method1035(i_232_, canvas, i)
+            aIterableHashTable_7467!!.put(canvas.hashCode().toLong(), frameBuffer)
+        } else if (frameBuffer.anInt6917 != i || frameBuffer.anInt6920 != i_232_) method3669(canvas, i, i_232_)
     }
 
     fun method3631(i: Int) {
@@ -378,15 +378,15 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         for (i_240_ in 0..<this.anInt7485) aJavaThreadResourceArray7480!![i_240_] = JavaThreadResource(this)
     }
     fun method3669(canvas: Canvas?, i: Int, i_578_: Int) {
-        var class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong()) as Class348_Sub31?)
-        if (class348_sub31 != null) {
-            class348_sub31.unlink()
-            class348_sub31 = method1035(i_578_, canvas, i)
-            aIterableHashTable_7467!!.put(canvas.hashCode().toLong(), class348_sub31)
+        var frameBuffer = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong()) as FrameBuffer?)
+        if (frameBuffer != null) {
+            frameBuffer.unlink()
+            frameBuffer = method1035(i_578_, canvas, i)
+            aIterableHashTable_7467!!.put(canvas.hashCode().toLong(), frameBuffer)
             if (aCanvas7468 === canvas) {
-                this.anIntArray7483 = class348_sub31!!.anIntArray6916
-                this.anInt7477 = class348_sub31.anInt6917
-                anInt7486 = class348_sub31.anInt6920
+                this.anIntArray7483 = frameBuffer!!.anIntArray6916
+                this.anInt7477 = frameBuffer.anInt6917
+                anInt7486 = frameBuffer.anInt6920
                 if (this.anInt7477 != anInt7495 || anInt7486 != anInt7488) {
                     anInt7495 = this.anInt7477
                     anInt7488 = anInt7486
@@ -487,18 +487,18 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
     }
 
     fun method3719(i: Int): IntArray? {
-        var class348_sub25: Class348_Sub25?
-        synchronized(aClass60_7498) {
-            class348_sub25 = (aClass60_7498.method583(i.toLong() or 0x7fffffffffffffffL.inv()) as Class348_Sub25?)
-            if (class348_sub25 == null) {
+        var cachedTexture: CachedTexture?
+        synchronized(aReferenceCache_7498) {
+            cachedTexture = (aReferenceCache_7498.method583(i.toLong() or 0x7fffffffffffffffL.inv()) as CachedTexture?)
+            if (cachedTexture == null) {
                 if (!this.textureSource!!.method4(i)) return null
                 val textureMetrics = this.textureSource!!.getMetrics(i)
                 val i_356_ = (if (textureMetrics!!.small || aBoolean7489) 64 else this.anInt7501)
-                class348_sub25 = Class348_Sub25(i, i_356_, this.textureSource!!.method6(i_356_, 0.7f, i, i_356_)!!, textureMetrics.alphaBlendMode != 1)
-                aClass60_7498.method582(class348_sub25, i.toLong() or 0x7fffffffffffffffL.inv())
+                cachedTexture = CachedTexture(i, i_356_, this.textureSource!!.method6(i_356_, 0.7f, i, i_356_)!!, textureMetrics.alphaBlendMode != 1)
+                aReferenceCache_7498.method582(cachedTexture, i.toLong() or 0x7fffffffffffffffL.inv())
             }
         }
-        return class348_sub25!!.method2997()
+        return cachedTexture!!.method2997()
     }
 
     override fun method3654(): Matrix {
@@ -527,12 +527,12 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
             anInt7495 = anInt7488
             method3717()
         } else {
-            val class348_sub31 = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong()) as Class348_Sub31?)
-            if (class348_sub31 != null) {
+            val frameBuffer = (aIterableHashTable_7467!!.method3480(canvas.hashCode().toLong()) as FrameBuffer?)
+            if (frameBuffer != null) {
                 aCanvas7468 = canvas
-                this.anIntArray7483 = class348_sub31.anIntArray6916
-                this.anInt7477 = class348_sub31.anInt6917
-                anInt7486 = class348_sub31.anInt6920
+                this.anIntArray7483 = frameBuffer.anIntArray6916
+                this.anInt7477 = frameBuffer.anInt6917
+                anInt7486 = frameBuffer.anInt6920
                 if (this.anInt7477 != anInt7495 || anInt7486 != anInt7488) {
                     anInt7495 = this.anInt7477
                     anInt7488 = anInt7486
@@ -714,13 +714,13 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         if (i_379_ != 0 && i_380_ != 0) {
             if (i_382_ != 65535 && !(this.textureSource!!.getMetrics(i_382_)!!.disableable)) {
                 if (anInt7512 != i_382_) {
-                    var sprite = (aClass60_7499.method583(i_382_.toLong()) as Sprite?)
+                    var sprite = (aReferenceCache_7499.method583(i_382_.toLong()) as Sprite?)
                     if (sprite == null) {
                         val `is` = method3719(i_382_)
                         if (`is` == null) return
                         val i_386_ = (if (method3727(i_382_)) 64 else this.anInt7501)
                         sprite = this.createSprite(i_386_, `is`, i_386_, i_386_)
-                        aClass60_7499.method582(sprite, i_382_.toLong())
+                        aReferenceCache_7499.method582(sprite, i_382_.toLong())
                     }
                     anInt7512 = i_382_
                     aSprite_7513 = sprite
@@ -765,10 +765,10 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         this.anInt7494 = 3500
         this.anInt7507 = 0
         this.anInt7478 = 78642
-        aClass60_7499 = Class60(16)
+        aReferenceCache_7499 = ReferenceCache(16)
         anInt7512 = -1
         try {
-            aClass60_7498 = Class60(256)
+            aReferenceCache_7498 = ReferenceCache(256)
             this.aClass101_Sub1_7492 = Matrix_Sub1()
             method3631(1)
             method3659(0)
@@ -875,19 +875,19 @@ internal class JavaToolkit private constructor(var_textureSource: TextureSource?
         /** Class59_Sub2_Sub1.method566 */
         fun method566() {
             method1827()
-            Class348_Sub6.method2770()
+            MonochromeImageCacheEntry.method2770()
         }
 
 
-        fun method1035(i_16_: Int, canvas: Canvas?, i_17_: Int): Class348_Sub31? {
+        fun method1035(i_16_: Int, canvas: Canvas?, i_17_: Int): FrameBuffer? {
             try {
-                val class348_sub31: Class348_Sub31 = Class348_Sub31_Sub1()
-                class348_sub31.method3008(canvas!!, i_17_, i_16_)
-                return class348_sub31
+                val frameBuffer: FrameBuffer = BufferedImageFrameBuffer()
+                frameBuffer.method3008(canvas!!, i_17_, i_16_)
+                return frameBuffer
             } catch (throwable: Throwable) {
-                val class348_sub31_sub2 = Class348_Sub31_Sub2()
-                class348_sub31_sub2.method3008(canvas!!, i_17_, i_16_)
-                return class348_sub31_sub2
+                val imageProducerFrameBuffer = ImageProducerFrameBuffer()
+                imageProducerFrameBuffer.method3008(canvas!!, i_17_, i_16_)
+                return imageProducerFrameBuffer
             }
         }
     }

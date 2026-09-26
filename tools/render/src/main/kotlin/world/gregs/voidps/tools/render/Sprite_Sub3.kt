@@ -1,7 +1,6 @@
 package world.gregs.voidps.tools.render
 
 /* Class105_Sub3 */
-
 internal abstract class Sprite_Sub3(var aHa_Sub1_8460: JavaToolkit?, var anInt8471: Int, var anInt8470: Int) : Sprite() {
     var anInt8461: Int = 0
     var anInt8464: Int = 0

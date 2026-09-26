@@ -7,21 +7,21 @@ import world.gregs.voidps.cache.Index
 
 class Js5TextureSource(private val cache: Cache) : TextureSource {
     private val textureMetrics: Array<TextureMetrics?>
-    private val aClass308_4622 = Class308(256)
+    private val aLruHashTable_4622 = LruHashTable(256)
     private val textureCount: Int
 
     override fun method6(i_0_: Int, f: Float, i_1_: Int, i_2_: Int): IntArray {
         return method1881(i_1_)!!.method3183(this, i_2_, i_0_, (textureMetrics[i_1_]!!.aBoolean207), f.toDouble(), cache)
     }
 
-    private fun method1881(i: Int): Class348_Sub42_Sub5? {
-        val class348_sub42 = aClass308_4622.method2302(i.toLong())
-        if (class348_sub42 != null) return class348_sub42 as Class348_Sub42_Sub5
+    private fun method1881(i: Int): Texture? {
+        val class348_sub42 = aLruHashTable_4622.method2302(i.toLong())
+        if (class348_sub42 != null) return class348_sub42 as Texture
         val `is` = cache.data(Index.TEXTURES, i)
         if (`is` == null) return null
-        val class348_sub42_sub5 = Class348_Sub42_Sub5(Packet(`is`))
-        aClass308_4622.method2305(i.toLong(), class348_sub42_sub5)
-        return class348_sub42_sub5
+        val texture = Texture(Packet(`is`))
+        aLruHashTable_4622.method2305(i.toLong(), texture)
+        return texture
     }
 
     override fun getMetrics(i: Int): TextureMetrics? {

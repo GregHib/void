@@ -2,7 +2,7 @@ package world.gregs.voidps.tools.render
 
 /* Class348_Sub49 */
 
-open class Packet(var aByteArray7154: ByteArray) : Class348() {
+open class Packet(var aByteArray7154: ByteArray) : Node() {
     var pos: Int = 0
 
     fun readUnsignedShort(): Int {

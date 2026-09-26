@@ -47,16 +47,16 @@ class BillboardType {
         var cache: Cache? = null
 
         /** Class73.aClass60_2844 */
-        var aClass60_2844: Class60 = Class60(64)
+        var aReferenceCache_2844: ReferenceCache = ReferenceCache(64)
 
         /** Class73.list */
         fun list(i_0_: Int): BillboardType {
-            var billboardType = aClass60_2844.method583(i_0_.toLong()) as BillboardType?
+            var billboardType = aReferenceCache_2844.method583(i_0_.toLong()) as BillboardType?
             if (billboardType != null) return billboardType
             val `is` = cache!!.data(Index.BILLBOARDS, 0, i_0_)
             billboardType = BillboardType()
             if (`is` != null) billboardType.method1419(Packet(`is`))
-            aClass60_2844.method582(billboardType, i_0_.toLong())
+            aReferenceCache_2844.method582(billboardType, i_0_.toLong())
             return billboardType
         }
     }

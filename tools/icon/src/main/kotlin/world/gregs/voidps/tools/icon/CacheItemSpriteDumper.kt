@@ -1,10 +1,9 @@
 package world.gregs.voidps.tools.icon
 
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.FileCache
 import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
-import world.gregs.voidps.tools.render.Class348_Sub40_Sub4
+import world.gregs.voidps.tools.render.TextureOpVerticalGradient
 import world.gregs.voidps.tools.render.BillboardType
 import world.gregs.voidps.tools.render.Js5TextureSource
 import java.io.File
@@ -31,7 +30,7 @@ object CacheItemSpriteDumper {
         try {
             val cache: Cache = FileCache(cacheDir)
             BillboardType.cache = cache
-            Class348_Sub40_Sub4.aTextureSource9113 = Js5TextureSource(cache)
+            TextureOpVerticalGradient.aTextureSource9113 = Js5TextureSource(cache)
             val decoder = ItemDecoderFull()
             val definitions = decoder.load(cache)
             // Notes/lends are generated while decoding in id order, so re-apply now that every template has been decoded
