@@ -144,7 +144,7 @@ object Dev {
     }
 
     fun dashboardPage(): String = voidPage(
-        title = "Void — developer panel",
+        title = "Void - Developer Panel",
         description = "Live world telemetry, error console and staff tools for Void administrators.",
         assetPrefix = "../",
         data = "devDashboardApp()",
@@ -509,7 +509,7 @@ object Dev {
     }
 
     fun playersPage(): String = voidPage(
-        title = "Void — player management",
+        title = "Void - Player Management",
         description = "Look up any account, inspect its live state and take moderation actions.",
         assetPrefix = "../",
         data = "devPlayersApp()",

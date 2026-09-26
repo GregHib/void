@@ -411,8 +411,8 @@ object Website {
      * view with [Play.page], where picking a row opens the client instead.
      */
     fun worldsPage(): String = voidPage(
-        title = "Void — world list",
-        description = "Live status for every Void community world.",
+        title = "Void - World List",
+        description = "Live status for community worlds.",
     ) {
         ui.siteHeader(pages, active = "", communityPages = communityPages)
 

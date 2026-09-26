@@ -16,8 +16,8 @@ import world.gregs.voidps.web.site.components.*
 object Play {
 
     fun page(): String = voidPage(
-        title = "Void — play",
-        description = "Connect to a Void world and start playing.",
+        title = "Void - Play",
+        description = "Connect to a world and start playing.",
     ) {
         ui.siteHeader(
             Website.pages,

@@ -16,8 +16,8 @@ import world.gregs.voidps.web.site.components.*
 object Hiscores {
 
     fun page(gameData: GameData): String = voidPage(
-        title = "Void — hiscores",
-        description = "Live overall, skill and boss leaderboards for Void, with head-to-head player comparisons.",
+        title = "Void - Hiscores",
+        description = "Live overall, skill and boss leaderboards for servers.",
         head = {
             script { unsafe { raw(gameData.script()) } }
             script(src = "js/hiscores.js") {}

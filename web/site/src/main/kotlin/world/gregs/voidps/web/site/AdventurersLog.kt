@@ -19,8 +19,8 @@ object AdventurersLog {
     private const val SHOW_XP_CHART = false
 
     fun page(gameData: GameData): String = voidPage(
-        title = "Void — adventurer's log",
-        description = "Skills, quests, boss kills and recent activity for any Void account.",
+        title = "Void - Adventurer's Log",
+        description = "Skills, quests, boss kills and recent activity for player accounts.",
         head = {
             script { unsafe { raw(gameData.script()) } }
             script(src = "js/log.js") {}
