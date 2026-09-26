@@ -29,6 +29,10 @@
 
 .void-menu-item:hover{background:var(--surface-hover)}
 
+/* Play page's "show nav bar" tab: faded over the game until pointed at. */
+.void-nav-reveal{opacity:.35;transition:opacity var(--dur-fast) var(--ease-standard)}
+.void-nav-reveal:hover,.void-nav-reveal:focus-visible{opacity:1}
+
 /* Inputs/selects: replace the browser's default focus ring with the token-driven gold one. */
 .void-input,.void-select{outline:none}
 .void-select:focus{box-shadow:var(--ring-focus)}

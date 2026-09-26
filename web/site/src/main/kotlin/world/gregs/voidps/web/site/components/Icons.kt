@@ -15,6 +15,7 @@ object Icons {
     const val PLAY = """<path d="M6 4l14 8-14 8z"></path>"""
     const val DOWNLOAD = """<path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path>"""
     const val CHEVRON_DOWN = """<path d="M6 9l6 6 6-6"></path>"""
+    const val CHEVRON_UP = """<path d="M6 15l6-6 6 6"></path>"""
     const val CHEVRON_RIGHT = """<path d="M9 6l6 6-6 6"></path>"""
     const val TERMINAL = """<path d="M4 17l6-5-6-5"></path><path d="M12 19h8"></path>"""
     const val EXTERNAL = """<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path>"""

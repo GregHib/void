@@ -22,3 +22,6 @@ a:hover{color:var(--text-link-hover);text-decoration:underline}
 .void-flex{display:flex}
 .void-inline-flex{display:inline-flex}
 .void-grid{display:grid}
+
+/* Play page web client: pinned to `#client`'s top-left corner, sized to it by voidClientLayout in void.js. */
+#client>*{position:absolute!important;left:0;top:0}

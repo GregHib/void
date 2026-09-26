@@ -349,7 +349,7 @@ private fun DIV.worldDetailLabel(text: String) {
     }
 }
 
-/** A big number over a small caption — the players-online/worlds-up pair on [Play.page]/[Website.worldsPage]. */
+/** A big number over a small caption — the players-online count on [worldSelection]. */
 fun DIV.worldStat(value: String, label: String, expr: String? = null) {
     div {
         span {

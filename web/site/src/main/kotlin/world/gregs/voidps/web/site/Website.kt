@@ -11,13 +11,10 @@ import world.gregs.voidps.web.site.components.*
  */
 object Website {
 
-    val pages = if (Site.FULL) listOf(
+    val pages = listOf(
         SitePage("home", "Home", "/index.html"),
         SitePage("docs", "Docs", "/docs/index.html"),
         SitePage("play", "Play", "/play.html"),
-    ) else listOf(
-        SitePage("home", "Home", "/index.html"),
-        SitePage("docs", "Docs", "/docs/index.html"),
     )
 
     val communityPages = listOf(
@@ -65,18 +62,18 @@ object Website {
                 div {
                     style = "display:flex;gap:var(--space-5);align-items:center;flex-wrap:wrap"
                     ui.button(
-                        "Download & play",
+                        "Play online",
                         size = ButtonSize.Large,
                         glow = true,
-                        icon = Icons.DOWNLOAD,
-                        onClick = "window.location = 'https://github.com/GregHib/void/releases'"
+                        icon = Icons.PLAY,
+                        onClick = "window.location = 'play.html'"
                     )
                     ui.button(
                         "Run your own world",
                         variant = ButtonVariant.Secondary,
                         size = ButtonSize.Large,
                         icon = Icons.TERMINAL,
-                        onClick = "window.location = 'https://github.com/GregHib/void#development'",
+                        onClick = "window.location = 'docs/installation-guide.html'",
                     )
                     span {
                         style = "font:var(--type-code);font-size:var(--text-xs);color:var(--parch-300)"
@@ -223,27 +220,15 @@ object Website {
                         }
                         h3 {
                             style = "margin:0;font:var(--type-section);color:var(--parch-50)"
-                            if (Site.FULL) {
-                                +"Play online"
-                            } else {
-                                +"Play offline"
-                            }
+                            +"Play online"
                         }
                         p {
                             style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
-                            if (Site.FULL) {
-                                +"Play in the browser on a live world."
-                            } else {
-                                +"Play anywhere, no internet required."
-                            }
+                            +"Play in the browser on a live or local world."
                         }
                         div {
                             style = "margin-top:auto;padding-top:var(--space-4)"
-                            if (Site.FULL) {
-                                ui.button("Download client", onClick = "window.location = 'play.html'")
-                            } else {
-                                ui.button("Download server", onClick = "window.location = 'https://github.com/GregHib/void/releases'")
-                            }
+                            ui.button("Connect to a server", onClick = "window.location = 'play.html'")
                         }
                     }
                     ui.panel {
@@ -422,7 +407,8 @@ object Website {
      * The full world list — every community world, not just the navbar [worldMenu] dropdown's
      * quick-switch rows. Deliberately off the nav bar (reached only via "View all worlds" in that
      * dropdown); rows connect the same way the dropdown's do, via `worldMenuData()`'s `select()`,
-     * so picking one here persists just as it would from the dropdown.
+     * so picking one here persists just as it would from the dropdown. Shares its [worldSelection]
+     * view with [Play.page], where picking a row opens the client instead.
      */
     fun worldsPage(): String = voidPage(
         title = "Void — world list",
@@ -432,64 +418,7 @@ object Website {
 
         main {
             xData("worldMenuData()")
-
-            ui.pageHeader(
-                eyebrow = "World list",
-                title = "Choose a world",
-                description = "Every world runs the same open-source server build. Pick one by region and latency, or " +
-                    "by the ruleset you want to play.",
-                backgroundImage = "images/bg/worlds.jpg",
-                actions = {
-                    div {
-                        style = "display:flex;gap:var(--space-8)"
-                        worldStat("—", "Players online", expr = "voidFormatNumber(${'$'}store.worlds.totalPlayers())")
-                    }
-                },
-            )
-
-            div {
-                // width:100% matters here: without it, this flex item (a column-flex child, centered via
-                // margin:0 auto instead of stretched) sizes to its own max-content instead of filling the
-                // available width (see [Play.page]'s otherwise-identical main, which already sets this).
-                style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-8) var(--space-7) var(--space-11);" +
-                    "display:flex;flex-direction:column;gap:var(--space-8);width:100%;box-sizing:border-box"
-                ui.worldList(defaultWorlds, onSelect = { "select(${it.number})" })
-                p {
-                    style = "margin:calc(-1 * var(--space-4)) 0 0;font:var(--type-body-sm);font-size:var(--text-xs);color:var(--text-faint)"
-                    xText("${'$'}store.worlds.updatedAt ? 'Last updated ' + ${'$'}store.worlds.updatedAt.toLocaleTimeString() : 'Checking worlds…'")
-                    +"Checking worlds…"
-                }
-
-                ui.panel(title = "Your own servers", subtitle = "Saved to this browser only") {
-                    style = "display:flex;flex-direction:column;gap:var(--space-6)"
-                    xData("{ customName: '', customAddress: '' }")
-                    p {
-                        style = "margin:0;font:var(--type-body-sm);color:var(--text-muted);max-width:60ch"
-                        +("Not on the list? Save a void server in your browser to keep track of it." +
-                            "nothing is sent anywhere except a status check to that address.")
-                    }
-                    div {
-                        style = "display:grid;grid-template-columns:1fr 1fr auto;gap:var(--space-6);align-items:end"
-                        ui.textInput("custom-world-name", "Name", model = "customName", placeholder = "e.g. My server")
-                        ui.textInput(
-                            "custom-world-address",
-                            "Web address",
-                            model = "customAddress",
-                            placeholder = "e.g. play.example.com:8080",
-                            onEnter = "if (voidAddCustomWorld(customName, customAddress)) { customName = ''; customAddress = '' }",
-                        )
-                        ui.button(
-                            "Add server",
-                            onClick = "if (voidAddCustomWorld(customName, customAddress)) { customName = ''; customAddress = '' }",
-                        )
-                    }
-                    div {
-                        attributes["id"] = "void-custom-worlds"
-                        style = "display:flex;flex-direction:column;gap:var(--space-4)"
-                        +"No custom servers saved yet."
-                    }
-                }
-            }
+            ui.worldSelection()
         }
 
         ui.siteFooter()

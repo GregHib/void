@@ -30,6 +30,7 @@ private fun siteHref(href: String, assetPrefix: String): String =
  * live/paused switch (`null` omits the switch on pages whose data model has no such property).
  * [devPanelHref] overrides where [accountMenu]'s "Developer panel" entry points — pass the
  * panel's own first page when already inside it, since the default assumes a marketing page.
+ * [hiddenWhen] is an Alpine expression that hides the whole bar while true.
  */
 fun Ui.siteHeader(
     pages: List<SitePage>,
@@ -41,9 +42,14 @@ fun Ui.siteHeader(
     worldLabel: String? = null,
     liveModel: String? = null,
     devPanelHref: String = "${assetPrefix}dev/index.html",
+    hiddenWhen: String? = null,
 ) {
     receiver.header {
         attributes["class"] = "void-header"
+        if (hiddenWhen != null) {
+            // Not x-show: showing again strips the inline `display`, dropping the bar's flex layout.
+            xEffectStyle("display", "($hiddenWhen) ? 'none' : 'flex'")
+        }
         xData("{ mobileOpen: false }")
         onClickOutside("mobileOpen = false")
         style = "height:56px;display:flex;align-items:stretch;gap:var(--space-8);padding:0 var(--space-7);" +
@@ -162,6 +168,9 @@ fun Ui.siteHeader(
                 }
             }
         }
+        if (active == "play") {
+            hideNavButton()
+        }
         button {
             attributes["class"] = "void-header-toggle"
             attributes["aria-label"] = "Toggle menu"
@@ -236,5 +245,23 @@ fun Ui.siteFooter(assetPrefix: String = "") {
                 +"built ${formatter.format(Instant.now())}"
             }
         }
+    }
+}
+
+/**
+ * Tucks the nav bar away while a world is loaded; Play.kt's reveal tab brings it back. Centred on
+ * the header (absolutely, so it doesn't shift the nav) to sit directly above where the reveal tab appears.
+ */
+private fun FlowContent.hideNavButton() {
+    button {
+        xEffectStyle("display", "${'$'}store.world.current ? 'inline-flex' : 'none'")
+        onClick("${'$'}store.playNav.setHidden(true)")
+        attributes["aria-label"] = "Hide nav bar"
+        attributes["title"] = "Hide nav bar"
+        style = "position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;" +
+            "display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;" +
+            "background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-md);" +
+            "color:var(--parch-100);cursor:pointer"
+        icon(Icons.CHEVRON_UP, size = 14)
     }
 }

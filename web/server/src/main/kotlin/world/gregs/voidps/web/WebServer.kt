@@ -60,7 +60,7 @@ class WebServer(
             }
             if (webclientZip != null) {
                 proxy(serverAddress, serverPort)
-                webclient(port, webclientZip)
+                webclient(webclientZip)
             }
             api(storage, questDefinitions, cache)
         }
