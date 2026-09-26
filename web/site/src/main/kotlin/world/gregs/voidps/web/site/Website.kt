@@ -20,14 +20,10 @@ object Website {
         SitePage("docs", "Docs", "/docs/index.html"),
     )
 
-    val communityPages = if (Site.FULL) listOf(
+    val communityPages = listOf(
         SitePage("hiscores", "Hiscores", "/hiscores.html"),
         SitePage("exchange", "Exchange", "/exchange.html"),
         SitePage("log", "Log", "/log.html"),
-        SitePage("worldmap", "World Map", "/world-map.html"),
-    ) else listOf(
-        SitePage("hiscores", "Hiscores", "/hiscores.html"),
-        SitePage("log", "Adventure Logs", "/log.html"),
         SitePage("worldmap", "World Map", "/world-map.html"),
     )
 

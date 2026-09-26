@@ -1,0 +1,52 @@
+package world.gregs.voidps.tools.icon
+
+import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.FileCache
+import world.gregs.voidps.cache.definition.decoder.ItemDecoderFull
+import world.gregs.voidps.tools.render.TextureOpVerticalGradient
+import world.gregs.voidps.tools.render.BillboardType
+import world.gregs.voidps.tools.render.Js5TextureSource
+import java.io.File
+
+/**
+ * Standalone entry point: dumps every item's inventory icon straight from a
+ * local cache directory, without booting the applet/login/game-loop machinery.
+ *
+ *
+ * Usage: `java CacheItemSpriteDumper <cache directory> [output directory]`
+ *
+ *
+ * &lt;cache directory&gt; must contain the classic flat cache files
+ * (main_file_cache.dat2, main_file_cache.idx0 .. idx255). Item icons read
+ * models, item definitions, billboards and the material/texture/sprite
+ * archives the texture manager needs.
+ */
+object CacheItemSpriteDumper {
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val cacheDir = if (args.size > 0) args[0] else "./data/cache/"
+
+        try {
+            val cache: Cache = FileCache(cacheDir)
+            BillboardType.cache = cache
+            TextureOpVerticalGradient.aTextureSource9113 = Js5TextureSource(cache)
+            val decoder = ItemDecoderFull()
+            val definitions = decoder.load(cache)
+            // Notes/lends are generated while decoding in id order, so re-apply now that every template has been decoded
+            for (definition in definitions) {
+                decoder.changeValues(definitions, definition)
+            }
+            ItemSpriteDumper.icons = ItemIconRenderer(cache, definitions)
+        } catch (exception: RuntimeException) {
+            System.err.println("Failed to load cache from " + cacheDir)
+            exception.printStackTrace()
+            System.exit(1)
+            return
+        }
+        val outDir = File(if (args.size > 1) args[1] else "./build/pages/images/items")
+        val start = System.currentTimeMillis()
+        ItemSpriteDumper.dump(outDir)
+        println("Took ${System.currentTimeMillis() - start}ms")
+    }
+}

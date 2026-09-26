@@ -69,7 +69,7 @@ object Main {
         // Web server
         var site: Job? = null
         if (Settings["web.server.enabled", false]) {
-            site = webServer(port)
+            site = webServer(port, cache)
             if (site == null) {
                 server.stop()
                 return
@@ -192,7 +192,7 @@ object Main {
     }
 
     @Suppress("HttpUrlsUsage")
-    private fun webServer(port: Int): Job? {
+    private fun webServer(port: Int, cache: Cache): Job? {
         val path = Paths.get(Settings["web.client.zip", ""])
         if (!path.exists()) {
             logger.error { "No webclient zip file found at path: $path" }
@@ -200,7 +200,7 @@ object Main {
         }
         val webPort = Settings["web.server.port"].toInt()
         val address = "localhost"
-        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>())
+        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>(), cache)
         val scope = CoroutineScope(Dispatchers.IO)
         return scope.launch {
             logger.info { "Webserver online at http://$address:$webPort/" }
