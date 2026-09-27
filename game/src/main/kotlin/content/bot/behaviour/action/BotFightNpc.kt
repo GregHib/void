@@ -9,6 +9,7 @@ import content.bot.behaviour.condition.Condition
 import content.entity.combat.attacker
 import content.entity.combat.dead
 import content.entity.combat.underAttack
+import content.skill.melee.weapon.fightStyle
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnFloorItemInteract
@@ -61,6 +62,10 @@ data class BotFightNpc(
                     continue
                 }
                 if (npc.dead || (npc.underAttack && npc.attacker != player)) {
+                    continue
+                }
+                // Skip targets behind walls or inside closed buildings
+                if (!world.canReach(player, npc) && (player.fightStyle == "melee" || !world.canSee(player, npc))) {
                     continue
                 }
                 val valid = world.execute(bot.player, InteractNPC(npc.index, index + 1))
