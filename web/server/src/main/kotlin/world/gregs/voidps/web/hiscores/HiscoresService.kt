@@ -30,9 +30,13 @@ class HiscoresService(
     refreshMillis: Long = REFRESH_MS,
 ) {
 
+    val dungeoneeringBosses = NPCDefinitions.definitions
+        .filter { it.getOrNull<Set<String>>("categories")?.contains("dungeoneering_boss") == true }
+        .associate { dungeoneeringBossKey(it.name) to it.name }
+
     val bosses = NPCDefinitions.definitions
         .filter { it.getOrNull<Set<String>>("categories")?.contains("boss") == true }
-        .associate { it.stringId to it.name }
+        .associate { it.stringId to it.name } + dungeoneeringBosses
 
     private val snapshot = PeriodicSnapshot("hiscores", refreshMillis) { rank(storage.accounts()) }
 
@@ -44,6 +48,8 @@ class HiscoresService(
         val bossKills: Map<String, List<Pair<PlayerSave, Int>>>,
         /** Every recorded (account, team size, millis) per boss, fastest first. */
         val bossTimes: Map<String, List<Triple<PlayerSave, Int, Int>>>,
+        /** Every recorded dungeon floor completion, fastest first. */
+        val floorTimes: List<FloorTime>,
         /** Every account by display name, for the staff panel's search. */
         val byName: List<PlayerSave>,
         /** Keyed by lowercase display name and lowercase account name. */
@@ -72,6 +78,7 @@ class HiscoresService(
                 TEAM_SIZES.mapNotNull { size -> save.bossTimeMillis(bossId, size)?.let { millis -> Triple(save, size, millis) } }
             }.sortedBy { it.third }
         }
+        val floorTimes = accounts.flatMap { save -> save.records.mapNotNull { (key, millis) -> floorTime(save, key, millis) } }.sortedBy { it.millis }
         val skillRanks = IdentityHashMap<PlayerSave, MutableMap<Skill, Int>>()
         for ((skill, ranked) in skills) {
             for ((save, rank) in ranked) {
@@ -91,7 +98,7 @@ class HiscoresService(
             profiles.putIfAbsent(save.name.lowercase(), profile)
         }
         val byName = accounts.sortedBy { it.displayName().lowercase() }
-        return Rankings(overall, skills, bossKills, bossTimes, byName, profiles, Instant.now().toString())
+        return Rankings(overall, skills, bossKills, bossTimes, floorTimes, byName, profiles, Instant.now().toString())
     }
 
     /** Every account in the snapshot ordered by display name; see [slim] for what's left out. */
@@ -109,7 +116,7 @@ class HiscoresService(
             skills = Skill.all.map {
                 SkillMetadata(id = it.id(), name = it.name, maxLevel = it.displayMax(), iconUrl = it.iconUrl())
             },
-            bosses = bosses.map { BossMetadata(it.key, it.value) },
+            bosses = bosses.map { BossMetadata(it.key, it.value, if (it.key in dungeoneeringBosses) "dungeoneering" else "world") },
             modes = MODES.map { ModeMetadata(id = it, name = it.replaceFirstChar(Char::uppercase)) },
             teamSizes = TEAM_SIZES,
         )
@@ -170,6 +177,48 @@ class HiscoresService(
                 BossTimeRow(rank = from + index + 1, name = save.displayName(), teamSize = size, timeSeconds = millis / 1000.0)
             },
         )
+    }
+
+    /**
+     * The fastest completion of every floor matching the filters, one row per floor. A null filter
+     * (or "all") matches everything, so this doubles as the dungeoneering tab's overview.
+     */
+    fun floorRecords(size: String?, complexity: String?, partySize: String?): FloorRecords {
+        val entries = snapshot.get().floorTimes.filter(FloorFilter.of(null, size, complexity, partySize))
+        val fastest = entries.groupBy { it.floor }.mapValues { it.value.first() }
+        return FloorRecords(
+            maxFloor = MAX_FLOOR,
+            items = fastest.values.sortedBy { it.floor }.map { it.row(rank = 1) },
+        )
+    }
+
+    fun floorTimes(floor: Int, size: String?, complexity: String?, partySize: String?, page: Int, pageSize: Int): FloorTimeLeaderboard? {
+        if (floor !in 1..MAX_FLOOR) {
+            return null
+        }
+        val entries = snapshot.get().floorTimes.filter(FloorFilter.of(floor, size, complexity, partySize))
+        val (from, to) = window(entries.size, page, pageSize)
+        return FloorTimeLeaderboard(
+            floor = floor,
+            pagination = Pagination.of(page, pageSize, entries.size),
+            items = entries.subList(from, to).mapIndexed { index, entry -> entry.row(rank = from + index + 1) },
+        )
+    }
+
+    private class FloorFilter(val floor: Int?, val size: String?, val complexity: Int?, val partySize: Int?) : (FloorTime) -> Boolean {
+        override fun invoke(entry: FloorTime) = (floor == null || entry.floor == floor) &&
+            (size == null || entry.size == size) &&
+            (complexity == null || entry.complexity == complexity) &&
+            (partySize == null || entry.partySize == partySize)
+
+        companion object {
+            fun of(floor: Int?, size: String?, complexity: String?, partySize: String?) = FloorFilter(
+                floor = floor,
+                size = size?.lowercase()?.takeIf { it in FLOOR_SIZES },
+                complexity = complexity?.toIntOrNull()?.takeIf { it in COMPLEXITIES },
+                partySize = partySize?.toIntOrNull()?.takeIf { it in TEAM_SIZES },
+            )
+        }
     }
 
     fun searchPlayers(query: String?, limit: Int): List<PlayerSuggestion> {
@@ -385,8 +434,29 @@ class HiscoresService(
         const val REFRESH_MS = 1_200_000L
         const val MAXIMUM_TRACKED_XP = 200_000_000L
         val MODES = listOf("main", "skiller", "pure")
-        val TEAM_SIZES = listOf(1, 2, 3, 4)
-        private val TEAM_SUFFIXES = listOf(2 to "_duo", 3 to "_trio", 4 to "_quad")
+        /** A dungeoneering party can't exceed 5, other bosses record 5 or more as a "mass" team. */
+        val TEAM_SIZES = listOf(1, 2, 3, 4, 5)
+        private val TEAM_SUFFIXES = listOf(2 to "_duo", 3 to "_trio", 4 to "_quad", 5 to "_mass")
+        const val MAX_FLOOR = 60
+        val FLOOR_SIZES = listOf("small", "medium", "large")
+        val COMPLEXITIES = 1..6
+
+        /** Mirrors `KillTracker.dungeoneeringFloorKey` plus the team suffix `KillTracker.record` appends. */
+        private val FLOOR_RECORD = Regex("dungeoneering_floor_(\\d+)_(small|medium|large)_c(\\d)(_duo|_trio|_quad|_mass)?")
+
+        internal class FloorTime(val save: PlayerSave, val floor: Int, val size: String, val complexity: Int, val partySize: Int, val millis: Int) {
+            fun row(rank: Int) = FloorTimeRow(rank, save.displayName(), floor, size, complexity, partySize, millis / 1000.0)
+        }
+
+        private fun floorTime(save: PlayerSave, key: String, millis: Int): FloorTime? {
+            val match = FLOOR_RECORD.matchEntire(key) ?: return null
+            val (floor, size, complexity, suffix) = match.destructured
+            val partySize = if (suffix.isEmpty()) 1 else TEAM_SUFFIXES.first { it.second == suffix }.first
+            return FloorTime(save, floor.toInt(), size, complexity.toInt(), partySize, millis)
+        }
+
+        /** Mirrors `KillTracker.dungeoneeringBossKey`: "Icy Bones" -> "icy_bones". */
+        internal fun dungeoneeringBossKey(name: String): String = name.lowercase().replace(Regex("[^a-z0-9]+"), "_").trim('_')
 
         /** The skills a pure trains selectively and a skiller avoids entirely. */
         private val COMBAT_SKILLS = listOf(Skill.Attack, Skill.Strength, Skill.Defence, Skill.Magic, Skill.Ranged, Skill.Prayer, Skill.Summoning)

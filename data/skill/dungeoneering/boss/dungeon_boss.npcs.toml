@@ -1,6 +1,7 @@
 # https://runescape.wiki/w/Icy_Bones?oldid=5118127
 [rand_ice_lord_boss_0]
 id = 10040
+categories = ["dungeoneering_boss"]
 hitpoints = 100
 max_hit_crush = 20
 max_hit_range = 20
@@ -15,6 +16,7 @@ examine = "Summoner of stalagmites."
 
 [rand_ice_lord_boss_1]
 id = 10041
+categories = ["dungeoneering_boss"]
 hitpoints = 250 # Guess
 att = 12 # Guess
 str = 12 # Guess
@@ -26,6 +28,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_2]
 id = 10042
+categories = ["dungeoneering_boss"]
 hitpoints = 400 # Guess
 max_hit_crush = 60  # Guess
 max_hit_range = 60  # Guess
@@ -39,6 +42,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_3]
 id = 10043
+categories = ["dungeoneering_boss"]
 hitpoints = 600 # Guess
 max_hit_crush = 80  # Guess
 max_hit_range = 80  # Guess
@@ -52,6 +56,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_4]
 id = 10044
+categories = ["dungeoneering_boss"]
 hitpoints = 750 # Guess
 max_hit_crush = 80  # Guess
 max_hit_range = 80  # Guess
@@ -65,6 +70,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_5]
 id = 10045
+categories = ["dungeoneering_boss"]
 hitpoints = 1000 # Guess
 max_hit_crush = 100  # Guess
 max_hit_range = 100  # Guess
@@ -78,6 +84,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_6]
 id = 10046
+categories = ["dungeoneering_boss"]
 hitpoints = 1150 # https://youtu.be/8T6c3m8Iw2E
 max_hit_crush = 125  # Guess
 max_hit_range = 125  # Guess
@@ -91,6 +98,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_7]
 id = 10047
+categories = ["dungeoneering_boss"]
 hitpoints = 1600 # https://youtu.be/3X9bXQjNh7k?t=173
 max_hit_crush = 150  # Guess
 max_hit_range = 150  # Guess
@@ -104,6 +112,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_8]
 id = 10048
+categories = ["dungeoneering_boss"]
 hitpoints = 2200 # https://youtu.be/nVUjpmB_2Xw?t=190
 max_hit_crush = 170
 max_hit_range = 170
@@ -117,6 +126,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_9]
 id = 10049
+categories = ["dungeoneering_boss"]
 hitpoints = 2900 # Guess
 max_hit_crush = 220  # Guess
 max_hit_range = 220  # Guess
@@ -130,6 +140,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_10]
 id = 10050
+categories = ["dungeoneering_boss"]
 hitpoints = 3650
 max_hit_crush = 267
 max_hit_range = 267
@@ -143,6 +154,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_11]
 id = 10051
+categories = ["dungeoneering_boss"]
 hitpoints = 4400 # Guess
 max_hit_crush = 330  # Guess
 max_hit_range = 330  # Guess
@@ -156,6 +168,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_12]
 id = 10052
+categories = ["dungeoneering_boss"]
 hitpoints = 5310
 max_hit_crush = 387
 max_hit_range = 387
@@ -169,6 +182,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_13]
 id = 10053
+categories = ["dungeoneering_boss"]
 hitpoints = 6200 # Guess
 max_hit_crush = 450  # Guess
 max_hit_range = 450  # Guess
@@ -182,6 +196,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_14]
 id = 10054
+categories = ["dungeoneering_boss"]
 hitpoints = 7200 # Guess
 max_hit_crush = 520  # Guess
 max_hit_range = 520  # Guess
@@ -195,6 +210,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_15]
 id = 10055
+categories = ["dungeoneering_boss"]
 hitpoints = 8250 # Guess
 max_hit_crush = 600  # Guess
 max_hit_range = 600  # Guess
@@ -208,6 +224,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_16]
 id = 10056
+categories = ["dungeoneering_boss"]
 hitpoints = 9300 # Guess
 max_hit_crush = 677  # Guess
 max_hit_range = 677  # Guess
@@ -221,6 +238,7 @@ hunt_range = 8
 
 [rand_ice_lord_boss_17]
 id = 10057
+categories = ["dungeoneering_boss"]
 hitpoints = 10300 # Guess
 max_hit_crush = 750  # Guess
 max_hit_range = 750  # Guess
@@ -234,6 +252,7 @@ hunt_range = 8
 
 [rand_ancient_mage_0_melee]
 id = 9965
+categories = ["dungeoneering_boss"]
 combat_def = "astea_frostweb"
 max_hit_magic = 21
 hunt_mode = "aggressive_retarget"

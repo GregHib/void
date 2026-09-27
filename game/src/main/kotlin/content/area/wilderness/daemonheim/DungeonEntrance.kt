@@ -9,6 +9,7 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
+import content.entity.player.stat.KillTracker
 import content.entity.world.music.playTrack
 import content.quest.largeInstance
 import content.quest.smallInstance
@@ -286,6 +287,7 @@ class DungeonEntrance : Script {
         this["show_daemonheim_map"] = true
         this["dungeoneering_party_size"] = size.name
         this["dungeon_deaths"] = 0
+        KillTracker.start(this, "dungeoneering_floor_timer")
         this["in_dungeoneering"] = true
         this["in_multi_combat"] = true
         open("dungeoneering_spellbook")

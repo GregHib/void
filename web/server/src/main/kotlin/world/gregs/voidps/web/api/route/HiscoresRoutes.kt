@@ -52,6 +52,25 @@ fun Route.hiscoresRoutes(service: HiscoresService) {
                 call.respond(result)
             }
         }
+        route("/dungeoneering/floors") {
+            get {
+                val params = call.request.queryParameters
+                call.respond(service.floorRecords(size = params["size"], complexity = params["complexity"], partySize = params["partySize"]))
+            }
+            get("/{floor}") {
+                val floor = call.parameters["floor"]?.toIntOrNull() ?: throw ApiException.Validation("floor", "Must be a number")
+                val params = call.request.queryParameters
+                val result = service.floorTimes(
+                    floor,
+                    size = params["size"],
+                    complexity = params["complexity"],
+                    partySize = params["partySize"],
+                    page = params.page(),
+                    pageSize = params.pageSize(),
+                ) ?: throw ApiException.NotFound("floor", floor.toString())
+                call.respond(result)
+            }
+        }
         get("/compare") {
             val params = call.request.queryParameters
             val playerA = params["playerA"] ?: throw ApiException.Validation("playerA", "Required")

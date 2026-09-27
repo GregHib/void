@@ -27,7 +27,7 @@ data class Pagination(
 data class SkillMetadata(val id: String, val name: String, val maxLevel: Int, val iconUrl: String)
 
 @Serializable
-data class BossMetadata(val id: String, val name: String)
+data class BossMetadata(val id: String, val name: String, val group: String)
 
 @Serializable
 data class ModeMetadata(val id: String, val name: String)
@@ -71,6 +71,23 @@ data class BossTimeRow(val rank: Int, val name: String, val teamSize: Int, val t
 
 @Serializable
 data class BossTimeLeaderboard(val boss: String, val bossName: String, val pagination: Pagination, val items: List<BossTimeRow>)
+
+@Serializable
+data class FloorTimeRow(
+    val rank: Int,
+    val name: String,
+    val floor: Int,
+    val size: String,
+    val complexity: Int,
+    val partySize: Int,
+    val timeSeconds: Double,
+)
+
+@Serializable
+data class FloorRecords(val maxFloor: Int, val items: List<FloorTimeRow>)
+
+@Serializable
+data class FloorTimeLeaderboard(val floor: Int, val pagination: Pagination, val items: List<FloorTimeRow>)
 
 @Serializable
 data class SkillEntry(val level: Int, val xp: Long)
