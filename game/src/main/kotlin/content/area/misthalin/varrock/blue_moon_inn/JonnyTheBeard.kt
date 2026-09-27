@@ -8,7 +8,6 @@ class JonnyTheBeard : Script {
     init {
         npcOperate("Talk-to", "jonny_the_beard") {
             message("Jonny the beard is not interested in talking.")
-            return@npcOperate
         }
     }
 }

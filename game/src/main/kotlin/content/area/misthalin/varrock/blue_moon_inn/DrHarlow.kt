@@ -2,7 +2,6 @@ package content.area.misthalin.varrock.blue_moon_inn
 
 import content.entity.player.dialogue.Drunk
 import content.entity.player.dialogue.Happy
-import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -22,7 +21,7 @@ class DrHarlow : Script {
                     npc<Drunk>("Pssssh, I never have enough!")
                 }
                 option("Okay, here you go. ") {
-                    if(inventory.contains("beer")) {
+                    if (inventory.contains("beer")) {
                         player<Happy>("Okay, here you go.")
                         inventory.remove("beer")
                         statement("You give a beer to Dr Harlow.")
