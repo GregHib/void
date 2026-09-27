@@ -94,9 +94,7 @@ class NPCDeath(
                 }
                 hide = true
                 val respawn = get<Tile>("respawn_tile")
-                if (lifecycle < 0) {
-                    // Despawn already requested, don't respawn
-                } else if (respawn != null && onDeath.respawn) {
+                if (lifecycle >= 0 && respawn != null && onDeath.respawn) {
                     damageDealers.clear()
                     respawn(npc["respawn_delay", 60])
                 } else {
