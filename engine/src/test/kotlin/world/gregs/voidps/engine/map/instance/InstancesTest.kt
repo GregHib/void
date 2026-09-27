@@ -89,7 +89,50 @@ internal class InstancesTest : KoinMock() {
             Instances.small()
         }
         // Then
-        assertThrows<NullPointerException> {
+        assertThrows<IllegalStateException> {
+            Instances.small()
+        }
+    }
+
+    @Test
+    fun `Full instances are cleaned up before allocating`() {
+        val first = Instances.small()
+        repeat(1376) {
+            Instances.small()
+        }
+        GameLoop.tick = Instances.CLEANUP_TICKS + 1
+        // When
+        val instance = Instances.small()
+        // Then
+        assertEquals(first, instance)
+    }
+
+    @Test
+    fun `Full instances reclaim the longest empty instance waiting on its timeout`() {
+        val first = Instances.small(timeout = 30)
+        GameLoop.tick = 10
+        val second = Instances.small(timeout = 30)
+        repeat(1375) {
+            Instances.small(timeout = 30)
+        }
+        GameLoop.tick = 100
+        val firstKey = Instances.key(first)
+        // When
+        val instance = Instances.small()
+        // Then
+        assertEquals(first, instance)
+        assertFalse(Instances.valid(first, firstKey))
+        assertTrue(Instances.isInstance(second))
+    }
+
+    @Test
+    fun `Full instances don't reclaim occupied instances`() {
+        repeat(1377) {
+            player(Instances.small(timeout = 30).tile.add(10, 10), index = it + 1)
+        }
+        GameLoop.tick = 1000
+        // Then
+        assertThrows<IllegalStateException> {
             Instances.small()
         }
     }
@@ -198,8 +241,8 @@ internal class InstancesTest : KoinMock() {
         assertTrue(Instances.valid(reused, Instances.key(reused)))
     }
 
-    private fun player(tile: Tile): Player {
-        val player = Player(index = 1, tile = tile)
+    private fun player(tile: Tile, index: Int = 1): Player {
+        val player = Player(index = index, tile = tile)
         Players.add(player)
         players.add(player)
         return player

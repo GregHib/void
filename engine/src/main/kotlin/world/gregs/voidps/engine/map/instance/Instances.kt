@@ -39,13 +39,30 @@ object Instances : Runnable {
      * Allocates an empty 128x128 (2x2 region) area
      * @param timeout minutes to keep the instance after all players have left
      */
-    fun small(timeout: Int = 0): Region = allocate(small.pollFirst(), timeout)
+    fun small(timeout: Int = 0): Region = allocate(next(small, large = false), timeout)
 
     /**
      * Allocates an empty 320x320 (5x5 region) area
      * @param timeout minutes to keep the instance after all players have left
      */
-    fun large(timeout: Int = 0): Region = allocate(large.pollFirst(), timeout)
+    fun large(timeout: Int = 0): Region = allocate(next(large, large = true), timeout)
+
+    /**
+     * Takes the next free instance, if none are left tries a clean-up, and failing that
+     * reclaims the instance which has been empty the longest regardless of its timeout.
+     */
+    private fun next(pool: Deque<Region>, large: Boolean): Region {
+        pool.pollFirst()?.let { return it }
+        cleanup()
+        pool.pollFirst()?.let { return it }
+        val tick = GameLoop.tick
+        val oldest = used.entries
+            .filter { (region, allocation) -> (region.y >= MID_POINT) == large && tick - allocation.lastSeen > CLEANUP_TICKS }
+            .minByOrNull { it.value.lastSeen }
+            ?: throw IllegalStateException("No ${if (large) "large" else "small"} instances available.")
+        free(oldest.key)
+        return pool.pollFirst()
+    }
 
     private fun allocate(region: Region, timeout: Int): Region {
         lastKey = maxOf(lastKey + 1, System.currentTimeMillis())

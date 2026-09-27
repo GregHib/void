@@ -21,6 +21,7 @@ Every 50 ticks (30 seconds) instances with no players inside them are freed auto
 
 > [!NOTE]
 > There are maximum of 1377 small instances and 700 large instances at any given time.
+> If they're all in use, allocating runs a clean-up early, and failing that reclaims the instance which has been empty the longest, ignoring its timeout.
 
 ### Timeout
 
