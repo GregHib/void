@@ -99,6 +99,9 @@ data class CompareSkillRow(val skill: String, val skillName: String, val a: Skil
 data class CompareBossRow(val boss: String, val bossName: String, val aKills: Int, val bKills: Int, val leader: String, val differenceKills: Int)
 
 @Serializable
+data class CompareFloorRow(val floor: Int, val aSeconds: Double?, val bSeconds: Double?, val leader: String, val differenceSeconds: Double?)
+
+@Serializable
 data class ComparisonSide(val name: String, val mode: String, val rank: Int, val totalLevel: Int, val totalXp: Long, val bossKills: Int)
 
 @Serializable
@@ -111,6 +114,7 @@ data class Comparison(
     val summary: List<ComparisonSummaryCard>,
     val skills: List<CompareSkillRow>,
     val bosses: List<CompareBossRow>,
+    val floors: List<CompareFloorRow>,
 )
 
 @Serializable

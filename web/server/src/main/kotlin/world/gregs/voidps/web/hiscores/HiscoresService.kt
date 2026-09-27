@@ -40,7 +40,16 @@ class HiscoresService(
 
     private val snapshot = PeriodicSnapshot("hiscores", refreshMillis) { rank(storage.accounts()) }
 
-    private class Profile(val save: PlayerSave, val overallRank: Int, val skillRanks: Map<Skill, Int>, val bossRanks: Map<String, Int>)
+    private class Profile(
+        val save: PlayerSave,
+        val overallRank: Int,
+        val skillRanks: Map<Skill, Int>,
+        val bossRanks: Map<String, Int>,
+        /** The account's fastest completion of each floor and its rank on that floor's unfiltered leaderboard. */
+        val floors: Map<Int, RankedFloorTime>,
+    )
+
+    private class RankedFloorTime(val time: FloorTime, val rank: Int)
 
     private class Rankings(
         val overall: List<Pair<PlayerSave, Int>>,
@@ -91,9 +100,16 @@ class HiscoresService(
                 bossRanks.getOrPut(save) { mutableMapOf() }[bossId] = rank
             }
         }
+        val floorBests = IdentityHashMap<PlayerSave, MutableMap<Int, RankedFloorTime>>()
+        for ((_, entries) in floorTimes.groupBy { it.floor }) {
+            // Fastest first, so the first entry seen for an account is its best
+            for ((index, entry) in entries.withIndex()) {
+                floorBests.getOrPut(entry.save) { mutableMapOf() }.putIfAbsent(entry.floor, RankedFloorTime(entry, index + 1))
+            }
+        }
         val profiles = HashMap<String, Profile>()
         for ((save, rank) in overall) {
-            val profile = Profile(save, rank, skillRanks[save] ?: emptyMap(), bossRanks[save] ?: emptyMap())
+            val profile = Profile(save, rank, skillRanks[save] ?: emptyMap(), bossRanks[save] ?: emptyMap(), floorBests[save] ?: emptyMap())
             profiles.putIfAbsent(save.displayName().lowercase(), profile)
             profiles.putIfAbsent(save.name.lowercase(), profile)
         }
@@ -346,6 +362,15 @@ class HiscoresService(
         return PlayerBosses(totalKills = items.sumOf { it.kills }, items = items)
     }
 
+    fun playerFloors(name: String): PlayerFloors? {
+        val profile = snapshot.get().find(name) ?: return null
+        return PlayerFloors(
+            floorsCleared = profile.floors.size,
+            maxFloor = MAX_FLOOR,
+            items = profile.floors.values.sortedBy { it.time.floor }.map { it.time.row(it.rank) },
+        )
+    }
+
     fun compare(nameA: String, nameB: String): Comparison? {
         val rankings = snapshot.get()
         val profileA = rankings.find(nameA) ?: return null
@@ -375,6 +400,23 @@ class HiscoresService(
             val bKc = b.bossKills(bossId)
             val leader = if (aKc == bKc) "tie" else if (aKc > bKc) "a" else "b"
             CompareBossRow(boss = bossId, bossName = bossName, aKills = aKc, bKills = bKc, leader = leader, differenceKills = abs(aKc - bKc))
+        }
+        val floorRows = (profileA.floors.keys + profileB.floors.keys).sorted().map { floor ->
+            val aMillis = profileA.floors[floor]?.time?.millis
+            val bMillis = profileB.floors[floor]?.time?.millis
+            // Fastest leads; an uncleared floor always trails
+            val leader = when {
+                aMillis == bMillis -> "tie"
+                bMillis == null || (aMillis != null && aMillis < bMillis) -> "a"
+                else -> "b"
+            }
+            CompareFloorRow(
+                floor = floor,
+                aSeconds = aMillis?.let { it / 1000.0 },
+                bSeconds = bMillis?.let { it / 1000.0 },
+                leader = leader,
+                differenceSeconds = if (aMillis != null && bMillis != null) abs(aMillis - bMillis) / 1000.0 else null,
+            )
         }
         val skillsAhead = skillRows.count { it.leader == "a" }
         val summary = listOf(
@@ -406,6 +448,7 @@ class HiscoresService(
             summary = summary,
             skills = skillRows,
             bosses = bossRows,
+            floors = floorRows,
         )
     }
 

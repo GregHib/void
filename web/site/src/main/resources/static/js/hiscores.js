@@ -132,11 +132,11 @@
       skillRows: [], skillPager: derivePager(null), skillEyebrow: "",
       bossKcRows: [], bossKcPager: derivePager(null),
       bossTimeRows: [], bossTimePager: derivePager(null),
-      floorRows: [], floorPager: derivePager(null), floorBest: {}, floorRecordCount: 0,
+      floorRows: [], floorPager: derivePager(null), floorBest: {},
       searchRows: [], searchPager: derivePager(null), searchEyebrow: "",
       compareResult: null,
       profilePlayer: { rank: "—", mode: "", name: "", totalLevel: 0, totalXp: 0, joined: "" },
-      profileSkills: [], profileBosses: [],
+      profileSkills: [], profileBosses: [], profileFloors: [], profileFloorsCleared: 0,
 
       init: function () {
         var params = new URLSearchParams(window.location.search);
@@ -214,12 +214,12 @@
         this.skillRows = []; this.skillPager = derivePager(null); this.skillEyebrow = "";
         this.bossKcRows = []; this.bossKcPager = derivePager(null);
         this.bossTimeRows = []; this.bossTimePager = derivePager(null);
-        this.floorRows = []; this.floorPager = derivePager(null); this.floorBest = {}; this.floorRecordCount = 0;
+        this.floorRows = []; this.floorPager = derivePager(null); this.floorBest = {};
         this.searchRows = []; this.searchPager = derivePager(null); this.searchEyebrow = "";
         this.compareResult = null;
         this.comboItems = { a: [], b: [] };
         this.profilePlayer = { rank: "—", mode: "", name: this.profile, totalLevel: 0, totalXp: 0, joined: "" };
-        this.profileSkills = []; this.profileBosses = [];
+        this.profileSkills = []; this.profileBosses = []; this.profileFloors = []; this.profileFloorsCleared = 0;
       },
 
       historyState: function () {
@@ -389,7 +389,6 @@
         return params;
       },
       get floorFiltered() { return this.floorSize !== "all" || this.floorComplexity !== "all" || this.floorParty !== "all"; },
-      get floorRecordsEyebrow() { return this.floorRecordCount + " of " + MAX_FLOOR + " floors cleared"; },
       get floorEyebrow() {
         var parts = ["FLOOR " + this.floor];
         if (this.floorSize !== "all") parts.push(modeLabel(this.floorSize));
@@ -405,10 +404,8 @@
           var best = {};
           data.items.forEach(function (row) { best[row.floor] = mmss(row.timeSeconds); });
           self.floorBest = best;
-          self.floorRecordCount = data.items.length;
         }).catch(function () {
           self.floorBest = {};
-          self.floorRecordCount = 0;
         });
       },
 
@@ -476,8 +473,12 @@
           getJson(API + "/players/" + encoded),
           getJson(API + "/players/" + encoded + "/skills"),
           getJson(API + "/players/" + encoded + "/bosses"),
+          // Tolerates worlds running a server from before floor times were tracked
+          getJson(API + "/players/" + encoded + "/dungeoneering").catch(function () { return { floorsCleared: 0, items: [] }; }),
         ]).then(function (results) {
-          var profile = results[0], skills = results[1], bosses = results[2];
+          var profile = results[0], skills = results[1], bosses = results[2], floors = results[3];
+          self.profileFloors = floors.items.map(window.voidFloorRow);
+          self.profileFloorsCleared = floors.floorsCleared;
           self.profilePlayer = {
             rank: profile.overallRank != null ? fmt(profile.overallRank) : "—",
             mode: modeLabel(profile.mode), name: profile.name,
@@ -497,6 +498,8 @@
           self.profilePlayer = { rank: "—", mode: "", name: name, totalLevel: 0, totalXp: 0, joined: "" };
           self.profileSkills = [];
           self.profileBosses = [];
+          self.profileFloors = [];
+          self.profileFloorsCleared = 0;
         });
       },
 
@@ -568,6 +571,11 @@
             bg: band(i),
           }, d);
         });
+      },
+      get profileFloorsEyebrow() { return this.profileFloorsCleared + " of " + MAX_FLOOR + " floors cleared"; },
+      get compareFloorRows() {
+        if (!this.compareResult || !this.compareResult.floors) return [];
+        return this.compareResult.floors.map(window.voidFloorCompareRow);
       },
       get compareBossRows() {
         if (!this.compareResult) return [];

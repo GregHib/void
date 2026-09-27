@@ -456,6 +456,11 @@ object Hiscores {
                     }
                 }
             }
+
+            div {
+                xShow("compareReady")
+                ui.floorComparisonPanel(rows = "compareFloorRows", eyebrow = "compareEyebrow")
+            }
         }
     }
 
@@ -580,18 +585,18 @@ object Hiscores {
                 attributes["class"] = "void-grid hiscores-split"
                 style = "grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:var(--space-8);align-items:start"
 
-                ui.panel(title = "Floors", action = eyebrowText("floorRecordsEyebrow"), padded = false) { floorTileGrid() }
+                ui.panel(title = "Floors", padded = false) { floorTileGrid() }
 
                 ui.panel(title = "Fastest floor times", action = eyebrowText("floorEyebrow"), padded = false) {
                     tableScroll(
                         Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"), Column("Size", "90px"),
-                        Column("Cx", "50px", "right"), Column("Party", "90px", "right"), Column("Time", "110px", "right"),
+                        Column("Complexity", "110px", "right"), Column("Party", "90px", "right"), Column("Time", "110px", "right"),
                     ) {
                         unsafe {
                             raw(
                                 """
                                 <template x-for="(row,i) in floorRows" :key="row.key">
-                                  <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:56px minmax(0,1fr) 90px 50px 90px 110px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
+                                  <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:56px minmax(0,1fr) 90px 110px 90px 110px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
                                     <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-base)/1 var(--font-display)" x-text="row.rank"></span>
                                     <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
                                     <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-body)" x-text="row.size"></span>
@@ -786,6 +791,8 @@ object Hiscores {
                     }
                 }
             }
+
+            ui.floorTimesPanel(rows = "profileFloors", eyebrow = "profileFloorsEyebrow")
         }
     }
 }
