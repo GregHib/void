@@ -212,7 +212,7 @@ class FileStorage(
     override fun saveClaims(claims: Map<Int, Claim>) {
         val file = directory.resolve(Settings["storage.grand.exchange.offers.claim.path"])
         file.parentFile.mkdirs()
-        Config.fileWriter(file) {
+        Config.atomicFileWriter(file) {
             for ((id, claim) in claims) {
                 writeKey(id.toString())
                 list(2) { index ->

@@ -58,7 +58,7 @@ data class PlayerSave(
     )
 
     fun save(file: File) {
-        Config.fileWriter(file) {
+        Config.atomicFileWriter(file) {
             writePair("accountName", name)
             writePair("passwordHash", password)
             writePair("experience", experience)
