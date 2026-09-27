@@ -111,8 +111,9 @@ fun Player.smallInstance(region: Region? = null, levels: Int = 4, logout: Boolea
     return instance
 }
 
-fun Player.largeInstance(timeout: Int = 0): Region {
+fun Player.largeInstance(logout: Boolean = true, timeout: Int = 0): Region {
     val instance = Instances.large(timeout)
+    set("instance_logout", logout)
     joinInstance(instance)
     return instance
 }
@@ -163,6 +164,39 @@ fun Player.instance(): Region? {
         return region
     }
     return if (Instances.valid(region, get<Long>("instance_key"))) region else null
+}
+
+/**
+ * Unlinks the player from their instance but remembers it as [name], so it can be re-entered
+ * with [rejoinInstance] until it's freed.
+ */
+fun Player.leaveInstance(name: String): Boolean {
+    val id: Int = get("instance") ?: return false
+    val key: Long? = get("instance_key")
+    if (key != null) {
+        set("${name}_instance", id)
+        set("${name}_instance_key", key)
+        set("${name}_instance_offset", instanceOffset().id)
+    }
+    return clearInstance()
+}
+
+/**
+ * Re-links the player to the instance previously left with [leaveInstance], if it hasn't been freed.
+ */
+fun Player.rejoinInstance(name: String): Region? {
+    val id: Int = remove("${name}_instance") ?: return null
+    val key: Long? = remove("${name}_instance_key")
+    val offset: Long? = remove("${name}_instance_offset")
+    val region = Region(id)
+    if (!Instances.valid(region, key)) {
+        return null
+    }
+    joinInstance(region)
+    if (offset != null) {
+        set("instance_offset", offset)
+    }
+    return region
 }
 
 /**

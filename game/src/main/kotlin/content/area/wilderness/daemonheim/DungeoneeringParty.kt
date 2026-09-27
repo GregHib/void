@@ -4,8 +4,13 @@ import content.entity.player.bank.BankDeposit
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
 import content.entity.player.modal.Tab
+import content.entity.world.music.playTrack
 import content.quest.clearInstance
+import content.quest.joinInstance
 import content.quest.openTabs
+import content.skill.dungeoneering.DungeonMap
+import content.skill.dungeoneering.DungeonMusic
+import content.skill.dungeoneering.dungeonMap
 import content.skill.summoning.pet.dismissPet
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.Script
@@ -14,6 +19,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.variable.PlayerVariables
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -21,6 +27,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.*
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.type.Tile
 
@@ -126,7 +133,17 @@ class DungeoneeringParty : Script {
         }
 
         playerDespawn {
+            if (inDungeoneering && logout(this)) {
+                return@playerDespawn
+            }
             leave(this)
+        }
+
+        playerSpawn {
+            if (inDungeoneering && !rejoin(this)) {
+                // Dungeon no longer exists
+                leaveDungeon(this, last = true)
+            }
         }
 
         /*
@@ -252,6 +269,83 @@ class DungeoneeringParty : Script {
         private const val ID = "dungeoneering_party"
         private const val GREEN = 0x007800
         private const val RED = 0x780000
+
+        /**
+         * Minutes a dungeon is kept after everyone has logged out
+         */
+        const val REJOIN_MINUTES = 30
+
+        private class Rejoin(val dungeon: DungeonMap, val key: Long, val variables: Map<String, Any>)
+
+        private val loggedOut = mutableMapOf<String, Rejoin>()
+
+        /**
+         * Dungeon progress which isn't saved but is needed to carry on after logging back in.
+         * Party membership is excluded as it's rebuilt from whoever is still in the dungeon.
+         */
+        private fun rejoinVariable(key: String) = when {
+            key == "dungeoneering_party_leader" || key.startsWith("dungeoneering_member_") -> false
+            key.startsWith("dungeon") || key.startsWith("rand_") -> true
+            else -> key == "in_multi_combat" || key == "show_daemonheim_map"
+        }
+
+        /**
+         * Keep [player]'s place in the dungeon so they can log back into it
+         */
+        private fun logout(player: Player): Boolean {
+            val dungeon = player.dungeonMap ?: return false
+            val key: Long = player["instance_key"] ?: return false
+            loggedOut.values.removeIf { !Instances.valid(it.dungeon.region, it.key) }
+            val temp = (player.variables as PlayerVariables).temp
+            loggedOut[player.accountName] = Rejoin(dungeon, key, temp.filterKeys(::rejoinVariable))
+            dungeon.players.remove(player.index)
+            val others = player.dungeonMembers.filter { it != player }
+            if (player.dungeonLeader == player && others.isNotEmpty()) {
+                promote(player, others.first(), leave = true)
+            }
+            for (member in others) {
+                member.message("${player.name} has logged out.")
+                member.refreshDetails()
+            }
+            return true
+        }
+
+        /**
+         * Return [player] to the dungeon they logged out of, if it's still around
+         */
+        private fun rejoin(player: Player): Boolean {
+            val rejoin = loggedOut.remove(player.accountName) ?: return false
+            val dungeon = rejoin.dungeon
+            if (dungeon.ended || !Instances.valid(dungeon.region, rejoin.key)) {
+                return false
+            }
+            for ((key, value) in rejoin.variables) {
+                player[key] = value
+            }
+            player.joinInstance(dungeon.region)
+            dungeon.players.add(player.index)
+            val leader = dungeon.members.firstOrNull { it != player && it.dungeonMap === dungeon }?.dungeonLeader
+            if (leader == null) {
+                // Solo or first back
+                player["dungeoneering_party_leader"] = player.name
+                player.dungeonMembers = listOf(player)
+            } else {
+                player["dungeoneering_party_leader"] = leader.name
+                val members = leader.dungeonMembers
+                leader.dungeonMembers = if (player in members) members else members + player
+                for (member in leader.dungeonMembers) {
+                    if (member != player) {
+                        member.message("${player.name} has logged back in.")
+                        member.refreshDetails()
+                    }
+                }
+            }
+            player.open("dungeoneering_spellbook")
+            player.open("rand_overlay")
+            player.playTrack(DungeonMusic.ambientTrack(dungeon.theme))
+            player.refreshDetails()
+            return true
+        }
 
         fun inParty(player: Player) = player.dungeonLeader != null
 
