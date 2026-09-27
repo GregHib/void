@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.inv.*
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.type.Tile
 
 class DungeoneeringParty : Script {
@@ -324,6 +325,16 @@ class DungeoneeringParty : Script {
             }
             player.joinInstance(dungeon.region)
             dungeon.players.add(player.index)
+            player.open("dungeoneering_spellbook")
+            player.open("rand_overlay")
+            player.playTrack(DungeonMusic.ambientTrack(dungeon.theme))
+            player.strongQueue("dungeon_rejoin") {
+                rejoinParty(player, dungeon)
+            }
+            return true
+        }
+
+        private fun rejoinParty(player: Player, dungeon: DungeonMap) {
             val leader = dungeon.members.firstOrNull { it != player && it.dungeonMap === dungeon }?.dungeonLeader
             if (leader == null) {
                 // Solo or first back
@@ -340,11 +351,7 @@ class DungeoneeringParty : Script {
                     }
                 }
             }
-            player.open("dungeoneering_spellbook")
-            player.open("rand_overlay")
-            player.playTrack(DungeonMusic.ambientTrack(dungeon.theme))
             player.refreshDetails()
-            return true
         }
 
         fun inParty(player: Player) = player.dungeonLeader != null
