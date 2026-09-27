@@ -22,6 +22,11 @@ class DungeonMap(
     var region = Region.EMPTY
     val players = mutableListOf<Int>()
 
+    /**
+     * The party has moved on to another floor, logged out players can't return
+     */
+    var ended = false
+
     val members: List<Player>
         get() = players.mapNotNull { i -> Players.indexed(i) }
 

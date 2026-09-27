@@ -29,6 +29,7 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.network.client.instruction.InteractInterfaceObject
 import world.gregs.voidps.network.client.instruction.Walk
 import world.gregs.voidps.type.Tile
@@ -324,7 +325,8 @@ class EvilBobTest : WorldTest() {
         assertNull(player.get<String>("random_event"))
         assertEquals(origin, player.tile)
         assertTrue(player.contains("random_event_cooldown"))
-        // Tearing down the instance sweeps the beach nets with it.
+        // Freeing the empty instance sweeps the beach nets with it.
+        tick(Instances.CLEANUP_TICKS * 2)
         for (net in netTiles) {
             assertNull(FloorItems.firstOrNull(net.add(offset), "small_fishing_net_evil_bobs_island"))
         }

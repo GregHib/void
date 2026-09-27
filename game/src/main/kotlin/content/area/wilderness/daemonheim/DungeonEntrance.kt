@@ -11,6 +11,7 @@ import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.entity.player.stat.KillTracker
 import content.entity.world.music.playTrack
+import content.quest.joinInstance
 import content.quest.largeInstance
 import content.quest.smallInstance
 import content.skill.dungeoneering.DungeonDoor
@@ -21,6 +22,7 @@ import content.skill.dungeoneering.DungeonRoom
 import content.skill.dungeoneering.DungeonRoomType
 import content.skill.dungeoneering.DungeonSize
 import content.skill.dungeoneering.DungeonStartingItems
+import content.skill.dungeoneering.dungeonMap
 import content.skill.magic.spell.spellBook
 import content.skill.summoning.pet.pet
 import net.pearx.kasechange.toPascalCase
@@ -254,14 +256,15 @@ class DungeonEntrance : Script {
 
     private fun Player.enter(size: DungeonSize, dungeon: DungeonMap, complexity: Int, floor: Int) {
         val instance = when (size) {
-            DungeonSize.Small -> smallInstance(logout = false)
-            DungeonSize.Medium -> smallInstance(logout = false)
-            DungeonSize.Large -> largeInstance()
+            DungeonSize.Small -> smallInstance(logout = false, timeout = DungeoneeringParty.REJOIN_MINUTES)
+            DungeonSize.Medium -> smallInstance(logout = false, timeout = DungeoneeringParty.REJOIN_MINUTES)
+            DungeonSize.Large -> largeInstance(logout = false, timeout = DungeoneeringParty.REJOIN_MINUTES)
         }
         dungeon.region = instance
         for (member in dungeonMembers) {
+            member.dungeonMap?.ended = true
             member["dungeon"] = dungeon
-            member["instance"] = instance.id
+            member.joinInstance(instance)
             dungeon.players.add(member.index)
             member.closeInterfaces()
         }
