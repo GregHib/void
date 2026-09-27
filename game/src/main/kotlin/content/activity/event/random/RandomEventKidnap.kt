@@ -2,7 +2,6 @@ package content.activity.event.random
 
 import content.entity.gfx.areaGfx
 import world.gregs.voidps.engine.Script
-import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
