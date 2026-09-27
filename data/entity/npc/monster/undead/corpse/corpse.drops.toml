@@ -3,12 +3,12 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "crawling_corpse_torso_secondary" },
+  { table = "mask_part_2_drop", roll = 3 },
 ]
 
 [crawling_corpse_torso_secondary]
 roll = 256
 drops = [
-  { id = "mask_part_2", chance = 85 },
   { id = "air_rune", amount = 10, chance = 8 },
   { id = "mind_rune", amount = 22, chance = 8 },
   { id = "water_rune", amount = 4, chance = 8 },
@@ -42,12 +42,12 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "corpse_spider_secondary" },
+  { table = "mask_part_1_drop", roll = 3 },
 ]
 
 [corpse_spider_secondary]
 roll = 256
 drops = [
-  { id = "mask_part_1", chance = 85 },
   { id = "bronze_mace", chance = 16 },
   { id = "bronze_med_helm", chance = 4 },
   { id = "shortbow", chance = 16 },
@@ -74,12 +74,12 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "corpse_archer_secondary" },
+  { table = "mask_part_3_drop", roll = 3 },
 ]
 
 [corpse_archer_secondary]
 roll = 256
 drops = [
-  { id = "mask_part_3", chance = 85 },
   { id = "air_rune", amount = 12, chance = 8 },
   { id = "water_rune", amount = 6, chance = 8 },
   { id = "earth_rune", amount = 6, chance = 8 },
@@ -121,12 +121,12 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "corpse_mage_secondary" },
+  { table = "mask_part_4_drop", roll = 3 },
 ]
 
 [corpse_mage_secondary]
 roll = 256
 drops = [
-  { id = "mask_part_4", chance = 85 },
   { id = "air_rune", amount = 18, chance = 8 },
   { id = "mind_rune", amount = 40, chance = 8 },
   { id = "water_rune", amount = 8, chance = 8 },

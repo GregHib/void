@@ -81,6 +81,7 @@ type = "all"
 drops = [
     { id = "bones"},
     { table = "skeleton_catacombs_secondary" },
+    { table = "mask_part_2_drop", roll = 3 },
     { table = "skeleton_charms", members = true },
     { table = "skeleton_tertiary" },
 ]
@@ -88,7 +89,6 @@ drops = [
 [skeleton_catacombs_secondary]
 roll = 512
 drops = [
-    { id = "mask_part_2", chance = 171 },
     { id = "bronze_arrow", amount = 22, chance = 16 },
     { id = "staff", chance = 16 },
     { id = "sling", chance = 16 },

@@ -3,12 +3,12 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "warped_cockroach_secondary" },
+  { table = "mask_part_1_drop", roll = 3 },
 ]
 
 [warped_cockroach_secondary]
 roll = 64
 drops = [
-  { id = "mask_part_1", chance = 21 },
   { id = "shortbow", chance = 4 },
   { id = "bronze_arrow", amount = 5 },
   { id = "bronze_sword" },
@@ -34,13 +34,13 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "warped_fly_secondary" },
+  { table = "mask_part_1_drop", roll = 3 },
 ]
 
 [warped_fly_secondary]
 roll = 256
 drops = [
-  { id = "mask_part_1", chance = 85 },
-  { id = "water_rune", amount = 3, chance = 16 },
+  { id = "water_rune", chance = 16 },
   { id = "air_rune", amount = 10, chance = 16 },
   { id = "fire_rune", amount = 3, chance = 16 },
   { id = "earth_rune", amount = 3, chance = 4 },
@@ -76,12 +76,12 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "warped_rat_secondary" },
+  { table = "mask_part_3_drop", roll = 3 },
 ]
 
 [warped_rat_secondary]
 roll = 262
 drops = [
-  { id = "mask_part_3", chance = 87 },
   { id = "bronze_arrow", amount = 18, chance = 16 },
   { id = "bronze_mace", chance = 4 },
   { id = "sling", chance = 4 },
@@ -119,12 +119,12 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "warped_bat_secondary" },
+  { table = "mask_part_3_drop", roll = 3 },
 ]
 
 [warped_bat_secondary]
 roll = 512
 drops = [
-  { id = "mask_part_3", chance = 171 },
   { id = "bronze_arrow", amount = 25, chance = 8 },
   { id = "shortbow", chance = 8 },
   { id = "magic_staff", chance = 8 },

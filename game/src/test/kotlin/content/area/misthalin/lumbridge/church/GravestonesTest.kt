@@ -98,6 +98,8 @@ class GravestonesTest : WorldTest() {
         grave["grave_timer"] = 20
         TimerApi.tick(grave, "grave_degrade")
         assertEquals("gravestone_memorial_plaque_collapse", grave.transform)
+        TimerApi.tick(grave, "grave_degrade")
+        assertEquals("gravestone_memorial_plaque_collapse", grave.transform)
         grave["grave_timer"] = 0
         TimerApi.stop(grave, "grave_degrade", false)
         tick()
@@ -136,6 +138,7 @@ class GravestonesTest : WorldTest() {
         assertEquals(560, floorItem.disappearTicks)
         tick(3)
         assertEquals(300, grave.remaining("grave_timer", epochSeconds()))
+        assertEquals("", grave.transform)
     }
 
     @Test
@@ -157,6 +160,7 @@ class GravestonesTest : WorldTest() {
         assertEquals(6060, floorItem.disappearTicks)
         tick(3)
         assertEquals(3600, grave.remaining("grave_timer", epochSeconds()))
+        assertEquals("", grave.transform)
     }
 
     @Test

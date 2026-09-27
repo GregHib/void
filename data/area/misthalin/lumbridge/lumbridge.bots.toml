@@ -1,18 +1,18 @@
 # Combat
 [kill_lumbridge_castle_rats_attack]
 template = "kill_rats"
-capacity = 2
+capacity = 1
 fields = { skill = "attack", location = "lumbridge_castle_courtyard", style = "style1" }
 
 [kill_lumbridge_castle_rats_strength]
 template = "kill_rats"
-capacity = 2
+capacity = 1
 fields = { skill = "strength", location = "lumbridge_castle_courtyard", style = "style2" }
 
 [kill_lumbridge_castle_rats_defence]
 template = "kill_rats"
-capacity = 2
-fields = { skill = "attack", location = "lumbridge_castle_courtyard", style = "style4" }
+capacity = 1
+fields = { skill = "defence", location = "lumbridge_castle_courtyard", style = "style4" }
 
 [kill_freds_chickens_attack]
 template = "kill_chickens"
