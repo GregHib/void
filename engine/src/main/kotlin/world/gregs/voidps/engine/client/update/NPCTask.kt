@@ -3,10 +3,9 @@ package world.gregs.voidps.engine.client.update
 import world.gregs.voidps.engine.client.update.iterator.TaskIterator
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.entity.Spawn
+import world.gregs.voidps.engine.entity.character.mode.DefaultMode
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
-import world.gregs.voidps.engine.entity.character.mode.Wander
-import world.gregs.voidps.engine.entity.character.mode.Wander.Companion.wanders
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -31,8 +30,11 @@ class NPCTask(
             val owner = if (ownerIndex != -1) Players.indexed(ownerIndex) else null
             if (owner != null && owner["follower_index", -1] == character.index) {
                 character.mode = Follow(character, owner)
-            } else if (wanders(character)) {
-                character.mode = Wander(character)
+            } else {
+                val mode = DefaultMode.get(character)
+                if (mode != null) {
+                    character.mode = mode
+                }
             }
         }
         healthRegen(character)

@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.client.variable.VariableApi
 import world.gregs.voidps.engine.data.SettingsReload
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Death
+import world.gregs.voidps.engine.entity.character.mode.DefaultMode
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatApi
 import world.gregs.voidps.engine.entity.character.mode.combat.CombatMovement
 import world.gregs.voidps.engine.entity.character.mode.move.Moved
@@ -27,7 +28,7 @@ import kotlin.coroutines.cancellation.CancellationException
  * A helper interface made up of all callable methods for easier scripting.
  * Scripts are automatically detected and inject parameters @see ContentLoader.kt
  */
-interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceApi, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi {
+interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operation, Approachable, InterfaceApi, Death, SettingsReload, Dialogues, Items, InventoryApi, Hunt, Teleport, CombatApi, DefaultMode {
     companion object {
         var loading: Boolean = true
 
@@ -69,6 +70,7 @@ interface Script : Spawn, Despawn, Skills, Moved, VariableApi, TimerApi, Operati
             Teleport,
             CombatApi,
             CombatMovement,
+            DefaultMode,
         )
 
         fun clear() {
