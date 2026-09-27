@@ -167,7 +167,8 @@ class Poison : Script {
         if (damage <= 0 || source !is Player || !poisoned(weapon.id) && !poisoned(source.ammo)) {
             return
         }
-        val poison = 20 + weapon.id.count { it == '+' } * 10
+        val id = if (poisoned(weapon.id)) weapon.id else source.ammo
+        val poison = 20 + id.count { it == '+' } * 10
         if (type == "range" && random.nextDouble() < 0.125) {
             source.poison(target, poison)
         } else if (Hit.meleeType(type) && random.nextDouble() < 0.25) {
