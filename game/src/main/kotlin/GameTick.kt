@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.ConnectionQueue
@@ -61,6 +62,7 @@ fun getTickStages(
         // Tick
         InstructionTask(handlers),
         World,
+        Instances,
         NPCTask(sequentialNpc),
         PlayerTask(sequentialPlayer),
         floorItems,

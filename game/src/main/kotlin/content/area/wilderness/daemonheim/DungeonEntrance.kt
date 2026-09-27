@@ -11,6 +11,7 @@ import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.entity.player.stat.KillTracker
 import content.entity.world.music.playTrack
+import content.quest.joinInstance
 import content.quest.largeInstance
 import content.quest.smallInstance
 import content.skill.dungeoneering.DungeonDoor
@@ -261,7 +262,7 @@ class DungeonEntrance : Script {
         dungeon.region = instance
         for (member in dungeonMembers) {
             member["dungeon"] = dungeon
-            member["instance"] = instance.id
+            member.joinInstance(instance)
             dungeon.players.add(member.index)
             member.closeInterfaces()
         }

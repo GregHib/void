@@ -10,6 +10,9 @@ class InstanceLogout : Script {
             // an instance left long ago; drop it so deaths and exits use the real location.
             if (instance() == null) {
                 clear("instance_logout_tile")
+                // The instance was freed while logged out (or before a restart), the reference is stale
+                clear("instance")
+                clear("instance_key")
             }
         }
 

@@ -1,15 +1,45 @@
 package world.gregs.voidps.engine.map.instance
 
+import io.mockk.mockk
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.koin.core.module.Module
+import org.koin.dsl.module
+import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.type.Region
+import world.gregs.voidps.type.Tile
 
-internal class InstancesTest {
+internal class InstancesTest : KoinMock() {
+
+    override val modules: List<Module> = listOf(
+        module {
+            single { mockk<DynamicZones>(relaxed = true) }
+        },
+    )
+
+    private val players = mutableListOf<Player>()
 
     @BeforeEach
     fun setup() {
+        GameLoop.tick = 0
         Instances.reset()
+    }
+
+    @AfterEach
+    fun teardown() {
+        for (player in players) {
+            Players.remove(player)
+        }
     }
 
     @Test
@@ -40,8 +70,8 @@ internal class InstancesTest {
     fun `Freed instances are reused`() {
         val first = Instances.small()
         val second = Instances.small()
-        Instances.free(second)
-        Instances.free(first)
+        GameLoop.tick = Instances.CLEANUP_TICKS + 1
+        Instances.cleanup()
         repeat(1375) {
             Instances.small()
         }
@@ -49,8 +79,8 @@ internal class InstancesTest {
         val one = Instances.small()
         val two = Instances.small()
         // Then
-        assertEquals(second, one)
-        assertEquals(first, two)
+        assertEquals(first, one)
+        assertEquals(second, two)
     }
 
     @Test
@@ -62,5 +92,116 @@ internal class InstancesTest {
         assertThrows<NullPointerException> {
             Instances.small()
         }
+    }
+
+    @Test
+    fun `Empty instance is kept during grace period`() {
+        val instance = Instances.small()
+        // When
+        GameLoop.tick = Instances.CLEANUP_TICKS
+        Instances.cleanup()
+        // Then
+        assertTrue(Instances.isInstance(instance))
+    }
+
+    @Test
+    fun `Empty instance is freed after grace period`() {
+        val instance = Instances.small()
+        // When
+        GameLoop.tick = Instances.CLEANUP_TICKS + 1
+        Instances.cleanup()
+        // Then
+        assertFalse(Instances.isInstance(instance))
+    }
+
+    @Test
+    fun `Occupied instance is kept until players leave`() {
+        val instance = Instances.small()
+        val player = player(instance.tile.add(10, 10))
+        // When
+        GameLoop.tick = 1000
+        Instances.cleanup()
+        // Then
+        assertTrue(Instances.isInstance(instance))
+        assertTrue(Instances.occupied(instance))
+
+        // When
+        Players.remove(player)
+        GameLoop.tick = 1000 + Instances.CLEANUP_TICKS + 1
+        Instances.cleanup()
+        // Then
+        assertFalse(Instances.isInstance(instance))
+    }
+
+    @Test
+    fun `Instance with timeout is kept for timeout minutes after last player leaves`() {
+        val instance = Instances.large(timeout = 1) // 100 ticks
+        // When
+        GameLoop.tick = 100
+        Instances.cleanup()
+        // Then
+        assertTrue(Instances.isInstance(instance))
+        assertFalse(Instances.occupied(instance))
+
+        // When
+        GameLoop.tick = 101
+        Instances.cleanup()
+        // Then
+        assertFalse(Instances.isInstance(instance))
+    }
+
+    @Test
+    fun `Run only cleans up every interval`() {
+        val instance = Instances.small()
+        GameLoop.tick = Instances.CLEANUP_TICKS + 1
+        // When
+        Instances.run()
+        // Then
+        assertTrue(Instances.isInstance(instance))
+        // When
+        GameLoop.tick = Instances.CLEANUP_TICKS * 2
+        Instances.run()
+        // Then
+        assertFalse(Instances.isInstance(instance))
+    }
+
+    @Test
+    fun `Owner of regions inside and padding of an instance`() {
+        val small = Instances.small()
+        val large = Instances.large()
+        // Then
+        assertEquals(small, Instances.owner(small))
+        assertEquals(small, Instances.owner(Region(small.x + 1, small.y + 1)))
+        assertEquals(small, Instances.owner(Region(small.x, small.y - 1)))
+        assertEquals(large, Instances.owner(Region(large.x + 4, large.y + 4)))
+        assertEquals(large, Instances.owner(large.tile.add(200, 200)))
+        assertNull(Instances.owner(Region(small.x + 3, small.y)))
+        assertNull(Instances.owner(Region(50, 50)))
+    }
+
+    @Test
+    fun `Reallocated instance has a different key`() {
+        val instance = Instances.small()
+        val key = Instances.key(instance)
+        assertTrue(Instances.valid(instance, key))
+        GameLoop.tick = Instances.CLEANUP_TICKS + 1
+        Instances.cleanup()
+        assertFalse(Instances.valid(instance, key))
+        repeat(1376) {
+            Instances.small()
+        }
+        // When
+        val reused = Instances.small()
+        // Then
+        assertEquals(instance, reused)
+        assertFalse(Instances.valid(reused, key))
+        assertTrue(Instances.valid(reused, Instances.key(reused)))
+    }
+
+    private fun player(tile: Tile): Player {
+        val player = Player(index = 1, tile = tile)
+        Players.add(player)
+        players.add(player)
+        return player
     }
 }
