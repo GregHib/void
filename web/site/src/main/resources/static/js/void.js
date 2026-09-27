@@ -17,6 +17,46 @@ window.voidBx = function (el, on, whenTrue, whenFalse) {
   });
 };
 
+// Row builders for the dungeoneering floor tables (components/FloorTimes.kt), shared by the
+// hiscores profile/comparison views and the adventurer's log so the tables read the same everywhere.
+(function () {
+  var BAND = ['var(--surface-panel)', 'var(--umber-850)'];
+  function time(sec) {
+    if (sec == null) return '—';
+    var total = Math.round(sec);
+    return Math.floor(total / 60) + ':' + String(total % 60).padStart(2, '0');
+  }
+  function base(floor, i) {
+    return { key: floor, floor: floor, href: 'hiscores.html?view=dungeoneering&floor=' + floor, bg: BAND[i % 2] };
+  }
+
+  /** One row of `/players/{name}/dungeoneering`. */
+  window.voidFloorRow = function (row, i) {
+    return Object.assign(base(row.floor, i), {
+      size: row.size.charAt(0).toUpperCase() + row.size.slice(1),
+      complexity: row.complexity,
+      party: row.partySize === 1 ? 'Solo' : row.partySize + ' players',
+      time: time(row.timeSeconds),
+      rank: '#' + window.voidFmt(row.rank),
+    });
+  };
+
+  /** One row of `/hiscores/compare`'s `floors`; the faster player leads, and an uncleared floor always trails. */
+  window.voidFloorCompareRow = function (row, i) {
+    var both = row.aSeconds != null && row.bSeconds != null;
+    var delta = row.leader === 'tie' ? 'even' : both ? time(row.differenceSeconds) : 'only';
+    return Object.assign(base(row.floor, i), {
+      aTime: time(row.aSeconds), bTime: time(row.bSeconds),
+      aColor: row.leader === 'a' ? 'var(--gold-300)' : 'var(--text-faint)',
+      bColor: row.leader === 'b' ? 'var(--gold-300)' : 'var(--text-faint)',
+      deltaText: row.leader === 'a' ? '← ' + delta : row.leader === 'b' ? delta + ' →' : delta,
+      deltaFg: row.leader === 'tie' ? 'var(--text-faint)' : 'var(--gold-200)',
+      deltaBg: row.leader === 'tie' ? 'transparent' : 'rgba(224,174,60,.12)',
+      deltaBd: row.leader === 'tie' ? 'var(--border-panel)' : 'var(--gold-600)',
+    });
+  };
+})();
+
 // The connected world: read/written to localStorage so it survives navigating between pages, and
 // mirrored into an Alpine store (below) so every component on the *same* page — the navbar's
 // worldMenu and a page-body picker are separate x-data components — reacts the instant either one

@@ -7,6 +7,7 @@
 (function () {
   var API = "/api/v1";
 
+  var MAX_FLOOR = 60;
   var BAND = ["var(--surface-panel)", "var(--umber-850)"];
   var TONE_BY_EVENT_TYPE = { skill: "gold", quest: "info", combat: "danger", account: "success" };
   var TONE_BY_DIFFICULTY = { novice: "success", intermediate: "info", experienced: "warning", master: "danger" };
@@ -178,7 +179,7 @@
   // Builds the `profile` object every panel in the template reads from a name plus the raw
   // responses of the five per-player endpoints (see `HiscoresRoutes.kt`'s `/players/{name}*`), and
   // the world's web base the chathead image (see `AvatarRoutes.kt`) is loaded from.
-  function buildProfile(name, player, skillsResp, bossesResp, questsResp, eventsResp, webBase) {
+  function buildProfile(name, player, skillsResp, bossesResp, questsResp, eventsResp, floorsResp, webBase) {
     var skills = skillsResp.items.map(buildSkillRow);
     var completedQuests = questsResp.items
       .filter(function (q) { return q.status === "complete"; })
@@ -209,6 +210,9 @@
       questTotal: questsResp.total,
       bosses: bosses,
       bossKills: player.bossKills,
+      floors: floorsResp.items.map(window.voidFloorRow),
+      floorsCleared: floorsResp.floorsCleared,
+      maxFloor: floorsResp.maxFloor,
       milestones: player.milestones,
     };
   }
@@ -218,6 +222,7 @@
     questPoints: 0, questPointsMax: 1, skills: [], maxedCount: 0,
     xpHistory: [{ t: Date.now(), gains: {} }],
     events: [], quests: [], questTotal: 0, bosses: [], bossKills: 0, milestones: [],
+    floors: [], floorsCleared: 0, maxFloor: MAX_FLOOR,
   };
 
   window.logApp = function () {
@@ -290,9 +295,11 @@
           getJson(base + "/bosses"),
           getJson(base + "/quests?status=all"),
           getJson(base + "/events?pageSize=30"),
+          // Tolerates worlds running a server from before floor times were tracked
+          getJson(base + "/dungeoneering").catch(function () { return { floorsCleared: 0, maxFloor: MAX_FLOOR, items: [] }; }),
           window.voidWorldWeb(world),
         ]).then(function (results) {
-          self.profiles[name] = buildProfile(name, results[0], results[1], results[2], results[3], results[4], results[5]);
+          self.profiles[name] = buildProfile(name, results[0], results[1], results[2], results[3], results[4], results[5], results[6]);
         }).catch(function () {
           // Only a failure on the world still selected means the account is missing; one cut
           // short by a switch (see voidWorldJson) is left for the new world's own load.

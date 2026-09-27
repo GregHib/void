@@ -9,7 +9,7 @@
   // skill/boss lists live in one place (GameData.kt) instead of being duplicated here.
   var SKILLS = window.VOID_SKILLS.map(function (s) { return s.name; });
   var BOSSES = window.VOID_BOSSES;
-  var TEAM_SIZE_BY_LABEL = { "Solo": 1, "2 players": 2, "3 players": 3, "4 players": 4 };
+  var MAX_FLOOR = 60;
   var MODE_TONE = {
     skiller: { bg: "rgba(224,174,60,.14)", fg: "var(--gold-300)", bd: "var(--gold-600)" },
     pure: { bg: "var(--feedback-danger-bg)", fg: "var(--feedback-danger)", bd: "var(--ember-600)" },
@@ -17,8 +17,9 @@
   var SEARCH_SORTS = ["level", "rank", "name"];
   var PAGE_FETCH = {
     page: "fetchOverall", skillPage: "fetchSkill", kcPage: "fetchBossKills",
-    timePage: "fetchBossTimes", searchPage: "fetchSearch",
+    timePage: "fetchBossTimes", searchPage: "fetchSearch", floorPage: "fetchFloorTimes",
   };
+  var FLOOR_FILTERS = { floorSize: "size", floorComplexity: "complexity", floorParty: "partySize" };
 
   var fmt = window.voidFmt;
   function abbrev(n) {
@@ -30,6 +31,15 @@
   function mmss(sec) {
     var m = Math.floor(sec / 60), s = Math.round(sec % 60);
     return m + ":" + String(s).padStart(2, "0");
+  }
+  function bossGroup(id) {
+    var b = BOSSES.filter(function (x) { return x.id === id; })[0];
+    return b ? b.group : "world";
+  }
+  // Five or more is one "mass" record for world bosses, but a dungeoneering party tops out at five.
+  function teamLabel(size, group) {
+    if (size === 1) return "Solo";
+    return size + (size === 5 && group !== "dungeoneering" ? "+" : "") + " players";
   }
   function modeLabel(id) { return id ? id.charAt(0).toUpperCase() + id.slice(1) : ""; }
   function skillIcon(id) { return "images/skills/" + id + ".png"; }
@@ -99,6 +109,7 @@
     if (state.view && state.view !== "overall") params.set("view", state.view);
     if (state.view === "skills" && state.skill) params.set("skill", state.skill);
     if (state.view === "bosses" && state.boss) params.set("boss", state.boss);
+    if (state.view === "dungeoneering" && state.floor) params.set("floor", String(state.floor));
     if (state.view === "player" && state.profile) params.set("player", state.profile);
     if (state.view === "search") {
       if (state.searchQuery) params.set("q", state.searchQuery);
@@ -110,8 +121,9 @@
 
   window.hiscoresApp = function () {
     return {
-      view: "overall", skill: "Attack", boss: BOSSES[0].id, mode: "all", team: "All", query: "",
-      page: 0, skillPage: 0, kcPage: 0, timePage: 0, searchPage: 0, perPage: 25,
+      view: "overall", skill: "Attack", boss: BOSSES.length ? BOSSES[0].id : "", bossGroup: "world", mode: "all", team: "all", query: "",
+      page: 0, skillPage: 0, kcPage: 0, timePage: 0, searchPage: 0, floorPage: 0, perPage: 25,
+      floor: 1, floorSize: "all", floorComplexity: "all", floorParty: "all",
       nameA: "", nameB: "", profile: "",
       searchQuery: "", searchSort: "level", navDepth: 0,
       combo: null, comboQ: "", comboItems: { a: [], b: [] }, comboTimer: null,
@@ -120,10 +132,11 @@
       skillRows: [], skillPager: derivePager(null), skillEyebrow: "",
       bossKcRows: [], bossKcPager: derivePager(null),
       bossTimeRows: [], bossTimePager: derivePager(null),
+      floorRows: [], floorPager: derivePager(null), floorBest: {},
       searchRows: [], searchPager: derivePager(null), searchEyebrow: "",
       compareResult: null,
       profilePlayer: { rank: "—", mode: "", name: "", totalLevel: 0, totalXp: 0, joined: "" },
-      profileSkills: [], profileBosses: [],
+      profileSkills: [], profileBosses: [], profileFloors: [], profileFloorsCleared: 0,
 
       init: function () {
         var params = new URLSearchParams(window.location.search);
@@ -133,6 +146,8 @@
         var view = params.get("view");
         var q = params.get("q");
         var sort = params.get("sort");
+        var floor = parseInt(params.get("floor"), 10);
+        if (floor >= 1 && floor <= MAX_FLOOR) this.floor = floor;
         if (player) this.profile = player;
         if (skill && SKILLS.indexOf(skill) >= 0) this.skill = skill;
         if (boss && BOSSES.some(function (b) { return b.id === boss; })) this.boss = boss;
@@ -141,12 +156,15 @@
           this.searchQuery = q;
         }
         if (sort && SEARCH_SORTS.indexOf(sort) >= 0) this.searchSort = sort;
+        this.bossGroup = bossGroup(this.boss);
         if (view) {
           this.view = view;
         } else if (q) {
           this.view = "search";
         } else if (boss) {
           this.view = "bosses";
+        } else if (floor) {
+          this.view = "dungeoneering";
         } else if (skill) {
           this.view = "skills";
         } else if (player) {
@@ -166,7 +184,11 @@
             return;
           }
           if (s.skill) self.skill = s.skill;
-          if (s.boss) self.boss = s.boss;
+          if (s.boss) {
+            self.boss = s.boss;
+            self.bossGroup = bossGroup(s.boss);
+          }
+          if (s.floor) self.floor = s.floor;
           if (s.profile) self.profile = s.profile;
           if (s.searchQuery !== undefined) {
             self.searchQuery = s.searchQuery;
@@ -192,16 +214,17 @@
         this.skillRows = []; this.skillPager = derivePager(null); this.skillEyebrow = "";
         this.bossKcRows = []; this.bossKcPager = derivePager(null);
         this.bossTimeRows = []; this.bossTimePager = derivePager(null);
+        this.floorRows = []; this.floorPager = derivePager(null); this.floorBest = {};
         this.searchRows = []; this.searchPager = derivePager(null); this.searchEyebrow = "";
         this.compareResult = null;
         this.comboItems = { a: [], b: [] };
         this.profilePlayer = { rank: "—", mode: "", name: this.profile, totalLevel: 0, totalXp: 0, joined: "" };
-        this.profileSkills = []; this.profileBosses = [];
+        this.profileSkills = []; this.profileBosses = []; this.profileFloors = []; this.profileFloorsCleared = 0;
       },
 
       historyState: function () {
         return {
-          view: this.view, skill: this.skill, boss: this.boss, profile: this.profile,
+          view: this.view, skill: this.skill, boss: this.boss, floor: this.floor, profile: this.profile,
           searchQuery: this.searchQuery, searchSort: this.searchSort,
         };
       },
@@ -212,6 +235,9 @@
         else if (this.view === "bosses") {
           this.fetchBossKills();
           this.fetchBossTimes();
+        } else if (this.view === "dungeoneering") {
+          this.fetchFloorRecords();
+          this.fetchFloorTimes();
         } else if (this.view === "compare") this.fetchCompare();
         else if (this.view === "search") this.fetchSearch();
         else if (this.view === "player") this.fetchProfile();
@@ -219,6 +245,7 @@
 
       navigate: function (patch) {
         Object.assign(this, patch);
+        if (patch.boss) this.bossGroup = bossGroup(patch.boss);
         if (this.view !== "search") this.query = "";
         this.navDepth++;
         var state = this.historyState();
@@ -235,6 +262,24 @@
         } else {
           this.navigate({ view: "overall" });
         }
+      },
+      /** Switches the boss grid between world and Daemonheim bosses, opening the first in the group. */
+      selectBossGroup: function (group) {
+        if (this.bossGroup === group) return;
+        this.bossGroup = group;
+        var first = BOSSES.filter(function (b) { return b.group === group; })[0];
+        if (first) {
+          this.navigate({ boss: first.id, kcPage: 0, timePage: 0, view: "bosses" });
+        } else {
+          this.bossKcRows = []; this.bossKcPager = derivePager(null);
+          this.bossTimeRows = []; this.bossTimePager = derivePager(null);
+        }
+      },
+      setFloorFilter: function (model, value) {
+        this[model] = value;
+        this.floorPage = 0;
+        this.fetchFloorRecords();
+        this.fetchFloorTimes();
       },
       compareThis: function () {
         var patch = { nameA: this.profile, view: "compare" };
@@ -267,6 +312,7 @@
         if (key === "skillPage") return this.skillPager;
         if (key === "kcPage") return this.bossKcPager;
         if (key === "searchPage") return this.searchPager;
+        if (key === "floorPage") return this.floorPager;
         return this.bossTimePager;
       },
       fmtXp: function (n) { return fmt(n); },
@@ -319,19 +365,68 @@
       fetchBossTimes: function () {
         var self = this;
         var params = new URLSearchParams({ page: this.timePage, pageSize: 10 });
-        var size = TEAM_SIZE_BY_LABEL[this.team];
-        if (size) params.set("teamSize", String(size));
+        if (this.team !== "all") params.set("teamSize", this.team);
+        var group = this.bossGroup;
         return getJson(API + "/hiscores/bosses/" + this.boss + "/times?" + params).then(function (data) {
           self.bossTimePager = derivePager(data.pagination);
           self.bossTimeRows = data.items.map(function (row, i) {
             return {
-              rank: row.rank, name: row.name, team: row.teamSize === 1 ? "Solo" : row.teamSize + " players",
+              rank: row.rank, name: row.name, team: teamLabel(row.teamSize, group),
               time: mmss(row.timeSeconds), bg: band(i), rankColor: rankColor(row.rank),
             };
           });
         }).catch(function () {
           self.bossTimeRows = [];
           self.bossTimePager = derivePager(null);
+        });
+      },
+
+      floorParams: function () {
+        var params = new URLSearchParams();
+        for (var model in FLOOR_FILTERS) {
+          if (this[model] !== "all") params.set(FLOOR_FILTERS[model], this[model]);
+        }
+        return params;
+      },
+      get floorFiltered() { return this.floorSize !== "all" || this.floorComplexity !== "all" || this.floorParty !== "all"; },
+      get floorEyebrow() {
+        var parts = ["FLOOR " + this.floor];
+        if (this.floorSize !== "all") parts.push(modeLabel(this.floorSize));
+        if (this.floorComplexity !== "all") parts.push("complexity " + this.floorComplexity);
+        if (this.floorParty !== "all") parts.push(teamLabel(Number(this.floorParty), "dungeoneering"));
+        return parts.join(" · ");
+      },
+
+      /** The fastest time per floor, shown under each floor tile. */
+      fetchFloorRecords: function () {
+        var self = this;
+        return getJson(API + "/hiscores/dungeoneering/floors?" + this.floorParams()).then(function (data) {
+          var best = {};
+          data.items.forEach(function (row) { best[row.floor] = mmss(row.timeSeconds); });
+          self.floorBest = best;
+        }).catch(function () {
+          self.floorBest = {};
+        });
+      },
+
+      fetchFloorTimes: function () {
+        var self = this;
+        var params = this.floorParams();
+        params.set("page", this.floorPage);
+        params.set("pageSize", this.perPage);
+        return getJson(API + "/hiscores/dungeoneering/floors/" + this.floor + "?" + params).then(function (data) {
+          self.floorPager = derivePager(data.pagination);
+          self.floorRows = data.items.map(function (row, i) {
+            return {
+              key: row.name + ":" + row.size + ":" + row.complexity + ":" + row.partySize,
+              rank: row.rank, name: row.name, size: modeLabel(row.size), complexity: row.complexity,
+              party: teamLabel(row.partySize, "dungeoneering"), time: mmss(row.timeSeconds),
+              bg: band(i), rankColor: rankColor(row.rank),
+            };
+          });
+        }).catch(function () {
+          self.floorRows = [];
+          self.floorPager = derivePager(null);
         });
       },
 
@@ -378,8 +473,12 @@
           getJson(API + "/players/" + encoded),
           getJson(API + "/players/" + encoded + "/skills"),
           getJson(API + "/players/" + encoded + "/bosses"),
+          // Tolerates worlds running a server from before floor times were tracked
+          getJson(API + "/players/" + encoded + "/dungeoneering").catch(function () { return { floorsCleared: 0, items: [] }; }),
         ]).then(function (results) {
-          var profile = results[0], skills = results[1], bosses = results[2];
+          var profile = results[0], skills = results[1], bosses = results[2], floors = results[3];
+          self.profileFloors = floors.items.map(window.voidFloorRow);
+          self.profileFloorsCleared = floors.floorsCleared;
           self.profilePlayer = {
             rank: profile.overallRank != null ? fmt(profile.overallRank) : "—",
             mode: modeLabel(profile.mode), name: profile.name,
@@ -399,6 +498,8 @@
           self.profilePlayer = { rank: "—", mode: "", name: name, totalLevel: 0, totalXp: 0, joined: "" };
           self.profileSkills = [];
           self.profileBosses = [];
+          self.profileFloors = [];
+          self.profileFloorsCleared = 0;
         });
       },
 
@@ -470,6 +571,11 @@
             bg: band(i),
           }, d);
         });
+      },
+      get profileFloorsEyebrow() { return this.profileFloorsCleared + " of " + MAX_FLOOR + " floors cleared"; },
+      get compareFloorRows() {
+        if (!this.compareResult || !this.compareResult.floors) return [];
+        return this.compareResult.floors.map(window.voidFloorCompareRow);
       },
       get compareBossRows() {
         if (!this.compareResult) return [];

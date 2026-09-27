@@ -72,6 +72,7 @@ object AdventurersLog {
                             if (SHOW_XP_CHART) xpChartPanel()
                             questsPanel()
                             bossesPanel()
+                            ui.floorTimesPanel(rows = "profile.floors", eyebrow = "profile.floorsCleared + ' of ' + profile.maxFloor + ' floors cleared'")
                         }
                     }
 

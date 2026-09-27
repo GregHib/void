@@ -1,10 +1,12 @@
 package content.entity.player.stat
 
+import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMembers
 import content.entity.combat.damageDealers
 import content.entity.combat.killer
 import content.entity.player.command.find
 import content.entity.player.logEvent
 import content.quest.questJournal
+import net.pearx.kasechange.toSnakeCase
 import net.pearx.kasechange.toTitleCase
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.command.playerCommand
@@ -55,7 +57,8 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
 
         npcLevelChanged(Skill.Constitution) { skill, from, to ->
             val categories: Set<String> = def.getOrNull("categories") ?: return@npcLevelChanged
-            if (!categories.contains("boss")) {
+            val dungeoneering = categories.contains("dungeoneering_boss")
+            if (!categories.contains("boss") && !dungeoneering) {
                 return@npcLevelChanged
             }
             val max = levels.getMax(skill)
@@ -67,7 +70,13 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
                 val count = damageDealers.size
                 val start = get("${id}_kill_timer", 0L)
                 for ((char, damage) in damageDealers) {
-                    if (char is Player && damage > 0) {
+                    if (char !is Player || damage <= 0) {
+                        continue
+                    }
+                    if (dungeoneering) {
+                        // Every tier shares one record, and difficulty scales with the whole party not just who dealt damage
+                        record(char, start, dungeoneeringBossKey(def.name), char.dungeonMembers.size, "Fight duration")
+                    } else {
                         record(char, start, id, count, "Fight duration")
                     }
                 }
@@ -79,10 +88,10 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
             val player = killer as? Player ?: return@npcDeath
             val categories: Set<String> = def.getOrNull("categories") ?: return@npcDeath
             for (category in categories) {
-                if (category == "boss") {
-                    count(player, id, "Your ${def.name} kill count is")
-                } else {
-                    count(player, category)
+                when (category) {
+                    "boss" -> count(player, id, "Your ${def.name} kill count is")
+                    "dungeoneering_boss" -> count(player, dungeoneeringBossKey(def.name), "Your ${def.name} kill count is")
+                    else -> count(player, category)
                 }
             }
             // Temp store kill counts to write to player on logout
@@ -185,19 +194,24 @@ class KillTracker(val accounts: AccountDefinitions) : Script {
                 else -> "${timer}_mass"
             }
             val best = player.records.getOrDefault(key, 0)
-            if (duration > best && !player["insta_kill", false] && !player["god_mode", false]) { // No cheating!
+            val personalBest = best == 0 || duration < best
+            if (personalBest && !player["insta_kill", false] && !player["god_mode", false]) { // No cheating!
                 player.records[key] = duration.toInt()
             }
             if (player["boss_timers", false]) {
                 val time = "<red>${timestamp(duration)}</col>"
                 val teamPrefix = if (teamSize > 1) "Team size: <red>$teamSize players</col> " else ""
-                if (duration > best) {
+                if (personalBest) {
                     player.message("$teamPrefix$prefix: $time (new personal best)")
                 } else {
                     player.message("$teamPrefix$prefix: $time. Personal best: ${timestamp(best.toLong())}")
                 }
             }
         }
+
+        fun dungeoneeringBossKey(name: String): String = name.toSnakeCase()
+
+        fun dungeoneeringFloorKey(floor: Int, size: String, complexity: Int): String = "dungeoneering_floor_${floor}_${size.lowercase()}_c$complexity"
 
         fun start(player: Player, timer: String) {
             player[timer] = epochMilliseconds()
