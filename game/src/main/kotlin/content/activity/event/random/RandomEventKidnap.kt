@@ -26,36 +26,7 @@ class RandomEventKidnap : Script {
             RandomEvents.start(this, event)
         }
 
-        for (type in TELEPORT_TYPES) {
-            teleportTakeOff(type) {
-                if (contains("random_event")) {
-                    message("You can't leave just yet.")
-                    false
-                } else {
-                    true
-                }
-            }
-        }
-    }
-
-    companion object {
-        private val TELEPORT_TYPES = listOf(
-            "modern",
-            "ancient",
-            "lunar",
-            "dungeoneering",
-            "scroll",
-            "tablet",
-            "jewellery",
-            "fairy",
-            "fairy_ring",
-            "spirit_tree",
-            "kinship",
-            "ectophial",
-            "skull_sceptre",
-            "puro_puro",
-            "wilderness",
-        )
+        blockTeleports("You can't leave just yet.") { contains("random_event") }
     }
 }
 
