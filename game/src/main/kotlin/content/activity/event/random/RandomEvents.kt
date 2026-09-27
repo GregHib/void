@@ -72,10 +72,10 @@ object RandomEvents : AutoCloseable {
     }
 
     /**
-     * Arm the initial cooldown on first activity shot at [event]
+     * Arm the initial cooldown on first activity, then a 1-in-[chance] shot at [event]
      * (or a weighted [pick]) for players who are eligible and off cooldown.
      */
-    fun roll(player: Player, event: String? = null): Boolean {
+    fun roll(player: Player, event: String? = null, chance: Int = 1): Boolean {
         if (!Settings["events.randomEvents.active", true]) {
             return false
         }
@@ -84,7 +84,7 @@ object RandomEvents : AutoCloseable {
             cooldown(player)
             return false
         }
-        if (!eligible(player)) {
+        if (!eligible(player) || (chance > 1 && random.nextInt(chance) != 0)) {
             return false
         }
         // Restart the cooldown immediately so a failed pick can't re-roll every attempt
