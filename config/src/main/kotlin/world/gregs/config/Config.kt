@@ -22,19 +22,19 @@ object Config {
         ConfigReader(BufferedInputStream(string.byteInputStream()), maxStringLength).use(block)
     }
 
-    fun fileWriter(path: String, block: ConfigWriter.() -> Unit) {
+    fun fileWriter(path: String, block: Writer.() -> Unit) {
         BufferedWriter(FileWriter(path)).use { output ->
             block.invoke(output)
         }
     }
 
-    fun fileWriter(file: File, block: ConfigWriter.() -> Unit) {
+    fun fileWriter(file: File, block: Writer.() -> Unit) {
         BufferedWriter(FileWriter(file)).use { output ->
             block.invoke(output)
         }
     }
 
-    fun atomicFileWriter(file: File, block: ConfigWriter.() -> Unit) {
+    fun atomicFileWriter(file: File, block: Writer.() -> Unit) {
         val temp = File(file.absoluteFile.parentFile, "${file.name}.tmp")
         FileOutputStream(temp).use { stream ->
             val output = BufferedWriter(OutputStreamWriter(stream))
@@ -49,7 +49,7 @@ object Config {
         }
     }
 
-    fun stringWriter(block: ConfigWriter.() -> Unit): String {
+    fun stringWriter(block: Writer.() -> Unit): String {
         val stringWriter = StringWriter()
         BufferedWriter(stringWriter).use { output ->
             block.invoke(output)
