@@ -62,6 +62,8 @@ class NPCTask(
                     npc.clear("transform_id")
                 }
             }
+        } else if (npc.queue.contains("death")) {
+            return
         } else if (++npc.lifecycle == 0) {
             // Despawn
             NPCs.remove(npc)
