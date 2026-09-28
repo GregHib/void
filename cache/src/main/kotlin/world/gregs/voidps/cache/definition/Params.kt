@@ -266,7 +266,7 @@ object Params {
     const val VARIABLES = 5263
     const val SUMMONING_BEAST_OF_BURDEN_ESSENCE = 5264
     const val SUMMONING_SPECIAL_COST = 5265
-    const val DISENGAGE = 5266
+    const val DISENGAGE = 5268
     const val OPENED = 5270
     const val CLOSED = 5271
     const val STUMP = 5272
