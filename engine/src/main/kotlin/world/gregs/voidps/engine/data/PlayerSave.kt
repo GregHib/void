@@ -58,7 +58,7 @@ data class PlayerSave(
     )
 
     fun save(file: File) {
-        Config.fileWriter(file) {
+        Config.atomicFileWriter(file) {
             writePair("accountName", name)
             writePair("passwordHash", password)
             writePair("experience", experience)
@@ -262,7 +262,7 @@ data class PlayerSave(
             val kills = Object2IntOpenHashMap<String>()
             val records = Object2IntOpenHashMap<String>()
             val recentEvents = mutableListOf<RecentEvent>()
-            Config.fileReader(file) {
+            Config.fileReader(file, maxStringLength = 150) {
                 while (nextPair()) {
                     when (val key = key()) {
                         "accountName" -> name = string()

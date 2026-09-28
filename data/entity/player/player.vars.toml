@@ -30,3 +30,7 @@ persist = true
 [insta_kill]
 format = "boolean"
 persist = true
+
+[world_map_hidden]
+format = "boolean"
+persist = true

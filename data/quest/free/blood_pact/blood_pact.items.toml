@@ -52,7 +52,7 @@ tradeable = false
 weight = 0.5
 slot = "Hat"
 material = "metal"
-destroy = "You will have to assemble a new one from the parts dropped by the creatures in the Lumbridge Catacombs."
+destroy = "You can reclaim the mask from Xenia at the entrance to the Lumbridge Catacombs."
 examine = "The magic mask of the undead necromancer Dragith Nurn."
 kept = "Wilderness"
 
@@ -137,7 +137,7 @@ kept = "Vanish"
 id = 15625
 tradeable = false
 weight = 0.5
-destroy = "You will have to assemble a new one from the parts dropped by the creatures in the Lumbridge Catacombs."
+destroy = "You can reclaim the mask from Xenia at the entrance to the Lumbridge Catacombs."
 examine = "The magic mask of the undead necromancer Dragith Nurn."
 kept = "Wilderness"
 

@@ -1,10 +1,13 @@
 [giant_rat_tutorial_island]
 defend_anim = "giant_rat_defend"
+defend_sound = "rat_defend"
 death_anim = "giant_rat_death"
+death_sound = "rat_death"
 
 [giant_rat_tutorial_island.melee]
 range = 1
 anim = "giant_rat_attack"
+target_sound = "rat_attack"
 target_hit = { offense = "stab", max = 0 }
 
 [chicken_tutorial_island]

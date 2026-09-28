@@ -16,11 +16,6 @@ tile = { x = 3069, y = 3857 }
 delta = { x = -52, y = 6392 }
 
 # 12192 wilderness
-[6226]
-option = "Climb-up"
-tile = { x = 3019, y = 9850 }
-delta = { y = -6400 }
-
 [lever_poison_spiders]
 option = "Pull"
 tile = { x = 3067, y = 10252 }

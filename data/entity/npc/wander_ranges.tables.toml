@@ -432,7 +432,7 @@ wander_range = 0
 [.salarin_the_twisted]
 wander_range = 5
 
-[.black_guard_edgeville]
+[.black_guard_5]
 max_range = 12
 
 [.captain_lawgof]
@@ -20797,9 +20797,9 @@ max_range = 3
 wander_range = 1
 max_range = 1
 
-#[.8338]
-#wander_range = 1
-#max_range = 1
+[.akrisae]
+wander_range = 1
+max_range = 1
 
 [.wgs_tormented_demon_melee]
 wander_range = 15

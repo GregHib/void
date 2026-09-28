@@ -110,6 +110,9 @@ class PlayerDeath : Script {
         if (player.isAdmin()) {
             return
         }
+        if (!Settings["combat.dropItemsOnDeath", true]) {
+            return
+        }
         val items = ItemsKeptOnDeath.getAllOrdered(player)
         val kept = ItemsKeptOnDeath.kept(player, items)
 

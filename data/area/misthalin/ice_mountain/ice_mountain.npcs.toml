@@ -29,6 +29,20 @@ clone = "black_guard"
 id = 3279
 clone = "black_guard"
 
+[black_guard_5]
+id = 206
+categories = ["dwarves"]
+combat_def = "dwarf_hammer"
+examine = "A dwarven guard."
+drop_table = "black_guard_low"
+respawn_delay = 25
+hitpoints = 220
+att = 19
+str = 18
+def = 14
+attack_bonus = 4
+max_hit_stab = 30
+
 [rolad]
 id = 1841
 examine = "He looks a little absent-minded."

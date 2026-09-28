@@ -45,6 +45,21 @@ examine = "Ideal for cooking on."
 id = 24313
 examine = "For cooking food."
 
+[john_everyman]
+id = 12962
+examine = "A pub local."
+
+[mavis_grey]
+id = 12969
+examine = "A pub local."
+
+[burt_mckrakon]
+id = 12967
+examine = "A pub local."
+
+[clive_dresdon]
+id = 12966
+examine = "A pub local."
 [fence_varrock_lumbermill]
 id = 31149
 examine = "A damaged wooden fence" # Source: https://classic.runescape.wiki/w/Low_Fence_%28Lumber_Mill%29

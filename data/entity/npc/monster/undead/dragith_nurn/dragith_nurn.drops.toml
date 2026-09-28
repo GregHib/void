@@ -3,13 +3,13 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "dragith_nurn_secondary"},
+  { table = "mask_part_5_drop", roll = 3 },
   { table = "medium_clue_scroll", roll = 256 },
 ]
 
 [dragith_nurn_secondary]
 roll = 512
 drops = [
-  { id = "mask_part_5", chance = 16 },
   { id = "bronze_mace", chance = 16 },
   { id = "shortbow", chance = 16 },
   { id = "bronze_arrow", amount = 40, chance = 8 },
@@ -51,4 +51,3 @@ drops = [
   { id = "thread", amount = 65, chance = 16 },
   { id = "leather", chance = 8 },
 ]
-

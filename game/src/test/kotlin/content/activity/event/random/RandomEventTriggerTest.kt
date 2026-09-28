@@ -6,6 +6,8 @@ import content.quest.instance
 import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -97,5 +99,40 @@ class RandomEventTriggerTest : WorldTest() {
         tick(10)
 
         assertNull(player.get<String>("random_event"))
+    }
+
+    @Test
+    fun `Experience drop starts a random event by default`() {
+        Settings.load(mapOf("events.randomEvents.chance" to "1"))
+        val player = createPlayer(Tile(3221, 3218), "re_experience")
+        player["random_event_cooldown"] = 1
+
+        player.exp(Skill.Attack, 10.0)
+        tick(10)
+
+        assertEquals("maze", player["random_event"])
+    }
+
+    @Test
+    fun `Experience drop doesn't start a random event with timer trigger`() {
+        Settings.load(mapOf("events.randomEvents.trigger" to "timer", "events.randomEvents.chance" to "1"))
+        val player = createPlayer(Tile(3221, 3218), "re_experience_timer")
+        player["random_event_cooldown"] = 1
+
+        player.exp(Skill.Attack, 10.0)
+        tick(10)
+
+        assertNull(player.get<String>("random_event"))
+    }
+
+    @Test
+    fun `Timer only runs with timer trigger`() {
+        Settings.load(mapOf("events.randomEvents.trigger" to "timer"))
+        val timed = createPlayer(Tile(3221, 3218), "re_timer")
+        assertTrue(timed.timers.contains("random_event"))
+
+        Settings.load(mapOf("events.randomEvents.trigger" to "experience"))
+        val untimed = createPlayer(Tile(3221, 3218), "re_no_timer")
+        assertFalse(untimed.timers.contains("random_event"))
     }
 }

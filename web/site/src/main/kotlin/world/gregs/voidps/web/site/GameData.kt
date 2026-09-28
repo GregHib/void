@@ -15,6 +15,12 @@ class GameData {
         .filter { it.getOrNull<Set<String>>("categories")?.contains("boss") == true }
         .map { Pair(it.stringId, it.name) }
 
+    /** Dungeoneering boss id (shared by every tier, see `KillTracker.dungeoneeringBossKey`) to display name. */
+    val dungeoneeringBosses = NPCDefinitions.definitions
+        .filter { it.getOrNull<Set<String>>("categories")?.contains("dungeoneering_boss") == true }
+        .map { Pair(dungeoneeringBossKey(it.name), it.name) }
+        .distinctBy { it.first }
+
     /**
      * Fixed per-skill colour for xp charts (the adventurer's log), so a skill is always the same
      * colour no matter which other skills it's stacked alongside.
@@ -57,7 +63,26 @@ class GameData {
                 "\"color\":\"${skillColors[it.name] ?: otherColor}\"}"
         }
         append("];window.VOID_BOSSES=[")
-        bosses.joinTo(this, ",") { "{\"id\":\"${it.first}\",\"name\":\"${it.second}\"}" }
+        val groups = bosses.map { Triple(it.first, it.second, "world") } + dungeoneeringBosses.map { Triple(it.first, it.second, "dungeoneering") }
+        groups.joinTo(this, ",") { "{\"id\":\"${it.first}\",\"name\":\"${it.second}\",\"group\":\"${it.third}\"}" }
         append("];")
+    }
+
+    companion object {
+        /** Boss portrait path from its display name; mirrors `bossIcon` in `hiscores.js`/`log.js` ("TzTok-Jad" -> "tz_tok_jad"). */
+        fun bossIcon(name: String): String {
+            val file = name.replace("'", "")
+                .replace(Regex("([a-z])([A-Z])"), "$1_$2")
+                .lowercase()
+                .replace(Regex("[^a-z0-9]+"), "_")
+                .trim('_')
+            return "images/boss/$file.png"
+        }
+
+        /** "Icy Bones" -> "icy_bones"; mirrors `KillTracker.dungeoneeringBossKey`. */
+        fun dungeoneeringBossKey(name: String): String = name.lowercase().replace(Regex("[^a-z0-9]+"), "_").trim('_')
+
+        /** Initials shown in place of a boss portrait that doesn't exist yet. */
+        fun bossAbbr(name: String): String = name.split(" ").joinToString("") { it.take(1) }.take(3).uppercase()
     }
 }

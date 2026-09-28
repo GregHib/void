@@ -18,3 +18,12 @@ id = 13636
 
 [icy_bones_spawn]
 id = 10819
+
+[human_cast_strike]
+id = 711
+
+[human_unarmed_def]
+id = 425
+
+[human_staff_pummel]
+id = 414

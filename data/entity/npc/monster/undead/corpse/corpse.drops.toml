@@ -3,6 +3,7 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "crawling_corpse_torso_secondary" },
+  { table = "mask_part_2_drop", roll = 3 },
 ]
 
 [crawling_corpse_torso_secondary]
@@ -34,7 +35,6 @@ drops = [
   { id = "gold_amulet", chance = 8 },
   { id = "gold_necklace", chance = 8 },
   { id = "thread", amount = 25, chance = 4 },
-  { id = "mask_part_2" },
 ]
 
 [corpse_spider_drop_table]
@@ -42,6 +42,7 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "corpse_spider_secondary" },
+  { table = "mask_part_1_drop", roll = 3 },
 ]
 
 [corpse_spider_secondary]
@@ -61,7 +62,6 @@ drops = [
   { id = "staff" },
   { id = "coins", amount = 60, chance = 16 },
   { id = "fishing_bait", amount = 20, chance = 16 },
-  { id = "mask_part_1", chance = 4 },
   { id = "feather", amount = 3, chance = 4 },
   { id = "thread", amount = 15, chance = 4 },
   { id = "leather" },
@@ -74,6 +74,7 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "corpse_archer_secondary" },
+  { table = "mask_part_3_drop", roll = 3 },
 ]
 
 [corpse_archer_secondary]
@@ -113,7 +114,6 @@ drops = [
   { id = "coins", amount = 200, chance = 8 },
   { id = "fishing_bait", amount = 50, chance = 8 },
   { id = "leather", chance = 8 },
-  { id = "mask_part_3" },
 ]
 
 [corpse_mage_drop_table]
@@ -121,6 +121,7 @@ type = "all"
 drops = [
   { id = "bones"},
   { table = "corpse_mage_secondary" },
+  { table = "mask_part_4_drop", roll = 3 },
 ]
 
 [corpse_mage_secondary]
@@ -165,6 +166,4 @@ drops = [
   { id = "fishing_bait", amount = 80, chance = 8 },
   { id = "feather", amount = 15, chance = 8 },
   { id = "leather", chance = 8 },
-  { id = "mask_part_4" },
 ]
-

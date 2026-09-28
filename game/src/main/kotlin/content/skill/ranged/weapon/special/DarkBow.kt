@@ -5,6 +5,7 @@ import content.entity.player.combat.special.SpecialAttack
 import content.entity.player.combat.special.specialAttack
 import content.entity.proj.shoot
 import content.skill.melee.weapon.weapon
+import content.skill.ranged.Ammo
 import content.skill.ranged.ammo
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.Character
@@ -18,6 +19,7 @@ class DarkBow : Script {
 
     init {
         specialAttack("descent_of_darkness") { target, _ ->
+            val ammo = Ammo.graphic(ammo)
             val dragon = ammo == "dragon_arrow"
             anim("bow_accurate")
             gfx("${ammo}_double_shot")
@@ -49,7 +51,7 @@ class DarkBow : Script {
                 return@combatSwing
             }
             anim("bow_accurate")
-            val ammo = ammo
+            val ammo = Ammo.graphic(ammo)
             gfx("${ammo}_double_shot")
             val time1 = shoot(ammo, target, true)
             val time2 = shoot(ammo, target, false)
@@ -65,7 +67,7 @@ class DarkBow : Script {
         val (source) = it
         source.sound("descent_of_darkness")
         source.sound("descent_of_darkness", delay = 20)
-        character.gfx("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_impact")
+        character.gfx("descent_of_${if (Ammo.graphic(source.ammo) == "dragon_arrow") "dragons" else "darkness"}_impact")
     }
 
     fun Player.shoot(id: String, target: Character, high: Boolean): Int {

@@ -32,12 +32,13 @@ import java.nio.file.Paths
 import kotlin.time.Duration.Companion.seconds
 
 class WebServer(
-    webclientZip: Path?,
+    webclient: Path?,
     port: Int,
     serverAddress: String,
     serverPort: Int,
     storage: Storage,
-    questDefinitions: QuestDefinitions
+    questDefinitions: QuestDefinitions,
+    cache: Cache,
 ) {
     private val embeddedServer = embeddedServer(CIO, port = port) {
         install(WebSockets.Plugin) {
@@ -57,11 +58,11 @@ class WebServer(
             } else {
                 staticFiles("/", file)
             }
-            if (webclientZip != null) {
+            if (webclient != null) {
                 proxy(serverAddress, serverPort)
-                webclient(port, webclientZip)
+                webclient(webclient)
             }
-            api(storage, questDefinitions)
+            api(storage, questDefinitions, cache)
         }
     }
 
@@ -85,9 +86,9 @@ class WebServer(
 
             val questDefinitions = QuestDefinitions().load(files.find(Settings["definitions.quests"]))
             ItemDefinitions.init(ItemDecoder().load(cache)).load(files.list(Settings["definitions.items"]))
-            val path = Paths.get(Settings["web.client.zip"])
+            val path = Paths.get(Settings["web.client.path"])
             val storage = FileStorage(File(Settings["storage.players.path"]))
-            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions).start()
+            WebServer(path, 8080, "localhost", 43594, storage, questDefinitions, cache).start()
         }
     }
 }

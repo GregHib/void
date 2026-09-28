@@ -10,4 +10,11 @@ spawns = [
   { id = "ring_mould", x = 2935, y = 3283, level = 1, delay = 200 },
   { id = "tiara_mould", x = 2935, y = 3282, level = 1, delay = 100 },
   { id = "bronze_arrow", x = 2944, y = 3332, amount = 2, delay = 50 },
+# 11828
+  { id = "spade", x = 2981, y = 3370, delay = 100 },
+  { id = "hammer", x = 2976, y = 3368, level = 1, delay = 100 },
+  { id = "bronze_hatchet", x = 2970, y = 3376, level = 1, delay = 100 },
+  { id = "cooked_chicken", x = 2971, y = 3382, level = 1, delay = 200 },
+# 12084
+  { id = "bronze_pickaxe", x = 3009, y = 3342, delay = 100 },
 ]

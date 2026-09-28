@@ -29,3 +29,31 @@ examine = "Used for spinning thread."
 [waterpump_falador]
 id = 11661
 examine = "A handy source of water."
+
+[stairs_falador]
+id = 30944
+examine = "It's a flight of stairs."
+
+[round_table_falador]
+id = 41289
+examine = "A sturdy-looking, round table."
+
+[small_table_falador]
+id = 11682
+examine = "A small wooden table."
+
+[large_table_falador]
+id = 11738
+examine = "A nice sturdy-looking table."
+
+[bed_falador_castle]
+id = 11747
+examine = "A basic bed."
+
+[stool_falador_castle]
+id = 11746
+examine = "A wooden stool."
+
+[falador_ladder_down]
+id = 2113
+examine = "I can climb down this."

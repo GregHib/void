@@ -1,9 +1,24 @@
 [dragith_nurn]
 defend_anim = "dragith_nurn_defend"
+defend_sound = "dragith_nurn_hit"
 death_anim = "dragith_nurn_death"
+death_sound =  "dragith_nurn_death"
+
+[dragith_nurn.magic]
+range = 7
+anim = "dragith_nurn_magic_attack"
+gfx = "dragith_nurn_staff_charge"
+projectile = { id = "dragith_nurn_magic_projectile", delay = 68 }
+target_hit = { offense = "magic", max = 30 }
+
+[dragith_nurn.ranged]
+range = 7
+anim = "dragith_nurn_range_attack"
+projectile = { id = "dragith_nurn_range_projectile", delay = 56 }
+target_hit = { offense = "range", max = 20 }
 
 [dragith_nurn.melee]
 range = 1
-anim = "dragith_nurn_attack"
-target_hit = { offense = "slash", max = 30 }
-
+anim = "dragith_nurn_melee_attack"
+target_sound = { id = "dragith_nurn_swing", delay = 20 }
+target_hit = { offense = "melee", max = 20 }

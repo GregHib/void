@@ -1,5 +1,6 @@
 [skoblin]
 defend_anim = "skoblin_defend"
+defend_sound = "goblin_defend"
 death_anim = "skoblin_death"
 
 [skoblin.melee]

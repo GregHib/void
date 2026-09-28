@@ -1,0 +1,2589 @@
+[wise_old_man_junk]
+row_id = "item"
+quest = "string"
+
+[.silverlight_key_wizard_traiborn]
+quest = "demon_slayer"
+
+[.silverlight_key_captain_rovin]
+quest = "demon_slayer"
+
+[.silverlight_key_sir_prysin]
+quest = "demon_slayer"
+
+[.crandor_map]
+quest = "dragon_slayer"
+
+[.key_red]
+quest = "dragon_slayer"
+
+[.key_orange]
+quest = "dragon_slayer"
+
+[.key_yellow]
+quest = "dragon_slayer"
+
+[.key_blue]
+quest = "dragon_slayer"
+
+[.key_magenta]
+quest = "dragon_slayer"
+
+[.key_green]
+quest = "dragon_slayer"
+
+[.pressure_gauge]
+quest = "ernest_the_chicken"
+
+[.poisoned_fish_food]
+quest = "ernest_the_chicken"
+
+[.rubber_tube]
+quest = "ernest_the_chicken"
+
+[.oil_can]
+quest = "ernest_the_chicken"
+
+[.orange_goblin_mail]
+quest = "goblin_diplomacy"
+
+[.blue_goblin_mail]
+quest = "goblin_diplomacy"
+
+[.red_bead]
+quest = "imp_catcher"
+
+[.yellow_bead]
+quest = "imp_catcher"
+
+[.black_bead]
+quest = "imp_catcher"
+
+[.white_bead]
+quest = "imp_catcher"
+
+[.portrait]
+quest = "the_knights_sword"
+
+[.chest_key_pirates_treasure]
+quest = "pirates_treasure"
+
+[.pirate_message]
+quest = "pirates_treasure"
+
+[.message_romeo_and_juliet]
+quest = "romeo_juliet"
+
+[.cadava_potion]
+quest = "romeo_juliet"
+
+[.research_package_rune_mysteries]
+quest = "rune_mysteries"
+
+[.research_notes_rune_mysteries]
+quest = "rune_mysteries"
+
+[.intel_report]
+quest = "shield_of_arrav"
+
+[.broken_shield_right]
+quest = "shield_of_arrav"
+
+[.broken_shield_left]
+quest = "shield_of_arrav"
+
+[.certificate_shield_of_arrav]
+quest = "shield_of_arrav"
+
+[.stake]
+quest = "vampire_slayer"
+
+[.rats_tail]
+quest = "witches_potion"
+
+[.nettle_water]
+quest = "ghosts_ahoy"
+
+[.puddle_of_slime]
+quest = "ghosts_ahoy"
+
+[.nettle_tea]
+quest = "ghosts_ahoy"
+
+[.milky_nettle_tea]
+quest = "ghosts_ahoy"
+
+[.nettles]
+quest = "ghosts_ahoy"
+
+[.cup_of_tea_nettle_tea]
+quest = "ghosts_ahoy"
+
+[.porcelain_cup]
+quest = "ghosts_ahoy"
+
+[.cup_of_tea_ghosts_ahoy]
+quest = "ghosts_ahoy"
+
+[.mystical_robes]
+quest = "ghosts_ahoy"
+
+[.book_of_haricanto]
+quest = "ghosts_ahoy"
+
+[.translation_manual]
+quest = "ghosts_ahoy"
+
+[.ghostspeak_amulet_enchanted]
+quest = "ghosts_ahoy"
+
+[.model_ship]
+quest = "ghosts_ahoy"
+
+[.bone_key_ghosts_ahoy]
+quest = "ghosts_ahoy"
+
+[.chest_key_ghosts_ahoy]
+quest = "ghosts_ahoy"
+
+[.map_scrap_1]
+quest = "ghosts_ahoy"
+
+[.map_scrap_3]
+quest = "ghosts_ahoy"
+
+[.map_scrap_2]
+quest = "ghosts_ahoy"
+
+[.treasure_map]
+quest = "ghosts_ahoy"
+
+[.petition_form]
+quest = "ghosts_ahoy"
+
+[.bedsheet]
+quest = "ghosts_ahoy"
+
+[.raw_undead_beef]
+quest = "ghosts_ahoy"
+
+[.raw_undead_chicken]
+quest = "ghosts_ahoy"
+
+[.cooked_undead_chicken]
+quest = "ghosts_ahoy"
+
+[.cooked_undead_meat]
+quest = "ghosts_ahoy"
+
+[.undead_chicken]
+quest = "animal_magnetism"
+
+[.selected_iron]
+quest = "animal_magnetism"
+
+[.bar_magnet]
+quest = "animal_magnetism"
+
+[.undead_twigs]
+quest = "animal_magnetism"
+
+[.research_notes_animal_magnetism]
+quest = "animal_magnetism"
+
+[.translated_notes]
+quest = "animal_magnetism"
+
+[.a_pattern]
+quest = "animal_magnetism"
+
+[.a_container]
+quest = "animal_magnetism"
+
+[.crone_made_amulet]
+quest = "animal_magnetism"
+
+[.ethenea]
+quest = "biohazard"
+
+[.liquid_honey]
+quest = "biohazard"
+
+[.sulphuric_broline]
+quest = "biohazard"
+
+[.plague_sample]
+quest = "biohazard"
+
+[.touch_paper]
+quest = "biohazard"
+
+[.distillator]
+quest = "biohazard"
+
+[.lathas_amulet]
+quest = "biohazard"
+
+[.bird_feed]
+quest = "biohazard"
+
+[.pigeon_cage_full]
+quest = "biohazard"
+
+[.pigeon_cage_empty]
+quest = "biohazard"
+
+[.doctors_gown]
+quest = "biohazard"
+
+[.fuse_the_great_brain_robbery]
+quest = "great_brain_robbery"
+
+[.prayer_book]
+quest = "great_brain_robbery"
+
+[.blessed_lamp]
+quest = "great_brain_robbery"
+
+[.cranial_clamp]
+quest = "great_brain_robbery"
+
+[.brain_tongs]
+quest = "great_brain_robbery"
+
+[.bell_jar]
+quest = "great_brain_robbery"
+
+[.wolf_whistle]
+quest = "great_brain_robbery"
+
+[.shipping_order]
+quest = "great_brain_robbery"
+
+[.crate_part]
+quest = "great_brain_robbery"
+
+[.skull_staple]
+quest = "great_brain_robbery"
+
+[.white_cog]
+quest = "clock_tower"
+
+[.black_cog]
+quest = "clock_tower"
+
+[.blue_cog]
+quest = "clock_tower"
+
+[.red_cog]
+quest = "clock_tower"
+
+[.parchment_contact]
+quest = "contact"
+
+[.combination]
+quest = "death_plateau"
+
+[.iou]
+quest = "death_plateau"
+
+[.secret_way_map]
+quest = "death_plateau"
+
+[.stone_ball_red]
+quest = "death_plateau"
+
+[.stone_ball_blue]
+quest = "death_plateau"
+
+[.stone_ball_yellow]
+quest = "death_plateau"
+
+[.stone_ball_purple]
+quest = "death_plateau"
+
+[.stone_ball_green]
+quest = "death_plateau"
+
+[.fire_desert_treasure]
+quest = "desert_treasure"
+
+[.etchings]
+quest = "desert_treasure"
+
+[.translation]
+quest = "desert_treasure"
+
+[.blessed_pot_empty]
+quest = "desert_treasure"
+
+[.blessed_pot_blood]
+quest = "desert_treasure"
+
+[.blessed_pot_garlic]
+quest = "desert_treasure"
+
+[.blessed_pot_complete]
+quest = "desert_treasure"
+
+[.blessed_pot_spice]
+quest = "desert_treasure"
+
+[.garlic_powder]
+quest = "desert_treasure"
+
+[.blood_diamond]
+quest = "desert_treasure"
+
+[.ice_diamond]
+quest = "desert_treasure"
+
+[.smoke_diamond]
+quest = "desert_treasure"
+
+[.shadow_diamond]
+quest = "desert_treasure"
+
+[.gilded_cross]
+quest = "desert_treasure"
+
+[.slender_blade]
+quest = "devious_minds"
+
+[.bow_sword]
+quest = "devious_minds"
+
+[.large_pouch_devious_minds]
+quest = "devious_minds"
+
+[.relic_devious_minds]
+quest = "devious_minds"
+
+[.orb_devious_minds]
+quest = "devious_minds"
+
+[.specimen_jar]
+quest = "dig_site"
+
+[.animal_skull]
+quest = "dig_site"
+
+[.special_cup]
+quest = "dig_site"
+
+[.teddy_the_dig_site]
+quest = "dig_site"
+
+[.cracked_sample]
+quest = "dig_site"
+
+[.panning_tray]
+quest = "dig_site"
+
+[.nuggets]
+quest = "dig_site"
+
+[.ancient_talisman]
+quest = "dig_site"
+
+[.unstamped_letter]
+quest = "dig_site"
+
+[.sealed_letter]
+quest = "dig_site"
+
+[.belt_buckle]
+quest = "dig_site"
+
+[.rusty_sword]
+quest = "dig_site"
+
+[.broken_arrow]
+quest = "dig_site"
+
+[.buttons]
+quest = "dig_site"
+
+[.broken_staff]
+quest = "dig_site"
+
+[.broken_glass_the_dig_site]
+quest = "dig_site"
+
+[.level_1_certificate]
+quest = "dig_site"
+
+[.level_2_certificate]
+quest = "dig_site"
+
+[.level_3_certificate]
+quest = "dig_site"
+
+[.ceramic_remains]
+quest = "dig_site"
+
+[.old_tooth]
+quest = "dig_site"
+
+[.invitation_letter]
+quest = "dig_site"
+
+[.damaged_armour]
+quest = "dig_site"
+
+[.broken_armour]
+quest = "dig_site"
+
+[.stone_tablet_the_dig_site]
+quest = "dig_site"
+
+[.ammonium_nitrate]
+quest = "dig_site"
+
+[.nitroglycerine]
+quest = "dig_site"
+
+[.mixed_chemicals_step_1]
+quest = "dig_site"
+
+[.mixed_chemicals_step_2]
+quest = "dig_site"
+
+[.chemical_compound]
+quest = "dig_site"
+
+[.arcenia_root]
+quest = "dig_site"
+
+[.vase_dig_site]
+quest = "dig_site"
+
+[.book_on_chemicals]
+quest = "dig_site"
+
+[.dream_vial_empty]
+quest = "dream_mentor"
+
+[.dream_vial_water]
+quest = "dream_mentor"
+
+[.dream_vial_herb]
+quest = "dream_mentor"
+
+[.dream_potion]
+quest = "dream_mentor"
+
+[.ground_astral_rune]
+quest = "dream_mentor"
+
+[.astral_rune_shards]
+quest = "dream_mentor"
+
+[.cyrisuss_chest]
+quest = "dream_mentor"
+
+[.enchanted_beef]
+quest = "druidic_ritual"
+
+[.enchanted_rat_meat]
+quest = "druidic_ritual"
+
+[.enchanted_bear_meat]
+quest = "druidic_ritual"
+
+[.enchanted_chicken]
+quest = "druidic_ritual"
+
+[.dwarf_remains]
+quest = "dwarf_cannon"
+
+[.toolkit]
+quest = "dwarf_cannon"
+
+[.nulodions_notes]
+quest = "dwarf_cannon"
+
+[.railing]
+quest = "dwarf_cannon"
+
+[.troll_thistle]
+quest = "eadgars_ruse"
+
+[.dried_thistle]
+quest = "eadgars_ruse"
+
+[.ground_thistle]
+quest = "eadgars_ruse"
+
+[.troll_potion]
+quest = "eadgars_ruse"
+
+[.drunk_parrot]
+quest = "eadgars_ruse"
+
+[.dirty_robe]
+quest = "eadgars_ruse"
+
+[.fake_man]
+quest = "eadgars_ruse"
+
+[.storeroom_key]
+quest = "eadgars_ruse"
+
+[.alco_chunks]
+quest = "eadgars_ruse"
+
+[.bird_book]
+quest = "eagles_peak"
+
+[.odd_bird_seed]
+quest = "eagles_peak"
+
+[.feathered_journal]
+quest = "eagles_peak"
+
+[.slashed_book]
+quest = "elemental_workshop_i"
+
+[.a_stone_bowl]
+quest = "elemental_workshop_i"
+
+[.beaten_book]
+quest = "elemental_workshop_ii"
+
+[.crane_schematic]
+quest = "elemental_workshop_ii"
+
+[.lever_schematic]
+quest = "elemental_workshop_ii"
+
+[.crane_claw]
+quest = "elemental_workshop_ii"
+
+[.scroll_elemental_workshop_ii]
+quest = "elemental_workshop_ii"
+
+[.pipe_elemental_workshop_ii]
+quest = "elemental_workshop_ii"
+
+[.large_cog]
+quest = "elemental_workshop_ii"
+
+[.medium_cog]
+quest = "elemental_workshop_ii"
+
+[.small_cog]
+quest = "elemental_workshop_ii"
+
+[.camel_mask]
+quest = "enakhras_lament"
+
+[.augustes_sapling]
+quest = "enlightened_journey"
+
+[.balloon_structure]
+quest = "enlightened_journey"
+
+[.origami_balloon]
+quest = "enlightened_journey"
+
+[.sandbag]
+quest = "enlightened_journey"
+
+[.magic_glue]
+quest = "eyes_of_glouphrie"
+
+[.weird_gloop]
+quest = "eyes_of_glouphrie"
+
+[.ground_mud_runes]
+quest = "eyes_of_glouphrie"
+
+[.hazelmeres_book]
+quest = "eyes_of_glouphrie"
+
+[.red_circle]
+quest = "eyes_of_glouphrie"
+
+[.red_triangle]
+quest = "eyes_of_glouphrie"
+
+[.red_square]
+quest = "eyes_of_glouphrie"
+
+[.red_pentagon]
+quest = "eyes_of_glouphrie"
+
+[.orange_circle]
+quest = "eyes_of_glouphrie"
+
+[.orange_triangle]
+quest = "eyes_of_glouphrie"
+
+[.orange_square]
+quest = "eyes_of_glouphrie"
+
+[.orange_pentagon]
+quest = "eyes_of_glouphrie"
+
+[.yellow_circle]
+quest = "eyes_of_glouphrie"
+
+[.yellow_triangle]
+quest = "eyes_of_glouphrie"
+
+[.yellow_square]
+quest = "eyes_of_glouphrie"
+
+[.yellow_pentagon]
+quest = "eyes_of_glouphrie"
+
+[.green_circle]
+quest = "eyes_of_glouphrie"
+
+[.green_triangle]
+quest = "eyes_of_glouphrie"
+
+[.green_square]
+quest = "eyes_of_glouphrie"
+
+[.green_pentagon]
+quest = "eyes_of_glouphrie"
+
+[.blue_circle]
+quest = "eyes_of_glouphrie"
+
+[.blue_triangle]
+quest = "eyes_of_glouphrie"
+
+[.blue_square]
+quest = "eyes_of_glouphrie"
+
+[.blue_pentagon]
+quest = "eyes_of_glouphrie"
+
+[.indigo_circle]
+quest = "eyes_of_glouphrie"
+
+[.indigo_triangle]
+quest = "eyes_of_glouphrie"
+
+[.indigo_square]
+quest = "eyes_of_glouphrie"
+
+[.indigo_pentagon]
+quest = "eyes_of_glouphrie"
+
+[.violet_circle]
+quest = "eyes_of_glouphrie"
+
+[.violet_triangle]
+quest = "eyes_of_glouphrie"
+
+[.violet_square]
+quest = "eyes_of_glouphrie"
+
+[.violet_pentagon]
+quest = "eyes_of_glouphrie"
+
+[.draynor_skull]
+quest = "fairy_tale_i"
+
+[.queens_secateurs]
+quest = "fairy_tale_i"
+
+[.symptoms_list]
+quest = "fairy_tale_i"
+
+[.nuffs_certificate]
+quest = "fairy_tale_ii"
+
+[.perfect_ring]
+quest = "family_crest"
+
+[.perfect_necklace]
+quest = "family_crest"
+
+[.crest_part_avan]
+quest = "family_crest"
+
+[.crest_part_caleb]
+quest = "family_crest"
+
+[.crest_part_johnathon]
+quest = "family_crest"
+
+[.family_crest]
+quest = "family_crest"
+
+[.fenk_star_amulet]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_mausoleum_key]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_tower_key]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_shed_key]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_marble_amulet]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_obsidian_amulet]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_cane]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_brush0]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_torso]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_arms]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_legs]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_head_empty]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_head_full]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_brain]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_lightning_mould]
+quest = "creature_of_fenkenstrain"
+
+[.gunpowder_cabin_fever]
+quest = "cabin_fever"
+
+[.fuse_cabin_fever]
+quest = "cabin_fever"
+
+[.ramrod]
+quest = "cabin_fever"
+
+[.repair_plank]
+quest = "cabin_fever"
+
+[.plunder]
+quest = "cabin_fever"
+
+[.cannon_barrel]
+quest = "cabin_fever"
+
+[.broken_cannon]
+quest = "cabin_fever"
+
+[.cannon_ball_cabin_fever]
+quest = "cabin_fever"
+
+[.canister]
+quest = "cabin_fever"
+
+[.tacks]
+quest = "cabin_fever"
+
+[.rope_cabin_fever]
+quest = "cabin_fever"
+
+[.braindeath_rum]
+quest = "cabin_fever"
+
+[.khazard_helmet]
+quest = "fight_arena"
+
+[.khazard_armour]
+quest = "fight_arena"
+
+[.khazard_cell_keys]
+quest = "fight_arena"
+
+[.khali_brew]
+quest = "fight_arena"
+
+[.red_vine_worm]
+quest = "fishing_contest"
+
+[.fishing_trophy]
+quest = "fishing_contest"
+
+[.fishing_pass]
+quest = "fishing_contest"
+
+[.square_stone_yellow]
+quest = "forgettable_tale"
+
+[.square_stone_green]
+quest = "forgettable_tale"
+
+[.letter_forgettable_tale_of_a_drunken_dwarf]
+quest = "forgettable_tale"
+
+[.decapitated_head_the_fremennik_isles]
+quest = "fremennik_isles"
+
+[.white_rose_seed]
+quest = "garden_of_tranquillity"
+
+[.red_rose_seed]
+quest = "garden_of_tranquillity"
+
+[.pink_rose_seed]
+quest = "garden_of_tranquillity"
+
+[.vine_seed]
+quest = "garden_of_tranquillity"
+
+[.delphinium_seed]
+quest = "garden_of_tranquillity"
+
+[.orchid_seed_yellow]
+quest = "garden_of_tranquillity"
+
+[.orchid_seed_pink]
+quest = "garden_of_tranquillity"
+
+[.snowdrop_seed]
+quest = "garden_of_tranquillity"
+
+[.white_tree_shoot]
+quest = "garden_of_tranquillity"
+
+[.white_tree_sapling]
+quest = "garden_of_tranquillity"
+
+[.rune_shards]
+quest = "garden_of_tranquillity"
+
+[.rune_dust]
+quest = "garden_of_tranquillity"
+
+[.plant_cure_garden_of_tranquillity]
+quest = "garden_of_tranquillity"
+
+[.list]
+quest = "garden_of_tranquillity"
+
+[.dwarven_battleaxe_rusty]
+quest = "the_giant_dwarf"
+
+[.dwarven_battleaxe_sharp]
+quest = "the_giant_dwarf"
+
+[.dwarven_battleaxe_sapphires]
+quest = "the_giant_dwarf"
+
+[.dwarven_battleaxe_repaired]
+quest = "the_giant_dwarf"
+
+[.dwarven_battleaxe]
+quest = "the_giant_dwarf"
+
+[.dwarven_battleaxe_2]
+quest = "the_giant_dwarf"
+
+[.left_boot]
+quest = "the_giant_dwarf"
+
+[.right_boot]
+quest = "the_giant_dwarf"
+
+[.exquisite_boots]
+quest = "the_giant_dwarf"
+
+[.book_on_costumes]
+quest = "the_giant_dwarf"
+
+[.meeting_notes]
+quest = "the_giant_dwarf"
+
+[.exquisite_clothes]
+quest = "the_giant_dwarf"
+
+[.letter_the_golem]
+quest = "the_golem"
+
+[.varmens_notes]
+quest = "the_golem"
+
+[.display_cabinet_key]
+quest = "the_golem"
+
+[.statuette_the_golem]
+quest = "the_golem"
+
+[.strange_implement]
+quest = "the_golem"
+
+[.black_mushroom]
+quest = "the_golem"
+
+[.phoenix_feather]
+quest = "the_golem"
+
+[.black_mushroom_ink]
+quest = "the_golem"
+
+[.phoenix_quill_pen]
+quest = "the_golem"
+
+[.golem_program]
+quest = "the_golem"
+
+[.bark_sample]
+quest = "the_grand_tree"
+
+[.gloughs_journal]
+quest = "the_grand_tree"
+
+[.hazelmeres_scroll]
+quest = "the_grand_tree"
+
+[.lumber_order]
+quest = "the_grand_tree"
+
+[.gloughs_key]
+quest = "the_grand_tree"
+
+[.daconia_rock]
+quest = "the_grand_tree"
+
+[.invasion_plans]
+quest = "the_grand_tree"
+
+[.griffin_feather]
+quest = "grim_tales"
+
+[.miazrqas_pendant]
+quest = "grim_tales"
+
+[.music_sheet]
+quest = "grim_tales"
+
+[.ruperts_helmet]
+quest = "grim_tales"
+
+[.shrinking_recipe]
+quest = "grim_tales"
+
+[.to_do_list]
+quest = "grim_tales"
+
+[.shrink_me_quick]
+quest = "grim_tales"
+
+[.shrunk_ogleroot]
+quest = "grim_tales"
+
+[.golden_goblin]
+quest = "grim_tales"
+
+[.magic_beans_grim_tales]
+quest = "grim_tales"
+
+[.sandy_hand]
+quest = "hand_in_the_sand"
+
+[.beer_hand]
+quest = "hand_in_the_sand"
+
+[.berts_rota]
+quest = "hand_in_the_sand"
+
+[.sandys_rota]
+quest = "hand_in_the_sand"
+
+[.magic_scroll]
+quest = "hand_in_the_sand"
+
+[.magical_orb]
+quest = "hand_in_the_sand"
+
+[.truth_serum]
+quest = "hand_in_the_sand"
+
+[.bottled_water]
+quest = "hand_in_the_sand"
+
+[.redberry_juice]
+quest = "hand_in_the_sand"
+
+[.rose_tinted_lens]
+quest = "hand_in_the_sand"
+
+[.wizard_head]
+quest = "hand_in_the_sand"
+
+[.sand]
+quest = "hand_in_the_sand"
+
+[.damp_tinderbox]
+quest = "haunted_mine"
+
+[.glowing_fungus]
+quest = "haunted_mine"
+
+[.zealots_key]
+quest = "haunted_mine"
+
+[.hazeel_scroll]
+quest = "hazeel_cult"
+
+[.chest_key_hazeel_cult]
+quest = "hazeel_cult"
+
+[.hazeels_mark]
+quest = "hazeel_cult"
+
+[.master_thiefs_armband]
+quest = "heroes_quest"
+
+[.fire_feather]
+quest = "heroes_quest"
+
+[.id_papers]
+quest = "heroes_quest"
+
+[.miscellaneous_key]
+quest = "heroes_quest"
+
+[.grips_key]
+quest = "heroes_quest"
+
+[.jail_key]
+quest = "heroes_quest"
+
+[.holy_table_napkin]
+quest = "holy_grail"
+
+[.magic_whistle]
+quest = "holy_grail"
+
+[.grail_bell]
+quest = "holy_grail"
+
+[.magic_gold_feather]
+quest = "holy_grail"
+
+[.holy_grail]
+quest = "holy_grail"
+
+[.journal_horror_from_the_deep]
+quest = "horror_from_the_deep"
+
+[.diary_horror_from_the_deep]
+quest = "horror_from_the_deep"
+
+[.manual]
+quest = "horror_from_the_deep"
+
+[.lighthouse_key]
+quest = "horror_from_the_deep"
+
+[.rusty_casket]
+quest = "horror_from_the_deep"
+
+[.canopic_jar_het]
+quest = "icthlarins_little_helper"
+
+[.canopic_jar_apmeken]
+quest = "icthlarins_little_helper"
+
+[.canopic_jar_scabaras]
+quest = "icthlarins_little_helper"
+
+[.canopic_jar_crondis]
+quest = "icthlarins_little_helper"
+
+[.holy_symbol_icthlarins_little_helper]
+quest = "icthlarins_little_helper"
+
+[.unholy_symbol_icthlarins_little_helper]
+quest = "icthlarins_little_helper"
+
+[.embalming_manual]
+quest = "icthlarins_little_helper"
+
+[.sphinxs_token]
+quest = "icthlarins_little_helper"
+
+[.ice_arrows]
+quest = "temple_of_ikov"
+
+[.lever_temple_of_ikov]
+quest = "temple_of_ikov"
+
+[.staff_of_armadyl]
+quest = "temple_of_ikov"
+
+[.pendant_of_lucien]
+quest = "temple_of_ikov"
+
+[.armadyl_pendant]
+quest = "temple_of_ikov"
+
+[.address_form]
+quest = "kings_ransom"
+
+[.scrap_paper]
+quest = "kings_ransom"
+
+[.black_knight_helm]
+quest = "kings_ransom"
+
+[.radimus_notes_partially_complete]
+quest = "legends_quest"
+
+[.radimus_notes_complete]
+quest = "legends_quest"
+
+[.scrawled_note]
+quest = "legends_quest"
+
+[.a_scribbled_note]
+quest = "legends_quest"
+
+[.scrumpled_note]
+quest = "legends_quest"
+
+[.hollow_reed]
+quest = "legends_quest"
+
+[.shamans_tome]
+quest = "legends_quest"
+
+[.smashed_glass]
+quest = "legends_quest"
+
+[.yommi_tree_seeds]
+quest = "legends_quest"
+
+[.bravery_potion]
+quest = "legends_quest"
+
+[.blue_hat_legends_quest]
+quest = "legends_quest"
+
+[.chunk_of_crystal]
+quest = "legends_quest"
+
+[.hunk_of_crystal]
+quest = "legends_quest"
+
+[.lump_of_crystal]
+quest = "legends_quest"
+
+[.heart_crystal]
+quest = "legends_quest"
+
+[.holy_force]
+quest = "legends_quest"
+
+[.yommi_totem]
+quest = "legends_quest"
+
+[.gilded_totem]
+quest = "legends_quest"
+
+[.rock_limestone]
+quest = "legends_quest"
+
+[.sketch]
+quest = "legends_quest"
+
+[.brooch_the_lost_tribe]
+quest = "lost_tribe"
+
+[.goblin_symbol_book]
+quest = "lost_tribe"
+
+[.key_the_lost_tribe]
+quest = "lost_tribe"
+
+[.silverware]
+quest = "lost_tribe"
+
+[.peace_treaty]
+quest = "lost_tribe"
+
+[.moonclan_manual]
+quest = "lunar_diplomacy"
+
+[.lunar_ore]
+quest = "lunar_diplomacy"
+
+[.lunar_bar]
+quest = "lunar_diplomacy"
+
+[.suqah_hide]
+quest = "lunar_diplomacy"
+
+[.suqah_leather]
+quest = "lunar_diplomacy"
+
+[.kindling]
+quest = "lunar_diplomacy"
+
+[.soaked_kindling]
+quest = "lunar_diplomacy"
+
+[.waking_sleep_vial]
+quest = "lunar_diplomacy"
+
+[.guam_vial]
+quest = "lunar_diplomacy"
+
+[.marr_vial]
+quest = "lunar_diplomacy"
+
+[.guam_marr_vial]
+quest = "lunar_diplomacy"
+
+[.lunar_staff_pt1]
+quest = "lunar_diplomacy"
+
+[.lunar_staff_pt2]
+quest = "lunar_diplomacy"
+
+[.lunar_staff_pt3]
+quest = "lunar_diplomacy"
+
+[.dream_log]
+quest = "lunar_diplomacy"
+
+[.journal_making_history]
+quest = "making_history"
+
+[.letter_king_lathas]
+quest = "making_history"
+
+[.letter_jorral]
+quest = "making_history"
+
+[.scroll_making_history]
+quest = "making_history"
+
+[.chest_making_history]
+quest = "making_history"
+
+[.awful_anthem]
+quest = "throne_of_miscellania"
+
+[.good_anthem]
+quest = "throne_of_miscellania"
+
+[.treaty]
+quest = "throne_of_miscellania"
+
+[.giant_nib]
+quest = "throne_of_miscellania"
+
+[.giant_pen]
+quest = "throne_of_miscellania"
+
+[.ghrims_book]
+quest = "throne_of_miscellania"
+
+[.spare_controls]
+quest = "monkey_madness"
+
+[.gnome_royal_seal]
+quest = "monkey_madness"
+
+[.narnodes_orders]
+quest = "monkey_madness"
+
+[.enchanted_bar]
+quest = "monkey_madness"
+
+[.eye_of_gnome]
+quest = "monkey_madness"
+
+[.monkey_magic]
+quest = "monkey_madness"
+
+[.monkey_wrench]
+quest = "monkey_madness"
+
+[.safety_guarantee]
+quest = "mountain_daughter"
+
+[.white_pearl]
+quest = "mountain_daughter"
+
+[.white_pearl_seed]
+quest = "mountain_daughter"
+
+[.half_a_rock]
+quest = "mountain_daughter"
+
+[.corpse_of_woman]
+quest = "mountain_daughter"
+
+[.asleifs_necklace]
+quest = "mountain_daughter"
+
+[.mud_mountain_daughter]
+quest = "mountain_daughter"
+
+[.muddy_rock]
+quest = "mountain_daughter"
+
+[.pole]
+quest = "mountain_daughter"
+
+[.broken_pole]
+quest = "mountain_daughter"
+
+[.bloody_mourner_top]
+quest = "mournings_end_part_i"
+
+[.mourner_trousers_damaged]
+quest = "mournings_end_part_i"
+
+[.mourner_letter]
+quest = "mournings_end_part_i"
+
+[.prifddinas_history]
+quest = "mournings_end_part_i"
+
+[.eastern_discovery]
+quest = "mournings_end_part_i"
+
+[.eastern_settlement]
+quest = "mournings_end_part_i"
+
+[.the_great_divide]
+quest = "mournings_end_part_i"
+
+[.broken_device]
+quest = "mournings_end_part_i"
+
+[.tarnished_key]
+quest = "mournings_end_part_i"
+
+[.red_dye_bellows]
+quest = "mournings_end_part_i"
+
+[.blue_dye_bellows]
+quest = "mournings_end_part_i"
+
+[.yellow_dye_bellows]
+quest = "mournings_end_part_i"
+
+[.green_dye_bellows]
+quest = "mournings_end_part_i"
+
+[.blue_toad]
+quest = "mournings_end_part_i"
+
+[.red_toad]
+quest = "mournings_end_part_i"
+
+[.yellow_toad]
+quest = "mournings_end_part_i"
+
+[.green_toad]
+quest = "mournings_end_part_i"
+
+[.rotten_apples]
+quest = "mournings_end_part_i"
+
+[.apple_barrel]
+quest = "mournings_end_part_i"
+
+[.naphtha_apple_mix]
+quest = "mournings_end_part_i"
+
+[.toxic_naphtha]
+quest = "mournings_end_part_i"
+
+[.sieve]
+quest = "mournings_end_part_i"
+
+[.toxic_powder]
+quest = "mournings_end_part_i"
+
+[.barrel_of_naphtha]
+quest = "mournings_end_part_i"
+
+[.barrel_of_coal_tar]
+quest = "mournings_end_part_i"
+
+[.silver_necklace]
+quest = "murder_mystery"
+
+[.silver_cup]
+quest = "murder_mystery"
+
+[.silver_bottle]
+quest = "murder_mystery"
+
+[.silver_book]
+quest = "murder_mystery"
+
+[.silver_needle]
+quest = "murder_mystery"
+
+[.criminals_thread_red]
+quest = "murder_mystery"
+
+[.criminals_thread_green]
+quest = "murder_mystery"
+
+[.criminals_thread_blue]
+quest = "murder_mystery"
+
+[.flypaper]
+quest = "murder_mystery"
+
+[.pungent_pot]
+quest = "murder_mystery"
+
+[.criminals_dagger]
+quest = "murder_mystery"
+
+[.goutweedy_lump]
+quest = "my_arms_big_adventure"
+
+[.hardy_gout_tubers]
+quest = "my_arms_big_adventure"
+
+[.farming_manual]
+quest = "my_arms_big_adventure"
+
+[.rake_handle]
+quest = "my_arms_big_adventure"
+
+[.rake_head]
+quest = "my_arms_big_adventure"
+
+[.bucket_of_rubble_partially_filled]
+quest = "in_aid_of_the_myreque"
+
+[.bucket_of_rubble_almost_full]
+quest = "in_aid_of_the_myreque"
+
+[.bucket_of_rubble_totally_filled]
+quest = "in_aid_of_the_myreque"
+
+[.plaster_fragment]
+quest = "in_aid_of_the_myreque"
+
+[.dusty_scroll]
+quest = "in_aid_of_the_myreque"
+
+[.crate_in_aid_of_the_myreque]
+quest = "in_aid_of_the_myreque"
+
+[.temple_library_key]
+quest = "in_aid_of_the_myreque"
+
+[.the_sleeping_seven]
+quest = "in_aid_of_the_myreque"
+
+[.histories_of_the_hallowland]
+quest = "in_aid_of_the_myreque"
+
+[.modern_day_morytania]
+quest = "in_aid_of_the_myreque"
+
+[.rod_dust]
+quest = "in_aid_of_the_myreque"
+
+[.message_vertida]
+quest = "darkness_of_hallowvale"
+
+[.castle_sketch_1]
+quest = "darkness_of_hallowvale"
+
+[.castle_sketch_2]
+quest = "darkness_of_hallowvale"
+
+[.castle_sketch_3]
+quest = "darkness_of_hallowvale"
+
+[.message_fireplace]
+quest = "darkness_of_hallowvale"
+
+[.blood_tithe_pouch]
+quest = "darkness_of_hallowvale"
+
+[.large_ornate_key]
+quest = "darkness_of_hallowvale"
+
+[.haemalchemy_vol_1]
+quest = "darkness_of_hallowvale"
+
+[.sealed_message]
+quest = "darkness_of_hallowvale"
+
+[.door_key_darkness_of_hallowvale]
+quest = "darkness_of_hallowvale"
+
+[.ladder_top]
+quest = "darkness_of_hallowvale"
+
+[.bucket_of_water_meiyerditch]
+quest = "darkness_of_hallowvale"
+
+[.bucket_meiyerditch]
+quest = "darkness_of_hallowvale"
+
+[.washing_bowl]
+quest = "nature_spirit"
+
+[.mirror]
+quest = "nature_spirit"
+
+[.druidic_spell]
+quest = "nature_spirit"
+
+[.a_used_spell]
+quest = "nature_spirit"
+
+[.astronomy_book]
+quest = "observatory_quest"
+
+[.goblin_kitchen_key]
+quest = "observatory_quest"
+
+[.lens_mould]
+quest = "observatory_quest"
+
+[.observatory_lens]
+quest = "observatory_quest"
+
+[.glassblowing_book]
+quest = "observatory_quest"
+
+[.blunt_hatchet]
+quest = "one_small_favour"
+
+[.herbal_tincture]
+quest = "one_small_favour"
+
+[.stodgy_mattress]
+quest = "one_small_favour"
+
+[.comfy_mattress]
+quest = "one_small_favour"
+
+[.iron_oxide]
+quest = "one_small_favour"
+
+[.animate_rock_scroll]
+quest = "one_small_favour"
+
+[.broken_vane_part_iron]
+quest = "one_small_favour"
+
+[.broken_vane_part_bronze]
+quest = "one_small_favour"
+
+[.broken_vane_part_steel]
+quest = "one_small_favour"
+
+[.directionals]
+quest = "one_small_favour"
+
+[.ornament]
+quest = "one_small_favour"
+
+[.weathervane_pillar]
+quest = "one_small_favour"
+
+[.weather_report]
+quest = "one_small_favour"
+
+[.breathing_salts]
+quest = "one_small_favour"
+
+[.chicken_cage]
+quest = "one_small_favour"
+
+[.sharpened_hatchet]
+quest = "one_small_favour"
+
+[.red_mahogany_logs]
+quest = "one_small_favour"
+
+[.penguin_bongos]
+quest = "cold_war"
+
+[.cowbells]
+quest = "cold_war"
+
+[.clockwork_book]
+quest = "cold_war"
+
+[.mission_report_ardougne]
+quest = "cold_war"
+
+[.mission_report_lumbridge]
+quest = "cold_war"
+
+[.mission_report_fake]
+quest = "cold_war"
+
+[.kgp_id_card]
+quest = "cold_war"
+
+[.warrant]
+quest = "plague_city"
+
+[.a_small_key]
+quest = "plague_city"
+
+[.a_scruffy_note]
+quest = "plague_city"
+
+[.picture_plague_city]
+quest = "plague_city"
+
+[.bucket_murkywater]
+quest = "priest_in_peril"
+
+[.bucket_blessedwater]
+quest = "priest_in_peril"
+
+[.the_ratpits_manual]
+quest = "ratcatchers"
+
+[.poisoned_cheese]
+quest = "ratcatchers"
+
+[.music_scroll]
+quest = "ratcatchers"
+
+[.directions]
+quest = "ratcatchers"
+
+[.pot_of_weeds]
+quest = "ratcatchers"
+
+[.smouldering_pot]
+quest = "ratcatchers"
+
+[.cat_antipoison]
+quest = "ratcatchers"
+
+[.kings_message]
+quest = "regicide"
+
+[.iorwerths_message]
+quest = "regicide"
+
+[.crystal_pendant]
+quest = "regicide"
+
+[.sulphur]
+quest = "regicide"
+
+[.quicklime]
+quest = "regicide"
+
+[.pot_of_quicklime]
+quest = "regicide"
+
+[.ground_sulphur]
+quest = "regicide"
+
+[.barrel_bomb]
+quest = "regicide"
+
+[.naphtha_mix_sulphur]
+quest = "regicide"
+
+[.naphtha_mix_quicklime]
+quest = "regicide"
+
+[.the_big_book_of_bangs]
+quest = "regicide"
+
+[.cadarn_lineage]
+quest = "roving_elves"
+
+[.mining_prop]
+quest = "royal_trouble"
+
+[.heavy_box]
+quest = "royal_trouble"
+
+[.empty_box]
+quest = "royal_trouble"
+
+[.burnt_diary]
+quest = "royal_trouble"
+
+[.letter_royal_trouble]
+quest = "royal_trouble"
+
+[.engine]
+quest = "royal_trouble"
+
+[.scroll_royal_trouble]
+quest = "royal_trouble"
+
+[.pulley_beam]
+quest = "royal_trouble"
+
+[.long_pulley_beam]
+quest = "royal_trouble"
+
+[.longer_pulley_beam]
+quest = "royal_trouble"
+
+[.lift_manual]
+quest = "royal_trouble"
+
+[.beam]
+quest = "royal_trouble"
+
+[.sea_slug]
+quest = "sea_slug"
+
+[.damp_sticks]
+quest = "sea_slug"
+
+[.dry_sticks]
+quest = "sea_slug"
+
+[.broken_glass]
+quest = "sea_slug"
+
+[.cattleprod]
+quest = "sheep_herder"
+
+[.sheep_feed]
+quest = "sheep_herder"
+
+[.armour_shard]
+quest = "another_slice_of_ham"
+
+[.artefact_armour]
+quest = "another_slice_of_ham"
+
+[.artefact_hatchet]
+quest = "another_slice_of_ham"
+
+[.artefact_helmet]
+quest = "another_slice_of_ham"
+
+[.artefact_shield]
+quest = "another_slice_of_ham"
+
+[.artefact_sword]
+quest = "another_slice_of_ham"
+
+[.artefact_mace]
+quest = "another_slice_of_ham"
+
+[.hatchet_head]
+quest = "another_slice_of_ham"
+
+[.helmet_fragment]
+quest = "another_slice_of_ham"
+
+[.shield_fragment]
+quest = "another_slice_of_ham"
+
+[.sword_fragment]
+quest = "another_slice_of_ham"
+
+[.mace_ham]
+quest = "another_slice_of_ham"
+
+[.sea_slug_glue]
+quest = "slug_menace"
+
+[.commorb_v2]
+quest = "slug_menace"
+
+[.door_transcription]
+quest = "slug_menace"
+
+[.dead_sea_slug]
+quest = "slug_menace"
+
+[.page_1]
+quest = "slug_menace"
+
+[.page_2]
+quest = "slug_menace"
+
+[.page_3]
+quest = "slug_menace"
+
+[.fragment_1]
+quest = "slug_menace"
+
+[.fragment_2]
+quest = "slug_menace"
+
+[.fragment_3]
+quest = "slug_menace"
+
+[.blank_water_rune]
+quest = "slug_menace"
+
+[.water_rune_the_slug_menace]
+quest = "slug_menace"
+
+[.blank_air_rune]
+quest = "slug_menace"
+
+[.air_rune_the_slug_menace]
+quest = "slug_menace"
+
+[.blank_earth_rune]
+quest = "slug_menace"
+
+[.earth_rune_the_slug_menace]
+quest = "slug_menace"
+
+[.blank_mind_rune]
+quest = "slug_menace"
+
+[.mind_rune_the_slug_menace]
+quest = "slug_menace"
+
+[.blank_fire_rune]
+quest = "slug_menace"
+
+[.fire_rune_the_slug_menace]
+quest = "slug_menace"
+
+[.statuette_spirits_of_the_elid]
+quest = "spirits_of_the_elid"
+
+[.shoes_spirits_of_the_elid]
+quest = "spirits_of_the_elid"
+
+[.sole]
+quest = "spirits_of_the_elid"
+
+[.ballad]
+quest = "spirits_of_the_elid"
+
+[.silverlight_dyed]
+quest = "shadow_of_the_storm"
+
+[.demonic_sigil_mould]
+quest = "shadow_of_the_storm"
+
+[.demonic_sigil]
+quest = "shadow_of_the_storm"
+
+[.demonic_tome]
+quest = "shadow_of_the_storm"
+
+[.dagonhai_history]
+quest = "what_lies_below"
+
+[.sinkeths_diary]
+quest = "what_lies_below"
+
+[.an_empty_folder]
+quest = "what_lies_below"
+
+[.used_folder]
+quest = "what_lies_below"
+
+[.full_folder]
+quest = "what_lies_below"
+
+[.rats_paper]
+quest = "what_lies_below"
+
+[.rats_letter]
+quest = "what_lies_below"
+
+[.suroks_letter]
+quest = "what_lies_below"
+
+[.zaffs_instructions]
+quest = "what_lies_below"
+
+[.wand_what_lies_below]
+quest = "what_lies_below"
+
+[.infused_wand]
+quest = "what_lies_below"
+
+[.iron_sheet]
+quest = "swan_song"
+
+[.fresh_monkfish]
+quest = "swan_song"
+
+[.bone_seeds]
+quest = "swan_song"
+
+[.hermans_book]
+quest = "swan_song"
+
+[.crafting_manual]
+quest = "tai_bwo_wannai_trio"
+
+[.karamjan_rum_sliced_banana]
+quest = "tai_bwo_wannai_trio"
+
+[.karamjan_rum_banana]
+quest = "tai_bwo_wannai_trio"
+
+[.monkey_corpse]
+quest = "tai_bwo_wannai_trio"
+
+[.monkey_skin]
+quest = "tai_bwo_wannai_trio"
+
+[.seaweed_sandwich]
+quest = "tai_bwo_wannai_trio"
+
+[.stuffed_monkey]
+quest = "tai_bwo_wannai_trio"
+
+[.keys]
+quest = "the_feud"
+
+[.jewels]
+quest = "the_feud"
+
+[.note_fibonacci]
+quest = "the_feud"
+
+[.note_numbers]
+quest = "the_feud"
+
+[.receipt]
+quest = "the_feud"
+
+[.hags_poison]
+quest = "the_feud"
+
+[.desert_disguise]
+quest = "the_feud"
+
+[.barrel_the_tourist_trap]
+quest = "tourist_trap"
+
+[.slave_shirt]
+quest = "tourist_trap"
+
+[.slave_robe]
+quest = "tourist_trap"
+
+[.slave_boots]
+quest = "tourist_trap"
+
+[.scrumpled_paper]
+quest = "tourist_trap"
+
+[.shantay_disclaimer]
+quest = "tourist_trap"
+
+[.prototype_dart]
+quest = "tourist_trap"
+
+[.technical_plans]
+quest = "tourist_trap"
+
+[.tenti_pineapple]
+quest = "tourist_trap"
+
+[.prototype_dart_tip]
+quest = "tourist_trap"
+
+[.sailing_book]
+quest = "tourist_trap"
+
+[.hard_hat]
+quest = "tower_of_life"
+
+[.builders_shirt]
+quest = "tower_of_life"
+
+[.builders_trousers]
+quest = "tower_of_life"
+
+[.builders_boots]
+quest = "tower_of_life"
+
+[.rivets]
+quest = "tower_of_life"
+
+[.binding_fluid]
+quest = "tower_of_life"
+
+[.pipe_tower_of_life]
+quest = "tower_of_life"
+
+[.pipe_ring]
+quest = "tower_of_life"
+
+[.metal_sheet]
+quest = "tower_of_life"
+
+[.coloured_ball]
+quest = "tower_of_life"
+
+[.valve_wheel]
+quest = "tower_of_life"
+
+[.metal_bar]
+quest = "tower_of_life"
+
+[.guide_book]
+quest = "tribal_totem"
+
+[.totem_tribal_totem]
+quest = "tribal_totem"
+
+[.address_label]
+quest = "tribal_totem"
+
+[.cell_key_1]
+quest = "troll_stronghold"
+
+[.cell_key_2]
+quest = "troll_stronghold"
+
+[.trollweiss]
+quest = "troll_romance"
+
+[.chores]
+quest = "tail_of_two_cats"
+
+[.recipe]
+quest = "tail_of_two_cats"
+
+[.doctors_hat]
+quest = "tail_of_two_cats"
+
+[.nurse_hat]
+quest = "tail_of_two_cats"
+
+[.commorb_wanted]
+quest = "wanted"
+
+[.soluss_hat]
+quest = "wanted"
+
+[.ogre_relic]
+quest = "watchtower"
+
+[.relic_part_1]
+quest = "watchtower"
+
+[.relic_part_2]
+quest = "watchtower"
+
+[.relic_part_3]
+quest = "watchtower"
+
+[.ogre_tooth]
+quest = "watchtower"
+
+[.tobans_key]
+quest = "watchtower"
+
+[.rock_cake]
+quest = "watchtower"
+
+[.fingernails]
+quest = "watchtower"
+
+[.old_robe]
+quest = "watchtower"
+
+[.unusual_armour]
+quest = "watchtower"
+
+[.damaged_dagger]
+quest = "watchtower"
+
+[.tattered_eye_patch]
+quest = "watchtower"
+
+[.vial_jangerberries]
+quest = "watchtower"
+
+[.ground_bat_bones]
+quest = "watchtower"
+
+[.tobans_gold]
+quest = "watchtower"
+
+[.magic_ogre_potion]
+quest = "watchtower"
+
+[.shaman_robe]
+quest = "watchtower"
+
+[.book_on_baxtorian]
+quest = "waterfall_quest"
+
+[.glarials_urn]
+quest = "waterfall_quest"
+
+[.ball]
+quest = "witches_house"
+
+[.diary_witchs_house]
+quest = "witches_house"
+
+[.shed_key_witchs_house]
+quest = "witches_house"
+
+[.torn_page]
+quest = "zogre_flesh_eaters"
+
+[.ruined_backpack]
+quest = "zogre_flesh_eaters"
+
+[.dragon_inn_tankard]
+quest = "zogre_flesh_eaters"
+
+[.zogre_sithik_portrait_signed]
+quest = "zogre_flesh_eaters"
+
+[.book_of_portraiture]
+quest = "zogre_flesh_eaters"
+
+[.ogre_artefact]
+quest = "zogre_flesh_eaters"
+
+[.book_of_ham]
+quest = "zogre_flesh_eaters"
+
+[.zogre_ogre_trans_potion]
+quest = "zogre_flesh_eaters"
+
+[.necromancy_book]
+quest = "zogre_flesh_eaters"
+
+[.cup_of_tea_zogre_flesh_eaters]
+quest = "zogre_flesh_eaters"
+
+[.ogre_gate_key]
+quest = "zogre_flesh_eaters"
+
+[.bone_shard]
+quest = "shilo_village"
+
+[.stone_plaque]
+quest = "shilo_village"
+
+[.tattered_scroll]
+quest = "shilo_village"
+
+[.crumpled_scroll]
+quest = "shilo_village"
+
+[.rashiliyia_corpse]
+quest = "shilo_village"
+
+[.zadimus_corpse]
+quest = "shilo_village"
+
+[.locating_crystal]
+quest = "shilo_village"
+
+[.coins_shilo_village]
+quest = "shilo_village"
+
+[.bone_beads]
+quest = "shilo_village"
+
+[.paramaya_ticket]
+quest = "shilo_village"
+
+[.sword_pommel]
+quest = "shilo_village"
+
+[.bervirius_notes]
+quest = "shilo_village"
+
+[.wampum_belt]
+quest = "shilo_village"
+
+[.dirty_blast]
+quest = "recipe_for_disaster"
+
+[.asgoldian_ale]
+quest = "recipe_for_disaster"
+
+[.slop_of_compromise]
+quest = "recipe_for_disaster"
+
+[.soggy_bread]
+quest = "recipe_for_disaster"
+
+[.spicy_maggots]
+quest = "recipe_for_disaster"
+
+[.dyed_orange]
+quest = "recipe_for_disaster"
+
+[.rock_mogre_camp]
+quest = "recipe_for_disaster"
+
+[.mudskipper_hide]
+quest = "recipe_for_disaster"
+
+[.cake_of_guidance]
+quest = "recipe_for_disaster"
+
+[.raw_guide_cake]
+quest = "recipe_for_disaster"
+
+[.enchanted_egg]
+quest = "recipe_for_disaster"
+
+[.enchanted_milk]
+quest = "recipe_for_disaster"
+
+[.enchanted_flour]
+quest = "recipe_for_disaster"
+
+[.cornflour]
+quest = "recipe_for_disaster"
+
+[.book_on_chickens]
+quest = "recipe_for_disaster"
+
+[.vanilla_pod]
+quest = "recipe_for_disaster"
+
+[.pot_of_cornflour]
+quest = "recipe_for_disaster"
+
+[.cornflour_mixture]
+quest = "recipe_for_disaster"
+
+[.milky_mixture]
+quest = "recipe_for_disaster"
+
+[.cinnamon]
+quest = "recipe_for_disaster"
+
+[.brulee_egg]
+quest = "recipe_for_disaster"
+
+[.brulee_vanilla]
+quest = "recipe_for_disaster"
+
+[.brulee_raw]
+quest = "recipe_for_disaster"
+
+[.brulee_supreme]
+quest = "recipe_for_disaster"
+
+[.evil_chickens_egg]
+quest = "recipe_for_disaster"
+
+[.dragon_token]
+quest = "recipe_for_disaster"
+
+[.red_banana]
+quest = "recipe_for_disaster"
+
+[.tchiki_monkey_nuts]
+quest = "recipe_for_disaster"
+
+[.sliced_red_banana]
+quest = "recipe_for_disaster"
+
+[.tchiki_nut_paste]
+quest = "recipe_for_disaster"
+
+[.snake_corpse]
+quest = "recipe_for_disaster"
+
+[.raw_stuffed_snake]
+quest = "recipe_for_disaster"
+
+[.odd_stuffed_snake]
+quest = "recipe_for_disaster"
+
+[.stuffed_snake]
+quest = "recipe_for_disaster"
+
+[.snake_over_cooked]
+quest = "recipe_for_disaster"
+
+[.history_of_iban]
+quest = "underground_pass"
+
+[.doll_of_iban]
+quest = "underground_pass"
+
+[.damp_planks]
+quest = "olafs_quest"
+
+[.crude_carving]
+quest = "olafs_quest"
+
+[.cruder_carving]
+quest = "olafs_quest"
+
+[.svens_last_map]
+quest = "olafs_quest"
+
+[.windswept_logs]
+quest = "olafs_quest"
+
+[.key_olafs_quest_cross]
+quest = "olafs_quest"
+
+[.key_olafs_quest_square]
+quest = "olafs_quest"
+
+[.key_olafs_quest_triangle]
+quest = "olafs_quest"
+
+[.key_olafs_quest_hexagon]
+quest = "olafs_quest"
+
+[.key_olafs_quest_star]
+quest = "olafs_quest"
+
+[.rotten_barrel]
+quest = "olafs_quest"
+
+[.rope_olafs_quest]
+quest = "olafs_quest"
+
+[.goblin_skull]
+quest = "rag_and_bone_man"
+
+[.bone_in_vinegar_goblin_skull]
+quest = "rag_and_bone_man"
+
+[.bear_ribs]
+quest = "rag_and_bone_man"
+
+[.bone_in_vinegar_bear_ribs]
+quest = "rag_and_bone_man"
+
+[.ram_skull]
+quest = "rag_and_bone_man"
+
+[.bone_in_vinegar_ram_skull]
+quest = "rag_and_bone_man"
+
+[.unicorn_bone]
+quest = "rag_and_bone_man"
+
+[.bone_in_vinegar_unicorn_bone]
+quest = "rag_and_bone_man"
+
+[.giant_rat_bone]
+quest = "rag_and_bone_man"
+
+[.bone_in_vinegar_giant_rat_bone]
+quest = "rag_and_bone_man"
+
+[.giant_bat_wing]
+quest = "rag_and_bone_man"
+
+[.bone_in_vinegar_giant_bat_wing]
+quest = "rag_and_bone_man"
+
+[.wolf_bone]
+quest = "rag_and_bone_man"
+
+[.bone_in_vinegar_wolf_bone]
+quest = "rag_and_bone_man"
+
+[.map_part_1]
+quest = "dragon_slayer"
+
+[.map_part_2]
+quest = "dragon_slayer"
+
+[.map_part_3]
+quest = "dragon_slayer"
+
+[.grimy_key]
+quest = "ernest_the_chicken"
+
+[.cup_of_milky_tea]
+quest = "ghosts_ahoy"
+
+[.cup_of_milky_tea_ghosts_ahoy]
+quest = "ghosts_ahoy"
+
+[.empty_sack_animal_magnetism]
+quest = "animal_magnetism"
+
+[.keg]
+quest = "great_brain_robbery"
+
+[.keg_2]
+quest = "great_brain_robbery"
+
+[.certificate]
+quest = "death_plateau"
+
+[.silver_pot_empty]
+quest = "desert_treasure"
+
+[.silver_pot_blood]
+quest = "desert_treasure"
+
+[.silver_pot_garlic]
+quest = "desert_treasure"
+
+[.silver_pot_complete]
+quest = "desert_treasure"
+
+[.silver_pot_spice]
+quest = "desert_treasure"
+
+[.panning_tray_2]
+quest = "dig_site"
+
+[.panning_tray_full]
+quest = "dig_site"
+
+[.chest_key_the_dig_site]
+quest = "dig_site"
+
+[.cup_of_tea_discontinued]
+quest = "dig_site"
+
+[.fenk_brush1]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_brush2]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_brush3]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_journal]
+quest = "creature_of_fenkenstrain"
+
+[.fenk_letter]
+quest = "creature_of_fenkenstrain"
+
+[.canister_2]
+quest = "cabin_fever"
+
+[.gold_leaf_icthlarins_little_helper]
+quest = "icthlarins_little_helper"
+
+[.hollow_reed_2]
+quest = "legends_quest"
+
+[.monkey]
+quest = "monkey_madness"
+
+[.rope_2]
+quest = "mountain_daughter"
+
+[.pole_2]
+quest = "mountain_daughter"
+
+[.pole_3]
+quest = "mountain_daughter"
+
+[.pole_4]
+quest = "mountain_daughter"
+
+[.silver_pot]
+quest = "murder_mystery"
+
+[.silver_pot_dusted]
+quest = "murder_mystery"
+
+[.journal_nature_spirit]
+quest = "nature_spirit"
+
+[.book_turnip_growing_for_beginners]
+quest = "plague_city"
+
+[.rock_ore]
+quest = "tourist_trap"
+
+[.prison_key]
+quest = "troll_stronghold"
+
+[.vial_jangerberries_and_guam_leaves]
+quest = "watchtower"
+
+[.potion]
+quest = "watchtower"
+
+[.house_key]
+quest = "witches_house"
+
+[.magnet]
+quest = "witches_house"
+
+[.zogre_sithik_portrait_good]
+quest = "zogre_flesh_eaters"
+
+[.zogre_sithik_portrait_bad]
+quest = "zogre_flesh_eaters"
+
+[.locating_crystal_2]
+quest = "shilo_village"
+
+[.locating_crystal_3]
+quest = "shilo_village"
+
+[.locating_crystal_4]
+quest = "shilo_village"
+
+[.locating_crystal_5]
+quest = "shilo_village"
+
+[.silver_necklace_dusted]
+quest = "murder_mystery"
+
+[.silver_cup_dusted]
+quest = "murder_mystery"
+
+[.silver_bottle_dusted]
+quest = "murder_mystery"
+
+[.silver_book_dusted]
+quest = "murder_mystery"
+
+[.silver_needle_dusted]
+quest = "murder_mystery"
+
+[.criminals_dagger_dusted]
+quest = "murder_mystery"
+
+[.polished_goblin_skull]
+quest = "rag_and_bone_man"
+
+[.polished_bear_ribs]
+quest = "rag_and_bone_man"
+
+[.polished_ram_skull]
+quest = "rag_and_bone_man"
+
+[.polished_unicorn_bone]
+quest = "rag_and_bone_man"
+
+[.polished_giant_rat_bone]
+quest = "rag_and_bone_man"
+
+[.polished_giant_bat_wing]
+quest = "rag_and_bone_man"
+
+[.polished_wolf_bone]
+quest = "rag_and_bone_man"
