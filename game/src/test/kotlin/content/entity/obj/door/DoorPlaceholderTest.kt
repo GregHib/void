@@ -5,6 +5,7 @@ import objectOption
 import org.junit.jupiter.api.Test
 import walk
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.type.Tile
@@ -63,19 +64,36 @@ class DoorPlaceholderTest : WorldTest() {
     }
 
     @Test
-    fun `Walking through a door without collision leaves an invisible centrepiece behind`() {
+    fun `Walking through a door without collision leaves an invisible wall in the doors own slot`() {
         val player = createPlayer(Tile(3227, 3214))
         val door = GameObjects.find(Tile(3226, 3214), "door_627_closed")
 
         Door.openDoor(player, door, ticks = 3, collision = false)
 
-        val placeholder = GameObjects.findLayerOrNull(Tile(3226, 3214), ObjectLayer.GROUND, "inviswall")
+        val placeholder = GameObjects.findLayerOrNull(Tile(3226, 3214), ObjectLayer.WALL, "inviswall")
         assertNotNull(placeholder)
-        assertEquals(ObjectShape.CENTRE_PIECE_STRAIGHT, placeholder.shape)
+        assertEquals(door.shape, placeholder.shape)
+        assertEquals(door.rotation, placeholder.rotation)
+        assertNull(GameObjects.getLayer(Tile(3226, 3214), ObjectLayer.GROUND))
 
         tick(3)
 
         assertNull(GameObjects.getLayer(Tile(3226, 3214), ObjectLayer.GROUND))
         assertNotNull(GameObjects.findLayerOrNull(Tile(3226, 3214), ObjectLayer.WALL, "door_627_closed"))
     }
+
+    @Test
+    fun `Reverting a door restores the surrounding collision exactly`() {
+        val player = createPlayer(Tile(3227, 3214))
+        val door = GameObjects.find(Tile(3226, 3214), "door_627_closed")
+        val before = flags()
+
+        player.objectOption(door, "Open")
+        tick(2)
+        GameObjects.timers.reset()
+
+        assertEquals(before, flags())
+    }
+
+    private fun flags() = (3223..3229).flatMap { x -> (3211..3217).map { y -> Collisions[x, y, 0] } }
 }

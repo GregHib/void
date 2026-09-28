@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
-import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.type.Tile
 
 object Replace {
@@ -62,21 +61,25 @@ object Replace {
         for (replacement in replacements) {
             GameObjects.add(replacement, collision)
         }
-        val placeholders = originals.associateWith { placeholder(it, replacements, collision) }
+        val placeholders = originals.associateWith { placeholder(it, replacements) }
         for (placeholder in placeholders.values) {
             // Invisible walls are solid, placeholders are only there to take up space
             GameObjects.add(placeholder ?: continue, collision = false)
         }
-        GameObjects.timers.add((originals + replacements + placeholders.values.filterNotNull()).toSet(), ticks) {
+        // Placeholders are left out so they can't cancel (and orphan) another door's timer
+        GameObjects.timers.add((originals + replacements).toSet(), ticks) {
             for (replacement in replacements) {
                 GameObjects.remove(replacement, collision)
             }
             for ((original, placeholder) in placeholders) {
                 if (placeholder != null) {
-                    // Removing a placeholder on the originals layer re-adds the original by itself
-                    GameObjects.remove(placeholder, collision && sameLayer(placeholder, original))
+                    // Never touches collision, removing it re-adds the original without it
+                    GameObjects.remove(placeholder, collision = false)
                 }
                 if (!GameObjects.contains(original)) {
+                    GameObjects.add(original, collision)
+                } else if (collision && placeholder != null) {
+                    GameObjects.remove(original, collision)
                     GameObjects.add(original, collision)
                 }
             }
@@ -85,18 +88,14 @@ object Replace {
     }
 
     /**
-     * Invisible object to fill the space of [original]; a wall where clipped, otherwise a centrepiece.
+     * Invisible object filling the exact slot (tile, layer, shape and rotation) [original] vacated.
+     * Never uses a different layer as unstored objects there can't be seen and would be overwritten on clients.
      */
-    private fun placeholder(original: GameObject, replacements: List<GameObject>, collision: Boolean): GameObject? {
-        if (replacements.any { it.tile == original.tile }) {
+    private fun placeholder(original: GameObject, replacements: List<GameObject>): GameObject? {
+        val layer = ObjectLayer.layer(original.shape)
+        if (replacements.any { it.tile == original.tile && ObjectLayer.layer(it.shape) == layer }) {
             return null
         }
-        val shape = if (collision) ObjectShape.WALL_STRAIGHT else ObjectShape.CENTRE_PIECE_STRAIGHT
-        if (GameObjects.getLayer(original.tile, ObjectLayer.layer(shape)) != null) {
-            return null
-        }
-        return GameObject(ObjectDefinitions.get("inviswall").id, original.tile, shape, original.rotation)
+        return GameObject(ObjectDefinitions.get("inviswall").id, original.tile, original.shape, original.rotation)
     }
-
-    private fun sameLayer(first: GameObject, second: GameObject) = first.tile == second.tile && ObjectLayer.layer(first.shape) == ObjectLayer.layer(second.shape)
 }
