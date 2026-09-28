@@ -143,19 +143,19 @@ class Fluffs : Script {
 
     private suspend fun Player.fluffsGoesHome() {
         val region = Region(13110)
-        val custceneStartTile = Tile(3309, 3509, 1)
+        val cutsceneStartTile = Tile(3309, 3509, 1)
 
         inventory.remove("three_little_kittens")
         set(GERTRUDES_CAT_STRING_NAME, "fluffs_returned")
 
         open("fade_out")
         val cutscene = startCutscene("fluffs_kittens_reunite", region)
-        setInstanceLogout(custceneStartTile)
+        setInstanceLogout(cutsceneStartTile)
 
         cutscene.onEnd {
             open("fade_out")
             delay(3)
-            tele(custceneStartTile)
+            tele(cutsceneStartTile)
             clearCamera()
             clearAnim()
         }
