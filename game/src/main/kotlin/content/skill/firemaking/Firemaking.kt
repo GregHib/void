@@ -107,7 +107,7 @@ class Firemaking : Script {
         if (!has(Skill.Firemaking, level, true)) {
             return false
         }
-        if (GameObjects.getLayer(item.tile, ObjectLayer.GROUND) != null) {
+        if (GameObjects.getLayer(item.tile, ObjectLayer.GROUND) != null || GameObjects.getLayer(item.tile, ObjectLayer.GROUND_DECORATION) != null) {
             message("You can't light a fire here.")
             return false
         }

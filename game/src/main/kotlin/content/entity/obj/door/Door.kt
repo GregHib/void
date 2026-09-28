@@ -1,5 +1,6 @@
 package content.entity.obj.door
 
+import content.entity.obj.Replace
 import content.entity.obj.door.Door.isDoor
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
@@ -10,13 +11,13 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -135,15 +136,18 @@ object Door {
      * Replace door [obj] with [next] for [ticks]
      */
     private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+        val id = ObjectDefinitions.get(def.stringId.replace(current, next)).id
+        if (id == -1) {
+            return
+        }
         val hinged = !def.stringId.contains("single")
-        obj.replace(
-            id = def.stringId.replace(current, next),
-            tile = if (hinged) tile(obj, tileRotation) else obj.tile,
-            rotation = if (hinged) obj.rotation(objRotation) else obj.rotation,
-            ticks = ticks,
-            collision = collision,
-            onRevert = onRevert,
+        val replacement = GameObject(
+            id,
+            if (hinged) tile(obj, tileRotation) else obj.tile,
+            obj.shape,
+            if (hinged) obj.rotation(objRotation) else obj.rotation,
         )
+        Replace.objects(listOf(obj), listOf(replacement), ticks, collision, onRevert)
     }
 
     /**
