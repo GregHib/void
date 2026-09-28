@@ -45,11 +45,11 @@ object DoubleDoor {
     /**
      * Open a pair of double doors [obj] and [double]
      */
-    fun open(player: Player, obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+    fun open(player: Player, obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null): Boolean {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-        if (def.isGate()) {
+        return if (def.isGate()) {
             Gate.replace(player, obj, double, flip, ticks, collision, { it.opened }, 3, 1, 1, onRevert)
         } else {
             Replace.objects(
@@ -65,11 +65,11 @@ object DoubleDoor {
     /**
      * Close a pair of double doors [obj] and [double]
      */
-    fun close(player: Player, obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+    fun close(player: Player, obj: GameObject, def: ObjectDefinition, double: GameObject, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null): Boolean {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-        if (def.isGate()) {
+        return if (def.isGate()) {
             Gate.replace(player, obj, double, flip, ticks, collision, { it.closed }, 1, 2, 3, onRevert)
         } else {
             val mirror = def.mirrored

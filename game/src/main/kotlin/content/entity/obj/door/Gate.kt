@@ -22,11 +22,11 @@ object Gate {
         hingeTileRotation: Int,
         tileRotation: Int,
         onRevert: (() -> Unit)? = null,
-    ) {
+    ): Boolean {
         val first = if (flip) double else obj
         val second = if (flip) obj else double
         val tile = Door.tile(first, hingeTileRotation)
-        Replace.objects(
+        return Replace.objects(
             first,
             next(first.def(player)),
             tile,
