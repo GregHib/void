@@ -2,10 +2,6 @@
 id = 3626
 examine = "It looks very sturdy."
 
-# The cache has no swung-open wall variant; the opened ids reuse the same
-# object which the door handler swings by rotation. Opened ids are defined
-# first so map objects resolve to the closed state.
-
 [maze_door_1_closed]
 id = 3628
 opened = "maze_door_1_closed"

@@ -140,7 +140,7 @@ examine = "A rocky outcrop."
 id = 3043
 examine = "A rocky outcrop."
 
-[depleted_rocks_tutorial_island_1]
+[depleted_rocks_dirt_1]
 id = 33400
 examine = "A rocky outcrop."
 
@@ -1736,7 +1736,7 @@ examine = "A rocky outcrop."
 [coal_rocks_dirt_1]
 clone = "coal_rocks_old_1"
 id = 32426
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [coal_rocks_dirt_2]
@@ -1752,7 +1752,7 @@ examine = "A rocky outcrop."
 [clay_rocks_dirt_1]
 clone = "clay_rocks_old_1"
 id = 32429
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [clay_rocks_dirt_2]
@@ -1768,7 +1768,7 @@ examine = "A rocky outcrop."
 [gold_rocks_dirt_1]
 clone = "gold_rocks_old_1"
 id = 32432
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [gold_rocks_dirt_2]
@@ -1784,7 +1784,7 @@ examine = "A rocky outcrop."
 [adamantite_rocks_dirt_1]
 clone = "adamantite_rocks_old_1"
 id = 32435
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [adamantite_rocks_dirt_2]
@@ -1800,7 +1800,7 @@ examine = "A rocky outcrop."
 [mithril_rocks_dirt_1]
 clone = "mithril_rocks_old_1"
 id = 32438
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [mithril_rocks_dirt_2]
@@ -1816,7 +1816,7 @@ examine = "A rocky outcrop."
 [iron_rocks_dirt_1]
 clone = "iron_rocks_old_1"
 id = 32441
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [iron_rocks_dirt_2]
@@ -1832,7 +1832,7 @@ examine = "A rocky outcrop."
 [silver_rocks_dirt_1]
 clone = "silver_rocks_old_1"
 id = 32444
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [silver_rocks_dirt_2]
@@ -1876,7 +1876,7 @@ examine = "A rocky outcrop."
 [runite_rocks_dirt_1]
 clone = "runite_rocks_old_1"
 id = 33078
-depleted = "depleted_rocks_tutorial_island_1"
+depleted = "depleted_rocks_dirt_1"
 examine = "A rocky outcrop."
 
 [runite_rocks_dirt_2]

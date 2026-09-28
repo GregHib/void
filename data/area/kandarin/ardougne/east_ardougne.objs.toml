@@ -8,18 +8,19 @@ examine = "The bank teller will serve you from here."
 
 [bakers_stall]
 id = 34384
+empty = "ardougne_stall_empty"
 exp = 16.0
 level = 5
 restock = 4
 examine = "This stall smells great."
 
-[bakers_stall_empty]
+[ardougne_stall_empty]
 id = 34381
 examine = "All sold out."
 
 [silk_stall]
 id = 34383
-empty = "bakers_stall_empty"
+empty = "ardougne_stall_empty"
 level = 20
 exp = 24.0
 restock = 8
@@ -27,7 +28,7 @@ examine = "Fine silk woven by experts."
 
 [grey_fur_stall]
 id = 34387
-empty = "bakers_stall_empty"
+empty = "ardougne_stall_empty"
 level = 35
 exp = 45.0
 restock = 12
@@ -35,7 +36,7 @@ examine = "All manner of animal clothing."
 
 [silver_stall]
 id = 34382
-empty = "bakers_stall_empty"
+empty = "ardougne_stall_empty"
 level = 50
 exp = 205.0
 restock = 32
@@ -43,7 +44,7 @@ examine = "Fine silver items are for sale here."
 
 [spice_stall]
 id = 34386
-empty = "bakers_stall_empty"
+empty = "ardougne_stall_empty"
 level = 65
 exp = 92.0
 restock = 10
@@ -51,7 +52,7 @@ examine = "Spices to tingle your taste buds."
 
 [gem_stall]
 id = 34385
-empty = "bakers_stall_empty"
+empty = "ardougne_stall_empty"
 level = 75
 exp = 408.0
 restock = 100

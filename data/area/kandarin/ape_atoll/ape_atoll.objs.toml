@@ -1,5 +1,6 @@
 [food_stall]
 id = 4875
+empty = "monkey_stall_empty"
 level = 5
 exp = 16.0
 restock = 6
@@ -7,13 +8,13 @@ chance = "200-480"
 message = "You attempt to steal from the stall but you miss your chance..."
 examine = "This table has ripe bananas on show."
 
-[food_stall_empty]
+[monkey_stall_empty]
 id = 4797
 examine = "Bamboo strips have been lashed together to make this rickety desk."
 
 [crafting_stall]
 id = 4874
-empty = "food_stall_empty"
+empty = "monkey_stall_empty"
 level = 5
 exp = 20.0
 restock = 8
@@ -22,7 +23,7 @@ examine = "This table has crafting paraphernalia on it."
 
 [general_stall]
 id = 4876
-empty = "food_stall_empty"
+empty = "monkey_stall_empty"
 level = 5
 exp = 25.0
 restock = 8
@@ -31,7 +32,7 @@ examine = "This table has items of a general nature on it."
 
 [magic_stall]
 id = 4877
-empty = "food_stall_empty"
+empty = "monkey_stall_empty"
 level = 65
 exp = 90.0
 restock = 12
@@ -40,7 +41,7 @@ examine = "This table has items of a general nature on it."
 
 [scimitar_stall]
 id = 4878
-empty = "food_stall_empty"
+empty = "monkey_stall_empty"
 level = 65
 exp = 210.0
 restock = 32

@@ -3,9 +3,6 @@ id = 394
 persist = true
 format = "int"
 
-# Keys are slayer_tasks row ids, values are enum 1563 indices.
-# No 634 value: aviansies, bandits, black_knights, chaos_druid, crabs, dark_warriors,
-# frost_dragons, magic_axe, pirates, rogues, spiritual_creatures, tormented_demon
 [slayer_target]
 id = 395
 persist = true

@@ -16,7 +16,6 @@ examine = "A sturdy metal gate."
 [pip_underground_door1_opened]
 id = 3446
 material = "grate"
-examine = ""
 
 [pip_prisondoor_closed]
 id = 3463
@@ -26,7 +25,7 @@ examine = "A hastily constructed yet sturdy prison door."
 
 [priestperil_coffin_noanim]
 id = 30728
-examine = ""
+examine = "A coffin with a Saradomin star as decoration."
 
 [priestperil_tomb_top]
 id = 3482

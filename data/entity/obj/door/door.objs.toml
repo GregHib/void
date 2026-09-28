@@ -3457,11 +3457,6 @@ id = 51256
 opened = "locked_door_13_opened"
 examine = "The door is closed."
 
-[door_978_closed]
-id = 56900
-opened = "locked_door_13_opened"
-examine = "The door is now clear of ice."
-
 [door_863_closed]
 id = 50706
 opened = "locked_door_14_opened"

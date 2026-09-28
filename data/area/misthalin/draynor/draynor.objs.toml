@@ -8,18 +8,19 @@ examine = "I can jump from this stepping stone."
 
 [wine_stall]
 id = 14011
+empty = "market_stall_empty"
 level = 22
 exp = 27.0
 restock = 8
 examine = "The wine merchant's stall."
 
-[wine_stall_empty]
+[market_stall_empty]
 id = 14012
 examine = "With sufficient Agility, you may be able to climb through this."
 
 [seed_stall]
 id = 7053
-empty = "wine_stall_empty"
+empty = "market_stall_empty"
 level = 27
 exp = 10.0
 restock = 4
