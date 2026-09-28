@@ -94,6 +94,7 @@ class LoginServer(
         val client = createClient(write, isaacKeys, hostname)
         client.onDisconnected {
             online.remove(username)
+            read.cancel()
         }
         val passwordHash = passwordManager.encrypt(username, password)
         xtea.readUByte() // social login
@@ -141,6 +142,10 @@ class LoginServer(
         try {
             val instructions = accounts.load(client, username, passwordHash, displayMode) ?: return
             readPackets(client, instructions, read)
+        } catch (e: ClosedByteChannelException) {
+            if (!client.disconnected) {
+                throw e
+            }
         } finally {
             client.exit()
             client.disconnect()

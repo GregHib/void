@@ -50,9 +50,11 @@ class GameServer(
                         val socket = server.accept()
                         launch(dispatcher + exceptionHandler) {
                             logger.trace { "New connection accepted ${socket.remoteAddress}" }
-                            val read = socket.openReadChannel()
-                            val write = socket.openWriteChannel(autoFlush = false)
-                            connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+                            socket.use {
+                                val read = socket.openReadChannel()
+                                val write = socket.openWriteChannel(autoFlush = false)
+                                connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+                            }
                         }
                     }
                 }
