@@ -5,6 +5,7 @@ import content.entity.player.dialogue.Idle
 import content.entity.player.dialogue.Quiz
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.member.gertrudes_cat.GERTRUDES_CAT_STRING_NAME
 import content.quest.quest
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -16,7 +17,7 @@ private const val KANEL_STRING_NAME = "kanel"
 class Kanel : Script {
     init {
         npcOperate("Talk-to", KANEL_STRING_NAME) {
-            when (quest("gertrudes_cat")) {
+            when (quest(GERTRUDES_CAT_STRING_NAME)) {
                 "spoke_to_gertrude" -> lookingForInformation()
                 else -> unstarted()
             }
