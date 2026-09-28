@@ -1,6 +1,5 @@
 package content.entity.obj.door
 
-import content.entity.obj.Replace
 import content.entity.obj.door.Door.isDoor
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
@@ -11,14 +10,13 @@ import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.SoundDefinitions
 import world.gregs.voidps.engine.entity.character.areaSound
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.ObjectShape
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.engine.timer.toTicks
@@ -48,19 +46,26 @@ object Door {
      */
     fun closeDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
         val double = DoubleDoor.get(player, door, def, 1)
+        // The revert plays the sound for us, otherwise it'd play twice
         if (resetExisting(door, double)) {
-            return moved(player, def, !GameObjects.contains(door), null)
+            return true
         }
 
-        val replaced = when {
-            double == null && door.id.endsWith("_opened") -> replace(door, def, def.closed, 0, 3, ticks, collision, revert(def, door, "open"))
-            double != null && door.id.endsWith("_opened") && double.id.endsWith("_opened") -> DoubleDoor.close(player, door, def, double, ticks, collision, revert(def, door, "open"))
-            else -> {
-                player.message("The ${def.name.lowercase()} won't budge.")
-                return false
-            }
+        // Single door
+        if (double == null && door.id.endsWith("_opened")) {
+            replace(door, def, def.closed, 0, 3, ticks, collision, revert(def, door, "open"))
+            sound(player, def, "close")
+            return true
         }
-        return moved(player, def, replaced, "close")
+
+        // Double doors
+        if (double != null && door.id.endsWith("_opened") && double.id.endsWith("_opened")) {
+            DoubleDoor.close(player, door, def, double, ticks, collision, revert(def, door, "open"))
+            sound(player, def, "close")
+            return true
+        }
+        player.message("The ${def.name.lowercase()} won't budge.")
+        return false
     }
 
     /**
@@ -68,30 +73,26 @@ object Door {
      */
     fun openDoor(player: Player, door: GameObject, def: ObjectDefinition = door.def, ticks: Int = doorResetDelay, collision: Boolean = true): Boolean {
         val double = DoubleDoor.get(player, door, def, 0)
+        // The revert plays the sound for us, otherwise it'd play twice
         if (resetExisting(door, double)) {
-            return moved(player, def, !GameObjects.contains(door), null)
+            return true
         }
 
-        val replaced = when {
-            double == null && def.stringId.endsWith("_closed") -> replace(door, def, def.opened, 1, 1, ticks, collision, revert(def, door, "close"))
-            double != null && def.stringId.endsWith("_closed") && double.def(player).stringId.endsWith("_closed") -> DoubleDoor.open(player, door, def, double, ticks, collision, revert(def, door, "close"))
-            else -> {
-                player.message("The ${def.name.lowercase()} won't budge.")
-                return false
-            }
+        // Single door
+        if (double == null && def.stringId.endsWith("_closed")) {
+            replace(door, def, def.opened, 1, 1, ticks, collision, revert(def, door, "close"))
+            sound(player, def, "open")
+            return true
         }
-        return moved(player, def, replaced, "open")
-    }
 
-    private fun moved(player: Player, def: ObjectDefinition, replaced: Boolean, suffix: String?): Boolean {
-        if (!replaced) {
-            player.message("There's something in the way.")
-            return false
+        // Double doors
+        if (double != null && def.stringId.endsWith("_closed") && double.def(player).stringId.endsWith("_closed")) {
+            DoubleDoor.open(player, door, def, double, ticks, collision, revert(def, door, "close"))
+            sound(player, def, "open")
+            return true
         }
-        if (suffix != null) {
-            sound(player, def, suffix)
-        }
-        return true
+        player.message("The ${def.name.lowercase()} won't budge.")
+        return false
     }
 
     private fun sound(player: Player, definition: ObjectDefinition, suffix: String) {
@@ -132,17 +133,16 @@ object Door {
     /**
      * Replace door [obj] with [next] for [ticks]
      */
-    private fun replace(obj: GameObject, def: ObjectDefinition, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null): Boolean {
+    private fun replace(obj: GameObject, def: ObjectDefinition, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
         val hinged = !def.stringId.contains("single")
-        // Diagonal doors are hinged a corner clockwise of straight ones
-        val hinge = if (obj.shape == ObjectShape.WALL_DIAGONAL) tileRotation - 1 else tileRotation
-        val replacement = GameObject(
-            ObjectDefinitions.get(next).id,
-            if (hinged) tile(obj, hinge) else obj.tile,
-            obj.shape,
-            if (hinged) obj.rotation(objRotation) else obj.rotation,
+        obj.replace(
+            id = next,
+            tile = if (hinged) tile(obj, tileRotation) else obj.tile,
+            rotation = if (hinged) obj.rotation(objRotation) else obj.rotation,
+            ticks = ticks,
+            collision = collision,
+            onRevert = onRevert,
         )
-        return Replace.objects(listOf(obj), listOf(replacement), ticks, collision, onRevert)
     }
 
     /**
