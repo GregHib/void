@@ -63,7 +63,6 @@ class SpiritShieldSigils : Script {
             add(shield)
         }
         if (!success) {
-            // Items can be dropped or banked during the delay
             val error = inventory.transaction.error
             if (error is TransactionError.Deficient) {
                 val name = ItemDefinitions.get(error.item).name.lowercase()

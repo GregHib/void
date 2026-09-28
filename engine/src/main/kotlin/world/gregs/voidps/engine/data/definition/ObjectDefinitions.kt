@@ -76,7 +76,6 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate object id found '$stringId' at $path." }
-                        // An int id can only have one string id, extras would overwrite its params
                         require(intIds.add(id)) { "Duplicate object id $id found '$stringId' at $path, already defined as '${definitions[id].stringId}'." }
                         ids[stringId] = id
                         refs[stringId] = id
