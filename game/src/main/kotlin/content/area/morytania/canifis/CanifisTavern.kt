@@ -1,7 +1,7 @@
 package content.area.morytania.canifis
 
+import content.entity.obj.door.Door.opened
 import content.entity.obj.door.DoubleDoor
-import content.entity.obj.opened
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.sound

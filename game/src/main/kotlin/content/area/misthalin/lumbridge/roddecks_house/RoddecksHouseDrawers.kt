@@ -1,7 +1,7 @@
 package content.area.misthalin.lumbridge.roddecks_house
 
-import content.entity.obj.closed
-import content.entity.obj.opened
+import content.entity.obj.door.Door.closed
+import content.entity.obj.door.Door.opened
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.areaSound

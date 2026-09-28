@@ -1,6 +1,6 @@
 package content.area.kandarin.tree_gnome_stronghold
 
-import content.entity.obj.opened
+import content.entity.obj.door.Door.opened
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.player.clearRenderEmote

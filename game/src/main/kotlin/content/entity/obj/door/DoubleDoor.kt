@@ -1,10 +1,10 @@
 package content.entity.obj.door
 
 import content.entity.obj.Replace
-import content.entity.obj.closed
+import content.entity.obj.door.Door.closed
 import content.entity.obj.door.Door.isDoor
+import content.entity.obj.door.Door.opened
 import content.entity.obj.door.Gate.isGate
-import content.entity.obj.opened
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.GameObject

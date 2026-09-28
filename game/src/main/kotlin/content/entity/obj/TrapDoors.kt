@@ -1,5 +1,7 @@
 package content.entity.obj
 
+import content.entity.obj.door.Door.closed
+import content.entity.obj.door.Door.opened
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.timer.toTicks

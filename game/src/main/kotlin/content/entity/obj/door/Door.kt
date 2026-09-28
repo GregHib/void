@@ -1,12 +1,10 @@
 package content.entity.obj.door
 
 import content.entity.obj.Replace
-import content.entity.obj.closed
 import content.entity.obj.door.Door.isDoor
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
 import content.entity.obj.door.Gate.isGate
-import content.entity.obj.opened
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -28,7 +26,6 @@ import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 object Door {
-
     // Delay in ticks before a door closes itself
     private val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 
@@ -178,6 +175,11 @@ object Door {
         }
         return (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
     }
+    val ObjectDefinition.closed: String
+        get() = getOrNull("closed") ?: stringId.replace("_opened", "_closed")
+
+    val ObjectDefinition.opened: String
+        get() = getOrNull("opened") ?: stringId.replace("_closed", "_opened")
 }
 
 /**
