@@ -15,47 +15,35 @@ examine = "Empty market stall."
 
 [crossbow_stall]
 id = 17031
+empty = "bakery_stall_keldagrim_empty"
 level = 49
 exp = 52.0
 restock = 8
 examine = "A whole lot of crossbow items."
 
-[crossbow_stall_empty]
-id = 6984
-examine = "Empty market stall."
-
 [silver_stall_keldagrim]
 id = 6164
+empty = "bakery_stall_keldagrim_empty"
 level = 50
 exp = 205.0
 restock = 32
 examine = "Finely wrought wares of silver."
 
-[silver_stall_keldagrim_empty]
-id = 6984
-examine = "Empty market stall."
-
 [gem_stall_keldagrim]
 id = 6162
+empty = "bakery_stall_keldagrim_empty"
 level = 75
 exp = 408.0
 restock = 100
 examine = "Finest precious stones."
 
-[gem_stall_keldagrim_empty]
-id = 6984
-examine = "Empty market stall."
-
 [crafting_stall_keldagrim]
 id = 6166
+empty = "bakery_stall_keldagrim_empty"
 level = 5
 exp = 20.0
 restock = 8
 examine = "A whole lot of tools for crafting."
-
-[crafting_stall_keldagrim_empty]
-id = 6984
-examine = "Empty market stall."
 
 [clothes_stall_keldagrim]
 id = 6165

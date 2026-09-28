@@ -1,6 +1,6 @@
 [pip_underground_wall_side_withportal]
 id = 3443
-examine = ""
+examine = "The ideal thing to sit on."
 
 [pip_underground_door1_closed]
 id = 3444
@@ -9,13 +9,9 @@ examine = "A sturdy metal gate."
 
 [pip_underground_door2_closed]
 id = 3445
+opened = "pip_underground_door1_opened"
 material = "grate"
-examine = ""
-
-[pip_underground_door2_opened]
-id = 3446
-material = "grate"
-examine = ""
+examine = "A sturdy metal gate."
 
 [pip_underground_door1_opened]
 id = 3446
@@ -24,12 +20,9 @@ examine = ""
 
 [pip_prisondoor_closed]
 id = 3463
+opened = "door_38_opened"
 material = "iron"
-examine = ""
-
-[pip_prisondoor_opened]
-id = 3464
-examine = ""
+examine = "A hastily constructed yet sturdy prison door."
 
 [priestperil_coffin_noanim]
 id = 30728
@@ -49,7 +42,7 @@ examine = ""
 
 [priestperil_well]
 id = 3485
-examine = ""
+examine = "An ornately carved well that draws water from the river Salve."
 
 [priestperil_well_coloumn]
 id = 3486

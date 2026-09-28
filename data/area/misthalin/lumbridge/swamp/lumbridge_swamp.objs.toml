@@ -26,10 +26,6 @@ examine = "A pretty door."
 id = 48579
 examine = "An impressive fremennik longboat."
 
-[broken_raft_lumbridge_swamp]
-id = 17068
-examine = "A smashed up raft."
-
 [broken_raft_lumbridge_swamp_2]
 id = 17070
 examine = "A smashed up raft."

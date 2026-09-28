@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.definition
 
 import it.unimi.dsi.fastutil.Hash
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.jetbrains.annotations.TestOnly
@@ -45,6 +46,7 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
         timedLoad("object config") {
             val ids = Object2IntOpenHashMap<String>()
             val refs = Object2IntOpenHashMap<String>()
+            val intIds = IntOpenHashSet()
             ids.defaultReturnValue(-1)
             for (path in paths) {
                 refs.clear()
@@ -74,6 +76,8 @@ object ObjectDefinitions : DefinitionsDecoder<ObjectDefinition> {
                             }
                         }
                         require(!ids.containsKey(stringId)) { "Duplicate object id found '$stringId' at $path." }
+                        // An int id can only have one string id, extras would overwrite its params
+                        require(intIds.add(id)) { "Duplicate object id $id found '$stringId' at $path, already defined as '${definitions[id].stringId}'." }
                         ids[stringId] = id
                         refs[stringId] = id
                         definitions[id].stringId = stringId

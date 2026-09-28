@@ -142,6 +142,7 @@ examine = "A rocky outcrop."
 
 [depleted_rocks_tutorial_island_1]
 id = 33400
+examine = "A rocky outcrop."
 
 [limestone_rocks_1]
 id = 4027
@@ -275,30 +276,26 @@ examine = "A rocky outcrop."
 [iron_rocks_lumbridge_cellar_1]
 clone = "iron_rocks_old_1"
 id = 6943
+depleted = "depleted_rocks_chasm_of_tears_1"
 examine = "A rocky outcrop."
 
 [iron_rocks_lumbridge_cellar_2]
 clone = "iron_rocks_old_1"
 id = 6944
+depleted = "depleted_rocks_chasm_of_tears_2"
 examine = "A rocky outcrop."
 
 [silver_rocks_lumbridge_cellar_1]
 clone = "silver_rocks_old_1"
 id = 6945
+depleted = "depleted_rocks_chasm_of_tears_1"
 examine = "A rocky outcrop."
 
 [silver_rocks_lumbridge_cellar_2]
 clone = "silver_rocks_old_1"
 id = 6946
+depleted = "depleted_rocks_chasm_of_tears_2"
 examine = "A rocky outcrop."
-
-[depleted_rocks_lumbridge_cellar_1]
-id = 6947
-examine = "Stoney!"
-
-[depleted_rocks_lumbridge_cellar_2]
-id = 6948
-examine = "Stoney!"
 
 [copper_rocks_rimmington_1]
 clone = "copper_rocks_old_1"
@@ -488,16 +485,19 @@ examine = "A rocky outcrop."
 [gem_rocks_lumbridge_cellar_1]
 clone = "gem_rocks_old_2"
 id = 11179
+depleted = "depleted_rocks_chasm_of_tears_1"
 examine = "A rocky outcrop."
 
 [gem_rocks_lumbridge_cellar_2]
 clone = "gem_rocks_old_2"
 id = 11180
+depleted = "depleted_rocks_chasm_of_tears_2"
 examine = "A rocky outcrop."
 
 [gem_rocks_lumbridge_cellar_3]
 clone = "gem_rocks_old_2"
 id = 11181
+depleted = "depleted_rocks_chasm_of_tears_3"
 examine = "A rocky outcrop."
 
 [depleted_rocks_lumbridge_cellar_2_1]
@@ -551,10 +551,6 @@ examine = "A rocky outcrop."
 
 [depleted_rocks_lumbridge_cellar_2_2]
 id = 11192
-examine = "A rocky outcrop."
-
-[depleted_rocks_lumbridge_cellar_3]
-id = 11193
 examine = "A rocky outcrop."
 
 [gem_rocks_ingneous_2_1]
@@ -1740,6 +1736,7 @@ examine = "A rocky outcrop."
 [coal_rocks_dirt_1]
 clone = "coal_rocks_old_1"
 id = 32426
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [coal_rocks_dirt_2]
@@ -1755,6 +1752,7 @@ examine = "A rocky outcrop."
 [clay_rocks_dirt_1]
 clone = "clay_rocks_old_1"
 id = 32429
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [clay_rocks_dirt_2]
@@ -1770,6 +1768,7 @@ examine = "A rocky outcrop."
 [gold_rocks_dirt_1]
 clone = "gold_rocks_old_1"
 id = 32432
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [gold_rocks_dirt_2]
@@ -1785,6 +1784,7 @@ examine = "A rocky outcrop."
 [adamantite_rocks_dirt_1]
 clone = "adamantite_rocks_old_1"
 id = 32435
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [adamantite_rocks_dirt_2]
@@ -1800,6 +1800,7 @@ examine = "A rocky outcrop."
 [mithril_rocks_dirt_1]
 clone = "mithril_rocks_old_1"
 id = 32438
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [mithril_rocks_dirt_2]
@@ -1815,6 +1816,7 @@ examine = "A rocky outcrop."
 [iron_rocks_dirt_1]
 clone = "iron_rocks_old_1"
 id = 32441
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [iron_rocks_dirt_2]
@@ -1830,6 +1832,7 @@ examine = "A rocky outcrop."
 [silver_rocks_dirt_1]
 clone = "silver_rocks_old_1"
 id = 32444
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [silver_rocks_dirt_2]
@@ -1873,6 +1876,7 @@ examine = "A rocky outcrop."
 [runite_rocks_dirt_1]
 clone = "runite_rocks_old_1"
 id = 33078
+depleted = "depleted_rocks_tutorial_island_1"
 examine = "A rocky outcrop."
 
 [runite_rocks_dirt_2]
@@ -1896,10 +1900,6 @@ examine = "A rocky outcrop."
 
 [depleted_rocks_asgarnian_ice_2]
 id = 33223
-examine = "A rocky outcrop."
-
-[depleted_rocks_dirt_1]
-id = 33400
 examine = "A rocky outcrop."
 
 [depleted_rocks_dirt_2]

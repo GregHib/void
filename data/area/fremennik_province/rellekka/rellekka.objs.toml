@@ -4,25 +4,19 @@ examine = "Bake your clay items in here."
 
 [fur_stall]
 id = 4278
+empty = "veg_stall_empty"
 level = 35
 exp = 45.0
 restock = 12
 examine = "All manner of animal clothing."
 
-[fur_stall_empty]
-id = 4276
-examine = "Always a source of good bargains."
-
 [fish_stall]
 id = 4277
+empty = "veg_stall_empty"
 level = 42
 exp = 42.0
 restock = 12
 examine = "There's something fishy about this stall."
-
-[fish_stall_empty]
-id = 4276
-examine = "Always a source of good bargains."
 
 [fire_rellekka]
 id = 4265

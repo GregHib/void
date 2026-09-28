@@ -14,19 +14,11 @@ examine = "An ancient altar used for dark rituals."
 id = 48791
 examine = "A winch connected to the gates below."
 
-[blood_pact_stairs_down_north]
+[blood_pact_stairs_down]
 id = 48678
 examine = "A staircase leading deeper into the catacombs."
 
-[blood_pact_stairs_down_south]
-id = 48678
-examine = "A staircase leading deeper into the catacombs."
-
-[blood_pact_stairs_up_north]
-id = 48677
-examine = "A staircase leading back up."
-
-[blood_pact_stairs_up_south]
+[blood_pact_stairs_up]
 id = 48677
 examine = "A staircase leading back up."
 

@@ -141,7 +141,6 @@ examine = "There's something caught in it."
 [rabbit_snare_inverse]
 id = 19336
 
-
 # Snare trap — triggered states (creature caught inside)
 examine = "There's something caught in it."
 
@@ -325,60 +324,79 @@ examine = "Something has fallen into this trap."
 # Kebbit tracking
 [kebbit_tracks_plant_0]
 id = 19356
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_1]
 id = 19357
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_2]
 id = 19358
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_3]
 id = 19359
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_4]
 id = 19360
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_5]
 id = 19361
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_6]
 id = 19362
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_7]
 id = 19363
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_8]
 id = 19364
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_9]
 id = 19365
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_10]
 id = 19372
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_11]
 id = 19373
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_12]
 id = 19374
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_13]
 id = 19375
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_14]
 id = 19376
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_15]
 id = 19377
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_16]
 id = 19378
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_17]
 id = 19379
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_18]
 id = 19380
+examine = "A small fern-like plant."
 
 [kebbit_tunnel_0]
 id = 19419
@@ -553,52 +571,68 @@ id = 19429
 
 [kebbit_tracks_plant_19]
 id = 19339
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_20]
 id = 19340
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_21]
 id = 19341
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_22]
 id = 19342
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_23]
 id = 19343
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_24]
 id = 19344
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_25]
 id = 19345
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_26]
 id = 19346
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_27]
 id = 19347
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_28]
 id = 19348
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_29]
 id = 19349
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_30]
 id = 19350
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_31]
 id = 19351
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_32]
 id = 19352
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_33]
 id = 19353
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_34]
 id = 19354
+examine = "A small fern-like plant."
 
 [kebbit_tracks_plant_35]
 id = 19355
-
+examine = "A small fern-like plant."

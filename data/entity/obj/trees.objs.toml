@@ -18,20 +18,14 @@ examine = "This tree has been cut down."
 [tree_4]
 clone = "tree"
 id = 1278
+stump = "maple_tree_stump"
 examine = "A commonly found tree."
-
-[tree_4_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [tree_5]
 clone = "tree"
 id = 1280
+stump = "maple_tree_stump"
 examine = "A healthy young tree."
-
-[tree_5_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [tree_6_stump]
 id = 9661
@@ -57,11 +51,8 @@ examine = "This tree has been cut down."
 [dead_tree_2]
 clone = "tree"
 id = 1283
+stump = "dead_tree_stump"
 examine = "This tree has long been dead."
-
-[dead_tree_2_stump]
-id = 1347
-examine = "This tree has been cut down."
 
 [dead_tree_3]
 clone = "tree"
@@ -75,11 +66,8 @@ examine = "This tree has been cut down."
 [dead_tree_4]
 clone = "tree"
 id = 1285
+stump = "dead_tree_stump"
 examine = "An old weather beaten tree."
-
-[dead_tree_4_stump]
-id = 1347
-examine = "This tree has been cut down."
 
 [dead_tree_5]
 clone = "tree"
@@ -139,109 +127,73 @@ examine = "This is what is left of a yew tree."
 [evergreen]
 clone = "tree"
 id = 1315
+stump = "tree_stump"
 examine = "A hardy evergreen tree."
-
-[evergreen_stump]
-id = 1342
-examine = "This tree has been cut down."
 
 [evergreen_2]
 clone = "tree"
 id = 1316
+stump = "oak_tree_dark_stump"
 examine = "A hardy evergreen tree."
-
-[evergreen_2_stump]
-id = 1355
-examine = "This tree has been cut down."
 
 [evergreen_3]
 clone = "tree"
 id = 1318
+stump = "oak_tree_dark_stump"
 examine = "This would make good firewood."
-
-[evergreen_3_stump]
-id = 1355
-examine = "This tree has been cut down."
 
 [evergreen_4]
 clone = "tree"
 id = 1319
+stump = "oak_tree_dark_stump"
 examine = "This would make good firewood."
-
-[evergreen_4_stump]
-id = 1355
-examine = "This tree has been cut down."
 
 [tree_10]
 clone = "tree"
 id = 1330
+stump = "oak_tree_dark_stump"
 examine = "It's thick with snow."
-
-[tree_10_stump]
-id = 1355
-examine = "This tree has been cut down."
 
 [tree_11]
 clone = "tree"
 id = 1331
+stump = "oak_tree_dark_stump"
 examine = "It's thick with snow."
-
-[tree_11_stump]
-id = 1355
-examine = "This tree has been cut down."
 
 [tree_12]
 clone = "tree"
 id = 1332
+stump = "oak_tree_dark_stump"
 examine = "It's thick with snow."
-
-[tree_12_stump]
-id = 1355
-examine = "This tree has been cut down."
 
 [tree_18]
 clone = "tree"
 id = 3033
+stump = "tree_stump"
 examine = "One of the most common trees in Gielinor."
-
-[tree_18_stump]
-id = 1342
-examine = "This tree has been cut down."
 
 [tree_58]
 id = 14308
+stump = "tree_stump"
 examine = "One of the most common trees in Gielinor."
-
-[tree_58_stump]
-id = 1342
-examine = "This tree has been cut down."
 
 [tree_96]
 clone = "tree"
 id = 37477
+stump = "tree_stump"
 examine = "One of the most common trees in Gielinor."
-
-[tree_96_stump]
-id = 1342
-examine = "This tree has been cut down."
 
 [tree_97]
 clone = "tree"
 id = 37478
+stump = "tree_stump"
 examine = "A commonly-found tree."
-
-[tree_97_stump]
-id = 1342
-examine = "This tree has been cut down."
 
 [dead_tree_25]
 clone = "tree"
 id = 37481
+stump = "dead_tree_stump"
 examine = "This tree has long been dead."
-
-[dead_tree_25_stump]
-id = 1347
-examine = "This tree has been cut down."
 
 [willow]
 id = 5551
@@ -258,20 +210,14 @@ examine = "This tree has been cut down."
 
 [dead_tree_21]
 id = 13418
+stump = "dead_tree_5_stump"
 examine = "A spooky addition to the garden."
-
-[dead_tree_21_stump]
-id = 1351
-examine = "This tree has been cut down."
 
 [dead_tree_26]
 clone = "tree"
 id = 37482
+stump = "dead_tree_5_stump"
 examine = "It's only useful for firewood now."
-
-[dead_tree_26_stump]
-id = 1351
-examine = "This tree has been cut down."
 
 [dead_tree_10]
 clone = "tree"
@@ -294,11 +240,8 @@ examine = "This tree has been cut down."
 [oak_tree_three]
 clone = "oak"
 id = 37479
+stump = "oak_stump"
 examine = "A beautiful old oak."
-
-[oak_tree_three_stump]
-id = 1356
-examine = "This tree has been cut down."
 
 [dead_tree_11]
 clone = "tree"
@@ -311,20 +254,14 @@ examine = "This tree has been cut down."
 
 [dead_tree_22]
 id = 23381
+stump = "dead_tree_11_stump"
 examine = "It's only useful for firewood now."
-
-[dead_tree_22_stump]
-id = 1358
-examine = "This tree has been cut down."
 
 [dead_tree_27]
 clone = "tree"
 id = 37483
+stump = "dead_tree_11_stump"
 examine = "This tree has long been dead."
-
-[dead_tree_27_stump]
-id = 1358
-examine = "This tree has been cut down."
 
 [dead_tree_12]
 clone = "tree"
@@ -371,11 +308,8 @@ examine = "This tree has been cut down."
 [tree_15]
 clone = "tree"
 id = 2411
+stump = "maple_tree_stump"
 examine = "A commonly found tree."
-
-[tree_15_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [jungle_tree]
 clone = "tree"
@@ -415,29 +349,20 @@ examine = "A felled adult Yommi tree, perhaps you should trim those branches?"
 [tree_19]
 clone = "tree"
 id = 3034
+stump = "maple_tree_stump"
 examine = "One of the most common trees in Gielinor."
-
-[tree_19_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [achey_tree_2]
 clone = "achey_tree"
 id = 29088
+stump = "achey_tree_stump"
 examine = "A big tree for a big spit."
-
-[achey_tree_2_stump]
-id = 3371
-examine = "An Achey tree stump."
 
 [achey_tree_3]
 clone = "achey_tree"
 id = 29089
+stump = "achey_tree_stump"
 examine = "A big tree for a big spit."
-
-[achey_tree_3_stump]
-id = 3371
-examine = "An Achey tree stump."
 
 [tree_21]
 clone = "tree"
@@ -451,29 +376,20 @@ examine = "It's a tree stump."
 [tree_22]
 clone = "tree"
 id = 3881
+stump = "tree_21_stump"
 examine = "A tree."
-
-[tree_22_stump]
-id = 3880
-examine = "It's a tree stump."
 
 [tree_23]
 clone = "tree"
 id = 3882
+stump = "tree_21_stump"
 examine = "A tree."
-
-[tree_23_stump]
-id = 3880
-examine = "It's a tree stump."
 
 [tree_24]
 clone = "tree"
 id = 3883
+stump = "tree_21_stump"
 examine = "A tree."
-
-[tree_24_stump]
-id = 3880
-examine = "It's a tree stump."
 
 [hollow_tree_2]
 clone = "hollow_tree"
@@ -487,29 +403,20 @@ examine = "This tree has been cut down."
 [maple_tree_two]
 clone = "maple_tree"
 id = 4674
+stump = "maple_tree_stump"
 examine = "I bet this makes good syrup!"
-
-[maple_tree_two_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [jungle_tree_5]
 clone = "tree"
 id = 4818
+stump = "jungle_tree_2_stump"
 examine = "This is a fairly tall tree with sparse foliage."
-
-[jungle_tree_5_stump]
-id = 4819
-examine = "This was a fairly tall tree with sparse foliage."
 
 [jungle_tree_6]
 clone = "tree"
 id = 4820
+stump = "jungle_tree_3_stump"
 examine = "A leafy tree."
-
-[jungle_tree_6_stump]
-id = 4821
-examine = "This was a fairly tall tree with sparse foliage."
 
 [willow_stump]
 id = 5554
@@ -518,20 +425,14 @@ examine = "This is what is left of a willow tree."
 [willow_2]
 clone = "willow"
 id = 5552
+stump = "willow_stump"
 examine = "These trees are found near water."
-
-[willow_2_stump]
-id = 5554
-examine = "This is what is left of a willow tree."
 
 [willow_3]
 clone = "willow"
 id = 5553
+stump = "willow_stump"
 examine = "These trees are found near water."
-
-[willow_3_stump]
-id = 5554
-examine = "This is what is left of a willow tree."
 
 [dead_tree_14]
 id = 5902
@@ -547,29 +448,20 @@ examine = "It's only useful for hiding behind now."
 
 [tree_59]
 id = 14309
+stump = "maple_tree_stump"
 examine = "A commonly found tree."
-
-[tree_59_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [tree_98]
 clone = "tree"
 id = 37652
+stump = "maple_tree_stump"
 examine = "A commonly-found tree."
-
-[tree_98_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [maple_tree_three]
 clone = "maple_tree"
 id = 46277
+stump = "maple_tree_stump"
 examine = "I bet this makes good syrup!"
-
-[maple_tree_three_stump]
-id = 7400
-examine = "This is what is left of a maple tree."
 
 [mahogany_tree]
 id = 9034
@@ -582,20 +474,14 @@ examine = "This once was a beautiful tree."
 [tree_66]
 clone = "tree"
 id = 16265
+stump = "mahogany_tree_stump"
 examine = "An ancient pine tree."
-
-[tree_66_stump]
-id = 9035
-examine = "This once was a beautiful tree."
 
 [mahogany_tree_2]
 clone = "mahogany_tree"
 id = 46274
+stump = "mahogany_tree_stump"
 examine = "A beautiful, old mahogany tree."
-
-[mahogany_tree_2_stump]
-id = 9035
-examine = "This once was a beautiful tree."
 
 [teak]
 id = 9036
@@ -608,20 +494,14 @@ examine = "This tree has been cut down."
 [teak_2]
 clone = "teak"
 id = 15062
+stump = "teak_stump"
 examine = "A beautiful old teak tree."
-
-[teak_2_stump]
-id = 9037
-examine = "This tree has been cut down."
 
 [teak_3]
 clone = "teak"
 id = 46275
+stump = "teak_stump"
 examine = "A beautiful, old teak tree."
-
-[teak_3_stump]
-id = 9037
-examine = "This tree has been cut down."
 
 [dead_tree_17]
 id = 11112

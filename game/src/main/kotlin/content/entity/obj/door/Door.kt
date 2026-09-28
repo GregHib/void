@@ -1,10 +1,12 @@
 package content.entity.obj.door
 
 import content.entity.obj.Replace
+import content.entity.obj.closed
 import content.entity.obj.door.Door.isDoor
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
 import content.entity.obj.door.Gate.isGate
+import content.entity.obj.opened
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
@@ -55,7 +57,7 @@ object Door {
 
         // Single door
         if (double == null && door.id.endsWith("_opened")) {
-            replace(door, def, "_opened", "_closed", 0, 3, ticks, collision, revert(def, door, "open"))
+            replace(door, def, def.closed, 0, 3, ticks, collision, revert(def, door, "open"))
             sound(player, def, "close")
             return true
         }
@@ -82,7 +84,7 @@ object Door {
 
         // Single door
         if (double == null && def.stringId.endsWith("_closed")) {
-            replace(door, def, "_closed", "_opened", 1, 1, ticks, collision, revert(def, door, "close"))
+            replace(door, def, def.opened, 1, 1, ticks, collision, revert(def, door, "close"))
             sound(player, def, "open")
             return true
         }
@@ -135,8 +137,8 @@ object Door {
     /**
      * Replace door [obj] with [next] for [ticks]
      */
-    private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
-        val id = ObjectDefinitions.get(def.stringId.replace(current, next)).id
+    private fun replace(obj: GameObject, def: ObjectDefinition, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+        val id = ObjectDefinitions.get(next).id
         if (id == -1) {
             return
         }

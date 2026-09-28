@@ -13,48 +13,36 @@ examine = "Bamboo strips have been lashed together to make this rickety desk."
 
 [crafting_stall]
 id = 4874
+empty = "food_stall_empty"
 level = 5
 exp = 20.0
 restock = 8
 chance = "128-512"
 examine = "This table has crafting paraphernalia on it."
 
-[crafting_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
-
 [general_stall]
 id = 4876
+empty = "food_stall_empty"
 level = 5
 exp = 25.0
 restock = 8
 chance = "128-512"
 examine = "This table has items of a general nature on it."
 
-[general_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
-
 [magic_stall]
 id = 4877
+empty = "food_stall_empty"
 level = 65
 exp = 90.0
 restock = 12
 chance = "20-180"
 examine = "This table has items of a general nature on it."
 
-[magic_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
-
 [scimitar_stall]
 id = 4878
+empty = "food_stall_empty"
 level = 65
 exp = 210.0
 restock = 32
 chance = "20-180"
 examine = "This table has items of a general nature on it."
-
-[scimitar_stall_empty]
-id = 4797
-examine = "Bamboo strips have been lashed together to make this rickety desk."
