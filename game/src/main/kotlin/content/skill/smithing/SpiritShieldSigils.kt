@@ -3,6 +3,8 @@ package content.skill.smithing
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.chat.an
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -10,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.hasMax
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.TransactionError
 import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
 import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 
@@ -60,6 +63,12 @@ class SpiritShieldSigils : Script {
             add(shield)
         }
         if (!success) {
+            // Items can be dropped or banked during the delay
+            val error = inventory.transaction.error
+            if (error is TransactionError.Deficient) {
+                val name = ItemDefinitions.get(error.item).name.lowercase()
+                statement("You need${name.an()} $name to attach the sigil.")
+            }
             return
         }
         exp(Skill.Smithing, 1800.0)
