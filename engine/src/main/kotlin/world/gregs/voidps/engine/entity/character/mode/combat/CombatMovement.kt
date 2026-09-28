@@ -116,14 +116,21 @@ class CombatMovement(
         target.mode !is CombatMovement && target.mode !is Interact
 
     private fun attack(): Boolean {
-        val attackRange = attackRange()
-        val melee = attackRange == 1 && character["weapon", Item.EMPTY].def["weapon_type", ""] != "salamander"
-        if (arrived(if (melee) -1 else attackRange)) {
+        if (inAttackRange()) {
             unreachableTicks = 0
             combatReached?.invoke(character, target)
             return true
         }
         return false
+    }
+
+    /**
+     * Whether [character] is close enough to attack [target] with its current weapon/attack
+     */
+    fun inAttackRange(): Boolean {
+        val attackRange = attackRange()
+        val melee = attackRange == 1 && character["weapon", Item.EMPTY].def["weapon_type", ""] != "salamander"
+        return arrived(if (melee) -1 else attackRange)
     }
 
     private fun attackRange(): Int {
