@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
-import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.type.Tile
 
 private const val THREE_LITTLE_KITTENS_STRING_NAME = "three_little_kittens"
