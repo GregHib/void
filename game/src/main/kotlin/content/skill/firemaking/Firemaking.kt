@@ -1,5 +1,6 @@
 package content.skill.firemaking
 
+import content.entity.obj.door.Door.isDoor
 import content.skill.summoning.familiarBoost
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.instruction.handle.interactFloorItem
@@ -38,6 +39,9 @@ class Firemaking : Script {
             val logSlot = if (burnable(toItem.id)) toSlot else fromSlot
             closeDialogue()
             queue.clearWeak()
+            if (!canLightOn(tile)) {
+                return@itemOnItem
+            }
             if (inventory.remove(logSlot, log.id)) {
                 val floorItem = FloorItems.add(tile, log.id, disappearTicks = 300, owner = this)
                 set("recently_dropped", true)
@@ -107,11 +111,23 @@ class Firemaking : Script {
         if (!has(Skill.Firemaking, level, true)) {
             return false
         }
-        if (GameObjects.getLayer(item.tile, ObjectLayer.GROUND) != null || GameObjects.getLayer(item.tile, ObjectLayer.GROUND_DECORATION) != null) {
-            message("You can't light a fire here.")
+        if (!canLightOn(item.tile)) {
             return false
         }
         return skipFloorCheck || FloorItems.at(item.tile).contains(item)
+    }
+
+    private fun Player.canLightOn(tile: Tile): Boolean {
+        if (GameObjects.getLayer(tile, ObjectLayer.GROUND) != null || GameObjects.getLayer(tile, ObjectLayer.GROUND_DECORATION) != null || doorway(tile)) {
+            message("You can't light a fire here.")
+            return false
+        }
+        return true
+    }
+
+    private fun doorway(tile: Tile): Boolean {
+        val wall = GameObjects.getLayer(tile, ObjectLayer.WALL) ?: return false
+        return wall.def.isDoor()
     }
 
     fun spawnFire(player: Player, tile: Tile, row: RowDefinition) {
