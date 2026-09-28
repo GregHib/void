@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.data.AccountManager
 import world.gregs.voidps.engine.data.SaveQueue
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
+import world.gregs.voidps.engine.data.copy
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,7 +20,10 @@ import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
 import world.gregs.voidps.network.client.Instruction
+import world.gregs.voidps.network.login.AccountCreator
 import world.gregs.voidps.network.login.AccountLoader
+import world.gregs.voidps.network.login.Registration
+import world.gregs.voidps.network.login.registration.RegistrationResponse
 import world.gregs.voidps.network.login.protocol.encode.login
 
 /**
@@ -33,7 +37,8 @@ class PlayerAccountLoader(
     private val saveQueue: SaveQueue,
     private val accountDefinitions: AccountDefinitions,
     private val gameContext: CoroutineDispatcher,
-) : AccountLoader {
+) : AccountLoader,
+    AccountCreator {
     private val logger = InlineLogger()
 
     var update: Boolean = false
@@ -79,6 +84,52 @@ class PlayerAccountLoader(
             client.disconnect(Response.COULD_NOT_COMPLETE_LOGIN)
             return null
         }
+    }
+
+    override fun available(email: String): Int {
+        if (!Settings["accounts.registration", false]) {
+            return RegistrationResponse.REFUSED
+        }
+        if (accountDefinitions.getByAccount(email) != null) {
+            return RegistrationResponse.EMAIL_IN_USE
+        }
+        return RegistrationResponse.SUCCESS
+    }
+
+    /**
+     * Creates an account registered from the login screen; the email is the account name
+     */
+    override suspend fun create(registration: Registration): Int {
+        if (!Settings["accounts.registration", false]) {
+            return RegistrationResponse.REFUSED
+        }
+        val email = registration.email.lowercase()
+        // Checking and reserving the name together on the game thread stops two requests registering the same email
+        val player = withContext(gameContext) {
+            if (accountDefinitions.getByAccount(email) != null) {
+                return@withContext null
+            }
+            val player = accounts.create(email, registration.passwordHash)
+            accountDefinitions.add(player)
+            player
+        } ?: return RegistrationResponse.EMAIL_IN_USE
+        try {
+            if (!storage.create(player.copy())) {
+                withContext(gameContext) {
+                    accountDefinitions.remove(email)
+                }
+                return RegistrationResponse.EMAIL_IN_USE
+            }
+        } catch (e: Exception) {
+            logger.error(e) { "Failed to create account for $email." }
+            withContext(gameContext) {
+                accountDefinitions.remove(email)
+            }
+            return RegistrationResponse.UNAVAILABLE
+        }
+        AuditLog.info("registered $email from ${registration.hostname}")
+        logger.info { "Account registered for $email." }
+        return RegistrationResponse.SUCCESS
     }
 
     private fun banned(variables: Map<String, Any>): Boolean {

@@ -61,6 +61,7 @@ object CacheBuilder {
         ValidateMapObjects.validateAll(library)
         CopyCs2Script.convert(library, cache667, 677) // Scroll interface - scrollbar max
         RemovePriceCheckerTradeLimit.convert(library)
+        RemoveRegistrationAgeLimit.convert(library)
         MoveCameraClientScript.convert(library, cache667)
         FixStructs.fix(library)
         FixItems.fix(library)

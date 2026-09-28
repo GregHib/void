@@ -9,10 +9,13 @@ import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.DisplayNames
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.isAdmin
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.network.login.protocol.encode.Friend
@@ -35,19 +38,17 @@ class NameChange : Script {
         }
         player.strongQueue("rename") {
             val toName = player.nameEntry("Enter a new name")
-            if (toName.length !in 1..12) {
-                player.message("Name too long, a username must be less than 12 characters.")
+            if (!DisplayNames.valid(toName)) {
+                player.message("Invalid name, a username must be 1-12 letters, numbers or spaces.")
+                return@strongQueue
+            }
+            if (player.nameTaken(toName)) {
+                player.message("That name is already taken, please try another.")
                 return@strongQueue
             }
             player.choice("Change your name to '$toName'?") {
                 option("Yes, call me $toName") {
-                    val previous = player.name
-                    player.name = toName
-                    Players
-                        .filter { it.friend(player) }
-                        .forEach { friend ->
-                            friend.updateFriend(Friend(toName, previous, renamed = true, world = Settings.world, worldName = Settings.worldName))
-                        }
+                    player.rename(toName)
                     player.message("Your name has been successfully changed to '$toName'.")
                     player.message("You can change your name again in 30 days.")
                     player.start("rename_delay", TimeUnit.DAYS.toSeconds(30).toInt(), epochSeconds())
@@ -56,4 +57,26 @@ class NameChange : Script {
             }
         }
     }
+}
+
+/**
+ * Whether [name] is already in use as another account's display name
+ */
+fun Player.nameTaken(name: String): Boolean {
+    val definitions: AccountDefinitions = get()
+    val existing = definitions.get(name) ?: return false
+    return existing.accountName != accountName
+}
+
+/**
+ * Changes the display name and notifies online friends of the new name
+ */
+fun Player.rename(toName: String) {
+    val previous = name
+    name = toName
+    Players
+        .filter { it.friend(this) }
+        .forEach { friend ->
+            friend.updateFriend(Friend(toName, previous, renamed = true, world = Settings.world, worldName = Settings.worldName))
+        }
 }

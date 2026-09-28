@@ -8,8 +8,12 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.*
+import world.gregs.voidps.engine.client.variable.BooleanValues
+import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.AccountDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
 import world.gregs.voidps.engine.data.exchange.PriceHistory
@@ -20,11 +24,14 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.network.Response
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.login.Registration
 import world.gregs.voidps.network.login.protocol.encode.login
+import world.gregs.voidps.network.login.registration.RegistrationResponse
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class PlayerAccountLoaderTest : KoinMock() {
@@ -36,10 +43,23 @@ internal class PlayerAccountLoaderTest : KoinMock() {
     private lateinit var definitions: AccountDefinitions
     private lateinit var loader: PlayerAccountLoader
     private var playerSave: PlayerSave? = null
+    private val saved = mutableMapOf<String, PlayerSave>()
+    private var createResult: Boolean? = null
+    private var createException: Exception? = null
 
     @BeforeEach
     fun setup() {
         playerSave = null
+        saved.clear()
+        createResult = null
+        createException = null
+        Settings.load(mapOf("accounts.registration" to "true"))
+        VariableDefinitions.set(
+            mapOf(
+                "display_name" to VariableDefinition.CustomVariableDefinition(StringValues, null, persistent = true),
+                "choose_name" to VariableDefinition.CustomVariableDefinition(BooleanValues, null, persistent = true),
+            ),
+        )
         queue = mockk(relaxed = true)
         storage = object : Storage {
             override fun names(): Map<String, AccountDefinition> = emptyMap()
@@ -67,7 +87,17 @@ internal class PlayerAccountLoaderTest : KoinMock() {
             override fun saveReport(report: AbuseReport) {
             }
 
-            override fun exists(accountName: String): Boolean = false
+            override fun create(account: PlayerSave): Boolean {
+                createException?.let { throw it }
+                createResult?.let { return it }
+                if (saved.containsKey(account.name.lowercase())) {
+                    return false
+                }
+                saved[account.name.lowercase()] = account
+                return true
+            }
+
+            override fun exists(accountName: String): Boolean = saved.containsKey(accountName.lowercase())
 
             override fun load(accountName: String): PlayerSave? = playerSave
 
@@ -76,7 +106,77 @@ internal class PlayerAccountLoaderTest : KoinMock() {
         saveQueue = SaveQueue(storage, scope = TestScope())
         definitions = AccountDefinitions(mutableMapOf("name" to AccountDefinition("name", "oldName", "", "hash")), mutableMapOf("accountname" to "name"))
         accounts = mockk(relaxed = true)
+        every { accounts.create(any(), any()) } answers {
+            Player(tile = Tile.EMPTY, accountName = firstArg(), passwordHash = secondArg()).apply {
+                this["display_name"] = "Bob"
+                this["choose_name"] = true
+            }
+        }
         loader = PlayerAccountLoader(queue, storage, accounts, saveQueue, definitions, UnconfinedTestDispatcher())
+    }
+
+    @Test
+    fun `Available when registration enabled and email unused`() {
+        assertEquals(RegistrationResponse.SUCCESS, loader.available("bob@example.com"))
+    }
+
+    @Test
+    fun `Refused when registration disabled`() = runTest {
+        Settings.load(mapOf("accounts.registration" to "false"))
+
+        assertEquals(RegistrationResponse.REFUSED, loader.available("bob@example.com"))
+        assertEquals(RegistrationResponse.REFUSED, loader.create(Registration("bob@example.com", "hash", "localhost")))
+        assertTrue(saved.isEmpty())
+    }
+
+    @Test
+    fun `Email in use when account definition exists`() {
+        definitions.merge(mapOf("bob@example.com" to AccountDefinition("bob@example.com", "Bobby", "", "hash")), emptyMap()) { false }
+
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, loader.available("Bob@Example.com"))
+    }
+
+    @Test
+    fun `Create persists the account and its definition`() = runTest {
+        val response = loader.create(Registration("Bob.Smith@Example.com", "hash", "localhost"))
+
+        assertEquals(RegistrationResponse.SUCCESS, response)
+        val save = saved["bob.smith@example.com"]
+        assertNotNull(save)
+        assertEquals("bob.smith@example.com", save.name)
+        assertEquals("hash", save.password)
+        assertEquals("Bob", save.variables["display_name"])
+        assertEquals(true, save.variables["choose_name"])
+        assertEquals("Bob", definitions.getByAccount("bob.smith@example.com")?.displayName)
+        assertEquals("bob.smith@example.com", definitions.get("Bob")?.accountName)
+    }
+
+    @Test
+    fun `Create rejected when account already stored`() = runTest {
+        saved["bob@example.com"] = PlayerSave("bob@example.com", "hash", Tile.EMPTY, intArrayOf(), emptyList(), intArrayOf(), true, intArrayOf(), intArrayOf(), emptyMap(), emptyMap(), emptyMap(), emptyList(), arrayOf(), emptyList(), emptyMap(), emptyMap(), emptyList())
+
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, loader.create(Registration("bob@example.com", "other", "localhost")))
+        assertEquals("hash", saved["bob@example.com"]?.password)
+        assertNull(definitions.getByAccount("bob@example.com"))
+        assertNull(definitions.get("Bob"))
+    }
+
+    @Test
+    fun `Create unavailable when storage throws`() = runTest {
+        createException = IllegalStateException("disk full")
+
+        val response = loader.create(Registration("bob@example.com", "hash", "localhost"))
+
+        assertEquals(RegistrationResponse.UNAVAILABLE, response)
+        assertNull(definitions.getByAccount("bob@example.com"))
+    }
+
+    @Test
+    fun `Second create for same email is rejected`() = runTest {
+        assertEquals(RegistrationResponse.SUCCESS, loader.create(Registration("bob@example.com", "hash", "localhost")))
+
+        assertEquals(RegistrationResponse.EMAIL_IN_USE, loader.create(Registration("bob@example.com", "other", "localhost")))
+        assertEquals("hash", saved["bob@example.com"]?.password)
     }
 
     @Test

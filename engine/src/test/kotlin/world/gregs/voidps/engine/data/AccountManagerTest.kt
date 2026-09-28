@@ -13,7 +13,10 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.config.data.InventoryDefinition
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.variable.BooleanValues
+import world.gregs.voidps.engine.client.variable.StringValues
 import world.gregs.voidps.engine.data.config.AccountDefinition
+import world.gregs.voidps.engine.data.config.VariableDefinition
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.OpenOffers
@@ -33,6 +36,7 @@ import world.gregs.voidps.type.area.Rectangle
 class AccountManagerTest : KoinMock() {
 
     private lateinit var manager: AccountManager
+    private lateinit var accountDefinitions: AccountDefinitions
     private lateinit var connectionQueue: ConnectionQueue
     private lateinit var saveQueue: SaveQueue
 
@@ -74,6 +78,9 @@ class AccountManagerTest : KoinMock() {
             override fun saveReport(report: AbuseReport) {
             }
 
+            override fun create(account: PlayerSave): Boolean = false
+
+
             override fun exists(accountName: String): Boolean = false
 
             override fun load(accountName: String): PlayerSave? = null
@@ -82,8 +89,15 @@ class AccountManagerTest : KoinMock() {
         }
         Settings.load(mapOf("world.home.x" to "1234", "world.home.y" to "5432", "world.experienceRate" to "1.0"))
         saveQueue = SaveQueue(storage)
+        accountDefinitions = AccountDefinitions()
+        VariableDefinitions.set(
+            mapOf(
+                "display_name" to VariableDefinition.CustomVariableDefinition(StringValues, null, persistent = true),
+                "choose_name" to VariableDefinition.CustomVariableDefinition(BooleanValues, null, persistent = true),
+            ),
+        )
         manager = AccountManager(
-            accountDefinitions = AccountDefinitions(),
+            accountDefinitions = accountDefinitions,
             saveQueue = saveQueue,
             connectionQueue = connectionQueue,
             overrides = AppearanceOverrides(),
@@ -95,6 +109,27 @@ class AccountManagerTest : KoinMock() {
         val player = manager.create("name", "hash")
         assertTrue(player["new_player", false])
         assertEquals(Tile(1234, 5432), player.tile)
+    }
+
+    @Test
+    fun `Email accounts get a display name from the email`() {
+        val player = manager.create("bob.smith@example.com", "hash")
+        assertEquals("Bob smith", player["display_name", ""])
+        assertTrue(player["choose_name", false])
+    }
+
+    @Test
+    fun `Email display name is numbered when taken`() {
+        accountDefinitions.merge(mapOf("other" to AccountDefinition("other", "Bob", "", "hash")), emptyMap()) { false }
+        val player = manager.create("bob@example.com", "hash")
+        assertEquals("Bob2", player["display_name", ""])
+    }
+
+    @Test
+    fun `Username accounts keep their name`() {
+        val player = manager.create("bob", "hash")
+        assertFalse(player.contains("display_name"))
+        assertFalse(player.contains("choose_name"))
     }
 
     @Test
