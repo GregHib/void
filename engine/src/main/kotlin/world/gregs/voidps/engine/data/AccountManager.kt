@@ -25,7 +25,9 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.login.protocol.encode.WorldFlag
 import world.gregs.voidps.network.login.protocol.encode.logout
+import world.gregs.voidps.network.login.protocol.encode.sendWorldList
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -95,6 +97,7 @@ class AccountManager(
             logout(player, false)
         }
         loadCallback.invoke(player)
+        client?.sendWorldList(Settings["world.id", 16], if (World.members) WorldFlag.MEMBERS else 0)
         player.open(player.interfaces.gameFrame)
         player.variables.sendAll()
         Spawn.player(player)
