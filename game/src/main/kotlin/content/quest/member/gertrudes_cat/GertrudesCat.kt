@@ -57,14 +57,14 @@ class GertrudesCat : Script {
              */
             if (progress == 4) {
                 if (!get("gertrudes_cat_fluffs_milk", false)) {
-                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
-                    lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
+                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
+                    lines += "<navy>Now I should feed her some <maroon>milk<navy>."
                     questJournal("Gertrude's Cat", lines)
                     return@questJournalOpen
                 }
                 if (!get("gertrudes_cat_fluffs_fed", false)) {
-                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>doogle sardines<navy> but she still won't come back."
-                    lines += "<navy>Now I should feed her some <maroon>milk<navy>."
+                    lines += "<navy>I found <maroon>Fluffs<navy> and fed her some <maroon>milk<navy> but she still won't come back."
+                    lines += "<navy>Now I should feed her some <maroon>doogle sardines<navy>."
                     questJournal("Gertrude's Cat", lines)
                     return@questJournalOpen
                 }
