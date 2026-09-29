@@ -1,10 +1,11 @@
 [veg_stall]
 id = 4706
+empty = "viking_market_stall_empty"
 level = 2
 exp = 10.0
 restock = 2
 examine = "You should eat your greens!"
 
-[veg_stall_empty]
+[viking_market_stall_empty]
 id = 4276
 examine = "Always a source of good bargains."

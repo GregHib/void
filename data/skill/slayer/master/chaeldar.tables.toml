@@ -68,7 +68,7 @@ tip = "Dagannoth are large, sea-dwelling creatures that are very aggressive. You
 #weight = 8
 #tip = "Elves are quick, agile, and vicious fighters who often favour bows and polearms. They also irritate me intensely, so slaughtering them is definitely a good thing. They live in the forests far, far to the west of human lands."
 
-[.fire_giant]
+[.fire_giants]
 amount = [70, 130]
 weight = 12
 tip = "Like other giants, Fire giants often wield large weapons. Learn to recognise what kind of weapon it is and act accordingly. The smoke dungeon to the west of Pollnivneach has a population of these large and irritating creatures, so go smite them."

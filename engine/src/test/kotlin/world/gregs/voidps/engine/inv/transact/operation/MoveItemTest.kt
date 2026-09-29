@@ -61,7 +61,7 @@ internal class MoveItemTest : TransactionOperationTest() {
     fun `Move invalid empty item`() {
         transaction.move(0, 1)
         assertFalse(transaction.commit())
-        assertErrorDeficient(amount = 0)
+        assertErrorDeficient(amount = 0, item = "")
     }
 
     @Test
@@ -304,7 +304,7 @@ internal class MoveItemTest : TransactionOperationTest() {
         }
         transaction.moveAll(target)
         assertFalse(transaction.commit())
-        assertErrorFull(0)
+        assertErrorFull(0, item = "stackable_item")
     }
 
     @Test

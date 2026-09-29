@@ -25,7 +25,6 @@ import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 object Door {
-
     // Delay in ticks before a door closes itself
     private val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 
@@ -54,7 +53,7 @@ object Door {
 
         // Single door
         if (double == null && door.id.endsWith("_opened")) {
-            replace(door, def, "_opened", "_closed", 0, 3, ticks, collision, revert(def, door, "open"))
+            replace(door, def, def.closed, 0, 3, ticks, collision, revert(def, door, "open"))
             sound(player, def, "close")
             return true
         }
@@ -81,7 +80,7 @@ object Door {
 
         // Single door
         if (double == null && def.stringId.endsWith("_closed")) {
-            replace(door, def, "_closed", "_opened", 1, 1, ticks, collision, revert(def, door, "close"))
+            replace(door, def, def.opened, 1, 1, ticks, collision, revert(def, door, "close"))
             sound(player, def, "open")
             return true
         }
@@ -134,10 +133,10 @@ object Door {
     /**
      * Replace door [obj] with [next] for [ticks]
      */
-    private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+    private fun replace(obj: GameObject, def: ObjectDefinition, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
         val hinged = !def.stringId.contains("single")
         obj.replace(
-            id = def.stringId.replace(current, next),
+            id = next,
             tile = if (hinged) tile(obj, tileRotation) else obj.tile,
             rotation = if (hinged) obj.rotation(objRotation) else obj.rotation,
             ticks = ticks,
@@ -172,6 +171,11 @@ object Door {
         }
         return (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
     }
+    val ObjectDefinition.closed: String
+        get() = getOrNull("closed") ?: stringId.replace("_opened", "_closed")
+
+    val ObjectDefinition.opened: String
+        get() = getOrNull("opened") ?: stringId.replace("_closed", "_opened")
 }
 
 /**
