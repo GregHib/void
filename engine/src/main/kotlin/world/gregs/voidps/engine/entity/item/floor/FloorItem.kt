@@ -11,7 +11,7 @@ import world.gregs.voidps.type.Tile
  * Not a data class to prevent hash conflicts in lists
  * @param revealTicks number of ticks until the item will be revealed to all players
  * @param disappearTicks number of ticks after [revealTicks] when the item will be removed
- * @param respawnTicks number of ticks until the item reappears after being removed
+ * @param respawnTicks number of ticks a spawned item stays hidden after being removed
  */
 class FloorItem(
     override var tile: Tile,

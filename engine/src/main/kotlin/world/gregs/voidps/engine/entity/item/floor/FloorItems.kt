@@ -90,7 +90,7 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
     /**
      * If [MAX_TILE_ITEMS] is reached replace the least or an equally valuable item,
      * otherwise prevent the item from being added.
-     * Spawned items are never replaced as they would respawn and exceed the limit.
+     * Spawned items are never replaced as they can only be hidden, not removed.
      */
     private fun full(list: List<FloorItem>, item: FloorItem): Boolean {
         if (list.size >= MAX_TILE_ITEMS) {
@@ -109,7 +109,7 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
         if (floorItem.owner == null) {
             return false
         }
-        val existing = list.firstOrNull { it.owner == floorItem.owner && it.id == floorItem.id } ?: return false
+        val existing = list.firstOrNull { it.owner == floorItem.owner && it.id == floorItem.id && it.respawnTicks == NEVER } ?: return false
         val original = existing.amount
         if (existing.merge(floorItem)) {
             ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemUpdate(floorItem.tile.id, existing.def.id, original, existing.amount, existing.owner))
@@ -130,9 +130,15 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
 
     fun at(zone: Zone): Collection<List<FloorItem>> = data.get(zone.id)?.values ?: emptyList()
 
+    /**
+     * Removes [floorItem] from the world, spawned items are hidden until they respawn
+     */
     fun remove(floorItem: FloorItem): Boolean {
         val zone = data.get(floorItem.tile.zone.id) ?: return false
         val list = zone[floorItem.tile.id] ?: return false
+        if (floorItem.respawnTicks != NEVER) {
+            return hide(list, floorItem)
+        }
         if (list.remove(floorItem)) {
             ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
             if (list.isEmpty() && zone.remove(floorItem.tile.id, list)) {
@@ -142,20 +148,23 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
                 }
             }
             Despawn.floorItem(floorItem)
-            respawn(floorItem)
             return true
         }
         return false
     }
 
     /**
-     * Replace a permanent spawn with a hidden copy which is revealed after [FloorItem.respawnTicks]
+     * Hide a spawned item from everyone until it's revealed again after [FloorItem.respawnTicks]
+     * The item never leaves the world so no despawn or spawn events are emitted.
      */
-    private fun respawn(floorItem: FloorItem) {
-        if (floorItem.respawnTicks == NEVER) {
-            return
+    private fun hide(list: List<FloorItem>, floorItem: FloorItem): Boolean {
+        if (floorItem.owner == HIDDEN || !list.contains(floorItem)) {
+            return false
         }
-        add(floorItem.tile, floorItem.id, floorItem.amount, revealTicks = floorItem.respawnTicks, charges = floorItem.charges, owner = HIDDEN, respawnTicks = floorItem.respawnTicks)
+        ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
+        floorItem.owner = HIDDEN
+        floorItem.reset(revealTicks = floorItem.respawnTicks, disappearTicks = NEVER)
+        return true
     }
 
     /**

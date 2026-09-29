@@ -258,19 +258,30 @@ class FloorItemsTest {
     }
 
     @Test
-    fun `Removed spawn items respawn hidden until timer completes`() {
+    fun `Removed spawn items are hidden until timer completes`() {
         val item = FloorItems.add(Tile.EMPTY, "item", respawnTicks = 3)
-        FloorItems.remove(item)
+        assertTrue(FloorItems.remove(item))
 
-        val respawn = FloorItems.at(Tile.EMPTY).single()
-        assertNotSame(item, respawn)
-        assertEquals("", respawn.owner)
+        assertSame(item, FloorItems.at(Tile.EMPTY).single())
+        assertEquals("", item.owner)
         repeat(3) {
+            assertEquals("", item.owner)
             FloorItems.run()
         }
-        assertNull(respawn.owner)
-        assertEquals(3, respawn.respawnTicks)
-        assertEquals(0, respawn.lifecycle)
+        assertNull(item.owner)
+        assertEquals(0, item.lifecycle)
+        verify {
+            ZoneBatchUpdates.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = 1, owner = null))
+            ZoneBatchUpdates.add(Zone.EMPTY, FloorItemReveal(0, 1, 1, -1))
+        }
+    }
+
+    @Test
+    fun `Hidden spawn items can't be removed again`() {
+        val item = FloorItems.add(Tile.EMPTY, "item", respawnTicks = 3)
+        assertTrue(FloorItems.remove(item))
+        assertFalse(FloorItems.remove(item))
+        assertEquals(3, item.lifecycle)
     }
 
     @Test
