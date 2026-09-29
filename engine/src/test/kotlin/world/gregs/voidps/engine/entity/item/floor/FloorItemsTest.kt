@@ -10,8 +10,11 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.update.batch.ZoneBatchUpdates
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
+import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemReveal
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemUpdate
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -71,7 +74,7 @@ class FloorItemsTest {
         assertEquals(floorItem.id, "stackable")
         assertEquals(floorItem.amount, 2)
         assertEquals(floorItem.disappearTicks, 5)
-        assertEquals(floorItem.revealTicks, 5)
+        assertEquals(floorItem.lifecycle, 3)
         assertEquals(floorItem.owner, "player")
         verify {
             ZoneBatchUpdates.add(
@@ -173,6 +176,85 @@ class FloorItemsTest {
         verify {
             ZoneBatchUpdates.add(Zone.EMPTY, FloorItemRemoval(tile = 0, id = 1, owner = null))
         }
+    }
+
+    @Test
+    fun `Private items are revealed after timer`() {
+        Players.clear()
+        val player = Player(accountName = "player")
+        Players.add(player)
+        val item = FloorItems.add(Tile.EMPTY, "item", revealTicks = 10, owner = "player")
+
+        repeat(10) {
+            assertEquals("player", item.owner)
+            FloorItems.run()
+        }
+
+        assertNull(item.owner)
+        assertEquals(0, item.lifecycle)
+        verify {
+            ZoneBatchUpdates.add(Zone.EMPTY, FloorItemReveal(0, 1, 1, player.index))
+        }
+        Players.clear()
+    }
+
+    @Test
+    fun `Public items are removed after timer`() {
+        val item = FloorItems.add(Tile.EMPTY, "item", disappearTicks = 10)
+
+        repeat(9) {
+            FloorItems.run()
+        }
+        assertTrue(FloorItems.at(Tile.EMPTY).contains(item))
+        FloorItems.run()
+
+        assertFalse(FloorItems.at(Tile.EMPTY).contains(item))
+    }
+
+    @Test
+    fun `Removal timer isn't counting down while reveal timer is active`() {
+        val item = FloorItems.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
+
+        repeat(10) {
+            assertEquals("player", item.owner)
+            FloorItems.run()
+        }
+
+        repeat(5) {
+            assertNull(item.owner)
+            FloorItems.run()
+        }
+
+        assertEquals(-5, item.lifecycle)
+        assertTrue(FloorItems.at(Tile.EMPTY).contains(item))
+    }
+
+    @Test
+    fun `Public items revealed and removed after timers`() {
+        val item = FloorItems.add(Tile.EMPTY, "item", revealTicks = 10, disappearTicks = 10, owner = "player")
+
+        repeat(10) {
+            FloorItems.run()
+        }
+        assertTrue(FloorItems.at(Tile.EMPTY).contains(item))
+        assertNull(item.owner)
+        assertEquals(-10, item.lifecycle)
+        repeat(10) {
+            FloorItems.run()
+        }
+        assertFalse(FloorItems.at(Tile.EMPTY).contains(item))
+    }
+
+    @Test
+    fun `Private items without reveal timer are removed`() {
+        val item = FloorItems.add(Tile.EMPTY, "item", disappearTicks = 3, owner = "player")
+
+        repeat(3) {
+            assertTrue(FloorItems.at(Tile.EMPTY).contains(item))
+            assertEquals("player", item.owner)
+            FloorItems.run()
+        }
+        assertFalse(FloorItems.at(Tile.EMPTY).contains(item))
     }
 
     @AfterEach

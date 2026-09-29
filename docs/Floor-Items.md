@@ -66,12 +66,12 @@ npcFloorItemOperate("Take") { (target) ->
 
 ## Floor item data
 
-| Data | Description |
-|---|---|
-| Id | The type of item as a [String identifier](string-identifiers). |
-| Amount | The amount of the item in this [stack](inventories#item-stack-behaviour). |
-| [Definition](definitions) | Definition data about this particular type of item. |
-| Tile | The position of the item represented as an x, y, level coordinate. |
-| Reveal ticks | Number of ticks before an item is made public for everyone. |
-| Disappear ticks | Number of ticks before the item is permanently deleted. |
-| Owner | The original owner of the item. |
+| Data | Description                                                                                                  |
+|---|--------------------------------------------------------------------------------------------------------------|
+| Id | The type of item as a [String identifier](string-identifiers).                                               |
+| Amount | The amount of the item in this [stack](inventories#item-stack-behaviour).                                    |
+| [Definition](definitions) | Definition data about this particular type of item.                                                          |
+| Tile | The position of the item represented as an x, y, level coordinate.                                           |
+| Lifecycle | Current stage timer: positive counts down until the item is revealed, negative counts up until it's removed. |
+| Disappear ticks | Number of ticks the item stays public before it's permanently deleted.                                       |
+| Owner | The original owner of the item.                                                                              |

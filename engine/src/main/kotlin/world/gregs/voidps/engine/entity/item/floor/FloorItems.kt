@@ -9,10 +9,12 @@ import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.network.login.protocol.encode.send
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemAddition
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemRemoval
+import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemReveal
 import world.gregs.voidps.network.login.protocol.encode.zone.FloorItemUpdate
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
@@ -22,7 +24,7 @@ import world.gregs.voidps.type.Zone
  */
 object FloorItems : ZoneBatchUpdates.Sender, Runnable {
 
-    internal val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
+    private val data = Int2ObjectOpenHashMap<MutableMap<Int, MutableList<FloorItem>>>()
     private val tilePool = object : DefaultPool<MutableList<FloorItem>>(INITIAL_POOL_CAPACITY) {
         override fun produceInstance() = ObjectArrayList<FloorItem>()
         override fun clearInstance(instance: MutableList<FloorItem>) = instance.apply { clear() }
@@ -32,19 +34,33 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
         override fun clearInstance(instance: MutableMap<Int, MutableList<FloorItem>>) = instance.apply { clear() }
     }
 
-    private val addQueue = mutableListOf<FloorItem>()
-    private val removeQueue = mutableListOf<FloorItem>()
+    private val removals = ObjectArrayList<FloorItem>()
 
+    /**
+     * Advance every items [FloorItem.lifecycle], revealing and removing items when their timers are complete
+     */
     override fun run() {
-        for (floorItem in removeQueue) {
-            Despawn.floorItem(floorItem)
+        for ((_, zone) in data) {
+            for ((_, list) in zone) {
+                for (floorItem in list) {
+                    when (floorItem.tick()) {
+                        FloorItem.REVEAL -> reveal(floorItem)
+                        FloorItem.REMOVE -> removals.add(floorItem)
+                    }
+                }
+            }
         }
-        removeQueue.clear()
-        for (floorItem in addQueue) {
-            add(floorItem)
-            Spawn.floorItem(floorItem)
+        for (floorItem in removals) {
+            remove(floorItem)
         }
-        addQueue.clear()
+        removals.clear()
+    }
+
+    private fun reveal(floorItem: FloorItem) {
+        val owner = floorItem.owner ?: return
+        val player = Players.find(owner)
+        ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemReveal(floorItem.tile.id, floorItem.def.id, floorItem.amount, player?.index ?: -1))
+        floorItem.owner = null
     }
 
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, charges, owner?.name)
@@ -66,12 +82,9 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
         if (full(list, floorItem)) {
             return
         }
-        addQueue.add(floorItem)
+        list.add(floorItem)
         ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemAddition(floorItem.tile.id, floorItem.def.id, floorItem.amount, floorItem.owner))
-    }
-
-    private fun add(floorItem: FloorItem) {
-        data.getOrPut(floorItem.tile.zone.id) { zonePool.borrow() }.getOrPut(floorItem.tile.id) { tilePool.borrow() }.add(floorItem)
+        Spawn.floorItem(floorItem)
     }
 
     /**
@@ -120,7 +133,6 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
         val zone = data.get(floorItem.tile.zone.id) ?: return false
         val list = zone[floorItem.tile.id] ?: return false
         if (list.remove(floorItem)) {
-            removeQueue.add(floorItem)
             ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
             if (list.isEmpty() && zone.remove(floorItem.tile.id, list)) {
                 tilePool.recycle(list)
@@ -128,17 +140,20 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
                     zonePool.recycle(zone)
                 }
             }
+            Despawn.floorItem(floorItem)
             return true
         }
         return false
     }
 
+    /**
+     * Removes all items without triggering despawn events
+     */
     fun clear() {
         for ((_, zone) in data) {
             for ((_, items) in zone) {
                 for (floorItem in items) {
                     ZoneBatchUpdates.add(floorItem.tile.zone, FloorItemRemoval(floorItem.tile.id, floorItem.def.id, floorItem.owner))
-                    removeQueue.add(floorItem)
                 }
                 tilePool.recycle(items)
             }
