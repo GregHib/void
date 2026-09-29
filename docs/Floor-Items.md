@@ -75,3 +75,4 @@ npcFloorItemOperate("Take") { (target) ->
 | Lifecycle | Current stage timer: positive counts down until the item is revealed, negative counts up until it's removed. |
 | Disappear ticks | Number of ticks the item stays public before it's permanently deleted.                                       |
 | Owner | The original owner of the item.                                                                              |
+| Respawn ticks | Number of ticks until a permanent spawn reappears after being removed. |

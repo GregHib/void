@@ -11,6 +11,7 @@ import world.gregs.voidps.type.Tile
  * Not a data class to prevent hash conflicts in lists
  * @param revealTicks number of ticks until the item will be revealed to all players
  * @param disappearTicks number of ticks after [revealTicks] when the item will be removed
+ * @param respawnTicks number of ticks until the item reappears after being removed
  */
 class FloorItem(
     override var tile: Tile,
@@ -20,6 +21,7 @@ class FloorItem(
     disappearTicks: Int = FloorItems.NEVER,
     val charges: Int = 0,
     var owner: String? = null,
+    val respawnTicks: Int = FloorItems.NEVER,
 ) : Entity {
 
     /**
@@ -89,7 +91,7 @@ class FloorItem(
         return true
     }
 
-    override fun toString(): String = "FloorItem(id=$id, tile=$tile, amount=$amount, lifecycle=$lifecycle, disappear=$disappearTicks, charges=$charges, owner=$owner)"
+    override fun toString(): String = "FloorItem(id=$id, tile=$tile, amount=$amount, lifecycle=$lifecycle, disappear=$disappearTicks, respawn=$respawnTicks, charges=$charges, owner=$owner)"
 
     companion object {
         const val NONE = 0

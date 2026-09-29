@@ -65,11 +65,11 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
 
     fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: Player?) = add(tile, id, amount, revealTicks, disappearTicks, charges, owner?.name)
 
-    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: String? = null): FloorItem {
+    fun add(tile: Tile, id: String, amount: Int = 1, revealTicks: Int = NEVER, disappearTicks: Int = NEVER, charges: Int = 0, owner: String? = null, respawnTicks: Int = NEVER): FloorItem {
         if (!ItemDefinitions.contains(id)) {
             logger.warn { "Invalid floor item id: '$id' at $tile" }
         }
-        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == IMMEDIATE) null else owner)
+        val item = FloorItem(tile, id, amount, revealTicks, disappearTicks, charges, if (revealTicks == IMMEDIATE) null else owner, respawnTicks)
         display(item)
         return item
     }
@@ -90,11 +90,12 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
     /**
      * If [MAX_TILE_ITEMS] is reached replace the least or an equally valuable item,
      * otherwise prevent the item from being added.
+     * Spawned items are never replaced as they would respawn and exceed the limit.
      */
     private fun full(list: List<FloorItem>, item: FloorItem): Boolean {
         if (list.size >= MAX_TILE_ITEMS) {
-            val min = list.firstOrNull { it.value < item.value }
-                ?: list.firstOrNull { it.value == item.value }
+            val min = list.firstOrNull { it.respawnTicks == NEVER && it.value < item.value }
+                ?: list.firstOrNull { it.respawnTicks == NEVER && it.value == item.value }
                 ?: return true
             remove(min)
         }
@@ -141,9 +142,20 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
                 }
             }
             Despawn.floorItem(floorItem)
+            respawn(floorItem)
             return true
         }
         return false
+    }
+
+    /**
+     * Replace a permanent spawn with a hidden copy which is revealed after [FloorItem.respawnTicks]
+     */
+    private fun respawn(floorItem: FloorItem) {
+        if (floorItem.respawnTicks == NEVER) {
+            return
+        }
+        add(floorItem.tile, floorItem.id, floorItem.amount, revealTicks = floorItem.respawnTicks, charges = floorItem.charges, owner = HIDDEN, respawnTicks = floorItem.respawnTicks)
     }
 
     /**
@@ -176,6 +188,7 @@ object FloorItems : ZoneBatchUpdates.Sender, Runnable {
     private val logger = InlineLogger()
     const val IMMEDIATE = 0
     const val NEVER = -1
+    private const val HIDDEN = ""
     private const val MAX_TILE_ITEMS = 128
     private const val INITIAL_POOL_CAPACITY = 10
 }

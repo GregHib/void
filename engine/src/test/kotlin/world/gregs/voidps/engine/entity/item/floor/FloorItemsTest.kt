@@ -257,6 +257,66 @@ class FloorItemsTest {
         assertFalse(FloorItems.at(Tile.EMPTY).contains(item))
     }
 
+    @Test
+    fun `Removed spawn items respawn hidden until timer completes`() {
+        val item = FloorItems.add(Tile.EMPTY, "item", respawnTicks = 3)
+        FloorItems.remove(item)
+
+        val respawn = FloorItems.at(Tile.EMPTY).single()
+        assertNotSame(item, respawn)
+        assertEquals("", respawn.owner)
+        repeat(3) {
+            FloorItems.run()
+        }
+        assertNull(respawn.owner)
+        assertEquals(3, respawn.respawnTicks)
+        assertEquals(0, respawn.lifecycle)
+    }
+
+    @Test
+    fun `Non-spawn items don't respawn`() {
+        val item = FloorItems.add(Tile.EMPTY, "item")
+        FloorItems.remove(item)
+
+        assertTrue(FloorItems.at(Tile.EMPTY).isEmpty())
+    }
+
+    @Test
+    fun `Spawned items aren't replaced when limit exceeded`() {
+        val spawn = FloorItems.add(Tile.EMPTY, "cheap_item", respawnTicks = 10)
+        repeat(127) {
+            FloorItems.add(Tile.EMPTY, "item")
+        }
+
+        val item = FloorItems.add(Tile.EMPTY, "equal_item")
+
+        val items = FloorItems.at(Tile.EMPTY)
+        assertEquals(128, items.size)
+        assertSame(spawn, items[0])
+        assertTrue(items.contains(item))
+    }
+
+    @Test
+    fun `Items aren't added to a tile full of spawns`() {
+        repeat(128) {
+            FloorItems.add(Tile.EMPTY, "cheap_item", respawnTicks = 10)
+        }
+
+        val item = FloorItems.add(Tile.EMPTY, "item")
+
+        val items = FloorItems.at(Tile.EMPTY)
+        assertEquals(128, items.size)
+        assertFalse(items.contains(item))
+    }
+
+    @Test
+    fun `Clearing doesn't respawn items`() {
+        FloorItems.add(Tile.EMPTY, "item", respawnTicks = 3)
+        FloorItems.clear()
+
+        assertTrue(FloorItems.at(Tile.EMPTY).isEmpty())
+    }
+
     @AfterEach
     fun teardown() {
         unmockkObject(ZoneBatchUpdates)
