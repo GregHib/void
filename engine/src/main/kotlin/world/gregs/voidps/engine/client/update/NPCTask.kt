@@ -85,12 +85,7 @@ class NPCTask(
     }
 
     private fun healthRegen(character: NPC) {
-        if (character.levels.get(Skill.Constitution) >= character.levels.getMax(Skill.Constitution)) {
-            // Keep counting so the first regen after taking damage isn't delayed; skips the under_attack lookup for the common case
-            character.regenCounter++
-            return
-        }
-        if (!character.hasClock("under_attack") && character.regenCounter++ >= character.def["regen_rate_ticks", 25]) {
+        if (!character.hasClock("under_attack") && character.regenCounter++ >= character.def["regen_rate_ticks", 25] && character.levels.get(Skill.Constitution) < character.levels.getMax(Skill.Constitution)) {
             character.levels.restore(Skill.Constitution, 10)
             character.regenCounter = 0
         }
