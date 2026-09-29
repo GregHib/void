@@ -40,7 +40,7 @@ data class NPC(
             // Owned followers (familiars/pets) phase through players - including their owner - so a
             // player standing between them and their target can't block them. They still collide
             // with other npcs (BLOCK_NPCS) and route around them.
-            return if (this["owner_index", -1] != -1) {
+            return if (ownerIndex != -1) {
                 CollisionFlag.BLOCK_NPCS
             } else {
                 CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
