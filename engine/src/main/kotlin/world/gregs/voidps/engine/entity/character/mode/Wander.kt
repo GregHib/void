@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.move.tele

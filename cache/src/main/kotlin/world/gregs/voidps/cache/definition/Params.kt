@@ -3,7 +3,6 @@ package world.gregs.voidps.cache.definition
 object Params {
     // Custom
     const val AKA = 5002
-    const val ALLOWED_UNDER = 5003
     const val ALTERNATE_PATH = 5004
     const val AMMO = 5005
     const val AMMO_REQUIRED = 5006
@@ -156,7 +155,6 @@ object Params {
     const val SLAYER_LEVEL = 5150
     const val SLAYER_XP = 5151
     const val SLOT = 5152
-    const val SOLID = 5153
     const val SONG = 5154
     const val SOUTH_PATCH = 5155
     const val SPECIAL = 5156
@@ -353,7 +351,6 @@ object Params {
         "default" -> DEFAULT
         "options" -> OPTIONS
         "aka" -> AKA
-        "allowed_under" -> ALLOWED_UNDER
         "alternate_path" -> ALTERNATE_PATH
         "ammo" -> AMMO
         "ammo_required" -> AMMO_REQUIRED
@@ -502,7 +499,6 @@ object Params {
         "slayer_level" -> SLAYER_LEVEL
         "slayer_xp" -> SLAYER_XP
         "slot" -> SLOT
-        "solid" -> SOLID
         "song" -> SONG
         "south_patch" -> SOUTH_PATCH
         "special" -> SPECIAL

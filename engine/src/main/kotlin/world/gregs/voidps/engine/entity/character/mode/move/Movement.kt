@@ -67,7 +67,7 @@ open class Movement(
             return false
         }
         val npc = character as? NPC ?: return false
-        if (npc.def["allowed_under", false]) {
+        if (npc.def.allowedUnder) {
             return false
         }
         if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) {
@@ -231,7 +231,7 @@ open class Movement(
             return strategy.reached(character)
         }
         val character = character
-        if ((character !is NPC || !character.def["allowed_under", false]) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
+        if ((character !is NPC || !character.def.allowedUnder) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         val nearest = strategy.nearest(character)

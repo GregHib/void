@@ -32,9 +32,10 @@ data class NPC(
     override val visuals: NPCVisuals = NPCVisuals()
 
     var hide = false
+
     override val blockMove: Int
         get() {
-            if (!transformDef["solid", true]) {
+            if (!transformDef.solid) {
                 return 0
             }
             // Owned followers (familiars/pets) phase through players - including their owner - so a
@@ -46,14 +47,17 @@ data class NPC(
                 CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
             }
         }
+
     override val collisionFlag: Int
-        get() = CollisionFlag.BLOCK_NPCS or if (transformDef["solid", false]) CollisionFlag.FLOOR else 0
+        get() = if (transformDef.blocksPlayers) CollisionFlag.BLOCK_NPCS or CollisionFlag.FLOOR else CollisionFlag.BLOCK_NPCS
 
     val owner: Player?
         get() {
             val account: String = this["owner"] ?: return null
             return Players.findByAccount(account)
         }
+
+    var ownerIndex: Int = -1
 
     var transformId: String = id
         set(value) {

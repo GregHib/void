@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
@@ -49,6 +50,10 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         timedLoad("npc config") {
             definitions.onEach { it.stringId = it.id.toString() }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
+            // Npcs which explicitly set a custom field, so deferred clones don't overwrite them
+            val allowedUnderSet = ObjectOpenHashSet<String>()
+            val solidSet = ObjectOpenHashSet<String>()
+            val blocksPlayersSet = ObjectOpenHashSet<String>()
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
@@ -57,6 +62,9 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         val stringId = section()
                         val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         var id = -1
+                        var allowedUnder: Boolean? = null
+                        var solid: Boolean? = null
+                        var blocksPlayers: Boolean? = null
                         while (nextPair()) {
                             when (val key = key()) {
                                 "clone" -> {
@@ -66,10 +74,25 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                         clones[stringId] = name
                                     } else {
                                         val definition = definitions[npcId]
+                                        allowedUnder = definition.allowedUnder
+                                        solid = definition.solid
+                                        blocksPlayers = definition.blocksPlayers
                                         params.putAll(definition.params ?: continue)
                                     }
                                 }
                                 "id" -> id = int()
+                                "allowed_under" -> {
+                                    allowedUnder = boolean()
+                                    allowedUnderSet.add(stringId)
+                                }
+                                "solid" -> {
+                                    solid = boolean()
+                                    solidSet.add(stringId)
+                                }
+                                "blocks_players" -> {
+                                    blocksPlayers = boolean()
+                                    blocksPlayersSet.add(stringId)
+                                }
                                 "categories" -> {
                                     val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextElement()) {
@@ -89,6 +112,15 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         ids[stringId] = id
                         require(definitions[id].stringId == id.toString()) { "Duplicate npc id found $id ${definitions[id].stringId} '$stringId' at $path." }
                         definitions[id].stringId = stringId
+                        if (allowedUnder != null) {
+                            definitions[id].allowedUnder = allowedUnder
+                        }
+                        if (solid != null) {
+                            definitions[id].solid = solid
+                        }
+                        if (blocksPlayers != null) {
+                            definitions[id].blocksPlayers = blocksPlayers
+                        }
                         if (params.isNotEmpty()) {
                             if (definitions[id].params != null) {
                                 (definitions[id].params as MutableMap<Int, Any>).putAll(params)
@@ -105,6 +137,15 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 val definition = definitions[cloneId]
                 val id = ids.getInt(npc)
                 require(id != -1) { "Unable to find npc id '$npc'" }
+                if (!allowedUnderSet.contains(npc)) {
+                    definitions[id].allowedUnder = definition.allowedUnder
+                }
+                if (!solidSet.contains(npc)) {
+                    definitions[id].solid = definition.solid
+                }
+                if (!blocksPlayersSet.contains(npc)) {
+                    definitions[id].blocksPlayers = definition.blocksPlayers
+                }
                 val params = definitions[id].params as? MutableMap<Int, Any>
                 if (params != null) {
                     for (param in definition.params ?: continue) {
