@@ -1,0 +1,3 @@
+[bonus_xp_event]
+format = "int"
+persist = true
