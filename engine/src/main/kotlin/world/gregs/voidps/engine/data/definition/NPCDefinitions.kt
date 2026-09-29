@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.jetbrains.annotations.TestOnly
 import world.gregs.config.Config
 import world.gregs.voidps.cache.definition.Params
@@ -139,28 +138,41 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                     }
                 }
             }
-            for ((npc, clone) in clones) {
-                val cloneId = ids.getInt(clone)
-                require(cloneId != -1) { "Unable to find npc id to clone '$clone'" }
-                val definition = definitions[cloneId]
+            for ((npc, cloneStr) in clones) {
+                val cloneId = ids.getInt(cloneStr)
+                require(cloneId != -1) { "Unable to find npc id to clone '$cloneStr'" }
+                val clone = definitions[cloneId]
                 val id = ids.getInt(npc)
                 require(id != -1) { "Unable to find npc id '$npc'" }
-                definitions[id].hitpoints = definition.hitpoints
-                definitions[id].regenRate = definition.regenRate
-                definitions[id].huntRange = definition.huntRange
-                definitions[id].huntMode = definition.huntMode
-                definitions[id].allowedUnder = definition.allowedUnder
-                definitions[id].solid = definition.solid
-                definitions[id].blocksPlayers = definition.blocksPlayers
-                val params = definitions[id].params as? MutableMap<Int, Any>
-                if (params != null) {
-                    for (param in definition.params ?: continue) {
-                        if (param.key == Params.AKA) {
-                            continue
-                        }
-                        if (!params.containsKey(param.key)) {
-                            params[param.key] = param.value
-                        }
+                val definition = definitions[id]
+                if (definition.hitpoints == NPCDefinition.EMPTY.hitpoints) {
+                    definition.hitpoints = clone.hitpoints
+                }
+                if (definition.regenRate == NPCDefinition.EMPTY.regenRate) {
+                    definition.regenRate = clone.regenRate
+                }
+                if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
+                    definition.huntRange = clone.huntRange
+                }
+                if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
+                    definition.huntMode = clone.huntMode
+                }
+                if (definition.allowedUnder == NPCDefinition.EMPTY.allowedUnder) {
+                    definition.allowedUnder = clone.allowedUnder
+                }
+                if (definition.solid == NPCDefinition.EMPTY.solid) {
+                    definition.solid = clone.solid
+                }
+                if (definition.blocksPlayers == NPCDefinition.EMPTY.blocksPlayers) {
+                    definition.blocksPlayers = clone.blocksPlayers
+                }
+                val params = definition.params as? MutableMap<Int, Any> ?: continue
+                for (param in clone.params ?: continue) {
+                    if (param.key == Params.AKA) {
+                        continue
+                    }
+                    if (!params.containsKey(param.key)) {
+                        params[param.key] = param.value
                     }
                 }
             }

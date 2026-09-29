@@ -21,9 +21,9 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         stringId = id,
         params = mapOf(
             Params.CATEGORIES to setOf("human"),
-            Params.HITPOINTS to 40,
             Params.EXAMINE to "Servant of the Duke of Lumbridge.",
         ),
+        hitpoints = 40,
     )
 
     override fun empty(): NPCDefinition = NPCDefinition(-1)
@@ -54,13 +54,13 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
             [early_clone]
             id = 2
             clone = "late_dragon"
-            solid = true
+            solid = false
             blocks_players = false
 
             [late_dragon]
             id = 3
             allowed_under = true
-            solid = false
+            solid = true
             blocks_players = true
 
             [plain]
@@ -80,8 +80,8 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         assertTrue(baby.blocksPlayers)
         val early = definitions.get("early_clone")
         assertTrue(early.allowedUnder)
-        assertTrue(early.solid)
-        assertFalse(early.blocksPlayers)
+        assertFalse(early.solid)
+        assertTrue(early.blocksPlayers)
         val plain = definitions.get("plain")
         assertFalse(plain.allowedUnder)
         assertTrue(plain.solid)
