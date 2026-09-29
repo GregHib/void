@@ -85,7 +85,6 @@ object Params {
     const val HEIGHT = 5082
     const val HITPOINTS = 5083
     const val HUNT_MODE = 5084
-    const val HUNT_RANGE = 5085
     const val IMMUNE_CANNON = 5086
     const val IMMUNE_DEATH = 5087
     const val IMMUNE_DEFLECT = 5088
@@ -433,7 +432,6 @@ object Params {
         "height" -> HEIGHT
         "hitpoints" -> HITPOINTS
         "hunt_mode" -> HUNT_MODE
-        "hunt_range" -> HUNT_RANGE
         "immune_cannon" -> IMMUNE_CANNON
         "immune_death" -> IMMUNE_DEATH
         "immune_deflect" -> IMMUNE_DEFLECT

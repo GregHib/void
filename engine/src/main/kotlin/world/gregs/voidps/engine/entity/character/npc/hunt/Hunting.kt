@@ -74,7 +74,7 @@ class Hunting(
             if (!definition.findKeepHunting && npc.mode !is EmptyMode && npc.mode !is Wander && npc.mode !is Patrol) {
                 continue
             }
-            val range = npc.def["hunt_range", 5]
+            val range = npc.def.huntRange
             when (definition.type) {
                 "player" -> {
                     val target = findCharacter(npc, Players, range, definition, playerTargets) ?: continue

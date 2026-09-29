@@ -51,9 +51,6 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
             definitions.onEach { it.stringId = it.id.toString() }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
             // Npcs which explicitly set a custom field, so deferred clones don't overwrite them
-            val allowedUnderSet = ObjectOpenHashSet<String>()
-            val solidSet = ObjectOpenHashSet<String>()
-            val blocksPlayersSet = ObjectOpenHashSet<String>()
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
@@ -62,6 +59,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         val stringId = section()
                         val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         var id = -1
+                        var huntRange: Int? = null
                         var allowedUnder: Boolean? = null
                         var solid: Boolean? = null
                         var blocksPlayers: Boolean? = null
@@ -81,18 +79,10 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                     }
                                 }
                                 "id" -> id = int()
-                                "allowed_under" -> {
-                                    allowedUnder = boolean()
-                                    allowedUnderSet.add(stringId)
-                                }
-                                "solid" -> {
-                                    solid = boolean()
-                                    solidSet.add(stringId)
-                                }
-                                "blocks_players" -> {
-                                    blocksPlayers = boolean()
-                                    blocksPlayersSet.add(stringId)
-                                }
+                                "hunt_range" -> huntRange = int()
+                                "allowed_under" -> allowedUnder = boolean()
+                                "solid" -> solid = boolean()
+                                "blocks_players" -> blocksPlayers = boolean()
                                 "categories" -> {
                                     val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextElement()) {
@@ -112,6 +102,9 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         ids[stringId] = id
                         require(definitions[id].stringId == id.toString()) { "Duplicate npc id found $id ${definitions[id].stringId} '$stringId' at $path." }
                         definitions[id].stringId = stringId
+                        if (huntRange != null) {
+                            definitions[id].huntRange = huntRange
+                        }
                         if (allowedUnder != null) {
                             definitions[id].allowedUnder = allowedUnder
                         }
@@ -137,15 +130,10 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 val definition = definitions[cloneId]
                 val id = ids.getInt(npc)
                 require(id != -1) { "Unable to find npc id '$npc'" }
-                if (!allowedUnderSet.contains(npc)) {
-                    definitions[id].allowedUnder = definition.allowedUnder
-                }
-                if (!solidSet.contains(npc)) {
-                    definitions[id].solid = definition.solid
-                }
-                if (!blocksPlayersSet.contains(npc)) {
-                    definitions[id].blocksPlayers = definition.blocksPlayers
-                }
+                definitions[id].allowedUnder = definition.allowedUnder
+                definitions[id].solid = definition.solid
+                definitions[id].blocksPlayers = definition.blocksPlayers
+                definitions[id].huntRange = definition.huntRange
                 val params = definitions[id].params as? MutableMap<Int, Any>
                 if (params != null) {
                     for (param in definition.params ?: continue) {
