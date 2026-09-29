@@ -87,7 +87,7 @@ class QuizMaster : Script {
 
     private suspend fun Player.setupStudio(): NPC {
         smallInstance(Region(STUDIO_REGION), levels = 2)
-        setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        setInstanceLogout(RandomEvents.origin(this))
         val offset = instanceOffset()
         kidnap(ROOM.add(offset))
         val master = NPCs.add("quiz_master", PODIUM.add(offset), Direction.SOUTH, ticks = -1, owner = this)

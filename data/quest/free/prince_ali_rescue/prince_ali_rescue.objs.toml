@@ -1,7 +1,5 @@
 [draynor_prison_door_closed]
 id = 2881
+opened = "door_22_opened"
 material = "iron"
 examine = "It's closed"
-
-[draynor_prison_door_opened]
-id = 1541

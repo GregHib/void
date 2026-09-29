@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'web/site/**'
+      - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
 env:
@@ -66,6 +69,9 @@ jobs:
 
       - name: Build static site
         run: ./gradlew :web:site:run
+
+      - name: Generate item sprites
+        run: ./gradlew :tools:icon:dumpItemSprites -Pargs="data/cache/ build/pages/images/items/"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

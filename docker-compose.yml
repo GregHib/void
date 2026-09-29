@@ -12,9 +12,18 @@ services:
       storage.database.jdbcUrl: jdbc:postgresql://db:5432/game?reWriteBatchedInserts=true
     ports:
       - "43594:43594"
-      - "8080:8080"
     depends_on:
       - db
+    networks:
+      - internal_network
+  web:
+    image: nginx:1.31-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - void
     networks:
       - internal_network
   db:

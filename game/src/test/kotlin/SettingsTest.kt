@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.Settings
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 internal class SettingsTest {
@@ -11,6 +12,7 @@ internal class SettingsTest {
         assertTrue(Settings["world.npcs.randomWalk", false])
         assertTrue(Settings["world.npcs.aggression", false])
         assertTrue(Settings["world.npcs.collision", false])
+        assertFalse(Settings["web.server.enabled", false])
         assertEquals(30, Settings["bots.count", 0])
     }
 }

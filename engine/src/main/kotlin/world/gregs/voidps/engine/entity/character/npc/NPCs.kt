@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.Spawn
 import world.gregs.voidps.engine.entity.character.CharacterSearch
 import world.gregs.voidps.engine.entity.character.CharacterIndexMap
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
-import world.gregs.voidps.engine.entity.character.mode.Wander
+import world.gregs.voidps.engine.entity.character.mode.DefaultMode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
@@ -208,8 +208,11 @@ object NPCs : Runnable,
         npc.levels.clear(Skill.Magic)
         spawns[npc.tile.id] = npc.index
         npc["spawn_tile"] = npc.tile
-        if (npc.mode == EmptyMode && Wander.wanders(npc)) {
-            npc.mode = Wander(npc, npc.tile)
+        if (npc.mode == EmptyMode) {
+            val mode = DefaultMode.get(npc)
+            if (mode != null) {
+                npc.mode = mode
+            }
         }
         npc.collision = CollisionStrategyProvider.get(npc)
         regionMap.add(npc.tile.regionLevel.id, npc.index)

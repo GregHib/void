@@ -23,7 +23,6 @@ import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.inv.Inventories
 import world.gregs.voidps.engine.inv.restrict.ValidItemRestriction
 import world.gregs.voidps.engine.inv.stack.ItemDependentStack
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -149,12 +148,16 @@ internal class InteractTest : KoinMock() {
     fun `Switch to operate once within approach range`() {
         player.tele(10, 15)
         target.tele(10, 10)
-        interact(operate = true, approach = true, suspend = false)
+        onApproach = {
+            approached = true
+            interact.updateRange(-1, false)
+        }
+        onOperate = { operated = true }
+        custom(operate = true, approach = true)
 
         assertFalse(approached)
         interact.tick()
         assertTrue(approached)
-        interact.updateRange(-1, false)
         repeat(3) {
             assertFalse(operated)
             interact.tick()
@@ -188,5 +191,90 @@ internal class InteractTest : KoinMock() {
             interact.tick()
             assertEquals(EmptyMode, player.mode)
         }
+    }
+
+    private var hasOperate = true
+    private var onOperate: () -> Unit = {}
+    private var onApproach: () -> Unit = {}
+
+    private fun custom(operate: Boolean = true, approach: Boolean = false) {
+        hasOperate = operate
+        interact = object : Interact(player, target) {
+            override fun hasOperate() = hasOperate
+
+            override fun hasApproach() = approach
+
+            override fun operate() = onOperate()
+
+            override fun approach() = onApproach()
+        }
+        player.mode = interact
+    }
+
+    private fun suspended(ticks: Int = 2): () -> Unit = {
+        Script.launch {
+            suspendCancellableCoroutine {
+                player.suspension = Suspension.Delay(it, ticks)
+            }
+            player.suspension = null
+            operated = true
+        }
+    }
+
+    @Test
+    fun `Launched interaction isn't re-evaluated while suspended`() {
+        onOperate = suspended()
+        custom()
+        interact.tick()
+        // e.g. the script transforms the target so the option no longer exists
+        hasOperate = false
+
+        repeat(3) {
+            GameLoop.tick++
+            interact.tick()
+        }
+
+        assertTrue(operated)
+        assertEquals(EmptyMode, player.mode)
+    }
+
+    @Test
+    fun `Suspended interaction doesn't follow its target`() {
+        player.tele(10, 15)
+        onApproach = suspended(5)
+        custom(operate = false, approach = true)
+        interact.tick()
+        val tile = player.tile
+        target.tele(10, 5)
+
+        repeat(3) {
+            GameLoop.tick++
+            interact.tick()
+        }
+
+        assertFalse(operated)
+        assertEquals(tile, player.tile)
+        assertEquals(interact, player.mode)
+    }
+
+    @Test
+    fun `Replace runs once after movement`() {
+        player.tele(10, 15)
+        var count = 0
+        var tile = Tile.EMPTY
+        onApproach = {
+            interact.replace {
+                count++
+                tile = player.tile
+            }
+        }
+        custom(operate = false, approach = true)
+
+        repeat(3) {
+            interact.tick()
+        }
+
+        assertEquals(1, count)
+        assertTrue(tile != Tile(10, 15))
     }
 }

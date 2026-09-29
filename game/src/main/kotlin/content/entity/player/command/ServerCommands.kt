@@ -45,7 +45,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
-import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.event.AuditLog
@@ -98,10 +97,9 @@ class ServerCommands(val accountLoader: PlayerAccountLoader, val accountReloader
                 loadObjectSpawns(files.list(Settings["spawns.objects"]))
             }
             "item_defs", "items", "floor_items" -> {
-                val itemSpawns: ItemSpawns = get()
                 FloorItems.clear()
                 ItemDefinitions.load(files.list(Settings["definitions.items"]))
-                loadItemSpawns(itemSpawns, files.list(Settings["spawns.items"]))
+                loadItemSpawns(files.list(Settings["spawns.items"]))
             }
             "npcs" -> {
                 NPCDefinitions.load(files.list(Settings["definitions.npcs"]))

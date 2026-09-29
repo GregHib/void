@@ -34,6 +34,8 @@ object Ammo {
 
     fun required(item: Item) = item.def[Params.AMMO_GROUP, AMMO_GROUP_NONE] != AMMO_GROUP_NONE && !item.id.endsWith("chinchompa")
 
+    fun graphic(ammo: String) = ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
+
     fun requiredAmount(weapon: Item, special: Boolean) = if (weapon.id.startsWith("dark_bow") || (weapon.id.startsWith("magic_shortbow") && special)) 2 else 1
 
     fun remove(player: Player, target: Character, ammo: String, required: Int) {

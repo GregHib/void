@@ -490,10 +490,6 @@ examine = "This Poison Ivy bush has died."
 id = 7691
 examine = "This Poison Ivy bush has died."
 
-[redberry_bush_seedling]
-id = 7692
-examine = "This Poison Ivy bush has died."
-
 [redberry_bush_1]
 id = 7693
 examine = "A redberry bush is growing in this Farming patch."

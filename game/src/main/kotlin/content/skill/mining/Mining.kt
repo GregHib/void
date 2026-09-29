@@ -224,7 +224,7 @@ class Mining : Script {
             return false
         }
         val ticks = if (ore.rowId == "clay") life else ResourceRespawn.ticks(life) // Clay always respawns in 2 ticks regardless of players
-        GameObjects.replace(obj, "depleted${obj.id.dropWhile { it != '_' }}", ticks = ticks)
+        GameObjects.replace(obj, obj.def["depleted", "depleted${obj.id.dropWhile { it != '_' }}"], ticks = ticks)
         return true
     }
 }

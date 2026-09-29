@@ -37,7 +37,7 @@ class LostAndFound : Script {
                 return@teleportLand
             }
             val chance = Settings["events.randomEvents.teleportChance", 300]
-            if (chance >= 0 && random.nextInt(chance) == 0) {
+            if (chance > 0 && random.nextInt(chance) == 0) {
                 RandomEvents.roll(this, "lost_and_found")
             }
         }

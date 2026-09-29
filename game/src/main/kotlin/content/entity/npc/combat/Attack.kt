@@ -10,6 +10,7 @@ import content.entity.effect.toxin.poison
 import content.entity.gfx.areaGfx
 import content.entity.proj.shoot
 import content.entity.proj.shootNearest
+import content.skill.dungeoneering.dungeonRoomBounds
 import net.pearx.kasechange.toPascalCase
 import org.rsmod.game.pathfinder.LineValidator
 import world.gregs.voidps.engine.Script
@@ -232,7 +233,11 @@ class Attack(
             }
             return setOf(target)
         }
-        val area = Areas.getOrNull(area)?.area ?: return setOf(target)
+        val area = if (area == "dungeoneering_room") {
+            target.dungeonRoomBounds()
+        } else {
+            Areas.getOrNull(area)?.area ?: return setOf(target)
+        }
         val set = mutableSetOf(target)
         for (zone in area.toZones(tile.level)) {
             set.addAll(Players.at(zone))

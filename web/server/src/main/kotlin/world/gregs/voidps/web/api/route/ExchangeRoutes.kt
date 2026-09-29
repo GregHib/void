@@ -14,6 +14,7 @@ import world.gregs.voidps.web.exchange.ExchangeService
  */
 fun Route.exchangeRoutes(service: ExchangeService) {
     route("/exchange") {
+        allowAnyOrigin()
         get("/summary") {
             call.respond(service.summary())
         }

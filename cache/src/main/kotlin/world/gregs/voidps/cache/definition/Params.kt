@@ -266,9 +266,17 @@ object Params {
     const val VARIABLES = 5263
     const val SUMMONING_BEAST_OF_BURDEN_ESSENCE = 5264
     const val SUMMONING_SPECIAL_COST = 5265
-    const val DISENGAGE = 5266
+    const val DISENGAGE = 5268
+    const val OPENED = 5270
+    const val CLOSED = 5271
+    const val STUMP = 5272
+    const val DEPLETED = 5273
 
     private fun custom(name: String) = when (name) {
+        "opened" -> OPENED
+        "closed" -> CLOSED
+        "stump" -> STUMP
+        "depleted" -> DEPLETED
         "disengage" -> DISENGAGE
         "summoning_beast_of_burden_essence" -> SUMMONING_BEAST_OF_BURDEN_ESSENCE
         "summoning_special_cost" -> SUMMONING_SPECIAL_COST

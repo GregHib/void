@@ -156,7 +156,7 @@ class Woodcutting(val drops: DropTables) : Script {
             areaSound("fell_tree", obj.tile)
             return true
         }
-        val stumpId = "${obj.id}_stump"
+        val stumpId = obj.def["stump", "${obj.id}_stump"]
         if (ObjectDefinitions.contains(stumpId)) {
             val delay = getRegrowTickDelay(log)
             GameObjects.replace(obj, stumpId, ticks = delay)
