@@ -10,7 +10,7 @@ def = 14
 mage = 22
 style = "magic"
 max_hit_magic = 60
-hunt_mode = "cowardly"
+hunt_mode = "aggressive"
 respawn_delay = 50
 examine = "A practicer of dark arts."
 drop_table = "dark_wizard"
@@ -25,7 +25,7 @@ def = 5
 mage = 6
 style = "magic"
 max_hit_magic = 60
-hunt_mode = "cowardly"
+hunt_mode = "aggressive"
 respawn_delay = 50
 examine = "He works evil magic."
 drop_table = "dark_wizard"
@@ -44,7 +44,8 @@ examine = "A very brave merchant."
 [larry]
 id = 1780
 shop = "larrys_wilderness_cape_shop"
-examine = "A very brave merchant."
+collision = "indoors"
+examine = "A not-so-brave merchant."
 
 [darren]
 id = 1781
@@ -188,9 +189,6 @@ max_hit_slash = 40
 id = 8000
 examine = "Looks after your Farming tools."
 
-[goth_leprechaun_wilderness_2]
-id = 8001
-
 [orry_wilderness]
 id = 8067
 
@@ -332,3 +330,44 @@ str = 60
 def = 80
 mage = 40
 range = 40
+
+
+[head_mystic]
+id = 8227
+examine = "He has blindfolded himself in order to better see into the spirit world."
+
+[rewards_mystic]
+id = 8228
+shop = "stealing_creation_reward_shop"
+examine = "A little more worldly than the other mystics."
+collision = "indoors"
+
+[mystic]
+id = 8229
+examine = "He worships the spirits of the wilderness."
+
+[mystic_2]
+id = 8231
+dialogue = "old"
+examine = "He worships the spirits of the wilderness."
+
+[mystic_3]
+id = 8233
+examine = "He worships the spirits of the wilderness."
+
+[mystic_4]
+id = 8545
+examine = "He worships the spirits of the Wilderness for unusual reasons."
+
+[banker_wilderness]
+id = 6538
+examine = "He has unbelievable strength!"
+
+[calladin]
+id = 8111
+collision = "indoors"
+examine = "Master of the Clan Wars arena."
+
+[spirit]
+id = 7963
+examine = "The spirit of a small girl."

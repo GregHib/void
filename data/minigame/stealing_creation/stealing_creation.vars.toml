@@ -1,2 +1,6 @@
 [stealing_creation_points]
 format = "int"
+
+[stealing_creation_trained_for_entry_portal]
+format = "boolean"
+persist = true

@@ -80,6 +80,56 @@ option = "Climb-up"
 tile = { x = 3280, y = 3936, level = 2 }
 to = { x = 3282, y = 3936, level = 3 }
 
+[wilderness_ship_ladder_up]
+option = "Climb-up"
+tile = { x = 3018, y = 3957 }
+to = { x = 3018, y = 3958, level = 1 }
+
+[wilderness_ship_ladder_down]
+option = "Climb-down"
+tile = { x = 3018, y = 3957, level = 1 }
+delta = { level = -1 }
+
+[wilderness_ship_ladder_up_2]
+option = "Climb-up"
+tile = { x = 3017, y = 3959, level = 1 }
+to = { x = 3017, y = 3960, level = 2 }
+
+[wilderness_ship_ladder_down_2]
+option = "Climb-down"
+tile = { x = 3017, y = 3959, level = 2 }
+to = { x = 3017, y = 3958, level = 1 }
+
+[wilderness_ship_ladder_up_2]
+option = "Climb-up"
+tile = { x = 3019, y = 3959, level = 1 }
+to = { x = 3019, y = 3960, level = 2 }
+
+[wilderness_ship_ladder_down_2]
+option = "Climb-down"
+tile = { x = 3019, y = 3959, level = 2 }
+to = { x = 3019, y = 3958, level = 1 }
+
+[wilderness_ghorrock_stairs_up]
+option = "Climb"
+tile = { x = 2907, y = 3932 }
+to = { x = 2907, y = 3931, level = 1 }
+
+[wilderness_ghorrock_stairs_up_2]
+option = "Climb"
+tile = { x = 2920, y = 3932 }
+to = { x = 2920, y = 3931, level = 1 }
+
+[wilderness_ghorrock_stairs_down]
+option = "Climb-Down"
+tile = { x = 2906, y = 3932, level = 1 }
+to = { x = 2907, y = 3935 }
+
+[wilderness_ghorrock_stairs_down]
+option = "Climb-Down"
+tile = { x = 2920, y = 3932, level = 1 }
+to = { x = 2920, y = 3935 }
+
 [lever_kbd_lair]
 option = "Pull"
 tile = { x = 2273, y = 4680 }
