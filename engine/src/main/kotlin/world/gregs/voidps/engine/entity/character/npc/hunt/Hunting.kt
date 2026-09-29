@@ -58,7 +58,7 @@ class Hunting(
             if (npc.huntCounter == -1) {
                 continue
             }
-            val mode: String? = npc.huntMode ?: npc.def.getOrNull("hunt_mode")
+            val mode: String? = npc.huntMode ?: npc.def.huntMode
             if (mode == null || mode == "") {
                 npc.huntCounter = -1
                 continue

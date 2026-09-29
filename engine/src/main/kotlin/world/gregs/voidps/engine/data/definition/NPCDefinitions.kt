@@ -60,6 +60,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         var id = -1
                         var huntRange: Int? = null
+                        var huntMode: String? = null
                         var allowedUnder: Boolean? = null
                         var solid: Boolean? = null
                         var blocksPlayers: Boolean? = null
@@ -80,6 +81,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                 }
                                 "id" -> id = int()
                                 "hunt_range" -> huntRange = int()
+                                "hunt_mode" -> huntMode = string()
                                 "allowed_under" -> allowedUnder = boolean()
                                 "solid" -> solid = boolean()
                                 "blocks_players" -> blocksPlayers = boolean()
@@ -104,6 +106,9 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         definitions[id].stringId = stringId
                         if (huntRange != null) {
                             definitions[id].huntRange = huntRange
+                        }
+                        if (huntMode != null) {
+                            definitions[id].huntMode = huntMode
                         }
                         if (allowedUnder != null) {
                             definitions[id].allowedUnder = allowedUnder
@@ -130,10 +135,11 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 val definition = definitions[cloneId]
                 val id = ids.getInt(npc)
                 require(id != -1) { "Unable to find npc id '$npc'" }
+                definitions[id].huntRange = definition.huntRange
+                definitions[id].huntMode = definition.huntMode
                 definitions[id].allowedUnder = definition.allowedUnder
                 definitions[id].solid = definition.solid
                 definitions[id].blocksPlayers = definition.blocksPlayers
-                definitions[id].huntRange = definition.huntRange
                 val params = definitions[id].params as? MutableMap<Int, Any>
                 if (params != null) {
                     for (param in definition.params ?: continue) {

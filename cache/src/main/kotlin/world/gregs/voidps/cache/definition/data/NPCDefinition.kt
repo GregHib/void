@@ -26,6 +26,7 @@ data class NPCDefinition(
     var solid: Boolean = true, // Custom
     var blocksPlayers: Boolean = false, // Custom
     var huntRange: Int = 5, // Custom
+    var huntMode: String? = null, // Custom
 ) : Definition,
     Transforms,
     Parameterized {
