@@ -61,7 +61,7 @@ class NPCTask(
                     // Revert
                     npc.visuals.transform.id = npc.def.id
                     npc.flagTransform()
-                    npc.clear("transform_id")
+                    npc.transformId = npc.id
                 }
             }
         } else if (npc.queue.contains("death")) {

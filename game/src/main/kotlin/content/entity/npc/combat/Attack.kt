@@ -46,9 +46,9 @@ class Attack(
         npcCombatSwing { primaryTarget ->
             val defId = if (primaryTarget is Player) {
                 val def = def(primaryTarget)
-                def["combat_def", get("transform_id", def.stringId)]
+                def["combat_def", if (transformed) transformId else def.stringId]
             } else {
-                def["combat_def", get("transform_id", id)]
+                def["combat_def", transformId]
             }
             val definition = definitions.getOrNull(defId) ?: return@npcCombatSwing
             if (definition.attacks.isEmpty()) {
@@ -210,7 +210,7 @@ class Attack(
         if (attackRange == 1) {
             return strategy.reached(source)
         }
-        if (!source.def["allowed_under", false] && Overlap.isUnder(source.tile, source.size, source.size, strategy.tile, strategy.width, strategy.height)) {
+        if (!source.def.allowedUnder && Overlap.isUnder(source.tile, source.size, source.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         val nearest = strategy.nearest(source)

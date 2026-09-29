@@ -55,18 +55,18 @@ data class NPC(
             return Players.findByAccount(account)
         }
 
-    /**
-     * Index of the player who owns this npc (e.g. a summoned familiar), -1 if unowned
-     */
-    var ownerIndex: Int = -1
-
-    val transformDef: NPCDefinition
-        get() {
-            if (contains("transform_id")) {
-                return NPCDefinitions.get(get("transform_id", id))
-            }
-            return def
+    var transformId: String = id
+        set(value) {
+            field = value
+            transformDef = if (value == id) def else NPCDefinitions.get(value)
         }
+
+    var transformDef: NPCDefinition = def
+        private set
+
+    val transformed: Boolean
+        get() = transformId != id
+
 
     init {
         if (index != -1) {
@@ -99,8 +99,8 @@ data class NPC(
     var huntCounter = 0
 
     fun def(player: Player): NPCDefinition {
-        if (contains("transform_id")) {
-            return NPCDefinitions.get(this["transform_id", ""])
+        if (transformed) {
+            return transformDef
         }
         return NPCDefinitions.resolve(def, player)
     }

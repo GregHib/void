@@ -251,7 +251,7 @@ val Character.attackSpeed: Int
 var Character.attackRange: Int
     get() {
         val default = if (this is NPC) {
-            val combatDefinition = get<CombatDefinitions>().get(transformDef["combat_def", this["transform_id", transformDef.stringId]])
+            val combatDefinition = get<CombatDefinitions>().get(transformDef["combat_def", transformId])
             transformDef["attack_range", combatDefinition.attackRange]
         } else {
             1
