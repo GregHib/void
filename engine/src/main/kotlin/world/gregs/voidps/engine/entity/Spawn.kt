@@ -31,6 +31,10 @@ interface Spawn {
         }
     }
 
+    /**
+     * Floor item is added to the world, even if it's only visible to its owner.
+     * Not called when an item respawns or is revealed.
+     */
     fun floorItemSpawn(id: String = "*", handler: FloorItem.() -> Unit) {
         Script.checkLoading()
         Wildcards.find(id, Wildcard.Item) { key ->
