@@ -22,6 +22,7 @@ spawns = [
   { id = "tile", x = 2978, y = 3704, delay = 100 },
   { id = "tile", x = 2983, y = 3697, delay = 100 },
   { id = "tile", x = 2976, y = 3682, delay = 100 },
+  { id = "tile", x = 2987, y = 3684, delay = 100 },
   { id = "bucket", x = 2970, y = 3705, delay = 100 },
   { id = "bucket", x = 2981, y = 3691, delay = 100 },
   { id = "fishing_bait", x = 2998, y = 3705, delay = 100 },
@@ -43,6 +44,9 @@ spawns = [
 # 11834
   { id = "bones", x = 2980, y = 3764, delay = 100 },
   { id = "bones", x = 2978, y = 3763, delay = 100 },
+# 11836
+  { id = "water_rune", x = 2960, y = 3899, amount = 5, delay = 100 },
+  { id = "cosmic_rune", x = 2947, y = 3898, amount = 3, delay = 100 },
 # 12091
   { id = "iron_full_helm", x = 3068, y = 3831, delay = 500 },
 # 12092
@@ -82,10 +86,12 @@ spawns = [
   { id = "vial", x = 3188, y = 3839, delay = 50 },
   { id = "black_dagger", x = 3180, y = 3824, delay = 1100 },
 # 12604
-  { id = "burnt_bones", x = 3179, y = 3850, delay = 100 },
+  { id = "burnt_bones", x = 3178, y = 3852, delay = 100 },
   { id = "burnt_bones", x = 3179, y = 3853, delay = 100 },
-  { id = "burnt_bones", x = 3184, y = 3856, delay = 100 },
+  { id = "burnt_bones", x = 3179, y = 3850, delay = 100 },
+  { id = "burnt_bones", x = 3185, y = 3850, delay = 100 },
   { id = "burnt_bones", x = 3187, y = 3856, delay = 100 },
+  { id = "burnt_bones", x = 3184, y = 3856, delay = 100 },
   { id = "sapphire", x = 3170, y = 3885, delay = 1000 },
   { id = "vial", x = 3196, y = 3849, delay = 50 },
 # 12855
@@ -152,6 +158,8 @@ spawns = [
   { id = "burnt_bones", x = 3219, y = 3816, delay = 100 },
   { id = "burnt_bones", x = 3214, y = 3820, delay = 100 },
   { id = "burnt_bones", x = 3213, y = 3821, delay = 100 },
+  { id = "white_berries", x = 3214, y = 3809, delay = 10 },
+  { id = "white_berries", x = 3218, y = 3814, delay = 10 },
 # 12861
   { id = "bones", x = 3232, y = 3948, delay = 100 },
   { id = "bones", x = 3236, y = 3939, delay = 100 },
@@ -188,9 +196,9 @@ spawns = [
   { id = "burnt_bones", x = 3292, y = 3887, delay = 100 },
   { id = "burnt_bones", x = 3287, y = 3887, delay = 100 },
 # 13117
-  { id = "gold_ore", x = 3296, y = 3933, delay = 500 },
-  { id = "gold_ore", x = 3292, y = 3931, delay = 500 },
-  { id = "gold_ore", x = 3291, y = 3927, delay = 500 },
+  { id = "gold_ore", x = 3290, y = 3928, delay = 500 },
+  { id = "gold_ore", x = 3292, y = 3933, delay = 500 },
+  { id = "gold_ore", x = 3289, y = 3926, delay = 500 },
   { id = "gold_ore", x = 3287, y = 3932, level = 1, delay = 500 },
   { id = "gold_ore", x = 3283, y = 3936, level = 3, delay = 500 },
   { id = "bronze_sq_shield", x = 3294, y = 3935, level = 1, delay = 230 },

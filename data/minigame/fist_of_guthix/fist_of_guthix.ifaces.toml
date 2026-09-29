@@ -4,6 +4,14 @@ id = 730
 [fist_of_guthix_waiting]
 id = 731
 
+[fist_of_guthix_scoreboard]
+id = 632
+
+[.subtitle]
+id = 13
+
+[.title]
+id = 14
+
 [fist_of_guthix_rewards]
 id = 732
-
