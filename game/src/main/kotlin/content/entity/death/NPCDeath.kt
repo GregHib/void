@@ -66,8 +66,8 @@ class NPCDeath(
                 // Credit a familiar's kill to its owner so loot, slayer and the kill log go to the
                 // player rather than the familiar npc.
                 var killer = killer
-                if (killer is NPC && killer.contains("owner_index")) {
-                    killer = Players.indexed(killer["owner_index", -1])
+                if (killer is NPC && killer.ownerIndex != -1) {
+                    killer = Players.indexed(killer.ownerIndex)
                 }
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
                 npc["death_tile"] = tile

@@ -26,7 +26,7 @@ class NPCTask(
         if (character.mode == EmptyMode) {
             // An idle familiar (its owner still has it as their follower) resumes following its
             // owner rather than wandering or standing still after a fight ends.
-            val ownerIndex = character["owner_index", -1]
+            val ownerIndex = character.ownerIndex
             val owner = if (ownerIndex != -1) Players.indexed(ownerIndex) else null
             if (owner != null && owner["follower_index", -1] == character.index) {
                 character.mode = Follow(character, owner)

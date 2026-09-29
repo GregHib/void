@@ -66,7 +66,7 @@ class CombatExperience : Script {
             if (damage <= 0) {
                 return@npcCombatAttack
             }
-            val owner = Players.indexed(this["owner_index", -1]) ?: return@npcCombatAttack
+            val owner = Players.indexed(ownerIndex) ?: return@npcCombatAttack
             when {
                 type == "magic" || type == "blaze" -> grant(owner, target, Skill.Magic, damage / 5.0)
                 type == "range" -> grant(owner, target, Skill.Ranged, damage / 2.5)

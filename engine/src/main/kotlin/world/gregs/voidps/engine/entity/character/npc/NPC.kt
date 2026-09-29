@@ -55,8 +55,10 @@ data class NPC(
             return Players.findByAccount(account)
         }
 
-    val transformId: String
-        get() = this["transform_id", id]
+    /**
+     * Index of the player who owns this npc (e.g. a summoned familiar), -1 if unowned
+     */
+    var ownerIndex: Int = -1
 
     val transformDef: NPCDefinition
         get() {
