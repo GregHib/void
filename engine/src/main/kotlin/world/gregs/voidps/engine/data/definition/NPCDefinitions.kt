@@ -59,6 +59,8 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         val stringId = section()
                         val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         var id = -1
+                        var hitpoints: Int? = null
+                        var regenRate: Int? = null
                         var huntRange: Int? = null
                         var huntMode: String? = null
                         var allowedUnder: Boolean? = null
@@ -80,6 +82,8 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                     }
                                 }
                                 "id" -> id = int()
+                                "hitpoints" -> hitpoints = int()
+                                "regen_rate_ticks" -> regenRate = int()
                                 "hunt_range" -> huntRange = int()
                                 "hunt_mode" -> huntMode = string()
                                 "allowed_under" -> allowedUnder = boolean()
@@ -104,6 +108,12 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         ids[stringId] = id
                         require(definitions[id].stringId == id.toString()) { "Duplicate npc id found $id ${definitions[id].stringId} '$stringId' at $path." }
                         definitions[id].stringId = stringId
+                        if (hitpoints != null) {
+                            definitions[id].hitpoints = hitpoints
+                        }
+                        if (regenRate != null) {
+                            definitions[id].regenRate = regenRate
+                        }
                         if (huntRange != null) {
                             definitions[id].huntRange = huntRange
                         }
@@ -135,6 +145,8 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 val definition = definitions[cloneId]
                 val id = ids.getInt(npc)
                 require(id != -1) { "Unable to find npc id '$npc'" }
+                definitions[id].hitpoints = definition.hitpoints
+                definitions[id].regenRate = definition.regenRate
                 definitions[id].huntRange = definition.huntRange
                 definitions[id].huntMode = definition.huntMode
                 definitions[id].allowedUnder = definition.allowedUnder

@@ -130,7 +130,6 @@ object Params {
     const val RAISE = 5132
     const val RANGE = 5133
     const val RANK = 5134
-    const val REGEN_RATE_TICKS = 5135
     const val REGION = 5136
     const val REQ_COMBAT = 5137
     const val REQ_ITEMS = 5138
@@ -429,7 +428,6 @@ object Params {
         "harvest" -> HARVEST
         "heals" -> HEALS
         "height" -> HEIGHT
-        "hitpoints" -> HITPOINTS
         "immune_cannon" -> IMMUNE_CANNON
         "immune_death" -> IMMUNE_DEATH
         "immune_deflect" -> IMMUNE_DEFLECT
@@ -476,7 +474,6 @@ object Params {
         "raise" -> RAISE
         "range" -> RANGE
         "rank" -> RANK
-        "regen_rate_ticks" -> REGEN_RATE_TICKS
         "region" -> REGION
         "req_combat" -> REQ_COMBAT
         "prep_vars" -> PREP_VARS
