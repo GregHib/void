@@ -114,7 +114,7 @@ class AccountManager(
         if (player["logged_out", false]) {
             return
         }
-        if (safely && player.contains("delay")) {
+        if (safely && player.delayed) {
             player.message("You need to wait a few moments before you can log out.")
             return
         }

@@ -45,7 +45,7 @@ class NPCTask(
     }
 
     private fun lifecycle(npc: NPC) {
-        if (npc.contains("delay")) {
+        if (npc.delayed) {
             return
         }
         if (npc.lifecycle == 0) {

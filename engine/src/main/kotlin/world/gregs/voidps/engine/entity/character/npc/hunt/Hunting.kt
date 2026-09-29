@@ -63,7 +63,7 @@ class Hunting(
                 npc.huntCounter = -1
                 continue
             }
-            if (npc.contains("delay") || --npc.huntCounter >= 0) {
+            if (npc.delayed || --npc.huntCounter >= 0) {
                 continue
             }
             val definition = huntModes.get(mode)
@@ -252,7 +252,7 @@ class Hunting(
         if (definition.checkAfk && !target.hasClock("tolerance")) {
             return false
         }
-        if (definition.checkNotBusy && (target.contains("delay") || target.hasMenuOpen())) {
+        if (definition.checkNotBusy && (target.delayed || target.hasMenuOpen())) {
             return false
         }
         if (definition.checkSameGod && target is Player && wearsGodArmour(npc, target)) {

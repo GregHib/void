@@ -95,6 +95,7 @@ class Player(
         get() = client != null && viewport != null
 
     override var suspension: Suspension? = null
+    override var delay: Int = 0
 
     override var queue: ActionQueue<*> = ActionQueue(this)
 

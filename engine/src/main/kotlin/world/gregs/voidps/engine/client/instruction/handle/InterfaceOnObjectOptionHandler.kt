@@ -18,7 +18,7 @@ class InterfaceOnObjectOptionHandler(
 ) : InstructionHandler<InteractInterfaceObject>() {
 
     override fun validate(player: Player, instruction: InteractInterfaceObject): Boolean {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return false
         }
         val (objectId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction

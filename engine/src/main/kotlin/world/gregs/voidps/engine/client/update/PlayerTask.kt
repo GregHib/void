@@ -13,7 +13,7 @@ class PlayerTask(
     override fun run(character: Player) {
         checkDelay(character)
         character.queue.tick()
-        if (!character.contains("delay") && !character.hasMenuOpen()) {
+        if (!character.delayed && !character.hasMenuOpen()) {
             character.timers.run()
         }
         character.softTimers.run()

@@ -181,7 +181,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             }
             // A stunned character can't swing. CombatMovement keeps ticking (and re-entering here)
             // while stunned, so without this a stunned npc/player would still land its attacks -
-            // only its movement is otherwise gated by the stun's "delay". Skipping leaves the stun
+            // only its movement is otherwise gated by the stun's delayTicks. Skipping leaves the stun
             // to expire and the fight resumes on the next tick.
             if (character.stunned) {
                 return

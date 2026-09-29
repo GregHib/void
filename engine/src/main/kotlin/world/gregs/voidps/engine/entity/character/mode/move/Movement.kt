@@ -118,7 +118,7 @@ open class Movement(
         if (character.hasClock("movement_delay")) {
             return false
         }
-        if (character.contains("delay")) {
+        if (character.delayed) {
             // Inactive delays block movement unless there's a queue in action
             return character.suspension != null || !character.queue.isEmpty() || character.steps.destination.noCollision
         }

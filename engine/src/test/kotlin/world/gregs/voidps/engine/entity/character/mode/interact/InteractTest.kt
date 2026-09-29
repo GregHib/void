@@ -172,7 +172,7 @@ internal class InteractTest : KoinMock() {
             operated = false
             interact(operate = true, approach = false, suspend = type == "suspension")
             if (type == "delay") {
-                player["delay"] = 2
+                player.delay = 2
             } else if (type == "interface") {
                 every { player.interfaces.get("main_screen") } returns "an_interface"
             }

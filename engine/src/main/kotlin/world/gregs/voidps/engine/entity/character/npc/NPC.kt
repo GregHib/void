@@ -85,6 +85,7 @@ data class NPC(
     override var queue: ActionQueue<*> = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(this)
     override var suspension: Suspension? = null
+    override var delay: Int = 0
     override var variables: Variables = Variables(this)
     override val steps: Steps = Steps(this)
     override var walkTrigger: (() -> Unit)? = null

@@ -39,7 +39,7 @@ class FerociousRing : Script {
     }
 
     private fun teleport(player: Player, option: ItemOption) {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return
         }
         jewelleryTeleport(player, option.inventory, option.slot, Areas["kuradals_teleport"])
