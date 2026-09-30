@@ -18,19 +18,20 @@ import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.network.client.instruction.ChatPublic
 import world.gregs.voidps.network.client.instruction.QuickChatPublic
 import world.gregs.voidps.type.random
 import java.time.LocalDateTime
 
 /**
- * Lets bots reply to nearby players' public chat with quick chat phrases.
+ * Lets bots reply to nearby players' public chat and quick chat.
  *
- * 1. Player text
- * 2. [content.bot.chat.process.ChatProcessor] (intent + entities)
+ * 1. Player text or quick chat phrase
+ * 2. [content.bot.chat.process.ChatProcessor] (intent + entities), or [QuickChatIntents] for known phrases
  * 3. [content.bot.chat.api.Conversation] context
  * 4. [BotChatApi] handlers
  * 4. weighted pick
- * 5. Respond with Quick Chat
+ * 5. Respond with Quick Chat or typed text
  */
 class BotChat(
     phrases: QuickChatPhraseDefinitions,
@@ -40,6 +41,7 @@ class BotChat(
     init {
         chatProcessor = model.chatProcessor
         Companion.phrases = QuickChatPhrases(phrases)
+        quickChat = QuickChatIntents(phrases, model.quickChat)
 
         playerDespawn {
             forget(accountName)
@@ -51,17 +53,19 @@ class BotChat(
         private const val THRESHOLD = 0.4f
         private const val NEARBY = 6
         private const val RECENT = 30_000L
+        private const val NOT_YOU = "not_you"
         private val REPEATABLE = setOf("follow_up", "affirm", "deny", "laugh")
 
         var chatProcessor: ChatProcessor? = null
             private set
         private var phrases: QuickChatPhrases? = null
+        private var quickChat: QuickChatIntents? = null
         private val conversations = HashMap<String, Conversation>()
 
         /**
-         * [speaker] said [text] in public chat, pick a nearby bot to reply
+         * [speaker] said [text] in public chat, or sent quick chat [phrase], pick a nearby bot to reply
          */
-        fun heard(speaker: Player, text: String) {
+        fun heard(speaker: Player, text: String, phrase: Int = -1) {
             if (speaker.isBot) {
                 return
             }
@@ -70,43 +74,59 @@ class BotChat(
             if (bots.isEmpty()) {
                 return
             }
-            val utterance = processor.parse(text)
+            val utterance = understand(processor, text, phrase)
             val now = System.currentTimeMillis()
             val (bot, addressed) = addressee(speaker, utterance, bots, now) ?: return
             val reply = respond(bot, speaker, utterance, addressed, now, LocalDateTime.now()) ?: return
             // Take a moment to "type"
-            val delay = random.nextInt(1, 3) + reply.phrase.length / 25
+            val delay = random.nextInt(1, 3) + reply.phrase.length / if (reply.typed) 10 else 25
             World.queue("bot_chat_${bot.accountName}", delay) {
                 if (Players.findByAccount(bot.accountName) == null) {
                     return@queue
                 }
-                bot.instructions.trySend(QuickChatPublic(0, reply.id, reply.data))
+                if (reply.typed) {
+                    bot.instructions.trySend(ChatPublic(reply.phrase, 0))
+                } else {
+                    bot.instructions.trySend(QuickChatPublic(0, reply.id, reply.data))
+                }
                 reply.then?.invoke()
             }
         }
 
-        fun reply(bot: Player, speaker: Player, text: String, addressed: Boolean = true, now: Long = System.currentTimeMillis(), time: LocalDateTime = LocalDateTime.now()): BotChatReply? {
+        fun reply(bot: Player, speaker: Player, text: String, phrase: Int = -1, addressed: Boolean = true, now: Long = System.currentTimeMillis(), time: LocalDateTime = LocalDateTime.now()): BotChatReply? {
             val processor = chatProcessor ?: return null
-            return respond(bot, speaker, processor.parse(text), addressed, now, time)
+            return respond(bot, speaker, understand(processor, text, phrase), addressed, now, time)
         }
 
         /**
-         * Named bots first, then a bot already talking to the speaker, otherwise the closest might chip in
+         * Quick chat phrases with a known intent skip the model, the text is still tagged for entities e.g. "What is your level in Mining?"
          */
-        private fun addressee(speaker: Player, utterance: Utterance, bots: List<Player>, now: Long): Pair<Player, Boolean>? {
+        private fun understand(processor: ChatProcessor, text: String, phrase: Int): Utterance {
+            val utterance = processor.parse(text)
+            val intent = quickChat?.intent(phrase) ?: return utterance
+            return utterance.copy(intent = intent, confidence = 1f)
+        }
+
+        /**
+         * Named bots first, then a bot already talking to the speaker, otherwise the closest might chip in.
+         * Bots told "not you" stay out of it until they're spoken to by name.
+         */
+        internal fun addressee(speaker: Player, utterance: Utterance, bots: List<Player>, now: Long): Pair<Player, Boolean>? {
             val normaliser = chatProcessor!!.normaliser
             val named = bots.firstOrNull { bot -> normaliser.tokens(bot.name).all { utterance.mentions(it) } }
             if (named != null) {
                 return named to true
             }
             val recent = bots
-                .mapNotNull { bot -> conversations[key(bot, speaker)]?.let { bot to it.lastTime } }
+                .mapNotNull { bot -> conversations[key(bot, speaker)]?.takeUnless { it.dismissed(now) }?.let { bot to it.lastTime } }
                 .filter { now - it.second < RECENT }
                 .maxByOrNull { it.second }
             if (recent != null) {
                 return recent.first to true
             }
-            val nearest = bots.filter { it.tile.within(speaker.tile, NEARBY) }.minByOrNull { it.tile.distanceTo(speaker.tile) } ?: return null
+            val nearest = bots
+                .filter { it.tile.within(speaker.tile, NEARBY) && conversations[key(it, speaker)]?.dismissed(now) != true }
+                .minByOrNull { it.tile.distanceTo(speaker.tile) } ?: return null
             return nearest to false
         }
 
@@ -116,6 +136,9 @@ class BotChat(
             conversation.touch(now)
             val repeated = conversation.lastPlayer()?.text.equals(utterance.text, ignoreCase = true)
             conversation.add(ChatTurn(false, utterance.intent, utterance.entities, utterance.text, now))
+            if (utterance.intent == NOT_YOU && utterance.confidence >= THRESHOLD) {
+                conversation.dismissed = now
+            }
             if (!addressed && random.nextFloat() > Persona.of(bot.accountName).chattiness) {
                 return null
             }
@@ -132,14 +155,19 @@ class BotChat(
             val chosen = pick(context.candidates) ?: return null
             conversation.expecting = chosen.expectation
             val phrase = chosen.phrase ?: return null
+            val reply = if (chosen.typed) BotChatReply.typed(phrase, chosen.then) else encode(phrases, phrase, chosen) ?: return null
+            conversation.add(ChatTurn(true, chosen.intent, emptyList(), phrase, now))
+            prune(now)
+            return reply
+        }
+
+        private fun encode(phrases: QuickChatPhrases, phrase: String, chosen: Candidate): BotChatReply? {
             val id = phrases.id(phrase) ?: return null
             val data = phrases.encode(id, chosen.args)
             if (data == null) {
                 logger.debug { "Unable to encode '$phrase' with ${chosen.args}." }
                 return null
             }
-            conversation.add(ChatTurn(true, chosen.intent, emptyList(), phrase, now))
-            prune(now)
             return BotChatReply(phrase, chosen.args, id, data, chosen.then)
         }
 

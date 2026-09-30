@@ -30,6 +30,8 @@ class SocialChat :
             say("Hey.", style = Style.Curt)
             say("Yo!", style = Style.Slang)
             say("Sup?", style = Style.Slang)
+            type("hey", style = Style.Slang)
+            type("Hi there!", style = Style.Warm)
         }
 
         botChat("greet") {
@@ -115,6 +117,8 @@ class SocialChat :
             say("I am using Quick Chat.")
             say("No.", style = Style.Curt)
             say("lol", style = Style.Slang)
+            type("no lol", style = Style.Slang)
+            type("No, are you?")
         }
 
         botChat("affirm", "deny") {
@@ -137,6 +141,17 @@ class SocialChat :
             }
             say("Please stop that.")
             say("Could you leave me alone, please?", style = Style.Formal)
+        }
+
+        // Replied when the player was talking to someone else
+        botChat("not_you") {
+            say("Sorry.", style = Style.Formal)
+            say(":-O")
+            say("Okay.", style = Style.Curt)
+            type("oh my bad", style = Style.Slang)
+            type("oops lol", style = Style.Slang)
+            type("Oh, sorry! I thought you were talking to me.", style = Style.Warm)
+            silence(1f - persona.chattiness)
         }
 
         botChat("other") {

@@ -27,8 +27,16 @@ class BotChatModel {
     var chatProcessor: ChatProcessor? = null
         private set
 
+    /**
+     * Intent -> quick chat phrase patterns
+     */
+    var quickChat: Map<String, List<String>> = emptyMap()
+        private set
+
     fun load(files: ConfigFiles, quests: QuestDefinitions, trainer: IntentTrainer = IntentTrainer()): BotChatModel {
-        val examples = examples(files.list(Settings["bots.chat.intents"]))
+        val paths = files.list(Settings["bots.chat.intents"])
+        quickChat = quickChat(paths)
+        val examples = examples(paths)
         if (examples.isEmpty()) {
             logger.warn { "No bot chat intent examples found, bots won't reply to chat." }
             return this
@@ -60,16 +68,26 @@ class BotChatModel {
         /**
          * Reads `[intent] examples = ["...", ...]` sections
          */
-        fun examples(paths: List<String>): Map<String, List<String>> {
-            val examples = LinkedHashMap<String, MutableList<String>>()
+        fun examples(paths: List<String>): Map<String, List<String>> = read(paths, "examples")
+
+        /**
+         * Reads `[intent] quick_chat = ["...", ...]` phrase patterns
+         */
+        fun quickChat(paths: List<String>): Map<String, List<String>> = read(paths, "quick_chat")
+
+        private fun read(paths: List<String>, type: String): Map<String, List<String>> {
+            val map = LinkedHashMap<String, MutableList<String>>()
             for (path in paths) {
                 Config.fileReader(path) {
                     while (nextSection()) {
-                        val list = examples.getOrPut(section()) { mutableListOf() }
+                        val list = map.getOrPut(section()) { mutableListOf() }
                         while (nextPair()) {
                             when (val key = key()) {
-                                "examples" -> while (nextElement()) {
-                                    list.add(string())
+                                "examples", "quick_chat" -> while (nextElement()) {
+                                    val string = string()
+                                    if (key == type) {
+                                        list.add(string)
+                                    }
                                 }
                                 else -> throw IllegalArgumentException("Unexpected key '$key' in $path")
                             }
@@ -77,7 +95,7 @@ class BotChatModel {
                     }
                 }
             }
-            return examples
+            return map.filterValues { it.isNotEmpty() }
         }
 
         /**

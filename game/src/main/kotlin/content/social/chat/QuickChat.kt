@@ -66,7 +66,7 @@ class QuickChat(
                         nearby.forEach { other ->
                             other.client?.publicQuickChat(player.index, 0x8000, player.rights.ordinal, file, data)
                         }
-                        BotChat.heard(player, text)
+                        BotChat.heard(player, text, file)
                     }
                 }
                 1 -> {

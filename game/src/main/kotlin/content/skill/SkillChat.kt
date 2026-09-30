@@ -39,6 +39,8 @@ class SkillChat :
                 say(phrase, activity.product, weight = 3f)
             }
             say("I am training: <MultipleChoice>.", activity.skill)
+            type("${activity.skill} lol", style = Style.Slang)
+            type("Just training ${activity.skill}.")
         }
 
         botChat("ask_where_train") {

@@ -206,7 +206,10 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
         }
 
         /** Row ids of quick chat locations, the only names bots can say */
-        fun locationKeys(): Set<String> = enumValues(LOCATION_ENUM).mapTo(mutableSetOf()) { key(it) }
+        fun locationKeys(): Set<String> = locationNames().keys
+
+        /** Quick chat location row ids to display names */
+        fun locationNames(): Map<String, String> = enumValues(LOCATION_ENUM).associateBy { key(it) }
 
         private fun enumValues(id: Int): List<String> = EnumDefinitions.get(id).map?.values?.filterIsInstance<String>() ?: emptyList()
 

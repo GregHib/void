@@ -6,6 +6,7 @@ import content.bot.chat.QuickChatPhrases
 import content.bot.chat.tag.ChatEntity
 import content.bot.chat.tag.ChatEntityType
 import content.bot.isBot
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.player.Player
 import java.time.LocalDateTime
 import kotlin.random.Random
@@ -31,15 +32,30 @@ class ChatContext(
     val intent: String
         get() = utterance.intent
 
+    /**
+     * The bot's current activity, taken from the bottom frame as resolvers (banking, buying tools) sit on top of it
+     */
     val activity: BotActivity?
         get() {
             if (!bot.isBot || bot.bot.noTask()) {
                 return null
             }
-            val produces = bot.bot.frames.peek().behaviour.produces
+            val produces = bot.bot.frames.firstElement().behaviour.produces
             val skill = produces.firstOrNull { it.startsWith("skill:") }?.removePrefix("skill:") ?: return null
             return BotActivity(skill, produces.firstOrNull { it.startsWith("item:") }?.removePrefix("item:"))
         }
+
+    /**
+     * Where the bot is currently walking to
+     */
+    val destination: BotDestination?
+        get() = if (bot.isBot) BotDestination.of(bot.bot) else null
+
+    /**
+     * Trying to get somewhere but hasn't moved in a while
+     */
+    val stuck: Boolean
+        get() = GameLoop.tick - bot.steps.last > STUCK_TICKS && destination != null
 
     /**
      * Entity from this message, otherwise from the conversation topic ("and fishing?" / "what about there?")
@@ -58,6 +74,13 @@ class ChatContext(
             return
         }
         candidates.add(Candidate(phrase, args.toList(), weight * styleWeight(style), intent, expectation, then))
+    }
+
+    /**
+     * Add a candidate reply typed out in normal chat rather than quick chat, more likely the more the bot's persona likes [Persona.typing]
+     */
+    fun type(text: String, weight: Float = 1f, style: Style = Style.Neutral, then: (() -> Unit)? = null) {
+        candidates.add(Candidate(text, emptyList(), weight * styleWeight(style) * persona.typing * 2, intent, expectation, then, typed = true))
     }
 
     /**
@@ -89,6 +112,7 @@ class ChatContext(
     companion object {
         private val logger = InlineLogger("BotChat")
         const val EXPECTATION_TIMEOUT = 60_000L
+        const val STUCK_TICKS = 20
 
         /**
          * Phrases used by handlers which don't exist in the cache

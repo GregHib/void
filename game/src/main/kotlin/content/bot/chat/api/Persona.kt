@@ -16,6 +16,8 @@ data class Persona(
     val slang: Float = 0.5f,
     // Number of rude or repeated messages tolerated before ignoring
     val patience: Int = 3,
+    // Typing out replies vs sticking to quick chat
+    val typing: Float = 0.5f,
 ) {
     companion object {
         /**
@@ -29,6 +31,7 @@ data class Persona(
                 chattiness = 0.2f + random.nextFloat() * 0.6f,
                 slang = random.nextFloat(),
                 patience = random.nextInt(1, 5),
+                typing = random.nextFloat(),
             )
         }
     }

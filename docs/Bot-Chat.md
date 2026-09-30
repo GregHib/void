@@ -1,4 +1,4 @@
-Bots reply to nearby players' public chat using only built-in [Quick Chat](https://runescape.wiki/w/Quick_Chat) phrases.
+Bots reply to nearby players' public chat and [Quick Chat](https://runescape.wiki/w/Quick_Chat), mostly with built-in Quick Chat phrases and sometimes by typing.
 Players can type anything (up to 80 characters), bots work out what was meant and pick a fitting phrase based on the conversation so far, what they're doing and their personality.
 
 # Overview
@@ -36,7 +36,8 @@ The only machine learnt part is the intent classifier, everything else is rules 
 | File                                           | Purpose                                                                                                                                                              |
 |------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `BotChatModel.kt`                              | Loads the examples, normaliser and entity tagger on startup, retraining the intent model if its training data changed.                                               |
-| `BotChat.kt`                                   | Script with the entry point `BotChat.heard(player, text)` called from public chat and quick chat. Picks which bot replies and sends it after a short "typing" delay. |
+| `BotChat.kt`                                   | Script with the entry point `BotChat.heard(player, text, phrase)` called from public chat and quick chat. Picks which bot replies and sends it after a short "typing" delay. |
+| `QuickChatIntents.kt`                          | Maps quick chat phrases straight to intents using the `quick_chat` patterns in the intents files.                                                                    |
 | `Normaliser.kt`                                | Lowercases, expands slang (`u` → `you`, `im` → `i am`), turns smileys into tokens and collapses stretched words (`heyyyy` → `hey`).                                  |
 | `EntityTagger.kt`                              | Finds entity names and replaces them with placeholders like `{item}`.                                                                                                |
 | `IntentModel.kt`                               | Runs the intent classifier and reads/writes the cached model.                                                                                                        |
@@ -56,6 +57,8 @@ When a player talks, only one bot replies:
 3. Closest within 6 tiles, `chattiness` dependent.
 
 Bots never reply to other bots, and ignore players on their ignore list.
+
+If the wrong bot replies the player can say "not you" (`not_you` intent), the bot apologises and is skipped for a minute, or until the player talks to it by name.
 
 ## Entities
 
@@ -84,6 +87,17 @@ A [fastText](https://arxiv.org/abs/1607.01759) style linear classifier:
 
 Messages classified with less than 40% confidence are handled by the `unknown` intent, where Quick Chat itself provides the perfect excuse: *"I can't answer that on Quick Chat."*
 
+## Quick chat
+
+Quick chat phrases have a fixed meaning so they skip the model, each intent lists the phrases it covers with `*` wildcards:
+
+```toml
+[ask_level]
+quick_chat = ["What is your level in *?"]
+```
+
+The phrase text is still tagged for entities, so *"What is your level in Mining?"* gives `ask_level` with Skill=mining. Phrases without a pattern fall back to the model. `BotChatTest` checks every pattern matches at least one phrase.
+
 ## Conversations
 
 Each bot/player pair has a `Conversation` which remembers:
@@ -101,6 +115,7 @@ Every bot has a `Persona` derived from its account name, so it stays the same be
 - `chattiness` — joining in when not addressed, laughing along
 - `slang` — "np", "lol" vs "No problem.", "Haha!"
 - `patience` — rude messages tolerated before ignoring
+- `typing` — typed replies vs sticking to quick chat
 
 # Writing replies
 
@@ -119,6 +134,15 @@ class SocialChat : Script, BotChatApi {
 ```
 
 Every `say` adds a weighted candidate and one is picked at random. `style` scales the weight by the bot's persona, e.g. `Style.Slang` is twice as likely for a bot with `slang = 1.0` and never picked with `slang = 0.0`.
+
+`type` adds a reply typed in normal chat instead of quick chat, useful when no phrase fits. Its weight is also scaled by the persona's `typing`:
+
+```kotlin
+botChat("are_you_bot") {
+    say("I can only use Quick Chat.")
+    type("no lol", style = Style.Slang)
+}
+```
 
 Multiple handlers can respond to the same intent, content can add to replies without touching existing scripts:
 
@@ -161,7 +185,9 @@ botChat("level_up") {
 | `utterance` | Text, tokens, intent, confidence and entities |
 | `conversation` | Turns, topic, sessions, annoyance |
 | `persona` | The bot's personality |
-| `activity` | Skill and product from the bot's current behaviour `produces` |
+| `activity` | Skill and product from the bot's current activity `produces` |
+| `destination` | Area the bot is walking to (from its running `go_to` action), whether it's a bank and the nearest quick chat location |
+| `stuck` | Walking somewhere but hasn't moved in 20 ticks |
 | `now` | Real date and time |
 
 ## Questions and side effects

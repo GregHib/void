@@ -2,8 +2,8 @@ package content.social.chat
 
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.ChatContext
+import content.bot.chat.api.ChatLocations
 import content.bot.chat.api.Style
-import content.bot.chat.tag.ChatEntityTagger
 import content.bot.chat.tag.ChatEntityType
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Tables
@@ -71,11 +71,7 @@ class HelpChat :
         if (target == null || target.x == 0) {
             return null
         }
-        val quickChat = ChatEntityTagger.locationKeys()
-        val landmark = Tables.get("locations").rows()
-            .filter { it.rowId in quickChat }
-            .mapNotNull { row -> row.tileOrNull("tile")?.takeIf { it.x != 0 }?.let { row.rowId to it } }
-            .minByOrNull { (_, tile) -> tile.distanceTo(bot.tile) } ?: return null
+        val landmark = ChatLocations.nearest(bot.tile) ?: return null
         val direction = compass(target.x - landmark.second.x, target.y - landmark.second.y) ?: return null
         return landmark.first to direction
     }

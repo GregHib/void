@@ -13,6 +13,9 @@ class Conversation {
     var expecting: Expectation? = null
     var annoyance = 0
 
+    // When the player said they weren't talking to this bot
+    var dismissed = 0L
+
     // Number of separate conversations, "Nice to meet you." vs "Hello again."
     var sessions = 0
     var lastTime = 0L
@@ -32,6 +35,11 @@ class Conversation {
     fun said(intent: String): Boolean = turns.any { it.fromBot && it.intent == intent }
 
     /**
+     * Told "not you" and not spoken to since
+     */
+    fun dismissed(now: Long): Boolean = dismissed != 0L && dismissed >= lastTime && now - dismissed < DISMISSED
+
+    /**
      * Starts a new session if it's been more than [SESSION_GAP] since the last message
      */
     fun touch(now: Long) {
@@ -40,6 +48,7 @@ class Conversation {
             topic.clear()
             expecting = null
             annoyance = 0
+            dismissed = 0L
             sessions++
         }
         lastTime = now
@@ -49,5 +58,6 @@ class Conversation {
         const val MAX_TURNS = 8
         const val SESSION_GAP = 5 * 60_000L
         const val FORGET = 60 * 60_000L
+        const val DISMISSED = 60_000L
     }
 }

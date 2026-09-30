@@ -4,6 +4,13 @@ import WorldTest
 import content.bot.Bot
 import content.bot.FakeBehaviour
 import content.bot.behaviour.BehaviourFrame
+import content.bot.behaviour.BehaviourState
+import content.bot.behaviour.Reason
+import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.action.BotGoTo
+import content.bot.behaviour.action.BotGoToNearest
+import content.bot.behaviour.setup.Resolver
+import content.bot.bot
 import content.bot.chat.api.ChatContext
 import content.bot.chat.model.IntentTrainer
 import content.bot.chat.process.ChatProcessor
@@ -15,6 +22,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.configFiles
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
@@ -44,9 +52,103 @@ class BotChatTest : WorldTest() {
     @AfterEach
     fun teardown() {
         BotChat.clear()
+        GameLoop.tick = 0
     }
 
     private fun reply(text: String, now: Long) = BotChat.reply(bot, player, text, now = now, time = time)
+
+    private fun quickChat(template: String, now: Long): BotChatReply? {
+        val definitions = get<QuickChatPhraseDefinitions>()
+        val id = QuickChatPhrases(definitions).id(template)!!
+        val text = definitions.get(id).buildString(EnumDefinitions.definitions, ItemDefinitions.definitions, ByteArray(0))
+        return BotChat.reply(bot, player, text, phrase = id, now = now, time = time)
+    }
+
+    /**
+     * Keep asking until [predicate] matches one of the randomly picked replies
+     */
+    private fun ask(text: String, predicate: (BotChatReply) -> Boolean): BotChatReply {
+        repeat(50) { attempt ->
+            BotChat.clear()
+            val reply = reply(text, attempt * 1_000L) ?: return@repeat
+            if (predicate(reply)) {
+                return reply
+            }
+        }
+        throw AssertionError("No matching reply to '$text'.")
+    }
+
+    private fun walkingTo(action: BotAction): BehaviourFrame {
+        val frame = BehaviourFrame(Resolver("test", 0, actions = listOf(action)), state = BehaviourState.Running)
+        bot.bot.frames.add(frame)
+        return frame
+    }
+
+    @Test
+    fun `Quick chat phrases map straight to intents`() {
+        assertEquals("My Mining level is <SkillLevel>.", quickChat("What is your level in Mining?", 1_000)?.phrase)
+        assertEquals("My combat level is: <CombatLevel>.", quickChat("What is your combat level?", 2_000)?.phrase)
+    }
+
+    @Test
+    fun `All quick chat patterns match a phrase`() {
+        val patterns = BotChatModel.quickChat(configFiles().list(Settings["bots.chat.intents"]))
+        val intents = QuickChatIntents(get(), patterns)
+        assertTrue(intents.unmatched.isEmpty(), "Unmatched: ${intents.unmatched}")
+    }
+
+    @Test
+    fun `Replies can be typed`() {
+        val reply = ask("are you a bot") { it.typed }
+        assertTrue(reply.phrase in setOf("no lol", "No, are you?"))
+        assertEquals(BotChatReply.TYPED, reply.id)
+    }
+
+    @Test
+    fun `Say where the bot is going`() {
+        walkingTo(BotGoToNearest("bank"))
+        ask("where are you going") { it.phrase == "I have to go to a bank." }
+        val typed = ask("where u off to") { it.typed && it.phrase.startsWith("To the bank in") }
+        assertTrue(typed.phrase.endsWith("."))
+    }
+
+    @Test
+    fun `Admit to being stuck and try again`() {
+        val frame = walkingTo(BotGoTo("varrock_west_bank"))
+        GameLoop.tick = 100
+        bot.steps.last = 0
+        val reply = ask("are you stuck") { it.phrase == "Yes." }
+        reply.then!!.invoke()
+        assertEquals(BehaviourState.Failed(Reason.Stuck), frame.state)
+    }
+
+    @Test
+    fun `Apologise when not the one being talked to`() {
+        val apologies = setOf("Sorry.", ":-O", "Okay.", "oh my bad", "oops lol", "Oh, sorry! I thought you were talking to me.")
+        ask("i didnt mean you") { it.phrase in apologies }
+    }
+
+    @Test
+    fun `Dismissed bots stay out of the conversation`() {
+        val other = createPlayer(Tile(3224, 3218), "other_bot") { it["bot"] = Bot(it) }
+        val processor = BotChat.chatProcessor!!
+        val question = processor.parse("whats ur mining lvl")
+        reply("whats ur mining lvl", 1_000)
+        assertEquals(bot to true, BotChat.addressee(player, question, listOf(bot, other), 2_000))
+        reply("not you", 2_000)
+        assertEquals(other to false, BotChat.addressee(player, question, listOf(bot, other), 3_000))
+        // Talking to it again brings it back
+        reply("hi", 4_000)
+        assertEquals(bot to true, BotChat.addressee(player, question, listOf(bot, other), 5_000))
+    }
+
+    @Test
+    fun `Not stuck when moving`() {
+        walkingTo(BotGoTo("varrock_west_bank"))
+        GameLoop.tick = 100
+        bot.steps.last = 95
+        ask("are you stuck") { it.phrase == "No." || it.phrase == "I'm okay." }
+    }
 
     @Test
     fun `Model and entities are loaded`() {
@@ -118,6 +220,7 @@ class BotChatTest : WorldTest() {
             "are you a bot", "yes", "no", "noob", "asdf qwerty", "whats ur combat", "how many qp", "what are you doing",
             "where should i train fishing", "where can i get lobster", "how do i get to varrock", "can you help me",
             "follow me", "can i have some food", "wanna trade", "what is your agility level", "where to train thieving",
+            "not you", "where are you going", "are you stuck",
         )
         for (seed in 0 until 10) {
             setRandom(Random(seed))

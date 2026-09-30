@@ -1,4 +1,8 @@
 [greet]
+quick_chat = [
+    "Hello!", "Hi.", "Good day.", "Nice to meet you.", "Yo!", "Hey.", "Sup?", "Hello again.", "Welcome back.",
+    "Happy *!", "Merry Christmas!", "Season's Greetings!", "Trick or Treat!",
+]
 examples = [
     "hi", "hello", "hey", "hiya", "yo", "sup", "hey there", "hello there mate", "hi how is it going", "good morning",
     "evening all", "heya", "wassup", "hi there bot", "oh hey its you again", "greetings traveller", "howdy",
@@ -22,6 +26,10 @@ examples = [
 ]
 
 [farewell]
+quick_chat = [
+    "Bye!", "See you later.", "Goodnight.", "I've got to go.", "I have to log off.", "Buh bye.", "Bai2u", "Later!",
+    "I'll see you around.", "I'm going now. See ya!", "It was nice to meet you!", "gtg", "ttyl", "I'm outta here!",
+]
 examples = [
     "bye", "cya", "see you later", "goodbye", "got to go", "i have to log off", "ttyl", "later", "night", "goodnight all",
     "bye mate", "im off now", "logging out bye", "i am heading off now", "catch you later", "brb",
@@ -51,6 +59,7 @@ examples = [
 ]
 
 [thanks]
+quick_chat = ["Thank you.", "ty"]
 examples = [
     "thanks", "ty", "thank you", "thx mate", "thanks a lot", "cheers", "much appreciated", "thank you so much",
     "ty that helped", "thanks for the help", "tyvm",
@@ -80,6 +89,7 @@ examples = [
 ]
 
 [how_are_you]
+quick_chat = ["How are you?", "How's it going?", "What's up?"]
 examples = [
     "how are you", "how are u", "hru", "how r u doing", "you ok", "how is your day", "how have you been", "you alright",
     "hows it going", "how you doing mate", "are you well", "whats up with you", "how do you feel",
@@ -115,6 +125,7 @@ examples = [
 ]
 
 [ask_level]
+quick_chat = ["What is your level in *?"]
 examples = [
     "what is your mining level", "whats ur wc lvl", "what level is your fishing", "what fishing level are you", "mining lvl?",
     "how high is your cooking", "what is your level in attack", "whats your str level", "wat lvl mage r u",
@@ -156,6 +167,7 @@ examples = [
 ]
 
 [ask_combat]
+quick_chat = ["What is your combat level?", "What are your combat levels?"]
 examples = [
     "what is your combat level", "whats ur cb", "what cb are you", "combat level?", "how high is your combat",
     "what level are you", "wat lvl r u", "your combat?", "how strong are you", "what is your cmb lvl",
@@ -184,6 +196,7 @@ examples = [
 ]
 
 [ask_quest_points]
+quick_chat = ["How many Quest Points do you have?"]
 examples = [
     "how many quest points do you have", "how many qp", "qp?", "how many quests have you done", "what are your quest points",
     "you done many quests",
@@ -224,6 +237,11 @@ examples = [
 ]
 
 [ask_activity]
+quick_chat = [
+    "What are you doing?", "What are you cooking?", "What are you crafting?", "What are you growing?",
+    "What logs are you burning?", "What are you fishing?", "What are you Fletching?", "What potion are you mixing?",
+    "What are you smithing?", "What ore are you mining?", "What spell are you casting?", "What quest are you doing?",
+]
 examples = [
     "what are you doing", "wat u doing", "what r u up to", "whatcha doing", "what are you training", "what u training",
     "what are you mining", "what are you fishing", "what you making", "what are you up to", "doing anything fun",
@@ -258,6 +276,10 @@ examples = [
 ]
 
 [ask_where_train]
+quick_chat = [
+    "Where's a good place for me to train *?", "What's a good * for me to train *?",
+    "What's the best way for me to train *?", "Which NPC is good for me to train * on?",
+]
 examples = [
     "where should i train mining", "where is a good place to train wc", "wheres good fishing", "best place to train fishing",
     "where do i train agility", "where can i mine", "where can i train cooking at my level", "what should i fish at my level",
@@ -313,6 +335,7 @@ examples = [
 ]
 
 [ask_where_item]
+quick_chat = ["Where can I get item: <AllItems>?", "Where can I get the secondary ingredient: <MultipleChoice>?"]
 examples = [
     "where can i get a rune scimitar", "where do i get lobsters", "where can i buy a whip", "how do i get iron ore",
     "where to find coal", "where can i get food", "who sells shrimp", "where do i buy swordfish",
@@ -363,6 +386,10 @@ examples = [
 ]
 
 [ask_for_item]
+quick_chat = [
+    "Could I please borrow: <TradeItems>?", "Would you please * me: *?",
+    "Would you please mix me a potion: <MultipleChoice>?", "Would you please build me a flat-pack: <MultipleChoice>?",
+]
 examples = [
     "can i have some food", "give me food", "can i have some gp", "can you give me money", "spare some coins",
     "please give me a lobster", "can i borrow your whip", "can you lend me some gold", "got any food", "can i get some sharks",
@@ -449,6 +476,7 @@ examples = [
 ]
 
 [ask_help]
+quick_chat = ["Help!", "Can you help me?", "Would you please assist me in: <MultipleChoice>?"]
 examples = [
     "can you help me", "help", "help me please", "i need help", "could you help me with something", "please help", "halp",
     "can anyone help", "someone help me", "i need assistance",
@@ -488,6 +516,10 @@ examples = [
 ]
 
 [lost]
+quick_chat = [
+    "How do I get to location: <MultipleChoice>?", "Could you please lead me to location: <MultipleChoice>?",
+    "Where is: <MultipleChoice>?",
+]
 examples = [
     "im lost", "where am i", "i do not know where i am", "how do i get to varrock", "how do i get to lumbridge",
     "which way is falador", "where is the grand exchange", "how far is draynor", "i cant find al kharid",
@@ -534,6 +566,10 @@ examples = [
 ]
 
 [follow_request]
+quick_chat = [
+    "Follow me.", "Follow me to: <MultipleChoice>.", "Would you like to go to play: <MultipleChoice>?",
+    "Would you like to fight: <MultipleChoice>?",
+]
 examples = [
     "follow me", "come with me", "come here", "come over here", "follow", "lets go", "walk with me",
     "come to varrock with me", "can you follow me",
@@ -602,6 +638,7 @@ examples = [
 ]
 
 [affirm]
+quick_chat = ["Yes.", "Okay.", "Of course.", "That's fine."]
 examples = [
     "yes", "yeah", "yep", "sure", "ok", "okay", "yes please", "of course", "definitely", "alright", "fine", "ye", "yup sure",
     "yes pls", "yeah sure", "ok sure", "yep please", "sounds good", "sure thing", "ok then", "yes i do", "of course yes",
@@ -622,6 +659,7 @@ examples = [
 ]
 
 [deny]
+quick_chat = ["No.", "No way.", "No thank you.", "Nope.", "Never mind.", "nty", "Not right now."]
 examples = [
     "no", "nope", "nah", "no thanks", "no thank you", "not really", "never", "no way", "i do not think so", "nty",
     "no thanks mate", "nah im good", "no ty", "not now", "nope not really", "no i dont", "no im fine", "nah thanks",
@@ -648,6 +686,10 @@ examples = [
 ]
 
 [laugh]
+quick_chat = [
+    "lol", "rofl", "lmho", "roflcopters", "Haha!", "Hahahahahaha!", "Tee hee!", "Hee hee!", "Heh.", "Muhahahaha!",
+    ":-D",
+]
 examples = [
     "lol", "haha", "lmao", "rofl", "hehe", "xd", "lolol", "hahaha thats funny", "thats hilarious",
     "hahaha", "lol xd", "hehehe", "lololol", "haha nice", "thats funny lol", "lmfao",
@@ -669,6 +711,11 @@ examples = [
 ]
 
 [compliment]
+quick_chat = [
+    "I like your item: <AllItems>.", "I like your familiar.", "I like your pet.", "I like your style.",
+    "I like your emote.", "I like your skillcape.", "I like your house.", "You look cool.", "You're cool.",
+    "You're awesome.", "Nice hit.",
+]
 examples = [
     "nice", "you look cool", "nice gear", "nice whip", "cool outfit", "nice armour", "i like your style", "you are awesome",
     "nice cape", "you are cool", "sweet weapon", "wow nice stuff", "you are good at this",
@@ -698,6 +745,9 @@ examples = [
 ]
 
 [congratulate]
+quick_chat = [
+    "Well done.", "Nicely done.", "Congratulations.", "Fantastic!", "Nice levels.", "Nice level in: <MultipleChoice>.",
+]
 examples = [
     "gz", "grats", "congrats", "congratulations", "well done", "gratz on the level", "gz on 99", "nice level", "good job",
     "nice one",
@@ -829,6 +879,7 @@ examples = [
 ]
 
 [feeling_good]
+quick_chat = ["I'm happy!", "I'm great!", "I'm good.", "I'm okay."]
 examples = [
     "im good", "good thanks", "im great", "not bad", "fine thanks", "pretty good", "doing well", "im happy", "all good here",
     "great thanks you", "im good ty", "never better", "awesome day so far",
@@ -867,6 +918,10 @@ examples = [
 ]
 
 [sad]
+quick_chat = [
+    "I'm sad.", "I've been better.", "I'm having a bad day.", "Aww, I lost.", "I lost.", "We lost.",
+    "I've run out of food.", ":-(", ":'(", ":(",
+]
 examples = [
     "i died", "i lost everything", "i lost my items", "im so sad", "this sucks", "i got killed", "my day is terrible",
     "i got scammed", "i hate this", "i failed my quest", "i burnt all my food",
@@ -918,6 +973,69 @@ examples = [
     "rip my bank", "feeling really low today ngl", "man i hate my luck", "got pked by a clan of 10",
     "failed the inferno again", "why am i always the unlucky one", "bad day bad luck bad everything",
     "no luck at all today", "i lost my entire stack",
+]
+
+[ask_destination]
+examples = [
+    "where are you going", "where u going", "where r u going", "where you headed", "where are you headed",
+    "where u off to", "where are you off to", "where you heading", "where are you heading to", "where are you walking to",
+    "where u walking", "where are you running to", "where u running off to", "where you going in such a hurry",
+    "where are you going now", "where to?", "where you going mate", "where r u headed", "where ya going",
+    "where ya headed", "whats your destination", "where are you going next", "where are you going after this",
+    "you going to the bank?", "are you going to the bank", "u heading to bank?", "are you going to varrock",
+    "u going to lumby?", "are you heading to falador", "going to the ge?", "where are you going with all that",
+    "where are u going lol", "where r u off to", "yo where u going", "where are you walking", "where you walking to",
+    "which way are you going", "which way you headed", "what direction are you going", "you going somewhere?",
+    "going somewhere?", "where are u going to bank", "you banking?", "are you off to bank", "off to the bank?",
+    "heading to bank?", "where you walking off to", "wait where are you going", "hey where are you going",
+    "where are you going so fast", "where do you think you are going", "where are you going in such a rush",
+    "can i ask where youre going", "where r u heading", "where u headin", "where u goin", "where are you goin",
+    "where are you travelling to", "where are you traveling", "whats the destination", "where is your destination",
+    "what place are you going to", "which city are you going to", "what town are you heading to",
+    "are you going to town", "where are you running off to", "where are you off to now?", "where to next?",
+    "whats next, where are you going", "u going to draynor?", "are you walking to edgeville", "u heading to the ge",
+    "where are you going to go", "bro where u going", "ngl where are you even going", "where are you rushing off to",
+    "where are you going after banking", "which bank are you going to", "are you going to al kharid",
+    "you heading to catherby?", "where are you walking off to lol", "wya going", "where is this guy going",
+]
+
+[ask_stuck]
+examples = [
+    "are you stuck", "r u stuck", "u stuck?", "you stuck?", "are you stuck there", "you look stuck", "you seem stuck",
+    "are you stuck on something", "u stuck lol", "stuck?", "are you glitched", "are you bugged", "u bugged?",
+    "you glitching?", "are you lagging", "u lagging?", "why are you standing still", "why arent you moving",
+    "why r u not moving", "why are you just standing there", "you havent moved in ages",
+    "you been standing there forever", "are you afk", "u afk?", "afk?", "are you frozen", "u frozen?",
+    "can you move", "can u move?", "why are you walking into the wall", "why do you keep walking into the wall",
+    "you keep running into the fence", "are you trapped", "u trapped?", "are you stuck behind the door",
+    "need help getting unstuck?", "want me to unstuck you", "are you lost?", "r u lost", "u lost?",
+    "are you lost or something", "you lost bro?", "you seem stuck, you ok?", "is your character stuck",
+    "did you get stuck", "did u get stuck", "have you been stuck long", "stuck on the gate?", "you cant get through?",
+    "cant you get past", "are you stuck on the door", "you are stuck lol", "ur stuck", "looks like ur stuck",
+    "bro is stuck", "you've been stuck for ages", "are you still stuck", "still stuck?", "why are you running in circles",
+    "why do you keep going back and forth", "you keep walking back and forth", "why do you keep walking around",
+    "whats wrong, are you stuck", "are you broken", "are you idle", "u idle?", "why are you idle",
+    "why are you not moving", "you havent moved at all", "hello? are you afk", "you just standing there?",
+    "why are you stood there", "u stuck on the door?", "can you not get out", "are you stuck in there",
+    "ngl you look stuck", "you good? you seem stuck", "bro are you stuck", "lol are you bugged",
+]
+
+[not_you]
+examples = [
+    "not you", "not u", "not you lol", "not u lol", "no not you", "not you sorry", "sorry not you", "not u m8",
+    "i didnt mean you", "didnt mean u", "i didn't mean you", "i didnt mean u lol", "wasnt talking to you",
+    "i wasnt talking to u", "i was not talking to you", "not talking to you", "im not talking to you",
+    "i was talking to someone else", "i was asking someone else", "i meant the other guy", "i meant the other player",
+    "i was asking him", "no i meant him", "i meant her", "wrong person", "wrong guy lol", "wrong bot",
+    "that wasnt for you", "that was meant for someone else", "not you, the other one", "the other guy not you",
+    "i was asking the person next to you", "was talking to the other bot", "i didnt ask you", "didnt ask u",
+    "i wasnt asking you", "wasnt asking u", "i was asking the other guy", "not you mate", "not you bro",
+    "lol not you", "haha not u", "no not u", "not you, sorry", "not you, i meant him", "you werent the one i asked",
+    "that message wasnt for you", "i was replying to someone else", "i wasnt replying to you",
+    "that was for the other guy", "i was talking to my friend", "not you i was talking to my mate",
+    "i meant the guy behind you", "sorry wrong person", "oops wrong person", "not u i meant the other one",
+    "i wasnt talking to u lol", "no i wasnt asking you", "you werent who i meant", "not you, carry on",
+    "ngl i didnt mean you", "bro i wasnt talking to you", "that wasnt aimed at you", "i asked someone else",
 ]
 
 [other]
