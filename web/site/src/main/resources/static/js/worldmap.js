@@ -145,7 +145,7 @@ window.worldMapApp = function () {
     return Math.round(value * dpr) / dpr;
   }
 
-  return {
+  var app = {
     gameX: 3200,
     gameY: 3200,
     level: 0,
@@ -226,6 +226,7 @@ window.worldMapApp = function () {
       this.areaPolygonLayer = root.querySelector('#wm-area-polygons');
       this.areaLabelLayer = root.querySelector('#wm-area-labels');
       this.playerLayer = root.querySelector('#wm-players');
+      this.navBoot(root);
 
       this.readStateFromUrl();
       this.tpX = String(Math.round(this.gameX));
@@ -409,6 +410,16 @@ window.worldMapApp = function () {
           return;
         }
         pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+        // A nav graph point grabbed by the editor's Move tool (see navgraph.js) is dragged instead
+        // of the map. Only ever for the first finger — a second one still starts a pinch.
+        if (pointerCount() === 1 && self.navPointerDown(e)) {
+          try {
+            vp.setPointerCapture(e.pointerId);
+          } catch (err) {
+            // See below.
+          }
+          return;
+        }
         try {
           vp.setPointerCapture(e.pointerId);
         } catch (err) {
@@ -449,7 +460,7 @@ window.worldMapApp = function () {
         self.hoverY = Math.round(self.gameY - localY / scale);
         self.updateHoverAreas();
 
-        if (!dragging) {
+        if (self.navPointerMove(e) || !dragging) {
           return;
         }
         var dx = e.clientX - lastX;
@@ -463,6 +474,11 @@ window.worldMapApp = function () {
       });
 
       function endDrag(e) {
+        if (!pinching && pointers[e.pointerId] && e.type === 'pointerup') {
+          self.navPointerUp(e);
+        } else if (pointers[e.pointerId]) {
+          self.navPointerCancel();
+        }
         delete pointers[e.pointerId];
         try {
           vp.releasePointerCapture(e.pointerId);
@@ -915,6 +931,7 @@ window.worldMapApp = function () {
       } else if (this.areaLabelLayer) {
         this.areaLabelLayer.innerHTML = '';
       }
+      this.renderNavGraph(rect);
       this.renderPlayers();
       // Re-checked on every render (not just pointermove) so panning/zooming/changing level under
       // a stationary cursor, or toggling the polygon layer on, keeps the hover state honest.
@@ -1340,6 +1357,8 @@ window.worldMapApp = function () {
       }
     },
   };
+  // The nav graph overlay/editor's state and methods live in navgraph.js (loaded before this file).
+  return Object.assign(app, window.navGraphMethods());
 };
 
 // Neither tile source gives browsers a long-lived HTTP cache - the remote host sends a five-minute

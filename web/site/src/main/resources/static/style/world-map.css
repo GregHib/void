@@ -101,6 +101,87 @@
   stroke-width: 2;
 }
 
+/* Nav graph overlay (`renderNavGraph` in navgraph.js). Walk edges are teal, edges with actions
+   (doors, stairs — one-way) amber and dashed with an arrowhead; everything touching the selection
+   is lifted to gold. Points with an edge to another floor are drawn as diamonds. */
+.wm-nav-edge {
+  stroke: rgba(94, 214, 196, 0.8);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.wm-nav-edge-directed {
+  stroke: rgba(240, 150, 70, 0.9);
+  stroke-dasharray: 5 3;
+}
+.wm-nav-edge-selected {
+  stroke: var(--gold-300);
+  stroke-width: 3;
+}
+.wm-nav-edge-picked {
+  stroke: var(--parch-50);
+  stroke-width: 4;
+}
+.wm-nav-edge-preview {
+  stroke: var(--gold-300);
+  stroke-dasharray: 4 4;
+  opacity: 0.8;
+}
+.wm-nav-arrow {
+  fill: rgba(240, 150, 70, 0.95);
+}
+.wm-nav-node {
+  fill: rgb(28, 64, 60);
+  stroke: rgb(94, 214, 196);
+  stroke-width: 2;
+}
+.wm-nav-node-transfer {
+  fill: rgb(80, 44, 16);
+  stroke: rgb(240, 150, 70);
+}
+.wm-nav-node-loose {
+  fill: transparent;
+  stroke-dasharray: 3 2;
+}
+.wm-nav-node-selected {
+  fill: var(--gold-300);
+  stroke: var(--parch-50);
+  stroke-width: 2.5;
+}
+
+/* Editor cursors, set on the viewport by `navUpdateCursor`. */
+.wm-viewport.wm-nav-add {
+  cursor: crosshair;
+}
+.wm-viewport.wm-nav-hot {
+  cursor: pointer;
+}
+.wm-viewport.wm-nav-grab {
+  cursor: move;
+}
+.wm-viewport.wm-nav-delete {
+  cursor: not-allowed;
+}
+
+.wm-nav-tool {
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--umber-800);
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-2xs) / 1 var(--font-ui);
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+}
+.wm-nav-tool:hover {
+  color: var(--gold-300);
+}
+.wm-nav-tool-active {
+  background: rgba(224, 174, 60, 0.14);
+  color: var(--gold-300);
+  border-color: var(--gold-600);
+}
+
 .wm-pin-tooltip {
   opacity: 0;
   pointer-events: none;

@@ -25,6 +25,10 @@ import world.gregs.voidps.web.site.components.*
  * Chrome layout: the map display toggles top-left, the elevation stepper and teleport panel
  * stacked top-right, the hovered-tile readout bottom-left and the console (players, search)
  * bottom-centre. Only "Kick" is left behind [Site.FULL] — it's staff-only and not wired up yet.
+ *
+ * The bots' navigation graph ([navGraphToggle], [navGraphPanel]) isn't baked in either: it's read
+ * from the viewer's own `*.nav-edges.toml` files, and can be edited and saved back to them — see
+ * `js/navgraph.js`.
  */
 object WorldMap {
 
@@ -187,6 +191,173 @@ object WorldMap {
                 +label
             }
             ui.switch("", model = model, small = true)
+        }
+    }
+
+    /**
+     * The "Nav graph" row of the display panel. Off by default, and nothing to show until a
+     * `*.nav-edges.toml` has been opened from disk — so until then the switch is dimmed and a click
+     * on it opens the file picker instead, with the same (plus "whole folder", where the browser
+     * can) offered as links underneath.
+     */
+    private fun DIV.navGraphToggle() {
+        div {
+            style = "padding:10px 0"
+            div {
+                style = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-5)"
+                span {
+                    style = "font:var(--type-body-sm);color:var(--text-body)"
+                    +"Nav graph"
+                }
+                div {
+                    xToggleStyle(condition = "navLoaded", whenTrue = "opacity:1", whenFalse = "opacity:0.45")
+                    ui.switch(
+                        "",
+                        model = "showNavGraph",
+                        small = true,
+                        onToggle = "navLoaded ? (showNavGraph = !showNavGraph) : openNavFiles()",
+                    )
+                }
+            }
+            div {
+                xShow("!navLoaded")
+                div {
+                    style = "margin-top:6px;font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);" +
+                        "line-height:var(--leading-normal)"
+                    +"Open "
+                    code {
+                        style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-accent)"
+                        +"*.nav-edges.toml"
+                    }
+                    +" to enable."
+                    div {
+                        style = "display:flex;gap:var(--space-5);margin-top:4px"
+                        ui.button("Files…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFiles()")
+                        span {
+                            xShow("navFolderAccess")
+                            attributes["title"] = "Every *.nav-edges.toml under a folder — pick the repo's data/ for the whole graph"
+                            ui.button("Folder…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFolder()")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /** One of the nav graph editor's tool buttons; [key] is its keyboard shortcut (see `navKeyDown`). */
+    private fun DIV.navTool(tool: String, label: String, key: String) {
+        button {
+            attributes["type"] = "button"
+            attributes["class"] = "wm-nav-tool"
+            attributes["title"] = "$label ($key)"
+            xBindClass("{ 'wm-nav-tool-active': navTool === '$tool' }")
+            onClick("navTool = '$tool'")
+            +label
+        }
+    }
+
+    /**
+     * The nav graph editor, under the display panel while the graph is showing. Every tool leaves
+     * drag-to-pan alone except Move, which only takes a press that lands on a point: Select picks a
+     * point or an edge, Move drags a point (or nudges the selected one with the arrow keys), Add
+     * draws a run of edges one click at a time from the selected point, and Delete removes whatever
+     * is clicked — a point taking every edge that touches it with it. Edits stay in memory until
+     * Save writes the changed files back (or downloads them, in a browser that can't write files).
+     */
+    private fun FlowContent.navGraphPanel() {
+        val hint = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);line-height:var(--leading-normal)"
+        div {
+            xShow("showNavGraph && navLoaded")
+            ui.panel(
+                title = "Nav graph",
+                padded = false,
+                action = { collapseToggle("navPanelOpen", "Toggle nav graph editor") },
+                headerClick = "navPanelOpen = !navPanelOpen",
+            ) {
+                xShow("navPanelOpen")
+                div {
+                    // Layout on a nested div, not the `x-show`n one — see the bottom-left readout's comment.
+                    style = "padding:var(--space-5) var(--space-6) var(--space-6);display:flex;flex-direction:column;gap:var(--space-4)"
+                    div {
+                        style = "display:grid;grid-template-columns:1fr 1fr;gap:6px"
+                        navTool("select", "Select", "V")
+                        navTool("move", "Move", "M")
+                        navTool("add", "Add", "A")
+                        navTool("delete", "Delete", "D")
+                    }
+                    div {
+                        style = hint
+                        xText(
+                            "({ select: 'Click a point or edge to select it. Del removes it, Esc clears.', " +
+                                "move: 'Drag a point, or select one and nudge it with the arrow keys.', " +
+                                "add: 'Click to add a point joined to the selected one; click a point to join to it.', " +
+                                "delete: 'Click a point (and its edges) or an edge to delete it.' })[navTool]",
+                        )
+                    }
+                    div {
+                        xShow("navSelection")
+                        div {
+                            style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--gold-300);" +
+                                "padding:6px 8px;background:var(--surface-inset);border:1px solid var(--border-subtle);" +
+                                "border-radius:var(--radius-sm);overflow-wrap:anywhere"
+                            xText("navSelection")
+                        }
+                    }
+                    div {
+                        xShow("navFiles.length > 1")
+                        div {
+                            style = "display:flex;flex-direction:column;gap:4px"
+                            label {
+                                attributes["for"] = "wm-nav-target"
+                                style = hint
+                                +"New edges go to"
+                            }
+                            rawHtml(
+                                """
+                                <select id="wm-nav-target" x-model.number="navTarget" style="width:100%;height:28px;padding:0 6px;background:var(--surface-panel-raised);color:var(--text-strong);border:1px solid var(--border-strong);border-radius:var(--radius-sm);font:var(--type-body-sm);font-size:var(--text-2xs);color-scheme:dark">
+                                  <template x-for="f in navFiles" :key="f.path">
+                                    <option :value="f.index" :selected="f.index === navTarget" :title="f.path" x-text="f.name + (f.dirty ? ' •' : '')"></option>
+                                  </template>
+                                </select>
+                                """,
+                            )
+                        }
+                    }
+                    div {
+                        style = hint
+                        xText(
+                            "navStats + ' in ' + navFiles.length + (navFiles.length === 1 ? ' file' : ' files') + " +
+                                "(navDirty ? ' — ' + navFiles.filter(f => f.dirty).length + ' unsaved' : '')",
+                        )
+                    }
+                    div {
+                        xShow("navError")
+                        div {
+                            style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--feedback-danger);white-space:pre-wrap"
+                            xText("navError")
+                        }
+                    }
+                    div {
+                        style = "display:grid;grid-template-columns:1fr 1fr;gap:6px"
+                        div {
+                            attributes["title"] = "Undo (Ctrl+Z)"
+                            ui.button(
+                                "Undo", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                                disabledExpression = "!navCanUndo", onClick = "navUndo()",
+                            )
+                        }
+                        div {
+                            attributes["title"] = "Write the changed files (Ctrl+S)"
+                            ui.button("Save", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!navDirty", onClick = "saveNavFiles()")
+                        }
+                    }
+                    div {
+                        style = "display:flex;justify-content:space-between;gap:var(--space-5)"
+                        ui.button("Open…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFiles()")
+                        ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeNavFiles()")
+                    }
+                }
+            }
         }
     }
 
@@ -369,6 +540,7 @@ object WorldMap {
         head = {
             link(rel = "stylesheet", href = "style/world-map.css")
             script { unsafe { raw(tileBaseScript() + areasScript() + mapLabels.script()) } }
+            script(src = "js/navgraph.js") {}
             script(src = "js/worldmap.js") {}
         },
     ) {
@@ -405,6 +577,13 @@ object WorldMap {
                     xShow("showAreaLabels")
                     style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
                     // Filled from `window.VOID_MAP_LABELS` (see [MapLabels]) on every render.
+                }
+                div {
+                    // Rebuilt by `renderNavGraph` (navgraph.js) on every render while it's on, and
+                    // emptied while it's off. Nothing in it takes pointer events: the editor hit-tests
+                    // the graph itself from the viewport's own handlers.
+                    attributes["id"] = "wm-nav-graph"
+                    style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
                 }
                 div {
                     attributes["id"] = "wm-players"
@@ -466,7 +645,8 @@ object WorldMap {
             // shrunk down to just its header on a small screen without losing the toggles.
             div {
                 attributes["class"] = "wm-display-wrap"
-                style = "position:absolute;top:20px;left:20px;width:190px;z-index:25"
+                style = "position:absolute;top:20px;left:20px;width:190px;z-index:25;display:flex;" +
+                    "flex-direction:column;gap:var(--space-5)"
                 ui.panel(
                     title = "Map display",
                     padded = false,
@@ -479,8 +659,10 @@ object WorldMap {
                     displayToggle("Area polygons", "showAreaPolygons")
                     displayToggle("Region grid", "showRegionGrid")
                     displayToggle("Region labels", "showRegionLabels")
-                    displayToggle("Player pins", "showPlayerPins", last = true)
+                    displayToggle("Player pins", "showPlayerPins")
+                    navGraphToggle()
                 }
+                navGraphPanel()
             }
 
             // Top-right column: the elevation stepper, with the teleport panel stacked under it.
