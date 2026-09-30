@@ -14,6 +14,11 @@ examples = [
     "yo bot", "hellu", "hey everyone", "hey hey hey", "hi again", "hi sup", "hey there stranger", "hi hi hows it going",
     "wassup mate", "ello mate", "yo sup", "heya all", "hey o/", "hi gamers", "hay", "hey ther", "helo",
     "hi hw is it going", "gd morning", "hey bro", "heyyy whats up",
+    "gm", "wsg", "hey, how's it going?", "hello, it's nice to meet you", "good morning, everyone!", "hey chat",
+    "yo chat whats good", "well hello there", "hi, hope you're having a great day", "greetings, fellow adventurer",
+    "sup chat", "oh hey, didnt see you there", "howdy partner", "yo yo yo", "hello, good afternoon",
+    "hi there, nice to see you", "gm gamers", "hey all, just logged in", "what's good, fam", "well met, traveller",
+    "hi folks", "hello friends", "yo, just got here", "hey, long time no see", "wsg bro", "top of the morning to you",
 ]
 
 [farewell]
@@ -36,6 +41,13 @@ examples = [
     "gtg cya guys", "bai", "im away now bye", "brb ill be quick", "seeya", "see u l8r", "calling it a night",
     "im off to fish cya", "byebye", "goin now bye", "goodnight", "bye bye all", "ok thats it im off", "gtg bbl",
     "brb bathroom",
+    "gn", "gn all", "o7", "cya, have a good one", "alright, im heading out", "take care, see you soon", "gn chat",
+    "ok peace, gotta bounce", "logging off, see you tomorrow", "goodbye, it was nice chatting",
+    "time to hit the hay, gn", "later gators", "alright im out, take care", "o7 see you guys",
+    "have a good night everyone", "see you next time", "im off to sleep, night", "nighty night",
+    "bye for now, be safe out there", "catch you on the flip side", "i gotta head out, cya", "gn fam",
+    "off to bed, gn all", "signing off, see you later", "alright folks, gotta go", "that's all for today, goodbye",
+    "peace out y'all", "until next time, farewell", "see you at the ge later",
 ]
 
 [thanks]
@@ -58,6 +70,13 @@ examples = [
     "thanks for everything", "ty for all the help", "thanks for telling me", "thx ty", "ty for that info",
     "great thanks for the help", "thank you very much mate", "thanks 4 helping", "cheers for the help",
     "thanks a lot mate",
+    "appreciate u", "thank you so much for the help!", "thanks a ton, you're a legend", "much appreciated, truly",
+    "ty fam", "thx, big help", "thank you, that is very kind", "i really appreciate it", "ty ty ty",
+    "thanks for your time", "appreciate it man", "thanks, that really helped me out", "oh nice, thank you!",
+    "thank you kindly, friend", "tysm bro", "thanks a lot for the directions", "ty for the help in lumbridge",
+    "many thanks for your assistance", "thanks so much, lifesaver", "ty, you rock", "thanks heaps, youre the best",
+    "much love, ty", "thx for the woodcutting tips", "thank you for taking the time", "ty so much, ngl that helped",
+    "appreciate the help, thanks", "thanks, i owe you one", "thank you very much indeed", "ty bud",
 ]
 
 [how_are_you]
@@ -76,6 +95,23 @@ examples = [
     "you feeling alright", "you feeling good", "u feeling ok", "how are things going", "hows it been",
     "how has your day been", "how have you been lately", "you ok there", "are you doing ok", "how you been mate",
     "how u bin", "hows tha day", "how goes it", "u ok bot", "hows u doing",
+    "how r u feelin", "hows life m8", "how r u doin", "u well m8", "hows ur day goin", "hru lol",
+    "how are u doin today", "how you doing today buddy", "how's everything going with you",
+    "hope you're doing well, how are you", "how's your day been so far", "bro how you doing", "how are you holding up",
+    "how ya doing", "how's your week going", "how's your day going tbh", "how's your night going",
+    "you doing alright today", "how's your morning going", "hru tho", "how are you doing fr", "hows your day going ngl",
+    "how's your mood today", "everything good with you", "how r u this fine day", "how's ur day bro",
+    "hope ur ok, how r u", "hows ur day going bro", "you good tho", "how r u today mate", "how u been lately", "hru rn",
+    "how you feeling rn", "you good bro?", "howre you", "hows life going for you", "all good with you bro",
+    "u doing ok today", "how is everything with you", "all ok with you", "how is life for you", "how are u bro",
+    "how you been keeping", "hows ur mood", "u good today", "how r things with u", "you doing alright bot",
+    "how u doing rn", "how is your week", "how are you holding up today", "how r u keeping", "how was your week",
+    "hows your night", "hows ur evening", "u ok there mate", "how's it going?", "how are you doing today?",
+    "how have you been lately?", "how are you feeling?", "hope youre doing well, how are you?", "whats good with you",
+    "how's everything going for you?", "u doing alright?", "hows life been treating you", "how's your day so far?",
+    "how are you holding up?", "how are you this fine day?", "hope ur having a good one, hru?",
+    "how's your morning going?", "u vibing?", "how's it hanging?", "howre you doing, friend?", "hows ur day been fam",
+    "how are you today, sir?", "hru, long day?",
 ]
 
 [ask_level]
@@ -108,6 +144,15 @@ examples = [
     "hows ur thieving level", "how high is your agility level", "you 99 construction?", "what is your hp level",
     "whats ur cooking lvl lol", "which fletching level are you", "what crafting lvl u got", "ur herb lvl",
     "what lvl are ya in wc", "slayer level?", "what level mining r u",
+    "what level is your woodcutting?", "could you tell me your fishing level please", "ngl what's your mining level",
+    "bruh what agility level are you", "are you 99 in runecrafting?", "what is your current herblore level?",
+    "hows your prayer level rn", "how many levels do you have in thieving", "what level is your smithing right now",
+    "do you have 99 cooking yet?", "firemaking level?", "what hitpoints level do you have",
+    "fr what's your ranged level", "your magic level is what", "how high is your defence level?",
+    "what construction level have you got", "what hunter level are you on", "crafting level pls",
+    "any idea what your strength level is", "wat is ur dungeoneering level",
+    "what is your summoning level, just curious", "attack level?", "what level is your attack at",
+    "you got 99 thieving or nah", "which level is your herblore",
 ]
 
 [ask_combat]
@@ -130,6 +175,12 @@ examples = [
     "cb level?", "lvl?", "total level you have?", "what overall lvl are you", "how hi r u", "ur cb plz",
     "what is ur combat level pls", "tell me ur lvl", "whats ur cb atm", "you high cb?", "ur combat level ty",
     "wats ur cb", "how big is ur combat level", "what lvl are you again",
+    "what is your combat level?", "are you a high combat level player?", "what's your total level ngl",
+    "bruh what combat level are you", "what combat level do you have rn", "how high is your total level?",
+    "are you a high level fr", "can you tell me your combat level", "what level are you, if you dont mind",
+    "lowkey what's your combat", "how many combat levels do you have", "your combat level is what", "what cmb are you",
+    "what's your overall level rn", "is your combat level high", "do you have a high combat level",
+    "you a high level or mid", "what is your total level mate", "your combat level pls",
 ]
 
 [ask_quest_points]
@@ -150,6 +201,26 @@ examples = [
     "u done alot of quests", "your qp plz", "have you done loads of quests", "how many qp do u have mate",
     "whats ur quest pt count", "ur total quest points", "u got max qp", "how many quest points you have", "any qp?",
     "have you got many qp", "ur qp total pls", "how many quests did u do", "what is ur qp lol", "hows ur qp",
+    "qp", "qps?", "quest pts", "u got qp", "ur qp lvl", "wat r ur qp", "how many qp r u", "hw many qp u got",
+    "ur quest pts m8", "u got alot of qp", "wats ur qp total", "how much qp do u have", "qp count m8", "u got 200 qp",
+    "qps u have?", "r u 200+ qp", "how many q pts", "how many qp u on m8", "how many qp dya have", "u got many qps",
+    "ur qp amount", "qp total pls", "whats ur qp m8", "bro how many quest points do you even have",
+    "hey how many quest points have you got", "how many quest points are you at rn", "ngl how many qp do you have",
+    "do you have a lot of quest points", "lowkey curious how many qp you have", "have you done most of the quests",
+    "are you close to max quest points", "tbh how many quests have you finished", "fr how many quest points you on",
+    "how many quest points have you earned", "what's your current quest point count",
+    "could you tell me your quest points", "do you have all the quest points", "bruh how many qp you got",
+    "yo what's your qp", "how far are you on quests", "have you finished a lot of quests yet",
+    "hey what is your qp count", "any idea how many qp you have", "you have max qp", "how many quest points you got rn",
+    "just wondering what your qp is", "qp?? how many", "hows your quest progress", "how many qp you sitting on",
+    "whats ur quest point count tbh", "qp u at?", "how many quest points do you have?",
+    "do you have the quest cape yet?", "ngl how many qp you got", "are you close to quest cape",
+    "how many quests have you completed?", "what's your quest point total rn", "you got max qp or nah",
+    "have you finished a lot of quests?", "fr how many qp do you have", "did you finish all the quests",
+    "your quest points please", "how many qp have you grinded", "do you have over 100 quest points", "quest cape yet?",
+    "are you a quest cape holder", "what is your qp?", "how many quests are you done with", "you got any quest points",
+    "lowkey how many quests have you done", "is your qp high", "how many quest points, if you dont mind", "qp total?",
+    "do you have lots of quest points", "how many quests have you beaten",
 ]
 
 [ask_activity]
@@ -175,6 +246,15 @@ examples = [
     "what are you farming", "what are you runecrafting", "what u chopping there", "so wat r u doing",
     "u training herblore", "u doing skilling", "what are u up to here", "what are you doing atm", "wat u training mate",
     "whatre you doing", "what u doin noob", "what u up to m8",
+    "what are you up to right now?", "wyd", "what are you grinding rn", "what are you training in lumbridge?",
+    "what are you doing here at the ge?", "wyd in varrock", "what skill are you grinding?",
+    "what are you working on, if you dont mind", "bruh what are you even doing", "what are you doing in falador?",
+    "ngl what are you doing here", "what are you killing in edgeville", "what are you training at the moment?",
+    "whatcha grinding", "what you doing in draynor", "are you fishing or chopping",
+    "what's the plan, what are you doing", "what xp are you grinding", "hey what are you doing right now",
+    "what are you smithing", "what are you busy with lol", "are you training slayer right now",
+    "what are you making there", "rn what are you doing", "what's your task right now",
+    "just curious what you are doing here",
 ]
 
 [ask_where_train]
@@ -215,6 +295,21 @@ examples = [
     "which is best for fm xp", "where do i train str", "best place to lvl dungeoneering", "where to train defence pls",
     "how do i train smithing fast", "how to train strength at 1", "where best to train slayer",
     "where can i train fm quick", "best rc training method", "where do ppl train herblore",
+    "where is the best place to train woodcutting at level 60?", "what is the most efficient way to train mining?",
+    "best xp/hr for fishing rn", "ngl where do i train agility", "wsg where should i train strength",
+    "whats the meta for training slayer", "best afk method for woodcutting?", "what is the best afk fishing spot",
+    "where can i train thieving efficiently?", "where should i train my combat as an ironman",
+    "fastest way to 99 fletching?", "bruh where do i even train smithing", "best xp per hour for runecrafting",
+    "could you tell me where to train cooking?", "where would you recommend training magic?",
+    "what is the best way to level up prayer quickly?", "lowkey need a spot to train ranged",
+    "fr where do i train hunter", "best gp/hr and xp training for mining",
+    "what is the best way to train firemaking as an iron", "where is a good place to train defence at level 40?",
+    "cracked way to train construction?", "afk mining spot?", "where to train crafting", "best slayer training rn",
+    "where do i train farming for max xp", "what do you recommend for training herblore?",
+    "is there a good afk spot for training fishing?", "where should i be training attack at level 50?",
+    "ironman best way to train woodcutting", "where can i train summoning efficiently",
+    "what is the fastest way to train agility rn", "wsg best place to train thieving", "ngl idk where to train magic",
+    "any recommendations on where to train dungeoneering?",
 ]
 
 [ask_where_item]
@@ -252,6 +347,19 @@ examples = [
     "what monster drops cowhide", "what drops dragon bones", "what drops feathers", "where do you buy sharks",
     "where can i obtain a granite maul", "where to get a rune pickaxe", "where could i buy lobsters",
     "where can i get a whip cheap", "where to buy big bones", "where to get logs", "where can i get a bronze pick",
+    "where is the best place to buy a rune scimitar?", "where can i obtain dragon bones?",
+    "best place to farm cowhide?", "ngl where do i get lobsters", "wsg where can i get shark",
+    "where do i get coal as an ironman", "how do i get an abyssal whip?", "where can i find yew logs rn",
+    "what is the best way to get feathers?", "where can i buy a rune platebody at the ge?",
+    "bruh where do i get iron ore", "fr where can i get a dragon scimitar", "best place to buy swordfish",
+    "where can i pick up some runes?", "where do i farm dragon bones", "where would i find iron ore?",
+    "which monsters drop dragon bones?", "how do i obtain an abyssal whip as an iron?",
+    "where can i get prayer potions", "where do i buy lobster", "where to get coal rn", "where to find sharks",
+    "ironman where do i get yew logs", "where could i get a rune scimitar cheap?",
+    "where do i get feathers for fletching?", "what is the best way to get cowhide?",
+    "lowkey need iron ore where do i find it", "where can i purchase a dragon scimitar?", "where do i find swordfish",
+    "where can i get logs", "where do i get sharks fr", "could you tell me where to buy runes?",
+    "where can i buy shark", "whats the best place to get prayer potions", "where do i get a dragon scim",
 ]
 
 [ask_for_item]
@@ -285,6 +393,18 @@ examples = [
     "give me ur prayer pots", "gimme coal", "i need lobsters give me some", "give me ur yew logs",
     "can u spare a santa hat", "can i hav ur whip", "give me some trout plz", "cna i have some food",
     "spare a few coins", "give me ur swordfish", "lend me some gp",
+    "could you spare a few coins?", "would you mind giving me some food?", "bruh spare me some gp pls",
+    "can someone please give me a lobster?", "any chance you could lend me your whip?",
+    "i am broke, could you give me 10k?", "fr can i have your rune scimitar",
+    "could i borrow your amulet of glory for a bit?", "someone drop me a shark pls", "lowkey need a free prayer potion",
+    "would you be able to give me a few feathers?", "i would really appreciate some coins",
+    "yo can i have ur party hat", "just give me 1m bro", "please can i have some iron ore",
+    "can you spare some coal for me?", "bruh gimme a santa hat", "could you lend me a rune pickaxe please?",
+    "anyone got a spare dragon scimitar to lend", "pls donate some swordfish", "i am starving, got any lobster?",
+    "hand me some yew logs pls", "a few gp would be nice", "can i please get some cowhide from you?",
+    "give me ur dragon longsword, i will return it", "fr fr just give me a mil", "could u gift me some runes?",
+    "need food rn anyone spare", "please lend me your granite maul for a minute", "yo got any spare dragon bones?",
+    "begging here, any coins help", "would you give me your rune platebody?", "pretty please spare a prayer potion",
 ]
 
 [trade_item]
@@ -314,6 +434,18 @@ examples = [
     "buying oak logs 50 ea", "would u sell ur glory", "selling big bones", "i sell sharks 550 each",
     "anyone buying lobs", "trade plz", "selling rune scim 25k", "wts coal 150 ea", "want to trade ur d scim",
     "buying swordfish", "can i buy ur food", "slling coal", "buyin sharks", "how much for phat",
+    "would you like to trade?", "i would like to buy your abyssal whip", "wtb 1k logs at 150 ea",
+    "selling rune scim 15k", "wts dragon scimitar 60k", "buying 500 yew logs 300 ea", "wtb shark 700 ea",
+    "selling abyssal whip 2.5m offer me", "would you sell me your rune platebody?", "trade me, i have coal to sell",
+    "swap my lobsters for your sharks?", "wts granite maul 40k", "buying amulet of glory 18k",
+    "bruh im selling a party hat, offer me", "selling santa hat cheap fr", "wtb dragon bones 2k ea",
+    "selling 1k feathers 5 ea", "selling cowhide 200 ea pm me", "buying iron ore 100 ea",
+    "how much for your dragon longsword?", "trade me if you want to buy my swordfish",
+    "lowkey buying prayer potions, how much?", "looking to buy a rune pickaxe", "want to swap coal for iron ore?",
+    "wts 2k lobsters, 250 ea", "interested in trading sharks for coins?", "wtb rune platebody 40k",
+    "selling dragon scim 2m no lowballs", "hey want to do a trade?", "selling abyssal whip rn, offer me",
+    "buying 100 rune scimitars lol", "will pay 50k for your granite maul", "anyone buying yew logs 300 ea",
+    "can we swap my glory for your whip?", "selling prayer potion 5k each",
 ]
 
 [ask_help]
@@ -334,6 +466,25 @@ examples = [
     "help me please anyone", "please someone help", "i need help lol", "can i have some help", "pls i need help",
     "can u help?", "can someone help", "hi need help", "could i get some help", "halp plz", "any1 able to help me",
     "i need some help here", "assist me pls", "can you help me quick", "help me m8 pls",
+    "help m8", "need halp", "help me pls m8", "any1 help me", "ne1 help", "hlp", "u help me?", "can u help me out m8",
+    "pls can any1 help", "need a hand m8", "help me out pls", "can ne1 help me", "hey help me", "yo need help",
+    "halp me plz", "can u give me a hand", "hey could you help me out with something", "hi, could you help me out",
+    "excuse me, can you help me", "i could really use some help", "can someone please help me out",
+    "ngl i need some help rn", "bro can you help me out", "hey im kinda stuck can you help",
+    "could you lend me a hand please", "sorry to bother, can you help", "anyone around who can help me",
+    "i need some help, anyone", "yo can someone help me", "would you mind helping me out",
+    "hey quick question, can you help", "please can somebody help me", "can i get a hand here", "helppp", "help?",
+    "assist me", "hey can anyone give me a hand", "can you help me with something", "do you have a sec to help me",
+    "hey i need a favour, can you help", "tbh i need some help", "could i ask for your help", "mind helping me out",
+    "can u help a sec", "any help appreciated", "is anyone able to help me", "hello, need some help please",
+    "could you please assist me", "pls any help", "yo i need some help", "wsg can someone help me", "ngl i need help",
+    "bruh help", "fr need help rn", "i need help with something", "excuse me could you help me",
+    "is anyone able to help me out?", "could i ask someone for help?", "anyone here that can help?",
+    "i would appreciate some help", "hey are you able to help me?", "i need some help rn",
+    "can you help me real quick?", "yo help", "mind helping me out?", "hey i need a hand",
+    "does anyone want to help me?", "i need help can someone assist?", "sos need help", "someone please assist me",
+    "can i get a hand here?", "any help would be appreciated", "hey need some help here",
+    "could somebody give me some help",
 ]
 
 [lost]
@@ -368,6 +519,18 @@ examples = [
     "how to get to port sarim", "how to get to ardougne", "how to get to karamja", "how to get to burthorpe",
     "how do i get to rimmington", "which way is taverley", "which way is yanille", "which way is entrana",
     "where is brimhaven from here", "where is canifis", "where is seers village", "where is catherby",
+    "could you point me toward varrock?", "how do i get to the ge from here?", "can you tell me how to get to falador?",
+    "which way is the fairy ring?", "ngl im so lost rn", "bruh where am i", "wsg how do i get to edgeville",
+    "how do i get to lumbridge from varrock?", "where is the nearest bank?", "fr i have no idea where i am",
+    "how do i teleport to varrock", "im a bit lost could you point me to draynor",
+    "where can i find the grand exchange?", "which way to port sarim from here?",
+    "what is the fastest way to get to ardougne?", "how do i get to canifis rn", "how do i walk to yanille?",
+    "lost as hell", "sorry im lost where is burthorpe", "how do i get to the wilderness?",
+    "lowkey lost where is the ge", "where is the closest teleport to catherby?", "what is the way to gwd?",
+    "i think i took a wrong turn", "how do i get back to edgeville", "can someone show me the way to lumbridge?",
+    "i have no clue where i am", "how do i get to camelot from here", "how to reach falador",
+    "how do i get to the ge as an ironman", "where even is draynor", "ok so where is catherby", "i am completely lost",
+    "how do i get out of this area", "pls show me the way to varrock",
 ]
 
 [follow_request]
@@ -396,6 +559,18 @@ examples = [
     "follow me to burthorpe pls", "can u come to lumby", "come to me m8", "follow me to karamja",
     "come with me to seers village", "follow me to entrana", "come to alk", "follow me ill show u",
     "come to goblin village",
+    "could you follow me to the ge?", "would you like to come with me to varrock?",
+    "can you follow me to falador please?", "follow me bro, going to edgeville", "lowkey follow me to draynor",
+    "please come with me to port sarim", "can you come along to catherby?", "yo follow me to canifis",
+    "come with me to gwd fr", "follow me to ardougne rn", "would you mind walking with me to lumbridge?",
+    "follow me to the ge pls", "come with me, i will show you the way", "can you tag along to falador?",
+    "bruh follow me", "can you stick with me to varrock?", "follow me, we are heading to edgeville",
+    "come with me to the ge ngl", "would you follow me to draynor village?", "please walk with me to port sarim",
+    "can you come along with me to gwd?", "follow me to lumbridge rn", "lets head to varrock, follow me",
+    "come with me to ardougne pls", "fr follow me to catherby", "can you follow me a sec?", "please come over here",
+    "follow me to canifis, it is close", "stay close and follow me", "tag along with me to the ge",
+    "follow me bruh, edgeville", "hey come with me for a sec", "can you come follow me to falador?",
+    "follow me to the wilderness ditch", "come with me to lumbridge please",
 ]
 
 [follow_up]
@@ -418,6 +593,12 @@ examples = [
     "how about prayer", "what about constitution", "what about hunter", "what about dung", "what about farming",
     "and what about mining", "and what about fishing", "and ur rc", "and ur fm", "and ur con", "and ur dung", "and wc?",
     "and str?", "and att?", "and def?", "what bout ur wc", "and urs?", "and ur magic lvl",
+    "and what about you?", "what about your magic?", "same question to you", "how about ranged",
+    "what about you though", "and what about prayer?", "ngl same, what about you", "what about slayer then",
+    "and how about you", "and what about defence", "how about your agility", "what about the other one",
+    "and what about farming", "same for you?", "then what about hp", "and runecrafting?", "and you fr",
+    "what about construction then", "and what about your strength", "how about you then", "what about your hunter",
+    "and your mining?", "what about thieving", "and you rn?", "and woodcutting?", "what about your herblore",
 ]
 
 [affirm]
@@ -433,6 +614,11 @@ examples = [
     "yes ill do it", "yes i can", "i agree", "agreed", "ok i agree", "yes thats right", "thats right", "correct",
     "yep thats it", "yes exactly", "exactly", "ofc", "ofc yes", "yea ok then", "yes ill come", "yrs", "yeap", "oky",
     "yep sure thing",
+    "yes, that sounds great", "yes, absolutely", "yes please, that would be lovely", "sure, i would love that",
+    "yes, i would like that", "bet", "deadass yes", "yeah lets gooo", "say less", "im down", "im down for that",
+    "yes, that works for me", "sounds good to me", "yeah i would love to", "yup, count me in", "count me in", "i am in",
+    "that works", "works for me", "yes that is correct", "yep, that is right", "sure, go right ahead",
+    "oh yes definitely", "yes pretty please", "hell yeah",
 ]
 
 [deny]
@@ -448,6 +634,17 @@ examples = [
     "nope cb", "nah cba", "no i hate that", "nah thats wrong", "thats wrong", "no thats not it", "nope thats not right",
     "no i disagree", "i disagree", "nooo", "noo", "nah dont need it", "no dont need", "nop", "naah", "no thaks",
     "nope im busy",
+    "n", "na", "nahh", "nope lol", "no plz", "nty m8", "no ty m8", "no dont want", "nah not now", "no not now m8",
+    "not rn", "nah dun wanna", "no i dun think so", "nah i cant", "nahh ty", "nope never", "no way jose",
+    "nah im all good, thanks though", "no thanks, im good", "nope, i'm not interested", "not really no",
+    "nah, maybe another time", "no i don't want to", "nope, not for me", "nah i'll pass", "no thanks, not right now",
+    "i'd rather not", "nah that's not right", "no that's incorrect", "nah not today bro", "nope im good ty",
+    "definitely not", "no chance bro", "not happening", "nah fr not interested", "ngl no thanks", "no thx not now",
+    "naw", "nuh uh", "nope, no thanks", "nah i dont wanna", "not gonna happen", "no thank you, i'm all set", "nah fam",
+    "nope not me", "no, thank you though", "nah im straight", "hard pass", "i'll pass, thanks", "nope, not today",
+    "no, i don't think so", "nah, not for me", "no thank you, maybe later", "nah deadass no", "no, that's not right",
+    "sorry, but no", "no, i'm not interested", "nah bro", "nope, i'm all good", "negative", "no not me",
+    "no thanks, i'm busy right now", "ill pass", "not for me thanks",
 ]
 
 [laugh]
@@ -464,6 +661,11 @@ examples = [
     "laughing so hard", "lol i laughed", "made me laugh", "that made me laugh", "lol that made me laugh",
     "hahaha omg stop", "lol ur funny", "haha ur funny", "hahah ur so funny", "lol lmao", "ha ha ha", "ha ha", "hah",
     "lolll xd", "lol lmaooo", "hhaha", "halha", "tehe",
+    "im dead", "im crying lmao", "that's actually so funny", "haha, that's a good one", "i can't breathe lol",
+    "i cant even lol", "lmaooo stop", "okay that was funny", "that got me lol", "haha that's too good",
+    "stop, you're too funny", "that's comedy gold", "im wheezing", "ahahaha no way", "okay that's actually funny",
+    "oh my god that's funny", "lmao that's wild", "that made my day lol", "bahahaha", "i'm laughing so hard",
+    "ded lmao",
 ]
 
 [compliment]
@@ -486,6 +688,13 @@ examples = [
     "great style", "good taste", "good taste m8", "nice taste in gear", "wow ur gear", "wow nice whip",
     "wow sick outfit", "whoa nice gear", "damn nice gear", "dam nice whip", "omg nice outfit", "omg ur gear",
     "niice whip", "nicce armour", "cool outfitt", "ur whpi is sick",
+    "that's a really cool outfit", "sheesh that fit is clean", "that's some fire gear", "drip check passed",
+    "your drip is insane", "that abyssal whip is sick", "that's a clean dragon scimitar", "love your rune platebody",
+    "that amulet of glory looks great", "that party hat is so cool", "that santa hat looks great on you",
+    "your granite maul is fire", "ngl that outfit is fire", "fire fit", "clean fit", "that's a sweet set up",
+    "you look really great", "that gear looks amazing", "what a cool set of armour", "your style is really nice",
+    "fr that's a clean look", "that's a great looking cape", "your outfit looks fantastic", "sheesh nice gear",
+    "that whip is fire", "ngl you look great", "the drip is real", "you have great taste in gear",
 ]
 
 [congratulate]
@@ -507,6 +716,14 @@ examples = [
     "nice one on the lvl", "nice one on 99 wc", "nice lvl m8", "nice 99", "nice 99 m8", "nice 70 attack",
     "nice 80 defence", "sweet lvl", "sweet 99", "wp on the level", "wp on 99", "well played on the lvl",
     "gz on ur 99 cooking", "gz on 99 thieving", "grtaz on 99", "congrats on 90 crafting",
+    "gg on 99, well played", "gz on the drop", "gz on the 99 cape", "congrats on the max cape",
+    "congrats on the quest cape", "gz on the fire cape", "gz on the whip drop",
+    "congratulations on your 99 woodcutting", "gg wp on that level", "pog on the 99", "poggers, gz on 99",
+    "massive gz on the cape", "big gz on 99 mining", "well done on the quest cape", "gz on finally maxing",
+    "congrats on maxing, that's huge", "gz on the party hat", "gz on the santa hat drop",
+    "nice work getting 99 fishing", "gg on the fire cape", "sheesh gz on 99", "w on the 99 cape", "gz on the pet drop",
+    "so proud of you, congrats on 99", "gz on the new level, you deserve it", "congratulations on getting your cape",
+    "gz on hitting 99 cooking", "lets gooo gz on 99",
 ]
 
 [level_up]
@@ -531,6 +748,14 @@ examples = [
     "i made 99 cooking", "i maxed wc", "maxed fishing", "just maxed mining", "cape time 99 at last",
     "i can wear the cape now", "i got my first 99", "got my first 99", "lvl 70 str yay", "99 str finally",
     "i jus got 99 wc", "just got 99 mininig", "i got a lvl lol",
+    "i just hit 99 woodcutting!", "finally maxed", "just got my 99 cape", "i finally got the quest cape",
+    "i just got 99 mining, lets gooo", "pog, 99 fishing", "poggers i just hit 99 magic", "99 firemaking finally, ez",
+    "finally got my max cape", "got my fire cape, so happy", "just unlocked the 99 cape", "i just hit 99 runecrafting",
+    "lets gooo 99 agility", "finally 99 herblore fr", "ngl i just hit 99 slayer", "i just reached level 99 in smithing",
+    "just got 99 strength, massive", "im finally 99 attack", "just hit 99 hp, ez", "i just finished the quest cape",
+    "finally 99 thieving lets go", "just got my 99 prayer", "finally hit 99 dungeoneering",
+    "i just leveled up my cooking", "just maxed out, feels so good", "i hit 99 crafting today",
+    "just got 99 farming, w", "i just got 99 fletching, so hyped", "it took forever but i got 99 construction",
 ]
 
 [insult]
@@ -551,6 +776,22 @@ examples = [
     "ur ugly", "you smell", "you are ugly", "ur brain dead", "brainless bot", "ur stupid", "you are stupid",
     "u r so annoying", "go away pls", "leave me be noob", "get away from me", "back off", "beat it",
     "nobody cares about you", "ur worthless", "you are worthless",
+    "bot ur so dumb", "shut up bot noob", "ur mid bro", "ur cooked noob", "you are so mid", "absolute clown bot",
+    "what a trash bot", "bot ur garbage", "ur a scrub", "you stink at this game", "u smell like a noob",
+    "you bot noob get lost", "loser bot", "nobody likes u bot", "ugh ur so annoying bot", "shut it noob",
+    "u are braindead", "you are a disgrace", "get a life loser", "touch grass loser", "you are so cringe", "cringe bot",
+    "ur cringe", "ur a nub", "trash player", "wow ur so bad lol", "worst player ever", "your bad and u should feel bad",
+    "you are a dumb bot", "bot u are pathetic", "u suck bot", "get out noob", "u are a waste of a bot", "idiot noob",
+    "pathetic bot", "idc ur a loser", "noob bot go cry", "what a useless noob", "ur a disgrace to the game", "crap bot",
+    "ur a muppet", "bot brain", "ur so ass", "you're honestly really annoying", "bro you are so mid",
+    "cope harder noob", "l bot", "touch grass bot", "skill issue noob", "you are cringe", "trash bot fr",
+    "ngl you are the worst bot", "please just log off already", "nobody asked for your opinion",
+    "you're an embarrassment to this game", "bruh go away", "take your spam somewhere else", "honestly you are so dumb",
+    "ur mid", "you play like a bot fr", "why are you even here", "you are lowkey useless", "get out of my sight",
+    "go bother somebody else bro", "stop following me around", "you are the dumbest bot ever", "just uninstall already",
+    "log off noob", "bro you are trash", "mid player fr", "seriously shut your mouth", "you're a pathetic little bot",
+    "get a life bot", "what a clown fr", "you ruin this game", "you are such a waste of a bot",
+    "leave me alone you creep", "go away you stupid bot", "cry about it bot", "you are hopeless",
 ]
 
 [are_you_bot]
@@ -571,6 +812,20 @@ examples = [
     "ru a bot or a human", "r u a bot ???", "is this a real player", "r u an afk bot", "u a bot or just afk",
     "are u a bot m8", "ur not real r u", "u aint real", "are you a person or bot", "are u a rl person", "r u a bot ty",
     "you a real player",
+    "r u a bot or sumthing", "bot or real", "u a real person or what", "is this guy a bot", "are you actually a bot",
+    "are u a bot fr", "wait are you a bot", "u a bot or nah", "are you ai", "r u an ai", "is this ai",
+    "are you chatgpt", "bro are you a bot", "are you a real live person", "r u human or bot", "u human or not",
+    "r u a bot tho", "lowkey are you a bot", "is that a macro", "r u macroing", "u running a script", "are you an auto",
+    "is this an actual person", "real or bot", "ru a real one", "r u real or fake", "pls tell me ur human",
+    "are you a program", "bot?? or real", "bot or a player", "are you run by a bot", "u a botter",
+    "is that player a bot", "r u even human", "hey r u a bot lol", "are you automated", "r u a bot cuz u dont talk",
+    "ngl are you a bot", "is u real", "am i speaking to a bot", "are you actually a real person?", "is this a bot fr",
+    "sus, are you a bot", "ngl you seem like a bot", "are you a real human being?", "bro are you botting",
+    "are you an actual player or a bot", "you are a bot, right?", "are you a robot or a person",
+    "are you running a script?", "you feel like a bot ngl", "am i talking to a bot rn", "is this an afk bot",
+    "are you a real person or a script", "fr are you human", "are you an auto clicker", "are you using a bot client",
+    "sus bot or human", "please tell me you are not a bot", "are you actually human?",
+    "is there a person behind this account", "is this account botted",
 ]
 
 [feeling_good]
@@ -594,6 +849,21 @@ examples = [
     "im pretty well", "im well ty", "im super", "im excellent", "excellent thanks", "excellent ty", "fantastic thanks",
     "wonderful thanks", "im wonderful", "im very good", "im really good", "really good thanks", "pretty great",
     "good as gold", "fine and dandy", "fine n you",
+    "doing pretty good rn", "im vibing", "feeling good ngl", "lowkey great today", "all good here tbh",
+    "cant complain fr", "life is sweet", "im well cheers", "im happy as larry", "gud thx", "im ok thx", "doin gr8",
+    "pretty gud ty", "im cool", "feelin fine", "im in high spirits", "great mood today", "im buzzing", "fr im good",
+    "honestly im great", "im chilled out", "doing well ty mate", "never felt better", "im stoked", "all g here",
+    "im doing swell", "im good bruh", "not bad tbh", "feelin gud", "im feeling fantastic", "good mood rn",
+    "things are going great", "im peachy", "nice day for me", "im content", "glad and well", "im in a great mood",
+    "cheerful today", "im blessed", "all sweet here", "im pumped today", "im doing amazing", "loving life rn",
+    "im on cloud nine", "vibing", "chillin", "lowkey great rn", "im doing great, thanks for asking!", "pretty good tbh",
+    "feeling good, fr", "i'm doing well, thank you", "all good here, ngl", "im good bro, vibing",
+    "doing wonderful today", "living my best life", "feeling pretty great right now", "im good fam",
+    "great, thanks for asking", "not bad, just chillin", "i'm doing quite well, thank you", "honestly feeling amazing",
+    "pretty good, just vibing in lumbridge", "im in a great mood today", "could be worse, doing fine",
+    "all good, just chilling", "feeling blessed today", "doing well, thanks for asking",
+    "im good, just woodcutting and vibing", "today is going great", "solid, thanks", "doing fantastic, thank you",
+    "i'm good, just relaxing at the ge", "feeling good, just a bit tired",
 ]
 
 [sad]
@@ -627,14 +897,35 @@ examples = [
     "oops i dropped my whip", "my bank got hacked", "got hacked and lost everything", "this is the worst",
     "lost my shark stack", "feeling gloomy", "bad day in lumby", "i died in fally", "unlucky im dead",
     "i got dced in a fight and died", "i failed again", "why does everyone scam me", "got robbed at draynor",
+    "im so down rn", "feeling pretty low", "i lost my bank ugh", "im really upset", "i feel like crap",
+    "cooked again lost it all", "died again ngl im tilted", "im heartbroken", "so gutted", "gutted i died",
+    "i hate my luck", "im miserable", "life sucks rn", "ive had a terrible day", "i got scammed rip",
+    "lost my whip again", "im so sad tbh", "feeling depressed", "im in tears", "i lost it all", "i got pked n lost all",
+    "bad day today", "i feel horrible", "nothing goes my way", "my luck is trash fr", "just got scammed bruh",
+    "i got rekt and lost everything", "im not ok", "im so unhappy", "im really down today", "feeling blue",
+    "today is awful", "i just wanna cry", "i died and lost 5m", "im down bad", "lost my stuff ffs",
+    "i failed again im sad", "so upset i died", "my pet died", "i got banned", "i feel so alone", "a bad day ngl",
+    "ive lost my will to play", "im so done with today", "nobody helped me and i died",
+    "i just lost my entire bank to a scam", "im so cooked rn", "this is so sad", "ngl im lowkey tilted",
+    "rip my gravestone", "lost my gravestone and im so mad", "bro i just got pked for my whole inventory",
+    "1/5000 drop and still nothing after 9000 kills", "this dry streak is actually killing me",
+    "im so tilted right now", "big l today", "fr everything keeps going wrong", "ragequit after that death",
+    "i got pked and lost my best gear", "honestly having the worst week ever", "skill issue on my part i keep dying",
+    "i cant believe i lost that fight", "lowkey depressed about this grind", "another 500 kills and no unique",
+    "i feel like crying", "just got scammed in a trade bro", "worst luck in the entire game",
+    "im done i keep dying to the same boss", "this grind is pain", "my luck is cursed fr", "lost 50m to a wildy pker",
+    "the drop rate hates me", "so unlucky it hurts", "im cooked after that death", "died with no gravestone rip",
+    "rip my bank", "feeling really low today ngl", "man i hate my luck", "got pked by a clan of 10",
+    "failed the inferno again", "why am i always the unlucky one", "bad day bad luck bad everything",
+    "no luck at all today", "i lost my entire stack",
 ]
 
 [other]
 examples = [
-    "the weather is nice today", "what did you have for dinner", "i like pizza", "my cat is asleep", "asdfgh", "buying gf",
+    "the weather is nice today", "what did you have for dinner", "i like pizza", "my cat is asleep", "asdfgh",
     "anyone watch the game last night", "my mum is calling me", "this song is good", "i should be doing homework", "hmm",
     "dfjsdkjf", "where is my phone",
-    "my dog is barking", "what time is it", "i like trains", "blah blah", "afk", "just chilling", "lalala",
+    "my dog is barking", "what time is it", "i like trains", "blah blah", "just chilling", "lalala",
     "its raining here", "brb food", "anyone here", "hmm ok",
     "world 2 is laggy", "anyone want to pk", "join my clan", "clan recruiting", "my teacher is annoying",
     "i hate mondays", "pizza for lunch", "its snowing", "my brother is on the pc", "this chair is uncomfortable",
@@ -651,4 +942,13 @@ examples = [
     "i like cats", "soccer game on", "nba finals tonight", "rugby is on", "cricket is boring", "anyone play wow",
     "i play xbox too", "halo is fun", "minecraft is cool", "nothing to do", "so bored", "bored lol", "blah",
     "pk world 1", "ffa clan wars", "hunting in the wildy anyone", "hmph", "sdfsdf", "pfft",
+    "anyone know if the update is live yet?", "server lag is insane rn", "anyone doing the boss today?",
+    "streaming later come watch", "this song is fire", "ngl i need pizza", "school starts tomorrow",
+    "work is so boring today", "who is winning the game", "joining a clan event at 8", "clan cc is open for raids",
+    "asdkjhasd", "ghjghj", "new update looks wild", "the new patch broke my game", "anyone else playing valorant",
+    "playing minecraft later", "im watching a stream rn", "my exam is at 9am", "ate way too much today",
+    "the lag spikes are nuts", "world 301 is full", "hosting an event at the grand exchange",
+    "the dev blog dropped today", "i have a dentist appointment", "this movie is so long", "heading to the gym later",
+    "need a nap", "fortnite is way better than this", "the game last night was crazy", "who is joining the raid",
+    "weekly event starts soon", "dsfgsdfg", "mmmm", "xyz", "just got home from class", "my headphones are broken",
 ]
