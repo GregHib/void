@@ -3,12 +3,11 @@ package content.bot.chat.api
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.bot
 import content.bot.chat.tag.ChatEntity
-import content.bot.chat.Persona
 import content.bot.chat.QuickChatPhrases
 import content.bot.chat.tag.SlotType
-import content.bot.chat.persona
 import content.bot.isBot
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.name
 import java.time.LocalDateTime
 import kotlin.random.Random
 
@@ -28,7 +27,7 @@ class ChatContext(
     val candidates = mutableListOf<Candidate>()
     private var expectation: Expectation? = null
 
-    val persona: Persona = bot.persona
+    val persona: Persona = Persona.of(bot.accountName)
 
     val intent: String
         get() = utterance.intent
