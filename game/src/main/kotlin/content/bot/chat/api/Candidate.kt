@@ -1,7 +1,5 @@
 package content.bot.chat.api
 
-import content.bot.chat.Expectation
-
 /**
  * A quick chat phrase the bot could send. [then] runs only if this candidate is picked.
  */

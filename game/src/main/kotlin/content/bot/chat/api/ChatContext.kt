@@ -2,13 +2,10 @@ package content.bot.chat.api
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.bot
-import content.bot.chat.Conversation
 import content.bot.chat.tag.ChatEntity
-import content.bot.chat.Expectation
 import content.bot.chat.Persona
 import content.bot.chat.QuickChatPhrases
 import content.bot.chat.tag.SlotType
-import content.bot.chat.Utterance
 import content.bot.chat.persona
 import content.bot.isBot
 import world.gregs.voidps.engine.entity.character.player.Player
