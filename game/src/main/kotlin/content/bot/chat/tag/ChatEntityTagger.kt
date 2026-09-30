@@ -15,12 +15,15 @@ import world.gregs.voidps.engine.data.definition.Tables
  * "wheres a gud place to train wc" -> [where, is, a, gud, place, to, train, {skill}] + Skill(woodcutting)
  */
 class ChatEntityTagger(private val normaliser: Normaliser) {
-    private class Alias(val tokens: List<String>, val entity: ChatEntity)
+    private class Alias(val tokens: Array<String>, val type: ChatEntityType, val key: String)
 
-    private val order = compareByDescending<Alias> { it.tokens.size }.thenBy { it.entity.type.ordinal }
+    private val order = compareByDescending<Alias> { it.tokens.size }.thenBy { it.type.ordinal }
 
     // First alias token -> aliases starting with it, longest and highest priority first
-    private val index = HashMap<String, MutableList<Alias>>()
+    private val index = HashMap<String, Array<Alias>>()
+
+    // One instance of each token as most aliases share words ("rune", "potion"), only needed while loading
+    private val tokenPool = HashMap<String, String>()
 
     // Word length -> first tokens of fuzzy aliases
     private val fuzzy = HashMap<Int, MutableSet<String>>()
@@ -36,18 +39,26 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
 
     fun add(type: ChatEntityType, key: String, names: Collection<String>) {
         for (name in names) {
-            val tokens = normaliser.tokens(name).filter { it != "?" }
+            val tokens = normaliser.tokens(name).filter { it != "?" }.map { tokenPool.getOrPut(it) { it } }.toTypedArray()
             if (tokens.isEmpty() || (tokens.size == 1 && tokens[0] in stopWords)) {
                 continue
             }
-            val list = index.getOrPut(tokens.first()) { mutableListOf() }
-            if (list.any { it.tokens == tokens && it.entity.type == type }) {
+            val list = index[tokens.first()] ?: emptyArray()
+            if (list.any { it.type == type && it.tokens.contentEquals(tokens) }) {
                 continue
             }
             // Keep longest and highest priority first
-            val alias = Alias(tokens, ChatEntity(type, key))
-            val position = list.indexOfFirst { order.compare(alias, it) < 0 }
-            list.add(if (position == -1) list.size else position, alias)
+            val alias = Alias(tokens, type, key)
+            val position = list.indexOfFirst { order.compare(alias, it) < 0 }.let { if (it == -1) list.size else it }
+            index[tokens.first()] = Array(list.size + 1) {
+                if (it < position) {
+                    list[it]
+                } else if (it == position) {
+                    alias
+                } else {
+                    list[it - 1]
+                }
+            }
             if (type.fuzzy) {
                 fuzzy.getOrPut(tokens.first().length) { mutableSetOf() }.add(tokens.first())
             }
@@ -80,8 +91,8 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
                 i++
                 continue
             }
-            output.add(match.entity.type.placeholder)
-            entities.add(match.entity)
+            output.add(match.type.placeholder)
+            entities.add(ChatEntity(match.type, match.key))
             i += match.tokens.size
         }
         return Tagged(output, entities)
@@ -107,7 +118,7 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
                 if (!withinOneEdit(word, token)) {
                     continue
                 }
-                val alias = index[word]?.firstOrNull { it.entity.type.fuzzy && matches(it.tokens, tokens, start) }
+                val alias = index[word]?.firstOrNull { it.type.fuzzy && matches(it.tokens, tokens, start) }
                 if (alias != null) {
                     return alias
                 }
@@ -116,7 +127,7 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
         return null
     }
 
-    private fun matches(alias: List<String>, tokens: List<String>, start: Int): Boolean {
+    private fun matches(alias: Array<String>, tokens: List<String>, start: Int): Boolean {
         if (start + alias.size > tokens.size) {
             return false
         }
@@ -202,6 +213,7 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
                 entityTagger.add(ChatEntityType.Npc, npc.stringId, listOf(npc.name) + aka(npc.params))
             }
             entityTagger.protect(vocabulary)
+            entityTagger.tokenPool.clear()
             return entityTagger
         }
 
