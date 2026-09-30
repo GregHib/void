@@ -1,6 +1,5 @@
 package content.bot.chat.model
 
-import content.bot.chat.Prediction
 import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.File
