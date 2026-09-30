@@ -60,6 +60,14 @@ class QuickChatPhrases(private val definitions: QuickChatPhraseDefinitions) {
 
     companion object {
         /**
+         * Splits a table spot like "adamant_platebody" into one argument per <MultipleChoice> in [phrase]
+         */
+        fun args(phrase: String, spot: String): List<String> {
+            val slots = phrase.split("<MultipleChoice>").size - 1
+            return if (slots > 1) spot.split('_', limit = slots) else listOf(spot)
+        }
+
+        /**
          * Phrase text with placeholders named after their type, the same format as `QuickChatEnumDump`
          */
         fun text(definition: QuickChatPhraseDefinition): String? {

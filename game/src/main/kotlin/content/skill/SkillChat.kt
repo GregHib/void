@@ -2,6 +2,7 @@ package content.skill
 
 import content.bot.behaviour.product
 import content.bot.behaviour.skill
+import content.bot.chat.QuickChatPhrases
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.ChatStyle
 import content.bot.chat.tag.ChatEntityType
@@ -60,7 +61,8 @@ class SkillChat :
             val available = spots.filter { it.first <= level }
             if (!phrase.isNullOrEmpty() && available.isNotEmpty()) {
                 // Pick from the best two so bots don't all give identical advice
-                sayQuick(phrase, available.takeLast(2).random(random).second, weight = 3f)
+                val spot = available.takeLast(2).random(random).second
+                sayQuick(phrase, *QuickChatPhrases.args(phrase, spot).toTypedArray(), weight = 3f)
             }
             for ((required, tip) in Tables.intStrListOrNull("chat_skills.${skill.key}.tips") ?: emptyList()) {
                 if (level >= required) {

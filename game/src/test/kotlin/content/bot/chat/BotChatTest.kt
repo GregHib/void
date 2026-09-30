@@ -263,8 +263,12 @@ class BotChatTest : WorldTest() {
             val advice = row.string("advice")
             if (advice.isNotEmpty()) {
                 val id = phrases.id(advice) ?: throw AssertionError("Unknown phrase $advice")
-                for ((_, spot) in Tables.intStrList("chat_skills.${row.rowId}.spots")) {
-                    if (phrases.encode(id, listOf(spot)) == null) {
+                val spots = Tables.intStrList("chat_skills.${row.rowId}.spots")
+                if (spots.map { it.first } != spots.map { it.first }.sorted()) {
+                    failed.add("${row.rowId}: spots not in level order")
+                }
+                for ((_, spot) in spots) {
+                    if (phrases.encode(id, QuickChatPhrases.args(advice, spot)) == null) {
                         failed.add("${row.rowId}: $spot")
                     }
                 }
