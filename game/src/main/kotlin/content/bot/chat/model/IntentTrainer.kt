@@ -1,6 +1,6 @@
 package content.bot.chat.model
 
-import content.bot.chat.Normaliser
+import content.bot.chat.process.Normaliser
 import content.bot.chat.tag.ChatEntityTagger
 import kotlin.random.Random
 
