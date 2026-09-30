@@ -2,7 +2,7 @@ package content.social.chat
 
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.ChatContext
-import content.bot.chat.api.Style
+import content.bot.chat.api.ChatStyle
 import content.bot.chat.tag.ChatEntityType
 import world.gregs.voidps.engine.Script
 import java.time.Month
@@ -19,19 +19,19 @@ class SocialChat :
                 return@botChat
             }
             if (conversation.sessions > 1) {
-                sayQuick("Hello again.", weight = 2f, style = Style.Warm)
-                sayQuick("Welcome back.", weight = 2f, style = Style.Warm)
+                sayQuick("Hello again.", weight = 2f, style = ChatStyle.Warm)
+                sayQuick("Welcome back.", weight = 2f, style = ChatStyle.Warm)
             } else {
-                sayQuick("Nice to meet you.", style = Style.Warm)
+                sayQuick("Nice to meet you.", style = ChatStyle.Warm)
             }
-            sayQuick("Hello!", style = Style.Warm)
-            sayQuick("Hiya!", style = Style.Warm)
+            sayQuick("Hello!", style = ChatStyle.Warm)
+            sayQuick("Hiya!", style = ChatStyle.Warm)
             sayQuick("Hi.")
-            sayQuick("Hey.", style = Style.Blunt)
-            sayQuick("Yo!", style = Style.Slang)
-            sayQuick("Sup?", style = Style.Slang)
-            say("hey", style = Style.Slang)
-            say("Hi there!", style = Style.Warm)
+            sayQuick("Hey.", style = ChatStyle.Blunt)
+            sayQuick("Yo!", style = ChatStyle.Slang)
+            sayQuick("Sup?", style = ChatStyle.Slang)
+            say("hey", style = ChatStyle.Slang)
+            say("Hi there!", style = ChatStyle.Warm)
         }
 
         botChat("greet") {
@@ -42,34 +42,34 @@ class SocialChat :
         botChat("farewell") {
             sayQuick("Bye!")
             sayQuick("See you later.")
-            sayQuick("I'll see you around.", style = Style.Warm)
-            sayQuick("Later!", style = Style.Slang)
+            sayQuick("I'll see you around.", style = ChatStyle.Warm)
+            sayQuick("Later!", style = ChatStyle.Slang)
             if (now.hour !in 4..<21) {
                 sayQuick("Goodnight.", weight = 3f)
             }
         }
 
         botChat("thanks") {
-            sayQuick("You're welcome.", style = Style.Formal)
-            sayQuick("No problem.", style = Style.Formal)
-            sayQuick("yw", style = Style.Slang)
-            sayQuick("np", style = Style.Slang)
+            sayQuick("You're welcome.", style = ChatStyle.Formal)
+            sayQuick("No problem.", style = ChatStyle.Formal)
+            sayQuick("yw", style = ChatStyle.Slang)
+            sayQuick("np", style = ChatStyle.Slang)
         }
 
         botChat("how_are_you") {
-            sayQuick("I'm great!", style = Style.Warm)
+            sayQuick("I'm great!", style = ChatStyle.Warm)
             sayQuick("I'm good.")
             sayQuick("I'm okay.")
-            sayQuick("Meh.", style = Style.Blunt)
+            sayQuick("Meh.", style = ChatStyle.Blunt)
             if (activity != null) {
-                sayQuick("I am busy, sorry.", weight = 0.3f, style = Style.Blunt)
+                sayQuick("I am busy, sorry.", weight = 0.3f, style = ChatStyle.Blunt)
             }
         }
 
         botChat("feeling_good") {
             sayQuick("That's good.")
             sayQuick(":-)")
-            sayQuick("Cool!", style = Style.Slang)
+            sayQuick("Cool!", style = ChatStyle.Slang)
         }
 
         botChat("sad") {
@@ -82,42 +82,42 @@ class SocialChat :
         }
 
         botChat("laugh") {
-            sayQuick("lol", style = Style.Slang)
-            sayQuick("Haha!", style = Style.Formal)
+            sayQuick("lol", style = ChatStyle.Slang)
+            sayQuick("Haha!", style = ChatStyle.Formal)
             sayQuick(":-D")
-            sayQuick("Heh.", style = Style.Blunt)
+            sayQuick("Heh.", style = ChatStyle.Blunt)
             silence(1f - persona.chattiness)
         }
 
         botChat("compliment") {
-            sayQuick("Thank you.", style = Style.Formal)
-            sayQuick("ty", style = Style.Slang)
+            sayQuick("Thank you.", style = ChatStyle.Formal)
+            sayQuick("ty", style = ChatStyle.Slang)
             sayQuick(":-D")
-            sayQuick("You're cool.", weight = 0.5f, style = Style.Warm)
+            sayQuick("You're cool.", weight = 0.5f, style = ChatStyle.Warm)
         }
 
         botChat("congratulate") {
-            sayQuick("Thank you.", style = Style.Formal)
-            sayQuick("ty", style = Style.Slang)
-            sayQuick("w00t!", style = Style.Slang)
+            sayQuick("Thank you.", style = ChatStyle.Formal)
+            sayQuick("ty", style = ChatStyle.Slang)
+            sayQuick("w00t!", style = ChatStyle.Slang)
         }
 
         botChat("level_up") {
             val skill = utterance.first(ChatEntityType.Skill)
             if (skill != null) {
-                sayQuick("Nice level in: <MultipleChoice>.", skill.key, weight = 2f, style = Style.Warm)
+                sayQuick("Nice level in: <MultipleChoice>.", skill.key, weight = 2f, style = ChatStyle.Warm)
             }
             sayQuick("Congratulations.")
             sayQuick("Nice levels.")
-            sayQuick("Awesome!", style = Style.Slang)
+            sayQuick("Awesome!", style = ChatStyle.Slang)
         }
 
         botChat("are_you_bot") {
             sayQuick("I can only use Quick Chat.")
             sayQuick("I am using Quick Chat.")
-            sayQuick("No.", style = Style.Blunt)
-            sayQuick("lol", style = Style.Slang)
-            say("no lol", style = Style.Slang)
+            sayQuick("No.", style = ChatStyle.Blunt)
+            sayQuick("lol", style = ChatStyle.Slang)
+            say("no lol", style = ChatStyle.Slang)
             say("No, are you?")
         }
 
@@ -129,8 +129,8 @@ class SocialChat :
 
         botChat("insult") {
             sayQuick(":-(")
-            sayQuick("That's bad.", style = Style.Blunt)
-            sayQuick("Meh.", style = Style.Blunt)
+            sayQuick("That's bad.", style = ChatStyle.Blunt)
+            sayQuick("Meh.", style = ChatStyle.Blunt)
             silence()
         }
 
@@ -140,31 +140,31 @@ class SocialChat :
                 return@botChat
             }
             sayQuick("Please stop that.")
-            sayQuick("Could you leave me alone, please?", style = Style.Formal)
+            sayQuick("Could you leave me alone, please?", style = ChatStyle.Formal)
         }
 
         // Replied when the player was talking to someone else
         botChat("not_you") {
-            sayQuick("Sorry.", style = Style.Formal)
+            sayQuick("Sorry.", style = ChatStyle.Formal)
             sayQuick(":-O")
-            sayQuick("Okay.", style = Style.Blunt)
-            say("oh my bad", style = Style.Slang)
-            say("oops lol", style = Style.Slang)
-            say("Oh, sorry! I thought you were talking to me.", style = Style.Warm)
+            sayQuick("Okay.", style = ChatStyle.Blunt)
+            say("oh my bad", style = ChatStyle.Slang)
+            say("oops lol", style = ChatStyle.Slang)
+            say("Oh, sorry! I thought you were talking to me.", style = ChatStyle.Warm)
             silence(1f - persona.chattiness)
         }
 
         botChat("other") {
             silence(3f)
             sayQuick(":-S")
-            sayQuick("O_o", style = Style.Slang)
+            sayQuick("O_o", style = ChatStyle.Slang)
         }
 
         // Not confident what was said, quick chat itself is the perfect excuse
         botChat(BotChatApi.UNKNOWN) {
             silence(2f)
             sayQuick("I can't answer that on Quick Chat.")
-            sayQuick("Please don't ask difficult questions.", style = Style.Blunt)
+            sayQuick("Please don't ask difficult questions.", style = ChatStyle.Blunt)
             sayQuick("I don't know.")
             sayQuick(":-S")
         }

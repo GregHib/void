@@ -3,7 +3,7 @@ package content.skill
 import content.bot.behaviour.product
 import content.bot.behaviour.skill
 import content.bot.chat.api.BotChatApi
-import content.bot.chat.api.Style
+import content.bot.chat.api.ChatStyle
 import content.bot.chat.tag.ChatEntityType
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Tables
@@ -31,7 +31,7 @@ class SkillChat :
         botChat("ask_activity") {
             val skill = activity?.skill
             if (skill == null) {
-                sayQuick("Meh.", style = Style.Blunt)
+                sayQuick("Meh.", style = ChatStyle.Blunt)
                 sayQuick(":-|")
                 sayQuick("Not right now.")
                 return@botChat
@@ -42,7 +42,7 @@ class SkillChat :
                 sayQuick(phrase, product, weight = 3f)
             }
             sayQuick("I am training: <MultipleChoice>.", skill)
-            say("$skill lol", style = Style.Slang)
+            say("$skill lol", style = ChatStyle.Slang)
             say("Just training $skill.")
         }
 

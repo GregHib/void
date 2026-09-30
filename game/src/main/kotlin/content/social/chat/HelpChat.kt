@@ -3,7 +3,7 @@ package content.social.chat
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.ChatContext
 import content.bot.chat.api.ChatLocations
-import content.bot.chat.api.Style
+import content.bot.chat.api.ChatStyle
 import content.bot.chat.tag.ChatEntityType
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Tables
@@ -33,7 +33,7 @@ class HelpChat :
                 asking("offer_help", yes = { sayQuick("Try looking in the Game Guide.") }, no = { sayQuick("Okay.") }) {
                     sayQuick("Do you need help?", weight = 3f)
                 }
-                sayQuick("Try looking in the Game Guide.", style = Style.Blunt)
+                sayQuick("Try looking in the Game Guide.", style = ChatStyle.Blunt)
                 return@botChat
             }
             val tile = Tables.tileOrNull("locations.${target.key}.tile")
@@ -59,7 +59,7 @@ class HelpChat :
         botChat("follow_request", "ask_for_item", "trade_item") {
             sayQuick("Not right now.")
             sayQuick("I am busy, sorry.")
-            sayQuick("No thank you.", style = Style.Formal)
+            sayQuick("No thank you.", style = ChatStyle.Formal)
             sayQuick("Sorry.")
         }
     }

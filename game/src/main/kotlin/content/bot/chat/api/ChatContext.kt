@@ -62,7 +62,7 @@ class ChatContext(
      * Add a candidate reply. [phrase] is the quick chat text with typed placeholders e.g. "Try mining at: <MultipleChoice>."
      * and [args] fill the <MultipleChoice>/<AllItems> placeholders in order. Numeric placeholders fill themselves.
      */
-    fun sayQuick(phrase: String, vararg args: String, weight: Float = 1f, style: Style = Style.Neutral, then: (() -> Unit)? = null) {
+    fun sayQuick(phrase: String, vararg args: String, weight: Float = 1f, style: ChatStyle = ChatStyle.Neutral, then: (() -> Unit)? = null) {
         if (phrase !in phrases) {
             if (missing.add(phrase)) {
                 logger.warn { "Unknown quick chat phrase '$phrase' for intent '$intent'." }
@@ -75,7 +75,7 @@ class ChatContext(
     /**
      * Add a candidate reply typed out in normal chat rather than quick chat, more likely the more the bot's persona likes [Persona.typing]
      */
-    fun say(text: String, weight: Float = 1f, style: Style = Style.Neutral, then: (() -> Unit)? = null) {
+    fun say(text: String, weight: Float = 1f, style: ChatStyle = ChatStyle.Neutral, then: (() -> Unit)? = null) {
         candidates.add(Candidate(text, emptyList(), weight * styleWeight(style) * persona.typing * 2, intent, expectation, then, typed = true))
     }
 
@@ -97,12 +97,12 @@ class ChatContext(
 
     fun chance(probability: Float) = random.nextFloat() < probability
 
-    private fun styleWeight(style: Style): Float = when (style) {
-        Style.Neutral -> 1f
-        Style.Slang -> persona.slang * 2
-        Style.Formal -> (1 - persona.slang) * 2
-        Style.Warm -> persona.friendliness * 2
-        Style.Blunt -> (1 - persona.friendliness) * 2
+    private fun styleWeight(style: ChatStyle): Float = when (style) {
+        ChatStyle.Neutral -> 1f
+        ChatStyle.Slang -> persona.slang * 2
+        ChatStyle.Formal -> (1 - persona.slang) * 2
+        ChatStyle.Warm -> persona.friendliness * 2
+        ChatStyle.Blunt -> (1 - persona.friendliness) * 2
     }
 
     companion object {

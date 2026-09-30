@@ -1,6 +1,6 @@
 package content.bot.chat.api
 
-enum class Style {
+enum class ChatStyle {
     Neutral,
     Slang,
     Formal,
