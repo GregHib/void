@@ -8,7 +8,7 @@ class QuestChat :
     BotChatApi {
     init {
         botChat("ask_quest_points") {
-            say("I have <Varp> Quest Points.")
+            sayQuick("I have <Varp> Quest Points.")
         }
     }
 }

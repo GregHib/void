@@ -17,40 +17,40 @@ class SkillChat :
         botChat("ask_level") {
             val skill = slot(ChatEntityType.Skill)
             if (skill == null) {
-                say("My combat level is: <CombatLevel>.")
+                sayQuick("My combat level is: <CombatLevel>.")
                 return@botChat
             }
             // The level itself is filled in from the bot's stats when sent
-            say("My ${skill(skill.key).name} level is <SkillLevel>.")
+            sayQuick("My ${skill(skill.key).name} level is <SkillLevel>.")
         }
 
         botChat("ask_combat") {
-            say("My combat level is: <CombatLevel>.")
+            sayQuick("My combat level is: <CombatLevel>.")
         }
 
         botChat("ask_activity") {
             val skill = activity?.skill
             if (skill == null) {
-                say("Meh.", style = Style.Curt)
-                say(":-|")
-                say("Not right now.")
+                sayQuick("Meh.", style = Style.Curt)
+                sayQuick(":-|")
+                sayQuick("Not right now.")
                 return@botChat
             }
             val phrase = Tables.stringOrNull("chat_skills.$skill.activity")
             val product = activity?.product
             if (!phrase.isNullOrEmpty() && product != null) {
-                say(phrase, product, weight = 3f)
+                sayQuick(phrase, product, weight = 3f)
             }
-            say("I am training: <MultipleChoice>.", skill)
-            type("$skill lol", style = Style.Slang)
-            type("Just training $skill.")
+            sayQuick("I am training: <MultipleChoice>.", skill)
+            say("$skill lol", style = Style.Slang)
+            say("Just training $skill.")
         }
 
         botChat("ask_where_train") {
             val skill = slot(ChatEntityType.Skill)
             if (skill == null) {
-                say("I don't know.")
-                say("Try looking in the Game Guide.")
+                sayQuick("I don't know.")
+                sayQuick("Try looking in the Game Guide.")
                 return@botChat
             }
             // Advice is for the speakers level, not the bot's
@@ -60,14 +60,14 @@ class SkillChat :
             val available = spots.filter { it.first <= level }
             if (!phrase.isNullOrEmpty() && available.isNotEmpty()) {
                 // Pick from the best two so bots don't all give identical advice
-                say(phrase, available.takeLast(2).random(random).second, weight = 3f)
+                sayQuick(phrase, available.takeLast(2).random(random).second, weight = 3f)
             }
             for ((required, tip) in Tables.intStrListOrNull("chat_skills.${skill.key}.tips") ?: emptyList()) {
                 if (level >= required) {
-                    say(tip)
+                    sayQuick(tip)
                 }
             }
-            say("Try looking in the Game Guide.", weight = 0.2f)
+            sayQuick("Try looking in the Game Guide.", weight = 0.2f)
         }
     }
 

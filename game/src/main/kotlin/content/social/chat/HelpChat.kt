@@ -17,50 +17,50 @@ class HelpChat :
     init {
         botChat("ask_help") {
             if (!chance(persona.helpfulness)) {
-                say("I am busy, sorry.")
-                say("Can you ask someone else? Sorry.")
+                sayQuick("I am busy, sorry.")
+                sayQuick("Can you ask someone else? Sorry.")
                 return@botChat
             }
-            say("Of course.")
-            say("Okay.")
-            say("What are you doing?", weight = 0.5f)
+            sayQuick("Of course.")
+            sayQuick("Okay.")
+            sayQuick("What are you doing?", weight = 0.5f)
         }
 
         botChat("lost") {
             val target = utterance.first(ChatEntityType.Location)
             if (target == null) {
                 // Ask first and wait for yes/no
-                asking("offer_help", yes = { say("Try looking in the Game Guide.") }, no = { say("Okay.") }) {
-                    say("Do you need help?", weight = 3f)
+                asking("offer_help", yes = { sayQuick("Try looking in the Game Guide.") }, no = { sayQuick("Okay.") }) {
+                    sayQuick("Do you need help?", weight = 3f)
                 }
-                say("Try looking in the Game Guide.", style = Style.Curt)
+                sayQuick("Try looking in the Game Guide.", style = Style.Curt)
                 return@botChat
             }
             val tile = Tables.tileOrNull("locations.${target.key}.tile")
             val (landmark, direction) = directions(tile) ?: (null to null)
             if (landmark != null && direction != null) {
-                say("That is <MultipleChoice> of <MultipleChoice>.", direction, landmark, weight = 2f)
+                sayQuick("That is <MultipleChoice> of <MultipleChoice>.", direction, landmark, weight = 2f)
             }
-            say("Go to location: <MultipleChoice>.", target.key, weight = 0.5f)
+            sayQuick("Go to location: <MultipleChoice>.", target.key, weight = 0.5f)
         }
 
         botChat("ask_where_item") {
             val item = slot(ChatEntityType.Item)
             val location = item?.let { Tables.stringOrNull("chat_item_sources.${it.key}.location") }
             if (location.isNullOrEmpty()) {
-                say("I don't know.")
-                say("Try looking in the Game Guide.")
+                sayQuick("I don't know.")
+                sayQuick("Try looking in the Game Guide.")
                 return@botChat
             }
-            say("Go to location: <MultipleChoice>.", location, weight = 3f)
+            sayQuick("Go to location: <MultipleChoice>.", location, weight = 3f)
         }
 
         // Bots can't act on these yet so politely decline
         botChat("follow_request", "ask_for_item", "trade_item") {
-            say("Not right now.")
-            say("I am busy, sorry.")
-            say("No thank you.", style = Style.Formal)
-            say("Sorry.")
+            sayQuick("Not right now.")
+            sayQuick("I am busy, sorry.")
+            sayQuick("No thank you.", style = Style.Formal)
+            sayQuick("Sorry.")
         }
     }
 

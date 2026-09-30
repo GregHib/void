@@ -25,29 +25,29 @@ class StatusChat :
             }
             val destination = destination
             if (destination == null) {
-                type("Nowhere, I'm staying here.", style = Style.Formal)
-                type("nowhere", style = Style.Slang)
-                say("Not right now.")
+                say("Nowhere, I'm staying here.", style = Style.Formal)
+                say("nowhere", style = Style.Slang)
+                sayQuick("Not right now.")
                 val skill = activity?.skill ?: return@botChat
-                say("I am training: <MultipleChoice>.", skill, weight = 0.5f)
+                sayQuick("I am training: <MultipleChoice>.", skill, weight = 0.5f)
                 return@botChat
             }
             val location = ChatLocations.nearest(destination)
             val name = location?.let { ChatLocations.name(it) }
             if ("bank" in destination.tags) {
-                say("I have to go to a bank.", weight = 3f)
-                type("bank", style = Style.Slang)
+                sayQuick("I have to go to a bank.", weight = 3f)
+                say("bank", style = Style.Slang)
                 if (name != null) {
-                    type("To the bank in $name.", weight = 2f, style = Style.Formal)
+                    say("To the bank in $name.", weight = 2f, style = Style.Formal)
                 } else {
-                    type("Just going to the bank.", style = Style.Formal)
+                    say("Just going to the bank.", style = Style.Formal)
                 }
                 return@botChat
             }
             if (location != null) {
-                say("Follow me to: <MultipleChoice>.", location, style = Style.Warm)
-                type("Heading to $name.", weight = 2f, style = Style.Formal)
-                type("$name lol", style = Style.Slang)
+                sayQuick("Follow me to: <MultipleChoice>.", location, style = Style.Warm)
+                say("Heading to $name.", weight = 2f, style = Style.Formal)
+                say("$name lol", style = Style.Slang)
             }
         }
 
@@ -56,16 +56,16 @@ class StatusChat :
                 stuck()
                 return@botChat
             }
-            say("No.", style = Style.Curt)
-            say("I'm okay.")
-            type("nope", style = Style.Slang)
-            type("No, I'm fine thanks.", style = Style.Warm)
+            sayQuick("No.", style = Style.Curt)
+            sayQuick("I'm okay.")
+            say("nope", style = Style.Slang)
+            say("No, I'm fine thanks.", style = Style.Warm)
             if (destination?.tags?.contains("bank") == true) {
-                say("I have to go to a bank.")
+                sayQuick("I have to go to a bank.")
             }
             val skill = activity?.skill
             if (skill != null) {
-                say("I am training: <MultipleChoice>.", skill, weight = 0.5f)
+                sayQuick("I am training: <MultipleChoice>.", skill, weight = 0.5f)
             }
         }
 
@@ -76,12 +76,12 @@ class StatusChat :
             }
             val destination = destination ?: return@botChat
             if ("bank" in destination.tags) {
-                say("I have to go to a bank.", weight = 2f)
-                type("banking", style = Style.Slang)
+                sayQuick("I have to go to a bank.", weight = 2f)
+                say("banking", style = Style.Slang)
                 return@botChat
             }
             val location = ChatLocations.nearest(destination) ?: return@botChat
-            type("Heading to ${ChatLocations.name(location)}.")
+            say("Heading to ${ChatLocations.name(location)}.")
         }
     }
 
@@ -94,9 +94,9 @@ class StatusChat :
                 bot.bot.frames.peek().fail(Reason.Stuck)
             }
         }
-        say("Yes.", then = unstick)
-        say("Help!", then = unstick)
-        type("yeah :(", style = Style.Slang, then = unstick)
-        type("Yes, I can't seem to get past here.", weight = 2f, style = Style.Formal, then = unstick)
+        sayQuick("Yes.", then = unstick)
+        sayQuick("Help!", then = unstick)
+        say("yeah :(", style = Style.Slang, then = unstick)
+        say("Yes, I can't seem to get past here.", weight = 2f, style = Style.Formal, then = unstick)
     }
 }

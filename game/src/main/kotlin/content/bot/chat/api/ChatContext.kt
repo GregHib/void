@@ -62,7 +62,7 @@ class ChatContext(
      * Add a candidate reply. [phrase] is the quick chat text with typed placeholders e.g. "Try mining at: <MultipleChoice>."
      * and [args] fill the <MultipleChoice>/<AllItems> placeholders in order. Numeric placeholders fill themselves.
      */
-    fun say(phrase: String, vararg args: String, weight: Float = 1f, style: Style = Style.Neutral, then: (() -> Unit)? = null) {
+    fun sayQuick(phrase: String, vararg args: String, weight: Float = 1f, style: Style = Style.Neutral, then: (() -> Unit)? = null) {
         if (phrase !in phrases) {
             if (missing.add(phrase)) {
                 logger.warn { "Unknown quick chat phrase '$phrase' for intent '$intent'." }
@@ -75,7 +75,7 @@ class ChatContext(
     /**
      * Add a candidate reply typed out in normal chat rather than quick chat, more likely the more the bot's persona likes [Persona.typing]
      */
-    fun type(text: String, weight: Float = 1f, style: Style = Style.Neutral, then: (() -> Unit)? = null) {
+    fun say(text: String, weight: Float = 1f, style: Style = Style.Neutral, then: (() -> Unit)? = null) {
         candidates.add(Candidate(text, emptyList(), weight * styleWeight(style) * persona.typing * 2, intent, expectation, then, typed = true))
     }
 
