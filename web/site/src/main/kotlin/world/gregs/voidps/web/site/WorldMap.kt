@@ -289,22 +289,12 @@ object WorldMap {
                     }
                     rawHtml(
                         """
-                        <div class="wm-nav-files" style="display:flex;flex-direction:column;gap:4px;max-height:260px;overflow-y:auto">
+                        <div style="display:flex;flex-direction:column;gap:4px;max-height:260px;overflow-y:auto">
                           <template x-for="f in navFiles" :key="f.path">
-                            <div>
-                              <button type="button" class="wm-nav-file" :class="{ 'wm-nav-file-target': f.index === navTarget }" :title="f.path + (f.writable ? '' : ' (read-only in this browser: Save downloads a copy)')" @click="navToggleFile(f.index)">
-                                <span class="wm-nav-file-name" x-text="(navOpen === f.index ? '▾ ' : '▸ ') + f.name + (f.dirty ? ' •' : '')"></span>
-                                <span class="wm-nav-file-count" x-text="f.edges"></span>
-                              </button>
-                              <template x-if="navOpen === f.index">
-                                <div class="wm-nav-points">
-                                  <template x-for="p in navPoints" :key="p.key">
-                                    <button type="button" class="wm-nav-point" :class="{ 'wm-nav-point-selected': p.key === navSelectedKey }" :data-nav-selected="p.key === navSelectedKey" @click="navPickPoint(p.key)" x-text="p.label"></button>
-                                  </template>
-                                  <div class="wm-nav-points-empty" x-show="!navPoints.length">No edges yet.</div>
-                                </div>
-                              </template>
-                            </div>
+                            <button type="button" class="wm-nav-file" :class="{ 'wm-nav-file-target': f.index === navTarget }" :title="f.path + (f.writable ? '' : ' (read-only in this browser: Save downloads a copy)')" @click="navPickFile(f.index)">
+                              <span class="wm-nav-file-name" x-text="f.name + (f.dirty ? ' •' : '')"></span>
+                              <span class="wm-nav-file-count" x-text="f.edges"></span>
+                            </button>
                           </template>
                         </div>
                         """,

@@ -559,31 +559,6 @@
     return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
   }
 
-  // Every distinct tile an open file's edges touch, in level/x/y order, for the panel's list.
-  function navPointsOf(file) {
-    var seen = {};
-    var tiles = [];
-    for (var i = 0; i < file.items.length; i++) {
-      var edge = file.items[i].edge;
-      if (!edge) {
-        continue;
-      }
-      [edge.from, edge.to].forEach(function (t) {
-        var key = tileKey(t);
-        if (!seen[key]) {
-          seen[key] = true;
-          tiles.push({ key: key, x: t.x, y: t.y, level: t.level || 0 });
-        }
-      });
-    }
-    tiles.sort(function (a, b) {
-      return a.level - b.level || a.x - b.x || a.y - b.y;
-    });
-    return tiles.map(function (t) {
-      return { key: t.key, label: t.x + ', ' + t.y + (t.level ? ', ' + t.level : ''), x: t.x, y: t.y, level: t.level };
-    });
-  }
-
   window.VoidNavGraph = { parse: parseNavFile, serialize: serializeNavFile };
 
   // --- Alpine methods --------------------------------------------------------------------------
@@ -621,12 +596,8 @@
       navEdgePanelOpen: true,
       navLoaded: false,
       navFiles: [],
+      // The file new edges go into. Follows the selection.
       navTarget: 0,
-      // The file whose points are listed in the panel (-1: none). Follows the selection, and is
-      // where new edges go.
-      navOpen: -1,
-      navPoints: [],
-      navSelectedKey: '',
       navDirty: false,
       navCanUndo: false,
       navStats: '',
@@ -865,30 +836,12 @@
         this.navError = '';
         this.navNotice = '';
         this.navTarget = 0;
-        this.navOpen = -1;
         this.navRebuild();
       },
 
-      // Expands `index`'s point list (collapsing the last) and makes it the file new edges go to;
-      // clicking the open one collapses it.
-      navToggleFile: function (index) {
-        if (this.navOpen === index) {
-          this.navOpen = -1;
-        } else {
-          this.navOpen = index;
-          this.navTarget = index;
-        }
-        this.navPoints = this.navOpen >= 0 ? navPointsOf(nav.files[this.navOpen]) : [];
-      },
-
-      // A row of a file's point list: selects the point and moves the map onto it.
-      navPickPoint: function (key) {
-        var node = nav.nodes[key];
-        if (!node) {
-          return;
-        }
-        this.navSelectNode(key);
-        this.focusOn(node.x, node.y, node.level);
+      // A file row: makes it the file new edges go into.
+      navPickFile: function (index) {
+        this.navTarget = index;
       },
 
       // Adds an empty `*.nav-edges.toml`. Where the browser can write files it's created on disk
@@ -913,8 +866,7 @@
           nav.undo = [];
           self.navError = '';
           self.showNavGraph = true;
-          self.navOpen = nav.files.length - 1;
-          self.navTarget = self.navOpen;
+          self.navTarget = nav.files.length - 1;
           self.navRebuild();
         }
         if (typeof window.showSaveFilePicker === 'function') {
@@ -1121,12 +1073,9 @@
         if (this.navTarget >= nav.files.length) {
           this.navTarget = 0;
         }
-        if (this.navOpen >= nav.files.length) {
-          this.navOpen = -1;
-        }
         var sel = nav.selected;
-        // A newly picked point or edge opens the file it lives in (and collapses the rest); an
-        // unchanged selection leaves whichever file was opened by hand alone.
+        // A newly picked point or edge makes the file it lives in the target; an unchanged
+        // selection leaves whichever file was picked by hand alone.
         var sig = !sel ? '' : sel.node ? sel.node : tileKey(sel.edge.from) + '>' + tileKey(sel.edge.to) + '@' + sel.edge.file;
         if (sig !== nav.selSig) {
           nav.selSig = sig;
@@ -1143,28 +1092,9 @@
             owner = sel.edge.file;
           }
           if (owner >= 0) {
-            this.navOpen = owner;
             this.navTarget = owner;
           }
-          if (sig) {
-            this.$nextTick(function () {
-              // Scrolls only the file list, not the page: `scrollIntoView` would also scroll every
-              // ancestor, jolting the whole map on each click that selects something.
-              var row = document.querySelector('[data-nav-selected="true"]');
-              var list = row && row.closest('.wm-nav-files');
-              if (list) {
-                var top = row.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop;
-                if (top < list.scrollTop) {
-                  list.scrollTop = top;
-                } else if (top + row.offsetHeight > list.scrollTop + list.clientHeight) {
-                  list.scrollTop = top + row.offsetHeight - list.clientHeight;
-                }
-              }
-            });
-          }
         }
-        this.navSelectedKey = sel && sel.node ? sel.node : '';
-        this.navPoints = this.navOpen >= 0 ? navPointsOf(nav.files[this.navOpen]) : [];
         if (!sel) {
           this.navSelection = '';
         } else if (sel.node) {
