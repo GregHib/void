@@ -1,20 +1,19 @@
-package content.area.wilderness
+package content.minigame.stealing_creation
 
-import content.entity.player.dialogue.Confused
+import content.entity.player.dialogue.EvilLaugh
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.Quiz
-import content.entity.player.dialogue.Shock
+import content.entity.player.dialogue.Shifty
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
-import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 
-class Mystic : Script {
+class Mystic3 : Script {
 
     private enum class PersonalScoreTopic {
         GATHERING,
@@ -23,14 +22,9 @@ class Mystic : Script {
         WINNING_BONUS,
     }
 
-    private enum class GatherClayTopic {
-        TOOLS,
-        LEVEL_REQUIREMENTS,
-    }
-
     init {
-        npcOperate("Talk-to", "mystic") {
-            npc<Neutral>("Greetings, adventurer.")
+        npcOperate("Talk-to", "mystic_3") {
+            npc<Shifty>("Soon they'll be finished.")
             mainMenu()
         }
     }
@@ -44,14 +38,10 @@ class Mystic : Script {
                 primordialRealmQuestions()
             }
             if (!hideFinishedChoice) {
-                option<Quiz>("What is this place?") {
-                    npc<Neutral>("This is our humble encampment. It all started when our master received, in his dreams, a call from the sacred beings of the Wilderness.")
-                    player<Confused>("The sacred beings of the Wilderness?")
-                    npc<Neutral>("Yes. The ghostly remains of some of the greatest warriors of all time. I believe your people call them the revenants.")
-                    npc<Neutral>("These sacred beings dwell the Wilderness, continuing to fight even though their ancient wars are long finished. They showed our master how to open the portal to a new world.")
-                    npc<Happy>("But not just any world! That world they led us to contains the very stuff of creation! A sacred clay that can be turned into anything we want, and it assumes the properties of the shape it adopts!")
-                    player<Shock>("That sounds awesome!")
-                    npc<Neutral>("Indeed. It's with this very material that we intend on achieving our goal.")
+                option<Quiz>("What will be finished?") {
+                    npc<EvilLaugh>("The new bodies! The new bodies for the Holy Ones!")
+                    npc<Happy>("I used to make statues in Keldagrim. Boring dead statues, made from stone. My whole life was pointless.")
+                    npc<EvilLaugh>("But now I make statues from sacred clay, to be the new bodies of the Holy Ones!")
                     mainMenu(hideFinishedChoice = true)
                 }
             }
@@ -129,20 +119,52 @@ class Mystic : Script {
         }
     }
 
-    private suspend fun Player.gatherClayQuestion(lastAsked: GatherClayTopic? = null) {
+    private suspend fun Player.gatherClayQuestion() {
         choice("Select an option") {
-            if (lastAsked != GatherClayTopic.TOOLS) {
-                option<Neutral>("Tell me about what tools I need.") {
-                    npc<Neutral>("You will need a pickaxe to mine clay from a rock, a hatchet to cut down a tree, a harpoon to catch clay in a pool, and a butterfly net to gather from a swarm.")
-                    npc<Neutral>("You should try to use a tool that is one class below the location you are gathering from, or better. For example, to mine a class 3 rock you should try to use a class 2 pickaxe.")
-                    npc<Neutral>("You can gather clay without the appropriate tool, but it will be very slow.")
-                    gatherClayQuestion(GatherClayTopic.TOOLS)
+            option<Neutral>("Tell me what tools I need.") {
+                npc<Neutral>("You will need a pickaxe to mine clay from a rock, a hatchet to cut down a tree, a harpoon to catch clay in a pool, and a butterfly net to gather from a swarm.")
+                npc<Neutral>("You should try to use a tool that is one class below the location you are gathering from, or better. For example, to mine a class 3 rock you should try to use a class 2 pickaxe.")
+                npc<Neutral>("You can gather clay without the appropriate tool, but it will be very slow.")
+                choice("Select an option") {
+                    option<Neutral>("Tell me about the level requirements.") {
+                        npc<Neutral>("There is no requirement to gather class 1 clay fragments. To gather class 2 clay you need level 20 in the relevant skill; class 3 requires level 40; class 4, level 60; and class 5 level 80.")
+                        gatherClayToolsReturnQuestion()
+                    }
+                    option("Back to my other questions...") {
+                        primordialRealmQuestions()
+                    }
+                    option<Neutral>("That's all I need to know.") {
+                    }
                 }
             }
-            if (lastAsked != GatherClayTopic.LEVEL_REQUIREMENTS) {
-                option<Neutral>("Tell me about the level requirements.") {
-                    npc<Neutral>("There is no requirement to gather class 1 clay fragments. To gather class 2 clay you need level 20 in the relevant skill; class 3 requires level 40; class 4, level 60; and class 5 level 80.")
-                    gatherClayQuestion(GatherClayTopic.LEVEL_REQUIREMENTS)
+            option<Neutral>("Tell me about the level requirements.") {
+                npc<Neutral>("There is no requirement to gather class 1 clay fragments. To gather class 2 clay you need level 20 in the relevant skill; class 3 requires level 40; class 4, level 60; and class 5 level 80.")
+                gatherClayToolsReturnQuestion()
+            }
+            option("Back to my other questions...") {
+                primordialRealmQuestions()
+            }
+            option<Neutral>("That's all I need to know.") {
+            }
+        }
+    }
+
+    private suspend fun Player.gatherClayToolsReturnQuestion() {
+        choice("Select an option") {
+            option<Neutral>("Tell me about what tools I need.") {
+                npc<Neutral>("You will need a pickaxe to mine clay from a rock, a hatchet to cut down a tree, a harpoon to catch clay in a pool, and a butterfly net to gather from a swarm.")
+                npc<Neutral>("You should try to use a tool that is one class below the location you are gathering from, or better. For example, to mine a class 3 rock you should try to use a class 2 pickaxe.")
+                npc<Neutral>("You can gather clay without the appropriate tool, but it will be very slow.")
+                choice("Select an option") {
+                    option<Neutral>("Tell me about the level requirements.") {
+                        npc<Neutral>("There is no requirement to gather class 1 clay fragments. To gather class 2 clay you need level 20 in the relevant skill; class 3 requires level 40; class 4, level 60; and class 5 level 80.")
+                        gatherClayToolsReturnQuestion()
+                    }
+                    option("Back to my other questions...") {
+                        primordialRealmQuestions()
+                    }
+                    option<Neutral>("That's all I need to know.") {
+                    }
                 }
             }
             option("Back to my other questions...") {
@@ -314,7 +336,7 @@ class Mystic : Script {
             }
             option<Neutral>("Tell me about Summoning creatures.") {
                 npc<Neutral>("You can make Summoning pouches and scrolls out of sacred clay at a creation kiln.")
-                npc<Neutral>("Once you have a scroll, you can summon the creature as normal. As with everything in the primordial realm, creatures made from higher classes of clay are more powerful in combat.")
+                npc<Neutral>("Once you have a pouch, you can summon the creature as normal. As with everything in the primordial realm, creatures made from higher classes of clay are more powerful in combat.")
                 npc<Neutral>("The creatures can also carry items for you. Those made from higher classes of clay can carry more items at a time.")
                 npc<Neutral>("The sacred clay Summoning scroll causes your familiar to teleport all the items it is carrying to your team's base.")
                 npc<Neutral>("You can recharge your Summoning points at the altars scattered around the realm.")

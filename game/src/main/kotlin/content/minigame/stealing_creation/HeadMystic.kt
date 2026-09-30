@@ -1,4 +1,4 @@
-package content.area.wilderness
+package content.minigame.stealing_creation
 
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Neutral

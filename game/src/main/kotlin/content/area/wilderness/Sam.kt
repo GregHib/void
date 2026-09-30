@@ -9,10 +9,10 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class Larry : Script {
+class Sam : Script {
 
     init {
-        npcOperate("Talk-to", "larry") { (target) ->
+        npcOperate("Talk-to", "sam") { (target) ->
             wildernessCapeShop(target.def["shop"])
         }
     }
