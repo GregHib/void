@@ -56,7 +56,7 @@ class StatusChat :
                 stuck()
                 return@botChat
             }
-            sayQuick("No.", style = Style.Curt)
+            sayQuick("No.", style = Style.Blunt)
             sayQuick("I'm okay.")
             say("nope", style = Style.Slang)
             say("No, I'm fine thanks.", style = Style.Warm)

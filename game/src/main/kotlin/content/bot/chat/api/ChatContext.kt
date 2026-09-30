@@ -102,7 +102,7 @@ class ChatContext(
         Style.Slang -> persona.slang * 2
         Style.Formal -> (1 - persona.slang) * 2
         Style.Warm -> persona.friendliness * 2
-        Style.Curt -> (1 - persona.friendliness) * 2
+        Style.Blunt -> (1 - persona.friendliness) * 2
     }
 
     companion object {

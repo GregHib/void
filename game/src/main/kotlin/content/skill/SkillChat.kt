@@ -31,7 +31,7 @@ class SkillChat :
         botChat("ask_activity") {
             val skill = activity?.skill
             if (skill == null) {
-                sayQuick("Meh.", style = Style.Curt)
+                sayQuick("Meh.", style = Style.Blunt)
                 sayQuick(":-|")
                 sayQuick("Not right now.")
                 return@botChat

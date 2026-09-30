@@ -5,5 +5,5 @@ enum class Style {
     Slang,
     Formal,
     Warm,
-    Curt,
+    Blunt,
 }

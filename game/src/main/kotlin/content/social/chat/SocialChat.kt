@@ -27,7 +27,7 @@ class SocialChat :
             sayQuick("Hello!", style = Style.Warm)
             sayQuick("Hiya!", style = Style.Warm)
             sayQuick("Hi.")
-            sayQuick("Hey.", style = Style.Curt)
+            sayQuick("Hey.", style = Style.Blunt)
             sayQuick("Yo!", style = Style.Slang)
             sayQuick("Sup?", style = Style.Slang)
             say("hey", style = Style.Slang)
@@ -60,9 +60,9 @@ class SocialChat :
             sayQuick("I'm great!", style = Style.Warm)
             sayQuick("I'm good.")
             sayQuick("I'm okay.")
-            sayQuick("Meh.", style = Style.Curt)
+            sayQuick("Meh.", style = Style.Blunt)
             if (activity != null) {
-                sayQuick("I am busy, sorry.", weight = 0.3f, style = Style.Curt)
+                sayQuick("I am busy, sorry.", weight = 0.3f, style = Style.Blunt)
             }
         }
 
@@ -85,7 +85,7 @@ class SocialChat :
             sayQuick("lol", style = Style.Slang)
             sayQuick("Haha!", style = Style.Formal)
             sayQuick(":-D")
-            sayQuick("Heh.", style = Style.Curt)
+            sayQuick("Heh.", style = Style.Blunt)
             silence(1f - persona.chattiness)
         }
 
@@ -115,7 +115,7 @@ class SocialChat :
         botChat("are_you_bot") {
             sayQuick("I can only use Quick Chat.")
             sayQuick("I am using Quick Chat.")
-            sayQuick("No.", style = Style.Curt)
+            sayQuick("No.", style = Style.Blunt)
             sayQuick("lol", style = Style.Slang)
             say("no lol", style = Style.Slang)
             say("No, are you?")
@@ -129,8 +129,8 @@ class SocialChat :
 
         botChat("insult") {
             sayQuick(":-(")
-            sayQuick("That's bad.", style = Style.Curt)
-            sayQuick("Meh.", style = Style.Curt)
+            sayQuick("That's bad.", style = Style.Blunt)
+            sayQuick("Meh.", style = Style.Blunt)
             silence()
         }
 
@@ -147,7 +147,7 @@ class SocialChat :
         botChat("not_you") {
             sayQuick("Sorry.", style = Style.Formal)
             sayQuick(":-O")
-            sayQuick("Okay.", style = Style.Curt)
+            sayQuick("Okay.", style = Style.Blunt)
             say("oh my bad", style = Style.Slang)
             say("oops lol", style = Style.Slang)
             say("Oh, sorry! I thought you were talking to me.", style = Style.Warm)
@@ -164,7 +164,7 @@ class SocialChat :
         botChat(BotChatApi.UNKNOWN) {
             silence(2f)
             sayQuick("I can't answer that on Quick Chat.")
-            sayQuick("Please don't ask difficult questions.", style = Style.Curt)
+            sayQuick("Please don't ask difficult questions.", style = Style.Blunt)
             sayQuick("I don't know.")
             sayQuick(":-S")
         }

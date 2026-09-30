@@ -33,7 +33,7 @@ class HelpChat :
                 asking("offer_help", yes = { sayQuick("Try looking in the Game Guide.") }, no = { sayQuick("Okay.") }) {
                     sayQuick("Do you need help?", weight = 3f)
                 }
-                sayQuick("Try looking in the Game Guide.", style = Style.Curt)
+                sayQuick("Try looking in the Game Guide.", style = Style.Blunt)
                 return@botChat
             }
             val tile = Tables.tileOrNull("locations.${target.key}.tile")
