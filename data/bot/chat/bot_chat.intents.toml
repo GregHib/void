@@ -1,0 +1,228 @@
+[greet]
+examples = [
+    "hi", "hello", "hey", "hiya", "yo", "sup", "hey there", "hello there mate", "hi how is it going", "good morning",
+    "evening all", "heya", "wassup", "hi there bot", "oh hey its you again", "greetings traveller", "howdy",
+    "hey man", "hi all", "hello everyone", "yo yo", "ello", "hey hows it going", "hi friend", "morning", "afternoon",
+    "hey you", "sup dude", "hiii", "hey whats up", "heya mate", "hello again", "hi :)", "o/", "hey there buddy",
+]
+
+[farewell]
+examples = [
+    "bye", "cya", "see you later", "goodbye", "got to go", "i have to log off", "ttyl", "later", "night", "goodnight all",
+    "bye mate", "im off now", "logging out bye", "i am heading off now", "catch you later", "brb",
+    "got to go bye", "i have to go now", "gtg", "g2g", "bye bye", "see ya", "im going to log", "time to log off", "ok bye",
+    "later mate", "going now", "cya later", "bye for now", "gotta go", "im out", "peace", "see you around", "night all",
+]
+
+[thanks]
+examples = [
+    "thanks", "ty", "thank you", "thx mate", "thanks a lot", "cheers", "much appreciated", "thank you so much",
+    "ty that helped", "thanks for the help", "tyvm",
+    "thanks man", "thank u", "ty so much", "thanks for that", "thx a lot", "thank you kindly", "appreciate it", "ty ty",
+    "thanks dude", "many thanks", "cheers mate", "nice one thanks",
+]
+
+[how_are_you]
+examples = [
+    "how are you", "how are u", "hru", "how r u doing", "you ok", "how is your day", "how have you been", "you alright",
+    "hows it going", "how you doing mate", "are you well", "whats up with you", "how do you feel",
+    "hru?", "how r u", "how are you today", "how you been", "hows life", "how are things", "you good?", "how is it going mate",
+    "hows your day been", "feeling ok?", "hows things with you", "how you feeling",
+]
+
+[ask_level]
+examples = [
+    "what is your mining level", "whats ur wc lvl", "what level is your fishing", "what fishing level are you", "mining lvl?",
+    "how high is your cooking", "what is your level in attack", "whats your str level", "wat lvl mage r u",
+    "what agility level do you have", "your prayer level?", "how good is your smithing", "what level are you in slayer",
+    "what summoning lvl", "you got 99 fishing?",
+    "whats your attack level", "what is ur fishing lvl", "what lvl is your mining", "how high is ur wc",
+    "what level woodcutting are you", "whats your magic lvl", "what's your ranged at", "defence level?", "got 99 mining?",
+    "is your cooking high", "what thieving lvl u got", "what's your slayer level", "what fm level are you",
+    "how much hp do you have",
+]
+
+[ask_combat]
+examples = [
+    "what is your combat level", "whats ur cb", "what cb are you", "combat level?", "how high is your combat",
+    "what level are you", "wat lvl r u", "your combat?", "how strong are you", "what is your cmb lvl",
+    "what combat are you", "whats your cb level", "what's ur combat lvl", "what level r u", "how high is your cb",
+    "what lvl are you mate", "combat lvl?", "are you high level", "what cb r u",
+]
+
+[ask_quest_points]
+examples = [
+    "how many quest points do you have", "how many qp", "qp?", "how many quests have you done", "what are your quest points",
+    "you done many quests",
+    "how many qps", "what qp are you", "how many quest points u got", "do you have many quest points", "qp count?",
+    "how many quests u done",
+]
+
+[ask_activity]
+examples = [
+    "what are you doing", "wat u doing", "what r u up to", "whatcha doing", "what are you training", "what u training",
+    "what are you mining", "what are you fishing", "what you making", "what are you up to", "doing anything fun",
+    "what are you working on", "why are you here",
+    "what u up to", "what are you doing here", "wat r u doing", "what u doin", "what are you training now",
+    "what are you chopping", "what are you cooking", "what skill are you training", "what are you busy with",
+    "whatcha up to", "what are you doing mate", "what are u working on",
+]
+
+[ask_where_train]
+examples = [
+    "where should i train mining", "where is a good place to train wc", "wheres good fishing", "best place to train fishing",
+    "where do i train agility", "where can i mine", "where can i train cooking at my level", "what should i fish at my level",
+    "where do people train thieving", "how do i train firemaking", "best way to level crafting",
+    "where should i go to train attack", "any good spots for woodcutting", "what is the best way to train runecrafting",
+    "how should i level prayer",
+    "where to train mining", "best place for fishing", "where to level agility", "where should i fish", "good place to mine",
+    "where do i train my attack", "where can i level woodcutting", "best spot for thieving", "where should i go to fish",
+    "how do i level fishing", "where to train my ranged", "where is good to train strength", "any tips for mining",
+]
+
+[ask_where_item]
+examples = [
+    "where can i get a rune scimitar", "where do i get lobsters", "where can i buy a whip", "how do i get iron ore",
+    "where to find coal", "where can i get food", "who sells shrimp", "where do i buy swordfish",
+    "how can i get a dragon scimitar", "wheres a good place to get coins", "what drops a whip",
+    "where can i find coal", "where do you get lobsters", "where to buy a rune scimitar", "where can i get feathers",
+    "how do i get shrimps", "where to get iron ore", "who sells runes", "where can i buy a pickaxe", "where can i find cowhide",
+    "where do i buy air runes",
+]
+
+[ask_for_item]
+examples = [
+    "can i have some food", "give me food", "can i have some gp", "can you give me money", "spare some coins",
+    "please give me a lobster", "can i borrow your whip", "can you lend me some gold", "got any food", "can i get some sharks",
+    "i need food please", "free stuff please", "can u give me ur dscim",
+    "can you give me some coins", "give me gp plz", "can i have your whip", "can u give me a shark", "can you spare some gp",
+    "gimme money", "can i have some lobsters", "donate me something", "can you give me armour", "give me free stuff",
+]
+
+[trade_item]
+examples = [
+    "can i buy your whip", "want to sell your lobsters", "buying iron ore", "selling coal", "selling rune scimitar cheap",
+    "how much for your shark", "will you sell me some coal", "i want to buy your food", "buying lobsters 200 each",
+    "wanna trade", "trade me", "want to trade",
+    "buying coal", "selling my whip", "want to buy lobsters", "anyone selling shark", "buy my coal", "wanna trade me",
+    "selling iron ore cheap", "ill buy your lobsters", "trade?", "i want to trade",
+]
+
+[ask_help]
+examples = [
+    "can you help me", "help", "help me please", "i need help", "could you help me with something", "please help", "halp",
+    "can anyone help", "someone help me", "i need assistance",
+    "can u help", "help me", "i need some help", "could you help", "can someone help me", "help pls", "need help",
+    "can you help me out", "please help me", "can you assist me",
+]
+
+[lost]
+examples = [
+    "im lost", "where am i", "i do not know where i am", "how do i get to varrock", "how do i get to lumbridge",
+    "which way is falador", "where is the grand exchange", "how far is draynor", "i cant find al kharid",
+    "where is catherby from here", "how do i get out of here",
+    "where am i?", "im lost help", "how do i get to falador", "which way is varrock", "where is lumbridge",
+    "how do i get to the ge", "how far is varrock", "what way to draynor", "i dont know where to go",
+    "how do i get to catherby", "where is edgeville", "i got lost",
+]
+
+[follow_request]
+examples = [
+    "follow me", "come with me", "come here", "come over here", "follow", "lets go", "walk with me",
+    "come to varrock with me", "can you follow me",
+    "follow me pls", "come with me mate", "come here please", "follow me to varrock", "come", "walk with me please",
+    "come this way", "follow me quickly",
+]
+
+[follow_up]
+examples = [
+    "what about fishing", "and woodcutting", "and mining?", "what about you", "and you?", "u?", "you?", "how about you",
+    "what about your attack", "and your cooking level", "same question", "what about strength",
+    "what about mining", "and cooking", "and fishing?", "what about agility", "how about woodcutting", "and yours?",
+    "what about your fishing", "and u?", "and your attack?", "what about thieving then",
+]
+
+[affirm]
+examples = [
+    "yes", "yeah", "yep", "sure", "ok", "okay", "yes please", "of course", "definitely", "alright", "fine", "ye", "yup sure",
+    "yes pls", "yeah sure", "ok sure", "yep please", "sounds good", "sure thing", "ok then", "yes i do", "of course yes",
+    "ya", "yes definitely", "alright then",
+]
+
+[deny]
+examples = [
+    "no", "nope", "nah", "no thanks", "no thank you", "not really", "never", "no way", "i do not think so", "nty",
+    "no thanks mate", "nah im good", "no ty", "not now", "nope not really", "no i dont", "no im fine", "nah thanks",
+    "no need", "not at all",
+]
+
+[laugh]
+examples = [
+    "lol", "haha", "lmao", "rofl", "hehe", "xd", "lolol", "hahaha thats funny", "thats hilarious",
+    "hahaha", "lol xd", "hehehe", "lololol", "haha nice", "thats funny lol", "lmfao",
+]
+
+[compliment]
+examples = [
+    "nice", "you look cool", "nice gear", "nice whip", "cool outfit", "nice armour", "i like your style", "you are awesome",
+    "nice cape", "you are cool", "sweet weapon", "wow nice stuff", "you are good at this",
+    "cool gear", "nice outfit", "your armour is cool", "nice weapon", "love your cape", "you look awesome", "nice stuff mate",
+    "great outfit", "your gear is sick",
+]
+
+[congratulate]
+examples = [
+    "gz", "grats", "congrats", "congratulations", "well done", "gratz on the level", "gz on 99", "nice level", "good job",
+    "nice one",
+    "gratz", "congrats mate", "well done mate", "gz man", "nice lvl", "nice one mate", "grats on the level",
+    "gz on your level",
+]
+
+[level_up]
+examples = [
+    "i just got 99 fishing", "yay 50 mining", "i leveled up", "just got 70 attack", "woot level up", "finally got 99",
+    "i got 60 wc", "level up", "i got a level",
+    "i just leveled", "i got 50 attack", "finally 99 cooking", "just hit 60 mining", "level up woot",
+    "i got 40 fishing just now", "got my 70 range", "just got a level", "yay 99 wc", "level 50 strength woot",
+]
+
+[insult]
+examples = [
+    "you suck", "noob", "ur a noob", "you are so bad", "shut up", "go away", "you are annoying", "stupid bot", "idiot",
+    "leave me alone", "get lost", "nobody likes you",
+    "ur bad", "ur so bad", "get lost noob", "stfu", "you are rubbish", "you are useless", "go away noob", "loser",
+    "idiot bot", "you suck at this", "nobody asked",
+]
+
+[are_you_bot]
+examples = [
+    "are you a bot", "r u a bot", "you a bot?", "are you real", "bot?", "are you human", "are you afk", "are you a person",
+    "is this a bot", "you are a bot arent you",
+    "are u a bot", "r u real?", "are you a real player", "bot or not?", "are you a macro", "is that a bot", "are you human?",
+    "you real?", "are you afk or a bot",
+]
+
+[feeling_good]
+examples = [
+    "im good", "good thanks", "im great", "not bad", "fine thanks", "pretty good", "doing well", "im happy", "all good here",
+    "great thanks you", "im good ty", "never better", "awesome day so far",
+    "great thanks", "im fine", "good ty", "doing good", "not too bad", "pretty well thanks", "im alright", "very good",
+    "good good", "all good",
+]
+
+[sad]
+examples = [
+    "i died", "i lost everything", "i lost my items", "im so sad", "this sucks", "i got killed", "my day is terrible",
+    "i got scammed", "i hate this", "i failed my quest", "i burnt all my food",
+    "i died again", "i lost all my stuff", "im sad", "this is terrible", "i got pked", "i hate this game", "i lost my whip",
+    "i died to a goblin", "ugh i failed", "feeling down", "im having a bad day",
+]
+
+[other]
+examples = [
+    "the weather is nice today", "what did you have for dinner", "i like pizza", "my cat is asleep", "asdfgh", "buying gf",
+    "anyone watch the game last night", "my mum is calling me", "this song is good", "i should be doing homework", "hmm",
+    "dfjsdkjf", "where is my phone",
+    "my dog is barking", "what time is it", "i like trains", "blah blah", "afk", "just chilling", "lalala",
+    "its raining here", "brb food", "anyone here", "hmm ok",
+]
