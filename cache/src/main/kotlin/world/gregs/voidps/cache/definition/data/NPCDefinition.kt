@@ -22,6 +22,14 @@ data class NPCDefinition(
     var soundDistance: Int = 0,
     override var stringId: String = "",
     override var params: Map<Int, Any>? = null,
+    // Fields below here are custom params here for performance reasons
+    var allowedUnder: Boolean = false, // Custom
+    var solid: Boolean = true, // Custom
+    var blocksPlayers: Boolean = false, // Custom
+    var huntRange: Int = 5, // Custom
+    var huntMode: String? = null, // Custom
+    var regenRate: Int = 25, // Custom
+    var hitpoints: Int = 10, // Custom
 ) : Definition,
     Transforms,
     Parameterized {
@@ -52,6 +60,13 @@ data class NPCDefinition(
         if (runSound != other.runSound) return false
         if (soundDistance != other.soundDistance) return false
         if (stringId != other.stringId) return false
+        if (allowedUnder != other.allowedUnder) return false
+        if (solid != other.solid) return false
+        if (blocksPlayers != other.blocksPlayers) return false
+        if (huntRange != other.huntRange) return false
+        if (huntMode != other.huntMode) return false
+        if (regenRate != other.regenRate) return false
+        if (hitpoints != other.hitpoints) return false
         return params == other.params
     }
 
@@ -73,6 +88,13 @@ data class NPCDefinition(
         result = 31 * result + soundDistance
         result = 31 * result + stringId.hashCode()
         result = 31 * result + (params?.hashCode() ?: 0)
+        result = 31 * result + allowedUnder.hashCode()
+        result = 31 * result + solid.hashCode()
+        result = 31 * result + blocksPlayers.hashCode()
+        result = 31 * result + huntRange.hashCode()
+        result = 31 * result + huntMode.hashCode()
+        result = 31 * result + regenRate.hashCode()
+        result = 31 * result + hitpoints.hashCode()
         return result
     }
 

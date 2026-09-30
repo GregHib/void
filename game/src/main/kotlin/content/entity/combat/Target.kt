@@ -40,7 +40,7 @@ object Target {
             if (source is Player && !CombatApi.canAttack(source, target)) {
                 return false
             }
-            if (source is Player && target["owner_index", -1] == source.index) {
+            if (source is Player && target.ownerIndex == source.index) {
                 if (message) source.message("You can't attack your own familiar.")
                 return false
             }
@@ -58,7 +58,7 @@ object Target {
                 if (!target.def(source).options.contains("Attack")) {
                     return false
                 }
-            } else if (target["owner_index", -1] == -1 && !target.def.options.contains("Attack")) {
+            } else if (target.ownerIndex == -1 && !target.def.options.contains("Attack")) {
                 // A familiar's base form deliberately has no "Attack" option (its owner can't click
                 // it) yet npcs must still fight back against one - combat() re-validates every tick.
                 return false

@@ -95,7 +95,7 @@ class ActionQueue<C : Character>(
 
     private fun canProcess() = noDelay() && noInterrupt()
 
-    private fun noDelay() = !character.contains("delay")
+    private fun noDelay() = !character.delayed
 
     private fun noInterrupt() = character is NPC || (character is Player && !character.hasMenuOpen() && character.dialogue == null)
 

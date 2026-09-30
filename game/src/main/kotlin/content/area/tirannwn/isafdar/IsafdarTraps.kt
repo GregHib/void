@@ -96,7 +96,7 @@ class IsafdarTraps : Script {
         if (player.contains("crossing_trap")) {
             return
         }
-        player["delay"] = 2
+        player.delay = 2
         val wire = findTrap(definition, "tripwire") ?: return
         player.arrowVolley(wire)
         player.damage(50)

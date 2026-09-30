@@ -140,7 +140,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
         // A familiar attacking an npc should always draw retaliation - the spawn/aggro leash (which
         // keeps an npc from being dragged off its spawn) must not stop it defending itself, or an npc
         // hit by a familiar away from its spawn just walks off without ever fighting back.
-        val sourceIsFamiliar = source is NPC && source["owner_index", -1] != -1
+        val sourceIsFamiliar = source is NPC && source.ownerIndex != -1
         if (character is NPC && !sourceIsFamiliar) {
             // Retreat
             val definition = combatDefinitions.getOrNull(character.transformDef["combat_def", character.id]) ?: return
@@ -181,7 +181,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
             }
             // A stunned character can't swing. CombatMovement keeps ticking (and re-entering here)
             // while stunned, so without this a stunned npc/player would still land its attacks -
-            // only its movement is otherwise gated by the stun's "delay". Skipping leaves the stun
+            // only its movement is otherwise gated by the stun's delayTicks. Skipping leaves the stun
             // to expire and the fight resumes on the next tick.
             if (character.stunned) {
                 return

@@ -32,22 +32,24 @@ data class NPC(
     override val visuals: NPCVisuals = NPCVisuals()
 
     var hide = false
+
     override val blockMove: Int
         get() {
-            if (!transformDef["solid", true]) {
+            if (!transformDef.solid) {
                 return 0
             }
             // Owned followers (familiars/pets) phase through players - including their owner - so a
             // player standing between them and their target can't block them. They still collide
             // with other npcs (BLOCK_NPCS) and route around them.
-            return if (this["owner_index", -1] != -1) {
+            return if (ownerIndex != -1) {
                 CollisionFlag.BLOCK_NPCS
             } else {
                 CollisionFlag.BLOCK_PLAYERS or CollisionFlag.BLOCK_NPCS
             }
         }
+
     override val collisionFlag: Int
-        get() = CollisionFlag.BLOCK_NPCS or if (transformDef["solid", false]) CollisionFlag.FLOOR else 0
+        get() = if (transformDef.blocksPlayers) CollisionFlag.BLOCK_NPCS or CollisionFlag.FLOOR else CollisionFlag.BLOCK_NPCS
 
     val owner: Player?
         get() {
@@ -55,16 +57,20 @@ data class NPC(
             return Players.findByAccount(account)
         }
 
-    val transformId: String
-        get() = this["transform_id", id]
+    var ownerIndex: Int = -1
 
-    val transformDef: NPCDefinition
-        get() {
-            if (contains("transform_id")) {
-                return NPCDefinitions.get(get("transform_id", id))
-            }
-            return def
+    var transformId: String = id
+        set(value) {
+            field = value
+            transformDef = if (value == id) def else NPCDefinitions.get(value)
         }
+
+    var transformDef: NPCDefinition = def
+        private set
+
+    val transformed: Boolean
+        get() = transformId != id
+
 
     init {
         if (index != -1) {
@@ -85,6 +91,7 @@ data class NPC(
     override var queue: ActionQueue<*> = ActionQueue(this)
     override var softTimers: Timers = TimerSlot(this)
     override var suspension: Suspension? = null
+    override var delay: Int = 0
     override var variables: Variables = Variables(this)
     override val steps: Steps = Steps(this)
     override var walkTrigger: (() -> Unit)? = null
@@ -96,8 +103,8 @@ data class NPC(
     var huntCounter = 0
 
     fun def(player: Player): NPCDefinition {
-        if (contains("transform_id")) {
-            return NPCDefinitions.get(this["transform_id", ""])
+        if (transformed) {
+            return transformDef
         }
         return NPCDefinitions.resolve(def, player)
     }

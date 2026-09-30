@@ -81,9 +81,9 @@ class EvilBobTest : WorldTest() {
         npcOption(servant(), "Talk-to")
         tickIf { dialogue == null }
         // Advance the interruptible lead-in lines one at a time. The final hint line is
-        // non-continuable and starts the camera pan on the same tick (setting "delay"),
+        // non-continuable and starts the camera pan on the same tick (setting delayTicks),
         // so once the pan is running just tick it out - showSpot then closes the dialogue.
-        while (dialogue != null && !contains("delay")) {
+        while (dialogue != null && !delayed) {
             dialogueContinue()
             tick()
         }
@@ -164,11 +164,11 @@ class EvilBobTest : WorldTest() {
         // The far fishing spot's Net option, clicked mid-cutscene, must not move the player.
         player.objectOption(player.spot(eastSpot), "Net")
         tick(3)
-        assertTrue(player.contains("delay"), "The pan should still be holding the lock")
+        assertTrue(player.delayed, "The pan should still be holding the lock")
         assertEquals(start, player.tile, "Player should stay put while the pan is running")
 
         tick(3)
-        assertFalse(player.contains("delay"), "Control returns once the camera resets")
+        assertFalse(player.delayed, "Control returns once the camera resets")
         assertFalse(player["evil_bob_new_spot", false])
     }
 
@@ -203,7 +203,7 @@ class EvilBobTest : WorldTest() {
         tickIf { player.dialogue == null }
         tick(2)
 
-        assertFalse(player.contains("delay"), "No camera pan should replay")
+        assertFalse(player.delayed, "No camera pan should replay")
         assertTrue(player.dialogue != null, "Just a reminder line, freely dismissable")
     }
 

@@ -48,7 +48,7 @@ open class Movement(
         val tile = strategy.destination(character)
         // Players, and owned familiars (which a player directs around the map), use full
         // pathfinding so they route around obstacles. Other NPCs use cheap single-step movement.
-        val pathfinds = character is Player || (character is NPC && character["owner_index", -1] != -1)
+        val pathfinds = character is Player || ((character as? NPC)?.ownerIndex ?: -1) != -1
         if (pathfinds && !tile.noCollision) {
             val route = pathFinder.findPath(character, strategy, shape)
             character.steps.queueRoute(route, tile, tile.noCollision, noRun = strategy.forceWalk(character))
@@ -67,7 +67,7 @@ open class Movement(
             return false
         }
         val npc = character as? NPC ?: return false
-        if (npc.def["allowed_under", false]) {
+        if (npc.def.allowedUnder) {
             return false
         }
         if (!Overlap.isUnder(npc.tile, npc.size, npc.size, strategy.tile, strategy.width, strategy.height)) {
@@ -118,7 +118,7 @@ open class Movement(
         if (character.hasClock("movement_delay")) {
             return false
         }
-        if (character.contains("delay")) {
+        if (character.delayed) {
             // Inactive delays block movement unless there's a queue in action
             return character.suspension != null || !character.queue.isEmpty() || character.steps.destination.noCollision
         }
@@ -231,7 +231,7 @@ open class Movement(
             return strategy.reached(character)
         }
         val character = character
-        if ((character !is NPC || !character.def["allowed_under", false]) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
+        if ((character !is NPC || !character.def.allowedUnder) && Overlap.isUnder(character.tile, character.size, character.size, strategy.tile, strategy.width, strategy.height)) {
             return false
         }
         val nearest = strategy.nearest(character)

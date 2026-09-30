@@ -49,7 +49,7 @@ class Movement : Script {
         }
 
         instruction<Walk> { player ->
-            if (player.contains("delay")) {
+            if (player.delayed) {
                 return@instruction
             }
             if (player.mode is Interact) {
