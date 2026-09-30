@@ -185,8 +185,8 @@ botChat("level_up") {
 | `utterance` | Text, tokens, intent, confidence and entities |
 | `conversation` | Turns, topic, sessions, annoyance |
 | `persona` | The bot's personality |
-| `activity` | Skill and product from the bot's current activity `produces` |
-| `destination` | Area the bot is walking to (from its running `go_to` action), whether it's a bank and the nearest quick chat location |
+| `activity` | The behaviour of the bot's current activity (`skill`/`product` read from its `produces`) |
+| `destination` | Area the bot is walking to (from its running `go_to` action), use `ChatLocations.nearest(area)` for a quick chat location |
 | `stuck` | Walking somewhere but hasn't moved in 20 ticks |
 | `now` | Real date and time |
 

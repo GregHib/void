@@ -1,6 +1,7 @@
 package content.social.chat
 
 import content.bot.behaviour.Reason
+import content.bot.behaviour.skill
 import content.bot.bot
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.ChatContext
@@ -27,12 +28,13 @@ class StatusChat :
                 type("Nowhere, I'm staying here.", style = Style.Formal)
                 type("nowhere", style = Style.Slang)
                 say("Not right now.")
-                val activity = activity ?: return@botChat
-                say("I am training: <MultipleChoice>.", activity.skill, weight = 0.5f)
+                val skill = activity?.skill ?: return@botChat
+                say("I am training: <MultipleChoice>.", skill, weight = 0.5f)
                 return@botChat
             }
-            val name = destination.location?.let { ChatLocations.name(it) }
-            if (destination.bank) {
+            val location = ChatLocations.nearest(destination)
+            val name = location?.let { ChatLocations.name(it) }
+            if ("bank" in destination.tags) {
                 say("I have to go to a bank.", weight = 3f)
                 type("bank", style = Style.Slang)
                 if (name != null) {
@@ -42,8 +44,8 @@ class StatusChat :
                 }
                 return@botChat
             }
-            if (name != null) {
-                say("Follow me to: <MultipleChoice>.", destination.location!!, style = Style.Warm)
+            if (location != null) {
+                say("Follow me to: <MultipleChoice>.", location, style = Style.Warm)
                 type("Heading to $name.", weight = 2f, style = Style.Formal)
                 type("$name lol", style = Style.Slang)
             }
@@ -58,12 +60,12 @@ class StatusChat :
             say("I'm okay.")
             type("nope", style = Style.Slang)
             type("No, I'm fine thanks.", style = Style.Warm)
-            if (destination?.bank == true) {
+            if (destination?.tags?.contains("bank") == true) {
                 say("I have to go to a bank.")
             }
-            val activity = activity
-            if (activity != null) {
-                say("I am training: <MultipleChoice>.", activity.skill, weight = 0.5f)
+            val skill = activity?.skill
+            if (skill != null) {
+                say("I am training: <MultipleChoice>.", skill, weight = 0.5f)
             }
         }
 
@@ -73,12 +75,12 @@ class StatusChat :
                 return@botChat
             }
             val destination = destination ?: return@botChat
-            if (destination.bank) {
+            if ("bank" in destination.tags) {
                 say("I have to go to a bank.", weight = 2f)
                 type("banking", style = Style.Slang)
                 return@botChat
             }
-            val location = destination.location ?: return@botChat
+            val location = ChatLocations.nearest(destination) ?: return@botChat
             type("Heading to ${ChatLocations.name(location)}.")
         }
     }

@@ -1,5 +1,7 @@
 package content.skill
 
+import content.bot.behaviour.product
+import content.bot.behaviour.skill
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.Style
 import content.bot.chat.tag.ChatEntityType
@@ -27,20 +29,21 @@ class SkillChat :
         }
 
         botChat("ask_activity") {
-            val activity = activity
-            if (activity == null) {
+            val skill = activity?.skill
+            if (skill == null) {
                 say("Meh.", style = Style.Curt)
                 say(":-|")
                 say("Not right now.")
                 return@botChat
             }
-            val phrase = Tables.stringOrNull("chat_skills.${activity.skill}.activity")
-            if (!phrase.isNullOrEmpty() && activity.product != null) {
-                say(phrase, activity.product, weight = 3f)
+            val phrase = Tables.stringOrNull("chat_skills.$skill.activity")
+            val product = activity?.product
+            if (!phrase.isNullOrEmpty() && product != null) {
+                say(phrase, product, weight = 3f)
             }
-            say("I am training: <MultipleChoice>.", activity.skill)
-            type("${activity.skill} lol", style = Style.Slang)
-            type("Just training ${activity.skill}.")
+            say("I am training: <MultipleChoice>.", skill)
+            type("$skill lol", style = Style.Slang)
+            type("Just training $skill.")
         }
 
         botChat("ask_where_train") {

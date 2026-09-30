@@ -1,12 +1,15 @@
 package content.bot.chat.api
 
 import com.github.michaelbull.logging.InlineLogger
+import content.bot.Bot
+import content.bot.behaviour.Behaviour
 import content.bot.bot
 import content.bot.chat.QuickChatPhrases
 import content.bot.chat.tag.ChatEntity
 import content.bot.chat.tag.ChatEntityType
 import content.bot.isBot
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import java.time.LocalDateTime
 import kotlin.random.Random
@@ -33,23 +36,16 @@ class ChatContext(
         get() = utterance.intent
 
     /**
-     * The bot's current activity, taken from the bottom frame as resolvers (banking, buying tools) sit on top of it
+     * The bot's current activity, see [Bot.activity]
      */
-    val activity: BotActivity?
-        get() {
-            if (!bot.isBot || bot.bot.noTask()) {
-                return null
-            }
-            val produces = bot.bot.frames.firstElement().behaviour.produces
-            val skill = produces.firstOrNull { it.startsWith("skill:") }?.removePrefix("skill:") ?: return null
-            return BotActivity(skill, produces.firstOrNull { it.startsWith("item:") }?.removePrefix("item:"))
-        }
+    val activity: Behaviour?
+        get() = if (bot.isBot) bot.bot.activity else null
 
     /**
-     * Where the bot is currently walking to
+     * Area the bot is currently walking to, see [Bot.destination]
      */
-    val destination: BotDestination?
-        get() = if (bot.isBot) BotDestination.of(bot.bot) else null
+    val destination: AreaDefinition?
+        get() = if (bot.isBot) bot.bot.destination() else null
 
     /**
      * Trying to get somewhere but hasn't moved in a while

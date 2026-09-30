@@ -1,6 +1,7 @@
 package content.bot.chat.api
 
 import content.bot.chat.tag.ChatEntityTagger
+import world.gregs.voidps.engine.data.definition.AreaDefinition
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.type.Tile
 
@@ -19,6 +20,11 @@ object ChatLocations {
             .mapNotNull { row -> row.tileOrNull("tile")?.takeIf { it.x != 0 }?.let { row.rowId to it } }
             .minByOrNull { (_, location) -> location.distanceTo(tile) }
     }
+
+    /**
+     * Key of the quick chat location nearest to [area]
+     */
+    fun nearest(area: AreaDefinition): String? = nearest(area.area.first())?.first
 
     /**
      * Display name e.g. "seers_village" -> "Seers' Village"
