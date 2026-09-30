@@ -287,8 +287,6 @@ class Fiara : Script {
         set("fist_of_guthix_seen_fiara_introduction", true)
     }
 
-    private fun Player.hasCompletedFiaraWhatIsThisPlaceDialogue(): Boolean = get("fist_of_guthix_completed_fiara_what_is_this_place_dialogue", false)
-
     private fun Player.setHasCompletedFiaraWhatIsThisPlaceDialogue() {
         set("fist_of_guthix_completed_fiara_what_is_this_place_dialogue", true)
     }

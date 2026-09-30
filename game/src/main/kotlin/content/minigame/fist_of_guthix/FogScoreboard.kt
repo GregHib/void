@@ -24,7 +24,7 @@ class FogScoreboard : Script {
         ?.ifEmpty { listOf("Read") }
         ?: listOf("Read")
 
-    private suspend fun Player.openScoreboard() {
+    private fun Player.openScoreboard() {
         open("fist_of_guthix_scoreboard")
         interfaces.sendText("fist_of_guthix_scoreboard", "title", "Scoreboard")
         interfaces.sendText("fist_of_guthix_scoreboard", "subtitle", "Last fifty games on this world:")

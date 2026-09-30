@@ -88,16 +88,6 @@ class Calladin : Script {
         message("Caller set: $caller")
     }
 
-    private fun ChoiceOption.rememberedOption(lastChoice: String, id: String, text: String, block: suspend Player.() -> Unit = {}) {
-        if (lastChoice == id) {
-            return
-        }
-        option(text) {
-            set(LAST_MENU_CHOICE, id)
-            block()
-        }
-    }
-
     private inline fun <reified E : Expression> ChoiceOption.rememberedOptionInline(lastChoice: String, id: String, text: String, noinline block: suspend Player.() -> Unit = {}) {
         if (lastChoice == id) {
             return
