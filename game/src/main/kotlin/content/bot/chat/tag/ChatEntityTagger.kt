@@ -1,6 +1,6 @@
 package content.bot.chat.tag
 
-import content.bot.chat.Normaliser
+import content.bot.chat.process.Normaliser
 import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.engine.data.definition.EnumDefinitions
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
