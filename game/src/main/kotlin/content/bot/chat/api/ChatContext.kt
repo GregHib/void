@@ -2,8 +2,8 @@ package content.bot.chat.api
 
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.bot
-import content.bot.chat.tag.ChatEntity
 import content.bot.chat.QuickChatPhrases
+import content.bot.chat.tag.ChatEntity
 import content.bot.chat.tag.ChatEntityType
 import content.bot.isBot
 import world.gregs.voidps.engine.entity.character.player.Player

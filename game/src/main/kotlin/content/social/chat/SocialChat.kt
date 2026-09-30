@@ -7,7 +7,9 @@ import content.bot.chat.tag.ChatEntityType
 import world.gregs.voidps.engine.Script
 import java.time.Month
 
-class SocialChat : Script, BotChatApi {
+class SocialChat :
+    Script,
+    BotChatApi {
 
     init {
         botChat("greet") {

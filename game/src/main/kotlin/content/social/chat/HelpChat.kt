@@ -10,7 +10,9 @@ import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.type.Tile
 import kotlin.math.abs
 
-class HelpChat : Script, BotChatApi {
+class HelpChat :
+    Script,
+    BotChatApi {
 
     init {
         botChat("ask_help") {

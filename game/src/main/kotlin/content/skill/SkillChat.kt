@@ -7,7 +7,9 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 
-class SkillChat : Script, BotChatApi {
+class SkillChat :
+    Script,
+    BotChatApi {
 
     init {
         botChat("ask_level") {

@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.Candidate
 import content.bot.chat.api.ChatContext
-import content.bot.chat.api.Conversation
 import content.bot.chat.api.ChatTurn
+import content.bot.chat.api.Conversation
 import content.bot.chat.api.Persona
 import content.bot.chat.api.Utterance
 import content.bot.chat.process.ChatProcessor
