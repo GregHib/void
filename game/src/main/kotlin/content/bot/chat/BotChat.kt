@@ -133,7 +133,7 @@ class BotChat(
         private fun respond(bot: Player, speaker: Player, utterance: Utterance, addressed: Boolean, now: Long, time: LocalDateTime): BotChatReply? {
             val phrases = phrases ?: return null
             val conversation = conversations.getOrPut(key(bot, speaker)) { Conversation() }
-            conversation.touch(now)
+            conversation.start(now)
             val repeated = conversation.lastPlayer()?.text.equals(utterance.text, ignoreCase = true)
             conversation.add(ChatTurn(false, utterance.intent, utterance.entities, utterance.text, now))
             if (utterance.intent == NOT_YOU && utterance.confidence >= THRESHOLD) {

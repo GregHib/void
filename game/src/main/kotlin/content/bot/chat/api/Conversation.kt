@@ -42,7 +42,7 @@ class Conversation {
     /**
      * Starts a new session if it's been more than [SESSION_GAP] since the last message
      */
-    fun touch(now: Long) {
+    fun start(now: Long) {
         if (sessions == 0 || now - lastTime > SESSION_GAP) {
             turns.clear()
             topic.clear()
