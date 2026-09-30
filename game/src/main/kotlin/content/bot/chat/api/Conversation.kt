@@ -1,7 +1,7 @@
 package content.bot.chat.api
 
 import content.bot.chat.tag.ChatEntity
-import content.bot.chat.tag.SlotType
+import content.bot.chat.tag.ChatEntityType
 import java.util.EnumMap
 
 /**
@@ -9,7 +9,7 @@ import java.util.EnumMap
  */
 class Conversation {
     val turns = ArrayDeque<ChatTurn>()
-    val topic = EnumMap<SlotType, ChatEntity>(SlotType::class.java)
+    val topic = EnumMap<ChatEntityType, ChatEntity>(ChatEntityType::class.java)
     var expecting: Expectation? = null
     var annoyance = 0
 

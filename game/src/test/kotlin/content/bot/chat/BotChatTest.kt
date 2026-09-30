@@ -7,6 +7,7 @@ import content.bot.behaviour.BehaviourFrame
 import content.bot.chat.api.ChatContext
 import content.bot.chat.model.IntentTrainer
 import content.bot.chat.process.ChatProcessor
+import content.bot.chat.tag.ChatEntityTagger
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -133,7 +134,7 @@ class BotChatTest : WorldTest() {
      */
     @Test
     fun `Held out examples are understood`() {
-        val understanding = BotChat.chatProcessor!!
+        val processor = BotChat.chatProcessor!!
         val examples = BotChatModel.examples(configFiles().list(Settings["bots.chat.intents"]))
         val random = Random(1)
         val train = LinkedHashMap<String, List<String>>()
@@ -144,8 +145,8 @@ class BotChatTest : WorldTest() {
             shuffled.take(count).mapTo(test) { it to intent }
             train[intent] = shuffled.drop(count)
         }
-        val model = IntentTrainer().train(train, understanding.normaliser, understanding.entityTagger)
-        val held = ChatProcessor(understanding.normaliser, understanding.entityTagger, model)
+        val model = IntentTrainer().train(train, processor.normaliser, processor.entityTagger)
+        val held = ChatProcessor(processor.normaliser, processor.entityTagger, model)
         val wrong = test.filter { (text, intent) -> held.parse(text).intent != intent }
         val accuracy = 1.0 - wrong.size.toDouble() / test.size
         assertTrue(accuracy >= 0.8, "Accuracy $accuracy, misclassified: $wrong")
@@ -172,9 +173,9 @@ class BotChatTest : WorldTest() {
             }
         }
         val go = phrases.id("Go to location: <MultipleChoice>.")!!
-        for (row in Tables.get("chat_locations").rows()) {
-            if (phrases.encode(go, listOf(row.rowId)) == null) {
-                failed.add("location: ${row.rowId}")
+        for (key in ChatEntityTagger.locationKeys()) {
+            if (phrases.encode(go, listOf(key)) == null) {
+                failed.add("location: $key")
             }
         }
         for (row in Tables.get("chat_item_sources").rows()) {

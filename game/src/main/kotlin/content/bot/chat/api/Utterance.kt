@@ -1,7 +1,7 @@
 package content.bot.chat.api
 
 import content.bot.chat.tag.ChatEntity
-import content.bot.chat.tag.SlotType
+import content.bot.chat.tag.ChatEntityType
 
 /**
  * What a player said, reduced to an intent and the entities they mentioned
@@ -13,7 +13,7 @@ data class Utterance(
     val confidence: Float,
     val entities: List<ChatEntity>,
 ) {
-    fun first(type: SlotType): ChatEntity? = entities.firstOrNull { it.type == type }
+    fun first(type: ChatEntityType): ChatEntity? = entities.firstOrNull { it.type == type }
 
     fun mentions(word: String) = tokens.contains(word)
 }

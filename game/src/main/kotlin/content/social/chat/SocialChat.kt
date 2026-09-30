@@ -3,7 +3,7 @@ package content.social.chat
 import content.bot.chat.api.BotChatApi
 import content.bot.chat.api.ChatContext
 import content.bot.chat.api.Style
-import content.bot.chat.tag.SlotType
+import content.bot.chat.tag.ChatEntityType
 import world.gregs.voidps.engine.Script
 import java.time.Month
 
@@ -99,7 +99,7 @@ class SocialChat : Script, BotChatApi {
         }
 
         botChat("level_up") {
-            val skill = utterance.first(SlotType.Skill)
+            val skill = utterance.first(ChatEntityType.Skill)
             if (skill != null) {
                 say("Nice level in: <MultipleChoice>.", skill.key, weight = 2f, style = Style.Warm)
             }

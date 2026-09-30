@@ -4,10 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import content.bot.bot
 import content.bot.chat.tag.ChatEntity
 import content.bot.chat.QuickChatPhrases
-import content.bot.chat.tag.SlotType
+import content.bot.chat.tag.ChatEntityType
 import content.bot.isBot
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.name
 import java.time.LocalDateTime
 import kotlin.random.Random
 
@@ -45,7 +44,7 @@ class ChatContext(
     /**
      * Entity from this message, otherwise from the conversation topic ("and fishing?" / "what about there?")
      */
-    fun slot(type: SlotType): ChatEntity? = utterance.first(type) ?: conversation.topic[type]
+    fun slot(type: ChatEntityType): ChatEntity? = utterance.first(type) ?: conversation.topic[type]
 
     /**
      * Add a candidate reply. [phrase] is the quick chat text with typed placeholders e.g. "Try mining at: <MultipleChoice>."

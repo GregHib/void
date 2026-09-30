@@ -34,7 +34,7 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
     val size: Int
         get() = index.values.sumOf { it.size }
 
-    fun add(type: SlotType, key: String, names: Collection<String>) {
+    fun add(type: ChatEntityType, key: String, names: Collection<String>) {
         for (name in names) {
             val tokens = normaliser.tokens(name).filter { it != "?" }
             if (tokens.isEmpty() || (tokens.size == 1 && tokens[0] in stopWords)) {
@@ -69,8 +69,8 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
         while (i < tokens.size) {
             val token = tokens[i]
             if (token.all { it.isDigit() }) {
-                output.add(SlotType.Number.placeholder)
-                entities.add(ChatEntity(SlotType.Number, token))
+                output.add(ChatEntityType.Number.placeholder)
+                entities.add(ChatEntity(ChatEntityType.Number, token))
                 i++
                 continue
             }
@@ -173,37 +173,40 @@ class ChatEntityTagger(private val normaliser: Normaliser) {
                 entityTagger.stopWords.addAll(row.stringList("words"))
             }
             for (row in Tables.get("chat_skills").rows()) {
-                entityTagger.add(SlotType.Skill, row.rowId, row.stringList("aka") + row.rowId)
+                entityTagger.add(ChatEntityType.Skill, row.rowId, row.stringList("aka") + row.rowId)
             }
             for (name in enumValues(LOCATION_ENUM)) {
                 val key = key(name)
-                entityTagger.add(SlotType.Location, key, listOf(name) + (Tables.stringListOrNull("chat_locations.$key.aka") ?: emptyList()))
+                entityTagger.add(ChatEntityType.Location, key, listOf(name) + (Tables.stringListOrNull("locations.$key.aka")?.map { it.replace('_', ' ') } ?: emptyList()))
             }
             for (name in enumValues(MINIGAME_ENUM)) {
-                entityTagger.add(SlotType.Minigame, key(name), listOf(name))
+                entityTagger.add(ChatEntityType.Minigame, key(name), listOf(name))
             }
             for (quest in quests.definitions) {
                 val name = quest.name
                 if (quest.stringId.isEmpty() || name.isNullOrEmpty()) {
                     continue
                 }
-                entityTagger.add(SlotType.Quest, quest.stringId, listOf(name))
+                entityTagger.add(ChatEntityType.Quest, quest.stringId, listOf(name))
             }
             for (item in ItemDefinitions.definitions) {
                 if (item.stringId.isEmpty() || item.name == "null" || item.noted || item.lent) {
                     continue
                 }
-                entityTagger.add(SlotType.Item, item.stringId, listOf(item.name) + aka(item.params))
+                entityTagger.add(ChatEntityType.Item, item.stringId, listOf(item.name) + aka(item.params))
             }
             for (npc in NPCDefinitions.definitions) {
                 if (npc.stringId.isEmpty() || npc.name == "null") {
                     continue
                 }
-                entityTagger.add(SlotType.Npc, npc.stringId, listOf(npc.name) + aka(npc.params))
+                entityTagger.add(ChatEntityType.Npc, npc.stringId, listOf(npc.name) + aka(npc.params))
             }
             entityTagger.protect(vocabulary)
             return entityTagger
         }
+
+        /** Row ids of quick chat locations, the only names bots can say */
+        fun locationKeys(): Set<String> = enumValues(LOCATION_ENUM).mapTo(mutableSetOf()) { key(it) }
 
         private fun enumValues(id: Int): List<String> = EnumDefinitions.get(id).map?.values?.filterIsInstance<String>() ?: emptyList()
 

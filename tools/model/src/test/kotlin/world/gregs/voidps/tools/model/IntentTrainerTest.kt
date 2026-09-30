@@ -5,7 +5,7 @@ import content.bot.chat.tag.ChatEntityTagger
 import content.bot.chat.model.IntentModel
 import content.bot.chat.model.IntentTrainer
 import content.bot.chat.process.Normaliser
-import content.bot.chat.tag.SlotType
+import content.bot.chat.tag.ChatEntityType
 import content.bot.chat.process.ChatProcessor
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -23,11 +23,11 @@ class IntentTrainerTest {
     )
 
     private fun entityTagger() = ChatEntityTagger(normaliser).apply {
-        add(SlotType.Skill, "woodcutting", listOf("woodcutting", "wc"))
-        add(SlotType.Skill, "mining", listOf("mining"))
-        add(SlotType.Location, "grand_exchange", listOf("Grand Exchange", "ge"))
-        add(SlotType.Item, "rune_scimitar", listOf("Rune scimitar", "rune scim"))
-        add(SlotType.Item, "shark", listOf("Shark"))
+        add(ChatEntityType.Skill, "woodcutting", listOf("woodcutting", "wc"))
+        add(ChatEntityType.Skill, "mining", listOf("mining"))
+        add(ChatEntityType.Location, "grand_exchange", listOf("Grand Exchange", "ge"))
+        add(ChatEntityType.Item, "rune_scimitar", listOf("Rune scimitar", "rune scim"))
+        add(ChatEntityType.Item, "shark", listOf("Shark"))
     }
 
     @Test
@@ -95,14 +95,14 @@ class IntentTrainerTest {
         val tagger = entityTagger()
         val original = BotChatModel.fingerprint(examples, normaliser, tagger, trainer)
         // Unrelated content doesn't matter
-        tagger.add(SlotType.Item, "dragon_scimitar", listOf("Dragon scimitar"))
+        tagger.add(ChatEntityType.Item, "dragon_scimitar", listOf("Dragon scimitar"))
         assertEquals(original, BotChatModel.fingerprint(examples, normaliser, tagger, trainer))
         // Examples do
         assertNotEquals(original, BotChatModel.fingerprint(examples + ("bye" to listOf("cya")), normaliser, tagger, trainer))
         // As do trainer settings
         assertNotEquals(original, BotChatModel.fingerprint(examples, normaliser, tagger, IntentTrainer(epochs = 10)))
         // And new entities which change how examples are tagged
-        tagger.add(SlotType.Location, "morning", listOf("morning"))
+        tagger.add(ChatEntityType.Location, "morning", listOf("morning"))
         assertNotEquals(original, BotChatModel.fingerprint(examples, normaliser, tagger, trainer))
     }
 }

@@ -4,7 +4,7 @@ import content.bot.chat.BotChatModel
 import content.bot.chat.tag.ChatEntityTagger
 import content.bot.chat.model.IntentTrainer
 import content.bot.chat.process.Normaliser
-import content.bot.chat.tag.SlotType
+import content.bot.chat.tag.ChatEntityType
 import content.bot.chat.process.ChatProcessor
 import kotlin.random.Random
 
@@ -64,7 +64,7 @@ object EvaluateBotChat {
      */
     private fun commonEntityWords(normaliser: Normaliser, entityTagger: ChatEntityTagger, vocabulary: Set<String>) {
         val tagged = vocabulary.filter { word ->
-            entityTagger.tag(normaliser.tokens(word)).entities.any { it.type == SlotType.Item || it.type == SlotType.Npc }
+            entityTagger.tag(normaliser.tokens(word)).entities.any { it.type == ChatEntityType.Item || it.type == ChatEntityType.Npc }
         }
         if (tagged.isNotEmpty()) {
             println("Training words tagged as items/npcs (consider chat_stop_words): ${tagged.sorted()}")

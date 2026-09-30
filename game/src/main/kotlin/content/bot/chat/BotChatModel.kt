@@ -33,7 +33,7 @@ class BotChatModel {
             logger.warn { "No bot chat intent examples found, bots won't reply to chat." }
             return this
         }
-        timedLoad("bot chat name") {
+        timedLoad("bot chat") {
             val normaliser = Normaliser.load()
             val entityTagger = ChatEntityTagger.load(normaliser, quests, vocabulary(normaliser, examples))
             val model = model(examples, normaliser, entityTagger, trainer)
@@ -52,7 +52,7 @@ class BotChatModel {
         val start = System.currentTimeMillis()
         val model = trainer.train(examples, normaliser, entityTagger, fingerprint)
         model.write(file)
-        logger.info { "Bot chat examples changed, retrained ${model.intents.size} intents in ${System.currentTimeMillis() - start}ms" }
+        logger.info { "Bot chat examples changed, model retrained ${model.intents.size} intents in ${System.currentTimeMillis() - start}ms" }
         return model
     }
 

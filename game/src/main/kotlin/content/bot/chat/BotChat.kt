@@ -65,12 +65,12 @@ class BotChat(
             if (speaker.isBot) {
                 return
             }
-            val understanding = chatProcessor ?: return
+            val processor = chatProcessor ?: return
             val bots = Players.filter { it.isBot && it.tile.within(speaker.tile, VIEW_RADIUS) && !it.ignores(speaker) }
             if (bots.isEmpty()) {
                 return
             }
-            val utterance = understanding.parse(text)
+            val utterance = processor.parse(text)
             val now = System.currentTimeMillis()
             val (bot, addressed) = addressee(speaker, utterance, bots, now) ?: return
             val reply = respond(bot, speaker, utterance, addressed, now, LocalDateTime.now()) ?: return
@@ -86,8 +86,8 @@ class BotChat(
         }
 
         fun reply(bot: Player, speaker: Player, text: String, addressed: Boolean = true, now: Long = System.currentTimeMillis(), time: LocalDateTime = LocalDateTime.now()): BotChatReply? {
-            val understanding = chatProcessor ?: return null
-            return respond(bot, speaker, understanding.parse(text), addressed, now, time)
+            val processor = chatProcessor ?: return null
+            return respond(bot, speaker, processor.parse(text), addressed, now, time)
         }
 
         /**
