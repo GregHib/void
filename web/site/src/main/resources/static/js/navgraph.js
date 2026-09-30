@@ -8,7 +8,7 @@
 //
 // Nothing is baked into the page: the files are opened from the viewer's own disk (the File System
 // Access API where the browser has it, so saving writes straight back; a plain file input and a
-// download otherwise), which is also why the display toggle stays disabled until one is opened.
+// download otherwise), which is also why the toggle offers to load them before there's anything to show.
 //
 // Editing is done on the file's own text rather than a re-serialised copy of it: `parseNavFile`
 // splits the array into one chunk per edge, remembering where in each element the `from`/`to`
@@ -326,6 +326,31 @@
     return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
   }
 
+  // Every distinct tile an open file's edges touch, in level/x/y order, for the panel's list.
+  function navPointsOf(file) {
+    var seen = {};
+    var tiles = [];
+    for (var i = 0; i < file.items.length; i++) {
+      var edge = file.items[i].edge;
+      if (!edge) {
+        continue;
+      }
+      [edge.from, edge.to].forEach(function (t) {
+        var key = tileKey(t);
+        if (!seen[key]) {
+          seen[key] = true;
+          tiles.push({ key: key, x: t.x, y: t.y, level: t.level || 0 });
+        }
+      });
+    }
+    tiles.sort(function (a, b) {
+      return a.level - b.level || a.x - b.x || a.y - b.y;
+    });
+    return tiles.map(function (t) {
+      return { key: t.key, label: t.x + ', ' + t.y + (t.level ? ', ' + t.level : ''), x: t.x, y: t.y, level: t.level };
+    });
+  }
+
   window.VoidNavGraph = { parse: parseNavFile, serialize: serializeNavFile };
 
   // --- Alpine methods --------------------------------------------------------------------------
@@ -342,6 +367,7 @@
       loose: [],
       nodes: {},
       selected: null,
+      selSig: '',
       undo: [],
       drag: null,
       press: null,
@@ -354,6 +380,11 @@
       navFiles: [],
       navTool: 'select',
       navTarget: 0,
+      // The file whose points are listed in the panel (-1: none). Follows the selection, and is
+      // where new edges go.
+      navOpen: -1,
+      navPoints: [],
+      navSelectedKey: '',
       navDirty: false,
       navCanUndo: false,
       navStats: '',
@@ -439,6 +470,40 @@
       openNavFolder: function () {
         var self = this;
         if (typeof window.showDirectoryPicker !== 'function') {
+          // Firefox/Safari: a directory <input> hands over every file under the folder (read-only, so
+          // saving downloads them, like the plain file picker).
+          var input = document.createElement('input');
+          input.type = 'file';
+          input.setAttribute('webkitdirectory', '');
+          input.addEventListener('change', function () {
+            var files = Array.prototype.slice.call(input.files || []).filter(function (file) {
+              var path = file.webkitRelativePath || file.name;
+              return (
+                file.name.slice(-NAV_SUFFIX.length) === NAV_SUFFIX &&
+                !path.split('/').slice(0, -1).some(function (dir) {
+                  return SKIPPED_DIRS[dir];
+                })
+              );
+            });
+            if (!files.length) {
+              self.navError = 'No *' + NAV_SUFFIX + ' files in that folder.';
+              self.syncNavState();
+              return;
+            }
+            Promise.all(
+              files.map(function (file) {
+                return file.text().then(function (text) {
+                  return { name: file.name, path: file.webkitRelativePath || file.name, text: text, handle: null };
+                });
+              }),
+            ).then(function (loaded) {
+              loaded.sort(function (x, y) {
+                return x.path.localeCompare(y.path);
+              });
+              self.navAddFiles(loaded);
+            });
+          });
+          input.click();
           return;
         }
         var found = [];
@@ -544,7 +609,92 @@
         this.showNavGraph = false;
         this.navError = '';
         this.navTarget = 0;
+        this.navOpen = -1;
         this.navRebuild();
+      },
+
+      // Expands `index`'s point list (collapsing the last) and makes it the file new edges go to;
+      // clicking the open one collapses it.
+      navToggleFile: function (index) {
+        if (this.navOpen === index) {
+          this.navOpen = -1;
+        } else {
+          this.navOpen = index;
+          this.navTarget = index;
+        }
+        this.navPoints = this.navOpen >= 0 ? navPointsOf(nav.files[this.navOpen]) : [];
+      },
+
+      // A row of a file's point list: selects the point and moves the map onto it.
+      navPickPoint: function (key) {
+        var node = nav.nodes[key];
+        if (!node) {
+          return;
+        }
+        this.navSelectNode(key);
+        this.focusOn(node.x, node.y, node.level);
+      },
+
+      // Adds an empty `*.nav-edges.toml`. Where the browser can write files it's created on disk
+      // straight away through a save dialog (so it lands wherever the viewer picks, usually next to
+      // the others under `data/`); otherwise it's a name to be downloaded on the next Save.
+      navNewFile: function () {
+        var self = this;
+        var content = 'edges = [\n]\n';
+        function add(name, handle, dirty) {
+          for (var i = 0; i < nav.files.length; i++) {
+            if (nav.files[i].path === name) {
+              self.navError = name + ' is already open.';
+              return;
+            }
+          }
+          var parsed = parseNavFile(content);
+          parsed.name = name;
+          parsed.path = name;
+          parsed.handle = handle;
+          parsed.dirty = dirty;
+          nav.files.push(parsed);
+          nav.undo = [];
+          self.navError = '';
+          self.showNavGraph = true;
+          self.navOpen = nav.files.length - 1;
+          self.navTarget = self.navOpen;
+          self.navRebuild();
+        }
+        if (typeof window.showSaveFilePicker === 'function') {
+          window
+            .showSaveFilePicker({
+              suggestedName: 'new' + NAV_SUFFIX,
+              types: [{ description: 'Nav graph edges', accept: { 'text/plain': ['.toml'] } }],
+            })
+            .then(function (handle) {
+              if (handle.name.slice(-NAV_SUFFIX.length) !== NAV_SUFFIX) {
+                self.navError = 'Nav files must be named *' + NAV_SUFFIX + ' to be loaded by the server.';
+              }
+              return handle.createWritable().then(function (writable) {
+                return writable.write(content).then(function () {
+                  return writable.close();
+                });
+              }).then(function () {
+                add(handle.name, handle, false);
+              });
+            })
+            .catch(function (e) {
+              if (e && e.name !== 'AbortError') {
+                self.navError = String(e.message || e);
+              }
+            });
+          return;
+        }
+        var name = window.prompt('New file name', 'new' + NAV_SUFFIX);
+        if (!name) {
+          return;
+        }
+        name = name.trim();
+        if (name.slice(-NAV_SUFFIX.length) !== NAV_SUFFIX) {
+          name += NAV_SUFFIX;
+        }
+        add(name, null, true);
       },
 
       saveNavFiles: function () {
@@ -659,7 +809,13 @@
       syncNavState: function () {
         this.navLoaded = nav.files.length > 0;
         this.navFiles = nav.files.map(function (file, i) {
-          return { index: i, name: file.name, path: file.path, dirty: file.dirty };
+          var edges = 0;
+          for (var k = 0; k < file.items.length; k++) {
+            if (file.items[k].edge) {
+              edges++;
+            }
+          }
+          return { index: i, name: file.name, path: file.path, dirty: file.dirty, edges: edges };
         });
         this.navDirty = nav.files.some(function (file) {
           return file.dirty;
@@ -668,7 +824,42 @@
         if (this.navTarget >= nav.files.length) {
           this.navTarget = 0;
         }
+        if (this.navOpen >= nav.files.length) {
+          this.navOpen = -1;
+        }
         var sel = nav.selected;
+        // A newly picked point or edge opens the file it lives in (and collapses the rest); an
+        // unchanged selection leaves whichever file was opened by hand alone.
+        var sig = !sel ? '' : sel.node ? sel.node : tileKey(sel.edge.from) + '>' + tileKey(sel.edge.to) + '@' + sel.edge.file;
+        if (sig !== nav.selSig) {
+          nav.selSig = sig;
+          var owner = -1;
+          if (sel && sel.node && nav.nodes[sel.node] && nav.nodes[sel.node].edges.length) {
+            var touching = nav.nodes[sel.node].edges;
+            var target = this.navTarget;
+            owner = touching.some(function (edge) {
+              return edge.file === target;
+            })
+              ? target
+              : touching[0].file;
+          } else if (sel && sel.edge) {
+            owner = sel.edge.file;
+          }
+          if (owner >= 0) {
+            this.navOpen = owner;
+            this.navTarget = owner;
+          }
+          if (sig) {
+            this.$nextTick(function () {
+              var row = document.querySelector('[data-nav-selected="true"]');
+              if (row && row.scrollIntoView) {
+                row.scrollIntoView({ block: 'nearest' });
+              }
+            });
+          }
+        }
+        this.navSelectedKey = sel && sel.node ? sel.node : '';
+        this.navPoints = this.navOpen >= 0 ? navPointsOf(nav.files[this.navOpen]) : [];
         if (!sel) {
           this.navSelection = '';
         } else if (sel.node) {
@@ -1123,6 +1314,15 @@
           );
         }
         var sel = nav.selected;
+        var radius = Math.max(3, Math.min(7, scale * 0.6));
+        // Drawn size of the point at `tile` (diamonds are bigger), so an arrowhead can end on its rim.
+        function rimOf(tile) {
+          var node = nav.nodes[tileKey(tile)];
+          var transfer = node && node.edges.some(function (e) {
+            return e.from.level !== e.to.level;
+          });
+          return (transfer ? radius * 1.3 : radius) + 1.5;
+        }
         var edges = '';
         var marked = '';
         for (var f = 0; f < nav.files.length; f++) {
@@ -1140,8 +1340,27 @@
             var selected = sel && (sel.edge === edge || (sel.node && (tileKey(edge.from) === sel.node || tileKey(edge.to) === sel.node)));
             var cls = 'wm-nav-edge' + (edge.directed ? ' wm-nav-edge-directed' : '') + (selected ? ' wm-nav-edge-selected' : '') +
               (sel && sel.edge === edge ? ' wm-nav-edge-picked' : '');
-            var line = '<line class="' + cls + '" x1="' + a.x.toFixed(1) + '" y1="' + a.y.toFixed(1) + '" x2="' + b.x.toFixed(1) + '" y2="' + b.y.toFixed(1) + '"' +
-              (edge.directed ? ' marker-end="url(#wm-nav-arrow)"' : '') + '></line>';
+            var end = b;
+            var head = '';
+            var dx = b.x - a.x;
+            var dy = b.y - a.y;
+            var len = Math.hypot(dx, dy);
+            var headLen = 9;
+            // One-way edge: the triangle's tip sits on the destination point's rim and the line stops
+            // at its base, instead of a marker that stops short and overlaps the line.
+            if (edge.directed && len > rimOf(edge.to) + headLen) {
+              var ux = dx / len;
+              var uy = dy / len;
+              var rim = rimOf(edge.to);
+              var tipX = b.x - ux * rim;
+              var tipY = b.y - uy * rim;
+              var baseX = tipX - ux * headLen;
+              var baseY = tipY - uy * headLen;
+              end = { x: baseX + ux * 1, y: baseY + uy * 1 };
+              head = '<polygon class="wm-nav-arrow' + (selected ? ' wm-nav-arrow-selected' : '') + '" points="' + tipX.toFixed(1) + ',' + tipY.toFixed(1) + ' ' +
+                (baseX - uy * 4.5).toFixed(1) + ',' + (baseY + ux * 4.5).toFixed(1) + ' ' + (baseX + uy * 4.5).toFixed(1) + ',' + (baseY - ux * 4.5).toFixed(1) + '"></polygon>';
+            }
+            var line = '<line class="' + cls + '" x1="' + a.x.toFixed(1) + '" y1="' + a.y.toFixed(1) + '" x2="' + end.x.toFixed(1) + '" y2="' + end.y.toFixed(1) + '"></line>' + head;
             if (selected) {
               marked += line;
             } else {
@@ -1155,7 +1374,6 @@
           var to = self.navScreen(nav.hover);
           marked += '<line class="wm-nav-edge wm-nav-edge-preview" x1="' + from.x.toFixed(1) + '" y1="' + from.y.toFixed(1) + '" x2="' + to.x.toFixed(1) + '" y2="' + to.y.toFixed(1) + '"></line>';
         }
-        var radius = Math.max(3, Math.min(7, scale * 0.6));
         var nodes = '';
         for (var key in nav.nodes) {
           var n = nav.nodes[key];
@@ -1181,9 +1399,7 @@
             nodes += '<circle class="' + ncls + '" cx="' + s.x.toFixed(1) + '" cy="' + s.y.toFixed(1) + '" r="' + radius.toFixed(1) + '">' + title + '</circle>';
           }
         }
-        var defs = '<defs><marker id="wm-nav-arrow" viewBox="0 0 10 10" refX="16" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">' +
-          '<path d="M0,0 L10,5 L0,10 z" class="wm-nav-arrow"></path></marker></defs>';
-        layer.innerHTML = '<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">' + defs + edges + marked + nodes + '</svg>';
+        layer.innerHTML = '<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">' + edges + marked + nodes + '</svg>';
       },
     };
   };

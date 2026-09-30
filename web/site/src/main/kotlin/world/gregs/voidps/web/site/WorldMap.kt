@@ -195,10 +195,9 @@ object WorldMap {
     }
 
     /**
-     * The "Nav graph" row of the display panel. Off by default, and nothing to show until a
-     * `*.nav-edges.toml` has been opened from disk — so until then the switch is dimmed and a click
-     * on it opens the file picker instead, with the same (plus "whole folder", where the browser
-     * can) offered as links underneath.
+     * The "Nav graph" row of the display panel. Off by default. Switching it on before a
+     * `*.nav-edges.toml` has been opened from disk shows buttons to load a folder (searched
+     * recursively, where the browser can) or individual files; the graph appears once loaded.
      */
     private fun DIV.navGraphToggle() {
         div {
@@ -209,34 +208,28 @@ object WorldMap {
                     style = "font:var(--type-body-sm);color:var(--text-body)"
                     +"Nav graph"
                 }
-                div {
-                    xToggleStyle(condition = "navLoaded", whenTrue = "opacity:1", whenFalse = "opacity:0.45")
-                    ui.switch(
-                        "",
-                        model = "showNavGraph",
-                        small = true,
-                        onToggle = "navLoaded ? (showNavGraph = !showNavGraph) : openNavFiles()",
-                    )
-                }
+                ui.switch("", model = "showNavGraph", small = true)
             }
             div {
-                xShow("!navLoaded")
+                xShow("showNavGraph && !navLoaded")
                 div {
-                    style = "margin-top:6px;font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);" +
-                        "line-height:var(--leading-normal)"
-                    +"Open "
-                    code {
-                        style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--text-accent)"
-                        +"*.nav-edges.toml"
-                    }
-                    +" to enable."
+                    style = "display:flex;flex-direction:column;gap:6px;margin-top:6px"
                     div {
-                        style = "display:flex;gap:var(--space-5);margin-top:4px"
-                        ui.button("Files…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFiles()")
-                        span {
-                            xShow("navFolderAccess")
-                            attributes["title"] = "Every *.nav-edges.toml under a folder — pick the repo's data/ for the whole graph"
-                            ui.button("Folder…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFolder()")
+                        attributes["title"] = "Pick a folder (the repo's data/) — every *.nav-edges.toml under it, however deep, is loaded"
+                        ui.button(
+                            "Load folder…", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                            onClick = "openNavFolder()",
+                        )
+                    }
+                    ui.button(
+                        "Load files…", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                        onClick = "openNavFiles()",
+                    )
+                    div {
+                        xShow("navError")
+                        div {
+                            style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--feedback-danger);white-space:pre-wrap"
+                            xText("navError")
                         }
                     }
                 }
@@ -304,25 +297,31 @@ object WorldMap {
                         }
                     }
                     div {
-                        xShow("navFiles.length > 1")
-                        div {
-                            style = "display:flex;flex-direction:column;gap:4px"
-                            label {
-                                attributes["for"] = "wm-nav-target"
-                                style = hint
-                                +"New edges go to"
-                            }
-                            rawHtml(
-                                """
-                                <select id="wm-nav-target" x-model.number="navTarget" style="width:100%;height:28px;padding:0 6px;background:var(--surface-panel-raised);color:var(--text-strong);border:1px solid var(--border-strong);border-radius:var(--radius-sm);font:var(--type-body-sm);font-size:var(--text-2xs);color-scheme:dark">
-                                  <template x-for="f in navFiles" :key="f.path">
-                                    <option :value="f.index" :selected="f.index === navTarget" :title="f.path" x-text="f.name + (f.dirty ? ' •' : '')"></option>
-                                  </template>
-                                </select>
-                                """,
-                            )
-                        }
+                        style = hint
+                        +"Files — new edges go into the highlighted one."
                     }
+                    rawHtml(
+                        """
+                        <div style="display:flex;flex-direction:column;gap:4px;max-height:260px;overflow-y:auto">
+                          <template x-for="f in navFiles" :key="f.path">
+                            <div>
+                              <button type="button" class="wm-nav-file" :class="{ 'wm-nav-file-target': f.index === navTarget }" :title="f.path" @click="navToggleFile(f.index)">
+                                <span class="wm-nav-file-name" x-text="(navOpen === f.index ? '▾ ' : '▸ ') + f.name + (f.dirty ? ' •' : '')"></span>
+                                <span class="wm-nav-file-count" x-text="f.edges"></span>
+                              </button>
+                              <template x-if="navOpen === f.index">
+                                <div class="wm-nav-points">
+                                  <template x-for="p in navPoints" :key="p.key">
+                                    <button type="button" class="wm-nav-point" :class="{ 'wm-nav-point-selected': p.key === navSelectedKey }" :data-nav-selected="p.key === navSelectedKey" @click="navPickPoint(p.key)" x-text="p.label"></button>
+                                  </template>
+                                  <div class="wm-nav-points-empty" x-show="!navPoints.length">No edges yet.</div>
+                                </div>
+                              </template>
+                            </div>
+                          </template>
+                        </div>
+                        """,
+                    )
                     div {
                         style = hint
                         xText(
@@ -352,8 +351,10 @@ object WorldMap {
                         }
                     }
                     div {
-                        style = "display:flex;justify-content:space-between;gap:var(--space-5)"
-                        ui.button("Open…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFiles()")
+                        style = "display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px var(--space-4);min-width:0"
+                        ui.button("New", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "navNewFile()")
+                        ui.button("Files…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFiles()")
+                        ui.button("Folder…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openNavFolder()")
                         ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeNavFiles()")
                     }
                 }
