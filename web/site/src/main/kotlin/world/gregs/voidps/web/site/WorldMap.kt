@@ -420,6 +420,114 @@ object WorldMap {
         }
     }
 
+    /**
+     * The nav graph's edge inspector, under the teleport panel. With a point selected it lists the
+     * point's edges (the only way to reach one of a two-way pair, which draw over each other); with
+     * an edge selected it edits that edge's cost, actions and requirements — see the "Edge editor"
+     * section of navgraph.js. Every field commits on Enter or when it loses focus.
+     */
+    private fun FlowContent.navEdgePanel() {
+        div {
+            attributes["class"] = "wm-nav-edge-wrap"
+            xShow("showNavGraph && navLoaded && (navEdge || navNodeEdges.length)")
+            ui.panel(
+                title = "Edges",
+                padded = false,
+                action = { collapseToggle("navEdgePanelOpen", "Toggle edge editor") },
+                headerClick = "navEdgePanelOpen = !navEdgePanelOpen",
+            ) {
+                xShow("navEdgePanelOpen")
+                rawHtml(
+                    """
+                    <div class="wm-nav-edge-body">
+                      <template x-if="!navEdge">
+                        <div class="wm-nav-edge-section">
+                          <div class="wm-nav-edge-hint">This point's edges — pick one to edit its actions.</div>
+                          <template x-for="e in navNodeEdges" :key="e.i">
+                            <button type="button" class="wm-nav-edge-row" @click="navPickEdge(e.i)">
+                              <span x-text="e.label"></span>
+                              <span class="wm-nav-edge-row-actions" x-text="e.actions || 'walk'"></span>
+                            </button>
+                          </template>
+                        </div>
+                      </template>
+                      <template x-if="navEdge">
+                        <div class="wm-nav-edge-section">
+                          <div>
+                            <div class="wm-nav-edge-title" x-text="navEdge.title"></div>
+                            <div class="wm-nav-edge-hint" x-text="navEdge.file + ' · ' + (navEdge.directed ? 'one-way' : 'walk edge, both ways')"></div>
+                          </div>
+                          <button type="button" class="wm-nav-link" x-show="navEdge.hasReverse" @click="navGoReverse()" x-text="'Other way: ' + navEdge.reverseSummary"></button>
+                          <button type="button" class="wm-nav-link" x-show="navEdge.directed && !navEdge.hasReverse" @click="navCreateReverse()">+ Add the same edge the other way</button>
+
+                          <label class="wm-nav-edge-field">
+                            <span>Cost</span>
+                            <input class="wm-nav-input" inputmode="numeric" :value="navEdge.cost" :disabled="!navEdge.directed"
+                              :placeholder="navEdge.directed ? '0' : navEdge.walkCost + ' (distance)'"
+                              @change="navSetCost(${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                          </label>
+
+                          <div class="wm-nav-edge-label">Actions</div>
+                          <div class="wm-nav-edge-hint" x-show="!navEdge.actions.length">None: bots just walk it, either way. Adding one makes the edge one-way.</div>
+                          <div class="wm-nav-edge-hint wm-nav-edge-picking" x-show="navPicking >= 0" x-text="'Click the map to set action ' + (navPicking + 1) + '\'s x, y — Esc cancels.'"></div>
+                          <template x-for="(a, ai) in navEdge.actions" :key="ai + ':' + a.type + ':' + a.fields.length">
+                            <div class="wm-nav-action">
+                              <div class="wm-nav-action-head">
+                                <span class="wm-nav-action-num" x-text="ai + 1"></span>
+                                <input class="wm-nav-input wm-nav-action-type" list="wm-nav-action-types" placeholder="type" :value="a.type"
+                                  @change="navSetActionType(ai, ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                                <button type="button" class="wm-nav-icon" title="Set x, y by clicking the map" x-show="a.pickable"
+                                  :class="{ 'wm-nav-icon-active': navPicking === ai }" @click="navPickTile(ai)">⌖</button>
+                                <button type="button" class="wm-nav-icon" title="Move up" :disabled="ai === 0" @click="navMoveAction(ai, -1)">↑</button>
+                                <button type="button" class="wm-nav-icon" title="Move down" :disabled="ai === navEdge.actions.length - 1" @click="navMoveAction(ai, 1)">↓</button>
+                                <button type="button" class="wm-nav-icon" title="Remove action" @click="navRemoveAction(ai)">✕</button>
+                              </div>
+                              <datalist :id="'wm-nav-keys-' + ai">
+                                <template x-for="k in a.suggestions" :key="k"><option :value="k"></option></template>
+                              </datalist>
+                              <template x-for="(f, fi) in a.fields" :key="fi + ':' + f.key">
+                                <div class="wm-nav-action-field">
+                                  <input class="wm-nav-input wm-nav-key" :list="'wm-nav-keys-' + ai" placeholder="key" :value="f.key"
+                                    @change="navSetField(ai, fi, 'key', ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                                  <input class="wm-nav-input" :class="{ 'wm-nav-input-empty': f.empty }" placeholder="value" :value="f.value" :title="f.value"
+                                    @change="navSetField(ai, fi, 'value', ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                                  <button type="button" class="wm-nav-icon" title="Remove" @click="navRemoveField(ai, fi)">✕</button>
+                                </div>
+                              </template>
+                              <div class="wm-nav-action-foot">
+                                <button type="button" class="wm-nav-link" @click="navAddField(ai, a.suggestions[0] || '')"
+                                  x-text="'+ ' + (a.suggestions[0] || 'field')"></button>
+                                <span class="wm-nav-edge-warn" x-show="a.missing.length" x-text="'Missing: ' + a.missing.join(', ')"></span>
+                                <span class="wm-nav-edge-warn" x-show="a.type && !a.known">Not a nav action type</span>
+                              </div>
+                            </div>
+                          </template>
+                          <div class="wm-nav-templates">
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('door')" title="Open a door, then walk through it">+ Door</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('stairs')" title="Climb stairs or a ladder to the other end's level">+ Stairs</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('object')" title="Interact with an object">+ Object</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('walk')" title="Walk to a tile">+ Walk</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('other')" title="Any other action type">+ Other</button>
+                          </div>
+
+                          <label class="wm-nav-edge-field wm-nav-edge-field-stacked">
+                            <span>Requires</span>
+                            <textarea class="wm-nav-input" rows="2" spellcheck="false" :value="navEdge.requires"
+                              placeholder='[{ inventory = [{ id = "coins", amount = 10 }] }]'
+                              @change="navSetRequires(${'$'}event.target.value)"></textarea>
+                          </label>
+                        </div>
+                      </template>
+                      <datalist id="wm-nav-action-types">
+                        <template x-for="t in navActionTypes" :key="t"><option :value="t"></option></template>
+                      </datalist>
+                    </div>
+                    """,
+                )
+            }
+        }
+    }
+
     /** Shared style for one row of the console's players/search lists. */
     private const val ROW_STYLE = "display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);" +
         "padding:8px 14px;border-left:2px solid transparent;border-bottom:1px solid var(--border-subtle);cursor:pointer"
@@ -668,11 +776,12 @@ object WorldMap {
             // Top-right column: the elevation stepper, with the teleport panel stacked under it.
             // The column is sized by its contents rather than to a width of its own — the stepper
             // pill has a minimum width, and a narrower column would simply centre it over the
-            // column's edges and push it off the side of a phone screen.
+            // column's edges and push it off the side of a phone screen. Stacked a level above the
+            // bottom console, which the nav graph's edge panel can grow down beside.
             div {
                 attributes["class"] = "wm-top-right"
                 style = "position:absolute;top:20px;right:20px;display:flex;flex-direction:column;" +
-                    "align-items:flex-end;gap:var(--space-5);z-index:25"
+                    "align-items:flex-end;gap:var(--space-5);z-index:26"
                 div {
                     style = "display:flex;flex-direction:column;align-items:center;gap:7px"
                     div {
@@ -724,6 +833,7 @@ object WorldMap {
                     }
                 }
                 teleportPanel()
+                navEdgePanel()
             }
 
             // Bottom-left coordinate readout — the game tile under the cursor, plus the name(s) of

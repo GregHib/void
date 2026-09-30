@@ -14,7 +14,9 @@
 // splits the array into one chunk per edge, remembering where in each element the `from`/`to`
 // tables sit, and `serializeNavFile` stitches the chunks back together with only the tables that
 // actually changed rewritten. Comments, hand-wrapped multi-line `actions`, key order and spacing all
-// survive a save untouched, so the diff is just the edges that were edited.
+// survive a save untouched, so the diff is just the edges that were edited. An edge whose cost,
+// actions or requirements were changed in the Edge panel is the exception: it's written out afresh,
+// on one line, from what `readMeta` parsed out of it.
 (function () {
   // Screen-space hit radii, in CSS pixels, for picking a node or an edge under the cursor.
   var NODE_HIT_PX = 9;
@@ -26,6 +28,58 @@
   // crawl if it had to walk them.
   var SKIPPED_DIRS = { cache: true, 'map-tiles': true, saves: true, dump: true, '.temp': true, '.git': true, node_modules: true };
   var NAV_SUFFIX = '.nav-edges.toml';
+
+  // Keys each bot action type takes, from content.bot.behaviour.action.ActionParser — just the
+  // types that make sense on a nav edge. Drives the Edge panel's key suggestions, the keys added
+  // when a type is picked, and the "missing" warning. Any other type can still be typed in.
+  var ACTION_KEYS = {
+    object: { required: ['option', 'id', 'success'], optional: ['x', 'y', 'radius', 'delay', 'if'] },
+    tile: { required: ['x', 'y'], optional: ['radius'] },
+    npc: { required: ['option', 'id'], optional: ['success', 'radius', 'delay'] },
+    floor_item: { required: ['option', 'id', 'success'], optional: ['x', 'y', 'radius', 'delay'] },
+    item_on_object: { required: ['id', 'object'], optional: ['success', 'delay'] },
+    item_on_item: { required: ['id', 'on'], optional: ['success'] },
+    interface: { required: ['option', 'id'], optional: ['success', 'if'] },
+    interface_close: { required: ['id'], optional: [] },
+    continue: { required: ['id'], optional: ['option', 'success'] },
+    enter: { required: [], optional: ['int', 'string'] },
+    wait: { required: ['ticks'], optional: [] },
+    go_to: { required: [], optional: ['area', 'nearest'] },
+    jewellery_teleport: { required: ['item', 'area'], optional: ['if', 'success'] },
+    restart: { required: ['success'], optional: ['wait_if'] },
+  };
+
+  function field(key, value) {
+    return { key: key, value: String(value) };
+  }
+
+  // The Edge panel's "+ Door", "+ Stairs"... buttons: the shapes the existing files use, filled in
+  // from the edge's own ends where that's a good guess.
+  var ACTION_TEMPLATES = {
+    door: function (edge) {
+      return [
+        { type: 'object', fields: [field('option', 'Open'), field('id', ''), field('x', edge.to.x), field('y', edge.to.y),
+          field('success', '{ object = { id = "", x = ' + edge.to.x + ', y = ' + edge.to.y + ' } }')] },
+        { type: 'tile', fields: [field('x', edge.to.x), field('y', edge.to.y), field('radius', 1)] },
+      ];
+    },
+    stairs: function (edge) {
+      var up = (edge.to.level || 0) > (edge.from.level || 0);
+      return [
+        { type: 'object', fields: [field('option', up ? 'Climb-up' : 'Climb-down'), field('id', ''), field('x', edge.from.x), field('y', edge.from.y),
+          field('success', '{ tile = { level = ' + (edge.to.level || 0) + ' } }')] },
+      ];
+    },
+    object: function (edge) {
+      return [{ type: 'object', fields: [field('option', ''), field('id', ''), field('x', edge.to.x), field('y', edge.to.y), field('success', '{ tile = { x = ' + edge.to.x + ', y = ' + edge.to.y + ' } }')] }];
+    },
+    walk: function (edge) {
+      return [{ type: 'tile', fields: [field('x', edge.to.x), field('y', edge.to.y)] }];
+    },
+    other: function () {
+      return [{ type: '', fields: [] }];
+    },
+  };
 
   function tileKey(t) {
     return t.x + ',' + t.y + ',' + (t.level || 0);
@@ -110,6 +164,16 @@
   // the element's own text.
   function readEdgeKeys(element) {
     var keys = {};
+    readEntries(element).forEach(function (entry) {
+      keys[entry.key] = { start: entry.start, end: entry.end };
+    });
+    return keys;
+  }
+
+  // The `key = value` entries of an inline table (`{ ... }`), in order, each with the span of its
+  // value relative to the table's own text.
+  function readEntries(element) {
+    var entries = [];
     var i = 1;
     var end = element.length - 1;
     while (i < end) {
@@ -144,9 +208,153 @@
           i++;
         }
       }
-      keys[key[0]] = { start: start, end: i };
+      entries.push({ key: key[0], start: start, end: i });
     }
-    return keys;
+    return entries;
+  }
+
+  // The elements of an inline array (`[ ... ]`), as their own text.
+  function splitArray(text) {
+    var out = [];
+    var i = 1;
+    var end = text.length - 1;
+    while (i < end) {
+      var c = text[i];
+      if (c === '#') {
+        i = skipComment(text, i);
+      } else if (c === ',' || /\s/.test(c)) {
+        i++;
+      } else {
+        var start = i;
+        if (c === '{' || c === '[') {
+          i = matchBracket(text, i);
+        } else if (c === '"' || c === "'") {
+          i = skipString(text, i);
+        } else {
+          while (i < end && text[i] !== ',' && !/\s/.test(text[i])) {
+            i++;
+          }
+        }
+        out.push(text.slice(start, i));
+      }
+    }
+    return out;
+  }
+
+  // A value's text on one line: comments dropped and every run of whitespace outside a string
+  // collapsed to a single space, so a hand-wrapped `success = { ... }` fits in a text field.
+  function oneLine(text) {
+    var out = '';
+    var i = 0;
+    while (i < text.length) {
+      var c = text[i];
+      if (c === '"' || c === "'") {
+        var j = skipString(text, i);
+        out += text.slice(i, j);
+        i = j;
+      } else if (c === '#') {
+        i = skipComment(text, i);
+      } else if (/\s/.test(c)) {
+        while (i < text.length && /\s/.test(text[i])) {
+          i++;
+        }
+        out += ' ';
+      } else {
+        out += c;
+        i++;
+      }
+    }
+    return out.trim().replace(/\[ /g, '[').replace(/ \]/g, ']').replace(/,\s*([\]}])/g, ' $1').replace(/\[ \]/g, '[]');
+  }
+
+  // A value typed into the editor that TOML would read as something other than a string: a number,
+  // a boolean, a quoted string, or an inline table/array.
+  function isRawValue(text) {
+    return /^-?\d+$/.test(text) || text === 'true' || text === 'false' || /^["'{\[]/.test(text);
+  }
+
+  // Strings are shown and edited without their quotes (`Open`, not `"Open"`), as long as the bare
+  // text would still read back as a string.
+  function displayValue(raw) {
+    if (/^"([^"\\]|\\.)*"$/.test(raw)) {
+      var text = JSON.parse(raw);
+      if (!isRawValue(text) && text.trim() === text && text !== '') {
+        return text;
+      }
+    }
+    return raw;
+  }
+
+  function tomlValue(text) {
+    text = text.trim();
+    return isRawValue(text) ? text : JSON.stringify(text);
+  }
+
+  // Why `text` isn't a usable value, or '' if it is: brackets must balance and close at the end.
+  function valueProblem(text) {
+    text = text.trim();
+    if (text === '') {
+      return 'empty';
+    }
+    if (/^[{\[]/.test(text)) {
+      try {
+        if (matchBracket(text, 0) !== text.length) {
+          return 'unexpected text after the closing bracket';
+        }
+      } catch (e) {
+        return 'unclosed bracket';
+      }
+    }
+    if (/^["']/.test(text) && skipString(text, 0) !== text.length) {
+      return 'unclosed or trailing text after string';
+    }
+    return '';
+  }
+
+  // `actions = [ { object = { option = "Open", ... } }, { tile = { ... } } ]` as
+  // `[{ type: 'object', fields: [{ key: 'option', value: 'Open' }, ...] }, ...]`.
+  function parseActions(text) {
+    return splitArray(text).map(function (element) {
+      var entry = readEntries(element)[0];
+      if (!entry) {
+        return { type: '', fields: [] };
+      }
+      var body = element.slice(entry.start, entry.end);
+      return {
+        type: entry.key,
+        fields: body[0] === '{'
+          ? readEntries(body).map(function (field) {
+            return { key: field.key, value: displayValue(oneLine(body.slice(field.start, field.end))) };
+          })
+          : [],
+      };
+    });
+  }
+
+  function formatAction(action) {
+    var fields = action.fields.filter(function (field) {
+      return field.key;
+    }).map(function (field) {
+      return field.key + ' = ' + tomlValue(field.value);
+    });
+    return '{ ' + (action.type || 'object') + ' = ' + (fields.length ? '{ ' + fields.join(', ') + ' }' : '{}') + ' }';
+  }
+
+  // The parts of an edge the Edge panel edits, besides its ends. `cost` and `requires` are kept as
+  // TOML text ('' when absent).
+  function readMeta(element, keys) {
+    function raw(key) {
+      return keys[key] ? oneLine(element.slice(keys[key].start, keys[key].end)) : '';
+    }
+    return {
+      cost: raw('cost'),
+      actions: keys.actions ? parseActions(element.slice(keys.actions.start, keys.actions.end)) : [],
+      requires: raw('requires'),
+    };
+  }
+
+  function copyMeta(meta) {
+    return JSON.parse(JSON.stringify(meta));
   }
 
   // Splits a nav-edges file into `head` (everything up to and including `edges = [`), `items` (in
@@ -208,6 +416,7 @@
       }
       var from = readTile(element.slice(keys.from.start, keys.from.end));
       var to = readTile(element.slice(keys.to.start, keys.to.end));
+      var meta = readMeta(element, keys);
       items.push({
         edge: {
           pre: text.slice(chunkStart, i),
@@ -221,8 +430,11 @@
           origTo: to,
           from: copyTile(from),
           to: copyTile(to),
+          meta: meta,
+          // What `meta` was when read, to tell whether the element needs rewriting.
+          origMeta: JSON.stringify(meta),
           // Edges with actions are one-way (and walk-only ones both ways) — see loadGraph.
-          directed: !!keys.actions,
+          directed: meta.actions.length > 0,
         },
       });
       i = restEnd;
@@ -246,9 +458,12 @@
     return '    ';
   }
 
-  function newEdge(file, from, to) {
+  function newEdge(file, from, to, meta) {
+    meta = meta || { cost: '', actions: [], requires: '' };
     var element = '{ from = ' + formatTile(from) + ', to = ' + formatTile(to) + ' }';
     return {
+      meta: meta,
+      origMeta: '',
       pre: indentOf(file),
       element: element,
       between: '',
@@ -260,14 +475,32 @@
       origTo: copyTile(to),
       from: copyTile(from),
       to: copyTile(to),
-      directed: false,
+      directed: meta.actions.length > 0,
       added: true,
     };
   }
 
+  // The whole element written out afresh, on one line, in the order the existing files use.
+  function formatElement(edge) {
+    var meta = edge.meta;
+    var text = '{ from = ' + formatTile(edge.from) + ', to = ' + formatTile(edge.to);
+    if (meta.cost !== '') {
+      text += ', cost = ' + meta.cost;
+    }
+    if (meta.actions.length) {
+      text += ', actions = [' + meta.actions.map(formatAction).join(', ') + ']';
+    }
+    if (meta.requires !== '') {
+      text += ', requires = ' + meta.requires;
+    }
+    return text + ' }';
+  }
+
+  // An edge whose cost, actions or requirements were edited is rewritten whole (so a hand-wrapped
+  // one ends up on a single line); one that only had its ends moved keeps the rest of its text.
   function elementText(edge) {
-    if (edge.added) {
-      return '{ from = ' + formatTile(edge.from) + ', to = ' + formatTile(edge.to) + ' }';
+    if (edge.added || JSON.stringify(edge.meta) !== edge.origMeta) {
+      return formatElement(edge);
     }
     var text = edge.element;
     // Later span first, so the earlier one's offsets still hold.
@@ -376,11 +609,16 @@
       hoverShift: false,
       // Space held: the editor ignores the pointer so every drag pans.
       panKey: false,
+      // Index of the selected edge's action whose x/y the next map click sets, or null.
+      pick: null,
+      // The selected point's edges, in the order the panel lists them (see `navPickEdge`).
+      nodeEdges: [],
     };
 
     return {
       showNavGraph: false,
       navPanelOpen: true,
+      navEdgePanelOpen: true,
       navLoaded: false,
       navFiles: [],
       navTarget: 0,
@@ -396,6 +634,12 @@
       navError: '',
       // What the last save did — which files were written in place and which could only be downloaded.
       navNotice: '',
+      // The Edge panel's copy of the selected edge (null when a point or nothing is selected), and
+      // the selected point's edge list.
+      navEdge: null,
+      navNodeEdges: [],
+      navPicking: -1,
+      navActionTypes: Object.keys(ACTION_KEYS),
       navFolderAccess: typeof window.showDirectoryPicker === 'function',
 
       navBoot: function (root) {
@@ -935,6 +1179,71 @@
           this.navSelection = tileKey(e.from).replace(/,/g, ', ') + ' → ' + tileKey(e.to).replace(/,/g, ', ') +
             (e.directed ? ' (one-way, has actions)' : '') + ' — ' + nav.files[e.file].name;
         }
+        this.syncEdgePanel();
+      },
+
+      // Plain copies for the Edge panel — the panel edits through the navSet*/navAdd* methods,
+      // never these objects, so they're rebuilt from scratch on every change.
+      syncEdgePanel: function () {
+        var sel = nav.selected;
+        var edge = sel && sel.edge;
+        if (!edge) {
+          nav.pick = null;
+        }
+        this.navPicking = nav.pick === null ? -1 : nav.pick;
+        function label(t) {
+          return t.x + ', ' + t.y + ((t.level || 0) ? ', ' + t.level : '');
+        }
+        function summary(e) {
+          return e.meta.actions.map(function (a) {
+            return a.type || '?';
+          }).join(' → ');
+        }
+        var node = sel && sel.node ? nav.nodes[sel.node] : null;
+        nav.nodeEdges = node ? node.edges.slice() : [];
+        this.navNodeEdges = nav.nodeEdges.map(function (e, i) {
+          var out = tileKey(e.from) === node.key;
+          return {
+            i: i,
+            label: (e.directed ? (out ? '→ ' : '← ') : '↔ ') + label(out ? e.to : e.from),
+            actions: summary(e),
+          };
+        });
+        if (!edge) {
+          this.navEdge = null;
+          return;
+        }
+        var reverse = this.navReverseOf(edge);
+        this.navEdge = {
+          title: label(edge.from) + (edge.directed ? ' → ' : ' ↔ ') + label(edge.to),
+          file: nav.files[edge.file] ? nav.files[edge.file].name : '',
+          directed: edge.directed,
+          cost: edge.meta.cost,
+          walkCost: Math.abs(edge.to.x - edge.from.x) + Math.abs(edge.to.y - edge.from.y),
+          requires: edge.meta.requires,
+          hasReverse: !!reverse,
+          reverseSummary: reverse ? summary(reverse) || 'walk' : '',
+          actions: edge.meta.actions.map(function (action) {
+            var spec = ACTION_KEYS[action.type];
+            var keys = action.fields.map(function (f) {
+              return f.key;
+            });
+            return {
+              type: action.type,
+              known: !!spec,
+              fields: action.fields.map(function (f) {
+                return { key: f.key, value: f.value, empty: f.value.trim() === '' };
+              }),
+              missing: spec ? spec.required.filter(function (key) {
+                return keys.indexOf(key) === -1;
+              }) : [],
+              suggestions: spec ? spec.required.concat(spec.optional).filter(function (key) {
+                return keys.indexOf(key) === -1;
+              }) : [],
+              pickable: action.type === 'object' || action.type === 'tile' || action.type === 'floor_item' || keys.indexOf('x') !== -1,
+            };
+          }),
+        };
       },
 
       // Snapshot of every file's edge list (edges copied, since moves mutate them in place) for
@@ -951,6 +1260,7 @@
                 var copy = Object.assign({}, item.edge);
                 copy.from = copyTile(item.edge.from);
                 copy.to = copyTile(item.edge.to);
+                copy.meta = copyMeta(item.edge.meta);
                 return { edge: copy };
               }),
             };
@@ -1097,6 +1407,250 @@
         this.scheduleRender();
       },
 
+      // --- Edge editor (the "Edge" panel) ---
+      //
+      // Every change goes through `navEditEdge`, which takes an undo checkpoint, applies it to the
+      // selected edge's `meta` and refreshes the panel's copy (`navEdge`). Fields commit on `change`
+      // (Enter or leaving the field), not per keystroke, so one edit is one undo step.
+
+      navSelectedEdge: function () {
+        return nav.selected && nav.selected.edge ? nav.selected.edge : null;
+      },
+
+      navEditEdge: function (change) {
+        var edge = this.navSelectedEdge();
+        if (!edge) {
+          return;
+        }
+        var before = JSON.stringify(edge.meta);
+        this.navCheckpoint();
+        change.call(this, edge.meta, edge);
+        if (JSON.stringify(edge.meta) === before) {
+          nav.undo.pop();
+          this.syncNavState();
+          return;
+        }
+        edge.directed = edge.meta.actions.length > 0;
+        this.navMarkDirty(edge.file);
+        this.navRebuild();
+      },
+
+      navSetCost: function (value) {
+        value = value.trim();
+        if (value !== '' && !/^\d+$/.test(value)) {
+          this.navError = 'Cost must be a whole number.';
+          this.syncNavState();
+          return;
+        }
+        this.navError = '';
+        this.navEditEdge(function (meta) {
+          meta.cost = value;
+        });
+      },
+
+      navSetRequires: function (value) {
+        value = value.trim();
+        var problem = value === '' ? '' : value[0] !== '[' ? 'must be an array: [{ ... }]' : valueProblem(value);
+        if (problem) {
+          this.navError = 'Requires: ' + problem + '.';
+          this.syncNavState();
+          return;
+        }
+        this.navError = '';
+        this.navEditEdge(function (meta) {
+          meta.requires = value === '' ? '' : oneLine(value);
+        });
+      },
+
+      // Changing an action's type fills in the keys the new type can't do without.
+      navSetActionType: function (index, type) {
+        type = type.trim();
+        this.navEditEdge(function (meta) {
+          var action = meta.actions[index];
+          action.type = type;
+          var spec = ACTION_KEYS[type];
+          (spec ? spec.required : []).forEach(function (key) {
+            if (!action.fields.some(function (field) {
+              return field.key === key;
+            })) {
+              action.fields.push({ key: key, value: '' });
+            }
+          });
+        });
+      },
+
+      navSetField: function (index, fieldIndex, part, value) {
+        value = part === 'key' ? value.trim() : value;
+        if (part === 'value' && /^[{\[]/.test(value.trim()) && valueProblem(value)) {
+          this.navError = 'Action ' + (index + 1) + ': ' + valueProblem(value) + '.';
+          this.syncNavState();
+          return;
+        }
+        this.navError = '';
+        this.navEditEdge(function (meta) {
+          var field = meta.actions[index].fields[fieldIndex];
+          field[part] = part === 'value' && /^[{\[]/.test(value.trim()) ? oneLine(value) : value;
+        });
+      },
+
+      navAddField: function (index, key) {
+        this.navEditEdge(function (meta) {
+          meta.actions[index].fields.push({ key: key || '', value: '' });
+        });
+      },
+
+      navRemoveField: function (index, fieldIndex) {
+        this.navEditEdge(function (meta) {
+          meta.actions[index].fields.splice(fieldIndex, 1);
+        });
+      },
+
+      navRemoveAction: function (index) {
+        this.navEditEdge(function (meta) {
+          meta.actions.splice(index, 1);
+        });
+      },
+
+      navMoveAction: function (index, by) {
+        this.navEditEdge(function (meta) {
+          var to = index + by;
+          if (to < 0 || to >= meta.actions.length) {
+            return;
+          }
+          var moved = meta.actions.splice(index, 1)[0];
+          meta.actions.splice(to, 0, moved);
+        });
+      },
+
+      // Appends one of the ready-made actions (see ACTION_TEMPLATES). The first action on an edge
+      // also turns it one-way, and gives it a cost if it had none — edges with actions aren't
+      // costed by distance like walk edges are, so without one it'd be free.
+      navAddAction: function (template) {
+        this.navEditEdge(function (meta, edge) {
+          if (!meta.actions.length && meta.cost === '') {
+            meta.cost = String(Math.max(1, Math.abs(edge.to.x - edge.from.x) + Math.abs(edge.to.y - edge.from.y)));
+          }
+          ACTION_TEMPLATES[template](edge).forEach(function (action) {
+            meta.actions.push(action);
+          });
+        });
+      },
+
+      // The next click on the map sets this action's `x`/`y` instead of editing the graph.
+      navPickTile: function (index) {
+        nav.pick = nav.pick === index ? null : index;
+        this.syncNavState();
+        this.navUpdateCursor(null);
+      },
+
+      navPickAt: function (tile) {
+        var index = nav.pick;
+        nav.pick = null;
+        this.navEditEdge(function (meta) {
+          var action = meta.actions[index];
+          if (!action) {
+            return;
+          }
+          ['x', 'y'].forEach(function (key) {
+            var field = action.fields.filter(function (f) {
+              return f.key === key;
+            })[0];
+            if (!field) {
+              field = { key: key, value: '' };
+              action.fields.push(field);
+            }
+            field.value = String(tile[key]);
+          });
+        });
+      },
+
+      // The edge going the other way between the same two tiles, if there is one.
+      navReverseOf: function (edge) {
+        var node = nav.nodes[tileKey(edge.to)];
+        if (!node) {
+          return null;
+        }
+        for (var i = 0; i < node.edges.length; i++) {
+          var other = node.edges[i];
+          if (other !== edge && sameTile(other.from, edge.to) && sameTile(other.to, edge.from)) {
+            return other;
+          }
+        }
+        return null;
+      },
+
+      navSelectEdge: function (edge) {
+        nav.selected = { edge: edge };
+        nav.pick = null;
+        this.navTarget = edge.file;
+        this.syncNavState();
+        this.scheduleRender();
+      },
+
+      navGoReverse: function () {
+        var edge = this.navSelectedEdge();
+        var reverse = edge && this.navReverseOf(edge);
+        if (reverse) {
+          this.navSelectEdge(reverse);
+        }
+      },
+
+      // One-way edges mostly come in pairs (through a door and back). Copies this edge's actions
+      // onto a new edge the other way, with any action that walked to this edge's end retargeted
+      // to its start — the rest (which door, which object) is the same both ways.
+      navCreateReverse: function () {
+        var edge = this.navSelectedEdge();
+        var file = edge && nav.files[edge.file];
+        if (!file || this.navReverseOf(edge)) {
+          return;
+        }
+        this.navCheckpoint();
+        var meta = copyMeta(edge.meta);
+        meta.actions.forEach(function (action) {
+          if (action.type !== 'tile') {
+            return;
+          }
+          var x = action.fields.filter(function (f) {
+            return f.key === 'x';
+          })[0];
+          var y = action.fields.filter(function (f) {
+            return f.key === 'y';
+          })[0];
+          if (x && y && x.value === String(edge.to.x) && y.value === String(edge.to.y)) {
+            x.value = String(edge.from.x);
+            y.value = String(edge.from.y);
+          }
+        });
+        var reverse = newEdge(file, edge.to, edge.from, meta);
+        // Straight after the original, where the existing files keep each pair.
+        var at = file.items.findIndex(function (item) {
+          return item.edge === edge;
+        });
+        file.items.splice(at + 1, 0, { edge: reverse });
+        file.dirty = true;
+        this.navRebuild();
+        this.navSelectEdge(reverse);
+      },
+
+      // For the point panel: select one of a point's edges (the only way to reach one of a
+      // two-way pair, which draw over each other).
+      navPickEdge: function (index) {
+        var edge = nav.nodeEdges[index];
+        if (edge) {
+          this.navSelectEdge(edge);
+        }
+      },
+
+      navCancelPick: function () {
+        if (nav.pick === null) {
+          return false;
+        }
+        nav.pick = null;
+        this.syncNavState();
+        this.navUpdateCursor(null);
+        return true;
+      },
+
       // --- Interaction (called from worldmap.js's pointer handlers) ---
 
       navEditing: function () {
@@ -1190,7 +1744,8 @@
           return false;
         }
         nav.press = { x: e.clientX, y: e.clientY, shift: e.shiftKey };
-        var node = this.navNodeAt(e);
+        // Picking a tile for an action: a press on a point picks that tile rather than dragging it.
+        var node = nav.pick === null && this.navNodeAt(e);
         if (!node) {
           return false;
         }
@@ -1259,6 +1814,10 @@
       },
 
       navClick: function (e, shift) {
+        if (nav.pick !== null) {
+          this.navPickAt(this.navTileAt(e));
+          return;
+        }
         var node = this.navNodeAt(e);
         var sel = nav.selected;
         var from = sel && sel.node ? nav.nodes[sel.node] : null;
@@ -1344,7 +1903,8 @@
           return;
         }
         var active = this.navInteractive() && !!e;
-        var node = active && this.navNodeAt(e);
+        vp.classList.toggle('wm-nav-picking', this.navInteractive() && nav.pick !== null);
+        var node = active && nav.pick === null && this.navNodeAt(e);
         var drawing = active && !node && nav.selected && nav.selected.node;
         var edge = active && !node && !drawing && this.navEdgeAt(e);
         vp.classList.toggle('wm-nav-grab', !!node);
@@ -1388,6 +1948,9 @@
             this.navDeleteSelected();
           }
         } else if (e.key === 'Escape') {
+          if (this.navCancelPick()) {
+            return;
+          }
           nav.selected = null;
           this.syncNavState();
           this.scheduleRender();
@@ -1523,6 +2086,26 @@
             marked += '<line class="wm-nav-edge wm-nav-edge-preview" x1="' + from.x.toFixed(1) + '" y1="' + from.y.toFixed(1) + '" x2="' + to.x.toFixed(1) + '" y2="' + to.y.toFixed(1) + '"></line>';
             diff(selNode, target);
           }
+        }
+        // The selected edge's actions that name a tile (the door to open, the tile to walk to) are
+        // outlined where they point, numbered in the order the bot does them.
+        if (sel && sel.edge && (sel.edge.from.level || 0) === level) {
+          sel.edge.meta.actions.forEach(function (action, i) {
+            var at = {};
+            action.fields.forEach(function (f) {
+              if ((f.key === 'x' || f.key === 'y') && /^-?\d+$/.test(f.value.trim())) {
+                at[f.key] = parseInt(f.value, 10);
+              }
+            });
+            if (at.x === undefined || at.y === undefined) {
+              return;
+            }
+            var p = self.navScreen(at);
+            var half = Math.max(scale, 8) / 2;
+            diffs += '<rect class="wm-nav-target' + (nav.pick === i ? ' wm-nav-target-picking' : '') + '" x="' + (p.x - half).toFixed(1) + '" y="' + (p.y - half).toFixed(1) +
+              '" width="' + (half * 2).toFixed(1) + '" height="' + (half * 2).toFixed(1) + '"></rect>' +
+              '<text class="wm-nav-diff" x="' + (p.x + half + 6).toFixed(1) + '" y="' + (p.y - half).toFixed(1) + '">' + (i + 1) + '</text>';
+          });
         }
         // The selected point's distance from each neighbour, updating as it's dragged or nudged.
         if (selNode && selNode.level === level) {

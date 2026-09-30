@@ -333,3 +333,214 @@
     width: 130px !important;
   }
 }
+
+/* Nav graph edge editor (`navEdgePanel` in WorldMap.kt). */
+.wm-nav-edge-wrap {
+  width: min(320px, calc(100vw - 40px));
+}
+.wm-nav-edge-body {
+  max-height: min(62vh, 560px);
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6) var(--space-6);
+}
+.wm-nav-edge-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.wm-nav-edge-title {
+  font: var(--type-code);
+  font-size: var(--text-xs);
+  color: var(--gold-300);
+}
+.wm-nav-edge-hint {
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  line-height: var(--leading-normal);
+}
+.wm-nav-edge-picking {
+  color: var(--gold-300);
+}
+.wm-nav-edge-label,
+.wm-nav-edge-field > span {
+  font: var(--type-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+.wm-nav-edge-field {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: var(--space-4);
+}
+.wm-nav-edge-field-stacked {
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+.wm-nav-edge-warn {
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  color: var(--feedback-warning);
+}
+.wm-nav-edge-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--umber-800);
+  color: var(--text-muted);
+  font: var(--type-code);
+  font-size: var(--text-2xs);
+  text-align: left;
+  cursor: pointer;
+}
+.wm-nav-edge-row:hover {
+  color: var(--gold-300);
+  border-color: var(--gold-600);
+}
+.wm-nav-edge-row-actions {
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wm-nav-input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 26px;
+  padding: 0 7px;
+  background: var(--surface-inset);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-body);
+  font: var(--type-code);
+  font-size: var(--text-2xs);
+  outline: none;
+}
+textarea.wm-nav-input {
+  height: auto;
+  padding: 5px 7px;
+  resize: vertical;
+}
+.wm-nav-input:focus {
+  border-color: var(--gold-400);
+}
+.wm-nav-input:disabled {
+  opacity: 0.55;
+}
+.wm-nav-input-empty {
+  border-color: var(--feedback-warning);
+}
+.wm-nav-action {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.12);
+}
+.wm-nav-action-head,
+.wm-nav-action-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.wm-nav-action-num {
+  flex: 0 0 18px;
+  text-align: center;
+  font: var(--weight-semibold) var(--text-2xs) / 1 var(--font-ui);
+  color: var(--gold-300);
+}
+.wm-nav-action-type {
+  flex: 1;
+  color: var(--gold-300);
+}
+.wm-nav-key {
+  flex: 0 0 84px;
+  color: var(--text-muted);
+}
+.wm-nav-action-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.wm-nav-icon {
+  flex: 0 0 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.wm-nav-icon:hover:not(:disabled) {
+  color: var(--gold-300);
+  border-color: var(--border-strong);
+}
+.wm-nav-icon:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.wm-nav-icon-active {
+  color: var(--umber-900);
+  background: var(--gold-300);
+}
+.wm-nav-link {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gold-300);
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  cursor: pointer;
+}
+.wm-nav-link:hover {
+  text-decoration: underline;
+}
+.wm-nav-templates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.wm-nav-chip {
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--umber-800);
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-2xs) / 1 var(--font-ui);
+  cursor: pointer;
+}
+.wm-nav-chip:hover {
+  color: var(--gold-300);
+  border-color: var(--gold-600);
+}
+
+/* The selected edge's action targets on the map (`renderNavGraph`). */
+.wm-nav-target {
+  fill: rgba(240, 150, 70, 0.18);
+  stroke: rgba(240, 150, 70, 0.95);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+}
+.wm-nav-target-picking {
+  stroke: var(--gold-300);
+  fill: rgba(240, 198, 103, 0.3);
+}
+.wm-viewport.wm-nav-picking {
+  cursor: crosshair;
+}
