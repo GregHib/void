@@ -137,7 +137,7 @@ class Getorix : Script {
         }
     }
 
-    private suspend fun enterPassageway(player: Player, interact: world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract) {
+    private suspend fun enterPassageway(player: Player, @Suppress("UNUSED_PARAMETER") interact: world.gregs.voidps.engine.entity.character.mode.interact.PlayerOnObjectInteract) {
         with(player) {
             if (!hasCompletedFiaraWhatIsThisPlaceDialogue()) {
                 npc<Angry>("getorix", "You cannot go in there unless you've talked to Lady Fiara!")
