@@ -1,0 +1,121 @@
+# Skill names players use, what bots say they're doing and training advice.
+# `activity` and `advice` are quick chat phrases, `spots` are [min level, quick chat enum value] for the advice <MultipleChoice>
+# `tips` are [min level, phrase] for advice phrases without a slot.
+[chat_skills]
+aka = "list<string>"
+activity = "string"
+advice = "string"
+spots = "list<pair<int, string>>"
+tips = "list<pair<int, string>>"
+
+[.attack]
+aka = ["att", "atk"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [30, "hill_giants"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"]]
+
+[.defence]
+aka = ["def", "defense"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [30, "hill_giants"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"]]
+
+[.strength]
+aka = ["str"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [30, "hill_giants"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"]]
+
+[.constitution]
+aka = ["hp", "hitpoints", "hits", "cons"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [30, "hill_giants"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"]]
+
+[.ranged]
+aka = ["range", "ranging", "archery"]
+advice = "Try ranging: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [30, "hill_giants"], [45, "moss_giants"], [60, "lesser_demons"]]
+
+[.prayer]
+aka = ["pray"]
+
+[.magic]
+aka = ["mage", "maging"]
+
+[.cooking]
+aka = ["cook"]
+activity = "I'm cooking: <MultipleChoice>."
+advice = "Try cooking: <MultipleChoice>."
+spots = [[1, "shrimp"], [15, "trout"], [25, "salmon"], [40, "lobster"], [45, "swordfish"], [62, "monkfish"], [80, "shark"]]
+
+[.woodcutting]
+aka = ["wc", "wcing", "woodcut", "chopping"]
+advice = "Try training Woodcutting at: <MultipleChoice>."
+spots = [[1, "west_of_lumbridge_castle"], [1, "draynor"], [15, "varrock_palace"], [30, "draynor"], [45, "seers_village"], [60, "seers_village_cemetery"]]
+
+[.fletching]
+aka = ["fletch"]
+activity = "I'm fletching: <MultipleChoice>."
+
+[.fishing]
+aka = ["fish", "fishin"]
+activity = "I'm fishing: <MultipleChoice>."
+advice = "Try fishing for: <MultipleChoice>."
+spots = [[1, "shrimp"], [20, "trout"], [30, "salmon"], [40, "lobster"], [50, "swordfish"], [62, "monkfish"], [76, "shark"]]
+tips = [[1, "Fish Flingers is a good way to train Fishing."], [15, "Fishing Trawler is a good way to train Fishing."]]
+
+[.firemaking]
+aka = ["fm", "fming", "fire making"]
+activity = "I'm burning logs: <MultipleChoice>."
+advice = "Try burning logs at: <MultipleChoice>."
+spots = [[1, "draynor_village"], [15, "falador_east_bank"], [45, "yanille"]]
+
+[.crafting]
+aka = ["craft"]
+activity = "I am crafting: <MultipleChoice>."
+
+[.smithing]
+aka = ["smith", "smithin"]
+
+[.mining]
+aka = ["mine", "minin"]
+activity = "I'm mining ore: <MultipleChoice>."
+advice = "Try mining at: <MultipleChoice>."
+spots = [[1, "lumbridge_swamp"], [1, "varrock_south_east"], [15, "varrock_south_west"], [30, "barbarian_village"], [30, "dwarven_mine"], [60, "mining_guild"]]
+
+[.herblore]
+aka = ["herb", "herbs", "herbing"]
+
+[.agility]
+aka = ["agil", "agi"]
+advice = "Try training your Agility at: <MultipleChoice>."
+spots = [[1, "gnome_stronghold_course"], [30, "agility_pyramid"], [35, "barbarian_outpost"], [52, "wilderness_course"]]
+
+[.thieving]
+aka = ["thief", "thieve", "thiev"]
+advice = "Try thieving from: <MultipleChoice>."
+spots = [[1, "men_and_women"], [5, "stalls"], [38, "master_farmers"], [55, "knights"]]
+tips = [[21, "Pyramid Plunder is a good way to train Thieving."], [65, "Sorceress's Garden is a good way to train Thieving."]]
+
+[.slayer]
+aka = ["slay", "slaying"]
+
+[.farming]
+aka = ["farm", "farmin"]
+tips = [[1, "Vinesweeper is a good way to train Farming."]]
+
+[.runecrafting]
+aka = ["rc", "rcing", "runecraft", "rune crafting"]
+advice = "Try crafting runes at: <MultipleChoice>."
+spots = [[1, "air_altar"], [2, "mind_altar"], [9, "earth_altar"], [14, "fire_altar"], [44, "nature_altar"], [54, "law_altar"]]
+
+[.hunter]
+aka = ["hunt", "hunting"]
+advice = "Try hunting: <MultipleChoice>."
+spots = [[1, "polar_kebbit"], [5, "wimpy_bird"], [9, "common_jadinko"]]
+
+[.construction]
+aka = ["con", "conn"]
+
+[.summoning]
+aka = ["summ", "summon"]
+
+[.dungeoneering]
+aka = ["dung", "dg"]

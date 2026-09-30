@@ -3,7 +3,7 @@ package content.bot.chat.api
 import com.github.michaelbull.logging.InlineLogger
 import content.bot.bot
 import content.bot.chat.Conversation
-import content.bot.chat.tag.Entity
+import content.bot.chat.tag.ChatEntity
 import content.bot.chat.Expectation
 import content.bot.chat.Persona
 import content.bot.chat.QuickChatPhrases
@@ -49,7 +49,7 @@ class ChatContext(
     /**
      * Entity from this message, otherwise from the conversation topic ("and fishing?" / "what about there?")
      */
-    fun slot(type: SlotType): Entity? = utterance.first(type) ?: conversation.topic[type]
+    fun slot(type: SlotType): ChatEntity? = utterance.first(type) ?: conversation.topic[type]
 
     /**
      * Add a candidate reply. [phrase] is the quick chat text with typed placeholders e.g. "Try mining at: <MultipleChoice>."
