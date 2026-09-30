@@ -19,8 +19,8 @@ object AdventurersLog {
     private const val SHOW_XP_CHART = false
 
     fun page(gameData: GameData): String = voidPage(
-        title = "Void — adventurer's log",
-        description = "Skills, quests, boss kills and recent activity for any Void account.",
+        title = "Void - Adventurer's Log",
+        description = "Skills, quests, boss kills and recent activity for player accounts.",
         head = {
             script { unsafe { raw(gameData.script()) } }
             script(src = "js/log.js") {}
@@ -35,8 +35,8 @@ object AdventurersLog {
                 xShow("view === 'overview'")
                 ui.pageHeader(
                     eyebrow = "Adventurer's log",
-                    title = "Browse players",
-                    description = "Top accounts by total level, or jump straight to a player's own log with the search on the right.",
+                    title = "Player Adventurer Logs",
+                    description = "View recent notable achievements and on going progress.",
                     backgroundImage = "images/bg/logs.jpg",
                 )
             }
@@ -72,6 +72,7 @@ object AdventurersLog {
                             if (SHOW_XP_CHART) xpChartPanel()
                             questsPanel()
                             bossesPanel()
+                            ui.floorTimesPanel(rows = "profile.floors", eyebrow = "profile.floorsCleared + ' of ' + profile.maxFloor + ' floors cleared'")
                         }
                     }
 
@@ -113,8 +114,16 @@ object AdventurersLog {
                     div {
                         style = "width:96px;height:96px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;" +
                             "border:1px solid var(--gold-600);border-radius:var(--radius-sm);box-shadow:var(--bevel-down);" +
-                            "background:var(--umber-950);color:var(--gold-300)"
+                            "background:var(--umber-950);color:var(--gold-300);position:relative;overflow:hidden"
                         icon(Icons.ACCOUNT, size = 44)
+                        // The account's chathead covers the icon once it loads; accounts without a render keep the icon.
+                        unsafe {
+                            raw(
+                                """
+                                <img x-show="profile.avatar" :src="profile.avatar" :alt="profile.name" @load="${'$'}el.style.visibility = 'visible'" @error="${'$'}el.style.visibility = 'hidden'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;visibility:hidden;background:var(--umber-950)">
+                                """.trimIndent(),
+                            )
+                        }
                     }
                     div {
                         style = "min-width:0;display:flex;flex-direction:column;gap:var(--space-4)"
@@ -200,14 +209,14 @@ object AdventurersLog {
                 unsafe {
                     raw(
                         """
-                        <template x-for="e in visibleEvents" :key="e.text">
+                        <template x-for="e in visibleEvents" :key="e.key">
                           <li :style="{ background: e.band }" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-4);padding:var(--space-5)">
                             <span x-show="e.date" :title="e.exact" style="flex:0 0 auto;width:70px;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint);cursor:default" x-text="e.date"></span>
                             <span style="flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:var(--space-2)">
                               <span style="font:var(--type-body);color:var(--text-strong);text-wrap:pretty" x-text="e.text"></span>
                               <span x-show="e.description" style="font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);text-wrap:pretty" x-text="e.description"></span>
                             </span>
-                            <span x-show="e.kind" :style="{ background: e.tone === 'gold' ? 'rgba(224,174,60,.14)' : e.tone === 'success' ? 'var(--feedback-success-bg)' : e.tone === 'danger' ? 'var(--feedback-danger-bg)' : 'var(--feedback-info-bg)', color: e.tone === 'gold' ? 'var(--gold-300)' : e.tone === 'success' ? 'var(--feedback-success)' : e.tone === 'danger' ? 'var(--feedback-danger)' : 'var(--feedback-info)', borderColor: e.tone === 'gold' ? 'var(--gold-600)' : e.tone === 'success' ? 'var(--moss-600)' : e.tone === 'danger' ? 'var(--ember-600)' : 'var(--steel-600)' }" style="display:inline-flex;align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-xs);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="e.kind"></span>
+                            <span x-show="e.kind" class="void-inline-flex" :style="{ background: e.tone === 'gold' ? 'rgba(224,174,60,.14)' : e.tone === 'success' ? 'var(--feedback-success-bg)' : e.tone === 'danger' ? 'var(--feedback-danger-bg)' : 'var(--feedback-info-bg)', color: e.tone === 'gold' ? 'var(--gold-300)' : e.tone === 'success' ? 'var(--feedback-success)' : e.tone === 'danger' ? 'var(--feedback-danger)' : 'var(--feedback-info)', borderColor: e.tone === 'gold' ? 'var(--gold-600)' : e.tone === 'success' ? 'var(--moss-600)' : e.tone === 'danger' ? 'var(--ember-600)' : 'var(--steel-600)' }" style="align-items:center;padding:0 10px;height:20px;border:1px solid;border-radius:var(--radius-xs);font:var(--weight-semibold) var(--text-3xs)/1 var(--font-ui);letter-spacing:var(--tracking-caps);text-transform:uppercase" x-text="e.kind"></span>
                           </li>
                         </template>
                         """.trimIndent(),
@@ -446,11 +455,14 @@ object AdventurersLog {
                         unsafe {
                             raw(
                                 """
-                                <template x-for="b in profile.bosses" :key="b.name">
+                                <template x-for="b in profile.bosses" :key="b.key">
                                   <tr :style="{ background: b.band }">
                                     <td style="padding:var(--space-4)">
                                       <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
-                                        <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint)" x-text="b.abbr"></span>
+                                        <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden">
+                                          <span x-text="b.abbr"></span>
+                                          <img :src="b.icon" alt="" loading="lazy" @error="${'$'}el.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)">
+                                        </span>
                                         <a :href="'hiscores.html?view=bosses&boss=' + encodeURIComponent(b.name)" style="font:var(--type-body);color:var(--text-strong);text-decoration:none" x-text="b.name"></a>
                                       </span>
                                     </td>

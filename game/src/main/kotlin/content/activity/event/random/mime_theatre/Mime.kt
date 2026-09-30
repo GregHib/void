@@ -163,7 +163,7 @@ class Mime : Script {
         clear("mime_correct")
 
         // Clear the event state (so the teleport isn't blocked) then modern-teleport home.
-        val origin = Tile(this["random_event_origin", tile.id])
+        val origin = RandomEvents.origin(this)
         RandomEvents.completeInPlace(this)
         teleport(origin, "modern")
     }

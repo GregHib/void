@@ -1,7 +1,9 @@
 package content.entity.obj.door
 
 import content.entity.obj.Replace
+import content.entity.obj.door.Door.closed
 import content.entity.obj.door.Door.isDoor
+import content.entity.obj.door.Door.opened
 import content.entity.obj.door.Gate.isGate
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -48,11 +50,11 @@ object DoubleDoor {
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
         if (def.isGate()) {
-            Gate.replace(player, obj, double, flip, ticks, collision, "_closed", "_opened", 3, 1, 1, onRevert)
+            Gate.replace(player, obj, double, flip, ticks, collision, { it.opened }, 3, 1, 1, onRevert)
         } else {
             Replace.objects(
-                obj, def.stringId.replace("_closed", "_opened"), Door.tile(obj, 1), obj.rotation(if (flip) 1 else 3),
-                double, double.def(player).stringId.replace("_closed", "_opened"), Door.tile(double, 1), double.rotation(if (flip) 3 else 1),
+                obj, def.opened, Door.tile(obj, 1), obj.rotation(if (flip) 1 else 3),
+                double, double.def(player).opened, Door.tile(double, 1), double.rotation(if (flip) 3 else 1),
                 ticks,
                 collision,
                 onRevert,
@@ -68,16 +70,16 @@ object DoubleDoor {
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
         if (def.isGate()) {
-            Gate.replace(player, obj, double, flip, ticks, collision, "_opened", "_closed", 1, 2, 3, onRevert)
+            Gate.replace(player, obj, double, flip, ticks, collision, { it.closed }, 1, 2, 3, onRevert)
         } else {
             val mirror = def.mirrored
             Replace.objects(
                 obj,
-                def.stringId.replace("_opened", "_closed"),
+                def.closed,
                 Door.tile(obj, if (mirror) 2 else 0),
                 obj.rotation(if (flip || mirror) 1 else 3),
                 double,
-                double.id.replace("_opened", "_closed"),
+                double.def.closed,
                 Door.tile(double, if (mirror) 0 else 2),
                 double.rotation(if (flip || mirror) 3 else 1),
                 ticks,

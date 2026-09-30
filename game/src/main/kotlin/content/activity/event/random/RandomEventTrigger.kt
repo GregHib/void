@@ -11,15 +11,23 @@ import world.gregs.voidps.engine.timer.toTicks
 import java.util.concurrent.TimeUnit
 
 /**
- * Rolls for a random event on each experience drop, so only active players are targeted.
- * The persisted cooldown clock starts on first login and restarts whenever an event
+ * Rolls for a random event either on each experience drop (default), so only active players
+ * are targeted, or on a fixed timer, depending on the `events.randomEvents.trigger` setting.
+ * The persisted cooldown clock starts on first activity and restarts whenever an event
  * begins or ends, keeping events infrequent regardless of experience rates.
  */
 class RandomEventTrigger : Script {
 
     init {
+        experience { _, from, to ->
+            if (to <= from || timerTriggered()) {
+                return@experience
+            }
+            RandomEvents.roll(this, chance = Settings["events.randomEvents.chance", 300])
+        }
+
         playerSpawn {
-            if (!Settings["events.randomEvents.active", true]) {
+            if (!Settings["events.randomEvents.active", true] || !timerTriggered()) {
                 return@playerSpawn
             }
             if (RandomEvents.optedOut(this)) {
@@ -31,6 +39,9 @@ class RandomEventTrigger : Script {
         timerStart("random_event") { TimeUnit.MINUTES.toTicks(5) }
 
         timerTick("random_event") {
+            if (!timerTriggered()) {
+                return@timerTick Timer.CANCEL
+            }
             RandomEvents.roll(this)
             Timer.CONTINUE
         }
@@ -49,10 +60,11 @@ class RandomEventTrigger : Script {
 
         adminCommand("random_event", stringArg("event", optional = true, autofill = RandomEvents.keys), desc = "Start a random event") { args ->
             val event = args.getOrNull(0) ?: RandomEvents.pick()
-            clear("random_event_origin")
             if (event == null || !RandomEvents.start(this, event)) {
                 message("No random event found${if (args.isEmpty()) "" else " for '${args[0]}'"}.")
             }
         }
     }
+
+    private fun timerTriggered() = Settings["events.randomEvents.trigger", "experience"] == "timer"
 }

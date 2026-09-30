@@ -15,11 +15,9 @@ import world.gregs.voidps.engine.data.Reports
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.file.FileStorage
-import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import java.io.File
 
 fun gameModule(files: ConfigFiles) = module {
-    single { ItemSpawns() }
     single { Reports(get()) }
     single { BotManager().load(files) }
     single { loadGraph(files) }

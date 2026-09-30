@@ -6,12 +6,14 @@ import itemOnObject
 import org.junit.jupiter.api.DynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -114,6 +116,23 @@ class SpiritShieldSigilsTest : WorldTest() {
         player.attach(anvil, "divine_sigil")
 
         assertTrue(player.inventory.contains("divine_spirit_shield"))
+    }
+
+    @Test
+    fun `Losing the shield while smithing tells the player what's missing`() {
+        val player = createPlayer(emptyTile)
+        val anvil = createObject("anvil", emptyTile.addY(1))
+        player.qualified()
+        player.inventory.add("blessed_spirit_shield", "divine_sigil", "hammer")
+
+        player.itemOnObject(anvil, player.inventory.indexOf("divine_sigil"))
+        tick(2)
+        player.inventory.remove("blessed_spirit_shield")
+        tick(4)
+
+        assertEquals("dialogue_message1", player.dialogue)
+        assertFalse(player.inventory.contains("divine_spirit_shield"))
+        assertTrue(player.inventory.contains("divine_sigil"))
     }
 
     private fun Player.qualified(prayer: Int = 90, smithing: Int = 85) {

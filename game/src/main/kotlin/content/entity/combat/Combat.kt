@@ -173,8 +173,7 @@ class Combat(val combatDefinitions: CombatDefinitions) :
                 character.mode = EmptyMode
                 return
             }
-            val attackRange = character.attackRange
-            if (!movement.arrived(if (attackRange == 1 && character.weapon.def["weapon_type", ""] != "salamander") -1 else attackRange)) {
+            if (!movement.inAttackRange()) {
                 return
             }
             if (character.hasClock("action_delay")) {

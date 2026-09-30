@@ -118,10 +118,6 @@ class Pitfall : Script {
                 Timer.CANCEL
             }
         }
-
-        objectOperate("Trap", "pitfall_*") {
-            // Temp to avoid #1059
-        }
     }
 
     private fun jumpDirection(target: GameObject, tile: Tile): Direction = if (target.rotation == 1 || target.rotation == 3) {

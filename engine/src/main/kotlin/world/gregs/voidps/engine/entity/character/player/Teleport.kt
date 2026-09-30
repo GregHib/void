@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -20,6 +21,18 @@ interface Teleport {
     fun teleportTakeOff(type: String, block: Player.(String) -> Boolean) {
         Script.checkLoading()
         takeOff.getOrPut(type) { mutableSetOf() }.add(block)
+    }
+
+    fun blockTeleports(message: String = "", blocked: Player.() -> Boolean) {
+        teleportTakeOff("*") {
+            if (!blocked()) {
+                return@teleportTakeOff true
+            }
+            if (message.isNotEmpty()) {
+                message(message)
+            }
+            false
+        }
     }
 
     fun teleportLand(type: String, block: Player.() -> Unit) {

@@ -3,12 +3,12 @@ type = "all"
 drops = [
   { id = "bones" },
   { table = "skoblin_secondary" },
+  { table = "mask_part_4_drop", roll = 3 },
 ]
 
 [skoblin_secondary]
 roll = 512
 drops = [
-  { id = "mask_part_4", chance = 171 },
   { id = "shortbow", chance = 16 },
   { id = "bronze_mace", chance = 16 },
   { id = "staff_of_air", chance = 2 },

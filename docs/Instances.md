@@ -14,14 +14,35 @@ Allocating an instance is straight-forward:
 ```kotlin
 val region = Instances.small() // Allocate a small or large instance
 
-// play the activity until finished
-
-Instances.free(region) // Free up the instance for use by something else
+// play the activity until finished, the instance is freed automatically once empty
 ```
 
-> [!IMPORTANT]
-> Instance regions must be freed up after use otherwise the world could run out of instance spaces.
+Every 50 ticks (30 seconds) instances with no players inside them are freed automatically, along with any npcs, objects, floor items and dynamic zones left inside. A newly allocated instance always gets at least 30 seconds for players to arrive.
+
+> [!NOTE]
 > There are maximum of 1377 small instances and 700 large instances at any given time.
+> If they're all in use, allocating runs a clean-up early, and failing that reclaims the instance which has been empty the longest, ignoring its timeout.
+
+### Timeout
+
+Instances can be kept for a number of minutes after the last player has left, for example so a player can log back into a dungeon:
+
+```kotlin
+val region = Instances.large(timeout = 30) // Kept for 30 minutes after it becomes empty
+```
+
+### Lookups
+
+A region can be freed and handed to someone else, so each allocation also has a unique key:
+
+```kotlin
+val key = Instances.key(region)       // Store alongside the region (e.g. on the player)
+Instances.valid(region, key)          // Still the same allocation?
+Instances.owner(player.tile)          // Which allocated instance a tile is in (including padding)
+Instances.occupied(region)            // Did it have players in it on the last clean-up pass?
+```
+
+For players, `smallInstance()`, `largeInstance()` and `joinInstance()` store both, `instance()` returns null once the instance has been freed, and `clearInstance()` unlinks the player from it.
 
 
 ## Dynamic zones
@@ -45,8 +66,7 @@ enterArea("demon_slayer_stone_circle") {
     
     // play the cutscene ...
     
-    zones.clear(instance) // Remove the dynamic zones
-    Instances.free(instance) // Free up the region
+    // The dynamic zones are removed and the region freed automatically once empty
 }
 ```
 
@@ -63,14 +83,14 @@ suspend fun CharacterContext.cutscene() {
 
     // ... setup the cutscene here 
 
-    // Optional: set a listener which frees up the region if the player logs out halfway through
+    // Optional: set a listener for an early exit e.g. the player logs out halfway through
     cutscene.onEnd {
         // Action on early exit e.g. logout
     }
 
     // play the cutscene
 
-    cutscene.end(this) // Make sure the instance is freed
+    cutscene.end(this) // Restore the tabs and unlink the player from the instance
 }
 
 

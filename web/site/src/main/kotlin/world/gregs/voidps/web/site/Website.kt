@@ -11,21 +11,16 @@ import world.gregs.voidps.web.site.components.*
  */
 object Website {
 
-    val pages = if (Site.FULL) listOf(
+    val pages = listOf(
         SitePage("home", "Home", "/index.html"),
         SitePage("docs", "Docs", "/docs/index.html"),
         SitePage("play", "Play", "/play.html"),
-    ) else listOf(
-        SitePage("home", "Home", "/index.html"),
-        SitePage("docs", "Docs", "/docs/index.html"),
     )
 
-    val communityPages = if (Site.FULL) listOf(
+    val communityPages = listOf(
         SitePage("hiscores", "Hiscores", "/hiscores.html"),
         SitePage("exchange", "Exchange", "/exchange.html"),
         SitePage("log", "Log", "/log.html"),
-        SitePage("worldmap", "World Map", "/world-map.html"),
-    ) else listOf(
         SitePage("worldmap", "World Map", "/world-map.html"),
     )
 
@@ -67,18 +62,18 @@ object Website {
                 div {
                     style = "display:flex;gap:var(--space-5);align-items:center;flex-wrap:wrap"
                     ui.button(
-                        "Download & play",
+                        "Play online",
                         size = ButtonSize.Large,
                         glow = true,
-                        icon = Icons.DOWNLOAD,
-                        onClick = "window.location = 'https://github.com/GregHib/void/releases'"
+                        icon = Icons.PLAY,
+                        onClick = "window.location = 'play.html'"
                     )
                     ui.button(
                         "Run your own world",
                         variant = ButtonVariant.Secondary,
                         size = ButtonSize.Large,
                         icon = Icons.TERMINAL,
-                        onClick = "window.location = 'https://github.com/GregHib/void#development'",
+                        onClick = "window.location = 'docs/installation-guide.html'",
                     )
                     span {
                         style = "font:var(--type-code);font-size:var(--text-xs);color:var(--parch-300)"
@@ -225,27 +220,15 @@ object Website {
                         }
                         h3 {
                             style = "margin:0;font:var(--type-section);color:var(--parch-50)"
-                            if (Site.FULL) {
-                                +"Play online"
-                            } else {
-                                +"Play offline"
-                            }
+                            +"Play online"
                         }
                         p {
                             style = "margin:0;font:var(--type-body-sm);color:var(--text-muted)"
-                            if (Site.FULL) {
-                                +"Play in the browser on a live world."
-                            } else {
-                                +"Play anywhere, no internet required."
-                            }
+                            +"Play in the browser on a live or local world."
                         }
                         div {
                             style = "margin-top:auto;padding-top:var(--space-4)"
-                            if (Site.FULL) {
-                                ui.button("Download client", onClick = "window.location = 'play.html'")
-                            } else {
-                                ui.button("Download server", onClick = "window.location = 'https://github.com/GregHib/void/releases'")
-                            }
+                            ui.button("Connect to a server", onClick = "window.location = 'play.html'")
                         }
                     }
                     ui.panel {
@@ -424,49 +407,18 @@ object Website {
      * The full world list — every community world, not just the navbar [worldMenu] dropdown's
      * quick-switch rows. Deliberately off the nav bar (reached only via "View all worlds" in that
      * dropdown); rows connect the same way the dropdown's do, via `worldMenuData()`'s `select()`,
-     * so picking one here persists just as it would from the dropdown.
+     * so picking one here persists just as it would from the dropdown. Shares its [worldSelection]
+     * view with [Play.page], where picking a row opens the client instead.
      */
     fun worldsPage(): String = voidPage(
-        title = "Void — world list",
-        description = "Live status for every Void community world.",
+        title = "Void - World List",
+        description = "Live status for community worlds.",
     ) {
         ui.siteHeader(pages, active = "", communityPages = communityPages)
 
         main {
             xData("worldMenuData()")
-            // width:100% matters here: without it, this flex item (a column-flex child, centered via
-            // margin:0 auto instead of stretched) sizes to its own max-content — including the
-            // unwrapped width of the flex-wrap:wrap header below — instead of filling the available
-            // width, which is exactly what lets that header's content overflow the viewport instead
-            // of wrapping (see [Play.page]'s otherwise-identical main, which already sets this).
-            style = "max-width:var(--container-wide);margin:0 auto;padding:var(--space-11) var(--space-8);" +
-                    "display:flex;flex-direction:column;gap:var(--space-8);width:100%"
-            header {
-                style = "display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap"
-                div {
-                    span {
-                        style = "display:block;font:var(--type-label);letter-spacing:var(--tracking-caps);" +
-                                "text-transform:uppercase;color:var(--gold-400);margin-bottom:8px"
-                        +"World list"
-                    }
-                    h1 {
-                        style = "margin:0 0 10px;font:var(--type-title);color:var(--parch-50)"
-                        +"Choose a world"
-                    }
-                    p {
-                        style = "margin:0;max-width:58ch;font:var(--type-body);color:var(--text-muted)"
-                        +("Every world runs the same open-source server build. Pick one by region and latency, or " +
-                                "by the ruleset you want to play. Select a row to read its description and hosting details.")
-                    }
-                }
-                div {
-                    style = "display:flex;gap:var(--space-8)"
-                    worldStat(String.format("%,d", defaultWorlds.sumOf { it.players }), "Players online")
-                    val online = defaultWorlds.count { it.status != WorldStatus.Offline }
-                    worldStat("$online / ${defaultWorlds.size}", "Worlds up")
-                }
-            }
-            ui.worldList(defaultWorlds, onSelect = { "select(${it.number})" })
+            ui.worldSelection()
         }
 
         ui.siteFooter()

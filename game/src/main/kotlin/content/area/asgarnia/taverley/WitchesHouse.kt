@@ -7,9 +7,8 @@ import world.gregs.voidps.engine.entity.character.mode.Patrol
 class WitchesHouse(val patrols: PatrolDefinitions) : Script {
 
     init {
-        npcSpawn("nora_t_hagg") {
-            val patrol = patrols.get("nora_t_hagg")
-            mode = Patrol(this, patrol.waypoints)
+        npcDefaultMode("nora_t_hagg") {
+            Patrol(this, patrols.get("nora_t_hagg").waypoints, resume = true)
         }
     }
 }

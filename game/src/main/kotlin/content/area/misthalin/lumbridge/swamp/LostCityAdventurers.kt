@@ -89,6 +89,13 @@ class LostCityAdventurers : Script {
                     npc<Angry>("We're still searching for Zanaris...GAH! I mean we're not doing anything here at all.")
                     npc<Sad>("I haven't found it yet either.")
                 }
+                // Source: https://runescape.wiki/w/Transcript:Lost_City#Post-quest_dialogue
+                else -> {
+                    player<Happy>("Hey, thanks for all the information. It REALLY helped me out in finding the lost city of Zanaris and all.")
+                    npc<Sad>("Oh, please don't say that anymore! If the rest of my party knew I'd helped you, they'd probably throw me out and make me walk home by myself!")
+                    npc<Quiz>("So anyway, what have you found out? Where is the fabled Zanaris? Is it all the legends say it is?")
+                    player<Happy>("You know...I think I'll keep that to myself.")
+                }
             }
         }
     }

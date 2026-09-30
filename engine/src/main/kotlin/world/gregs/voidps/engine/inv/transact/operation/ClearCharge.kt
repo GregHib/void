@@ -21,7 +21,7 @@ object ClearCharge {
         }
         // Check if there is enough charges to remove
         if (item.value <= 0) {
-            error = TransactionError.Deficient(amount = item.value)
+            error = TransactionError.Deficient(amount = item.value, item = item.id)
             return
         }
         // Clear the charges

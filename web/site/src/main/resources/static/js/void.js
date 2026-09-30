@@ -17,6 +17,46 @@ window.voidBx = function (el, on, whenTrue, whenFalse) {
   });
 };
 
+// Row builders for the dungeoneering floor tables (components/FloorTimes.kt), shared by the
+// hiscores profile/comparison views and the adventurer's log so the tables read the same everywhere.
+(function () {
+  var BAND = ['var(--surface-panel)', 'var(--umber-850)'];
+  function time(sec) {
+    if (sec == null) return '—';
+    var total = Math.round(sec);
+    return Math.floor(total / 60) + ':' + String(total % 60).padStart(2, '0');
+  }
+  function base(floor, i) {
+    return { key: floor, floor: floor, href: 'hiscores.html?view=dungeoneering&floor=' + floor, bg: BAND[i % 2] };
+  }
+
+  /** One row of `/players/{name}/dungeoneering`. */
+  window.voidFloorRow = function (row, i) {
+    return Object.assign(base(row.floor, i), {
+      size: row.size.charAt(0).toUpperCase() + row.size.slice(1),
+      complexity: row.complexity,
+      party: row.partySize === 1 ? 'Solo' : row.partySize + ' players',
+      time: time(row.timeSeconds),
+      rank: '#' + window.voidFmt(row.rank),
+    });
+  };
+
+  /** One row of `/hiscores/compare`'s `floors`; the faster player leads, and an uncleared floor always trails. */
+  window.voidFloorCompareRow = function (row, i) {
+    var both = row.aSeconds != null && row.bSeconds != null;
+    var delta = row.leader === 'tie' ? 'even' : both ? time(row.differenceSeconds) : 'only';
+    return Object.assign(base(row.floor, i), {
+      aTime: time(row.aSeconds), bTime: time(row.bSeconds),
+      aColor: row.leader === 'a' ? 'var(--gold-300)' : 'var(--text-faint)',
+      bColor: row.leader === 'b' ? 'var(--gold-300)' : 'var(--text-faint)',
+      deltaText: row.leader === 'a' ? '← ' + delta : row.leader === 'b' ? delta + ' →' : delta,
+      deltaFg: row.leader === 'tie' ? 'var(--text-faint)' : 'var(--gold-200)',
+      deltaBg: row.leader === 'tie' ? 'transparent' : 'rgba(224,174,60,.12)',
+      deltaBd: row.leader === 'tie' ? 'var(--border-panel)' : 'var(--gold-600)',
+    });
+  };
+})();
+
 // The connected world: read/written to localStorage so it survives navigating between pages, and
 // mirrored into an Alpine store (below) so every component on the *same* page — the navbar's
 // worldMenu and a page-body picker are separate x-data components — reacts the instant either one
@@ -51,9 +91,72 @@ function voidClearWorld() {
   }
 }
 
+// Whether the play page's nav bar is tucked away to give the client the whole window.
+var VOID_NAV_HIDDEN_KEY = 'void-play-nav-hidden';
+
+function voidGetNavHidden() {
+  try {
+    return localStorage.getItem(VOID_NAV_HIDDEN_KEY) === 'true';
+  } catch (e) {
+    return false;
+  }
+}
+
 document.addEventListener('alpine:init', function () {
   Alpine.store('world', { current: voidGetWorld() });
+  // Only honoured while a world is loaded (see Play.kt), so the world picker always keeps its nav.
+  Alpine.store('playNav', {
+    hidden: voidGetNavHidden(),
+    setHidden: function (hidden) {
+      this.hidden = hidden;
+      try {
+        localStorage.setItem(VOID_NAV_HIDDEN_KEY, String(hidden));
+      } catch (e) {
+        // Private browsing / storage disabled — the nav bar still hides for this view.
+      }
+    },
+  });
 });
+
+// The size the client should render at: `#client`'s area. Starts at the game's minimum so a
+// client started while `#client` has no size yet (a hidden or collapsed tab) never sees a 0x0
+// window, which it can't recover from.
+var voidClientView = { width: 765, height: 503 };
+
+// Recomputes voidClientView from `#client`. The client sizes itself from
+// window.innerWidth/innerHeight on load and on every window `resize` (and has no other hook), so
+// voidClientViewport() points those at voidClientView and a synthetic `resize` tells it to pick
+// the new size up.
+function voidClientLayout() {
+  var client = document.getElementById('client');
+  if (!client || !window.voidClientViewportInstalled) {
+    return;
+  }
+  var width = client.clientWidth;
+  var height = client.clientHeight;
+  if (width <= 0 || height <= 0) {
+    return;
+  }
+  voidClientView = { width: width, height: height };
+  window.dispatchEvent(new Event('resize'));
+  // The client sizes its game canvas from its root element's size as last seen by a
+  // ResizeObserver, which hasn't caught up with the resize above yet — so nudge it again once
+  // the frame's observers have run.
+  requestAnimationFrame(function () {
+    setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 0);
+  });
+}
+
+function voidClientViewport() {
+  if (window.voidClientViewportInstalled) {
+    return;
+  }
+  window.voidClientViewportInstalled = true;
+  Object.defineProperty(window, 'innerWidth', { configurable: true, get: function () { return voidClientView.width; } });
+  Object.defineProperty(window, 'innerHeight', { configurable: true, get: function () { return voidClientView.height; } });
+  new ResizeObserver(voidClientLayout).observe(document.getElementById('client'));
+  voidClientLayout();
+}
 
 window.worldMenuData = function () {
   return {
@@ -84,6 +187,7 @@ window.worldMenuData = function () {
 
 window.playApp = function () {
   return {
+    status: 'Loading world ...',
     get world() {
       return Alpine.store('world').current;
     },
@@ -93,6 +197,8 @@ window.playApp = function () {
         var number = parseInt(fromQuery, 10);
         voidSetWorld(number);
         Alpine.store('world').current = number;
+        this.status = 'Loading world ' + number + ' ...';
+        this.launch(number);
         return;
       }
       var saved = voidGetWorld();
@@ -102,6 +208,29 @@ window.playApp = function () {
     },
     select: function (number) {
       window.location.href = 'play.html?world=' + number;
+    },
+    // Loads the web client from world `number`'s web server, which serves it under `/play/` and
+    // proxies its websocket at `/proxy` through to the game server.
+    launch: function (number) {
+      // Two clients on one page would both run their game loops (and both log in).
+      if (window.voidClientLaunched) {
+        return;
+      }
+      window.voidClientLaunched = true;
+      var self = this;
+      window.voidWorldWeb(number).then(function (base) {
+        if (!base) {
+          self.status = 'World ' + number + ' has no web address to play from.';
+          return;
+        }
+        window.CONFIG = { url: base.replace(/^http/i, 'ws') + '/proxy' };
+        voidClientViewport();
+        var script = document.createElement('script');
+        script.src = base + '/play/void-client.js';
+        script.onload = function () { self.status = null; };
+        script.onerror = function () { self.status = 'Couldn\'t load the client from world ' + number + '.'; };
+        document.body.appendChild(script);
+      });
     },
   };
 };

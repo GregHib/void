@@ -100,63 +100,33 @@ class LumbridgeCatacombs : Script {
             if (gate2 != null) GameObjects.remove(gate2)
         }
 
-        // Stairs down from Caitlin's room (level 1) to Reese's chamber (level 2)
-        objectOperate("Climb-down", "blood_pact_stairs_down_south") {
+        // Stairs down from Caitlin's room (level 1) to Reese's chamber (level 2), north and south staircases
+        objectOperate("Climb-down", "blood_pact_stairs_down") { (target) ->
+            val y = target.tile.y - instanceOffset().y
             when (quest("blood_pact")) {
                 "reese", "untied_ilona" -> {
-                    tele(instanceOffset().tile(3861, 5533, 0))
+                    tele(instanceOffset().tile(3861, y, 0))
                     face(Direction.NORTH)
                 }
                 "completed" -> {
-                    tele(Tile(3861, 5533, 0))
+                    tele(Tile(3861, y, 0))
                     face(Direction.NORTH)
                 }
                 else -> statement("You should deal with the second Cultist first.")
             }
         }
 
-        // Stairs back up from Reese's chamber (level 2) to Caitlin's room (level 1)
-        objectOperate("Climb-up", "blood_pact_stairs_up_south") {
+        // Stairs back up from Reese's chamber (level 2) to Caitlin's room (level 1), north and south staircases
+        objectOperate("Climb-up", "blood_pact_stairs_up") { (target) ->
+            val y = target.tile.y - instanceOffset().y
             when (quest("blood_pact")) {
                 "completed" -> {
-                    tele(Tile(3857, 5533, 1))
-                    face(Direction.SOUTH)
-                }
-                "reese" -> {
-                    statement("You should deal with the third Cultist first.")
-                }
-                else -> {
-                    tele(instanceOffset().tile(3857, 5533, 1))
-                    face(Direction.SOUTH)
-                }
-            }
-        }
-
-        // Stairs down from Caitlin's room (level 1) to Reese's chamber (level 2)
-        objectOperate("Climb-down", "blood_pact_stairs_down_north") {
-            when (quest("blood_pact")) {
-                "reese", "untied_ilona" -> {
-                    tele(instanceOffset().tile(3861, 5543, 0))
-                    face(Direction.NORTH)
-                }
-                "completed" -> {
-                    tele(Tile(3861, 5543, 0))
-                    face(Direction.NORTH)
-                }
-                else -> statement("You should deal with the second Cultist first.")
-            }
-        }
-
-        // Stairs back up from Reese's chamber (level 2) to Caitlin's room (level 1)
-        objectOperate("Climb-up", "blood_pact_stairs_up_north") {
-            when (quest("blood_pact")) {
-                "completed" -> {
-                    tele(Tile(3857, 5543, 1))
+                    tele(Tile(3857, y, 1))
                     face(Direction.SOUTH)
                 }
                 "reese" -> statement("You should deal with the third Cultist first.")
                 else -> {
-                    tele(instanceOffset().tile(3857, 5543, 1))
+                    tele(instanceOffset().tile(3857, y, 1))
                     face(Direction.SOUTH)
                 }
             }
@@ -544,13 +514,11 @@ class LumbridgeCatacombs : Script {
 }
 
 fun spawnStairs(offset: Delta) {
-    GameObjects.add("blood_pact_stairs_down_south", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-
     // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
-    GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_down", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_down", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
     // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
-    GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-    // Altar in Reese's chamber
-    GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_up", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_up", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 }

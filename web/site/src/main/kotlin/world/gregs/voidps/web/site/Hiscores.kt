@@ -15,9 +15,15 @@ import world.gregs.voidps.web.site.components.*
  */
 object Hiscores {
 
+    /** Daemonheim's deepest floor. */
+    private const val MAX_FLOOR = 60
+
+    /** Team sizes every boss and dungeon party share; five is labelled per group, see [teamChipsRow]. */
+    private val TEAM_SIZES = listOf("1" to "Solo", "2" to "2 players", "3" to "3 players", "4" to "4 players")
+
     fun page(gameData: GameData): String = voidPage(
-        title = "Void — hiscores",
-        description = "Live overall, skill and boss leaderboards for Void, with head-to-head player comparisons.",
+        title = "Void - Hiscores",
+        description = "Live overall, skill and boss leaderboards for servers.",
         head = {
             script { unsafe { raw(gameData.script()) } }
             script(src = "js/hiscores.js") {}
@@ -31,8 +37,7 @@ object Hiscores {
             ui.pageHeader(
                 eyebrow = "Hiscores",
                 title = "Player hiscores",
-                description = "Ranks are recalculated every 20 minutes from all live worlds. Experience above " +
-                    "200,000,000 in a single skill is not tracked.",
+                description = "Compare skills and kills to your friends and fellow adventurers.",
                 backgroundImage = "images/bg/hiscores.jpg",
                 actions = {
                     div {
@@ -56,6 +61,7 @@ object Hiscores {
                         TabItem("skills", "Skills"),
                         TabItem("compare", "Compare"),
                         TabItem("bosses", "Bosses"),
+                        TabItem("dungeoneering", "Dungeoneering"),
                     ),
                     filled = false,
                     onSelect = { id -> "navigate({ view: '$id' })" },
@@ -74,6 +80,7 @@ object Hiscores {
                 skillsView()
                 compareView()
                 bossesView(gameData)
+                dungeoneeringView()
                 searchView()
                 playerView()
             }
@@ -163,9 +170,28 @@ object Hiscores {
             }
             div {
                 style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
-                for (t in listOf("All", "Solo", "2 players", "3 players", "4 players")) {
-                    ui.filterChip(active = "team === '$t'", onClickExpr = "team = '$t'; timePage = 0; fetchBossTimes()", label = t)
+                for ((id, label) in listOf("all" to "All") + TEAM_SIZES) {
+                    ui.filterChip(active = "team === '$id'", onClickExpr = "team = '$id'; timePage = 0; fetchBossTimes()", label = label)
                 }
+                // Other bosses record any team above four together; a dungeoneering party can't exceed five
+                span {
+                    xShow("bossGroup === 'world'")
+                    ui.filterChip(active = "team === '5'", onClickExpr = "team = '5'; timePage = 0; fetchBossTimes()", label = "5+ players")
+                }
+                span {
+                    xShow("bossGroup === 'dungeoneering'")
+                    ui.filterChip(active = "team === '5'", onClickExpr = "team = '5'; timePage = 0; fetchBossTimes()", label = "5 players")
+                }
+            }
+        }
+    }
+
+    private fun FlowContent.bossGroupRow() {
+        div {
+            style = "display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;padding:var(--space-4) var(--space-6);" +
+                "background:var(--surface-header);border-bottom:1px solid var(--border-panel)"
+            for ((id, label) in listOf("world" to "Normal", "dungeoneering" to "Daemonheim")) {
+                ui.filterChip(active = "bossGroup === '$id'", onClickExpr = "selectBossGroup('$id')", label = label)
             }
         }
     }
@@ -174,16 +200,30 @@ object Hiscores {
         div {
             attributes["class"] = "void-grid"
             style = "grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--umber-900)"
-            for ((id, name) in gameData.bosses) {
+            val groups = gameData.bosses.map { Triple(it.first, it.second, "world") } +
+                gameData.dungeoneeringBosses.map { Triple(it.first, it.second, "dungeoneering") }
+            for ((id, name, group) in groups) {
                 button {
+                    xShow("bossGroup === '$group'")
                     onClick("navigate({ boss: '${id}', kcPage: 0, timePage: 0, view: 'bosses' })")
                     xToggleStyle(
                         condition = "boss === '${id}'",
                         whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
                         whenFalse = "background:var(--surface-panel);color:var(--text-strong);border-top-color:transparent",
                     )
-                    style = "display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-5);cursor:pointer;text-align:left;" +
+                    style = "display:flex;align-items:center;gap:var(--space-4);padding:var(--space-5);cursor:pointer;text-align:left;" +
                         "border:none;border-top:2px solid transparent;background:var(--surface-panel);color:var(--text-strong)"
+                    span {
+                        style = "flex:0 0 auto;width:32px;height:32px;display:flex;align-items:center;justify-content:center;" +
+                            "background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);" +
+                            "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden"
+                        span { +GameData.bossAbbr(name) }
+                        img(src = GameData.bossIcon(name), alt = "") {
+                            attributes["loading"] = "lazy"
+                            attributes["onerror"] = "this.remove()"
+                            style = "position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)"
+                        }
+                    }
                     span {
                         style = "font:var(--weight-semibold) var(--text-base)/1.2 var(--font-display)"
                         +name
@@ -394,9 +434,15 @@ object Hiscores {
                         unsafe {
                             raw(
                                 """
-                                <template x-for="(row,i) in compareBossRows" :key="row.boss">
+                                <template x-for="(row,i) in compareBossRows" :key="row.key">
                                   <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 90px 190px 90px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                                    <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                    <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
+                                      <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden">
+                                        <span x-text="row.abbr"></span>
+                                        <img :src="row.icon" alt="" loading="lazy" @error="${'$'}el.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)">
+                                      </span>
+                                      <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                    </span>
                                     <span :style="{ color: row.aColor }" style="text-align:right;font:var(--type-code)" x-text="row.aKc"></span>
                                     <span style="display:flex;align-items:center;justify-content:center;padding:0 10px">
                                       <span :style="{ background: row.deltaBg, borderColor: row.deltaBd, color: row.deltaFg }" style="display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:var(--radius-pill);border:1px solid;font:var(--type-code);font-size:var(--text-3xs);white-space:nowrap" x-text="row.deltaText"></span>
@@ -410,6 +456,11 @@ object Hiscores {
                     }
                 }
             }
+
+            div {
+                xShow("compareReady")
+                ui.floorComparisonPanel(rows = "compareFloorRows", eyebrow = "compareEyebrow")
+            }
         }
     }
 
@@ -420,6 +471,7 @@ object Hiscores {
             style = "flex-direction:column;gap:var(--space-8)"
 
             ui.panel(title = "Bosses", action = eyebrowText("'Pick an encounter'"), padded = false) {
+                bossGroupRow()
                 bossTileGrid(gameData)
             }
 
@@ -468,6 +520,104 @@ object Hiscores {
                         }
                     }
                     paginationFooter("bossTimePager", "timePage")
+                }
+            }
+        }
+    }
+
+    private fun FlowContent.floorFilterRow(label: String, model: String, options: List<Pair<String, String>>) {
+        div {
+            style = "display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap"
+            span {
+                style = "min-width:96px;font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-faint)"
+                +label
+            }
+            div {
+                style = "display:flex;gap:var(--space-2);flex-wrap:wrap"
+                for ((id, text) in options) {
+                    ui.filterChip(active = "$model === '$id'", onClickExpr = "setFloorFilter('$model', '$id')", label = text)
+                }
+            }
+        }
+    }
+
+    private fun FlowContent.floorTileGrid() {
+        div {
+            attributes["class"] = "void-grid"
+            style = "grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--umber-900)"
+            for (floor in 1..MAX_FLOOR) {
+                button {
+                    onClick("navigate({ floor: $floor, floorPage: 0, view: 'dungeoneering' })")
+                    xToggleStyle(
+                        condition = "floor === $floor",
+                        whenTrue = "background:var(--surface-active);color:var(--gold-200);border-top-color:var(--gold-400)",
+                        whenFalse = "background:var(--surface-panel);color:var(--parch-200);border-top-color:transparent",
+                    )
+                    style = "display:flex;flex-direction:column;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-2);cursor:pointer;" +
+                        "border:none;border-top:2px solid transparent;background:var(--surface-panel);color:var(--parch-200)"
+                    span {
+                        style = "font:var(--weight-bold) var(--text-base)/1 var(--font-display)"
+                        +floor.toString()
+                    }
+                    span {
+                        style = "font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);white-space:nowrap"
+                        attributes["x-text"] = "floorBest[$floor] || '—'"
+                    }
+                }
+            }
+        }
+    }
+
+    private fun FlowContent.dungeoneeringView() {
+        div {
+            xShow("view === 'dungeoneering'")
+            attributes["class"] = "void-flex"
+            style = "flex-direction:column;gap:var(--space-6)"
+
+            div {
+                style = "display:flex;flex-direction:column;gap:var(--space-4)"
+                floorFilterRow("Size", "floorSize", listOf("all" to "All", "small" to "Small", "medium" to "Medium", "large" to "Large"))
+                floorFilterRow("Complexity", "floorComplexity", listOf("all" to "All") + (1..6).map { "$it" to "$it" })
+                floorFilterRow("Party size", "floorParty", listOf("all" to "All") + TEAM_SIZES + ("5" to "5 players"))
+            }
+
+            div {
+                attributes["class"] = "void-grid hiscores-split"
+                style = "grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:var(--space-8);align-items:start"
+
+                ui.panel(title = "Floors", padded = false) { floorTileGrid() }
+
+                ui.panel(title = "Fastest floor times", action = eyebrowText("floorEyebrow"), padded = false) {
+                    tableScroll(
+                        Column("Rank", "56px"), Column("Player", "minmax(0,1fr)"), Column("Size", "90px"),
+                        Column("Complexity", "110px", "right"), Column("Party", "90px", "right"), Column("Time", "110px", "right"),
+                    ) {
+                        unsafe {
+                            raw(
+                                """
+                                <template x-for="(row,i) in floorRows" :key="row.key">
+                                  <div @click="open(row.name)" :style="{ background: row.bg }" style="display:grid;grid-template-columns:56px minmax(0,1fr) 90px 110px 90px 110px;align-items:center;padding:var(--space-4) var(--space-6);cursor:pointer;border-bottom:1px solid var(--umber-900)">
+                                    <span :style="{ color: row.rankColor }" style="font:var(--weight-bold) var(--text-base)/1 var(--font-display)" x-text="row.rank"></span>
+                                    <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-strong);white-space:nowrap;overflow:hidden;text-overflow:ellipsis" x-text="row.name"></span>
+                                    <span style="font:var(--type-code);font-size:var(--text-2xs);color:var(--text-body)" x-text="row.size"></span>
+                                    <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-body)" x-text="row.complexity"></span>
+                                    <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="row.party"></span>
+                                    <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.time"></span>
+                                  </div>
+                                </template>
+                                """.trimIndent(),
+                            )
+                        }
+                    }
+                    div {
+                        xShow("!floorRows.length")
+                        style = "padding:var(--space-8) var(--space-6);text-align:center"
+                        span {
+                            style = "font:var(--type-body-sm);color:var(--text-muted)"
+                            attributes["x-text"] = "'No floor ' + floor + ' completions recorded' + (floorFiltered ? ' with these filters' : ' yet')"
+                        }
+                    }
+                    paginationFooter("floorPager", "floorPage")
                 }
             }
         }
@@ -622,9 +772,15 @@ object Hiscores {
                     unsafe {
                         raw(
                             """
-                            <template x-for="(row,i) in profileBosses" :key="row.boss">
+                            <template x-for="(row,i) in profileBosses" :key="row.key">
                               <div :style="{ background: row.bg }" style="display:grid;grid-template-columns:minmax(0,1fr) 120px 110px 110px;align-items:center;padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--umber-900)">
-                                <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                <span style="display:flex;align-items:center;gap:var(--space-4);min-width:0">
+                                  <span style="flex:0 0 auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px solid var(--border-strong);border-radius:var(--radius-xs);box-shadow:var(--bevel-down);font:var(--type-code);font-size:var(--text-3xs);color:var(--text-faint);position:relative;overflow:hidden">
+                                    <span x-text="row.abbr"></span>
+                                    <img :src="row.icon" alt="" loading="lazy" @error="${'$'}el.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--surface-inset)">
+                                  </span>
+                                  <span style="font:var(--weight-semibold) var(--text-sm)/1.2 var(--font-ui);color:var(--text-body)" x-text="row.boss"></span>
+                                </span>
                                 <span style="text-align:right;font:var(--type-code);font-size:var(--text-2xs);color:var(--text-faint)" x-text="row.rank"></span>
                                 <span style="text-align:right;font:var(--type-code);color:var(--gold-300)" x-text="row.kc"></span>
                                 <span style="text-align:right;font:var(--type-code);color:var(--text-body)" x-text="row.best"></span>
@@ -635,6 +791,8 @@ object Hiscores {
                     }
                 }
             }
+
+            ui.floorTimesPanel(rows = "profileFloors", eyebrow = "profileFloorsEyebrow")
         }
     }
 }

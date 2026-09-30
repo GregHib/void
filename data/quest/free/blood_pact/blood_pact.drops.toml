@@ -1,0 +1,24 @@
+[mask_part_1_drop]
+drops = [
+  { id = "mask_part_1" },
+]
+
+[mask_part_2_drop]
+drops = [
+  { id = "mask_part_2" },
+]
+
+[mask_part_3_drop]
+drops = [
+  { id = "mask_part_3" },
+]
+
+[mask_part_4_drop]
+drops = [
+  { id = "mask_part_4" },
+]
+
+[mask_part_5_drop]
+drops = [
+  { id = "mask_part_5" },
+]

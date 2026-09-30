@@ -81,7 +81,7 @@ class Stalls(val drops: DropTables) : Script {
             val exp: Double = def.getOrNull("exp") ?: return@objectOperate
             exp(Skill.Thieving, exp)
             val restock: Int = def.getOrNull("restock") ?: return@objectOperate
-            target.replace("${target.id}_empty", ticks = restock)
+            target.replace(target.def["empty", "${target.id}_empty"], ticks = restock)
         }
     }
 }
