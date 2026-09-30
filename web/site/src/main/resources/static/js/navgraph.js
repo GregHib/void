@@ -371,6 +371,11 @@
       undo: [],
       drag: null,
       press: null,
+      hover: null,
+      hoverNode: null,
+      hoverShift: false,
+      // Space held: the editor ignores the pointer so every drag pans.
+      panKey: false,
     };
 
     return {
@@ -378,7 +383,6 @@
       navPanelOpen: true,
       navLoaded: false,
       navFiles: [],
-      navTool: 'select',
       navTarget: 0,
       // The file whose points are listed in the panel (-1: none). Follows the selection, and is
       // where new edges go.
@@ -390,6 +394,8 @@
       navStats: '',
       navSelection: '',
       navError: '',
+      // What the last save did — which files were written in place and which could only be downloaded.
+      navNotice: '',
       navFolderAccess: typeof window.showDirectoryPicker === 'function',
 
       navBoot: function (root) {
@@ -399,12 +405,16 @@
           self.navUpdateCursor(null);
           self.scheduleRender();
         });
-        this.$watch('navTool', function () {
-          self.navUpdateCursor(null);
-          self.scheduleRender();
-        });
         window.addEventListener('keydown', function (e) {
           self.navKeyDown(e);
+        });
+        window.addEventListener('keyup', function (e) {
+          self.navKeyUp(e);
+        });
+        // Released while the page didn't have focus: the keyup never arrives.
+        window.addEventListener('blur', function () {
+          nav.hoverShift = false;
+          self.navSetPanKey(false);
         });
         window.addEventListener('beforeunload', function (e) {
           if (self.navDirty) {
@@ -591,6 +601,7 @@
           }
         }
         this.navError = errors.join('\n');
+        this.navNotice = '';
         if (nav.files.length) {
           this.showNavGraph = true;
         }
@@ -608,6 +619,7 @@
         nav.undo = [];
         this.showNavGraph = false;
         this.navError = '';
+        this.navNotice = '';
         this.navTarget = 0;
         this.navOpen = -1;
         this.navRebuild();
@@ -697,34 +709,57 @@
         add(name, null, true);
       },
 
+      // Files are written one after another rather than all at once: a file opened through "Files…"
+      // only has read access until its first save asks for write access, and a second permission
+      // prompt fired while the first is still showing is rejected outright.
       saveNavFiles: function () {
         var self = this;
         var dirty = nav.files.filter(function (file) {
           return file.dirty;
         });
-        var saves = dirty.map(function (file) {
-          var text = serializeNavFile(file);
-          return self.navWrite(file, text).then(function () {
-            // Re-parse what was written so the next save diffs against it, not the original.
-            var parsed = parseNavFile(text);
-            file.head = parsed.head;
-            file.items = parsed.items;
-            file.tail = parsed.tail;
-            file.dirty = false;
+        var written = [];
+        var downloaded = [];
+        var chain = Promise.resolve();
+        dirty.forEach(function (file) {
+          chain = chain.then(function () {
+            var text = serializeNavFile(file);
+            return self.navWrite(file, text).then(function () {
+              (file.handle ? written : downloaded).push(file.name);
+              // Re-parse what was written so the next save diffs against it, not the original.
+              var parsed = parseNavFile(text);
+              file.head = parsed.head;
+              file.items = parsed.items;
+              file.tail = parsed.tail;
+              file.dirty = false;
+            });
           });
         });
-        Promise.all(saves)
+        this.navNotice = '';
+        chain
           .then(function () {
             self.navError = nav.loose.length ? nav.loose.length + ' unconnected point(s) not saved — connect them with an edge first.' : '';
             nav.undo = [];
-            self.navRebuild();
           })
           .catch(function (e) {
             self.navError = 'Save failed: ' + (e.message || e);
+          })
+          .then(function () {
+            var notice = [];
+            if (written.length) {
+              notice.push('Saved ' + written.join(', ') + '.');
+            }
+            if (downloaded.length) {
+              // No file handle to write through (Firefox/Safari, or a browser with the File System
+              // Access API turned off): the only way out is a download.
+              notice.push('Downloaded ' + downloaded.join(', ') + ' — this browser can\'t write to the opened files, so copy the download over the original.');
+            }
+            self.navNotice = notice.join(' ');
             self.navRebuild();
           });
       },
 
+      // Writes `text` through the file's handle and reads it back, so a write that silently didn't
+      // land is reported rather than the file just being marked clean.
       navWrite: function (file, text) {
         if (!file.handle) {
           var blob = new Blob([text], { type: 'text/plain' });
@@ -740,17 +775,35 @@
           return Promise.resolve();
         }
         var handle = file.handle;
-        var permission = typeof handle.requestPermission === 'function' ? handle.requestPermission({ mode: 'readwrite' }) : Promise.resolve('granted');
-        return permission.then(function (state) {
-          if (state !== 'granted') {
-            throw new Error('write permission denied for ' + file.name);
-          }
-          return handle.createWritable().then(function (writable) {
+        var query = typeof handle.queryPermission === 'function' ? handle.queryPermission({ mode: 'readwrite' }) : Promise.resolve('granted');
+        return query
+          .then(function (state) {
+            // Only prompt when access isn't already there — a folder opened read-write covers every
+            // file under it, and asking again would needlessly spend the click's user activation.
+            return state === 'granted' || typeof handle.requestPermission !== 'function' ? state : handle.requestPermission({ mode: 'readwrite' });
+          })
+          .then(function (state) {
+            if (state !== 'granted') {
+              throw new Error('write permission denied for ' + file.name);
+            }
+            return handle.createWritable();
+          })
+          .then(function (writable) {
             return writable.write(text).then(function () {
               return writable.close();
             });
+          })
+          .then(function () {
+            return handle.getFile();
+          })
+          .then(function (written) {
+            return written.text();
+          })
+          .then(function (content) {
+            if (content !== text) {
+              throw new Error(file.name + ' was written but reads back differently');
+            }
           });
-        });
       },
 
       // --- Model ---
@@ -815,7 +868,7 @@
               edges++;
             }
           }
-          return { index: i, name: file.name, path: file.path, dirty: file.dirty, edges: edges };
+          return { index: i, name: file.name, path: file.path, dirty: file.dirty, edges: edges, writable: !!file.handle };
         });
         this.navDirty = nav.files.some(function (file) {
           return file.dirty;
@@ -851,9 +904,17 @@
           }
           if (sig) {
             this.$nextTick(function () {
+              // Scrolls only the file list, not the page: `scrollIntoView` would also scroll every
+              // ancestor, jolting the whole map on each click that selects something.
               var row = document.querySelector('[data-nav-selected="true"]');
-              if (row && row.scrollIntoView) {
-                row.scrollIntoView({ block: 'nearest' });
+              var list = row && row.closest('.wm-nav-files');
+              if (list) {
+                var top = row.getBoundingClientRect().top - list.getBoundingClientRect().top + list.scrollTop;
+                if (top < list.scrollTop) {
+                  list.scrollTop = top;
+                } else if (top + row.offsetHeight > list.scrollTop + list.clientHeight) {
+                  list.scrollTop = top + row.offsetHeight - list.clientHeight;
+                }
               }
             });
           }
@@ -1042,9 +1103,11 @@
         return this.showNavGraph && this.navLoaded;
       },
 
-      // Viewport-local screen position of a game tile, matching how every other layer places one.
+      // Viewport-local screen position of the centre of a game tile. Tile (x, y) covers the map from
+      // x to x + 1 and y to y + 1 (the same square `updateHoverTile` highlights), so a point sits in
+      // the middle of the tile it's on rather than on its south-west corner.
       navScreen: function (t) {
-        return { x: this._offsetX + t.x * this._scale, y: this._offsetY - t.y * this._scale };
+        return { x: this._offsetX + (t.x + 0.5) * this._scale, y: this._offsetY - (t.y + 0.5) * this._scale };
       },
 
       navLocal: function (e) {
@@ -1055,8 +1118,8 @@
       navTileAt: function (e) {
         var p = this.navLocal(e);
         return {
-          x: Math.round((p.x - this._offsetX) / this._scale),
-          y: Math.round((this._offsetY - p.y) / this._scale),
+          x: Math.floor((p.x - this._offsetX) / this._scale),
+          y: Math.floor((this._offsetY - p.y) / this._scale),
           level: this.level,
         };
       },
@@ -1103,133 +1166,176 @@
         return best;
       },
 
-      // Returns true when the press belongs to the editor (a node grabbed by the Move tool), so the
-      // map doesn't also start panning. Every other tool acts on release instead — see navPointerUp
-      // — which leaves drag-to-pan working whichever tool is picked.
+      // The editor has no modes; what a press does depends on what's under it:
+      //
+      //   press on a point, drag   move the point
+      //   click a point            select it (clicking the selected one again deselects it)
+      //   shift+click a point      join the selected point to it
+      //   click the map            with a point selected: add a point joined to it and carry on
+      //                            drawing from there; otherwise select the edge under the cursor,
+      //                            or start a new point if there isn't one
+      //   right-click              delete the point or edge under the cursor, else stop drawing
+      //   drag the map             pan, as ever
+      //
+      // Holding Space switches all of that off, so any drag (even one starting on a point) pans.
+      navInteractive: function () {
+        return this.navEditing() && !nav.panKey;
+      },
+
+      // Returns true when the press lands on a point, so the map doesn't also start panning — it
+      // may become a drag (move) or stay a click (select), which navPointerMove/Up decide.
       navPointerDown: function (e) {
         nav.press = null;
-        if (!this.navEditing()) {
+        if (!this.navInteractive()) {
           return false;
         }
-        nav.press = { x: e.clientX, y: e.clientY };
-        if (this.navTool !== 'move') {
-          return false;
-        }
+        nav.press = { x: e.clientX, y: e.clientY, shift: e.shiftKey };
         var node = this.navNodeAt(e);
         if (!node) {
           return false;
         }
-        this.navCheckpoint();
         nav.drag = { key: node.key, moved: false };
-        this.navSelectNode(node.key);
         return true;
       },
 
-      // Returns true while a node is being dragged, so the map doesn't pan underneath it.
+      // Returns true while a point is pressed, so the map doesn't pan underneath it.
       navPointerMove: function (e) {
         if (!this.navEditing()) {
           return false;
         }
         nav.hover = this.navTileAt(e);
+        // The point a click here would land on — the same hit test the click uses, so the preview
+        // never promises something the click won't do.
+        var hovered = nav.drag ? null : this.navNodeAt(e);
+        nav.hoverNode = hovered ? hovered.key : null;
+        nav.hoverShift = e.shiftKey;
         if (nav.drag) {
+          var press = nav.press;
+          if (!nav.drag.moved) {
+            if (!press || Math.hypot(e.clientX - press.x, e.clientY - press.y) <= CLICK_SLOP_PX) {
+              return true;
+            }
+            // Past the slop: it's a move, not a click. One undo step covers the whole drag.
+            this.navCheckpoint();
+            nav.drag.moved = true;
+            this.navSelectNode(nav.drag.key);
+          }
           var tile = this.navTileAt(e);
           tile.level = nav.nodes[nav.drag.key] ? nav.nodes[nav.drag.key].level : this.level;
           if (tileKey(tile) !== nav.drag.key && this.navMoveNode(nav.drag.key, tile)) {
             nav.drag.key = tileKey(tile);
-            nav.drag.moved = true;
           }
           return true;
         }
         this.navUpdateCursor(e);
-        if (this.navTool === 'add' && nav.selected && nav.selected.node) {
+        if (nav.selected && nav.selected.node) {
+          // The preview line follows the cursor.
           this.scheduleRender();
         }
         return false;
       },
 
       navPointerUp: function (e) {
-        if (nav.drag) {
-          if (!nav.drag.moved) {
-            // A press that never moved isn't an edit — drop the checkpoint it took.
-            nav.undo.pop();
-            this.syncNavState();
-          }
-          nav.drag = null;
-          return;
-        }
         var press = nav.press;
+        var drag = nav.drag;
         nav.press = null;
-        if (!press || !this.navEditing() || Math.hypot(e.clientX - press.x, e.clientY - press.y) > CLICK_SLOP_PX) {
+        nav.drag = null;
+        if (drag && drag.moved) {
+          this.syncNavState();
+          this.navUpdateCursor(e);
           return;
         }
-        this.navClick(e);
+        if (!press || !this.navInteractive() || Math.hypot(e.clientX - press.x, e.clientY - press.y) > CLICK_SLOP_PX) {
+          return;
+        }
+        this.navClick(e, press.shift);
       },
 
       // Pointer lost mid-press (cancelled, or a second finger turned it into a pinch): whatever a
       // drag already moved stays moved, but the press no longer counts as a click.
       navPointerCancel: function () {
-        if (nav.drag && !nav.drag.moved) {
-          nav.undo.pop();
-          this.syncNavState();
-        }
         nav.drag = null;
         nav.press = null;
       },
 
-      navClick: function (e) {
+      navClick: function (e, shift) {
         var node = this.navNodeAt(e);
-        var tool = this.navTool;
-        if (tool === 'delete') {
-          if (node) {
-            this.navDeleteNode(node.key);
-          } else {
-            var doomed = this.navEdgeAt(e);
-            if (doomed) {
-              this.navDeleteEdge(doomed);
-            }
-          }
-          return;
-        }
-        if (tool === 'add') {
-          var from = nav.selected && nav.selected.node ? nav.nodes[nav.selected.node] : null;
-          var to = node ? copyTile(node) : this.navTileAt(e);
-          if (!from) {
-            // Nothing to connect from yet: an existing point just becomes the start, and empty
-            // ground becomes a new (for now unconnected) point to draw out from.
-            if (!node) {
-              this.navCheckpoint();
-              nav.loose.push(to);
-              this.navRebuild();
-            }
-            this.navSelectNode(tileKey(to));
-            return;
-          }
-          this.navCheckpoint();
-          if (!this.navConnect(from, to)) {
-            nav.undo.pop();
-            if (!node) {
-              return;
-            }
-          }
-          // Keep drawing from the point just reached, so a path is a run of clicks; clicking an
-          // existing point without a new edge (it's already joined, or it's the same point) just
-          // carries on from there instead.
-          this.navRebuild();
-          this.navSelectNode(tileKey(to));
-          return;
-        }
-        // Select / Move: pick a point, else an edge, else clear.
+        var sel = nav.selected;
+        var from = sel && sel.node ? nav.nodes[sel.node] : null;
         if (node) {
-          this.navSelectNode(node.key);
+          if (shift && from && from.key !== node.key) {
+            this.navCheckpoint();
+            if (this.navConnect(from, node)) {
+              this.navRebuild();
+            } else {
+              nav.undo.pop();
+            }
+            this.navSelectNode(node.key);
+          } else if (from && from.key === node.key) {
+            this.navSelectNode(null);
+          } else {
+            this.navSelectNode(node.key);
+          }
+          return;
+        }
+        var tile = this.navTileAt(e);
+        if (from) {
+          // Keep drawing: a new point joined to the selected one, which then becomes the selection,
+          // so a path is just a run of clicks.
+          this.navCheckpoint();
+          if (this.navConnect(from, tile)) {
+            this.navRebuild();
+            this.navSelectNode(tileKey(tile));
+          } else {
+            nav.undo.pop();
+          }
           return;
         }
         var edge = this.navEdgeAt(e);
-        nav.selected = edge ? { edge: edge } : null;
-        if (edge) {
-          this.navTarget = edge.file;
+        if (edge || sel) {
+          // An edge picks it; empty map with an edge selected just clears the selection.
+          nav.selected = edge ? { edge: edge } : null;
+          if (edge) {
+            this.navTarget = edge.file;
+          }
+          this.syncNavState();
+          this.scheduleRender();
+          return;
         }
-        this.syncNavState();
-        this.scheduleRender();
+        // Nothing selected, nothing hit: start a new (for now unconnected) point to draw out from.
+        this.navCheckpoint();
+        nav.loose.push(tile);
+        this.navRebuild();
+        this.navSelectNode(tileKey(tile));
+      },
+
+      // Off the map: no preview line hanging off the edge towards wherever the cursor left.
+      navPointerLeave: function () {
+        if (nav.hover) {
+          nav.hover = null;
+          nav.hoverNode = null;
+          this.scheduleRender();
+        }
+      },
+
+      // Right-click. Returns true when the editor handled it, so the browser's menu is suppressed.
+      navContextMenu: function (e) {
+        if (!this.navInteractive()) {
+          return false;
+        }
+        var node = this.navNodeAt(e);
+        var edge = node ? null : this.navEdgeAt(e);
+        if (node) {
+          this.navDeleteNode(node.key);
+        } else if (edge) {
+          this.navDeleteEdge(edge);
+        } else if (nav.selected) {
+          nav.selected = null;
+          this.syncNavState();
+          this.scheduleRender();
+        }
+        this.navUpdateCursor(e);
+        return true;
       },
 
       navUpdateCursor: function (e) {
@@ -1237,12 +1343,22 @@
         if (!vp) {
           return;
         }
-        var editing = this.navEditing();
-        vp.classList.toggle('wm-nav-add', editing && this.navTool === 'add');
-        var hot = editing && e && this.navTool !== 'add' && (this.navNodeAt(e) || (this.navTool !== 'move' && this.navEdgeAt(e)));
-        vp.classList.toggle('wm-nav-hot', !!hot);
-        vp.classList.toggle('wm-nav-grab', !!hot && this.navTool === 'move');
-        vp.classList.toggle('wm-nav-delete', !!hot && this.navTool === 'delete');
+        var active = this.navInteractive() && !!e;
+        var node = active && this.navNodeAt(e);
+        var drawing = active && !node && nav.selected && nav.selected.node;
+        var edge = active && !node && !drawing && this.navEdgeAt(e);
+        vp.classList.toggle('wm-nav-grab', !!node);
+        vp.classList.toggle('wm-nav-add', !!drawing);
+        vp.classList.toggle('wm-nav-hot', !!edge);
+      },
+
+      navSetPanKey: function (down) {
+        if (nav.panKey === down) {
+          return;
+        }
+        nav.panKey = down;
+        this.navUpdateCursor(null);
+        this.scheduleRender();
       },
 
       navKeyDown: function (e) {
@@ -1254,7 +1370,11 @@
           return;
         }
         var mod = e.ctrlKey || e.metaKey;
-        if (mod && e.key.toLowerCase() === 'z') {
+        if (e.key === ' ') {
+          // Also stops the page scrolling, or a focused panel button being pressed.
+          e.preventDefault();
+          this.navSetPanKey(true);
+        } else if (mod && e.key.toLowerCase() === 'z') {
           e.preventDefault();
           this.navUndo();
         } else if (mod && e.key.toLowerCase() === 's') {
@@ -1271,6 +1391,10 @@
           nav.selected = null;
           this.syncNavState();
           this.scheduleRender();
+        } else if (e.key === 'Shift') {
+          // Redraw the preview: with Shift held it snaps to the point under the cursor.
+          nav.hoverShift = true;
+          this.scheduleRender();
         } else if (!mod && nav.selected && nav.selected.node && e.key.indexOf('Arrow') === 0) {
           // Nudge the selected point a tile at a time — finer than dragging at low zoom.
           e.preventDefault();
@@ -1281,12 +1405,18 @@
           if (!this.navMoveNode(n.key, { x: n.x + dx, y: n.y + dy, level: n.level })) {
             nav.undo.pop();
           }
-        } else if (!mod && !e.altKey) {
-          var tools = { v: 'select', m: 'move', a: 'add', d: 'delete' };
-          var tool = tools[e.key.toLowerCase()];
-          if (tool) {
-            this.navTool = tool;
+        }
+      },
+
+      navKeyUp: function (e) {
+        if (e.key === ' ') {
+          if (nav.panKey) {
+            e.preventDefault();
           }
+          this.navSetPanKey(false);
+        } else if (e.key === 'Shift') {
+          nav.hoverShift = false;
+          this.scheduleRender();
         }
       },
 
@@ -1368,11 +1498,41 @@
             }
           }
         }
-        // Add tool: a dashed line from the point being drawn from to the tile under the cursor.
-        if (this.navTool === 'add' && sel && sel.node && nav.hover && nav.nodes[sel.node] && nav.nodes[sel.node].level === level) {
-          var from = self.navScreen(nav.nodes[sel.node]);
-          var to = self.navScreen(nav.hover);
-          marked += '<line class="wm-nav-edge wm-nav-edge-preview" x1="' + from.x.toFixed(1) + '" y1="' + from.y.toFixed(1) + '" x2="' + to.x.toFixed(1) + '" y2="' + to.y.toFixed(1) + '"></line>';
+        // Euclidean distance in tiles from `anchor` to `tile` ("7.6"), drawn halfway along the line between them.
+        // Skipped where the line is too short on screen for the label to sit clear of its ends.
+        var diffs = '';
+        function diff(anchor, tile) {
+          var a = self.navScreen(anchor);
+          var b = self.navScreen(tile);
+          if (Math.hypot(b.x - a.x, b.y - a.y) < 28) {
+            return;
+          }
+          var dist = Math.hypot(tile.x - anchor.x, tile.y - anchor.y);
+          diffs += '<text class="wm-nav-diff" x="' + ((a.x + b.x) / 2).toFixed(1) + '" y="' + ((a.y + b.y) / 2).toFixed(1) + '">' +
+            (Number.isInteger(dist) ? dist : dist.toFixed(1)) + '</text>';
+        }
+        var selNode = sel && sel.node ? nav.nodes[sel.node] : null;
+        if (selNode && selNode.level === level && !nav.panKey && !nav.drag) {
+          // A dashed line from the selected point to where a click would join it: the tile under the
+          // cursor, or with Shift held, the point under it. Nothing over a point without Shift,
+          // since clicking there just selects it.
+          var target = nav.hoverNode ? (nav.hoverShift ? nav.nodes[nav.hoverNode] : null) : nav.hover;
+          if (target && tileKey(target) !== selNode.key) {
+            var from = self.navScreen(selNode);
+            var to = self.navScreen(target);
+            marked += '<line class="wm-nav-edge wm-nav-edge-preview" x1="' + from.x.toFixed(1) + '" y1="' + from.y.toFixed(1) + '" x2="' + to.x.toFixed(1) + '" y2="' + to.y.toFixed(1) + '"></line>';
+            diff(selNode, target);
+          }
+        }
+        // The selected point's distance from each neighbour, updating as it's dragged or nudged.
+        if (selNode && selNode.level === level) {
+          for (var k = 0; k < selNode.edges.length; k++) {
+            var touching = selNode.edges[k];
+            var other = tileKey(touching.from) === selNode.key ? touching.to : touching.from;
+            if ((other.level || 0) === level) {
+              diff(other, selNode);
+            }
+          }
         }
         var nodes = '';
         for (var key in nav.nodes) {
@@ -1399,7 +1559,7 @@
             nodes += '<circle class="' + ncls + '" cx="' + s.x.toFixed(1) + '" cy="' + s.y.toFixed(1) + '" r="' + radius.toFixed(1) + '">' + title + '</circle>';
           }
         }
-        layer.innerHTML = '<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">' + edges + marked + nodes + '</svg>';
+        layer.innerHTML = '<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">' + edges + marked + nodes + diffs + '</svg>';
       },
     };
   };

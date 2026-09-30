@@ -237,25 +237,21 @@ object WorldMap {
         }
     }
 
-    /** One of the nav graph editor's tool buttons; [key] is its keyboard shortcut (see `navKeyDown`). */
-    private fun DIV.navTool(tool: String, label: String, key: String) {
-        button {
-            attributes["type"] = "button"
-            attributes["class"] = "wm-nav-tool"
-            attributes["title"] = "$label ($key)"
-            xBindClass("{ 'wm-nav-tool-active': navTool === '$tool' }")
-            onClick("navTool = '$tool'")
-            +label
-        }
-    }
+    /**
+     * The nav graph editor's controls, as a legend. There are no tools to switch between: what a
+     * click or drag does depends on what's under it — see `navInteractive` in navgraph.js.
+     */
+    private val navControls = listOf(
+        "Shift+click point" to "Join the selection to it",
+        "Right-click" to "Delete point or edge",
+        "Esc" to "Stop drawing",
+    )
 
     /**
-     * The nav graph editor, under the display panel while the graph is showing. Every tool leaves
-     * drag-to-pan alone except Move, which only takes a press that lands on a point: Select picks a
-     * point or an edge, Move drags a point (or nudges the selected one with the arrow keys), Add
-     * draws a run of edges one click at a time from the selected point, and Delete removes whatever
-     * is clicked — a point taking every edge that touches it with it. Edits stay in memory until
-     * Save writes the changed files back (or downloads them, in a browser that can't write files).
+     * The nav graph editor, under the display panel while the graph is showing. Drag-to-pan works
+     * everywhere except on a point, which drags the point instead (or anywhere at all with Space
+     * held). Edits stay in memory until Save writes the changed files back (or downloads them, in a
+     * browser that can't write files).
      */
     private fun FlowContent.navGraphPanel() {
         val hint = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);line-height:var(--leading-normal)"
@@ -272,20 +268,11 @@ object WorldMap {
                     // Layout on a nested div, not the `x-show`n one — see the bottom-left readout's comment.
                     style = "padding:var(--space-5) var(--space-6) var(--space-6);display:flex;flex-direction:column;gap:var(--space-4)"
                     div {
-                        style = "display:grid;grid-template-columns:1fr 1fr;gap:6px"
-                        navTool("select", "Select", "V")
-                        navTool("move", "Move", "M")
-                        navTool("add", "Add", "A")
-                        navTool("delete", "Delete", "D")
-                    }
-                    div {
-                        style = hint
-                        xText(
-                            "({ select: 'Click a point or edge to select it. Del removes it, Esc clears.', " +
-                                "move: 'Drag a point, or select one and nudge it with the arrow keys.', " +
-                                "add: 'Click to add a point joined to the selected one; click a point to join to it.', " +
-                                "delete: 'Click a point (and its edges) or an edge to delete it.' })[navTool]",
-                        )
+                        attributes["class"] = "wm-nav-controls"
+                        for ((input, action) in navControls) {
+                            span { +input }
+                            span { +action }
+                        }
                     }
                     div {
                         xShow("navSelection")
@@ -302,10 +289,10 @@ object WorldMap {
                     }
                     rawHtml(
                         """
-                        <div style="display:flex;flex-direction:column;gap:4px;max-height:260px;overflow-y:auto">
+                        <div class="wm-nav-files" style="display:flex;flex-direction:column;gap:4px;max-height:260px;overflow-y:auto">
                           <template x-for="f in navFiles" :key="f.path">
                             <div>
-                              <button type="button" class="wm-nav-file" :class="{ 'wm-nav-file-target': f.index === navTarget }" :title="f.path" @click="navToggleFile(f.index)">
+                              <button type="button" class="wm-nav-file" :class="{ 'wm-nav-file-target': f.index === navTarget }" :title="f.path + (f.writable ? '' : ' (read-only in this browser: Save downloads a copy)')" @click="navToggleFile(f.index)">
                                 <span class="wm-nav-file-name" x-text="(navOpen === f.index ? '▾ ' : '▸ ') + f.name + (f.dirty ? ' •' : '')"></span>
                                 <span class="wm-nav-file-count" x-text="f.edges"></span>
                               </button>
@@ -334,6 +321,13 @@ object WorldMap {
                         div {
                             style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--feedback-danger);white-space:pre-wrap"
                             xText("navError")
+                        }
+                    }
+                    div {
+                        xShow("navNotice")
+                        div {
+                            style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-muted);white-space:pre-wrap"
+                            xText("navNotice")
                         }
                     }
                     div {
@@ -578,6 +572,11 @@ object WorldMap {
                     xShow("showAreaLabels")
                     style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
                     // Filled from `window.VOID_MAP_LABELS` (see [MapLabels]) on every render.
+                }
+                div {
+                    // Outline of the tile under the cursor, placed by `updateHoverTile`.
+                    attributes["id"] = "wm-hover-tile"
+                    attributes["class"] = "wm-hover-tile"
                 }
                 div {
                     // Rebuilt by `renderNavGraph` (navgraph.js) on every render while it's on, and

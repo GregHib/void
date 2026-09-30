@@ -189,6 +189,7 @@ window.worldMapApp = function () {
     _offsetX: 0,
     _offsetY: 0,
     _scale: BASE_PX_PER_TILE,
+    _hoverInside: false,
     // Tiles no longer in the wanted set (e.g. the previous native zoom's, after a zoom crossing)
     // aren't removed until their replacements finish loading — otherwise the already-loaded old
     // tile disappears immediately while the new one is still fading in from opacity 0, flashing
@@ -226,6 +227,7 @@ window.worldMapApp = function () {
       this.areaPolygonLayer = root.querySelector('#wm-area-polygons');
       this.areaLabelLayer = root.querySelector('#wm-area-labels');
       this.playerLayer = root.querySelector('#wm-players');
+      this.hoverTile = root.querySelector('#wm-hover-tile');
       this.navBoot(root);
 
       this.readStateFromUrl();
@@ -410,7 +412,7 @@ window.worldMapApp = function () {
           return;
         }
         pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
-        // A nav graph point grabbed by the editor's Move tool (see navgraph.js) is dragged instead
+        // A nav graph point pressed in the editor (see navgraph.js) is dragged instead
         // of the map. Only ever for the first finger — a second one still starts a pinch.
         if (pointerCount() === 1 && self.navPointerDown(e)) {
           try {
@@ -456,9 +458,12 @@ window.worldMapApp = function () {
         var scale = pxPerTile(self.zoom);
         var localX = e.clientX - rect.left - rect.width / 2;
         var localY = e.clientY - rect.top - rect.height / 2;
-        self.hoverX = Math.round(self.gameX + localX / scale);
-        self.hoverY = Math.round(self.gameY - localY / scale);
+        // Floored, not rounded: tile (x, y) covers the map from x to x + 1 (see `updateHoverTile`).
+        self.hoverX = Math.floor(self.gameX + localX / scale);
+        self.hoverY = Math.floor(self.gameY - localY / scale);
+        self._hoverInside = true;
         self.updateHoverAreas();
+        self.updateHoverTile();
 
         if (self.navPointerMove(e) || !dragging) {
           return;
@@ -516,6 +521,17 @@ window.worldMapApp = function () {
       vp.addEventListener('pointerup', endDrag);
       vp.addEventListener('pointercancel', endDrag);
       vp.addEventListener('pointerleave', endDrag);
+      vp.addEventListener('pointerleave', function () {
+        self._hoverInside = false;
+        self.updateHoverTile();
+        self.navPointerLeave();
+      });
+      // Right-click deletes in the nav graph editor (see navgraph.js) instead of opening the menu.
+      vp.addEventListener('contextmenu', function (e) {
+        if (self.navContextMenu(e)) {
+          e.preventDefault();
+        }
+      });
 
       vp.addEventListener(
         'wheel',
@@ -931,6 +947,7 @@ window.worldMapApp = function () {
       } else if (this.areaLabelLayer) {
         this.areaLabelLayer.innerHTML = '';
       }
+      this.updateHoverTile();
       this.renderNavGraph(rect);
       this.renderPlayers();
       // Re-checked on every render (not just pointermove) so panning/zooming/changing level under
@@ -1243,6 +1260,27 @@ window.worldMapApp = function () {
         html += '<polygon class="wm-area-polygon" data-i="' + i + '" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
       }
       this.areaPolygonLayer.innerHTML = html ? '<svg style="position:absolute;overflow:visible">' + html + '</svg>' : '';
+    },
+
+    // Outlines the game tile under the cursor (`hoverX`/`hoverY`). Tile (x, y) is the square from
+    // game x to x + 1 and y to y + 1 — the same 4px block of the zoom-8 tile image the region grid's
+    // lines bound — so its top edge on screen is y + 1 (Y is flipped, see the file header). Hidden
+    // once a tile is too small on screen to make out, and while the cursor is off the map.
+    updateHoverTile: function () {
+      var el = this.hoverTile;
+      if (!el) {
+        return;
+      }
+      var scale = this._scale;
+      if (!this._hoverInside || scale < 3) {
+        el.style.display = 'none';
+        return;
+      }
+      el.style.display = 'block';
+      el.style.left = this._offsetX + this.hoverX * scale + 'px';
+      el.style.top = this._offsetY - (this.hoverY + 1) * scale + 'px';
+      el.style.width = scale + 'px';
+      el.style.height = scale + 'px';
     },
 
     // Which `window.VOID_AREAS` entries (see [renderAreaPolygons]) the cursor's current game tile

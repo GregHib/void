@@ -101,6 +101,17 @@
   stroke-width: 2;
 }
 
+/* The game tile under the cursor (`updateHoverTile` in worldmap.js). */
+.wm-hover-tile {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 244, 214, 0.85);
+  background: rgba(255, 244, 214, 0.18);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
 /* Nav graph overlay (`renderNavGraph` in navgraph.js). Walk edges are teal, edges with actions
    (doors, stairs — one-way) amber and dashed with an arrowhead; everything touching the selection
    is lifted to gold. Points with an edge to another floor are drawn as diamonds. */
@@ -125,6 +136,17 @@
   stroke: var(--gold-300);
   stroke-dasharray: 4 4;
   opacity: 0.8;
+}
+/* Tile distance labels along the preview line and the selected point's edges. */
+.wm-nav-diff {
+  fill: var(--parch-50);
+  stroke: rgba(20, 14, 8, 0.9);
+  stroke-width: 3;
+  paint-order: stroke;
+  font: var(--weight-semibold) 11px/1 var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  text-anchor: middle;
+  dominant-baseline: central;
 }
 .wm-nav-arrow {
   fill: rgba(240, 150, 70, 0.95);
@@ -162,28 +184,24 @@
 .wm-viewport.wm-nav-grab {
   cursor: move;
 }
-.wm-viewport.wm-nav-delete {
-  cursor: not-allowed;
+/* Panning wins over whatever the cursor was hovering when the drag started. */
+.wm-viewport.wm-dragging {
+  cursor: grabbing;
 }
 
-.wm-nav-tool {
-  height: 26px;
-  padding: 0;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  background: var(--umber-800);
+.wm-nav-controls {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px var(--space-4);
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-normal);
+  color: var(--text-faint);
+}
+.wm-nav-controls > :nth-child(odd) {
   color: var(--text-muted);
-  font: var(--weight-semibold) var(--text-2xs) / 1 var(--font-ui);
-  letter-spacing: var(--tracking-wide);
-  cursor: pointer;
-}
-.wm-nav-tool:hover {
-  color: var(--gold-300);
-}
-.wm-nav-tool-active {
-  background: rgba(224, 174, 60, 0.14);
-  color: var(--gold-300);
-  border-color: var(--gold-600);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
 }
 
 .wm-nav-file {
