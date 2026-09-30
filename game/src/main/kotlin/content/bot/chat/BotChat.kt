@@ -40,11 +40,13 @@ class BotChat(
 
     init {
         chatProcessor = model.chatProcessor
-        Companion.phrases = QuickChatPhrases(phrases)
-        quickChat = QuickChatIntents(phrases, model.quickChat)
+        if (chatProcessor != null) {
+            Companion.phrases = QuickChatPhrases(phrases)
+            quickChat = QuickChatIntents(phrases, model.quickChat)
 
-        playerDespawn {
-            forget(accountName)
+            playerDespawn {
+                forget(accountName)
+            }
         }
     }
 

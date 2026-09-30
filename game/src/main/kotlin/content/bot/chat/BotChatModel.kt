@@ -34,6 +34,9 @@ class BotChatModel {
         private set
 
     fun load(files: ConfigFiles, quests: QuestDefinitions, trainer: IntentTrainer = IntentTrainer()): BotChatModel {
+        if (!Settings["bots.chat.enabled", true]) {
+            return this
+        }
         val paths = files.list(Settings["bots.chat.intents"])
         quickChat = quickChat(paths)
         val examples = examples(paths)
