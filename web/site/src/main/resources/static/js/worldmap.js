@@ -229,6 +229,8 @@ window.worldMapApp = function () {
       this.playerLayer = root.querySelector('#wm-players');
       this.hoverTile = root.querySelector('#wm-hover-tile');
       this.navBoot(root);
+      this.areaBoot();
+      this.mapEditBoot();
 
       this.readStateFromUrl();
       this.tpX = String(Math.round(this.gameX));
@@ -412,9 +414,10 @@ window.worldMapApp = function () {
           return;
         }
         pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
-        // A nav graph point pressed in the editor (see navgraph.js) is dragged instead
-        // of the map. Only ever for the first finger — a second one still starts a pinch.
-        if (pointerCount() === 1 && self.navPointerDown(e)) {
+        // A nav graph point or area vertex pressed in an editor (see navgraph.js/areas.js) is
+        // dragged instead of the map. Only ever for the first finger — a second one still starts
+        // a pinch. Only the active editor (see mapedit.js) takes the press.
+        if (pointerCount() === 1 && (self.navPointerDown(e) || self.areaPointerDown(e))) {
           try {
             vp.setPointerCapture(e.pointerId);
           } catch (err) {
@@ -465,7 +468,7 @@ window.worldMapApp = function () {
         self.updateHoverAreas();
         self.updateHoverTile();
 
-        if (self.navPointerMove(e) || !dragging) {
+        if (self.navPointerMove(e) || self.areaPointerMove(e) || !dragging) {
           return;
         }
         var dx = e.clientX - lastX;
@@ -481,8 +484,10 @@ window.worldMapApp = function () {
       function endDrag(e) {
         if (!pinching && pointers[e.pointerId] && e.type === 'pointerup') {
           self.navPointerUp(e);
+          self.areaPointerUp(e);
         } else if (pointers[e.pointerId]) {
           self.navPointerCancel();
+          self.areaPointerCancel();
         }
         delete pointers[e.pointerId];
         try {
@@ -525,10 +530,11 @@ window.worldMapApp = function () {
         self._hoverInside = false;
         self.updateHoverTile();
         self.navPointerLeave();
+        self.areaPointerLeave();
       });
-      // Right-click deletes in the nav graph editor (see navgraph.js) instead of opening the menu.
+      // Right-click deletes in the editors (see navgraph.js/areas.js) instead of opening the menu.
       vp.addEventListener('contextmenu', function (e) {
-        if (self.navContextMenu(e)) {
+        if (self.navContextMenu(e) || self.areaContextMenu(e)) {
           e.preventDefault();
         }
       });
@@ -709,7 +715,8 @@ window.worldMapApp = function () {
     },
 
     // Everything the search box can jump to that isn't a player, as one flat list: areas (from
-    // `window.VOID_AREAS`, the same polygons the area layer draws) and place names (from
+    // `areaShapes`, the same polygons the area layer draws — the loaded files' once there are any,
+    // which is also why areas.js drops this cache on every edit) and place names (from
     // `window.VOID_MAP_LABELS`, the cache's own map text). Players are merged in per query by
     // `searchResults` instead — this list is cached for the life of the page and that one isn't
     // stable.
@@ -721,7 +728,7 @@ window.worldMapApp = function () {
         return this._searchEntries;
       }
       var entries = [];
-      var areas = window.VOID_AREAS || [];
+      var areas = this.areaShapes();
       for (var i = 0; i < areas.length; i++) {
         var area = areas[i];
         var minX = Math.min.apply(null, area.x);
@@ -738,6 +745,7 @@ window.worldMapApp = function () {
           level: area.minLevel,
           width: maxX - minX,
           height: maxY - minY,
+          area: area.name,
         });
       }
       var labels = window.VOID_MAP_LABELS || [];
@@ -847,6 +855,9 @@ window.worldMapApp = function () {
       }
       var zoom = result.kind === 'Area' ? this.zoomFitting(result.width, result.height) : Math.max(this.zoom, FOCUS_ZOOM);
       this.focusOn(result.x, result.y, result.level, zoom);
+      if (result.area) {
+        this.areaSelectNamed(result.area);
+      }
     },
 
     // The zoom at which a `width` x `height` box of game tiles fits inside the viewport with
@@ -1239,11 +1250,15 @@ window.worldMapApp = function () {
       return (targetWidth / refWidth) * REF_SIZE;
     },
 
-    // `window.VOID_AREAS` is injected server-side by [WorldMap.areasScript] — each entry's `x`/`y`
-    // are game-space polygon vertices (box areas pre-expanded to four corners), drawn here as one
-    // SVG <polygon> apiece rather than DOM divs since a polygon isn't expressible as a CSS box.
+    // `areaShapes()` — `window.VOID_AREAS` (injected server-side by [WorldMap.areasScript]), or the
+    // areas of the files loaded into the editor (areas.js) — each entry's `x`/`y` game-space polygon
+    // vertices (box areas pre-expanded to four corners), drawn as one SVG <polygon> apiece rather
+    // than DOM divs since a polygon isn't expressible as a CSS box. A vertex is a tile, and an area
+    // includes the tiles on its edges, so each vertex sits in the middle of its tile rather than on
+    // the tile's south-west corner — the outline then runs through the edge tiles it takes in. The
+    // editor's handles are drawn in the same SVG, over the polygons.
     renderAreaPolygons: function (offsetX, offsetY, scale) {
-      var areas = window.VOID_AREAS || [];
+      var areas = this.areaShapes();
       var level = this.level;
       var html = '';
       for (var i = 0; i < areas.length; i++) {
@@ -1253,13 +1268,14 @@ window.worldMapApp = function () {
         }
         var points = '';
         for (var p = 0; p < area.x.length; p++) {
-          var x = offsetX + area.x[p] * scale;
-          var y = offsetY - area.y[p] * scale;
+          var x = offsetX + (area.x[p] + 0.5) * scale;
+          var y = offsetY - (area.y[p] + 0.5) * scale;
           points += x.toFixed(1) + ',' + y.toFixed(1) + ' ';
         }
-        html += '<polygon class="wm-area-polygon" data-i="' + i + '" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
+        html += '<polygon class="wm-area-polygon' + this.areaShapeClass(area) + '" data-i="' + i + '" points="' + points.trim() + '"><title>' + escapeHtml(area.name) + '</title></polygon>';
       }
-      this.areaPolygonLayer.innerHTML = html ? '<svg style="position:absolute;overflow:visible">' + html + '</svg>' : '';
+      html += this.renderAreaEditor();
+      this.areaPolygonLayer.innerHTML = html ? '<svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">' + html + '</svg>' : '';
     },
 
     // Outlines the game tile under the cursor (`hoverX`/`hoverY`). Tile (x, y) is the square from
@@ -1283,14 +1299,14 @@ window.worldMapApp = function () {
       el.style.height = scale + 'px';
     },
 
-    // Which `window.VOID_AREAS` entries (see [renderAreaPolygons]) the cursor's current game tile
+    // Which `areaShapes()` entries (see [renderAreaPolygons]) the cursor's current game tile
     // (`hoverX`/`hoverY`) falls inside, on the current level. Drives both `hoverAreaNames` (read by
     // the bottom-left panel via Alpine reactivity) and the `wm-area-polygon-hover` highlight class —
     // the latter toggled directly on the existing `<polygon>` elements rather than going through a
     // full `renderAreaPolygons` rebuild, since this runs on every `pointermove` and a full innerHTML
     // rebuild per mouse pixel would be wasteful (and would restart the fill/stroke transition).
     updateHoverAreas: function () {
-      var areas = window.VOID_AREAS || [];
+      var areas = this.areaShapes();
       var level = this.level;
       var x = this.hoverX;
       var y = this.hoverY;
@@ -1301,7 +1317,7 @@ window.worldMapApp = function () {
         if (level < area.minLevel || level > area.maxLevel) {
           continue;
         }
-        if (pointInPolygon(x, y, area.x, area.y)) {
+        if (VoidAreas.contains(area.x, area.y, x, y)) {
           names.push(area.name);
           hovered[i] = true;
         }
@@ -1395,8 +1411,9 @@ window.worldMapApp = function () {
       }
     },
   };
-  // The nav graph overlay/editor's state and methods live in navgraph.js (loaded before this file).
-  return Object.assign(app, window.navGraphMethods());
+  // The editors' state and methods live in navgraph.js, areas.js and mapedit.js (loaded before this
+  // file).
+  return Object.assign(app, window.navGraphMethods(), window.areaEditorMethods(), window.mapEditMethods());
 };
 
 // Neither tile source gives browsers a long-lived HTTP cache - the remote host sends a five-minute
@@ -1424,23 +1441,6 @@ function onTileError() {
   // Missing tile (ocean, ungenerated zoom, or a level with nothing on it) — leave transparent
   // rather than showing a broken-image icon.
   this.style.display = 'none';
-}
-
-// Standard even-odd ray-casting point-in-polygon test (ties broken however they fall on an edge —
-// unlike the server's [world.gregs.voidps.type.area.Polygon.pointInPolygon], exact edge inclusion
-// doesn't need to match pixel-for-pixel here, this is just for the hover highlight).
-function pointInPolygon(x, y, xs, ys) {
-  var inside = false;
-  for (var i = 0, j = xs.length - 1; i < xs.length; j = i++) {
-    var xi = xs[i];
-    var yi = ys[i];
-    var xj = xs[j];
-    var yj = ys[j];
-    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
-      inside = !inside;
-    }
-  }
-  return inside;
 }
 
 function escapeHtml(text) {

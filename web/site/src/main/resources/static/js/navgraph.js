@@ -24,10 +24,6 @@
   // A press that travels further than this before release is a pan, not a click.
   var CLICK_SLOP_PX = 4;
   var UNDO_LIMIT = 100;
-  // Directories under `data/` that can't hold nav files and are large enough to make "Open folder"
-  // crawl if it had to walk them.
-  var SKIPPED_DIRS = { cache: true, 'map-tiles': true, saves: true, dump: true, '.temp': true, '.git': true, node_modules: true };
-  var NAV_SUFFIX = '.nav-edges.toml';
 
   // Keys each bot action type takes, from content.bot.behaviour.action.ActionParser — just the
   // types that make sense on a nav edge. Drives the Edge panel's key suggestions, the keys added
@@ -100,53 +96,15 @@
 
   // --- Parsing -------------------------------------------------------------------------------
 
-  // Index just past the string starting at `i` (which is on its opening quote). Handles basic
-  // ("...", with escapes) and literal ('...') strings; multi-line strings don't appear in these
-  // files.
-  function skipString(text, i) {
-    var quote = text[i];
-    i++;
-    while (i < text.length && text[i] !== quote) {
-      if (quote === '"' && text[i] === '\\') {
-        i++;
-      }
-      i++;
-    }
-    return i + 1;
-  }
-
-  function skipComment(text, i) {
-    while (i < text.length && text[i] !== '\n') {
-      i++;
-    }
-    return i;
-  }
-
-  // Index just past the bracket matching the one at `i`, skipping strings and comments.
-  function matchBracket(text, i) {
-    var depth = 0;
-    while (i < text.length) {
-      var c = text[i];
-      if (c === '"' || c === "'") {
-        i = skipString(text, i);
-        continue;
-      }
-      if (c === '#') {
-        i = skipComment(text, i);
-        continue;
-      }
-      if (c === '{' || c === '[') {
-        depth++;
-      } else if (c === '}' || c === ']') {
-        depth--;
-        if (depth === 0) {
-          return i + 1;
-        }
-      }
-      i++;
-    }
-    throw new Error('Unclosed bracket');
-  }
+  var T = window.VoidToml;
+  var skipString = T.skipString;
+  var skipComment = T.skipComment;
+  var matchBracket = T.matchBracket;
+  var splitArray = T.splitArray;
+  var oneLine = T.oneLine;
+  var displayValue = T.displayValue;
+  var tomlValue = T.tomlValue;
+  var valueProblem = T.valueProblem;
 
   function readTile(table) {
     var tile = { x: 0, y: 0, level: 0 };
@@ -211,104 +169,6 @@
       entries.push({ key: key[0], start: start, end: i });
     }
     return entries;
-  }
-
-  // The elements of an inline array (`[ ... ]`), as their own text.
-  function splitArray(text) {
-    var out = [];
-    var i = 1;
-    var end = text.length - 1;
-    while (i < end) {
-      var c = text[i];
-      if (c === '#') {
-        i = skipComment(text, i);
-      } else if (c === ',' || /\s/.test(c)) {
-        i++;
-      } else {
-        var start = i;
-        if (c === '{' || c === '[') {
-          i = matchBracket(text, i);
-        } else if (c === '"' || c === "'") {
-          i = skipString(text, i);
-        } else {
-          while (i < end && text[i] !== ',' && !/\s/.test(text[i])) {
-            i++;
-          }
-        }
-        out.push(text.slice(start, i));
-      }
-    }
-    return out;
-  }
-
-  // A value's text on one line: comments dropped and every run of whitespace outside a string
-  // collapsed to a single space, so a hand-wrapped `success = { ... }` fits in a text field.
-  function oneLine(text) {
-    var out = '';
-    var i = 0;
-    while (i < text.length) {
-      var c = text[i];
-      if (c === '"' || c === "'") {
-        var j = skipString(text, i);
-        out += text.slice(i, j);
-        i = j;
-      } else if (c === '#') {
-        i = skipComment(text, i);
-      } else if (/\s/.test(c)) {
-        while (i < text.length && /\s/.test(text[i])) {
-          i++;
-        }
-        out += ' ';
-      } else {
-        out += c;
-        i++;
-      }
-    }
-    return out.trim().replace(/\[ /g, '[').replace(/ \]/g, ']').replace(/,\s*([\]}])/g, ' $1').replace(/\[ \]/g, '[]');
-  }
-
-  // A value typed into the editor that TOML would read as something other than a string: a number,
-  // a boolean, a quoted string, or an inline table/array.
-  function isRawValue(text) {
-    return /^-?\d+$/.test(text) || text === 'true' || text === 'false' || /^["'{\[]/.test(text);
-  }
-
-  // Strings are shown and edited without their quotes (`Open`, not `"Open"`), as long as the bare
-  // text would still read back as a string.
-  function displayValue(raw) {
-    if (/^"([^"\\]|\\.)*"$/.test(raw)) {
-      var text = JSON.parse(raw);
-      if (!isRawValue(text) && text.trim() === text && text !== '') {
-        return text;
-      }
-    }
-    return raw;
-  }
-
-  function tomlValue(text) {
-    text = text.trim();
-    return isRawValue(text) ? text : JSON.stringify(text);
-  }
-
-  // Why `text` isn't a usable value, or '' if it is: brackets must balance and close at the end.
-  function valueProblem(text) {
-    text = text.trim();
-    if (text === '') {
-      return 'empty';
-    }
-    if (/^[{\[]/.test(text)) {
-      try {
-        if (matchBracket(text, 0) !== text.length) {
-          return 'unexpected text after the closing bracket';
-        }
-      } catch (e) {
-        return 'unclosed bracket';
-      }
-    }
-    if (/^["']/.test(text) && skipString(text, 0) !== text.length) {
-      return 'unclosed or trailing text after string';
-    }
-    return '';
   }
 
   // `actions = [ { object = { option = "Open", ... } }, { tile = { ... } } ]` as
@@ -641,152 +501,6 @@
 
       // --- Files ---
 
-      openNavFiles: function () {
-        var self = this;
-        if (typeof window.showOpenFilePicker === 'function') {
-          window
-            .showOpenFilePicker({
-              multiple: true,
-              types: [{ description: 'Nav graph edges', accept: { 'text/plain': ['.toml'] } }],
-            })
-            .then(function (handles) {
-              return Promise.all(
-                handles.map(function (handle) {
-                  return handle.getFile().then(function (file) {
-                    return file.text().then(function (text) {
-                      return { name: handle.name, path: handle.name, text: text, handle: handle };
-                    });
-                  });
-                }),
-              );
-            })
-            .then(function (loaded) {
-              self.navAddFiles(loaded);
-            })
-            .catch(function (e) {
-              if (e && e.name !== 'AbortError') {
-                self.navError = String(e.message || e);
-              }
-            });
-          return;
-        }
-        // No File System Access API (Firefox, Safari): read through a file input, save by download.
-        var input = document.createElement('input');
-        input.type = 'file';
-        input.multiple = true;
-        input.accept = '.toml';
-        input.addEventListener('change', function () {
-          var files = Array.prototype.slice.call(input.files || []);
-          Promise.all(
-            files.map(function (file) {
-              return file.text().then(function (text) {
-                return { name: file.name, path: file.name, text: text, handle: null };
-              });
-            }),
-          ).then(function (loaded) {
-            self.navAddFiles(loaded);
-          });
-        });
-        input.click();
-      },
-
-      // Picks a folder — the repo's `data/` is the one that makes sense — and opens every
-      // `*.nav-edges.toml` anywhere under it, which is the whole graph the server loads.
-      openNavFolder: function () {
-        var self = this;
-        if (typeof window.showDirectoryPicker !== 'function') {
-          // Firefox/Safari: a directory <input> hands over every file under the folder (read-only, so
-          // saving downloads them, like the plain file picker).
-          var input = document.createElement('input');
-          input.type = 'file';
-          input.setAttribute('webkitdirectory', '');
-          input.addEventListener('change', function () {
-            var files = Array.prototype.slice.call(input.files || []).filter(function (file) {
-              var path = file.webkitRelativePath || file.name;
-              return (
-                file.name.slice(-NAV_SUFFIX.length) === NAV_SUFFIX &&
-                !path.split('/').slice(0, -1).some(function (dir) {
-                  return SKIPPED_DIRS[dir];
-                })
-              );
-            });
-            if (!files.length) {
-              self.navError = 'No *' + NAV_SUFFIX + ' files in that folder.';
-              self.syncNavState();
-              return;
-            }
-            Promise.all(
-              files.map(function (file) {
-                return file.text().then(function (text) {
-                  return { name: file.name, path: file.webkitRelativePath || file.name, text: text, handle: null };
-                });
-              }),
-            ).then(function (loaded) {
-              loaded.sort(function (x, y) {
-                return x.path.localeCompare(y.path);
-              });
-              self.navAddFiles(loaded);
-            });
-          });
-          input.click();
-          return;
-        }
-        var found = [];
-        function walk(dir, path) {
-          var pending = [];
-          var iterator = dir.values();
-          function next() {
-            return iterator.next().then(function (step) {
-              if (step.done) {
-                return Promise.all(pending);
-              }
-              var entry = step.value;
-              if (entry.kind === 'directory') {
-                if (!SKIPPED_DIRS[entry.name]) {
-                  pending.push(walk(entry, path + entry.name + '/'));
-                }
-              } else if (entry.name.slice(-NAV_SUFFIX.length) === NAV_SUFFIX) {
-                pending.push(
-                  entry
-                    .getFile()
-                    .then(function (file) {
-                      return file.text();
-                    })
-                    .then(function (text) {
-                      found.push({ name: entry.name, path: path + entry.name, text: text, handle: entry });
-                    }),
-                );
-              }
-              return next();
-            });
-          }
-          return next();
-        }
-        window
-          .showDirectoryPicker({ mode: 'readwrite' })
-          .then(function (dir) {
-            self.navStats = 'Scanning ' + dir.name + '/…';
-            return walk(dir, dir.name + '/');
-          })
-          .then(function () {
-            if (!found.length) {
-              self.navError = 'No *' + NAV_SUFFIX + ' files in that folder.';
-              self.syncNavState();
-              return;
-            }
-            found.sort(function (a, b) {
-              return a.path.localeCompare(b.path);
-            });
-            self.navAddFiles(found);
-          })
-          .catch(function (e) {
-            if (e && e.name !== 'AbortError') {
-              self.navError = String(e.message || e);
-            }
-            self.syncNavState();
-          });
-      },
-
       // Opening a file that's already open (by path) replaces it rather than doubling its edges.
       navAddFiles: function (loaded) {
         var errors = [];
@@ -844,65 +558,37 @@
         this.navTarget = index;
       },
 
-      // Adds an empty `*.nav-edges.toml`. Where the browser can write files it's created on disk
-      // straight away through a save dialog (so it lands wherever the viewer picks, usually next to
-      // the others under `data/`); otherwise it's a name to be downloaded on the next Save.
+      // Adds an empty `*.nav-edges.toml` — see `VoidMapFiles.create`.
       navNewFile: function () {
         var self = this;
         var content = 'edges = [\n]\n';
-        function add(name, handle, dirty) {
-          for (var i = 0; i < nav.files.length; i++) {
-            if (nav.files[i].path === name) {
-              self.navError = name + ' is already open.';
+        VoidMapFiles.create('nav', content)
+          .then(function (created) {
+            if (!created) {
               return;
             }
-          }
-          var parsed = parseNavFile(content);
-          parsed.name = name;
-          parsed.path = name;
-          parsed.handle = handle;
-          parsed.dirty = dirty;
-          nav.files.push(parsed);
-          nav.undo = [];
-          self.navError = '';
-          self.showNavGraph = true;
-          self.navTarget = nav.files.length - 1;
-          self.navRebuild();
-        }
-        if (typeof window.showSaveFilePicker === 'function') {
-          window
-            .showSaveFilePicker({
-              suggestedName: 'new' + NAV_SUFFIX,
-              types: [{ description: 'Nav graph edges', accept: { 'text/plain': ['.toml'] } }],
-            })
-            .then(function (handle) {
-              if (handle.name.slice(-NAV_SUFFIX.length) !== NAV_SUFFIX) {
-                self.navError = 'Nav files must be named *' + NAV_SUFFIX + ' to be loaded by the server.';
+            for (var i = 0; i < nav.files.length; i++) {
+              if (nav.files[i].path === created.name) {
+                self.navError = created.name + ' is already open.';
+                return;
               }
-              return handle.createWritable().then(function (writable) {
-                return writable.write(content).then(function () {
-                  return writable.close();
-                });
-              }).then(function () {
-                add(handle.name, handle, false);
-              });
-            })
-            .catch(function (e) {
-              if (e && e.name !== 'AbortError') {
-                self.navError = String(e.message || e);
-              }
-            });
-          return;
-        }
-        var name = window.prompt('New file name', 'new' + NAV_SUFFIX);
-        if (!name) {
-          return;
-        }
-        name = name.trim();
-        if (name.slice(-NAV_SUFFIX.length) !== NAV_SUFFIX) {
-          name += NAV_SUFFIX;
-        }
-        add(name, null, true);
+            }
+            var parsed = parseNavFile(content);
+            parsed.name = created.name;
+            parsed.path = created.name;
+            parsed.handle = created.handle;
+            parsed.dirty = created.dirty;
+            nav.files.push(parsed);
+            nav.undo = [];
+            self.navError = created.warning;
+            self.showNavGraph = true;
+            self.setMapEditor('nav');
+            self.navTarget = nav.files.length - 1;
+            self.navRebuild();
+          })
+          .catch(function (e) {
+            self.navError = String(e.message || e);
+          });
       },
 
       // Files are written one after another rather than all at once: a file opened through "Files…"
@@ -919,7 +605,7 @@
         dirty.forEach(function (file) {
           chain = chain.then(function () {
             var text = serializeNavFile(file);
-            return self.navWrite(file, text).then(function () {
+            return VoidMapFiles.write(file, text).then(function () {
               (file.handle ? written : downloaded).push(file.name);
               // Re-parse what was written so the next save diffs against it, not the original.
               var parsed = parseNavFile(text);
@@ -951,54 +637,6 @@
             }
             self.navNotice = notice.join(' ');
             self.navRebuild();
-          });
-      },
-
-      // Writes `text` through the file's handle and reads it back, so a write that silently didn't
-      // land is reported rather than the file just being marked clean.
-      navWrite: function (file, text) {
-        if (!file.handle) {
-          var blob = new Blob([text], { type: 'text/plain' });
-          var a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = file.name;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          setTimeout(function () {
-            URL.revokeObjectURL(a.href);
-          }, 1000);
-          return Promise.resolve();
-        }
-        var handle = file.handle;
-        var query = typeof handle.queryPermission === 'function' ? handle.queryPermission({ mode: 'readwrite' }) : Promise.resolve('granted');
-        return query
-          .then(function (state) {
-            // Only prompt when access isn't already there — a folder opened read-write covers every
-            // file under it, and asking again would needlessly spend the click's user activation.
-            return state === 'granted' || typeof handle.requestPermission !== 'function' ? state : handle.requestPermission({ mode: 'readwrite' });
-          })
-          .then(function (state) {
-            if (state !== 'granted') {
-              throw new Error('write permission denied for ' + file.name);
-            }
-            return handle.createWritable();
-          })
-          .then(function (writable) {
-            return writable.write(text).then(function () {
-              return writable.close();
-            });
-          })
-          .then(function () {
-            return handle.getFile();
-          })
-          .then(function (written) {
-            return written.text();
-          })
-          .then(function (content) {
-            if (content !== text) {
-              throw new Error(file.name + ' was written but reads back differently');
-            }
           });
       },
 
@@ -1583,8 +1221,14 @@
 
       // --- Interaction (called from worldmap.js's pointer handlers) ---
 
+      // Showing, so drawn — though with the area layer showing too, only one of the two editors
+      // takes the pointer and keyboard (see `activeEditor` in mapedit.js).
       navEditing: function () {
         return this.showNavGraph && this.navLoaded;
+      },
+
+      navActive: function () {
+        return this.navEditing() && this.activeEditor() === 'nav';
       },
 
       // Viewport-local screen position of the centre of a game tile. Tile (x, y) covers the map from
@@ -1663,7 +1307,7 @@
       //
       // Holding Space switches all of that off, so any drag (even one starting on a point) pans.
       navInteractive: function () {
-        return this.navEditing() && !nav.panKey;
+        return this.navActive() && !nav.panKey;
       },
 
       // Returns true when the press lands on a point, so the map doesn't also start panning — it
@@ -1685,7 +1329,7 @@
 
       // Returns true while a point is pressed, so the map doesn't pan underneath it.
       navPointerMove: function (e) {
-        if (!this.navEditing()) {
+        if (!this.navActive()) {
           return false;
         }
         nav.hover = this.navTileAt(e);
@@ -1852,7 +1496,7 @@
       },
 
       navKeyDown: function (e) {
-        if (!this.navEditing()) {
+        if (!this.navActive()) {
           return;
         }
         var target = e.target;
@@ -1869,9 +1513,7 @@
           this.navUndo();
         } else if (mod && e.key.toLowerCase() === 's') {
           e.preventDefault();
-          if (this.navDirty) {
-            this.saveNavFiles();
-          }
+          this.saveMapFiles();
         } else if (e.key === 'Delete' || e.key === 'Backspace') {
           if (nav.selected) {
             e.preventDefault();
@@ -2005,7 +1647,7 @@
             (Number.isInteger(dist) ? dist : dist.toFixed(1)) + '</text>';
         }
         var selNode = sel && sel.node ? nav.nodes[sel.node] : null;
-        if (selNode && selNode.level === level && !nav.panKey && !nav.drag) {
+        if (selNode && selNode.level === level && !nav.panKey && !nav.drag && this.navActive()) {
           // A dashed line from the selected point to where a click would join it: the tile under the
           // cursor, or with Shift held, the point under it. Nothing over a point without Shift,
           // since clicking there just selects it.
