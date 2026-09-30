@@ -1,4 +1,4 @@
-package content.area.wilderness.bandit_camp
+package content.minigame.clan_wars
 
 import content.entity.npc.shop.openShop
 import content.entity.player.dialogue.Happy
@@ -9,10 +9,10 @@ import content.entity.player.dialogue.type.npc
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.entity.character.player.Player
 
-class Sam : Script {
+class LarryWilderness : Script {
 
     init {
-        npcOperate("Talk-to", "sam") { (target) ->
+        npcOperate("Talk-to", "larry") { (target) ->
             wildernessCapeShop(target.def["shop"])
         }
     }
