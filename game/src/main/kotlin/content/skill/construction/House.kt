@@ -7,11 +7,14 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
@@ -59,6 +62,15 @@ class House : Script {
         val Player.houseRoomRotations: List<Int>
             get() = get("house_room_rotations") ?: emptyList()
 
+        val Player.houseFurnitureRooms: List<Int>
+            get() = get("house_furniture_rooms") ?: emptyList()
+
+        val Player.houseFurnitureHotspots: List<String>
+            get() = get("house_furniture_hotspots") ?: emptyList()
+
+        val Player.houseFurnitureIds: List<String>
+            get() = get("house_furniture_ids") ?: emptyList()
+
         fun Player.addHouseRoom(id: String, position: Int, rotation: Int = 0) {
             set("house_room_ids", houseRoomIds + id)
             set("house_room_positions", houseRoomPositions + position)
@@ -66,12 +78,15 @@ class House : Script {
         }
 
         /**
-         * Replaces any existing rooms with a new house containing just the starting garden
+         * Replaces any existing rooms with a new house containing just the starting garden and its exit portal
          */
         fun Player.newHouse() {
             set("house_room_ids", listOf("garden"))
             set("house_room_positions", listOf(START_ROOM))
             set("house_room_rotations", listOf(0))
+            set("house_furniture_rooms", listOf(START_ROOM))
+            set("house_furniture_hotspots", listOf("garden_centrepiece_space"))
+            set("house_furniture_ids", listOf("exit_portal"))
         }
 
         /**
@@ -90,6 +105,67 @@ class House : Script {
             set("house_room_ids", houseRoomIds.filterIndexed { i, _ -> i != index })
             set("house_room_positions", houseRoomPositions.filterIndexed { i, _ -> i != index })
             set("house_room_rotations", houseRoomRotations.filterIndexed { i, _ -> i != index })
+            removeHouseFurniture(position)
+        }
+
+        /**
+         * The furniture built on [hotspot] in the room at [position]
+         */
+        fun Player.houseFurniture(position: Int, hotspot: String): String? {
+            val rooms = houseFurnitureRooms
+            val hotspots = houseFurnitureHotspots
+            val index = rooms.indices.firstOrNull { rooms[it] == position && hotspots[it] == hotspot } ?: return null
+            return houseFurnitureIds[index]
+        }
+
+        /**
+         * Number of exit portals in the house, or only those in the room at [position]
+         */
+        fun Player.exitPortals(position: Int? = null): Int {
+            val rooms = houseFurnitureRooms
+            val ids = houseFurnitureIds
+            return ids.indices.count { ids[it] == "exit_portal" && (position == null || rooms[it] == position) }
+        }
+
+        fun Player.addHouseFurniture(position: Int, hotspot: String, id: String) {
+            set("house_furniture_rooms", houseFurnitureRooms + position)
+            set("house_furniture_hotspots", houseFurnitureHotspots + hotspot)
+            set("house_furniture_ids", houseFurnitureIds + id)
+        }
+
+        /**
+         * Removes the furniture built in the room at [position], or only that built on [hotspot]
+         */
+        fun Player.removeHouseFurniture(position: Int, hotspot: String? = null) {
+            val rooms = houseFurnitureRooms
+            val hotspots = houseFurnitureHotspots
+            val ids = houseFurnitureIds
+            val keep = rooms.indices.filter { rooms[it] != position || (hotspot != null && hotspots[it] != hotspot) }
+            set("house_furniture_rooms", keep.map { rooms[it] })
+            set("house_furniture_hotspots", keep.map { hotspots[it] })
+            set("house_furniture_ids", keep.map { ids[it] })
+        }
+
+        /**
+         * The hotspot [obj] belongs to, hotspots in a group share the group name
+         */
+        fun hotspot(obj: GameObject): String? {
+            val row = Rows.getOrNull("house_hotspots.${obj.id}") ?: return null
+            return row.stringOrNull("group") ?: obj.id
+        }
+
+        /**
+         * Replaces each piece of [hotspot] in [zone] with the matching piece of [furniture]
+         */
+        fun placeFurniture(zone: Zone, hotspot: String, furniture: String) {
+            val objects = Tables.objList("house_furniture.$furniture.objects")
+            for (tile in zone.toCuboid()) {
+                for (obj in GameObjects.at(tile)) {
+                    if (hotspot(obj) == hotspot) {
+                        obj.replace(objects[Tables.int("house_hotspots.${obj.id}.piece")])
+                    }
+                }
+            }
         }
 
         fun roomPosition(x: Int, y: Int, level: Int) = x + y * ROOM_GRID + level * ROOM_GRID * ROOM_GRID
@@ -169,6 +245,11 @@ class House : Script {
                 }
             }
             dynamicZones.copy(entries)
+            val furniture = houseFurnitureIds
+            val hotspots = houseFurnitureHotspots
+            for ((index, position) in houseFurnitureRooms.withIndex()) {
+                placeFurniture(roomZone(base, position), hotspots[index], furniture[index])
+            }
             if (buildMode) {
                 return
             }

@@ -7,6 +7,8 @@ import content.quest.joinInstance
 import content.quest.setInstanceLogout
 import content.quest.smallInstance
 import content.skill.construction.House.Companion.hasHouse
+import content.skill.construction.House.Companion.houseFurnitureIds
+import content.skill.construction.House.Companion.houseFurnitureRooms
 import content.skill.construction.House.Companion.houseLoading
 import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
@@ -25,8 +27,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.map.instance.Instances
-import world.gregs.voidps.engine.queue.longQueue
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Tile
 
@@ -49,6 +50,20 @@ class HousePortal : Script {
                 }
                 option("Never mind.")
             }
+        }
+
+        objectOperate("Enter", "exit_portal") {
+            leaveHouse()
+        }
+
+        objectOperate("Lock", "exit_portal") {
+            if (!inOwnHouse()) {
+                message("You can only lock your own house.") // TODO proper message
+                return@objectOperate
+            }
+            val locked = !get("house_locked", false)
+            set("house_locked", locked)
+            message(if (locked) "Your house is now locked to all visitors." else "Visitors can now enter your house.") // TODO proper messages
         }
 
         interfaceOption("Cast", "modern_spellbook:teleport_to_house") {
@@ -119,6 +134,10 @@ class HousePortal : Script {
             message("The owner currently has build mode turned on.") // TODO proper messages
             return
         }
+        if (owner["house_locked", false]) {
+            message("That player has locked their house.") // TODO proper messages
+            return
+        }
         val instance = owner.instance() ?: return
         set("instance_logout", true)
         joinInstance(instance)
@@ -132,8 +151,16 @@ class HousePortal : Script {
     private fun Player.arrival(owner: Player, instance: Region): Tile {
         setInstanceLogout(Tables.tile("house_locations.${owner["house_location", ""]}.exit"))
         set("house_owner", owner.accountName)
-        // TODO arrive at the exit portal once furniture is added
+        val base = instance.tile.zone
+        val portal = owner.houseFurnitureIds.indexOf("exit_portal")
+        if (portal != -1) {
+            val zone = roomZone(base, owner.houseFurnitureRooms[portal])
+            val obj = zone.toCuboid().firstNotNullOfOrNull { GameObjects.findOrNull(it, "exit_portal") }
+            if (obj != null) {
+                return obj.tile.add(0, -1)
+            }
+        }
         val garden = owner.houseRoomIds.indexOf("garden").coerceAtLeast(0)
-        return roomZone(instance.tile.zone, owner.houseRoomPositions[garden]).tile.add(3, 3)
+        return roomZone(base, owner.houseRoomPositions[garden]).tile.add(3, 3)
     }
 }

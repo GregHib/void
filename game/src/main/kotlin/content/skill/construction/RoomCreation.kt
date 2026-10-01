@@ -4,6 +4,7 @@ import content.entity.player.dialogue.type.choice
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.HOUSE_CENTRE
 import content.skill.construction.House.Companion.addHouseRoom
+import content.skill.construction.House.Companion.exitPortals
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
@@ -160,9 +161,8 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
     }
 
     private suspend fun Player.removeRoom(position: Int, room: String) {
-        // TODO check for the exit portal rather than any garden once furniture is added
-        if (room == "garden" && houseRoomIds.count { it == "garden" } <= 1) {
-            message("You can't remove your last garden with a portal.") // TODO proper message
+        if (exitPortals(position) > 0 && exitPortals() <= exitPortals(position)) {
+            message("Your house must have at least one exit portal.") // TODO proper message
             return
         }
         choice("Remove the ${room.replace('_', ' ')}?") {

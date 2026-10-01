@@ -6,6 +6,7 @@ import content.quest.instance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.GROUND_LEVEL
 import content.skill.construction.House.Companion.START_ROOM
+import content.skill.construction.House.Companion.addHouseFurniture
 import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
@@ -22,12 +23,15 @@ import walk
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
@@ -56,6 +60,7 @@ class HouseTest : WorldTest() {
         val player = createPlayer(exit, name)
         player["house_location"] = "rimmington"
         player.addHouseRoom("garden", START_ROOM)
+        player.addHouseFurniture(START_ROOM, "garden_centrepiece_space", "exit_portal")
         return player
     }
 
@@ -133,7 +138,7 @@ class HouseTest : WorldTest() {
         assertNotNull(instance)
         assertEquals(instance, Instances.owner(player.tile))
         assertEquals(GROUND_LEVEL, player.tile.level)
-        assertEquals(instance.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+        assertEquals(instance.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 2), player.tile)
         assertNull(dynamicZones.dynamicZone(instance.tile.zone.add(4, 4, DUNGEON_LEVEL)))
         assertNull(GameObjects.findOrNull(instance.tile.zone.add(4, 4, 1).tile.add(7, 3)) { it.id.startsWith("door_hotspot") })
     }
@@ -148,7 +153,7 @@ class HouseTest : WorldTest() {
         assertEquals(listOf("garden"), player.houseRoomIds)
         assertEquals(listOf(START_ROOM), player.houseRoomPositions)
         assertEquals(listOf(0), player.houseRoomRotations)
-        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 2), player.tile)
     }
 
     @Test
@@ -177,7 +182,7 @@ class HouseTest : WorldTest() {
         assertTrue(player.inventory.isEmpty())
         assertFalse(player["house_build_mode", false])
         assertTrue(player.inHouseOf(player))
-        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 2), player.tile)
     }
 
     @Test
@@ -192,7 +197,7 @@ class HouseTest : WorldTest() {
         assertTrue(player.inventory.isEmpty())
         assertFalse(player["house_build_mode", false])
         assertTrue(player.inHouseOf(player))
-        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 2), player.tile)
     }
 
     @Test
@@ -382,7 +387,7 @@ class HouseTest : WorldTest() {
     }
 
     @Test
-    fun `Can't remove the last garden`() {
+    fun `Can't remove the room with the last exit portal`() {
         val player = createOwner()
         player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
         player.enterPortal(2)
@@ -393,7 +398,7 @@ class HouseTest : WorldTest() {
         tick(5)
 
         assertNull(player.dialogue)
-        assertTrue(player.containsMessage("last garden"))
+        assertTrue(player.containsMessage("exit portal"))
         assertEquals(listOf("garden", "parlour"), player.houseRoomIds)
     }
 
@@ -565,6 +570,71 @@ class HouseTest : WorldTest() {
 
         assertEquals(exit, guest.tile)
         assertTrue(owner.inHouseOf(owner))
+    }
+
+    private fun Player.exitPortal(): GameObject {
+        val zone = roomZone(instance()!!.tile.zone, START_ROOM)
+        return zone.toCuboid().firstNotNullOf { GameObjects.findOrNull(it, "exit_portal") }
+    }
+
+    @Test
+    fun `Leave a house through the exit portal`() {
+        val owner = createOwner()
+        owner.enterPortal(1)
+        val guest = createPlayer(exit, "guest")
+        guest.visit(owner)
+
+        guest.objectOption(guest.exitPortal(), "Enter")
+        tick(5)
+
+        assertEquals(exit, guest.tile)
+        assertNull(guest.instance())
+        assertTrue(owner.inHouseOf(owner))
+    }
+
+    @Test
+    fun `Locked houses can't be visited`() {
+        val owner = createOwner()
+        owner.enterPortal(1)
+
+        owner.objectOption(owner.exitPortal(), "Lock")
+        tick(5)
+        val guest = createPlayer(exit, "guest")
+        guest.visit(owner)
+
+        assertTrue(owner["house_locked", false])
+        assertTrue(VariableDefinitions.get("house_locked").persist)
+        assertEquals(exit, guest.tile)
+        assertTrue(guest.containsMessage("locked"))
+    }
+
+    @Test
+    fun `Unlock a house`() {
+        val owner = createOwner()
+        owner["house_locked"] = true
+        owner.enterPortal(1)
+
+        owner.objectOption(owner.exitPortal(), "Lock")
+        tick(5)
+        val guest = createPlayer(exit, "guest")
+        guest.visit(owner)
+
+        assertFalse(owner["house_locked", false])
+        assertTrue(guest.inHouseOf(owner))
+    }
+
+    @Test
+    fun `Guests can't lock a house`() {
+        val owner = createOwner()
+        owner.enterPortal(1)
+        val guest = createPlayer(exit, "guest")
+        guest.visit(owner)
+
+        guest.objectOption(guest.exitPortal(), "Lock")
+        tick(5)
+
+        assertFalse(owner["house_locked", false])
+        assertFalse(guest.contains("house_locked"))
     }
 
     @Test
