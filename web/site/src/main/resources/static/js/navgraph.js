@@ -553,6 +553,28 @@
         this.navRebuild();
       },
 
+      // Closes just the selected file, leaving the others open.
+      closeNavFile: function () {
+        var file = nav.files[this.navTarget];
+        if (!file) {
+          return;
+        }
+        if (file.dirty && !window.confirm('Discard unsaved changes to ' + file.name + '?')) {
+          return;
+        }
+        nav.files.splice(this.navTarget, 1);
+        nav.selected = null;
+        nav.undo = [];
+        this.navError = '';
+        this.navNotice = '';
+        this.navTarget = 0;
+        if (!nav.files.length) {
+          nav.loose = [];
+          this.showNavGraph = false;
+        }
+        this.navRebuild();
+      },
+
       // A file row: makes it the file new edges go into.
       navPickFile: function (index) {
         this.navTarget = index;
@@ -595,9 +617,19 @@
       // only has read access until its first save asks for write access, and a second permission
       // prompt fired while the first is still showing is rejected outright.
       saveNavFiles: function () {
+        this.navSave(null);
+      },
+
+      // Just the file new edges go into (the highlighted row).
+      saveNavFile: function () {
+        this.navSave(nav.files[this.navTarget] || null);
+      },
+
+      // `only`: the one file to write, or null for every changed file.
+      navSave: function (only) {
         var self = this;
         var dirty = nav.files.filter(function (file) {
-          return file.dirty;
+          return file.dirty && (!only || file === only);
         });
         var written = [];
         var downloaded = [];

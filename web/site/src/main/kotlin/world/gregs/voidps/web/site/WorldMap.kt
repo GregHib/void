@@ -363,16 +363,21 @@ object WorldMap {
                             )
                         }
                         div {
-                            attributes["title"] = "Write the changed files (Ctrl+S)"
-                            ui.button("Save", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!navDirty", onClick = "saveNavFiles()")
+                            attributes["title"] = "Write the selected file"
+                            ui.button("Save", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!(navFiles[navTarget] && navFiles[navTarget].dirty)", onClick = "saveNavFile()")
                         }
+                    }
+                    div {
+                        attributes["title"] = "Write every changed file (Ctrl+S)"
+                        ui.button("Save all", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!navDirty", onClick = "saveNavFiles()")
                     }
                     div {
                         style = "display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px var(--space-4);min-width:0"
                         ui.button("New", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "navNewFile()")
                         ui.button("Files…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFiles(['nav'])")
                         ui.button("Folder…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFolder(['nav'])")
-                        ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeNavFiles()")
+                        ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeNavFile()")
+                        ui.button("Close all", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeNavFiles()")
                     }
                 }
             }
@@ -461,16 +466,21 @@ object WorldMap {
                             )
                         }
                         div {
-                            attributes["title"] = "Write the changed files (Ctrl+S)"
-                            ui.button("Save", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!areaDirty", onClick = "saveAreaFiles()")
+                            attributes["title"] = "Write the selected file"
+                            ui.button("Save", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!(areaFiles[areaTarget] && areaFiles[areaTarget].dirty)", onClick = "saveAreaFile()")
                         }
+                    }
+                    div {
+                        attributes["title"] = "Write every changed file (Ctrl+S)"
+                        ui.button("Save all", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!areaDirty", onClick = "saveAreaFiles()")
                     }
                     div {
                         style = "display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px var(--space-4);min-width:0"
                         ui.button("New file", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "areaNewFile()")
                         ui.button("Files…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFiles(['area'])")
                         ui.button("Folder…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFolder(['area'])")
-                        ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeAreaFiles()")
+                        ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeAreaFile()")
+                        ui.button("Close all", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeAreaFiles()")
                     }
                 }
             }

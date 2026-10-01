@@ -552,6 +552,28 @@
         this.areaRebuild();
       },
 
+      // Closes just the selected file, leaving the others open.
+      closeAreaFile: function () {
+        var file = ar.files[this.areaTarget];
+        if (!file) {
+          return;
+        }
+        if (file.dirty && !window.confirm('Discard unsaved changes to ' + file.name + '?')) {
+          return;
+        }
+        ar.files.splice(this.areaTarget, 1);
+        ar.selected = null;
+        ar.draft = null;
+        ar.undo = [];
+        this.areaError = '';
+        this.areaNotice = '';
+        this.areaTarget = 0;
+        if (!ar.files.length) {
+          this.showAreaPolygons = false;
+        }
+        this.areaRebuild();
+      },
+
       areaPickFile: function (index) {
         this.areaTarget = index;
       },
@@ -591,13 +613,23 @@
       // One file at a time, for the same reason as `saveNavFiles`: a second permission prompt while
       // the first is showing is rejected outright.
       saveAreaFiles: function () {
+        this.areaSave(null);
+      },
+
+      // Just the file new areas go into (the highlighted row).
+      saveAreaFile: function () {
+        this.areaSave(ar.files[this.areaTarget] || null);
+      },
+
+      // `only`: the one file to write, or null for every changed file.
+      areaSave: function (only) {
         var self = this;
         var written = [];
         var downloaded = [];
         var chain = Promise.resolve();
         var selectedName = ar.selected ? ar.selected.name : null;
         ar.files.forEach(function (file) {
-          if (!file.dirty) {
+          if (!file.dirty || (only && file !== only)) {
             return;
           }
           chain = chain.then(function () {
