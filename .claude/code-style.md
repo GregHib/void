@@ -4,6 +4,7 @@
 
 - **Early exits** — guard disqualifying conditions first; no nested `if` pyramids. No one-line guards or for loops. Braces on every block.
 - **Thin scripts** — `init {}` only registers handlers; logic goes in `private` helpers or `suspend fun Player.x()` extensions.
+- **Small global scope** — top-level functions only if many unrelated script usages. Content-specific helpers go in `companion object`'s.
 - **Exhaustive `when`** over if/else chains on state.
 - **Handler order** — guards → `val` setup → mutation → check result → effects (anim/gfx/sound/xp/audit) last.
 - **Use the receiver** — call `message(...)`, `inventory`, etc. bare; no `player.` re-qualification.
