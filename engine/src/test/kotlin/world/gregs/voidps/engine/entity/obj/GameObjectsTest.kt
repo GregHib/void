@@ -254,6 +254,27 @@ class GameObjectsTest : KoinMock() {
     }
 
     @Test
+    fun `Get the original object under a replacement`() {
+        val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
+        GameObjects.set(original.intId, original.x, original.y, original.level, original.shape, original.rotation, ObjectDefinition.EMPTY)
+        assertNull(GameObjects.original(original))
+
+        val replacement = GameObjects.replace(original, "test", collision = false)
+        assertEquals(original, GameObjects.original(replacement))
+
+        GameObjects.remove(replacement, collision = false)
+        assertNull(GameObjects.original(original))
+    }
+
+    @Test
+    fun `No original object under an added object`() {
+        val obj = GameObject(id = 1234, x = 10, y = 10, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 1)
+        GameObjects.add(obj)
+
+        assertNull(GameObjects.original(obj))
+    }
+
+    @Test
     fun `Replacing a replacement is undone back to the original`() {
         val original = GameObject(id = 5678, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)
         val first = GameObject(id = 123, x = 100, y = 100, level = 0, shape = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation = 2)

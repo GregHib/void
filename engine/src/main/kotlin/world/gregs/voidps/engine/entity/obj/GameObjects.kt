@@ -314,6 +314,17 @@ object GameObjects : ZoneBatchUpdates.Sender {
     }
 
     /**
+     * Get the original object which [obj] is replacing, if any
+     */
+    fun original(obj: GameObject): GameObject? {
+        val value = map[obj]
+        if (!replaced(value) || value == REPLACED || replacements[obj.index] != obj.value(replaced = true)) {
+            return null
+        }
+        return GameObject(id(value), obj.x, obj.y, obj.level, shape(value), rotation(value))
+    }
+
+    /**
      * Checks if an object exists
      */
     fun contains(obj: GameObject): Boolean {
