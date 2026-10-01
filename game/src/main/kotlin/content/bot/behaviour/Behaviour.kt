@@ -29,6 +29,18 @@ interface Behaviour {
     val produces: Set<String>
 }
 
+/**
+ * Skill trained taken from [Behaviour.produces] e.g. "skill:mining" -> "mining"
+ */
+val Behaviour.skill: String?
+    get() = produces.firstOrNull { it.startsWith("skill:") }?.removePrefix("skill:")
+
+/**
+ * Item gathered or made taken from [Behaviour.produces] e.g. "item:iron_ore" -> "iron_ore"
+ */
+val Behaviour.product: String?
+    get() = produces.firstOrNull { it.startsWith("item:") }?.removePrefix("item:")
+
 fun loadBehaviours(
     files: ConfigFiles,
     activities: MutableMap<String, BotActivity>,

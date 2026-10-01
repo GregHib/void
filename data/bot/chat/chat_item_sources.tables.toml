@@ -1,0 +1,49 @@
+# Where to get items for "Where can I get item: <AllItems>?", location is a quick chat location enum value
+[chat_item_sources]
+row_id = "item"
+location = "string"
+
+[.raw_shrimps]
+location = "lumbridge"
+
+[.shrimps]
+location = "lumbridge"
+
+[.raw_lobster]
+location = "catherby"
+
+[.lobster]
+location = "catherby"
+
+[.swordfish]
+location = "catherby"
+
+[.shark]
+location = "catherby"
+
+[.iron_ore]
+location = "varrock"
+
+[.coal]
+location = "barbarian_village"
+
+[.cowhide]
+location = "lumbridge"
+
+[.feather]
+location = "lumbridge"
+
+[.air_rune]
+location = "port_sarim"
+
+[.bronze_pickaxe]
+location = "varrock"
+
+[.rune_scimitar]
+location = "grand_exchange"
+
+[.dragon_scimitar]
+location = "grand_exchange"
+
+[.abyssal_whip]
+location = "grand_exchange"

@@ -81,6 +81,7 @@
   - [Item Charges & Degrading](charges-and-degrading)
   - Movement Modes
   - [Bot Architecture](bot-architecture)
+    - [Bot Chat](bot-chat)
   - [Database Storage](storage)
   - Delta's
   - [Drops and variables](drop-tables)
