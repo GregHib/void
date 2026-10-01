@@ -3,7 +3,6 @@ package world.gregs.voidps.cache.definition
 object Params {
     // Custom
     const val AKA = 5002
-    const val ALLOWED_UNDER = 5003
     const val ALTERNATE_PATH = 5004
     const val AMMO = 5005
     const val AMMO_REQUIRED = 5006
@@ -85,8 +84,6 @@ object Params {
     const val HEALS = 5081
     const val HEIGHT = 5082
     const val HITPOINTS = 5083
-    const val HUNT_MODE = 5084
-    const val HUNT_RANGE = 5085
     const val IMMUNE_CANNON = 5086
     const val IMMUNE_DEATH = 5087
     const val IMMUNE_DEFLECT = 5088
@@ -133,13 +130,14 @@ object Params {
     const val RAISE = 5132
     const val RANGE = 5133
     const val RANK = 5134
-    const val REGEN_RATE_TICKS = 5135
     const val REGION = 5136
     const val REQ_COMBAT = 5137
     const val REQ_ITEMS = 5138
 
-    /** Item ids a quest expects the player to bring; used by the questprep command. */
+    /** Item ids a quest expects the player to bring; used by the quest prep command. */
     const val REQ_ITEM_IDS = 5267
+
+    const val PREP_VARS = 5269
 
     const val REQ_QUEST_POINTS = 5139
     const val REQ_QUESTS = 5140
@@ -154,7 +152,6 @@ object Params {
     const val SLAYER_LEVEL = 5150
     const val SLAYER_XP = 5151
     const val SLOT = 5152
-    const val SOLID = 5153
     const val SONG = 5154
     const val SOUTH_PATCH = 5155
     const val SPECIAL = 5156
@@ -264,9 +261,17 @@ object Params {
     const val VARIABLES = 5263
     const val SUMMONING_BEAST_OF_BURDEN_ESSENCE = 5264
     const val SUMMONING_SPECIAL_COST = 5265
-    const val DISENGAGE = 5266
+    const val DISENGAGE = 5268
+    const val OPENED = 5270
+    const val CLOSED = 5271
+    const val STUMP = 5272
+    const val DEPLETED = 5273
 
     private fun custom(name: String) = when (name) {
+        "opened" -> OPENED
+        "closed" -> CLOSED
+        "stump" -> STUMP
+        "depleted" -> DEPLETED
         "disengage" -> DISENGAGE
         "summoning_beast_of_burden_essence" -> SUMMONING_BEAST_OF_BURDEN_ESSENCE
         "summoning_special_cost" -> SUMMONING_SPECIAL_COST
@@ -343,7 +348,6 @@ object Params {
         "default" -> DEFAULT
         "options" -> OPTIONS
         "aka" -> AKA
-        "allowed_under" -> ALLOWED_UNDER
         "alternate_path" -> ALTERNATE_PATH
         "ammo" -> AMMO
         "ammo_required" -> AMMO_REQUIRED
@@ -424,9 +428,6 @@ object Params {
         "harvest" -> HARVEST
         "heals" -> HEALS
         "height" -> HEIGHT
-        "hitpoints" -> HITPOINTS
-        "hunt_mode" -> HUNT_MODE
-        "hunt_range" -> HUNT_RANGE
         "immune_cannon" -> IMMUNE_CANNON
         "immune_death" -> IMMUNE_DEATH
         "immune_deflect" -> IMMUNE_DEFLECT
@@ -473,9 +474,9 @@ object Params {
         "raise" -> RAISE
         "range" -> RANGE
         "rank" -> RANK
-        "regen_rate_ticks" -> REGEN_RATE_TICKS
         "region" -> REGION
         "req_combat" -> REQ_COMBAT
+        "prep_vars" -> PREP_VARS
         "req_item_ids" -> REQ_ITEM_IDS
         "req_items" -> REQ_ITEMS
         "req_quest_points" -> REQ_QUEST_POINTS
@@ -491,7 +492,6 @@ object Params {
         "slayer_level" -> SLAYER_LEVEL
         "slayer_xp" -> SLAYER_XP
         "slot" -> SLOT
-        "solid" -> SOLID
         "song" -> SONG
         "south_patch" -> SOUTH_PATCH
         "special" -> SPECIAL

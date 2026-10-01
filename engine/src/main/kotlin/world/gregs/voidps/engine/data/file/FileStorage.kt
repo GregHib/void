@@ -212,7 +212,7 @@ class FileStorage(
     override fun saveClaims(claims: Map<Int, Claim>) {
         val file = directory.resolve(Settings["storage.grand.exchange.offers.claim.path"])
         file.parentFile.mkdirs()
-        Config.fileWriter(file) {
+        Config.atomicFileWriter(file) {
             for ((id, claim) in claims) {
                 writeKey(id.toString())
                 list(2) { index ->
@@ -345,5 +345,17 @@ class FileStorage(
             return null
         }
         return PlayerSave.load(file)
+    }
+
+    override fun accounts(): List<PlayerSave> {
+        val files = directory.listFiles { _, name -> name.endsWith(".toml") } ?: return emptyList()
+        return files.mapNotNull { file ->
+            try {
+                PlayerSave.load(file)
+            } catch (e: Exception) {
+                logger.warn(e) { "Failed to load account file ${file.name}, skipping." }
+                null
+            }
+        }
     }
 }

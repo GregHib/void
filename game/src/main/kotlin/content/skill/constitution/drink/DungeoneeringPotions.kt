@@ -18,7 +18,7 @@ class DungeoneeringPotions : Script {
             levels.boost(Skill.Magic, 2, 0.07)
         }
 
-        consumed("weak_range_potion") { _, _ ->
+        consumed("weak_ranged_potion") { _, _ ->
             levels.boost(Skill.Ranged, 2, 0.07)
         }
 

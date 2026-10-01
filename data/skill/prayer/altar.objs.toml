@@ -18,10 +18,6 @@ examine = "Shrine to the glory of Zamorak."
 id = 2640
 examine = "A shrine for the faithful to worship at."
 
-[prayer_altar_nature]
-id = 3521
-examine = "A grotto transformed into an altar of nature."
-
 [prayer_altar_well_of_voyage]
 id = 4008
 examine = "Shrine to the glory of Saradomin."

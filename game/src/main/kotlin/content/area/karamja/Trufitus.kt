@@ -1,5 +1,6 @@
 package content.area.karamja
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.ChoiceOption
 import content.entity.player.dialogue.type.choice
@@ -296,6 +297,7 @@ class Trufitus : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "jungle_potion")
+        AdventurersLogs.questCompleted(this, "jungle_potion", points = 1)
         set("jungle_potion", "completed")
         set("sharimika", "trading_stick")
         set("mamma_bufetta", "trading_stick")

@@ -1,0 +1,725 @@
+[quest_messages]
+message = "string"
+
+[.black_knights_fortress]
+message = "I managed to infiltrate the Black Knights and defeat a witch, foiling their evil plans."
+
+[.demon_slayer]
+message = "I slew a demon, just as destiny said I would. First I had to unlock the box that contained the demon-slaying sword, Silverlight."
+
+[.dorics_quest]
+message = "Who says you don't get rewarded for doing favours? I can now use Doric's anvil whenever I fancy."
+
+[.druidic_ritual]
+message = "The druids' shopping list did have a purpose after all. I'm now a proud practician of the Herblore skill."
+
+[.prince_ali_rescue]
+message = "The rescue could hardly have gone better: Lady Keli has been foiled and the Prince is back where he belongs."
+
+[.wolf_whistle]
+message = "Clearing Pikkupstix's attic required a spirit wolf and a little bit of bravery. I doubt I'll see a wolpertinger quite that big ever again!"
+
+[.unstable_foundations]
+message = "I found myself in the strange world of RuneScape, only to be confronted by a lumbering dragon! Still, I played my part and saved Lumbridge with Sir Vant."
+
+[.all_fired_up]
+message = "King Roald's beacon network has been tested and it works a treat. I can return to complete the beacon run whenever I want and learn a little about Firemaking as I do so."
+
+[.animal_magnetism]
+message = "Now I know what makes the perfect bed - undead feathers, it seems - and I've got a useful little attractor into the bargain."
+
+[.another_slice_of_ham]
+message = "Sigmund tied Zanik to a railway track, but I rescued her in the nick of time! The goblin Grubfoot believes Zanik is the 'Chosen Commander'."
+
+[.as_a_first_resort]
+message = "Balnea’s entrepreneurial spirit turned Oo'glog into a successful holiday resort for weary adventurers, if you like mud..."
+
+[.back_to_my_roots]
+message = "I successfully navigated the vine maze to get a cutting of a very rare vine for Lord Handelmort."
+
+[.back_to_the_freezer]
+message = "I travelled back in time in an attempt to thwart another of the Penguins nefarious schemes and stopped Gielinor being terraformed and sent back to the ice age."
+
+[.bar_crawl_miniquest]
+message = "I completed my bar crawl card and earned access to the Barbarian Outpost agility course."
+
+[.between_a_rock]
+message = "A dwarf miner opened up a magical gold rock - by firing me at it from a cannon! Inside I had to fight a demon."
+
+[.big_chompy_bird_hunting]
+message = "Rantz may be big, but he's not a patch on me and my chompy hunting. My mouth waters thinking of a chompy burger."
+
+[.biohazard]
+message = "With the help of the chemist, some couriers and Guidor, Elena and I found out the plague in West Ardougne was a lie!"
+
+[.blood_pact]
+message = "I defeated a trio of Zamorakian cultists in the catacombs beneath Lumbridge Church."
+
+[.blood_runs_deep]
+message = "A new dagannoth mother threatened civilisation itself around the northern seas, but with a mighty force of Fremennik and their allies at my back, I have trapped her."
+
+[.buyers_and_cellars]
+message = "With stealth and misdirection I secured the funds to get the Thieves' Guild of Lumbridge up and running."
+
+[.cabin_fever]
+message = "I became a pirate by helping Bill Teach sail The Adventurous safely through an attack by a captain he may have insulted in a pub"
+
+[.catapult_construction]
+message = "I’ve helped the Tyras Camp - for a change - by repairing their rotten catapult. Their catapult engineer was useless!"
+
+[.chosen_commander]
+message = "The god Bandos tried to take command of all goblins, using Zanik as his avatar. It looked hopeless, but, in the end, we beat him."
+
+[.clock_tower]
+message = "The puzzle of the tower has been restored!"
+
+[.cold_war]
+message = "Having snuck into their research lab, I discovered Larry was right: the penguins are not only planning an invasion, but they stole my penguin suit and plan to use it against us."
+
+[.contact]
+message = "I kept my promise to Maisa and brought Osman to see her. As a result, the Sophanem exiles have returned and the city is bustling again."
+
+[.cooks_assistant]
+message = "The Duke got his birthday cake, with little or no help from his incompetent chef."
+
+[.creature_of_fenkenstrain]
+message = "It was a dark errand indeed, but the corpse has been reanimated and I've 'persuaded' Fenkenstrain to part with the Ring of Charos!"
+
+[.curse_of_arrav]
+message = "Good news at last: Arrav's heart has been reclaimed and we have a chance of freeing him from Zemouregal's clutches."
+
+[.curse_of_the_empty_lord_miniquest]
+message = "I communed with six spirits, and learned more of an ancient entity whose name I probably shouldn't speak aloud. I also acquired ghostly robes."
+
+[.dealing_with_scabaras]
+message = "I’ve avenged Kaleef’s death by neutralising the threat of the Scabarites - even their High Priest is pacified."
+
+[.death_to_the_dorgeshuun]
+message = "I met Zanik, the cave goblin adventurer, and we stopped Sigmund's plot against Dorgesh-Kaan. Zanik died, but a strange force brought her back."
+
+[.defender_of_varrock]
+message = "Not a week goes by without Varrock becoming the target of some dark and malevolent force! I've pushed back the waves of zombies and defied Zemouregal."
+
+[.desert_slayer_dungeon_miniquest]
+message = "In the Pollnivneach Slayer Dungeon, I defeated a monstrous cave crawler, basilisk boss, mightiest turoth and kurask overlord."
+
+[.desert_treasure]
+message = "After recovering the Four Diamonds of Azzanadra, I found a strange being in the heart of a pyramid who taught me a thing or two about magic."
+
+[.devious_minds]
+message = "I was duped into helping an assassin steal a relic from Entrana, but at least the Temple Knights are investigating these events."
+
+[.dig_site]
+message = "I'm now a qualified archaeologist, having learned from the best at the Digsite and found a mysterious cavern with strange symbols."
+
+[.do_no_evil]
+message = "After much monkey business, colony building and general chimpish shenanigans, I returned the monkeys to the desert, uncovered an ancient feud and restored Apmeken."
+
+[.dragon_slayer]
+message = "To prove my worthiness to wear rune armour and join the Champions' Guild, I travelled to Crandor and slew the dread dragon Elvarg."
+
+[.dream_mentor]
+message = "I met Cyrisus and travelled the strange dream land again. Hopefully, he’s still off adventuring."
+
+[.dwarf_cannon]
+message = "I helped defend a dwarven outpost against goblins. Once I had repaired the dwarf cannon, the goblins stood no chance!"
+
+[.eadgars_ruse]
+message = "By employing a cunning parrot-based ruse, I was able to obtain some goutweed for Sanfew."
+
+[.eagles_peak]
+message = "Nickolaus was saved from his troubles by a cunning eagle disguise. I can’t believe the eagles bought it!"
+
+[.elemental_workshop_i]
+message = "I discovered a workshop hidden beneath Seers' Village in which I learned how to create and smith elemental metal into a shield with magical defence."
+
+[.elemental_workshop_ii]
+message = "Documents from the Digsite Exam Centre led me deeper into the elemental workshop, where I learned to infuse elemental metal with the power of the mind."
+
+[.elemental_workshop_iii]
+message = "I used the machine found in the body room to make new body armour."
+
+[.elemental_workshop_iv]
+message = "I made some chaos boots from the bar I powered up in the chaos machine."
+
+[.enakhras_lament]
+message = "I freed Akthanakos from his boneguard curse, which enraged his rival, Enakhra. They’ve both gone north to continue their battle."
+
+[.enlightened_journey]
+message = "Auguste and I managed to successfully fly the balloon from Entrana to Taverley. Auguste plans on exploring more routes and perhaps starting a business."
+
+[.enter_the_abyss]
+message = "I gained access to the Abyss."
+
+[.ernest_the_chicken]
+message = "It seems that Ernest became the subject of an unfortunate transformation. He's back to being henpecked by Veronica."
+
+[.eyes_of_glouphrie]
+message = "Those cute creatures were illusions that disguised evil watchers, spies of Glouphrie! Fortunately, Oaknock’s machine revealed the truth."
+
+[.fairy_tale_i]
+message = "My travails in Zanaris led me to a fight with a tanglefoot! I finished it off with ease and returned to the Fairy Godfather for my reward."
+
+[.fairy_tale_ii]
+message = "The Fairy Queen hasn't regained her throne...yet. War must be prepared and troops mustered before the Godfather can sleep with the fishes."
+
+[.fairy_tale_iii]
+message = "I've helped restore Fairy Queen to the throne sending the Evil Fairy Godfather through the rift never to be seen again."
+
+[.family_crest]
+message = "The crest of the Fitzharmon family was scattered all over Gielinor! Its recovery means Dimintheis's estate is safe."
+
+[.the_feud]
+message = "I tried to resolve the conflict between the Menaphites and the bandits, but they were hard to please. I found out what became of Ali Morrisane’s nephew, though."
+
+[.fight_arena]
+message = "Khazard is a Mahjarrat! Fortunately, his days as a slaver are over. He couldn’t bear with the loss of his dog, Bouncer!"
+
+[.fishing_contest]
+message = "I beat a vampyre and surfer dude by catching the biggest fish at the fishing contest and won the trophy!"
+
+[.forgettable_tale_of_a_drunken_dwarf]
+message = "I investigated a Red Axe threat to Keldagrim...and I don't remember what happened next. I keep thinking about beer and kebabs."
+
+[.forgiveness_of_a_chaos_dwarf]
+message = "Veldaban and I broke into the Red Axe base. They had killed his girlfriend and wiped his memory of her; he vowed to stop them."
+
+[.fremennik_isles]
+message = "Warring isles Neitiznot and Jatizso aren’t quite at peace, but the trolls that attacked them will be a threat no more, thanks to me."
+
+[.fremennik_trials]
+message = "By proving my might, my cunning and lots of other things, I have become an honorary Fremennik and been awarded a new name."
+
+[.from_tiny_acorns_miniquest]
+message = "I completed another caper for the Lumbridge Thieves' Guild."
+
+[.fur_n_seek]
+message = "The Odd Old Man wanted some pelts to go with his bones. What exactly is he trying to do with all that stuff?"
+
+[.garden_of_tranquillity]
+message = "Queen Ellamaria isn't a particularly friendly woman, but I think she's delighted with the garden I made for her."
+
+[.generals_shadow_miniquest]
+message = "I peered into the shadow realm and encountered General Khazard. I completed his assignment and earned the shadow sword."
+
+[.gertrudes_cat]
+message = "Gertrude's cat, the little scamp, had made its way over to the lumber yard! Still, I rescued it, and its kittens are now safe and sound."
+
+[.ghosts_ahoy]
+message = "Necrovarus's mind was mine! Alright, it was just for a moment, but I made the evil shade give up his control over the people of Phasmatys."
+
+[.the_giant_dwarf]
+message = "On my first trip to Keldagrim, the boat destroyed the statue of the king. I got it rebuilt with the head of a company leader."
+
+[.glorious_memories]
+message = "Settling a fifteen-year-old grudge, I brought dignitaries from across the Fremennik Province together for Chieftain Brundt’s birthday feast."
+
+[.goblin_diplomacy]
+message = "I dyed armour different colours to help the goblin generals decide which colour they liked. They ended up where they started, and they stopped fighting!"
+
+[.the_golem]
+message = "The clay golem had been guarding Uzer for centuries, not knowing that its task was complete. I investigated and put its mind to rest."
+
+[.the_grand_tree]
+message = "Glough’s evil plans have been foiled! The Grand Tree is safe from his threats...for now!"
+
+[.great_brain_robbery]
+message = "I thwarted the plans of a zombie pirate surgeon and helped the monks of Harmony get their brains back into the right bodies."
+
+[.grim_tales]
+message = "The bigger they are, the harder they fall! The giant has taken a fair old beating, and this grim tale has come to a rather satisfying end."
+
+[.guild_of_our_own_miniquest]
+message = "I completed another caper for the Lumbridge Thieves' Guild."
+
+[.gunnars_ground]
+message = "I brought peace to the barbarians of Gunnarsgrunn, and helped a dwarf find love."
+
+[.hand_in_the_sand]
+message = "I helped Bert solve the mystery of the hand that turned up in his sandpit, and also found out that sandpits refill by magic!"
+
+[.haunted_mine]
+message = "Deep beneath Morytania, I dodged pickaxes, puzzled with minecarts and collected fungi. Not only that, but I defeated Treus and collected a salve shard!"
+
+[.hazeel_cult]
+message = "I resolved a long-standing feud between the Carnilleans (one of the Ardougne’s founding families) and the Cult of Hazeel (followers of a Zamorakian Mahjarrat). Only one was happy with the outcome..."
+
+[.heroes_quest]
+message = "I should be proud, as few are eligible to enter the notoriously exclusive Heroes' Guild. Nothing can stop me now."
+
+[.holy_grail]
+message = "I defeated the Black Knight Titan and restored peace and happiness to the Fisher King's kingdom. I also found the Holy Grail."
+
+[.hopespears_will_miniquest]
+message = "I buried five goblin priests for the ghost of Hopespear, laying their souls to rest."
+
+[.horror_from_the_deep]
+message = "A foul and horrible creature dwelt below the lighthouse. I have slain it, but the lighthouse keeper, Silas, remains missing."
+
+[.hunt_for_red_raktuber]
+message = "The penguins were two flipper-steps ahead of me! Not only do they have Larry, but they’re in league with the Red Axe."
+
+[.hunt_for_surok_miniquest]
+message = "I hunted down Surok Magis in the Chaos Tunnels, and encountered a big ork."
+
+[.icthlarins_little_helper]
+message = "I was being controlled through visions, but my mind is my own again, after the god of the dead intervened with the Devourer’s mind control."
+
+[.imp_catcher]
+message = "After scouring the world for imps, I managed to collect enough beads to satisfy the wizard Grayzag."
+
+[.in_aid_of_the_myreque]
+message = "Burgh de Rott almost resembles a functioning town and, with the silvthrill rod, the Myreque may even have a chance."
+
+[.in_pyre_need]
+message = "I fulfilled the dreams of an old priest of Guthix by helping a wounded phoenix to be reborn."
+
+[.in_search_of_the_myreque]
+message = "Vanstrom set his hound on both me and the Myreque, but he'll need to do more than that. Who knows, perhaps we have him on the back foot?"
+
+[.jungle_potion]
+message = "Using my extensive knowledge of Herblore, I managed to put together the potion that Trufitus required. Hubble, bubble, toil and trouble!"
+
+[.kenniths_concerns]
+message = "Kennith was a strange and slightly uncomfortable child to be around! I always had an inkling that he was behind this."
+
+[.king_of_the_dwarves]
+message = "I helped to save Keldagrim from a Red Axe attack, and discovered the identity of the King of the Dwarves."
+
+[.kings_ransom]
+message = "After freeing the Knights of the Round Table, I got a spell from Wizard Cromperty that freed King Arthur from his stone prison in the Black Knights' Fortress."
+
+[.the_knights_sword]
+message = "It may not be the original, but my version of Sir Vyvin's sword is nearly identical. I may have just saved the squire's job!"
+
+[.lair_of_tarn_razorlor_miniquest]
+message = "I defeated Tarn Razorlor and learned his secret knowledge by reading the diary in his living quarters."
+
+[.land_of_the_goblins]
+message = "Grubfoot had a dream about the 'Land of the Goblins', which Zanik and I investigated. We found a world shattered by war, and Zanik disappeared."
+
+[.legacy_of_seergaze]
+message = "The Myreque and I worked together to create a weapon capable of defeating vampyres – the Ivandis Flail. The humans of Morytania are one step closer to freedom."
+
+[.legends_quest]
+message = "To gain access to the Legends’ Guild, I explored the depths of the Kharazi Jungle and defeated the demon Nezikchened. The locals rewarded me with a totem pole."
+
+[.lost_city]
+message = "It looks like I beat that warrior, ranger, mage and monk to it! I've got myself a dramen staff and I can travel to Zanaris whenever I fancy."
+
+[.lost_her_marbles_miniquest]
+message = "I completed another caper for the Lumbridge Thieves' Guild."
+
+[.lost_tribe]
+message = "I've discovered a lost tribe of goblins living under Lumbridge! They seem to be harmless, but Sigmund and the H.A.M. group are plotting against them."
+
+[.love_story]
+message = "After a lot of fighting, I reunited the Wise Old Man with his lost love."
+
+[.lunar_diplomacy]
+message = "I now know the mystical Moon Clan fairly well and they can hopefully start to live in peace with the Fremennik."
+
+[.making_history]
+message = "The history behind the outpost has been solved; I’d never have thought it would be so intricate!"
+
+[.meeting_history]
+message = "I travelled back through time and helped out a poor family, and discovered 'how it all began'!"
+
+[.merlins_crystal]
+message = "Merlin was trapped in a crystal by Morgan Le Fay, but I freed him using an ancient spell. I am now a Knight of the Round Table."
+
+[.missing_my_mummy]
+message = "I’ve reconstructed the mummy in the pyramid near Uzer, so I can now talk with her and learn ancient secrets."
+
+[.monks_friend]
+message = "Nothing like a blanket to calm a crying baby! Who would have thought that monks were so good at partying?"
+
+[.monkey_madness]
+message = "During a mission to Ape Atoll I uncovered a plot against humankind. With the help of the 10th Squad, I’ve put an end to Glough’s scheme."
+
+[.mountain_daughter]
+message = "To put Asleif, the mountain daughter, to rest, I settled her father’s dispute with the Fremennik and risked my life against a man in a bear suit."
+
+[.mournings_end_part_i]
+message = "I successfully infiltrated the mourners' hideout in West Ardougne to learn that they are trying to excavate a lost temple in the caverns below."
+
+[.mournings_end_part_ii]
+message = "I managed to get access to the Temple of Light, where I reactivated the temple's defences after solving a giant puzzle involving light."
+
+[.murder_mystery]
+message = "I solved the murder of Lord Sinclair by examining all the evidence and using deductive reasoning."
+
+[.my_arms_big_adventure]
+message = "I've taught My Arm how to grow goutweed and he's very happy. Hopefully, he'll never bother those jungle villagers again."
+
+[.myths_of_the_white_lands]
+message = "The imps had been playing a prank on Explorer Jack all along! That should teach him a smelly lesson!"
+
+[.nature_spirit]
+message = "I braved the ghasts of Mort Myre and aided the ghost of Filliman Tarlock to become a nature spirit."
+
+[.necromancy]
+message = "After being killed by an animated sword, and a quick visit to Death's office, Death took me to the City of Um. There we witnessed Rasial, the first necromancer, stealing all of its souls."
+
+[.new_foundations]
+message = "I helped King Roald establish a new duchy in the wilderness which I now manage."
+
+[.nomads_elegy]
+message = "I saved the souls of the dead and prevented the ultimate completion of Nomad's scheme."
+
+[.nomads_requiem]
+message = "I foiled Nomad's secret plans behind Soul Wars, leaving the battleground in the hands of Zimberfizz."
+
+[.observatory_quest]
+message = "I soon fixed the professor’s telescope after it was destroyed by those pesky goblins."
+
+[.ode_of_the_devourer]
+message = "With the aid of Icthlarin and Zemouregal, I cleansed the Gate of Elidinis and saved Bill and the citizens of Al Kharid from Amascut's curse."
+
+[.olafs_quest]
+message = "I fought and puzzled my way through the brine rat caves to help Olaf Hradson live up to his great ancestors."
+
+[.one_foot_in_the_grave_miniquest]
+message = "I lent the Yanille wizards' guild another hand by finding (most of) Clarence's remaining body parts. We managed to put all but one foot in the grave, and I had to hand it to the Yanille wizards...it was quite a touching funeral."
+
+[.one_small_favour]
+message = "Offering to do ‘one small favour’ for Yanni Salika of Shilo led to doing the same for a forester, Captain Shanks, Brian, Aggie, Jimmy the Chisel, Farmer Fred..."
+
+[.path_of_glouphrie]
+message = "Proof of the lost city of Arposandra has been discovered! Glouphrie’s threats aren’t over!"
+
+[.perils_of_ice_mountain]
+message = "A dragon-fuelled power station was destroying the environment around Ice Mountain. I managed to replace it with a wind-powered station."
+
+[.pirates_treasure]
+message = "I incurred the wrath of an angry gardener by digging up some treasure."
+
+[.plague_city]
+message = "Elena, daughter of Edmond in Ardougne, was kidnapped, but, following some smooth investigation into West Ardougne, I located and returned her to her father."
+
+[.priest_in_peril]
+message = "No wonder Paterdomus Temple was unable to send a message to Varrock: there was a guardian, monks of Zamorak and even a vampyre in the way!"
+
+[.purple_cat_miniquest]
+message = "In exchange for helping Wendy the witch, and her best friend, Lottie, I learned how to permanently dye my pet cat purple."
+
+[.quiet_before_the_swarm]
+message = "Overcoming many challenges, I unlocked Korasi's memory and learned of the pest attack on the Void Knight ship."
+
+[.rag_and_bone_man]
+message = "The Odd Old Man wanted some bones. Or was it his bonesack? Will we ever know?"
+
+[.rat_catchers]
+message = "After training my pet cat to catch rats in various odd places, I gained access to the Rat Pits, where I can challenge other cat owners."
+
+[.recipe_for_disaster]
+message = "The Culinaromancer has been given his just desserts and the Duke's party can go on unhindered."
+
+[.recruitment_drive]
+message = "Through a series of trials that tested my wit, I became an initiate in the Temple Knights."
+
+[.regicide]
+message = "I was tricked all along by King Lathas to believe his brother Tyras was evil. I killed Tyras only to learn Lathas wants to help the mourners bring their 'Dark Lord' back!"
+
+[.the_restless_ghost]
+message = "The ghost’s skull has been returned. The ghost is finally resting!"
+
+[.rocking_out]
+message = "I heard the story of Rabid Jack from Young Ralph after bringing him five captain’s marks and firing a seagull at him using an accordion."
+
+[.roving_elves]
+message = "After retrieving Glarial’s consecration seed from the tomb guardian, I used it to consecrate Glarial’s grave for her grandson, Islwyn."
+
+[.royal_trouble]
+message = "Wayward Fremennik trialists brought Miscellania and Etceteria to the brink of war once more, not to mention almost getting themselves eaten by a giant snake. I’ve brought the islands and their leaders closer than ever."
+
+[.rum_deal]
+message = "I restored the production line of ‘Rum’ and broke drunken Donnie’s undead siege on Braindeath Isle."
+
+[.rune_mechanics]
+message = "With very little of Clerval's help, we managed to make a rune guardian pet."
+
+[.scorpion_catcher]
+message = "Thormac the sorcerer’s pet scorpions got out! As a reward for rounding them up, he’ll enchant any battlestaves I have into mystic battlestaves."
+
+[.sea_slug]
+message = "I may have saved young Kennith from a life as a mindless automaton, but the sea slugs are still about. Perhaps I will have a chance to get rid of them some day."
+
+[.shades_of_mortton]
+message = "After fighting back waves of shades, some other adventurers and I rebuilt the temple at Mort’ton and found a cure for the afflicted locals."
+
+[.shadow_of_the_storm]
+message = "I joined a demon-summoning group in order to kill the demon when it was summoned. It turned out the group leader was the demon!"
+
+[.sheep_herder]
+message = "In the short term, plague-infested sheep may have been an interesting attraction for Ardougne. That would never have lasted, so I have rounded them up."
+
+[.sheep_shearer_miniquest]
+message = "Out of sheer hard work, I managed to shear some sheep for farmer Fred. Then I got in a spin and created some balls of wool."
+
+[.shield_of_arrav]
+message = "A friend and I managed to recover the Shield of Arrav from gang members and put it where it belongs - in a museum."
+
+[.shilo_village]
+message = "I rediscovered the lost temple of Ah Za Rhoon on Karamja and laid the zombie queen Rashiliyia to rest, in turn easing Shilo Village's undead problem."
+
+[.slug_menace]
+message = "I can't imagine that Mother Mallum is going to remain underground for long. Although I may have gone some way to protecting Witchaven, the rest of RuneScape may be another matter."
+
+[.smoking_kills]
+message = "Forget about smoking doing the killing, what about giant banshees? I've managed to make my way out of the smoky Slayer dungeon and gained a new Slayer master."
+
+[.souls_bane]
+message = "I found and rescued the poor kid Tolna. That dungeon really was a mix of emotions."
+
+[.spirit_of_summer]
+message = "I followed the spirit of a small child into the Wilderness and, through the power of mime, have managed to communicate with them, help them out and make their afterlives easier."
+
+[.spirits_of_the_elid]
+message = "Water has returned to the parched valley of Elid. All I had to do was coerce a genie into helping, and remove some golem obstacles."
+
+[.summers_end]
+message = "The spirit family is free. It was no easy task - the Spirit Beast was a hulking foe with a chip on its shoulder, and it required some daring."
+
+[.swan_song]
+message = "Now that the Piscatoris fishing colony is safe, the Wise Old Man has returned to Draynor to retire from his adventurous life."
+
+[.swept_away]
+message = "Which witch is the greatest witch? I have an itching feeling that it may be me! I have learnt from the best and now I've gained my very own witching broom."
+
+[.tai_bwo_wannai_trio]
+message = "The three Tai Bwo Wannai brothers have returned to the village after much persuasion. I'm now free to use the shops of Tai Bwo Wannai as I please."
+
+[.tail_of_two_cats]
+message = "The simple task of looking for Bob got a little more complex. It seems that Bob may - or may not - have been Robert the Strong, a fearsome hero of years past."
+
+[.tale_of_the_muspah]
+message = "I’ve learned more about the Mahjarrat and found Jhallan a place to hibernate under the ritual stone."
+
+[.tears_of_guthix]
+message = "The snake Juna guards the magical Tears of Guthix. I told her a story and she let me catch the tears in a special bowl."
+
+[.temple_of_ikov]
+message = "A mysterious stranger called Lucien hired me to steal the Staff of Armadyl from the Temple of Ikov. I had no idea it was a god weapon!"
+
+[.the_darkness_of_hallowvale]
+message = "Hallowvale really does need some kind of town planning or restructuring. Vanstrom may have used me as a punchbag, but I'll be back."
+
+[.the_temple_at_senntisten]
+message = "I aided Azzanadra, my Mahjarrat ally, in rebuilding Senntisten Temple under the Digsite. He used the altar there to contact Zaros!"
+
+[.throne_of_miscellania]
+message = "The King of Miscellania has made me Regent in return for preventing war against Etceteria, and because I’m engaged to be married into his family."
+
+[.toktz_ket_dill]
+message = "Who'd have thought that the TzHaar could be terrorised by a malevolent armadillo? Through a little mining and lots of theatre, I completed my task."
+
+[.tourist_trap]
+message = "Got something to hide? Stick it in a barrel! I've returned Ana to Irena and the tourist trap has been well and truly sprung."
+
+[.tower_of_life]
+message = "As I learned the contrast between magic and logic, the homunculus was created. I set out to help him find his place in this world."
+
+[.tree_gnome_village]
+message = "Khazard’s attempt to weaken the defences of the Tree Gnome village have been stymied! The village is safe again."
+
+[.tribal_totem]
+message = "Kangai Mau of the Rantuki asked me to “retrieve” his tribe’s totem, which was stolen by Lord Handelmort of Ardougne."
+
+[.troll_romance]
+message = "After a quick spot of alpine sledding, I was able to help Ug and Aga find true love and live happily ever after."
+
+[.troll_stronghold]
+message = "Mountain climbing, gladiatorial combat and a prison break – it's all part of a day’s work as an honorary member of the Imperial Guard!"
+
+[.underground_pass]
+message = "The passage to the western lands was no pushover, but I conquered the puzzles, traps, and threat of Iban to once again restore access."
+
+[.vampyre_slayer]
+message = "Count Draynor never knew what hit him! I took the vampiric count down with the well-timed use of a stake and some garlic."
+
+[.void_dance]
+message = "I tracked the escaped void pest, and discovered its fate and a number of disturbing implications..."
+
+[.void_stares_back]
+message = "I led an alliance of knights against the Pest Queen and defeated her."
+
+[.wanted]
+message = "As a shortcut to being deputised into the White Knights, I tracked down and defeated the dangerous mage known as Solus Dellagar."
+
+[.watchtower]
+message = "The ogres and their skavid slaves had stolen the Watchtower’s crystals! They have been retrieved and Yanille is safe again."
+
+[.waterfall_quest]
+message = "What started off as a rescue led to finding an old elven burial area in a waterfall: the resting place of Glarial."
+
+[.what_lies_below]
+message = "Surok Magis wanted to kill King Roald and take over Varrock with his magic, but his evil plan has been scuppered!"
+
+[.while_guthix_sleeps]
+message = "I uncovered RuneScape’s biggest secret – the Stone of Jas! That blasted Mahjarrat, Lucien, stole it, killing many of my friends in the process."
+
+[.witchs_house]
+message = "When I lost a ball as a child, it would only involve chatting to the friendly neighbour. This quest involved a little more: some witch-dodging and even shapeshifter fighting!"
+
+[.witchs_potion_miniquest]
+message = "I've got the makings of a top-class witch! I created a witch's brew with a little help from Hetty."
+
+[.within_the_light]
+message = "The reactivation of the Temple of Light's defences opened a path of light to an unknown area."
+
+[.zogre_flesh_eaters]
+message = "After overcoming disease-ridden zogres, I’ve returned important artefacts to Grish, so he can now set up a ceremonial dance area for the ogres."
+
+
+[log_item]
+row_id = "item"
+name = "string"
+
+[.abyssal_whip]
+[.amulet_of_ranging]
+[.arcane_sigil]
+[.archers_ring]
+[.armadyl_chainskirt]
+[.armadyl_chestplate]
+[.armadyl_helmet]
+[.armadyl_hilt]
+[.bandos_boots]
+[.bandos_chestplate]
+[.bandos_hilt]
+[.bandos_tassets]
+[.berserker_ring]
+[.earth_warrior_champions_scroll]
+[.ghoul_champions_scroll]
+[.giant_champions_scroll]
+[.goblin_champions_scroll]
+[.hobgoblin_champions_scroll]
+[.imp_champions_scroll]
+[.jogre_champions_scroll]
+[.lesser_demon_champions_scroll]
+[.skeleton_champions_scroll]
+[.zombie_champions_scroll]
+[.human_champions_scroll]
+[.banshee_champions_scroll]
+[.aberrant_spectre_champions_scroll]
+[.mummy_champions_scroll]
+[.gnome_champions_scroll]
+[.dark_bow]
+[.divine_sigil]
+[.draconic_visage]
+[.dragon_boots]
+[.dragon_chainbody]
+[.dragon_claws]
+[.dragon_full_helm]
+[.dragon_hatchet]
+[.dragon_med_helm]
+[.dragon_pickaxe]
+[.dragon_platelegs]
+[.dragon_plateskirt]
+[.elysian_sigil]
+[.focus_sight]
+[.godsword_shard_1]
+[.godsword_shard_2]
+[.godsword_shard_3]
+[.granite_legs]
+[.granite_maul]
+[.hexcrest]
+[.leaf_bladed_sword]
+[.pernix_body]
+[.pernix_chaps]
+[.pernix_cowl]
+[.ruined_dragon_armour_lump]
+[.ruined_dragon_armour_slice]
+[.ruined_dragon_armour_shard]
+[.saradomin_hilt]
+[.saradomin_sword]
+[.seers_ring]
+[.shield_left_half]
+[.spectral_sigil]
+[.staff_of_light]
+
+[.starved_ancient_effigy]
+name = "ancient effigy"
+
+[.steam_battlestaff]
+[.torva_full_helm]
+[.torva_platebody]
+[.torva_platelegs]
+[.virtus_mask]
+[.virtus_robe_legs]
+[.virtus_robe_top]
+[.warrior_ring]
+[.zamorak_hilt]
+[.zaryte_bow]
+
+[log_npcs]
+row_id = "npc"
+single = "string"
+multiple = "string"
+
+[.bork]
+single = "I killed Bork, a big ork."
+
+[.tztok_jad]
+single = "I killed TzTok-Jad, and can now claim my fire cape."
+
+[.avatar_of_creation_soul_wars]
+single = "I killed the Avatar of Creation, a being of unsurpassed vitality."
+multiple = "I killed <count> Avatars of Creation, beings of unsurpassed vitality."
+
+[.avatar_of_destruction_soul_wars]
+single = "I killed the Avatar of Destruction, the essence of ruination. "
+multiple = "I killed <count> Avatars of Destruction, each the essence of ruination."
+
+[.chaos_elemental]
+single = "I killed <count> cHaOs EleMeNTal."
+multiple = "I killed <count> cHaOs EleMeNTalS."
+
+[.commander_zilyana]
+single = "I killed Commander Zilyana, commander of Saradomin's forces."
+multiple = "I killed <count> Commander Zilyanas, all commanders of Saradomin's forces."
+
+[.corporeal_beast]
+single = "I killed the Corporeal Beast, a vision of supernatural horror. "
+multiple = "I killed <count> Corporeal Beasts, all visions of supernatural horror."
+
+[.general_graardor]
+single = "I killed General Graardor, a huge warchief."
+multiple = "I killed <count> General Graardors, all huge war chiefs."
+
+[.giant_mole]
+multiple = "I killed <count> giant moles."
+
+[.kalphite_queen]
+multiple = "I killed <count> Kalphite Queens."
+
+[.king_black_dragon]
+single = "I killed the King Black Dragon, which is the biggest, meanest dragon around."
+multiple = "I killed <count> King Black Dragons, which are the biggest, meanest dragons around."
+
+[.kree_arra]
+single = "I killed the graceful follower of Armadyl, Kree'arra."
+multiple = "I killed <count> graceful followers of Armadyl, all called Kree'arra. The gods have little imagination for names."
+
+[.kril_tsutsaroth]
+single = "I killed a servant of the god Zamorak, K'ril Tsutsaroth."
+multiple = "I killed # servants of the god Zamorak, all called K'ril Tsutsaroth. The gods have little imagination for names."
+
+[.mithril_dragon]
+multiple = "I killed # mithril dragons."
+
+#[.nex]
+#single = "I killed a devastating creature of Zaros, Nex."
+#multiple = "I killed <count> devastating creatures of Zaros, all named Nex."
+
+[.desert_phoenix]
+single = "I killed a phoenix, a bird of fire."
+multiple = "I killed <count> phoenixes, birds of fire."
+
+#[.skeletal_horror]
+#single = "I killed a skeletal horror."
+#multiple = "I killed <count> skeletal horrors."
+
+[.tormented_demon_melee]
+single = "I killed a tormented demon, one less tormented soul in the world must be a good thing."
+multiple = "I killed <count> tormented demons, fewer tormented souls in the world must be a good thing."

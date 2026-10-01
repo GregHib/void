@@ -1,0 +1,7 @@
+:root{
+  --dur-instant:80ms; /* @kind other */--dur-fast:130ms; /* @kind other */--dur-normal:200ms; /* @kind other */--dur-slow:320ms; /* @kind other */--dur-ambient:1400ms; /* @kind other */
+  --ease-standard:cubic-bezier(.32,.72,.35,1); /* @kind other */
+  --ease-out:cubic-bezier(.16,.84,.44,1); /* @kind other */
+  --ease-in:cubic-bezier(.5,0,.9,.3); /* @kind other */
+  --ease-glow:cubic-bezier(.4,0,.6,1); /* @kind other */
+}

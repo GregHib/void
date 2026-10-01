@@ -1,9 +1,7 @@
 package content.quest.member.creature_of_fenkenstrain
 
 import content.entity.obj.door.Door
-import content.entity.obj.door.closeDoor
 import content.entity.obj.door.enterDoor
-import content.entity.obj.door.openDoor
 import content.entity.player.dialogue.Neutral
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
@@ -34,6 +32,7 @@ import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.type.Tile
+import world.gregs.voidps.type.equals
 
 class CreatureOfFenkenstrain : Script {
 
@@ -282,7 +281,7 @@ class CreatureOfFenkenstrain : Script {
         }
 
         itemOption("Dig", "spade") {
-            if (atGraveTIle()) {
+            if (tile in graves) {
                 digGrave()
             }
         }
@@ -700,21 +699,20 @@ class CreatureOfFenkenstrain : Script {
             message("...but the grave is empty.")
             return
         }
-        val (x, y) = tile.x to tile.y
         when {
-            x == 3503 && y == 3576 && !inventory.contains("fenk_torso") && !get("fenk_torso", false) -> {
+            tile.equals(3503, 3576) && !inventory.contains("fenk_torso") && !get("fenk_torso", false) -> {
                 addOrDrop("fenk_torso")
                 item(item = "fenk_torso", text = "... and you unearth a torso.")
             }
-            x == 3504 && y == 3576 && !inventory.contains("fenk_arms") && !get("fenk_arms", false) -> {
+            tile.equals(3504, 3576) && !inventory.contains("fenk_arms") && !get("fenk_arms", false) -> {
                 addOrDrop("fenk_arms")
                 item(item = "fenk_arms", text = "... and you unearth a pair of arms.")
             }
-            x == 3505 && y == 3576 && !inventory.contains("fenk_legs") && !get("fenk_legs", false) -> {
+            tile.equals(3505, 3576) && !inventory.contains("fenk_legs") && !get("fenk_legs", false) -> {
                 addOrDrop("fenk_legs")
                 item(item = "fenk_legs", text = "... and you unearth a pair of legs.")
             }
-            x == 3608 && y == 3490 && !inventory.contains("fenk_head_empty") && !get("fenk_head", false) -> {
+            tile.equals(3608, 3490) && !inventory.contains("fenk_head_empty") && !get("fenk_head", false) -> {
                 addOrDrop("fenk_head_empty")
                 item(item = "fenk_head_empty", text = "... and you unearth a decapitated head.")
             }
@@ -722,7 +720,7 @@ class CreatureOfFenkenstrain : Script {
         }
     }
 
-    private fun Player.atGraveTIle(): Boolean = tile in listOf(
+    private val graves = setOf(
         Tile(3503, 3576),
         Tile(3504, 3576),
         Tile(3505, 3576),

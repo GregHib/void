@@ -1,0 +1,8 @@
+[mourner_attack]
+id = 422
+
+[mourner_defend]
+id = 424
+
+[mourner_death]
+id = 836

@@ -5,3 +5,7 @@ examine = "The bank teller will serve you from here."
 [spinning_wheel_seers_village]
 id = 25824
 examine = "Used for spinning thread."
+
+[bank_deposit_box_seers_village]
+id = 25937
+examine = "Lets you put items into your bank."

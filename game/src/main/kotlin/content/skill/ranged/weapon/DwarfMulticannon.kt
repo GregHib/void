@@ -266,7 +266,7 @@ class DwarfMulticannon(private val lineValidator: LineValidator) : Script {
         if (npc.tile.level != centre.level) {
             return false
         }
-        if (npc.dead || npc["owner_index", -1] == index) {
+        if (npc.dead || npc.ownerIndex == index) {
             return false
         }
         if (npc.transformDef["immune_cannon", false]) {

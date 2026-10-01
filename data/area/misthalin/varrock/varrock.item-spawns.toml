@@ -24,4 +24,7 @@ spawns = [
   { id = "empty_pot", x = 3144, y = 3449, level = 2, delay = 100 },
   { id = "empty_jug", x = 3142, y = 3447, level = 2, delay = 100 },
   { id = "cooking_apple", x = 3141, y = 3447, level = 2, delay = 100 },
+  # 12853
+  { id = "spade", x = 3218, y = 3412, level = 1, delay = 100 },
+  { id = "knife", x = 3218, y = 3418, level = 1, delay = 100 }
 ]

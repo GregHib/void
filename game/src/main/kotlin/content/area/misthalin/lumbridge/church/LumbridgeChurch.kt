@@ -1,5 +1,6 @@
 package content.area.misthalin.lumbridge.church
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.statement
@@ -136,6 +137,7 @@ class LumbridgeChurch : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "the_restless_ghost")
+        AdventurersLogs.questCompleted(this, "the_restless_ghost", points = 1)
         set("restless_ghost_coffin", "skull")
         set("the_restless_ghost", "completed")
         jingle("quest_complete_1")

@@ -367,6 +367,8 @@ att = 40
 str = 30
 def = 30
 max_hit_crush = 40
+slayer_xp = 60.0
+categories = ["vampyres"]
 
 [papers_meiyerditch]
 id = 4765

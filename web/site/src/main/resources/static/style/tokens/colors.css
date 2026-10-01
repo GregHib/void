@@ -1,0 +1,23 @@
+:root{
+  /* Umber — the primary brown ramp. Warm, low-chroma, never black. */
+  --umber-950:#17120d;--umber-900:#211a13;--umber-850:#282017;--umber-800:#2f261b;
+  --umber-700:#3b3024;--umber-600:#4a3c2c;--umber-500:#5d4b36;--umber-400:#786243;
+  --umber-300:#9b8465;--umber-200:#bda98c;--umber-100:#dbcdb4;
+
+  /* Gold — the single accent. Highlights, actions, active state, rules. */
+  --gold-700:#8a6318;--gold-600:#a97c22;--gold-500:#c9962e;--gold-400:#e0ae3c;
+  --gold-300:#f0c667;--gold-200:#f7dc9c;--gold-100:#fbeecb;
+
+  /* Parchment — type and hairlines on dark ground. */
+  --parch-50:#f6efe2;--parch-100:#efe4d2;--parch-200:#ded0b9;--parch-300:#bfae95;
+  --parch-400:#9c8b72;
+
+  /* Semantic hues, all pulled toward the warm ground. */
+  --moss-500:#7fae4f;--moss-600:#5f8a38;--moss-900:#26301a;
+  --ember-500:#c2493a;--ember-600:#9d3628;--ember-900:#331815;
+  --amber-500:#dd9a2b;--amber-900:#33260f;
+  --steel-500:#7d9db0;--steel-600:#5d7c8f;--steel-900:#1c2830;
+
+  /* Rune — the cold grey of the Void mark itself. */
+  --rune-300:#c8ced2;--rune-500:#8f9aa1;--rune-700:#5a646b;
+}

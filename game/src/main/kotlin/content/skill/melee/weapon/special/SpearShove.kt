@@ -36,7 +36,7 @@ class SpearShove : Script {
             val duration = TimeUnit.SECONDS.toTicks(3)
             target.gfx("dragon_spear_stun")
             target.freeze(duration)
-            set("delay", duration)
+            delay = duration
             hit(target, damage = -1) // Hit with no damage so target can auto-retaliate
             val actual = tile
             val direction = target.tile.delta(actual).toDirection()

@@ -1,5 +1,6 @@
 package content.area.misthalin.wizards_tower
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.*
@@ -254,6 +255,7 @@ class Sedridor : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "rune_mysteries")
+        AdventurersLogs.questCompleted(this, "rune_mysteries", points = 1)
         set("rune_mysteries", "completed")
         jingle("quest_complete_1")
         if (inventory.isFull()) {

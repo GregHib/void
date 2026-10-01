@@ -98,7 +98,7 @@ hunt_mode = "aggressive"
 hunt_range = 8
 respawn_delay = 150
 slayer_xp = 255.0
-categories = ["dagannoth"]
+categories = ["dagannoth", "boss"]
 xp_bonus = 3.0
 examine = "The dagannoth king responsible for the death of the Bukalla."
 
@@ -114,7 +114,7 @@ hunt_mode = "aggressive"
 hunt_range = 8
 respawn_delay = 150
 slayer_xp = 331.4
-categories = ["dagannoth"]
+categories = ["dagannoth", "boss"]
 xp_bonus = 3.0
 examine = "A legendary dagannoth king, rumoured to fly on the North winds."
 
@@ -130,7 +130,7 @@ hunt_mode = "aggressive"
 hunt_range = 8
 respawn_delay = 150
 slayer_xp = 331.4
-categories = ["dagannoth"]
+categories = ["dagannoth", "boss"]
 xp_bonus = 3.0
 examine = "Firstborn of the legendary dagannoth kings."
 

@@ -22,12 +22,12 @@ import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.Follow
 import world.gregs.voidps.engine.entity.character.mode.ModeType
+import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Teleport
-import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.inv.add
@@ -100,63 +100,33 @@ class LumbridgeCatacombs : Script {
             if (gate2 != null) GameObjects.remove(gate2)
         }
 
-        // Stairs down from Caitlin's room (level 1) to Reese's chamber (level 2)
-        objectOperate("Climb-down", "blood_pact_stairs_down_south") {
+        // Stairs down from Caitlin's room (level 1) to Reese's chamber (level 2), north and south staircases
+        objectOperate("Climb-down", "blood_pact_stairs_down") { (target) ->
+            val y = target.tile.y - instanceOffset().y
             when (quest("blood_pact")) {
                 "reese", "untied_ilona" -> {
-                    tele(instanceOffset().tile(3861, 5533, 0))
+                    tele(instanceOffset().tile(3861, y, 0))
                     face(Direction.NORTH)
                 }
                 "completed" -> {
-                    tele(Tile(3861, 5533, 0))
+                    tele(Tile(3861, y, 0))
                     face(Direction.NORTH)
                 }
                 else -> statement("You should deal with the second Cultist first.")
             }
         }
 
-        // Stairs back up from Reese's chamber (level 2) to Caitlin's room (level 1)
-        objectOperate("Climb-up", "blood_pact_stairs_up_south") {
+        // Stairs back up from Reese's chamber (level 2) to Caitlin's room (level 1), north and south staircases
+        objectOperate("Climb-up", "blood_pact_stairs_up") { (target) ->
+            val y = target.tile.y - instanceOffset().y
             when (quest("blood_pact")) {
                 "completed" -> {
-                    tele(Tile(3857, 5533, 1))
-                    face(Direction.SOUTH)
-                }
-                "reese" -> {
-                    statement("You should deal with the third Cultist first.")
-                }
-                else -> {
-                    tele(instanceOffset().tile(3857, 5533, 1))
-                    face(Direction.SOUTH)
-                }
-            }
-        }
-
-        // Stairs down from Caitlin's room (level 1) to Reese's chamber (level 2)
-        objectOperate("Climb-down", "blood_pact_stairs_down_north") {
-            when (quest("blood_pact")) {
-                "reese", "untied_ilona" -> {
-                    tele(instanceOffset().tile(3861, 5543, 0))
-                    face(Direction.NORTH)
-                }
-                "completed" -> {
-                    tele(Tile(3861, 5543, 0))
-                    face(Direction.NORTH)
-                }
-                else -> statement("You should deal with the second Cultist first.")
-            }
-        }
-
-        // Stairs back up from Reese's chamber (level 2) to Caitlin's room (level 1)
-        objectOperate("Climb-up", "blood_pact_stairs_up_north") {
-            when (quest("blood_pact")) {
-                "completed" -> {
-                    tele(Tile(3857, 5543, 1))
+                    tele(Tile(3857, y, 1))
                     face(Direction.SOUTH)
                 }
                 "reese" -> statement("You should deal with the third Cultist first.")
                 else -> {
-                    tele(instanceOffset().tile(3857, 5543, 1))
+                    tele(instanceOffset().tile(3857, y, 1))
                     face(Direction.SOUTH)
                 }
             }
@@ -171,6 +141,26 @@ class LumbridgeCatacombs : Script {
         }
 
         objectOperate("Take", "*_demon_statuette") { (target) ->
+            if (target.tile == Tile(3998, 5462)) {
+                if (get("diamond_demon_statuette", "take_shield") != "take") {
+                    message("A magical barrier prevents you from taking this statuette.")
+                    makeDragithHostile()
+                    return@objectOperate
+                }
+                if (inventory.isFull()) {
+                    message("You don't have enough inventory space to take the statuette.")
+                    return@objectOperate
+                }
+                start("thieving", 2)
+                anim("take")
+                delay(1)
+                if (inventory.add("diamond_demon_statuette")) {
+                    set("diamond_demon_statuette", "touch")
+                    message("You think that Xenia might be interested in seeing this statuette.")
+                }
+                return@objectOperate
+            }
+
             val def = target.def(this)
             if (get(def.stringId, "take") != "take") {
                 message("You've already taken this statue.")
@@ -181,7 +171,7 @@ class LumbridgeCatacombs : Script {
             choice {
                 option("Take the statue.") {
                     if (inventory.isFull()) {
-                        inventoryFull()
+                        message("You don't have enough inventory space to take the statuette.")
                         return@option
                     }
                     start("thieving", 2)
@@ -205,32 +195,59 @@ class LumbridgeCatacombs : Script {
                             }
                         }
                     } else {
-                        inventoryFull()
+                        message("You don't have enough inventory space to take the statuette.")
                     }
                 }
                 option("Leave the statue alone.")
             }
         }
 
-        objectOperate("Take", "diamond_demon_statuette") {
-            if (get("diamond_demon_statuette", "take_shield") != "take") {
+        objectOperate("Take", "*") { (target) ->
+            if (target.tile != Tile(3998, 5462)) {
                 return@objectOperate
             }
+            if (target.intId != 48674 && target.intId != 48758) {
+                return@objectOperate
+            }
+            if (get("diamond_demon_statuette", "take_shield") != "take") {
+                message("A magical barrier prevents you from taking this statuette.")
+                makeDragithHostile()
+                return@objectOperate
+            }
+            if (inventory.isFull()) {
+                message("You don't have enough inventory space to take the statuette.")
+                return@objectOperate
+            }
+            start("thieving", 2)
+            anim("take")
+            delay(1)
             if (inventory.add("diamond_demon_statuette")) {
                 set("diamond_demon_statuette", "touch")
             }
         }
 
+        objectOperate("Touch", "*") { (target) ->
+            if (target.tile != Tile(3998, 5462)) {
+                return@objectOperate
+            }
+            makeDragithHostile()
+        }
+
         npcDeath("dragith_nurn") {
             val killer = killer
             if (killer is Player) {
-                killer.message("With Dragith Nurn defeated, the diamond statuette is now within your grasp.")
-                killer["diamond_demon_statuette"] = "take"
+                if (killer.get("diamond_demon_statuette", "take_shield") == "take_shield") {
+                    killer["diamond_demon_statuette"] = "take"
+                }
             }
         }
 
         destroyed("*_demon_statuette") { item ->
-            set(item.id, "take")
+            if (item.id == "diamond_demon_statuette") {
+                set(item.id, "take")
+            } else {
+                set(item.id, "take")
+            }
         }
 
         entered("kayles_room") {
@@ -274,6 +291,14 @@ class LumbridgeCatacombs : Script {
                 }
             }
         }
+    }
+
+    private fun Player.makeDragithHostile() {
+        val dragith = NPCs.findOrNull(tile.regionLevel, "dragith_nurn") ?: return
+        if (dragith.dead || dragith.mode == PauseMode || dragith.queue.contains("death")) {
+            return
+        }
+        dragith.interactPlayer(this, "Attack")
     }
 
     suspend fun Player.cutscene() {
@@ -489,13 +514,11 @@ class LumbridgeCatacombs : Script {
 }
 
 fun spawnStairs(offset: Delta) {
-    GameObjects.add("blood_pact_stairs_down_south", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-
     // Stairs down from Caitlin's gallery (level 1) to Reese's chamber (level 2)
-    GameObjects.add("blood_pact_stairs_down_north", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_down", offset.tile(3858, 5533, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_down", offset.tile(3858, 5543, 1), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 
     // Stairs up from Reese's chamber (level 2) back to Caitlin's gallery
-    GameObjects.add("blood_pact_stairs_up_south", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
-    // Altar in Reese's chamber
-    GameObjects.add("blood_pact_stairs_up_north", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_up", offset.tile(3858, 5533, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
+    GameObjects.add("blood_pact_stairs_up", offset.tile(3858, 5543, 0), ObjectShape.CENTRE_PIECE_STRAIGHT, 3)
 }

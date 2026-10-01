@@ -1,5 +1,6 @@
 package content.area.morytania.mort_myre_swamp
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Neutral
@@ -39,6 +40,8 @@ class MyrequeStranger : Script {
     }
 
     private fun Player.completeQuest() {
+        AuditLog.event(this, "quest_completed", "in_search_of_the_myreque")
+        AdventurersLogs.questCompleted(this, "in_search_of_the_myreque", points = 2)
         jingle("quest_complete_1")
         exp(Skill.Attack, 600.0)
         exp(Skill.Defence, 600.0)
@@ -46,7 +49,6 @@ class MyrequeStranger : Script {
         exp(Skill.Constitution, 600.0)
         exp(Skill.Crafting, 600.0)
         inc("quest_points", 2)
-        AuditLog.event(this, "quest_completed", "in_search_of_the_myreque")
         set("in_search_of_the_myreque", "completed")
         refreshQuestJournal()
         questComplete(

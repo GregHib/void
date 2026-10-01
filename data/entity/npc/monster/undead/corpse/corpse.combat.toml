@@ -1,38 +1,51 @@
 [corpse_spider]
 defend_anim = "corpse_spider_defend"
 death_anim = "corpse_spider_death"
+defend_sound = "corpse_defend"
+death_sound = "corpse_death"
 
 [corpse_spider.melee]
 range = 1
 anim = "corpse_spider_attack"
+target_sound = "spider_attack"
 target_hit = { offense = "slash", max = 15 }
 
 [crawling_corpse_torso]
 defend_anim = "crawling_corpse_torso_defend"
 death_anim = "crawling_corpse_torso_death"
+defend_sound = "corpse_defend"
+death_sound = "corpse_death"
 
 [crawling_corpse_torso.melee]
 range = 1
 anim = "crawling_corpse_torso_attack"
+target_sound = { id = "corpse_attack", delay = 18 }
 target_hit = { offense = "slash", max = 20 }
 
 [corpse_archer]
 defend_anim = "corpse_archer_defend"
 death_anim = "corpse_archer_death"
+defend_sound = "corpse_defend"
+death_sound = "corpse_death"
 
 [corpse_archer.ranged]
-range = 5
+range = 7
 anim = "corpse_archer_attack"
+projectile = { id = "corpse_archer_range_projectile", curve = 18, delay = 42 }
+target_sound = "corpse_archer_attack"
 target_hit = { offense = "range", max = 19 }
 
 [corpse_mage]
 defend_anim = "corpse_mage_defend"
 death_anim = "corpse_mage_death"
+defend_sound = "corpse_defend"
+death_sound = "corpse_death"
 
 [corpse_mage.magic]
-range = 5
+range = 7
 anim = "corpse_mage_attack"
-gfx = "wind_spell_cast"
-projectile = "wind_rush"
+gfx = "corpse_mage_magic_attack"
+projectile = { id = "corpse_mage_magic_projectile", curve = 18, delay = 48 }
+target_sound = { id = "wind_strike_cast", delay = 18 }
+miss_gfx = "spell_splash"
 target_hit = { offense = "magic", max = 20 }
-impact_gfx = "wind_rush_impact"

@@ -22,11 +22,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.timer.toTicks
 import world.gregs.voidps.network.client.ConnectionQueue
@@ -35,7 +35,6 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 fun getTickStages(
-    floorItems: FloorItemTracking = get(),
     queue: ConnectionQueue = get(),
     accountSave: SaveQueue = get(),
     hunting: Hunting = get(),
@@ -52,18 +51,18 @@ fun getTickStages(
         PlayerResetTask(sequentialPlayer),
         NPCResetTask(sequentialNpc),
         botManager, // Bot must go after reset otherwise flags aren't seen when debugging bots
+        FloorItems,
         hunting,
         grandExchange,
         // Connections/Tick Input
         queue,
         NPCs,
-        FloorItems,
         // Tick
         InstructionTask(handlers),
         World,
+        Instances,
         NPCTask(sequentialNpc),
         PlayerTask(sequentialPlayer),
-        floorItems,
         GameObjects.timers,
         // Update
         dynamicZones,

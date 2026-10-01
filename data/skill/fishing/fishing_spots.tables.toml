@@ -182,7 +182,7 @@ bait = ["raw_sardine", "raw_herring"]
 net = ["raw_shrimps", "raw_karambwanji"]
 
 [.fishing_spot_tutorial_island]
-net = []
+net = ["raw_shrimps"]
 
 [.fishing_spot_wilderness_bandit_camp]
 net = ["raw_shrimps", "raw_anchovies"]

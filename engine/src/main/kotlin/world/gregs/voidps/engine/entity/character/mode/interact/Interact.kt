@@ -8,9 +8,12 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.EmptyMode
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.mode.move.target.TargetStrategy
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.cantReach
 import world.gregs.voidps.engine.entity.character.player.chat.noInterest
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.suspend.resumeSuspension
 
 /**
@@ -19,8 +22,8 @@ import world.gregs.voidps.engine.suspend.resumeSuspension
  * Operate interactions require the [character] to be standing next-to but not under [target]
  * Approach interactions require the [character] within [approachRange] and line of sight of [target]
  *
- * [operate] or [approach] is called when within range and will continue to
- * resume [Character.suspension] every subsequent tick until the interaction is completed.
+ * [operate] or [approach] is called once when within range. Once [launched] the target is no longer
+ * re-evaluated, [Character.suspension] is resumed every subsequent tick until the interaction is completed.
  * Interactions are only processed while the [character] isn't delayed or has menu interface open.
  */
 
@@ -42,13 +45,13 @@ open class Interact(
 
     open fun approach() {}
 
-    private var override: (() -> Unit)? = null
-    private var clearInteracted = false
+    private var replacement: (() -> Unit)? = null
 
-    fun updateInteraction(override: (() -> Unit)) {
-        this.override = override
-        launched = false
-        clearInteracted = true
+    /**
+     * Replace this interaction by calling [block] once after this tick's movement (e.g. to start combat)
+     */
+    fun replace(block: () -> Unit) {
+        this.replacement = block
     }
 
     private var updateRange: Boolean = false
@@ -81,8 +84,16 @@ open class Interact(
         if (!validTarget()) {
             return
         }
-        if (character.contains("delay") || character.hasMenuOpen()) {
+        if (character.delayed || character.hasMenuOpen()) {
             super.tick()
+            return
+        }
+        // Continue started script
+        if (launched && replacement == null) {
+            character.resumeSuspension()
+            if (character.mode == this && interactionFinished()) {
+                clear()
+            }
             return
         }
         updateRange = false
@@ -93,10 +104,11 @@ open class Interact(
         calculate()
         character.walkTrigger()
         val interacted = processInteraction()
-        // A launched interaction that has finished is complete even if it couldn't re-interact
-        // this tick (e.g. the target object was replaced, changing collision so reached() now
-        // fails) - clear it instead of falling through to cantReach().
-        if ((interacted || launched) && interactionFinished()) {
+        if (character.mode != this) {
+            return
+        }
+        // Not launched means the script requested a re-launch (e.g. updated approach range)
+        if (interacted && launched && interactionFinished()) {
             clear()
             return
         }
@@ -116,7 +128,22 @@ open class Interact(
             clear()
             return false
         }
+        if (!launched && !exists(target)) {
+            clear()
+            return false
+        }
         return true
+    }
+
+    /**
+     * Target hasn't been removed or replaced before interacting
+     */
+    private fun exists(target: Entity): Boolean {
+        return when (target) {
+            is NPC -> !target.hide
+            is GameObject -> GameObjects.contains(target)
+            else -> true
+        }
     }
 
     /**
@@ -124,25 +151,31 @@ open class Interact(
      * target changed or failed to interact previously.
      */
     private fun processInteraction(): Boolean {
-        clearInteracted = false
         var interacted = interact(afterMovement = false)
         if (interacted && !updateRange && arrived(approachRange ?: -1)) {
             clearSteps()
         }
-        if (clearInteracted) {
+        if (replacement != null) {
             interacted = false
-            clearInteracted = false
         }
         if (!character.hasMenuOpen()) {
             super.tick()
         }
-        if (!interacted || updateRange) {
+        if (replacement == null && (!interacted || updateRange)) {
             val interact = interact(afterMovement = true)
-            interacted = interacted or interact
-            if (clearInteracted) {
-                interacted = false
-                clearInteracted = false
+            if (character.mode != this) {
+                return true
             }
+            if (interact && !updateRange && arrived(approachRange ?: -1)) {
+                clearSteps()
+            }
+            interacted = interacted || interact
+        }
+        val replace = replacement
+        if (replace != null) {
+            this.replacement = null
+            replace.invoke()
+            return true
         }
         return interacted
     }
@@ -155,8 +188,8 @@ open class Interact(
         val withinMelee = arrived()
         val withinRange = arrived(approachRange ?: 10)
         when {
-            withinMelee && (hasOperate() || override != null) -> if (launch(true) && afterMovement) updateRange = false
-            withinRange && (hasApproach() || override != null) -> if (launch(false) && afterMovement) updateRange = false
+            withinMelee && hasOperate() -> if (launch(true) && afterMovement) updateRange = false
+            withinRange && hasApproach() -> if (launch(false) && afterMovement) updateRange = false
             withinMelee -> {
                 character.noInterest()
                 clear()
@@ -175,9 +208,7 @@ open class Interact(
         }
         if (!launched) {
             launched = true
-            if (override != null) {
-                override!!.invoke()
-            } else if (operate) {
+            if (operate) {
                 operate()
             } else {
                 approach()
@@ -187,7 +218,7 @@ open class Interact(
         return false
     }
 
-    private fun interactionFinished() = character.suspension == null && !character.contains("delay")
+    private fun interactionFinished() = character.suspension == null && !character.delayed
 
     private fun clear() {
         if (character.suspension != null) {

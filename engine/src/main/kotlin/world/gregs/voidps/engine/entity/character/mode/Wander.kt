@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.mode
 
 import world.gregs.voidps.engine.data.Settings
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.mode.move.Movement
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -52,8 +51,7 @@ class Wander(
             if (!Settings["world.npcs.randomWalk", false]) {
                 return false
             }
-            val id = npc["transform_id", npc.id]
-            val def = NPCDefinitions.get(id)
+            val def = npc.transformDef
             return when (def.walkMode.toInt()) {
                 ModeType.WANDER_THROUGH, ModeType.WANDER_SPECIAL, ModeType.WANDER_WATER -> true
                 else -> false

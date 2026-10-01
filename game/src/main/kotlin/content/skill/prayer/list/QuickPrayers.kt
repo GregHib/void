@@ -36,7 +36,9 @@ class QuickPrayers(val definitions: PrayerDefinitions) : Script {
             if (selecting) {
                 tab(Tab.PrayerList)
                 sendVariable(getQuickVarKey())
-                set(TEMP_QUICK_PRAYERS, get(getQuickVarKey(), 0))
+                // Defaulting to 0 stored an Int in a variable everything else reads as a list,
+                // which threw a ClassCastException for anyone who had never picked quick prayers.
+                set(TEMP_QUICK_PRAYERS, get(getQuickVarKey(), emptyList<Any>()))
             } else if (contains(TEMP_QUICK_PRAYERS)) {
                 saveQuickPrayers()
             }

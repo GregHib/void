@@ -2,6 +2,48 @@
 format = "int"
 persist = true
 
+[juju_mining]
+format = "int"
+persist = true
+
+[juju_woodcutting]
+format = "int"
+persist = true
+
+[juju_farming]
+format = "int"
+persist = true
+
+[juju_fishing]
+format = "int"
+persist = true
+
+[scentless]
+format = "int"
+persist = true
+
+[saradomins_blessing]
+format = "int"
+persist = true
+
+[guthixs_gift]
+format = "int"
+persist = true
+
+[zamoraks_favour]
+format = "int"
+persist = true
+
+# Transient banking window, deliberately not carried across a logout.
+[juju_mining_bank]
+format = "int"
+persist = false
+
+# Transient banking window, deliberately not carried across a logout.
+[juju_woodcutting_bank]
+format = "int"
+persist = false
+
 [overload_refreshes_remaining]
 format = "int"
 persist = true

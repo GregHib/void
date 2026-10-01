@@ -1,11 +1,13 @@
 package content.area.misthalin.lumbridge.church
 
+import content.entity.effect.clearTransform
 import content.entity.effect.transform
 import content.entity.player.modal.map.MapMarkers
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.sendScript
 import world.gregs.voidps.engine.client.ui.chat.plural
+import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.remaining
 import world.gregs.voidps.engine.client.variable.start
@@ -58,6 +60,7 @@ class Gravestones : Script {
                 remainder < 60 -> message("The inscription is too unclear to read.")
                 else -> {
                     open("gravestone_plaque")
+                    open("total_blackness")
                     val gravestone = target.id.removePrefix("gravestone_").removeSuffix("_broken")
                     val message = Gravestone.messages[gravestone] ?: return@npcOperate
                     val name = target["player_name", ""]
@@ -71,6 +74,14 @@ class Gravestones : Script {
                     )
                 }
             }
+        }
+
+        interfaceClosed("gravestone_plaque") {
+            close("total_blackness")
+        }
+
+        interfaceClosed("total_blackness") {
+            close("gravestone_plaque")
         }
 
         npcOperate("Repair", "gravestone_*") { (target) ->
@@ -89,6 +100,7 @@ class Gravestones : Script {
             }
             val seconds = 300 // 5 minutes
             target.start("grave_timer", seconds, epochSeconds())
+            target.clearTransform()
             updateItems(target.tile, name, seconds)
             delay(2)
             val deceased = Players.find(name)
@@ -124,6 +136,7 @@ class Gravestones : Script {
             delay(2)
             message("The gods hear your prayers; the gravestone will remain for a little longer.")
             target["blessed"] = true
+            target.clearTransform()
             val deceased = Players.find(name)
             val remainder = target.remaining("grave_timer", epochSeconds())
             val minutes = TimeUnit.SECONDS.toMinutes(remainder.toLong())
@@ -166,12 +179,16 @@ class Gravestones : Script {
 
     fun tick(npc: NPC): Int {
         val remaining = npc.remaining("grave_timer", epochSeconds())
-        if (remaining <= 120 && !npc.transform.endsWith("broken")) {
-            npc.transform("${npc.id}_broken")
-        } else if (remaining <= 60 && !npc.transform.endsWith("collapse")) {
-            npc.transform("${npc.id}_collapse")
-            val player = Players.find(npc["player_name", ""])
-            player?.message("Your gravestone has collapsed.")
+        if (remaining <= 60) {
+            if (!npc.transform.endsWith("collapse")) {
+                npc.transform("${npc.id}_collapse")
+                val player = Players.find(npc["player_name", ""])
+                player?.message("Your gravestone has collapsed.")
+            }
+        } else if (remaining <= 120) {
+            if (!npc.transform.endsWith("broken")) {
+                npc.transform("${npc.id}_broken")
+            }
         }
         return Timer.CONTINUE
     }
@@ -207,8 +224,8 @@ class Gravestones : Script {
     fun updateItems(tile: Tile, name: String, seconds: Int) {
         val items = FloorItems.at(tile).filter { it.owner == name }
         for (item in items) {
-            item.revealTicks = TimeUnit.SECONDS.toTicks(seconds)
-            item.disappearTicks = TimeUnit.SECONDS.toTicks(seconds) + 60
+            val ticks = TimeUnit.SECONDS.toTicks(seconds)
+            item.reset(revealTicks = ticks, disappearTicks = ticks + 60)
         }
     }
 }

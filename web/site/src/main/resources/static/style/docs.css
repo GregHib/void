@@ -1,0 +1,518 @@
+/* Typesets the raw HTML produced by org.jetbrains:markdown for `.claude/*.md` docs pages,
+   using the same design tokens as the hand-built components rather than its own palette. */
+.markdown-body {
+  font: var(--type-body);
+  color: var(--text-body);
+}
+
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  color: var(--parch-50);
+  scroll-margin-top: var(--space-8);
+}
+
+.markdown-body h1 { margin: var(--space-10) 0 var(--space-6); font-size: var(--text-2xl); line-height: var(--leading-tight); }
+.markdown-body h2 { margin: var(--space-9) 0 var(--space-5); font-size: var(--text-xl); line-height: var(--leading-snug); border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-3); }
+.markdown-body h3 { margin: var(--space-8) 0 var(--space-4); font-size: var(--text-lg); line-height: var(--leading-snug); }
+.markdown-body h4 { margin: var(--space-7) 0 var(--space-4); font-size: var(--text-base); line-height: var(--leading-snug); }
+
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body blockquote,
+.markdown-body table,
+.markdown-body pre {
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  /* Overrides the generic block margin-bottom above (meant for top-level elements) back to 0 — a
+     nested list already sits inside a `<li>` that's itself spaced from its siblings by the parent
+     `<ul>`'s flex `gap`, so without this a nested list's trailing space stacks on top of that gap
+     and leaves a visibly oversized gap before the next item at the parent's own level. */
+  margin: var(--space-3) 0 0;
+}
+
+.markdown-body strong { color: var(--text-strong); font-weight: var(--weight-semibold); }
+.markdown-body em { color: var(--text-body); }
+
+.markdown-body a { color: var(--text-link); text-decoration: none; }
+.markdown-body a:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+/* Keeps embedded screenshots/diagrams within the article column instead of overflowing it. */
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-xs);
+}
+
+/* Back-to-back images (e.g. several screenshots pasted one after another with no other content
+   between them) are grouped into an `.image-row` by renderMarkdown() so they sit side by side and
+   wrap onto a new row once they no longer fit, rather than always stacking one per line. */
+.markdown-body .image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body .image-row img {
+  width: auto;
+  margin: 0;
+}
+
+.markdown-body code {
+  font: var(--type-code);
+  font-size: var(--text-xs);
+  color: var(--gold-300);
+  background: var(--umber-950);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 1px 6px;
+}
+
+/* Wraps every rendered fence (standalone or inside a .code-tabs panel) so the copy button can be
+   positioned relative to the block without disturbing the .code-tabs/pre margin rules below. */
+.markdown-body .code-block {
+  position: relative;
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body .code-tabs .code-block {
+  margin: 0;
+}
+
+.markdown-body .code-block pre {
+  margin: 0;
+}
+
+.markdown-body .code-copy-btn {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  height: 26px;
+  padding: 0 var(--space-4);
+  background: var(--surface-header);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-2xs)/1 var(--font-ui);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+}
+
+.markdown-body .code-block:hover .code-copy-btn,
+.markdown-body .code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.markdown-body .code-copy-btn:hover { color: var(--text-strong); }
+.markdown-body .code-copy-btn.copied { color: var(--feedback-success); opacity: 1; }
+
+.markdown-body pre {
+  background: var(--umber-950);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--bevel-down);
+  padding: var(--space-6);
+  overflow-x: auto;
+}
+
+.markdown-body pre code {
+  font: var(--type-code);
+  color: var(--parch-100);
+  line-height: var(--leading-loose);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.markdown-body blockquote {
+  border-left: 2px solid var(--gold-400);
+  background: var(--surface-inset);
+  color: var(--text-muted);
+  padding: var(--space-5) var(--space-6);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+
+.markdown-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: var(--space-8) 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-panel);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font: var(--type-body-sm);
+}
+
+/* A table wider than the article (many columns on a narrow screen) scrolls horizontally
+   instead of overflowing the page — `display:block` on the table keeps row/cell layout intact
+   while making it a scrollable box. */
+@media (max-width: 900px) {
+  .markdown-body table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.markdown-body th,
+.markdown-body td {
+  text-align: left;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--umber-900);
+}
+
+.markdown-body th {
+  background: var(--surface-header);
+  color: var(--gold-300);
+  font: var(--type-label);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.markdown-body tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body tr:nth-child(even) td {
+  background: var(--umber-850);
+}
+
+/* Syntax-highlighting token colours — see Highlight.kt. Applied inside .markdown-body pre code
+   so inline `code` spans (which aren't tokenized) keep their plain --gold-300 colour. */
+.markdown-body pre .tok-kw { color: var(--gold-300); font-weight: var(--weight-semibold); }
+.markdown-body pre .tok-str { color: var(--moss-500); }
+.markdown-body pre .tok-num { color: var(--steel-500); }
+.markdown-body pre .tok-cmt { color: var(--text-faint); font-style: italic; }
+.markdown-body pre .tok-prop { color: var(--parch-200); }
+.markdown-body pre .tok-type { color: var(--amber-500); }
+.markdown-body pre .tok-bool { color: var(--ember-500); }
+.markdown-body pre .tok-fn { color: var(--parch-50); }
+.markdown-body pre .tok-anno { color: var(--steel-500); }
+.markdown-body pre .tok-sec { color: var(--gold-400); font-weight: var(--weight-semibold); }
+.markdown-body pre .tok-pun { color: var(--text-faint); }
+.markdown-body pre .tok-op { color: var(--text-muted); }
+
+/* GitHub-style `> [!NOTE]` callouts (see AlertGeneratingProvider in Markdown.kt). */
+.markdown-body .markdown-alert {
+  margin: 0 0 var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  border-left: 3px solid var(--border-strong);
+  background: var(--surface-inset);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+
+.markdown-body .markdown-alert > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body .markdown-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 var(--space-3);
+  font: var(--weight-semibold) var(--text-sm)/1 var(--font-ui);
+  letter-spacing: var(--tracking-wide);
+}
+
+.markdown-body .markdown-alert-title svg {
+  flex: 0 0 auto;
+}
+
+.markdown-body .markdown-alert-note { border-color: var(--steel-500); }
+.markdown-body .markdown-alert-note .markdown-alert-title { color: var(--feedback-info); }
+.markdown-body .markdown-alert-tip { border-color: var(--moss-500); }
+.markdown-body .markdown-alert-tip .markdown-alert-title { color: var(--feedback-success); }
+.markdown-body .markdown-alert-important { border-color: var(--gold-400); }
+.markdown-body .markdown-alert-important .markdown-alert-title { color: var(--gold-300); }
+.markdown-body .markdown-alert-warning { border-color: var(--amber-500); }
+.markdown-body .markdown-alert-warning .markdown-alert-title { color: var(--feedback-warning); }
+.markdown-body .markdown-alert-caution { border-color: var(--ember-500); }
+.markdown-body .markdown-alert-caution .markdown-alert-title { color: var(--feedback-danger); }
+
+/* Switchable code-language tabs — see CodeTabs in Markdown.kt and voidSwitchCodeTab in void.js. */
+.markdown-body .code-tabs {
+  margin: 0 0 var(--space-6);
+}
+
+.markdown-body .code-tabs .code-tab-panel {
+  margin: 0;
+}
+
+.markdown-body .code-tabs pre {
+  margin: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.markdown-body .code-tabs-bar {
+  display: flex;
+  gap: 2px;
+  background: var(--surface-header);
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.markdown-body .code-tab-btn {
+  height: 34px;
+  padding: 0 var(--space-6);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-xs)/1 var(--font-ui);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+.markdown-body .code-tab-btn.active {
+  background: var(--surface-panel);
+  border-bottom-color: var(--gold-400);
+  color: var(--text-strong);
+}
+
+/* Sidebar search box — see docs.js for the fetch/filter logic behind #docs-search-input. */
+.docs-search {
+  position: relative;
+}
+
+.docs-search-input-frame {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 34px;
+  padding: 0 10px;
+  background: var(--surface-inset);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--bevel-down);
+}
+
+.docs-search-input-frame:focus-within {
+  border-color: var(--gold-400);
+  box-shadow: var(--bevel-down), 0 0 0 2px rgba(224, 174, 60, .22);
+}
+
+.docs-search-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: var(--type-body-sm);
+  color: var(--text-strong);
+}
+
+.docs-search-results {
+  position: absolute;
+  top: calc(100% + var(--space-3));
+  left: 0;
+  right: 0;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  box-shadow: var(--bevel-up), var(--shadow-lg);
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 40;
+}
+
+.docs-search-result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.docs-search-result:last-child {
+  border-bottom: none;
+}
+
+.docs-search-result:hover,
+.docs-search-result:focus-visible {
+  background: var(--surface-active);
+}
+
+.docs-search-result-title {
+  font: var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);
+  color: var(--parch-50);
+}
+
+.docs-search-result-desc {
+  font: var(--type-body-sm);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docs-search-empty {
+  padding: var(--space-5);
+  font: var(--type-body-sm);
+  color: var(--text-faint);
+}
+
+/* Collapsible sidebar sections — see voidToggleDocsSection in docs.js. Collapsed by default;
+   the section holding the active page is expanded on render so navigation keeps its context.
+
+   `.docs-nav-row` is the one look shared by *every* clickable line — a leaf link, a linked
+   group's title (e.g. "Home"), or a plain group's whole header button (e.g. "Players") — so a
+   collapsed section reads as just another row instead of a visually mismatched label sitting
+   between ordinary links. Depth adds exactly one thing, `.docs-nav-depth-0`'s emphasis; actual
+   indentation comes from how deeply a row's `<a>`/`<button>` sits inside nested
+   `.docs-nav-children` columns below, which is purely structural — it doesn't care whether the
+   entry started life as a `_Sidebar.md` heading or a nested list item. */
+.docs-nav-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) 10px;
+  border: none;
+  border-left: 2px solid transparent;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  font: var(--type-body-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard);
+}
+
+.docs-nav-row:hover,
+.docs-nav-row:focus-visible {
+  background: var(--surface-active);
+  color: var(--text-strong);
+}
+
+.docs-nav-row.active {
+  background: var(--surface-active);
+  border-left-color: var(--gold-400);
+  color: var(--parch-50);
+}
+
+/* Depth 0 — the top of each section — is the only place weight varies by depth; every level
+   below it reads as a plain row, distinguished only by its chevron (expandable) and the indent
+   guide its parent `.docs-nav-children` draws, not by its own font treatment. */
+.docs-nav-depth-0 {
+  font: var(--weight-semibold) var(--text-sm)/1.3 var(--font-ui);
+  color: var(--text-body);
+}
+
+.docs-nav-depth-0.active {
+  color: var(--parch-50);
+}
+
+.docs-nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.docs-nav-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Inside a linked group's header the row shares space with the chevron button, so it drops the
+   full-width treatment it has everywhere else. */
+.docs-nav-header > .docs-nav-row {
+  width: auto;
+  flex: 1;
+  min-width: 0;
+}
+
+.docs-nav-label {
+  flex: 1;
+  min-width: 0;
+}
+
+/* The chevron button: its own small hit target next to a linked group's title, or — via
+   `.docs-nav-row.docs-nav-expand` — folded into a plain group's whole header row instead. */
+button.docs-nav-expand:not(.docs-nav-row) {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+button.docs-nav-expand:not(.docs-nav-row):hover,
+button.docs-nav-expand:not(.docs-nav-row):focus-visible {
+  color: var(--text-strong);
+}
+
+.docs-nav-expand svg {
+  transition: transform var(--dur-fast) var(--ease-standard);
+}
+
+.docs-nav-group.open > .docs-nav-header .docs-nav-expand svg,
+.docs-nav-group.open > .docs-nav-row.docs-nav-expand svg {
+  transform: rotate(90deg);
+}
+
+/* A left guide line ties a section's children visually back to its header and makes the nesting
+   depth legible at a glance — the same job the old per-depth left padding did, but readable even
+   while every row otherwise looks alike. */
+.docs-nav-children {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: var(--space-2) 0 0 20px;
+  padding-left: 10px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.docs-nav-children[hidden] {
+  display: none;
+}

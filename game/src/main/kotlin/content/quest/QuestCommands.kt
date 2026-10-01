@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.QuestDefinitions
+import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -117,20 +118,35 @@ class QuestCommands : Script {
 
         val items = quest["req_item_ids", emptyList<String>()]
         var given = 0
-        for (item in items) {
+        for (key in items) {
+            val item = key.substringBefore(":")
             if (ItemDefinitions.getOrNull(item) == null) {
                 player.message("Unknown item '$item' in ${quest.stringId} requirements.")
                 continue
             }
-            if (!player.inventory.contains(item)) {
-                player.addOrDrop(item)
+            val amount = key.substringAfter(":").toIntOrNull() ?: 1
+            val current = player.inventory.count(item, amount)
+            if (current < amount) {
+                player.addOrDrop(item, amount - current)
                 given++
             }
         }
 
+        val variables = quest["prep_vars", emptyMap<String, Any>()]
+        var set = 0
+        for ((variable, value) in variables) {
+            if (VariableDefinitions.get(variable) == null) {
+                player.message("Unknown variable '$variable' in ${quest.stringId} prep list.")
+                continue
+            }
+            player[variable] = value
+            set++
+        }
+
         player.message(
             "Prepared for ${quest["name", questId]}: ${skills.size} skills, " +
-                "${quests.size} ${if (quests.size == 1) "quest" else "quests"}, $given items.",
+                "${quests.size} ${if (quests.size == 1) "quest" else "quests"}, $given items, " +
+                "$set ${if (set == 1) "variable" else "variables"}.",
         )
     }
 }

@@ -57,17 +57,6 @@ object Main {
         val job = server.start(port)
         AuditLog.info("login online")
 
-        // Web server
-        var site: Job? = null
-        if (Settings["web.server.enabled", false]) {
-            site = webServer(port)
-            if (site == null) {
-                server.stop()
-                return
-            }
-            AuditLog.info("web online")
-        }
-
         // Content
         val configFiles = configFiles()
         try {
@@ -75,7 +64,17 @@ object Main {
         } catch (ex: Exception) {
             logger.error(ex) { "Error loading files." }
             server.stop()
-            site?.cancel()
+        }
+
+        // Web server
+        var site: Job? = null
+        if (Settings["web.server.enabled", false]) {
+            site = webServer(port, cache)
+            if (site == null) {
+                server.stop()
+                return
+            }
+            AuditLog.info("web online")
         }
 
         // Login server
@@ -193,15 +192,15 @@ object Main {
     }
 
     @Suppress("HttpUrlsUsage")
-    private fun webServer(port: Int): Job? {
-        val path = Paths.get(Settings["web.client.zip", ""])
+    private fun webServer(port: Int, cache: Cache): Job? {
+        val path = Paths.get(Settings["web.client.path", ""])
         if (!path.exists()) {
-            logger.error { "No webclient zip file found at path: $path" }
+            logger.error { "No webclient file found at path: $path" }
             return null
         }
         val webPort = Settings["web.server.port"].toInt()
         val address = "localhost"
-        val webServer = WebServer(path, webPort, address, port)
+        val webServer = WebServer(path, webPort, address, port, get<Storage>(), get<QuestDefinitions>(), cache)
         val scope = CoroutineScope(Dispatchers.IO)
         return scope.launch {
             logger.info { "Webserver online at http://$address:$webPort/" }

@@ -8,13 +8,11 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasMenuOpen
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.data.definition.ClientScriptDefinitions
 import world.gregs.voidps.engine.data.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.suspend.Suspension
@@ -68,13 +66,13 @@ internal class ActionQueueTest {
         queue.add(Action<Player>("test", 1, ActionPriority.Normal) { executed = true })
 
         // Add delay
-        player["delay"] = 1
+        player.delay = 1
         queue.tick()
 
         assertFalse(executed, "Action should not execute while delayed")
 
         // Remove delay
-        player.clear("delay")
+        player.delay = 0
         queue.tick()
 
         assertTrue(executed, "Action should execute after delay removed")

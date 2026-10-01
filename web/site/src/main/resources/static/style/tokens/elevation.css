@@ -1,0 +1,19 @@
+:root{
+  /* Panels are lit from above: a gold-tinted inner top edge, a dark inner base. */
+  --bevel-up:inset 0 1px 0 rgba(247,220,156,.13),inset 0 -1px 0 rgba(0,0,0,.4); /* @kind shadow */
+  --bevel-down:inset 0 2px 4px rgba(0,0,0,.5),inset 0 -1px 0 rgba(247,220,156,.06); /* @kind shadow */
+  --bevel-gold:inset 0 1px 0 rgba(251,238,203,.45),inset 0 -2px 0 rgba(138,99,24,.55); /* @kind shadow */
+
+  --shadow-xs:0 1px 2px rgba(10,7,4,.5);
+  --shadow-sm:0 2px 6px rgba(10,7,4,.45);
+  --shadow-md:0 6px 18px rgba(10,7,4,.45);
+  --shadow-lg:0 18px 44px rgba(10,7,4,.55);
+  --shadow-glow-gold:0 0 0 1px rgba(224,174,60,.5),0 0 18px rgba(224,174,60,.22);
+
+  /* Keyboard focus only (:focus-visible) — a soft 3px gold halo, not a hard ring. */
+  --ring-focus:0 0 0 2px var(--umber-900),0 0 0 3px rgba(224,174,60,.6);
+
+  /* Fades that protect type over artwork. */
+  --scrim-bottom:linear-gradient(to top,rgba(23,18,13,.94) 0%,rgba(23,18,13,.78) 42%,rgba(23,18,13,0) 100%); /* @kind other */
+  --scrim-panel:linear-gradient(180deg,rgba(255,255,255,.035) 0%,rgba(0,0,0,.12) 100%); /* @kind other */
+}

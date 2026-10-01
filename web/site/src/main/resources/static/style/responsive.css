@@ -1,0 +1,206 @@
+/* Small-screen overrides for the site chrome (header/footer) shared by every page, and for
+   the docs, hiscores and exchange layouts. Inline styles set the desktop truth at render time,
+   so these rules use !important to win over them below each breakpoint — same convention as
+   the interactive states in components.css. */
+
+@media (max-width:900px){
+  /* Flex/grid items default to a content-based min size ("min-width:auto"), which lets one wide
+     child (a fixed-column table, a long code line) force its whole flex/grid ancestor chain
+     wider than the viewport instead of shrinking so an inner `overflow-x:auto` box can take
+     over. Zeroing it is the standard fix for exactly this class of bug, and is a no-op outside
+     flex/grid contexts (a plain block's computed min-width is already 0 there). The body/html
+     rule is just the last-resort guard against a stray pixel of residual overflow. */
+  *,*::before,*::after{min-width:0}
+  html,body{overflow-x:hidden}
+}
+
+@media (max-width:860px){
+  .void-header-toggle{display:flex!important}
+
+  .void-header-nav{display:none!important}
+  .void-header-nav.void-nav-open{
+    display:flex!important;flex-direction:column;align-items:stretch;gap:0!important;
+    position:absolute;top:56px;left:0;right:0;padding:var(--space-4) 0;
+    background:var(--surface-header);border-bottom:1px solid var(--border-gold);
+    box-shadow:var(--shadow-lg);z-index:35
+  }
+  .void-header-nav.void-nav-open > a{
+    padding:var(--space-5) var(--space-7)!important;border-bottom:none!important;margin-bottom:0!important
+  }
+  .void-header-nav.void-nav-open .void-header-community{width:100%;flex-direction:column;align-items:stretch}
+  .void-header-nav.void-nav-open .void-header-community > button{
+    width:100%;justify-content:space-between;padding:var(--space-5) var(--space-7)!important;
+    border-bottom:none!important;margin-bottom:0!important
+  }
+  .void-header-community-panel{
+    position:static!important;top:auto!important;left:auto!important;width:100%!important;
+    border:none!important;border-top:1px solid var(--border-subtle)!important;
+    border-radius:0!important;box-shadow:none!important;background:var(--surface-inset)!important
+  }
+
+  .void-header-extra{display:none!important}
+
+  /* World-select + login live at the end of the nav so they fold into the same dropdown —
+     stack them full-width instead of the cramped inline row they use on desktop. */
+  .void-header-nav.void-nav-open .void-header-nav-end{
+    margin-left:0!important;flex-direction:column;align-items:stretch;gap:0;width:100%;
+    padding:var(--space-4) var(--space-7) 0;border-top:1px solid var(--border-subtle)
+  }
+  .void-header-nav.void-nav-open .void-header-nav-end > *{width:100%;margin-bottom:var(--space-4)}
+}
+
+@media (max-width:640px){
+  .void-footer-columns{grid-template-columns:1fr 1fr!important;row-gap:var(--space-8)!important}
+  .void-footer-bottom{flex-direction:column!important;align-items:flex-start!important}
+}
+
+/* Tab strips (hiscores' Overall/Skills/Compare/Bosses, and any other [role=tablist]) scroll
+   instead of clipping their last item on phones too narrow to fit every tab at once. Tabs need
+   flex-shrink:0 for the same reason docs-sidebar's links do above: without it the min-width:0
+   reset lets them shrink and overlap instead of just scrolling past the edge. */
+@media (max-width:480px){
+  [role="tablist"]{overflow-x:auto}
+  [role="tablist"] [role="tab"]{flex-shrink:0}
+}
+
+/* Docs: three-column grid collapses to a single column, sidebar becomes a horizontal-scroll
+   strip and the "on this page" outline is dropped (no room, and its anchors are also reachable
+   by scrolling the article). */
+@media (max-width:900px){
+  .docs-layout{grid-template-columns:1fr!important}
+  .docs-toc{display:none!important}
+  .docs-sidebar{
+    border-right:none!important;border-bottom:1px solid var(--border-panel);
+    flex-direction:row!important;overflow-x:auto;padding:var(--space-5) var(--space-6)!important
+  }
+  .docs-search{flex:0 0 220px}
+  .docs-sidebar nav{flex-direction:row!important;gap:var(--space-3)!important}
+  /* Collapsible sections (Docs.kt's `.docs-nav-group`/`.docs-nav-header`/`.docs-nav-children`)
+     only make sense as a vertical accordion — there's no room for a toggle target in a horizontal
+     scroll strip, and every link needs to stay reachable without an extra tap. `display:contents`
+     drops the wrapper divs out of the box tree while keeping their `a`/`span` contents as direct
+     flex items of `nav`, so the whole tree flattens into one scrollable row. `!important` is what
+     lets it win over `.docs-nav-children[hidden]`'s `display:none` — a collapsed section on desktop
+     still renders all of its links here. */
+  .docs-nav-group,.docs-nav-header,.docs-nav-children{display:contents!important}
+  /* Hides both shapes of expand control: a plain section header IS this element (a full-width
+     `.docs-nav-row.docs-nav-expand` button, title included), while a linked group's is a separate
+     chevron-only button beside its `<a>` — hiding it here also removes its title/chevron entirely
+     from the strip, since there's nowhere for a horizontal scroller to put a toggle target. */
+  .docs-nav-expand{display:none!important}
+  .docs-nav-label{display:none!important}
+  /* flex-shrink:0 matters here as much as white-space:nowrap: the global min-width:0 reset above
+     otherwise lets each link shrink narrower than its own text once there isn't room for all of
+     them, and the overflowing text of one link then paints over its neighbour instead of the row
+     just scrolling — same fix as tableScroll's rows, applied to a flex row instead of a grid.
+     padding is reset too: nested _Sidebar.md entries carry an inline per-depth left indent for
+     the desktop column, which has no meaning in this flat horizontal strip and otherwise leaves
+     each pill's active/hover background offset from its own text by a different amount. */
+  /* `.docs-nav-row` sets width:100% for the desktop vertical column, and a linked group's title
+     (docs.css's `.docs-nav-header > .docs-nav-row`) additionally gets flex:1;min-width:0 to share
+     its row with the chevron button. `display:contents` above only drops elements from the box
+     tree — the `>` combinator still matches on the unchanged DOM, so both rules keep applying once
+     "Home" becomes a bare flex item of `nav` here, shrinking it to a sliver that "Roadmap" then
+     renders underneath. `flex:none!important` (content-sized, no grow/shrink) is what actually
+     wins over that more specific desktop rule; width:auto and flex-shrink:0 alone don't. */
+  .docs-sidebar nav a{
+    width:auto!important;flex:none!important;white-space:nowrap;padding:var(--space-3) 10px!important;
+    border-left:none!important;border-bottom:2px solid transparent
+  }
+  .docs-article{padding:var(--space-6)!important}
+}
+
+/* Hiscores: sidebar+table splits stack, tile grids get denser, and any grid row wider than the
+   viewport (rank/player/level/xp columns) scrolls horizontally inside its panel instead of
+   squashing or wrapping mid-row. */
+@media (max-width:860px){
+  .hiscores-split{grid-template-columns:1fr!important}
+}
+
+@media (max-width:560px){
+  .hiscores-compare-grid{grid-template-columns:1fr!important}
+  .hiscores-compare-grid > span{padding:var(--space-3) 0!important}
+}
+
+/* Top kill counts / Fastest kills panels: minmax(340px,1fr) still enforces a 340px floor on a
+   single auto-fit column, which overflows phones narrower than that (plus page padding). Drop
+   the floor below that width so the panel fits the viewport and its own tableScroll (already
+   overflow-x:auto per the 900px rule above) handles any remaining fixed-column overflow. */
+@media (max-width:400px){
+  .hiscores-boss-panels-grid{grid-template-columns:1fr!important}
+}
+
+@media (max-width:900px){
+  /* The rows inside keep their fixed-width rank/level/xp columns (only the name column shrinks
+     via minmax(0,1fr)), so once those hit their minimum content width the whole thing simply
+     overflows this box instead of the page, and the box scrolls. The explicit min-width that
+     keeps every row the same width (so they line up while scrolling) is set inline in Kotlin —
+     see Table.kt's tableScroll — not here, because it has to be a real computed number shared by
+     every row and the header, not a CSS keyword each one would resolve independently.
+     worldList wraps each row (and the header) in its own `.void-world-row-scroll` box instead of
+     scrolling the whole `.void-world-list-scroll` panel — that panel also holds each row's
+     full-width detail panel, which would otherwise be dragged sideways along with whichever row's
+     scroll position happens to be scrolled to see a trailing column. */
+  .void-table-scroll{overflow-x:auto}
+  .void-world-row-scroll{overflow-x:auto}
+  .void-world-detail{grid-template-columns:1fr!important;padding-left:var(--space-6)!important}
+}
+
+/* Home page's "Three commands to a running world" strip, and the Grand Exchange's panel
+   grids: all fixed at two-plus fairly wide tracks, so they stack to one column below the
+   width they need. */
+@media (max-width:900px){
+  .home-run-grid,.home-what-grid,.home-bug-grid{grid-template-columns:1fr!important}
+}
+
+/* Home page's gameplay mosaic: a fixed 1-big/4-small 4-column grid, so it needs its own
+   step down to 2 columns (feature tile keeps its 2x2 span, small tiles settle underneath
+   it) before collapsing to 1 column, where the feature tile drops its span entirely. */
+@media (max-width:1000px){
+  .home-mosaic-grid{grid-template-columns:repeat(2,1fr)!important}
+}
+
+@media (max-width:600px){
+  .home-mosaic-grid{grid-template-columns:1fr!important}
+  .home-mosaic-feature{grid-column:span 1!important;grid-row:span 1!important}
+}
+
+@media (max-width:600px){
+  .home-stats-grid{grid-template-columns:1fr 1fr!important;row-gap:var(--space-6)!important}
+}
+
+@media (max-width:940px){
+  .exchange-panels-grid{grid-template-columns:1fr!important}
+}
+
+/* Item page's Trade data / Related split — the fixed 300px sidebar is what forces this one
+   wide; below that it stacks with Related following Trade data instead of the two squeezing
+   into the same row. */
+@media (max-width:760px){
+  .exchange-item-grid{grid-template-columns:1fr!important}
+}
+
+/* Dev dashboard: same fixed-300px-sidebar shape as the exchange item page above (charts column
+   plus World list/Runtime/Recent errors) — stacks instead of the sidebar overlapping the charts. */
+@media (max-width:760px){
+  .dev-dashboard-grid{grid-template-columns:1fr!important}
+}
+
+/* Dev player management: the player detail column drops to full viewport width well before
+   phone width (the 240px sidebar wraps first), so the Combat snapshot / Skills auto-fit grids'
+   minmax floors (220/160/260px) are what overflow — same class of bug as the hiscores boss
+   panels above, fixed the same way. */
+@media (max-width:480px){
+  .dev-combat-skills-grid,.dev-player-skills-grid{grid-template-columns:1fr!important}
+  .dev-combat-facts-grid{grid-template-columns:1fr 1fr!important}
+}
+
+/* The players page's search/detail/side columns rely on flex-wrap to stack once their combined
+   flex-basis (280+480+300px) doesn't fit a row, but that leaves each column's own used width to
+   the browser's flex-basis/grow resolution — which can land wider than the viewport instead of
+   shrinking to it once a column is alone on its line (seen forcing the detail column, and the
+   tab strip / action buttons inside it, well past 320-375px phones). Forcing each to a 100% basis
+   below the point the three columns first stop fitting side by side removes that ambiguity. */
+@media (max-width:900px){
+  .dev-players-search-col,.dev-players-detail-col,.dev-players-side-col{flex-basis:100%!important;min-width:0!important}
+}

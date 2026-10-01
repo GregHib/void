@@ -3,6 +3,7 @@ package content.quest
 import WorldTest
 import containsMessage
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.command.Commands
 import world.gregs.voidps.engine.entity.character.player.PlayerRights
@@ -36,6 +37,64 @@ class QuestCommandsTest : WorldTest() {
         // req_item_ids - everything else is handed out during the quest
         assertTrue(admin.inventory.contains("slayer_gloves"))
         assertTrue(admin.inventory.contains("spade"))
+    }
+
+    @Test
+    fun `Quest prep hands out stacks of the items a quest needs more than one of`() {
+        val admin = createPlayer(name = "prep admin myreque")
+        admin.rights = PlayerRights.Admin
+
+        runTest { Commands.call(admin, "quest_prep in_search_of_the_myreque") }
+        tick()
+
+        assertEquals(25, admin.levels.getMax(Skill.Agility))
+        assertTrue(admin.questCompleted("nature_spirit"))
+        assertTrue(admin.inventory.contains("steel_longsword"))
+        assertTrue(admin.inventory.contains("steel_sword", 2))
+        assertTrue(admin.inventory.contains("steel_nails", 225))
+        assertTrue(admin.inventory.contains("plank", 6))
+        assertTrue(admin.inventory.contains("druid_pouch_2", 5))
+        assertTrue(admin.inventory.contains("silver_sickle_b"))
+        assertTrue(admin.inventory.contains("coins", 10))
+        assertTrue(admin.inventory.contains("hammer"))
+    }
+
+    @Test
+    fun `Quest reset clears the flags a quest keeps under other names`() {
+        val admin = createPlayer(name = "reset admin myreque")
+        admin.rights = PlayerRights.Admin
+        admin["in_search_of_the_myreque"] = "completed"
+        admin["bridgerung1"] = true
+        admin["bridgerung3"] = true
+        admin["route_bridgecomplete"] = true
+        admin["thsfm_vanstrom_hide"] = true
+        admin["met_sani"] = true
+        admin["met_polmafi"] = true
+
+        runTest { Commands.call(admin, "quest_reset in_search_of_the_myreque") }
+        tick()
+
+        assertEquals("unstarted", admin["in_search_of_the_myreque", "unstarted"])
+        assertFalse(admin["bridgerung1", false])
+        assertFalse(admin["bridgerung3", false])
+        assertFalse(admin["route_bridgecomplete", false])
+        assertFalse(admin["thsfm_vanstrom_hide", false], "Vanstrom sits back down in the tavern")
+        assertFalse(admin["met_sani", false])
+        assertFalse(admin["met_polmafi", false])
+    }
+
+    @Test
+    fun `Quest prep sets up the world state a quest inherits from its prerequisites`() {
+        val admin = createPlayer(name = "prep admin biohazard")
+        admin.rights = PlayerRights.Admin
+
+        runTest { Commands.call(admin, "quest_prep biohazard") }
+        tick()
+
+        assertTrue(admin.questCompleted("plague_city"))
+        assertTrue(admin.inventory.contains("priest_gown_top"))
+        assertTrue(admin.inventory.contains("priest_gown_bottom"))
+        assertTrue(admin["plaguecity_elena_at_home", false], "Elena should be home to start the quest")
     }
 
     @Test

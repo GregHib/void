@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.closeInterfaces
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -22,9 +23,21 @@ interface Teleport {
         takeOff.getOrPut(type) { mutableSetOf() }.add(block)
     }
 
+    fun blockTeleports(message: String = "", blocked: Player.() -> Boolean) {
+        teleportTakeOff("*") {
+            if (!blocked()) {
+                return@teleportTakeOff true
+            }
+            if (message.isNotEmpty()) {
+                message(message)
+            }
+            false
+        }
+    }
+
     fun teleportLand(type: String, block: Player.() -> Unit) {
         Script.checkLoading()
-        land[type] = block
+        land.getOrPut(type) { mutableSetOf() }.add(block)
     }
 
     fun teleportRemoveItems(type: String, block: Player.(String) -> Boolean) {
@@ -49,7 +62,7 @@ interface Teleport {
     companion object : AutoCloseable {
         private val takeOff = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val items = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
-        private val land = Object2ObjectOpenHashMap<String, Player.() -> Unit>(5)
+        private val land = Object2ObjectOpenHashMap<String, MutableSet<Player.() -> Unit>>(5)
         private val objectTakeOff = Object2ObjectOpenHashMap<String, suspend Player.(GameObject, String) -> Int>(50)
         private val objectLand = Object2ObjectOpenHashMap<String, suspend Player.(GameObject, String) -> Unit>(20)
 
@@ -57,7 +70,14 @@ interface Teleport {
         const val CANCEL = -1
 
         fun takeOff(player: Player, type: String, item: String): Boolean {
-            for (handler in takeOff[type] ?: return true) {
+            if (!invoke(takeOff[type], player, item)) {
+                return false
+            }
+            return type == "*" || invoke(takeOff["*"], player, item)
+        }
+
+        private fun invoke(handlers: Set<Player.(String) -> Boolean>?, player: Player, item: String): Boolean {
+            for (handler in handlers ?: return true) {
                 if (!handler.invoke(player, item)) {
                     return false
                 }
@@ -75,7 +95,10 @@ interface Teleport {
         }
 
         fun land(player: Player, type: String) {
-            land[type]?.invoke(player)
+            land[type]?.forEach { handler -> handler.invoke(player) }
+            if (type != "*") {
+                land["*"]?.forEach { handler -> handler.invoke(player) }
+            }
         }
 
         suspend fun takeOff(player: Player, target: GameObject, option: String): Int {

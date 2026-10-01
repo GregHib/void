@@ -154,7 +154,7 @@ class PirateTreasureTest : WorldTest() {
         assertTrue(player.containsMessage("I can't dig up anything with him attacking me!"))
 
         // read_message -> completed: dig again once he's gone
-        val gardener = NPCs.findOrNull(player.tile.regionLevel, "gardener_level_4")
+        val gardener = NPCs.findOrNull(player.tile.regionLevel, "gardener_level_4_2")
         assertNotNull(gardener)
         NPCs.remove(gardener)
         tick(2)
@@ -250,7 +250,7 @@ class PirateTreasureTest : WorldTest() {
         player.itemOption("Dig", "spade")
         tick(4)
 
-        val gardener = NPCs.at(player.tile.regionLevel).firstOrNull { it.id == "gardener_level_4" }
+        val gardener = NPCs.at(player.tile.regionLevel).firstOrNull { it.id == "gardener_level_4_2" }
         assertNotNull(gardener)
         assertEquals(player.accountName, gardener["owner", ""])
         assertTrue(player["pirates_treasure_spawned_gardener", false])

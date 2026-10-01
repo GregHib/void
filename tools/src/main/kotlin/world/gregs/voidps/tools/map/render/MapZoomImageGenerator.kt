@@ -32,6 +32,21 @@ object MapZoomImageGenerator {
     private const val MAX_ZOOM_IN = 11
     private const val MIN_ZOOM_IN = 4
 
+    /**
+     * Whether to write the zoom-in levels above [INPUT_ZOOM] (see [generateZoomInLevel]).
+     *
+     * They're nearest-neighbour doublings of [INPUT_ZOOM], so they hold no detail it doesn't
+     * already have — for the Void map that's 96,485 files and ~252 MiB reproducing the 1,477 files
+     * and 8.6 MiB of level 8. The web map's `worldmap.js` no longer reads them: its `nativeZoomFor`
+     * caps the level it fetches at [INPUT_ZOOM] and lets `image-rendering: pixelated` redo the
+     * doubling in the browser, which draws the identical image from 1/64th of the bytes at zoom 11.
+     *
+     * Left as a toggle rather than deleted because the tile set is also consumed by leaflet-based
+     * viewers (see the class doc), and leaflet fetches a real tile per integer zoom instead of
+     * scaling one — turn this back on when generating for one of those.
+     */
+    private const val GENERATE_ZOOM_IN = false
+
     @JvmStatic
     fun main(args: Array<String>) {
         if (!Path.of("$OUTPUT_BASE/0/8/").exists()) {
@@ -48,9 +63,11 @@ object MapZoomImageGenerator {
                 val tiles = generateZoomOutLevel(level, zoom)
                 println("Generated zoom-out level $zoom with ${tiles.size} tiles.")
             }
-            for (zoom in INPUT_ZOOM + 1..MAX_ZOOM_IN) {
-                val tiles = generateZoomInLevel(level, zoom)
-                println("Generated zoom-in level $zoom with ${tiles.size} tiles.")
+            if (GENERATE_ZOOM_IN) {
+                for (zoom in INPUT_ZOOM + 1..MAX_ZOOM_IN) {
+                    val tiles = generateZoomInLevel(level, zoom)
+                    println("Generated zoom-in level $zoom with ${tiles.size} tiles.")
+                }
             }
         }
         dumpLocations()
@@ -147,8 +164,6 @@ object MapZoomImageGenerator {
                 launch(Dispatchers.IO) {
                     semaphore.withPermit {
                         val img = BufferedImage(TILE_SIZE, TILE_SIZE, BufferedImage.TYPE_INT_ARGB)
-                        val g = img.createGraphics()
-                        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC)
 
                         for (dx in 0..1) {
                             for (dy in 0..1) {
@@ -157,12 +172,10 @@ object MapZoomImageGenerator {
                                 val childFile = File("$nextZoomPath/$childX/$readY.png")
                                 if (childFile.exists()) {
                                     val tile = ImageIO.read(childFile)
-                                    g.drawImage(tile, dx * TILE_SIZE / 2, dy * TILE_SIZE / 2, TILE_SIZE / 2, TILE_SIZE / 2, null)
+                                    halve(tile, img, dx * TILE_SIZE / 2, dy * TILE_SIZE / 2)
                                 }
                             }
                         }
-
-                        g.dispose()
 
                         if (isImageTransparentOrBlack(img)) {
                             return@withPermit
@@ -177,6 +190,51 @@ object MapZoomImageGenerator {
         }
 
         return tileSet.toList()
+    }
+
+    /**
+     * Averages each 2x2 block of [source] into one pixel of [target] at [offsetX]/[offsetY] — the
+     * exact area filter for a 2:1 reduction, and the reason this isn't a [java.awt.Graphics2D]
+     * `drawImage` with an interpolation hint like [generateZoomInLevel]'s. Java2D's BICUBIC (and
+     * BILINEAR) sample a neighbourhood around a point instead of pre-filtering to the target scale,
+     * so halving pixel art through either softens every edge and rings around it: measured against
+     * the Lumbridge tile, bicubic zoom-7 output holds 4148 distinct colours against the 297 of the
+     * zoom-8 tile it came from, nearly all of them overshoot either side of an edge. Every level
+     * below [INPUT_ZOOM] is generated from the one above, so that softening compounds the further
+     * out you zoom — which is what made the web map's own zoom go soft below 7.5, the point where
+     * it stops scaling zoom-8 tiles and starts using zoom 7.
+     *
+     * Colours are weighted by alpha (and unweighted again on the way out) so a block straddling the
+     * transparent edge of the map averages the colours actually there, rather than dragging them
+     * toward the arbitrary RGB stored under a fully transparent pixel.
+     */
+    private fun halve(source: BufferedImage, target: BufferedImage, offsetX: Int, offsetY: Int) {
+        val half = TILE_SIZE / 2
+        val pixels = source.getRGB(0, 0, TILE_SIZE, TILE_SIZE, null, 0, TILE_SIZE)
+        val out = IntArray(half * half)
+        for (y in 0 until half) {
+            for (x in 0 until half) {
+                var alpha = 0
+                var red = 0
+                var green = 0
+                var blue = 0
+                for (dy in 0..1) {
+                    for (dx in 0..1) {
+                        val argb = pixels[(y * 2 + dy) * TILE_SIZE + x * 2 + dx]
+                        val a = argb ushr 24 and 0xff
+                        alpha += a
+                        red += (argb shr 16 and 0xff) * a
+                        green += (argb shr 8 and 0xff) * a
+                        blue += (argb and 0xff) * a
+                    }
+                }
+                if (alpha == 0) {
+                    continue
+                }
+                out[y * half + x] = (alpha / 4 shl 24) or (red / alpha shl 16) or (green / alpha shl 8) or (blue / alpha)
+            }
+        }
+        target.setRGB(offsetX, offsetY, half, half, out, 0, half)
     }
 
     private fun parentTiles(parentPath: String): List<Pair<Int, Int>> {

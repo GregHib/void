@@ -41,10 +41,6 @@ examine = "A place to attach a rope."
 id = 26299
 examine = "There's a rope attached."
 
-[godwars_saradomin_rope_bottom_end]
-id = 26297
-examine = "I can climb it."
-
 [godwars_saradomin_rope_bottom_end_base]
 id = 26298
 
@@ -95,28 +91,19 @@ examine = "Looks foreboding!"
 id = 26427
 examine = "Looks foreboding!"
 
-[big_door_bandos_opened]
-id = 26851
-examine = "Looks foreboding!"
-
 [big_door_bandos_closed]
 id = 26425
-examine = "Looks foreboding!"
-
-[big_door_zamorak_opened]
-id = 26851
+opened = "big_door_saradomin_opened"
 examine = "Looks foreboding!"
 
 [big_door_zamorak_closed]
 id = 26428
-examine = "Looks foreboding!"
-
-[big_door_armadyl_opened]
-id = 26851
+opened = "big_door_saradomin_opened"
 examine = "Looks foreboding!"
 
 [big_door_armadyl_closed]
 id = 26426
+opened = "big_door_saradomin_opened"
 examine = "Looks foreboding!"
 
 [prayer_zamorak_altar_godwars]

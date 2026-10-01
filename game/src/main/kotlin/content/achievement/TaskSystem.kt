@@ -1,5 +1,6 @@
 package content.achievement
 
+import content.area.misthalin.tutorial_island.inTutorial
 import content.entity.player.modal.Tab
 import content.entity.player.modal.tab
 import content.quest.questCompleted
@@ -130,6 +131,11 @@ class TaskSystem : Script {
             if (key == "task_pin_slot" || key == "task_area") {
                 refreshSlots(this)
             } else if (key.endsWith("_task") && (to == true || to == "completed")) {
+                if (inTutorial) {
+                    // Tasks can't be earned on Tutorial Island; roll it back so it stays available.
+                    clear(key)
+                    return@variableSet
+                }
                 completeTask(this, key)
             }
         }

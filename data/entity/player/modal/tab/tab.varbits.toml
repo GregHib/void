@@ -1,0 +1,6 @@
+# Blinks a sidebar tab icon. Mirrors the `tab` varc list offset by one, so "None" clears it.
+[tab_flash]
+id = 3756
+format = "list"
+default = "None"
+values = [ "None", "CombatStyles", "TaskSystem", "Stats", "QuestJournals", "Inventory", "WornEquipment", "PrayerList", "MagicSpellbook", "Objectives", "FriendsList", "IgnoreList", "ClanChat", "Options", "Emotes", "MusicPlayer", "Notes", "RunOrb" ]

@@ -14,14 +14,27 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.equip.equipped
+import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.inv.transact.operation.AddItem.add
+import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 import world.gregs.voidps.engine.queue.longQueue
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 
 class Xenia : Script {
+
+    private val statuettePrices = mapOf(
+        "jade_demon_statuette" to 100,
+        "topaz_demon_statuette" to 200,
+        "sapphire_demon_statuette" to 300,
+        "emerald_demon_statuette" to 400,
+        "ruby_demon_statuette" to 500,
+        "diamond_demon_statuette" to 1000,
+    )
+
     init {
         npcOperate("Talk-to", "xenia*") { (target) ->
             when (quest("blood_pact")) {
@@ -97,11 +110,20 @@ class Xenia : Script {
                 }
                 "untied_ilona" -> askAnything()
                 "completed" -> {
+                    if (hasAnyDemonStatuette()) {
+                        statuetteSaleDialog()
+                        return@npcOperate
+                    }
                     if (get("blood_pact_ilona_departed", false)) {
                         askAnything()
                         return@npcOperate
                     }
-                    npc<Happy>("Hello again, adventurer.")
+                    if (wearingDragithMask()) {
+                        npc<Laugh>("Ha ha! I thought you might put Dragith Nurn's mask back together.")
+                        npc<Laugh>("Oh, take it off. It doesn't suit you. You look ridiculous!")
+                    } else {
+                        npc<Happy>("Hello again, adventurer.")
+                    }
                     choiceAfterQuest()
                 }
             }
@@ -113,6 +135,8 @@ class Xenia : Script {
         npc<Neutral>("Is there anything you want to ask before you go to seek out new adventures?")
         finalDialogBloodPact()
     }
+
+    private fun Player.wearingDragithMask(): Boolean = equipped(EquipSlot.Hat).id == "mask_of_dragith_nurn"
 
     fun Player.hasPlayerWeaponType(weaponType: String): Boolean {
         val equippedWeapon = equipped(EquipSlot.Weapon)
@@ -245,6 +269,9 @@ class Xenia : Script {
             if (checkForLostWeapons(this@choiceAfterQuest)) {
                 lostWeapon()
             }
+            if (hasMaskPart()) {
+                foundMaskPart()
+            }
             leaving()
         }
     }
@@ -253,6 +280,12 @@ class Xenia : Script {
         npc<Neutral>("Yes, one of my contacts in the Champion's Guild found them and returned them to me.")
         giveWeapons(this)
     }
+
+    fun ChoiceOption.foundMaskPart(): Unit = option("I've found part of a mask in the catacombs.") {
+        npc<Neutral>("Oh, yes, I remember that Dragith Nurn had an enchanted ritual mask. If you can find all the pieces, you might be able to put it back together.")
+    }
+
+    private fun Player.hasMaskPart(): Boolean = inventory.items.any { !it.isEmpty() && it.id.startsWith("mask_part_") }
 
     fun ChoiceOption.choiceQuestDetail(): Unit = option<Neutral>("I've got a question about my adventure in the catacombs...") {
         afterQuestDetail()
@@ -479,15 +512,80 @@ class Xenia : Script {
         }
 
         suspend fun giveWeapons(player: Player) {
-            if (!player.ownsItem("kayles_sling") && player.inventory.add("kayles_sling")) {
-                player.statement("Xenia gives you Kayle's sling.")
-            }
-            if (!player.ownsItem("caitlins_staff") && player.inventory.add("caitlins_staff")) {
-                player.statement("Xenia gives you Caitlin's staff.")
-            }
-            if (!player.ownsItem("reeses_sword") && player.inventory.add("reeses_sword")) {
-                player.statement("Xenia gives you Reese's sword.")
+            val missingWeapons = listOf(
+                "kayles_sling" to "Xenia gives you Kayle's sling.",
+                "caitlins_staff" to "Xenia gives you Caitlin's staff.",
+                "reeses_sword" to "Xenia gives you Reese's sword.",
+            ).filterNot { player.ownsItem(it.first) }
+            for ((weapon, message) in missingWeapons) {
+                if (!player.inventory.add(weapon)) {
+                    player.npc<Neutral>("Speak to me again when you have some free inventory space.")
+                    return
+                }
+                player.item(weapon, message)
             }
         }
     }
+
+    private suspend fun Player.statuetteSaleDialog() {
+        npc<Neutral>("You've found some of Dragith Nurn's statuettes!")
+        npc<Neutral>("$name, would you sell the statuettes to me? There are several statuettes down there, and I'll pay you for any you can find.")
+        statuetteSaleIntroOptions()
+    }
+
+    private suspend fun Player.statuetteSaleIntroOptions() {
+        choice {
+            option<Neutral>("I'll sell you the statuettes.") {
+                sellDemonStatuettes()
+            }
+            option("Why do you want the statuettes?") { statuetteWhyDialog() }
+            option<Neutral>("I want to talk about something else.") {
+                choiceAfterQuest()
+            }
+        }
+    }
+
+    private suspend fun Player.statuetteSaleOptions() {
+        choice {
+            option<Neutral>("I'll sell you the statuettes.") {
+                sellDemonStatuettes()
+            }
+            option<Neutral>("I want to talk about something else.") {
+                choiceAfterQuest()
+            }
+        }
+    }
+
+    private suspend fun Player.statuetteWhyDialog() {
+        npc<Sad>("They don't have magical power or anything like that. It's just...you'll probably think this is silly.")
+        npc<Sad>("Meeting Dragith Nurn, all those years ago, was my first real adventure. That was when I changed from a curious kid to an adventurer.")
+        npc<Neutral>("I'd just like to have something to remember it. I've got souvenirs of a lot of my later adventures, but I never got a souvenir from the very first. Those statuettes would be perfect.")
+        statuetteSaleOptions()
+    }
+
+    private suspend fun Player.sellDemonStatuettes() {
+        val items = inventory.items.filter { it.id in statuettePrices.keys }.sortedBy { statuettePrices.getValue(it.id) }
+        if (items.isEmpty()) {
+            choiceAfterQuest()
+            return
+        }
+
+        for (item in items) {
+            val price = statuettePrices.getValue(item.id)
+            inventory.transaction {
+                remove(item.id)
+                add("coins", price)
+            }
+            val statuette = item.id.removeSuffix("_demon_statuette").replace('_', ' ')
+            item(item.id, "Xenia gives you $price coins for the $statuette statuette.")
+        }
+        npc<Happy>("Thank you, adventurer.")
+        if (hasAnyDemonStatuette()) {
+            statuetteSaleOptions()
+        } else {
+            choiceAfterQuest()
+        }
+    }
+
+    private fun Player.hasAnyDemonStatuette(): Boolean = inventory.items.any { it.id in statuettePrices.keys }
 }

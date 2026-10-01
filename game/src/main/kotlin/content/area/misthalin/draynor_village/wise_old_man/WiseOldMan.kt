@@ -1,5 +1,7 @@
 package content.area.misthalin.draynor_village.wise_old_man
 
+import content.entity.player.bank.Bank
+import content.entity.player.bank.bank
 import content.entity.player.bank.ownsItem
 import content.entity.player.dialogue.Bored
 import content.entity.player.dialogue.Confused
@@ -16,9 +18,11 @@ import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.items
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
+import content.quest.quest
 import content.quest.questCompleted
 import net.pearx.kasechange.toSentenceCase
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -27,10 +31,13 @@ import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
+import world.gregs.voidps.engine.inv.Inventory
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.removeToLimit
+import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
+import world.gregs.voidps.engine.inv.transact.operation.ShiftItem.shiftToFreeIndex
 import world.gregs.voidps.type.random
 
 class WiseOldMan : Script {
@@ -192,20 +199,74 @@ class WiseOldMan : Script {
         option<Happy>("Could you check my items for junk, please?") {
             choice {
                 option<Happy>("Could you check my bank for junk, please?") {
-                    npc<Neutral>("Certainly, but I should warn you that I don't know about all items.")
-                    // TODO add junk search
-                    npc<Neutral>("There doesn't seem to be any junk in your bank at all.")
+                    checkJunk(bank, "bank")
                 }
                 option<Happy>("Could you check my inventory for junk, please?") {
-                    npc<Neutral>("Certainly, but I should warn you that I don't know about all items.")
-                    // TODO add junk search
-                    npc<Neutral>("There doesn't seem to be any junk in your inventory at all.")
+                    checkJunk(inventory, "inventory")
                 }
                 //  if (follower != null) { // TODO and has BoB
                 //      option("Could you check my beast of burden for junk, please?")
                 //  }
             }
         }
+    }
+
+    private suspend fun Player.checkJunk(inventory: Inventory, name: String) {
+        npc<Neutral>("Certainly, but I should warn you that I don't know about all items.")
+        val junk = junk(inventory)
+        if (junk.isEmpty()) {
+            npc<Neutral>("There doesn't seem to be any junk in your $name at all.")
+            return
+        }
+        item(junk.first(), "The Wise Old Man has found ${junk.size} ${"item".plural(junk.size)} in your $name left over from quests you've completed.")
+        choice("Throw away the junk?") {
+            option<Happy>("Yes, get rid of it please.") {
+                val removed = removeJunk(inventory)
+                if (removed == 0) {
+                    npc<Confused>("Hmm, it seems to have gone already.")
+                    return@option
+                }
+                npc<Happy>("There, that's much tidier. You won't be needing those any more.")
+            }
+            option<Neutral>("No thanks, I'll hang on to it.")
+        }
+    }
+
+    private fun Player.junk(inventory: Inventory): List<String> = inventory.items
+        .filter { isJunk(it.id) }
+        .map { it.id }
+        .distinct()
+
+    private fun Player.isJunk(id: String): Boolean {
+        if (id.isEmpty()) {
+            return false
+        }
+        val quest = Tables.stringOrNull("wise_old_man_junk.$id.quest") ?: return false
+        // Checked directly as questCompleted() treats unimplemented quests as complete
+        return quest(quest).startsWith("completed")
+    }
+
+    private fun Player.removeJunk(inventory: Inventory): Int {
+        var removed = 0
+        for (index in inventory.indices.reversed()) {
+            if (!isJunk(inventory[index].id)) {
+                continue
+            }
+            if (inventory == bank) {
+                val tab = Bank.getTab(this, index)
+                val success = inventory.transaction {
+                    clear(index)
+                    shiftToFreeIndex(index)
+                }
+                if (success) {
+                    Bank.decreaseTab(this, tab)
+                    removed++
+                }
+            } else if (inventory.transaction { clear(index) }) {
+                removed++
+            }
+        }
+        return removed
     }
 
     private suspend fun Player.topic() {

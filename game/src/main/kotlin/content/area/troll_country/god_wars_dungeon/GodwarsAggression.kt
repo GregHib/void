@@ -84,8 +84,8 @@ class GodwarsAggression : Script {
     }
 
     fun randomHuntMode(npc: NPC) {
-        if (npc.tile in Areas["godwars_dungeon_multi_area"] && (npc.def["hunt_mode", ""] == "zamorak_aggressive" || npc.def["hunt_mode", ""] == "anti_zamorak_aggressive")) {
-            npc.huntMode = if (random.nextBoolean()) npc.def["hunt_mode"] else "godwars_aggressive"
+        if (npc.tile in Areas["godwars_dungeon_multi_area"] && (npc.def.huntMode == "zamorak_aggressive" || npc.def.huntMode == "anti_zamorak_aggressive")) {
+            npc.huntMode = if (random.nextBoolean()) npc.def.huntMode else "godwars_aggressive"
         }
     }
 }

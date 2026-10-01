@@ -11,6 +11,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.intEntry
 import content.entity.player.dialogue.type.npc
 import content.entity.player.inv.item.addOrDrop
+import content.entity.player.stat.KillTracker
 import content.quest.clearInstance
 import content.quest.instanceOffset
 import content.quest.smallInstance
@@ -195,6 +196,10 @@ class TzhaarFightCave(
                 tele(centre.add(instanceOffset()))
             }
             strongQueue("fight_cave_start", TimeUnit.SECONDS.toTicks(2)) {
+                val duration = get("tzhaar_fight_cave_duration", 0)
+                val newStart = epochMilliseconds() - duration
+                set("tzhaar_fight_cave_timer", newStart)
+                clear("tzhaar_fight_cave_duration")
                 startWave(this, wave, start = true)
             }
         }
@@ -213,12 +218,13 @@ class TzhaarFightCave(
             }
         }
     }
-    // 2436, 5170
 
     fun Player.leave(wave: Int, defeatedJad: Boolean = false) {
         clear("fight_cave_wave")
         start("fight_cave_cooldown", TimeUnit.MINUTES.toSeconds(2).toInt(), epochSeconds())
         close("tzhaar_fight_cave")
+        KillTracker.stop(this, "tzhaar_fight_cave_timer", prefix = "Total wave duration")
+        clear("tzhaar_fight_cave_duration")
         tele(outside)
         clearInstance()
         var tokkul = wave * (wave + 1)
@@ -258,6 +264,9 @@ class TzhaarFightCave(
         }
         player["fight_cave_wave"] = wave
         if (player["fight_caves_logout_warning", false]) {
+            val startTime = player["fight_cave_start_time", 0L]
+            val duration = epochMilliseconds() - startTime
+            player["tzhaar_fight_cave_duration"] = duration
             Script.launch {
                 accountManager.logout(player, true)
             }
@@ -272,7 +281,7 @@ class TzhaarFightCave(
             val rotation = (1..15).random(random)
             val start = epochMilliseconds()
             player["fight_cave_rotation"] = rotation
-            player["fight_cave_start_time"] = start
+            KillTracker.start(player, "tzhaar_fight_cave_timer")
             AuditLog.event(player, "start_fight_cave", start, wave, rotation)
         } else if (wave == 63) {
             player.queue("fight_cave_warning") {

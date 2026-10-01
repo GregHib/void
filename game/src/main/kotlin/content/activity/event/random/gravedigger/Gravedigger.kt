@@ -139,7 +139,7 @@ class Gravedigger : Script {
      */
     private suspend fun Player.setupGraveyard(): NPC {
         smallInstance(Region(GRAVEYARD_REGION), levels = 1)
-        setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        setInstanceLogout(RandomEvents.origin(this))
         val offset = instanceOffset()
         for (site in SITES.indices) {
             refreshGrave(site)

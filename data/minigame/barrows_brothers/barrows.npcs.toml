@@ -49,7 +49,7 @@ mage = 100
 combat_def = "ahrim_the_blighted"
 xp_bonus = 2.5
 hunt_mode = "cowardly"
-categories = ["bosses"]
+categories = ["barrows_brothers"]
 examine = "A vengeful spirit corrupted by dark magic."
 
 [dharok_the_wretched]
@@ -60,7 +60,7 @@ str = 100
 def = 100
 combat_def = "dharok_the_wretched"
 xp_bonus = 1.5
-categories = ["bosses"]
+categories = ["barrows_brothers"]
 examine = "A vengeful spirit corrupted by dark magic."
 
 [guthan_the_infested]
@@ -72,7 +72,7 @@ def = 100
 combat_def = "guthan_the_infested"
 xp_bonus = 1.5
 hunt_mode = "cowardly"
-categories = ["bosses"]
+categories = ["barrows_brothers"]
 examine = "A vengeful spirit corrupted by dark magic."
 
 [karil_the_tainted]
@@ -83,7 +83,7 @@ range = 100
 ranged_strength = 55
 combat_def = "karil_the_tainted"
 hunt_mode = "cowardly"
-categories = ["bosses"]
+categories = ["barrows_brothers"]
 examine = "A vengeful spirit corrupted by dark magic."
 
 [torag_the_corrupted]
@@ -95,7 +95,7 @@ def = 100
 combat_def = "torag_the_corrupted"
 xp_bonus = 12.5
 hunt_mode = "cowardly"
-categories = ["bosses"]
+categories = ["barrows_brothers"]
 examine = "A vengeful spirit corrupted by dark magic."
 
 [verac_the_defiled]
@@ -107,5 +107,5 @@ def = 100
 combat_def = "verac_the_defiled"
 xp_bonus = 12.5
 hunt_mode = "cowardly"
-categories = ["bosses"]
+categories = ["barrows_brothers"]
 examine = "A vengeful spirit corrupted by dark magic."

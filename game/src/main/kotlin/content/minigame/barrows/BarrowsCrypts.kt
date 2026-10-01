@@ -4,6 +4,7 @@ import content.entity.combat.killer
 import content.entity.obj.door.enterDoor
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.statement
+import content.entity.player.stat.KillTracker
 import org.rsmod.game.pathfinder.collision.CollisionStrategies
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.*
@@ -34,6 +35,7 @@ class BarrowsCrypts : Script {
                 clear("barrows_looted")
                 val brother = Tables.get("barrows_brothers").rows().random(random)
                 set("barrows_selected_brother", brother.rowId)
+                KillTracker.start(this, "barrows_brothers_timer")
                 shufflePuzzle()
             }
             val brother = target.id.substringBefore("_sarcophagus")

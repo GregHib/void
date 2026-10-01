@@ -1,0 +1,33 @@
+# The progress bar sits in the strip above the chat box, not over the game screen.
+# Component 0 is bound to varp 406 and carries the client script that lights the segments,
+# so the server only keeps `tutorial_progress` current.
+[tutorial_overlay]
+id = 371
+type = "above_chat_box"
+
+[.percent]
+id = 1
+
+[.title]
+id = 2
+
+# Layer holding the oversized arrow model and welcome blurb. It's sized for the full game
+# screen, so it has to stay hidden while the bar sits in the strip above the chat box.
+[.welcome]
+id = 4
+
+[.instructions]
+id = 27
+
+# The instruction box sits in the chat box. Deliberately not named `dialogue_*` so that
+# re-sending it when a dialogue closes can't retrigger itself, and typed `tutorial_box` so it
+# doesn't count as an open dialogue.
+[tutorial_text]
+id = 372
+type = "tutorial_box"
+
+[.title]
+id = 0
+
+[.line1]
+id = "1-6"

@@ -1,5 +1,6 @@
 package content.area.kandarin.feldip_hills
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.Mad
@@ -463,6 +464,8 @@ class Grish : Script {
 }
 
 fun Player.sendZogreFleshEatersReward() {
+    AuditLog.event(this, "quest_completed", "zogre_flesh_eaters")
+    AdventurersLogs.questCompleted(this, "zogre_flesh_eaters", points = 1)
     jingle("quest_complete_1")
     inventory.remove("ogre_artefact")
     inventory.remove("ogre_gate_key")
@@ -470,7 +473,6 @@ fun Player.sendZogreFleshEatersReward() {
     exp(Skill.Fletching, 2000.0)
     exp(Skill.Herblore, 2000.0)
     inc("quest_points", 1)
-    AuditLog.event(this, "quest_completed", "zogre_flesh_eaters")
     set("zogre_flesh_eaters", "completed")
     refreshQuestJournal()
     questComplete(

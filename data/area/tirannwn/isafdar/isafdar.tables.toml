@@ -1,0 +1,37 @@
+# Where crossing or being flung off each sticks trap lands, per direction
+[sticks_traps]
+trap = "tile"
+north = "tile"
+east = "tile"
+south = "tile"
+west = "tile"
+
+[.isafdar_sticks_trap_1]
+trap = { x = 2200, y = 3169 }
+east = { x = 2202, y = 3168 }
+west = { x = 2199, y = 3169 }
+
+[.isafdar_sticks_trap_2]
+trap = { x = 2235, y = 3181 }
+east = { x = 2238, y = 3181 }
+west = { x = 2234, y = 3181 }
+
+[.isafdar_sticks_trap_3]
+trap = { x = 2275, y = 3163 }
+east = { x = 2278, y = 3163 }
+west = { x = 2274, y = 3163 }
+
+[.isafdar_sticks_trap_4]
+trap = { x = 2181, y = 3209 }
+north = { x = 2181, y = 3212 }
+south = { x = 2181, y = 3208 }
+
+[.isafdar_sticks_trap_5]
+trap = { x = 2257, y = 3227 }
+east = { x = 2260, y = 3227 }
+west = { x = 2256, y = 3227 }
+
+[.isafdar_sticks_trap_6]
+trap = { x = 2295, y = 3214 }
+north = { x = 2295, y = 3217 }
+south = { x = 2295, y = 3213 }

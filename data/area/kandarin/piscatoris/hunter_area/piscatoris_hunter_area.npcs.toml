@@ -20,18 +20,22 @@ examine = "It's a ruby harvest butterfly."
 
 [prickly_kebbit]
 id = 5086
+respawn_delay = 7
 examine = "Curls up into a ball to protect itself from attack."
 
 [wild_kebbit]
 id = 5089
+respawn_delay = 7
 examine = "That's a mean looking set of claws."
 
 [dark_kebbit]
 id = 5099
+respawn_delay = 7
 examine = "Quieter than a ninja mouse with slippers on."
 
 [dashing_kebbit]
 id = 5100
+respawn_delay = 7
 examine = "Now you see it; now you don't."
 
 [copper_longtail]

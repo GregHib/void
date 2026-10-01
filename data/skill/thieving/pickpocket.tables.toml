@@ -257,7 +257,25 @@ type = "human"
 [.man_3]
 type = "human"
 
+[.man_falador]
+type = "human"
+
+[.drunken_man_falador]
+type = "human"
+
 [.man_al_kharid]
+type = "human"
+
+[.woman_falador]
+type = "human"
+
+[.ikis_krum]
+type = "human"
+
+[.man_musa_point]
+type = "human"
+
+[.man_musa_point_2]
 type = "human"
 
 [.martin_the_master_gardener]
@@ -345,4 +363,16 @@ type = "human"
 type = "human"
 
 [.woman_3]
+type = "human"
+
+[.cuffs]
+type = "human"
+
+[.jeff]
+type = "human"
+
+[.narf]
+type = "human"
+
+[.rusty]
 type = "human"

@@ -111,7 +111,7 @@ class EvilBob : Script {
 
     private suspend fun Player.startEvent() {
         smallInstance(Region(ISLAND_REGION), levels = 1)
-        setInstanceLogout(Tile(this["random_event_origin", tile.id]))
+        setInstanceLogout(RandomEvents.origin(this))
         // The region copy brings the island's static objects (fishing spots, uncooking
         // pots, exit portal, deposit box) with it; only the nets need spawning.
         val offset = instanceOffset()

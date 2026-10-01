@@ -12,3 +12,11 @@ values = [ "on", "friends", "off" ]
 format = "list"
 persist = true
 values = [ "on", "friends", "off" ]
+
+[boss_timers]
+format = "boolean"
+persist = true
+
+[kill_counts]
+format = "boolean"
+persist = true

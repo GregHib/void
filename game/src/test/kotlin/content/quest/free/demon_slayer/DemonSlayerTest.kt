@@ -2,6 +2,7 @@ package content.quest.free.demon_slayer
 
 import WorldTest
 import content.entity.combat.hit.damage
+import content.quest.instance
 import content.quest.quest
 import dialogueContinue
 import dialogueOption
@@ -164,5 +165,54 @@ class DemonSlayerTest : WorldTest() {
         player.dialogueContinue(1)
         tick(1)
         assertEquals("completed", player.quest("demon_slayer"))
+    }
+
+    @Test
+    fun `Leaving and re-entering the stone circle returns to the same instance`() {
+        val player = createPlayer(Tile(3222, 3380))
+        player["demon_slayer"] = "delrith"
+        player["demon_slayer_silverlight"] = true
+        player["demon_slayer_summoned"] = true
+
+        player.tele(3222, 3367)
+        tick(3)
+        val instance = player.instance()
+        assertNotNull(instance)
+        val delrith = NPCs.find(player.tile.regionLevel, "delrith")
+
+        // Step out of the circle
+        player.tele(player.tile.add(0, 12))
+        tick(3)
+        assertNull(player.instance())
+        assertEquals(3379, player.tile.y)
+
+        // Back in
+        player.tele(3222, 3367)
+        tick(3)
+        assertEquals(instance, player.instance())
+        assertEquals(delrith, NPCs.find(player.tile.regionLevel, "delrith"))
+    }
+
+    @Test
+    fun `Re-entering after delrith is gone creates a new instance`() {
+        val player = createPlayer(Tile(3222, 3380))
+        player["demon_slayer"] = "delrith"
+        player["demon_slayer_silverlight"] = true
+        player["demon_slayer_summoned"] = true
+
+        player.tele(3222, 3367)
+        tick(3)
+        val instance = player.instance()
+        NPCs.remove(NPCs.find(player.tile.regionLevel, "delrith"))
+        NPCs.run()
+
+        player.tele(player.tile.add(0, 12))
+        tick(3)
+        player.tele(3222, 3367)
+        tick(3)
+
+        assertNotNull(player.instance())
+        assertNotEquals(instance, player.instance())
+        assertNotNull(NPCs.findOrNull(player.tile.regionLevel, "delrith"))
     }
 }

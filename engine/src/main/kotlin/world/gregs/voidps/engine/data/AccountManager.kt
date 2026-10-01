@@ -25,7 +25,9 @@ import world.gregs.voidps.engine.map.collision.CollisionStrategyProvider
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.network.client.Client
 import world.gregs.voidps.network.client.ConnectionQueue
+import world.gregs.voidps.network.login.protocol.encode.WorldFlag
 import world.gregs.voidps.network.login.protocol.encode.logout
+import world.gregs.voidps.network.login.protocol.encode.sendWorldList
 import world.gregs.voidps.type.Delta
 import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
@@ -40,8 +42,17 @@ class AccountManager(
     private val homeTile: Tile
         get() = Tile(Settings["world.home.x", 0], Settings["world.home.y", 0], Settings["world.home.level", 0])
 
-    fun create(name: String, passwordHash: String): Player = Player(tile = homeTile, accountName = name, passwordHash = passwordHash).apply {
+    private val tutorialTile: Tile
+        get() = Tile(Settings["world.start.tutorial.x", 0], Settings["world.start.tutorial.y", 0], Settings["world.start.tutorial.level", 0])
+
+    private val startTile: Tile
+        get() = if (Settings["world.start.tutorial", false]) tutorialTile else homeTile
+
+    fun create(name: String, passwordHash: String): Player = Player(tile = startTile, accountName = name, passwordHash = passwordHash).apply {
         this["new_player"] = true
+        if (Settings["world.start.tutorial", false]) {
+            this["tutorial_stage"] = 0
+        }
     }
 
     fun setup(player: Player, client: Client?, displayMode: Int, viewport: Boolean = true) {
@@ -86,6 +97,7 @@ class AccountManager(
             logout(player, false)
         }
         loadCallback.invoke(player)
+        client?.sendWorldList(Settings["world.id", 16], if (World.members) WorldFlag.MEMBERS else 0)
         player.open(player.interfaces.gameFrame)
         player.variables.sendAll()
         Spawn.player(player)
@@ -102,7 +114,7 @@ class AccountManager(
         if (player["logged_out", false]) {
             return
         }
-        if (safely && player.contains("delay")) {
+        if (safely && player.delayed) {
             player.message("You need to wait a few moments before you can log out.")
             return
         }

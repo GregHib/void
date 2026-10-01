@@ -1,0 +1,12 @@
+[vinesweeper_stored_flags]
+format = "int"
+default = 10
+persist = true
+
+[vinesweeper_return_tile]
+format = "int"
+persist = true
+
+[vinesweeper_free_flags]
+format = "boolean"
+persist = true

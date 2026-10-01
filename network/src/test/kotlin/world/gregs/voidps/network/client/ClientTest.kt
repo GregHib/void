@@ -2,6 +2,7 @@ package world.gregs.voidps.network.client
 
 import io.ktor.utils.io.*
 import kotlinx.coroutines.test.runTest
+import kotlinx.io.IOException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -36,6 +37,22 @@ internal class ClientTest {
         client.exit()
 
         assertEquals(1, count)
+    }
+
+    @Test
+    fun `Write to a broken connection disconnects instead of throwing`() {
+        val channel = ByteChannel(false)
+        val client = Client(channel, IsaacCipher(IntArray(4)), null, "127.0.0.1")
+        var disconnected = false
+        client.onDisconnected {
+            disconnected = true
+        }
+        channel.cancel(IOException("Connection reset by peer"))
+
+        client.send(1) { writeByte(0) }
+
+        assertTrue(client.disconnected)
+        assertTrue(disconnected)
     }
 
     @Test

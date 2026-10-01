@@ -1,0 +1,6 @@
+[mourner_2_drop_table]
+type = "all"
+drops = [
+    { id = "key_biohazard", lacks = "key_biohazard", variable = "biohazard", equals = "poisoned_stew", default = "unstarted" },
+    { id = "key_biohazard", lacks = "key_biohazard", variable = "biohazard", equals = "found_distillator", default = "unstarted" },
+]

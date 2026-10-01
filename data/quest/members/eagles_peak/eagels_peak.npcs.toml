@@ -1,5 +1,6 @@
 [ferret]
 id = 5081
+respawn_delay = 7
 examine = "Wild."
 
 [eagle]

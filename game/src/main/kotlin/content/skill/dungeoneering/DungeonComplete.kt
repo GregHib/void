@@ -6,7 +6,9 @@ import content.area.wilderness.daemonheim.DungeoneeringParty.Companion.dungeonMe
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.item
 import content.entity.player.dialogue.type.statement
+import content.entity.player.logEvent
 import content.entity.player.modal.Tab
+import content.entity.player.stat.KillTracker
 import content.entity.world.music.playTrack
 import content.quest.closeTabs
 import world.gregs.voidps.engine.Script
@@ -302,7 +304,13 @@ class DungeonComplete : Script {
                     if (unlocked < 60 && floor == unlocked) {
                         set("dungeoneering_floor_unlocked", floor + 1)
                         item(3032, "You have unlocked the next floor. You can now reach floor ${floor + 1}!")
+                        logEvent("Dungeon floor ${floor + 1} reached.", "I have breached floor ${floor + 1} of Daemonheim for the first time.")
                     }
+                }
+                val start = get("dungeoneering_floor_timer", 0L)
+                if (start != 0L) {
+                    clear("dungeoneering_floor_timer")
+                    KillTracker.record(this, start, KillTracker.dungeoneeringFloorKey(floor, size, complexity), dungeonMembers.size, "Floor duration")
                 }
                 set("dungeon_reward_given", true)
                 println("Reward: $totalXp Tokens: $tokens")

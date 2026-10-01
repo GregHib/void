@@ -2,8 +2,8 @@ package world.gregs.voidps.network.client
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.runBlocking
+import kotlinx.io.IOException
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeShort
 import world.gregs.voidps.network.login.protocol.writeSmart
@@ -16,12 +16,6 @@ open class Client(
 ) {
 
     private val logger = InlineLogger()
-    private val handler = CoroutineExceptionHandler { _, throwable ->
-        logger.warn { "Client error: ${throwable.message}" }
-        runBlocking {
-            disconnect()
-        }
-    }
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
     private var disconnecting: (suspend () -> Unit)? = null
@@ -65,8 +59,8 @@ open class Client(
         if (disconnected) {
             return
         }
-        runBlocking {
-            write.flush()
+        write {
+            flush()
         }
     }
 
@@ -76,9 +70,25 @@ open class Client(
         if (disconnected || state != ClientState.Connected) {
             return
         }
-        runBlocking(handler) {
-            write.header(opcode, type, size, cipherOut)
-            block.invoke(write)
+        write {
+            header(opcode, type, size, cipherOut)
+            block.invoke(this)
+        }
+    }
+
+    /**
+     * Writes to the channel, disconnecting if the connection has been closed
+     */
+    private inline fun write(crossinline block: suspend ByteWriteChannel.() -> Unit) {
+        try {
+            runBlocking {
+                block.invoke(write)
+            }
+        } catch (e: IOException) {
+            logger.debug { "Client write failed $address: ${e.message}" }
+            runBlocking {
+                disconnect()
+            }
         }
     }
 

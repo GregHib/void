@@ -31,31 +31,56 @@ class FloorItemTest {
     }
 
     @Test
-    fun `Don't re-reveal public items`() {
-        val first = FloorItem(Tile.EMPTY, "item", 100, revealTicks = FloorItems.IMMEDIATE, owner = "player")
-        assertFalse(first.reveal())
-        val second = FloorItem(Tile.EMPTY, "item", 100, revealTicks = FloorItems.IMMEDIATE)
-        assertFalse(second.reveal())
+    fun `Private items count down to reveal`() {
+        val item = FloorItem(Tile.EMPTY, "item", revealTicks = 2, disappearTicks = 3, owner = "player")
+        assertEquals(2, item.lifecycle)
+        assertEquals(FloorItem.NONE, item.tick())
+        assertEquals(FloorItem.REVEAL, item.tick())
+        assertEquals(-3, item.lifecycle)
+    }
+
+    @Test
+    fun `Public items count up to removal`() {
+        val item = FloorItem(Tile.EMPTY, "item", disappearTicks = 2)
+        assertEquals(-2, item.lifecycle)
+        assertEquals(FloorItem.NONE, item.tick())
+        assertEquals(FloorItem.REMOVE, item.tick())
+    }
+
+    @Test
+    fun `Don't reveal public items`() {
+        val item = FloorItem(Tile.EMPTY, "item", 100, revealTicks = 10)
+        assertTrue(item.lifecycle <= 0)
     }
 
     @Test
     fun `Remove private or public items`() {
         val first = FloorItem(Tile.EMPTY, "item", 100, disappearTicks = FloorItems.IMMEDIATE, owner = "player")
-        assertTrue(first.remove())
+        assertEquals(FloorItem.REMOVE, first.tick())
         val second = FloorItem(Tile.EMPTY, "item", 100, disappearTicks = FloorItems.IMMEDIATE, owner = null)
-        assertTrue(second.remove())
+        assertEquals(FloorItem.REMOVE, second.tick())
     }
 
     @Test
     fun `Never remove item`() {
-        val first = FloorItem(Tile.EMPTY, "item", 100, disappearTicks = FloorItems.NEVER, owner = "player")
-        assertFalse(first.remove())
+        val item = FloorItem(Tile.EMPTY, "item", 100, disappearTicks = FloorItems.NEVER, owner = "player")
+        assertEquals(0, item.lifecycle)
+        assertEquals(FloorItem.NONE, item.tick())
     }
 
     @Test
     fun `Never reveal item`() {
-        val first = FloorItem(Tile.EMPTY, "item", 100, revealTicks = FloorItems.NEVER, owner = "player")
-        assertFalse(first.reveal())
+        val item = FloorItem(Tile.EMPTY, "item", 100, revealTicks = FloorItems.NEVER, owner = "player")
+        assertEquals(0, item.lifecycle)
+        assertEquals(FloorItem.NONE, item.tick())
     }
 
+    @Test
+    fun `Reset restarts lifecycle`() {
+        val item = FloorItem(Tile.EMPTY, "item", revealTicks = 5, disappearTicks = 5, owner = "player")
+        item.tick()
+        item.reset(revealTicks = 10, disappearTicks = 20)
+        assertEquals(10, item.lifecycle)
+        assertEquals(20, item.disappearTicks)
+    }
 }

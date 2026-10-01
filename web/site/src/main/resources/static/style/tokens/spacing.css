@@ -1,0 +1,12 @@
+:root{
+  --space-0:0px;--space-1:2px;--space-2:4px;--space-3:6px;--space-4:8px;--space-5:12px;
+  --space-6:16px;--space-7:20px;--space-8:24px;--space-9:32px;--space-10:40px;
+  --space-11:56px;--space-12:72px;--space-13:96px;
+
+  /* Corners stay shallow — chiselled stone, not soft plastic. */
+  --radius-none:0px;--radius-xs:2px;--radius-sm:3px;--radius-md:5px;--radius-lg:8px;--radius-xl:12px;--radius-pill:999px;
+
+  --border-hair:1px;--border-thick:2px;--border-frame:3px;
+
+  --container-narrow:720px; /* @kind spacing */--container-body:1040px; /* @kind spacing */--container-wide:1320px; /* @kind spacing */
+}

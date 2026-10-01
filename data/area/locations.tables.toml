@@ -1,0 +1,166 @@
+[locations]
+tile = "tile"
+aka = "list<string>"
+
+[.lumbridge]
+tile = { x = 3222, y = 3219 }
+aka = ["lumby", "lumb", "lumbrige"]
+
+[.varrock]
+tile = { x = 3212, y = 3429 }
+aka = ["varrok", "varock", "varro"]
+
+[.falador]
+tile = { x = 2966, y = 3379 }
+aka = ["fally", "fal"]
+
+[.draynor_village]
+tile = { x = 3086, y = 3248 }
+aka = ["draynor"]
+
+[.al_kharid]
+tile = { x = 3293, y = 3183 }
+aka = ["alk", "alkharid"]
+
+[.barbarian_village]
+tile = { x = 3084, y = 3421 }
+aka = ["barb_village", "barb"]
+
+[.grand_exchange]
+tile = { x = 3164, y = 3484 }
+aka = ["ge"]
+
+[.edgeville]
+tile = { x = 3087, y = 3497 }
+aka = ["edge", "edgevile"]
+
+[.port_sarim]
+tile = { x = 3028, y = 3236 }
+aka = ["sarim"]
+
+[.rimmington]
+tile = { x = 2956, y = 3215 }
+aka = ["rimmy"]
+
+[.taverley]
+tile = { x = 2896, y = 3440 }
+aka = ["taverly", "tav"]
+
+[.burthorpe]
+tile = { x = 2899, y = 3546 }
+aka = ["burthope"]
+
+[.catherby]
+tile = { x = 2805, y = 3434 }
+aka = ["cath"]
+
+[.seers_village]
+tile = { x = 2725, y = 3484 }
+aka = ["seers"]
+
+[.camelot]
+tile = { x = 2757, y = 3477 }
+aka = ["cammy"]
+
+[.ardougne_east]
+tile = { x = 2662, y = 3304 }
+aka = ["ardy", "ardougne", "east_ardy", "east_ardougne"]
+
+[.ardougne_west]
+tile = { x = 2530, y = 3306 }
+aka = ["west_ardy", "west_ardougne"]
+
+[.yanille]
+tile = { x = 2605, y = 3097 }
+aka = ["yanile"]
+
+[.brimhaven]
+tile = { x = 2774, y = 3185 }
+aka = ["brim"]
+
+[.karamja]
+tile = { x = 2917, y = 3176 }
+aka = ["karajma", "musa_point"]
+
+[.draynor_manor]
+tile = { x = 3109, y = 3350 }
+
+[.goblin_village]
+tile = { x = 2956, y = 3505 }
+
+[.entrana]
+tile = { x = 2834, y = 3335 }
+
+[.canifis]
+tile = { x = 3474, y = 3475 }
+
+[.tree_gnome_stronghold]
+tile = { x = 2466, y = 3450 }
+aka = ["gnome_stronghold", "stronghold"]
+
+[.god_wars_dungeon]
+aka = ["gwd", "god_wars"]
+
+[.dorgesh_kaan]
+tile = { x = 2717, y = 5322 }
+
+[.zanaris]
+tile = { x = 2410, y = 4451 }
+
+[.mos_le_harmless]
+tile = { x = 3681, y = 2974 }
+
+[.port_phasmatys]
+tile = { x = 3666, y = 3486 }
+
+[.lletya]
+tile = { x = 2334, y = 3172 }
+
+[.tyras_camp]
+tile = { x = 2187, y = 3147 }
+
+[.dwarven_mines]
+tile = { x = 3019, y = 9813 }
+
+[.jatizso]
+tile = { x = 2411, y = 3809 }
+
+[.neitiznot]
+tile = { x = 2325, y = 3804 }
+
+[.keldagrim]
+tile = { x = 2902, y = 10199 }
+
+[.lunar_isle]
+tile = { x = 2107, y = 3915 }
+
+[.tears_of_guthix]
+tile = { x = 3250, y = 9516, level = 2 }
+
+[.rellekka]
+tile = { x = 2661, y = 3658 }
+
+[.ape_atoll]
+tile = { x = 2762, y = 2784 }
+
+[.etceteria]
+tile = { x = 2602, y = 3875 }
+
+[.dagannoth_kings]
+tile = { x = 1922, y = 4365 }
+aka = ["dks"]
+
+[.shantay_pass]
+tile = { x = 3304, y = 3119 }
+
+[.uzer]
+tile = { x = 3484, y = 3092 }
+
+[.pollnivneach]
+tile = { x = 3357, y = 2968 }
+
+[.daemonheim]
+tile = { x = 3450, y = 3710 }
+
+[.naradh]
+tile = { x = 3432, y = 2916 }

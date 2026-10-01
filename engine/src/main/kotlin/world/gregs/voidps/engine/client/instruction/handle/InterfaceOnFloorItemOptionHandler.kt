@@ -17,7 +17,7 @@ class InterfaceOnFloorItemOptionHandler(private val handler: InterfaceHandler) :
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractInterfaceFloorItem): Boolean {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return false
         }
         val (floorItemId, x, y, interfaceId, componentId, itemId, itemSlot) = instruction

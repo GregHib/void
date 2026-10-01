@@ -1,0 +1,14 @@
+[biohazard_davinci_errand]
+persist = true
+format = "list"
+values = ["none", "delivered", "painted"]
+
+[biohazard_chancy_errand]
+persist = true
+format = "list"
+values = ["none", "delivered", "gambled"]
+
+[biohazard_hops_errand]
+persist = true
+format = "list"
+values = ["none", "delivered", "drank"]

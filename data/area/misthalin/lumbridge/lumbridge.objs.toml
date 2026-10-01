@@ -98,6 +98,10 @@ examine = "An ornate statuette of a demon holding a large diamond."
 id = 48663
 examine = "A plinth that once supported one of Dragith Nurn's demon statuettes."
 
+[diamond_taken_demon_statuette]
+id = 48801
+examine = "A plinth that once supported one of Dragith Nurn's demon statuettes."
+
 [sage_backpack]
 id = 33510
 examine = "A backpack belonging to the Lumbridge Sage"
@@ -138,9 +142,13 @@ examine = "A table used by bank customers."
 id = 45504
 examine = "'Pay back all your debts by borrowing more money from us!' Clever."
 
-[bank_deposit_box]
+[bank_deposit_box_falador_lumbridge]
 id = 36788
 examine = "It lets you put the items into your bank."
+
+[bank_deposit_box]
+id = 9398
+examine = "Lets you put items into your bank."
 
 [lumbridge_closed_bank_booth]
 id = 36787

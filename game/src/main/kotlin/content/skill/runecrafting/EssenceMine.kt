@@ -1,6 +1,7 @@
 package content.skill.runecrafting
 
 import content.entity.proj.shoot
+import content.quest.questCompleted
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.areaSound
@@ -13,6 +14,10 @@ import world.gregs.voidps.engine.map.collision.random
 
 object EssenceMine {
     suspend fun teleport(npc: NPC, player: Player) {
+        if (!player.questCompleted("rune_mysteries")) {
+            player.message("You need to complete Rune Mysteries before you can do this.")
+            return
+        }
         npc.say("Senventior Disthine Molenko!")
         npc.gfx("curse_cast")
         areaSound("curse_cast", npc.tile, radius = 10)

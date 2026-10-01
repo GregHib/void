@@ -1,5 +1,6 @@
 import com.github.michaelbull.logging.InlineLogger
 import content.activity.event.random.RandomEvents
+import content.bot.chat.api.BotChatApi
 import content.entity.world.music.MusicApi
 import content.skill.prayer.PrayerApi
 import content.skill.summoning.FamiliarSpecialMoves
@@ -50,6 +51,7 @@ class ContentLoader {
         Script.interfaces.add(RandomEvents)
         Script.interfaces.add(FamiliarSpecialMoves)
         Script.interfaces.add(MusicApi)
+        Script.interfaces.add(BotChatApi)
     }
 
     private fun loadScript(name: String): Any {

@@ -9,3 +9,74 @@ y = [3243, 3249]
 [isafdar_hunter_fishing_area]
 x = [2264, 2274]
 y = [3248, 3258]
+
+[isafdar_leaf_trap_1]
+x = [2208, 2210]
+y = [3202, 3204]
+
+[isafdar_leaf_trap_2]
+x = [2266, 2268]
+y = [3202, 3204]
+
+[isafdar_leaf_trap_3]
+x = [2273, 2275]
+y = [3173, 3175]
+
+[isafdar_leaf_trap_4]
+x = [2276, 2278]
+y = [3261, 3263]
+
+[isafdar_tripwire_1]
+x = [2215]
+y = [3154, 3155]
+tags = ["border"]
+
+[isafdar_tripwire_2]
+x = [2220]
+y = [3153, 3154]
+tags = ["border"]
+
+[isafdar_tripwire_3]
+x = [2285, 2286]
+y = [3188]
+tags = ["border"]
+
+[isafdar_tripwire_4]
+x = [2251, 2252]
+y = [3168]
+tags = ["border"]
+
+[isafdar_tripwire_5]
+x = [2294]
+y = [3243, 3244]
+tags = ["border"]
+
+[isafdar_sticks_trap_1]
+x = [2200, 2202]
+y = [3169]
+tags = ["border"]
+
+[isafdar_sticks_trap_2]
+x = [2235, 2237]
+y = [3181]
+tags = ["border"]
+
+[isafdar_sticks_trap_3]
+x = [2275, 2277]
+y = [3163]
+tags = ["border"]
+
+[isafdar_sticks_trap_4]
+x = [2181]
+y = [3209, 3211]
+tags = ["border"]
+
+[isafdar_sticks_trap_5]
+x = [2257, 2259]
+y = [3227]
+tags = ["border"]
+
+[isafdar_sticks_trap_6]
+x = [2295]
+y = [3214, 3216]
+tags = ["border"]

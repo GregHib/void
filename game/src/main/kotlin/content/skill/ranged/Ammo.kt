@@ -34,6 +34,8 @@ object Ammo {
 
     fun required(item: Item) = item.def[Params.AMMO_GROUP, AMMO_GROUP_NONE] != AMMO_GROUP_NONE && !item.id.endsWith("chinchompa")
 
+    fun graphic(ammo: String) = ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
+
     fun requiredAmount(weapon: Item, special: Boolean) = if (weapon.id.startsWith("dark_bow") || (weapon.id.startsWith("magic_shortbow") && special)) 2 else 1
 
     fun remove(player: Player, target: Character, ammo: String, required: Int) {
@@ -92,7 +94,7 @@ object Ammo {
             source.ammo == "jade_bolts_e" && chance(source, target, "earths_fury", 0.05) -> {
                 val duration = TimeUnit.SECONDS.toTicks(5)
                 target.freeze(duration)
-                source["delay"] = duration
+                source.delay = duration
             }
             source.ammo == "pearl_bolts_e" && ((target as? Player)?.equipped(EquipSlot.Weapon)?.id ?: "") != "staff_of_water" && chance(source, target, "sea_curse", 0.06) -> {
                 damage += (source.levels.get(Skill.Ranged) * 1.0 / if (Target.isFirey(target)) 15.0 else 20.0).toInt()

@@ -245,7 +245,7 @@ spawns = [
   { id = "crow_5", x = 3207, y = 3293 },
   { id = "goblin_light_grey_bald", x = 3217, y = 3278 },
   { id = "goblin_turquoise_topless_mohawk", x = 3215, y = 3276 },
-  { id = "goblin_turquoise_topless_mohawk", x = 3226, y = 3264 },
+  { id = "goblin_turquoise_topless_mohawk", x = 3224, y = 3262 },
   { id = "gillie_groats", x = 3254, y = 3274 },
   { id = "chief_thief_robin_lumbridge", x = 3212, y = 3208, members = true },
   { id = "farmer_lumbridge", x = 3233, y = 3308 },

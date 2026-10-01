@@ -4,5 +4,11 @@ id = 12867
 [dragith_nurn_death]
 id = 12870
 
-[dragith_nurn_attack]
+[dragith_nurn_magic_attack]
 id = 12844
+
+[dragith_nurn_range_attack]
+id = 12847
+
+[dragith_nurn_melee_attack]
+id = 12865

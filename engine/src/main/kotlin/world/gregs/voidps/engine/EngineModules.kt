@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.data.*
 import world.gregs.voidps.engine.data.definition.*
 import world.gregs.voidps.engine.entity.character.npc.hunt.Hunting
 import world.gregs.voidps.engine.entity.character.player.equip.AppearanceOverrides
-import world.gregs.voidps.engine.entity.item.floor.FloorItemTracking
 import world.gregs.voidps.engine.entity.item.floor.FloorItems
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -28,7 +27,6 @@ fun engineLoad(files: ConfigFiles) {
 
 fun engineModule(files: ConfigFiles) = module {
     // Entities
-    single { FloorItemTracking() }
     single { Hunting(get(), get()) }
     single {
         SaveQueue(get(), SafeStorage(File(Settings["storage.players.errors"])))

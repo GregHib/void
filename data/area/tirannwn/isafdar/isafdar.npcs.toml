@@ -40,8 +40,10 @@ max_hit_crush = 10
 
 [grenwall]
 id = 7010
+respawn_delay = 7
 examine = "A spiny creature."
 
 [pawya]
 id = 7012
+respawn_delay = 7
 examine = "What a strange little creature."

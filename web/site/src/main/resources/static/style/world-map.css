@@ -1,0 +1,629 @@
+/* World map viewer — interactive states and animations that inline styles (set once at render
+   time by WorldMap.kt) can't express: cursor swap while dragging, tile fade-in transitions,
+   pulsing "you are here" pin, and the pin tooltip's hover reveal. */
+
+.wm-viewport {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.wm-viewport.wm-dragging {
+  cursor: grabbing;
+}
+
+.wm-tile {
+  transition: opacity var(--dur-fast) var(--ease-out);
+  /* Tiles are pixel art scaled to non-integer sizes between native zoom levels (see
+     `worldmap.js`'s `zoomRatio`) — the browser's default bilinear smoothing blurs them at those
+     in-between scales, so force nearest-neighbour sampling instead. `pixelated` is the only
+     standard keyword the spec actually defines as nearest-neighbour; `crisp-edges` and
+     `-webkit-optimize-contrast` are UA-defined "preserve edges" filters that aren't guaranteed to
+     be point-sampled, so they're deliberately left out rather than risking a browser picking one
+     of those instead. `-moz-crisp-edges` is the one exception — old Firefox (<62) implemented it
+     as true nearest-neighbour before it supported the `pixelated` keyword. Declared in fallback
+     order: unsupported values are dropped per-declaration, so `pixelated` (last, standard) wins
+     in every current browser. */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* ...but only while the tiles are being scaled *up*. Point sampling a minified image discards
+   whole source rows and columns rather than averaging them, which deletes the one-pixel roads,
+   walls and fences outright and moires whatever survives — at a zoomRatio of 0.71, 29% of rows
+   are never sampled at all. `worldmap.js`'s render() adds this class for the whole layer whenever
+   zoomRatio drops below 1, which (see `nativeZoomFor`, which always reaches for the sharper level)
+   is most of the zoom-out range, handing those scales back to the browser's smooth filter.
+   A single `auto` overrides both declarations above, being later and more specific. */
+.wm-tiles-smooth .wm-tile {
+  image-rendering: auto;
+}
+
+.wm-grid-line {
+  position: absolute;
+  background: rgba(240, 198, 103, 0.22);
+  pointer-events: none;
+}
+.wm-grid-line-v {
+  top: 0;
+  bottom: 0;
+  width: 2px;
+}
+.wm-grid-line-h {
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.wm-region-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: rgba(240, 198, 103, 0.7);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Built by `renderAreaLabels` from `window.VOID_MAP_LABELS`; `left`/`top`/`font-size`/`color` are
+   set inline per label, everything shared lives here. `<span>` per authored line (the cache wraps
+   these names at a chosen point), centred on the tile the label is anchored to. */
+.wm-area-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-caps);
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(10, 7, 4, 0.9);
+  pointer-events: none;
+  user-select: none;
+}
+.wm-area-label span {
+  display: block;
+}
+
+.wm-area-polygon {
+  fill: rgba(240, 198, 103, 0.1);
+  stroke: rgba(240, 198, 103, 0.55);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+  transition:
+    fill var(--dur-fast) var(--ease-standard),
+    stroke var(--dur-fast) var(--ease-standard);
+}
+.wm-area-polygon-hover {
+  fill: rgba(240, 198, 103, 0.32);
+  stroke: var(--gold-300);
+  stroke-width: 2;
+}
+
+/* Area editor (`renderAreaEditor` in areas.js): the selected area in parchment, its corners as
+   squares (the nav graph's points are round) and its edge midpoints as faint dots to drag a new
+   corner out of; the area being drawn dashed in gold. */
+.wm-area-polygon-selected {
+  fill: rgba(255, 244, 214, 0.16);
+  stroke: var(--parch-50);
+  stroke-width: 2.5;
+}
+.wm-area-vertex {
+  fill: var(--umber-900);
+  stroke: var(--parch-50);
+  stroke-width: 1.5;
+}
+.wm-area-vertex-selected,
+.wm-area-vertex-first {
+  fill: var(--gold-300);
+}
+.wm-area-mid {
+  fill: rgba(255, 244, 214, 0.35);
+  stroke: rgba(255, 244, 214, 0.9);
+  stroke-width: 1;
+}
+.wm-area-draft {
+  fill: rgba(240, 198, 103, 0.12);
+  stroke: var(--gold-300);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+  stroke-linejoin: round;
+}
+
+/* The game tile under the cursor (`updateHoverTile` in worldmap.js). */
+.wm-hover-tile {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 244, 214, 0.85);
+  background: rgba(255, 244, 214, 0.18);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+/* Nav graph overlay (`renderNavGraph` in navgraph.js). Walk edges are teal, edges with actions
+   (doors, stairs — one-way) amber and dashed with an arrowhead; everything touching the selection
+   is lifted to gold. Points with an edge to another floor are drawn as diamonds. */
+.wm-nav-edge {
+  stroke: rgba(94, 214, 196, 0.8);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.wm-nav-edge-directed {
+  stroke: rgba(240, 150, 70, 0.9);
+  stroke-dasharray: 5 3;
+}
+.wm-nav-edge-selected {
+  stroke: var(--gold-300);
+  stroke-width: 3;
+}
+.wm-nav-edge-picked {
+  stroke: var(--parch-50);
+  stroke-width: 4;
+}
+.wm-nav-edge-preview {
+  stroke: var(--gold-300);
+  stroke-dasharray: 4 4;
+  opacity: 0.8;
+}
+/* Tile distance labels along the preview line and the selected point's edges. */
+.wm-nav-diff {
+  fill: var(--parch-50);
+  stroke: rgba(20, 14, 8, 0.9);
+  stroke-width: 3;
+  paint-order: stroke;
+  font: var(--weight-semibold) 11px/1 var(--font-ui);
+  font-variant-numeric: tabular-nums;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.wm-nav-arrow {
+  fill: rgba(240, 150, 70, 0.95);
+  stroke: none;
+}
+.wm-nav-arrow-selected {
+  fill: var(--gold-300);
+}
+.wm-nav-node {
+  fill: rgb(28, 64, 60);
+  stroke: rgb(94, 214, 196);
+  stroke-width: 2;
+}
+.wm-nav-node-transfer {
+  fill: rgb(80, 44, 16);
+  stroke: rgb(240, 150, 70);
+}
+.wm-nav-node-loose {
+  fill: transparent;
+  stroke-dasharray: 3 2;
+}
+.wm-nav-node-selected {
+  fill: var(--gold-300);
+  stroke: var(--parch-50);
+  stroke-width: 2.5;
+}
+
+/* Editor cursors, set on the viewport by `navUpdateCursor`. */
+.wm-viewport.wm-nav-add {
+  cursor: crosshair;
+}
+.wm-viewport.wm-nav-hot {
+  cursor: pointer;
+}
+.wm-viewport.wm-nav-grab {
+  cursor: move;
+}
+/* Panning wins over whatever the cursor was hovering when the drag started. */
+.wm-viewport.wm-dragging {
+  cursor: grabbing;
+}
+
+.wm-nav-controls {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px var(--space-4);
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  line-height: var(--leading-normal);
+  color: var(--text-faint);
+}
+.wm-nav-controls > :nth-child(odd) {
+  color: var(--text-muted);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+
+.wm-nav-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--umber-800);
+  color: var(--text-muted);
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  cursor: pointer;
+  text-align: left;
+}
+.wm-nav-file:hover {
+  color: var(--gold-300);
+}
+.wm-nav-file-target {
+  border-color: var(--gold-600);
+  color: var(--gold-300);
+}
+.wm-nav-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wm-nav-file-count {
+  color: var(--text-faint);
+}
+.wm-pin-tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-standard);
+}
+.wm-pin:hover .wm-pin-tooltip {
+  opacity: 1;
+}
+
+/* The pin of whoever is selected in the console's players list (`renderPlayers` puts this class
+   on by `data-name`) — ringed, and with its tooltip held open rather than waiting for a hover, so
+   picking a name off the list visibly points at somebody on the map. */
+.wm-pin-selected .wm-pin-tooltip {
+  opacity: 1;
+}
+.wm-pin-selected svg {
+  filter: drop-shadow(0 0 5px var(--gold-300));
+}
+.wm-pin-selected .wm-pin-dot {
+  box-shadow: 0 0 0 3px rgba(240, 198, 103, 0.35);
+}
+
+/* Per-row action button in the console's players list (currently just "Kick") — reads as a quiet
+   outline until hovered, so a list of them doesn't look like a column of danger buttons. */
+.wm-row-action:hover {
+  background: var(--surface-hover);
+  border-color: var(--feedback-danger);
+  color: var(--feedback-danger);
+}
+
+.wm-elevation-btn:hover:not(:disabled) {
+  background: var(--surface-hover) !important;
+  color: var(--gold-300) !important;
+}
+.wm-elevation-btn:disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+/* Small screens: the bottom console and the top-left display panel are sized for desktop (a
+   fixed 460px/190px) in WorldMap.kt's inline styles — shrink both to fit a phone viewport instead
+   of letting the console overflow it. Nothing in the top-right corner is touched: the teleport
+   panel is already at its narrowest (see `teleportPanel`), and the elevation stepper above it is
+   a row of controls with a floor to its width. `!important` matches the rest of the site's
+   inline-style override convention (see responsive.css's header). */
+@media (max-width: 700px) {
+  .wm-console {
+    width: calc(100vw - 24px) !important;
+    left: 12px !important;
+    transform: none !important;
+  }
+  .wm-display-wrap {
+    width: 170px !important;
+  }
+}
+@media (max-width: 420px) {
+  .wm-top-right {
+    top: 12px !important;
+    right: 12px !important;
+  }
+  .wm-display-wrap {
+    top: 12px !important;
+    left: 12px !important;
+    width: 130px !important;
+  }
+}
+
+/* Nav graph edge editor (`navEdgePanel` in WorldMap.kt). */
+.wm-nav-edge-wrap {
+  width: min(320px, calc(100vw - 40px));
+}
+.wm-nav-edge-body {
+  max-height: min(62vh, 560px);
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6) var(--space-6);
+}
+.wm-nav-edge-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.wm-nav-edge-title {
+  font: var(--type-code);
+  font-size: var(--text-xs);
+  color: var(--gold-300);
+}
+.wm-nav-edge-hint {
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  color: var(--text-faint);
+  line-height: var(--leading-normal);
+}
+.wm-nav-edge-picking {
+  color: var(--gold-300);
+}
+.wm-nav-edge-label,
+.wm-nav-edge-field > span {
+  font: var(--type-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+.wm-nav-edge-field {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: var(--space-4);
+}
+.wm-nav-edge-field-stacked {
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+.wm-nav-edge-warn {
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  color: var(--feedback-warning);
+}
+.wm-nav-edge-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--umber-800);
+  color: var(--text-muted);
+  font: var(--type-code);
+  font-size: var(--text-2xs);
+  text-align: left;
+  cursor: pointer;
+}
+.wm-nav-edge-row:hover {
+  color: var(--gold-300);
+  border-color: var(--gold-600);
+}
+.wm-nav-edge-row-actions {
+  color: var(--text-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wm-nav-input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 26px;
+  padding: 0 7px;
+  background: var(--surface-inset);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-body);
+  font: var(--type-code);
+  font-size: var(--text-2xs);
+  outline: none;
+}
+textarea.wm-nav-input {
+  height: auto;
+  padding: 5px 7px;
+  resize: vertical;
+}
+.wm-nav-input:focus {
+  border-color: var(--gold-400);
+}
+.wm-nav-input:disabled {
+  opacity: 0.55;
+}
+.wm-nav-input-empty {
+  border-color: var(--feedback-warning);
+}
+.wm-nav-action {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.12);
+}
+.wm-nav-action-head,
+.wm-nav-action-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.wm-nav-action-num {
+  flex: 0 0 18px;
+  text-align: center;
+  font: var(--weight-semibold) var(--text-2xs) / 1 var(--font-ui);
+  color: var(--gold-300);
+}
+.wm-nav-action-type {
+  flex: 1;
+  color: var(--gold-300);
+}
+.wm-nav-key {
+  flex: 0 0 84px;
+  color: var(--text-muted);
+}
+.wm-nav-action-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.wm-nav-icon {
+  flex: 0 0 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.wm-nav-icon:hover:not(:disabled) {
+  color: var(--gold-300);
+  border-color: var(--border-strong);
+}
+.wm-nav-icon:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.wm-nav-icon-active {
+  color: var(--umber-900);
+  background: var(--gold-300);
+}
+.wm-nav-link {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gold-300);
+  font: var(--type-body-sm);
+  font-size: var(--text-2xs);
+  cursor: pointer;
+}
+.wm-nav-link:hover {
+  text-decoration: underline;
+}
+.wm-nav-templates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.wm-nav-chip {
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--umber-800);
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-2xs) / 1 var(--font-ui);
+  cursor: pointer;
+}
+.wm-nav-chip:hover:not(:disabled) {
+  color: var(--gold-300);
+  border-color: var(--gold-600);
+}
+.wm-nav-chip:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.wm-nav-chip-danger:hover:not(:disabled) {
+  color: var(--feedback-danger);
+  border-color: var(--feedback-danger);
+}
+
+/* The Area panel's tags (`areaEditPanel` in WorldMap.kt): a chip per tag, with the field to add
+   one flowing on after them. */
+.wm-area-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+.wm-area-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 2px 0 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--umber-800);
+  color: var(--gold-300);
+  font: var(--type-code);
+  font-size: var(--text-2xs);
+}
+.wm-area-tag button {
+  padding: 0 5px;
+  border: none;
+  background: none;
+  color: var(--text-faint);
+  font-size: 10px;
+  cursor: pointer;
+}
+.wm-area-tag button:hover {
+  color: var(--feedback-danger);
+}
+.wm-area-tag-input {
+  flex: 1 0 90px;
+  width: auto;
+  height: 22px;
+}
+.wm-area-name {
+  color: var(--gold-300);
+}
+
+/* The top-left column holds an editor's panel under the display toggles, which together can run
+   taller than a short window: it scrolls rather than hanging off the bottom of the map. */
+.wm-display-wrap {
+  max-height: calc(100% - 40px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* The display panel's "Editing" switch, while both editors are loaded (`editorSwitch`). */
+.wm-editor-switch {
+  display: flex;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.wm-editor-switch button {
+  flex: 1 1 auto;
+  height: 24px;
+  padding: 0 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font: var(--weight-semibold) var(--text-2xs) / 1 var(--font-ui);
+  cursor: pointer;
+}
+.wm-editor-switch button + button {
+  border-left: 1px solid var(--border-strong);
+}
+.wm-editor-switch button:hover {
+  color: var(--gold-300);
+}
+.wm-editor-switch button.wm-editor-switch-on {
+  background: var(--gold-300);
+  color: var(--umber-900);
+}
+
+/* The selected edge's action targets on the map (`renderNavGraph`). */
+.wm-nav-target {
+  fill: rgba(240, 150, 70, 0.18);
+  stroke: rgba(240, 150, 70, 0.95);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+}
+.wm-nav-target-picking {
+  stroke: var(--gold-300);
+  fill: rgba(240, 198, 103, 0.3);
+}
+.wm-viewport.wm-nav-picking {
+  cursor: crosshair;
+}

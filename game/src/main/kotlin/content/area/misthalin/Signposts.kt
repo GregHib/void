@@ -20,6 +20,8 @@ class Signposts : Script {
         }
 
         interfaceClosed("signpost_directions") {
+            sendScript("camera_zoom_out")
+            sendScript("camera_zoom_out_fov")
             clearCamera()
         }
     }

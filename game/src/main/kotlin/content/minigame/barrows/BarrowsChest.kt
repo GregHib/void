@@ -2,13 +2,17 @@ package content.minigame.barrows
 
 import content.entity.combat.hit.directHit
 import content.entity.player.inv.item.addOrDrop
+import content.entity.player.logEvent
+import content.entity.player.stat.KillTracker
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearCamera
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.shakeCamera
+import world.gregs.voidps.engine.client.ui.chat.toDigitGroupString
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Areas
+import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -43,11 +47,20 @@ class BarrowsChest(val drops: DropTables) : Script {
                 message("The chest is empty.")
                 return@objectOperate
             }
-
+            KillTracker.count(this, "barrows_chests", "Your Barrows chest count is")
+            val kills = get("barrows_kills", 0).coerceAtMost(6)
+            if (kills == 6) {
+                KillTracker.stop(this, "barrows_brothers_timer")
+            }
             val drops = reward(this)
             AuditLog.event(this, "barrows_chest", *drops.toTypedArray())
+            var value = 0
             for (drop in drops) {
+                value += drop.def.cost
                 addOrDrop(drop.id, drop.amount)
+            }
+            if (Settings["world.additional.messages", false]) {
+                message("<blue>Your chest is worth around ${value.toDigitGroupString()} coins.")
             }
             reset(this)
             softTimers.start("barrows_cave_shake")
@@ -92,6 +105,12 @@ class BarrowsChest(val drops: DropTables) : Script {
         val items = mutableListOf<ItemDrop>()
         repeat(kills) {
             armour.roll(maximumRoll = 450 - (58 * kills), list = items, player = player, multiplier = multiplier)
+        }
+        if (items.isNotEmpty()) {
+            for (item in items) {
+                val def = ItemDefinitions.get(item.id)
+                player.logEvent("I found ${def.name}.", "While plundering the Barrows, I looted ${def.name}")
+            }
         }
         val runes = drops.getValue("barrows_chest_runes")
         val levels = player["barrows_kill_levels", 0]

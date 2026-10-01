@@ -2,6 +2,7 @@ package world.gregs.voidps.storage
 
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.data.PlayerSave
+import world.gregs.voidps.engine.data.RecentEvent
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.engine.data.exchange.Claim
 import world.gregs.voidps.engine.data.exchange.ExchangeHistory
@@ -46,6 +47,8 @@ abstract class StorageTest {
             assertEquals(rank, account.friends[friend])
         }
         assertContentEquals(save.ignores, account.ignores)
+        assertEquals(save.kills, account.kills)
+        assertEquals(save.records, account.records)
     }
 
     @Test
@@ -69,6 +72,8 @@ abstract class StorageTest {
             },
             offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer.EMPTY },
             history = listOf(ExchangeHistory("item", 123, 321)),
+            kills = mapOf("chickens" to 4, "kree_arra" to 2),
+            records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
         )
         storage.save(listOf(override))
 
@@ -101,6 +106,8 @@ abstract class StorageTest {
         assertFalse(account.friends.containsKey("Greg"))
         assertContentEquals(override.ignores, account.ignores)
         assertContentEquals(override.offers, account.offers)
+        assertEquals(override.kills, account.kills)
+        assertEquals(override.records, account.records)
     }
 
     @Test
@@ -126,6 +133,47 @@ abstract class StorageTest {
         (account.variables["unlocked_music_0"] as MutableList<Any>).add("scape_theme")
         @Suppress("UNCHECKED_CAST")
         (account.variables["favourite_numbers"] as MutableList<Any>).add(64)
+    }
+
+    @Test
+    fun `Load every account`() {
+        val other = save.copy(
+            name = "zezima",
+            experience = IntArray(25) { 100 },
+            levels = IntArray(25) { 2 },
+            variables = mapOf("display_name" to "Zezima", "meaning" to 7),
+            inventories = mapOf("inventory" to Array(28) { Item.EMPTY }.apply { this[0] = Item("coins", 5) }),
+            offers = emptyArray(),
+            history = emptyList(),
+            kills = mapOf("chickens" to 1),
+            records = emptyMap(),
+            recentEvents = listOf(RecentEvent(1, "First", "a"), RecentEvent(2, "Second", "b")),
+        )
+        storage.save(listOf(save, other))
+
+        val accounts = storage.accounts().associateBy { it.name }
+
+        assertEquals(setOf(save.name, other.name), accounts.keys)
+        for (expected in listOf(save, other)) {
+            val account = accounts.getValue(expected.name)
+            assertContentEquals(expected.experience, account.experience)
+            assertContentEquals(expected.levels, account.levels)
+            assertEquals(expected.variables, account.variables)
+            assertEquals(expected.inventories.keys, account.inventories.keys)
+            for ((key, value) in expected.inventories) {
+                assertContentEquals(value, account.inventories[key])
+            }
+            assertEquals(expected.offers.map { it.id }, account.offers.filter { it != ExchangeOffer.EMPTY }.map { it.id })
+            assertEquals(expected.history, account.history)
+            assertEquals(expected.kills, account.kills)
+            assertEquals(expected.records, account.records)
+            assertEquals(expected.recentEvents, account.recentEvents)
+        }
+    }
+
+    @Test
+    fun `No accounts gives empty list`() {
+        assertTrue(storage.accounts().isEmpty())
     }
 
     @Test
@@ -325,6 +373,9 @@ abstract class StorageTest {
             ignores = listOf("Mod Murdoch"),
             offers = arrayOf(ExchangeOffer(1, "item", 4, 123, OfferState.PendingSell, 1, 321)),
             history = listOf(ExchangeHistory("item", 123, 321)),
+            kills = mapOf("chickens" to 4, "kree_arra" to 2),
+            records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
+            recentEvents = listOf(RecentEvent(132, "Title", "desc")),
         )
     }
 }

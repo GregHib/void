@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
+import world.gregs.voidps.type.Zone
+
 class GameObjectTimers : Runnable {
     internal data class Timer(
         val objs: Set<GameObject>,
@@ -37,6 +39,8 @@ class GameObjectTimers : Runnable {
     }
 
     fun cancel(gameObject: GameObject): Boolean = timers.removeIf { it.objs.contains(gameObject) }
+
+    fun cancel(zone: Zone): Boolean = timers.removeIf { timer -> timer.objs.any { it.tile.zone == zone } }
 
     fun execute(gameObject: GameObject): Boolean = timers.removeIf {
         if (it.objs.contains(gameObject)) {

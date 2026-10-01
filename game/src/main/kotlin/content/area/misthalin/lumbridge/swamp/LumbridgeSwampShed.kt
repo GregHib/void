@@ -1,6 +1,7 @@
 package content.area.misthalin.lumbridge.swamp
 
 import content.entity.obj.door.enterDoor
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.type.choice
 import content.quest.quest
 import content.quest.questComplete
@@ -77,6 +78,7 @@ class LumbridgeSwampShed : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "lost_city")
+        AdventurersLogs.questCompleted(this, "lost_city", points = 3)
         set("lost_city", "completed")
         jingle("quest_complete_1")
         refreshQuestJournal()

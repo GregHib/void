@@ -1,5 +1,6 @@
 package content.area.kandarin.yanille
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Confused
 import content.entity.player.dialogue.Happy
@@ -17,9 +18,10 @@ import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.dialogue.type.statement
 import content.entity.player.inv.item.addOrDrop
-import content.quest.member.hand_in_the_sand.sendHandQuestReward
 import content.quest.quest
+import content.quest.questComplete
 import content.quest.questStage
+import content.quest.refreshQuestJournal
 import content.quest.setInstanceLogout
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
@@ -29,14 +31,18 @@ import world.gregs.voidps.engine.client.moveCamera
 import world.gregs.voidps.engine.client.turnCamera
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.jingle
 import world.gregs.voidps.engine.entity.character.mode.PauseMode
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectLayer
+import world.gregs.voidps.engine.event.AuditLog
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
@@ -731,6 +737,34 @@ class ZavisticRarve : Script {
         player<Neutral>("Yes, I have in fact. I poured it into his tea.")
         npc<Neutral>("Ok, that's good, that should work. Pop back in a little while to see Sithik and start questioning him.")
         guildMenu()
+    }
+
+    fun Player.sendHandQuestReward() {
+        AuditLog.event(this, "quest_completed", "hand_in_the_sand")
+        AdventurersLogs.questCompleted(this, "hand_in_the_sand", points = 1)
+        set("hand_in_the_sand", "completed")
+        jingle("quest_complete_1")
+        exp(Skill.Crafting, 9000.0)
+        exp(Skill.Thieving, 1000.0)
+        inc("quest_points")
+        set("handsand_question1", false)
+        set("handsand_question2", false)
+        set("handsand_question3", false)
+        set("handsand_tele", true)
+        set("handsand_serum", 6)
+        set("handsand_sandy_multi", 2)
+        set("handsand_coffee_multi", 1)
+        set("handsand_counter_multi", false)
+        refreshQuestJournal()
+        questComplete(
+            "Hand in the Sand",
+            "1 Quest Point",
+            "9,000 Crafting XP",
+            "1,000 Thieving XP",
+            "Wizards' Guild Rune Store access",
+            "A secret reward from Bert",
+            item = "sandy_hand",
+        )
     }
 
     private companion object {

@@ -26,7 +26,7 @@ class ConfigReader(
     }
 
     /**
-     * Check if there are anymore sections remaining
+     * Check if there are any more sections remaining
      */
     fun nextSection(): Boolean = when (byte) {
         EOF -> false
@@ -76,7 +76,7 @@ class ConfigReader(
     }
 
     /**
-     * Check if there are anymore key-value pairs remaining for the current section
+     * Check if there are any more key-value pairs remaining for the current section
      */
     fun nextPair(): Boolean = byte != EOF && byte != OPEN_BRACKET
 
@@ -340,7 +340,7 @@ class ConfigReader(
     }
 
     /**
-     * Check if there are anymore list elements remaining
+     * Check if there are any more list elements remaining
      */
     fun nextElement(): Boolean = when (byte) {
         OPEN_BRACKET, COMMA -> {
@@ -365,7 +365,7 @@ class ConfigReader(
     }
 
     /**
-     * Check if there are anymore map entries remaining
+     * Check if there are any more map entries remaining
      */
     fun nextEntry() = when (byte) {
         OPEN_BRACE, COMMA -> {

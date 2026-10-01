@@ -306,6 +306,7 @@ examine = "One of the inhabitants of the camp."
 
 [sabre_toothed_kebbit]
 id = 5087
+respawn_delay = 7
 examine = "Now that's a big overbite."
 
 [golden_sheep_rellekka_3]

@@ -1,5 +1,17 @@
 [gyr_falcon]
-id = 927
+id = 922
+delay = 24
+curve = 10
+multiplier = 8
+height = 5
+end_height = -35
+
+[falcon_lift]
+id = 918
+height = 5
+
+[falcon_impale]
+id = 923
 
 [chocolate_kebbit]
 id = 930

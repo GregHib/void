@@ -142,7 +142,7 @@ npc = "earth_warrior"
 npc = "elf_warrior"
 quest = "regicide"
 
-[.fire_giant]
+[.fire_giants]
 npc = "fire_giant"
 
 [.flesh_crawlers]
@@ -169,7 +169,7 @@ npc = "ghoul"
 combat_level = 25
 quest = "priest_in_peril"
 
-[.goblin]
+[.goblins]
 npc = "goblin_mohawk_blue"
 
 [.gorak]
@@ -199,7 +199,7 @@ skill = ["firemaking", 33]
 [.infernal_mage]
 npc = "infernal_mage"
 
-[.ice_giant]
+[.ice_giants]
 npc = "ice_giant"
 
 [.ice_warriors]

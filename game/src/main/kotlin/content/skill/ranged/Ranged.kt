@@ -49,10 +49,10 @@ class Ranged(val weaponStyles: WeaponStyleDefinitions, val weaponDefinitions: We
         if (style.stringId == "sling") {
             character.anim(ammo)
         }
-        if (style.stringId == "crossbow") {
-            ammo = if (ammo == "barbed_bolts" || ammo == "bone_bolts" || ammo == "hand_cannon_shot") ammo else "crossbow_bolt"
-        } else if (style.stringId == "bow" && ammo.endsWith("brutal")) {
-            ammo = "brutal_arrow"
+        ammo = when (style.stringId) {
+            "crossbow" -> if (ammo == "barbed_bolts" || ammo == "bone_bolts" || ammo == "hand_cannon_shot") ammo else "crossbow_bolt"
+            "bow" if ammo.endsWith("brutal") -> "brutal_arrow"
+            else -> Ammo.graphic(ammo)
         }
         var time = character.shoot(id = ammo, target = target)
         val weapon = character.weapon.id

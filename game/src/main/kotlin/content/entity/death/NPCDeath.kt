@@ -9,14 +9,17 @@ import content.entity.combat.dead
 import content.entity.combat.killer
 import content.entity.effect.clearTransform
 import content.entity.player.inv.item.tradeable
+import content.entity.player.logEvent
 import content.skill.slayer.*
 import content.social.clan.clan
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.clearHinted
 import world.gregs.voidps.engine.client.message
+import world.gregs.voidps.engine.client.ui.chat.an
 import world.gregs.voidps.engine.client.ui.chat.plural
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.CombatDefinitions
+import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Death
@@ -63,8 +66,8 @@ class NPCDeath(
                 // Credit a familiar's kill to its owner so loot, slayer and the kill log go to the
                 // player rather than the familiar npc.
                 var killer = killer
-                if (killer is NPC && killer.contains("owner_index")) {
-                    killer = Players.indexed(killer["owner_index", -1])
+                if (killer is NPC && killer.ownerIndex != -1) {
+                    killer = Players.indexed(killer.ownerIndex)
                 }
                 val tile = if (transformId == "wall_beast") tile.addY(-1) else tile
                 npc["death_tile"] = tile
@@ -91,7 +94,7 @@ class NPCDeath(
                 }
                 hide = true
                 val respawn = get<Tile>("respawn_tile")
-                if (respawn != null && onDeath.respawn) {
+                if (lifecycle >= 0 && respawn != null && onDeath.respawn) {
                     damageDealers.clear()
                     respawn(npc["respawn_delay", 60])
                 } else {
@@ -128,6 +131,7 @@ class NPCDeath(
         } else if (npc.inMultiCombat && killer is Player && killer["loot_share", false]) {
             shareLoot(killer, npc, tile, drops)
         } else {
+            val player = killer as? Player
             for (item in drops) {
                 if (item.id.contains("clue_scroll") || item.amount <= 0) {
                     continue
@@ -139,8 +143,17 @@ class NPCDeath(
                 } else {
                     FloorItems.add(tile, item.id, item.amount, charges = item.charges(), revealTicks = if (item.tradeable) 60 else FloorItems.NEVER, disappearTicks = 120, owner = killer as? Player)
                 }
+                logItems(player, item, npc)
             }
         }
+    }
+
+    fun logItems(player: Player?, item: Item, npc: NPC) {
+        if (player == null) {
+            return
+        }
+        Rows.getOrNull("log_item.${item.id}") ?: return
+        player.logEvent("I found${item.def.name.an()} ${item.def.name}", "After killing${npc.def.name.an()} ${npc.def.name}, it dropped${if (item.def.name.endsWith("boots", ignoreCase = true)) " a pair of" else item.def.name.an()} ${item.def.name}")
     }
 
     fun shareLoot(killer: Player, npc: NPC, tile: Tile, drops: List<Item>) {

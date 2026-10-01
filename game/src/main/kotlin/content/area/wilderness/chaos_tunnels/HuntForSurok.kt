@@ -65,7 +65,7 @@ class HuntForSurok(val teleports: ObjectTeleports) : Script {
                         tele(3142, 5545)
                         clearCamera()
                     }
-                    if (get("bork_kill_count", 0) == 0) {
+                    if (kills.getOrDefault("bork", 0) == 0) {
                         cutscene()
                     } else {
                         repeat()

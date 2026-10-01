@@ -1,5 +1,7 @@
 package content.entity.obj.door
 
+import content.entity.obj.door.Door.diagonalStepAside
+import content.entity.obj.door.Door.isDiagonal
 import content.entity.obj.door.Door.isDoor
 import content.entity.obj.door.Door.openDoor
 import content.entity.obj.door.Door.tile
@@ -16,6 +18,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.sound
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -25,7 +28,6 @@ import world.gregs.voidps.type.Tile
 import java.util.concurrent.TimeUnit
 
 object Door {
-
     // Delay in ticks before a door closes itself
     private val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 
@@ -54,7 +56,7 @@ object Door {
 
         // Single door
         if (double == null && door.id.endsWith("_opened")) {
-            replace(door, def, "_opened", "_closed", 0, 3, ticks, collision, revert(def, door, "open"))
+            replace(door, def, def.closed, if (door.isDiagonal()) 3 else 0, 3, ticks, collision, revert(def, door, "open"))
             sound(player, def, "close")
             return true
         }
@@ -81,7 +83,7 @@ object Door {
 
         // Single door
         if (double == null && def.stringId.endsWith("_closed")) {
-            replace(door, def, "_closed", "_opened", 1, 1, ticks, collision, revert(def, door, "close"))
+            replace(door, def, def.opened, if (door.isDiagonal()) 0 else 1, 1, ticks, collision, revert(def, door, "close"))
             sound(player, def, "open")
             return true
         }
@@ -107,7 +109,7 @@ object Door {
         areaSound(soundName(definition, suffix), obj.tile)
     }
 
-    private fun soundName(definition: ObjectDefinition, suffix: String): String {
+    internal fun soundName(definition: ObjectDefinition, suffix: String): String {
         val type = if (definition.isGate()) "gate" else "door"
         val material = definition["material", ""]
         if (material.isEmpty()) {
@@ -134,10 +136,10 @@ object Door {
     /**
      * Replace door [obj] with [next] for [ticks]
      */
-    private fun replace(obj: GameObject, def: ObjectDefinition, current: String, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
+    private fun replace(obj: GameObject, def: ObjectDefinition, next: String, tileRotation: Int, objRotation: Int, ticks: Int, collision: Boolean = true, onRevert: (() -> Unit)? = null) {
         val hinged = !def.stringId.contains("single")
         obj.replace(
-            id = def.stringId.replace(current, next),
+            id = next,
             tile = if (hinged) tile(obj, tileRotation) else obj.tile,
             rotation = if (hinged) obj.rotation(objRotation) else obj.rotation,
             ticks = ticks,
@@ -166,12 +168,33 @@ object Door {
 
     private fun rotate(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 
+    /**
+     * Diagonal doors hinge on the corner shared with the neighbouring tile they swing into
+     */
+    fun GameObject.isDiagonal() = shape == ObjectShape.WALL_DIAGONAL
+
+    /**
+     * Tile a player standing in the way of diagonal [door] should step to before it swings [open] or closed
+     */
+    fun diagonalStepAside(door: GameObject, open: Boolean): Pair<Tile, Tile> = if (open) {
+        val swing = tile(door, 0)
+        swing to swing.add(Direction.cardinal[door.rotation(3)].delta)
+    } else {
+        val swing = tile(door, 3)
+        swing to swing.add(Direction.cardinal[door.rotation(1)].delta).add(Direction.cardinal[door.rotation].delta)
+    }
+
     fun ObjectDefinition.isDoor(): Boolean {
         if (contains("door") && !this["door", false]) {
             return false
         }
         return (name.contains("door", true) && !name.contains("trap", true)) || name.contains("gate", true) || this["door", false]
     }
+    val ObjectDefinition.closed: String
+        get() = getOrNull("closed") ?: stringId.replace("_opened", "_closed")
+
+    val ObjectDefinition.opened: String
+        get() = getOrNull("opened") ?: stringId.replace("_closed", "_opened")
 }
 
 /**
@@ -239,6 +262,9 @@ suspend fun Player.openDoor(door: GameObject, ticks: Int = 0): Boolean {
     if (!def.isDoor()) {
         return true
     }
+    if (door.isDiagonal() && def.stringId.endsWith("_closed")) {
+        stepAside(door, open = true)
+    }
     if (openDoor(this, door, def)) {
         delay(ticks)
         return true
@@ -269,15 +295,27 @@ private fun stuck(player: Player): Boolean {
 /**
  * Closes a door
  */
-fun Player.closeDoor(door: GameObject, ticks: Int = 0): Boolean {
+suspend fun Player.closeDoor(door: GameObject) {
     val def = door.def(this)
     if (!def.isDoor()) {
-        return false
+        return
     }
     // Prevent players from trapping one another
     if (stuck(this)) {
-        return false
+        return
+    }
+    if (door.isDiagonal() && door.id.endsWith("_opened")) {
+        stepAside(door, open = false)
     }
     Door.closeDoor(this, door, def)
-    return false
+}
+
+/**
+ * Move out of the way of a diagonal [door] which is about to swing into the players tile
+ */
+private suspend fun Player.stepAside(door: GameObject, open: Boolean) {
+    val (swing, aside) = diagonalStepAside(door, open)
+    if (tile == swing) {
+        walkToDelay(aside)
+    }
 }

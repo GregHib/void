@@ -432,7 +432,7 @@ wander_range = 0
 [.salarin_the_twisted]
 wander_range = 5
 
-[.black_guard_edgeville]
+[.black_guard_5]
 max_range = 12
 
 [.captain_lawgof]
@@ -4314,7 +4314,7 @@ wander_range = 10
 [.clay_golem_ruins_of_uzer_repaired]
 wander_range = 10
 
-[.desert_phoenix_kharidian_desert]
+[.desert_phoenix]
 wander_range = 8
 
 [.kamil_normal]
@@ -17611,7 +17611,7 @@ max_range = 5
 [.farmer_blinkin_minesweeper]
 wander_range = 3
 
-[.mrs__winkin_minesweeper]
+[.mrs_winkin_minesweeper]
 wander_range = 3
 
 [.bork_surok]
@@ -20797,9 +20797,9 @@ max_range = 3
 wander_range = 1
 max_range = 1
 
-#[.8338]
-#wander_range = 1
-#max_range = 1
+[.akrisae]
+wander_range = 1
+max_range = 1
 
 [.wgs_tormented_demon_melee]
 wander_range = 15
@@ -52144,3 +52144,9 @@ wander_range = 0
 #[.21079]
 #wander_range = 20
 #max_range = 20
+
+[.leprechaun_evil_tree]
+wander_range = 0
+
+[.leprechaun_panic]
+wander_range = 0

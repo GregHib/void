@@ -2,6 +2,7 @@ package content.area.misthalin.varrock
 
 import content.entity.effect.transform
 import content.entity.gfx.areaGfx
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -14,9 +15,11 @@ import content.quest.clearInstance
 import content.quest.exitInstance
 import content.quest.free.demon_slayer.DemonSlayerSpell
 import content.quest.instanceOffset
+import content.quest.leaveInstance
 import content.quest.quest
 import content.quest.questComplete
 import content.quest.questCompleted
+import content.quest.rejoinInstance
 import content.quest.smallInstance
 import content.quest.startCutscene
 import world.gregs.voidps.engine.Script
@@ -71,7 +74,8 @@ class Delrith : Script {
             }
             start("demon_slayer_instance_exit", 2)
             tele(tile.minus(instanceOffset()))
-            clearInstance()
+            // Remembered so stepping back into the circle returns to the same fight
+            leaveInstance("demon_slayer")
             val cutscene: Cutscene = remove("demon_slayer_cutscene") ?: return@moved
             Script.launch {
                 cutscene.end(destroyInstance = false)
@@ -172,6 +176,9 @@ class Delrith : Script {
     }
 
     suspend fun Player.cutscene() {
+        if (get("demon_slayer_summoned", false) && rejoin()) {
+            return
+        }
         val region = Region(12852)
         val instance = smallInstance(region)
         val offset = instanceOffset()
@@ -287,8 +294,24 @@ class Delrith : Script {
         }
     }
 
+    /**
+     * Return to the instance left earlier if it still exists and Delrith hasn't been banished
+     */
+    fun Player.rejoin(): Boolean {
+        val instance = rejoinInstance("demon_slayer") ?: return false
+        if (NPCs.findOrNull(instance.toLevel(0), "delrith") == null) {
+            clearInstance()
+            return false
+        }
+        steps.clear()
+        playTrack("delrith")
+        tele(tile.add(instanceOffset()))
+        return true
+    }
+
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "demon_slayer")
+        AdventurersLogs.questCompleted(this, "demon_slayer", points = 3)
         anim("silverlight_showoff")
         gfx("silverlight_sparkle")
         sound("equip_silverlight")

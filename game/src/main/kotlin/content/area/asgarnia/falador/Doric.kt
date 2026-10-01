@@ -1,5 +1,6 @@
 package content.area.asgarnia.falador
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
@@ -144,6 +145,7 @@ class Doric : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "dorics_quest")
+        AdventurersLogs.questCompleted(this, "dorics_quest", points = 1)
         set("dorics_quest", "completed")
         jingle("quest_complete_1")
         exp(Skill.Mining, 1300.0)

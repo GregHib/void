@@ -70,4 +70,10 @@ interface Storage {
      * Loads an account from the stored location
      */
     fun load(accountName: String): PlayerSave?
+
+    /**
+     * Loads every player's account data in one pass. Used for hiscores and other bulk reads
+     * where [names] would otherwise parse each save file twice.
+     */
+    fun accounts(): List<PlayerSave>
 }

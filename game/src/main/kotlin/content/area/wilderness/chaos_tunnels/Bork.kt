@@ -32,7 +32,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.sound
-import world.gregs.voidps.engine.map.collision.random
 import world.gregs.voidps.engine.queue.queue
 import world.gregs.voidps.engine.timer.Timer
 import world.gregs.voidps.engine.timer.epochSeconds
@@ -94,7 +93,7 @@ class Bork : Script {
                 NPCs.remove(npc)
             }
             val killer = killer as? Player ?: return@npcDeath
-            killer["delay"] = 2
+            killer.delay = 2
             killer.queue.clear()
             killer.visuals.hits.clear()
             killer.queue("bork_defeat") {
@@ -143,7 +142,6 @@ class Bork : Script {
         val day = TimeUnit.DAYS.toSeconds(1)
         val cooldown = (day - epochSeconds().rem(day)).toInt()
         start("bork_cooldown", cooldown, epochSeconds())
-        inc("bork_kill_count")
         open("bork_defeated")
         val offset = instanceOffset()
         val elite = findElite(tile.regionLevel)

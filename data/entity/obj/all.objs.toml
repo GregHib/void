@@ -272,11 +272,8 @@ examine = "A jungle bush that has been chopped down."
 
 [jungle_bush_2]
 id = 2893
+stump = "jungle_bush_stump"
 examine = "A jungle bush, quite common to these areas."
-
-[jungle_bush_2_stump]
-id = 2894
-examine = "A jungle bush that has been chopped down."
 
 [tomb]
 id = 3353
@@ -373,14 +370,6 @@ examine = "Clearly has been relaxing too long...."
 id = 5125
 examine = "He hasn't eaten in a long time."
 
-[coffin_11]
-id = 5278
-examine = "The resting place of Necrovarus' mortal body."
-
-[coffin_12]
-id = 5279
-examine = "The resting place of Necrovarus' mortal body."
-
 [heather_4]
 id = 5543
 examine = "Isn't Heather a girls' name?"
@@ -476,13 +465,6 @@ examine = "He looks very relaxed."
 [corpse_25]
 id = 7208
 examine = "Now he's just too thin."
-[pineapple_plant]
-id = 7972
-examine = "A fully grown pineapple plant."
-
-[pineapple_plant_stump]
-id = 7992
-examine = "This pineapple plant has been cut down."
 
 [dairy_cow]
 id = 8689
@@ -1043,14 +1025,6 @@ examine = "He looks very relaxed."
 id = 26807
 examine = "handy place for filling in forms and paperwork."
 
-[crack_9]
-id = 26844
-examine = "I might be able to squeeze through."
-
-[crack_10]
-id = 26845
-examine = "I might be able to squeeze through."
-
 [coffin_18]
 id = 26935
 examine = "I hope no one's home."
@@ -1404,10 +1378,6 @@ examine = "A strengthened pillar."
 id = 37451
 examine = "Stops bits of building falling on me."
 
-[railing_10]
-id = 37668
-examine = "A sturdy metal railing."
-
 [coffin_35]
 id = 37914
 examine = "It's sealed shut."
@@ -1599,17 +1569,9 @@ examine = "It wouldn't take much to collapse this pillar."
 [fountain_23]
 id = 47662
 
-[fountain_24]
-id = 47747
-examine = "The water looks VERY cold!"
-
 [pillar_104]
 id = 47977
 examine = "Stops bits of building falling on me."
-
-[tomb_9]
-id = 48686
-examine = "The Tomb of Dragith Nurn."
 
 [wall_pipe_2]
 id = 48844
@@ -1942,10 +1904,6 @@ examine = "Rocks that have been stacked at regular intervals."
 [well_2]
 id = 3359
 examine = "Well of the damned."
-
-[well_3]
-id = 3485
-examine = "An ornately carved well that draws water from the river Salve."
 
 [sink_2]
 id = 4063

@@ -24,14 +24,13 @@ class NPCOptionHandler : InstructionHandler<InteractNPC>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractNPC): Boolean {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return false
         }
         val npc = NPCs.indexed(instruction.npcIndex) ?: return false
         var def = npc.def
-        val transform = npc["transform_id", ""]
-        if (transform.isNotBlank()) {
-            def = NPCDefinitions.get(transform)
+        if (npc.transformed) {
+            def = npc.transformDef
         }
         val definition = getDefinition(player, NPCDefinitions, def, def)
         val options = definition.options

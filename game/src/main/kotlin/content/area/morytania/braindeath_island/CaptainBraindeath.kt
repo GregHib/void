@@ -2,6 +2,7 @@ package content.area.morytania.braindeath_island
 
 import content.entity.effect.clearTransform
 import content.entity.effect.transform
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Angry
 import content.entity.player.dialogue.Drunk
 import content.entity.player.dialogue.Happy
@@ -620,13 +621,14 @@ class CaptainBraindeath : Script {
     }
 
     private fun Player.completeRumDeal() {
+        AuditLog.event(this, "quest_completed", "rum_deal")
+        AdventurersLogs.questCompleted(this, "rum_deal", points = 2)
         jingle("quest_complete_1")
         exp(Skill.Prayer, 7000.0)
         exp(Skill.Fishing, 7000.0)
         exp(Skill.Farming, 7000.0)
         addOrDrop("holy_wrench")
         inc("quest_points", 2)
-        AuditLog.event(this, "quest_completed", "rum_deal")
         set("rum_deal", "completed")
         set("rum_deal_pressure_count", 0)
         set("rum_deal_brewing_control", 2)

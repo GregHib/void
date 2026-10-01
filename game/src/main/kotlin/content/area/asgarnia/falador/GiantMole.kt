@@ -52,9 +52,7 @@ class GiantMole : Script {
         }
 
         itemOption("Dig", "spade") {
-            val playerTile: Tile = tile
-            anim("human_dig")
-            if (!acceptedTiles.contains(playerTile)) {
+            if (!acceptedTiles.contains(tile)) {
                 return@itemOption
             }
             if (warning("mole_lair")) {

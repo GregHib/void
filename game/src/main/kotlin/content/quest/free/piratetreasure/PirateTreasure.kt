@@ -2,6 +2,7 @@ package content.quest.free.piratetreasure
 
 import content.entity.combat.dead
 import content.entity.combat.hit.directHit
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.Happy
 import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
@@ -249,7 +250,7 @@ class PirateTreasure : Script {
         if (!get("pirates_treasure_spawned_gardener", false)) {
             set("pirates_treasure_spawned_gardener", true)
             val gardener = NPCs.add(
-                id = "gardener_level_4",
+                id = "gardener_level_4_2",
                 tile = tile.add(x = 1),
                 ticks = TimeUnit.MINUTES.toTicks(8),
                 owner = this,
@@ -304,14 +305,15 @@ class PirateTreasure : Script {
     }
 
     private fun Player.gardener(): NPC? = NPCs.at(tile.regionLevel).firstOrNull {
-        it.id == "gardener_level_4" && it["owner", ""] == accountName && !it.dead
+        it.id == "gardener_level_4_2" && it["owner", ""] == accountName && !it.dead
     }
 
     private fun Player.completeQuest() {
+        AuditLog.event(this, "quest_completed", "pirates_treasure")
+        AdventurersLogs.questCompleted(this, "pirates_treasure", points = 2)
         set("pirates_treasure", "completed")
         jingle("quest_complete_1")
         inc("quest_points", 2)
-        AuditLog.event(this, "quest_completed", "pirates_treasure")
         refreshQuestJournal()
         questComplete(
             "Pirate's Treasure",

@@ -1,0 +1,15 @@
+# -1 means the player never entered Tutorial Island, so every existing save and every
+# account created while `world.start.tutorial` is off is exempt. `AccountManager.create`
+# seeds 0 for new accounts when the tutorial is enabled.
+[tutorial_stage]
+format = "int"
+persist = true
+default = -1
+
+[tutorial_complete]
+format = "boolean"
+persist = true
+
+[tutorial_designed]
+format = "boolean"
+persist = true

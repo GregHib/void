@@ -1,5 +1,6 @@
 package content.area.misthalin.lumbridge.castle
 
+import content.entity.player.AdventurersLogs
 import content.entity.player.dialogue.*
 import content.entity.player.dialogue.type.*
 import content.quest.quest
@@ -117,6 +118,7 @@ class Cook : Script {
 
     fun Player.questComplete() {
         AuditLog.event(this, "quest_completed", "cooks_assistant")
+        AdventurersLogs.questCompleted(this, "cooks_assistant", points = 1)
         set("cooks_assistant", "completed")
         jingle("quest_complete_1")
         inventory.add("sardine_noted", 20)
@@ -126,7 +128,7 @@ class Cook : Script {
         message("Congratulations, you've completed a quest: <navy>cook's assistant")
         refreshQuestJournal()
         questComplete(
-            "cook's assistant",
+            "Cook's Assistant",
             "1 Quest Point",
             "300 Cooking XP",
             "500 coins",

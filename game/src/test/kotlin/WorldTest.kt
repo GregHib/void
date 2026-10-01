@@ -229,7 +229,6 @@ abstract class WorldTest : KoinTest {
         saves?.mkdirs()
         val millis = measureTimeMillis {
             val tickStages = getTickStages(
-                get(),
                 get<ConnectionQueue>(),
                 get(),
                 get(),
