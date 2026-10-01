@@ -250,18 +250,22 @@ class House : Script {
             for ((index, position) in houseFurnitureRooms.withIndex()) {
                 placeFurniture(roomZone(base, position), hotspots[index], furniture[index])
             }
-            if (buildMode) {
-                return
-            }
+            val style = "basic_wood" // TODO house styles
             for (position in positions) {
-                removeHotspots(roomZone(base, position))
+                val window = Tables.obj("house_styles.$style.${if (roomLevel(position) == DUNGEON_LEVEL) "wall" else "window"}")
+                decorate(roomZone(base, position), window, buildMode)
             }
         }
 
-        private fun removeHotspots(zone: Zone) {
+        /**
+         * Fills the window spaces in [zone] and removes any hotspots outside of [buildMode]
+         */
+        private fun decorate(zone: Zone, window: String, buildMode: Boolean) {
             for (tile in zone.toCuboid()) {
                 for (obj in GameObjects.at(tile)) {
-                    if (obj.def.containsOption("Build")) {
+                    if (obj.id == "house_window_space") {
+                        obj.replace(window)
+                    } else if (!buildMode && obj.def.containsOption("Build")) {
                         obj.remove()
                     }
                 }

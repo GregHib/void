@@ -133,6 +133,15 @@ template = "tile"
 [.land]
 template = { x = 1864, y = 5056 }
 
+# Room templates for each style are on their own level, window spaces are replaced with the styles window, or wall underground
+[house_styles]
+wall = "obj"
+window = "obj"
+
+[.basic_wood]
+wall = "basic_wood_wall"
+window = "basic_wood_window"
+
 [house_locations]
 exit = "tile"
 
@@ -188,9 +197,6 @@ piece = 2
 
 [.parlour_bookcase_space]
 furniture = ["wooden_bookcase", "oak_bookcase", "mahogany_bkcase"]
-
-[.parlour_bookcase_space_2]
-clone = "parlour_bookcase_space"
 
 [.parlour_fireplace_space]
 furniture = ["clay_fireplace", "stone_fireplace", "marble_fireplace"]

@@ -79,9 +79,6 @@ id = 15413
 [parlour_bookcase_space]
 id = 15416
 
-[parlour_bookcase_space_2]
-id = 15417
-
 [parlour_fireplace_space]
 id = 15418
 
@@ -184,3 +181,12 @@ id = 13611
 
 [marble_fireplace]
 id = 13613
+
+[house_window_space]
+id = 13830
+
+[basic_wood_wall]
+id = 13098
+
+[basic_wood_window]
+id = 13099

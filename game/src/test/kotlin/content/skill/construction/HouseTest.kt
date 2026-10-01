@@ -578,6 +578,20 @@ class HouseTest : WorldTest() {
     }
 
     @Test
+    fun `Window spaces are filled with windows`() {
+        for (option in 1..2) {
+            val player = createOwner("owner$option")
+            player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+
+            player.enterPortal(option)
+
+            val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).toCuboid()
+            assertTrue(parlour.none { GameObjects.findOrNull(it, "house_window_space") != null })
+            assertEquals(8, parlour.count { GameObjects.findOrNull(it, "basic_wood_window") != null })
+        }
+    }
+
+    @Test
     fun `Leave a house through the exit portal`() {
         val owner = createOwner()
         owner.enterPortal(1)
