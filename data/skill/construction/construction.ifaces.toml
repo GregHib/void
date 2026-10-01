@@ -1,0 +1,95 @@
+[house_options]
+id = 398
+type = "options_tab"
+
+[.building_mode_off]
+id = 1
+
+[.building_mode_on]
+id = 15
+
+[.close]
+id = 19
+
+[.expel_guests]
+id = 27
+
+[.leave_house]
+id = 29
+
+[house_loading]
+id = 399
+type = "main_screen"
+
+[room_creation]
+id = 402
+type = "main_screen"
+
+[.parlour]
+id = 93
+
+[.garden]
+id = 94
+
+[.kitchen]
+id = 95
+
+[.dining_room]
+id = 96
+
+[.workshop]
+id = 97
+
+[.bedroom]
+id = 98
+
+[.skill_hall]
+id = 99
+
+[.games_room]
+id = 100
+
+[.combat_room]
+id = 101
+
+[.quest_hall]
+id = 102
+
+[.menagerie]
+id = 103
+
+[.study]
+id = 104
+
+[.costume_room]
+id = 105
+
+[.chapel]
+id = 106
+
+[.portal_chamber]
+id = 107
+
+[.formal_garden]
+id = 108
+
+[.throne_room]
+id = 109
+
+[.oubliette]
+id = 110
+
+[.dungeon_corridor]
+id = 111
+
+[.dungeon_junction]
+id = 112
+
+[.dungeon_stairs]
+id = 113
+
+[.dungeon_pit]
+id = 114
+
+[.treasure_room]
+id = 115

@@ -1,0 +1,56 @@
+[house_portal_taverley]
+id = 15477
+
+[house_portal_rimmington]
+id = 15478
+
+[house_portal_pollnivneach]
+id = 15479
+
+[house_portal_rellekka]
+id = 15480
+
+[house_portal_brimhaven]
+id = 15481
+
+[house_portal_yanille]
+id = 15482
+
+[door_hotspot]
+id = 15305
+
+[door_hotspot_2]
+id = 15306
+
+[door_hotspot_3]
+id = 15307
+
+[door_hotspot_4]
+id = 15308
+
+[door_hotspot_5]
+id = 15309
+
+[door_hotspot_6]
+id = 15310
+
+[door_hotspot_7]
+id = 15311
+
+[door_hotspot_8]
+id = 15312
+
+[door_hotspot_9]
+id = 15313
+
+[door_hotspot_10]
+id = 15314
+
+[door_hotspot_11]
+id = 15315
+
+[door_hotspot_12]
+id = 15316
+
+[door_hotspot_13]
+id = 15317

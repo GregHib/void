@@ -1,0 +1,12 @@
+[house_location]
+format = "string"
+persist = true
+
+[house_room_ids]
+persist = true
+
+[house_room_positions]
+persist = true
+
+[house_room_rotations]
+persist = true

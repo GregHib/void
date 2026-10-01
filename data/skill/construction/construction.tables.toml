@@ -1,0 +1,161 @@
+# Room templates are the south-west tile of each room in the house style region
+[house_rooms]
+level = "int"
+cost = "int"
+template = "tile"
+dungeon = "boolean"
+
+[.parlour]
+level = 1
+cost = 1000
+template = { x = 1856, y = 5112 }
+
+[.garden]
+level = 1
+cost = 1000
+template = { x = 1856, y = 5064 }
+
+[.kitchen]
+level = 5
+cost = 5000
+template = { x = 1872, y = 5112 }
+
+[.dining_room]
+level = 10
+cost = 5000
+template = { x = 1888, y = 5112 }
+
+[.workshop]
+level = 15
+cost = 10000
+template = { x = 1856, y = 5096 }
+
+[.bedroom]
+level = 20
+cost = 10000
+template = { x = 1904, y = 5112 }
+
+[.skill_hall]
+level = 25
+cost = 15000
+template = { x = 1864, y = 5104 }
+
+[.games_room]
+level = 30
+cost = 25000
+template = { x = 1896, y = 5088 }
+
+[.combat_room]
+level = 32
+cost = 25000
+template = { x = 1880, y = 5088 }
+
+[.quest_hall]
+level = 35
+cost = 25000
+template = { x = 1896, y = 5104 }
+
+[.menagerie]
+level = 37
+cost = 30000
+template = { x = 1912, y = 5072 }
+
+[.study]
+level = 40
+cost = 50000
+template = { x = 1888, y = 5096 }
+
+[.costume_room]
+level = 42
+cost = 50000
+template = { x = 1904, y = 5064 }
+
+[.chapel]
+level = 45
+cost = 50000
+template = { x = 1872, y = 5096 }
+
+[.portal_chamber]
+level = 50
+cost = 100000
+template = { x = 1864, y = 5088 }
+
+[.formal_garden]
+level = 55
+cost = 75000
+template = { x = 1872, y = 5064 }
+
+[.throne_room]
+level = 60
+cost = 150000
+template = { x = 1904, y = 5096 }
+
+[.oubliette]
+level = 65
+cost = 150000
+template = { x = 1904, y = 5080 }
+dungeon = true
+
+[.dungeon_corridor]
+level = 70
+cost = 7500
+template = { x = 1888, y = 5080 }
+dungeon = true
+
+[.dungeon_junction]
+level = 70
+cost = 7500
+template = { x = 1856, y = 5080 }
+dungeon = true
+
+[.dungeon_stairs]
+level = 70
+cost = 7500
+template = { x = 1872, y = 5080 }
+dungeon = true
+
+[.dungeon_pit]
+level = 70
+cost = 10000
+template = { x = 1896, y = 5072 }
+dungeon = true
+
+[.treasure_room]
+level = 75
+cost = 250000
+template = { x = 1912, y = 5088 }
+dungeon = true
+
+# Fillers for house grid spaces without a room
+[house_spaces]
+template = "tile"
+
+[.land]
+template = { x = 1864, y = 5056 }
+
+[.dungeon]
+template = { x = 1880, y = 5056 }
+
+[.border]
+template = { x = 1896, y = 5056 }
+
+[house_locations]
+exit = "tile"
+
+[.taverley]
+exit = { x = 2893, y = 3465 }
+
+[.rimmington]
+exit = { x = 2953, y = 3224 }
+
+[.pollnivneach]
+exit = { x = 3340, y = 3003 }
+
+[.rellekka]
+exit = { x = 2670, y = 3631 }
+
+[.brimhaven]
+exit = { x = 2757, y = 3178 }
+
+[.yanille]
+exit = { x = 2544, y = 3096 }

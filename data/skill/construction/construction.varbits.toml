@@ -1,0 +1,4 @@
+[house_build_mode]
+id = 2176
+format = "boolean"
+persist = true
