@@ -11,6 +11,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.CacheDownloader
 import world.gregs.voidps.cache.Index
 import world.gregs.voidps.cache.config.decoder.InventoryDecoder
 import world.gregs.voidps.cache.config.decoder.StructDecoder
@@ -49,6 +50,11 @@ object Main {
         AuditLog.info("startup")
         val startTime = System.currentTimeMillis()
         val settings = settings()
+
+        // Cache files
+        if (!timed("cache files") { CacheDownloader.ensure(settings) }) {
+            return
+        }
 
         // File server
         val cache = timed("cache") { Cache.load(settings) }
