@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.map.instance
 
 import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -14,6 +15,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.type.Region
@@ -220,6 +222,22 @@ internal class InstancesTest : KoinMock() {
         assertEquals(large, Instances.owner(large.tile.add(200, 200)))
         assertNull(Instances.owner(Region(small.x + 3, small.y)))
         assertNull(Instances.owner(Region(50, 50)))
+    }
+
+    @Test
+    fun `Freeing an instance clears all of its regions`() {
+        val dynamicZones: DynamicZones = get()
+        val instance = Instances.small()
+        // When
+        GameLoop.tick = Instances.CLEANUP_TICKS + 1
+        Instances.cleanup()
+        // Then
+        for (x in instance.x - 1..instance.x + 1) {
+            for (y in instance.y - 1..instance.y + 1) {
+                verify { dynamicZones.clear(Region(x, y)) }
+            }
+        }
+        verify(exactly = 0) { dynamicZones.clear(Region(instance.x + 2, instance.y)) }
     }
 
     @Test
