@@ -23,3 +23,8 @@ persist = true
 [house_locked]
 format = "boolean"
 persist = true
+
+[house_style]
+format = "string"
+persist = true
+default = "basic_wood"

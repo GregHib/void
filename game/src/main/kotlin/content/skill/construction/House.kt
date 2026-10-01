@@ -207,6 +207,14 @@ class House : Script {
         }
 
         /**
+         * The zone of the template at [path] in the players house style
+         */
+        fun Player.template(path: String): Zone {
+            val offset = Tables.tile("house_styles.${get("house_style", "basic_wood")}.offset")
+            return Tables.tile(path).add(offset.x, offset.y, offset.level).zone
+        }
+
+        /**
          * Builds the players house in the instance starting at [base]. Ground floor rooms are surrounded by a
          * ring of grass, every other space is left empty.
          */
@@ -220,11 +228,11 @@ class House : Script {
             for ((index, position) in positions.withIndex()) {
                 val zone = roomZone(base, position)
                 placed.add(zone)
-                entries.add(Triple(Tables.tile("house_rooms.${ids[index]}.template").zone, zone, rotations[index]))
+                entries.add(Triple(template("house_rooms.${ids[index]}.template"), zone, rotations[index]))
             }
             val ground = positions.filter { roomLevel(it) == GROUND_LEVEL }
             if (ground.isNotEmpty()) {
-                val land = Tables.tile("house_spaces.land.template").zone
+                val land = template("house_spaces.land.template")
                 for (x in ground.minOf(::roomX) - 1..ground.maxOf(::roomX) + 1) {
                     for (y in ground.minOf(::roomY) - 1..ground.maxOf(::roomY) + 1) {
                         val zone = base.add(x + 1, y + 1, GROUND_LEVEL)
@@ -250,9 +258,8 @@ class House : Script {
             for ((index, position) in houseFurnitureRooms.withIndex()) {
                 placeFurniture(roomZone(base, position), hotspots[index], furniture[index])
             }
-            val style = "basic_wood" // TODO house styles
             for (position in positions) {
-                val window = Tables.obj("house_styles.$style.${if (roomLevel(position) == DUNGEON_LEVEL) "wall" else "window"}")
+                val window = Tables.obj("house_styles.${get("house_style", "basic_wood")}.${if (roomLevel(position) == DUNGEON_LEVEL) "wall" else "window"}")
                 decorate(roomZone(base, position), window, buildMode)
             }
         }

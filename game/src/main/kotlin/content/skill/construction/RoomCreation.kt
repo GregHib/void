@@ -14,12 +14,12 @@ import content.skill.construction.House.Companion.removeHouseRoom
 import content.skill.construction.House.Companion.roomLevel
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.House.Companion.template
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Rows
-import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
@@ -121,7 +121,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
         }
         val position: Int = get("house_preview_position") ?: return
         val room: String = get("house_preview_room") ?: return
-        dynamicZones.copy(Tables.tile("house_rooms.$room.template").zone, roomZone(base, position), get("house_preview_rotation", 0))
+        dynamicZones.copy(template("house_rooms.$room.template"), roomZone(base, position), get("house_preview_rotation", 0))
         choice {
             option("Rotate clockwise") {
                 rotate(1)

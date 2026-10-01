@@ -133,34 +133,95 @@ template = "tile"
 [.land]
 template = { x = 1864, y = 5056 }
 
-# Room templates for each style are on their own level, window spaces are replaced with the styles window, or wall underground
+# Templates for each style are offset from the basic wood templates, window spaces are filled with the styles window or wall underground
 [house_styles]
+name = "string"
+level = "int"
+cost = "int"
+offset = "tile"
 wall = "obj"
 window = "obj"
 
 [.basic_wood]
+name = "Basic wood"
+level = 1
+cost = 5000
 wall = "basic_wood_wall"
 window = "basic_wood_window"
 
+[.basic_stone]
+name = "Basic stone"
+level = 10
+cost = 5000
+offset = { level = 1 }
+wall = "basic_stone_wall"
+window = "basic_stone_window"
+
+[.whitewashed_stone]
+name = "Whitewashed stone"
+level = 20
+cost = 7500
+offset = { level = 2 }
+wall = "whitewashed_stone_wall"
+window = "whitewashed_stone_window"
+
+[.fremennik_wood]
+name = "Fremennik-style wood"
+level = 30
+cost = 10000
+offset = { level = 3 }
+wall = "fremennik_wood_wall"
+window = "fremennik_wood_window"
+
+[.tropical_wood]
+name = "Tropical wood"
+level = 40
+cost = 15000
+offset = { x = 64 }
+wall = "tropical_wood_wall"
+window = "tropical_wood_window"
+
+[.fancy_stone]
+name = "Fancy stone"
+level = 50
+cost = 25000
+offset = { x = 64, level = 1 }
+wall = "fancy_stone_wall"
+window = "fancy_stone_window"
+
 [house_locations]
+level = "int"
+cost = "int"
 exit = "tile"
 
-[.taverley]
-exit = { x = 2893, y = 3465 }
-
 [.rimmington]
+level = 1
+cost = 5000
 exit = { x = 2953, y = 3224 }
 
+[.taverley]
+level = 10
+cost = 5000
+exit = { x = 2893, y = 3465 }
+
 [.pollnivneach]
+level = 20
+cost = 7500
 exit = { x = 3340, y = 3003 }
 
 [.rellekka]
+level = 30
+cost = 10000
 exit = { x = 2670, y = 3631 }
 
 [.brimhaven]
+level = 40
+cost = 15000
 exit = { x = 2757, y = 3178 }
 
 [.yanille]
+level = 50
+cost = 25000
 exit = { x = 2544, y = 3096 }
 
 # Furniture which can be built on each hotspot, hotspots with the same group are built and removed together

@@ -190,3 +190,33 @@ id = 13098
 
 [basic_wood_window]
 id = 13099
+
+[basic_stone_wall]
+id = 13090
+
+[basic_stone_window]
+id = 13091
+
+[whitewashed_stone_wall]
+id = 1415
+
+[whitewashed_stone_window]
+id = 13005
+
+[fremennik_wood_wall]
+id = 13111
+
+[fremennik_wood_window]
+id = 13112
+
+[tropical_wood_wall]
+id = 13011
+
+[tropical_wood_window]
+id = 10816
+
+[fancy_stone_wall]
+id = 13116
+
+[fancy_stone_window]
+id = 13117

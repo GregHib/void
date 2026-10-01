@@ -11,6 +11,7 @@ import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.houseRoomRotations
+import content.skill.construction.House.Companion.leaveHouse
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
 import dialogueOption
@@ -24,6 +25,7 @@ import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.VariableDefinition.Companion.persist
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.data.definition.VariableDefinitions
 import world.gregs.voidps.engine.entity.Despawn
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -77,15 +79,15 @@ class HouseTest : WorldTest() {
         tick(10)
     }
 
-    private fun Player.enterPortal(option: Int) {
-        objectOption(GameObjects.find(portal, "house_portal_rimmington"), "Enter")
+    private fun Player.enterPortal(option: Int, obj: GameObject = GameObjects.find(portal, "house_portal_rimmington")) {
+        objectOption(obj, "Enter")
         tickIf { dialogue == null }
         dialogueOption("line$option")
         tickIf { hasOpen("house_loading") }
     }
 
-    private fun Player.visit(owner: Player) {
-        enterPortal(1)
+    private fun Player.visit(owner: Player, obj: GameObject = GameObjects.find(portal, "house_portal_rimmington")) {
+        enterPortal(1, obj)
         (suspension as Suspension.NameEntry).resume(owner.name)
         tickIf { hasOpen("house_loading") }
     }
@@ -114,6 +116,96 @@ class HouseTest : WorldTest() {
         assertEquals(listOf(START_ROOM), player.houseRoomPositions)
         assertEquals(listOf(0), player.houseRoomRotations)
         assertEquals(0, player.inventory.count("coins"))
+    }
+
+    private fun Player.talkToAgent(vararg options: Int) {
+        val agent = createNPC("estate_agent", tile.addY(-1))
+        npcOption(agent, "Talk-to")
+        tickIf { dialogue == null }
+        for (option in options) {
+            skipDialogues()
+            dialogueOption("line$option")
+        }
+        skipDialogues()
+    }
+
+    @Test
+    fun `Move house to another location`() {
+        val player = createOwner()
+        player.tele(2983, 3370)
+        player.levels.set(Skill.Construction, 10)
+        player.inventory.add("coins", 5000)
+
+        player.talkToAgent(1, 2)
+
+        assertEquals("taverley", player["house_location", ""])
+        assertEquals(0, player.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Can't move house without the level`() {
+        val player = createOwner()
+        player.tele(2983, 3370)
+        player.inventory.add("coins", 25000)
+
+        player.talkToAgent(1, 5, 2)
+
+        assertEquals("rimmington", player["house_location", ""])
+        assertEquals(25000, player.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Redecorate house`() {
+        val player = createOwner()
+        player.tele(2983, 3370)
+        player.levels.set(Skill.Construction, 50)
+        player.inventory.add("coins", 25000)
+
+        player.talkToAgent(2, 5, 2)
+
+        assertEquals("fancy_stone", player["house_style", ""])
+        assertEquals(0, player.inventory.count("coins"))
+    }
+
+    @Test
+    fun `Houses load in every style`() {
+        for (style in Tables.get("house_styles").rows()) {
+            val player = createOwner(style.rowId)
+            player["house_style"] = style.rowId
+            player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+
+            player.enterPortal(1)
+
+            val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).toCuboid()
+            assertEquals(8, parlour.count { GameObjects.findOrNull(it, style.obj("window")) != null }, style.rowId)
+            assertTrue(parlour.none { GameObjects.findOrNull(it, "house_window_space") != null }, style.rowId)
+            assertTrue(player.inHouseOf(player), style.rowId)
+            player.leaveHouse()
+        }
+    }
+
+    @Test
+    fun `Enter and leave houses through every location's portal`() {
+        for (location in Tables.get("house_locations").rows()) {
+            val exit = location.tile("exit")
+            val owner = createOwner("owner${location.id}")
+            owner["house_location"] = location.rowId
+            owner.tele(exit)
+            val portal = exit.toCuboid(radius = 8).firstNotNullOf { GameObjects.findOrNull(it, "house_portal_${location.rowId}") }
+
+            owner.enterPortal(1, portal)
+            val guest = createPlayer(exit, "guest${location.id}")
+            guest.visit(owner, portal)
+
+            assertTrue(owner.inHouseOf(owner), location.rowId)
+            assertTrue(guest.inHouseOf(owner), location.rowId)
+            guest.objectOption(guest.exitPortal(), "Enter")
+            tick(5)
+            assertEquals(exit, guest.tile, location.rowId)
+            owner.objectOption(owner.exitPortal(), "Enter")
+            tick(5)
+            assertEquals(exit, owner.tile, location.rowId)
+        }
     }
 
     @Test
