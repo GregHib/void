@@ -25,6 +25,12 @@ import world.gregs.voidps.web.site.components.*
  * Chrome layout: the map display toggles top-left, the elevation stepper and teleport panel
  * stacked top-right, the hovered-tile readout bottom-left and the console (players, search)
  * bottom-centre. Only "Kick" is left behind [Site.FULL] — it's staff-only and not wired up yet.
+ *
+ * The bots' navigation graph ([navGraphPanel]) isn't baked in either: it's read from the viewer's
+ * own `*.nav-edges.toml` files, and can be edited and saved back to them — see `js/navgraph.js`.
+ * The area polygons are baked in for viewing, but can likewise be loaded from `*.areas.toml` files
+ * to edit ([areaPanel], [areaEditPanel], `js/areas.js`); both load through [mapFileLoader], and
+ * `js/mapedit.js` holds what the two editors share.
  */
 object WorldMap {
 
@@ -191,6 +197,391 @@ object WorldMap {
     }
 
     /**
+     * The "Load folder…"/"Load files…" buttons under the display panel's toggles, shared by the two
+     * layers that can be edited from files: the nav graph (`*.nav-edges.toml`, nothing to show
+     * until loaded) and the area polygons (`*.areas.toml`, shown from the areas baked into the page
+     * until then). Shown while either is switched on with nothing loaded, and loads every layer in
+     * that state at once, each from its own files — see `kindsToLoad` in mapedit.js.
+     */
+    private fun DIV.mapFileLoader() {
+        div {
+            xShow("kindsToLoad().length")
+            div {
+                style = "display:flex;flex-direction:column;gap:6px;padding-bottom:10px"
+                div {
+                    style = HINT_STYLE
+                    xText("'Load ' + loadHint() + ' from disk to edit.'")
+                }
+                div {
+                    attributes["title"] = "Pick a folder (the repo's data/) — every matching file under it, however deep, is loaded"
+                    ui.button(
+                        "Load folder…", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                        onClick = "openMapFolder()",
+                    )
+                }
+                ui.button(
+                    "Load files…", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                    onClick = "openMapFiles()",
+                )
+                errorText("[loadError, navLoaded ? '' : navError, areaLoaded ? '' : areaError].filter(Boolean).join('\\n')")
+            }
+        }
+    }
+
+    /**
+     * Which editor gets the pointer and keyboard, shown while either layer has files loaded and is
+     * showing — see `activeEditor` in mapedit.js. "None" by default, so loaded files are only
+     * looked at until an editor is picked; each editor is offered while its layer is showing. Only
+     * the picked editor's panels are shown, so each button carries a dot while its files are unsaved.
+     */
+    private fun DIV.editorSwitch() {
+        div {
+            xShow("anyEditable()")
+            div {
+                style = "display:flex;flex-direction:column;gap:6px;padding-bottom:10px"
+                span {
+                    style = HINT_STYLE
+                    +"Editing"
+                }
+                rawHtml(
+                    """
+                    <div class="wm-editor-switch">
+                      <button type="button" :class="{ 'wm-editor-switch-on': !activeEditor() }" @click="setMapEditor('none')">None</button>
+                      <button type="button" x-show="navEditable()" :class="{ 'wm-editor-switch-on': activeEditor() === 'nav' }" @click="setMapEditor('nav')" x-text="'Nav graph' + (navDirty ? ' •' : '')">Nav graph</button>
+                      <button type="button" x-show="areaEditable()" :class="{ 'wm-editor-switch-on': activeEditor() === 'area' }" @click="setMapEditor('area')" x-text="'Areas' + (areaDirty ? ' •' : '')">Areas</button>
+                    </div>
+                    """,
+                )
+            }
+        }
+    }
+
+    private const val HINT_STYLE = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-faint);line-height:var(--leading-normal)"
+
+    /** A red, pre-wrapped message, shown while [expression] is non-empty. */
+    private fun FlowContent.errorText(expression: String) {
+        div {
+            xShow(expression)
+            div {
+                style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--feedback-danger);white-space:pre-wrap"
+                xText(expression)
+            }
+        }
+    }
+
+    /**
+     * The nav graph editor's controls, as a legend. There are no tools to switch between: what a
+     * click or drag does depends on what's under it — see `navInteractive` in navgraph.js.
+     */
+    private val navControls = listOf(
+        "Shift+click point" to "Join the selection to it",
+        "Right-click" to "Delete point or edge",
+        "Esc" to "Stop drawing",
+    )
+
+    /**
+     * The nav graph editor, under the display panel while it's the active editor (see
+     * [editorSwitch]). Drag-to-pan works
+     * everywhere except on a point, which drags the point instead (or anywhere at all with Space
+     * held). Edits stay in memory until Save writes the changed files back (or downloads them, in a
+     * browser that can't write files).
+     */
+    private fun FlowContent.navGraphPanel() {
+        val hint = HINT_STYLE
+        div {
+            xShow("activeEditor() === 'nav'")
+            ui.panel(
+                title = "Nav graph",
+                padded = false,
+                action = { collapseToggle("navPanelOpen", "Toggle nav graph editor") },
+                headerClick = "navPanelOpen = !navPanelOpen",
+            ) {
+                xShow("navPanelOpen")
+                div {
+                    // Layout on a nested div, not the `x-show`n one — see the bottom-left readout's comment.
+                    style = "padding:var(--space-5) var(--space-6) var(--space-6);display:flex;flex-direction:column;gap:var(--space-4)"
+                    div {
+                        attributes["class"] = "wm-nav-controls"
+                        for ((input, action) in navControls) {
+                            span { +input }
+                            span { +action }
+                        }
+                    }
+                    div {
+                        xShow("navSelection")
+                        div {
+                            style = "font:var(--type-code);font-size:var(--text-2xs);color:var(--gold-300);" +
+                                "padding:6px 8px;background:var(--surface-inset);border:1px solid var(--border-subtle);" +
+                                "border-radius:var(--radius-sm);overflow-wrap:anywhere"
+                            xText("navSelection")
+                        }
+                    }
+                    div {
+                        style = hint
+                        +"Files — new edges go into the highlighted one."
+                    }
+                    rawHtml(
+                        """
+                        <div style="display:flex;flex-direction:column;gap:4px;max-height:260px;overflow-y:auto">
+                          <template x-for="f in navFiles" :key="f.path">
+                            <button type="button" class="wm-nav-file" :class="{ 'wm-nav-file-target': f.index === navTarget }" :title="f.path + (f.writable ? '' : ' (read-only in this browser: Save downloads a copy)')" @click="navPickFile(f.index)">
+                              <span class="wm-nav-file-name" x-text="f.name + (f.dirty ? ' •' : '')"></span>
+                              <span class="wm-nav-file-count" x-text="f.edges"></span>
+                            </button>
+                          </template>
+                        </div>
+                        """,
+                    )
+                    div {
+                        style = hint
+                        xText(
+                            "navStats + ' in ' + navFiles.length + (navFiles.length === 1 ? ' file' : ' files') + " +
+                                "(navDirty ? ' — ' + navFiles.filter(f => f.dirty).length + ' unsaved' : '')",
+                        )
+                    }
+                    div {
+                        xShow("navError")
+                        div {
+                            style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--feedback-danger);white-space:pre-wrap"
+                            xText("navError")
+                        }
+                    }
+                    div {
+                        xShow("navNotice")
+                        div {
+                            style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-muted);white-space:pre-wrap"
+                            xText("navNotice")
+                        }
+                    }
+                    div {
+                        style = "display:grid;grid-template-columns:1fr 1fr;gap:6px"
+                        div {
+                            attributes["title"] = "Undo (Ctrl+Z)"
+                            ui.button(
+                                "Undo", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                                disabledExpression = "!navCanUndo", onClick = "navUndo()",
+                            )
+                        }
+                        div {
+                            attributes["title"] = "Write the selected file"
+                            ui.button("Save", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!(navFiles[navTarget] && navFiles[navTarget].dirty)", onClick = "saveNavFile()")
+                        }
+                    }
+                    div {
+                        attributes["title"] = "Write every changed file (Ctrl+S)"
+                        ui.button("Save all", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!navDirty", onClick = "saveNavFiles()")
+                    }
+                    div {
+                        style = "display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px var(--space-4);min-width:0"
+                        ui.button("New", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "navNewFile()")
+                        ui.button("Files…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFiles(['nav'])")
+                        ui.button("Folder…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFolder(['nav'])")
+                        ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeNavFile()")
+                        ui.button("Close all", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeNavFiles()")
+                    }
+                }
+            }
+        }
+    }
+
+    /** The area editor's controls, as a legend — see `areaPointerDown` and friends in areas.js. */
+    private val areaControls = listOf(
+        "Click area" to "Select it (again: the one beneath)",
+        "Shift+click" to "Start a new area there (N: New area)",
+        "Drag corner" to "Move it",
+        "Drag midpoint" to "Add a corner there",
+        "Right-click" to "Delete corner",
+        "Arrows" to "Nudge corner or area (Shift: 8)",
+    )
+
+    /**
+     * The area editor, under the display panel while it's the active editor (see [editorSwitch]):
+     * the files, with the one new areas go into highlighted, and Undo/Save. Only the loaded files'
+     * areas are drawn while it's up, so an area in a file that wasn't loaded disappears rather than
+     * looking editable. The selected area itself is edited in [areaEditPanel].
+     */
+    private fun FlowContent.areaPanel() {
+        div {
+            xShow("activeEditor() === 'area'")
+            ui.panel(
+                title = "Areas",
+                padded = false,
+                action = { collapseToggle("areaPanelOpen", "Toggle area editor") },
+                headerClick = "areaPanelOpen = !areaPanelOpen",
+            ) {
+                xShow("areaPanelOpen")
+                div {
+                    // Layout on a nested div, not the `x-show`n one — see the bottom-left readout's comment.
+                    style = "padding:var(--space-5) var(--space-6) var(--space-6);display:flex;flex-direction:column;gap:var(--space-4)"
+                    div {
+                        attributes["class"] = "wm-nav-controls"
+                        for ((input, action) in areaControls) {
+                            span { +input }
+                            span { +action }
+                        }
+                    }
+                    ui.button(
+                        "New area", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                        disabledExpression = "areaDrawing >= 0 || !areaActive()", onClick = "areaStartDraw()",
+                    )
+                    div {
+                        style = HINT_STYLE
+                        +"Files — new areas go into the highlighted one."
+                    }
+                    rawHtml(
+                        """
+                        <div style="display:flex;flex-direction:column;gap:4px;max-height:200px;overflow-y:auto">
+                          <template x-for="f in areaFiles" :key="f.path">
+                            <button type="button" class="wm-nav-file" :class="{ 'wm-nav-file-target': f.index === areaTarget }" :title="f.path + (f.writable ? '' : ' (read-only in this browser: Save downloads a copy)')" @click="areaPickFile(f.index)">
+                              <span class="wm-nav-file-name" x-text="f.name + (f.dirty ? ' •' : '')"></span>
+                              <span class="wm-nav-file-count" x-text="f.count"></span>
+                            </button>
+                          </template>
+                        </div>
+                        """,
+                    )
+                    div {
+                        style = HINT_STYLE
+                        xText(
+                            "areaStats + ' in ' + areaFiles.length + (areaFiles.length === 1 ? ' file' : ' files') + " +
+                                "(areaDirty ? ' — ' + areaFiles.filter(f => f.dirty).length + ' unsaved' : '')",
+                        )
+                    }
+                    // Shown in the Area panel instead while that's open, next to the field it's about.
+                    errorText("!(areaActive() && (areaSel || areaDrawing >= 0)) && areaError")
+                    div {
+                        xShow("areaNotice")
+                        div {
+                            style = "font:var(--type-body-sm);font-size:var(--text-2xs);color:var(--text-muted);white-space:pre-wrap"
+                            xText("areaNotice")
+                        }
+                    }
+                    div {
+                        style = "display:grid;grid-template-columns:1fr 1fr;gap:6px"
+                        div {
+                            attributes["title"] = "Undo (Ctrl+Z)"
+                            ui.button(
+                                "Undo", variant = ButtonVariant.Secondary, size = ButtonSize.Small, fullWidth = true,
+                                disabledExpression = "!areaCanUndo", onClick = "areaUndo()",
+                            )
+                        }
+                        div {
+                            attributes["title"] = "Write the selected file"
+                            ui.button("Save", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!(areaFiles[areaTarget] && areaFiles[areaTarget].dirty)", onClick = "saveAreaFile()")
+                        }
+                    }
+                    div {
+                        attributes["title"] = "Write every changed file (Ctrl+S)"
+                        ui.button("Save all", size = ButtonSize.Small, fullWidth = true, disabledExpression = "!areaDirty", onClick = "saveAreaFiles()")
+                    }
+                    div {
+                        style = "display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px var(--space-4);min-width:0"
+                        ui.button("New file", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "areaNewFile()")
+                        ui.button("Files…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFiles(['area'])")
+                        ui.button("Folder…", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "openMapFolder(['area'])")
+                        ui.button("Close", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeAreaFile()")
+                        ui.button("Close all", variant = ButtonVariant.Link, size = ButtonSize.Small, onClick = "closeAreaFiles()")
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * The selected area's editor, in the top-right column where the nav graph's Edges panel goes
+     * while that's the active editor: its name, level, tags and any other keys (a `hint`, params),
+     * each committing on Enter or when it loses focus. While a new area is being drawn it shows how
+     * to finish it instead.
+     */
+    private fun FlowContent.areaEditPanel() {
+        div {
+            attributes["class"] = "wm-nav-edge-wrap"
+            xShow("areaActive() && (areaSel || areaDrawing >= 0)")
+            ui.panel(
+                title = "Area",
+                padded = false,
+                action = { collapseToggle("areaEditPanelOpen", "Toggle area editor") },
+                headerClick = "areaEditPanelOpen = !areaEditPanelOpen",
+            ) {
+                xShow("areaEditPanelOpen")
+                rawHtml(
+                    """
+                    <div class="wm-nav-edge-body">
+                      <template x-if="areaDrawing >= 0">
+                        <div class="wm-nav-edge-section">
+                          <div class="wm-nav-edge-title">New area</div>
+                          <div class="wm-nav-edge-hint wm-nav-edge-picking" x-text="areaDrawing === 0 ? 'Click the map to place the first corner.' : areaDrawing + (areaDrawing === 1 ? ' corner' : ' corners') + ' placed.'"></div>
+                          <div class="wm-nav-edge-hint">Two corners make a rectangle, three or more a polygon. Enter (or clicking the first corner) finishes it, right-click takes the last corner back, Esc cancels.</div>
+                          <div class="wm-nav-edge-hint" x-text="'Goes into ' + (areaFiles[areaTarget] ? areaFiles[areaTarget].name : '') + ', on ' + (level === 0 ? 'every level' : 'level ' + level + ' only') + '.'"></div>
+                          <div class="wm-nav-edge-warn" x-show="areaError" x-text="areaError"></div>
+                          <div class="wm-nav-templates">
+                            <button type="button" class="wm-nav-chip" :disabled="areaDrawing < 2" @click="areaFinishDraw()">Finish</button>
+                            <button type="button" class="wm-nav-chip" @click="areaCancelDraw()">Cancel</button>
+                          </div>
+                        </div>
+                      </template>
+                      <template x-if="areaDrawing < 0 && areaSel">
+                        <div class="wm-nav-edge-section">
+                          <label class="wm-nav-edge-field">
+                            <span>Name</span>
+                            <input class="wm-nav-input wm-area-name" spellcheck="false" :value="areaSel.name"
+                              @change="areaRename(${'$'}event.target.value); ${'$'}event.target.value = areaSel.name" @keydown.enter="${'$'}event.target.blur()">
+                          </label>
+                          <div class="wm-nav-edge-warn" x-show="areaSel.clash">Another loaded area has this name.</div>
+                          <div class="wm-nav-edge-warn" x-show="areaError" x-text="areaError"></div>
+                          <div class="wm-nav-edge-hint" x-text="areaSel.file + ' · ' + areaSel.shape + ' · ' + areaSel.bounds"></div>
+                          <label class="wm-nav-edge-field">
+                            <span>Level</span>
+                            <select class="wm-nav-input" :value="areaSel.level" @change="areaSetLevel(${'$'}event.target.value)">
+                              <option value="">Every level</option>
+                              <option value="0">0 only</option>
+                              <option value="1">1 only</option>
+                              <option value="2">2 only</option>
+                              <option value="3">3 only</option>
+                            </select>
+                          </label>
+
+                          <div class="wm-nav-edge-label">Tags</div>
+                          <div class="wm-area-tags">
+                            <template x-for="(t, ti) in areaSel.tags" :key="t">
+                              <span class="wm-area-tag"><span x-text="t"></span><button type="button" title="Remove tag" @click="areaRemoveTag(ti)">✕</button></span>
+                            </template>
+                            <input class="wm-nav-input wm-area-tag-input" list="wm-area-tag-list" placeholder="+ tag" spellcheck="false"
+                              @keydown.enter.prevent="areaAddTag(${'$'}event.target.value); ${'$'}event.target.value = ''"
+                              @change="areaAddTag(${'$'}event.target.value); ${'$'}event.target.value = ''">
+                          </div>
+                          <datalist id="wm-area-tag-list">
+                            <template x-for="t in areaTags" :key="t"><option :value="t"></option></template>
+                          </datalist>
+
+                          <div class="wm-nav-edge-label">Other keys</div>
+                          <div class="wm-nav-edge-hint" x-show="!areaSel.extras.length">None — a hint, or any param the content reads.</div>
+                          <template x-for="(f, fi) in areaSel.extras" :key="fi + ':' + f.key">
+                            <div class="wm-nav-action-field">
+                              <input class="wm-nav-input wm-nav-key" placeholder="key" spellcheck="false" :value="f.key"
+                                @change="areaSetExtra(fi, 'key', ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                              <input class="wm-nav-input" :class="{ 'wm-nav-input-empty': !f.value.trim() }" placeholder="value" :value="f.value" :title="f.value"
+                                @change="areaSetExtra(fi, 'value', ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                              <button type="button" class="wm-nav-icon" title="Remove" @click="areaRemoveExtra(fi)">✕</button>
+                            </div>
+                          </template>
+                          <button type="button" class="wm-nav-link" @click="areaAddExtra()">+ key</button>
+
+                          <div class="wm-nav-edge-hint wm-nav-edge-picking" x-show="areaSel.vertex" x-text="'Corner ' + areaSel.vertex + ' selected — arrows nudge it' + (areaSel.canDeleteVertex ? ', Delete removes it.' : '.')"></div>
+                          <div class="wm-nav-templates">
+                            <button type="button" class="wm-nav-chip" @click="areaFrameSelected()" title="Fit the whole area in view">Zoom to</button>
+                            <button type="button" class="wm-nav-chip wm-nav-chip-danger" @click="areaDeleteSelected()" title="Delete this area (Delete)">Delete area</button>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                    """,
+                )
+            }
+        }
+    }
+
+    /**
      * The chevron in a corner panel's header that collapses it down to that header, bound to
      * [model]. The whole header band toggles as well (see [Ui.panel]'s `headerClick`) — this stays
      * a real button so the control is reachable by keyboard and named for a screen reader, and
@@ -250,6 +641,114 @@ object WorldMap {
                         ui.button("Teleport", size = ButtonSize.Small, fullWidth = true, onClick = "teleportTo()")
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * The nav graph's edge inspector, under the teleport panel. With a point selected it lists the
+     * point's edges (the only way to reach one of a two-way pair, which draw over each other); with
+     * an edge selected it edits that edge's cost, actions and requirements — see the "Edge editor"
+     * section of navgraph.js. Every field commits on Enter or when it loses focus.
+     */
+    private fun FlowContent.navEdgePanel() {
+        div {
+            attributes["class"] = "wm-nav-edge-wrap"
+            xShow("navActive() && (navEdge || navNodeEdges.length)")
+            ui.panel(
+                title = "Edges",
+                padded = false,
+                action = { collapseToggle("navEdgePanelOpen", "Toggle edge editor") },
+                headerClick = "navEdgePanelOpen = !navEdgePanelOpen",
+            ) {
+                xShow("navEdgePanelOpen")
+                rawHtml(
+                    """
+                    <div class="wm-nav-edge-body">
+                      <template x-if="!navEdge">
+                        <div class="wm-nav-edge-section">
+                          <div class="wm-nav-edge-hint">This point's edges — pick one to edit its actions.</div>
+                          <template x-for="e in navNodeEdges" :key="e.i">
+                            <button type="button" class="wm-nav-edge-row" @click="navPickEdge(e.i)">
+                              <span x-text="e.label"></span>
+                              <span class="wm-nav-edge-row-actions" x-text="e.actions || 'walk'"></span>
+                            </button>
+                          </template>
+                        </div>
+                      </template>
+                      <template x-if="navEdge">
+                        <div class="wm-nav-edge-section">
+                          <div>
+                            <div class="wm-nav-edge-title" x-text="navEdge.title"></div>
+                            <div class="wm-nav-edge-hint" x-text="navEdge.file + ' · ' + (navEdge.directed ? 'one-way' : 'walk edge, both ways')"></div>
+                          </div>
+                          <button type="button" class="wm-nav-link" x-show="navEdge.hasReverse" @click="navGoReverse()" x-text="'Other way: ' + navEdge.reverseSummary"></button>
+                          <button type="button" class="wm-nav-link" x-show="navEdge.directed && !navEdge.hasReverse" @click="navCreateReverse()">+ Add the same edge the other way</button>
+
+                          <label class="wm-nav-edge-field">
+                            <span>Cost</span>
+                            <input class="wm-nav-input" inputmode="numeric" :value="navEdge.cost" :disabled="!navEdge.directed"
+                              :placeholder="navEdge.directed ? '0' : navEdge.walkCost + ' (distance)'"
+                              @change="navSetCost(${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                          </label>
+
+                          <div class="wm-nav-edge-label">Actions</div>
+                          <div class="wm-nav-edge-hint" x-show="!navEdge.actions.length">None: bots just walk it, either way. Adding one makes the edge one-way.</div>
+                          <div class="wm-nav-edge-hint wm-nav-edge-picking" x-show="navPicking >= 0" x-text="'Click the map to set action ' + (navPicking + 1) + '\'s x, y — Esc cancels.'"></div>
+                          <template x-for="(a, ai) in navEdge.actions" :key="ai + ':' + a.type + ':' + a.fields.length">
+                            <div class="wm-nav-action">
+                              <div class="wm-nav-action-head">
+                                <span class="wm-nav-action-num" x-text="ai + 1"></span>
+                                <input class="wm-nav-input wm-nav-action-type" list="wm-nav-action-types" placeholder="type" :value="a.type"
+                                  @change="navSetActionType(ai, ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                                <button type="button" class="wm-nav-icon" title="Set x, y by clicking the map" x-show="a.pickable"
+                                  :class="{ 'wm-nav-icon-active': navPicking === ai }" @click="navPickTile(ai)">⌖</button>
+                                <button type="button" class="wm-nav-icon" title="Move up" :disabled="ai === 0" @click="navMoveAction(ai, -1)">↑</button>
+                                <button type="button" class="wm-nav-icon" title="Move down" :disabled="ai === navEdge.actions.length - 1" @click="navMoveAction(ai, 1)">↓</button>
+                                <button type="button" class="wm-nav-icon" title="Remove action" @click="navRemoveAction(ai)">✕</button>
+                              </div>
+                              <datalist :id="'wm-nav-keys-' + ai">
+                                <template x-for="k in a.suggestions" :key="k"><option :value="k"></option></template>
+                              </datalist>
+                              <template x-for="(f, fi) in a.fields" :key="fi + ':' + f.key">
+                                <div class="wm-nav-action-field">
+                                  <input class="wm-nav-input wm-nav-key" :list="'wm-nav-keys-' + ai" placeholder="key" :value="f.key"
+                                    @change="navSetField(ai, fi, 'key', ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                                  <input class="wm-nav-input" :class="{ 'wm-nav-input-empty': f.empty }" placeholder="value" :value="f.value" :title="f.value"
+                                    @change="navSetField(ai, fi, 'value', ${'$'}event.target.value)" @keydown.enter="${'$'}event.target.blur()">
+                                  <button type="button" class="wm-nav-icon" title="Remove" @click="navRemoveField(ai, fi)">✕</button>
+                                </div>
+                              </template>
+                              <div class="wm-nav-action-foot">
+                                <button type="button" class="wm-nav-link" @click="navAddField(ai, a.suggestions[0] || '')"
+                                  x-text="'+ ' + (a.suggestions[0] || 'field')"></button>
+                                <span class="wm-nav-edge-warn" x-show="a.missing.length" x-text="'Missing: ' + a.missing.join(', ')"></span>
+                                <span class="wm-nav-edge-warn" x-show="a.type && !a.known">Not a nav action type</span>
+                              </div>
+                            </div>
+                          </template>
+                          <div class="wm-nav-templates">
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('door')" title="Open a door, then walk through it">+ Door</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('stairs')" title="Climb stairs or a ladder to the other end's level">+ Stairs</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('object')" title="Interact with an object">+ Object</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('walk')" title="Walk to a tile">+ Walk</button>
+                            <button type="button" class="wm-nav-chip" @click="navAddAction('other')" title="Any other action type">+ Other</button>
+                          </div>
+
+                          <label class="wm-nav-edge-field wm-nav-edge-field-stacked">
+                            <span>Requires</span>
+                            <textarea class="wm-nav-input" rows="2" spellcheck="false" :value="navEdge.requires"
+                              placeholder='[{ inventory = [{ id = "coins", amount = 10 }] }]'
+                              @change="navSetRequires(${'$'}event.target.value)"></textarea>
+                          </label>
+                        </div>
+                      </template>
+                      <datalist id="wm-nav-action-types">
+                        <template x-for="t in navActionTypes" :key="t"><option :value="t"></option></template>
+                      </datalist>
+                    </div>
+                    """,
+                )
             }
         }
     }
@@ -369,6 +868,9 @@ object WorldMap {
         head = {
             link(rel = "stylesheet", href = "style/world-map.css")
             script { unsafe { raw(tileBaseScript() + areasScript() + mapLabels.script()) } }
+            script(src = "js/mapedit.js") {}
+            script(src = "js/navgraph.js") {}
+            script(src = "js/areas.js") {}
             script(src = "js/worldmap.js") {}
         },
     ) {
@@ -405,6 +907,18 @@ object WorldMap {
                     xShow("showAreaLabels")
                     style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
                     // Filled from `window.VOID_MAP_LABELS` (see [MapLabels]) on every render.
+                }
+                div {
+                    // Outline of the tile under the cursor, placed by `updateHoverTile`.
+                    attributes["id"] = "wm-hover-tile"
+                    attributes["class"] = "wm-hover-tile"
+                }
+                div {
+                    // Rebuilt by `renderNavGraph` (navgraph.js) on every render while it's on, and
+                    // emptied while it's off. Nothing in it takes pointer events: the editor hit-tests
+                    // the graph itself from the viewport's own handlers.
+                    attributes["id"] = "wm-nav-graph"
+                    style = "position:absolute;inset:0;pointer-events:none;overflow:hidden"
                 }
                 div {
                     attributes["id"] = "wm-players"
@@ -466,7 +980,8 @@ object WorldMap {
             // shrunk down to just its header on a small screen without losing the toggles.
             div {
                 attributes["class"] = "wm-display-wrap"
-                style = "position:absolute;top:20px;left:20px;width:190px;z-index:25"
+                style = "position:absolute;top:20px;left:20px;width:190px;z-index:25;display:flex;" +
+                    "flex-direction:column;gap:var(--space-5)"
                 ui.panel(
                     title = "Map display",
                     padded = false,
@@ -479,18 +994,24 @@ object WorldMap {
                     displayToggle("Area polygons", "showAreaPolygons")
                     displayToggle("Region grid", "showRegionGrid")
                     displayToggle("Region labels", "showRegionLabels")
-                    displayToggle("Player pins", "showPlayerPins", last = true)
+                    displayToggle("Player pins", "showPlayerPins")
+                    displayToggle("Nav graph", "showNavGraph", last = true)
+                    mapFileLoader()
+                    editorSwitch()
                 }
+                navGraphPanel()
+                areaPanel()
             }
 
             // Top-right column: the elevation stepper, with the teleport panel stacked under it.
             // The column is sized by its contents rather than to a width of its own — the stepper
             // pill has a minimum width, and a narrower column would simply centre it over the
-            // column's edges and push it off the side of a phone screen.
+            // column's edges and push it off the side of a phone screen. Stacked a level above the
+            // bottom console, which the nav graph's edge panel can grow down beside.
             div {
                 attributes["class"] = "wm-top-right"
                 style = "position:absolute;top:20px;right:20px;display:flex;flex-direction:column;" +
-                    "align-items:flex-end;gap:var(--space-5);z-index:25"
+                    "align-items:flex-end;gap:var(--space-5);z-index:26"
                 div {
                     style = "display:flex;flex-direction:column;align-items:center;gap:7px"
                     div {
@@ -542,6 +1063,8 @@ object WorldMap {
                     }
                 }
                 teleportPanel()
+                navEdgePanel()
+                areaEditPanel()
             }
 
             // Bottom-left coordinate readout — the game tile under the cursor, plus the name(s) of
