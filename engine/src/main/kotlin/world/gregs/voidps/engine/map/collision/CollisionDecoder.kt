@@ -55,8 +55,8 @@ class CollisionDecoder {
         val y = from.tile.y.rem(64)
         val targetX = to.tile.x
         val targetY = to.tile.y
+        Collisions.allocateIfAbsent(targetX, targetY, to.level)
         for (level in 0 until 4) {
-            Collisions.allocateIfAbsent(targetX, targetY, level)
             for (localX in x until x + 8) {
                 for (localY in y until y + 8) {
                     if (!isTile(settings, localX, localY, level, BLOCKED_TILE)) {
@@ -64,17 +64,18 @@ class CollisionDecoder {
                     }
                     var height = level
                     if (isTile(settings, localX, localY, 1, BRIDGE_TILE)) {
-                        if (--height < 0) {
-                            continue
-                        }
+                        height--
+                    }
+                    if (height != from.level) {
+                        continue
                     }
                     val rotX = rotateX(localX, localY, zoneRotation)
                     val rotY = rotateY(localX, localY, zoneRotation)
 
                     if (isTile(settings, localX, localY, level, ROOF_TILE)) {
-                        Collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.ROOF)
+                        Collisions.setUnsafe(targetX + rotX, targetY + rotY, to.level, CollisionFlag.ROOF)
                     }
-                    Collisions.setUnsafe(targetX + rotX, targetY + rotY, height, CollisionFlag.FLOOR)
+                    Collisions.setUnsafe(targetX + rotX, targetY + rotY, to.level, CollisionFlag.FLOOR)
                 }
             }
         }
