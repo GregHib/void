@@ -90,7 +90,9 @@ class TeleportTest {
         }
 
         override fun invoke(args: List<String>) {
-            Teleport.land(Player(), "tele")
+            runTest {
+                Teleport.land(Player(), "tele")
+            }
         }
 
         override val apis = listOf(Teleport)

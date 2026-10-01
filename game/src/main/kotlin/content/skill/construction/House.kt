@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Zone
 
 /**
- * Houses are a [HOUSE_SIZE] grid of zones, a [ROOM_GRID] area of rooms around the [START_ROOM] surrounded by a border.
+ * Houses are a [HOUSE_SIZE] grid of zones, a [ROOM_GRID] area of rooms around the [START_ROOM] with space for a ring of grass.
  * Rooms are on [GROUND_LEVEL] with the dungeon on [DUNGEON_LEVEL]
  */
 class House : Script {
@@ -65,6 +65,33 @@ class House : Script {
             set("house_room_rotations", houseRoomRotations + rotation)
         }
 
+        /**
+         * Replaces any existing rooms with a new house containing just the starting garden
+         */
+        fun Player.newHouse() {
+            set("house_room_ids", listOf("garden"))
+            set("house_room_positions", listOf(START_ROOM))
+            set("house_room_rotations", listOf(0))
+        }
+
+        /**
+         * Whether the players saved rooms are present and consistent
+         */
+        fun Player.hasHouse(): Boolean {
+            val size = houseRoomIds.size
+            return size > 0 && houseRoomPositions.size == size && houseRoomRotations.size == size
+        }
+
+        fun Player.removeHouseRoom(position: Int) {
+            val index = houseRoomPositions.indexOf(position)
+            if (index == -1) {
+                return
+            }
+            set("house_room_ids", houseRoomIds.filterIndexed { i, _ -> i != index })
+            set("house_room_positions", houseRoomPositions.filterIndexed { i, _ -> i != index })
+            set("house_room_rotations", houseRoomRotations.filterIndexed { i, _ -> i != index })
+        }
+
         fun roomPosition(x: Int, y: Int, level: Int) = x + y * ROOM_GRID + level * ROOM_GRID * ROOM_GRID
 
         fun roomX(position: Int) = position % ROOM_GRID
@@ -104,48 +131,49 @@ class House : Script {
         }
 
         /**
-         * Filler for a room [position] without a room
+         * Builds the players house in the instance starting at [base]. Ground floor rooms are surrounded by a
+         * ring of grass, every other space is left empty.
          */
-        fun emptyRoom(position: Int): Zone = emptySpace(roomX(position) + 1, roomY(position) + 1, roomLevel(position))
-
-        /**
-         * Filler for house grid spaces without a room
-         */
-        private fun emptySpace(x: Int, y: Int, level: Int): Zone {
-            val space = when {
-                level == DUNGEON_LEVEL -> "dungeon"
-                x == 0 || y == 0 || x == HOUSE_SIZE - 1 || y == HOUSE_SIZE - 1 -> "border"
-                else -> "land"
-            }
-            return Tables.tile("house_spaces.$space.template").zone
-        }
-
         fun Player.loadHouse(base: Zone, buildMode: Boolean) {
+            val dynamicZones = get<DynamicZones>()
             val entries = mutableListOf<Triple<Zone, Zone, Int>>()
             val placed = mutableSetOf<Zone>()
             val ids = houseRoomIds
             val rotations = houseRoomRotations
-            for ((index, position) in houseRoomPositions.withIndex()) {
+            val positions = houseRoomPositions
+            for ((index, position) in positions.withIndex()) {
                 val zone = roomZone(base, position)
                 placed.add(zone)
                 entries.add(Triple(Tables.tile("house_rooms.${ids[index]}.template").zone, zone, rotations[index]))
             }
-            for (level in DUNGEON_LEVEL..GROUND_LEVEL) {
-                for (x in 0 until HOUSE_SIZE) {
-                    for (y in 0 until HOUSE_SIZE) {
-                        val zone = base.add(x, y, level)
-                        if (zone !in placed) {
-                            entries.add(Triple(emptySpace(x, y, level), zone, 0))
+            val ground = positions.filter { roomLevel(it) == GROUND_LEVEL }
+            if (ground.isNotEmpty()) {
+                val land = Tables.tile("house_spaces.land.template").zone
+                for (x in ground.minOf(::roomX) - 1..ground.maxOf(::roomX) + 1) {
+                    for (y in ground.minOf(::roomY) - 1..ground.maxOf(::roomY) + 1) {
+                        val zone = base.add(x + 1, y + 1, GROUND_LEVEL)
+                        if (placed.add(zone)) {
+                            entries.add(Triple(land, zone, 0))
                         }
                     }
                 }
             }
-            get<DynamicZones>().copy(entries)
+            for (level in 0 until HOUSE_LEVELS) {
+                for (x in 0 until HOUSE_SIZE) {
+                    for (y in 0 until HOUSE_SIZE) {
+                        val zone = base.add(x, y, level)
+                        if (zone !in placed && dynamicZones.dynamicZone(zone) != null) {
+                            dynamicZones.clear(zone)
+                        }
+                    }
+                }
+            }
+            dynamicZones.copy(entries)
             if (buildMode) {
                 return
             }
-            for (zone in placed) {
-                removeHotspots(zone)
+            for (position in positions) {
+                removeHotspots(roomZone(base, position))
             }
         }
 

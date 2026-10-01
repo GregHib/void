@@ -6,6 +6,7 @@ import dialogueOption
 import equipItem
 import itemOnObject
 import itemOption
+import kotlinx.coroutines.test.runTest
 import npcOption
 import objectOption
 import org.junit.jupiter.api.Test
@@ -330,7 +331,9 @@ class PirateTreasureTest : WorldTest() {
         player.inventory.add("karamjan_rum")
         player.inventory.add("karamjan_rum")
 
-        Teleport.land(player, "modern")
+        runTest {
+            Teleport.land(player, "modern")
+        }
 
         assertEquals(0, player.inventory.count("karamjan_rum"))
         assertTrue(player.containsMessage("Your Karamjan rum gets broken and spilled."))

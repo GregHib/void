@@ -126,18 +126,12 @@ cost = 250000
 template = { x = 1912, y = 5088 }
 dungeon = true
 
-# Fillers for house grid spaces without a room
+# Filler for house grid spaces without a room
 [house_spaces]
 template = "tile"
 
 [.land]
 template = { x = 1864, y = 5056 }
-
-[.dungeon]
-template = { x = 1880, y = 5056 }
-
-[.border]
-template = { x = 1896, y = 5056 }
 
 [house_locations]
 exit = "tile"

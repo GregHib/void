@@ -4,14 +4,14 @@ import content.entity.player.dialogue.type.choice
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.HOUSE_CENTRE
 import content.skill.construction.House.Companion.addHouseRoom
-import content.skill.construction.House.Companion.emptyRoom
 import content.skill.construction.House.Companion.houseBase
+import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.inOwnHouse
+import content.skill.construction.House.Companion.loadHouse
+import content.skill.construction.House.Companion.removeHouseRoom
 import content.skill.construction.House.Companion.roomLevel
 import content.skill.construction.House.Companion.roomPosition
-import content.skill.construction.House.Companion.roomX
-import content.skill.construction.House.Companion.roomY
 import content.skill.construction.House.Companion.roomZone
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.zone.DynamicZones
 import world.gregs.voidps.type.Direction
+import world.gregs.voidps.type.Tile
 
 class RoomCreation(val dynamicZones: DynamicZones) : Script {
     init {
@@ -35,27 +36,28 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
                 return@objectOperate
             }
             val zone = target.tile.zone
-            val direction = when {
-                target.tile.x == zone.tile.x -> Direction.WEST
-                target.tile.y == zone.tile.y -> Direction.SOUTH
-                target.tile.x == zone.tile.x + 7 -> Direction.EAST
-                else -> Direction.NORTH
-            }
-            val position = roomPosition(base, zone.add(direction))
-            if (position == null || !withinBounds(position)) {
-                message("You need a higher Construction level to build a room that far out.") // TODO proper messages
+            // Doors lead to the room on the opposite side to the player
+            val room = if (tile.zone == zone) zone.add(direction(target.tile)) else zone
+            val position = roomPosition(base, room)
+            val index = houseRoomPositions.indexOf(position ?: -1)
+            if (index != -1) {
+                removeRoom(houseRoomPositions[index], houseRoomIds[index])
                 return@objectOperate
             }
-            val rooms = houseRoomPositions
-            if (rooms.size >= maxRooms()) {
+            val range = buildRange()
+            if (room.x - base.x - 1 !in range) {
+                message("Your house is already at the maximum width.")
+                return@objectOperate
+            }
+            if (room.y - base.y - 1 !in range) {
+                message("Your house is already at the maximum height.")
+                return@objectOperate
+            }
+            if (houseRoomIds.size >= maxRooms()) {
                 message("You need a higher Construction level to build any more rooms.") // TODO proper messages
                 return@objectOperate
             }
-            if (position in rooms) {
-                message("There is already a room there.") // TODO proper messages
-                return@objectOperate
-            }
-            set("house_preview_position", position)
+            set("house_preview_position", position ?: return@objectOperate)
             open("room_creation")
         }
 
@@ -87,13 +89,25 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
     }
 
     /**
-     * Whether room [position] is inside the area of rooms the players level allows
+     * Side of the room [tile] is a door on
+     */
+    private fun direction(tile: Tile): Direction {
+        val zone = tile.zone.tile
+        return when {
+            tile.x == zone.x -> Direction.WEST
+            tile.y == zone.y -> Direction.SOUTH
+            tile.x == zone.x + 7 -> Direction.EAST
+            else -> Direction.NORTH
+        }
+    }
+
+    /**
+     * Range of room grid coordinates the players level allows building in
      * Sizes grow from the south-west, so even sizes extend one further north and east of the [HOUSE_CENTRE]
      */
-    private fun Player.withinBounds(position: Int): Boolean {
+    private fun Player.buildRange(): IntRange {
         val size = 3 + sizeLevels.count { levels.get(Skill.Construction) >= it }
-        val range = HOUSE_CENTRE - (size - 1) / 2..HOUSE_CENTRE + size / 2
-        return roomX(position) in range && roomY(position) in range
+        return HOUSE_CENTRE - (size - 1) / 2..HOUSE_CENTRE + size / 2
     }
 
     private fun Player.maxRooms(): Int = 20 + roomLevels.count { levels.get(Skill.Construction) >= it }
@@ -137,12 +151,32 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
         if (base == null || !inOwnHouse()) {
             return
         }
-        if (!inventory.remove("coins", Rows.get("house_rooms.$room").int("cost"))) {
+        if (inventory.remove("coins", Rows.get("house_rooms.$room").int("cost"))) {
+            addHouseRoom(room, position, rotation)
+        } else {
             message("You don't have enough coins to build this room.") // TODO proper message
-            dynamicZones.copy(emptyRoom(position), roomZone(base, position))
+        }
+        loadHouse(base, buildMode = true)
+    }
+
+    private suspend fun Player.removeRoom(position: Int, room: String) {
+        // TODO check for the exit portal rather than any garden once furniture is added
+        if (room == "garden" && houseRoomIds.count { it == "garden" } <= 1) {
+            message("You can't remove your last garden with a portal.") // TODO proper message
             return
         }
-        addHouseRoom(room, position, rotation)
+        choice("Remove the ${room.replace('_', ' ')}?") {
+            option("Yes") {
+                val base = houseBase()
+                if (base == null || !inOwnHouse() || position !in houseRoomPositions) {
+                    return@option
+                }
+                removeHouseRoom(position)
+                loadHouse(base, buildMode = true)
+                message("Room deleted!")
+            }
+            option("No")
+        }
     }
 
     /**
@@ -152,9 +186,9 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
         clearWalkTrigger()
         clear("house_preview_room")
         clear("house_preview_rotation")
-        val position: Int = remove("house_preview_position") ?: return
+        clear("house_preview_position")
         val base = houseBase() ?: return
-        dynamicZones.copy(emptyRoom(position), roomZone(base, position))
+        loadHouse(base, buildMode = true)
     }
 
     companion object {

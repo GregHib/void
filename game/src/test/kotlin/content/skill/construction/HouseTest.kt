@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.name
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
@@ -133,8 +134,96 @@ class HouseTest : WorldTest() {
         assertEquals(instance, Instances.owner(player.tile))
         assertEquals(GROUND_LEVEL, player.tile.level)
         assertEquals(instance.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
-        assertEquals(dynamicZones.dynamicZone(instance.tile.zone.add(4, 4, DUNGEON_LEVEL)), dynamicZones.dynamicZone(instance.tile.zone.add(5, 5, DUNGEON_LEVEL)))
+        assertNull(dynamicZones.dynamicZone(instance.tile.zone.add(4, 4, DUNGEON_LEVEL)))
         assertNull(GameObjects.findOrNull(instance.tile.zone.add(4, 4, 1).tile.add(7, 3)) { it.id.startsWith("door_hotspot") })
+    }
+
+    @Test
+    fun `Entering a house with missing rooms starts a new house`() {
+        val player = createPlayer(exit, "owner")
+        player["house_location"] = "rimmington"
+
+        player.enterPortal(1)
+
+        assertEquals(listOf("garden"), player.houseRoomIds)
+        assertEquals(listOf(START_ROOM), player.houseRoomPositions)
+        assertEquals(listOf(0), player.houseRoomRotations)
+        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+    }
+
+    @Test
+    fun `Entering a house with mismatched rooms starts a new house`() {
+        val player = createOwner()
+        player["house_room_rotations"] = emptyList<Int>()
+
+        player.enterPortal(1)
+
+        assertEquals(listOf("garden"), player.houseRoomIds)
+        assertEquals(listOf(0), player.houseRoomRotations)
+    }
+
+    @Test
+    fun `Teleport to house spell`() {
+        val player = createOwner()
+        player["house_build_mode"] = true
+        player.levels.set(Skill.Magic, 40)
+        player.inventory.add("law_rune")
+        player.inventory.add("earth_rune")
+        player.inventory.add("air_rune")
+
+        player.interfaceOption("modern_spellbook", "teleport_to_house", "Cast")
+        tickIf { player.instance() == null }
+
+        assertTrue(player.inventory.isEmpty())
+        assertFalse(player["house_build_mode", false])
+        assertTrue(player.inHouseOf(player))
+        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+    }
+
+    @Test
+    fun `Teleport to house tablet`() {
+        val player = createOwner()
+        player["house_build_mode"] = true
+        player.inventory.add("teleport_to_house")
+
+        player.interfaceOption("inventory", "inventory", "Break", 0, Item("teleport_to_house"), 0)
+        tickIf { player.instance() == null }
+
+        assertTrue(player.inventory.isEmpty())
+        assertFalse(player["house_build_mode", false])
+        assertTrue(player.inHouseOf(player))
+        assertEquals(player.instance()!!.tile.zone.add(4, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+    }
+
+    @Test
+    fun `Teleporting home from inside your house expels guests`() {
+        val owner = createOwner()
+        owner.enterPortal(2)
+        val guest = createPlayer(exit, "guest")
+        owner["house_build_mode"] = false
+        guest.visit(owner)
+        val previous = owner.instance()
+        owner.inventory.add("teleport_to_house")
+
+        owner.interfaceOption("inventory", "inventory", "Break", 0, Item("teleport_to_house"), 0)
+        tickIf { owner.instance() == previous }
+        tick()
+
+        assertTrue(owner.inHouseOf(owner))
+        assertEquals(exit, guest.tile)
+    }
+
+    @Test
+    fun `Can't teleport to house without one`() {
+        val player = createPlayer(exit)
+        player.inventory.add("teleport_to_house")
+
+        player.interfaceOption("inventory", "inventory", "Break", 0, Item("teleport_to_house"), 0)
+        tick(5)
+
+        assertEquals(1, player.inventory.count("teleport_to_house"))
+        assertEquals(exit, player.tile)
+        assertTrue(player.containsMessage("don't have a house"))
     }
 
     @Test
@@ -207,7 +296,7 @@ class HouseTest : WorldTest() {
         assertEquals(listOf("garden"), player.houseRoomIds)
         assertEquals(1000, player.inventory.count("coins"))
         assertEquals(empty, dynamicZones.dynamicZone(base.add(5, 4, GROUND_LEVEL)))
-        assertNull(player.get<String>("house_room"))
+        assertNull(player.get<String>("house_preview_room"))
     }
 
     @Test
@@ -219,7 +308,130 @@ class HouseTest : WorldTest() {
         player.buildDoor(5, 4, Direction.EAST)
 
         assertFalse(player.hasOpen("room_creation"))
-        assertTrue(player.containsMessage("that far out"))
+        assertTrue(player.containsMessage("Your house is already at the maximum width."))
+    }
+
+    @Test
+    fun `Can't build higher than the level allows`() {
+        val player = createOwner()
+        player.addHouseRoom("garden", roomPosition(3, 4, GROUND_LEVEL))
+        player.enterPortal(2)
+
+        player.buildDoor(4, 5, Direction.NORTH)
+
+        assertFalse(player.hasOpen("room_creation"))
+        assertTrue(player.containsMessage("Your house is already at the maximum height."))
+    }
+
+    @Test
+    fun `Grass surrounds the rooms`() {
+        val player = createOwner()
+        player.levels.set(Skill.Construction, 1)
+        player.inventory.add("coins", 1000)
+        player.enterPortal(2)
+        val base = player.instance()!!.tile.zone
+
+        for (x in 3..5) {
+            for (y in 3..5) {
+                assertNotNull(dynamicZones.dynamicZone(base.add(x, y, GROUND_LEVEL)))
+            }
+        }
+        assertNull(dynamicZones.dynamicZone(base.add(6, 4, GROUND_LEVEL)))
+        assertNull(dynamicZones.dynamicZone(base.add(2, 4, GROUND_LEVEL)))
+
+        player.buildDoor(4, 4, Direction.EAST)
+        player.interfaceOption("room_creation", "parlour", "Build")
+        player.dialogueOption("line3")
+
+        assertNotNull(dynamicZones.dynamicZone(base.add(6, 3, GROUND_LEVEL)))
+        assertNotNull(dynamicZones.dynamicZone(base.add(6, 5, GROUND_LEVEL)))
+        assertNull(dynamicZones.dynamicZone(base.add(7, 4, GROUND_LEVEL)))
+    }
+
+    @Test
+    fun `Remove a room through its door`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.enterPortal(2)
+        val base = player.instance()!!.tile.zone
+
+        player.buildDoor(4, 4, Direction.EAST)
+        assertFalse(player.hasOpen("room_creation"))
+        player.dialogueOption("line1")
+
+        assertEquals(listOf("garden"), player.houseRoomIds)
+        assertEquals(listOf(START_ROOM), player.houseRoomPositions)
+        assertEquals(listOf(0), player.houseRoomRotations)
+        assertTrue(player.containsMessage("Room deleted!"))
+        assertNull(dynamicZones.dynamicZone(base.add(6, 4, GROUND_LEVEL)))
+    }
+
+    @Test
+    fun `Doors from outside a room remove that room`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.enterPortal(2)
+        val parlour = player.instance()!!.tile.zone.add(5, 4, GROUND_LEVEL).tile
+
+        player.tele(parlour.add(8, 3))
+        player.objectOption(GameObjects.find(parlour.add(7, 3)) { it.id.startsWith("door_hotspot") }, "Build")
+        tick(5)
+        player.dialogueOption("line1")
+
+        assertEquals(listOf("garden"), player.houseRoomIds)
+    }
+
+    @Test
+    fun `Can't remove the last garden`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.enterPortal(2)
+        val parlour = player.instance()!!.tile.zone.add(5, 4, GROUND_LEVEL).tile
+
+        player.tele(parlour.add(0, 3))
+        player.objectOption(GameObjects.find(parlour.add(-1, 3)) { it.id.startsWith("door_hotspot") }, "Build")
+        tick(5)
+
+        assertNull(player.dialogue)
+        assertTrue(player.containsMessage("last garden"))
+        assertEquals(listOf("garden", "parlour"), player.houseRoomIds)
+    }
+
+    @Test
+    fun `Remove a garden when another remains`() {
+        val player = createOwner()
+        player.addHouseRoom("garden", roomPosition(4, 3, GROUND_LEVEL))
+        player.enterPortal(2)
+
+        player.buildDoor(4, 4, Direction.EAST)
+        player.dialogueOption("line1")
+
+        assertEquals(listOf("garden"), player.houseRoomIds)
+        assertEquals(listOf(START_ROOM), player.houseRoomPositions)
+    }
+
+    @Test
+    fun `Arrive in the garden even if it isn't the first room`() {
+        val player = createPlayer(exit, "owner")
+        player["house_location"] = "rimmington"
+        player.addHouseRoom("parlour", START_ROOM)
+        player.addHouseRoom("garden", roomPosition(4, 3, GROUND_LEVEL))
+
+        player.enterPortal(1)
+
+        assertEquals(player.instance()!!.tile.zone.add(5, 4, GROUND_LEVEL).tile.add(3, 3), player.tile)
+    }
+
+    @Test
+    fun `Choosing not to remove a room keeps it`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.enterPortal(2)
+
+        player.buildDoor(4, 4, Direction.EAST)
+        player.dialogueOption("line2")
+
+        assertEquals(listOf("garden", "parlour"), player.houseRoomIds)
     }
 
     @Test
@@ -232,6 +444,7 @@ class HouseTest : WorldTest() {
 
         player.buildDoor(3, 4, Direction.WEST)
         assertFalse(player.hasOpen("room_creation"))
+        assertTrue(player.containsMessage("maximum width"))
 
         player.buildDoor(5, 4, Direction.EAST)
         assertTrue(player.hasOpen("room_creation"))

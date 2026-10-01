@@ -9,8 +9,7 @@ import content.entity.player.dialogue.type.choice
 import content.entity.player.dialogue.type.npc
 import content.entity.player.dialogue.type.player
 import content.entity.player.inv.item.addOrDrop
-import content.skill.construction.House.Companion.START_ROOM
-import content.skill.construction.House.Companion.addHouseRoom
+import content.skill.construction.House.Companion.newHouse
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -49,7 +48,7 @@ class EstateAgent : Script {
                     return@option
                 }
                 set("house_location", "rimmington")
-                addHouseRoom("garden", START_ROOM)
+                newHouse()
                 npc<Neutral>("Thank you. Go through the Rimmington house portal and you will find your house ready for you to start building in it.")
                 npc<Neutral>("This book will help you to start building your house.")
                 addOrDrop("construction_guide")
