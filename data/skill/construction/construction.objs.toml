@@ -54,3 +54,133 @@ id = 15316
 
 [door_hotspot_13]
 id = 15317
+
+[garden_centrepiece_space]
+id = 15361
+
+[parlour_chair_space]
+id = 15410
+
+[parlour_chair_space_2]
+id = 15411
+
+[parlour_chair_space_3]
+id = 15412
+
+[parlour_rug_space_corner]
+id = 15415
+
+[parlour_rug_space_side]
+id = 15414
+
+[parlour_rug_space_middle]
+id = 15413
+
+[parlour_bookcase_space]
+id = 15416
+
+[parlour_bookcase_space_2]
+id = 15417
+
+[parlour_fireplace_space]
+id = 15418
+
+[parlour_curtain_space]
+id = 15419
+
+[exit_portal]
+id = 13405
+
+[decorative_rock]
+id = 13406
+
+[pond]
+id = 13407
+
+[imp_statue]
+id = 13408
+
+[dungeon_entrance]
+id = 13409
+
+[crude_wooden_chair]
+id = 13581
+examine = "It's not the best chair but you think it would take your weight."
+
+[wooden_chair]
+id = 13582
+examine = "The ideal thing to sit on."
+
+[rocking_chair]
+id = 13583
+examine = "A comfortable seat."
+
+[oak_chair]
+id = 13584
+examine = "A comfortable seat."
+
+[oak_armchair]
+id = 13585
+examine = "A comfortable seat."
+
+[teak_armchair]
+id = 13586
+examine = "A comfortable seat."
+
+[mahogany_armchair]
+id = 13587
+examine = "A comfortable seat."
+
+[brown_rug_corner]
+id = 13588
+
+[brown_rug_side]
+id = 13589
+
+[brown_rug_middle]
+id = 13590
+
+[rug_corner]
+id = 13591
+
+[rug_side]
+id = 13592
+
+[rug_middle]
+id = 13593
+
+[opulent_rug_corner]
+id = 13594
+
+[opulent_rug_side]
+id = 13595
+
+[opulent_rug_middle]
+id = 13596
+
+[wooden_bookcase]
+id = 13597
+
+[oak_bookcase]
+id = 13598
+
+[mahogany_bookcase]
+id = 13599
+
+[torn_curtains]
+id = 13603
+
+[curtains]
+id = 13604
+
+[opulent_curtains]
+id = 13605
+
+[clay_fireplace]
+id = 13609
+
+[stone_fireplace]
+id = 13611
+
+[marble_fireplace]
+id = 13613

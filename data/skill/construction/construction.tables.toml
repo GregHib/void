@@ -153,3 +153,230 @@ exit = { x = 2757, y = 3178 }
 
 [.yanille]
 exit = { x = 2544, y = 3096 }
+
+# Furniture which can be built on each hotspot, hotspots with the same group are built and removed together
+[house_hotspots]
+row_id = "obj"
+furniture = "list<item>"
+group = "string"
+piece = "int"
+clone = "clone"
+
+[.garden_centrepiece_space]
+furniture = ["exit_portal", "decorative_rock", "pond", "imp_statue", "dungeon_entrance"]
+
+[.parlour_chair_space]
+furniture = ["crude_wooden_chair", "wooden_chair", "rocking_chair", "oak_chair", "oak_armchair", "teak_armchair", "mahogany_armchair"]
+
+[.parlour_chair_space_2]
+clone = "parlour_chair_space"
+
+[.parlour_chair_space_3]
+clone = "parlour_chair_space"
+
+[.parlour_rug_space_corner]
+furniture = ["brown_rug", "rug", "opulent_rug"]
+group = "parlour_rug"
+
+[.parlour_rug_space_side]
+clone = "parlour_rug_space_corner"
+piece = 1
+
+[.parlour_rug_space_middle]
+clone = "parlour_rug_space_corner"
+piece = 2
+
+[.parlour_bookcase_space]
+furniture = ["wooden_bookcase", "oak_bookcase", "mahogany_bkcase"]
+
+[.parlour_bookcase_space_2]
+clone = "parlour_bookcase_space"
+
+[.parlour_fireplace_space]
+furniture = ["clay_fireplace", "stone_fireplace", "marble_fireplace"]
+
+[.parlour_curtain_space]
+furniture = ["torn_curtains", "curtains", "opulent_curtains"]
+
+# Furniture keyed by build menu item, objects are placed on the hotspot of the same piece
+[house_furniture]
+row_id = "item"
+level = "int"
+xp = "int"
+materials = "list<item>"
+amounts = "list<int>"
+nails = "int"
+objects = "list<obj>"
+
+[.exit_portal]
+level = 1
+xp = 1000
+materials = ["iron_bar"]
+amounts = [10]
+objects = ["exit_portal"]
+
+[.decorative_rock]
+level = 5
+xp = 1000
+materials = ["limestone_brick"]
+amounts = [5]
+objects = ["decorative_rock"]
+
+[.pond]
+level = 10
+xp = 1000
+materials = ["soft_clay"]
+amounts = [10]
+objects = ["pond"]
+
+[.imp_statue]
+level = 15
+xp = 1500
+materials = ["limestone_brick", "soft_clay"]
+amounts = [5, 5]
+objects = ["imp_statue"]
+
+[.dungeon_entrance]
+level = 70
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["dungeon_entrance"]
+
+[.crude_wooden_chair]
+level = 1
+xp = 580
+materials = ["plank"]
+amounts = [2]
+nails = 2
+objects = ["crude_wooden_chair"]
+
+[.wooden_chair]
+level = 8
+xp = 870
+materials = ["plank"]
+amounts = [3]
+nails = 3
+objects = ["wooden_chair"]
+
+[.rocking_chair]
+level = 14
+xp = 870
+materials = ["plank"]
+amounts = [3]
+nails = 3
+objects = ["rocking_chair"]
+
+[.oak_chair]
+level = 19
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["oak_chair"]
+
+[.oak_armchair]
+level = 26
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["oak_armchair"]
+
+[.teak_armchair]
+level = 35
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_armchair"]
+
+[.mahogany_armchair]
+level = 50
+xp = 2800
+materials = ["mahogany_plank"]
+amounts = [2]
+objects = ["mahogany_armchair"]
+
+[.brown_rug]
+level = 2
+xp = 300
+materials = ["bolt_of_cloth"]
+amounts = [2]
+objects = ["brown_rug_corner", "brown_rug_side", "brown_rug_middle"]
+
+[.rug]
+level = 13
+xp = 600
+materials = ["bolt_of_cloth"]
+amounts = [4]
+objects = ["rug_corner", "rug_side", "rug_middle"]
+
+[.opulent_rug]
+level = 65
+xp = 3600
+materials = ["bolt_of_cloth", "gold_leaf"]
+amounts = [4, 1]
+objects = ["opulent_rug_corner", "opulent_rug_side", "opulent_rug_middle"]
+
+[.wooden_bookcase]
+level = 4
+xp = 1150
+materials = ["plank"]
+amounts = [4]
+nails = 4
+objects = ["wooden_bookcase"]
+
+[.oak_bookcase]
+level = 29
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["oak_bookcase"]
+
+[.mahogany_bkcase]
+level = 40
+xp = 4200
+materials = ["mahogany_plank"]
+amounts = [3]
+objects = ["mahogany_bookcase"]
+
+[.clay_fireplace]
+level = 3
+xp = 300
+materials = ["soft_clay"]
+amounts = [3]
+objects = ["clay_fireplace"]
+
+[.stone_fireplace]
+level = 33
+xp = 400
+materials = ["limestone_brick"]
+amounts = [2]
+objects = ["stone_fireplace"]
+
+[.marble_fireplace]
+level = 63
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["marble_fireplace"]
+
+[.torn_curtains]
+level = 2
+xp = 1320
+materials = ["plank", "bolt_of_cloth"]
+amounts = [3, 3]
+nails = 3
+objects = ["torn_curtains"]
+
+[.curtains]
+level = 18
+xp = 2250
+materials = ["oak_plank", "bolt_of_cloth"]
+amounts = [3, 3]
+objects = ["curtains"]
+
+[.opulent_curtains]
+level = 40
+xp = 3150
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [3, 3]
+objects = ["opulent_curtains"]

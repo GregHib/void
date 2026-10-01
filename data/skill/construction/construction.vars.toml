@@ -10,3 +10,16 @@ persist = true
 
 [house_room_rotations]
 persist = true
+
+[house_furniture_rooms]
+persist = true
+
+[house_furniture_hotspots]
+persist = true
+
+[house_furniture_ids]
+persist = true
+
+[house_locked]
+format = "boolean"
+persist = true
