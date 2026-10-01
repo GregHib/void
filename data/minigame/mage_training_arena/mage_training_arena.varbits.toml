@@ -1,0 +1,65 @@
+# Varps 624-629; cs2 27 on the rewards interface reads 1485/1489/1488/1486 for the point labels.
+[mage_training_arena_telekinetic_points]
+id = 1485
+format = "int"
+persist = true
+
+[mage_training_arena_graveyard_points]
+id = 1486
+format = "int"
+persist = true
+
+[mage_training_arena_telekinetic_maze]
+id = 1487
+format = "int"
+persist = true
+
+[mage_training_arena_enchanting_points]
+id = 1488
+format = "int"
+persist = true
+
+[mage_training_arena_alchemist_points]
+id = 1489
+format = "int"
+persist = true
+
+[mage_training_arena_maze_streak]
+id = 1493
+format = "int"
+persist = true
+
+[mage_training_arena_fruit_deposited]
+id = 1494
+format = "int"
+persist = true
+
+[mage_training_arena_orbs_deposited]
+id = 1495
+format = "int"
+persist = true
+
+[mage_training_arena_started]
+id = 1499
+format = "boolean"
+persist = true
+
+[mage_training_arena_alchemist_reward]
+id = 1504
+format = "int"
+persist = true
+
+[bones_to_peaches]
+id = 1505
+format = "boolean"
+persist = true
+
+[mage_training_arena_shapes_converted]
+id = 1506
+format = "int"
+persist = true
+
+[mage_training_arena_camera]
+id = 1508
+format = "boolean"
+transmit = false

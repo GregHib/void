@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.variable.hasClock
 import world.gregs.voidps.engine.client.variable.start
 import world.gregs.voidps.engine.data.Settings
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.inventoryFull
@@ -26,6 +27,10 @@ import world.gregs.voidps.engine.inv.transact.operation.RemoveItem.remove
 class Alchemy : Script {
     init {
         onItem("modern_spellbook:*_level_alchemy") { item, id ->
+            if (tile in Areas["mage_training_arena_alchemists_playground"]) {
+                message("You can only alch items from the cupboards!")
+                return@onItem
+            }
             if (item.def.contains("destroy")) {
                 message("This spell can not be cast on this item.")
                 return@onItem
