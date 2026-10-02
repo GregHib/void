@@ -7,7 +7,6 @@ import content.skill.construction.House.Companion.GROUND_LEVEL
 import content.skill.construction.House.Companion.HOUSE_CENTRE
 import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.connectStairs
-import content.skill.construction.House.Companion.doorSide
 import content.skill.construction.House.Companion.exitPortals
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseRoom
@@ -19,6 +18,7 @@ import content.skill.construction.House.Companion.removeHouseRoom
 import content.skill.construction.House.Companion.roomBelow
 import content.skill.construction.House.Companion.roomLevel
 import content.skill.construction.House.Companion.roomPosition
+import content.skill.construction.House.Companion.roomSide
 import content.skill.construction.House.Companion.roomTemplate
 import content.skill.construction.House.Companion.roomZone
 import world.gregs.voidps.engine.Script
@@ -44,7 +44,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
             }
             val zone = target.tile.zone
             // Doors lead to the room on the opposite side to the player
-            val room = if (tile.zone == zone) zone.add(doorSide(target.tile)) else zone
+            val room = if (tile.zone == zone) zone.add(roomSide(target.tile)) else zone
             val position = roomPosition(base, room)
             val index = houseRoomPositions.indexOf(position ?: -1)
             if (index != -1) {

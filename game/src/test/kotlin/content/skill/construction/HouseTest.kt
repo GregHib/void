@@ -804,4 +804,82 @@ class HouseTest : WorldTest() {
         assertEquals(exit, owner.tile)
         assertEquals(exit, guest.tile)
     }
+
+    @Test
+    fun `Windows joining another room are walls`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.addHouseRoom("kitchen", roomPosition(5, 3, GROUND_LEVEL))
+
+        player.enterPortal(1)
+
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
+        // Kitchen to the east
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 2), "basic_wood_wall"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 5), "basic_wood_wall"))
+        // Garden to the west
+        assertNotNull(GameObjects.findOrNull(parlour.add(0, 2), "basic_wood_window"))
+        // Empty to the north
+        assertNotNull(GameObjects.findOrNull(parlour.add(2, 7), "basic_wood_window"))
+    }
+
+    @Test
+    fun `Curtains are only hung on windows`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.addHouseFurniture(roomPosition(4, 3, GROUND_LEVEL), "parlour_curtain_space", "curtains")
+        player.addHouseRoom("kitchen", roomPosition(5, 3, GROUND_LEVEL))
+
+        player.enterPortal(1)
+
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL))
+        val curtains = parlour.toCuboid().filter { GameObjects.at(it).any { obj -> obj.id == "curtains" } }
+        assertEquals(6, curtains.size)
+        assertTrue(curtains.none { it.x == parlour.tile.x + 7 })
+    }
+
+    @Test
+    fun `Curtain spaces are only on windows in building mode`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.addHouseRoom("kitchen", roomPosition(5, 3, GROUND_LEVEL))
+
+        player.enterPortal(2)
+
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL))
+        val spaces = parlour.toCuboid().filter { GameObjects.at(it).any { obj -> obj.id == "parlour_curtain_space" } }
+        assertEquals(6, spaces.size)
+        assertTrue(spaces.none { it.x == parlour.tile.x + 7 })
+    }
+
+    @Test
+    fun `Doorways joining a room without a doorway are walls`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        // Kitchen turned so its doorways face north and east
+        player.addHouseRoom("kitchen", roomPosition(5, 3, GROUND_LEVEL), rotation = 2)
+
+        player.enterPortal(1)
+
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 3), "basic_wood_wall"))
+        assertNotNull(GameObjects.findOrNull(parlour.add(7, 4), "basic_wood_wall"))
+        // Garden doorways join on every side
+        assertNull(GameObjects.findOrNull(parlour.add(0, 3)) { it.id == "basic_wood_wall" || it.id.startsWith("door_hotspot") })
+    }
+
+    @Test
+    fun `Doorways joining a room with a doorway are open`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.addHouseRoom("kitchen", roomPosition(5, 3, GROUND_LEVEL))
+
+        player.enterPortal(1)
+
+        val parlour = roomZone(player.instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).tile
+        val kitchen = roomZone(player.instance()!!.tile.zone, roomPosition(5, 3, GROUND_LEVEL)).tile
+        for (tile in listOf(parlour.add(7, 3), parlour.add(7, 4), kitchen.add(0, 3), kitchen.add(0, 4))) {
+            assertNull(GameObjects.findOrNull(tile) { it.id == "basic_wood_wall" || it.id.startsWith("door_hotspot") }, tile.toString())
+        }
+    }
 }

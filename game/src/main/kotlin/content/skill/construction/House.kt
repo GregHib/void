@@ -285,16 +285,54 @@ class House : Script {
             val level = roomLevel(position)
             val wall = Tables.obj("house_styles.$style.wall")
             val window = if (level == DUNGEON_LEVEL) wall else Tables.obj("house_styles.$style.window")
-            // Upstairs doorways without a room on the other side would lead out onto the roofs
             val positions = houseRoomPositions
-            val doorWall = if (level > GROUND_LEVEL) wall else null
-            decorate(zone, window, doorWall, buildMode) { side -> roomPosition(base, zone.add(side)) in positions }
+            val neighbours = Direction.cardinal.associateWith { side -> roomPosition(base, zone.add(side))?.takeIf { it in positions } }
+            decorate(
+                zone,
+                buildMode,
+                wall,
+                window = { side ->
+                    // Windows only look out onto gardens, roofs and empty spaces
+                    val neighbour = neighbours[side]
+                    if (neighbour == null || Tables.bool("house_rooms.${houseRoom(neighbour)}.outdoor")) window else wall
+                },
+                door = { side ->
+                    val neighbour = neighbours[side]
+                    when {
+                        neighbour != null -> if (side.inverse() in doorways(neighbour)) null else wall
+                        // Upstairs doorways without a room on the other side would lead out onto the roofs
+                        level > GROUND_LEVEL -> wall
+                        else -> null
+                    }
+                },
+            )
         }
 
         /**
-         * Side of the room [tile] is a door on
+         * Sides of the room at [position] which have doorways, turned the way the room is rotated
          */
-        fun doorSide(tile: Tile): Direction {
+        private fun Player.doorways(position: Int): Set<Direction> {
+            val index = houseRoomPositions.indexOf(position)
+            if (index == -1) {
+                return emptySet()
+            }
+            val template = roomTemplate(houseRoomIds[index], position)
+            val turns = houseRoomRotations[index] * 2
+            val sides = mutableSetOf<Direction>()
+            for (tile in template.toCuboid()) {
+                for (obj in GameObjects.at(tile)) {
+                    if (obj.id.startsWith("door_hotspot")) {
+                        sides.add(roomSide(obj.tile).rotate(turns))
+                    }
+                }
+            }
+            return sides
+        }
+
+        /**
+         * Side of the room the wall, door or window on [tile] is on
+         */
+        fun roomSide(tile: Tile): Direction {
             val zone = tile.zone.tile
             return when {
                 tile.x == zone.x -> Direction.WEST
@@ -439,16 +477,22 @@ class House : Script {
         }
 
         /**
-         * Fills the window spaces in [zone] and removes any hotspots outside of [buildMode].
-         * Doorways on a side without a [connected] room are filled with [doorWall] when there is one.
+         * Fills the window spaces in [zone] with the [window] for their side and removes any hotspots outside of [buildMode],
+         * doorways are filled with the [door] wall for their side, or left open when there isn't one.
+         * Window spaces filled with [wall] lose any curtains, or curtain hotspots, hung on them.
          */
-        private fun decorate(zone: Zone, window: String, doorWall: String?, buildMode: Boolean, connected: (Direction) -> Boolean) {
+        private fun decorate(zone: Zone, buildMode: Boolean, wall: String, window: (Direction) -> String, door: (Direction) -> String?) {
             for (tile in zone.toCuboid()) {
-                for (obj in GameObjects.at(tile)) {
+                val objects = GameObjects.at(tile)
+                val walled = objects.any { it.id == "house_window_space" && window(roomSide(it.tile)) == wall }
+                for (obj in objects) {
                     if (obj.id == "house_window_space") {
-                        obj.replace(window)
-                    } else if (!buildMode && doorWall != null && obj.id.startsWith("door_hotspot") && !connected(doorSide(obj.tile))) {
-                        obj.replace(doorWall)
+                        obj.replace(window(roomSide(obj.tile)))
+                    } else if (walled && (obj.id in curtains || obj.id.endsWith("_curtain_space"))) {
+                        obj.remove()
+                    } else if (!buildMode && obj.id.startsWith("door_hotspot")) {
+                        val wall = door(roomSide(obj.tile))
+                        if (wall == null) obj.remove() else obj.replace(wall)
                     } else if (!buildMode && obj.def.containsOption("Build")) {
                         obj.remove()
                     }
@@ -465,6 +509,8 @@ class House : Script {
         }
 
         private const val BLOCKED = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT
+
+        private val curtains = setOf("torn_curtains", "curtains", "opulent_curtains")
 
         /**
          * Placeholder for furniture interactions which haven't been added yet
