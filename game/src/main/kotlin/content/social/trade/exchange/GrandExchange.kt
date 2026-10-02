@@ -272,7 +272,7 @@ class GrandExchange(
         claim(open.id, open.account, offer.item, traded, traderPrice, offer.price, !offer.sell)
         // Record the successful exchange
         limits.record(buyer, offer.item, traded)
-        history.record(offer.item, traded, offer.price)
+        history.record(offer.item, traded, traderPrice)
         return true
     }
 
