@@ -54,7 +54,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
      */
     fun add(id: String, tile: Tile, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0, ticks: Int = NEVER, collision: Boolean = true): GameObject {
         val obj = GameObject(ObjectDefinitions.get(id).id, tile, shape, rotation)
-        add(obj)
+        add(obj, collision)
         timers.add(obj, ticks) {
             remove(obj, collision)
         }
@@ -136,7 +136,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
      * Removes an object, optionally reverting after [ticks]
      */
     fun remove(obj: GameObject, ticks: Int = NEVER, collision: Boolean = true) {
-        remove(obj)
+        remove(obj, collision)
         timers.add(obj, ticks) {
             add(obj, collision)
         }
