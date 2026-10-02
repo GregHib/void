@@ -84,7 +84,7 @@ open class Interact(
         if (!validTarget()) {
             return
         }
-        if (character.contains("delay") || character.hasMenuOpen()) {
+        if (character.delayed || character.hasMenuOpen()) {
             super.tick()
             return
         }
@@ -218,7 +218,7 @@ open class Interact(
         return false
     }
 
-    private fun interactionFinished() = character.suspension == null && !character.contains("delay")
+    private fun interactionFinished() = character.suspension == null && !character.delayed
 
     private fun clear() {
         if (character.suspension != null) {

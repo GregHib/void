@@ -28,25 +28,19 @@ id = 2059
 id = 89
 examine = "A wrought iron gate."
 
-[gate_11_opened]
-id = 2061
-
 [gate_11_closed]
 id = 90
+opened = "gate_opened"
 examine = "A wrought iron gate."
-
-[gate_12_opened]
-id = 2061
 
 [gate_12_closed]
 id = 94
+opened = "gate_opened"
 examine = "A wrought iron gate."
-
-[gate_13_opened]
-id = 2059
 
 [gate_13_closed]
 id = 95
+opened = "gate_10_opened"
 examine = "A wrought iron gate."
 
 [gate_14_opened]
@@ -87,10 +81,6 @@ examine = "A wooden gate."
 id = 1551
 examine = "A wooden gate."
 
-[gate_19]
-id = 1552
-examine = "A wooden gate."
-
 [gate_20_opened]
 id = 1556
 examine = "A wooden gate."
@@ -113,42 +103,23 @@ id = 1555
 id = 1598
 examine = "A wooden gate."
 
-[gate_21]
-id = 1556
-examine = "A wooden gate."
-
-[gate_22_opened]
-id = 1560
-gate = false
-material = "iron"
-examine = "A wrought iron gate."
-
 [gate_22_closed]
 id = 1557
-gate = false
-material = "iron"
-examine = "A wrought iron gate."
-
-[gate_23_opened]
-id = 1561
+opened = "gate_29_opened"
 gate = false
 material = "iron"
 examine = "A wrought iron gate."
 
 [gate_23_closed]
 id = 1558
-gate = false
-material = "iron"
-examine = "A wrought iron gate."
-
-[gate_27_opened]
-id = 1560
+opened = "gate_30_opened"
 gate = false
 material = "iron"
 examine = "A wrought iron gate."
 
 [gate_27_closed]
 id = 1589
+opened = "gate_29_opened"
 gate = false
 material = "iron"
 examine = "A wrought-iron gate."
@@ -165,14 +136,9 @@ gate = false
 material = "iron"
 examine = "A wrought-iron gate."
 
-[gate_28_opened]
-id = 1561
-gate = false
-material = "iron"
-examine = "A wrought iron gate."
-
 [gate_28_closed]
 id = 1590
+opened = "gate_30_opened"
 gate = false
 material = "iron"
 examine = "A wrought-iron gate."
@@ -189,108 +155,80 @@ gate = false
 material = "iron"
 examine = "A wrought-iron gate."
 
-[lathas_training_gate_left_opened]
-id = 2040
-
 [lathas_training_gate_left_closed]
 id = 2039
+opened = "gate_mort_myre_opened"
 gate = false
 material = "iron_door"
 examine = "It's closed."
-
-[kitchen_gate_2_opened]
-id = 2040
 
 [kitchen_gate_2_closed]
 id = 2200
+opened = "gate_mort_myre_opened"
 examine = "It keeps greedy goblins away from the food."
-
-[metal_gate_opened]
-id = 2040
 
 [metal_gate_closed]
 id = 2259
+opened = "gate_mort_myre_opened"
 examine = "The gate is closed."
-
-[wilderness_agility_gate_east_opened]
-id = 2040
 
 [wilderness_agility_gate_east_closed]
 id = 2307
+opened = "gate_mort_myre_opened"
 gate = false
-
-[gate_53_opened]
-id = 2040
 
 [gate_53_closed]
 id = 2432
+opened = "gate_mort_myre_opened"
 examine = "This gate is closed."
-
-[gate_64_opened]
-id = 2040
 
 [gate_64_closed]
 id = 2673
+opened = "gate_mort_myre_opened"
 examine = "A solid looking gate."
-
-[lathas_training_gate_right_opened]
-id = 2042
 
 [lathas_training_gate_right_closed]
 id = 2041
+opened = "gate_mort_myre_swamp_opened"
 gate = false
 material = "iron_door"
 examine = "It's closed."
 
-[gate_54_opened]
-id = 2042
-
 [gate_54_closed]
 id = 2433
+opened = "gate_mort_myre_swamp_opened"
 examine = "This gate is closed."
-
-[barbarian_outpost_gate_left_opened]
-id = 2040
 
 [barbarian_outpost_gate_left_closed]
 id = 2115
+opened = "gate_mort_myre_opened"
 gate = false
 examine = "The left hand side of the gate."
 
-[barbarian_outpost_gate_right_opened]
-id = 2042
-
 [barbarian_outpost_gate_right_closed]
 id = 2116
+opened = "gate_mort_myre_swamp_opened"
 gate = false
 examine = "The right hand side of the gate."
 
-[kitchen_gate_opened]
-id = 2042
-
 [kitchen_gate_closed]
 id = 2199
+opened = "gate_mort_myre_swamp_opened"
 examine = "It keeps greedy goblins away from the food."
-
-[metal_gate_2_opened]
-id = 2042
 
 [metal_gate_2_closed]
 id = 2260
+opened = "gate_mort_myre_swamp_opened"
 examine = "The gate is closed."
-
-[wilderness_agility_gate_west_opened]
-id = 2042
 
 [wilderness_agility_gate_west_closed]
 id = 2308
+opened = "gate_mort_myre_swamp_opened"
 gate = false
-
-[gate_65_opened]
-id = 2042
 
 [gate_65_closed]
 id = 2674
+opened = "gate_mort_myre_swamp_opened"
 examine = "A solid looking gate."
 
 [guidor_gate_left_opened]
@@ -307,62 +245,46 @@ id = 2053
 id = 2051
 examine = "A wooden gate."
 
-[mourner_quarters_gate_left_opened]
-id = 2059
-
 [mourner_quarters_gate_left_closed]
 id = 2058
+opened = "gate_10_opened"
 gate = false
 examine = "It's closed."
-
-[gate_42_opened]
-id = 2059
 
 [gate_42_closed]
 id = 2154
+opened = "gate_10_opened"
 examine = "A wrought iron gate."
-
-[ancient_metal_gate_opened]
-id = 2059
 
 [ancient_metal_gate_closed]
 id = 2255
+opened = "gate_10_opened"
 examine = "An ancient metal gate, but still pretty secure."
-
-[gate_61_opened]
-id = 2059
 
 [gate_61_closed]
 id = 2552
+opened = "gate_10_opened"
 examine = "A metal gate bars your way."
-
-[mourner_quarters_gate_right_opened]
-id = 2061
 
 [mourner_quarters_gate_right_closed]
 id = 2060
+opened = "gate_opened"
 gate = false
 examine = "It's closed."
 
-[gate_62_opened]
-id = 2061
-
 [gate_62_closed]
 id = 2553
+opened = "gate_opened"
 examine = "A metal gate bars your way."
-
-[gate_43_opened]
-id = 2061
 
 [gate_43_closed]
 id = 2155
+opened = "gate_opened"
 examine = "A wrought iron gate."
-
-[ancient_metal_gate_2_opened]
-id = 2061
 
 [ancient_metal_gate_2_closed]
 id = 2256
+opened = "gate_opened"
 examine = "An ancient metal gate, but still pretty secure."
 
 [wooden_gate_opened]
@@ -379,18 +301,14 @@ id = 2264
 id = 2262
 examine = "The gate is closed."
 
-[gate_shipyard_north_opened]
-id = 2263
-
 [gate_shipyard_north_closed]
 id = 2438
+opened = "wooden_gate_opened"
 examine = "A wooden gate."
-
-[gate_shipyard_south_opened]
-id = 2264
 
 [gate_shipyard_south_closed]
 id = 2439
+opened = "wooden_gate_2_opened"
 examine = "A wooden gate."
 
 [gate_47]
@@ -474,25 +392,19 @@ id = 20092
 id = 2787
 examine = "An entrance to Gu'Tanoth."
 
-[city_gate_3_opened]
-id = 20091
-
 [city_gate_3_closed]
 id = 2788
+opened = "city_gate_opened"
 examine = "An entrance to Gu'Tanoth."
-
-[city_gate_4_opened]
-id = 20092
 
 [city_gate_4_closed]
 id = 2789
+opened = "city_gate_2_opened"
 examine = "An entrance to Gu'Tanoth."
-
-[gate_70_opened]
-id = 26922
 
 [gate_70_closed]
 id = 2865
+opened = "gate_74_opened"
 examine = "This space reserved for a shockingly bad pun."
 
 [ancient_gate_opened]
@@ -562,30 +474,17 @@ id = 3021
 gate = false
 examine = "A wrought iron gate."
 
-[gate_76_opened]
-id = 26922
-gate = false
-
 [gate_76_closed]
 id = 3022
+opened = "gate_74_opened"
 gate = false
 examine = "A wrought iron gate."
-
-[gate_77_opened]
-id = 3269
-gate = false
 
 [gate_77_closed]
 id = 3023
+opened = "gate_75_opened"
 gate = false
 examine = "A wrought iron gate."
-
-[gate_79_opened]
-id = 3446
-
-[gate_79_closed]
-id = 3445
-examine = "A sturdy metal gate."
 
 [gate_82_opened]
 id = 3727
@@ -603,14 +502,6 @@ examine = "A wooden gate."
 id = 3726
 examine = "A wooden gate."
 
-[gate_84]
-id = 3727
-examine = "A wooden gate."
-
-[gate_85]
-id = 3728
-examine = "A wooden gate."
-
 [gate_243_opened]
 id = 3835
 examine = "The gate appears to be expertly crafted from fine wood."
@@ -618,12 +509,9 @@ examine = "The gate appears to be expertly crafted from fine wood."
 [gate_243_closed]
 id = 45845
 
-[gate_245_opened]
-id = 3835
-examine = "The gate appears to be expertly crafted from fine wood."
-
 [gate_245_closed]
 id = 45847
+opened = "gate_243_opened"
 examine = "A gate."
 
 [gate_244_opened]
@@ -633,12 +521,9 @@ examine = "The gate appears to be expertly crafted from fine wood."
 [gate_244_closed]
 id = 45846
 
-[gate_246_opened]
-id = 3836
-examine = "The gate appears to be expertly crafted from fine wood."
-
 [gate_246_closed]
 id = 45848
+opened = "gate_244_opened"
 examine = "A gate."
 
 [gate_west_varrock_closed]
@@ -717,14 +602,6 @@ examine = "A wooden gate."
 id = 8811
 examine = "A wooden gate."
 
-[gate_100]
-id = 8812
-examine = "A wooden gate."
-
-[gate_101]
-id = 8813
-examine = "A wooden gate."
-
 [gate_104_opened]
 id = 10173
 
@@ -756,19 +633,15 @@ id = 10566
 gate = false
 examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
 
-[toll_gate_al_kharid_prince_ali_opened]
-id = 35550
-
 [toll_gate_al_kharid_prince_ali_closed]
 id = 10567
+opened = "toll_gate_al_kharid_south_opened"
 gate = false
 examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
 
-[toll_gate_al_kharid_prince_ali_north_opened]
-id = 35552
-
 [toll_gate_al_kharid_prince_ali_north_closed]
 id = 10568
+opened = "toll_gate_al_kharid_north_opened"
 gate = false
 examine = "Marks the border between Al Kharid and the Kingdom of Misthalin."
 
@@ -788,24 +661,12 @@ examine = "A wooden gate."
 id = 12987
 examine = "A wooden gate."
 
-[gate_115]
-id = 12988
-examine = "A wooden gate."
-
-[gate_116]
-id = 12989
-examine = "A wooden gate."
-
 [gate_117_opened]
 id = 14234
 examine = "A strong gate."
 
 [gate_117_closed]
 id = 14233
-examine = "A strong gate."
-
-[gate_118]
-id = 14234
 examine = "A strong gate."
 
 [gate_119_opened]
@@ -816,20 +677,12 @@ examine = "A strong gate."
 id = 14235
 examine = "A strong gate."
 
-[gate_120]
-id = 14236
-examine = "A strong gate."
-
 [gate_121_opened]
 id = 14238
 examine = "It should keep the monsters at bay for a little longer."
 
 [gate_121_closed]
 id = 14237
-examine = "It should keep the monsters at bay for a little longer."
-
-[gate_122]
-id = 14238
 examine = "It should keep the monsters at bay for a little longer."
 
 [gate_123_opened]
@@ -840,20 +693,12 @@ examine = "It should keep the monsters at bay for a little longer."
 id = 14239
 examine = "It should keep the monsters at bay for a little longer."
 
-[gate_124]
-id = 14240
-examine = "It should keep the monsters at bay for a little longer."
-
 [gate_125_opened]
 id = 14242
 examine = "It's partially damaged."
 
 [gate_125_closed]
 id = 14241
-examine = "It's partially damaged."
-
-[gate_126]
-id = 14242
 examine = "It's partially damaged."
 
 [gate_127_opened]
@@ -864,10 +709,6 @@ examine = "It's partially damaged."
 id = 14243
 examine = "It's partially damaged."
 
-[gate_128]
-id = 14244
-examine = "It's partially damaged."
-
 [gate_129_opened]
 id = 14246
 examine = "It's totally destroyed."
@@ -876,20 +717,12 @@ examine = "It's totally destroyed."
 id = 14245
 examine = "It's totally destroyed."
 
-[gate_130]
-id = 14246
-examine = "It's totally destroyed."
-
 [gate_131_opened]
 id = 14248
 examine = "It's totally destroyed."
 
 [gate_131_closed]
 id = 14247
-examine = "It's totally destroyed."
-
-[gate_132]
-id = 14248
 examine = "It's totally destroyed."
 
 [colony_gate_opened]
@@ -914,20 +747,12 @@ examine = "A wooden gate."
 id = 15510
 examine = "A wooden gate."
 
-[gate_134]
-id = 15511
-examine = "A wooden gate."
-
 [gate_135_opened]
 id = 15513
 examine = "A wooden gate."
 
 [gate_135_closed]
 id = 15512
-examine = "A wooden gate."
-
-[gate_136]
-id = 15513
 examine = "A wooden gate."
 
 [gate_137_opened]
@@ -938,16 +763,9 @@ examine = "A wooden gate."
 id = 15514
 examine = "A wooden gate."
 
-[gate_138]
-id = 15515
-examine = "A wooden gate."
-
-[gate_176_opened]
-id = 15515
-examine = "A wooden gate."
-
 [gate_176_closed]
 id = 24560
+opened = "gate_137_opened"
 examine = "A wooden gate."
 
 [gate_139_opened]
@@ -958,16 +776,9 @@ examine = "A wooden gate."
 id = 15516
 examine = "A wooden gate."
 
-[gate_140]
-id = 15517
-examine = "A wooden gate."
-
-[gate_177_opened]
-id = 15517
-examine = "A wooden gate."
-
 [gate_177_closed]
 id = 24561
+opened = "gate_139_opened"
 examine = "A wooden gate."
 
 [gate_141_opened]
@@ -984,18 +795,14 @@ id = 15606
 id = 15605
 examine = "A secure gate."
 
-[gate_145_opened]
-id = 20091
-
 [gate_145_closed]
 id = 20045
+opened = "city_gate_opened"
 examine = "A gate."
-
-[gate_146_opened]
-id = 20092
 
 [gate_146_closed]
 id = 20046
+opened = "city_gate_2_opened"
 examine = "A gate."
 
 [gate_167_opened]
@@ -1027,10 +834,6 @@ examine = "An open, sturdy metal door."
 id = 21403
 examine = "A closed, sturdy metal door."
 
-[gate_154]
-id = 21404
-examine = "An open, sturdy metal door."
-
 [gate_155_opened]
 id = 21406
 examine = "An open, sturdy metal door."
@@ -1039,10 +842,6 @@ examine = "An open, sturdy metal door."
 id = 21405
 examine = "A closed, sturdy metal door."
 
-[gate_156]
-id = 21406
-examine = "An open, sturdy metal door."
-
 [gate_157_opened]
 id = 21601
 examine = "An open gate."
@@ -1050,14 +849,6 @@ examine = "An open gate."
 [gate_157_closed]
 id = 21600
 examine = "A flimsy, wooden gate."
-
-[gate_158]
-id = 21601
-examine = "An open gate."
-
-[gate_163]
-id = 22778
-examine = "Lets the littlest goblins out of their enclosure."
 
 [gate_164_opened]
 id = 22778
@@ -1075,20 +866,12 @@ examine = "A rusty gate."
 id = 23216
 examine = "A rusty gate."
 
-[gate_166]
-id = 23217
-examine = "A rusty gate."
-
 [gate_168_opened]
 id = 23919
 examine = "A wooden gate."
 
 [gate_168_closed]
 id = 23917
-examine = "A wooden gate."
-
-[gate_170]
-id = 23919
 examine = "A wooden gate."
 
 [gate_171_opened]
@@ -1109,52 +892,29 @@ id = 24370
 gate = false
 examine = "A gate."
 
-[gate_173]
-id = 24373
-examine = "A gate."
-
-[gate_247_opened]
-id = 24373
-examine = "A gate."
-
 [gate_west_varrock_2_closed]
 id = 45851
-examine = "A wooden gate."
-
-[gate_west_varrock_2_opened]
-id = 55443
+opened = "gate_west_varrock_opened"
 examine = "A wooden gate."
 
 [gate_247_closed]
 id = 45852
+opened = "gate_171_opened"
 examine = "A wooden gate."
-
-[gate_249_opened]
-id = 24373
-examine = "A gate."
 
 [gate_249_closed]
 id = 45854
+opened = "gate_171_opened"
 examine = "A small door in a big gate."
-
-[gate_174]
-id = 24374
-examine = "A gate."
-
-[gate_248_opened]
-id = 24374
-examine = "A gate."
 
 [gate_248_closed]
 id = 45853
+opened = "gate_172_opened"
 examine = "A small door in a big gate."
-
-[gate_250_opened]
-id = 24374
-examine = "A gate."
 
 [gate_250_closed]
 id = 45855
+opened = "gate_172_opened"
 examine = "A small door in a big gate."
 
 [gate_178_opened]
@@ -1195,14 +955,6 @@ examine = "A wrought iron gate."
 id = 26131
 examine = "A wrought iron gate."
 
-[gate_184]
-id = 26132
-examine = "A wrought iron gate."
-
-[gate_185]
-id = 26133
-examine = "A wrought iron gate."
-
 [gate_188_opened]
 id = 27845
 examine = "This allows one to walk through walls."
@@ -1219,20 +971,12 @@ examine = "This allows one to walk through walls."
 id = 27848
 examine = "This allows one to walk through walls."
 
-[gate_191]
-id = 27851
-examine = "This allows one to walk through walls."
-
 [gate_192_opened]
 id = 27851
 examine = "This allows one to walk through walls."
 
 [gate_192_closed]
 id = 27852
-examine = "This allows one to walk through walls."
-
-[gate_193]
-id = 27853
 examine = "This allows one to walk through walls."
 
 [gate_194_opened]
@@ -1268,14 +1012,6 @@ id = 28691
 gate = false
 examine = "A thick wooden gate."
 
-[gate_199]
-id = 28692
-examine = "A thick wooden gate."
-
-[gate_200]
-id = 28693
-examine = "A thick wooden gate."
-
 [ancient_gate_7_opened]
 id = 31835
 
@@ -1298,20 +1034,12 @@ examine = "This area is closed off."
 id = 37507
 examine = "This area is closed off."
 
-[gate_202]
-id = 34777
-examine = "A wooden gate."
-
 [gate_204_opened]
 id = 34777
 examine = "A wooden gate."
 
 [gate_204_closed]
 id = 34779
-examine = "A wooden gate."
-
-[gate_203]
-id = 34778
 examine = "A wooden gate."
 
 [gate_205_opened]
@@ -1322,10 +1050,6 @@ examine = "A wooden gate."
 id = 34780
 examine = "A wooden gate."
 
-[gate_206]
-id = 36912
-examine = "A wooden gate."
-
 [gate_207_opened]
 id = 36912
 examine = "A wooden gate."
@@ -1334,12 +1058,9 @@ examine = "A wooden gate."
 id = 36913
 examine = "A wooden gate."
 
-[gate_211_opened]
-id = 36912
-examine = "A wooden gate."
-
 [gate_211_closed]
 id = 36917
+opened = "gate_207_opened"
 examine = "A wooden gate."
 
 [gate_209_opened]
@@ -1350,12 +1071,9 @@ examine = "A wooden gate."
 id = 36915
 examine = "A wooden gate."
 
-[gate_213_opened]
-id = 36914
-examine = "A wooden gate."
-
 [gate_213_closed]
 id = 36919
+opened = "gate_209_opened"
 examine = "A wooden gate."
 
 [gate_215_opened]
@@ -1397,14 +1115,6 @@ examine = "The metal bars look strong."
 [gate_230_closed]
 id = 40930
 examine = "The metal bars look strong."
-
-[gate_232]
-id = 42002
-examine = "A wooden gate."
-
-[gate_233]
-id = 42003
-examine = "A wooden gate."
 
 [gate_235_opened]
 id = 45207

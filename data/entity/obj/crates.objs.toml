@@ -933,10 +933,6 @@ examine = "A smashed crate."
 id = 26251
 examine = "A crate and broken shield."
 
-[crate_240]
-id = 26440
-examine = "A wooden box."
-
 [crate_241]
 id = 26771
 examine = "A wooden crate."
@@ -1396,10 +1392,6 @@ examine = "A wooden crate."
 [crate_356]
 id = 47561
 examine = "A wooden crate."
-
-[crate_357]
-id = 47902
-examine = "This crate is riddled with holes."
 
 [crate_358]
 id = 48586

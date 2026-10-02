@@ -140,11 +140,15 @@ fun Ui.select(
     }
 }
 
-/** A toggle switch. [model] is a boolean Alpine expression; [small] renders the compact 32px track. */
-fun Ui.switch(text: String, model: String, small: Boolean = false) {
+/**
+ * A toggle switch. [model] is a boolean Alpine expression; [small] renders the compact 32px track.
+ * [onToggle] replaces the default flip of [model] on click, for a switch that has to do something
+ * else first (e.g. open a file before it can turn on).
+ */
+fun Ui.switch(text: String, model: String, small: Boolean = false, onToggle: String = "$model = !$model") {
     receiver.label {
         style = "display:inline-flex;align-items:center;gap:10px;cursor:pointer"
-        onClick("$model = !$model")
+        onClick(onToggle)
         val trackWidth = if (small) 32 else 40
         val trackHeight = if (small) 18 else 22
         val knob = if (small) 12 else 16

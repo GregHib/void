@@ -26,7 +26,7 @@ class NPCTask(
         if (character.mode == EmptyMode) {
             // An idle familiar (its owner still has it as their follower) resumes following its
             // owner rather than wandering or standing still after a fight ends.
-            val ownerIndex = character["owner_index", -1]
+            val ownerIndex = character.ownerIndex
             val owner = if (ownerIndex != -1) Players.indexed(ownerIndex) else null
             if (owner != null && owner["follower_index", -1] == character.index) {
                 character.mode = Follow(character, owner)
@@ -45,7 +45,7 @@ class NPCTask(
     }
 
     private fun lifecycle(npc: NPC) {
-        if (npc.contains("delay")) {
+        if (npc.delayed) {
             return
         }
         if (npc.lifecycle == 0) {
@@ -61,7 +61,7 @@ class NPCTask(
                     // Revert
                     npc.visuals.transform.id = npc.def.id
                     npc.flagTransform()
-                    npc.clear("transform_id")
+                    npc.transformId = npc.id
                 }
             }
         } else if (npc.queue.contains("death")) {
@@ -85,9 +85,16 @@ class NPCTask(
     }
 
     private fun healthRegen(character: NPC) {
-        if (!character.hasClock("under_attack") && character.regenCounter++ >= character.def["regen_rate_ticks", 25] && character.levels.get(Skill.Constitution) < character.levels.getMax(Skill.Constitution)) {
-            character.levels.restore(Skill.Constitution, 10)
-            character.regenCounter = 0
+        if (character.hasClock("under_attack")) {
+            return
         }
+        if (character.regenCounter++ < character.def.regenRate) {
+            return
+        }
+        if (character.levels.get(Skill.Constitution) >= character.levels.getMax(Skill.Constitution)) {
+            return
+        }
+        character.levels.restore(Skill.Constitution, 10)
+        character.regenCounter = 0
     }
 }

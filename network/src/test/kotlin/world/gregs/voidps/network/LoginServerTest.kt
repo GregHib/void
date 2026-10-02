@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import kotlinx.io.EOFException
 import kotlinx.io.Source
+import kotlinx.io.readByteArray
 import kotlinx.io.writeUByte
 import kotlinx.io.writeUShort
 import org.junit.jupiter.api.Assertions.*
@@ -267,9 +268,9 @@ internal class LoginServerTest {
         assertEquals(Response.DATA_CHANGE, writeChannel.readByte().toInt())
         assertTrue(server.online.contains("username"))
         client!!.disconnect()
-        writeTestPacket(readChannel)
         assertFalse(server.online.contains("username"))
         assertTrue(writeChannel.isClosedForWrite)
+        assertTrue(readChannel.isClosedForRead)
     }
 
     @Test
@@ -418,7 +419,7 @@ internal class LoginServerTest {
                     writeLong(passwordMarker.toLong())
                     writeText("password")
                     writeByte(0)
-                }.readBytes()
+                }.readByteArray()
                 val rsa = RSA.crypt(data, modulus, private)
                 writeUShort(rsa.size.toUShort())
                 writeFully(rsa)
@@ -427,10 +428,10 @@ internal class LoginServerTest {
                     writeByte(0)
                     writeByte(0) // social login
                     writeByte(1) // display mode
-                }.readBytes()
+                }.readByteArray()
                 Xtea.encipher(xtea, 0, xtea.size, intArrayOf(0, 0, 0, 0))
                 writeFully(xtea)
-            }.readBytes()
+            }.readByteArray()
             writeShort(data.size)
             writeFully(data)
         }

@@ -3,7 +3,6 @@ package content.area.misthalin.tutorial_island
 import content.bot.isBot
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.stop
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.flagAppearance
@@ -23,7 +22,7 @@ class TutorialProgress : Script {
             }
             if (Settings["world.start.creation", true] && !isBot && !get("tutorial_designed", false)) {
                 sendVariable("movement")
-                this["delay"] = -1
+                delay = -1
                 World.queue("tutorial_creation_$name", 1) {
                     open("character_creation")
                 }
@@ -39,7 +38,7 @@ class TutorialProgress : Script {
             Skill.entries.forEach { experience.update(it) }
             set("tutorial_designed", true)
             flagAppearance()
-            stop("delay")
+            delay = 0
             TutorialIsland.refresh(this)
         }
 

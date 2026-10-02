@@ -22,7 +22,7 @@ class RandomEventKidnap : Script {
         // location persists so completing it still returns the player there.
         playerSpawn {
             val event: String = get("random_event") ?: return@playerSpawn
-            RandomEvents.start(this, event)
+            RandomEvents.start(this, event, resume = true)
         }
 
         blockTeleports("You can't leave just yet.") { contains("random_event") }

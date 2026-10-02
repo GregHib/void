@@ -19,8 +19,8 @@ import java.util.concurrent.TimeUnit
 class RandomEventTrigger : Script {
 
     init {
-        experience { _, _, _ ->
-            if (timerTriggered()) {
+        experience { _, from, to ->
+            if (to <= from || timerTriggered()) {
                 return@experience
             }
             RandomEvents.roll(this, chance = Settings["events.randomEvents.chance", 300])
@@ -60,7 +60,6 @@ class RandomEventTrigger : Script {
 
         adminCommand("random_event", stringArg("event", optional = true, autofill = RandomEvents.keys), desc = "Start a random event") { args ->
             val event = args.getOrNull(0) ?: RandomEvents.pick()
-            clear("random_event_origin")
             if (event == null || !RandomEvents.start(this, event)) {
                 message("No random event found${if (args.isEmpty()) "" else " for '${args[0]}'"}.")
             }

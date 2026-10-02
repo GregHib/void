@@ -6,10 +6,6 @@ examine = "A sturdy metal railing."
 id = 12544
 examine = "A small wooden table."
 
-[mizgogs_desk]
-id = 16169
-examine = "A desk belonging to Wizard Mizgog."
-
 [portal_runecrafting_guild]
 id = 38279
 examine = "Where could this lead?"

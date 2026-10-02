@@ -63,7 +63,7 @@ amount = [15, 30]
 weight = 7
 tip = "Ghosts are undead so magic is your best bet against them, there is even a spell specially for fighting the undead."
 
-[.goblin]
+[.goblins]
 amount = [15, 30]
 weight = 7
 tip = "Goblins are mostly just annoying, but they can be vicious. Watch out for the spears they sometimes carry."

@@ -63,7 +63,7 @@ class GravestonesTest : WorldTest() {
         // The floor timer has already counted down a couple of ticks by now.
         val coins = FloorItems.firstOrNull(tile, "coins")
         assertNotNull(coins)
-        assertTrue(coins.revealTicks >= 490, "reveal should be ~500 ticks (5 min), was ${coins.revealTicks}")
+        assertTrue(coins.lifecycle >= 490, "reveal should be ~500 ticks (5 min), was ${coins.lifecycle}")
         assertTrue(coins.disappearTicks >= 550, "disappear should be ~560 ticks, was ${coins.disappearTicks}")
     }
 
@@ -134,7 +134,7 @@ class GravestonesTest : WorldTest() {
         friend.levels.set(Skill.Prayer, 0) // repairing takes no prayer points
         friend.npcOption(grave, "Repair")
         tick(1)
-        assertEquals(499, floorItem.revealTicks)
+        assertEquals(500, floorItem.lifecycle)
         assertEquals(560, floorItem.disappearTicks)
         tick(3)
         assertEquals(300, grave.remaining("grave_timer", epochSeconds()))
@@ -156,7 +156,7 @@ class GravestonesTest : WorldTest() {
         friend.experience.set(Skill.Prayer, Level.experience(75))
         friend.npcOption(grave, "Bless")
         tick(1)
-        assertEquals(5999, floorItem.revealTicks)
+        assertEquals(6000, floorItem.lifecycle)
         assertEquals(6060, floorItem.disappearTicks)
         tick(3)
         assertEquals(3600, grave.remaining("grave_timer", epochSeconds()))

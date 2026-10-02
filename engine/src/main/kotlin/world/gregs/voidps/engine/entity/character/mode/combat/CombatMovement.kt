@@ -56,7 +56,7 @@ class CombatMovement(
             character.mode = EmptyMode
             return
         }
-        if (character is NPC && character["owner_index", -1] == -1 && target["owner_index", -1] == -1) {
+        if (character is NPC && character.ownerIndex == -1 && ((target as? NPC)?.ownerIndex ?: -1) == -1) {
             // Owned familiars aren't bound by the spawn/aggro leash: they chase whatever their
             // owner directs them at (which can be further than their aggro range) and fall back to
             // following the owner when the fight ends, so they never wander off permanently. An npc
@@ -79,7 +79,7 @@ class CombatMovement(
                 skip = recalculate() && wasEmpty
             }
             super.tick()
-            if (character is NPC && character["owner_index", -1] != -1) {
+            if (character is NPC && character.ownerIndex != -1) {
                 // An owned familiar that can't make progress towards a target it isn't yet close
                 // to (no path exists, e.g. the target fled somewhere unreachable) gives up after a
                 // grace period and falls back to following its owner (EmptyMode -> Follow in
@@ -136,7 +136,7 @@ class CombatMovement(
     private fun attackRange(): Int {
         val default = if (character is NPC) {
             val def = character.transformDef
-            val combatDefinition = get<CombatDefinitions>().get(def["combat_def", character["transform_id", def.stringId]])
+            val combatDefinition = get<CombatDefinitions>().get(def["combat_def", character.transformId])
             def["attack_range", combatDefinition.attackRange]
         } else 1
         return character["attack_range", default]
@@ -180,7 +180,7 @@ class CombatMovement(
          * tile so they don't de-aggro when the owner moves; all other NPCs anchor to [spawn_tile].
          */
         fun NPC.leashAnchor(): Tile? {
-            val ownerIndex = this["owner_index", -1]
+            val ownerIndex = this.ownerIndex
             if (ownerIndex != -1) {
                 Players.indexed(ownerIndex)?.let { return it.tile }
             }
@@ -198,6 +198,6 @@ class CombatMovement(
             return absX <= aggroRange && absY <= aggroRange
         }
 
-        fun NPC.maxRange() = Tables.intOrNull("npc_ranges.${get("transform_id", id)}.max_range") ?: 7
+        fun NPC.maxRange() = Tables.intOrNull("npc_ranges.$transformId.max_range") ?: 7
     }
 }

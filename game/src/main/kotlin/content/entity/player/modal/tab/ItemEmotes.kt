@@ -23,7 +23,7 @@ class ItemEmotes : Script {
 
     init {
         itemOption("Fly", "toy_kite", "*") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -31,7 +31,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Emote", "reindeer_hat", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -41,7 +41,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Recite-prayer", "prayer_book") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -76,7 +76,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Dance", "rubber_chicken", "*") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -85,7 +85,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Spin", "spinning_plate") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -112,7 +112,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Shake", "snow_globe") {
-            if (contains("delay") || menu != null) {
+            if (delayed || menu != null) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -129,7 +129,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Spin", "candy_cane", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -137,7 +137,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Dance", "salty_claws_hat", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -145,7 +145,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Celebrate", "tenth_anniversary_cake") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -154,7 +154,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Brandish (2009)", "golden_hammer", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -162,7 +162,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Spin (2010)", "golden_hammer", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -177,7 +177,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Sleuth", "magnifying_glass", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -185,7 +185,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Emote", "chocatrice_cape", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -194,7 +194,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Juggle", "squirrel_ears", "worn_equipment") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -207,7 +207,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Play-with", "toy_horsey_*") { (item) ->
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -223,7 +223,7 @@ class ItemEmotes : Script {
         }
 
         itemOption("Play-with", "eek", "*") {
-            if (contains("delay")) {
+            if (delayed) {
                 message("Please wait till you've finished performing your current emote.")
                 return@itemOption
             }
@@ -233,7 +233,7 @@ class ItemEmotes : Script {
     }
 
     suspend fun yoyo(player: Player, option: String) {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             player.message("Please wait till you've finished performing your current emote.")
             return
         }
@@ -241,7 +241,7 @@ class ItemEmotes : Script {
     }
 
     suspend fun marionette(player: Player, item: Item, option: String) {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             player.message("Please wait till you've finished performing your current emote.")
             return
         }

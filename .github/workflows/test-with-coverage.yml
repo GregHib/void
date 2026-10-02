@@ -6,11 +6,13 @@ on:
       - 'release/**'
     paths-ignore:
       - '**.md'
+      - '**.js'
       - 'docs/**'
   pull_request:
     branches: [ 'main' ]
     paths-ignore:
       - '**.md'
+      - '**.js'
       - 'docs/**'
 env:
   CACHE_VERSION: 1.4.5

@@ -49,6 +49,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
         timedLoad("npc config") {
             definitions.onEach { it.stringId = it.id.toString() }
             val clones = Object2ObjectOpenHashMap<String, String>(100)
+            // Npcs which explicitly set a custom field, so deferred clones don't overwrite them
             val ids = Object2IntOpenHashMap<String>()
             ids.defaultReturnValue(-1)
             for (path in paths) {
@@ -57,6 +58,13 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         val stringId = section()
                         val params = Int2ObjectOpenHashMap<Any>(4, Hash.VERY_FAST_LOAD_FACTOR)
                         var id = -1
+                        var hitpoints: Int? = null
+                        var regenRate: Int? = null
+                        var huntRange: Int? = null
+                        var huntMode: String? = null
+                        var allowedUnder: Boolean? = null
+                        var solid: Boolean? = null
+                        var blocksPlayers: Boolean? = null
                         while (nextPair()) {
                             when (val key = key()) {
                                 "clone" -> {
@@ -66,10 +74,20 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                         clones[stringId] = name
                                     } else {
                                         val definition = definitions[npcId]
+                                        allowedUnder = definition.allowedUnder
+                                        solid = definition.solid
+                                        blocksPlayers = definition.blocksPlayers
                                         params.putAll(definition.params ?: continue)
                                     }
                                 }
                                 "id" -> id = int()
+                                "hitpoints" -> hitpoints = int()
+                                "regen_rate_ticks" -> regenRate = int()
+                                "hunt_range" -> huntRange = int()
+                                "hunt_mode" -> huntMode = string()
+                                "allowed_under" -> allowedUnder = boolean()
+                                "solid" -> solid = boolean()
+                                "blocks_players" -> blocksPlayers = boolean()
                                 "categories" -> {
                                     val categories = ObjectLinkedOpenHashSet<String>(2, Hash.VERY_FAST_LOAD_FACTOR)
                                     while (nextElement()) {
@@ -89,6 +107,27 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                         ids[stringId] = id
                         require(definitions[id].stringId == id.toString()) { "Duplicate npc id found $id ${definitions[id].stringId} '$stringId' at $path." }
                         definitions[id].stringId = stringId
+                        if (hitpoints != null) {
+                            definitions[id].hitpoints = hitpoints
+                        }
+                        if (regenRate != null) {
+                            definitions[id].regenRate = regenRate
+                        }
+                        if (huntRange != null) {
+                            definitions[id].huntRange = huntRange
+                        }
+                        if (huntMode != null) {
+                            definitions[id].huntMode = huntMode
+                        }
+                        if (allowedUnder != null) {
+                            definitions[id].allowedUnder = allowedUnder
+                        }
+                        if (solid != null) {
+                            definitions[id].solid = solid
+                        }
+                        if (blocksPlayers != null) {
+                            definitions[id].blocksPlayers = blocksPlayers
+                        }
                         if (params.isNotEmpty()) {
                             if (definitions[id].params != null) {
                                 (definitions[id].params as MutableMap<Int, Any>).putAll(params)
@@ -99,21 +138,41 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                     }
                 }
             }
-            for ((npc, clone) in clones) {
-                val cloneId = ids.getInt(clone)
-                require(cloneId != -1) { "Unable to find npc id to clone '$clone'" }
-                val definition = definitions[cloneId]
+            for ((npc, cloneStr) in clones) {
+                val cloneId = ids.getInt(cloneStr)
+                require(cloneId != -1) { "Unable to find npc id to clone '$cloneStr'" }
+                val clone = definitions[cloneId]
                 val id = ids.getInt(npc)
                 require(id != -1) { "Unable to find npc id '$npc'" }
-                val params = definitions[id].params as? MutableMap<Int, Any>
-                if (params != null) {
-                    for (param in definition.params ?: continue) {
-                        if (param.key == Params.AKA) {
-                            continue
-                        }
-                        if (!params.containsKey(param.key)) {
-                            params[param.key] = param.value
-                        }
+                val definition = definitions[id]
+                if (definition.hitpoints == NPCDefinition.EMPTY.hitpoints) {
+                    definition.hitpoints = clone.hitpoints
+                }
+                if (definition.regenRate == NPCDefinition.EMPTY.regenRate) {
+                    definition.regenRate = clone.regenRate
+                }
+                if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
+                    definition.huntRange = clone.huntRange
+                }
+                if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
+                    definition.huntMode = clone.huntMode
+                }
+                if (definition.allowedUnder == NPCDefinition.EMPTY.allowedUnder) {
+                    definition.allowedUnder = clone.allowedUnder
+                }
+                if (definition.solid == NPCDefinition.EMPTY.solid) {
+                    definition.solid = clone.solid
+                }
+                if (definition.blocksPlayers == NPCDefinition.EMPTY.blocksPlayers) {
+                    definition.blocksPlayers = clone.blocksPlayers
+                }
+                val params = definition.params as? MutableMap<Int, Any> ?: continue
+                for (param in clone.params ?: continue) {
+                    if (param.key == Params.AKA) {
+                        continue
+                    }
+                    if (!params.containsKey(param.key)) {
+                        params[param.key] = param.value
                     }
                 }
             }

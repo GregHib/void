@@ -22,7 +22,7 @@ examine = "A tunnel leading under the wall."
 id = 2728
 examine = "Ideal for cooking on."
 
-[spinning_wheel_falador]
+[spinning_wheel]
 id = 2644
 examine = "Used for spinning thread."
 

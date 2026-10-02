@@ -100,6 +100,17 @@ internal class RemoveItemTest : TransactionOperationTest() {
     }
 
     @Test
+    fun `Deficient error names the item which was missing`() {
+        transaction(stackRule = NeverStack) {
+            add("item", 1)
+        }
+        transaction.remove("item", 1)
+        transaction.remove("other_item", 1)
+        assertFalse(transaction.commit())
+        assertErrorDeficient(amount = 0, item = "other_item")
+    }
+
+    @Test
     fun `Remove an item at index after the transaction has failed`() {
         transaction {
             add("item", 1)

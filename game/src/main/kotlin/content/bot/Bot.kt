@@ -1,11 +1,16 @@
 package content.bot
 
+import content.bot.behaviour.Behaviour
 import content.bot.behaviour.BehaviourFrame
 import content.bot.behaviour.BehaviourState
 import content.bot.behaviour.Reason
 import content.bot.behaviour.action.BotAction
+import content.bot.behaviour.action.BotGoTo
+import content.bot.behaviour.action.BotGoToNearest
 import content.bot.behaviour.activity.BotActivity
 import content.bot.behaviour.perception.BotCombatContext
+import world.gregs.voidps.engine.data.definition.AreaDefinition
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import java.util.Stack
@@ -31,6 +36,32 @@ data class Bot(val player: Player) : Character by player {
     var pinned: String? = null
 
     fun noTask() = frames.isEmpty()
+
+    /**
+     * The behaviour being worked on, the bottom frame as resolvers (banking, buying tools) sit on top of it
+     */
+    val activity: Behaviour?
+        get() = frames.firstOrNull()?.behaviour
+
+    /**
+     * Area of the top-most running go to action, resolvers sit above their activity so a trip to the bank is found
+     * before the activity's own area. Null if not walking anywhere or already there.
+     */
+    fun destination(): AreaDefinition? {
+        for (index in frames.indices.reversed()) {
+            val frame = frames[index]
+            if (frame.state == BehaviourState.Pending || frame.completed()) {
+                continue
+            }
+            val area = when (val action = frame.action()) {
+                is BotGoTo -> Areas.getOrNull(action.target)
+                is BotGoToNearest -> Areas.tagged(action.tag).minByOrNull { it.area.first().distanceTo(tile) }
+                else -> null
+            } ?: continue
+            return if (tile in area.area) null else area
+        }
+        return null
+    }
 
     internal fun action(): BotAction = frames.peek().action()
 

@@ -11,7 +11,7 @@ class PharaohsSceptre : Script {
 
     init {
         itemOption("Teleport", "pharaohs_sceptre_#", "inventory") {
-            if (contains("delay")) {
+            if (delayed) {
                 return@itemOption
             }
             choice("Which Pyramid do you want to teleport to?") {
@@ -34,7 +34,7 @@ class PharaohsSceptre : Script {
     }
 
     private fun teleport(player: Player, option: ItemOption) {
-        if (player.contains("delay")) {
+        if (player.delayed) {
             return
         }
         val area = when (option.option) {

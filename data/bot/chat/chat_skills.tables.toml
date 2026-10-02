@@ -1,0 +1,132 @@
+# Skill names players use, what bots say they're doing and training advice.
+# `activity` and `advice` are quick chat phrases, `spots` are [min level, quick chat enum value] for the advice <MultipleChoice>
+# `tips` are [min level, phrase] for advice phrases without a slot.
+[chat_skills]
+aka = "list<string>"
+activity = "string"
+advice = "string"
+spots = "list<pair<int, string>>"
+tips = "list<pair<int, string>>"
+
+[.attack]
+aka = ["att", "atk"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [25, "experiments"], [30, "hill_giants"], [40, "cyclopes"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"], [75, "fire_giants"], [80, "black_demons"], [85, "dagannoths"], [90, "slayer_creatures"]]
+
+[.defence]
+aka = ["def", "defense"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [25, "experiments"], [30, "hill_giants"], [40, "cyclopes"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"], [75, "fire_giants"], [80, "black_demons"], [85, "dagannoths"], [90, "slayer_creatures"]]
+
+[.strength]
+aka = ["str"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [25, "experiments"], [30, "hill_giants"], [40, "cyclopes"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"], [75, "fire_giants"], [80, "black_demons"], [85, "dagannoths"], [90, "slayer_creatures"]]
+
+[.constitution]
+aka = ["hp", "hitpoints", "hits", "cons"]
+advice = "Try training on: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [20, "guards"], [25, "experiments"], [30, "hill_giants"], [40, "cyclopes"], [45, "moss_giants"], [60, "ice_giants"], [70, "lesser_demons"], [75, "fire_giants"], [80, "black_demons"], [85, "dagannoths"], [90, "slayer_creatures"]]
+
+[.ranged]
+aka = ["range", "ranging", "archery"]
+advice = "Try ranging: <MultipleChoice>."
+spots = [[1, "chickens"], [5, "cows"], [10, "goblins"], [30, "hill_giants"], [45, "moss_giants"], [60, "lesser_demons"], [70, "fire_giants"], [75, "black_demons"], [80, "blue_dragons"]]
+
+[.prayer]
+aka = ["pray"]
+tips = [[1, "I'm going to train Prayer at the Ectofuntus."], [1, "I'm going to train Prayer at my POH altar."]]
+
+[.magic]
+aka = ["mage", "maging"]
+
+[.cooking]
+aka = ["cook"]
+activity = "I'm cooking: <MultipleChoice>."
+advice = "Try cooking: <MultipleChoice>."
+spots = [[1, "shrimp"], [15, "trout"], [25, "salmon"], [40, "lobster"], [45, "swordfish"], [62, "monkfish"], [80, "shark"], [88, "cavefish"], [91, "manta_ray"], [93, "rocktail"]]
+
+[.woodcutting]
+aka = ["wc", "wcing", "woodcut", "chopping"]
+advice = "Try training Woodcutting at: <MultipleChoice>."
+spots = [[1, "west_of_lumbridge_castle"], [1, "draynor"], [15, "varrock_palace"], [30, "draynor"], [45, "seers_village"], [60, "seers_village_cemetery"], [75, "sorcerers_tower"]]
+
+[.fletching]
+aka = ["fletch"]
+activity = "I'm fletching: <MultipleChoice>."
+advice = "Try fletching: <MultipleChoice>."
+spots = [[1, "arrow_shafts"], [10, "longbows"], [25, "oak_longbows"], [40, "willow_longbows"], [45, "mithril_arrows"], [55, "maple_longbows"], [60, "adamant_arrows"], [70, "yew_longbows"], [75, "rune_arrows"], [85, "magic_longbows"], [90, "dragon_arrows"]]
+
+[.fishing]
+aka = ["fish", "fishin"]
+activity = "I'm fishing: <MultipleChoice>."
+advice = "Try fishing for: <MultipleChoice>."
+spots = [[1, "shrimp"], [20, "trout"], [30, "salmon"], [40, "lobster"], [50, "swordfish"], [62, "monkfish"], [76, "shark"], [81, "manta_ray"], [85, "cavefish"], [90, "rocktail"]]
+tips = [[1, "Fish Flingers is a good way to train Fishing."], [15, "Fishing Trawler is a good way to train Fishing."]]
+
+[.firemaking]
+aka = ["fm", "fming", "fire making"]
+activity = "I'm burning logs: <MultipleChoice>."
+advice = "Try burning logs at: <MultipleChoice>."
+spots = [[1, "draynor_village"], [15, "falador_east_bank"], [45, "yanille"]]
+
+[.crafting]
+aka = ["craft"]
+activity = "I am crafting: <MultipleChoice>."
+advice = "Try crafting: <MultipleChoice>."
+spots = [[1, "leather_gloves"], [14, "leather_bodies"], [28, "hard_leather_bodies"], [41, "studded_bodies"], [55, "dragonstone_rings"], [63, "green_dragonhide_bodies"], [71, "blue_dragonhide_bodies"], [77, "red_dragonhide_bodies"], [84, "black_dragonhide_bodies"]]
+
+[.smithing]
+aka = ["smith", "smithin"]
+advice = "Try smithing: <MultipleChoice> <MultipleChoice>."
+spots = [[1, "bronze_bars"], [15, "iron_bars"], [30, "steel_bars"], [50, "mithril_bars"], [70, "adamant_bars"], [85, "rune_bars"], [88, "adamant_platebodies"], [99, "rune_platebodies"]]
+
+[.mining]
+aka = ["mine", "minin"]
+activity = "I'm mining ore: <MultipleChoice>."
+advice = "Try mining at: <MultipleChoice>."
+spots = [[1, "lumbridge_swamp"], [1, "varrock_south_east"], [15, "varrock_south_west"], [30, "barbarian_village"], [30, "dwarven_mine"], [40, "shilo_village_gem_mine"], [60, "mining_guild"], [85, "wilderness_runite_mine"]]
+
+[.herblore]
+aka = ["herb", "herbs", "herbing"]
+advice = "Try mixing potion: <MultipleChoice>."
+spots = [[3, "attack_potion"], [5, "antipoison"], [12, "strength_potion"], [22, "restore_potion"], [38, "prayer_restore"], [45, "super_attack_potion"], [55, "super_strength_potion"], [63, "super_restore_potion"], [66, "super_defence_potion"], [72, "ranging_potion"], [76, "magic_potion"], [81, "saradomin_brew"]]
+
+[.agility]
+aka = ["agil", "agi"]
+advice = "Try training your Agility at: <MultipleChoice>."
+spots = [[1, "gnome_stronghold_course"], [30, "agility_pyramid"], [35, "barbarian_outpost"], [48, "ape_atoll"], [52, "wilderness_course"]]
+
+[.thieving]
+aka = ["thief", "thieve", "thiev"]
+advice = "Try thieving from: <MultipleChoice>."
+spots = [[1, "men_and_women"], [5, "stalls"], [10, "farmers"], [15, "ham_members"], [25, "warriors"], [32, "rogues"], [36, "cave_goblins"], [38, "master_farmers"], [40, "guards"], [45, "fremenniks"], [45, "bearded_pollnivnian_bandits"], [53, "desert_bandits"], [55, "knights"], [55, "pollnivnian_bandits"], [65, "menaphite_thugs"], [65, "watchmen"], [70, "paladins"], [75, "gnomes"], [80, "heroes"]]
+tips = [[21, "Pyramid Plunder is a good way to train Thieving."], [65, "Sorceress's Garden is a good way to train Thieving."]]
+
+[.slayer]
+aka = ["slay", "slaying"]
+
+[.farming]
+aka = ["farm", "farmin"]
+advice = "Try growing crop: <MultipleChoice>."
+spots = [[1, "potatoes"], [5, "onions"], [7, "cabbages"], [12, "tomatoes"], [15, "oak_trees"], [20, "sweetcorn"], [30, "willow_trees"], [32, "ranarr"], [45, "maple_trees"], [47, "watermelons"], [60, "yew_trees"], [75, "magic_trees"], [83, "spirit_trees"], [85, "torstol"]]
+tips = [[1, "Vinesweeper is a good way to train Farming."]]
+
+[.runecrafting]
+aka = ["rc", "rcing", "runecraft", "rune crafting"]
+advice = "Try crafting runes at: <MultipleChoice>."
+spots = [[1, "air_altar"], [2, "mind_altar"], [5, "water_altar"], [9, "earth_altar"], [14, "fire_altar"], [20, "body_altar"], [27, "cosmic_altar"], [35, "chaos_altar"], [44, "nature_altar"], [54, "law_altar"], [65, "death_altar"], [77, "blood_altar"]]
+
+[.hunter]
+aka = ["hunt", "hunting"]
+advice = "Try hunting: <MultipleChoice>."
+spots = [[1, "crimson_swift"], [19, "tropical_wagtail"], [23, "wild_kebbit"], [29, "swamp_lizard"], [33, "barbtailed_kebbit"], [41, "horned_graahk"], [47, "orange_salamander"], [53, "chinchompa"], [59, "red_salamander"], [63, "red_chinchompa"], [67, "black_salamander"], [69, "dashing_kebbit"], [77, "grenwall"], [83, "dragon_impling"], [91, "kingly_impling"]]
+
+[.construction]
+aka = ["con", "conn"]
+
+[.summoning]
+aka = ["summ", "summon"]
+
+[.dungeoneering]
+aka = ["dung", "dg"]

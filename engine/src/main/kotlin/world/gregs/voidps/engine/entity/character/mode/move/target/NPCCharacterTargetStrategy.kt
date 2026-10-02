@@ -26,7 +26,7 @@ data class NPCCharacterTargetStrategy(
         get() = character.size
 
     override fun destination(source: Character): Tile {
-        if (source is NPC && source["owner_index", -1] == -1) {
+        if (source is NPC && source.ownerIndex == -1) {
             val def = source.transformDef
             if (def.walkMode.toInt() == ModeType.EMPTY && !def.stringId.startsWith("rand_ice_lord_boss_")) {
                 return Tile.EMPTY

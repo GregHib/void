@@ -151,7 +151,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Familiar follower leash anchors to owner not spawn tile`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         // A spawn far from the fight would de-aggro a normal NPC; the familiar anchors to its owner instead.
         familiar["spawn_tile"] = Tile(3100, 3100)
         val target = createNPC("guard_falador", Tile(3032, 3351))
@@ -171,7 +171,7 @@ internal class CombatMovementTest : WorldTest() {
     @Test
     fun `Owned familiar does not block-move through players`() {
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
-        familiar["owner_index"] = 5
+        familiar.ownerIndex = 5
         // Phases through players (no BLOCK_PLAYERS) but still collides with npcs (BLOCK_NPCS).
         assertEquals(0, familiar.blockMove and CollisionFlag.BLOCK_PLAYERS)
         assertTrue(familiar.blockMove and CollisionFlag.BLOCK_NPCS != 0)
@@ -188,7 +188,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Familiar can be ordered to attack an npc in single-way`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         // Single-way zone, unengaged NPC: the familiar can be ordered to fight it solo.
@@ -205,7 +205,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Familiar returns to following its owner when it cannot reach its target`() {
         val owner = createPlayer(emptyTile.add(0, 10))
         val familiar = createNPC("spirit_wolf_familiar", emptyTile)
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         val target = createNPC("guard_falador", emptyTile.add(10, 0))
@@ -223,7 +223,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Familiar chases its target when it retreats out of range`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         val target = createNPC("guard_falador", Tile(3034, 3352))
         familiar.mode = CombatMovement(familiar, target)
@@ -242,7 +242,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Familiar keeps pathing to its target when an obstruction blocks then clears`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         val target = createNPC("guard_falador", Tile(3046, 3352))
@@ -271,7 +271,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Familiar walks to a distant ordered target in single-way`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         // 14 tiles east (beyond the ~10-tile approach range, so the interact phase must walk it
@@ -289,7 +289,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Player cannot attack a monster its familiar is fighting in single-way`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         val target = createNPC("guard_falador", Tile(3034, 3352))
         // The familiar is already fighting the target (single-combat tracks one attacker per
         // target), so the owner - a separate attacker - can't also attack it in a single-way zone.
@@ -304,7 +304,7 @@ internal class CombatMovementTest : WorldTest() {
         val owner = createPlayer(Tile(3032, 3352))
         owner.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         // Single-way zone (no in_multi_combat flag): the familiar can still be used, but combat
@@ -321,7 +321,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Familiar approaches a commanded target beyond its aggro range`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3032, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         // 12 tiles away: beyond the familiar's retreat_range(8) + attackRange(1) = 9 aggro range.
         val target = createNPC("guard_falador", Tile(3044, 3352))
@@ -340,7 +340,7 @@ internal class CombatMovementTest : WorldTest() {
         owner.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         owner["in_multi_combat"] = true
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         val target = createNPC("guard_falador", Tile(3032, 3351))
@@ -358,7 +358,7 @@ internal class CombatMovementTest : WorldTest() {
         val owner = createPlayer(Tile(3032, 3352))
         owner["in_multi_combat"] = true
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         val first = createNPC("guard_falador", Tile(3034, 3352))
@@ -381,7 +381,7 @@ internal class CombatMovementTest : WorldTest() {
         owner["in_multi_combat"] = true
         owner.equipment.set(EquipSlot.Weapon.index, "dragon_longsword")
         val familiar = createNPC("spirit_wolf_familiar", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         familiar["spawn_tile"] = familiar.tile
         owner.follower = familiar
         val target = createNPC("guard_falador", Tile(3032, 3351))
@@ -406,7 +406,7 @@ internal class CombatMovementTest : WorldTest() {
         val owner = createPlayer(Tile(3032, 3352))
         // PvP combat variant carries the "Attack" option, so ownership is the only blocker here.
         val familiar = createNPC("spirit_wolf_familiar_combat", Tile(3033, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         assertFalse(Target.attackable(owner, familiar, message = false))
     }
 
@@ -414,7 +414,7 @@ internal class CombatMovementTest : WorldTest() {
     fun `Idle familiar resumes following its owner after combat`() {
         val owner = createPlayer(Tile(3032, 3352))
         val familiar = createNPC("spirit_wolf_familiar", Tile(3034, 3352))
-        familiar["owner_index"] = owner.index
+        familiar.ownerIndex = owner.index
         owner.follower = familiar
         // Combat ending leaves the familiar idle; it should fall back to following, not stand still.
         familiar.mode = EmptyMode

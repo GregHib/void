@@ -58,7 +58,7 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
     if (variable != null) {
         val current = player[variable, 0]
         if (current < amount) {
-            error = TransactionError.Deficient(current - amount)
+            error = TransactionError.Deficient(current - amount, item.id)
             return
         }
         val reduced = (current - amount).coerceAtLeast(0)

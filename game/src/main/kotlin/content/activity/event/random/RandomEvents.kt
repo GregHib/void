@@ -23,6 +23,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.transact.operation.ReplaceItem.replace
 import world.gregs.voidps.engine.map.collision.random
+import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.queue.strongQueue
 import world.gregs.voidps.engine.timer.epochSeconds
 import world.gregs.voidps.type.Tile
@@ -37,6 +38,8 @@ import java.util.concurrent.TimeUnit
  * [complete] when the player succeeds or [fail] when they fail or abandon it.
  */
 object RandomEvents : AutoCloseable {
+
+    private val HOME = Tile(3222, 3218)
 
     private val events = mutableMapOf<String, suspend Player.() -> Unit>()
 
@@ -97,13 +100,13 @@ object RandomEvents : AutoCloseable {
         !player.contains("random_event") &&
         player.instance() == null &&
         !player.inCombat &&
-        !player.contains("delay") &&
+        !player.delayed &&
         player.suspension == null &&
         player.menu == null &&
         player.dialogue == null &&
         player.mode == EmptyMode &&
         player.transform.isEmpty() &&
-        !player.contains("delay") &&
+        !Instances.reserved(player.tile.region) &&
         !player.hasClock("random_event_cooldown", epochSeconds()) &&
         Areas.get(player.tile.zone).none { it.tags.contains("no_random_events") }
 
@@ -113,10 +116,15 @@ object RandomEvents : AutoCloseable {
      */
     fun optedOut(player: Player): Boolean = Settings["events.randomEvents.optOut", false] && player["random_events_disabled", false]
 
-    fun start(player: Player, id: String? = pick()): Boolean {
+    /**
+     * Launch event [id]. A new event always returns the player to where they're standing now;
+     * only [resume] (restarting an event interrupted by logout, when the player is already in the
+     * event area) keeps the saved origin, so a leftover one from old state can never be reused.
+     */
+    fun start(player: Player, id: String? = pick(), resume: Boolean = false): Boolean {
         val launcher = events[id ?: return false] ?: return false
         player["random_event"] = id
-        if (!player.contains("random_event_origin")) {
+        if (!resume || !player.contains("random_event_origin")) {
             player["random_event_origin"] = player.tile.id
         }
         player.strongQueue("random_event_start") {
@@ -151,7 +159,7 @@ object RandomEvents : AutoCloseable {
     fun fail(player: Player) {
         exit(player)
         val row = Tables.get("random_event_exiles").rows().random(random)
-        player.tele(Areas[row.string("area")].random(player) ?: Tile(3222, 3218))
+        player.tele(Areas[row.string("area")].random(player) ?: HOME)
         player.message("You wake up feeling drowsy, unsure of where you are.")
     }
 
@@ -175,9 +183,18 @@ object RandomEvents : AutoCloseable {
         fail(player)
     }
 
+    /**
+     * Where the player was taken from. Instance space is never a safe return point - the instance
+     * will have been freed or re-allocated by the time the event ends - so fall back to [HOME].
+     */
+    fun origin(player: Player): Tile {
+        val origin = Tile(player["random_event_origin", player.tile.id])
+        return if (Instances.reserved(origin.region)) HOME else origin
+    }
+
     private fun exit(player: Player): Tile {
         player.clearWalkTrigger()
-        val origin = Tile(player["random_event_origin", player.tile.id])
+        val origin = origin(player)
         player.clearInstance()
         player.clear("random_event")
         player.clear("random_event_origin")

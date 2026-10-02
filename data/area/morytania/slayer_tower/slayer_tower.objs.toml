@@ -20,10 +20,6 @@ examine = "It leads to the basement."
 [slayer_tower_statue_open]
 id = 5117
 
-[slayer_tower_chain]
-id = 9319
-examine = "A glowing pinball post!"
-
 [slayer_tower_chain_up]
 id = 9319
 examine = "A glowing pinball post!"

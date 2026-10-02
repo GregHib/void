@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.data.ConfigFiles
 import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.entity.character.npc.loadNpcSpawns
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.item.floor.ItemSpawns
 import world.gregs.voidps.engine.entity.item.floor.loadItemSpawns
 import world.gregs.voidps.engine.entity.obj.loadObjectSpawns
 import world.gregs.voidps.engine.get
@@ -31,7 +30,7 @@ object World : Entity, VariableStore, Runnable, KoinComponent {
         get() = Settings["world.members", false]
 
     fun start(files: ConfigFiles) {
-        loadItemSpawns(get<ItemSpawns>(), files.list(Settings["spawns.items"]))
+        loadItemSpawns(files.list(Settings["spawns.items"]))
         loadObjectSpawns(files.list(Settings["spawns.objects"]))
         loadNpcSpawns(files)
         Spawn.world(files)

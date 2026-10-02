@@ -126,7 +126,7 @@ class InterfaceHandler(
 }
 
 fun <C: Character> C.protectedAccess(block: suspend C.() -> Unit): Boolean {
-    if (contains("delay") && (this is Player && hasMenuOpen())) {
+    if (delayed && (this is Player && hasMenuOpen())) {
         return false
     }
     // Check suspension type to avoid breaking interfaces with selection options and custom suspension usage
