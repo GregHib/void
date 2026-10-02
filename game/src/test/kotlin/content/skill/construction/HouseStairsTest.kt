@@ -14,6 +14,7 @@ import content.skill.construction.House.Companion.houseRoomRotations
 import content.skill.construction.House.Companion.houseStairs
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
+import content.skill.construction.House.Companion.stairsDown
 import dialogueOption
 import interfaceOption
 import objectOption
@@ -83,15 +84,28 @@ class HouseStairsTest : WorldTest() {
         addHouseFurniture(hall, "garden_centrepiece_space", "dungeon_entrance")
     }
 
-    private fun Player.addHalls(dungeonStairs: Boolean = false) {
+    private fun Player.addHalls() {
         addHouseRoom("skill_hall", hall)
         addHouseFurniture(hall, "skill_hall_stair_space", "oak_staircase")
         addHouseRoom("skill_hall", upperHall)
         addHouseFurniture(upperHall, "skill_hall_stair_space_down", "oak_staircase")
-        if (dungeonStairs) {
-            addHouseRoom("dungeon_stairs", dungeon)
-            addHouseFurniture(dungeon, "skill_hall_stair_space", "oak_staircase")
-        }
+    }
+
+    private fun Player.addDungeonStairs() {
+        addHouseRoom("skill_hall", hall)
+        addHouseFurniture(hall, "skill_hall_stair_space_down", "oak_staircase")
+        addHouseRoom("dungeon_stairs", dungeon)
+        addHouseFurniture(dungeon, "skill_hall_stair_space", "oak_staircase")
+    }
+
+    private fun Player.buildStairs() {
+        inventory.add("hammer")
+        inventory.add("saw")
+        inventory.add("oak_plank", 10)
+        inventory.add("steel_bar", 4)
+        use(find(hall, "skill_hall_stair_space"), "Build")
+        tickIf { !hasOpen("furniture_creation") }
+        interfaceOption("furniture_creation", "items", "Build", item = Item("oak_staircase"), slot = 0)
     }
 
     @Test
@@ -177,20 +191,18 @@ class HouseStairsTest : WorldTest() {
     }
 
     @Test
-    fun `Ground floor stairs choose between up and down when there are dungeon stairs`() {
+    fun `Climb down to the dungeon stairs and back up`() {
         val player = createOwner()
-        player.addHalls(dungeonStairs = true)
+        player.addDungeonStairs()
         player.enterPortal(1)
 
-        player.use(player.find(hall, "oak_staircase"), "Climb-up")
-        player.dialogueOption("line2")
+        player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
         tick(4)
 
         assertEquals(DUNGEON_LEVEL, player.tile.level)
         assertTrue(player["hide_upper_levels", false])
 
         player.use(player.find(dungeon, "oak_staircase"), "Climb-up")
-        tick(4)
 
         assertEquals(GROUND_LEVEL, player.tile.level)
         assertFalse(player["hide_upper_levels", false])
@@ -236,19 +248,67 @@ class HouseStairsTest : WorldTest() {
         val player = createOwner()
         player.addHouseRoom("skill_hall", hall)
         player.addHouseRoom("skill_hall", upperHall)
-        player.inventory.add("hammer")
-        player.inventory.add("saw")
-        player.inventory.add("oak_plank", 10)
-        player.inventory.add("steel_bar", 4)
         player.enterPortal(2)
 
-        player.use(player.find(hall, "skill_hall_stair_space"), "Build")
-        tickIf { !player.hasOpen("furniture_creation") }
-        player.interfaceOption("furniture_creation", "items", "Build", item = Item("oak_staircase"), slot = 0)
+        player.buildStairs()
+        player.dialogueOption("line1")
 
         assertEquals("oak_staircase", player.houseStairs(hall))
+        assertFalse(player.stairsDown(hall))
         assertEquals("oak_staircase", player.houseStairs(upperHall))
+        assertEquals(0, player.inventory.count("oak_plank"))
+        player.find(hall, "oak_staircase")
         player.find(upperHall, "oak_staircase_down")
+    }
+
+    @Test
+    fun `Build stairs leading down to the dungeon stairs`() {
+        val player = createOwner()
+        player.addHouseRoom("skill_hall", hall)
+        player.addHouseRoom("dungeon_stairs", dungeon)
+        player.enterPortal(2)
+
+        player.buildStairs()
+        player.dialogueOption("line2")
+
+        assertTrue(player.stairsDown(hall))
+        assertEquals("oak_staircase", player.houseStairs(dungeon))
+        assertEquals(0, player.inventory.count("oak_plank"))
+        player.find(hall, "oak_staircase_down")
+        player.find(dungeon, "oak_staircase")
+    }
+
+    @Test
+    fun `Build a dungeon stairs room at the bottom of the stairs in building mode`() {
+        val player = createOwner()
+        player.addHouseRoom("skill_hall", hall)
+        player.addHouseFurniture(hall, "skill_hall_stair_space_down", "oak_staircase")
+        player.inventory.add("coins", 7500)
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
+        player.skipDialogues()
+        player.dialogueOption("line1")
+        tick(4)
+
+        assertEquals("dungeon_stairs", player.houseRoomIds.last())
+        assertEquals("oak_staircase", player.houseStairs(dungeon))
+        assertEquals(DUNGEON_LEVEL, player.tile.level)
+    }
+
+    @Test
+    fun `Removing stairs leading down restores the stair space`() {
+        val player = createOwner()
+        player.addDungeonStairs()
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "oak_staircase_down"), "Remove")
+        player.dialogueOption("line1")
+
+        assertNull(player.houseStairs(hall))
+        assertNull(player.houseStairs(dungeon))
+        player.find(hall, "skill_hall_stair_space")
+        player.find(dungeon, "skill_hall_stair_space")
     }
 
     @Test
