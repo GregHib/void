@@ -3,39 +3,6 @@
 # https://web.archive.org/web/20250812083934/https://rune-server.org/threads/196-3-item-npc-and-object-examines.699041/
 # Based on a 28-May-2021 cache.
 
-
-[scraped_201_lamp]
-id = 201
-examine = "These insects love this light."
-
-[scraped_362_barrel]
-id = 362
-examine = "A wooden barrel for storage."
-
-[scraped_684_swamp_bubbles1]
-id = 684
-examine = "The noxious liquid bubbles horribly."
-
-[scraped_724_standing_torch]
-id = 724
-examine = "A crude torch stuck in the ground."
-
-[scraped_735_swamp_bubbles2]
-id = 735
-examine = "The noxious liquid bubbles horribly."
-
-[scraped_822_cannonballs]
-id = 822
-examine = "Big heavy metal balls."
-
-[scraped_849_spear_wall]
-id = 849
-examine = "Rows of sharp pointy spears."
-
-[scraped_1113_stool]
-id = 1113
-examine = "Park it here..."
-
 [scraped_1116_hedge]
 id = 1116
 examine = "Keeps the neighbours out!"
@@ -347,22 +314,6 @@ examine = "100% wholegrain."
 [scraped_25017_magical_wheat]
 id = 25017
 examine = "100% wholegrain."
-
-[scraped_25139_fungus]
-id = 25139
-examine = "I doubt that's edible."
-
-[scraped_29476_hole]
-id = 29476
-examine = "A hole."
-
-[scraped_29477_hole]
-id = 29477
-examine = "A hole."
-
-[scraped_29478_hole]
-id = 29478
-examine = "A hole."
 
 [scraped_595_table]
 id = 595

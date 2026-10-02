@@ -1,3 +1,11 @@
+[swampbubbles]
+id = 684
+examine = "The noxious liquid bubbles horribly."
+
+[swampbubbles_swamp]
+id = 735
+examine = "The noxious liquid bubbles horribly."
+
 [swamp_wooden_doors_closed]
 id = 30265
 material = "iron"
