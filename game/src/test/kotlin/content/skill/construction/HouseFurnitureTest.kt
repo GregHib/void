@@ -195,7 +195,7 @@ class HouseFurnitureTest : WorldTest() {
         player.objectOption(burners, "Light")
         tick()
         // 200 + level 50 + random 49
-        tick(297)
+        tick(298)
         assertNotNull(GameObjects.findOrNull(burners.tile, "marble_burners_lit"))
         tick()
 

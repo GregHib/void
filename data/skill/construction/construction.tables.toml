@@ -146,12 +146,18 @@ dungeon = true
 # Roof is the hipped roof for a single room, the style region also has ridged roofs at { x = 1864, y = 5072 } and { x = 1880, y = 5072 }
 [house_spaces]
 template = "tile"
+build = "tile"
 
 [.land]
 template = { x = 1864, y = 5056 }
 
 [.roof]
 template = { x = 1888, y = 5064 }
+
+# Fills the empty dungeon spaces around dungeon rooms, the same for every style
+[.dungeon]
+template = { x = 1880, y = 5056 }
+build = { x = 1944, y = 5056 }
 
 # Templates for each style are offset from the basic wood templates, window spaces are filled with the styles window or wall underground
 [house_styles]

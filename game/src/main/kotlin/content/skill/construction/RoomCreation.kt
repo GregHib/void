@@ -147,25 +147,6 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
         buildRoom(base, room, position, rotation)
     }
 
-    private suspend fun Player.removeRoom(position: Int, room: String) {
-        if (exitPortals(position) > 0 && exitPortals() <= exitPortals(position)) {
-            message("Your house must have at least one exit portal.") // TODO proper message
-            return
-        }
-        choice("Remove the ${room.replace('_', ' ')}?") {
-            option("Yes") {
-                val base = houseBase()
-                if (base == null || !inOwnHouse() || position !in houseRoomPositions) {
-                    return@option
-                }
-                removeHouseRoom(position)
-                loadHouse(base, buildMode = true)
-                message("Room deleted!")
-            }
-            option("No")
-        }
-    }
-
     /**
      * Remove the room being previewed
      */
@@ -179,6 +160,29 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
     }
 
     companion object {
+        /**
+         * Asks to remove [room] at [position] and its furniture, calling [onRemove] before the house is reloaded
+         */
+        suspend fun Player.removeRoom(position: Int, room: String, onRemove: Player.() -> Unit = {}) {
+            if (exitPortals(position) > 0 && exitPortals() <= exitPortals(position)) {
+                message("Your house must have at least one exit portal.") // TODO proper message
+                return
+            }
+            choice("Remove the ${room.replace('_', ' ')}?") {
+                option("Yes") {
+                    val base = houseBase()
+                    if (base == null || !inOwnHouse() || position !in houseRoomPositions) {
+                        return@option
+                    }
+                    removeHouseRoom(position)
+                    onRemove()
+                    loadHouse(base, buildMode = true)
+                    message("Room deleted!")
+                }
+                option("No")
+            }
+        }
+
         /**
          * Whether the players level allows building another room
          */

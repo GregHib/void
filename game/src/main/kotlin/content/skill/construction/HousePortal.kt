@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.closeInterfaces
+import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
@@ -75,13 +76,17 @@ class HousePortal : Script {
         }
 
         teleportLand("modern") {
-            delay(1)
-            close("house_loading")
+            if (hasOpen("house_loading")) {
+                delay(1)
+                close("house_loading")
+            }
         }
 
         teleportLand("tablet") {
-            delay(3)
-            close("house_loading")
+            if (hasOpen("house_loading")) {
+                delay(3)
+                close("house_loading")
+            }
         }
     }
 
@@ -98,9 +103,9 @@ class HousePortal : Script {
             message("You don't have a house to teleport to.") // TODO proper message
             return
         }
-        val tile = createHouse(buildMode = false)
         closeInterfaces()
         Teleport.teleport(this, type, spell, xp = xp, clearInterfaces = false) {
+            val tile = createHouse(buildMode = false)
             open("house_loading")
             tile
         }

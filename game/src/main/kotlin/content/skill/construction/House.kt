@@ -339,8 +339,8 @@ class House : Script {
         }
 
         /**
-         * Builds the players house in the instance starting at [base]. Ground floor rooms are surrounded by a ring of grass,
-         * indoor rooms without a room above are roofed and every other space is left empty.
+         * Builds the players house in the instance starting at [base]. Ground floor and dungeon rooms are surrounded by grass,
+         * and by darkness in the dungeon when there is one, indoor rooms without a room above are roofed and every other space is left empty.
          */
         fun Player.loadHouse(base: Zone, buildMode: Boolean) {
             val dynamicZones = get<DynamicZones>()
@@ -365,17 +365,13 @@ class House : Script {
                     entries.add(Triple(roof, zone, 0))
                 }
             }
-            val ground = positions.filter { roomLevel(it) == GROUND_LEVEL }
-            if (ground.isNotEmpty()) {
-                val land = template("house_spaces.land.template")
-                for (x in ground.minOf(::roomX) - 1..ground.maxOf(::roomX) + 1) {
-                    for (y in ground.minOf(::roomY) - 1..ground.maxOf(::roomY) + 1) {
-                        val zone = base.add(x + 1, y + 1, GROUND_LEVEL)
-                        if (placed.add(zone)) {
-                            entries.add(Triple(land, zone, 0))
-                        }
-                    }
-                }
+            // Grass and the dungeon share one area, around the rooms on both floors
+            val rooms = positions.filter { roomLevel(it) == GROUND_LEVEL || roomLevel(it) == DUNGEON_LEVEL }
+            if (rooms.isNotEmpty()) {
+                surround(base, rooms, GROUND_LEVEL, template("house_spaces.land.template"), placed, entries)
+            }
+            if (positions.any { roomLevel(it) == DUNGEON_LEVEL }) {
+                surround(base, rooms, DUNGEON_LEVEL, Tables.tile("house_spaces.dungeon.${if (buildMode) "build" else "template"}").zone, placed, entries)
             }
             for (level in 0 until HOUSE_LEVELS) {
                 for (x in 0 until HOUSE_SIZE) {
@@ -390,6 +386,20 @@ class House : Script {
             dynamicZones.copy(entries)
             for (position in positions) {
                 furnishRoom(base, position, buildMode)
+            }
+        }
+
+        /**
+         * Fills the empty spaces on [level] within one space of all [rooms] with [template]
+         */
+        private fun surround(base: Zone, rooms: List<Int>, level: Int, template: Zone, placed: MutableSet<Zone>, entries: MutableList<Triple<Zone, Zone, Int>>) {
+            for (x in rooms.minOf(::roomX) - 1..rooms.maxOf(::roomX) + 1) {
+                for (y in rooms.minOf(::roomY) - 1..rooms.maxOf(::roomY) + 1) {
+                    val zone = base.add(x + 1, y + 1, level)
+                    if (placed.add(zone)) {
+                        entries.add(Triple(template, zone, 0))
+                    }
+                }
             }
         }
 
@@ -409,16 +419,10 @@ class House : Script {
         }
 
         /**
-         * Moves to the nearest free tile to [tile] in its room, levels above the dungeon are hidden so they don't block the view
+         * Moves to the nearest free tile to [tile] in its room
          */
         fun Player.changeFloor(tile: Tile) {
             val free = tile.zone.toCuboid().filter { !Collisions.check(it, BLOCKED) }.minByOrNull { it.distanceTo(tile) } ?: tile
-            val base = houseBase()
-            if (base != null && free.level - base.level == DUNGEON_LEVEL) {
-                set("hide_upper_levels", true)
-            } else {
-                clear("hide_upper_levels")
-            }
             tele(free)
         }
 
@@ -432,7 +436,6 @@ class House : Script {
 
         fun Player.leaveHouse(teleport: Boolean = true) {
             val owner: String = remove("house_owner") ?: return
-            clear("hide_upper_levels")
             if (hasOpen("house_options")) {
                 open("options")
             }

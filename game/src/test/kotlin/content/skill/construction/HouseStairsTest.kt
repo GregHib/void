@@ -1,6 +1,7 @@
 package content.skill.construction
 
 import WorldTest
+import containsMessage
 import content.quest.instance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.GROUND_LEVEL
@@ -22,17 +23,22 @@ import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
+import world.gregs.voidps.engine.get
 import world.gregs.voidps.engine.inv.add
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.engine.map.zone.DynamicZones.Companion.rotatedId
 import world.gregs.voidps.type.Tile
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -125,7 +131,7 @@ class HouseStairsTest : WorldTest() {
     fun `Enter the dungeon below the entrance`() {
         val player = createOwner()
         player.addEntrance()
-        player.addHouseRoom("dungeon_corridor", dungeon)
+        player.addHouseRoom("dungeon_stairs", dungeon)
         player.enterPortal(1)
         val entrance = player.find(hall, "dungeon_entrance")
 
@@ -133,7 +139,7 @@ class HouseStairsTest : WorldTest() {
 
         assertEquals(DUNGEON_LEVEL, player.tile.level)
         assertEquals(roomZone(player.instance()!!.tile.zone, dungeon), player.tile.zone)
-        assertTrue(player["hide_upper_levels", false])
+        assertFalse(player.hasOpen("house_loading"))
     }
 
     @Test
@@ -146,14 +152,14 @@ class HouseStairsTest : WorldTest() {
 
         player.use(entrance, "Enter")
         player.skipDialogues()
-        player.dialogueOption("line1")
+        player.dialogueOption("line3")
         tick(4)
 
         assertEquals("dungeon_stairs", player.houseRoomIds.last())
         assertEquals(dungeon, player.houseRoomPositions.last())
         assertEquals(0, player.inventory.count("coins"))
         assertEquals(DUNGEON_LEVEL, player.tile.level)
-        assertTrue(player["hide_upper_levels", false])
+        assertFalse(player.hasOpen("house_loading"))
     }
 
     @Test
@@ -187,7 +193,7 @@ class HouseStairsTest : WorldTest() {
         player.use(player.find(upperHall, "oak_staircase_down"), "Climb-down")
 
         assertEquals(GROUND_LEVEL, player.tile.level)
-        assertFalse(player["hide_upper_levels", false])
+        assertFalse(player.hasOpen("house_loading"))
     }
 
     @Test
@@ -200,12 +206,12 @@ class HouseStairsTest : WorldTest() {
         tick(4)
 
         assertEquals(DUNGEON_LEVEL, player.tile.level)
-        assertTrue(player["hide_upper_levels", false])
+        assertFalse(player.hasOpen("house_loading"))
 
         player.use(player.find(dungeon, "oak_staircase"), "Climb-up")
 
         assertEquals(GROUND_LEVEL, player.tile.level)
-        assertFalse(player["hide_upper_levels", false])
+        assertFalse(player.hasOpen("house_loading"))
     }
 
     @Test
@@ -288,7 +294,7 @@ class HouseStairsTest : WorldTest() {
 
         player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
         player.skipDialogues()
-        player.dialogueOption("line1")
+        player.dialogueOption("line3")
         tick(4)
 
         assertEquals("dungeon_stairs", player.houseRoomIds.last())
@@ -336,7 +342,7 @@ class HouseStairsTest : WorldTest() {
 
         player.use(player.find(hall, "oak_staircase"), "Climb-up")
         player.skipDialogues()
-        player.dialogueOption("line3")
+        player.dialogueOption("line4")
 
         assertEquals(listOf(START_ROOM, hall), player.houseRoomPositions)
         assertEquals(25000, player.inventory.count("coins"))
@@ -390,5 +396,187 @@ class HouseStairsTest : WorldTest() {
         assertEquals("oak_staircase", player.houseStairs(hall))
         assertEquals("oak_staircase", player.houseStairs(upperHall))
         player.find(hall, "oak_staircase")
+    }
+
+    @Test
+    fun `Can only remove rooms through stairs in building mode`() {
+        val player = createOwner()
+        player.addHalls()
+        player.enterPortal(1)
+
+        player.use(player.find(hall, "oak_staircase"), "Remove-room")
+
+        assertEquals("dialogue_message1", player.dialogue)
+        assertEquals(listOf(START_ROOM, hall, upperHall), player.houseRoomPositions)
+    }
+
+    @Test
+    fun `Remove the room above through the stairs`() {
+        val player = createOwner()
+        player.addHalls()
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "oak_staircase"), "Remove-room")
+        player.skipDialogues()
+        player.dialogueOption("line1")
+
+        assertEquals(listOf(START_ROOM, hall), player.houseRoomPositions)
+        assertNull(player.houseStairs(hall))
+        assertNull(player.houseStairs(upperHall))
+        assertNull(player.findOrNull(hall, "oak_staircase"))
+    }
+
+    @Test
+    fun `Declining to remove the room through the stairs keeps it`() {
+        val player = createOwner()
+        player.addHalls()
+        player.enterPortal(2)
+
+        player.use(player.find(upperHall, "oak_staircase_down"), "Remove-room")
+        player.skipDialogues()
+        player.dialogueOption("line2")
+
+        assertEquals(listOf(START_ROOM, hall, upperHall), player.houseRoomPositions)
+        assertEquals("oak_staircase", player.houseStairs(hall))
+    }
+
+    @Test
+    fun `Remove the dungeon room below the entrance`() {
+        val player = createOwner()
+        player.addEntrance()
+        player.addHouseRoom("dungeon_corridor", dungeon)
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "dungeon_entrance"), "Remove-room")
+        player.dialogueOption("line1")
+
+        assertEquals(listOf(START_ROOM, hall), player.houseRoomPositions)
+        player.find(hall, "dungeon_entrance")
+    }
+
+    @Test
+    fun `No room below the entrance to remove`() {
+        val player = createOwner()
+        player.addEntrance()
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "dungeon_entrance"), "Remove-room")
+
+        assertEquals("dialogue_message1", player.dialogue)
+        assertEquals(listOf(START_ROOM, hall), player.houseRoomPositions)
+    }
+
+    @Test
+    fun `Entrance doesn't lead to a dungeon room without stairs`() {
+        val player = createOwner()
+        player.addEntrance()
+        player.addHouseRoom("dungeon_corridor", dungeon)
+        player.enterPortal(1)
+
+        player.use(player.find(hall, "dungeon_entrance"), "Enter")
+
+        assertEquals(GROUND_LEVEL, player.tile.level)
+        assertEquals("dialogue_message1", player.dialogue)
+    }
+
+    @Test
+    fun `Rooms with stairs are offered below the entrance`() {
+        val player = createOwner()
+        player.addEntrance()
+        player.inventory.add("coins", 7500)
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "dungeon_entrance"), "Enter")
+        player.skipDialogues()
+
+        assertEquals("dialogue_multi4", player.dialogue)
+    }
+
+    @Test
+    fun `Climb up the dungeon stairs to the entrance`() {
+        val player = createOwner()
+        player.addEntrance()
+        player.addHouseRoom("dungeon_stairs", dungeon)
+        player.addHouseFurniture(dungeon, "skill_hall_stair_space", "oak_staircase")
+        player.enterPortal(1)
+        player.use(player.find(hall, "dungeon_entrance"), "Enter")
+        tick(4)
+
+        player.use(player.find(dungeon, "oak_staircase"), "Climb-up")
+        tick(4)
+
+        assertEquals(GROUND_LEVEL, player.tile.level)
+        assertEquals(roomZone(player.instance()!!.tile.zone, hall), player.tile.zone)
+    }
+
+    @Test
+    fun `Can't build a hall underground below the stairs`() {
+        val player = createOwner()
+        player.addHouseRoom("skill_hall", hall)
+        player.addHouseFurniture(hall, "skill_hall_stair_space_down", "oak_staircase")
+        player.inventory.add("coins", 25000)
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "oak_staircase_down"), "Climb-down")
+        player.skipDialogues()
+        player.dialogueOption("line1")
+
+        assertEquals(listOf(START_ROOM, hall), player.houseRoomPositions)
+        assertEquals(25000, player.inventory.count("coins"))
+        assertTrue(player.containsMessage("That room can't be built underground."))
+    }
+
+    @Test
+    fun `Empty dungeon covers the same area as the grass`() {
+        val player = createOwner()
+        player.addDungeonStairs()
+        player.enterPortal(1)
+        val base = player.instance()!!.tile.zone
+        val dynamicZones: DynamicZones = get()
+        val empty = roomZone(base, roomPosition(3, 3, DUNGEON_LEVEL))
+
+        assertEquals(Tables.tile("house_spaces.dungeon.template").zone.rotatedId(0), dynamicZones.dynamicZone(empty))
+        // Same area as the grass, one space around the ground floor rooms at x 3..4
+        assertNotNull(dynamicZones.dynamicZone(roomZone(base, roomPosition(2, 3, DUNGEON_LEVEL))))
+        assertNull(dynamicZones.dynamicZone(roomZone(base, roomPosition(1, 3, DUNGEON_LEVEL))))
+    }
+
+    @Test
+    fun `Grass surrounds dungeon rooms beyond the ground floor`() {
+        val player = createOwner()
+        player.addHouseRoom("dungeon_corridor", roomPosition(5, 3, DUNGEON_LEVEL))
+        player.enterPortal(1)
+        val base = player.instance()!!.tile.zone
+        val dynamicZones: DynamicZones = get()
+        val dungeon = Tables.tile("house_spaces.dungeon.template").zone.rotatedId(0)
+
+        // Garden at x 3 and dungeon at x 5 cover x 2..6 on both floors
+        assertNotNull(dynamicZones.dynamicZone(roomZone(base, roomPosition(6, 3, GROUND_LEVEL))))
+        assertNull(dynamicZones.dynamicZone(roomZone(base, roomPosition(1, 3, GROUND_LEVEL))))
+        assertEquals(dungeon, dynamicZones.dynamicZone(roomZone(base, roomPosition(2, 3, DUNGEON_LEVEL))))
+        assertEquals(dungeon, dynamicZones.dynamicZone(roomZone(base, roomPosition(6, 3, DUNGEON_LEVEL))))
+    }
+
+    @Test
+    fun `Empty dungeon spaces show build mode template in building mode`() {
+        val player = createOwner()
+        player.addDungeonStairs()
+        player.enterPortal(2)
+        val base = player.instance()!!.tile.zone
+        val dynamicZones: DynamicZones = get()
+        val empty = roomZone(base, roomPosition(3, 3, DUNGEON_LEVEL))
+
+        assertEquals(Tables.tile("house_spaces.dungeon.build").zone.rotatedId(0), dynamicZones.dynamicZone(empty))
+    }
+
+    @Test
+    fun `Dungeon spaces are left empty without a dungeon`() {
+        val player = createOwner()
+        player.addHalls()
+        player.enterPortal(1)
+        val base = player.instance()!!.tile.zone
+        val dynamicZones: DynamicZones = get()
+
+        assertNull(dynamicZones.dynamicZone(roomZone(base, roomPosition(3, 3, DUNGEON_LEVEL))))
     }
 }
