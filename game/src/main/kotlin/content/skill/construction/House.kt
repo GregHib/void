@@ -371,7 +371,7 @@ class House : Script {
                 surround(base, rooms, GROUND_LEVEL, template("house_spaces.land.template"), placed, entries)
             }
             if (positions.any { roomLevel(it) == DUNGEON_LEVEL }) {
-                surround(base, rooms, DUNGEON_LEVEL, Tables.tile("house_spaces.dungeon.${if (buildMode) "build" else "template"}").zone, placed, entries)
+                surround(base, rooms, DUNGEON_LEVEL, template("house_spaces.dungeon.${if (buildMode) "build" else "template"}"), placed, entries)
             }
             for (level in 0 until HOUSE_LEVELS) {
                 for (x in 0 until HOUSE_SIZE) {

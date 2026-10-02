@@ -154,7 +154,7 @@ template = { x = 1864, y = 5056 }
 [.roof]
 template = { x = 1888, y = 5064 }
 
-# Fills the empty dungeon spaces around dungeon rooms, the same for every style
+# Fills the empty dungeon spaces around the rooms, in building mode with spaces to build rooms in
 [.dungeon]
 template = { x = 1880, y = 5056 }
 build = { x = 1944, y = 5056 }
