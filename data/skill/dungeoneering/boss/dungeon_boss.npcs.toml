@@ -9,6 +9,7 @@ att = 10 # Guess
 str = 10 # Guess
 def = 10 # Guess
 range = 10 # Guess
+mage = 5 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -22,6 +23,7 @@ att = 12 # Guess
 str = 12 # Guess
 def = 12 # Guess
 range = 12 # Guess
+mage = 11 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -36,6 +38,7 @@ att = 15 # Guess
 str = 15 # Guess
 def = 15 # Guess
 range = 15 # Guess
+mage = 18 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -50,6 +53,7 @@ att = 18 # Guess
 str = 18 # Guess
 def = 18 # Guess
 range = 18 # Guess
+mage = 24 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -64,6 +68,7 @@ att = 20 # Guess
 str = 20 # Guess
 def = 20 # Guess
 range = 20 # Guess
+mage = 31 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -78,6 +83,7 @@ att = 25 # Guess
 str = 25 # Guess
 def = 25 # Guess
 range = 25 # Guess
+mage = 42 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -92,6 +98,7 @@ att = 29 # Guess
 str = 29 # Guess
 def = 29 # Guess
 range = 29 # Guess
+mage = 57 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -106,6 +113,7 @@ att = 36 # Guess
 str = 36 # Guess
 def = 36 # Guess
 range = 36 # Guess
+mage = 73 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -120,6 +128,7 @@ att = 45 # Guess
 str = 45 # Guess
 def = 45 # Guess
 range = 45 # Guess
+mage = 92 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -134,6 +143,7 @@ att = 54 # Guess
 str = 54 # Guess
 def = 54 # Guess
 range = 54 # Guess
+mage = 109 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -148,6 +158,7 @@ att = 64 # Guess
 str = 64 # Guess
 def = 64 # Guess
 range = 64 # Guess
+mage = 128 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -162,6 +173,7 @@ att = 74 # Guess
 str = 74 # Guess
 def = 74 # Guess
 range = 74 # Guess
+mage = 146 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -176,6 +188,7 @@ att = 85 # Guess
 str = 85 # Guess
 def = 85 # Guess
 range = 85 # Guess
+mage = 166 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -190,6 +203,7 @@ att = 97 # Guess
 str = 97 # Guess
 def = 97 # Guess
 range = 97 # Guess
+mage = 188 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -204,6 +218,7 @@ att = 110 # Guess
 str = 110 # Guess
 def = 110 # Guess
 range = 110 # Guess
+mage = 211 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -218,6 +233,7 @@ att = 123 # Guess
 str = 123 # Guess
 def = 123 # Guess
 range = 123 # Guess
+mage = 235 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -232,6 +248,7 @@ att = 136 # Guess
 str = 136 # Guess
 def = 136 # Guess
 range = 136 # Guess
+mage = 260 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -246,6 +263,7 @@ att = 150 # Guess
 str = 150 # Guess
 def = 150 # Guess
 range = 150 # Guess
+mage = 286 # Guess
 combat_def = "icy_bones"
 hunt_mode = "aggressive_retarget"
 hunt_range = 8
@@ -253,6 +271,7 @@ hunt_range = 8
 [rand_ancient_mage_0_melee]
 id = 9965
 categories = ["dungeoneering_boss"]
+hitpoints = 100 # https://www.youtube.com/watch?v=6EYQJYVk3MQ
 combat_def = "astea_frostweb"
 max_hit_magic = 21
 hunt_mode = "aggressive_retarget"
@@ -264,7 +283,6 @@ examine = "A summoner using a form of ancient magic."
 [rand_ancient_mage_0_magic]
 id = 9966
 clone = "rand_ancient_mage_0_melee"
-hitpoints = 100 # https://www.youtube.com/watch?v=6EYQJYVk3MQ
 
 [rand_ancient_mage_0_ranged]
 id = 9967
@@ -289,6 +307,10 @@ id = 9971
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 26 # Guess
 mage = 11 # Guess
+hitpoints = 80 # Guess
+att = 7 # Guess
+str = 7 # Guess
+def = 6 # Guess
 
 [rand_ancient_mage_1_magic]
 id = 9972
@@ -303,6 +325,10 @@ id = 9974
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 35 # Guess
 mage = 13 # Guess
+hitpoints = 210 # Guess
+att = 9 # Guess
+str = 9 # Guess
+def = 14 # Guess
 
 [rand_ancient_mage_2_magic]
 id = 9975
@@ -318,6 +344,9 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 500 # https://www.youtube.com/watch?v=pvRXMhwSpGY
 max_hit_magic = 46 # guess
 mage = 16 # Guess
+att = 15 # Guess
+str = 9 # Guess
+def = 17 # Guess
 
 [rand_ancient_mage_3_magic]
 id = 9978
@@ -333,6 +362,7 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 730 # https://www.youtube.com/watch?v=8MQ8JizBfIU
 max_hit_magic = 64 # guess
 mage = 21 # Guess
+def = 25 # Guess
 
 [rand_ancient_mage_4_magic]
 id = 9981
@@ -348,6 +378,7 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 1330 # https://www.youtube.com/watch?v=pik1sAuiylU, https://www.youtube.com/watch?v=VYm_gVAR8YI
 max_hit_magic = 95 # guess
 mage = 29 # Guess
+def = 44 # Guess
 
 [rand_ancient_mage_5_magic]
 id = 9984
@@ -363,6 +394,7 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 1770 # https://www.youtube.com/watch?v=72-NS-PDhEA
 max_hit_magic = 124 # wiki
 mage = 36 # Guess
+def = 61 # Guess
 
 [rand_ancient_mage_6_magic]
 id = 9987
@@ -378,6 +410,9 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 2100 # https://www.youtube.com/watch?v=sFIjcKPdSQM
 max_hit_magic = 151 # guess
 mage = 42 # Guess
+att = 47 # Guess
+str = 30 # Guess
+def = 70 # Guess
 
 [rand_ancient_mage_7_magic]
 id = 9990
@@ -394,6 +429,9 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 2715 # Approx, source: https://www.youtube.com/watch?v=s3RLavRRt2g
 max_hit_magic = 177 # wiki
 mage = 47 # Guess
+att = 49 # Guess
+str = 31 # Guess
+def = 73 # Guess
 
 [rand_ancient_mage_8_magic]
 id = 9993
@@ -409,6 +447,7 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 3090 # https://www.youtube.com/watch?v=BVq00e-2BTs
 max_hit_magic = 197 # wiki
 mage = 53 # Guess
+def = 69 # Guess
 
 [rand_ancient_mage_9_magic]
 id = 9996
@@ -423,6 +462,8 @@ id = 9998
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 229 # guess
 mage = 62 # Guess
+hitpoints = 4510 # Guess
+def = 67 # Guess
 
 [rand_ancient_mage_10_magic]
 id = 9999
@@ -438,6 +479,7 @@ clone = "rand_ancient_mage_0_melee"
 hitpoints = 5075 # https://www.youtube.com/watch?v=ghvwpCuUkmA
 max_hit_magic = 259 # guess
 mage = 71 # Guess
+def = 83 # Guess
 
 [rand_ancient_mage_11_magic]
 id = 10002
@@ -452,6 +494,8 @@ id = 10004
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 290 # guess
 mage = 80 # Guess
+hitpoints = 6360 # Guess
+def = 88 # Guess
 
 [rand_ancient_mage_12_magic]
 id = 10005
@@ -466,6 +510,8 @@ id = 10007
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 322 # guess
 mage = 90 # Guess
+hitpoints = 7380 # Guess
+def = 96 # Guess
 
 [rand_ancient_mage_13_magic]
 id = 10008
@@ -480,6 +526,8 @@ id = 10010
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 364 # guess
 mage = 103 # Guess
+hitpoints = 8720 # Guess
+def = 106 # Guess
 
 [rand_ancient_mage_14_magic]
 id = 10011
@@ -494,6 +542,8 @@ id = 10013
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 409 # guess
 mage = 116 # Guess
+hitpoints = 10180 # Guess
+def = 115 # Guess
 
 [rand_ancient_mage_15_magic]
 id = 10014
@@ -508,6 +558,8 @@ id = 10016
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 463 # guess
 mage = 132 # Guess
+hitpoints = 11980 # Guess
+def = 127 # Guess
 
 [rand_ancient_mage_16_magic]
 id = 10017
@@ -522,6 +574,8 @@ id = 10019
 clone = "rand_ancient_mage_0_melee"
 max_hit_magic = 521 # guess
 mage = 150 # Guess
+hitpoints = 13950 # Guess
+def = 137 # Guess
 
 [rand_ancient_mage_17_magic]
 id = 10020
