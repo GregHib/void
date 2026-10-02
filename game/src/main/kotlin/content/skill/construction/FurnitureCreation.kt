@@ -11,8 +11,8 @@ import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseFurniture
 import content.skill.construction.House.Companion.houseRoom
 import content.skill.construction.House.Companion.houseStairs
-import content.skill.construction.House.Companion.loadHouse
 import content.skill.construction.House.Companion.inOwnHouse
+import content.skill.construction.House.Companion.loadHouse
 import content.skill.construction.House.Companion.placeFurniture
 import content.skill.construction.House.Companion.removeHouseFurniture
 import content.skill.construction.House.Companion.removeHouseStairs

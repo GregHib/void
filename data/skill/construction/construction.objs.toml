@@ -176,11 +176,20 @@ id = 13605
 [clay_fireplace]
 id = 13609
 
+[clay_fireplace_lit]
+id = 13610
+
 [stone_fireplace]
 id = 13611
 
+[stone_fireplace_lit]
+id = 13612
+
 [marble_fireplace]
 id = 13613
+
+[marble_fireplace_lit]
+id = 13614
 
 [house_window_space]
 id = 13830

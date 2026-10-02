@@ -3,3 +3,25 @@ id = 3683
 
 [construction_remove]
 id = 3685
+
+# Ids from the Fury emulator, guessed
+[light_fireplace]
+id = 3658
+
+[fill_beer_barrel]
+id = 3661
+
+[fill_cider_barrel]
+id = 3662
+
+[fill_asgarnian_ale_barrel]
+id = 3663
+
+[fill_greenmans_ale_barrel]
+id = 3664
+
+[fill_dragon_bitter_barrel]
+id = 3665
+
+[fill_chefs_delight_barrel]
+id = 3666

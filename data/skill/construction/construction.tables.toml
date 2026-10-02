@@ -3625,3 +3625,127 @@ xp = 10000
 materials = ["magic_stone"]
 amounts = [1]
 objects = ["magic_treasure_room_chest"]
+
+# Items which can be taken from storage furniture
+[house_storage]
+row_id = "obj"
+items = "list<item>"
+
+# https://oldschool.runescape.wiki/w/Larder
+[.wooden_larder]
+items = ["tea_leaves", "bucket_of_milk"]
+
+[.oak_larder]
+items = ["tea_leaves", "bucket_of_milk", "egg", "pot_of_flour"]
+
+[.teak_larder]
+items = ["tea_leaves", "bucket_of_milk", "egg", "pot_of_flour", "raw_potato", "garlic", "onion", "cheese"]
+
+# https://oldschool.runescape.wiki/w/Wooden_shelves_1
+[.wooden_shelves_1]
+items = ["kettle", "teapot_clay", "empty_cup_player_owned_house"]
+
+# https://oldschool.runescape.wiki/w/Wooden_shelves_2
+[.wooden_shelves_2]
+items = ["kettle", "teapot_clay", "empty_cup_player_owned_house", "beer_glass"]
+
+# https://oldschool.runescape.wiki/w/Wooden_shelves_3
+[.wooden_shelves_3]
+items = ["kettle", "teapot_white", "porcelain_cup_white", "beer_glass", "cake_tin"]
+
+# https://oldschool.runescape.wiki/w/Oak_shelves_1
+[.oak_shelves_1]
+items = ["kettle", "teapot_clay", "empty_cup_player_owned_house", "beer_glass", "cake_tin", "bowl"]
+
+# https://oldschool.runescape.wiki/w/Oak_shelves_2
+[.oak_shelves_2]
+items = ["kettle", "teapot_white", "porcelain_cup_white", "beer_glass", "cake_tin", "bowl", "pie_dish"]
+
+# https://oldschool.runescape.wiki/w/Teak_shelves_1
+[.teak_shelves_1]
+items = ["kettle", "teapot_white", "porcelain_cup_white", "beer_glass", "cake_tin", "bowl", "pie_dish", "empty_pot"]
+
+# https://oldschool.runescape.wiki/w/Teak_shelves_2
+[.teak_shelves_2]
+items = ["kettle", "teapot_gold", "porcelain_cup_gold", "beer_glass", "cake_tin", "bowl", "pie_dish", "empty_pot", "chefs_hat"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_1
+[.tool_store_1]
+items = ["saw", "hammer", "chisel", "shears"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_2
+[.tool_store_2]
+items = ["bucket", "knife", "spade", "tinderbox"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_3
+[.tool_store_3]
+items = ["brown_apron", "glassblowing_pipe", "needle"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_4
+[.tool_store_4]
+items = ["amulet_unstrung_mould", "necklace_mould", "ring_mould", "holy_mould", "bracelet_mould", "tiara_mould"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_5
+[.tool_store_5]
+items = ["rake", "spade", "gardening_trowel", "seed_dibber", "watering_can", "secateurs"]
+
+# https://oldschool.runescape.wiki/w/Weapons_rack
+[.glove_rack]
+items = ["boxing_gloves_red", "boxing_gloves_blue"]
+
+[.weapons_rack]
+items = ["boxing_gloves_red", "boxing_gloves_blue", "wooden_sword", "wooden_shield_weapons_rack"]
+
+# Extra rack's pugel stick is from the Fury emulator
+[.extra_weapons_rack]
+items = ["boxing_gloves_red", "boxing_gloves_blue", "wooden_sword", "wooden_shield_weapons_rack", "pugel"]
+
+# Drinks poured into an empty beer glass from kitchen barrels
+# https://oldschool.runescape.wiki/w/Beer_barrel
+[house_barrels]
+row_id = "obj"
+drink = "item"
+anim = "string"
+
+[.beer_barrel]
+drink = "beer"
+anim = "fill_beer_barrel"
+
+[.cider_barrel]
+drink = "cider"
+anim = "fill_cider_barrel"
+
+[.asgarnian_ale_barrel]
+drink = "asgarnian_ale"
+anim = "fill_asgarnian_ale_barrel"
+
+[.greenmans_ale_barrel]
+drink = "greenmans_ale"
+anim = "fill_greenmans_ale_barrel"
+
+[.dragon_bitter_barrel]
+drink = "dragon_bitter"
+anim = "fill_dragon_bitter_barrel"
+
+[.chefs_delight_barrel]
+drink = "chefs_delight"
+anim = "fill_chefs_delight_barrel"
+
+# Fireplaces lit with logs and a tinderbox
+# https://oldschool.runescape.wiki/w/Clay_fireplace
+[house_fireplaces]
+row_id = "obj"
+lit = "obj"
+xp = "int"
+
+[.clay_fireplace]
+lit = "clay_fireplace_lit"
+xp = 800
+
+[.stone_fireplace]
+lit = "stone_fireplace_lit"
+xp = 800
+
+[.marble_fireplace]
+lit = "marble_fireplace_lit"
+xp = 800
