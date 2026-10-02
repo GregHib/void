@@ -1529,23 +1529,44 @@ id = 18782
 [steel_torches]
 id = 13202
 
+[steel_torches_lit]
+id = 13203
+
 [wooden_torches]
 id = 13200
+
+[wooden_torches_lit]
+id = 13201
 
 [steel_candlesticks]
 id = 13204
 
+[steel_candlesticks_lit]
+id = 13205
+
 [gold_candlesticks]
 id = 13206
+
+[gold_candlesticks_lit]
+id = 13207
 
 [incense_burners]
 id = 13208
 
+[incense_burners_lit]
+id = 13209
+
 [mahogany_burners]
 id = 13210
 
+[mahogany_burners_lit]
+id = 13211
+
 [marble_burners]
 id = 13212
+
+[marble_burners_lit]
+id = 13213
 
 [guthix_symbol]
 id = 13174
@@ -1643,11 +1664,74 @@ id = 13264
 [teak_portal]
 id = 13636
 
+[teak_portal_varrock]
+id = 13615
+
+[teak_portal_lumbridge]
+id = 13616
+
+[teak_portal_falador]
+id = 13617
+
+[teak_portal_camelot]
+id = 13618
+
+[teak_portal_ardougne]
+id = 13619
+
+[teak_portal_yanille]
+id = 13620
+
+[teak_portal_kharyrll]
+id = 13621
+
 [mahogany_portal]
 id = 13637
 
+[mahogany_portal_varrock]
+id = 13622
+
+[mahogany_portal_lumbridge]
+id = 13623
+
+[mahogany_portal_falador]
+id = 13624
+
+[mahogany_portal_camelot]
+id = 13625
+
+[mahogany_portal_ardougne]
+id = 13626
+
+[mahogany_portal_yanille]
+id = 13627
+
+[mahogany_portal_kharyrll]
+id = 13628
+
 [marble_portal]
 id = 13638
+
+[marble_portal_varrock]
+id = 13629
+
+[marble_portal_lumbridge]
+id = 13630
+
+[marble_portal_falador]
+id = 13631
+
+[marble_portal_camelot]
+id = 13632
+
+[marble_portal_ardougne]
+id = 13633
+
+[marble_portal_yanille]
+id = 13634
+
+[marble_portal_kharyrll]
+id = 13635
 
 [teleport_focus]
 id = 13640

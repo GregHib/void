@@ -33,3 +33,16 @@ default = "basic_wood"
 [heraldry_crest]
 format = "int"
 persist = true
+
+# Index of the house_portals destination + 1 each portal chamber portal is directed to, 0 when undirected
+[house_portal]
+format = "int"
+persist = true
+
+[house_portal_2]
+format = "int"
+persist = true
+
+[house_portal_3]
+format = "int"
+persist = true

@@ -25,3 +25,7 @@ id = 3665
 
 [fill_chefs_delight_barrel]
 id = 3666
+
+# Placeholder, Fury used 3687 for torches and burners
+[light_torch]
+id = 3687

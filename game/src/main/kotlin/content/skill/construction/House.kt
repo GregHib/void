@@ -140,13 +140,17 @@ class House : Script {
         }
 
         /**
-         * Removes the furniture built in the room at [position], or only that built on [hotspot]
+         * Removes the furniture built in the room at [position], or only that built on [hotspot], resetting their hotspots variants
          */
         fun Player.removeHouseFurniture(position: Int, hotspot: String? = null) {
             val rooms = houseFurnitureRooms
             val hotspots = houseFurnitureHotspots
             val ids = houseFurnitureIds
             val keep = rooms.indices.filter { rooms[it] != position || (hotspot != null && hotspots[it] != hotspot) }
+            for (index in rooms.indices - keep.toSet()) {
+                val variant = Tables.stringOrNull("house_hotspots.${hotspots[index]}.variant") ?: continue
+                clear(variant)
+            }
             set("house_furniture_rooms", keep.map { rooms[it] })
             set("house_furniture_hotspots", keep.map { hotspots[it] })
             set("house_furniture_ids", keep.map { ids[it] })
@@ -164,14 +168,14 @@ class House : Script {
          * Replaces each piece of [hotspot] in [zone] with the matching piece of [furniture], pieces without one are removed.
          * Furniture objects are listed by piece unless [furniture] lists which pieces they're placed on,
          * only placed on tiles with one of its anchor pieces when it has any, and turned by its rotations.
-         * Furniture with a variant uses the object picked by that player variable instead.
+         * Furniture or hotspots with a variant use the object picked by that player variable instead.
          */
         fun Player.placeFurniture(zone: Zone, hotspot: String, furniture: String) {
             val objects = Tables.objList("house_furniture.$furniture.objects")
             val pieces = Tables.intListOrNull("house_furniture.$furniture.pieces")
             val anchors = Tables.intListOrNull("house_furniture.$furniture.anchors")
             val rotations = Tables.intListOrNull("house_furniture.$furniture.rotations")
-            val variant = Tables.stringOrNull("house_furniture.$furniture.variant")
+            val variant = Tables.stringOrNull("house_furniture.$furniture.variant") ?: Tables.stringOrNull("house_hotspots.$hotspot.variant")
             for (tile in zone.toCuboid()) {
                 val spaces = GameObjects.at(tile).filter { hotspot(it) == hotspot }
                 val anchored = anchors == null || spaces.any { piece(it) in anchors }

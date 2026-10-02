@@ -245,11 +245,13 @@ cost = 25000
 exit = { x = 2544, y = 3096 }
 
 # Furniture which can be built on each hotspot, hotspots with the same group are built and removed together
+# Variant is the player variable picking which of the furniture's objects is placed on the hotspot
 [house_hotspots]
 row_id = "obj"
 furniture = "list<item>"
 group = "string"
 piece = "int"
+variant = "string"
 clone = "clone"
 
 [.garden_centrepiece_space]
@@ -678,12 +680,15 @@ piece = 5
 
 [.portal_chamber_portal_space]
 furniture = ["teak_portal", "mahogany_portal", "marble_portal"]
+variant = "house_portal"
 
 [.portal_chamber_portal_space_2]
 clone = "portal_chamber_portal_space"
+variant = "house_portal_2"
 
 [.portal_chamber_portal_space_3]
 clone = "portal_chamber_portal_space"
+variant = "house_portal_3"
 
 [.portal_chamber_centrepiece_space]
 furniture = ["teleport_focus", "greater_focus", "scrying_pool"]
@@ -2969,21 +2974,21 @@ level = 50
 xp = 2700
 materials = ["teak_plank"]
 amounts = [3]
-objects = ["teak_portal"]
+objects = ["teak_portal", "teak_portal_varrock", "teak_portal_lumbridge", "teak_portal_falador", "teak_portal_camelot", "teak_portal_ardougne", "teak_portal_yanille", "teak_portal_kharyrll"]
 
 [.mahogany_portal]
 level = 65
 xp = 4200
 materials = ["mahogany_plank"]
 amounts = [3]
-objects = ["mahogany_portal"]
+objects = ["mahogany_portal", "mahogany_portal_varrock", "mahogany_portal_lumbridge", "mahogany_portal_falador", "mahogany_portal_camelot", "mahogany_portal_ardougne", "mahogany_portal_yanille", "mahogany_portal_kharyrll"]
 
 [.marble_portal]
 level = 80
 xp = 15000
 materials = ["marble_block"]
 amounts = [3]
-objects = ["marble_portal"]
+objects = ["marble_portal", "marble_portal_varrock", "marble_portal_lumbridge", "marble_portal_falador", "marble_portal_camelot", "marble_portal_ardougne", "marble_portal_yanille", "marble_portal_kharyrll"]
 
 [.teleport_focus]
 level = 50
@@ -3731,21 +3736,181 @@ anim = "fill_dragon_bitter_barrel"
 drink = "chefs_delight"
 anim = "fill_chefs_delight_barrel"
 
-# Fireplaces lit with logs and a tinderbox
-# https://oldschool.runescape.wiki/w/Clay_fireplace
-[house_fireplaces]
+# Furniture lit with a tinderbox at a Firemaking level, using up an item if needed
+# Lit until the room is reloaded, or for ticks plus the players Firemaking level plus a random amount up to their Firemaking level
+# Lit objects have no remove option so can't be lit in building mode
+[house_lights]
 row_id = "obj"
 lit = "obj"
+level = "int"
+item = "item"
 xp = "int"
+ticks = "int"
+anim = "string"
+clone = "clone"
 
+# https://oldschool.runescape.wiki/w/Clay_fireplace
 [.clay_fireplace]
 lit = "clay_fireplace_lit"
+item = "logs"
 xp = 800
+anim = "light_fireplace"
 
 [.stone_fireplace]
+clone = "clay_fireplace"
 lit = "stone_fireplace_lit"
-xp = 800
 
 [.marble_fireplace]
+clone = "clay_fireplace"
 lit = "marble_fireplace_lit"
-xp = 800
+
+# https://oldschool.runescape.wiki/w/Wooden_torches
+# All lamps need a herb to light, not only burners
+[.wooden_torches]
+lit = "wooden_torches_lit"
+level = 30
+item = "clean_marrentill"
+anim = "light_torch"
+
+# https://oldschool.runescape.wiki/w/Steel_torches
+[.steel_torches]
+clone = "wooden_torches"
+lit = "steel_torches_lit"
+
+# https://oldschool.runescape.wiki/w/Steel_candlesticks
+[.steel_candlesticks]
+clone = "wooden_torches"
+lit = "steel_candlesticks_lit"
+
+# Level guessed, unlisted on https://oldschool.runescape.wiki/w/Gold_candlesticks
+[.gold_candlesticks]
+clone = "wooden_torches"
+lit = "gold_candlesticks_lit"
+
+# https://oldschool.runescape.wiki/w/Incense_burner_(Oak)
+# https://oldschool.runescape.wiki/w/Construction/Lamp_duration
+[.incense_burners]
+lit = "incense_burners_lit"
+level = 30
+item = "clean_marrentill"
+ticks = 200
+anim = "light_torch"
+
+[.mahogany_burners]
+clone = "incense_burners"
+lit = "mahogany_burners_lit"
+
+[.marble_burners]
+clone = "incense_burners"
+lit = "marble_burners_lit"
+
+# Percentage of the bones experience given when offered on an altar, before the bonus from lit incense burners
+# https://oldschool.runescape.wiki/w/Chapel
+[house_altars]
+row_id = "obj"
+bonus = "int"
+clone = "clone"
+
+[.prayer_altar_oak_saradomin]
+bonus = 100
+
+[.prayer_altar_oak_zamorak]
+clone = "prayer_altar_oak_saradomin"
+
+[.prayer_altar_oak_guthix]
+clone = "prayer_altar_oak_saradomin"
+
+[.prayer_altar_teak_saradomin]
+bonus = 110
+
+[.prayer_altar_teak_zamorak]
+clone = "prayer_altar_teak_saradomin"
+
+[.prayer_altar_teak_guthix]
+clone = "prayer_altar_teak_saradomin"
+
+[.prayer_altar_cloth_saradomin]
+bonus = 125
+
+[.prayer_altar_cloth_zamorak]
+clone = "prayer_altar_cloth_saradomin"
+
+[.prayer_altar_cloth_guthix]
+clone = "prayer_altar_cloth_saradomin"
+
+[.prayer_altar_mahogany_saradomin]
+bonus = 150
+
+[.prayer_altar_mahogany_zamorak]
+clone = "prayer_altar_mahogany_saradomin"
+
+[.prayer_altar_mahogany_guthix]
+clone = "prayer_altar_mahogany_saradomin"
+
+[.prayer_altar_limestone_saradomin]
+bonus = 175
+
+[.prayer_altar_limestone_zamorak]
+clone = "prayer_altar_limestone_saradomin"
+
+[.prayer_altar_limestone_guthix]
+clone = "prayer_altar_limestone_saradomin"
+
+[.prayer_altar_marble_saradomin]
+bonus = 200
+
+[.prayer_altar_marble_zamorak]
+clone = "prayer_altar_marble_saradomin"
+
+[.prayer_altar_marble_guthix]
+clone = "prayer_altar_marble_saradomin"
+
+[.prayer_altar_gilded_saradomin]
+bonus = 250
+
+[.prayer_altar_gilded_zamorak]
+clone = "prayer_altar_gilded_saradomin"
+
+[.prayer_altar_gilded_guthix]
+clone = "prayer_altar_gilded_saradomin"
+
+# Destinations portals can be directed to, in the order of each portal frame's objects
+[house_portals]
+name = "string"
+spell = "string"
+spellbook = "string"
+
+[.varrock]
+name = "Varrock"
+spell = "varrock_teleport"
+spellbook = "modern_spellbook"
+
+[.lumbridge]
+name = "Lumbridge"
+spell = "lumbridge_teleport"
+spellbook = "modern_spellbook"
+
+[.falador]
+name = "Falador"
+spell = "falador_teleport"
+spellbook = "modern_spellbook"
+
+[.camelot]
+name = "Camelot"
+spell = "camelot_teleport"
+spellbook = "modern_spellbook"
+
+[.ardougne]
+name = "Ardougne"
+spell = "ardougne_teleport"
+spellbook = "modern_spellbook"
+
+[.yanille]
+name = "Yanille"
+spell = "watchtower_teleport"
+spellbook = "modern_spellbook"
+
+[.kharyrll]
+name = "Kharyrll"
+spell = "kharyrll_teleport"
+spellbook = "ancient_spellbook"
