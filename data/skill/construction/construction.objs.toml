@@ -100,6 +100,10 @@ id = 13408
 [dungeon_entrance]
 id = 13409
 
+# Hides seats while sat on, the seated animations hold the seat model
+[invisible_seat]
+id = 13723
+
 [crude_wooden_chair]
 id = 13581
 examine = "It's not the best chair but you think it would take your weight."
