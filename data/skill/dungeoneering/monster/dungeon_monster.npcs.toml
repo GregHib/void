@@ -2974,6 +2974,10 @@ id = 10365
 
 [rand_zombie_melee_3]
 id = 10366
+hitpoints = 240
+att = 13
+str = 13
+def = 18
 
 [rand_zombie_melee_4]
 id = 10367
@@ -2981,6 +2985,10 @@ examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_5]
 id = 10368
+hitpoints = 420
+att = 42
+str = 39
+def = 42
 examine = "A walking, rotten corpse."
 
 [rand_zombie_melee_6]
@@ -3017,21 +3025,37 @@ id = 10377
 
 [rand_zombie_ranged_4]
 id = 10378
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 
 [rand_zombie_ranged_5]
 id = 10379
 
 [rand_zombie_ranged_6]
 id = 10380
+hitpoints = 480
+att = 44
+str = 42
+def = 44
 
 [rand_zombie_ranged_7]
 id = 10381
+hitpoints = 630
+att = 56
+str = 58
+def = 60
 
 [rand_zombie_ranged_8]
 id = 10382
 
 [rand_zombie_ranged_9]
 id = 10383
+hitpoints = 1020
+att = 86
+str = 83
+def = 81
 
 [rand_zombie_ranged_10]
 id = 10384
@@ -5357,17 +5381,33 @@ examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_1]
 id = 10642
+hitpoints = 420
+att = 36
+str = 38
+def = 30
 examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_2]
 id = 10643
+hitpoints = 420
+att = 36
+str = 38
+def = 30
 
 [rand_skeleton_melee_lvl4_3]
 id = 10644
+hitpoints = 420
+att = 36
+str = 38
+def = 30
 examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl4_4]
 id = 10645
+hitpoints = 420
+att = 36
+str = 38
+def = 30
 examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_melee_lvl5_1]
@@ -5467,6 +5507,10 @@ examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_ranged_1]
 id = 10670
+hitpoints = 180
+att = 10
+str = 11
+def = 7
 examine = "Could do with gaining a few pounds."
 
 [rand_skeleton_ranged_2]
@@ -5483,12 +5527,24 @@ id = 10674
 
 [rand_skeleton_ranged_6]
 id = 10675
+hitpoints = 700
+att = 50
+str = 50
+def = 40
 
 [rand_skeleton_ranged_7]
 id = 10676
+hitpoints = 690
+att = 75
+str = 61
+def = 45
 
 [rand_skeleton_ranged_8]
 id = 10677
+hitpoints = 770
+att = 74
+str = 74
+def = 74
 
 [rand_skeleton_ranged_9]
 id = 10678
@@ -5516,6 +5572,10 @@ id = 10685
 
 [rand_skeleton_mage_5]
 id = 10686
+hitpoints = 420
+att = 36
+str = 38
+def = 30
 
 [rand_skeleton_mage_6]
 id = 10687
@@ -5525,9 +5585,17 @@ id = 10688
 
 [rand_skeleton_mage_8]
 id = 10689
+hitpoints = 510
+att = 72
+str = 72
+def = 72
 
 [rand_skeleton_mage_9]
 id = 10690
+hitpoints = 770
+att = 74
+str = 74
+def = 74
 
 [rand_skeleton_mage_10]
 id = 10691
@@ -5540,15 +5608,27 @@ id = 10693
 
 [rand_crawling_hand]
 id = 10694
+hitpoints = 160
+att = 8
+str = 4
+def = 4
 
 [rand_cave_crawler]
 id = 10695
+hitpoints = 220
+att = 22
+str = 18
+def = 18
 
 [rand_cave_slime]
 id = 10696
 
 [rand_pyrefiend]
 id = 10697
+hitpoints = 450
+att = 52
+str = 30
+def = 22
 
 [rand_night_spider]
 id = 10698
@@ -5556,6 +5636,11 @@ examine = "A dark spider with red eyes."
 
 [rand_jelly]
 id = 10699
+hitpoints = 750
+att = 45
+str = 45
+def = 120
+mage = 45
 
 [rand_spiritual_guardian]
 id = 10700
@@ -5567,9 +5652,17 @@ examine = "A floating eye of some sort."
 
 [rand_nechryael]
 id = 10702
+hitpoints = 1050
+att = 97
+str = 97
+def = 105
 
 [rand_death_spawn]
 id = 10703
+hitpoints = 600
+att = 67
+str = 7
+def = 30
 
 [rand_edimmu]
 id = 10704
@@ -5589,6 +5682,10 @@ examine = "A very large foe."
 
 [rand_hill_giant_3]
 id = 10708
+hitpoints = 350
+att = 18
+str = 22
+def = 26
 
 [rand_hill_giant_4]
 id = 10709
@@ -5628,6 +5725,10 @@ examine = "A very large foe."
 
 [rand_greater_demon_1]
 id = 10718
+hitpoints = 870
+att = 76
+str = 78
+def = 81
 
 [rand_greater_demon_2]
 id = 10719
@@ -5980,6 +6081,10 @@ id = 10822
 
 [rand_ghost_3]
 id = 10823
+hitpoints = 200
+att = 23
+str = 20
+def = 23
 
 [rand_ghost_4]
 id = 10824
@@ -6985,6 +7090,10 @@ id = 10906
 
 [rand_bat_2]
 id = 10907
+hitpoints = 80
+att = 5
+str = 5
+def = 5
 
 [rand_bat_3]
 id = 10908
@@ -7009,9 +7118,17 @@ id = 10914
 
 [rand_heavy_guard_1_asleep_with_key]
 id = 10915
+hitpoints = 220
+att = 19
+str = 18
+def = 14
 
 [rand_heavy_guard_1_asleep]
 id = 10916
+hitpoints = 220
+att = 19
+str = 18
+def = 14
 
 [rand_heavy_guard_2_asleep_with_key]
 id = 10917
@@ -7219,9 +7336,17 @@ id = 10984
 
 [rand_runt_weak_3]
 id = 10985
+hitpoints = 200
+att = 23
+str = 20
+def = 23
 
 [rand_runt_strong_3]
 id = 10986
+hitpoints = 200
+att = 23
+str = 20
+def = 23
 
 [rand_runt_weak_4]
 id = 10987

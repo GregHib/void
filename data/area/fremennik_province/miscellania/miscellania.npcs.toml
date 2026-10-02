@@ -131,7 +131,7 @@ examine = "No-one would mistake her for a duchess."
 
 [ragnar]
 id = 1379
-hitpoints = 10
+hitpoints = 60
 style = "crush"
 max_hit_melee = 10
 respawn_delay = 50
