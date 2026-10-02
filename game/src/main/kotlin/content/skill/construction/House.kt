@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.type.Direction
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
@@ -58,6 +59,9 @@ class House : Script {
         const val GROUND_LEVEL = 1
         const val UPPER_LEVEL = 2
         const val START_ROOM = HOUSE_CENTRE + HOUSE_CENTRE * ROOM_GRID + GROUND_LEVEL * ROOM_GRID * ROOM_GRID
+
+        // Staircase placed in the dungeon room below a dungeon entrance so it leads back up
+        private const val ENTRANCE_STAIRS = "oak_staircase"
 
         val Player.houseRoomIds: List<String>
             get() = get("house_room_ids") ?: emptyList()
@@ -215,8 +219,18 @@ class House : Script {
         }
 
         /**
+         * Whether the room at [position] has a dungeon entrance built in it
+         */
+        fun Player.hasEntrance(position: Int): Boolean {
+            val rooms = houseFurnitureRooms
+            val ids = houseFurnitureIds
+            return rooms.indices.any { rooms[it] == position && ids[it] == "dungeon_entrance" }
+        }
+
+        /**
          * Adds the other end of the stairs leading down from the room above, or up from the room below,
-         * to the room at [position] if it has space for them. Returns whether stairs were added.
+         * to the room at [position] if it has space for them. Dungeon rooms below a dungeon entrance get [ENTRANCE_STAIRS].
+         * Returns whether stairs were added.
          */
         fun Player.connectStairs(position: Int): Boolean {
             val room = houseRoom(position) ?: return false
@@ -228,6 +242,7 @@ class House : Script {
             val (furniture, hotspot) = when {
                 houseStairs(above) != null && stairsDown(above) -> houseStairs(above) to Tables.objOrNull("house_rooms.$room.stairs")
                 houseStairs(below) != null && !stairsDown(below) -> houseStairs(below) to Tables.objOrNull("house_rooms.$room.stairs_down")
+                roomLevel(position) == DUNGEON_LEVEL && hasEntrance(above) -> ENTRANCE_STAIRS to Tables.objOrNull("house_rooms.$room.stairs")
                 else -> return false
             }
             if (furniture == null || hotspot == null) {
@@ -265,8 +280,27 @@ class House : Script {
                     placeFurniture(zone, hotspots[index], furniture[index])
                 }
             }
-            val window = Tables.obj("house_styles.${get("house_style", "basic_wood")}.${if (roomLevel(position) == DUNGEON_LEVEL) "wall" else "window"}")
-            decorate(zone, window, buildMode)
+            val style = get("house_style", "basic_wood")
+            val level = roomLevel(position)
+            val wall = Tables.obj("house_styles.$style.wall")
+            val window = if (level == DUNGEON_LEVEL) wall else Tables.obj("house_styles.$style.window")
+            // Upstairs doorways without a room on the other side would lead out onto the roofs
+            val positions = houseRoomPositions
+            val doorWall = if (level > GROUND_LEVEL) wall else null
+            decorate(zone, window, doorWall, buildMode) { side -> roomPosition(base, zone.add(side)) in positions }
+        }
+
+        /**
+         * Side of the room [tile] is a door on
+         */
+        fun doorSide(tile: Tile): Direction {
+            val zone = tile.zone.tile
+            return when {
+                tile.x == zone.x -> Direction.WEST
+                tile.y == zone.y -> Direction.SOUTH
+                tile.x == zone.x + 7 -> Direction.EAST
+                else -> Direction.NORTH
+            }
         }
 
         fun roomPosition(x: Int, y: Int, level: Int) = x + y * ROOM_GRID + level * ROOM_GRID * ROOM_GRID
@@ -404,13 +438,16 @@ class House : Script {
         }
 
         /**
-         * Fills the window spaces in [zone] and removes any hotspots outside of [buildMode]
+         * Fills the window spaces in [zone] and removes any hotspots outside of [buildMode].
+         * Doorways on a side without a [connected] room are filled with [doorWall] when there is one.
          */
-        private fun decorate(zone: Zone, window: String, buildMode: Boolean) {
+        private fun decorate(zone: Zone, window: String, doorWall: String?, buildMode: Boolean, connected: (Direction) -> Boolean) {
             for (tile in zone.toCuboid()) {
                 for (obj in GameObjects.at(tile)) {
                     if (obj.id == "house_window_space") {
                         obj.replace(window)
+                    } else if (!buildMode && doorWall != null && obj.id.startsWith("door_hotspot") && !connected(doorSide(obj.tile))) {
+                        obj.replace(doorWall)
                     } else if (!buildMode && obj.def.containsOption("Build")) {
                         obj.remove()
                     }

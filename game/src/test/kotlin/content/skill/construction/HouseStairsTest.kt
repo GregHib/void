@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test
 import skipDialogues
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -160,6 +161,28 @@ class HouseStairsTest : WorldTest() {
         assertEquals(0, player.inventory.count("coins"))
         assertEquals(DUNGEON_LEVEL, player.tile.level)
         assertFalse(player.hasOpen("house_loading"))
+        assertEquals("oak_staircase", player.houseStairs(dungeon))
+        assertFalse(player.stairsDown(dungeon))
+        player.find(dungeon, "oak_staircase")
+    }
+
+    @Test
+    fun `Building a dungeon entrance adds stairs to the dungeon room below`() {
+        val player = createOwner()
+        player.addHouseRoom("garden", hall)
+        player.addHouseRoom("dungeon_stairs", dungeon)
+        player.inventory.add("hammer")
+        player.inventory.add("saw")
+        player.inventory.add("marble_block")
+        player.enterPortal(2)
+
+        player.use(player.find(hall, "garden_centrepiece_space"), "Build")
+        tickIf { !player.hasOpen("furniture_creation") }
+        player.interfaceOption("furniture_creation", "items", "Build", item = Item("dungeon_entrance"), slot = 1)
+
+        assertEquals("oak_staircase", player.houseStairs(dungeon))
+        player.find(hall, "dungeon_entrance")
+        player.find(dungeon, "oak_staircase")
     }
 
     @Test
@@ -384,6 +407,47 @@ class HouseStairsTest : WorldTest() {
     }
 
     @Test
+    fun `Can't build an upstairs room above a garden`() {
+        val player = createOwner()
+        player.addHalls()
+        player.addHouseRoom("garden", roomPosition(5, 3, GROUND_LEVEL))
+        player.enterPortal(2)
+        player.use(player.find(hall, "oak_staircase"), "Climb-up")
+        val upper = roomZone(player.instance()!!.tile.zone, upperHall).tile
+        player.tele(upper.add(6, 3))
+
+        player.objectOption(GameObjects.find(upper.add(7, 3)) { it.id.startsWith("door_hotspot") }, "Build")
+        tick(5)
+
+        assertFalse(player.hasOpen("room_creation"))
+        assertEquals("dialogue_message1", player.dialogue)
+        assertNull(player["house_preview_position"])
+    }
+
+    @Test
+    fun `Can't build gardens upstairs`() {
+        val player = createOwner()
+        player.addHalls()
+        player.addHouseRoom("parlour", roomPosition(5, 3, GROUND_LEVEL))
+        player.inventory.add("coins", 100000)
+        player.enterPortal(2)
+        player.use(player.find(hall, "oak_staircase"), "Climb-up")
+        val upper = roomZone(player.instance()!!.tile.zone, upperHall).tile
+        player.tele(upper.add(6, 3))
+        player.objectOption(GameObjects.find(upper.add(7, 3)) { it.id.startsWith("door_hotspot") }, "Build")
+        tickIf { !player.hasOpen("room_creation") }
+
+        for (garden in listOf("garden", "menagerie", "formal_garden")) {
+            player.interfaceOption("room_creation", garden, "Build")
+            player.open("room_creation")
+        }
+
+        assertNull(player["house_preview_room"])
+        assertEquals(100000, player.inventory.count("coins"))
+        assertTrue(player.containsMessage("That room can only be built on the ground floor."))
+    }
+
+    @Test
     fun `Removing other furniture keeps the stairs`() {
         val player = createOwner()
         player.addHalls()
@@ -578,5 +642,39 @@ class HouseStairsTest : WorldTest() {
         val dynamicZones: DynamicZones = get()
 
         assertNull(dynamicZones.dynamicZone(roomZone(base, roomPosition(3, 3, DUNGEON_LEVEL))))
+    }
+
+    @Test
+    fun `Upstairs doorways without a room on the other side are walled`() {
+        val player = createOwner()
+        player.addHalls()
+        player.addHouseRoom("parlour", roomPosition(5, 3, GROUND_LEVEL))
+        player.addHouseRoom("parlour", roomPosition(5, 3, UPPER_LEVEL))
+        player.enterPortal(1)
+        val base = player.instance()!!.tile.zone
+        val upper = roomZone(base, upperHall).tile
+        val ground = roomZone(base, hall).tile
+
+        // Connected to the parlour to the east
+        assertNull(GameObjects.findOrNull(upper.add(7, 3), "basic_wood_wall"))
+        assertNull(GameObjects.findOrNull(upper.add(7, 4), "basic_wood_wall"))
+        // Open to the roofs on the other sides
+        for (tile in listOf(upper.add(0, 3), upper.add(0, 4), upper.add(3, 0), upper.add(4, 0), upper.add(3, 7), upper.add(4, 7))) {
+            assertNotNull(GameObjects.findOrNull(tile, "basic_wood_wall"), tile.toString())
+        }
+        assertTrue(roomZone(base, upperHall).toCuboid().none { tile -> GameObjects.at(tile).any { it.id.startsWith("door_hotspot") } })
+        // Ground floor doorways still lead outside
+        assertNull(GameObjects.findOrNull(ground.add(0, 3), "basic_wood_wall"))
+    }
+
+    @Test
+    fun `Upstairs doorways keep their hotspots in building mode`() {
+        val player = createOwner()
+        player.addHalls()
+        player.enterPortal(2)
+        val upper = roomZone(player.instance()!!.tile.zone, upperHall).tile
+
+        assertNull(GameObjects.findOrNull(upper.add(0, 3), "basic_wood_wall"))
+        assertNotNull(GameObjects.findOrNull(upper.add(0, 3)) { it.id.startsWith("door_hotspot") })
     }
 }

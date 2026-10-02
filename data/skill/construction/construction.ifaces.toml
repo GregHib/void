@@ -19,7 +19,7 @@ id = 29
 
 [house_loading]
 id = 399
-type = "main_screen"
+type = "wide_screen"
 
 [room_creation]
 id = 402

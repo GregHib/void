@@ -5,9 +5,8 @@ import content.entity.player.dialogue.type.statement
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.UPPER_LEVEL
 import content.skill.construction.House.Companion.changeFloor
+import content.skill.construction.House.Companion.hasEntrance
 import content.skill.construction.House.Companion.houseBase
-import content.skill.construction.House.Companion.houseFurnitureIds
-import content.skill.construction.House.Companion.houseFurnitureRooms
 import content.skill.construction.House.Companion.houseOwner
 import content.skill.construction.House.Companion.houseRoom
 import content.skill.construction.House.Companion.houseRoomPositions
@@ -116,12 +115,6 @@ class HouseStairs : Script {
         val connected = (owner.houseStairs(next) != null && owner.stairsDown(next) == up) ||
             (up && level == DUNGEON_LEVEL && owner.hasEntrance(next))
         travel(base, position, next, connected, stairRooms, NOWHERE, if (up) "at the top" else "at the bottom")
-    }
-
-    private fun Player.hasEntrance(position: Int): Boolean {
-        val rooms = houseFurnitureRooms
-        val ids = houseFurnitureIds
-        return rooms.indices.any { rooms[it] == position && ids[it] == "dungeon_entrance" }
     }
 
     /**

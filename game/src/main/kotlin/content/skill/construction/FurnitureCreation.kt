@@ -180,6 +180,9 @@ class FurnitureCreation : Script {
             connectStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
             // Stairs leading down change the rooms template
             loadHouse(base, buildMode = true)
+        } else if (furniture == "dungeon_entrance" && connectStairs(roomBelow(position))) {
+            // The entrance leads down to stairs in the dungeon room below
+            loadHouse(base, buildMode = true)
         } else {
             placeFurniture(target.tile.zone, hotspot, furniture)
         }

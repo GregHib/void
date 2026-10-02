@@ -7,8 +7,10 @@ import content.skill.construction.House.Companion.GROUND_LEVEL
 import content.skill.construction.House.Companion.HOUSE_CENTRE
 import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.connectStairs
+import content.skill.construction.House.Companion.doorSide
 import content.skill.construction.House.Companion.exitPortals
 import content.skill.construction.House.Companion.houseBase
+import content.skill.construction.House.Companion.houseRoom
 import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.inOwnHouse
@@ -24,14 +26,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.map.zone.DynamicZones
-import world.gregs.voidps.type.Direction
-import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
 class RoomCreation(val dynamicZones: DynamicZones) : Script {
@@ -43,7 +44,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
             }
             val zone = target.tile.zone
             // Doors lead to the room on the opposite side to the player
-            val room = if (tile.zone == zone) zone.add(direction(target.tile)) else zone
+            val room = if (tile.zone == zone) zone.add(doorSide(target.tile)) else zone
             val position = roomPosition(base, room)
             val index = houseRoomPositions.indexOf(position ?: -1)
             if (index != -1) {
@@ -66,6 +67,10 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
                 statement("You can't build a room that would have no room to support it.")
                 return@objectOperate
             }
+            if (roomLevel(position) > GROUND_LEVEL && Tables.bool("house_rooms.${houseRoom(roomBelow(position))}.outdoor")) {
+                statement("You can't build a room above a garden.") // TODO proper message
+                return@objectOperate
+            }
             set("house_preview_position", position)
             open("room_creation")
         }
@@ -80,19 +85,6 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
             set("house_preview_rotation", 0)
             walkTrigger { clearPreview() }
             preview()
-        }
-    }
-
-    /**
-     * Side of the room [tile] is a door on
-     */
-    private fun direction(tile: Tile): Direction {
-        val zone = tile.zone.tile
-        return when {
-            tile.x == zone.x -> Direction.WEST
-            tile.y == zone.y -> Direction.SOUTH
-            tile.x == zone.x + 7 -> Direction.EAST
-            else -> Direction.NORTH
         }
     }
 
@@ -209,6 +201,10 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
             }
             if (!dungeon && roomLevel(position) == DUNGEON_LEVEL) {
                 message("That room can't be built underground.") // TODO proper messages
+                return false
+            }
+            if (row.bool("outdoor") && roomLevel(position) > GROUND_LEVEL) {
+                message("That room can only be built on the ground floor.") // TODO proper messages
                 return false
             }
             if (inventory.count("coins") < row.int("cost")) {
