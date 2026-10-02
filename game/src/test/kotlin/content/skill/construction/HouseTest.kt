@@ -6,6 +6,7 @@ import content.quest.instance
 import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.GROUND_LEVEL
 import content.skill.construction.House.Companion.START_ROOM
+import content.skill.construction.House.Companion.UPPER_LEVEL
 import content.skill.construction.House.Companion.addHouseFurniture
 import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.houseRoomIds
@@ -443,6 +444,22 @@ class HouseTest : WorldTest() {
         assertNotNull(dynamicZones.dynamicZone(base.add(6, 3, GROUND_LEVEL)))
         assertNotNull(dynamicZones.dynamicZone(base.add(6, 5, GROUND_LEVEL)))
         assertNull(dynamicZones.dynamicZone(base.add(7, 4, GROUND_LEVEL)))
+    }
+
+    @Test
+    fun `Indoor rooms without a room above are roofed`() {
+        val player = createOwner()
+        player.addHouseRoom("parlour", roomPosition(4, 3, GROUND_LEVEL))
+        player.addHouseRoom("kitchen", roomPosition(3, 2, GROUND_LEVEL))
+        player.addHouseRoom("parlour", roomPosition(3, 2, UPPER_LEVEL))
+        player.enterPortal(1)
+        val base = player.instance()!!.tile.zone
+        val roof = dynamicZones.dynamicZone(base.add(5, 4, UPPER_LEVEL))
+
+        assertNotNull(roof)
+        assertNull(dynamicZones.dynamicZone(base.add(4, 4, UPPER_LEVEL)))
+        assertEquals(dynamicZones.dynamicZone(base.add(5, 4, GROUND_LEVEL)), dynamicZones.dynamicZone(base.add(4, 3, UPPER_LEVEL)))
+        assertEquals(roof, dynamicZones.dynamicZone(base.add(4, 3, UPPER_LEVEL + 1)))
     }
 
     @Test

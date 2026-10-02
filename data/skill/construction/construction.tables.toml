@@ -1,9 +1,15 @@
 # Room templates are the south-west tile of each room in the house style region
+# Upper is the template with stairs leading down, used on the upper floor or when the stairs are built down
+# Stairs and stairs down are the hotspots for stairs leading up and down, outdoor rooms have no roof
 [house_rooms]
 level = "int"
 cost = "int"
 template = "tile"
+upper = "tile"
+stairs = "obj"
+stairs_down = "obj"
 dungeon = "boolean"
+outdoor = "boolean"
 
 [.parlour]
 level = 1
@@ -14,6 +20,7 @@ template = { x = 1856, y = 5112 }
 level = 1
 cost = 1000
 template = { x = 1856, y = 5064 }
+outdoor = true
 
 [.kitchen]
 level = 5
@@ -39,6 +46,9 @@ template = { x = 1904, y = 5112 }
 level = 25
 cost = 15000
 template = { x = 1864, y = 5104 }
+upper = { x = 1880, y = 5104 }
+stairs = "skill_hall_stair_space"
+stairs_down = "skill_hall_stair_space_down"
 
 [.games_room]
 level = 30
@@ -54,11 +64,15 @@ template = { x = 1880, y = 5088 }
 level = 35
 cost = 25000
 template = { x = 1896, y = 5104 }
+upper = { x = 1912, y = 5104 }
+stairs = "quest_hall_stair_space"
+stairs_down = "quest_hall_stair_space_down"
 
 [.menagerie]
 level = 37
 cost = 30000
 template = { x = 1912, y = 5072 }
+outdoor = true
 
 [.study]
 level = 40
@@ -84,6 +98,7 @@ template = { x = 1864, y = 5088 }
 level = 55
 cost = 75000
 template = { x = 1872, y = 5064 }
+outdoor = true
 
 [.throne_room]
 level = 60
@@ -112,6 +127,7 @@ dungeon = true
 level = 70
 cost = 7500
 template = { x = 1872, y = 5080 }
+stairs = "skill_hall_stair_space"
 dungeon = true
 
 [.dungeon_pit]
@@ -127,11 +143,15 @@ template = { x = 1912, y = 5088 }
 dungeon = true
 
 # Filler for house grid spaces without a room
+# Roof is the hipped roof for a single room, the style region also has ridged roofs at { x = 1864, y = 5072 } and { x = 1880, y = 5072 }
 [house_spaces]
 template = "tile"
 
 [.land]
 template = { x = 1864, y = 5056 }
+
+[.roof]
+template = { x = 1888, y = 5064 }
 
 # Templates for each style are offset from the basic wood templates, window spaces are filled with the styles window or wall underground
 [house_styles]

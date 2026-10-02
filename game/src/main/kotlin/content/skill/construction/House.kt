@@ -3,12 +3,14 @@ package content.skill.construction
 import content.quest.clearInstance
 import content.quest.exitInstance
 import content.quest.instance
+import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -16,13 +18,16 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.get
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.instance.Instances
 import world.gregs.voidps.engine.map.zone.DynamicZones
+import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.Zone
 
 /**
  * Houses are a [HOUSE_SIZE] grid of zones, a [ROOM_GRID] area of rooms around the [START_ROOM] with space for a ring of grass.
- * Rooms are on [GROUND_LEVEL] with the dungeon on [DUNGEON_LEVEL]
+ * Rooms are on [GROUND_LEVEL] and [UPPER_LEVEL] with the dungeon on [DUNGEON_LEVEL]
  */
 class House : Script {
     init {
@@ -51,6 +56,7 @@ class House : Script {
         const val HOUSE_CENTRE = ROOM_GRID / 2
         const val DUNGEON_LEVEL = 0
         const val GROUND_LEVEL = 1
+        const val UPPER_LEVEL = 2
         const val START_ROOM = HOUSE_CENTRE + HOUSE_CENTRE * ROOM_GRID + GROUND_LEVEL * ROOM_GRID * ROOM_GRID
 
         val Player.houseRoomIds: List<String>
@@ -185,6 +191,65 @@ class House : Script {
         private fun piece(obj: GameObject) = Tables.int("house_hotspots.${obj.id}.piece")
 
         /**
+         * The staircase built in the room at [position]
+         */
+        fun Player.houseStairs(position: Int): String? = stairsIndex(position)?.let { houseFurnitureIds[it] }
+
+        private fun Player.stairsIndex(position: Int): Int? {
+            val staircases = Tables.itemList("house_hotspots.skill_hall_stair_space.furniture")
+            val rooms = houseFurnitureRooms
+            val ids = houseFurnitureIds
+            return rooms.indices.firstOrNull { rooms[it] == position && ids[it] in staircases }
+        }
+
+        /**
+         * Whether the staircase built in the room at [position] leads down
+         */
+        fun Player.stairsDown(position: Int): Boolean {
+            val index = stairsIndex(position) ?: return false
+            return houseFurnitureHotspots[index] == Tables.objOrNull("house_rooms.${houseRoom(position)}.stairs_down")
+        }
+
+        /**
+         * Adds the other end of the stairs leading down from the room above, or up from the room below,
+         * to the room at [position] if it has space for them. Returns whether stairs were added.
+         */
+        fun Player.connectStairs(position: Int): Boolean {
+            val room = houseRoom(position) ?: return false
+            if (houseStairs(position) != null) {
+                return false
+            }
+            val above = roomAbove(position)
+            val below = roomBelow(position)
+            val (furniture, hotspot) = when {
+                houseStairs(above) != null && stairsDown(above) -> houseStairs(above) to Tables.objOrNull("house_rooms.$room.stairs")
+                houseStairs(below) != null && !stairsDown(below) -> houseStairs(below) to Tables.objOrNull("house_rooms.$room.stairs_down")
+                else -> return false
+            }
+            if (furniture == null || hotspot == null) {
+                return false
+            }
+            addHouseFurniture(position, hotspot, furniture)
+            return true
+        }
+
+        /**
+         * The room built at [position]
+         */
+        fun Player.houseRoom(position: Int): String? {
+            val index = houseRoomPositions.indexOf(position)
+            return if (index == -1) null else houseRoomIds.getOrNull(index)
+        }
+
+        /**
+         * Removes the staircase from the room at [position]
+         */
+        fun Player.removeHouseStairs(position: Int) {
+            val index = stairsIndex(position) ?: return
+            removeHouseFurniture(position, houseFurnitureHotspots[index])
+        }
+
+        /**
          * Places the furniture built in the room at [position] and decorates it
          */
         fun Player.furnishRoom(base: Zone, position: Int, buildMode: Boolean) {
@@ -208,6 +273,10 @@ class House : Script {
 
         fun roomLevel(position: Int) = position / (ROOM_GRID * ROOM_GRID)
 
+        fun roomAbove(position: Int) = position + ROOM_GRID * ROOM_GRID
+
+        fun roomBelow(position: Int) = position - ROOM_GRID * ROOM_GRID
+
         /**
          * The zone the room at [position] occupies in the house starting at [base]
          */
@@ -229,6 +298,14 @@ class House : Script {
         fun Player.inOwnHouse() = get<String>("house_owner") == accountName
 
         /**
+         * The owner of the house the player is currently in
+         */
+        fun Player.houseOwner(): Player? {
+            val owner: String = get("house_owner") ?: return null
+            return if (owner == accountName) this else Players.findByAccount(owner)
+        }
+
+        /**
          * South-west zone of the house the player is currently in
          */
         fun Player.houseBase(): Zone? {
@@ -247,8 +324,19 @@ class House : Script {
         }
 
         /**
-         * Builds the players house in the instance starting at [base]. Ground floor rooms are surrounded by a
-         * ring of grass, every other space is left empty.
+         * The zone of the template for [room] at [position], rooms with stairs have a separate template
+         * for stairs leading down used on the upper floor, or when the stairs are built leading down.
+         */
+        fun Player.roomTemplate(room: String, position: Int): Zone {
+            val down = Tables.objOrNull("house_rooms.$room.stairs_down")
+            val upper = Tables.tileOrNull("house_rooms.$room.upper") != null &&
+                (roomLevel(position) > GROUND_LEVEL || (down != null && houseFurniture(position, down) != null))
+            return template("house_rooms.$room.${if (upper) "upper" else "template"}")
+        }
+
+        /**
+         * Builds the players house in the instance starting at [base]. Ground floor rooms are surrounded by a ring of grass,
+         * indoor rooms without a room above are roofed and every other space is left empty.
          */
         fun Player.loadHouse(base: Zone, buildMode: Boolean) {
             val dynamicZones = get<DynamicZones>()
@@ -260,7 +348,18 @@ class House : Script {
             for ((index, position) in positions.withIndex()) {
                 val zone = roomZone(base, position)
                 placed.add(zone)
-                entries.add(Triple(template("house_rooms.${ids[index]}.template"), zone, rotations[index]))
+                entries.add(Triple(roomTemplate(ids[index], position), zone, rotations[index]))
+            }
+            val roof = template("house_spaces.roof.template")
+            for ((index, position) in positions.withIndex()) {
+                val level = roomLevel(position)
+                if (level == DUNGEON_LEVEL || level + 1 >= HOUSE_LEVELS || Tables.bool("house_rooms.${ids[index]}.outdoor")) {
+                    continue
+                }
+                val zone = roomZone(base, roomAbove(position))
+                if (placed.add(zone)) {
+                    entries.add(Triple(roof, zone, 0))
+                }
             }
             val ground = positions.filter { roomLevel(it) == GROUND_LEVEL }
             if (ground.isNotEmpty()) {
@@ -305,6 +404,22 @@ class House : Script {
             }
         }
 
+        /**
+         * Moves to the nearest free tile to [tile] in its room, levels above the dungeon are hidden so they don't block the view
+         */
+        fun Player.changeFloor(tile: Tile) {
+            val free = tile.zone.toCuboid().filter { !Collisions.check(it, BLOCKED) }.minByOrNull { it.distanceTo(tile) } ?: tile
+            val base = houseBase()
+            if (base != null && free.level - base.level == DUNGEON_LEVEL) {
+                set("hide_upper_levels", true)
+            } else {
+                clear("hide_upper_levels")
+            }
+            tele(free)
+        }
+
+        private const val BLOCKED = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT
+
         suspend fun Player.houseLoading() {
             open("house_loading")
             delay(3)
@@ -313,6 +428,7 @@ class House : Script {
 
         fun Player.leaveHouse(teleport: Boolean = true) {
             val owner: String = remove("house_owner") ?: return
+            clear("hide_upper_levels")
             if (hasOpen("house_options")) {
                 open("options")
             }

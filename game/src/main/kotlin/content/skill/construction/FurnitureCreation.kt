@@ -1,16 +1,26 @@
 package content.skill.construction
 
 import content.entity.player.dialogue.type.choice
+import content.skill.construction.House.Companion.GROUND_LEVEL
 import content.skill.construction.House.Companion.addHouseFurniture
+import content.skill.construction.House.Companion.connectStairs
 import content.skill.construction.House.Companion.exitPortals
 import content.skill.construction.House.Companion.furnishRoom
 import content.skill.construction.House.Companion.hotspot
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseFurniture
+import content.skill.construction.House.Companion.houseRoom
+import content.skill.construction.House.Companion.houseStairs
+import content.skill.construction.House.Companion.loadHouse
 import content.skill.construction.House.Companion.inOwnHouse
 import content.skill.construction.House.Companion.placeFurniture
 import content.skill.construction.House.Companion.removeHouseFurniture
+import content.skill.construction.House.Companion.removeHouseStairs
+import content.skill.construction.House.Companion.roomAbove
+import content.skill.construction.House.Companion.roomBelow
+import content.skill.construction.House.Companion.roomLevel
 import content.skill.construction.House.Companion.roomPosition
+import content.skill.construction.House.Companion.stairsDown
 import world.gregs.voidps.engine.Script
 import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
@@ -18,6 +28,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.data.config.RowDefinition
 import world.gregs.voidps.engine.data.definition.ItemDefinitions
 import world.gregs.voidps.engine.data.definition.Rows
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp.exp
@@ -29,6 +40,7 @@ import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
+import world.gregs.voidps.type.Zone
 
 class FurnitureCreation : Script {
     init {
@@ -93,9 +105,16 @@ class FurnitureCreation : Script {
                     if (!GameObjects.contains(target) || houseFurniture(position, hotspot) == null) {
                         return@option
                     }
-                    removeHouseFurniture(position, hotspot)
-                    GameObjects.reset(target.tile.zone)
-                    furnishRoom(base, position, buildMode = true)
+                    if (houseFurniture(position, hotspot) == houseStairs(position)) {
+                        // Staircases are removed from both floors
+                        removeHouseStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
+                        removeHouseFurniture(position, hotspot)
+                        loadHouse(base, buildMode = true)
+                    } else {
+                        removeHouseFurniture(position, hotspot)
+                        GameObjects.reset(target.tile.zone)
+                        furnishRoom(base, position, buildMode = true)
+                    }
                     anim("construction_remove")
                 }
                 option("No")
@@ -115,7 +134,7 @@ class FurnitureCreation : Script {
         set("furniture_creation_hide_cross_$slot", row == null || (has(Skill.Construction, row.int("level")) && inventory.contains(materials)))
     }
 
-    private fun Player.build(target: GameObject, furniture: String) {
+    private suspend fun Player.build(target: GameObject, furniture: String) {
         val base = houseBase()
         if (base == null || !inOwnHouse() || !get("house_build_mode", false) || !GameObjects.contains(target)) {
             return
@@ -123,11 +142,33 @@ class FurnitureCreation : Script {
         val position = roomPosition(base, target.tile.zone) ?: return
         val hotspot = hotspot(target) ?: return
         val row = Rows.getOrNull("house_furniture.$furniture") ?: return
-        if (!has(Skill.Construction, row.int("level"), message = true)) {
+        if (!canBuild(row)) {
             return
         }
-        if (!inventory.contains("hammer", "saw")) {
-            message("You need a hammer and saw to build furniture.") // TODO proper message
+        val down = Tables.objOrNull("house_rooms.${houseRoom(position)}.stairs_down")
+        if (roomLevel(position) == GROUND_LEVEL && down != null && hotspot == Tables.objOrNull("house_rooms.${houseRoom(position)}.stairs")) {
+            choice("Build stairs in which direction") {
+                option("Up") {
+                    build(base, target, position, hotspot, furniture)
+                }
+                option("Down") {
+                    build(base, target, position, down, furniture)
+                }
+            }
+            return
+        }
+        build(base, target, position, hotspot, furniture)
+    }
+
+    /**
+     * Builds [furniture] on [hotspot] in the room at [position], staircases are built on both floors
+     */
+    private fun Player.build(base: Zone, target: GameObject, position: Int, hotspot: String, furniture: String) {
+        if (houseBase() != base || !GameObjects.contains(target) || houseFurniture(position, hotspot) != null) {
+            return
+        }
+        val row = Rows.getOrNull("house_furniture.$furniture") ?: return
+        if (!canBuild(row)) {
             return
         }
         if (!inventory.remove(materials(row))) {
@@ -135,9 +176,30 @@ class FurnitureCreation : Script {
             return
         }
         addHouseFurniture(position, hotspot, furniture)
-        placeFurniture(target.tile.zone, hotspot, furniture)
+        if (furniture == houseStairs(position)) {
+            connectStairs(if (stairsDown(position)) roomBelow(position) else roomAbove(position))
+            // Stairs leading down change the rooms template
+            loadHouse(base, buildMode = true)
+        } else {
+            placeFurniture(target.tile.zone, hotspot, furniture)
+        }
         anim("construction_build")
         exp(Skill.Construction, row.int("xp") / 10.0)
+    }
+
+    private fun Player.canBuild(row: RowDefinition): Boolean {
+        if (!has(Skill.Construction, row.int("level"), message = true)) {
+            return false
+        }
+        if (!inventory.contains("hammer", "saw")) {
+            message("You need a hammer and saw to build furniture.") // TODO proper message
+            return false
+        }
+        if (!inventory.contains(materials(row))) {
+            message("You don't have the right materials.") // TODO proper message
+            return false
+        }
+        return true
     }
 
     /**
