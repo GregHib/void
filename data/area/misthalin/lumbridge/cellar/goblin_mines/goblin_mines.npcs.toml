@@ -34,7 +34,6 @@ hitpoints = 260
 att = 25
 str = 18
 def = 25
-attack_speed = 6
 style = "crush"
 max_hit_melee = 30
 slayer_xp = 26.0

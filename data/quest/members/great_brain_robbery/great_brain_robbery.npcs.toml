@@ -5,7 +5,6 @@ att = 170
 str = 145
 def = 140
 mage = 90
-attack_speed = 5
 style = "crush"
 max_hit_melee = 350
 attack_bonus = 80

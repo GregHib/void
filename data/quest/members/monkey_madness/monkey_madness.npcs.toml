@@ -5,7 +5,6 @@ att = 170
 str = 170
 def = 170
 mage = 170
-attack_speed = 6
 style = "slash"
 max_hit_melee = 320
 max_hit_magic = 320

@@ -16,7 +16,6 @@ hitpoints = 2000
 att = 160
 str = 100
 def = 160
-attack_speed = 3
 style = "crush"
 max_hit_melee = 280
 xp_bonus = 1.5

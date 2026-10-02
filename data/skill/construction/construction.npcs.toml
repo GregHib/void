@@ -17,7 +17,6 @@ str = 80
 def = 80
 mage = 0
 range = 0
-attack_speed = 6
 style = "crush"
 max_hit_melee = 120
 attack_bonus = 22

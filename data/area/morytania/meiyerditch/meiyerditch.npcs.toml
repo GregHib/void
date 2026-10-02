@@ -476,7 +476,6 @@ str = 136
 def = 150
 mage = 150
 range = 150
-attack_speed = 8
 style = "melee"
 max_hit_melee = 160
 hunt_mode = "cowardly"

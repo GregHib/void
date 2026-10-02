@@ -96,7 +96,6 @@ id = 2028
 hitpoints = 1000
 def = 100
 range = 100
-ranged_strength = 55
 combat_def = "karil_the_tainted"
 hunt_mode = "cowardly"
 categories = ["barrows_brothers"]

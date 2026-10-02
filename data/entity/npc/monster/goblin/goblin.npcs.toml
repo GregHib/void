@@ -200,7 +200,6 @@ str = 2
 def = 4
 combat_def = "stronghold_of_security_goblin"
 attack_bonus = 12
-attack_speed = 6
 respawn_delay = 35
 slayer_xp = 5.0
 height = 30
