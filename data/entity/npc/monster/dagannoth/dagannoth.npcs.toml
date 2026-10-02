@@ -48,6 +48,7 @@ att = 10
 str = 10
 def = 71
 hitpoints = 850
+range = 100
 slayer_xp = 85.0
 combat_def = "dagannoth"
 max_hit_range = 200
@@ -134,4 +135,28 @@ hunt_mode = "aggressive"
 categories = ["dagannoth"]
 respawn_delay = 30
 drop_table = "dagannoth_spawn"
+examine = "A horror from the ocean depths..."
+
+[dagannoth_level_90]
+id = 9344
+hitpoints = 950
+att = 76
+str = 78
+def = 65
+examine = "A horror from the ocean depths..."
+
+[dagannoth_level_90_2]
+id = 9345
+hitpoints = 950
+att = 76
+str = 78
+def = 65
+examine = "A horror from the ocean depths..."
+
+[dagannoth_level_90_3]
+id = 9346
+hitpoints = 950
+att = 76
+str = 78
+def = 65
 examine = "A horror from the ocean depths..."

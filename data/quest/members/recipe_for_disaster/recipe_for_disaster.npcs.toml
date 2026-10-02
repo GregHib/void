@@ -131,3 +131,13 @@ ranged_strength = 55
 hunt_mode = "cowardly"
 immune_poison = true
 examine = "Pure evil lightly whipped with a juicy cherry on top."
+
+[agrith_na_na]
+id = 3493
+hitpoints = 2000
+att = 83
+str = 150
+def = 82
+mage = 100
+range = 100
+examine = "Big, scary, angry and a good source of energy."

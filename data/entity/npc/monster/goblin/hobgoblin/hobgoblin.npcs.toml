@@ -67,3 +67,11 @@ drop_table = "hobgoblin"
 categories = ["hobgoblin"]
 god = "bandos"
 examine = "An ugly, smelly creature."
+
+[hobgoblin]
+id = 4898
+hitpoints = 290
+att = 22
+str = 24
+def = 24
+examine = "An ugly, smelly creature."

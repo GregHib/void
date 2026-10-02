@@ -75,3 +75,11 @@ style = "slash"
 xp_bonus = 0.5
 hunt_mode = "cowardly"
 examine = "Very mysterious looking..."
+
+[dessous]
+id = 1915
+hitpoints = 2000
+att = 99
+str = 99
+def = 99
+examine = "Vampire warrior of Zamorak."

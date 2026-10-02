@@ -252,3 +252,19 @@ examine = "Horse with a horn."
 
 [lakki_the_delivery_dwarf_2]
 id = 7722
+
+[barbarian_guard_2]
+id = 197
+hitpoints = 140
+att = 6
+str = 6
+def = 6
+examine = "Not very civilised looking."
+
+[gunthor_the_brave]
+id = 199
+hitpoints = 350
+att = 22
+str = 22
+def = 25
+examine = "A mighty warrior!"

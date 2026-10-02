@@ -26,6 +26,7 @@ examine = "One of Ardougne's many citizens."
 drop_table = "man"
 combat_def = "man"
 hitpoints = 70
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass]
@@ -34,6 +35,7 @@ examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_2]
@@ -42,6 +44,7 @@ examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_3]
@@ -50,6 +53,7 @@ examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
+att = 2
 max_hit_crush = 10
 
 [child_underground_pass]
@@ -65,6 +69,7 @@ examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_5]
@@ -73,6 +78,9 @@ examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
+att = 10
+str = 10
+def = 10
 max_hit_crush = 10
 
 [woman_underground_pass_6]
@@ -81,6 +89,7 @@ examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
+att = 2
 max_hit_crush = 10
 
 [woman_underground_pass_7]
@@ -89,6 +98,9 @@ examine = "One of Ardougne's many citizens."
 drop_table = "woman"
 combat_def = "woman"
 hitpoints = 70
+att = 10
+str = 10
+def = 10
 max_hit_crush = 10
 
 [goblin_underground_pass]

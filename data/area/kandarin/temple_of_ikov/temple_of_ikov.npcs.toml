@@ -62,3 +62,19 @@ max_hit_magic = 80
 attack_bonus = -12
 hunt_mode = "cowardly"
 examine = "Intimidating!"
+
+[guardian_of_armadyl_temple_of_ikov_3]
+id = 8332
+hitpoints = 500
+att = 37
+str = 37
+def = 37
+examine = "A guard who has devoted their life to Armadyl."
+
+[guardian_of_armadyl_temple_of_ikov_4]
+id = 8333
+hitpoints = 400
+att = 37
+str = 37
+def = 37
+examine = "A guard who has devoted their life to Armadyl."

@@ -346,3 +346,140 @@ categories = ["goblins"]
 drop_table = "stronghold_goblin"
 god = "bandos"
 examine = "Footsoldier for Bandos."
+
+[goblin_level_2]
+id = 100
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_5]
+id = 101
+hitpoints = 120
+att = 3
+def = 4
+examine = "An ugly green creature."
+
+[goblin_level_13]
+id = 102
+hitpoints = 160
+att = 12
+str = 13
+def = 7
+examine = "An ugly green creature."
+
+[goblin_level_2_2]
+id = 1769
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_3]
+id = 1770
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_4]
+id = 1771
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_5]
+id = 1772
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_6]
+id = 1773
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_7]
+id = 1774
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_8]
+id = 1775
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_9]
+id = 1776
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_10]
+id = 2274
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_11]
+id = 2276
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_12]
+id = 2277
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_13]
+id = 2278
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_14]
+id = 2279
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_15]
+id = 2280
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_16]
+id = 2281
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_17]
+id = 2678
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_18]
+id = 2679
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_19]
+id = 2680
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_20]
+id = 2681
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_5_2]
+id = 4490
+hitpoints = 120
+att = 3
+def = 4
+examine = "An ugly green creature."
+
+[goblin_level_2_21]
+id = 7964
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_22]
+id = 7965
+hitpoints = 50
+examine = "An ugly green creature."
+
+[goblin_level_2_23]
+id = 8862
+hitpoints = 50
+examine = "An ugly green creature."

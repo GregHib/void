@@ -124,6 +124,10 @@ combat_def = "twig"
 
 [berry_troll_awake]
 id = 1127
+hitpoints = 900
+att = 40
+str = 90
+def = 25
 examine = "He's guarding the cells."
 
 [berry_troll_sleeping]
@@ -236,3 +240,11 @@ id = 4950
 [ug]
 id = 1553
 examine = "A frail little troll."
+
+[twig]
+id = 1126
+hitpoints = 900
+att = 40
+str = 90
+def = 25
+examine = "He's guarding the cells."

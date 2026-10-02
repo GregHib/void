@@ -28,6 +28,7 @@ hitpoints = 240
 att = 17
 str = 17
 def = 17
+mage = 110
 max_hit_crush = 30
 hunt_mode = "cowardly"
 
@@ -140,3 +141,43 @@ style = "magic"
 max_hit_melee = 90
 hunt_mode = "cowardly"
 examine = "I preferred him when he was human."
+
+[animated_steel_armour_2]
+id = 5382
+hitpoints = 500
+att = 40
+str = 40
+def = 61
+examine = "Animated steel armour."
+
+[skeleton_level_72]
+id = 5411
+hitpoints = 690
+att = 75
+str = 61
+def = 45
+examine = "An angry skeleton."
+
+[skeleton_level_87]
+id = 5412
+hitpoints = 920
+att = 75
+str = 80
+def = 55
+examine = "Cross bones."
+
+[tarn]
+id = 5420
+hitpoints = 800
+att = 40
+str = 80
+def = 40
+examine = "A mad man."
+
+[zombie_level_56]
+id = 7791
+hitpoints = 500
+att = 50
+str = 50
+def = 47
+examine = "A dead woman walking."

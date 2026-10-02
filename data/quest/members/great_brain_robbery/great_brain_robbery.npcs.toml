@@ -12,3 +12,51 @@ attack_bonus = 80
 xp_bonus = 1.0
 hunt_mode = "cowardly"
 examine = "It's trying to mash you flat! Less examine, more fight!"
+
+[zombie_pirate_7]
+id = 5643
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_8]
+id = 5645
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_9]
+id = 5648
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_10]
+id = 5652
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_11]
+id = 5654
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+examine = "Aaaarg, me hearty!"
+
+[zombie_pirate_12]
+id = 5663
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+examine = "Aaaarg, me hearty!"

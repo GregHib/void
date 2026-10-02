@@ -1,0 +1,8 @@
+[elvarg_cutscene]
+id = 6087
+hitpoints = 800
+att = 70
+str = 70
+def = 70
+mage = 70
+examine = "Roar! A dragon!"

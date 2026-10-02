@@ -1,0 +1,7 @@
+[farmer_3]
+id = 4925
+hitpoints = 120
+att = 3
+str = 4
+def = 8
+examine = "He grows the crops in this area."

@@ -661,3 +661,48 @@ id = 7002
 
 [hartwin_2]
 id = 8140
+
+[dark_wizard_level_7]
+id = 4658
+hitpoints = 120
+att = 5
+str = 2
+def = 5
+mage = 6
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_7_2]
+id = 4659
+hitpoints = 120
+att = 5
+str = 2
+def = 5
+mage = 6
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_20]
+id = 4660
+hitpoints = 240
+att = 17
+str = 17
+def = 14
+mage = 22
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_20_2]
+id = 4661
+hitpoints = 240
+att = 17
+str = 17
+def = 14
+mage = 22
+examine = "A practicer of dark arts."
+
+[dark_wizard_level_7_3]
+id = 8830
+hitpoints = 120
+att = 5
+str = 2
+def = 5
+mage = 6
+examine = "A practicer of dark arts."

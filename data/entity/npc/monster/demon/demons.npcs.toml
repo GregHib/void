@@ -107,3 +107,27 @@ clone = "black_demon"
 [black_demon_4]
 id = 4705
 clone = "black_demon"
+
+[black_demon_level_172]
+id = 677
+hitpoints = 1570
+att = 145
+str = 148
+def = 152
+examine = "A big, scary, jet-black demon."
+
+[lesser_demon_6]
+id = 13229
+hitpoints = 790
+att = 68
+str = 70
+def = 71
+examine = "Lesser, but still pretty big."
+
+[lesser_demon_7]
+id = 13230
+hitpoints = 790
+att = 68
+str = 70
+def = 71
+examine = "Lesser, but still pretty big."

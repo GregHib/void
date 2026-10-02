@@ -482,3 +482,337 @@ max_hit_melee = 160
 hunt_mode = "cowardly"
 immune_poison = true
 examine = "An evil vampyre."
+
+[vyrewatch_level_120]
+id = 4806
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[flying_female_vampire_level_110]
+id = 4809
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+
+[flying_female_vampire_level_120]
+id = 4810
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+
+[vyrewatch_level_110]
+id = 4817
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_2]
+id = 4818
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_2]
+id = 4821
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_3]
+id = 4822
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_3]
+id = 4837
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_4]
+id = 4838
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_4]
+id = 4841
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_5]
+id = 4842
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[flying_female_vampire_level_110_2]
+id = 4845
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+
+[flying_female_vampire_level_120_2]
+id = 4846
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+
+[vyrewatch_level_110_5]
+id = 4849
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_6]
+id = 4850
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_6]
+id = 7606
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_7]
+id = 7607
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[flying_female_vampire_level_110_3]
+id = 7610
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+
+[flying_female_vampire_level_120_3]
+id = 7611
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+
+[vyrewatch_level_110_7]
+id = 7614
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_8]
+id = 7615
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "A thirsty-looking, airborne bloodsucker!"
+
+[vyrewatch_level_110_8]
+id = 7618
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_9]
+id = 7619
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_10]
+id = 7623
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_9]
+id = 7626
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_11]
+id = 7627
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_10]
+id = 7631
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_11]
+id = 7634
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_12]
+id = 7682
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_13]
+id = 7683
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_12]
+id = 7695
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_14]
+id = 7696
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_110_13]
+id = 7703
+hitpoints = 900
+att = 110
+str = 96
+def = 85
+mage = 110
+range = 110
+examine = "An evil, bloodsucking vampyre."
+
+[vyrewatch_level_120_15]
+id = 7704
+hitpoints = 1050
+att = 120
+str = 106
+def = 85
+mage = 120
+range = 120
+examine = "An evil, bloodsucking vampyre."

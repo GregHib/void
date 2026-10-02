@@ -323,3 +323,12 @@ examine = "Rogueish."
 drop_table = "rogue"
 max_hit_stab = 20
 combat_def = "rogue"
+
+[pkmaster0036]
+id = 2589
+hitpoints = 800
+att = 85
+str = 60
+def = 80
+mage = 40
+range = 40

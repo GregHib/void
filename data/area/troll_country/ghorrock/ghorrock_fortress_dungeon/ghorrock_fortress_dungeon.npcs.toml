@@ -20,6 +20,70 @@ att = 1
 str = 1
 def = 113
 mage = 113
+range = 105
 max_hit_magic = 119
 hunt_mode = "cowardly"
 
+[waterfiend_ghorrock_fortress_dungeon_2]
+id = 9056
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."
+
+[waterfiend_ghorrock_fortress_dungeon_3]
+id = 9057
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."
+
+[waterfiend_ghorrock_fortress_dungeon_4]
+id = 9058
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."
+
+[waterfiend_ghorrock_fortress_dungeon_5]
+id = 9059
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."
+
+[waterfiend_ghorrock_fortress_dungeon_6]
+id = 9061
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."
+
+[waterfiend_ghorrock_fortress_dungeon_7]
+id = 9062
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."
+
+[waterfiend_ghorrock_fortress_dungeon_8]
+id = 9063
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."
+
+[waterfiend_ghorrock_fortress_dungeon_9]
+id = 9064
+hitpoints = 1280
+def = 128
+mage = 105
+range = 105
+examine = "A fiendish embodiment of water."

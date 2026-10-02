@@ -111,3 +111,27 @@ examine = "Incey wincey... with a nasty bite."
 id = 1221
 categories = ["spiders"]
 examine = "Nasty little creature."
+
+[poison_spider_2]
+id = 1009
+hitpoints = 250
+att = 28
+str = 28
+def = 28
+examine = "A nasty, poisonous arachnid."
+
+[jungle_spider]
+id = 2491
+hitpoints = 500
+att = 35
+str = 37
+def = 35
+examine = "A very dangerous looking spider, with its fangs unsheathed."
+
+[jungle_spider_2]
+id = 2492
+hitpoints = 500
+att = 35
+str = 37
+def = 35
+examine = "A very dangerous looking spider, with its fangs unsheathed."

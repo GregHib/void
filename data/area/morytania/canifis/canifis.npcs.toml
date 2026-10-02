@@ -187,3 +187,155 @@ id = 8464
 
 [achtryn]
 id = 8465
+
+[werewolf_2]
+id = 6007
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_3]
+id = 6008
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_4]
+id = 6009
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_5]
+id = 6010
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_6]
+id = 6011
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_7]
+id = 6012
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_8]
+id = 6013
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_9]
+id = 6014
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_10]
+id = 6015
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_11]
+id = 6016
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_12]
+id = 6017
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_13]
+id = 6018
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_14]
+id = 6019
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_15]
+id = 6020
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_16]
+id = 6021
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_17]
+id = 6022
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_18]
+id = 6023
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_19]
+id = 6024
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"
+
+[werewolf_20]
+id = 6025
+hitpoints = 1000
+att = 70
+str = 70
+def = 70
+examine = "Eek! A werewolf!"

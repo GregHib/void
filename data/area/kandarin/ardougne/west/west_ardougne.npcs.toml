@@ -130,3 +130,27 @@ examine = "A mourner, or plague healer."
 [head_mourner]
 id = 2372
 examine = "A Mourner showing his true identity."
+
+[mourner_overpass]
+id = 2349
+hitpoints = 190
+att = 8
+str = 8
+def = 8
+examine = "A mourner, or plague healer."
+
+[mourner_overpass_2]
+id = 2350
+hitpoints = 190
+att = 8
+str = 8
+def = 8
+examine = "A mourner, or plague healer."
+
+[mourner_overpass_3]
+id = 2351
+hitpoints = 190
+att = 8
+str = 8
+def = 8
+examine = "A mourner, or plague healer."

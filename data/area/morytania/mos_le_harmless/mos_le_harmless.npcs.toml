@@ -171,3 +171,43 @@ id = 11320
 
 [kchunk_3]
 id = 11321
+
+[monkey_mos_le_harmless_2]
+id = 1464
+hitpoints = 60
+att = 2
+str = 3
+def = 2
+examine = "Perhaps our oldest relatives?"
+
+[jungle_horror_2]
+id = 4348
+hitpoints = 450
+att = 70
+str = 70
+def = 55
+examine = "A horrible, emaciated ape like creature with beady pink eyes."
+
+[jungle_horror_3]
+id = 4349
+hitpoints = 450
+att = 70
+str = 70
+def = 55
+examine = "A horrible, emaciated ape like creature with beady pink eyes."
+
+[jungle_horror_4]
+id = 4350
+hitpoints = 450
+att = 70
+str = 70
+def = 55
+examine = "A horrible, emaciated ape like creature with beady pink eyes."
+
+[jungle_horror_5]
+id = 4351
+hitpoints = 450
+att = 70
+str = 70
+def = 55
+examine = "A horrible, emaciated ape like creature with beady pink eyes."

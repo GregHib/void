@@ -13,6 +13,9 @@ examine = "Can you endure long enough?"
 [the_illusive]
 id = 5905
 hitpoints = 1400
+att = 72
+str = 71
+def = 105
 attack_speed = 6
 style = "melee"
 max_hit_melee = 80
@@ -45,3 +48,11 @@ attack_speed = 6
 style = "crush"
 max_hit_melee = 260
 examine = "Can you bring yourself to hurt another?"
+
+[a_doubt]
+id = 5906
+hitpoints = 590
+att = 72
+str = 58
+def = 85
+examine = "You can't escape your inadequacy!"

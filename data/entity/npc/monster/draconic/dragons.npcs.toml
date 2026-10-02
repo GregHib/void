@@ -219,3 +219,11 @@ clone = "baby_blue_dragon"
 [baby_blue_dragon_2]
 id = 4666
 clone = "baby_blue_dragon"
+
+[blue_dragon_2]
+id = 5178
+hitpoints = 1050
+att = 95
+str = 95
+def = 95
+examine = "A mother dragon."

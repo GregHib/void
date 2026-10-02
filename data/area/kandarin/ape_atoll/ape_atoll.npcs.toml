@@ -353,6 +353,7 @@ hitpoints = 60
 att = 4
 str = 5
 def = 3
+mage = 10
 max_hit_stab = 10
 hunt_mode = "cowardly"
 

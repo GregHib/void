@@ -55,3 +55,18 @@ id = 12365
 [cow_calf_3]
 clone = "cow_calf"
 id = 12366
+
+[cow]
+id = 955
+hitpoints = 80
+examine = "Converts grass to beef."
+
+[cow_calf_4]
+id = 1766
+hitpoints = 60
+examine = "Young, but still beefy."
+
+[cow_calf_5]
+id = 1768
+hitpoints = 60
+examine = "Young, but still beefy."

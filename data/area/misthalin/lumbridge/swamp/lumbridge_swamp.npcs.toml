@@ -45,9 +45,17 @@ examine = "He looks kind of puny..."
 
 [sergeant_mossfists_2]
 id = 5871
+hitpoints = 500
+att = 32
+str = 50
+def = 50
 
 [sergeant_slimetoes_2]
 id = 5872
+hitpoints = 500
+att = 32
+str = 50
+def = 50
 
 [candle_seller]
 id = 1834

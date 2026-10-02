@@ -12,6 +12,10 @@ examine = "A sapphire glacialis. It doesn't look as pretentious as its name soun
 
 [sabre_toothed_kyatt]
 id = 5103
+hitpoints = 420
+att = 60
+str = 60
+def = 42
 combat_def = "panther"
 respawn_delay = 50
 examine = "It's just like a big, white, furry, deadly can opener."

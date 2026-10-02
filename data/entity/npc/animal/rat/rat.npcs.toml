@@ -126,3 +126,27 @@ examine = "A popular dwarven delicacy."
 [rat_swept_away]
 id = 8209
 examine = "Cheese-eater."
+
+[giant_rat_2]
+id = 4942
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+examine = "Overgrown vermin."
+
+[giant_rat_4]
+id = 4943
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+examine = "Overgrown vermin."
+
+[giant_rat_6]
+id = 12350
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+examine = "Overgrown vermin."

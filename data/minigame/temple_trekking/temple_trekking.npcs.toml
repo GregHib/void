@@ -226,6 +226,9 @@ clone = "undead_lumberjack_level_30"
 [undead_lumberjack_level_35]
 id = 5684
 hitpoints = 120
+att = 87
+str = 6
+def = 11
 style = "crush"
 max_hit_melee = 20
 xp_bonus = -10.0
@@ -395,6 +398,9 @@ clone = "undead_lumberjack_level_50"
 [undead_lumberjack_level_55]
 id = 5716
 hitpoints = 120
+att = 133
+str = 16
+def = 15
 style = "crush"
 max_hit_melee = 40
 xp_bonus = -10.0
@@ -478,6 +484,9 @@ clone = "undead_lumberjack_level_60"
 [undead_lumberjack_level_64]
 id = 5732
 hitpoints = 120
+att = 147
+str = 26
+def = 17
 style = "crush"
 max_hit_melee = 40
 xp_bonus = -10.0
@@ -518,6 +527,9 @@ clone = "undead_lumberjack_level_64"
 [undead_lumberjack_level_70]
 id = 5740
 hitpoints = 120
+att = 163
+str = 26
+def = 18
 style = "crush"
 max_hit_melee = 40
 xp_bonus = -10.0
@@ -554,3 +566,33 @@ clone = "undead_lumberjack_level_70"
 [undead_lumberjack_level_70_8]
 id = 5747
 clone = "undead_lumberjack_level_70"
+
+[asyn_shadow_temple_trekking]
+id = 3616
+hitpoints = 940
+att = 110
+str = 96
+def = 80
+mage = 50
+range = 50
+examine = "The shadowy remains of a long-departed soul."
+
+[shade_temple_trekking]
+id = 3617
+hitpoints = 1150
+att = 130
+str = 136
+def = 100
+mage = 50
+range = 50
+examine = "Dead, but not gone."
+
+[head_temple_trekking]
+id = 3620
+hitpoints = 1500
+att = 73
+str = 186
+def = 75
+mage = 50
+range = 50
+examine = "I'm glad I can't see the rest of it!"

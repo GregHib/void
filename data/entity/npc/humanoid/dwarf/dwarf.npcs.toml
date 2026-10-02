@@ -129,3 +129,19 @@ slayer_xp = 61.0
 drop_table = "chaos_dwarf"
 categories = ["chaos_dwarf", "dwarves"]
 examine = "A dwarf gone bad."
+
+[chaos_dwarf_2]
+id = 2423
+hitpoints = 610
+att = 38
+str = 42
+def = 28
+examine = "A dwarf gone bad."
+
+[chaos_dwarf_3]
+id = 8788
+hitpoints = 610
+att = 38
+str = 42
+def = 28
+examine = "A dwarf gone bad."

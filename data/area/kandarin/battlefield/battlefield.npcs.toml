@@ -177,3 +177,11 @@ drop_table = "tortoise_rider"
 examine = "Massive beast of War with extra Gnome."
 max_hit_crush = 110
 combat_def = "tortoise"
+
+[mounted_terrorbird_gnome_battlefield_4]
+id = 1753
+hitpoints = 550
+att = 40
+str = 40
+def = 40
+examine = "These gnomes know how to get around!"

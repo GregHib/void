@@ -136,3 +136,11 @@ categories = ["shades"]
 immune_poison = true
 drop_table = "asyn_shade"
 examine = "The shadowy remains of a long departed soul."
+
+[fiyr_shade]
+id = 1250
+hitpoints = 1100
+att = 120
+str = 100
+def = 85
+examine = "The shadowy remains of a long departed soul."

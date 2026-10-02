@@ -24,3 +24,10 @@ style = "crush"
 max_hit_melee = 80
 attack_bonus = 7
 examine = "The spirit of a long-dead wizard."
+
+[echned_zekin]
+id = 940
+hitpoints = 1500
+att = 165
+str = 168
+def = 167

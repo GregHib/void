@@ -179,3 +179,19 @@ respawn_delay = 3
 drop_table = "skeleton_catacombs"
 categories = ["skeletons", "undead"]
 examine = "The bones of someone who died in Lumbridge long ago."
+
+[skeleton]
+id = 7774
+hitpoints = 260
+att = 33
+str = 31
+def = 52
+examine = "Could do with gaining a few pounds."
+
+[skeleton_2]
+id = 7815
+hitpoints = 290
+att = 15
+str = 18
+def = 17
+examine = "Could do with gaining a few pounds."
