@@ -1,3 +1,59 @@
 [bank_deposit_box_stealing_creation]
 id = 39830
 examine = "Lets you put items into your bank."
+
+[stealing_creation_stile]
+id = 39508
+examine = "I can join a team by climbing over this."
+
+[stealing_creation_stile_2]
+id = 39509
+examine = "I can join a team by climbing over this."
+
+[stealing_creation_clan_stile]
+id = 39510
+examine = "I can enter the clan area by climbing over this."
+
+[stealing_creation_entry_portal]
+id = 39515
+examine = "Jump in, what could go wrong?"
+
+[stealing_creation_bed]
+id = 39530
+examine = "At least the pillow looks comfy"
+
+[sacks_stealing_creation]
+id = 39531
+examine = "The mystics keep things in these."
+
+[stealing_creation_clan_sign]
+id = 39733
+examine = "Clan match."
+
+[stealing_creation_ffa_sign]
+id = 39734
+examine = "Free-for-all match."
+
+[stealing_creation_statue]
+id = 39735
+examine = "It looks like the mystics are building a statue of an ork."
+
+[stealing_creation_statue_2]
+id = 39736
+examine = "It looks like the mystics are building a statue of a werewolf."
+
+[stealing_creation_statue_3]
+id = 39737
+examine = "It looks like the mystics are building a statue of a pyrefiend."
+
+[stealing_creation_statue_4]
+id = 39738
+examine = "You can't tell what this statue is going to be."
+
+[stealing_creation_post]
+id = 39761
+examine = "That's not very friendly!"
+
+[stealing_creation_post_2]
+id = 39762
+examine = "That's not very friendly!"

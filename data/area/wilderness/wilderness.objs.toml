@@ -64,3 +64,55 @@ examine = "I wonder what this does..."
 [wilderness_obelisk_rogues_castle]
 id = 14831
 examine = "I wonder what this does..."
+
+[wilderness_volcano_exit]
+id = 28119
+examine = "A way out of the volcano."
+
+[wilderness_volcano_entrance]
+id = 28121
+examine = "A way into the volcano."
+
+[wilderness_skeleton]
+id = 43491
+examine = "He looks kind of familiar."
+
+[wilderness_ship_ladder_up]
+id = 272
+examine = "I can climb up here."
+
+[wilderness_ship_ladder_up_2]
+id = 245
+examine = "I can climb up here."
+
+[wilderness_ship_ladder_down]
+id = 273
+examine = "I can go below decks with this ladder."
+
+[wilderness_ship_ladder_down_2]
+id = 246
+examine = "I can go below decks with this ladder."
+
+[wilderness_ghorrock_stairs_up]
+id = 47142
+examine = "A set of stairs."
+
+[wilderness_ghorrock_stairs_up_2]
+id = 47143
+examine = "A set of stairs."
+
+[wilderness_ghorrock_stairs_down]
+id = 47144
+examine = "A set of stairs."
+
+[wilderness_muddy_chest_closed]
+id = 170
+examine = "I wonder what's inside."
+
+[wilderness_muddy_chest_open]
+id = 171
+examine = "Perhaps I should search it."
+
+[wilderness_musician_lantern]
+id = 43488
+examine = "It's shining brightly."

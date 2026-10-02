@@ -15925,9 +15925,9 @@ wander_range = 0
 [.mandrith]
 wander_range = 0
 
-#[.6538]
-#wander_range = 1
-#max_range = 1
+[.banker_wilderness]
+wander_range = 1
+max_range = 1
 
 [.nastroth_lumbridge]
 wander_range = 0
@@ -20014,10 +20014,7 @@ max_range = 5
 #wander_range = 8
 
 [.goth_leprechaun_wilderness]
-wander_range = 0
-
-[.goth_leprechaun_wilderness_2]
-wander_range = 0
+wander_range = 3
 
 #[.8006]
 #wander_range = 0
@@ -20501,6 +20498,21 @@ wander_range = 30000
 #[.8226]
 #wander_range = 100
 #max_range = 100
+
+[.head_mystic]
+wander_range = 5
+
+[.mystic]
+wander_range = 3
+
+[.mystic_2]
+wander_range = 3
+
+[.mystic_3]
+wander_range = 3
+
+[.mystic_4]
+wander_range = 3
 
 #[.8232]
 #wander_range = 0
@@ -24195,7 +24207,7 @@ max_range = 64
 wander_range = 0
 
 [.xenia]
-wander_range = 0
+wander_range = 1
 
 [.xenia_after_cutscene]
 wander_range = 0

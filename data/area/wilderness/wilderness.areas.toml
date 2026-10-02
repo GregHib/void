@@ -29,6 +29,36 @@ y = [3524, 3524, 3532, 3533, 3540, 3543, 3546, 3543, 3544, 3536, 3536, 3525, 352
 tags = ["wilderness", "penguin_area"]
 hint = "in the Wilderness."
 
+[underground_wilderness_region_11937]
+x = [2944, 3007]
+y = [10304, 10367]
+tags = ["wilderness"]
+hint = "in the Wilderness."
+
+[underground_wilderness_region_12192]
+x = [3008, 3071]
+y = [10240, 10303]
+tags = ["wilderness"]
+hint = "in the Wilderness."
+
+[underground_wilderness_region_12193]
+x = [3008, 3071]
+y = [10304, 10367]
+tags = ["wilderness"]
+hint = "in the Wilderness."
+
+[underground_wilderness_region_12443]
+x = [3072, 3135]
+y = [9920, 9983]
+tags = ["wilderness"]
+hint = "in the Wilderness."
+
+[underground_wilderness_region_12444]
+x = [3072, 3135]
+y = [9984, 10047]
+tags = ["wilderness"]
+hint = "in the Wilderness."
+
 [wilderness_main_multi_area]
 x = [3200, 3392, 3392, 3328, 3328, 3136, 3136, 3192, 3192, 3152, 3152, 3136, 3136, 3112, 3112, 3072, 3072, 3048, 3048, 3056, 3056, 3048, 3048, 3008, 3008, 3200]
 y = [3968, 3968, 3840, 3840, 3520, 3520, 3648, 3648, 3752, 3752, 3840, 3840, 3872, 3872, 3880, 3880, 3896, 3896, 3872, 3872, 3864, 3864, 3856, 3856, 3904, 3904]
@@ -60,6 +90,16 @@ tags = ["teleport"]
 x = [3155, 3157]
 y = [3619, 3621]
 tags = ["teleport", "obelisk"]
+
+[stealing_creation]
+x = [3120, 3148]
+y = [3613, 3645]
+tags = ["safe_zone"]
+
+[wilderness_volcano_entrance]
+x = [3193, 3194, 3194, 3192, 3184, 3172, 3157, 3133, 3145, 3152, 3159, 3162, 3166, 3173, 3176, 3179, 3182, 3182, 3186, 3187, 3188, 3189, 3193]
+y = [3668, 3685, 3697, 3703, 3702, 3692, 3683, 3652, 3653, 3657, 3660, 3662, 3664, 3668, 3671, 3673, 3673, 3668, 3668, 3669, 3669, 3668, 3668]
+tags = ["safe_zone"]
 
 [wilderness_obelisk_bandit_camp]
 x = [3034, 3036]

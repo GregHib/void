@@ -10,4 +10,5 @@ respawn_delay = 30
 drop_table = "magic_axe"
 hunt_mode = "cowardly"
 categories = ["magic_axe", "undead"]
+collision = "indoors"
 examine = "A magic axe with a mind of its own."
