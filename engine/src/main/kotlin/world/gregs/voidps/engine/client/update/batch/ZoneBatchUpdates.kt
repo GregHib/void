@@ -81,13 +81,24 @@ object ZoneBatchUpdates : Runnable {
      */
     fun refresh(player: Player) {
         val viewport = player.viewport ?: return
-        for (zone in player.tile.zone.toRectangle(radius = viewport.localRadius).toZonesReversed(player.tile.level)) {
+        val area = player.tile.zone.toRectangle(radius = viewport.localRadius)
+        for (zone in area.toZonesReversed(player.tile.level)) {
             if (!inViewport(viewport, zone)) {
                 continue
             }
             player.clearZone(zone)
             for (sender in senders) {
                 sender.send(player, zone)
+            }
+        }
+        if (viewport.dynamic) {
+            // The client keeps objects spawned on levels hidden by the new map, without terrain they'd show at ground height
+            for (level in viewport.maxLevel + 1 until 4) {
+                for (zone in area.toZonesReversed(level)) {
+                    if (inViewport(viewport, zone)) {
+                        player.clearZone(zone)
+                    }
+                }
             }
         }
         viewport.lastBatchZone = player.tile.zone
