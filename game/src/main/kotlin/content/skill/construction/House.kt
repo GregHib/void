@@ -5,6 +5,7 @@ import content.quest.exitInstance
 import content.quest.instance
 import org.rsmod.game.pathfinder.flag.CollisionFlag
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
@@ -464,6 +465,13 @@ class House : Script {
         }
 
         private const val BLOCKED = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT
+
+        /**
+         * Placeholder for furniture interactions which haven't been added yet
+         */
+        fun Player.notImplemented() {
+            message("<purple>Not yet implemented.") // TODO
+        }
 
         suspend fun Player.houseLoading() {
             open("house_loading")

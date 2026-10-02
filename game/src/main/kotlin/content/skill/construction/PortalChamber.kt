@@ -5,6 +5,7 @@ import content.skill.construction.House.Companion.furnishRoom
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseFurniture
 import content.skill.construction.House.Companion.inOwnHouse
+import content.skill.construction.House.Companion.notImplemented
 import content.skill.construction.House.Companion.roomPosition
 import content.skill.construction.House.Companion.roomZone
 import content.skill.construction.HouseFurniture.Companion.pick
@@ -33,6 +34,10 @@ class PortalChamber : Script {
         objectOperate("Enter", PORTALS) { (target) ->
             val spell = Tables.stringOrNull("house_portals.${target.id.substringAfter("_portal_")}.spell") ?: return@objectOperate
             Teleport.teleport(this, spell, "modern")
+        }
+
+        objectOperate("Scry", "scrying_pool") {
+            notImplemented()
         }
 
         objectOperate("Direct-portal", FOCUSES) { (target) ->

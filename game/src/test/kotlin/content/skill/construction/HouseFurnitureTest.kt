@@ -8,6 +8,9 @@ import dialogueOption
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.data.definition.ObjectDefinitions
+import world.gregs.voidps.engine.data.definition.Tables
+import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
@@ -262,5 +265,35 @@ class HouseFurnitureTest : WorldTest() {
         assertEquals("It's twenty to Rune.", clockTime(39))
         assertEquals("It's five to Rune.", clockTime(55))
         assertEquals("It's Rune o'clock.", clockTime(58))
+    }
+
+    @Test
+    fun `Every furniture option has an interaction`() {
+        val missing = mutableListOf<String>()
+        for (row in Tables.get("house_furniture").rows()) {
+            for (id in Tables.objList("house_furniture.${row.rowId}.objects")) {
+                val options = ObjectDefinitions.get(id).options ?: continue
+                for (option in options.filterNotNull()) {
+                    if (option == "Examine" || option == "Remove") {
+                        continue
+                    }
+                    if (!Operation.playerObject.containsKey("$option:$id") && !Operation.playerObject.containsKey("$option:*")) {
+                        missing.add("$option:$id")
+                    }
+                }
+            }
+        }
+        assertTrue(missing.isEmpty(), missing.toString())
+    }
+
+    @Test
+    fun `Unimplemented furniture sends a message`() {
+        val player = createPlayer(emptyTile)
+        val organ = createObject("organ", emptyTile.addY(1))
+
+        player.objectOption(organ, "Play")
+        tick()
+
+        assertTrue(player.containsMessage("Not yet implemented."))
     }
 }
