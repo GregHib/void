@@ -27,9 +27,6 @@ class Viewport {
 
     // The DynamicZones.version the last region update was sent with
     var dynamicVersion: Int = -1
-
-    // The highest level the last dynamic region update was sent with
-    var maxLevel: Int = 3
     var size: Int = 0
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]

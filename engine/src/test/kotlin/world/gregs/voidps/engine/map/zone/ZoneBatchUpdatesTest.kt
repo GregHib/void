@@ -75,33 +75,6 @@ internal class ZoneBatchUpdatesTest : KoinMock() {
     }
 
     @Test
-    fun `Refreshing a dynamic region clears levels hidden above the player`() {
-        player.tile = Tile(20, 20)
-        player.viewport!!.lastLoadZone = player.tile.zone
-        player.viewport!!.dynamic = true
-        player.viewport!!.maxLevel = 0
-
-        ZoneBatchUpdates.refresh(player)
-
-        verify {
-            client.clearZone(2, 2, 0)
-            client.clearZone(2, 2, 1)
-            client.clearZone(2, 2, 3)
-        }
-    }
-
-    @Test
-    fun `Refreshing a static region only clears the players level`() {
-        player.tile = Tile(20, 20)
-        player.viewport!!.lastLoadZone = player.tile.zone
-
-        ZoneBatchUpdates.refresh(player)
-
-        verify { client.clearZone(2, 2, 0) }
-        verify(exactly = 0) { client.clearZone(any(), any(), 1) }
-    }
-
-    @Test
     fun `Staying in zone sends batched updates`() {
         // Given
         val zone = Zone(11, 11, 1)
