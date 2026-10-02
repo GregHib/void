@@ -6,8 +6,10 @@ import content.skill.construction.House.Companion.DUNGEON_LEVEL
 import content.skill.construction.House.Companion.GROUND_LEVEL
 import content.skill.construction.House.Companion.HOUSE_CENTRE
 import content.skill.construction.House.Companion.addHouseRoom
+import content.skill.construction.House.Companion.buildLevel
 import content.skill.construction.House.Companion.connectStairs
 import content.skill.construction.House.Companion.exitPortals
+import content.skill.construction.House.Companion.freeBuild
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseRoom
 import content.skill.construction.House.Companion.houseRoomIds
@@ -93,7 +95,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
      * Sizes grow from the south-west, so even sizes extend one further north and east of the [HOUSE_CENTRE]
      */
     private fun Player.buildRange(): IntRange {
-        val size = 3 + sizeLevels.count { levels.get(Skill.Construction) >= it }
+        val size = 3 + sizeLevels.count { buildLevel >= it }
         return HOUSE_CENTRE - (size - 1) / 2..HOUSE_CENTRE + size / 2
     }
 
@@ -179,7 +181,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
          * Whether the players level allows building another room
          */
         fun Player.hasRoomSpace(): Boolean {
-            if (houseRoomIds.size >= 20 + roomLevels.count { levels.get(Skill.Construction) >= it }) {
+            if (houseRoomIds.size >= 20 + roomLevels.count { buildLevel >= it }) {
                 message("You need a higher Construction level to build any more rooms.") // TODO proper messages
                 return false
             }
@@ -191,7 +193,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
          */
         fun Player.canBuildRoom(room: String, position: Int): Boolean {
             val row = Rows.getOrNull("house_rooms.$room") ?: return false
-            if (!has(Skill.Construction, row.int("level"), message = true)) {
+            if (!freeBuild && !has(Skill.Construction, row.int("level"), message = true)) {
                 return false
             }
             val dungeon = row.bool("dungeon")
@@ -207,7 +209,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
                 message("That room can only be built on the ground floor.") // TODO proper messages
                 return false
             }
-            if (inventory.count("coins") < row.int("cost")) {
+            if (!freeBuild && inventory.count("coins") < row.int("cost")) {
                 message("You need ${row.int("cost")} coins to build this room.") // TODO proper messages
                 return false
             }
@@ -218,7 +220,7 @@ class RoomCreation(val dynamicZones: DynamicZones) : Script {
          * Pays for and builds [room] at [position] connecting any stairs above or below, then reloads the house
          */
         fun Player.buildRoom(base: Zone, room: String, position: Int, rotation: Int) {
-            if (inventory.remove("coins", Rows.get("house_rooms.$room").int("cost"))) {
+            if (freeBuild || inventory.remove("coins", Rows.get("house_rooms.$room").int("cost"))) {
                 addHouseRoom(room, position, rotation)
                 connectStairs(position)
             } else {

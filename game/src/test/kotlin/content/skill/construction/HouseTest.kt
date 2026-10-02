@@ -882,4 +882,23 @@ class HouseTest : WorldTest() {
             assertNull(GameObjects.findOrNull(tile) { it.id == "basic_wood_wall" || it.id.startsWith("door_hotspot") }, tile.toString())
         }
     }
+
+    @Test
+    fun `Menagerie habitat floor spaces only show in building mode`() {
+        val building = createOwner("builder")
+        building.addHouseRoom("menagerie", roomPosition(4, 3, GROUND_LEVEL))
+        building.enterPortal(2)
+        val visiting = createOwner("visitor")
+        visiting.addHouseRoom("menagerie", roomPosition(4, 3, GROUND_LEVEL))
+        visiting.enterPortal(1)
+
+        assertEquals(64, building.habitatFloor().size)
+        assertTrue(visiting.habitatFloor().isEmpty())
+    }
+
+    private fun Player.habitatFloor() = roomZone(instance()!!.tile.zone, roomPosition(4, 3, GROUND_LEVEL)).toCuboid()
+        .flatMap { GameObjects.at(it) }
+        .filter { it.def.name == "Habitat space" }
+        .map { it.tile }
+        .distinct()
 }

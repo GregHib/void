@@ -5,6 +5,7 @@ import content.skill.construction.House.Companion.GROUND_LEVEL
 import content.skill.construction.House.Companion.addHouseFurniture
 import content.skill.construction.House.Companion.connectStairs
 import content.skill.construction.House.Companion.exitPortals
+import content.skill.construction.House.Companion.freeBuild
 import content.skill.construction.House.Companion.furnishRoom
 import content.skill.construction.House.Companion.hotspot
 import content.skill.construction.House.Companion.houseBase
@@ -131,7 +132,7 @@ class FurnitureCreation : Script {
             interfaces.sendText("furniture_creation", "material_${slot}_$line", if (item == null) "" else "${item.amount} ${item.def.name}")
         }
         interfaces.sendText("furniture_creation", "level_$slot", if (row == null) "" else "Level ${row.int("level")}")
-        set("furniture_creation_hide_cross_$slot", row == null || (has(Skill.Construction, row.int("level")) && inventory.contains(materials)))
+        set("furniture_creation_hide_cross_$slot", row == null || freeBuild || (has(Skill.Construction, row.int("level")) && inventory.contains(materials)))
     }
 
     private suspend fun Player.build(target: GameObject, furniture: String) {
@@ -171,7 +172,7 @@ class FurnitureCreation : Script {
         if (!canBuild(row)) {
             return
         }
-        if (!inventory.remove(materials(row))) {
+        if (!freeBuild && !inventory.remove(materials(row))) {
             message("You don't have the right materials.") // TODO proper message
             return
         }
@@ -187,10 +188,16 @@ class FurnitureCreation : Script {
             placeFurniture(target.tile.zone, hotspot, furniture)
         }
         anim("construction_build")
-        exp(Skill.Construction, row.int("xp") / 10.0)
+        // Free building doesn't give experience so it can't be used for training
+        if (!freeBuild) {
+            exp(Skill.Construction, row.int("xp") / 10.0)
+        }
     }
 
     private fun Player.canBuild(row: RowDefinition): Boolean {
+        if (freeBuild) {
+            return true
+        }
         if (!has(Skill.Construction, row.int("level"), message = true)) {
             return false
         }

@@ -10,6 +10,7 @@ import content.skill.construction.House.Companion.addHouseRoom
 import content.skill.construction.House.Companion.houseFurnitureHotspots
 import content.skill.construction.House.Companion.houseFurnitureIds
 import content.skill.construction.House.Companion.houseFurnitureRooms
+import content.skill.construction.House.Companion.houseRoomIds
 import content.skill.construction.House.Companion.houseRoomPositions
 import content.skill.construction.House.Companion.removeHouseRoom
 import content.skill.construction.House.Companion.roomZone
@@ -19,6 +20,7 @@ import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -441,5 +443,35 @@ class FurnitureCreationTest : WorldTest() {
 
         assertEquals(listOf(START_ROOM + 1), player.houseFurnitureRooms)
         assertEquals(listOf("pond"), player.houseFurnitureIds)
+    }
+
+    @Test
+    fun `Free building doesn't need levels, tools or materials`() {
+        Settings.load(mapOf("construction.freeBuild" to "true"))
+        val player = createBuilder()
+        player.inventory.remove("hammer")
+        player.inventory.remove("saw")
+        player.enterPortal(2)
+
+        player.build("parlour_chair_space", "mahogany_armchair")
+
+        assertEquals(1, player.objects("mahogany_armchair").size)
+        assertEquals(listOf("mahogany_armchair"), player.houseFurnitureIds)
+        assertEquals(0.0, player.experience.get(Skill.Construction))
+    }
+
+    @Test
+    fun `Free building builds rooms without levels or coins`() {
+        Settings.load(mapOf("construction.freeBuild" to "true"))
+        val player = createBuilder("garden")
+        player.enterPortal(2)
+        val base = player.instance()!!.tile.zone
+
+        player.objectOption(GameObjects.find(base.add(4, 4, GROUND_LEVEL).tile.add(7, 3)) { it.id.startsWith("door_hotspot") }, "Build")
+        tickIf { !player.hasOpen("room_creation") }
+        player.interfaceOption("room_creation", "throne_room", "Build")
+        player.dialogueOption("line3")
+
+        assertEquals("throne_room", player.houseRoomIds.last())
     }
 }

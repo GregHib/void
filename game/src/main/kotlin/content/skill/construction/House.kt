@@ -9,11 +9,13 @@ import world.gregs.voidps.engine.client.message
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.data.Settings
 import world.gregs.voidps.engine.data.definition.Rows
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.remove
@@ -63,6 +65,18 @@ class House : Script {
 
         // Staircase placed in the dungeon room below a dungeon entrance so it leads back up
         private const val ENTRANCE_STAIRS = "oak_staircase"
+
+        /**
+         * Whether furniture and rooms can be built without levels, tools, materials or coins
+         */
+        val freeBuild: Boolean
+            get() = Settings["construction.freeBuild", false]
+
+        /**
+         * Construction level used for building requirements
+         */
+        val Player.buildLevel: Int
+            get() = if (freeBuild) 99 else levels.get(Skill.Construction)
 
         val Player.houseRoomIds: List<String>
             get() = get("house_room_ids") ?: emptyList()
@@ -493,7 +507,7 @@ class House : Script {
                     } else if (!buildMode && obj.id.startsWith("door_hotspot")) {
                         val wall = door(roomSide(obj.tile))
                         if (wall == null) obj.remove() else obj.replace(wall)
-                    } else if (!buildMode && obj.def.containsOption("Build")) {
+                    } else if (!buildMode && (obj.def.containsOption("Build") || obj.def.name == HABITAT_FLOOR)) {
                         obj.remove()
                     }
                 }
@@ -511,6 +525,9 @@ class House : Script {
         private const val BLOCKED = CollisionFlag.FLOOR or CollisionFlag.FLOOR_DECORATION or CollisionFlag.OBJECT
 
         private val curtains = setOf("torn_curtains", "curtains", "opulent_curtains")
+
+        // Name of the menagerie's floor placeholders, one per tile without any options so aren't caught as hotspots
+        private const val HABITAT_FLOOR = "Habitat space"
 
         /**
          * Placeholder for furniture interactions which haven't been added yet
