@@ -52,8 +52,10 @@ class GameObjectHashMap {
         data.clear()
     }
 
-    fun save(file: File) {
-        val writer = ArrayWriter(4 + data.size * 8)
+    fun save(file: File, storeUnused: Boolean) {
+        val writer = ArrayWriter(HEADER_BYTES + data.size * 8)
+        writer.writeInt(MAGIC)
+        writer.writeInt(if (storeUnused) STORE_UNUSED else 0)
         writer.writeInt(data.size)
         val list = data.toList()
         for (pair in list) {
@@ -65,8 +67,22 @@ class GameObjectHashMap {
         file.writeBytes(writer.toArray())
     }
 
-    fun load(file: File): Int {
+    /**
+     * Loads objects from [file], returning the number read or [INVALID] if it wasn't written in
+     * this format or was written with a different [storeUnused], in which case nothing is loaded
+     */
+    fun load(file: File, storeUnused: Boolean): Int {
+        if (file.length() < HEADER_BYTES) {
+            return INVALID
+        }
         val reader = ArrayReader(file.readBytes())
+        if (reader.readInt() != MAGIC) {
+            return INVALID
+        }
+        val flags = reader.readInt()
+        if ((flags and STORE_UNUSED != 0) != storeUnused) {
+            return INVALID
+        }
         val size = reader.readInt()
         val keys = IntArray(size)
         val values = IntArray(size)
@@ -77,6 +93,13 @@ class GameObjectHashMap {
     }
 
     companion object {
+        const val INVALID = -1
+
+        // Files written before the header exist in the wild; their first int is an object count,
+        // which can never reach this value, so they're rejected and rebuilt
+        private const val MAGIC = 0x564F4944
+        private const val STORE_UNUSED = 0x1
+        private const val HEADER_BYTES = 12
         private const val EXPECTED_OBJECT_COUNT = 74_000
         private const val ABSENT = -1
 

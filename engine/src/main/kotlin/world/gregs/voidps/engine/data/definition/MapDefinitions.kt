@@ -40,10 +40,12 @@ class MapDefinitions(
             File(path).mkdirs()
             val objectsFile = File("${path}${Settings["storage.caching.objects"]}")
             val collisionsFile = File("${path}${Settings["storage.caching.collisions"]}")
-            if (objectsFile.exists() && collisionsFile.exists() && !configFiles.cacheUpdate) {
+            val cached = objectsFile.exists() && collisionsFile.exists() && !configFiles.cacheUpdate
+            // Objects go first; the cached file is rejected when it was written with different
+            // settings, and there's no point loading collision for a map we're about to re-decode
+            if (cached && GameObjects.load(objectsFile)) {
                 val start = System.currentTimeMillis()
                 val zones = collisions.load(collisionsFile)
-                GameObjects.load(objectsFile)
                 logger.info { "Loaded all maps $zones zones ${GameObjects.size} ${"object".plural(GameObjects.size)} in ${System.currentTimeMillis() - start}ms" }
             } else {
                 loadCache(xteas)
