@@ -39,7 +39,7 @@ class BuyLimits {
         }
         val now = epochMilliseconds()
         for ((player, limit) in limits) {
-            if (TimeUnit.MILLISECONDS.toHours(now - limit.timestamp) > hours) {
+            if (TimeUnit.MILLISECONDS.toHours(now - limit.timestamp) >= hours) {
                 limits.remove(player)
             }
         }
