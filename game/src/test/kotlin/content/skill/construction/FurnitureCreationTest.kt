@@ -19,6 +19,7 @@ import objectOption
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.character.move.tele
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -211,6 +212,136 @@ class FurnitureCreationTest : WorldTest() {
         assertEquals(middles, player.objects("brown_rug_middle").map { it.tile })
         assertTrue(player.objects("parlour_rug_space_middle").isEmpty())
         assertEquals(listOf("parlour_rug"), player.houseFurnitureHotspots)
+    }
+
+    @Test
+    fun `Build the piece of furniture matching the hotspot`() {
+        val player = createBuilder("garden")
+        player.levels.set(Skill.Construction, 15)
+        player.inventory.add("bagged_oak_tree", 2)
+        player.enterPortal(2)
+        val tree = player.objects("garden_tree_space").single()
+        val bigTree = player.objects("garden_big_tree_space").single()
+
+        player.build("garden_tree_space", "oak_tree")
+        player.build("garden_big_tree_space", "oak_tree")
+
+        assertEquals(tree.tile, player.objects("oak_tree").single().tile)
+        assertEquals(bigTree.tile, player.objects("big_oak_tree").single().tile)
+        assertEquals(0, player.inventory.count("bagged_oak_tree"))
+    }
+
+    @Test
+    fun `Every hotspot outside of a group has furniture for its piece`() {
+        for (hotspot in Tables.get("house_hotspots").rows()) {
+            val furniture = hotspot.itemList("furniture")
+            assertTrue(furniture.size in 1..7, hotspot.stringId)
+            if (hotspot.stringOrNull("group") != null) {
+                continue
+            }
+            for (id in furniture) {
+                val objects = Tables.objList("house_furniture.$id.objects")
+                val piece = hotspot.int("piece")
+                val index = Tables.intListOrNull("house_furniture.$id.pieces")?.indexOf(piece) ?: piece
+                assertNotNull(objects.getOrNull(index), "${hotspot.stringId} $id")
+            }
+        }
+    }
+
+    @Test
+    fun `Build furniture which leaves some pieces empty`() {
+        val player = createBuilder("combat_room")
+        player.levels.set(Skill.Construction, 71)
+        player.inventory.add("teak_plank", 8)
+        player.enterPortal(2)
+
+        player.build("combat_room_ring_rope_space", "ranging_pedestals")
+
+        assertEquals(2, player.objects("ranging_spot").size)
+        assertEquals(8, player.objects("magic_barrier").size)
+        assertTrue(player.objects("combat_room_ring_rope_space").isEmpty())
+        assertTrue(player.objects("combat_room_ring_mat_middle_space").isEmpty())
+        assertEquals(listOf("combat_ring"), player.houseFurnitureHotspots)
+    }
+
+    @Test
+    fun `Build furniture only on tiles with its anchors`() {
+        val player = createBuilder("combat_room")
+        player.levels.set(Skill.Construction, 81)
+        player.inventory.add("teak_plank", 10)
+        player.inventory.add("steel_bar", 5)
+        player.enterPortal(2)
+        val tiles = (player.objects("combat_room_ring_barrier_space_2") + player.objects("combat_room_ring_beam_space")).map { it.tile }
+        val mats = player.objects("combat_room_ring_mat_middle_space").associate { it.tile to it.rotation }
+
+        player.build("combat_room_ring_rope_space", "balance_beam")
+
+        assertEquals(listOf(tiles.first(), tiles.last()).toSet(), player.objects("balance_beam_end").map { it.tile }.toSet())
+        val middles = player.objects("balance_beam")
+        assertEquals(tiles.drop(1).dropLast(1).toSet(), middles.map { it.tile }.toSet())
+        assertTrue(middles.all { it.rotation == (mats.getValue(it.tile) + 1) and 0x3 })
+        assertTrue(player.objects("combat_room_ring_beam_space").isEmpty())
+        assertTrue(player.objects("combat_room_ring_mat_middle_space").isEmpty())
+    }
+
+    @Test
+    fun `Removing anchored furniture restores its hotspots`() {
+        val player = createBuilder("combat_room")
+        player.addHouseFurniture(START_ROOM, "combat_ring", "balance_beam")
+        player.enterPortal(2)
+
+        player.objectOption(player.objects("balance_beam").first(), "Remove")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line1")
+
+        assertTrue(player.objects("balance_beam").isEmpty())
+        assertEquals(3, player.objects("combat_room_ring_beam_space").size)
+        assertEquals(4, player.objects("combat_room_ring_mat_middle_space").size)
+    }
+
+    @Test
+    fun `Removing furniture restores empty pieces`() {
+        val player = createBuilder("combat_room")
+        player.addHouseFurniture(START_ROOM, "combat_ring", "boxing_ring")
+        player.enterPortal(2)
+        assertTrue(player.objects("combat_room_ring_barrier_space").isEmpty())
+
+        player.objectOption(player.objects("boxing_mat_middle").first(), "Remove")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line1")
+
+        assertTrue(player.objects("boxing_ring").isEmpty())
+        assertEquals(3, player.objects("combat_room_ring_barrier_space").size)
+        assertEquals(4, player.objects("combat_room_ring_mat_middle_space").size)
+        assertTrue(player.houseFurnitureIds.isEmpty())
+    }
+
+    @Test
+    fun `Build furniture showing the players family crest`() {
+        val player = createBuilder("throne_room")
+        player["heraldry_crest"] = 3
+        player.levels.set(Skill.Construction, 66)
+        player.inventory.add("oak_plank", 2)
+        player.enterPortal(2)
+
+        player.build("throne_room_decoration_space", "round_shield")
+
+        assertEquals(2, player.objects("round_shield_3").size)
+        assertTrue(player.objects("throne_room_decoration_space").isEmpty())
+    }
+
+    @Test
+    fun `Build furniture matching the house style`() {
+        val player = createBuilder("throne_room")
+        player["house_style"] = "basic_stone"
+        player.levels.set(Skill.Construction, 61)
+        player.inventory.add("mahogany_plank", 5)
+        player.enterPortal(2)
+
+        player.build("throne_room_floor_space_2", "floor_decoration")
+
+        assertEquals(4, player.objects("floor_decoration_basic_stone").size)
+        assertTrue(player.objects("throne_room_floor_space_2").isEmpty())
     }
 
     @Test

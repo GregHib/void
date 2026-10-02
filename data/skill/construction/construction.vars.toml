@@ -28,3 +28,8 @@ persist = true
 format = "string"
 persist = true
 default = "basic_wood"
+
+# Family crest picked by heraldry, shown on built shields
+[heraldry_crest]
+format = "int"
+persist = true

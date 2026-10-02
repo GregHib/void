@@ -3,6 +3,7 @@ package content.skill.construction
 import content.entity.player.dialogue.type.choice
 import content.skill.construction.House.Companion.addHouseFurniture
 import content.skill.construction.House.Companion.exitPortals
+import content.skill.construction.House.Companion.furnishRoom
 import content.skill.construction.House.Companion.hotspot
 import content.skill.construction.House.Companion.houseBase
 import content.skill.construction.House.Companion.houseFurniture
@@ -24,12 +25,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.level.Level.has
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjects
-import world.gregs.voidps.engine.entity.obj.remove
 import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.engine.inv.remove
 import world.gregs.voidps.engine.inv.transact.operation.ClearItem.clear
-import world.gregs.voidps.type.Zone
 
 class FurnitureCreation : Script {
     init {
@@ -95,7 +94,8 @@ class FurnitureCreation : Script {
                         return@option
                     }
                     removeHouseFurniture(position, hotspot)
-                    removeFurniture(target.tile.zone, hotspot)
+                    GameObjects.reset(target.tile.zone)
+                    furnishRoom(base, position, buildMode = true)
                     anim("construction_remove")
                 }
                 option("No")
@@ -151,20 +151,6 @@ class FurnitureCreation : Script {
         }
         val type = nailTypes.firstOrNull { inventory.contains(it, nails) } ?: nailTypes.first()
         return materials + Item(type, nails)
-    }
-
-    /**
-     * Removes all furniture built on [hotspot] in [zone], revealing the original hotspots
-     */
-    private fun removeFurniture(zone: Zone, hotspot: String) {
-        for (tile in zone.toCuboid()) {
-            for (obj in GameObjects.at(tile)) {
-                val original = GameObjects.original(obj) ?: continue
-                if (hotspot(original) == hotspot) {
-                    obj.remove()
-                }
-            }
-        }
     }
 
     companion object {

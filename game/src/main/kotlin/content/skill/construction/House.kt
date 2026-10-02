@@ -155,17 +155,49 @@ class House : Script {
         }
 
         /**
-         * Replaces each piece of [hotspot] in [zone] with the matching piece of [furniture]
+         * Replaces each piece of [hotspot] in [zone] with the matching piece of [furniture], pieces without one are removed.
+         * Furniture objects are listed by piece unless [furniture] lists which pieces they're placed on,
+         * only placed on tiles with one of its anchor pieces when it has any, and turned by its rotations.
+         * Furniture with a variant uses the object picked by that player variable instead.
          */
-        fun placeFurniture(zone: Zone, hotspot: String, furniture: String) {
+        fun Player.placeFurniture(zone: Zone, hotspot: String, furniture: String) {
             val objects = Tables.objList("house_furniture.$furniture.objects")
+            val pieces = Tables.intListOrNull("house_furniture.$furniture.pieces")
+            val anchors = Tables.intListOrNull("house_furniture.$furniture.anchors")
+            val rotations = Tables.intListOrNull("house_furniture.$furniture.rotations")
+            val variant = Tables.stringOrNull("house_furniture.$furniture.variant")
             for (tile in zone.toCuboid()) {
-                for (obj in GameObjects.at(tile)) {
-                    if (hotspot(obj) == hotspot) {
-                        obj.replace(objects[Tables.int("house_hotspots.${obj.id}.piece")])
+                val spaces = GameObjects.at(tile).filter { hotspot(it) == hotspot }
+                val anchored = anchors == null || spaces.any { piece(it) in anchors }
+                for (obj in spaces) {
+                    val piece = piece(obj)
+                    val index = if (variant != null) get(variant, 0) else pieces?.indexOf(piece) ?: piece
+                    val id = if (anchored) objects.getOrNull(index) else null
+                    if (id == null) {
+                        obj.remove()
+                    } else {
+                        obj.replace(id, rotation = (obj.rotation + (rotations?.get(index) ?: 0)) and 0x3)
                     }
                 }
             }
+        }
+
+        private fun piece(obj: GameObject) = Tables.int("house_hotspots.${obj.id}.piece")
+
+        /**
+         * Places the furniture built in the room at [position] and decorates it
+         */
+        fun Player.furnishRoom(base: Zone, position: Int, buildMode: Boolean) {
+            val zone = roomZone(base, position)
+            val furniture = houseFurnitureIds
+            val hotspots = houseFurnitureHotspots
+            for ((index, room) in houseFurnitureRooms.withIndex()) {
+                if (room == position) {
+                    placeFurniture(zone, hotspots[index], furniture[index])
+                }
+            }
+            val window = Tables.obj("house_styles.${get("house_style", "basic_wood")}.${if (roomLevel(position) == DUNGEON_LEVEL) "wall" else "window"}")
+            decorate(zone, window, buildMode)
         }
 
         fun roomPosition(x: Int, y: Int, level: Int) = x + y * ROOM_GRID + level * ROOM_GRID * ROOM_GRID
@@ -253,14 +285,8 @@ class House : Script {
                 }
             }
             dynamicZones.copy(entries)
-            val furniture = houseFurnitureIds
-            val hotspots = houseFurnitureHotspots
-            for ((index, position) in houseFurnitureRooms.withIndex()) {
-                placeFurniture(roomZone(base, position), hotspots[index], furniture[index])
-            }
             for (position in positions) {
-                val window = Tables.obj("house_styles.${get("house_style", "basic_wood")}.${if (roomLevel(position) == DUNGEON_LEVEL) "wall" else "window"}")
-                decorate(roomZone(base, position), window, buildMode)
+                furnishRoom(base, position, buildMode)
             }
         }
 

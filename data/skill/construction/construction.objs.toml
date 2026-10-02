@@ -220,3 +220,1872 @@ id = 13116
 
 [fancy_stone_window]
 id = 13117
+
+[garden_big_tree_space]
+id = 15362
+
+[garden_tree_space]
+id = 15363
+
+[garden_big_plant_space]
+id = 15364
+
+[garden_big_plant_space_2]
+id = 15365
+
+[garden_small_plant_space]
+id = 15366
+
+[garden_small_plant_space_2]
+id = 15367
+
+[kitchen_stove_space]
+id = 15398
+
+[kitchen_shelf_space]
+id = 15400
+
+[kitchen_shelf_space_2]
+id = 15399
+
+[kitchen_barrel_space]
+id = 15401
+
+[kitchen_cat_basket_space]
+id = 15402
+
+[kitchen_larder_space]
+id = 15403
+
+[kitchen_sink_space]
+id = 15404
+
+[kitchen_table_space]
+id = 15405
+
+[dining_room_table_space]
+id = 15298
+
+[dining_room_bench_space]
+id = 15299
+
+[dining_room_bench_space_2]
+id = 15300
+
+[dining_room_fireplace_space]
+id = 15301
+
+[dining_room_curtain_space]
+id = 15302
+
+[dining_room_decoration_space]
+id = 15303
+
+[dining_room_bell_pull_space]
+id = 15304
+
+[workshop_workbench_space]
+id = 15439
+
+[workshop_crafting_space]
+id = 15441
+
+[workshop_tool_space]
+id = 15443
+
+[workshop_tool_space_2]
+id = 15444
+
+[workshop_tool_space_3]
+id = 15445
+
+[workshop_tool_space_4]
+id = 15446
+
+[workshop_tool_space_5]
+id = 15447
+
+[workshop_repair_space]
+id = 15448
+
+[workshop_heraldry_space]
+id = 15450
+
+[bedroom_bed_space]
+id = 15260
+
+[bedroom_wardrobe_space]
+id = 15261
+
+[bedroom_dresser_space]
+id = 15262
+
+[bedroom_curtain_space]
+id = 15263
+
+[bedroom_rug_space_corner]
+id = 15266
+
+[bedroom_rug_space_side]
+id = 15265
+
+[bedroom_rug_space_middle]
+id = 15264
+
+[bedroom_fireplace_space]
+id = 15267
+
+[bedroom_clock_space]
+id = 15268
+
+[skill_hall_rug_space_corner]
+id = 15379
+
+[skill_hall_rug_space_side]
+id = 15378
+
+[skill_hall_rug_space_middle]
+id = 15377
+
+[skill_hall_stair_space]
+id = 15380
+
+[skill_hall_stair_space_down]
+id = 15381
+
+[skill_hall_head_trophy_space]
+id = 15382
+
+[skill_hall_fishing_trophy_space]
+id = 15383
+
+[skill_hall_decorative_armour_space]
+id = 15384
+
+[skill_hall_armour_space]
+id = 34255
+
+[skill_hall_rune_case_space]
+id = 15386
+
+[games_room_game_space]
+id = 15342
+
+[games_room_prize_chest_space]
+id = 15343
+
+[games_room_stone_space]
+id = 15344
+
+[games_room_elemental_balance_space]
+id = 15345
+
+[games_room_ranging_game_space]
+id = 15346
+
+[combat_room_ring_rope_space]
+id = 15277
+
+[combat_room_ring_rope_space_2]
+id = 15286
+
+[combat_room_ring_corner_space]
+id = 15278
+
+[combat_room_ring_corner_space_2]
+id = 15279
+
+[combat_room_ring_corner_space_3]
+id = 15281
+
+[combat_room_ring_corner_space_4]
+id = 15282
+
+[combat_room_ring_pedestal_rope_space]
+id = 15280
+
+[combat_room_ring_pedestal_rope_space_2]
+id = 15287
+
+[combat_room_ring_mat_corner_space]
+id = 15289
+
+[combat_room_ring_mat_corner_space_2]
+id = 15294
+
+[combat_room_ring_pedestal_space]
+id = 15290
+
+[combat_room_ring_pedestal_space_2]
+id = 15295
+
+[combat_room_ring_mat_side_space]
+id = 15288
+
+[combat_room_ring_mat_side_space_2]
+id = 15291
+
+[combat_room_ring_mat_side_space_3]
+id = 15293
+
+[combat_room_ring_mat_middle_space]
+id = 15292
+
+[combat_room_ring_barrier_space]
+id = 15283
+
+[combat_room_ring_barrier_space_2]
+id = 15284
+
+[combat_room_ring_beam_space]
+id = 15285
+
+[combat_room_storage_space]
+id = 15296
+
+[combat_room_decoration_space]
+id = 15297
+
+[quest_hall_rug_space_corner]
+id = 15389
+
+[quest_hall_rug_space_side]
+id = 15388
+
+[quest_hall_rug_space_middle]
+id = 15387
+
+[quest_hall_stair_space]
+id = 15390
+
+[quest_hall_stair_space_down]
+id = 15391
+
+[quest_hall_portrait_space]
+id = 15392
+
+[quest_hall_landscape_space]
+id = 15393
+
+[quest_hall_guild_trophy_space]
+id = 15394
+
+[quest_hall_sword_space]
+id = 15395
+
+[quest_hall_map_space]
+id = 15396
+
+[quest_hall_bookcase_space]
+id = 15397
+
+[menagerie_habitat_space]
+id = 44907
+
+[menagerie_habitat_space_2]
+id = 44908
+
+[menagerie_pet_house_space]
+id = 44909
+
+[menagerie_pet_feeder_space]
+id = 44910
+
+[menagerie_obelisk_space]
+id = 44911
+
+[study_lectern_space]
+id = 15420
+
+[study_globe_space]
+id = 15421
+
+[study_crystal_ball_space]
+id = 15422
+
+[study_wall_chart_space]
+id = 15423
+
+[study_telescope_space]
+id = 15424
+
+[study_bookcase_space]
+id = 15425
+
+[study_statue_space]
+id = 48662
+
+[costume_room_cape_rack_space]
+id = 18810
+
+[costume_room_magic_wardrobe_space]
+id = 18811
+
+[costume_room_toy_box_space]
+id = 18812
+
+[costume_room_treasure_chest_space]
+id = 18813
+
+[costume_room_fancy_dress_box_space]
+id = 18814
+
+[costume_room_armour_case_space]
+id = 18815
+
+[chapel_altar_space]
+id = 15270
+
+[chapel_lamp_space]
+id = 15271
+
+[chapel_icon_space]
+id = 15269
+
+[chapel_musical_space]
+id = 15276
+
+[chapel_statue_space]
+id = 15275
+
+[chapel_rug_space_corner]
+id = 15274
+
+[chapel_rug_space_side]
+id = 15273
+
+[chapel_window_space]
+id = 13730
+
+[chapel_window_space_2]
+id = 13728
+
+[chapel_window_space_3]
+id = 13732
+
+[chapel_window_space_4]
+id = 13729
+
+[chapel_window_space_5]
+id = 13733
+
+[chapel_window_space_6]
+id = 13731
+
+[portal_chamber_portal_space]
+id = 15406
+
+[portal_chamber_portal_space_2]
+id = 15407
+
+[portal_chamber_portal_space_3]
+id = 15408
+
+[portal_chamber_centrepiece_space]
+id = 15409
+
+[formal_garden_centrepiece_space]
+id = 15368
+
+[formal_garden_fencing_space]
+id = 15369
+
+[formal_garden_hedging_space]
+id = 15370
+
+[formal_garden_hedging_space_2]
+id = 15371
+
+[formal_garden_hedging_space_3]
+id = 15372
+
+[formal_garden_small_plant_space]
+id = 15375
+
+[formal_garden_big_plant_space]
+id = 15373
+
+[formal_garden_small_plant_space_2]
+id = 15376
+
+[formal_garden_big_plant_space_2]
+id = 15374
+
+[throne_room_throne_space]
+id = 15426
+
+[throne_room_lever_space]
+id = 15435
+
+[throne_room_trapdoor_space]
+id = 15438
+
+[throne_room_seating_space]
+id = 15436
+
+[throne_room_seating_space_2]
+id = 15437
+
+[throne_room_decoration_space]
+id = 15434
+
+[throne_room_floor_space]
+id = 15427
+
+[throne_room_floor_space_2]
+id = 15428
+
+[throne_room_floor_space_3]
+id = 15429
+
+[throne_room_floor_space_4]
+id = 15430
+
+[throne_room_floor_space_5]
+id = 15431
+
+[throne_room_floor_space_6]
+id = 15432
+
+[oubliette_guard_space]
+id = 15354
+
+[oubliette_ladder_space]
+id = 15356
+
+[oubliette_lighting_space]
+id = 15355
+
+[dungeon_guard_space]
+id = 15336
+
+[dungeon_guard_space_2]
+id = 15337
+
+[dungeon_guard_space_3]
+id = 15323
+
+[dungeon_trap_space]
+id = 15325
+
+[dungeon_trap_space_2]
+id = 15324
+
+[dungeon_door_space_left]
+id = 15328
+
+[dungeon_door_space_right]
+id = 15329
+
+[dungeon_door_space_left_2]
+id = 15326
+
+[dungeon_door_space_right_2]
+id = 15327
+
+[dungeon_lighting_space]
+id = 15330
+
+[dungeon_lighting_space_2]
+id = 34138
+
+[dungeon_decoration_space]
+id = 15331
+
+[dungeon_pit_guardian_space]
+id = 36676
+
+[dungeon_pit_trap_space]
+id = 36692
+
+[dungeon_pit_trap_space_2]
+id = 39229
+
+[dungeon_pit_trap_space_3]
+id = 39230
+
+[dungeon_pit_trap_space_4]
+id = 39231
+
+[treasure_room_monster_space]
+id = 15257
+
+[treasure_room_treasure_space]
+id = 15256
+
+[treasure_room_decoration_space]
+id = 15259
+
+[big_nice_tree]
+id = 13412
+
+[nice_tree]
+id = 13419
+
+[big_oak_tree]
+id = 13413
+
+[oak_tree]
+id = 13420
+
+[big_willow_tree]
+id = 13414
+
+[willow_tree]
+id = 13421
+
+[big_maple_tree]
+id = 13415
+
+[house_maple_tree]
+id = 13423
+
+[big_yew_tree]
+id = 13416
+
+[yew_tree]
+id = 13422
+
+[big_magic_tree]
+id = 13417
+
+[house_magic_tree]
+id = 13424
+
+[house_bush]
+id = 13426
+
+[tall_plant]
+id = 13427
+
+[short_plant]
+id = 13428
+
+[large_leaf_plant]
+id = 13429
+
+[huge_plant]
+id = 13430
+
+[plant]
+id = 13431
+
+[dock_leaf]
+id = 13434
+
+[house_thistle]
+id = 13435
+
+[reeds]
+id = 13436
+
+[firepit]
+id = 13528
+
+[firepit_with_hook]
+id = 13529
+
+[firepit_with_pot]
+id = 13531
+
+[small_oven]
+id = 13533
+
+[large_oven]
+id = 13536
+
+[steel_range]
+id = 13539
+
+[fancy_range]
+id = 13542
+
+[wooden_shelves_1]
+id = 13545
+
+[wooden_shelves_2]
+id = 13546
+
+[wooden_shelves_3]
+id = 13547
+
+[oak_shelves_1]
+id = 13548
+
+[oak_shelves_2]
+id = 13549
+
+[teak_shelves_1]
+id = 13550
+
+[teak_shelves_2]
+id = 13551
+
+[beer_barrel]
+id = 13568
+
+[cider_barrel]
+id = 13569
+
+[asgarnian_ale_barrel]
+id = 13570
+
+[greenmans_ale_barrel]
+id = 13571
+
+[dragon_bitter_barrel]
+id = 13572
+
+[chefs_delight_barrel]
+id = 13573
+
+[cat_blanket]
+id = 13574
+
+[cat_basket]
+id = 13575
+
+[cushioned_basket]
+id = 13576
+
+[wooden_larder]
+id = 13565
+
+[oak_larder]
+id = 13566
+
+[teak_larder]
+id = 13567
+
+[pump_and_tub]
+id = 13561
+
+[wood_kitchen_table]
+id = 13577
+
+[oak_kitchen_table]
+id = 13578
+
+[teak_kitchen_table]
+id = 13579
+
+[wood_dining_table]
+id = 13293
+
+[oak_dining_table]
+id = 13294
+
+[carved_oak_table]
+id = 13295
+
+[teak_table]
+id = 13296
+
+[carved_teak_table]
+id = 13297
+
+[mahogany_table]
+id = 13298
+
+[opulent_table]
+id = 13299
+
+[wooden_bench]
+id = 13300
+
+[oak_bench]
+id = 13301
+
+[carved_oak_bench]
+id = 13302
+
+[teak_dining_bench]
+id = 13303
+
+[carved_teak_bench]
+id = 13304
+
+[carved_teak_bench_throne_room]
+id = 13694
+
+[mahogany_bench]
+id = 13305
+
+[mahogany_bench_throne_room]
+id = 13695
+
+[gilded_bench]
+id = 13306
+
+[gilded_bench_throne_room]
+id = 13696
+
+[oak_decoration]
+id = 13606
+
+[teak_decoration]
+id = 13607
+
+[gilded_decoration]
+id = 13608
+
+[rope_bell_pull]
+id = 13307
+
+[bell_pull]
+id = 13308
+
+[posh_bell_pull]
+id = 13309
+
+[wooden_workbench]
+id = 13704
+
+[oak_workbench]
+id = 13705
+
+[steel_framed_bench]
+id = 13706
+
+[bench_with_vice]
+id = 13707
+
+[bench_with_lathe]
+id = 13708
+
+[crafting_table_1]
+id = 13709
+
+[crafting_table_2]
+id = 13710
+
+[crafting_table_3]
+id = 13711
+
+[crafting_table_4]
+id = 13712
+
+[tool_store_1]
+id = 13699
+
+[tool_store_2]
+id = 13700
+
+[tool_store_3]
+id = 13701
+
+[tool_store_4]
+id = 13702
+
+[tool_store_5]
+id = 13703
+
+[repair_bench]
+id = 13713
+
+[whetstone]
+id = 13714
+
+[armour_stand]
+id = 13715
+
+[pluming_stand]
+id = 13716
+
+[shield_easel]
+id = 13717
+
+[banner_easel]
+id = 13718
+
+[wooden_bed]
+id = 13148
+
+[oak_bed]
+id = 13149
+
+[large_oak_bed]
+id = 13150
+
+[teak_bed]
+id = 13151
+
+[large_teak_bed]
+id = 13152
+
+[four_poster_bed]
+id = 13153
+
+[gilded_four_poster_bed]
+id = 13154
+
+[shoe_box]
+id = 13155
+
+[oak_drawers]
+id = 13156
+
+[oak_wardrobe]
+id = 13157
+
+[teak_drawers]
+id = 13158
+
+[teak_wardrobe]
+id = 13159
+
+[mahogany_wardrobe]
+id = 13160
+
+[gilded_wardrobe]
+id = 13161
+
+[shaving_stand]
+id = 13162
+
+[oak_shaving_stand]
+id = 13163
+
+[oak_dresser]
+id = 13164
+
+[teak_dresser]
+id = 13165
+
+[fancy_teak_dresser]
+id = 13166
+
+[mahogany_dresser]
+id = 13167
+
+[gilded_dresser]
+id = 13168
+
+[oak_clock]
+id = 13169
+
+[teak_clock]
+id = 13170
+
+[gilded_clock]
+id = 13171
+
+[oak_staircase]
+id = 13497
+
+[oak_staircase_down]
+id = 13498
+
+[teak_staircase]
+id = 13499
+
+[teak_staircase_down]
+id = 13500
+
+[spiral_staircase]
+id = 13503
+
+[spiral_staircase_down]
+id = 13504
+
+[marble_staircase]
+id = 13501
+
+[marble_staircase_down]
+id = 13502
+
+[marble_spiral]
+id = 13505
+
+[marble_spiral_down]
+id = 13506
+
+[crawling_hand_trophy]
+id = 13481
+
+[cockatrice_head_trophy]
+id = 13482
+
+[basilisk_head_trophy]
+id = 13483
+
+[kurask_head_trophy]
+id = 13484
+
+[abyssal_head_trophy]
+id = 13485
+
+[kbd_heads_trophy]
+id = 13486
+
+[kq_head_trophy]
+id = 13487
+
+[mounted_bass]
+id = 13488
+
+[mounted_swordfish]
+id = 13489
+
+[mounted_shark]
+id = 13490
+
+[basic_decorative_armour]
+id = 34256
+
+[detailed_decorative_armour]
+id = 34263
+
+[intricate_decorative_armour]
+id = 34280
+
+[profound_decorative_armour]
+id = 34281
+
+[mithril_armour]
+id = 13491
+
+[adamant_armour]
+id = 13492
+
+[rune_armour]
+id = 13493
+
+[rune_case_1]
+id = 13507
+
+[rune_case_2]
+id = 13508
+
+[jester]
+id = 13390
+
+[treasure_hunt]
+id = 13379
+
+[hangman_game]
+id = 13404
+
+[oak_prize_chest]
+id = 13385
+
+[teak_prize_chest]
+id = 13387
+
+[mahogany_prize_chest]
+id = 13389
+
+[clay_attack_stone]
+id = 13392
+
+[limestone_attack_stone]
+id = 13393
+
+[marble_attack_stone]
+id = 13394
+
+[elemental_balance_1]
+id = 13395
+
+[elemental_balance_2]
+id = 13396
+
+[elemental_balance_3]
+id = 13397
+
+[hoop_and_stick]
+id = 13399
+
+[dartboard]
+id = 13400
+
+[house_archery_target]
+id = 13402
+
+[boxing_ring]
+id = 13129
+
+[boxing_mat_corner]
+id = 13126
+
+[boxing_mat_side]
+id = 13128
+
+[boxing_mat_middle]
+id = 13127
+
+[fencing_ring]
+id = 13133
+
+[fencing_ring_corner]
+id = 13135
+
+[fencing_ring_side]
+id = 13134
+
+[fencing_ring_middle]
+id = 13136
+
+[combat_ring]
+id = 13137
+
+[combat_ring_corner]
+id = 13138
+
+[combat_ring_side]
+id = 13139
+
+[combat_ring_middle]
+id = 13140
+
+[magic_barrier]
+id = 13145
+
+[ranging_spot]
+id = 13147
+
+[balance_beam_end]
+id = 13144
+
+[balance_beam]
+id = 13142
+
+[glove_rack]
+id = 13381
+
+[weapons_rack]
+id = 13382
+
+[extra_weapons_rack]
+id = 13383
+
+[king_arthur_portrait]
+id = 13510
+
+[elena_portrait]
+id = 13511
+
+[giant_dwarf_portrait]
+id = 13512
+
+[miscellanians_portrait]
+id = 13513
+
+[lumbridge_painting]
+id = 13517
+
+[desert_painting]
+id = 13514
+
+[morytania_painting]
+id = 13518
+
+[karamja_painting]
+id = 13516
+
+[isafdar_painting]
+id = 13515
+
+[anti_dragon_shield_mounted]
+id = 13522
+
+[amulet_of_glory_mounted]
+id = 13523
+
+[cape_of_legends_mounted]
+id = 13524
+
+[silverlight_mounted]
+id = 13519
+
+[excalibur_mounted]
+id = 13521
+
+[darklight_mounted]
+id = 13520
+
+[small_map]
+id = 13525
+
+[medium_map]
+id = 13526
+
+[large_map]
+id = 13527
+
+[garden_habitat]
+id = 44562
+
+[garden_habitat_2]
+id = 44563
+
+[jungle_habitat]
+id = 44628
+
+[jungle_habitat_2]
+id = 44629
+
+[desert_habitat]
+id = 44694
+
+[desert_habitat_2]
+id = 44695
+
+[polar_habitat]
+id = 44760
+
+[polar_habitat_2]
+id = 44761
+
+[volcanic_habitat]
+id = 44826
+
+[volcanic_habitat_2]
+id = 44827
+
+[oak_pet_house]
+id = 44828
+
+[teak_pet_house]
+id = 44829
+
+[mahogany_pet_house]
+id = 44830
+
+[consecrated_pet_house]
+id = 44831
+
+[desecrated_pet_house]
+id = 44832
+
+[natural_pet_house]
+id = 44833
+
+[oak_pet_feeder]
+id = 44834
+
+[teak_pet_feeder]
+id = 44835
+
+[mahogany_pet_feeder]
+id = 44836
+
+[house_small_obelisk]
+id = 44837
+
+[oak_lectern]
+id = 13642
+
+[eagle_lectern]
+id = 13643
+
+[demon_lectern]
+id = 13644
+
+[teak_eagle_lectern]
+id = 13645
+
+[teak_demon_lectern]
+id = 13646
+
+[mahogany_eagle_lectern]
+id = 13647
+
+[mahogany_demon_lectern]
+id = 13648
+
+[globe]
+id = 13649
+
+[ornamental_globe]
+id = 13650
+
+[lunar_globe]
+id = 13651
+
+[celestial_globe]
+id = 13652
+
+[armillary_sphere]
+id = 13653
+
+[small_orrery]
+id = 13654
+
+[large_orrery]
+id = 13655
+
+[crystal_ball]
+id = 13659
+
+[elemental_sphere]
+id = 13660
+
+[crystal_of_power]
+id = 13661
+
+[alchemical_chart]
+id = 13662
+
+[astronomical_chart]
+id = 13663
+
+[wooden_telescope]
+id = 13656
+
+[teak_telescope]
+id = 13657
+
+[mahogany_telescope]
+id = 13658
+
+[dahmaroc_statue_plinth]
+id = 48644
+
+[oak_cape_rack]
+id = 18766
+
+[teak_cape_rack]
+id = 18767
+
+[mahogany_cape_rack]
+id = 18768
+
+[gilded_cape_rack]
+id = 18769
+
+[marble_cape_rack]
+id = 18770
+
+[magic_cape_rack]
+id = 18771
+
+[oak_magic_wardrobe]
+id = 18784
+
+[carved_oak_magic_wardrobe]
+id = 18786
+
+[teak_magic_wardrobe]
+id = 18788
+
+[carved_teak_magic_wardrobe]
+id = 18790
+
+[mahogany_magic_wardrobe]
+id = 18792
+
+[gilded_magic_wardrobe]
+id = 18794
+
+[marble_magic_wardrobe]
+id = 18796
+
+[oak_toy_box]
+id = 18798
+
+[teak_toy_box]
+id = 18800
+
+[mahogany_toy_box]
+id = 18802
+
+[oak_treasure_chest]
+id = 18804
+
+[teak_treasure_chest]
+id = 18806
+
+[mahogany_treasure_chest]
+id = 18808
+
+[oak_fancy_dress_box]
+id = 18772
+
+[teak_fancy_dress_box]
+id = 18774
+
+[mahogany_fancy_dress_box]
+id = 18776
+
+[oak_armour_case]
+id = 18778
+
+[teak_armour_case]
+id = 18780
+
+[mahogany_armour_case]
+id = 18782
+
+[steel_torches]
+id = 13202
+
+[wooden_torches]
+id = 13200
+
+[steel_candlesticks]
+id = 13204
+
+[gold_candlesticks]
+id = 13206
+
+[incense_burners]
+id = 13208
+
+[mahogany_burners]
+id = 13210
+
+[marble_burners]
+id = 13212
+
+[guthix_symbol]
+id = 13174
+
+[saradomin_symbol]
+id = 13172
+
+[zamorak_symbol]
+id = 13173
+
+[guthix_icon]
+id = 13177
+
+[saradomin_icon]
+id = 13175
+
+[zamorak_icon]
+id = 13176
+
+[icon_of_bob]
+id = 13178
+
+[windchimes]
+id = 13214
+
+[bells]
+id = 13215
+
+[organ]
+id = 13216
+
+[small_statue]
+id = 13271
+
+[medium_statue]
+id = 13272
+
+[large_statue]
+id = 13282
+
+[shuttered_window_basic_wood]
+id = 13253
+
+[shuttered_window_basic_stone]
+id = 13226
+
+[shuttered_window_whitewashed_stone]
+id = 13235
+
+[shuttered_window_fremennik_wood]
+id = 13244
+
+[shuttered_window_tropical_wood]
+id = 13217
+
+[shuttered_window_fancy_stone]
+id = 13262
+
+[decorative_window_basic_wood]
+id = 13254
+
+[decorative_window_basic_stone]
+id = 13227
+
+[decorative_window_whitewashed_stone]
+id = 13236
+
+[decorative_window_fremennik_wood]
+id = 13245
+
+[decorative_window_tropical_wood]
+id = 13218
+
+[decorative_window_fancy_stone]
+id = 13263
+
+[stained_glass_basic_wood]
+id = 13255
+
+[stained_glass_basic_stone]
+id = 13228
+
+[stained_glass_whitewashed_stone]
+id = 13237
+
+[stained_glass_fremennik_wood]
+id = 13246
+
+[stained_glass_tropical_wood]
+id = 13219
+
+[stained_glass_fancy_stone]
+id = 13264
+
+[teak_portal]
+id = 13636
+
+[mahogany_portal]
+id = 13637
+
+[marble_portal]
+id = 13638
+
+[teleport_focus]
+id = 13640
+
+[greater_teleport_focus]
+id = 13641
+
+[scrying_pool]
+id = 13639
+
+[gazebo]
+id = 13477
+
+[boundary_stones]
+id = 13449
+
+[wooden_fence]
+id = 13450
+
+[stone_wall]
+id = 13451
+
+[iron_railings]
+id = 13452
+
+[picket_fence]
+id = 13453
+
+[garden_fence]
+id = 13454
+
+[marble_wall]
+id = 13455
+
+[thorny_hedge]
+id = 13456
+
+[thorny_hedge_2]
+id = 13458
+
+[thorny_hedge_3]
+id = 13457
+
+[nice_hedge]
+id = 13459
+
+[nice_hedge_2]
+id = 13461
+
+[nice_hedge_3]
+id = 13460
+
+[small_box_hedge]
+id = 13462
+
+[small_box_hedge_2]
+id = 13464
+
+[small_box_hedge_3]
+id = 13463
+
+[topiary_hedge]
+id = 13465
+
+[topiary_hedge_2]
+id = 13467
+
+[topiary_hedge_3]
+id = 13466
+
+[fancy_hedge]
+id = 13468
+
+[fancy_hedge_2]
+id = 13470
+
+[fancy_hedge_3]
+id = 13469
+
+[tall_fancy_hedge]
+id = 13471
+
+[tall_fancy_hedge_2]
+id = 13473
+
+[tall_fancy_hedge_3]
+id = 13472
+
+[tall_box_hedge]
+id = 13474
+
+[tall_box_hedge_2]
+id = 13476
+
+[tall_box_hedge_3]
+id = 13475
+
+[sunflower]
+id = 13443
+
+[big_sunflower]
+id = 13446
+
+[marigolds]
+id = 13444
+
+[big_marigolds]
+id = 13447
+
+[roses]
+id = 13445
+
+[big_roses]
+id = 13448
+
+[rosemary]
+id = 13437
+
+[big_rosemary]
+id = 13440
+
+[daffodils]
+id = 13438
+
+[big_daffodils]
+id = 13441
+
+[bluebells]
+id = 13439
+
+[big_bluebells]
+id = 13442
+
+[oak_throne]
+id = 13665
+
+[teak_throne]
+id = 13666
+
+[mahogany_throne]
+id = 13667
+
+[gilded_throne]
+id = 13668
+
+[skeleton_throne]
+id = 13669
+
+[crystal_throne]
+id = 13670
+
+[demonic_throne]
+id = 13671
+
+[oak_lever]
+id = 13672
+
+[teak_lever]
+id = 13673
+
+[mahogany_lever]
+id = 13674
+
+[oak_trapdoor]
+id = 13675
+
+[teak_trapdoor]
+id = 13676
+
+[mahogany_trapdoor]
+id = 13677
+
+[round_shield_0]
+id = 13734
+
+[round_shield_1]
+id = 13735
+
+[round_shield_2]
+id = 13736
+
+[round_shield_3]
+id = 13737
+
+[round_shield_4]
+id = 13738
+
+[round_shield_5]
+id = 13739
+
+[round_shield_6]
+id = 13740
+
+[round_shield_7]
+id = 13741
+
+[round_shield_8]
+id = 13742
+
+[round_shield_9]
+id = 13743
+
+[round_shield_10]
+id = 13744
+
+[round_shield_11]
+id = 13745
+
+[round_shield_12]
+id = 13746
+
+[round_shield_13]
+id = 13747
+
+[round_shield_14]
+id = 13748
+
+[round_shield_15]
+id = 13749
+
+[square_shield_0]
+id = 13766
+
+[square_shield_1]
+id = 13767
+
+[square_shield_2]
+id = 13768
+
+[square_shield_3]
+id = 13769
+
+[square_shield_4]
+id = 13770
+
+[square_shield_5]
+id = 13771
+
+[square_shield_6]
+id = 13772
+
+[square_shield_7]
+id = 13773
+
+[square_shield_8]
+id = 13774
+
+[square_shield_9]
+id = 13775
+
+[square_shield_10]
+id = 13776
+
+[square_shield_11]
+id = 13777
+
+[square_shield_12]
+id = 13778
+
+[square_shield_13]
+id = 13779
+
+[square_shield_14]
+id = 13780
+
+[square_shield_15]
+id = 13781
+
+[kite_shield_0]
+id = 13750
+
+[kite_shield_1]
+id = 13751
+
+[kite_shield_2]
+id = 13752
+
+[kite_shield_3]
+id = 13753
+
+[kite_shield_4]
+id = 13754
+
+[kite_shield_5]
+id = 13755
+
+[kite_shield_6]
+id = 13756
+
+[kite_shield_7]
+id = 13757
+
+[kite_shield_8]
+id = 13758
+
+[kite_shield_9]
+id = 13759
+
+[kite_shield_10]
+id = 13760
+
+[kite_shield_11]
+id = 13761
+
+[kite_shield_12]
+id = 13762
+
+[kite_shield_13]
+id = 13763
+
+[kite_shield_14]
+id = 13764
+
+[kite_shield_15]
+id = 13765
+
+[floor_decoration_basic_wood]
+id = 13689
+
+[floor_decoration_basic_stone]
+id = 13686
+
+[floor_decoration_whitewashed_stone]
+id = 13687
+
+[floor_decoration_fremennik_wood]
+id = 13688
+
+[floor_decoration_tropical_wood]
+id = 13684
+
+[floor_decoration_fancy_stone]
+id = 13685
+
+[skeleton_guard]
+id = 13366
+
+[guard_dog]
+id = 13367
+
+[hobgoblin_guard]
+id = 13368
+
+[baby_red_dragon]
+id = 13372
+
+[huge_spider]
+id = 13370
+
+[troll_guard]
+id = 13369
+
+[hellhound]
+id = 2715
+
+[oak_ladder]
+id = 13328
+
+[teak_ladder]
+id = 13329
+
+[mahogany_ladder]
+id = 13330
+
+[torches]
+id = 13341
+
+[skull_torches]
+id = 13343
+
+[spike_trap]
+id = 13356
+
+[man_trap]
+id = 13357
+
+[tangle_vine]
+id = 13358
+
+[marble_trap]
+id = 13359
+
+[teleport_trap]
+id = 13360
+
+[decorative_blood]
+id = 13312
+
+[decorative_pipe]
+id = 13311
+
+[hanging_skeleton]
+id = 13310
+
+[pit_dog]
+id = 39260
+
+[pit_ogre]
+id = 39261
+
+[pit_rock_protector]
+id = 39262
+
+[pit_scabarite]
+id = 39263
+
+[pit_black_demon]
+id = 39264
+
+[pit_iron_dragon]
+id = 39265
+
+[minor_pit_trap]
+id = 39266
+
+[major_pit_trap]
+id = 39268
+
+[superior_pit_trap]
+id = 39270
+
+[demon_guardian]
+id = 13378
+
+[kalphite_soldier_guardian]
+id = 13374
+
+[tok_xil_guardian]
+id = 13377
+
+[dagannoth_guardian]
+id = 13376
+
+[steel_dragon_guardian]
+id = 13375
+
+[wooden_treasure_crate]
+id = 13283
+
+[oak_treasure_room_chest]
+id = 13285
+
+[teak_treasure_room_chest]
+id = 13287
+
+[mahogany_treasure_room_chest]
+id = 13289
+
+[magic_treasure_room_chest]
+id = 13291
