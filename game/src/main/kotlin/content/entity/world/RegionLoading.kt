@@ -101,7 +101,13 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
     }
 
     fun crossedDynamicBoarder(player: Player) = player.viewport!!.dynamic != inDynamicView(player) ||
-        (dynamicZones.dynamicUpdate(player.tile.region) && player.viewport!!.dynamicVersion != dynamicZones.version)
+        (dynamicZones.dynamicUpdate(player.tile.region) && player.viewport!!.dynamicVersion != dynamicZones.version) ||
+        (player.viewport!!.dynamic && player.viewport!!.maxLevel != maxLevel(player))
+
+    /**
+     * Highest level of a dynamic region to send, levels above the player can be hidden so they don't block the view e.g. underground
+     */
+    fun maxLevel(player: Player): Int = if (player["hide_upper_levels", false]) player.tile.level else 3
 
     fun inDynamicView(player: Player): Boolean = dynamicZones.dynamic(player.tile.region)
 
@@ -163,11 +169,12 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
         val view = player.tile.zone.minus(viewport.zoneRadius, viewport.zoneRadius)
         val zoneSize = viewport.zoneArea
         val xtea = blankXtea
+        val maxLevel = maxLevel(player)
         for (lvl in 0..3) {
             for (x in 0 until zoneSize) {
                 for (y in 0 until zoneSize) {
                     val zone = Zone(view.x + x, view.y + y, lvl)
-                    val target = dynamicZones.dynamicZone(zone)
+                    val target = if (lvl > maxLevel) null else dynamicZones.dynamicZone(zone)
                     if (target == null) {
                         zones.add(null)
                         continue
@@ -181,6 +188,7 @@ class RegionLoading(val dynamicZones: DynamicZones) : Script {
             }
         }
         viewport.dynamic = true
+        viewport.maxLevel = maxLevel
         player.client?.dynamicMapRegion(
             zoneX = player.tile.zone.x,
             zoneY = player.tile.zone.y,
