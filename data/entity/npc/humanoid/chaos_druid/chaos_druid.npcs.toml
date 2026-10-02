@@ -1,7 +1,7 @@
 [chaos_druid]
 id = 181
 max_hit_melee = 20
-hitpoints = 130
+hitpoints = 200
 att = 8
 str = 8
 def = 12

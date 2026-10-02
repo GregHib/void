@@ -34,10 +34,10 @@ examine = "She smells unpleasantly of chemicals."
 
 [boris]
 id = 6026
-hitpoints = 1000
-att = 70
-str = 70
-def = 70
+hitpoints = 600
+att = 10
+str = 10
+def = 10
 combat_def = "human"
 slayer_xp = 100.0
 respawn_delay = 25
@@ -151,6 +151,10 @@ examine = "Eek! A werewolf!"
 [liliya]
 id = 6045
 clone = "werewolf"
+hitpoints = 600
+att = 10
+str = 10
+def = 10
 examine = "She's looking for flowers."
 
 [mazchna_canifis]

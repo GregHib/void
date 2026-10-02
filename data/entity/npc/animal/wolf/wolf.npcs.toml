@@ -60,9 +60,9 @@ examine = "Must be the pack leader."
 [wolf_stronghold_of_security]
 clone = "wolf"
 id = 4413
-hitpoints = 100
+hitpoints = 150
 att = 10
-str = 10
+str = 15
 def = 10
 max_hit_stab = 20
 slayer_xp = 10.0
@@ -72,9 +72,9 @@ drop_table = "white_wolf"
 [wolf_stronghold_of_security_2]
 clone = "wolf"
 id = 4414
-hitpoints = 150
+hitpoints = 100
 att = 10
-str = 15
+str = 10
 def = 10
 max_hit_stab = 30
 slayer_xp = 15.0

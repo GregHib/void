@@ -50,10 +50,10 @@ drop_table = "bloodworm"
 
 [giant_crypt_rat_chaos_tunnels]
 id = 2033
-hitpoints = 350
-att = 70
-str = 20
-def = 20
+hitpoints = 700
+att = 80
+str = 50
+def = 65
 combat_def = "giant_crypt_rat"
 hunt_mode = "cowardly"
 slayer_xp = 35.0

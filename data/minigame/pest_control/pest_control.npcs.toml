@@ -579,7 +579,7 @@ examine = "Eeewww!"
 
 [spinner_level_88]
 id = 3751
-hitpoints = 930
+hitpoints = 1130
 att = 37
 str = 37
 def = 143
@@ -592,7 +592,7 @@ examine = "Eeewww!"
 
 [spinner_level_92]
 id = 3750
-hitpoints = 1010
+hitpoints = 930
 att = 32
 str = 32
 def = 118
@@ -742,7 +742,7 @@ clone = "torcher_level_79"
 
 [torcher_level_91]
 id = 3760
-hitpoints = 710
+hitpoints = 700
 att = 0
 str = 0
 def = 89

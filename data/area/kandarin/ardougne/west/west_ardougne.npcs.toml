@@ -36,10 +36,10 @@ id = 369
 examine = "A mourner, or plague healer."
 combat_def = "mourner"
 respawn_delay = 20
-hitpoints = 190
-att = 8
-str = 8
-def = 8
+hitpoints = 500
+att = 12
+str = 16
+def = 12
 attack_bonus = 6
 max_hit_crush = 20
 
@@ -50,9 +50,9 @@ drop_table = "mourner_2"
 combat_def = "mourner"
 respawn_delay = 20
 hitpoints = 190
-att = 8
-str = 8
-def = 8
+att = 10
+str = 10
+def = 10
 attack_bonus = 6
 max_hit_crush = 20
 
@@ -88,7 +88,7 @@ max_hit_crush = 20
 
 [mourner_5]
 id = 348
-hitpoints = 130
+hitpoints = 500
 att = 12
 str = 16
 def = 12
@@ -116,7 +116,7 @@ examine = "A mourner, or plague healer."
 
 [mourner]
 id = 2373
-hitpoints = 1000
+hitpoints = 1050
 att = 95
 str = 95
 def = 80

@@ -1,9 +1,9 @@
 [delrith]
 id = 879
 hitpoints = 70
-att = 11
-str = 10
-def = 5
+att = 32
+str = 25
+def = 27
 attack_speed = 6
 combat_def = "delrith"
 categories = ["demons"]

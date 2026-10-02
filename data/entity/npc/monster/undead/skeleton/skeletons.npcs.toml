@@ -103,10 +103,10 @@ id = 91
 
 [skeleton_axe_shield_85]
 id = 5367
-hitpoints = 590
-att = 32
-str = 35
-def = 36
+hitpoints = 770
+att = 74
+str = 74
+def = 74
 combat_def = "skeleton_mace_shield"
 max_hit_slash = 50
 hunt_mode = "aggressive"
@@ -124,6 +124,10 @@ drop_table = "skeleton"
 [skeleton_sword_shield_45]
 clone = "skeleton_axe_shield_85"
 id = 93
+hitpoints = 590
+att = 32
+str = 35
+def = 36
 drop_table = "skeleton"
 
 [stronghold_skeleton_round_shield]
@@ -158,6 +162,10 @@ examine = "Could do with gaining a few pounds."
 [skeleton_hammer_shield]
 clone = "stronghold_skeleton_helmet"
 id = 4386
+hitpoints = 770
+att = 74
+str = 74
+def = 74
 drop_table = "skeleton"
 
 [stronghold_skeleton_unarmed]

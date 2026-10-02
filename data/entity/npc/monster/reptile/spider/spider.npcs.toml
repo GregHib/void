@@ -13,7 +13,7 @@ examine = "Incey wincey."
 
 [giant_spider]
 id = 59
-hitpoints = 67
+hitpoints = 50
 attack_bonus = -10
 combat_def = "giant_spider"
 drop_table = "giant_spider"
@@ -59,7 +59,7 @@ drop_table = "giant_spider"
 
 [deadly_red_spider]
 id = 63
-hitpoints = 340
+hitpoints = 350
 att = 30
 str = 25
 def = 30

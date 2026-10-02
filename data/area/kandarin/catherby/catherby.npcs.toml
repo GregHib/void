@@ -45,11 +45,11 @@ examine = "Perhaps this gardener might look after your crops for you."
 
 [renegade_knight]
 id = 237
-hitpoints = 470
-att = 25
-str = 25
-def = 25
-mage = 25
+hitpoints = 480
+att = 28
+str = 28
+def = 28
+mage = 1
 combat_def = "renegade_knight"
 categories = ["human"]
 hunt_range = 2

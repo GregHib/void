@@ -16,9 +16,9 @@ examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_spears]
 id = 6233
-hitpoints = 830
-def = 70
-range = 85
+hitpoints = 770
+def = 55
+range = 96
 combat_def = "aviansie_spear"
 hunt_mode = "anti_zamorak_aggressive"
 respawn_delay = 25
@@ -206,9 +206,9 @@ examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_helmet_spear]
 id = 6245
-hitpoints = 790
-def = 115
-range = 101
+hitpoints = 980
+def = 100
+range = 99
 combat_def = "aviansie_spear"
 max_hit_range = 110
 hunt_mode = "anti_zamorak_aggressive"
@@ -222,7 +222,7 @@ examine = "Graceful, bird-like creature."
 
 [aviansie_god_wars_high_helmet_spears]
 id = 6246
-hitpoints = 1150
+hitpoints = 730
 def = 175
 range = 143
 combat_def = "aviansie_axe"

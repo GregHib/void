@@ -50,6 +50,7 @@ clone = "afflicted"
 hitpoints = 260
 att = 26
 str = 26
+def = 36
 
 [afflicted_4]
 id = 1262

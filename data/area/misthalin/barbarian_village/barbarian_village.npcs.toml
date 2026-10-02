@@ -166,6 +166,8 @@ examine = "Aitan, a barbarian archer."
 [barbarian_gutrune]
 id = 3261
 clone = "barbarian_sieglinde"
+hitpoints = 180
+att = 8
 examine = "Gutrune, a mighty barbarian warrior."
 
 [barbarian_sieglinde]

@@ -8,10 +8,10 @@ examine = "A guard of Sophanem."
 
 [scarab_mage_level_66_quest]
 id = 5254
-hitpoints = 500
+hitpoints = 200
 att = 90
 str = 90
-def = 90
+def = 10
 mage = 70
 combat_def = "scarab_mage"
 xp_bonus = 2.5

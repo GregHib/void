@@ -12,7 +12,7 @@ examine = "Can you endure long enough?"
 
 [the_illusive]
 id = 5905
-hitpoints = 1400
+hitpoints = 1440
 att = 72
 str = 71
 def = 105

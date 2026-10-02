@@ -122,10 +122,10 @@ examine = "Must be a guard or something."
 
 [tzhaar_ket_shield]
 id = 2612
-hitpoints = 2000
-att = 200
-str = 180
-def = 190
+hitpoints = 1400
+att = 120
+str = 140
+def = 120
 mage = 40
 combat_def = "tzhaar_ket"
 max_hit_crush = 190

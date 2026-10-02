@@ -156,11 +156,11 @@ id = 27
 drop_table = "bones"
 examine = "Good with arrows."
 combat_def = "archer"
-hitpoints = 370
-att = 1
-str = 1
-def = 60
-range = 26
+hitpoints = 500
+att = 20
+str = 20
+def = 20
+range = 40
 max_hit_range = 40
 
 [zookeeper]

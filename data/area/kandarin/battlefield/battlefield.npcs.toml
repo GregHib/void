@@ -16,6 +16,8 @@ combat_def = "guard"
 [khazard_trooper_battlefield_2]
 id = 2246
 clone = "khazard_trooper_battlefield"
+str = 16
+def = 13
 combat_def = "guard"
 
 [gnome_troop_battlefield]

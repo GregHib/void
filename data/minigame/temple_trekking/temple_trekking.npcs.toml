@@ -4,10 +4,10 @@ categories = ["zombies"]
 examine = "I wonder if he'd let me borrow his hatchet?"
 drop_table = "zombie"
 combat_def = "zombie"
-hitpoints = 220
-att = 8
-str = 9
-def = 10
+hitpoints = 200
+att = 20
+str = 20
+def = 20
 max_hit_crush = 20
 
 [rook_temple_trekking]
@@ -92,7 +92,7 @@ id = 1521
 hitpoints = 550
 att = 150
 str = 6
-def = 2
+def = 20
 attack_speed = 8
 style = "slash"
 max_hit_melee = 20
@@ -179,6 +179,8 @@ examine = "I'm glad I can't see the rest of it!"
 [tentacle_submerged]
 id = 3621
 clone = "tentacle_visible"
+att = 230
+range = 50
 
 [undead_lumberjack_level_30]
 id = 1524
@@ -225,7 +227,7 @@ clone = "undead_lumberjack_level_30"
 
 [undead_lumberjack_level_35]
 id = 5684
-hitpoints = 120
+hitpoints = 110
 att = 87
 str = 6
 def = 11
@@ -397,7 +399,7 @@ clone = "undead_lumberjack_level_50"
 
 [undead_lumberjack_level_55]
 id = 5716
-hitpoints = 120
+hitpoints = 150
 att = 133
 str = 16
 def = 15
@@ -440,7 +442,7 @@ clone = "undead_lumberjack_level_55"
 
 [undead_lumberjack_level_60]
 id = 5724
-hitpoints = 120
+hitpoints = 160
 att = 137
 str = 26
 def = 16
@@ -483,7 +485,7 @@ clone = "undead_lumberjack_level_60"
 
 [undead_lumberjack_level_64]
 id = 5732
-hitpoints = 120
+hitpoints = 170
 att = 147
 str = 26
 def = 17
@@ -526,7 +528,7 @@ clone = "undead_lumberjack_level_64"
 
 [undead_lumberjack_level_70]
 id = 5740
-hitpoints = 120
+hitpoints = 180
 att = 163
 str = 26
 def = 18

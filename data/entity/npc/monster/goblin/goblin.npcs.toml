@@ -1,6 +1,6 @@
 [goblin_orange_hat_spear]
 id = 3264
-hitpoints = 160
+hitpoints = 120
 att = 3
 def = 4
 attack_bonus = 12
@@ -41,7 +41,7 @@ examine = "An ugly green creature."
 [goblin_mohawk_blue]
 id = 4262
 attack_bonus = -21
-hitpoints = 67
+hitpoints = 50
 combat_def = "goblin"
 slayer_xp = 5.0
 respawn_delay = 35
