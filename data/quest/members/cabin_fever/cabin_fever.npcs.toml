@@ -111,3 +111,10 @@ max_hit_slash = 60
 [gull_cabin_fever]
 id = 3197
 
+[pirate_cabin_fever_10]
+id = 3187
+hitpoints = 520
+att = 49
+str = 50
+def = 50
+examine = "Avast ye scurvy land lubbers!"

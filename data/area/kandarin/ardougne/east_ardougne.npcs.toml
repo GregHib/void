@@ -44,6 +44,10 @@ examine = "He seems strangely familiar..."
 
 [monkey_ardougne]
 id = 1463
+hitpoints = 60
+att = 2
+str = 3
+def = 2
 
 [monkey_minder_ardougne]
 id = 1469
@@ -71,7 +75,6 @@ hitpoints = 570
 att = 54
 str = 54
 def = 54
-attack_speed = 5
 style = "slash"
 max_hit_melee = 80
 attack_bonus = 20
@@ -87,7 +90,6 @@ hitpoints = 820
 att = 54
 str = 55
 def = 54
-attack_speed = 5
 style = "slash"
 max_hit_melee = 90
 attack_bonus = 20
@@ -109,7 +111,6 @@ hitpoints = 520
 att = 38
 str = 40
 def = 31
-attack_speed = 5
 style = "slash"
 max_hit_melee = 60
 attack_bonus = 8
@@ -152,11 +153,11 @@ id = 27
 drop_table = "bones"
 examine = "Good with arrows."
 combat_def = "archer"
-hitpoints = 370
-att = 1
-str = 1
-def = 60
-range = 26
+hitpoints = 500
+att = 20
+str = 20
+def = 20
+range = 40
 max_hit_range = 40
 
 [zookeeper]
@@ -213,7 +214,6 @@ style = "crush"
 max_hit_melee = 30
 attack_bonus = 4
 respawn_delay = 50
-attack_speed = 5
 examine = "Keeps the peace... kind of."
 drop_table = "guard"
 combat_def = "guard"
@@ -462,3 +462,19 @@ id = 273
 
 [local_thug_ardougne_2]
 id = 8346
+
+[knight_of_ardougne_2]
+id = 26
+hitpoints = 520
+att = 38
+str = 40
+def = 31
+examine = "To protect and serve the populace of Ardougne."
+
+[paladin_3]
+id = 365
+hitpoints = 130
+att = 63
+str = 63
+def = 63
+examine = "A military man."

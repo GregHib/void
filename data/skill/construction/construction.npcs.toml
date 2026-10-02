@@ -17,7 +17,6 @@ str = 80
 def = 80
 mage = 0
 range = 0
-attack_speed = 6
 style = "crush"
 max_hit_melee = 120
 attack_bonus = 22
@@ -37,3 +36,84 @@ max_hit_range = 190
 max_hit_crush = 190
 hunt_mode = "cowardly"
 examine = "I don't like the look of those spines..."
+
+[poh_ogre]
+id = 3466
+hitpoints = 600
+att = 43
+str = 43
+def = 43
+examine = "A large dim looking humanoid."
+
+[poh_skeleton]
+id = 3581
+hitpoints = 290
+att = 15
+str = 18
+def = 17
+examine = "He guards the dungeon with the faithfulness of the undead."
+
+[poh_guard_dog]
+id = 3582
+hitpoints = 490
+att = 35
+str = 36
+def = 37
+examine = "He doesn't seem pleased to see me."
+
+[poh_troll]
+id = 3584
+hitpoints = 1200
+att = 50
+str = 100
+def = 50
+examine = "A pet Troll."
+
+[poh_hellhound]
+id = 3586
+hitpoints = 1160
+att = 105
+str = 104
+def = 102
+examine = "Hello, nice doggy..."
+
+[poh_baby_red_dragon]
+id = 3588
+hitpoints = 650
+att = 55
+str = 55
+def = 55
+examine = "Young, but still dangerous."
+
+[poh_kalphite_soldier]
+id = 3589
+hitpoints = 900
+att = 70
+str = 70
+def = 70
+examine = "I don't think insect repellent will work..."
+
+[poh_steel_dragon]
+id = 3590
+hitpoints = 2100
+att = 215
+str = 215
+def = 215
+mage = 100
+examine = "Its scales seem to be made of steel."
+
+[poh_dagannoth]
+id = 3591
+hitpoints = 1420
+att = 114
+str = 117
+def = 98
+examine = "A darkened horror from the ocean depths."
+
+[poh_demon]
+id = 3593
+hitpoints = 790
+att = 68
+str = 70
+def = 71
+examine = "Arrgh! Look at its pointy teeth!"

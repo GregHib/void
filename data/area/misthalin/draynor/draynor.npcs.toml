@@ -243,3 +243,26 @@ id = 5569
 [fishing_spot_small_net_bait_draynor]
 id = 327
 examine = "It looks like there might be fish swimming in the water."
+
+[market_guard]
+id = 2571
+hitpoints = 220
+att = 17
+str = 18
+def = 13
+examine = "Keeps the stalls secure."
+
+[cool_mom227]
+id = 2579
+hitpoints = 250
+att = 25
+str = 25
+def = 20
+
+[market_guard_2]
+id = 12435
+hitpoints = 220
+att = 17
+str = 18
+def = 13
+examine = "Keeps the stalls secure."

@@ -23,10 +23,10 @@ examine = "A dwarf in suspense."
 
 [dwarf]
 id = 118
-hitpoints = 160
+hitpoints = 120
 att = 8
 str = 8
-def = 8
+def = 10
 attack_bonus = 5
 combat_def = "dwarf"
 respawn_delay = 25
@@ -66,6 +66,7 @@ examine = "Loves mining."
 [dwarf_mining_guild_hammer]
 id = 3220
 clone = "dwarf_mining_guild"
+hitpoints = 160
 
 [dwarf_mining_guild_earrings]
 id = 3221
@@ -75,19 +76,23 @@ examine = "Loves mining."
 [dwarf_dwarven_mines_wrench_beard]
 id = 3268
 clone = "dwarf_mining_guild"
+hitpoints = 160
 examine = "A dwarven worker."
 
 [dwarf_dwarven_mines_wrench]
 id = 3269
 clone = "dwarf_mining_guild"
+hitpoints = 160
 
 [dwarf_dwarven_mines_wrench_apron_green]
 id = 3270
 clone = "dwarf_mining_guild"
+hitpoints = 160
 
 [dwarf_dwarven_mines_pickaxe]
 id = 3271
 clone = "dwarf_mining_guild"
+hitpoints = 160
 
 [dwarf_dwarven_mines_pickaxe_green]
 id = 3272
@@ -96,10 +101,12 @@ clone = "dwarf"
 [dwarf_dwarven_mines_wrench_green]
 id = 3273
 clone = "dwarf_mining_guild"
+hitpoints = 160
 
 [dwarf_dwarven_mines_red]
 id = 3274
 clone = "dwarf_mining_guild"
+hitpoints = 160
 
 [dwarf_dwarven_mines_old]
 id = 3275
@@ -128,4 +135,20 @@ respawn_delay = 90
 slayer_xp = 61.0
 drop_table = "chaos_dwarf"
 categories = ["chaos_dwarf", "dwarves"]
+examine = "A dwarf gone bad."
+
+[chaos_dwarf_2]
+id = 2423
+hitpoints = 610
+att = 38
+str = 42
+def = 28
+examine = "A dwarf gone bad."
+
+[chaos_dwarf_3]
+id = 8788
+hitpoints = 610
+att = 38
+str = 42
+def = 28
 examine = "A dwarf gone bad."

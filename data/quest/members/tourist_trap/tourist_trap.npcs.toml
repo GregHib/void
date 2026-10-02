@@ -1,0 +1,14 @@
+[rowdy_guard]
+id = 842
+hitpoints = 600
+att = 32
+str = 32
+def = 32
+
+[mercenary_tourist_trap]
+id = 4983
+hitpoints = 600
+att = 32
+str = 32
+def = 39
+examine = "He looks a bit aggressive."

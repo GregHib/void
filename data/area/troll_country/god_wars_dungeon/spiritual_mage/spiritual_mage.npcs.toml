@@ -1,8 +1,8 @@
 [spiritual_mage_zamorak]
 id = 6221
-hitpoints = 750
-def = 61
-mage = 180
+hitpoints = 1060
+def = 103
+mage = 142
 combat_def = "spiritual_mage_zamorak"
 hunt_mode = "zamorak_aggressive"
 respawn_delay = 25
@@ -31,7 +31,7 @@ examine = "Saradomin's holy mage."
 
 [spiritual_mage_bandos]
 id = 6278
-hitpoints = 106
+hitpoints = 1060
 def = 103
 mage = 142
 combat_def = "spiritual_mage_bandos"

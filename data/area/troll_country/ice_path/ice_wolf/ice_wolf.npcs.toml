@@ -48,3 +48,11 @@ clone = "ice_wolf_ice_path_2"
 [ice_wolf_ice_path_6]
 id = 1956
 clone = "ice_wolf_ice_path_2"
+
+[ice_wolf_trollweiss_3]
+id = 1559
+hitpoints = 700
+att = 150
+str = 150
+def = 70
+examine = "Not man's best friend."

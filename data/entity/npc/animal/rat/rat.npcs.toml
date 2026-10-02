@@ -63,24 +63,26 @@ examine = "Overgrown vermin."
 [giant_rat_tutorial_island]
 id = 950
 clone = "giant_rat"
-hitpoints = 30
+hitpoints = 50
 combat_def = "giant_rat_tutorial_island"
 hunt_mode = "cowardly"
 
 [giant_rat_3]
 id = 12349
 clone = "giant_rat"
+hitpoints = 50
 
 [giant_rat_5]
 id = 12351
 clone = "giant_rat"
+hitpoints = 50
 
 [giant_rat_dark]
 id = 8828
 att = 6
 str = 5
 def = 2
-hitpoints = 133
+hitpoints = 100
 slayer_xp = 10.0
 respawn_delay = 30
 combat_def = "giant_rat"
@@ -126,3 +128,27 @@ examine = "A popular dwarven delicacy."
 [rat_swept_away]
 id = 8209
 examine = "Cheese-eater."
+
+[giant_rat_2]
+id = 4942
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+examine = "Overgrown vermin."
+
+[giant_rat_4]
+id = 4943
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+examine = "Overgrown vermin."
+
+[giant_rat_6]
+id = 12350
+hitpoints = 50
+att = 2
+str = 3
+def = 2
+examine = "Overgrown vermin."

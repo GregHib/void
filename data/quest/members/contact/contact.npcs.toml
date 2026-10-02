@@ -21,3 +21,19 @@ clone = "giant_scarab_normal"
 [giant_scarab_2]
 id = 6771
 clone = "giant_scarab"
+
+[locust_rider]
+id = 5255
+hitpoints = 200
+att = 90
+str = 90
+def = 20
+examine = "A mounted lancer."
+
+[locust_rider_2]
+id = 5256
+hitpoints = 200
+att = 90
+str = 90
+def = 20
+examine = "A mounted lancer."

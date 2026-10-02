@@ -139,6 +139,10 @@ examine = "One of Rellekka's many citizens."
 [pontak_rellekka]
 id = 1309
 clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
 
 [freygerd_rellekka]
 id = 1310
@@ -181,6 +185,10 @@ combat_def = "jennella"
 [sassilik_rellekka]
 id = 1313
 clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
 
 [fur_trader_rellekka]
 id = 1316
@@ -194,7 +202,6 @@ hitpoints = 500
 att = 40
 str = 40
 def = 40
-attack_speed = 3
 style = "crush"
 max_hit_melee = 80
 attack_bonus = 40
@@ -389,6 +396,10 @@ max_hit_crush = 60
 [inga]
 id = 1314
 clone = "agnar_rellekka"
+hitpoints = 500
+att = 40
+str = 40
+def = 40
 
 [warrior_rellekka]
 id = 1318
@@ -396,7 +407,6 @@ hitpoints = 500
 att = 40
 str = 40
 def = 40
-attack_speed = 3
 style = "crush"
 max_hit_melee = 80
 attack_bonus = 40
@@ -471,3 +481,18 @@ dialogue = "child"
 [larry_rellekka_3]
 id = 5425
 
+[bouncer_ghost]
+id = 5564
+hitpoints = 1200
+att = 145
+str = 145
+def = 145
+examine = "Big, mean, dead doggy."
+
+[bouncer_ghost_2]
+id = 5565
+hitpoints = 1200
+att = 145
+str = 145
+def = 145
+examine = "Big, mean, dead doggy."

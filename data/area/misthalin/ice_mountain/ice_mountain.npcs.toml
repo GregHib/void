@@ -36,10 +36,10 @@ combat_def = "dwarf_hammer"
 examine = "A dwarven guard."
 drop_table = "black_guard_low"
 respawn_delay = 25
-hitpoints = 220
-att = 19
-str = 18
-def = 14
+hitpoints = 160
+att = 8
+str = 6
+def = 9
 attack_bonus = 4
 max_hit_stab = 30
 

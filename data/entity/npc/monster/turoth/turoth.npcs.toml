@@ -48,3 +48,7 @@ examine = "It's one small leg short!"
 [turoth_level_88]
 id = 1630
 clone = "turoth_level_87"
+hitpoints = 800
+att = 57
+str = 87
+def = 87

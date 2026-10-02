@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.Params
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.cache.definition.decoder.NPCDecoder
 import java.io.File
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -43,6 +44,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
             """
             [dragon]
             id = 0
+            hitpoints = 500
             allowed_under = true
             solid = false
             blocks_players = true
@@ -59,6 +61,7 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
 
             [late_dragon]
             id = 3
+            hitpoints = 300
             allowed_under = true
             solid = true
             blocks_players = true
@@ -78,7 +81,9 @@ internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDec
         assertTrue(baby.allowedUnder)
         assertFalse(baby.solid)
         assertTrue(baby.blocksPlayers)
+        assertEquals(500, baby.hitpoints)
         val early = definitions.get("early_clone")
+        assertEquals(300, early.hitpoints)
         assertTrue(early.allowedUnder)
         assertFalse(early.solid)
         assertTrue(early.blocksPlayers)

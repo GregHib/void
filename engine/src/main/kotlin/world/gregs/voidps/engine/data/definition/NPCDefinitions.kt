@@ -74,6 +74,10 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                         clones[stringId] = name
                                     } else {
                                         val definition = definitions[npcId]
+                                        hitpoints = hitpoints ?: definition.hitpoints
+                                        regenRate = regenRate ?: definition.regenRate
+                                        huntRange = huntRange ?: definition.huntRange
+                                        huntMode = huntMode ?: definition.huntMode
                                         allowedUnder = definition.allowedUnder
                                         solid = definition.solid
                                         blocksPlayers = definition.blocksPlayers

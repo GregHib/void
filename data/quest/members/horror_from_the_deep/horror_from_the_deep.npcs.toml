@@ -1,0 +1,116 @@
+[dagannoth_horror_from_the_deep]
+id = 1344
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_horror_from_the_deep_2]
+id = 1345
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_horror_from_the_deep_3]
+id = 1346
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_horror_from_the_deep_4]
+id = 1347
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother]
+id = 1348
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_2]
+id = 1349
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_3]
+id = 1350
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_4]
+id = 1351
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_5]
+id = 1352
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_6]
+id = 1353
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_7]
+id = 1354
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_8]
+id = 1355
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."
+
+[dagannoth_mother_9]
+id = 1356
+hitpoints = 1200
+att = 78
+str = 78
+def = 81
+range = 50
+examine = "A horror from the ocean depths..."

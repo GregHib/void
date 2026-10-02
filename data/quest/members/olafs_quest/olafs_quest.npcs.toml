@@ -2,8 +2,8 @@
 id = 3706
 hitpoints = 600
 att = 100
-str = 82
-def = 100
+str = 100
+def = 82
 attack_speed = 6
 style = "slash"
 max_hit_melee = 110
@@ -12,3 +12,11 @@ slayer_xp = 60.0
 categories = ["skeletons"]
 drop_table = "bones"
 examine = "What could be worse than an angry, undead Fremennik?"
+
+[skeleton_fremennik_olafs_quest]
+id = 3705
+hitpoints = 400
+att = 72
+str = 54
+def = 40
+examine = "He seems a little underweight."

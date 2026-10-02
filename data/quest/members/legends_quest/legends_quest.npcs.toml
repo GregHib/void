@@ -6,7 +6,6 @@ str = 168
 def = 167
 mage = 160
 range = 160
-attack_speed = 5
 style = "slash"
 max_hit_melee = 180
 hunt_mode = "cowardly"
@@ -24,3 +23,10 @@ style = "crush"
 max_hit_melee = 80
 attack_bonus = 7
 examine = "The spirit of a long-dead wizard."
+
+[echned_zekin]
+id = 940
+hitpoints = 1500
+att = 165
+str = 168
+def = 167
