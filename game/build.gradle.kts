@@ -177,10 +177,3 @@ dependencies {
         jacocoAggregation(it)
     }
 }
-
-spotless {
-    flexmark {
-        target("**/*.md")
-        flexmark()
-    }
-}

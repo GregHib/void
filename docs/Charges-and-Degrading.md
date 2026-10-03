@@ -4,7 +4,7 @@ Charges are a number stored with an item to store to track depletion and degrada
 
 ## Overview
 
-Items can have a finite number of charges that are consumed over time or through use. When charges run out, the item might degrade replacing itself with a different item (a damaged or broken variant), or being destroyed outright. 
+Items can have a finite number of charges that are consumed over time or through use. When charges run out, the item might degrade replacing itself with a different item (a damaged or broken variant), or being destroyed outright.
 
 There are two types of charges:
 
@@ -15,26 +15,26 @@ There are two types of charges:
 
 Charge-related behaviour is declared in `*.items.toml` item config files under `data/`.
 
-| Field | Type | Description |
-|---|---|---|
-| `charges` | `Int` | The item's default/starting charge count. For inline items this is also the max. For variable items, this is the reset value when the item degrades. |
-| `charges_max` | `Int` | (Variable items only) The upper limit for charges. If omitted, `charges` is used as the cap. |
-| `charge` | `String` | Name of the player variable that stores charges. |
-| `degrade` | `String` | The item ID to replace this item with when it runs out of charges. Use `"destroy"` to delete the item instead. |
-| `degrade_message` | `String` | Chat message sent to the player when the item degrades. Only fires when the item reaches 0 charges and transitions to the degrade target. |
-| `deplete` | `String` | How the item is drained automatically by `Degradation.kt`. See depletion modes below. |
+|       Field       |   Type   |                                                                     Description                                                                      |
+|-------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `charges`         | `Int`    | The item's default/starting charge count. For inline items this is also the max. For variable items, this is the reset value when the item degrades. |
+| `charges_max`     | `Int`    | (Variable items only) The upper limit for charges. If omitted, `charges` is used as the cap.                                                         |
+| `charge`          | `String` | Name of the player variable that stores charges.                                                                                                     |
+| `degrade`         | `String` | The item ID to replace this item with when it runs out of charges. Use `"destroy"` to delete the item instead.                                       |
+| `degrade_message` | `String` | Chat message sent to the player when the item degrades. Only fires when the item reaches 0 charges and transitions to the degrade target.            |
+| `deplete`         | `String` | How the item is drained automatically by `Degradation.kt`. See depletion modes below.                                                                |
 
 ### Depletion Modes (`deplete`)
 
 The `Degradation` script monitors equipped items in Hat, Weapon, Chest, Shield, and Legs slots. The `deplete` field controls when `discharge` is called automatically:
 
-| Value | When charges are removed |
-|---|---|
-| `combat` | Once per game tick while the player is in combat |
-| `equip` | Once per game tick while the item is worn (regardless of combat) |
-| `per_hit` | Each time the player receives damage |
-| `per_attack` | Each time the player lands a hit on an enemy |
-| `teleport` | Not handled by `Degradation`; must be managed manually by the script |
+|    Value     |                       When charges are removed                       |
+|--------------|----------------------------------------------------------------------|
+| `combat`     | Once per game tick while the player is in combat                     |
+| `equip`      | Once per game tick while the item is worn (regardless of combat)     |
+| `per_hit`    | Each time the player receives damage                                 |
+| `per_attack` | Each time the player lands a hit on an enemy                         |
+| `teleport`   | Not handled by `Degradation`; must be managed manually by the script |
 
 Items with `deplete = "combat"` or `deplete = "equip"` start a `"degrading"` [soft timer](timers) when equipped. The timer fires every tick and calls `discharge` on the appropriate slots.
 
@@ -227,3 +227,4 @@ The pouch's `charges` field counts how many more times it can be emptied before 
 3. **If the item degrades automatically** (worn equipment), set `deplete` to the appropriate mode. No script changes are needed - `Degradation.kt` handles it.
 4. **If the item depletes through script actions** (teleports, special attacks, etc.), call `inventory.discharge(player, slot)` at the appropriate point in your script.
 5. **Define degrade targets** as separate item entries. Use `clone = "base_item_id"` to inherit fields and only override what changes between stages.
+

@@ -12,4 +12,6 @@ COPY ./game/build/libs/void-server-db-*.jar /app/void-server.jar
 # Copy configuration and cache files
 COPY ./data/ /app/data/
 
-CMD ["java", "-jar", "void-server.jar"]
+ENV JAVA_OPTS="-XX:MaxRAMPercentage=75"
+
+CMD ["sh", "-c", "exec java $JAVA_OPTS -jar void-server.jar"]

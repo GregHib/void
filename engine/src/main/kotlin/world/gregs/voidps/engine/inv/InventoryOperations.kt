@@ -35,10 +35,10 @@ fun Inventory.move(fromIndex: Int, target: Inventory, toIndex: Int) = transactio
 
 fun Inventory.moveToLimit(id: String, amount: Int, target: Inventory): Int {
     var moved = 0
-    transaction {
+    val success = transaction {
         moved = this.moveToLimit(id, amount, target)
     }
-    return moved
+    return if (success) moved else 0
 }
 
 fun Inventory.shift(fromIndex: Int, toIndex: Int) = transaction { shift(fromIndex, toIndex) }
@@ -59,10 +59,10 @@ fun Inventory.add(items: List<Item>) = transaction {
 
 fun Inventory.addToLimit(id: String, amount: Int = 1): Int {
     var added = 0
-    transaction {
+    val success = transaction {
         added = this.addToLimit(id, amount)
     }
-    return added
+    return if (success) added else 0
 }
 
 fun Inventory.remove(id: String, amount: Int = 1) = transaction { remove(id, amount) }
@@ -83,10 +83,10 @@ fun Inventory.remove(items: List<Item>) = transaction {
 
 fun Inventory.removeToLimit(id: String, amount: Int = 1): Int {
     var removed = 0
-    transaction {
+    val success = transaction {
         removed = this.removeToLimit(id, amount)
     }
-    return removed
+    return if (success) removed else 0
 }
 
 fun Inventory.clear(index: Int) = transaction { clear(index) }

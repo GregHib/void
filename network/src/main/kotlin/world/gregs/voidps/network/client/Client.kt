@@ -2,7 +2,9 @@ package world.gregs.voidps.network.client
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import kotlinx.io.IOException
 import world.gregs.voidps.network.login.protocol.writeByte
 import world.gregs.voidps.network.login.protocol.writeShort
@@ -16,9 +18,14 @@ open class Client(
 ) {
 
     private val logger = InlineLogger()
+    private val lock = Any()
+
+    @Volatile
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
     private var disconnecting: (suspend () -> Unit)? = null
+
+    @Volatile
     private var state: ClientState = ClientState.Connected
 
     fun onDisconnected(block: () -> Unit) {
@@ -47,10 +54,12 @@ open class Client(
     }
 
     suspend fun exit() {
-        if (state != ClientState.Connected) {
-            return
+        synchronized(lock) {
+            if (state != ClientState.Connected) {
+                return
+            }
+            state = ClientState.Disconnecting
         }
-        state = ClientState.Disconnecting
         disconnecting?.invoke()
         state = ClientState.Disconnected
     }
@@ -77,19 +86,39 @@ open class Client(
     }
 
     /**
-     * Writes to the channel, disconnecting if the connection has been closed
+     * Writes to the channel, disconnecting if the connection has been closed or stopped reading
+     * Locked so frames and [cipherOut] aren't interleaved by threads sending at the same time
      */
     private inline fun write(crossinline block: suspend ByteWriteChannel.() -> Unit) {
-        try {
-            runBlocking {
-                block.invoke(write)
-            }
-        } catch (e: IOException) {
-            logger.debug { "Client write failed $address: ${e.message}" }
-            runBlocking {
-                disconnect()
+        synchronized(lock) {
+            try {
+                runBlocking {
+                    withTimeout(WRITE_TIMEOUT_MS) {
+                        block.invoke(write)
+                    }
+                }
+            } catch (e: TimeoutCancellationException) {
+                logger.debug { "Client write timed out $address" }
+                abort(e)
+            } catch (e: IOException) {
+                logger.debug { "Client write failed $address: ${e.message}" }
+                runBlocking {
+                    disconnect()
+                }
             }
         }
+    }
+
+    /**
+     * Close without flushing as the client isn't reading
+     */
+    private fun abort(cause: Throwable) {
+        if (disconnected) {
+            return
+        }
+        disconnected = true
+        write.cancel(cause)
+        disconnect?.invoke()
     }
 
     private suspend fun ByteWriteChannel.header(opcode: Int, type: Int, size: Int, cipher: IsaacCipher?) {
@@ -118,6 +147,7 @@ open class Client(
         const val FIXED = 0
         const val BYTE = -1
         const val SHORT = -2
+        private const val WRITE_TIMEOUT_MS = 2_000L
 
         fun smart(value: Int) = if (value >= 128) 2 else 1
 

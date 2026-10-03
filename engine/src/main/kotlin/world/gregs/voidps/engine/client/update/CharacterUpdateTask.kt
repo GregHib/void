@@ -20,6 +20,7 @@ class CharacterUpdateTask(
         ZoneBatchUpdates.send(character)
         playerUpdating.run(character)
         npcUpdating.run(character)
+        character.client?.flush()
         character.viewport!!.shift()
         character.viewport!!.players.update()
     }

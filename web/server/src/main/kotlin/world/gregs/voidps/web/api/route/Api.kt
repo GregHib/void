@@ -25,7 +25,6 @@ import world.gregs.voidps.web.api.ApiException
 import world.gregs.voidps.web.api.model.ErrorBody
 import world.gregs.voidps.web.api.model.ErrorResponse
 import world.gregs.voidps.web.avatar.AvatarService
-import world.gregs.voidps.web.dev.DevService
 import world.gregs.voidps.web.exchange.ExchangeService
 import world.gregs.voidps.web.hiscores.HiscoresService
 import java.io.File
@@ -103,7 +102,7 @@ private val AllowAnyOrigin = createRouteScopedPlugin("AllowAnyOrigin") {
 fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, cache: Cache) {
     val hiscores = HiscoresService(storage, questDefinitions)
     val exchange = ExchangeService(storage)
-    val dev = DevService(storage, hiscores)
+//    val dev = DevService(storage, hiscores)
     val avatars = AvatarService(
         storage,
         cache,
@@ -114,7 +113,7 @@ fun Routing.api(storage: Storage, questDefinitions: QuestDefinitions, cache: Cac
     route(API_PATH) {
         hiscoresRoutes(hiscores)
         exchangeRoutes(exchange)
-        devRoutes(dev)
+//        devRoutes(dev)
         avatarRoutes(avatars)
         worldsRoutes()
     }

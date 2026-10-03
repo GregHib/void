@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.withTimeoutOrNull
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.network.file.FileProvider
 import world.gregs.voidps.network.file.prefetchKeys
@@ -25,8 +26,13 @@ class FileServer(
     val logger = InlineLogger()
 
     override suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
-        synchronise(read, write)
-        if (acknowledge(read, write)) {
+        val acknowledged = withTimeoutOrNull(GameServer.HANDSHAKE_TIMEOUT_MS) {
+            if (!synchronise(read, write)) {
+                return@withTimeoutOrNull false
+            }
+            acknowledge(read, write)
+        }
+        if (acknowledged == true) {
             logger.trace { "Client synchronisation complete: $hostname" }
             readRequests(read, write, hostname)
         }
@@ -57,13 +63,13 @@ class FileServer(
     /**
      * If the client is up-to-date and in the correct state send it the [prefetchKeys] list, so it knows what indices are available to request
      */
-    private suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
+    private suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel): Boolean {
         val revision = read.readInt()
         if (revision != this.revision) {
             logger.trace { "Invalid game revision: $revision" }
             write.writeByte(Response.GAME_UPDATE)
             write.flushAndClose()
-            return
+            return false
         }
 
         write.writeByte(Response.DATA_CHANGE)
@@ -71,6 +77,7 @@ class FileServer(
             write.writeInt(key)
         }
         write.flush()
+        return true
     }
 
     private suspend fun readRequests(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) = coroutineScope {

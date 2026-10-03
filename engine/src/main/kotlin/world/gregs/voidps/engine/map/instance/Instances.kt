@@ -134,14 +134,15 @@ object Instances : Runnable {
                 for (level in 0..3) {
                     NPCs.clear(region.toLevel(level))
                 }
-                for (zone in region.toCuboid().toZones()) {
+                val zones = region.toCuboid().toZones().toSet()
+                for (zone in zones) {
                     // Floor items too, or they'd linger and resurface when the instance is reused.
                     for (item in FloorItems.at(zone).flatten()) {
                         FloorItems.remove(item)
                     }
-                    GameObjects.clear(zone)
                     Collisions.clear(zone)
                 }
+                GameObjects.clear(zones)
             }
         }
     }

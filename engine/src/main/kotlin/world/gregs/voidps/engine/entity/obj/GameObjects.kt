@@ -380,6 +380,21 @@ object GameObjects : ZoneBatchUpdates.Sender {
     }
 
     /**
+     * Clears all [zones] of original and replacement objects, scanning the global maps once
+     * Note: Doesn't undo collision changes
+     */
+    fun clear(zones: Set<Zone>) {
+        if (zones.isEmpty()) {
+            return
+        }
+        for (zone in zones) {
+            map.deallocateZone(zone)
+        }
+        timers.cancel(zones)
+        replacements.keys.removeIf { Tile(it and TILE_MASK).zone in zones }
+    }
+
+    /**
      * Clears all original and replacement objects
      * Note: Doesn't undo collision changes
      */

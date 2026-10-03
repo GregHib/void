@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.client.ui.menu
 
-import kotlin.math.pow
-
 object InterfaceOptionSettings {
     fun getHash(vararg indices: Int): Int {
         var settings = 0
@@ -13,15 +11,10 @@ object InterfaceOptionSettings {
 
     fun getIndices(hash: Int): List<Int> {
         val list = mutableListOf<Int>()
-        var remainder = hash
-        var index = -1
-        while (remainder > 0) {
-            val power = 2.0.pow(index + 1).toInt()
-            if (hash and power != 0) {
-                remainder -= 2 shl index
-                list.add(index)
+        for (bit in 1..31) {
+            if (hash ushr bit and 1 != 0) {
+                list.add(bit - 1)
             }
-            index++
         }
         return list
     }

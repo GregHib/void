@@ -4,7 +4,7 @@ Inventories are a fixed size grid of slots capable of holding an amount of items
 
 ## Item stack behaviour
 
-Items come in two categories: stackable and non-stackable. Stackable items can have up to [2,147 million](https://en.wikipedia.org/wiki/2,147,483,647) items within one slot. Non-stackable items can only have 1 item per slot. 
+Items come in two categories: stackable and non-stackable. Stackable items can have up to [2,147 million](https://en.wikipedia.org/wiki/2,147,483,647) items within one slot. Non-stackable items can only have 1 item per slot.
 
 This means having two non-stackable items like a `bronze_dagger` will take up two slots, where two stackable `bronze_dagger_noted` will take up only one slot.
 
@@ -22,17 +22,17 @@ stack = "Always"
 
 ![Screenshot 2024-02-19 175815](https://github.com/GregHib/void/assets/5911414/c93b557f-5b6b-4e47-938f-210ac869bf16)
 
-| Stack mode | Behaviour |
-|---|---|
+|   Stack mode    |                               Behaviour                                |
+|-----------------|------------------------------------------------------------------------|
 | DependentOnItem | The default; stacks stackable items, doesn't stack non-stackable items |
-| Always | Always stacks items regardless if they are stackable or non-stackable |
-| Never | Never stacks items even if they are stackable |
+| Always          | Always stacks items regardless if they are stackable or non-stackable  |
+| Never           | Never stacks items even if they are stackable                          |
 
 > [!NOTE]
 > Custom stacking rules can also be created, see [ItemStackingRule.kt](https://github.com/GregHib/void/blob/c4d6e458984c742d2d68a6cd685727ee9bbeda0d/engine/src/main/kotlin/world/gregs/voidps/engine/inv/stack/ItemStackingRule.kt#L8).
 
 An item can be checked if stackable against a certain inventory using the `stackable()` function:
- 
+
 ```kotlin
 val stackable = player.bank.stackable("bronze_dagger") // true
 ```
@@ -47,6 +47,7 @@ val equipment = player.inventories.inventory("worn_equipment")
 
 > [!TIP]
 > A lot of the commonly used player inventories have helper functions for easy access e.g. `player.equipment`
+>
 > ```kotlin
 > val Player.equipment: Inventory
 >     get() = inventories.inventory("worn_equipment")
@@ -73,15 +74,15 @@ val goldBars = player.inventory.count("gold_bar")
 
 There are a number of functions to help manage the free slots in an inventory.
 
-| Function | Description |
-|---|---|
-| `inventory.isEmpty()` | Check if an inventory has no items inside. |
-| `inventory.spaces` | The number of empty slots. |
-| `inventory.isFull()` | Check if an inventory has no empty slots. |
-| `inventory.count` | The number of item slots in use. |
-| `inventory.freeIndex()` | Get the index of an empty slot. |
-| `item.isEmpty()` | Check if an item slot is empty. |
-| `item.isNotEmpty()` | Check if an item slot is not empty. |
+|        Function         |                Description                 |
+|-------------------------|--------------------------------------------|
+| `inventory.isEmpty()`   | Check if an inventory has no items inside. |
+| `inventory.spaces`      | The number of empty slots.                 |
+| `inventory.isFull()`    | Check if an inventory has no empty slots.  |
+| `inventory.count`       | The number of item slots in use.           |
+| `inventory.freeIndex()` | Get the index of an empty slot.            |
+| `item.isEmpty()`        | Check if an item slot is empty.            |
+| `item.isNotEmpty()`     | Check if an item slot is not empty.        |
 
 # Inventory Modifications
 
@@ -152,13 +153,14 @@ inventoryOption("Remove", "worn_equipment") {
 
 There are plenty of other helper functions to explore that should cover the majority of use-cases, for a full list see [InventoryOperations.kt](https://github.com/GregHib/void/blob/main/engine/src/main/kotlin/world/gregs/voidps/engine/inv/InventoryOperations.kt).
 
-| Function name | Description |
-|---|---|
-| `swap` | Swap the items in two slots, in the same or different inventories. |
-| `moveAll` | Move all items to another inventory |
-| `moveToLimit` | Move as many items as possible until an amount given. |
-| `shift` | Move an item along a row; used in banking |
-| `removeToLimit` | Remove as many items as possible until an amount given. |
+|  Function name  |                            Description                             |
+|-----------------|--------------------------------------------------------------------|
+| `swap`          | Swap the items in two slots, in the same or different inventories. |
+| `moveAll`       | Move all items to another inventory                                |
+| `moveToLimit`   | Move as many items as possible until an amount given.              |
+| `shift`         | Move an item along a row; used in banking                          |
+| `removeToLimit` | Remove as many items as possible until an amount given.            |
 
 > [!IMPORTANT]
 > For advanced modifications including combining multiple and cross-inventory operations see [Transactions](transactions).
+

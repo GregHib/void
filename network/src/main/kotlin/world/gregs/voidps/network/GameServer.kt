@@ -12,6 +12,7 @@ import world.gregs.voidps.network.client.ConnectionTracker
 import world.gregs.voidps.network.login.protocol.finish
 import java.util.*
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
 
 /**
@@ -20,7 +21,9 @@ import kotlin.concurrent.thread
 class GameServer(
     private val fileServer: Server,
     private val connections: ConnectionTracker,
+    private val maxConnections: Int = DEFAULT_MAX_CONNECTIONS,
 ) {
+    private val open = AtomicInteger()
     private var job: Job? = null
     private var dispatcher: ExecutorCoroutineDispatcher? = null
     private var server: ServerSocket? = null
@@ -48,12 +51,22 @@ class GameServer(
                     logger.info { "Listening for requests on port $port..." }
                     while (isActive) {
                         val socket = server.accept()
+                        if (open.incrementAndGet() > maxConnections) {
+                            open.decrementAndGet()
+                            logger.warn { "Connection limit of $maxConnections reached, rejecting ${socket.remoteAddress}" }
+                            socket.close()
+                            continue
+                        }
                         launch(dispatcher + exceptionHandler) {
-                            logger.trace { "New connection accepted ${socket.remoteAddress}" }
-                            socket.use {
-                                val read = socket.openReadChannel()
-                                val write = socket.openWriteChannel(autoFlush = false)
-                                connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+                            try {
+                                logger.trace { "New connection accepted ${socket.remoteAddress}" }
+                                socket.use {
+                                    val read = socket.openReadChannel()
+                                    val write = socket.openWriteChannel(autoFlush = false)
+                                    connect(read, write, socket.remoteAddress.toJavaAddress().hostname)
+                                }
+                            } finally {
+                                open.decrementAndGet()
                             }
                         }
                     }
@@ -71,7 +84,12 @@ class GameServer(
             return
         }
         try {
-            when (val opcode = read.readByte().toInt()) {
+            val opcode = withTimeoutOrNull(HANDSHAKE_TIMEOUT_MS) { read.readByte().toInt() }
+            if (opcode == null) {
+                logger.trace { "Handshake timed out: $hostname" }
+                return
+            }
+            when (opcode) {
                 Request.CONNECT_LOGIN -> loginServer?.connect(read, write, hostname)
                     ?: write.finish(Response.LOGIN_SERVER_OFFLINE)
                 Request.CONNECT_JS5 -> fileServer.connect(read, write, hostname)
@@ -100,9 +118,13 @@ class GameServer(
 
         fun load(cache: Cache, properties: Properties): GameServer {
             val limit = properties.getProperty("network.maxClientPerIP").toInt()
+            val maxConnections = properties.getProperty("network.maxConnections")?.toInt() ?: DEFAULT_MAX_CONNECTIONS
             val fileServer = FileServer.load(cache, properties)
-            return GameServer(fileServer, ConnectionTracker(limit))
+            return GameServer(fileServer, ConnectionTracker(limit), maxConnections)
         }
+
+        private const val DEFAULT_MAX_CONNECTIONS = 4096
+        const val HANDSHAKE_TIMEOUT_MS = 10_000L
 
         private val logger = InlineLogger()
         private val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
