@@ -26,11 +26,17 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
                 message("You must choose an item first.")
                 return@interfaceOption
             }
-            val slot: Int = get("grand_exchange_box") ?: return@interfaceOption
-            val itemId: String = get("grand_exchange_item") ?: return@interfaceOption
-            val amount: Int = get("grand_exchange_quantity") ?: return@interfaceOption
-            val price: Int = get("grand_exchange_price") ?: return@interfaceOption
+            val slot: Int? = get("grand_exchange_box")
+            val itemId: String? = get("grand_exchange_item")
+            val amount: Int? = get("grand_exchange_quantity")
+            val price: Int? = get("grand_exchange_price")
+            if (slot == null || itemId == null || amount == null || price == null) {
+                logger.warn { "Incomplete GE offer $name slot=$slot item=$itemId amount=$amount price=$price" }
+                message("Your offer is incomplete, please start it again.")
+                return@interfaceOption
+            }
             if (amount < 1 || price < 0) {
+                message("You must enter a valid quantity and price.")
                 return@interfaceOption
             }
             if (price.toLong() * amount > Int.MAX_VALUE) {
