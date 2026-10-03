@@ -16,10 +16,6 @@ class HouseMenagerie : Script {
             notImplemented()
         }
 
-        objectOperate("Upgrade", "$PET_HOUSES,oak_pet_feeder,teak_pet_feeder") {
-            notImplemented()
-        }
-
         objectOperate("Renew-points", "house_small_obelisk") {
             notImplemented()
         }

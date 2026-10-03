@@ -11,6 +11,7 @@ import interfaceOption
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Test
+import skillCreation
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
@@ -21,6 +22,7 @@ import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.contains
 import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
 import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
@@ -447,6 +449,49 @@ class HouseFurnitureTest : WorldTest() {
 
         assertTrue(player.containsMessage("Crafting Guild"))
         assertTrue(player.containsMessage("size 4"))
+    }
+
+    @Test
+    fun `Make clockwork at a clockmaker's bench`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Crafting, 10)
+        player.inventory.add("steel_bar", 2)
+        val bench = createObject("crafting_table_2", emptyTile.addY(1))
+
+        player.objectOption(bench, "Craft")
+        tickIf { !player.hasOpen("dialogue_skill_creation") }
+        player.skillCreation("Clockwork", 2)
+        tick(5)
+
+        assertEquals(2, player.inventory.count("clockwork"))
+        assertEquals(30.0, player.experience.get(Skill.Crafting))
+    }
+
+    @Test
+    fun `Paint a family crest on a helmet`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Crafting, 38)
+        player["heraldry_crest"] = 15
+        player.inventory.add("steel_full_helm")
+        val stand = createObject("pluming_stand", emptyTile.addY(1))
+
+        player.objectOption(stand, "Make-helmet")
+        tickIf { !player.inventory.contains("steel_heraldic_helm_zamorak") }
+
+        assertEquals(0, player.inventory.count("steel_full_helm"))
+    }
+
+    @Test
+    fun `Can't paint without a family crest`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Crafting, 99)
+        player.inventory.add("plank", "bolt_of_cloth")
+        val easel = createObject("banner_easel", emptyTile.addY(1))
+
+        player.objectOption(easel, "Use")
+        tickIf { !player.containsMessage("family crest") }
+
+        assertEquals(1, player.inventory.count("plank"))
     }
 
     @Test
