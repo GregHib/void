@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.mode.move
 
 import org.rsmod.game.pathfinder.Route
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.type.Tile
 
@@ -11,7 +12,7 @@ import world.gregs.voidps.type.Tile
 class Steps(
     internal val character: Character,
 ) : AbstractList<Step>() {
-    private val ids = IntArray(if (character is Player) PLAYER_MAX_STEPS else NPC_MAX_STEPS)
+    private val ids = IntArray(if (smartPathing(character)) MAX_STEPS else SINGLE_STEP)
     private var head = 0
     private var count = 0
 
@@ -48,7 +49,7 @@ class Steps(
     }
 
     private fun add(step: Step) {
-        if (head + count == PLAYER_MAX_STEPS) {
+        if (head + count == ids.size) {
             return
         }
         ids[head + count++] = step.id
@@ -104,8 +105,10 @@ class Steps(
         clearDestination()
     }
 
-    private companion object {
-        const val PLAYER_MAX_STEPS = 25
-        const val NPC_MAX_STEPS = 10
+    companion object {
+        private const val MAX_STEPS = 25
+        private const val SINGLE_STEP = 1
+
+        fun smartPathing(character: Character) = character is Player || ((character as? NPC)?.ownerIndex ?: -1) != -1
     }
 }
