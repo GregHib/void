@@ -46,7 +46,7 @@ class DynamicZones(
      */
     fun copy(entries: List<Triple<Zone, Zone, Int>>) {
         for ((_, to) in entries) {
-            GameObjects.reset(to)
+            GameObjects.clear(to)
             Collisions.clear(to)
         }
         for ((from, to, rotation) in entries) {
@@ -91,7 +91,7 @@ class DynamicZones(
      */
     fun clear(zone: Zone) {
         zones.remove(zone.id)
-        GameObjects.reset(zone)
+        GameObjects.clear(zone)
         Collisions.clear(zone)
         definitions.loadZone(zone, zone, 0)
         for (region in zone.toCuboid(radius = 3).toRegions()) {

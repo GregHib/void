@@ -42,6 +42,8 @@ class MapObjectsRotatedDecoderTest {
 
         decoder.zoneRotation = 2
         decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.level = 1
+        decoder.targetLevel = 1
         decoder.decode(array, settings, 960, 896)
 
         val tile = Tile(965, 900, 1) // local 5, 4
@@ -121,6 +123,49 @@ class MapObjectsRotatedDecoderTest {
         val tile = Tile(82, 84, 0)
         val gameObject = GameObjects.getShape(tile, shape)
         assertNull(gameObject)
+    }
+
+    @Test
+    fun `Load object onto a different level`() {
+        val writer = ArrayWriter()
+        writer.writeSmart(124)
+        writer.writeSmart(packTile(10, 11, 0))
+        val shape = ObjectShape.GROUND_DECOR
+        writer.writeByte(packInfo(shape, 0))
+        writer.writeSmart(0)
+        writer.writeSmart(0)
+        val array = writer.toArray()
+
+        decoder.zoneRotation = 0
+        decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.level = 0
+        decoder.targetLevel = 1
+        decoder.decode(array, settings, 64, 64)
+
+        assertNull(GameObjects.getShape(Tile(66, 67, 0), shape))
+        assertNotNull(GameObjects.getShape(Tile(66, 67, 1), shape))
+    }
+
+    @Test
+    fun `Load ignores objects on other levels`() {
+        val writer = ArrayWriter()
+        writer.writeSmart(124)
+        writer.writeSmart(packTile(12, 13, 2))
+        val shape = ObjectShape.GROUND_DECOR
+        writer.writeByte(packInfo(shape, 0))
+        writer.writeSmart(0)
+        writer.writeSmart(0)
+        val array = writer.toArray()
+
+        decoder.zoneRotation = 0
+        decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.level = 0
+        decoder.targetLevel = 0
+        decoder.decode(array, settings, 64, 64)
+
+        for (level in 0 until 4) {
+            assertNull(GameObjects.getShape(Tile(68, 69, level), shape))
+        }
     }
 
     @TestFactory

@@ -1,0 +1,128 @@
+[construction_build]
+id = 3683
+
+[construction_remove]
+id = 3685
+
+# Ids from the Fury emulator, guessed
+[light_fireplace]
+id = 3658
+
+[fill_beer_barrel]
+id = 3661
+
+[fill_cider_barrel]
+id = 3662
+
+[fill_asgarnian_ale_barrel]
+id = 3663
+
+[fill_greenmans_ale_barrel]
+id = 3664
+
+[fill_dragon_bitter_barrel]
+id = 3665
+
+[fill_chefs_delight_barrel]
+id = 3666
+
+# Placeholder, Fury used 3687 for torches and burners
+[light_torch]
+id = 3687
+
+[chair_sit]
+id = 4103
+
+[chair_sit_diagonal]
+id = 4104
+
+[chair_get_up]
+id = 4105
+
+[chair_get_up_diagonal]
+id = 4106
+
+# Seated anims hold the seat model in the right hand while the seat object is hidden
+[sit_crude_wooden_chair]
+id = 4073
+
+[sit_crude_wooden_chair_diagonal]
+id = 4074
+
+[sit_wooden_chair]
+id = 4075
+
+[sit_wooden_chair_diagonal]
+id = 4076
+
+[sit_rocking_chair]
+id = 4079
+
+[sit_rocking_chair_diagonal]
+id = 4080
+
+[sit_oak_chair]
+id = 4081
+
+[sit_oak_chair_diagonal]
+id = 4082
+
+[sit_oak_armchair]
+id = 4083
+
+[sit_oak_armchair_diagonal]
+id = 4084
+
+[sit_teak_armchair]
+id = 4085
+
+[sit_teak_armchair_diagonal]
+id = 4086
+
+[sit_mahogany_armchair]
+id = 4087
+
+[sit_mahogany_armchair_diagonal]
+id = 4088
+
+[sit_wooden_bench]
+id = 4089
+
+[sit_oak_bench]
+id = 4091
+
+[sit_carved_oak_bench]
+id = 4093
+
+[sit_teak_dining_bench]
+id = 4095
+
+[sit_carved_teak_bench]
+id = 4097
+
+[sit_mahogany_bench]
+id = 4099
+
+[sit_gilded_bench]
+id = 4101
+
+[sit_oak_throne]
+id = 4111
+
+[sit_teak_throne]
+id = 4112
+
+[sit_mahogany_throne]
+id = 4113
+
+[sit_gilded_throne]
+id = 4114
+
+[sit_skeleton_throne]
+id = 4115
+
+[sit_crystal_throne]
+id = 4116
+
+[sit_demonic_throne]
+id = 4117

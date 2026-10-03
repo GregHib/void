@@ -1,0 +1,3922 @@
+# Room templates are the south-west tile of each room in the house style region
+# Upper is the template with stairs leading down, used on the upper floor or when the stairs are built down
+# Stairs and stairs down are the hotspots for stairs leading up and down, outdoor rooms have no roof
+[house_rooms]
+level = "int"
+cost = "int"
+template = "tile"
+upper = "tile"
+stairs = "obj"
+stairs_down = "obj"
+dungeon = "boolean"
+outdoor = "boolean"
+
+[.parlour]
+level = 1
+cost = 1000
+template = { x = 1856, y = 5112 }
+
+[.garden]
+level = 1
+cost = 1000
+template = { x = 1856, y = 5064 }
+outdoor = true
+
+[.kitchen]
+level = 5
+cost = 5000
+template = { x = 1872, y = 5112 }
+
+[.dining_room]
+level = 10
+cost = 5000
+template = { x = 1888, y = 5112 }
+
+[.workshop]
+level = 15
+cost = 10000
+template = { x = 1856, y = 5096 }
+
+[.bedroom]
+level = 20
+cost = 10000
+template = { x = 1904, y = 5112 }
+
+[.skill_hall]
+level = 25
+cost = 15000
+template = { x = 1864, y = 5104 }
+upper = { x = 1880, y = 5104 }
+stairs = "skill_hall_stair_space"
+stairs_down = "skill_hall_stair_space_down"
+
+[.games_room]
+level = 30
+cost = 25000
+template = { x = 1896, y = 5088 }
+
+[.combat_room]
+level = 32
+cost = 25000
+template = { x = 1880, y = 5088 }
+
+[.quest_hall]
+level = 35
+cost = 25000
+template = { x = 1896, y = 5104 }
+upper = { x = 1912, y = 5104 }
+stairs = "quest_hall_stair_space"
+stairs_down = "quest_hall_stair_space_down"
+
+[.menagerie]
+level = 37
+cost = 30000
+template = { x = 1912, y = 5072 }
+outdoor = true
+
+[.study]
+level = 40
+cost = 50000
+template = { x = 1888, y = 5096 }
+
+[.costume_room]
+level = 42
+cost = 50000
+template = { x = 1904, y = 5064 }
+
+[.chapel]
+level = 45
+cost = 50000
+template = { x = 1872, y = 5096 }
+
+[.portal_chamber]
+level = 50
+cost = 100000
+template = { x = 1864, y = 5088 }
+
+[.formal_garden]
+level = 55
+cost = 75000
+template = { x = 1872, y = 5064 }
+outdoor = true
+
+[.throne_room]
+level = 60
+cost = 150000
+template = { x = 1904, y = 5096 }
+
+[.oubliette]
+level = 65
+cost = 150000
+template = { x = 1904, y = 5080 }
+dungeon = true
+
+[.dungeon_corridor]
+level = 70
+cost = 7500
+template = { x = 1888, y = 5080 }
+dungeon = true
+
+[.dungeon_junction]
+level = 70
+cost = 7500
+template = { x = 1856, y = 5080 }
+dungeon = true
+
+[.dungeon_stairs]
+level = 70
+cost = 7500
+template = { x = 1872, y = 5080 }
+stairs = "skill_hall_stair_space"
+dungeon = true
+
+[.dungeon_pit]
+level = 70
+cost = 10000
+template = { x = 1896, y = 5072 }
+dungeon = true
+
+[.treasure_room]
+level = 75
+cost = 250000
+template = { x = 1912, y = 5088 }
+dungeon = true
+
+# Filler for house grid spaces without a room
+# Roof is the hipped roof for a single room, the style region also has ridged roofs at { x = 1864, y = 5072 } and { x = 1880, y = 5072 }
+[house_spaces]
+template = "tile"
+build = "tile"
+
+[.land]
+template = { x = 1864, y = 5056 }
+
+[.roof]
+template = { x = 1888, y = 5064 }
+
+# Fills the empty dungeon spaces around the rooms, in building mode with spaces to build rooms in
+[.dungeon]
+template = { x = 1880, y = 5056 }
+build = { x = 1944, y = 5056 }
+
+# Templates for each style are offset from the basic wood templates, window spaces are filled with the styles window or wall underground
+[house_styles]
+name = "string"
+level = "int"
+cost = "int"
+offset = "tile"
+wall = "obj"
+window = "obj"
+
+[.basic_wood]
+name = "Basic wood"
+level = 1
+cost = 5000
+wall = "basic_wood_wall"
+window = "basic_wood_window"
+
+[.basic_stone]
+name = "Basic stone"
+level = 10
+cost = 5000
+offset = { level = 1 }
+wall = "basic_stone_wall"
+window = "basic_stone_window"
+
+[.whitewashed_stone]
+name = "Whitewashed stone"
+level = 20
+cost = 7500
+offset = { level = 2 }
+wall = "whitewashed_stone_wall"
+window = "whitewashed_stone_window"
+
+[.fremennik_wood]
+name = "Fremennik-style wood"
+level = 30
+cost = 10000
+offset = { level = 3 }
+wall = "fremennik_wood_wall"
+window = "fremennik_wood_window"
+
+[.tropical_wood]
+name = "Tropical wood"
+level = 40
+cost = 15000
+offset = { x = 64 }
+wall = "tropical_wood_wall"
+window = "tropical_wood_window"
+
+[.fancy_stone]
+name = "Fancy stone"
+level = 50
+cost = 25000
+offset = { x = 64, level = 1 }
+wall = "fancy_stone_wall"
+window = "fancy_stone_window"
+
+[house_locations]
+level = "int"
+cost = "int"
+exit = "tile"
+
+[.rimmington]
+level = 1
+cost = 5000
+exit = { x = 2953, y = 3224 }
+
+[.taverley]
+level = 10
+cost = 5000
+exit = { x = 2893, y = 3465 }
+
+[.pollnivneach]
+level = 20
+cost = 7500
+exit = { x = 3340, y = 3003 }
+
+[.rellekka]
+level = 30
+cost = 10000
+exit = { x = 2670, y = 3631 }
+
+[.brimhaven]
+level = 40
+cost = 15000
+exit = { x = 2757, y = 3178 }
+
+[.yanille]
+level = 50
+cost = 25000
+exit = { x = 2544, y = 3096 }
+
+# Furniture which can be built on each hotspot, hotspots with the same group are built and removed together
+# Variant is the player variable picking which of the furniture's objects is placed on the hotspot
+[house_hotspots]
+row_id = "obj"
+furniture = "list<item>"
+group = "string"
+piece = "int"
+variant = "string"
+clone = "clone"
+
+[.garden_centrepiece_space]
+furniture = ["exit_portal", "decorative_rock", "pond", "imp_statue", "dungeon_entrance"]
+
+[.parlour_chair_space]
+furniture = ["crude_wooden_chair", "wooden_chair", "rocking_chair", "oak_chair", "oak_armchair", "teak_armchair", "mahogany_armchair"]
+
+[.parlour_chair_space_2]
+clone = "parlour_chair_space"
+
+[.parlour_chair_space_3]
+clone = "parlour_chair_space"
+
+[.parlour_rug_space_corner]
+furniture = ["brown_rug", "rug", "opulent_rug"]
+group = "parlour_rug"
+
+[.parlour_rug_space_side]
+clone = "parlour_rug_space_corner"
+piece = 1
+
+[.parlour_rug_space_middle]
+clone = "parlour_rug_space_corner"
+piece = 2
+
+[.parlour_bookcase_space]
+furniture = ["wooden_bookcase", "oak_bookcase", "mahogany_bkcase"]
+
+[.parlour_fireplace_space]
+furniture = ["clay_fireplace", "stone_fireplace", "marble_fireplace"]
+
+[.parlour_curtain_space]
+furniture = ["torn_curtains", "curtains", "opulent_curtains"]
+
+[.garden_big_tree_space]
+furniture = ["tree", "nice_tree", "oak_tree", "willow_tree", "maple_tree", "yew_tree", "magic_tree"]
+
+[.garden_tree_space]
+clone = "garden_big_tree_space"
+piece = 1
+
+[.garden_big_plant_space]
+furniture = ["fern_2", "bush", "tall_plant"]
+
+[.garden_big_plant_space_2]
+furniture = ["short_plant", "large_leaf_plant", "huge_plant"]
+
+[.garden_small_plant_space]
+furniture = ["plant", "small_fern", "fern"]
+
+[.garden_small_plant_space_2]
+furniture = ["dock_leaf", "thistle", "reeds"]
+
+[.kitchen_stove_space]
+furniture = ["firepit", "firepit_with_hook", "firepit_with_pot", "small_oven", "large_oven", "steel_range", "fancy_range"]
+
+[.kitchen_shelf_space]
+furniture = ["wooden_shelves_1", "wooden_shelves_2", "wooden_shelves_3", "oak_shelves_1", "oak_shelves_2", "teak_shelves_1", "teak_shelves_2"]
+
+[.kitchen_shelf_space_2]
+clone = "kitchen_shelf_space"
+
+[.kitchen_barrel_space]
+furniture = ["beer_barrel", "cider_barrel", "asgarnian_ale_barrel", "greenmans_ale_barrel", "dragon_bitter_barrel", "chefs_delight_barrel"]
+
+[.kitchen_cat_basket_space]
+furniture = ["cat_blanket", "cat_basket", "cushioned_basket"]
+
+[.kitchen_larder_space]
+furniture = ["wooden_larder", "oak_larder", "teak_larder"]
+
+[.kitchen_sink_space]
+furniture = ["pump_and_drain", "pump_and_tub", "sink"]
+
+[.kitchen_table_space]
+furniture = ["wood_kitchen_table", "oak_kitchen_table", "teak_kitchen_table"]
+
+[.dining_room_table_space]
+furniture = ["wood_dining_table", "oak_dining_table", "carved_oak_table", "teak_table", "carved_teak_table", "mahogany_table", "opulent_table"]
+
+[.dining_room_bench_space]
+furniture = ["wooden_bench", "oak_bench", "carved_oak_bench", "teak_dining_bench", "carved_teak_bench", "mahogany_bench", "gilded_bench"]
+
+[.dining_room_bench_space_2]
+clone = "dining_room_bench_space"
+
+[.dining_room_fireplace_space]
+furniture = ["clay_fireplace", "stone_fireplace", "marble_fireplace"]
+
+[.dining_room_curtain_space]
+furniture = ["torn_curtains", "curtains", "opulent_curtains"]
+
+[.dining_room_decoration_space]
+furniture = ["oak_decoration", "teak_decoration", "gilded_decoration"]
+
+[.dining_room_bell_pull_space]
+furniture = ["rope_bell_pull", "bell_pull", "posh_bell_pull"]
+
+[.workshop_workbench_space]
+furniture = ["wooden_workbench", "oak_workbench", "steel_framed_bench", "bench_with_vice", "bench_with_lathe"]
+
+[.workshop_crafting_space]
+furniture = ["crafting_table_1", "crafting_table_2", "crafting_table_3", "crafting_table_4"]
+
+[.workshop_tool_space]
+furniture = ["tool_store_1", "tool_store_2", "tool_store_3", "tool_store_4", "tool_store_5"]
+group = "workshop_tool"
+
+[.workshop_tool_space_2]
+clone = "workshop_tool_space"
+
+[.workshop_tool_space_3]
+clone = "workshop_tool_space"
+
+[.workshop_tool_space_4]
+clone = "workshop_tool_space"
+
+[.workshop_tool_space_5]
+clone = "workshop_tool_space"
+
+[.workshop_repair_space]
+furniture = ["repair_bench", "whetstone", "armour_stand"]
+
+[.workshop_heraldry_space]
+furniture = ["pluming_stand", "shield_easel", "banner_easel"]
+
+[.bedroom_bed_space]
+furniture = ["wooden_bed", "oak_bed", "large_oak_bed", "teak_bed", "large_teak_bed", "four_poster", "gilded_4_poster"]
+
+[.bedroom_wardrobe_space]
+furniture = ["shoe_box", "oak_drawers", "oak_wardrobe", "teak_drawers", "teak_wardrobe", "mahogany_drobe", "gilded_wardrobe"]
+
+[.bedroom_dresser_space]
+furniture = ["shaving_stand", "oak_shaving_stand", "oak_dresser", "teak_dresser", "fancy_teak_dresser", "mahogany_dresser", "gilded_dresser"]
+
+[.bedroom_curtain_space]
+furniture = ["torn_curtains", "curtains", "opulent_curtains"]
+
+[.bedroom_rug_space_corner]
+furniture = ["brown_rug", "rug", "opulent_rug"]
+group = "bedroom_rug"
+
+[.bedroom_rug_space_side]
+clone = "bedroom_rug_space_corner"
+piece = 1
+
+[.bedroom_rug_space_middle]
+clone = "bedroom_rug_space_corner"
+piece = 2
+
+[.bedroom_fireplace_space]
+furniture = ["clay_fireplace", "stone_fireplace", "marble_fireplace"]
+
+[.bedroom_clock_space]
+furniture = ["oak_clock", "teak_clock", "gilded_clock"]
+
+[.skill_hall_rug_space_corner]
+furniture = ["brown_rug", "rug", "opulent_rug"]
+group = "skill_hall_rug"
+
+[.skill_hall_rug_space_side]
+clone = "skill_hall_rug_space_corner"
+piece = 1
+
+[.skill_hall_rug_space_middle]
+clone = "skill_hall_rug_space_corner"
+piece = 2
+
+[.skill_hall_stair_space]
+furniture = ["oak_staircase", "teak_staircase", "spiral_staircase", "marble_staircase", "marble_spiral"]
+
+[.skill_hall_stair_space_down]
+clone = "skill_hall_stair_space"
+piece = 1
+
+[.skill_hall_head_trophy_space]
+furniture = ["crawling_hand_3", "cockatrice_head_2", "basilisk_head_2", "kurask_head_2", "abyssal_head_2", "kbd_heads", "kq_head"]
+
+[.skill_hall_fishing_trophy_space]
+furniture = ["mounted_bass", "mounted_swordfish", "mounted_shark"]
+
+[.skill_hall_decorative_armour_space]
+furniture = ["basic_decorative_armour", "detailed_decorative_armour", "intricate_decorative_armour", "profound_decorative_armour"]
+
+[.skill_hall_armour_space]
+furniture = ["mithril_armour", "adamant_armour", "rune_armour"]
+
+[.skill_hall_rune_case_space]
+furniture = ["rune_case_1", "rune_case_2"]
+
+[.games_room_game_space]
+furniture = ["jester", "treasure_hunt", "hangman_game"]
+
+[.games_room_prize_chest_space]
+furniture = ["oak_prize_chest", "teak_prize_chest", "mahogany_chest_2"]
+
+[.games_room_stone_space]
+furniture = ["clay_attack_stone", "attack_stone", "marble_att_stone"]
+
+[.games_room_elemental_balance_space]
+furniture = ["magical_balance_1", "magical_balance_2", "magical_balance_3"]
+
+[.games_room_ranging_game_space]
+furniture = ["hoop_and_stick", "dartboard", "archery_target"]
+
+[.combat_room_ring_rope_space]
+furniture = ["boxing_ring", "fencing_ring", "combat_ring", "ranging_pedestals", "balance_beam"]
+group = "combat_ring"
+
+[.combat_room_ring_rope_space_2]
+clone = "combat_room_ring_rope_space"
+
+[.combat_room_ring_corner_space]
+clone = "combat_room_ring_rope_space"
+piece = 1
+
+[.combat_room_ring_corner_space_2]
+clone = "combat_room_ring_rope_space"
+piece = 1
+
+[.combat_room_ring_corner_space_3]
+clone = "combat_room_ring_rope_space"
+piece = 1
+
+[.combat_room_ring_corner_space_4]
+clone = "combat_room_ring_rope_space"
+piece = 1
+
+[.combat_room_ring_pedestal_rope_space]
+clone = "combat_room_ring_rope_space"
+piece = 2
+
+[.combat_room_ring_pedestal_rope_space_2]
+clone = "combat_room_ring_rope_space"
+piece = 2
+
+[.combat_room_ring_mat_corner_space]
+clone = "combat_room_ring_rope_space"
+piece = 3
+
+[.combat_room_ring_mat_corner_space_2]
+clone = "combat_room_ring_rope_space"
+piece = 3
+
+[.combat_room_ring_pedestal_space]
+clone = "combat_room_ring_rope_space"
+piece = 4
+
+[.combat_room_ring_pedestal_space_2]
+clone = "combat_room_ring_rope_space"
+piece = 4
+
+[.combat_room_ring_mat_side_space]
+clone = "combat_room_ring_rope_space"
+piece = 5
+
+[.combat_room_ring_mat_side_space_2]
+clone = "combat_room_ring_rope_space"
+piece = 5
+
+[.combat_room_ring_mat_side_space_3]
+clone = "combat_room_ring_rope_space"
+piece = 5
+
+[.combat_room_ring_mat_middle_space]
+clone = "combat_room_ring_rope_space"
+piece = 6
+
+[.combat_room_ring_barrier_space]
+clone = "combat_room_ring_rope_space"
+piece = 7
+
+[.combat_room_ring_barrier_space_2]
+clone = "combat_room_ring_rope_space"
+piece = 8
+
+[.combat_room_ring_beam_space]
+clone = "combat_room_ring_rope_space"
+piece = 9
+
+[.combat_room_storage_space]
+furniture = ["glove_rack", "weapons_rack", "extra_weapons_rack"]
+
+[.combat_room_decoration_space]
+furniture = ["oak_decoration", "teak_decoration", "gilded_decoration"]
+
+[.quest_hall_rug_space_corner]
+furniture = ["brown_rug", "rug", "opulent_rug"]
+group = "quest_hall_rug"
+
+[.quest_hall_rug_space_side]
+clone = "quest_hall_rug_space_corner"
+piece = 1
+
+[.quest_hall_rug_space_middle]
+clone = "quest_hall_rug_space_corner"
+piece = 2
+
+[.quest_hall_stair_space]
+furniture = ["oak_staircase", "teak_staircase", "spiral_staircase", "marble_staircase", "marble_spiral"]
+
+[.quest_hall_stair_space_down]
+clone = "quest_hall_stair_space"
+piece = 1
+
+[.quest_hall_portrait_space]
+furniture = ["king_arthur", "elena", "giant_dwarf", "miscellanians"]
+
+[.quest_hall_landscape_space]
+furniture = ["lumbridge", "the_desert", "morytania", "karamja", "isafdar"]
+
+[.quest_hall_guild_trophy_space]
+furniture = ["anti_dragon_shield_mounted", "amulet_of_glory_mounted", "cape_of_legends_2"]
+
+[.quest_hall_sword_space]
+furniture = ["silverlight_2", "excalibur_2", "darklight_2"]
+
+[.quest_hall_map_space]
+furniture = ["small_map_2", "medium_map_2", "large_map_2"]
+
+[.quest_hall_bookcase_space]
+furniture = ["wooden_bookcase", "oak_bookcase", "mahogany_bkcase"]
+
+[.menagerie_habitat_space]
+furniture = ["garden_habitat", "jungle_habitat", "desert_habitat", "polar_habitat", "volcanic_habitat"]
+group = "menagerie_habitat"
+
+[.menagerie_habitat_space_2]
+clone = "menagerie_habitat_space"
+piece = 1
+
+[.menagerie_pet_house_space]
+furniture = ["oak_pet_house", "teak_pet_house", "mahogany_pet_house", "consecrated_pet_house", "desecrated_pet_house", "natural_pet_house"]
+
+[.menagerie_pet_feeder_space]
+furniture = ["oak_pet_feeder", "teak_pet_feeder", "mahogany_pet_feeder"]
+
+[.menagerie_obelisk_space]
+furniture = ["mini_obelisk"]
+
+[.study_lectern_space]
+furniture = ["oak_lectern", "eagle_lectern", "demon_lectern", "teak_eagle_lectern", "teak_demon_lectern", "mahogany_eagle", "mahogany_demon"]
+
+[.study_globe_space]
+furniture = ["globe", "ornamental_globe", "lunar_globe", "celestial_globe", "armillary_sphere", "small_orrery", "large_orrery"]
+
+[.study_crystal_ball_space]
+furniture = ["crystal_ball", "elemental_sphere", "crystal_of_power"]
+
+[.study_wall_chart_space]
+furniture = ["alchemical_chart", "astronomical_chart", "infernal_chart"]
+
+[.study_telescope_space]
+furniture = ["wooden_telescope", "teak_telescope", "mahogany_scope"]
+
+[.study_bookcase_space]
+furniture = ["wooden_bookcase", "oak_bookcase", "mahogany_bkcase"]
+
+[.study_statue_space]
+furniture = ["statue_2"]
+
+[.costume_room_cape_rack_space]
+furniture = ["oak_cape_rack", "teak_cape_rack", "mgany_cape_rack", "gilded_cape_rack", "marble_cape_rack", "magical_cape_rack"]
+
+[.costume_room_magic_wardrobe_space]
+furniture = ["oak_magic_wardrobe", "carved_oak_magic_wardrobe", "teak_magic_wardrobe", "carved_teak_magic_wardrobe", "mahogany_magic_wardrobe", "gilded_magic_wardrobe", "marble_magic_wardrobe"]
+
+[.costume_room_toy_box_space]
+furniture = ["oak_toy_box", "teak_toy_box", "mahogany_toy_box"]
+
+[.costume_room_treasure_chest_space]
+furniture = ["oak_treasure_chest", "teak_treas_chest", "mgany_treas_chest"]
+
+[.costume_room_fancy_dress_box_space]
+furniture = ["oak_costume_box", "teak_costume_box", "mahogany_cos_box"]
+
+[.costume_room_armour_case_space]
+furniture = ["oak_armour_case", "teak_armour_case", "mgany_armr_case"]
+
+[.chapel_altar_space]
+furniture = ["oak_altar", "teak_altar", "cloth_coverd_altar", "mahogany_altar", "limestone_altar", "marble_altar", "gilded_altar"]
+
+[.chapel_lamp_space]
+furniture = ["steel_torches", "wooden_torches", "steel_candlesticks", "gold_candlesticks", "incense_burners", "mahogany_burners", "marble_burners"]
+
+[.chapel_icon_space]
+furniture = ["guthix_symbol", "saradomin_symbol", "zamorak_symbol", "guthix_icon", "saradomin_icon", "zamorak_icon", "icon_of_bob"]
+
+[.chapel_musical_space]
+furniture = ["windchimes", "bells", "organ"]
+
+[.chapel_statue_space]
+furniture = ["small_statues", "medium_statues", "large_statues"]
+
+[.chapel_rug_space_corner]
+furniture = ["brown_rug", "rug", "opulent_rug"]
+group = "chapel_rug"
+
+[.chapel_rug_space_side]
+clone = "chapel_rug_space_corner"
+piece = 1
+
+[.chapel_window_space]
+furniture = ["shuttered_window", "decorative_window", "stained_glass"]
+
+[.chapel_window_space_2]
+clone = "chapel_window_space"
+piece = 1
+
+[.chapel_window_space_3]
+clone = "chapel_window_space"
+piece = 2
+
+[.chapel_window_space_4]
+clone = "chapel_window_space"
+piece = 3
+
+[.chapel_window_space_5]
+clone = "chapel_window_space"
+piece = 4
+
+[.chapel_window_space_6]
+clone = "chapel_window_space"
+piece = 5
+
+[.portal_chamber_portal_space]
+furniture = ["teak_portal", "mahogany_portal", "marble_portal"]
+variant = "house_portal"
+
+[.portal_chamber_portal_space_2]
+clone = "portal_chamber_portal_space"
+variant = "house_portal_2"
+
+[.portal_chamber_portal_space_3]
+clone = "portal_chamber_portal_space"
+variant = "house_portal_3"
+
+[.portal_chamber_centrepiece_space]
+furniture = ["teleport_focus", "greater_focus", "scrying_pool"]
+
+[.formal_garden_centrepiece_space]
+furniture = ["exit_portal", "gazebo", "dungeon_entrance", "small_fountain", "large_fountain", "posh_fountain"]
+
+[.formal_garden_fencing_space]
+furniture = ["boundary_stones", "wooden_fence", "stone_wall", "iron_railings", "picket_fence", "garden_fence", "marble_wall"]
+
+[.formal_garden_hedging_space]
+furniture = ["thorny_hedge", "nice_hedge", "small_box_hedge", "topiary_hedge", "fancy_hedge", "tall_fancy_hedge", "tall_box_hedge"]
+group = "formal_garden_hedging"
+
+[.formal_garden_hedging_space_2]
+clone = "formal_garden_hedging_space"
+piece = 1
+
+[.formal_garden_hedging_space_3]
+clone = "formal_garden_hedging_space"
+piece = 2
+
+[.formal_garden_small_plant_space]
+furniture = ["sunflower", "marigolds_2", "roses"]
+
+[.formal_garden_big_plant_space]
+clone = "formal_garden_small_plant_space"
+piece = 1
+
+[.formal_garden_small_plant_space_2]
+furniture = ["rosemary_2", "daffodils", "bluebells"]
+
+[.formal_garden_big_plant_space_2]
+clone = "formal_garden_small_plant_space_2"
+piece = 1
+
+[.throne_room_throne_space]
+furniture = ["oak_throne", "teak_throne", "mahogany_throne", "gilded_throne", "skeleton_throne", "crystal_throne", "demonic_throne"]
+
+[.throne_room_lever_space]
+furniture = ["oak_lever", "teak_lever", "mahogany_lever"]
+
+[.throne_room_trapdoor_space]
+furniture = ["trapdoor", "trapdoor_2", "trapdoor_3"]
+
+[.throne_room_seating_space]
+furniture = ["carved_teak_bench", "mahogany_bench", "gilded_bench"]
+piece = 1
+
+[.throne_room_seating_space_2]
+clone = "throne_room_seating_space"
+piece = 1
+
+[.throne_room_decoration_space]
+furniture = ["oak_decoration", "teak_decoration", "gilded_decoration", "round_shield", "square_shield", "kite_shield"]
+
+[.throne_room_floor_space]
+furniture = ["floor_decoration", "steel_cage_2", "trapdoor_4", "lesser_magic_cage", "greater_magic_cage"]
+
+[.throne_room_floor_space_2]
+clone = "throne_room_floor_space"
+piece = 1
+
+[.throne_room_floor_space_3]
+clone = "throne_room_floor_space"
+piece = 2
+
+[.throne_room_floor_space_4]
+clone = "throne_room_floor_space"
+piece = 3
+
+[.throne_room_floor_space_5]
+clone = "throne_room_floor_space"
+piece = 4
+
+[.throne_room_floor_space_6]
+clone = "throne_room_floor_space"
+piece = 5
+
+[.oubliette_guard_space]
+furniture = ["skeleton_guard", "guard_dog", "hobgoblin_guard", "baby_red_dragon", "huge_spider", "troll_guard", "hellhound"]
+
+[.oubliette_ladder_space]
+furniture = ["oak_ladder", "teak_ladder", "mahogany_ladder"]
+
+[.oubliette_lighting_space]
+furniture = ["candles", "torches", "skull_torches"]
+
+[.dungeon_guard_space]
+furniture = ["skeleton_guard", "guard_dog", "hobgoblin_guard", "baby_red_dragon", "huge_spider", "troll_guard", "hellhound"]
+
+[.dungeon_guard_space_2]
+clone = "dungeon_guard_space"
+
+[.dungeon_guard_space_3]
+clone = "dungeon_guard_space"
+
+[.dungeon_trap_space]
+furniture = ["spike_trap", "man_trap", "tangle_vine", "marble_trap", "teleport_trap"]
+
+[.dungeon_trap_space_2]
+clone = "dungeon_trap_space"
+
+[.dungeon_door_space_left]
+furniture = ["oak_door", "steel_plated_door", "marble_door"]
+group = "dungeon_door"
+
+[.dungeon_door_space_right]
+clone = "dungeon_door_space_left"
+piece = 1
+
+[.dungeon_door_space_left_2]
+clone = "dungeon_door_space_left"
+
+[.dungeon_door_space_right_2]
+clone = "dungeon_door_space_left"
+piece = 1
+
+[.dungeon_lighting_space]
+furniture = ["candles", "torches", "skull_torches"]
+
+[.dungeon_lighting_space_2]
+clone = "dungeon_lighting_space"
+
+[.dungeon_decoration_space]
+furniture = ["decorative_blood", "decorative_pipe", "hanging_skeleton"]
+
+[.dungeon_pit_guardian_space]
+furniture = ["pit_dog", "pit_ogre", "pit_rock_protector", "pit_scabarite", "pit_black_demon", "pit_iron_dragon"]
+
+[.dungeon_pit_trap_space]
+furniture = ["minor_pit_trap", "major_pit_trap", "superior_pit_trap"]
+
+[.dungeon_pit_trap_space_2]
+clone = "dungeon_pit_trap_space"
+
+[.dungeon_pit_trap_space_3]
+clone = "dungeon_pit_trap_space"
+
+[.dungeon_pit_trap_space_4]
+clone = "dungeon_pit_trap_space"
+
+[.treasure_room_monster_space]
+furniture = ["demon", "kalphite_soldier", "tok_xil", "dagannoth", "steel_dragon"]
+
+[.treasure_room_treasure_space]
+furniture = ["wooden_crate", "oak_chest", "teak_chest", "mahogany_chest", "magic_chest"]
+
+[.treasure_room_decoration_space]
+furniture = ["round_shield", "square_shield", "kite_shield"]
+
+# Furniture keyed by build menu item, objects are placed on the hotspot of the same piece, or the listed pieces
+# Pieces without an object are left empty, as are tiles without one of the anchor pieces when listed
+# Rotations are turns added to each objects hotspot rotation
+# Variant is a player variable which picks the object instead of the piece
+# Levels and xp from https://runescape.wiki/w/Construction historical room pages
+[house_furniture]
+row_id = "item"
+level = "int"
+xp = "int"
+materials = "list<item>"
+amounts = "list<int>"
+nails = "int"
+objects = "list<obj>"
+pieces = "list<int>"
+anchors = "list<int>"
+rotations = "list<int>"
+variant = "string"
+
+[.exit_portal]
+level = 1
+xp = 1000
+materials = ["iron_bar"]
+amounts = [10]
+objects = ["exit_portal"]
+
+[.decorative_rock]
+level = 5
+xp = 1000
+materials = ["limestone_brick"]
+amounts = [5]
+objects = ["decorative_rock"]
+
+[.pond]
+level = 10
+xp = 1000
+materials = ["soft_clay"]
+amounts = [10]
+objects = ["pond"]
+
+[.imp_statue]
+level = 15
+xp = 1500
+materials = ["limestone_brick", "soft_clay"]
+amounts = [5, 5]
+objects = ["imp_statue"]
+
+[.dungeon_entrance]
+level = 70
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["dungeon_entrance"]
+
+[.crude_wooden_chair]
+level = 1
+xp = 580
+materials = ["plank"]
+amounts = [2]
+nails = 2
+objects = ["crude_wooden_chair"]
+
+[.wooden_chair]
+level = 8
+xp = 870
+materials = ["plank"]
+amounts = [3]
+nails = 3
+objects = ["wooden_chair"]
+
+[.rocking_chair]
+level = 14
+xp = 870
+materials = ["plank"]
+amounts = [3]
+nails = 3
+objects = ["rocking_chair"]
+
+[.oak_chair]
+level = 19
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["oak_chair"]
+
+[.oak_armchair]
+level = 26
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["oak_armchair"]
+
+[.teak_armchair]
+level = 35
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_armchair"]
+
+[.mahogany_armchair]
+level = 50
+xp = 2800
+materials = ["mahogany_plank"]
+amounts = [2]
+objects = ["mahogany_armchair"]
+
+[.brown_rug]
+level = 2
+xp = 300
+materials = ["bolt_of_cloth"]
+amounts = [2]
+objects = ["brown_rug_corner", "brown_rug_side", "brown_rug_middle"]
+
+[.rug]
+level = 13
+xp = 600
+materials = ["bolt_of_cloth"]
+amounts = [4]
+objects = ["rug_corner", "rug_side", "rug_middle"]
+
+[.opulent_rug]
+level = 65
+xp = 3600
+materials = ["bolt_of_cloth", "gold_leaf"]
+amounts = [4, 1]
+objects = ["opulent_rug_corner", "opulent_rug_side", "opulent_rug_middle"]
+
+[.wooden_bookcase]
+level = 4
+xp = 1150
+materials = ["plank"]
+amounts = [4]
+nails = 4
+objects = ["wooden_bookcase"]
+
+[.oak_bookcase]
+level = 29
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["oak_bookcase"]
+
+[.mahogany_bkcase]
+level = 40
+xp = 4200
+materials = ["mahogany_plank"]
+amounts = [3]
+objects = ["mahogany_bookcase"]
+
+[.clay_fireplace]
+level = 3
+xp = 300
+materials = ["soft_clay"]
+amounts = [3]
+objects = ["clay_fireplace"]
+
+[.stone_fireplace]
+level = 33
+xp = 400
+materials = ["limestone_brick"]
+amounts = [2]
+objects = ["stone_fireplace"]
+
+[.marble_fireplace]
+level = 63
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["marble_fireplace"]
+
+[.torn_curtains]
+level = 2
+xp = 1320
+materials = ["plank", "bolt_of_cloth"]
+amounts = [3, 3]
+nails = 3
+objects = ["torn_curtains"]
+
+[.curtains]
+level = 18
+xp = 2250
+materials = ["oak_plank", "bolt_of_cloth"]
+amounts = [3, 3]
+objects = ["curtains"]
+
+[.opulent_curtains]
+level = 40
+xp = 3150
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [3, 3]
+objects = ["opulent_curtains"]
+
+[.tree]
+level = 5
+xp = 310
+materials = ["bagged_dead_tree"]
+amounts = [1]
+objects = ["dead_tree_20", "dead_tree_21"]
+
+[.nice_tree]
+level = 10
+xp = 440
+materials = ["bagged_nice_tree"]
+amounts = [1]
+objects = ["big_nice_tree", "nice_tree"]
+
+[.oak_tree]
+level = 15
+xp = 700
+materials = ["bagged_oak_tree"]
+amounts = [1]
+objects = ["big_oak_tree", "oak_tree"]
+
+[.willow_tree]
+level = 30
+xp = 1000
+materials = ["bagged_willow_tree"]
+amounts = [1]
+objects = ["big_willow_tree", "willow_tree"]
+
+[.maple_tree]
+level = 45
+xp = 1220
+materials = ["bagged_maple_tree"]
+amounts = [1]
+objects = ["big_maple_tree", "house_maple_tree"]
+
+[.yew_tree]
+level = 60
+xp = 1410
+materials = ["bagged_yew_tree"]
+amounts = [1]
+objects = ["big_yew_tree", "yew_tree"]
+
+[.magic_tree]
+level = 75
+xp = 2230
+materials = ["bagged_magic_tree"]
+amounts = [1]
+objects = ["big_magic_tree", "house_magic_tree"]
+
+[.fern_2]
+level = 1
+xp = 310
+materials = ["bagged_plant_1"]
+amounts = [1]
+objects = ["fern_4"]
+
+[.bush]
+level = 6
+xp = 700
+materials = ["bagged_plant_2"]
+amounts = [1]
+objects = ["house_bush"]
+
+[.tall_plant]
+level = 12
+xp = 1000
+materials = ["bagged_plant_3"]
+amounts = [1]
+objects = ["tall_plant"]
+
+[.short_plant]
+level = 1
+xp = 310
+materials = ["bagged_plant_1"]
+amounts = [1]
+objects = ["short_plant"]
+
+[.large_leaf_plant]
+level = 6
+xp = 700
+materials = ["bagged_plant_2"]
+amounts = [1]
+objects = ["large_leaf_plant"]
+
+[.huge_plant]
+level = 12
+xp = 1000
+materials = ["bagged_plant_3"]
+amounts = [1]
+objects = ["huge_plant"]
+
+[.plant]
+level = 1
+xp = 310
+materials = ["bagged_plant_1"]
+amounts = [1]
+objects = ["plant"]
+
+[.small_fern]
+level = 6
+xp = 700
+materials = ["bagged_plant_2"]
+amounts = [1]
+objects = ["small_fern_2"]
+
+[.fern]
+level = 12
+xp = 1000
+materials = ["bagged_plant_3"]
+amounts = [1]
+objects = ["fern_5"]
+
+[.dock_leaf]
+level = 1
+xp = 310
+materials = ["bagged_plant_1"]
+amounts = [1]
+objects = ["dock_leaf"]
+
+[.thistle]
+level = 6
+xp = 700
+materials = ["bagged_plant_2"]
+amounts = [1]
+objects = ["house_thistle"]
+
+[.reeds]
+level = 12
+xp = 1000
+materials = ["bagged_plant_3"]
+amounts = [1]
+objects = ["reeds"]
+
+[.firepit]
+level = 5
+xp = 400
+materials = ["steel_bar", "soft_clay"]
+amounts = [1, 2]
+objects = ["firepit"]
+
+[.firepit_with_hook]
+level = 11
+xp = 600
+materials = ["steel_bar", "soft_clay"]
+amounts = [2, 2]
+objects = ["firepit_with_hook"]
+
+[.firepit_with_pot]
+level = 17
+xp = 800
+materials = ["steel_bar", "soft_clay"]
+amounts = [3, 2]
+objects = ["firepit_with_pot"]
+
+[.small_oven]
+level = 24
+xp = 800
+materials = ["steel_bar"]
+amounts = [4]
+objects = ["small_oven"]
+
+[.large_oven]
+level = 29
+xp = 1000
+materials = ["steel_bar"]
+amounts = [5]
+objects = ["large_oven"]
+
+[.steel_range]
+level = 34
+xp = 1200
+materials = ["steel_bar"]
+amounts = [6]
+objects = ["steel_range"]
+
+[.fancy_range]
+level = 42
+xp = 1600
+materials = ["steel_bar"]
+amounts = [8]
+objects = ["fancy_range"]
+
+[.wooden_shelves_1]
+level = 6
+xp = 870
+materials = ["plank"]
+amounts = [3]
+nails = 3
+objects = ["wooden_shelves_1"]
+
+[.wooden_shelves_2]
+level = 12
+xp = 1470
+materials = ["plank", "soft_clay"]
+amounts = [3, 6]
+nails = 3
+objects = ["wooden_shelves_2"]
+
+[.wooden_shelves_3]
+level = 23
+xp = 1470
+materials = ["plank", "soft_clay"]
+amounts = [3, 6]
+nails = 3
+objects = ["wooden_shelves_3"]
+
+[.oak_shelves_1]
+level = 34
+xp = 2400
+materials = ["oak_plank", "soft_clay"]
+amounts = [3, 6]
+objects = ["oak_shelves_1"]
+
+[.oak_shelves_2]
+level = 45
+xp = 2400
+materials = ["oak_plank", "soft_clay"]
+amounts = [3, 6]
+objects = ["oak_shelves_2"]
+
+[.teak_shelves_1]
+level = 56
+xp = 3300
+materials = ["teak_plank", "soft_clay"]
+amounts = [3, 6]
+objects = ["teak_shelves_1"]
+
+[.teak_shelves_2]
+level = 67
+xp = 9300
+materials = ["teak_plank", "soft_clay", "gold_leaf"]
+amounts = [3, 6, 2]
+objects = ["teak_shelves_2"]
+
+[.beer_barrel]
+level = 7
+xp = 870
+materials = ["plank"]
+amounts = [3]
+nails = 3
+objects = ["beer_barrel"]
+
+[.cider_barrel]
+level = 12
+xp = 910
+materials = ["plank", "cider"]
+amounts = [3, 8]
+nails = 3
+objects = ["cider_barrel"]
+
+[.asgarnian_ale_barrel]
+level = 18
+xp = 1840
+materials = ["oak_plank", "asgarnian_ale"]
+amounts = [3, 8]
+objects = ["asgarnian_ale_barrel"]
+
+[.greenmans_ale_barrel]
+level = 26
+xp = 1840
+materials = ["oak_plank", "greenmans_ale"]
+amounts = [3, 8]
+objects = ["greenmans_ale_barrel"]
+
+[.dragon_bitter_barrel]
+level = 36
+xp = 2240
+materials = ["oak_plank", "steel_bar", "dragon_bitter"]
+amounts = [3, 2, 8]
+objects = ["dragon_bitter_barrel"]
+
+[.chefs_delight_barrel]
+level = 48
+xp = 2240
+materials = ["oak_plank", "steel_bar", "chefs_delight"]
+amounts = [3, 2, 8]
+objects = ["chefs_delight_barrel"]
+
+[.cat_blanket]
+level = 5
+xp = 150
+materials = ["bolt_of_cloth"]
+amounts = [1]
+objects = ["cat_blanket"]
+
+[.cat_basket]
+level = 19
+xp = 580
+materials = ["plank", "bolt_of_cloth"]
+amounts = [2, 1]
+objects = ["cat_basket"]
+
+[.cushioned_basket]
+level = 33
+xp = 580
+materials = ["plank", "bolt_of_cloth", "wool"]
+amounts = [2, 2, 2]
+objects = ["cushioned_basket"]
+
+[.wooden_larder]
+level = 9
+xp = 2280
+materials = ["plank"]
+amounts = [8]
+nails = 8
+objects = ["wooden_larder"]
+
+[.oak_larder]
+level = 33
+xp = 4800
+materials = ["oak_plank"]
+amounts = [8]
+objects = ["oak_larder"]
+
+[.teak_larder]
+level = 43
+xp = 7500
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [8, 2]
+objects = ["teak_larder"]
+
+[.pump_and_drain]
+level = 7
+xp = 1000
+materials = ["steel_bar"]
+amounts = [5]
+objects = ["pump_and_drain"]
+
+[.pump_and_tub]
+level = 27
+xp = 2000
+materials = ["steel_bar"]
+amounts = [10]
+objects = ["pump_and_tub"]
+
+[.sink]
+level = 47
+xp = 3000
+materials = ["steel_bar"]
+amounts = [15]
+objects = ["sink_9"]
+
+[.wood_kitchen_table]
+level = 12
+xp = 870
+materials = ["plank"]
+amounts = [3]
+nails = 3
+objects = ["wood_kitchen_table"]
+
+[.oak_kitchen_table]
+level = 32
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["oak_kitchen_table"]
+
+[.teak_kitchen_table]
+level = 52
+xp = 2700
+materials = ["teak_plank"]
+amounts = [3]
+objects = ["teak_kitchen_table"]
+
+[.wood_dining_table]
+level = 10
+xp = 1150
+materials = ["plank"]
+amounts = [4]
+nails = 4
+objects = ["wood_dining_table"]
+
+[.oak_dining_table]
+level = 22
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["oak_dining_table"]
+
+[.carved_oak_table]
+level = 31
+xp = 3600
+materials = ["oak_plank"]
+amounts = [6]
+objects = ["carved_oak_table"]
+
+[.teak_table]
+level = 38
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["teak_table"]
+
+[.carved_teak_table]
+level = 45
+xp = 6000
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [6, 4]
+objects = ["carved_teak_table"]
+
+[.mahogany_table]
+level = 52
+xp = 8400
+materials = ["mahogany_plank"]
+amounts = [6]
+objects = ["mahogany_table"]
+
+[.opulent_table]
+level = 72
+xp = 31000
+materials = ["mahogany_plank", "bolt_of_cloth", "gold_leaf", "marble_block"]
+amounts = [6, 4, 4, 2]
+objects = ["opulent_table"]
+
+[.wooden_bench]
+level = 10
+xp = 1150
+materials = ["plank"]
+amounts = [4]
+nails = 4
+objects = ["wooden_bench"]
+
+[.oak_bench]
+level = 22
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["oak_bench"]
+
+[.carved_oak_bench]
+level = 31
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["carved_oak_bench"]
+
+[.teak_dining_bench]
+level = 38
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["teak_dining_bench"]
+
+[.carved_teak_bench]
+level = 44
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["carved_teak_bench", "carved_teak_bench_throne_room"]
+
+[.mahogany_bench]
+level = 52
+xp = 5600
+materials = ["mahogany_plank"]
+amounts = [4]
+objects = ["mahogany_bench", "mahogany_bench_throne_room"]
+
+[.gilded_bench]
+level = 61
+xp = 17600
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [4, 4]
+objects = ["gilded_bench", "gilded_bench_throne_room"]
+
+[.oak_decoration]
+level = 16
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["oak_decoration"]
+
+[.teak_decoration]
+level = 36
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_decoration"]
+
+[.gilded_decoration]
+level = 56
+xp = 10200
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [3, 2]
+objects = ["gilded_decoration"]
+
+[.rope_bell_pull]
+level = 26
+xp = 640
+materials = ["oak_plank", "rope"]
+amounts = [1, 1]
+objects = ["rope_bell_pull"]
+
+[.bell_pull]
+level = 37
+xp = 1200
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [1, 2]
+objects = ["bell_pull"]
+
+[.posh_bell_pull]
+level = 60
+xp = 4200
+materials = ["teak_plank", "bolt_of_cloth", "gold_leaf"]
+amounts = [1, 2, 1]
+objects = ["posh_bell_pull"]
+
+[.wooden_workbench]
+level = 17
+xp = 1450
+materials = ["plank"]
+amounts = [5]
+nails = 5
+objects = ["wooden_workbench"]
+
+[.oak_workbench]
+level = 32
+xp = 3000
+materials = ["oak_plank"]
+amounts = [5]
+objects = ["oak_workbench"]
+
+[.steel_framed_bench]
+level = 46
+xp = 4400
+materials = ["oak_plank", "steel_bar"]
+amounts = [6, 4]
+objects = ["steel_framed_bench"]
+
+[.bench_with_vice]
+level = 62
+xp = 7500
+materials = ["oak_plank", "steel_bar"]
+amounts = [2, 1]
+objects = ["bench_with_vice"]
+
+[.bench_with_lathe]
+level = 77
+xp = 10000
+materials = ["oak_plank", "steel_bar"]
+amounts = [2, 1]
+objects = ["bench_with_lathe"]
+
+[.crafting_table_1]
+level = 16
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["crafting_table_1"]
+
+[.crafting_table_2]
+level = 25
+xp = 1000
+materials = ["molten_glass"]
+amounts = [1]
+objects = ["crafting_table_2"]
+
+[.crafting_table_3]
+level = 34
+xp = 1750
+materials = ["molten_glass"]
+amounts = [2]
+objects = ["crafting_table_3"]
+
+[.crafting_table_4]
+level = 42
+xp = 2400
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["crafting_table_4"]
+
+[.tool_store_1]
+level = 15
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["tool_store_1"]
+
+[.tool_store_2]
+level = 25
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["tool_store_2"]
+
+[.tool_store_3]
+level = 35
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["tool_store_3"]
+
+[.tool_store_4]
+level = 44
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["tool_store_4"]
+
+[.tool_store_5]
+level = 55
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["tool_store_5"]
+
+[.repair_bench]
+level = 15
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["repair_bench"]
+
+[.whetstone]
+level = 35
+xp = 2600
+materials = ["oak_plank", "limestone_brick"]
+amounts = [4, 1]
+objects = ["whetstone"]
+
+[.armour_stand]
+level = 55
+xp = 5000
+materials = ["oak_plank", "limestone_brick"]
+amounts = [8, 1]
+objects = ["armour_stand"]
+
+[.pluming_stand]
+level = 16
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["pluming_stand"]
+
+[.shield_easel]
+level = 41
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["shield_easel"]
+
+[.banner_easel]
+level = 66
+xp = 5100
+materials = ["oak_plank", "bolt_of_cloth"]
+amounts = [8, 2]
+objects = ["banner_easel"]
+
+[.wooden_bed]
+level = 20
+xp = 1170
+materials = ["plank", "bolt_of_cloth"]
+amounts = [3, 2]
+nails = 3
+objects = ["wooden_bed"]
+
+[.oak_bed]
+level = 30
+xp = 2100
+materials = ["oak_plank", "bolt_of_cloth"]
+amounts = [3, 2]
+objects = ["oak_bed"]
+
+[.large_oak_bed]
+level = 34
+xp = 3300
+materials = ["oak_plank", "bolt_of_cloth"]
+amounts = [5, 2]
+objects = ["large_oak_bed"]
+
+[.teak_bed]
+level = 40
+xp = 3000
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [3, 2]
+objects = ["teak_bed"]
+
+[.large_teak_bed]
+level = 45
+xp = 4800
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [5, 2]
+objects = ["large_teak_bed"]
+
+[.four_poster]
+level = 53
+xp = 4500
+materials = ["mahogany_plank", "bolt_of_cloth"]
+amounts = [3, 2]
+objects = ["four_poster_bed"]
+
+[.gilded_4_poster]
+level = 60
+xp = 13300
+materials = ["mahogany_plank", "bolt_of_cloth", "gold_leaf"]
+amounts = [5, 2, 2]
+objects = ["gilded_four_poster_bed"]
+
+[.shoe_box]
+level = 20
+xp = 580
+materials = ["plank"]
+amounts = [2]
+nails = 2
+objects = ["shoe_box"]
+
+[.oak_drawers]
+level = 27
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["oak_drawers"]
+
+[.oak_wardrobe]
+level = 39
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["oak_wardrobe"]
+
+[.teak_drawers]
+level = 51
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_drawers"]
+
+[.teak_wardrobe]
+level = 63
+xp = 2700
+materials = ["teak_plank"]
+amounts = [3]
+objects = ["teak_wardrobe"]
+
+[.mahogany_drobe]
+level = 75
+xp = 4200
+materials = ["mahogany_plank"]
+amounts = [3]
+objects = ["mahogany_wardrobe"]
+
+[.gilded_wardrobe]
+level = 87
+xp = 7200
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [3, 1]
+objects = ["gilded_wardrobe"]
+
+[.shaving_stand]
+level = 21
+xp = 300
+materials = ["plank", "molten_glass"]
+amounts = [1, 1]
+nails = 1
+objects = ["shaving_stand"]
+
+[.oak_shaving_stand]
+level = 29
+xp = 610
+materials = ["oak_plank", "molten_glass"]
+amounts = [1, 1]
+objects = ["oak_shaving_stand"]
+
+[.oak_dresser]
+level = 37
+xp = 1210
+materials = ["oak_plank", "molten_glass"]
+amounts = [2, 1]
+objects = ["oak_dresser"]
+
+[.teak_dresser]
+level = 46
+xp = 1810
+materials = ["teak_plank", "molten_glass"]
+amounts = [2, 1]
+objects = ["teak_dresser"]
+
+[.fancy_teak_dresser]
+level = 56
+xp = 1820
+materials = ["teak_plank", "molten_glass"]
+amounts = [2, 2]
+objects = ["fancy_teak_dresser"]
+
+[.mahogany_dresser]
+level = 64
+xp = 2810
+materials = ["mahogany_plank", "molten_glass"]
+amounts = [2, 1]
+objects = ["mahogany_dresser"]
+
+[.gilded_dresser]
+level = 74
+xp = 5820
+materials = ["mahogany_plank", "molten_glass", "gold_leaf"]
+amounts = [2, 2, 1]
+objects = ["gilded_dresser"]
+
+[.oak_clock]
+level = 25
+xp = 1420
+materials = ["oak_plank", "clockwork"]
+amounts = [2, 1]
+objects = ["oak_clock"]
+
+[.teak_clock]
+level = 55
+xp = 2020
+materials = ["teak_plank", "clockwork"]
+amounts = [2, 1]
+objects = ["teak_clock"]
+
+[.gilded_clock]
+level = 85
+xp = 6020
+materials = ["mahogany_plank", "clockwork", "gold_leaf"]
+amounts = [2, 1, 1]
+objects = ["gilded_clock"]
+
+[.oak_staircase]
+level = 27
+xp = 6800
+materials = ["oak_plank", "steel_bar"]
+amounts = [10, 4]
+objects = ["oak_staircase", "oak_staircase_down"]
+
+[.teak_staircase]
+level = 48
+xp = 9800
+materials = ["teak_plank", "steel_bar"]
+amounts = [10, 4]
+objects = ["teak_staircase", "teak_staircase_down"]
+
+[.spiral_staircase]
+level = 67
+xp = 10400
+materials = ["teak_plank", "limestone_brick"]
+amounts = [10, 7]
+objects = ["spiral_staircase", "spiral_staircase_down"]
+
+[.marble_staircase]
+level = 82
+xp = 32000
+materials = ["mahogany_plank", "marble_block"]
+amounts = [5, 5]
+objects = ["marble_staircase", "marble_staircase_down"]
+
+[.marble_spiral]
+level = 97
+xp = 44000
+materials = ["teak_plank", "marble_block"]
+amounts = [10, 7]
+objects = ["marble_spiral", "marble_spiral_down"]
+
+[.crawling_hand_3]
+level = 38
+xp = 2110
+materials = ["teak_plank", "crawling_hand_stuffed"]
+amounts = [2, 1]
+objects = ["crawling_hand_trophy"]
+
+[.cockatrice_head_2]
+level = 38
+xp = 2240
+materials = ["teak_plank", "cockatrice_head_stuffed"]
+amounts = [2, 1]
+objects = ["cockatrice_head_trophy"]
+
+[.basilisk_head_2]
+level = 38
+xp = 2430
+materials = ["teak_plank", "basilisk_head_stuffed"]
+amounts = [2, 1]
+objects = ["basilisk_head_trophy"]
+
+[.kurask_head_2]
+level = 58
+xp = 3570
+materials = ["mahogany_plank", "kurask_head_stuffed"]
+amounts = [2, 1]
+objects = ["kurask_head_trophy"]
+
+[.abyssal_head_2]
+level = 58
+xp = 3890
+materials = ["mahogany_plank", "abyssal_head_stuffed"]
+amounts = [2, 1]
+objects = ["abyssal_head_trophy"]
+
+[.kbd_heads]
+level = 78
+xp = 11030
+materials = ["mahogany_plank", "gold_leaf", "king_black_dragon_head_stuffed"]
+amounts = [2, 2, 1]
+objects = ["kbd_heads_trophy"]
+
+[.kq_head]
+level = 78
+xp = 11030
+materials = ["mahogany_plank", "gold_leaf", "kalphite_queen_head_stuffed"]
+amounts = [2, 2, 1]
+objects = ["kq_head_trophy"]
+
+[.mounted_bass]
+level = 36
+xp = 1510
+materials = ["oak_plank", "big_bass_stuffed"]
+amounts = [2, 1]
+objects = ["mounted_bass"]
+
+[.mounted_swordfish]
+level = 56
+xp = 2300
+materials = ["teak_plank", "big_swordfish_stuffed"]
+amounts = [2, 1]
+objects = ["mounted_swordfish"]
+
+[.mounted_shark]
+level = 76
+xp = 3500
+materials = ["mahogany_plank", "big_shark_stuffed"]
+amounts = [2, 1]
+objects = ["mounted_shark"]
+
+[.basic_decorative_armour]
+level = 28
+xp = 1350
+materials = ["oak_plank", "basic_decorative_platebody", "basic_decorative_shield", "basic_decorative_helm"]
+amounts = [2, 1, 1, 1]
+objects = ["basic_decorative_armour"]
+
+[.detailed_decorative_armour]
+level = 28
+xp = 1500
+materials = ["oak_plank", "detailed_decorative_platebody", "detailed_decorative_shield", "detailed_decorative_helm"]
+amounts = [2, 1, 1, 1]
+objects = ["detailed_decorative_armour"]
+
+[.intricate_decorative_armour]
+level = 28
+xp = 1650
+materials = ["oak_plank", "intricate_decorative_platebody", "intricate_decorative_shield", "intricate_decorative_helm"]
+amounts = [2, 1, 1, 1]
+objects = ["intricate_decorative_armour"]
+
+[.profound_decorative_armour]
+level = 28
+xp = 1800
+materials = ["oak_plank", "profound_decorative_platebody", "profound_decorative_shield", "profound_decorative_helm"]
+amounts = [2, 1, 1, 1]
+objects = ["profound_decorative_armour"]
+
+[.mithril_armour]
+level = 28
+xp = 1350
+materials = ["oak_plank", "mithril_platebody", "mithril_plateskirt", "mithril_full_helm"]
+amounts = [2, 1, 1, 1]
+objects = ["mithril_armour"]
+
+[.adamant_armour]
+level = 28
+xp = 1500
+materials = ["oak_plank", "adamant_platebody", "adamant_plateskirt", "adamant_full_helm"]
+amounts = [2, 1, 1, 1]
+objects = ["adamant_armour"]
+
+[.rune_armour]
+level = 28
+xp = 1650
+materials = ["oak_plank", "rune_platebody", "rune_plateskirt", "rune_full_helm"]
+amounts = [2, 1, 1, 1]
+objects = ["rune_armour"]
+
+[.rune_case_1]
+level = 41
+xp = 1900
+materials = ["teak_plank", "molten_glass", "air_rune", "water_rune", "earth_rune", "fire_rune"]
+amounts = [2, 2, 1, 1, 1, 1]
+objects = ["rune_case_1"]
+
+[.rune_case_2]
+level = 41
+xp = 2120
+materials = ["teak_plank", "molten_glass", "body_rune", "cosmic_rune", "chaos_rune", "nature_rune"]
+amounts = [2, 2, 1, 1, 1, 1]
+objects = ["rune_case_2"]
+
+[.jester]
+level = 39
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["jester"]
+
+[.treasure_hunt]
+level = 49
+xp = 8000
+materials = ["teak_plank", "steel_bar"]
+amounts = [8, 4]
+objects = ["treasure_hunt"]
+
+[.hangman_game]
+level = 59
+xp = 12000
+materials = ["teak_plank", "steel_bar"]
+amounts = [12, 6]
+objects = ["hangman_game"]
+
+[.oak_prize_chest]
+level = 34
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["oak_prize_chest"]
+
+[.teak_prize_chest]
+level = 44
+xp = 6600
+materials = ["teak_plank", "gold_leaf"]
+amounts = [4, 1]
+objects = ["teak_prize_chest"]
+
+[.mahogany_chest_2]
+level = 54
+xp = 8600
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [4, 1]
+objects = ["mahogany_prize_chest"]
+
+[.clay_attack_stone]
+level = 39
+xp = 1000
+materials = ["soft_clay"]
+amounts = [10]
+objects = ["clay_attack_stone"]
+
+[.attack_stone]
+level = 59
+xp = 2000
+materials = ["limestone_brick"]
+amounts = [10]
+objects = ["limestone_attack_stone"]
+
+[.marble_att_stone]
+level = 79
+xp = 20000
+materials = ["marble_block"]
+amounts = [4]
+objects = ["marble_attack_stone"]
+
+[.magical_balance_1]
+level = 37
+xp = 1760
+materials = ["air_rune", "water_rune", "earth_rune", "fire_rune"]
+amounts = [500, 500, 500, 500]
+objects = ["elemental_balance_1"]
+
+[.magical_balance_2]
+level = 57
+xp = 2520
+materials = ["air_rune", "water_rune", "earth_rune", "fire_rune"]
+amounts = [1000, 1000, 1000, 1000]
+objects = ["elemental_balance_2"]
+
+[.magical_balance_3]
+level = 77
+xp = 3560
+materials = ["air_rune", "water_rune", "earth_rune", "fire_rune"]
+amounts = [2000, 2000, 2000, 2000]
+objects = ["elemental_balance_3"]
+
+[.hoop_and_stick]
+level = 30
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["hoop_and_stick"]
+
+[.dartboard]
+level = 54
+xp = 2900
+materials = ["teak_plank", "steel_bar"]
+amounts = [3, 1]
+objects = ["dartboard"]
+
+[.archery_target]
+level = 81
+xp = 6000
+materials = ["teak_plank", "steel_bar"]
+amounts = [6, 3]
+objects = ["house_archery_target"]
+
+[.boxing_ring]
+level = 32
+xp = 5700
+materials = ["oak_plank", "bolt_of_cloth"]
+amounts = [6, 4]
+objects = ["boxing_ring", "boxing_ring", "boxing_ring", "boxing_mat_corner", "boxing_mat_corner", "boxing_mat_side", "boxing_mat_middle"]
+
+[.fencing_ring]
+level = 41
+xp = 5700
+materials = ["oak_plank", "bolt_of_cloth"]
+amounts = [8, 6]
+objects = ["fencing_ring", "fencing_ring", "fencing_ring", "fencing_ring_corner", "fencing_ring_corner", "fencing_ring_side", "fencing_ring_middle"]
+
+[.combat_ring]
+level = 51
+xp = 6300
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [6, 6]
+objects = ["combat_ring", "combat_ring", "combat_ring", "combat_ring_corner", "combat_ring_corner", "combat_ring_side", "combat_ring_middle"]
+
+[.ranging_pedestals]
+level = 71
+xp = 7200
+materials = ["teak_plank"]
+amounts = [8]
+objects = ["magic_barrier", "ranging_spot", "magic_barrier", "magic_barrier"]  # guessed
+pieces = [2, 4, 7, 8]
+
+[.balance_beam]
+level = 81
+xp = 10000
+materials = ["teak_plank", "steel_bar"]
+amounts = [10, 5]
+objects = ["balance_beam_end", "balance_beam"]  # guessed
+pieces = [5, 6]
+anchors = [8, 9]
+rotations = [0, 1]
+
+[.glove_rack]
+level = 34
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["glove_rack"]
+
+[.weapons_rack]
+level = 44
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["weapons_rack"]
+
+[.extra_weapons_rack]
+level = 54
+xp = 4400
+materials = ["teak_plank", "steel_bar"]
+amounts = [4, 4]
+objects = ["extra_weapons_rack"]
+
+[.king_arthur]
+level = 35
+xp = 2110
+materials = ["teak_plank", "arthur_portrait"]
+amounts = [2, 1]
+objects = ["king_arthur_portrait"]
+
+[.elena]
+level = 35
+xp = 2110
+materials = ["teak_plank", "elena_portrait"]
+amounts = [2, 1]
+objects = ["elena_portrait"]
+
+[.giant_dwarf]
+level = 35
+xp = 2110
+materials = ["teak_plank", "keldagrim_portrait"]
+amounts = [2, 1]
+objects = ["giant_dwarf_portrait"]
+
+[.miscellanians]
+level = 55
+xp = 3110
+materials = ["mahogany_plank", "misc_portrait"]
+amounts = [2, 1]
+objects = ["miscellanians_portrait"]
+
+[.lumbridge]
+level = 44
+xp = 3140
+materials = ["teak_plank", "lumbridge_painting"]
+amounts = [3, 1]
+objects = ["lumbridge_painting"]
+
+[.the_desert]
+level = 44
+xp = 3140
+materials = ["teak_plank", "desert_painting"]
+amounts = [3, 1]
+objects = ["desert_painting"]
+
+[.morytania]
+level = 44
+xp = 3140
+materials = ["teak_plank", "morytania_painting"]
+amounts = [3, 1]
+objects = ["morytania_painting"]
+
+[.karamja]
+level = 65
+xp = 4640
+materials = ["mahogany_plank", "karamja_painting"]
+amounts = [3, 1]
+objects = ["karamja_painting"]
+
+[.isafdar]
+level = 65
+xp = 4640
+materials = ["mahogany_plank", "isafdar_painting"]
+amounts = [3, 1]
+objects = ["isafdar_painting"]
+
+[.anti_dragon_shield_mounted]
+level = 47
+xp = 2800
+materials = ["teak_plank", "anti_dragon_shield"]
+amounts = [3, 1]
+objects = ["anti_dragon_shield_mounted"]
+
+[.amulet_of_glory_mounted]
+level = 47
+xp = 2900
+materials = ["teak_plank", "amulet_of_glory"]
+amounts = [3, 1]
+objects = ["amulet_of_glory_mounted"]
+
+[.cape_of_legends_2]
+level = 47
+xp = 3000
+materials = ["teak_plank", "cape_of_legends"]
+amounts = [3, 1]
+objects = ["cape_of_legends_mounted"]
+
+[.silverlight_2]
+level = 42
+xp = 1870
+materials = ["teak_plank", "silverlight"]
+amounts = [2, 1]
+objects = ["silverlight_mounted"]
+
+[.excalibur_2]
+level = 42
+xp = 1940
+materials = ["teak_plank", "excalibur"]
+amounts = [2, 1]
+objects = ["excalibur_mounted"]
+
+[.darklight_2]
+level = 42
+xp = 2020
+materials = ["teak_plank", "darklight"]
+amounts = [2, 1]
+objects = ["darklight_mounted"]
+
+[.small_map_2]
+level = 38
+xp = 2110
+materials = ["teak_plank", "small_map"]
+amounts = [2, 1]
+objects = ["small_map"]
+
+[.medium_map_2]
+level = 58
+xp = 4510
+materials = ["mahogany_plank", "medium_map"]
+amounts = [3, 1]
+objects = ["medium_map"]
+
+[.large_map_2]
+level = 78
+xp = 5910
+materials = ["mahogany_plank", "large_map"]
+amounts = [4, 1]
+objects = ["large_map"]
+
+[.garden_habitat]
+level = 37
+xp = 2010
+materials = ["bagged_plant_1", "bagged_plant_2", "bagged_plant_3"]
+amounts = [1, 1, 1]
+objects = ["garden_habitat", "garden_habitat_2"]
+
+[.jungle_habitat]
+level = 47
+xp = 2780
+materials = ["bagged_willow_tree", "bucket_of_water", "bagged_plant_3"]
+amounts = [1, 5, 3]
+objects = ["jungle_habitat", "jungle_habitat_2"]
+
+[.desert_habitat]
+level = 57
+xp = 2380
+materials = ["bucket_of_sand", "limestone_brick", "bagged_cactus"]
+amounts = [10, 5, 1]
+objects = ["desert_habitat", "desert_habitat_2"]
+
+[.polar_habitat]
+level = 67
+xp = 3730
+materials = ["air_rune", "water_rune", "bagged_evergreen"]
+amounts = [1000, 1000, 1]
+objects = ["polar_habitat", "polar_habitat_2"]
+
+[.volcanic_habitat]
+level = 77
+xp = 770
+materials = ["bagged_dead_tree", "lava_rune", "stone_slab"]
+amounts = [1, 100, 5]
+objects = ["volcanic_habitat", "volcanic_habitat_2"]
+
+[.oak_pet_house]
+level = 37
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["oak_pet_house"]
+
+[.teak_pet_house]
+level = 52
+xp = 3800
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["teak_pet_house"]
+
+[.mahogany_pet_house]
+level = 67
+xp = 5800
+materials = ["mahogany_plank"]
+amounts = [4]
+objects = ["mahogany_pet_house"]
+
+[.consecrated_pet_house]
+level = 92
+xp = 15800
+materials = ["mahogany_plank", "magic_stone"]
+amounts = [4, 1]
+objects = ["consecrated_pet_house"]
+
+[.desecrated_pet_house]
+level = 92
+xp = 15800
+materials = ["mahogany_plank", "magic_stone"]
+amounts = [4, 1]
+objects = ["desecrated_pet_house"]
+
+[.natural_pet_house]
+level = 92
+xp = 15800
+materials = ["mahogany_plank", "magic_stone"]
+amounts = [4, 1]
+objects = ["natural_pet_house"]
+
+[.oak_pet_feeder]
+level = 37
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["oak_pet_feeder"]
+
+[.teak_pet_feeder]
+level = 52
+xp = 3800
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["teak_pet_feeder"]
+
+[.mahogany_pet_feeder]
+level = 67
+xp = 8800
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [4, 1]
+objects = ["mahogany_pet_feeder"]
+
+[.mini_obelisk]
+level = 41
+xp = 6760
+materials = ["marble_block", "spirit_shards", "gold_charm", "green_charm", "crimson_charm", "blue_charm"]
+amounts = [1, 1000, 10, 10, 10, 10]
+objects = ["house_small_obelisk"]
+
+[.oak_lectern]
+level = 40
+xp = 600
+materials = ["oak_plank"]
+amounts = [1]
+objects = ["oak_lectern"]
+
+[.eagle_lectern]
+level = 47
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["eagle_lectern"]
+
+[.demon_lectern]
+level = 47
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["demon_lectern"]
+
+[.teak_eagle_lectern]
+level = 57
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_eagle_lectern"]
+
+[.teak_demon_lectern]
+level = 57
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_demon_lectern"]
+
+[.mahogany_eagle]
+level = 67
+xp = 5800
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [2, 1]
+objects = ["mahogany_eagle_lectern"]
+
+[.mahogany_demon]
+level = 67
+xp = 5800
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [2, 1]
+objects = ["mahogany_demon_lectern"]
+
+[.globe]
+level = 41
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["globe"]
+
+[.ornamental_globe]
+level = 50
+xp = 2700
+materials = ["teak_plank"]
+amounts = [3]
+objects = ["ornamental_globe"]
+
+[.lunar_globe]
+level = 59
+xp = 5700
+materials = ["teak_plank", "gold_leaf"]
+amounts = [3, 1]
+objects = ["lunar_globe"]
+
+[.celestial_globe]
+level = 68
+xp = 5700
+materials = ["teak_plank", "gold_leaf"]
+amounts = [3, 1]
+objects = ["celestial_globe"]
+
+[.armillary_sphere]
+level = 77
+xp = 9600
+materials = ["mahogany_plank", "gold_leaf", "steel_bar"]
+amounts = [2, 2, 4]
+objects = ["armillary_sphere"]
+
+[.small_orrery]
+level = 86
+xp = 13200
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [3, 3]
+objects = ["small_orrery"]
+
+[.large_orrery]
+level = 95
+xp = 14200
+materials = ["mahogany_plank", "marble_block"]
+amounts = [3, 2]
+objects = ["large_orrery"]
+
+[.crystal_ball]
+level = 42
+xp = 2800
+materials = ["teak_plank", "unpowered_orb"]
+amounts = [3, 1]
+objects = ["crystal_ball"]
+
+[.elemental_sphere]
+level = 54
+xp = 5800
+materials = ["teak_plank", "unpowered_orb", "gold_leaf"]
+amounts = [3, 1, 1]
+objects = ["elemental_sphere"]
+
+[.crystal_of_power]
+level = 66
+xp = 8900
+materials = ["mahogany_plank", "unpowered_orb", "gold_leaf"]
+amounts = [2, 1, 2]
+objects = ["crystal_of_power"]
+
+[.alchemical_chart]
+level = 43
+xp = 300
+materials = ["bolt_of_cloth"]
+amounts = [2]
+objects = ["alchemical_chart"]
+
+[.astronomical_chart]
+level = 63
+xp = 450
+materials = ["bolt_of_cloth"]
+amounts = [3]
+objects = ["astronomical_chart"]
+
+[.infernal_chart]
+level = 83
+xp = 600
+materials = ["bolt_of_cloth"]
+amounts = [4]
+objects = ["infernal_chart"]
+
+[.wooden_telescope]
+level = 44
+xp = 1210
+materials = ["oak_plank", "molten_glass"]
+amounts = [2, 1]
+objects = ["wooden_telescope"]
+
+[.teak_telescope]
+level = 64
+xp = 1810
+materials = ["teak_plank", "molten_glass"]
+amounts = [2, 1]
+objects = ["teak_telescope"]
+
+[.mahogany_scope]
+level = 84
+xp = 2810
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [2, 1]
+objects = ["mahogany_telescope"]
+
+[.statue_2]
+level = 1
+xp = 15
+materials = ["statue_plinth"]
+amounts = [1]
+objects = ["dahmaroc_statue_plinth"]
+
+[.oak_cape_rack]
+level = 54
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["oak_cape_rack"]
+
+[.teak_cape_rack]
+level = 63
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["teak_cape_rack"]
+
+[.mgany_cape_rack]
+level = 72
+xp = 5600
+materials = ["mahogany_plank"]
+amounts = [4]
+objects = ["mahogany_cape_rack"]
+
+[.gilded_cape_rack]
+level = 81
+xp = 8600
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [4, 1]
+objects = ["gilded_cape_rack"]
+
+[.marble_cape_rack]
+level = 90
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["marble_cape_rack"]
+
+[.magical_cape_rack]
+level = 99
+xp = 10000
+materials = ["magic_stone"]
+amounts = [1]
+objects = ["magic_cape_rack"]
+
+[.oak_magic_wardrobe]
+level = 42
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["oak_magic_wardrobe"]
+
+[.carved_oak_magic_wardrobe]
+level = 51
+xp = 3600
+materials = ["oak_plank"]
+amounts = [6]
+objects = ["carved_oak_magic_wardrobe"]
+
+[.teak_magic_wardrobe]
+level = 60
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["teak_magic_wardrobe"]
+
+[.carved_teak_magic_wardrobe]
+level = 69
+xp = 5400
+materials = ["teak_plank"]
+amounts = [6]
+objects = ["carved_teak_magic_wardrobe"]
+
+[.mahogany_magic_wardrobe]
+level = 78
+xp = 5400
+materials = ["mahogany_plank"]
+amounts = [4]
+objects = ["mahogany_magic_wardrobe"]
+
+[.gilded_magic_wardrobe]
+level = 87
+xp = 8600
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [4, 1]
+objects = ["gilded_magic_wardrobe"]
+
+[.marble_magic_wardrobe]
+level = 96
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["marble_magic_wardrobe"]
+
+[.oak_toy_box]
+level = 50
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["oak_toy_box"]
+
+[.teak_toy_box]
+level = 68
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_toy_box"]
+
+[.mahogany_toy_box]
+level = 86
+xp = 2800
+materials = ["mahogany_plank"]
+amounts = [2]
+objects = ["mahogany_toy_box"]
+
+[.oak_treasure_chest]
+level = 48
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["oak_treasure_chest"]
+
+[.teak_treas_chest]
+level = 66
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_treasure_chest"]
+
+[.mgany_treas_chest]
+level = 84
+xp = 2800
+materials = ["mahogany_plank"]
+amounts = [2]
+objects = ["mahogany_treasure_chest"]
+
+[.oak_costume_box]
+level = 44
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["oak_fancy_dress_box"]
+
+[.teak_costume_box]
+level = 62
+xp = 1800
+materials = ["teak_plank"]
+amounts = [2]
+objects = ["teak_fancy_dress_box"]
+
+[.mahogany_cos_box]
+level = 80
+xp = 2800
+materials = ["mahogany_plank"]
+amounts = [2]
+objects = ["mahogany_fancy_dress_box"]
+
+[.oak_armour_case]
+level = 46
+xp = 1800
+materials = ["oak_plank"]
+amounts = [3]
+objects = ["oak_armour_case"]
+
+[.teak_armour_case]
+level = 64
+xp = 2700
+materials = ["teak_plank"]
+amounts = [3]
+objects = ["teak_armour_case"]
+
+[.mgany_armr_case]
+level = 82
+xp = 4200
+materials = ["mahogany_plank"]
+amounts = [3]
+objects = ["mahogany_armour_case"]
+
+[.oak_altar]
+level = 45
+xp = 2400
+materials = ["oak_plank"]
+amounts = [4]
+objects = ["prayer_altar_oak_saradomin"]
+
+[.teak_altar]
+level = 50
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["prayer_altar_teak_saradomin"]
+
+[.cloth_coverd_altar]
+level = 56
+xp = 3900
+materials = ["teak_plank", "bolt_of_cloth"]
+amounts = [4, 2]
+objects = ["prayer_altar_cloth_saradomin"]
+
+[.mahogany_altar]
+level = 60
+xp = 5900
+materials = ["mahogany_plank", "bolt_of_cloth"]
+amounts = [4, 2]
+objects = ["prayer_altar_mahogany_saradomin"]
+
+[.limestone_altar]
+level = 64
+xp = 9100
+materials = ["mahogany_plank", "limestone_brick", "bolt_of_cloth"]
+amounts = [6, 2, 2]
+objects = ["prayer_altar_limestone_saradomin"]
+
+[.marble_altar]
+level = 70
+xp = 10300
+materials = ["marble_block", "bolt_of_cloth"]
+amounts = [2, 2]
+objects = ["prayer_altar_marble_saradomin"]
+
+[.gilded_altar]
+level = 75
+xp = 22300
+materials = ["marble_block", "gold_leaf", "bolt_of_cloth"]
+amounts = [2, 4, 2]
+objects = ["prayer_altar_gilded_saradomin"]
+
+[.steel_torches]
+level = 45
+xp = 800
+materials = ["steel_bar"]
+amounts = [2]
+objects = ["steel_torches"]
+
+[.wooden_torches]
+level = 49
+xp = 580
+materials = ["plank"]
+amounts = [2]
+nails = 2
+objects = ["wooden_torches"]
+
+[.steel_candlesticks]
+level = 53
+xp = 1240
+materials = ["steel_bar", "white_candle"]
+amounts = [6, 6]
+objects = ["steel_candlesticks"]
+
+[.gold_candlesticks]
+level = 57
+xp = 460
+materials = ["gold_bar", "white_candle"]
+amounts = [6, 6]
+objects = ["gold_candlesticks"]
+
+[.incense_burners]
+level = 61
+xp = 2800
+materials = ["oak_plank", "steel_bar"]
+amounts = [4, 2]
+objects = ["incense_burners"]
+
+[.mahogany_burners]
+level = 65
+xp = 6000
+materials = ["mahogany_plank", "steel_bar"]
+amounts = [4, 2]
+objects = ["mahogany_burners"]
+
+[.marble_burners]
+level = 69
+xp = 10400
+materials = ["marble_block", "steel_bar"]
+amounts = [2, 2]
+objects = ["marble_burners"]
+
+[.guthix_symbol]
+level = 48
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["guthix_symbol"]
+
+[.saradomin_symbol]
+level = 48
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["saradomin_symbol"]
+
+[.zamorak_symbol]
+level = 48
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["zamorak_symbol"]
+
+[.guthix_icon]
+level = 59
+xp = 9600
+materials = ["teak_plank", "gold_leaf"]
+amounts = [4, 2]
+objects = ["guthix_icon"]
+
+[.saradomin_icon]
+level = 59
+xp = 9600
+materials = ["teak_plank", "gold_leaf"]
+amounts = [4, 2]
+objects = ["saradomin_icon"]
+
+[.zamorak_icon]
+level = 59
+xp = 9600
+materials = ["teak_plank", "gold_leaf"]
+amounts = [4, 2]
+objects = ["zamorak_icon"]
+
+[.icon_of_bob]
+level = 71
+xp = 11600
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [4, 2]
+objects = ["icon_of_bob"]
+
+[.windchimes]
+level = 49
+xp = 3230
+materials = ["oak_plank", "steel_bar"]
+amounts = [4, 4]
+nails = 4
+objects = ["windchimes"]
+
+[.bells]
+level = 58
+xp = 4800
+materials = ["teak_plank", "steel_bar"]
+amounts = [4, 6]
+objects = ["bells"]
+
+[.organ]
+level = 69
+xp = 6800
+materials = ["mahogany_plank", "steel_bar"]
+amounts = [4, 6]
+objects = ["organ"]
+
+[.small_statues]
+level = 49
+xp = 400
+materials = ["limestone_brick"]
+amounts = [2]
+objects = ["small_statue"]  # guessed
+
+[.medium_statues]
+level = 69
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["medium_statue"]  # guessed
+
+[.large_statues]
+level = 89
+xp = 15000
+materials = ["marble_block"]
+amounts = [3]
+objects = ["large_statue"]  # guessed
+
+[.shuttered_window]
+level = 49
+xp = 2280
+materials = ["plank"]
+amounts = [8]
+nails = 8
+objects = ["shuttered_window_basic_wood", "shuttered_window_basic_stone", "shuttered_window_whitewashed_stone", "shuttered_window_fremennik_wood", "shuttered_window_tropical_wood", "shuttered_window_fancy_stone"]
+
+[.decorative_window]
+level = 69
+xp = 40
+materials = ["molten_glass"]
+amounts = [8]
+objects = ["decorative_window_basic_wood", "decorative_window_basic_stone", "decorative_window_whitewashed_stone", "decorative_window_fremennik_wood", "decorative_window_tropical_wood", "decorative_window_fancy_stone"]
+
+[.stained_glass]
+level = 89
+xp = 50
+materials = ["molten_glass"]
+amounts = [16]
+objects = ["stained_glass_basic_wood", "stained_glass_basic_stone", "stained_glass_whitewashed_stone", "stained_glass_fremennik_wood", "stained_glass_tropical_wood", "stained_glass_fancy_stone"]
+
+[.teak_portal]
+level = 50
+xp = 2700
+materials = ["teak_plank"]
+amounts = [3]
+objects = ["teak_portal", "teak_portal_varrock", "teak_portal_lumbridge", "teak_portal_falador", "teak_portal_camelot", "teak_portal_ardougne", "teak_portal_yanille", "teak_portal_kharyrll"]
+
+[.mahogany_portal]
+level = 65
+xp = 4200
+materials = ["mahogany_plank"]
+amounts = [3]
+objects = ["mahogany_portal", "mahogany_portal_varrock", "mahogany_portal_lumbridge", "mahogany_portal_falador", "mahogany_portal_camelot", "mahogany_portal_ardougne", "mahogany_portal_yanille", "mahogany_portal_kharyrll"]
+
+[.marble_portal]
+level = 80
+xp = 15000
+materials = ["marble_block"]
+amounts = [3]
+objects = ["marble_portal", "marble_portal_varrock", "marble_portal_lumbridge", "marble_portal_falador", "marble_portal_camelot", "marble_portal_ardougne", "marble_portal_yanille", "marble_portal_kharyrll"]
+
+[.teleport_focus]
+level = 50
+xp = 400
+materials = ["limestone_brick"]
+amounts = [2]
+objects = ["teleport_focus"]
+
+[.greater_focus]
+level = 65
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["greater_teleport_focus"]
+
+[.scrying_pool]
+level = 80
+xp = 20000
+materials = ["marble_block"]
+amounts = [4]
+objects = ["scrying_pool"]
+
+[.gazebo]
+level = 65
+xp = 12000
+materials = ["mahogany_plank", "steel_bar"]
+amounts = [8, 4]
+objects = ["gazebo"]
+
+[.small_fountain]
+level = 71
+xp = 5000
+materials = ["marble_block"]
+amounts = [1]
+objects = ["fountain_small"]
+
+[.large_fountain]
+level = 75
+xp = 10000
+materials = ["marble_block"]
+amounts = [2]
+objects = ["fountain_large"]
+
+[.posh_fountain]
+level = 81
+xp = 15000
+materials = ["marble_block"]
+amounts = [3]
+objects = ["fountain_ornamental"]
+
+[.boundary_stones]
+level = 55
+xp = 1000
+materials = ["soft_clay"]
+amounts = [10]
+objects = ["boundary_stones"]
+
+[.wooden_fence]
+level = 59
+xp = 2800
+materials = ["plank"]
+amounts = [10]
+objects = ["wooden_fence"]
+
+[.stone_wall]
+level = 63
+xp = 2000
+materials = ["limestone_brick"]
+amounts = [10]
+objects = ["stone_wall"]
+
+[.iron_railings]
+level = 67
+xp = 2200
+materials = ["iron_bar", "limestone_brick"]
+amounts = [10, 6]
+objects = ["iron_railings"]
+
+[.picket_fence]
+level = 71
+xp = 6400
+materials = ["oak_plank", "steel_bar"]
+amounts = [10, 2]
+objects = ["picket_fence"]
+
+[.garden_fence]
+level = 75
+xp = 9400
+materials = ["teak_plank", "steel_bar"]
+amounts = [10, 2]
+objects = ["garden_fence"]
+
+[.marble_wall]
+level = 79
+xp = 40000
+materials = ["marble_block"]
+amounts = [8]
+objects = ["marble_wall"]
+
+[.thorny_hedge]
+level = 56
+xp = 700
+materials = ["thorny_hedge_bagged"]
+amounts = [1]
+objects = ["thorny_hedge", "thorny_hedge_2", "thorny_hedge_3"]
+
+[.nice_hedge]
+level = 60
+xp = 1000
+materials = ["nice_hedge_bagged"]
+amounts = [1]
+objects = ["nice_hedge", "nice_hedge_2", "nice_hedge_3"]
+
+[.small_box_hedge]
+level = 64
+xp = 1220
+materials = ["small_box_hedge_bagged"]
+amounts = [1]
+objects = ["small_box_hedge", "small_box_hedge_2", "small_box_hedge_3"]
+
+[.topiary_hedge]
+level = 68
+xp = 1410
+materials = ["topiary_hedge_bagged"]
+amounts = [1]
+objects = ["topiary_hedge", "topiary_hedge_2", "topiary_hedge_3"]
+
+[.fancy_hedge]
+level = 72
+xp = 1580
+materials = ["fancy_hedge_bagged"]
+amounts = [1]
+objects = ["fancy_hedge", "fancy_hedge_2", "fancy_hedge_3"]
+
+[.tall_fancy_hedge]
+level = 76
+xp = 2230
+materials = ["tall_fancy_hedge_bagged"]
+amounts = [1]
+objects = ["tall_fancy_hedge", "tall_fancy_hedge_2", "tall_fancy_hedge_3"]
+
+[.tall_box_hedge]
+level = 80
+xp = 3160
+materials = ["tall_box_hedge_bagged"]
+amounts = [1]
+objects = ["tall_box_hedge", "tall_box_hedge_2", "tall_box_hedge_3"]
+
+[.sunflower]
+level = 66
+xp = 700
+materials = ["bagged_sunflower"]
+amounts = [1]
+objects = ["sunflower", "big_sunflower"]
+
+[.marigolds_2]
+level = 71
+xp = 1000
+materials = ["bagged_marigolds"]
+amounts = [1]
+objects = ["marigolds", "big_marigolds"]
+
+[.roses]
+level = 76
+xp = 1220
+materials = ["bagged_roses"]
+amounts = [1]
+objects = ["roses", "big_roses"]
+
+[.rosemary_2]
+level = 66
+xp = 700
+materials = ["bagged_rosemary"]
+amounts = [1]
+objects = ["rosemary", "big_rosemary"]
+
+[.daffodils]
+level = 71
+xp = 1000
+materials = ["bagged_daffodils"]
+amounts = [1]
+objects = ["daffodils", "big_daffodils"]
+
+[.bluebells]
+level = 76
+xp = 1220
+materials = ["bagged_bluebells"]
+amounts = [1]
+objects = ["bluebells", "big_bluebells"]
+
+[.oak_throne]
+level = 60
+xp = 8000
+materials = ["oak_plank", "marble_block"]
+amounts = [5, 1]
+objects = ["oak_throne"]
+
+[.teak_throne]
+level = 67
+xp = 14500
+materials = ["teak_plank", "marble_block"]
+amounts = [5, 2]
+objects = ["teak_throne"]
+
+[.mahogany_throne]
+level = 74
+xp = 22000
+materials = ["mahogany_plank", "marble_block"]
+amounts = [5, 3]
+objects = ["mahogany_throne"]
+
+[.gilded_throne]
+level = 81
+xp = 26000
+materials = ["mahogany_plank", "marble_block", "gold_leaf"]
+amounts = [5, 2, 3]
+objects = ["gilded_throne"]
+
+[.skeleton_throne]
+level = 88
+xp = 70030
+materials = ["magic_stone", "marble_block", "bones", "skull"]
+amounts = [5, 4, 5, 2]
+objects = ["skeleton_throne"]
+
+[.crystal_throne]
+level = 95
+xp = 150000
+materials = ["magic_stone"]
+amounts = [15]
+objects = ["crystal_throne"]
+
+[.demonic_throne]
+level = 99
+xp = 250000
+materials = ["magic_stone"]
+amounts = [25]
+objects = ["demonic_throne"]
+
+[.oak_lever]
+level = 68
+xp = 3000
+materials = ["oak_plank"]
+amounts = [5]
+objects = ["oak_lever"]
+
+[.teak_lever]
+level = 78
+xp = 4500
+materials = ["teak_plank"]
+amounts = [5]
+objects = ["teak_lever"]
+
+[.mahogany_lever]
+level = 88
+xp = 7000
+materials = ["mahogany_plank"]
+amounts = [5]
+objects = ["mahogany_lever"]
+
+[.trapdoor]
+level = 68
+xp = 3000
+materials = ["oak_plank"]
+amounts = [5]
+objects = ["oak_trapdoor"]  # guessed
+
+[.trapdoor_2]
+level = 78
+xp = 4500
+materials = ["teak_plank"]
+amounts = [5]
+objects = ["teak_trapdoor"]  # guessed
+
+[.trapdoor_3]
+level = 88
+xp = 7000
+materials = ["mahogany_plank"]
+amounts = [5]
+objects = ["mahogany_trapdoor"]  # guessed
+
+[.round_shield]
+level = 66
+xp = 1200
+materials = ["oak_plank"]
+amounts = [2]
+objects = ["round_shield_0", "round_shield_1", "round_shield_2", "round_shield_3", "round_shield_4", "round_shield_5", "round_shield_6", "round_shield_7", "round_shield_8", "round_shield_9", "round_shield_10", "round_shield_11", "round_shield_12", "round_shield_13", "round_shield_14", "round_shield_15"]  # guessed
+variant = "heraldry_crest"
+
+[.square_shield]
+level = 76
+xp = 3600
+materials = ["teak_plank"]
+amounts = [4]
+objects = ["square_shield_0", "square_shield_1", "square_shield_2", "square_shield_3", "square_shield_4", "square_shield_5", "square_shield_6", "square_shield_7", "square_shield_8", "square_shield_9", "square_shield_10", "square_shield_11", "square_shield_12", "square_shield_13", "square_shield_14", "square_shield_15"]  # guessed
+variant = "heraldry_crest"
+
+[.kite_shield]
+level = 86
+xp = 4200
+materials = ["mahogany_plank"]
+amounts = [3]
+objects = ["kite_shield_0", "kite_shield_1", "kite_shield_2", "kite_shield_3", "kite_shield_4", "kite_shield_5", "kite_shield_6", "kite_shield_7", "kite_shield_8", "kite_shield_9", "kite_shield_10", "kite_shield_11", "kite_shield_12", "kite_shield_13", "kite_shield_14", "kite_shield_15"]  # guessed
+variant = "heraldry_crest"
+
+[.floor_decoration]
+level = 61
+xp = 7000
+materials = ["mahogany_plank"]
+amounts = [5]
+objects = ["floor_decoration_basic_wood", "floor_decoration_basic_stone", "floor_decoration_whitewashed_stone", "floor_decoration_fremennik_wood", "floor_decoration_tropical_wood", "floor_decoration_fancy_stone"]
+
+[.steel_cage_2]
+level = 68
+xp = 11000
+materials = ["mahogany_plank", "steel_bar"]
+amounts = [5, 20]
+objects = ["floor_decoration_basic_wood", "floor_decoration_basic_stone", "floor_decoration_whitewashed_stone", "floor_decoration_fremennik_wood", "floor_decoration_tropical_wood", "floor_decoration_fancy_stone"]
+
+[.trapdoor_4]
+level = 74
+xp = 7700
+materials = ["mahogany_plank", "clockwork"]
+amounts = [5, 10]
+objects = ["floor_decoration_basic_wood", "floor_decoration_basic_stone", "floor_decoration_whitewashed_stone", "floor_decoration_fremennik_wood", "floor_decoration_tropical_wood", "floor_decoration_fancy_stone"]
+
+[.lesser_magic_cage]
+level = 82
+xp = 27000
+materials = ["mahogany_plank", "magic_stone"]
+amounts = [5, 2]
+objects = ["floor_decoration_basic_wood", "floor_decoration_basic_stone", "floor_decoration_whitewashed_stone", "floor_decoration_fremennik_wood", "floor_decoration_tropical_wood", "floor_decoration_fancy_stone"]
+
+[.greater_magic_cage]
+level = 89
+xp = 47000
+materials = ["mahogany_plank", "magic_stone"]
+amounts = [5, 4]
+objects = ["floor_decoration_basic_wood", "floor_decoration_basic_stone", "floor_decoration_whitewashed_stone", "floor_decoration_fremennik_wood", "floor_decoration_tropical_wood", "floor_decoration_fancy_stone"]
+
+[.skeleton_guard]
+level = 70
+xp = 2230
+materials = ["coins"]
+amounts = [50000]
+objects = ["skeleton_guard"]
+
+[.guard_dog]
+level = 74
+xp = 2730
+materials = ["coins"]
+amounts = [75000]
+objects = ["guard_dog"]
+
+[.hobgoblin_guard]
+level = 78
+xp = 3160
+materials = ["coins"]
+amounts = [100000]
+objects = ["hobgoblin_guard"]
+
+[.baby_red_dragon]
+level = 82
+xp = 3870
+materials = ["coins"]
+amounts = [150000]
+objects = ["baby_red_dragon"]
+
+[.huge_spider]
+level = 86
+xp = 4470
+materials = ["coins"]
+amounts = [200000]
+objects = ["huge_spider"]
+
+[.troll_guard]
+level = 90
+xp = 10000
+materials = ["coins"]
+amounts = [1000000]
+objects = ["troll_guard"]
+
+[.hellhound]
+level = 94
+xp = 22360
+materials = ["coins"]
+amounts = [5000000]
+objects = ["hellhound"]
+
+[.oak_ladder]
+level = 68
+xp = 3000
+materials = ["oak_plank"]
+amounts = [5]
+objects = ["oak_ladder"]
+
+[.teak_ladder]
+level = 78
+xp = 4500
+materials = ["teak_plank"]
+amounts = [5]
+objects = ["teak_ladder"]
+
+[.mahogany_ladder]
+level = 88
+xp = 7000
+materials = ["mahogany_plank"]
+amounts = [5]
+objects = ["mahogany_ladder"]
+
+[.candles]
+level = 72
+xp = 2430
+materials = ["oak_plank", "white_candle_lit"]
+amounts = [4, 4]
+objects = ["candle"]
+
+[.torches]
+level = 84
+xp = 2440
+materials = ["oak_plank", "lit_torch"]
+amounts = [4, 4]
+objects = ["torches"]
+
+[.skull_torches]
+level = 94
+xp = 2460
+materials = ["oak_plank", "lit_torch", "skull"]
+amounts = [4, 4, 4]
+objects = ["skull_torches"]
+
+[.spike_trap]
+level = 72
+xp = 2230
+materials = ["coins"]
+amounts = [50000]
+objects = ["spike_trap"]
+
+[.man_trap]
+level = 76
+xp = 2730
+materials = ["coins"]
+amounts = [75000]
+objects = ["man_trap"]
+
+[.tangle_vine]
+level = 80
+xp = 3160
+materials = ["coins"]
+amounts = [100000]
+objects = ["tangle_vine"]
+
+[.marble_trap]
+level = 84
+xp = 3870
+materials = ["coins"]
+amounts = [150000]
+objects = ["marble_trap"]
+
+[.teleport_trap]
+level = 88
+xp = 4470
+materials = ["coins"]
+amounts = [200000]
+objects = ["teleport_trap"]
+
+[.oak_door]
+level = 74
+xp = 6000
+materials = ["oak_plank"]
+amounts = [10]
+objects = ["door_309_closed", "door_310_closed"]
+
+[.steel_plated_door]
+level = 84
+xp = 8000
+materials = ["oak_plank", "steel_bar"]
+amounts = [10, 10]
+objects = ["door_311_closed", "door_312_closed"]
+
+[.marble_door]
+level = 94
+xp = 20000
+materials = ["marble_block"]
+amounts = [4]
+objects = ["door_313_closed", "door_314_closed"]
+
+[.decorative_blood]
+level = 72
+xp = 40
+materials = ["red_dye"]
+amounts = [4]
+objects = ["decorative_blood"]
+
+[.decorative_pipe]
+level = 83
+xp = 1200
+materials = ["steel_bar"]
+amounts = [6]
+objects = ["decorative_pipe"]
+
+[.hanging_skeleton]
+level = 94
+xp = 30
+materials = ["skull", "bones"]
+amounts = [2, 6]
+objects = ["hanging_skeleton"]
+
+[.pit_dog]
+level = 70
+xp = 2000
+materials = ["coins"]
+amounts = [40000]
+objects = ["pit_dog"]
+
+[.pit_ogre]
+level = 73
+xp = 2340
+materials = ["coins"]
+amounts = [55000]
+objects = ["pit_ogre"]
+
+[.pit_rock_protector]
+level = 79
+xp = 3000
+materials = ["coins"]
+amounts = [90000]
+objects = ["pit_rock_protector"]
+
+[.pit_scabarite]
+level = 84
+xp = 3870
+materials = ["coins"]
+amounts = [150000]
+objects = ["pit_scabarite"]
+
+[.pit_black_demon]
+level = 89
+xp = 5470
+materials = ["coins"]
+amounts = [300000]
+objects = ["pit_black_demon"]
+
+[.pit_iron_dragon]
+level = 97
+xp = 27380
+materials = ["coins"]
+amounts = [7500000]
+objects = ["pit_iron_dragon"]
+
+[.minor_pit_trap]
+level = 71
+xp = 3040
+materials = ["coins", "fire_rune"]
+amounts = [45000, 500]
+objects = ["minor_pit_trap"]
+
+[.major_pit_trap]
+level = 83
+xp = 10000
+materials = ["coins", "fire_rune"]
+amounts = [125000, 2500]
+objects = ["major_pit_trap"]
+
+[.superior_pit_trap]
+level = 96
+xp = 11000
+materials = ["coins", "fire_rune"]
+amounts = [850000, 4500]
+objects = ["superior_pit_trap"]
+
+[.demon]
+level = 75
+xp = 7070
+materials = ["coins"]
+amounts = [500000]
+objects = ["demon_guardian"]
+
+[.kalphite_soldier]
+level = 80
+xp = 8660
+materials = ["coins"]
+amounts = [750000]
+objects = ["kalphite_soldier_guardian"]
+
+[.tok_xil]
+level = 85
+xp = 22360
+materials = ["coins"]
+amounts = [5000000]
+objects = ["tok_xil_guardian"]
+
+[.dagannoth]
+level = 90
+xp = 27380
+materials = ["coins"]
+amounts = [7500000]
+objects = ["dagannoth_guardian"]
+
+[.steel_dragon]
+level = 95
+xp = 31620
+materials = ["coins"]
+amounts = [10000000]
+objects = ["steel_dragon_guardian"]
+
+[.wooden_crate]
+level = 75
+xp = 1430
+materials = ["plank"]
+amounts = [5]
+nails = 5
+objects = ["wooden_treasure_crate"]
+
+[.oak_chest]
+level = 79
+xp = 3400
+materials = ["oak_plank", "steel_bar"]
+amounts = [5, 2]
+objects = ["oak_treasure_room_chest"]
+
+[.teak_chest]
+level = 83
+xp = 5300
+materials = ["teak_plank", "steel_bar"]
+amounts = [5, 4]
+objects = ["teak_treasure_room_chest"]
+
+[.mahogany_chest]
+level = 87
+xp = 10000
+materials = ["mahogany_plank", "gold_leaf"]
+amounts = [5, 1]
+objects = ["mahogany_treasure_room_chest"]
+
+[.magic_chest]
+level = 91
+xp = 10000
+materials = ["magic_stone"]
+amounts = [1]
+objects = ["magic_treasure_room_chest"]
+
+# Items which can be taken from storage furniture
+[house_storage]
+row_id = "obj"
+items = "list<item>"
+
+# https://oldschool.runescape.wiki/w/Larder
+[.wooden_larder]
+items = ["tea_leaves", "bucket_of_milk"]
+
+[.oak_larder]
+items = ["tea_leaves", "bucket_of_milk", "egg", "pot_of_flour"]
+
+[.teak_larder]
+items = ["tea_leaves", "bucket_of_milk", "egg", "pot_of_flour", "raw_potato", "garlic", "onion", "cheese"]
+
+# https://oldschool.runescape.wiki/w/Wooden_shelves_1
+[.wooden_shelves_1]
+items = ["kettle", "teapot_clay", "empty_cup_player_owned_house"]
+
+# https://oldschool.runescape.wiki/w/Wooden_shelves_2
+[.wooden_shelves_2]
+items = ["kettle", "teapot_clay", "empty_cup_player_owned_house", "beer_glass"]
+
+# https://oldschool.runescape.wiki/w/Wooden_shelves_3
+[.wooden_shelves_3]
+items = ["kettle", "teapot_white", "porcelain_cup_white", "beer_glass", "cake_tin"]
+
+# https://oldschool.runescape.wiki/w/Oak_shelves_1
+[.oak_shelves_1]
+items = ["kettle", "teapot_clay", "empty_cup_player_owned_house", "beer_glass", "cake_tin", "bowl"]
+
+# https://oldschool.runescape.wiki/w/Oak_shelves_2
+[.oak_shelves_2]
+items = ["kettle", "teapot_white", "porcelain_cup_white", "beer_glass", "cake_tin", "bowl", "pie_dish"]
+
+# https://oldschool.runescape.wiki/w/Teak_shelves_1
+[.teak_shelves_1]
+items = ["kettle", "teapot_white", "porcelain_cup_white", "beer_glass", "cake_tin", "bowl", "pie_dish", "empty_pot"]
+
+# https://oldschool.runescape.wiki/w/Teak_shelves_2
+[.teak_shelves_2]
+items = ["kettle", "teapot_gold", "porcelain_cup_gold", "beer_glass", "cake_tin", "bowl", "pie_dish", "empty_pot", "chefs_hat"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_1
+[.tool_store_1]
+items = ["saw", "hammer", "chisel", "shears"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_2
+[.tool_store_2]
+items = ["bucket", "knife", "spade", "tinderbox"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_3
+[.tool_store_3]
+items = ["brown_apron", "glassblowing_pipe", "needle"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_4
+[.tool_store_4]
+items = ["amulet_unstrung_mould", "necklace_mould", "ring_mould", "holy_mould", "bracelet_mould", "tiara_mould"]
+
+# https://oldschool.runescape.wiki/w/Tool_store_5
+[.tool_store_5]
+items = ["rake", "spade", "gardening_trowel", "seed_dibber", "watering_can", "secateurs"]
+
+# https://oldschool.runescape.wiki/w/Weapons_rack
+[.glove_rack]
+items = ["boxing_gloves_red", "boxing_gloves_blue"]
+
+[.weapons_rack]
+items = ["boxing_gloves_red", "boxing_gloves_blue", "wooden_sword", "wooden_shield_weapons_rack"]
+
+# Extra rack's pugel stick is from the Fury emulator
+[.extra_weapons_rack]
+items = ["boxing_gloves_red", "boxing_gloves_blue", "wooden_sword", "wooden_shield_weapons_rack", "pugel"]
+
+# Drinks poured into an empty beer glass from kitchen barrels
+# https://oldschool.runescape.wiki/w/Beer_barrel
+[house_barrels]
+row_id = "obj"
+drink = "item"
+anim = "string"
+
+[.beer_barrel]
+drink = "beer"
+anim = "fill_beer_barrel"
+
+[.cider_barrel]
+drink = "cider"
+anim = "fill_cider_barrel"
+
+[.asgarnian_ale_barrel]
+drink = "asgarnian_ale"
+anim = "fill_asgarnian_ale_barrel"
+
+[.greenmans_ale_barrel]
+drink = "greenmans_ale"
+anim = "fill_greenmans_ale_barrel"
+
+[.dragon_bitter_barrel]
+drink = "dragon_bitter"
+anim = "fill_dragon_bitter_barrel"
+
+[.chefs_delight_barrel]
+drink = "chefs_delight"
+anim = "fill_chefs_delight_barrel"
+
+# Furniture lit with a tinderbox at a Firemaking level, using up an item if needed
+# Lit until the room is reloaded, or for ticks plus the players Firemaking level plus a random amount up to their Firemaking level
+# Lit objects have no remove option so can't be lit in building mode
+[house_lights]
+row_id = "obj"
+lit = "obj"
+level = "int"
+item = "item"
+xp = "int"
+ticks = "int"
+anim = "string"
+clone = "clone"
+
+# https://oldschool.runescape.wiki/w/Clay_fireplace
+[.clay_fireplace]
+lit = "clay_fireplace_lit"
+item = "logs"
+xp = 800
+anim = "light_fireplace"
+
+[.stone_fireplace]
+clone = "clay_fireplace"
+lit = "stone_fireplace_lit"
+
+[.marble_fireplace]
+clone = "clay_fireplace"
+lit = "marble_fireplace_lit"
+
+# https://oldschool.runescape.wiki/w/Wooden_torches
+# All lamps need a herb to light, not only burners
+[.wooden_torches]
+lit = "wooden_torches_lit"
+level = 30
+item = "clean_marrentill"
+anim = "light_torch"
+
+# https://oldschool.runescape.wiki/w/Steel_torches
+[.steel_torches]
+clone = "wooden_torches"
+lit = "steel_torches_lit"
+
+# https://oldschool.runescape.wiki/w/Steel_candlesticks
+[.steel_candlesticks]
+clone = "wooden_torches"
+lit = "steel_candlesticks_lit"
+
+# Level guessed, unlisted on https://oldschool.runescape.wiki/w/Gold_candlesticks
+[.gold_candlesticks]
+clone = "wooden_torches"
+lit = "gold_candlesticks_lit"
+
+# https://oldschool.runescape.wiki/w/Incense_burner_(Oak)
+# https://oldschool.runescape.wiki/w/Construction/Lamp_duration
+[.incense_burners]
+lit = "incense_burners_lit"
+level = 30
+item = "clean_marrentill"
+ticks = 200
+anim = "light_torch"
+
+[.mahogany_burners]
+clone = "incense_burners"
+lit = "mahogany_burners_lit"
+
+[.marble_burners]
+clone = "incense_burners"
+lit = "marble_burners_lit"
+
+# Percentage of the bones experience given when offered on an altar, before the bonus from lit incense burners
+# https://oldschool.runescape.wiki/w/Chapel
+[house_altars]
+row_id = "obj"
+bonus = "int"
+clone = "clone"
+
+[.prayer_altar_oak_saradomin]
+bonus = 100
+
+[.prayer_altar_oak_zamorak]
+clone = "prayer_altar_oak_saradomin"
+
+[.prayer_altar_oak_guthix]
+clone = "prayer_altar_oak_saradomin"
+
+[.prayer_altar_teak_saradomin]
+bonus = 110
+
+[.prayer_altar_teak_zamorak]
+clone = "prayer_altar_teak_saradomin"
+
+[.prayer_altar_teak_guthix]
+clone = "prayer_altar_teak_saradomin"
+
+[.prayer_altar_cloth_saradomin]
+bonus = 125
+
+[.prayer_altar_cloth_zamorak]
+clone = "prayer_altar_cloth_saradomin"
+
+[.prayer_altar_cloth_guthix]
+clone = "prayer_altar_cloth_saradomin"
+
+[.prayer_altar_mahogany_saradomin]
+bonus = 150
+
+[.prayer_altar_mahogany_zamorak]
+clone = "prayer_altar_mahogany_saradomin"
+
+[.prayer_altar_mahogany_guthix]
+clone = "prayer_altar_mahogany_saradomin"
+
+[.prayer_altar_limestone_saradomin]
+bonus = 175
+
+[.prayer_altar_limestone_zamorak]
+clone = "prayer_altar_limestone_saradomin"
+
+[.prayer_altar_limestone_guthix]
+clone = "prayer_altar_limestone_saradomin"
+
+[.prayer_altar_marble_saradomin]
+bonus = 200
+
+[.prayer_altar_marble_zamorak]
+clone = "prayer_altar_marble_saradomin"
+
+[.prayer_altar_marble_guthix]
+clone = "prayer_altar_marble_saradomin"
+
+[.prayer_altar_gilded_saradomin]
+bonus = 250
+
+[.prayer_altar_gilded_zamorak]
+clone = "prayer_altar_gilded_saradomin"
+
+[.prayer_altar_gilded_guthix]
+clone = "prayer_altar_gilded_saradomin"
+
+# Destinations portals can be directed to, in the order of each portal frame's objects
+[house_portals]
+name = "string"
+spell = "string"
+spellbook = "string"
+
+[.varrock]
+name = "Varrock"
+spell = "varrock_teleport"
+spellbook = "modern_spellbook"
+
+[.lumbridge]
+name = "Lumbridge"
+spell = "lumbridge_teleport"
+spellbook = "modern_spellbook"
+
+[.falador]
+name = "Falador"
+spell = "falador_teleport"
+spellbook = "modern_spellbook"
+
+[.camelot]
+name = "Camelot"
+spell = "camelot_teleport"
+spellbook = "modern_spellbook"
+
+[.ardougne]
+name = "Ardougne"
+spell = "ardougne_teleport"
+spellbook = "modern_spellbook"
+
+[.yanille]
+name = "Yanille"
+spell = "watchtower_teleport"
+spellbook = "modern_spellbook"
+
+[.kharyrll]
+name = "Kharyrll"
+spell = "kharyrll_teleport"
+spellbook = "ancient_spellbook"

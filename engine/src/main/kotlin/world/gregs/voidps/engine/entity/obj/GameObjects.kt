@@ -54,7 +54,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
      */
     fun add(id: String, tile: Tile, shape: Int = ObjectShape.CENTRE_PIECE_STRAIGHT, rotation: Int = 0, ticks: Int = NEVER, collision: Boolean = true): GameObject {
         val obj = GameObject(ObjectDefinitions.get(id).id, tile, shape, rotation)
-        add(obj)
+        add(obj, collision)
         timers.add(obj, ticks) {
             remove(obj, collision)
         }
@@ -136,7 +136,7 @@ object GameObjects : ZoneBatchUpdates.Sender {
      * Removes an object, optionally reverting after [ticks]
      */
     fun remove(obj: GameObject, ticks: Int = NEVER, collision: Boolean = true) {
-        remove(obj)
+        remove(obj, collision)
         timers.add(obj, ticks) {
             add(obj, collision)
         }
@@ -311,6 +311,17 @@ object GameObjects : ZoneBatchUpdates.Sender {
             return GameObject(id(replacement), tile.x, tile.y, tile.level, shape(replacement), rotation(replacement))
         }
         return GameObject(id(value), tile.x, tile.y, tile.level, shape(value), rotation(value))
+    }
+
+    /**
+     * Get the original object which [obj] is replacing, if any
+     */
+    fun original(obj: GameObject): GameObject? {
+        val value = map[obj]
+        if (!replaced(value) || value == REPLACED || replacements[obj.index] != obj.value(replaced = true)) {
+            return null
+        }
+        return GameObject(id(value), obj.x, obj.y, obj.level, shape(value), rotation(value))
     }
 
     /**
