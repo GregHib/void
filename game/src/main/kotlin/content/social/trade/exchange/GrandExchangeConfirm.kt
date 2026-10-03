@@ -61,10 +61,10 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
                     }
                     when (inventory.transaction.error) {
                         TransactionError.None -> {
+                            offers[slot] = exchange.buy(this, Item(itemId, amount), price)
                             if (fromBank) {
                                 message("Payment has been taken from your bank.")
                             }
-                            offers[slot] = exchange.buy(this, Item(itemId, amount), price)
                         }
                         is TransactionError.Deficient -> {
                             notEnough("coins")
