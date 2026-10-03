@@ -49,8 +49,12 @@ object MoveItem {
             return
         }
         val transaction = link(target)
-        if (!target.stackable(fromItem.id) && fromItem.amount == 1) {
-            // Move single non-stackable items to keep charges
+        if (fromItem.amount == 1 && (!target.stackable(fromItem.id) || !target.contains(fromItem.id))) {
+            // Move single items without an existing stack to keep charges
+            if (target.restricted(fromItem.id)) {
+                transaction.error = TransactionError.Invalid
+                return
+            }
             val freeIndex = target.freeIndex()
             if (freeIndex == -1) {
                 transaction.error = TransactionError.Full(item = fromItem.id)
