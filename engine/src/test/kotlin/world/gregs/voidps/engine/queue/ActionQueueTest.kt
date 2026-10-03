@@ -5,6 +5,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -165,6 +166,25 @@ internal class ActionQueueTest {
         queue.logout()
 
         assertTrue(pastAwait, "Action should advance when the Custom predicate is already satisfied")
+        assertTrue(queue.isEmpty())
+    }
+
+    @Test
+    fun `Logout abandons an entry dialogue suspension instead of spinning`() {
+        var pastAwait = false
+        queue.add(
+            Action<Player>("long", 1, ActionPriority.Long) {
+                suspendCancellableCoroutine { cont ->
+                    suspension = Suspension.IntEntry(cont)
+                }
+                pastAwait = true
+            },
+        )
+
+        queue.logout()
+
+        assertFalse(pastAwait, "Input never arrives so the action must not continue")
+        assertNull(player.suspension)
         assertTrue(queue.isEmpty())
     }
 }

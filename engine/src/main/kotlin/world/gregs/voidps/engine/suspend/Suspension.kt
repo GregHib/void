@@ -7,6 +7,11 @@ import kotlin.coroutines.resume
 sealed class Suspension {
 
     /**
+     * Abandon the suspended action without resuming it, for suspensions which need input that can't be supplied
+     */
+    abstract fun cancel()
+
+    /**
      * Wait for integer entry dialogue
      * p_countdialog
      */
@@ -16,6 +21,10 @@ sealed class Suspension {
                 return
             }
             continuation.resume(int)
+        }
+
+        override fun cancel() {
+            continuation.cancel()
         }
     }
 
@@ -29,6 +38,10 @@ sealed class Suspension {
             }
             continuation.resume(string)
         }
+
+        override fun cancel() {
+            continuation.cancel()
+        }
     }
 
     /**
@@ -40,6 +53,9 @@ sealed class Suspension {
                 return
             }
             continuation.resume(string)
+        }
+        override fun cancel() {
+            continuation.cancel()
         }
     }
 
@@ -53,6 +69,9 @@ sealed class Suspension {
                 return
             }
             continuation.resume(Unit)
+        }
+        override fun cancel() {
+            continuation.cancel()
         }
     }
 
@@ -71,6 +90,9 @@ sealed class Suspension {
             }
             continuation.resume(Unit)
         }
+        override fun cancel() {
+            continuation.cancel()
+        }
     }
 
     class Custom(private val continuation: CancellableContinuation<Unit>, val block: () -> Boolean) : Suspension() {
@@ -82,6 +104,10 @@ sealed class Suspension {
                 return
             }
             continuation.resume(Unit)
+        }
+
+        override fun cancel() {
+            continuation.cancel()
         }
     }
 }

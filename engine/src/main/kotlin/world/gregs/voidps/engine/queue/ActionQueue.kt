@@ -116,7 +116,10 @@ class ActionQueue<C : Character>(
                         is Suspension.Continue -> suspension.resume()
                         is Suspension.Custom -> suspension.resume()
                         is Suspension.Delay -> suspension.resume()
-                        else -> {}
+                        else -> {
+                            suspension.cancel()
+                            character.suspension = null
+                        }
                     }
                     suspension = character.suspension
                 }
