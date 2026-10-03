@@ -78,9 +78,9 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                                         regenRate = regenRate ?: definition.regenRate
                                         huntRange = huntRange ?: definition.huntRange
                                         huntMode = huntMode ?: definition.huntMode
-                                        allowedUnder = definition.allowedUnder
-                                        solid = definition.solid
-                                        blocksPlayers = definition.blocksPlayers
+                                        allowedUnder = allowedUnder ?: definition.allowedUnder
+                                        solid = solid ?: definition.solid
+                                        blocksPlayers = blocksPlayers ?: definition.blocksPlayers
                                         params.putAll(definition.params ?: continue)
                                     }
                                 }
