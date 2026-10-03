@@ -21,17 +21,17 @@ class Dororan : Script {
 
     init {
         itemOnItem("chisel", "ring_from_jeffery") { _, _ ->
-            println("Item on item")
             if (quest("gunnars_ground") == "jeffery_ring") {
                 noInterest()
                 return@itemOnItem
             }
-            item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
-            println("Engraved")
-            anim("engrave")
-            exp(Skill.Crafting, 125.0)
-            inventory.replace("ring_from_jeffery", "dororans_engraved_ring")
+            if (!inventory.replace("ring_from_jeffery", "dororans_engraved_ring")) {
+                return@itemOnItem
+            }
             set("gunnars_ground", "engraved_ring")
+            exp(Skill.Crafting, 125.0)
+            anim("engrave")
+            item("dororans_engraved_ring", "You engrave 'Gudrun the Fair, Gudrun the Fiery' onto the ring.")
         }
 
         npcOperate("Talk-to", "dororan_*") {
