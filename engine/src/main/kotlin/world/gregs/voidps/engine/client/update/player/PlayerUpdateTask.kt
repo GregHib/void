@@ -57,7 +57,6 @@ class PlayerUpdateTask {
             processGlobals(player, writer, updates, players, viewport, false)
 
             client.updatePlayers(writer, updates)
-            client.flush()
         } finally {
             writer.position(0)
             updates.position(0)
