@@ -158,7 +158,7 @@ object NPCDefinitions : DefinitionsDecoder<NPCDefinition> {
                 if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
                     definition.huntRange = clone.huntRange
                 }
-                if (definition.huntRange == NPCDefinition.EMPTY.huntRange) {
+                if (definition.huntMode == NPCDefinition.EMPTY.huntMode) {
                     definition.huntMode = clone.huntMode
                 }
                 if (definition.allowedUnder == NPCDefinition.EMPTY.allowedUnder) {
