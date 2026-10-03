@@ -20,6 +20,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import playerOption
 import walk
+import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.client.ui.menu
 import world.gregs.voidps.engine.data.definition.Areas
@@ -339,6 +340,37 @@ internal class DuelTest : WorldTest() {
         assertEquals("stake_victory", winner.menu)
         assertEquals(Item("coins", 30), winner.winnings[0])
         assertFalse(loser["logged_out", false])
+    }
+
+    @Test
+    fun `Forfeiting walks to the trapdoor in a normal duel`() {
+        val (winner, loser) = fight(staked = false)
+        val start = loser.tile
+        val trapdoor = createObject("duel_arena_forfeit_trapdoor", start.addX(4))
+        loser.objectOption(trapdoor, "Forfeit")
+        tick()
+        assertNull(loser.dialogue)
+        tick(4)
+        assertTrue(loser.tile.within(trapdoor.tile, 1))
+        loser.dialogueOption(1)
+        tick(2)
+        assertEquals("duel_victory", winner.menu)
+        assertTrue(loser.tile in Areas["duel_arena_hospital"])
+    }
+
+    @Test
+    fun `No movement duels forfeit by clicking the trapdoor from range`() {
+        val (winner, loser) = fight(staked = false, rules = listOf("no_movement"))
+        val start = loser.tile
+        val trapdoor = createObject("duel_arena_forfeit_trapdoor", start.addX(5))
+        loser.objectOption(trapdoor, "Forfeit")
+        tick()
+        assertEquals(start, loser.tile)
+        assertNotNull(loser.dialogue)
+        loser.dialogueOption(1)
+        tick(2)
+        assertEquals("duel_victory", winner.menu)
+        assertTrue(loser.tile in Areas["duel_arena_hospital"])
     }
 
     @Test
