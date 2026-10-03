@@ -286,3 +286,59 @@ id = 16
 
 [.close]
 id = 17
+
+# Workbench flatpack categories, components are named after house_flatpacks rows
+[flatpack_creation]
+id = 397
+type = "main_screen"
+
+[.armchairs]
+id = 45
+
+[.bookcases]
+id = 46
+
+[.beer_barrels]
+id = 47
+
+[.kitchen_tables]
+id = 48
+
+[.dining_tables]
+id = 49
+
+[.dining_benches]
+id = 50
+
+[.beds]
+id = 51
+
+[.dressers]
+id = 52
+
+[.wardrobes]
+id = 53
+
+[.clocks]
+id = 54
+
+[.cape_racks]
+id = 55
+
+[.magic_wardrobes]
+id = 56
+
+[.armour_cases]
+id = 57
+
+[.treasure_chests]
+id = 58
+
+[.fancy_dress_boxes]
+id = 59
+
+[.toy_boxes]
+id = 60
+
+[.close]
+id = 63
