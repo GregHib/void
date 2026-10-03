@@ -121,21 +121,21 @@ object EnumDefinitions : DefinitionsDecoder<EnumDefinition> {
 
     fun item(enum: String, key: String): String {
         val definition = get(enum)
-        assert(definition.valueType == EnumTypes.ITEM || definition.valueType == EnumTypes.ITEM_2) { "Enum $enum value type not Item, found: ${EnumTypes.name(definition.valueType)}" }
+        require(definition.valueType == EnumTypes.ITEM || definition.valueType == EnumTypes.ITEM_2) { "Enum $enum value type not Item, found: ${EnumTypes.name(definition.valueType)}" }
         val key = key(definition.keyType, key)
         return ItemDefinitions.get(definition.int(key)).stringId
     }
 
     fun tile(enum: String, key: String): Tile {
         val definition = get(enum)
-        assert(definition.valueType == EnumTypes.TILE) { "Enum $enum value type not Tile, found: ${EnumTypes.name(definition.valueType)}" }
+        require(definition.valueType == EnumTypes.TILE) { "Enum $enum value type not Tile, found: ${EnumTypes.name(definition.valueType)}" }
         val key = key(definition.keyType, key)
         return Tile(definition.int(key))
     }
 
     fun struct(enum: String, key: String): StructDefinition {
         val definition = get(enum)
-        assert(definition.valueType == EnumTypes.TILE) { "Enum $enum value type not Tile, found: ${EnumTypes.name(definition.valueType)}" }
+        require(definition.valueType == EnumTypes.STRUCT) { "Enum $enum value type not Struct, found: ${EnumTypes.name(definition.valueType)}" }
         val key = key(definition.keyType, key)
         return StructDefinitions.get(definition.int(key))
     }
