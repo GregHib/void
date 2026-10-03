@@ -51,6 +51,14 @@ class House : Script {
                 expelGuests()
             }
         }
+
+        // Dying in a house is safe
+        playerDeath { death ->
+            val owner = houseOwner() ?: return@playerDeath
+            val base = houseBase() ?: return@playerDeath
+            death.dropItems = false
+            death.teleport = owner.houseSpawn(base)
+        }
     }
 
     companion object {
@@ -249,6 +257,9 @@ class House : Script {
          */
         fun Player.connectStairs(position: Int): Boolean {
             val room = houseRoom(position) ?: return false
+            if (connectLadder(position)) {
+                return true
+            }
             if (houseStairs(position) != null) {
                 return false
             }
@@ -266,6 +277,44 @@ class House : Script {
             addHouseFurniture(position, hotspot, furniture)
             return true
         }
+
+        /**
+         * The throne room trapdoor built in the room at [position]
+         */
+        fun Player.houseTrapdoor(position: Int): String? = houseFurniture(position, TRAPDOOR_SPACE)
+
+        /**
+         * The oubliette ladder built in the room at [position]
+         */
+        fun Player.houseLadder(position: Int): String? = houseFurniture(position, LADDER_SPACE)
+
+        /**
+         * Adds the ladder matching the trapdoor in the throne room above to the oubliette at [position].
+         * Returns whether a ladder was added.
+         */
+        private fun Player.connectLadder(position: Int): Boolean {
+            if (houseRoom(position) != "oubliette" || houseLadder(position) != null) {
+                return false
+            }
+            val trapdoor = houseTrapdoor(roomAbove(position)) ?: return false
+            addHouseFurniture(position, LADDER_SPACE, ladders.getOrNull(trapdoors.indexOf(trapdoor)) ?: return false)
+            return true
+        }
+
+        /**
+         * Removes the other end of the trapdoor or ladder [furniture] built in the room at [position]
+         */
+        fun Player.removeLadder(position: Int, furniture: String) {
+            when (furniture) {
+                in trapdoors -> removeHouseFurniture(roomBelow(position), LADDER_SPACE)
+                in ladders -> removeHouseFurniture(roomAbove(position), TRAPDOOR_SPACE)
+            }
+        }
+
+        val trapdoors = listOf("trapdoor", "trapdoor_2", "trapdoor_3")
+        val ladders = listOf("oak_ladder", "teak_ladder", "mahogany_ladder")
+        private const val TRAPDOOR_SPACE = "throne_room_trapdoor_space"
+        private const val LADDER_SPACE = "oubliette_ladder_space"
 
         /**
          * The room built at [position]
@@ -387,6 +436,22 @@ class House : Script {
         }
 
         fun Player.inOwnHouse() = get<String>("house_owner") == accountName
+
+        /**
+         * Tile in front of the exit portal of this players house starting at [base], or the middle of the garden without one
+         */
+        fun Player.houseSpawn(base: Zone): Tile {
+            val portal = houseFurnitureIds.indexOf("exit_portal")
+            if (portal != -1) {
+                val zone = roomZone(base, houseFurnitureRooms[portal])
+                val obj = zone.toCuboid().firstNotNullOfOrNull { GameObjects.findOrNull(it, "exit_portal") }
+                if (obj != null) {
+                    return obj.tile.add(0, -1)
+                }
+            }
+            val garden = houseRoomIds.indexOf("garden").coerceAtLeast(0)
+            return roomZone(base, houseRoomPositions[garden]).tile.add(3, 3)
+        }
 
         /**
          * The owner of the house the player is currently in

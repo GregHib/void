@@ -142,3 +142,19 @@ id = 3652
 # Guessed from other servers
 [make_tablet]
 id = 3645
+
+# Guessed from other servers
+[pull_throne_room_lever]
+id = 3611
+
+# Guessed from other servers
+[throne_room_lever_pulled]
+id = 3612
+
+# Guessed from other servers
+[pick_lock]
+id = 3692
+
+# Guessed from other servers
+[force_lock]
+id = 3693
