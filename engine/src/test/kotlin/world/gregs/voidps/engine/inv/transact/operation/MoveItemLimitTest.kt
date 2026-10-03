@@ -1,5 +1,11 @@
 package world.gregs.voidps.engine.inv.transact.operation
 
+import world.gregs.voidps.engine.inv.InventoryApi
+import world.gregs.voidps.engine.entity.character.player.Player
+import io.mockk.verify
+import io.mockk.unmockkObject
+import io.mockk.mockkObject
+import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.inv.stack.AlwaysStack
@@ -132,5 +138,30 @@ internal class MoveItemLimitTest : TransactionOperationTest() {
         assertEquals(Int.MAX_VALUE, target[0].amount)
         assertEquals(1, target[1].amount)
         assertEquals(1, target[3].amount)
+    }
+
+    @Test
+    fun `Move more items than exists keeps earlier target changes`() {
+        mockkObject(InventoryApi)
+        transaction(stackRule = NeverStack) {
+            add("item", 2)
+        }
+        val target = inventory(5, stackRule = NeverStack)
+        val player: Player = mockk(relaxed = true)
+        target.transaction.changes.bind(player)
+        val transaction2 = transaction.link(target)
+        transaction2.add("other_item", 1)
+        val moved = transaction.moveToLimit("item", 4, target)
+        assertTrue(transaction.commit())
+        assertEquals(2, moved)
+        assertEquals("other_item", target[0].id)
+        assertEquals("item", target[1].id)
+        assertEquals("item", target[2].id)
+        assertTrue(target[3].isEmpty())
+        verify {
+            InventoryApi.changed(player, match { it.index == 0 && it.item.id == "other_item" })
+            InventoryApi.changed(player, match { it.index == 2 && it.item.id == "item" })
+        }
+        unmockkObject(InventoryApi)
     }
 }

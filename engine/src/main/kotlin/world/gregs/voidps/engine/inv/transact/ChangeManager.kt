@@ -67,6 +67,23 @@ class ChangeManager(
     }
 
     /**
+     * @return a marker of the current position in the change log for use with [undo]
+     */
+    fun mark(): Int = changes.size
+
+    /**
+     * Reverts the inventory slots changed since [mark] and removes those changes from the log.
+     */
+    fun undo(mark: Int) {
+        while (changes.size > mark) {
+            val change = changes.pop()
+            if (change is InventorySlotChanged) {
+                inventory.items[change.index] = change.fromItem
+            }
+        }
+    }
+
+    /**
      * Clear the tracked changes.
      */
     fun clear() {
