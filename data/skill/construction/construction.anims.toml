@@ -134,3 +134,11 @@ id = 3674
 # Guessed from other servers
 [ring_bell_pull]
 id = 3668
+
+# Guessed from other servers
+[study_lectern]
+id = 3652
+
+# Guessed from other servers
+[make_tablet]
+id = 3645

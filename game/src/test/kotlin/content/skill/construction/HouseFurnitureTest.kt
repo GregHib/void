@@ -3,12 +3,15 @@ package content.skill.construction
 import FakeRandom
 import WorldTest
 import containsMessage
+import content.activity.shooting_star.ShootingStarHandler
+import content.activity.shooting_star.StarLocationData
 import content.skill.construction.HouseFurniture.Companion.clockTime
 import dialogueOption
 import interfaceOption
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.client.ui.dialogue
 import world.gregs.voidps.engine.client.ui.hasOpen
 import world.gregs.voidps.engine.data.definition.Areas
@@ -372,6 +375,78 @@ class HouseFurnitureTest : WorldTest() {
         tick()
 
         assertTrue(player.containsMessage("no servant"))
+    }
+
+    @Test
+    fun `Make teleport tablets at a lectern`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Magic, 25)
+        player.inventory.add("soft_clay", 2)
+        player.inventory.add("law_rune", 2)
+        player.inventory.add("air_rune", 6)
+        player.inventory.add("fire_rune", 2)
+        val lectern = createObject("oak_lectern", emptyTile.addY(1))
+
+        player.objectOption(lectern, "Study")
+        tickIf { !player.hasOpen("teleport_tablets") }
+        player.interfaceOption("teleport_tablets", "varrock_teleport", "Make-All")
+        tick(8)
+
+        assertEquals(2, player.inventory.count("varrock_teleport"))
+        assertEquals(0, player.inventory.count("soft_clay"))
+        assertEquals(0, player.inventory.count("law_rune"))
+        assertEquals(70.0, player.experience.get(Skill.Magic))
+    }
+
+    @Test
+    fun `Can't make tablets a lectern doesn't support`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Magic, 99)
+        player.inventory.add("soft_clay")
+        player.inventory.add("law_rune", 10)
+        player.inventory.add("earth_rune", 10)
+        player.inventory.add("air_rune", 10)
+        val lectern = createObject("demon_lectern", emptyTile.addY(1))
+
+        player.objectOption(lectern, "Study")
+        tickIf { !player.hasOpen("teleport_tablets") }
+        player.interfaceOption("teleport_tablets", "teleport_to_house", "Make")
+        tick()
+
+        assertEquals(0, player.inventory.count("teleport_to_house"))
+        assertEquals(1, player.inventory.count("soft_clay"))
+    }
+
+    @Test
+    fun `Can't make tablets without runes`() {
+        val player = createPlayer(emptyTile)
+        player.levels.set(Skill.Magic, 99)
+        player.inventory.add("soft_clay")
+        val lectern = createObject("mahogany_demon_lectern", emptyTile.addY(1))
+
+        player.objectOption(lectern, "Study")
+        tickIf { !player.hasOpen("teleport_tablets") }
+        player.interfaceOption("teleport_tablets", "bones_to_peaches", "Make")
+        tick()
+
+        assertEquals(0, player.inventory.count("bones_to_peaches"))
+        assertEquals(1, player.inventory.count("soft_clay"))
+    }
+
+    @Test
+    fun `Look for shooting stars through a telescope`() {
+        val player = createPlayer(emptyTile)
+        val telescope = createObject("mahogany_telescope", emptyTile.addY(1))
+        ShootingStarHandler.nextLocation = StarLocationData.CRAFTING_GUILD
+        ShootingStarHandler.nextTier = 4
+        ShootingStarHandler.nextStarTick = GameLoop.tick + 1000
+
+        player.objectOption(telescope, "Observe")
+        tickIf { !player.containsMessage("shooting star") }
+        ShootingStarHandler.nextLocation = null
+
+        assertTrue(player.containsMessage("Crafting Guild"))
+        assertTrue(player.containsMessage("size 4"))
     }
 
     @Test
