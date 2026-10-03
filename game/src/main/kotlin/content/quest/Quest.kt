@@ -25,6 +25,7 @@ val quests = setOf(
     "biohazard",
     "creature_of_fenkenstrain",
     "druidic_ritual",
+    "gertrudes_cat",
     "hand_in_the_sand",
     "in_search_of_the_myreque",
     "jungle_potion",
