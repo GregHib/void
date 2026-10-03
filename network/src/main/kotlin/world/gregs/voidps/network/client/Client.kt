@@ -24,6 +24,7 @@ open class Client(
     var disconnected: Boolean = false
     private var disconnect: (() -> Unit)? = null
     private var disconnecting: (suspend () -> Unit)? = null
+
     @Volatile
     private var state: ClientState = ClientState.Connected
 
