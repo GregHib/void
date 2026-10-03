@@ -70,7 +70,7 @@ abstract class StorageTest {
                 put("Bob", ClanRank.Captain)
                 remove("Greg")
             },
-            offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer.EMPTY },
+            offers = Array(6) { if (it == 0) ExchangeOffer(2, "whip", 1, 2, OfferState.OpenBuy) else ExchangeOffer() },
             history = listOf(ExchangeHistory("item", 123, 321)),
             kills = mapOf("chickens" to 4, "kree_arra" to 2),
             records = mapOf("kree_arra" to 1234, "kree_arra_duo" to 4321),
@@ -163,7 +163,7 @@ abstract class StorageTest {
             for ((key, value) in expected.inventories) {
                 assertContentEquals(value, account.inventories[key])
             }
-            assertEquals(expected.offers.map { it.id }, account.offers.filter { it != ExchangeOffer.EMPTY }.map { it.id })
+            assertEquals(expected.offers.map { it.id }, account.offers.filter { !it.isEmpty() }.map { it.id })
             assertEquals(expected.history, account.history)
             assertEquals(expected.kills, account.kills)
             assertEquals(expected.records, account.records)

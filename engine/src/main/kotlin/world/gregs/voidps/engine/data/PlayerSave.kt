@@ -257,7 +257,7 @@ data class PlayerSave(
             val inventories = Object2ObjectOpenHashMap<String, Array<Item>>(4)
             val friends = Object2ObjectOpenHashMap<String, ClanRank>()
             val ignores = ObjectArrayList<String>()
-            val offers = Array(6) { ExchangeOffer.EMPTY }
+            val offers = Array(6) { ExchangeOffer() }
             val history = ObjectArrayList<ExchangeHistory>()
             val kills = Object2IntOpenHashMap<String>()
             val records = Object2IntOpenHashMap<String>()

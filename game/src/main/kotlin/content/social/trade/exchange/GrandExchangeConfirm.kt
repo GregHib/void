@@ -101,7 +101,7 @@ class GrandExchangeConfirm(val exchange: GrandExchange) : Script {
             if (collectionBox.isEmpty()) {
                 val offer = offers.getOrNull(box)
                 if (offer != null && offer.state.cancelled) {
-                    offers[box] = ExchangeOffer.EMPTY
+                    offers[box] = ExchangeOffer()
                     exchange.offers.remove(offer)
                     exchange.refresh(this, box)
                 }

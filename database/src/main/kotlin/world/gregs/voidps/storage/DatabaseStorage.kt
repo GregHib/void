@@ -625,7 +625,7 @@ class DatabaseStorage : Storage {
     private fun loadOffers(playerId: Int): Array<ExchangeOffer> = offers(OffersTable.selectAll().where { OffersTable.playerId eq playerId }.toList())
 
     private fun offers(rows: List<ResultRow>): Array<ExchangeOffer> {
-        val array = Array(6) { ExchangeOffer.EMPTY }
+        val array = Array(6) { ExchangeOffer() }
         for (row in rows) {
             val id = row[OffersTable.id]
             val index = row[OffersTable.index]
