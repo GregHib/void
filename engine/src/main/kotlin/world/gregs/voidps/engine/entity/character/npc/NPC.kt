@@ -80,6 +80,9 @@ data class NPC(
     var lifecycle: Int = 0
 
     override val size = def.size
+
+    val crawls: Boolean = def["crawl", false]
+
     override var mode: Mode = EmptyMode
         set(value) {
             field.stop(value)
