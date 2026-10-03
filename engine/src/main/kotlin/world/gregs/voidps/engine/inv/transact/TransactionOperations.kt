@@ -76,8 +76,11 @@ fun Transaction.discharge(player: Player, index: Int, amount: Int) {
 }
 
 fun Transaction.clearCharges(player: Player, index: Int) {
+    if (failed) {
+        return
+    }
     val item = inventory.getOrNull(index)
-    if (failed || item == null || item.isEmpty()) {
+    if (item == null || item.isEmpty()) {
         error = TransactionError.Invalid
         return
     }
