@@ -54,7 +54,7 @@ class PrayerDefinitions {
                                 bonuses[key()] = int()
                             }
                             "drains" -> while (nextEntry()) {
-                                bonuses[key()] = int()
+                                drains[key()] = int()
                             }
                             "members" -> members = boolean()
                             else -> throw IllegalArgumentException("Unexpected key: '$key' ${exception()}")
