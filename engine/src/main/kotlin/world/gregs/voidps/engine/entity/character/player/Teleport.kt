@@ -35,7 +35,7 @@ interface Teleport {
         }
     }
 
-    fun teleportLand(type: String, block: Player.() -> Unit) {
+    fun teleportLand(type: String, block: suspend Player.() -> Unit) {
         Script.checkLoading()
         land.getOrPut(type) { mutableSetOf() }.add(block)
     }
@@ -62,7 +62,7 @@ interface Teleport {
     companion object : AutoCloseable {
         private val takeOff = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
         private val items = Object2ObjectOpenHashMap<String, MutableSet<Player.(String) -> Boolean>>(5)
-        private val land = Object2ObjectOpenHashMap<String, MutableSet<Player.() -> Unit>>(5)
+        private val land = Object2ObjectOpenHashMap<String, MutableSet<suspend Player.() -> Unit>>(5)
         private val objectTakeOff = Object2ObjectOpenHashMap<String, suspend Player.(GameObject, String) -> Int>(50)
         private val objectLand = Object2ObjectOpenHashMap<String, suspend Player.(GameObject, String) -> Unit>(20)
 
@@ -94,7 +94,7 @@ interface Teleport {
             return true
         }
 
-        fun land(player: Player, type: String) {
+        suspend fun land(player: Player, type: String) {
             land[type]?.forEach { handler -> handler.invoke(player) }
             if (type != "*") {
                 land["*"]?.forEach { handler -> handler.invoke(player) }
@@ -154,7 +154,9 @@ interface Teleport {
             teleport(player, tile, type, spell, sound, force, xp)
         }
 
-        fun teleport(player: Player, tile: Tile, type: String, spell: String? = null, sound: Boolean = true, force: Boolean = false, xp: Double = 0.0): Boolean {
+        fun teleport(player: Player, tile: Tile, type: String, spell: String? = null, sound: Boolean = true, force: Boolean = false, xp: Double = 0.0): Boolean = teleport(player, type, spell, sound, force, xp) { tile }
+
+        fun teleport(player: Player, type: String, spell: String? = null, sound: Boolean = true, force: Boolean = false, xp: Double = 0.0, clearInterfaces: Boolean = true, destination: Player.() -> Tile?): Boolean {
             if (!force && player.queue.contains(ActionPriority.Strong)) {
                 return false
             }
@@ -169,13 +171,14 @@ interface Teleport {
                 player.steps.clear()
                 player.exp(Skill.Magic, xp)
                 if (sound) {
-                    player.sound("teleport_${type}")
+                    player.sound("teleport_$type")
                 }
                 player.gfx("teleport_$type")
                 player.animDelay("teleport_$type")
-                player.tele(tile)
+                val tile = destination.invoke(player) ?: return@strongQueue
+                player.tele(tile, clearInterfaces = clearInterfaces)
                 if (sound) {
-                    player.sound("teleport_land_${type}")
+                    player.sound("teleport_land_$type")
                 }
                 player.gfx("teleport_land_$type")
                 val delay = player.anim("teleport_land_$type")

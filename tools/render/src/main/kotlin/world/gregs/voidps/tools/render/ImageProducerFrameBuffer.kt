@@ -8,7 +8,9 @@ import java.awt.image.ImageConsumer
 import java.awt.image.ImageProducer
 
 /** Class348_Sub31_Sub2 **/
-internal class ImageProducerFrameBuffer : FrameBuffer(), ImageProducer {
+internal class ImageProducerFrameBuffer :
+    FrameBuffer(),
+    ImageProducer {
     private var aCanvas9073: Canvas? = null
     private var anImage9075: Image? = null
     private var aColorModel9078: ColorModel? = null
@@ -41,9 +43,7 @@ internal class ImageProducerFrameBuffer : FrameBuffer(), ImageProducer {
     }
 
     @Synchronized
-    override fun isConsumer(imageconsumer: ImageConsumer?): Boolean {
-        return anImageConsumer9083 === imageconsumer
-    }
+    override fun isConsumer(imageconsumer: ImageConsumer?): Boolean = anImageConsumer9083 === imageconsumer
 
     override fun method3008(canvas: Canvas?, i: Int, i_12_: Int) {
         this.anInt6920 = i_12_
@@ -62,5 +62,4 @@ internal class ImageProducerFrameBuffer : FrameBuffer(), ImageProducer {
 
     override fun requestTopDownLeftRightResend(imageconsumer: ImageConsumer?) {
     }
-
 }

@@ -1,0 +1,235 @@
+[house_options]
+id = 398
+type = "options_tab"
+
+[.building_mode_off]
+id = 1
+
+[.building_mode_on]
+id = 15
+
+[.close]
+id = 19
+
+[.expel_guests]
+id = 27
+
+[.leave_house]
+id = 29
+
+[house_loading]
+id = 399
+type = "wide_screen"
+
+[room_creation]
+id = 402
+type = "main_screen"
+
+[.parlour]
+id = 93
+
+[.garden]
+id = 94
+
+[.kitchen]
+id = 95
+
+[.dining_room]
+id = 96
+
+[.workshop]
+id = 97
+
+[.bedroom]
+id = 98
+
+[.skill_hall]
+id = 99
+
+[.games_room]
+id = 100
+
+[.combat_room]
+id = 101
+
+[.quest_hall]
+id = 102
+
+[.menagerie]
+id = 103
+
+[.study]
+id = 104
+
+[.costume_room]
+id = 105
+
+[.chapel]
+id = 106
+
+[.portal_chamber]
+id = 107
+
+[.formal_garden]
+id = 108
+
+[.throne_room]
+id = 109
+
+[.oubliette]
+id = 110
+
+[.dungeon_corridor]
+id = 111
+
+[.dungeon_junction]
+id = 112
+
+[.dungeon_stairs]
+id = 113
+
+[.dungeon_pit]
+id = 114
+
+[.treasure_room]
+id = 115
+
+[furniture_creation]
+id = 396
+type = "main_screen"
+
+[.items]
+id = 11
+inventory = "poh_furniture_menu_inv"
+width = 2
+height = 4
+options = { Build = 0 }
+
+[.name_1]
+id = 14
+
+[.material_1_1]
+id = 15
+
+[.material_1_2]
+id = 16
+
+[.material_1_3]
+id = 17
+
+[.material_1_4]
+id = 18
+
+[.name_2]
+id = 19
+
+[.material_2_1]
+id = 20
+
+[.material_2_2]
+id = 21
+
+[.material_2_3]
+id = 22
+
+[.material_2_4]
+id = 23
+
+[.name_3]
+id = 24
+
+[.material_3_1]
+id = 25
+
+[.material_3_2]
+id = 26
+
+[.material_3_3]
+id = 27
+
+[.material_3_4]
+id = 28
+
+[.name_4]
+id = 29
+
+[.material_4_1]
+id = 30
+
+[.material_4_2]
+id = 31
+
+[.material_4_3]
+id = 32
+
+[.material_4_4]
+id = 33
+
+[.name_5]
+id = 34
+
+[.material_5_1]
+id = 35
+
+[.material_5_2]
+id = 36
+
+[.material_5_3]
+id = 37
+
+[.material_5_4]
+id = 38
+
+[.name_6]
+id = 39
+
+[.material_6_1]
+id = 40
+
+[.material_6_2]
+id = 41
+
+[.material_6_3]
+id = 42
+
+[.material_6_4]
+id = 43
+
+[.name_7]
+id = 44
+
+[.material_7_1]
+id = 45
+
+[.material_7_2]
+id = 46
+
+[.material_7_3]
+id = 47
+
+[.material_7_4]
+id = 48
+
+[.level_1]
+id = 56
+
+[.level_2]
+id = 57
+
+[.level_3]
+id = 58
+
+[.level_4]
+id = 59
+
+[.level_5]
+id = 60
+
+[.level_6]
+id = 61
+
+[.level_7]
+id = 62
+
+[.close]
+id = 63

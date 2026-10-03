@@ -89,7 +89,6 @@ class SuspensionSystemTest {
         job.cancel()
     }
 
-
     @Test
     fun `Delay suspension respects GameLoop ticks`() = runTest {
         var resumed = false

@@ -99,3 +99,38 @@ def = 20
 attack_bonus = 10
 max_hit_crush = 40
 combat_def = "goat"
+
+[kalphite_worker_2]
+id = 1156
+hitpoints = 400
+att = 20
+str = 20
+def = 20
+examine = "I don't think insect repellent will work..."
+
+[kalphite_queen_2]
+id = 1159
+hitpoints = 2550
+att = 300
+str = 300
+def = 300
+mage = 150
+examine = "I don't think insect repellent will work..."
+
+[kalphite_queen_3]
+id = 3835
+hitpoints = 2550
+att = 300
+str = 300
+def = 300
+mage = 150
+examine = "I don't think insect repellent will work..."
+
+[kalphite_queen_4]
+id = 3836
+hitpoints = 2550
+att = 300
+str = 300
+def = 300
+mage = 150
+examine = "I don't think insect repellent will work..."

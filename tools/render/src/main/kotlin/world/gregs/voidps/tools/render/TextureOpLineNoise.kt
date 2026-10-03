@@ -28,7 +28,9 @@ internal class TextureOpLineNoise : TextureOp(0, true) {
                                     if (i_1_ == 4) break@while_203_
                                     break@while_204_
                                 }
-                            } else break
+                            } else {
+                                break
+                            }
                             break@while_202_
                         }
                         anInt9362 = packet!!.readUnsignedShort()
@@ -92,8 +94,11 @@ internal class TextureOpLineNoise : TextureOp(0, true) {
                         val i_25_ = (i_24_ - i_7_) * i_21_ + (i_22_ + 1024)
                         val i_26_ = TextureOpBoxBlur.anInt6076 and i_24_
                         val i_27_ = i_17_ and TextureOpPolarDistortion.anInt6325
-                        if (bool) is_4_!![i_27_]!![i_26_] = i_25_
-                        else is_4_!![i_26_]!![i_27_] = i_25_
+                        if (bool) {
+                            is_4_!![i_27_]!![i_26_] = i_25_
+                        } else {
+                            is_4_!![i_26_]!![i_27_] = i_25_
+                        }
                         i_20_ += i_19_
                         if (i_20_ > 0) {
                             i_17_ -= -i_23_

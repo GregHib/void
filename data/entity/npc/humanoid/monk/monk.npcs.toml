@@ -13,3 +13,11 @@ respawn_delay = 250
 drop_table = "chaos_dwarf"
 categories = ["monk_of_zamorak", "monk"]
 examine = "An evil human cleric."
+
+[monk]
+id = 803
+hitpoints = 150
+att = 2
+str = 2
+def = 3
+examine = "A holy man."

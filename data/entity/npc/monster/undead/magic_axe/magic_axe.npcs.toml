@@ -1,9 +1,9 @@
 [magic_axe]
 id = 127
-hitpoints = 250
+hitpoints = 440
 att = 38
 str = 38
-def = 28
+def = 29
 combat_def = "magic_axe"
 slayer_xp = 44.0
 respawn_delay = 30

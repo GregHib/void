@@ -29,14 +29,15 @@ examine = "A warrior of Zamorak."
 [zamorak_warrior_square]
 clone = "zamorak_warrior_kite"
 id = 6364
+att = 90
 style = "crush"
 
 [zamorak_mage_fancy]
 id = 6367
 hitpoints = 500
-att = 75
-str = 80
-def = 80
+att = 78
+str = 81
+def = 82
 mage = 85
 combat_def = "zamorak_mage"
 respawn_delay = 50
@@ -49,12 +50,15 @@ examine = "A mage of Zamorak."
 [zamorak_mage]
 clone = "zamorak_mage_fancy"
 id = 6368
+att = 75
+str = 80
+def = 80
 
 [zamorak_ranger]
 id = 6365
 hitpoints = 500
 att = 75
-str = 80
+str = 75
 def = 80
 range = 80
 combat_def = "zamorak_ranger"
@@ -68,6 +72,7 @@ examine = "A ranger of Zamorak."
 [zamorak_ranger_coat]
 clone = "zamorak_ranger"
 id = 6366
+str = 80
 
 [mage_of_zamorak_ourania]
 id = 6370
@@ -114,10 +119,10 @@ categories = ["ghosts"]
 examine = "Spooky."
 drop_table = "empty"
 combat_def = "ghost"
-hitpoints = 250
-att = 13
-str = 13
-def = 18
+hitpoints = 200
+att = 23
+str = 20
+def = 23
 max_hit_crush = 20
 
 [spirit_of_scorpius_ourania]

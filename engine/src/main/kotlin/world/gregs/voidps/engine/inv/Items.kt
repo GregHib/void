@@ -162,18 +162,14 @@ interface Items {
             dropped[item.id]?.invoke(player, item)
         }
 
-        fun destructible(player: Player, item: Item): Boolean {
-            return destroyable[item.id]?.invoke(player, item) ?: true
-        }
+        fun destructible(player: Player, item: Item): Boolean = destroyable[item.id]?.invoke(player, item) ?: true
 
         fun destroyed(player: Player, item: Item) {
             destroyed[item.id]?.invoke(player, item)
             destroyed["*"]?.invoke(player, item)
         }
 
-        fun consumable(player: Player, item: Item): Boolean {
-            return consumable[item.id]?.invoke(player, item) ?: true
-        }
+        fun consumable(player: Player, item: Item): Boolean = consumable[item.id]?.invoke(player, item) ?: true
 
         fun consume(player: Player, item: Item, slot: Int) {
             consumed[item.id]?.invoke(player, item, slot)

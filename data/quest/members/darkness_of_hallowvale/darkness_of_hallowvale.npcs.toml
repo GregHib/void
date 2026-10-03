@@ -1,0 +1,9 @@
+[vanstrom_klause_darkness_of_hallowvale]
+id = 4862
+hitpoints = 1550
+att = 150
+str = 136
+def = 150
+mage = 150
+range = 150
+examine = "A curious fellow."

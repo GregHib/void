@@ -191,5 +191,4 @@ class CharacterIndexMapTest {
 
         assertEquals(setOf(3, 2), collected)
     }
-
 }

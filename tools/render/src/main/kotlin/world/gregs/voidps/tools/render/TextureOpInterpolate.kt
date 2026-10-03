@@ -50,9 +50,14 @@ internal class TextureOpInterpolate : TextureOp(3, false) {
             while (TextureOpPolarDistortion.anInt9139 > i_20_) {
                 val i_21_ = is_19_!![i_20_]
                 if (i_21_ != 4096) {
-                    if (i_21_ == 0) `is`!![i_20_] = is_18_!![i_20_]
-                    else `is`!![i_20_] = (i_21_ * is_17_!![i_20_] - -(is_18_!![i_20_] * (-i_21_ + 4096)) shr 12)
-                } else `is`!![i_20_] = is_17_!![i_20_]
+                    if (i_21_ == 0) {
+                        `is`!![i_20_] = is_18_!![i_20_]
+                    } else {
+                        `is`!![i_20_] = (i_21_ * is_17_!![i_20_] - -(is_18_!![i_20_] * (-i_21_ + 4096)) shr 12)
+                    }
+                } else {
+                    `is`!![i_20_] = is_17_!![i_20_]
+                }
                 i_20_++
             }
         }

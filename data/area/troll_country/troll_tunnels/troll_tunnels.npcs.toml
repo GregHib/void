@@ -85,6 +85,10 @@ combat_def = "ice_troll"
 [ice_troll_troll_tunnels_7]
 id = 1566
 clone = "ice_troll_troll_tunnels_4"
+hitpoints = 800
+att = 100
+str = 120
+def = 120
 drop_table = "ice_troll"
 combat_def = "ice_troll"
 

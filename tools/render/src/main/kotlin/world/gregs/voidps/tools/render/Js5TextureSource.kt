@@ -10,9 +10,7 @@ class Js5TextureSource(private val cache: Cache) : TextureSource {
     private val aLruHashTable_4622 = LruHashTable(256)
     private val textureCount: Int
 
-    override fun method6(i_0_: Int, f: Float, i_1_: Int, i_2_: Int): IntArray {
-        return method1881(i_1_)!!.method3183(this, i_2_, i_0_, (textureMetrics[i_1_]!!.aBoolean207), f.toDouble(), cache)
-    }
+    override fun method6(i_0_: Int, f: Float, i_1_: Int, i_2_: Int): IntArray = method1881(i_1_)!!.method3183(this, i_2_, i_0_, (textureMetrics[i_1_]!!.aBoolean207), f.toDouble(), cache)
 
     private fun method1881(i: Int): Texture? {
         val class348_sub42 = aLruHashTable_4622.method2302(i.toLong())
@@ -24,13 +22,9 @@ class Js5TextureSource(private val cache: Cache) : TextureSource {
         return texture
     }
 
-    override fun getMetrics(i: Int): TextureMetrics? {
-        return textureMetrics[i]
-    }
+    override fun getMetrics(i: Int): TextureMetrics? = textureMetrics[i]
 
-    override fun method5(i: Int, f: Float, i_4_: Int, i_5_: Int): IntArray {
-        return method1881(i)!!.method3185(i_4_, this, textureMetrics[i]!!.aBoolean207, f.toDouble(), cache, i_5_)
-    }
+    override fun method5(i: Int, f: Float, i_4_: Int, i_5_: Int): IntArray = method1881(i)!!.method3185(i_4_, this, textureMetrics[i]!!.aBoolean207, f.toDouble(), cache, i_5_)
 
     override fun method4(i_8_: Int): Boolean {
         val class348_sub42_sub5 = method1881(i_8_)

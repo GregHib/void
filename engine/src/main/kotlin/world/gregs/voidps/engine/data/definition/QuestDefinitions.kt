@@ -46,7 +46,7 @@ class QuestDefinitions : DefinitionsDecoder<QuestDefinition> {
                             questPoints = questPoints,
                             members = members,
                             difficulty = difficulty,
-                            params = params
+                            params = params,
                         )
                     } else {
                         definitions[id] = QuestDefinition(

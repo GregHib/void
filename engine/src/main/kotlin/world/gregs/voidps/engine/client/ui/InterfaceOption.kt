@@ -14,7 +14,5 @@ data class InterfaceOption(
     val component: String
         get() = interfaceComponent.substringAfter(":")
 
-    override fun toString(): String {
-        return "$option:$interfaceComponent item=${item}, slot=${itemSlot}, index=${optionIndex}"
-    }
+    override fun toString(): String = "$option:$interfaceComponent item=$item, slot=$itemSlot, index=$optionIndex"
 }

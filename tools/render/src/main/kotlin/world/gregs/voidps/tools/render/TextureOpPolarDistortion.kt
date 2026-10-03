@@ -31,7 +31,9 @@ internal class TextureOpPolarDistortion : TextureOp(3, false) {
             if (i_12_ == 0) {
                 anInt9133 = packet!!.readUnsignedShort() shl 4
                 break
-            } else if (i_12_ != 1) break
+            } else if (i_12_ != 1) {
+                break
+            }
             this.aBoolean7045 = packet!!.readUnsignedByte() == 1
         } while (false)
     }

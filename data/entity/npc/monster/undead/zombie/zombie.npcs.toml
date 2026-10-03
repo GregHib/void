@@ -93,10 +93,10 @@ combat_def = "zombie_axe"
 # Level 24s
 [zombie_yellow_shirt]
 id = 5310
-hitpoints = 300
-att = 19
-str = 21
-def = 16
+hitpoints = 240
+att = 13
+str = 13
+def = 18
 attack_bonus = 5
 combat_def = "zombie"
 max_hit_slash = 30
@@ -110,21 +110,29 @@ examine = "The walking dead."
 [zombie_green_shorts_sword]
 id = 75
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_sword"
 
 [zombie_armour_green_shorts_sword]
 id = 5314
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_sword"
 
 [zombie_armour_grey_shorts_sword]
 id = 5315
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
-hitpoints = 220
-att = 8
-str = 9
-def = 10
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 max_hit_crush = 20
 
 [zombie_red_outfit]
@@ -142,41 +150,65 @@ clone = "zombie_yellow_shirt"
 [zombie_red_suit_sword]
 id = 5316
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_sword"
 
 [zombie_grey_suit_sword]
 id = 5318
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_sword"
 
 [zombie_tan_trousers_axe_2]
 id = 5319
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_axe"
 
 [zombie_tan_shorts_axe]
 id = 5320
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_axe"
 
 [zombie_red_skirt_sword]
 id = 5321
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_sword"
 
 [zombie_blue_skirt_sword_2]
 id = 5322
 clone = "zombie_yellow_shirt"
 combat_def = "zombie_sword"
-hitpoints = 220
-att = 8
-str = 9
-def = 10
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 max_hit_crush = 20
 
 [zombie_yellow_shirt_sword]
 id = 5323
 clone = "zombie_yellow_shirt"
+hitpoints = 300
+att = 19
+str = 21
+def = 16
 combat_def = "zombie_sword"
 
 [zombie_red_sword]
@@ -601,3 +633,99 @@ hunt_mode = "cowardly"
 respawn_delay = 50
 categories = ["zombies", "undead"]
 examine = "Brains..."
+
+[zombie_level_13]
+id = 5299
+hitpoints = 220
+att = 8
+str = 9
+def = 10
+examine = "Dead man walking."
+
+[zombie_level_13_2]
+id = 5301
+hitpoints = 220
+att = 8
+str = 9
+def = 10
+examine = "Dead woman walking."
+
+[zombie_level_13_3]
+id = 5302
+hitpoints = 220
+att = 8
+str = 9
+def = 10
+examine = "Dead woman walking."
+
+[zombie_level_24]
+id = 5317
+hitpoints = 300
+att = 19
+str = 21
+def = 16
+examine = "The walking dead."
+
+[zombie_level_18]
+id = 7817
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+examine = "A walking, rotten corpse."
+
+[zombie_level_18_2]
+id = 7818
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+examine = "A walking, rotten corpse."
+
+[zombie_level_18_3]
+id = 7819
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+examine = "A walking, rotten corpse."
+
+[zombie_level_18_4]
+id = 7820
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+examine = "A walking, rotten corpse."
+
+[zombie_level_18_5]
+id = 8142
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+examine = "A walking, rotten corpse."
+
+[zombie_level_24_2]
+id = 8143
+hitpoints = 300
+att = 19
+str = 21
+def = 16
+examine = "A walking, rotten corpse."
+
+[zombie_level_18_6]
+id = 8144
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+examine = "A walking, rotten corpse."
+
+[zombie_level_18_7]
+id = 8145
+hitpoints = 240
+att = 13
+str = 13
+def = 18
+examine = "A walking, rotten corpse."

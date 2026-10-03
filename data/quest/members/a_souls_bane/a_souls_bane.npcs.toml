@@ -19,3 +19,73 @@ style = "stab"
 max_hit_melee = 50
 hunt_mode = "cowardly"
 examine = "A hopeless poor creature."
+
+[confusion_beast]
+id = 3650
+hitpoints = 280
+att = 42
+str = 41
+def = 40
+examine = "What on Gielinor is that?"
+
+[confusion_beast_2]
+id = 3651
+hitpoints = 280
+att = 42
+str = 41
+def = 40
+examine = "What on Gielinor is that?"
+
+[confusion_beast_3]
+id = 3652
+hitpoints = 280
+att = 42
+str = 41
+def = 40
+examine = "What on Gielinor is that?"
+
+[confusion_beast_4]
+id = 3653
+hitpoints = 280
+att = 42
+str = 41
+def = 40
+examine = "What on Gielinor is that?"
+
+[confusion_beast_5]
+id = 3654
+hitpoints = 280
+att = 42
+str = 41
+def = 40
+examine = "What on Gielinor is that?"
+
+[hopeless_creature]
+id = 3656
+hitpoints = 250
+att = 38
+str = 36
+def = 39
+examine = "A hopeless poor creature."
+
+[hopeless_creature_2]
+id = 3657
+hitpoints = 250
+att = 38
+str = 36
+def = 39
+examine = "A hopeless poor creature."
+
+[hopeless_beast]
+id = 3668
+hitpoints = 710
+att = 59
+str = 62
+def = 59
+
+[hopeless_beast_2]
+id = 3669
+hitpoints = 710
+att = 59
+str = 62
+def = 59

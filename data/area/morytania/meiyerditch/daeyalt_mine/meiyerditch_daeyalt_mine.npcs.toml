@@ -22,3 +22,18 @@ id = 4772
 [juvinate_guard_meiyerditch_daeyalt_mine_2]
 id = 4773
 
+[vampyre_juvinate_daeyalt_mine]
+id = 4776
+hitpoints = 850
+att = 40
+str = 40
+def = 30
+examine = "An initiate juvenile vampyre."
+
+[vampyre_juvinate_daeyalt_mine_2]
+id = 4777
+hitpoints = 850
+att = 40
+str = 40
+def = 30
+examine = "An initiate juvenile vampyre."

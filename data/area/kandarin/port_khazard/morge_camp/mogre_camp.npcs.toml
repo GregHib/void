@@ -5,9 +5,9 @@ examine = "An angry Ogre in a highly amusing hat."
 [mudskipper]
 id = 3422
 hitpoints = 200
-att = 30
-str = 30
-def = 29
+att = 29
+str = 29
+def = 26
 combat_def = "mudskipper"
 hunt_mode = "cowardly"
 respawn_delay = 5
@@ -17,6 +17,9 @@ examine = "Not the most beautiful fish in the sea."
 [mudskipper_2]
 id = 3423
 clone = "mudskipper"
+att = 30
+str = 30
+def = 29
 
 [crab_underwater]
 id = 3424

@@ -57,13 +57,13 @@ fun getTickStages(
         // Connections/Tick Input
         queue,
         NPCs,
+        GameObjects.timers,
         // Tick
         InstructionTask(handlers),
         World,
         Instances,
         NPCTask(sequentialNpc),
         PlayerTask(sequentialPlayer),
-        GameObjects.timers,
         // Update
         dynamicZones,
         ZoneBatchUpdates,

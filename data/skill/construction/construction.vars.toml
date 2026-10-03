@@ -1,0 +1,48 @@
+[house_location]
+format = "string"
+persist = true
+
+[house_room_ids]
+persist = true
+
+[house_room_positions]
+persist = true
+
+[house_room_rotations]
+persist = true
+
+[house_furniture_rooms]
+persist = true
+
+[house_furniture_hotspots]
+persist = true
+
+[house_furniture_ids]
+persist = true
+
+[house_locked]
+format = "boolean"
+persist = true
+
+[house_style]
+format = "string"
+persist = true
+default = "basic_wood"
+
+# Family crest picked by heraldry, shown on built shields
+[heraldry_crest]
+format = "int"
+persist = true
+
+# Index of the house_portals destination + 1 each portal chamber portal is directed to, 0 when undirected
+[house_portal]
+format = "int"
+persist = true
+
+[house_portal_2]
+format = "int"
+persist = true
+
+[house_portal_3]
+format = "int"
+persist = true

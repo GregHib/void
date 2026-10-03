@@ -28,9 +28,7 @@ data class EnumDefinition(
 
     fun stringOrNull(id: Int) = map?.get(id) as? String
 
-    override fun toString(): String {
-        return "EnumDefinition(id=$id, keyType=${EnumTypes.name(keyType)}, valueType=${EnumTypes.name(valueType)}, defaultString=$defaultString, defaultInt=$defaultInt, length=$length, map=$map, stringId=$stringId, params=$params)"
-    }
+    override fun toString(): String = "EnumDefinition(id=$id, keyType=${EnumTypes.name(keyType)}, valueType=${EnumTypes.name(valueType)}, defaultString=$defaultString, defaultInt=$defaultInt, length=$length, map=$map, stringId=$stringId, params=$params)"
 
     companion object {
         val EMPTY = EnumDefinition()

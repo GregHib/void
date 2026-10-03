@@ -78,14 +78,17 @@ fun StepValidator.canFit(tile: Tile, collision: CollisionStrategy, size: Int, ex
         }
         return true
     }
-    return canTravel(x = tile.x, z = tile.y - 1, level = tile.level, offsetX = 0, offsetZ = 1, size = size, collision = collision, extraFlag = extraFlag) || canTravel(x = tile.x, z = tile.y + 1, level = tile.level, offsetX = 0, offsetZ = -1, size = size, collision = collision, extraFlag = extraFlag) || canTravel(
-        x = tile.x - 1,
-        z = tile.y,
-        level = tile.level,
-        offsetX = 1,
-        offsetZ = 0,
-        size = size,
-        collision = collision,
-        extraFlag = extraFlag
-    ) || canTravel(x = tile.x + 1, z = tile.y, level = tile.level, offsetX = -1, offsetZ = 0, size = size, collision = collision, extraFlag = extraFlag)
+    return canTravel(x = tile.x, z = tile.y - 1, level = tile.level, offsetX = 0, offsetZ = 1, size = size, collision = collision, extraFlag = extraFlag) ||
+        canTravel(x = tile.x, z = tile.y + 1, level = tile.level, offsetX = 0, offsetZ = -1, size = size, collision = collision, extraFlag = extraFlag) ||
+        canTravel(
+            x = tile.x - 1,
+            z = tile.y,
+            level = tile.level,
+            offsetX = 1,
+            offsetZ = 0,
+            size = size,
+            collision = collision,
+            extraFlag = extraFlag,
+        ) ||
+        canTravel(x = tile.x + 1, z = tile.y, level = tile.level, offsetX = -1, offsetZ = 0, size = size, collision = collision, extraFlag = extraFlag)
 }

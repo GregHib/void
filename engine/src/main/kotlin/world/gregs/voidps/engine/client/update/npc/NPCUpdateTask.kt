@@ -19,22 +19,27 @@ class NPCUpdateTask(
 ) {
 
     fun run(player: Player) {
+        // Read once as the player can log out on another thread mid-update
+        val client = player.client ?: return
         val viewport = player.viewport ?: return
         val npcs = viewport.npcs
 
         val writer = viewport.npcChanges
         val updates = viewport.npcUpdates
 
-        writer.startBitAccess()
-        processLocals(player, viewport, writer, updates, npcs)
-        processAdditions(player, viewport, writer, updates, npcs)
-        writer.stopBitAccess()
+        try {
+            writer.startBitAccess()
+            processLocals(player, viewport, writer, updates, npcs)
+            processAdditions(player, viewport, writer, updates, npcs)
+            writer.stopBitAccess()
 
-        val client = player.client ?: return
-        client.updateNPCs(writer, updates)
-        client.flush()
-        writer.position(0)
-        updates.position(0)
+            client.updateNPCs(writer, updates)
+            client.flush()
+        } finally {
+            writer.stopBitAccess()
+            writer.position(0)
+            updates.position(0)
+        }
     }
 
     fun processLocals(
@@ -52,7 +57,9 @@ class NPCUpdateTask(
             index = iterator.nextInt()
             npc = NPCs.indexed(index)
 
-            val change = localChange(client, viewport, npc)
+            // Movement must always be sent but visuals are dropped once the update block is full
+            val flag = if (npc == null || updates.position() >= MAX_UPDATE_SIZE) 0 else npc.visuals.flag
+            val change = localChange(client, viewport, npc, flag)
             sync.writeBits(1, change != LocalChange.None)
             if (change == LocalChange.None) {
                 continue
@@ -64,15 +71,15 @@ class NPCUpdateTask(
                 continue
             }
 
-            encodeMovement(change, sync, npc)
-            encodeVisuals(updates, npc.visuals.flag, npc.visuals, client.index)
+            encodeMovement(change, sync, npc, flag)
+            encodeVisuals(updates, flag, npc.visuals, client.index)
         }
     }
 
     /**
      * Calculate the type of update required for a local [npc]
      */
-    private fun localChange(client: Player, viewport: Viewport, npc: NPC?): LocalChange {
+    private fun localChange(client: Player, viewport: Viewport, npc: NPC?, flag: Int): LocalChange {
         if (npc == null || npc.hide || !npc.tile.within(client.tile, viewport.radius)) {
             return LocalChange.Remove
         }
@@ -82,12 +89,12 @@ class NPCUpdateTask(
             visuals.walkStep != -1 && npc.def["crawl", false] -> LocalChange.Crawl
             visuals.runStep != -1 -> LocalChange.Run
             visuals.walkStep != -1 -> LocalChange.Walk
-            visuals.flag != 0 -> LocalChange.Update
+            flag != 0 -> LocalChange.Update
             else -> LocalChange.None
         }
     }
 
-    private fun encodeMovement(change: LocalChange, sync: Writer, npc: NPC) {
+    private fun encodeMovement(change: LocalChange, sync: Writer, npc: NPC, flag: Int) {
         if (change !is LocalChange.Move) {
             return
         }
@@ -98,7 +105,7 @@ class NPCUpdateTask(
         if (change == LocalChange.Run) {
             sync.writeBits(3, npc.visuals.runStep)
         }
-        sync.writeBits(1, npc.visuals.flag != 0)
+        sync.writeBits(1, flag != 0)
     }
 
     fun processAdditions(
@@ -119,7 +126,7 @@ class NPCUpdateTask(
                 }
                 val visuals = npc.visuals
                 var flag = visuals.flag
-                if (visuals.transform.id != -1){
+                if (visuals.transform.id != -1) {
                     flag = flag or TRANSFORM_MASK
                 }
                 val delta = npc.tile.delta(client.tile)

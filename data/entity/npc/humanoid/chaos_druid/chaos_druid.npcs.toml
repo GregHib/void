@@ -1,7 +1,7 @@
 [chaos_druid]
 id = 181
 max_hit_melee = 20
-hitpoints = 130
+hitpoints = 200
 att = 8
 str = 8
 def = 12
@@ -21,3 +21,12 @@ clone = "chaos_druid"
 [chaos_druid_2]
 id = 7105
 clone = "chaos_druid"
+
+[chaos_druid_3]
+id = 7966
+hitpoints = 200
+att = 8
+str = 8
+def = 12
+mage = 10
+examine = "A crazy, evil druid."

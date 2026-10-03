@@ -17,7 +17,9 @@ class TextureOpColorGradient : TextureOp(1, false) {
                     anIntArrayArray9194!![i_2_][3] = ((packet.readUnsignedByte()) shl 4)
                     i_2_++
                 }
-            } else method3078(i_1_)
+            } else {
+                method3078(i_1_)
+            }
         }
     }
 
@@ -73,10 +75,14 @@ class TextureOpColorGradient : TextureOp(1, false) {
                                             if (i_11_ != 4) {
                                                 if (i_11_ != 5) {
                                                     if (i_11_ != 6) break@while_156_
-                                                } else break@while_154_
+                                                } else {
+                                                    break@while_154_
+                                                }
                                                 break@while_155_
                                             }
-                                        } else break
+                                        } else {
+                                            break
+                                        }
                                         break@while_153_
                                     }
                                     anIntArrayArray9194 = Array(8) { IntArray(4) }
@@ -299,22 +305,27 @@ class TextureOpColorGradient : TextureOp(1, false) {
                 i_19_ = i_19_ shr 4
                 i_17_ = i_17_ shr 4
                 i_18_ = i_18_ shr 4
-                if (i_17_ < 0) i_17_ = 0
-                else if (i_17_ > 255) i_17_ = 255
+                if (i_17_ < 0) {
+                    i_17_ = 0
+                } else if (i_17_ > 255) {
+                    i_17_ = 255
+                }
                 if (i_18_ >= 0) {
                     if (i_18_ > 255) i_18_ = 255
-                } else i_18_ = 0
+                } else {
+                    i_18_ = 0
+                }
                 if (i_19_ >= 0) {
                     if (i_19_ > 255) i_19_ = 255
-                } else i_19_ = 0
+                } else {
+                    i_19_ = 0
+                }
                 anIntArray9199[i_13_] = (or(i_18_, or(i_17_ shl 16, i_19_ shl 8)))
             }
         }
     }
 
     companion object {
-        fun or(i: Int, i_2_: Int): Int {
-            return i or i_2_
-        }
+        fun or(i: Int, i_2_: Int): Int = i or i_2_
     }
 }

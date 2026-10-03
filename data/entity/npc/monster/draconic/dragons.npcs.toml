@@ -1,6 +1,6 @@
 [bronze_dragon]
 id = 1590
-hitpoints = 1520
+hitpoints = 1220
 att = 112
 str = 112
 def = 112
@@ -52,18 +52,22 @@ examine = "A mother dragon."
 [blue_dragon_ocean]
 id = 4681
 clone = "blue_dragon"
+mage = 1
 
 [blue_dragon_purple]
 id = 4682
 clone = "blue_dragon"
+mage = 1
 
 [blue_dragon_turquoise]
 id = 4683
 clone = "blue_dragon"
+mage = 1
 
 [blue_dragon_sky]
 id = 4684
 clone = "blue_dragon"
+mage = 1
 
 [green_dragon]
 id = 941
@@ -102,7 +106,7 @@ drop_table = "green_dragon"
 
 [iron_dragon]
 id = 1591
-hitpoints = 1890
+hitpoints = 1650
 att = 165
 str = 165
 def = 165
@@ -132,7 +136,7 @@ examine = "Its scales seem to be made of steel."
 
 [red_dragon]
 id = 53
-hitpoints = 1520
+hitpoints = 1400
 att = 130
 str = 130
 def = 130
@@ -176,10 +180,12 @@ examine = "Young but still dangerous."
 [baby_red_dragon_1]
 id = 4667
 clone = "baby_red_dragon"
+hitpoints = 500
 
 [baby_red_dragon_2]
 id = 4668
 clone = "baby_red_dragon"
+hitpoints = 500
 
 [baby_black_dragon]
 id = 3376
@@ -215,7 +221,17 @@ examine = "Young but still dangerous."
 [baby_blue_dragon_1]
 id = 4665
 clone = "baby_blue_dragon"
+hitpoints = 500
 
 [baby_blue_dragon_2]
 id = 4666
 clone = "baby_blue_dragon"
+hitpoints = 500
+
+[blue_dragon_2]
+id = 5178
+hitpoints = 1050
+att = 95
+str = 95
+def = 95
+examine = "A mother dragon."

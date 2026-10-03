@@ -10,3 +10,11 @@ respawn_delay = 25
 hunt_mode = "cowardly"
 categories = ["human", "pirate"]
 examine = "Yar! Shiver me timbers!"
+
+[pirate_2]
+id = 185
+hitpoints = 200
+att = 20
+str = 20
+def = 20
+examine = "Avast ye scurvy land lubbers!"

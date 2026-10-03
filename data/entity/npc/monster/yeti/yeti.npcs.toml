@@ -1,0 +1,7 @@
+[yeti_3]
+id = 130
+hitpoints = 550
+att = 48
+str = 60
+def = 39
+examine = "Aww, aren't the little ones cute?"

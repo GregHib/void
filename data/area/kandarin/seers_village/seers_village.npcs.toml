@@ -83,6 +83,10 @@ id = 12190
 
 [barbarian_seers_village_11]
 id = 12230
+hitpoints = 200
+att = 6
+str = 7
+def = 3
 
 [wizard_seers_village_2]
 id = 11455

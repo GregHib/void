@@ -72,5 +72,4 @@ class ActionList<C : Character> {
         head = null
         tail = null
     }
-
 }

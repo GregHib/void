@@ -53,7 +53,6 @@ def = 80
 range = 90
 style = "range"
 max_hit_melee = 110
-ranged_strength = 8
 slayer_xp = 105.0
 categories = ["elves"]
 respawn_delay = 30

@@ -139,6 +139,7 @@ class Hunting(
 
     private val visited = IntOpenHashSet()
     private val queue: Queue<Tile> = ArrayDeque()
+
     /**
      * Breadth first searches outwards from the [npc], up to [range] tiles away, for the
      * first [TARGET_CAP] possible [GameObject] targets.

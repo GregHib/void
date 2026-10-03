@@ -70,7 +70,7 @@ class Raster(private val bi: BufferedImage) {
                         continue
                     }
                 }
-               val w1 = e1 / areaF
+                val w1 = e1 / areaF
                 val w2 = e2 / areaF
                 val w3 = 1f - w1 - w2
                 val r = (w1 * r1 + w2 * r2 + w3 * r3).toInt().coerceIn(0, 255)

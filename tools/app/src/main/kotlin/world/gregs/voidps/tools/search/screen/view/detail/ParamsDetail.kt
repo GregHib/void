@@ -37,7 +37,7 @@ fun ParamsDetail(
     fieldLinks: List<FieldLink>,
     fieldName: String,
     onNavigate: (String, Map<String, String>) -> Unit,
-    item: Definition
+    item: Definition,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         map.entries.forEach { (k, v) ->
@@ -69,7 +69,7 @@ fun ParamsDetail(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, valueInt, item)) }
+                        modifier = Modifier.clickable { onNavigate(link.targetTabLabel, resolveNavigationFilters(link, valueInt, item)) },
                     ) {
                         Text(v.toString(), fontSize = 12.sp, color = LinkColor, fontFamily = FontFamily.Monospace)
                         val resolved = resolveDisplayName(link.targetTabLabel, valueInt, item = item)

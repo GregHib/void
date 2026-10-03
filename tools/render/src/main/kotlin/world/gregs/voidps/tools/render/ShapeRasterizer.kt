@@ -67,8 +67,11 @@ internal object ShapeRasterizer {
 
     /** Class12.method223 */
     fun method223(i: Int, i_0_: Int, i_1_: Int, i_2_: Int) {
-        if (i_2_ > i) method1156(i_2_, row(i_1_), i, i_0_)
-        else method1156(i, row(i_1_), i_2_, i_0_)
+        if (i_2_ > i) {
+            method1156(i_2_, row(i_1_), i, i_0_)
+        } else {
+            method1156(i, row(i_1_), i_2_, i_0_)
+        }
     }
 
     /** Class332.method2641 */
@@ -84,15 +87,22 @@ internal object ShapeRasterizer {
 
     /** Class299_Sub2.method2267 */
     fun method2267(i_0_: Int, i_1_: Int, i_2_: Int, i_3_: Int, i_4_: Int, i_5_: Int, i_6_: Int) {
-        if (i_6_ == i_0_) method2441(i_2_, i_6_, i_4_, i_5_, i_3_, i_1_)
-        else if (anInt4960 > -i_6_ + i_1_ || i_6_ + i_1_ > anInt1745 || -i_0_ + i_5_ < anInt1910 || i_0_ + i_5_ > anInt513) method3041(i_6_, i_1_, i_5_, i_0_, i_3_, i_2_, i_4_)
-        else method3012(i_0_, i_3_, i_6_, i_2_, i_1_, i_5_, i_4_)
+        if (i_6_ == i_0_) {
+            method2441(i_2_, i_6_, i_4_, i_5_, i_3_, i_1_)
+        } else if (anInt4960 > -i_6_ + i_1_ || i_6_ + i_1_ > anInt1745 || -i_0_ + i_5_ < anInt1910 || i_0_ + i_5_ > anInt513) {
+            method3041(i_6_, i_1_, i_5_, i_0_, i_3_, i_2_, i_4_)
+        } else {
+            method3012(i_0_, i_3_, i_6_, i_2_, i_1_, i_5_, i_4_)
+        }
     }
 
     /** Npc.method2441 */
     fun method2441(i: Int, i_0_: Int, i_1_: Int, i_3_: Int, i_4_: Int, i_5_: Int) {
-        if (i_5_ - i_0_ >= anInt4960 && anInt1745 >= i_0_ + i_5_ && -i_0_ + i_3_ >= anInt1910 && i_3_ + i_0_ <= anInt513) method2255(i_0_, i_5_, i_1_, i_3_, i_4_, i)
-        else method1496(i, i_3_, i_4_, i_0_, i_1_, i_5_)
+        if (i_5_ - i_0_ >= anInt4960 && anInt1745 >= i_0_ + i_5_ && -i_0_ + i_3_ >= anInt1910 && i_3_ + i_0_ <= anInt513) {
+            method2255(i_0_, i_5_, i_1_, i_3_, i_4_, i)
+        } else {
+            method1496(i, i_3_, i_4_, i_0_, i_1_, i_5_)
+        }
     }
 
     /** Class299.method2255 */
@@ -492,15 +502,22 @@ internal object ShapeRasterizer {
 
     /** ha.method3641 */
     fun method3641(i: Int, i_35_: Int, i_37_: Int, i_38_: Int, i_39_: Int) {
-        if (i_35_ == i_38_) method1116(i, i_37_, i_39_, i_38_)
-        else if (anInt4960 <= i_39_ + -i_38_ && anInt1745 >= i_39_ - -i_38_ && -i_35_ + i >= anInt1910 && anInt513 >= i + i_35_) method515(i_37_, i_39_, i, i_35_, i_38_)
-        else method1839(i_39_, i_35_, i, i_37_, i_38_)
+        if (i_35_ == i_38_) {
+            method1116(i, i_37_, i_39_, i_38_)
+        } else if (anInt4960 <= i_39_ + -i_38_ && anInt1745 >= i_39_ - -i_38_ && -i_35_ + i >= anInt1910 && anInt513 >= i + i_35_) {
+            method515(i_37_, i_39_, i, i_35_, i_38_)
+        } else {
+            method1839(i_39_, i_35_, i, i_37_, i_38_)
+        }
     }
 
     /** Class127.method1116 */
     fun method1116(i: Int, i_8_: Int, i_9_: Int, i_10_: Int) {
-        if (anInt4960 > i_9_ + -i_10_ || anInt1745 < i_10_ + i_9_ || anInt1910 > i - i_10_ || i - -i_10_ > anInt513) method203(i_9_, i_8_, i, i_10_)
-        else method253(i, i_9_, i_8_, i_10_)
+        if (anInt4960 > i_9_ + -i_10_ || anInt1745 < i_10_ + i_9_ || anInt1910 > i - i_10_ || i - -i_10_ > anInt513) {
+            method203(i_9_, i_8_, i, i_10_)
+        } else {
+            method253(i, i_9_, i_8_, i_10_)
+        }
     }
 
     /** Class6.method203 */
@@ -680,8 +697,11 @@ internal object ShapeRasterizer {
 
     /** Class170.method1308 */
     fun method1308(i: Int, i_14_: Int, i_15_: Int, i_16_: Int, i_18_: Int, i_19_: Int, i_20_: Int) {
-        if (anInt4960 <= i_15_ && i_19_ <= anInt1745 && i_14_ >= anInt1910 && anInt513 >= i_20_) method1730(i_16_, i_20_, i_14_, i_19_, i, i_18_, i_15_)
-        else method4004(i_20_, i_19_, i_14_, i, i_18_, i_15_, i_16_)
+        if (anInt4960 <= i_15_ && i_19_ <= anInt1745 && i_14_ >= anInt1910 && anInt513 >= i_20_) {
+            method1730(i_16_, i_20_, i_14_, i_19_, i, i_18_, i_15_)
+        } else {
+            method4004(i_20_, i_19_, i_14_, i, i_18_, i_15_, i_16_)
+        }
     }
 
     /** Class239_Sub3.method1730 */
@@ -731,10 +751,16 @@ internal object ShapeRasterizer {
     /** Class97.method872 (dummy i_0_ == 1 dropped) */
     fun method872(i: Int, i_1_: Int, i_2_: Int, i_3_: Int, i_4_: Int, i_5_: Int) {
         if (i_5_ >= anInt4960 && anInt1745 >= i_4_ && anInt1910 <= i_2_ && anInt513 >= i_3_) {
-            if (i_1_ == 1) method1388(i_2_, i, i_4_, i_5_, i_3_)
-            else method849(i_1_, i_2_, i_5_, i_4_, i_3_, i)
-        } else if (i_1_ != 1) method535(i_5_, i_3_, i_1_, i_4_, i, i_2_)
-        else method3575(i_4_, i, i_3_, i_2_, i_5_)
+            if (i_1_ == 1) {
+                method1388(i_2_, i, i_4_, i_5_, i_3_)
+            } else {
+                method849(i_1_, i_2_, i_5_, i_4_, i_3_, i)
+            }
+        } else if (i_1_ != 1) {
+            method535(i_5_, i_3_, i_1_, i_4_, i, i_2_)
+        } else {
+            method3575(i_4_, i, i_3_, i_2_, i_5_)
+        }
     }
 
     /** Class184.method1388 */
@@ -801,8 +827,9 @@ internal object ShapeRasterizer {
         if (i_3 <= anInt513 && i_2 >= anInt1910) {
             val bool: Boolean
             if (anInt4960 <= i_4) {
-                if (i_4 <= anInt1745) bool = true
-                else {
+                if (i_4 <= anInt1745) {
+                    bool = true
+                } else {
                     bool = false
                     i_4 = anInt1745
                 }
@@ -817,11 +844,19 @@ internal object ShapeRasterizer {
             } else if (anInt1745 < i_0) {
                 i_0 = anInt1745
                 bool_5_ = false
-            } else bool_5_ = true
-            if (i_3 < anInt1910) i_3 = anInt1910
-            else method1156(i_0, row(i_3++), i_4, i_1_)
-            if (anInt513 >= i_2) method1156(i_0, row(i_2--), i_4, i_1_)
-            else i_2 = anInt513
+            } else {
+                bool_5_ = true
+            }
+            if (i_3 < anInt1910) {
+                i_3 = anInt1910
+            } else {
+                method1156(i_0, row(i_3++), i_4, i_1_)
+            }
+            if (anInt513 >= i_2) {
+                method1156(i_0, row(i_2--), i_4, i_1_)
+            } else {
+                i_2 = anInt513
+            }
             if (!bool || !bool_5_) {
                 if (bool) {
                     for (i_7_ in i_3..i_2) row(i_7_)[i_4] = i_1_
@@ -840,8 +875,11 @@ internal object ShapeRasterizer {
 
     /** Class318_Sub1_Sub5.method2486 */
     fun method2486(i_5_: Int, i_6_: Int, i_7_: Int, i_8_: Int, i_9_: Int) {
-        if (i_8_ >= anInt4960 && i_5_ <= anInt1745 && anInt1910 <= i_9_ && anInt513 >= i_7_) method1111(i_7_, i_5_, i_8_, i_9_, i_6_)
-        else method1792(i_9_, i_8_, i_7_, i_5_, i_6_)
+        if (i_8_ >= anInt4960 && i_5_ <= anInt1745 && anInt1910 <= i_9_ && anInt513 >= i_7_) {
+            method1111(i_7_, i_5_, i_8_, i_9_, i_6_)
+        } else {
+            method1792(i_9_, i_8_, i_7_, i_5_, i_6_)
+        }
     }
 
     /** Class125.method1111 */
@@ -864,7 +902,9 @@ internal object ShapeRasterizer {
     fun method3540(i: Int, i_2_: Int, i_3_: Int, i_4_: Int, i_5_: Int, i_6_: Int, i_7_: Int, i_8_: Int, i_9_: Int) {
         if (i_6_ >= anInt4960 && anInt1745 >= i_6_ && anInt4960 <= i_5_ && anInt1745 >= i_5_ && i_7_ >= anInt4960 && i_7_ <= anInt1745 && anInt4960 <= i_9_ && anInt1745 >= i_9_ && i >= anInt1910 && anInt513 >= i && i_2_ >= anInt1910 && anInt513 >= i_2_ && anInt1910 <= i_8_ && i_8_ <= anInt513 && anInt1910 <= i_4_ && i_4_ <= anInt513) {
             method3009(i_2_, i_8_, i_5_, i_9_, i_4_, i_7_, i, i_3_, i_6_)
-        } else method2364(i_3_, i_7_, i_6_, i_2_, i_5_, i_8_, i_9_, i, i_4_)
+        } else {
+            method2364(i_3_, i_7_, i_6_, i_2_, i_5_, i_8_, i_9_, i, i_4_)
+        }
     }
 
     /** Class348_Sub31.method3009 */
@@ -901,7 +941,9 @@ internal object ShapeRasterizer {
                 i_12_ = i_35_
                 i_26_ += 128
             }
-        } else method1783(i_11_, i_9_, i_6_, i_5_, i_10_)
+        } else {
+            method1783(i_11_, i_9_, i_6_, i_5_, i_10_)
+        }
     }
 
     /** Class316.method2364 (dummy i_7_ == 3 dropped) */
@@ -938,7 +980,9 @@ internal object ShapeRasterizer {
                 i_10_ = i_33_
                 i_23_ += 128
             }
-        } else method2665(i_1_, i, i_6_, i_8_, i_5_)
+        } else {
+            method2665(i_1_, i, i_6_, i_8_, i_5_)
+        }
     }
 
     /* ---------------- Line (Class50_Sub4) ---------------- */

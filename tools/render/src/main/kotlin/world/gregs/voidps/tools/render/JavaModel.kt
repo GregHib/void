@@ -1,10 +1,10 @@
 package world.gregs.voidps.tools.render
 
-import kotlin.math.sqrt
-import kotlin.math.atan2
 import kotlin.math.asin
+import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.sqrt
 
 /* Class64_Sub1 */
 
@@ -110,7 +110,9 @@ internal class JavaModel : Model {
             synchronized(this) {
                 method657(bool)
             }
-        } else method657(bool)
+        } else {
+            method657(bool)
+        }
     }
 
     private fun method635(i: Int) {
@@ -118,34 +120,40 @@ internal class JavaModel : Model {
         val i_40_ = faceB!![i]
         val i_41_ = faceC!![i]
         if (faceTextures == null || faceTextures!![i].toInt() == -1) {
-            if (faceAlpha == null) rasterizer!!.anInt1674 = 0
-            else rasterizer!!.anInt1674 = faceAlpha!![i].toInt() and 0xff
-            if (anIntArray5366!![i] == -1) rasterizer!!.method1018(
-                anIntArray5343!![i_39_.toInt()].toFloat(),
-                anIntArray5343!![i_40_.toInt()].toFloat(),
-                anIntArray5343!![i_41_.toInt()].toFloat(),
-                anIntArray5321!![i_39_.toInt()].toFloat(),
-                anIntArray5321!![i_40_.toInt()].toFloat(),
-                anIntArray5321!![i_41_.toInt()].toFloat(),
-                anIntArray5355!![i_39_.toInt()].toFloat(),
-                anIntArray5355!![i_40_.toInt()].toFloat(),
-                anIntArray5355!![i_41_.toInt()].toFloat(),
-                (Rasterizer.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff])
-            )
-            else rasterizer!!.method1022(
-                anIntArray5343!![i_39_.toInt()].toFloat(),
-                anIntArray5343!![i_40_.toInt()].toFloat(),
-                anIntArray5343!![i_41_.toInt()].toFloat(),
-                anIntArray5321!![i_39_.toInt()].toFloat(),
-                anIntArray5321!![i_40_.toInt()].toFloat(),
-                anIntArray5321!![i_41_.toInt()].toFloat(),
-                anIntArray5355!![i_39_.toInt()].toFloat(),
-                anIntArray5355!![i_40_.toInt()].toFloat(),
-                anIntArray5355!![i_41_.toInt()].toFloat(),
-                (anIntArray5368!![i] and 0xffff).toFloat(),
-                (anIntArray5337!![i] and 0xffff).toFloat(),
-                (anIntArray5366!![i] and 0xffff).toFloat()
-            )
+            if (faceAlpha == null) {
+                rasterizer!!.anInt1674 = 0
+            } else {
+                rasterizer!!.anInt1674 = faceAlpha!![i].toInt() and 0xff
+            }
+            if (anIntArray5366!![i] == -1) {
+                rasterizer!!.method1018(
+                    anIntArray5343!![i_39_.toInt()].toFloat(),
+                    anIntArray5343!![i_40_.toInt()].toFloat(),
+                    anIntArray5343!![i_41_.toInt()].toFloat(),
+                    anIntArray5321!![i_39_.toInt()].toFloat(),
+                    anIntArray5321!![i_40_.toInt()].toFloat(),
+                    anIntArray5321!![i_41_.toInt()].toFloat(),
+                    anIntArray5355!![i_39_.toInt()].toFloat(),
+                    anIntArray5355!![i_40_.toInt()].toFloat(),
+                    anIntArray5355!![i_41_.toInt()].toFloat(),
+                    (Rasterizer.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff]),
+                )
+            } else {
+                rasterizer!!.method1022(
+                    anIntArray5343!![i_39_.toInt()].toFloat(),
+                    anIntArray5343!![i_40_.toInt()].toFloat(),
+                    anIntArray5343!![i_41_.toInt()].toFloat(),
+                    anIntArray5321!![i_39_.toInt()].toFloat(),
+                    anIntArray5321!![i_40_.toInt()].toFloat(),
+                    anIntArray5321!![i_41_.toInt()].toFloat(),
+                    anIntArray5355!![i_39_.toInt()].toFloat(),
+                    anIntArray5355!![i_40_.toInt()].toFloat(),
+                    anIntArray5355!![i_41_.toInt()].toFloat(),
+                    (anIntArray5368!![i] and 0xffff).toFloat(),
+                    (anIntArray5337!![i] and 0xffff).toFloat(),
+                    (anIntArray5366!![i] and 0xffff).toFloat(),
+                )
+            }
         } else {
             var i_42_ = -16777216
             if (faceAlpha != null) i_42_ = 255 - (faceAlpha!![i].toInt() and 0xff) shl 24
@@ -174,33 +182,35 @@ internal class JavaModel : Model {
                     0,
                     0,
                     0,
-                    faceTextures!![i].toInt()
+                    faceTextures!![i].toInt(),
                 )
-            } else rasterizer!!.method1024(
-                anIntArray5343!![i_39_.toInt()].toFloat(),
-                anIntArray5343!![i_40_.toInt()].toFloat(),
-                anIntArray5343!![i_41_.toInt()].toFloat(),
-                anIntArray5321!![i_39_.toInt()].toFloat(),
-                anIntArray5321!![i_40_.toInt()].toFloat(),
-                anIntArray5321!![i_41_.toInt()].toFloat(),
-                anIntArray5355!![i_39_.toInt()].toFloat(),
-                anIntArray5355!![i_40_.toInt()].toFloat(),
-                anIntArray5355!![i_41_.toInt()].toFloat(),
-                texCoordU!![i]!![0],
-                texCoordU!![i]!![1],
-                texCoordU!![i]!![2],
-                texCoordV!![i]!![0],
-                texCoordV!![i]!![1],
-                texCoordV!![i]!![2],
-                i_42_ or (anIntArray5368!![i] and 0xffffff),
-                i_42_ or (anIntArray5337!![i] and 0xffffff),
-                i_42_ or (anIntArray5366!![i] and 0xffffff),
-                (aJavaThreadResource_5367!!.anInt2192),
-                0,
-                0,
-                0,
-                faceTextures!![i].toInt()
-            )
+            } else {
+                rasterizer!!.method1024(
+                    anIntArray5343!![i_39_.toInt()].toFloat(),
+                    anIntArray5343!![i_40_.toInt()].toFloat(),
+                    anIntArray5343!![i_41_.toInt()].toFloat(),
+                    anIntArray5321!![i_39_.toInt()].toFloat(),
+                    anIntArray5321!![i_40_.toInt()].toFloat(),
+                    anIntArray5321!![i_41_.toInt()].toFloat(),
+                    anIntArray5355!![i_39_.toInt()].toFloat(),
+                    anIntArray5355!![i_40_.toInt()].toFloat(),
+                    anIntArray5355!![i_41_.toInt()].toFloat(),
+                    texCoordU!![i]!![0],
+                    texCoordU!![i]!![1],
+                    texCoordU!![i]!![2],
+                    texCoordV!![i]!![0],
+                    texCoordV!![i]!![1],
+                    texCoordV!![i]!![2],
+                    i_42_ or (anIntArray5368!![i] and 0xffffff),
+                    i_42_ or (anIntArray5337!![i] and 0xffffff),
+                    i_42_ or (anIntArray5366!![i] and 0xffffff),
+                    (aJavaThreadResource_5367!!.anInt2192),
+                    0,
+                    0,
+                    0,
+                    faceTextures!![i].toInt(),
+                )
+            }
         }
     }
 
@@ -214,7 +224,9 @@ internal class JavaModel : Model {
                 synchronized(this) {
                     method649()
                 }
-            } else method649()
+            } else {
+                method649()
+            }
         }
     }
 
@@ -226,8 +238,11 @@ internal class JavaModel : Model {
     private fun method637(i: Int, i_283_: Int): Int {
         var i_283_ = i_283_
         i_283_ = i_283_ * (i and 0x7f) shr 7
-        if (i_283_ < 2) i_283_ = 2
-        else if (i_283_ > 126) i_283_ = 126
+        if (i_283_ < 2) {
+            i_283_ = 2
+        } else if (i_283_ > 126) {
+            i_283_ = 126
+        }
         return (i and 0xff80) + i_283_
     }
 
@@ -250,8 +265,9 @@ internal class JavaModel : Model {
         val i_308_ = textureMetrics!!.alpha.toInt() and 0xff
         if (i_308_ != 0) {
             val i_309_ = 131586 * i_306_
-            if (i_308_ == 256) i_307_ = i_309_
-            else {
+            if (i_308_ == 256) {
+                i_307_ = i_309_
+            } else {
                 val i_310_ = i_308_
                 val i_311_ = 256 - i_308_
                 i_307_ = ((((i_309_ and 0xff00ff) * i_310_ + (i_307_ and 0xff00ff) * i_311_) and 0xff00ff.inv()) + (((i_309_ and 0xff00) * i_310_ + (i_307_ and 0xff00) * i_311_) and 0xff0000)) shr 8
@@ -311,7 +327,9 @@ internal class JavaModel : Model {
                         val javaBillboardAttributes = billboardAttributes!![i_337_]
                         if (!javaBillboardFace!!.aBoolean145) method635(i)
                         toolkit.method3720(javaBillboardAttributes!!.anInt4312, javaBillboardAttributes.anInt4310, javaBillboardAttributes.anInt4320, javaBillboardAttributes.anInt4309, javaBillboardAttributes.anInt4307, javaBillboardAttributes.anInt4308, javaBillboardFace.aShort146.toInt() and 0xffff, javaBillboardAttributes.anInt4313, javaBillboardFace.aByte148.toInt(), javaBillboardFace.aByte156.toInt())
-                    } else method635(i)
+                    } else {
+                        method635(i)
+                    }
                 }
             }
         }
@@ -330,8 +348,11 @@ internal class JavaModel : Model {
         var i_545_ = anIntArray5392!![i_542_.toInt()]
         var i_546_ = anIntArray5392!![i_543_.toInt()]
         var i_547_ = anIntArray5392!![i_544_.toInt()]
-        if (faceAlpha == null) rasterizer!!.anInt1674 = 0
-        else rasterizer!!.anInt1674 = faceAlpha!![i].toInt() and 0xff
+        if (faceAlpha == null) {
+            rasterizer!!.anInt1674 = 0
+        } else {
+            rasterizer!!.anInt1674 = faceAlpha!![i].toInt() and 0xff
+        }
         if (i_545_ >= i_541_) {
             anIntArray5315!![i_540_] = anIntArray5321!![i_542_.toInt()]
             anIntArray5371!![i_540_] = anIntArray5343!![i_542_.toInt()]
@@ -417,14 +438,20 @@ internal class JavaModel : Model {
         if (i_540_ == 3) {
             if (i_563_ < 0 || i_564_ < 0 || i_565_ < 0 || i_563_ > aJavaThreadResource_5367!!.anInt2221 || i_564_ > aJavaThreadResource_5367!!.anInt2221 || i_565_ > aJavaThreadResource_5367!!.anInt2221) rasterizer!!.clamp = true
             if (faceTextures == null || faceTextures!![i].toInt() == -1) {
-                if (anIntArray5366!![i] == -1) rasterizer!!.method1018(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), (Rasterizer.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff]))
-                else rasterizer!!.method1022(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), anIntArray5377!![0].toFloat(), anIntArray5377!![1].toFloat(), anIntArray5377!![2].toFloat())
+                if (anIntArray5366!![i] == -1) {
+                    rasterizer!!.method1018(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), (Rasterizer.HSV_TO_RGB!![anIntArray5368!![i] and 0xffff]))
+                } else {
+                    rasterizer!!.method1022(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), anIntArray5377!![0].toFloat(), anIntArray5377!![1].toFloat(), anIntArray5377!![2].toFloat())
+                }
             } else {
                 var i_569_ = -16777216
                 if (faceAlpha != null) i_569_ = 255 - (faceAlpha!![i].toInt() and 0xff) shl 24
                 val i_570_ = i_569_ or (anIntArray5368!![i] and 0xffffff)
-                if (anIntArray5366!![i] == -1) rasterizer!!.method1024(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), texCoordU!![i]!![0], texCoordU!![i]!![1], texCoordU!![i]!![2], texCoordV!![i]!![0], texCoordV!![i]!![1], texCoordV!![i]!![2], i_570_, i_570_, i_570_, (aJavaThreadResource_5367!!.anInt2192), 0, 0, 0, faceTextures!![i].toInt())
-                else rasterizer!!.method1024(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), texCoordU!![i]!![0], texCoordU!![i]!![1], texCoordU!![i]!![2], texCoordV!![i]!![0], texCoordV!![i]!![1], texCoordV!![i]!![2], i_570_, i_570_, i_570_, (aJavaThreadResource_5367!!.anInt2192), 0, 0, 0, faceTextures!![i].toInt())
+                if (anIntArray5366!![i] == -1) {
+                    rasterizer!!.method1024(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), texCoordU!![i]!![0], texCoordU!![i]!![1], texCoordU!![i]!![2], texCoordV!![i]!![0], texCoordV!![i]!![1], texCoordV!![i]!![2], i_570_, i_570_, i_570_, (aJavaThreadResource_5367!!.anInt2192), 0, 0, 0, faceTextures!![i].toInt())
+                } else {
+                    rasterizer!!.method1024(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), texCoordU!![i]!![0], texCoordU!![i]!![1], texCoordU!![i]!![2], texCoordV!![i]!![0], texCoordV!![i]!![1], texCoordV!![i]!![2], i_570_, i_570_, i_570_, (aJavaThreadResource_5367!!.anInt2192), 0, 0, 0, faceTextures!![i].toInt())
+                }
             }
         }
         if (i_540_ == 4) {
@@ -467,7 +494,7 @@ internal class JavaModel : Model {
                         0,
                         0,
                         0,
-                        faceTextures!![i].toInt()
+                        faceTextures!![i].toInt(),
                     )
                 } else {
                     rasterizer!!.method1024(i_566_.toFloat(), i_567_.toFloat(), i_568_.toFloat(), i_563_.toFloat(), i_564_.toFloat(), i_565_.toFloat(), i_545_.toFloat(), i_546_.toFloat(), i_547_.toFloat(), texCoordU!![i]!![0], texCoordU!![i]!![1], texCoordU!![i]!![2], texCoordV!![i]!![0], texCoordV!![i]!![1], texCoordV!![i]!![2], i_573_, i_573_, i_573_, (aJavaThreadResource_5367!!.anInt2192), 0, 0, 0, faceTextures!![i].toInt())
@@ -494,19 +521,22 @@ internal class JavaModel : Model {
                         0,
                         0,
                         0,
-                        faceTextures!![i].toInt()
+                        faceTextures!![i].toInt(),
                     )
                 }
             }
         }
     }
     private fun method647() {
-        if (anInt5354 == 0) method634(false)
-        else if (toolkit.anInt7485 > 1) {
+        if (anInt5354 == 0) {
+            method634(false)
+        } else if (toolkit.anInt7485 > 1) {
             synchronized(this) {
                 method640()
             }
-        } else method640()
+        } else {
+            method640()
+        }
     }
     private fun method640() {
         for (i in 0..<faceCount) {
@@ -559,8 +589,11 @@ internal class JavaModel : Model {
             i_609_ = i_609_ * 256 / i_611_
             i_610_ = i_610_ * 256 / i_611_
             val i_612_: Byte
-            if (shadingType == null) i_612_ = 0.toByte()
-            else i_612_ = shadingType!![i]
+            if (shadingType == null) {
+                i_612_ = 0.toByte()
+            } else {
+                i_612_ = shadingType!![i]
+            }
             if (i_612_.toInt() == 0) {
                 var class360 = aVertexNormalArray5360!![i_599_.toInt()]
                 class360!!.anInt4430 += i_608_
@@ -820,14 +853,18 @@ internal class JavaModel : Model {
 
     private fun method656(i: Int): Int {
         var i = i
-        if (i < 2) i = 2
-        else if (i > 126) i = 126
+        if (i < 2) {
+            i = 2
+        } else if (i > 126) {
+            i = 126
+        }
         return i
     }
 
     private fun method657(bool: Boolean) {
-        if (anInt5354 == 1) method647()
-        else if (anInt5354 == 2) {
+        if (anInt5354 == 1) {
+            method647()
+        } else if (anInt5354 == 2) {
             if ((functionMask and 0x97098) == 0 && texCoordU == null) faceColour = null
             if (bool) shadingType = null
         } else {
@@ -845,14 +882,23 @@ internal class JavaModel : Model {
             }
             for (i_739_ in 0..<faceCount) {
                 var i_740_: Byte
-                if (shadingType == null) i_740_ = 0.toByte()
-                else i_740_ = shadingType!![i_739_]
+                if (shadingType == null) {
+                    i_740_ = 0.toByte()
+                } else {
+                    i_740_ = shadingType!![i_739_]
+                }
                 val i_741_: Byte
-                if (faceAlpha == null) i_741_ = 0.toByte()
-                else i_741_ = faceAlpha!![i_739_]
+                if (faceAlpha == null) {
+                    i_741_ = 0.toByte()
+                } else {
+                    i_741_ = faceAlpha!![i_739_]
+                }
                 val i_742_: Short
-                if (faceTextures == null) i_742_ = (-1).toShort()
-                else i_742_ = faceTextures!![i_739_]
+                if (faceTextures == null) {
+                    i_742_ = (-1).toShort()
+                } else {
+                    i_742_ = faceTextures!![i_739_]
+                }
                 if (i_741_.toInt() == -2) i_740_ = 3.toByte()
                 if (i_741_.toInt() == -1) i_740_ = 2.toByte()
                 if (i_742_.toInt() == -1) {
@@ -861,20 +907,29 @@ internal class JavaModel : Model {
                         val i_744_ = (i_743_ and 0x7f) * ambient shr 7
                         val i_745_ = method303(i_743_ and 0x7f.inv() or i_744_)
                         var vertexNormal: VertexNormal
-                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceA!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceA!![i_739_].toInt()]!!
-                        else vertexNormal = aVertexNormalArray5360!![faceA!![i_739_].toInt()]!!
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceA!![i_739_].toInt()] != null)) {
+                            vertexNormal = aVertexNormalArray5313!![faceA!![i_739_].toInt()]!!
+                        } else {
+                            vertexNormal = aVertexNormalArray5360!![faceA!![i_739_].toInt()]!!
+                        }
                         var i_746_ = (((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16)
                         var i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         var i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
                         anIntArray5368!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
-                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceB!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceB!![i_739_].toInt()]!!
-                        else vertexNormal = aVertexNormalArray5360!![faceB!![i_739_].toInt()]!!
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceB!![i_739_].toInt()] != null)) {
+                            vertexNormal = aVertexNormalArray5313!![faceB!![i_739_].toInt()]!!
+                        } else {
+                            vertexNormal = aVertexNormalArray5360!![faceB!![i_739_].toInt()]!!
+                        }
                         i_746_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
                         anIntArray5337!![i_739_] = i_748_ shl 17 or method2198(i_748_, i_745_.toInt())
-                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceC!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceC!![i_739_].toInt()]!!
-                        else vertexNormal = aVertexNormalArray5360!![faceC!![i_739_].toInt()]!!
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceC!![i_739_].toInt()] != null)) {
+                            vertexNormal = aVertexNormalArray5313!![faceC!![i_739_].toInt()]!!
+                        } else {
+                            vertexNormal = aVertexNormalArray5360!![faceC!![i_739_].toInt()]!!
+                        }
                         i_746_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_747_ = if (i_746_ > 256) i_737_ else i_738_
                         i_748_ = (i_736_ shr 1) + (i_747_ * i_746_ shr 17)
@@ -892,25 +947,36 @@ internal class JavaModel : Model {
                     } else if (i_740_.toInt() == 3) {
                         anIntArray5368!![i_739_] = 128
                         anIntArray5366!![i_739_] = -1
-                    } else anIntArray5366!![i_739_] = -2
+                    } else {
+                        anIntArray5366!![i_739_] = -2
+                    }
                 } else {
                     val i_755_ = faceColour!![i_739_].toInt() and 0xffff
                     if (i_740_.toInt() == 0) {
                         var vertexNormal: VertexNormal
-                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceA!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceA!![i_739_].toInt()]!!
-                        else vertexNormal = aVertexNormalArray5360!![faceA!![i_739_].toInt()]!!
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceA!![i_739_].toInt()] != null)) {
+                            vertexNormal = aVertexNormalArray5313!![faceA!![i_739_].toInt()]!!
+                        } else {
+                            vertexNormal = aVertexNormalArray5360!![faceA!![i_739_].toInt()]!!
+                        }
                         var i_756_ = (((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16)
                         var i_757_ = if (i_756_ > 256) i_737_ else i_738_
                         var i_758_ = method656((i_736_ shr 2) + (i_757_ * i_756_ shr 18))
                         anIntArray5368!![i_739_] = i_758_ shl 24 or method642(i_755_, i_742_, i_758_)
-                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceB!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceB!![i_739_].toInt()]!!
-                        else vertexNormal = aVertexNormalArray5360!![faceB!![i_739_].toInt()]!!
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceB!![i_739_].toInt()] != null)) {
+                            vertexNormal = aVertexNormalArray5313!![faceB!![i_739_].toInt()]!!
+                        } else {
+                            vertexNormal = aVertexNormalArray5360!![faceB!![i_739_].toInt()]!!
+                        }
                         i_756_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_757_ = if (i_756_ > 256) i_737_ else i_738_
                         i_758_ = method656((i_736_ shr 2) + (i_757_ * i_756_ shr 18))
                         anIntArray5337!![i_739_] = i_758_ shl 24 or method642(i_755_, i_742_, i_758_)
-                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceC!![i_739_].toInt()] != null)) vertexNormal = aVertexNormalArray5313!![faceC!![i_739_].toInt()]!!
-                        else vertexNormal = aVertexNormalArray5360!![faceC!![i_739_].toInt()]!!
+                        if (aVertexNormalArray5313 != null && (aVertexNormalArray5313!![faceC!![i_739_].toInt()] != null)) {
+                            vertexNormal = aVertexNormalArray5313!![faceC!![i_739_].toInt()]!!
+                        } else {
+                            vertexNormal = aVertexNormalArray5360!![faceC!![i_739_].toInt()]!!
+                        }
                         i_756_ = ((i * vertexNormal.anInt4430 + i_734_ * vertexNormal.anInt4428 + i_735_ * vertexNormal.anInt4427) / vertexNormal.anInt4429) shr 16
                         i_757_ = if (i_756_ > 256) i_737_ else i_738_
                         i_758_ = method656((i_736_ shr 2) + (i_757_ * i_756_ shr 18))
@@ -922,7 +988,9 @@ internal class JavaModel : Model {
                         val i_761_ = method656((i_736_ shr 2) + (i_760_ * i_759_ shr 18))
                         anIntArray5368!![i_739_] = i_761_ shl 24 or method642(i_755_, i_742_, i_761_)
                         anIntArray5366!![i_739_] = -1
-                    } else anIntArray5366!![i_739_] = -2
+                    } else {
+                        anIntArray5366!![i_739_] = -2
+                    }
                 }
             }
             aVertexNormalArray5360 = null
@@ -1126,43 +1194,58 @@ internal class JavaModel : Model {
             var i_780_ = 0
             var i_781_ = 0
             var i_782_ = 0
-            if (anIntArray5362!![i_777_.toInt()] > aJavaThreadResource_5367!!.anInt2197) i_780_ = 255
-            else if (anIntArray5362!![i_777_.toInt()] > aJavaThreadResource_5367!!.anInt2211) i_780_ = ((aJavaThreadResource_5367!!.anInt2211 - anIntArray5362!![i_777_.toInt()]) * 255 / (aJavaThreadResource_5367!!.anInt2211 - aJavaThreadResource_5367!!.anInt2197))
-            if (anIntArray5362!![i_778_.toInt()] > aJavaThreadResource_5367!!.anInt2197) i_781_ = 255
-            else if (anIntArray5362!![i_778_.toInt()] > aJavaThreadResource_5367!!.anInt2211) i_781_ = ((aJavaThreadResource_5367!!.anInt2211 - anIntArray5362!![i_778_.toInt()]) * 255 / (aJavaThreadResource_5367!!.anInt2211 - aJavaThreadResource_5367!!.anInt2197))
-            if (anIntArray5362!![i_779_.toInt()] > aJavaThreadResource_5367!!.anInt2197) i_782_ = 255
-            else if (anIntArray5362!![i_779_.toInt()] > aJavaThreadResource_5367!!.anInt2211) i_782_ = ((aJavaThreadResource_5367!!.anInt2211 - anIntArray5362!![i_779_.toInt()]) * 255 / (aJavaThreadResource_5367!!.anInt2211 - aJavaThreadResource_5367!!.anInt2197))
-            if (faceAlpha == null) rasterizer!!.anInt1674 = 0
-            else rasterizer!!.anInt1674 = faceAlpha!![i].toInt() and 0xff
+            if (anIntArray5362!![i_777_.toInt()] > aJavaThreadResource_5367!!.anInt2197) {
+                i_780_ = 255
+            } else if (anIntArray5362!![i_777_.toInt()] > aJavaThreadResource_5367!!.anInt2211) {
+                i_780_ = ((aJavaThreadResource_5367!!.anInt2211 - anIntArray5362!![i_777_.toInt()]) * 255 / (aJavaThreadResource_5367!!.anInt2211 - aJavaThreadResource_5367!!.anInt2197))
+            }
+            if (anIntArray5362!![i_778_.toInt()] > aJavaThreadResource_5367!!.anInt2197) {
+                i_781_ = 255
+            } else if (anIntArray5362!![i_778_.toInt()] > aJavaThreadResource_5367!!.anInt2211) {
+                i_781_ = ((aJavaThreadResource_5367!!.anInt2211 - anIntArray5362!![i_778_.toInt()]) * 255 / (aJavaThreadResource_5367!!.anInt2211 - aJavaThreadResource_5367!!.anInt2197))
+            }
+            if (anIntArray5362!![i_779_.toInt()] > aJavaThreadResource_5367!!.anInt2197) {
+                i_782_ = 255
+            } else if (anIntArray5362!![i_779_.toInt()] > aJavaThreadResource_5367!!.anInt2211) {
+                i_782_ = ((aJavaThreadResource_5367!!.anInt2211 - anIntArray5362!![i_779_.toInt()]) * 255 / (aJavaThreadResource_5367!!.anInt2211 - aJavaThreadResource_5367!!.anInt2197))
+            }
+            if (faceAlpha == null) {
+                rasterizer!!.anInt1674 = 0
+            } else {
+                rasterizer!!.anInt1674 = faceAlpha!![i].toInt() and 0xff
+            }
             if (faceTextures == null || faceTextures!![i].toInt() == -1) {
-                if (anIntArray5366!![i] == -1) rasterizer!!.method1027(
-                    anIntArray5343!![i_777_.toInt()].toFloat(),
-                    anIntArray5343!![i_778_.toInt()].toFloat(),
-                    anIntArray5343!![i_779_.toInt()].toFloat(),
-                    anIntArray5321!![i_777_.toInt()].toFloat(),
-                    anIntArray5321!![i_778_.toInt()].toFloat(),
-                    anIntArray5321!![i_779_.toInt()].toFloat(),
-                    anIntArray5355!![i_777_.toInt()].toFloat(),
-                    anIntArray5355!![i_778_.toInt()].toFloat(),
-                    anIntArray5355!![i_779_.toInt()].toFloat(),
-                    JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
-                )
-                else rasterizer!!.method1027(
-                    anIntArray5343!![i_777_.toInt()].toFloat(),
-                    anIntArray5343!![i_778_.toInt()].toFloat(),
-                    anIntArray5343!![i_779_.toInt()].toFloat(),
-                    anIntArray5321!![i_777_.toInt()].toFloat(),
-                    anIntArray5321!![i_778_.toInt()].toFloat(),
-                    anIntArray5321!![i_779_.toInt()].toFloat(),
-                    anIntArray5355!![i_777_.toInt()].toFloat(),
-                    anIntArray5355!![i_778_.toInt()].toFloat(),
-                    anIntArray5355!![i_779_.toInt()].toFloat(),
-                    JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5337!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
-                    JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5366!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255)
-                )
+                if (anIntArray5366!![i] == -1) {
+                    rasterizer!!.method1027(
+                        anIntArray5343!![i_777_.toInt()].toFloat(),
+                        anIntArray5343!![i_778_.toInt()].toFloat(),
+                        anIntArray5343!![i_779_.toInt()].toFloat(),
+                        anIntArray5321!![i_777_.toInt()].toFloat(),
+                        anIntArray5321!![i_778_.toInt()].toFloat(),
+                        anIntArray5321!![i_779_.toInt()].toFloat(),
+                        anIntArray5355!![i_777_.toInt()].toFloat(),
+                        anIntArray5355!![i_778_.toInt()].toFloat(),
+                        anIntArray5355!![i_779_.toInt()].toFloat(),
+                        JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                        JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                        JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    )
+                } else {
+                    rasterizer!!.method1027(
+                        anIntArray5343!![i_777_.toInt()].toFloat(),
+                        anIntArray5343!![i_778_.toInt()].toFloat(),
+                        anIntArray5343!![i_779_.toInt()].toFloat(),
+                        anIntArray5321!![i_777_.toInt()].toFloat(),
+                        anIntArray5321!![i_778_.toInt()].toFloat(),
+                        anIntArray5321!![i_779_.toInt()].toFloat(),
+                        anIntArray5355!![i_777_.toInt()].toFloat(),
+                        anIntArray5355!![i_778_.toInt()].toFloat(),
+                        anIntArray5355!![i_779_.toInt()].toFloat(),
+                        JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5368!![i] and 0xffff)]), (i_780_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                        JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5337!![i] and 0xffff)]), (i_781_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                        JavaBillboardFace.method206((Rasterizer.HSV_TO_RGB!![(anIntArray5366!![i] and 0xffff)]), (i_782_ shl 24 or (aJavaThreadResource_5367!!.anInt2192)), 255),
+                    )
+                }
             } else {
                 var i_775_ = -16777216
                 if (faceAlpha != null) i_775_ = 255 - (faceAlpha!![i].toInt() and 0xff) shl 24
@@ -1191,33 +1274,35 @@ internal class JavaModel : Model {
                         i_780_,
                         i_781_,
                         i_782_,
-                        faceTextures!![i].toInt()
+                        faceTextures!![i].toInt(),
                     )
-                } else rasterizer!!.method1024(
-                    anIntArray5343!![i_777_.toInt()].toFloat(),
-                    anIntArray5343!![i_778_.toInt()].toFloat(),
-                    anIntArray5343!![i_779_.toInt()].toFloat(),
-                    anIntArray5321!![i_777_.toInt()].toFloat(),
-                    anIntArray5321!![i_778_.toInt()].toFloat(),
-                    anIntArray5321!![i_779_.toInt()].toFloat(),
-                    anIntArray5355!![i_777_.toInt()].toFloat(),
-                    anIntArray5355!![i_778_.toInt()].toFloat(),
-                    anIntArray5355!![i_779_.toInt()].toFloat(),
-                    texCoordU!![i]!![0],
-                    texCoordU!![i]!![1],
-                    texCoordU!![i]!![2],
-                    texCoordV!![i]!![0],
-                    texCoordV!![i]!![1],
-                    texCoordV!![i]!![2],
-                    i_775_ or (anIntArray5368!![i] and 0xffffff),
-                    i_775_ or (anIntArray5337!![i] and 0xffffff),
-                    i_775_ or (anIntArray5366!![i] and 0xffffff),
-                    aJavaThreadResource_5367!!.anInt2192,
-                    i_780_,
-                    i_781_,
-                    i_782_,
-                    faceTextures!![i].toInt()
-                )
+                } else {
+                    rasterizer!!.method1024(
+                        anIntArray5343!![i_777_.toInt()].toFloat(),
+                        anIntArray5343!![i_778_.toInt()].toFloat(),
+                        anIntArray5343!![i_779_.toInt()].toFloat(),
+                        anIntArray5321!![i_777_.toInt()].toFloat(),
+                        anIntArray5321!![i_778_.toInt()].toFloat(),
+                        anIntArray5321!![i_779_.toInt()].toFloat(),
+                        anIntArray5355!![i_777_.toInt()].toFloat(),
+                        anIntArray5355!![i_778_.toInt()].toFloat(),
+                        anIntArray5355!![i_779_.toInt()].toFloat(),
+                        texCoordU!![i]!![0],
+                        texCoordU!![i]!![1],
+                        texCoordU!![i]!![2],
+                        texCoordV!![i]!![0],
+                        texCoordV!![i]!![1],
+                        texCoordV!![i]!![2],
+                        i_775_ or (anIntArray5368!![i] and 0xffffff),
+                        i_775_ or (anIntArray5337!![i] and 0xffffff),
+                        i_775_ or (anIntArray5366!![i] and 0xffffff),
+                        aJavaThreadResource_5367!!.anInt2192,
+                        i_780_,
+                        i_781_,
+                        i_782_,
+                        faceTextures!![i].toInt(),
+                    )
+                }
             }
         }
     }
@@ -1291,7 +1376,9 @@ internal class JavaModel : Model {
                     if ((featureMask and 0x40) == 0 || !metrics!!.disableable) {
                         i_793_ = metrics!!.effectType.toInt()
                         i_794_ = metrics.effectParam1.toInt()
-                    } else texture = -1
+                    } else {
+                        texture = -1
+                    }
                 }
             }
             val transparentFace = (faceAlpha != null && faceAlpha!![index].toInt() != 0 || metrics != null && metrics.alphaBlendMode == 2)
@@ -1327,8 +1414,11 @@ internal class JavaModel : Model {
         for (i_803_ in 0..<faceCount) {
             val i_804_ = faceIndex[i_803_]
             var i_805_: Int
-            if (mesh.faceTexSpace == null) i_805_ = -1
-            else i_805_ = mesh.faceTexSpace!![i_804_].toInt()
+            if (mesh.faceTexSpace == null) {
+                i_805_ = -1
+            } else {
+                i_805_ = mesh.faceTexSpace!![i_804_].toInt()
+            }
             var i_806_ = (if (mesh.faceTexture == null) -1 else mesh.faceTexture!![i_804_]).toInt()
             if (i_806_ != -1 && (featureMask and 0x40) != 0) {
                 val metrics = source!!.getMetrics(i_806_ and 0xffff)
@@ -1415,15 +1505,27 @@ internal class JavaModel : Model {
                             fs_808_[2] = fs[1]
                             val f_850_ = f_849_ / 2.0f
                             if ((direction.toInt() and 0x1) == 0) {
-                                if (fs_807_[1] - fs_807_[0] > f_850_) fs_807_[1] -= f_849_
-                                else if (fs_807_[0] - fs_807_[1] > f_850_) fs_807_[1] += f_849_
-                                if (fs_807_[2] - fs_807_[0] > f_850_) fs_807_[2] -= f_849_
-                                else if (fs_807_[0] - fs_807_[2] > f_850_) fs_807_[2] += f_849_
+                                if (fs_807_[1] - fs_807_[0] > f_850_) {
+                                    fs_807_[1] -= f_849_
+                                } else if (fs_807_[0] - fs_807_[1] > f_850_) {
+                                    fs_807_[1] += f_849_
+                                }
+                                if (fs_807_[2] - fs_807_[0] > f_850_) {
+                                    fs_807_[2] -= f_849_
+                                } else if (fs_807_[0] - fs_807_[2] > f_850_) {
+                                    fs_807_[2] += f_849_
+                                }
                             } else {
-                                if (fs_808_[1] - fs_808_[0] > f_850_) fs_808_[1] -= f_849_
-                                else if (fs_808_[0] - fs_808_[1] > f_850_) fs_808_[1] += f_849_
-                                if (fs_808_[2] - fs_808_[0] > f_850_) fs_808_[2] -= f_849_
-                                else if (fs_808_[0] - fs_808_[2] > f_850_) fs_808_[2] += f_849_
+                                if (fs_808_[1] - fs_808_[0] > f_850_) {
+                                    fs_808_[1] -= f_849_
+                                } else if (fs_808_[0] - fs_808_[1] > f_850_) {
+                                    fs_808_[1] += f_849_
+                                }
+                                if (fs_808_[2] - fs_808_[0] > f_850_) {
+                                    fs_808_[2] -= f_849_
+                                } else if (fs_808_[0] - fs_808_[2] > f_850_) {
+                                    fs_808_[2] += f_849_
+                                }
                             }
                         } else if (mappingType.toInt() == 2) {
                             val f_851_ = ((mesh.texOffsetY!![i_805_]).toFloat() / 256.0f)
@@ -1464,15 +1566,27 @@ internal class JavaModel : Model {
                             fs_807_[2] = fs[0]
                             fs_808_[2] = fs[1]
                             if ((direction.toInt() and 0x1) == 0) {
-                                if (fs_807_[1] - fs_807_[0] > 0.5f) fs_807_[1]--
-                                else if (fs_807_[0] - fs_807_[1] > 0.5f) fs_807_[1]++
-                                if (fs_807_[2] - fs_807_[0] > 0.5f) fs_807_[2]--
-                                else if (fs_807_[0] - fs_807_[2] > 0.5f) fs_807_[2]++
+                                if (fs_807_[1] - fs_807_[0] > 0.5f) {
+                                    fs_807_[1]--
+                                } else if (fs_807_[0] - fs_807_[1] > 0.5f) {
+                                    fs_807_[1]++
+                                }
+                                if (fs_807_[2] - fs_807_[0] > 0.5f) {
+                                    fs_807_[2]--
+                                } else if (fs_807_[0] - fs_807_[2] > 0.5f) {
+                                    fs_807_[2]++
+                                }
                             } else {
-                                if (fs_808_[1] - fs_808_[0] > 0.5f) fs_808_[1]--
-                                else if (fs_808_[0] - fs_808_[1] > 0.5f) fs_808_[1]++
-                                if (fs_808_[2] - fs_808_[0] > 0.5f) fs_808_[2]--
-                                else if (fs_808_[0] - fs_808_[2] > 0.5f) fs_808_[2]++
+                                if (fs_808_[1] - fs_808_[0] > 0.5f) {
+                                    fs_808_[1]--
+                                } else if (fs_808_[0] - fs_808_[1] > 0.5f) {
+                                    fs_808_[1]++
+                                }
+                                if (fs_808_[2] - fs_808_[0] > 0.5f) {
+                                    fs_808_[2]--
+                                } else if (fs_808_[0] - fs_808_[2] > 0.5f) {
+                                    fs_808_[2]++
+                                }
                             }
                         }
                     }
@@ -1498,11 +1612,17 @@ internal class JavaModel : Model {
                         hasTextures = true
                         if (metrics!!.alphaBlendMode == 2) transparent = true
                         if (metrics.speedU.toInt() != 0 || metrics.speedV.toInt() != 0) movingTextures = true
-                    } else faceTextures!![i_870_] = (-1).toShort()
-                } else faceTextures!![i_870_] = (-1).toShort()
+                    } else {
+                        faceTextures!![i_870_] = (-1).toShort()
+                    }
+                } else {
+                    faceTextures!![i_870_] = (-1).toShort()
+                }
             }
             if (!hasTextures) faceTextures = null
-        } else faceTextures = null
+        } else {
+            faceTextures = null
+        }
         if (transparent || billboardFaces != null) {
             faceIndices = ShortArray(faceCount)
             for (i_872_ in 0..<faceCount) faceIndices!![i_872_] = faceIndex[i_872_].toShort()
@@ -1542,9 +1662,14 @@ internal class JavaModel : Model {
                         for (i_15_ in 0..2) {
                             val i_16_: Short
                             if (i_15_ != 0) {
-                                if (i_15_ == 1) i_16_ = (mesh.faceB!![i_13_])
-                                else i_16_ = (mesh.faceC!![i_13_])
-                            } else i_16_ = (mesh.faceA!![i_13_])
+                                if (i_15_ == 1) {
+                                    i_16_ = (mesh.faceB!![i_13_])
+                                } else {
+                                    i_16_ = (mesh.faceC!![i_13_])
+                                }
+                            } else {
+                                i_16_ = (mesh.faceA!![i_13_])
+                            }
                             val i_17_ = mesh.vertexX!![i_16_.toInt()]
                             val i_18_ = mesh.vertexY!![i_16_.toInt()]
                             val i_19_ = mesh.vertexZ!![i_16_.toInt()]
@@ -1621,8 +1746,9 @@ internal class JavaModel : Model {
             f_16_ = -f_13_ + 1.0f
             f_15_ = -sqrt((1.0f - f_13_ * f_13_).toDouble()).toFloat()
             val f_20_ = sqrt((i_10_ * i_10_ + i * i).toDouble()).toFloat()
-            if (f_20_ == 0.0f && f_13_ == 0.0f) fs_12_ = fs
-            else {
+            if (f_20_ == 0.0f && f_13_ == 0.0f) {
+                fs_12_ = fs
+            } else {
                 if (f_20_ != 0.0f) {
                     f_18_ = -i.toFloat() / f_20_
                     f_19_ = i_10_.toFloat() / f_20_
@@ -1768,7 +1894,6 @@ internal class JavaModel : Model {
             return 1
         }
 
-
         fun method303(i: Int): Short {
             val i_4_ = (i and 0xfe66) shr 10
             var i_5_ = i shr 3 and 0x70
@@ -1776,12 +1901,14 @@ internal class JavaModel : Model {
             i_5_ = (if (i_6_ <= 64) i_6_ * i_5_ shr 7 else i_5_ * (127 + -i_6_) shr 7)
             val i_7_ = i_5_ + i_6_
             val i_8_: Int
-            if (i_7_ != 0) i_8_ = (i_5_ shl 8) / i_7_
-            else i_8_ = i_5_ shl 1
+            if (i_7_ != 0) {
+                i_8_ = (i_5_ shl 8) / i_7_
+            } else {
+                i_8_ = i_5_ shl 1
+            }
             val i_9_ = i_7_
             return (i_9_ or (i_8_ shr 4 shl 7 or (i_4_ shl 10))).toShort()
         }
-
 
         fun sort(`is`: IntArray?, ls: LongArray?) {
             method129(0, ls, ls!!.size - 1, `is`)
@@ -1794,7 +1921,9 @@ internal class JavaModel : Model {
             i_0_ = i_0_ * (i_1_ and 0x7f) shr 7
             if (i_0_ >= 2) {
                 if (i_0_ > 126) i_0_ = 126
-            } else i_0_ = 2
+            } else {
+                i_0_ = 2
+            }
             return (0xff80 and i_1_) - -i_0_
         }
     }

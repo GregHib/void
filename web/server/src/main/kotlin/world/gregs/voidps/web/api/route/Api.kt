@@ -53,6 +53,9 @@ fun Application.apiPlugins(json: Json = apiJson) {
             call.respond(HttpStatusCode.BadRequest, ErrorResponse(ErrorBody("bad_request", message)))
         }
         exception<ApiException> { call, cause ->
+            if (cause is ApiException.RateLimited) {
+                call.response.header(HttpHeaders.RetryAfter, cause.retryAfterSeconds.toString())
+            }
             call.respond(cause.status(), ErrorResponse(ErrorBody(cause.code, cause.message ?: cause.code, cause.details.ifEmpty { null })))
         }
         exception<Throwable> { call, cause ->

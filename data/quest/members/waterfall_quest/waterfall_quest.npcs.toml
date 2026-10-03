@@ -4,7 +4,6 @@ hitpoints = 1200
 att = 60
 str = 60
 def = 60
-attack_speed = 6
 style = "crush"
 style = "magic_melee"
 max_hit_melee = 140

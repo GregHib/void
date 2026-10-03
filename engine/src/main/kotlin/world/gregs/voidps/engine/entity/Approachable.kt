@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.event.Wildcards
  */
 interface Approachable {
 
-
     /*
         Player approaches
      */
@@ -114,7 +113,6 @@ interface Approachable {
             }
         }
     }
-
 
     /*
         NPC approaches

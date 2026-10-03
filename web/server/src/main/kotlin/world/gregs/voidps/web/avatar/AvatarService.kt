@@ -1,22 +1,27 @@
 package world.gregs.voidps.web.avatar
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.data.Storage
 import world.gregs.voidps.tools.avatar.PhotoBooth
 import world.gregs.voidps.tools.avatar.PhotoSnapshot
 import world.gregs.voidps.tools.avatar.SnapshotRepository
+import world.gregs.voidps.web.api.ApiException
 import world.gregs.voidps.web.api.model.AvatarRender
 import java.io.File
 import java.time.Instant
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Renders photo booth avatars (see Iconis.saveSnapshot) into [directory] and serves them from there.
  * A stored image is reused until the player takes a newer snapshot, so each look is only rendered once.
  *
  * The [PhotoBooth] decodes every item, identity kit and animation definition, so it's only built
- * the first time an avatar actually needs rendering.
+ * the first time an avatar actually needs rendering. Rendering is CPU heavy so only one runs at a time,
+ * and forced re-renders are limited to one per account every [forceCooldown] milliseconds.
  */
 class AvatarService(
     storage: Storage,
@@ -25,9 +30,13 @@ class AvatarService(
     private val size: Int,
     /** Resolves a display or account name to the account name saves are keyed by. */
     private val accountName: (String) -> String? = { it },
+    private val forceCooldown: Long = 60_000,
+    private val clock: () -> Long = System::currentTimeMillis,
 ) {
     private val snapshots = SnapshotRepository(storage)
     private val booth by lazy { PhotoBooth(cache) }
+    private val renderLock = Mutex()
+    private val lastForced = ConcurrentHashMap<String, Long>()
 
     /**
      * The [type] image for [name], rendering it first if it's missing or older than their latest snapshot.
@@ -37,19 +46,44 @@ class AvatarService(
         val account = accountName(name) ?: name
         val snapshot = snapshots.load(account) ?: return@withContext null
         val file = PhotoBooth.file(directory, account, type)
-        if (file.exists() && file.lastModified() >= snapshot.time * 1000) {
+        if (upToDate(file, snapshot)) {
             return@withContext file
         }
-        render(account, snapshot) ?: return@withContext null
+        renderLock.withLock {
+            // Another request may have rendered it while this one was waiting
+            if (!upToDate(file, snapshot)) {
+                render(account, snapshot) ?: return@withContext null
+            }
+        }
         file.takeIf { it.exists() }
     }
 
-    /** Re-renders [name]'s avatar images regardless of what's already on disk. */
+    /**
+     * Re-renders [name]'s avatar images regardless of what's already on disk.
+     * @throws ApiException.RateLimited if [name] was re-rendered recently or another render is in progress
+     */
     suspend fun generate(name: String): AvatarRender? = withContext(Dispatchers.IO) {
         val account = accountName(name) ?: name
         val snapshot = snapshots.load(account) ?: return@withContext null
-        render(account, snapshot)
+        val now = clock()
+        val last = lastForced[account]
+        if (last != null && now - last < forceCooldown) {
+            throw ApiException.RateLimited(retryAfter(forceCooldown - (now - last)))
+        }
+        if (!renderLock.tryLock()) {
+            throw ApiException.RateLimited(retryAfter(BUSY_RETRY))
+        }
+        try {
+            lastForced[account] = now
+            render(account, snapshot)
+        } finally {
+            renderLock.unlock()
+        }
     }
+
+    private fun upToDate(file: File, snapshot: PhotoSnapshot) = file.exists() && file.lastModified() >= snapshot.time * 1000
+
+    private fun retryAfter(millis: Long): Int = ((millis + 999) / 1000).toInt().coerceAtLeast(1)
 
     private fun render(account: String, snapshot: PhotoSnapshot): AvatarRender? {
         val avatar = booth.render(snapshot, size) ?: return null
@@ -68,5 +102,6 @@ class AvatarService(
 
     companion object {
         val TYPES = setOf(PhotoBooth.FULL, PhotoBooth.CHAT)
+        private const val BUSY_RETRY = 5_000L
     }
 }

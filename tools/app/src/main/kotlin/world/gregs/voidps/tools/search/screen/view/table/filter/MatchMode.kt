@@ -9,5 +9,5 @@ enum class MatchMode {
     PARAM_KEY,
     PARAM_VALUE,
     NOT_NULL,
-    NOT_EMPTY
+    NOT_EMPTY,
 }

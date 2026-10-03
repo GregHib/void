@@ -11,3 +11,11 @@ hunt_mode = "cowardly"
 slayer_xp = 161.0
 categories = ["trolls"]
 examine = "An impressive looking troll."
+
+[ice_troll_grunt_fremennik_isles]
+id = 5524
+hitpoints = 800
+att = 100
+str = 100
+def = 60
+examine = "A large ice troll."

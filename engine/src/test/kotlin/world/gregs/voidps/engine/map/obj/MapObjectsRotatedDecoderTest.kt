@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.map.obj
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -11,9 +14,6 @@ import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.entity.obj.ObjectShape
 import world.gregs.voidps.type.Tile
 import world.gregs.voidps.type.area.Rectangle
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
 
 class MapObjectsRotatedDecoderTest {
 
@@ -42,6 +42,8 @@ class MapObjectsRotatedDecoderTest {
 
         decoder.zoneRotation = 2
         decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.level = 1
+        decoder.targetLevel = 1
         decoder.decode(array, settings, 960, 896)
 
         val tile = Tile(965, 900, 1) // local 5, 4
@@ -123,13 +125,56 @@ class MapObjectsRotatedDecoderTest {
         assertNull(gameObject)
     }
 
+    @Test
+    fun `Load object onto a different level`() {
+        val writer = ArrayWriter()
+        writer.writeSmart(124)
+        writer.writeSmart(packTile(10, 11, 0))
+        val shape = ObjectShape.GROUND_DECOR
+        writer.writeByte(packInfo(shape, 0))
+        writer.writeSmart(0)
+        writer.writeSmart(0)
+        val array = writer.toArray()
+
+        decoder.zoneRotation = 0
+        decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.level = 0
+        decoder.targetLevel = 1
+        decoder.decode(array, settings, 64, 64)
+
+        assertNull(GameObjects.getShape(Tile(66, 67, 0), shape))
+        assertNotNull(GameObjects.getShape(Tile(66, 67, 1), shape))
+    }
+
+    @Test
+    fun `Load ignores objects on other levels`() {
+        val writer = ArrayWriter()
+        writer.writeSmart(124)
+        writer.writeSmart(packTile(12, 13, 2))
+        val shape = ObjectShape.GROUND_DECOR
+        writer.writeByte(packInfo(shape, 0))
+        writer.writeSmart(0)
+        writer.writeSmart(0)
+        val array = writer.toArray()
+
+        decoder.zoneRotation = 0
+        decoder.zone = Rectangle(8, 8, 16, 16)
+        decoder.level = 0
+        decoder.targetLevel = 0
+        decoder.decode(array, settings, 64, 64)
+
+        for (level in 0 until 4) {
+            assertNull(GameObjects.getShape(Tile(68, 69, level), shape))
+        }
+    }
+
     @TestFactory
     fun `No rotation`() = listOf(
         Pair(Tile(0, 0), Tile(0, 0)),
         Pair(Tile(3, 4), Tile(3, 4)),
         Pair(Tile(7, 7), Tile(7, 7)),
         Pair(Tile(0, 7), Tile(0, 7)),
-        Pair(Tile(7, 0), Tile(7, 0))
+        Pair(Tile(7, 0), Tile(7, 0)),
     ).map { (tile, expected) ->
         dynamicTest("Rotate $tile") {
             val result = rotate(tile.x, tile.y, 1, 1, 0, 0)
@@ -209,7 +254,7 @@ class MapObjectsRotatedDecoderTest {
         Triple(3, 0, Tile(0, 0)),
         Triple(0, 1, Tile(0, 6)),
         Triple(0, 2, Tile(6, 7)),
-        Triple(0, 3, Tile(7, 0))
+        Triple(0, 3, Tile(7, 0)),
     ).map { (originalRot, zoneRot, expected) ->
         dynamicTest("2x1 object rotate obj $originalRot zone rot $zoneRot") {
             val result = rotate(0, 0, 2, 1, originalRot, zoneRot)

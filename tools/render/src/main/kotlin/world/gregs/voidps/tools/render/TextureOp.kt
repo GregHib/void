@@ -7,9 +7,7 @@ abstract class TextureOp(i: Int, var aBoolean7045: Boolean) {
     var aColourImageCache_7033: ColourImageCache? = null
     var anInt7036: Int = 0
 
-    open fun method3037(): Int {
-        return -1
-    }
+    open fun method3037(): Int = -1
 
     fun method3039(i_1_: Int, i_2_: Int): Array<IntArray>? {
         if (this.aTextureOpArray7031[i_2_]!!.aBoolean7045) {
@@ -19,21 +17,20 @@ abstract class TextureOp(i: Int, var aBoolean7045: Boolean) {
         return this.aTextureOpArray7031[i_2_]!!.method3047(i_1_)
     }
 
-    open fun method3042(i: Int): IntArray? {
-        throw IllegalStateException("This operation does not have a monochrome output")
-    }
+    open fun method3042(i: Int): IntArray? = throw IllegalStateException("This operation does not have a monochrome output")
 
-    open fun method3043(): Int {
-        return -1
-    }
+    open fun method3043(): Int = -1
 
     open fun method3044() {
     }
 
     open fun method3045(i: Int, i_54_: Int) {
         val i_56_ = (if (this.anInt7036 != 255) this.anInt7036 else i_54_)
-        if (this.aBoolean7045) this.aMonochromeImageCache_7032 = MonochromeImageCache(i_56_, i_54_, i)
-        else this.aColourImageCache_7033 = ColourImageCache(i_56_, i_54_, i)
+        if (this.aBoolean7045) {
+            this.aMonochromeImageCache_7032 = MonochromeImageCache(i_56_, i_54_, i)
+        } else {
+            this.aColourImageCache_7033 = ColourImageCache(i_56_, i_54_, i)
+        }
     }
 
     open fun method3046() {
@@ -46,9 +43,7 @@ abstract class TextureOp(i: Int, var aBoolean7045: Boolean) {
         }
     }
 
-    open fun method3047(i: Int): Array<IntArray>? {
-        throw IllegalStateException("This operation does not have a colour output")
-    }
+    open fun method3047(i: Int): Array<IntArray>? = throw IllegalStateException("This operation does not have a colour output")
 
     fun method3048(i: Int, i_59_: Int): IntArray? {
         if (!this.aTextureOpArray7031[i_59_]!!.aBoolean7045) return (this.aTextureOpArray7031[i_59_]!!.method3047(i)!![0])

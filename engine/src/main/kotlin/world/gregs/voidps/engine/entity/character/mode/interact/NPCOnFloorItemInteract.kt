@@ -10,7 +10,7 @@ data class NPCOnFloorItemInteract(
     override val target: FloorItem,
     override val option: String,
     val npc: NPC,
-    val shape: Int?
+    val shape: Int?,
 ) : InteractOption(npc, target, shape = shape) {
     override fun hasOperate() = Operation.npcFloorItem.containsKey(option)
 

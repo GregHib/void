@@ -1,10 +1,8 @@
 package world.gregs.voidps.engine.entity.character.mode.move.target
 
 import org.rsmod.game.pathfinder.PathFinder
-import world.gregs.voidps.engine.data.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.mode.ModeType
-import world.gregs.voidps.engine.entity.character.mode.Wander
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.type.Tile
 
@@ -41,8 +39,8 @@ data class NPCCharacterTargetStrategy(
                 targetX = character.tile.x,
                 targetZ = character.tile.y,
                 targetWidth = character.size,
-                targetHeight = character.size
-            ).packed
+                targetHeight = character.size,
+            ).packed,
         )
     }
 }

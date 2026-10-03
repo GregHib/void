@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.map.collision.CollisionDecoder.Companion.BRIDGE
 import world.gregs.voidps.type.Region
 import world.gregs.voidps.type.Zone
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 internal class CollisionDecoderTest {
@@ -80,5 +81,42 @@ internal class CollisionDecoderTest {
         decoder.decode(settings, source, source, 1)
         // Then
         assertEquals(Collisions[source.tile.x + 4, source.tile.y + 5, 0], CollisionFlag.FLOOR)
+    }
+
+    @Test
+    fun `Load blocked onto a different level`() {
+        // Given
+        val source = Zone(1, 1, 0)
+        val target = Zone(2, 2, 1)
+        settings[MapDefinition.index(10, 12, 0)] = BLOCKED_TILE.toByte()
+        // When
+        decoder.decode(settings, source, target, 0)
+        // Then
+        assertEquals(CollisionFlag.FLOOR, Collisions[target.tile.x + 2, target.tile.y + 4, 1])
+        assertNotEquals(CollisionFlag.FLOOR, Collisions[target.tile.x + 2, target.tile.y + 4, 0])
+    }
+
+    @Test
+    fun `Ignore blocked on other levels`() {
+        // Given
+        val source = Zone(1, 1, 0)
+        settings[MapDefinition.index(10, 12, 2)] = BLOCKED_TILE.toByte()
+        // When
+        decoder.decode(settings, source, source, 0)
+        // Then
+        for (level in 0 until 4) {
+            assertNotEquals(CollisionFlag.FLOOR, Collisions[source.tile.x + 2, source.tile.y + 4, level])
+        }
+    }
+
+    @Test
+    fun `Load bridged blocked onto the level below`() {
+        // Given
+        val source = Zone(1, 1, 0)
+        settings[MapDefinition.index(10, 12, 1)] = (BLOCKED_TILE or BRIDGE_TILE).toByte()
+        // When
+        decoder.decode(settings, source, source, 0)
+        // Then
+        assertEquals(CollisionFlag.FLOOR, Collisions[source.tile.x + 2, source.tile.y + 4, 0])
     }
 }

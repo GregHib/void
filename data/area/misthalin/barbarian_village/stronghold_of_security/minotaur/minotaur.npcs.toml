@@ -24,3 +24,19 @@ slayer_xp = 22.0
 drop_table = "minotaur"
 categories = ["minotaurs"]
 examine = "He doesn't look very pleased to see you."
+
+[minotaur_2]
+id = 4405
+hitpoints = 130
+att = 22
+str = 15
+def = 15
+examine = "He doesn't look very pleased to see you."
+
+[minotaur_3]
+id = 11258
+hitpoints = 100
+att = 12
+str = 10
+def = 10
+examine = "He doesn't look very pleased to see you."

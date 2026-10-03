@@ -14,7 +14,7 @@ class SkillsTest {
     inner class LevelChangedTest : ScriptTest {
         override val checks = listOf(
             listOf(),
-            listOf("Attack")
+            listOf("Attack"),
         )
         override val failedChecks = listOf(
             listOf("Strength"),
@@ -35,14 +35,13 @@ class SkillsTest {
         }
 
         override val apis = listOf(Skills)
-
     }
 
     @Nested
     inner class NPCLevelChangedTest : ScriptTest {
         override val checks = listOf(
             listOf("Attack", "npc"),
-            listOf("Attack", "*")
+            listOf("Attack", "*"),
         )
         override val failedChecks = listOf(
             listOf("Strength", "npc"),
@@ -63,14 +62,13 @@ class SkillsTest {
         }
 
         override val apis = listOf(Skills)
-
     }
 
     @Nested
     inner class MaxLevelChangedTest : ScriptTest {
         override val checks = listOf(
             listOf(),
-            listOf("Attack")
+            listOf("Attack"),
         )
         override val failedChecks = listOf(
             listOf("Strength"),
@@ -91,7 +89,6 @@ class SkillsTest {
         }
 
         override val apis = listOf(Skills)
-
     }
 
     @Nested
@@ -113,7 +110,6 @@ class SkillsTest {
         }
 
         override val apis = listOf(Skills)
-
     }
 
     @Nested
@@ -134,7 +130,5 @@ class SkillsTest {
         }
 
         override val apis = listOf(Skills)
-
     }
-
 }

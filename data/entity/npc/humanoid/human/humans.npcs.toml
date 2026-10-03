@@ -93,3 +93,41 @@ examine = "A young master craftsman."
 id = 6298
 categories = ["human"]
 examine = "The man with the armour."
+
+[witch_2]
+id = 176
+hitpoints = 100
+att = 25
+str = 25
+def = 25
+mage = 30
+examine = "The hat's a dead give away."
+
+[witch_3]
+id = 177
+hitpoints = 100
+att = 25
+str = 25
+def = 25
+mage = 30
+examine = "The hat's a dead give away."
+
+[man_4]
+id = 3224
+hitpoints = 70
+examine = "One of Ardougne's many citizens."
+
+[man_5]
+id = 3225
+hitpoints = 70
+examine = "One of Gielinor's many citizens. He looks worried about something."
+
+[man_6]
+id = 7909
+hitpoints = 70
+examine = "One of Ardougne's many citizens."
+
+[man_7]
+id = 7910
+hitpoints = 70
+examine = "One of Ardougne's many citizens."

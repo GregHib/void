@@ -69,11 +69,12 @@ class HuntModeDefinitions {
                         pauseIfNobodyNear = pauseIfNobodyNear,
                         rate = rate ?: if (type == "player") 1 else 3,
                         ids = Wildcards.get(
-                            id, when (type) {
+                            id,
+                            when (type) {
                                 "object" -> Wildcard.Object
                                 "npc" -> Wildcard.Npc
                                 else -> Wildcard.Item
-                            }
+                            },
                         ),
                         layer = layer,
                         maxMultiAttackers = maxMultiAttackers,
