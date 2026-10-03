@@ -21,11 +21,17 @@ class ExecuteCommandHandler : InstructionHandler<ExecuteCommand>() {
         val prefix = parts[0]
         val content = instruction.command.removePrefix(prefix).trim()
         if (instruction.automatic && player.hasRights(PlayerRights.Admin)) {
-            val params = content.split(",")
-            val level = params[0].toInt()
-            val x = params[1].toInt() shl 6 or params[3].toInt()
-            val y = params[2].toInt() shl 6 or params[4].toInt()
-            player.tele(x, y, level)
+            val params = content.split(",").map { it.trim().toIntOrNull() }
+            if (params.size < 5 || params.any { it == null }) {
+                return false
+            }
+            val (level, regionX, regionY, localX, localY) = params
+            if (localX!! !in 0..63 || localY!! !in 0..63) {
+                return false
+            }
+            val x = regionX!! shl 6 or localX
+            val y = regionY!! shl 6 or localY
+            player.tele(x, y, level!!.coerceIn(0, 3))
             player["world_map_centre"] = player.tile.id
             player["world_map_marker_player"] = player.tile.id
             return true
