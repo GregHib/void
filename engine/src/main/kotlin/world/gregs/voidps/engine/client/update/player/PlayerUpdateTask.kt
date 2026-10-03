@@ -43,22 +43,25 @@ class PlayerUpdateTask {
     private val initialFlag = VisualMask.PLAYER_FACE_MASK + VisualMask.MOVEMENT_TYPE_MASK + VisualMask.PLAYER_ANIMATION_MASK + VisualMask.APPEARANCE_MASK + VisualMask.TEMPORARY_MOVEMENT_TYPE_MASK
 
     fun run(player: Player) {
+        val client = player.client ?: return
         val viewport = player.viewport ?: return
         val players = viewport.players
 
         val writer = viewport.playerChanges
         val updates = viewport.playerUpdates
 
-        processLocals(player, writer, updates, players, viewport, true)
-        processLocals(player, writer, updates, players, viewport, false)
-        processGlobals(player, writer, updates, players, viewport, true)
-        processGlobals(player, writer, updates, players, viewport, false)
+        try {
+            processLocals(player, writer, updates, players, viewport, true)
+            processLocals(player, writer, updates, players, viewport, false)
+            processGlobals(player, writer, updates, players, viewport, true)
+            processGlobals(player, writer, updates, players, viewport, false)
 
-        val client = player.client ?: return
-        client.updatePlayers(writer, updates)
-        client.flush()
-        writer.position(0)
-        updates.position(0)
+            client.updatePlayers(writer, updates)
+            client.flush()
+        } finally {
+            writer.position(0)
+            updates.position(0)
+        }
     }
 
     fun processLocals(
@@ -71,7 +74,7 @@ class PlayerUpdateTask {
     ) {
         var skip = -1
         var index: Int
-        var player: Player
+        var player: Player?
         var flag: Int
         var updateType: LocalChange
         sync.startBitAccess()
@@ -81,7 +84,26 @@ class PlayerUpdateTask {
             if (viewport.isIdle(index) == active) {
                 continue
             }
-            player = Players.indexed(index)!!
+
+            if (sync.position() >= MAX_SYNC_SIZE) {
+                skip++
+                viewport.setIdle(index)
+                continue
+            }
+
+            player = Players.indexed(index)
+            if (player == null) {
+                if (skip > -1) {
+                    writeSkip(sync, skip)
+                    skip = -1
+                }
+                sync.writeBits(1, true)
+                sync.writeBits(1, false)
+                sync.writeBits(2, LocalChange.Remove.id)
+                sync.writeBits(1, false)
+                set.remove(index)
+                continue
+            }
 
             flag = updateFlag(updates, player, set)
             updateType = localChange(updates, player, client, viewport, flag)
