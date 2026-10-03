@@ -20,6 +20,10 @@ class MapObjectsRotatedDecoder : MapObjectDecoder() {
 
     fun decode(cache: Cache, settings: ByteArray, from: Zone, to: Zone, rotation: Int, keys: IntArray?) {
         val objectData = cache.data(Index.MAPS, "l${from.region.x}_${from.region.y}", xtea = keys) ?: return
+        decode(objectData, settings, from, to, rotation)
+    }
+
+    fun decode(objectData: ByteArray, settings: ByteArray, from: Zone, to: Zone, rotation: Int) {
         val x = from.tile.x.rem(64)
         val y = from.tile.y.rem(64)
         zone = Rectangle(x, y, x + 7, y + 7)

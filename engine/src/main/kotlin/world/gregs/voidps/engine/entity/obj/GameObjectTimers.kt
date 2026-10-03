@@ -42,6 +42,8 @@ class GameObjectTimers : Runnable {
 
     fun cancel(zone: Zone): Boolean = timers.removeIf { timer -> timer.objs.any { it.tile.zone == zone } }
 
+    fun cancel(zones: Set<Zone>): Boolean = timers.removeIf { timer -> timer.objs.any { it.tile.zone in zones } }
+
     fun execute(gameObject: GameObject): Boolean = timers.removeIf {
         if (it.objs.contains(gameObject)) {
             it.block.invoke()
