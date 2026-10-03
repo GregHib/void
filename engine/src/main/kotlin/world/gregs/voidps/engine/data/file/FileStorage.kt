@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.clan.Clan
 import world.gregs.voidps.engine.entity.character.player.chat.clan.ClanRank
 import java.io.File
 import java.io.Writer
+import java.nio.file.Files
 import java.util.*
 
 class FileStorage(
@@ -74,10 +75,12 @@ class FileStorage(
     override fun offers(days: Int): OpenOffers {
         val offers = OpenOffers()
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
+        recover(buy)
         if (buy.exists()) {
             loadOffers(buy, offers, false)
         }
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
+        recover(sell)
         if (sell.exists()) {
             loadOffers(sell, offers, true)
         }
@@ -110,18 +113,51 @@ class FileStorage(
 
     override fun saveOffers(offers: OpenOffers) {
         val buy = directory.resolve(Settings["storage.grand.exchange.offers.buy.path"])
-        if (buy.deleteRecursively()) {
-            buy.mkdirs()
-        }
-        saveOffers(buy, offers.buyByItem)
         val sell = directory.resolve(Settings["storage.grand.exchange.offers.sell.path"])
-        if (sell.deleteRecursively()) {
-            sell.mkdirs()
-        }
-        saveOffers(sell, offers.sellByItem)
+        // Stage everything first so a failure part way through leaves the previous offers untouched
+        val buyStaged = stage(buy) { saveOffers(it, offers.buyByItem) }
+        val sellStaged = stage(sell) { saveOffers(it, offers.sellByItem) }
         val file = directory.resolve(Settings["storage.grand.exchange.offers.path"])
-        Config.fileWriter(file) {
+        file.absoluteFile.parentFile.mkdirs()
+        Config.atomicFileWriter(file) {
             writePair("counter", offers.counter)
+        }
+        swap(buyStaged, buy)
+        swap(sellStaged, sell)
+    }
+
+    /**
+     * Writes a new copy of [target] into a temporary sibling directory.
+     */
+    private fun stage(target: File, write: (File) -> Unit): File {
+        val staged = File(target.absoluteFile.parentFile, "${target.name}.tmp")
+        staged.deleteRecursively()
+        staged.mkdirs()
+        write(staged)
+        return staged
+    }
+
+    /**
+     * Replaces [target] with [staged]. The previous directory is kept as a backup until the swap completes
+     * so [recover] can restore it if the process dies in between.
+     */
+    private fun swap(staged: File, target: File) {
+        val backup = File(target.absoluteFile.parentFile, "${target.name}.old")
+        backup.deleteRecursively()
+        if (target.exists()) {
+            Files.move(target.toPath(), backup.toPath())
+        }
+        Files.move(staged.toPath(), target.toPath())
+        backup.deleteRecursively()
+    }
+
+    /**
+     * Restores a directory whose swap was interrupted after the old copy was moved aside.
+     */
+    private fun recover(target: File) {
+        val backup = File(target.absoluteFile.parentFile, "${target.name}.old")
+        if (!target.exists() && backup.exists()) {
+            Files.move(backup.toPath(), target.toPath())
         }
     }
 
