@@ -63,10 +63,10 @@ data class TableDefinition(
     }
 
     fun findOrNull(column: Int, value: Any): Int? {
-        for ((index, row) in rows.withIndex()) {
-            val row = Rows.getOrNull(row)
+        for (id in rows) {
+            val row = Rows.getOrNull(id)
             if (row != null && row.data[column] == value) {
-                return index
+                return id
             }
         }
         return null
