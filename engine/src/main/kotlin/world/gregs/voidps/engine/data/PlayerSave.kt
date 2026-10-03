@@ -419,7 +419,7 @@ data class PlayerSave(
                         }
                         "statistics" -> {
                             while (nextPair()) {
-                                when (key()) {
+                                when (val statKey = key()) {
                                     "kills" -> while (nextEntry()) {
                                         val category = key()
                                         val count = int()
@@ -435,14 +435,16 @@ data class PlayerSave(
                                         var title = ""
                                         var desc = ""
                                         while (nextEntry()) {
-                                            when (key()) {
+                                            when (val eventKey = key()) {
                                                 "time" -> time = int()
                                                 "title" -> title = string()
                                                 "desc" -> desc = string()
+                                                else -> throw IllegalArgumentException("Unexpected recent event key: '$eventKey' ${exception()}")
                                             }
                                         }
                                         recentEvents.add(RecentEvent(time, title, desc))
                                     }
+                                    else -> throw IllegalArgumentException("Unexpected statistics key: '$statKey' ${exception()}")
                                 }
                             }
                         }
