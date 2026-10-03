@@ -7,6 +7,7 @@ import content.activity.shooting_star.ShootingStarHandler
 import content.activity.shooting_star.StarLocationData
 import content.skill.construction.HouseFurniture.Companion.clockTime
 import dialogueOption
+import intEntry
 import interfaceOption
 import itemOnObject
 import objectOption
@@ -492,6 +493,89 @@ class HouseFurnitureTest : WorldTest() {
         tickIf { !player.containsMessage("family crest") }
 
         assertEquals(1, player.inventory.count("plank"))
+    }
+
+    @Test
+    fun `Store a pet in a pet house`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.inventory.add("pet_kitten")
+        val house = createObject("oak_pet_house", emptyTile.addY(1))
+
+        player.objectOption(house, "Store")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line1")
+
+        assertEquals(0, player.inventory.count("pet_kitten"))
+        assertEquals(listOf("pet_kitten"), player.get<List<String>>("house_pets"))
+    }
+
+    @Test
+    fun `Take a pet from a pet house`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player["house_pets"] = listOf("pet_kitten")
+        val house = createObject("teak_pet_house", emptyTile.addY(1))
+
+        player.objectOption(house, "Store")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line2")
+
+        assertEquals(1, player.inventory.count("pet_kitten"))
+        assertTrue(player.get<List<String>>("house_pets")!!.isEmpty())
+    }
+
+    @Test
+    fun `Feed all stored pets`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player["house_pets"] = listOf("pet_kitten")
+        player["pet_cat_hunger"] = 5000
+        player.inventory.add("raw_shrimps")
+        val feeder = createObject("oak_pet_feeder", emptyTile.addY(1))
+
+        player.objectOption(feeder, "Feed-all")
+        tickIf { player.inventory.contains("raw_shrimps") }
+
+        assertEquals(3500, player["pet_cat_hunger", 0])
+    }
+
+    @Test
+    fun `Throw darts at a dartboard`() {
+        val player = createPlayer(emptyTile)
+        player.equipment.set(EquipSlot.Weapon.index, "bronze_dart", 10)
+        val board = createObject("dartboard", emptyTile.addY(1))
+
+        player.objectOption(board, "Throw-at")
+        tickIf { !player.containsMessage("Your dart") }
+
+        assertEquals(10, player.equipment.count("bronze_dart"))
+    }
+
+    @Test
+    fun `Can't shoot at an archery target without a bow`() {
+        val player = createPlayer(emptyTile)
+        val target = createObject("house_archery_target", emptyTile.addY(1))
+
+        player.objectOption(target, "Shoot-at")
+        tickIf { !player.containsMessage("bow and arrows") }
+    }
+
+    @Test
+    fun `Owner adds prize money to the prize chest up to its capacity`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        player.inventory.add("coins", 30000)
+        val chest = createObject("oak_prize_chest", emptyTile.addY(1))
+
+        player.objectOption(chest, "Open")
+        tickIf { player.dialogue == null }
+        player.dialogueOption("line1")
+        player.intEntry(30000)
+        tick()
+
+        assertEquals(20000, player["house_prize_money", 0])
+        assertEquals(10000, player.inventory.count("coins"))
     }
 
     @Test

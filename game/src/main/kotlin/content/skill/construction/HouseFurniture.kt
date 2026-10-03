@@ -108,6 +108,9 @@ class HouseFurniture : Script {
          * Returns the index picked or -1 if none were.
          */
         suspend fun Player.pick(options: List<String>, offset: Int = 0): Int {
+            if (options.size == 1) {
+                return 0
+            }
             val remaining = options.size - offset
             val count = if (remaining > 5) 4 else remaining
             val lines = options.subList(offset, offset + count)
