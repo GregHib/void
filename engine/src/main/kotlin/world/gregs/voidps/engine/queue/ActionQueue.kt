@@ -75,17 +75,24 @@ class ActionQueue<C : Character>(
             weakQueue.clear()
             return
         }
-        var action = queue.peek()
+        val list = if (priority == ActionPriority.Engine) engineQueue else queue
+        var action = list.peek()
         while (action != null) {
             val next = action.next
             if (action.priority == priority) {
-                queue.remove(action)
+                list.remove(action)
             }
             action = next
         }
     }
 
-    fun clear(name: String): Boolean = queue.clear(name) || weakQueue.clear(name) || engineQueue.clear(name)
+    fun clear(name: String): Boolean {
+        // Non short-circuiting so same-named actions in every queue are cleared
+        val normal = queue.clear(name)
+        val weak = weakQueue.clear(name)
+        val engine = engineQueue.clear(name)
+        return normal || weak || engine
+    }
 
     fun clear() {
         queue.clear()

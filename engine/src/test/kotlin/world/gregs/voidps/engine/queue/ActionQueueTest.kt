@@ -187,4 +187,24 @@ internal class ActionQueueTest {
         assertNull(player.suspension)
         assertTrue(queue.isEmpty())
     }
+
+    @Test
+    fun `Clear by name removes same named actions from every queue`() {
+        queue.add(Action<Player>("name", 1, ActionPriority.Normal) {})
+        queue.add(Action<Player>("name", 1, ActionPriority.Weak) {})
+        queue.add(Action<Player>("name", 1, ActionPriority.Engine) {})
+
+        assertTrue(queue.clear("name"))
+
+        assertFalse(queue.contains("name"))
+    }
+
+    @Test
+    fun `Clear by engine priority removes engine actions`() {
+        queue.add(Action<Player>("engine", 1, ActionPriority.Engine) {})
+
+        queue.clear(ActionPriority.Engine)
+
+        assertFalse(queue.contains(ActionPriority.Engine))
+    }
 }
