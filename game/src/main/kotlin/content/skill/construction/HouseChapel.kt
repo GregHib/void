@@ -1,15 +1,22 @@
 package content.skill.construction
 
-import content.skill.construction.House.Companion.notImplemented
 import world.gregs.voidps.engine.Script
+import world.gregs.voidps.engine.entity.character.jingle
+import world.gregs.voidps.engine.entity.character.midi
 
 /**
  * Chapel musical instruments
  */
 class HouseChapel : Script {
     init {
-        objectOperate("Play", "windchimes,bells,organ") {
-            notImplemented()
+        objectOperate("Play", "windchimes,bells") {
+            anim("play_chimes")
+        }
+
+        objectOperate("Play", "organ") {
+            anim("play_organ")
+            midi("church_organ")
+            jingle("ambient_church_happy")
         }
     }
 }

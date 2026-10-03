@@ -66,6 +66,10 @@ class Yrsa : Script {
             body.setColour(BodyColour.Feet, get("makeover_colour_shoes", 0))
             flagAppearance()
             closeMenu()
+            // Also opened by player owned house furniture
+            if (contains("house_owner")) {
+                return@interfaceOption
+            }
             npc<Happy>("yrsa", "Hey, They look great!")
         }
     }

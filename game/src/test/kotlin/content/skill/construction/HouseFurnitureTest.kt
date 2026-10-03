@@ -5,18 +5,25 @@ import WorldTest
 import containsMessage
 import content.skill.construction.HouseFurniture.Companion.clockTime
 import dialogueOption
+import interfaceOption
 import itemOnObject
 import objectOption
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.ui.dialogue
+import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.data.definition.Areas
 import world.gregs.voidps.engine.data.definition.ObjectDefinitions
 import world.gregs.voidps.engine.data.definition.Tables
 import world.gregs.voidps.engine.entity.Operation
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObjects
 import world.gregs.voidps.engine.inv.add
+import world.gregs.voidps.engine.inv.equipment
 import world.gregs.voidps.engine.inv.inventory
+import world.gregs.voidps.network.login.protocol.visual.update.player.EquipSlot
 import world.gregs.voidps.type.setRandom
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -268,6 +275,106 @@ class HouseFurnitureTest : WorldTest() {
     }
 
     @Test
+    fun `Change clothes at a wardrobe`() {
+        val player = createPlayer(emptyTile)
+        val wardrobe = createObject("oak_wardrobe", emptyTile.addY(1))
+
+        player.objectOption(wardrobe, "Change-clothes")
+        tick()
+        player.dialogueOption("line1")
+        tick(2)
+
+        assertTrue(player.hasOpen("thessalias_makeovers"))
+    }
+
+    @Test
+    fun `Can't change clothes wearing armour`() {
+        val player = createPlayer(emptyTile)
+        player.equipment.set(EquipSlot.Chest.index, "bronze_platebody")
+        val wardrobe = createObject("teak_drawers", emptyTile.addY(1))
+
+        player.objectOption(wardrobe, "Change-clothes")
+        tick()
+        player.dialogueOption("line1")
+        tick(2)
+
+        assertFalse(player.hasOpen("thessalias_makeovers"))
+    }
+
+    @Test
+    fun `Change shoes with a shoe box`() {
+        val player = createPlayer(emptyTile)
+        val box = createObject("shoe_box", emptyTile.addY(1))
+
+        player.objectOption(box, "Change-clothes")
+        tick(3)
+
+        assertTrue(player.hasOpen("yrsas_shoe_store"))
+    }
+
+    @Test
+    fun `Change hairstyle at a dresser`() {
+        val player = createPlayer(emptyTile)
+        val dresser = createObject("gilded_dresser", emptyTile.addY(1))
+
+        player.objectOption(dresser, "Preen")
+        tick(3)
+
+        assertTrue(player.hasOpen("hairdressers_salon"))
+    }
+
+    @Test
+    fun `Confirming a makeover in a house doesn't talk to the shopkeeper`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        val dresser = createObject("oak_dresser", emptyTile.addY(1))
+        player.objectOption(dresser, "Preen")
+        tick(3)
+
+        player.interfaceOption("hairdressers_salon", "confirm", "Confirm")
+        tick()
+
+        assertFalse(player.hasOpen("hairdressers_salon"))
+        assertNull(player.dialogue)
+    }
+
+    @Test
+    fun `Talk to a mounted head`() {
+        val player = createPlayer(emptyTile)
+        val head = createObject("kbd_heads_trophy", emptyTile.addY(1))
+
+        player.objectOption(head, "Talk-to")
+        tick()
+
+        assertNotNull(player.dialogue)
+    }
+
+    @Test
+    fun `Teleport with a mounted amulet of glory`() {
+        val player = createPlayer(emptyTile)
+        val glory = createObject("amulet_of_glory_mounted", emptyTile.addY(1))
+
+        player.objectOption(glory, "Rub")
+        tick()
+        player.dialogueOption("line1")
+        tick(5)
+
+        assertTrue(player.tile in Areas["edgeville_teleport"])
+    }
+
+    @Test
+    fun `Ringing a bell-pull without a servant`() {
+        val player = createPlayer(emptyTile)
+        player["house_owner"] = player.accountName
+        val bell = createObject("posh_bell_pull", emptyTile.addY(1))
+
+        player.objectOption(bell, "Ring")
+        tick()
+
+        assertTrue(player.containsMessage("no servant"))
+    }
+
+    @Test
     fun `Every furniture option has an interaction`() {
         val missing = mutableListOf<String>()
         for (row in Tables.get("house_furniture").rows()) {
@@ -289,9 +396,9 @@ class HouseFurnitureTest : WorldTest() {
     @Test
     fun `Unimplemented furniture sends a message`() {
         val player = createPlayer(emptyTile)
-        val organ = createObject("organ", emptyTile.addY(1))
+        val pool = createObject("scrying_pool", emptyTile.addY(1))
 
-        player.objectOption(organ, "Play")
+        player.objectOption(pool, "Scry")
         tick()
 
         assertTrue(player.containsMessage("Not yet implemented."))

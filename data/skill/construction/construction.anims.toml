@@ -126,3 +126,11 @@ id = 4116
 
 [sit_demonic_throne]
 id = 4117
+
+# Guessed from other servers
+[play_chimes]
+id = 3674
+
+# Guessed from other servers
+[ring_bell_pull]
+id = 3668
