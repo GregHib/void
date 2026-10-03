@@ -54,6 +54,7 @@ sealed class Suspension {
             }
             continuation.resume(string)
         }
+
         override fun cancel() {
             continuation.cancel()
         }
@@ -70,6 +71,7 @@ sealed class Suspension {
             }
             continuation.resume(Unit)
         }
+
         override fun cancel() {
             continuation.cancel()
         }
@@ -90,6 +92,7 @@ sealed class Suspension {
             }
             continuation.resume(Unit)
         }
+
         override fun cancel() {
             continuation.cancel()
         }
